@@ -1319,10 +1319,10 @@ window.JEE_QUESTIONS_DATA = [
         </a>
         <div>
           <div class="flex items-center gap-2">
-            <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider rounded bg-sky-500/20 text-sky-400 border border-sky-500/30">
+            <span class="px-2 py-0.5 text-[13px] font-extrabold uppercase tracking-wider rounded bg-sky-500/20 text-sky-400 border border-sky-500/30">
               IIT-JEE Mechanics · 1D Invariant Rig
             </span>
-            <span id="headerAuditSummary" class="text-xs text-slate-400 font-mono">18 solved diagnostics · source provenance shown per item · live corpus 123 PYQs</span>
+            <span id="headerAuditSummary" class="text-[13px] text-slate-400 font-mono">18 solved diagnostics · source provenance shown per item · live corpus 123 PYQs</span>
           </div>
           <h1 class="text-lg md:text-xl font-black tracking-tight text-white flex items-center gap-2">
             Motion in One Dimension &middot; Master Suite
@@ -1332,16 +1332,16 @@ window.JEE_QUESTIONS_DATA = [
 
       <!-- Quick Action Controls -->
       <div class="flex items-center gap-2">
-        <button onclick="switchTab('tab-quiz')" class="touch-target px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-purple-600/30 to-indigo-600/30 hover:from-purple-600/50 hover:to-indigo-600/50 border border-purple-500/40 text-purple-200 text-xs font-bold transition flex items-center gap-2">
+        <button onclick="switchTab('tab-quiz')" class="touch-target px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-purple-600/30 to-indigo-600/30 hover:from-purple-600/50 hover:to-indigo-600/50 border border-purple-500/40 text-purple-200 text-[13px] font-bold transition flex items-center gap-2">
           <span>📚</span>
           <span>IIT-JEE Question Hub</span>
-          <span class="px-1.5 py-0.2 rounded bg-purple-500/30 text-[10px] font-mono text-purple-300" id="headerQCount">18 Qs</span>
+          <span class="px-1.5 py-0.2 rounded bg-purple-500/30 text-[13px] font-mono text-purple-300" id="headerQCount">18 Qs</span>
         </button>
       </div>
     </div>
 
     <!-- TAB NAVIGATION (8 Tabs - Tablet Optimized Horizontal Scroll) -->
-    <div class="max-w-7xl mx-auto mt-2 overflow-x-auto no-scrollbar flex items-center gap-1 text-xs font-semibold border-t border-border/50 pt-1">
+    <div class="max-w-7xl mx-auto mt-2 overflow-x-auto no-scrollbar flex items-center gap-1 text-[13px] font-semibold border-t border-border/50 pt-1">
       <button onclick="switchTab('tab-disp-dist')" id="btn-tab-disp-dist" class="tab-btn-active px-3 py-2 rounded-t-lg transition whitespace-nowrap">
         1. Disp vs Distance
       </button>
@@ -1361,7 +1361,7 @@ window.JEE_QUESTIONS_DATA = [
         6. 1D Relative Pursuit
       </button>
       <button onclick="switchTab('tab-sandbox')" id="btn-tab-sandbox" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap flex items-center gap-1.5 text-amber-300/80">
-        <span class="px-1 py-0.2 rounded bg-amber-500/20 text-[9px] font-bold text-amber-400">Draft</span>
+        <span class="px-1 py-0.2 rounded bg-amber-500/20 text-[13px] font-bold text-amber-400">Draft</span>
         <span>7. Master Sandbox</span>
       </button>
       <button onclick="switchTab('tab-quiz')" id="btn-tab-quiz" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap flex items-center gap-1.5 text-purple-300">
@@ -1378,11 +1378,11 @@ window.JEE_QUESTIONS_DATA = [
       <div class="text-2xl">🚀</div>
       <div class="flex-1 min-w-0">
         <div class="flex items-center justify-between gap-2">
-          <span class="text-xs font-bold uppercase text-sky-400 font-mono" id="simToastTitle">Active Question Mode</span>
-          <button onclick="closeSimToast()" class="text-slate-400 hover:text-white text-xs">&times;</button>
+          <span class="text-[13px] font-bold uppercase text-sky-400 font-mono" id="simToastTitle">Active Question Mode</span>
+          <button onclick="closeSimToast()" class="text-slate-400 hover:text-white text-[13px]">&times;</button>
         </div>
-        <p class="text-xs text-slate-300 mt-1" id="simToastDesc">Parameters loaded from JEE Question.</p>
-        <div class="mt-2 text-[11px] font-mono text-amber-300 bg-black/40 px-2 py-1 rounded" id="simToastParams"></div>
+        <p class="text-[13px] text-slate-300 mt-1" id="simToastDesc">Parameters loaded from JEE Question.</p>
+        <div class="mt-2 text-[13px] font-mono text-amber-300 bg-black/40 px-2 py-1 rounded" id="simToastParams"></div>
       </div>
     </div>
 
@@ -1397,12 +1397,12 @@ window.JEE_QUESTIONS_DATA = [
               <span class="w-3 h-3 rounded-full bg-sky-400"></span>
               <h2 class="font-bold text-base text-white">Displacement vs Distance · Odometer & Turning Point Engine</h2>
             </div>
-            <p class="text-xs text-slate-400 mt-1">
+            <p class="text-[13px] text-slate-400 mt-1">
               Deconstructs the #1 JEE trap: <span class="text-sky-300 font-mono font-semibold">Distance S = ∫|v|dt</span> vs <span class="text-emerald-300 font-mono font-semibold">Displacement Δx = ∫v dt</span>. Observe velocity sign reversal!
             </p>
           </div>
           <!-- G1/G2/G3 Toggle -->
-          <div class="flex items-center bg-slate-900 rounded-lg p-1 border border-border text-xs">
+          <div class="flex items-center bg-slate-900 rounded-lg p-1 border border-border text-[13px]">
             <button onclick="setDepth('disp-dist', 'G1')" id="btn-depth-disp-dist-G1" class="px-2.5 py-1 rounded font-semibold text-white bg-sky-600/40 border border-sky-500/50">G1: Phenomenon</button>
             <button onclick="setDepth('disp-dist', 'G2')" id="btn-depth-disp-dist-G2" class="px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white">G2: Mechanism</button>
             <button onclick="setDepth('disp-dist', 'G3')" id="btn-depth-disp-dist-G3" class="px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white">G3: Invariants</button>
@@ -1410,16 +1410,16 @@ window.JEE_QUESTIONS_DATA = [
         </div>
 
         <!-- Active Sim Banner -->
-        <div id="banner-disp-dist" class="hidden my-3 p-2.5 bg-sky-950/40 border border-sky-500/40 rounded-xl text-xs flex items-center justify-between">
+        <div id="banner-disp-dist" class="hidden my-3 p-2.5 bg-sky-950/40 border border-sky-500/40 rounded-xl text-[13px] flex items-center justify-between">
           <span class="text-sky-300" id="banner-text-disp-dist">Simulating Question</span>
-          <button onclick="resetTabControls('disp-dist')" class="text-[10px] text-slate-400 hover:text-white underline">Reset Defaults</button>
+          <button onclick="resetTabControls('disp-dist')" class="text-[13px] text-slate-400 hover:text-white underline">Reset Defaults</button>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
           <!-- Canvas Left Rig (8 Cols) -->
           <div class="lg:col-span-8 space-y-4">
             <div class="canvas-container bg-slate-950 border border-border p-2">
-              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[13px] font-mono text-slate-400">
                 <span>1D PNEUMATIC TRACK &amp; ODOMETER</span>
                 <span id="dispLiveClock">t = 0.00 s</span>
               </div>
@@ -1428,7 +1428,7 @@ window.JEE_QUESTIONS_DATA = [
 
             <!-- Synchronized v-t Graph with Signed Area Strips -->
             <div class="canvas-container bg-slate-950 border border-border p-2">
-              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[13px] font-mono text-slate-400">
                 <span>v(t) PHASE ACCUMULATION (GREEN = POSITIVE AREA, RED = NEGATIVE AREA)</span>
                 <span id="dispLiveVel">v = +12.0 m/s</span>
               </div>
@@ -1437,14 +1437,14 @@ window.JEE_QUESTIONS_DATA = [
 
             <!-- Playback & Scrub Bar -->
             <div class="flex items-center gap-3 bg-slate-900/60 p-3 rounded-xl border border-border">
-              <button id="btnDispPlay" onclick="toggleDispPlay()" class="touch-target px-4 py-2 bg-sky-500 hover:bg-sky-400 text-slate-950 rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
+              <button id="btnDispPlay" onclick="toggleDispPlay()" class="touch-target px-4 py-2 bg-sky-500 hover:bg-sky-400 text-slate-950 rounded-xl font-bold text-[13px] flex items-center gap-1.5 transition">
                 <span id="dispPlayIcon">▶</span> <span id="dispPlayText">Play Motion</span>
               </button>
-              <button onclick="resetDispSim()" class="touch-target px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-border transition">
+              <button onclick="resetDispSim()" class="touch-target px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-[13px] font-semibold border border-border transition">
                 Reset
               </button>
               <div class="flex-1 flex items-center gap-2">
-                <span class="text-[10px] font-mono text-slate-400">Time Scrub:</span>
+                <span class="text-[13px] font-mono text-slate-400">Time Scrub:</span>
                 <input type="range" id="sliderDispTime" min="0" max="10" step="0.05" value="0" oninput="scrubDispTime(this.value)" class="w-full accent-sky-400 cursor-pointer">
               </div>
             </div>
@@ -1454,28 +1454,28 @@ window.JEE_QUESTIONS_DATA = [
           <div class="lg:col-span-4 space-y-4">
             <!-- Telemetry Cards -->
             <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
-              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Real-Time Invariants</h3>
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">Real-Time Invariants</h3>
               
-              <div class="grid grid-cols-2 gap-2 text-xs">
+              <div class="grid grid-cols-2 gap-2 text-[13px]">
                 <div class="bg-black/30 p-2.5 rounded-lg border border-border">
-                  <span class="text-slate-400 block text-[10px]">Displacement Δx</span>
+                  <span class="text-slate-400 block text-[13px]">Displacement Δx</span>
                   <span id="telemetryDisp" class="font-mono text-base font-bold text-emerald-400">+0.00 m</span>
                 </div>
                 <div class="bg-black/30 p-2.5 rounded-lg border border-border">
-                  <span class="text-slate-400 block text-[10px]">Total Distance S</span>
+                  <span class="text-slate-400 block text-[13px]">Total Distance S</span>
                   <span id="telemetryDist" class="font-mono text-base font-bold text-sky-400">0.00 m</span>
                 </div>
                 <div class="bg-black/30 p-2.5 rounded-lg border border-border">
-                  <span class="text-slate-400 block text-[10px]">Instantaneous v</span>
+                  <span class="text-slate-400 block text-[13px]">Instantaneous v</span>
                   <span id="telemetryV" class="font-mono text-base font-bold text-amber-400">+12.00 m/s</span>
                 </div>
                 <div class="bg-black/30 p-2.5 rounded-lg border border-border">
-                  <span class="text-slate-400 block text-[10px]">Average Velocity</span>
+                  <span class="text-slate-400 block text-[13px]">Average Velocity</span>
                   <span id="telemetryVavg" class="font-mono text-base font-bold text-purple-400">0.00 m/s</span>
                 </div>
               </div>
 
-              <div class="p-2.5 rounded-lg bg-sky-500/10 border border-sky-500/20 text-[11px] text-slate-300">
+              <div class="p-2.5 rounded-lg bg-sky-500/10 border border-sky-500/20 text-[13px] text-slate-300">
                 <span class="font-bold text-sky-400 block mb-0.5">💡 Mathematical Invariant:</span>
                 Distance is always ≥ |Displacement|:
                 <span class="font-mono text-white block mt-1">S = ∫ |v(t)| dt ≥ |∫ v(t) dt| = |Δx|</span>
@@ -1485,10 +1485,10 @@ window.JEE_QUESTIONS_DATA = [
 
             <!-- Interactive Parameters -->
             <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-4">
-              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Kinematic Law Controls</h3>
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">Kinematic Law Controls</h3>
               
               <div class="space-y-1.5">
-                <div class="flex justify-between text-xs">
+                <div class="flex justify-between text-[13px]">
                   <span class="text-slate-300">Initial Velocity (v₀):</span>
                   <span id="valDispV0" class="font-mono text-sky-400 font-bold">+12 m/s</span>
                 </div>
@@ -1496,14 +1496,14 @@ window.JEE_QUESTIONS_DATA = [
               </div>
 
               <div class="space-y-1.5">
-                <div class="flex justify-between text-xs">
+                <div class="flex justify-between text-[13px]">
                   <span class="text-slate-300">Constant Acceleration (a):</span>
                   <span id="valDispA" class="font-mono text-amber-400 font-bold">-4.0 m/s²</span>
                 </div>
                 <input type="range" id="sliderDispA" min="-10" max="10" step="0.5" value="-4" oninput="updateDispParams()" class="w-full accent-amber-400 cursor-pointer">
               </div>
 
-              <div class="p-2 bg-black/40 rounded border border-border text-[11px] font-mono text-slate-300">
+              <div class="p-2 bg-black/40 rounded border border-border text-[13px] font-mono text-slate-300">
                 <div>Turning Point (v = 0): <span id="dispTurnCalc" class="text-amber-400 font-bold">t = 3.00 s</span></div>
                 <div>Max Distance Forward: <span id="dispMaxX" class="text-emerald-400 font-bold">x = +18.0 m</span></div>
               </div>
@@ -1524,28 +1524,28 @@ window.JEE_QUESTIONS_DATA = [
               <span class="w-3 h-3 rounded-full bg-amber-400"></span>
               <h2 class="font-bold text-base text-white">Moving Platform Inheritance · Rising Balloon &amp; Stone Ejection</h2>
             </div>
-            <p class="text-xs text-slate-400 mt-1">
+            <p class="text-[13px] text-slate-400 mt-1">
               Grounded on <span class="text-amber-300 font-semibold">JEE Main 2026 (8th April Evening)</span>: A stone released from a rising vehicle inherits the vehicle's instantaneous velocity <span class="font-mono text-sky-400">u_stone = +v_balloon</span>, NOT zero!
             </p>
           </div>
           <!-- Dual-Mode Comparative Toggle -->
-          <div class="flex items-center bg-slate-900 rounded-lg p-1 border border-border text-xs">
+          <div class="flex items-center bg-slate-900 rounded-lg p-1 border border-border text-[13px]">
             <button onclick="setBalloonMode('correct')" id="btnBalloonCorrect" class="px-2.5 py-1 rounded font-semibold text-white bg-emerald-600/40 border border-emerald-500/50">Physics Reality (u = +v)</button>
             <button onclick="setBalloonMode('fallacy')" id="btnBalloonFallacy" class="px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white">Exam Fallacy (u = 0)</button>
           </div>
         </div>
 
         <!-- Active Sim Banner -->
-        <div id="banner-balloon" class="hidden my-3 p-2.5 bg-amber-950/40 border border-amber-500/40 rounded-xl text-xs flex items-center justify-between">
+        <div id="banner-balloon" class="hidden my-3 p-2.5 bg-amber-950/40 border border-amber-500/40 rounded-xl text-[13px] flex items-center justify-between">
           <span class="text-amber-300" id="banner-text-balloon">Simulating Question</span>
-          <button onclick="resetTabControls('balloon')" class="text-[10px] text-slate-400 hover:text-white underline">Reset Defaults</button>
+          <button onclick="resetTabControls('balloon')" class="text-[13px] text-slate-400 hover:text-white underline">Reset Defaults</button>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
           <!-- Canvas Rig (8 Cols) -->
           <div class="lg:col-span-8 space-y-4">
             <div class="canvas-container bg-slate-950 border border-border p-2">
-              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[13px] font-mono text-slate-400">
                 <span>VERTICAL ELEVATION RIG &middot; BALLOON vs EJECTED STONE</span>
                 <span id="balloonClock">t = 0.00 s</span>
               </div>
@@ -1554,14 +1554,14 @@ window.JEE_QUESTIONS_DATA = [
 
             <!-- Controls Bar -->
             <div class="flex items-center gap-3 bg-slate-900/60 p-3 rounded-xl border border-border">
-              <button id="btnBalloonPlay" onclick="toggleBalloonPlay()" class="touch-target px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
+              <button id="btnBalloonPlay" onclick="toggleBalloonPlay()" class="touch-target px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl font-bold text-[13px] flex items-center gap-1.5 transition">
                 <span id="balloonPlayIcon">▶</span> <span id="balloonPlayText">Release &amp; Track</span>
               </button>
-              <button onclick="resetBalloonSim()" class="touch-target px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-border transition">
+              <button onclick="resetBalloonSim()" class="touch-target px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-[13px] font-semibold border border-border transition">
                 Reset
               </button>
               <div class="flex-1 flex items-center gap-2">
-                <span class="text-[10px] font-mono text-slate-400">Time Scrub:</span>
+                <span class="text-[13px] font-mono text-slate-400">Time Scrub:</span>
                 <input type="range" id="sliderBalloonTime" min="0" max="8" step="0.05" value="0" oninput="scrubBalloonTime(this.value)" class="w-full accent-amber-400 cursor-pointer">
               </div>
             </div>
@@ -1570,9 +1570,9 @@ window.JEE_QUESTIONS_DATA = [
           <!-- Theoretical Telemetry & Solvers (4 Cols) -->
           <div class="lg:col-span-4 space-y-4">
             <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
-              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Live Heights &amp; Velocities</h3>
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">Live Heights &amp; Velocities</h3>
 
-              <div class="space-y-2 text-xs">
+              <div class="space-y-2 text-[13px]">
                 <div class="flex justify-between items-center bg-black/30 p-2.5 rounded border border-border">
                   <span class="text-slate-300">Balloon Height:</span>
                   <span id="telemetryBalloonH" class="font-mono text-amber-400 font-bold">75.0 m</span>
@@ -1591,7 +1591,7 @@ window.JEE_QUESTIONS_DATA = [
                 </div>
               </div>
 
-              <div class="p-2.5 bg-amber-500/10 border border-amber-500/30 rounded-lg text-[11px] text-slate-300 space-y-1">
+              <div class="p-2.5 bg-amber-500/10 border border-amber-500/30 rounded-lg text-[13px] text-slate-300 space-y-1">
                 <span class="font-bold text-amber-400 block">JEE Main 2026 Analytical Solution:</span>
                 <div>Quadratic: <span class="font-mono text-white">y(t) = 75 + 10t - 5t² = 0</span></div>
                 <div>Roots: <span class="font-mono text-white">(t - 5)(t + 3) = 0 ⇒ t = 5.0 s</span></div>
@@ -1601,10 +1601,10 @@ window.JEE_QUESTIONS_DATA = [
 
             <!-- Parameter Sliders -->
             <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-4">
-              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Launch Parameters</h3>
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">Launch Parameters</h3>
 
               <div class="space-y-1.5">
-                <div class="flex justify-between text-xs">
+                <div class="flex justify-between text-[13px]">
                   <span class="text-slate-300">Release Height (h₀):</span>
                   <span id="valBalloonH" class="font-mono text-amber-400 font-bold">75 m</span>
                 </div>
@@ -1612,7 +1612,7 @@ window.JEE_QUESTIONS_DATA = [
               </div>
 
               <div class="space-y-1.5">
-                <div class="flex justify-between text-xs">
+                <div class="flex justify-between text-[13px]">
                   <span class="text-slate-300">Balloon Ascent Speed (v_b):</span>
                   <span id="valBalloonV" class="font-mono text-sky-400 font-bold">10 m/s</span>
                 </div>
@@ -1620,7 +1620,7 @@ window.JEE_QUESTIONS_DATA = [
               </div>
 
               <div class="space-y-1.5">
-                <div class="flex justify-between text-xs">
+                <div class="flex justify-between text-[13px]">
                   <span class="text-slate-300">Gravity (g):</span>
                   <span id="valBalloonG" class="font-mono text-red-400 font-bold">10 m/s²</span>
                 </div>
@@ -1643,11 +1643,11 @@ window.JEE_QUESTIONS_DATA = [
               <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
               <h2 class="font-bold text-base text-white">Graph Transformations · v-x to a-x Spatial Calculus Rig</h2>
             </div>
-            <p class="text-xs text-slate-400 mt-1">
+            <p class="text-[13px] text-slate-400 mt-1">
               Based on <span class="text-emerald-300 font-semibold">JEE Main 2026 (24th Jan)</span>: Transforming non-standard kinematic curves using <span class="font-mono text-emerald-400 font-semibold">a = v (dv/dx)</span>.
             </p>
           </div>
-          <div class="text-xs font-mono text-slate-400 bg-slate-900 px-3 py-1.5 rounded border border-border">
+          <div class="text-[13px] font-mono text-slate-400 bg-slate-900 px-3 py-1.5 rounded border border-border">
             Differential Identity: a = v &times; (dv/dx)
           </div>
         </div>
@@ -1658,7 +1658,7 @@ window.JEE_QUESTIONS_DATA = [
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <!-- v-x Graph -->
               <div class="canvas-container bg-slate-950 border border-border p-2">
-                <div class="flex items-center justify-between px-2 py-1 text-[11px] font-mono text-slate-400 border-b border-border/50">
+                <div class="flex items-center justify-between px-2 py-1 text-[13px] font-mono text-slate-400 border-b border-border/50">
                   <span class="text-sky-400 font-bold">1. v-x CURVE (INPUT)</span>
                   <span id="vxTangentVal">dv/dx = -1.50</span>
                 </div>
@@ -1667,7 +1667,7 @@ window.JEE_QUESTIONS_DATA = [
 
               <!-- Derived a-x Graph -->
               <div class="canvas-container bg-slate-950 border border-border p-2">
-                <div class="flex items-center justify-between px-2 py-1 text-[11px] font-mono text-slate-400 border-b border-border/50">
+                <div class="flex items-center justify-between px-2 py-1 text-[13px] font-mono text-slate-400 border-b border-border/50">
                   <span class="text-emerald-400 font-bold">2. a-x CURVE (DERIVED)</span>
                   <span id="axSlopeVal">Slope = +2.25</span>
                 </div>
@@ -1677,12 +1677,12 @@ window.JEE_QUESTIONS_DATA = [
 
             <!-- Interactive Position Probe Scrubber -->
             <div class="bg-slate-900/60 p-4 rounded-xl border border-border space-y-2">
-              <div class="flex justify-between text-xs">
+              <div class="flex justify-between text-[13px]">
                 <span class="text-slate-300 font-semibold">Probe Position x:</span>
                 <span id="probeXVal" class="font-mono text-sky-400 font-bold">x = 4.00 m</span>
               </div>
               <input type="range" id="sliderProbeX" min="0" max="10" step="0.1" value="4" oninput="updateVxProbe(this.value)" class="w-full accent-emerald-400 cursor-pointer">
-              <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 pt-1">
+              <div class="flex items-center justify-between text-[13px] font-mono text-slate-400 pt-1">
                 <span>At x = 4.0 m: v = +9.00 m/s</span>
                 <span>dv/dx = -1.50 s⁻¹</span>
                 <span class="text-emerald-400 font-bold">a = 9.0 &times; (-1.5) = -13.50 m/s²</span>
@@ -1693,24 +1693,24 @@ window.JEE_QUESTIONS_DATA = [
           <!-- Controls & Cognitive Breakdown (4 Cols) -->
           <div class="lg:col-span-4 space-y-4">
             <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
-              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Curve Profile Selection</h3>
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">Curve Profile Selection</h3>
               
               <div class="grid grid-cols-1 gap-2">
-                <button onclick="setVxProfile('linear_down')" id="btnVxLinearDown" class="text-left p-2.5 rounded-lg bg-sky-500/20 border border-sky-500/40 text-xs font-semibold text-sky-200">
+                <button onclick="setVxProfile('linear_down')" id="btnVxLinearDown" class="text-left p-2.5 rounded-lg bg-sky-500/20 border border-sky-500/40 text-[13px] font-semibold text-sky-200">
                   A. Linear Line (Negative Slope)
-                  <span class="block text-[10px] font-normal text-slate-400">v = -mx + v₀ ⇒ a = m²x - mv₀ (Positive Slope a-x)</span>
+                  <span class="block text-[13px] font-normal text-slate-400">v = -mx + v₀ ⇒ a = m²x - mv₀ (Positive Slope a-x)</span>
                 </button>
-                <button onclick="setVxProfile('parabola')" id="btnVxParabola" class="text-left p-2.5 rounded-lg bg-slate-800 border border-border text-xs font-semibold text-slate-300 hover:border-slate-600">
+                <button onclick="setVxProfile('parabola')" id="btnVxParabola" class="text-left p-2.5 rounded-lg bg-slate-800 border border-border text-[13px] font-semibold text-slate-300 hover:border-slate-600">
                   B. Parabolic Curve
-                  <span class="block text-[10px] font-normal text-slate-400">v² = v₀²(1-x/x₀) ⇒ constant negative acceleration</span>
+                  <span class="block text-[13px] font-normal text-slate-400">v² = v₀²(1-x/x₀) ⇒ constant negative acceleration</span>
                 </button>
-                <button onclick="setVxProfile('circle')" id="btnVxCircle" class="text-left p-2.5 rounded-lg bg-slate-800 border border-border text-xs font-semibold text-slate-300 hover:border-slate-600">
+                <button onclick="setVxProfile('circle')" id="btnVxCircle" class="text-left p-2.5 rounded-lg bg-slate-800 border border-border text-[13px] font-semibold text-slate-300 hover:border-slate-600">
                   C. Elliptic Quarter-Circle
-                  <span class="block text-[10px] font-normal text-slate-400">v²/v₀² + x²/x₀² = 1 ⇒ a = -(v₀²/x₀²) x (SHM law)</span>
+                  <span class="block text-[13px] font-normal text-slate-400">v²/v₀² + x²/x₀² = 1 ⇒ a = -(v₀²/x₀²) x (SHM law)</span>
                 </button>
               </div>
 
-              <div class="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-[11px] text-slate-300 space-y-1.5">
+              <div class="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-[13px] text-slate-300 space-y-1.5">
                 <span class="font-bold text-emerald-400 block">The Cognitive Conflict:</span>
                 <p>When students see a downward line in <span class="text-white font-mono">v-x</span>, they reflexively pick a downward line in <span class="text-white font-mono">a-x</span>.</p>
                 <p class="text-amber-300">
@@ -1723,7 +1723,7 @@ window.JEE_QUESTIONS_DATA = [
             <!-- Numerical Parameters -->
             <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
               <div class="space-y-1">
-                <div class="flex justify-between text-xs">
+                <div class="flex justify-between text-[13px]">
                   <span class="text-slate-300">Initial Velocity v₀:</span>
                   <span id="vxV0Val" class="font-mono text-sky-400 font-bold">15 m/s</span>
                 </div>
@@ -1731,7 +1731,7 @@ window.JEE_QUESTIONS_DATA = [
               </div>
 
               <div class="space-y-1">
-                <div class="flex justify-between text-xs">
+                <div class="flex justify-between text-[13px]">
                   <span class="text-slate-300">Stopping Displacement x₀:</span>
                   <span id="vxX0Val" class="font-mono text-emerald-400 font-bold">10 m</span>
                 </div>
@@ -1754,11 +1754,11 @@ window.JEE_QUESTIONS_DATA = [
               <span class="w-3 h-3 rounded-full bg-cyan-400"></span>
               <h2 class="font-bold text-base text-white">Stroboscopic Spacing · Galileo's Odd-Number Invariant</h2>
             </div>
-            <p class="text-xs text-slate-400 mt-1">
+            <p class="text-[13px] text-slate-400 mt-1">
               Based on <span class="text-cyan-300 font-semibold">JEE Main 2026 (28th Jan Morning)</span>: Water drops falling from a tap 5 m high. Fall distance <span class="font-mono text-cyan-400 font-semibold">s ∝ t²</span> vs interval gap <span class="font-mono text-amber-400 font-semibold">Δs ∝ 1:3:5:7:9</span>.
             </p>
           </div>
-          <button onclick="freezeTapStrobe()" id="btnTapFreeze" class="px-3 py-1.5 rounded-lg bg-cyan-600/30 border border-cyan-500/40 text-cyan-200 text-xs font-bold hover:bg-cyan-600/50 transition">
+          <button onclick="freezeTapStrobe()" id="btnTapFreeze" class="px-3 py-1.5 rounded-lg bg-cyan-600/30 border border-cyan-500/40 text-cyan-200 text-[13px] font-bold hover:bg-cyan-600/50 transition">
             📸 Freeze-Frame Flash
           </button>
         </div>
@@ -1767,7 +1767,7 @@ window.JEE_QUESTIONS_DATA = [
           <!-- Drops Canvas Left (8 Cols) -->
           <div class="lg:col-span-8 space-y-4">
             <div class="canvas-container bg-slate-950 border border-border p-2">
-              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[13px] font-mono text-slate-400">
                 <span>STROBOSCOPIC TUBE &middot; 6 CONSECUTIVE DROPS IN FLIGHT</span>
                 <span id="dropsLiveStatus">Flow Active</span>
               </div>
@@ -1776,14 +1776,14 @@ window.JEE_QUESTIONS_DATA = [
 
             <!-- Controls -->
             <div class="flex items-center gap-3 bg-slate-900/60 p-3 rounded-xl border border-border">
-              <button id="btnDropsPlay" onclick="toggleDropsPlay()" class="touch-target px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
+              <button id="btnDropsPlay" onclick="toggleDropsPlay()" class="touch-target px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-xl font-bold text-[13px] flex items-center gap-1.5 transition">
                 <span id="dropsPlayIcon">⏸</span> <span id="dropsPlayText">Pause Tap</span>
               </button>
-              <button onclick="resetDropsSim()" class="touch-target px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-border transition">
+              <button onclick="resetDropsSim()" class="touch-target px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-[13px] font-semibold border border-border transition">
                 Reset
               </button>
               <div class="flex-1 flex items-center gap-2">
-                <span class="text-[10px] font-mono text-slate-400">Interval Scrub:</span>
+                <span class="text-[13px] font-mono text-slate-400">Interval Scrub:</span>
                 <input type="range" id="sliderDropPhase" min="0" max="1" step="0.01" value="0" oninput="scrubDropPhase(this.value)" class="w-full accent-cyan-400 cursor-pointer">
               </div>
             </div>
@@ -1792,10 +1792,10 @@ window.JEE_QUESTIONS_DATA = [
           <!-- Heights Breakdown & Galileo Ratios (4 Cols) -->
           <div class="lg:col-span-4 space-y-4">
             <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
-              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Instant When Drop 1 Hits Floor</h3>
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">Instant When Drop 1 Hits Floor</h3>
 
               <!-- Table of Heights for all 6 Drops -->
-              <div class="space-y-1 text-[11px] font-mono">
+              <div class="space-y-1 text-[13px] font-mono">
                 <div class="flex justify-between py-1 border-b border-border/50 text-slate-400 font-bold">
                   <span>Drop #</span>
                   <span>Time Falling</span>
@@ -1833,7 +1833,7 @@ window.JEE_QUESTIONS_DATA = [
                 </div>
               </div>
 
-              <div class="p-3 bg-cyan-500/10 border border-cyan-500/30 rounded-lg text-[11px] text-slate-300 space-y-1">
+              <div class="p-3 bg-cyan-500/10 border border-cyan-500/30 rounded-lg text-[13px] text-slate-300 space-y-1">
                 <span class="font-bold text-cyan-400 block">Galileo's Ratios Verification:</span>
                 <div>Fallen Distances: <span class="font-mono text-white">0 : 1 : 4 : 9 : 16 : 25</span> units</div>
                 <div>Incremental Spacings: <span class="font-mono text-amber-400">1 : 3 : 5 : 7 : 9</span> units</div>
@@ -1845,7 +1845,7 @@ window.JEE_QUESTIONS_DATA = [
             <!-- Parameters -->
             <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
               <div class="space-y-1">
-                <div class="flex justify-between text-xs">
+                <div class="flex justify-between text-[13px]">
                   <span class="text-slate-300">Tap Height (H):</span>
                   <span id="tapHeightVal" class="font-mono text-cyan-400 font-bold">5.0 m</span>
                 </div>
@@ -1853,7 +1853,7 @@ window.JEE_QUESTIONS_DATA = [
               </div>
 
               <div class="space-y-1">
-                <div class="flex justify-between text-xs">
+                <div class="flex justify-between text-[13px]">
                   <span class="text-slate-300">Total Drops in Interval:</span>
                   <span id="tapDropsCountVal" class="font-mono text-amber-400 font-bold">6 Drops</span>
                 </div>
@@ -1876,11 +1876,11 @@ window.JEE_QUESTIONS_DATA = [
               <span class="w-3 h-3 rounded-full bg-red-400"></span>
               <h2 class="font-bold text-base text-white">Multi-Phase Braking · Paratrooper &amp; Piecewise Boundary Matcher</h2>
             </div>
-            <p class="text-xs text-slate-400 mt-1">
+            <p class="text-[13px] text-slate-400 mt-1">
               Grounded on <span class="text-red-300 font-semibold">JEE Main 2025 (4th April)</span>: Free-fall phase transitions to parachute braking phase. Continuity of state vector <span class="font-mono text-red-400 font-semibold">[y, v]</span> at boundary!
             </p>
           </div>
-          <div class="text-xs font-mono text-slate-400 bg-slate-900 px-3 py-1.5 rounded border border-border">
+          <div class="text-[13px] font-mono text-slate-400 bg-slate-900 px-3 py-1.5 rounded border border-border">
             State Boundary: v₁² = 2gh₁ &amp; v₂² = v₁² - 2ah₂
           </div>
         </div>
@@ -1889,7 +1889,7 @@ window.JEE_QUESTIONS_DATA = [
           <!-- Canvas Left (8 Cols) -->
           <div class="lg:col-span-8 space-y-4">
             <div class="canvas-container bg-slate-950 border border-border p-2">
-              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[13px] font-mono text-slate-400">
                 <span>PARATROOPER DESCENT (BLUE: FREE FALL, ORANGE: PARACHUTE BRAKING)</span>
                 <span id="paratrooperClock">t = 0.00 s</span>
               </div>
@@ -1898,14 +1898,14 @@ window.JEE_QUESTIONS_DATA = [
 
             <!-- Controls Bar -->
             <div class="flex items-center gap-3 bg-slate-900/60 p-3 rounded-xl border border-border">
-              <button id="btnBrakingPlay" onclick="toggleBrakingPlay()" class="touch-target px-4 py-2 bg-red-500 hover:bg-red-400 text-white rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
+              <button id="btnBrakingPlay" onclick="toggleBrakingPlay()" class="touch-target px-4 py-2 bg-red-500 hover:bg-red-400 text-white rounded-xl font-bold text-[13px] flex items-center gap-1.5 transition">
                 <span id="brakingPlayIcon">▶</span> <span id="brakingPlayText">Drop Paratrooper</span>
               </button>
-              <button onclick="resetBrakingSim()" class="touch-target px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-border transition">
+              <button onclick="resetBrakingSim()" class="touch-target px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-[13px] font-semibold border border-border transition">
                 Reset
               </button>
               <div class="flex-1 flex items-center gap-2">
-                <span class="text-[10px] font-mono text-slate-400">Scrub Time:</span>
+                <span class="text-[13px] font-mono text-slate-400">Scrub Time:</span>
                 <input type="range" id="sliderBrakingTime" min="0" max="20" step="0.1" value="0" oninput="scrubBrakingTime(this.value)" class="w-full accent-red-400 cursor-pointer">
               </div>
             </div>
@@ -1914,11 +1914,11 @@ window.JEE_QUESTIONS_DATA = [
           <!-- Telemetry & Calculus (4 Cols) -->
           <div class="lg:col-span-4 space-y-4">
             <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
-              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Piecewise State Vectors</h3>
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">Piecewise State Vectors</h3>
 
-              <div class="space-y-2 text-xs">
+              <div class="space-y-2 text-[13px]">
                 <div class="bg-black/30 p-2.5 rounded border border-border">
-                  <div class="text-sky-400 font-bold text-[11px]">Phase 1: Free Fall (h₁ = 50 m)</div>
+                  <div class="text-sky-400 font-bold text-[13px]">Phase 1: Free Fall (h₁ = 50 m)</div>
                   <div class="flex justify-between text-slate-300 mt-1">
                     <span>Opening Velocity v₁:</span>
                     <span id="telParaV1" class="font-mono font-bold text-sky-300">31.3 m/s</span>
@@ -1926,7 +1926,7 @@ window.JEE_QUESTIONS_DATA = [
                 </div>
 
                 <div class="bg-black/30 p-2.5 rounded border border-border">
-                  <div class="text-amber-400 font-bold text-[11px]">Phase 2: Deceleration (a = 2.0 m/s²)</div>
+                  <div class="text-amber-400 font-bold text-[13px]">Phase 2: Deceleration (a = 2.0 m/s²)</div>
                   <div class="flex justify-between text-slate-300 mt-1">
                     <span>Braking Drop h₂:</span>
                     <span id="telParaH2" class="font-mono font-bold text-amber-300">242.8 m</span>
@@ -1945,7 +1945,7 @@ window.JEE_QUESTIONS_DATA = [
                 </div>
               </div>
 
-              <div class="p-2.5 bg-slate-800 rounded border border-border text-[11px] text-slate-300">
+              <div class="p-2.5 bg-slate-800 rounded border border-border text-[13px] text-slate-300">
                 <span class="text-red-300 font-bold">JEE Mathematical Oracle:</span>
                 <div>v₁² = 2 &times; 9.8 &times; 50 = 980 (m/s)²</div>
                 <div>3² = 980 - 2(2) h₂ ⇒ 4 h₂ = 971 ⇒ h₂ = 242.75 m</div>
@@ -1956,7 +1956,7 @@ window.JEE_QUESTIONS_DATA = [
             <!-- Param Sliders -->
             <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
               <div class="space-y-1">
-                <div class="flex justify-between text-xs">
+                <div class="flex justify-between text-[13px]">
                   <span class="text-slate-300">Free Fall Distance (h₁):</span>
                   <span id="paraH1Val" class="font-mono text-sky-400 font-bold">50 m</span>
                 </div>
@@ -1964,7 +1964,7 @@ window.JEE_QUESTIONS_DATA = [
               </div>
 
               <div class="space-y-1">
-                <div class="flex justify-between text-xs">
+                <div class="flex justify-between text-[13px]">
                   <span class="text-slate-300">Chute Deceleration (a):</span>
                   <span id="paraAVal" class="font-mono text-amber-400 font-bold">2.0 m/s²</span>
                 </div>
@@ -1972,7 +1972,7 @@ window.JEE_QUESTIONS_DATA = [
               </div>
 
               <div class="space-y-1">
-                <div class="flex justify-between text-xs">
+                <div class="flex justify-between text-[13px]">
                   <span class="text-slate-300">Touchdown Speed (v_land):</span>
                   <span id="paraVlandVal" class="font-mono text-emerald-400 font-bold">3.0 m/s</span>
                 </div>
@@ -1995,12 +1995,12 @@ window.JEE_QUESTIONS_DATA = [
               <span class="w-3 h-3 rounded-full bg-purple-400"></span>
               <h2 class="font-bold text-base text-white">1D Relative Pursuit · Collinear Chases &amp; Crash Invariant</h2>
             </div>
-            <p class="text-xs text-slate-400 mt-1">
+            <p class="text-[13px] text-slate-400 mt-1">
               Grounded on <span class="text-purple-300 font-semibold">JEE Main 2026 (4th April)</span>: Solving complex two-body motion effortlessly by shifting into the relative coordinate frame <span class="font-mono text-purple-400 font-semibold">x_rel, v_rel, a_rel</span>.
             </p>
           </div>
           <!-- Frame Switcher -->
-          <div class="flex items-center bg-slate-900 rounded-lg p-1 border border-border text-xs">
+          <div class="flex items-center bg-slate-900 rounded-lg p-1 border border-border text-[13px]">
             <button onclick="setRelativeFrame('ground')" id="btnFrameGround" class="px-2.5 py-1 rounded font-semibold text-white bg-purple-600/40 border border-purple-500/50">Ground Frame</button>
             <button onclick="setRelativeFrame('carA')" id="btnFrameCarA" class="px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white">Car A Frame</button>
           </div>
@@ -2010,7 +2010,7 @@ window.JEE_QUESTIONS_DATA = [
           <!-- Canvas Left (8 Cols) -->
           <div class="lg:col-span-8 space-y-4">
             <div class="canvas-container bg-slate-950 border border-border p-2">
-              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[13px] font-mono text-slate-400">
                 <span>TWO-CAR HIGHWAY PURSUIT RIG (CAR A PURSUING BRAKING CAR B)</span>
                 <span id="relLiveClock">t = 0.00 s</span>
               </div>
@@ -2019,7 +2019,7 @@ window.JEE_QUESTIONS_DATA = [
 
             <!-- Relative Distance Bar -->
             <div class="canvas-container bg-slate-950 border border-border p-2">
-              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[13px] font-mono text-slate-400">
                 <span>RELATIVE GAP x_B - x_A OVER TIME (OVERTAKE OCCURS AT GAP = 0)</span>
                 <span id="relLiveGap">Gap = +100.0 m</span>
               </div>
@@ -2028,14 +2028,14 @@ window.JEE_QUESTIONS_DATA = [
 
             <!-- Controls Bar -->
             <div class="flex items-center gap-3 bg-slate-900/60 p-3 rounded-xl border border-border">
-              <button id="btnRelPlay" onclick="toggleRelPlay()" class="touch-target px-4 py-2 bg-purple-500 hover:bg-purple-400 text-slate-950 rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
+              <button id="btnRelPlay" onclick="toggleRelPlay()" class="touch-target px-4 py-2 bg-purple-500 hover:bg-purple-400 text-slate-950 rounded-xl font-bold text-[13px] flex items-center gap-1.5 transition">
                 <span id="relPlayIcon">▶</span> <span id="relPlayText">Start Chase</span>
               </button>
-              <button onclick="resetRelSim()" class="touch-target px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-border transition">
+              <button onclick="resetRelSim()" class="touch-target px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-[13px] font-semibold border border-border transition">
                 Reset
               </button>
               <div class="flex-1 flex items-center gap-2">
-                <span class="text-[10px] font-mono text-slate-400">Scrub Time:</span>
+                <span class="text-[13px] font-mono text-slate-400">Scrub Time:</span>
                 <input type="range" id="sliderRelTime" min="0" max="15" step="0.1" value="0" oninput="scrubRelTime(this.value)" class="w-full accent-purple-400 cursor-pointer">
               </div>
             </div>
@@ -2044,9 +2044,9 @@ window.JEE_QUESTIONS_DATA = [
           <!-- Theoretical Telemetry & Invariants (4 Cols) -->
           <div class="lg:col-span-4 space-y-4">
             <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
-              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Relative Frame Coordinates</h3>
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">Relative Frame Coordinates</h3>
 
-              <div class="space-y-2 text-xs font-mono">
+              <div class="space-y-2 text-[13px] font-mono">
                 <div class="flex justify-between bg-black/30 p-2 rounded border border-border">
                   <span class="text-slate-400">Car A Position x_A:</span>
                   <span id="telRelXA" class="text-sky-400 font-bold">0.0 m</span>
@@ -2065,7 +2065,7 @@ window.JEE_QUESTIONS_DATA = [
                 </div>
               </div>
 
-              <div class="p-3 bg-purple-500/10 border border-purple-500/30 rounded-lg text-[11px] text-slate-300 space-y-1">
+              <div class="p-3 bg-purple-500/10 border border-purple-500/30 rounded-lg text-[13px] text-slate-300 space-y-1">
                 <span class="font-bold text-purple-400 block">Relative Overtake Condition:</span>
                 <div>Equation: <span class="font-mono text-white">100 - 10t - 0.5 t² = 0</span></div>
                 <div>Quadratic Solution: <span class="font-mono text-white">t = -10 + 10√3 ≈ 7.32 s</span></div>
@@ -2077,7 +2077,7 @@ window.JEE_QUESTIONS_DATA = [
             <!-- Parameters -->
             <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
               <div class="space-y-1">
-                <div class="flex justify-between text-xs">
+                <div class="flex justify-between text-[13px]">
                   <span class="text-slate-300">Car A Speed (v_A):</span>
                   <span id="relVAVal" class="font-mono text-sky-400 font-bold">20 m/s</span>
                 </div>
@@ -2085,7 +2085,7 @@ window.JEE_QUESTIONS_DATA = [
               </div>
 
               <div class="space-y-1">
-                <div class="flex justify-between text-xs">
+                <div class="flex justify-between text-[13px]">
                   <span class="text-slate-300">Car B Initial Speed (v_B):</span>
                   <span id="relVBVal" class="font-mono text-amber-400 font-bold">10 m/s</span>
                 </div>
@@ -2093,7 +2093,7 @@ window.JEE_QUESTIONS_DATA = [
               </div>
 
               <div class="space-y-1">
-                <div class="flex justify-between text-xs">
+                <div class="flex justify-between text-[13px]">
                   <span class="text-slate-300">Initial Head Start (d₀):</span>
                   <span id="relD0Val" class="font-mono text-emerald-400 font-bold">100 m</span>
                 </div>
@@ -2101,7 +2101,7 @@ window.JEE_QUESTIONS_DATA = [
               </div>
 
               <div class="space-y-1">
-                <div class="flex justify-between text-xs">
+                <div class="flex justify-between text-[13px]">
                   <span class="text-slate-300">Car B Deceleration (a_B):</span>
                   <span id="relABVal" class="font-mono text-red-400 font-bold">1.0 m/s²</span>
                 </div>
@@ -2120,18 +2120,18 @@ window.JEE_QUESTIONS_DATA = [
       <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
           <div class="flex items-center gap-3">
-            <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-bold text-xs border border-amber-500/30 uppercase tracking-wide">
+            <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-bold text-[13px] border border-amber-500/30 uppercase tracking-wide">
               Draft Sandbox
             </span>
             <h2 class="font-bold text-base text-white">1D Kinematic Master Sandbox · Arbitrary Particle Rig</h2>
           </div>
-          <span class="text-xs text-slate-400 font-mono">Free-form experimentation laboratory</span>
+          <span class="text-[13px] text-slate-400 font-mono">Free-form experimentation laboratory</span>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
           <div class="lg:col-span-8 space-y-4">
             <div class="canvas-container bg-slate-950 border border-border p-2">
-              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[13px] font-mono text-slate-400">
                 <span>FREE-FORM PARTICLE WITH SPRING/DRAG/CONSTANT FORCE FORCES</span>
                 <span id="sbClock">t = 0.00 s</span>
               </div>
@@ -2140,10 +2140,10 @@ window.JEE_QUESTIONS_DATA = [
 
             <!-- Controls -->
             <div class="flex items-center gap-3 bg-slate-900/60 p-3 rounded-xl border border-border">
-              <button id="btnSbPlay" onclick="toggleSbPlay()" class="touch-target px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
+              <button id="btnSbPlay" onclick="toggleSbPlay()" class="touch-target px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl font-bold text-[13px] flex items-center gap-1.5 transition">
                 <span id="sbPlayIcon">▶</span> <span id="sbPlayText">Run Sandbox</span>
               </button>
-              <button onclick="resetSbSim()" class="touch-target px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-border transition">
+              <button onclick="resetSbSim()" class="touch-target px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-[13px] font-semibold border border-border transition">
                 Reset
               </button>
             </div>
@@ -2151,10 +2151,10 @@ window.JEE_QUESTIONS_DATA = [
 
           <div class="lg:col-span-4 space-y-4">
             <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
-              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Sandbox Physical Controls</h3>
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">Sandbox Physical Controls</h3>
 
               <div class="space-y-1">
-                <div class="flex justify-between text-xs">
+                <div class="flex justify-between text-[13px]">
                   <span class="text-slate-300">Initial Position (x₀):</span>
                   <span id="sbX0Val" class="font-mono text-sky-400 font-bold">0 m</span>
                 </div>
@@ -2162,7 +2162,7 @@ window.JEE_QUESTIONS_DATA = [
               </div>
 
               <div class="space-y-1">
-                <div class="flex justify-between text-xs">
+                <div class="flex justify-between text-[13px]">
                   <span class="text-slate-300">Initial Velocity (v₀):</span>
                   <span id="sbV0Val" class="font-mono text-amber-400 font-bold">15 m/s</span>
                 </div>
@@ -2170,7 +2170,7 @@ window.JEE_QUESTIONS_DATA = [
               </div>
 
               <div class="space-y-1">
-                <div class="flex justify-between text-xs">
+                <div class="flex justify-between text-[13px]">
                   <span class="text-slate-300">Constant Force / Accel (a₀):</span>
                   <span id="sbA0Val" class="font-mono text-red-400 font-bold">-2.0 m/s²</span>
                 </div>
@@ -2178,7 +2178,7 @@ window.JEE_QUESTIONS_DATA = [
               </div>
 
               <div class="space-y-1">
-                <div class="flex justify-between text-xs">
+                <div class="flex justify-between text-[13px]">
                   <span class="text-slate-300">Air Drag Coefficient (k):</span>
                   <span id="sbKVal" class="font-mono text-purple-400 font-bold">0.05</span>
                 </div>
@@ -2201,19 +2201,19 @@ window.JEE_QUESTIONS_DATA = [
               <span class="w-3 h-3 rounded-full bg-purple-400"></span>
               <h2 class="font-bold text-base text-white">IIT-JEE Main Diagnostic Question Hub</h2>
             </div>
-            <p class="text-xs text-slate-400 mt-1">
+            <p class="text-[13px] text-slate-400 mt-1">
               18 locally solved diagnostics selected from the live ExamSIDE Motion-in-a-Straight-Line corpus (123 questions, 2002–2026). Source provenance is shown per item; simulator actions are explicitly labelled EXACT, CONSTRAINT_FAITHFUL, CONCEPT_ONLY or UNAVAILABLE.
             </p>
           </div>
 
           <!-- Search Bar -->
           <div class="relative w-full md:w-64">
-            <input type="text" id="qSearchInput" oninput="filterQuestions()" placeholder="Search questions, years, concepts..." class="w-full bg-slate-900 border border-border rounded-xl px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-sky-500">
+            <input type="text" id="qSearchInput" oninput="filterQuestions()" placeholder="Search questions, years, concepts..." class="w-full bg-slate-900 border border-border rounded-xl px-3 py-1.5 text-[13px] text-slate-200 placeholder-slate-500 focus:outline-none focus:border-sky-500">
           </div>
         </div>
 
         <!-- Sub-Tab Category Filters -->
-        <div class="flex flex-wrap gap-2 pt-2 border-b border-border/50 pb-3 text-xs">
+        <div class="flex flex-wrap gap-2 pt-2 border-b border-border/50 pb-3 text-[13px]">
           <button onclick="filterSubTab('all')" id="btnQFilterAll" class="px-3 py-1.5 rounded-lg bg-sky-500/20 text-sky-300 border border-sky-500/40 font-semibold">
             All (18)
           </button>
@@ -2402,11 +2402,11 @@ window.JEE_QUESTIONS_DATA = [
       if (window.__MOTION1D_BANK_LOAD_ERROR__ || problems.length) {
         const banner = document.createElement('div');
         banner.id = 'motion1dIntegrityBanner';
-        banner.className = 'fixed top-3 left-1/2 -translate-x-1/2 z-[100] max-w-3xl w-[94%] bg-rose-950 border-2 border-rose-500 rounded-xl p-4 text-xs text-rose-100 shadow-2xl';
+        banner.className = 'fixed top-3 left-1/2 -translate-x-1/2 z-[100] max-w-3xl w-[94%] bg-rose-950 border-2 border-rose-500 rounded-xl p-4 text-[13px] text-rose-100 shadow-2xl';
         const details = problems.length ? problems : ['jee_questions_data.js could not be loaded.'];
         banner.innerHTML = `<div class="font-black text-rose-300 mb-1">Motion1D data integrity failure</div>
           <div>The question hub is not being represented as complete while required data is unavailable.</div>
-          <div class="mt-1 font-mono text-[10px]">${details.slice(0,6).join(' · ')}</div>`;
+          <div class="mt-1 font-mono text-[13px]">${details.slice(0,6).join(' · ')}</div>`;
         document.body.appendChild(banner);
         return false;
       }
@@ -3038,7 +3038,7 @@ window.JEE_QUESTIONS_DATA = [
       ['linear_down', 'parabola', 'circle'].forEach(prof => {
         const btn = document.getElementById(prof === 'linear_down' ? 'btnVxLinearDown' : (prof === 'parabola' ? 'btnVxParabola' : 'btnVxCircle'));
         if (btn) {
-          btn.className = (prof === p) ? 'text-left p-2.5 rounded-lg bg-sky-500/20 border border-sky-500/40 text-xs font-semibold text-sky-200' : 'text-left p-2.5 rounded-lg bg-slate-800 border border-border text-xs font-semibold text-slate-300 hover:border-slate-600';
+          btn.className = (prof === p) ? 'text-left p-2.5 rounded-lg bg-sky-500/20 border border-sky-500/40 text-[13px] font-semibold text-sky-200' : 'text-left p-2.5 rounded-lg bg-slate-800 border border-border text-[13px] font-semibold text-slate-300 hover:border-slate-600';
         }
       });
       drawVx();
@@ -3900,25 +3900,25 @@ window.JEE_QUESTIONS_DATA = [
             <!-- Header -->
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border/50 pb-3">
               <div class="flex items-center gap-2">
-                <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono font-bold text-xs border border-purple-500/30">
+                <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono font-bold text-[13px] border border-purple-500/30">
                   ${q.id}
                 </span>
-                <span class="text-xs font-semibold text-slate-300">${q.source}</span>
+                <span class="text-[13px] font-semibold text-slate-300">${q.source}</span>
               </div>
               <div class="flex items-center gap-2 flex-wrap">
-                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-400 font-mono">
+                <span class="text-[13px] px-2 py-0.5 rounded bg-slate-800 text-slate-400 font-mono">
                   ${q.subtabName}
                 </span>
-                <span class="text-[10px] px-2 py-0.5 rounded border font-mono font-bold ${answerAuditClass(q.answerAudit)}">
+                <span class="text-[13px] px-2 py-0.5 rounded border font-mono font-bold ${answerAuditClass(q.answerAudit)}">
                   ANSWER ${q.answerAudit}
                 </span>
-                <span class="text-[10px] px-2 py-0.5 rounded border font-mono font-bold ${sourceAuditClass(q.sourceAudit)}">
+                <span class="text-[13px] px-2 py-0.5 rounded border font-mono font-bold ${sourceAuditClass(q.sourceAudit)}">
                   ${sourceAuditLabel(q.sourceAudit)}
                 </span>
-                <span class="text-[10px] px-2 py-0.5 rounded border font-mono font-bold ${fidelityClass(q.simFidelity)}">
+                <span class="text-[13px] px-2 py-0.5 rounded border font-mono font-bold ${fidelityClass(q.simFidelity)}">
                   ${q.simFidelity}
                 </span>
-                <button onclick="loadQuestionIntoSimulator('${q.id}')" class="touch-target px-3 py-1 border rounded-lg text-xs font-bold transition flex items-center gap-1.5 shadow-sm ${fidelityClass(q.simFidelity)}">
+                <button onclick="loadQuestionIntoSimulator('${q.id}')" class="touch-target px-3 py-1 border rounded-lg text-[13px] font-bold transition flex items-center gap-1.5 shadow-sm ${fidelityClass(q.simFidelity)}">
                   <span>🚀</span>
                   <span>${simulatorActionLabel(q)}</span>
                 </button>
@@ -3930,7 +3930,7 @@ window.JEE_QUESTIONS_DATA = [
               ${q.q}
             </div>
 
-            <div class="flex flex-wrap gap-1.5 text-[10px] font-mono">
+            <div class="flex flex-wrap gap-1.5 text-[13px] font-mono">
               ${(q.helperTags || []).includes('TRAP_ALERT') ? '<span class="px-2 py-1 rounded border border-amber-500/30 bg-amber-500/10 text-amber-300">⚠ Trap diagnosis</span>' : ''}
               ${(q.helperTags || []).includes('INDEPENDENT_CHECK') ? '<span class="px-2 py-1 rounded border border-sky-500/30 bg-sky-500/10 text-sky-300">🧑‍🏫 Independent check</span>' : ''}
               ${(q.helperTags || []).includes('TRANSFER_TAKEAWAY') ? '<span class="px-2 py-1 rounded border border-emerald-500/30 bg-emerald-500/10 text-emerald-300">↗ Transfer rule</span>' : ''}
@@ -3939,8 +3939,8 @@ window.JEE_QUESTIONS_DATA = [
             <!-- Options Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
               ${(q.options || []).map(opt => `
-                <button onclick="checkQuestionOption('${q.id}', '${opt.key}')" id="btnOpt-${q.id}-${opt.key}" class="text-left p-3 rounded-xl bg-slate-950/60 border border-border hover:border-slate-600 text-xs text-slate-300 transition flex items-start gap-2.5">
-                  <span class="w-5 h-5 rounded-full bg-slate-800 border border-border flex items-center justify-center font-bold text-[10px] flex-shrink-0">
+                <button onclick="checkQuestionOption('${q.id}', '${opt.key}')" id="btnOpt-${q.id}-${opt.key}" class="text-left p-3 rounded-xl bg-slate-950/60 border border-border hover:border-slate-600 text-[13px] text-slate-300 transition flex items-start gap-2.5">
+                  <span class="w-5 h-5 rounded-full bg-slate-800 border border-border flex items-center justify-center font-bold text-[13px] flex-shrink-0">
                     ${opt.key}
                   </span>
                   <span>${opt.text}</span>
@@ -3949,48 +3949,48 @@ window.JEE_QUESTIONS_DATA = [
             </div>
 
             <!-- Feedback Alert (Hidden by default) -->
-            <div id="feedback-${q.id}" class="hidden p-3 rounded-xl text-xs"></div>
+            <div id="feedback-${q.id}" class="hidden p-3 rounded-xl text-[13px]"></div>
 
             <!-- Solution & Examiner Trap Accordion -->
             <div class="pt-2 border-t border-border/40">
-              <button onclick="toggleSolution('${q.id}')" class="text-xs font-semibold text-sky-400 hover:text-sky-300 flex items-center gap-1">
+              <button onclick="toggleSolution('${q.id}')" class="text-[13px] font-semibold text-sky-400 hover:text-sky-300 flex items-center gap-1">
                 <span id="solIcon-${q.id}">▶</span>
                 <span>Teacher's Chalkboard · Derivation, Check, Trap &amp; Transfer</span>
               </button>
               <div id="solContent-${q.id}" class="hidden mt-3 space-y-3 p-4 bg-black/40 rounded-xl border border-border">
-                <div class="text-xs font-mono text-purple-300">
+                <div class="text-[13px] font-mono text-purple-300">
                   <span class="text-slate-400">1 · Governing model:</span> ${q.formula}
                 </div>
-                <div class="space-y-1 text-xs text-slate-300 font-sans">
-                  <div class="text-[10px] font-black uppercase tracking-wider text-slate-500 mb-1">2 · Question-specific derivation</div>
+                <div class="space-y-1 text-[13px] text-slate-300 font-sans">
+                  <div class="text-[13px] font-black uppercase tracking-wider text-slate-500 mb-1">2 · Question-specific derivation</div>
                   ${(q.steps || []).map((step, idx) => `
                     <div class="flex items-start gap-2">
-                      <span class="text-slate-500 font-mono text-[10px]">${idx + 1}.</span>
+                      <span class="text-slate-500 font-mono text-[13px]">${idx + 1}.</span>
                       <span>${step}</span>
                     </div>
                   `).join('')}
                 </div>
-                <div class="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-xs text-emerald-100">
+                <div class="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-[13px] text-emerald-100">
                   <strong class="text-emerald-300 block mb-1">3 · Final Result / Answer Audit</strong>
                   <span class="font-mono font-bold">${q.ans}</span>
-                  <div class="mt-1 text-[10px] font-mono opacity-80">Answer audit: ${q.answerAudit}</div>
+                  <div class="mt-1 text-[13px] font-mono opacity-80">Answer audit: ${q.answerAudit}</div>
                 </div>
-                <div class="p-3 bg-sky-500/10 border border-sky-500/30 rounded-lg text-xs text-sky-100">
+                <div class="p-3 bg-sky-500/10 border border-sky-500/30 rounded-lg text-[13px] text-sky-100">
                   <strong class="text-sky-300 block mb-1">4 · 🧑‍🏫 Independent Teacher Check</strong>
                   ${q.teacherCheck}
                 </div>
-                <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-xs text-amber-200">
+                <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-[13px] text-amber-200">
                   <strong class="text-amber-400 block mb-1">5 · ⚠️ Trap / Misconception Diagnosis</strong>
                   ${q.trap}
                 </div>
-                <div class="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-xs text-emerald-100">
+                <div class="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-[13px] text-emerald-100">
                   <strong class="text-emerald-300 block mb-1">6 · ↗ Transfer Takeaway / Rule</strong>
                   ${q.takeaway}
                 </div>
-                <div class="p-3 border rounded-lg text-xs ${fidelityClass(q.simFidelity)}">
+                <div class="p-3 border rounded-lg text-[13px] ${fidelityClass(q.simFidelity)}">
                   <strong class="block mb-1">7 · Simulator Fidelity · ${q.simFidelity}</strong>
                   ${q.simFidelityNote}
-                  <div class="mt-1 text-[10px] font-mono opacity-80">Answer audit: ${q.answerAudit} · Source audit: ${q.sourceAudit}</div>
+                  <div class="mt-1 text-[13px] font-mono opacity-80">Answer audit: ${q.answerAudit} · Source audit: ${q.sourceAudit}</div>
                 </div>
               </div>
             </div>
@@ -4010,11 +4010,11 @@ window.JEE_QUESTIONS_DATA = [
         const btn = document.getElementById(`btnOpt-${qId}-${opt.key}`);
         if (btn) {
           if (opt.key === q.correct) {
-            btn.className = 'text-left p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/80 text-xs text-emerald-200 transition flex items-start gap-2.5';
+            btn.className = 'text-left p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/80 text-[13px] text-emerald-200 transition flex items-start gap-2.5';
           } else if (opt.key === selectedKey && !isCorrect) {
-            btn.className = 'text-left p-3 rounded-xl bg-red-950/40 border border-red-500/80 text-xs text-red-200 transition flex items-start gap-2.5';
+            btn.className = 'text-left p-3 rounded-xl bg-red-950/40 border border-red-500/80 text-[13px] text-red-200 transition flex items-start gap-2.5';
           } else {
-            btn.className = 'text-left p-3 rounded-xl bg-slate-950/40 border border-border/50 text-xs text-slate-500 transition flex items-start gap-2.5';
+            btn.className = 'text-left p-3 rounded-xl bg-slate-950/40 border border-border/50 text-[13px] text-slate-500 transition flex items-start gap-2.5';
           }
         }
       });
@@ -4022,10 +4022,10 @@ window.JEE_QUESTIONS_DATA = [
       if (fb) {
         fb.classList.remove('hidden');
         if (isCorrect) {
-          fb.className = 'p-3 rounded-xl text-xs bg-emerald-500/20 border border-emerald-500/40 text-emerald-200';
+          fb.className = 'p-3 rounded-xl text-[13px] bg-emerald-500/20 border border-emerald-500/40 text-emerald-200';
           fb.innerHTML = `<strong>✅ Correct!</strong> ${q.ans}. Expand solution below to inspect the mathematical steps.`;
         } else {
-          fb.className = 'p-3 rounded-xl text-xs bg-red-500/20 border border-red-500/40 text-red-200';
+          fb.className = 'p-3 rounded-xl text-[13px] bg-red-500/20 border border-red-500/40 text-red-200';
           fb.innerHTML = `<strong>❌ Incorrect.</strong> Correct answer is Option ${q.correct}. See Examiner Trap analysis below.`;
         }
       }
