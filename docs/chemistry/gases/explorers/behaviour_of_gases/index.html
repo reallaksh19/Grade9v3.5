@@ -72,8 +72,8 @@
       animation: pulse-border 1.5s ease-in-out infinite;
     }
     @keyframes pulse-border {
-      0%, 100% { outline: 2px solid rgba(14, 165, 233, 0.2); }
-      50% { outline: 2px solid rgba(14, 165, 233, 0.9); }
+      0%, 100% { outline: 1px solid #0ea5e9; }
+      50% { outline: 2px solid #0ea5e9; }
     }
     .tab-btn-active {
       background: rgba(14, 165, 233, 0.15);
@@ -922,7 +922,7 @@
       ctx.fillRect(0, 0, w, h);
 
       // Critical dome
-      ctx.strokeStyle = 'rgba(168, 85, 247, 0.5)';
+      ctx.strokeStyle = '#a855f7';
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.moveTo(w * 0.2, h - 30);

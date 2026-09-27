@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../../../../vendor/katex/0.16.8/katex.min.css" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css';">
+  <script src="../../../../vendor/katex/0.16.8/katex.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js';"></script>
+  <script src="../../../../vendor/katex/0.16.8/contrib/auto-render.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js';" onload="window.__katexLoaded=true; if(window.renderAllMath) window.renderAllMath();"></script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Explorer #130 · Is It Really a Projectile?</title>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     :root {
-      --background: #090d16;
-      --card: #131b2e;
+      --background: #0f172a;
+      --card: #1e293b;
       --card-hover: #1a253e;
-      --border: #23304d;
-      --border-focus: #3b82f6;
+      --border: #334155;
+      --border-focus: #1865f2;
       --foreground: #f8fafc;
       --muted-foreground: #94a3b8;
       --primary: #3b82f6;
@@ -29,26 +34,25 @@
     input[type=range] {
       accent-color: #3b82f6;
     }
-    .fbd-pulse {
-      animation: fbdGlow 1.8s infinite ease-in-out;
-    }
-    @keyframes fbdGlow {
-      0%, 100% { filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.6)); }
-      50% { filter: drop-shadow(0 0 14px rgba(59, 130, 246, 0.9)); }
-    }
     .tab-active {
-      background-color: #3b82f6;
-      color: #ffffff;
-      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+      background-color: #1865f2 !important;
+      color: #ffffff !important;
+      box-shadow: none !important;
+      font-weight: 600 !important;
+      border: 1px solid #1865f2 !important;
+      border-radius: 8px !important;
     }
     .tab-inactive {
-      background-color: #131b2e;
-      color: #94a3b8;
-      border: 1px solid #23304d;
+      background-color: #1e293b !important;
+      color: #94a3b8 !important;
+      border: 1px solid #334155 !important;
+      box-shadow: none !important;
+      border-radius: 8px !important;
     }
     .tab-inactive:hover {
-      background-color: #1a253e;
-      color: #f8fafc;
+      background-color: #27354f !important;
+      color: #f1f5f9 !important;
+      border-color: #475569 !important;
     }
   </style>
   <link rel="stylesheet" href="../../../../css/tablet-12-7.css">
@@ -59,12 +63,12 @@
 
     <!-- MASTER HEADER -->
     <header class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-xl relative overflow-hidden">
-      <div class="absolute -right-10 -top-10 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div class="flex items-center gap-3 mb-1">
             <span class="px-2.5 py-0.5 text-xs font-bold tracking-wider uppercase rounded-md bg-blue-500/20 text-blue-400 border border-blue-500/30">
-              Grade 9 Physics &middot; Issue #130
+              Topic 3 &middot; Kinematics
             </span>
             <span class="text-xs font-mono text-[var(--muted-foreground)]">Model Selection &middot; Interaction Audit</span>
           </div>
@@ -72,7 +76,7 @@
             IS IT REALLY A PROJECTILE?
           </h1>
           <p class="text-sm md:text-base text-slate-400 mt-1">
-            Never select a model by <strong class="text-red-400">curve shape</strong>. Perform an <strong class="text-emerald-400">interaction audit (FBD)</strong> before unlocking <span class="font-mono text-cyan-300">a&#8339;=0, a&#7522;=&minus;g</span>.
+            Never select a model by <strong class="text-red-400">curve shape</strong>. Perform an <strong class="text-emerald-400">interaction audit (FBD)</strong> before unlocking <span class="font-mono text-cyan-300">a_x=0, a_y=&minus;g</span>.
           </p>
         </div>
 
@@ -101,7 +105,7 @@
         </div>
         <div class="flex items-center gap-3 bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
           <span class="font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">INVARIANT</span>
-          <span class="text-slate-300">Only free flight with <strong class="text-emerald-300 font-mono">&Sigma;F = &minus;mg&#309;</strong> justifies the model <strong class="text-cyan-300 font-mono">a&#8339;=0, a&#7522;=&minus;g</strong>.</span>
+          <span class="text-slate-300">Only free flight with <strong class="text-emerald-300 font-mono">&Sigma;F = &minus;mg&#309;</strong> justifies the model <strong class="text-cyan-300 font-mono">a_x=0, a_y=&minus;g</strong>.</span>
         </div>
       </div>
     </header>
@@ -200,8 +204,8 @@
             <!-- Kinematic Acceleration Readout Badge inside canvas -->
             <g id="canvasAccelGroup" transform="translate(360, 45)">
               <rect x="-10" y="-12" width="150" height="52" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-              <text id="txtAx" x="0" y="8" fill="#f87171" font-size="10" font-family="monospace" font-weight="bold">a&#8339; = &minus;3.4 m/s&sup2; (&ne; 0)</text>
-              <text id="txtAy" x="0" y="26" fill="#f87171" font-size="10" font-family="monospace" font-weight="bold">a&#7522; = &minus;6.1 m/s&sup2; (&ne; &minus;g)</text>
+              <text id="txtAx" x="0" y="8" fill="#f87171" font-size="10" font-family="monospace" font-weight="bold">a_x = &minus;3.4 m/s&sup2; (&ne; 0)</text>
+              <text id="txtAy" x="0" y="26" fill="#f87171" font-size="10" font-family="monospace" font-weight="bold">a_y = &minus;6.1 m/s&sup2; (&ne; &minus;g)</text>
             </g>
           </svg>
         </div>
@@ -270,12 +274,12 @@
               <div class="flex justify-between items-center">
                 <span class="font-bold text-slate-200 flex items-center gap-1.5">
                   <span id="iconCheck2" class="w-4 h-4 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-[10px]">&cross;</span>
-                  2. HORIZONTAL ACCEL ZERO (a&#8339; = 0)?
+                  2. HORIZONTAL ACCEL ZERO (a_x = 0)?
                 </span>
-                <span id="statusCheck2" class="font-mono text-[10px] text-red-400 font-bold">FAILED (a&#8339; &ne; 0)</span>
+                <span id="statusCheck2" class="font-mono text-[10px] text-red-400 font-bold">FAILED (a_x &ne; 0)</span>
               </div>
               <p id="descCheck2" class="text-slate-400 text-[11px] leading-relaxed">
-                Because the track is tilted, the normal force has a horizontal component: <span class="font-mono text-red-300">N&#8339; = N sin&theta; &ne; 0</span>.
+                Because the track is tilted, the normal force has a horizontal component: <span class="font-mono text-red-300">N_x = N sin&theta; &ne; 0</span>.
               </p>
             </div>
 
@@ -284,12 +288,12 @@
               <div class="flex justify-between items-center">
                 <span class="font-bold text-slate-200 flex items-center gap-1.5">
                   <span id="iconCheck3" class="w-4 h-4 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-[10px]">&cross;</span>
-                  3. PURE GRAVITATIONAL FALL (a&#7522; = &minus;g)?
+                  3. PURE GRAVITATIONAL FALL (a_y = &minus;g)?
                 </span>
-                <span id="statusCheck3" class="font-mono text-[10px] text-red-400 font-bold">FAILED (a&#7522; &ne; &minus;g)</span>
+                <span id="statusCheck3" class="font-mono text-[10px] text-red-400 font-bold">FAILED (a_y &ne; &minus;g)</span>
               </div>
               <p id="descCheck3" class="text-slate-400 text-[11px] leading-relaxed">
-                The vertical component of normal force partially offsets gravity: <span class="font-mono text-red-300">N&#7522; &minus; mg &ne; &minus;mg</span>.
+                The vertical component of normal force partially offsets gravity: <span class="font-mono text-red-300">N_y &minus; mg &ne; &minus;mg</span>.
               </p>
             </div>
 
@@ -302,7 +306,7 @@
               <span id="modelLockIcon" class="text-base">&cross; LOCKED</span>
             </div>
             <p id="modelVerdictText" class="text-slate-300 text-[11px] leading-relaxed">
-              Applying <span class="font-mono text-cyan-300">x(t) = v&#8320;&#8339;t</span> and <span class="font-mono text-purple-300">y(t) = v&#8320;&#7522;t &minus; &frac12;gt&sup2;</span> here is <strong>completely invalid</strong>. The ball is not in free fall!
+              Applying <span class="font-mono text-cyan-300">x(t) = v_{0x}t</span> and <span class="font-mono text-purple-300">y(t) = v_{0y}t &minus; &frac12;gt&sup2;</span> here is <strong>completely invalid</strong>. The ball is not in free fall!
             </p>
             <div id="correctModelFormula" class="p-2 bg-slate-950 rounded font-mono text-center text-slate-400 text-xs">
               Governing Model: Constrained Curve Lagrangian / Work-Energy
@@ -313,7 +317,7 @@
         <!-- PEDAGOGICAL TAKEAWAY -->
         <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 text-xs text-slate-300 leading-relaxed">
           <strong class="text-white block mb-1">Pedagogical Invariant:</strong>
-          Kinematic equations are mathematically derived from Newton's Second Law (<span class="font-mono">&Sigma;F = ma</span>). If the force interaction does not equal <span class="font-mono">&minus;mg&#309;</span>, the parabolic equations <span class="font-mono">a&#8339;=0, a&#7522;=&minus;g</span> do not apply &mdash; no matter how parabolic the curve looks!
+          Kinematic equations are mathematically derived from Newton's Second Law (<span class="font-mono">&Sigma;F = ma</span>). If the force interaction does not equal <span class="font-mono">&minus;mg&#309;</span>, the parabolic equations <span class="font-mono">a_x=0, a_y=&minus;g</span> do not apply &mdash; no matter how parabolic the curve looks!
         </div>
       </div>
 
@@ -342,8 +346,8 @@
           <p class="text-slate-300 font-sans text-[11px]">
             <strong>Visual Shape:</strong> Downward curved arc<br>
             <strong>Interactions:</strong> Gravity + Surface Normal N<br>
-            <strong>Horizontal Accel:</strong> <span class="text-red-400">a&#8339; = N&#8339;/m &ne; 0</span><br>
-            <strong>Vertical Accel:</strong> <span class="text-red-400">a&#7522; = (N&#7522;&minus;mg)/m &ne; &minus;g</span>
+            <strong>Horizontal Accel:</strong> <span class="text-red-400">a_x = N_x/m &ne; 0</span><br>
+            <strong>Vertical Accel:</strong> <span class="text-red-400">a_y = (N_y&minus;mg)/m &ne; &minus;g</span>
           </p>
           <div class="text-[10px] text-slate-500 border-t border-slate-800 pt-1 font-sans">
             Constrained motion. Do NOT use projectile equations!
@@ -359,8 +363,8 @@
           <p class="text-slate-300 font-sans text-[11px]">
             <strong>Visual Shape:</strong> Smooth arced climb/glide<br>
             <strong>Interactions:</strong> Gravity + Motor Thrust F&#7520;<br>
-            <strong>Horizontal Accel:</strong> <span class="text-red-400">a&#8339; = F&#7520;&#8339;/m &ne; 0</span><br>
-            <strong>Vertical Accel:</strong> <span class="text-red-400">a&#7522; &ne; &minus;g</span>
+            <strong>Horizontal Accel:</strong> <span class="text-red-400">a_x = F&#7520;_x/m &ne; 0</span><br>
+            <strong>Vertical Accel:</strong> <span class="text-red-400">a_y &ne; &minus;g</span>
           </p>
           <div class="text-[10px] text-slate-500 border-t border-slate-800 pt-1 font-sans">
             Continuous propulsion. F&#7520; drives ongoing acceleration.
@@ -376,11 +380,11 @@
           <p class="text-slate-300 font-sans text-[11px]">
             <strong>Visual Shape:</strong> Parabolic trajectory<br>
             <strong>Interactions:</strong> <strong>Gravity alone (mg)</strong><br>
-            <strong>Horizontal Accel:</strong> <span class="text-emerald-400">a&#8339; = 0</span> (no force)<br>
-            <strong>Vertical Accel:</strong> <span class="text-emerald-400">a&#7522; = &minus;g</span> (pure fall)
+            <strong>Horizontal Accel:</strong> <span class="text-emerald-400">a_x = 0</span> (no force)<br>
+            <strong>Vertical Accel:</strong> <span class="text-emerald-400">a_y = &minus;g</span> (pure fall)
           </p>
           <div class="text-[10px] text-slate-500 border-t border-slate-800 pt-1 font-sans">
-            True ideal projectile. Unlocks a&#8339;=0, a&#7522;=&minus;g!
+            True ideal projectile. Unlocks a_x=0, a_y=&minus;g!
           </div>
         </div>
       </div>
@@ -411,7 +415,7 @@
           <div class="flex items-start justify-between gap-2">
             <span class="font-semibold text-sm text-white flex items-center gap-2">
               <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-xs flex items-center justify-center font-bold">1</span>
-              A skateboarder rolls down a curved quarter-pipe ramp that has the exact mathematical shape of a parabola y = &minus;k x&sup2;. Can we use x(t) = v_0x t to find their horizontal position?
+              A skateboarder rolls down a curved quarter-pipe ramp that has the exact mathematical shape of a parabola y = &minus;k x&sup2;. Can we use x(t) = v_{0x} t to find their horizontal position?
             </span>
             <span id="badgeQ1" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
           </div>

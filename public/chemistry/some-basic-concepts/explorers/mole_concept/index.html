@@ -73,8 +73,8 @@
       animation: pulse-border 1.5s ease-in-out infinite;
     }
     @keyframes pulse-border {
-      0%, 100% { outline: 2px solid rgba(16, 185, 129, 0.2); }
-      50% { outline: 2px solid rgba(16, 185, 129, 0.9); }
+      0%, 100% { outline: 1px solid #10b981; }
+      50% { outline: 2px solid #10b981; }
     }
     .tab-btn-active {
       background: rgba(16, 185, 129, 0.15);
@@ -1109,7 +1109,7 @@
       if (eudioPhase === 1) gasH = 65;
       else if (eudioPhase === 2) gasH = 25;
 
-      ctx.fillStyle = (eudioPhase === 0) ? 'rgba(56, 189, 248, 0.4)' : (eudioPhase === 1 ? 'rgba(245, 158, 11, 0.4)' : 'rgba(16, 185, 129, 0.4)');
+      ctx.fillStyle = (eudioPhase === 0) ? 'rgba(56, 189, 248, 0.25)' : (eudioPhase === 1 ? 'rgba(245, 158, 11, 0.25)' : 'rgba(16, 185, 129, 0.25)');
       ctx.fillRect(tubeX + 3, 33, tubeW - 6, gasH * 1.8);
 
       // Mercury level below

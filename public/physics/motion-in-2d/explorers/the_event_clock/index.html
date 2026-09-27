@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../../../../vendor/katex/0.16.8/katex.min.css" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css';">
+  <script src="../../../../vendor/katex/0.16.8/katex.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js';"></script>
+  <script src="../../../../vendor/katex/0.16.8/contrib/auto-render.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js';" onload="window.__katexLoaded=true; if(window.renderAllMath) window.renderAllMath();"></script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Explorer #129 · The Event Clock</title>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     :root {
-      --background: #090d16;
-      --card: #131b2e;
+      --background: #0f172a;
+      --card: #1e293b;
       --card-hover: #1a253e;
-      --border: #23304d;
-      --border-focus: #3b82f6;
+      --border: #334155;
+      --border-focus: #1865f2;
       --foreground: #f8fafc;
       --muted-foreground: #94a3b8;
       --primary: #3b82f6;
@@ -29,30 +34,31 @@
     input[type=range] {
       accent-color: #3b82f6;
     }
-    .event-pulse {
-      animation: eventGlow 1.8s infinite ease-in-out;
-    }
-    @keyframes eventGlow {
-      0%, 100% {
-        filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.7));
-      }
+    
+    
       50% {
         filter: drop-shadow(0 0 16px rgba(245, 158, 11, 1));
       }
     }
     .tab-active {
-      background-color: #3b82f6;
-      color: #ffffff;
-      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+      background-color: #1865f2 !important;
+      color: #ffffff !important;
+      box-shadow: none !important;
+      font-weight: 600 !important;
+      border: 1px solid #1865f2 !important;
+      border-radius: 8px !important;
     }
     .tab-inactive {
-      background-color: #131b2e;
-      color: #94a3b8;
-      border: 1px solid #23304d;
+      background-color: #1e293b !important;
+      color: #94a3b8 !important;
+      border: 1px solid #334155 !important;
+      box-shadow: none !important;
+      border-radius: 8px !important;
     }
     .tab-inactive:hover {
-      background-color: #1a253e;
-      color: #f8fafc;
+      background-color: #27354f !important;
+      color: #f1f5f9 !important;
+      border-color: #475569 !important;
     }
   </style>
   <link rel="stylesheet" href="../../../../css/tablet-12-7.css">
@@ -63,12 +69,12 @@
 
     <!-- MASTER HEADER -->
     <header class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-xl relative overflow-hidden">
-      <div class="absolute -right-10 -top-10 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div class="flex items-center gap-3 mb-1">
             <span class="px-2.5 py-0.5 text-xs font-bold tracking-wider uppercase rounded-md bg-amber-500/20 text-amber-400 border border-amber-500/30">
-              Grade 9 Physics &middot; Issue #129
+              Topic 2 &middot; Kinematics
             </span>
             <span class="text-xs font-mono text-[var(--muted-foreground)]">Event Dynamics &middot; Temporal Sampling</span>
           </div>
@@ -276,7 +282,7 @@
                 The projectile encounters the wall when its horizontal position reaches <span class="font-mono text-white font-bold">x = d</span>.
               </p>
               <div id="step1Eq" class="p-2 bg-slate-900 rounded font-mono text-center text-cyan-200 text-xs">
-                x(t*) = d &nbsp;&rArr;&nbsp; v&#8320;&#8339; &times; t* = d
+                x(t*) = d &nbsp;&rArr;&nbsp; v_{0x} &times; t* = d
               </div>
             </div>
 
@@ -293,7 +299,7 @@
                 The horizontal equation alone dictates the exact timestamp of arrival:
               </p>
               <div id="step2Eq" class="p-2 bg-amber-950/50 rounded font-mono text-center text-amber-300 font-bold text-sm">
-                t* = d / v&#8320;&#8339; = 2.00 s
+                t* = d / v_{0x} = 2.00 s
               </div>
             </div>
 
@@ -307,7 +313,7 @@
                 <span class="font-mono text-[10px] text-emerald-400 font-bold">SYNCHRONIZED</span>
               </div>
               <p class="text-slate-300 leading-relaxed text-[11px]">
-                Both coordinates sample the single event clock: <span class="font-mono text-emerald-300 font-bold">t&#8339; &equiv; t&#7522; &equiv; t*</span>.
+                Both coordinates sample the single event clock: <span class="font-mono text-emerald-300 font-bold">t_x &equiv; t_y &equiv; t*</span>.
               </p>
             </div>
 
@@ -324,7 +330,7 @@
                 Evaluate vertical motion at this exact <span class="font-mono text-amber-300">t*</span> to find clearance height:
               </p>
               <div id="step4Eq" class="p-2 bg-purple-950/50 rounded font-mono text-center text-purple-300 font-bold text-xs">
-                y(t*) = v&#8320;&#7522;t* &minus; &frac12;gt*&sup2; = 14.3 m
+                y(t*) = v_{0y}t* &minus; &frac12;gt*&sup2; = 14.3 m
               </div>
             </div>
 
@@ -333,7 +339,7 @@
           <!-- LAUNCH CONTROLS SLIDERS -->
           <div class="mt-4 pt-3 border-t border-[var(--border)] grid grid-cols-2 gap-2 text-xs">
             <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800">
-              <span class="text-slate-400 block text-[10px]">LAUNCH SPEED v&#8320;</span>
+              <span class="text-slate-400 block text-[10px]">LAUNCH SPEED v_{0}</span>
               <div class="flex items-center justify-between">
                 <input type="range" id="sliderV0" min="15" max="35" step="1" value="25" class="w-20" oninput="onParamChange()">
                 <span id="labelV0" class="font-mono font-bold text-white">25 m/s</span>
@@ -353,7 +359,7 @@
         <div id="pedagogicalCallout" class="p-3.5 rounded-xl border border-cyan-500/30 bg-cyan-950/30 text-xs leading-relaxed text-cyan-200">
           <strong class="text-white block mb-1">Crucial Insight: Horizontal Controls Arrival Time</strong>
           <p id="calloutText">
-            Notice that when throwing a ball towards a vertical wall at distance <span class="font-mono">d</span>, gravity <span class="font-mono">g</span> and vertical speed have <strong>zero influence</strong> on when the ball hits the wall. Arrival time is strictly <span class="font-mono font-bold">t* = d / v&#8320;&#8339;</span>!
+            Notice that when throwing a ball towards a vertical wall at distance <span class="font-mono">d</span>, gravity <span class="font-mono">g</span> and vertical speed have <strong>zero influence</strong> on when the ball hits the wall. Arrival time is strictly <span class="font-mono font-bold">t* = d / v_{0x}</span>!
           </p>
         </div>
       </div>
@@ -382,7 +388,7 @@
           </div>
           <p class="text-slate-300 font-sans text-[11px]">
             <strong>Constraint:</strong> x = d (Horizontal)<br>
-            <strong>Solves When:</strong> <span class="text-amber-300 font-bold">t* = d / v&#8320;&#8339;</span><br>
+            <strong>Solves When:</strong> <span class="text-amber-300 font-bold">t* = d / v_{0x}</span><br>
             <strong>Samples Where:</strong> <span class="text-purple-300 font-bold">y(t*)</span> (Clearance Height)
           </p>
           <div class="text-[10px] text-slate-500 border-t border-slate-800 pt-1 font-sans">
@@ -398,7 +404,7 @@
           </div>
           <p class="text-slate-300 font-sans text-[11px]">
             <strong>Constraint:</strong> v_y = 0 (Vertical)<br>
-            <strong>Solves When:</strong> <span class="text-amber-300 font-bold">t* = v&#8320;&#7522; / g</span><br>
+            <strong>Solves When:</strong> <span class="text-amber-300 font-bold">t* = v_{0y} / g</span><br>
             <strong>Samples Where:</strong> <span class="text-cyan-300 font-bold">x(t*)</span> (Peak Location)
           </p>
           <div class="text-[10px] text-slate-500 border-t border-slate-800 pt-1 font-sans">
@@ -456,13 +462,13 @@
 
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
             <button onclick="answerQuiz(1, 'A')" class="q-btn-1-A p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
-              <strong class="text-slate-400 mr-1.5">A</strong> Gravitational acceleration g and vertical velocity v_0y
+              <strong class="text-slate-400 mr-1.5">A</strong> Gravitational acceleration g and vertical velocity v_{0y}
             </button>
             <button onclick="answerQuiz(1, 'B')" class="q-btn-1-B p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
-              <strong class="text-slate-400 mr-1.5">B</strong> Horizontal velocity v_0x and distance d alone
+              <strong class="text-slate-400 mr-1.5">B</strong> Horizontal velocity v_{0x} and distance d alone
             </button>
             <button onclick="answerQuiz(1, 'C')" class="q-btn-1-C p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
-              <strong class="text-slate-400 mr-1.5">C</strong> Total speed v_0 divided by gravity g
+              <strong class="text-slate-400 mr-1.5">C</strong> Total speed v_{0} divided by gravity g
             </button>
           </div>
 
@@ -474,7 +480,7 @@
           <div class="flex items-start justify-between gap-2">
             <span class="font-semibold text-sm text-white flex items-center gap-2">
               <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-xs flex items-center justify-center font-bold">2</span>
-              If the thrower increases the launch angle (increasing v_0y) while keeping the horizontal speed v_0x constant, what happens to the arrival time at the wall?
+              If the thrower increases the launch angle (increasing v_{0y}) while keeping the horizontal speed v_{0x} constant, what happens to the arrival time at the wall?
             </span>
             <span id="badgeQ2" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
           </div>
@@ -499,7 +505,7 @@
           <div class="flex items-start justify-between gap-2">
             <span class="font-semibold text-sm text-white flex items-center gap-2">
               <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-xs flex items-center justify-center font-bold">3</span>
-              A projectile lands on an elevated rooftop 8 meters above launch level. Why can't we use the standard range formula R = (v_0^2 sin 2&theta;) / g?
+              A projectile lands on an elevated rooftop 8 meters above launch level. Why can't we use the standard range formula R = (v_{0}^2 sin 2&theta;) / g?
             </span>
             <span id="badgeQ3" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
           </div>
@@ -660,10 +666,10 @@
         step1Dim.textContent = 'HORIZONTAL (X-AXIS)';
         step1Dim.className = 'font-mono text-[10px] text-cyan-400 font-semibold';
         step1Desc.innerHTML = `Wall obstacle located at horizontal distance <span class="font-mono text-white font-bold">x = ${sim.wallD.toFixed(1)} m</span>.`;
-        step1Eq.innerHTML = `x(t*) = d &nbsp;&rArr;&nbsp; v&#8320;&#8339; &times; t* = ${sim.wallD.toFixed(1)}m`;
+        step1Eq.innerHTML = `x(t*) = d &nbsp;&rArr;&nbsp; v_{0x} &times; t* = ${sim.wallD.toFixed(1)}m`;
 
         step2Desc.textContent = 'Horizontal motion alone dictates arrival timestamp:';
-        step2Eq.innerHTML = `t* = d / v&#8320;&#8339; = ${sim.wallD.toFixed(1)} / ${sim.v0x.toFixed(1)} = ${tEvent.toFixed(2)} s`;
+        step2Eq.innerHTML = `t* = d / v_{0x} = ${sim.wallD.toFixed(1)} / ${sim.v0x.toFixed(1)} = ${tEvent.toFixed(2)} s`;
 
         step4Dim.textContent = 'VERTICAL (Y-AXIS)';
         step4Dim.className = 'font-mono text-[10px] text-purple-400 font-semibold';
@@ -676,7 +682,7 @@
 
         step4Eq.innerHTML = `y(t*) = ${yEvent.toFixed(1)} m &nbsp;(${clearMsg})`;
 
-        calloutText.innerHTML = `Notice that for a vertical wall at distance <span class="font-mono">d</span>, gravity <span class="font-mono">g</span> has <strong>zero effect on arrival time</strong>: <span class="font-mono font-bold">t* = d / v&#8320;&#8339;</span>. Changing vertical angle only alters <em>clearing height</em>.`;
+        calloutText.innerHTML = `Notice that for a vertical wall at distance <span class="font-mono">d</span>, gravity <span class="font-mono">g</span> has <strong>zero effect on arrival time</strong>: <span class="font-mono font-bold">t* = d / v_{0x}</span>. Changing vertical angle only alters <em>clearing height</em>.`;
 
         // Update Wall Fixture SVG position
         const pxWallX = sim.originX + sim.wallD * sim.scaleX;
@@ -712,7 +718,7 @@
         step1Dim.textContent = 'VERTICAL (Y-AXIS)';
         step1Dim.className = 'font-mono text-[10px] text-purple-400 font-semibold';
         step1Desc.innerHTML = `Apex event is reached when vertical velocity vanishes: <span class="font-mono text-white font-bold">v_y(t*) = 0</span>.`;
-        step1Eq.innerHTML = `v&#8320;&#7522; &minus; g &times; t* = 0 &nbsp;&rArr;&nbsp; t* = v&#8320;&#7522; / g`;
+        step1Eq.innerHTML = `v_{0y} &minus; g &times; t* = 0 &nbsp;&rArr;&nbsp; t* = v_{0y} / g`;
 
         step2Desc.textContent = 'Vertical gravity decel alone dictates peak time:';
         step2Eq.innerHTML = `t* = ${sim.v0y.toFixed(1)} / 9.81 = ${tEvent.toFixed(2)} s`;
@@ -720,9 +726,9 @@
         step4Dim.textContent = 'HORIZONTAL (X-AXIS)';
         step4Dim.className = 'font-mono text-[10px] text-cyan-400 font-semibold';
         step4Desc.innerHTML = `Horizontal equation samples peak time <span class="font-mono text-amber-300">t* = ${tEvent.toFixed(2)}s</span> to find where peak occurs:`;
-        step4Eq.innerHTML = `x(t*) = v&#8320;&#8339; &times; t* = ${sim.v0x.toFixed(1)} &times; ${tEvent.toFixed(2)} = ${xEvent.toFixed(1)} m`;
+        step4Eq.innerHTML = `x(t*) = v_{0x} &times; t* = ${sim.v0x.toFixed(1)} &times; ${tEvent.toFixed(2)} = ${xEvent.toFixed(1)} m`;
 
-        calloutText.innerHTML = `Notice that peak time depends exclusively on vertical launch speed <span class="font-mono">v&#8320;&#7522;</span> and gravity. Horizontal speed has zero effect on peak time!`;
+        calloutText.innerHTML = `Notice that peak time depends exclusively on vertical launch speed <span class="font-mono">v_{0y}</span> and gravity. Horizontal speed has zero effect on peak time!`;
 
         // Update Apex fixture
         const pxApexX = sim.originX + xEvent * sim.scaleX;
@@ -744,7 +750,7 @@
         step1Dim.textContent = 'VERTICAL (Y-AXIS)';
         step1Dim.className = 'font-mono text-[10px] text-amber-400 font-semibold';
         step1Desc.innerHTML = `Impact occurs when vertical coordinate reaches ground level: <span class="font-mono text-white font-bold">y(t*) = 0</span>.`;
-        step1Eq.innerHTML = `v&#8320;&#7522;t* &minus; &frac12;gt*&sup2; = 0 &nbsp;&rArr;&nbsp; t* = 2v&#8320;&#7522; / g`;
+        step1Eq.innerHTML = `v_{0y}t* &minus; &frac12;gt*&sup2; = 0 &nbsp;&rArr;&nbsp; t* = 2v_{0y} / g`;
 
         step2Desc.textContent = 'Vertical trajectory equation determines flight duration:';
         step2Eq.innerHTML = `t* = (2 &times; ${sim.v0y.toFixed(1)}) / 9.81 = ${tEvent.toFixed(2)} s`;
@@ -752,7 +758,7 @@
         step4Dim.textContent = 'HORIZONTAL (X-AXIS)';
         step4Dim.className = 'font-mono text-[10px] text-cyan-400 font-semibold';
         step4Desc.innerHTML = `Horizontal equation samples <span class="font-mono text-amber-300">t*</span> to find total horizontal range:`;
-        step4Eq.innerHTML = `Range R = v&#8320;&#8339; &times; t* = ${sim.v0x.toFixed(1)} &times; ${tEvent.toFixed(2)} = ${xEvent.toFixed(1)} m`;
+        step4Eq.innerHTML = `Range R = v_{0x} &times; t* = ${sim.v0x.toFixed(1)} &times; ${tEvent.toFixed(2)} = ${xEvent.toFixed(1)} m`;
 
         calloutText.innerHTML = `The famous Range formula <span class="font-mono">R = v_x &times; T</span> only works because the landing event owns the flight time <span class="font-mono">T</span> via vertical motion.`;
 
@@ -771,7 +777,7 @@
         step1Dim.textContent = 'HORIZONTAL (X-AXIS)';
         step1Dim.className = 'font-mono text-[10px] text-cyan-400 font-semibold';
         step1Desc.innerHTML = `Target hoop placed at distance <span class="font-mono text-white font-bold">x = ${sim.ringX.toFixed(1)} m</span>.`;
-        step1Eq.innerHTML = `t* = x_target / v&#8320;&#8339; = ${sim.ringX.toFixed(1)} / ${sim.v0x.toFixed(1)}`;
+        step1Eq.innerHTML = `t* = x_target / v_{0x} = ${sim.ringX.toFixed(1)} / ${sim.v0x.toFixed(1)}`;
 
         step2Desc.textContent = 'Time to reach target plane:';
         step2Eq.innerHTML = `t* = ${tEvent.toFixed(2)} s`;
@@ -890,21 +896,21 @@
     const quizData129 = {
       1: {
         correct: 'B',
-        textB: `<strong>&check; Correct! (Constraint Invariant)</strong> Because the wall is a vertical obstacle at a fixed horizontal distance d, the condition that defines the collision is x(t*) = d. Under zero horizontal acceleration, t* = d / v_0x. Gravity and vertical velocity have zero influence on when the ball reaches the wall.`,
+        textB: `<strong>&check; Correct! (Constraint Invariant)</strong> Because the wall is a vertical obstacle at a fixed horizontal distance d, the condition that defines the collision is x(t*) = d. Under zero horizontal acceleration, t* = d / v_{0x}. Gravity and vertical velocity have zero influence on when the ball reaches the wall.`,
         textA: `<strong>&cross; Common Fallacy:</strong> Gravitational acceleration g only affects vertical motion. It does not speed up or slow down horizontal progress toward the wall!`,
-        textC: `<strong>&cross; Incorrect:</strong> Total speed combines both components, but only the horizontal component v_0x travels toward the wall.`
+        textC: `<strong>&cross; Incorrect:</strong> Total speed combines both components, but only the horizontal component v_{0x} travels toward the wall.`
       },
       2: {
         correct: 'A',
-        textA: `<strong>&check; Correct!</strong> Arrival time at the wall is strictly t* = d / v_0x. Since v_0x was kept constant, the ball arrives at the exact same second. However, higher v_0y means the ball climbs higher during that arrival time, clearing the wall by a larger margin.`,
+        textA: `<strong>&check; Correct!</strong> Arrival time at the wall is strictly t* = d / v_{0x}. Since v_{0x} was kept constant, the ball arrives at the exact same second. However, higher v_{0y} means the ball climbs higher during that arrival time, clearing the wall by a larger margin.`,
         textB: `<strong>&cross; False Independence Assumption:</strong> Total flight time to the ground would increase, but the ball reaches the wall long before landing!`,
         textC: `<strong>&cross; Incorrect:</strong> Steepness does not accelerate horizontal travel.`
       },
       3: {
         correct: 'B',
-        textB: `<strong>&check; Correct! (Event Ownership)</strong> The textbook range formula R = (v_0^2 sin 2&theta;) / g is derived specifically from the ground-level condition &Delta;y = 0. An elevated platform changes the physical event condition to y(t*) = +8m, altering the event time t* that horizontal motion must sample.`,
+        textB: `<strong>&check; Correct! (Event Ownership)</strong> The textbook range formula R = (v_{0}^2 sin 2&theta;) / g is derived specifically from the ground-level condition &Delta;y = 0. An elevated platform changes the physical event condition to y(t*) = +8m, altering the event time t* that horizontal motion must sample.`,
         textA: `<strong>&cross; False Physics:</strong> Gravity g is essentially constant across everyday building heights.`,
-        textC: `<strong>&cross; Misconception:</strong> Horizontal velocity v_0x remains strictly constant under ideal projectile motion.`
+        textC: `<strong>&cross; Misconception:</strong> Horizontal velocity v_{0x} remains strictly constant under ideal projectile motion.`
       }
     };
 

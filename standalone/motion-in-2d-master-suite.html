@@ -67,15 +67,9 @@
       background-color: #0f172a !important; /* Matte deep slate */
       color: #f8fafc !important;
     }
-    
-    
-      50% { filter: drop-shadow(0 0 14px rgba(239, 68, 68, 0.9)); }
-    }
     .apex-glow {
-      animation: apexGlow 1.8s infinite ease-in-out;
+      filter: drop-shadow(0 0 2px rgba(245, 158, 11, 0.4));
     }
-    @keyframes apexGlow {
-      0%, 100% { filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.6)); }
       50% { filter: drop-shadow(0 0 14px rgba(245, 158, 11, 0.9)); }
     }
 
@@ -2198,9 +2192,9 @@ window.JEE_QUESTIONS_DATA = [
               </div>
               <div class="flex flex-wrap items-center gap-3 text-xs font-mono">
                 <span class="flex items-center gap-1 text-amber-400"><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span> Total v</span>
-                <span class="flex items-center gap-1 text-cyan-400"><span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span> v&#8339;</span>
-                <span class="flex items-center gap-1 text-purple-400"><span class="w-2.5 h-2.5 rounded-full bg-purple-400"></span> v&#7522;</span>
-                <span class="flex items-center gap-1 text-red-400"><span class="w-2.5 h-2.5 rounded-full bg-red-400"></span> a&#7522; = &minus;g</span>
+                <span class="flex items-center gap-1 text-cyan-400"><span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span> v_x</span>
+                <span class="flex items-center gap-1 text-purple-400"><span class="w-2.5 h-2.5 rounded-full bg-purple-400"></span> \(v_y\)</span>
+                <span class="flex items-center gap-1 text-red-400"><span class="w-2.5 h-2.5 rounded-full bg-red-400"></span> \(a_y = -g\)</span>
               </div>
             </div>
 
@@ -2310,7 +2304,7 @@ window.JEE_QUESTIONS_DATA = [
 
             <div class="space-y-1">
               <div class="flex justify-between text-xs font-mono">
-                <span class="text-slate-400">Speed (v&#8320;):</span>
+                <span class="text-slate-400">Speed (\(v_{0}\)):</span>
                 <span id="sbLblV0" class="text-amber-400 font-bold">25.0 m/s</span>
               </div>
               <input type="range" id="sbSliderV0" min="15" max="35" step="1" value="25" oninput="sbOnParamChange()" class="w-full cursor-pointer h-1.5 bg-slate-800 rounded">
@@ -2380,11 +2374,11 @@ window.JEE_QUESTIONS_DATA = [
               <span id="sbValPos" class="text-white font-bold">(0.0 m, 0.0 m)</span>
             </div>
             <div class="flex justify-between text-cyan-300">
-              <span>Horizontal v&#8339;:</span>
+              <span>Horizontal v_x:</span>
               <span id="sbValVx" class="font-bold">+17.68 m/s</span>
             </div>
             <div class="flex justify-between text-purple-300">
-              <span>Vertical v&#7522;:</span>
+              <span>Vertical \(v_y\):</span>
               <span id="sbValVy" class="font-bold">+17.68 m/s</span>
             </div>
             <div class="flex justify-between text-amber-300">
@@ -2392,7 +2386,7 @@ window.JEE_QUESTIONS_DATA = [
               <span id="sbValSpeed" class="font-bold">25.00 m/s</span>
             </div>
             <div class="flex justify-between text-red-400">
-              <span>Acceleration a&#7522;:</span>
+              <span>Acceleration \(a_y\):</span>
               <span class="font-bold">&minus;9.81 m/s&sup2; (CONST)</span>
             </div>
           </div>
@@ -2438,13 +2432,13 @@ window.JEE_QUESTIONS_DATA = [
         </div>
 
         <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
-          While horizontal and vertical motions are algebraically independent (&Sigma;F&#8339; = 0 does not affect &Sigma;F&#7522; = &minus;mg), they are strictly coupled by <strong>one universal spacetime clock parameter t</strong>. Sampling different times creates an unphysical "ghost state".
+          While horizontal and vertical motions are algebraically independent (\(\sum F_x = 0\) does not affect \(\sum F_y = -mg\)), they are strictly coupled by <strong>one universal spacetime clock parameter \(t\)</strong>. Sampling different times creates an unphysical "ghost state".
         </p>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
           <div class="lg:col-span-8 bg-slate-950 rounded-xl border border-slate-800 p-3">
-            <div class="h-80 w-full relative">
-              <svg id="t1Canvas" class="w-full h-full" viewBox="0 0 540 300">
+            <div class="w-full relative" style="min-height: 380px; aspect-ratio: 16/9; overflow: visible;">
+              <svg id="t1Canvas" class="w-full h-full" viewBox="0 0 540 320" preserveAspectRatio="xMidYMid meet">
                 <line x1="30" y1="260" x2="510" y2="260" stroke="#334155" stroke-width="2"/>
                 <line x1="30" y1="260" x2="30" y2="20" stroke="#334155" stroke-width="2"/>
                 <text x="470" y="278" fill="#64748b" font-family="monospace" font-size="10">x (m)</text>
@@ -2491,8 +2485,8 @@ window.JEE_QUESTIONS_DATA = [
             </div>
 
             <div class="pt-2 border-t border-slate-800 space-y-1.5 text-slate-300">
-              <div>x(tx) = v&#8320;&#8339; &middot; tx = <strong id="t1CalcX" class="text-cyan-300">26.5 m</strong></div>
-              <div>y(ty) = v&#8320;&#7522; ty &minus; &frac12; g ty&sup2; = <strong id="t1CalcY" class="text-purple-300">15.5 m</strong></div>
+              <div>\(x(t_x) = v_{0x} \cdot t_x =\) <strong id="t1CalcX" class="text-cyan-300">26.5 m</strong></div>
+              <div>\(y(t_y) = v_{0y} t_y - \frac{1}{2} g t_y^2 =\) <strong id="t1CalcY" class="text-purple-300">15.5 m</strong></div>
               <div class="text-[11px] text-slate-400 pt-1 font-sans">
                 Drag tx and ty to different values to observe the red <strong>Ghost State</strong> hovering off the trajectory!
               </div>
@@ -2512,7 +2506,7 @@ window.JEE_QUESTIONS_DATA = [
               <span class="text-xs font-bold text-amber-400">&bull; Coordinates as a Function of Time: x(t) = 3t, y(t) = 4t &minus; 5t&sup2;</span>
             </div>
             <p class="text-xs text-slate-300 leading-relaxed pt-1">
-              If the x and y coordinates of a projectile as a function of time t are given as x = 3t and y = 4t &minus; 5t&sup2;, find the initial speed v&#8320;, launch angle &theta;&#8320;, and equation of trajectory.
+              If the \(x\) and \(y\) coordinates of a projectile as a function of time \(t\) are given as \(x(t) = 3t\) and \(y(t) = 4t - 5t^2\), find the initial speed \(v_{0}\), launch angle \(\theta_0\), and equation of trajectory.
             </p>
           </div>
           <div class="flex flex-wrap sm:flex-nowrap items-center gap-2 shrink-0">
@@ -2545,7 +2539,7 @@ window.JEE_QUESTIONS_DATA = [
                 <span>&bull;</span> 1. Core Invariant &amp; Free-Body Audit
               </div>
               <div class="text-slate-300 leading-relaxed">
-                <strong>Audit:</strong> Acceleration along x is a&#8339; = d&sup2;x/dt&sup2; = 0. Acceleration along y is a&#7522; = d&sup2;y/dt&sup2; = &minus;10 m/s&sup2; = &minus;g. This confirms standard ballistic free flight under solitary gravity. The two 1D equations are completely independent, but are governed by <strong>one synchronized physical clock t</strong>.
+                <strong>Audit:</strong> Acceleration along \(x\) is \(a_x = \frac{d^2x}{dt^2} = 0\). Acceleration along \(y\) is \(a_y = \frac{d^2y}{dt^2} = -10\text{ m/s}^2 = -g\). This confirms standard ballistic free flight under solitary gravity. The two 1D equations are completely independent, but are governed by <strong>one synchronized physical clock \(t\)</strong>.
               </div>
             </div>
 
@@ -2555,7 +2549,7 @@ window.JEE_QUESTIONS_DATA = [
                 <span>&bull;</span> 2. Symbolic Derivation &amp; Decoupled Equations
               </div>
               <div class="text-slate-300 leading-relaxed">
-                <strong>Velocity Components:</strong> v&#8339;(t) = dx/dt = 3 m/s (strictly constant). v&#7522;(t) = dy/dt = 4 &minus; 10t m/s.<br>At launch (t = 0): v&#8320;&#8339; = 3 m/s, v&#8320;&#7522; = 4 m/s.<br><strong>Initial Velocity &amp; Angle:</strong> v&#8320; = &radic;(3&sup2; + 4&sup2;) = 5 m/s. Launch angle &theta;&#8320; = arctan(v&#8320;&#7522; / v&#8320;&#8339;) = arctan(4/3) &approx; 53.13&deg;.<br><strong>Trajectory Equation:</strong> Eliminate t = x / 3 &rArr; y(x) = 4(x/3) &minus; 5(x/3)&sup2; = <strong>&frac43; x &minus; &#8309;&frasl;&#8329; x&sup2;</strong> (parabola opening downward).
+                <strong>Velocity Components:</strong> \(v_x(t) = \frac{dx}{dt} = 3\text{ m/s}\) (strictly constant). \(v_y(t) = \frac{dy}{dt} = 4 - 10t\text{ m/s}\).<br>At launch (\(t = 0\)): \(v_{0x} = 3\text{ m/s}\), \(v_{0y} = 4\text{ m/s}\).<br><strong>Initial Velocity &amp; Angle:</strong> \(v_{0} = \sqrt{3^2 + 4^2} = 5\text{ m/s}\). Launch angle \(\theta_0 = \arctan(v_{0y} / v_{0x}) = \arctan(4/3) \approx 53.13^\circ\).<br><strong>Trajectory Equation:</strong> Eliminate \(t = x / 3 \Rightarrow y(x) = 4(x/3) - 5(x/3)^2 =\) <strong>\(\frac{4}{3} x - \frac{5}{9} x^2\)</strong> (parabola opening downward).
               </div>
             </div>
 
@@ -2565,7 +2559,7 @@ window.JEE_QUESTIONS_DATA = [
                 <span>&bull;</span> 3. Numerical Substitution &amp; Verification
               </div>
               <div class="text-slate-300 leading-relaxed">
-                <strong>Flight Time &amp; Range:</strong> Setting y = 0 &rArr; t(4 &minus; 5t) = 0 &rArr; t* = 0.8 s. Range R = x(0.8) = 3 &times; 0.8 = <strong>2.4 m</strong>. At apex t = 0.4 s, v&#7522; = 0 while v&#8339; = 3 m/s.
+                <strong>Flight Time &amp; Range:</strong> Setting \(y = 0 \Rightarrow t(4 - 5t) = 0 \Rightarrow t^* = 0.8\text{ s}\). Range \(R = x(0.8) = 3 \times 0.8 =\) <strong>\(2.4\text{ m}\)</strong>. At apex \(t = 0.4\text{ s}\), \(v_y = 0\) while \(v_x = 3\text{ m/s}\).
               </div>
             </div>
 
@@ -2620,8 +2614,8 @@ window.JEE_QUESTIONS_DATA = [
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
           <div class="lg:col-span-8 bg-slate-950 rounded-xl border border-slate-800 p-3">
-            <div class="h-80 w-full relative">
-              <svg id="t2Canvas" class="w-full h-full" viewBox="0 0 540 300">
+            <div class="w-full relative" style="min-height: 380px; aspect-ratio: 16/9; overflow: visible;">
+              <svg id="t2Canvas" class="w-full h-full" viewBox="0 0 540 320" preserveAspectRatio="xMidYMid meet">
                 <line x1="30" y1="260" x2="510" y2="260" stroke="#334155" stroke-width="2"/>
                 <path id="t2Traj" d="" fill="none" stroke="#3b82f6" stroke-width="2" opacity="0.6"/>
 
@@ -2657,13 +2651,13 @@ window.JEE_QUESTIONS_DATA = [
 
               <div class="p-2 rounded bg-slate-900 border border-slate-800">
                 <span class="text-amber-400 font-bold">2. SOLVE FOR t*:</span>
-                <div class="text-slate-300">t* = d / v&#8320;&#8339; = <strong id="t2PipeT" class="text-amber-300">1.41 s</strong></div>
+                <div class="text-slate-300">\(t^* = \frac{d}{v_{0x}} =\) <strong id="t2PipeT" class="text-amber-300">1.41 s</strong></div>
                 <div class="text-[10px] text-slate-500 font-sans">Strictly independent of gravity &amp; vertical velocity!</div>
               </div>
 
               <div class="p-2 rounded bg-slate-900 border border-slate-800">
                 <span class="text-purple-400 font-bold">3. SAMPLE VERTICAL AXIS:</span>
-                <div class="text-slate-300">y(t*) = v&#8320;&#7522; t* &minus; &frac12; g t*&sup2; = <strong id="t2PipeY" class="text-purple-300">15.2 m</strong></div>
+                <div class="text-slate-300">\(y(t^*) = v_{0y} t^* - \frac{1}{2} g (t^*)^2 =\) <strong id="t2PipeY" class="text-purple-300">15.2 m</strong></div>
               </div>
             </div>
           </div>
@@ -2714,7 +2708,7 @@ window.JEE_QUESTIONS_DATA = [
                 <span>&bull;</span> 1. Core Invariant &amp; Free-Body Audit
               </div>
               <div class="text-slate-300 leading-relaxed">
-                <strong>Audit:</strong> Pure horizontal release implies initial vertical speed v&#8320;&#7522; = 0 and horizontal speed v&#8320;&#8339; = v. Vertical motion is in unhindered free-fall under gravity g, while horizontal motion is inertial (a&#8339; = 0).
+                <strong>Audit:</strong> Pure horizontal release implies initial vertical speed \(v_{0y} = 0\) and horizontal speed \(v_{0x} = v\). Vertical motion is in unhindered free-fall under gravity \(g\), while horizontal motion is inertial (\(a_x = 0\)).
               </div>
             </div>
 
@@ -2724,7 +2718,7 @@ window.JEE_QUESTIONS_DATA = [
                 <span>&bull;</span> 2. Symbolic Derivation &amp; Decoupled Equations
               </div>
               <div class="text-slate-300 leading-relaxed">
-                <strong>Event Clock Ownership:</strong> The vertical ground-impact event completely owns the time clock t*. With &Delta;y = &minus;h and v&#8320;&#7522; = 0:<br>&minus;h = &minus;&frac12; g t*&sup2; &rArr; <strong>t* = &radic;(2h / g)</strong>.<br><strong>Cross-Axis Transfer:</strong> The horizontal motion merely samples this event time t*:<br><strong>d = v&#8320;&#8339; &middot; t* = v &radic;(2h / g)</strong>.
+                <strong>Event Clock Ownership:</strong> The vertical ground-impact event completely owns the time clock \(t^*\). With \(\Delta y = -h\) and \(v_{0y} = 0\):<br>\(-h = -\frac{1}{2} g (t^*)^2 \Rightarrow\) <strong>\(t^* = \sqrt{\frac{2h}{g}}\)</strong>.<br><strong>Cross-Axis Transfer:</strong> The horizontal motion merely samples this event time \(t^*\):<br><strong>\(d = v_{0x} \cdot t^* = v \sqrt{\frac{2h}{g}}\)</strong>.
               </div>
             </div>
 
@@ -2858,8 +2852,8 @@ window.JEE_QUESTIONS_DATA = [
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
           <!-- Left: SVG Canvas (8 cols) -->
           <div class="lg:col-span-8 bg-slate-950 rounded-xl border border-slate-800 p-3 space-y-3">
-            <div class="h-80 w-full relative">
-              <svg id="t3Canvas" class="w-full h-full" viewBox="0 0 540 300">
+            <div class="w-full relative" style="min-height: 380px; aspect-ratio: 16/9; overflow: visible;">
+              <svg id="t3Canvas" class="w-full h-full" viewBox="0 0 540 320" preserveAspectRatio="xMidYMid meet">
                 <!-- Ground / Datum -->
                 <line x1="20" y1="270" x2="520" y2="270" stroke="#334155" stroke-width="2"/>
                 <text x="450" y="286" fill="#64748b" font-family="monospace" font-size="10">Datum y = 0</text>
@@ -3101,14 +3095,14 @@ window.JEE_QUESTIONS_DATA = [
         </div>
 
         <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
-          At the highest point, only vertical velocity momentarily vanishes (<span class="font-mono text-purple-300">v&#7522; = 0</span>). Forward velocity remains <span class="font-mono text-cyan-300">v&#8339; = v&#8320;&#8339;</span>, and downward acceleration remains <span class="font-mono text-red-400">a&#7522; = &minus;9.81 m/s&sup2;</span>.
+          At the highest point, only vertical velocity momentarily vanishes (<span class="font-medium text-purple-300">\(v_y = 0\)</span>). Forward velocity remains <span class="font-medium text-cyan-300">\(v_x = v_{0x}\)</span>, and downward acceleration remains <span class="font-medium text-red-400">\(a_y = -9.81\text{ m/s}^2\)</span>.
         </p>
 
         <!-- TOPIC 4: FULL INTERACTIVE TRAJECTORY CANVAS WITH VECTOR DECOMPOSITION -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
           <div class="lg:col-span-8 bg-slate-950 rounded-xl border border-slate-800 p-3 space-y-3">
-            <div class="h-80 w-full relative">
-              <svg id="t4Canvas" class="w-full h-full" viewBox="0 0 540 300">
+            <div class="w-full relative" style="min-height: 380px; aspect-ratio: 16/9; overflow: visible;">
+              <svg id="t4Canvas" class="w-full h-full" viewBox="0 0 540 320" preserveAspectRatio="xMidYMid meet">
                 <line x1="30" y1="260" x2="510" y2="260" stroke="#334155" stroke-width="2"/>
                 <text x="450" y="278" fill="#64748b" font-family="monospace" font-size="10">Ground (y=0)</text>
 
@@ -3126,15 +3120,15 @@ window.JEE_QUESTIONS_DATA = [
                 <g id="t4BallGroup" transform="translate(30, 260)">
                   <!-- Constant downward acceleration -->
                   <line id="t4VecA" x1="0" y1="0" x2="0" y2="35" stroke="#ef4444" stroke-width="3" marker-end="url(#sbArrA)"/>
-                  <text id="t4LblA" x="8" y="38" fill="#ef4444" font-family="monospace" font-size="10" font-weight="bold">a&#7522; = &minus;g</text>
+                  <text id="t4LblA" x="8" y="38" fill="#ef4444" font-family="system-ui,sans-serif" font-size="11" font-weight="bold">ay = -g</text>
 
                   <!-- Horizontal Velocity -->
                   <line id="t4VecVx" x1="0" y1="0" x2="40" y2="0" stroke="#06b6d4" stroke-width="2.5" marker-end="url(#sbArrVx)"/>
-                  <text id="t4LblVx" x="42" y="-4" fill="#06b6d4" font-family="monospace" font-size="10" font-weight="bold">v&#8339;</text>
+                  <text id="t4LblVx" x="42" y="-4" fill="#06b6d4" font-family="monospace" font-size="10" font-weight="bold">v_x</text>
 
                   <!-- Vertical Velocity -->
                   <line id="t4VecVy" x1="0" y1="0" x2="0" y2="-40" stroke="#a855f7" stroke-width="2.5" marker-end="url(#sbArrVy)"/>
-                  <text id="t4LblVy" x="-25" y="-30" fill="#a855f7" font-family="monospace" font-size="10" font-weight="bold">v&#7522;</text>
+                  <text id="t4LblVy" x="-25" y="-30" fill="#a855f7" font-family="system-ui,sans-serif" font-size="11" font-weight="bold">vy</text>
 
                   <!-- Resultant Velocity -->
                   <line id="t4VecV" x1="0" y1="0" x2="40" y2="-40" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#sbArrV)"/>
@@ -3161,11 +3155,11 @@ window.JEE_QUESTIONS_DATA = [
 
             <div class="space-y-1.5">
               <div class="flex justify-between text-cyan-300">
-                <span>Horizontal v&#8339;:</span>
+                <span>Horizontal v_x:</span>
                 <span id="t4ValVx" class="font-bold">+17.68 m/s</span>
               </div>
               <div class="flex justify-between text-purple-300">
-                <span>Vertical v&#7522;:</span>
+                <span>Vertical \(v_y\):</span>
                 <span id="t4ValVy" class="font-bold">+17.68 m/s</span>
               </div>
               <div class="flex justify-between text-amber-300">
@@ -3173,13 +3167,13 @@ window.JEE_QUESTIONS_DATA = [
                 <span id="t4ValSpeed" class="font-bold">25.00 m/s</span>
               </div>
               <div class="flex justify-between text-red-400">
-                <span>Acceleration a&#7522;:</span>
+                <span>Acceleration \(a_y\):</span>
                 <span class="font-bold">&minus;9.81 m/s&sup2; (NO DIP)</span>
               </div>
             </div>
 
             <div class="pt-2 border-t border-slate-800 space-y-1 text-[11px] text-slate-400 font-sans leading-relaxed">
-              <strong class="text-white font-mono">Why Descent Begins:</strong> Motion follows velocity, but velocity change is driven by continuous acceleration: <span class="font-mono text-cyan-300">&Delta;v&#7522; = a&#7522; &Delta;t &lt; 0</span>.
+              <strong class="text-white">Why Descent Begins:</strong> Motion follows velocity, but velocity change is driven by continuous acceleration: <span class="text-cyan-300 font-semibold">\(\Delta v_y = a_y \Delta t < 0\)</span>.
             </div>
 
             <div class="p-2.5 rounded bg-purple-950/30 border border-purple-800/40 text-[11px] space-y-1">
@@ -3199,7 +3193,7 @@ window.JEE_QUESTIONS_DATA = [
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             <!-- G1: vx(t) -->
             <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1 text-xs font-mono">
-              <span class="text-cyan-400 font-bold">1. v&#8339;(t) (Constant)</span>
+              <span class="text-cyan-400 font-bold">1. v_x(t) (Constant)</span>
               <div class="h-24 w-full bg-slate-900/60 rounded border border-slate-800 relative">
                 <svg id="t4SvgG1" class="w-full h-full" viewBox="0 0 150 80">
                   <line x1="15" y1="40" x2="140" y2="40" stroke="#06b6d4" stroke-width="2.5"/>
@@ -3211,7 +3205,7 @@ window.JEE_QUESTIONS_DATA = [
 
             <!-- G2: vy(t) -->
             <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1 text-xs font-mono">
-              <span class="text-purple-400 font-bold">2. v&#7522;(t) (Linear Descent)</span>
+              <span class="text-purple-400 font-semibold">2. \(v_y(t)\) (Linear Descent)</span>
               <div class="h-24 w-full bg-slate-900/60 rounded border border-slate-800 relative">
                 <svg id="t4SvgG2" class="w-full h-full" viewBox="0 0 150 80">
                   <line x1="15" y1="40" x2="140" y2="40" stroke="#475569" stroke-width="1"/>
@@ -3225,7 +3219,7 @@ window.JEE_QUESTIONS_DATA = [
 
             <!-- G3: ay(t) -->
             <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1 text-xs font-mono">
-              <span class="text-red-400 font-bold">3. a&#7522;(t) (Constant &minus;g)</span>
+              <span class="text-red-400 font-semibold">3. \(a_y(t)\) (Constant \(-g\))</span>
               <div class="h-24 w-full bg-slate-900/60 rounded border border-slate-800 relative">
                 <svg id="t4SvgG3" class="w-full h-full" viewBox="0 0 150 80">
                   <line x1="15" y1="20" x2="140" y2="20" stroke="#475569" stroke-width="1"/>
@@ -3246,7 +3240,7 @@ window.JEE_QUESTIONS_DATA = [
                   <line id="t4G4Cursor" x1="15" y1="5" x2="15" y2="75" stroke="#ffffff" stroke-width="1.5"/>
                 </svg>
               </div>
-              <div class="text-[10px] text-slate-400 font-sans">Dips to minimum (v&#8339;) at apex.</div>
+              <div class="text-[10px] text-slate-400 font-sans">Dips to minimum (v_x) at apex.</div>
             </div>
           </div>
         </div>
@@ -3261,7 +3255,7 @@ window.JEE_QUESTIONS_DATA = [
               <span class="px-2.5 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono text-xs font-bold border border-purple-500/30">
                 JEE Main 2026 (Online) 22nd January Morning Shift
               </span>
-              <span class="text-xs font-bold text-amber-400">&bull; Velocity Invariant at Angle 45&deg; and at the Apex (&theta;&#8320; = 60&deg;)</span>
+              <span class="text-xs font-semibold text-amber-400">&bull; Velocity Invariant at Angle \(45^\circ\) and at the Apex (\(\theta_0 = 60^\circ\))</span>
             </div>
             <p class="text-xs text-slate-300 leading-relaxed pt-1">
               A projectile is thrown upward at an angle of 60&deg; with the horizontal with initial speed u. Find the speed of the projectile when its direction makes an angle of 45&deg; with the horizontal, and find its speed at the highest point (apex).
@@ -3297,7 +3291,7 @@ window.JEE_QUESTIONS_DATA = [
                 <span>&bull;</span> 1. Core Invariant &amp; Free-Body Audit
               </div>
               <div class="text-slate-300 leading-relaxed">
-                <strong>Audit:</strong> Throughout the flight, a&#8339; = 0. Therefore, the horizontal component of velocity is strictly conserved: <strong>v&#8339;(t) = u cos 60&deg; = u / 2 = constant</strong> everywhere.
+                <strong>Audit:</strong> Throughout the flight, a_x = 0. Therefore, the horizontal component of velocity is strictly conserved: <strong>v_x(t) = u cos 60&deg; = u / 2 = constant</strong> everywhere.
               </div>
             </div>
 
@@ -3307,7 +3301,7 @@ window.JEE_QUESTIONS_DATA = [
                 <span>&bull;</span> 2. Symbolic Derivation &amp; Decoupled Equations
               </div>
               <div class="text-slate-300 leading-relaxed">
-                <strong>1. Speed when direction is 45&deg;:</strong><br>Direction angle is given by tan 45&deg; = v&#7522; / v&#8339; = 1 &rArr; v&#7522; = v&#8339; = u / 2.<br>Total speed v = &radic;(v&#8339;&sup2; + v&#7522;&sup2;) = &radic;((u/2)&sup2; + (u/2)&sup2;) = <strong>u / &radic;2 &approx; 0.707 u</strong>.<br><strong>2. Speed at the Highest Point (Apex):</strong><br>At the apex, vertical velocity vanishes momentarily (v&#7522; = 0).<br>Therefore, total velocity at apex is strictly horizontal: <strong>v_apex = v&#8339; = u cos 60&deg; = u / 2</strong>.
+                <strong>1. Speed when direction is \(45^\circ\):</strong><br>Direction angle is given by \(\tan 45^\circ = \frac{v_y}{v_x} = 1 \Rightarrow v_y = v_x = \frac{u}{2}\).<br>Total speed \(v = \sqrt{v_x^2 + v_y^2} = \sqrt{(u/2)^2 + (u/2)^2} =\) <strong>\(\frac{u}{\sqrt{2}} \approx 0.707 u\)</strong>.<br><strong>2. Speed at the Highest Point (Apex):</strong><br>At the apex, vertical velocity vanishes momentarily (\(v_y = 0\)).<br>Therefore, total velocity at apex is strictly horizontal: <strong>\(v_{\text{apex}} = v_x = u \cos 60^\circ = \frac{u}{2}\)</strong>.
               </div>
             </div>
 
@@ -3317,7 +3311,7 @@ window.JEE_QUESTIONS_DATA = [
                 <span>&bull;</span> 3. Numerical Substitution &amp; Verification
               </div>
               <div class="text-slate-300 leading-relaxed">
-                <strong>Acceleration at Apex:</strong> While v&#7522; = 0, acceleration is <strong>a&#7522; = &minus;g &ne; 0</strong>. If acceleration were zero at the apex, the projectile would hover in mid-air indefinitely! Continuous gravity pulls &Delta;v&#7522; = &minus;g &Delta;t, initiating immediate descent.
+                <strong>Acceleration at Apex:</strong> While \(v_y = 0\), acceleration is <strong>\(a_y = -g \neq 0\)</strong>. If acceleration were zero at the apex, the projectile would hover in mid-air indefinitely! Continuous gravity pulls \(\Delta v_y = -g \Delta t\), initiating immediate descent.
               </div>
             </div>
 
@@ -3327,7 +3321,7 @@ window.JEE_QUESTIONS_DATA = [
                 <span>&#9888;</span> 4. JEE Examiner Trap Alert
               </div>
               <div class="text-rose-200/90 leading-relaxed">
-                <strong>Common Trap:</strong> Choosing v = 0 at the highest point. Only the <em>vertical</em> component v&#7522; is zero. The horizontal component v&#8339; remains completely intact and unaffected by gravity.
+                <strong>Common Trap:</strong> Choosing \(v = 0\) at the highest point. Only the <em>vertical</em> component \(v_y\) is zero. The horizontal component \(v_x\) remains completely intact and unaffected by gravity.
               </div>
             </div>
 
@@ -3441,8 +3435,8 @@ window.JEE_QUESTIONS_DATA = [
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
           <!-- Left: SVG Canvas (8 cols) -->
           <div class="lg:col-span-8 bg-slate-950 rounded-xl border border-slate-800 p-3 space-y-3">
-            <div class="h-80 w-full relative">
-              <svg id="t5Canvas" class="w-full h-full" viewBox="0 0 540 300">
+            <div class="w-full relative" style="min-height: 380px; aspect-ratio: 16/9; overflow: visible;">
+              <svg id="t5Canvas" class="w-full h-full" viewBox="0 0 540 320" preserveAspectRatio="xMidYMid meet">
                 <!-- Ground Plane -->
                 <line x1="20" y1="265" x2="520" y2="265" stroke="#334155" stroke-width="2"/>
                 <text x="450" y="282" fill="#64748b" font-family="monospace" font-size="10">Ground (y=0)</text>
@@ -3777,7 +3771,7 @@ window.JEE_QUESTIONS_DATA = [
                 <span>&bull;</span> 1. Core Invariant &amp; Free-Body Audit
               </div>
               <div class="text-slate-300 leading-relaxed">
-                <strong>Audit:</strong> Apex milestone occurs when vertical velocity v&#7522; = 0. Landing milestone occurs at an elevated platform &Delta;y = h &ne; 0 at time t_land = 3 s. Naive ground-landing formulas cannot be applied.
+                <strong>Audit:</strong> Apex milestone occurs when vertical velocity \(v_y = 0\). Landing milestone occurs at an elevated platform \(\Delta y = h \neq 0\) at time \(t_{\text{land}} = 3\text{ s}\). Naive ground-landing formulas cannot be applied.
               </div>
             </div>
 
@@ -3787,7 +3781,7 @@ window.JEE_QUESTIONS_DATA = [
                 <span>&bull;</span> 2. Symbolic Derivation &amp; Decoupled Equations
               </div>
               <div class="text-slate-300 leading-relaxed">
-                <strong>1. Vertical Launch Speed from Apex Clock:</strong><br>At apex (t = 2 s): v&#7522; = v&#8320;&#7522; &minus; g t_apex = 0 &rArr; <strong>v&#8320;&#7522; = g &middot; t_apex = 10 &times; 2 = 20 m/s</strong>.<br>Since launch angle is 45&deg;, v&#8320;&#8339; = v&#8320;&#7522; = 20 m/s.<br><strong>2. Elevation at Landing (t = 3 s):</strong><br>h = y(3) = v&#8320;&#7522; t_land &minus; &frac12; g t_land&sup2;<br>h = 20(3) &minus; &frac12; (10) (3)&sup2; = 60 &minus; 45 = <strong>15 m</strong>.<br><strong>Teacher's Geometric Alternative:</strong> Max height H_max = &frac12; g (2)&sup2; = 20 m. Free-fall descent from apex for &Delta;t = 3 &minus; 2 = 1 s gives fall distance &Delta;y_fall = &frac12; (10) (1)&sup2; = 5 m. Therefore, roof height h = H_max &minus; &Delta;y_fall = 20 &minus; 5 = <strong>15 m</strong>!
+                <strong>1. Vertical Launch Speed from Apex Clock:</strong><br>At apex (\(t = 2\text{ s}\)): \(v_y = v_{0y} - g t_{\text{apex}} = 0 \Rightarrow\) <strong>\(v_{0y} = g \cdot t_{\text{apex}} = 10 \times 2 = 20\text{ m/s}\)</strong>.<br>Since launch angle is \(45^\circ\), \(v_{0x} = v_{0y} = 20\text{ m/s}\).<br><strong>2. Elevation at Landing (\(t = 3\text{ s}\)):</strong><br>\(h = y(3) = v_{0y} t_{\text{land}} - \frac{1}{2} g t_{\text{land}}^2\)<br>\(h = 20(3) - \frac{1}{2} (10) (3)^2 = 60 - 45 =\) <strong>\(15\text{ m}\)</strong>.<br><strong>Teacher's Geometric Alternative:</strong> Max height \(H_{\text{max}} = \frac{1}{2} g (2)^2 = 20\text{ m}\). Free-fall descent from apex for \(\Delta t = 3 - 2 = 1\text{ s}\) gives fall distance \(\Delta y_{\text{fall}} = \frac{1}{2} (10) (1)^2 = 5\text{ m}\). Therefore, roof height \(h = H_{\text{max}} - \Delta y_{\text{fall}} = 20 - 5 =\) <strong>\(15\text{ m}\)</strong>!
               </div>
             </div>
 
@@ -3797,7 +3791,7 @@ window.JEE_QUESTIONS_DATA = [
                 <span>&bull;</span> 3. Numerical Substitution &amp; Verification
               </div>
               <div class="text-slate-300 leading-relaxed">
-                <strong>Summary Results:</strong> Roof height h = <strong>15 m</strong>. Total max height reached above ground H_max = <strong>20 m</strong>. Horizontal range to roof = v&#8320;&#8339; &times; 3 = <strong>60 m</strong>.
+                <strong>Summary Results:</strong> Roof height \(h =\) <strong>\(15\text{ m}\)</strong>. Total max height reached above ground \(H_{\text{max}} =\) <strong>\(20\text{ m}\)</strong>. Horizontal range to roof = \(v_{0x} \times 3 =\) <strong>\(60\text{ m}\)</strong>.
               </div>
             </div>
 
@@ -3807,7 +3801,7 @@ window.JEE_QUESTIONS_DATA = [
                 <span>&#9888;</span> 4. JEE Examiner Trap Alert
               </div>
               <div class="text-rose-200/90 leading-relaxed">
-                <strong>Common Trap:</strong> Assuming flight time is symmetrical (t_flight = 2 &times; t_apex = 4 s). Because the building roof is elevated at h = 15 m, landing occurs early at 3 s while the ball is descending!
+                <strong>Common Trap:</strong> Assuming flight time is symmetrical (\(t_{\text{flight}} = 2 \times t_{\text{apex}} = 4\text{ s}\)). Because the building roof is elevated at \(h = 15\text{ m}\), landing occurs early at \(3\text{ s}\) while the ball is descending!
               </div>
             </div>
 
@@ -5269,7 +5263,7 @@ window.JEE_QUESTIONS_DATA = [
         ],
         correct: 'B',
         invariant: 'Event Clock Ownership: Vertical Milestone Controls t*',
-        formula: 't* = √(2H/g)  [Vertical owns t*];   R = v_0x · t*  [Horizontal borrows t*]',
+        formula: '\\(t^* = \\sqrt{2H/g}\\)  [Vertical owns \\(t^*\\)];   \\(R = v_{0x} \\cdot t^*\\)  [Horizontal borrows \\(t^*\\)]',
         trap: 'Assuming horizontal velocity carries aerodynamic lift that prolongs the time spent falling in a vacuum.',
         expl: 'The vertical event y(t*) = 0 determines the moment of ground impact: H = ½gt*² ⇒ t* = √(2H/g). Because vertical acceleration is solely g, horizontal speed does not affect fall time. Range R = v_x · t* thus scales linearly with forward velocity.',
         simTab: 'topic2',
@@ -5291,7 +5285,7 @@ window.JEE_QUESTIONS_DATA = [
         ],
         correct: 'C',
         invariant: 'Horizontal Milestone Ownership: x = d Governs t*',
-        formula: 't* = d / v_0x = d / (u·cos θ)   [Invariant under any changes in g]',
+        formula: '\\(t^* = d / v_{0x} = d / (u \\cos \\theta)\\)   [Invariant under any changes in \\(g\\)]',
         trap: 'Assuming gravitational changes affect the horizontal clock transfer. Gravity acts purely along ĵ, leaving x-velocity strictly invariant.',
         expl: 'The wall arrival event is defined by the spatial boundary condition x(t*) = d. Since a_x = 0, horizontal velocity v_x = u·cos θ is constant, so t* = d / (u·cos θ) is completely independent of g.',
         simTab: 'topic2',
@@ -5304,7 +5298,7 @@ window.JEE_QUESTIONS_DATA = [
         topicName: 'Topic 3 · Model Audit & FBD (#130)',
         diff: 'JEE Main',
         diffColor: 'cyan',
-        q: 'A smooth bead slides without friction along a rigid wire curved into a parabola y = -k·x². Why can we NOT apply standard projectile formulas (x = v_0x·t, y = v_0y·t - ½gt²) to the bead?',
+        q: 'A smooth bead slides without friction along a rigid wire curved into a parabola \\(y = -k x^2\\). Why can we NOT apply standard projectile formulas (\\(x = v_{0x} t\\), \\(y = v_{0y} t - \\frac{1}{2}gt^2\\)) to the bead?',
         opts: [
           'A: Because projectile equations only apply to objects moving through ambient air.',
           'B: Because the normal force N from the wire has a non-zero, continuously changing horizontal component (N_x ≠ 0), causing horizontal acceleration a_x ≠ 0.',
@@ -5468,8 +5462,8 @@ window.JEE_QUESTIONS_DATA = [
         correct: 'B',
         invariant: 'The Δy = 0 Fallacy: Elevated Landings Break Flight Symmetry',
         formula: 'y(t) = (u·sin θ)t - ½gt² = h ⇒ ½gt² - (u·sin θ)t + h = 0   [t_land < 2u_y/g]',
-        trap: 'Using the symmetric flat-ground formula 2v_0y/g for asymmetric target elevations.',
-        expl: 'The formula 2v_0y/g is derived strictly from y(t) - y(0) = 0 (landing at initial launch elevation). When landing on a roof of height h, the trajectory terminates at y = h. Since the ball hits the roof during its descent, t_land is strictly less than 2v_0y/g.',
+        trap: 'Using the symmetric flat-ground formula \\(2v_{0y}/g\\) for asymmetric target elevations.',
+        expl: 'The formula \\(2v_{0y}/g\\) is derived strictly from \\(y(t) - y(0) = 0\\) (landing at initial launch elevation). When landing on a roof of height \\(h\\), the trajectory terminates at \\(y = h\\). Since the ball hits the roof during its descent, \\(t_{\\text{land}}\\) is strictly less than \\(2v_{0y}/g\\).',
         simTab: 'topic6',
         simBtnText: 'Simulate Elevated Platform Landing'
       },
@@ -5872,14 +5866,14 @@ window.JEE_QUESTIONS_DATA = [
         g.innerHTML = `
           <rect x="250" y="35" width="260" height="65" rx="8" fill="#030712" fill-opacity="0.85" stroke="#10b981" stroke-width="1.5" />
           <text x="260" y="55" fill="#34d399" font-family="monospace" font-size="11" font-weight="bold">RANGE SYMMETRY CHALK:</text>
-          <text x="260" y="72" fill="#a7f3d0" font-family="monospace" font-size="10">&bull; Complementary: &theta;&#8321; + &theta;&#8322; = 90&deg;</text>
-          <text x="260" y="88" fill="#fde68a" font-family="monospace" font-size="10">&bull; R = 4&radic;(h&#8321; &middot; h&#8322;) [Identical Range!]</text>
+          <text x="260" y="72" fill="#a7f3d0" font-family="system-ui,sans-serif" font-size="11">&bull; Complementary: &theta;₁ + &theta;₂ = 90&deg;</text>
+          <text x="260" y="88" fill="#fde68a" font-family="system-ui,sans-serif" font-size="11">&bull; R = 4&radic;(h₁ &middot; h₂) [Identical Range!]</text>
         `;
       } else if (topicId === 6) {
         g.innerHTML = `
           <rect x="250" y="35" width="260" height="65" rx="8" fill="#030712" fill-opacity="0.85" stroke="#38bdf8" stroke-width="1.5" />
           <text x="260" y="55" fill="#38bdf8" font-family="monospace" font-size="11" font-weight="bold">ROOF LANDING CHALK:</text>
-          <text x="260" y="72" fill="#93c5fd" font-family="monospace" font-size="10">&bull; t_apex = 2s &rArr; v_0y = 20 m/s</text>
+          <text x="260" y="72" fill="#93c5fd" font-family="system-ui,sans-serif" font-size="11">&bull; t(apex) = 2s &rArr; v(0y) = 20 m/s</text>
           <text x="260" y="88" fill="#fde68a" font-family="monospace" font-size="10">&bull; h = y(3s) = 60 - 45 = 15 m</text>
         `;
       }
