@@ -335,13 +335,16 @@ def core1b(ctx: Ctx, m: dict) -> str:
     bt = e.get("boundary_test") or {}
     model = att.get("model_response") or "; ".join(r.get("criterion", "") for r in att.get("rubric") or [])
     task = att.get("task")
+    # The attempt's own figure; the Core1A unit's figure depicts the worked anchor, not this task.
+    task_rep = (task or {}).get("representation_ref") or unit.get("representation_ref")
     if not task:
         # `produces` describes the expected answer; it is not a task the learner can act on.
         ctx.gap("AUTHOR_RECONSTRUCTION_TASK", m["id"], "no concrete Core1B task (elicitation.attempt.task)", "CORE1B")
     return (slot("identity", f"<h2>{esc(m['title'])}</h2>", True)
             + slot("attempt",
                    block("predict", para((e.get("predict") or {}).get("prompt")), title="Predict")
-                   + figure(ctx, unit.get("representation_ref"), "PRE_ATTEMPT", "CORE1B", m["id"], first_stage_only=True)
+                   + figure(ctx, task_rep, "PRE_ATTEMPT", "CORE1B", m["id"], first_stage_only=True,
+                            allowed=(task or {}).get("stage_refs") or None)
                    + block("attempt_prompt", (para(task["prompt"]) + items(task.get("givens")) + (
                        f'<p class="g9-prov">Your answer should contain: {esc(att["produces"])}</p>' if att.get("produces") else ""))
                        if task else "", title="Attempt")
@@ -352,7 +355,7 @@ def core1b(ctx: Ctx, m: dict) -> str:
                           + block("repair", items(w["repair"] for w in wrong), title="Repair")
                           + block("model_response", para(model) + items(att.get("accepted")), title="What a complete answer does")
                           + block("rejoin_jump", para(m["inferential_jump"]), title="The step you rebuilt")
-                          + figure(ctx, unit.get("representation_ref"), "POST_ATTEMPT", "CORE1B", m["id"] + "-full"))
+                          + figure(ctx, task_rep, "POST_ATTEMPT", "CORE1B", m["id"] + "-full"))
                    + block("boundary_test", para(bt.get("prompt")), title="Boundary test")
                    + reveal("Boundary answer", block("boundary_answer", para(bt.get("answer")) + para(bt.get("confirms")))), True))
 
