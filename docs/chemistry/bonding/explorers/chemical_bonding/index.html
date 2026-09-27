@@ -2,15 +2,15 @@
 <html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IIT-JEE Chemistry · Chemical Bonding &amp; Molecular Structure 3D Master Suite</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   
   <!-- KaTeX -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <link rel="stylesheet" href="../../../../vendor/katex/0.16.8/katex.min.css">
+  <script defer src="../../../../vendor/katex/0.16.8/katex.min.js"></script>
 
   <!-- Question Bank -->
   <script src="jee_questions_data.js"></script>
@@ -102,7 +102,7 @@
   <header class="border-b border-border bg-slate-950/80 backdrop-blur-md sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row md:items-center justify-between gap-3">
       <div class="flex items-center gap-3">
-        <a href="../../../index.html" class="text-xs px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition flex items-center gap-1">
+        <a href="../../../index.html" class="text-[13px] px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition flex items-center gap-1">
           <span>&larr;</span> <span>Chemistry Hub</span>
         </a>
         <span class="text-slate-600">|</span>
@@ -111,22 +111,22 @@
           <div>
             <h1 class="text-sm md:text-base font-extrabold text-white tracking-tight flex items-center gap-2">
               <span>Chemical Bonding &amp; Molecular Structure</span>
-              <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono font-bold border border-purple-500/30">3D MASTER SUITE</span>
+              <span class="text-[13px] px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono font-bold border border-purple-500/30">3D MASTER SUITE</span>
             </h1>
-            <p class="text-[11px] text-slate-400">3D VSEPR Repulsions &middot; Vectorial Dipoles &middot; MOT 2s-2p Mixing</p>
+            <p class="text-[13px] text-slate-400">3D VSEPR Repulsions &middot; Vectorial Dipoles &middot; MOT 2s-2p Mixing</p>
           </div>
         </div>
       </div>
 
       <!-- Quick Telemetry Badges -->
-      <div class="flex items-center gap-2 text-xs font-mono">
+      <div class="flex items-center gap-2 text-[13px] font-mono">
         <span class="px-2.5 py-1 rounded bg-slate-900 border border-border text-purple-400 font-bold">BO = &frac12;(N_b - N_a)</span>
         <span class="px-2.5 py-1 rounded bg-slate-900 border border-border text-sky-400 font-bold">&mu;_net = &Sigma; &mu;_i</span>
       </div>
     </div>
 
     <!-- 8 MASTER TABS -->
-    <div class="max-w-7xl mx-auto px-4 flex items-center gap-1 overflow-x-auto text-xs font-medium border-t border-slate-900/60 pt-1 no-scrollbar">
+    <div class="max-w-7xl mx-auto px-4 flex items-center gap-1 overflow-x-auto text-[13px] font-medium border-t border-slate-900/60 pt-1 no-scrollbar">
       <button onclick="switchTab('tab-lewis')" id="btn-tab-lewis" class="tab-btn-active px-3 py-2 rounded-t-lg transition whitespace-nowrap">
         1. Lewis &amp; Formal Charge
       </button>
@@ -146,7 +146,7 @@
         6. H-Bonding &amp; Boiling
       </button>
       <button onclick="switchTab('tab-sandbox')" id="btn-tab-sandbox" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap flex items-center gap-1.5 text-amber-300/80">
-        <span class="px-1 py-0.2 rounded bg-amber-500/20 text-[9px] font-bold text-amber-400">Draft</span>
+        <span class="px-1 py-0.2 rounded bg-amber-500/20 text-[13px] font-bold text-amber-400">Draft</span>
         <span>7. 3D Sandbox</span>
       </button>
       <button onclick="switchTab('tab-quiz')" id="btn-tab-quiz" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap flex items-center gap-1.5 text-purple-300">
@@ -163,11 +163,11 @@
       <div class="text-2xl">🚀</div>
       <div class="flex-1 min-w-0">
         <div class="flex items-center justify-between gap-2">
-          <span class="text-xs font-bold uppercase text-purple-400 font-mono" id="simToastTitle">Active Problem Loaded</span>
-          <button onclick="closeSimToast()" class="text-slate-400 hover:text-white text-xs">&times;</button>
+          <span class="text-[13px] font-bold uppercase text-purple-400 font-mono" id="simToastTitle">Active Problem Loaded</span>
+          <button onclick="closeSimToast()" class="text-slate-400 hover:text-white text-[13px]">&times;</button>
         </div>
-        <p class="text-xs text-slate-300 mt-1" id="simToastDesc">Parameters injected from ExamSIDE question.</p>
-        <div class="mt-2 text-[11px] font-mono text-purple-300 bg-black/40 px-2 py-1 rounded" id="simToastParams"></div>
+        <p class="text-[13px] text-slate-300 mt-1" id="simToastDesc">Parameters injected from ExamSIDE question.</p>
+        <div class="mt-2 text-[13px] font-mono text-purple-300 bg-black/40 px-2 py-1 rounded" id="simToastParams"></div>
       </div>
     </div>
 
@@ -183,10 +183,10 @@
               <span class="w-3 h-3 rounded-full bg-purple-400"></span>
               <h2 class="font-bold text-base text-white">Lewis Dot Structures &middot; Formal Charge Accounting</h2>
             </div>
-            <p class="text-xs text-slate-400 mt-1">Calculates formal charge = V - L - &frac12;B across polyatomic resonance systems.</p>
+            <p class="text-[13px] text-slate-400 mt-1">Calculates formal charge = V - L - &frac12;B across polyatomic resonance systems.</p>
           </div>
 
-          <div class="flex flex-wrap items-center gap-1.5 text-xs">
+          <div class="flex flex-wrap items-center gap-1.5 text-[13px]">
             <button onclick="setLewisMolecule('O3')" id="btnLewisO3" class="px-2.5 py-1 rounded bg-purple-600/30 border border-purple-500/50 text-purple-300 font-mono font-semibold">O₃ (Ozone)</button>
             <button onclick="setLewisMolecule('CO3')" id="btnLewisCO3" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">CO₃²⁻ (Carbonate)</button>
             <button onclick="setLewisMolecule('NO3')" id="btnLewisNO3" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">NO₃⁻ (Nitrate)</button>
@@ -196,7 +196,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
           <div class="lg:col-span-8 space-y-4">
             <div class="canvas-container bg-slate-950 border border-border p-2">
-              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[13px] font-mono text-slate-400">
                 <span>RESONANCE STRUCTURES &amp; ELECTRON PAIRS</span>
                 <span id="lewisLiveTitle" class="text-purple-400 font-bold">O₃ Ozone: Canonical Forms &amp; Hybrid</span>
               </div>
@@ -206,15 +206,15 @@
 
           <div class="lg:col-span-4 space-y-4">
             <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
-              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Formal Charge Ledger</h3>
-              <div class="space-y-2 text-xs font-mono" id="lewisMetricsLedger">
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">Formal Charge Ledger</h3>
+              <div class="space-y-2 text-[13px] font-mono" id="lewisMetricsLedger">
                 <!-- Dynamically populated by setLewisMolecule() -->
               </div>
             </div>
 
-            <div class="p-3 bg-purple-500/10 border border-purple-500/30 rounded-xl text-xs space-y-1.5">
+            <div class="p-3 bg-purple-500/10 border border-purple-500/30 rounded-xl text-[13px] space-y-1.5">
               <span class="text-purple-400 font-bold font-mono">FORMAL CHARGE FORMULA:</span>
-              <p class="text-slate-300 leading-relaxed text-[11px]">
+              <p class="text-slate-300 leading-relaxed text-[13px]">
                 <strong>FC = Valence e⁻ - Non-bonding e⁻ - &frac12;(Bonding e⁻)</strong><br>
                 Resonance minimizes overall formal charge separation while fulfilling the octet rule.
               </p>
@@ -235,13 +235,13 @@
               <span class="w-3 h-3 rounded-full bg-purple-400"></span>
               <h2 class="font-bold text-base text-white">3D VSEPR &middot; Repulsion Hierarchy &amp; Spatial Distortions</h2>
             </div>
-            <p class="text-xs text-slate-400 mt-1">
+            <p class="text-[13px] text-slate-400 mt-1">
               Grounded on <span class="text-purple-300 font-semibold">JEE Main 2025</span>: Drag 3D orbit controls to inspect XeF₄ (Square Planar, &mu;=0) vs SF₄ (See-saw, &mu;&ne;0).
             </p>
           </div>
 
           <!-- Molecule Toggle Buttons -->
-          <div class="flex items-center gap-2 text-xs">
+          <div class="flex items-center gap-2 text-[13px]">
             <button onclick="setVseprMolecule('XeF4')" id="btnVseprXeF4" class="px-2.5 py-1 rounded bg-purple-600/30 border border-purple-500/50 text-purple-300 font-mono font-semibold">XeF₄ (Square Planar)</button>
             <button onclick="setVseprMolecule('SF4')" id="btnVseprSF4" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">SF₄ (See-saw)</button>
             <button onclick="setVseprMolecule('ClF3')" id="btnVseprClF3" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">ClF₃ (T-Shaped)</button>
@@ -251,7 +251,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
           <div class="lg:col-span-8 space-y-4">
             <div class="canvas-container bg-slate-950 border border-border p-2">
-              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[13px] font-mono text-slate-400">
                 <span>3D ORBIT VIEW (DRAG TO ROTATE MOLECULE)</span>
                 <span id="vseprLiveShape" class="text-purple-400 font-bold">Square Planar (μ = 0)</span>
               </div>
@@ -261,8 +261,8 @@
 
           <div class="lg:col-span-4 space-y-4">
             <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
-              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Geometric Parameters</h3>
-              <div class="space-y-2 text-xs font-mono" id="vseprMetrics">
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">Geometric Parameters</h3>
+              <div class="space-y-2 text-[13px] font-mono" id="vseprMetrics">
                 <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Steric Number:</span><span class="text-sky-400 font-bold">6 (sp³d²)</span></div>
                 <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Bond Pairs:</span><span class="text-emerald-400 font-bold">4 Xe-F</span></div>
                 <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Lone Pairs:</span><span class="text-amber-400 font-bold">2 (Axial, 180°)</span></div>
@@ -270,9 +270,9 @@
               </div>
             </div>
 
-            <div class="p-3 bg-purple-500/10 border border-purple-500/30 rounded-xl text-xs space-y-1.5">
+            <div class="p-3 bg-purple-500/10 border border-purple-500/30 rounded-xl text-[13px] space-y-1.5">
               <span class="text-purple-400 font-bold font-mono">⚠️ BENT'S RULE &amp; LONE PAIRS:</span>
-              <p class="text-slate-300 leading-relaxed text-[11px]">
+              <p class="text-slate-300 leading-relaxed text-[13px]">
                 In trigonal bipyramidal systems (sp³d), lone pairs always occupy <strong>equatorial positions</strong> to avoid harsh 90&deg; repulsions, producing See-saw and T-shaped geometries!
               </p>
             </div>
@@ -292,13 +292,13 @@
               <span class="w-3 h-3 rounded-full bg-sky-400"></span>
               <h2 class="font-bold text-base text-white">Vectorial Dipole Moments &middot; Reinforcing vs Opposing Dipoles</h2>
             </div>
-            <p class="text-xs text-slate-400 mt-1">
+            <p class="text-[13px] text-slate-400 mt-1">
               Grounded on <span class="text-sky-300 font-semibold">JEE Main 2024</span>: Compares NH₃ (&mu;=1.47 D) with NF₃ (&mu;=0.24 D) via 3D vector addition.
             </p>
           </div>
 
           <!-- Molecule Comparison Selector -->
-          <div class="flex flex-wrap items-center gap-1.5 text-xs">
+          <div class="flex flex-wrap items-center gap-1.5 text-[13px]">
             <button onclick="setDipolePair('NH3_NF3')" id="btnDipoleNH3" class="px-2.5 py-1 rounded bg-sky-600/30 border border-sky-500/50 text-sky-300 font-mono font-semibold">NH₃ vs NF₃</button>
             <button onclick="setDipolePair('CO2_H2O')" id="btnDipoleCO2" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">CO₂ vs H₂O</button>
             <button onclick="setDipolePair('CCl4_CHCl3')" id="btnDipoleCCl4" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">CCl₄ vs CHCl₃</button>
@@ -308,7 +308,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
           <div class="lg:col-span-8 space-y-4">
             <div class="canvas-container bg-slate-950 border border-border p-2">
-              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[13px] font-mono text-slate-400">
                 <span>3D ORBIT VIEW (DRAG TO ROTATE DUAL MOLECULES CONCURRENTLY)</span>
                 <span id="dipoleLiveStatus" class="text-sky-400 font-bold">NH₃ (1.47 D) vs NF₃ (0.24 D)</span>
               </div>
@@ -318,15 +318,15 @@
 
           <div class="lg:col-span-4 space-y-4">
             <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
-              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Vectorial Comparison Ledger</h3>
-              <div class="space-y-2.5 text-xs font-mono" id="dipoleMetricsLedger">
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">Vectorial Comparison Ledger</h3>
+              <div class="space-y-2.5 text-[13px] font-mono" id="dipoleMetricsLedger">
                 <!-- Dynamically populated by setDipolePair() -->
               </div>
             </div>
 
-            <div class="p-3 bg-sky-500/10 border border-sky-500/30 rounded-xl text-xs space-y-1.5">
+            <div class="p-3 bg-sky-500/10 border border-sky-500/30 rounded-xl text-[13px] space-y-1.5">
               <span class="text-sky-400 font-bold font-mono">⚠️ JEE EXAMINER FALLACY:</span>
-              <p class="text-slate-300 leading-relaxed text-[11px]" id="dipoleTrapText">
+              <p class="text-slate-300 leading-relaxed text-[13px]" id="dipoleTrapText">
                 Students assume NF₃ has a higher dipole moment because Fluorine is the most electronegative element (EN = 4.0 vs H = 2.1). In reality, in NF₃ the 3 N-F bond dipoles point <em>away</em> from apex, directly opposing the lone pair dipole (&mu;=0.24 D)!
               </p>
             </div>
@@ -346,12 +346,12 @@
               <span class="w-3 h-3 rounded-full bg-teal-400"></span>
               <h2 class="font-bold text-base text-white">Hybridization &middot; Axial Bond Elongation in PCl₅</h2>
             </div>
-            <p class="text-xs text-slate-400 mt-1">
+            <p class="text-[13px] text-slate-400 mt-1">
               Grounded on <span class="text-teal-300 font-semibold">JEE Main 2026</span>: Shows why the 2 axial P-Cl bonds (240 pm) suffer three 90&deg; repulsions and are longer/weaker than equatorial bonds (202 pm).
             </p>
           </div>
 
-          <div class="flex items-center gap-2 text-xs">
+          <div class="flex items-center gap-2 text-[13px]">
             <button onclick="setPCl5Mode('3D')" id="btnPCl5Mode3D" class="px-2.5 py-1 rounded bg-teal-600/30 border border-teal-500/50 text-teal-300 font-mono font-semibold">3D Trigonal Bipyramidal</button>
             <button onclick="setPCl5Mode('cleavage')" id="btnPCl5ModeCleave" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">Thermal Cleavage (Δ)</button>
           </div>
@@ -360,7 +360,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
           <div class="lg:col-span-8 space-y-4">
             <div class="canvas-container bg-slate-950 border border-border p-2">
-              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[13px] font-mono text-slate-400">
                 <span>3D ORBIT VIEW (DRAG TO ROTATE PCl₅ SPATIALLY)</span>
                 <span id="pcl5LiveBadge" class="text-teal-400 font-bold">PCl₅: sp³d (3 Equat @ 202pm, 2 Axial @ 240pm)</span>
               </div>
@@ -370,19 +370,19 @@
 
           <div class="lg:col-span-4 space-y-4">
             <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
-              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Bond Metric Asymmetry</h3>
-              <div class="space-y-2 text-xs font-mono">
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">Bond Metric Asymmetry</h3>
+              <div class="space-y-2 text-[13px] font-mono">
                 <div class="p-2.5 bg-emerald-500/10 rounded border border-emerald-500/30">
                   <div class="text-emerald-300 font-bold">3 &times; Equatorial P-Cl Bonds</div>
-                  <div class="text-slate-300 text-[11px] mt-1">Bond length: <strong>202 pm</strong>. Suffer only two 90&deg; and two 120&deg; repulsions. Shorter &amp; stronger.</div>
+                  <div class="text-slate-300 text-[13px] mt-1">Bond length: <strong>202 pm</strong>. Suffer only two 90&deg; and two 120&deg; repulsions. Shorter &amp; stronger.</div>
                 </div>
                 <div class="p-2.5 bg-amber-500/10 rounded border border-amber-500/30">
                   <div class="text-amber-300 font-bold">2 &times; Axial P-Cl Bonds</div>
-                  <div class="text-slate-300 text-[11px] mt-1">Bond length: <strong>240 pm</strong>. Suffer three 90&deg; bond pair repulsions from equatorial plane. Longer &amp; weaker!</div>
+                  <div class="text-slate-300 text-[13px] mt-1">Bond length: <strong>240 pm</strong>. Suffer three 90&deg; bond pair repulsions from equatorial plane. Longer &amp; weaker!</div>
                 </div>
                 <div class="p-2.5 bg-purple-500/10 rounded border border-purple-500/30">
                   <div class="text-purple-300 font-bold">Thermal Reaction:</div>
-                  <div class="text-purple-200 text-[11px] mt-1">PCl₅(g) &xrarr; PCl₃(g) + Cl₂(g) &uarr; (Axial bonds break first on mild heating!)</div>
+                  <div class="text-purple-200 text-[13px] mt-1">PCl₅(g) &xrarr; PCl₃(g) + Cl₂(g) &uarr; (Axial bonds break first on mild heating!)</div>
                 </div>
               </div>
             </div>
@@ -402,13 +402,13 @@
               <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
               <h2 class="font-bold text-base text-white">Molecular Orbital Theory (MOT) &middot; 2s-2p Mixing Crossover Rig</h2>
             </div>
-            <p class="text-xs text-slate-400 mt-1">
+            <p class="text-[13px] text-slate-400 mt-1">
               Grounded on <span class="text-emerald-300 font-semibold">JEE Main 2026</span>: Explore the abrupt energy inversion of &sigma;₂ₚ_z and &pi;₂ₚ across N₂ (&le;14 e⁻) and O₂ (&gt;14 e⁻).
             </p>
           </div>
 
           <!-- 2s-2p mixing toggle -->
-          <div class="flex items-center bg-slate-900 rounded-lg p-1 border border-border text-xs">
+          <div class="flex items-center bg-slate-900 rounded-lg p-1 border border-border text-[13px]">
             <button onclick="setMotMixing(true)" id="btnMotMixingTrue" class="px-2.5 py-1 rounded font-semibold text-white bg-purple-600/40 border border-purple-500/50">N₂ System (&le; 14 e⁻ with Mixing)</button>
             <button onclick="setMotMixing(false)" id="btnMotMixingFalse" class="px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white">O₂ System (&gt; 14 e⁻ No Mixing)</button>
           </div>
@@ -417,7 +417,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
           <div class="lg:col-span-8 space-y-4">
             <div class="canvas-container bg-slate-950 border border-border p-2">
-              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[13px] font-mono text-slate-400">
                 <span>MOLECULAR ORBITAL ENERGY LADDER</span>
                 <span id="motLiveStatus" class="text-emerald-400 font-bold">O₂²⁺: Bond Order = 3.0 (Diamagnetic)</span>
               </div>
@@ -427,8 +427,8 @@
 
           <div class="lg:col-span-4 space-y-4">
             <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
-              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">MOT Electronic Telemetry</h3>
-              <div class="space-y-2 text-xs font-mono">
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">MOT Electronic Telemetry</h3>
+              <div class="space-y-2 text-[13px] font-mono">
                 <div class="flex justify-between bg-black/30 p-2 rounded border border-border">
                   <span class="text-slate-400">Total Valence Electrons:</span>
                   <span id="telMotElectrons" class="text-sky-400 font-bold">14 e⁻</span>
@@ -454,7 +454,7 @@
 
             <!-- Electron Count Slider -->
             <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
-              <div class="flex justify-between text-xs">
+              <div class="flex justify-between text-[13px]">
                 <span class="text-slate-300">Total Electron Count:</span>
                 <span id="valMotECount" class="font-mono text-purple-400 font-bold">14 e⁻</span>
               </div>
@@ -476,12 +476,12 @@
               <span class="w-3 h-3 rounded-full bg-amber-400"></span>
               <h2 class="font-bold text-base text-white">Hydrogen Bonding &middot; Intra vs Intermolecular Comparative Engine</h2>
             </div>
-            <p class="text-xs text-slate-400 mt-1">
+            <p class="text-[13px] text-slate-400 mt-1">
               Grounded on <span class="text-amber-300 font-semibold">JEE Main 2025</span>: Shows why ortho-nitrophenol (internal chelated ring) is steam volatile with a low boiling point compared to para-nitrophenol.
             </p>
           </div>
 
-          <div class="flex items-center gap-2 text-xs">
+          <div class="flex items-center gap-2 text-[13px]">
             <button onclick="setHbondPair('nitrophenol')" id="btnHbondNitro" class="px-2.5 py-1 rounded bg-amber-600/30 border border-amber-500/50 text-amber-300 font-mono font-semibold">o- vs p-Nitrophenol</button>
             <button onclick="setHbondPair('alcohols')" id="btnHbondAlcohol" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">Ethanol vs Ether</button>
           </div>
@@ -490,7 +490,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
           <div class="lg:col-span-8 space-y-4">
             <div class="canvas-container bg-slate-950 border border-border p-2">
-              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[13px] font-mono text-slate-400">
                 <span>MOLECULAR GRAPH &amp; HYDROGEN BOND COMPARISON</span>
                 <span id="hbondLiveBadge" class="text-amber-400 font-bold">o-Nitrophenol (Chelation) vs p-Nitrophenol (Intermolecular Chain)</span>
               </div>
@@ -500,15 +500,15 @@
 
           <div class="lg:col-span-4 space-y-4">
             <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
-              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Physical Property Invariants</h3>
-              <div class="space-y-2 text-xs font-mono" id="hbondMetricsLedger">
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">Physical Property Invariants</h3>
+              <div class="space-y-2 text-[13px] font-mono" id="hbondMetricsLedger">
                 <!-- Dynamically populated by setHbondPair() -->
               </div>
             </div>
 
-            <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl text-xs space-y-1.5">
+            <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl text-[13px] space-y-1.5">
               <span class="text-amber-400 font-bold font-mono">⚠️ STEAM VOLATILITY TRAP:</span>
-              <p class="text-slate-300 leading-relaxed text-[11px]">
+              <p class="text-slate-300 leading-relaxed text-[13px]">
                 Intramolecular H-bonding prevents the molecule from bonding with external water or adjacent molecules, making <em>o</em>-nitrophenol steam-volatile (separable by steam distillation!).
               </p>
             </div>
@@ -525,13 +525,13 @@
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
           <div>
             <div class="flex items-center gap-2">
-              <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono text-xs font-bold border border-amber-500/30">DRAFT SANDBOX</span>
+              <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono text-[13px] font-bold border border-amber-500/30">DRAFT SANDBOX</span>
               <h2 class="font-bold text-base text-white">3D Molecular Geometry &amp; Overlap Sandbox</h2>
             </div>
-            <p class="text-xs text-slate-400 mt-1">Explore ideal VSEPR polyhedra, steric numbers, and orbital orientations in 3D.</p>
+            <p class="text-[13px] text-slate-400 mt-1">Explore ideal VSEPR polyhedra, steric numbers, and orbital orientations in 3D.</p>
           </div>
 
-          <div class="flex flex-wrap items-center gap-1.5 text-xs">
+          <div class="flex flex-wrap items-center gap-1.5 text-[13px]">
             <button onclick="setSandboxGeom('linear')" id="btnSbLinear" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">Linear (BeCl₂)</button>
             <button onclick="setSandboxGeom('trigonal')" id="btnSbTrig" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">Trigonal (BF₃)</button>
             <button onclick="setSandboxGeom('tetrahedral')" id="btnSbTetra" class="px-2 py-1 rounded bg-purple-600/30 border border-purple-500/50 text-purple-300 font-mono font-semibold">Tetrahedral (CH₄)</button>
@@ -542,7 +542,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
           <div class="lg:col-span-8 space-y-4">
             <div class="canvas-container bg-slate-950 border border-border p-2">
-              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[13px] font-mono text-slate-400">
                 <span>3D ORBIT VIEW (DRAG TO ROTATE MOLECULE SPATIALLY)</span>
                 <span id="sbLiveBadge" class="text-amber-400 font-bold">Tetrahedral: sp³ (109.5°)</span>
               </div>
@@ -552,8 +552,8 @@
 
           <div class="lg:col-span-4 space-y-4">
             <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
-              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Geometry Telemetry</h3>
-              <div class="space-y-2 text-xs font-mono" id="sbMetricsLedger">
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">Geometry Telemetry</h3>
+              <div class="space-y-2 text-[13px] font-mono" id="sbMetricsLedger">
                 <!-- Dynamically populated by setSandboxGeom() -->
               </div>
             </div>
@@ -573,17 +573,17 @@
               <span class="text-lg">⭐</span>
               <h2 class="font-bold text-base text-white">IIT-JEE Diagnostic Question Hub &middot; Locally Audited Diagnostic Slice</h2>
             </div>
-            <p class="text-xs text-slate-400 mt-1">
+            <p class="text-[13px] text-slate-400 mt-1">
               Source labels are attributed to <a href="https://questions.examside.com/past-years/jee/jee-main/chemistry/chemical-bonding-and-molecular-structure" target="_blank" class="text-purple-400 underline hover:text-purple-300">ExamSIDE Chemical Bonding &amp; Molecular Structure</a>.
             </p>
           </div>
 
           <div class="w-full md:w-72">
-            <input type="text" id="qSearchInput" oninput="filterQuestions()" placeholder="Search by topic, formula, year..." class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-border text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-purple-500">
+            <input type="text" id="qSearchInput" oninput="filterQuestions()" placeholder="Search by topic, formula, year..." class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-border text-[13px] text-slate-200 placeholder-slate-500 focus:outline-none focus:border-purple-500">
           </div>
         </div>
 
-        <div class="flex flex-wrap items-center gap-1.5 text-xs">
+        <div class="flex flex-wrap items-center gap-1.5 text-[13px]">
           <button onclick="filterSubTab('all')" id="btnQFilterAll" class="px-3 py-1.5 rounded-lg bg-purple-500/20 text-purple-300 border border-purple-500/40 font-semibold">All Questions</button>
           <button onclick="filterSubTab(2)" id="btnQFilter2" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">2. 3D VSEPR</button>
           <button onclick="filterSubTab(3)" id="btnQFilter3" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">3. Dipoles</button>
@@ -905,7 +905,7 @@
         ctx.arc(p.px, p.py, 12, 0, Math.PI * 2);
         ctx.fill();
         ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 10px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.fillText(a.label, p.px - 6, p.py + 3);
       });
 
@@ -925,7 +925,7 @@
         ctx.arc(p.px, p.py, 14, 0, Math.PI * 2);
         ctx.fill();
         ctx.fillStyle = '#f59e0b';
-        ctx.font = '10px monospace';
+        ctx.font = '13px monospace';
         ctx.fillText(': lp', p.px - 8, p.py + 3);
       });
 
@@ -935,7 +935,7 @@
       ctx.arc(cProj.px, cProj.py, 16, 0, Math.PI * 2);
       ctx.fill();
       ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 11px monospace';
+      ctx.font = 'bold 13px monospace';
       ctx.fillText(currentVsepr.slice(0, 2), cProj.px - 8, cProj.py + 4);
     }
 
@@ -1038,7 +1038,7 @@
         ctx.stroke();
 
         ctx.fillStyle = '#94a3b8';
-        ctx.font = '11px monospace';
+        ctx.font = '13px monospace';
         ctx.fillText(lv.label, midX - 140, lv.y + 4);
 
         // Draw electron arrows
@@ -1050,7 +1050,7 @@
       });
 
       ctx.fillStyle = '#a855f7';
-      ctx.font = '11px monospace';
+      ctx.font = '13px monospace';
       ctx.fillText(isMotMixing ? '2s-2p Mixing Active (π < σ)' : 'No 2s-2p Mixing (σ < π)', midX - 100, h - 20);
     }
 
@@ -1134,7 +1134,7 @@
 
     function drawOzoneStructure(ctx, cx, cy, isLeftDouble, isRightDouble, title) {
       ctx.fillStyle = '#94a3b8';
-      ctx.font = 'bold 11px monospace';
+      ctx.font = 'bold 13px monospace';
       ctx.textAlign = 'center';
       ctx.fillText(title, cx, cy - 65);
 
@@ -1176,12 +1176,12 @@
         ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2; ctx.stroke();
 
         ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 12px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.fillText(a.label, a.x, a.y + 4);
 
         // FC Badge
         ctx.fillStyle = a.color;
-        ctx.font = 'bold 10px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.fillText(`[${a.fc}]`, a.x, a.y + 24);
       });
       ctx.textAlign = 'left';
@@ -1189,7 +1189,7 @@
 
     function drawOzoneHybrid(ctx, cx, cy, title) {
       ctx.fillStyle = '#a855f7';
-      ctx.font = 'bold 11px monospace';
+      ctx.font = 'bold 13px monospace';
       ctx.textAlign = 'center';
       ctx.fillText(title, cx, cy - 65);
 
@@ -1221,15 +1221,15 @@
         ctx.strokeStyle = '#c084fc'; ctx.lineWidth = 2; ctx.stroke();
 
         ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 12px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.fillText(a.label, a.x, a.y + 4);
 
         ctx.fillStyle = a.color;
-        ctx.font = 'bold 10px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.fillText(`[${a.fc}]`, a.x, a.y + 24);
       });
       ctx.fillStyle = '#38bdf8';
-      ctx.font = '10px monospace';
+      ctx.font = '13px monospace';
       ctx.fillText('Equal Bond Lengths: 128 pm', cx, cy + 55);
       ctx.textAlign = 'left';
     }
@@ -1261,15 +1261,15 @@
         ctx.fillStyle = '#0f172a';
         ctx.beginPath(); ctx.arc(o.x, o.y, 14, 0, Math.PI * 2); ctx.fill();
         ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2; ctx.stroke();
-        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 11px monospace'; ctx.fillText('O', o.x, o.y + 4);
-        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 10px monospace'; ctx.fillText('[-⅔]', o.x + (o.x > cx ? 16 : (o.x < cx ? -16 : 0)), o.y + (o.y < cy ? -14 : 16));
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('O', o.x, o.y + 4);
+        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 13px monospace'; ctx.fillText('[-⅔]', o.x + (o.x > cx ? 16 : (o.x < cx ? -16 : 0)), o.y + (o.y < cy ? -14 : 16));
       });
 
       // Central Carbon
       ctx.fillStyle = '#38bdf8';
       ctx.beginPath(); ctx.arc(c.x, c.y, 16, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = '#0f172a'; ctx.font = 'bold 12px monospace'; ctx.fillText('C', c.x, c.y + 4);
-      ctx.fillStyle = '#a855f7'; ctx.font = '11px monospace'; ctx.fillText('All 3 C-O Bonds Identical (BO = 1.33)', cx, cy + 95);
+      ctx.fillStyle = '#0f172a'; ctx.font = 'bold 13px monospace'; ctx.fillText('C', c.x, c.y + 4);
+      ctx.fillStyle = '#a855f7'; ctx.font = '13px monospace'; ctx.fillText('All 3 C-O Bonds Identical (BO = 1.33)', cx, cy + 95);
       ctx.textAlign = 'left';
     }
 
@@ -1299,16 +1299,16 @@
         ctx.fillStyle = '#0f172a';
         ctx.beginPath(); ctx.arc(o.x, o.y, 14, 0, Math.PI * 2); ctx.fill();
         ctx.strokeStyle = '#c084fc'; ctx.lineWidth = 2; ctx.stroke();
-        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 11px monospace'; ctx.fillText('O', o.x, o.y + 4);
-        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 10px monospace'; ctx.fillText('[-⅔]', o.x + (o.x > cx ? 16 : (o.x < cx ? -16 : 0)), o.y + (o.y < cy ? -14 : 16));
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('O', o.x, o.y + 4);
+        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 13px monospace'; ctx.fillText('[-⅔]', o.x + (o.x > cx ? 16 : (o.x < cx ? -16 : 0)), o.y + (o.y < cy ? -14 : 16));
       });
 
       // Central Nitrogen
       ctx.fillStyle = '#8b5cf6';
       ctx.beginPath(); ctx.arc(c.x, c.y, 16, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = '#ffffff'; ctx.font = 'bold 12px monospace'; ctx.fillText('N', c.x, c.y + 4);
-      ctx.fillStyle = '#c084fc'; ctx.font = 'bold 10px monospace'; ctx.fillText('[+1]', c.x + 18, c.y - 8);
-      ctx.fillStyle = '#38bdf8'; ctx.font = '11px monospace'; ctx.fillText('Net Charge = +1 + 3(-⅔) = -1', cx, cy + 95);
+      ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('N', c.x, c.y + 4);
+      ctx.fillStyle = '#c084fc'; ctx.font = 'bold 13px monospace'; ctx.fillText('[+1]', c.x + 18, c.y - 8);
+      ctx.fillStyle = '#38bdf8'; ctx.font = '13px monospace'; ctx.fillText('Net Charge = +1 + 3(-⅔) = -1', cx, cy + 95);
       ctx.textAlign = 'left';
     }
 
@@ -1336,11 +1336,11 @@
         ledger.innerHTML = `
           <div class="p-2.5 bg-emerald-500/10 rounded border border-emerald-500/30">
             <div class="text-emerald-300 font-bold flex justify-between"><span>NH₃ (Ammonia):</span><span>μ = 1.47 D</span></div>
-            <div class="text-slate-300 text-[11px] mt-1">3 N-H bonds pull UP towards N (ΔEN = 0.84). Lone pair also pulls UP. <strong>Result: Strongly Reinforcing!</strong></div>
+            <div class="text-slate-300 text-[13px] mt-1">3 N-H bonds pull UP towards N (ΔEN = 0.84). Lone pair also pulls UP. <strong>Result: Strongly Reinforcing!</strong></div>
           </div>
           <div class="p-2.5 bg-amber-500/10 rounded border border-amber-500/30">
             <div class="text-amber-300 font-bold flex justify-between"><span>NF₃ (Nitrogen Fluoride):</span><span>μ = 0.24 D</span></div>
-            <div class="text-slate-300 text-[11px] mt-1">3 N-F bonds pull DOWN towards F (ΔEN = 0.94). Lone pair pulls UP. <strong>Result: Vectorial Cancellation!</strong></div>
+            <div class="text-slate-300 text-[13px] mt-1">3 N-F bonds pull DOWN towards F (ΔEN = 0.94). Lone pair pulls UP. <strong>Result: Vectorial Cancellation!</strong></div>
           </div>
         `;
         trap.textContent = 'Fluorine has the highest electronegativity in the periodic table (4.0 vs H=2.1), leading students to pick NF₃ > NH₃. But vectorial addition proves NH₃ has 6× greater dipole moment because dipoles reinforce!';
@@ -1349,11 +1349,11 @@
         ledger.innerHTML = `
           <div class="p-2.5 bg-emerald-500/10 rounded border border-emerald-500/30">
             <div class="text-emerald-300 font-bold flex justify-between"><span>H₂O (Water, Bent 104.5°):</span><span>μ = 1.85 D</span></div>
-            <div class="text-slate-300 text-[11px] mt-1">2 O-H bond dipoles add vectorially towards O + 2 lone pairs add UP. Strongly polar liquid!</div>
+            <div class="text-slate-300 text-[13px] mt-1">2 O-H bond dipoles add vectorially towards O + 2 lone pairs add UP. Strongly polar liquid!</div>
           </div>
           <div class="p-2.5 bg-slate-800 rounded border border-border">
             <div class="text-slate-300 font-bold flex justify-between"><span>CO₂ (Linear 180°):</span><span>μ = 0.00 D</span></div>
-            <div class="text-slate-400 text-[11px] mt-1">Two identical C=O bond dipoles point 180° apart: μ_net = μ₁ - μ₂ = 0. Non-polar gas!</div>
+            <div class="text-slate-400 text-[13px] mt-1">Two identical C=O bond dipoles point 180° apart: μ_net = μ₁ - μ₂ = 0. Non-polar gas!</div>
           </div>
         `;
         trap.textContent = 'Individual bond polarity ≠ molecular polarity! Even with polar C=O bonds (ΔEN=1.0), linear symmetry enforces exact vectorial cancellation.';
@@ -1362,11 +1362,11 @@
         ledger.innerHTML = `
           <div class="p-2.5 bg-slate-800 rounded border border-border">
             <div class="text-slate-300 font-bold flex justify-between"><span>CCl₄ (Tetrachloromethane):</span><span>μ = 0.00 D</span></div>
-            <div class="text-slate-400 text-[11px] mt-1">4 identical C-Cl bond dipoles in regular tetrahedron (109.5°) sum vectorially to exactly 0.</div>
+            <div class="text-slate-400 text-[13px] mt-1">4 identical C-Cl bond dipoles in regular tetrahedron (109.5°) sum vectorially to exactly 0.</div>
           </div>
           <div class="p-2.5 bg-sky-500/10 rounded border border-sky-500/30">
             <div class="text-sky-300 font-bold flex justify-between"><span>CHCl₃ (Chloroform):</span><span>μ = 1.04 D</span></div>
-            <div class="text-slate-300 text-[11px] mt-1">1 C-H bond pushes down, 3 C-Cl bonds pull down. Resultant net dipole along C-H axis!</div>
+            <div class="text-slate-300 text-[13px] mt-1">1 C-H bond pushes down, 3 C-Cl bonds pull down. Resultant net dipole along C-H axis!</div>
           </div>
         `;
         trap.textContent = 'Symmetry determines polarity: replacing even one Cl in CCl₄ with H shatters tetrahedral dipole cancellation, creating a strong dipole moment!';
@@ -1412,7 +1412,7 @@
 
       if (label) {
         ctx.fillStyle = color;
-        ctx.font = 'bold 9px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.fillText(label, toP.px + ux * 8, toP.py + uy * 8);
       }
     }
@@ -1450,7 +1450,7 @@
 
       if (label) {
         ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 11px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.fillText(label, endX + (ux >= 0 ? 8 : -110), endY + (uy >= 0 ? 14 : -10));
       }
     }
@@ -1486,7 +1486,7 @@
         ctx.textAlign = 'center';
         ctx.fillText('NH₃: Pyramidal (μ = 1.47 D)', cx1, 35);
         ctx.fillStyle = '#64748b';
-        ctx.font = '10px monospace';
+        ctx.font = '13px monospace';
         ctx.fillText('3 N-H Dipoles (↑) + Lone Pair (↑) REINFORCE', cx1, 52);
 
         // Project Nitrogen Apex
@@ -1513,17 +1513,17 @@
         // Lone pair lobe
         ctx.fillStyle = 'rgba(245, 158, 11, 0.25)';
         ctx.beginPath(); ctx.arc(lpProj1.px, lpProj1.py, 12, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 10px monospace'; ctx.fillText(': lp', lpProj1.px, lpProj1.py + 3);
+        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 13px monospace'; ctx.fillText(': lp', lpProj1.px, lpProj1.py + 3);
         drawDipoleVector(ctx, nProj1, lpProj1, '#f59e0b');
 
         // Draw Hydrogens
         hAtoms.forEach(hP => {
           ctx.fillStyle = '#f8fafc'; ctx.beginPath(); ctx.arc(hP.px, hP.py, 8, 0, Math.PI * 2); ctx.fill();
-          ctx.fillStyle = '#0f172a'; ctx.font = 'bold 9px monospace'; ctx.fillText('H', hP.px, hP.py + 3);
+          ctx.fillStyle = '#0f172a'; ctx.font = 'bold 13px monospace'; ctx.fillText('H', hP.px, hP.py + 3);
         });
         // Draw Central Nitrogen
         ctx.fillStyle = '#3b82f6'; ctx.beginPath(); ctx.arc(nProj1.px, nProj1.py, 15, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 11px monospace'; ctx.fillText('N', nProj1.px, nProj1.py + 4);
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('N', nProj1.px, nProj1.py + 4);
 
         // Net Dipole Resultant Vector (Large, pointing UP)
         drawResultantVector(ctx, cx1, cy + 20, 60, -Math.PI / 2, '#10b981', 'μ_net = 1.47 D ↑');
@@ -1534,7 +1534,7 @@
         ctx.font = 'bold 13px monospace';
         ctx.fillText('NF₃: Pyramidal (μ = 0.24 D)', cx2, 35);
         ctx.fillStyle = '#64748b';
-        ctx.font = '10px monospace';
+        ctx.font = '13px monospace';
         ctx.fillText('3 N-F Dipoles (↓) OPPOSE Lone Pair (↑)', cx2, 52);
 
         // Project Nitrogen Apex
@@ -1560,17 +1560,17 @@
         ctx.setLineDash([]);
         ctx.fillStyle = 'rgba(245, 158, 11, 0.25)';
         ctx.beginPath(); ctx.arc(lpProj2.px, lpProj2.py, 12, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 10px monospace'; ctx.fillText(': lp', lpProj2.px, lpProj2.py + 3);
+        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 13px monospace'; ctx.fillText(': lp', lpProj2.px, lpProj2.py + 3);
         drawDipoleVector(ctx, nProj2, lpProj2, '#f59e0b');
 
         // Draw Fluorines
         fAtoms.forEach(fP => {
           ctx.fillStyle = '#f97316'; ctx.beginPath(); ctx.arc(fP.px, fP.py, 11, 0, Math.PI * 2); ctx.fill();
-          ctx.fillStyle = '#ffffff'; ctx.font = 'bold 10px monospace'; ctx.fillText('F', fP.px, fP.py + 3);
+          ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('F', fP.px, fP.py + 3);
         });
         // Draw Central Nitrogen
         ctx.fillStyle = '#3b82f6'; ctx.beginPath(); ctx.arc(nProj2.px, nProj2.py, 15, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 11px monospace'; ctx.fillText('N', nProj2.px, nProj2.py + 4);
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('N', nProj2.px, nProj2.py + 4);
 
         // Net Dipole Resultant Vector (Tiny, pointing DOWN)
         drawResultantVector(ctx, cx2, cy - 10, 18, Math.PI / 2, '#f43f5e', 'μ_net = 0.24 D ↓');
@@ -1580,7 +1580,7 @@
         const cx1 = midX * 0.5;
         ctx.fillStyle = '#38bdf8'; ctx.font = 'bold 13px monospace'; ctx.textAlign = 'center';
         ctx.fillText('H₂O: Bent 104.5° (μ = 1.85 D)', cx1, 35);
-        ctx.fillStyle = '#64748b'; ctx.font = '10px monospace';
+        ctx.fillStyle = '#64748b'; ctx.font = '13px monospace';
         ctx.fillText('2 O-H Dipoles (↑) + 2 Lone Pairs (↑) Reinforce', cx1, 52);
 
         const oP = project3D(0, 0.4, 0, cx1, cy, scale, orbitDipole);
@@ -1592,18 +1592,18 @@
           ctx.beginPath(); ctx.moveTo(hp.px, hp.py); ctx.lineTo(oP.px, oP.py); ctx.stroke();
           drawDipoleVector(ctx, hp, oP, '#38bdf8');
           ctx.fillStyle = '#f8fafc'; ctx.beginPath(); ctx.arc(hp.px, hp.py, 8, 0, Math.PI * 2); ctx.fill();
-          ctx.fillStyle = '#0f172a'; ctx.font = 'bold 9px monospace'; ctx.fillText('H', hp.px, hp.py + 3);
+          ctx.fillStyle = '#0f172a'; ctx.font = 'bold 13px monospace'; ctx.fillText('H', hp.px, hp.py + 3);
         });
 
         ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(oP.px, oP.py, 15, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 11px monospace'; ctx.fillText('O', oP.px, oP.py + 4);
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('O', oP.px, oP.py + 4);
         drawResultantVector(ctx, cx1, cy + 20, 65, -Math.PI / 2, '#38bdf8', 'μ_net = 1.85 D ↑');
 
         // ================= RIGHT: CO2 (LINEAR) =================
         const cx2 = midX + midX * 0.5;
         ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 13px monospace';
         ctx.fillText('CO₂: Linear 180° (μ = 0 D)', cx2, 35);
-        ctx.fillStyle = '#64748b'; ctx.font = '10px monospace';
+        ctx.fillStyle = '#64748b'; ctx.font = '13px monospace';
         ctx.fillText('Two Identical C=O Dipoles Exactly Cancel (180°)', cx2, 52);
 
         const cP = project3D(0, 0, 0, cx2, cy, scale, orbitDipole);
@@ -1617,19 +1617,19 @@
 
         [oL, oR].forEach(op => {
           ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(op.px, op.py, 12, 0, Math.PI * 2); ctx.fill();
-          ctx.fillStyle = '#ffffff'; ctx.font = 'bold 10px monospace'; ctx.fillText('O', op.px, op.py + 3);
+          ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('O', op.px, op.py + 3);
         });
         ctx.fillStyle = '#64748b'; ctx.beginPath(); ctx.arc(cP.px, cP.py, 13, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 10px monospace'; ctx.fillText('C', cP.px, cP.py + 3);
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('C', cP.px, cP.py + 3);
 
-        ctx.fillStyle = '#10b981'; ctx.font = 'bold 12px monospace';
+        ctx.fillStyle = '#10b981'; ctx.font = 'bold 13px monospace';
         ctx.fillText('μ_net = 0.00 D (Non-Polar)', cx2, cy + 60);
       } else {
         // ================= CCl4 vs CHCl3 =================
         const cx1 = midX * 0.5;
         ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 13px monospace'; ctx.textAlign = 'center';
         ctx.fillText('CCl₄: Tetrahedral (μ = 0 D)', cx1, 35);
-        ctx.fillStyle = '#64748b'; ctx.font = '10px monospace';
+        ctx.fillStyle = '#64748b'; ctx.font = '13px monospace';
         ctx.fillText('Symmetric Vectorial Sum = 0', cx1, 52);
 
         const cP1 = project3D(0, 0, 0, cx1, cy, scale, orbitDipole);
@@ -1644,18 +1644,18 @@
           ctx.beginPath(); ctx.moveTo(cP1.px, cP1.py); ctx.lineTo(cl.px, cl.py); ctx.stroke();
           drawDipoleVector(ctx, cP1, cl, '#94a3b8');
           ctx.fillStyle = '#10b981'; ctx.beginPath(); ctx.arc(cl.px, cl.py, 9, 0, Math.PI * 2); ctx.fill();
-          ctx.fillStyle = '#0f172a'; ctx.font = 'bold 8px monospace'; ctx.fillText('Cl', cl.px, cl.py + 3);
+          ctx.fillStyle = '#0f172a'; ctx.font = 'bold 13px monospace'; ctx.fillText('Cl', cl.px, cl.py + 3);
         });
         ctx.fillStyle = '#64748b'; ctx.beginPath(); ctx.arc(cP1.px, cP1.py, 13, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 10px monospace'; ctx.fillText('C', cP1.px, cP1.py + 3);
-        ctx.fillStyle = '#10b981'; ctx.font = 'bold 12px monospace';
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('C', cP1.px, cP1.py + 3);
+        ctx.fillStyle = '#10b981'; ctx.font = 'bold 13px monospace';
         ctx.fillText('μ_net = 0.00 D', cx1, cy + 60);
 
         // RIGHT: CHCl3
         const cx2 = midX + midX * 0.5;
         ctx.fillStyle = '#38bdf8'; ctx.font = 'bold 13px monospace';
         ctx.fillText('CHCl₃: Polar (μ = 1.04 D)', cx2, 35);
-        ctx.fillStyle = '#64748b'; ctx.font = '10px monospace';
+        ctx.fillStyle = '#64748b'; ctx.font = '13px monospace';
         ctx.fillText('3 C-Cl Pull Down + 1 C-H Push Down', cx2, 52);
 
         const cP2 = project3D(0, 0, 0, cx2, cy, scale, orbitDipole);
@@ -1670,17 +1670,17 @@
         ctx.beginPath(); ctx.moveTo(cP2.px, cP2.py); ctx.lineTo(hTop.px, hTop.py); ctx.stroke();
         drawDipoleVector(ctx, hTop, cP2, '#38bdf8');
         ctx.fillStyle = '#f8fafc'; ctx.beginPath(); ctx.arc(hTop.px, hTop.py, 8, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#0f172a'; ctx.font = 'bold 8px monospace'; ctx.fillText('H', hTop.px, hTop.py + 3);
+        ctx.fillStyle = '#0f172a'; ctx.font = 'bold 13px monospace'; ctx.fillText('H', hTop.px, hTop.py + 3);
 
         clBottom.forEach(cl => {
           ctx.strokeStyle = '#475569'; ctx.lineWidth = 2.5;
           ctx.beginPath(); ctx.moveTo(cP2.px, cP2.py); ctx.lineTo(cl.px, cl.py); ctx.stroke();
           drawDipoleVector(ctx, cP2, cl, '#f43f5e');
           ctx.fillStyle = '#10b981'; ctx.beginPath(); ctx.arc(cl.px, cl.py, 9, 0, Math.PI * 2); ctx.fill();
-          ctx.fillStyle = '#0f172a'; ctx.font = 'bold 8px monospace'; ctx.fillText('Cl', cl.px, cl.py + 3);
+          ctx.fillStyle = '#0f172a'; ctx.font = 'bold 13px monospace'; ctx.fillText('Cl', cl.px, cl.py + 3);
         });
         ctx.fillStyle = '#64748b'; ctx.beginPath(); ctx.arc(cP2.px, cP2.py, 13, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 10px monospace'; ctx.fillText('C', cP2.px, cP2.py + 3);
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('C', cP2.px, cP2.py + 3);
 
         drawResultantVector(ctx, cx2, cy - 10, 45, Math.PI / 2, '#38bdf8', 'μ_net = 1.04 D ↓');
       }
@@ -1760,7 +1760,7 @@
         ctx.arc(cl.px, cl.py, 12, 0, Math.PI * 2);
         ctx.fill();
         ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 10px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.textAlign = 'center';
         ctx.fillText('Cl', cl.px, cl.py + 3);
       });
@@ -1787,7 +1787,7 @@
         ctx.arc(cl.px, cl.py, 13, 0, Math.PI * 2);
         ctx.fill();
         ctx.fillStyle = '#0f172a';
-        ctx.font = 'bold 10px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.textAlign = 'center';
         ctx.fillText('Cl', cl.px, cl.py + 3);
       });
@@ -1798,21 +1798,21 @@
       ctx.arc(pProj.px, pProj.py, 17, 0, Math.PI * 2);
       ctx.fill();
       ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 12px monospace';
+      ctx.font = 'bold 13px monospace';
       ctx.textAlign = 'center';
       ctx.fillText('P', pProj.px, pProj.py + 4);
       ctx.textAlign = 'left';
 
       // Legends & Thermal notice
       ctx.fillStyle = '#14b8a6';
-      ctx.font = 'bold 11px monospace';
+      ctx.font = 'bold 13px monospace';
       ctx.fillText('■ Equatorial: 202 pm (120° angles, 2×90° repulsions)', 20, 30);
       ctx.fillStyle = '#f59e0b';
       ctx.fillText('■ Axial: 240 pm (Three 90° repulsions from equatorial atoms)', 20, 50);
 
       if (currentPCl5Mode === 'cleavage') {
         ctx.fillStyle = '#ef4444';
-        ctx.font = 'bold 12px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.fillText('🔥 PCl₅(g) —Δ→ PCl₃(g) + Cl₂(g) [2 Elongated Axial Bonds Cleave First!]', 20, h - 20);
       }
     }
@@ -1839,11 +1839,11 @@
         ledger.innerHTML = `
           <div class="p-2.5 bg-amber-500/10 rounded border border-amber-500/30">
             <div class="text-amber-300 font-bold flex justify-between"><span>o-Nitrophenol:</span><span>BP = 216°C</span></div>
-            <div class="text-slate-300 text-[11px] mt-1">Forms internal 6-membered chelated ring between -OH and -NO₂. <strong>Steam Volatile &amp; Lower BP!</strong></div>
+            <div class="text-slate-300 text-[13px] mt-1">Forms internal 6-membered chelated ring between -OH and -NO₂. <strong>Steam Volatile &amp; Lower BP!</strong></div>
           </div>
           <div class="p-2.5 bg-sky-500/10 rounded border border-sky-500/30">
             <div class="text-sky-300 font-bold flex justify-between"><span>p-Nitrophenol:</span><span>BP = 279°C (+63°C!)</span></div>
-            <div class="text-slate-300 text-[11px] mt-1">Intermolecular H-bonds link adjacent molecules into polymeric association. <strong>Non-volatile &amp; Higher BP!</strong></div>
+            <div class="text-slate-300 text-[13px] mt-1">Intermolecular H-bonds link adjacent molecules into polymeric association. <strong>Non-volatile &amp; Higher BP!</strong></div>
           </div>
         `;
       } else {
@@ -1851,11 +1851,11 @@
         ledger.innerHTML = `
           <div class="p-2.5 bg-emerald-500/10 rounded border border-emerald-500/30">
             <div class="text-emerald-300 font-bold flex justify-between"><span>Ethanol (C₂H₅OH):</span><span>BP = +78.4°C</span></div>
-            <div class="text-slate-300 text-[11px] mt-1">Contains active -O-H group capable of strong intermolecular H-bonding. Liquid at room temp.</div>
+            <div class="text-slate-300 text-[13px] mt-1">Contains active -O-H group capable of strong intermolecular H-bonding. Liquid at room temp.</div>
           </div>
           <div class="p-2.5 bg-slate-800 rounded border border-border">
             <div class="text-slate-300 font-bold flex justify-between"><span>Dimethyl Ether:</span><span>BP = -24°C (Gas)</span></div>
-            <div class="text-slate-400 text-[11px] mt-1">Isomer with same mass (46 g/mol) but lacks H attached to O. Weak dipole only; boiling point is 102°C lower!</div>
+            <div class="text-slate-400 text-[13px] mt-1">Isomer with same mass (46 g/mol) but lacks H attached to O. Weak dipole only; boiling point is 102°C lower!</div>
           </div>
         `;
       }
@@ -1886,14 +1886,14 @@
         const cx1 = midX * 0.5;
         ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 13px monospace'; ctx.textAlign = 'center';
         ctx.fillText('o-Nitrophenol (Chelated)', cx1, 35);
-        ctx.fillStyle = '#94a3b8'; ctx.font = '10px monospace';
+        ctx.fillStyle = '#94a3b8'; ctx.font = '13px monospace';
         ctx.fillText('Intramolecular 6-Membered Ring (BP: 216°C)', cx1, 52);
 
         drawBenzeneRing(ctx, cx1 - 25, cy + 10, 32);
 
         // OH group at C1
         const ohX = cx1 + 15, ohY = cy - 25;
-        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 12px monospace'; ctx.fillText('O—H', ohX, ohY);
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('O—H', ohX, ohY);
 
         // NO2 group at C2
         const noX = cx1 + 20, noY = cy + 30;
@@ -1905,21 +1905,21 @@
         ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 3; ctx.setLineDash([4, 4]);
         ctx.beginPath(); ctx.moveTo(ohX + 18, ohY - 4); ctx.lineTo(noX + 22, noY - 14); ctx.stroke();
         ctx.setLineDash([]);
-        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 9px monospace'; ctx.fillText('Chelation H-Bond', cx1 + 45, cy - 2);
+        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 13px monospace'; ctx.fillText('Chelation H-Bond', cx1 + 45, cy - 2);
 
-        ctx.fillStyle = '#10b981'; ctx.font = 'bold 11px monospace';
+        ctx.fillStyle = '#10b981'; ctx.font = 'bold 13px monospace';
         ctx.fillText('Steam Volatile: Separable by steam distillation!', cx1, h - 20);
 
         // RIGHT: p-Nitrophenol
         const cx2 = midX + midX * 0.5;
         ctx.fillStyle = '#38bdf8'; ctx.font = 'bold 13px monospace';
         ctx.fillText('p-Nitrophenol (Associated)', cx2, 35);
-        ctx.fillStyle = '#94a3b8'; ctx.font = '10px monospace';
+        ctx.fillStyle = '#94a3b8'; ctx.font = '13px monospace';
         ctx.fillText('Intermolecular Polymeric Network (BP: 279°C)', cx2, 52);
 
         // Molecule 1
         drawBenzeneRing(ctx, cx2 - 50, cy, 26);
-        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 10px monospace'; ctx.fillText('H—O', cx2 - 90, cy);
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('H—O', cx2 - 90, cy);
         ctx.fillStyle = '#38bdf8'; ctx.fillText('NO₂', cx2 - 15, cy);
 
         // Molecule 2
@@ -1931,34 +1931,34 @@
         ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 3; ctx.setLineDash([4, 4]);
         ctx.beginPath(); ctx.moveTo(cx2 - 5, cy - 2); ctx.lineTo(cx2 + 15, cy - 2); ctx.stroke();
         ctx.setLineDash([]);
-        ctx.fillStyle = '#38bdf8'; ctx.font = 'bold 9px monospace'; ctx.fillText('Intermolecular H-Bond', cx2 + 5, cy - 18);
+        ctx.fillStyle = '#38bdf8'; ctx.font = 'bold 13px monospace'; ctx.fillText('Intermolecular H-Bond', cx2 + 5, cy - 18);
 
-        ctx.fillStyle = '#ef4444'; ctx.font = 'bold 11px monospace';
+        ctx.fillStyle = '#ef4444'; ctx.font = 'bold 13px monospace';
         ctx.fillText('High BP (+63°C higher) & High Water Solubility', cx2, h - 20);
       } else {
         // Ethanol vs Ether
         const cx1 = midX * 0.5;
         ctx.fillStyle = '#10b981'; ctx.font = 'bold 13px monospace'; ctx.textAlign = 'center';
         ctx.fillText('Ethanol (C₂H₅—O—H)', cx1, 35);
-        ctx.fillStyle = '#94a3b8'; ctx.font = '10px monospace';
+        ctx.fillStyle = '#94a3b8'; ctx.font = '13px monospace';
         ctx.fillText('Intermolecular H-Bonds (BP: +78.4°C, Liquid)', cx1, 52);
 
         ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace';
         ctx.fillText('C₂H₅—O—H ···· O(C₂H₅)—H ···· O(C₂H₅)—H', cx1, cy);
-        ctx.fillStyle = '#10b981'; ctx.font = 'bold 11px monospace';
+        ctx.fillStyle = '#10b981'; ctx.font = 'bold 13px monospace';
         ctx.fillText('Extensive H-bonding network requires large heat to boil', cx1, h - 25);
 
         const cx2 = midX + midX * 0.5;
         ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 13px monospace';
         ctx.fillText('Dimethyl Ether (CH₃—O—CH₃)', cx2, 35);
-        ctx.fillStyle = '#64748b'; ctx.font = '10px monospace';
+        ctx.fillStyle = '#64748b'; ctx.font = '13px monospace';
         ctx.fillText('No H on Electronegative Atom (BP: -24°C, Gas)', cx2, 52);
 
         ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 13px monospace';
         ctx.fillText('H₃C—O—CH₃      H₃C—O—CH₃', cx2, cy);
-        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 10px monospace';
+        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 13px monospace';
         ctx.fillText('(Only weak dipole-dipole forces; No H-Bonding!)', cx2, cy + 25);
-        ctx.fillStyle = '#ef4444'; ctx.font = 'bold 11px monospace';
+        ctx.fillStyle = '#ef4444'; ctx.font = 'bold 13px monospace';
         ctx.fillText('Boiling point difference = 102.4°C!', cx2, h - 25);
       }
       ctx.textAlign = 'left';
@@ -2087,14 +2087,14 @@
 
         ctx.fillStyle = '#38bdf8';
         ctx.beginPath(); ctx.arc(lig.px, lig.py, 12, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#0f172a'; ctx.font = 'bold 10px monospace';
+        ctx.fillStyle = '#0f172a'; ctx.font = 'bold 13px monospace';
         ctx.textAlign = 'center'; ctx.fillText(lig.label, lig.px, lig.py + 3);
       });
 
       // Central Atom
       ctx.fillStyle = '#8b5cf6';
       ctx.beginPath(); ctx.arc(cP.px, cP.py, 16, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = '#ffffff'; ctx.font = 'bold 11px monospace';
+      ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace';
       ctx.textAlign = 'center'; ctx.fillText('M', cP.px, cP.py + 4);
       ctx.textAlign = 'left';
     }
@@ -2137,7 +2137,7 @@
       if (errors.length) {
         const banner = document.createElement('div');
         banner.id = 'questionBankIntegrityError';
-        banner.className = 'fixed left-3 right-3 bottom-3 z-[100] p-3 rounded-xl bg-red-950 border border-red-500 text-red-100 text-xs shadow-2xl';
+        banner.className = 'fixed left-3 right-3 bottom-3 z-[100] p-3 rounded-xl bg-red-950 border border-red-500 text-red-100 text-[13px] shadow-2xl';
         banner.textContent = `Question-bank integrity failure (${errors.length}): ${errors.slice(0,4).join(' | ')}`;
         document.body.appendChild(banner);
       }
@@ -2146,14 +2146,14 @@
 
     function auditBadge(q) {
       const answer = q.answerAudit === 'PASS'
-        ? '<span class="px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 text-[10px] font-mono">ANSWER PASS</span>'
-        : `<span class="px-2 py-0.5 rounded bg-amber-500/15 border border-amber-500/40 text-amber-300 text-[10px] font-mono">ANSWER ${q.answerAudit || 'PENDING'}</span>`;
+        ? '<span class="px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 text-[13px] font-mono">ANSWER PASS</span>'
+        : `<span class="px-2 py-0.5 rounded bg-amber-500/15 border border-amber-500/40 text-amber-300 text-[13px] font-mono">ANSWER ${q.answerAudit || 'PENDING'}</span>`;
       const sourceState = q.sourceAudit === 'SOURCE_UNVERIFIED' ? 'SOURCE UNVERIFIED' : 'SOURCE PENDING';
       const sourceClass = q.sourceAudit === 'SOURCE_UNVERIFIED'
         ? 'bg-red-500/10 border-red-500/40 text-red-300'
         : 'bg-slate-800 border-slate-600 text-slate-300';
-      const source = `<span class="px-2 py-0.5 rounded border text-[10px] font-mono ${sourceClass}" title="${q.sourceAuditNote || ''}">${sourceState}</span>`;
-      const fidelity = `<span class="px-2 py-0.5 rounded bg-sky-500/10 border border-sky-500/30 text-sky-300 text-[10px] font-mono">${q.simFidelity}</span>`;
+      const source = `<span class="px-2 py-0.5 rounded border text-[13px] font-mono ${sourceClass}" title="${q.sourceAuditNote || ''}">${sourceState}</span>`;
+      const fidelity = `<span class="px-2 py-0.5 rounded bg-sky-500/10 border border-sky-500/30 text-sky-300 text-[13px] font-mono">${q.simFidelity}</span>`;
       return answer + source + fidelity;
     }
 
@@ -2187,17 +2187,17 @@
           <div class="bg-slate-900/90 border border-border rounded-xl p-5 space-y-4 hover:border-slate-700 transition" id="qcard-${q.id}">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border/50 pb-3">
               <div class="flex items-center gap-2">
-                <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono font-bold text-xs border border-purple-500/30">
+                <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono font-bold text-[13px] border border-purple-500/30">
                   ${q.id}
                 </span>
-                <span class="text-xs font-semibold text-slate-300">${q.source}</span>
+                <span class="text-[13px] font-semibold text-slate-300">${q.source}</span>
                 <span class="flex flex-wrap gap-1">${auditBadge(q)}</span>
               </div>
               <div class="flex items-center gap-2">
-                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-400 font-mono">
+                <span class="text-[13px] px-2 py-0.5 rounded bg-slate-800 text-slate-400 font-mono">
                   ${q.subtabName}
                 </span>
-                <button onclick="loadQuestionIntoSimulator('${q.id}')" class="touch-target px-3 py-1 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/50 text-purple-300 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+                <button onclick="loadQuestionIntoSimulator('${q.id}')" class="touch-target px-3 py-1 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/50 text-purple-300 rounded-lg text-[13px] font-bold transition flex items-center gap-1.5 shadow-sm">
                   <span>🚀</span>
                   <span>${q.simFidelity === 'CONCEPT_ONLY' ? 'Open Concept Simulator' : 'Load Bound Constraints'}</span>
                 </button>
@@ -2210,8 +2210,8 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
               ${(q.options || []).map(opt => `
-                <button onclick="checkQuestionOption('${q.id}', '${opt.key}')" id="btnOpt-${q.id}-${opt.key}" class="text-left p-3 rounded-xl bg-slate-950/60 border border-border hover:border-slate-600 text-xs text-slate-300 transition flex items-start gap-2.5">
-                  <span class="w-5 h-5 rounded-full bg-slate-800 border border-border flex items-center justify-center font-bold text-[10px] flex-shrink-0">
+                <button onclick="checkQuestionOption('${q.id}', '${opt.key}')" id="btnOpt-${q.id}-${opt.key}" class="text-left p-3 rounded-xl bg-slate-950/60 border border-border hover:border-slate-600 text-[13px] text-slate-300 transition flex items-start gap-2.5">
+                  <span class="w-5 h-5 rounded-full bg-slate-800 border border-border flex items-center justify-center font-bold text-[13px] flex-shrink-0">
                     ${opt.key}
                   </span>
                   <span>${opt.text}</span>
@@ -2219,38 +2219,38 @@
               `).join('')}
             </div>
 
-            <div id="feedback-${q.id}" class="hidden p-3 rounded-xl text-xs"></div>
+            <div id="feedback-${q.id}" class="hidden p-3 rounded-xl text-[13px]"></div>
 
             <div class="pt-3 border-t border-slate-800">
-              <button onclick="toggleSolution('${q.id}')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl bg-emerald-950/30 border border-emerald-500/30 hover:bg-emerald-950/50 transition text-left text-xs font-semibold text-emerald-300">
+              <button onclick="toggleSolution('${q.id}')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl bg-emerald-950/30 border border-emerald-500/30 hover:bg-emerald-950/50 transition text-left text-[13px] font-semibold text-emerald-300">
                 <div class="flex items-center gap-2">
                   <span>🏫</span>
                   <span>Teacher Chalkboard &amp; Step-by-Step Derivation</span>
                 </div>
-                <span id="solIcon-${q.id}" class="text-xs text-emerald-400 font-mono">▶ View Chalkboard</span>
+                <span id="solIcon-${q.id}" class="text-[13px] text-emerald-400 font-mono">▶ View Chalkboard</span>
               </button>
               
               <div id="solContent-${q.id}" class="hidden mt-3 p-4 rounded-xl border border-emerald-500/40 bg-[#12221a] text-slate-100 shadow-2xl font-sans space-y-4">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-emerald-500/30 pb-2.5 text-[11px] font-mono text-emerald-300">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-emerald-500/30 pb-2.5 text-[13px] font-mono text-emerald-300">
                   <span class="flex items-center gap-1.5 font-bold"><span>📋</span> TEACHER CHALKBOARD &middot; PEDAGOGICAL RESOLUTION</span>
                   <span class="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">${q.formula}</span>
                 </div>
 
                 <div class="space-y-1">
-                  <div class="text-[11px] font-bold text-amber-300 font-mono uppercase tracking-wider">Step 1 &middot; 3D Molecular Model &amp; Electronic Configuration</div>
-                  <div class="text-xs text-slate-200 bg-black/40 p-2.5 rounded-lg border border-emerald-500/20 font-mono">
+                  <div class="text-[13px] font-bold text-amber-300 font-mono uppercase tracking-wider">Step 1 &middot; 3D Molecular Model &amp; Electronic Configuration</div>
+                  <div class="text-[13px] text-slate-200 bg-black/40 p-2.5 rounded-lg border border-emerald-500/20 font-mono">
                     ${q.steps && q.steps[0] ? q.steps[0] : 'Determine electronic configuration, steric number, and spatial geometry.'}
                   </div>
                 </div>
 
                 <div class="space-y-1">
-                  <div class="text-[11px] font-bold text-sky-300 font-mono uppercase tracking-wider">Step 2 &middot; Quantum / Symmetry Resolution</div>
-                  <div class="text-xs text-slate-200 bg-black/40 p-2.5 rounded-lg border border-emerald-500/20 space-y-1.5 font-mono">
-                    ${(q.steps || []).slice(1).map((st, i) => `<div class="flex items-start gap-2"><span class="text-sky-400 text-[10px]">${i + 2}.</span><span>${st}</span></div>`).join('')}
+                  <div class="text-[13px] font-bold text-sky-300 font-mono uppercase tracking-wider">Step 2 &middot; Quantum / Symmetry Resolution</div>
+                  <div class="text-[13px] text-slate-200 bg-black/40 p-2.5 rounded-lg border border-emerald-500/20 space-y-1.5 font-mono">
+                    ${(q.steps || []).slice(1).map((st, i) => `<div class="flex items-start gap-2"><span class="text-sky-400 text-[13px]">${i + 2}.</span><span>${st}</span></div>`).join('')}
                   </div>
                 </div>
 
-                <div class="p-3 bg-red-950/50 border border-red-500/50 rounded-lg text-xs space-y-1">
+                <div class="p-3 bg-red-950/50 border border-red-500/50 rounded-lg text-[13px] space-y-1">
                   <div class="flex items-center gap-1.5 text-red-400 font-bold font-mono">
                     <span>⚠️</span>
                     <span>EXAMINER TRAP &amp; FALLACY CRITIQUE (RED PEN):</span>
@@ -2261,24 +2261,24 @@
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
-                  <div class="p-3 bg-sky-950/40 border border-sky-500/35 rounded-lg text-xs space-y-1">
+                  <div class="p-3 bg-sky-950/40 border border-sky-500/35 rounded-lg text-[13px] space-y-1">
                     <div class="text-sky-300 font-bold font-mono">INDEPENDENT CHECK</div>
                     <div class="text-slate-200 leading-relaxed">${q.teacherCheck}</div>
                   </div>
-                  <div class="p-3 bg-violet-950/40 border border-violet-500/35 rounded-lg text-xs space-y-1">
+                  <div class="p-3 bg-violet-950/40 border border-violet-500/35 rounded-lg text-[13px] space-y-1">
                     <div class="text-violet-300 font-bold font-mono">TRANSFER TAKEAWAY</div>
                     <div class="text-slate-200 leading-relaxed">${q.takeaway}</div>
                   </div>
                 </div>
 
-                <div class="p-3 bg-slate-950/50 border border-slate-700 rounded-lg text-[11px] space-y-1.5 font-mono">
+                <div class="p-3 bg-slate-950/50 border border-slate-700 rounded-lg text-[13px] space-y-1.5 font-mono">
                   <div><span class="text-slate-400">SOURCE AUDIT:</span> <span class="${q.sourceAudit === 'SOURCE_UNVERIFIED' ? 'text-red-300' : 'text-slate-200'}">${q.sourceAudit}</span></div>
                   <div class="text-slate-400">${q.sourceAuditNote}</div>
                   <div><span class="text-slate-400">SIMULATOR FIDELITY:</span> <span class="text-sky-300">${q.simFidelity}</span></div>
                   <div class="text-slate-400">${q.simFidelityNote}</div>
                 </div>
 
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-emerald-500/30 text-xs">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-emerald-500/30 text-[13px]">
                   <span class="font-mono text-slate-400">${q.sourceAudit === 'SOURCE_UNVERIFIED' ? 'Local audited key' : 'Attributed exam key'}: <strong class="text-white">${q.correct ? `Option (${q.correct})` : 'WITHHELD'}</strong></span>
                   <span class="font-mono font-bold ${q.answerAudit === 'PASS' ? 'text-emerald-400 bg-emerald-500/20 border-emerald-500/40' : 'text-amber-300 bg-amber-500/10 border-amber-500/40'} px-2.5 py-1 rounded border">Answer Audit ${q.answerAudit}: ${q.ans}</span>
                 </div>
@@ -2297,7 +2297,7 @@
       if (q.answerAudit !== 'PASS' || !q.correct) {
         if (fb) {
           fb.classList.remove('hidden');
-          fb.className = 'p-3.5 rounded-xl text-xs bg-amber-950/60 border border-amber-500/60 text-amber-100 space-y-1.5';
+          fb.className = 'p-3.5 rounded-xl text-[13px] bg-amber-950/60 border border-amber-500/60 text-amber-100 space-y-1.5';
           fb.innerHTML = `<div><strong>⚠️ Withheld from scoring · Answer audit ${q.answerAudit || 'PENDING'}.</strong></div><div>${q.answerAuditNote || 'This item requires review.'}</div><div class="font-mono text-amber-300">${q.ans || ''}</div>`;
         }
         return;
@@ -2308,21 +2308,21 @@
         const btn = document.getElementById(`btnOpt-${qId}-${opt.key}`);
         if (!btn) return;
         if (opt.key === q.correct) {
-          btn.className = 'text-left p-3 rounded-xl bg-emerald-950/60 border border-emerald-500/90 text-xs text-emerald-200 transition flex items-start gap-2.5 shadow-md shadow-emerald-950/50';
+          btn.className = 'text-left p-3 rounded-xl bg-emerald-950/60 border border-emerald-500/90 text-[13px] text-emerald-200 transition flex items-start gap-2.5 shadow-md shadow-emerald-950/50';
         } else if (opt.key === selectedKey && !isCorrect) {
-          btn.className = 'text-left p-3 rounded-xl bg-red-950/60 border border-red-500/90 text-xs text-red-200 transition flex items-start gap-2.5 shadow-md shadow-red-950/50';
+          btn.className = 'text-left p-3 rounded-xl bg-red-950/60 border border-red-500/90 text-[13px] text-red-200 transition flex items-start gap-2.5 shadow-md shadow-red-950/50';
         } else {
-          btn.className = 'text-left p-3 rounded-xl bg-slate-950/40 border border-border/40 text-xs text-slate-500 transition flex items-start gap-2.5';
+          btn.className = 'text-left p-3 rounded-xl bg-slate-950/40 border border-border/40 text-[13px] text-slate-500 transition flex items-start gap-2.5';
         }
       });
 
       if (fb) {
         fb.classList.remove('hidden');
         if (isCorrect) {
-          fb.className = 'p-3.5 rounded-xl text-xs bg-emerald-950/60 border border-emerald-500/60 text-emerald-200 space-y-1';
-          fb.innerHTML = `<div><strong>✅ Correct Option (${q.correct}).</strong></div><div class="text-[11px] text-emerald-300 font-mono">${q.ans}</div>`;
+          fb.className = 'p-3.5 rounded-xl text-[13px] bg-emerald-950/60 border border-emerald-500/60 text-emerald-200 space-y-1';
+          fb.innerHTML = `<div><strong>✅ Correct Option (${q.correct}).</strong></div><div class="text-[13px] text-emerald-300 font-mono">${q.ans}</div>`;
         } else {
-          fb.className = 'p-3.5 rounded-xl text-xs bg-red-950/60 border border-red-500/60 text-red-200 space-y-1.5';
+          fb.className = 'p-3.5 rounded-xl text-[13px] bg-red-950/60 border border-red-500/60 text-red-200 space-y-1.5';
           fb.innerHTML = `<div><strong>❌ Option (${selectedKey}) is incorrect.</strong> The locally audited answer is <strong>Option (${q.correct})</strong>.</div><div class="text-amber-300 font-semibold">⚠️ Trap Insight: ${q.trap}</div>`;
         }
       }

@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <!-- KaTeX Typography (Khan Academy Standard) -->
-  <link rel="stylesheet" href="../../../../vendor/katex/0.16.8/katex.min.css" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css';">
-  <script src="../../../../vendor/katex/0.16.8/katex.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js';"></script>
-  <script src="../../../../vendor/katex/0.16.8/contrib/auto-render.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js';" onload="window.__katexLoaded=true; if(window.renderAllMath) window.renderAllMath();"></script>
+  <link rel="stylesheet" href="../../../../vendor/katex/0.16.8/katex.min.css">
+  <script src="../../../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../../../vendor/katex/0.16.8/contrib/auto-render.min.js" onload="window.__katexLoaded=true; if(window.renderAllMath) window.renderAllMath();"></script>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -253,7 +253,7 @@ main{max-width:1180px;margin:auto;padding:18px;display:grid;gap:14px}.card{backg
   function baseCircle(ctx){
     ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);
     ctx.strokeStyle='#cbd5e1';ctx.lineWidth=2;ctx.beginPath();ctx.arc(275,150,90,0,Math.PI*2);ctx.stroke();
-    ctx.fillStyle='#0f172a';ctx.beginPath();ctx.arc(275,150,5,0,Math.PI*2);ctx.fill();ctx.font='12px system-ui';ctx.fillText('centre',245,145);
+    ctx.fillStyle='#0f172a';ctx.beginPath();ctx.arc(275,150,5,0,Math.PI*2);ctx.fill();ctx.font='13px system-ui';ctx.fillText('centre',245,145);
   }
   function drawOrbit(){
     const c=$('orbitCanvas'),ctx=c.getContext('2d');baseCircle(ctx);

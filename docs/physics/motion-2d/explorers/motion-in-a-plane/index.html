@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <!-- KaTeX for crisp mathematical typography (Local with CDN fallback) -->
-  <link rel="stylesheet" href="../../../../vendor/katex/0.16.8/katex.min.css" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css';">
-  <script src="../../../../vendor/katex/0.16.8/katex.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js';"></script>
-  <script src="../../../../vendor/katex/0.16.8/contrib/auto-render.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js';" onload="window.__katexLoaded=true; if(window.renderAllMath) { window.renderAllMath(); }"></script>
+  <link rel="stylesheet" href="../../../../vendor/katex/0.16.8/katex.min.css">
+  <script src="../../../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../../../vendor/katex/0.16.8/contrib/auto-render.min.js" onload="window.__katexLoaded=true; if(window.renderAllMath) { window.renderAllMath(); }"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Motion in a Plane · Interactive Research Suite</title>
@@ -822,7 +822,7 @@
       pCtx.stroke();
 
       pCtx.fillStyle = '#64748b';
-      pCtx.font = '11px monospace';
+      pCtx.font = '13px monospace';
       pCtx.fillText('O (0,0)', originX - 15, originY + 18);
       pCtx.fillText('R = ' + R.toFixed(1) + 'm', originX + R * scaleX - 20, originY + 18);
 
@@ -1040,7 +1040,7 @@
       bCtx.arc(x1, y1, 45, 0, -thetaRad, true);
       bCtx.stroke();
       bCtx.fillStyle = '#38bdf8';
-      bCtx.font = '12px monospace';
+      bCtx.font = '13px monospace';
       bCtx.fillText('θ = ' + bankAngleDeg + '°', x1 + 52, y1 - 10);
 
       // Car on the Incline (centered)
