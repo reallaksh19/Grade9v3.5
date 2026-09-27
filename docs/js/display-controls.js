@@ -154,48 +154,31 @@
     style.textContent = `
       #g9-display-widget-root {
         position: fixed;
-        bottom: 20px;
+        top: 70px;
         right: 20px;
         z-index: 2147483647;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        pointer-events: none;
       }
       .g9-display-trigger {
-        background: #161b22;
-        border: 1px solid #58a6ff;
-        color: #f0f6fc;
-        padding: 7px 14px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: 700;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        box-shadow: 0 4px 18px rgba(0,0,0,0.6);
-        transition: all 0.2s ease;
-        backdrop-filter: blur(8px);
-      }
-      .g9-display-trigger:hover {
-        background: #21262d;
-        border-color: #79c0ff;
-        color: #79c0ff;
-        transform: translateY(-1px);
-        box-shadow: 0 6px 22px rgba(88, 166, 255, 0.25);
+        display: none !important;
       }
       .g9-display-popover {
         position: fixed;
-        bottom: 60px;
+        top: 70px;
         right: 20px;
-        width: 290px;
+        bottom: auto;
+        width: 300px;
         background: #161b22;
         border: 1px solid #444c56;
-        border-radius: 10px;
+        border-radius: 12px;
         padding: 16px 18px;
-        box-shadow: 0 12px 36px rgba(0,0,0,0.75);
+        box-shadow: 0 12px 36px rgba(0,0,0,0.6);
         display: none;
         flex-direction: column;
         gap: 14px;
         z-index: 2147483647;
+        pointer-events: auto;
         backdrop-filter: blur(14px);
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       }

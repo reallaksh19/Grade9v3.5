@@ -1,0 +1,148 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Physics",
+  "node_ref": "PHY-11-MOTION-IN-A-PLANE-06",
+  "verified_by": "agent-verifier-1",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:e7575c1b65c16dbbdf17f9819577f0dff2f154c91ce442abd9481ada4d33a0ff",
+  "questions": [
+    {
+      "card_ref": "EV-PHY-11-MIP-06-009",
+      "independent_solution": [
+        "r = 3.0t i - 2.0t^2 j + 4.0 k (checked on pinned page 22). v = dr/dt = 3.0 i - 4.0t j m/s; a = dv/dt = -4.0 j m/s^2 (constant).",
+        "At t = 2.0 s: v = 3.0 i - 8.0 j, |v| = sqrt(9 + 64) = 8.54 m/s, at atan(8.0/3.0) = 69.4 deg (about 70 deg) below the +x axis."
+      ],
+      "independent_answer": "8.54 m/s at about 70 deg with the x-axis (below it); v = 3.0 i - 4.0t j, a = -4.0 j",
+      "official_answer": "8.54 m/s, 70 deg with x-axis at t = 2.0 s; (a) v(t) = 3.0 i - 4.0t j, a = -4.0 j",
+      "agrees": true,
+      "numeric_check": "sqrt(3.0**2 + (4.0*2.0)**2)"
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-06-011",
+      "independent_solution": [
+        "The cyclist ends at the start O, so (a) net displacement = 0 and (b) average velocity = 0/(10 min) = 0.",
+        "Fig. 3.20 (pinned page 21) shows OP and OQ on perpendicular radii, so arc PQ is a quarter circle: path = 1 + (pi/2)(1) + 1 = 3.571 km in 1/6 h, (c) average speed = 21.4 km/h."
+      ],
+      "independent_answer": "(a) 0; (b) 0; (c) 21.4 km/h",
+      "official_answer": "(c) 21.4 km/h average speed; (a) 0; (b) 0",
+      "agrees": true,
+      "numeric_check": "(2 + pi/2)/(10/60)"
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-06-013",
+      "independent_solution": [
+        "Test on uniform circular motion (constant speed v0): after one full revolution the displacement and average velocity are zero, so (a) fails; the velocity direction changes, so average acceleration is non-zero over most intervals, (b) fails; equal-time displacements are equal chords in different directions, so (c) fails.",
+        "Path length = v0 x (time) for constant speed, so equal intervals give equal path lengths: only (d) is necessarily true."
+      ],
+      "independent_answer": "(d)",
+      "official_answer": "(d)",
+      "agrees": true
+    }
+  ],
+  "records": [
+    {
+      "record_ref": "MIC-PHY-MIP-06",
+      "checked_fields": [
+        "title",
+        "entry_assumptions",
+        "inferential_jump",
+        "teaching_path",
+        "misconceptions",
+        "exit_task"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "CAP-PHY-MIP-06",
+      "checked_fields": [
+        "action",
+        "success_criterion"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-06-AVERAGE-VELOCITY",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "symbols",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-06-INSTANTANEOUS-VELOCITY",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "symbols",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-06-AVERAGE-ACCELERATION",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "symbols",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REP-PHY-MIP-06-CHORD-TO-TANGENT",
+      "checked_fields": [
+        "purpose",
+        "required_elements",
+        "instance_constraints",
+        "misleading_alternatives"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-06-NCERT-3-17",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "hints",
+        "scaffolds"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-06-NCERT-3-9",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "hints",
+        "scaffolds"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-06-EXEMPLAR-4-7",
+      "checked_fields": [
+        "stem",
+        "options",
+        "conditions",
+        "answer",
+        "hints",
+        "scaffolds"
+      ],
+      "agrees": true
+    }
+  ],
+  "findings": []
+}

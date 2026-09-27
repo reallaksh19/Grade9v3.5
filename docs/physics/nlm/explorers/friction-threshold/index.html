@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>NLM Explorer 1 · Static-to-Kinetic Friction Threshold & Microscopic Asperities</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../../../vendor/katex/0.16.8/katex.min.css" crossorigin="anonymous">
   <style>
     :root {
       --bg: #0d1117;
@@ -63,7 +63,7 @@
       gap: 4px;
       padding: 3px 10px;
       border-radius: 12px;
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 600;
       font-family: var(--font-mono);
       font-variant-numeric: tabular-nums;
@@ -84,7 +84,7 @@
     .breadcrumb {
       display: flex;
       gap: 8px;
-      font-size: 12px;
+      font-size: 14px;
       color: var(--text-muted);
       margin-bottom: 16px;
       align-items: center;
@@ -131,7 +131,7 @@
       flex-wrap: wrap;
     }
     .preset-label {
-      font-size: 11px;
+      font-size: 13.5px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.6px;
@@ -142,7 +142,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       color: var(--text);
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 600;
       padding: 5px 12px;
       border-radius: 6px;
@@ -172,7 +172,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       color: var(--text);
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 700;
       padding: 6px 12px;
       border-radius: 6px;
@@ -256,7 +256,7 @@
       border: 1px solid var(--border);
       padding: 4px 10px;
       border-radius: 6px;
-      font-size: 11px;
+      font-size: 13.5px;
       backdrop-filter: blur(4px);
     }
     .canvas-hud-options label {
@@ -289,7 +289,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 600;
       color: var(--text-dim);
     }
@@ -323,7 +323,7 @@
       gap: 2px;
     }
     .stat-cell-label {
-      font-size: 10px;
+      font-size: 13px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: var(--text-muted);
@@ -346,7 +346,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
-      font-size: 12px;
+      font-size: 14px;
       font-family: var(--font-mono);
     }
     @media (max-width: 600px) {
@@ -358,7 +358,7 @@
       gap: 4px;
     }
     .eq-title {
-      font-size: 11px;
+      font-size: 13.5px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: var(--accent);
@@ -379,6 +379,9 @@
       margin-bottom: 14px;
       cursor: crosshair;
     }
+    #graphCanvas {
+      touch-action: none;
+    }
     .graph-tooltip {
       position: absolute;
       background: rgba(13, 17, 23, 0.94);
@@ -387,7 +390,7 @@
       padding: 6px 10px;
       border-radius: 4px;
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 13.5px;
       pointer-events: none;
       display: none;
       z-index: 10;
@@ -400,14 +403,14 @@
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 12px 14px;
-      font-size: 12px;
+      font-size: 14px;
       line-height: 1.55;
       color: var(--text-dim);
       margin-top: 12px;
     }
     .info-card h4 {
       color: var(--text);
-      font-size: 12px;
+      font-size: 14px;
       margin-bottom: 4px;
       display: flex;
       align-items: center;
@@ -485,7 +488,7 @@
       padding: 7px 16px;
       border-radius: 6px;
       font-weight: 700;
-      font-size: 12px;
+      font-size: 14px;
       cursor: pointer;
       transition: opacity 0.15s;
     }
@@ -517,6 +520,7 @@
       background: rgba(248, 81, 73, 0.1);
     }
   </style>
+  <link rel="stylesheet" href="../../../../css/tablet-12-7.css">
 </head>
 <body>
 
@@ -581,33 +585,33 @@
       <button class="btn-transport" onclick="stepForward()">⏭ Step</button>
       <button class="btn-transport" onclick="resetSim()">↺ Reset</button>
       <div class="speed-slider-wrap" style="display: inline-flex; align-items: center; gap: 8px; background: var(--bg-card); border: 1px solid var(--border); padding: 5px 12px; border-radius: 6px;">
-        <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); display: flex; align-items: center; gap: 4px;">
+        <span style="font-size: 13.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); display: flex; align-items: center; gap: 4px;">
           ⏱️ Speed:
         </span>
         <input type="range" id="slider-speed" min="0.05" max="1.5" step="0.05" value="1.0" 
                style="width: 85px; accent-color: var(--accent); cursor: pointer; height: 6px;" 
                oninput="setSimSpeed(this.value)" 
                title="Drag left to slow down animation (slow-motion)">
-        <span id="label-speed" style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--accent); min-width: 36px;">1.00x</span>
-        <button type="button" class="btn-transport" style="padding: 2px 7px; font-size: 10px; border-radius: 4px;" onclick="setSimSpeed(0.25)" title="Slow Motion (0.25x)">0.25x</button>
-        <button type="button" class="btn-transport" style="padding: 2px 7px; font-size: 10px; border-radius: 4px;" onclick="setSimSpeed(1.0)" title="Normal Speed (1.0x)">1.0x</button>
+        <span id="label-speed" style="font-family: var(--font-mono); font-size: 13.5px; font-weight: 700; color: var(--accent); min-width: 36px;">1.00x</span>
+        <button type="button" class="btn-transport" style="padding: 2px 7px; font-size: 13px; border-radius: 4px;" onclick="setSimSpeed(0.25)" title="Slow Motion (0.25x)">0.25x</button>
+        <button type="button" class="btn-transport" style="padding: 2px 7px; font-size: 13px; border-radius: 4px;" onclick="setSimSpeed(1.0)" title="Normal Speed (1.0x)">1.0x</button>
       </div>
       <div class="display-controls-wrap" style="display: inline-flex; align-items: center; gap: 6px; background: var(--bg-card); border: 1px solid var(--border); padding: 5px 10px; border-radius: 6px;">
-        <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); display: flex; align-items: center; gap: 4px;">
+        <span style="font-size: 13.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); display: flex; align-items: center; gap: 4px;">
           🔤 Font:
         </span>
-        <button type="button" class="btn-transport" style="padding: 2px 6px; font-size: 10px; border-radius: 4px;" onclick="window.Grade9Display.stepFont(-0.05)" title="Decrease Font Size">A-</button>
-        <span class="g9-inline-font-val" style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--accent); min-width: 34px; text-align: center;">100%</span>
-        <button type="button" class="btn-transport" style="padding: 2px 6px; font-size: 10px; border-radius: 4px;" onclick="window.Grade9Display.stepFont(0.05)" title="Increase Font Size">A+</button>
+        <button type="button" class="btn-transport" style="padding: 2px 6px; font-size: 13px; border-radius: 4px;" onclick="window.Grade9Display.stepFont(-0.05)" title="Decrease Font Size">A-</button>
+        <span class="g9-inline-font-val" style="font-family: var(--font-mono); font-size: 13.5px; font-weight: 700; color: var(--accent); min-width: 34px; text-align: center;">100%</span>
+        <button type="button" class="btn-transport" style="padding: 2px 6px; font-size: 13px; border-radius: 4px;" onclick="window.Grade9Display.stepFont(0.05)" title="Increase Font Size">A+</button>
 
-        <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); display: flex; align-items: center; gap: 4px; margin-left: 4px;">
+        <span style="font-size: 13.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); display: flex; align-items: center; gap: 4px; margin-left: 4px;">
           🔍 Zoom:
         </span>
-        <button type="button" class="btn-transport" style="padding: 2px 6px; font-size: 10px; border-radius: 4px;" onclick="window.Grade9Display.stepScale(-0.05)" title="Zoom Out">−</button>
-        <span class="g9-inline-scale-val" style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--accent); min-width: 34px; text-align: center;">100%</span>
-        <button type="button" class="btn-transport" style="padding: 2px 6px; font-size: 10px; border-radius: 4px;" onclick="window.Grade9Display.stepScale(0.05)" title="Zoom In">+</button>
+        <button type="button" class="btn-transport" style="padding: 2px 6px; font-size: 13px; border-radius: 4px;" onclick="window.Grade9Display.stepScale(-0.05)" title="Zoom Out">−</button>
+        <span class="g9-inline-scale-val" style="font-family: var(--font-mono); font-size: 13.5px; font-weight: 700; color: var(--accent); min-width: 34px; text-align: center;">100%</span>
+        <button type="button" class="btn-transport" style="padding: 2px 6px; font-size: 13px; border-radius: 4px;" onclick="window.Grade9Display.stepScale(0.05)" title="Zoom In">+</button>
 
-        <button type="button" class="btn-transport" style="padding: 2px 8px; font-size: 11px; border-radius: 4px; margin-left: 2px;" onclick="window.Grade9Display.togglePopover()" title="Open Display & Scale Settings">⚙️</button>
+        <button type="button" class="btn-transport" style="padding: 2px 8px; font-size: 13.5px; border-radius: 4px; margin-left: 2px;" onclick="window.Grade9Display.togglePopover()" title="Open Display & Scale Settings">⚙️</button>
       </div>
     </div>
   </div>
@@ -747,8 +751,8 @@
         <div id="graphTooltip" class="graph-tooltip"></div>
       </div>
 
-      <div style="font-size: 11px; color: var(--text-dim); display: flex; justify-content: space-between; margin-bottom: 12px; padding: 0 4px;">
-        <span>💡 <em>Click or drag anywhere on the graph to scrub P<sub>x</sub> directly!</em></span>
+      <div style="font-size: 13.5px; color: var(--text-dim); display: flex; justify-content: space-between; margin-bottom: 12px; padding: 0 4px;">
+        <span>💡 <em>Tap or drag anywhere on the graph to scrub P<sub>x</sub> directly!</em></span>
         <span style="font-family: var(--font-mono);">X: 0&ndash;100 N | Y: 0&ndash;60 N</span>
       </div>
 
@@ -1307,7 +1311,7 @@ function renderSimStage(p) {
     simCtx.stroke();
 
     simCtx.fillStyle = '#ffffff';
-    simCtx.font = 'bold 11px monospace';
+    simCtx.font = 'bold 13px monospace';
     simCtx.textAlign = 'center';
     simCtx.fillText('m = ' + m.toFixed(1) + 'kg', cx, cy - 14);
   }
@@ -1366,7 +1370,7 @@ function renderSimStage(p) {
       simCtx.stroke();
 
       simCtx.fillStyle = '#e2e8f0';
-      simCtx.font = '10px monospace';
+      simCtx.font = '13px monospace';
       simCtx.fillText(theta + '°', attachX + 34, attachY - 6);
     }
   }
@@ -1415,7 +1419,7 @@ function renderSimStage(p) {
 
     // Small labels
     simCtx.fillStyle = '#fdba74';
-    simCtx.font = '10px monospace';
+    simCtx.font = '13px monospace';
     simCtx.fillText('Px = ' + p.Px.toFixed(1) + 'N', arrowOriginX + (pVecX - arrowOriginX) / 2, arrowOriginY + 12);
     simCtx.fillText('Py = ' + p.Py.toFixed(1) + 'N', pVecX + 6, arrowOriginY - (arrowOriginY - pVecY) / 2);
   }
@@ -1534,12 +1538,12 @@ function drawMicroscopicLens(ctx, lensX, lensY, radius, p) {
   ctx.stroke();
 
   ctx.fillStyle = '#f8fafc';
-  ctx.font = 'bold 10px monospace';
+  ctx.font = 'bold 13px monospace';
   ctx.textAlign = 'center';
   ctx.fillText('100x ATOMIC ZOOM', lensX, lensY - radius + 14);
 
   const modeText = p.isLiftOff ? 'SEPARATED' : (p.state === "STATIC" ? 'ELASTIC SHEAR' : (p.state === "THRESHOLD" ? 'BONDS YIELDING' : 'SLIDING HOP'));
-  ctx.font = '9px monospace';
+  ctx.font = '13px monospace';
   ctx.fillStyle = ctx.strokeStyle;
   ctx.fillText(modeText, lensX, lensY + radius - 10);
 }
@@ -1570,7 +1574,7 @@ function drawVectorArrow(ctx, fromX, fromY, toX, toY, color, label) {
   ctx.fill();
 
   if (label) {
-    ctx.font = 'bold 11px monospace';
+    ctx.font = 'bold 13px monospace';
     ctx.fillStyle = color;
     ctx.textAlign = (toX >= fromX) ? 'left' : 'right';
     const textOffset = 8;
@@ -1610,7 +1614,7 @@ function renderGraph(p) {
     graphCtx.lineTo(sx, h - padBottom);
     graphCtx.stroke();
     graphCtx.fillStyle = '#64748b';
-    graphCtx.font = '10px monospace';
+    graphCtx.font = '13px monospace';
     graphCtx.textAlign = 'center';
     graphCtx.fillText(x, sx, h - padBottom + 14);
   }
@@ -1622,7 +1626,7 @@ function renderGraph(p) {
     graphCtx.lineTo(w - padRight, sy);
     graphCtx.stroke();
     graphCtx.fillStyle = '#64748b';
-    graphCtx.font = '10px monospace';
+    graphCtx.font = '13px monospace';
     graphCtx.textAlign = 'right';
     graphCtx.fillText(y, padLeft - 6, sy + 4);
   }
@@ -1638,7 +1642,7 @@ function renderGraph(p) {
 
   // Axis Titles
   graphCtx.fillStyle = '#94a3b8';
-  graphCtx.font = 'bold 11px monospace';
+  graphCtx.font = 'bold 13px monospace';
   graphCtx.textAlign = 'right';
   graphCtx.fillText('f (N)', padLeft - 8, padTop - 6);
   graphCtx.textAlign = 'center';
@@ -1681,7 +1685,7 @@ function renderGraph(p) {
   // Static regime annotation
   if (fs_max > 12) {
     graphCtx.fillStyle = '#60a5fa';
-    graphCtx.font = '10px monospace';
+    graphCtx.font = '13px monospace';
     graphCtx.textAlign = 'center';
     graphCtx.fillText('STATIC: f_s = P_x', toScreenX(fs_max / 2), toScreenY(fs_max / 2) - 8);
   }
@@ -1706,7 +1710,7 @@ function renderGraph(p) {
 
   if (maxAxisX - fs_max > 15) {
     graphCtx.fillStyle = '#fb923c';
-    graphCtx.font = '10px monospace';
+    graphCtx.font = '13px monospace';
     graphCtx.textAlign = 'center';
     graphCtx.fillText('KINETIC: f_k = μ_k N', toScreenX(fs_max + (maxAxisX - fs_max) / 2), toScreenY(fk) - 8);
   }
@@ -1717,7 +1721,7 @@ function renderGraph(p) {
   graphCtx.arc(toScreenX(fs_max), toScreenY(fs_max), 5, 0, Math.PI * 2);
   graphCtx.fill();
 
-  graphCtx.font = 'bold 10px monospace';
+  graphCtx.font = 'bold 13px monospace';
   graphCtx.fillStyle = '#d8b4fe';
   graphCtx.textAlign = 'left';
   graphCtx.fillText(` Threshold: ${fs_max.toFixed(1)}N`, toScreenX(fs_max) + 6, toScreenY(fs_max) - 4);
@@ -1747,18 +1751,31 @@ function renderGraph(p) {
 // -------------------------------------------------------------
 let isDraggingGraph = false;
 
-function handleGraphInteraction(e) {
+function graphPointFromEvent(e) {
   const rect = graphCanvas.getBoundingClientRect();
-  const mouseX = e.clientX - rect.left;
-  const mouseY = e.clientY - rect.top;
+  const cssX = e.clientX - rect.left;
+  const cssY = e.clientY - rect.top;
+  const scaleX = rect.width ? graphCanvas.width / rect.width : 1;
+  const scaleY = rect.height ? graphCanvas.height / rect.height : 1;
+  return {
+    canvasX: cssX * scaleX,
+    canvasY: cssY * scaleY,
+    cssX,
+    cssY
+  };
+}
+
+function handleGraphInteraction(e) {
+  const point = graphPointFromEvent(e);
 
   const padLeft = 48;
   const padRight = 24;
   const plotW = graphCanvas.width - padLeft - padRight;
   const maxAxisX = 100;
 
-  // Clamp and map screen X to Px
-  const clampedX = Math.max(padLeft, Math.min(graphCanvas.width - padRight, mouseX));
+  // Clamp and map intrinsic canvas X to Px. The conversion above keeps
+  // responsive CSS scaling and the canvas coordinate system in sync.
+  const clampedX = Math.max(padLeft, Math.min(graphCanvas.width - padRight, point.canvasX));
   const newPx = ((clampedX - padLeft) / plotW) * maxAxisX;
 
   // If angle theta > 0, P = Px / cos(theta)
@@ -1769,34 +1786,37 @@ function handleGraphInteraction(e) {
   sliderP.value = Math.min(100, Math.max(0, newP)).toFixed(1);
   syncSliders();
 
-  // Tooltip
+  // Tooltip is positioned in CSS pixels inside the responsive wrapper.
   const pPhys = getPhysics();
   graphTooltip.style.display = 'block';
-  graphTooltip.style.left = (mouseX + 12) + 'px';
-  graphTooltip.style.top = (mouseY - 24) + 'px';
+  graphTooltip.style.left = (point.cssX + 12) + 'px';
+  graphTooltip.style.top = (point.cssY - 24) + 'px';
   graphTooltip.innerHTML = `<strong>P<sub>x</sub> = ${pPhys.Px.toFixed(1)} N</strong><br>f = ${pPhys.f.toFixed(1)} N (${pPhys.state})`;
 }
 
-graphCanvas.addEventListener('mousedown', (e) => {
+graphCanvas.addEventListener('pointerdown', (e) => {
   isDraggingGraph = true;
+  if (graphCanvas.setPointerCapture) graphCanvas.setPointerCapture(e.pointerId);
   handleGraphInteraction(e);
 });
 
-window.addEventListener('mousemove', (e) => {
-  if (isDraggingGraph) {
-    handleGraphInteraction(e);
-  }
+graphCanvas.addEventListener('pointermove', (e) => {
+  if (isDraggingGraph) handleGraphInteraction(e);
 });
 
-window.addEventListener('mouseup', () => {
+function endGraphDrag(e) {
+  if (graphCanvas.hasPointerCapture && graphCanvas.hasPointerCapture(e.pointerId)) {
+    graphCanvas.releasePointerCapture(e.pointerId);
+  }
   isDraggingGraph = false;
   graphTooltip.style.display = 'none';
-});
+}
 
-graphCanvas.addEventListener('mouseleave', () => {
+graphCanvas.addEventListener('pointerup', endGraphDrag);
+graphCanvas.addEventListener('pointercancel', endGraphDrag);
+graphCanvas.addEventListener('pointerleave', () => {
   if (!isDraggingGraph) graphTooltip.style.display = 'none';
 });
-
 // -------------------------------------------------------------
 // SYNCHRONIZED RE-DRAWING & UI STATUS UPDATE
 // -------------------------------------------------------------

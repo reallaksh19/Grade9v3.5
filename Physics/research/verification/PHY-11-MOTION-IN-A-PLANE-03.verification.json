@@ -1,0 +1,141 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Physics",
+  "node_ref": "PHY-11-MOTION-IN-A-PLANE-03",
+  "verified_by": "agent-verifier-1",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:216a3f53a4cdc85daeef7254c1db4f47d29eaa1e9865a0e5672f192f17ff08ee",
+  "questions": [
+    {
+      "card_ref": "EV-PHY-11-MIP-03-011",
+      "independent_solution": [
+        "Draw a from O to P and b from P to Q; a + b is OQ, the third side of triangle OPQ. A side is never longer than the sum of the other two, so |a+b| <= |a|+|b| (a); and never shorter than their difference, so |a+b| >= ||a|-|b|| (b).",
+        "Replace b by -b (same length |b|): the triangle a, -b, a-b gives |a-b| <= |a|+|b| (c) and |a-b| >= ||a|-|b|| (d).",
+        "Equality needs a degenerate (flat) triangle, i.e. a and b collinear: (a),(d) when parallel, (b),(c) when antiparallel."
+      ],
+      "independent_answer": "All four follow from the triangle side rules; the equality signs apply only when a and b are collinear.",
+      "official_answer": "Hint: the sum (difference) of any two sides of a triangle is never less (greater) than the third side. Equality holds for collinear vectors.",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-03-017",
+      "independent_solution": [
+        "Continuation of 3.6: with -b in place of b, the triangle formed by a, -b and a - b has sides |a|, |b|, |a-b|.",
+        "Hence |a-b| <= |a|+|b| and |a-b| >= ||a|-|b||, with equality only for collinear a and b (antiparallel for (c), parallel for (d))."
+      ],
+      "independent_answer": "(c) and (d) hold by the triangle rule applied to a + (-b); equality only for collinear vectors.",
+      "official_answer": "Hint: the sum (difference) of any two sides of a triangle is never less (greater) than the third side. Equality holds for collinear vectors.",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-03-012",
+      "independent_solution": [
+        "(a) False: four non-zero vectors forming a closed quadrilateral sum to zero. (b) a + c = -(b + d), and a vector and its negative have equal magnitudes: true.",
+        "(c) a = -(b+c+d), so |a| = |b+c+d| <= |b|+|c|+|d|: true. (d) b + c = -(a + d), a linear combination of a and d, so it lies in their plane (or on their line if collinear): true."
+      ],
+      "independent_answer": "(b), (c) and (d) are correct; (a) is not.",
+      "official_answer": "All statements except (a) are correct",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-03-014",
+      "independent_solution": [
+        "Read the figure (pinned page 6): (i) a up from O, c rightwards from a's head, b from O to c's head, so a + c = b; (ii) a right, b up from a's head, c from b's head back to O, so a + b + c = 0; (iii) c left from O, b from c's head up to a's head, a up from O, so c + b = a; (iv) a left from O, b down from a's head, c from O to b's head, so a + b = c.",
+        "Rewrite Column I: (a) a + b = c -> (iv); (b) a - c = b i.e. a = b + c -> (iii); (c) b - a = c i.e. b = a + c -> (i); (d) a + b + c = 0 -> (ii)."
+      ],
+      "independent_answer": "(a)-(iv), (b)-(iii), (c)-(i), (d)-(ii)",
+      "official_answer": "(a) matches with (iv) (b) matches with (iii) (c) matches with (i) (d) matches with (ii)",
+      "agrees": true
+    }
+  ],
+  "records": [
+    {
+      "record_ref": "MIC-PHY-MIP-03",
+      "checked_fields": [
+        "title",
+        "entry_assumptions",
+        "inferential_jump",
+        "teaching_path",
+        "misconceptions",
+        "exit_task"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "CAP-PHY-MIP-03",
+      "checked_fields": [
+        "action",
+        "success_criterion"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-03-TRIANGLE-LAW",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-03-SUBTRACTION",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REP-PHY-MIP-03-HEAD-TO-TAIL",
+      "checked_fields": [
+        "purpose",
+        "required_elements",
+        "instance_constraints",
+        "misleading_alternatives"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-03-NCERT-3-6",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "hints",
+        "scaffolds"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-03-NCERT-3-7",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "hints",
+        "scaffolds"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-03-EXEMPLAR-4-26",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "hints",
+        "scaffolds"
+      ],
+      "agrees": true
+    }
+  ],
+  "findings": []
+}

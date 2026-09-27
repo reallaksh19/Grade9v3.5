@@ -20,6 +20,11 @@ class SiteNavAudit(unittest.TestCase):
         new = site_nav_audit.keys(report["findings"]) - site_nav_audit.keys(baseline)
         self.assertEqual(sorted(new), [], "fix these or, if intended, they must not exist; the baseline only shrinks")
 
+    def test_shared_header_search_does_not_assign_window_top(self):
+        source = (REPO / "public" / "js" / "site-header.js").read_text(encoding="utf-8")
+        self.assertNotIn(",top=document.createElement", source)
+        self.assertIn("const top=document.createElement('div')", source)
+
     def test_audit_detects_each_problem_class(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

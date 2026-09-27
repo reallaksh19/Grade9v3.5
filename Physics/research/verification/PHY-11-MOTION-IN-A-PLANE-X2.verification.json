@@ -1,0 +1,154 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Physics",
+  "node_ref": "PHY-11-MOTION-IN-A-PLANE-X2",
+  "verified_by": "agent-verifier-1",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:d140f7266e4c876b450eabee26e48b9ded033db65279765fec75d3db87251952",
+  "questions": [
+    {
+      "card_ref": "EV-PHY-11-MIP-X2-008",
+      "independent_solution": [
+        "Axes: x up along the plane, y perpendicular. Launch at beta to the plane: u_x = v0 cos(beta), u_y = v0 sin(beta); a_x = -g sin(alpha), a_y = -g cos(alpha).",
+        "(b) y = 0 again at T = 2 v0 sin(beta)/(g cos(alpha)).",
+        "(a) L = u_x T + (1/2) a_x T^2 = 2 v0^2 sin(beta)[cos(beta) cos(alpha) - sin(beta) sin(alpha)]/(g cos^2(alpha)) = 2 v0^2 sin(beta) cos(alpha + beta)/(g cos^2(alpha)).",
+        "(c) 2 sin(beta) cos(alpha + beta) = sin(alpha + 2 beta) - sin(alpha), maximal when alpha + 2 beta = pi/2: beta = pi/4 - alpha/2."
+      ],
+      "independent_answer": "(a) L = 2 v0^2 sin(beta) cos(alpha+beta)/(g cos^2 alpha); (b) T = 2 v0 sin(beta)/(g cos alpha); (c) beta = pi/4 - alpha/2",
+      "official_answer": "(a) L = 2 v0^2 sin(beta) cos(alpha+beta)/(g cos^2 alpha); (b) T = 2 v0 sin(beta)/(g cos alpha); (c) beta = pi/4 - alpha/2 (printed on pinned answers page 11)",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-X2-010",
+      "independent_solution": [
+        "The plane's normal makes angle theta with the vertical. Incoming velocity (vertical, speed v0): v0 cos(theta) into the plane, v0 sin(theta) along the plane downhill.",
+        "Elastic rebound reverses the normal part: v0 cos(theta) away from the plane, v0 sin(theta) downhill kept. Gravity: -g cos(theta) normal, +g sin(theta) downhill.",
+        "Flight time T = 2 v0 cos(theta)/(g cos(theta)) = 2 v0/g; distance down the plane d = v0 sin(theta) T + (1/2) g sin(theta) T^2 = 2 v0^2 sin(theta)/g + 2 v0^2 sin(theta)/g = 4 v0^2 sin(theta)/g."
+      ],
+      "independent_answer": "4 v0^2 sin(theta)/g, down the slope from the first impact",
+      "official_answer": "A v0^2 sin(theta)/g as printed on pinned answers page 11 (the coefficient is printed as the letter 'A')",
+      "agrees": false
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-X2-012",
+      "independent_solution": [
+        "Trajectory through P(5, 1): 1 = 5 tan(theta) - 25 g/(2 v^2 cos^2 theta).",
+        "theta = 45 deg: 1 = 5 - 25 g/v^2 -> v^2 = 25 g/4, v = 5 sqrt(g)/2: (A) true. Apex at x = v^2 sin(2 theta)/(2g) = 25/8 = 3.125 m < 5 m: (B) true.",
+        "theta = 30 deg: 25 g/(1.5 v^2) = 5/sqrt3 - 1 = 1.887 -> v^2 = 8.83 g; apex at 8.83 x 0.866/2 = 3.82 m < 5 m, so the apex is before P: (C) false. theta = tan^-1(1/5): 1 = 1 - (positive) is impossible for g > 0: (D) false."
+      ],
+      "independent_answer": "(A) and (B)",
+      "official_answer": "AB",
+      "agrees": true
+    }
+  ],
+  "records": [
+    {
+      "record_ref": "MIC-PHY-MIP-X2",
+      "checked_fields": [
+        "title",
+        "entry_assumptions",
+        "inferential_jump",
+        "teaching_path",
+        "misconceptions",
+        "exit_task",
+        "extensions.grade9v3:interactive_idea"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "CAP-PHY-MIP-X2",
+      "checked_fields": [
+        "action",
+        "success_criterion",
+        "curriculum_mappings"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-X2-TILTED-AXES",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-X2-INCLINE-RANGE",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REP-PHY-MIP-X2-TILTED-FRAME",
+      "checked_fields": [
+        "purpose",
+        "required_elements",
+        "instance_constraints",
+        "misleading_alternatives",
+        "correspondence"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-X2-EXEMPLAR-4-31",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "hints",
+        "scaffolds"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-X2-EXEMPLAR-4-32",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "hints",
+        "scaffolds"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-X2-JEEADV-2026-P1-Q6",
+      "checked_fields": [
+        "stem",
+        "options",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    }
+  ],
+  "findings": [
+    {
+      "target": "EV-PHY-11-MIP-X2-001",
+      "duty_for": "RESEARCHER",
+      "detail": "SYLLABUS_SCOPE card claim ends with a JEE Main sentence the quote does not support: 'The JEE Main syllabus could not be pinned (served only from the non-allowlisted cdnbbsr.s3waas.gov.in).' The quote is only the JEE (Advanced) kinematics line. Remove that sentence from the claim (same defect as EV-PHY-11-MIP-X1-001)."
+    },
+    {
+      "target": "EV-PHY-11-MIP-X2-012",
+      "duty_for": "RESEARCHER",
+      "detail": "QUESTION card claim adds a solution method the quote does not contain: 'The target is off the launch level, so it is found by intersecting the trajectory with the line OP.' A QUESTION card's claim must restate the question only; trim that sentence."
+    },
+    {
+      "target": "EV-PHY-11-MIP-X2-011",
+      "duty_for": "RESEARCHER",
+      "detail": "ANSWER_KEY card does not state the answer: its claim is 'an expression in v0, g and theta ... the verifier must read the printed answer on the page'. The printed key on pinned answers page 11 (rendered) reads 'A v0^2 sin θ / g' with the letter A where a numeric coefficient belongs, and the text layer shows the same 'A'. An independent derivation gives 4 v0^2 sin θ / g, so the key looks misprinted. Record the printed expression in the equation field, state the misprint in the claim, and find a second pinned source for the coefficient; until then the key cannot confirm any answer. The same key card is duplicated as EV-PHY-11-MIP-X3-011."
+    }
+  ]
+}

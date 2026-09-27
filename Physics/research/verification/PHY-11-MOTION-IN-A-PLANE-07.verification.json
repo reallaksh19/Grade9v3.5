@@ -1,0 +1,145 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Physics",
+  "node_ref": "PHY-11-MOTION-IN-A-PLANE-07",
+  "verified_by": "agent-verifier-1",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:46b1f6775d9d68bd6f35d361fde45ad54dfa8a84fc0825f9d9e5946a59d543d6",
+  "questions": [
+    {
+      "card_ref": "EV-PHY-11-MIP-07-009",
+      "independent_solution": [
+        "x-axis: v_0x = 0, a_x = 8.0, so x = 4t^2 = 16 m gives t = 2 s. y-axis at the same t: y = 10.0(2) + (1/2)(2.0)(2)^2 = 24 m.",
+        "Velocity at t = 2 s: v_x = 8.0(2) = 16 m/s, v_y = 10.0 + 2.0(2) = 14 m/s; speed = sqrt(16^2 + 14^2) = sqrt(452) = 21.26 m/s."
+      ],
+      "independent_answer": "2 s, 24 m, 21.26 m/s",
+      "official_answer": "2 s, 24 m, 21.26 m/s",
+      "agrees": true,
+      "numeric_check": "sqrt(16/(0.5*8.0))"
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-07-011",
+      "independent_solution": [
+        "(b) is the definition of average velocity and (e) of average acceleration, so both hold for any motion.",
+        "(a) needs v linear in t, (c) and (d) need a constant a; e.g. for a(t) = kt, v = v0 + kt^2/2 != v0 + a(t)t. So (a), (c), (d) are not true in general."
+      ],
+      "independent_answer": "(b) and (e)",
+      "official_answer": "(b) and (e)",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-07-013",
+      "independent_solution": [
+        "Read options from the pinned pages 3-4 (rendered): (a) v_av = (1/2)[v(t1)+v(t2)], (b) v_av = [r(t2)-r(t1)]/(t2-t1), (c) r = (1/2)(v(t2)-v(t1))(t2-t1), (d) a_av = [v(t2)-v(t1)]/(t2-t1).",
+        "(b) and (d) are definitions, always correct. (a) holds only for constant acceleration; (c) is wrong in general (even for constant a the displacement is (1/2)(v1+v2)(t2-t1), and a body at constant velocity would give r = 0). Incorrect ones: (a) and (c)."
+      ],
+      "independent_answer": "(a), (c)",
+      "official_answer": "(a), (c)",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-07-015",
+      "independent_solution": [
+        "Continuation of Exemplar 4.13 holding options (c) and (d).",
+        "(c) r = (1/2)(v(t2)-v(t1))(t2-t1) is incorrect in general (uniform motion gives v(t2) = v(t1) but non-zero displacement); (d) is the definition of average acceleration and is correct."
+      ],
+      "independent_answer": "(a), (c)",
+      "official_answer": "(a), (c)",
+      "agrees": true
+    }
+  ],
+  "records": [
+    {
+      "record_ref": "MIC-PHY-MIP-07",
+      "checked_fields": [
+        "title",
+        "entry_assumptions",
+        "inferential_jump",
+        "teaching_path",
+        "misconceptions",
+        "exit_task"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "CAP-PHY-MIP-07",
+      "checked_fields": [
+        "action",
+        "success_criterion"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-07-CONST-ACC-VELOCITY",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "symbols",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-07-CONST-ACC-POSITION",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "symbols",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REP-PHY-MIP-07-TWO-AXIS-CLOCK",
+      "checked_fields": [
+        "purpose",
+        "required_elements",
+        "instance_constraints",
+        "misleading_alternatives"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-07-NCERT-3-18",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "hints",
+        "scaffolds"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-07-NCERT-3-20",
+      "checked_fields": [
+        "stem",
+        "options",
+        "conditions",
+        "answer",
+        "hints",
+        "scaffolds"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-07-EXEMPLAR-4-13",
+      "checked_fields": [
+        "stem",
+        "options",
+        "conditions",
+        "answer",
+        "hints",
+        "scaffolds"
+      ],
+      "agrees": true
+    }
+  ],
+  "findings": []
+}

@@ -707,7 +707,7 @@ def compose(doc: dict, repo: Path = REPO, repository_basis: str | None = None) -
         "repository_basis": repository_basis or doc.get("repository_basis") or git_basis(repo),
         "authority_contract": {
             "version": authority["version"],
-            "path": str(authority_path.relative_to(repo)),
+            "path": authority_path.relative_to(repo).as_posix(),
             "digest": digest(authority),
         },
         "input_digest": input_digest,

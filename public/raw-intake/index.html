@@ -1,11 +1,17 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../vendor/katex/0.16.8/katex.min.css">
+  <script src="../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../vendor/katex/0.16.8/contrib/auto-render.min.js" onload="window.__katexLoaded=true; if(window.renderAllMath) window.renderAllMath();"></script>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Start from your questions · Grade9V3</title>
   <link rel="stylesheet" href="../css/site.css">
   <link rel="stylesheet" href="../css/core-prompt-composer.css">
+  <link rel="stylesheet" href="../css/tablet-12-7.css">
 </head>
 <body>
   <main class="composer-shell">
@@ -64,11 +70,8 @@
         <div id="errors" class="composer-errors" role="alert" hidden></div>
         <section>
           <h3>Coverage ledger to fill</h3>
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>Kind</th><th>Id</th><th>Input</th><th>Research</th></tr></thead>
-              <tbody id="ledgerBody"><tr><td colspan="4">Build a plan to see every input and its research tasks.</td></tr></tbody>
-            </table>
+          <div id="ledgerBody" class="ledger-deck">
+            <div class="empty-ledger">Build a plan to see every input and its research tasks.</div>
           </div>
         </section>
         <section>

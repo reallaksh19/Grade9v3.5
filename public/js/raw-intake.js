@@ -244,9 +244,11 @@
         .concat(plan.inputs.questions.map(r => ['question', r.id, r.text || '(label ' + r.label + ')',
           plan.research_tasks.filter(t => t.input_id === r.id).map(t => t.kind).join(', ')]));
       rows.forEach(cells => {
-        const tr = doc.createElement('tr');
-        cells.forEach(c => { const td = doc.createElement('td'); td.textContent = c; tr.appendChild(td); });
-        tbody.appendChild(tr);
+        const card = doc.createElement('div');
+        card.className = 'ledger-card';
+        const icon = cells[0] === 'syllabus' ? '📚' : '❓';
+        card.innerHTML = '<div class="ledger-card-head"><span class="ledger-kind">' + icon + ' <strong>' + cells[0].toUpperCase() + '</strong></span><code>' + cells[1] + '</code></div><div class="ledger-card-body"><div class="ledger-text">' + cells[2] + '</div><div class="ledger-task">🔍 <strong>Research:</strong> <span>' + cells[3] + '</span></div></div>';
+        tbody.appendChild(card);
       });
       $('promptPreview').textContent = last.prompt;
       ['copyPrompt', 'downloadRequest', 'downloadIntake', 'downloadPrompt'].forEach(id => { $(id).disabled = false; });
