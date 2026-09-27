@@ -2675,16 +2675,24 @@
       "lineage": [],
       "elicitation": {
         "predict": {
-          "prompt": "Immediately after a horizontal launch, which acceleration component is zero in the ideal model?",
-          "defensible_answer": "a_x is zero; a_y is -g if +y is upward."
+          "prompt": "Just after the basketball leaves the player's hands, moving forward and upward, which acceleration component is zero in the ideal model?",
+          "defensible_answer": "a_x is zero; a_y is −g (−10 m/s²) with +y upward, even while the ball is still rising."
         },
         "attempt": {
-          "produces": "A model declaration and component-equation setup for a horizontal or oblique projectile.",
+          "produces": "The model and frame for the basketball, x(t), y(t), v_x(t) and v_y(t) with the 2 m starting height, and the ball's position and velocity at t = 0.5 s.",
           "closure": "RUBRIC",
           "rubric": [
             {
-              "criterion": "The learner selects gravity-only free flight, uses a_x=0/a_y=-g and one common time before calculating any named projectile quantity.",
-              "evidence_of": "Projectile model selection rather than formula recall."
+              "criterion": "Declares gravity-only free flight with a_x = 0 and a_y = −10 m/s², and puts the origin on the floor below the release point so y = 2 m at t = 0.",
+              "evidence_of": "Projectile model and frame selection rather than formula recall."
+            },
+            {
+              "criterion": "Writes x = 6t and y = 2 + 8t − 5t² with one shared t, and v_x = 6, v_y = 8 − 10t.",
+              "evidence_of": "Keeping the starting height and the common clock in the component equations."
+            },
+            {
+              "criterion": "At t = 0.5 s gives (3, 4.75) m and (6, 3) m/s, and notes that v_y > 0, so the ball is still rising.",
+              "evidence_of": "Reading the state at a given instant from simultaneous components."
             }
           ],
           "accepted": [
@@ -2692,7 +2700,8 @@
             "State assumptions, set component accelerations, then solve x/y with one t."
           ],
           "rejected": [
-            "Start from a memorized range/height formula without establishing the free-flight component model."
+            "'y = 8t − 5t² = 2.75 m at 0.5 s.' This drops the 2 m starting height: with the origin on the floor, y(0) = 2 m.",
+            "Start from a memorized range or maximum-height formula; this task asks for the state at a given instant, not a named event."
           ],
           "task": {
             "prompt": "A basketball leaves a player's hands 2 m above the floor with velocity components 6 m/s horizontally and 8 m/s upward. Air resistance is negligible and g = 10 m/s². Declare the model and the frame (origin on the floor directly below the release point, +y up), write x(t), y(t), v_x(t) and v_y(t), and find the ball's position and velocity at t = 0.5 s.",
@@ -2707,32 +2716,27 @@
         "reconstruct": {
           "route": [
             {
-              "ask": "What forces remain after release in the idealized problem?",
-              "why_this_ask": "Elicits the gravity-only model.",
+              "ask": "What forces act on the ball after it leaves the hands, and what acceleration components follow?",
+              "why_this_ask": "Elicits the gravity-only model: a_x = 0, a_y = −10 m/s².",
               "from_step_ref": "K2D3-1"
             },
             {
-              "ask": "What are the horizontal and vertical component equations, and what clock do they share?",
-              "why_this_ask": "Rebuilds the projectile specialization from 2D constant acceleration.",
+              "ask": "Where is the origin, so what is y at t = 0?",
+              "why_this_ask": "The frame puts the release point at y = 2 m, not at zero.",
+              "from_step_ref": "K2D3-1"
+            },
+            {
+              "ask": "What is y(t) with the 2 m start, and what is x(t)? Which clock do they share?",
+              "why_this_ask": "Rebuilds both component equations with one common t.",
               "from_step_ref": "K2D3-2"
             },
             {
-              "ask": "What exact component condition identifies the event the question asks about?",
-              "why_this_ask": "Separates model selection from event selection.",
-              "from_step_ref": "K2D3-3"
-            },
-            {
-              "ask": "If the event is the apex, what becomes zero and what definitely does not?",
-              "why_this_ask": "Protects against the common full-velocity/full-acceleration zero shortcut.",
-              "from_step_ref": "K2D3-4"
-            },
-            {
-              "ask": "Does launch height equal landing height? If not, which shortcut becomes invalid?",
-              "why_this_ask": "Makes the same-height boundary explicit.",
-              "from_step_ref": "K2D3-5"
+              "ask": "At t = 0.5 s, is v_y still positive? What does that say about the ball's motion then?",
+              "why_this_ask": "Reads the vertical state from the component, not from a guess about the apex.",
+              "from_step_ref": "K2D3-7"
             }
           ],
-          "differs_from_teaching_path": "Teaching states the projectile specialization; reconstruction derives it from the post-release interaction model and coordinate choice."
+          "differs_from_teaching_path": "The teaching path goes from the model to named events (apex, landing). The learner route stops at a given instant: it fixes the frame and the starting height, writes both component equations with one clock, and reads the state at 0.5 s."
         },
         "boundary_test": {
           "prompt": "A launched object continues under significant horizontal thrust after release. May the standard a_x=0 projectile specialization be used?",
@@ -6141,7 +6145,7 @@
           "supports_move_ref": "R-KIN-2D-SAME-REPRESENT"
         },
         {
-          "text": "The vertical equation has a launch root and a later root; identify which event is requested before reusing the time.",
+          "text": "Factor 16t − 4t² = 4t(4 − t). Which factor gives the launch, and which gives the landing?",
           "support_kind": "CONNECT",
           "reveals": "METHOD",
           "supports_move_ref": "R-KIN-2D-SAME-EVENT"
