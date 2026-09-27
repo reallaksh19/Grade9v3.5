@@ -60,6 +60,36 @@ class Pr306UiRegressions(unittest.TestCase):
         self.assertIn("katex.render(asciiMathTokenToTex", runtime)
         self.assertIn("renderPhysicsAsciiMath(els.results)", runtime)
 
+    def test_katex_vendor_dependency_closure_and_no_jsdelivr_runtime(self):
+        css = (REPO / "public" / "vendor" / "katex" / "0.16.8" / "katex.min.css").read_text(encoding="utf-8")
+        fonts = set(
+            p.name
+            for p in (REPO / "public" / "vendor" / "katex" / "0.16.8" / "fonts").glob("*.woff2")
+        )
+        referenced = set(__import__("re").findall(r"url\\([^)]*/([^/'\")]+\\.woff2)", css))
+        self.assertEqual(referenced - fonts, set())
+        self.assertTrue((REPO / "public" / "vendor" / "katex" / "0.16.8" / "LICENSE").is_file())
+
+        for root_name in ("public", "standalone"):
+            for path in (REPO / root_name).rglob("*.html"):
+                if "/products/" in path.as_posix():
+                    continue
+                source = path.read_text(encoding="utf-8")
+                self.assertNotIn(
+                    "cdn.jsdelivr.net/npm/katex@0.16.8",
+                    source,
+                    msg=f"external KaTeX runtime remains in {path.relative_to(REPO)}",
+                )
+
+    def test_tailwind_external_runtime_is_still_explicit_until_vendored(self):
+        offenders = []
+        for root_name in ("public", "standalone"):
+            for path in (REPO / root_name).rglob("*.html"):
+                source = path.read_text(encoding="utf-8")
+                if "cdn.tailwindcss.com" in source or "gstatic.com/antigravity" in source:
+                    offenders.append(path.relative_to(REPO).as_posix())
+        self.assertTrue(offenders, "remove this sentinel once Tailwind is actually local")
+
 
 if __name__ == "__main__":
     unittest.main()
