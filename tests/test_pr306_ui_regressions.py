@@ -33,6 +33,22 @@ class Pr306UiRegressions(unittest.TestCase):
         self.assertIn("graphCanvas.height / rect.height", source)
         self.assertNotIn("graphCanvas.addEventListener('mousedown'", source)
 
+    def test_question_hub_is_keyboard_safe_dialog_in_public_and_standalone(self):
+        paths = [
+            REPO / "public" / "physics" / "motion-in-2d" / "explorers" / "motions_in_2d" / "index.html",
+            REPO / "standalone" / "motion-in-2d-master-suite.html",
+        ]
+        for path in paths:
+            with self.subTest(path=path):
+                source = path.read_text(encoding="utf-8")
+                self.assertIn('id="jeeHubModal" role="dialog" aria-modal="true"', source)
+                self.assertIn('aria-labelledby="jeeHubTitle"', source)
+                self.assertIn("event.key === 'Escape'", source)
+                self.assertIn("event.key !== 'Tab'", source)
+                self.assertIn("document.body.style.overflow = 'hidden'", source)
+                self.assertIn("jeeHubLastFocus.focus()", source)
+                self.assertIn("jeeHubFocusable(modal)", source)
+
 
 if __name__ == "__main__":
     unittest.main()
