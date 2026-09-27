@@ -668,7 +668,7 @@ def shell(ctx: Ctx, role: str, mode: str) -> tuple[str, str]:
         return "", ""
     nav_links = "".join(
         f'<a href="{"#g9-role-" + r if mode == "SINGLE_FILE" else ROLE_FILE[r]}"'
-        f'{" aria-current=page" if r == role else ""}>{esc(r)}</a>'
+        f'{" aria-current=page" if mode != "SINGLE_FILE" and r == role else ""}>{esc(r)}</a>'
         for r in ROLES
     )
     header = (f'<header data-g9-shell-header><a data-g9-home href="{esc(m["home_href"])}">Home</a>'
@@ -681,8 +681,9 @@ def shell(ctx: Ctx, role: str, mode: str) -> tuple[str, str]:
               f'<button type="button" data-g9-font="inc">A+</button><button type="button" data-g9-theme="light">Light</button>'
               f'<button type="button" data-g9-theme="dark">Dark</button><button type="button" data-g9-zoom="dec">Zoom −</button>'
               f'<button type="button" data-g9-zoom="reset">100%</button><button type="button" data-g9-zoom="inc">Zoom +</button></div></header>')
+    product_href = "#g9-role-CORE1" if mode == "SINGLE_FILE" else "index.html"
     crumbs = (f'<nav data-g9-breadcrumb aria-label="Breadcrumb"><a href="{esc(m["home_href"])}">Home</a>'
-              f'<a href="index.html">{esc(m["title"])}</a>{nav_links}</nav>')
+              f'<a href="{product_href}">{esc(m["title"])}</a>{nav_links}</nav>')
     return header, crumbs
 
 
