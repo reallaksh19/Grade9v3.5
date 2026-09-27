@@ -90,6 +90,73 @@ class Pr306UiRegressions(unittest.TestCase):
                     offenders.append(path.relative_to(REPO).as_posix())
         self.assertTrue(offenders, "remove this sentinel once Tailwind is actually local")
 
+    def test_interactive_pages_do_not_disable_browser_zoom(self):
+        paths = [
+            "public/chemistry/bonding/explorers/chemical_bonding/index.html",
+            "public/chemistry/gases/explorers/behaviour_of_gases/index.html",
+            "public/chemistry/some-basic-concepts/explorers/mole_concept/index.html",
+            "public/mathematics/vectors/explorers/vector_algebra/index.html",
+            "public/physics/motion-1d/explorers/motion_in_1d/index.html",
+            "public/physics/motion-in-2d/explorers/motions_in_2d/index.html",
+            "standalone/chemistry-behaviour-of-gases-master-suite.html",
+            "standalone/chemistry-chemical-bonding-master-suite.html",
+            "standalone/chemistry-mole-concept-master-suite.html",
+            "standalone/motion-in-1d-master-suite.html",
+            "standalone/motion-in-2d-master-suite.html",
+            "standalone/vector-algebra-3d-master-suite.html",
+        ]
+        for rel in paths:
+            with self.subTest(path=rel):
+                source = (REPO / rel).read_text(encoding="utf-8")
+                viewport = next(
+                    (line for line in source.splitlines() if 'name="viewport"' in line),
+                    "",
+                )
+                self.assertNotIn("user-scalable=no", viewport)
+                self.assertNotIn("maximum-scale=1", viewport)
+
+    def test_tailwind_suite_typography_has_no_sub_13px_utilities(self):
+        paths = [
+            "public/chemistry/bonding/explorers/chemical_bonding/index.html",
+            "public/chemistry/gases/explorers/behaviour_of_gases/index.html",
+            "public/chemistry/redox/explorers/redox_reactions/index.html",
+            "public/chemistry/some-basic-concepts/explorers/mole_concept/index.html",
+            "public/mathematics/vectors/explorers/vector_algebra/index.html",
+            "public/physics/motion-1d/explorers/motion_in_1d/index.html",
+            "public/physics/motion-in-2d/explorers/independent_components_shared_clock/index.html",
+            "public/physics/motion-in-2d/explorers/is_it_really_a_projectile/index.html",
+            "public/physics/motion-in-2d/explorers/motions_in_2d/index.html",
+            "public/physics/motion-in-2d/explorers/same_height_same_speed/index.html",
+            "public/physics/motion-in-2d/explorers/the_apex_fallacy/index.html",
+            "public/physics/motion-in-2d/explorers/the_event_clock/index.html",
+            "standalone/chemistry-behaviour-of-gases-master-suite.html",
+            "standalone/chemistry-chemical-bonding-master-suite.html",
+            "standalone/chemistry-mole-concept-master-suite.html",
+            "standalone/chemistry-redox-reactions-master-suite.html",
+            "standalone/motion-in-1d-master-suite.html",
+            "standalone/motion-in-2d-master-suite.html",
+            "standalone/vector-algebra-3d-master-suite.html",
+        ]
+        micro = __import__("re").compile(r"text-\[(?:9|10|11|12|12\.5)px\]|\btext-xs\b")
+        for rel in paths:
+            with self.subTest(path=rel):
+                source = (REPO / rel).read_text(encoding="utf-8")
+                self.assertIsNone(micro.search(source))
+
+    def test_motion_2d_deglossing_does_not_leave_orphan_keyframe_blocks(self):
+        paths = [
+            "public/physics/motion-in-2d/explorers/independent_components_shared_clock/index.html",
+            "public/physics/motion-in-2d/explorers/motions_in_2d/index.html",
+            "public/physics/motion-in-2d/explorers/same_height_same_speed/index.html",
+            "standalone/motion-in-2d-master-suite.html",
+        ]
+        orphan = __import__("re").compile(r"(?m)^\s*(?:0%|25%|50%|75%|100%)\s*\{")
+        for rel in paths:
+            with self.subTest(path=rel):
+                source = (REPO / rel).read_text(encoding="utf-8")
+                self.assertNotIn("@keyframes", source)
+                self.assertIsNone(orphan.search(source))
+
 
 if __name__ == "__main__":
     unittest.main()
