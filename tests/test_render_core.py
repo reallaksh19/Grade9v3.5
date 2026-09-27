@@ -98,6 +98,22 @@ class Renderer(unittest.TestCase):
         self.assertNotIn("REP-KIN-2D-SHARED-CLOCK", [g["record"] for g in ctx.gaps if g["duty"] == "BUILD_SCENE"])
 
 
+    def test_renderer_owns_tablet_math_assets_and_blueprint_digest(self):
+        ctx = render_core.context(manifest_file(self.tmp))
+        digest_before = render_core.render_digest(ctx)
+        html = render_core.page(ctx, "CORE1", "PAGES", digest_before)
+        self.assertIn('../../../vendor/katex/0.16.8/katex.min.css', html)
+        self.assertIn('../../../vendor/katex/0.16.8/katex.min.js', html)
+        self.assertIn('../../../vendor/katex/0.16.8/contrib/auto-render.min.js', html)
+        self.assertIn('../../../css/tablet-12-7.css', html)
+        self.assertNotIn('cdn.jsdelivr.net', html)
+
+        changed = copy.deepcopy(ctx)
+        changed.blueprints = copy.deepcopy(ctx.blueprints)
+        changed.blueprints["shell"]["typography_policy"]["minimum_learner_text_css_px"] = 15
+        self.assertNotEqual(digest_before, render_core.render_digest(changed))
+
+
 class Manifest(unittest.TestCase):
     def test_manifest_holds_selection_only(self):
         m = product_manifest.derive(PKG, [BANK], "P", "T", "../index.html")
