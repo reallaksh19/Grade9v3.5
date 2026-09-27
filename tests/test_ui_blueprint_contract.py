@@ -20,7 +20,12 @@ class UiBlueprintContractTest(unittest.TestCase):
 
     def test_shell_carries_systemic_learner_web_invariants(self):
         self.assertEqual(self.shell["typography_policy"]["minimum_learner_text_css_px"], 14)
-        self.assertEqual(self.shell["math_policy"]["representation"], "TYPED_SEGMENTS_ONLY")
+        self.assertEqual(
+            self.shell["math_policy"]["static_relation_format"],
+            "RESTRICTED_PRESENTATION_MATHML",
+        )
+        self.assertEqual(self.shell["math_policy"]["dynamic_question_format"], "TYPED_TEX_SEGMENTS")
+        self.assertEqual(self.shell["math_policy"]["dynamic_renderer"], "LOCAL_KATEX")
         self.assertEqual(self.shell["math_policy"]["runtime_text_inference"], "FORBIDDEN")
         self.assertTrue(
             self.shell["representation_accessibility_policy"][
