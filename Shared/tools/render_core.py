@@ -667,6 +667,13 @@ q('[data-g9-action="display"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-di
 """
 
 
+def _mode_href(href: str, mode: str) -> str:
+    """Rebase public-root-relative links for the governed standalone publication path."""
+    if mode == "SINGLE_FILE" and href.startswith("../../../"):
+        return "../../../public/" + href[len("../../../"):]
+    return href
+
+
 def shell(ctx: Ctx, role: str, mode: str) -> tuple[str, str]:
     m = ctx.manifest
     if mode == "EMBED":
@@ -676,9 +683,11 @@ def shell(ctx: Ctx, role: str, mode: str) -> tuple[str, str]:
         f'{" aria-current=page" if mode != "SINGLE_FILE" and r == role else ""}>{esc(r)}</a>'
         for r in ROLES
     )
-    header = (f'<header data-g9-shell-header><a data-g9-home href="{esc(m["home_href"])}">Home</a>'
+    home_href = _mode_href(m["home_href"], mode)
+    question_bank_href = _mode_href(m.get("question_bank_href", m["home_href"]), mode)
+    header = (f'<header data-g9-shell-header><a data-g9-home href="{esc(home_href)}">Home</a>'
               f'<button type="button" onclick="history.back()">Back</button>'
-              f'<a href="{esc(m.get("question_bank_href", m["home_href"]))}">Question bank</a>'
+              f'<a href="{esc(question_bank_href)}">Question bank</a>'
               f'<button type="button" data-g9-action="search">Search</button>'
               f'<button type="button" data-g9-action="display">Display</button>'
               f'<div data-g9-search-panel hidden><input data-g9-search-input type="search" aria-label="Search this page"></div>'
@@ -687,7 +696,7 @@ def shell(ctx: Ctx, role: str, mode: str) -> tuple[str, str]:
               f'<button type="button" data-g9-theme="dark">Dark</button><button type="button" data-g9-zoom="dec">Zoom −</button>'
               f'<button type="button" data-g9-zoom="reset">100%</button><button type="button" data-g9-zoom="inc">Zoom +</button></div></header>')
     product_href = "#g9-role-CORE1" if mode == "SINGLE_FILE" else "index.html"
-    crumbs = (f'<nav data-g9-breadcrumb aria-label="Breadcrumb"><a href="{esc(m["home_href"])}">Home</a>'
+    crumbs = (f'<nav data-g9-breadcrumb aria-label="Breadcrumb"><a href="{esc(home_href)}">Home</a>'
               f'<a href="{product_href}">{esc(m["title"])}</a>{nav_links}</nav>')
     return header, crumbs
 
@@ -812,6 +821,11 @@ def _single_file_fragment(page_html: str, role: str) -> str:
     fragment = re.sub(r'href="(core\w+\.html)#([^"]+)"', cross_link, fragment)
     for old in article_ids:
         fragment = fragment.replace(f'href="#{old}"', f'href="#g9-{role}--{old}"')
+    fragment = re.sub(
+        r'href="\.\./\.\./\.\./([^"]+)"',
+        lambda m: f'href="../../../public/{m.group(1)}"',
+        fragment,
+    )
     return fragment
 
 
