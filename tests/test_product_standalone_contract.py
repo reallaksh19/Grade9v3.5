@@ -20,8 +20,8 @@ class ProductStandaloneContractTest(unittest.TestCase):
         self.assertIn(f"render_core/2 {digest}", html)
         self.assertIn('data-g9-mode="SINGLE_FILE"', html)
         self.assertIn('data-g9-tablet-shell', html)
-        self.assertNotRegex(html, r'<script\\b[^>]*\\bsrc="https?://')
-        self.assertNotRegex(html, r'<link\\b[^>]*\\bhref="https?://')
+        self.assertNotRegex(html, r'<script\b[^>]*\bsrc="https?://')
+        self.assertNotRegex(html, r'<link\b[^>]*\bhref="https?://')
         self.assertNotIn('href="core1.html"', html)
         self.assertNotIn('href="core2a.html"', html)
         for role in render_core.ROLES:
