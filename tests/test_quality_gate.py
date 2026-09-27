@@ -171,6 +171,21 @@ class Gate(unittest.TestCase):
         report = quality_gate.gate(out, "Mathematics", "FIXTURE-MATH-LINEAR", static=True)
         self.assertIn("ALL-PRE-ATTEMPT-MARKUP-WITHHELD", {f["rule"] for f in report["findings"]})
 
+    def test_core1b_mounts_its_own_task_figure(self):
+        manifest = complete_fixture(self.tmp)
+        m = json.loads(manifest.read_text(encoding="utf-8"))
+        pkg_path = Path(m["package_refs"][0])
+        pkg = json.loads(pkg_path.read_text(encoding="utf-8"))
+        rep = copy.deepcopy(next(r for r in pkg["representations"] if r["id"] == "REP-MATH-NUMBER-LINE"))
+        rep["id"] = "REP-MATH-TASK-CANDIDATES"
+        pkg["representations"].append(rep)
+        mic = next(x for x in pkg["microtopics"] if x["id"] == "MIC-MATH-CONSTRAINT")
+        mic["elicitation"]["attempt"]["task"]["representation_ref"] = "REP-MATH-TASK-CANDIDATES"
+        pkg_path.write_text(json.dumps(pkg), encoding="utf-8")
+        html = (self.build(manifest) / "core1b.html").read_text(encoding="utf-8")
+        self.assertIn('data-g9-representation="REP-MATH-TASK-CANDIDATES"', html)
+        self.assertNotIn('data-g9-representation="REP-MATH-NUMBER-LINE"', html)
+
     def test_every_owner_input_must_resolve_to_a_rendered_unit(self):
         manifest = complete_fixture(self.tmp)
         m = json.loads(manifest.read_text(encoding="utf-8"))
