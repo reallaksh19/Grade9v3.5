@@ -100,7 +100,11 @@ class Renderer(unittest.TestCase):
 
 
     def test_renderer_owns_tablet_asset_and_blueprint_digest(self):
-        ctx = render_core.context(manifest_file(self.tmp))
+        pkg = json.loads((REPO / PKG).read_text(encoding="utf-8"))
+        pkg["representations"][0]["rendered_asset_refs"] = ["Physics/assets/representations/REP-KIN-2D-SHARED-CLOCK.svg"]
+        pkg_path = self.tmp / "pkg-with-asset.json"
+        pkg_path.write_text(json.dumps(pkg), encoding="utf-8")
+        ctx = render_core.context(manifest_file(self.tmp, package_refs=[str(pkg_path)]))
         digest_before = render_core.render_digest(ctx)
         html = render_core.page(ctx, "CORE1", "PAGES", digest_before)
         self.assertIn('../../css/tablet-12-7.css', html)
