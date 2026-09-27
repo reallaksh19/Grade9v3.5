@@ -2180,7 +2180,6 @@
         "REL-KIN-2D-DISPLACEMENT"
       ],
       "representation_refs": [
-        "REP-KIN-2D-ANCHOR-POSITION-2-3",
         "REP-KIN-2D-SHARED-CLOCK"
       ],
       "question_family_refs": [
@@ -2382,7 +2381,6 @@
         "REL-KIN-2D-DISPLACEMENT"
       ],
       "representation_refs": [
-        "REP-KIN-2D-ANCHOR-VELOCITY-5-NEG2",
         "REP-KIN-2D-SHARED-CLOCK",
         "REP-KIN-2D-EVENT-CLOCK"
       ],
@@ -2619,7 +2617,6 @@
         "REL-PROJECTILE-COMPONENT-MODEL"
       ],
       "representation_refs": [
-        "REP-KIN-2D-GRAVITY-GATE-10-5",
         "REP-KIN-2D-SHARED-CLOCK",
         "REP-KIN-2D-EVENT-CLOCK",
         "REP-KIN-2D-PROJECTILE-MODEL"
@@ -3163,7 +3160,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "VECTOR_DIAGRAM",
+      "kind": "VECTOR",
       "purpose": "Keep independently evolving x and y descriptions attached to one physical object, one declared frame and one shared clock, so only simultaneous component values are recombined into a plane state.",
       "required_elements": [
         "physical object",
@@ -3374,7 +3371,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "GRAPH_GENERIC",
+      "kind": "GRAPH",
       "purpose": "Make event selection explicit: one component condition identifies the requested event time, and that same time is then reused on every component before reconstructing the requested state.",
       "required_elements": [
         "physical event",
@@ -3505,7 +3502,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "VECTOR_DIAGRAM",
+      "kind": "VECTOR",
       "purpose": "Make the ideal projectile specialization conditional on the interactions that remain after release: gravity-only free flight licenses a_x=0 and a_y=-g; retained thrust, significant drag or contact requires a more general model.",
       "required_elements": [
         "launched-object scene",
@@ -3632,7 +3629,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "VECTOR_DIAGRAM",
+      "kind": "VECTOR",
       "purpose": "Show the drone of x(t) = 6t, y(t) = 8t − t² in one frame with one clock, so each axis is evaluated on its own and only same-time values are paired into a position.",
       "required_elements": [
         "drone flight from the launch pad",
@@ -3750,7 +3747,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "VECTOR_DIAGRAM",
+      "kind": "VECTOR",
       "purpose": "Show the air-table puck with u = (4, 6) m/s and a = (0, −2) m/s²: check that each axis's acceleration is constant, run the one-dimensional equations once per axis, and carry the one event time t = 6 s across both axes.",
       "required_elements": [
         "puck on the air table",
@@ -3878,7 +3875,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "GRAPH_GENERIC",
+      "kind": "GRAPH",
       "purpose": "Show the level-ground launch with u = (6, 15) m/s and name each requested event as a component condition before its time is solved: v_y = 0 at the apex, Δy = 0 at the return to launch height.",
       "required_elements": [
         "level-ground launch with u = (6, 15) m/s",
@@ -3997,7 +3994,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "GRAPH_GENERIC",
+      "kind": "GRAPH",
       "purpose": "Show the roof launch 25 m above the ground with u = (5, 20) m/s: the landing event is written from the actual drop, Δy = −25 m, with the actual u_y kept, and every requested quantity is read at that one time.",
       "required_elements": [
         "roof launch 25 m above ground with u = (5, 20) m/s",
@@ -4111,7 +4108,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "VECTOR_DIAGRAM",
+      "kind": "VECTOR",
       "purpose": "Show the particle with u = (3 i + 4 j) m/s and constant a = (2 i − 1 j) m/s² split into two signed one-dimensional problems that share the one 3 s interval.",
       "required_elements": [
         "particle with u = (3 i + 4 j) m/s and a = (2 i − 1 j) m/s²",
@@ -4228,7 +4225,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "GRAPH_GENERIC",
+      "kind": "GRAPH",
       "purpose": "Show the launch with u = (12, 20) m/s up to its apex, where only v_y is zero while v_x = 12 m/s continues and gravity still acts.",
       "required_elements": [
         "launch with u_x = 12 m/s and u_y = 20 m/s",
@@ -4337,7 +4334,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "GRAPH_GENERIC",
+      "kind": "GRAPH",
       "purpose": "Show the same-height flight with u = (12, 16) m/s and g = 8 m/s²: the landing is the non-zero root of Δy = 0, and that one time gives the range and the landing velocity.",
       "required_elements": [
         "same-height launch with u = (12, 16) m/s, g = 8 m/s²",
@@ -4450,7 +4447,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "VECTOR_DIAGRAM",
+      "kind": "VECTOR",
       "purpose": "Show the particle described in compass words: east 6 m/s, north 2 m/s, acceleration 3 m/s² south.",
       "required_elements": [
         "particle with velocity and acceleration given in compass words",
@@ -4555,7 +4552,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "VECTOR_DIAGRAM",
+      "kind": "VECTOR",
       "purpose": "Show the two air-table pucks and their motions in one frame, timed on one clock.",
       "required_elements": [
         "two pucks with their start points, velocities and accelerations",
@@ -4664,7 +4661,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "GRAPH_GENERIC",
+      "kind": "GRAPH",
       "purpose": "Show the launch 15 m up with u = (10, 10) m/s and the roof 3.75 m above launch, starting 8 m out.",
       "required_elements": [
         "launch 15 m up with u = (10, 10) m/s and the roof from 8 m out, 3.75 m above launch",
@@ -4769,7 +4766,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "GRAPH_GENERIC",
+      "kind": "GRAPH",
       "purpose": "Show the package at the moment of release, 80 m above the ground, from the plane flying level at 50 m/s.",
       "required_elements": [
         "plane at 50 m/s releasing a package 80 m up, with the ground frame",
@@ -4874,7 +4871,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "GRAPH_GENERIC",
+      "kind": "GRAPH",
       "purpose": "Show the cliff throw with u = (10, 20) m/s and the direction 45° below the horizontal that the question names.",
       "required_elements": [
         "cliff throw with u = (10, 20) m/s and the target direction 45° below horizontal",
@@ -4978,7 +4975,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "COMPONENT_DIAGRAM",
+      "kind": "VECTOR",
       "purpose": "Show the boat leaving the jetty in the bank frame with steady components 3 m/s downstream and 4 m/s across.",
       "required_elements": [
         "bank frame: origin at the jetty, +x downstream, +y across",
@@ -4998,7 +4995,7 @@
         "mixed pair (15, 16) m rejected"
       ],
       "instance_constraints": [
-        "Both components are read at the same t.",
+        "x and y are read at the same t before they are paired.",
         "Velocities are relative to the bank."
       ],
       "accessibility": [
@@ -5012,7 +5009,13 @@
         "Physics/assets/representations/REP-KIN-2D-BOAT-RIVER.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "x(t) = 3t and y(t) = 4t on one clock",
+          "symbol": "t",
+          "in_words": "The one clock t on which both x(t) = 3t and y(t) = 4t are read."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
@@ -5071,7 +5074,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "TRAJECTORY_PLOT",
+      "kind": "GRAPH",
       "purpose": "Show the skater starting at the origin at 5 m/s along +x, with the wind's constant acceleration (−1 i + 2 j) m/s² for 4 s.",
       "required_elements": [
         "skater at the origin with u = 5 m/s along +x",
@@ -5092,8 +5095,8 @@
         "v = (1 i + 8 j) m/s, r = (12 i + 16 j) m"
       ],
       "instance_constraints": [
-        "Each axis uses only its own signed u and a.",
-        "The path and the end state appear only in the last stage."
+        "The x equations use only u_x = 5 m/s and a_x = −1 m/s²; the y equations only u_y = 0 and a_y = 2 m/s².",
+        "The path and the state at t = 4 s appear only in the last stage."
       ],
       "accessibility": [
         "Every force, value and result is written as text, not carried by colour or arrow length alone.",
@@ -5106,7 +5109,13 @@
         "Physics/assets/representations/REP-KIN-2D-SKATER-WIND.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "a = (−1 i + 2 j) m/s², constant for 4 s",
+          "symbol": "a_x",
+          "in_words": "The skater's x-acceleration, −1 m/s², constant for the 4 s."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
@@ -5165,7 +5174,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "TRAJECTORY_PLOT",
+      "kind": "GRAPH",
       "purpose": "Show the basketball released 2 m above the floor with u_x = 6 m/s and u_y = 8 m/s, in a frame with its origin on the floor below the release point.",
       "required_elements": [
         "release 2 m above the floor",
@@ -5190,7 +5199,7 @@
       ],
       "instance_constraints": [
         "y(0) = 2 m in this frame.",
-        "Both components share one clock."
+        "x(t) and y(t) use one clock from the release."
       ],
       "accessibility": [
         "Every force, value and result is written as text, not carried by colour or arrow length alone.",
@@ -5203,7 +5212,13 @@
         "Physics/assets/representations/REP-KIN-2D-BASKETBALL-2M.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "u_x = 6 m/s, u_y = 8 m/s",
+          "symbol": "u_y",
+          "in_words": "The ball's upward launch component, 8 m/s."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
@@ -5267,7 +5282,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "COMPONENT_DIAGRAM",
+      "kind": "VECTOR",
       "purpose": "Show the particle leaving the origin with u = (2, 0) m/s and constant a = (0, 6) m/s², each axis worked on its own at one shared time.",
       "required_elements": [
         "particle at the origin, u = (2, 0) m/s",
@@ -5285,7 +5300,7 @@
         "position (2, 3) m at t = 1 s"
       ],
       "instance_constraints": [
-        "Both components are read at the same t."
+        "Δx and Δy are both read at t = 1 s."
       ],
       "accessibility": [
         "Every force, value and result is written as text, not carried by colour or arrow length alone.",
@@ -5298,7 +5313,13 @@
         "Physics/assets/representations/REP-KIN-2D-ANCHOR-POSITION-2-3.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "Δx = 2 m, Δy = 3 m",
+          "symbol": "Delta y",
+          "in_words": "The y displacement at t = 1 s, 0.5 × 6 × 1² = 3 m."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
@@ -5356,7 +5377,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "VECTOR_DIAGRAM",
+      "kind": "VECTOR",
       "purpose": "Show the initial velocity u = (1, 2) m/s and the constant acceleration a = (2, −2) m/s², updated axis by axis on one clock.",
       "required_elements": [
         "u = (1, 2) m/s",
@@ -5388,7 +5409,13 @@
         "Physics/assets/representations/REP-KIN-2D-ANCHOR-VELOCITY-5-NEG2.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "v_x = 5 m/s, v_y = −2 m/s",
+          "symbol": "v_x",
+          "in_words": "The x-velocity at t = 2 s, 1 + 2 × 2 = 5 m/s."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
@@ -5446,7 +5473,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "TRAJECTORY_PLOT",
+      "kind": "GRAPH",
       "purpose": "Show the gravity-only condition that licenses the ideal projectile model, then an ideal launch with u_x = 10 m/s and u_y = 5 m/s.",
       "required_elements": [
         "gravity only after release",
@@ -5479,7 +5506,13 @@
         "Physics/assets/representations/REP-KIN-2D-GRAVITY-GATE-10-5.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "a_x = 0, a_y = −g",
+          "symbol": "g",
+          "in_words": "The gravity that is the only interaction after release, so a_y = −g."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
@@ -5504,7 +5537,7 @@
         {
           "id": "VIS-KIN-2D-GATE105-V2",
           "label": "After 1 s",
-          "purpose": "Draw the path for 1 s and read the state.",
+          "purpose": "Draw the 1 s flight back to launch height and read v.",
           "visible_elements": [
             "gravity only after release",
             "a_x = 0, a_y = −g",
@@ -5538,7 +5571,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "TRAJECTORY_PLOT",
+      "kind": "GRAPH",
       "purpose": "Show the ball thrown from the balcony with u_x = 8 m/s and u_y = 6 m/s, with the model decided from what acts after release.",
       "required_elements": [
         "ball thrown from a balcony",
@@ -5561,7 +5594,7 @@
       ],
       "instance_constraints": [
         "The model is decided before any component equation is used.",
-        "Both components share one clock."
+        "Δx = 8t and Δy = 6t − 5t² use one clock."
       ],
       "accessibility": [
         "Every force, value and result is written as text, not carried by colour or arrow length alone.",
@@ -5574,7 +5607,13 @@
         "Physics/assets/representations/REP-KIN-2D-BALCONY-8-6.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "u_x = 8 m/s, u_y = 6 m/s",
+          "symbol": "u_x",
+          "in_words": "The ball's horizontal launch component, 8 m/s, unchanged in flight."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
@@ -5610,7 +5649,7 @@
         {
           "id": "VIS-KIN-2D-BALCONY-V3",
           "label": "At t = 1 s",
-          "purpose": "Draw the path for 1 s and read the state.",
+          "purpose": "Draw the path from the balcony for 1 s and read Δr and v.",
           "visible_elements": [
             "ball thrown from a balcony",
             "u_x = 8 m/s, u_y = 6 m/s",
@@ -5645,7 +5684,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "TRAJECTORY_PLOT",
+      "kind": "GRAPH",
       "purpose": "Show the tracked particle with x(t) = 4t m and y(t) = 10 − 2t² m in one fixed frame.",
       "required_elements": [
         "one fixed frame",
@@ -5680,7 +5719,13 @@
         "Physics/assets/representations/REP-KIN-2D-TRACKER-4T.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "x and y columns on one clock",
+          "symbol": "t",
+          "in_words": "The one clock t that feeds both x(t) and y(t)."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
@@ -5752,7 +5797,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "TRAJECTORY_PLOT",
+      "kind": "GRAPH",
       "purpose": "Show the stone launched horizontally at 15 m/s from the cliff 20 m above level ground.",
       "required_elements": [
         "cliff 20 m high",
@@ -5788,7 +5833,13 @@
         "Physics/assets/representations/REP-KIN-2D-CLIFF-15-20.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "t = 2 s",
+          "symbol": "t",
+          "in_words": "The landing time, 2 s, found from y and reused on x."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {

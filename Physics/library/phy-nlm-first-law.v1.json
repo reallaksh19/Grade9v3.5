@@ -949,8 +949,7 @@
         "REL-NEWTON-SECOND-LAW"
       ],
       "representation_refs": [
-        "REP-NLM-FBD-BODY-OWNERSHIP",
-        "REP-NLM-CHILD-ON-BOX"
+        "REP-NLM-FBD-BODY-OWNERSHIP"
       ],
       "question_family_refs": [
         "FAM-PHY-NLM-INCLINE-MODELLING"
@@ -1155,8 +1154,7 @@
         "REL-NLM-HANGING-BOB-TILT"
       ],
       "representation_refs": [
-        "REP-NLM-ACCELERATING-FRAME-COMPARISON",
-        "REP-NLM-LIFT-SCALE-60KG"
+        "REP-NLM-ACCELERATING-FRAME-COMPARISON"
       ],
       "question_family_refs": [],
       "misconceptions": [
@@ -8675,7 +8673,13 @@
         "Physics/assets/representations/REP-NLM-CAR-CRUISE-2000N.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "zero acceleration, zero net force",
+          "symbol": "F_net",
+          "in_words": "The car's net force, zero because its velocity is not changing."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
@@ -8773,7 +8777,13 @@
         "Physics/assets/representations/REP-NLM-BOX3-STRING-10N.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "net force zero",
+          "symbol": "F_net",
+          "in_words": "The box's net force: 10 + 20 − 30 = 0."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
@@ -8855,7 +8865,7 @@
       ],
       "instance_constraints": [
         "Only forces acting on the boat appear on its diagram.",
-        "Everything is at rest."
+        "The man and the boat float at rest."
       ],
       "accessibility": [
         "Every force, value and result is written as text, not carried by colour or arrow length alone.",
@@ -8868,7 +8878,13 @@
         "Physics/assets/representations/REP-NLM-MAN-IN-BOAT.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "weight 1300 N, man's push 700 N, water's push 2000 N",
+          "symbol": "F_net",
+          "in_words": "The boat's net force, zero because it floats at rest, which sizes the water's push."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
@@ -8947,7 +8963,7 @@
       ],
       "instance_constraints": [
         "Only forces acting on the box appear on its diagram.",
-        "Everything is at rest."
+        "The child and the box are at rest."
       ],
       "accessibility": [
         "Every force, value and result is written as text, not carried by colour or arrow length alone.",
@@ -8960,7 +8976,13 @@
         "Physics/assets/representations/REP-NLM-CHILD-ON-BOX.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "weight 200 N, child's push 500 N, floor's push 700 N",
+          "symbol": "F_net",
+          "in_words": "The box's net force, zero because it is at rest, which sizes the floor's push."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
@@ -9061,7 +9083,13 @@
         "Physics/assets/representations/REP-NLM-TRAIN-BALL-BRAKING.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "train description with a 1 N pseudo-force",
+          "symbol": "F_pseudo",
+          "in_words": "The 1 N forward pseudo-force of the train frame, −m a_frame with a_frame = 2 m/s² backward."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
@@ -9154,7 +9182,13 @@
         "Physics/assets/representations/REP-NLM-LIFT-SCALE-60KG.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "lift acceleration 2 m/s² up",
+          "symbol": "a_y",
+          "in_words": "The person's upward acceleration, 2 m/s², the same as the lift's."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
@@ -9260,7 +9294,13 @@
         "Physics/assets/representations/REP-NLM-CAR-BRAKING-1200KG.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "acceleration −5 m/s²",
+          "symbol": "a",
+          "in_words": "The car's signed acceleration, −5 m/s² along the forward axis."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
@@ -9348,7 +9388,7 @@
         "limit 48 N at 80 N"
       ],
       "instance_constraints": [
-        "The block stays at rest.",
+        "The block stays at rest against the wall.",
         "Friction acts along the wall."
       ],
       "accessibility": [
@@ -9362,7 +9402,13 @@
         "Physics/assets/representations/REP-NLM-BLOCK-WALL-50N.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "friction 20 N up",
+          "symbol": "f_s",
+          "in_words": "The static friction of the wall on the block, 20 N up."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
@@ -9460,7 +9506,13 @@
         "Physics/assets/representations/REP-NLM-ROCKET-EXHAUST-5000N.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "acceleration 12.5 m/s² forward",
+          "symbol": "a",
+          "in_words": "The rocket's acceleration, 12.5 m/s² forward, from the gas's push on it."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
@@ -9556,7 +9608,13 @@
         "Physics/assets/representations/REP-NLM-BOX5-PUSH-30N-PRESS-20N.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "N and limit in each trial",
+          "symbol": "N",
+          "in_words": "Each trial's normal force: 50 N without the press, 70 N with it."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
@@ -9657,7 +9715,13 @@
         "Physics/assets/representations/REP-NLM-CAR-TRAILER-TOWBAR.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "one acceleration a",
+          "symbol": "a_A",
+          "in_words": "The one acceleration the car and the trailer share through the rigid bar."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
@@ -9759,7 +9823,13 @@
         "Physics/assets/representations/REP-NLM-CARTS-2KG-3KG-15N.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "T_2 on both carts",
+          "symbol": "T",
+          "in_words": "The one tension of the light rear string, pulling the front cart backward and the rear cart forward."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
@@ -9857,7 +9927,13 @@
         "Physics/assets/representations/REP-NLM-PULLEY-YA06-YB10.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "y_A = 0.6 m, y_B = 1.0 m downward",
+          "symbol": "y_A",
+          "in_words": "A's depth below the pulley, measured away from it: 0.6 m."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
@@ -9937,8 +10013,8 @@
         "dy/dt = +0.3 m/s, d²y/dt² = +1.2 m/s²"
       ],
       "instance_constraints": [
-        "Both coordinates are measured away from the pulley.",
-        "Only the two straight segments change length."
+        "x is measured along the table and y downward, both away from the pulley.",
+        "Only the horizontal and the hanging segments change length."
       ],
       "accessibility": [
         "Every force, value and result is written as text, not carried by colour or arrow length alone.",
@@ -9951,7 +10027,13 @@
         "Physics/assets/representations/REP-NLM-CART-TABLE-PULLEY-XY.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "x + y = 1.4 m",
+          "symbol": "L_free",
+          "in_words": "The fixed total of the two straight segments, x + y = 1.4 m."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
@@ -10057,7 +10139,13 @@
         "Physics/assets/representations/REP-NLM-VAN-APPLE-DROP.svg"
       ],
       "scene_instances": [],
-      "correspondence": [],
+      "correspondence": [
+        {
+          "element": "pseudo-force 0.4 N backward",
+          "symbol": "F_pseudo",
+          "in_words": "The 0.4 N backward pseudo-force of the van frame, −m a_frame with a_frame = 2 m/s² forward."
+        }
+      ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
