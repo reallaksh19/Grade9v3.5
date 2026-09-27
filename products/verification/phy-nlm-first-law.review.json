@@ -1,8 +1,71 @@
 {
   "schema": "product-review/v1",
   "product": "phy-nlm-first-law",
-  "verifier": "agent-verifier-2",
+  "verifier": "agent-verifier-3",
   "reviewed_at": "2026-09-26",
+  "render_digest": "163e0ef3b3eedcf1",
+  "previous_findings": [
+    {
+      "record": "REP-NLM-FBD-BODY-OWNERSHIP",
+      "severity": "S1",
+      "status": "FIXED",
+      "note": "Each Core1A construction unit now mounts its own figure with its worked anchor's values (puck 0.2 kg/4 m/s; lamp 15 N; ramp 10 kg/30°/70 N; blocks 3 kg/2 kg; buckets 45 N; table cart 2 kg + 1 kg; lamp in lift; string lengths 1.2/0.8 m; Atwood 3 kg/1 kg). Checked stage by stage in Chromium. Residual mismatch on two units is filed as a new S3."
+    },
+    {
+      "record": "Q-PHY-NLM-2A-ATWOOD-12",
+      "severity": "S1",
+      "status": "FIXED",
+      "note": "All 22 Core2A and 16 Core2B items mount a figure of their own situation (symbolic Atwood, carts on a string, inclines, wedge, heavy rope, walker on plank and others). No horse-and-cart scene remains outside the FBD-ownership unit it belongs to."
+    },
+    {
+      "record": "MIC-PHY-NLM-SECOND-LAW",
+      "severity": "S1",
+      "status": "FIXED",
+      "note": "All 11 Core1B units now give a concrete task that differs from the Core1A exit task (car at 25 m/s, 3 kg box on a string, man in a boat, braking train, braking car, block on a wall, rocket, 5 kg box with a press, car and trailer, two strings, string at 0.6/1.0 m). The model answers are correct. The 'Your answer should contain' line and the reconstruct prompts were not updated; that is filed as a new S2."
+    },
+    {
+      "record": "Q-PHY-NLM-2B-FRICTION-STATE-01",
+      "severity": "S2",
+      "status": "FIXED",
+      "note": "All 16 Core2B tasks show 'The deciding move' after the attempt. Task 01 now has values (10 kg, μ_s 0.55, μ_k 0.40, 50 N horizontal and at 37°) and is well posed."
+    },
+    {
+      "record": "Q-PHY-NLM-2A-COV-05",
+      "severity": "S2",
+      "status": "FIXED",
+      "note": "COV-05, 2A-01 and COV-02/03/04/06 are new instances (trolley 9 N/4 N, skydiver, pressed book, fridge magnet, braking truck, book-table partners). 2B-FRICTION-ZERO-03 (lift crate) and 2B-STRING-MODEL-03 (heavy rope) are new. Two other Core2A items still restate Core1A exit tasks; filed as a new S3."
+    },
+    {
+      "record": "PYQ-PHY-JEEADV-2014-P2-Q19",
+      "severity": "S2",
+      "status": "FIXED",
+      "note": "Q19 now states that m1 is just above m2 on the slope, and Q08 states θ from the horizontal floor. Both answers re-derived: (D) with tan θ ≤ 0.2; (C) and (D)."
+    },
+    {
+      "record": "PRODUCT-PHY-NLM-FIRST-LAW",
+      "severity": "S2",
+      "status": "OPEN",
+      "note": "The h1, title and breadcrumb still read 'Authored Grade-9 Force and Laws of Motion spine covering balanced/unbalanced for'."
+    },
+    {
+      "record": "Q-PHY-NLM-2A-COV-06",
+      "severity": "S3",
+      "status": "FIXED",
+      "note": "The COV-06 rungs no longer open with 'No.', and the 2A-01 rungs match the skydiver stem. INCLINE-2A-STATIC-02 rungs 4–5 now climb, but rung 4 states the final inequality; filed as a new S2."
+    },
+    {
+      "record": "PYQ-PHY-IITJEE-2007-P1-Q03",
+      "severity": "S3",
+      "status": "OPEN",
+      "note": "Option labels are still doubled ('(a) (A) …'). The Core2B lineage check is now a prompt, not a verbatim repeat, and the pre-attempt support is item-specific, so those two parts are fixed."
+    },
+    {
+      "record": "PRODUCT-PHY-NLM-FIRST-LAW",
+      "severity": "S3",
+      "status": "OPEN",
+      "note": "'abc' still unlocks a unit, and page search still matches text inside locked answers (and now also inside pre-attempt figure descriptions)."
+    }
+  ],
   "units_reviewed": [
     {
       "page": "core1.html",
@@ -134,7 +197,7 @@
         "teaching",
         "interaction"
       ],
-      "agrees": false
+      "agrees": true
     },
     {
       "page": "core1a.html",
@@ -145,7 +208,7 @@
         "teaching",
         "interaction"
       ],
-      "agrees": false
+      "agrees": true
     },
     {
       "page": "core1a.html",
@@ -156,7 +219,7 @@
         "teaching",
         "interaction"
       ],
-      "agrees": true
+      "agrees": false
     },
     {
       "page": "core1a.html",
@@ -167,7 +230,7 @@
         "teaching",
         "interaction"
       ],
-      "agrees": true
+      "agrees": false
     },
     {
       "page": "core1a.html",
@@ -178,7 +241,7 @@
         "teaching",
         "interaction"
       ],
-      "agrees": false
+      "agrees": true
     },
     {
       "page": "core1a.html",
@@ -222,7 +285,7 @@
         "teaching",
         "interaction"
       ],
-      "agrees": false
+      "agrees": true
     },
     {
       "page": "core1a.html",
@@ -233,7 +296,7 @@
         "teaching",
         "interaction"
       ],
-      "agrees": false
+      "agrees": true
     },
     {
       "page": "core1a.html",
@@ -244,7 +307,7 @@
         "teaching",
         "interaction"
       ],
-      "agrees": false
+      "agrees": true
     },
     {
       "page": "core1b.html",
@@ -431,7 +494,7 @@
         "teaching",
         "interaction"
       ],
-      "agrees": false
+      "agrees": true
     },
     {
       "page": "core2.html",
@@ -453,7 +516,7 @@
         "teaching",
         "interaction"
       ],
-      "agrees": false
+      "agrees": true
     },
     {
       "page": "core2.html",
@@ -585,7 +648,7 @@
         "teaching",
         "interaction"
       ],
-      "agrees": true
+      "agrees": false
     },
     {
       "page": "core2a.html",
@@ -596,7 +659,7 @@
         "teaching",
         "interaction"
       ],
-      "agrees": true
+      "agrees": false
     },
     {
       "page": "core2a.html",
@@ -640,7 +703,7 @@
         "teaching",
         "interaction"
       ],
-      "agrees": true
+      "agrees": false
     },
     {
       "page": "core2a.html",
@@ -651,7 +714,7 @@
         "teaching",
         "interaction"
       ],
-      "agrees": true
+      "agrees": false
     },
     {
       "page": "core2a.html",
@@ -662,7 +725,7 @@
         "teaching",
         "interaction"
       ],
-      "agrees": true
+      "agrees": false
     },
     {
       "page": "core2a.html",
@@ -673,7 +736,7 @@
         "teaching",
         "interaction"
       ],
-      "agrees": true
+      "agrees": false
     },
     {
       "page": "core2a.html",
@@ -684,7 +747,7 @@
         "teaching",
         "interaction"
       ],
-      "agrees": true
+      "agrees": false
     },
     {
       "page": "core2a.html",
@@ -904,7 +967,7 @@
         "teaching",
         "interaction"
       ],
-      "agrees": true
+      "agrees": false
     },
     {
       "page": "core2b.html",
@@ -932,73 +995,87 @@
   "findings": [
     {
       "severity": "S1",
-      "duty_for": "ILLUSTRATOR",
-      "record": "REP-NLM-FBD-BODY-OWNERSHIP",
-      "page": "core1a.html",
-      "detail": "10 of the 14 Core1A construction units mount the same horse-and-cart scene (chosen body: cart; F horse-on-cart at θ with F_x, F_y), whatever the unit teaches. For CU-PHY-NLM-IDEAL-STRING-TENSION-1/-2, CU-PHY-NLM-SINGLE-STRING-CONSTRAINT-1/-2 and CU-PHY-NLM-CONNECTED-COMMON-ACCEL-1/-2, no stage shows a string, a pulley, y_A/y_B coordinates, a tension on each body, touching blocks or a system boundary around two bodies. Their worked anchors (cart on a table with a hanging 1 kg mass, a = 10/3 m/s², T = 20/3 N; Atwood 3 kg/1 kg, a = 5 m/s², T = 15 N; blocks 3 kg/2 kg, a = 3 m/s², N = 11 N; buckets, T = 30 N) have nothing drawn. The SECOND-LAW unit's incline step (a_perp = 0, 10 kg on 30°, a = 2 m/s², N ≈ 86.6 N) has no incline. NET-ZERO-MOTION and FORCES-SUM-ZERO show a net pulling force, which is the opposite of the case they teach. Only 3 representations exist in the record; string/pulley, two-block contact and incline representations need to be authored and drawn."
-    },
-    {
-      "severity": "S1",
-      "duty_for": "ILLUSTRATOR",
-      "record": "Q-PHY-NLM-2A-ATWOOD-12",
+      "duty_for": "RENDERER",
+      "record": "Q-PHY-NLM-2A-COV-05",
       "page": "core2a.html",
-      "detail": "Question-aligned representation fails across Core2A/Core2B. The Atwood item (m_B > m_A over a fixed pulley), Q-PHY-NLM-2A-IDEAL-STRING-03, Q-PHY-NLM-2A-FIXED-PULLEY-04, Q-PHY-NLM-2A-CONNECTED-02, the incline items Q-PHY-NLM-INCLINE-2A-SMOOTH-01, -HORIZONTAL-PUSH-04 and -FBD-COMPONENTS-05, and the Core2B string/pulley/incline tasks all show the horse-and-cart scene. Their pre-attempt stage V1 labels the 'chosen body: cart' where the body is a hanging mass or a block on a slope. The incline friction items (INCLINE-2A-STATIC-02, -SLIDING-03; INCLINE-2B-FRICTION-DIRECTION-02, -HORIZONTAL-THRESHOLD-03, -TIMING-05) show a crate on level ground. The post-attempt bound figure for the Atwood item ends on 'F_x = F cos θ … horse on cart', which has no counterpart in the problem."
+      "detail": "Every pre-attempt figure (22 in Core2A, 16 in Core2B) is emitted with the full representation markup. The later stages are only hidden by CSS display:none. The SVG's aria-labelledby points at <title> and a <desc> that narrates every stage, including the result. In Chromium the accessible name of the Q-PHY-NLM-2A-COV-05 pre-attempt image is 'Trolley with a 9 N pull … Stage 2: … a = +2 m/s². Stage 3: … a = −1.6 m/s²'. For Q-PHY-NLM-2B-FRICTION-STATE-01 it is '… Trial 2: N = 100 − 30 = 70 N, limit 38.5 N, need 40 N …', which is the protected move. A screen-reader learner therefore hears the answer before any attempt. The same text is inside article.textContent, so the page search also finds it. For a PRE_ATTEMPT mount, emit only the pre-attempt stage group and a description of that stage alone (e.g. 'A 2.5 kg trolley on a level track is pulled forward with 9 N while a 4 N drag acts backward'). Keep the full <desc> for the POST_ATTEMPT mount inside the gated disclosure."
     },
     {
       "severity": "S1",
+      "duty_for": "ILLUSTRATOR",
+      "record": "Q-PHY-NLM-2B-FRICTION-ZERO-03",
+      "page": "core2b.html",
+      "detail": "Many representation <title>s state the answer or the protected move. The title is shown on the pre-attempt figure as the SVG hover tooltip and as the image's accessible name. Core2B: FRICTION-ZERO-03 'Crate in a lift accelerating up: N = 600 N, friction zero'; FRAME-SELECTION-05 '… rest in the car frame with a 1.5 N pseudo-force'; FRICTION-WALKING-02 '… friction forward on the shoes, backward on the plank'; CONSTRAINT-VS-TENSION-07 'Heavy pulley: the length relation holds, one tension does not'; CONTACT-LOSS-06 '… keep the contact model only while N ≥ 0'; STRING-MODEL-03 '… tension grows toward the top'; INCLINE-2B-FRICTION-DIRECTION-02 '… friction up, zero, then down'; ANGLED-THRESHOLD-04 '… a steep enough push can never start the block'. Core2A: COV-04 '… static friction backward, 20 × 3 = 60 N'; FRICTION-ZERO-08 '… friction is zero'; FRICTION-STATIC-09 '… actual 12 N, limit 30 N'; FRICTION-KINETIC-10 '… kinetic friction 10 N'; ATWOOD-12 '… T lies between the two weights'; INCLINE-2A-SMOOTH-01 '… N = mg cos θ, a = g sin θ'; INCLINE-2A-STATIC-02 '… rest needs mg sin θ ≤ μ_s mg cos θ'; INCLINE-2A-SLIDING-03 '… a = g(sin θ − μ_k cos θ)'; FIXED-PULLEY-04 '… y_A + y_B = constant'. Give each representation a situation-only title for pre-attempt use (e.g. 'A 50 kg crate on the rough floor of a lift accelerating upward'). The result-bearing title can stay on the post-attempt mount."
+    },
+    {
+      "severity": "S2",
       "duty_for": "AUTHOR",
-      "record": "MIC-PHY-NLM-SECOND-LAW",
+      "record": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
       "page": "core1b.html",
-      "detail": "In all 11 Core1B units, 'Attempt' prints elicitation.attempt.produces (e.g. 'A one-body signed force sum and a signed acceleration.') in place of a task. The learner is never given a body, forces or numbers to reconstruct from. The only concrete cue is the 'What a complete answer does' example, and that quotes the Core1A exit-task answer ('+12 N on 4 kg -> +3 m/s^2', 'swimmer on water backward…', 'Belt outruns box -> … friction on box points right'). So Core1B rebuilds the Core1A exit task, not a new instance. Each unit needs a concrete attempt prompt distinct from the Core1A exit task."
+      "detail": "The Core1B tasks are new, but the rest of each unit still describes the old Core1A scenario, so the reconstruction does not rebuild the task the learner attempted. 'Your answer should contain' (elicitation.attempt.produces) does not match the task in: NET-ZERO-MOTION (car at 25 m/s vs 'a two-case prediction for a released moving cart and an initially resting cart'); FBD-BODY-OWNERSHIP (man in a boat vs 'two separate body inventories, one for the cart and one for the horse'); FRAME-CHOICE (braking train vs 'roadside and accelerating bus'). The reconstruct prompts ask about the hand leaving the cart (NET-ZERO), two people pushing a box (FORCES-SUM-ZERO), horse and cart (FBD), the bus starting (FRAME-CHOICE) and 'the box's ground-frame velocity' (FRICTION; the task is a block pressed on a wall). Rewrite the rubric line and the reconstruct prompts for the actual task. For example, for FBD: 'Which body is the diagram for? Which forces act on the boat: Earth, man, water? Is the man's weight on the boat's diagram? What must the water's push be for the boat to stay at rest?'"
+    },
+    {
+      "severity": "S2",
+      "duty_for": "ILLUSTRATOR",
+      "record": "MIC-PHY-NLM-FRICTION-QUANT",
+      "page": "core1b.html",
+      "detail": "Each of the 11 Core1B units mounts its Core1A worked-anchor figure, pre-attempt and post-attempt, not a figure of the Core1B attempt. For FRICTION-QUANT the attempt is a 5 kg box with a 30 N push, then a 20 N press (N = 50 N slides; N = 70 N rests). The figure shows '4 kg box pulled with 15 N and 25 N'. For SECOND-LAW the attempt is a 1200 kg car braking under 5400 N + 600 N, and the figure is the 10 kg crate on a 30° ramp. For THIRD-LAW the attempt is a 400 kg rocket and 5000 N of exhaust, and the figure is the astronaut and satellite. The post-attempt reconstruction figure shows the Core1A answer, not this attempt's. Each Core1B attempt needs its own figure: situation-only before the attempt, staged with this task's values afterwards."
     },
     {
       "severity": "S2",
       "duty_for": "AUTHOR",
       "record": "Q-PHY-NLM-2B-FRICTION-STATE-01",
       "page": "core2b.html",
-      "detail": "15 of 16 Core2B tasks have no transfer.protected_move_ref (only Q-PHY-NLM-INCLINE-2B-HORIZONTAL-THRESHOLD-03 has one), so the post-attempt review shows no 'The deciding move' for them. For example, 01 should name 'test |f_required| = P cos θ against μ_s(mg − P sin θ) before choosing a friction model'; Q-PHY-NLM-2B-CONTACT-LOSS-06 should name 'the contact cannot pull, so set N = 0: a_A = −F/m_A, a_B = 0'. Task 01 is also ill-posed as stated ('For a specified P, determine the crate's acceleration') because no P, m, θ, μ values are given, so the answer can only be a procedure."
+      "detail": "transfer.novelty is not true against Core1B. Its checked_against list cites only the Core1B boundary test, not the Core1B FRICTION-QUANT attempt. That attempt already asks the learner to decide an unstated contact state with N changed by a vertical force, and it reaches opposite verdicts in two trials: 5 kg, 30 N push, N = 50 N, limit 25 N → slides, f_k = 20 N, a = 2 m/s²; add a 20 N press, N = 70 N, limit 35 N → rest, f = 30 N. Task 01 repeats that decision with the vertical force reversed: an angled pull lowers N to 70 N, limit 38.5 N < 40 N → slides. Either change the demand (for example, ask for the pull angle at which the verdict flips, or the smallest pull that starts the crate at 37°) or recheck the novelty claim against the Core1B attempt prompts."
     },
     {
       "severity": "S2",
       "duty_for": "AUTHOR",
-      "record": "Q-PHY-NLM-2A-COV-05",
+      "record": "Q-PHY-NLM-INCLINE-2A-STATIC-02",
       "page": "core2a.html",
-      "detail": "Six Core2A practice items are the Core1A exit tasks verbatim, and their model answers are already shown in Core1A and quoted in Core1B: Q-PHY-NLM-2A-COV-05 (4 kg, +12 N; exit task of SECOND-LAW), Q-PHY-NLM-2A-01 (cart at rest and steady cart), -COV-02 (two equal opposite forces), -COV-03 (person pushes box), -COV-04 (conveyor belt) and -COV-06 (swimmer). They add no new practice instance. Two Core2B tasks likewise repeat earlier text: Q-PHY-NLM-2B-FRICTION-ZERO-03 is the Core1A friction diagnose #2 (crate on a moving rough platform), and Q-PHY-NLM-2B-STRING-MODEL-03 is the Core1B boundary test of IDEAL-STRING-TENSION (rough pulley axle breaks equal T)."
-    },
-    {
-      "severity": "S2",
-      "duty_for": "AUTHOR",
-      "record": "PYQ-PHY-JEEADV-2014-P2-Q19",
-      "page": "core2.html",
-      "detail": "The restatement omits which block is up-slope, and the answer depends on it. Option (D) (5°, 10° → (m1+m2)g sin θ; 15°, 20° → 0.3 m2 g cos θ; threshold tan θ = 0.3·2/3 = 0.2) holds only if the smooth block m1 is above m2 and presses on it. Add 'm1 is placed just above m2 on the incline'. Likewise PYQ-PHY-JEEADV-2014-P1-Q08 ('leans against a wall at angle theta') must say θ is measured from the horizontal floor: (D) N1 tan θ = mg/2 follows from N1 L sin θ = mg (L/2) cos θ only with that convention. With θ from the wall, (D) is false."
+      "detail": "Hint rung 4 of 5 gives the answer before the last rung: 'With N = mg cos θ and the needed friction mg sin θ up the slope, write the no-slip condition: mg sin θ ≤ μ_s mg cos θ.' That inequality is the answer's first form, and rung 5 only simplifies it. Rung 4 should stop at the relation to test ('compare the friction rest needs with the most the contact can give, μ_s N') and leave the inequality for the learner to write."
     },
     {
       "severity": "S2",
       "duty_for": "RENDERER",
       "record": "PRODUCT-PHY-NLM-FIRST-LAW",
       "page": "index.html",
-      "detail": "Every page's h1, title and breadcrumb show 'Authored Grade-9 Force and Laws of Motion spine covering balanced/unbalanced for', which is scope_summary cut mid-word. Use the bucket title 'Newton's first law and free-body diagrams', or a learner-facing product title such as 'Force and laws of motion'."
+      "detail": "Still open from the previous review. Every page's h1, <title> and breadcrumb read 'Authored Grade-9 Force and Laws of Motion spine covering balanced/unbalanced for', which is scope_summary cut mid-word (the manifest title). Use a learner-facing title such as 'Force and laws of motion'."
     },
     {
       "severity": "S3",
       "duty_for": "AUTHOR",
-      "record": "Q-PHY-NLM-2A-COV-06",
+      "record": "Q-PHY-NLM-2A-FRAME-CHOICE-07",
       "page": "core2a.html",
-      "detail": "Hint rung 3 is the Core1A repair sentence pasted as a hint: 'No. Put each partner on the body it acts on; only then sum forces for one body.' It opens with 'No.' although no yes/no question was asked. In Q-PHY-NLM-2A-01, rung 1 asks 'After the hand leaves the cart, is the hand still exerting the forward push?', but the stem (one cart at rest, one moving steadily) has no hand or push. In Q-PHY-NLM-INCLINE-2A-STATIC-02, rungs 4–5 restate rung 3 rather than climb. No rung gives an answer early."
+      "detail": "Two Core2A items restate Core1A exit tasks whose model answers the learner has already opened. FRAME-CHOICE-07 (bus accelerating, loose object, roadside vs passenger, where the pseudo-force goes) is the FRAME-CHOICE exit task. Q-PHY-NLM-2A-FIXED-PULLEY-04 (y_A + y_B = constant, derive v and a relations) is the SINGLE-STRING-CONSTRAINT exit task, and its last part is the Core1 compact anchor (a_B = −a). Give each a new instance with values, e.g. a 0.5 kg box on a smooth shelf in a bus at 1.5 m/s² for 07."
+    },
+    {
+      "severity": "S3",
+      "duty_for": "ILLUSTRATOR",
+      "record": "REP-NLM-FBD-BODY-OWNERSHIP",
+      "page": "core1a.html",
+      "detail": "Two Core1A units still have a figure that does not show their worked anchor. FBD-BODY-OWNERSHIP draws the qualitative horse and cart, but the anchor is a 50 kg child on a 20 kg box (200 N, 500 N, 700 N), which is never drawn. FRAME-CHOICE draws a qualitative lift 'v down, a up', but the anchor is a 60 kg person in a lift accelerating up at 2 m/s² with a 720 N reading in both frames. The physics in both figures is right; they just carry none of the anchor's values."
+    },
+    {
+      "severity": "S3",
+      "duty_for": "AUTHOR",
+      "record": "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05",
+      "page": "core2a.html",
+      "detail": "Inconsistent count. The figure title and stage 2 say the diagram 'counts gravity twice', the answer says it 'double-counts gravity', and the failure signal says the student's diagram 'counts gravity three times'. With mg, mg sin θ and mg cos θ drawn together, one force appears three times. Use one wording, e.g. 'the weight is drawn three times: once as mg and again as its two components'."
     },
     {
       "severity": "S3",
       "duty_for": "RENDERER",
       "record": "PYQ-PHY-IITJEE-2007-P1-Q03",
       "page": "core2.html",
-      "detail": "Option labels are doubled ('(a) (A) (F/2m)·a/sqrt(a^2-x^2) (b) (B) …'), here and on every lettered source option in Core2. The Core2B 'Lineage check' block repeats the 'What stayed valid'/'What changed' sentences verbatim, and the pre-attempt support sentence is identical on all 16 tasks."
+      "detail": "Still open. Option labels are doubled ('(a) (A) (F/2m)·a/sqrt(a^2-x^2) (b) (B) …') on every lettered or numbered source option (Q03, Q10, Q33, Q19, Q08, NEET Q160, Q49, Q40). Print the source label once."
     },
     {
       "severity": "S3",
       "duty_for": "RENDERER",
       "record": "PRODUCT-PHY-NLM-FIRST-LAW",
       "page": "core2a.html",
-      "detail": "Gating holds on all six pages: no gated disclosure opened on click or Enter/Space without an attempt, and hints revealed one rung at a time with 'Next hint' disabled at the last rung. But any 3 characters unlock a unit, and the page search matches text inside locked answers, which exposes which item contains a searched value."
+      "detail": "Still open. Gating holds in Chromium: 0 of 84 gated disclosures across core1a, core1b, core2, core2a and core2b opened on click, Enter or Space without an attempt; an empty attempt did not unlock; hints reveal one rung per click (1 → 2 → 3, then 'Next hint' disabled); stage stepping, search filter and the display panel (theme, zoom) work. But any 3 characters ('abc') unlock a unit. The search filters on article.textContent, which includes locked answers and pre-attempt figure descriptions, so typing an answer value (e.g. '1.6') singles out the item that contains it. The wedge figure of Q-PHY-NLM-INCLINE-2B-COMPONENT-TRAP-04 also overprints 'block on wedge: 17.3 N' on the '5 kg' label."
     }
   ]
 }
