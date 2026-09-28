@@ -34,6 +34,25 @@ class ProductStandaloneContractTest(unittest.TestCase):
             self.assertIn(f'id="g9-role-{role}"', html)
             self.assertIn(f'href="#g9-role-{role}"', html)
 
+    def test_pages_and_single_file_have_distinct_exact_identity_but_equal_metadata_semantics(self):
+        manifest = REPO / "products" / "physics" / "phy-nlm-first-law.manifest.json"
+        pages, page_gaps, page_digest = render_core.build(manifest, mode="PAGES")
+        single, single_gaps, single_digest = render_core.build(manifest, mode="SINGLE_FILE")
+        self.assertEqual(page_gaps, [])
+        self.assertEqual(single_gaps, [])
+        self.assertNotEqual(page_digest, single_digest)
+
+        page_snapshot = render_core.semantic_metadata_snapshot(pages, "PAGES")
+        single_snapshot = render_core.semantic_metadata_snapshot(single, "SINGLE_FILE")
+        self.assertEqual(len(page_snapshot), 84)
+        self.assertEqual(page_snapshot, single_snapshot)
+        self.assertEqual(
+            render_core.semantic_metadata_digest(pages, "PAGES"),
+            render_core.semantic_metadata_digest(single, "SINGLE_FILE"),
+        )
+        self.assertIn(f"render_core/2 {page_digest}", pages["core1.html"])
+        self.assertIn(f"render_core/2 {single_digest}", single["product.html"])
+
     def test_pass_status_rows_may_bind_one_generated_standalone_artifact(self):
         rows = json.loads((REPO / "products" / "status.v1.json").read_text(encoding="utf-8"))
         for row in rows:
