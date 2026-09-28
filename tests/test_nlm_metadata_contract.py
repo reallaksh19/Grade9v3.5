@@ -71,12 +71,12 @@ class NlmSelectionContract(unittest.TestCase):
         ctx = render_core.context(MANIFEST)
         digest = render_core.render_digest(ctx)
         expected = {
-            "CORE1": (11, {"concept", "concept-difficulty"}),
-            "CORE1A": (11, {"concept", "concept-difficulty"}),
-            "CORE1B": (11, {"concept", "concept-difficulty"}),
-            "CORE2": (13, {"concept", "concept-difficulty", "question-difficulty", "family", "question-type", "source", "provenance"}),
-            "CORE2A": (22, {"concept", "concept-difficulty", "question-difficulty", "family", "question-type", "provenance"}),
-            "CORE2B": (16, {"concept", "concept-difficulty", "question-difficulty", "family", "question-type", "provenance", "transfer-dimension"}),
+            "CORE1": (11, {"subject", "topic", "concept", "concept-difficulty"}),
+            "CORE1A": (11, {"subject", "topic", "concept", "concept-difficulty"}),
+            "CORE1B": (11, {"subject", "topic", "concept", "concept-difficulty"}),
+            "CORE2": (13, {"subject", "topic", "concept", "concept-difficulty", "question-difficulty", "family", "question-type", "source", "provenance"}),
+            "CORE2A": (22, {"subject", "topic", "concept", "concept-difficulty", "question-difficulty", "family", "question-type", "provenance"}),
+            "CORE2B": (16, {"subject", "topic", "concept", "concept-difficulty", "question-difficulty", "family", "question-type", "provenance", "transfer-dimension"}),
         }
         for role, (unit_count, kinds) in expected.items():
             with self.subTest(role=role):
@@ -131,11 +131,24 @@ class NlmSelectionContract(unittest.TestCase):
             "blueprints",
         } <= labels)
 
-    def test_page_search_uses_rendered_visible_text_not_locked_text_content(self):
+    def test_page_search_uses_explicit_safe_corpus_not_rendered_or_locked_text(self):
         ctx = render_core.context(MANIFEST)
         html = render_core.page(ctx, "CORE2B", "PAGES", render_core.render_digest(ctx))
-        self.assertIn("a.innerText.toLowerCase()", html)
+        self.assertIn("a.dataset.g9SearchText", html)
+        self.assertNotIn("a.innerText.toLowerCase()", html)
         self.assertNotIn("a.textContent.toLowerCase()", html)
+        self.assertIn("data-g9-search-text=", html)
+
+        question = next(q for q in ctx.selection_rows["core2b"] if q["id"] == "Q-PHY-NLM-2B-FRICTION-STATE-01")
+        protected = next(
+            move["action"] for move in question["answer"]["reasoning_route"]
+            if move["id"] == question["transfer"]["protected_move_ref"]
+        )
+        search_text = render_core.metadata_search_text(ctx, "CORE2B", question)
+        self.assertIn(question["stem"], search_text)
+        self.assertIn("Model choice", search_text)
+        self.assertNotIn(question["answer"]["summary"], search_text)
+        self.assertNotIn(protected, search_text)
 
     def test_missing_selected_id_fails_closed(self):
         manifest = copy.deepcopy(self.manifest)
