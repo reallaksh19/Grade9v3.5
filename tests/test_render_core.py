@@ -1,4 +1,4 @@
-"""Phase 3: one renderer, selection-only manifests, verified-only promotion."""
+"""One renderer, selection-only manifests, and the preserved M3 migration."""
 from __future__ import annotations
 
 import copy
@@ -12,7 +12,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
-from Shared.tools import package_depth, package_migrate, product_manifest, promote_verified, render_core  # noqa: E402
+from Shared.tools import migrate_math_linear, package_depth, product_manifest, promote_verified, render_core  # noqa: E402
 
 # Frozen pre-pilot Motion in a Plane: the tests need a product that still has gaps.
 PKG = "tests/fixtures/render/thin-kin-2d-motion.v1.json"
@@ -20,7 +20,7 @@ BANK = "Physics/library/exam-bank/competitive-exam-question-bank.v2.json"
 
 
 def manifest_file(tmp: Path, **overrides) -> Path:
-    m = product_manifest.derive(PKG, [BANK], "PRODUCT-TEST", "Motion in a Plane", "../../index.html")
+    m = product_manifest.derive(PKG, [BANK], "PRODUCT-TEST", "../../index.html")
     m.update(overrides)
     path = tmp / "m.json"
     path.write_text(json.dumps(m), encoding="utf-8")
@@ -228,78 +228,32 @@ class Renderer(unittest.TestCase):
 
 class Manifest(unittest.TestCase):
     def test_manifest_holds_selection_only(self):
-        m = product_manifest.derive(PKG, [BANK], "P", "T", "../index.html")
+        m = product_manifest.derive(PKG, [BANK], "P", "../index.html")
         self.assertEqual(set(m["selection"]), {"microtopics", "core2", "core2a", "core2b"})
         text = json.dumps(m)
         pkg = json.loads((REPO / PKG).read_text(encoding="utf-8"))
         self.assertNotIn(pkg["microtopics"][0]["inferential_jump"], text)
 
 
-class Promotion(unittest.TestCase):
-    def board(self, stage):
-        return {"subject": "Physics", "nodes": [{"node": "N1", "chapter": "C", "level": "MICROTOPIC",
-                                                 "stage": stage, "duties": [], "verification": "v.json"}]}
+class Migration(unittest.TestCase):
+    def test_math_staged_ids_and_references_remain_in_canonical_package(self):
+        package = json.loads(migrate_math_linear.TARGET.read_text(encoding="utf-8"))
+        ledger = json.loads(migrate_math_linear.LEDGER.read_text(encoding="utf-8"))
+        self.assertEqual(ledger["staged_counts"]["question_families"], 4)
+        self.assertEqual(ledger["staged_counts"]["questions"], 28)
+        self.assertEqual(ledger["existing_counts"]["question_families"], 1)
+        self.assertEqual(ledger["existing_counts"]["questions"], 4)
+        self.assertEqual(migrate_math_linear.verify_ledger(package, ledger), [])
 
-    def staging(self, rec_patch=None):
-        pkg = json.loads((REPO / PKG).read_text(encoding="utf-8"))
-        q = copy.deepcopy(next(x for x in pkg["questions"] if any(e["core"] == "CORE2A" for e in x["exposure"])))
-        q["extensions"] = {"grade9v3:research_node": "N1"}
-        if rec_patch:
-            rec_patch(q)
-        return {"C": {"schema_version": "0.2.0", "questions": [q]}}
+    def test_historical_merge_preserves_family_and_question_records(self):
+        staging = {"question_families": [{"id": "F", "extensions": {}}],
+                   "questions": [{"id": "Q", "family_ref": "F", "extensions": {}}]}
+        item = {"node": "N", "verification": "v.json", "package": staging}
+        merged = promote_verified.merge(None, {}, "Mathematics", "C", [item], "2026-09-28")
+        self.assertEqual(merged["question_families"][0]["id"], "F")
+        self.assertEqual(merged["questions"][0]["family_ref"], "F")
+        self.assertEqual(merged["questions"][0]["extensions"]["grade9v3:promotion"]["verification"], "v.json")
 
-    def test_unverified_or_shallow_records_are_refused(self):
-        taught, limit = package_depth.taught_capabilities(), package_migrate.max_decisions()
-        self.assertEqual(promote_verified.plan(self.board("VERIFIER"), self.staging(), taught, limit)["promotable"], [])
-        res = promote_verified.plan(self.board("VERIFIED"), self.staging(), taught, limit)
-        self.assertEqual(res["promotable"], [])
-        self.assertEqual(res["refused"][0]["reason"], "depth duties")
-
-    def test_verified_deep_records_are_promoted_with_a_stamp(self):
-        def deepen(q):
-            q["hint_ladder"] = [{"order": i, "purpose": "ORIENT", "provenance": "AUTHORED_HINT", "text": f"rung {i}"} for i in (1, 2, 3)]
-            q["representation_roles"] = {"initial_ref": "REP-KIN-2D-SHARED-CLOCK"}
-            q["failure_signal"] = "Pairs x(2 s) with y(3 s)."
-            q["family_exposure"] = {"family_ref": q["family_ref"], "closure": "Same-time pairing is established."}
-        res = promote_verified.plan(self.board("VERIFIED"), self.staging(deepen),
-                                    package_depth.taught_capabilities(), package_migrate.max_decisions())
-        self.assertEqual([i["node"] for i in res["promotable"]], ["N1"])
-        merged = promote_verified.merge(None, {}, "Physics", "C", res["promotable"], "2026-09-26")
-        stamp = merged["questions"][0]["extensions"]["grade9v3:promotion"]
-        self.assertEqual(stamp["verification"], "v.json")
-        self.assertEqual(merged["schema_version"], "0.2.0")
-
-
-class PromotionBatch(unittest.TestCase):
-    """A prerequisite taught by a sibling node counts only when the sibling is promoted in the same batch."""
-
-    def run_plan(self, verified):
-        def node(n, cap, pre):
-            ext = {"grade9v3:research_node": n}
-            return [{"id": f"MIC-{n}", "primary_capability_ref": cap, "prerequisite_refs": pre, "extensions": ext},
-                    {"id": cap, "extensions": ext}]
-        mics_a, caps_a = node("A", "CAP-A", [])
-        mics_b, caps_b = node("B", "CAP-B", ["CAP-A"])
-        staging = {"C": {"schema_version": "0.2.0", "microtopics": [mics_a, mics_b], "capabilities": [caps_a, caps_b]}}
-        board = {"subject": "Mathematics", "nodes": [
-            {"node": n, "chapter": "C", "level": "MICROTOPIC", "stage": "VERIFIED" if n in verified else "VERIFIER",
-             "duties": [], "verification": f"{n}.json"} for n in ("A", "B")]}
-        original = package_depth.package_duties
-        package_depth.package_duties = lambda pkg, rel, taught, limit: [
-            {"duty": "TEACH_PREREQUISITE_BRIDGE"} for m in pkg.get("microtopics", [])
-            for r in m.get("prerequisite_refs", []) if r not in taught]
-        try:
-            return promote_verified.plan(board, staging, set(), 4)
-        finally:
-            package_depth.package_duties = original
-
-    def test_a_verified_sibling_unblocks_its_dependent(self):
-        self.assertEqual(sorted(i["node"] for i in self.run_plan({"A", "B"})["promotable"]), ["A", "B"])
-
-    def test_an_unpromoted_sibling_does_not(self):
-        res = self.run_plan({"B"})
-        self.assertEqual(res["promotable"], [])
-        self.assertIn("depth duties", {r["reason"] for r in res["refused"]})
 
 if __name__ == "__main__":
     unittest.main()

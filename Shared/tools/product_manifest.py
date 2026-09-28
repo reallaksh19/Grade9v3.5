@@ -118,7 +118,7 @@ def validate_selection(manifest: dict, packages: list[dict], bank_questions: lis
     return resolved
 
 
-def derive(package_ref: str, bank_refs: list[str], product_id: str, title: str, home: str,
+def derive(package_ref: str, bank_refs: list[str], product_id: str, home: str,
            question_bank_href: str | None = None) -> dict:
     pkg = json.loads((REPO / package_ref).read_text(encoding="utf-8"))
     caps = {c["id"] for c in pkg.get("capabilities", [])}
@@ -136,7 +136,6 @@ def derive(package_ref: str, bank_refs: list[str], product_id: str, title: str, 
     return {
         "schema": "product-manifest/v1",
         "product_id": product_id,
-        "title": title,
         "subject": pkg["subject"],
         "home_href": home,
         "question_bank_href": question_bank_href or home,
@@ -174,13 +173,12 @@ def main(argv: list[str] | None = None) -> int:
     d.add_argument("--package", required=True)
     d.add_argument("--bank", action="append", default=[])
     d.add_argument("--product-id", required=True)
-    d.add_argument("--title", required=True)
     d.add_argument("--home", required=True)
     d.add_argument("--question-bank")
     d.add_argument("--out", required=True)
     d.add_argument("--intake", help="raw_intake output (research-first-intake/v1): adds the owner's ledger and diagnostic")
     a = p.parse_args(argv)
-    m = derive(a.package, a.bank, a.product_id, a.title, a.home, a.question_bank)
+    m = derive(a.package, a.bank, a.product_id, a.home, a.question_bank)
     if a.intake:
         m = with_intake(m, json.loads(Path(a.intake).read_text(encoding="utf-8")))
     Path(a.out).write_text(json.dumps(m, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

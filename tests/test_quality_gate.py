@@ -47,6 +47,9 @@ def complete_fixture(tmp: Path) -> Path:
         u["independent_checks"] = [{"statement": "Substitute the candidate: both sides must give the same number exactly.",
                                     "check_type": "SUBSTITUTION_BACK_CHECK"}]
     q = next(x for x in pkg["questions"] if x["id"] == "Q-MATH-LINEAR-01")
+    reference = json.loads((REPO / "Physics/library/exam-bank/competitive-exam-question-bank.v2.json").read_text(encoding="utf-8"))["questions"][0]
+    q["difficulty"] = reference["extensions"]["grade9v3:analysis"]["difficulty"]
+    q["learner_question_type"] = "constructed_response"
     q["representation_roles"] = {"initial_ref": "REP-MATH-NUMBER-LINE", "safe_ref": None, "bound_ref": None, "stage_refs": []}
     q["failure_signal"] = "Writing x = 2.33: substituting it gives 8.99, not 9, so a rounded decimal is a different claim."
     q["family_exposure"] = {"family_ref": q["family_ref"],
@@ -59,7 +62,6 @@ def complete_fixture(tmp: Path) -> Path:
               "transfer": {"dimension": "model_choice", "builds_on": ["Q-MATH-LINEAR-01"],
                            "statement": "The addition now sits inside the multiplication, so the undo order reverses: divide by 3 first.",
                            "invariant": "Each step is an equivalent operation on both sides, and the answer stays an exact fraction.",
-                           "protected_move_ref": None,
                            "novelty": {"checked_against": ["Q-MATH-LINEAR-01", "MIC-MATH-CONSTRAINT:boundary_test"],
                                        "why_new": "The earlier item undoes an addition then a multiplication; here the bracket reverses the undo order, which no earlier item shows."}}})
     t["answer"] = dict(q["answer"], summary="x = 7/3.",
@@ -71,10 +73,14 @@ def complete_fixture(tmp: Path) -> Path:
     pkg_path.write_text(json.dumps(pkg), encoding="utf-8")
     bank = {"questions": [dict(copy.deepcopy(q), id="SRC-FIXTURE-LINEAR-01", origin="SOURCE", origin_ref="FIXTURE-SOURCE",
                                exposure=[{"core": "CORE2", "role": "SOURCE", "artifact_ref": None}],
-                               extensions={"grade9v3:source_custody": {"exam": "Test fixture", "year": 2026, "paper": "Fixture", "question_number": "1"}})]}
+                               extensions={"grade9v3:provenance_class": "SOURCE_UNVERIFIED",
+                                           "grade9v3:analysis": {"difficulty": q["difficulty"],
+                                                                 "learner_question_type": q["learner_question_type"],
+                                                                 "exam_source_badge": "Fixture source"},
+                                           "grade9v3:source_custody": {"exam": "Test fixture", "year": 2026, "paper": "Fixture", "question_number": "1"}})]}
     bank_path = tmp / "bank.fixture.json"
     bank_path.write_text(json.dumps(bank), encoding="utf-8")
-    manifest = product_manifest.derive(MATH, [], "FIXTURE-MATH-LINEAR", "Linear equations (fixture)", "../index.html")
+    manifest = product_manifest.derive(MATH, [], "FIXTURE-MATH-LINEAR", "../index.html")
     manifest["package_refs"] = [str(pkg_path)]
     manifest["bank_refs"] = [str(bank_path)]
     manifest["selection"] = {"microtopics": ["MIC-MATH-CONSTRAINT"], "core2": ["SRC-FIXTURE-LINEAR-01"],
@@ -108,7 +114,7 @@ class Gate(unittest.TestCase):
     def test_thin_real_product_fails_as_a_draft(self):
         m = product_manifest.derive("tests/fixtures/render/thin-kin-2d-motion.v1.json",
                                     ["Physics/library/exam-bank/competitive-exam-question-bank.v2.json"],
-                                    "PRODUCT-PHY-KIN-2D", "Motion in a Plane", "../index.html")
+                                    "PRODUCT-PHY-KIN-2D", "../index.html")
         path = self.tmp / "m.json"
         path.write_text(json.dumps(m), encoding="utf-8")
         out = self.build(path, draft=True)

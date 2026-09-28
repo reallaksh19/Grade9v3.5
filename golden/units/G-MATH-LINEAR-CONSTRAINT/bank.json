@@ -1,0 +1,189 @@
+{
+  "questions": [
+    {
+      "id": "SRC-FIXTURE-LINEAR-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "exam": "Test fixture",
+          "year": 2026,
+          "paper": "Fixture",
+          "question_number": "1"
+        },
+        "grade9v3:provenance_class": "SOURCE_UNVERIFIED",
+        "grade9v3:analysis": {
+          "difficulty": {
+            "band": "D2",
+            "score": 4,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Two-step linear equation requiring subtraction then non-zero division over rationals, distinguishing exact fractional solution from decimal approximation."
+          },
+          "learner_question_type": "constructed_response",
+          "exam_source_badge": "Fixture source"
+        }
+      },
+      "origin": "SOURCE",
+      "origin_ref": "FIXTURE-SOURCE",
+      "original_identifier": "AUTHOR-MATH-01",
+      "stem": "Solve 3x + 2 = 9 over the rationals. Give the exact solution and verify it.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The unknown ranges over the rationals.",
+        "Give the solution exactly, not as a rounded decimal."
+      ],
+      "figure_refs": [
+        "REP-MATH-NUMBER-LINE"
+      ],
+      "verification": {
+        "validator_id": "LINEAR_EQUATION",
+        "bindings": {
+          "a": "DAT-MATH-A",
+          "b": "DAT-MATH-B",
+          "c": "DAT-MATH-C"
+        },
+        "domain": "RATIONAL"
+      },
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "x = 7/3.",
+        "reasoning": [
+          "Subtract 2 from both sides; the operation is reversible, giving 3x = 7.",
+          "Divide both sides by 3, which is non-zero and therefore reversible, giving x = 7/3.",
+          "Substitute back: 3 times 7/3 is 7, and 7 plus 2 is 9, exactly as required."
+        ],
+        "check": "The truncation 2.333333333333 gives 8.999999999999, not 9, so the exact fraction is the solution and the decimal is not.",
+        "acceptable_alternatives": [
+          "Any equivalent exact form, such as 14/6 before reduction."
+        ],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "numeric": {
+          "value": "7/3",
+          "unit": "dimensionless"
+        },
+        "difficult_move": 1,
+        "reasoning_route": [
+          {
+            "id": "R-MATH-2A-READ",
+            "kind": "REPRESENT",
+            "action": "Read 3x + 2 = 9 as a claim about x: x is first multiplied by 3, then 2 is added.",
+            "why_valid": "Undoing needs the order in which operations were applied to the unknown.",
+            "inputs": [
+              "3x + 2 = 9"
+            ],
+            "output": "x is tripled, then 2 is added."
+          },
+          {
+            "id": "R-MATH-2A-UNDO-ADD",
+            "kind": "DECIDE",
+            "action": "Undo the last operation first: subtract 2 from both sides.",
+            "why_valid": "Subtracting the same number from both sides is reversible, so the solution set is unchanged.",
+            "inputs": [
+              "3x + 2 = 9"
+            ],
+            "output": "3x = 7"
+          },
+          {
+            "id": "R-MATH-2A-UNDO-MULT",
+            "kind": "TRANSFORM",
+            "action": "Divide both sides by 3.",
+            "why_valid": "3 is non-zero, so dividing by it is reversible.",
+            "inputs": [
+              "3x = 7"
+            ],
+            "output": "x = 7/3"
+          },
+          {
+            "id": "R-MATH-2A-CHECK",
+            "kind": "VERIFY",
+            "action": "Substitute x = 7/3 into the original equation.",
+            "why_valid": "A solution must make the original claim true exactly.",
+            "inputs": [
+              "x = 7/3"
+            ],
+            "output": "3 × 7/3 + 2 = 7 + 2 = 9, as required."
+          }
+        ],
+        "crux_move_ref": "R-MATH-2A-UNDO-ADD"
+      },
+      "primary_capability_ref": "CAP-MATH-ISOLATE",
+      "secondary_capability_refs": [
+        "CAP-MATH-EXACTNESS",
+        "CAP-MATH-SUBSTITUTE"
+      ],
+      "family_ref": "FAM-MATH-LINEAR",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2",
+          "role": "SOURCE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "The equation is a claim about x, not an instruction. What single operation on both sides would leave x with nothing added to it?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Take 2 off both sides first, then deal with the 3 that multiplies x. Say, for each step, why it can be undone.",
+          "reveals": "METHOD"
+        },
+        {
+          "text": "x = 7/3. Writing it as 2.33 would be a different claim: substituting 2.33 gives 8.99, not 9.",
+          "reveals": "ANSWER"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Mark 2 and 3 on a number line. With x = 2 the left side is 8, too small; with x = 3 it is 11, too big. So the solution lies strictly between them and will not be a whole number.",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "visual_stage_ref": null
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 4,
+          "purpose": "ANSWER",
+          "from": "hints[2]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-MATH-NUMBER-LINE",
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": "Writing x = 2.33: substituting it gives 8.99, not 9, so a rounded decimal is a different claim.",
+      "family_exposure": {
+        "family_ref": "FAM-MATH-LINEAR",
+        "closure": "You solved ax + b = c by undoing operations and kept the exact fraction. Transfer will change which operation comes first."
+      }
+    }
+  ]
+}

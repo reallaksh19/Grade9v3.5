@@ -4,14 +4,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
-P1_JSON = ROOT / "docs" / "stress-tests" / "motion-in-a-plane" / "source-ledger.json"
-P2_JSON = ROOT / "docs" / "stress-tests" / "laws-of-motion" / "source-ledger.json"
+P1_JSON = ROOT / "evidence" / "stress-tests" / "motion-in-a-plane" / "source-ledger.json"
+P2_JSON = ROOT / "evidence" / "stress-tests" / "laws-of-motion" / "source-ledger.json"
 
-P1_HTML = ROOT / "docs" / "stress-tests" / "motion-in-a-plane" / "index.html"
-P2_HTML = ROOT / "docs" / "stress-tests" / "laws-of-motion" / "index.html"
+P1_HTML = ROOT / "evidence" / "stress-tests" / "motion-in-a-plane" / "index.html"
+P2_HTML = ROOT / "evidence" / "stress-tests" / "laws-of-motion" / "index.html"
 
-P1_MD = ROOT / "docs" / "stress-tests" / "scanned-assessment-p1-motion-in-a-plane-ledger.md"
-P2_MD = ROOT / "docs" / "stress-tests" / "scanned-assessment-p2-laws-of-motion-ledger.md"
+P1_MD = ROOT / "evidence" / "stress-tests" / "scanned-assessment-p1-motion-in-a-plane-ledger.md"
+P2_MD = ROOT / "evidence" / "stress-tests" / "scanned-assessment-p2-laws-of-motion-ledger.md"
 
 
 class PhysicsScannedEvidenceTests(unittest.TestCase):

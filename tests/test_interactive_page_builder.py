@@ -129,7 +129,9 @@ class InteractivePageBuilderTests(unittest.TestCase):
             },
         ]
         package = build_interactive_page.compile_page_package(row)
-        identity = next(slot for slot in package["blueprint"]["slots"] if slot["id"] == "identity")
+        registry = json.loads((REPO / "Shared/web/interactive-page-blueprints.v1.json").read_text(encoding="utf-8"))
+        blueprint = next(item for item in registry["blueprints"] if item["id"] == package["blueprint"]["id"])
+        identity = next(slot for slot in blueprint["slots"] if slot["id"] == "identity")
         self.assertIn("learner_metadata", identity["accepts_blocks"])
         html = build_interactive_page.render_single_file(package).decode("utf-8")
         self.assertIn('"learner_metadata"', html)

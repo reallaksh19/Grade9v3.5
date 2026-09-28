@@ -34,7 +34,7 @@ def candidates(repo: Path = REPO) -> dict[str, str]:
     for path in sorted(repo.rglob("*")):
         if not path.is_file() or SKIP_PARTS & set(path.relative_to(repo).parts):
             continue
-        rel = str(path.relative_to(repo))
+        rel = path.relative_to(repo).as_posix()
         if rel == "Shared/tools/renderer_inventory.py":
             continue
         if path.suffix == ".py":
