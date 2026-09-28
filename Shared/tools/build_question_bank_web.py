@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from collections import Counter
 from pathlib import Path
 
@@ -11,6 +12,94 @@ REPO = Path(__file__).resolve().parents[2]
 OUT = REPO / "public" / "data" / "question-bank-data.js"
 VIEWS = REPO / "Shared" / "tools" / "question-bank-views.v1.json"
 BANK_NAME = "competitive-exam-question-bank.v2.json"
+
+
+def _suite_destinations(repo: Path) -> list[dict]:
+    destinations = []
+    suites_dir = repo / "docs" / "gcdr-suites"
+    if suites_dir.is_dir():
+        for suite_path in sorted(suites_dir.glob("*.json")):
+            try:
+                data = json.loads(suite_path.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+            title = data.get("title")
+            if not title:
+                continue
+            artifacts = data.get("delivery_artifacts", [])
+            bundle_artifact = next(
+                (a for a in artifacts if a.get("profile") == "REPO_BUNDLE" and "locator" in a),
+                None,
+            )
+            if not bundle_artifact:
+                continue
+            locator = bundle_artifact["locator"]
+            path = locator[7:] if locator.startswith("public/") else locator
+            corpus_topic = data.get("external_corpus", {}).get("topic", "")
+            suite_id = data.get("suite_id", "")
+            raw_words = re.findall(r"[A-Za-z0-9]+", f"{title} {corpus_topic} {suite_id}")
+            keywords = sorted(
+                {w.lower() for w in raw_words if len(w) > 1}
+                | {"explorer", "interactive", "suite"}
+            )
+            destinations.append({
+                "title": title,
+                "path": path,
+                "kind": "explorer",
+                "keywords": keywords,
+            })
+    adaptive_proof = (
+        repo
+        / "public"
+        / "chemistry"
+        / "redox"
+        / "explorers"
+        / "redox_reactions"
+        / "adaptive-hard-concept-proof.html"
+    )
+    if adaptive_proof.is_file():
+        destinations.append({
+            "title": "Redox Adaptive Visual Proof",
+            "path": "chemistry/redox/explorers/redox_reactions/adaptive-hard-concept-proof.html",
+            "kind": "explorer",
+            "keywords": [
+                "chemistry",
+                "redox",
+                "adaptive",
+                "proof",
+                "cro5",
+                "peroxide",
+                "n-factor",
+                "explorer",
+                "interactive",
+            ],
+        })
+    motion_2d = (
+        repo
+        / "public"
+        / "physics"
+        / "motion-in-2d"
+        / "explorers"
+        / "motions_in_2d"
+        / "index.html"
+    )
+    if motion_2d.is_file():
+        destinations.append({
+            "title": "Motions in 2D · Master Suite",
+            "path": "physics/motion-in-2d/explorers/motions_in_2d/index.html",
+            "kind": "explorer",
+            "keywords": [
+                "physics",
+                "kinematics",
+                "projectile",
+                "relative",
+                "motion",
+                "2d",
+                "explorer",
+                "interactive",
+            ],
+        })
+    return destinations
 
 
 def bank_paths(repo: Path = REPO) -> list[Path]:
@@ -159,6 +248,7 @@ def build(repo: Path = REPO) -> dict:
                 }
                 for subject in sorted({q["subject"] for q in questions})
             ],
+            *_suite_destinations(repo),
             {"title": "Question Bank", "path": "question-bank/index.html", "kind": "tool", "keywords": ["questions", "practice", "pyq"]},
             {"title": "Core Prompt Composer", "path": "core-prompt-composer/index.html", "kind": "tool", "keywords": ["prompt", "cores", "composer"]},
             {"title": "Run Builder", "path": "tools/run-builder/index.html", "kind": "tool", "keywords": ["planner", "authoring", "run"]},

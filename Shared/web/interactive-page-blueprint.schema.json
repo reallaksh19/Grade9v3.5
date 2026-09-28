@@ -84,6 +84,128 @@
           },
           "uniqueItems": true,
           "minItems": 3
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "typography_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "base_text_css_px",
+            "minimum_learner_text_css_px",
+            "exception_policy"
+          ],
+          "properties": {
+            "base_text_css_px": {
+              "type": "integer",
+              "minimum": 12
+            },
+            "minimum_learner_text_css_px": {
+              "type": "integer",
+              "minimum": 12
+            },
+            "exception_policy": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "math_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "static_relation_format",
+            "dynamic_question_format",
+            "dynamic_renderer",
+            "runtime_text_inference"
+          ],
+          "properties": {
+            "static_relation_format": {
+              "type": "string",
+              "minLength": 1
+            },
+            "dynamic_question_format": {
+              "type": "string",
+              "minLength": 1
+            },
+            "dynamic_renderer": {
+              "type": "string",
+              "minLength": 1
+            },
+            "runtime_text_inference": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "representation_accessibility_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "instructional_visual_requires_accessible_name",
+            "instructional_visual_requires_description",
+            "color_only_meaning"
+          ],
+          "properties": {
+            "instructional_visual_requires_accessible_name": {
+              "type": "boolean"
+            },
+            "instructional_visual_requires_description": {
+              "type": "boolean"
+            },
+            "color_only_meaning": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "data_representation_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "comparative_relations",
+            "independent_facts",
+            "tag_count_as_quality_metric"
+          ],
+          "properties": {
+            "comparative_relations": {
+              "type": "string",
+              "minLength": 1
+            },
+            "independent_facts": {
+              "type": "string",
+              "minLength": 1
+            },
+            "tag_count_as_quality_metric": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "vendor_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "pages_external_runtime",
+            "publication_rewrite",
+            "unknown_runtime_dependency"
+          ],
+          "properties": {
+            "pages_external_runtime": {
+              "type": "string",
+              "minLength": 1
+            },
+            "publication_rewrite": {
+              "type": "string",
+              "minLength": 1
+            },
+            "unknown_runtime_dependency": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
         }
       }
     },
