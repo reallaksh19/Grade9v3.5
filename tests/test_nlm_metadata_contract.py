@@ -58,7 +58,7 @@ class NlmSelectionContract(unittest.TestCase):
         package_questions = {q["id"]: q for q in self.package["questions"]}
         self.assertEqual(len(selected), 38)
         rows = [package_questions[record_id] for record_id in selected]
-        self.assertTrue(all(row.get("learner_question_type") == "constructed_response" for row in rows))
+        self.assertEqual({row.get("learner_question_type") for row in rows}, {"constructed_response", "derivation", "experimental_design"})
         self.assertTrue(all(isinstance(row.get("difficulty"), dict) for row in rows))
         self.assertGreaterEqual(len({package_questions[i]["difficulty"]["band"] for i in self.manifest["selection"]["core2a"]}), 3)
         self.assertGreaterEqual(len({package_questions[i]["difficulty"]["band"] for i in self.manifest["selection"]["core2b"]}), 2)
@@ -114,6 +114,11 @@ class NlmSelectionContract(unittest.TestCase):
             ]
             broken = quality_contract.evaluate(obs)
             self.assertIn("C2-METADATA", {finding["rule"] for finding in broken["findings"]})
+
+    def test_core2b_difficulty_is_not_a_role_default(self):
+        package_questions = {q["id"]: q for q in self.package["questions"]}
+        bands = {package_questions[i]["difficulty"]["band"] for i in self.manifest["selection"]["core2b"]}
+        self.assertEqual(bands, {"D2", "D3", "D4"})
 
     def test_render_identity_tracks_every_metadata_authority(self):
         ctx = render_core.context(MANIFEST)
