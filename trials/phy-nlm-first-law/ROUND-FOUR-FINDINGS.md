@@ -1,0 +1,18 @@
+# NLM round-four replay map
+
+Source: [round-four review commit `cb84133a`](https://github.com/reallaksh19/Grade9V3/commit/cb84133a), `products/verification/phy-nlm-first-law.review.json`, reviewed render `f985270070b83ef9` on 2026-09-27. The review has **8 current findings** (2 S1, 4 S2, 2 S3) and **10 prior findings** (9 FIXED, 1 OPEN). IDs below are packet row labels, not IDs in the historical JSON. The current baseline is `15499c9f7bbdd871`; no row is called FIXED on that basis without a fresh replay.
+
+| Row | Round-four severity and target | What the review observed | What the trial must do now |
+|---|---|---|---|
+| RF-01 | S1 · `MIC-PHY-NLM-FBD-BODY-OWNERSHIP` · Core1B | Pre-attempt criteria named the boat's three forces and settled whether the man's weight belongs. | Replay raw HTML, live DOM/accessibility and interaction on the new digest. The renderer now places success criteria in an inert payload; judge the wording after reveal and revise if it still weakens the task. |
+| RF-02 | S1 · `MIC-PHY-NLM-THIRD-LAW` · Core1B | Visible criteria named “gas on rocket” and gave away why the force pair does not cancel. | Replay the same withholding evidence; keep the partner-force decision for the learner before commitment. |
+| RF-03 | S2 · `MIC-PHY-NLM-FORCES-SUM-ZERO` · Core1B | Visible criteria listed the box's three forces before the learner did. | Replay withholding and the post-attempt explanation; decide whether the text needs author revision after its stage changes. |
+| RF-04 | S2 · `Q-PHY-NLM-2B-STRING-MODEL-03` · Core2B | Claimed novelty repeated a massful-rope decision already computed in a Core1B boundary answer; its comparison cited an older rough-pulley task. | **Content author work:** compare the final rendered Core1B boundary and Core2B task; change the task or novelty reasoning so the transfer has a real new decision. Current package wording still cites the older comparison. |
+| RF-05 | S2 · `Q-PHY-NLM-2A-IDEAL-STRING-03` · Core2A | Closure says transfer uses a rough pulley axle, while linked Core2B uses a 1 kg rope with no pulley. | **Content author work:** write closure from the final transfer after RF-04 is resolved. Current package still says “rough pulley axle.” |
+| RF-06 | S2 · `Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05` · Core2A | Closure says the transfer repeats weight in component equations, while linked Core2B asks for the wedge's free-body diagram and contact push. | **Content author work:** align closure to the second body's diagram and the actual contact force. Current package still has the stale closure. |
+| RF-07 | S3 · product · Core2B/search | Gating and stage controls worked, but any three characters unlocked and search matched locked answers. | Replay search and typed commitment on the new renderer. The threat model is honest self-learner commitment, not grading or anti-cheating. Arbitrary text is not by itself a defect; protected text appearing in pre-commit search or accessibility would be. |
+| RF-08 | S3 · product · footer | Footer printed an internal product code instead of the learner title. | Current rendered footer reads “Physics · Force and laws of motion”; reviewer confirms on the candidate digest. |
+
+The historical `previous_findings[-1]` stayed OPEN and overlaps RF-07: it mentioned `abc` and search reading locked answers. The other nine prior findings were recorded FIXED at the old digest (figure alignment, captions, check logic, hint progression and title). Sample them for regression on the new candidate; do not silently transfer their FIXED state.
+
+Round-four suggested replacement wording is in the linked review JSON. Use it as evidence, not as a patch script; the author should reason from the final task arc and sources.
