@@ -14082,74 +14082,6 @@ window.GRADE9V3 = {
                 "MIC-COMMON-INTERVAL",
                 "MIC-GRAPHICAL-SUBTRACTION"
               ]
-            },
-            {
-              "id": "MIC-FRAME-QUALIFICATION-BOUNDARY",
-              "title": "When the simple v_A/B = v_A - v_B relation needs frame qualification (research-boundary note)",
-              "badge": "HARD",
-              "status": "CANDIDATE",
-              "badge_reason": "Not a Grade 9 assessment badge: this is a RESEARCH-depth boundary note, included only to show where the taught relation stops applying.",
-              "entry_assumptions": [
-                "Has completed MIC-GEOMETRIC-CHECK and accepts v_A/B = v_A - v_B for translating, nonrotating frames."
-              ],
-              "inferential_jump": "Recognise that the simple subtraction relation assumes both frames are nonrotating and non-relativistic; naming when it needs qualification is itself the (bounded) research task, not deriving the replacement mathematics.",
-              "teaching_path": [
-                {
-                  "id": "FB-1",
-                  "action": "Restate the two conditions already attached to REL-RELATIVE-VELOCITY: parallel nonrotating axes, classical (non-relativistic) speeds.",
-                  "why_valid": "Those conditions were declared, not incidental, when the relation was derived.",
-                  "role": "DECLARE",
-                  "output": "The relation is conditional, not universal.",
-                  "inputs": []
-                },
-                {
-                  "id": "FB-2",
-                  "action": "Name, without deriving, the two regimes where each condition can fail: a rotating reference frame (needs Coriolis/centrifugal terms) and speeds approaching light speed (needs relativistic velocity addition).",
-                  "why_valid": "Naming the failure regime is a defensible research-boundary claim; deriving the replacement transformation is graduate-level and explicitly out of scope here.",
-                  "role": "DECLARE",
-                  "output": "Two named boundaries, no new formula taught.",
-                  "inputs": []
-                },
-                {
-                  "id": "FB-3",
-                  "action": "State that this note is excluded from Grade 9 assessment claims and is not required for MIC-GEOMETRIC-CHECK's exit task.",
-                  "why_valid": "Research-depth material is segregated from exam scope (TOPIC_WORKFLOW.md); a badge cannot be raised to smuggle in graduate prerequisites.",
-                  "role": "DECLARE",
-                  "output": "Explicit non-assessment status.",
-                  "inputs": []
-                }
-              ],
-              "misconceptions": [
-                {
-                  "wrong_idea": "Since the school formula is 'wrong' in general, it should not be taught or trusted at all.",
-                  "diagnostic_prompt": "Does a merry-go-round or a near-light-speed spacecraft appear anywhere in the Grade 9 assessment scope?",
-                  "repair": "A model's stated domain of validity is what makes it correct within that domain; the Grade 9 translating-frame case is exactly where the taught relation applies."
-                }
-              ],
-              "exit_task": {
-                "prompt": "Name (without deriving) one situation where v_A/B = v_A - v_B would need an additional term, and state whether that situation is in the Grade 9 assessment scope.",
-                "source_ref": "SRC-AUTHOR",
-                "answer": {
-                  "kind": "MODEL_RESPONSE",
-                  "summary": "A rotating reference frame (e.g. observations made from a spinning platform) needs an additional Coriolis-type term; this is outside the Grade 9 assessment scope.",
-                  "reasoning": [
-                    "The derivation in MIC-COMMON-INTERVAL assumed parallel, nonrotating axes at every instant.",
-                    "A rotating frame violates that assumption, so the simple difference no longer accounts for the frame's own rotation."
-                  ],
-                  "check": "The excluded-topics list for this run already names 'Rotating frames and Coriolis terms' as out of scope, consistent with this boundary note.",
-                  "acceptable_alternatives": [
-                    "Relativistic velocity addition, for speeds approaching c, is also acceptable."
-                  ],
-                  "subpart_answers": [],
-                  "verification_status": "CHECKED_BY_AUTHOR"
-                },
-                "oracle": {
-                  "no_numeric_claim": "This microtopic states where the relation stops applying; its exit answer names two boundary conditions and asserts no computed value."
-                }
-              },
-              "prerequisites": [
-                "MIC-GEOMETRIC-CHECK"
-              ]
             }
           ],
           "relations": [
@@ -14262,7 +14194,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 50,
+          "record_count": 49,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -14542,9 +14474,99 @@ window.GRADE9V3 = {
               "prerequisites": [
                 "MIC-SIGNED-COMPONENT"
               ]
+            },
+            {
+              "id": "MIC-FRAME-QUALIFICATION-BOUNDARY",
+              "title": "When the simple v_A/B = v_A - v_B relation needs frame qualification (research-boundary note)",
+              "badge": "HARD",
+              "status": "CANDIDATE",
+              "badge_reason": "Not a Grade 9 assessment badge: this is a RESEARCH-depth boundary note, included only to show where the taught relation stops applying.",
+              "entry_assumptions": [
+                "Has completed MIC-GEOMETRIC-CHECK and accepts v_A/B = v_A - v_B for translating, nonrotating frames."
+              ],
+              "inferential_jump": "Recognise that the simple subtraction relation assumes both frames are nonrotating and non-relativistic; naming when it needs qualification is itself the (bounded) research task, not deriving the replacement mathematics.",
+              "teaching_path": [
+                {
+                  "id": "FB-1",
+                  "action": "Restate the two conditions already attached to REL-RELATIVE-VELOCITY: parallel nonrotating axes, classical (non-relativistic) speeds.",
+                  "why_valid": "Those conditions were declared, not incidental, when the relation was derived.",
+                  "role": "DECLARE",
+                  "output": "The relation is conditional, not universal.",
+                  "inputs": []
+                },
+                {
+                  "id": "FB-2",
+                  "action": "Name, without deriving, the two regimes where each condition can fail: a rotating reference frame (needs Coriolis/centrifugal terms) and speeds approaching light speed (needs relativistic velocity addition).",
+                  "why_valid": "Naming the failure regime is a defensible research-boundary claim; deriving the replacement transformation is graduate-level and explicitly out of scope here.",
+                  "role": "DECLARE",
+                  "output": "Two named boundaries, no new formula taught.",
+                  "inputs": []
+                },
+                {
+                  "id": "FB-3",
+                  "action": "State that this note is excluded from Grade 9 assessment claims and is not required for MIC-GEOMETRIC-CHECK's exit task.",
+                  "why_valid": "Research-depth material is segregated from exam scope (TOPIC_WORKFLOW.md); a badge cannot be raised to smuggle in graduate prerequisites.",
+                  "role": "DECLARE",
+                  "output": "Explicit non-assessment status.",
+                  "inputs": []
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Since the school formula is 'wrong' in general, it should not be taught or trusted at all.",
+                  "diagnostic_prompt": "Does a merry-go-round or a near-light-speed spacecraft appear anywhere in the Grade 9 assessment scope?",
+                  "repair": "A model's stated domain of validity is what makes it correct within that domain; the Grade 9 translating-frame case is exactly where the taught relation applies."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Name (without deriving) one situation where v_A/B = v_A - v_B would need an additional term, and state whether that situation is in the Grade 9 assessment scope.",
+                "source_ref": "SRC-AUTHOR",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "A rotating reference frame (e.g. observations made from a spinning platform) needs an additional Coriolis-type term; this is outside the Grade 9 assessment scope.",
+                  "reasoning": [
+                    "The derivation in MIC-COMMON-INTERVAL assumed parallel, nonrotating axes at every instant.",
+                    "A rotating frame violates that assumption, so the simple difference no longer accounts for the frame's own rotation."
+                  ],
+                  "check": "The excluded-topics list for this run already names 'Rotating frames and Coriolis terms' as out of scope, consistent with this boundary note.",
+                  "acceptable_alternatives": [
+                    "Relativistic velocity addition, for speeds approaching c, is also acceptable."
+                  ],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "This microtopic states where the relation stops applying; its exit answer names two boundary conditions and asserts no computed value."
+                }
+              },
+              "prerequisites": [
+                "MIC-GEOMETRIC-CHECK"
+              ]
             }
           ],
           "relations": [
+            {
+              "id": "REL-RELATIVE-POSITION",
+              "expression": "r_A/B = r_A - r_B",
+              "meaning": "The displacement from B to A is what remains after subtracting the common-origin position of B.",
+              "conditions": [
+                "Both positions are taken at the same instant.",
+                "Axes are parallel and non-rotating.",
+                "Positions at different instants do not define this quantity.",
+                "Use a classical kinematic model; do not apply relativistic velocity addition."
+              ]
+            },
+            {
+              "id": "REL-RELATIVE-VELOCITY",
+              "expression": "v_A/B = v_A - v_B",
+              "meaning": "For constant velocities, relative position changes at the difference of their common-frame velocity vectors; the same finite-interval derivation also gives average relative velocity.",
+              "conditions": [
+                "Same observation times and one common interval.",
+                "Parallel, non-rotating Cartesian axes.",
+                "Classical speeds; relativistic velocity addition does not apply.",
+                "A finite-interval average is not automatically an instantaneous velocity when motion varies."
+              ]
+            },
             {
               "id": "REL-VECTOR-SUBTRACTION",
               "expression": "P - Q = P + (-Q)",
@@ -14557,6 +14579,12 @@ window.GRADE9V3 = {
             }
           ],
           "questions": [
+            {
+              "id": "Q-AUTHOR-REL-01",
+              "stem": "In a common east/north frame, A moves at (6,0) m/s and B at (0,8) m/s. Find the velocity of A relative to B. State its direction and magnitude.",
+              "origin": "AUTHORED",
+              "answer": "(6,-8) m/s, southeast; magnitude 10 m/s."
+            },
             {
               "id": "Q-PHY-VECREP-2A-01",
               "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
@@ -14572,10 +14600,40 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-RELATIVE-V",
+              "action": "Obtain relative velocity from same-time positions over one common interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-RIGHT-TRIANGLE",
+              "action": "Obtain the hypotenuse from two perpendicular component lengths.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-SAME-TIME",
+              "action": "Construct the position of A relative to B at the same instant.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-SIGNED-PAIR",
+              "action": "Read signed coordinates and subtract two coordinate pairs.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
               "id": "CAP-SIGNED-PAIR-BRIDGE",
               "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
               "provider": "Mathematics",
               "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-VECTOR-CHECK",
+              "action": "Reconcile a relative-velocity vector with components and limiting cases.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
             },
             {
               "id": "CAP-VECTOR-SIGNED-COMPONENT",
@@ -14590,7 +14648,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 26,
+          "record_count": 48,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -14599,7 +14657,7 @@ window.GRADE9V3 = {
               "CORE1B",
               "CORE2A"
             ],
-            "atoms": 81,
+            "atoms": 82,
             "questions": 1,
             "obligations": 6,
             "authoring_requirements": [
