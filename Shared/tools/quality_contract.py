@@ -278,7 +278,7 @@ def _page_flag(page, check, ctx):
 @op("rendered_zero")
 def _rendered_zero(page, check, ctx):
     r = page.get("rendered")
-    if r is None:
+    if r is None or check["field"] not in r:
         return None
     return [] if r[check["field"]] == 0 else [f"{r[check['field']]} {check['field'].replace('_', ' ')}"]
 
@@ -286,7 +286,7 @@ def _rendered_zero(page, check, ctx):
 @op("rendered_flag")
 def _rendered_flag(page, check, ctx):
     r = page.get("rendered")
-    if r is None:
+    if r is None or check["field"] not in r:
         return None
     return [] if r[check["field"]] else [f"{check['field'].replace('_', ' ')} absent"]
 
