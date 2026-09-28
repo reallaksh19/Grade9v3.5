@@ -85,6 +85,9 @@ try {
       await item.locator('[data-g9-number]').fill('nonsense');
       await commit.click();
       assert.equal(await item.getAttribute('data-attempted'), null);
+      await item.locator('[data-g9-number]').fill('1e999');
+      await commit.click();
+      assert.equal(await item.getAttribute('data-attempted'), null);
       await item.locator('[data-g9-number]').fill('7/3');
     } else if (kind === 'short_text') {
       await item.locator('[data-g9-attempt]').fill('a');
