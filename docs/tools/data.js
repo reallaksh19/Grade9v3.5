@@ -1464,8 +1464,7 @@ window.GRADE9V3 = {
                     "task": {
                       "prompt": "Choose one value of x that you believe satisfies 3x + 2 = 9 and one that you believe does not. For each, substitute into the equation and write both sides separately. Then say which, if either, is a solution and why.",
                       "givens": [
-                        "Domain: x ranges over the rationals.",
-                        "Equation: 3x + 2 = 9."
+                        "Use rational candidates to test whether 3x + 2 = 9 is true."
                       ]
                     }
                   },
@@ -1814,8 +1813,7 @@ window.GRADE9V3 = {
                     "task": {
                       "prompt": "Solve 3x + 2 = 9 over the rationals. Write the answer as a fraction in lowest terms. Then write the 4-decimal truncation of that fraction, substitute both into the equation, and state the difference each leaves on the left-hand side.",
                       "givens": [
-                        "Domain: x ranges over the rationals.",
-                        "Equation: 3x + 2 = 9."
+                        "Solve 3x + 2 = 9 over rational x, then compare exact and truncated values."
                       ]
                     }
                   },
@@ -1906,7 +1904,7 @@ window.GRADE9V3 = {
         {
           "package_id": "LIB-MATH-LINEAR-EQUATIONS",
           "status": "CANDIDATE",
-          "admitted": false
+          "admitted": true
         }
       ],
       "library_available": true,
@@ -29838,7 +29836,7 @@ window.GRADE9V3 = {
                     "task": {
                       "prompt": "A vector has components v_x = −5 and v_y = −12. (a) Identify its quadrant from the component signs alone, before any trigonometry. (b) Write the positive-magnitude ratio and the acute reference-angle expression. (c) State the standard directed angle from +x (0°–360° convention). Justify each step.",
                       "givens": [
-                        "+x: right, +y: up.",
+                        "For this vector, take +x to the right and +y upward.",
                         "Both components are nonzero.",
                         "Standard angle measured counter-clockwise from +x."
                       ]
@@ -32719,7 +32717,7 @@ window.GRADE9V3 = {
         {
           "package_id": "LIB-PHY-VEC-DIRECTION-UNIT-AUTHORED",
           "status": "CANDIDATE",
-          "admitted": false
+          "admitted": true
         },
         {
           "package_id": "LIB-PHY-WORK-ENERGY-POWER-AUTHORED",
