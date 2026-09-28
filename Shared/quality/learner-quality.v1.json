@@ -1,6 +1,6 @@
 {
   "schema": "learner-quality-contract/v1",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "purpose": "Subject-neutral quality rules for the six Core learner products. Each rule judges a learner observation (Shared/quality/learner-observation.schema.json), i.e. what a learner can see and do, never what a record claims. Rules carry the audit findings they would have caught (audit_refs) and the owner-reference grammar step they encode (grammar). Calibration: every negative specimen in benchmarks/quality-calibration fails for its expected findings; the positive references pass the rules that encode their grammar.",
   "families": {
     "DEPTH": "Content a learner needs, at the depth the references show.",
@@ -1003,6 +1003,70 @@
       ],
       "grammar": null,
       "text": "Expanded tablets use the 0.68/0.32 stage-support layout."
+    },
+    {
+      "id": "PAGE-METADATA-PRESENCE",
+      "family": "INTEGRITY",
+      "measure": "RENDERED",
+      "roles": [
+        "*"
+      ],
+      "severity": "S1",
+      "check": {
+        "op": "rendered_zero",
+        "field": "metadata_missing_units"
+      },
+      "audit_refs": [],
+      "grammar": null,
+      "text": "Every rendered learner unit exposes the shared canonical learner metadata strip in the live browser DOM."
+    },
+    {
+      "id": "PAGE-SAFE-SEARCH-CORPUS",
+      "family": "INTEGRITY",
+      "measure": "RENDERED",
+      "roles": [
+        "*"
+      ],
+      "severity": "S1",
+      "check": {
+        "op": "rendered_zero",
+        "field": "search_corpus_missing_units"
+      },
+      "audit_refs": [],
+      "grammar": null,
+      "text": "Every rendered learner unit has an explicit pre-attempt-safe search corpus rather than relying on locked DOM text."
+    },
+    {
+      "id": "PAGE-PROTECTED-SEARCH",
+      "family": "INTEGRITY",
+      "measure": "RENDERED",
+      "roles": [
+        "*"
+      ],
+      "severity": "S1",
+      "check": {
+        "op": "rendered_zero",
+        "field": "protected_search_matches"
+      },
+      "audit_refs": [],
+      "grammar": null,
+      "text": "Searching with text taken from gated answer/reasoning blocks must not keep the protected unit visible before commitment."
+    },
+    {
+      "id": "PAGE-GATED-INITIAL",
+      "family": "INTEGRITY",
+      "measure": "RENDERED",
+      "roles": [
+        "*"
+      ],
+      "severity": "S1",
+      "check": {
+        "op": "rendered_zero",
+        "field": "gated_open_before_attempt"
+      },
+      "audit_refs": [],
+      "grammar": null,
+      "text": "Attempt-gated disclosures are closed in the initial browser state."
     },
     {
       "id": "PRODUCT-NO-ESCAPE-STATE",
