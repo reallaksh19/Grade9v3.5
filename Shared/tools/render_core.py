@@ -245,8 +245,15 @@ def slot(name: str, body: str, required: bool) -> str:
 
 
 def metadata_strip(ctx: Ctx, role: str, record: dict) -> str:
-    """Render the explicit learner-safe metadata projection inside the existing identity slot."""
-    projection = learner_metadata.project(role, record, ctx.packages)
+    """Render the safe projection, or turn incomplete canonical metadata into an explicit draft gap."""
+    try:
+        projection = learner_metadata.project(role, record, ctx.packages)
+    except learner_metadata.LearnerMetadataError as exc:
+        ctx.gap("AUTHOR_LEARNER_METADATA", record["id"], str(exc), role)
+        return (
+            f'<div data-g9-meta-strip data-g9-meta-role="{esc(role)}" '
+            f'data-g9-meta-record="{esc(record["id"])}" data-g9-meta-incomplete="true"></div>'
+        )
     field_labels = projection["field_labels"]
     chips = "".join(
         f'<span data-g9-meta-item data-g9-meta-kind="{esc(item["kind"])}" '

@@ -11,18 +11,12 @@ REPO = Path(__file__).resolve().parents[1]
 
 
 class ProductStandaloneContractTest(unittest.TestCase):
-    def test_single_file_mode_is_self_contained_for_live_motion2d_product(self):
-        manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+    def test_single_file_mode_is_self_contained_for_nlm_pilot(self):
+        manifest = REPO / "products" / "physics" / "phy-nlm-first-law.manifest.json"
         ctx = render_core.context(manifest)
         labels = {label for label, _digest in ctx.authority_hashes}
-        self.assertIn(
-            "teacher-package:Physics/library/vector-representation.v1.json",
-            labels,
-        )
-        self.assertIn(
-            "teacher-package:Physics/library/phy-kin-1d-motion.v1.json",
-            labels,
-        )
+        self.assertIn("learner-metadata-source", labels)
+        self.assertIn("learner-metadata-vocabulary", labels)
         pages, gaps, digest = render_core.build(manifest, mode="SINGLE_FILE")
         self.assertEqual(gaps, [])
         self.assertEqual(set(pages), {"product.html"})
