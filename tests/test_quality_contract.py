@@ -76,6 +76,35 @@ class SubjectNeutral(unittest.TestCase):
         self.assertTrue({"ALL-FIGURE-KIND-KNOWN", "ALL-CHECK-TYPES-KNOWN"} <= rules_failed(obs))
 
 
+class RenderedMetadataSafety(unittest.TestCase):
+    NEW_RULES = {
+        "PAGE-METADATA-PRESENCE",
+        "PAGE-SAFE-SEARCH-CORPUS",
+        "PAGE-PROTECTED-SEARCH",
+        "PAGE-GATED-INITIAL",
+    }
+
+    def test_new_browser_safety_rules_are_not_measured_without_browser_facts(self):
+        obs = load("math-core2a-two-step-linear.observation.json")
+        res = quality_contract.evaluate(obs)
+        self.assertTrue(self.NEW_RULES <= set(res["not_measured"]))
+
+    def test_browser_safety_facts_pass_at_zero_and_fail_when_protected_search_matches(self):
+        obs = load("math-core2a-two-step-linear.observation.json")
+        obs["pages"][0]["rendered"] = {
+            "small_targets": 0,
+            "stage_support_layout": True,
+            "min_font_px": 16,
+            "metadata_missing_units": 0,
+            "search_corpus_missing_units": 0,
+            "protected_search_matches": 0,
+            "gated_open_before_attempt": 0,
+        }
+        self.assertEqual(self.NEW_RULES & rules_failed(obs), set())
+        obs["pages"][0]["rendered"]["protected_search_matches"] = 1
+        self.assertIn("PAGE-PROTECTED-SEARCH", rules_failed(obs))
+
+
 class CatchesDegradedUnits(unittest.TestCase):
     def setUp(self):
         self.obs = load("math-core2a-two-step-linear.observation.json")
