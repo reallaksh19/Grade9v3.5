@@ -42,6 +42,10 @@ class AuthoringRun(unittest.TestCase):
             "Constant velocities; common time and parallel nonrotating axes.",
             "The display gives only magnitude and compass direction, not components."
         ]
+        q["difficulty"]["basis"] = (
+            "Infer the observer and subtraction order from a disputed compass direction, "
+            "then reject both proposed readings by comparing signed components."
+        )
         q["answer"] = {
             "kind": "MODEL_RESPONSE",
             "summary": "Neither. A relative to B is southeast; B relative to A is northwest.",
