@@ -533,7 +533,11 @@ def observe_render_core(folder: Path, product_id: str | None = None, subject: st
                       "rendered": None if r is None else {
                           "small_targets": r["viewports"]["android-landscape"]["smallTargets"],
                           "stage_support_layout": r["viewports"]["android-landscape"]["stageSupportLayout"],
-                          "min_font_px": r["viewports"]["android-landscape"]["minFontPx"]},
+                          "min_font_px": r["viewports"]["android-landscape"]["minFontPx"],
+                          "metadata_missing_units": r["viewports"]["android-landscape"]["metadataMissingUnits"],
+                          "search_corpus_missing_units": r["viewports"]["android-landscape"]["searchCorpusMissingUnits"],
+                          "protected_search_matches": r["viewports"]["android-landscape"]["protectedSearchMatches"],
+                          "gated_open_before_attempt": r["viewports"]["android-landscape"]["gatedOpenBeforeAttempt"]},
                       "figures": [], "units": units})
     receipt = folder / "print-receipt.json"
     print_obs = None
