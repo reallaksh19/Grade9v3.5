@@ -110,7 +110,7 @@ class Pr306UiRegressions(unittest.TestCase):
             p.name
             for p in (REPO / "public" / "vendor" / "katex" / "0.16.8" / "fonts").glob("*.woff2")
         )
-        referenced = set(__import__("re").findall(r"url\\([^)]*/([^/'\")]+\\.woff2)", css))
+        referenced = set(__import__("re").findall(r"url\([^)]*/([^/'\"]+\.woff2)", css))
         self.assertEqual(referenced - fonts, set())
         self.assertTrue((REPO / "public" / "vendor" / "katex" / "0.16.8" / "LICENSE").is_file())
 
@@ -264,10 +264,10 @@ class Pr306UiRegressions(unittest.TestCase):
             "standalone/vector-algebra-3d-master-suite.html",
         ]
         re_mod = __import__("re")
-        svg_micro = re_mod.compile(r'font-size=["\'](?:[0-9]|1[0-2](?:\.\d+)?)["\']')
-        css_micro = re_mod.compile(r"font-size\s*:\s*(?:[0-9]|1[0-2](?:\.\d+)?)px", re_mod.I)
+        svg_micro = re_mod.compile(r'font-size=["\'](?<!\d)(?:[0-9]|1[0-2](?:\.\d+)?)["\']')
+        css_micro = re_mod.compile(r"font-size\s*:\s*(?<!\d)(?:[0-9]|1[0-2](?:\.\d+)?)px", re_mod.I)
         canvas_micro = re_mod.compile(
-            r"\.font\s*=\s*[\"\'][^\"\']*?(?:[0-9]|1[0-2](?:\.\d+)?)px[^\"\']*[\"\']"
+            r"\.font\s*=\s*[\"\'][^\"\']*?(?<!\d)(?:[0-9]|1[0-2](?:\.\d+)?)px[^\"\']*[\"\']"
         )
         for rel in paths:
             with self.subTest(path=rel):

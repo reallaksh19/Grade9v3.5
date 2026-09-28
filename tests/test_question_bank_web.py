@@ -51,6 +51,25 @@ class QuestionBankWebTest(unittest.TestCase):
         self.assertIn("../js/site-header.js", text)
         self.assertIn("Question browser", text)
 
+    def test_destinations_include_governed_master_suites(self):
+        destinations = self.data["destinations"]
+        paths = {d["path"] for d in destinations}
+        expected_chemistry_suites = [
+            "chemistry/bonding/explorers/chemical_bonding/index.html",
+            "chemistry/some-basic-concepts/explorers/mole_concept/index.html",
+            "chemistry/redox/explorers/redox_reactions/index.html",
+            "chemistry/gases/explorers/behaviour_of_gases/index.html",
+            "chemistry/redox/explorers/redox_reactions/adaptive-hard-concept-proof.html",
+        ]
+        for expected in expected_chemistry_suites:
+            self.assertIn(expected, paths, f"missing expected suite destination {expected}")
+            self.assertTrue((ROOT / "public" / expected).is_file(), f"destination target missing: {expected}")
+        for d in destinations:
+            self.assertTrue(
+                (ROOT / "public" / d["path"]).is_file() or (ROOT / d["path"]).is_file(),
+                f"destination file does not exist on disk: {d['path']}",
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

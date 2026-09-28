@@ -49,7 +49,7 @@ VENDOR_REWRITES = {
     "https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js": "vendor/katex/0.16.8/contrib/auto-render.min.js",
 }
 
-RUNTIME_TAG = re.compile(r"<(?:script|link)\\b[^>]*>", re.IGNORECASE)
+RUNTIME_TAG = re.compile(r"<(?:script|link)\b[^>]*>", re.IGNORECASE)
 
 HTML_LINK = re.compile(r"""\b(?:href|src)\s*=\s*["']([^"'<>]+)["']""", re.IGNORECASE)
 ROOT_PROJECT_LINK = re.compile(

@@ -58,8 +58,11 @@ def _resolve(root: Path, page: Path, url: str) -> Path | None:
 
 def audit(root: Path = REPO / "docs") -> dict:
     root = root.resolve()
-    pages = sorted(p for p in root.rglob("*.html") if ".source-cache" not in p.parts)
-    rel = {p: str(p.relative_to(root)) for p in pages}
+    pages = sorted(
+        p for p in root.rglob("*.html")
+        if ".source-cache" not in p.parts and "stress-tests" not in p.parts
+    )
+    rel = {p: p.relative_to(root).as_posix() for p in pages}
     inbound: dict[str, set[str]] = {r: set() for r in rel.values()}
     findings: list[dict] = []
     portal = (root / "index.html").resolve()
@@ -82,7 +85,7 @@ def audit(root: Path = REPO / "docs") -> dict:
                 links_home = True
             if attr.lower() == "href" and target.suffix == ".html" and target != page.resolve():
                 try:
-                    inbound[str(target.relative_to(root))].add(name)
+                    inbound[target.relative_to(root).as_posix()].add(name)
                 except (KeyError, ValueError):
                     pass
         has_shell = SHELL_MARK in text
