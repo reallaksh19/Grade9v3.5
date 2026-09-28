@@ -26,6 +26,10 @@ basis:
       reason: "Sole production six-Core renderer."
     - path: "Shared/web/interactive-page-blueprints.v1.json"
       reason: "Merged #284 role/page presentation and delivery contract reused by the production renderer."
+    - path: "github:reallaksh19/Grade9V3#331"
+      reason: "Current draft delivery PR for this EP; exact material head is refreshed before evidence/readiness boundaries."
+    - path: "Issue #329 TASK_EVIDENCE rev 1 / issuecomment-5866487023"
+      reason: "Exact-head implementation checkpoint with static PASS, provider FAIL and executable NOT_RUN states kept separate."
 scope:
   write:
     - "Shared/tools/product_manifest.py"
@@ -45,11 +49,19 @@ scope:
     - "tests/test_nlm_metadata_contract.py"
     - "tests/test_render_core.py"
     - "tests/test_interactive_page_builder.py"
+    - "tests/test_quality_contract.py"
+    - "tools/site-audit/core-page-audit.mjs"
+    - "Shared/quality/learner-observation.schema.json"
+    - "Shared/workflows/research-first.v1.json"
+    - "public/js/core-learning/core-learning-page.mjs"
     - "products/verification/phy-nlm-first-law.review.json"
     - "relay/WORK/EP-ISS329-NLM-METADATA-V31-001.yaml"
   read:
     - "products/status.v1.json"
     - "Shared/tools/build_interactive_page.py"
+    - "Shared/tools/build_core_learning_data.py"
+    - "Shared/tools/core_learning_projection_adapter.py"
+    - "public/core-learning/data.js"
     - "Shared/tools/core_template_contract.py"
     - "Shared/tools/web_blueprint_contract.py"
     - "Shared/workbench/core-learning-page.mjs"
@@ -103,9 +115,10 @@ admission_policy:
   qualification: "NOT_REQUIRED"
   question_policy: "NONE"
 next:
-  first_action: "STEP-01: freeze and fail-close NLM manifest selection/authority resolution on a fresh branch, then expose the first focused evidence before proceeding to canonical metadata projection."
+  first_action: "Hold PR #331 as draft and obtain executable exact-head focused/unit + Chromium quality evidence; only after those pass may the task proceed to fresh exact render review and publication checks."
   stop_conditions:
     - "Stop and publish PLAN_UPDATE if live main or a merged overlapping PR materially invalidates the approved architecture."
     - "Stop instead of guessing if any selected capability has zero or multiple canonical owning microtopics."
     - "Stop instead of inventing a learner label, difficulty, type or provenance when canonical evidence is absent."
     - "Stop before publication if browser evidence, quality evidence or fresh independent exact-render review is unavailable."
+    - "Do not widen the NLM pilot into a global public/core-learning/data.js metadata migration merely because the shared #284 runtime can render learner_metadata; that provider does not currently load the nested competitive exam bank."
