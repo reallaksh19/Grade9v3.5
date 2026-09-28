@@ -64,13 +64,17 @@ it is never permission for an agent to invent a page architecture.
 
 ```core-templates
 {
-  "version": "1.1",
+  "version": "1.2",
   "roles": {
     "CORE1": {
       "learner_job": "Orient to the bucket without replacing detailed teaching.",
       "ordered_blocks": [
         {
           "id": "identity_scope",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "learner_metadata",
           "visibility": "IMMEDIATE"
         },
         {
@@ -128,6 +132,10 @@ it is never permission for an agent to invent a page architecture.
       "ordered_blocks": [
         {
           "id": "identity_entry_assumptions",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "learner_metadata",
           "visibility": "IMMEDIATE"
         },
         {
@@ -195,6 +203,10 @@ it is never permission for an agent to invent a page architecture.
           "visibility": "IMMEDIATE"
         },
         {
+          "id": "learner_metadata",
+          "visibility": "IMMEDIATE"
+        },
+        {
           "id": "predict",
           "visibility": "ATTEMPT_FIRST"
         },
@@ -255,6 +267,10 @@ it is never permission for an agent to invent a page architecture.
           "visibility": "IMMEDIATE"
         },
         {
+          "id": "learner_metadata",
+          "visibility": "IMMEDIATE"
+        },
+        {
           "id": "source_question",
           "visibility": "IMMEDIATE"
         },
@@ -303,6 +319,10 @@ it is never permission for an agent to invent a page architecture.
       "ordered_blocks": [
         {
           "id": "family_identity_provenance",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "learner_metadata",
           "visibility": "IMMEDIATE"
         },
         {
@@ -369,6 +389,10 @@ it is never permission for an agent to invent a page architecture.
       "ordered_blocks": [
         {
           "id": "question_prior_exposure",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "learner_metadata",
           "visibility": "IMMEDIATE"
         },
         {
