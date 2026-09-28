@@ -15,6 +15,28 @@ NLM = REPO / "products/physics/phy-nlm-first-law.manifest.json"
 
 
 class ProductBlueprintSafety(unittest.TestCase):
+    def test_subject_authority_reports_unregistered_relation(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            gates = root / "Physics/gates"
+            gates.mkdir(parents=True)
+            (gates / "sample.v1.json").write_text(json.dumps({
+                "gates": [{"gate_id": "GATE-1", "relations": [
+                    {"relation_id": "REL-KNOWN", "expression": "known"}]}]
+            }), encoding="utf-8")
+            package = root / "Physics/library/sample.json"
+            package.parent.mkdir(parents=True)
+            package.write_text(json.dumps({"relations": [{
+                "id": "REL-NEW", "gate_relation_ref": "REL-NEW", "expression": "new"
+            }]}), encoding="utf-8")
+            manifest = root / "sample.manifest.json"
+            manifest.write_text(json.dumps({
+                "subject": "Physics", "package_refs": ["Physics/library/sample.json"]
+            }), encoding="utf-8")
+            findings = render_core.subject_authority_findings(manifest, root)
+            self.assertEqual([(f["point"], f["record"]) for f in findings],
+                             [("GATE_RELATION_UNKNOWN", "REL-NEW")])
+
     def test_malformed_representation_refuses_draft_render(self):
         manifest = json.loads(NLM.read_text(encoding="utf-8"))
         package = json.loads((REPO / manifest["package_refs"][0]).read_text(encoding="utf-8"))

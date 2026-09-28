@@ -1129,6 +1129,19 @@ def context(manifest_path: Path) -> Ctx:
                source_items=source_items, source_checks=source_checks)
 
 
+def subject_authority_findings(manifest_path: Path, repo: Path = REPO) -> list[dict]:
+    """Report package relations that lack their subject gate authority."""
+    from Shared.library import authority
+
+    manifest = load_json(manifest_path)
+    gates = authority.gate_relations(repo / manifest["subject"])
+    return [
+        {"package": ref, **finding}
+        for ref in manifest["package_refs"]
+        for finding in authority.findings(load_json(repo / ref), gates)
+    ]
+
+
 def _single_file_fragment(page_html: str, role: str) -> str:
     """Scope role-level unit anchors and convert cross-Core links for one-document packaging."""
     match = re.search(r"<main>(.*)</main>", page_html, re.S)
@@ -1294,8 +1307,11 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "gaps":
         for gap in gaps:
             print(f"{gap['core']:7s} {gap['duty']:32s} {gap['record']:44s} {gap['detail']}")
-        print(f"{len(gaps)} gap(s)")
-        return 1 if gaps else 0
+        authority_findings = subject_authority_findings(Path(args.manifest))
+        for finding in authority_findings:
+            print(f"AUTHORITY {finding['point']:28s} {finding['record']:44s} {finding['detail']}")
+        print(f"{len(gaps)} depth gap(s); {len(authority_findings)} subject-authority finding(s)")
+        return 1 if gaps or authority_findings else 0
     if gaps and not args.draft:
         print(f"{len(gaps)} gap(s): nothing written. Run `render_core.py gaps` or `--draft`.", file=sys.stderr)
         return 2
