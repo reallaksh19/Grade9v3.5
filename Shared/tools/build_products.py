@@ -105,6 +105,8 @@ def build_one(manifest: Path, static: bool) -> dict:
     (out / "gate-report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     published = None
     standalone = None
+    standalone_digest = None
+    semantic_digest = receipt.get("semantic_digest")
     standalone_dest = STANDALONE / manifest.parent.name / f"{name}.html"
     review = review_clearance(name, receipt["digest"]) if report["verdict"] == "PASS" else None
     dest = PUBLIC / manifest.parent.name / name
@@ -117,18 +119,24 @@ def build_one(manifest: Path, static: bool) -> dict:
         single_pages, single_gaps, single_digest = render_core.build(manifest, mode="SINGLE_FILE")
         if single_gaps:
             raise RuntimeError(f"{name}: PAGES passed but SINGLE_FILE has {len(single_gaps)} gap(s)")
-        if single_digest != receipt["digest"]:
-            raise RuntimeError(f"{name}: SINGLE_FILE digest {single_digest} != PAGES digest {receipt['digest']}")
+        single_semantic_digest = render_core.semantic_metadata_digest(single_pages, "SINGLE_FILE")
+        if single_semantic_digest != semantic_digest:
+            raise RuntimeError(
+                f"{name}: SINGLE_FILE semantic digest {single_semantic_digest} "
+                f"!= PAGES semantic digest {semantic_digest}"
+            )
         standalone_dest.parent.mkdir(parents=True, exist_ok=True)
         standalone_dest.write_text(single_pages["product.html"], encoding="utf-8")
         standalone = str(standalone_dest.relative_to(REPO))
+        standalone_digest = single_digest
     else:
         standalone_dest.unlink(missing_ok=True)
     return {"product": name, "subject": m["subject"], "product_id": m["product_id"], "verdict": report["verdict"],
             "fail_reasons": report["fail_reasons"], "gaps": len(receipt["gaps"]),
             "gap_kinds": dict(collections.Counter(g["duty"] for g in receipt["gaps"])),
             "blocking_findings": sum(1 for f in report["findings"] if f["severity"] in quality_gate.BLOCKING),
-            "render_digest": receipt["digest"], "review": review,
+            "render_digest": receipt["digest"], "semantic_digest": semantic_digest,
+            "standalone_digest": standalone_digest, "review": review,
             "published": published, "standalone": standalone}
 
 
