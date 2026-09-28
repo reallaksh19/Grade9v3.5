@@ -472,9 +472,12 @@ def _render_core_unit(article: Node) -> dict:
                         "representation_ref": f.attrs.get("data-g9-representation"),
                         "mount": next((a.attrs["data-g9-cu"] for a in f.ancestors() if a.tag and "data-g9-cu" in a.attrs),
                                       article.attrs["data-g9-unit"])})
+    payloads = {t.attrs["data-g9-payload"]: t for t in article.find_all("template", attr="data-g9-payload")}
     reveals = []
     for d in article.find_all("details", attr="data-g9-reveal"):
-        inside = sorted({n.attrs["data-g9-block"] for n in d.find_all(attr="data-g9-block")})
+        ref = d.attrs.get("data-g9-payload-ref")
+        content = payloads.get(ref, d) if ref else d
+        inside = sorted({n.attrs["data-g9-block"] for n in content.find_all(attr="data-g9-block")})
         reveals.append({"blocks": inside, "gated": "data-requires-attempt" in d.attrs})
     prereqs = list(article.find_all("li", attr="data-g9-prereq"))
     return {
@@ -483,7 +486,7 @@ def _render_core_unit(article: Node) -> dict:
         "family_ref": None, "blocks": blocks, "block_order": order,
         "placeholders": placeholders_in(article.content()), "figures": figures,
         "representation_refs_unmounted": [],
-        "attempt": article.first("textarea", attr="data-g9-attempt") is not None,
+        "attempt": article.first(attr="data-g9-attempt-box") is not None,
         "reveals": reveals,
         "support_levels": [li.content() for li in article.find_all("li", attr="data-g9-rung")],
         "decisions": sum(1 for _ in article.find_all("li", attr="data-g9-step")),
