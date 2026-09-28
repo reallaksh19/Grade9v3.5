@@ -307,7 +307,14 @@
         "attempt": {
           "produces": "A one-line translation from a signed component pair to i-hat/j-hat notation.",
           "closure": "MODEL_RESPONSE",
-          "model_response": "Preserve each component as the coefficient of its matching basis vector, including its sign."
+          "model_response": "Preserve each component as the coefficient of its matching basis vector, including its sign.",
+          "task": {
+            "prompt": "With +x to the right and +y upward, express each of the following in i-hat/j-hat notation and recover the component pair: (A) (4, −7), (B) (0, −3), (C) (−6, −2).",
+            "givens": [
+              "+x: right; +y: up.",
+              "Preserve all coefficient signs."
+            ]
+          }
         },
         "reconstruct": {
           "route": [
@@ -341,14 +348,27 @@
           ],
           "representation_ref": null,
           "reveal_stage_refs": [],
-          "worked_anchor_ref": null,
+          "worked_anchor_ref": "Q-VDU-1A-NOTATION-01",
           "misconception_indexes": [
             0
           ],
-          "independent_checks": [],
+          "independent_checks": [
+            {
+              "statement": "Read the two coefficients back from the i-hat/j-hat form; they must match the original signed component pair exactly.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            },
+            {
+              "statement": "Test a case where the x-component is zero; the i-hat term has zero coefficient and may be omitted without changing the vector.",
+              "check_type": "BOUNDARY_CHECK"
+            }
+          ],
           "migrated_from": "teaching_path"
         }
-      ]
+      ],
+      "compact_anchor": {
+        "prompt": "A vector has components (−2, 5). Write it in i-hat/j-hat notation.",
+        "result": "v = −2 i-hat + 5 j-hat. The negative coefficient carries the direction information; i-hat and j-hat are unit basis vectors, not extra positive multipliers."
+      }
     },
     {
       "id": "MIC-PHY-VEC-DIRECTION-FROM-COMPONENTS",
@@ -456,7 +476,15 @@
         "attempt": {
           "produces": "A quadrant decision, an acute reference-angle expression, and a directed-angle placement.",
           "closure": "MODEL_RESPONSE",
-          "model_response": "Use signs first for quadrant, then alpha = tan^-1(|v_y|/|v_x|), then place alpha in that quadrant."
+          "model_response": "Use signs first for quadrant, then alpha = tan^-1(|v_y|/|v_x|), then place alpha in that quadrant.",
+          "task": {
+            "prompt": "A vector has components v_x = −5 and v_y = −12. (a) Identify its quadrant from the component signs alone, before any trigonometry. (b) Write the positive-magnitude ratio and the acute reference-angle expression. (c) State the standard directed angle from +x (0°–360° convention). Justify each step.",
+            "givens": [
+              "For this vector, take +x to the right and +y upward.",
+              "Both components are nonzero.",
+              "Standard angle measured counter-clockwise from +x."
+            ]
+          }
         },
         "reconstruct": {
           "route": [
@@ -496,14 +524,27 @@
           ],
           "representation_ref": null,
           "reveal_stage_refs": [],
-          "worked_anchor_ref": null,
+          "worked_anchor_ref": "Q-VDU-1A-DIRECTION-01",
           "misconception_indexes": [
             0
           ],
-          "independent_checks": [],
+          "independent_checks": [
+            {
+              "statement": "Verify that the reported direction has the same x/y sign pattern as the original component pair.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            },
+            {
+              "statement": "Check an axis-aligned case (one component = 0): report the exact axis direction without dividing by zero.",
+              "check_type": "BOUNDARY_CHECK"
+            }
+          ],
           "migrated_from": "teaching_path"
         }
-      ]
+      ],
+      "compact_anchor": {
+        "prompt": "A vector has v_x = −4 and v_y = 3. State its quadrant and the expression for its acute reference angle.",
+        "result": "Quadrant II (negative x, positive y). Acute reference angle: alpha = arctan(3/4). Directed angle from +x = 180° − alpha."
+      }
     },
     {
       "id": "MIC-PHY-VEC-UNIT-DIRECTION",
@@ -606,7 +647,14 @@
         "attempt": {
           "produces": "A normalized symbolic vector plus a magnitude-one check.",
           "closure": "MODEL_RESPONSE",
-          "model_response": "Use v_hat=v/|v| only when |v|>0, divide every signed component by the same |v|, and verify the new magnitude is 1."
+          "model_response": "Use v_hat=v/|v| only when |v|>0, divide every signed component by the same |v|, and verify the new magnitude is 1.",
+          "task": {
+            "prompt": "A displacement vector has components d_x = −9 m and d_y = 12 m. (a) State whether this vector can be normalized and why. (b) Compute |d|. (c) Write the unit-direction vector in component and i-hat/j-hat form. (d) Verify the result has magnitude 1.",
+            "givens": [
+              "d_x = −9 m, d_y = 12 m.",
+              "State the non-zero condition explicitly before dividing."
+            ]
+          }
         },
         "reconstruct": {
           "route": [
@@ -645,15 +693,28 @@
           ],
           "representation_ref": null,
           "reveal_stage_refs": [],
-          "worked_anchor_ref": null,
+          "worked_anchor_ref": "Q-VDU-1A-UNIT-01",
           "misconception_indexes": [
             0,
             1
           ],
-          "independent_checks": [],
+          "independent_checks": [
+            {
+              "statement": "Recompute the magnitude of the normalized vector: sqrt((v_x/|v|)² + (v_y/|v|)²) must equal 1.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            },
+            {
+              "statement": "Confirm |v| > 0 before dividing; explicitly reject normalization for the zero vector.",
+              "check_type": "BOUNDARY_CHECK"
+            }
+          ],
           "migrated_from": "teaching_path"
         }
-      ]
+      ],
+      "compact_anchor": {
+        "prompt": "A vector has components (6, 8). Compute its unit-direction vector.",
+        "result": "|v| = 10. v-hat = (6/10) i-hat + (8/10) j-hat = 0.6 i-hat + 0.8 j-hat. Magnitude check: sqrt(0.36 + 0.64) = 1."
+      }
     }
   ],
   "relations": [
@@ -725,7 +786,8 @@
       "checks": [
         "Reading the coefficients back must recover the original signed component pair."
       ],
-      "gate_relation_ref": "REL-VEC-IJ-NOTATION"
+      "gate_relation_ref": "REL-VEC-IJ-NOTATION",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi mathvariant=\"bold\">v</mi><mo>=</mo><msub><mi>v</mi><mi>x</mi></msub><mtext>&#x2009;</mtext><mi mathvariant=\"bold\">i</mi><mo>+</mo><msub><mi>v</mi><mi>y</mi></msub><mtext>&#x2009;</mtext><mi mathvariant=\"bold\">j</mi></mrow></math>"
     },
     {
       "id": "REL-VEC-DIRECTION-FROM-COMPONENTS",
@@ -798,7 +860,8 @@
         "Direction quadrant agrees with signs of v_x and v_y.",
         "Axis cases are handled without a zero denominator."
       ],
-      "gate_relation_ref": "REL-VEC-DIRECTION-FROM-COMPONENTS"
+      "gate_relation_ref": "REL-VEC-DIRECTION-FROM-COMPONENTS",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>&#x3B1;</mi><mo>=</mo><mo>arctan</mo><mfrac><mrow><mo>|</mo><msub><mi>v</mi><mi>y</mi></msub><mo>|</mo></mrow><mrow><mo>|</mo><msub><mi>v</mi><mi>x</mi></msub><mo>|</mo></mrow></mfrac></mrow></math>"
     },
     {
       "id": "REL-VEC-UNIT-DIRECTION",
@@ -880,12 +943,752 @@
         "The normalized magnitude is 1.",
         "The signs and component ratio match the original vector."
       ],
-      "gate_relation_ref": "REL-VEC-UNIT-DIRECTION"
+      "gate_relation_ref": "REL-VEC-UNIT-DIRECTION",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msup><mi mathvariant=\"bold\">v</mi><mo>&#x302;</mo></msup><mo>=</mo><mfrac><mi mathvariant=\"bold\">v</mi><mrow><mo>|</mo><mi mathvariant=\"bold\">v</mi><mo>|</mo></mrow></mfrac></mrow></math>"
     }
   ],
-  "representations": [],
-  "question_families": [],
-  "questions": [],
+  "representations": [
+    {
+      "id": "REP-VDU-AXES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-DIRECTION-UNIT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "VECTOR",
+      "scene_instances": [],
+      "reveal_stages": [],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-VDU-AXES.svg"
+      ],
+      "purpose": "Coordinate axes for 2-D vector components: Declared +x/+y axes with an example vector and its signed components shown.",
+      "required_elements": [
+        "declared positive x and y axes",
+        "example vector",
+        "signed components"
+      ],
+      "relation_refs": [
+        "REL-VEC-IJ-NOTATION",
+        "REL-VEC-DIRECTION-FROM-COMPONENTS",
+        "REL-VEC-UNIT-DIRECTION"
+      ],
+      "read_order": [
+        "declared positive x and y axes",
+        "example vector",
+        "signed components"
+      ],
+      "instance_constraints": [
+        "Component signs agree with the declared axes and vector direction."
+      ],
+      "accessibility": [
+        "Name both axes and signed components in text."
+      ],
+      "misleading_alternatives": [],
+      "correspondence": [
+        {
+          "element": "example vector",
+          "symbol": "v",
+          "in_words": "The directed vector shown from the declared origin."
+        },
+        {
+          "element": "signed components",
+          "symbol": "v_x",
+          "in_words": "Signed component along the x axis."
+        },
+        {
+          "element": "signed components",
+          "symbol": "v_y",
+          "in_words": "Signed component along the y axis."
+        }
+      ]
+    }
+  ],
+  "question_families": [
+    {
+      "id": "FAM-VDU-NOTATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-DIRECTION-UNIT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Translate signed 2-D components to and from i-hat/j-hat notation",
+      "capability_refs": [
+        "CAP-VEC-UNIT-NOTATION"
+      ],
+      "solution_structure": [
+        "Declare +x/+y axes.",
+        "Assign each component as the signed coefficient of its basis vector.",
+        "Recover the component pair by reading the coefficients back."
+      ],
+      "demand_dimensions": {
+        "model_choice": "None; notation is deterministic.",
+        "representation_translation": "Between signed pair and i/j notation.",
+        "reasoning_steps": "Declare axes, match coefficients, verify recovery.",
+        "novelty": "Zero components and negative coefficients vary the demand."
+      },
+      "safe_variations": [
+        "Change component magnitudes; change one component to zero."
+      ],
+      "transfer_boundaries": [
+        "Do not introduce dot or cross product."
+      ],
+      "common_wrong_routes": [
+        "Making a negative coefficient positive because the basis vector points in a positive direction."
+      ],
+      "item_refs": [
+        "Q-VDU-1A-NOTATION-01",
+        "Q-VDU-2A-NOTATION-01"
+      ]
+    },
+    {
+      "id": "FAM-VDU-DIRECTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-DIRECTION-UNIT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Recover direction from 2-D signed components via quadrant then reference angle",
+      "capability_refs": [
+        "CAP-VEC-DIRECTION-FROM-COMPONENTS"
+      ],
+      "solution_structure": [
+        "Use component signs to identify quadrant or axis.",
+        "Form positive-magnitude ratio and apply inverse tangent for acute reference angle.",
+        "Place acute angle in the identified quadrant to obtain the directed angle.",
+        "Verify sign pattern matches original components."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Two-stage: signs first, then acute reference angle.",
+        "representation_translation": "Signed component pair to directed angle.",
+        "reasoning_steps": "Quadrant, ratio, angle, verify.",
+        "novelty": "Quadrant varies with sign combinations; axis cases require no trigonometry."
+      },
+      "safe_variations": [
+        "Change quadrant by changing signs; use an axis-aligned case with one zero component."
+      ],
+      "transfer_boundaries": [
+        "Do not introduce cross or dot products."
+      ],
+      "common_wrong_routes": [
+        "Using raw tan^-1(v_y/v_x) without quadrant correction."
+      ],
+      "item_refs": [
+        "Q-VDU-1A-DIRECTION-01"
+      ]
+    },
+    {
+      "id": "FAM-VDU-UNIT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-DIRECTION-UNIT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Normalize a nonzero 2-D vector to unit direction",
+      "capability_refs": [
+        "CAP-VEC-UNIT-DIRECTION"
+      ],
+      "solution_structure": [
+        "Confirm |v| > 0.",
+        "Divide every signed component by the same positive magnitude.",
+        "Express in component and i-hat/j-hat form.",
+        "Verify resulting magnitude is 1."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Domain check: zero vector is excluded.",
+        "representation_translation": "From components to normalized i-hat/j-hat form.",
+        "reasoning_steps": "Check nonzero, compute |v|, divide, verify.",
+        "novelty": "Negative components or axis-aligned vectors vary the demand."
+      },
+      "safe_variations": [
+        "Change component values; introduce a negative component."
+      ],
+      "transfer_boundaries": [
+        "The zero vector cannot be normalized; cross or dot products are out of scope."
+      ],
+      "common_wrong_routes": [
+        "Dividing components by different values; forgetting to verify unit magnitude."
+      ],
+      "item_refs": [
+        "Q-VDU-1A-UNIT-01"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-VDU-1A-NOTATION-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-DIRECTION-UNIT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-VEC-DIRECTION-UNIT",
+      "original_identifier": "AUTHOR-VDU-NOTATION-1A",
+      "stem": "With +x declared to the right and +y declared upward, a vector has components v_x = 3 and v_y = −4. Write the vector in i-hat/j-hat notation. Then recover the component pair from that notation.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "+x: right; +y: up. Preserve coefficient signs."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "v = 3 i-hat − 4 j-hat; components recovered: (3, −4).",
+        "reasoning": [
+          "i-hat names +x; j-hat names +y.",
+          "v_x = 3 → coefficient of i-hat is +3.",
+          "v_y = −4 → coefficient of j-hat is −4.",
+          "Written: v = 3 i-hat − 4 j-hat.",
+          "Recovery: coefficients of i-hat and j-hat are 3 and −4 respectively — matching the original pair."
+        ],
+        "check": "Read the two signed coefficients back; they must be exactly (3, −4).",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-VEC-UNIT-NOTATION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-VDU-NOTATION",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "PLANNED_WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": "If your answer wrote a positive coefficient for j-hat despite v_y = −4, check the sign: j-hat names +y, so a component pointing against +y needs a negative coefficient.",
+      "family_exposure": {
+        "family_ref": "FAM-VDU-NOTATION",
+        "closure": "You preserved a negative component sign when translating to i-hat/j-hat notation and recovered the original pair by reading coefficients."
+      },
+      "difficulty": {
+        "band": "D1",
+        "score": 2,
+        "components": {
+          "concept_model_selection": 0,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "Notation translation with a negative y-component; requires preserving the negative coefficient of j-hat."
+      },
+      "learner_question_type": "short_answer"
+    },
+    {
+      "id": "Q-VDU-1A-DIRECTION-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-DIRECTION-UNIT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-VEC-DIRECTION-UNIT",
+      "original_identifier": "AUTHOR-VDU-DIRECTION-1A",
+      "stem": "A vector has components v_x = −3 and v_y = 4 with +x to the right and +y upward. (a) State the quadrant the vector lies in from the component signs alone. (b) Write the acute reference-angle expression using positive component magnitudes. (c) State the directed angle from +x (standard 0°–360° convention).",
+      "subparts": [
+        "a",
+        "b",
+        "c"
+      ],
+      "options": [],
+      "conditions": [
+        "+x: right, +y: up. Standard angle from +x, measured counter-clockwise."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "(a) Quadrant II. (b) alpha = arctan(4/3). (c) 180° − alpha.",
+        "reasoning": [
+          "(a) v_x < 0, v_y > 0 → quadrant II.",
+          "(b) Both components nonzero → use positive magnitudes: alpha = arctan(|4|/|3|) = arctan(4/3).",
+          "(c) Quadrant II: directed angle from +x = 180° − alpha ≈ 180° − 53.1° ≈ 126.9°."
+        ],
+        "check": "Direction in quadrant II must have negative cosine and positive sine — matching v_x < 0 and v_y > 0.",
+        "acceptable_alternatives": [
+          "State \"alpha above the −x axis\" instead of 180° − alpha."
+        ],
+        "subpart_answers": [
+          "(a) Quadrant II",
+          "(b) alpha = arctan(4/3)",
+          "(c) 180° − alpha"
+        ],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-VEC-DIRECTION-FROM-COMPONENTS",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-VDU-DIRECTION",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "PLANNED_WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": "If your directed angle is in quadrant I or III, recheck the component signs: v_x < 0 and v_y > 0 place the vector strictly in quadrant II.",
+      "family_exposure": {
+        "family_ref": "FAM-VDU-DIRECTION",
+        "closure": "You fixed the quadrant from component signs, formed the acute reference angle, and placed it correctly in quadrant II."
+      },
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "Two-stage direction recovery: quadrant from signs then acute reference angle placed in quadrant II."
+      },
+      "learner_question_type": "short_answer"
+    },
+    {
+      "id": "Q-VDU-1A-UNIT-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-DIRECTION-UNIT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-VEC-DIRECTION-UNIT",
+      "original_identifier": "AUTHOR-VDU-UNIT-1A",
+      "stem": "A vector has components v_x = 3 and v_y = 4. (a) Compute its magnitude. (b) Write the unit-direction vector in component and i-hat/j-hat form. (c) Verify that the result has magnitude 1.",
+      "subparts": [
+        "a",
+        "b",
+        "c"
+      ],
+      "options": [],
+      "conditions": [
+        "State the condition on |v| before dividing."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "|v| = 5; v-hat = (3/5) i-hat + (4/5) j-hat; magnitude = 1.",
+        "reasoning": [
+          "(a) |v| = sqrt(3² + 4²) = sqrt(9 + 16) = sqrt(25) = 5 > 0.",
+          "(b) Divide every component by 5: v-hat = (3/5) i-hat + (4/5) j-hat.",
+          "(c) Magnitude check: sqrt((3/5)² + (4/5)²) = sqrt(9/25 + 16/25) = sqrt(25/25) = 1."
+        ],
+        "check": "|v| > 0 confirmed before dividing. Unit vector magnitude = 1 verified.",
+        "acceptable_alternatives": [
+          "(0.6) i-hat + (0.8) j-hat is acceptable as a decimal form."
+        ],
+        "subpart_answers": [
+          "(a) 5",
+          "(b) (3/5) i-hat + (4/5) j-hat",
+          "(c) sqrt((3/5)² + (4/5)²) = 1"
+        ],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-VEC-UNIT-DIRECTION",
+      "secondary_capability_refs": [
+        "CAP-VEC-UNIT-NOTATION"
+      ],
+      "family_ref": "FAM-VDU-UNIT",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "PLANNED_WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": "If your unit vector has components (3, 4) without division, you did not divide by the magnitude. Divide every signed component by 5.",
+      "family_exposure": {
+        "family_ref": "FAM-VDU-UNIT",
+        "closure": "You confirmed |v| > 0, divided both components by the same magnitude, and verified the resulting vector has magnitude 1."
+      },
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "3-4-5 normalization; requires magnitude-first, divide-both-components, verify-unit-magnitude sequence."
+      },
+      "learner_question_type": "short_answer"
+    },
+    {
+      "id": "Q-VDU-2A-NOTATION-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-DIRECTION-UNIT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-VEC-DIRECTION-UNIT",
+      "original_identifier": "AUTHOR-VDU-NOTATION-2A",
+      "stem": "A velocity vector is written as v = −5 i-hat + 0 j-hat m/s with +x to the right. (a) State the signed x- and y-components. (b) Describe the direction of the velocity in words. (c) Can this vector be normalized? If so, write the unit-direction vector.",
+      "subparts": [
+        "a",
+        "b",
+        "c"
+      ],
+      "options": [],
+      "conditions": [
+        "+x: right, +y: up."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "(a) v_x = −5 m/s, v_y = 0. (b) Exactly along −x (to the left). (c) |v| = 5 > 0; unit direction = −1 i-hat + 0 j-hat = −i-hat.",
+        "reasoning": [
+          "(a) Coefficients: −5 for i-hat, 0 for j-hat → v_x = −5 m/s, v_y = 0.",
+          "(b) v_y = 0 means no y-component; v_x < 0 means exactly along −x. Direction: to the left.",
+          "(c) |v| = sqrt((−5)² + 0²) = 5 ≠ 0; v-hat = (−5/5) i-hat + (0/5) j-hat = −i-hat + 0 j-hat = −i-hat."
+        ],
+        "check": "Magnitude of −i-hat: sqrt((−1)² + 0²) = 1. Correct.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [
+          "(a) v_x = −5 m/s, v_y = 0",
+          "(b) Exactly along −x (to the left)",
+          "(c) Yes; v-hat = −i-hat"
+        ],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-VEC-UNIT-NOTATION",
+      "secondary_capability_refs": [
+        "CAP-VEC-UNIT-DIRECTION"
+      ],
+      "family_ref": "FAM-VDU-NOTATION",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PLANNED_WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "The y-component is 0: the vector lies exactly on an axis. What axis, and in which direction?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Magnitude = sqrt(v_x² + v_y²). Then divide both components by the same magnitude.",
+          "reveals": "METHOD"
+        },
+        {
+          "text": "(a) (−5, 0), (b) leftward, (c) −i-hat.",
+          "reveals": "ANSWER"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 3,
+          "purpose": "ANSWER",
+          "from": "hints[2]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-VDU-AXES",
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": "If your unit-direction answer was +i-hat instead of −i-hat, check the sign: the x-component is −5, so dividing by magnitude 5 gives −1, not +1.",
+      "family_exposure": {
+        "family_ref": "FAM-VDU-NOTATION",
+        "closure": "You read components from notation, identified an axis-aligned vector, and computed a unit direction for a pure-axis vector with a negative non-zero component."
+      },
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "Axis-aligned vector with a zero component and a negative non-zero component; normalization gives −i-hat as a result that is easy to sign-flip incorrectly."
+      },
+      "learner_question_type": "constructed_response"
+    },
+    {
+      "id": "Q-VDU-2B-DIRECTION-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-DIRECTION-UNIT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-VEC-DIRECTION-UNIT",
+      "original_identifier": "AUTHOR-VDU-DIRECTION-2B",
+      "stem": "A velocity vector is given as v = −3 i-hat − 3 j-hat m/s with +x to the right and +y upward. (a) State the quadrant and identify any symmetry between the component magnitudes. (b) Write the unit-direction vector for v. (c) Determine the acute reference angle and hence the directed angle from +x (0°–360° convention). (d) State whether the unit-direction vector you found and the directed angle describe the same direction. Justify.",
+      "subparts": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "options": [],
+      "conditions": [
+        "+x: right, +y: up. v_x = −3 m/s, v_y = −3 m/s."
+      ],
+      "figure_refs": [
+        "REP-VDU-AXES"
+      ],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "(a) QIV→ actually QIII; (b) −(1/√2) i-hat − (1/√2) j-hat; (c) alpha = 45°, directed = 225°; (d) yes.",
+        "reasoning": [
+          "(a) v_x < 0 and v_y < 0 → quadrant III. Both components have the same magnitude, so the vector lies at 45° from both axes.",
+          "(b) |v| = sqrt(9 + 9) = 3√2. v-hat = (−3/(3√2)) i-hat + (−3/(3√2)) j-hat = −(1/√2) i-hat − (1/√2) j-hat.",
+          "(c) alpha = arctan(|−3|/|−3|) = arctan(1) = 45°. Quadrant III: directed angle = 180° + 45° = 225°.",
+          "(d) A direction of 225° from +x has cosine negative and sine negative (matching v_x < 0, v_y < 0). The unit vector −(1/√2)(i-hat + j-hat) also points into quadrant III. Both describe the same direction."
+        ],
+        "check": "Check the magnitude of v-hat: sqrt((1/√2)² + (1/√2)²) = sqrt(1/2 + 1/2) = 1. Correct.",
+        "acceptable_alternatives": [
+          "Exact form −(√2/2) i-hat − (√2/2) j-hat is equivalent.",
+          "State direction as \"45° below the −x axis\" instead of 225°."
+        ],
+        "subpart_answers": [
+          "(a) Quadrant III; both component magnitudes equal 3 (symmetric about the −x = −y line).",
+          "(b) −(1/√2) i-hat − (1/√2) j-hat",
+          "(c) alpha = 45°; directed angle = 225°",
+          "(d) Yes; both characterizations point into quadrant III with equal-magnitude negative components."
+        ],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Quadrant identified from signs before any trigonometry.",
+            "evidence_of": "Signs-first discipline."
+          },
+          {
+            "criterion": "Normalization uses the same magnitude for both components.",
+            "evidence_of": "Shared-divisor rule."
+          },
+          {
+            "criterion": "Reference angle placed in quadrant III correctly.",
+            "evidence_of": "Acute-to-directed placement."
+          },
+          {
+            "criterion": "Unit vector and directed angle are reconciled.",
+            "evidence_of": "Representation consistency check."
+          }
+        ],
+        "reasoning_route": [
+          {
+            "id": "R-VDU-2B-SIGNS",
+            "kind": "REPRESENT",
+            "action": "Read component signs: both negative → quadrant III.",
+            "why_valid": "Signs carry directional information independently of magnitude.",
+            "inputs": [
+              "v_x = −3, v_y = −3"
+            ],
+            "output": "Quadrant III"
+          },
+          {
+            "id": "R-VDU-2B-MAG",
+            "kind": "TRANSFORM",
+            "action": "Compute |v| = sqrt(9 + 9) = 3√2.",
+            "why_valid": "Magnitude must be > 0 before normalization.",
+            "inputs": [
+              "v_x = −3, v_y = −3"
+            ],
+            "output": "|v| = 3√2"
+          },
+          {
+            "id": "R-VDU-2B-UNIT",
+            "kind": "TRANSFORM",
+            "action": "Divide both components by 3√2.",
+            "why_valid": "Same divisor preserves direction.",
+            "inputs": [
+              "components",
+              "|v| = 3√2"
+            ],
+            "output": "v-hat = −(1/√2)(i-hat + j-hat)"
+          },
+          {
+            "id": "R-VDU-2B-ANGLE",
+            "kind": "DECIDE",
+            "action": "Acute reference angle = arctan(3/3) = 45°. Place in QIII: 180° + 45° = 225°.",
+            "why_valid": "Reference angle is always acute; quadrant placement restores direction.",
+            "inputs": [
+              "Quadrant III",
+              "alpha = 45°"
+            ],
+            "output": "225° from +x"
+          },
+          {
+            "id": "R-VDU-2B-VERIFY",
+            "kind": "VERIFY",
+            "action": "Both unit vector and directed angle characterize quadrant III.",
+            "why_valid": "Consistent representation confirms no sign error.",
+            "inputs": [
+              "v-hat",
+              "225°"
+            ],
+            "output": "same direction confirmed"
+          }
+        ],
+        "crux_move_ref": "R-VDU-2B-ANGLE"
+      },
+      "primary_capability_ref": "CAP-VEC-DIRECTION-FROM-COMPONENTS",
+      "secondary_capability_refs": [
+        "CAP-VEC-UNIT-DIRECTION",
+        "CAP-VEC-UNIT-NOTATION"
+      ],
+      "family_ref": "FAM-VDU-DIRECTION",
+      "adaptation": {
+        "parent_ref": "Q-VDU-1A-DIRECTION-01",
+        "changed_fields": [
+          "stem",
+          "answer"
+        ],
+        "reason": "Both components are negative (quadrant III instead of II) and equal-magnitude (45° reference angle), requiring the learner to combine direction recovery with normalization and reconcile both representations."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Both components are negative: identify the quadrant from signs before any calculation.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Because |v_x| = |v_y|, the reference angle is arctan(1) = 45°. Which quadrant offset applies?",
+          "reveals": "METHOD"
+        },
+        {
+          "text": "v-hat = −(1/√2)(i-hat + j-hat); directed angle = 225°.",
+          "reveals": "ANSWER"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 3,
+          "purpose": "ANSWER",
+          "from": "hints[2]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-VDU-AXES",
+        "safe_ref": "REP-VDU-AXES",
+        "bound_ref": "REP-VDU-AXES",
+        "stage_refs": []
+      },
+      "failure_signal": "If your directed angle is 45° (quadrant I result), you applied the reference angle without the quadrant offset. Both components are negative, placing the vector in quadrant III; the standard 0°–360° angle is 180° + 45° = 225°.",
+      "family_exposure": {
+        "family_ref": "FAM-VDU-DIRECTION",
+        "closure": "You combined direction recovery, normalization, and representation reconciliation for a quadrant-III symmetric vector."
+      },
+      "transfer": {
+        "dimension": "model_choice",
+        "builds_on": [
+          "Q-VDU-1A-DIRECTION-01"
+        ],
+        "statement": "Both components are negative (quadrant III, not II) and equal in magnitude, so the reference angle is the familiar 45°. The learner must simultaneously normalize and recover direction, then reconcile both representations.",
+        "invariant": "Signs are checked before trigonometry; the reference angle is always acute; the same magnitude divides all components.",
+        "protected_move_ref": "R-VDU-2B-ANGLE",
+        "novelty": {
+          "checked_against": [
+            "Q-VDU-1A-NOTATION-01",
+            "Q-VDU-1A-DIRECTION-01",
+            "Q-VDU-1A-UNIT-01",
+            "Q-VDU-2A-NOTATION-01"
+          ],
+          "why_new": "Q-VDU-1A-DIRECTION-01 (Core1A anchor) recovers direction for quadrant II. Q-VDU-1A-UNIT-01 normalizes a quadrant-I vector. No prior item requires simultaneously normalizing AND recovering direction for the same vector, nor does any prior item use quadrant III. The equal-magnitude components (45° reference angle) are a distinct structural case not present in earlier items. The reconciliation demand in part (d) is genuinely new: no Core1A or Core2A item asks the learner to confirm that unit-direction and directed-angle representations are consistent."
+        }
+      },
+      "difficulty": {
+        "band": "D3",
+        "score": 6,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 2,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "Quadrant III with equal-magnitude components; requires normalization + direction recovery + representation reconciliation."
+      },
+      "learner_question_type": "constructed_response"
+    }
+  ],
   "teaching_routes": [
     {
       "id": "ROUTE-PHY-VEC-DIRECTION-UNIT-A",

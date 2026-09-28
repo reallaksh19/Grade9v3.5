@@ -26,7 +26,7 @@ window.GRADE9V3_CORE = {
             {
               "id": "CORE1-REL-MATH-LINEAR-SOLUTION",
               "kind": "EQUATION",
-              "mathml": "<math display=\"block\"><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mi>c</mi><mo>-</mo><mi>b</mi></mrow><mi>a</mi></mfrac></mrow></math>",
+              "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mi>c</mi><mo>-</mo><mi>b</mi></mrow><mrow><mi>a</mi></mrow></mfrac></mrow></math>",
               "meaning": "Subtracting b and dividing by a non-zero a isolates the unknown using reversible operations, so the solution set is unchanged.",
               "symbols": [
                 "a: Coefficient of the unknown; must not be zero",
@@ -530,7 +530,13 @@ window.GRADE9V3_CORE = {
               ],
               "rejected": [
                 "x = 7/3, because that is what you get when you solve it. The value is right and nothing has been tested, so the statement was still read as an instruction."
-              ]
+              ],
+              "task": {
+                "prompt": "Choose one value of x that you believe satisfies 3x + 2 = 9 and one that you believe does not. For each, substitute into the equation and write both sides separately. Then say which, if either, is a solution and why.",
+                "givens": [
+                  "Use rational candidates to test whether 3x + 2 = 9 is true."
+                ]
+              }
             },
             "reconstruct": {
               "route": [
@@ -965,7 +971,14 @@ window.GRADE9V3_CORE = {
               ],
               "rejected": [
                 "Safe when the multiplier is a number and unsafe when it is a letter. It sorts the examples correctly and names the wrong property: what matters is whether the multiplier can be zero, not how it is written."
-              ]
+              ],
+              "task": {
+                "prompt": "From x · x = x, first list every rational solution by inspection. Then divide both sides by x and solve the result. Compare the two solution sets and name the value of x that was silently ruled out by the division.",
+                "givens": [
+                  "Start with x · x = x over the rationals.",
+                  "State any condition before each division step."
+                ]
+              }
             },
             "reconstruct": {
               "route": [
@@ -1430,7 +1443,13 @@ window.GRADE9V3_CORE = {
             "attempt": {
               "produces": "The two substitutions written side by side, each with the exact difference between its result and 9.",
               "closure": "MODEL_RESPONSE",
-              "model_response": "3 times 7/3 is 7 exactly, so the total is 9 and the difference is 0. 3 times 2.3333333 is 6.9999999, so the total is 8.9999999 and the difference is 0.0000001. Each extra three shrinks the difference by a factor of ten and never closes it."
+              "model_response": "3 times 7/3 is 7 exactly, so the total is 9 and the difference is 0. 3 times 2.3333333 is 6.9999999, so the total is 8.9999999 and the difference is 0.0000001. Each extra three shrinks the difference by a factor of ten and never closes it.",
+              "task": {
+                "prompt": "Solve 3x + 2 = 9 over the rationals. Write the answer as a fraction in lowest terms. Then write the 4-decimal truncation of that fraction, substitute both into the equation, and state the difference each leaves on the left-hand side.",
+                "givens": [
+                  "Solve 3x + 2 = 9 over rational x, then compare exact and truncated values."
+                ]
+              }
             },
             "reconstruct": {
               "route": [
@@ -5072,7 +5091,18 @@ window.GRADE9V3_CORE = {
             ],
             "statement": "The subtraction now sits inside a bracket that is multiplied by 3, so the undo order reverses: divide by 3 first, then add 1.",
             "invariant": "Every step is still an operation applied to both sides that can be undone, the only divisor is the non-zero 3, and the answer is still an exact fraction checked in the original equation.",
-            "protected_move_ref": "R-MATH-2B-ORDER"
+            "protected_move_ref": "R-MATH-2B-ORDER",
+            "novelty": {
+              "checked_against": [
+                "Q-MATH-LINEAR-01",
+                "Q-MATH-CONSTRAINT-1A",
+                "Q-MATH-EXACT-1A",
+                "CU-MATH-CONSTRAINT-1",
+                "CU-MATH-EQUIVALENT-OPS-1",
+                "CU-MATH-EXACT-SOLUTION-1"
+              ],
+              "why_new": "Q-MATH-LINEAR-01 (Core1A anchor) and Q-MATH-EXACT-1A use plain ax+b=c where the subtraction is the inner-most operation and is undone first. Q-MATH-CONSTRAINT-1A tests membership by substitution and requires no undo order. No earlier item wraps the subtraction inside a bracket that is then multiplied, so the learner has never had to choose outer-multiplication-first as the undo sequence. The decision in R-MATH-2B-ORDER (divide before adding 1) is structurally new: the bracket reverses the standard undo order and creates a genuine decision point absent from all prior Core1A and Core2A items."
+            }
           },
           "check": "Expanding first gives 3x − 3 = 5, so 3x = 8 and x = 8/3 again; the cut-off 2.66 would give 3 × 1.66 = 4.98, not 5.",
           "solution": {
@@ -7851,7 +7881,9 @@ window.GRADE9V3_CORE = {
           ],
           "representation_refs": [],
           "representations": [],
-          "relation_checks": [],
+          "relation_checks": [
+            "Swap the component for any other ordinary component in the same single path; the relation still holds."
+          ],
           "exit_task": {
             "prompt": "A steady single-path circuit carries charge through one component. Say whether the charge-flow rate can be persistently smaller at the exit than at the entry and justify the answer without appealing to what the component does with energy.",
             "source_ref": "SRC-AUTHOR-ELEC-CURRENT-OHM",
@@ -8012,7 +8044,14 @@ window.GRADE9V3_CORE = {
               ],
               "rejected": [
                 "The response says the component uses some current and therefore less leaves, but names no place where the missing charge accumulates."
-              ]
+              ],
+              "task": {
+                "prompt": "Draw entry and exit boundaries around one lamp in a single-path steady circuit. List what charge-flow rate you would record at each boundary over the same 10-second window, and state what would have to be true inside the lamp if the exit rate were permanently lower than the entry rate.",
+                "givens": [
+                  "Single unbranched path; steady state.",
+                  "Same 10-second observation window for both boundaries."
+                ]
+              }
             },
             "reconstruct": {
               "route": [
@@ -8049,7 +8088,9 @@ window.GRADE9V3_CORE = {
           ],
           "representation_refs": [],
           "representations": [],
-          "relation_checks": [],
+          "relation_checks": [
+            "Swap the component for any other ordinary component in the same single path; the relation still holds."
+          ],
           "exit_task": {
             "prompt": "A steady single-path circuit carries charge through one component. Say whether the charge-flow rate can be persistently smaller at the exit than at the entry and justify the answer without appealing to what the component does with energy.",
             "source_ref": "SRC-AUTHOR-ELEC-CURRENT-OHM",
@@ -8198,7 +8239,9 @@ window.GRADE9V3_CORE = {
           ],
           "representation_refs": [],
           "representations": [],
-          "relation_checks": [],
+          "relation_checks": [
+            "A different pair from the same table must yield the same ratio."
+          ],
           "exit_task": {
             "prompt": "Two voltage-current tables come from devices tested under fixed conditions. In table A the voltage-to-current ratio stays the same across all measured points; in table B it changes. Decide which table supports one constant-resistance Ohmic model and state the evidence.",
             "source_ref": "SRC-AUTHOR-ELEC-CURRENT-OHM",
@@ -8360,7 +8403,15 @@ window.GRADE9V3_CORE = {
               ],
               "rejected": [
                 "Both tables are called Ohmic because each contains voltage and current values; no comparison across operating points is made."
-              ]
+              ],
+              "task": {
+                "prompt": "You are given two V-I data tables for two different devices, both tested under fixed conditions. Table A: (1 V, 0.5 A), (2 V, 1.0 A), (3 V, 1.5 A). Table B: (1 V, 0.5 A), (2 V, 0.8 A), (3 V, 1.5 A). For each table, compute V/I for every pair and decide whether one constant-resistance model is supported. State the resistance where supported.",
+                "givens": [
+                  "Table A: (1 V, 0.5 A), (2 V, 1.0 A), (3 V, 1.5 A).",
+                  "Table B: (1 V, 0.5 A), (2 V, 0.8 A), (3 V, 1.5 A).",
+                  "Both tables are measured under fixed conditions for their respective devices."
+                ]
+              }
             },
             "reconstruct": {
               "route": [
@@ -8401,7 +8452,9 @@ window.GRADE9V3_CORE = {
           ],
           "representation_refs": [],
           "representations": [],
-          "relation_checks": [],
+          "relation_checks": [
+            "A different pair from the same table must yield the same ratio."
+          ],
           "exit_task": {
             "prompt": "Two voltage-current tables come from devices tested under fixed conditions. In table A the voltage-to-current ratio stays the same across all measured points; in table B it changes. Decide which table supports one constant-resistance Ohmic model and state the evidence.",
             "source_ref": "SRC-AUTHOR-ELEC-CURRENT-OHM",
@@ -15174,7 +15227,9 @@ window.GRADE9V3_CORE = {
           ],
           "representation_refs": [],
           "representations": [],
-          "relation_checks": [],
+          "relation_checks": [
+            "Two centre crossings per cycle → two KE maxima per cycle. Verify both are recorded."
+          ],
           "exit_task": {
             "prompt": "Follow one ideal oscillation from a positive turning point back to the same turning point. How many times does kinetic energy reach a maximum, and why does the total mechanical energy not rise and fall with those maxima?",
             "source_ref": "SRC-AUTHOR-OSC-SHM-WAVES",
@@ -15336,7 +15391,16 @@ window.GRADE9V3_CORE = {
               ],
               "rejected": [
                 "The negative turning point is assigned negative potential energy and only one center crossing is counted before the cycle is declared complete."
-              ]
+              ],
+              "task": {
+                "prompt": "An ideal spring-mass system is displaced 10 cm to the right of equilibrium and released from rest. Fill in a five-row table with columns: Checkpoint | KE (HIGH/LOW) | PE (HIGH/LOW) | E_total (constant?). Checkpoints in order: right turn, centre, left turn, centre, right turn. Then state how many times KE is HIGH in one cycle.",
+                "givens": [
+                  "Ideal spring-mass; no friction.",
+                  "Released from rest at 10 cm to the right of equilibrium.",
+                  "At a turning point: instantaneous speed is zero.",
+                  "At equilibrium crossing: displacement is zero."
+                ]
+              }
             },
             "reconstruct": {
               "route": [
@@ -15377,7 +15441,9 @@ window.GRADE9V3_CORE = {
           ],
           "representation_refs": [],
           "representations": [],
-          "relation_checks": [],
+          "relation_checks": [
+            "Two centre crossings per cycle → two KE maxima per cycle. Verify both are recorded."
+          ],
           "exit_task": {
             "prompt": "Follow one ideal oscillation from a positive turning point back to the same turning point. How many times does kinetic energy reach a maximum, and why does the total mechanical energy not rise and fall with those maxima?",
             "source_ref": "SRC-AUTHOR-OSC-SHM-WAVES",
@@ -15525,7 +15591,9 @@ window.GRADE9V3_CORE = {
           ],
           "representation_refs": [],
           "representations": [],
-          "relation_checks": [],
+          "relation_checks": [
+            "Swap displacement direction; the tendency direction must swap."
+          ],
           "exit_task": {
             "prompt": "Three motions repeat. For each, decide whether one stable equilibrium organizes the motion and justify the choice by what happens after a displacement to either side.",
             "source_ref": "SRC-AUTHOR-OSC-SHM-WAVES",
@@ -15686,7 +15754,14 @@ window.GRADE9V3_CORE = {
               ],
               "rejected": [
                 "The response accepts every repeating path and never checks what a displacement to the opposite side would make the system do."
-              ]
+              ],
+              "task": {
+                "prompt": "You are given two physical systems: (A) a mass on a spring stretched from its natural length, and (B) a ball rolling along the inside of a circular loop. For each, propose one candidate equilibrium position. Then displace the system slightly to the left of that position and describe the direction of its tendency. Repeat for a displacement to the right. State whether each system passes the two-sided stable-equilibrium test.",
+                "givens": [
+                  "System A: ideal spring; natural-length position is the candidate equilibrium.",
+                  "System B: ideal frictionless circular loop; consider the lowest point as the candidate equilibrium."
+                ]
+              }
             },
             "reconstruct": {
               "route": [
@@ -15728,7 +15803,9 @@ window.GRADE9V3_CORE = {
           ],
           "representation_refs": [],
           "representations": [],
-          "relation_checks": [],
+          "relation_checks": [
+            "Swap displacement direction; the tendency direction must swap."
+          ],
           "exit_task": {
             "prompt": "Three motions repeat. For each, decide whether one stable equilibrium organizes the motion and justify the choice by what happens after a displacement to either side.",
             "source_ref": "SRC-AUTHOR-OSC-SHM-WAVES",
@@ -37608,7 +37685,15 @@ window.GRADE9V3_CORE = {
             "attempt": {
               "produces": "A quadrant decision, an acute reference-angle expression, and a directed-angle placement.",
               "closure": "MODEL_RESPONSE",
-              "model_response": "Use signs first for quadrant, then alpha = tan^-1(|v_y|/|v_x|), then place alpha in that quadrant."
+              "model_response": "Use signs first for quadrant, then alpha = tan^-1(|v_y|/|v_x|), then place alpha in that quadrant.",
+              "task": {
+                "prompt": "A vector has components v_x = −5 and v_y = −12. (a) Identify its quadrant from the component signs alone, before any trigonometry. (b) Write the positive-magnitude ratio and the acute reference-angle expression. (c) State the standard directed angle from +x (0°–360° convention). Justify each step.",
+                "givens": [
+                  "For this vector, take +x to the right and +y upward.",
+                  "Both components are nonzero.",
+                  "Standard angle measured counter-clockwise from +x."
+                ]
+              }
             },
             "reconstruct": {
               "route": [
@@ -38695,7 +38780,14 @@ window.GRADE9V3_CORE = {
             "attempt": {
               "produces": "A normalized symbolic vector plus a magnitude-one check.",
               "closure": "MODEL_RESPONSE",
-              "model_response": "Use v_hat=v/|v| only when |v|>0, divide every signed component by the same |v|, and verify the new magnitude is 1."
+              "model_response": "Use v_hat=v/|v| only when |v|>0, divide every signed component by the same |v|, and verify the new magnitude is 1.",
+              "task": {
+                "prompt": "A displacement vector has components d_x = −9 m and d_y = 12 m. (a) State whether this vector can be normalized and why. (b) Compute |d|. (c) Write the unit-direction vector in component and i-hat/j-hat form. (d) Verify the result has magnitude 1.",
+                "givens": [
+                  "d_x = −9 m, d_y = 12 m.",
+                  "State the non-zero condition explicitly before dividing."
+                ]
+              }
             },
             "reconstruct": {
               "route": [
@@ -39040,7 +39132,14 @@ window.GRADE9V3_CORE = {
             "attempt": {
               "produces": "A one-line translation from a signed component pair to i-hat/j-hat notation.",
               "closure": "MODEL_RESPONSE",
-              "model_response": "Preserve each component as the coefficient of its matching basis vector, including its sign."
+              "model_response": "Preserve each component as the coefficient of its matching basis vector, including its sign.",
+              "task": {
+                "prompt": "With +x to the right and +y upward, express each of the following in i-hat/j-hat notation and recover the component pair: (A) (4, −7), (B) (0, −3), (C) (−6, −2).",
+                "givens": [
+                  "+x: right; +y: up.",
+                  "Preserve all coefficient signs."
+                ]
+              }
             },
             "reconstruct": {
               "route": [
@@ -46906,9 +47005,15 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
       "status": "AVAILABLE",
-      "code": null,
-      "detail": null,
-      "findings": [],
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "findings": [
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-ELEC-2B-OHMIC-01"
+        }
+      ],
       "projection_refs": [
         "physics:bucket-phy-elec-current-ohm:core1",
         "physics:mic-elec-current-conservation:core1a",
@@ -47200,9 +47305,15 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-OSC-SHM-WAVES",
       "status": "AVAILABLE",
-      "code": null,
-      "detail": null,
-      "findings": [],
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "findings": [
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-OSC-2B-ENERGY-01"
+        }
+      ],
       "projection_refs": [
         "physics:bucket-phy-osc-shm-waves:core1",
         "physics:mic-osc-energy-exchange:core1a",
@@ -47310,9 +47421,15 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
       "status": "AVAILABLE",
-      "code": null,
-      "detail": null,
-      "findings": [],
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "findings": [
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-VDU-2B-DIRECTION-01"
+        }
+      ],
       "projection_refs": [
         "physics:bucket-phy-vec-direction-unit:core1",
         "physics:mic-phy-vec-direction-from-components:core1a",
@@ -47392,6 +47509,13 @@ window.GRADE9V3_CORE = {
       "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
       "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
       "source_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q3"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-ELEC-2B-OHMIC-01"
     },
     {
       "subject": "Physics",
@@ -47497,6 +47621,20 @@ window.GRADE9V3_CORE = {
       "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
       "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
       "source_ref": "Q-PHY-NLM-INCLINE-2B-TIMING-05"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-OSC-SHM-WAVES",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-OSC-2B-ENERGY-01"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-VDU-2B-DIRECTION-01"
     }
   ]
 };

@@ -893,7 +893,13 @@
           ],
           "rejected": [
             "x = 7/3, because that is what you get when you solve it. The value is right and nothing has been tested, so the statement was still read as an instruction."
-          ]
+          ],
+          "task": {
+            "prompt": "Choose one value of x that you believe satisfies 3x + 2 = 9 and one that you believe does not. For each, substitute into the equation and write both sides separately. Then say which, if either, is a solution and why.",
+            "givens": [
+              "Use rational candidates to test whether 3x + 2 = 9 is true."
+            ]
+          }
         },
         "reconstruct": {
           "route": [
@@ -1037,7 +1043,7 @@
       },
       "research_contribution": "Author-created reversibility framing; independent review pending.",
       "prerequisite_refs": [
-        "MIC-MATH-CONSTRAINT"
+        "CAP-MATH-SUBSTITUTE"
       ],
       "lineage": [],
       "elicitation": {
@@ -1063,7 +1069,14 @@
           ],
           "rejected": [
             "Safe when the multiplier is a number and unsafe when it is a letter. It sorts the examples correctly and names the wrong property: what matters is whether the multiplier can be zero, not how it is written."
-          ]
+          ],
+          "task": {
+            "prompt": "From x · x = x, first list every rational solution by inspection. Then divide both sides by x and solve the result. Compare the two solution sets and name the value of x that was silently ruled out by the division.",
+            "givens": [
+              "Start with x · x = x over the rationals.",
+              "State any condition before each division step."
+            ]
+          }
         },
         "reconstruct": {
           "route": [
@@ -1221,7 +1234,7 @@
       },
       "research_contribution": "Author-created exactness contrast; this is the microtopic the repository's exact-rational comparison exists to support.",
       "prerequisite_refs": [
-        "MIC-MATH-EQUIVALENT-OPS"
+        "CAP-MATH-ISOLATE"
       ],
       "lineage": [],
       "elicitation": {
@@ -1232,7 +1245,13 @@
         "attempt": {
           "produces": "The two substitutions written side by side, each with the exact difference between its result and 9.",
           "closure": "MODEL_RESPONSE",
-          "model_response": "3 times 7/3 is 7 exactly, so the total is 9 and the difference is 0. 3 times 2.3333333 is 6.9999999, so the total is 8.9999999 and the difference is 0.0000001. Each extra three shrinks the difference by a factor of ten and never closes it."
+          "model_response": "3 times 7/3 is 7 exactly, so the total is 9 and the difference is 0. 3 times 2.3333333 is 6.9999999, so the total is 8.9999999 and the difference is 0.0000001. Each extra three shrinks the difference by a factor of ten and never closes it.",
+          "task": {
+            "prompt": "Solve 3x + 2 = 9 over the rationals. Write the answer as a fraction in lowest terms. Then write the 4-decimal truncation of that fraction, substitute both into the equation, and state the difference each leaves on the left-hand side.",
+            "givens": [
+              "Solve 3x + 2 = 9 over rational x, then compare exact and truncated values."
+            ]
+          }
         },
         "reconstruct": {
           "route": [
@@ -2538,7 +2557,7 @@
       "evidence_refs": [],
       "extensions": {},
       "expression": "a*x + b = c  =>  x = (c - b)/a,  a != 0",
-      "mathml": "<math display=\"block\"><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mi>c</mi><mo>-</mo><mi>b</mi></mrow><mi>a</mi></mfrac></mrow></math>",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mi>c</mi><mo>-</mo><mi>b</mi></mrow><mrow><mi>a</mi></mrow></mfrac></mrow></math>",
       "meaning": "Subtracting b and dividing by a non-zero a isolates the unknown using reversible operations, so the solution set is unchanged.",
       "symbols": [
         {
@@ -4660,7 +4679,18 @@
         ],
         "statement": "The subtraction now sits inside a bracket that is multiplied by 3, so the undo order reverses: divide by 3 first, then add 1.",
         "invariant": "Every step is still an operation applied to both sides that can be undone, the only divisor is the non-zero 3, and the answer is still an exact fraction checked in the original equation.",
-        "protected_move_ref": "R-MATH-2B-ORDER"
+        "protected_move_ref": "R-MATH-2B-ORDER",
+        "novelty": {
+          "checked_against": [
+            "Q-MATH-LINEAR-01",
+            "Q-MATH-CONSTRAINT-1A",
+            "Q-MATH-EXACT-1A",
+            "CU-MATH-CONSTRAINT-1",
+            "CU-MATH-EQUIVALENT-OPS-1",
+            "CU-MATH-EXACT-SOLUTION-1"
+          ],
+          "why_new": "Q-MATH-LINEAR-01 (Core1A anchor) and Q-MATH-EXACT-1A use plain ax+b=c where the subtraction is the inner-most operation and is undone first. Q-MATH-CONSTRAINT-1A tests membership by substitution and requires no undo order. No earlier item wraps the subtraction inside a bracket that is then multiplied, so the learner has never had to choose outer-multiplication-first as the undo sequence. The decision in R-MATH-2B-ORDER (divide before adding 1) is structurally new: the bracket reverses the standard undo order and creates a genuine decision point absent from all prior Core1A and Core2A items."
+        }
       },
       "verification": {
         "validator_id": "LINEAR_EQUATION",

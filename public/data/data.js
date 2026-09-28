@@ -436,7 +436,7 @@ window.GRADE9V3 = {
                 }
               },
               "prerequisites": [
-                "MIC-MATH-CONSTRAINT"
+                "CAP-MATH-SUBSTITUTE"
               ]
             },
             {
@@ -513,7 +513,7 @@ window.GRADE9V3 = {
                 }
               },
               "prerequisites": [
-                "MIC-MATH-EQUIVALENT-OPS"
+                "CAP-MATH-ISOLATE"
               ]
             }
           ],
@@ -1460,7 +1460,13 @@ window.GRADE9V3 = {
                     ],
                     "rejected": [
                       "x = 7/3, because that is what you get when you solve it. The value is right and nothing has been tested, so the statement was still read as an instruction."
-                    ]
+                    ],
+                    "task": {
+                      "prompt": "Choose one value of x that you believe satisfies 3x + 2 = 9 and one that you believe does not. For each, substitute into the equation and write both sides separately. Then say which, if either, is a solution and why.",
+                      "givens": [
+                        "Use rational candidates to test whether 3x + 2 = 9 is true."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -1624,7 +1630,14 @@ window.GRADE9V3 = {
                     ],
                     "rejected": [
                       "Safe when the multiplier is a number and unsafe when it is a letter. It sorts the examples correctly and names the wrong property: what matters is whether the multiplier can be zero, not how it is written."
-                    ]
+                    ],
+                    "task": {
+                      "prompt": "From x · x = x, first list every rational solution by inspection. Then divide both sides by x and solve the result. Compare the two solution sets and name the value of x that was silently ruled out by the division.",
+                      "givens": [
+                        "Start with x · x = x over the rationals.",
+                        "State any condition before each division step."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -1655,7 +1668,7 @@ window.GRADE9V3 = {
                   }
                 },
                 "prerequisite_refs": [
-                  "MIC-MATH-CONSTRAINT"
+                  "CAP-MATH-SUBSTITUTE"
                 ],
                 "teaching_path": [
                   {
@@ -1796,7 +1809,13 @@ window.GRADE9V3 = {
                   "attempt": {
                     "produces": "The two substitutions written side by side, each with the exact difference between its result and 9.",
                     "closure": "MODEL_RESPONSE",
-                    "model_response": "3 times 7/3 is 7 exactly, so the total is 9 and the difference is 0. 3 times 2.3333333 is 6.9999999, so the total is 8.9999999 and the difference is 0.0000001. Each extra three shrinks the difference by a factor of ten and never closes it."
+                    "model_response": "3 times 7/3 is 7 exactly, so the total is 9 and the difference is 0. 3 times 2.3333333 is 6.9999999, so the total is 8.9999999 and the difference is 0.0000001. Each extra three shrinks the difference by a factor of ten and never closes it.",
+                    "task": {
+                      "prompt": "Solve 3x + 2 = 9 over the rationals. Write the answer as a fraction in lowest terms. Then write the 4-decimal truncation of that fraction, substitute both into the equation, and state the difference each leaves on the left-hand side.",
+                      "givens": [
+                        "Solve 3x + 2 = 9 over rational x, then compare exact and truncated values."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -1828,7 +1847,7 @@ window.GRADE9V3 = {
                   }
                 },
                 "prerequisite_refs": [
-                  "MIC-MATH-EQUIVALENT-OPS"
+                  "CAP-MATH-ISOLATE"
                 ],
                 "teaching_path": [
                   {
@@ -1967,7 +1986,7 @@ window.GRADE9V3 = {
             "ME-3"
           ],
           "microtopic_prerequisite_refs": [
-            "MIC-MATH-CONSTRAINT"
+            "CAP-MATH-SUBSTITUTE"
           ],
           "capability_prerequisite_refs": [
             "CAP-MATH-SUBSTITUTE"
@@ -2032,7 +2051,7 @@ window.GRADE9V3 = {
             "MX-3"
           ],
           "microtopic_prerequisite_refs": [
-            "MIC-MATH-EQUIVALENT-OPS"
+            "CAP-MATH-ISOLATE"
           ],
           "capability_prerequisite_refs": [
             "CAP-MATH-ISOLATE"
@@ -3001,8 +3020,47 @@ window.GRADE9V3 = {
               "prerequisites": []
             }
           ],
-          "relations": [],
-          "questions": [],
+          "relations": [
+            {
+              "id": "REL-ELEC-CURRENT-CONSERVATION",
+              "expression": "I_entry = I_exit (steady state, single path)",
+              "meaning": "In a single unbranched path at steady state, the rate of charge crossing the entry boundary equals the rate of charge crossing the exit boundary, because charge cannot accumulate inside the component.",
+              "conditions": [
+                "The path is single and unbranched.",
+                "The state is steady (no ongoing charge accumulation inside the component)."
+              ]
+            },
+            {
+              "id": "REL-ELEC-OHMIC-MODEL",
+              "expression": "V/I = R (constant) for each measured pair under fixed conditions",
+              "meaning": "A component is described by one constant-resistance Ohmic model only when the voltage-to-current ratio remains unchanged across all measured operating points under the same fixed conditions.",
+              "conditions": [
+                "Device identity is fixed.",
+                "Thermal and environmental conditions are held constant across all measured operating points.",
+                "R is treated as a parameter to be tested from data, not as a permanent device label."
+              ]
+            }
+          ],
+          "questions": [
+            {
+              "id": "Q-ELEC-1A-CONSERVATION-01",
+              "stem": "A single-path circuit carries a steady current. A lamp is in the path. An ammeter placed before the lamp reads 0.5 A. What does an identical ammeter placed after the lamp read? Justify your answer without appealing to what the lamp does with energy.",
+              "origin": "AUTHORED",
+              "answer": "0.5 A."
+            },
+            {
+              "id": "Q-ELEC-1A-OHMIC-01",
+              "stem": "A device is tested at three operating points under fixed conditions: (2 V, 1 A), (4 V, 2 A), (6 V, 3 A). Compute V/I for each pair. Does the data support one constant-resistance model? State the resistance if so.",
+              "origin": "AUTHORED",
+              "answer": "Yes; R = 2 Ω."
+            },
+            {
+              "id": "Q-ELEC-2A-CONSERVATION-01",
+              "stem": "A battery drives a steady current through two resistors connected in series (single unbranched path). An ammeter between resistor 1 and resistor 2 reads 0.3 A. (a) State the current entering resistor 1 and the current leaving resistor 2. (b) A student claims the current leaving resistor 2 must be less than 0.3 A because resistor 2 \"uses up\" current. Identify the error in the student's reasoning.",
+              "origin": "AUTHORED",
+              "answer": "(a) Both are 0.3 A. (b) Resistors do not consume charge; the student confused energy dissipation with charge disappearance."
+            }
+          ],
           "capabilities": [
             {
               "id": "CAP-ELEC-CURRENT-CONSERVATION",
@@ -3017,17 +3075,19 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 6,
+          "record_count": 14,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
               "CORE1",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A",
+              "CORE2B"
             ],
             "atoms": 80,
-            "questions": 0,
-            "obligations": 3,
+            "questions": 4,
+            "obligations": 4,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -3035,14 +3095,9 @@ window.GRADE9V3 = {
                 "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
               },
               {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-ELEC-CIRCUIT-PATH",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
               },
               {
                 "kind": "PROSE_AUTHORING",
@@ -9786,8 +9841,47 @@ window.GRADE9V3 = {
               "prerequisites": []
             }
           ],
-          "relations": [],
-          "questions": [],
+          "relations": [
+            {
+              "id": "REL-OSC-ENERGY-EXCHANGE",
+              "expression": "KE + PE = E_total (constant) for ideal oscillator",
+              "meaning": "In an ideal oscillator, kinetic and potential energy exchange while their sum remains fixed: KE is maximum at equilibrium crossings and zero at turning points; PE has the opposite pattern. The two equilibrium crossings per displacement cycle give two KE maxima.",
+              "conditions": [
+                "No energy is lost to dissipation.",
+                "PE depends on displacement magnitude, not direction, so opposite equal displacements carry the same PE."
+              ]
+            },
+            {
+              "id": "REL-OSC-STABLE-EQUILIBRIUM",
+              "expression": "F_restoring has opposite sign to displacement x for stable equilibrium",
+              "meaning": "At a stable equilibrium the net tendency on the system when displaced by x has the opposite sign to the displacement: displacement left produces tendency right, and vice versa.",
+              "conditions": [
+                "x = 0 defines the equilibrium position.",
+                "The system must be displaced and released to test the relation.",
+                "Holds for small displacements in the linear restoring-force regime."
+              ]
+            }
+          ],
+          "questions": [
+            {
+              "id": "Q-OSC-1A-ENERGY-01",
+              "stem": "An ideal pendulum is released from rest at its rightmost position. Using five ordered checkpoints (right turn, centre, left turn, centre, right turn), classify kinetic energy as HIGH or LOW and potential energy as HIGH or LOW at each checkpoint. How many times does kinetic energy reach a maximum in one complete displacement cycle?",
+              "origin": "AUTHORED",
+              "answer": "KE peaks twice per cycle (at both centre crossings). Total energy stays constant."
+            },
+            {
+              "id": "Q-OSC-1A-EQUIL-01",
+              "stem": "A ball on a curved bowl repeatedly moves back and forth. (a) Mark the equilibrium position. (b) Describe the direction of the ball's tendency when displaced to the left and when displaced to the right of equilibrium. (c) Does this motion qualify as oscillation? Justify using the two-sided tendency test.",
+              "origin": "AUTHORED",
+              "answer": "Yes, it qualifies. The bottom of the bowl is the equilibrium; displaced left → tendency right; displaced right → tendency left."
+            },
+            {
+              "id": "Q-OSC-2A-EQUIL-01",
+              "stem": "Three motions are described: (P) A mass on a spring bouncing vertically. (Q) A planet orbiting a star in a circular path. (R) A ball in a bowl tilted so the surface curves upward on one side and downward on the other. Apply the two-sided stable-equilibrium test to each. Classify P, Q, R as oscillatory (organized around a stable equilibrium) or not.",
+              "origin": "AUTHORED",
+              "answer": "P: oscillatory. Q: not oscillatory by this test. R: not oscillatory (no single stable equilibrium)."
+            }
+          ],
           "capabilities": [
             {
               "id": "CAP-OSC-ENERGY-EXCHANGE",
@@ -9802,17 +9896,19 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 6,
+          "record_count": 14,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
               "CORE1",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A",
+              "CORE2B"
             ],
             "atoms": 80,
-            "questions": 0,
-            "obligations": 3,
+            "questions": 4,
+            "obligations": 4,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -9820,14 +9916,9 @@ window.GRADE9V3 = {
                 "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
               },
               {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-OSC-CYCLE-DIAGRAM",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
               },
               {
                 "kind": "PROSE_AUTHORING",
@@ -12690,6 +12781,30 @@ window.GRADE9V3 = {
               "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
               "origin": "AUTHORED",
               "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
+            },
+            {
+              "id": "Q-VDU-1A-DIRECTION-01",
+              "stem": "A vector has components v_x = −3 and v_y = 4 with +x to the right and +y upward. (a) State the quadrant the vector lies in from the component signs alone. (b) Write the acute reference-angle expression using positive component magnitudes. (c) State the directed angle from +x (standard 0°–360° convention).",
+              "origin": "AUTHORED",
+              "answer": "(a) Quadrant II. (b) alpha = arctan(4/3). (c) 180° − alpha."
+            },
+            {
+              "id": "Q-VDU-1A-NOTATION-01",
+              "stem": "With +x declared to the right and +y declared upward, a vector has components v_x = 3 and v_y = −4. Write the vector in i-hat/j-hat notation. Then recover the component pair from that notation.",
+              "origin": "AUTHORED",
+              "answer": "v = 3 i-hat − 4 j-hat; components recovered: (3, −4)."
+            },
+            {
+              "id": "Q-VDU-1A-UNIT-01",
+              "stem": "A vector has components v_x = 3 and v_y = 4. (a) Compute its magnitude. (b) Write the unit-direction vector in component and i-hat/j-hat form. (c) Verify that the result has magnitude 1.",
+              "origin": "AUTHORED",
+              "answer": "|v| = 5; v-hat = (3/5) i-hat + (4/5) j-hat; magnitude = 1."
+            },
+            {
+              "id": "Q-VDU-2A-NOTATION-01",
+              "stem": "A velocity vector is written as v = −5 i-hat + 0 j-hat m/s with +x to the right. (a) State the signed x- and y-components. (b) Describe the direction of the velocity in words. (c) Can this vector be normalized? If so, write the unit-direction vector.",
+              "origin": "AUTHORED",
+              "answer": "(a) v_x = −5 m/s, v_y = 0. (b) Exactly along −x (to the left). (c) |v| = 5 > 0; unit direction = −1 i-hat + 0 j-hat = −i-hat."
             }
           ],
           "capabilities": [
@@ -12748,17 +12863,19 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 41,
+          "record_count": 49,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
               "CORE1",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A",
+              "CORE2B"
             ],
             "atoms": 80,
-            "questions": 0,
-            "obligations": 5,
+            "questions": 5,
+            "obligations": 6,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -12766,14 +12883,9 @@ window.GRADE9V3 = {
                 "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
               },
               {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-VDU-AXES",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
               },
               {
                 "kind": "PROSE_AUTHORING",
@@ -14795,7 +14907,14 @@ window.GRADE9V3 = {
                     ],
                     "rejected": [
                       "The response says the component uses some current and therefore less leaves, but names no place where the missing charge accumulates."
-                    ]
+                    ],
+                    "task": {
+                      "prompt": "Draw entry and exit boundaries around one lamp in a single-path steady circuit. List what charge-flow rate you would record at each boundary over the same 10-second window, and state what would have to be true inside the lamp if the exit rate were permanently lower than the entry rate.",
+                      "givens": [
+                        "Single unbranched path; steady state.",
+                        "Same 10-second observation window for both boundaries."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -14858,7 +14977,24 @@ window.GRADE9V3 = {
                 "prerequisite_refs": [],
                 "acceptance_status": "CANDIDATE"
               },
-              "questions": [],
+              "questions": [
+                {
+                  "id": "Q-ELEC-1A-CONSERVATION-01",
+                  "stem": "A single-path circuit carries a steady current. A lamp is in the path. An ammeter placed before the lamp reads 0.5 A. What does an identical ammeter placed after the lamp read? Justify your answer without appealing to what the lamp does with energy.",
+                  "answer": "0.5 A.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-ELEC-CURRENT-CONSERVATION",
+                  "repair_ref": null
+                },
+                {
+                  "id": "Q-ELEC-2A-CONSERVATION-01",
+                  "stem": "A battery drives a steady current through two resistors connected in series (single unbranched path). An ammeter between resistor 1 and resistor 2 reads 0.3 A. (a) State the current entering resistor 1 and the current leaving resistor 2. (b) A student claims the current leaving resistor 2 must be less than 0.3 A because resistor 2 \"uses up\" current. Identify the error in the student's reasoning.",
+                  "answer": "(a) Both are 0.3 A. (b) Resistors do not consume charge; the student confused energy dissipation with charge disappearance.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-ELEC-CURRENT-CONSERVATION",
+                  "repair_ref": null
+                }
+              ],
               "activities": []
             },
             {
@@ -15019,7 +15155,15 @@ window.GRADE9V3 = {
                     ],
                     "rejected": [
                       "Both tables are called Ohmic because each contains voltage and current values; no comparison across operating points is made."
-                    ]
+                    ],
+                    "task": {
+                      "prompt": "You are given two V-I data tables for two different devices, both tested under fixed conditions. Table A: (1 V, 0.5 A), (2 V, 1.0 A), (3 V, 1.5 A). Table B: (1 V, 0.5 A), (2 V, 0.8 A), (3 V, 1.5 A). For each table, compute V/I for every pair and decide whether one constant-resistance model is supported. State the resistance where supported.",
+                      "givens": [
+                        "Table A: (1 V, 0.5 A), (2 V, 1.0 A), (3 V, 1.5 A).",
+                        "Table B: (1 V, 0.5 A), (2 V, 0.8 A), (3 V, 1.5 A).",
+                        "Both tables are measured under fixed conditions for their respective devices."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -15086,7 +15230,24 @@ window.GRADE9V3 = {
                 "prerequisite_refs": [],
                 "acceptance_status": "CANDIDATE"
               },
-              "questions": [],
+              "questions": [
+                {
+                  "id": "Q-ELEC-1A-OHMIC-01",
+                  "stem": "A device is tested at three operating points under fixed conditions: (2 V, 1 A), (4 V, 2 A), (6 V, 3 A). Compute V/I for each pair. Does the data support one constant-resistance model? State the resistance if so.",
+                  "answer": "Yes; R = 2 Ω.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-ELEC-OHMIC-MODEL",
+                  "repair_ref": null
+                },
+                {
+                  "id": "Q-ELEC-2B-OHMIC-01",
+                  "stem": "A device is tested at three temperature settings T1, T2, T3. Table T1 (2 V, 1 A; 4 V, 2 A; 6 V, 3 A): constant ratio. Table T2 (2 V, 1 A; 4 V, 1.6 A; 6 V, 3 A): ratio changes. Table T3 (2 V, 0.5 A; 4 V, 1 A; 6 V, 1.5 A): constant ratio, but a different constant than T1. (a) Which tables support a constant-resistance Ohmic model under their respective conditions? (b) A student says \"R = 2 Ω because table T1 says so; that value applies to all three conditions.\" Identify the error and correct it.",
+                  "answer": "(a) T1 and T3 each support one constant-resistance model; T2 does not. (b) The error is carrying the model across conditions without re-testing.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-ELEC-OHMIC-MODEL",
+                  "repair_ref": null
+                }
+              ],
               "activities": []
             },
             {
@@ -25229,7 +25390,14 @@ window.GRADE9V3 = {
                     ],
                     "rejected": [
                       "The response accepts every repeating path and never checks what a displacement to the opposite side would make the system do."
-                    ]
+                    ],
+                    "task": {
+                      "prompt": "You are given two physical systems: (A) a mass on a spring stretched from its natural length, and (B) a ball rolling along the inside of a circular loop. For each, propose one candidate equilibrium position. Then displace the system slightly to the left of that position and describe the direction of its tendency. Repeat for a displacement to the right. State whether each system passes the two-sided stable-equilibrium test.",
+                      "givens": [
+                        "System A: ideal spring; natural-length position is the candidate equilibrium.",
+                        "System B: ideal frictionless circular loop; consider the lowest point as the candidate equilibrium."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -25297,7 +25465,24 @@ window.GRADE9V3 = {
                 "prerequisite_refs": [],
                 "acceptance_status": "CANDIDATE"
               },
-              "questions": [],
+              "questions": [
+                {
+                  "id": "Q-OSC-1A-EQUIL-01",
+                  "stem": "A ball on a curved bowl repeatedly moves back and forth. (a) Mark the equilibrium position. (b) Describe the direction of the ball's tendency when displaced to the left and when displaced to the right of equilibrium. (c) Does this motion qualify as oscillation? Justify using the two-sided tendency test.",
+                  "answer": "Yes, it qualifies. The bottom of the bowl is the equilibrium; displaced left → tendency right; displaced right → tendency left.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-OSC-STABLE-EQUILIBRIUM",
+                  "repair_ref": null
+                },
+                {
+                  "id": "Q-OSC-2A-EQUIL-01",
+                  "stem": "Three motions are described: (P) A mass on a spring bouncing vertically. (Q) A planet orbiting a star in a circular path. (R) A ball in a bowl tilted so the surface curves upward on one side and downward on the other. Apply the two-sided stable-equilibrium test to each. Classify P, Q, R as oscillatory (organized around a stable equilibrium) or not.",
+                  "answer": "P: oscillatory. Q: not oscillatory by this test. R: not oscillatory (no single stable equilibrium).",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-OSC-STABLE-EQUILIBRIUM",
+                  "repair_ref": null
+                }
+              ],
               "activities": []
             },
             {
@@ -25454,7 +25639,16 @@ window.GRADE9V3 = {
                     ],
                     "rejected": [
                       "The negative turning point is assigned negative potential energy and only one center crossing is counted before the cycle is declared complete."
-                    ]
+                    ],
+                    "task": {
+                      "prompt": "An ideal spring-mass system is displaced 10 cm to the right of equilibrium and released from rest. Fill in a five-row table with columns: Checkpoint | KE (HIGH/LOW) | PE (HIGH/LOW) | E_total (constant?). Checkpoints in order: right turn, centre, left turn, centre, right turn. Then state how many times KE is HIGH in one cycle.",
+                      "givens": [
+                        "Ideal spring-mass; no friction.",
+                        "Released from rest at 10 cm to the right of equilibrium.",
+                        "At a turning point: instantaneous speed is zero.",
+                        "At equilibrium crossing: displacement is zero."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -25521,7 +25715,24 @@ window.GRADE9V3 = {
                 "prerequisite_refs": [],
                 "acceptance_status": "CANDIDATE"
               },
-              "questions": [],
+              "questions": [
+                {
+                  "id": "Q-OSC-1A-ENERGY-01",
+                  "stem": "An ideal pendulum is released from rest at its rightmost position. Using five ordered checkpoints (right turn, centre, left turn, centre, right turn), classify kinetic energy as HIGH or LOW and potential energy as HIGH or LOW at each checkpoint. How many times does kinetic energy reach a maximum in one complete displacement cycle?",
+                  "answer": "KE peaks twice per cycle (at both centre crossings). Total energy stays constant.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-OSC-ENERGY-EXCHANGE",
+                  "repair_ref": null
+                },
+                {
+                  "id": "Q-OSC-2B-ENERGY-01",
+                  "stem": "An ideal pendulum is released from 5 cm to the right of equilibrium. A thin layer of air resistance then slows it gradually. (a) For the first complete swing (before significant energy loss), fill in a five-checkpoint energy table as in the ideal case. (b) After many swings, the amplitude has halved to 2.5 cm. State whether the energy state at the (new, smaller) turning points is the same HIGH/LOW classification as before. Explain why the total mechanical energy must have decreased. (c) A student says \"The total energy can never change in a pendulum.\" Identify the specific assumption that makes this claim false here.",
+                  "answer": "(a) Standard ideal table. (b) PE at turning points is now lower (smaller amplitude); total decreased. (c) The claim requires \"no energy-removing interaction\", violated by air resistance.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-OSC-ENERGY-EXCHANGE",
+                  "repair_ref": null
+                }
+              ],
               "activities": []
             },
             {
@@ -29451,7 +29662,14 @@ window.GRADE9V3 = {
                   "attempt": {
                     "produces": "A one-line translation from a signed component pair to i-hat/j-hat notation.",
                     "closure": "MODEL_RESPONSE",
-                    "model_response": "Preserve each component as the coefficient of its matching basis vector, including its sign."
+                    "model_response": "Preserve each component as the coefficient of its matching basis vector, including its sign.",
+                    "task": {
+                      "prompt": "With +x to the right and +y upward, express each of the following in i-hat/j-hat notation and recover the component pair: (A) (4, −7), (B) (0, −3), (C) (−6, −2).",
+                      "givens": [
+                        "+x: right; +y: up.",
+                        "Preserve all coefficient signs."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -29515,7 +29733,24 @@ window.GRADE9V3 = {
                 ],
                 "acceptance_status": "CANDIDATE"
               },
-              "questions": [],
+              "questions": [
+                {
+                  "id": "Q-VDU-1A-NOTATION-01",
+                  "stem": "With +x declared to the right and +y declared upward, a vector has components v_x = 3 and v_y = −4. Write the vector in i-hat/j-hat notation. Then recover the component pair from that notation.",
+                  "answer": "v = 3 i-hat − 4 j-hat; components recovered: (3, −4).",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-VDU-NOTATION",
+                  "repair_ref": null
+                },
+                {
+                  "id": "Q-VDU-2A-NOTATION-01",
+                  "stem": "A velocity vector is written as v = −5 i-hat + 0 j-hat m/s with +x to the right. (a) State the signed x- and y-components. (b) Describe the direction of the velocity in words. (c) Can this vector be normalized? If so, write the unit-direction vector.",
+                  "answer": "(a) v_x = −5 m/s, v_y = 0. (b) Exactly along −x (to the left). (c) |v| = 5 > 0; unit direction = −1 i-hat + 0 j-hat = −i-hat.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-VDU-NOTATION",
+                  "repair_ref": null
+                }
+              ],
               "activities": []
             },
             {
@@ -29597,7 +29832,15 @@ window.GRADE9V3 = {
                   "attempt": {
                     "produces": "A quadrant decision, an acute reference-angle expression, and a directed-angle placement.",
                     "closure": "MODEL_RESPONSE",
-                    "model_response": "Use signs first for quadrant, then alpha = tan^-1(|v_y|/|v_x|), then place alpha in that quadrant."
+                    "model_response": "Use signs first for quadrant, then alpha = tan^-1(|v_y|/|v_x|), then place alpha in that quadrant.",
+                    "task": {
+                      "prompt": "A vector has components v_x = −5 and v_y = −12. (a) Identify its quadrant from the component signs alone, before any trigonometry. (b) Write the positive-magnitude ratio and the acute reference-angle expression. (c) State the standard directed angle from +x (0°–360° convention). Justify each step.",
+                      "givens": [
+                        "For this vector, take +x to the right and +y upward.",
+                        "Both components are nonzero.",
+                        "Standard angle measured counter-clockwise from +x."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -29678,7 +29921,24 @@ window.GRADE9V3 = {
                 ],
                 "acceptance_status": "CANDIDATE"
               },
-              "questions": [],
+              "questions": [
+                {
+                  "id": "Q-VDU-1A-DIRECTION-01",
+                  "stem": "A vector has components v_x = −3 and v_y = 4 with +x to the right and +y upward. (a) State the quadrant the vector lies in from the component signs alone. (b) Write the acute reference-angle expression using positive component magnitudes. (c) State the directed angle from +x (standard 0°–360° convention).",
+                  "answer": "(a) Quadrant II. (b) alpha = arctan(4/3). (c) 180° − alpha.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-VDU-DIRECTION",
+                  "repair_ref": null
+                },
+                {
+                  "id": "Q-VDU-2B-DIRECTION-01",
+                  "stem": "A velocity vector is given as v = −3 i-hat − 3 j-hat m/s with +x to the right and +y upward. (a) State the quadrant and identify any symmetry between the component magnitudes. (b) Write the unit-direction vector for v. (c) Determine the acute reference angle and hence the directed angle from +x (0°–360° convention). (d) State whether the unit-direction vector you found and the directed angle describe the same direction. Justify.",
+                  "answer": "(a) QIV→ actually QIII; (b) −(1/√2) i-hat − (1/√2) j-hat; (c) alpha = 45°, directed = 225°; (d) yes.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-VDU-DIRECTION",
+                  "repair_ref": null
+                }
+              ],
               "activities": []
             },
             {
@@ -29763,7 +30023,14 @@ window.GRADE9V3 = {
                   "attempt": {
                     "produces": "A normalized symbolic vector plus a magnitude-one check.",
                     "closure": "MODEL_RESPONSE",
-                    "model_response": "Use v_hat=v/|v| only when |v|>0, divide every signed component by the same |v|, and verify the new magnitude is 1."
+                    "model_response": "Use v_hat=v/|v| only when |v|>0, divide every signed component by the same |v|, and verify the new magnitude is 1.",
+                    "task": {
+                      "prompt": "A displacement vector has components d_x = −9 m and d_y = 12 m. (a) State whether this vector can be normalized and why. (b) Compute |d|. (c) Write the unit-direction vector in component and i-hat/j-hat form. (d) Verify the result has magnitude 1.",
+                      "givens": [
+                        "d_x = −9 m, d_y = 12 m.",
+                        "State the non-zero condition explicitly before dividing."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -29836,7 +30103,16 @@ window.GRADE9V3 = {
                 ],
                 "acceptance_status": "CANDIDATE"
               },
-              "questions": [],
+              "questions": [
+                {
+                  "id": "Q-VDU-1A-UNIT-01",
+                  "stem": "A vector has components v_x = 3 and v_y = 4. (a) Compute its magnitude. (b) Write the unit-direction vector in component and i-hat/j-hat form. (c) Verify that the result has magnitude 1.",
+                  "answer": "|v| = 5; v-hat = (3/5) i-hat + (4/5) j-hat; magnitude = 1.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-VDU-UNIT",
+                  "repair_ref": null
+                }
+              ],
               "activities": []
             }
           ]
@@ -32484,8 +32760,8 @@ window.GRADE9V3 = {
           ],
           "core_availability": {
             "status": "AVAILABLE",
-            "code": null,
-            "detail": null
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "READY",
@@ -32542,8 +32818,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "AVAILABLE",
-            "code": null,
-            "detail": null
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -32598,8 +32874,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "AVAILABLE",
-            "code": null,
-            "detail": null
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -32661,8 +32937,8 @@ window.GRADE9V3 = {
           ],
           "core_availability": {
             "status": "AVAILABLE",
-            "code": null,
-            "detail": null
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "READY",
@@ -32719,8 +32995,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "AVAILABLE",
-            "code": null,
-            "detail": null
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -32775,8 +33051,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "AVAILABLE",
-            "code": null,
-            "detail": null
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -32831,8 +33107,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "AVAILABLE",
-            "code": null,
-            "detail": null
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -36542,8 +36818,8 @@ window.GRADE9V3 = {
           ],
           "core_availability": {
             "status": "AVAILABLE",
-            "code": null,
-            "detail": null
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "READY",
@@ -36600,8 +36876,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "AVAILABLE",
-            "code": null,
-            "detail": null
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -36656,8 +36932,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "AVAILABLE",
-            "code": null,
-            "detail": null
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -36719,8 +36995,8 @@ window.GRADE9V3 = {
           ],
           "core_availability": {
             "status": "AVAILABLE",
-            "code": null,
-            "detail": null
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "READY",
@@ -36777,8 +37053,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "AVAILABLE",
-            "code": null,
-            "detail": null
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -38306,8 +38582,8 @@ window.GRADE9V3 = {
           ],
           "core_availability": {
             "status": "AVAILABLE",
-            "code": null,
-            "detail": null
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "READY",
@@ -38378,8 +38654,8 @@ window.GRADE9V3 = {
           ],
           "core_availability": {
             "status": "AVAILABLE",
-            "code": null,
-            "detail": null
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "READY",
@@ -38449,8 +38725,8 @@ window.GRADE9V3 = {
           ],
           "core_availability": {
             "status": "AVAILABLE",
-            "code": null,
-            "detail": null
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "READY",

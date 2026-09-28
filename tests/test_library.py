@@ -459,7 +459,8 @@ class GateAuthorityOverSubjectTruth(unittest.TestCase):
         with no relations at the front and six tests began indexing an empty list."""
         for path in sorted((subject / "library").glob("*.v1.json")):
             package = json.loads(path.read_text(encoding="utf-8"))
-            if any(r.get("gate_relation_ref") for r in package.get("relations", [])):
+            gates = authority.gate_relations(subject)
+            if any(r.get("gate_relation_ref") in gates for r in package.get("relations", [])):
                 return package
         raise AssertionError(f"no gate-bound package in {subject}")
 
@@ -1387,6 +1388,11 @@ class DepictionIsBackedByTheContract(unittest.TestCase):
                 "status": "PROPOSED",
                 "representations_waiting": len(waiting_representation_ids),
                 "buckets_waiting": len(waiting_bucket_ids),
+            }, {
+                "kind": "CIRCUIT_SCHEMATIC",
+                "status": "PROPOSED",
+                "representations_waiting": 1,
+                "buckets_waiting": 1,
             }],
         }
         for path in sorted(REPO.glob("*/adapter/CoreContracts.json")):

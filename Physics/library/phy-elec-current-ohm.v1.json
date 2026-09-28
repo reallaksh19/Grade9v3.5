@@ -140,7 +140,9 @@
           "output": "single steady path -> same flow at entry and exit"
         }
       ],
-      "relation_refs": [],
+      "relation_refs": [
+        "REL-ELEC-CURRENT-CONSERVATION"
+      ],
       "representation_refs": [],
       "question_family_refs": [],
       "misconceptions": [
@@ -196,7 +198,14 @@
           ],
           "rejected": [
             "The response says the component uses some current and therefore less leaves, but names no place where the missing charge accumulates."
-          ]
+          ],
+          "task": {
+            "prompt": "Draw entry and exit boundaries around one lamp in a single-path steady circuit. List what charge-flow rate you would record at each boundary over the same 10-second window, and state what would have to be true inside the lamp if the exit rate were permanently lower than the entry rate.",
+            "givens": [
+              "Single unbranched path; steady state.",
+              "Same 10-second observation window for both boundaries."
+            ]
+          }
         },
         "reconstruct": {
           "route": [
@@ -235,14 +244,27 @@
           ],
           "representation_ref": null,
           "reveal_stage_refs": [],
-          "worked_anchor_ref": null,
+          "worked_anchor_ref": "Q-ELEC-1A-CONSERVATION-01",
           "misconception_indexes": [
             0
           ],
-          "independent_checks": [],
+          "independent_checks": [
+            {
+              "statement": "Replace the lamp with any other ordinary component in the same single path; the argument must still hold.",
+              "check_type": "DOMAIN_CHECK"
+            },
+            {
+              "statement": "Ask what the accumulated charge inside the component would have to be if the rates differed; the steady condition should make this impossible.",
+              "check_type": "BOUNDARY_CHECK"
+            }
+          ],
           "migrated_from": "teaching_path"
         }
-      ]
+      ],
+      "compact_anchor": {
+        "prompt": "In a single steady path, an ammeter reads 0.5 A before a resistor. What does an ammeter after the resistor read?",
+        "result": "0.5 A. In steady single-path operation no charge accumulates inside the resistor, so entry and exit rates must match."
+      }
     },
     {
       "id": "MIC-ELEC-OHMIC-MODEL-TEST",
@@ -289,7 +311,9 @@
           "output": "condition A: one ratio pattern; condition B: changed ratio pattern -> re-test the model"
         }
       ],
-      "relation_refs": [],
+      "relation_refs": [
+        "REL-ELEC-OHMIC-MODEL"
+      ],
       "representation_refs": [],
       "question_family_refs": [],
       "misconceptions": [
@@ -345,7 +369,15 @@
           ],
           "rejected": [
             "Both tables are called Ohmic because each contains voltage and current values; no comparison across operating points is made."
-          ]
+          ],
+          "task": {
+            "prompt": "You are given two V-I data tables for two different devices, both tested under fixed conditions. Table A: (1 V, 0.5 A), (2 V, 1.0 A), (3 V, 1.5 A). Table B: (1 V, 0.5 A), (2 V, 0.8 A), (3 V, 1.5 A). For each table, compute V/I for every pair and decide whether one constant-resistance model is supported. State the resistance where supported.",
+            "givens": [
+              "Table A: (1 V, 0.5 A), (2 V, 1.0 A), (3 V, 1.5 A).",
+              "Table B: (1 V, 0.5 A), (2 V, 0.8 A), (3 V, 1.5 A).",
+              "Both tables are measured under fixed conditions for their respective devices."
+            ]
+          }
         },
         "reconstruct": {
           "route": [
@@ -388,20 +420,720 @@
           ],
           "representation_ref": null,
           "reveal_stage_refs": [],
-          "worked_anchor_ref": null,
+          "worked_anchor_ref": "Q-ELEC-1A-OHMIC-01",
           "misconception_indexes": [
             0
           ],
-          "independent_checks": [],
+          "independent_checks": [
+            {
+              "statement": "Select a different pair from the same table. The ratio must be the same if the model is supported.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            },
+            {
+              "statement": "Check that the thermal condition is recorded beside the conclusion; evidence collected at one temperature does not automatically extend to another.",
+              "check_type": "DOMAIN_CHECK"
+            }
+          ],
           "migrated_from": "teaching_path"
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "A device gives (2 V, 1 A) and (4 V, 2 A) under fixed conditions. Does it follow one constant-resistance Ohmic model?",
+        "result": "Yes. Both ratios give 2 Ω, so one constant-resistance model is supported under those conditions."
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "REL-ELEC-CURRENT-CONSERVATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-ELEC-CURRENT-OHM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "I_entry = I_exit (steady state, single path)",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>I</mi><mi>entry</mi></msub><mo>=</mo><msub><mi>I</mi><mi>exit</mi></msub></mrow></math>",
+      "meaning": "In a single unbranched path at steady state, the rate of charge crossing the entry boundary equals the rate of charge crossing the exit boundary, because charge cannot accumulate inside the component.",
+      "symbols": [
+        {
+          "symbol": "I_entry",
+          "meaning": "Charge-flow rate at the entry boundary",
+          "unit_or_domain": "A"
+        },
+        {
+          "symbol": "I_exit",
+          "meaning": "Charge-flow rate at the exit boundary",
+          "unit_or_domain": "A"
+        }
+      ],
+      "conditions": [
+        "The path is single and unbranched.",
+        "The state is steady (no ongoing charge accumulation inside the component)."
+      ],
+      "derivation": [
+        {
+          "id": "DEC-1",
+          "role": "DECLARE",
+          "action": "Mark entry and exit boundaries around the component during the same time window.",
+          "why_valid": "Matching windows make the two flow-rate claims comparable.",
+          "inputs": [],
+          "output": "entry boundary | component | exit boundary"
+        },
+        {
+          "id": "DEC-2",
+          "role": "TRANSFORM",
+          "action": "A sustained entry excess would accumulate charge inside the component.",
+          "why_valid": "Conservation of charge in a closed region.",
+          "inputs": [],
+          "output": "no accumulation in steady state → I_entry = I_exit"
+        }
+      ],
+      "limits": [
+        "Applies only to the stated steady one-path condition; transient intervals may show a mismatch."
+      ],
+      "checks": [
+        "Swap the component for any other ordinary component in the same single path; the relation still holds."
+      ],
+      "gate_relation_ref": "REL-ELEC-CURRENT-CONSERVATION"
+    },
+    {
+      "id": "REL-ELEC-OHMIC-MODEL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-ELEC-CURRENT-OHM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "V/I = R (constant) for each measured pair under fixed conditions",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mfrac><mi>V</mi><mi>I</mi></mfrac><mo>=</mo><mi>R</mi></mrow></math>",
+      "meaning": "A component is described by one constant-resistance Ohmic model only when the voltage-to-current ratio remains unchanged across all measured operating points under the same fixed conditions.",
+      "symbols": [
+        {
+          "symbol": "V",
+          "meaning": "Measured voltage across the component",
+          "unit_or_domain": "V"
+        },
+        {
+          "symbol": "I",
+          "meaning": "Measured current through the component",
+          "unit_or_domain": "A"
+        },
+        {
+          "symbol": "R",
+          "meaning": "Constant resistance (when the model is supported)",
+          "unit_or_domain": "Ω"
+        }
+      ],
+      "conditions": [
+        "Device identity is fixed.",
+        "Thermal and environmental conditions are held constant across all measured operating points.",
+        "R is treated as a parameter to be tested from data, not as a permanent device label."
+      ],
+      "derivation": [
+        {
+          "id": "DOM-1",
+          "role": "DECLARE",
+          "action": "Fix device and condition, then collect V-I pairs.",
+          "why_valid": "A proportionality claim can only be tested under stable conditions.",
+          "inputs": [],
+          "output": "data table: (V_1, I_1), (V_2, I_2), ..."
+        },
+        {
+          "id": "DOM-2",
+          "role": "TRANSFORM",
+          "action": "Compute V/I for every pair; compare the ratios.",
+          "why_valid": "A constant R predicts the same ratio at every operating point.",
+          "inputs": [],
+          "output": "all equal → one R supported; varied → model not supported"
+        }
+      ],
+      "limits": [
+        "Evidence under one condition does not authorize the same R under a changed condition.",
+        "A single data point cannot demonstrate constancy."
+      ],
+      "checks": [
+        "A different pair from the same table must yield the same ratio."
+      ],
+      "gate_relation_ref": "REL-ELEC-OHMIC-MODEL"
+    }
+  ],
+  "representations": [
+    {
+      "id": "REP-ELEC-CIRCUIT-PATH",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-ELEC-CURRENT-OHM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "CIRCUIT_SCHEMATIC",
+      "scene_instances": [],
+      "reveal_stages": [],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-ELEC-CIRCUIT-PATH.svg"
+      ],
+      "purpose": "Single-path circuit diagram: A single-loop circuit with one battery, one component, and two ammeter positions (before and after the component).",
+      "required_elements": [
+        "single-loop circuit",
+        "one battery",
+        "one component",
+        "two ammeter positions before and after the component"
+      ],
+      "relation_refs": [
+        "REL-ELEC-CURRENT-CONSERVATION"
+      ],
+      "read_order": [
+        "single-loop circuit",
+        "one battery",
+        "one component",
+        "two ammeter positions before and after the component"
+      ],
+      "instance_constraints": [
+        "The circuit shows one unbranched path."
+      ],
+      "accessibility": [
+        "Name the battery, component and two ammeter positions in text."
+      ],
+      "misleading_alternatives": [],
+      "correspondence": [
+        {
+          "element": "two ammeter positions before and after the component",
+          "symbol": "I_entry",
+          "in_words": "Current measured before the component enters the single path."
+        },
+        {
+          "element": "two ammeter positions before and after the component",
+          "symbol": "I_exit",
+          "in_words": "Current measured after the component leaves the same path."
         }
       ]
     }
   ],
-  "relations": [],
-  "representations": [],
-  "question_families": [],
-  "questions": [],
+  "question_families": [
+    {
+      "id": "FAM-ELEC-CURRENT-CONSERVATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-ELEC-CURRENT-OHM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Charge conservation in a single steady-state path",
+      "capability_refs": [
+        "CAP-ELEC-CURRENT-CONSERVATION"
+      ],
+      "solution_structure": [
+        "Identify the single unbranched path and steady-state condition.",
+        "Apply the entry-exit ledger: compare charge-flow rates at matching boundaries.",
+        "Conclude that entry and exit rates match; state the consequence if they did not."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Conservation of charge in steady single path.",
+        "representation_translation": "Circuit to boundary-ledger reasoning.",
+        "reasoning_steps": "Identify path, match windows, state conservation.",
+        "novelty": "Series components and misconception diagnosis vary the demand."
+      },
+      "safe_variations": [
+        "Replace the component with any ordinary component in the same single path."
+      ],
+      "transfer_boundaries": [
+        "Does not cover branched circuits or transient (charging/discharging) conditions."
+      ],
+      "common_wrong_routes": [
+        "Claiming current decreases because the component uses energy."
+      ],
+      "item_refs": [
+        "Q-ELEC-1A-CONSERVATION-01",
+        "Q-ELEC-2A-CONSERVATION-01"
+      ]
+    },
+    {
+      "id": "FAM-ELEC-OHMIC-MODEL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-ELEC-CURRENT-OHM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Testing the constant-resistance Ohmic model from V-I data",
+      "capability_refs": [
+        "CAP-ELEC-OHMIC-MODEL-TEST"
+      ],
+      "solution_structure": [
+        "Fix device identity and thermal condition.",
+        "Compute V/I for every measured pair.",
+        "Accept the constant-resistance model only if the ratio is unchanged across all pairs."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Evidence-based model decision from V-I data.",
+        "representation_translation": "Data table to ratio comparison to model statement.",
+        "reasoning_steps": "Fix condition, compute ratios, decide.",
+        "novelty": "A changing ratio or a condition change varies the demand."
+      },
+      "safe_variations": [
+        "Change the numerical values while keeping the constant-ratio pattern."
+      ],
+      "transfer_boundaries": [
+        "Does not cover voltage-definition, equivalent-resistance or power equations."
+      ],
+      "common_wrong_routes": [
+        "Using the device name as evidence without checking the ratio pattern."
+      ],
+      "item_refs": [
+        "Q-ELEC-1A-OHMIC-01"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-ELEC-1A-CONSERVATION-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-ELEC-CURRENT-OHM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-ELEC-CURRENT-OHM",
+      "original_identifier": "AUTHOR-ELEC-CONSERVATION-1A",
+      "stem": "A single-path circuit carries a steady current. A lamp is in the path. An ammeter placed before the lamp reads 0.5 A. What does an identical ammeter placed after the lamp read? Justify your answer without appealing to what the lamp does with energy.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Single unbranched path; steady state.",
+        "Justify using charge conservation, not energy reasoning."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "0.5 A.",
+        "reasoning": [
+          "The path is single: every charge that enters the lamp must leave it.",
+          "The steady condition excludes ongoing accumulation inside the lamp.",
+          "Therefore the exit flow rate equals the entry flow rate: 0.5 A."
+        ],
+        "check": "If the exit reading were lower, charge would be piling up inside the lamp, contradicting the stated steady condition.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-ELEC-CURRENT-CONSERVATION",
+      "secondary_capability_refs": [],
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "PLANNED_WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "difficulty": {
+        "band": "D1",
+        "score": 2,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "Direct application of charge conservation in a single steady path; no computation required."
+      },
+      "learner_question_type": "short_answer",
+      "family_ref": "FAM-ELEC-CURRENT-CONSERVATION",
+      "family_exposure": {
+        "family_ref": "FAM-ELEC-CURRENT-CONSERVATION",
+        "closure": null
+      }
+    },
+    {
+      "id": "Q-ELEC-1A-OHMIC-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-ELEC-CURRENT-OHM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-ELEC-CURRENT-OHM",
+      "original_identifier": "AUTHOR-ELEC-OHMIC-1A",
+      "stem": "A device is tested at three operating points under fixed conditions: (2 V, 1 A), (4 V, 2 A), (6 V, 3 A). Compute V/I for each pair. Does the data support one constant-resistance model? State the resistance if so.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Device identity fixed; thermal condition fixed.",
+        "Decide from data, not from device name."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Yes; R = 2 Ω.",
+        "reasoning": [
+          "2/1 = 2 Ω, 4/2 = 2 Ω, 6/3 = 2 Ω — all three ratios are the same.",
+          "Because the ratio is constant across all three operating points under fixed conditions, one constant-resistance Ohmic model is supported.",
+          "The resistance is 2 Ω."
+        ],
+        "check": "A fourth pair from the same device and condition should also give 2 Ω; if it does not, the model is no longer supported.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-ELEC-OHMIC-MODEL-TEST",
+      "secondary_capability_refs": [],
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "PLANNED_WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "difficulty": {
+        "band": "D1",
+        "score": 2,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "Direct ratio comparison across three pairs to decide constant-resistance model validity."
+      },
+      "learner_question_type": "short_answer",
+      "family_ref": "FAM-ELEC-OHMIC-MODEL",
+      "family_exposure": {
+        "family_ref": "FAM-ELEC-OHMIC-MODEL",
+        "closure": null
+      }
+    },
+    {
+      "id": "Q-ELEC-2A-CONSERVATION-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-ELEC-CURRENT-OHM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-ELEC-CURRENT-OHM",
+      "original_identifier": "AUTHOR-ELEC-CONSERVATION-2A",
+      "stem": "A battery drives a steady current through two resistors connected in series (single unbranched path). An ammeter between resistor 1 and resistor 2 reads 0.3 A. (a) State the current entering resistor 1 and the current leaving resistor 2. (b) A student claims the current leaving resistor 2 must be less than 0.3 A because resistor 2 \"uses up\" current. Identify the error in the student's reasoning.",
+      "subparts": [
+        "a",
+        "b"
+      ],
+      "options": [],
+      "conditions": [
+        "Two resistors in series, single path, steady state."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "(a) Both are 0.3 A. (b) Resistors do not consume charge; the student confused energy dissipation with charge disappearance.",
+        "reasoning": [
+          "(a) In a single path at steady state every boundary must carry the same charge-flow rate: both 0.3 A.",
+          "(b) Resistors convert electrical energy to heat but do not trap or destroy charge. Any persistent excess of entry charge over exit charge would accumulate inside the resistor, contradicting the steady condition."
+        ],
+        "check": "Place an ammeter anywhere in the single loop; all readings must agree in steady state.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [
+          "(a) 0.3 A at both positions",
+          "(b) Resistors dissipate energy, not charge; charge is conserved in the single steady path."
+        ],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-ELEC-CURRENT-CONSERVATION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-ELEC-CURRENT-CONSERVATION",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PLANNED_WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "In a single path at steady state, does any component have a private store of charge?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Apply the entry-exit boundary ledger to each resistor separately.",
+          "reveals": "METHOD"
+        },
+        {
+          "text": "(a) 0.3 A; (b) resistors dissipate energy, not charge.",
+          "reveals": "ANSWER"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 3,
+          "purpose": "ANSWER",
+          "from": "hints[2]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-ELEC-CIRCUIT-PATH",
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": "If your answer to (a) gives different currents before and after resistor 2, you are treating charge flow as something the resistor can absorb. Apply the conservation argument: in a steady single path, entry rate equals exit rate at every boundary.",
+      "family_exposure": {
+        "family_ref": "FAM-ELEC-CURRENT-CONSERVATION",
+        "closure": "You applied charge conservation to two series components and diagnosed the energy-versus-charge confusion."
+      },
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Applies charge conservation with two in-series components and requires diagnosing a misconception."
+      },
+      "learner_question_type": "constructed_response"
+    },
+    {
+      "id": "Q-ELEC-2B-OHMIC-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-ELEC-CURRENT-OHM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-ELEC-CURRENT-OHM",
+      "original_identifier": "AUTHOR-ELEC-OHMIC-2B",
+      "stem": "A device is tested at three temperature settings T1, T2, T3. Table T1 (2 V, 1 A; 4 V, 2 A; 6 V, 3 A): constant ratio. Table T2 (2 V, 1 A; 4 V, 1.6 A; 6 V, 3 A): ratio changes. Table T3 (2 V, 0.5 A; 4 V, 1 A; 6 V, 1.5 A): constant ratio, but a different constant than T1. (a) Which tables support a constant-resistance Ohmic model under their respective conditions? (b) A student says \"R = 2 Ω because table T1 says so; that value applies to all three conditions.\" Identify the error and correct it.",
+      "subparts": [
+        "a",
+        "b"
+      ],
+      "options": [],
+      "conditions": [
+        "Each table is measured under one fixed temperature setting.",
+        "Decide from data only; do not use device name as evidence."
+      ],
+      "figure_refs": [
+        "REP-ELEC-CIRCUIT-PATH"
+      ],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "(a) T1 and T3 each support one constant-resistance model; T2 does not. (b) The error is carrying the model across conditions without re-testing.",
+        "reasoning": [
+          "(a) T1: 2/1=2, 4/2=2, 6/3=2 → one constant ratio → R=2 Ω supported under T1.",
+          "T2: 2/1=2, 4/1.6=2.5, 6/3=2 → ratio changes → no constant model supported under T2.",
+          "T3: 2/0.5=4, 4/1=4, 6/1.5=4 → one constant ratio → R=4 Ω supported under T3.",
+          "(b) The error: evidence collected under T1 does not authorize the same R under T2 or T3. Each condition requires its own ratio test. T3 gives R=4 Ω, not 2 Ω; T2 gives no constant R at all."
+        ],
+        "check": "Pick any two pairs from T1 or T3 and confirm the ratio is the same; for T2 any pair gives a different ratio.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [
+          "(a) T1 (R=2 Ω) and T3 (R=4 Ω) each support one model; T2 does not.",
+          "(b) Error: the student applied evidence from T1 to conditions not yet tested. Each temperature requires its own ratio test; the constant R can change with conditions."
+        ],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "V/I computed for every pair in each table, not just one.",
+            "evidence_of": "Testing the pattern rather than the first convenient point."
+          },
+          {
+            "criterion": "T3 is accepted with R=4 Ω, not 2 Ω.",
+            "evidence_of": "Not importing T1's value across conditions."
+          },
+          {
+            "criterion": "The student error is identified as condition-transfer without evidence.",
+            "evidence_of": "Understanding that constant-resistance is a conditional model."
+          }
+        ],
+        "reasoning_route": [
+          {
+            "id": "R-ELEC-2B-T1",
+            "kind": "REPRESENT",
+            "action": "Compute V/I for T1 pairs: 2, 2, 2.",
+            "why_valid": "Constant ratio → model supported.",
+            "inputs": [
+              "T1 data"
+            ],
+            "output": "R=2 Ω at T1"
+          },
+          {
+            "id": "R-ELEC-2B-T2",
+            "kind": "REPRESENT",
+            "action": "Compute V/I for T2 pairs: 2, 2.5, 2.",
+            "why_valid": "Ratio changes → no constant model.",
+            "inputs": [
+              "T2 data"
+            ],
+            "output": "No constant R at T2"
+          },
+          {
+            "id": "R-ELEC-2B-T3",
+            "kind": "REPRESENT",
+            "action": "Compute V/I for T3 pairs: 4, 4, 4.",
+            "why_valid": "Constant ratio → model supported but different from T1.",
+            "inputs": [
+              "T3 data"
+            ],
+            "output": "R=4 Ω at T3"
+          },
+          {
+            "id": "R-ELEC-2B-ERR",
+            "kind": "DECIDE",
+            "action": "Identify the student error: condition transfer without re-testing.",
+            "why_valid": "The model is conditional on the stated temperature.",
+            "inputs": [
+              "T1 R=2 Ω",
+              "T3 R=4 Ω"
+            ],
+            "output": "Each condition requires its own test."
+          }
+        ],
+        "crux_move_ref": "R-ELEC-2B-ERR"
+      },
+      "primary_capability_ref": "CAP-ELEC-OHMIC-MODEL-TEST",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-ELEC-OHMIC-MODEL",
+      "adaptation": {
+        "parent_ref": "Q-ELEC-1A-OHMIC-01",
+        "changed_fields": [
+          "stem",
+          "answer"
+        ],
+        "reason": "Three different temperature conditions require separate ratio tests; the model changes across conditions, exposing the error of condition transfer without re-testing."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Test each table independently before comparing conditions.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Compute V/I for every pair in T2 and look for a change in the ratio.",
+          "reveals": "METHOD"
+        },
+        {
+          "text": "T1: R=2 Ω; T2: no constant model; T3: R=4 Ω. Error: T1 evidence does not transfer to other conditions.",
+          "reveals": "ANSWER"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 3,
+          "purpose": "ANSWER",
+          "from": "hints[2]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-ELEC-CIRCUIT-PATH",
+        "safe_ref": "REP-ELEC-CIRCUIT-PATH",
+        "bound_ref": "REP-ELEC-CIRCUIT-PATH",
+        "stage_refs": []
+      },
+      "failure_signal": "If you carried R=2 Ω from T1 to T3 without re-testing, you made the condition-transfer error the problem asks you to diagnose. T3 must be tested independently; it gives R=4 Ω, not 2 Ω.",
+      "family_exposure": {
+        "family_ref": "FAM-ELEC-OHMIC-MODEL",
+        "closure": "You applied the ratio test to three separate conditions, found that R changes with condition, and diagnosed the error of importing evidence across conditions without re-testing."
+      },
+      "transfer": {
+        "dimension": "model_choice",
+        "builds_on": [
+          "Q-ELEC-1A-OHMIC-01"
+        ],
+        "statement": "Three temperature conditions each require an independent ratio test; T2 fails the test and T3 yields a different constant than T1.",
+        "invariant": "The model is decided from the measured V-I ratio under the stated condition; one constant R requires the ratio to be unchanged across all pairs under that condition.",
+        "protected_move_ref": "R-ELEC-2B-ERR",
+        "novelty": {
+          "checked_against": [
+            "Q-ELEC-1A-OHMIC-01",
+            "CU-ELEC-OHMIC-MODEL-TEST-1"
+          ],
+          "why_new": "Q-ELEC-1A-OHMIC-01 (Core1A anchor) tests one constant ratio under one fixed condition; the model is supported. No earlier item tests the same device across multiple conditions where the model changes, nor does any earlier item require diagnosing the error of carrying a model value across conditions without re-testing. The T2 failure and T3 different-constant cases are structurally new; the error-diagnosis demand in part (b) is genuinely new."
+        }
+      },
+      "difficulty": {
+        "band": "D3",
+        "score": 6,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Three-condition model test requiring independent ratio tests and an error diagnosis; T3 gives a different R than T1."
+      },
+      "learner_question_type": "constructed_response"
+    }
+  ],
   "teaching_routes": [
     {
       "id": "ROUTE-ELEC-CORE1A",
