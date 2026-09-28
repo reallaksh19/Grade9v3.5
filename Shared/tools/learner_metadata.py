@@ -227,6 +227,7 @@ def project(role: str, record: dict, packages: list[dict], vocabulary: dict[str,
         "topic_ref": concept["topic_ref"],
         "topic": concept["topic"],
         "concept": concept,
+        "field_labels": vocabulary["field_labels"],
         "items": items,
     }
     if role in CONCEPT_ROLES:

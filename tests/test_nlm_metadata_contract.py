@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import json
+import re
 import tempfile
 import unittest
 from pathlib import Path
@@ -65,6 +66,46 @@ class NlmSelectionContract(unittest.TestCase):
             difficulty = row["difficulty"]
             self.assertEqual(difficulty["score"], sum(difficulty["components"].values()))
             self.assertTrue(difficulty["basis"])
+
+    def test_all_six_roles_render_one_metadata_component_contract(self):
+        ctx = render_core.context(MANIFEST)
+        digest = render_core.render_digest(ctx)
+        expected = {
+            "CORE1": (11, {"concept", "concept-difficulty"}),
+            "CORE1A": (11, {"concept", "concept-difficulty"}),
+            "CORE1B": (11, {"concept", "concept-difficulty"}),
+            "CORE2": (13, {"concept", "concept-difficulty", "question-difficulty", "family", "question-type", "source", "provenance"}),
+            "CORE2A": (22, {"concept", "concept-difficulty", "question-difficulty", "family", "question-type", "provenance"}),
+            "CORE2B": (16, {"concept", "concept-difficulty", "question-difficulty", "family", "question-type", "provenance", "transfer-dimension"}),
+        }
+        for role, (unit_count, kinds) in expected.items():
+            with self.subTest(role=role):
+                html = render_core.page(ctx, role, "PAGES", digest)
+                self.assertEqual(html.count("data-g9-meta-strip"), unit_count)
+                for kind in kinds:
+                    self.assertEqual(
+                        len(re.findall(rf'data-g9-meta-kind="{re.escape(kind)}"', html)),
+                        unit_count,
+                        kind,
+                    )
+        self.assertEqual(ctx.gaps, [])
+
+    def test_render_identity_tracks_every_metadata_authority(self):
+        ctx = render_core.context(MANIFEST)
+        labels = {label for label, _ in ctx.authority_hashes}
+        self.assertTrue({
+            "learner-metadata-source",
+            "learner-metadata-vocabulary",
+            "package-schema",
+            "competitive-bank-schema",
+            "blueprints",
+        } <= labels)
+
+    def test_page_search_uses_rendered_visible_text_not_locked_text_content(self):
+        ctx = render_core.context(MANIFEST)
+        html = render_core.page(ctx, "CORE2B", "PAGES", render_core.render_digest(ctx))
+        self.assertIn("a.innerText.toLowerCase()", html)
+        self.assertNotIn("a.textContent.toLowerCase()", html)
 
     def test_missing_selected_id_fails_closed(self):
         manifest = copy.deepcopy(self.manifest)

@@ -35,11 +35,16 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
 
-from Shared.tools import product_manifest  # noqa: E402
+from Shared.tools import learner_metadata, product_manifest  # noqa: E402
 
 BLUEPRINTS = REPO / "Shared/web/interactive-page-blueprints.v1.json"
 CONTRACT = REPO / "Shared/quality/learner-quality.v1.json"
 TABLET_CSS = REPO / "public/css/tablet-12-7.css"
+PACKAGE_SCHEMA = REPO / "Shared/library/package.schema.json"
+BANK_SCHEMA = REPO / "Shared/library/competitive-exam-bank.schema.json"
+LEARNER_METADATA_SOURCE = Path(learner_metadata.__file__).resolve()
+LEARNER_METADATA_VOCABULARY = learner_metadata.VOCABULARY
+PRODUCT_MANIFEST_SOURCE = Path(product_manifest.__file__).resolve()
 ROLES = ["CORE1", "CORE1A", "CORE1B", "CORE2", "CORE2A", "CORE2B"]
 ROLE_FILE = {r: r.lower() + ".html" for r in ROLES}
 ROLE_TITLE = {"CORE1": "Orientation map", "CORE1A": "Construction", "CORE1B": "Reconstruction",
@@ -239,6 +244,22 @@ def slot(name: str, body: str, required: bool) -> str:
             f'data-required="{"true" if required else "false"}">{body}</section>')
 
 
+def metadata_strip(ctx: Ctx, role: str, record: dict) -> str:
+    """Render the explicit learner-safe metadata projection inside the existing identity slot."""
+    projection = learner_metadata.project(role, record, ctx.packages)
+    field_labels = projection["field_labels"]
+    chips = "".join(
+        f'<span data-g9-meta-item data-g9-meta-kind="{esc(item["kind"])}" '
+        f'data-g9-meta-ref="{esc(item["ref"])}" data-g9-meta-value="{esc(item["value"])}">'
+        f'<strong>{esc(field_labels[item["kind"]])}:</strong> {esc(item["label"])}</span>'
+        for item in projection["items"]
+    )
+    return (
+        f'<div data-g9-meta-strip data-g9-meta-role="{esc(role)}" '
+        f'data-g9-meta-record="{esc(record["id"])}" data-g9-search-safe>{chips}</div>'
+    )
+
+
 def reveal(summary: str, body: str, gated: bool = True) -> str:
     if not body:
         return ""
@@ -358,7 +379,7 @@ def core1(ctx: Ctx, m: dict) -> str:
                        f'{items(r.get("conditions"))}</div>' for r in rels)
     # The compact anchor's own figure; the microtopic's first representation is often shared across the map.
     rep = (anchor or {}).get("representation_ref") or (m.get("representation_refs") or [None])[0]
-    body = (slot("identity", block("scope", f"<h2>{esc(m['title'])}</h2>"), True)
+    body = (slot("identity", block("scope", f"<h2>{esc(m['title'])}</h2>") + metadata_strip(ctx, "CORE1", m), True)
             + slot("orientation",
                    block("hard_transition", para(m["inferential_jump"]), title="Hard transition")
                    + figure(ctx, rep, "TEACHING", "CORE1", m["id"])
@@ -403,7 +424,7 @@ def core1a(ctx: Ctx, m: dict) -> str:
                       + block("independent_check", items(checks), title="Check it independently")
                       + "</section>")
     exit_task = m.get("exit_task") or {}
-    return (slot("identity", f"<h2>{esc(m['title'])}</h2>"
+    return (slot("identity", f"<h2>{esc(m['title'])}</h2>" + metadata_strip(ctx, "CORE1A", m)
                  + block("entry_assumptions", items(m.get("entry_assumptions")) + _prereqs(ctx, m), title="You need")
                  , True)
             + slot("construction", block("inferential_jump", para(m["inferential_jump"]), title="The key step") + unit_html, True)
@@ -418,7 +439,7 @@ def core1b(ctx: Ctx, m: dict) -> str:
     e = m.get("elicitation")
     if not e:
         ctx.gap("AUTHOR_ELICITATION", m["id"], "no predict/attempt/reconstruct/boundary cycle", "CORE1B")
-        return slot("identity", f"<h2>{esc(m['title'])}</h2>", True)
+        return slot("identity", f"<h2>{esc(m['title'])}</h2>" + metadata_strip(ctx, "CORE1B", m), True)
     unit = (m.get("construction_units") or [{}])[0]
     wrong = _misconceptions(m, unit if unit else None)
     rec = e.get("reconstruct") or {}
@@ -431,7 +452,7 @@ def core1b(ctx: Ctx, m: dict) -> str:
     if not task:
         # `produces` describes the expected answer; it is not a task the learner can act on.
         ctx.gap("AUTHOR_RECONSTRUCTION_TASK", m["id"], "no concrete Core1B task (elicitation.attempt.task)", "CORE1B")
-    return (slot("identity", f"<h2>{esc(m['title'])}</h2>", True)
+    return (slot("identity", f"<h2>{esc(m['title'])}</h2>" + metadata_strip(ctx, "CORE1B", m), True)
             + slot("attempt",
                    block("predict", para((e.get("predict") or {}).get("prompt")), title="Predict")
                    + figure(ctx, task_rep, "PRE_ATTEMPT", "CORE1B", m["id"], first_stage_only=True,
@@ -469,7 +490,7 @@ def core2(ctx: Ctx, q: dict) -> str:
     labelled = re.compile(r"\s*\(?[A-Za-z0-9]{1,2}[).]\s")
     stem = q["stem"] + ((" " + " ".join(str(o) if labelled.match(str(o)) else f"({chr(97 + i)}) {o}"
                                           for i, o in enumerate(q["options"]))) if q.get("options") else "")
-    return (slot("identity", block("source_identity", f"<h2>{esc(_identity(q))}</h2><p class=\"g9-prov\">{esc(_custody(q))}</p>"), True)
+    return (slot("identity", block("source_identity", f"<h2>{esc(_identity(q))}</h2><p class=\"g9-prov\">{esc(_custody(q))}</p>") + metadata_strip(ctx, "CORE2", q), True)
             + slot("attempt", block("stem", para(stem)) + block("conditions", items(q.get("conditions")), title="Conditions")
                    + attempt_box("Your answer"), True)
             + slot("solution", reveal("Answer and working", block("answer", para(ans.get("summary")))
@@ -525,6 +546,7 @@ def core2a(ctx: Ctx, q: dict) -> str:
     route = "".join(f'<li><strong>{esc(s["kind"])}</strong> {esc(s["action"])}<br><em>Why valid:</em> {esc(s["why_valid"])}</li>'
                     for s in ans.get("reasoning_route") or [])
     return (slot("identity", block("provenance", f'<p class="g9-prov">{esc(q.get("origin"))} practice</p>')
+                 + metadata_strip(ctx, "CORE2A", q)
                  + block("family_identity", para(_family_title(ctx, fam.get("family_ref") or q.get("family_ref")))), True)
             + slot("attempt", block("stem", f"<h2>{esc(q['stem'])}</h2>")
                    + block("conditions", items(q.get("conditions")), title="Conditions")
@@ -586,6 +608,7 @@ def core2b(ctx: Ctx, q: dict) -> str:
         kind, i = re.match(r"(hints|scaffolds)\[(\d+)\]", rung["from"]).groups()
         rung_text = (q.get(kind) or [])[int(i)]["text"]
     return (slot("identity", block("provenance", f'<p class="g9-prov">{esc(q.get("origin"))} transfer</p>')
+                 + metadata_strip(ctx, "CORE2B", q)
                  + block("stem", f"<h2>{esc(q['stem'])}</h2>")
                  + block("lineage", f"<ul>{lineage}</ul>" if lineage else "", title="Builds on"), True)
             + slot("attempt", block("conditions", items(q.get("conditions")), title="Conditions")
@@ -638,6 +661,9 @@ textarea{width:100%;min-height:96px;font:inherit;border:1px solid var(--line);bo
 details{border:1px solid var(--line);border-radius:10px;margin:12px 0;padding:0 12px}details[data-locked] summary{opacity:.55;cursor:not-allowed}
 figure{margin:14px 0}figure svg{width:100%;height:auto;max-width:720px}figcaption{color:var(--muted)}
 .g9-prov{color:var(--muted);font-size:.95rem}.g9-expr{font-family:ui-monospace,monospace;font-size:1.05rem}
+[data-g9-meta-strip]{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+[data-g9-meta-item]{display:inline-flex;gap:4px;align-items:baseline;padding:5px 9px;border:1px solid var(--line);border-radius:999px;background:var(--bg);font-size:.9rem}
+[data-g9-meta-item] strong{font-weight:700}
 h4{margin:.8em 0 .3em}:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 footer{padding:24px 16px;color:var(--muted)}
 @media print{header[data-g9-shell-header],nav[data-g9-breadcrumb],.g9-attempt,button,[data-g9-display-panel]{display:none!important}
@@ -659,7 +685,7 @@ q('[data-g9-next-rung]',a).forEach(b=>b.onclick=()=>{const h=q('[data-g9-rung][h
 q('figure[data-g9-figure]').forEach(f=>{const ids=(f.dataset.g9Stages||'').split(' ').filter(Boolean);if(ids.length<2)return;let i=0;
 const show=()=>{ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=n<=i?'':'none'));const l=q('[data-g9-stage-label]',f)[0];if(l)l.textContent='Stage '+(i+1)+' of '+ids.length};show();
 q('[data-g9-stage-step]',f).forEach(b=>b.onclick=()=>{i=Math.max(0,Math.min(ids.length-1,i+(b.dataset.g9StageStep==='next'?1:-1)));show()})});
-const input=q('[data-g9-search-input]')[0];if(input)input.oninput=()=>{const v=input.value.trim().toLowerCase();q('article[data-g9-unit]').forEach(a=>a.hidden=!!v&&!a.textContent.toLowerCase().includes(v))};
+const input=q('[data-g9-search-input]')[0];if(input)input.oninput=()=>{const v=input.value.trim().toLowerCase();q('article[data-g9-unit]').forEach(a=>a.hidden=!!v&&!a.innerText.toLowerCase().includes(v))};
 q('[data-g9-action="search"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-search-panel]')[0];p.hidden=!p.hidden;if(!p.hidden)input.focus()});
 q('[data-g9-action="display"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-display-panel]')[0];p.hidden=!p.hidden});
 })();
@@ -820,6 +846,11 @@ def context(manifest_path: Path) -> Ctx:
                     teacher_refs.add(taught[1])
     authority_hashes = [
         ("renderer-source", _file_sha256(Path(__file__))),
+        ("product-manifest-source", _file_sha256(PRODUCT_MANIFEST_SOURCE)),
+        ("learner-metadata-source", _file_sha256(LEARNER_METADATA_SOURCE)),
+        ("learner-metadata-vocabulary", _file_sha256(LEARNER_METADATA_VOCABULARY)),
+        ("package-schema", _file_sha256(PACKAGE_SCHEMA)),
+        ("competitive-bank-schema", _file_sha256(BANK_SCHEMA)),
         ("manifest", _file_sha256(manifest_path)),
         *[(f"package:{p}", _file_sha256(path)) for p, path in zip(manifest["package_refs"], package_paths)],
         *[(f"bank:{p}", _file_sha256(path)) for p, path in zip(manifest.get("bank_refs", []), bank_paths)],
