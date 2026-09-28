@@ -75,6 +75,19 @@ class SubjectNeutral(unittest.TestCase):
         unit["check_types"] = ["ATOM_CONSERVATION_STOICHIOMETRY"]
         self.assertTrue({"ALL-FIGURE-KIND-KNOWN", "ALL-CHECK-TYPES-KNOWN"} <= rules_failed(obs))
 
+    def test_product_figure_kind_comes_from_subject_core_contract(self):
+        declared = json.loads((REPO / "Physics/adapter/CoreContracts.json").read_text(encoding="utf-8"))
+        known = set(quality_contract.vocabulary("Physics")["representation_kinds"])
+        self.assertTrue({row["id"] for row in declared["representation_kinds"]} <= known)
+        self.assertIn("MOTION_DIAGRAM", known)  # existing quality-only figure vocabulary
+
+        obs = load("math-core2a-two-step-linear.observation.json")
+        obs["subject"] = "Physics"
+        obs["pages"][0]["units"][0]["figures"][0]["kind"] = "CIRCUIT_SCHEMATIC"
+        self.assertNotIn("ALL-FIGURE-KIND-KNOWN", rules_failed(obs))
+        obs["pages"][0]["units"][0]["figures"][0]["kind"] = "NOT_DECLARED"
+        self.assertIn("ALL-FIGURE-KIND-KNOWN", rules_failed(obs))
+
 
 class RenderedMetadataSafety(unittest.TestCase):
     NEW_RULES = {
