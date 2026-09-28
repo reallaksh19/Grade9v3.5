@@ -1,0 +1,651 @@
+{
+  "head": "68559ac4cb17eeb5f2d87aebecebf652b9a34efd",
+  "branch": "codex/polynomials-six-core-stress",
+  "inputs": [
+    {
+      "path": "Shared/tools/render_core.py",
+      "bytes": 75686,
+      "sha256": "7a21eb9faa02cd59e16cb69d8c099e2607bcbd1b681cfdab773e0902199f560e"
+    },
+    {
+      "path": "Shared/tools/learner_metadata.py",
+      "bytes": 16813,
+      "sha256": "9a6fe20d08e8cc7469de386bbac502b81a54536f6b22de9ce9976f7585d45a38"
+    },
+    {
+      "path": "Shared/tools/product_manifest.py",
+      "bytes": 7838,
+      "sha256": "ec949b2ccff8b9eb0823342a9d3a633def50db99106ec390fb3bbf1fd882142b"
+    },
+    {
+      "path": "Shared/tools/quality_gate.py",
+      "bytes": 6934,
+      "sha256": "8985cd523530814f5d47c9aa49dc2941c6dc38102edc8796fb8dd059a54aad1c"
+    },
+    {
+      "path": "Shared/tools/quality_observe.py",
+      "bytes": 31043,
+      "sha256": "b1836f52d0603e766e2b7b11dc970061eeae655943a2737384ae5bbf7c6fce04"
+    },
+    {
+      "path": "Shared/quality/learner-quality.v1.json",
+      "bytes": 31316,
+      "sha256": "dc81dd2dd3054d96d3b6e2bc15d37ab6d16b9b2709b7c795907dbccf4e7ead1b"
+    },
+    {
+      "path": "Shared/library/package.schema.json",
+      "bytes": 96850,
+      "sha256": "da3955ec81af2a401e1aad0f862a418fdc3c627a216c11336bcd4d9ef0406bdf"
+    },
+    {
+      "path": "Shared/library/competitive-exam-bank.schema.json",
+      "bytes": 13259,
+      "sha256": "08cf818357f8f46d65fa74da4ba417f6f8bd8e6d993f66760819271a6336a871"
+    },
+    {
+      "path": "Shared/web/interactive-page-blueprints.v1.json",
+      "bytes": 13848,
+      "sha256": "767f39963cb4a136f83e90a12c7de23d807300f89bbbda44b89bfc732ddb9500"
+    },
+    {
+      "path": "public/css/tablet-12-7.css",
+      "bytes": 7171,
+      "sha256": "654461f8475f4a5e121c165f7c5caa38f7377bd9fd9217db02ae3bda97f1d7af"
+    },
+    {
+      "path": "golden/units/G-MATH-LINEAR-CONSTRAINT/manifest.json",
+      "bytes": 596,
+      "sha256": "cd58496a69e057321cd97659cd61630b878a0880808fc540bbe01ecb2a308947"
+    },
+    {
+      "path": "golden/units/G-MATH-LINEAR-CONSTRAINT/records.json",
+      "bytes": 108055,
+      "sha256": "978c930a3242cf98b967d109b92422ac28d16fb182febbc77ffb5bbf49214521"
+    },
+    {
+      "path": "golden/units/G-MATH-LINEAR-CONSTRAINT/bank.json",
+      "bytes": 6745,
+      "sha256": "fd55868ae3ed44fef65f19f4edbfab4eaf0a2881ca7387cd0c0e175638c83f65"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/empty.manifest.json",
+      "bytes": 327,
+      "sha256": "d086afbae33d1f8c0421e767d01eba50b2062a9895f6d08d9002790110ff7ad8"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/untrusted-fixture/original-manifest.json",
+      "bytes": 627,
+      "sha256": "fc6e3afc4b0b28e9fe3ac61db807b97a059e890635e711440e628f07edd4803c"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/untrusted-fixture/replay-manifest.json",
+      "bytes": 689,
+      "sha256": "3a26add46b4259d21c49e96d1651a21ad6d02baa761424011f0cd615cd3924f5"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/untrusted-fixture/package.json",
+      "bytes": 6691,
+      "sha256": "d1df60ff442d27f28d0b02d843bfaaa199b7a7302406323cc31af36c26599141"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/untrusted-fixture/bank.json",
+      "bytes": 687,
+      "sha256": "9e97152e26003e3d897f18741e70d346d133191d04b58dd81374a283b1067a52"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/rendered/core1.html",
+      "bytes": 10381,
+      "sha256": "4c240f32deb486c441e452f91082b632121fe023af4136693aa652e7a0282173"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/rendered/core1a.html",
+      "bytes": 10379,
+      "sha256": "a01224b86fab9e2543a45f0d0f544fa69b4648f6ad7dc48b0048652b56059039"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/rendered/core1b.html",
+      "bytes": 10385,
+      "sha256": "336a4bf5b4d0f3411f9bb4b47da1ec6399804feb4ef48a952b06ada51dd90858"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/rendered/core2.html",
+      "bytes": 10387,
+      "sha256": "7c56b48a1e43a93dc44a1b9cbd379444110c4abeb3fbf0559fce09bedaa72e70"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/rendered/core2a.html",
+      "bytes": 10400,
+      "sha256": "c4740f23f670328139e6bad446dbd6336ba07d248c816ab1ded2fb7d12e7a83a"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/rendered/core2b.html",
+      "bytes": 10367,
+      "sha256": "bca3ee044559def3c634c552fafd3d65a6550c89eee64ffe48c2b4292a7f765f"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/rendered/index.html",
+      "bytes": 10528,
+      "sha256": "2bf064253bc5041a01e88d70d911d2204ca34f17164cf7f9ab5d17ace8af758f"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/rendered/render-receipt.json",
+      "bytes": 881,
+      "sha256": "4390f6d1564f3542fb43bc97bbcb52bad37c6ee5eb38d8e78169d21ec87fc2a1"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/golden-control/core1.html",
+      "bytes": 15599,
+      "sha256": "d42c5c3a7014befbd3fdbac5ab094fc6f37a480a9a53c78055fa794c900b1cd3"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/golden-control/core1a.html",
+      "bytes": 18240,
+      "sha256": "090e70a526c1197d6f86d8c7aeccf70b7291c3a26388f8a8fb44e1a47a8c2a31"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/golden-control/core1b.html",
+      "bytes": 19107,
+      "sha256": "5cf37af636bc495df9e158f801b93ff40596933db12556c868ac23af540c56d0"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/golden-control/core2.html",
+      "bytes": 16645,
+      "sha256": "14c20f03e9770e3808defb15ab700f65a8490841e8b2ce54e85529451b88f379"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/golden-control/core2a.html",
+      "bytes": 18080,
+      "sha256": "5a1b2758dd5e1c726ed5e3db823f18c6140b601b1b086c1c5fc25971756e58c9"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/golden-control/core2b.html",
+      "bytes": 16434,
+      "sha256": "a5f6a86b8984108d17a2cc0b457ae8b6f9ed78547c14a18efc78d69814584ad9"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/golden-control/index.html",
+      "bytes": 10516,
+      "sha256": "9e6af0efc4cc11ba6baa351d03bc4f8a89363dfc296cad0358278037f0f3f955"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/golden-control/render-receipt.json",
+      "bytes": 433,
+      "sha256": "a0a5cd2caac86b54cbbc428b50745d1c92348d928d1d4eef38b4f3906ca2322a"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/pdf/core1.pdf",
+      "bytes": 21292,
+      "sha256": "7db2e3735755f2a37aa4b1b87090a9118f874a91e3f67e45f79365fe49dee1e8"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/pdf/core1a.pdf",
+      "bytes": 21552,
+      "sha256": "ab7f764cf141811affe7f9b3a6bcd78297cc84e0d25a6e2aa5f0faa578a4c476"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/pdf/core1b.pdf",
+      "bytes": 21598,
+      "sha256": "b7c81858409385b36ed0b6e4db24e1cc04a69e6ddcac3ea63613f6c8f8052730"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/pdf/core2.pdf",
+      "bytes": 21542,
+      "sha256": "2fa3f4564fcab8aa7581db50f29a7c549125a3fbf4b2fe6afdacd272d25bea4d"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/pdf/core2a.pdf",
+      "bytes": 21562,
+      "sha256": "ac8e0dc5236f8150f308cdf3da60dde3311d923d903b2449cf2f8d644bd991ee"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/pdf/core2b.pdf",
+      "bytes": 21356,
+      "sha256": "348f7e50a12dff4e91a4fab2cd7ba9b39c79ba5c5f78945d1f0d4d7e76e9304d"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/pdf/print-receipt.json",
+      "bytes": 1744,
+      "sha256": "695c53fa0ac17cdc3a079adc929907da3151693b9dff98a1c1d391496e274178"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/quality-static.json",
+      "bytes": 3988,
+      "sha256": "122b9b33638bfdd6e6e540a8c75f2ee87af4951de0da6fd9e97aaf5053e47ea9"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/quality-browser.json",
+      "bytes": 3782,
+      "sha256": "952cc91da522ca7039ea421114a7eed66d0016eadf35fdf91adf1c0a4bba8592"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/chromium-audit.json",
+      "bytes": 22251,
+      "sha256": "8281eae9f0dbb3b02a0498b2c8811d45910aa15a53379fd46cbf7e40c633d4d7"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/golden-control-quality.json",
+      "bytes": 2552,
+      "sha256": "57ba244a3b5076df1158e13c4f137f1be713c73e30eeb332b2ffa3abec1f445c"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/golden-chromium-audit.json",
+      "bytes": 22395,
+      "sha256": "20b1cc5fd5c635b65590ec081378c67f1e91b14e9123898c354f415e5cf098d5"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/browser-interaction.json",
+      "bytes": 7572,
+      "sha256": "b40cb26982780e18441c8216dec1b122aeaef435e0bb6f60564a1882c467f00e"
+    }
+  ],
+  "untrusted_fixture_schema_errors": {
+    "package.json": [
+      {
+        "at": "microtopics/0/construction_units/0/step_refs",
+        "detail": "[] should be non-empty"
+      },
+      {
+        "at": "microtopics/0",
+        "detail": "'exit_task' is a required property"
+      },
+      {
+        "at": "microtopics/0",
+        "detail": "'lineage' is a required property"
+      },
+      {
+        "at": "microtopics/0",
+        "detail": "'misconceptions' is a required property"
+      },
+      {
+        "at": "microtopics/0",
+        "detail": "'prerequisite_refs' is a required property"
+      },
+      {
+        "at": "microtopics/0",
+        "detail": "'question_family_refs' is a required property"
+      },
+      {
+        "at": "microtopics/0",
+        "detail": "'representation_refs' is a required property"
+      },
+      {
+        "at": "microtopics/0",
+        "detail": "'research_contribution' is a required property"
+      },
+      {
+        "at": "microtopics/0",
+        "detail": "'teaching_path' is a required property"
+      },
+      {
+        "at": "microtopics/0",
+        "detail": "Additional properties are not allowed ('capability_refs', 'core_concepts', 'gate_ref' were unexpected)"
+      },
+      {
+        "at": "questions/0/answer/reasoning",
+        "detail": "[] should be non-empty"
+      },
+      {
+        "at": "questions/0/answer",
+        "detail": "'acceptable_alternatives' is a required property"
+      },
+      {
+        "at": "questions/0/answer",
+        "detail": "'subpart_answers' is a required property"
+      },
+      {
+        "at": "questions/0/answer",
+        "detail": "'verification_status' is a required property"
+      },
+      {
+        "at": "questions/0/hints/0",
+        "detail": "'reveals' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'adaptation' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'conditions' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'exposure' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'family_ref' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'figure_refs' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'options' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'origin' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'origin_ref' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'original_identifier' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'primary_capability_ref' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'secondary_capability_refs' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'subparts' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "Additional properties are not allowed ('bucket_id', 'concept_owner_ref', 'role' were unexpected)"
+      },
+      {
+        "at": "questions/1/answer/reasoning",
+        "detail": "[] should be non-empty"
+      },
+      {
+        "at": "questions/1/answer",
+        "detail": "'acceptable_alternatives' is a required property"
+      },
+      {
+        "at": "questions/1/answer",
+        "detail": "'subpart_answers' is a required property"
+      },
+      {
+        "at": "questions/1/answer",
+        "detail": "'verification_status' is a required property"
+      },
+      {
+        "at": "questions/1",
+        "detail": "'adaptation' is a required property"
+      },
+      {
+        "at": "questions/1",
+        "detail": "'conditions' is a required property"
+      },
+      {
+        "at": "questions/1",
+        "detail": "'exposure' is a required property"
+      },
+      {
+        "at": "questions/1",
+        "detail": "'family_ref' is a required property"
+      },
+      {
+        "at": "questions/1",
+        "detail": "'figure_refs' is a required property"
+      },
+      {
+        "at": "questions/1",
+        "detail": "'options' is a required property"
+      },
+      {
+        "at": "questions/1",
+        "detail": "'origin' is a required property"
+      },
+      {
+        "at": "questions/1",
+        "detail": "'origin_ref' is a required property"
+      },
+      {
+        "at": "questions/1",
+        "detail": "'original_identifier' is a required property"
+      },
+      {
+        "at": "questions/1",
+        "detail": "'primary_capability_ref' is a required property"
+      },
+      {
+        "at": "questions/1",
+        "detail": "'secondary_capability_refs' is a required property"
+      },
+      {
+        "at": "questions/1",
+        "detail": "'subparts' is a required property"
+      },
+      {
+        "at": "questions/1",
+        "detail": "Additional properties are not allowed ('bucket_id', 'concept_owner_ref', 'lineage_check', 'role' were unexpected)"
+      },
+      {
+        "at": "resources",
+        "detail": "[] should be non-empty"
+      },
+      {
+        "at": "teaching_routes/0",
+        "detail": "'cores' is a required property"
+      },
+      {
+        "at": "teaching_routes/0",
+        "detail": "'entry_needs' is a required property"
+      },
+      {
+        "at": "teaching_routes/0",
+        "detail": "'help_plan' is a required property"
+      },
+      {
+        "at": "teaching_routes/0",
+        "detail": "'learner_actions' is a required property"
+      },
+      {
+        "at": "teaching_routes/0",
+        "detail": "'microtopic_refs' is a required property"
+      },
+      {
+        "at": "teaching_routes/0",
+        "detail": "'practice_profile_ref' is a required property"
+      },
+      {
+        "at": "teaching_routes/0",
+        "detail": "'reveal_plan' is a required property"
+      },
+      {
+        "at": "teaching_routes/0",
+        "detail": "'source_preferences' is a required property"
+      },
+      {
+        "at": "teaching_routes/0",
+        "detail": "'title' is a required property"
+      },
+      {
+        "at": "teaching_routes/0",
+        "detail": "'when_not_suitable' is a required property"
+      },
+      {
+        "at": "teaching_routes/0",
+        "detail": "Additional properties are not allowed ('inferential_jump', 'microtopic_id', 'prerequisite_bridge', 'worked_anchor' were unexpected)"
+      },
+      {
+        "at": "<root>",
+        "detail": "'data' is a required property"
+      },
+      {
+        "at": "<root>",
+        "detail": "'evidence' is a required property"
+      },
+      {
+        "at": "<root>",
+        "detail": "'extensions' is a required property"
+      },
+      {
+        "at": "<root>",
+        "detail": "'known_issues' is a required property"
+      },
+      {
+        "at": "<root>",
+        "detail": "'practice_profiles' is a required property"
+      },
+      {
+        "at": "<root>",
+        "detail": "'question_families' is a required property"
+      },
+      {
+        "at": "<root>",
+        "detail": "'relations' is a required property"
+      },
+      {
+        "at": "<root>",
+        "detail": "'representations' is a required property"
+      }
+    ],
+    "bank.json": [
+      {
+        "at": "questions/0/extensions",
+        "detail": "'grade9v3:analysis' is a required property"
+      },
+      {
+        "at": "questions/0/extensions",
+        "detail": "'grade9v3:provenance_class' is a required property"
+      },
+      {
+        "at": "questions/0/extensions",
+        "detail": "'grade9v3:source_custody' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'adaptation' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'conditions' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'exposure' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'family_ref' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'figure_refs' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'hints' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'options' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'origin' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'origin_ref' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'original_identifier' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'primary_capability_ref' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'scaffolds' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'secondary_capability_refs' is a required property"
+      },
+      {
+        "at": "questions/0",
+        "detail": "'subparts' is a required property"
+      },
+      {
+        "at": "<root>",
+        "detail": "'access_status' is a required property"
+      },
+      {
+        "at": "<root>",
+        "detail": "'acquisition_ref' is a required property"
+      },
+      {
+        "at": "<root>",
+        "detail": "'extensions' is a required property"
+      },
+      {
+        "at": "<root>",
+        "detail": "'inspection_sections' is a required property"
+      },
+      {
+        "at": "<root>",
+        "detail": "'inspector_id' is a required property"
+      },
+      {
+        "at": "<root>",
+        "detail": "'last_checked' is a required property"
+      },
+      {
+        "at": "<root>",
+        "detail": "'manifest_id' is a required property"
+      },
+      {
+        "at": "<root>",
+        "detail": "'resource' is a required property"
+      },
+      {
+        "at": "<root>",
+        "detail": "'resources' is a required property"
+      },
+      {
+        "at": "<root>",
+        "detail": "'target_package' is a required property"
+      },
+      {
+        "at": "<root>",
+        "detail": "'version' is a required property"
+      },
+      {
+        "at": "<root>",
+        "detail": "Additional properties are not allowed ('schema_version' was unexpected)"
+      }
+    ]
+  },
+  "pdf_text": {
+    "core1.pdf": {
+      "pages": 1,
+      "text": "Stress Math Polynomials Empty: Orientation map\nMathematics · Stress Math Polynomials Empty"
+    },
+    "core1a.pdf": {
+      "pages": 1,
+      "text": "Stress Math Polynomials Empty: Construction\nMathematics · Stress Math Polynomials Empty"
+    },
+    "core1b.pdf": {
+      "pages": 1,
+      "text": "Stress Math Polynomials Empty: Reconstruction\nMathematics · Stress Math Polynomials Empty"
+    },
+    "core2.pdf": {
+      "pages": 1,
+      "text": "Stress Math Polynomials Empty: Source questions\nMathematics · Stress Math Polynomials Empty"
+    },
+    "core2a.pdf": {
+      "pages": 1,
+      "text": "Stress Math Polynomials Empty: Supported practice\nMathematics · Stress Math Polynomials Empty"
+    },
+    "core2b.pdf": {
+      "pages": 1,
+      "text": "Stress Math Polynomials Empty: Transfer\nMathematics · Stress Math Polynomials Empty"
+    }
+  }
+}
