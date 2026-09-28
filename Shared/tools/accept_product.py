@@ -137,13 +137,16 @@ def accept(slug: str, note: str = "", accept_open: str = "", repo: Path = REPO,
     review = _json(review_path) if review_path.is_file() else {}
     findings = open_findings(review)
     authors, unknown = source_status(manifest, repo)
+    authority_findings = render_core.subject_authority_findings(manifests[0], repo)
     print(f"Build: {slug} @ {receipt['digest']}; review: {review.get('render_digest', 'NONE')}")
     print(f"Recommendation: {review.get('overall', {}).get('recommendation', 'UNRECORDED')}")
     print(f"Open S0/S1: {[f.get('id', f.get('record', '?')) for f in findings]}")
     print(f"Reviewer: {review.get('reviewer', review.get('verifier', 'UNRECORDED'))}; authors: {authors}")
     print(f"Fact status: {len(unknown)} cited records without current independent verification")
+    print(f"Subject authority: {len(authority_findings)} finding(s): "
+          f"{[(f['point'], f['record']) for f in authority_findings]}")
     print(f"Standalone: {'STAGED_FOR_THIS_RENDER' if standalone_bytes is not None else 'NOT_STAGED'}")
-    if findings or unknown:
+    if findings or unknown or authority_findings:
         if confirm("Owner acceptance with open/unknown findings? [y/N] ").strip().lower() != "y":
             raise ValueError("Owner did not accept this exact render")
     accepted = {
@@ -155,6 +158,7 @@ def accept(slug: str, note: str = "", accept_open: str = "", repo: Path = REPO,
         "accepted_open_findings": sorted((set(accept_open.split(",")) - {""}) |
                                          {f.get("id", f.get("record", "?")) for f in findings}),
         "unverified_fact_records": unknown, "note": note,
+        "subject_authority_findings": authority_findings,
         "standalone_sha256": _sha(standalone_bytes) if standalone_bytes is not None else None,
         "standalone_render_digest": standalone_render_digest,
     }

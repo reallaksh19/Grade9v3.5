@@ -6,7 +6,7 @@
     "adapter"
   ],
   "component_count": 379,
-  "relation_count": 395,
+  "relation_count": 396,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
@@ -18,7 +18,7 @@
     "WEB_CONTRACT": 3,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:533783bc257419083841328988b957d9361b9e92deb463b0481b09913b223c34",
+  "digest": "sha256:f7c88b7b38d3da6a6b17119d51970bf815b4d2bf7ff4222b39800423116b574a",
   "components": [
     {
       "path": "public/core-learning/data.js",
@@ -605,8 +605,8 @@
       "path": "Shared/tools/accept_product.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 10586,
-      "sha256": "a7024d92088935bacd2ea88e5f714fd8cdb24459bab3b3c31b8d68375f10d6a0"
+      "bytes": 10893,
+      "sha256": "9ee605de67db678c2ce109f9e12e4f4c3426fadb0c2a2da3fcd40ec255f94591"
     },
     {
       "path": "Shared/tools/apply_owner_decisions.py",
@@ -1095,8 +1095,8 @@
       "path": "Shared/tools/render_core.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 74902,
-      "sha256": "6ab2db15e815cd50c4c7549df812505c61376d9b774b6828eca58437ee9709c4"
+      "bytes": 75686,
+      "sha256": "7a21eb9faa02cd59e16cb69d8c099e2607bcbd1b681cfdab773e0902199f560e"
     },
     {
       "path": "Shared/tools/renderer_inventory.py",
@@ -2313,8 +2313,8 @@
       "path": "tests/test_product_blueprint_safety.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 3186,
-      "sha256": "3e000772638e3a089c96727e8412a77ae69802029a8742c7762002607b905df7"
+      "bytes": 4390,
+      "sha256": "2a1146fbabea4a133b9667be177e0edc7e2e7ac7f72d067804d9a776819589d3"
     },
     {
       "path": "tests/test_product_standalone_contract.py",
@@ -3393,6 +3393,11 @@
     {
       "from": "Shared/tools/release_authority.py",
       "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/render_core.py",
+      "to": "Shared.library",
       "kind": "IMPORTS"
     },
     {
