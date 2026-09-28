@@ -146,6 +146,8 @@ class LearnerMetadataAuditTests(unittest.TestCase):
             {"microtopics": 11, "core2": 13, "core2a": 22, "core2b": 16},
         )
         self.assertEqual(report["findings"], [])
+        self.assertEqual(report["coverage"]["concept"], {"resolved": 84, "selected": 84})
+        self.assertEqual(report["coverage"]["concept-difficulty"], {"resolved": 84, "selected": 84})
         for row in report["coverage"].values():
             self.assertEqual(row["resolved"], row["selected"])
 
