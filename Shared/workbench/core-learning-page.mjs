@@ -261,6 +261,26 @@ export function validateCoreProjection(input) {
     projection.presentation,
     "CORE_PROJECTION_PRESENTATION_REQUIRED",
   );
+  projection.presentation.learner_metadata = optionalArray(
+    projection.presentation.learner_metadata,
+    "CORE_PROJECTION_LEARNER_METADATA_INVALID",
+  );
+  const learnerMetadataKinds = new Set([
+    "subject", "topic", "concept", "concept-difficulty", "question-difficulty",
+    "family", "question-type", "source", "provenance", "transfer-dimension",
+  ]);
+  for (const item of projection.presentation.learner_metadata) {
+    requireObject(item, "CORE_PROJECTION_LEARNER_METADATA_ITEM_INVALID");
+    requireCondition(
+      learnerMetadataKinds.has(item.kind),
+      "CORE_PROJECTION_LEARNER_METADATA_KIND_INVALID",
+      String(item.kind),
+    );
+    requireString(item.field_label, "CORE_PROJECTION_LEARNER_METADATA_FIELD_LABEL_REQUIRED");
+    requireString(item.label, "CORE_PROJECTION_LEARNER_METADATA_LABEL_REQUIRED");
+    requireString(item.value, "CORE_PROJECTION_LEARNER_METADATA_VALUE_REQUIRED");
+    if (item.ref != null) requireString(item.ref, "CORE_PROJECTION_LEARNER_METADATA_REF_INVALID");
+  }
 
   if (projection.orientation) {
     requireString(projection.orientation.bucket_ref, "CORE_PROJECTION_ORIENTATION_BUCKET_REQUIRED");
@@ -1021,10 +1041,18 @@ function renderIdentity(projection, state) {
     const bits = [row.core, row.role, row.status].filter(Boolean);
     return bits.length ? bits.join(" · ") : null;
   }).filter(Boolean);
+  const learnerMetadata = projection.presentation.learner_metadata ?? [];
+  if (learnerMetadata.length) rows.length = 0;
+  const learnerMetadataHtml = learnerMetadata.length
+    ? `<div class="learner-metadata" data-g9-meta-strip>${learnerMetadata.map((item) =>
+        `<span data-g9-meta-item data-g9-meta-kind="${escapeHtml(item.kind)}" data-g9-meta-value="${escapeHtml(item.value)}"${item.ref ? ` data-g9-meta-ref="${escapeHtml(item.ref)}"` : ""}><strong>${escapeHtml(item.field_label)}:</strong> ${escapeHtml(item.label)}</span>`
+      ).join("")}</div>`
+    : "";
   return `<section class="identity-panel" aria-labelledby="core-identity-title">
     <div class="eyebrow">${escapeHtml(projection.core)}</div>
     <h2 id="core-identity-title">Current learning target</h2>
     <p class="status">${escapeHtml(state.stage.replaceAll("_", " ").toLowerCase())}</p>
+    ${learnerMetadataHtml}
     <dl class="identity-grid">${rows.map(([label, value]) =>
       `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`
     ).join("")}</dl>
@@ -1106,6 +1134,8 @@ export function renderCoreLearningProjection(input, stateInput = null) {
     li + li { margin-top:.65rem; }
     small { display:block; margin-top:.2rem; opacity:.8; }
     .source-identity { font-size:.85rem; opacity:.8; }
+    .learner-metadata { display:flex; flex-wrap:wrap; gap:.5rem; margin:.5rem 0 .75rem; }
+    .learner-metadata > span { border:1px solid currentColor; border-radius:999px; padding:.25rem .5rem; font-size:.9rem; }
     .identity-grid { display:flex; flex-wrap:wrap; gap:.5rem 1rem; margin:.5rem 0; }
     .identity-grid div { display:grid; grid-template-columns:auto minmax(0,1fr); gap:.35rem; }
     .identity-grid dt { font-weight:700; }

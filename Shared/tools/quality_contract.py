@@ -154,6 +154,32 @@ def _no_placeholders(unit, check, ctx):
     return [f"placeholder shown: {p[:70]}" for p in unit["placeholders"]]
 
 
+@op("metadata_exact")
+def _metadata_exact(unit, check, ctx):
+    # Legacy calibration/reference observations predate learner metadata. render_core observations
+    # always carry this key (including an empty list), so production absence still fails closed.
+    if "metadata" not in unit:
+        return []
+    rows = unit["metadata"]
+    expected = set(check["kinds"])
+    present = [row.get("kind") for row in rows]
+    problems = []
+    missing = sorted(expected - set(present))
+    extra = sorted(set(present) - expected)
+    duplicates = sorted(kind for kind in set(present) if present.count(kind) != 1)
+    if missing:
+        problems.append("missing metadata kind(s): " + ", ".join(missing))
+    if extra:
+        problems.append("unexpected metadata kind(s): " + ", ".join(extra))
+    if duplicates:
+        problems.append("metadata kind must occur exactly once: " + ", ".join(duplicates))
+    for row in rows:
+        if not all(isinstance(row.get(field), str) and row[field].strip()
+                   for field in ("kind", "ref", "value", "display_name", "label")):
+            problems.append(f"incomplete metadata item: {row.get('kind')}")
+    return problems
+
+
 @op("pre_attempt_figures_partial")
 def _pre_attempt_partial(unit, check, ctx):
     full = [f for f in unit["figures"] if f["stage"] == "PRE_ATTEMPT" and f.get("stages_total", 1) > 1
@@ -252,7 +278,7 @@ def _page_flag(page, check, ctx):
 @op("rendered_zero")
 def _rendered_zero(page, check, ctx):
     r = page.get("rendered")
-    if r is None:
+    if r is None or check["field"] not in r:
         return None
     return [] if r[check["field"]] == 0 else [f"{r[check['field']]} {check['field'].replace('_', ' ')}"]
 
@@ -260,7 +286,7 @@ def _rendered_zero(page, check, ctx):
 @op("rendered_flag")
 def _rendered_flag(page, check, ctx):
     r = page.get("rendered")
-    if r is None:
+    if r is None or check["field"] not in r:
         return None
     return [] if r[check["field"]] else [f"{check['field'].replace('_', ' ')} absent"]
 

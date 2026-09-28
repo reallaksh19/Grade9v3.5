@@ -54,8 +54,11 @@ class Publication(unittest.TestCase):
         self.tmp = tempfile.TemporaryDirectory()
         self.repo = Path(self.tmp.name)
         self.manifest, self.digest = fixture(self.repo)
+        self.current_basis = mock.patch.object(accept_product, "verify_current_basis")
+        self.current_basis.start()
 
     def tearDown(self):
+        self.current_basis.stop()
         self.tmp.cleanup()
 
     def test_build_does_not_write_or_remove_public_even_with_a_failed_report(self):

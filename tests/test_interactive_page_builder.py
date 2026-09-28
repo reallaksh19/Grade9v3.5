@@ -110,6 +110,33 @@ class InteractivePageBuilderTests(unittest.TestCase):
                 self.assertTrue((target / "interactive-page-package.json").is_file())
                 self.assertTrue((target / "agent-contract.json").is_file())
 
+    def test_shared_blueprint_identity_accepts_canonical_learner_metadata(self):
+        row = self.row("CORE2A")
+        row["projection"]["presentation"]["learner_metadata"] = [
+            {
+                "kind": "subject",
+                "field_label": "Subject",
+                "value": "Physics",
+                "label": "Physics",
+                "ref": "Physics",
+            },
+            {
+                "kind": "concept-difficulty",
+                "field_label": "Concept difficulty",
+                "value": "MEDIUM",
+                "label": "Medium concept",
+                "ref": "MIC-FIXTURE",
+            },
+        ]
+        package = build_interactive_page.compile_page_package(row)
+        registry = json.loads((REPO / "Shared/web/interactive-page-blueprints.v1.json").read_text(encoding="utf-8"))
+        blueprint = next(item for item in registry["blueprints"] if item["id"] == package["blueprint"]["id"])
+        identity = next(slot for slot in blueprint["slots"] if slot["id"] == "identity")
+        self.assertIn("learner_metadata", identity["accepts_blocks"])
+        html = build_interactive_page.render_single_file(package).decode("utf-8")
+        self.assertIn('"learner_metadata"', html)
+        self.assertIn("data-g9-meta-kind", html)
+
     def test_cli_writes_true_single_file(self):
         package = build_interactive_page.compile_page_package(self.row("CORE1A"))
         with tempfile.TemporaryDirectory() as tmp:

@@ -690,6 +690,449 @@
         "result": "F_net = 0, so a = 0/3 = 0 and the velocity is still 2 m/s: zero net force keeps the motion unchanged, it does not stop it.",
         "representation_ref": "REP-NLM-ANCHOR-CART-3KG-GLIDE"
       }
+    },
+    {
+      "id": "MIC-PHY-NLM-SECOND-LAW",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9",
+        "agent_a:incline_integration": "NLM_INCLINE_INTEGRATION",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "elicitation.attempt.task": "AUTHORED_PEDAGOGICAL",
+          "elicitation.attempt.accepted": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Net force, not any one force, sets acceleration",
+      "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
+      "primary_capability_ref": "CAP-NLM-SECOND-LAW",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The difficult step is completing a one-body force inventory before using the simple equation.",
+      "entry_assumptions": [
+        "Can choose one body, draw its external forces, and distinguish zero from nonzero net force."
+      ],
+      "inferential_jump": "For a chosen body of positive mass in the Grade 9 inertial-frame model, acceleration points with the signed net external force and satisfies F_net = m a.",
+      "teaching_path": [
+        {
+          "id": "NLM6-1",
+          "role": "DECLARE",
+          "action": "Choose one body, declare a positive direction, and list only external forces acting on that body.",
+          "why_valid": "The net-force relation applies to one body's external force sum.",
+          "inputs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "output": "one body; one signed axis; signed external-force list."
+        },
+        {
+          "id": "NLM6-2",
+          "role": "TRANSFORM",
+          "action": "Add the signed forces to obtain F_net, then use F_net = m a.",
+          "why_valid": "The net external force on the chosen body sets its acceleration: F_net = m a holds for that one body, with m > 0, in an inertial frame.",
+          "inputs": [
+            "REL-NEWTON-SECOND-LAW"
+          ],
+          "output": "F_net = signed sum; a = F_net / m."
+        },
+        {
+          "id": "NLM6-3",
+          "role": "VERIFY",
+          "action": "Return to an equal-opposite force case.",
+          "why_valid": "The relation must recover zero acceleration when the signed force sum is zero.",
+          "inputs": [],
+          "output": "F_net = 0 -> a = 0 for m > 0."
+        },
+        {
+          "id": "NLM6-4",
+          "role": "DECLARE",
+          "action": "Choose axes that make the active constraint easy to express; for a fixed inclined contact, use parallel/perpendicular axes when helpful, resolve the physical forces into those axes, and write separate signed Newton-II equations.",
+          "why_valid": "Newton II is coordinate-independent. Aligning one axis with the contact makes maintained contact explicit as a_perp=0 while leaving the tangential acceleration free to be nonzero.",
+          "inputs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP",
+            "CAP-VEC-ANGLE-DECOMPOSITION"
+          ],
+          "output": "contact-aligned model: Sigma F_parallel = m a_parallel; Sigma F_perp = m a_perp, with maintained fixed contact -> a_perp = 0"
+        }
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-PHY-NLM-INCLINE-MODELLING"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Acceleration points with whichever individual force looks largest in the diagram.",
+          "diagnostic_prompt": "Two 10 N forces act opposite each other on a body. Does either force make the body accelerate in its direction?",
+          "repair": "Add all signed external forces first; acceleration follows the net force, not an isolated arrow."
+        },
+        {
+          "wrong_idea": "If a block on a fixed incline has zero acceleration perpendicular to the plane, its total acceleration must be zero.",
+          "diagnostic_prompt": "Can a block remain in contact with a fixed plane while speeding up down the plane?",
+          "repair": "Yes. Maintained contact sets only a_perp=0. The parallel component a_parallel is determined independently by the net force along the plane."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A 4 kg body has a net external force of +12 N along a declared axis. Find its acceleration.",
+        "source_ref": "SRC-AUTHOR-NLM",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The acceleration is +3 m/s^2.",
+          "reasoning": [
+            "Use F_net = m a for the chosen body.",
+            "a = +12 N / 4 kg = +3 m/s^2.",
+            "The positive sign matches the net-force direction."
+          ],
+          "check": "Multiplying 4 kg by +3 m/s^2 recovers +12 N.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "NEWTON_SECOND_LAW",
+            "bindings": {
+              "mass": "DAT-NLM-MASS",
+              "acceleration": "DAT-NLM-ACCEL"
+            }
+          }
+        }
+      },
+      "research_contribution": "Author-created Grade 9 net-force calculation bound to the Newton-second-law gate and validator.",
+      "prerequisite_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A body moves right while its net external force points left. Which way is its acceleration?",
+          "defensible_answer": "Left, with the net force; velocity direction does not set acceleration direction."
+        },
+        "attempt": {
+          "produces": "The signed net force on the car, its signed acceleration, and the time the car takes to stop.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Adds the friction and the drag with their signs before using F = ma.",
+              "evidence_of": "Using the net external force rather than a selected force."
+            },
+            {
+              "criterion": "Keeps the acceleration negative (backward) while the velocity is positive.",
+              "evidence_of": "Keeping direction through the component equation."
+            },
+            {
+              "criterion": "Uses the signed acceleration to find the stopping time, 20/5 = 4 s.",
+              "evidence_of": "Linking the second law to the change in velocity."
+            }
+          ],
+          "accepted": [
+            "F_net = −5400 − 600 = −6000 N, so a = −6000/1200 = −5 m/s². It stops after 20/5 = 4 s. The acceleration points backward while the velocity points forward."
+          ],
+          "rejected": [
+            "'The car moves forward, so its acceleration is +5 m/s².' The sign of the acceleration comes from the net force, not from the velocity."
+          ],
+          "task": {
+            "prompt": "A 1200 kg car moving at 20 m/s brakes. The road's friction on it is 5400 N backward and air drag is 600 N backward. Take forward as positive. Find the net force and the acceleration, and how long the car takes to stop if these forces stay constant.",
+            "givens": [
+              "Mass 1200 kg; initial velocity +20 m/s.",
+              "Road friction 5400 N backward; air drag 600 N backward."
+            ],
+            "representation_ref": "REP-NLM-CAR-BRAKING-1200KG",
+            "stage_refs": [
+              "VIS-NLM-CARBRAKE-V0"
+            ]
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which body is the equation about, and which horizontal forces act on it?",
+              "why_this_ask": "It fixes force ownership.",
+              "from_step_ref": "NLM6-1"
+            },
+            {
+              "ask": "With forward positive, what is the signed sum of the road friction and the drag?",
+              "why_this_ask": "It constructs the quantity the law uses: −6000 N.",
+              "from_step_ref": "NLM6-2"
+            },
+            {
+              "ask": "What acceleration does that net force give for the 1200 kg car, with its sign?",
+              "why_this_ask": "It keeps the car's own mass and the sign together."
+            },
+            {
+              "ask": "The velocity is +20 m/s and the acceleration is negative. How long until the velocity reaches zero?",
+              "why_this_ask": "It uses the signed acceleration to answer the stopping question."
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path builds the force sum and returns to an equal-opposite case. The learner route builds a signed sum for a braking car and carries the signed acceleration to the stopping time."
+        },
+        "boundary_test": {
+          "prompt": "Suppose the forces forward on the car add up to exactly 6000 N while the same 6000 N acts backward. What acceleration does F_net = ma give?",
+          "answer": "Zero. The net force is zero, so the car keeps whatever velocity it has.",
+          "confirms": "The second-law relation agrees with the first-law constant-velocity case."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-NLM-SECOND-LAW-1",
+          "decision": "Choose one body and a signed axis, add every external force on that body, and divide the net force by the mass; on a fixed incline, choose axes along and across the contact.",
+          "step_refs": [
+            "NLM6-1",
+            "NLM6-2",
+            "NLM6-3",
+            "NLM6-4"
+          ],
+          "representation_ref": "REP-NLM-RAMP-PULL-70N",
+          "reveal_stage_refs": [
+            "VIS-NLM-RAMP70-V0",
+            "VIS-NLM-RAMP70-V1",
+            "VIS-NLM-RAMP70-V2"
+          ],
+          "worked_anchor_ref": "Q-PHY-NLM-1A-SECOND-LAW-01",
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [
+            {
+              "statement": "The net force in newtons divided by the mass in kilograms must give m/s².",
+              "check_type": "UNITS"
+            },
+            {
+              "statement": "Flatten the incline to 0°: the method must give N = mg and no down-slope weight component, the level-floor case.",
+              "check_type": "LIMIT_CASE_ANALYSIS"
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "A 5 kg trolley has 20 N forward and 5 N backward acting on it. What is its acceleration?",
+        "result": "F_net = 20 − 5 = 15 N forward, so a = 15/5 = 3 m/s² forward, in the direction of the net force.",
+        "representation_ref": "REP-NLM-ANCHOR-TROLLEY-5KG-20N-5N"
+      }
+    },
+    {
+      "id": "MIC-PHY-NLM-FRICTION-QUANT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM",
+        "SRC-EXAMSIDE-NLM-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue105:preparation_authority": "CONFIRMED_EXAMSIDE",
+        "agent_a:packet": "NLM_FRICTION",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "elicitation.attempt.task": "AUTHORED_PEDAGOGICAL",
+          "elicitation.attempt.accepted": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Quantitative static and kinetic friction conditions",
+      "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
+      "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "The difficult decision is not substituting mu N; it is determining the required tangential force, the actual normal reaction, and whether the contact can remain static.",
+      "entry_assumptions": [
+        "Can determine friction direction from relative slip tendency.",
+        "Can write Newton-II equations for a chosen body."
+      ],
+      "inferential_jump": "Static friction is a responsive contact force: solve for the friction required to prevent relative slip and compare it with the limiting value mu_s N. Equality is a threshold condition, while the kinetic model is used only after sliding is established.",
+      "teaching_path": [
+        {
+          "id": "NLM8-1",
+          "role": "DECLARE",
+          "action": "Build the chosen-body FBD and determine the normal reaction N from the force balance or acceleration perpendicular to the contact; do not assume N = mg.",
+          "why_valid": "The normal reaction is the contact force needed by the actual perpendicular dynamics and can differ from mg when the surface is inclined or other forces have perpendicular components.",
+          "inputs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP",
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "output": "perpendicular force equation -> actual N >= 0"
+        },
+        {
+          "id": "NLM8-2",
+          "role": "TRANSFORM",
+          "action": "Assume no relative sliding provisionally and solve the tangential Newton-II equation for the static friction value f_required that would make that motion possible.",
+          "why_valid": "Static friction takes the value required by the no-slip state, provided the contact can supply it.",
+          "inputs": [
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "output": "no-slip dynamics -> f_s = f_required"
+        },
+        {
+          "id": "NLM8-3",
+          "role": "VERIFY",
+          "action": "Compare |f_required| with mu_s N.",
+          "why_valid": "The static-contact model permits any required value only up to the limiting magnitude.",
+          "inputs": [],
+          "output": "|f_required| <= mu_s N -> static state feasible; |f_required| > mu_s N -> static state impossible"
+        },
+        {
+          "id": "NLM8-4",
+          "role": "TRANSFORM",
+          "action": "Use |f_s| = mu_s N only at impending slip; if relative sliding is already established, use |f_k| = mu_k N with direction opposing the relative sliding.",
+          "why_valid": "The limiting equality and the sliding model describe different contact states and are not unconditional identities.",
+          "inputs": [],
+          "output": "impending slip -> |f_s| = mu_s N; sliding -> |f_k| = mu_k N"
+        }
+      ],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND",
+        "REL-NLM-KINETIC-FRICTION"
+      ],
+      "representation_refs": [
+        "REP-NLM-FRICTION-THRESHOLD"
+      ],
+      "question_family_refs": [
+        "FAM-PHY-NLM-PRACTICE",
+        "FAM-PHY-NLM-INCLINE-MODELLING"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Friction always equals mu N.",
+          "diagnostic_prompt": "A small horizontal force is applied to a block that remains at rest. Must static friction already equal mu_s N?",
+          "repair": "No. First solve the force required for no slip. Static friction matches that requirement up to its limit; equality occurs only at impending slip."
+        },
+        {
+          "wrong_idea": "The normal force is always mg.",
+          "diagnostic_prompt": "If an extra force presses a block into a horizontal surface, can the normal reaction still be assumed equal to mg?",
+          "repair": "Determine N from the perpendicular free-body equation. N = mg is only a special case."
+        },
+        {
+          "wrong_idea": "If both mu_s and mu_k are given, the coefficients themselves tell you which friction model to use.",
+          "diagnostic_prompt": "A problem gives both mu_s and mu_k but does not say whether the contact slips. Can you choose kinetic friction just because mu_k is supplied?",
+          "repair": "No. Determine the contact state first: test whether the no-slip friction demand fits within mu_s N. Use the kinetic model only after sliding is established."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A contact has known normal reaction N and coefficient mu_s. The no-slip force equation requires tangential friction f_required. State the test for whether static contact is possible, when equality with mu_s N is justified, and what changes once sliding is established.",
+        "source_ref": "SRC-AUTHOR-NLM",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Static contact is possible when |f_required| <= mu_s N. Equality |f_s| = mu_s N is justified only at impending slip. After relative sliding is established, use the kinetic model |f_k| = mu_k N with direction opposite the relative sliding.",
+          "reasoning": [
+            "Static friction supplies the required no-slip value rather than an automatic maximum.",
+            "The limiting value mu_s N is a bound and becomes an equality only at the threshold of slipping.",
+            "The kinetic model belongs to a different contact state: established relative sliding."
+          ],
+          "check": "If f_required = 0, the rule must allow f_s = 0 even when mu_s N is nonzero; that falsifies the unconditional f = mu N shortcut.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit compares a symbolic friction demand with a symbolic static bound and distinguishes contact states; no numerical force is computed."
+        }
+      },
+      "research_contribution": "ExamSIDE friction-threshold demand justifies a separate quantitative contact-state decision while preserving the qualitative friction-direction capability as its prerequisite.",
+      "prerequisite_refs": [
+        "CAP-NLM-FRICTION",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A block remains at rest while the applied tangential force is gradually increased. Before impending slip, must static friction already equal mu_s N?",
+          "defensible_answer": "No. Static friction adjusts to the value required to prevent relative slip, up to the limit mu_s N."
+        },
+        "attempt": {
+          "produces": "For each trial: the normal force, the static limit, a decision whether the box moves, the friction and the acceleration.",
+          "closure": "MODEL_RESPONSE",
+          "model_response": "Find N from the FBD, solve for f_required under no slip, compare |f_required| with mu_s N, and use the kinetic model only after sliding is established.",
+          "task": {
+            "prompt": "A 5 kg box rests on a floor with μ_s = 0.5 and μ_k = 0.4; take g = 10 m/s². A 30 N horizontal push is applied. Decide whether the box moves, and find the friction and the acceleration. Then repeat with a second child pressing straight down on the lid with 20 N while the same 30 N push acts.",
+            "givens": [
+              "Mass 5 kg; μ_s = 0.5; μ_k = 0.4; g = 10 m/s².",
+              "Horizontal push 30 N.",
+              "Second trial: an extra 20 N downward press."
+            ],
+            "representation_ref": "REP-NLM-BOX5-PUSH-30N-PRESS-20N",
+            "stage_refs": [
+              "VIS-NLM-BOX5-V0"
+            ]
+          },
+          "accepted": [
+            "Trial 1: N = 50 N, limit 25 N < 30 N, so the box slides; friction is 0.4 × 50 = 20 N and a = (30 − 20)/5 = 2 m/s². Trial 2: N = 70 N, limit 35 N ≥ 30 N, so the box stays at rest with 30 N of static friction."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "In each trial, what normal force does the vertical balance give?",
+              "why_this_ask": "The limit depends on the real N (50 N, then 70 N), not on mg alone.",
+              "from_step_ref": "NLM8-1"
+            },
+            {
+              "ask": "If the box did not slip, what friction would the 30 N push require?",
+              "why_this_ask": "Static friction is set by the need of the no-slip state before the limit is tested.",
+              "from_step_ref": "NLM8-2"
+            },
+            {
+              "ask": "Is 30 N within μ_s N in each trial?",
+              "why_this_ask": "The inequality decides whether the no-slip state is possible (25 N, then 35 N).",
+              "from_step_ref": "NLM8-3"
+            },
+            {
+              "ask": "In the trial where the box slides, which friction model applies, and what acceleration results?",
+              "why_this_ask": "It separates established sliding (μ_k N) from static friction.",
+              "from_step_ref": "NLM8-4"
+            }
+          ],
+          "differs_from_teaching_path": "The learner begins by testing an assumed no-slip state and lets the inequality accept or reject it; the completed teaching path states the contact-state rules explicitly."
+        },
+        "boundary_test": {
+          "prompt": "If the no-slip equation requires zero friction while mu_s N is positive, what is the static-friction magnitude?",
+          "answer": "Zero. Static friction need not sit at its maximum.",
+          "confirms": "The static relation is an inequality/response rule, not an unconditional equality."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-NLM-FRICTION-QUANT-1",
+          "decision": "Find the actual normal force and the friction that rest would need, compare that need with μ_s N, and use μ N as the friction value only at impending slip or once sliding.",
+          "step_refs": [
+            "NLM8-1",
+            "NLM8-2",
+            "NLM8-3",
+            "NLM8-4"
+          ],
+          "representation_ref": "REP-NLM-BOX4-FRICTION-TEST",
+          "reveal_stage_refs": [
+            "VIS-NLM-BOX4-V0",
+            "VIS-NLM-BOX4-V1",
+            "VIS-NLM-BOX4-V2"
+          ],
+          "worked_anchor_ref": "Q-PHY-NLM-1A-FRICTION-TEST-01",
+          "misconception_indexes": [
+            0,
+            1,
+            2
+          ],
+          "independent_checks": [
+            {
+              "statement": "Put the friction and acceleration back into the horizontal equation: the pull minus the friction must equal mass times acceleration in each case.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            },
+            {
+              "statement": "Set the pull to zero: the method must return zero friction, not μ_s N, and zero acceleration.",
+              "check_type": "LIMIT_CASE_ANALYSIS"
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "A 2 kg block on a floor with μ_s = 0.5 and μ_k = 0.3 is pulled horizontally with 14 N (g = 10 m/s²). Does it stay put, and what is its acceleration?",
+        "result": "N = 20 N, so static friction can give at most 10 N; 14 N > 10 N, so it slides. Then f_k = 0.3 × 20 = 6 N and a = (14 − 6)/2 = 4 m/s².",
+        "representation_ref": "REP-NLM-ANCHOR-BLOCK-2KG-PULL-14N"
+      }
     }
   ],
   "relations": [
@@ -2333,7 +2776,20 @@
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
         "closure": "Established: zero net force means an unchanging velocity, and a slowing motion has a net force opposite the velocity. Later tasks read steady straight motion as a balanced-force state."
-      }
+      },
+      "difficulty": {
+        "band": "D2",
+        "score": 4,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Use steady fall to establish force balance, then reinterpret the net-force direction immediately after the parachute changes the motion."
+      },
+      "learner_question_type": "constructed_response"
     },
     {
       "id": "Q-PHY-NLM-2B-FRICTION-STATE-01",
@@ -2541,7 +2997,20 @@
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
         "closure": "Established: tilting a pull upward trades horizontal drive against a lighter contact, so the smallest pull that starts a body comes at an in-between angle, not horizontally or at the steepest angle."
-      }
+      },
+      "difficulty": {
+        "band": "D3",
+        "score": 7,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "The pull is an unknown threshold that also changes the normal reaction, and three directions must be compared before the feasible choice is made."
+      },
+      "learner_question_type": "constructed_response"
     }
   ],
   "teaching_routes": [

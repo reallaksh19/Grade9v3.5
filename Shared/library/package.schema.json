@@ -2475,6 +2475,15 @@
         },
         "family_exposure": {
           "$ref": "#/$defs/family_exposure"
+        },
+        "learner_question_type": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Canonical learner response/question type. Values are governed by Shared/vocabularies/learner-question-metadata.v1.json and must be authored, never inferred from role, stem wording or option shape."
+        },
+        "difficulty": {
+          "$ref": "#/$defs/question_difficulty",
+          "description": "Canonical authored-question difficulty using the same D1-D4 component model as the competitive-exam bank. Optional at schema level for migration; selected learner products fail closed when it is required and absent."
         }
       },
       "required": [
@@ -3364,6 +3373,73 @@
             "null"
           ],
           "description": "What this item establishes for the family, which a later transfer (Core2B) builds on."
+        }
+      }
+    },
+    "question_difficulty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "band",
+        "score",
+        "components",
+        "basis"
+      ],
+      "properties": {
+        "band": {
+          "enum": [
+            "D1",
+            "D2",
+            "D3",
+            "D4"
+          ]
+        },
+        "score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "components": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "concept_model_selection",
+            "representation_translation",
+            "reasoning_chain_length",
+            "algebra_computational_load",
+            "trap_exception_sensitivity"
+          ],
+          "properties": {
+            "concept_model_selection": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            },
+            "representation_translation": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            },
+            "reasoning_chain_length": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            },
+            "algebra_computational_load": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            },
+            "trap_exception_sensitivity": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            }
+          }
+        },
+        "basis": {
+          "type": "string",
+          "minLength": 1
         }
       }
     }

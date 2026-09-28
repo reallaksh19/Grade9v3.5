@@ -113,6 +113,40 @@ for (const file of files) {
         gatedDisclosures: [...document.querySelectorAll('details')].filter(d => d.hasAttribute('data-requires-attempt') || d.querySelector('summary[aria-disabled="true"]')).length,
         scripts: document.scripts.length,
         stageSupportLayout: /grid-template-columns:[^;]*(68|0?\.68|2fr)/.test(sheetText),
+        metadataMissingUnits: [...document.querySelectorAll('article[data-g9-unit]')].filter(article => {
+          const strip = article.querySelector('[data-g9-meta-strip]');
+          return !strip || !strip.querySelector('[data-g9-meta-item]');
+        }).length,
+        searchCorpusMissingUnits: [...document.querySelectorAll('article[data-g9-unit]')].filter(article =>
+          !(article.dataset.g9SearchText || '').trim()
+        ).length,
+        gatedOpenBeforeAttempt: [...document.querySelectorAll('details[data-requires-attempt]')].filter(d => d.open).length,
+        protectedSearchMatches: (() => {
+          const input = document.querySelector('[data-g9-search-input]');
+          if (!input) return 0;
+          let leaks = 0;
+          for (const article of document.querySelectorAll('article[data-g9-unit]')) {
+            const protectedBlock = article.querySelector('details[data-requires-attempt] [data-g9-block]');
+            if (!protectedBlock) continue;
+            const text = protectedBlock.textContent.replace(/\s+/g, ' ').trim();
+            if (text.length < 24) continue;
+            const safe = (article.dataset.g9SearchText || '').toLowerCase();
+            const candidates = text
+              .split(/[.!?;]\s+/)
+              .map(part => part.trim())
+              .filter(part => part.length >= 24 && !safe.includes(part.toLowerCase()))
+              .sort((a, b) => b.length - a.length);
+            if (!candidates.length) continue;
+            const query = candidates[0].slice(0, Math.min(64, candidates[0].length));
+            if (safe.includes(query.toLowerCase())) continue;
+            input.value = query;
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+            if (!article.hidden) leaks += 1;
+            input.value = '';
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+          return leaks;
+        })(),
       };
     }, minTarget);
     r.externalRequests = [...new Set(requests)];
@@ -127,7 +161,7 @@ for (const [file, r] of Object.entries(report)) {
   console.log(`${file}: bp=${a.blueprint} slots=${a.slotMarkers} home=${JSON.stringify(a.homeLinks)} nav1=${a.navFirstLink} sticky=${a.headerFixedOrSticky} ` +
     `targets<48=${a.smallTargets}/${a.controls} minFont=${a.minFontPx} overflowL=${a.horizontalOverflowPx} overflowP=${p.horizontalOverflowPx} hoverOnly=${a.hoverOnlyHandlers} external=${a.externalRequests.length} ` +
     `svg=${a.svg} (a11y ${a.svgAccessible}) details=${a.disclosures} gated=${a.gatedDisclosures} attempts=${a.attemptFields} focusCSS=${a.focusStyles} print=${a.printStyles} ` +
-    `stage68=${a.stageSupportLayout} landmarks=${JSON.stringify(a.landmarks)} js=${a.scripts} errors=${r.errors.length}`);
+    `stage68=${a.stageSupportLayout} metaMissing=${a.metadataMissingUnits} searchMissing=${a.searchCorpusMissingUnits} protectedSearch=${a.protectedSearchMatches} gatedOpen=${a.gatedOpenBeforeAttempt} landmarks=${JSON.stringify(a.landmarks)} js=${a.scripts} errors=${r.errors.length}`);
   console.log(`    small targets: ${a.smallTargetSample.join(' | ')}`);
 }
 if (jsonOut) fs.writeFileSync(jsonOut, JSON.stringify(report, null, 2));

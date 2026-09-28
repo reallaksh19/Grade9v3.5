@@ -957,6 +957,180 @@
         "prompt": "Is x = 2 a solution of 3x + 2 = 9?",
         "result": "No: 3 × 2 + 2 = 8, and 8 ≠ 9, so the claim is false for x = 2."
       }
+    },
+    {
+      "id": "MIC-MATH-EQUIVALENT-OPS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Operations that preserve the solution set",
+      "bucket_id": "BUCKET-LINEAR-EQUATION",
+      "primary_capability_ref": "CAP-MATH-ISOLATE",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The steps are memorable as a procedure, which is exactly why the reversibility condition behind them goes unnoticed until it fails.",
+      "entry_assumptions": [
+        "Can decide by substitution whether a value satisfies an equation."
+      ],
+      "inferential_jump": "See each manipulation as an operation applied to both sides whose reversibility is what guarantees no solution is gained or lost.",
+      "teaching_path": [
+        {
+          "id": "ME-1",
+          "action": "Subtract b from both sides.",
+          "why_valid": "Adding the same quantity to both sides can be undone, so the solution set is unchanged.",
+          "inputs": [],
+          "output": "a*x = c - b",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "ME-2",
+          "action": "State that a is non-zero, then divide both sides by a.",
+          "why_valid": "Dividing by a non-zero quantity is reversible; division by zero is undefined, so the condition must be stated rather than assumed.",
+          "inputs": [],
+          "output": "x = (c - b)/a",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "ME-3",
+          "action": "Substitute the result into the original statement, not into an intermediate line.",
+          "why_valid": "Checking against the original catches an error introduced at any step.",
+          "inputs": [],
+          "output": "A verified solution.",
+          "role": "VERIFY"
+        }
+      ],
+      "relation_refs": [
+        "REL-MATH-LINEAR-SOLUTION"
+      ],
+      "representation_refs": [
+        "REP-MATH-NUMBER-LINE"
+      ],
+      "question_family_refs": [
+        "FAM-MATH-LINEAR"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Both sides may be divided by any expression, including one containing the unknown.",
+          "diagnostic_prompt": "From x times x = x, what happens to the solution x = 0 if you divide both sides by x?",
+          "repair": "Before dividing, state that the divisor is non-zero; where it might be zero, handle that case separately instead of dividing."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Solve 5x - 4 = 11, naming the operation used at each step and why it is reversible.",
+        "source_ref": "SRC-MATH-AUTHOR",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "x = 3.",
+          "reasoning": [
+            "Add 4 to both sides; addition of the same quantity is reversible, giving 5x = 15.",
+            "Divide both sides by 5, which is non-zero and therefore reversible, giving x = 3.",
+            "Substitute into the original: 5 times 3, minus 4, is 11."
+          ],
+          "check": "Each step can be undone, so the solution set never changed.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "held_by": "ISS-MATH-EXIT-DATA"
+        }
+      },
+      "research_contribution": "Author-created reversibility framing; independent review pending.",
+      "prerequisite_refs": [
+        "MIC-MATH-CONSTRAINT"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Adding 5 to both sides of an equation loses nothing. Predict whether the same holds for multiplying both sides by 5, and for multiplying both sides by x.",
+          "defensible_answer": "By 5, yes. By x, no: if x could be 0 then multiplying has quietly admitted a value that did not satisfy the original."
+        },
+        "attempt": {
+          "produces": "A rule for which multipliers are safe, and one worked equation where an unsafe one goes wrong.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The rule names a property the multiplier must have, not a list of multipliers that are allowed.",
+              "evidence_of": "Generalising from the failing case rather than memorising it."
+            },
+            {
+              "criterion": "The worked failure shows a solution appearing or disappearing, not merely an incorrect final value.",
+              "evidence_of": "Understanding that what is at risk is the solution set, not the arithmetic."
+            }
+          ],
+          "accepted": [
+            "Safe when the multiplier cannot be zero. In x times x = x the solutions are 0 and 1; dividing both sides by x leaves x = 1, and the solution 0 has gone."
+          ],
+          "rejected": [
+            "Safe when the multiplier is a number and unsafe when it is a letter. It sorts the examples correctly and names the wrong property: what matters is whether the multiplier can be zero, not how it is written."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Write down every solution of x times x = x before you do anything to it.",
+              "why_this_ask": "The number of solutions has to be known first, or the loss later is invisible."
+            },
+            {
+              "ask": "Now divide both sides by x and solve what is left. How many solutions has the new line got?",
+              "why_this_ask": "The learner performs the damage themselves, which is not the same as being warned about it in advance.",
+              "from_step_ref": "ME-2"
+            },
+            {
+              "ask": "Which value of x did that division assume you were not using?",
+              "why_this_ask": "It names the hidden assumption inside the learner's own working rather than as a rule handed down before it."
+            },
+            {
+              "ask": "What would you write down before dividing next time, to keep that value in view?",
+              "why_this_ask": "It converts the diagnosis into something the learner carries to the next equation, which a stated rule does not do."
+            }
+          ],
+          "differs_from_teaching_path": "The expert states the non-zero condition as part of performing the division. Here the learner loses a solution first, then works out what would have prevented it."
+        },
+        "boundary_test": {
+          "prompt": "Square both sides of x = 3. What are the solutions now, and what does that tell you about squaring?",
+          "answer": "x = 3 and x = -3. Squaring gained a solution rather than losing one, because it cannot be undone without knowing the sign.",
+          "confirms": "That reversibility is the test, not the shape of the operation. A learner working from 'do the same to both sides' has no way to see why this one fails."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-MATH-EQUIVALENT-OPS-1",
+          "decision": "Choose each step so that it can be undone, and say why, including that the number you divide by is not zero.",
+          "step_refs": [
+            "ME-1",
+            "ME-2",
+            "ME-3"
+          ],
+          "representation_ref": "REP-MATH-NUMBER-LINE",
+          "reveal_stage_refs": [
+            "VIS-MATH-NL-1",
+            "VIS-MATH-NL-2",
+            "VIS-MATH-NL-3"
+          ],
+          "worked_anchor_ref": "Q-MATH-LINEAR-01",
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "Run the steps backwards from the answer: multiply by a, then add b. You must land on c; if a step cannot be undone, the solution set may have changed.",
+              "check_type": "INVERSE_OPERATION"
+            },
+            {
+              "statement": "Put the answer into the original equation, not into a line you wrote along the way, so an error at any step shows up.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "Solve 4x + 1 = 13 using only steps that can be undone.",
+        "result": "Subtract 1 from both sides: 4x = 12. Divide both sides by 4, which is not zero: x = 3. Check: 4 × 3 + 1 = 13."
+      }
     }
   ],
   "relations": [
@@ -1998,7 +2172,20 @@
       "family_exposure": {
         "family_ref": "FAM-MATH-LINEAR",
         "closure": "You solved ax + b = c by undoing operations and kept the exact fraction. Transfer will change which operation comes first."
-      }
+      },
+      "difficulty": {
+        "band": "D2",
+        "score": 4,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Two-step linear equation requiring subtraction then non-zero division over rationals, distinguishing exact fractional solution from decimal approximation."
+      },
+      "learner_question_type": "constructed_response"
     },
     {
       "id": "Q-MATH-LINEAR-2B-FIXTURE",
@@ -2136,7 +2323,20 @@
           ],
           "why_new": "The earlier item undoes an addition then a multiplication; here the bracket reverses the undo order, which no earlier item shows."
         }
-      }
+      },
+      "difficulty": {
+        "band": "D2",
+        "score": 4,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Bracket-grouped linear equation requiring structural decision on operation undo order over rationals with verification in original equation."
+      },
+      "learner_question_type": "constructed_response"
     }
   ],
   "data": [

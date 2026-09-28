@@ -58,6 +58,22 @@ def verify_render(folder: Path) -> dict:
     return receipt
 
 
+def verify_current_basis(folder: Path, manifest_path: Path, receipt: dict) -> None:
+    """Require staged bytes to come from the current sole renderer and sources."""
+    if receipt.get("renderer") != render_core.RENDERER_VERSION:
+        raise ValueError("staged render uses a different renderer version")
+    pages, gaps, digest = render_core.build(manifest_path, mode="PAGES")
+    if (receipt.get("digest") != digest or receipt.get("gaps") != gaps
+            or receipt.get("semantic_digest") != render_core.semantic_metadata_digest(pages, "PAGES")
+            or set(receipt.get("pages", [])) != set(pages)):
+        raise ValueError("staged render differs from the current renderer or source records")
+    for name, page in pages.items():
+        if gaps:
+            page = page.replace("<html ", f'<html data-g9-draft="{len(gaps)}" ', 1)
+        if (folder / name).read_bytes() != page.encode("utf-8"):
+            raise ValueError(f"{name}: staged page differs from the current renderer")
+
+
 def open_findings(review: dict) -> list[dict]:
     return [f for f in review.get("findings", [])
             if f.get("severity") in {"S0", "S1"} and not f.get("resolved")
@@ -100,6 +116,7 @@ def accept(slug: str, note: str = "", accept_open: str = "", repo: Path = REPO,
     subject = manifest["subject"].lower()
     folder = repo / "publication" / "products" / subject / slug
     receipt = verify_render(folder)
+    verify_current_basis(folder, manifests[0], receipt)
     standalone_stage = repo / "publication" / "standalone" / "products" / subject / f"{slug}.html"
     standalone_dest = repo / "standalone" / "products" / subject / f"{slug}.html"
     if not standalone_stage.is_file() and standalone_dest.exists():
@@ -120,13 +137,16 @@ def accept(slug: str, note: str = "", accept_open: str = "", repo: Path = REPO,
     review = _json(review_path) if review_path.is_file() else {}
     findings = open_findings(review)
     authors, unknown = source_status(manifest, repo)
+    authority_findings = render_core.subject_authority_findings(manifests[0], repo)
     print(f"Build: {slug} @ {receipt['digest']}; review: {review.get('render_digest', 'NONE')}")
     print(f"Recommendation: {review.get('overall', {}).get('recommendation', 'UNRECORDED')}")
     print(f"Open S0/S1: {[f.get('id', f.get('record', '?')) for f in findings]}")
     print(f"Reviewer: {review.get('reviewer', review.get('verifier', 'UNRECORDED'))}; authors: {authors}")
     print(f"Fact status: {len(unknown)} cited records without current independent verification")
+    print(f"Subject authority: {len(authority_findings)} finding(s): "
+          f"{[(f['point'], f['record']) for f in authority_findings]}")
     print(f"Standalone: {'STAGED_FOR_THIS_RENDER' if standalone_bytes is not None else 'NOT_STAGED'}")
-    if findings or unknown:
+    if findings or unknown or authority_findings:
         if confirm("Owner acceptance with open/unknown findings? [y/N] ").strip().lower() != "y":
             raise ValueError("Owner did not accept this exact render")
     accepted = {
@@ -138,6 +158,7 @@ def accept(slug: str, note: str = "", accept_open: str = "", repo: Path = REPO,
         "accepted_open_findings": sorted((set(accept_open.split(",")) - {""}) |
                                          {f.get("id", f.get("record", "?")) for f in findings}),
         "unverified_fact_records": unknown, "note": note,
+        "subject_authority_findings": authority_findings,
         "standalone_sha256": _sha(standalone_bytes) if standalone_bytes is not None else None,
         "standalone_render_digest": standalone_render_digest,
     }

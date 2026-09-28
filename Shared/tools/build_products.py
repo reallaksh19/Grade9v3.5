@@ -117,6 +117,10 @@ def build_one(manifest: Path, static: bool) -> dict:
     report = quality_gate.gate(out, m["subject"], m["product_id"], static=static)
     (out / "gate-report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     single_pages, single_gaps, single_digest = render_core.build(manifest, mode="SINGLE_FILE")
+    semantic_digest = receipt.get("semantic_digest")
+    single_semantic_digest = render_core.semantic_metadata_digest(single_pages, "SINGLE_FILE")
+    if semantic_digest is not None and semantic_digest != single_semantic_digest:
+        raise RuntimeError(f"{name}: SINGLE_FILE semantic metadata/search differs from PAGES")
     staged_standalone = STANDALONE_WORK / manifest.parent.name / f"{name}.html"
     staged_standalone.parent.mkdir(parents=True, exist_ok=True)
     standalone_bytes = single_pages["product.html"].encode("utf-8")
@@ -124,13 +128,15 @@ def build_one(manifest: Path, static: bool) -> dict:
     staged_standalone.with_suffix(".receipt.json").write_text(json.dumps({
         "pages_digest": receipt["digest"], "render_digest": single_digest,
         "sha256": hashlib.sha256(standalone_bytes).hexdigest(), "mode": "SINGLE_FILE",
+        "semantic_digest": single_semantic_digest,
     }, indent=2) + "\n", encoding="utf-8")
     review, published = decision_state(name, m["subject"], receipt["digest"])
     return {"product": name, "subject": m["subject"], "product_id": m["product_id"], "verdict": report["verdict"],
             "fail_reasons": report["fail_reasons"], "gaps": len(receipt["gaps"]),
             "gap_kinds": dict(collections.Counter(g["duty"] for g in receipt["gaps"])),
             "blocking_findings": sum(1 for f in report["findings"] if f["severity"] in quality_gate.BLOCKING),
-            "render_digest": receipt["digest"], "review": review, "published": published,
+            "render_digest": receipt["digest"], "semantic_digest": semantic_digest,
+             "review": review, "published": published,
             "standalone": accepted_standalone(name, m["subject"], receipt["digest"]),
             "staged_standalone": f"publication/standalone/products/{manifest.parent.name}/{name}.html",
             "standalone_render_digest": single_digest,

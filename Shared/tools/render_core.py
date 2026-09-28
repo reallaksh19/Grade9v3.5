@@ -26,6 +26,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import html
+from html.parser import HTMLParser
 import json
 import re
 import sys
@@ -36,9 +37,16 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
 
+from Shared.tools import learner_metadata, product_manifest  # noqa: E402
+
 BLUEPRINTS = REPO / "Shared/web/interactive-page-blueprints.v1.json"
 CONTRACT = REPO / "Shared/quality/learner-quality.v1.json"
 TABLET_CSS = REPO / "public/css/tablet-12-7.css"
+PACKAGE_SCHEMA = REPO / "Shared/library/package.schema.json"
+BANK_SCHEMA = REPO / "Shared/library/competitive-exam-bank.schema.json"
+LEARNER_METADATA_SOURCE = Path(learner_metadata.__file__).resolve()
+LEARNER_METADATA_VOCABULARY = learner_metadata.VOCABULARY
+PRODUCT_MANIFEST_SOURCE = Path(product_manifest.__file__).resolve()
 ROLES = ["CORE1", "CORE1A", "CORE1B", "CORE2", "CORE2A", "CORE2B"]
 ROLE_FILE = {r: r.lower() + ".html" for r in ROLES}
 ROLE_TITLE = {"CORE1": "Orientation map", "CORE1A": "Construction", "CORE1B": "Reconstruction",
@@ -64,6 +72,7 @@ class Ctx:
     packages: list[dict]
     bank: list[dict]
     blueprints: dict
+    selection_rows: dict[str, list[dict]] = field(default_factory=dict)
     authority_hashes: list[tuple[str, str]] = field(default_factory=list)
     gaps: list[dict] = field(default_factory=list)
     figure_instances: dict[str, int] = field(default_factory=dict)
@@ -244,6 +253,38 @@ def items(values, ordered=False) -> str:
 def slot(name: str, body: str, required: bool) -> str:
     return (f'<section class="blueprint-slot slot-{name}" data-blueprint-slot="{name}" '
             f'data-required="{"true" if required else "false"}">{body}</section>')
+
+
+def metadata_strip(ctx: Ctx, role: str, record: dict) -> str:
+    """Render the safe projection, or turn incomplete canonical metadata into an explicit draft gap."""
+    try:
+        projection = learner_metadata.project(role, record, ctx.packages)
+    except learner_metadata.LearnerMetadataError as exc:
+        ctx.gap("AUTHOR_LEARNER_METADATA", record["id"], str(exc), role)
+        return (
+            f'<div data-g9-meta-strip data-g9-meta-role="{esc(role)}" '
+            f'data-g9-meta-record="{esc(record["id"])}" data-g9-meta-incomplete="true"></div>'
+        )
+    field_labels = projection["field_labels"]
+    chips = "".join(
+        f'<span data-g9-meta-item data-g9-meta-kind="{esc(item["kind"])}" '
+        f'data-g9-meta-ref="{esc(item["ref"])}" data-g9-meta-value="{esc(item["value"])}">'
+        f'<strong>{esc(field_labels[item["kind"]])}:</strong> {esc(item["label"])}</span>'
+        for item in projection["items"]
+    )
+    return (
+        f'<div data-g9-meta-strip data-g9-meta-role="{esc(role)}" '
+        f'data-g9-meta-record="{esc(record["id"])}" data-g9-search-safe>{chips}</div>'
+    )
+
+
+def metadata_search_text(ctx: Ctx, role: str, record: dict) -> str:
+    """Build the page-search corpus from the same explicit learner-safe metadata projection."""
+    try:
+        projection = learner_metadata.project(role, record, ctx.packages)
+    except learner_metadata.LearnerMetadataError:
+        return record.get("stem") or record.get("title") or ""
+    return learner_metadata.safe_search_text(projection, record, role)
 
 
 def reveal(summary: str, body: str, gated: bool = True, ref: str | None = None) -> str:
@@ -470,7 +511,7 @@ def core1(ctx: Ctx, m: dict) -> str:
                        f'{items(r.get("conditions"))}</div>' for r in rels)
     # The compact anchor's own figure; the microtopic's first representation is often shared across the map.
     rep = (anchor or {}).get("representation_ref") or (m.get("representation_refs") or [None])[0]
-    body = (slot("identity", block("scope", f"<h2>{esc(m['title'])}</h2>"), True)
+    body = (slot("identity", block("scope", f"<h2>{esc(m['title'])}</h2>") + metadata_strip(ctx, "CORE1", m), True)
             + slot("orientation",
                    block("hard_transition", para(m["inferential_jump"]), title="Hard transition")
                    + figure(ctx, rep, "TEACHING", "CORE1", m["id"])
@@ -515,7 +556,7 @@ def core1a(ctx: Ctx, m: dict) -> str:
                       + block("independent_check", items(checks), title="Check it independently")
                       + "</section>")
     exit_task = m.get("exit_task") or {}
-    return (slot("identity", f"<h2>{esc(m['title'])}</h2>"
+    return (slot("identity", f"<h2>{esc(m['title'])}</h2>" + metadata_strip(ctx, "CORE1A", m)
                  + block("entry_assumptions", items(m.get("entry_assumptions")) + _prereqs(ctx, m), title="You need")
                  , True)
             + slot("construction", block("inferential_jump", para(m["inferential_jump"]), title="The key step") + unit_html, True)
@@ -531,7 +572,7 @@ def core1b(ctx: Ctx, m: dict) -> str:
     e = m.get("elicitation")
     if not e:
         ctx.gap("AUTHOR_ELICITATION", m["id"], "no predict/attempt/reconstruct/boundary cycle", "CORE1B")
-        return slot("identity", f"<h2>{esc(m['title'])}</h2>", True)
+        return slot("identity", f"<h2>{esc(m['title'])}</h2>" + metadata_strip(ctx, "CORE1B", m), True)
     unit = (m.get("construction_units") or [{}])[0]
     wrong = _misconceptions(m, unit if unit else None)
     rec = e.get("reconstruct") or {}
@@ -544,7 +585,7 @@ def core1b(ctx: Ctx, m: dict) -> str:
     if not task:
         # `produces` describes the expected answer; it is not a task the learner can act on.
         ctx.gap("AUTHOR_RECONSTRUCTION_TASK", m["id"], "no concrete Core1B task (elicitation.attempt.task)", "CORE1B")
-    return (slot("identity", f"<h2>{esc(m['title'])}</h2>", True)
+    return (slot("identity", f"<h2>{esc(m['title'])}</h2>" + metadata_strip(ctx, "CORE1B", m), True)
             + slot("attempt",
                    block("predict", para((e.get("predict") or {}).get("prompt")), title="Predict")
                    + figure(ctx, task_rep, "PRE_ATTEMPT", "CORE1B", m["id"], first_stage_only=True,
@@ -574,6 +615,10 @@ def _identity(q: dict) -> str:
 
 def _custody(q: dict) -> str:
     cust = (q.get("extensions") or {}).get("grade9v3:source_custody") or {}
+    if (cust.get("authority_class") != "OFFICIAL_EXAM_ORGANIZER_ARCHIVE"
+            or cust.get("source_status") != "PYQ_VERIFIED_PARENT"
+            or not cust.get("paper_url")):
+        return "Source unverified"
     wording = {"FAITHFUL_NON_VERBATIM_RESTATEMENT": "faithful restatement of the original"}.get(cust.get("wording_custody"), "")
     return "Official past paper" + (f", {wording}" if wording else "")
 
@@ -607,7 +652,7 @@ def core2(ctx: Ctx, q: dict) -> str:
         ctx.gap("AUTHOR_SOURCE_RESULT_DIFFERS", q["id"], "authored summary differs from current independent result", "CORE2")
     figures = "".join(figure(ctx, ref, "PRE_ATTEMPT", "CORE2", q["id"], first_stage_only=True)
                       for ref in q.get("figure_refs") or [])
-    return (slot("identity", block("source_identity", f"<h2>{esc(_identity(q))}</h2><p class=\"g9-prov\">{esc(_custody(q))}</p>"), True)
+    return (slot("identity", block("source_identity", f"<h2>{esc(_identity(q))}</h2><p class=\"g9-prov\">{esc(_custody(q))}</p>") + metadata_strip(ctx, "CORE2", q), True)
             + slot("attempt", block("stem", para(q["stem"])) + block("conditions", items(q.get("conditions")), title="Conditions")
                    + figures + attempt_box("Your answer", response_for(q), q.get("options"), q["id"]), True)
             + slot("support", block("source_hints", _ladder(ctx, q, "CORE2", source=True)), False)
@@ -673,6 +718,7 @@ def core2a(ctx: Ctx, q: dict) -> str:
     route = "".join(f'<li><strong>{esc(s["kind"])}</strong> {esc(s["action"])}<br><em>Why valid:</em> {esc(s["why_valid"])}</li>'
                     for s in ans.get("reasoning_route") or [])
     return (slot("identity", block("provenance", f'<p class="g9-prov">{esc(q.get("origin"))} practice</p>')
+                 + metadata_strip(ctx, "CORE2A", q)
                  + block("family_identity", para(_family_title(ctx, fam.get("family_ref") or q.get("family_ref")))), True)
             + slot("attempt", block("stem", f"<h2>{esc(q['stem'])}</h2>")
                    + block("conditions", items(q.get("conditions")), title="Conditions")
@@ -735,6 +781,7 @@ def core2b(ctx: Ctx, q: dict) -> str:
         kind, i = re.match(r"(hints|scaffolds)\[(\d+)\]", rung["from"]).groups()
         rung_text = (q.get(kind) or [])[int(i)]["text"]
     return (slot("identity", block("provenance", f'<p class="g9-prov">{esc(q.get("origin"))} transfer</p>')
+                 + metadata_strip(ctx, "CORE2B", q)
                  + block("stem", f"<h2>{esc(q['stem'])}</h2>")
                  + block("lineage", f"<ul>{lineage}</ul>" if lineage else "", title="Builds on"), True)
             + slot("attempt", block("conditions", items(q.get("conditions")), title="Conditions")
@@ -763,13 +810,9 @@ RENDER = {"CORE1": core1, "CORE1A": core1a, "CORE1B": core1b, "CORE2": core2, "C
 # ------------------------------------------------------------------ selection
 
 def units_for(ctx: Ctx, role: str) -> list[dict]:
-    mics = ctx.index("microtopics")
-    sel = ctx.manifest["selection"]
-    if role in {"CORE1", "CORE1A", "CORE1B"}:
-        return [mics[i] for i in sel["microtopics"] if i in mics]
-    qs = {**ctx.index("questions"), **{q["id"]: q for q in ctx.bank}}
-    rows = [qs[i] for i in sel.get(role.lower(), []) if i in qs]
-    if not rows:
+    key = "microtopics" if role in {"CORE1", "CORE1A", "CORE1B"} else role.lower()
+    rows = ctx.selection_rows[key]
+    if role not in {"CORE1", "CORE1A", "CORE1B"} and not rows:
         ctx.gap("ACQUIRE_SOURCE" if role == "CORE2" else "AUTHOR_PRACTICE", ctx.manifest["product_id"],
                 f"no {role} items selected", role)
     return rows
@@ -795,6 +838,9 @@ textarea{width:100%;min-height:120px;font:inherit;border:1px solid var(--line);b
 details{border:1px solid var(--line);border-radius:10px;margin:12px 0;padding:0 12px}details[data-locked] summary{opacity:.55;cursor:not-allowed}
 figure{margin:14px 0;max-width:100%;overflow-x:auto}figure svg{width:100%;height:auto;max-width:720px}figcaption{color:var(--muted)}
 .g9-prov{color:var(--muted);font-size:.95rem}.g9-expr{font-family:ui-monospace,monospace;font-size:1.05rem}
+[data-g9-meta-strip]{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+[data-g9-meta-item]{display:inline-flex;gap:4px;align-items:baseline;padding:5px 9px;border:1px solid var(--line);border-radius:999px;background:var(--bg);font-size:.9rem}
+[data-g9-meta-item] strong{font-weight:700}
 h4{margin:.8em 0 .3em}:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 footer{padding:24px 16px;color:var(--muted)}
 @media print{header[data-g9-shell-header],nav[data-g9-breadcrumb],.g9-attempt,button,[data-g9-display-panel]{display:none!important}
@@ -833,7 +879,7 @@ q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-
 q('[data-g9-next-rung]',a).forEach(b=>b.onclick=()=>nextRung(b.closest('.g9-ladder')))});
 window.g9MaterialiseAll=()=>articles.forEach(a=>{a.dataset.attempted='1';q('details[data-requires-attempt]',a).forEach(d=>delete d.dataset.locked);materialise(a);q('.g9-ladder',a).forEach(l=>{while(nextRung(l)){};})});
 q('figure[data-g9-figure]').forEach(initFigure);
-const input=q('[data-g9-search-input]')[0];if(input)input.oninput=()=>{const v=input.value.trim().toLowerCase();articles.forEach(a=>{const copy=a.cloneNode(true);q('template',copy).forEach(t=>t.remove());a.hidden=!!v&&!copy.textContent.toLowerCase().includes(v)})};
+const input=q('[data-g9-search-input]')[0];if(input)input.oninput=()=>{const v=input.value.trim().toLowerCase();articles.forEach(a=>{a.hidden=!!v&&!(a.dataset.g9SearchText||'').toLowerCase().includes(v)})};
 q('[data-g9-action="search"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-search-panel]')[0];p.hidden=!p.hidden;if(!p.hidden)input.focus()});
 q('[data-g9-action="display"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-display-panel]')[0];p.hidden=!p.hidden});
 })();
@@ -922,8 +968,9 @@ def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
     klass = ' class="g9-stage-support"' if stage_support else ""
     for rec in units_for(ctx, role):
         kind = "CONCEPT" if role in {"CORE1", "CORE1A", "CORE1B"} else "QUESTION"
+        search_text = metadata_search_text(ctx, role, rec)
         articles += (f'<article id="{esc(rec["id"])}" data-g9-unit="{esc(rec["id"])}" data-g9-kind="{kind}"'
-                     f'{klass}>{RENDER[role](ctx, rec)}</article>')
+                     f' data-g9-search-text="{esc(search_text)}"{klass}>{RENDER[role](ctx, rec)}</article>')
     header, crumbs = shell(ctx, role, mode)
     m = ctx.manifest
     return ("<!doctype html>\n"
@@ -971,10 +1018,29 @@ def context(manifest_path: Path) -> Ctx:
     package_paths = [REPO / p for p in manifest["package_refs"]]
     bank_paths = [REPO / b for b in manifest.get("bank_refs", [])]
     packages = [load_json(p) for p in package_paths]
+    try:
+        from jsonschema import Draft202012Validator
+    except ModuleNotFoundError as exc:
+        raise RuntimeError("jsonschema is required for product structure validation") from exc
+    for paths, records, schema_path in (
+        (package_paths, packages, PACKAGE_SCHEMA),
+        (bank_paths, [load_json(p) for p in bank_paths], BANK_SCHEMA),
+    ):
+        validator = Draft202012Validator(load_json(schema_path))
+        for path, record in zip(paths, records):
+            if schema_path == BANK_SCHEMA and path.parent.name != "exam-bank":
+                # Fixture and exemplar banks are not canonical bank publications.
+                continue
+            errors = sorted(validator.iter_errors(record), key=lambda error: tuple(str(x) for x in error.absolute_path))
+            if errors:
+                error = errors[0]
+                location = "/".join(str(x) for x in error.absolute_path) or "<root>"
+                raise ValueError(f"PRODUCT_STRUCTURE_INVALID: {path}: {location}: {error.message}")
     manifest["title"] = (next((p.get("title") for p in packages if p.get("title")), None)
                          or next((b.get("title") for p in packages for b in p.get("buckets", []) if b.get("title")), None)
                          or manifest["product_id"].replace("-", " ").title())
     bank = [q for p in bank_paths for q in load_json(p).get("questions", [])]
+    selection_rows = product_manifest.validate_selection(manifest, packages, bank)
     from Shared.tools import evidence_check, library_board  # local import keeps renderer usable with explicit Ctx fixtures
     source_items = {ref: item for ref, (_inventory, item) in
                     evidence_check.inventory_index(manifest["subject"]).items()}
@@ -1036,6 +1102,11 @@ def context(manifest_path: Path) -> Ctx:
                     teacher_refs.add(taught[1])
     authority_hashes = [
         ("renderer-source", _file_sha256(Path(__file__))),
+        ("product-manifest-source", _file_sha256(PRODUCT_MANIFEST_SOURCE)),
+        ("learner-metadata-source", _file_sha256(LEARNER_METADATA_SOURCE)),
+        ("learner-metadata-vocabulary", _file_sha256(LEARNER_METADATA_VOCABULARY)),
+        ("package-schema", _file_sha256(PACKAGE_SCHEMA)),
+        ("competitive-bank-schema", _file_sha256(BANK_SCHEMA)),
         ("manifest", _file_sha256(manifest_path)),
         *[(f"package:{p}", _file_sha256(path)) for p, path in zip(manifest["package_refs"], package_paths)],
         *[(f"bank:{p}", _file_sha256(path)) for p, path in zip(manifest.get("bank_refs", []), bank_paths)],
@@ -1053,8 +1124,22 @@ def context(manifest_path: Path) -> Ctx:
             if (REPO / ref).is_file()
         ],
     ]
-    return Ctx(manifest, packages, bank, load_json(BLUEPRINTS), authority_hashes,
+    return Ctx(manifest=manifest, packages=packages, bank=bank, blueprints=load_json(BLUEPRINTS),
+               selection_rows=selection_rows, authority_hashes=authority_hashes,
                source_items=source_items, source_checks=source_checks)
+
+
+def subject_authority_findings(manifest_path: Path, repo: Path = REPO) -> list[dict]:
+    """Report package relations that lack their subject gate authority."""
+    from Shared.library import authority
+
+    manifest = load_json(manifest_path)
+    gates = authority.gate_relations(repo / manifest["subject"])
+    return [
+        {"package": ref, **finding}
+        for ref in manifest["package_refs"]
+        for finding in authority.findings(load_json(repo / ref), gates)
+    ]
 
 
 def _single_file_fragment(page_html: str, role: str) -> str:
@@ -1081,27 +1166,121 @@ def _single_file_fragment(page_html: str, role: str) -> str:
     return fragment
 
 
-def build(manifest_path: Path, mode: str = "PAGES") -> tuple[dict[str, str], list[dict], str]:
-    ctx = context(manifest_path)
-    # The digest names this exact render: a hash of the pages the learner receives (records, figures,
-    # renderer and blueprints all show up there). A product review is bound to it (build_products).
-    pages = {ROLE_FILE[r]: page(ctx, r, mode, DIGEST_SLOT) for r in ROLES}
-    index = index_page(ctx, DIGEST_SLOT)
-    if mode != "EMBED":
-        pages["index.html"] = index
+class _SemanticMetadataParser(HTMLParser):
+    """Extract mode-neutral learner metadata/search semantics from generated HTML."""
+
+    def __init__(self, role: str | None = None):
+        super().__init__(convert_charrefs=True)
+        self.role = role
+        self.section_depth = 0
+        self._role_sections: list[tuple[int, str | None]] = []
+        self.current_unit: dict | None = None
+        self.current_meta: dict | None = None
+        self.units: list[dict] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        values = {key: value or "" for key, value in attrs}
+        if tag == "section":
+            self.section_depth += 1
+            if values.get("data-g9-role-section"):
+                self._role_sections.append((self.section_depth, self.role))
+                self.role = values["data-g9-role-section"]
+        if tag == "article" and values.get("data-g9-unit"):
+            self.current_unit = {
+                "role": self.role,
+                "unit": values["data-g9-unit"],
+                "search": values.get("data-g9-search-text", ""),
+                "metadata": [],
+            }
+        if self.current_unit is not None and values.get("data-g9-meta-kind"):
+            self.current_meta = {
+                "kind": values["data-g9-meta-kind"],
+                "ref": values.get("data-g9-meta-ref", ""),
+                "value": values.get("data-g9-meta-value", ""),
+                "label": "",
+            }
+
+    def handle_data(self, data: str) -> None:
+        if self.current_meta is not None:
+            self.current_meta["label"] += data
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag == "span" and self.current_meta is not None and self.current_unit is not None:
+            self.current_meta["label"] = " ".join(self.current_meta["label"].split())
+            self.current_unit["metadata"].append(self.current_meta)
+            self.current_meta = None
+        if tag == "article" and self.current_unit is not None:
+            self.units.append(self.current_unit)
+            self.current_unit = None
+            self.current_meta = None
+        if tag == "section":
+            if self._role_sections and self._role_sections[-1][0] == self.section_depth:
+                _depth, previous = self._role_sections.pop()
+                self.role = previous
+            self.section_depth = max(0, self.section_depth - 1)
+
+
+def semantic_metadata_snapshot(pages: dict[str, str], mode: str) -> list[dict]:
+    """Return the mode-neutral learner metadata/search contract actually present in HTML."""
+    units: list[dict] = []
+    if mode == "SINGLE_FILE":
+        parser = _SemanticMetadataParser()
+        parser.feed(pages["product.html"])
+        units.extend(parser.units)
+    else:
+        for role in ROLES:
+            name = ROLE_FILE[role]
+            if name not in pages:
+                continue
+            parser = _SemanticMetadataParser(role)
+            parser.feed(pages[name])
+            units.extend(parser.units)
+    order = {role: index for index, role in enumerate(ROLES)}
+    return sorted(units, key=lambda row: (order.get(row["role"], len(ROLES)), row["unit"]))
+
+
+def semantic_metadata_digest(pages: dict[str, str], mode: str) -> str:
+    payload = json.dumps(
+        semantic_metadata_snapshot(pages, mode),
+        sort_keys=True,
+        ensure_ascii=False,
+        separators=(",", ":"),
+    ).encode()
+    return hashlib.sha256(payload).hexdigest()[:16]
+
+
+def _artifact_digest(pages: dict[str, str]) -> str:
     h = hashlib.sha256()
     for name in sorted(pages):
         h.update(name.encode() + b"\0" + pages[name].encode())
-    digest = h.hexdigest()[:16]
-    pages = {name: html.replace(DIGEST_SLOT, digest) for name, html in pages.items()}
+    return h.hexdigest()[:16]
+
+
+def build(manifest_path: Path, mode: str = "PAGES") -> tuple[dict[str, str], list[dict], str]:
+    ctx = context(manifest_path)
+    role_pages = {ROLE_FILE[r]: page(ctx, r, mode, DIGEST_SLOT) for r in ROLES}
     if mode == "SINGLE_FILE":
         bodies = "".join(
             f'<section id="g9-role-{r}" data-g9-role-section="{r}">'
-            f'{_single_file_fragment(pages[ROLE_FILE[r]], r)}</section>'
+            f'{_single_file_fragment(role_pages[ROLE_FILE[r]], r)}</section>'
             for r in ROLES
         )
-        pages = {"product.html": pages[ROLE_FILE["CORE1"]].replace(
-            re.search(r"<main>(.*)</main>", pages[ROLE_FILE["CORE1"]], re.S).group(1), bodies)}
+        product = role_pages[ROLE_FILE["CORE1"]].replace(
+            re.search(r"<main>(.*)</main>", role_pages[ROLE_FILE["CORE1"]], re.S).group(1),
+            bodies,
+        )
+        pages = {"product.html": product}
+    else:
+        pages = dict(role_pages)
+        if mode != "EMBED":
+            pages["index.html"] = index_page(ctx, DIGEST_SLOT)
+
+    # Exact artifact identity is mode-specific by design. PAGES review binds to PAGES bytes;
+    # SINGLE_FILE has its own exact identity. Cross-mode equivalence is checked separately
+    # through semantic_metadata_digest().
+    digest = _artifact_digest(pages)
+    pages = {name: page_html.replace(DIGEST_SLOT, digest) for name, page_html in pages.items()}
+
     # the same gap can be met on several pages
     seen, gaps = set(), []
     for g in ctx.gaps:
@@ -1110,6 +1289,7 @@ def build(manifest_path: Path, mode: str = "PAGES") -> tuple[dict[str, str], lis
             seen.add(key)
             gaps.append(g)
     return pages, gaps, digest
+
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -1127,12 +1307,17 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "gaps":
         for gap in gaps:
             print(f"{gap['core']:7s} {gap['duty']:32s} {gap['record']:44s} {gap['detail']}")
-        print(f"{len(gaps)} gap(s)")
-        return 1 if gaps else 0
+        authority_findings = subject_authority_findings(Path(args.manifest))
+        for finding in authority_findings:
+            print(f"AUTHORITY {finding['point']:28s} {finding['record']:44s} {finding['detail']}")
+        print(f"{len(gaps)} depth gap(s); {len(authority_findings)} subject-authority finding(s)")
+        return 1 if gaps or authority_findings else 0
     if gaps and not args.draft:
         print(f"{len(gaps)} gap(s): nothing written. Run `render_core.py gaps` or `--draft`.", file=sys.stderr)
         return 2
     out = Path(args.out)
+    if out.resolve().is_relative_to((REPO / "public").resolve()):
+        raise ValueError("render_core cannot write to public; use Owner acceptance of a staged render")
     out.mkdir(parents=True, exist_ok=True)
     for name, text in pages.items():
         if gaps:
@@ -1144,7 +1329,9 @@ def main(argv: list[str] | None = None) -> int:
     except ValueError:
         manifest_ref = manifest_path.as_posix()
     (out / "render-receipt.json").write_text(json.dumps({
-        "renderer": RENDERER_VERSION, "digest": digest, "manifest": manifest_ref, "mode": args.mode,
+        "renderer": RENDERER_VERSION, "digest": digest,
+        "semantic_digest": semantic_metadata_digest(pages, args.mode),
+        "manifest": manifest_ref, "mode": args.mode,
         "draft": bool(gaps), "gaps": gaps, "pages": sorted(pages),
         "ledger": json.loads(Path(args.manifest).read_text(encoding="utf-8")).get("ledger", []),
         "diagnostic_min": json.loads(Path(args.manifest).read_text(encoding="utf-8")).get("diagnostic_min", 0)},
