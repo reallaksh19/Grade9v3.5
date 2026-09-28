@@ -30,6 +30,7 @@ ALLOWED_VISIBILITY = {"IMMEDIATE", "ATTEMPT_FIRST", "POST_ATTEMPT", "ON_REVEAL",
 REQUIRED_BLOCKS = {
     "CORE1": (
         "identity_scope",
+        "learner_metadata",
         "objects_conventions",
         "canonical_representation",
         "governing_relations",
@@ -39,6 +40,7 @@ REQUIRED_BLOCKS = {
     ),
     "CORE1A": (
         "identity_entry_assumptions",
+        "learner_metadata",
         "inferential_jump",
         "completed_construction",
         "representation_bridge",
@@ -49,6 +51,7 @@ REQUIRED_BLOCKS = {
         "exit_task_closure",
     ),
     "CORE1B": (
+        "learner_metadata",
         "predict",
         "attempt",
         "reconstruct",
@@ -60,6 +63,7 @@ REQUIRED_BLOCKS = {
     ),
     "CORE2": (
         "source_identity_provenance",
+        "learner_metadata",
         "source_question",
         "source_hint_ladder",
         "source_answer_rubric",
@@ -67,6 +71,7 @@ REQUIRED_BLOCKS = {
     ),
     "CORE2A": (
         "family_identity_provenance",
+        "learner_metadata",
         "question",
         "pedagogical_scaffolds",
         "reasoning_route",
@@ -77,6 +82,7 @@ REQUIRED_BLOCKS = {
     ),
     "CORE2B": (
         "question_prior_exposure",
+        "learner_metadata",
         "safe_pre_attempt_support",
         "attempt_commitment",
         "post_attempt_support",
