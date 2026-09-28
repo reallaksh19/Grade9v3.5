@@ -25,6 +25,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import html
+from html.parser import HTMLParser
 import json
 import re
 import sys
@@ -919,27 +920,115 @@ def _single_file_fragment(page_html: str, role: str) -> str:
     return fragment
 
 
-def build(manifest_path: Path, mode: str = "PAGES") -> tuple[dict[str, str], list[dict], str]:
-    ctx = context(manifest_path)
-    # The digest names this exact render: a hash of the pages the learner receives (records, figures,
-    # renderer and blueprints all show up there). A product review is bound to it (build_products).
-    pages = {ROLE_FILE[r]: page(ctx, r, mode, DIGEST_SLOT) for r in ROLES}
-    index = index_page(ctx, DIGEST_SLOT)
-    if mode != "EMBED":
-        pages["index.html"] = index
+class _SemanticMetadataParser(HTMLParser):
+    """Extract mode-neutral learner metadata/search semantics from generated HTML."""
+
+    def __init__(self, role: str | None = None):
+        super().__init__(convert_charrefs=True)
+        self.role = role
+        self._role_stack: list[str | None] = []
+        self.current_unit: dict | None = None
+        self.current_meta: dict | None = None
+        self.units: list[dict] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        values = {key: value or "" for key, value in attrs}
+        if tag == "section" and values.get("data-g9-role-section"):
+            self._role_stack.append(self.role)
+            self.role = values["data-g9-role-section"]
+        if tag == "article" and values.get("data-g9-unit"):
+            self.current_unit = {
+                "role": self.role,
+                "unit": values["data-g9-unit"],
+                "search": values.get("data-g9-search-text", ""),
+                "metadata": [],
+            }
+        if self.current_unit is not None and values.get("data-g9-meta-kind"):
+            self.current_meta = {
+                "kind": values["data-g9-meta-kind"],
+                "ref": values.get("data-g9-meta-ref", ""),
+                "value": values.get("data-g9-meta-value", ""),
+                "label": "",
+            }
+
+    def handle_data(self, data: str) -> None:
+        if self.current_meta is not None:
+            self.current_meta["label"] += data
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag == "span" and self.current_meta is not None and self.current_unit is not None:
+            self.current_meta["label"] = " ".join(self.current_meta["label"].split())
+            self.current_unit["metadata"].append(self.current_meta)
+            self.current_meta = None
+        if tag == "article" and self.current_unit is not None:
+            self.units.append(self.current_unit)
+            self.current_unit = None
+            self.current_meta = None
+        if tag == "section" and self._role_stack:
+            self.role = self._role_stack.pop()
+
+
+def semantic_metadata_snapshot(pages: dict[str, str], mode: str) -> list[dict]:
+    """Return the mode-neutral learner metadata/search contract actually present in HTML."""
+    units: list[dict] = []
+    if mode == "SINGLE_FILE":
+        parser = _SemanticMetadataParser()
+        parser.feed(pages["product.html"])
+        units.extend(parser.units)
+    else:
+        for role in ROLES:
+            name = ROLE_FILE[role]
+            if name not in pages:
+                continue
+            parser = _SemanticMetadataParser(role)
+            parser.feed(pages[name])
+            units.extend(parser.units)
+    order = {role: index for index, role in enumerate(ROLES)}
+    return sorted(units, key=lambda row: (order.get(row["role"], len(ROLES)), row["unit"]))
+
+
+def semantic_metadata_digest(pages: dict[str, str], mode: str) -> str:
+    payload = json.dumps(
+        semantic_metadata_snapshot(pages, mode),
+        sort_keys=True,
+        ensure_ascii=False,
+        separators=(",", ":"),
+    ).encode()
+    return hashlib.sha256(payload).hexdigest()[:16]
+
+
+def _artifact_digest(pages: dict[str, str]) -> str:
     h = hashlib.sha256()
     for name in sorted(pages):
         h.update(name.encode() + b"\0" + pages[name].encode())
-    digest = h.hexdigest()[:16]
-    pages = {name: html.replace(DIGEST_SLOT, digest) for name, html in pages.items()}
+    return h.hexdigest()[:16]
+
+
+def build(manifest_path: Path, mode: str = "PAGES") -> tuple[dict[str, str], list[dict], str]:
+    ctx = context(manifest_path)
+    role_pages = {ROLE_FILE[r]: page(ctx, r, mode, DIGEST_SLOT) for r in ROLES}
     if mode == "SINGLE_FILE":
         bodies = "".join(
             f'<section id="g9-role-{r}" data-g9-role-section="{r}">'
-            f'{_single_file_fragment(pages[ROLE_FILE[r]], r)}</section>'
+            f'{_single_file_fragment(role_pages[ROLE_FILE[r]], r)}</section>'
             for r in ROLES
         )
-        pages = {"product.html": pages[ROLE_FILE["CORE1"]].replace(
-            re.search(r"<main>(.*)</main>", pages[ROLE_FILE["CORE1"]], re.S).group(1), bodies)}
+        product = role_pages[ROLE_FILE["CORE1"]].replace(
+            re.search(r"<main>(.*)</main>", role_pages[ROLE_FILE["CORE1"]], re.S).group(1),
+            bodies,
+        )
+        pages = {"product.html": product}
+    else:
+        pages = dict(role_pages)
+        if mode != "EMBED":
+            pages["index.html"] = index_page(ctx, DIGEST_SLOT)
+
+    # Exact artifact identity is mode-specific by design. PAGES review binds to PAGES bytes;
+    # SINGLE_FILE has its own exact identity. Cross-mode equivalence is checked separately
+    # through semantic_metadata_digest().
+    digest = _artifact_digest(pages)
+    pages = {name: page_html.replace(DIGEST_SLOT, digest) for name, page_html in pages.items()}
+
     # the same gap can be met on several pages
     seen, gaps = set(), []
     for g in ctx.gaps:
@@ -948,6 +1037,7 @@ def build(manifest_path: Path, mode: str = "PAGES") -> tuple[dict[str, str], lis
             seen.add(key)
             gaps.append(g)
     return pages, gaps, digest
+
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -982,7 +1072,9 @@ def main(argv: list[str] | None = None) -> int:
     except ValueError:
         manifest_ref = manifest_path.as_posix()
     (out / "render-receipt.json").write_text(json.dumps({
-        "renderer": RENDERER_VERSION, "digest": digest, "manifest": manifest_ref, "mode": args.mode,
+        "renderer": RENDERER_VERSION, "digest": digest,
+        "semantic_digest": semantic_metadata_digest(pages, args.mode),
+        "manifest": manifest_ref, "mode": args.mode,
         "draft": bool(gaps), "gaps": gaps, "pages": sorted(pages),
         "ledger": json.loads(Path(args.manifest).read_text(encoding="utf-8")).get("ledger", []),
         "diagnostic_min": json.loads(Path(args.manifest).read_text(encoding="utf-8")).get("diagnostic_min", 0)},
