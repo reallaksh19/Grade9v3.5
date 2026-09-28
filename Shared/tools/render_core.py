@@ -926,16 +926,19 @@ class _SemanticMetadataParser(HTMLParser):
     def __init__(self, role: str | None = None):
         super().__init__(convert_charrefs=True)
         self.role = role
-        self._role_stack: list[str | None] = []
+        self.section_depth = 0
+        self._role_sections: list[tuple[int, str | None]] = []
         self.current_unit: dict | None = None
         self.current_meta: dict | None = None
         self.units: list[dict] = []
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         values = {key: value or "" for key, value in attrs}
-        if tag == "section" and values.get("data-g9-role-section"):
-            self._role_stack.append(self.role)
-            self.role = values["data-g9-role-section"]
+        if tag == "section":
+            self.section_depth += 1
+            if values.get("data-g9-role-section"):
+                self._role_sections.append((self.section_depth, self.role))
+                self.role = values["data-g9-role-section"]
         if tag == "article" and values.get("data-g9-unit"):
             self.current_unit = {
                 "role": self.role,
@@ -964,8 +967,11 @@ class _SemanticMetadataParser(HTMLParser):
             self.units.append(self.current_unit)
             self.current_unit = None
             self.current_meta = None
-        if tag == "section" and self._role_stack:
-            self.role = self._role_stack.pop()
+        if tag == "section":
+            if self._role_sections and self._role_sections[-1][0] == self.section_depth:
+                _depth, previous = self._role_sections.pop()
+                self.role = previous
+            self.section_depth = max(0, self.section_depth - 1)
 
 
 def semantic_metadata_snapshot(pages: dict[str, str], mode: str) -> list[dict]:
