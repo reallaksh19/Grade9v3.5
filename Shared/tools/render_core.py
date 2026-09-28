@@ -267,6 +267,15 @@ def metadata_strip(ctx: Ctx, role: str, record: dict) -> str:
     )
 
 
+def metadata_search_text(ctx: Ctx, role: str, record: dict) -> str:
+    """Build the page-search corpus from the same explicit learner-safe metadata projection."""
+    try:
+        projection = learner_metadata.project(role, record, ctx.packages)
+    except learner_metadata.LearnerMetadataError:
+        return record.get("stem") or record.get("title") or ""
+    return learner_metadata.safe_search_text(projection, record, role)
+
+
 def reveal(summary: str, body: str, gated: bool = True) -> str:
     if not body:
         return ""
@@ -692,7 +701,7 @@ q('[data-g9-next-rung]',a).forEach(b=>b.onclick=()=>{const h=q('[data-g9-rung][h
 q('figure[data-g9-figure]').forEach(f=>{const ids=(f.dataset.g9Stages||'').split(' ').filter(Boolean);if(ids.length<2)return;let i=0;
 const show=()=>{ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=n<=i?'':'none'));const l=q('[data-g9-stage-label]',f)[0];if(l)l.textContent='Stage '+(i+1)+' of '+ids.length};show();
 q('[data-g9-stage-step]',f).forEach(b=>b.onclick=()=>{i=Math.max(0,Math.min(ids.length-1,i+(b.dataset.g9StageStep==='next'?1:-1)));show()})});
-const input=q('[data-g9-search-input]')[0];if(input)input.oninput=()=>{const v=input.value.trim().toLowerCase();q('article[data-g9-unit]').forEach(a=>a.hidden=!!v&&!a.innerText.toLowerCase().includes(v))};
+const input=q('[data-g9-search-input]')[0];if(input)input.oninput=()=>{const v=input.value.trim().toLowerCase();q('article[data-g9-unit]').forEach(a=>a.hidden=!!v&&!(a.dataset.g9SearchText||'').toLowerCase().includes(v))};
 q('[data-g9-action="search"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-search-panel]')[0];p.hidden=!p.hidden;if(!p.hidden)input.focus()});
 q('[data-g9-action="display"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-display-panel]')[0];p.hidden=!p.hidden});
 })();
@@ -781,8 +790,9 @@ def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
     klass = ' class="g9-stage-support"' if stage_support else ""
     for rec in units_for(ctx, role):
         kind = "CONCEPT" if role in {"CORE1", "CORE1A", "CORE1B"} else "QUESTION"
+        search_text = metadata_search_text(ctx, role, rec)
         articles += (f'<article id="{esc(rec["id"])}" data-g9-unit="{esc(rec["id"])}" data-g9-kind="{kind}"'
-                     f'{klass}>{RENDER[role](ctx, rec)}</article>')
+                     f' data-g9-search-text="{esc(search_text)}"{klass}>{RENDER[role](ctx, rec)}</article>')
     header, crumbs = shell(ctx, role, mode)
     m = ctx.manifest
     return ("<!doctype html>\n"
