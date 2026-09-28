@@ -5,20 +5,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 371,
-  "relation_count": 386,
+  "component_count": 375,
+  "relation_count": 390,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 54,
-    "TEST": 173,
-    "TOOLING": 99,
+    "TEST": 174,
+    "TOOLING": 102,
     "WEB": 12,
     "WEB_CONTRACT": 3,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:a0c927a18f5c732287c3ba8e199479366e2aea1db3ec68c9807b8da85fec3fbe",
+  "digest": "sha256:fb6b607b6cea50ccb0f51a91e96230baf78421b5ee3b3e519cf12f11ecea26bf",
   "components": [
     {
       "path": "public/core-learning/data.js",
@@ -665,6 +665,13 @@
       "sha256": "5ff7f9846a025877ef79da57274a82823b8a0685199dd599b45e4075943fa1bb"
     },
     {
+      "path": "Shared/tools/build_golden.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 2103,
+      "sha256": "2e467ddf98755fdb572c27616a96fb8cccd2ad767067173a0c84651545a1ed2f"
+    },
+    {
       "path": "Shared/tools/build_interactive_page.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -838,6 +845,13 @@
       "role_description": "Guardrails and generators",
       "bytes": 20258,
       "sha256": "cdb531fdf67d59a0a1ca55b77f89857be657e34778c54965b529b7c960729a0e"
+    },
+    {
+      "path": "Shared/tools/diff_readback.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 3404,
+      "sha256": "c1ce5fcad781108b1b2be7f3026c6d10e6408b37a5f5df4b4997b1b757bdeb58"
     },
     {
       "path": "Shared/tools/empirical_acceptance.py",
@@ -1139,6 +1153,13 @@
       "role_description": "Guardrails and generators",
       "bytes": 8901,
       "sha256": "e476accac9c92157d3491c1f25e76ea1dbcf3e86a29d9d3ebac1c3a4215eee4d"
+    },
+    {
+      "path": "Shared/tools/self_check.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 6808,
+      "sha256": "5c92c825a97794565d082d9bc6857d9ec9a6a7189f510478961659714a830ec2"
     },
     {
       "path": "Shared/tools/session_readiness.py",
@@ -1692,6 +1713,13 @@
       "role_description": "Executable checks",
       "bytes": 4196,
       "sha256": "dbd650a9c59fc6761328830db24cf9b8ff2f9bac7dec96b7d9607ea3915c52d0"
+    },
+    {
+      "path": "tests/test_build_golden.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 1936,
+      "sha256": "82f54eb538df3efcb9d0f4cad884d6b8948e639e54297e6926c3916cdc759a91"
     },
     {
       "path": "tests/test_c6_examside_motion_in_plane.py",
@@ -2910,6 +2938,11 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/build_golden.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/build_interactive_page.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
@@ -3111,6 +3144,11 @@
     },
     {
       "from": "Shared/tools/derived_artifact_registry.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/diff_readback.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
@@ -3405,6 +3443,11 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/self_check.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/session_readiness.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -3641,6 +3684,11 @@
     },
     {
       "from": "tests/test_authoring_run.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_build_golden.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
