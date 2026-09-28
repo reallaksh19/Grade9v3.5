@@ -139,7 +139,9 @@
           "output": "repeats -> yes; one return-directed equilibrium -> no"
         }
       ],
-      "relation_refs": [],
+      "relation_refs": [
+        "REL-OSC-STABLE-EQUILIBRIUM"
+      ],
       "representation_refs": [],
       "question_family_refs": [],
       "misconceptions": [
@@ -195,7 +197,14 @@
           ],
           "rejected": [
             "The response accepts every repeating path and never checks what a displacement to the opposite side would make the system do."
-          ]
+          ],
+          "task": {
+            "prompt": "You are given two physical systems: (A) a mass on a spring stretched from its natural length, and (B) a ball rolling along the inside of a circular loop. For each, propose one candidate equilibrium position. Then displace the system slightly to the left of that position and describe the direction of its tendency. Repeat for a displacement to the right. State whether each system passes the two-sided stable-equilibrium test.",
+            "givens": [
+              "System A: ideal spring; natural-length position is the candidate equilibrium.",
+              "System B: ideal frictionless circular loop; consider the lowest point as the candidate equilibrium."
+            ]
+          }
         },
         "reconstruct": {
           "route": [
@@ -239,14 +248,27 @@
           ],
           "representation_ref": null,
           "reveal_stage_refs": [],
-          "worked_anchor_ref": null,
+          "worked_anchor_ref": "Q-OSC-1A-EQUIL-01",
           "misconception_indexes": [
             0
           ],
-          "independent_checks": [],
+          "independent_checks": [
+            {
+              "statement": "Swap the displacement to the opposite side. A stable equilibrium must reverse the tendency direction.",
+              "check_type": "BOUNDARY_CHECK"
+            },
+            {
+              "statement": "Test a system that repeats without a single stable equilibrium (e.g., circular track) to confirm the criterion is not trivially satisfied by repetition alone.",
+              "check_type": "DOMAIN_CHECK"
+            }
+          ],
           "migrated_from": "teaching_path"
         }
-      ]
+      ],
+      "compact_anchor": {
+        "prompt": "A ball in a bowl is displaced to the left. What direction is its tendency? Displaced to the right?",
+        "result": "Left: tendency points right (toward bottom). Right: tendency points left (toward bottom). Both inward → stable equilibrium → qualifies as oscillation."
+      }
     },
     {
       "id": "MIC-OSC-ENERGY-EXCHANGE",
@@ -293,7 +315,9 @@
           "output": "+turn energy state = -turn energy state ; 1 displacement cycle -> 2 KE maxima"
         }
       ],
-      "relation_refs": [],
+      "relation_refs": [
+        "REL-OSC-ENERGY-EXCHANGE"
+      ],
       "representation_refs": [],
       "question_family_refs": [],
       "misconceptions": [
@@ -349,7 +373,16 @@
           ],
           "rejected": [
             "The negative turning point is assigned negative potential energy and only one center crossing is counted before the cycle is declared complete."
-          ]
+          ],
+          "task": {
+            "prompt": "An ideal spring-mass system is displaced 10 cm to the right of equilibrium and released from rest. Fill in a five-row table with columns: Checkpoint | KE (HIGH/LOW) | PE (HIGH/LOW) | E_total (constant?). Checkpoints in order: right turn, centre, left turn, centre, right turn. Then state how many times KE is HIGH in one cycle.",
+            "givens": [
+              "Ideal spring-mass; no friction.",
+              "Released from rest at 10 cm to the right of equilibrium.",
+              "At a turning point: instantaneous speed is zero.",
+              "At equilibrium crossing: displacement is zero."
+            ]
+          }
         },
         "reconstruct": {
           "route": [
@@ -392,20 +425,729 @@
           ],
           "representation_ref": null,
           "reveal_stage_refs": [],
-          "worked_anchor_ref": null,
+          "worked_anchor_ref": "Q-OSC-1A-ENERGY-01",
           "misconception_indexes": [
             0
           ],
-          "independent_checks": [],
+          "independent_checks": [
+            {
+              "statement": "Check that the energy states at the two turning points are equal (opposite equal-magnitude displacements → same PE).",
+              "check_type": "BOUNDARY_CHECK"
+            },
+            {
+              "statement": "Confirm two centre crossings are recorded before the displacement pattern completes one cycle; if only one is recorded, the cycle boundary was drawn too early.",
+              "check_type": "DOMAIN_CHECK"
+            }
+          ],
           "migrated_from": "teaching_path"
         }
+      ],
+      "compact_anchor": {
+        "prompt": "How many times does kinetic energy reach its maximum value in one complete back-and-forth displacement cycle of an ideal oscillator?",
+        "result": "Twice — once at each of the two equilibrium crossings during the cycle. Opposite turning points carry the same potential energy (equal magnitudes), so kinetic energy peaks symmetrically."
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "REL-OSC-STABLE-EQUILIBRIUM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "F_restoring has opposite sign to displacement x for stable equilibrium",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>F</mi><mi>net</mi></msub><mo>&#x2022;</mo><mi>x</mi><mo>&lt;</mo><mn>0</mn></mrow></math>",
+      "meaning": "At a stable equilibrium the net tendency on the system when displaced by x has the opposite sign to the displacement: displacement left produces tendency right, and vice versa.",
+      "symbols": [
+        {
+          "symbol": "F_net",
+          "meaning": "Net restoring tendency on the displaced system",
+          "unit_or_domain": "force direction"
+        },
+        {
+          "symbol": "x",
+          "meaning": "Signed displacement from equilibrium",
+          "unit_or_domain": "length"
+        }
+      ],
+      "conditions": [
+        "x = 0 defines the equilibrium position.",
+        "The system must be displaced and released to test the relation.",
+        "Holds for small displacements in the linear restoring-force regime."
+      ],
+      "derivation": [
+        {
+          "id": "DSE-1",
+          "role": "DECLARE",
+          "action": "Mark the equilibrium position and define positive and negative displacement.",
+          "why_valid": "Sign convention must precede directional comparison.",
+          "inputs": [],
+          "output": "x = 0 at equilibrium; left is negative, right is positive (or declared axis)"
+        },
+        {
+          "id": "DSE-2",
+          "role": "VERIFY",
+          "action": "Displace to +x: record tendency direction. Displace to -x: record tendency direction.",
+          "why_valid": "Stable equilibrium requires the tendency to point inward from both sides.",
+          "inputs": [],
+          "output": "F_net · x < 0 at both test displacements"
+        }
+      ],
+      "limits": [
+        "The relation characterises the qualitative stability condition, not a specific force law.",
+        "Quantitative SHM kinematics (period, frequency, amplitude) are outside this relation."
+      ],
+      "checks": [
+        "Swap displacement direction; the tendency direction must swap."
+      ],
+      "gate_relation_ref": "REL-OSC-STABLE-EQUILIBRIUM"
+    },
+    {
+      "id": "REL-OSC-ENERGY-EXCHANGE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "KE + PE = E_total (constant) for ideal oscillator",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>KE</mi><mo>+</mo><mi>PE</mi><mo>=</mo><msub><mi>E</mi><mi>total</mi></msub></mrow></math>",
+      "meaning": "In an ideal oscillator, kinetic and potential energy exchange while their sum remains fixed: KE is maximum at equilibrium crossings and zero at turning points; PE has the opposite pattern. The two equilibrium crossings per displacement cycle give two KE maxima.",
+      "symbols": [
+        {
+          "symbol": "KE",
+          "meaning": "Instantaneous kinetic energy",
+          "unit_or_domain": "J"
+        },
+        {
+          "symbol": "PE",
+          "meaning": "Instantaneous potential energy stored by the restoring mechanism",
+          "unit_or_domain": "J"
+        },
+        {
+          "symbol": "E_total",
+          "meaning": "Total mechanical energy (constant in ideal case)",
+          "unit_or_domain": "J"
+        }
+      ],
+      "conditions": [
+        "No energy is lost to dissipation.",
+        "PE depends on displacement magnitude, not direction, so opposite equal displacements carry the same PE."
+      ],
+      "derivation": [
+        {
+          "id": "DEE-1",
+          "role": "DECLARE",
+          "action": "Mark five checkpoints in one displacement cycle: +turn, centre, -turn, centre, +turn.",
+          "why_valid": "A complete cycle must return to its starting state.",
+          "inputs": [],
+          "output": "+T → C → -T → C → +T"
+        },
+        {
+          "id": "DEE-2",
+          "role": "TRANSFORM",
+          "action": "Assign dominant energy form at each checkpoint.",
+          "why_valid": "At turns: speed zero → KE=0; at centre: displacement zero → PE=0.",
+          "inputs": [],
+          "output": "T: PE high/KE low; C: KE high/PE low; total unchanged"
+        }
+      ],
+      "limits": [
+        "Applies to the ideal (non-dissipative) oscillator.",
+        "Does not specify SHM kinematics, period, or amplitude."
+      ],
+      "checks": [
+        "Two centre crossings per cycle → two KE maxima per cycle. Verify both are recorded."
+      ],
+      "gate_relation_ref": "REL-OSC-ENERGY-EXCHANGE"
+    }
+  ],
+  "representations": [
+    {
+      "id": "REP-OSC-CYCLE-DIAGRAM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DIAGRAM",
+      "title": "Oscillation cycle position-and-energy diagram",
+      "description": "A five-checkpoint position row with arrows indicating return tendency and KE/PE labels.",
+      "scene_instances": [
+        {
+          "id": "REP-OSC-CYCLE-SCENE",
+          "kind": "POSITION_ENERGY_DIAGRAM",
+          "label": "Five-checkpoint oscillation cycle",
+          "svg": null
+        }
+      ],
+      "reveal_stages": [],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-OSC-CYCLE-DIAGRAM.svg"
       ]
     }
   ],
-  "relations": [],
-  "representations": [],
-  "question_families": [],
-  "questions": [],
+  "question_families": [
+    {
+      "id": "FAM-OSC-STABLE-EQUILIBRIUM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Classify oscillatory motion by the two-sided stable-equilibrium test",
+      "capability_refs": [
+        "CAP-OSC-STABLE-EQUILIBRIUM"
+      ],
+      "solution_structure": [
+        "Propose one candidate equilibrium position.",
+        "Test the response tendency from a displacement to the left.",
+        "Test the response tendency from a displacement to the right.",
+        "Accept if both tendencies point inward toward the same equilibrium."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Stable equilibrium criterion vs. mere repetition.",
+        "representation_translation": "Physical system to equilibrium-and-tendency diagram.",
+        "reasoning_steps": "Propose, test left, test right, decide.",
+        "novelty": "Multiple systems, counterexamples, or asymmetric cases vary the demand."
+      },
+      "safe_variations": [
+        "Test other familiar systems (pendulum, spring, ball-in-bowl)."
+      ],
+      "transfer_boundaries": [
+        "Does not introduce quantitative SHM, period or frequency."
+      ],
+      "common_wrong_routes": [
+        "Accepting circular repetition as oscillation without the two-sided test."
+      ],
+      "item_refs": [
+        "Q-OSC-1A-EQUIL-01",
+        "Q-OSC-2A-EQUIL-01"
+      ]
+    },
+    {
+      "id": "FAM-OSC-ENERGY-EXCHANGE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Track kinetic-potential energy exchange through one ideal oscillation cycle",
+      "capability_refs": [
+        "CAP-OSC-ENERGY-EXCHANGE"
+      ],
+      "solution_structure": [
+        "Mark five ordered checkpoints for one complete displacement cycle.",
+        "Classify KE and PE as HIGH or LOW at each checkpoint.",
+        "Verify that opposite turning points share the same PE.",
+        "Count the two KE maxima; confirm total energy is constant."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Ideal mechanical energy conservation.",
+        "representation_translation": "Position cycle to energy ledger table.",
+        "reasoning_steps": "Checkpoint, energy assignment, count KE maxima, verify total.",
+        "novelty": "Non-ideal (dissipative) cases or unequal turning-point magnitudes vary the demand."
+      },
+      "safe_variations": [
+        "Change the oscillator type (pendulum, spring); change starting position."
+      ],
+      "transfer_boundaries": [
+        "Does not cover quantitative energy values, SHM equations or wave propagation."
+      ],
+      "common_wrong_routes": [
+        "Counting only one KE maximum; assigning negative PE to a negative displacement."
+      ],
+      "item_refs": [
+        "Q-OSC-1A-ENERGY-01"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-OSC-1A-EQUIL-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-OSC-SHM-WAVES",
+      "original_identifier": "AUTHOR-OSC-EQUIL-1A",
+      "stem": "A ball on a curved bowl repeatedly moves back and forth. (a) Mark the equilibrium position. (b) Describe the direction of the ball's tendency when displaced to the left and when displaced to the right of equilibrium. (c) Does this motion qualify as oscillation? Justify using the two-sided tendency test.",
+      "subparts": [
+        "a",
+        "b",
+        "c"
+      ],
+      "options": [],
+      "conditions": [
+        "Ideal frictionless bowl; repeated back-and-forth motion observed."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Yes, it qualifies. The bottom of the bowl is the equilibrium; displaced left → tendency right; displaced right → tendency left.",
+        "reasoning": [
+          "(a) The lowest point of the bowl is the equilibrium: released there with no speed, the ball stays.",
+          "(b) Left displacement: gravity component points rightward toward the bottom; right displacement: gravity component points leftward toward the bottom.",
+          "(c) Both sides produce an inward tendency toward the same equilibrium, satisfying the two-sided test. This is oscillatory motion organized around a stable equilibrium."
+        ],
+        "check": "The tendency direction must reverse when the side of displacement reverses; the circular-track counterexample would fail this test.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [
+          {
+            "subpart": "a",
+            "value": "Lowest point of the bowl"
+          },
+          {
+            "subpart": "b",
+            "value": "Left → tendency right; right → tendency left"
+          },
+          {
+            "subpart": "c",
+            "value": "Yes; inward tendency from both sides confirms stable equilibrium."
+          }
+        ],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-OSC-STABLE-EQUILIBRIUM",
+      "secondary_capability_refs": [],
+      "family_ref": null,
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "PLANNED_WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": null,
+        "closure": null
+      },
+      "difficulty": {
+        "band": "D1",
+        "score": 2,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "Applies stable-equilibrium two-sided test to a simple bowl-and-ball system."
+      },
+      "learner_question_type": "short_answer"
+    },
+    {
+      "id": "Q-OSC-1A-ENERGY-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-OSC-SHM-WAVES",
+      "original_identifier": "AUTHOR-OSC-ENERGY-1A",
+      "stem": "An ideal pendulum is released from rest at its rightmost position. Using five ordered checkpoints (right turn, centre, left turn, centre, right turn), classify kinetic energy as HIGH or LOW and potential energy as HIGH or LOW at each checkpoint. How many times does kinetic energy reach a maximum in one complete displacement cycle?",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Ideal (no friction); released from rest at rightmost turning point."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "KE peaks twice per cycle (at both centre crossings). Total energy stays constant.",
+        "reasoning": [
+          "Right turn: speed = 0 (turning point) → KE LOW, PE HIGH.",
+          "Centre (going left): maximum speed → KE HIGH, PE LOW.",
+          "Left turn: speed = 0 → KE LOW, PE HIGH.",
+          "Centre (going right): maximum speed → KE HIGH, PE LOW.",
+          "Right turn: back to KE LOW, PE HIGH.",
+          "KE is HIGH at both centre checkpoints → 2 maxima per displacement cycle.",
+          "Total = KE + PE remains unchanged at every checkpoint (ideal oscillator)."
+        ],
+        "check": "The right and left turning points must have the same PE (equal magnitude displacements → same stored energy); the two centre crossings must share the same KE.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-OSC-ENERGY-EXCHANGE",
+      "secondary_capability_refs": [],
+      "family_ref": null,
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "PLANNED_WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": null,
+        "closure": null
+      },
+      "difficulty": {
+        "band": "D1",
+        "score": 2,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "Applies five-checkpoint energy ledger to an ideal pendulum; no computation."
+      },
+      "learner_question_type": "short_answer"
+    },
+    {
+      "id": "Q-OSC-2A-EQUIL-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-OSC-SHM-WAVES",
+      "original_identifier": "AUTHOR-OSC-EQUIL-2A",
+      "stem": "Three motions are described: (P) A mass on a spring bouncing vertically. (Q) A planet orbiting a star in a circular path. (R) A ball in a bowl tilted so the surface curves upward on one side and downward on the other. Apply the two-sided stable-equilibrium test to each. Classify P, Q, R as oscillatory (organized around a stable equilibrium) or not.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Apply only the two-sided inward-tendency test; do not appeal to quantitative formulas."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "P: oscillatory. Q: not oscillatory by this test. R: not oscillatory (no single stable equilibrium).",
+        "reasoning": [
+          "P: Spring mass — compressed (above equilibrium) gives downward tendency; stretched (below) gives upward tendency. Both inward → stable equilibrium. Oscillatory.",
+          "Q: Circular orbit — displacement from the circular path does not produce a tendency that returns the planet to the same one equilibrium position. The orbit has no single return point. Not oscillatory by this test.",
+          "R: Asymmetric bowl — on the side that curves upward the ball returns; on the side that curves downward the ball continues away. The tendency is inward from one side only, not both. No single stable equilibrium. Not oscillatory."
+        ],
+        "check": "Confirm each decision by checking the other side: P reverses direction from both sides; Q and R do not pass from both sides.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-OSC-STABLE-EQUILIBRIUM",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-OSC-STABLE-EQUILIBRIUM",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PLANNED_WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "For each case, propose one position as the candidate equilibrium and test what happens on both sides.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Reject any case where the tendency does not point inward from both displacement directions.",
+          "reveals": "METHOD"
+        },
+        {
+          "text": "P: oscillatory. Q: not. R: not.",
+          "reveals": "ANSWER"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 3,
+          "purpose": "ANSWER",
+          "from": "hints[2]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-OSC-CYCLE-DIAGRAM",
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": "If you classified Q (circular orbit) as oscillatory, check whether the orbital path has one equilibrium position that produces an inward return tendency from both displacement directions.",
+      "family_exposure": {
+        "family_ref": null,
+        "closure": "You applied the two-sided stable-equilibrium test to three systems, correctly accepted one, and rejected two with distinct failure modes."
+      },
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Multi-case stable-equilibrium classification requiring explicit two-sided test with one non-obvious rejection (circular orbit)."
+      },
+      "learner_question_type": "constructed_response"
+    },
+    {
+      "id": "Q-OSC-2B-ENERGY-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-OSC-SHM-WAVES",
+      "original_identifier": "AUTHOR-OSC-ENERGY-2B",
+      "stem": "An ideal pendulum is released from 5 cm to the right of equilibrium. A thin layer of air resistance then slows it gradually. (a) For the first complete swing (before significant energy loss), fill in a five-checkpoint energy table as in the ideal case. (b) After many swings, the amplitude has halved to 2.5 cm. State whether the energy state at the (new, smaller) turning points is the same HIGH/LOW classification as before. Explain why the total mechanical energy must have decreased. (c) A student says \"The total energy can never change in a pendulum.\" Identify the specific assumption that makes this claim false here.",
+      "subparts": [
+        "a",
+        "b",
+        "c"
+      ],
+      "options": [],
+      "conditions": [
+        "Part (a): use the ideal-oscillator model for the first swing.",
+        "Part (b): air resistance has removed energy over many swings.",
+        "Qualitative reasoning only; no numerical energy values required."
+      ],
+      "figure_refs": [
+        "REP-OSC-CYCLE-DIAGRAM"
+      ],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "(a) Standard ideal table. (b) PE at turning points is now lower (smaller amplitude); total decreased. (c) The claim requires \"no energy-removing interaction\", violated by air resistance.",
+        "reasoning": [
+          "(a) +T: KE LOW, PE HIGH; Centre: KE HIGH, PE LOW; −T: KE LOW, PE HIGH; Centre: KE HIGH, PE LOW; +T: KE LOW, PE HIGH. Total constant at each checkpoint.",
+          "(b) Smaller amplitude means smaller displacement at the turning points → less stored PE at each turning point. Classification is still PE HIGH / KE LOW at turning points, but the HIGH level is now lower than before. The total mechanical energy has decreased because air resistance converted some mechanical energy to heat over the many swings.",
+          "(c) The claim \"total energy never changes\" assumes no dissipative interaction. Air resistance is precisely such an interaction; it removes mechanical energy and transfers it to the surrounding air as thermal energy."
+        ],
+        "check": "Confirm that the ideal table from (a) uses the constant-total assumption; (b) shows that constant-total fails when a dissipative interaction is present.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [
+          {
+            "subpart": "a",
+            "value": "Five-row table: turns = KE LOW / PE HIGH; centres = KE HIGH / PE LOW; E_total constant."
+          },
+          {
+            "subpart": "b",
+            "value": "Still HIGH/LOW classification at turning points, but HIGH PE is smaller; total mechanical energy decreased."
+          },
+          {
+            "subpart": "c",
+            "value": "The assumption is \"no energy-losing interaction.\" Air resistance violates this; it converts mechanical energy to heat."
+          }
+        ],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Ideal five-checkpoint table is correctly completed.",
+            "evidence_of": "Part (a) mastery."
+          },
+          {
+            "criterion": "Recognises that amplitude loss means less stored PE at turning points.",
+            "evidence_of": "Connecting amplitude to PE state."
+          },
+          {
+            "criterion": "Identifies that constant-total requires no dissipation.",
+            "evidence_of": "The boundary condition of the ideal model."
+          }
+        ],
+        "reasoning_route": [
+          {
+            "id": "R-OSC-2B-IDEAL",
+            "kind": "REPRESENT",
+            "action": "Fill ideal five-checkpoint table.",
+            "why_valid": "First swing uses ideal model.",
+            "inputs": [
+              "5 cm amplitude"
+            ],
+            "output": "Standard KE/PE table"
+          },
+          {
+            "id": "R-OSC-2B-AMP",
+            "kind": "TRANSFORM",
+            "action": "Smaller amplitude → smaller turning-point displacement → less PE at turns.",
+            "why_valid": "PE depends on displacement magnitude.",
+            "inputs": [
+              "2.5 cm amplitude"
+            ],
+            "output": "PE HIGH but lower than before"
+          },
+          {
+            "id": "R-OSC-2B-DISS",
+            "kind": "DECIDE",
+            "action": "Total decreased because air resistance converted energy to heat.",
+            "why_valid": "Energy removed = mechanical energy lost.",
+            "inputs": [
+              "many swings",
+              "air resistance"
+            ],
+            "output": "E_total decreased"
+          },
+          {
+            "id": "R-OSC-2B-CLAIM",
+            "kind": "VERIFY",
+            "action": "The claim requires no dissipative interaction; air resistance violates this.",
+            "why_valid": "The ideal model assumption is explicit.",
+            "inputs": [
+              "constant-total assumption"
+            ],
+            "output": "Claim requires ideal (no dissipation) condition"
+          }
+        ],
+        "crux_move_ref": "R-OSC-2B-DISS"
+      },
+      "primary_capability_ref": "CAP-OSC-ENERGY-EXCHANGE",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-OSC-ENERGY-EXCHANGE",
+      "adaptation": {
+        "parent_ref": "Q-OSC-1A-ENERGY-01",
+        "changed_fields": [
+          "stem",
+          "answer"
+        ],
+        "reason": "Air resistance introduces a non-ideal dissipative interaction; the learner must apply the ideal model for one swing, then diagnose why the constant-total claim breaks down over many swings."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Part (a) uses the ideal model: apply the five-checkpoint table as practised.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "For part (b): smaller turning-point displacement means less stored PE; total mechanical energy can only stay constant with no losses.",
+          "reveals": "METHOD"
+        },
+        {
+          "text": "(a) Standard table. (b) Total decreased due to air resistance. (c) Air resistance violates no-dissipation assumption.",
+          "reveals": "ANSWER"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 3,
+          "purpose": "ANSWER",
+          "from": "hints[2]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-OSC-CYCLE-DIAGRAM",
+        "safe_ref": "REP-OSC-CYCLE-DIAGRAM",
+        "bound_ref": "REP-OSC-CYCLE-DIAGRAM",
+        "stage_refs": []
+      },
+      "failure_signal": "If you said the total energy stays the same despite air resistance, you are applying the ideal-oscillator assumption to a non-ideal case. The boundary test in the Core1A material explicitly states that constant-total does not hold when a dissipative interaction is present.",
+      "family_exposure": {
+        "family_ref": "FAM-OSC-ENERGY-EXCHANGE",
+        "closure": "You applied the ideal energy ledger to one swing, recognized that dissipation breaks the constant-total assumption, and identified the specific assumption violated."
+      },
+      "transfer": {
+        "dimension": "model_choice",
+        "builds_on": [
+          "Q-OSC-1A-ENERGY-01"
+        ],
+        "statement": "Air resistance makes the oscillator non-ideal; the five-checkpoint ideal table still applies for the first swing, but over many swings the amplitude decreases and the total mechanical energy falls.",
+        "invariant": "At each turning point KE is LOW and PE is HIGH; at each equilibrium crossing KE is HIGH and PE is LOW. The two KE maxima per cycle pattern persists even in the dissipating case.",
+        "protected_move_ref": "R-OSC-2B-DISS",
+        "novelty": {
+          "checked_against": [
+            "Q-OSC-1A-ENERGY-01",
+            "Q-OSC-1A-EQUIL-01",
+            "Q-OSC-2A-EQUIL-01",
+            "CU-OSC-ENERGY-EXCHANGE-1"
+          ],
+          "why_new": "Q-OSC-1A-ENERGY-01 (Core1A anchor) uses an ideal oscillator where E_total is constant by construction. No earlier item introduces a dissipative interaction that changes E_total over time. No earlier item asks the learner to apply the ideal model for one swing and then diagnose why it fails over many swings. The claim-identification demand in part (c) is genuinely new: it requires the learner to name the exact assumption (no dissipation) that the student's claim requires, which no prior Core1A or Core2A item tests."
+        }
+      },
+      "difficulty": {
+        "band": "D3",
+        "score": 6,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 2
+        },
+        "basis": "Ideal-to-non-ideal boundary: applies ideal model for one swing, diagnoses assumption failure over many swings, identifies violated model condition."
+      },
+      "learner_question_type": "constructed_response",
+      "verification": {
+        "validator_id": null,
+        "bindings": {},
+        "domain": null
+      }
+    }
+  ],
   "teaching_routes": [
     {
       "id": "ROUTE-OSC-CORE1A",
