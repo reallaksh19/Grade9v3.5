@@ -1,0 +1,110 @@
+{
+  "schema": "gate-report/v1",
+  "tool": "quality_gate/1",
+  "contract_version": "1.5.0",
+  "product_id": "STRESS-MATH-POLY-DEGREE",
+  "subject": "Mathematics",
+  "render_stamp": null,
+  "pages": [
+    {
+      "page": "core1.html",
+      "sha256": "bdf9d02175c07913d18e771925819a5824070d975bf8aa8f00ed50160422b453"
+    },
+    {
+      "page": "core1a.html",
+      "sha256": "ddf9248b113c17174863c0c70503332ead82a9d5c92d14fcfc5e2d92055f3d06"
+    },
+    {
+      "page": "core1b.html",
+      "sha256": "e0c55ff40b0d5998728232cd7b9ac7a8d77341410d2398ce1b3d56df138b8de2"
+    },
+    {
+      "page": "core2.html",
+      "sha256": "f97574dcf08ffef1700aa2c2a1c6db8207e2c26c0528b07db403eaf10703459c"
+    },
+    {
+      "page": "core2a.html",
+      "sha256": "d46408c981ced6525d1e781463a800c5312752f595676b63bce95e13d61b09c8"
+    },
+    {
+      "page": "core2b.html",
+      "sha256": "534808e42645fffa116f6bf81feca55f31827933a9e8eb8efce668c264342198"
+    }
+  ],
+  "rules_evaluated": [
+    "C1-RELATION",
+    "C1-REPRESENTATION",
+    "C1A-BLOCKS",
+    "C1A-REPRESENTATION-BRIDGE",
+    "C1A-STAGED-REPRESENTATION",
+    "C1A-ANCHOR-PER-DECISION",
+    "C1A-PREREQUISITES-BRIDGED",
+    "C1B-BLOCKS",
+    "C1B-REPRESENTATION",
+    "C1B-REVEAL-GATED",
+    "C2-BLOCKS",
+    "C2-ATTEMPT",
+    "C2-ANSWER-ON-REVEAL",
+    "C2A-BLOCKS",
+    "C2A-ATTEMPT-FIRST",
+    "C2A-TRAP",
+    "C2A-REPRESENTATION",
+    "C2A-LADDER",
+    "C2A-SPECIFIC-SUPPORT",
+    "C2A-PROVENANCE",
+    "C2A-FAMILY-CLOSURE",
+    "C2A-REVEAL-GATED",
+    "C2B-SAFE-REPRESENTATION",
+    "C2B-LINEAGE",
+    "C2B-SAFE-SUPPORT-SPECIFIC",
+    "C2B-REVEAL-GATED",
+    "C1-FAMILY-METADATA",
+    "C2-METADATA",
+    "C2A-METADATA",
+    "C2B-METADATA",
+    "ALL-NO-PLACEHOLDER",
+    "ALL-PRE-ATTEMPT-FIGURE-PARTIAL",
+    "ALL-PRE-ATTEMPT-MARKUP-WITHHELD",
+    "ALL-FIGURE-SPECIFIC",
+    "ALL-FIGURES-TITLED",
+    "ALL-FIGURE-KIND-KNOWN",
+    "ALL-CHECK-TYPES-KNOWN",
+    "PAGE-HOME-LINK",
+    "PAGE-SHELL",
+    "PAGE-SLOTS",
+    "PAGE-PRINT-CSS",
+    "PAGE-TOUCH",
+    "PAGE-STAGE-SUPPORT",
+    "PAGE-METADATA-PRESENCE",
+    "PAGE-SAFE-SEARCH-CORPUS",
+    "PAGE-PROTECTED-SEARCH",
+    "PAGE-GATED-INITIAL",
+    "PRODUCT-NO-ESCAPE-STATE",
+    "PRODUCT-RENDERED-FROM-RECORDS",
+    "PRODUCT-ALL-ROLES",
+    "PRODUCT-SHARED-ATLAS",
+    "PRODUCT-PRINT-FROM-PAGE"
+  ],
+  "rendered_measured": true,
+  "not_measured": [],
+  "findings": [
+    {
+      "rule": "PAGE-SLOTS",
+      "severity": "S1",
+      "where": "core2.html",
+      "detail": "page slot_markers absent"
+    },
+    {
+      "rule": "PRODUCT-RENDERED-FROM-RECORDS",
+      "severity": "S1",
+      "where": "STRESS-MATH-POLY-DEGREE",
+      "detail": "no governed-renderer stamp"
+    }
+  ],
+  "continuity": [],
+  "verdict": "FAIL",
+  "fail_reasons": [
+    "BLOCKING_FINDINGS",
+    "DRAFT"
+  ]
+}

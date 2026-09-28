@@ -10,7 +10,7 @@ catch { playwright = require(execSync('npm root -g').toString().trim() + '/playw
 const base = path.dirname(new URL(import.meta.url).pathname.replace(/^\/(?=[A-Za-z]:)/, ''));
 const browser = await playwright.chromium.launch();
 const results = {};
-for (const [label, dir] of [['polynomials-empty', 'rendered'], ['golden-control', 'golden-control']]) {
+for (const [label, dir] of [['polynomials-empty', 'rendered'], ['golden-control', 'golden-control'], ['polynomials-prototype', 'prototype/rendered']]) {
   const page = await browser.newPage({ viewport: { width: 800, height: 1280 } });
   await page.goto('file://' + path.join(base, dir, 'core1a.html'));
   const before = await page.evaluate(() => ({
@@ -35,6 +35,25 @@ for (const [label, dir] of [['polynomials-empty', 'rendered'], ['golden-control'
   }
   const accessibility = await page.locator('main').ariaSnapshot();
   results[label] = { viewport: { width: 800, height: 1280 }, before, search, attempt, accessibility };
+  await page.close();
+}
+results['polynomials-prototype'].roles = {};
+for (const role of ['core1.html', 'core1b.html', 'core2.html', 'core2a.html', 'core2b.html']) {
+  const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+  await page.goto('file://' + path.join(base, 'prototype/rendered', role));
+  const facts = await page.evaluate(() => ({
+    units: document.querySelectorAll('[data-g9-unit]').length,
+    accessibleFigures: document.querySelectorAll('svg[role="img"][aria-labelledby]').length,
+    attempts: document.querySelectorAll('[data-g9-attempt-box]').length,
+    locked: document.querySelectorAll('details[data-locked]').length,
+    searchCorpusUnits: document.querySelectorAll('[data-g9-unit][data-g9-search-text]').length,
+  }));
+  if (facts.attempts) {
+    await page.locator('[data-g9-attempt]').first().fill('typed commitment');
+    await page.locator('[data-g9-commit]').first().click();
+    facts.unlockedAfterTypedCommit = await page.locator('details[data-requires-attempt]').first().evaluate(e => !e.hasAttribute('data-locked'));
+  }
+  results['polynomials-prototype'].roles[role] = facts;
   await page.close();
 }
 await browser.close();

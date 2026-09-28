@@ -1,5 +1,6 @@
 {
-  "head": "68559ac4cb17eeb5f2d87aebecebf652b9a34efd",
+  "execution_basis": "68559ac4cb17eeb5f2d87aebecebf652b9a34efd",
+  "evidence_commit": null,
   "branch": "codex/polynomials-six-core-stress",
   "inputs": [
     {
@@ -23,6 +24,11 @@
       "sha256": "8985cd523530814f5d47c9aa49dc2941c6dc38102edc8796fb8dd059a54aad1c"
     },
     {
+      "path": "Shared/tools/quality_contract.py",
+      "bytes": 22601,
+      "sha256": "7b83c33fba6d482d30be3c12b65bf444787e83debe696e2ee23b8c412fcf2e1b"
+    },
+    {
       "path": "Shared/tools/quality_observe.py",
       "bytes": 31043,
       "sha256": "b1836f52d0603e766e2b7b11dc970061eeae655943a2737384ae5bbf7c6fce04"
@@ -31,6 +37,26 @@
       "path": "Shared/quality/learner-quality.v1.json",
       "bytes": 31316,
       "sha256": "dc81dd2dd3054d96d3b6e2bc15d37ab6d16b9b2709b7c795907dbccf4e7ead1b"
+    },
+    {
+      "path": "Shared/vocabularies/learner-question-metadata.v1.json",
+      "bytes": 1974,
+      "sha256": "c6a4962ad002ced0958877ce24bc215a2060f146cd14da0a9234b31fc9163417"
+    },
+    {
+      "path": "Mathematics/adapter/CoreContracts.json",
+      "bytes": 6081,
+      "sha256": "56bd52754b62fa0fe1f81ff59535e91f70b1ddc06ed2e347b86223c588118d5b"
+    },
+    {
+      "path": "Mathematics/adapter/QualityVocabulary.json",
+      "bytes": 1053,
+      "sha256": "f5c8abe65db1d97696e2a1f0d424e5e567f4e85c1d8bacb708b099dda83a544e"
+    },
+    {
+      "path": "Mathematics/research/acquisitions/ACQ-DBC30792858FA1858D24.json",
+      "bytes": 638,
+      "sha256": "beeaa3831d06f3c1a7f7eedd8ebd5c8255f3ec818d3ab1af6b1e1a56d1831662"
     },
     {
       "path": "Shared/library/package.schema.json",
@@ -91,8 +117,49 @@
       "path": "evidence/stress-tests/polynomials-six-core/untrusted-fixture/bank.json",
       "bytes": 687,
       "sha256": "9e97152e26003e3d897f18741e70d346d133191d04b58dd81374a283b1067a52"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/prototype/build_records.py",
+      "bytes": 15653,
+      "sha256": "48b1d51a3c209005b065001c9d531da70d47e6740bfd093c5887bfee77d88b33"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/prototype/records.json",
+      "bytes": 22718,
+      "sha256": "b031a55efeadad04d70beda31aaf8db1cf80f7e811bac210e60bc18e66842bae"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/prototype/manifest.json",
+      "bytes": 522,
+      "sha256": "941e2bfa218b1f1f1614928740379e1960b45b689019e4a9d712675031732584"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/prototype/power-cards.svg",
+      "bytes": 1160,
+      "sha256": "601ecbec73cccf3a038758e7b15516f9c216385f58a7cd9ffe180b3ebb958206"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/browser-interaction.mjs",
+      "bytes": 3830,
+      "sha256": "defa6f38ac49a6c9d358d27ff0c97df8d34ff3c3d48784bf246360688d8028d8"
+    },
+    {
+      "path": "tools/site-audit/core-page-audit.mjs",
+      "bytes": 11281,
+      "sha256": "f980a679ddcaccf6f44a519c229ab99595ff009786d489aaf0fc193705122b41"
+    },
+    {
+      "path": "tools/print/print-product.mjs",
+      "bytes": 2677,
+      "sha256": "f209a2086dfb340d42df48a20951f76710f55cc9a8824feb827cb0bc27a94e13"
     }
   ],
+  "external_source": {
+    "url": "https://ncert.nic.in/textbook/pdf/iemh102.pdf",
+    "sha256": "dbc30792858fa1858d248e4802977cb794b537c1a49f166e2777ea37baf57b02",
+    "bytes": 2875060,
+    "committed": false
+  },
   "outputs": [
     {
       "path": "evidence/stress-tests/polynomials-six-core/rendered/core1.html",
@@ -210,6 +277,81 @@
       "sha256": "695c53fa0ac17cdc3a079adc929907da3151693b9dff98a1c1d391496e274178"
     },
     {
+      "path": "evidence/stress-tests/polynomials-six-core/prototype/rendered/core1.html",
+      "bytes": 14929,
+      "sha256": "bdf9d02175c07913d18e771925819a5824070d975bf8aa8f00ed50160422b453"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/prototype/rendered/core1a.html",
+      "bytes": 16742,
+      "sha256": "ddf9248b113c17174863c0c70503332ead82a9d5c92d14fcfc5e2d92055f3d06"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/prototype/rendered/core1b.html",
+      "bytes": 17549,
+      "sha256": "e0c55ff40b0d5998728232cd7b9ac7a8d77341410d2398ce1b3d56df138b8de2"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/prototype/rendered/core2.html",
+      "bytes": 10411,
+      "sha256": "f97574dcf08ffef1700aa2c2a1c6db8207e2c26c0528b07db403eaf10703459c"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/prototype/rendered/core2a.html",
+      "bytes": 18300,
+      "sha256": "d46408c981ced6525d1e781463a800c5312752f595676b63bce95e13d61b09c8"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/prototype/rendered/core2b.html",
+      "bytes": 18654,
+      "sha256": "534808e42645fffa116f6bf81feca55f31827933a9e8eb8efce668c264342198"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/prototype/rendered/index.html",
+      "bytes": 10546,
+      "sha256": "f9f51ae1925a901ec7ebd052d5edd329175e62f18ee51a63952225bd3bf88294"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/prototype/rendered/render-receipt.json",
+      "bytes": 654,
+      "sha256": "9493aa290152589021a787cd2273b5e132b6aec11035f4a88eb351db0c1a8bc8"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/prototype/pdf/core1.pdf",
+      "bytes": 46140,
+      "sha256": "04ab87260a08422e848c2e7226a684e82fd65f4d8e58b7f38a4622c429d71abf"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/prototype/pdf/core1a.pdf",
+      "bytes": 47823,
+      "sha256": "35f748965e80e41573aaeaf7d1e8ac089769e8256448de8dfbac84b6701cc7df"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/prototype/pdf/core1b.pdf",
+      "bytes": 35593,
+      "sha256": "c3fcb40793739f001e980f903d4a763ffc6e3713facefa54b32eb3cb5e99152b"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/prototype/pdf/core2.pdf",
+      "bytes": 21397,
+      "sha256": "19645996f992c886dfe7cc9c146f064c285ba3c325aee4dfc0a6f75372f14838"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/prototype/pdf/core2a.pdf",
+      "bytes": 37926,
+      "sha256": "3f8695c82447822b9455b6ec36f6edb69771ca1ebc36d7801670fc87075d0b05"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/prototype/pdf/core2b.pdf",
+      "bytes": 42392,
+      "sha256": "0604f091c4b7bc60f37dd278c9bed50f919fed2776e7d1fb19e5739c6a11cb63"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/prototype/pdf/print-receipt.json",
+      "bytes": 1744,
+      "sha256": "091ae17c585877c1660eb1b9eec913c1c0cdf5ae3f32273e58b362eb452a810c"
+    },
+    {
       "path": "evidence/stress-tests/polynomials-six-core/quality-static.json",
       "bytes": 3988,
       "sha256": "122b9b33638bfdd6e6e540a8c75f2ee87af4951de0da6fd9e97aaf5053e47ea9"
@@ -236,8 +378,18 @@
     },
     {
       "path": "evidence/stress-tests/polynomials-six-core/browser-interaction.json",
-      "bytes": 7572,
-      "sha256": "b40cb26982780e18441c8216dec1b122aeaef435e0bb6f60564a1882c467f00e"
+      "bytes": 13770,
+      "sha256": "88a5f2ee851a436b1fae4046c3bcfc357999459919c4e762756b7a99d738fe12"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/prototype/quality-browser.json",
+      "bytes": 2894,
+      "sha256": "825dd932f34064239cc1e46e2a48468d74884580f2c7c48ca4f9f7b9449d327f"
+    },
+    {
+      "path": "evidence/stress-tests/polynomials-six-core/prototype/chromium-audit.json",
+      "bytes": 22372,
+      "sha256": "d9b7c4ce75d8b4e220c601da7c99668c10430de34402fdf4e2adcf6f9c278f63"
     }
   ],
   "untrusted_fixture_schema_errors": {
