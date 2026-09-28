@@ -7,7 +7,7 @@ the document for the owner's calibration review (owner decision 3).
 
 | File | Role |
 |---|---|
-| `Shared/quality/learner-quality.v1.json` | The contract: 41 subject-neutral rules, the blocks each Core role must show, thresholds, and the two reference grammars |
+| `Shared/quality/learner-quality.v1.json` | The contract: 52 subject-neutral rules, the blocks each Core role must show, thresholds, and the two reference grammars |
 | `Shared/quality/learner-observation.schema.json` | What the rules judge: a *learner observation*, i.e. what a learner can see and do on a delivered product (blocks, figures and when they appear, attempt controls, gated reveals, support levels, shell facts) |
 | `Shared/tools/quality_contract.py` | `--check` (the contract is well formed), `evaluate <observation>`, `calibrate` |
 | `Shared/tools/quality_observe.py` | Extractors that turn delivered files into observations |
@@ -24,17 +24,17 @@ the document for the owner's calibration review (owner decision 3).
 
 | Family | Rules | Covers |
 |---|---|---|
-| DEPTH | 23 | content and its depth |
-| INTERACTION | 5 | attempt before reveal |
+| DEPTH | 24 | content and its depth |
+| INTERACTION | 7 | attempt/reveal and learner-state interaction |
 | PAGE | 7 | shell, home link, slots, touch, layout, print CSS, figure titles |
-| INTEGRITY | 6 | placeholders, escape states, renderer provenance, all six roles, shared Atlas, print from page |
+| INTEGRITY | 14 | placeholders, canonical learner metadata, safe search, escape states, renderer provenance, all six roles, shared Atlas, print from page |
 
-Two PAGE rules need a browser (`tools/site-audit/core-page-audit.mjs`). They are reported as
-NOT_MEASURED when no measurement is supplied.
+Six rendered rules need a browser (`tools/site-audit/core-page-audit.mjs`): touch/layout plus canonical metadata/search/initial-gate safety. They are reported as NOT_MEASURED when the required browser fact is not supplied.
 
 ## Calibration result
 
-`python3 Shared/tools/quality_contract.py calibrate`:
+The block below is the last committed calibration snapshot from before contract v1.5.0. It is historical evidence only until `python3 Shared/tools/quality_contract.py calibrate` is rerun on an executable exact head.
+
 
 ```
 ok  S1  negative: caught 21/21 expected; also fails (reviewed) C1A-STAGED-REPRESENTATION, C2A-PROVENANCE, C2B-SAFE-SUPPORT-SPECIFIC, PRODUCT-RENDERED-FROM-RECORDS
