@@ -10,8 +10,10 @@ from __future__ import annotations
 import json
 from pathlib import Path
 from typing import Any
+import sys
 
 REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(REPO))
 VOCABULARY = REPO / "Shared/vocabularies/learner-question-metadata.v1.json"
 CONCEPT_ROLES = {"CORE1", "CORE1A", "CORE1B"}
 ASSESSMENT_ROLES = {"CORE2", "CORE2A", "CORE2B"}
