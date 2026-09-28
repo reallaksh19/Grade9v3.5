@@ -4,8 +4,8 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-LEDGER = ROOT / "docs" / "stress-tests" / "polynomials-agent1" / "source-ledger.json"
-HTML = ROOT / "docs" / "stress-tests" / "polynomials-agent1" / "index.html"
+LEDGER = ROOT / "evidence" / "stress-tests" / "polynomials-agent1" / "source-ledger.json"
+HTML = ROOT / "evidence" / "stress-tests" / "polynomials-agent1" / "index.html"
 
 
 class Issue302PolynomialsEvidenceTests(unittest.TestCase):

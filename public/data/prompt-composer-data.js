@@ -2,7 +2,7 @@
 window.GRADE9V3_PROMPT_COMPOSER = {
   "generated_by": "Shared/tools/build_prompt_composer_data.py",
   "contract_version": "1.0.0",
-  "repository_basis": "architecture-manifest@sha256:096c793191151f8b163ada7b73e74f6496772ffd12aac9930c583aacc1a88e18",
+  "repository_basis": "architecture-manifest@sha256:cb1fc9e20b53b65fa7e5df785eab6bcb7fddb9e5505ba54534ebced00b305705",
   "template": {
     "template_id": "CORE-AGENT-PROMPT",
     "version": "1.1.0",
@@ -233,7 +233,7 @@ window.GRADE9V3_PROMPT_COMPOSER = {
       "RESEARCH_AND_AUTHOR"
     ]
   },
-  "authority_contract_ref": "Shared/roles/CORE-AUTHORITY-CONTRACT.md",
+  "authority_contract_ref": "Shared\\roles\\CORE-AUTHORITY-CONTRACT.md",
   "web_blueprints": {
     "CORE1": {
       "core": "CORE1",

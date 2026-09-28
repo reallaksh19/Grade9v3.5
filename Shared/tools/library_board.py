@@ -91,11 +91,37 @@ def first_number(text: str) -> float | None:
 
 # ------------------------------------------------------------------ board
 
-def inputs_digest(subject: str, node_id: str, records: list[dict], repo: Path = REPO) -> str:
+def inputs_digest(subject: str, node_id: str, records: list[dict], repo: Path = REPO,
+                  readback_refs: list[str] | None = None) -> str:
     cards = evidence_check.research_dir(subject, repo) / "evidence" / f"{node_id}.cards.json"
-    body = json.dumps({"cards": _load(cards) if cards.is_file() else None,
-                       "records": sorted(records, key=lambda r: r.get("id", ""))},
-                      sort_keys=True, ensure_ascii=False)
+    inputs = {"cards": _load(cards) if cards.is_file() else None,
+              "records": sorted(records, key=lambda r: r.get("id", ""))}
+    refs = {(r.get("extensions") or {}).get("grade9v3:inventory_item") for r in records}
+    verification = verification_path(subject, node_id, repo)
+    if readback_refs is None:
+        readback_refs = ([row.get("ref", "") for row in _load(verification).get("readback", [])]
+                         if verification.is_file() else [])
+    refs.update(ref for ref in readback_refs if "#" in ref)
+    refs.discard(None)
+    if refs:
+        index = evidence_check.inventory_index(subject, repo)
+        inputs["inventory_items"] = {}
+        for ref in sorted(refs):
+            pair = index.get(ref)
+            if pair:
+                inventory, item = pair
+                acq_ref = item.get("locator", {}).get("acquisition_ref")
+                member = next((m for m in inventory.get("members", []) if m.get("acquisition_ref") == acq_ref), None)
+                inputs["inventory_items"][ref] = {"item": item, "member": member}
+            else:
+                inputs["inventory_items"][ref] = None
+    card_refs = sorted(set(ref for ref in readback_refs if ref and "#" not in ref))
+    if card_refs:
+        card_index = {card["card_id"]: card
+                      for path in evidence_check.evidence_files(subject, repo=repo)
+                      for card in _load(path).get("cards", [])}
+        inputs["readback_cards"] = {ref: card_index.get(ref) for ref in card_refs}
+    body = json.dumps(inputs, sort_keys=True, ensure_ascii=False)
     return "sha256:" + hashlib.sha256(body.encode("utf-8")).hexdigest()
 
 
@@ -103,7 +129,7 @@ def _node_records(package: dict | None, node_id: str) -> list[tuple[str, dict]]:
     if not package:
         return []
     rows = []
-    for collection in ("microtopics", "capabilities", "relations", "representations", "questions"):
+    for collection in ("microtopics", "capabilities", "relations", "representations", "question_families", "questions"):
         for row in package.get(collection, []):
             if (row.get("extensions") or {}).get(NODE_KEY) == node_id:
                 rows.append((collection, row))
@@ -300,12 +326,13 @@ def next_order(board: dict, role: str, lane: str | None, subject: str) -> str | 
         return None
     r = rows[0]
     duties = "\n".join(f"- {d['duty']}" for d in r["duties"] if d["role"] == role)
-    guide = f"docs/library-agents/{role}.md"
-    return (f"WORK ORDER — {role} — {r['node']} ({r['title']})\n"
-            f"Follow {guide}. Work on this node only.\n\nDuties:\n{duties}\n\n"
-            f"When done run:\n  python3 Shared/tools/evidence_check.py check --subject {subject} --node {r['node']} --fetch\n"
-            f"  python3 Shared/tools/library_board.py --subject {subject} --fetch\n"
-            f"and continue until this node leaves the {role} stage.\n")
+    guide = ("docs/method/roles/SOURCE-READER.md" if role in {"RESEARCHER", "VERIFIER", "SCANNER"}
+             else "docs/method/roles/UNIT-AUTHOR.md")
+    return (f"SOURCE/UNIT OBSERVATION — {role} — {r['node']} ({r['title']})\n"
+            f"Read {guide} and docs/method/PROTOCOL.md. This is an advisory view of existing records.\n\n"
+            f"Earlier board duties (not delivery prerequisites):\n{duties}\n\n"
+            f"For an updated observation run evidence_check.py and library_board.py for {subject}; "
+            "decide what to research or revise from the source and learner task.\n")
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -316,6 +343,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--fetch", action="store_true", help="download missing source snapshots")
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--digest", metavar="NODE", help="print the inputs_digest a verification record must carry")
+    parser.add_argument("--readback-ref", action="append", default=[],
+                        help="item or card ref included in a new readback (repeat with --digest)")
     parser.add_argument("--products", action="store_true",
                         help="product stage: gate verdict and gaps per product (products/status.v1.json)")
     parser.add_argument("--budget", action="store_true", help="agent spend per unit against the cost ceiling")
@@ -358,9 +387,16 @@ def main(argv: list[str] | None = None) -> int:
     if args.digest:
         spine_nodes = {n["id"]: n for n in evidence_check.spine(args.subject)["nodes"]}
         node = spine_nodes[args.digest]
-        path = staging_path(args.subject, chapter_of(node))
-        package = _load(path) if path.is_file() else None
-        print(inputs_digest(args.subject, args.digest, [row for _, row in _node_records(package, args.digest)]))
+        records = {}
+        for path in sorted((REPO / args.subject / "library").glob("*.v1.json")):
+            for _, row in _node_records(_load(path), args.digest):
+                records[row["id"]] = row
+        if not records:
+            path = staging_path(args.subject, chapter_of(node))
+            for _, row in _node_records(_load(path) if path.is_file() else None, args.digest):
+                records[row["id"]] = row
+        refs = args.readback_ref or None
+        print(inputs_digest(args.subject, args.digest, list(records.values()), readback_refs=refs))
         return 0
     board = build(args.subject, fetch=args.fetch)
     if args.next:

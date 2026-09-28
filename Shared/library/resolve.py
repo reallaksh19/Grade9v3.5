@@ -53,7 +53,8 @@ def build_index(packages: list[dict]) -> dict:
 # different reason: a learner is not a property of a physics package, and the two that
 # lived inside one meant the same learner studying a second bucket needed a duplicate.
 # Both are resolved by their own gate instead.
-EXTERNAL_REF_KEYS = {"gate_relation_ref", "practice_profile_ref"}
+EXTERNAL_REF_KEYS = {"gate_relation_ref", "practice_profile_ref", "snapshot_ref",
+                     "grade9v3:acquisition_ref", "evidence_refs"}
 
 
 def references(value, path: str = "") -> list[tuple[str, str]]:

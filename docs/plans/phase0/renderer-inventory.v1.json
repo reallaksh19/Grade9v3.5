@@ -21,6 +21,15 @@
       "phase3_action": "none; every learner page is produced here"
     },
     {
+      "path": "Shared/tools/accept_product.py",
+      "kind": "PYTHON_HTML",
+      "classification": "OUT_OF_SCOPE",
+      "renders": "No pages; verifies a render stamp and copies the existing exact render after Owner acceptance",
+      "location": "main",
+      "reason": "The literal <html in the digest verifier is inspected text, not HTML generation",
+      "phase3_action": "Keep as the Owner publication command; render_core remains the sole learner renderer"
+    },
+    {
       "path": "Shared/tools/build_interactive_page.py",
       "kind": "PYTHON_HTML",
       "classification": "ENGINE_KEEP",
@@ -163,6 +172,42 @@
       "location": "main",
       "reason": "Owner tool, not learner content",
       "phase3_action": "None"
+    },
+    {
+      "path": "public/js/raw-intake.js",
+      "kind": "JS_RENDER",
+      "classification": "OUT_OF_SCOPE",
+      "renders": "Owner intake and reconciliation UI",
+      "location": "main",
+      "reason": "Intake tool, not a learner product renderer",
+      "phase3_action": "Keep its browser/Python parity test"
+    },
+    {
+      "path": "public/vendor/katex/0.16.8/contrib/auto-render.min.js",
+      "kind": "JS_RENDER",
+      "classification": "FROZEN_SNAPSHOT",
+      "renders": "Versioned third-party math display runtime",
+      "location": "main",
+      "reason": "Vendored runtime, not a product page generator",
+      "phase3_action": "Keep versioned vendor bytes"
+    },
+    {
+      "path": "public/vendor/katex/0.16.8/katex.min.js",
+      "kind": "JS_RENDER",
+      "classification": "FROZEN_SNAPSHOT",
+      "renders": "Versioned third-party math display runtime",
+      "location": "main",
+      "reason": "Vendored runtime, not a product page generator",
+      "phase3_action": "Keep versioned vendor bytes"
+    },
+    {
+      "path": "public/vendor/tailwind/3.4.17/tailwind-play.js",
+      "kind": "JS_RENDER",
+      "classification": "FROZEN_SNAPSHOT",
+      "renders": "Versioned third-party style runtime",
+      "location": "main",
+      "reason": "Vendored runtime, not a product page generator",
+      "phase3_action": "Keep versioned vendor bytes"
     },
     {
       "path": "Physics/tools/build_motion2d_projectile_product.py",

@@ -1,5 +1,11 @@
 # Research-first learner-product workflow
 
+> Historical workflow record. SPEC-AM2 r2.1 supersedes its promotion and
+> publication commands. Use [the authoring method](method/PROTOCOL.md),
+> `Shared/tools/unit_status.py` for advisory progress, and
+> `Shared/tools/accept_product.py` for an Owner decision on an exact render.
+> The commands below document the former workflow and are not current instructions.
+
 A job starts from the owner's questions, prompts and any syllabus text. The agent researches the subject and the source material, builds the coverage map, authors the Cores and visuals, and delivers the book, web pages, question bank, atlas links and builder integration. Research is part of the job from the first step — not a response to a hold.
 
 The invariants are data in [`Shared/workflows/research-first.v1.json`](../Shared/workflows/research-first.v1.json):
