@@ -94,7 +94,15 @@ for (const file of files) {
             if (!protectedBlock) continue;
             const text = protectedBlock.textContent.replace(/\s+/g, ' ').trim();
             if (text.length < 24) continue;
-            const query = text.slice(0, Math.min(48, text.length));
+            const safe = (article.dataset.g9SearchText || '').toLowerCase();
+            const candidates = text
+              .split(/[.!?;]\s+/)
+              .map(part => part.trim())
+              .filter(part => part.length >= 24 && !safe.includes(part.toLowerCase()))
+              .sort((a, b) => b.length - a.length);
+            if (!candidates.length) continue;
+            const query = candidates[0].slice(0, Math.min(64, candidates[0].length));
+            if (safe.includes(query.toLowerCase())) continue;
             input.value = query;
             input.dispatchEvent(new Event('input', { bubbles: true }));
             if (!article.hidden) leaks += 1;
