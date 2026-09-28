@@ -4,8 +4,8 @@
 The contract (Shared/quality/learner-quality.v1.json) is a list of subject-neutral rules over
 a learner observation (Shared/quality/learner-observation.schema.json). An observation is
 produced from delivered files by Shared/tools/quality_observe.py, or written by hand for a
-sample unit. The subject adapter (<Subject>/adapter/QualityVocabulary.json) supplies the
-subject's figure kinds and check types.
+sample unit. The subject adapter's CoreContracts.json owns canonical product figure kinds;
+QualityVocabulary.json supplies legacy figure kinds and independent-check types.
 
 Usage:
     quality_contract.py --check                      # the contract itself is well formed
@@ -39,7 +39,17 @@ def contract() -> dict:
 
 def vocabulary(subject: str, repo: Path = REPO) -> dict:
     path = repo / subject / "adapter" / "QualityVocabulary.json"
-    return load_json(path) if path.is_file() else {}
+    result = load_json(path) if path.is_file() else {}
+    # Product figures carry the canonical CoreContracts representation kind.
+    # Keep the quality-only legacy kinds, but read product kinds from their
+    # subject authority instead of maintaining a second list by hand.
+    contracts = repo / subject / "adapter" / "CoreContracts.json"
+    if contracts.is_file():
+        declared = load_json(contracts).get("representation_kinds", [])
+        result["representation_kinds"] = sorted(
+            set(result.get("representation_kinds", [])) | {row["id"] for row in declared}
+        )
+    return result
 
 
 def op(name):
