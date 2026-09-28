@@ -426,6 +426,43 @@
           "items": {
             "type": "string"
           }
+        },
+        "metadata": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "ref",
+              "value",
+              "display_name",
+              "label"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string",
+                "minLength": 1
+              },
+              "ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1
+              },
+              "display_name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "description": "Learner-visible canonical metadata items observed from data-g9-meta-* markers. Optional for legacy calibration observations; render_core observations always emit the field."
         }
       }
     }

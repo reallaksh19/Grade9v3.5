@@ -7,7 +7,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from Shared.tools import product_manifest, render_core
+from Shared.tools import product_manifest, quality_contract, quality_observe, render_core
 
 REPO = Path(__file__).resolve().parents[1]
 MANIFEST = REPO / "products/physics/phy-nlm-first-law.manifest.json"
@@ -89,6 +89,31 @@ class NlmSelectionContract(unittest.TestCase):
                         kind,
                     )
         self.assertEqual(ctx.gaps, [])
+
+    def test_render_core_observation_and_existing_quality_contract_enforce_metadata(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            ctx = render_core.context(MANIFEST)
+            digest = render_core.render_digest(ctx)
+            for role, filename in render_core.ROLE_FILE.items():
+                (folder / filename).write_text(
+                    render_core.page(ctx, role, "PAGES", digest),
+                    encoding="utf-8",
+                )
+            obs = quality_observe.observe_render_core(
+                folder, "PRODUCT-PHY-NLM-FIRST-LAW", "Physics"
+            )
+            metadata_rules = {"C1-FAMILY-METADATA", "C2-METADATA", "C2A-METADATA", "C2B-METADATA"}
+            result = quality_contract.evaluate(obs)
+            self.assertFalse(metadata_rules & {finding["rule"] for finding in result["findings"]})
+
+            core2 = next(page for page in obs["pages"] if page["role"] == "CORE2")
+            core2["units"][0]["metadata"] = [
+                row for row in core2["units"][0]["metadata"]
+                if row["kind"] != "source"
+            ]
+            broken = quality_contract.evaluate(obs)
+            self.assertIn("C2-METADATA", {finding["rule"] for finding in broken["findings"]})
 
     def test_render_identity_tracks_every_metadata_authority(self):
         ctx = render_core.context(MANIFEST)

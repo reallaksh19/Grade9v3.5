@@ -1,6 +1,6 @@
 {
   "schema": "learner-quality-contract/v1",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "purpose": "Subject-neutral quality rules for the six Core learner products. Each rule judges a learner observation (Shared/quality/learner-observation.schema.json), i.e. what a learner can see and do, never what a record claims. Rules carry the audit findings they would have caught (audit_refs) and the owner-reference grammar step they encode (grammar). Calibration: every negative specimen in benchmarks/quality-calibration fails for its expected findings; the positive references pass the rules that encode their grammar.",
   "families": {
     "DEPTH": "Content a learner needs, at the depth the references show.",
@@ -668,6 +668,102 @@
       ],
       "grammar": null,
       "text": "The protected DECIDE move and the answer open only after commitment."
+    },
+    {
+      "id": "C1-FAMILY-METADATA",
+      "family": "INTEGRITY",
+      "measure": "STATIC",
+      "roles": [
+        "CORE1",
+        "CORE1A",
+        "CORE1B"
+      ],
+      "unit_kind": "CONCEPT",
+      "severity": "S1",
+      "check": {
+        "op": "metadata_exact",
+        "kinds": [
+          "concept",
+          "concept-difficulty"
+        ]
+      },
+      "audit_refs": [],
+      "grammar": null,
+      "text": "Every concept-role unit exposes exactly its canonical concept label and intrinsic concept difficulty through the shared learner metadata component."
+    },
+    {
+      "id": "C2-METADATA",
+      "family": "INTEGRITY",
+      "measure": "STATIC",
+      "roles": [
+        "CORE2"
+      ],
+      "unit_kind": "QUESTION",
+      "severity": "S1",
+      "check": {
+        "op": "metadata_exact",
+        "kinds": [
+          "concept",
+          "concept-difficulty",
+          "question-difficulty",
+          "family",
+          "question-type",
+          "source",
+          "provenance"
+        ]
+      },
+      "audit_refs": [],
+      "grammar": null,
+      "text": "Every source question exposes canonical concept, difficulty, family, question type, source and provenance metadata without replacing source custody."
+    },
+    {
+      "id": "C2A-METADATA",
+      "family": "INTEGRITY",
+      "measure": "STATIC",
+      "roles": [
+        "CORE2A"
+      ],
+      "unit_kind": "QUESTION",
+      "severity": "S1",
+      "check": {
+        "op": "metadata_exact",
+        "kinds": [
+          "concept",
+          "concept-difficulty",
+          "question-difficulty",
+          "family",
+          "question-type",
+          "provenance"
+        ]
+      },
+      "audit_refs": [],
+      "grammar": null,
+      "text": "Every supported-practice item exposes canonical concept, difficulty, family, question type and authored provenance metadata."
+    },
+    {
+      "id": "C2B-METADATA",
+      "family": "INTEGRITY",
+      "measure": "STATIC",
+      "roles": [
+        "CORE2B"
+      ],
+      "unit_kind": "QUESTION",
+      "severity": "S1",
+      "check": {
+        "op": "metadata_exact",
+        "kinds": [
+          "concept",
+          "concept-difficulty",
+          "question-difficulty",
+          "family",
+          "question-type",
+          "provenance",
+          "transfer-dimension"
+        ]
+      },
+      "audit_refs": [],
+      "grammar": null,
+      "text": "Every transfer item exposes the supported-practice metadata plus only its safe canonical transfer dimension before commitment."
     },
     {
       "id": "ALL-NO-PLACEHOLDER",

@@ -477,6 +477,20 @@ def _render_core_unit(article: Node) -> dict:
         inside = sorted({n.attrs["data-g9-block"] for n in d.find_all(attr="data-g9-block")})
         reveals.append({"blocks": inside, "gated": "data-requires-attempt" in d.attrs})
     prereqs = list(article.find_all("li", attr="data-g9-prereq"))
+    metadata = []
+    for node in article.find_all(attr="data-g9-meta-item"):
+        strong = node.first("strong")
+        display_name = strong.content().rstrip(":").strip() if strong is not None else ""
+        text = node.content()
+        prefix = f"{display_name}:" if display_name else ""
+        label = text[len(prefix):].strip() if prefix and text.startswith(prefix) else text
+        metadata.append({
+            "kind": node.attrs.get("data-g9-meta-kind"),
+            "ref": node.attrs.get("data-g9-meta-ref"),
+            "value": node.attrs.get("data-g9-meta-value"),
+            "display_name": display_name,
+            "label": label,
+        })
     return {
         "id": article.attrs["data-g9-unit"], "kind": article.attrs.get("data-g9-kind", "CONCEPT"),
         "concept_ref": article.attrs["data-g9-unit"] if article.attrs.get("data-g9-kind") == "CONCEPT" else None,
@@ -491,6 +505,7 @@ def _render_core_unit(article: Node) -> dict:
         "prerequisites_assumed": [li.attrs["data-g9-prereq"] for li in prereqs],
         "prerequisites_bridged": [li.attrs["data-g9-prereq"] for li in prereqs if li.attrs.get("data-bridged") == "true"],
         "lineage_refs": [a.attrs.get("href") for a in article.find_all("a", attr="data-g9-lineage")],
+        "metadata": metadata,
     }
 
 
