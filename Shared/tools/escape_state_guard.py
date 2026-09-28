@@ -25,8 +25,8 @@ if __package__ in (None, ""):
 from Shared.tools import (compile_execution_packet, plan_request, prompt_composer,  # noqa: E402
                           research_first_policy)
 
-TEXT_SURFACES = ("Shared/roles/*.md", "template/core-prompt-composer/*.json", "docs/library-agents/*.md",
-                 "template/library-agents/*.md")
+TEXT_SURFACES = ("Shared/roles/*.md", "template/core-prompt-composer/*.json",
+                 "docs/method/roles/*.md", "docs/method/prompts/*.md")
 # Schema -> the outcome properties an agent acts on (None = every enum in the schema).
 # Availability dimensions (READY/UNAVAILABLE per resource) describe inputs, not outcomes.
 SCHEMA_SURFACES = {
@@ -117,13 +117,14 @@ def audit(repo: Path = REPO) -> dict:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.parse_args(argv)
+    parser.add_argument("--strict", action="store_true", help="nonzero on findings for tool self-tests")
+    args = parser.parse_args(argv)
     report = audit()
     for row in report["findings"]:
         print(f"{row['surface']}: {row['state']}")
     print(f"escape-state guard: {report['surfaces_checked']} surfaces, "
           f"{len(report['findings'])} findings")
-    return 0 if report["passed"] else 1
+    return 1 if args.strict and not report["passed"] else 0
 
 
 if __name__ == "__main__":

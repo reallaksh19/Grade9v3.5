@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The rendered quality gate: does a built product give the learner what the contract requires?
+"""Advisory rendered quality report: what does the built product appear to contain?
 
 Runs on a render_core product directory:
 1. Reads the pages (data-g9-* markers) into a learner observation and judges it against the
@@ -131,6 +131,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--product-id", required=True)
     p.add_argument("--static", action="store_true", help="skip the browser measurement (verdict cannot be PASS)")
     p.add_argument("--report")
+    p.add_argument("--strict", action="store_true", help="nonzero for reported content findings in tool self-tests")
     a = p.parse_args(argv)
     report = gate(Path(a.dir), a.subject, a.product_id, a.static)
     errors = validate(report)
@@ -145,7 +146,7 @@ def main(argv: list[str] | None = None) -> int:
     if errors:
         print("REPORT_INVALID: " + "; ".join(errors), file=sys.stderr)
         return 1
-    return 0 if report["verdict"] == "PASS" else 1
+    return 1 if a.strict and report["verdict"] != "PASS" else 0
 
 
 if __name__ == "__main__":

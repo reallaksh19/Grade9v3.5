@@ -300,12 +300,13 @@ def next_order(board: dict, role: str, lane: str | None, subject: str) -> str | 
         return None
     r = rows[0]
     duties = "\n".join(f"- {d['duty']}" for d in r["duties"] if d["role"] == role)
-    guide = f"docs/library-agents/{role}.md"
-    return (f"WORK ORDER — {role} — {r['node']} ({r['title']})\n"
-            f"Follow {guide}. Work on this node only.\n\nDuties:\n{duties}\n\n"
-            f"When done run:\n  python3 Shared/tools/evidence_check.py check --subject {subject} --node {r['node']} --fetch\n"
-            f"  python3 Shared/tools/library_board.py --subject {subject} --fetch\n"
-            f"and continue until this node leaves the {role} stage.\n")
+    guide = ("docs/method/roles/SOURCE-READER.md" if role in {"RESEARCHER", "VERIFIER", "SCANNER"}
+             else "docs/method/roles/UNIT-AUTHOR.md")
+    return (f"SOURCE/UNIT OBSERVATION — {role} — {r['node']} ({r['title']})\n"
+            f"Read {guide} and docs/method/PROTOCOL.md. This is an advisory view of existing records.\n\n"
+            f"Earlier board duties (not delivery prerequisites):\n{duties}\n\n"
+            f"For an updated observation run evidence_check.py and library_board.py for {subject}; "
+            "decide what to research or revise from the source and learner task.\n")
 
 
 def main(argv: list[str] | None = None) -> int:

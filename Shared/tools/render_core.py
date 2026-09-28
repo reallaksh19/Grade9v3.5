@@ -315,7 +315,7 @@ def teachers() -> dict:
             mics = {x["primary_capability_ref"]: x["id"] for x in pkg.get("microtopics", [])}
             titles = {x["primary_capability_ref"]: x["title"] for x in pkg.get("microtopics", [])}
             for c in pkg.get("capabilities", []):
-                row = (pkg["subject"], str(path.relative_to(REPO)), mics.get(c["id"]), titles.get(c["id"]) or c.get("action"))
+                row = (pkg["subject"], path.relative_to(REPO).as_posix(), mics.get(c["id"]), titles.get(c["id"]) or c.get("action"))
                 _TEACHERS[c["id"]] = row
                 _TEACHERS[f"{pkg['subject']}:{c['id']}"] = row
     return _TEACHERS
@@ -920,7 +920,7 @@ def main(argv: list[str] | None = None) -> int:
     for name, text in pages.items():
         if gaps:
             text = text.replace("<html ", '<html data-g9-draft="%d" ' % len(gaps), 1)
-        (out / name).write_text(text, encoding="utf-8")
+        (out / name).write_bytes(text.encode("utf-8"))
     manifest_path = Path(args.manifest).resolve()
     try:
         manifest_ref = manifest_path.relative_to(REPO.resolve()).as_posix()

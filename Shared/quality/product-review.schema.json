@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/product-review.schema.json",
+  "title": "Independent coaching review of an exact learner render",
+  "type": "object",
+  "required": ["schema", "product", "reviewer", "reviewer_session", "reviewed_at",
+               "render_digest", "read_first", "strengths", "findings", "previous_findings", "overall"],
+  "properties": {
+    "schema": {"const": "product-review/v2"},
+    "product": {"type": "string", "minLength": 1},
+    "reviewer": {"type": "string", "minLength": 1},
+    "reviewer_session": {"type": "string", "minLength": 1},
+    "reviewed_at": {"type": "string", "format": "date"},
+    "render_digest": {"type": "string", "pattern": "^[0-9a-f]{16}$"},
+    "read_first": {"type": "array", "items": {"type": "string"}},
+    "strengths": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["record", "technique", "note", "golden_candidate"],
+        "properties": {
+          "record": {"type": "string"}, "technique": {"type": "string"},
+          "note": {"type": "string"}, "golden_candidate": {"type": "boolean"}
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "kind", "record", "page",
+                     "learner_impact", "detail", "suggested_fix"],
+        "properties": {
+          "id": {"type": "string"},
+          "severity": {"enum": ["S0", "S1", "S2", "S3"]},
+          "kind": {"enum": ["content", "figure", "renderer", "source"]},
+          "record": {"type": "string"}, "page": {"type": "string"},
+          "learner_impact": {"type": "string"}, "detail": {"type": "string"},
+          "suggested_fix": {"type": "string"},
+          "anti_pattern": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "previous_findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "status"],
+        "properties": {
+          "id": {"type": "string"},
+          "status": {"enum": ["FIXED", "OPEN", "WONT_FIX"]},
+          "note": {"type": "string"}
+        }
+      }
+    },
+    "overall": {
+      "type": "object",
+      "required": ["teaches_at_reference_depth", "recommendation", "summary"],
+      "properties": {
+        "teaches_at_reference_depth": {"enum": ["yes", "partly", "no"]},
+        "recommendation": {"enum": ["accept", "accept_with_notes", "revise"]},
+        "summary": {"type": "string"}
+      }
+    },
+    "anti_pattern_proposal": {"type": ["object", "null"]}
+  }
+}

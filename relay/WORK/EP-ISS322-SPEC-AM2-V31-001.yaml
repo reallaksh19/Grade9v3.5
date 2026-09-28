@@ -1,0 +1,132 @@
+schema_version: relay-v3.1-ep
+id: EP-ISS322-SPEC-AM2-V31-001
+work_package: WP-ISS322-SPEC-AM2
+outcome:
+  statement: Implement SPEC-AM2 r2.1 as one source-to-unit-to-product-to-review-to-Owner-decision model, with the six-Core tablet renderer protecting learner state by construction and method/goldens guiding offloaded content authors.
+basis:
+  predecessor_checkpoint: null
+  material_base: 1d044c183dc71f330fd30332cb74ea0b320c62a9
+  protocol_basis: reallaksh19/Common@049ebc556fb37a641709af9b786cea7cfedc6716:skills/engineering-pr-delivery-v3.1
+  live_protocol_basis:
+    protocol: V3.1
+    common_repository: reallaksh19/Common
+    common_sha: 049ebc556fb37a641709af9b786cea7cfedc6716
+    two_pass_revision: TPG-2P-2026-09-25-R1
+    resolved_at: '2026-09-27T13:27:11Z'
+  semantic_dependencies:
+  - path: docs/plans/AUTHORING-METHOD-V2-SPEC.md@PR-321
+    reason: Owner-approved r2.1 specification basis, subject to fresh head and amendment review.
+  - path: products/verification/*.review.json
+    reason: Exact-render review history for anti-pattern cards and acceptance display.
+  - path: Mathematics/research/packages/MAT-09-LINEAR-EQUATIONS.package.json
+    reason: Verified staging records must retain all IDs and references in the one-package fold.
+  - path: research/physics-library
+    reason: Moving Owner branch, reconciled only in D8-approved classes without rewriting history.
+scope:
+  write:
+  - Shared/tools/**
+  - Shared/library/*.schema.json
+  - Shared/quality/product-review.schema.json
+  - Shared/workflows/research-first.v1.json
+  - tools/print/print-product.mjs
+  - tools/site-audit/core-page-audit.mjs
+  - docs/method/**
+  - docs/library-agents/**
+  - template/library-agents/**
+  - golden/**
+  - Mathematics/units/**
+  - Physics/units/**
+  - Mathematics/library/linear-equations.v1.json
+  - Physics/library/*.v1.json
+  - Mathematics/library/*.v1.json
+  - Chemistry/library/*.v1.json
+  - products/acceptance/**
+  - products/STATUS.md
+  - products/status.v1.json
+  - docs/architecture-manifest.json
+  - docs/plans/phase0/renderer-inventory.v1.json
+  - tests/**
+  - .github/workflows/learner-quality.yml
+  - relay/WORK/EP-ISS322-SPEC-AM2-V31-001.yaml
+  read:
+  - Physics/library/**
+  - Mathematics/research/**
+  - Physics/research/**
+  - products/verification/**
+  - research/physics-library
+  protect:
+  - Physics/library/*.v1.json
+  - Mathematics/research/evidence/**
+  - Mathematics/research/acquisitions/**
+  - research/physics-library
+  - relay/**
+  prohibit:
+  - Never introduce a content gate, ratchet or second learner renderer or package authority.
+  - Never discard an Owner-authored file or rewrite Owner branch history without approval of its D8 class.
+  - Never merge a pull request without Owner authorization.
+acceptance:
+  - id: AC-322-PUBLICATION
+    statement: Only Owner acceptance of the exact current render digest publishes; build never mutates public.
+    evidence_requirements:
+    - test: tests/test_publication.py
+  - id: AC-322-WITHHOLDING
+    statement: Protected bytes are inert until typed commitment and absent from learner PDF, with all six Cores using one renderer.
+    evidence_requirements:
+    - test: tests/test_render_core.py R-1..R-8, raw HTML, browser and PDF text
+  - id: AC-322-SOURCE
+    statement: Inventory, readback and package provenance derive honest unit status; M3 preserves all record IDs.
+    evidence_requirements:
+    - oracle: WP4 ID ledger, staleness fixture and folded package render
+  - id: AC-322-METHOD
+    statement: Protocol, roles, prompts, design note, anti-pattern cards and two goldens guide authors without refusing delivery.
+    evidence_requirements:
+    - oracle: Owner reading of HOUSE-RULES and PROTOCOL; golden renders
+  - id: AC-322-TRIAL
+    statement: A ready-to-run WP7 packet is handed to the offloaded library team without authoring content here.
+    evidence_requirements:
+    - oracle: WP7 packet on issue 322 and TASK_RESULT
+quality_policy:
+  level: STANDARD
+  independent_review: REQUIRED
+parent_issue:
+  provider: GITHUB
+  repository: reallaksh19/Grade9V3
+  number: 322
+  title: "[Implementation] SPEC-AM2 — one model for authoring learner products (guide the work, don't gate it)"
+  url: https://github.com/reallaksh19/Grade9V3/issues/322
+  baseline:
+    observed_at: '2026-09-27T13:06:12Z'
+    body_digest: sha256:b1560026ae209e530542db9f4b54cc28161cab722ce228fbcafb34661aa781db
+    acceptance_items:
+    - id: WP1
+      statement: Owner-only exact-digest publication.
+    - id: WP2
+      statement: Method and archived templates.
+    - id: WP3
+      statement: Learner-state protection and typed attempts.
+    - id: WP4
+      statement: Source/unit model and migrations.
+    - id: WP5
+      statement: Tablet shell and approved research reconciliation.
+    - id: WP6
+      statement: Goldens and advisory tools.
+    - id: WP7
+      statement: Trial packet handoff.
+implementation_plan_basis:
+  provider_ref: https://github.com/reallaksh19/Grade9V3/issues/322#issuecomment-5856270495
+  revision: 1
+  digest: sha256:ff54364fc85797597fb70126b57f66ebdc9c112139388b816f2547a548f04ef0
+  observed_at: '2026-09-27T13:27:11Z'
+  responsibility_basis_ref: https://github.com/reallaksh19/Grade9V3/issues/322
+  responsibility_basis_digest: sha256:b1560026ae209e530542db9f4b54cc28161cab722ce228fbcafb34661aa781db
+expected_next_observable:
+  statement: Draft PR-A with WP1/WP2, no renderer change, exact head, local suite classification and nine-line step-back check.
+  evidence:
+  - tests/test_publication.py result
+  - full local suite PASS/FAIL/NOT_RUN breakdown
+  - PR-A exact head and TASK_EVIDENCE on issue 322
+next:
+  first_action: Finish and push PR-A, inspect its exact rendered publication behavior and record test limitations honestly.
+  stop_conditions:
+  - Stop before a material change to an Owner-only spec assumption without a PLAN_UPDATE and Owner decision.
+  - Stop before discarding unapproved Owner work or merging without Owner authorization.
