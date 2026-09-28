@@ -337,7 +337,8 @@ def audit_manifest(manifest_path: Path) -> dict:
         "core2b": len(selection.get("core2b") or []),
     }
     assessment_total = selected_counts["core2"] + selected_counts["core2a"] + selected_counts["core2b"]
-    unit_total = selected_counts["microtopics"] + assessment_total
+    concept_role_total = 3 * selected_counts["microtopics"]
+    unit_total = concept_role_total + assessment_total
     denominators = {
         "concept": unit_total,
         "concept-difficulty": unit_total,
@@ -367,6 +368,8 @@ def audit_manifest(manifest_path: Path) -> dict:
 
     tasks = [
         *[("CORE1", row) for row in resolved["microtopics"]],
+        *[("CORE1A", row) for row in resolved["microtopics"]],
+        *[("CORE1B", row) for row in resolved["microtopics"]],
         *[("CORE2", row) for row in resolved["core2"]],
         *[("CORE2A", row) for row in resolved["core2a"]],
         *[("CORE2B", row) for row in resolved["core2b"]],
