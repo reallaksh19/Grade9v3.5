@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../public/vendor/katex/0.16.8/katex.min.css">
+  <script src="../public/vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../public/vendor/katex/0.16.8/contrib/auto-render.min.js" onload="window.__katexLoaded=true; if(window.renderAllMath) window.renderAllMath();"></script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Redox Adaptive Visual Proof · 50% Entry</title>
@@ -14,13 +19,21 @@
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{border:1px solid var(--line);background:rgba(15,23,42,.94);border-radius:18px;padding:18px;box-shadow:0 16px 50px #0005}.kicker{font:800 11px ui-monospace,monospace;color:#fbbf24;text-transform:uppercase;letter-spacing:.08em}h2{font-size:20px;margin:5px 0 8px}.why{color:var(--muted);margin:0 0 16px}
 .challenge{padding:15px;border-radius:14px;margin-top:14px}.challenge.concept{border:1px solid #513c7d;background:#1b1530}.challenge.impl{border:1px solid #164e63;background:#082530}.challenge-label{font:800 11px ui-monospace,monospace;text-transform:uppercase}.concept .challenge-label{color:#c4b5fd}.impl .challenge-label{color:#7dd3fc}.prompt{font-size:15px;color:#f8fafc;margin:8px 0 12px}
 .options{display:grid;gap:8px}.option{width:100%;text-align:left;padding:10px 12px;border-radius:10px;border:1px solid #334155;background:#080d18;color:#dbeafe}.option:hover{border-color:#8b5cf6}.option.good{border-color:#10b981;background:#06281f}.option.bad{border-color:#e11d48;background:#330a16}
-.feedback{min-height:38px;margin-top:10px;color:var(--muted);font-size:12px}.feedback.good{color:#6ee7b7}.feedback.bad{color:#fda4af}.answer-row{display:flex;gap:8px}.answer-row input{flex:1;padding:10px;border-radius:10px;border:1px solid #334155;background:#050811;color:white}.answer-row button,.toolbar button,.actions button{padding:10px 12px;border-radius:10px;border:1px solid #475569;background:#111827;color:#e2e8f0;font-weight:700}.answer-row button{border-color:#0e7490;color:#bae6fd;background:#082f49}
+.feedback{min-height:38px;margin-top:10px;color:var(--muted);font-size: 14px}.feedback.good{color:#6ee7b7}.feedback.bad{color:#fda4af}.answer-row{display:flex;gap:8px}.answer-row input{flex:1;padding:10px;border-radius:10px;border:1px solid #334155;background:#050811;color:white}.answer-row button,.toolbar button,.actions button{padding:10px 12px;border-radius:10px;border:1px solid #475569;background:#111827;color:#e2e8f0;font-weight:700}.answer-row button{border-color:#0e7490;color:#bae6fd;background:#082f49}
 .toolbar{display:flex;gap:8px;justify-content:space-between;align-items:center}.toolbar .hint{border-color:#047857;color:#a7f3d0;background:#052e24}.toolbar .hint:disabled{opacity:.45;cursor:default}.visual{margin-top:14px;border:1px solid #1e293b;border-radius:14px;background:#040711;padding:10px;min-height:380px}
 svg{width:100%;height:350px;display:block}.svg-title{fill:#94a3b8;font:700 12px ui-monospace,monospace}.svg-main{fill:#f8fafc;font:800 16px ui-monospace,monospace}.svg-note{fill:#94a3b8;font:12px ui-sans-serif,system-ui}.svg-eq{fill:#6ee7b7;font:800 14px ui-monospace,monospace}
 .hintbox{margin-top:12px;padding:12px;border:1px solid #14532d;border-radius:12px;background:#052e1f66;color:#cbd5e1}.route{margin-top:12px;padding:14px;border:1px solid #334155;border-radius:12px;background:#080d18}.route strong{font:800 12px ui-monospace,monospace}.route.ready{border-color:#047857;background:#052e2466}.route.reinforce{border-color:#a16207;background:#2a1a0666}.route.rebuild{border-color:#be123c;background:#33081466}
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.actions button[hidden]{display:none}.actions .repair{border-color:#a16207;color:#fde68a}.actions .transfer{border-color:#6d28d9;color:#ddd6fe}
-.summary{margin-top:18px;padding:15px;border:1px solid var(--line);background:#090f1b;border-radius:14px}.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.summary-cell{padding:10px;border-radius:10px;background:#0f172a;border:1px solid #263244}.summary-cell b{display:block;margin-bottom:2px}.summary-cell span{color:var(--muted);font-size:12px}.note{color:var(--muted);font-size:12px;margin-top:10px}
+.summary{margin-top:18px;padding:15px;border:1px solid var(--line);background:#090f1b;border-radius:14px}.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.summary-cell{padding:10px;border-radius:10px;background:#0f172a;border:1px solid #263244}.summary-cell b{display:block;margin-bottom:2px}.summary-cell span{color:var(--muted);font-size: 14px}.note{color:var(--muted);font-size: 14px;margin-top:10px}
 @media(max-width:860px){.grid,.blocks,.summary-grid{grid-template-columns:1fr}.top{flex-direction:column}.rule{min-width:0;width:100%}.shell{padding:14px}.actions{grid-template-columns:1fr}}
+
+  /* 12.7" Tablet Touch & Ergonomics Rules */
+  button, .btn, .g9-btn, .tab-btn { min-height: 48px !important; min-width: 48px !important; font-size: 15px; }
+  input[type="range"] { height: 48px !important; }
+  input[type="range"]::-webkit-slider-thumb { width: 30px !important; height: 30px !important; border-radius: 50% !important; }
+  input[type="range"]::-moz-range-thumb { width: 30px !important; height: 30px !important; border-radius: 50% !important; }
+  details summary { min-height: 52px !important; font-size: 15px !important; }
+
 </style>
 </head>
 <body>

@@ -1,0 +1,121 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Physics",
+  "node_ref": "PHY-11-MOTION-IN-A-PLANE-02",
+  "verified_by": "agent-verifier-1",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:3435a14c2d33c6f53b11f3d39626056877a907562920c03debddb03bd3d8a2f0",
+  "questions": [
+    {
+      "card_ref": "EV-PHY-11-MIP-02-007",
+      "independent_solution": [
+        "Addition needs like quantities: two scalars add only with equal dimensions (mass + time is undefined), so (a) 'any two scalars' fails; likewise (e) 'any two vectors' fails (velocity + force is undefined).",
+        "(b) A scalar has no direction, so scalar + vector is undefined even with equal dimensions; (f) a component A_x is a number, not a vector, so A + A_x mixes a scalar with a vector and fails.",
+        "(c) Any vector times any scalar is a vector with the product dimension (velocity x time = displacement); (d) any two scalars multiply to a scalar with the product dimension. Both are always meaningful."
+      ],
+      "independent_answer": "Only (c) and (d) are meaningful.",
+      "official_answer": "Only (c) and (d) are permissible",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-02-009",
+      "independent_solution": [
+        "Temperature, pressure, time, power, total path length, energy, gravitational potential, coefficient of friction and charge are each fully fixed by a magnitude (with sign) and unit: no direction.",
+        "Impulse = F * dt (a vector times a duration) = change in momentum, so it carries the direction of the force: it is the only vector."
+      ],
+      "independent_answer": "Impulse",
+      "official_answer": "Impulse",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-02-011",
+      "independent_solution": [
+        "(a) False: kinetic energy (scalar) is not conserved in an inelastic collision. (b) False: temperature in deg C or negative work are negative scalars. (c) False: mass is a scalar with dimension [M].",
+        "(d) False: temperature varies from point to point in a room. (e) True: a scalar has no direction, so rotating the axes cannot change its value."
+      ],
+      "independent_answer": "Only (e) is true.",
+      "official_answer": "Only (e) is true",
+      "agrees": true
+    }
+  ],
+  "records": [
+    {
+      "record_ref": "MIC-PHY-MIP-02",
+      "checked_fields": [
+        "title",
+        "entry_assumptions",
+        "inferential_jump",
+        "teaching_path",
+        "misconceptions",
+        "exit_task"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "CAP-PHY-MIP-02",
+      "checked_fields": [
+        "action",
+        "success_criterion",
+        "curriculum_mappings"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-02-SCALAR-MULTIPLE",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "symbols",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REP-PHY-MIP-02-SCALED-ARROWS",
+      "checked_fields": [
+        "purpose",
+        "required_elements",
+        "instance_constraints",
+        "misleading_alternatives"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-02-NCERT-3-4",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-02-NCERT-3-3",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-02-NCERT-3-21",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    }
+  ],
+  "findings": []
+}

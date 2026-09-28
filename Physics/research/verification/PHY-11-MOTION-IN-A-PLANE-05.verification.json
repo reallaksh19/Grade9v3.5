@@ -1,0 +1,137 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Physics",
+  "node_ref": "PHY-11-MOTION-IN-A-PLANE-05",
+  "verified_by": "agent-verifier-1",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:62603d7a4e41dc2e2f66cdc4353a260bed98c543b7c8a15fa29aca78fa8972c7",
+  "questions": [
+    {
+      "card_ref": "EV-PHY-11-MIP-05-010",
+      "independent_solution": [
+        "Leg k (500 m) points at 60(k-1) deg. After 3 legs: x = 500(cos0 + cos60 + cos120) = 500 m, y = 500(sin0 + sin60 + sin120) = 866 m, so |d| = 1000 m at atan(866/500) = 60 deg to the start direction; path 1.5 km.",
+        "After 6 legs the headings 0..300 deg close a regular hexagon: displacement is the null vector; path 3 km.",
+        "After 8 legs = hexagon + 2 legs: x = 500(1 + 0.5) = 750 m, y = 433 m, so |d| = 866 m at 30 deg; path 4 km. Path length exceeds |displacement| in every case."
+      ],
+      "independent_answer": "1 km at 60 deg (path 1.5 km); null vector (path 3 km); 866 m at 30 deg (path 4 km)",
+      "official_answer": "Displacement of magnitude 1 km and direction 60 deg with the initial direction; path 1.5 km (third turn); null displacement, path 3 km (sixth turn); 866 m, 30 deg, 4 km (eighth turn)",
+      "agrees": true,
+      "numeric_check": "sqrt((500*(1+cos(radians(60))+cos(radians(120))))**2 + (500*(sin(radians(60))+sin(radians(120))))**2)/1000"
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-05-012",
+      "independent_solution": [
+        "A.B = (1)(1) + (1)(-1) = 0 while |A| = |B| = sqrt2.",
+        "cos(theta) = 0/(sqrt2 sqrt2) = 0, so theta = 90 deg: option (b)."
+      ],
+      "independent_answer": "(b) 90 deg",
+      "official_answer": "(b), 90 deg",
+      "agrees": true,
+      "numeric_check": "degrees(acos(0/(sqrt(2)*sqrt(2))))"
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-05-014",
+      "independent_solution": [
+        "|A+B|^2 = A^2 + B^2 + 2AB cos(theta) and |A-B|^2 = A^2 + B^2 - 2AB cos(theta); they are equal iff 4AB cos(theta) = 0.",
+        "That holds when theta = 90 deg (A perpendicular to B) or when A or B is zero; equal non-zero magnitudes alone (a), or equal parallel/antiparallel vectors (c), give |A+B| != |A-B|. So (b) and (d)."
+      ],
+      "independent_answer": "(b) and (d)",
+      "official_answer": "(b), (d)",
+      "agrees": true
+    }
+  ],
+  "records": [
+    {
+      "record_ref": "MIC-PHY-MIP-05",
+      "checked_fields": [
+        "title",
+        "entry_assumptions",
+        "inferential_jump",
+        "teaching_path",
+        "misconceptions",
+        "exit_task"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "CAP-PHY-MIP-05",
+      "checked_fields": [
+        "action",
+        "success_criterion"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-05-COMPONENT-SUM",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "symbols",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-05-LAW-OF-COSINES",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "symbols",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REP-PHY-MIP-05-COMPONENT-TABLE",
+      "checked_fields": [
+        "purpose",
+        "required_elements",
+        "instance_constraints",
+        "misleading_alternatives"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-05-NCERT-3-10",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "hints",
+        "scaffolds"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-05-EXEMPLAR-4-1",
+      "checked_fields": [
+        "stem",
+        "options",
+        "conditions",
+        "answer",
+        "hints",
+        "scaffolds"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-05-EXEMPLAR-4-15",
+      "checked_fields": [
+        "stem",
+        "options",
+        "conditions",
+        "answer",
+        "hints",
+        "scaffolds"
+      ],
+      "agrees": true
+    }
+  ],
+  "findings": []
+}

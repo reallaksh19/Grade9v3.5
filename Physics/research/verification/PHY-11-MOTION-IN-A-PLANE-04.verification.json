@@ -1,0 +1,156 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Physics",
+  "node_ref": "PHY-11-MOTION-IN-A-PLANE-04",
+  "verified_by": "agent-verifier-1",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:768899f00f04c1488e4b314b346d5505698f4f0f92cb821dd828215c23520f31",
+  "questions": [
+    {
+      "card_ref": "EV-PHY-11-MIP-04-009",
+      "independent_solution": [
+        "i + j has components (1, 1): magnitude sqrt(1+1) = sqrt2, direction atan(1/1) = 45 deg above +x. i - j has components (1, -1): magnitude sqrt2, direction -45 deg (below +x).",
+        "Unit vectors along them: n1 = (i + j)/sqrt2, n2 = (i - j)/sqrt2. Component of A = 2i + 3j along n1 = A.n1 = (2 + 3)/sqrt2 = 5/sqrt2; along n2 = (2 - 3)/sqrt2 = -1/sqrt2.",
+        "Check: n1 and n2 are perpendicular, so (5/sqrt2)^2 + (1/sqrt2)^2 = 13 = |A|^2."
+      ],
+      "independent_answer": "45 deg with the x-axis, magnitude sqrt2 (i + j); -45 deg, magnitude sqrt2 (i - j); components 5/sqrt2 and -1/sqrt2",
+      "official_answer": "45 deg with the x-axis for i+j (magnitude sqrt2); -45 deg with the x-axis for i-j (magnitude sqrt2); components (5/sqrt2, -1/sqrt2)",
+      "agrees": true,
+      "numeric_check": "degrees(atan2(1, 1))"
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-04-011",
+      "independent_solution": [
+        "From Fig. 4.1 (pinned page 1): u starts at O and points up and to the right, so a = u_x > 0 and b = u_y > 0.",
+        "v starts at the head of u and points down and slightly to the right, so p = v_x > 0 and q = v_y < 0. Only option (b) states a, p, b > 0 and q < 0."
+      ],
+      "independent_answer": "(b)",
+      "official_answer": "(b)",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-04-015",
+      "independent_solution": [
+        "Continuation of Exemplar 4.3 (options). With u up-right (a, b > 0) and v down-right (p > 0, q < 0) read from Fig. 4.1,",
+        "option (a) fails (b > 0), (c) fails (p > 0, q < 0), (d) fails (q < 0); (b) is correct."
+      ],
+      "independent_answer": "(b)",
+      "official_answer": "(b)",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-04-013",
+      "independent_solution": [
+        "r_x = r cos(theta) with theta measured from the +X axis and |r| fixed.",
+        "cos(theta) is maximal (= 1) at theta = 0: along +Y or -Y r_x = 0, at 45 deg r_x = r/sqrt2 < r. So r along +X gives the maximum."
+      ],
+      "independent_answer": "(b)",
+      "official_answer": "(b)",
+      "agrees": true
+    }
+  ],
+  "records": [
+    {
+      "record_ref": "MIC-PHY-MIP-04",
+      "checked_fields": [
+        "title",
+        "entry_assumptions",
+        "inferential_jump",
+        "teaching_path",
+        "misconceptions",
+        "exit_task"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "CAP-PHY-MIP-04",
+      "checked_fields": [
+        "action",
+        "success_criterion"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-04-TWO-DIRECTION-RESOLUTION",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-04-RECT-COMPONENTS",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-04-MAGNITUDE-ANGLE",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REP-PHY-MIP-04-COMPONENT-RECTANGLE",
+      "checked_fields": [
+        "purpose",
+        "required_elements",
+        "instance_constraints",
+        "misleading_alternatives"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-04-NCERT-3-19",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "hints",
+        "scaffolds"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-04-EXEMPLAR-4-3",
+      "checked_fields": [
+        "stem",
+        "options",
+        "conditions",
+        "answer",
+        "hints",
+        "scaffolds"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-04-EXEMPLAR-4-4",
+      "checked_fields": [
+        "stem",
+        "options",
+        "conditions",
+        "answer",
+        "hints",
+        "scaffolds"
+      ],
+      "agrees": true
+    }
+  ],
+  "findings": []
+}

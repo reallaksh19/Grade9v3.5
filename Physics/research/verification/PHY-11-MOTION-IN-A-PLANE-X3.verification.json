@@ -1,0 +1,136 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Physics",
+  "node_ref": "PHY-11-MOTION-IN-A-PLANE-X3",
+  "verified_by": "agent-verifier-1",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:65d23168e0931a3664ffd11236c202420cfb76dc8327b8a83181b421acbcd1d7",
+  "questions": [
+    {
+      "card_ref": "EV-PHY-11-MIP-X3-008",
+      "independent_solution": [
+        "Fall: v = gt, so K = (1/2) m g^2 t^2 rises as a concave-up parabola. Contact: the restoring force ~ compression (spring-like), so the ball decelerates smoothly to rest at maximum compression (K = 0) and re-accelerates.",
+        "It returns to its original height, so K just after contact equals K just before; rising, K = (1/2) m (v0 - g t')^2 falls as a concave-up curve to 0.",
+        "In the sketches (pinned page 1): (A) is concave-down, (C) has no dip to zero, (D) is linear in t; only (B) shows concave-up rise, a dip to zero, and concave-up fall."
+      ],
+      "independent_answer": "(B)",
+      "official_answer": "(B)",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-X3-012",
+      "independent_solution": [
+        "The wall exerts an impulse on the molecule (its normal component 200 cos30 reverses), so the molecule's own momentum changes; the wall gets the opposite change, so the momentum of molecule + wall is conserved.",
+        "Rebound at the same speed: the molecule's kinetic energy is unchanged (the massive wall takes none), so the collision is elastic."
+      ],
+      "independent_answer": "Yes, momentum of molecule + wall is conserved; elastic",
+      "official_answer": "Yes, momentum of the molecule + wall system is conserved. Since kinetic energy is also conserved, the collision is elastic.",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-X3-015",
+      "independent_solution": [
+        "(a) Impulse = change of momentum from rest: 0.5 kg x 25 m/s = 12.5 N s.",
+        "(b) Toward the wall positive: p_before = +0.5 x 25 = +12.5 kg m/s; p_after = -0.5 x 12.5 = -6.25 kg m/s; change = -18.75 kg m/s, i.e. 18.75 kg m/s away from the wall."
+      ],
+      "independent_answer": "(a) 12.5 N s; (b) 18.75 kg m/s",
+      "official_answer": "(a) 12.5 N s (b) 18.75 kg m/s",
+      "agrees": true,
+      "numeric_check": "0.5*25"
+    }
+  ],
+  "records": [
+    {
+      "record_ref": "MIC-PHY-MIP-X3",
+      "checked_fields": [
+        "title",
+        "entry_assumptions",
+        "inferential_jump",
+        "teaching_path",
+        "misconceptions",
+        "exit_task",
+        "interactive_idea"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "CAP-PHY-MIP-X3",
+      "checked_fields": [
+        "action",
+        "success_criterion"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-X3-ELASTIC-REBOUND",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "symbols",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-X3-INELASTIC-REBOUND",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "symbols",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REP-PHY-MIP-X3-TWO-FLIGHTS",
+      "checked_fields": [
+        "purpose",
+        "required_elements",
+        "instance_constraints",
+        "misleading_alternatives"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-X3-JEEADV-2014-P2-Q1",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "hints",
+        "scaffolds"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-X3-EXEMPLAR-5-24",
+      "checked_fields": [
+        "stem",
+        "subparts",
+        "conditions",
+        "answer",
+        "hints",
+        "scaffolds"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-X3-NCERT-5-14",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "hints",
+        "scaffolds"
+      ],
+      "agrees": true
+    }
+  ],
+  "findings": []
+}

@@ -1,0 +1,1843 @@
+<!doctype html>
+<html lang="en" data-web-blueprint="BP-CORE2A-SUPPORTED-APPLICATION@1.0.0" data-shell-ref="G9-TABLET-SHELL-V1" data-layout-family="QUESTION_STUDY">
+<head>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../public/vendor/katex/0.16.8/katex.min.css">
+  <script src="../public/vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../public/vendor/katex/0.16.8/contrib/auto-render.min.js" onload="window.__katexLoaded=true; if(window.renderAllMath) window.renderAllMath();"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="grade9v3-packaging-mode" content="SINGLE_FILE">
+  <title>Projectile Motion · Core2A Standalone · Grade9V3</title>
+  <style>
+/* Grade9V3 Unified Design System (Accessibility & Typography Upgraded) */
+:root {
+  /* ==========================================================================
+     1. COLOR CONTRAST RE-CALIBRATION (WCAG 2.1 AA / AAA Compliant)
+     ========================================================================== */
+  --bg: #0d1117;
+  --bg-panel: #161b22;
+  --bg-card: #21262d;
+  --bg-card-hover: #292f38;
+  
+  /* UI Component Boundaries (SC 1.4.11 Compliance: >= 3.0:1) */
+  --border: #444c56;
+  --border-muted: #30363d;
+  --border-hover: #58a6ff;
+  --border-accent: #58a6ff;
+
+  /* Upgraded High-Contrast Text Tokens */
+  --text: #f0f6fc;            /* 17.5:1 on bg - Pure clarity */
+  --text-secondary: #c9d1d9;  /* 11.2:1 on bg, 9.0:1 on card - High readability */
+  --text-muted: #919bb0;      /* 6.3:1 on bg, 5.1:1 on card - Full AA Pass */
+  --text-dim: #9aa4b2;        /* Fixed: 7.2:1 on bg, 5.8:1 on card (Replaces #6e7681) */
+  --accent: #79c0ff;          /* Boosted brightness: 8.8:1 on bg, 7.1:1 on card */
+  --accent-glow: rgba(56, 139, 253, 0.20);
+
+  /* Alert Chips (Calibrated for chromatic separation & contrast >= 5.5:1) */
+  --chip-ok-bg: #132b1e;
+  --chip-ok-border: #3fb950;
+  --chip-ok-text: #56d364;      /* 7.1:1 on chip-ok-bg */
+
+  --chip-warn-bg: #2e1f08;
+  --chip-warn-border: #d29922;
+  --chip-warn-text: #f0b72f;    /* 7.8:1 on chip-warn-bg */
+
+  --chip-hold-bg: #2c1519;
+  --chip-hold-border: #da3633;
+  --chip-hold-text: #ff7b72;    /* 6.8:1 on chip-hold-bg */
+
+  --chip-purple-bg: #24183a;
+  --chip-purple-border: #a371f7;
+  --chip-purple-text: #d2a8ff;  /* 8.5:1 on chip-purple-bg */
+
+  /* Subject Brand Accents */
+  --phy-accent: #38bdf8;
+  --phy-glow: rgba(56, 189, 248, 0.2);
+  --phy-bg: rgba(56, 189, 248, 0.08);
+
+  --chem-accent: #34d399;
+  --chem-glow: rgba(52, 211, 153, 0.2);
+  --chem-bg: rgba(52, 211, 153, 0.08);
+
+  --math-accent: #c084fc;
+  --math-glow: rgba(192, 132, 252, 0.2);
+  --math-bg: rgba(192, 132, 252, 0.08);
+
+  /* ==========================================================================
+     2. MODERN SYSTEM TYPOGRAPHY STACK
+     ========================================================================== */
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, "Helvetica Neue", Arial, sans-serif,
+               "Apple Color Emoji", "Segoe UI Emoji";
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono",
+               Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* ==========================================================================
+     3. HARMONIZED MODULAR TYPE SCALE (Base: 14px, Ratio: 1.125 Major Second)
+     ========================================================================== */
+  --text-xs: 0.75rem;    /* 12px - Absolute minimum accessible floor (Badges, Micro-tags) */
+  --text-sm: 0.8125rem;  /* 13px - Secondary details, meta labels */
+  --text-base: 0.875rem; /* 14px - Default body, answers, table content */
+  --text-md: 0.9375rem;  /* 15px - Primary reading stems, card summaries */
+  --text-lg: 1.0625rem;  /* 17px - Section headers, stat values */
+  --text-xl: 1.25rem;    /* 20px - Page Title / Focus anchors */
+}
+
+/* ==========================================================================
+   GLOBAL RENDERING & TYPOGRAPHIC SMOOTHING
+   ========================================================================== */
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.62;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tabular numbers for numerical precision across badges and ladders */
+.stat-value,
+.rung-num-pill,
+.node-id,
+.q-id,
+.badge,
+code {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Monospace equation safety: disable ligatures that confound math notation */
+code, pre, .font-mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
+/* Navigation Bar */
+header.site-nav {
+  background: rgba(22, 27, 34, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -0.3px;
+}
+.brand-link span.logo-icon { font-size: 20px; }
+.brand-badge {
+  font-size: var(--text-xs);
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+nav.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+nav.nav-links a {
+  text-decoration: none;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  padding: 7px 12px;
+  border-radius: 6px;
+  color: var(--text-muted);
+  transition: all 0.15s ease;
+}
+nav.nav-links a:hover {
+  color: var(--text);
+  background: var(--bg-card);
+}
+nav.nav-links a.active {
+  color: #fff;
+  background: var(--bg-card-hover);
+  border: 1px solid var(--border);
+}
+nav.nav-links a.phy-link.active { color: var(--phy-accent); border-color: var(--phy-accent); background: var(--phy-bg); }
+nav.nav-links a.chem-link.active { color: var(--chem-accent); border-color: var(--chem-accent); background: var(--chem-bg); }
+nav.nav-links a.math-link.active { color: var(--math-accent); border-color: var(--math-accent); background: var(--math-bg); }
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+.breadcrumb a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.breadcrumb a:hover { color: var(--text); }
+.breadcrumb span.sep { color: var(--border); }
+.breadcrumb span.current { color: var(--text); font-weight: 600; }
+
+/* Main Container */
+.container {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 28px 24px 60px 24px;
+  flex: 1;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 40px 20px 36px 20px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+.hero p.lead {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* 3 Main Subject Cards Grid */
+.subject-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 28px;
+}
+
+.subject-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+.subject-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 4px;
+  background: var(--border);
+  transition: background 0.25s;
+}
+
+.subject-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+.subject-card.physics::before { background: var(--phy-accent); }
+.subject-card.physics:hover {
+  border-color: var(--phy-accent);
+  box-shadow: 0 12px 32px var(--phy-glow);
+}
+
+.subject-card.chemistry::before { background: var(--chem-accent); }
+.subject-card.chemistry:hover {
+  border-color: var(--chem-accent);
+  box-shadow: 0 12px 32px var(--chem-glow);
+}
+
+.subject-card.mathematics::before { background: var(--math-accent); }
+.subject-card.mathematics:hover {
+  border-color: var(--math-accent);
+  box-shadow: 0 12px 32px var(--math-glow);
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.subject-icon {
+  font-size: 32px;
+  line-height: 1;
+}
+.subject-name {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.subject-desc {
+  font-size: var(--text-base);
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  line-height: 1.62;
+  flex-grow: 1;
+}
+
+.subject-stats-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.card-action {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.subject-card.physics .card-action { color: var(--phy-accent); }
+.subject-card.chemistry .card-action { color: var(--chem-accent); }
+.subject-card.mathematics .card-action { color: var(--math-accent); }
+
+/* Badges & Chips */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.badge.ok { background: var(--chip-ok-bg); border: 1px solid var(--chip-ok-border); color: var(--chip-ok-text); }
+.badge.warn { background: var(--chip-warn-bg); border: 1px solid var(--chip-warn-border); color: var(--chip-warn-text); }
+.badge.hold { background: var(--chip-hold-bg); border: 1px solid var(--chip-hold-border); color: var(--chip-hold-text); }
+.badge.purple { background: var(--chip-purple-bg); border: 1px solid var(--chip-purple-border); color: var(--chip-purple-text); }
+.badge.phy { background: var(--phy-bg); border: 1px solid var(--phy-accent); color: var(--phy-accent); }
+.badge.chem { background: var(--chem-bg); border: 1px solid var(--chem-accent); color: var(--chem-accent); }
+.badge.math { background: var(--math-bg); border: 1px solid var(--math-accent); color: var(--math-accent); }
+.badge.neutral { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-muted); }
+
+/* Sections */
+.section-header {
+  margin: 40px 0 18px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+}
+.section-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Chapter & Subtopic Cards List */
+.chapter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.chapter-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.chapter-card:hover {
+  border-color: var(--border-hover);
+}
+.chapter-header {
+  padding: 16px 22px;
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title {
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.subtopics-grid {
+  padding: 20px 22px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+.subtopic-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.15s ease;
+}
+.subtopic-card:hover {
+  border-color: var(--border-hover);
+  background: rgba(255, 255, 255, 0.02);
+}
+.subtopic-title {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.subtopic-desc {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 14px;
+  flex-grow: 1;
+}
+.subtopic-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  padding: 7px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.btn.primary-phy {
+  background: var(--phy-accent);
+  color: #000;
+  border: 1px solid var(--phy-accent);
+}
+.btn.primary-phy:hover { opacity: 0.9; }
+
+.btn.outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn.outline:hover {
+  background: var(--bg-card);
+  border-color: var(--border-hover);
+}
+
+/* Footer */
+footer.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 24px 20px;
+  background: var(--bg-panel);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+}
+
+/* Core Prompt Composer entry point */
+.question-set-cta{display:flex;justify-content:space-between;align-items:center;gap:24px;margin:0 0 30px;padding:22px;border:1px solid var(--border);border-radius:14px;background:var(--bg-panel)}
+.question-set-cta h2{margin:2px 0 8px}.question-set-cta p{margin:0;max-width:820px;color:var(--text-muted);line-height:1.55}.question-set-cta-kicker{text-transform:uppercase;letter-spacing:.08em;font-size: 13.5px!important;font-weight:800;color:var(--accent)!important}.question-set-cta-action{white-space:nowrap}@media(max-width:720px){.question-set-cta{align-items:flex-start;flex-direction:column}.question-set-cta-action{width:100%;text-align:center}}
+
+/* Fixed, reusable Grade9V3 site shell */
+body.g9-fixed-header{padding-top:var(--site-nav-height,70px)}
+html{scroll-padding-top:calc(var(--site-nav-height,70px) + 14px)}
+.site-nav-enhanced{position:fixed!important;inset:0 0 auto 0;display:grid!important;grid-template-columns:auto minmax(0,1fr) auto;gap:18px!important;padding:10px 20px!important;align-items:center!important;z-index:1000!important}
+.site-leading{display:flex;align-items:center;gap:10px;min-width:max-content}
+.site-nav-enhanced nav.nav-links{justify-self:center;min-width:0}
+.site-actions{display:flex;align-items:center;gap:7px;justify-self:end}
+.site-icon-btn{width:40px;height:40px;display:inline-grid;place-items:center;border:1px solid var(--border);border-radius:9px;background:var(--bg-card);color:var(--text);font-size:19px;line-height:1;cursor:pointer}
+.site-icon-btn:hover,.site-icon-btn:focus-visible{border-color:var(--phy-accent);background:var(--bg-card-hover);outline:none}
+.site-more-btn{display:none}
+.site-nav-enhanced .g9-display-trigger-btn{min-height:40px!important;padding:7px 10px!important}
+.g9-search-dialog{width:min(760px,calc(100vw - 28px));max-height:min(78vh,760px);border:1px solid var(--border);border-radius:16px;background:var(--bg-panel);color:var(--text);padding:0;box-shadow:0 28px 80px rgba(0,0,0,.55)}
+.g9-search-dialog::backdrop{background:rgba(3,7,18,.68);backdrop-filter:blur(3px)}
+.g9-search-wrap{padding:16px}.g9-search-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.g9-search-top strong{font-size:18px}
+.g9-search-dialog input{width:100%;min-height:46px;border:1px solid var(--border);border-radius:10px;padding:10px 12px;background:var(--bg-card);color:var(--text);font-size:15px}
+.g9-search-hint{font-size: 13.5px;color:var(--text-dim);margin:7px 2px 10px}.g9-search-results{display:grid;gap:7px;overflow:auto;max-height:54vh}
+.g9-search-result{position:relative;display:grid;grid-template-columns:1fr auto;gap:3px 10px;padding:11px 12px;border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text)}
+.g9-search-result:hover,.g9-search-result:focus-visible{border-color:var(--phy-accent);background:rgba(56,189,248,.06);outline:none}.g9-search-result-main{font-weight:750}.g9-search-result-sub{grid-column:1;font-size: 14px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.g9-search-result-kind{grid-column:2;grid-row:1/3;align-self:center;font-size: 13px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em}.g9-search-empty{color:var(--text-muted);padding:18px;text-align:center}
+@media(max-width:980px){.site-nav-enhanced{grid-template-columns:auto 1fr auto}.site-nav-enhanced nav.nav-links{position:fixed;top:calc(var(--site-nav-height,64px) + 6px);right:12px;left:auto;width:min(320px,calc(100vw - 24px));display:none!important;flex-direction:column;align-items:stretch;background:var(--bg-panel);border:1px solid var(--border);border-radius:12px;padding:10px;box-shadow:0 18px 45px rgba(0,0,0,.4)}.site-nav-enhanced.nav-open nav.nav-links{display:flex!important}.site-nav-enhanced nav.nav-links a{width:100%}.site-more-btn{display:inline-grid}.site-nav-enhanced .brand-badge{display:none}.site-nav-enhanced .site-actions .g9-display-trigger-btn span{font-size:0}.site-nav-enhanced .site-actions .g9-display-trigger-btn span::after{content:"Display";font-size: 13.5px}}
+@media(max-width:620px){.site-nav-enhanced{padding:8px 10px!important;gap:8px!important}.site-nav-enhanced .brand-link{font-size:14px}.site-nav-enhanced .brand-link span:not(.logo-icon):not(.brand-badge){max-width:150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.site-icon-btn{width:38px;height:38px}.site-nav-enhanced .site-actions .g9-display-trigger-btn{display:none!important}}
+
+
+    /* Study page layout */
+    .study-host {
+      width: min(100%, 1320px);
+      margin: 0 auto;
+      padding: 18px 20px 56px;
+      display: grid;
+      gap: 16px;
+    }
+    .study-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: start;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--bg-panel);
+    }
+    .study-intro h1 {
+      margin: 2px 0 7px;
+      font-size: clamp(24px, 4vw, 36px);
+      line-height: 1.12;
+    }
+    .study-intro p {
+      margin: 0;
+      color: var(--text-muted);
+      max-width: 78ch;
+    }
+    .study-kicker {
+      font-size: 13.5px !important;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--phy-accent) !important;
+    }
+    .contract-chip {
+      display: grid;
+      gap: 3px;
+      max-width: 350px;
+      padding: 9px 11px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg-card);
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+    .contract-chip strong {
+      color: var(--text);
+      font-size: 14px;
+    }
+    .demo-warning {
+      padding: 10px 12px;
+      border-left: 3px solid var(--chip-warn-border);
+      background: var(--chip-warn-bg);
+      color: var(--chip-warn-text);
+      border-radius: 8px;
+      font-size: 13px;
+    }
+    @media(max-width: 760px) {
+      .study-host { padding: 12px 10px 44px; }
+      .study-intro { grid-template-columns: 1fr; padding: 14px; }
+      .contract-chip { max-width: none; }
+    }
+  
+  /* 12.7" Tablet Touch & Ergonomics Rules */
+  button, .btn, .g9-btn, .tab-btn { min-height: 48px !important; min-width: 48px !important; font-size: 15px; }
+  input[type="range"] { height: 48px !important; }
+  input[type="range"]::-webkit-slider-thumb { width: 30px !important; height: 30px !important; border-radius: 50% !important; }
+  input[type="range"]::-moz-range-thumb { width: 30px !important; height: 30px !important; border-radius: 50% !important; }
+  details summary { min-height: 52px !important; font-size: 15px !important; }
+
+</style>
+</head>
+<body>
+  <header class="site-nav">
+    <a href="#" class="brand-link">
+      <span class="logo-icon" aria-hidden="true">⚡</span>
+      <span>Grade9V3 Knowledge Portal</span>
+      <span class="brand-badge">Physics</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <span class="phy-link active">Motion in 2D · Core2A Standalone</span>
+      <button type="button" class="g9-display-trigger-btn" id="display-trigger" title="Adjust Font Size and UI Zoom Scale"><span>🔤 / 🔍 Display</span></button>
+    </nav>
+  </header>
+
+  <main class="study-host">
+    <section class="study-intro" aria-labelledby="page-title">
+      <div>
+        <p class="study-kicker">Core2A supported application · standalone single-file edition</p>
+        <h1 id="page-title">Projectile motion: three decisions, three visual models</h1>
+        <p>Try each repository-owned adapted question, manipulate the matching physical model, request support only when you want it, then open the canonical reasoning route.</p>
+      </div>
+      <div class="contract-chip" aria-label="Resolved interactive page contract">
+        <strong>QUESTION_STUDY · G9-TABLET-SHELL-V1</strong>
+        <span>BP-CORE2A-SUPPORTED-APPLICATION@1.0.0</span>
+        <span>Single-file standalone · 68/32 expanded layout</span>
+      </div>
+    </section>
+    <p class="demo-warning"><strong>Demo status:</strong> these canonical records are CANDIDATE items. This standalone page demonstrates the Core2A study experience completely offline without external dependencies.</p>
+    <core2a-projectile-study id="projectile-study" aria-label="Interactive projectile motion Core2A study"></core2a-projectile-study>
+  </main>
+
+  <script type="application/json" id="projectile-study-config">
+    {
+      "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+      "shell_ref": "G9-TABLET-SHELL-V1",
+      "layout_family": "QUESTION_STUDY",
+      "question_refs": {"Q21": "PYQ-PHY-JEEADV-2022-P1-Q08", "Q26": "PYQ-PHY-JEEADV-2026-P1-Q06", "Q23": "PYQ-PHY-JEEADV-2025-P2-Q15"}
+    }
+  </script>
+
+  <script type="application/json" id="canonical-question-records">
+    [
+  {
+    "id": "PYQ-PHY-JEEADV-2022-P1-Q08",
+    "version": "2.1.0",
+    "status": "CANDIDATE",
+    "source_refs": [
+      "SRC-JEEADV-OFFICIAL-ARCHIVE"
+    ],
+    "evidence_refs": [],
+    "extensions": {
+      "grade9v3:provenance_class": "PYQ_ADAPTED",
+      "grade9v3:source_custody": {
+        "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+        "exam": "JEE (Advanced)",
+        "year": 2022,
+        "paper": "Paper 1",
+        "section": "Physics",
+        "question_number": "8",
+        "paper_url": "https://jeeadv.ac.in/past_qps/2022_1_English.pdf",
+        "archive_url": "https://jeeadv.ac.in/archive.html",
+        "answer_key_url": null,
+        "answer_authority": "INDEPENDENTLY_CHECKED_AGAINST_OFFICIAL_QUESTION",
+        "last_checked": "2026-09-23",
+        "source_status": "PYQ_VERIFIED_PARENT",
+        "parent_ref": "JEE (Advanced)|2022|Paper 1|Physics|Q8",
+        "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+      },
+      "grade9v3:analysis": {
+        "topic": "Motion in 2D / Motion in a Plane \u2014 linear/projectile only",
+        "concept_bucket": "BUCKET-PHY-KIN-2D-MOTION",
+        "exam_source_badge": "JEE (Advanced) 2022 \u00b7 Paper 1 \u00b7 Q8",
+        "original_question_type": "numerical_value",
+        "learner_question_type": "numerical_value",
+        "difficulty": {
+          "band": "D3",
+          "score": 6,
+          "components": {
+            "concept_model_selection": 2,
+            "representation_translation": 1,
+            "reasoning_chain_length": 1,
+            "algebra_computational_load": 1,
+            "trap_exception_sensitivity": 1
+          },
+          "basis": "Splits one projectile into two acceleration regimes while preserving the apex state."
+        },
+        "expected_time_seconds": 140,
+        "common_wrong_route": "Recomputing the whole flight with the modified gravity instead of changing only the descent.",
+        "stable_crux_move": "Preserve the apex state and change only the second-stage fall time.",
+        "transfer_profile": {
+          "core2b_candidate": false,
+          "dimension": null,
+          "classification": "SAME_FAMILY_VARIATION"
+        }
+      }
+    },
+    "origin": "ADAPTED",
+    "origin_ref": "SRC-JEEADV-OFFICIAL-ARCHIVE",
+    "original_identifier": "JEE (Advanced)|2022|Paper 1|Physics|Q8",
+    "stem": "A projectile has ordinary range d when launched at speed v and angle theta under gravity g. At the highest point it enters a region where the effective downward acceleration is g/0.81. If its new total horizontal range is d'=n d, find n.",
+    "subparts": [],
+    "options": [],
+    "conditions": [
+      "The acceleration changes only after the projectile reaches its apex.",
+      "Horizontal velocity is unchanged at the boundary."
+    ],
+    "figure_refs": [],
+    "answer": {
+      "kind": "MODEL_RESPONSE",
+      "summary": "0.95.",
+      "reasoning": [
+        "The projectile reaches the apex after covering half of its ordinary range, d/2.",
+        "The apex height is unchanged, but the downward acceleration becomes g/0.81, so the fall time from the apex is 0.9 times the original descent time.",
+        "The second horizontal segment is therefore 0.9(d/2); hence d'=d/2+0.9d/2=0.95d."
+      ],
+      "reasoning_route": [
+        {
+          "id": "PYQ-PHY-JEEADV-2022-P1-Q08-MOVE-1",
+          "kind": "REPRESENT",
+          "action": "The projectile reaches the apex after covering half of its ordinary range, d/2.",
+          "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+          "inputs": [
+            "stated source quantities"
+          ],
+          "output": "intermediate result 1"
+        },
+        {
+          "id": "PYQ-PHY-JEEADV-2022-P1-Q08-MOVE-2",
+          "kind": "CONNECT",
+          "action": "The apex height is unchanged, but the downward acceleration becomes g/0.81, so the fall time from the apex is 0.9 times the original descent time.",
+          "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+          "inputs": [
+            "stated source quantities"
+          ],
+          "output": "intermediate result 2"
+        },
+        {
+          "id": "PYQ-PHY-JEEADV-2022-P1-Q08-MOVE-3",
+          "kind": "TRANSFORM",
+          "action": "The second horizontal segment is therefore 0.9(d/2); hence d'=d/2+0.9d/2=0.95d.",
+          "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+          "inputs": [
+            "stated source quantities"
+          ],
+          "output": "0.95."
+        }
+      ],
+      "crux_move_ref": "PYQ-PHY-JEEADV-2022-P1-Q08-MOVE-2",
+      "check": "Stronger effective gravity must shorten only the post-apex horizontal segment, so n must lie between 0.5 and 1.",
+      "acceptable_alternatives": [],
+      "subpart_answers": [],
+      "verification_status": "INDEPENDENTLY_CHECKED",
+      "rubric": [
+        {
+          "criterion": "Sets up the governing relation from the stated source quantities before substituting.",
+          "evidence_of": "Correct model selection rather than answer guessing."
+        },
+        {
+          "criterion": "Carries the calculation or classification through to the stated final answer and checks it.",
+          "evidence_of": "A complete, auditable solution route."
+        }
+      ],
+      "difficult_move": 1
+    },
+    "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+    "secondary_capability_refs": [
+      "CAP-KIN-2D-INDEPENDENT-COMPONENTS"
+    ],
+    "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+    "adaptation": {
+      "parent_ref": "JEE (Advanced)|2022|Paper 1|Physics|Q8",
+      "changed_fields": [
+        "stem",
+        "options",
+        "conditions"
+      ],
+      "reason": "Faithful non-verbatim restatement of a source-verified prior-exam item. Exam identity, numerical conditions, answer target and scientific demand are preserved; wording and presentation are adapted for repository custody."
+    },
+    "exposure": [
+      {
+        "core": "CORE2A",
+        "role": "PYQ_ADAPTED_PRACTICE_CANDIDATE",
+        "artifact_ref": null
+      }
+    ],
+    "hints": [],
+    "scaffolds": [
+      {
+        "text": "Use symmetry only for the ordinary projectile to identify the apex position.",
+        "support_kind": "REPRESENT",
+        "reveals": "CONCEPT",
+        "supports_move_ref": "PYQ-PHY-JEEADV-2022-P1-Q08-MOVE-1"
+      },
+      {
+        "text": "Compare the fall time from a fixed height under g and g/0.81.",
+        "support_kind": "CONNECT",
+        "reveals": "METHOD",
+        "supports_move_ref": "PYQ-PHY-JEEADV-2022-P1-Q08-MOVE-2"
+      },
+      {
+        "text": "Convert that time ratio into the second-stage horizontal distance.",
+        "support_kind": "EXECUTE",
+        "reveals": "METHOD",
+        "supports_move_ref": "PYQ-PHY-JEEADV-2022-P1-Q08-MOVE-3"
+      }
+    ]
+  },
+  {
+    "id": "PYQ-PHY-JEEADV-2025-P2-Q15",
+    "version": "2.1.0",
+    "status": "CANDIDATE",
+    "source_refs": [
+      "SRC-JEEADV-OFFICIAL-ARCHIVE"
+    ],
+    "evidence_refs": [],
+    "extensions": {
+      "grade9v3:provenance_class": "PYQ_ADAPTED",
+      "grade9v3:source_custody": {
+        "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+        "exam": "JEE (Advanced)",
+        "year": 2025,
+        "paper": "Paper 2",
+        "section": "Physics",
+        "question_number": "15",
+        "paper_url": "https://jeeadv.ac.in/past_qps/2025_2_English.pdf",
+        "archive_url": "https://jeeadv.ac.in/archive.html",
+        "answer_key_url": null,
+        "answer_authority": "OFFICIAL_PAPER_EMBEDDED_KEY",
+        "last_checked": "2026-09-23",
+        "source_status": "PYQ_VERIFIED_PARENT",
+        "parent_ref": "JEE (Advanced)|2025|Paper 2|Physics|Q15",
+        "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+      },
+      "grade9v3:analysis": {
+        "topic": "Motion in 2D / Motion in a Plane \u2014 linear/projectile only",
+        "concept_bucket": "BUCKET-PHY-KIN-2D-MOTION",
+        "exam_source_badge": "JEE (Advanced) 2025 \u00b7 Paper 2 \u00b7 Q15",
+        "original_question_type": "numerical_value",
+        "learner_question_type": "numerical_value",
+        "difficulty": {
+          "band": "D4",
+          "score": 8,
+          "components": {
+            "concept_model_selection": 2,
+            "representation_translation": 2,
+            "reasoning_chain_length": 2,
+            "algebra_computational_load": 1,
+            "trap_exception_sensitivity": 1
+          },
+          "basis": "Requires solving a velocity-dependent Newton-II equation and integrating the horizontal component."
+        },
+        "expected_time_seconds": 220,
+        "common_wrong_route": "Using constant-acceleration projectile formulas despite velocity-dependent drag.",
+        "stable_crux_move": "Separate the horizontal drag equation and integrate its exponential velocity law.",
+        "transfer_profile": {
+          "core2b_candidate": true,
+          "dimension": "model_choice",
+          "classification": "REAL_TRANSFER_CANDIDATE"
+        }
+      }
+    },
+    "origin": "ADAPTED",
+    "origin_ref": "SRC-JEEADV-OFFICIAL-ARCHIVE",
+    "original_identifier": "JEE (Advanced)|2025|Paper 2|Physics|Q15",
+    "stem": "A 0.2 kg projectile is launched at 270 m/s at 60 degrees in a medium with linear drag F=-c v, where c=0.1 kg/s. It hits a vertical wall after 2 s. Taking e=2.7 for the exponential evaluation specified by the source, determine the horizontal distance to the wall.",
+    "subparts": [],
+    "options": [],
+    "conditions": [
+      "Linear viscous drag acts opposite the instantaneous velocity.",
+      "Use the source's e=2.7 approximation."
+    ],
+    "figure_refs": [],
+    "answer": {
+      "kind": "MODEL_RESPONSE",
+      "summary": "170 m (within the official accepted interval 167\u2013171 m).",
+      "reasoning": [
+        "The horizontal component obeys m dvx/dt=-c vx, so vx(t)=vx0 exp[-(c/m)t].",
+        "Here vx0=270 cos60=135 m/s and m/c=2 s, so x(t)=vx0(m/c)[1-exp(-ct/m)].",
+        "At t=2 s, x=270(1-1/e)=270(1-1/2.7)=170 m."
+      ],
+      "reasoning_route": [
+        {
+          "id": "PYQ-PHY-JEEADV-2025-P2-Q15-MOVE-1",
+          "kind": "REPRESENT",
+          "action": "The horizontal component obeys m dvx/dt=-c vx, so vx(t)=vx0 exp[-(c/m)t].",
+          "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+          "inputs": [
+            "stated source quantities"
+          ],
+          "output": "intermediate result 1"
+        },
+        {
+          "id": "PYQ-PHY-JEEADV-2025-P2-Q15-MOVE-2",
+          "kind": "CONNECT",
+          "action": "Here vx0=270 cos60=135 m/s and m/c=2 s, so x(t)=vx0(m/c)[1-exp(-ct/m)].",
+          "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+          "inputs": [
+            "stated source quantities"
+          ],
+          "output": "intermediate result 2"
+        },
+        {
+          "id": "PYQ-PHY-JEEADV-2025-P2-Q15-MOVE-3",
+          "kind": "TRANSFORM",
+          "action": "At t=2 s, x=270(1-1/e)=270(1-1/2.7)=170 m.",
+          "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+          "inputs": [
+            "stated source quantities"
+          ],
+          "output": "170 m (within the official accepted interval 167\u2013171 m)."
+        }
+      ],
+      "crux_move_ref": "PYQ-PHY-JEEADV-2025-P2-Q15-MOVE-2",
+      "check": "The distance is smaller than the no-drag value 135\u00d72=270 m, as it must be.",
+      "acceptable_alternatives": [],
+      "subpart_answers": [],
+      "verification_status": "INDEPENDENTLY_CHECKED",
+      "rubric": [
+        {
+          "criterion": "Sets up the governing relation from the stated source quantities before substituting.",
+          "evidence_of": "Correct model selection rather than answer guessing."
+        },
+        {
+          "criterion": "Carries the calculation or classification through to the stated final answer and checks it.",
+          "evidence_of": "A complete, auditable solution route."
+        }
+      ],
+      "difficult_move": 1
+    },
+    "primary_capability_ref": "CAP-KIN-2D-CONSTANT-ACCELERATION",
+    "secondary_capability_refs": [
+      "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+      "CAP-NLM-SECOND-LAW"
+    ],
+    "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+    "adaptation": {
+      "parent_ref": "JEE (Advanced)|2025|Paper 2|Physics|Q15",
+      "changed_fields": [
+        "stem",
+        "options",
+        "conditions"
+      ],
+      "reason": "Faithful non-verbatim restatement of a source-verified prior-exam item. Exam identity, numerical conditions, answer target and scientific demand are preserved; wording and presentation are adapted for repository custody."
+    },
+    "exposure": [
+      {
+        "core": "CORE2A",
+        "role": "PYQ_ADAPTED_PRACTICE_CANDIDATE",
+        "artifact_ref": null
+      }
+    ],
+    "hints": [],
+    "scaffolds": [
+      {
+        "text": "Write Newton II for the horizontal component only.",
+        "support_kind": "REPRESENT",
+        "reveals": "CONCEPT",
+        "supports_move_ref": "PYQ-PHY-JEEADV-2025-P2-Q15-MOVE-1"
+      },
+      {
+        "text": "Identify the decay time constant m/c.",
+        "support_kind": "CONNECT",
+        "reveals": "METHOD",
+        "supports_move_ref": "PYQ-PHY-JEEADV-2025-P2-Q15-MOVE-2"
+      },
+      {
+        "text": "Integrate vx(t) from 0 to 2 s rather than multiplying the final speed by time.",
+        "support_kind": "EXECUTE",
+        "reveals": "METHOD",
+        "supports_move_ref": "PYQ-PHY-JEEADV-2025-P2-Q15-MOVE-3"
+      }
+    ]
+  },
+  {
+    "id": "PYQ-PHY-JEEADV-2026-P1-Q06",
+    "version": "2.3.0",
+    "status": "CANDIDATE",
+    "source_refs": [
+      "SRC-JEEADV-OFFICIAL-ARCHIVE"
+    ],
+    "evidence_refs": [],
+    "extensions": {
+      "grade9v3:provenance_class": "PYQ_ADAPTED",
+      "grade9v3:source_custody": {
+        "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+        "exam": "JEE (Advanced)",
+        "year": 2026,
+        "paper": "Paper 1",
+        "section": "Physics",
+        "question_number": "6",
+        "paper_url": "https://jeeadv.ac.in/documents/p1_english.pdf",
+        "archive_url": "https://jeeadv.ac.in/",
+        "answer_key_url": "https://jeeadv.ac.in/documents/p1_solutions_final.pdf",
+        "answer_authority": "OFFICIAL_FINAL_KEY",
+        "last_checked": "2026-09-23",
+        "source_status": "PYQ_VERIFIED_PARENT",
+        "parent_ref": "JEE (Advanced)|2026|Paper 1|Physics|Q6",
+        "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+      },
+      "grade9v3:analysis": {
+        "topic": "Motion in 2D / Motion in a Plane \u2014 linear/projectile only",
+        "concept_bucket": "BUCKET-PHY-KIN-2D-MOTION",
+        "exam_source_badge": "JEE (Advanced) 2026 \u00b7 Paper 1 \u00b7 Q6",
+        "original_question_type": "multi_correct_mcq",
+        "learner_question_type": "multi_correct_mcq",
+        "difficulty": {
+          "band": "D3",
+          "score": 7,
+          "components": {
+            "concept_model_selection": 2,
+            "representation_translation": 2,
+            "reasoning_chain_length": 1,
+            "algebra_computational_load": 1,
+            "trap_exception_sensitivity": 1
+          },
+          "basis": "Uses a prescribed point on a projectile trajectory plus apex-location reasoning across several launch angles."
+        },
+        "expected_time_seconds": 180,
+        "common_wrong_route": "Checking only whether the point lies on the trajectory and not whether the apex occurs before or after it.",
+        "stable_crux_move": "Use both the trajectory equation and the sign of vertical velocity/slope at P.",
+        "transfer_profile": {
+          "core2b_candidate": true,
+          "dimension": "reasoning_steps",
+          "classification": "REAL_TRANSFER_CANDIDATE"
+        }
+      }
+    },
+    "origin": "ADAPTED",
+    "origin_ref": "SRC-JEEADV-OFFICIAL-ARCHIVE",
+    "original_identifier": "JEE (Advanced)|2026|Paper 1|Physics|Q6",
+    "stem": "A projectile launched from O with speed v at angle theta passes through P, which is 5 m horizontally and 1 m vertically from O. Determine which source statements are correct about the required speed and whether the projectile reaches its maximum height before or after P for specified launch angles.",
+    "subparts": [],
+    "options": [
+      "(A) For theta=45\u00b0, v=5sqrt(g)/2 m/s",
+      "(B) For theta=45\u00b0, maximum height is reached before P",
+      "(C) For theta=30\u00b0, maximum height is reached after P",
+      "(D) For theta=tan^-1(1/5), v=125sqrt(g) m/s"
+    ],
+    "conditions": [
+      "Uniform gravitational acceleration g acts downward.",
+      "Point P has coordinates (5 m,1 m) relative to launch point O."
+    ],
+    "figure_refs": [],
+    "answer": {
+      "kind": "MODEL_RESPONSE",
+      "summary": "Options (A) and (B).",
+      "reasoning": [
+        "Use y=x tan(theta)-g x^2/[2v^2 cos^2(theta)] at P=(5,1). For theta=45\u00b0, this gives v^2=25g/4, so v=5sqrt(g)/2; (A) is true.",
+        "For the same 45\u00b0 case, the trajectory slope at x=5 is negative, so the apex was passed before P; (B) is true.",
+        "For theta=30\u00b0 the apex is not after P, and theta=tan^-1(1/5) would make the straight-line term equal exactly to y=1 before gravity lowers the path, so no finite v can satisfy (D)."
+      ],
+      "reasoning_route": [
+        {
+          "id": "PYQ-PHY-JEEADV-2026-P1-Q06-MOVE-1",
+          "kind": "REPRESENT",
+          "action": "Use y=x tan(theta)-g x^2/[2v^2 cos^2(theta)] at P=(5,1). For theta=45\u00b0, this gives v^2=25g/4, so v=5sqrt(g)/2; (A) is true.",
+          "why_valid": "This follows from the source-matched physical or chemical model.",
+          "inputs": [
+            "stated source quantities"
+          ],
+          "output": "intermediate result 1"
+        },
+        {
+          "id": "PYQ-PHY-JEEADV-2026-P1-Q06-MOVE-2",
+          "kind": "CONNECT",
+          "action": "For the same 45\u00b0 case, the trajectory slope at x=5 is negative, so the apex was passed before P; (B) is true.",
+          "why_valid": "This follows from the source-matched physical or chemical model.",
+          "inputs": [
+            "stated source quantities"
+          ],
+          "output": "intermediate result 2"
+        },
+        {
+          "id": "PYQ-PHY-JEEADV-2026-P1-Q06-MOVE-3",
+          "kind": "TRANSFORM",
+          "action": "For theta=30\u00b0 the apex is not after P, and theta=tan^-1(1/5) would make the straight-line term equal exactly to y=1 before gravity lowers the path, so no finite v can satisfy (D).",
+          "why_valid": "This follows from the source-matched physical or chemical model.",
+          "inputs": [
+            "stated source quantities"
+          ],
+          "output": "Options (A) and (B)."
+        }
+      ],
+      "crux_move_ref": "PYQ-PHY-JEEADV-2026-P1-Q06-MOVE-2",
+      "check": "The official final key marks AB.",
+      "acceptable_alternatives": [],
+      "subpart_answers": [],
+      "verification_status": "INDEPENDENTLY_CHECKED",
+      "rubric": [
+        {
+          "criterion": "Sets up the governing relation from the source quantities.",
+          "evidence_of": "Correct model selection."
+        },
+        {
+          "criterion": "Carries the route to the final answer and checks it.",
+          "evidence_of": "Complete auditable solution."
+        }
+      ],
+      "difficult_move": 1
+    },
+    "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+    "secondary_capability_refs": [
+      "CAP-KIN-2D-INDEPENDENT-COMPONENTS"
+    ],
+    "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+    "adaptation": {
+      "parent_ref": "JEE (Advanced)|2026|Paper 1|Physics|Q6",
+      "changed_fields": [
+        "stem",
+        "options",
+        "conditions"
+      ],
+      "reason": "Faithful non-verbatim restatement of a source-verified prior-exam item. Exam identity, conditions, target and scientific demand are preserved."
+    },
+    "exposure": [
+      {
+        "core": "CORE2A",
+        "role": "PYQ_ADAPTED_PRACTICE_CANDIDATE",
+        "artifact_ref": null
+      }
+    ],
+    "hints": [],
+    "scaffolds": [
+      {
+        "text": "Substitute P=(5,1) into the projectile trajectory equation.",
+        "support_kind": "REPRESENT",
+        "reveals": "CONCEPT",
+        "supports_move_ref": "PYQ-PHY-JEEADV-2026-P1-Q06-MOVE-1"
+      },
+      {
+        "text": "For theta=45\u00b0, solve for v before assessing the apex.",
+        "support_kind": "CONNECT",
+        "reveals": "METHOD",
+        "supports_move_ref": "PYQ-PHY-JEEADV-2026-P1-Q06-MOVE-2"
+      },
+      {
+        "text": "Use the trajectory slope or vertical velocity at x=5 to locate the apex relative to P.",
+        "support_kind": "EXECUTE",
+        "reveals": "METHOD",
+        "supports_move_ref": "PYQ-PHY-JEEADV-2026-P1-Q06-MOVE-3"
+      }
+    ]
+  }
+]
+  </script>
+
+  <script>
+
+const STUDY_STYLES = `
+:host{display:block;color:var(--text,#f0f6fc);font-family:var(--font-sans,system-ui,sans-serif);--panel:#161b22;--card:#21262d;--border:#444c56;--muted:#9aa4b2;--accent:#38bdf8;--good:#56d364;--warn:#f0b72f}
+*{box-sizing:border-box}.study-shell{display:grid;gap:16px}.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.tabs button,.controls button,.angle-picker button,.attempt-actions button,.support-card button,.reasoning-card button,.solution-card button{min-height:48px;min-width:48px;border:1px solid var(--border);border-radius:12px;background:var(--card);color:inherit;font:inherit;font-weight:750;padding:10px 14px;cursor:pointer}.tabs button{display:grid;place-items:start;text-align:left}.tabs button small{font-size: 13px;color:var(--muted);font-weight:600}.tabs button[aria-selected="true"]{border-color:var(--accent);box-shadow:inset 0 -3px 0 var(--accent)}button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}button:disabled{opacity:.58;cursor:not-allowed}.identity,.question,.stage,.support-card,.reasoning-card,.solution-card{border:1px solid var(--border);border-radius:16px;background:var(--panel);padding:16px}.identity{display:grid;gap:5px}.identity p{margin:0}.eyebrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size: 13px;color:var(--muted)}.candidate{color:#fff;background:#7a4b00;border:1px solid #d29922;border-radius:999px;padding:3px 8px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}.muted,.visual-note,.lock-note{color:var(--muted)}code{font-family:var(--font-mono,ui-monospace,monospace)}.study-layout{display:grid;gap:16px}.primary-pane,.support-pane{display:grid;align-content:start;gap:16px;min-width:0}.section-kicker{text-transform:uppercase;letter-spacing:.08em;font-size: 13px;font-weight:850;color:var(--accent);margin-bottom:5px}.question h2{font-size:clamp(18px,2.2vw,25px);line-height:1.42;margin:0 0 14px}.answer-entry{display:grid;gap:7px;max-width:420px;font-weight:750}.answer-entry input{min-height:52px;border:1px solid var(--border);border-radius:10px;background:#0d1117;color:inherit;padding:10px 12px;font:inherit;font-size:18px}.attempt-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px}.attempt-actions .primary{background:var(--accent);border-color:var(--accent);color:#071018}.phase{font-size: 13px;font-weight:800;color:var(--muted);letter-spacing:.05em}.live{min-height:1.2em;margin:6px 0 0;color:var(--warn)}.options{border:0;padding:0;display:grid;gap:8px}.options legend{font-weight:800;margin-bottom:8px}.option{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;min-height:52px;border:1px solid var(--border);border-radius:10px;padding:9px 11px}.option input{width:22px;height:22px}.option.correct{border-color:var(--good)}.option.incorrect{opacity:.78}.option b{font-size: 13px;color:var(--muted)}.stage{overflow:hidden}.stage-head{display:flex;justify-content:space-between;gap:12px;align-items:start}.stage-head h3,.support-card h3,.reasoning-card h3,.solution-card h3{margin:0;font-size:19px}.stage-status{display:grid;text-align:right;font-size: 13px;color:var(--muted)}.stage-status b{font-size:14px;color:var(--text,#fff)}.scene{display:block;width:100%;min-height:280px;max-height:430px;margin:8px 0;background:#0d1117;border:1px solid #30363d;border-radius:14px}.ground,.axis,.rail{stroke:#7d8590;stroke-width:2}.grid{stroke:#30363d;stroke-width:1}.boundary{stroke:#d29922;stroke-width:2;stroke-dasharray:7 7}.boundary-label{fill:#f0b72f}.ghost{fill:none;stroke:#7d8590;stroke-width:3;stroke-dasharray:8 8}.ghost-label,.visual-note{fill:#9aa4b2}.active-full{fill:none;stroke:#38bdf8;stroke-width:4;opacity:.55}.active-progress{fill:none;stroke:#f0f6fc;stroke-width:5}.apex{fill:#f0b72f}.projectile,.point-p{fill:#f0f6fc;stroke:#38bdf8;stroke-width:3}.measure{stroke:#7d8590;stroke-width:2}.measure.modified{stroke:#38bdf8}.vectors line,.velocity,.launch-vector{stroke:#f0f6fc;stroke-width:3;marker-end:url(#arrow)}.vectors .accel{stroke:#ff7b72}.vectors .vy,.component.vertical{stroke:#d2a8ff}.scene text{fill:#c9d1d9;font:14px system-ui,sans-serif}.controls,.angle-picker{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.controls button[aria-pressed="true"],.angle-picker button[aria-pressed="true"]{border-color:var(--accent);background:#12283a}.scrubber{display:flex;align-items:center;gap:8px;min-height:48px;padding:6px 10px;border:1px solid var(--border);border-radius:12px}.scrubber input{min-width:180px;min-height:32px}.equation-strip{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px;padding:10px 12px;border-left:3px solid var(--accent);background:#0d1117;border-radius:8px}.equation-strip code{font-size:14px}.launch-line{stroke:#7d8590;stroke-dasharray:8 8}.velocity{stroke:#f0f6fc;stroke-width:4}.component{stroke:#38bdf8;stroke-width:3;stroke-dasharray:5 4}.vx-curve{fill:none;stroke:#38bdf8;stroke-width:4}.time-marker{stroke:#f0b72f;stroke-width:2}.ghost-dot{fill:#7d8590}.support-card,.reasoning-card,.solution-card{display:grid;gap:11px}.support-list,.reasoning-list,.solution-card ol{display:grid;gap:10px;margin:0;padding:0;list-style:none}.support-list li,.reasoning-list li{display:grid;grid-template-columns:34px 1fr;gap:9px;align-items:start}.support-list p,.reasoning-list p{margin:2px 0 0;line-height:1.45}.step-num{display:grid;place-items:center;width:32px;height:32px;border:1px solid var(--border);border-radius:50%;font-weight:850}.reasoning-list .crux{border:1px solid #d29922;border-radius:12px;padding:10px;background:#211a0c}.crux-label{color:#f0b72f;text-transform:uppercase;letter-spacing:.06em;font-size: 13px}.reasoning-card.locked{border-style:dashed}.solution-card h3{color:var(--good)}.solution-card>ol{list-style:decimal;padding-left:22px}.solution-card>ol li{padding-left:4px}.check{border-top:1px solid var(--border);padding-top:10px}.check h4{margin:0 0 6px}.check p{margin:6px 0}.lock-note{border-left:3px solid #d29922;padding-left:9px}
+@media(min-width:1050px){.study-layout{grid-template-columns:minmax(0,2.125fr) minmax(290px,1fr)}.support-pane{position:sticky;top:90px;align-self:start;max-height:calc(100vh - 110px);overflow:auto;padding-right:2px}}
+@media(min-width:720px) and (max-width:1049px){.support-pane{grid-template-columns:repeat(2,minmax(0,1fr))}.solution-card{grid-column:1/-1}}
+@media(max-width:719px){.tabs button small{display:none}.identity,.question,.stage,.support-card,.reasoning-card,.solution-card{padding:13px;border-radius:13px}.stage-head{display:grid}.stage-status{text-align:left}.scene{min-height:230px}.controls,.angle-picker{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.controls button,.angle-picker button{width:100%}.scrubber{grid-column:1/-1}.scrubber input{min-width:0;width:100%}.equation-strip{align-items:flex-start;flex-direction:column}.option{grid-template-columns:auto 1fr}.option b{grid-column:2}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+`;
+
+const ORDER = Object.freeze(["Q21", "Q26", "Q23"]);
+const PHASES = new Set(["INITIAL", "ATTEMPTING", "COMMITTED", "SUPPORTED", "SOLUTION_OPEN", "CHECKED"]);
+const clone = (value) => value == null ? value : JSON.parse(JSON.stringify(value));
+const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+const round = (value, digits = 2) => Number(value.toFixed(digits));
+
+class ProjectileStudyError extends Error {
+  constructor(code, detail = "") {
+    super(detail ? `${code}: ${detail}` : code);
+    this.name = "ProjectileStudyError";
+    this.code = code;
+  }
+}
+
+function requirePublicCondition(condition, code, detail = "") {
+  if (!condition) throw new ProjectileStudyError(code, detail);
+}
+
+function parseNumber(pattern, text, code) {
+  const match = String(text || "").match(pattern);
+  requirePublicCondition(match, code, String(text || ""));
+  const clean = String(match[1]).replace(/\.+$/, "");
+  const value = Number(clean);
+  requirePublicCondition(Number.isFinite(value), code, match[1]);
+  return value;
+}
+
+function parseQ21(record) {
+  const divisor = parseNumber(/acceleration is g\/([0-9]+(?:\.[0-9]+)?)/i, record?.stem, "Q21_GRAVITY_RATIO_MISSING");
+  requirePublicCondition(divisor > 0, "Q21_GRAVITY_RATIO_INVALID");
+  const descentTimeRatio = Math.sqrt(divisor);
+  const rangeRatio = 0.5 + 0.5 * descentTimeRatio;
+  return { divisor, descentTimeRatio, rangeRatio };
+}
+
+function q21State(time, divisor) {
+  const gravityDivisor = Number(divisor);
+  requirePublicCondition(Number.isFinite(gravityDivisor) && gravityDivisor > 0, "Q21_GRAVITY_RATIO_INVALID");
+  const apexTime = 1;
+  const descentTime = Math.sqrt(gravityDivisor);
+  const endTime = apexTime + descentTime;
+  const t = clamp(Number(time) || 0, 0, endTime);
+  let x;
+  let y;
+  let vx = 0.5;
+  let vy;
+  let accelerationFactor;
+  let stage;
+  if (t <= apexTime) {
+    x = 0.5 * t;
+    y = 1 - (1 - t) ** 2;
+    vy = 2 * (1 - t);
+    accelerationFactor = 1;
+    stage = t === apexTime ? "APEX" : "ASCENT";
+  } else {
+    const tau = t - apexTime;
+    x = 0.5 + 0.5 * tau;
+    y = Math.max(0, 1 - (tau / descentTime) ** 2);
+    vy = -2 * tau / (descentTime ** 2);
+    accelerationFactor = 1 / gravityDivisor;
+    stage = t >= endTime ? "LANDED" : "DESCENT";
+  }
+  return { t, x, y, vx, vy, accelerationFactor, stage, apexTime, descentTime, endTime, rangeRatio: 0.5 + 0.5 * descentTime };
+}
+
+function parseQ26(record) {
+  const pointText = (record?.conditions || []).find((item) => /coordinates/i.test(item)) || "";
+  const match = pointText.match(/\(([0-9.]+)\s*m\s*,\s*([0-9.]+)\s*m\)/i);
+  requirePublicCondition(match, "Q26_POINT_MISSING", pointText);
+  const point = { x: Number(match[1]), y: Number(match[2]) };
+  const optionText = (record?.options || []).join("\n");
+  const degreeMatches = [...optionText.matchAll(/theta=([0-9.]+)°/g)].map((match) => Number(match[1]));
+  const degrees = [...new Set(degreeMatches)];
+  requirePublicCondition(degrees.includes(45), "Q26_45_DEGREE_OPTION_MISSING");
+  requirePublicCondition(degrees.includes(30), "Q26_30_DEGREE_OPTION_MISSING");
+  const ratio = optionText.match(/tan\^-1\(([0-9.]+)\/([0-9.]+)\)/);
+  requirePublicCondition(ratio, "Q26_ATAN_OPTION_MISSING");
+  return { point, degrees, atanRatio: { numerator: Number(ratio[1]), denominator: Number(ratio[2]) } };
+}
+
+function solvePointPassage(thetaRadians, g, point) {
+  const theta = Number(thetaRadians);
+  const visualG = Number(g);
+  requirePublicCondition(Number.isFinite(visualG) && visualG > 0, "Q26_VISUAL_G_INVALID");
+  requirePublicCondition(point && typeof point === "object", "Q26_POINT_REQUIRED");
+  const x = Number(point.x);
+  const y = Number(point.y);
+  requirePublicCondition(Number.isFinite(x) && Number.isFinite(y), "Q26_POINT_INVALID");
+  const tan = Math.tan(theta);
+  const cos = Math.cos(theta);
+  const clearance = x * tan - y;
+  if (!(clearance > 1e-10) || !(cos > 0)) {
+    return { valid: false, clearance, theta, point: { x, y }, g: visualG };
+  }
+  const v2 = visualG * x * x / (2 * cos * cos * clearance);
+  const v = Math.sqrt(v2);
+  const tAtP = x / (v * cos);
+  const vx = v * cos;
+  const vy = v * Math.sin(theta) - visualG * tAtP;
+  const slope = vy / vx;
+  const apexX = v2 * Math.sin(theta) * cos / visualG;
+  const apexY = v2 * Math.sin(theta) ** 2 / (2 * visualG);
+  return {
+    valid: true,
+    theta,
+    point: { x, y },
+    g: visualG,
+    v,
+    v2,
+    tAtP,
+    vx,
+    vy,
+    slope,
+    apexX,
+    apexY,
+    apexRelativeToP: apexX < x - 1e-9 ? "BEFORE" : apexX > x + 1e-9 ? "AFTER" : "AT_P",
+  };
+}
+
+function parseQ23(record) {
+  const text = String(record?.stem || "");
+  return {
+    mass: parseNumber(/^A\s+([0-9.]+)\s*kg/i, text, "Q23_MASS_MISSING"),
+    speed: parseNumber(/launched at\s+([0-9.]+)\s*m\/s/i, text, "Q23_SPEED_MISSING"),
+    angleDegrees: parseNumber(/at\s+([0-9.]+)\s+degrees/i, text, "Q23_ANGLE_MISSING"),
+    c: parseNumber(/c=([0-9.]+)\s*kg\/s/i, text, "Q23_DRAG_MISSING"),
+    wallTime: parseNumber(/after\s+([0-9.]+)\s*s/i, text, "Q23_TIME_MISSING"),
+    eBase: parseNumber(/Taking e=([0-9.]+)/i, text, "Q23_E_MISSING"),
+  };
+}
+
+function q23Horizontal(time, params) {
+  const { mass, speed, angleDegrees, c, eBase } = params;
+  const t = Math.max(0, Number(time) || 0);
+  const vx0 = speed * Math.cos(angleDegrees * Math.PI / 180);
+  const tau = mass / c;
+  const decay = eBase ** (-t / tau);
+  const vx = vx0 * decay;
+  const x = vx0 * tau * (1 - decay);
+  const noDragX = vx0 * t;
+  return { t, vx0, tau, decay, vx, x, noDragX };
+}
+
+function createStudyState(owner = "Q21") {
+  requirePublicCondition(ORDER.includes(owner), "STUDY_OWNER_UNKNOWN", owner);
+  return {
+    owner,
+    phase: "INITIAL",
+    attempted: false,
+    attempt: owner === "Q26" ? [] : "",
+    supportIndex: 0,
+    reasoningIndex: 0,
+    solutionOpen: false,
+    checked: false,
+    q21: { time: 0, playing: false, vectors: false, compare: true },
+    q26: { angle: "degree0" },
+    q23: { time: 0, playing: false, compare: true, vector: true },
+  };
+}
+
+function transitionStudyState(input, event) {
+  const state = clone(input);
+  requirePublicCondition(state && ORDER.includes(state.owner), "STUDY_STATE_INVALID");
+  requirePublicCondition(PHASES.has(state.phase), "STUDY_PHASE_INVALID", String(state.phase));
+  requirePublicCondition(event && typeof event.type === "string", "STUDY_EVENT_REQUIRED");
+  const setAttempting = () => {
+    if (!state.attempted && state.phase === "INITIAL") state.phase = "ATTEMPTING";
+  };
+
+  if (event.type === "SET_ATTEMPT") {
+    state.attempt = clone(event.value);
+    setAttempting();
+    return state;
+  }
+  if (event.type === "COMMIT_ATTEMPT") {
+    const genuine = Array.isArray(state.attempt)
+      ? state.attempt.length > 0
+      : String(state.attempt || "").trim().length > 0;
+    requirePublicCondition(genuine, "GENUINE_ATTEMPT_REQUIRED");
+    state.attempted = true;
+    state.phase = "COMMITTED";
+    state.q21.playing = false;
+    state.q23.playing = false;
+    return state;
+  }
+  if (event.type === "REQUEST_SUPPORT") {
+    const total = Number(event.total || 0);
+    const blockedIndex = Number.isInteger(event.blockedIndex) ? event.blockedIndex : -1;
+    if (state.supportIndex >= total) return state;
+    if (!state.attempted && state.supportIndex === blockedIndex) return state;
+    state.supportIndex += 1;
+    if (state.attempted && state.phase === "COMMITTED") state.phase = "SUPPORTED";
+    return state;
+  }
+  if (event.type === "SHOW_REASONING") {
+    if (!state.attempted) return state;
+    const total = Number(event.total || 0);
+    state.reasoningIndex = Math.min(total, state.reasoningIndex + 1);
+    return state;
+  }
+  if (event.type === "OPEN_SOLUTION") {
+    if (!state.attempted || state.reasoningIndex < Number(event.requiredReasoning || 0)) return state;
+    state.solutionOpen = true;
+    state.phase = "SOLUTION_OPEN";
+    return state;
+  }
+  if (event.type === "CHECK") {
+    if (!state.solutionOpen) return state;
+    state.checked = true;
+    state.phase = "CHECKED";
+    return state;
+  }
+  if (event.type === "RESET") return createStudyState(state.owner);
+  throw new ProjectileStudyError("STUDY_EVENT_UNSUPPORTED", event.type);
+}
+
+
+
+
+function svgPath(points, scaleX, scaleY) {
+  return points.map((point, index) => `${index ? "L" : "M"}${round(scaleX(point.x), 1)},${round(scaleY(point.y), 1)}`).join(" ");
+}
+function sampled(count, fn) { return Array.from({ length: count + 1 }, (_, index) => fn(index / count)); }
+
+function renderQ21Stage(host, record) {
+const p = parseQ21(record);
+const current = q21State(host.state.q21.time, p.divisor);
+const xScale = (x) => 62 + 610 * x / 1.05;
+const yScale = (y) => 326 - 230 * y;
+const ordinary = sampled(80, (u) => u <= 0.5 ? { x: u, y: 1 - (1 - 2 * u) ** 2 } : { x: u, y: 1 - (2 * u - 1) ** 2 });
+const modified = sampled(80, (u) => {
+  const t = current.endTime * u;
+  return q21State(t, p.divisor);
+});
+const currentPath = sampled(60, (u) => q21State(current.t * u, p.divisor));
+const px = xScale(current.x), py = yScale(current.y);
+const vectorHtml = host.state.q21.vectors ? `<g class="vectors"><line x1="${px}" y1="${py}" x2="${px + 55}" y2="${py}" marker-end="url(#arrow)"/><text x="${px + 18}" y="${py - 8}">vₓ unchanged</text><line class="vy" x1="${px}" y1="${py}" x2="${px}" y2="${py - clamp(current.vy * 22, -75, 75)}" marker-end="url(#arrow)"/><line class="accel" x1="${px + 12}" y1="${py + 8}" x2="${px + 12}" y2="${py + 58}" marker-end="url(#arrow)"/><text x="${px + 20}" y="${py + 48}">${current.stage === "DESCENT" || current.stage === "LANDED" ? `g/${p.divisor}` : "g"}</text></g>` : "";
+return `<section class="stage" aria-labelledby="visual-title"><div class="stage-head"><div><div class="section-kicker">Visualize</div><h3 id="visual-title">Same ascent. New descent.</h3></div><div class="stage-status"><b>${current.stage === "APEX" ? "At apex" : current.stage === "DESCENT" ? "After apex" : current.stage === "LANDED" ? "Landed" : "Before apex"}</b><span>${current.stage === "DESCENT" || current.stage === "LANDED" ? "Acceleration changed only now" : "Downward acceleration = g"}</span></div></div>
+  <svg class="scene" viewBox="0 0 740 390" role="img" aria-label="Two-stage projectile motion with the acceleration changing only after the apex">
+    <defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z"/></marker></defs>
+    <line class="ground" x1="42" y1="326" x2="704" y2="326"/><line class="boundary" x1="${xScale(.5)}" y1="72" x2="${xScale(.5)}" y2="326"/><text class="boundary-label" x="${xScale(.5)+8}" y="88">apex boundary</text>
+    ${host.state.q21.compare ? `<path class="ghost" d="${svgPath(ordinary, xScale, yScale)}"/><text x="${xScale(.82)}" y="${yScale(.55)}" class="ghost-label">ordinary g</text>` : ""}
+    <path class="active-full" d="${svgPath(modified, xScale, yScale)}"/><path class="active-progress" d="${svgPath(currentPath, xScale, yScale)}"/>
+    <circle class="apex" cx="${xScale(.5)}" cy="${yScale(1)}" r="7"/><text x="${xScale(.5)-38}" y="${yScale(1)-14}">apex</text><circle class="projectile" cx="${px}" cy="${py}" r="9"/>
+    ${vectorHtml}
+    <line class="measure" x1="${xScale(0)}" y1="352" x2="${xScale(1)}" y2="352"/><text x="${xScale(.49)}" y="378">ordinary range d</text>
+    <line class="measure modified" x1="${xScale(0)}" y1="338" x2="${xScale(current.rangeRatio)}" y2="338"/><text x="${xScale(.44)}" y="332">modified range d′</text>
+  </svg>
+  <div class="controls" aria-label="Q21 simulation controls"><button type="button" data-action="play">${host.state.q21.playing ? "Pause" : "Play"}</button><button type="button" data-action="apex">At apex</button><button type="button" data-action="continue">Continue after apex</button><button type="button" data-action="vectors" aria-pressed="${host.state.q21.vectors}">${host.state.q21.vectors ? "Hide" : "Show"} vectors</button><button type="button" data-action="compare" aria-pressed="${host.state.q21.compare}">${host.state.q21.compare ? "Hide" : "Compare"} ordinary path</button><button type="button" data-action="reset">Reset</button></div>
+  <p class="visual-note">Normalized display: ordinary range is d and apex height is scaled to 1. No source launch speed or angle is invented.</p></section>`;
+}
+
+function renderQ26Stage(host, record) {
+const p = parseQ26(record);
+const visualG = 10;
+const selectedDegrees = host.state.q26.angle === "degree0" ? p.degrees[0] : host.state.q26.angle === "degree1" ? p.degrees[1] : null;
+const angle = selectedDegrees == null ? Math.atan(p.atanRatio.numerator / p.atanRatio.denominator) : selectedDegrees * Math.PI / 180;
+const result = solvePointPassage(angle, visualG, p.point);
+const xMax = 8;
+const yMax = result.valid ? Math.max(3.2, result.apexY * 1.35) : 3.2;
+const sx = (x) => 60 + 610 * x / xMax;
+const sy = (y) => 330 - 245 * y / yMax;
+let path = "";
+if (result.valid) {
+  const points = sampled(90, (u) => {
+    const x = xMax * u;
+    const y = Math.max(0, x * Math.tan(angle) - visualG * x * x / (2 * result.v2 * Math.cos(angle) ** 2));
+    return { x, y };
+  }).filter((point) => point.y >= 0);
+  path = svgPath(points, sx, sy);
+}
+const px = sx(p.point.x), py = sy(p.point.y);
+const angleLabel = host.state.q26.angle === "atan" ? `tan⁻¹(${p.atanRatio.numerator}/${p.atanRatio.denominator})` : `${selectedDegrees}°`;
+const vScale = result.valid ? 24 / Math.max(1, Math.hypot(result.vx, result.vy)) : 0;
+let statusDetail = "";
+if (!result.valid) {
+  statusDetail = "Straight line reaches P, but downward gravity curves path below P: no finite launch speed reaches P (Option D false)";
+} else if (selectedDegrees === 45) {
+  statusDetail = `v = 5√g/2 (≈ ${round(result.v, 2)} m/s at visual g=10) · Apex at x = ${round(result.apexX, 2)} m (before P) · dy/dx = ${round(result.slope, 2)} < 0 (descending at P)`;
+} else if (selectedDegrees === 30) {
+  statusDetail = `Apex at x = ${round(result.apexX, 2)} m (before P, not after P; Option C false) · dy/dx = ${round(result.slope, 2)} < 0`;
+} else {
+  statusDetail = `Apex at x = ${round(result.apexX, 2)} m (${result.apexRelativeToP === "BEFORE" ? "before P" : "after P"}) · dy/dx = ${round(result.slope, 2)}`;
+}
+return `<section class="stage" aria-labelledby="visual-title"><div class="stage-head"><div><div class="section-kicker">Visualize</div><h3 id="visual-title">Pass through P — then inspect direction</h3></div><div class="stage-status"><b>θ = ${angleLabel}</b><span>${statusDetail}</span></div></div>
+  <div class="angle-picker" role="group" aria-label="Investigate launch angle"><button type="button" data-action="angle" data-angle="degree0" aria-pressed="${host.state.q26.angle === "degree0"}">${p.degrees[0]}°</button><button type="button" data-action="angle" data-angle="degree1" aria-pressed="${host.state.q26.angle === "degree1"}">${p.degrees[1]}°</button><button type="button" data-action="angle" data-angle="atan" aria-pressed="${host.state.q26.angle === "atan"}">tan⁻¹(${p.atanRatio.numerator}/${p.atanRatio.denominator})</button></div>
+  <svg class="scene q26" viewBox="0 0 740 390" role="img" aria-label="Coordinate grid projectile trajectory through the canonical point P with apex and velocity components at P">
+    <defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z"/></marker></defs>
+    ${Array.from({length:9},(_,i)=>`<line class="grid" x1="${sx(i)}" y1="70" x2="${sx(i)}" y2="330"/>`).join("")}${Array.from({length:4},(_,i)=>`<line class="grid" x1="60" y1="${sy(i)}" x2="690" y2="${sy(i)}"/>`).join("")}
+    <line class="axis" x1="60" y1="330" x2="700" y2="330"/><line class="axis" x1="60" y1="340" x2="60" y2="55"/><text x="43" y="352">O</text><text x="694" y="352">x</text><text x="40" y="60">y</text>
+    ${result.valid ? `<path class="active-full" d="${path}"/><circle class="apex" cx="${sx(result.apexX)}" cy="${sy(result.apexY)}" r="7"/><text x="${sx(result.apexX)+10}" y="${sy(result.apexY)-8}">apex (${round(result.apexX, 1)} m)</text>` : `<line class="launch-line" x1="${sx(0)}" y1="${sy(0)}" x2="${sx(p.point.x)}" y2="${sy(p.point.y)}"/><text x="${sx(2.1)}" y="${sy(.55)-12}">gravity bends below this line</text>`}
+    <circle class="point-p" cx="${px}" cy="${py}" r="9"/><text x="${px+12}" y="${py-12}">P (${p.point.x},${p.point.y})</text>
+    ${result.valid ? `<line class="velocity" x1="${px}" y1="${py}" x2="${px + result.vx * vScale * 5}" y2="${py - result.vy * vScale * 5}" marker-end="url(#arrow)"/><line class="component" x1="${px}" y1="${py}" x2="${px + result.vx * vScale * 5}" y2="${py}"/><line class="component vertical" x1="${px + result.vx * vScale * 5}" y1="${py}" x2="${px + result.vx * vScale * 5}" y2="${py - result.vy * vScale * 5}"/><text x="${px+36}" y="${py+22}">vₓ</text><text x="${px + result.vx*vScale*5 + 8}" y="${py - result.vy*vScale*2.5}">vᵧ (downward)</text>` : ""}
+  </svg>
+  <div class="equation-strip"><span>Trajectory model</span><code>y = x tanθ − gx²/(2v² cos²θ)</code><span>Then inspect the direction (vᵧ / slope) at P.</span></div>
+  <p class="visual-note">Visualization value only: g = 10 m/s². The canonical source keeps g symbolic; symbolic reasoning remains authoritative.</p></section>`;
+}
+
+function renderQ23Stage(host, record) {
+const p = parseQ23(record);
+const m = q23Horizontal(host.state.q23.time, p);
+const sx = (x) => 56 + 630 * x / 280;
+const graphX = (t) => 68 + 600 * t / p.wallTime;
+const graphY = (v) => 300 - 150 * v / m.vx0;
+const curve = sampled(70, (u) => {
+  const t = p.wallTime * u;
+  const state = q23Horizontal(t, p);
+  return { x: t, y: state.vx };
+});
+const plotPath = curve.map((point,index)=>`${index?"L":"M"}${round(graphX(point.x),1)},${round(graphY(point.y),1)}`).join(" ");
+const projectileX = sx(m.x);
+const vectorEnd = projectileX + clamp(82 * m.vx / m.vx0, 18, 82);
+const xReadout = host.state.attempted ? `${round(m.x, 1)} m accumulated` : "distance hidden until you commit";
+return `<section class="stage" aria-labelledby="visual-title"><div class="stage-head"><div><div class="section-kicker">Visualize</div><h3 id="visual-title">Horizontal speed decays; distance accumulates</h3></div><div class="stage-status"><b>t = ${round(m.t, 2)} s</b><span>vₓ = ${round(m.vx, 1)} m/s · ${xReadout}</span></div></div>
+  <svg class="scene q23" viewBox="0 0 740 390" role="img" aria-label="Horizontal linear-drag motion with decaying velocity and a velocity-time plot">
+    <defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z"/></marker></defs>
+    <text x="56" y="42">launch: ${p.speed} m/s at ${p.angleDegrees}°</text><line class="launch-vector" x1="70" y1="92" x2="132" y2="50"/><line class="component" x1="70" y1="92" x2="132" y2="92"/><line class="component vertical" x1="132" y1="92" x2="132" y2="50"/><text x="92" y="112">vₓ₀</text><text x="140" y="70">vᵧ₀</text>
+    <line class="rail" x1="56" y1="150" x2="686" y2="150"/><line class="wall" x1="${sx(170)}" y1="124" x2="${sx(170)}" y2="176" stroke="#f0b72f" stroke-width="3" stroke-dasharray="4 3"/><text x="${sx(170)-28}" y="116" fill="#f0b72f">wall (2 s)</text>${host.state.attempted ? `<text x="${sx(170)-14}" y="196" fill="#f0b72f">170 m</text>` : ""}<circle class="projectile" cx="${projectileX}" cy="150" r="10"/>${host.state.q23.vector ? `<line class="velocity" x1="${projectileX+10}" y1="150" x2="${vectorEnd}" y2="150"/><text x="${projectileX+14}" y="135">vₓ(t)</text>` : ""}
+    ${host.state.q23.compare ? `<circle class="ghost-dot" cx="${sx(m.noDragX)}" cy="150" r="8"/><text x="${Math.min(610,sx(m.noDragX)-35)}" y="180">no drag</text>` : ""}<text x="56" y="180">launch</text><text x="590" y="180">${round(m.vx0 * p.wallTime, 0)} m no-drag at ${p.wallTime} s</text>
+    <line class="axis" x1="68" y1="300" x2="688" y2="300"/><line class="axis" x1="68" y1="310" x2="68" y2="205"/><path class="vx-curve" d="${plotPath}"/><line class="time-marker" x1="${graphX(m.t)}" y1="205" x2="${graphX(m.t)}" y2="300"/><text x="76" y="220">vₓ(t)</text><text x="655" y="322">2 s</text><text x="50" y="322">0</text>
+  </svg>
+  <div class="controls"><button type="button" data-action="play">${host.state.q23.playing ? "Pause" : "Play"}</button><label class="scrubber">Time <input data-time-scrubber type="range" min="0" max="${p.wallTime}" step="0.02" value="${m.t}" aria-label="Elapsed time"></label><button type="button" data-action="compare" aria-pressed="${host.state.q23.compare}">${host.state.q23.compare ? "Hide" : "Show"} no-drag</button><button type="button" data-action="vector" aria-pressed="${host.state.q23.vector}">${host.state.q23.vector ? "Hide" : "Show"} velocity</button><button type="button" data-action="reset">Reset</button></div>
+  <div class="equation-strip"><span>Horizontal model</span><code>m dvₓ/dt = −c vₓ</code><span>Distance is the accumulated area under vₓ(t), not final vₓ × time.</span></div><p class="visual-note">The stage uses the source approximation e = ${p.eBase} for its exponential evaluation. No vacuum parabola is used for the drag motion.</p></section>`;
+}
+
+
+
+
+
+function esc(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function answerLabel(record) {
+  return record?.answer?.summary || "";
+}
+
+const HTMLElementBase = globalThis.HTMLElement || class {};
+
+class Core2AProjectileStudy extends HTMLElementBase {
+  constructor() {
+    super();
+    this.attachShadow?.({ mode: "open" });
+    this._records = null;
+    this._ownerRefs = new Map();
+    this._byOwner = new Map();
+    this.state = createStudyState("Q21");
+    this._raf = null;
+    this._lastFrame = 0;
+    this._reduceMotion = globalThis.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches || false;
+  }
+
+  set ownerRefs(value) {
+    const entries = value && typeof value === "object" ? Object.entries(value) : [];
+    this._ownerRefs = new Map(entries);
+    for (const owner of ORDER) requirePublicCondition(this._ownerRefs.has(owner), "STUDY_OWNER_REF_MISSING", owner);
+  }
+
+  set records(value) {
+    const rows = Array.isArray(value) ? value : [];
+    const byId = new Map(rows.map((row) => [row?.id, row]));
+    this._byOwner = new Map();
+    for (const owner of ORDER) {
+      const ref = this._ownerRefs.get(owner);
+      requirePublicCondition(typeof ref === "string" && ref, "STUDY_OWNER_REF_MISSING", owner);
+      const record = byId.get(ref);
+      requirePublicCondition(record, "STUDY_CANONICAL_RECORD_MISSING", ref);
+      requirePublicCondition(record.status === "CANDIDATE", "STUDY_STATUS_DRIFT", `${owner}:${record.status}`);
+      requirePublicCondition(Array.isArray(record.scaffolds), "STUDY_SCAFFOLDS_MISSING", owner);
+      requirePublicCondition(Array.isArray(record.answer?.reasoning_route), "STUDY_REASONING_MISSING", owner);
+      this._byOwner.set(owner, record);
+    }
+    this._records = rows;
+    if (this.isConnected) this._mountFromLocation();
+  }
+
+  get activeRecord() { return this._byOwner.get(this.state.owner); }
+
+  connectedCallback() {
+    if (!this.shadowRoot) return;
+    this.shadowRoot.addEventListener("click", (event) => this._onClick(event));
+    this.shadowRoot.addEventListener("input", (event) => this._onInput(event));
+    this.shadowRoot.addEventListener("change", (event) => this._onChange(event));
+    this.shadowRoot.addEventListener("keydown", (event) => this._onKeydown(event));
+    if (this._byOwner.size) this._mountFromLocation();
+    else this.render();
+  }
+
+  disconnectedCallback() { this._stopAnimation(); }
+
+  _mountFromLocation() {
+    const requested = new URL(globalThis.location?.href || "http://local/").searchParams.get("q")?.toUpperCase();
+    const owner = ORDER.includes(requested) ? requested : "Q21";
+    this.state = createStudyState(owner);
+    this._stopAnimation();
+    this.render();
+  }
+
+  select(owner, updateUrl = true) {
+    if (!ORDER.includes(owner)) return;
+    this._stopAnimation();
+    this.state = createStudyState(owner);
+    if (updateUrl && globalThis.history && globalThis.location) {
+      const url = new URL(globalThis.location.href);
+      url.searchParams.set("q", owner);
+      history.replaceState(null, "", url);
+    }
+    this.render();
+    this.shadowRoot?.querySelector(`[role="tab"][data-owner="${owner}"]`)?.focus();
+  }
+
+  _blockedSupportIndex() {
+    const record = this.activeRecord;
+    if (!record) return -1;
+    return record.scaffolds.findIndex((item) => item.supports_move_ref === record.answer?.crux_move_ref);
+  }
+
+  _reasoningRows() {
+    const record = this.activeRecord;
+    if (!record) return [];
+    if (this.state.owner !== "Q23") return record.answer.reasoning_route || [];
+    const p = parseQ23(record);
+    const vx0 = p.speed * Math.cos(p.angleDegrees * Math.PI / 180);
+    const tau = p.mass / p.c;
+    return [
+      { id: "step-1", kind: "REPRESENT", action: `vₓ₀ = ${p.speed} cos ${p.angleDegrees}° = ${round(vx0, 0)} m/s`, sourceMove: record.answer.reasoning_route[1]?.id },
+      { id: "step-2", kind: "CONNECT", action: `m/c = ${p.mass}/${p.c} = ${round(tau, 0)} s`, sourceMove: record.answer.reasoning_route[1]?.id },
+      { id: "step-3", kind: "REPRESENT", action: "m dvₓ/dt = −c vₓ, so vₓ(t) = vₓ₀ exp[−(c/m)t]", sourceMove: record.answer.reasoning_route[0]?.id },
+      { id: "step-4", kind: "CONNECT", action: "Integrate vₓ(t): x(t) = vₓ₀(m/c)[1 − exp(−ct/m)]", sourceMove: record.answer.reasoning_route[1]?.id, crux: true },
+      { id: "step-5", kind: "EXECUTE", action: `At t = ${p.wallTime} s, use the source approximation e = ${p.eBase}.`, sourceMove: record.answer.reasoning_route[2]?.id },
+      { id: "step-6", kind: "TRANSFORM", action: record.answer.reasoning_route[2]?.action || record.answer.reasoning?.[2] || answerLabel(record), sourceMove: record.answer.reasoning_route[2]?.id },
+    ];
+  }
+
+  _dispatchStudy(event) {
+    this.state = transitionStudyState(this.state, event);
+    this.render();
+  }
+
+  _onClick(event) {
+    const button = event.target.closest("button");
+    if (!button) return;
+    const owner = button.dataset.owner;
+    if (owner) { this.select(owner); return; }
+    const action = button.dataset.action;
+    if (!action) return;
+    if (action === "commit") {
+      try { this._dispatchStudy({ type: "COMMIT_ATTEMPT" }); }
+      catch (error) { this._announce(error.code === "GENUINE_ATTEMPT_REQUIRED" ? "Make a prediction before you commit." : error.message); }
+      return;
+    }
+    if (action === "support") {
+      this._dispatchStudy({ type: "REQUEST_SUPPORT", total: this.activeRecord.scaffolds.length, blockedIndex: this._blockedSupportIndex() });
+      return;
+    }
+    if (action === "reasoning") {
+      this._dispatchStudy({ type: "SHOW_REASONING", total: this._reasoningRows().length });
+      return;
+    }
+    if (action === "solution") {
+      this._dispatchStudy({ type: "OPEN_SOLUTION", requiredReasoning: this._reasoningRows().length });
+      return;
+    }
+    if (action === "check") { this._dispatchStudy({ type: "CHECK" }); return; }
+    if (action === "reset") { this._stopAnimation(); this._dispatchStudy({ type: "RESET" }); return; }
+    if (this.state.owner === "Q21") this._q21Action(action);
+    if (this.state.owner === "Q26") this._q26Action(action, button.dataset.angle);
+    if (this.state.owner === "Q23") this._q23Action(action);
+  }
+
+  _onInput(event) {
+    if (event.target.matches("[data-attempt-text]")) {
+      this.state = transitionStudyState(this.state, { type: "SET_ATTEMPT", value: event.target.value });
+      this._syncPhase();
+      return;
+    }
+    if (event.target.matches("[data-time-scrubber]")) {
+      this.state.q23.playing = false;
+      this.state.q23.time = Number(event.target.value);
+      this.render();
+    }
+  }
+
+  _onChange(event) {
+    if (event.target.matches("[data-option]")) {
+      const selected = [...this.shadowRoot.querySelectorAll("[data-option]:checked")].map((input) => input.value);
+      this.state = transitionStudyState(this.state, { type: "SET_ATTEMPT", value: selected });
+      this.render();
+    }
+  }
+
+  _onKeydown(event) {
+    const tab = event.target.closest('[role="tab"]');
+    if (!tab || !["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+    event.preventDefault();
+    const current = ORDER.indexOf(tab.dataset.owner);
+    const next = event.key === "Home" ? 0 : event.key === "End" ? ORDER.length - 1 : (current + (event.key === "ArrowRight" ? 1 : -1) + ORDER.length) % ORDER.length;
+    this.select(ORDER[next]);
+  }
+
+  _syncPhase() {
+    const phase = this.shadowRoot?.querySelector("[data-phase]");
+    if (phase) phase.textContent = this.state.phase.replaceAll("_", " ");
+  }
+
+  _announce(message) {
+    const live = this.shadowRoot?.querySelector("[data-live]");
+    if (live) live.textContent = message;
+  }
+
+  _q21Action(action) {
+    const params = parseQ21(this.activeRecord);
+    if (action === "play") {
+      if (this._reduceMotion) {
+        this.state.q21.time = this.state.q21.time < 1 ? 1 : q21State(99, params.divisor).endTime;
+        this.render();
+      } else {
+        this.state.q21.playing = !this.state.q21.playing;
+        this.render();
+        if (this.state.q21.playing) this._animate("Q21"); else this._stopAnimation();
+      }
+    } else if (action === "apex") {
+      this._stopAnimation(); this.state.q21.time = 1; this.state.q21.playing = false; this.render();
+    } else if (action === "continue") {
+      this.state.q21.time = Math.max(1, this.state.q21.time);
+      if (this._reduceMotion) {
+        this.state.q21.time = q21State(99, params.divisor).endTime; this.render();
+      } else {
+        this.state.q21.playing = true; this.render(); this._animate("Q21");
+      }
+    } else if (action === "vectors") { this.state.q21.vectors = !this.state.q21.vectors; this.render(); }
+    else if (action === "compare") { this.state.q21.compare = !this.state.q21.compare; this.render(); }
+  }
+
+  _q26Action(action, angle) {
+    if (action === "angle" && ["degree0", "degree1", "atan"].includes(angle)) {
+      this.state.q26.angle = angle;
+      if (!this.state.attempted && this.state.phase === "INITIAL") this.state.phase = "ATTEMPTING";
+      this.render();
+    }
+  }
+
+  _q23Action(action) {
+    const p = parseQ23(this.activeRecord);
+    if (action === "play") {
+      if (this._reduceMotion) { this.state.q23.time = p.wallTime; this.render(); }
+      else {
+        this.state.q23.playing = !this.state.q23.playing;
+        this.render();
+        if (this.state.q23.playing) this._animate("Q23"); else this._stopAnimation();
+      }
+    } else if (action === "compare") { this.state.q23.compare = !this.state.q23.compare; this.render(); }
+    else if (action === "vector") { this.state.q23.vector = !this.state.q23.vector; this.render(); }
+  }
+
+  _animate(kind) {
+    this._stopAnimation();
+    this._lastFrame = performance.now();
+    const tick = (now) => {
+      const dt = Math.min(0.05, (now - this._lastFrame) / 1000);
+      this._lastFrame = now;
+      if (kind === "Q21" && this.state.owner === "Q21" && this.state.q21.playing) {
+        const end = q21State(99, parseQ21(this.activeRecord).divisor).endTime;
+        this.state.q21.time = Math.min(end, this.state.q21.time + dt * 0.65);
+        if (this.state.q21.time >= end) this.state.q21.playing = false;
+      } else if (kind === "Q23" && this.state.owner === "Q23" && this.state.q23.playing) {
+        const end = parseQ23(this.activeRecord).wallTime;
+        this.state.q23.time = Math.min(end, this.state.q23.time + dt * 0.85);
+        if (this.state.q23.time >= end) this.state.q23.playing = false;
+      } else return;
+      this.render();
+      if ((kind === "Q21" && this.state.q21.playing) || (kind === "Q23" && this.state.q23.playing)) this._raf = requestAnimationFrame(tick);
+    };
+    this._raf = requestAnimationFrame(tick);
+  }
+
+  _stopAnimation(cancel = true) {
+    if (cancel && this._raf != null) cancelAnimationFrame(this._raf);
+    this._raf = null;
+  }
+
+  _renderTabs() {
+    return `<div class="tabs" role="tablist" aria-label="Projectile-motion sample questions">
+      ${ORDER.map((owner) => `<button type="button" role="tab" data-owner="${owner}" aria-selected="${this.state.owner === owner}" tabindex="${this.state.owner === owner ? 0 : -1}"><span>${owner}</span><small>${owner === "Q21" ? "Apex change" : owner === "Q26" ? "Through P" : "Linear drag"}</small></button>`).join("")}
+    </div>`;
+  }
+
+  _renderIdentity(record) {
+    return `<section class="identity" aria-label="Identity and provenance">
+      <div class="eyebrow"><span class="candidate">Candidate demo</span><span>${esc(record.exam)} ${esc(record.year)} · ${esc(record.paper)} · Q${esc(record.question_number)}</span></div>
+      <p><strong>${this.state.owner}</strong> · <code>${esc(record.id)}</code></p>
+      <p class="muted">Repository-owned adapted wording · Core2A sample interface · not an approved Grade 9 learner assignment</p>
+    </section>`;
+  }
+
+  _renderQuestion(record) {
+    const options = this.state.owner === "Q26"
+      ? `<fieldset class="options"><legend>Try the choices — select all that apply</legend>${record.options.map((option, index) => {
+          const value = String.fromCharCode(65 + index);
+          const checked = Array.isArray(this.state.attempt) && this.state.attempt.includes(value);
+          const reveal = this.state.solutionOpen;
+          const correctSet = new Set((record.answer?.summary?.match(/\b[A-D]\b/g) || []));
+          const correct = correctSet.has(value);
+          return `<label class="option${reveal ? correct ? " correct" : " incorrect" : ""}"><input type="checkbox" data-option value="${value}" ${checked ? "checked" : ""} ${this.state.attempted ? "disabled" : ""}><span>${esc(option)}</span>${reveal ? `<b>${correct ? "Correct" : "Not selected in the canonical answer"}</b>` : ""}</label>`;
+        }).join("")}</fieldset>`
+      : `<label class="answer-entry"><span>${this.state.owner === "Q21" ? "Predict n = d′/d" : "Predict wall distance (m)"}</span><input data-attempt-text inputmode="decimal" autocomplete="off" value="${esc(this.state.attempt)}" ${this.state.attempted ? "disabled" : ""} placeholder="Your prediction"></label>`;
+    return `<section class="question" aria-labelledby="study-question-title"><div class="section-kicker">Question</div><h2 id="study-question-title">${esc(record.stem)}</h2>${options}<div class="attempt-actions"><button type="button" class="primary" data-action="commit" ${this.state.attempted ? "disabled" : ""}>${this.state.attempted ? "Attempt committed" : "Commit answer"}</button><span class="phase" data-phase>${this.state.phase.replaceAll("_", " ")}</span></div><p class="live" data-live aria-live="polite"></p></section>`;
+  }
+
+  _renderSupport(record) {
+    const visible = record.scaffolds.slice(0, this.state.supportIndex);
+    const blocked = !this.state.attempted && this.state.supportIndex === this._blockedSupportIndex();
+    const canReveal = this.state.supportIndex < record.scaffolds.length && !blocked;
+    const supportRows = visible.length ? `<ol class="support-list">${visible.map((item,index)=>`<li><span class="step-num">${index+1}</span><div><b>${esc(item.support_kind)}</b><p>${esc(item.text)}</p></div></li>`).join("")}</ol>` : `<p class="muted">Ask only when you need a nudge. These are repository-authored scaffolds, not source hints.</p>`;
+    return `<section class="support-card"><div class="section-kicker">Optional support</div><h3>Need a hint?</h3>${supportRows}${canReveal ? `<button type="button" data-action="support">Show next support</button>` : blocked ? `<p class="lock-note">Commit your attempt before the next support step. It touches the protected decision.</p>` : `<p class="muted">All available scaffolds are open.</p>`}</section>`;
+  }
+
+  _renderReasoning(record) {
+    if (!this.state.attempted) return `<section class="reasoning-card locked"><div class="section-kicker">Reasoning</div><h3>Protected until you try</h3><p>Commit a genuine prediction first. The decisive move and complete answer are not in the page yet.</p></section>`;
+    const rows = this._reasoningRows();
+    const visible = rows.slice(0, this.state.reasoningIndex);
+    const cruxRef = record.answer.crux_move_ref;
+    return `<section class="reasoning-card"><div class="section-kicker">Reasoning</div><h3>Build the route</h3>${visible.length ? `<ol class="reasoning-list">${visible.map((move,index)=>{const isCrux=this.state.owner==="Q23"?Boolean(move.crux):move.id===cruxRef;return `<li class="${isCrux?"crux":""}"><span class="step-num">${index+1}</span><div>${isCrux?'<strong class="crux-label">Crux</strong>':`<b>${esc(move.kind)}</b>`}<p>${esc(move.action)}</p></div></li>`;}).join("")}</ol>` : `<p class="muted">Your attempt is committed. Reveal one reasoning move at a time.</p>`}${this.state.reasoningIndex < rows.length ? `<button type="button" data-action="reasoning">Why?</button>` : `<button type="button" data-action="solution" ${this.state.solutionOpen ? "disabled" : ""}>${this.state.solutionOpen ? "Solution open" : "Complete solution"}</button>`}</section>`;
+  }
+
+  _renderSolution(record) {
+    if (!this.state.solutionOpen) return "";
+    return `<section class="solution-card"><div class="section-kicker">Complete solution</div><h3>${esc(answerLabel(record))}</h3><ol>${(record.answer.reasoning || []).map((step)=>`<li>${esc(step)}</li>`).join("")}</ol><button type="button" data-action="check" ${this.state.checked ? "disabled" : ""}>${this.state.checked ? "Checked" : "Independent check"}</button>${this.state.checked ? `<div class="check"><h4>Check / repair</h4><p>${esc(record.answer.check)}</p><p><strong>Common wrong route:</strong> ${esc(record.common_wrong_route)}</p><p class="muted">Repair: return to the last revealed representation or scaffold, then rebuild the route from that physical state.</p></div>` : ""}</section>`;
+  }
+
+  render() {
+    if (!this.shadowRoot) return;
+    if (!this._byOwner.size) {
+      this.shadowRoot.innerHTML = `<style>:host{display:block}</style><p role="status">Loading canonical question projection…</p>`;
+      return;
+    }
+    const record = this.activeRecord;
+    let stage = "";
+    if (this.state.owner === "Q21") stage = renderQ21Stage(this, record);
+    if (this.state.owner === "Q26") stage = renderQ26Stage(this, record);
+    if (this.state.owner === "Q23") stage = renderQ23Stage(this, record);
+    this.shadowRoot.innerHTML = `<style>${STUDY_STYLES}</style><div class="study-shell" data-owner="${this.state.owner}" data-phase-root="${this.state.phase}">${this._renderTabs()}${this._renderIdentity(record)}<div class="study-layout"><main class="primary-pane">${this._renderQuestion(record)}${stage}</main><aside class="support-pane" aria-label="Support and reasoning">${this._renderSupport(record)}${this._renderReasoning(record)}${this._renderSolution(record)}</aside></div></div>`;
+  }
+}
+
+
+if (globalThis.customElements && !customElements.get("core2a-projectile-study")) {
+  customElements.define("core2a-projectile-study", Core2AProjectileStudy);
+}
+
+
+
+    // Initialize standalone page
+    (function () {
+      const study = document.getElementById("projectile-study");
+      const configNode = document.getElementById("projectile-study-config");
+      const recordsNode = document.getElementById("canonical-question-records");
+      const config = JSON.parse(configNode.textContent);
+      const records = JSON.parse(recordsNode.textContent);
+
+      study.ownerRefs = config.question_refs;
+      study.records = records;
+
+      // Simple display toggle helper
+      let currentScale = 1.0;
+      const displayBtn = document.getElementById("display-trigger");
+      if (displayBtn) {
+        displayBtn.addEventListener("click", () => {
+          currentScale = currentScale === 1.0 ? 1.15 : currentScale === 1.15 ? 1.25 : 1.0;
+          document.documentElement.style.fontSize = `${16 * currentScale}px`;
+          displayBtn.querySelector("span").textContent = `🔤 Scale: ${Math.round(currentScale * 100)}%`;
+        });
+      }
+      window.__core2aProjectileStudyStandaloneReady = true;
+    })();
+  </script>
+</body>
+</html>

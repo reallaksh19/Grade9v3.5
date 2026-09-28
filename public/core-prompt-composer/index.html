@@ -1,11 +1,17 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../vendor/katex/0.16.8/katex.min.css">
+  <script src="../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../vendor/katex/0.16.8/contrib/auto-render.min.js" onload="window.__katexLoaded=true; if(window.renderAllMath) window.renderAllMath();"></script>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Core Prompt Composer · Grade9V3</title>
   <link rel="stylesheet" href="../css/site.css">
   <link rel="stylesheet" href="../css/core-prompt-composer.css">
+  <link rel="stylesheet" href="../css/tablet-12-7.css">
 </head>
 <body>
   <main class="composer-shell">
@@ -87,11 +93,8 @@
 
         <section>
           <h3>Trace</h3>
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>Question</th><th>Canonical ref</th><th>Capability</th><th>Matrix / rung</th><th>Status</th></tr></thead>
-              <tbody id="traceBody"><tr><td colspan="5">No trace yet.</td></tr></tbody>
-            </table>
+          <div id="traceBody" class="trace-deck">
+            <div class="empty-trace">No trace yet.</div>
           </div>
         </section>
 

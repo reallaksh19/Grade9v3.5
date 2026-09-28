@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "registry_version": "1.0.0",
+  "registry_version": "1.1.0",
   "shell": {
     "id": "G9-TABLET-SHELL-V1",
     "fixed_header": true,
@@ -18,7 +18,34 @@
       "COMPACT",
       "MEDIUM",
       "EXPANDED"
-    ]
+    ],
+    "typography_policy": {
+      "base_text_css_px": 17,
+      "minimum_learner_text_css_px": 14,
+      "exception_policy": "EXPLICIT_NON_LEARNER_METADATA_ONLY"
+    },
+    "math_policy": {
+      "static_relation_format": "RESTRICTED_PRESENTATION_MATHML",
+      "dynamic_question_format": "TYPED_TEX_SEGMENTS",
+      "dynamic_renderer": "LOCAL_KATEX",
+      "runtime_text_inference": "FORBIDDEN"
+    },
+    "representation_accessibility_policy": {
+      "instructional_visual_requires_accessible_name": true,
+      "instructional_visual_requires_description": true,
+      "color_only_meaning": "FORBIDDEN"
+    },
+    "data_representation_policy": {
+      "comparative_relations": "TABLE_OR_MATRIX_ALLOWED",
+      "independent_facts": "CARDS_OR_TILES_ALLOWED",
+      "tag_count_as_quality_metric": "FORBIDDEN"
+    },
+    "vendor_policy": {
+      "pages_external_runtime": "FORBIDDEN",
+      "publication_rewrite": "BUILD_PIPELINE",
+      "unknown_runtime_dependency": "FAIL_CLOSED"
+    },
+    "version": "1.1.0"
   },
   "blueprints": [
     {

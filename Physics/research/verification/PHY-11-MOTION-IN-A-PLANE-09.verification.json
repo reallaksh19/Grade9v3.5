@@ -1,0 +1,72 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Physics",
+  "node_ref": "PHY-11-MOTION-IN-A-PLANE-09",
+  "verified_by": "agent-verifier-4",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:6038041900d6189ff0aa7364518ae66df4a084a6f30f9515c5ca9f3efe87dcb3",
+  "questions": [
+    {
+      "card_ref": "EV-PHY-11-MIP-09-009",
+      "independent_solution": [
+        "Uniform circular motion with R = 0.80 m; frequency 14/25 = 0.56 rev/s, so omega = 2 pi x 0.56 = 3.519 rad/s.",
+        "a_c = omega^2 R = 12.38 x 0.80 = 9.91 m/s^2, directed along the radius towards the centre at every point (constant speed, so there is no tangential part)."
+      ],
+      "independent_answer": "9.9 m/s^2, towards the centre along the radius",
+      "official_answer": "9.9 m s-2, along the radius at every point towards the centre.",
+      "agrees": true,
+      "numeric_check": "(2*pi*14/25)**2*0.80"
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-09-011",
+      "independent_solution": [
+        "v = 900 km/h = 900000/3600 = 250 m/s; R = 1000 m.",
+        "a_c = v^2/R = 62500/1000 = 62.5 m/s^2; a_c/g = 62.5/9.8 = 6.38, about 6.4 g."
+      ],
+      "independent_answer": "a_c = 62.5 m/s^2, about 6.4 g",
+      "official_answer": "6.4 g",
+      "agrees": true,
+      "numeric_check": "(900/3.6)**2/1000/9.8"
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-09-013",
+      "independent_solution": [
+        "(a) If the speed changes there is a tangential acceleration dv/dt besides the radial v^2/R, so the net acceleration is not purely radial: False (true only for uniform circular motion).",
+        "(b) Instantaneous velocity is the limit of displacement/time, whose direction tends to the tangent: True.",
+        "(c) Over one full cycle of uniform circular motion the final velocity equals the initial velocity, so delta v = 0 and the average acceleration delta v/T is the null vector: True."
+      ],
+      "independent_answer": "(a) False, (b) True, (c) True",
+      "official_answer": "(a) False (true only for uniform circular motion) (b) True, (c) True.",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-09-015",
+      "independent_solution": [
+        "(a) Uniform circular motion means constant speed: correct. (b) Velocity is tangent to the circle, hence perpendicular to the radius vector: correct. (c) Acceleration always points to the centre, so its direction rotates with the particle: correct.",
+        "(d) Angular momentum about the centre, m r v, is perpendicular to the plane of motion and constant in both magnitude and direction, so (d) is wrong. Answer: (a), (b), (c)."
+      ],
+      "independent_answer": "(a), (b), (c)",
+      "official_answer": "(a), (b), (c)",
+      "agrees": true
+    }
+  ],
+  "records": [
+    {"record_ref": "CAP-PHY-MIP-09", "checked_fields": ["action", "success_criterion"], "agrees": true},
+    {"record_ref": "MIC-PHY-MIP-09", "checked_fields": ["title", "entry_assumptions", "inferential_jump", "teaching_path", "misconceptions", "exit_task"], "agrees": true},
+    {"record_ref": "REL-PHY-MIP-09-CENTRIPETAL", "checked_fields": ["expression", "meaning", "conditions", "derivation", "limits", "checks"], "agrees": true},
+    {"record_ref": "REL-PHY-MIP-09-ANGULAR-SPEED", "checked_fields": ["expression", "meaning", "conditions", "derivation", "limits", "checks"], "agrees": true},
+    {"record_ref": "REP-PHY-MIP-09-TURNING-VELOCITY", "checked_fields": ["purpose", "instance_constraints", "misleading_alternatives"], "agrees": true},
+    {"record_ref": "FAM-PHY-MIP-09", "checked_fields": ["solution_structure", "demand_dimensions", "transfer_boundaries", "common_wrong_routes"], "agrees": true},
+    {"record_ref": "Q-PHY-MIP-09-NCERT-3-14", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds"], "agrees": true},
+    {"record_ref": "Q-PHY-MIP-09-NCERT-3-15", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds"], "agrees": true},
+    {"record_ref": "Q-PHY-MIP-09-NCERT-3-16", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds"], "agrees": true},
+    {"record_ref": "Q-PHY-MIP-09-EXEMPLAR-4-14", "checked_fields": ["stem", "options", "conditions", "answer", "answer.reasoning_route", "scaffolds"], "agrees": true}
+  ],
+  "findings": [
+    {
+      "target": "EV-PHY-11-MIP-09-017",
+      "duty_for": "RESEARCHER",
+      "detail": "The new scanned DIAGRAM card, Figure 4.57 (a car on a banked road with friction), is outside this node's scope and says more than its quote. (1) Scope: banking with friction is a force (Newton's laws) problem, which CBSE Class 11 teaches in Laws of Motion, not in the kinematic 'Uniform circular motion' microtopic of Motion in a Plane. Move it to the matching dynamics node or drop it. (2) Quote support: the quote says only that friction acts up the incline when the car is at rest and that the forces are resolved horizontally and vertically. The claim adds the horizontal balance N sin(theta) - f cos(theta) = 0 and a case (b) with mv^2/r, and the equation field N sin(theta) - f cos(theta) = mv^2/r is not in the quote. (3) Physics: that equation holds only while friction acts up the slope, that is below the no-friction speed sqrt(r g tan(theta)). Above that speed friction acts down the slope and the equation is N sin(theta) + f cos(theta) = mv^2/r. The card states neither which case nor the friction direction in (b). (4) The card carries an equation but has no scan_check second reading, and the verifier cannot open the local OCR text to confirm it. The node's records do not cite this card and are correct as written."
+    }
+  ]
+}

@@ -76,7 +76,8 @@ class Renderer(unittest.TestCase):
         m = json.loads(manifest_file(self.tmp).read_text(encoding="utf-8"))
         pkg = json.loads((REPO / PKG).read_text(encoding="utf-8"))
         svg = self.tmp / "rep.svg"
-        svg.write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><title>t</title>'
+        svg.write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" role="img" aria-labelledby="t d">'
+                       '<title id="t">t</title><desc id="d">Accessible teaching figure.</desc>'
                        '<g data-g9-stage-id="S1"></g><g data-g9-stage-id="S2"></g></svg>', encoding="utf-8")
         rep = next(r for r in pkg["representations"] if r["id"] == "REP-KIN-2D-SHARED-CLOCK")
         rep["rendered_asset_refs"] = [str(svg.relative_to(REPO)) if svg.is_relative_to(REPO) else str(svg)]
@@ -96,6 +97,133 @@ class Renderer(unittest.TestCase):
         self.assertIn('data-g9-representation="REP-KIN-2D-SHARED-CLOCK"', html)
         self.assertIn('data-g9-stages="S1 S2"', html)
         self.assertNotIn("REP-KIN-2D-SHARED-CLOCK", [g["record"] for g in ctx.gaps if g["duty"] == "BUILD_SCENE"])
+
+
+    def test_renderer_owns_tablet_asset_and_blueprint_digest(self):
+        pkg = json.loads((REPO / PKG).read_text(encoding="utf-8"))
+        pkg["representations"][0]["rendered_asset_refs"] = ["Physics/assets/representations/REP-KIN-2D-SHARED-CLOCK.svg"]
+        pkg_path = self.tmp / "pkg-with-asset.json"
+        pkg_path.write_text(json.dumps(pkg), encoding="utf-8")
+        ctx = render_core.context(manifest_file(self.tmp, package_refs=[str(pkg_path)]))
+        digest_before = render_core.render_digest(ctx)
+        html = render_core.page(ctx, "CORE1", "PAGES", digest_before)
+        self.assertIn('../../css/tablet-12-7.css', html)
+        self.assertNotIn('cdn.jsdelivr.net', html)
+        self.assertNotIn('vendor/katex/', html)
+
+        labels = [label for label, _digest in ctx.authority_hashes]
+        self.assertIn("renderer-source", labels)
+        self.assertIn("blueprints", labels)
+        self.assertIn("tablet-css", labels)
+        self.assertTrue(any(label.startswith("bank:") for label in labels))
+        self.assertTrue(any(label.startswith("asset:") for label in labels))
+
+        changed = copy.deepcopy(ctx)
+        changed.authority_hashes = list(ctx.authority_hashes)
+        label, old_hash = changed.authority_hashes[-2]
+        changed.authority_hashes[-2] = (label, ("0" if old_hash[0] != "0" else "1") + old_hash[1:])
+        self.assertNotEqual(digest_before, render_core.render_digest(changed))
+
+        changed_bank = copy.deepcopy(ctx)
+        changed_bank.authority_hashes = list(ctx.authority_hashes)
+        bank_index = next(i for i, (label, _digest) in enumerate(changed_bank.authority_hashes) if label.startswith("bank:"))
+        label, old_hash = changed_bank.authority_hashes[bank_index]
+        changed_bank.authority_hashes[bank_index] = (label, ("0" if old_hash[0] != "0" else "1") + old_hash[1:])
+        self.assertNotEqual(digest_before, render_core.render_digest(changed_bank))
+
+
+    def test_repeated_svg_instances_are_id_scoped_with_local_aria_references(self):
+        source = (
+            '<svg xmlns="http://www.w3.org/2000/svg" aria-labelledby="t d">'
+            '<title id="t">Title</title><desc id="d">Desc</desc>'
+            '<defs><marker id="arrow"></marker></defs>'
+            '<path id="p" marker-end="url(#arrow)"></path></svg>'
+        )
+        a = render_core._scope_svg_ids(source, "scope-a")
+        b = render_core._scope_svg_ids(source, "scope-b")
+        self.assertNotEqual(set(re.findall(r'(?<![-:\w])id="([^"]+)"', a)), set(re.findall(r'(?<![-:\w])id="([^"]+)"', b)))
+        self.assertIn('aria-labelledby="scope-a--t scope-a--d"', a)
+        self.assertIn('url(#scope-a--arrow)', a)
+        self.assertNotIn('id="t"', a)
+
+    def test_authored_svg_without_accessible_name_and_description_is_a_typed_gap(self):
+        m = json.loads(manifest_file(self.tmp).read_text(encoding="utf-8"))
+        pkg = json.loads((REPO / PKG).read_text(encoding="utf-8"))
+        svg = self.tmp / "rep-inaccessible.svg"
+        svg.write_text(
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10">'
+            '<g data-g9-stage-id="S1"></g><g data-g9-stage-id="S2"></g></svg>',
+            encoding="utf-8",
+        )
+        rep = next(r for r in pkg["representations"] if r["id"] == "REP-KIN-2D-SHARED-CLOCK")
+        rep["rendered_asset_refs"] = ["rep-inaccessible.svg"]
+        original = render_core.asset_svg
+        render_core.asset_svg = lambda ref: svg.read_text(encoding="utf-8")
+        try:
+            path = self.tmp / "m-accessible.json"
+            m["package_refs"] = [str(self.tmp / "pkg-accessible.json")]
+            (self.tmp / "pkg-accessible.json").write_text(json.dumps(pkg), encoding="utf-8")
+            path.write_text(json.dumps(m), encoding="utf-8")
+            ctx = render_core.context(path)
+            ctx.packages = [pkg]
+            html = render_core.page(ctx, "CORE1A", "PAGES", "d")
+        finally:
+            render_core.asset_svg = original
+        self.assertNotIn('data-g9-representation="REP-KIN-2D-SHARED-CLOCK"', html)
+        self.assertTrue(any(g["duty"] == "BUILD_SCENE" and "accessible name" in g["detail"] for g in ctx.gaps))
+
+
+    def test_relation_mathml_is_rendered_only_from_the_restricted_schema_field(self):
+        ctx = render_core.context(manifest_file(self.tmp))
+        relation = ctx.packages[0]["relations"][0]
+        relation["mathml"] = (
+            '<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">'
+            '<mrow><mi>x</mi><mo>=</mo><mn>1</mn></mrow></math>'
+        )
+        out = render_core._relation_expression(ctx, relation, "M")
+        self.assertIn('data-g9-math="mathml"', out)
+        self.assertIn("<math", out)
+        self.assertNotIn("&lt;math", out)
+
+    def test_unsafe_relation_mathml_fails_to_plain_expression_and_records_gap(self):
+        ctx = render_core.context(manifest_file(self.tmp))
+        relation = ctx.packages[0]["relations"][0]
+        relation["mathml"] = (
+            '<math xmlns="http://www.w3.org/1998/Math/MathML">'
+            '<script>alert(1)</script></math>'
+        )
+        out = render_core._relation_expression(ctx, relation, "M")
+        self.assertIn("g9-expr", out)
+        self.assertTrue(any(g["duty"] == "AUTHOR_GOVERNING_RELATION" and g["record"] == relation["id"]
+                            for g in ctx.gaps))
+
+
+    def test_single_file_inlines_tablet_shell_and_uses_role_anchors(self):
+        pages, gaps, digest = render_core.build(manifest_file(self.tmp), mode="SINGLE_FILE")
+        self.assertTrue(gaps)
+        self.assertEqual(set(pages), {"product.html"})
+        html = pages["product.html"]
+        self.assertIn('data-g9-mode="SINGLE_FILE"', html)
+        self.assertIn('data-g9-tablet-shell', html)
+        self.assertNotIn('href="../../css/tablet-12-7.css"', html)
+        for role in render_core.ROLES:
+            self.assertIn(f'id="g9-role-{role}"', html)
+            self.assertIn(f'href="#g9-role-{role}"', html)
+        self.assertNotIn('href="core2a.html"', html)
+        ids = re.findall(r'(?<![-:\w])id="([^"]+)"', html)
+        self.assertEqual(len(ids), len(set(ids)), "SINGLE_FILE output must not duplicate document ids")
+        self.assertNotRegex(html, r'href="core\w+\.html#')
+
+    def test_render_receipt_manifest_path_is_repository_relative(self):
+        out = self.tmp / "receipt"
+        path = manifest_file(self.tmp)
+        # Temp manifests cannot be repo-relative, but repository manifests must be.
+        repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        if repo_manifest.is_file():
+            rc = render_core.main(["build", "--manifest", str(repo_manifest), "--out", str(out), "--draft"])
+            self.assertEqual(rc, 0)
+            receipt = json.loads((out / "render-receipt.json").read_text(encoding="utf-8"))
+            self.assertEqual(receipt["manifest"], "products/physics/phy-kin-2d-motion.manifest.json")
 
 
 class Manifest(unittest.TestCase):

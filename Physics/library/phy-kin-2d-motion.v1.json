@@ -324,7 +324,7 @@
                   "ordered-pair state"
                 ],
                 "relation": "same-time x and y samples reconstruct exactly one simultaneous particle state",
-                "tolerance": 1e-09,
+                "tolerance": 1e-9,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -651,7 +651,7 @@
                   "y-component evaluation"
                 ],
                 "relation": "the event marker and every component evaluation use the same solved event time",
-                "tolerance": 1e-09,
+                "tolerance": 1e-9,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -978,7 +978,7 @@
                   "component-acceleration readout"
                 ],
                 "relation": "the rendered projectile state equals the component reconstruction at one shared time",
-                "tolerance": 1e-09,
+                "tolerance": 1e-9,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -1307,7 +1307,7 @@
                   "speed readout"
                 ],
                 "relation": "at the apex v_y = 0 while a_y remains -g in the governed gravity model",
-                "tolerance": 1e-09,
+                "tolerance": 1e-9,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -1635,7 +1635,7 @@
                   "speed comparison"
                 ],
                 "relation": "under the same no-drag gravity model, equal-height ascent and descent states have equal speed magnitude",
-                "tolerance": 1e-09,
+                "tolerance": 1e-9,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -1966,7 +1966,7 @@
                   "horizontal range"
                 ],
                 "relation": "the impact marker lies on the landing surface and horizontal range equals x evaluated at the solved event time",
-                "tolerance": 1e-09,
+                "tolerance": 1e-9,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -2958,7 +2958,8 @@
         "Units match velocity on both equations.",
         "If a_x=0 then v_x stays constant; likewise for y."
       ],
-      "gate_relation_ref": "REL-KIN-2D-VELOCITY"
+      "gate_relation_ref": "REL-KIN-2D-VELOCITY",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>v</mi><mi>x</mi></msub><mo>=</mo><msub><mi>u</mi><mi>x</mi></msub><mo>+</mo><msub><mi>a</mi><mi>x</mi></msub><mi>t</mi><mo>;</mo><msub><mi>v</mi><mi>y</mi></msub><mo>=</mo><msub><mi>u</mi><mi>y</mi></msub><mo>+</mo><msub><mi>a</mi><mi>y</mi></msub><mi>t</mi></mrow></math>"
     },
     {
       "id": "REL-KIN-2D-DISPLACEMENT",
@@ -3050,7 +3051,8 @@
         "Every term has length units.",
         "Setting one acceleration component to zero reduces that axis to uniform motion."
       ],
-      "gate_relation_ref": "REL-KIN-2D-DISPLACEMENT"
+      "gate_relation_ref": "REL-KIN-2D-DISPLACEMENT",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>Δ</mi><mi>x</mi><mo>=</mo><msub><mi>u</mi><mi>x</mi></msub><mi>t</mi><mo>+</mo><mn>0.5</mn><msub><mi>a</mi><mi>x</mi></msub><msup><mi>t</mi><mn>2</mn></msup><mo>;</mo><mi>Δ</mi><mi>y</mi><mo>=</mo><msub><mi>u</mi><mi>y</mi></msub><mi>t</mi><mo>+</mo><mn>0.5</mn><msub><mi>a</mi><mi>y</mi></msub><msup><mi>t</mi><mn>2</mn></msup></mrow></math>"
     },
     {
       "id": "REL-PROJECTILE-COMPONENT-MODEL",
@@ -3158,7 +3160,8 @@
         "At the highest point of an oblique trajectory, v_y=0 but a_y remains -g.",
         "Both component equations use the same t."
       ],
-      "gate_relation_ref": "REL-PROJECTILE-COMPONENT-MODEL"
+      "gate_relation_ref": "REL-PROJECTILE-COMPONENT-MODEL",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>a</mi><mi>x</mi></msub><mo>=</mo><mn>0</mn><mo>;</mo><msub><mi>a</mi><mi>y</mi></msub><mo>=</mo><mo>−</mo><mi>g</mi><mo>;</mo><msub><mi>v</mi><mi>x</mi></msub><mo>=</mo><msub><mi>u</mi><mi>x</mi></msub><mo>;</mo><msub><mi>v</mi><mi>y</mi></msub><mo>=</mo><msub><mi>u</mi><mi>y</mi></msub><mo>−</mo><mi>g</mi><mi>t</mi><mo>;</mo><mi>Δ</mi><mi>x</mi><mo>=</mo><msub><mi>u</mi><mi>x</mi></msub><mi>t</mi><mo>;</mo><mi>Δ</mi><mi>y</mi><mo>=</mo><msub><mi>u</mi><mi>y</mi></msub><mi>t</mi><mo>−</mo><mn>0.5</mn><mi>g</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></math>"
     }
   ],
   "representations": [

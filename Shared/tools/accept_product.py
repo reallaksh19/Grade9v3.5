@@ -19,7 +19,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
 
-from Shared.tools import build_pages_site  # noqa: E402
+from Shared.tools import build_pages_site, render_core  # noqa: E402
 
 
 def _json(path: Path) -> dict:
@@ -45,7 +45,7 @@ def verify_render(folder: Path) -> dict:
     for name in sorted(pages):
         if Path(name).name != name:
             raise ValueError("unsafe page name")
-        page = (folder / name).read_text(encoding="utf-8")
+        page = (folder / name).read_bytes().decode("utf-8")
         stamp = f'<meta name="g9-render" content="{receipt["renderer"]} {digest}">'
         if page.count(stamp) != 1:
             raise ValueError(f"{name}: missing or repeated digest stamp")
@@ -100,6 +100,22 @@ def accept(slug: str, note: str = "", accept_open: str = "", repo: Path = REPO,
     subject = manifest["subject"].lower()
     folder = repo / "publication" / "products" / subject / slug
     receipt = verify_render(folder)
+    standalone_stage = repo / "publication" / "standalone" / "products" / subject / f"{slug}.html"
+    standalone_dest = repo / "standalone" / "products" / subject / f"{slug}.html"
+    if not standalone_stage.is_file() and standalone_dest.exists():
+        raise ValueError("a published standalone page exists; rebuild both modes before Owner acceptance")
+    standalone_bytes = None
+    standalone_render_digest = None
+    if standalone_stage.is_file():
+        standalone_receipt = _json(standalone_stage.with_suffix(".receipt.json"))
+        single_pages, _single_gaps, single_digest = render_core.build(manifests[0], mode="SINGLE_FILE")
+        standalone_bytes = standalone_stage.read_bytes()
+        standalone_render_digest = single_digest
+        if (standalone_receipt.get("pages_digest") != receipt["digest"]
+                or standalone_receipt.get("render_digest") != single_digest
+                or standalone_receipt.get("sha256") != _sha(standalone_bytes)
+                or standalone_bytes != single_pages["product.html"].encode("utf-8")):
+            raise ValueError("staged standalone page no longer matches this exact render")
     review_path = repo / "products" / "verification" / f"{slug}.review.json"
     review = _json(review_path) if review_path.is_file() else {}
     findings = open_findings(review)
@@ -109,6 +125,7 @@ def accept(slug: str, note: str = "", accept_open: str = "", repo: Path = REPO,
     print(f"Open S0/S1: {[f.get('id', f.get('record', '?')) for f in findings]}")
     print(f"Reviewer: {review.get('reviewer', review.get('verifier', 'UNRECORDED'))}; authors: {authors}")
     print(f"Fact status: {len(unknown)} cited records not yet classified by WP4 (shown conservatively as unverified)")
+    print(f"Standalone: {'STAGED_FOR_THIS_RENDER' if standalone_bytes is not None else 'NOT_STAGED'}")
     if findings or unknown:
         if confirm("Owner acceptance with open/unknown findings? [y/N] ").strip().lower() != "y":
             raise ValueError("Owner did not accept this exact render")
@@ -121,6 +138,8 @@ def accept(slug: str, note: str = "", accept_open: str = "", repo: Path = REPO,
         "accepted_open_findings": sorted((set(accept_open.split(",")) - {""}) |
                                          {f.get("id", f.get("record", "?")) for f in findings}),
         "unverified_fact_records": unknown, "note": note,
+        "standalone_sha256": _sha(standalone_bytes) if standalone_bytes is not None else None,
+        "standalone_render_digest": standalone_render_digest,
     }
     # Stage first, then replace the public directory. Check its bytes again before
     # recording publication; PDFs are print artifacts, not public learner pages.
@@ -147,6 +166,18 @@ def accept(slug: str, note: str = "", accept_open: str = "", repo: Path = REPO,
     finally:
         if staged.exists():
             shutil.rmtree(staged)
+    if standalone_bytes is not None:
+        standalone_dest.parent.mkdir(parents=True, exist_ok=True)
+        with tempfile.NamedTemporaryFile(prefix=f".{slug}-", suffix=".html", dir=standalone_dest.parent,
+                                         delete=False) as staged_file:
+            staged_file.write(standalone_bytes)
+            staged_path = Path(staged_file.name)
+        try:
+            staged_path.replace(standalone_dest)
+        finally:
+            staged_path.unlink(missing_ok=True)
+        if _sha(standalone_dest.read_bytes()) != accepted["standalone_sha256"]:
+            raise RuntimeError("standalone copy differs from the accepted render")
     acceptance = repo / "products" / "acceptance" / f"{slug}.json"
     acceptance.parent.mkdir(parents=True, exist_ok=True)
     acceptance.write_text(json.dumps(accepted, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

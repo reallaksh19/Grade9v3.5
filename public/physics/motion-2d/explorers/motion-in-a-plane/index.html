@@ -1,0 +1,1239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- KaTeX for crisp mathematical typography (Local with CDN fallback) -->
+  <link rel="stylesheet" href="../../../../vendor/katex/0.16.8/katex.min.css">
+  <script src="../../../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../../../vendor/katex/0.16.8/contrib/auto-render.min.js" onload="window.__katexLoaded=true; if(window.renderAllMath) { window.renderAllMath(); }"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Motion in a Plane · Interactive Research Suite</title>
+  <style>
+    :root {
+      color-scheme: dark light;
+      --bg: #0f141c;
+      --surface: #171f2c;
+      --card: #1f293b;
+      --border: #2e3d56;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-hover: #0ea5e9;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
+      --font-scale: 1;
+      --shell-height: 56px;
+    }
+
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --card: #f1f5f9;
+      --border: #cbd5e1;
+      --text: #0f172a;
+      --muted: #64748b;
+      --accent: #0284c7;
+      --accent-hover: #0369a1;
+      --success: #059669;
+      --warning: #d97706;
+      --danger: #dc2626;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      font-size: calc(15px * var(--font-scale));
+      line-height: 1.5;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Sticky Tablet Shell Navigation */
+    header.g9-shell {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: var(--shell-height);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      gap: 12px;
+    }
+
+    .g9-nav-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .g9-btn {
+      min-height: 44px;
+      min-width: 44px;
+      padding: 8px 14px;
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .g9-btn:hover {
+      background: var(--border);
+    }
+
+    .g9-btn.primary {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+
+    .g9-breadcrumb {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .g9-breadcrumb a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1240px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px 16px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    /* Tabs */
+    .tab-bar {
+      display: flex;
+      gap: 8px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 8px;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      padding: 10px 18px;
+      min-height: 44px;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .tab-btn.active {
+      color: var(--accent);
+      background: var(--card);
+      border-bottom: 3px solid var(--accent);
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Stage Layout (Tablet 0.65 / 0.35 Split) */
+    .stage-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 920px) {
+      .stage-grid {
+        grid-template-columns: 1.8fr 1fr;
+        align-items: start;
+      }
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .canvas-wrap {
+      background: #000;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Telemetry & Controls */
+    .control-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .control-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .control-label span.val {
+      color: var(--accent);
+      font-family: ui-monospace, monospace;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 44px; /* touch target */
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .telemetry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+    }
+
+    .telemetry-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .telemetry-title {
+      font-size: 13.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+    }
+
+    .telemetry-value {
+      font-family: ui-monospace, monospace;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* Core Role Sections */
+    section.core-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .core-tag {
+      align-self: flex-start;
+      font-size: 13.5px;
+      font-family: ui-monospace, monospace;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--accent);
+    }
+
+    h2 { font-size: 20px; font-weight: 700; }
+    h3 { font-size: 16px; font-weight: 600; }
+
+    .formula-banner {
+      background: var(--card);
+      border-left: 4px solid var(--accent);
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      font-family: ui-monospace, monospace;
+      font-size: 15px;
+    }
+
+    .misconception {
+      background: rgba(251, 191, 36, 0.1);
+      border-left: 4px solid var(--warning);
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      font-size: 14px;
+    }
+
+    /* Attempt & Reveal Gating */
+    .attempt-box {
+      background: var(--card);
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    textarea.attempt-input {
+      width: 100%;
+      min-height: 80px;
+      padding: 10px;
+      background: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 14px;
+      resize: vertical;
+    }
+
+    details.reveal-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+    }
+
+    details.reveal-block summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--accent);
+      user-select: none;
+    }
+
+    details.reveal-block summary:focus {
+      outline: 2px solid var(--accent);
+    }
+
+    details.reveal-block[open] {
+      border-color: var(--accent);
+    }
+
+    .reveal-content {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Citation Badge */
+    .evidence-citation {
+      font-size: 14px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .evidence-citation code {
+      background: var(--card);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--accent);
+    }
+
+    /* Mathematical Typography Styling */
+    .formula-banner {
+      font-family: "KaTeX_Math", "Cambria Math", "Latin Modern Math", "STIX Two Math", Georgia, serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.02em;
+    }
+    .math-inline, .math-display {
+      font-family: "KaTeX_Math", "Cambria Math", "Latin Modern Math", "STIX Two Math", Georgia, serif;
+    }
+    .math-display {
+      display: block;
+      text-align: center;
+      margin: 8px 0;
+      font-size: 1.15em;
+    }
+    .math-frac {
+      display: inline-flex;
+      flex-direction: column;
+      vertical-align: -0.55em;
+      padding: 0 0.25em;
+      text-align: center;
+      font-size: 0.88em;
+      line-height: 1.1;
+      font-style: normal;
+    }
+    .math-num {
+      border-bottom: 1.5px solid currentColor;
+      padding-bottom: 1px;
+    }
+    .math-denom {
+      padding-top: 1px;
+    }
+    .math-sqrt-wrap {
+      display: inline-flex;
+      align-items: center;
+      font-style: normal;
+    }
+    .math-sqrt {
+      border-top: 1.5px solid currentColor;
+      padding-top: 1px;
+      margin-left: 1px;
+      padding-left: 2px;
+      padding-right: 2px;
+      font-style: normal;
+    }
+  </style>
+  <link rel="stylesheet" href="../../../../css/tablet-12-7.css">
+</head>
+<body data-theme="dark">
+
+  <!-- Tablet Shell Sticky Header -->
+  <header class="g9-shell" role="banner">
+    <div class="g9-nav-group">
+      <a href="../../../../index.html" class="g9-btn" title="Back to Portal" aria-label="Portal Home">← Portal</a>
+      <div class="g9-breadcrumb">
+        <a href="../../../index.html">Physics</a> /
+        <span>Motion in a Plane</span>
+      </div>
+    </div>
+    <div class="g9-nav-group">
+      <button class="g9-btn" id="themeToggle" aria-label="Toggle Light/Dark Theme" title="Toggle Theme">🌓</button>
+      <button class="g9-btn" id="fontInc" aria-label="Increase Font Size" title="Font Size +">A+</button>
+      <button class="g9-btn" id="fontDec" aria-label="Decrease Font Size" title="Font Size -">A-</button>
+      <button class="g9-btn" id="fullscreenToggle" aria-label="Toggle Fullscreen" title="Fullscreen">⛶</button>
+    </div>
+  </header>
+
+  <main>
+    <div>
+      <h1 style="font-size: 26px; margin-bottom: 6px;">Motion in a Plane · Interactive Research Suite</h1>
+      <p style="color: var(--muted);">Direct conversion of scanned experimental diagrams, vector resolutions, and force dynamics into interactive simulation environments.</p>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="tab-bar" aria-label="Physics Units">
+      <button class="tab-btn active" data-tab="tab-projectile">Unit 1: Ground-to-Ground Projectile</button>
+      <button class="tab-btn" data-tab="tab-banking">Unit 2: Banked Curve with Friction</button>
+      <button class="tab-btn" data-tab="tab-practice">Unit 3: Active Reconstruction & Practice</button>
+    </nav>
+
+    <!-- ========================================== -->
+    <!-- TAB 1: PROJECTILE MOTION SIMULATOR         -->
+    <!-- ========================================== -->
+    <div class="tab-pane active" id="tab-projectile">
+      
+      <!-- CORE1: Orientation -->
+      <section class="core-block" data-core="CORE1">
+        <span class="core-tag">CORE1 · ORIENTATION</span>
+        <h2>Governing Idea & Orthogonal Independence</h2>
+        <p>A projectile launched from origin $O(0,0)$ with velocity $u$ at angle $\theta$ moves simultaneously along two mutually perpendicular, independent axes. Because gravity acts purely downward, horizontal acceleration is zero while vertical acceleration is constant:</p>
+        <div class="formula-banner">
+          $$u_x = u \cos\theta, \quad a_x = 0 \qquad\text{and}\qquad u_y = u \sin\theta, \quad a_y = -g$$
+        </div>
+        <div class="evidence-citation">
+          Cited from scanned book <code>p1.pdf</code> p. 88 · Evidence Card: <code>EV-PHY-11-MIP-08-021</code>
+        </div>
+      </section>
+
+      <!-- Stage Grid: Simulation & Controls -->
+      <div class="stage-grid">
+        <div class="panel">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3>Interactive Parabolic Trajectory</h3>
+            <span style="font-size: 14px; color:var(--muted);">Parabola: y = x\tan\theta - \frac{gx^2}{2u^2\cos^2\theta}</span>
+          </div>
+          <div class="canvas-wrap">
+            <canvas id="projectileCanvas"></canvas>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button class="g9-btn primary" id="projLaunchBtn">🚀 Launch Simulation</button>
+            <button class="g9-btn" id="projResetBtn">↺ Reset</button>
+            <button class="g9-btn" id="projCompBtn" title="Test Complementary Angle (90 - θ)">⇄ Switch Angle (90° - θ)</button>
+          </div>
+        </div>
+
+        <!-- Telemetry & Parameters -->
+        <div class="panel">
+          <h3>Parameters & Controls</h3>
+          
+          <div class="control-row">
+            <div class="control-label">
+              <span>Launch Velocity (u)</span>
+              <span class="val" id="valU">20 m/s</span>
+            </div>
+            <input type="range" id="sliderU" min="5" max="50" value="20" step="1" aria-label="Launch Velocity">
+          </div>
+
+          <div class="control-row">
+            <div class="control-label">
+              <span>Launch Angle (θ)</span>
+              <span class="val" id="valTheta">45°</span>
+            </div>
+            <input type="range" id="sliderTheta" min="5" max="85" value="45" step="1" aria-label="Launch Angle">
+          </div>
+
+          <div class="control-row">
+            <div class="control-label">
+              <span>Gravity (g)</span>
+              <span class="val" id="valG">9.8 m/s²</span>
+            </div>
+            <input type="range" id="sliderG" min="5" max="15" value="9.8" step="0.2" aria-label="Gravity">
+          </div>
+
+          <hr style="border:0; border-top:1px solid var(--border); margin:6px 0;">
+
+          <h3>Live Telemetry (Calculated)</h3>
+          <div class="telemetry-grid">
+            <div class="telemetry-card">
+              <span class="telemetry-title">Time of Flight (T)</span>
+              <span class="telemetry-value" id="telemT">2.89 s</span>
+            </div>
+            <div class="telemetry-card">
+              <span class="telemetry-title">Max Height (H)</span>
+              <span class="telemetry-value" id="telemH">10.20 m</span>
+            </div>
+            <div class="telemetry-card">
+              <span class="telemetry-title">Horizontal Range (R)</span>
+              <span class="telemetry-value" id="telemR">40.82 m</span>
+            </div>
+            <div class="telemetry-card">
+              <span class="telemetry-title">Horizontal Speed (u_x)</span>
+              <span class="telemetry-value" id="telemUx">14.14 m/s</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CORE1A: Detailed Teaching & Worked Example -->
+      <section class="core-block" data-core="CORE1A">
+        <span class="core-tag">CORE1A · DETAILED TEACHING</span>
+        <h2>Scanned Illustration 1 Walkthrough</h2>
+        <p><strong>Problem Stem (scanned p. 90):</strong> <em>Assume that a ball is thrown from a field at a speed of 12.0 m/s and at an angle of 45° with the horizontal. At what distance will it hit the field again? Take g = 10.0 m/s².</em></p>
+        <div style="background:var(--card); padding:16px; border-radius:8px; display:flex; flex-direction:column; gap:8px;">
+          <div><strong>Step 1: Identify Formula for Range:</strong> $R = \frac{u^2 \sin(2\theta)}{g}$</div>
+          <div><strong>Step 2: Substitute Angle Factor:</strong> For $\theta = 45^\circ$, $2\theta = 90^\circ \implies \sin(90^\circ) = 1.0$.</div>
+          <div><strong>Step 3: Execute Numerical Solution:</strong> $R = \frac{(12.0\text{ m/s})^2 \times 1.0}{10.0\text{ m/s}^2} = \frac{144}{10} = 14.4\text{ m}$.</div>
+        </div>
+        <div class="misconception">
+          <strong>Common Misconception Alert:</strong> At the apex of flight, the total velocity is <em>not zero</em>! Only the vertical component $v_y = 0$, while the horizontal velocity $v_x = u\cos\theta$ remains fully active and constant.
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TAB 2: BANKED CURVED ROAD SIMULATOR        -->
+    <!-- ========================================== -->
+    <div class="tab-pane" id="tab-banking">
+
+      <section class="core-block" data-core="CORE1">
+        <span class="core-tag">CORE1 · ORIENTATION</span>
+        <h2>Curved Road Banking Dynamics (Figure 4.57)</h2>
+        <p>On a curved road banked at angle $\theta$, the normal force $\vec{N}$ is tilted inward, contributing to the required centripetal acceleration. Depending on the car's speed $v$, friction $f$ adapts direction:</p>
+        <div class="formula-banner">
+          $$\text{Horizontal: } N\sin\theta \mp f\cos\theta = \frac{mv^2}{r}, \qquad \text{Vertical: } N\cos\theta \pm f\sin\theta = mg$$
+        </div>
+        <div class="evidence-citation">
+          Cited from scanned book <code>p2.pdf</code> p. 138 · Evidence Card: <code>EV-PHY-11-MIP-09-017</code>
+        </div>
+      </section>
+
+      <div class="stage-grid">
+        <div class="panel">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3>Interactive Free-Body Force Diagram (FBD)</h3>
+            <span id="regimeBadge" style="font-size: 14px; font-weight:700; padding:4px 8px; border-radius:4px; background:var(--card); color:var(--warning);">Regime 1: Low Speed</span>
+          </div>
+          <div class="canvas-wrap">
+            <canvas id="bankingCanvas"></canvas>
+          </div>
+          <p id="regimeExplanation" style="font-size:13px; color:var(--muted);">At rest or low velocity, friction points upward along the incline to stop the vehicle from slipping down.</p>
+        </div>
+
+        <div class="panel">
+          <h3>Banking Parameters</h3>
+
+          <div class="control-row">
+            <div class="control-label">
+              <span>Vehicle Speed (v)</span>
+              <span class="val" id="valSpeed">15 m/s</span>
+            </div>
+            <input type="range" id="sliderSpeed" min="0" max="40" value="15" step="1" aria-label="Vehicle Speed">
+          </div>
+
+          <div class="control-row">
+            <div class="control-label">
+              <span>Banking Angle (θ)</span>
+              <span class="val" id="valBankAngle">20°</span>
+            </div>
+            <input type="range" id="sliderBankAngle" min="0" max="45" value="20" step="1" aria-label="Banking Angle">
+          </div>
+
+          <div class="control-row">
+            <div class="control-label">
+              <span>Curve Radius (r)</span>
+              <span class="val" id="valRadius">60 m</span>
+            </div>
+            <input type="range" id="sliderRadius" min="20" max="150" value="60" step="5" aria-label="Curve Radius">
+          </div>
+
+          <div class="control-row">
+            <div class="control-label">
+              <span>Friction Coefficient (μ)</span>
+              <span class="val" id="valMu">0.30</span>
+            </div>
+            <input type="range" id="sliderMu" min="0.0" max="0.8" value="0.30" step="0.05" aria-label="Friction Coefficient">
+          </div>
+
+          <hr style="border:0; border-top:1px solid var(--border); margin:6px 0;">
+
+          <h3>Dynamic Force Analysis</h3>
+          <div class="telemetry-grid">
+            <div class="telemetry-card">
+              <span class="telemetry-title">Ideal Speed (f=0)</span>
+              <span class="telemetry-value" id="telemOptSpeed">14.6 m/s</span>
+            </div>
+            <div class="telemetry-card">
+              <span class="telemetry-title">Friction Force (f)</span>
+              <span class="telemetry-value" id="telemFriction">+120 N</span>
+            </div>
+            <div class="telemetry-card">
+              <span class="telemetry-title">Normal Force (N)</span>
+              <span class="telemetry-value" id="telemNormal">10.4 kN</span>
+            </div>
+            <div class="telemetry-card">
+              <span class="telemetry-title">Max Safe Speed</span>
+              <span class="telemetry-value" id="telemMaxSpeed">23.8 m/s</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TAB 3: ACTIVE RECONSTRUCTION & PRACTICE    -->
+    <!-- ========================================== -->
+    <div class="tab-pane" id="tab-practice">
+      
+      <section class="core-block" data-core="CORE1B">
+        <span class="core-tag">CORE1B · RECONSTRUCTION</span>
+        <h2>Active Recall Task: The Independent Velocity Principle</h2>
+        <p>Explain why a bullet fired horizontally from a rifle and a bullet dropped vertically from the exact same height hit level ground at the identical instant (assuming negligible air drag).</p>
+        
+        <div class="attempt-box">
+          <label for="reconInput" style="font-size:13px; font-weight:600; color:var(--muted);">Write your physical reasoning before revealing the model verification:</label>
+          <textarea id="reconInput" class="attempt-input" placeholder="Type your answer here..."></textarea>
+          <button class="g9-btn primary" style="align-self:flex-start;" onclick="document.getElementById('reconAnswer').style.display='block'; if(window.renderAllMath) window.renderAllMath();">Check Understanding</button>
+        </div>
+
+        <div id="reconAnswer" style="display:none;" class="reveal-content">
+          <div class="formula-banner">
+            $$y(t) = h - \frac{1}{2}gt^2 \implies t_{\text{ground}} = \sqrt{\frac{2h}{g}}$$
+          </div>
+          <p><strong>Model Answer:</strong> Vertical motion is dictated exclusively by downward gravitational acceleration $g$. Because both bullets begin with zero initial vertical velocity ($u_y = 0$), their vertical positions at every instant follow $y(t) = h - \frac{1}{2}gt^2$. The horizontal velocity $u_x$ changes only horizontal displacement ($x = u_x t$) and has no bearing on vertical fall time.</p>
+        </div>
+      </section>
+
+      <section class="core-block" data-core="CORE2">
+        <span class="core-tag">CORE2 · PRACTICE</span>
+        <h2>Practice Problem with Progressive Hint Ladder</h2>
+        <p><strong>Question:</strong> A stunt motorcycle enters a flat curve of radius $50\text{ m}$. If the coefficient of static friction is $\mu_s = 0.50$, what is the maximum velocity the motorcycle can round the turn without skidding? (Take $g = 9.8\text{ m/s}^2$).</p>
+        
+        <details class="reveal-block">
+          <summary>💡 Hint 1: Governing Force Balance</summary>
+          <p class="reveal-content">On an unbanked flat road ($\theta = 0$), the only horizontal force providing centripetal acceleration is static friction: $f_s = \frac{mv^2}{r}$.</p>
+        </details>
+
+        <details class="reveal-block">
+          <summary>💡 Hint 2: Maximum Static Friction Limit</summary>
+          <p class="reveal-content">The maximum static friction before slipping is $f_{\max} = \mu_s N = \mu_s mg$. Equate this to required centripetal force: $\frac{mv_{\max}^2}{r} = \mu_s mg$.</p>
+        </details>
+
+        <details class="reveal-block">
+          <summary>🎯 Reveal Final Worked Solution</summary>
+          <div class="reveal-content">
+            <p>Cancelling mass $m$ gives: $v_{\max} = \sqrt{\mu_s r g}$.</p>
+            <p>Substitute parameters: $v_{\max} = \sqrt{0.50 \times 50 \times 9.8} = \sqrt{245} \approx 15.65\text{ m/s}$ ($56.3\text{ km/h}$).</p>
+          </div>
+        </details>
+      </section>
+
+    </div>
+
+  </main>
+
+  <script>
+    // Tab Switching Logic
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        setTimeout(renderAllMath, 50);
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabPanes.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+        if (btn.dataset.tab === 'tab-projectile') resizeProjCanvas();
+        if (btn.dataset.tab === 'tab-banking') resizeBankCanvas();
+      });
+    });
+
+    // Theme & Shell Controls
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.body.getAttribute('data-theme') === 'dark';
+      document.body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+      drawProjectile();
+      drawBanking();
+    });
+
+    let currentScale = 1.0;
+    document.getElementById('fontInc').addEventListener('click', () => {
+      currentScale = Math.min(1.3, currentScale + 0.1);
+      document.documentElement.style.setProperty('--font-scale', currentScale);
+    });
+    document.getElementById('fontDec').addEventListener('click', () => {
+      currentScale = Math.max(0.8, currentScale - 0.1);
+      document.documentElement.style.setProperty('--font-scale', currentScale);
+    });
+
+    document.getElementById('fullscreenToggle').addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    });
+
+    // ========================================================
+    // UNIT 1: PROJECTILE MOTION CANVAS SIMULATOR
+    // ========================================================
+    const projCanvas = document.getElementById('projectileCanvas');
+    const pCtx = projCanvas.getContext('2d');
+    let u = 20, thetaDeg = 45, g = 9.8;
+    let animTime = 0, isSimulating = false, animFrameId = null;
+
+    function resizeProjCanvas() {
+      const rect = projCanvas.parentElement.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      projCanvas.width = rect.width * dpr;
+      projCanvas.height = rect.height * dpr;
+      drawProjectile();
+    }
+    window.addEventListener('resize', () => {
+      resizeProjCanvas();
+      resizeBankCanvas();
+    });
+
+    function updateProjTelemetry() {
+      const thetaRad = thetaDeg * Math.PI / 180;
+      const T = (2 * u * Math.sin(thetaRad)) / g;
+      const H = (u * u * Math.sin(thetaRad) * Math.sin(thetaRad)) / (2 * g);
+      const R = (u * u * Math.sin(2 * thetaRad)) / g;
+      const ux = u * Math.cos(thetaRad);
+
+      document.getElementById('valU').textContent = u + ' m/s';
+      document.getElementById('valTheta').textContent = thetaDeg + '°';
+      document.getElementById('valG').textContent = g.toFixed(1) + ' m/s²';
+
+      document.getElementById('telemT').textContent = T.toFixed(2) + ' s';
+      document.getElementById('telemH').textContent = H.toFixed(2) + ' m';
+      document.getElementById('telemR').textContent = R.toFixed(2) + ' m';
+      document.getElementById('telemUx').textContent = ux.toFixed(2) + ' m/s';
+    }
+
+    function drawProjectile() {
+      const dpr = window.devicePixelRatio || 1;
+      const w = projCanvas.width / dpr;
+      const h = projCanvas.height / dpr;
+
+      pCtx.save();
+      pCtx.scale(dpr, dpr);
+      pCtx.clearRect(0, 0, w, h);
+
+      // Coordinate System mapping
+      const thetaRad = thetaDeg * Math.PI / 180;
+      const T = (2 * u * Math.sin(thetaRad)) / g;
+      const R = (u * u * Math.sin(2 * thetaRad)) / g;
+      const H = (u * u * Math.sin(thetaRad) * Math.sin(thetaRad)) / (2 * g);
+
+      const marginX = 40, marginY = 35;
+      const plotW = w - marginX * 2;
+      const plotH = h - marginY * 2;
+
+      const maxRangeScale = Math.max(50, R * 1.15);
+      const maxHeightScale = Math.max(15, H * 1.4);
+
+      const scaleX = plotW / maxRangeScale;
+      const scaleY = plotH / maxHeightScale;
+      const originX = marginX;
+      const originY = h - marginY;
+
+      // Draw Ground & Grid
+      pCtx.strokeStyle = '#334155';
+      pCtx.lineWidth = 1;
+      pCtx.beginPath();
+      pCtx.moveTo(originX - 10, originY);
+      pCtx.lineTo(w - marginX + 10, originY);
+      pCtx.stroke();
+
+      pCtx.fillStyle = '#64748b';
+      pCtx.font = '13px monospace';
+      pCtx.fillText('O (0,0)', originX - 15, originY + 18);
+      pCtx.fillText('R = ' + R.toFixed(1) + 'm', originX + R * scaleX - 20, originY + 18);
+
+      // Theoretical Parabolic Path
+      pCtx.strokeStyle = '#0284c7';
+      pCtx.lineWidth = 2.5;
+      pCtx.beginPath();
+      const steps = 100;
+      for (let i = 0; i <= steps; i++) {
+        const t = (i / steps) * T;
+        const px = u * Math.cos(thetaRad) * t;
+        const py = u * Math.sin(thetaRad) * t - 0.5 * g * t * t;
+        const cx = originX + px * scaleX;
+        const cy = originY - py * scaleY;
+        if (i === 0) pCtx.moveTo(cx, cy);
+        else pCtx.lineTo(cx, cy);
+      }
+      pCtx.stroke();
+
+      // Peak Indicator
+      const peakX = originX + (R / 2) * scaleX;
+      const peakY = originY - H * scaleY;
+      pCtx.fillStyle = '#f59e0b';
+      pCtx.beginPath();
+      pCtx.arc(peakX, peakY, 4, 0, Math.PI * 2);
+      pCtx.fill();
+      pCtx.fillText('Apex (H=' + H.toFixed(1) + 'm)', peakX - 35, peakY - 8);
+
+      // Simulation Ball & Live Vectors
+      const curT = Math.min(animTime, T);
+      const curX = u * Math.cos(thetaRad) * curT;
+      const curY = Math.max(0, u * Math.sin(thetaRad) * curT - 0.5 * g * curT * curT);
+      const ballCx = originX + curX * scaleX;
+      const ballCy = originY - curY * scaleY;
+
+      // Ball
+      pCtx.fillStyle = '#38bdf8';
+      pCtx.beginPath();
+      pCtx.arc(ballCx, ballCy, 6, 0, Math.PI * 2);
+      pCtx.fill();
+
+      // Vectors: vx, vy, v
+      const curVx = u * Math.cos(thetaRad);
+      const curVy = u * Math.sin(thetaRad) - g * curT;
+      const vScale = 1.8;
+
+      // Horizontal vx (green)
+      pCtx.strokeStyle = '#10b981';
+      pCtx.lineWidth = 2;
+      pCtx.beginPath();
+      pCtx.moveTo(ballCx, ballCy);
+      pCtx.lineTo(ballCx + curVx * vScale, ballCy);
+      pCtx.stroke();
+
+      // Vertical vy (orange)
+      pCtx.strokeStyle = '#f97316';
+      pCtx.beginPath();
+      pCtx.moveTo(ballCx, ballCy);
+      pCtx.lineTo(ballCx, ballCy - curVy * vScale);
+      pCtx.stroke();
+
+      pCtx.restore();
+    }
+
+    function animateProjectile() {
+      const thetaRad = thetaDeg * Math.PI / 180;
+      const T = (2 * u * Math.sin(thetaRad)) / g;
+      animTime += 0.025;
+      drawProjectile();
+      if (animTime < T) {
+        animFrameId = requestAnimationFrame(animateProjectile);
+      } else {
+        isSimulating = false;
+        animTime = T;
+        drawProjectile();
+      }
+    }
+
+    document.getElementById('projLaunchBtn').addEventListener('click', () => {
+      cancelAnimationFrame(animFrameId);
+      animTime = 0;
+      isSimulating = true;
+      animateProjectile();
+    });
+
+    document.getElementById('projResetBtn').addEventListener('click', () => {
+      cancelAnimationFrame(animFrameId);
+      isSimulating = false;
+      animTime = 0;
+      drawProjectile();
+    });
+
+    document.getElementById('projCompBtn').addEventListener('click', () => {
+      thetaDeg = 90 - thetaDeg;
+      document.getElementById('sliderTheta').value = thetaDeg;
+      updateProjTelemetry();
+      drawProjectile();
+    });
+
+    document.getElementById('sliderU').addEventListener('input', e => {
+      u = parseFloat(e.target.value);
+      updateProjTelemetry();
+      drawProjectile();
+    });
+    document.getElementById('sliderTheta').addEventListener('input', e => {
+      thetaDeg = parseFloat(e.target.value);
+      updateProjTelemetry();
+      drawProjectile();
+    });
+    document.getElementById('sliderG').addEventListener('input', e => {
+      g = parseFloat(e.target.value);
+      updateProjTelemetry();
+      drawProjectile();
+    });
+
+    // ========================================================
+    // UNIT 2: BANKED CURVED ROAD SIMULATOR
+    // ========================================================
+    const bankCanvas = document.getElementById('bankingCanvas');
+    const bCtx = bankCanvas.getContext('2d');
+    let speed = 15, bankAngleDeg = 20, radius = 60, mu = 0.30;
+    const carMass = 1000; // 1000 kg
+
+    function resizeBankCanvas() {
+      const rect = bankCanvas.parentElement.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      bankCanvas.width = rect.width * dpr;
+      bankCanvas.height = rect.height * dpr;
+      drawBanking();
+    }
+
+    function updateBankTelemetry() {
+      const thetaRad = bankAngleDeg * Math.PI / 180;
+      const gLocal = 9.8;
+      const vOpt = Math.sqrt(radius * gLocal * Math.tan(thetaRad));
+      
+      // Critical speeds with friction
+      const denomMax = 1 - mu * Math.tan(thetaRad);
+      const vMax = denomMax > 0 ? Math.sqrt(radius * gLocal * (Math.tan(thetaRad) + mu) / denomMax) : Infinity;
+
+      // Friction force magnitude calculation
+      // N * sin(theta) - f * cos(theta) = m * v^2 / r
+      // N * cos(theta) + f * sin(theta) = m * g
+      // Solving: f = m * (g * sin(theta) - (v^2/r) * cos(theta))
+      const frictionSigned = carMass * (gLocal * Math.sin(thetaRad) - (speed * speed / radius) * Math.cos(thetaRad));
+      const normalForce = carMass * (gLocal * Math.cos(thetaRad) + (speed * speed / radius) * Math.sin(thetaRad));
+
+      document.getElementById('valSpeed').textContent = speed + ' m/s';
+      document.getElementById('valBankAngle').textContent = bankAngleDeg + '°';
+      document.getElementById('valRadius').textContent = radius + ' m';
+      document.getElementById('valMu').textContent = mu.toFixed(2);
+
+      document.getElementById('telemOptSpeed').textContent = vOpt.toFixed(1) + ' m/s';
+      document.getElementById('telemNormal').textContent = (normalForce / 1000).toFixed(1) + ' kN';
+      document.getElementById('telemFriction').textContent = Math.abs(frictionSigned / 1000).toFixed(2) + ' kN ' + (frictionSigned > 0 ? '(Up)' : '(Down)');
+      document.getElementById('telemMaxSpeed').textContent = vMax === Infinity ? 'No limit' : vMax.toFixed(1) + ' m/s';
+
+      // Regime Badge
+      const badge = document.getElementById('regimeBadge');
+      const expl = document.getElementById('regimeExplanation');
+      if (Math.abs(speed - vOpt) < 0.5) {
+        badge.textContent = 'Ideal Speed (f = 0)';
+        badge.style.color = 'var(--success)';
+        expl.textContent = 'Normal force alone provides full centripetal acceleration. Zero lateral tire friction!';
+      } else if (speed < vOpt) {
+        badge.textContent = 'Low Speed: f Upwards';
+        badge.style.color = 'var(--warning)';
+        expl.textContent = 'Vehicle tends to slip downhill; static friction points up the incline to maintain elevation.';
+      } else if (speed <= vMax) {
+        badge.textContent = 'High Speed: f Downwards';
+        badge.style.color = 'var(--accent)';
+        expl.textContent = 'Vehicle tends to skid outwards; static friction pulls down into the curve to assist turning.';
+      } else {
+        badge.textContent = 'SKIDDING OUTWARD!';
+        badge.style.color = 'var(--danger)';
+        expl.textContent = 'Velocity exceeds maximum allowable friction threshold. Lateral skid inevitable!';
+      }
+    }
+
+    function drawBanking() {
+      const dpr = window.devicePixelRatio || 1;
+      const w = bankCanvas.width / dpr;
+      const h = bankCanvas.height / dpr;
+
+      bCtx.save();
+      bCtx.scale(dpr, dpr);
+      bCtx.clearRect(0, 0, w, h);
+
+      const thetaRad = bankAngleDeg * Math.PI / 180;
+      const centerX = w * 0.45;
+      const centerY = h * 0.65;
+      const inclineLength = 260;
+
+      // Draw Banked Incline
+      const x1 = centerX - Math.cos(thetaRad) * (inclineLength * 0.6);
+      const y1 = centerY + Math.sin(thetaRad) * (inclineLength * 0.6);
+      const x2 = centerX + Math.cos(thetaRad) * (inclineLength * 0.4);
+      const y2 = centerY - Math.sin(thetaRad) * (inclineLength * 0.4);
+
+      // Incline wedge
+      bCtx.fillStyle = '#1e293b';
+      bCtx.strokeStyle = '#475569';
+      bCtx.lineWidth = 2;
+      bCtx.beginPath();
+      bCtx.moveTo(x1, y1);
+      bCtx.lineTo(x2, y2);
+      bCtx.lineTo(x2, y1);
+      bCtx.closePath();
+      bCtx.fill();
+      bCtx.stroke();
+
+      // Angle arc θ
+      bCtx.strokeStyle = '#38bdf8';
+      bCtx.beginPath();
+      bCtx.arc(x1, y1, 45, 0, -thetaRad, true);
+      bCtx.stroke();
+      bCtx.fillStyle = '#38bdf8';
+      bCtx.font = '13px monospace';
+      bCtx.fillText('θ = ' + bankAngleDeg + '°', x1 + 52, y1 - 10);
+
+      // Car on the Incline (centered)
+      const carX = centerX;
+      const carY = centerY - 12;
+      bCtx.save();
+      bCtx.translate(carX, carY);
+      bCtx.rotate(-thetaRad);
+
+      bCtx.fillStyle = '#3b82f6';
+      bCtx.fillRect(-25, -18, 50, 18);
+      bCtx.fillStyle = '#0f172a';
+      bCtx.fillRect(-20, -2, 12, 6);
+      bCtx.fillRect(8, -2, 12, 6);
+      bCtx.restore();
+
+      // Force Vectors from center of car
+      // 1. Weight mg (Down)
+      bCtx.strokeStyle = '#ef4444';
+      bCtx.lineWidth = 2.5;
+      bCtx.beginPath();
+      bCtx.moveTo(carX, carY);
+      bCtx.lineTo(carX, carY + 60);
+      bCtx.stroke();
+      bCtx.fillStyle = '#ef4444';
+      bCtx.fillText('mg', carX + 8, carY + 55);
+
+      // 2. Normal force N (perpendicular to incline)
+      const normLen = 65;
+      const nx = -Math.sin(thetaRad) * normLen;
+      const ny = -Math.cos(thetaRad) * normLen;
+      bCtx.strokeStyle = '#10b981';
+      bCtx.beginPath();
+      bCtx.moveTo(carX, carY);
+      bCtx.lineTo(carX + nx, carY + ny);
+      bCtx.stroke();
+      bCtx.fillStyle = '#10b981';
+      bCtx.fillText('N', carX + nx - 12, carY + ny - 4);
+
+      // 3. Friction Force f (along incline)
+      const thetaR = bankAngleDeg * Math.PI / 180;
+      const vOpt = Math.sqrt(radius * 9.8 * Math.tan(thetaR));
+      const fDiff = speed - vOpt;
+      if (Math.abs(fDiff) > 0.5) {
+        const fDir = fDiff > 0 ? 1 : -1; // Downhill if v > vOpt, Uphill if v < vOpt
+        const fLen = Math.min(50, Math.abs(fDiff) * 3);
+        const fx = fDir * Math.cos(thetaRad) * fLen;
+        const fy = -fDir * Math.sin(thetaRad) * fLen;
+
+        bCtx.strokeStyle = '#f59e0b';
+        bCtx.beginPath();
+        bCtx.moveTo(carX, carY);
+        bCtx.lineTo(carX + fx, carY + fy);
+        bCtx.stroke();
+        bCtx.fillStyle = '#f59e0b';
+        bCtx.fillText(fDir > 0 ? 'f (inward)' : 'f (upward)', carX + fx + 6, carY + fy + 4);
+      }
+
+      bCtx.restore();
+    }
+
+    document.getElementById('sliderSpeed').addEventListener('input', e => {
+      speed = parseFloat(e.target.value);
+      updateBankTelemetry();
+      drawBanking();
+    });
+    document.getElementById('sliderBankAngle').addEventListener('input', e => {
+      bankAngleDeg = parseFloat(e.target.value);
+      updateBankTelemetry();
+      drawBanking();
+    });
+    document.getElementById('sliderRadius').addEventListener('input', e => {
+      radius = parseFloat(e.target.value);
+      updateBankTelemetry();
+      drawBanking();
+    });
+    document.getElementById('sliderMu').addEventListener('input', e => {
+      mu = parseFloat(e.target.value);
+      updateBankTelemetry();
+      drawBanking();
+    });
+
+    // Initial Render
+    setTimeout(() => {
+      resizeProjCanvas();
+      updateProjTelemetry();
+      resizeBankCanvas();
+      updateBankTelemetry();
+    }, 100);
+
+    /* Math Typography & KaTeX Auto-Rendering */
+    function renderAllMath() {
+      if (window.renderMathInElement) {
+        try {
+          window.renderMathInElement(document.body, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\\[', right: '\\]', display: true },
+              { left: '\\(', right: '\\)', display: false }
+            ],
+            ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'canvas'],
+            throwOnError: false
+          });
+          return;
+        } catch (e) {
+          console.warn('KaTeX render error:', e);
+        }
+      }
+      fallbackRenderMath(document.body);
+    }
+
+    function fallbackRenderMath(root) {
+      if (!root) root = document.body;
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+      const textNodes = [];
+      let node;
+      while (node = walker.nextNode()) {
+        if (node.parentElement && !['SCRIPT', 'STYLE', 'TEXTAREA', 'CODE', 'CANVAS'].includes(node.parentElement.tagName)) {
+          if (node.nodeValue.includes('$') || node.nodeValue.includes('\\')) {
+            textNodes.push(node);
+          }
+        }
+      }
+
+      textNodes.forEach(tNode => {
+        let val = tNode.nodeValue;
+        if (!val.includes('$') && !val.includes('\\')) return;
+        val = val.replace(/\$\$([\s\S]+?)\$\$/g, (m, math) => `<span class="math-display">${formatMathString(math)}</span>`);
+        val = val.replace(/\$([^\$]+?)\$/g, (m, math) => `<span class="math-inline">${formatMathString(math)}</span>`);
+        if (val !== tNode.nodeValue) {
+          const span = document.createElement('span');
+          span.innerHTML = val;
+          tNode.parentNode.replaceChild(span, tNode);
+        }
+      });
+
+      document.querySelectorAll('.formula-banner').forEach(fb => {
+        if (!fb.querySelector('.katex') && (fb.innerHTML.includes('\\') || fb.innerHTML.includes('$$'))) {
+          let raw = fb.innerHTML.replace(/\$\$/g, '').trim();
+          fb.innerHTML = `<span class="math-display">${formatMathString(raw)}</span>`;
+        }
+      });
+    }
+
+    function formatMathString(str) {
+      return str
+        .replace(/\\text\{([^\}]+)\}/g, '$1')
+        .replace(/\\implies/g, '&rArr;')
+        .replace(/\\approx/g, '&asymp;')
+        .replace(/\\times/g, '&times;')
+        .replace(/\\le/g, '&le;')
+        .replace(/\\ge/g, '&ge;')
+        .replace(/\\mp/g, '&mp;')
+        .replace(/\\pm/g, '&plusmn;')
+        .replace(/\\theta/g, '<em>&theta;</em>')
+        .replace(/\\mu_s/g, '<em>&mu;</em><sub>s</sub>')
+        .replace(/\\mu/g, '<em>&mu;</em>')
+        .replace(/\\cos/g, 'cos')
+        .replace(/\\sin/g, 'sin')
+        .replace(/\\tan/g, 'tan')
+        .replace(/\\quad/g, '&emsp;')
+        .replace(/\\qquad/g, '&emsp;&emsp;')
+        .replace(/\\vec\{([^\}]+)\}/g, '<span style="text-decoration:overline; font-weight:bold;">$1</span>')
+        .replace(/\\frac\{([^\}]+)\}\{([^\}]+)\}/g, '<span class="math-frac"><span class="math-num">$1</span><span class="math-denom">$2</span></span>')
+        .replace(/\\sqrt\{([^\}]+)\}/g, '<span class="math-sqrt-wrap">&radic;<span class="math-sqrt">$1</span></span>')
+        .replace(/\^2/g, '&sup2;')
+        .replace(/\^3/g, '&sup3;')
+        .replace(/\^\{([^\}]+)\}/g, '<sup>$1</sup>')
+        .replace(/_\{([^\}]+)\}/g, '<sub>$1</sub>')
+        .replace(/_([a-zA-Z0-9])/g, '<sub>$1</sub>');
+    }
+
+    // Details elements toggle listener for hint ladder
+    document.querySelectorAll('details').forEach(d => {
+      d.addEventListener('toggle', () => {
+        if (d.open) setTimeout(renderAllMath, 50);
+      });
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderAllMath();
+      let pollCount = 0;
+      const poll = setInterval(() => {
+        pollCount++;
+        if (window.renderMathInElement) {
+          clearInterval(poll);
+          renderAllMath();
+        } else if (pollCount > 20) {
+          clearInterval(poll);
+        }
+      }, 100);
+    });
+  </script>
+</body>
+</html>

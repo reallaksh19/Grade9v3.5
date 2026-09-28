@@ -1,0 +1,113 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Physics",
+  "node_ref": "PHY-11-MOTION-IN-A-PLANE-01",
+  "verified_by": "agent-verifier-1",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:fe5d9352f8a38805ae19b15a1533d3218cae6808e8fa579b3a6ab7dd3d41cff9",
+  "questions": [
+    {
+      "card_ref": "EV-PHY-11-MIP-01-009",
+      "independent_solution": [
+        "Test each quantity: does specifying it completely require a direction? If yes it is a vector (magnitude + direction, triangle law); if no it is a scalar.",
+        "Volume, mass, density and number of moles are fully given by a number and unit; speed is the magnitude of velocity and angular frequency is 2*pi/T, both without direction -> scalars.",
+        "Acceleration, velocity, displacement and angular velocity (axis direction) need a direction -> vectors."
+      ],
+      "independent_answer": "Scalars: volume, mass, speed, density, number of moles, angular frequency. Vectors: acceleration, velocity, displacement, angular velocity.",
+      "official_answer": "Volume, mass, speed, density, number of moles, angular frequency are scalars; the rest (acceleration, velocity, displacement, angular velocity) are vectors.",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-01-011",
+      "independent_solution": [
+        "All three girls start at P and end at Q, so they share one displacement vector PQ, independent of route.",
+        "Q is diametrically opposite P, so |PQ| = diameter = 2 x 200 m = 400 m for each girl.",
+        "Displacement magnitude equals path length only for a route that never changes direction; in Fig. 3.19 (read on the pinned page) girl B skates straight along the diameter, so only for B."
+      ],
+      "independent_answer": "400 m for each girl; equal to the path length only for girl B.",
+      "official_answer": "400 m for each; B",
+      "agrees": true,
+      "numeric_check": "2*200"
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-01-013",
+      "independent_solution": [
+        "t = 28 min = 28/60 h = 0.4667 h.",
+        "Average speed = path length / time = 23 km / 0.4667 h = 49.3 km/h.",
+        "Average velocity magnitude = displacement / time = 10 km / 0.4667 h = 21.4 km/h. Not equal: the path is not straight, so path length > displacement."
+      ],
+      "independent_answer": "(a) 49.3 km/h; (b) 21.4 km/h; not equal (they coincide only for a straight path).",
+      "official_answer": "(a) 49.3 km/h; (b) 21.4 km/h. No, the average speed equals average velocity magnitude only for a straight path.",
+      "agrees": true,
+      "numeric_check": "23/(28/60)"
+    }
+  ],
+  "records": [
+    {
+      "record_ref": "MIC-PHY-MIP-01",
+      "checked_fields": [
+        "title",
+        "entry_assumptions",
+        "inferential_jump",
+        "teaching_path",
+        "misconceptions",
+        "exit_task"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "CAP-PHY-MIP-01",
+      "checked_fields": [
+        "action",
+        "success_criterion",
+        "curriculum_mappings"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REP-PHY-MIP-01-DISPLACEMENT-PATHS",
+      "checked_fields": [
+        "purpose",
+        "required_elements",
+        "instance_constraints",
+        "misleading_alternatives",
+        "correspondence"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-01-NCERT-3-1",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-01-NCERT-3-8",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-01-NCERT-3-11",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    }
+  ],
+  "findings": []
+}
