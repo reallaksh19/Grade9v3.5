@@ -35,6 +35,8 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
 
+from Shared.tools import product_manifest  # noqa: E402
+
 BLUEPRINTS = REPO / "Shared/web/interactive-page-blueprints.v1.json"
 CONTRACT = REPO / "Shared/quality/learner-quality.v1.json"
 TABLET_CSS = REPO / "public/css/tablet-12-7.css"
@@ -56,6 +58,7 @@ class Ctx:
     packages: list[dict]
     bank: list[dict]
     blueprints: dict
+    selection_rows: dict[str, list[dict]] = field(default_factory=dict)
     authority_hashes: list[tuple[str, str]] = field(default_factory=list)
     gaps: list[dict] = field(default_factory=list)
     figure_instances: dict[str, int] = field(default_factory=dict)
@@ -609,13 +612,9 @@ RENDER = {"CORE1": core1, "CORE1A": core1a, "CORE1B": core1b, "CORE2": core2, "C
 # ------------------------------------------------------------------ selection
 
 def units_for(ctx: Ctx, role: str) -> list[dict]:
-    mics = ctx.index("microtopics")
-    sel = ctx.manifest["selection"]
-    if role in {"CORE1", "CORE1A", "CORE1B"}:
-        return [mics[i] for i in sel["microtopics"] if i in mics]
-    qs = {**ctx.index("questions"), **{q["id"]: q for q in ctx.bank}}
-    rows = [qs[i] for i in sel.get(role.lower(), []) if i in qs]
-    if not rows:
+    key = "microtopics" if role in {"CORE1", "CORE1A", "CORE1B"} else role.lower()
+    rows = ctx.selection_rows[key]
+    if role not in {"CORE1", "CORE1A", "CORE1B"} and not rows:
         ctx.gap("ACQUIRE_SOURCE" if role == "CORE2" else "AUTHOR_PRACTICE", ctx.manifest["product_id"],
                 f"no {role} items selected", role)
     return rows
@@ -795,6 +794,7 @@ def context(manifest_path: Path) -> Ctx:
     bank_paths = [REPO / b for b in manifest.get("bank_refs", [])]
     packages = [load_json(p) for p in package_paths]
     bank = [q for p in bank_paths for q in load_json(p).get("questions", [])]
+    selection_rows = product_manifest.validate_selection(manifest, packages, bank)
     asset_refs = sorted({
         ref
         for package in packages
@@ -837,7 +837,14 @@ def context(manifest_path: Path) -> Ctx:
             if (REPO / ref).is_file()
         ],
     ]
-    return Ctx(manifest, packages, bank, load_json(BLUEPRINTS), authority_hashes)
+    return Ctx(
+        manifest=manifest,
+        packages=packages,
+        bank=bank,
+        blueprints=load_json(BLUEPRINTS),
+        selection_rows=selection_rows,
+        authority_hashes=authority_hashes,
+    )
 
 
 def _single_file_fragment(page_html: str, role: str) -> str:

@@ -20,6 +20,103 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 
+SELECTION_KEYS = ("microtopics", "core2", "core2a", "core2b")
+
+
+class ProductSelectionError(ValueError):
+    """The product manifest cannot be resolved to one unambiguous record authority."""
+
+
+def _unique_index(records: list[dict], authority: str, collection: str) -> dict[str, dict]:
+    out: dict[str, dict] = {}
+    for row in records:
+        record_id = row.get("id")
+        if not isinstance(record_id, str) or not record_id:
+            continue
+        if record_id in out:
+            raise ProductSelectionError(
+                f"PRODUCT_SELECTION_AUTHORITY_DUPLICATE_ID: {authority}:{collection}:{record_id}"
+            )
+        out[record_id] = row
+    return out
+
+
+def validate_selection(manifest: dict, packages: list[dict], bank_questions: list[dict]) -> dict[str, list[dict]]:
+    """Resolve every selected id exactly once in the authority owned by its Core role.
+
+    This is deliberately stricter than renderer list filtering. A malformed selection is an
+    integrity error, not an authoring-depth gap: strict and draft renders must both refuse a
+    manifest that silently drops, duplicates, or crosses the package/source-bank boundary.
+    """
+    selection = manifest.get("selection")
+    if not isinstance(selection, dict):
+        raise ProductSelectionError("PRODUCT_SELECTION_INVALID: selection must be an object")
+
+    missing_keys = [key for key in SELECTION_KEYS if key not in selection]
+    if missing_keys:
+        raise ProductSelectionError(
+            "PRODUCT_SELECTION_KEYS_MISSING: " + ",".join(missing_keys)
+        )
+
+    package_microtopics = _unique_index(
+        [row for package in packages for row in package.get("microtopics", [])],
+        "PACKAGE",
+        "microtopics",
+    )
+    package_questions = _unique_index(
+        [row for package in packages for row in package.get("questions", [])],
+        "PACKAGE",
+        "questions",
+    )
+    bank_index = _unique_index(bank_questions, "BANK", "questions")
+
+    resolved: dict[str, list[dict]] = {}
+    for key in SELECTION_KEYS:
+        selected = selection.get(key)
+        if not isinstance(selected, list) or any(
+            not isinstance(record_id, str) or not record_id for record_id in selected
+        ):
+            raise ProductSelectionError(
+                f"PRODUCT_SELECTION_IDS_INVALID: {key} must contain non-empty string ids"
+            )
+
+        seen: set[str] = set()
+        for record_id in selected:
+            if record_id in seen:
+                raise ProductSelectionError(
+                    f"PRODUCT_SELECTION_DUPLICATE_ID: {key}:{record_id}"
+                )
+            seen.add(record_id)
+
+        if key == "microtopics":
+            expected = package_microtopics
+            foreign: dict[str, dict] = {}
+            expected_authority = "PACKAGE"
+        elif key == "core2":
+            expected = bank_index
+            foreign = package_questions
+            expected_authority = "BANK"
+        else:
+            expected = package_questions
+            foreign = bank_index
+            expected_authority = "PACKAGE"
+
+        rows: list[dict] = []
+        for record_id in selected:
+            if record_id in foreign:
+                raise ProductSelectionError(
+                    f"PRODUCT_SELECTION_WRONG_AUTHORITY: {key}:{record_id}:expected={expected_authority}"
+                )
+            row = expected.get(record_id)
+            if row is None:
+                raise ProductSelectionError(
+                    f"PRODUCT_SELECTION_UNRESOLVED: {key}:{record_id}:expected={expected_authority}"
+                )
+            rows.append(row)
+        resolved[key] = rows
+
+    return resolved
+
 
 def derive(package_ref: str, bank_refs: list[str], product_id: str, title: str, home: str,
            question_bank_href: str | None = None) -> dict:
