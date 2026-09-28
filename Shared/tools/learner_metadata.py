@@ -313,7 +313,6 @@ def safe_search_text(projection: dict, record: dict, role: str) -> str:
         parts.append(record.get("stem", ""))
         parts.extend(record.get("conditions") or [])
         parts.extend(record.get("options") or [])
-        parts.extend(record.get("subparts") or [])
     else:
         parts.append((projection.get("concept") or {}).get("concept", ""))
     return " ".join(str(value).strip() for value in parts if str(value).strip())
