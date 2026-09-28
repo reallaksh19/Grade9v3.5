@@ -4,5 +4,4 @@ Own one unit end to end: the library package, representation assets and unit fol
 
 Prototype one microtopic through all Cores and every present response type. Render it and compare the exact learner experience with goldens. In SELF-CRITIQUE state what changed, what is still weak and why. Preserve coherence between task, hints, figure stages and eventual solution. Author may ask for help with an asset but remains responsible for the complete unit.
 
-Push each phase; log current digest, research, decisions, spend and weaknesses. `self_check.py` reports source and rendering observations; it does not decide readiness. Invite an independent review of the exact build. Record Owner feedback in OWNER-NOTES without treating it as a mechanical completion field.
-
+Push each phase; log current digest, research, decisions, spend and weaknesses. Run `python3 Shared/tools/self_check.py --unit SUBJECT/slug` to write a local `publication/products/<subject>/slug/SELF-CHECK.md` with linter, missing-field, source, tablet and staleness observations. It does not decide readiness. Invite an independent review of the exact build. Record Owner feedback in OWNER-NOTES without treating it as a mechanical completion field.

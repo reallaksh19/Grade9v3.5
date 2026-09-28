@@ -1,0 +1,9 @@
+# G-CORE2-R2
+
+Status: **CANDIDATE**. Owner blessing: **none**. This is a Core2 method excerpt, not a published question bank.
+
+The design reference is R2 in `benchmarks/quality-calibration/manifest.v1.json`: Owner tablet question bank at commit `08446b534bef5a6cb364f0c355881d7d5cbda0b7`, `docs/question-bank/pass1/canonical_question_bank_10inch_tablet.html`, SHA-256 `4e264fc62da5846e316ca49d69bbc62cb44cbf6dcfe5173c57f941fde64b47c0`. The pinned Q01 is `PYQ-PHY-IITJEE-2007-P1-Q03`. Its source stem, conditions, options and worked answer were copied from the current canonical bank blob `76361d3945eb6fee592e2d8e9bd8bfba25c4ee39`; the three hint prompts in `bank.json` adapt R2's rung questions for inert learner disclosure. The excerpt explicitly types the source's single-correct response so the existing four options become radio controls; no option wording changed. The surrounding Core records are a selected excerpt of NLM package blob `39719cc21cc2541974bd3dd1d2bc6665b2fb122e`.
+
+R2's original HTML presents the hint reveals and answer on the page. This candidate instead runs those records through `render_core.py`: later rungs remain inert until requested, and the answer remains inert until a typed commitment. Six NLM representation SVGs used by the surrounding selected Core context are copied byte-for-byte into `assets/`. The R2 question's own drawing embeds the geometric relation, so it was **not** copied into the Core2 pre-attempt page. That omission is a review question, not a claim of visual fidelity.
+
+Run `python3 Shared/tools/build_golden.py --id G-CORE2-R2`. Generated pages are ignored local study artifacts under `rendered/`. The selected Core2 page is the exemplar; the other Core pages are renderer context. Zero renderer gaps do not imply the source's official printed key has an independent readback in this snapshot.
