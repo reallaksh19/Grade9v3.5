@@ -103,7 +103,7 @@ if "--verify" in sys.argv:
                 drift.append(expected["path"])
     if recorded["execution_basis"] != EXECUTION_BASIS:
         drift.append("execution_basis")
-    if external_source.is_file() and sha(external_source) != recorded["external_source"]["sha256"]:
+    if not external_source.is_file() or sha(external_source) != recorded["external_source"]["sha256"]:
         drift.append("external_source")
     print("VERIFY", "PASS" if not drift else "DRIFT", "\n".join(drift))
     raise SystemExit(1 if drift else 0)
