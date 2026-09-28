@@ -37,6 +37,7 @@ from Shared.tools import source_pipeline  # noqa: E402
 
 CACHE = REPO / ".source-cache"
 CARDS_SCHEMA = REPO / "Shared/library/evidence-cards.schema.json"
+INVENTORY_SCHEMA = REPO / "Shared/library/source-inventory.schema.json"
 MIN_QUOTE_WORDS = 6
 EXTENSIONS = {"application/pdf": ".pdf", "text/html": ".html", "text/plain": ".txt"}
 
@@ -368,6 +369,107 @@ def evidence_files(subject: str, node: str | None = None, repo: Path = REPO) -> 
     return [p for p in files if node is None or p.name == f"{node}.cards.json"]
 
 
+def inventory_digest(items: list[dict]) -> str:
+    """Identity of the declared item list, independent of pretty-printing."""
+    body = json.dumps(items, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
+    return "sha256:" + hashlib.sha256(body.encode("utf-8")).hexdigest()
+
+
+def inventory_files(subject: str, repo: Path = REPO) -> list[Path]:
+    return sorted((research_dir(subject, repo) / "inventories").glob("*.json"))
+
+
+def inventory_index(subject: str, repo: Path = REPO) -> dict[str, tuple[dict, dict]]:
+    """INV#item -> (inventory, item), for renderer and advisory status projections."""
+    out = {}
+    for path in inventory_files(subject, repo):
+        inventory = load_json(path)
+        for item in inventory.get("items", []):
+            out[f'{inventory["inventory_id"]}#{item["item_id"]}'] = (inventory, item)
+    return out
+
+
+def inventory_findings(subject: str, cards: dict[str, dict], repo: Path = REPO) -> list[dict]:
+    """Report denominator/member/card/package-link inconsistencies without refusing work."""
+    findings = []
+    try:
+        import jsonschema  # noqa: PLC0415
+        validator = jsonschema.Draft202012Validator(load_json(INVENTORY_SCHEMA))
+    except ModuleNotFoundError:
+        validator = None
+    inventories = {}
+    for path in inventory_files(subject, repo):
+        inventory = load_json(path)
+        iid = inventory.get("inventory_id", path.stem)
+        where = str(path.relative_to(repo))
+        if validator:
+            for error in validator.iter_errors(inventory):
+                findings.append(_finding("INVENTORY_STRUCTURE", where + ":" + "/".join(map(str, error.path)), error.message))
+        if iid in inventories:
+            findings.append(_finding("INVENTORY_DUPLICATE_ID", iid, "inventory id appears in more than one file"))
+        inventories[iid] = inventory
+        if inventory.get("subject") != subject:
+            findings.append(_finding("INVENTORY_SUBJECT", iid, "inventory subject differs from its folder"))
+        if path.stem != iid:
+            findings.append(_finding("INVENTORY_FILE_NAME", where, "file must be named <inventory_id>.json"))
+        members = {}
+        for member in inventory.get("members", []):
+            ref = member.get("acquisition_ref", "")
+            acq_path = acquisition_path(subject, ref, repo)
+            if not acq_path.is_file():
+                findings.append(_finding("INVENTORY_ACQUISITION_MISSING", iid, f"{ref} has no registered acquisition"))
+                continue
+            acq = load_json(acq_path)
+            members[ref] = member
+            if member.get("sha256") != acq.get("sha256"):
+                findings.append(_finding("INVENTORY_MEMBER_DIGEST", iid, f"{ref} sha256 differs from acquisition"))
+        seen = set()
+        items = inventory.get("items", [])
+        expected = {"items": len(items), **{f"key_{state.lower()}": sum(1 for x in items if (x.get("key") or {}).get("state") == state)
+                                             for state in ("PRESENT", "ABSENT", "AMBIGUOUS")}}
+        if inventory.get("counts") != expected:
+            findings.append(_finding("INVENTORY_COUNTS", iid, f"declared {inventory.get('counts')} vs computed {expected}"))
+        if inventory.get("digest") != inventory_digest(items):
+            findings.append(_finding("INVENTORY_DIGEST", iid, "digest differs from canonical items[]"))
+        for item in items:
+            ref = f"{iid}#{item.get('item_id', '?')}"
+            if ref in seen:
+                findings.append(_finding("INVENTORY_DUPLICATE_ITEM", ref, "item id repeats"))
+            seen.add(ref)
+            if (item.get("locator") or {}).get("acquisition_ref") not in members:
+                findings.append(_finding("INVENTORY_MEMBER_NOT_LISTED", ref, "item locator is outside members[]"))
+            question_card = cards.get(item.get("question_card"))
+            if not question_card or question_card.get("kind") != "QUESTION":
+                findings.append(_finding("INVENTORY_QUESTION_CARD", ref, "question_card must name an existing QUESTION card"))
+            key = item.get("key") or {}
+            if key.get("state") == "PRESENT" and not key.get("card"):
+                findings.append(_finding("INVENTORY_KEY_CARD", ref, "PRESENT key needs an ANSWER_KEY card"))
+            elif key.get("card") and (not cards.get(key["card"]) or cards[key["card"]].get("kind") != "ANSWER_KEY"):
+                findings.append(_finding("INVENTORY_KEY_CARD", ref, "key card must name an existing ANSWER_KEY card"))
+    valid_refs = {f"{iid}#{item.get('item_id')}" for iid, inv in inventories.items() for item in inv.get("items", [])}
+    for package_path in sorted((repo / subject / "library").glob("*.v1.json")):
+        package = load_json(package_path)
+        for question in package.get("questions", []):
+            ext = question.get("extensions") or {}
+            ref = ext.get("grade9v3:inventory_item")
+            if not ref:
+                continue
+            if ref not in valid_refs:
+                findings.append(_finding("INVENTORY_QUESTION_LINK", question["id"], f"{ref} is not in an inventory"))
+                continue
+            iid, item_id = ref.split("#", 1)
+            item = next(x for x in inventories[iid]["items"] if x["item_id"] == item_id)
+            cited = ext.get("grade9v3:citations") or {}
+            cited_refs = {r for value in cited.values()
+                          for r in ([value] if isinstance(value, str) else value if isinstance(value, list) else [])
+                          if isinstance(r, str)}
+            required = {item["question_card"]} | ({item["key"]["card"]} if item["key"].get("card") else set())
+            if not required <= cited_refs:
+                findings.append(_finding("INVENTORY_CITATIONS", question["id"],
+                                         "missing item cards in grade9v3:citations: " + ", ".join(sorted(required - cited_refs))))
+    return findings
+
+
 def check(subject: str, node: str | None = None, fetch: bool = False, repo: Path = REPO) -> dict:
     try:
         import jsonschema  # noqa: PLC0415
@@ -456,8 +558,8 @@ def check(subject: str, node: str | None = None, fetch: bool = False, repo: Path
         if kind == "QUESTION":
             q = card.get("question")
             if not q:
-                findings.append(_finding("EVIDENCE_QUESTION_FIELDS_MISSING", cid, "QUESTION card needs exam, year, paper, question_number and answer_key_card_ref"))
-            else:
+                findings.append(_finding("EVIDENCE_QUESTION_FIELDS_MISSING", cid, "QUESTION card needs exam, year, paper and question_number"))
+            elif q.get("answer_key_card_ref"):
                 key = cards.get(q.get("answer_key_card_ref", ""))
                 if not key or key.get("kind") != "ANSWER_KEY":
                     findings.append(_finding("EVIDENCE_ANSWER_KEY_MISSING", cid, "answer_key_card_ref must name an ANSWER_KEY card"))
@@ -465,9 +567,15 @@ def check(subject: str, node: str | None = None, fetch: bool = False, repo: Path
         # recorded against another card of the same acquisition.
         card_ok[cid] = len(findings) == before and bool(pages)
 
+    cards_passed = not findings
+    inventory_notes = inventory_findings(subject, cards, repo)
+    findings += inventory_notes
+
     return {"subject": subject, "files": len(files), "cards": len(cards),
             "cards_passing": sum(card_ok.values()), "card_ok": card_ok,
-            "findings": findings, "passed": not findings}
+            "inventories": len(inventory_files(subject, repo)),
+            "inventory_findings": len(inventory_notes),
+            "findings": findings, "passed": cards_passed}
 
 
 # ------------------------------------------------------------------ cli

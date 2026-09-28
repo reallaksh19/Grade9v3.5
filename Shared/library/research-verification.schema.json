@@ -29,6 +29,19 @@
         }
       }
     },
+    "readback": {
+      "type": "array",
+      "description": "Independent, blind source-item/card readback; absent for historical verification records.",
+      "items": {"type": "object", "additionalProperties": false,
+        "required": ["ref", "reader", "state", "correction", "note"],
+        "properties": {
+          "ref": {"type": "string", "minLength": 1},
+          "reader": {"type": "string", "minLength": 1},
+          "state": {"enum": ["AGREED", "CORRECTED", "AMBIGUOUS"]},
+          "correction": {"type": ["string", "null"]},
+          "note": {"type": "string"}
+        }}
+    },
     "records": {
       "type": "array",
       "items": {

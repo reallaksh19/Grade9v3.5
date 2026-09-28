@@ -74,7 +74,7 @@ def complete_fixture(tmp: Path) -> Path:
                                extensions={"grade9v3:source_custody": {"exam": "Test fixture", "year": 2026, "paper": "Fixture", "question_number": "1"}})]}
     bank_path = tmp / "bank.fixture.json"
     bank_path.write_text(json.dumps(bank), encoding="utf-8")
-    manifest = product_manifest.derive(MATH, [], "FIXTURE-MATH-LINEAR", "Linear equations (fixture)", "../index.html")
+    manifest = product_manifest.derive(MATH, [], "FIXTURE-MATH-LINEAR", "../index.html")
     manifest["package_refs"] = [str(pkg_path)]
     manifest["bank_refs"] = [str(bank_path)]
     manifest["selection"] = {"microtopics": ["MIC-MATH-CONSTRAINT"], "core2": ["SRC-FIXTURE-LINEAR-01"],
@@ -108,7 +108,7 @@ class Gate(unittest.TestCase):
     def test_thin_real_product_fails_as_a_draft(self):
         m = product_manifest.derive("tests/fixtures/render/thin-kin-2d-motion.v1.json",
                                     ["Physics/library/exam-bank/competitive-exam-question-bank.v2.json"],
-                                    "PRODUCT-PHY-KIN-2D", "Motion in a Plane", "../index.html")
+                                    "PRODUCT-PHY-KIN-2D", "../index.html")
         path = self.tmp / "m.json"
         path.write_text(json.dumps(m), encoding="utf-8")
         out = self.build(path, draft=True)

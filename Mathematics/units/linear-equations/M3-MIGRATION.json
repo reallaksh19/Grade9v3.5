@@ -1,0 +1,1213 @@
+{
+  "schema": "math-linear-m3-migration/v1",
+  "source_path": "Mathematics/research/packages/MAT-09-LINEAR-EQUATIONS.package.json",
+  "source_sha256": "sha256:e3afc1ed50a849f41af7815e758eb6256ece53fd5ff84e7f6f825ef7107539c9",
+  "target_path": "Mathematics/library/linear-equations.v1.json",
+  "existing_counts": {
+    "resources": 1,
+    "buckets": 1,
+    "capabilities": 3,
+    "microtopics": 3,
+    "relations": 2,
+    "representations": 1,
+    "question_families": 1,
+    "questions": 4,
+    "known_issues": 4,
+    "application_contexts": 0
+  },
+  "staged_counts": {
+    "resources": 13,
+    "buckets": 1,
+    "capabilities": 4,
+    "microtopics": 4,
+    "relations": 6,
+    "representations": 4,
+    "question_families": 4,
+    "questions": 28,
+    "known_issues": 1,
+    "application_contexts": 0
+  },
+  "merged_counts": {
+    "resources": 14,
+    "buckets": 2,
+    "capabilities": 7,
+    "microtopics": 7,
+    "relations": 8,
+    "representations": 5,
+    "question_families": 5,
+    "questions": 32,
+    "known_issues": 5,
+    "application_contexts": 0
+  },
+  "records": {
+    "resources": {
+      "SRC-AUTHOR-MAT-09-LEQ-STAGING": {
+        "digest": "sha256:6498d52ed71a805028053209adab7a6d615ebcad63785e34950eb8289a365441",
+        "references": []
+      },
+      "SRC-CBSE-CURRICULUM-MATHS-IX": {
+        "digest": "sha256:ae2345cff1ae879f334191906525c2a4318f70a74dbe1395e182dfa72509b8ee",
+        "references": [
+          "ACQ-932EA66D6FBFCEFCE818",
+          "ACQ-932EA66D6FBFCEFCE818"
+        ]
+      },
+      "SRC-NCERT-8-LINEQ-ONE": {
+        "digest": "sha256:aaf9c121fa4b726cf45d5316b41b527241cde4aa97896dfaf47983a55fcedc49",
+        "references": [
+          "ACQ-9FBC7FB1DD20FA5DB801",
+          "ACQ-9FBC7FB1DD20FA5DB801"
+        ]
+      },
+      "SRC-NCERT-8-ANSWERS": {
+        "digest": "sha256:aa534a851531abfd54b9c3ac258a2b9874f4a5399b7780fd87d20636f4f5acdb",
+        "references": [
+          "ACQ-CD5D620C72F939EAE08D",
+          "ACQ-CD5D620C72F939EAE08D"
+        ]
+      },
+      "SRC-NCERT-EXEMPLAR-8-UNIT2": {
+        "digest": "sha256:e26464f50e21335ef1236ca284f7f5c417b7950addead1980456c367ac65dcc8",
+        "references": [
+          "ACQ-F3DF5A8E9200FFDC2839",
+          "ACQ-F3DF5A8E9200FFDC2839"
+        ]
+      },
+      "SRC-NCERT-EXEMPLAR-8-ANSWERS": {
+        "digest": "sha256:f522004169034b0ec82134993dd3442cb46ed8c89e78aa0cdccf6fedc55e6c4e",
+        "references": [
+          "ACQ-E654119B163FE3BC89D9",
+          "ACQ-E654119B163FE3BC89D9"
+        ]
+      },
+      "SRC-NCERT-9-LINEQ-TWO": {
+        "digest": "sha256:1eb149d61b0c6fb6d315fea9b9a57de5a4ce9662cc0564eabda974c2d4ca1895",
+        "references": [
+          "ACQ-C18321E78F4DA53CCC2E",
+          "ACQ-C18321E78F4DA53CCC2E"
+        ]
+      },
+      "SRC-OPENSTAX-EA2E-2-2": {
+        "digest": "sha256:f685b199d06a9b63a5409c240c36977e09d2ff076dfcb7ebbdb2506ef3b632ee",
+        "references": [
+          "ACQ-7918EF32D4479E873142",
+          "ACQ-7918EF32D4479E873142"
+        ]
+      },
+      "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO": {
+        "digest": "sha256:aeb32c204ea3491ce63ee5a5a0455d6f9d5e0f3d36016f4309fffcd125aabeba",
+        "references": [
+          "ACQ-8EBBA62713FD9C2FC03D",
+          "ACQ-8EBBA62713FD9C2FC03D"
+        ]
+      },
+      "SRC-NCERT-EXEMPLAR-9-ANSWERS": {
+        "digest": "sha256:80e70b4982fd36ed7040180408757fc344445e684537520c62b61e4afdb96ed8",
+        "references": [
+          "ACQ-F5202BD0A4F2D1207CB5",
+          "ACQ-F5202BD0A4F2D1207CB5"
+        ]
+      },
+      "SRC-OPENSTAX-EA2E-2-4": {
+        "digest": "sha256:e40ab52d2abf9291833f5261fe6555682809a1c59762aaadb8799f9a54121425",
+        "references": [
+          "ACQ-2F47FB221F492526E913",
+          "ACQ-2F47FB221F492526E913"
+        ]
+      },
+      "SRC-OPENSTAX-EA2E-2-5": {
+        "digest": "sha256:f5f73b2785c35ebcb0ab6dbcae68d61916afc9b63cbb0ff8fbf26648f7eda522",
+        "references": [
+          "ACQ-702902AC8F2322592183",
+          "ACQ-702902AC8F2322592183"
+        ]
+      },
+      "SRC-NCERT-9-LINEAR-POLYNOMIALS": {
+        "digest": "sha256:b544e2f5207cb81fecab0561959dacbd2768eb7557b33b34fbc4b68f8a73a901",
+        "references": [
+          "ACQ-DBC30792858FA1858D24",
+          "ACQ-DBC30792858FA1858D24"
+        ]
+      }
+    },
+    "buckets": {
+      "BUCKET-MAT-09-LEQ": {
+        "digest": "sha256:0bd8ec2d5187cec4d6faf5c3d64401050d89abdbd36dbf353108e048ccb865ce",
+        "references": [
+          "EV-MAT-09-LEQ-00-001",
+          "EV-MAT-09-LEQ-00-002",
+          "EV-MAT-09-LEQ-00-003",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-CBSE-CURRICULUM-MATHS-IX",
+          "SRC-CBSE-CURRICULUM-MATHS-IX",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-8-LINEQ-ONE"
+        ]
+      }
+    },
+    "capabilities": {
+      "CAP-MAT-LEQ-01-SUBSTITUTION-CHECK": {
+        "digest": "sha256:bc976385d4c1198c3c92143bdb64ef31ca0a8a596cc6151059e161dd9651bf51",
+        "references": [
+          "EV-MAT-09-LEQ-01-002",
+          "EV-MAT-09-LEQ-01-005",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-EXEMPLAR-8-UNIT2"
+        ]
+      },
+      "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES": {
+        "digest": "sha256:b6ec4baeb495981afd7bf35e79e26bd17cadfc30c216e69a061de72b156c5352",
+        "references": [
+          "CAP-MAT-LEQ-01-SUBSTITUTION-CHECK",
+          "EV-MAT-09-LEQ-02-001",
+          "EV-MAT-09-LEQ-02-002",
+          "EV-MAT-09-LEQ-02-003",
+          "EV-MAT-09-LEQ-02-004",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO"
+        ]
+      },
+      "CAP-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM": {
+        "digest": "sha256:d07fb2a92277f8f77a1c259f9386acbbe62095f9a1c851dad6958ba1e7365b2d",
+        "references": [
+          "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES",
+          "EV-MAT-09-LEQ-03-001",
+          "EV-MAT-09-LEQ-03-002",
+          "EV-MAT-09-LEQ-03-004",
+          "EV-MAT-09-LEQ-03-005",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-OPENSTAX-EA2E-2-4"
+        ]
+      },
+      "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS": {
+        "digest": "sha256:058a3a660da423fc5850f5ac36065bda142ff10e25efdff3cbaf17a7cf6e994a",
+        "references": [
+          "CAP-MAT-LEQ-01-SUBSTITUTION-CHECK",
+          "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES",
+          "EV-MAT-09-LEQ-04-001",
+          "EV-MAT-09-LEQ-04-002",
+          "EV-MAT-09-LEQ-04-003",
+          "EV-MAT-09-LEQ-04-006",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO"
+        ]
+      }
+    },
+    "microtopics": {
+      "MIC-MAT-LEQ-01-SOLUTION-BY-SUBSTITUTION": {
+        "digest": "sha256:292bf4b1693933dea72c334b256eb434101cbd988c624192c87ce645d35c4844",
+        "references": [
+          "CAP-MAT-LEQ-01-SUBSTITUTION-CHECK",
+          "EV-MAT-09-LEQ-01-001",
+          "EV-MAT-09-LEQ-01-002",
+          "EV-MAT-09-LEQ-01-003",
+          "EV-MAT-09-LEQ-01-004",
+          "EV-MAT-09-LEQ-01-005",
+          "EV-MAT-09-LEQ-01-006",
+          "EV-MAT-09-LEQ-01-007",
+          "EV-MAT-09-LEQ-01-009",
+          "EV-MAT-09-LEQ-01-011",
+          "FAM-MAT-LEQ-01-SUBSTITUTION",
+          "LEQ1-1",
+          "LEQ1-1",
+          "LEQ1-2",
+          "LEQ1-2",
+          "LEQ1-3",
+          "LEQ1-3",
+          "LEQ1-4",
+          "LEQ1-4",
+          "Q-MAT-LEQ-01-1A-EVALUATE-SIDES",
+          "Q-MAT-LEQ-01-1A-ONE-VALUE-NOT-ALL",
+          "REL-MAT-LEQ-01-SOLUTION-CONDITION",
+          "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE",
+          "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE",
+          "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-9-LINEQ-TWO",
+          "SRC-NCERT-EXEMPLAR-8-UNIT2",
+          "SRC-OPENSTAX-EA2E-2-2",
+          "VIS-MAT-LEQ-01-T0",
+          "VIS-MAT-LEQ-01-T1",
+          "VIS-MAT-LEQ-01-T1",
+          "VIS-MAT-LEQ-01-T2"
+        ]
+      },
+      "MIC-MAT-LEQ-02-VARIABLE-ON-BOTH-SIDES": {
+        "digest": "sha256:11b8287876edbfdd9c632d651fa1586e11d6deb6208cfeb9b407b3677230f282",
+        "references": [
+          "CAP-MAT-LEQ-01-SUBSTITUTION-CHECK",
+          "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES",
+          "EV-MAT-09-LEQ-02-001",
+          "EV-MAT-09-LEQ-02-002",
+          "EV-MAT-09-LEQ-02-003",
+          "EV-MAT-09-LEQ-02-004",
+          "EV-MAT-09-LEQ-02-005",
+          "EV-MAT-09-LEQ-02-006",
+          "EV-MAT-09-LEQ-02-007",
+          "EV-MAT-09-LEQ-02-015",
+          "FAM-MAT-LEQ-02-BOTH-SIDES",
+          "LEQ2-1",
+          "LEQ2-1",
+          "LEQ2-2",
+          "LEQ2-2",
+          "LEQ2-3",
+          "LEQ2-3",
+          "LEQ2-4",
+          "LEQ2-4",
+          "LEQ2-5",
+          "LEQ2-5",
+          "Q-MAT-LEQ-02-1A-COLLECT-TERMS",
+          "Q-MAT-LEQ-02-1A-DIVIDE-AND-CHECK",
+          "REL-MAT-LEQ-02-SOLUTION-PRESERVING-OPERATIONS",
+          "REP-MAT-LEQ-02-BALANCE",
+          "REP-MAT-LEQ-02-BALANCE",
+          "REP-MAT-LEQ-02-BALANCE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-EXEMPLAR-8-UNIT2",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-02-B0",
+          "VIS-MAT-LEQ-02-B1",
+          "VIS-MAT-LEQ-02-B2",
+          "VIS-MAT-LEQ-02-B2",
+          "VIS-MAT-LEQ-02-B3"
+        ]
+      },
+      "MIC-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM": {
+        "digest": "sha256:76329104812dda7eec8245f6325d5ab860f4fe28df1c02709d11a6893e52235b",
+        "references": [
+          "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES",
+          "CAP-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+          "EV-MAT-09-LEQ-03-001",
+          "EV-MAT-09-LEQ-03-002",
+          "EV-MAT-09-LEQ-03-004",
+          "EV-MAT-09-LEQ-03-005",
+          "EV-MAT-09-LEQ-03-006",
+          "EV-MAT-09-LEQ-03-007",
+          "EV-MAT-09-LEQ-03-008",
+          "EV-MAT-09-LEQ-03-014",
+          "FAM-MAT-LEQ-03-REDUCTION",
+          "LEQ3-1",
+          "LEQ3-1",
+          "LEQ3-2",
+          "LEQ3-2",
+          "LEQ3-3",
+          "LEQ3-3",
+          "LEQ3-4",
+          "LEQ3-4",
+          "LEQ3-5",
+          "LEQ3-5",
+          "LEQ3-6",
+          "LEQ3-6",
+          "Q-MAT-LEQ-03-1A-CLEAR-DENOMINATORS",
+          "Q-MAT-LEQ-03-1A-OPEN-BRACKETS",
+          "Q-MAT-LEQ-03-1A-VARIABLE-VANISHES",
+          "REL-MAT-LEQ-03-REDUCED-OUTCOMES",
+          "REL-MAT-LEQ-03-REDUCTION",
+          "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE",
+          "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE",
+          "REP-MAT-LEQ-02-BALANCE",
+          "REP-MAT-LEQ-02-BALANCE",
+          "REP-MAT-LEQ-03-BRACKET-AREA-MODEL",
+          "REP-MAT-LEQ-03-BRACKET-AREA-MODEL",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-EXEMPLAR-8-UNIT2",
+          "SRC-OPENSTAX-EA2E-2-4",
+          "SRC-OPENSTAX-EA2E-2-5",
+          "VIS-MAT-LEQ-01-T1",
+          "VIS-MAT-LEQ-01-T2",
+          "VIS-MAT-LEQ-02-B1",
+          "VIS-MAT-LEQ-02-B3",
+          "VIS-MAT-LEQ-03-A0",
+          "VIS-MAT-LEQ-03-A1",
+          "VIS-MAT-LEQ-03-A2"
+        ]
+      },
+      "MIC-MAT-LEQ-04-TWO-VARIABLES-LINE-OF-SOLUTIONS": {
+        "digest": "sha256:24328190bfbf82eeba3fe2a059f5c7cfb2a35ff1c6668dd5d209d85cc5cb83cf",
+        "references": [
+          "CAP-MAT-LEQ-01-SUBSTITUTION-CHECK",
+          "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES",
+          "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS",
+          "EV-MAT-09-LEQ-04-001",
+          "EV-MAT-09-LEQ-04-002",
+          "EV-MAT-09-LEQ-04-003",
+          "EV-MAT-09-LEQ-04-005",
+          "EV-MAT-09-LEQ-04-006",
+          "EV-MAT-09-LEQ-04-007",
+          "EV-MAT-09-LEQ-04-008",
+          "EV-MAT-09-LEQ-04-014",
+          "EV-MAT-09-LEQ-04-016",
+          "FAM-MAT-LEQ-04-TWO-VARIABLES",
+          "LEQ4-1",
+          "LEQ4-1",
+          "LEQ4-2",
+          "LEQ4-2",
+          "LEQ4-3",
+          "LEQ4-3",
+          "LEQ4-4",
+          "LEQ4-4",
+          "LEQ4-5",
+          "LEQ4-5",
+          "Q-MAT-LEQ-04-1A-GENERATE-PAIRS",
+          "Q-MAT-LEQ-04-1A-READ-THE-LINE",
+          "Q-MAT-LEQ-04-1A-TEST-PAIRS",
+          "REL-MAT-LEQ-04-STRAIGHT-LINE",
+          "REL-MAT-LEQ-04-TWO-VARIABLE-FORM",
+          "REP-MAT-LEQ-04-SOLUTION-LINE",
+          "REP-MAT-LEQ-04-SOLUTION-LINE",
+          "REP-MAT-LEQ-04-SOLUTION-LINE",
+          "REP-MAT-LEQ-04-SOLUTION-LINE",
+          "REP-MAT-LEQ-04-SOLUTION-LINE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-04-G0",
+          "VIS-MAT-LEQ-04-G1",
+          "VIS-MAT-LEQ-04-G1",
+          "VIS-MAT-LEQ-04-G2",
+          "VIS-MAT-LEQ-04-G2",
+          "VIS-MAT-LEQ-04-G3"
+        ]
+      }
+    },
+    "relations": {
+      "REL-MAT-LEQ-01-SOLUTION-CONDITION": {
+        "digest": "sha256:2d432b019b2b5f8cc49e6e2881f469deb534c2e09fef3eed6f6f3259af8ce23c",
+        "references": [
+          "EV-MAT-09-LEQ-01-001",
+          "EV-MAT-09-LEQ-01-002",
+          "EV-MAT-09-LEQ-01-003",
+          "EV-MAT-09-LEQ-01-004",
+          "EV-MAT-09-LEQ-01-005",
+          "REL-MAT-LEQ-01-SOLUTION-CONDITION",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-9-LINEQ-TWO",
+          "SRC-NCERT-EXEMPLAR-8-UNIT2"
+        ]
+      },
+      "REL-MAT-LEQ-02-SOLUTION-PRESERVING-OPERATIONS": {
+        "digest": "sha256:594dc5b2b95db07750c8d9218dfa86ab2eb0e0bf5b2ecfb7d584e4d842306ccb",
+        "references": [
+          "EV-MAT-09-LEQ-02-001",
+          "EV-MAT-09-LEQ-02-002",
+          "EV-MAT-09-LEQ-02-003",
+          "EV-MAT-09-LEQ-02-004",
+          "EV-MAT-09-LEQ-02-005",
+          "EV-MAT-09-LEQ-02-006",
+          "REL-MAT-LEQ-02-SOLUTION-PRESERVING-OPERATIONS",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-EXEMPLAR-8-UNIT2",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO"
+        ]
+      },
+      "REL-MAT-LEQ-03-REDUCTION": {
+        "digest": "sha256:c3c096e37b58d0b66149ffa3d38d895dd78e0f84c46ccb546945f116e6cc5536",
+        "references": [
+          "EV-MAT-09-LEQ-03-001",
+          "EV-MAT-09-LEQ-03-002",
+          "EV-MAT-09-LEQ-03-003",
+          "EV-MAT-09-LEQ-03-006",
+          "EV-MAT-09-LEQ-03-007",
+          "REL-MAT-LEQ-03-REDUCTION",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-OPENSTAX-EA2E-2-5"
+        ]
+      },
+      "REL-MAT-LEQ-03-REDUCED-OUTCOMES": {
+        "digest": "sha256:28fe906a2336305c875c15d2b03b5df72bce63b5f2bb00732595011a50e924b1",
+        "references": [
+          "EV-MAT-09-LEQ-01-004",
+          "EV-MAT-09-LEQ-03-004",
+          "EV-MAT-09-LEQ-03-005",
+          "REL-MAT-LEQ-03-REDUCED-OUTCOMES",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-9-LINEQ-TWO",
+          "SRC-OPENSTAX-EA2E-2-4"
+        ]
+      },
+      "REL-MAT-LEQ-04-TWO-VARIABLE-FORM": {
+        "digest": "sha256:33d0b02a9ad7d2d3fa3c0ee2b6ebace76b60c80aa3aea6322171120469efbb4a",
+        "references": [
+          "EV-MAT-09-LEQ-04-001",
+          "EV-MAT-09-LEQ-04-002",
+          "EV-MAT-09-LEQ-04-003",
+          "EV-MAT-09-LEQ-04-005",
+          "EV-MAT-09-LEQ-04-006",
+          "EV-MAT-09-LEQ-04-007",
+          "EV-MAT-09-LEQ-04-017",
+          "REL-MAT-LEQ-04-TWO-VARIABLE-FORM",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-EXEMPLAR-9-ANSWERS",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO"
+        ]
+      },
+      "REL-MAT-LEQ-04-STRAIGHT-LINE": {
+        "digest": "sha256:addda29928f20a2cb431e552a00fdd3abd12ed3f605f023d49c877768605f8b6",
+        "references": [
+          "EV-MAT-09-LEQ-04-004",
+          "REL-MAT-LEQ-04-STRAIGHT-LINE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-9-LINEAR-POLYNOMIALS"
+        ]
+      }
+    },
+    "representations": {
+      "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE": {
+        "digest": "sha256:4c66178bced2d4c0de3000bb18d1d006b6ddaf249cfc326510bbacbc84bee726",
+        "references": [
+          "EV-MAT-09-LEQ-01-002",
+          "REL-MAT-LEQ-01-SOLUTION-CONDITION",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "VIS-MAT-LEQ-01-T0",
+          "VIS-MAT-LEQ-01-T1",
+          "VIS-MAT-LEQ-01-T2"
+        ]
+      },
+      "REP-MAT-LEQ-02-BALANCE": {
+        "digest": "sha256:47dcf57400a39e5a45beea2cda7ecc452f4b9665f96b84178fd5dc291711dfcd",
+        "references": [
+          "EV-MAT-09-LEQ-02-001",
+          "EV-MAT-09-LEQ-02-004",
+          "EV-MAT-09-LEQ-02-006",
+          "REL-MAT-LEQ-02-SOLUTION-PRESERVING-OPERATIONS",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-EXEMPLAR-8-UNIT2",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-02-B0",
+          "VIS-MAT-LEQ-02-B1",
+          "VIS-MAT-LEQ-02-B2"
+        ]
+      },
+      "REP-MAT-LEQ-03-BRACKET-AREA-MODEL": {
+        "digest": "sha256:7128279330a0e96fda6d1deaa91527eba95a63e3bae7dd7b739078a5fa923895",
+        "references": [
+          "EV-MAT-09-LEQ-03-002",
+          "REL-MAT-LEQ-03-REDUCTION",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "VIS-MAT-LEQ-03-A0",
+          "VIS-MAT-LEQ-03-A1",
+          "VIS-MAT-LEQ-03-A2"
+        ]
+      },
+      "REP-MAT-LEQ-04-SOLUTION-LINE": {
+        "digest": "sha256:ec65b5a3fe14b1e1153e903d25f75d2a96dc301d281e6fd3736878d71078f011",
+        "references": [
+          "EV-MAT-09-LEQ-04-003",
+          "EV-MAT-09-LEQ-04-006",
+          "REL-MAT-LEQ-04-STRAIGHT-LINE",
+          "REL-MAT-LEQ-04-TWO-VARIABLE-FORM",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-04-G0",
+          "VIS-MAT-LEQ-04-G1",
+          "VIS-MAT-LEQ-04-G2"
+        ]
+      }
+    },
+    "question_families": {
+      "FAM-MAT-LEQ-01-SUBSTITUTION": {
+        "digest": "sha256:a44791758b40fe34ade39bd53e9cea964199160a8aa751d7a8138a72ba91072c",
+        "references": [
+          "CAP-MAT-LEQ-01-SUBSTITUTION-CHECK",
+          "EV-MAT-09-LEQ-01-006",
+          "Q-MAT-LEQ-01-1A-EVALUATE-SIDES",
+          "Q-MAT-LEQ-01-1A-ONE-VALUE-NOT-ALL",
+          "Q-MAT-LEQ-01-EXEMPLAR8-Q17",
+          "Q-MAT-LEQ-01-EXEMPLAR8-Q20",
+          "Q-MAT-LEQ-01-EXEMPLAR8-Q6",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-OPENSTAX-EA2E-2-2"
+        ]
+      },
+      "FAM-MAT-LEQ-02-BOTH-SIDES": {
+        "digest": "sha256:6a316688e7f22319af3dbfd0487189eafc18897fa8011774a166955cbfe1de55",
+        "references": [
+          "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES",
+          "EV-MAT-09-LEQ-02-002",
+          "EV-MAT-09-LEQ-02-006",
+          "Q-MAT-LEQ-02-1A-COLLECT-TERMS",
+          "Q-MAT-LEQ-02-1A-DIVIDE-AND-CHECK",
+          "Q-MAT-LEQ-02-EXEMPLAR9-4-1-Q16",
+          "Q-MAT-LEQ-02-NCERT8-EX2-1-Q1",
+          "Q-MAT-LEQ-02-NCERT8-EX2-1-Q2",
+          "Q-MAT-LEQ-02-NCERT8-EX2-1-Q3",
+          "Q-MAT-LEQ-02-NCERT8-EX2-1-Q5",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-EXEMPLAR-8-UNIT2"
+        ]
+      },
+      "FAM-MAT-LEQ-03-REDUCTION": {
+        "digest": "sha256:4581586e5d0991df092e0c1eea80930f13cc15b610c1fab1bc7807d515531815",
+        "references": [
+          "CAP-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+          "EV-MAT-09-LEQ-03-002",
+          "EV-MAT-09-LEQ-03-007",
+          "Q-MAT-LEQ-03-1A-CLEAR-DENOMINATORS",
+          "Q-MAT-LEQ-03-1A-OPEN-BRACKETS",
+          "Q-MAT-LEQ-03-1A-VARIABLE-VANISHES",
+          "Q-MAT-LEQ-03-EXEMPLAR8-Q58",
+          "Q-MAT-LEQ-03-EXEMPLAR8-Q61",
+          "Q-MAT-LEQ-03-NCERT8-EX2-2-Q10",
+          "Q-MAT-LEQ-03-NCERT8-EX2-2-Q7",
+          "Q-MAT-LEQ-03-NCERT8-EX2-2-Q9",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-OPENSTAX-EA2E-2-5"
+        ]
+      },
+      "FAM-MAT-LEQ-04-TWO-VARIABLES": {
+        "digest": "sha256:ceede50e9d24c5756767909b86e5527bd412885c51b7259f2f46dda637ddbea3",
+        "references": [
+          "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS",
+          "EV-MAT-09-LEQ-04-007",
+          "Q-MAT-LEQ-04-1A-GENERATE-PAIRS",
+          "Q-MAT-LEQ-04-1A-READ-THE-LINE",
+          "Q-MAT-LEQ-04-1A-TEST-PAIRS",
+          "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q1",
+          "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q11",
+          "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q3",
+          "Q-MAT-LEQ-04-EXEMPLAR9-4-2-Q1",
+          "Q-MAT-LEQ-04-EXEMPLAR9-4-3-Q7",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO"
+        ]
+      }
+    },
+    "questions": {
+      "Q-MAT-LEQ-01-1A-EVALUATE-SIDES": {
+        "digest": "sha256:9ff58643bead74d3452fb82a5efe00c0ef980952005015e2fa29c433ad5fad44",
+        "references": [
+          "CAP-MAT-LEQ-01-SUBSTITUTION-CHECK",
+          "EV-MAT-09-LEQ-01-002",
+          "FAM-MAT-LEQ-01-SUBSTITUTION",
+          "FAM-MAT-LEQ-01-SUBSTITUTION",
+          "LEQ1-2",
+          "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "VIS-MAT-LEQ-01-T0",
+          "VIS-MAT-LEQ-01-T1",
+          "VIS-MAT-LEQ-01-T2"
+        ]
+      },
+      "Q-MAT-LEQ-01-1A-ONE-VALUE-NOT-ALL": {
+        "digest": "sha256:eed28f25bdbf16fa02f363e9bdc70afa14b05ad376ec454a75a9942845e4312b",
+        "references": [
+          "CAP-MAT-LEQ-01-SUBSTITUTION-CHECK",
+          "EV-MAT-09-LEQ-01-004",
+          "FAM-MAT-LEQ-01-SUBSTITUTION",
+          "FAM-MAT-LEQ-01-SUBSTITUTION",
+          "LEQ1-4",
+          "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-01-T1",
+          "VIS-MAT-LEQ-01-T2"
+        ]
+      },
+      "Q-MAT-LEQ-01-EXEMPLAR8-Q6": {
+        "digest": "sha256:52522880e92f370141b79308aa97d562475ae076e2f81a21998925a37a970716",
+        "references": [
+          "CAP-MAT-LEQ-01-SUBSTITUTION-CHECK",
+          "EV-MAT-09-LEQ-01-002",
+          "EV-MAT-09-LEQ-01-003",
+          "EV-MAT-09-LEQ-01-007",
+          "EV-MAT-09-LEQ-01-008",
+          "FAM-MAT-LEQ-01-SUBSTITUTION",
+          "FAM-MAT-LEQ-01-SUBSTITUTION",
+          "LEQ1-3",
+          "Q6-DEC",
+          "Q6-EVAL",
+          "Q6-REP",
+          "Q6-REP",
+          "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE",
+          "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-EXEMPLAR-8-ANSWERS",
+          "SRC-NCERT-EXEMPLAR-8-UNIT2",
+          "SRC-NCERT-EXEMPLAR-8-UNIT2",
+          "VIS-MAT-LEQ-01-T0"
+        ]
+      },
+      "Q-MAT-LEQ-01-EXEMPLAR8-Q17": {
+        "digest": "sha256:e8af676c907243d17e7f39f712cab59121196d047ad249145a2cbd78bff4ffaa",
+        "references": [
+          "CAP-MAT-LEQ-01-SUBSTITUTION-CHECK",
+          "EV-MAT-09-LEQ-01-002",
+          "EV-MAT-09-LEQ-01-003",
+          "EV-MAT-09-LEQ-01-009",
+          "EV-MAT-09-LEQ-01-010",
+          "FAM-MAT-LEQ-01-SUBSTITUTION",
+          "FAM-MAT-LEQ-01-SUBSTITUTION",
+          "LEQ1-2",
+          "Q17-DEC",
+          "Q17-DEC",
+          "Q17-REP",
+          "Q17-REP",
+          "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE",
+          "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-EXEMPLAR-8-ANSWERS",
+          "SRC-NCERT-EXEMPLAR-8-UNIT2",
+          "SRC-NCERT-EXEMPLAR-8-UNIT2",
+          "VIS-MAT-LEQ-01-T0"
+        ]
+      },
+      "Q-MAT-LEQ-01-EXEMPLAR8-Q20": {
+        "digest": "sha256:54c4a17f0e8be1069d75d7d1ee1e181e19bae2deca0c92fb1d3c7c70ee4cb6dc",
+        "references": [
+          "CAP-MAT-LEQ-01-SUBSTITUTION-CHECK",
+          "EV-MAT-09-LEQ-01-002",
+          "EV-MAT-09-LEQ-01-011",
+          "EV-MAT-09-LEQ-01-012",
+          "FAM-MAT-LEQ-01-SUBSTITUTION",
+          "FAM-MAT-LEQ-01-SUBSTITUTION",
+          "LEQ1-3",
+          "Q20-CHK",
+          "Q20-DEC",
+          "Q20-DEC",
+          "Q20-REP",
+          "Q20-REP",
+          "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE",
+          "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-EXEMPLAR-8-ANSWERS",
+          "SRC-NCERT-EXEMPLAR-8-UNIT2",
+          "SRC-NCERT-EXEMPLAR-8-UNIT2",
+          "VIS-MAT-LEQ-01-T0"
+        ]
+      },
+      "Q-MAT-LEQ-02-1A-COLLECT-TERMS": {
+        "digest": "sha256:9cf13ddf2ff341d662127933b6c7d634f70d89801ec15701afb50dee38c46362",
+        "references": [
+          "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES",
+          "EV-MAT-09-LEQ-02-001",
+          "EV-MAT-09-LEQ-02-002",
+          "FAM-MAT-LEQ-02-BOTH-SIDES",
+          "FAM-MAT-LEQ-02-BOTH-SIDES",
+          "LEQ2-3",
+          "REP-MAT-LEQ-02-BALANCE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "VIS-MAT-LEQ-02-B0",
+          "VIS-MAT-LEQ-02-B1",
+          "VIS-MAT-LEQ-02-B2"
+        ]
+      },
+      "Q-MAT-LEQ-02-1A-DIVIDE-AND-CHECK": {
+        "digest": "sha256:ad932849f700c4459ead155eefb1f72f7c06f03897a745a9749ee01550c73d0f",
+        "references": [
+          "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES",
+          "EV-MAT-09-LEQ-02-004",
+          "FAM-MAT-LEQ-02-BOTH-SIDES",
+          "FAM-MAT-LEQ-02-BOTH-SIDES",
+          "LEQ2-4",
+          "REP-MAT-LEQ-02-BALANCE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-02-B2",
+          "VIS-MAT-LEQ-02-B3"
+        ]
+      },
+      "Q-MAT-LEQ-02-NCERT8-EX2-1-Q1": {
+        "digest": "sha256:43103007859c15384d7cdc2bfff7b8073a3a6ae3e1c5d2025a6b2d4dc742d247",
+        "references": [
+          "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES",
+          "EV-MAT-09-LEQ-02-001",
+          "EV-MAT-09-LEQ-02-004",
+          "EV-MAT-09-LEQ-02-007",
+          "EV-MAT-09-LEQ-02-008",
+          "FAM-MAT-LEQ-02-BOTH-SIDES",
+          "FAM-MAT-LEQ-02-BOTH-SIDES",
+          "LEQ2-3",
+          "Q1-DEC",
+          "Q1-DEC",
+          "Q1-DEC",
+          "Q1-SIM",
+          "REP-MAT-LEQ-02-BALANCE",
+          "REP-MAT-LEQ-02-BALANCE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-ANSWERS",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-02-B0"
+        ]
+      },
+      "Q-MAT-LEQ-02-NCERT8-EX2-1-Q2": {
+        "digest": "sha256:7f69280dac0f4bb7c0fff99bf522aa00737f0f0e737d55ba3d7f223d45fdea32",
+        "references": [
+          "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES",
+          "EV-MAT-09-LEQ-02-001",
+          "EV-MAT-09-LEQ-02-004",
+          "EV-MAT-09-LEQ-02-009",
+          "EV-MAT-09-LEQ-02-010",
+          "FAM-MAT-LEQ-02-BOTH-SIDES",
+          "FAM-MAT-LEQ-02-BOTH-SIDES",
+          "LEQ2-2",
+          "Q2-DEC",
+          "Q2-DEC",
+          "Q2-DEC",
+          "Q2-NUM",
+          "REP-MAT-LEQ-02-BALANCE",
+          "REP-MAT-LEQ-02-BALANCE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-ANSWERS",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-02-B0"
+        ]
+      },
+      "Q-MAT-LEQ-02-NCERT8-EX2-1-Q3": {
+        "digest": "sha256:6a291eee19a6ccde33dec7f6d04d51ffa79970dd88b4229b6cdcc38f875be722",
+        "references": [
+          "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES",
+          "EV-MAT-09-LEQ-02-001",
+          "EV-MAT-09-LEQ-02-004",
+          "EV-MAT-09-LEQ-02-011",
+          "EV-MAT-09-LEQ-02-012",
+          "FAM-MAT-LEQ-02-BOTH-SIDES",
+          "FAM-MAT-LEQ-02-BOTH-SIDES",
+          "LEQ2-3",
+          "Q3-DEC",
+          "Q3-DEC",
+          "Q3-DEC",
+          "Q3-NUM",
+          "REP-MAT-LEQ-02-BALANCE",
+          "REP-MAT-LEQ-02-BALANCE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-ANSWERS",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-02-B0"
+        ]
+      },
+      "Q-MAT-LEQ-02-NCERT8-EX2-1-Q5": {
+        "digest": "sha256:40f54ee5509426d1bec6214c666da9cdb53b5fe5c77971ce6cadbc663d46882f",
+        "references": [
+          "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES",
+          "EV-MAT-09-LEQ-02-001",
+          "EV-MAT-09-LEQ-02-004",
+          "EV-MAT-09-LEQ-02-013",
+          "EV-MAT-09-LEQ-02-014",
+          "FAM-MAT-LEQ-02-BOTH-SIDES",
+          "FAM-MAT-LEQ-02-BOTH-SIDES",
+          "LEQ2-3",
+          "Q5-CHK",
+          "Q5-DEC",
+          "Q5-DEC",
+          "Q5-REP",
+          "Q5-REP",
+          "REP-MAT-LEQ-02-BALANCE",
+          "REP-MAT-LEQ-02-BALANCE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-ANSWERS",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-02-B0"
+        ]
+      },
+      "Q-MAT-LEQ-02-EXEMPLAR9-4-1-Q16": {
+        "digest": "sha256:ba8fe5f7ea173ed50d2783831c3a09af35389406add96d5e3435d587397e6e3e",
+        "references": [
+          "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES",
+          "EV-MAT-09-LEQ-02-004",
+          "EV-MAT-09-LEQ-02-015",
+          "EV-MAT-09-LEQ-02-016",
+          "FAM-MAT-LEQ-02-BOTH-SIDES",
+          "FAM-MAT-LEQ-02-BOTH-SIDES",
+          "LEQ2-4",
+          "Q16-DEC",
+          "Q16-DEC",
+          "Q16-DEC",
+          "Q16-REP",
+          "REP-MAT-LEQ-02-BALANCE",
+          "REP-MAT-LEQ-02-BALANCE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-EXEMPLAR-9-ANSWERS",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-02-B0"
+        ]
+      },
+      "Q-MAT-LEQ-03-1A-OPEN-BRACKETS": {
+        "digest": "sha256:2d8131692dec3ba38101aa58f6f8c50219c9fb57fde25c17ca730f09529fccf1",
+        "references": [
+          "CAP-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+          "EV-MAT-09-LEQ-03-002",
+          "FAM-MAT-LEQ-03-REDUCTION",
+          "FAM-MAT-LEQ-03-REDUCTION",
+          "LEQ3-2",
+          "REP-MAT-LEQ-03-BRACKET-AREA-MODEL",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "VIS-MAT-LEQ-03-A0",
+          "VIS-MAT-LEQ-03-A1",
+          "VIS-MAT-LEQ-03-A2"
+        ]
+      },
+      "Q-MAT-LEQ-03-1A-CLEAR-DENOMINATORS": {
+        "digest": "sha256:5faf182d5939bde48b8705d7863c77c38cf4538c6c4d8551e51e2eea72e34946",
+        "references": [
+          "CAP-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+          "EV-MAT-09-LEQ-03-001",
+          "FAM-MAT-LEQ-03-REDUCTION",
+          "FAM-MAT-LEQ-03-REDUCTION",
+          "LEQ3-4",
+          "REP-MAT-LEQ-02-BALANCE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "VIS-MAT-LEQ-02-B1",
+          "VIS-MAT-LEQ-02-B3"
+        ]
+      },
+      "Q-MAT-LEQ-03-1A-VARIABLE-VANISHES": {
+        "digest": "sha256:c4175960b6f26318ff231a515f2a261560b076c6b5662ebfcec51aadc15c40f9",
+        "references": [
+          "CAP-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+          "EV-MAT-09-LEQ-03-004",
+          "EV-MAT-09-LEQ-03-005",
+          "FAM-MAT-LEQ-03-REDUCTION",
+          "FAM-MAT-LEQ-03-REDUCTION",
+          "LEQ3-6",
+          "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-OPENSTAX-EA2E-2-4",
+          "VIS-MAT-LEQ-01-T1",
+          "VIS-MAT-LEQ-01-T2"
+        ]
+      },
+      "Q-MAT-LEQ-03-NCERT8-EX2-2-Q7": {
+        "digest": "sha256:51935d86e60a541b4243c7a6c12eaa48bc81100398f5cb62fc0e33de7f77c7ba",
+        "references": [
+          "CAP-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+          "EV-MAT-09-LEQ-02-004",
+          "EV-MAT-09-LEQ-03-002",
+          "EV-MAT-09-LEQ-03-008",
+          "EV-MAT-09-LEQ-03-009",
+          "FAM-MAT-LEQ-03-REDUCTION",
+          "FAM-MAT-LEQ-03-REDUCTION",
+          "LEQ3-2",
+          "Q7-DEC",
+          "Q7-REP",
+          "Q7-REP",
+          "Q7-REP",
+          "REP-MAT-LEQ-03-BRACKET-AREA-MODEL",
+          "REP-MAT-LEQ-03-BRACKET-AREA-MODEL",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-ANSWERS",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-03-A0"
+        ]
+      },
+      "Q-MAT-LEQ-03-NCERT8-EX2-2-Q9": {
+        "digest": "sha256:e51d3ff70de25ad3a64a59a0ae5cb294e921d8968d7c7dd15030891076c16375",
+        "references": [
+          "CAP-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+          "EV-MAT-09-LEQ-02-004",
+          "EV-MAT-09-LEQ-03-002",
+          "EV-MAT-09-LEQ-03-010",
+          "EV-MAT-09-LEQ-03-011",
+          "FAM-MAT-LEQ-03-REDUCTION",
+          "FAM-MAT-LEQ-03-REDUCTION",
+          "LEQ3-2",
+          "Q9-COM",
+          "Q9-DEC",
+          "Q9-DEC",
+          "Q9-DEC",
+          "REP-MAT-LEQ-03-BRACKET-AREA-MODEL",
+          "REP-MAT-LEQ-03-BRACKET-AREA-MODEL",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-ANSWERS",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-03-A0"
+        ]
+      },
+      "Q-MAT-LEQ-03-NCERT8-EX2-2-Q10": {
+        "digest": "sha256:4d424c2eaa6f0542c560dea8e84ac3d16225904146d8a7ecaef1834597890494",
+        "references": [
+          "CAP-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+          "EV-MAT-09-LEQ-02-004",
+          "EV-MAT-09-LEQ-03-001",
+          "EV-MAT-09-LEQ-03-002",
+          "EV-MAT-09-LEQ-03-012",
+          "EV-MAT-09-LEQ-03-013",
+          "FAM-MAT-LEQ-03-REDUCTION",
+          "FAM-MAT-LEQ-03-REDUCTION",
+          "LEQ3-4",
+          "Q10-CHK",
+          "Q10-DEC",
+          "Q10-DEC",
+          "Q10-REP",
+          "Q10-SOL",
+          "REP-MAT-LEQ-03-BRACKET-AREA-MODEL",
+          "REP-MAT-LEQ-03-BRACKET-AREA-MODEL",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-ANSWERS",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-03-A0"
+        ]
+      },
+      "Q-MAT-LEQ-03-EXEMPLAR8-Q58": {
+        "digest": "sha256:49de6ae9f7b81f6aa5736be4db487a8364a39582bce40a477dffb50e5df41e1b",
+        "references": [
+          "CAP-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+          "EV-MAT-09-LEQ-02-004",
+          "EV-MAT-09-LEQ-03-002",
+          "EV-MAT-09-LEQ-03-014",
+          "EV-MAT-09-LEQ-03-015",
+          "FAM-MAT-LEQ-03-REDUCTION",
+          "FAM-MAT-LEQ-03-REDUCTION",
+          "LEQ3-3",
+          "Q58-DEC",
+          "Q58-DEC",
+          "Q58-REP",
+          "Q58-SOL",
+          "REP-MAT-LEQ-03-BRACKET-AREA-MODEL",
+          "REP-MAT-LEQ-03-BRACKET-AREA-MODEL",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-EXEMPLAR-8-ANSWERS",
+          "SRC-NCERT-EXEMPLAR-8-UNIT2",
+          "SRC-NCERT-EXEMPLAR-8-UNIT2",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-03-A0"
+        ]
+      },
+      "Q-MAT-LEQ-03-EXEMPLAR8-Q61": {
+        "digest": "sha256:35319ac6de673085602e0fdaee2e244af8385371550183e066e97b4322507477",
+        "references": [
+          "CAP-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+          "EV-MAT-09-LEQ-02-004",
+          "EV-MAT-09-LEQ-03-002",
+          "EV-MAT-09-LEQ-03-016",
+          "EV-MAT-09-LEQ-03-017",
+          "FAM-MAT-LEQ-03-REDUCTION",
+          "FAM-MAT-LEQ-03-REDUCTION",
+          "LEQ3-2",
+          "Q61-DEC",
+          "Q61-DEC",
+          "Q61-DEC",
+          "Q61-SOL",
+          "REP-MAT-LEQ-03-BRACKET-AREA-MODEL",
+          "REP-MAT-LEQ-03-BRACKET-AREA-MODEL",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-8-LINEQ-ONE",
+          "SRC-NCERT-EXEMPLAR-8-ANSWERS",
+          "SRC-NCERT-EXEMPLAR-8-UNIT2",
+          "SRC-NCERT-EXEMPLAR-8-UNIT2",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-03-A0"
+        ]
+      },
+      "Q-MAT-LEQ-04-1A-TEST-PAIRS": {
+        "digest": "sha256:47769c891bee316812b979812b8ef54f9d7fc2ea4ce235a36d228038fb597589",
+        "references": [
+          "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS",
+          "EV-MAT-09-LEQ-04-001",
+          "FAM-MAT-LEQ-04-TWO-VARIABLES",
+          "FAM-MAT-LEQ-04-TWO-VARIABLES",
+          "LEQ4-2",
+          "REP-MAT-LEQ-04-SOLUTION-LINE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-04-G0",
+          "VIS-MAT-LEQ-04-G1"
+        ]
+      },
+      "Q-MAT-LEQ-04-1A-GENERATE-PAIRS": {
+        "digest": "sha256:bed39f5c28ea4c7a7d586c8fe341e1cfe7c47a88e842178d0ad9ff03b3697d4c",
+        "references": [
+          "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS",
+          "EV-MAT-09-LEQ-04-002",
+          "FAM-MAT-LEQ-04-TWO-VARIABLES",
+          "FAM-MAT-LEQ-04-TWO-VARIABLES",
+          "LEQ4-3",
+          "REP-MAT-LEQ-04-SOLUTION-LINE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-04-G1",
+          "VIS-MAT-LEQ-04-G2"
+        ]
+      },
+      "Q-MAT-LEQ-04-1A-READ-THE-LINE": {
+        "digest": "sha256:49a16c1d720650607984d9133b3b778a8fcf2bea520081c80d1d0e01cd21e13e",
+        "references": [
+          "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS",
+          "EV-MAT-09-LEQ-04-003",
+          "EV-MAT-09-LEQ-04-006",
+          "FAM-MAT-LEQ-04-TWO-VARIABLES",
+          "FAM-MAT-LEQ-04-TWO-VARIABLES",
+          "LEQ4-4",
+          "REP-MAT-LEQ-04-SOLUTION-LINE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-04-G2",
+          "VIS-MAT-LEQ-04-G3"
+        ]
+      },
+      "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q1": {
+        "digest": "sha256:f1500ada994ab34a23c80c390befc1094646c7ae408e26bd413d7abd3f19fc5f",
+        "references": [
+          "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS",
+          "EV-MAT-09-LEQ-04-001",
+          "EV-MAT-09-LEQ-04-002",
+          "EV-MAT-09-LEQ-04-008",
+          "EV-MAT-09-LEQ-04-009",
+          "FAM-MAT-LEQ-04-TWO-VARIABLES",
+          "FAM-MAT-LEQ-04-TWO-VARIABLES",
+          "LEQ4-3",
+          "Q1-DEC",
+          "Q1-DEC",
+          "Q1-DEC",
+          "Q1-REP",
+          "REP-MAT-LEQ-04-SOLUTION-LINE",
+          "REP-MAT-LEQ-04-SOLUTION-LINE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-EXEMPLAR-9-ANSWERS",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-04-G0"
+        ]
+      },
+      "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q3": {
+        "digest": "sha256:55dac6f99d58c812bbe0575e43b46458beda00572a08f609c1f6d224744f546d",
+        "references": [
+          "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS",
+          "EV-MAT-09-LEQ-04-003",
+          "EV-MAT-09-LEQ-04-010",
+          "EV-MAT-09-LEQ-04-011",
+          "FAM-MAT-LEQ-04-TWO-VARIABLES",
+          "FAM-MAT-LEQ-04-TWO-VARIABLES",
+          "LEQ4-2",
+          "Q3-CHK",
+          "Q3-DEC",
+          "Q3-DEC",
+          "Q3-REP",
+          "Q3-REP",
+          "REP-MAT-LEQ-04-SOLUTION-LINE",
+          "REP-MAT-LEQ-04-SOLUTION-LINE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-EXEMPLAR-9-ANSWERS",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-04-G0"
+        ]
+      },
+      "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q11": {
+        "digest": "sha256:472e2f9bc4841969ce021cc58a7cd191e2604a586d076254c64120d848fb1bfc",
+        "references": [
+          "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS",
+          "EV-MAT-09-LEQ-04-001",
+          "EV-MAT-09-LEQ-04-012",
+          "EV-MAT-09-LEQ-04-013",
+          "FAM-MAT-LEQ-04-TWO-VARIABLES",
+          "FAM-MAT-LEQ-04-TWO-VARIABLES",
+          "LEQ4-2",
+          "Q11-DEC",
+          "Q11-DEC",
+          "Q11-DEC",
+          "Q11-REP",
+          "REP-MAT-LEQ-04-SOLUTION-LINE",
+          "REP-MAT-LEQ-04-SOLUTION-LINE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-EXEMPLAR-9-ANSWERS",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-04-G0"
+        ]
+      },
+      "Q-MAT-LEQ-04-EXEMPLAR9-4-2-Q1": {
+        "digest": "sha256:cc2295c7e6bc5cf842bb51a726267ef78c1f928def89ebdc037244984d5fa900",
+        "references": [
+          "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS",
+          "EV-MAT-09-LEQ-04-003",
+          "EV-MAT-09-LEQ-04-014",
+          "EV-MAT-09-LEQ-04-015",
+          "FAM-MAT-LEQ-04-TWO-VARIABLES",
+          "FAM-MAT-LEQ-04-TWO-VARIABLES",
+          "LEQ4-4",
+          "Q21-DEC",
+          "Q21-REP",
+          "Q21-REP",
+          "Q21-REP",
+          "REP-MAT-LEQ-04-SOLUTION-LINE",
+          "REP-MAT-LEQ-04-SOLUTION-LINE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-EXEMPLAR-9-ANSWERS",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-04-G0"
+        ]
+      },
+      "Q-MAT-LEQ-04-EXEMPLAR9-4-3-Q7": {
+        "digest": "sha256:60394f0c5c17b68b2cbe8a3051a034ed1cb2b8826c4f181555f3b578f356aad0",
+        "references": [
+          "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS",
+          "EV-MAT-09-LEQ-04-002",
+          "EV-MAT-09-LEQ-04-003",
+          "EV-MAT-09-LEQ-04-016",
+          "EV-MAT-09-LEQ-04-017",
+          "FAM-MAT-LEQ-04-TWO-VARIABLES",
+          "FAM-MAT-LEQ-04-TWO-VARIABLES",
+          "LEQ4-3",
+          "Q37-CHK",
+          "Q37-DEC",
+          "Q37-DEC",
+          "Q37-REP",
+          "Q37-REP",
+          "REP-MAT-LEQ-04-SOLUTION-LINE",
+          "REP-MAT-LEQ-04-SOLUTION-LINE",
+          "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+          "SRC-NCERT-EXEMPLAR-9-ANSWERS",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+          "VIS-MAT-LEQ-04-G0"
+        ]
+      }
+    },
+    "known_issues": {
+      "ISSUE-MAT-LEQ-EXIT-ORACLE": {
+        "digest": "sha256:81d03ee460b51c43f01f35593c80d8a087f74591425d310301e068d9eddccda1",
+        "references": [
+          "MIC-MAT-LEQ-01-SOLUTION-BY-SUBSTITUTION",
+          "MIC-MAT-LEQ-02-VARIABLE-ON-BOTH-SIDES",
+          "MIC-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+          "MIC-MAT-LEQ-04-TWO-VARIABLES-LINE-OF-SOLUTIONS"
+        ]
+      }
+    },
+    "application_contexts": {}
+  }
+}

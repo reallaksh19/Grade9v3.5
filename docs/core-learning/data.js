@@ -155,6 +155,101 @@ window.GRADE9V3_CORE = {
       "explorer_locator": null
     },
     {
+      "id": "mathematics:bucket-mat-09-leq:core1",
+      "subject": "Mathematics",
+      "source_ref": "BUCKET-MAT-09-LEQ",
+      "projection": {
+        "contract_version": "1.1",
+        "core": "CORE1",
+        "orientation": {
+          "bucket_ref": "BUCKET-MAT-09-LEQ",
+          "title": "Linear equations in one variable (Class VI to VIII bridge) and in two variables (Class IX)",
+          "blocks": [
+            {
+              "id": "CORE1-SCOPE",
+              "kind": "TEXT",
+              "text": "This bucket covers Linear equations in one variable (meaning of a solution, same operation on both sides, transposition, reducing to simpler form) as the bridge into Class IX linear equations in two variables, their infinitely many solutions and straight-line graph.\nDeliberately excluded: Pairs of simultaneous linear equations in two variables.\nDeliberately excluded: Word-problem modelling beyond the keyed items cited here.\nDeliberately excluded: Non-linear equations, except those the source shows being brought to linear form."
+            },
+            {
+              "id": "CORE1-DEMAND",
+              "kind": "TEXT",
+              "text": "Where the hard work is.\nSolving an equation with the variable on both sides: the same operation on both sides, and transposing a variable term like a number. (MEDIUM) The steps are routine, but two errors recur: changing one side only, and moving a term across the equality sign without changing its sign.\nReducing an equation to simpler form: opening brackets, combining like terms and clearing denominators before solving. (MEDIUM) Each reduction is familiar arithmetic, but a negative factor in front of a bracket, a term left unmultiplied by the LCM, and a vanishing variable each produce confident wrong answers.\nLinear equations in two variables: the form ax + by + c = 0, infinitely many solution pairs, and the straight-line graph. (HARD) Learners arrive expecting one number as the answer; here a solution is a pair, there are infinitely many, and the same statement can have one solution on a number line but infinitely many on the plane."
+            }
+          ]
+        },
+        "concept": null,
+        "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+            "blueprint_id": "BP-CORE1-ORIENTATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_ORIENTATION",
+            "required_slots": [
+              "identity",
+              "orientation"
+            ],
+            "slot_order": [
+              "identity",
+              "orientation"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "SINGLE_PANE",
+              "expanded": "SINGLE_PANE",
+              "primary_fraction": 1,
+              "support_fraction": 0
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "FULL_INFERENTIAL_CONSTRUCTION"
+            ]
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": false,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 0,
+          "pre_attempt_hint_limit": 0,
+          "post_attempt_hint_limit": 0
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
       "id": "mathematics:mic-math-constraint:core1a",
       "subject": "Mathematics",
       "source_ref": "MIC-MATH-CONSTRAINT",
@@ -1525,6 +1620,3158 @@ window.GRADE9V3_CORE = {
           "initial_visual_ref": "REP-MATH-NUMBER-LINE",
           "initial_visual_stage_ref": "VIS-MATH-NL-1",
           "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 0,
+          "pre_attempt_hint_limit": 0,
+          "post_attempt_hint_limit": 0
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "mathematics:q-mat-leq-01-exemplar8-q17:core2a",
+      "subject": "Mathematics",
+      "source_ref": "Q-MAT-LEQ-01-EXEMPLAR8-Q17",
+      "projection": {
+        "contract_version": "1.1",
+        "core": "CORE2A",
+        "orientation": null,
+        "concept": null,
+        "application": {
+          "question_ref": "Q-MAT-LEQ-01-EXEMPLAR8-Q17",
+          "family_ref": "FAM-MAT-LEQ-01-SUBSTITUTION",
+          "exposure": [
+            {
+              "core": "CORE2A",
+              "role": "PRACTICE",
+              "artifact_ref": null
+            }
+          ],
+          "stem": "The solution of the equation 3x – 4 = 1 – 2x is _________.",
+          "source_refs": [
+            "SRC-NCERT-EXEMPLAR-8-UNIT2",
+            "SRC-NCERT-8-LINEQ-ONE",
+            "SRC-NCERT-EXEMPLAR-8-ANSWERS",
+            "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+          ],
+          "origin": "ORIGINAL",
+          "original_number": "NCERT Exemplar Problems, Class VIII Mathematics / Unit 'Linear Equations in One Variable', Exercise / Q17",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "The equation is linear in the one variable x.",
+            "A solution makes the LHS and RHS equal."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "Q17-REP",
+              "kind": "REPRESENT",
+              "action": "Set up a table of LHS and RHS values for trial values of x.",
+              "why_valid": "With no options given, candidates must be produced and each judged by equal side values.",
+              "inputs": [],
+              "output": "table with columns x, 3x − 4, 1 − 2x"
+            },
+            {
+              "id": "Q17-DEC",
+              "kind": "DECIDE",
+              "action": "Use the direction of change (LHS up by 3, RHS down by 2 per step) to steer trials toward the crossing.",
+              "why_valid": "A rising side and a falling side can be equal at most once, and the gap closes by 5 per step.",
+              "inputs": [
+                "x = 0 row: −4 and 1"
+              ],
+              "output": "the gap at x = 0 is 5, so one step reaches equality"
+            },
+            {
+              "id": "Q17-CHK",
+              "kind": "VERIFY",
+              "action": "Confirm the crossing value by substitution into the original equation.",
+              "why_valid": "Equal side values define a solution.",
+              "inputs": [],
+              "output": "x = 1 gives −1 = −1"
+            }
+          ],
+          "crux_move_ref": "Q17-DEC",
+          "hints": [],
+          "scaffolds": [
+            {
+              "text": "There are no options this time. What would a value of x have to do to the two sides to be the solution?",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q17-REP"
+            },
+            {
+              "text": "Make a table for x = 0, 1, 2 with one column for 3x – 4 and one for 1 – 2x.",
+              "support_kind": "REPRESENT",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q17-REP"
+            },
+            {
+              "text": "At x = 0 the LHS is 5 below the RHS. By how much does that gap shrink each time x goes up by 1?",
+              "support_kind": "CONNECT",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q17-DEC"
+            }
+          ],
+          "transfer": null,
+          "check": "Substitute x = 1: 3(1) − 4 = −1 and 1 − 2(1) = −1.",
+          "solution": {
+            "summary": "x = 1",
+            "steps": [
+              "Tabulate both sides for small whole numbers: x = 0 gives −4 and 1; x = 1 gives −1 and −1; x = 2 gives 2 and −3.",
+              "As x grows by 1 the LHS rises by 3 and the RHS falls by 2, so the sides meet once.",
+              "They are equal at x = 1, which matches the official key."
+            ],
+            "rubric": []
+          },
+          "repair": {
+            "step_ref": "LEQ1-2",
+            "microtopic_ref": "MIC-MAT-LEQ-01-SOLUTION-BY-SUBSTITUTION",
+            "action": "Substitute the candidate into each side separately and evaluate each to a single number.",
+            "why_valid": "Each side is an expression in x, so it takes exactly one value when x is given a value.",
+            "output": "At x = 5: LHS = 3 × 5 − 4 = 11 and RHS = 2 × 5 + 1 = 11. At x = 0: LHS = −4 and RHS = 1."
+          }
+        },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+            "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "QUESTION_STUDY",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reasoning"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "support",
+              "reasoning"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "LEARNER_OPENABLE"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+            ]
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": false,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 3,
+          "pre_attempt_hint_limit": 0,
+          "post_attempt_hint_limit": 0
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "mathematics:q-mat-leq-01-exemplar8-q20:core2b",
+      "subject": "Mathematics",
+      "source_ref": "Q-MAT-LEQ-01-EXEMPLAR8-Q20",
+      "projection": {
+        "contract_version": "1.1",
+        "core": "CORE2B",
+        "orientation": null,
+        "concept": null,
+        "application": {
+          "question_ref": "Q-MAT-LEQ-01-EXEMPLAR8-Q20",
+          "family_ref": "FAM-MAT-LEQ-01-SUBSTITUTION",
+          "exposure": [
+            {
+              "core": "CORE2B",
+              "role": "NEW_TRANSFER",
+              "artifact_ref": null
+            }
+          ],
+          "stem": "9x – _________ = –21 has the solution (–2)",
+          "source_refs": [
+            "SRC-NCERT-EXEMPLAR-8-UNIT2",
+            "SRC-NCERT-8-LINEQ-ONE",
+            "SRC-NCERT-EXEMPLAR-8-ANSWERS",
+            "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+          ],
+          "origin": "ORIGINAL",
+          "original_number": "NCERT Exemplar Problems, Class VIII Mathematics / Unit 'Linear Equations in One Variable', Exercise / Q20",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "The blank holds one number.",
+            "x = –2 must make the two sides equal."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "Q20-REP",
+              "kind": "REPRESENT",
+              "action": "Name the blank as an unknown constant k.",
+              "why_valid": "The blank is a number, so it can be carried as a symbol.",
+              "inputs": [],
+              "output": "9x − k = −21"
+            },
+            {
+              "id": "Q20-DEC",
+              "kind": "DECIDE",
+              "action": "Substitute the given solution x = −2 before solving anything, making k the only unknown.",
+              "why_valid": "A stated solution guarantees equal sides at that value, which gives an equation in k.",
+              "inputs": [
+                "x = −2"
+              ],
+              "output": "−18 − k = −21"
+            },
+            {
+              "id": "Q20-SOLVE",
+              "kind": "TRANSFORM",
+              "action": "Solve −18 − k = −21 for k.",
+              "why_valid": "k is the number that, taken from −18, leaves −21.",
+              "inputs": [],
+              "output": "k = 3"
+            },
+            {
+              "id": "Q20-CHK",
+              "kind": "VERIFY",
+              "action": "Substitute x = −2 and k = 3 back into 9x − k.",
+              "why_valid": "The completed equation must be true at its stated solution.",
+              "inputs": [],
+              "output": "−21 = −21"
+            }
+          ],
+          "crux_move_ref": "Q20-DEC",
+          "hints": [],
+          "scaffolds": [
+            {
+              "text": "Give the blank a name, such as k, and rewrite the equation with it.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q20-REP"
+            },
+            {
+              "text": "Your rewritten equation has two letters, x and k. For each one, say whether the question tells you its value or asks you to find it.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q20-REP"
+            },
+            {
+              "text": "Name the relation that the words ‘has the solution (–2)’ promise: what must be true of the two sides of the equation at a solution?",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q20-CHK"
+            }
+          ],
+          "transfer": {
+            "dimension": "novelty",
+            "statement": "Novelty: the solution is given and a constant is missing, so substitution now builds an equation for the constant instead of testing a candidate for x. The decision to substitute before solving is new because in the earlier items x was the unknown.",
+            "builds_on": [
+              "Q-MAT-LEQ-01-EXEMPLAR8-Q6",
+              "Q-MAT-LEQ-01-EXEMPLAR8-Q17"
+            ],
+            "protected_move_ref": "Q20-DEC",
+            "invariant": "A number is a solution exactly when it makes the LHS and RHS equal; that test still decides the answer, now with x = –2 fixed and the constant free."
+          },
+          "check": "With k = 3: 9(−2) − 3 = −18 − 3 = −21, which is the RHS.",
+          "solution": {
+            "summary": "3",
+            "steps": [
+              "Call the missing number k, so the equation is 9x − k = −21.",
+              "Since −2 is the solution, substitute x = −2: 9(−2) − k = −21, that is −18 − k = −21.",
+              "So k = −18 + 21 = 3, matching the official key."
+            ],
+            "rubric": []
+          },
+          "repair": {
+            "step_ref": "LEQ1-3",
+            "microtopic_ref": "MIC-MAT-LEQ-01-SOLUTION-BY-SUBSTITUTION",
+            "action": "Accept the candidate as a solution only if the two values are equal; otherwise reject it.",
+            "why_valid": "The LHS and RHS are equal only for certain values of the variable, and those values are exactly the solutions.",
+            "output": "x = 5 is a solution (11 = 11); x = 0 is not (−4 ≠ 1)."
+          }
+        },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2B-TRANSFER@1.0.0",
+            "blueprint_id": "BP-CORE2B-TRANSFER",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "TRANSFER_ATTEMPT",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "PROTECTED_MOVE_DISCLOSED_PRE_ATTEMPT"
+            ]
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": true,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [
+            "Q20-DEC"
+          ],
+          "pre_attempt_scaffold_limit": 3,
+          "pre_attempt_hint_limit": 0,
+          "post_attempt_hint_limit": 0
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "mathematics:q-mat-leq-01-exemplar8-q6:core2a",
+      "subject": "Mathematics",
+      "source_ref": "Q-MAT-LEQ-01-EXEMPLAR8-Q6",
+      "projection": {
+        "contract_version": "1.1",
+        "core": "CORE2A",
+        "orientation": null,
+        "concept": null,
+        "application": {
+          "question_ref": "Q-MAT-LEQ-01-EXEMPLAR8-Q6",
+          "family_ref": "FAM-MAT-LEQ-01-SUBSTITUTION",
+          "exposure": [
+            {
+              "core": "CORE2A",
+              "role": "PRACTICE",
+              "artifact_ref": null
+            }
+          ],
+          "stem": "The value of x for which the expressions 3x – 4 and 2x + 1 become equal is",
+          "source_refs": [
+            "SRC-NCERT-EXEMPLAR-8-UNIT2",
+            "SRC-NCERT-8-LINEQ-ONE",
+            "SRC-NCERT-EXEMPLAR-8-ANSWERS",
+            "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+          ],
+          "origin": "ORIGINAL",
+          "original_number": "NCERT Exemplar Problems, Class VIII Mathematics / Unit 'Linear Equations in One Variable', Exercise / Q6",
+          "subparts": [],
+          "options": [
+            "(a) –3",
+            "(b) 0",
+            "(c) 5",
+            "(d) 1"
+          ],
+          "conditions": [
+            "x is one variable; the expressions are equal at x when they take the same value there.",
+            "Exactly one option is correct."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "Q6-REP",
+              "kind": "REPRESENT",
+              "action": "Rewrite 'the expressions become equal' as the equation 3x − 4 = 2x + 1.",
+              "why_valid": "Equal expressions at a value of x is exactly an equation whose solution is that value.",
+              "inputs": [
+                "3x − 4",
+                "2x + 1"
+              ],
+              "output": "3x − 4 = 2x + 1"
+            },
+            {
+              "id": "Q6-DEC",
+              "kind": "DECIDE",
+              "action": "Test the four options by substitution rather than by moving terms.",
+              "why_valid": "The options are candidates, and substitution decides each candidate directly.",
+              "inputs": [
+                "options −3, 0, 5, 1"
+              ],
+              "output": "a four-row table of side values"
+            },
+            {
+              "id": "Q6-EVAL",
+              "kind": "TRANSFORM",
+              "action": "Evaluate both expressions at each option.",
+              "why_valid": "Each expression has one value per value of x.",
+              "inputs": [],
+              "output": "(−13, −5), (−4, 1), (11, 11), (−1, 3)"
+            },
+            {
+              "id": "Q6-CHK",
+              "kind": "VERIFY",
+              "action": "Select the only row with equal values and confirm it.",
+              "why_valid": "The sides are equal only at a solution.",
+              "inputs": [],
+              "output": "x = 5, option (c)"
+            }
+          ],
+          "crux_move_ref": "Q6-REP",
+          "hints": [],
+          "scaffolds": [
+            {
+              "text": "What must be true of the two expressions at the value you are looking for? Write it with an equality sign.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q6-REP"
+            },
+            {
+              "text": "Put the options in a table with one column for 3x − 4 and one for 2x + 1.",
+              "support_kind": "REPRESENT",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q6-DEC"
+            },
+            {
+              "text": "Start with option (a): 3(−3) − 4 and 2(−3) + 1. Are these equal? Continue down the list.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q6-EVAL"
+            }
+          ],
+          "transfer": null,
+          "check": "At x = 5: 3(5) − 4 = 11 and 2(5) + 1 = 11.",
+          "solution": {
+            "summary": "(c) 5",
+            "steps": [
+              "'Become equal' means 3x − 4 = 2x + 1.",
+              "Test each option in both expressions: −3 gives −13 and −5; 0 gives −4 and 1; 5 gives 11 and 11; 1 gives −1 and 3.",
+              "Only x = 5 makes the two values equal, so the answer is (c), matching the official key."
+            ],
+            "rubric": []
+          },
+          "repair": {
+            "step_ref": "LEQ1-3",
+            "microtopic_ref": "MIC-MAT-LEQ-01-SOLUTION-BY-SUBSTITUTION",
+            "action": "Accept the candidate as a solution only if the two values are equal; otherwise reject it.",
+            "why_valid": "The LHS and RHS are equal only for certain values of the variable, and those values are exactly the solutions.",
+            "output": "x = 5 is a solution (11 = 11); x = 0 is not (−4 ≠ 1)."
+          }
+        },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+            "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "QUESTION_STUDY",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reasoning"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "support",
+              "reasoning"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "LEARNER_OPENABLE"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+            ]
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": false,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 3,
+          "pre_attempt_hint_limit": 0,
+          "post_attempt_hint_limit": 0
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "mathematics:q-mat-leq-02-exemplar9-4-1-q16:core2a",
+      "subject": "Mathematics",
+      "source_ref": "Q-MAT-LEQ-02-EXEMPLAR9-4-1-Q16",
+      "projection": {
+        "contract_version": "1.1",
+        "core": "CORE2A",
+        "orientation": null,
+        "concept": null,
+        "application": {
+          "question_ref": "Q-MAT-LEQ-02-EXEMPLAR9-4-1-Q16",
+          "family_ref": "FAM-MAT-LEQ-02-BOTH-SIDES",
+          "exposure": [
+            {
+              "core": "CORE2A",
+              "role": "PRACTICE",
+              "artifact_ref": null
+            }
+          ],
+          "stem": "If we multiply or divide both sides of a linear equation with a non-zero number, then the solution of the linear equation :",
+          "source_refs": [
+            "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+            "SRC-NCERT-EXEMPLAR-9-ANSWERS",
+            "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+          ],
+          "origin": "ORIGINAL",
+          "original_number": "NCERT Exemplar Problems, Class IX Mathematics / Chapter 4 Linear Equations in Two Variables, Exercise 4.1 / Q16",
+          "subparts": [],
+          "options": [
+            "(A) Changes",
+            "(B) Remains the same",
+            "(C) Changes in case of multiplication only",
+            "(D) Changes in case of division only"
+          ],
+          "conditions": [
+            "The multiplier or divisor is the same non-zero number on both sides."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "Q16-REP",
+              "kind": "REPRESENT",
+              "action": "Pick a concrete equation with a known solution, such as 2x = 10.",
+              "why_valid": "A general claim about operations can be tested on one example before trusting recall.",
+              "inputs": [],
+              "output": "2x = 10, x = 5"
+            },
+            {
+              "id": "Q16-DEC",
+              "kind": "DECIDE",
+              "action": "Apply multiplication and division by non-zero numbers to both sides and compare solutions.",
+              "why_valid": "Options (C) and (D) separate the two operations, so both must be tested.",
+              "inputs": [],
+              "output": "6x = 30 and x = 5 both give x = 5"
+            },
+            {
+              "id": "Q16-CHK",
+              "kind": "VERIFY",
+              "action": "Confirm that each step can be undone by a non-zero inverse operation.",
+              "why_valid": "An undoable step cannot add or lose solutions.",
+              "inputs": [],
+              "output": "option (B)"
+            }
+          ],
+          "crux_move_ref": "Q16-DEC",
+          "hints": [],
+          "scaffolds": [
+            {
+              "text": "Think of a simple equation whose solution you already know.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q16-REP"
+            },
+            {
+              "text": "On a balance, what does multiplying both pans by 3 do to whether it is level?",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q16-DEC"
+            },
+            {
+              "text": "Solve your equation after multiplying both sides by 3, and again after dividing both sides by 2.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q16-DEC"
+            }
+          ],
+          "transfer": null,
+          "check": "Every value that makes 2x = 10 true makes 6x = 30 true and conversely, because dividing by 3 undoes the multiplication.",
+          "solution": {
+            "summary": "(B) Remains the same",
+            "steps": [
+              "Multiplying or dividing both sides by the same non-zero number keeps the two sides equal for exactly the same values.",
+              "Test: 2x = 10 has x = 5; multiplying both sides by 3 gives 6x = 30, still x = 5; dividing both sides by 2 gives x = 5.",
+              "So the solution remains the same, option (B), matching the official key."
+            ],
+            "rubric": []
+          },
+          "repair": {
+            "step_ref": "LEQ2-4",
+            "microtopic_ref": "MIC-MAT-LEQ-02-VARIABLE-ON-BOTH-SIDES",
+            "action": "When one variable term with a coefficient remains, divide both sides by that non-zero coefficient.",
+            "why_valid": "Dividing both sides by the same non-zero number leaves the solution unchanged.",
+            "output": "For 5t − 3 = 3t − 5: 2t = −2, and dividing both sides by 2 gives t = −1."
+          }
+        },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+            "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "QUESTION_STUDY",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reasoning"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "support",
+              "reasoning"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "LEARNER_OPENABLE"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+            ]
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": false,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 3,
+          "pre_attempt_hint_limit": 0,
+          "post_attempt_hint_limit": 0
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "mathematics:q-mat-leq-02-ncert8-ex2-1-q1:core2a",
+      "subject": "Mathematics",
+      "source_ref": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q1",
+      "projection": {
+        "contract_version": "1.1",
+        "core": "CORE2A",
+        "orientation": null,
+        "concept": null,
+        "application": {
+          "question_ref": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q1",
+          "family_ref": "FAM-MAT-LEQ-02-BOTH-SIDES",
+          "exposure": [
+            {
+              "core": "CORE2A",
+              "role": "PRACTICE",
+              "artifact_ref": null
+            }
+          ],
+          "stem": "Solve the following equation and check your result: 3x = 2x + 18",
+          "source_refs": [
+            "SRC-NCERT-8-LINEQ-ONE",
+            "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+            "SRC-NCERT-8-ANSWERS",
+            "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+          ],
+          "origin": "ORIGINAL",
+          "original_number": "NCERT Class VIII Mathematics textbook exercises / Chapter 2 Linear Equations in One Variable, Exercise 2.1 (Reprint 2024-25) / Q1",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "Solve the equation and check the result, as the exercise asks.",
+            "Adding or subtracting the same number on both sides, or multiplying or dividing both sides by the same non-zero number, does not change the solution."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "Q1-DEC",
+              "kind": "DECIDE",
+              "action": "Remove 2x from the RHS by subtracting 2x from both sides.",
+              "why_valid": "Only the variable term stands between this equation and x alone; subtracting it from both sides keeps the balance.",
+              "inputs": [
+                "3x = 2x + 18"
+              ],
+              "output": "3x − 2x = 18"
+            },
+            {
+              "id": "Q1-SIM",
+              "kind": "TRANSFORM",
+              "action": "Combine 3x − 2x.",
+              "why_valid": "Like terms combine by their coefficients.",
+              "inputs": [],
+              "output": "x = 18"
+            },
+            {
+              "id": "Q1-CHK",
+              "kind": "VERIFY",
+              "action": "Substitute x = 18 in 3x = 2x + 18.",
+              "why_valid": "The exercise asks for a check in the equation given.",
+              "inputs": [],
+              "output": "54 = 54"
+            }
+          ],
+          "crux_move_ref": "Q1-DEC",
+          "hints": [],
+          "scaffolds": [
+            {
+              "text": "Picture the equation as a balance: what is on each pan?",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q1-DEC"
+            },
+            {
+              "text": "Which x-tiles could you take off both pans at once?",
+              "support_kind": "REPRESENT",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q1-DEC"
+            },
+            {
+              "text": "After taking 2x off both pans, what is left on the left, and what on the right?",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q1-SIM"
+            }
+          ],
+          "transfer": null,
+          "check": "3(18) = 54 and 2(18) + 18 = 54.",
+          "solution": {
+            "summary": "x = 18",
+            "steps": [
+              "Subtract 2x from both sides: 3x − 2x = 18.",
+              "So x = 18, matching the official answer."
+            ],
+            "rubric": []
+          },
+          "repair": {
+            "step_ref": "LEQ2-3",
+            "microtopic_ref": "MIC-MAT-LEQ-02-VARIABLE-ON-BOTH-SIDES",
+            "action": "Subtract the unwanted variable term from both sides, which transposes it with its sign changed.",
+            "why_valid": "Subtracting x from both sides amounts to transposing x to the other side.",
+            "output": "Subtract x from both sides: 2x − x = 5, so x = 5."
+          }
+        },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+            "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "QUESTION_STUDY",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reasoning"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "support",
+              "reasoning"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "LEARNER_OPENABLE"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+            ]
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": false,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 3,
+          "pre_attempt_hint_limit": 0,
+          "post_attempt_hint_limit": 0
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "mathematics:q-mat-leq-02-ncert8-ex2-1-q2:core2a",
+      "subject": "Mathematics",
+      "source_ref": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q2",
+      "projection": {
+        "contract_version": "1.1",
+        "core": "CORE2A",
+        "orientation": null,
+        "concept": null,
+        "application": {
+          "question_ref": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q2",
+          "family_ref": "FAM-MAT-LEQ-02-BOTH-SIDES",
+          "exposure": [
+            {
+              "core": "CORE2A",
+              "role": "PRACTICE",
+              "artifact_ref": null
+            }
+          ],
+          "stem": "Solve the following equation and check your result: 5t – 3 = 3t – 5",
+          "source_refs": [
+            "SRC-NCERT-8-LINEQ-ONE",
+            "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+            "SRC-NCERT-8-ANSWERS",
+            "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+          ],
+          "origin": "ORIGINAL",
+          "original_number": "NCERT Class VIII Mathematics textbook exercises / Chapter 2 Linear Equations in One Variable, Exercise 2.1 (Reprint 2024-25) / Q2",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "Solve the equation and check the result, as the exercise asks.",
+            "Adding or subtracting the same number on both sides, or multiplying or dividing both sides by the same non-zero number, does not change the solution."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "Q2-DEC",
+              "kind": "DECIDE",
+              "action": "Collect t-terms on the LHS by subtracting 3t from both sides.",
+              "why_valid": "The LHS has the larger t-coefficient, so collecting there keeps a positive coefficient.",
+              "inputs": [
+                "5t − 3 = 3t − 5"
+              ],
+              "output": "2t − 3 = −5"
+            },
+            {
+              "id": "Q2-NUM",
+              "kind": "TRANSFORM",
+              "action": "Add 3 to both sides.",
+              "why_valid": "The same number added to both sides keeps the balance.",
+              "inputs": [],
+              "output": "2t = −2"
+            },
+            {
+              "id": "Q2-DIV",
+              "kind": "TRANSFORM",
+              "action": "Divide both sides by 2.",
+              "why_valid": "2 is non-zero, so the solution is unchanged.",
+              "inputs": [],
+              "output": "t = −1"
+            },
+            {
+              "id": "Q2-CHK",
+              "kind": "VERIFY",
+              "action": "Substitute t = −1 into the original equation.",
+              "why_valid": "Confirms the value in the equation given.",
+              "inputs": [],
+              "output": "−8 = −8"
+            }
+          ],
+          "crux_move_ref": "Q2-DEC",
+          "hints": [],
+          "scaffolds": [
+            {
+              "text": "Both sides have t-terms and both have negative numbers. Which side will you gather the t-terms on?",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q2-DEC"
+            },
+            {
+              "text": "Write the result of subtracting 3t from both whole sides before touching the numbers.",
+              "support_kind": "REPRESENT",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q2-DEC"
+            },
+            {
+              "text": "From 2t − 3 = −5, what do you add to both sides so only 2t is left on the left?",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q2-NUM"
+            }
+          ],
+          "transfer": null,
+          "check": "5(−1) − 3 = −8 and 3(−1) − 5 = −8.",
+          "solution": {
+            "summary": "t = −1",
+            "steps": [
+              "Subtract 3t from both sides: 2t − 3 = −5.",
+              "Add 3 to both sides: 2t = −2.",
+              "Divide both sides by 2: t = −1, matching the official answer."
+            ],
+            "rubric": []
+          },
+          "repair": {
+            "step_ref": "LEQ2-2",
+            "microtopic_ref": "MIC-MAT-LEQ-02-VARIABLE-ON-BOTH-SIDES",
+            "action": "Add or subtract the same number on both sides to clear numbers from the variable side.",
+            "why_valid": "The same operation on both sides keeps the balance, so the solution is not affected.",
+            "output": "Add 3 to both sides: 2x = x + 5."
+          }
+        },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+            "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "QUESTION_STUDY",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reasoning"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "support",
+              "reasoning"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "LEARNER_OPENABLE"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+            ]
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": false,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 3,
+          "pre_attempt_hint_limit": 0,
+          "post_attempt_hint_limit": 0
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "mathematics:q-mat-leq-02-ncert8-ex2-1-q3:core2a",
+      "subject": "Mathematics",
+      "source_ref": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q3",
+      "projection": {
+        "contract_version": "1.1",
+        "core": "CORE2A",
+        "orientation": null,
+        "concept": null,
+        "application": {
+          "question_ref": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q3",
+          "family_ref": "FAM-MAT-LEQ-02-BOTH-SIDES",
+          "exposure": [
+            {
+              "core": "CORE2A",
+              "role": "PRACTICE",
+              "artifact_ref": null
+            }
+          ],
+          "stem": "Solve the following equation and check your result: 5x + 9 = 5 + 3x",
+          "source_refs": [
+            "SRC-NCERT-8-LINEQ-ONE",
+            "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+            "SRC-NCERT-8-ANSWERS",
+            "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+          ],
+          "origin": "ORIGINAL",
+          "original_number": "NCERT Class VIII Mathematics textbook exercises / Chapter 2 Linear Equations in One Variable, Exercise 2.1 (Reprint 2024-25) / Q3",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "Solve the equation and check the result, as the exercise asks.",
+            "Adding or subtracting the same number on both sides, or multiplying or dividing both sides by the same non-zero number, does not change the solution."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "Q3-DEC",
+              "kind": "DECIDE",
+              "action": "Remove 3x from the RHS by subtracting 3x from both sides, even though it is written after the number.",
+              "why_valid": "Position in the expression does not matter; the variable term is removed by the same subtraction on both sides.",
+              "inputs": [
+                "5x + 9 = 5 + 3x"
+              ],
+              "output": "2x + 9 = 5"
+            },
+            {
+              "id": "Q3-NUM",
+              "kind": "TRANSFORM",
+              "action": "Subtract 9 from both sides.",
+              "why_valid": "The same number removed from both sides keeps the balance.",
+              "inputs": [],
+              "output": "2x = −4"
+            },
+            {
+              "id": "Q3-DIV",
+              "kind": "TRANSFORM",
+              "action": "Share both sides equally between the 2 x-tiles, that is, divide both sides by 2.",
+              "why_valid": "2 is non-zero.",
+              "inputs": [],
+              "output": "x = −2"
+            },
+            {
+              "id": "Q3-CHK",
+              "kind": "VERIFY",
+              "action": "Substitute x = −2 into the original equation.",
+              "why_valid": "A negative answer is easy to mis-sign, so it is tested where no step could have altered it.",
+              "inputs": [],
+              "output": "−1 = −1"
+            }
+          ],
+          "crux_move_ref": "Q3-DEC",
+          "hints": [],
+          "scaffolds": [
+            {
+              "text": "Which terms contain x, and on which sides are they?",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q3-DEC"
+            },
+            {
+              "text": "Draw the pans: 5 x-tiles and 9 units on the left; 5 units and 3 x-tiles on the right.",
+              "support_kind": "REPRESENT",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q3-DEC"
+            },
+            {
+              "text": "After removing 3 x-tiles from both pans, what must you remove from both to leave only x-tiles on the left?",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q3-NUM"
+            }
+          ],
+          "transfer": null,
+          "check": "5(−2) + 9 = −1 and 5 + 3(−2) = −1.",
+          "solution": {
+            "summary": "x = −2",
+            "steps": [
+              "Subtract 3x from both sides: 2x + 9 = 5.",
+              "Subtract 9 from both sides: 2x = −4.",
+              "Divide both sides by 2: x = −2, matching the official answer."
+            ],
+            "rubric": []
+          },
+          "repair": {
+            "step_ref": "LEQ2-3",
+            "microtopic_ref": "MIC-MAT-LEQ-02-VARIABLE-ON-BOTH-SIDES",
+            "action": "Subtract the unwanted variable term from both sides, which transposes it with its sign changed.",
+            "why_valid": "Subtracting x from both sides amounts to transposing x to the other side.",
+            "output": "Subtract x from both sides: 2x − x = 5, so x = 5."
+          }
+        },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+            "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "QUESTION_STUDY",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reasoning"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "support",
+              "reasoning"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "LEARNER_OPENABLE"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+            ]
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": false,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 3,
+          "pre_attempt_hint_limit": 0,
+          "post_attempt_hint_limit": 0
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "mathematics:q-mat-leq-02-ncert8-ex2-1-q5:core2b",
+      "subject": "Mathematics",
+      "source_ref": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q5",
+      "projection": {
+        "contract_version": "1.1",
+        "core": "CORE2B",
+        "orientation": null,
+        "concept": null,
+        "application": {
+          "question_ref": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q5",
+          "family_ref": "FAM-MAT-LEQ-02-BOTH-SIDES",
+          "exposure": [
+            {
+              "core": "CORE2B",
+              "role": "NEW_TRANSFER",
+              "artifact_ref": null
+            }
+          ],
+          "stem": "Solve the following equation and check your result: 2x – 1 = 14 – x",
+          "source_refs": [
+            "SRC-NCERT-8-LINEQ-ONE",
+            "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+            "SRC-NCERT-8-ANSWERS",
+            "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+          ],
+          "origin": "ORIGINAL",
+          "original_number": "NCERT Class VIII Mathematics textbook exercises / Chapter 2 Linear Equations in One Variable, Exercise 2.1 (Reprint 2024-25) / Q5",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "Solve the equation and check the result, as the exercise asks.",
+            "Adding or subtracting the same number on both sides, or multiplying or dividing both sides by the same non-zero number, does not change the solution."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "Q5-REP",
+              "kind": "REPRESENT",
+              "action": "Read the RHS variable term with its sign: it is −x, not x.",
+              "why_valid": "The sign is part of the term, and it decides which operation removes it.",
+              "inputs": [],
+              "output": "RHS = 14 + (−x)"
+            },
+            {
+              "id": "Q5-DEC",
+              "kind": "DECIDE",
+              "action": "Remove −x by adding x to both sides, not by subtracting x.",
+              "why_valid": "Adding x to both sides cancels −x on the right and keeps the balance.",
+              "inputs": [
+                "RHS term −x"
+              ],
+              "output": "3x − 1 = 14"
+            },
+            {
+              "id": "Q5-NUM",
+              "kind": "TRANSFORM",
+              "action": "Add 1 to both sides, then divide both sides by 3.",
+              "why_valid": "Balanced operations; 3 is non-zero.",
+              "inputs": [],
+              "output": "x = 5"
+            },
+            {
+              "id": "Q5-CHK",
+              "kind": "VERIFY",
+              "action": "Substitute x = 5 into the original equation.",
+              "why_valid": "Confirms the value in the given equation.",
+              "inputs": [],
+              "output": "9 = 9"
+            }
+          ],
+          "crux_move_ref": "Q5-DEC",
+          "hints": [],
+          "scaffolds": [
+            {
+              "text": "Rewrite the right-hand side so each term shows its own sign.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q5-REP"
+            },
+            {
+              "text": "On the balance, the right pan holds 14 units and one negative x-tile.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q5-REP"
+            },
+            {
+              "text": "Name the relation you will test at the end: for your value of x, which two expressions in the equation must come out equal?",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q5-CHK"
+            }
+          ],
+          "transfer": {
+            "dimension": "novelty",
+            "statement": "Novelty: in the earlier items the right-hand variable term was positive (2x, 3x) and was removed by subtracting it; here it is −x, so the balanced operation that collects it is adding x to both sides. The decision is new because the familiar move, subtract the RHS term, now doubles the error instead of removing the term.",
+            "builds_on": [
+              "Q-MAT-LEQ-02-NCERT8-EX2-1-Q1",
+              "Q-MAT-LEQ-02-NCERT8-EX2-1-Q3"
+            ],
+            "protected_move_ref": "Q5-DEC",
+            "invariant": "The same operation on both sides keeps the solution, and a term crossing the equality sign changes sign; only which operation removes the RHS variable term changes."
+          },
+          "check": "2(5) − 1 = 9 and 14 − 5 = 9.",
+          "solution": {
+            "summary": "x = 5",
+            "steps": [
+              "The x-term on the RHS is −x, so add x to both sides: 3x − 1 = 14.",
+              "Add 1 to both sides: 3x = 15.",
+              "Divide both sides by 3: x = 5, matching the official answer."
+            ],
+            "rubric": []
+          },
+          "repair": {
+            "step_ref": "LEQ2-3",
+            "microtopic_ref": "MIC-MAT-LEQ-02-VARIABLE-ON-BOTH-SIDES",
+            "action": "Subtract the unwanted variable term from both sides, which transposes it with its sign changed.",
+            "why_valid": "Subtracting x from both sides amounts to transposing x to the other side.",
+            "output": "Subtract x from both sides: 2x − x = 5, so x = 5."
+          }
+        },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2B-TRANSFER@1.0.0",
+            "blueprint_id": "BP-CORE2B-TRANSFER",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "TRANSFER_ATTEMPT",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "PROTECTED_MOVE_DISCLOSED_PRE_ATTEMPT"
+            ]
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": true,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [
+            "Q5-DEC"
+          ],
+          "pre_attempt_scaffold_limit": 3,
+          "pre_attempt_hint_limit": 0,
+          "post_attempt_hint_limit": 0
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "mathematics:q-mat-leq-03-exemplar8-q58:core2a",
+      "subject": "Mathematics",
+      "source_ref": "Q-MAT-LEQ-03-EXEMPLAR8-Q58",
+      "projection": {
+        "contract_version": "1.1",
+        "core": "CORE2A",
+        "orientation": null,
+        "concept": null,
+        "application": {
+          "question_ref": "Q-MAT-LEQ-03-EXEMPLAR8-Q58",
+          "family_ref": "FAM-MAT-LEQ-03-REDUCTION",
+          "exposure": [
+            {
+              "core": "CORE2A",
+              "role": "PRACTICE",
+              "artifact_ref": null
+            }
+          ],
+          "stem": "Solve the following equation: 8x – 7 – 3x = 6x – 2x – 3",
+          "source_refs": [
+            "SRC-NCERT-EXEMPLAR-8-UNIT2",
+            "SRC-NCERT-8-LINEQ-ONE",
+            "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+            "SRC-NCERT-EXEMPLAR-8-ANSWERS",
+            "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+          ],
+          "origin": "ORIGINAL",
+          "original_number": "NCERT Exemplar Problems, Class VIII Mathematics / Unit 'Linear Equations in One Variable', Exercise / Q58",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "Open every bracket and combine like terms on each side before collecting terms across the equality sign.",
+            "The same operation on both whole sides (multiplying or dividing only by a non-zero number) keeps the solution."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "Q58-REP",
+              "kind": "REPRESENT",
+              "action": "Group the x-terms of each side separately.",
+              "why_valid": "Only terms on the same side may be combined directly.",
+              "inputs": [],
+              "output": "LHS x-terms 8x, −3x; RHS x-terms 6x, −2x"
+            },
+            {
+              "id": "Q58-DEC",
+              "kind": "DECIDE",
+              "action": "Combine within each side before any term crosses the equality sign.",
+              "why_valid": "Combining within a side keeps each side's value.",
+              "inputs": [],
+              "output": "5x − 7 = 4x − 3"
+            },
+            {
+              "id": "Q58-SOL",
+              "kind": "TRANSFORM",
+              "action": "Collect with balanced operations.",
+              "why_valid": "Subtracting 4x and adding 7 on both sides keeps the balance.",
+              "inputs": [],
+              "output": "x = 4"
+            },
+            {
+              "id": "Q58-CHK",
+              "kind": "VERIFY",
+              "action": "Substitute x = 4 into the original.",
+              "why_valid": "Uncombined terms are where slips hide.",
+              "inputs": [],
+              "output": "13 = 13"
+            }
+          ],
+          "crux_move_ref": "Q58-DEC",
+          "hints": [],
+          "scaffolds": [
+            {
+              "text": "Circle the x-terms on the left in one colour and on the right in another, and write each side's total in words.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q58-REP"
+            },
+            {
+              "text": "What is 6x − 2x, and what is 8x − 3x?",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q58-DEC"
+            },
+            {
+              "text": "From 5x − 7 = 4x − 3, what balanced steps leave x alone?",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q58-SOL"
+            }
+          ],
+          "transfer": null,
+          "check": "LHS: 32 − 7 − 12 = 13. RHS: 24 − 8 − 3 = 13.",
+          "solution": {
+            "summary": "x = 4",
+            "steps": [
+              "Combine like terms on each side: 5x − 7 = 4x − 3.",
+              "Subtract 4x and add 7 on both sides: x = 4, matching the official answer."
+            ],
+            "rubric": []
+          },
+          "repair": {
+            "step_ref": "LEQ3-3",
+            "microtopic_ref": "MIC-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+            "action": "Combine like terms on each side separately.",
+            "why_valid": "Combining like terms within one side does not change that side's value.",
+            "output": "x + 14 = 6x + 3/2"
+          }
+        },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+            "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "QUESTION_STUDY",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reasoning"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "support",
+              "reasoning"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "LEARNER_OPENABLE"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+            ]
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": false,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 3,
+          "pre_attempt_hint_limit": 0,
+          "post_attempt_hint_limit": 0
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "mathematics:q-mat-leq-03-exemplar8-q61:core2a",
+      "subject": "Mathematics",
+      "source_ref": "Q-MAT-LEQ-03-EXEMPLAR8-Q61",
+      "projection": {
+        "contract_version": "1.1",
+        "core": "CORE2A",
+        "orientation": null,
+        "concept": null,
+        "application": {
+          "question_ref": "Q-MAT-LEQ-03-EXEMPLAR8-Q61",
+          "family_ref": "FAM-MAT-LEQ-03-REDUCTION",
+          "exposure": [
+            {
+              "core": "CORE2A",
+              "role": "PRACTICE",
+              "artifact_ref": null
+            }
+          ],
+          "stem": "Solve the following equation: 5(x – 1) – 2(x + 8) = 0",
+          "source_refs": [
+            "SRC-NCERT-EXEMPLAR-8-UNIT2",
+            "SRC-NCERT-8-LINEQ-ONE",
+            "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+            "SRC-NCERT-EXEMPLAR-8-ANSWERS",
+            "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+          ],
+          "origin": "ORIGINAL",
+          "original_number": "NCERT Exemplar Problems, Class VIII Mathematics / Unit 'Linear Equations in One Variable', Exercise / Q61",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "Open every bracket and combine like terms on each side before collecting terms across the equality sign.",
+            "The same operation on both whole sides (multiplying or dividing only by a non-zero number) keeps the solution."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "Q61-REP",
+              "kind": "REPRESENT",
+              "action": "Expand 5(x − 1) and −2(x + 8).",
+              "why_valid": "Each bracket times its factor equals the sum of the signed products.",
+              "inputs": [],
+              "output": "5x − 5 − 2x − 16 = 0"
+            },
+            {
+              "id": "Q61-DEC",
+              "kind": "DECIDE",
+              "action": "Apply the factor −2 to +8 as well as to x.",
+              "why_valid": "The subtracted bracket's factor is −2, and it multiplies every term.",
+              "inputs": [],
+              "output": "(−2)(8) = −16"
+            },
+            {
+              "id": "Q61-SOL",
+              "kind": "TRANSFORM",
+              "action": "Combine and solve 3x − 21 = 0.",
+              "why_valid": "Adding 21 to both sides and dividing both by 3 keeps the balance.",
+              "inputs": [],
+              "output": "x = 7"
+            },
+            {
+              "id": "Q61-CHK",
+              "kind": "VERIFY",
+              "action": "Substitute x = 7.",
+              "why_valid": "A zero right-hand side is checked by getting exactly zero on the left.",
+              "inputs": [],
+              "output": "0 = 0"
+            }
+          ],
+          "crux_move_ref": "Q61-DEC",
+          "hints": [],
+          "scaffolds": [
+            {
+              "text": "What is the factor of the second bracket, sign included?",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q61-DEC"
+            },
+            {
+              "text": "Draw the cells of −2(x + 8) and fill each with its signed product.",
+              "support_kind": "REPRESENT",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q61-DEC"
+            },
+            {
+              "text": "After expanding, combine the x-terms and the numbers on the left.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q61-SOL"
+            }
+          ],
+          "transfer": null,
+          "check": "5(6) − 2(15) = 30 − 30 = 0.",
+          "solution": {
+            "summary": "x = 7",
+            "steps": [
+              "Open the brackets: 5x − 5 − 2x − 16 = 0.",
+              "Combine: 3x − 21 = 0.",
+              "Add 21 to both sides and divide by 3: x = 7, matching the official answer."
+            ],
+            "rubric": []
+          },
+          "repair": {
+            "step_ref": "LEQ3-2",
+            "microtopic_ref": "MIC-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+            "action": "Open each bracket by multiplying every term inside by the factor in front, sign included.",
+            "why_valid": "Opening a bracket rewrites an expression as an equal one.",
+            "output": "−2(2x − 7) = −4x + 14 and 2(3x − 1) = 6x − 2, so 5x − 4x + 14 = 6x − 2 + 7/2."
+          }
+        },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+            "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "QUESTION_STUDY",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reasoning"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "support",
+              "reasoning"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "LEARNER_OPENABLE"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+            ]
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": false,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 3,
+          "pre_attempt_hint_limit": 0,
+          "post_attempt_hint_limit": 0
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "mathematics:q-mat-leq-03-ncert8-ex2-2-q10:core2b",
+      "subject": "Mathematics",
+      "source_ref": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q10",
+      "projection": {
+        "contract_version": "1.1",
+        "core": "CORE2B",
+        "orientation": null,
+        "concept": null,
+        "application": {
+          "question_ref": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q10",
+          "family_ref": "FAM-MAT-LEQ-03-REDUCTION",
+          "exposure": [
+            {
+              "core": "CORE2B",
+              "role": "NEW_TRANSFER",
+              "artifact_ref": null
+            }
+          ],
+          "stem": "Simplify and solve the following linear equation: 0.25(4f – 3) = 0.05(10f – 9)",
+          "source_refs": [
+            "SRC-NCERT-8-LINEQ-ONE",
+            "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+            "SRC-NCERT-8-ANSWERS",
+            "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+          ],
+          "origin": "ORIGINAL",
+          "original_number": "NCERT Class VIII Mathematics textbook exercises / Chapter 2 Linear Equations in One Variable, Exercise 2.2 (Reprint 2024-25) / Q10",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "Open every bracket and combine like terms on each side before collecting terms across the equality sign.",
+            "The same operation on both whole sides (multiplying or dividing only by a non-zero number) keeps the solution."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "Q10-REP",
+              "kind": "REPRESENT",
+              "action": "Read 0.25 and 0.05 as hundredths.",
+              "why_valid": "Decimals are fractions with denominators that are powers of ten.",
+              "inputs": [],
+              "output": "0.25 = 25/100, 0.05 = 5/100"
+            },
+            {
+              "id": "Q10-DEC",
+              "kind": "DECIDE",
+              "action": "Multiply both whole sides by 100 before opening the brackets.",
+              "why_valid": "100 is the LCM of the denominators, and a non-zero multiplier of both sides keeps the solution.",
+              "inputs": [],
+              "output": "25(4f − 3) = 5(10f − 9)"
+            },
+            {
+              "id": "Q10-SOL",
+              "kind": "TRANSFORM",
+              "action": "Open the brackets and solve.",
+              "why_valid": "Routine reduction and balance.",
+              "inputs": [],
+              "output": "100f − 75 = 50f − 45, f = 30/50 = 0.6"
+            },
+            {
+              "id": "Q10-CHK",
+              "kind": "VERIFY",
+              "action": "Substitute f = 0.6 into the original decimals.",
+              "why_valid": "Checks the clearing step and the solve.",
+              "inputs": [],
+              "output": "−0.15 = −0.15"
+            }
+          ],
+          "crux_move_ref": "Q10-DEC",
+          "hints": [],
+          "scaffolds": [
+            {
+              "text": "Write 0.25 and 0.05 as fractions. What are their denominators?",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q10-REP"
+            },
+            {
+              "text": "Read each side as a number times a bracket: which terms inside 0.25(4f − 3) does the 0.25 multiply, and what sign does each product keep?",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q10-SOL"
+            },
+            {
+              "text": "Before you commit, put your f into 0.25(4f − 3) and 0.05(10f − 9) and compare.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q10-CHK"
+            }
+          ],
+          "transfer": {
+            "dimension": "novelty",
+            "statement": "Novelty: in the earlier items the route was cued in the open. Q7, 3(t − 3) = 5(2t + 1), has whole-number coefficients and needs no clearing; the worked anchor x/2 + x/3 = 10 writes its denominators 2 and 3, and its stem names the LCM step. Here the denominators are hidden inside the decimals 0.25 and 0.05 (hundredths) and the stem does not mention clearing, so the learner must recognise them and decide to multiply both sides by 100. The decision is new because nothing written in this equation shows a denominator to clear.",
+            "builds_on": [
+              "Q-MAT-LEQ-03-NCERT8-EX2-2-Q7",
+              "Q-MAT-LEQ-03-1A-CLEAR-DENOMINATORS"
+            ],
+            "protected_move_ref": "Q10-DEC",
+            "invariant": "Opening brackets term by term and multiplying both whole sides by the same non-zero number still preserve the solution; only the form of the hidden denominator changes."
+          },
+          "check": "0.25(2.4 − 3) = −0.15 and 0.05(6 − 9) = −0.15.",
+          "solution": {
+            "summary": "f = 0.6",
+            "steps": [
+              "Multiply both sides by 100 to clear the decimals: 25(4f − 3) = 5(10f − 9).",
+              "Open the brackets: 100f − 75 = 50f − 45.",
+              "Subtract 50f and add 75 on both sides: 50f = 30, so f = 0.6, matching the official answer."
+            ],
+            "rubric": []
+          },
+          "repair": {
+            "step_ref": "LEQ3-4",
+            "microtopic_ref": "MIC-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+            "action": "Multiply both whole sides by the LCM of the denominators.",
+            "why_valid": "Multiplying both sides by the same non-zero number keeps the solution, and it clears every denominator.",
+            "output": "Multiply by 2: 2x + 28 = 12x + 3."
+          }
+        },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2B-TRANSFER@1.0.0",
+            "blueprint_id": "BP-CORE2B-TRANSFER",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "TRANSFER_ATTEMPT",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "PROTECTED_MOVE_DISCLOSED_PRE_ATTEMPT"
+            ]
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": true,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [
+            "Q10-DEC"
+          ],
+          "pre_attempt_scaffold_limit": 2,
+          "pre_attempt_hint_limit": 0,
+          "post_attempt_hint_limit": 0
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "mathematics:q-mat-leq-03-ncert8-ex2-2-q7:core2a",
+      "subject": "Mathematics",
+      "source_ref": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q7",
+      "projection": {
+        "contract_version": "1.1",
+        "core": "CORE2A",
+        "orientation": null,
+        "concept": null,
+        "application": {
+          "question_ref": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q7",
+          "family_ref": "FAM-MAT-LEQ-03-REDUCTION",
+          "exposure": [
+            {
+              "core": "CORE2A",
+              "role": "PRACTICE",
+              "artifact_ref": null
+            }
+          ],
+          "stem": "Simplify and solve the following linear equation: 3(t – 3) = 5(2t + 1)",
+          "source_refs": [
+            "SRC-NCERT-8-LINEQ-ONE",
+            "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+            "SRC-NCERT-8-ANSWERS",
+            "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+          ],
+          "origin": "ORIGINAL",
+          "original_number": "NCERT Class VIII Mathematics textbook exercises / Chapter 2 Linear Equations in One Variable, Exercise 2.2 (Reprint 2024-25) / Q7",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "Open every bracket and combine like terms on each side before collecting terms across the equality sign.",
+            "The same operation on both whole sides (multiplying or dividing only by a non-zero number) keeps the solution."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "Q7-REP",
+              "kind": "REPRESENT",
+              "action": "Expand each bracket, multiplying both inside terms by the factor.",
+              "why_valid": "Opening a bracket gives an equal expression.",
+              "inputs": [],
+              "output": "3t − 9 = 10t + 5"
+            },
+            {
+              "id": "Q7-DEC",
+              "kind": "DECIDE",
+              "action": "Collect t-terms on the right, where the coefficient is larger.",
+              "why_valid": "Either side is valid; the right keeps the coefficient positive.",
+              "inputs": [],
+              "output": "−14 = 7t"
+            },
+            {
+              "id": "Q7-SOL",
+              "kind": "TRANSFORM",
+              "action": "Divide both sides by 7.",
+              "why_valid": "7 is non-zero.",
+              "inputs": [],
+              "output": "t = −2"
+            },
+            {
+              "id": "Q7-CHK",
+              "kind": "VERIFY",
+              "action": "Substitute t = −2 into both original brackets.",
+              "why_valid": "Confirms the reduction and the solve together.",
+              "inputs": [],
+              "output": "−15 = −15"
+            }
+          ],
+          "crux_move_ref": "Q7-REP",
+          "hints": [],
+          "scaffolds": [
+            {
+              "text": "What must happen to the brackets before any t-term can move?",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q7-REP"
+            },
+            {
+              "text": "Draw the area cells for 5(2t + 1): how many cells, and what is in each?",
+              "support_kind": "REPRESENT",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q7-REP"
+            },
+            {
+              "text": "After expanding, which side has more t? Collect there.",
+              "support_kind": "CONNECT",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q7-DEC"
+            }
+          ],
+          "transfer": null,
+          "check": "3(−2 − 3) = −15 and 5(−4 + 1) = −15.",
+          "solution": {
+            "summary": "t = −2",
+            "steps": [
+              "Open both brackets: 3t − 9 = 10t + 5.",
+              "Subtract 3t and 5 from both sides: −14 = 7t.",
+              "Divide both sides by 7: t = −2, matching the official answer."
+            ],
+            "rubric": []
+          },
+          "repair": {
+            "step_ref": "LEQ3-2",
+            "microtopic_ref": "MIC-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+            "action": "Open each bracket by multiplying every term inside by the factor in front, sign included.",
+            "why_valid": "Opening a bracket rewrites an expression as an equal one.",
+            "output": "−2(2x − 7) = −4x + 14 and 2(3x − 1) = 6x − 2, so 5x − 4x + 14 = 6x − 2 + 7/2."
+          }
+        },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+            "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "QUESTION_STUDY",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reasoning"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "support",
+              "reasoning"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "LEARNER_OPENABLE"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+            ]
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": false,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 3,
+          "pre_attempt_hint_limit": 0,
+          "post_attempt_hint_limit": 0
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "mathematics:q-mat-leq-03-ncert8-ex2-2-q9:core2a",
+      "subject": "Mathematics",
+      "source_ref": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q9",
+      "projection": {
+        "contract_version": "1.1",
+        "core": "CORE2A",
+        "orientation": null,
+        "concept": null,
+        "application": {
+          "question_ref": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q9",
+          "family_ref": "FAM-MAT-LEQ-03-REDUCTION",
+          "exposure": [
+            {
+              "core": "CORE2A",
+              "role": "PRACTICE",
+              "artifact_ref": null
+            }
+          ],
+          "stem": "Simplify and solve the following linear equation: 3(5z – 7) – 2(9z – 11) = 4(8z – 13) – 17",
+          "source_refs": [
+            "SRC-NCERT-8-LINEQ-ONE",
+            "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+            "SRC-NCERT-8-ANSWERS",
+            "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+          ],
+          "origin": "ORIGINAL",
+          "original_number": "NCERT Class VIII Mathematics textbook exercises / Chapter 2 Linear Equations in One Variable, Exercise 2.2 (Reprint 2024-25) / Q9",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "Open every bracket and combine like terms on each side before collecting terms across the equality sign.",
+            "The same operation on both whole sides (multiplying or dividing only by a non-zero number) keeps the solution."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "Q9-REP",
+              "kind": "REPRESENT",
+              "action": "Expand the three brackets, keeping each factor's sign.",
+              "why_valid": "Opening brackets gives equal expressions.",
+              "inputs": [],
+              "output": "15z − 21 − 18z + 22 = 32z − 52 − 17"
+            },
+            {
+              "id": "Q9-DEC",
+              "kind": "DECIDE",
+              "action": "Treat the subtracted bracket as the factor −2, so its −11 becomes +22.",
+              "why_valid": "The minus sign belongs to the factor and multiplies every term inside.",
+              "inputs": [],
+              "output": "(−2)(9z) = −18z and (−2)(−11) = +22"
+            },
+            {
+              "id": "Q9-COM",
+              "kind": "TRANSFORM",
+              "action": "Combine like terms on each side, then collect.",
+              "why_valid": "Combining within a side keeps its value.",
+              "inputs": [],
+              "output": "−3z + 1 = 32z − 69, so 70 = 35z"
+            },
+            {
+              "id": "Q9-CHK",
+              "kind": "VERIFY",
+              "action": "Substitute z = 2 into the original.",
+              "why_valid": "Three brackets give three chances of slips; only the original tests them all.",
+              "inputs": [],
+              "output": "−5 = −5"
+            }
+          ],
+          "crux_move_ref": "Q9-DEC",
+          "hints": [],
+          "scaffolds": [
+            {
+              "text": "Which bracket is being subtracted, and what is its factor with the sign attached?",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q9-DEC"
+            },
+            {
+              "text": "Fill the two cells of −2(9z − 11) with their signed products.",
+              "support_kind": "REPRESENT",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q9-DEC"
+            },
+            {
+              "text": "After expanding, combine the z-terms and the numbers on the left before looking at the right.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q9-COM"
+            }
+          ],
+          "transfer": null,
+          "check": "LHS: 3(3) − 2(7) = −5. RHS: 4(3) − 17 = −5.",
+          "solution": {
+            "summary": "z = 2",
+            "steps": [
+              "Open the brackets: 15z − 21 − 18z + 22 = 32z − 52 − 17.",
+              "Combine on each side: −3z + 1 = 32z − 69.",
+              "Add 3z and 69 to both sides: 70 = 35z, so z = 2, matching the official answer."
+            ],
+            "rubric": []
+          },
+          "repair": {
+            "step_ref": "LEQ3-2",
+            "microtopic_ref": "MIC-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+            "action": "Open each bracket by multiplying every term inside by the factor in front, sign included.",
+            "why_valid": "Opening a bracket rewrites an expression as an equal one.",
+            "output": "−2(2x − 7) = −4x + 14 and 2(3x − 1) = 6x − 2, so 5x − 4x + 14 = 6x − 2 + 7/2."
+          }
+        },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+            "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "QUESTION_STUDY",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reasoning"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "support",
+              "reasoning"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "LEARNER_OPENABLE"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+            ]
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": false,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 3,
+          "pre_attempt_hint_limit": 0,
+          "post_attempt_hint_limit": 0
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "mathematics:q-mat-leq-04-exemplar9-4-1-q11:core2a",
+      "subject": "Mathematics",
+      "source_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q11",
+      "projection": {
+        "contract_version": "1.1",
+        "core": "CORE2A",
+        "orientation": null,
+        "concept": null,
+        "application": {
+          "question_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q11",
+          "family_ref": "FAM-MAT-LEQ-04-TWO-VARIABLES",
+          "exposure": [
+            {
+              "core": "CORE2A",
+              "role": "PRACTICE",
+              "artifact_ref": null
+            }
+          ],
+          "stem": "x = 5, y = 2 is a solution of the linear equation",
+          "source_refs": [
+            "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+            "SRC-NCERT-EXEMPLAR-9-ANSWERS",
+            "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+          ],
+          "origin": "ORIGINAL",
+          "original_number": "NCERT Exemplar Problems, Class IX Mathematics / Chapter 4 Linear Equations in Two Variables, Exercise 4.1 / Q11",
+          "subparts": [],
+          "options": [
+            "(A) x + 2y = 7",
+            "(B) 5x + 2y = 7",
+            "(C) x + y = 7",
+            "(D) 5x + y = 7"
+          ],
+          "conditions": [
+            "Substitute x = 5 and y = 2 into each option.",
+            "Exactly one option is correct."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "Q11-REP",
+              "kind": "REPRESENT",
+              "action": "Keep x = 5 and y = 2 as values to substitute, not as coefficients.",
+              "why_valid": "A solution is tested by substitution.",
+              "inputs": [],
+              "output": "x = 5, y = 2"
+            },
+            {
+              "id": "Q11-DEC",
+              "kind": "DECIDE",
+              "action": "Evaluate every option's LHS rather than matching numbers by sight.",
+              "why_valid": "Options (B) and (D) reuse 5 and 2 as coefficients to tempt a visual match.",
+              "inputs": [],
+              "output": "9, 29, 7, 27"
+            },
+            {
+              "id": "Q11-CHK",
+              "kind": "VERIFY",
+              "action": "Select the option whose LHS equals 7.",
+              "why_valid": "The sides must be equal.",
+              "inputs": [],
+              "output": "(C)"
+            }
+          ],
+          "crux_move_ref": "Q11-DEC",
+          "hints": [],
+          "scaffolds": [
+            {
+              "text": "Are 5 and 2 the coefficients or the values of x and y?",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q11-REP"
+            },
+            {
+              "text": "Make a four-row table: each option's left side with x = 5 and y = 2.",
+              "support_kind": "REPRESENT",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q11-DEC"
+            },
+            {
+              "text": "Compute option (A): 5 + 2 × 2. Carry on down the list.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q11-DEC"
+            }
+          ],
+          "transfer": null,
+          "check": "5 + 2 = 7.",
+          "solution": {
+            "summary": "(C) x + y = 7",
+            "steps": [
+              "(A): 5 + 4 = 9. (B): 25 + 4 = 29. (C): 5 + 2 = 7. (D): 25 + 2 = 27.",
+              "Only (C) gives 7, matching the official key."
+            ],
+            "rubric": []
+          },
+          "repair": {
+            "step_ref": "LEQ4-2",
+            "microtopic_ref": "MIC-MAT-LEQ-04-TWO-VARIABLES-LINE-OF-SOLUTIONS",
+            "action": "Test a pair by substituting its x-value for x and its y-value for y.",
+            "why_valid": "A pair is a solution exactly when it makes the two sides equal.",
+            "output": "(0, 3): 3(0) + 4(3) = 12, a solution. (1, 1): 3 + 4 = 7, not a solution."
+          }
+        },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+            "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "QUESTION_STUDY",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reasoning"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "support",
+              "reasoning"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "LEARNER_OPENABLE"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+            ]
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": false,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 3,
+          "pre_attempt_hint_limit": 0,
+          "post_attempt_hint_limit": 0
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "mathematics:q-mat-leq-04-exemplar9-4-1-q1:core2a",
+      "subject": "Mathematics",
+      "source_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q1",
+      "projection": {
+        "contract_version": "1.1",
+        "core": "CORE2A",
+        "orientation": null,
+        "concept": null,
+        "application": {
+          "question_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q1",
+          "family_ref": "FAM-MAT-LEQ-04-TWO-VARIABLES",
+          "exposure": [
+            {
+              "core": "CORE2A",
+              "role": "PRACTICE",
+              "artifact_ref": null
+            }
+          ],
+          "stem": "The linear equation 2x – 5y = 7 has",
+          "source_refs": [
+            "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+            "SRC-NCERT-EXEMPLAR-9-ANSWERS",
+            "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+          ],
+          "origin": "ORIGINAL",
+          "original_number": "NCERT Exemplar Problems, Class IX Mathematics / Chapter 4 Linear Equations in Two Variables, Exercise 4.1 / Q1",
+          "subparts": [],
+          "options": [
+            "(A) A unique solution",
+            "(B) Two solutions",
+            "(C) Infinitely many solutions",
+            "(D) No solution"
+          ],
+          "conditions": [
+            "x and y are real numbers.",
+            "Exactly one option is correct."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "Q1-REP",
+              "kind": "REPRESENT",
+              "action": "Identify the equation as two-variable with a = 2 and b = −5.",
+              "why_valid": "Both coefficients are non-zero, so the definition applies.",
+              "inputs": [],
+              "output": "a linear equation in two variables"
+            },
+            {
+              "id": "Q1-DEC",
+              "kind": "DECIDE",
+              "action": "Test whether solutions stop after one by generating two different pairs.",
+              "why_valid": "If two different pairs work, 'unique' and 'no solution' are ruled out, and the free choice of x rules out 'two'.",
+              "inputs": [],
+              "output": "(1, −1) and (6, 1)"
+            },
+            {
+              "id": "Q1-CHK",
+              "kind": "VERIFY",
+              "action": "Substitute both pairs.",
+              "why_valid": "Both must give 7.",
+              "inputs": [],
+              "output": "7 and 7"
+            }
+          ],
+          "crux_move_ref": "Q1-DEC",
+          "hints": [],
+          "scaffolds": [
+            {
+              "text": "How many unknowns does 2x − 5y = 7 have, and what does one solution look like?",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q1-REP"
+            },
+            {
+              "text": "Make a table: choose x = 1, then x = 6, and find y each time.",
+              "support_kind": "REPRESENT",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q1-DEC"
+            },
+            {
+              "text": "Could you have chosen any other x? What does that say about the number of solutions?",
+              "support_kind": "CONNECT",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q1-DEC"
+            }
+          ],
+          "transfer": null,
+          "check": "(1, −1): 2 + 5 = 7. (6, 1): 12 − 5 = 7.",
+          "solution": {
+            "summary": "(C) Infinitely many solutions",
+            "steps": [
+              "2x − 5y = 7 has the form ax + by + c = 0 with a = 2, b = −5, both non-zero.",
+              "Any x gives a matching y: x = 1 gives y = −1, x = 6 gives y = 1.",
+              "So there are infinitely many solutions, option (C), matching the official key."
+            ],
+            "rubric": []
+          },
+          "repair": {
+            "step_ref": "LEQ4-3",
+            "microtopic_ref": "MIC-MAT-LEQ-04-TWO-VARIABLES-LINE-OF-SOLUTIONS",
+            "action": "Generate solutions by choosing a value of one variable and solving for the other.",
+            "why_valid": "Fixing one variable leaves a one-variable equation with one solution, and any value may be chosen, so there are infinitely many solutions.",
+            "output": "y = 0 gives 3x = 12, x = 4; x = 2 gives 4y = 6, y = 3/2. Pairs: (4, 0), (2, 3/2), (0, 3)."
+          }
+        },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+            "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "QUESTION_STUDY",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reasoning"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "support",
+              "reasoning"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "LEARNER_OPENABLE"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+            ]
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": false,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 3,
+          "pre_attempt_hint_limit": 0,
+          "post_attempt_hint_limit": 0
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "mathematics:q-mat-leq-04-exemplar9-4-2-q1:core2a",
+      "subject": "Mathematics",
+      "source_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-2-Q1",
+      "projection": {
+        "contract_version": "1.1",
+        "core": "CORE2A",
+        "orientation": null,
+        "concept": null,
+        "application": {
+          "question_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-2-Q1",
+          "family_ref": "FAM-MAT-LEQ-04-TWO-VARIABLES",
+          "exposure": [
+            {
+              "core": "CORE2A",
+              "role": "PRACTICE",
+              "artifact_ref": null
+            }
+          ],
+          "stem": "Write whether the following statement is True or False? Justify your answer: The point (0, 3) lies on the graph of the linear equation 3x + 4y = 12.",
+          "source_refs": [
+            "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+            "SRC-NCERT-EXEMPLAR-9-ANSWERS",
+            "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+          ],
+          "origin": "ORIGINAL",
+          "original_number": "NCERT Exemplar Problems, Class IX Mathematics / Chapter 4 Linear Equations in Two Variables, Exercise 4.2 / Q1",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "A point lies on the graph exactly when its coordinates satisfy the equation."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "Q21-REP",
+              "kind": "REPRESENT",
+              "action": "Translate 'lies on the graph' into 'satisfies the equation'.",
+              "why_valid": "The graph is exactly the set of solutions.",
+              "inputs": [],
+              "output": "Is 3(0) + 4(3) = 12?"
+            },
+            {
+              "id": "Q21-DEC",
+              "kind": "DECIDE",
+              "action": "Substitute 0 for x and 3 for y, in that order.",
+              "why_valid": "The first coordinate is x.",
+              "inputs": [],
+              "output": "0 + 12 = 12"
+            },
+            {
+              "id": "Q21-CHK",
+              "kind": "VERIFY",
+              "action": "Confirm by finding the y-axis crossing directly.",
+              "why_valid": "The y-axis crossing has x = 0.",
+              "inputs": [],
+              "output": "y = 3"
+            }
+          ],
+          "crux_move_ref": "Q21-REP",
+          "hints": [],
+          "scaffolds": [
+            {
+              "text": "What has to be true of a point's coordinates for it to be on the graph of an equation?",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q21-REP"
+            },
+            {
+              "text": "Plot the line through (4, 0) and look at where it meets the y-axis.",
+              "support_kind": "REPRESENT",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q21-REP"
+            },
+            {
+              "text": "Put x = 0 and y = 3 into 3x + 4y. Is it 12?",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q21-DEC"
+            }
+          ],
+          "transfer": null,
+          "check": "(0, 3) is the y-axis crossing: putting x = 0 gives 4y = 12, y = 3.",
+          "solution": {
+            "summary": "True, since (0, 3) satisfies 3x + 4y = 12.",
+            "steps": [
+              "Every point on the graph represents a solution, and every solution is a point on it.",
+              "Substitute x = 0, y = 3: 3(0) + 4(3) = 12.",
+              "So (0, 3) lies on the graph: True, as the official answer states."
+            ],
+            "rubric": []
+          },
+          "repair": {
+            "step_ref": "LEQ4-4",
+            "microtopic_ref": "MIC-MAT-LEQ-04-TWO-VARIABLES-LINE-OF-SOLUTIONS",
+            "action": "Plot the pairs and draw the line through them; read every point on it as a solution.",
+            "why_valid": "The graph of a linear equation in two variables is a straight line, and every point on it represents a solution.",
+            "output": "(0, 3), (2, 3/2) and (4, 0) lie on one straight line."
+          }
+        },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+            "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "QUESTION_STUDY",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reasoning"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "support",
+              "reasoning"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "LEARNER_OPENABLE"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+            ]
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": false,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 3,
+          "pre_attempt_hint_limit": 0,
+          "post_attempt_hint_limit": 0
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "mathematics:q-mat-leq-04-exemplar9-4-3-q7:core2b",
+      "subject": "Mathematics",
+      "source_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-3-Q7",
+      "projection": {
+        "contract_version": "1.1",
+        "core": "CORE2B",
+        "orientation": null,
+        "concept": null,
+        "application": {
+          "question_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-3-Q7",
+          "family_ref": "FAM-MAT-LEQ-04-TWO-VARIABLES",
+          "exposure": [
+            {
+              "core": "CORE2B",
+              "role": "NEW_TRANSFER",
+              "artifact_ref": null
+            }
+          ],
+          "stem": "How many solution(s) of the equation 2x + 1 = x – 3 are there on the : (i) Number line (ii) Cartesian plane",
+          "source_refs": [
+            "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+            "SRC-NCERT-EXEMPLAR-9-ANSWERS",
+            "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+          ],
+          "origin": "ORIGINAL",
+          "original_number": "NCERT Exemplar Problems, Class IX Mathematics / Chapter 4 Linear Equations in Two Variables, Exercise 4.3 / Q7",
+          "subparts": [
+            "(i) Number line",
+            "(ii) Cartesian plane"
+          ],
+          "options": [],
+          "conditions": [
+            "On the number line only x varies; on the Cartesian plane each solution is a point (x, y)."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "Q37-REP",
+              "kind": "REPRESENT",
+              "action": "Solve the one-variable equation: x = −4.",
+              "why_valid": "Balanced operations give the single number satisfying it.",
+              "inputs": [],
+              "output": "x = −4"
+            },
+            {
+              "id": "Q37-DEC",
+              "kind": "DECIDE",
+              "action": "On the plane, treat each solution as a pair and notice y is unconstrained.",
+              "why_valid": "The equation only restricts x, so every y pairs with x = −4.",
+              "inputs": [],
+              "output": "(−4, y) for every y"
+            },
+            {
+              "id": "Q37-CHK",
+              "kind": "VERIFY",
+              "action": "Test two such pairs.",
+              "why_valid": "Each must satisfy the equation.",
+              "inputs": [],
+              "output": "(−4, 0) and (−4, 5) both give −7 = −7"
+            }
+          ],
+          "crux_move_ref": "Q37-DEC",
+          "hints": [],
+          "scaffolds": [
+            {
+              "text": "Solve 2x + 1 = x − 3 for x first.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "supports_move_ref": "Q37-REP"
+            },
+            {
+              "text": "On a number line, a solution is a point with one coordinate. On the plane, what does a solution point look like?",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q37-REP"
+            },
+            {
+              "text": "Name the relation that decides both counts: a candidate is a solution exactly when it makes 2x + 1 and x − 3 equal. Before you commit, apply it to whatever a candidate is in each setting.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "Q37-CHK"
+            }
+          ],
+          "transfer": {
+            "dimension": "model_choice",
+            "statement": "Novelty: the equation is familiar one-variable work, but the learner must choose how to read it in each setting; on the plane a solution is a pair, so the absent y is free. The decision is new because every earlier item fixed the setting in advance.",
+            "builds_on": [
+              "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q1",
+              "Q-MAT-LEQ-02-1A-DIVIDE-AND-CHECK"
+            ],
+            "protected_move_ref": "Q37-DEC",
+            "invariant": "Balanced operations still give x = −4, and a solution is still whatever makes the equation true when substituted."
+          },
+          "check": "2(−4) + 1 = −7 and −4 − 3 = −7, whatever y is.",
+          "solution": {
+            "summary": "(i) One solution. (ii) Infinitely many solutions.",
+            "steps": [
+              "On the number line: subtract x and 1 from both sides to get x = −4, one solution.",
+              "On the Cartesian plane a solution is a pair (x, y); y does not appear, so any y works with x = −4.",
+              "(−4, 0), (−4, 1), (−4, 2), … all satisfy it: infinitely many, matching the official answer."
+            ],
+            "rubric": [
+              {
+                "criterion": "Part (i) gives one solution, x = −4.",
+                "evidence_of": "One-variable solving."
+              },
+              {
+                "criterion": "Part (ii) argues from pairs (−4, y) with y free.",
+                "evidence_of": "Changing the setting changes what a solution is."
+              }
+            ]
+          },
+          "repair": {
+            "step_ref": "LEQ4-3",
+            "microtopic_ref": "MIC-MAT-LEQ-04-TWO-VARIABLES-LINE-OF-SOLUTIONS",
+            "action": "Generate solutions by choosing a value of one variable and solving for the other.",
+            "why_valid": "Fixing one variable leaves a one-variable equation with one solution, and any value may be chosen, so there are infinitely many solutions.",
+            "output": "y = 0 gives 3x = 12, x = 4; x = 2 gives 4y = 6, y = 3/2. Pairs: (4, 0), (2, 3/2), (0, 3)."
+          }
+        },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2B-TRANSFER@1.0.0",
+            "blueprint_id": "BP-CORE2B-TRANSFER",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "TRANSFER_ATTEMPT",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "PROTECTED_MOVE_DISCLOSED_PRE_ATTEMPT"
+            ]
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": true,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [
+            "Q37-DEC"
+          ],
           "pre_attempt_scaffold_limit": 0,
           "pre_attempt_hint_limit": 0,
           "post_attempt_hint_limit": 0
@@ -43605,6 +46852,40 @@ window.GRADE9V3_CORE = {
       ]
     },
     {
+      "subject": "Mathematics",
+      "bucket_ref": "BUCKET-MAT-09-LEQ",
+      "status": "AVAILABLE",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "findings": [
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q3"
+        }
+      ],
+      "projection_refs": [
+        "mathematics:bucket-mat-09-leq:core1",
+        "mathematics:q-mat-leq-01-exemplar8-q17:core2a",
+        "mathematics:q-mat-leq-01-exemplar8-q20:core2b",
+        "mathematics:q-mat-leq-01-exemplar8-q6:core2a",
+        "mathematics:q-mat-leq-02-exemplar9-4-1-q16:core2a",
+        "mathematics:q-mat-leq-02-ncert8-ex2-1-q1:core2a",
+        "mathematics:q-mat-leq-02-ncert8-ex2-1-q2:core2a",
+        "mathematics:q-mat-leq-02-ncert8-ex2-1-q3:core2a",
+        "mathematics:q-mat-leq-02-ncert8-ex2-1-q5:core2b",
+        "mathematics:q-mat-leq-03-exemplar8-q58:core2a",
+        "mathematics:q-mat-leq-03-exemplar8-q61:core2a",
+        "mathematics:q-mat-leq-03-ncert8-ex2-2-q10:core2b",
+        "mathematics:q-mat-leq-03-ncert8-ex2-2-q7:core2a",
+        "mathematics:q-mat-leq-03-ncert8-ex2-2-q9:core2a",
+        "mathematics:q-mat-leq-04-exemplar9-4-1-q1:core2a",
+        "mathematics:q-mat-leq-04-exemplar9-4-1-q11:core2a",
+        "mathematics:q-mat-leq-04-exemplar9-4-2-q1:core2a",
+        "mathematics:q-mat-leq-04-exemplar9-4-3-q7:core2b"
+      ]
+    },
+    {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
       "status": "AVAILABLE",
@@ -44088,6 +47369,13 @@ window.GRADE9V3_CORE = {
     }
   ],
   "findings": [
+    {
+      "subject": "Mathematics",
+      "bucket_ref": "BUCKET-MAT-09-LEQ",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q3"
+    },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
