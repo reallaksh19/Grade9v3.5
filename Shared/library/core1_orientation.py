@@ -312,7 +312,7 @@ def audit(repo: Path) -> dict:
                 if isinstance(bucket_ref, str):
                     microtopics_by_bucket.setdefault(bucket_ref, []).append(microtopic)
         for path, package in subject_rows:
-            rel = str(path.relative_to(repo))
+            rel = path.relative_to(repo).as_posix()
             for bucket in package.get("buckets", []) or []:
                 if isinstance(bucket, dict):
                     rows.append(audit_bucket(
@@ -387,9 +387,9 @@ def main() -> int:
     report = audit(repo)
 
     if args.write_report:
-        Path(args.write_report).write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+        Path(args.write_report).write_bytes((json.dumps(report, indent=2) + "\n").encode("utf-8"))
     if args.write_baseline:
-        Path(args.write_baseline).write_text(json.dumps(baseline(report), indent=2) + "\n", encoding="utf-8")
+        Path(args.write_baseline).write_bytes((json.dumps(baseline(report), indent=2) + "\n").encode("utf-8"))
     if args.check_baseline:
         base = load(Path(args.check_baseline))
         findings = forward_findings(report, base)

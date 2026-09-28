@@ -7,8 +7,8 @@
     "manual_review_required": true
   },
   "summary": {
-    "bucket_count": 21,
-    "core1_compilable_buckets": 21,
+    "bucket_count": 22,
+    "core1_compilable_buckets": 22,
     "buckets_with_structural_findings": 3,
     "finding_counts": {
       "PRIMARY_REPRESENTATION_CORE1_SCENE_MISSING": 3
@@ -73,6 +73,83 @@
       ]
     },
     {
+      "subject": "Mathematics",
+      "package_path": "Mathematics/library/linear-equations.v1.json",
+      "bucket_ref": "BUCKET-MAT-09-LEQ",
+      "title": "Linear equations in one variable (Class VI to VIII bridge) and in two variables (Class IX)",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
+      "conventions_state": "NOT_AUTHORED",
+      "convention_count": 0,
+      "scope_state": "AUTHORED",
+      "primary_representation_state": "NOT_AUTHORED",
+      "primary_representation_ref": null,
+      "relations": [
+        {
+          "id": "REL-MAT-LEQ-01-SOLUTION-CONDITION",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-MAT-LEQ-02-SOLUTION-PRESERVING-OPERATIONS",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-MAT-LEQ-03-REDUCED-OUTCOMES",
+          "has_meaning": true,
+          "condition_count": 2
+        },
+        {
+          "id": "REL-MAT-LEQ-03-REDUCTION",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-MAT-LEQ-04-STRAIGHT-LINE",
+          "has_meaning": true,
+          "condition_count": 2
+        },
+        {
+          "id": "REL-MAT-LEQ-04-TWO-VARIABLE-FORM",
+          "has_meaning": true,
+          "condition_count": 3
+        }
+      ],
+      "hard_transitions": [
+        {
+          "microtopic_ref": "MIC-MAT-LEQ-02-VARIABLE-ON-BOTH-SIDES",
+          "title": "Solving an equation with the variable on both sides: the same operation on both sides, and transposing a variable term like a number",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The steps are routine, but two errors recur: changing one side only, and moving a term across the equality sign without changing its sign."
+        },
+        {
+          "microtopic_ref": "MIC-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+          "title": "Reducing an equation to simpler form: opening brackets, combining like terms and clearing denominators before solving",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Each reduction is familiar arithmetic, but a negative factor in front of a bracket, a term left unmultiplied by the LCM, and a vanishing variable each produce confident wrong answers."
+        },
+        {
+          "microtopic_ref": "MIC-MAT-LEQ-04-TWO-VARIABLES-LINE-OF-SOLUTIONS",
+          "title": "Linear equations in two variables: the form ax + by + c = 0, infinitely many solution pairs, and the straight-line graph",
+          "intrinsic_badge": "HARD",
+          "badge_reason": "Learners arrive expecting one number as the answer; here a solution is a pair, there are infinitely many, and the same statement can have one solution on a number line but infinitely many on the plane."
+        }
+      ],
+      "curriculum_mapping_count": 2,
+      "findings": [],
+      "finding_codes": [],
+      "manual_review_obligations": [
+        "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
+        "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
+      ]
+    },
+    {
       "subject": "Physics",
       "package_path": "Physics/library/phy-elec-current-ohm.v1.json",
       "bucket_ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
@@ -80,6 +157,7 @@
       "core1_compilable": true,
       "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
       "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
         "HARD_TRANSITION_POINTERS"
       ],
       "conventions_state": "NOT_AUTHORED",
@@ -87,7 +165,18 @@
       "scope_state": "NOT_AUTHORED",
       "primary_representation_state": "NOT_AUTHORED",
       "primary_representation_ref": null,
-      "relations": [],
+      "relations": [
+        {
+          "id": "REL-ELEC-CURRENT-CONSERVATION",
+          "has_meaning": true,
+          "condition_count": 2
+        },
+        {
+          "id": "REL-ELEC-OHMIC-MODEL",
+          "has_meaning": true,
+          "condition_count": 3
+        }
+      ],
       "hard_transitions": [
         {
           "microtopic_ref": "MIC-ELEC-CURRENT-CONSERVATION",
@@ -844,6 +933,7 @@
       "core1_compilable": true,
       "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
       "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
         "HARD_TRANSITION_POINTERS"
       ],
       "conventions_state": "NOT_AUTHORED",
@@ -851,7 +941,18 @@
       "scope_state": "NOT_AUTHORED",
       "primary_representation_state": "NOT_AUTHORED",
       "primary_representation_ref": null,
-      "relations": [],
+      "relations": [
+        {
+          "id": "REL-OSC-ENERGY-EXCHANGE",
+          "has_meaning": true,
+          "condition_count": 2
+        },
+        {
+          "id": "REL-OSC-STABLE-EQUILIBRIUM",
+          "has_meaning": true,
+          "condition_count": 3
+        }
+      ],
       "hard_transitions": [
         {
           "microtopic_ref": "MIC-OSC-STABLE-EQUILIBRIUM",
@@ -1396,12 +1497,6 @@
           "title": "Check direction, magnitude and observer reversal",
           "intrinsic_badge": "HARD",
           "badge_reason": "Correct arithmetic can conceal an incorrect vector construction or frame interpretation."
-        },
-        {
-          "microtopic_ref": "MIC-FRAME-QUALIFICATION-BOUNDARY",
-          "title": "When the simple v_A/B = v_A - v_B relation needs frame qualification (research-boundary note)",
-          "intrinsic_badge": "HARD",
-          "badge_reason": "Not a Grade 9 assessment badge: this is a RESEARCH-depth boundary note, included only to show where the taught relation stops applying."
         }
       ],
       "curriculum_mapping_count": 1,
@@ -1433,6 +1528,11 @@
       "primary_representation_ref": "REP-VECTOR-SUBTRACTION-CONSTRUCTION",
       "relations": [
         {
+          "id": "REL-RELATIVE-VELOCITY",
+          "has_meaning": true,
+          "condition_count": 4
+        },
+        {
           "id": "REL-VECTOR-SUBTRACTION",
           "has_meaning": true,
           "condition_count": 3
@@ -1456,6 +1556,12 @@
           "title": "Subtraction as addition of the reversed vector",
           "intrinsic_badge": "MEDIUM",
           "badge_reason": "The reverse-then-add construction is a genuine model shift from ordinary addition, even though the component arithmetic looks similar."
+        },
+        {
+          "microtopic_ref": "MIC-FRAME-QUALIFICATION-BOUNDARY",
+          "title": "When the simple v_A/B = v_A - v_B relation needs frame qualification (research-boundary note)",
+          "intrinsic_badge": "HARD",
+          "badge_reason": "Not a Grade 9 assessment badge: this is a RESEARCH-depth boundary note, included only to show where the taught relation stops applying."
         }
       ],
       "curriculum_mapping_count": 1,
