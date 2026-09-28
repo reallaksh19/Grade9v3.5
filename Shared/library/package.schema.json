@@ -422,6 +422,31 @@
         ]
       }
     },
+    "response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type"],
+      "description": "An honest self-learner's commitment control, not a grading or anti-cheating rule.",
+      "properties": {
+        "type": {
+          "enum": ["single_choice", "multiple_choice", "true_false", "numeric", "short_text", "free_response", "multipart", "match"]
+        },
+        "parts": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {"type": "string", "minLength": 1},
+              {"type": "object", "additionalProperties": false, "required": ["label"],
+               "properties": {"label": {"type": "string", "minLength": 1},
+                              "type": {"enum": ["numeric", "short_text", "free_response"]}}}
+            ]
+          }
+        },
+        "match_left": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "match_right": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "paper_ok": {"type": "boolean"}
+      }
+    },
     "answer": {
       "type": "object",
       "additionalProperties": false,
@@ -502,6 +527,18 @@
             }
           }
         },
+        "source_key": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["state"],
+          "properties": {
+            "state": {"enum": ["PRESENT", "ABSENT", "AMBIGUOUS"]},
+            "value": {"type": "string", "minLength": 1},
+            "card": {"type": "string", "minLength": 1}
+          }
+        },
+        "key_relation": {"enum": ["MATCHES_KEY", "CONFLICTS_WITH_KEY", "NO_KEY"]},
+        "key_conflict_explanation": {"type": "string", "minLength": 1},
         "rubric": {
           "type": "array",
           "items": {
@@ -1325,6 +1362,9 @@
                         "type": "string"
                       },
                       "description": "Stages of representation_ref safe to show before the attempt; default is the first stage only."
+                    },
+                    "response": {
+                      "$ref": "#/$defs/response"
                     }
                   }
                 }
@@ -2128,6 +2168,9 @@
             "minLength": 1
           },
           "minItems": 0
+        },
+        "response": {
+          "$ref": "#/$defs/response"
         },
         "answer": {
           "$ref": "#/$defs/answer"
