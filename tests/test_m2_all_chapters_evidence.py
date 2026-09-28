@@ -4,15 +4,15 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
-CH2_JSON = ROOT / "docs" / "stress-tests" / "polynomials-agent1" / "source-ledger.json"
-CH3_JSON = ROOT / "docs" / "stress-tests" / "coordinate-geometry" / "source-ledger.json"
-CH4_JSON = ROOT / "docs" / "stress-tests" / "linear-equations" / "source-ledger.json"
-CH5_JSON = ROOT / "docs" / "stress-tests" / "euclid-geometry" / "source-ledger.json"
+CH2_JSON = ROOT / "evidence" / "stress-tests" / "polynomials-agent1" / "source-ledger.json"
+CH3_JSON = ROOT / "evidence" / "stress-tests" / "coordinate-geometry" / "source-ledger.json"
+CH4_JSON = ROOT / "evidence" / "stress-tests" / "linear-equations" / "source-ledger.json"
+CH5_JSON = ROOT / "evidence" / "stress-tests" / "euclid-geometry" / "source-ledger.json"
 
-CH2_HTML = ROOT / "docs" / "stress-tests" / "polynomials-agent1" / "index.html"
-CH3_HTML = ROOT / "docs" / "stress-tests" / "coordinate-geometry" / "index.html"
-CH4_HTML = ROOT / "docs" / "stress-tests" / "linear-equations" / "index.html"
-CH5_HTML = ROOT / "docs" / "stress-tests" / "euclid-geometry" / "index.html"
+CH2_HTML = ROOT / "evidence" / "stress-tests" / "polynomials-agent1" / "index.html"
+CH3_HTML = ROOT / "evidence" / "stress-tests" / "coordinate-geometry" / "index.html"
+CH4_HTML = ROOT / "evidence" / "stress-tests" / "linear-equations" / "index.html"
+CH5_HTML = ROOT / "evidence" / "stress-tests" / "euclid-geometry" / "index.html"
 
 
 class M2AllChaptersEvidenceTests(unittest.TestCase):
