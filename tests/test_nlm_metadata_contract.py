@@ -52,6 +52,20 @@ class NlmSelectionContract(unittest.TestCase):
         self.assertTrue(set(selection["core2a"]).isdisjoint(bank_question_ids))
         self.assertTrue(set(selection["core2b"]).isdisjoint(bank_question_ids))
 
+    def test_selected_authored_assessments_have_explicit_normalized_metadata(self):
+        selected = self.manifest["selection"]["core2a"] + self.manifest["selection"]["core2b"]
+        package_questions = {q["id"]: q for q in self.package["questions"]}
+        self.assertEqual(len(selected), 38)
+        rows = [package_questions[record_id] for record_id in selected]
+        self.assertTrue(all(row.get("learner_question_type") == "constructed_response" for row in rows))
+        self.assertTrue(all(isinstance(row.get("difficulty"), dict) for row in rows))
+        self.assertGreaterEqual(len({package_questions[i]["difficulty"]["band"] for i in self.manifest["selection"]["core2a"]}), 3)
+        self.assertGreaterEqual(len({package_questions[i]["difficulty"]["band"] for i in self.manifest["selection"]["core2b"]}), 2)
+        for row in rows:
+            difficulty = row["difficulty"]
+            self.assertEqual(difficulty["score"], sum(difficulty["components"].values()))
+            self.assertTrue(difficulty["basis"])
+
     def test_missing_selected_id_fails_closed(self):
         manifest = copy.deepcopy(self.manifest)
         manifest["selection"]["core2"][0] = "Q-DOES-NOT-EXIST"

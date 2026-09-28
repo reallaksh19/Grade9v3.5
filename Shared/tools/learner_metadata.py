@@ -124,6 +124,10 @@ def _difficulty(value: Any, record_id: str, vocabulary: dict[str, Any]) -> dict:
     band = value.get("band")
     if band not in vocabulary["question_difficulty"]:
         raise LearnerMetadataError(f"METADATA_QUESTION_DIFFICULTY_INVALID: {record_id}:{band}")
+    ranges = vocabulary.get("question_difficulty_score_ranges") or {}
+    score_range = ranges.get(band)
+    if not isinstance(score_range, dict):
+        raise LearnerMetadataError(f"METADATA_QUESTION_DIFFICULTY_RANGE_MISSING: {record_id}:{band}")
     components = value.get("components")
     if not isinstance(components, dict) or set(components) != DIFFICULTY_COMPONENTS:
         raise LearnerMetadataError(f"METADATA_QUESTION_DIFFICULTY_COMPONENTS_INVALID: {record_id}")
@@ -132,6 +136,10 @@ def _difficulty(value: Any, record_id: str, vocabulary: dict[str, Any]) -> dict:
     score = value.get("score")
     if not isinstance(score, int) or isinstance(score, bool) or score != sum(components.values()):
         raise LearnerMetadataError(f"METADATA_QUESTION_DIFFICULTY_SCORE_INVALID: {record_id}")
+    if not score_range["min"] <= score <= score_range["max"]:
+        raise LearnerMetadataError(
+            f"METADATA_QUESTION_DIFFICULTY_BAND_SCORE_MISMATCH: {record_id}:{band}:{score}"
+        )
     basis = value.get("basis")
     if not isinstance(basis, str) or not basis.strip():
         raise LearnerMetadataError(f"METADATA_QUESTION_DIFFICULTY_BASIS_MISSING: {record_id}")
