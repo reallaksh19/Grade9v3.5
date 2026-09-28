@@ -316,3 +316,98 @@ def safe_search_text(projection: dict, record: dict, role: str) -> str:
     else:
         parts.append((projection.get("concept") or {}).get("concept", ""))
     return " ".join(str(value).strip() for value in parts if str(value).strip())
+
+
+def audit_manifest(manifest_path: Path) -> dict:
+    """Report metadata coverage for one product without changing product acceptance state."""
+    from Shared.tools import product_manifest  # local import avoids a projection/selection cycle
+
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    packages = [json.loads((REPO / ref).read_text(encoding="utf-8")) for ref in manifest["package_refs"]]
+    bank_questions = [
+        question
+        for ref in manifest.get("bank_refs", [])
+        for question in json.loads((REPO / ref).read_text(encoding="utf-8")).get("questions", [])
+    ]
+    selection = manifest.get("selection") or {}
+    selected_counts = {
+        "microtopics": len(selection.get("microtopics") or []),
+        "core2": len(selection.get("core2") or []),
+        "core2a": len(selection.get("core2a") or []),
+        "core2b": len(selection.get("core2b") or []),
+    }
+    assessment_total = selected_counts["core2"] + selected_counts["core2a"] + selected_counts["core2b"]
+    unit_total = selected_counts["microtopics"] + assessment_total
+    denominators = {
+        "concept": unit_total,
+        "concept-difficulty": unit_total,
+        "question-difficulty": assessment_total,
+        "family": assessment_total,
+        "question-type": assessment_total,
+        "source": selected_counts["core2"],
+        "provenance": assessment_total,
+        "transfer-dimension": selected_counts["core2b"],
+    }
+    resolved_counts = {kind: 0 for kind in denominators}
+    findings: list[dict] = []
+    try:
+        resolved = product_manifest.validate_selection(manifest, packages, bank_questions)
+    except product_manifest.ProductSelectionError as exc:
+        findings.append({"code": "METADATA_SELECTION_INVALID", "detail": str(exc)})
+        return {
+            "schema": "learner-metadata-audit/v1",
+            "product_id": manifest.get("product_id"),
+            "selection": selected_counts,
+            "coverage": {
+                kind: {"resolved": 0, "selected": selected}
+                for kind, selected in denominators.items()
+            },
+            "findings": findings,
+        }
+
+    tasks = [
+        *[("CORE1", row) for row in resolved["microtopics"]],
+        *[("CORE2", row) for row in resolved["core2"]],
+        *[("CORE2A", row) for row in resolved["core2a"]],
+        *[("CORE2B", row) for row in resolved["core2b"]],
+    ]
+    for role, record in tasks:
+        try:
+            projected = project(role, record, packages)
+        except LearnerMetadataError as exc:
+            findings.append({
+                "code": str(exc).split(":", 1)[0],
+                "role": role,
+                "record": record.get("id"),
+                "detail": str(exc),
+            })
+            continue
+        kinds = {item["kind"] for item in projected["items"]}
+        for kind in resolved_counts:
+            if kind in kinds:
+                resolved_counts[kind] += 1
+
+    return {
+        "schema": "learner-metadata-audit/v1",
+        "product_id": manifest.get("product_id"),
+        "selection": selected_counts,
+        "coverage": {
+            kind: {"resolved": resolved_counts[kind], "selected": selected}
+            for kind, selected in denominators.items()
+        },
+        "findings": findings,
+    }
+
+
+def main(argv: list[str] | None = None) -> int:
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Read-only learner metadata coverage audit.")
+    parser.add_argument("--manifest", type=Path, required=True)
+    args = parser.parse_args(argv)
+    print(json.dumps(audit_manifest(args.manifest), indent=2, ensure_ascii=False))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
