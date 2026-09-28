@@ -577,7 +577,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "DIAGRAM",
+      "kind": "GRAPH",
       "scene_instances": [],
       "reveal_stages": [],
       "rendered_asset_refs": [
@@ -604,7 +604,29 @@
       "accessibility": [
         "State the checkpoint positions, return directions and energy labels in text."
       ],
-      "misleading_alternatives": []
+      "misleading_alternatives": [],
+      "correspondence": [
+        {
+          "element": "five-checkpoint position row",
+          "symbol": "x",
+          "in_words": "Position at each checkpoint relative to equilibrium."
+        },
+        {
+          "element": "return-tendency arrows",
+          "symbol": "F_net",
+          "in_words": "Net force points toward the equilibrium position."
+        },
+        {
+          "element": "KE and PE labels",
+          "symbol": "KE",
+          "in_words": "Kinetic energy label at a checkpoint."
+        },
+        {
+          "element": "KE and PE labels",
+          "symbol": "PE",
+          "in_words": "Potential energy label at a checkpoint."
+        }
+      ]
     }
   ],
   "question_families": [
@@ -759,7 +781,11 @@
         "basis": "Applies stable-equilibrium two-sided test to a simple bowl-and-ball system."
       },
       "learner_question_type": "short_answer",
-      "family_ref": "FAM-OSC-STABLE-EQUILIBRIUM"
+      "family_ref": "FAM-OSC-STABLE-EQUILIBRIUM",
+      "family_exposure": {
+        "family_ref": "FAM-OSC-STABLE-EQUILIBRIUM",
+        "closure": null
+      }
     },
     {
       "id": "Q-OSC-1A-ENERGY-01",
@@ -829,7 +855,11 @@
         "basis": "Applies five-checkpoint energy ledger to an ideal pendulum; no computation."
       },
       "learner_question_type": "short_answer",
-      "family_ref": "FAM-OSC-ENERGY-EXCHANGE"
+      "family_ref": "FAM-OSC-ENERGY-EXCHANGE",
+      "family_exposure": {
+        "family_ref": "FAM-OSC-ENERGY-EXCHANGE",
+        "closure": null
+      }
     },
     {
       "id": "Q-OSC-2A-EQUIL-01",

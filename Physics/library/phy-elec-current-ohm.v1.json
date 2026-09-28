@@ -570,7 +570,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "DIAGRAM",
+      "kind": "CIRCUIT_SCHEMATIC",
       "scene_instances": [],
       "reveal_stages": [],
       "rendered_asset_refs": [
@@ -598,7 +598,19 @@
       "accessibility": [
         "Name the battery, component and two ammeter positions in text."
       ],
-      "misleading_alternatives": []
+      "misleading_alternatives": [],
+      "correspondence": [
+        {
+          "element": "two ammeter positions before and after the component",
+          "symbol": "I_entry",
+          "in_words": "Current measured before the component enters the single path."
+        },
+        {
+          "element": "two ammeter positions before and after the component",
+          "symbol": "I_exit",
+          "in_words": "Current measured after the component leaves the same path."
+        }
+      ]
     }
   ],
   "question_families": [
@@ -744,7 +756,11 @@
         "basis": "Direct application of charge conservation in a single steady path; no computation required."
       },
       "learner_question_type": "short_answer",
-      "family_ref": "FAM-ELEC-CURRENT-CONSERVATION"
+      "family_ref": "FAM-ELEC-CURRENT-CONSERVATION",
+      "family_exposure": {
+        "family_ref": "FAM-ELEC-CURRENT-CONSERVATION",
+        "closure": null
+      }
     },
     {
       "id": "Q-ELEC-1A-OHMIC-01",
@@ -811,7 +827,11 @@
         "basis": "Direct ratio comparison across three pairs to decide constant-resistance model validity."
       },
       "learner_question_type": "short_answer",
-      "family_ref": "FAM-ELEC-OHMIC-MODEL"
+      "family_ref": "FAM-ELEC-OHMIC-MODEL",
+      "family_exposure": {
+        "family_ref": "FAM-ELEC-OHMIC-MODEL",
+        "closure": null
+      }
     },
     {
       "id": "Q-ELEC-2A-CONSERVATION-01",
