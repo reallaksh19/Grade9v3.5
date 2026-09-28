@@ -65,11 +65,13 @@ def open_findings(review: dict) -> list[dict]:
 
 
 def source_status(manifest: dict, repo: Path) -> tuple[list[str], list[str]]:
-    """Conservative until WP4 derives independent verification from citations."""
+    """Show independently current cited facts; unresolved records remain visible to the Owner."""
+    from Shared.tools.unit_status import fact_status  # noqa: PLC0415
     authors: set[str] = set()
     unknown: set[str] = set()
     for ref in manifest.get("package_refs", []):
         package = _json(repo / ref)
+        unknown.update(fact_status(package, manifest["subject"], repo)["unverified"])
         for rows in package.values():
             if not isinstance(rows, list):
                 continue
@@ -79,8 +81,6 @@ def source_status(manifest: dict, repo: Path) -> tuple[list[str], list[str]]:
                 ext = record.get("extensions") or {}
                 if ext.get("grade9v3:authored_by"):
                     authors.add(ext["grade9v3:authored_by"])
-                if ext.get("grade9v3:citations"):
-                    unknown.add(record["id"])
     return sorted(authors), sorted(unknown)
 
 
@@ -124,7 +124,7 @@ def accept(slug: str, note: str = "", accept_open: str = "", repo: Path = REPO,
     print(f"Recommendation: {review.get('overall', {}).get('recommendation', 'UNRECORDED')}")
     print(f"Open S0/S1: {[f.get('id', f.get('record', '?')) for f in findings]}")
     print(f"Reviewer: {review.get('reviewer', review.get('verifier', 'UNRECORDED'))}; authors: {authors}")
-    print(f"Fact status: {len(unknown)} cited records not yet classified by WP4 (shown conservatively as unverified)")
+    print(f"Fact status: {len(unknown)} cited records without current independent verification")
     print(f"Standalone: {'STAGED_FOR_THIS_RENDER' if standalone_bytes is not None else 'NOT_STAGED'}")
     if findings or unknown:
         if confirm("Owner acceptance with open/unknown findings? [y/N] ").strip().lower() != "y":

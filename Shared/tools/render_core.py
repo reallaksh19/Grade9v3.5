@@ -67,6 +67,8 @@ class Ctx:
     authority_hashes: list[tuple[str, str]] = field(default_factory=list)
     gaps: list[dict] = field(default_factory=list)
     figure_instances: dict[str, int] = field(default_factory=dict)
+    source_items: dict[str, dict] = field(default_factory=dict)
+    source_checks: dict[str, dict] = field(default_factory=dict)
 
     def gap(self, duty: str, record: str, detail: str, role: str) -> None:
         self.gaps.append({"duty": duty, "record": record, "detail": detail, "core": role,
@@ -279,6 +281,41 @@ def response_for(question: dict) -> dict:
     if (question.get("answer") or {}).get("numeric"):
         return {"type": "numeric"}
     return {"type": "free_response"}
+
+
+def source_projection(ctx: Ctx, question: dict) -> dict:
+    """Project the pinned inventory and current independent check into Core2.
+
+    The inventory describes the source item; a verified result supplies printed-key
+    wording and its relation to the independently solved result. Neither changes
+    the authored mathematical answer.
+    """
+    ref = (question.get("extensions") or {}).get("grade9v3:inventory_item")
+    item = ctx.source_items.get(ref)
+    if not item:
+        return question
+    projected = dict(question)
+    projected["format"] = item["format"]
+    answer = dict(question.get("answer") or {})
+    key = dict(answer.get("source_key") or {})
+    key.update({"state": item["key"]["state"]})
+    if item["key"].get("card"):
+        key["card"] = item["key"]["card"]
+    else:
+        key.pop("card", None)
+        key.pop("value", None)
+    check = ctx.source_checks.get(item["question_card"])
+    if check and key["state"] == "PRESENT":
+        key["value"] = check["official_answer"]
+        answer["_independent_result"] = check["independent_answer"]
+        answer["key_relation"] = "MATCHES_KEY" if check["agrees"] else "CONFLICTS_WITH_KEY"
+    elif key["state"] != "PRESENT":
+        answer["key_relation"] = "NO_KEY"
+    else:
+        answer.pop("key_relation", None)
+    answer["source_key"] = key
+    projected["answer"] = answer
+    return projected
 
 
 def attempt_box(label: str, response: dict | None = None, options: list | None = None,
@@ -543,20 +580,31 @@ def _custody(q: dict) -> str:
 
 def _source_solution(answer: dict) -> str:
     key = answer.get("source_key") or {}
-    relation = answer.get("key_relation") or ("MATCHES_KEY" if key.get("state") == "PRESENT" else "NO_KEY")
+    verified = answer.get("_independent_result") or answer.get("summary")
+    relation = answer.get("key_relation") or ("UNVERIFIED_KEY" if key.get("state") == "PRESENT" else "NO_KEY")
     if relation == "CONFLICTS_WITH_KEY":
         return (block("printed_key", para(key.get("value")), title="Printed book key")
-                + block("verified_result", para(answer.get("summary")), title="Mathematically verified result")
+                + block("verified_result", para(verified), title="Mathematically verified result")
                 + block("key_conflict", para(answer.get("key_conflict_explanation")), title="Why they differ"))
     note_text = ("The printed key is ambiguous." if key.get("state") == "AMBIGUOUS"
                  else "No printed key accompanies this source item.")
     if relation == "NO_KEY":
         return block("answer", para(f'{note_text} {answer.get("summary", "")}'))
+    if relation == "UNVERIFIED_KEY":
+        return (block("printed_key", para(key.get("value") or "Printed key value awaits independent readback."),
+                      title="Printed book key")
+                + block("verified_result", para(answer.get("summary")), title="Worked result"))
+    if key.get("value"):
+        return (block("printed_key", para(key["value"]), title="Printed book key")
+                + block("verified_result", para(verified), title="Mathematically verified result"))
     return block("answer", para(answer.get("summary")))
 
 
 def core2(ctx: Ctx, q: dict) -> str:
+    q = source_projection(ctx, q)
     ans = q["answer"]
+    if ans.get("_independent_result") and ans["_independent_result"] != ans.get("summary"):
+        ctx.gap("AUTHOR_SOURCE_RESULT_DIFFERS", q["id"], "authored summary differs from current independent result", "CORE2")
     figures = "".join(figure(ctx, ref, "PRE_ATTEMPT", "CORE2", q["id"], first_stage_only=True)
                       for ref in q.get("figure_refs") or [])
     return (slot("identity", block("source_identity", f"<h2>{esc(_identity(q))}</h2><p class=\"g9-prov\">{esc(_custody(q))}</p>"), True)
@@ -919,7 +967,46 @@ def context(manifest_path: Path) -> Ctx:
     package_paths = [REPO / p for p in manifest["package_refs"]]
     bank_paths = [REPO / b for b in manifest.get("bank_refs", [])]
     packages = [load_json(p) for p in package_paths]
+    manifest["title"] = (next((p.get("title") for p in packages if p.get("title")), None)
+                         or next((b.get("title") for p in packages for b in p.get("buckets", []) if b.get("title")), None)
+                         or manifest["product_id"].replace("-", " ").title())
     bank = [q for p in bank_paths for q in load_json(p).get("questions", [])]
+    from Shared.tools import evidence_check, library_board  # local import keeps renderer usable with explicit Ctx fixtures
+    source_items = {ref: item for ref, (_inventory, item) in
+                    evidence_check.inventory_index(manifest["subject"]).items()}
+    source_checks = {}
+    for package in packages:
+        for question in package.get("questions", []):
+            ref = (question.get("extensions") or {}).get("grade9v3:inventory_item")
+            item = source_items.get(ref)
+            node = (question.get("extensions") or {}).get(library_board.NODE_KEY)
+            if not item or not node:
+                continue
+            path = library_board.verification_path(manifest["subject"], node)
+            if not path.is_file():
+                continue
+            verification = load_json(path)
+            records = [row for p in packages for collection in
+                       ("capabilities", "microtopics", "relations", "representations", "question_families", "questions")
+                       for row in p.get(collection, [])
+                       if (row.get("extensions") or {}).get(library_board.NODE_KEY) == node]
+            if verification.get("inputs_digest") != library_board.inputs_digest(manifest["subject"], node, records):
+                continue
+            author = (question.get("extensions") or {}).get("grade9v3:authored_by")
+            reader = verification.get("verified_by")
+            if not reader or reader == author:
+                continue
+            required = {ref, item["question_card"]}
+            if item["key"].get("card"):
+                required.add(item["key"]["card"])
+            readback = {row.get("ref") for row in verification.get("readback", [])
+                        if row.get("reader") == reader and row.get("reader") != author
+                        and row.get("state") in {"AGREED", "CORRECTED"}}
+            if ref not in readback and not required - {ref} <= readback:
+                continue
+            for check in verification.get("questions", []):
+                if check.get("card_ref") == item["question_card"]:
+                    source_checks[item["question_card"]] = check
     asset_refs = sorted({
         ref
         for package in packages
@@ -962,7 +1049,8 @@ def context(manifest_path: Path) -> Ctx:
             if (REPO / ref).is_file()
         ],
     ]
-    return Ctx(manifest, packages, bank, load_json(BLUEPRINTS), authority_hashes)
+    return Ctx(manifest, packages, bank, load_json(BLUEPRINTS), authority_hashes,
+               source_items=source_items, source_checks=source_checks)
 
 
 def _single_file_fragment(page_html: str, role: str) -> str:
