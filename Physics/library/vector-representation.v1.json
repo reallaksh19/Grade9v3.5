@@ -1163,7 +1163,20 @@
       "family_exposure": {
         "family_ref": "FAM-VECTOR-MAGNITUDE",
         "closure": null
-      }
+      },
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "Explains why vector equality requires both equal magnitude and identical direction, and how signed components encode directional orientation."
+      },
+      "learner_question_type": "constructed_response"
     }
   ],
   "teaching_routes": [
@@ -1343,6 +1356,20 @@
         ],
         "extension_refs": []
       }
+    },
+    {
+      "id": "BUCKET-RELATIVE-MOTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Relative velocity in a plane",
+      "topic": "Motion in two dimensions",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Observer, sign and common-time reasoning require explicit construction."
     }
   ],
   "data": [

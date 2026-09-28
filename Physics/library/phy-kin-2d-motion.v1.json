@@ -324,7 +324,7 @@
                   "ordered-pair state"
                 ],
                 "relation": "same-time x and y samples reconstruct exactly one simultaneous particle state",
-                "tolerance": 1e-9,
+                "tolerance": 1e-09,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -651,7 +651,7 @@
                   "y-component evaluation"
                 ],
                 "relation": "the event marker and every component evaluation use the same solved event time",
-                "tolerance": 1e-9,
+                "tolerance": 1e-09,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -978,7 +978,7 @@
                   "component-acceleration readout"
                 ],
                 "relation": "the rendered projectile state equals the component reconstruction at one shared time",
-                "tolerance": 1e-9,
+                "tolerance": 1e-09,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -1307,7 +1307,7 @@
                   "speed readout"
                 ],
                 "relation": "at the apex v_y = 0 while a_y remains -g in the governed gravity model",
-                "tolerance": 1e-9,
+                "tolerance": 1e-09,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -1635,7 +1635,7 @@
                   "speed comparison"
                 ],
                 "relation": "under the same no-drag gravity model, equal-height ascent and descent states have equal speed magnitude",
-                "tolerance": 1e-9,
+                "tolerance": 1e-09,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -1966,7 +1966,7 @@
                   "horizontal range"
                 ],
                 "relation": "the impact marker lies on the landing surface and horizontal range equals x evaluated at the solved event time",
-                "tolerance": 1e-9,
+                "tolerance": 1e-09,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -6456,7 +6456,20 @@
       "family_exposure": {
         "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
         "closure": "Established: a plane position is the pair x(t), y(t) read at one instant in one frame. The transfer task keeps the one frame and one clock but removes the given component functions, so the signed components must be built from words."
-      }
+      },
+      "difficulty": {
+        "band": "D2",
+        "score": 4,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Requires evaluating separate component trajectories at a common timestamp and justifying why coordinates from different times cannot define a state."
+      },
+      "learner_question_type": "constructed_response"
     },
     {
       "id": "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02",
@@ -6629,7 +6642,20 @@
       "family_exposure": {
         "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
         "closure": "Established: with both acceleration components constant, the one-dimensional relations run once per axis on a shared interval with their signs kept. The transfer task asks you first to decide, axis by axis, whether that condition holds at all."
-      }
+      },
+      "difficulty": {
+        "band": "D2",
+        "score": 4,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "Applies two-dimensional constant-acceleration kinematic vector formulas component-wise over a 3-second interval."
+      },
+      "learner_question_type": "constructed_response"
     },
     {
       "id": "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
@@ -6800,7 +6826,20 @@
       "family_exposure": {
         "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
         "closure": "Established: the apex is the event v_y = 0, with v_x unchanged and a_y = −g still acting. The transfer task compares two equal-height events on one path using the same component facts, without solving for any time."
-      }
+      },
+      "difficulty": {
+        "band": "D2",
+        "score": 5,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Requires recognizing that vertical velocity vanishes at the apex while horizontal velocity and downward acceleration remain nonzero."
+      },
+      "learner_question_type": "constructed_response"
     },
     {
       "id": "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04",
@@ -6984,7 +7023,20 @@
       "family_exposure": {
         "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
         "closure": "Established: the drop fixes the fall time through the vertical equation, and that one time then sets the range. The transfer task asks whether the projectile model itself still holds when a force keeps acting after release."
-      }
+      },
+      "difficulty": {
+        "band": "D2",
+        "score": 5,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "Requires solving vertical free-fall time from a cliff, propagating flight time into horizontal range, and recombining orthogonal impact velocities."
+      },
+      "learner_question_type": "constructed_response"
     },
     {
       "id": "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
@@ -7149,7 +7201,20 @@
       "family_exposure": {
         "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
         "closure": "Established: a same-height landing is the non-zero root of Δy = 0, and the range uses that same time. The transfer task drops the equal-height condition, so the landing event has to be written from the actual drop."
-      }
+      },
+      "difficulty": {
+        "band": "D2",
+        "score": 4,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "Calculates total symmetric flight time and range with nonstandard g, and determines landing velocity components."
+      },
+      "learner_question_type": "constructed_response"
     },
     {
       "id": "Q-PHY-KIN-2D-2B-REPRESENTATION-01",
@@ -7345,7 +7410,20 @@
       "family_exposure": {
         "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
         "closure": "Established: a verbal description becomes a signed x/y state only after one frame and one sign convention are chosen; the same clock still ties both columns."
-      }
+      },
+      "difficulty": {
+        "band": "D2",
+        "score": 5,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 2,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Translates verbal directional compass descriptions of velocity and acceleration into signed Cartesian components with explicit axis orientation."
+      },
+      "learner_question_type": "constructed_response"
     },
     {
       "id": "Q-PHY-KIN-2D-2B-MODEL-VALIDITY-02",
@@ -7566,7 +7644,20 @@
       "family_exposure": {
         "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
         "closure": "Established: two bodies meet only when all their coordinates agree at one instant; a shared point on their paths is not enough."
-      }
+      },
+      "difficulty": {
+        "band": "D3",
+        "score": 7,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Distinguishes geometric path crossing from spatial-temporal collision, requiring time-synchronized position evaluation and parameter adjustment."
+      },
+      "learner_question_type": "constructed_response"
     },
     {
       "id": "Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03",
@@ -7789,7 +7880,20 @@
       "family_exposure": {
         "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
         "closure": "Established: a height condition gives candidate times; the landing is the candidate at which the other coordinate puts the body on the surface."
-      }
+      },
+      "difficulty": {
+        "band": "D3",
+        "score": 7,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Solves quadratic vertical kinematics for an elevated boundary landing surface, verifying that the horizontal coordinate falls within the roof span."
+      },
+      "learner_question_type": "constructed_response"
     },
     {
       "id": "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
@@ -8028,7 +8132,20 @@
       "family_exposure": {
         "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
         "closure": "Established: a released body begins free flight with the velocity it had at release; the model after release comes from what acts on the body itself."
-      }
+      },
+      "difficulty": {
+        "band": "D3",
+        "score": 7,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Requires attributing horizontal carrier velocity to the released package, computing fall time and landing displacement, and tracking the moving carrier."
+      },
+      "learner_question_type": "constructed_response"
     },
     {
       "id": "Q-PHY-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
@@ -8245,7 +8362,20 @@
       "family_exposure": {
         "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
         "closure": "Established: a direction of motion is a ratio of velocity components at one instant, and it can define the event whose time is sought."
-      }
+      },
+      "difficulty": {
+        "band": "D3",
+        "score": 7,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 2,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "Relates velocity angle condition to component ratio v_y/v_x, solves for the corresponding instant and spatial displacement, and computes resultant speed."
+      },
+      "learner_question_type": "constructed_response"
     }
   ],
   "teaching_routes": [
