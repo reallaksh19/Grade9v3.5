@@ -616,6 +616,738 @@ window.GRADE9V3 = {
               }
             ]
           }
+        },
+        {
+          "id": "BUCKET-MAT-09-LEQ",
+          "title": "Linear equations in one variable (Class VI to VIII bridge) and in two variables (Class IX)",
+          "topic": "Linear equations",
+          "badge": "MEDIUM",
+          "status": "CANDIDATE",
+          "prerequisites": [],
+          "curriculum": [
+            {
+              "board": "CBSE",
+              "grade": 9,
+              "academic_year": "2026-27",
+              "track": "CBSE",
+              "scope_class": "PRESCRIBED",
+              "source_ref": "SRC-CBSE-CURRICULUM-MATHS-IX",
+              "locator": "Course Structure Class IX, Unit II Algebra, Linear Equations in Two Variables",
+              "mapping_status": "CANDIDATE"
+            },
+            {
+              "board": "CBSE",
+              "grade": 8,
+              "academic_year": "2026-27",
+              "track": "CBSE",
+              "scope_class": "PREREQUISITE_BRIDGE",
+              "source_ref": "SRC-NCERT-8-LINEQ-ONE",
+              "locator": "NCERT Class 8 Chapter 2, 'What have we discussed?': equations of Classes VI to VIII are linear in one variable",
+              "mapping_status": "CANDIDATE"
+            }
+          ],
+          "microtopics": [
+            {
+              "id": "MIC-MAT-LEQ-01-SOLUTION-BY-SUBSTITUTION",
+              "title": "A linear equation in one variable is true only for its solutions: test a value by evaluating the LHS and the RHS",
+              "badge": "EASY",
+              "status": "CANDIDATE",
+              "badge_reason": "The only operation is evaluating two linear expressions; the difficulty is conceptual, keeping the two sides apart and not trusting the route that produced a candidate.",
+              "entry_assumptions": [
+                "Can evaluate a linear expression such as 3x − 4 at a given whole number, including a negative one."
+              ],
+              "inferential_jump": "An equation claims that its LHS and RHS are equal, and that claim is true only for certain values of the variable; so whether a number is a solution is settled by evaluating both sides at it and comparing, which is also how any proposed solution is checked.",
+              "teaching_path": [
+                {
+                  "id": "LEQ1-1",
+                  "action": "Locate the equality sign and name the two expressions it separates as the LHS and the RHS.",
+                  "why_valid": "An algebraic equation is an equality involving a variable, so it always has an equality sign with one expression on each side.",
+                  "role": "DECLARE",
+                  "output": "For 3x − 4 = 2x + 1: LHS is 3x − 4 and RHS is 2x + 1.",
+                  "inputs": []
+                },
+                {
+                  "id": "LEQ1-2",
+                  "action": "Substitute the candidate into each side separately and evaluate each to a single number.",
+                  "why_valid": "Each side is an expression in x, so it takes exactly one value when x is given a value.",
+                  "role": "TRANSFORM",
+                  "output": "At x = 5: LHS = 3 × 5 − 4 = 11 and RHS = 2 × 5 + 1 = 11. At x = 0: LHS = −4 and RHS = 1.",
+                  "inputs": []
+                },
+                {
+                  "id": "LEQ1-3",
+                  "action": "Accept the candidate as a solution only if the two values are equal; otherwise reject it.",
+                  "why_valid": "The LHS and RHS are equal only for certain values of the variable, and those values are exactly the solutions.",
+                  "role": "VERIFY",
+                  "output": "x = 5 is a solution (11 = 11); x = 0 is not (−4 ≠ 1).",
+                  "inputs": []
+                },
+                {
+                  "id": "LEQ1-4",
+                  "action": "Read what one accepted value does and does not establish about the equation.",
+                  "why_valid": "An equation, unlike an identity, need not be true for all values of its variable.",
+                  "role": "VERIFY",
+                  "output": "3x − 4 = 2x + 1 holds at 5 and fails at 0, so it is an equation with a particular solution, not an identity.",
+                  "inputs": []
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A number reached by a plausible move is the solution, so it need not be checked; for example, taking x = 40 as the solution of (1/2)x = 80.",
+                  "diagnostic_prompt": "Someone claims x = 40 solves (1/2)x = 80. Put 40 into the LHS: what number do you get, and is it the RHS?",
+                  "repair": "(1/2) × 40 = 20, and 20 is not 80, so 40 is not a solution. Whatever route produced a candidate, only equal side values make it a solution; here x = 160 gives (1/2) × 160 = 80."
+                },
+                {
+                  "wrong_idea": "Once one value makes an equation true, the equation is true for every value, as if it were an identity.",
+                  "diagnostic_prompt": "3x − 4 = 2x + 1 is true at x = 5. Evaluate both sides at x = 0: is it still true?",
+                  "repair": "At 0 the sides are −4 and 1, so it is false there. An equation holds only for its solutions; only an identity is true for all values."
+                },
+                {
+                  "wrong_idea": "Substituting into one side and seeing a 'nice' number is enough to accept the candidate.",
+                  "diagnostic_prompt": "At x = 0, the RHS of 3x − 4 = 2x + 1 is the tidy number 1. Does that make 0 a solution?",
+                  "repair": "No. A solution makes the two sides equal to each other; at 0 the LHS is −4, so the two values disagree and 0 is rejected."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Is x = 3 a solution of 5x − 7 = 2x + 2? Is x = 2? Show the value of each side for each candidate before giving a verdict.",
+                "source_ref": "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+                "answer": {
+                  "kind": "EXACT",
+                  "summary": "x = 3 is a solution; x = 2 is not.",
+                  "reasoning": [
+                    "At x = 3: LHS = 5 × 3 − 7 = 8 and RHS = 2 × 3 + 2 = 8; the values are equal, so 3 is a solution.",
+                    "At x = 2: LHS = 5 × 2 − 7 = 3 and RHS = 2 × 2 + 2 = 6; the values differ, so 2 is not a solution."
+                  ],
+                  "check": "Both evaluations used the original equation; 8 = 8 and 3 ≠ 6.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "held_by": "ISSUE-MAT-LEQ-EXIT-ORACLE"
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-MAT-LEQ-02-VARIABLE-ON-BOTH-SIDES",
+              "title": "Solving an equation with the variable on both sides: the same operation on both sides, and transposing a variable term like a number",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The steps are routine, but two errors recur: changing one side only, and moving a term across the equality sign without changing its sign.",
+              "entry_assumptions": [
+                "Can test a value in an equation by evaluating the LHS and RHS separately.",
+                "Can add and subtract signed numbers and like terms such as 5x − 3x."
+              ],
+              "inferential_jump": "Applying the same operation to both sides keeps the equation balanced, so its solution is unchanged (for multiplying or dividing, only by a non-zero number). Subtracting a variable term from both sides is transposing it with its sign changed, so variable terms can be gathered on one side exactly as numbers are.",
+              "teaching_path": [
+                {
+                  "id": "LEQ2-1",
+                  "action": "Choose one side to collect the variable terms and the other to collect the numbers.",
+                  "why_valid": "Variables, like numbers, can be transposed from one side to the other, so either side may be chosen.",
+                  "role": "DECLARE",
+                  "output": "For 2x − 3 = x + 2: variable terms go to the LHS, numbers to the RHS.",
+                  "inputs": []
+                },
+                {
+                  "id": "LEQ2-2",
+                  "action": "Add or subtract the same number on both sides to clear numbers from the variable side.",
+                  "why_valid": "The same operation on both sides keeps the balance, so the solution is not affected.",
+                  "role": "TRANSFORM",
+                  "output": "Add 3 to both sides: 2x = x + 5.",
+                  "inputs": []
+                },
+                {
+                  "id": "LEQ2-3",
+                  "action": "Subtract the unwanted variable term from both sides, which transposes it with its sign changed.",
+                  "why_valid": "Subtracting x from both sides amounts to transposing x to the other side.",
+                  "role": "TRANSFORM",
+                  "output": "Subtract x from both sides: 2x − x = 5, so x = 5.",
+                  "inputs": []
+                },
+                {
+                  "id": "LEQ2-4",
+                  "action": "When one variable term with a coefficient remains, divide both sides by that non-zero coefficient.",
+                  "why_valid": "Dividing both sides by the same non-zero number leaves the solution unchanged.",
+                  "role": "TRANSFORM",
+                  "output": "For 5t − 3 = 3t − 5: 2t = −2, and dividing both sides by 2 gives t = −1.",
+                  "inputs": []
+                },
+                {
+                  "id": "LEQ2-5",
+                  "action": "Substitute the value into the original equation, not a later line.",
+                  "why_valid": "Only the original equation shows the solution was preserved through every step.",
+                  "role": "VERIFY",
+                  "output": "x = 5 in 2x − 3 = x + 2: LHS = 7, RHS = 7.",
+                  "inputs": []
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A number may be added to or taken from one side only to tidy it up.",
+                  "diagnostic_prompt": "From 2x − 1 = 14 − x a learner adds 1 to the LHS only and writes 2x = 14 − x. Does x = 5, which solves the first equation, still solve the second?",
+                  "repair": "No: in 2x = 14 − x, x = 5 gives 10 and 9. Taking or adding a number on one side only leaves the sides unequal; add 1 to both sides to get 2x = 15 − x."
+                },
+                {
+                  "wrong_idea": "A term can be moved across the equality sign keeping its sign.",
+                  "diagnostic_prompt": "A learner writes 5x + 9 = 5 + 3x → 5x + 3x = 5 + 9. Which operation on both sides would give that line?",
+                  "repair": "None does. Subtracting 3x and 9 from both sides gives 5x − 3x = 5 − 9, so 2x = −4 and x = −2; transposing a term is subtracting it from both sides, so its sign changes."
+                },
+                {
+                  "wrong_idea": "Multiplying or dividing both sides changes the solution, or any number, including 0, may be used.",
+                  "diagnostic_prompt": "Multiply both sides of 2x = 10 by 3, then by 0. What does each new equation say about x?",
+                  "repair": "6x = 30 still gives x = 5, so a non-zero multiplier keeps the solution. Multiplying by 0 gives 0 = 0, which says nothing about x, which is why the number must be non-zero."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Solve 7y − 4 = 3y + 8. Write the operation you apply to both sides at each step, then check your answer in the original equation.",
+                "source_ref": "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+                "answer": {
+                  "kind": "EXACT",
+                  "summary": "y = 3",
+                  "reasoning": [
+                    "Subtract 3y from both sides: 4y − 4 = 8.",
+                    "Add 4 to both sides: 4y = 12.",
+                    "Divide both sides by 4, which is non-zero: y = 3."
+                  ],
+                  "check": "In the original: 7(3) − 4 = 17 and 3(3) + 8 = 17.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "held_by": "ISSUE-MAT-LEQ-EXIT-ORACLE"
+                }
+              },
+              "prerequisites": [
+                "CAP-MAT-LEQ-01-SUBSTITUTION-CHECK"
+              ]
+            },
+            {
+              "id": "MIC-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+              "title": "Reducing an equation to simpler form: opening brackets, combining like terms and clearing denominators before solving",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Each reduction is familiar arithmetic, but a negative factor in front of a bracket, a term left unmultiplied by the LCM, and a vanishing variable each produce confident wrong answers.",
+              "entry_assumptions": [
+                "Can solve an equation with the variable on both sides by balanced operations.",
+                "Can find the LCM of two or three small whole numbers."
+              ],
+              "inferential_jump": "Brackets and denominators do not change what an equation says; opening brackets and combining like terms rewrites each side as an equal expression, and multiplying both whole sides by the LCM of the denominators is a balanced step, so the simpler equation has the same solution. If the variable cancels, the leftover statement decides: false means no solution, true means every number.",
+              "teaching_path": [
+                {
+                  "id": "LEQ3-1",
+                  "action": "Inspect the equation for brackets, fractions or decimals and plan to remove them before collecting terms.",
+                  "why_valid": "An equation is solved more easily once it is brought to a simpler form.",
+                  "role": "DECLARE",
+                  "output": "5x − 2(2x − 7) = 2(3x − 1) + 7/2 has brackets on both sides and one fraction.",
+                  "inputs": []
+                },
+                {
+                  "id": "LEQ3-2",
+                  "action": "Open each bracket by multiplying every term inside by the factor in front, sign included.",
+                  "why_valid": "Opening a bracket rewrites an expression as an equal one.",
+                  "role": "TRANSFORM",
+                  "output": "−2(2x − 7) = −4x + 14 and 2(3x − 1) = 6x − 2, so 5x − 4x + 14 = 6x − 2 + 7/2.",
+                  "inputs": []
+                },
+                {
+                  "id": "LEQ3-3",
+                  "action": "Combine like terms on each side separately.",
+                  "why_valid": "Combining like terms within one side does not change that side's value.",
+                  "role": "TRANSFORM",
+                  "output": "x + 14 = 6x + 3/2",
+                  "inputs": []
+                },
+                {
+                  "id": "LEQ3-4",
+                  "action": "Multiply both whole sides by the LCM of the denominators.",
+                  "why_valid": "Multiplying both sides by the same non-zero number keeps the solution, and it clears every denominator.",
+                  "role": "TRANSFORM",
+                  "output": "Multiply by 2: 2x + 28 = 12x + 3.",
+                  "inputs": []
+                },
+                {
+                  "id": "LEQ3-5",
+                  "action": "Solve the reduced equation with balanced operations.",
+                  "why_valid": "The reduced equation has the same solution as the original.",
+                  "role": "TRANSFORM",
+                  "output": "28 − 3 = 12x − 2x, so 25 = 10x and x = 5/2.",
+                  "inputs": []
+                },
+                {
+                  "id": "LEQ3-6",
+                  "action": "Check in the original equation; if the variable cancelled instead, read the leftover statement.",
+                  "why_valid": "A false leftover statement means no value works (a contradiction); a true one means every value works (an identity).",
+                  "role": "VERIFY",
+                  "output": "At x = 5/2 both sides equal 33/2. For 2(3x − 1) = 6x + 4, reducing gives −2 = 4: no solution.",
+                  "inputs": []
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "When fractions appear on one side only, only that side needs multiplying by the LCD.",
+                  "diagnostic_prompt": "In x/3 + 1 = 5 a learner multiplies only the LHS by 3 and writes x + 3 = 5. Does x = 12, which solves the original, satisfy the new line?",
+                  "repair": "No: 12 + 3 = 15, not 5. Multiplying one side only unbalances the equation; multiplying both sides by 3 gives x + 3 = 15, which x = 12 satisfies."
+                },
+                {
+                  "wrong_idea": "The sign in front of a bracket applies to its first term only.",
+                  "diagnostic_prompt": "A learner expands −2(2x − 7) as −4x − 14. Put x = 0 into the bracket form and into the expansion: do they agree?",
+                  "repair": "At x = 0, −2(0 − 7) = 14 but −4(0) − 14 = −14. The factor −2 multiplies every inside term: (−2)(−7) = +14, so the expansion is −4x + 14."
+                },
+                {
+                  "wrong_idea": "If the variable disappears, the answer is x = 0, or the working has simply gone wrong.",
+                  "diagnostic_prompt": "Reducing 2(x + 3) = 2x + 5 gives 6 = 5. What can you say about x?",
+                  "repair": "6 = 5 is false whatever x is, so no value is a solution: the equation is a contradiction. Had it reduced to a true statement such as 6 = 6, every number would be a solution, an identity."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Solve 2(x + 3) − (x − 1) = x/2 + 9. Say which reduction you do first and why, and check your answer in the original equation.",
+                "source_ref": "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+                "answer": {
+                  "kind": "EXACT",
+                  "summary": "x = 4",
+                  "reasoning": [
+                    "Open the brackets: 2x + 6 − x + 1 = x/2 + 9, so x + 7 = x/2 + 9.",
+                    "Multiply both sides by 2: 2x + 14 = x + 18.",
+                    "Subtract x and 14 from both sides: x = 4."
+                  ],
+                  "check": "In the original: 2(7) − (3) = 11 and 4/2 + 9 = 11.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "held_by": "ISSUE-MAT-LEQ-EXIT-ORACLE"
+                }
+              },
+              "prerequisites": [
+                "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES"
+              ]
+            },
+            {
+              "id": "MIC-MAT-LEQ-04-TWO-VARIABLES-LINE-OF-SOLUTIONS",
+              "title": "Linear equations in two variables: the form ax + by + c = 0, infinitely many solution pairs, and the straight-line graph",
+              "badge": "HARD",
+              "status": "CANDIDATE",
+              "badge_reason": "Learners arrive expecting one number as the answer; here a solution is a pair, there are infinitely many, and the same statement can have one solution on a number line but infinitely many on the plane.",
+              "entry_assumptions": [
+                "Can decide whether a value is a solution by substituting and comparing both sides.",
+                "Can solve a linear equation in one variable.",
+                "Can plot a point (x, y) on the Cartesian plane."
+              ],
+              "inferential_jump": "In ax + by + c = 0 with a and b non-zero, a solution is a pair of values, one for each variable; any value chosen for one variable fixes a value for the other, so there are infinitely many solutions, and plotted they form a straight line on which every point is a solution.",
+              "teaching_path": [
+                {
+                  "id": "LEQ4-1",
+                  "action": "Write the equation in the form ax + by + c = 0 and check that a and b are both non-zero.",
+                  "why_valid": "That form with a ≠ 0 and b ≠ 0 is what makes it a linear equation in two variables.",
+                  "role": "DECLARE",
+                  "output": "3x + 4y = 12 becomes 3x + 4y − 12 = 0, with a = 3, b = 4, c = −12.",
+                  "inputs": []
+                },
+                {
+                  "id": "LEQ4-2",
+                  "action": "Test a pair by substituting its x-value for x and its y-value for y.",
+                  "why_valid": "A pair is a solution exactly when it makes the two sides equal.",
+                  "role": "TRANSFORM",
+                  "output": "(0, 3): 3(0) + 4(3) = 12, a solution. (1, 1): 3 + 4 = 7, not a solution.",
+                  "inputs": []
+                },
+                {
+                  "id": "LEQ4-3",
+                  "action": "Generate solutions by choosing a value of one variable and solving for the other.",
+                  "why_valid": "Fixing one variable leaves a one-variable equation with one solution, and any value may be chosen, so there are infinitely many solutions.",
+                  "role": "TRANSFORM",
+                  "output": "y = 0 gives 3x = 12, x = 4; x = 2 gives 4y = 6, y = 3/2. Pairs: (4, 0), (2, 3/2), (0, 3).",
+                  "inputs": []
+                },
+                {
+                  "id": "LEQ4-4",
+                  "action": "Plot the pairs and draw the line through them; read every point on it as a solution.",
+                  "why_valid": "The graph of a linear equation in two variables is a straight line, and every point on it represents a solution.",
+                  "role": "DECLARE",
+                  "output": "(0, 3), (2, 3/2) and (4, 0) lie on one straight line.",
+                  "inputs": []
+                },
+                {
+                  "id": "LEQ4-5",
+                  "action": "Find where the line cuts an axis by setting the other variable to 0, and check a new point on the line.",
+                  "why_valid": "The line cuts the x-axis where y = 0.",
+                  "role": "VERIFY",
+                  "output": "x-axis at (4, 0); the point (1, 9/4) on the line gives 3 + 9 = 12.",
+                  "inputs": []
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A linear equation in two variables, such as 2x + 3y = 15, has a unique solution.",
+                  "diagnostic_prompt": "Is (6, 1) a solution of 2x + 3y = 15? Is (3, 3)? Is (0, 5)?",
+                  "repair": "All three are: 12 + 3, 6 + 9 and 0 + 15 each give 15. Every value chosen for x gives a matching y, so there are infinitely many solutions."
+                },
+                {
+                  "wrong_idea": "Any ax + by + c = 0 is a linear equation in two variables, whatever a and b are.",
+                  "diagnostic_prompt": "In 0x + 2y − 6 = 0, what is a? Does this fit the definition of a linear equation in two variables?",
+                  "repair": "Here a = 0, and the definition needs both a and b non-zero, so it is not one in this sense."
+                },
+                {
+                  "wrong_idea": "Only the points worked out in the table are solutions; points between them on the line are not.",
+                  "diagnostic_prompt": "(4, 0) and (0, 3) solve 3x + 4y = 12. The point (2, 1.5) lies on the line between them. Is it a solution?",
+                  "repair": "Yes: 3(2) + 4(1.5) = 12. Every point on the graph represents a solution, not only the plotted ones."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Find three solutions of x + 2y = 6, including the points where its graph cuts each axis, and explain why you could keep finding more.",
+                "source_ref": "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "For example (0, 3), (6, 0) and (2, 2); there are infinitely many because every chosen x gives y = (6 − x)/2.",
+                  "reasoning": [
+                    "x = 0 gives 2y = 6, y = 3: the y-axis crossing (0, 3).",
+                    "y = 0 gives x = 6: the x-axis crossing (6, 0).",
+                    "x = 2 gives 2y = 4, y = 2: the pair (2, 2).",
+                    "Any other x gives its own y, so the solutions never run out; they form one straight line."
+                  ],
+                  "check": "Each pair gives 6: 0 + 6, 6 + 0 and 2 + 4.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "held_by": "ISSUE-MAT-LEQ-EXIT-ORACLE"
+                }
+              },
+              "prerequisites": [
+                "CAP-MAT-LEQ-01-SUBSTITUTION-CHECK",
+                "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES"
+              ]
+            }
+          ],
+          "relations": [
+            {
+              "id": "REL-MAT-LEQ-01-SOLUTION-CONDITION",
+              "expression": "s is a solution of L(x) = R(x)  ⇔  L(s) = R(s)",
+              "meaning": "A number is a solution exactly when the LHS and the RHS take the same value at it; the equation is true only for such values, and a proposed solution is confirmed by substituting it back into the original equation.",
+              "conditions": [
+                "The statement is an equation: an equality sign stands between two expressions in the variable.",
+                "Both sides are linear expressions in one variable only.",
+                "The equality is not assumed to hold for every value; only an identity does that."
+              ]
+            },
+            {
+              "id": "REL-MAT-LEQ-02-SOLUTION-PRESERVING-OPERATIONS",
+              "expression": "L = R has the same solution as L + c = R + c, L − c = R − c, kL = kR and L ÷ k = R ÷ k (k ≠ 0); transposing: L + t = R ⇔ L = R − t",
+              "meaning": "Doing the same thing to both sides keeps the balance, so the solution is unchanged; subtracting a term from both sides is the same as transposing it to the other side, and variable terms can be transposed just like numbers.",
+              "conditions": [
+                "The same operation is applied to the whole of both sides, never to one side only.",
+                "A number that multiplies or divides both sides is non-zero.",
+                "A transposed term changes its sign, because transposing is subtracting (or adding) it on both sides."
+              ]
+            },
+            {
+              "id": "REL-MAT-LEQ-03-REDUCED-OUTCOMES",
+              "expression": "If reducing removes the variable: a false statement (e.g. 6 = 5) ⇒ no solution (contradiction); a true statement (e.g. 6 = 6) ⇒ every value is a solution (identity)",
+              "meaning": "An equation that is false for all values of the variable has no solution and is called a contradiction; one that is true for any value is an identity, and its solution is all real numbers.",
+              "conditions": [
+                "The variable terms on the two sides cancel completely during reduction.",
+                "The verdict is read from the variable-free statement that remains, not from a value of x."
+              ]
+            },
+            {
+              "id": "REL-MAT-LEQ-03-REDUCTION",
+              "expression": "L = R  ⇔  m·L = m·R, where m is the LCM of the denominators of the terms; opening brackets and combining like terms rewrites each side as an equal expression",
+              "meaning": "An equation is brought to a simpler form, without changing its solution, by opening brackets and combining like terms on both sides and by multiplying both sides by the LCM of the denominators of its terms.",
+              "conditions": [
+                "Every term inside a bracket is multiplied by the factor in front of it, sign included.",
+                "Both whole sides are multiplied by the LCM, including terms that have no denominator, even when fractions appear on one side only.",
+                "Like terms are combined within one side; terms cross the equality sign only by a balanced operation."
+              ]
+            },
+            {
+              "id": "REL-MAT-LEQ-04-STRAIGHT-LINE",
+              "expression": "y = ax + b (a straight line with slope a)",
+              "meaning": "A linear relationship between two variables x and y is represented by a straight line y = ax + b, and the slope of this line is a.",
+              "conditions": [
+                "x and y are linearly related.",
+                "The letters a and b here name slope and constant; they differ from the a and b of ax + by + c = 0."
+              ]
+            },
+            {
+              "id": "REL-MAT-LEQ-04-TWO-VARIABLE-FORM",
+              "expression": "ax + by + c = 0, where a, b, c are real numbers, a ≠ 0 and b ≠ 0; a solution is a pair (x₀, y₀) with ax₀ + by₀ + c = 0",
+              "meaning": "A linear equation in two variables has infinitely many solutions; its graph is a straight line, and every point on that line represents a solution.",
+              "conditions": [
+                "a and b are both non-zero; otherwise the statement is not a linear equation in two variables in this sense.",
+                "a, b and c are real numbers.",
+                "Solutions are pairs of values located on the Cartesian plane; read on a number line, an equation in one variable has a single solution instead."
+              ]
+            }
+          ],
+          "questions": [
+            {
+              "id": "Q-MAT-LEQ-01-1A-EVALUATE-SIDES",
+              "stem": "Evaluate both sides of 4x − 3 = 2x + 5 at x = 4 and at x = 3, keeping the LHS and RHS as separate numbers. Which candidate is a solution?",
+              "origin": "AUTHORED",
+              "answer": "x = 4 is a solution (13 = 13); x = 3 is not (9 ≠ 11)."
+            },
+            {
+              "id": "Q-MAT-LEQ-01-1A-ONE-VALUE-NOT-ALL",
+              "stem": "Riya checks that x = 6 satisfies x + 4 = 10 and concludes that x + 4 = 10 is true for every number. Test x = 0 and decide whether she is right.",
+              "origin": "AUTHORED",
+              "answer": "She is wrong: at x = 0 the sides are 4 and 10, so the equation is true for x = 6 only, not for every number."
+            },
+            {
+              "id": "Q-MAT-LEQ-01-EXEMPLAR8-Q17",
+              "stem": "The solution of the equation 3x – 4 = 1 – 2x is _________.",
+              "origin": "ORIGINAL",
+              "answer": "x = 1"
+            },
+            {
+              "id": "Q-MAT-LEQ-01-EXEMPLAR8-Q20",
+              "stem": "9x – _________ = –21 has the solution (–2)",
+              "origin": "ORIGINAL",
+              "answer": "3"
+            },
+            {
+              "id": "Q-MAT-LEQ-01-EXEMPLAR8-Q6",
+              "stem": "The value of x for which the expressions 3x – 4 and 2x + 1 become equal is",
+              "origin": "ORIGINAL",
+              "answer": "(c) 5"
+            },
+            {
+              "id": "Q-MAT-LEQ-02-1A-COLLECT-TERMS",
+              "stem": "Solve 3y + 4 = 2y + 11. Write the operation you apply to both sides at each step.",
+              "origin": "AUTHORED",
+              "answer": "y = 7"
+            },
+            {
+              "id": "Q-MAT-LEQ-02-1A-DIVIDE-AND-CHECK",
+              "stem": "Solve 7a − 2 = 3a + 10 and check your answer in the original equation.",
+              "origin": "AUTHORED",
+              "answer": "a = 3"
+            },
+            {
+              "id": "Q-MAT-LEQ-02-EXEMPLAR9-4-1-Q16",
+              "stem": "If we multiply or divide both sides of a linear equation with a non-zero number, then the solution of the linear equation :",
+              "origin": "ORIGINAL",
+              "answer": "(B) Remains the same"
+            },
+            {
+              "id": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q1",
+              "stem": "Solve the following equation and check your result: 3x = 2x + 18",
+              "origin": "ORIGINAL",
+              "answer": "x = 18"
+            },
+            {
+              "id": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q2",
+              "stem": "Solve the following equation and check your result: 5t – 3 = 3t – 5",
+              "origin": "ORIGINAL",
+              "answer": "t = −1"
+            },
+            {
+              "id": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q3",
+              "stem": "Solve the following equation and check your result: 5x + 9 = 5 + 3x",
+              "origin": "ORIGINAL",
+              "answer": "x = −2"
+            },
+            {
+              "id": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q5",
+              "stem": "Solve the following equation and check your result: 2x – 1 = 14 – x",
+              "origin": "ORIGINAL",
+              "answer": "x = 5"
+            },
+            {
+              "id": "Q-MAT-LEQ-03-1A-CLEAR-DENOMINATORS",
+              "stem": "Solve x/2 + x/3 = 10 by first multiplying both sides by the LCM of the denominators.",
+              "origin": "AUTHORED",
+              "answer": "x = 12"
+            },
+            {
+              "id": "Q-MAT-LEQ-03-1A-OPEN-BRACKETS",
+              "stem": "Open the brackets and combine like terms on each side of 4(x − 3) − 2(x − 5) = 3(x − 1), then solve.",
+              "origin": "AUTHORED",
+              "answer": "x = 1"
+            },
+            {
+              "id": "Q-MAT-LEQ-03-1A-VARIABLE-VANISHES",
+              "stem": "Reduce 2(3x − 1) = 6x + 4 and 2(3x − 1) = 6x − 2. How many solutions does each equation have?",
+              "origin": "AUTHORED",
+              "answer": "The first has no solution (a contradiction); the second is true for every number (an identity)."
+            },
+            {
+              "id": "Q-MAT-LEQ-03-EXEMPLAR8-Q58",
+              "stem": "Solve the following equation: 8x – 7 – 3x = 6x – 2x – 3",
+              "origin": "ORIGINAL",
+              "answer": "x = 4"
+            },
+            {
+              "id": "Q-MAT-LEQ-03-EXEMPLAR8-Q61",
+              "stem": "Solve the following equation: 5(x – 1) – 2(x + 8) = 0",
+              "origin": "ORIGINAL",
+              "answer": "x = 7"
+            },
+            {
+              "id": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q10",
+              "stem": "Simplify and solve the following linear equation: 0.25(4f – 3) = 0.05(10f – 9)",
+              "origin": "ORIGINAL",
+              "answer": "f = 0.6"
+            },
+            {
+              "id": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q7",
+              "stem": "Simplify and solve the following linear equation: 3(t – 3) = 5(2t + 1)",
+              "origin": "ORIGINAL",
+              "answer": "t = −2"
+            },
+            {
+              "id": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q9",
+              "stem": "Simplify and solve the following linear equation: 3(5z – 7) – 2(9z – 11) = 4(8z – 13) – 17",
+              "origin": "ORIGINAL",
+              "answer": "z = 2"
+            },
+            {
+              "id": "Q-MAT-LEQ-04-1A-GENERATE-PAIRS",
+              "stem": "Find four solutions of 2x + y = 5 by choosing x = 0, 1, 2 and 3. How many solutions does the equation have?",
+              "origin": "AUTHORED",
+              "answer": "(0, 5), (1, 3), (2, 1) and (3, −1); the equation has infinitely many solutions."
+            },
+            {
+              "id": "Q-MAT-LEQ-04-1A-READ-THE-LINE",
+              "stem": "Find where the graph of x − y = 2 cuts each axis, then decide whether the point (5, 3), which lies on that line, is a solution.",
+              "origin": "AUTHORED",
+              "answer": "It cuts the x-axis at (2, 0) and the y-axis at (0, −2); (5, 3) is a solution."
+            },
+            {
+              "id": "Q-MAT-LEQ-04-1A-TEST-PAIRS",
+              "stem": "Which of (2, 1), (1, 2) and (4, 0) are solutions of x + 2y = 4? Substitute each value in its own variable's place.",
+              "origin": "AUTHORED",
+              "answer": "(2, 1) and (4, 0) are solutions; (1, 2) is not."
+            },
+            {
+              "id": "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q1",
+              "stem": "The linear equation 2x – 5y = 7 has",
+              "origin": "ORIGINAL",
+              "answer": "(C) Infinitely many solutions"
+            },
+            {
+              "id": "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q11",
+              "stem": "x = 5, y = 2 is a solution of the linear equation",
+              "origin": "ORIGINAL",
+              "answer": "(C) x + y = 7"
+            },
+            {
+              "id": "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q3",
+              "stem": "If (2, 0) is a solution of the linear equation 2x + 3y = k, then the value of k is",
+              "origin": "ORIGINAL",
+              "answer": "(A) 4"
+            },
+            {
+              "id": "Q-MAT-LEQ-04-EXEMPLAR9-4-2-Q1",
+              "stem": "Write whether the following statement is True or False? Justify your answer: The point (0, 3) lies on the graph of the linear equation 3x + 4y = 12.",
+              "origin": "ORIGINAL",
+              "answer": "True, since (0, 3) satisfies 3x + 4y = 12."
+            },
+            {
+              "id": "Q-MAT-LEQ-04-EXEMPLAR9-4-3-Q7",
+              "stem": "How many solution(s) of the equation 2x + 1 = x – 3 are there on the : (i) Number line (ii) Cartesian plane",
+              "origin": "ORIGINAL",
+              "answer": "(i) One solution. (ii) Infinitely many solutions."
+            }
+          ],
+          "capabilities": [
+            {
+              "id": "CAP-MAT-LEQ-01-SUBSTITUTION-CHECK",
+              "action": "Decide whether a given number is a solution of a linear equation in one variable by evaluating its LHS and RHS separately at that number.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES",
+              "action": "Solve a linear equation in one variable with the variable on both sides by applying the same operation to both sides, or transposing, until the variable stands alone.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+              "action": "Reduce a linear equation with brackets, fractions or decimals to a simpler form by opening brackets, combining like terms on each side and multiplying both sides by the LCM of the denominators, then solve it.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS",
+              "action": "Treat a solution of a linear equation in two variables as an ordered pair that makes it true, generate as many as needed, and read the equation's straight-line graph as the set of all its solutions.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 64,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1",
+              "CORE2A",
+              "CORE2B"
+            ],
+            "atoms": 0,
+            "questions": 28,
+            "obligations": 2,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE1A",
+                "detail": "no teaching route claims this product for this bucket's microtopics"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE1B",
+                "detail": "no teaching route claims this product for this bucket's microtopics"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-MAT-LEQ-01-SOLUTION-BY-SUBSTITUTION",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-MAT-LEQ-02-VARIABLE-ON-BOTH-SIDES",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-MAT-LEQ-04-TWO-VARIABLES-LINE-OF-SOLUTIONS",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MAT-LEQ-02-BALANCE",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MAT-LEQ-03-BRACKET-AREA-MODEL",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MAT-LEQ-04-SOLUTION-LINE",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              }
+            ]
+          }
         }
       ],
       "matrices": [
