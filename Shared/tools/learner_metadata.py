@@ -211,6 +211,8 @@ def project(role: str, record: dict, packages: list[dict], vocabulary: dict[str,
     vocabulary = vocabulary or load_vocabulary()
     concept = resolve_concept(packages, record.get("primary_capability_ref"), vocabulary)
     items = [
+        {"kind": "subject", "ref": concept["subject"], "value": concept["subject"], "label": concept["subject"]},
+        {"kind": "topic", "ref": concept["topic_ref"], "value": concept["topic"], "label": concept["topic"]},
         {"kind": "concept", "ref": concept["concept_ref"], "value": concept["concept"], "label": concept["concept"]},
         {
             "kind": "concept-difficulty",
@@ -298,3 +300,20 @@ def project(role: str, record: dict, packages: list[dict], vocabulary: dict[str,
 
     out.update({"family": family, **metadata})
     return out
+
+
+def safe_search_text(projection: dict, record: dict, role: str) -> str:
+    """Return only metadata and question text that are safe before commitment.
+
+    Protected answer summaries, reasoning routes, hints, failure signals, repair payloads and
+    transfer changed-demand statements are never part of this corpus.
+    """
+    parts = [item.get("label", "") for item in projection.get("items", [])]
+    if role in ASSESSMENT_ROLES:
+        parts.append(record.get("stem", ""))
+        parts.extend(record.get("conditions") or [])
+        parts.extend(record.get("options") or [])
+        parts.extend(record.get("subparts") or [])
+    else:
+        parts.append((projection.get("concept") or {}).get("concept", ""))
+    return " ".join(str(value).strip() for value in parts if str(value).strip())
