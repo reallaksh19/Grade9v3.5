@@ -49,7 +49,7 @@ class CoreTemplateContractTests(unittest.TestCase):
         report = core_template_contract.audit(REPO / "Shared" / "roles" / "LEARNER-PRODUCT-TEMPLATES.md")
         self.assertTrue(report["passed"], report["findings"])
         self.assertEqual(report["roles_checked"], 6)
-        self.assertEqual(report["contract_version"], "1.1")
+        self.assertEqual(report["contract_version"], "1.2")
 
     def test_core1b_attempt_precedes_reconstruction(self):
         roles = core_template_contract.load_contract(
