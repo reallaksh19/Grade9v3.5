@@ -136,5 +136,42 @@ class LearnerMetadataProjection(unittest.TestCase):
             learner_metadata.project("CORE2A", question, [self.package], self.vocab)
 
 
+class LearnerMetadataAuditTests(unittest.TestCase):
+    def test_nlm_read_only_audit_has_complete_coverage(self):
+        report = learner_metadata.audit_manifest(
+            REPO / "products/physics/phy-nlm-first-law.manifest.json"
+        )
+        self.assertEqual(
+            report["selection"],
+            {"microtopics": 11, "core2": 13, "core2a": 22, "core2b": 16},
+        )
+        self.assertEqual(report["findings"], [])
+        for row in report["coverage"].values():
+            self.assertEqual(row["resolved"], row["selected"])
+
+    def test_cross_topic_falsifiers_report_truth_without_nlm_assumptions(self):
+        expected = {
+            "phy-kin-2d-motion": {"microtopics": 3, "core2": 15, "core2a": 5, "core2b": 5},
+            "phy-kin-1d-motion": {"microtopics": 7, "core2": 0, "core2a": 12, "core2b": 7},
+            "phy-vec-add-sub": {"microtopics": 4, "core2": 0, "core2a": 6, "core2b": 5},
+        }
+        for name, selection in expected.items():
+            with self.subTest(product=name):
+                report = learner_metadata.audit_manifest(
+                    REPO / f"products/physics/{name}.manifest.json"
+                )
+                self.assertEqual(report["selection"], selection)
+                self.assertEqual(report["coverage"]["source"]["selected"], selection["core2"])
+                self.assertEqual(
+                    report["coverage"]["transfer-dimension"]["selected"],
+                    selection["core2b"],
+                )
+                self.assertIsInstance(report["findings"], list)
+
+        source = Path(learner_metadata.__file__).read_text(encoding="utf-8")
+        self.assertNotIn("NLM", source)
+        self.assertNotIn("Physics", source)
+
+
 if __name__ == "__main__":
     unittest.main()
