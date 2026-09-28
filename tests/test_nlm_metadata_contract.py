@@ -81,7 +81,10 @@ class NlmSelectionContract(unittest.TestCase):
         for role, (unit_count, kinds) in expected.items():
             with self.subTest(role=role):
                 html = render_core.page(ctx, role, "PAGES", digest)
-                self.assertEqual(html.count("data-g9-meta-strip"), unit_count)
+                self.assertEqual(
+                    len(re.findall(r'<[^>]+data-g9-meta-strip[^>]*>', html)),
+                    unit_count,
+                )
                 for kind in kinds:
                     self.assertEqual(
                         len(re.findall(rf'data-g9-meta-kind="{re.escape(kind)}"', html)),

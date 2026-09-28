@@ -45,7 +45,7 @@ class LearnerMetadataProjection(unittest.TestCase):
         by_kind = {item["kind"]: item for item in row["items"]}
         self.assertEqual(
             set(by_kind),
-            {"concept", "concept-difficulty", "question-difficulty", "family",
+            {"subject", "topic", "concept", "concept-difficulty", "question-difficulty", "family",
              "question-type", "source", "provenance"},
         )
         self.assertEqual(by_kind["provenance"]["value"], "PYQ_ADAPTED")
