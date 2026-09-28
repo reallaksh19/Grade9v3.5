@@ -957,20 +957,34 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "DIAGRAM",
-      "title": "Coordinate axes for 2-D vector components",
-      "description": "Declared +x/+y axes with an example vector and its signed components shown.",
-      "scene_instances": [
-        {
-          "id": "REP-VDU-AXES-SCENE",
-          "kind": "AXES_DIAGRAM",
-          "label": "Coordinate axes",
-          "svg": null
-        }
-      ],
+      "scene_instances": [],
       "reveal_stages": [],
       "rendered_asset_refs": [
         "Physics/assets/representations/REP-VDU-AXES.svg"
-      ]
+      ],
+      "purpose": "Coordinate axes for 2-D vector components: Declared +x/+y axes with an example vector and its signed components shown.",
+      "required_elements": [
+        "declared positive x and y axes",
+        "example vector",
+        "signed components"
+      ],
+      "relation_refs": [
+        "REL-VEC-IJ-NOTATION",
+        "REL-VEC-DIRECTION-FROM-COMPONENTS",
+        "REL-VEC-UNIT-DIRECTION"
+      ],
+      "read_order": [
+        "declared positive x and y axes",
+        "example vector",
+        "signed components"
+      ],
+      "instance_constraints": [
+        "Component signs agree with the declared axes and vector direction."
+      ],
+      "accessibility": [
+        "Name both axes and signed components in text."
+      ],
+      "misleading_alternatives": []
     }
   ],
   "question_families": [
@@ -1145,7 +1159,7 @@
       },
       "failure_signal": "If your answer wrote a positive coefficient for j-hat despite v_y = −4, check the sign: j-hat names +y, so a component pointing against +y needs a negative coefficient.",
       "family_exposure": {
-        "family_ref": null,
+        "family_ref": "FAM-VDU-NOTATION",
         "closure": "You preserved a negative component sign when translating to i-hat/j-hat notation and recovered the original pair by reading coefficients."
       },
       "difficulty": {
@@ -1198,18 +1212,9 @@
           "State \"alpha above the −x axis\" instead of 180° − alpha."
         ],
         "subpart_answers": [
-          {
-            "subpart": "a",
-            "value": "Quadrant II"
-          },
-          {
-            "subpart": "b",
-            "value": "alpha = arctan(4/3)"
-          },
-          {
-            "subpart": "c",
-            "value": "180° − alpha"
-          }
+          "(a) Quadrant II",
+          "(b) alpha = arctan(4/3)",
+          "(c) 180° − alpha"
         ],
         "verification_status": "CHECKED_BY_AUTHOR"
       },
@@ -1234,7 +1239,7 @@
       },
       "failure_signal": "If your directed angle is in quadrant I or III, recheck the component signs: v_x < 0 and v_y > 0 place the vector strictly in quadrant II.",
       "family_exposure": {
-        "family_ref": null,
+        "family_ref": "FAM-VDU-DIRECTION",
         "closure": "You fixed the quadrant from component signs, formed the acute reference angle, and placed it correctly in quadrant II."
       },
       "difficulty": {
@@ -1287,18 +1292,9 @@
           "(0.6) i-hat + (0.8) j-hat is acceptable as a decimal form."
         ],
         "subpart_answers": [
-          {
-            "subpart": "a",
-            "value": "5"
-          },
-          {
-            "subpart": "b",
-            "value": "(3/5) i-hat + (4/5) j-hat"
-          },
-          {
-            "subpart": "c",
-            "value": "sqrt((3/5)² + (4/5)²) = 1"
-          }
+          "(a) 5",
+          "(b) (3/5) i-hat + (4/5) j-hat",
+          "(c) sqrt((3/5)² + (4/5)²) = 1"
         ],
         "verification_status": "CHECKED_BY_AUTHOR"
       },
@@ -1325,7 +1321,7 @@
       },
       "failure_signal": "If your unit vector has components (3, 4) without division, you did not divide by the magnitude. Divide every signed component by 5.",
       "family_exposure": {
-        "family_ref": null,
+        "family_ref": "FAM-VDU-UNIT",
         "closure": "You confirmed |v| > 0, divided both components by the same magnitude, and verified the resulting vector has magnitude 1."
       },
       "difficulty": {
@@ -1376,18 +1372,9 @@
         "check": "Magnitude of −i-hat: sqrt((−1)² + 0²) = 1. Correct.",
         "acceptable_alternatives": [],
         "subpart_answers": [
-          {
-            "subpart": "a",
-            "value": "v_x = −5 m/s, v_y = 0"
-          },
-          {
-            "subpart": "b",
-            "value": "Exactly along −x (to the left)"
-          },
-          {
-            "subpart": "c",
-            "value": "Yes; v-hat = −i-hat"
-          }
+          "(a) v_x = −5 m/s, v_y = 0",
+          "(b) Exactly along −x (to the left)",
+          "(c) Yes; v-hat = −i-hat"
         ],
         "verification_status": "CHECKED_BY_AUTHOR"
       },
@@ -1446,7 +1433,7 @@
       },
       "failure_signal": "If your unit-direction answer was +i-hat instead of −i-hat, check the sign: the x-component is −5, so dividing by magnitude 5 gives −1, not +1.",
       "family_exposure": {
-        "family_ref": null,
+        "family_ref": "FAM-VDU-NOTATION",
         "closure": "You read components from notation, identified an axis-aligned vector, and computed a unit direction for a pure-axis vector with a negative non-zero component."
       },
       "difficulty": {
@@ -1504,22 +1491,10 @@
           "State direction as \"45° below the −x axis\" instead of 225°."
         ],
         "subpart_answers": [
-          {
-            "subpart": "a",
-            "value": "Quadrant III; both component magnitudes equal 3 (symmetric about the −x = −y line)."
-          },
-          {
-            "subpart": "b",
-            "value": "−(1/√2) i-hat − (1/√2) j-hat"
-          },
-          {
-            "subpart": "c",
-            "value": "alpha = 45°; directed angle = 225°"
-          },
-          {
-            "subpart": "d",
-            "value": "Yes; both characterizations point into quadrant III with equal-magnitude negative components."
-          }
+          "(a) Quadrant III; both component magnitudes equal 3 (symmetric about the −x = −y line).",
+          "(b) −(1/√2) i-hat − (1/√2) j-hat",
+          "(c) alpha = 45°; directed angle = 225°",
+          "(d) Yes; both characterizations point into quadrant III with equal-magnitude negative components."
         ],
         "verification_status": "CHECKED_BY_AUTHOR",
         "rubric": [
@@ -1693,12 +1668,7 @@
         },
         "basis": "Quadrant III with equal-magnitude components; requires normalization + direction recovery + representation reconciliation."
       },
-      "learner_question_type": "constructed_response",
-      "verification": {
-        "validator_id": null,
-        "bindings": {},
-        "domain": null
-      }
+      "learner_question_type": "constructed_response"
     }
   ],
   "teaching_routes": [

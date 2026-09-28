@@ -577,20 +577,33 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "DIAGRAM",
-      "title": "Oscillation cycle position-and-energy diagram",
-      "description": "A five-checkpoint position row with arrows indicating return tendency and KE/PE labels.",
-      "scene_instances": [
-        {
-          "id": "REP-OSC-CYCLE-SCENE",
-          "kind": "POSITION_ENERGY_DIAGRAM",
-          "label": "Five-checkpoint oscillation cycle",
-          "svg": null
-        }
-      ],
+      "scene_instances": [],
       "reveal_stages": [],
       "rendered_asset_refs": [
         "Physics/assets/representations/REP-OSC-CYCLE-DIAGRAM.svg"
-      ]
+      ],
+      "purpose": "Oscillation cycle position-and-energy diagram: A five-checkpoint position row with arrows indicating return tendency and KE/PE labels.",
+      "required_elements": [
+        "five-checkpoint position row",
+        "return-tendency arrows",
+        "KE and PE labels"
+      ],
+      "relation_refs": [
+        "REL-OSC-STABLE-EQUILIBRIUM",
+        "REL-OSC-ENERGY-EXCHANGE"
+      ],
+      "read_order": [
+        "five-checkpoint position row",
+        "return-tendency arrows",
+        "KE and PE labels"
+      ],
+      "instance_constraints": [
+        "Each checkpoint retains its position, return tendency and energy labels."
+      ],
+      "accessibility": [
+        "State the checkpoint positions, return directions and energy labels in text."
+      ],
+      "misleading_alternatives": []
     }
   ],
   "question_families": [
@@ -707,24 +720,14 @@
         "check": "The tendency direction must reverse when the side of displacement reverses; the circular-track counterexample would fail this test.",
         "acceptable_alternatives": [],
         "subpart_answers": [
-          {
-            "subpart": "a",
-            "value": "Lowest point of the bowl"
-          },
-          {
-            "subpart": "b",
-            "value": "Left → tendency right; right → tendency left"
-          },
-          {
-            "subpart": "c",
-            "value": "Yes; inward tendency from both sides confirms stable equilibrium."
-          }
+          "(a) Lowest point of the bowl",
+          "(b) Left → tendency right; right → tendency left",
+          "(c) Yes; inward tendency from both sides confirms stable equilibrium."
         ],
         "verification_status": "CHECKED_BY_AUTHOR"
       },
       "primary_capability_ref": "CAP-OSC-STABLE-EQUILIBRIUM",
       "secondary_capability_refs": [],
-      "family_ref": null,
       "adaptation": null,
       "exposure": [
         {
@@ -742,10 +745,6 @@
         "stage_refs": []
       },
       "failure_signal": null,
-      "family_exposure": {
-        "family_ref": null,
-        "closure": null
-      },
       "difficulty": {
         "band": "D1",
         "score": 2,
@@ -758,7 +757,8 @@
         },
         "basis": "Applies stable-equilibrium two-sided test to a simple bowl-and-ball system."
       },
-      "learner_question_type": "short_answer"
+      "learner_question_type": "short_answer",
+      "family_ref": "FAM-OSC-STABLE-EQUILIBRIUM"
     },
     {
       "id": "Q-OSC-1A-ENERGY-01",
@@ -798,7 +798,6 @@
       },
       "primary_capability_ref": "CAP-OSC-ENERGY-EXCHANGE",
       "secondary_capability_refs": [],
-      "family_ref": null,
       "adaptation": null,
       "exposure": [
         {
@@ -816,10 +815,6 @@
         "stage_refs": []
       },
       "failure_signal": null,
-      "family_exposure": {
-        "family_ref": null,
-        "closure": null
-      },
       "difficulty": {
         "band": "D1",
         "score": 2,
@@ -832,7 +827,8 @@
         },
         "basis": "Applies five-checkpoint energy ledger to an ideal pendulum; no computation."
       },
-      "learner_question_type": "short_answer"
+      "learner_question_type": "short_answer",
+      "family_ref": "FAM-OSC-ENERGY-EXCHANGE"
     },
     {
       "id": "Q-OSC-2A-EQUIL-01",
@@ -919,7 +915,7 @@
       },
       "failure_signal": "If you classified Q (circular orbit) as oscillatory, check whether the orbital path has one equilibrium position that produces an inward return tendency from both displacement directions.",
       "family_exposure": {
-        "family_ref": null,
+        "family_ref": "FAM-OSC-STABLE-EQUILIBRIUM",
         "closure": "You applied the two-sided stable-equilibrium test to three systems, correctly accepted one, and rejected two with distinct failure modes."
       },
       "difficulty": {
@@ -974,18 +970,9 @@
         "check": "Confirm that the ideal table from (a) uses the constant-total assumption; (b) shows that constant-total fails when a dissipative interaction is present.",
         "acceptable_alternatives": [],
         "subpart_answers": [
-          {
-            "subpart": "a",
-            "value": "Five-row table: turns = KE LOW / PE HIGH; centres = KE HIGH / PE LOW; E_total constant."
-          },
-          {
-            "subpart": "b",
-            "value": "Still HIGH/LOW classification at turning points, but HIGH PE is smaller; total mechanical energy decreased."
-          },
-          {
-            "subpart": "c",
-            "value": "The assumption is \"no energy-losing interaction.\" Air resistance violates this; it converts mechanical energy to heat."
-          }
+          "(a) Five-row table: turns = KE LOW / PE HIGH; centres = KE HIGH / PE LOW; E_total constant.",
+          "(b) Still HIGH/LOW classification at turning points, but HIGH PE is smaller; total mechanical energy decreased.",
+          "(c) The assumption is \"no energy-losing interaction.\" Air resistance violates this; it converts mechanical energy to heat."
         ],
         "verification_status": "CHECKED_BY_AUTHOR",
         "rubric": [
@@ -1140,12 +1127,7 @@
         },
         "basis": "Ideal-to-non-ideal boundary: applies ideal model for one swing, diagnoses assumption failure over many swings, identifies violated model condition."
       },
-      "learner_question_type": "constructed_response",
-      "verification": {
-        "validator_id": null,
-        "bindings": {},
-        "domain": null
-      }
+      "learner_question_type": "constructed_response"
     }
   ],
   "teaching_routes": [

@@ -570,20 +570,34 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "DIAGRAM",
-      "title": "Single-path circuit diagram",
-      "description": "A single-loop circuit with one battery, one component, and two ammeter positions (before and after the component).",
-      "scene_instances": [
-        {
-          "id": "REP-ELEC-CIRCUIT-PATH-SCENE",
-          "kind": "CIRCUIT_DIAGRAM",
-          "label": "Single-path circuit",
-          "svg": null
-        }
-      ],
+      "scene_instances": [],
       "reveal_stages": [],
       "rendered_asset_refs": [
         "Physics/assets/representations/REP-ELEC-CIRCUIT-PATH.svg"
-      ]
+      ],
+      "purpose": "Single-path circuit diagram: A single-loop circuit with one battery, one component, and two ammeter positions (before and after the component).",
+      "required_elements": [
+        "single-loop circuit",
+        "one battery",
+        "one component",
+        "two ammeter positions before and after the component"
+      ],
+      "relation_refs": [
+        "REL-ELEC-CURRENT-CONSERVATION"
+      ],
+      "read_order": [
+        "single-loop circuit",
+        "one battery",
+        "one component",
+        "two ammeter positions before and after the component"
+      ],
+      "instance_constraints": [
+        "The circuit shows one unbranched path."
+      ],
+      "accessibility": [
+        "Name the battery, component and two ammeter positions in text."
+      ],
+      "misleading_alternatives": []
     }
   ],
   "question_families": [
@@ -699,7 +713,6 @@
       },
       "primary_capability_ref": "CAP-ELEC-CURRENT-CONSERVATION",
       "secondary_capability_refs": [],
-      "family_ref": null,
       "adaptation": null,
       "exposure": [
         {
@@ -717,10 +730,6 @@
         "stage_refs": []
       },
       "failure_signal": null,
-      "family_exposure": {
-        "family_ref": null,
-        "closure": null
-      },
       "difficulty": {
         "band": "D1",
         "score": 2,
@@ -733,7 +742,8 @@
         },
         "basis": "Direct application of charge conservation in a single steady path; no computation required."
       },
-      "learner_question_type": "short_answer"
+      "learner_question_type": "short_answer",
+      "family_ref": "FAM-ELEC-CURRENT-CONSERVATION"
     },
     {
       "id": "Q-ELEC-1A-OHMIC-01",
@@ -770,7 +780,6 @@
       },
       "primary_capability_ref": "CAP-ELEC-OHMIC-MODEL-TEST",
       "secondary_capability_refs": [],
-      "family_ref": null,
       "adaptation": null,
       "exposure": [
         {
@@ -788,10 +797,6 @@
         "stage_refs": []
       },
       "failure_signal": null,
-      "family_exposure": {
-        "family_ref": null,
-        "closure": null
-      },
       "difficulty": {
         "band": "D1",
         "score": 2,
@@ -804,7 +809,8 @@
         },
         "basis": "Direct ratio comparison across three pairs to decide constant-resistance model validity."
       },
-      "learner_question_type": "short_answer"
+      "learner_question_type": "short_answer",
+      "family_ref": "FAM-ELEC-OHMIC-MODEL"
     },
     {
       "id": "Q-ELEC-2A-CONSERVATION-01",
@@ -838,14 +844,8 @@
         "check": "Place an ammeter anywhere in the single loop; all readings must agree in steady state.",
         "acceptable_alternatives": [],
         "subpart_answers": [
-          {
-            "subpart": "a",
-            "value": "0.3 A at both positions"
-          },
-          {
-            "subpart": "b",
-            "value": "Resistors dissipate energy, not charge; charge is conserved in the single steady path."
-          }
+          "(a) 0.3 A at both positions",
+          "(b) Resistors dissipate energy, not charge; charge is conserved in the single steady path."
         ],
         "verification_status": "CHECKED_BY_AUTHOR"
       },
@@ -902,7 +902,7 @@
       },
       "failure_signal": "If your answer to (a) gives different currents before and after resistor 2, you are treating charge flow as something the resistor can absorb. Apply the conservation argument: in a steady single path, entry rate equals exit rate at every boundary.",
       "family_exposure": {
-        "family_ref": null,
+        "family_ref": "FAM-ELEC-CURRENT-CONSERVATION",
         "closure": "You applied charge conservation to two series components and diagnosed the energy-versus-charge confusion."
       },
       "difficulty": {
@@ -956,14 +956,8 @@
         "check": "Pick any two pairs from T1 or T3 and confirm the ratio is the same; for T2 any pair gives a different ratio.",
         "acceptable_alternatives": [],
         "subpart_answers": [
-          {
-            "subpart": "a",
-            "value": "T1 (R=2 Ω) and T3 (R=4 Ω) each support one model; T2 does not."
-          },
-          {
-            "subpart": "b",
-            "value": "Error: the student applied evidence from T1 to conditions not yet tested. Each temperature requires its own ratio test; the constant R can change with conditions."
-          }
+          "(a) T1 (R=2 Ω) and T3 (R=4 Ω) each support one model; T2 does not.",
+          "(b) Error: the student applied evidence from T1 to conditions not yet tested. Each temperature requires its own ratio test; the constant R can change with conditions."
         ],
         "verification_status": "CHECKED_BY_AUTHOR",
         "rubric": [
@@ -1116,12 +1110,7 @@
         },
         "basis": "Three-condition model test requiring independent ratio tests and an error diagnosis; T3 gives a different R than T1."
       },
-      "learner_question_type": "constructed_response",
-      "verification": {
-        "validator_id": null,
-        "bindings": {},
-        "domain": null
-      }
+      "learner_question_type": "constructed_response"
     }
   ],
   "teaching_routes": [
