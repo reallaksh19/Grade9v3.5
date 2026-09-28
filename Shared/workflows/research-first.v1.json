@@ -347,6 +347,17 @@
       "contract_rules": [
         "C2B-LINEAGE"
       ]
+    },
+    "AUTHOR_LEARNER_METADATA": {
+      "role": "AUTHOR",
+      "fields": "microtopic learner metadata / question.difficulty / question.learner_question_type / family and provenance refs",
+      "do": "Complete canonical learner metadata in source records; do not invent renderer defaults or prettify raw ids.",
+      "contract_rules": [
+        "C1-FAMILY-METADATA",
+        "C2-METADATA",
+        "C2A-METADATA",
+        "C2B-METADATA"
+      ]
     }
   },
   "definition_of_complete": "A unit is complete only when its records carry no depth duty (package_depth.py) and its product passes the rendered quality gate (quality_gate.py). Structural presence, a label, a validation report or a COMPLETED duty status never counts."
