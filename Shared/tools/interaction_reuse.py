@@ -132,7 +132,7 @@ def analyse_implementation(
     *,
     repo: Path = REPO,
 ) -> dict[str, Any]:
-    """Derive LOCAL/REUSED/SHARED from concrete lineage, never from similarity alone."""
+    """Derive maturity from concrete lineage, never from similarity or absent evidence."""
     for record in records:
         validate(record, repo=repo)
 
@@ -168,15 +168,18 @@ def analyse_implementation(
 
     consumer_subjects = {row["subject_ref"] for row in consumers.values()}
     if shared_owner_refs and len(consumers) >= 2 and len(consumer_subjects) >= 2:
-        maturity = "SHARED"
+        maturity: str | None = "SHARED"
     elif consumers:
         maturity = "REUSED"
-    else:
+    elif creators:
         maturity = "LOCAL"
+    else:
+        maturity = None
 
     return {
         "implementation_ref": implementation_ref,
         "maturity": maturity,
+        "maturity_status": "OBSERVED" if maturity is not None else "UNOBSERVED",
         "creator_interaction_refs": sorted(creators),
         "consumer_interaction_refs": sorted(consumers),
         "consumer_subject_refs": sorted(consumer_subjects),
@@ -188,7 +191,8 @@ def analyse_implementation(
             [] if matching_edges else ["NO_IMPLEMENTATION_LINEAGE_EVIDENCE"]
         ),
         "claim_note": (
-            "Maturity is derived from concrete consume/compose/extend/derive lineage. "
+            "LOCAL itself requires evidence that one concrete implementation exists. "
+            "REUSED is derived from concrete consume/compose/extend/derive lineage. "
             "A shared owner plus at least two concrete consumers across at least two subject refs "
             "is required for a subject-neutral SHARED claim."
         ),
