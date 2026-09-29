@@ -93,10 +93,15 @@
     "source_inventory": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["local_source_paths", "explicit_reuse_evidence_paths"],
+      "required": [
+        "local_source_paths",
+        "explicit_reuse_evidence_paths",
+        "reuse_consumer_source_paths"
+      ],
       "properties": {
         "local_source_paths": {"$ref": "#/$defs/strings"},
-        "explicit_reuse_evidence_paths": {"$ref": "#/$defs/strings"}
+        "explicit_reuse_evidence_paths": {"$ref": "#/$defs/strings"},
+        "reuse_consumer_source_paths": {"$ref": "#/$defs/strings"}
       }
     },
     "index_digest": {
