@@ -10,7 +10,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
-from Shared.tools import product_manifest, render_core, renderer_inventory  # noqa: E402
+from Shared.tools import build_products, product_manifest, render_core, renderer_inventory  # noqa: E402
 
 
 class RendererInventory(unittest.TestCase):
@@ -65,6 +65,9 @@ class OutputRoleScope(unittest.TestCase):
             with self.subTest(value=value):
                 with self.assertRaises(product_manifest.ProductSelectionError):
                     product_manifest.selected_output_roles({"output_roles": value})
+
+    def test_product_rederive_preserves_explicit_output_scope(self):
+        self.assertIn("output_roles", build_products.PRESERVED_MANIFEST_KEYS)
 
     def test_issue352_nlm_pilot_declares_core1_first_stage_scope(self):
         manifest = json.loads(self.PILOT.read_text(encoding="utf-8"))
