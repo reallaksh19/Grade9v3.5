@@ -144,7 +144,7 @@ class OutputRoleScope(unittest.TestCase):
             self.assertNotIn(f'href="#g9-role-{role}"', html)
         self.assertTrue(all(gap["core"] == "CORE2" for gap in gaps), gaps)
 
-    def test_build_pipeline_stages_zero_gap_scoped_packet_without_turning_final_quality_into_a_gate(self):
+    def test_build_pipeline_exercises_zero_gap_scoped_browser_and_pdf_path_without_turning_quality_into_a_gate(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             names = ("WORK", "PUBLIC", "STANDALONE_WORK", "STANDALONE", "REVIEWS", "ACCEPTANCE")
@@ -156,18 +156,25 @@ class OutputRoleScope(unittest.TestCase):
                 build_products.STANDALONE = root / "standalone/products"
                 build_products.REVIEWS = root / "products/verification"
                 build_products.ACCEPTANCE = root / "products/acceptance"
-                row = build_products.build_one(self.PILOT, static=True)
+                row = build_products.build_one(self.PILOT, static=False)
                 out = build_products.WORK / "physics/phy-nlm-momentum-transfer"
                 receipt = json.loads((out / "render-receipt.json").read_text(encoding="utf-8"))
+                print_receipt = json.loads((out / "print-receipt.json").read_text(encoding="utf-8"))
                 report = json.loads((out / "gate-report.json").read_text(encoding="utf-8"))
                 standalone = build_products.STANDALONE_WORK / "physics/phy-nlm-momentum-transfer.html"
                 standalone_text = standalone.read_text(encoding="utf-8")
+                pdf_present = (out / "core1.pdf").is_file()
             finally:
                 for name, value in original.items():
                     setattr(build_products, name, value)
         self.assertEqual(receipt["pages"], ["core1.html", "index.html"])
         self.assertEqual(receipt["gaps"], [])
         self.assertEqual(row["gaps"], 0)
+        self.assertEqual(print_receipt["mode"], "LEARNER_PDF")
+        self.assertEqual([page["page"] for page in print_receipt["pages"]], ["core1.html"])
+        self.assertTrue(pdf_present)
+        self.assertTrue(report["rendered_measured"])
+        self.assertEqual(report["not_measured"], [])
         self.assertIn('id="g9-role-CORE1"', standalone_text)
         self.assertNotIn('id="g9-role-CORE1A"', standalone_text)
         self.assertIn("5(+2) = +10 N", standalone_text)
