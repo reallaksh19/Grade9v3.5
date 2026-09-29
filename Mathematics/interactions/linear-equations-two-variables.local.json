@@ -1,0 +1,283 @@
+{
+  "schema_version": "1.0.0",
+  "authority": "LOCAL_INTERACTION_IMPLEMENTATION_SOURCE",
+  "subject": "Mathematics",
+  "microtopic_ref": "MIC-MAT-LEQ-04-TWO-VARIABLES-LINE-OF-SOLUTIONS",
+  "academic_basis": {
+    "canonical_input_digest": "sha256:cb041b1981283e1147cc3e898886b8dd64c3aaccbc93a83c090cb3eaec73af50"
+  },
+  "implementation_key": "solution-pair-residual-line",
+  "title": "Two-variable solution-pair residual explorer",
+  "mechanic_refs": [
+    "accepted-pair-accumulation",
+    "pick-candidate",
+    "residual-feedback"
+  ],
+  "accessibility_refs": [
+    "keyboard pick and drop through the Semantic Workbench",
+    "visible text residual for every candidate pair"
+  ],
+  "scene": {
+    "sceneVersion": "1.0.0",
+    "grids": [
+      {
+        "id": "candidate-pairs",
+        "label": "Candidate ordered pairs",
+        "rows": ["candidate"],
+        "columns": ["one", "two", "three", "four"]
+      },
+      {
+        "id": "equation-check",
+        "label": "Equation and accepted solution line",
+        "rows": ["equation", "accepted"],
+        "columns": ["main"]
+      }
+    ],
+    "entities": [
+      {
+        "id": "equation-source",
+        "label": "3x + 4y = 12",
+        "provenance": {
+          "kind": "SOURCE",
+          "sourceEntityRefs": []
+        }
+      },
+      {
+        "id": "point-0-3",
+        "label": "(0, 3), residual 3x + 4y - 12 = 0",
+        "provenance": {
+          "kind": "SOURCE",
+          "sourceEntityRefs": []
+        }
+      },
+      {
+        "id": "point-2-1p5",
+        "label": "(2, 1.5), residual 3x + 4y - 12 = 0",
+        "provenance": {
+          "kind": "SOURCE",
+          "sourceEntityRefs": []
+        }
+      },
+      {
+        "id": "point-4-0",
+        "label": "(4, 0), residual 3x + 4y - 12 = 0",
+        "provenance": {
+          "kind": "SOURCE",
+          "sourceEntityRefs": []
+        }
+      },
+      {
+        "id": "point-1-1",
+        "label": "(1, 1), residual 3x + 4y - 12 = -5",
+        "provenance": {
+          "kind": "SOURCE",
+          "sourceEntityRefs": []
+        }
+      }
+    ],
+    "projections": [
+      {
+        "id": "equation-projection",
+        "entityRef": "equation-source",
+        "label": "3x + 4y = 12",
+        "representation": "equation under test",
+        "placement": {
+          "grid": "equation-check",
+          "row": "equation",
+          "column": "main"
+        }
+      },
+      {
+        "id": "point-0-3-projection",
+        "entityRef": "point-0-3",
+        "label": "(0, 3), residual 0",
+        "representation": "candidate pair",
+        "placement": {
+          "grid": "candidate-pairs",
+          "row": "candidate",
+          "column": "one"
+        }
+      },
+      {
+        "id": "point-2-1p5-projection",
+        "entityRef": "point-2-1p5",
+        "label": "(2, 1.5), residual 0",
+        "representation": "candidate pair",
+        "placement": {
+          "grid": "candidate-pairs",
+          "row": "candidate",
+          "column": "two"
+        }
+      },
+      {
+        "id": "point-4-0-projection",
+        "entityRef": "point-4-0",
+        "label": "(4, 0), residual 0",
+        "representation": "candidate pair",
+        "placement": {
+          "grid": "candidate-pairs",
+          "row": "candidate",
+          "column": "three"
+        }
+      },
+      {
+        "id": "point-1-1-projection",
+        "entityRef": "point-1-1",
+        "label": "(1, 1), residual -5",
+        "representation": "candidate pair",
+        "placement": {
+          "grid": "candidate-pairs",
+          "row": "candidate",
+          "column": "four"
+        }
+      }
+    ],
+    "targets": [
+      {
+        "id": "solution-line-target",
+        "label": "Accepted solution pairs",
+        "operation": "test-solution-pair",
+        "placement": {
+          "grid": "equation-check",
+          "row": "accepted",
+          "column": "main"
+        }
+      }
+    ],
+    "canonicalTransformations": [
+      {
+        "id": "test-point-0-3",
+        "sourceEntityRefs": ["point-0-3", "equation-source"],
+        "targetRef": "solution-line-target"
+      },
+      {
+        "id": "test-point-2-1p5",
+        "sourceEntityRefs": ["point-2-1p5", "equation-source"],
+        "targetRef": "solution-line-target"
+      },
+      {
+        "id": "test-point-4-0",
+        "sourceEntityRefs": ["point-4-0", "equation-source"],
+        "targetRef": "solution-line-target"
+      },
+      {
+        "id": "test-point-1-1",
+        "sourceEntityRefs": ["point-1-1", "equation-source"],
+        "targetRef": "solution-line-target"
+      }
+    ]
+  },
+  "adapter_rules": [
+    {
+      "id": "accept-point-0-3",
+      "transformationRef": "test-point-0-3",
+      "sourceEntityRef": "point-0-3",
+      "targetRef": "solution-line-target",
+      "operation": "test-solution-pair",
+      "outcome": "ACCEPT",
+      "summary": "(0, 3) is accepted because the residual is exactly 0.",
+      "patch": {
+        "addEntities": [
+          {
+            "id": "accepted-point-0-3",
+            "label": "Accepted: (0, 3), residual 0",
+            "provenance": {
+              "kind": "DERIVED",
+              "sourceEntityRefs": ["point-0-3", "equation-source"]
+            }
+          }
+        ],
+        "addProjections": [
+          {
+            "id": "accepted-point-0-3-projection",
+            "entityRef": "accepted-point-0-3",
+            "label": "(0, 3)",
+            "representation": "accepted solution pair",
+            "placement": {
+              "grid": "equation-check",
+              "row": "accepted",
+              "column": "main"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "accept-point-2-1p5",
+      "transformationRef": "test-point-2-1p5",
+      "sourceEntityRef": "point-2-1p5",
+      "targetRef": "solution-line-target",
+      "operation": "test-solution-pair",
+      "outcome": "ACCEPT",
+      "summary": "(2, 1.5) is accepted because the residual is exactly 0.",
+      "patch": {
+        "addEntities": [
+          {
+            "id": "accepted-point-2-1p5",
+            "label": "Accepted: (2, 1.5), residual 0",
+            "provenance": {
+              "kind": "DERIVED",
+              "sourceEntityRefs": ["point-2-1p5", "equation-source"]
+            }
+          }
+        ],
+        "addProjections": [
+          {
+            "id": "accepted-point-2-1p5-projection",
+            "entityRef": "accepted-point-2-1p5",
+            "label": "(2, 1.5)",
+            "representation": "accepted solution pair",
+            "placement": {
+              "grid": "equation-check",
+              "row": "accepted",
+              "column": "main"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "accept-point-4-0",
+      "transformationRef": "test-point-4-0",
+      "sourceEntityRef": "point-4-0",
+      "targetRef": "solution-line-target",
+      "operation": "test-solution-pair",
+      "outcome": "ACCEPT",
+      "summary": "(4, 0) is accepted because the residual is exactly 0.",
+      "patch": {
+        "addEntities": [
+          {
+            "id": "accepted-point-4-0",
+            "label": "Accepted: (4, 0), residual 0",
+            "provenance": {
+              "kind": "DERIVED",
+              "sourceEntityRefs": ["point-4-0", "equation-source"]
+            }
+          }
+        ],
+        "addProjections": [
+          {
+            "id": "accepted-point-4-0-projection",
+            "entityRef": "accepted-point-4-0",
+            "label": "(4, 0)",
+            "representation": "accepted solution pair",
+            "placement": {
+              "grid": "equation-check",
+              "row": "accepted",
+              "column": "main"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "reject-point-1-1",
+      "transformationRef": "test-point-1-1",
+      "sourceEntityRef": "point-1-1",
+      "targetRef": "solution-line-target",
+      "operation": "test-solution-pair",
+      "outcome": "REJECT",
+      "reason": "(1, 1) is not a solution because 3(1) + 4(1) - 12 = -5, not 0."
+    }
+  ]
+}

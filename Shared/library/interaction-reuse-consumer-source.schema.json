@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/interaction-reuse-consumer-source.schema.json",
+  "title": "Interaction Reuse Consumer Source",
+  "description": "Governed source for binding a real canonical learner target to an existing interaction implementation. It records literal consumption/composition/extension lineage; it is not academic authority or permission to build.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "authority",
+    "subject",
+    "implementation_source_ref",
+    "consumer_ref",
+    "slice_ref",
+    "mode",
+    "relation"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "authority": {"const": "INTERACTION_REUSE_CONSUMER_SOURCE"},
+    "subject": {"type": "string", "minLength": 1},
+    "implementation_source_ref": {"type": "string", "minLength": 1},
+    "consumer_ref": {"type": "string", "minLength": 1},
+    "slice_ref": {"type": "string", "minLength": 1},
+    "mode": {"enum": ["R1", "R2", "R3"]},
+    "relation": {"enum": ["CONSUMES", "COMPOSES", "EXTENDS", "DERIVED_FROM"]}
+  }
+}
