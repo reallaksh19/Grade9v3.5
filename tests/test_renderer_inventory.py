@@ -137,6 +137,34 @@ class OutputRoleScope(unittest.TestCase):
             self.assertNotIn(f'href="#g9-role-{role}"', html)
         self.assertTrue(all(gap["core"] == "CORE2" for gap in gaps), gaps)
 
+    def test_build_pipeline_stages_scoped_packet_without_turning_final_quality_into_a_gate(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            names = ("WORK", "PUBLIC", "STANDALONE_WORK", "STANDALONE", "REVIEWS", "ACCEPTANCE")
+            original = {name: getattr(build_products, name) for name in names}
+            try:
+                build_products.WORK = root / "publication/products"
+                build_products.PUBLIC = root / "public/products"
+                build_products.STANDALONE_WORK = root / "publication/standalone/products"
+                build_products.STANDALONE = root / "standalone/products"
+                build_products.REVIEWS = root / "products/verification"
+                build_products.ACCEPTANCE = root / "products/acceptance"
+                row = build_products.build_one(self.PILOT, static=True)
+                out = build_products.WORK / "physics/phy-nlm-momentum-transfer"
+                receipt = json.loads((out / "render-receipt.json").read_text(encoding="utf-8"))
+                report = json.loads((out / "gate-report.json").read_text(encoding="utf-8"))
+                standalone = build_products.STANDALONE_WORK / "physics/phy-nlm-momentum-transfer.html"
+            finally:
+                for name, value in original.items():
+                    setattr(build_products, name, value)
+        self.assertEqual(receipt["pages"], ["core1.html", "index.html"])
+        self.assertTrue(standalone.is_file())
+        self.assertIn('id="g9-role-CORE1"', standalone.read_text(encoding="utf-8"))
+        self.assertNotIn('id="g9-role-CORE1A"', standalone.read_text(encoding="utf-8"))
+        self.assertEqual(row["product"], "phy-nlm-momentum-transfer")
+        self.assertEqual(report["verdict"], "FAIL")
+        self.assertIn("PRODUCT-ALL-ROLES", {finding["rule"] for finding in report["findings"]})
+
     def test_legacy_renderer_still_emits_all_six_roles_when_scope_is_absent(self):
         manifest = json.loads(self.PILOT.read_text(encoding="utf-8"))
         manifest.pop("output_roles")
