@@ -39,6 +39,14 @@ class OneRenderer(unittest.TestCase):
 
 class OutputRoleScope(unittest.TestCase):
     PILOT = REPO / "products/physics/phy-nlm-momentum-transfer.manifest.json"
+    BANK_FIRST = REPO / "golden/units/G-CORE2-R2/manifest.json"
+
+    def _scoped_manifest(self, source: Path, roles: list[str], tmp: str) -> Path:
+        manifest = json.loads(source.read_text(encoding="utf-8"))
+        manifest["output_roles"] = roles
+        path = Path(tmp) / "scoped-manifest.json"
+        path.write_text(json.dumps(manifest), encoding="utf-8")
+        return path
 
     def test_legacy_manifest_defaults_to_all_six_roles(self):
         self.assertEqual(
@@ -94,6 +102,37 @@ class OutputRoleScope(unittest.TestCase):
             self.assertNotIn(f'id="g9-role-{role}"', html)
             self.assertNotIn(f'href="#g9-role-{role}"', html)
         self.assertTrue(all(gap["core"] == "CORE1" for gap in gaps), gaps)
+
+    def test_bank_first_route_can_emit_core2_only(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = self._scoped_manifest(self.BANK_FIRST, ["CORE2"], tmp)
+            pages, gaps, _digest = render_core.build(path, mode="PAGES")
+        self.assertEqual(set(pages), {"core2.html", "index.html"})
+        self.assertIn("PYQ-PHY-IITJEE-2007-P1-Q03", pages["core2.html"])
+        self.assertIn('href="core2.html"', pages["index.html"])
+        for role in product_manifest.OUTPUT_ROLES:
+            if role == "CORE2":
+                continue
+            filename = render_core.ROLE_FILE[role]
+            self.assertNotIn(filename, pages)
+            self.assertNotIn(f'href="{filename}"', pages["core2.html"])
+            self.assertNotIn(f'href="{filename}"', pages["index.html"])
+        self.assertTrue(all(gap["core"] in {"CORE2", "INDEX"} for gap in gaps), gaps)
+
+    def test_bank_first_single_file_contains_only_core2(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = self._scoped_manifest(self.BANK_FIRST, ["CORE2"], tmp)
+            pages, gaps, _digest = render_core.build(path, mode="SINGLE_FILE")
+        self.assertEqual(set(pages), {"product.html"})
+        html = pages["product.html"]
+        self.assertIn('id="g9-role-CORE2"', html)
+        self.assertIn('href="#g9-role-CORE2"', html)
+        for role in product_manifest.OUTPUT_ROLES:
+            if role == "CORE2":
+                continue
+            self.assertNotIn(f'id="g9-role-{role}"', html)
+            self.assertNotIn(f'href="#g9-role-{role}"', html)
+        self.assertTrue(all(gap["core"] == "CORE2" for gap in gaps), gaps)
 
     def test_legacy_renderer_still_emits_all_six_roles_when_scope_is_absent(self):
         manifest = json.loads(self.PILOT.read_text(encoding="utf-8"))
