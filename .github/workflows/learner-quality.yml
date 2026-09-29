@@ -15,8 +15,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Install schema test dependency
-        run: pip install --quiet jsonschema
+      - name: Install quality observation dependencies
+        run: |
+          pip install --quiet jsonschema pypdf
+          npm install --no-save playwright@1.56.1
+          npx playwright install chromium
       - name: Informational platform code tests
         continue-on-error: true
         run: >-
