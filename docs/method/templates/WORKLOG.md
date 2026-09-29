@@ -4,10 +4,16 @@ Append one entry per session. Git history preserves prior entries; do not erase 
 
 ## <date> · <agent> · <session> · P<phase>
 
+- Denominator/source state and first-stage route:
+- Active learning-priority lot and current vertical slice:
+- Full denominator coverage state: implemented / Medium / Low / omitted / unresolved, with reasons where applicable:
 - Did and current render digest:
 - Decisions and reasons:
 - Research/source references:
-- First-stage or later-Core artifacts shown; selected scope and open dependencies:
+- Interaction candidate decision(s), learning purpose and disclosure timing:
+- Parallel-work basis: new/uncalibrated or already-calibrated pattern; helpers involved; canonical design they consume:
+- First-stage or later-Core artifacts shown; selected learner scope and open dependencies:
+- Actual versus planned prior exposure relevant to Core2A/Core2B lineage:
 - Consequence for other Cores: affected record refs, findings or stale review basis, and next useful work:
 - Open or weak, with learner impact:
 - Next:
