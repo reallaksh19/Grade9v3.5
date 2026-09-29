@@ -1,0 +1,154 @@
+{
+  "schema": "gate-report/v1",
+  "tool": "quality_gate/1",
+  "contract_version": "1.5.0",
+  "product_id": "STRESS-MATH-POLYNOMIALS-EMPTY",
+  "subject": "Mathematics",
+  "render_stamp": null,
+  "pages": [
+    {
+      "page": "core1.html",
+      "sha256": "4c240f32deb486c441e452f91082b632121fe023af4136693aa652e7a0282173"
+    },
+    {
+      "page": "core1a.html",
+      "sha256": "a01224b86fab9e2543a45f0d0f544fa69b4648f6ad7dc48b0048652b56059039"
+    },
+    {
+      "page": "core1b.html",
+      "sha256": "336a4bf5b4d0f3411f9bb4b47da1ec6399804feb4ef48a952b06ada51dd90858"
+    },
+    {
+      "page": "core2.html",
+      "sha256": "7c56b48a1e43a93dc44a1b9cbd379444110c4abeb3fbf0559fce09bedaa72e70"
+    },
+    {
+      "page": "core2a.html",
+      "sha256": "c4740f23f670328139e6bad446dbd6336ba07d248c816ab1ded2fb7d12e7a83a"
+    },
+    {
+      "page": "core2b.html",
+      "sha256": "bca3ee044559def3c634c552fafd3d65a6550c89eee64ffe48c2b4292a7f765f"
+    }
+  ],
+  "rules_evaluated": [
+    "C1-RELATION",
+    "C1-REPRESENTATION",
+    "C1A-BLOCKS",
+    "C1A-REPRESENTATION-BRIDGE",
+    "C1A-STAGED-REPRESENTATION",
+    "C1A-ANCHOR-PER-DECISION",
+    "C1A-PREREQUISITES-BRIDGED",
+    "C1B-BLOCKS",
+    "C1B-REPRESENTATION",
+    "C1B-REVEAL-GATED",
+    "C2-BLOCKS",
+    "C2-ATTEMPT",
+    "C2-ANSWER-ON-REVEAL",
+    "C2A-BLOCKS",
+    "C2A-ATTEMPT-FIRST",
+    "C2A-TRAP",
+    "C2A-REPRESENTATION",
+    "C2A-LADDER",
+    "C2A-SPECIFIC-SUPPORT",
+    "C2A-PROVENANCE",
+    "C2A-FAMILY-CLOSURE",
+    "C2A-REVEAL-GATED",
+    "C2B-SAFE-REPRESENTATION",
+    "C2B-LINEAGE",
+    "C2B-SAFE-SUPPORT-SPECIFIC",
+    "C2B-REVEAL-GATED",
+    "C1-FAMILY-METADATA",
+    "C2-METADATA",
+    "C2A-METADATA",
+    "C2B-METADATA",
+    "ALL-NO-PLACEHOLDER",
+    "ALL-PRE-ATTEMPT-FIGURE-PARTIAL",
+    "ALL-PRE-ATTEMPT-MARKUP-WITHHELD",
+    "ALL-FIGURE-SPECIFIC",
+    "ALL-FIGURES-TITLED",
+    "ALL-FIGURE-KIND-KNOWN",
+    "ALL-CHECK-TYPES-KNOWN",
+    "PAGE-HOME-LINK",
+    "PAGE-SHELL",
+    "PAGE-SLOTS",
+    "PAGE-PRINT-CSS",
+    "PAGE-TOUCH",
+    "PAGE-STAGE-SUPPORT",
+    "PAGE-METADATA-PRESENCE",
+    "PAGE-SAFE-SEARCH-CORPUS",
+    "PAGE-PROTECTED-SEARCH",
+    "PAGE-GATED-INITIAL",
+    "PRODUCT-NO-ESCAPE-STATE",
+    "PRODUCT-RENDERED-FROM-RECORDS",
+    "PRODUCT-ALL-ROLES",
+    "PRODUCT-SHARED-ATLAS",
+    "PRODUCT-PRINT-FROM-PAGE"
+  ],
+  "rendered_measured": false,
+  "not_measured": [
+    "PAGE-GATED-INITIAL",
+    "PAGE-METADATA-PRESENCE",
+    "PAGE-PROTECTED-SEARCH",
+    "PAGE-SAFE-SEARCH-CORPUS",
+    "PAGE-STAGE-SUPPORT",
+    "PAGE-TOUCH"
+  ],
+  "findings": [
+    {
+      "rule": "C1-REPRESENTATION",
+      "severity": "S2",
+      "where": "core1.html",
+      "detail": "0 figure(s) on the page; need 1"
+    },
+    {
+      "rule": "PAGE-SLOTS",
+      "severity": "S1",
+      "where": "core1.html",
+      "detail": "page slot_markers absent"
+    },
+    {
+      "rule": "PAGE-SLOTS",
+      "severity": "S1",
+      "where": "core1a.html",
+      "detail": "page slot_markers absent"
+    },
+    {
+      "rule": "PAGE-SLOTS",
+      "severity": "S1",
+      "where": "core1b.html",
+      "detail": "page slot_markers absent"
+    },
+    {
+      "rule": "PAGE-SLOTS",
+      "severity": "S1",
+      "where": "core2.html",
+      "detail": "page slot_markers absent"
+    },
+    {
+      "rule": "PAGE-SLOTS",
+      "severity": "S1",
+      "where": "core2a.html",
+      "detail": "page slot_markers absent"
+    },
+    {
+      "rule": "PAGE-SLOTS",
+      "severity": "S1",
+      "where": "core2b.html",
+      "detail": "page slot_markers absent"
+    },
+    {
+      "rule": "PRODUCT-RENDERED-FROM-RECORDS",
+      "severity": "S1",
+      "where": "STRESS-MATH-POLYNOMIALS-EMPTY",
+      "detail": "no governed-renderer stamp"
+    }
+  ],
+  "continuity": [],
+  "verdict": "FAIL",
+  "fail_reasons": [
+    "BLOCKING_FINDINGS",
+    "DRAFT",
+    "RENDERED_RULES_NOT_MEASURED"
+  ]
+}

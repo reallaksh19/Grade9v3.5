@@ -73,13 +73,15 @@ never left untaught because admission had not happened yet.
 Core2A/Core2B routing/support where their contracts permit. It cannot reduce, expand or
 replace Core1A/Core1B intrinsic conceptual scope.
 
-**No escape state.** HOLD, FAILED, INCOMPLETE, BLOCKED and WAITING are never an outcome.
-Missing source custody, learner data, prior exposure, canonical teaching, worked examples or
-visuals are research and authoring duties carried out in the same job (see
-`Shared/workflows/research-first.v1.json`, `escape_state_duties`). Missing learner data takes
-the default median learner. Closure is never fabricated either: researched material keeps its
-source provenance, authored material is labelled `AUTHORED_PEDAGOGICAL` or `AUTHORED_PRACTICE`,
-and a missing human review is stated as a label on the delivered product.
+**Continue research with honest gaps.** Missing source custody, learner data, prior exposure,
+canonical teaching, examples or visuals identify research and authoring duties (see
+`Shared/workflows/research-first.v1.json`, `escape_state_duties`). Continue useful work and
+retain unresolved findings with their scope and consequence; a missing dependency is not a
+new whole-task refusal or permission requirement. Missing learner data takes the existing
+default support route with unknown knowledge kept visible. Closure is never fabricated:
+researched material keeps its provenance, authored material is labelled
+`AUTHORED_PEDAGOGICAL` or `AUTHORED_PRACTICE`, and missing human review is stated on the
+delivered product. These dependency semantics introduce no new blocker or CI gate.
 
 **Planning tools are not academic authorities.** Prompt composers, worksheet maps, run
 builders and publication manifests may carry and validate references. They may not create

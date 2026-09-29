@@ -1,0 +1,113 @@
+{
+  "polynomials-empty": {
+    "viewport": {
+      "width": 800,
+      "height": 1280
+    },
+    "before": {
+      "units": 0,
+      "attempts": 0,
+      "locked": 0,
+      "searchCorpus": [],
+      "visibleMainText": "Stress Math Polynomials Empty: Construction"
+    },
+    "search": {
+      "panelHidden": false,
+      "visibleUnits": 0
+    },
+    "attempt": {
+      "status": "NOT_APPLICABLE_NO_ATTEMPT"
+    },
+    "accessibility": "- main:\n  - 'heading \"Stress Math Polynomials Empty: Construction\" [level=1]'"
+  },
+  "golden-control": {
+    "viewport": {
+      "width": 800,
+      "height": 1280
+    },
+    "before": {
+      "units": 1,
+      "attempts": 1,
+      "locked": 1,
+      "searchCorpus": [
+        "Mathematics Linear equations An equation constrains an unknown Medium concept An equation constrains an unknown"
+      ],
+      "visibleMainText": "Linear equations in one unknown: Construction\nAn equation constrains an unknown\nSubject:\nMathematics\nTopic:\nLinear equations\nConcept:\nAn equation constrains an unknown\nConcept difficulty:\nMedium concept\nYou need\nCan evaluate an arithmetic expression containing a given number.\nDecide whether a given value satisfies an equation by substituting it.\nThe key step\n\nRead a*x + b = c as a statement that is true for some values of the unknown and false for others, rather than as an instruction to work out a left-hand side.\n\nTest a value by putting it into the equation and comparing the two sides, before changing the equation at all.\nDeclare the domain the unknown ranges over.\nWhy valid: A solution set has no meaning until the admissible values are fixed.\nResult: x ranges over the rationals.\nSubstitute a candidate value and evaluate both sides separately.\nWhy valid: Membership of the solution set is decided by substitution, which is the definition of a solution.\nResult: For x = 2: 3(2) + 2 = 8, and the right side is 9, so 8 = 9 is false.\nTry a second value that fails, and say why it fails.\nWhy valid: A constraint is only understood once a non-solution has been seen.\nResult: Evidence that the equation selects values rather than computing one.\n0\n1\n2\n3\n4\n2 < x < 3\nx = 7/3 ≈ 2.33\nPrevious stageStage 1 of 3Next stage\nPlace the exact solution between its bracketing integers so that it is visibly not equal to either.\nWorked example\n\nSolve 3x + 2 = 9 over the rationals. Give the exact solution and verify it.\n\nSubtract 2 from both sides; the operation is reversible, giving 3x = 7.\nDivide both sides by 3, which is non-zero and therefore reversible, giving x = 7/3.\nSubstitute back: 3 times 7/3 is 7, and 7 plus 2 is 9, exactly as required.\n\nx = 7/3.\n\nA tempting wrong path\nThe equals sign means work out the left side and write the answer on the right.\nDiagnose\nIn 3x + 2 = 9, what would you 'work out' before you know x?\nRepair\nRead the statement aloud as a claim about the unknown, then test one value by substitution before manipulating anything.\nCheck it independently\nSubstitute the candidate: both sides must give the same number exactly.\nExit task\n\nDoes x = 2 satisfy 3x + 2 = 9? Show how you decided.\n\nYour answer\nI worked this on paper\nI have attempted this\nModel answer"
+    },
+    "search": {
+      "panelHidden": false,
+      "visibleUnits": 0
+    },
+    "attempt": {
+      "status": "MEASURED",
+      "blockedBeforeCommit": true,
+      "unlockedAfterCommit": true
+    },
+    "accessibility": "- main:\n  - 'heading \"Linear equations in one unknown: Construction\" [level=1]'\n  - article:\n    - heading \"An equation constrains an unknown\" [level=2]\n    - strong: \"Subject:\"\n    - text: Mathematics\n    - strong: \"Topic:\"\n    - text: Linear equations\n    - strong: \"Concept:\"\n    - text: An equation constrains an unknown\n    - strong: \"Concept difficulty:\"\n    - text: Medium concept\n    - heading \"You need\" [level=4]\n    - list:\n      - listitem: Can evaluate an arithmetic expression containing a given number.\n    - list:\n      - listitem:\n        - link \"Decide whether a given value satisfies an equation by substituting it.\":\n          - /url: core1a.html#MIC-MATH-CONSTRAINT\n    - heading \"The key step\" [level=4]\n    - paragraph: Read a*x + b = c as a statement that is true for some values of the unknown and false for others, rather than as an instruction to work out a left-hand side.\n    - heading \"Test a value by putting it into the equation and comparing the two sides, before changing the equation at all.\" [level=3]\n    - list:\n      - listitem:\n        - strong: Declare the domain the unknown ranges over.\n        - emphasis: \"Why valid:\"\n        - text: A solution set has no meaning until the admissible values are fixed.\n        - emphasis: \"Result:\"\n        - text: x ranges over the rationals.\n      - listitem:\n        - strong: Substitute a candidate value and evaluate both sides separately.\n        - emphasis: \"Why valid:\"\n        - text: Membership of the solution set is decided by substitution, which is the definition of a solution.\n        - emphasis: \"Result:\"\n        - text: \"For x = 2: 3(2) + 2 = 8, and the right side is 9, so 8 = 9 is false.\"\n      - listitem:\n        - strong: Try a second value that fails, and say why it fails.\n        - emphasis: \"Why valid:\"\n        - text: A constraint is only understood once a non-solution has been seen.\n        - emphasis: \"Result:\"\n        - text: Evidence that the equation selects values rather than computing one.\n    - figure \"Place the exact solution between its bracketing integers so that it is visibly not equal to either.\":\n      - 'img \"Exact solution 7/3 on a number line Stage 1: a number line from 0 to 4. Stage 2: the integers 2 and 3 that bracket the solution are highlighted. Stage 3: the point 7/3 is marked one third of the way from 2 to 3, visibly equal to neither integer.\"': 0 1 2 3 4\n      - button \"Previous stage\"\n      - text: Stage 1 of 3\n      - button \"Next stage\"\n      - text: Place the exact solution between its bracketing integers so that it is visibly not equal to either.\n    - heading \"Worked example\" [level=4]\n    - paragraph: Solve 3x + 2 = 9 over the rationals. Give the exact solution and verify it.\n    - list:\n      - listitem: Subtract 2 from both sides; the operation is reversible, giving 3x = 7.\n      - listitem: Divide both sides by 3, which is non-zero and therefore reversible, giving x = 7/3.\n      - listitem: \"Substitute back: 3 times 7/3 is 7, and 7 plus 2 is 9, exactly as required.\"\n    - paragraph: x = 7/3.\n    - heading \"A tempting wrong path\" [level=4]\n    - list:\n      - listitem: The equals sign means work out the left side and write the answer on the right.\n    - heading \"Diagnose\" [level=4]\n    - list:\n      - listitem: In 3x + 2 = 9, what would you 'work out' before you know x?\n    - heading \"Repair\" [level=4]\n    - list:\n      - listitem: Read the statement aloud as a claim about the unknown, then test one value by substitution before manipulating anything.\n    - heading \"Check it independently\" [level=4]\n    - list:\n      - listitem: \"Substitute the candidate: both sides must give the same number exactly.\"\n    - heading \"Exit task\" [level=4]\n    - paragraph: Does x = 2 satisfy 3x + 2 = 9? Show how you decided.\n    - text: Your answer\n    - textbox \"Your answer\": my attempt\n    - checkbox \"I worked this on paper\"\n    - text: I worked this on paper\n    - button \"I have attempted this\"\n    - group: Model answer"
+  },
+  "polynomials-prototype": {
+    "viewport": {
+      "width": 800,
+      "height": 1280
+    },
+    "before": {
+      "units": 1,
+      "attempts": 1,
+      "locked": 1,
+      "searchCorpus": [
+        "Mathematics Polynomials Find degree after like terms cancel Medium concept Find degree after like terms cancel"
+      ],
+      "visibleMainText": "Polynomials degree stress prototype: Construction\nFind degree after like terms cancel\nSubject:\nMathematics\nTopic:\nPolynomials\nConcept:\nFind degree after like terms cancel\nConcept difficulty:\nMedium concept\nYou need\nCan identify a term's exponent and combine like terms.\nThe key step\n\nDegree belongs to the simplified polynomial, so a written high-power term whose total coefficient is zero does not decide it.\n\nSimplify before naming degree.\nCombine terms with the same exponent.\nWhy valid: Only like powers share a coefficient.\nResult: 3x^3 - 3x^3 + 2x + 5 becomes 2x + 5.\nInspect the largest exponent still attached to a nonzero coefficient.\nWhy valid: This is the degree rule on NCERT page 18.\nResult: The degree is 1, not 3.\npower 0\npower 1\npower 2\npower 3\ncombine\ncombine\ncombine\ncombine\nchoose highest nonzero slot\nPrevious stageStage 1 of 3Next stage\nShow powers 0, 1, 2 and 3 as coefficient slots before selecting the highest nonzero one.\nWorked example\n\nFind the degree of 5x^2 + 3x - 5x^2 + 4.\n\nThe x^2 coefficients add to zero.\nThe result is 3x + 4, whose highest nonzero power is 1.\n\nDegree 1.\n\nA tempting wrong path\nThe largest exponent printed anywhere is always the degree.\nDiagnose\nIn 3x^3 - 3x^3 + 2x + 5, what remains of the x^3 coefficient?\nRepair\nCombine the x^3 terms first, then inspect the powers that remain.\nCheck it independently\nExpand and combine again; verify every higher exponent has coefficient zero.\nExit task\n\nWhat is the degree of 4x^2 - 4x^2 + 7? Explain the cancellation.\n\nYour answer\nI worked this on paper\nI have attempted this\nModel answer"
+    },
+    "search": {
+      "panelHidden": false,
+      "visibleUnits": 0
+    },
+    "attempt": {
+      "status": "MEASURED",
+      "blockedBeforeCommit": true,
+      "unlockedAfterCommit": true
+    },
+    "accessibility": "- main:\n  - 'heading \"Polynomials degree stress prototype: Construction\" [level=1]'\n  - article:\n    - heading \"Find degree after like terms cancel\" [level=2]\n    - strong: \"Subject:\"\n    - text: Mathematics\n    - strong: \"Topic:\"\n    - text: Polynomials\n    - strong: \"Concept:\"\n    - text: Find degree after like terms cancel\n    - strong: \"Concept difficulty:\"\n    - text: Medium concept\n    - heading \"You need\" [level=4]\n    - list:\n      - listitem: Can identify a term's exponent and combine like terms.\n    - heading \"The key step\" [level=4]\n    - paragraph: Degree belongs to the simplified polynomial, so a written high-power term whose total coefficient is zero does not decide it.\n    - heading \"Simplify before naming degree.\" [level=3]\n    - list:\n      - listitem:\n        - strong: Combine terms with the same exponent.\n        - emphasis: \"Why valid:\"\n        - text: Only like powers share a coefficient.\n        - emphasis: \"Result:\"\n        - text: 3x^3 - 3x^3 + 2x + 5 becomes 2x + 5.\n      - listitem:\n        - strong: Inspect the largest exponent still attached to a nonzero coefficient.\n        - emphasis: \"Why valid:\"\n        - text: This is the degree rule on NCERT page 18.\n        - emphasis: \"Result:\"\n        - text: The degree is 1, not 3.\n    - figure \"Show powers 0, 1, 2 and 3 as coefficient slots before selecting the highest nonzero one.\":\n      - img \"Power slots after combining like terms Powers zero through three are candidate slots. Combine coefficients in each slot, then mark the highest slot with a nonzero coefficient.\": power 0 power 1 power 2 power 3\n      - button \"Previous stage\"\n      - text: Stage 1 of 3\n      - button \"Next stage\"\n      - text: Show powers 0, 1, 2 and 3 as coefficient slots before selecting the highest nonzero one.\n    - heading \"Worked example\" [level=4]\n    - paragraph: Find the degree of 5x^2 + 3x - 5x^2 + 4.\n    - list:\n      - listitem: The x^2 coefficients add to zero.\n      - listitem: The result is 3x + 4, whose highest nonzero power is 1.\n    - paragraph: Degree 1.\n    - heading \"A tempting wrong path\" [level=4]\n    - list:\n      - listitem: The largest exponent printed anywhere is always the degree.\n    - heading \"Diagnose\" [level=4]\n    - list:\n      - listitem: In 3x^3 - 3x^3 + 2x + 5, what remains of the x^3 coefficient?\n    - heading \"Repair\" [level=4]\n    - list:\n      - listitem: Combine the x^3 terms first, then inspect the powers that remain.\n    - heading \"Check it independently\" [level=4]\n    - list:\n      - listitem: Expand and combine again; verify every higher exponent has coefficient zero.\n    - heading \"Exit task\" [level=4]\n    - paragraph: What is the degree of 4x^2 - 4x^2 + 7? Explain the cancellation.\n    - text: Your answer\n    - textbox \"Your answer\": my attempt\n    - checkbox \"I worked this on paper\"\n    - text: I worked this on paper\n    - button \"I have attempted this\"\n    - group: Model answer",
+    "roles": {
+      "core1.html": {
+        "units": 1,
+        "accessibleFigures": 1,
+        "attempts": 0,
+        "locked": 0,
+        "searchCorpusUnits": 1
+      },
+      "core1b.html": {
+        "units": 1,
+        "accessibleFigures": 0,
+        "attempts": 1,
+        "locked": 2,
+        "searchCorpusUnits": 1,
+        "unlockedAfterTypedCommit": true
+      },
+      "core2.html": {
+        "units": 0,
+        "accessibleFigures": 0,
+        "attempts": 0,
+        "locked": 0,
+        "searchCorpusUnits": 0
+      },
+      "core2a.html": {
+        "units": 1,
+        "accessibleFigures": 0,
+        "attempts": 1,
+        "locked": 1,
+        "searchCorpusUnits": 1,
+        "unlockedAfterTypedCommit": true
+      },
+      "core2b.html": {
+        "units": 1,
+        "accessibleFigures": 0,
+        "attempts": 1,
+        "locked": 1,
+        "searchCorpusUnits": 1,
+        "unlockedAfterTypedCommit": true
+      }
+    }
+  }
+}
