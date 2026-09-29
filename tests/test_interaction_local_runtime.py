@@ -24,6 +24,10 @@ class InteractionLocalRuntimeTests(unittest.TestCase):
         self.assertEqual(record["authority"], "DERIVED_LOCAL_INTERACTION_RUNTIME_ONLY")
         self.assertEqual(record["interaction_brief"]["freshness"], "CURRENT")
         self.assertEqual(record["interaction_brief"]["target_ref"], "MIC-MAT-LEQ-04-TWO-VARIABLES-LINE-OF-SOLUTIONS")
+        self.assertEqual(
+            record["interaction_brief"]["source_academic_basis_digest"],
+            record["interaction_brief"]["canonical_input_digest"],
+        )
 
         runtime = record["runtime"]
         self.assertEqual(runtime["maturity"], "LOCAL")
@@ -40,6 +44,10 @@ class InteractionLocalRuntimeTests(unittest.TestCase):
         self.assertEqual(package["provenance"]["authority"], "NON_CANONICAL_COMPILED_PROOF")
         self.assertEqual(package["provenance"]["sourceKind"], "LOCAL_INTERACTION_IMPLEMENTATION")
         self.assertEqual(package["provenance"]["localInteraction"]["authority"], "DERIVED_LOCAL_INTERACTION_RUNTIME_ONLY")
+        self.assertEqual(
+            package["provenance"]["localInteraction"]["sourceAcademicBasisDigest"],
+            record["interaction_brief"]["canonical_input_digest"],
+        )
         self.assertNotIn("resourceRef", package)
 
         reuse = record["reuse_analysis"]
@@ -80,6 +88,18 @@ class InteractionLocalRuntimeTests(unittest.TestCase):
         self.assertEqual(result["status"], "STALE")
         self.assertEqual(result["brief_freshness"], "CURRENT")
         self.assertEqual(result["current_binding_digest"], record["binding_digest"])
+
+    def test_truth_bearing_local_source_cannot_silently_rebind_to_new_academic_basis(self):
+        source = json.loads(SOURCE.read_text(encoding="utf-8"))
+        source["academic_basis"]["canonical_input_digest"] = "sha256:" + "0" * 64
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "stale-basis.local.json"
+            path.write_text(json.dumps(source), encoding="utf-8")
+            with self.assertRaisesRegex(
+                interaction_local_runtime.InteractionLocalRuntimeError,
+                "LOCAL_RUNTIME_ACADEMIC_BASIS_STALE",
+            ):
+                interaction_local_runtime.compile_source(path)
 
     def test_local_source_cannot_override_computed_scene_identity(self):
         source = json.loads(SOURCE.read_text(encoding="utf-8"))
