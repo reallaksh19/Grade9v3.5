@@ -154,13 +154,13 @@ class OutputRoleScope(unittest.TestCase):
                 receipt = json.loads((out / "render-receipt.json").read_text(encoding="utf-8"))
                 report = json.loads((out / "gate-report.json").read_text(encoding="utf-8"))
                 standalone = build_products.STANDALONE_WORK / "physics/phy-nlm-momentum-transfer.html"
+                standalone_text = standalone.read_text(encoding="utf-8")
             finally:
                 for name, value in original.items():
                     setattr(build_products, name, value)
         self.assertEqual(receipt["pages"], ["core1.html", "index.html"])
-        self.assertTrue(standalone.is_file())
-        self.assertIn('id="g9-role-CORE1"', standalone.read_text(encoding="utf-8"))
-        self.assertNotIn('id="g9-role-CORE1A"', standalone.read_text(encoding="utf-8"))
+        self.assertIn('id="g9-role-CORE1"', standalone_text)
+        self.assertNotIn('id="g9-role-CORE1A"', standalone_text)
         self.assertEqual(row["product"], "phy-nlm-momentum-transfer")
         self.assertEqual(report["verdict"], "FAIL")
         self.assertIn("PRODUCT-ALL-ROLES", {finding["rule"] for finding in report["findings"]})
