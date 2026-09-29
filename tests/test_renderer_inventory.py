@@ -95,6 +95,11 @@ class OutputRoleScope(unittest.TestCase):
         self.assertIn("MIC-PHY-NLM-MOMENTUM-TRANSFER-RATE", pages["core1.html"])
         self.assertIn('data-g9-meta-value="HARD"', pages["core1.html"])
         self.assertIn("5(+2) = +10 N", pages["core1.html"])
+        learner_surface = pages["core1.html"] + pages["index.html"]
+        self.assertNotIn("LP-H1", learner_surface)
+        self.assertNotIn("interaction value", learner_surface.lower())
+        self.assertNotIn("Q-PHY-NLM-MTR-2A-", learner_surface)
+        self.assertNotIn("Q-PHY-NLM-MTR-2B-", learner_surface)
         for role in product_manifest.OUTPUT_ROLES[1:]:
             filename = render_core.ROLE_FILE[role]
             self.assertNotIn(filename, pages)
@@ -109,6 +114,9 @@ class OutputRoleScope(unittest.TestCase):
         self.assertIn('id="g9-role-CORE1"', html)
         self.assertIn('href="#g9-role-CORE1"', html)
         self.assertIn("5(+2) = +10 N", html)
+        self.assertNotIn("LP-H1", html)
+        self.assertNotIn("Q-PHY-NLM-MTR-2A-", html)
+        self.assertNotIn("Q-PHY-NLM-MTR-2B-", html)
         for role in product_manifest.OUTPUT_ROLES[1:]:
             self.assertNotIn(f'id="g9-role-{role}"', html)
             self.assertNotIn(f'href="#g9-role-{role}"', html)
@@ -178,9 +186,14 @@ class OutputRoleScope(unittest.TestCase):
         self.assertIn('id="g9-role-CORE1"', standalone_text)
         self.assertNotIn('id="g9-role-CORE1A"', standalone_text)
         self.assertIn("5(+2) = +10 N", standalone_text)
+        self.assertNotIn("LP-H1", standalone_text)
+        self.assertNotIn("Q-PHY-NLM-MTR-2A-", standalone_text)
+        self.assertNotIn("Q-PHY-NLM-MTR-2B-", standalone_text)
         self.assertEqual(row["product"], "phy-nlm-momentum-transfer")
         self.assertEqual(report["verdict"], "FAIL")
-        self.assertIn("PRODUCT-ALL-ROLES", {finding["rule"] for finding in report["findings"]})
+        finding_rules = {finding["rule"] for finding in report["findings"]}
+        self.assertIn("C1-REPRESENTATION", finding_rules)
+        self.assertIn("PRODUCT-ALL-ROLES", finding_rules)
 
     def test_legacy_renderer_still_emits_all_six_roles_when_scope_is_absent(self):
         manifest = json.loads(self.PILOT.read_text(encoding="utf-8"))
