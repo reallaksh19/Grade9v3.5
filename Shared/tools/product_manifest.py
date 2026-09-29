@@ -36,9 +36,9 @@ def selected_output_roles(manifest: dict) -> list[str]:
     New manifests may opt into a strict non-empty subset. This field controls projection/output
     only; it never changes record authority, Core semantics or academic truth.
     """
-    value = manifest.get("output_roles")
-    if value is None:
+    if "output_roles" not in manifest:
         return list(OUTPUT_ROLES)
+    value = manifest["output_roles"]
     if not isinstance(value, list) or not value:
         raise ProductSelectionError("PRODUCT_OUTPUT_ROLES_INVALID: output_roles must be a non-empty list")
     if any(not isinstance(role, str) or role not in OUTPUT_ROLES for role in value):

@@ -57,6 +57,8 @@ Hard-first implementation/review priority must not narrow the denominator view. 
 
 Show links to the actual HTML and PDFs directly in the handoff. Include representative rendered pages alongside the mapping view. JSON, a log or a PASS report cannot replace the learner artifacts. Use the existing renderer and its browser print path for both formats.
 
+The existing manifest's optional `output_roles` selects the delivered Core roles, independently of the full denominator view. Omit it for legacy all-six output; when supplied, use a non-empty list of distinct Core names (`null` does not mean all six). Rendered navigation, repair and prerequisite links must name an included role and selected record; otherwise retain useful explanatory text without a dead link. Re-rendering the same staging directory retires prior receipt-owned excluded pages and invalidates their derived PDFs/print receipts. Regenerate PDFs from the new render before showing the packet. None of this scope bookkeeping limits research or changes academic acceptance.
+
 ## 3. Explicit content and metadata
 
 | Element | Learner-facing requirement | Owner/audit detail |

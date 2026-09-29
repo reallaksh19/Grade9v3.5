@@ -477,6 +477,14 @@ def teachers() -> dict:
     return _TEACHERS
 
 
+def _unit_href(ctx: Ctx, role: str, record_id: str) -> str | None:
+    """Link only to a unit actually projected into this packet."""
+    key = "microtopics" if role in ("CORE1", "CORE1A", "CORE1B") else role.lower()
+    if role in product_manifest.selected_output_roles(ctx.manifest) and record_id in (ctx.manifest.get("selection", {}).get(key) or []):
+        return f"{ROLE_FILE[role]}#{record_id}"
+    return None
+
+
 def _prereqs(ctx: Ctx, m: dict) -> str:
     own = {x["primary_capability_ref"]: x["id"] for p in ctx.packages for x in p.get("microtopics", [])}
     own_titles = {x["primary_capability_ref"]: x["title"] for p in ctx.packages for x in p.get("microtopics", [])}
@@ -488,7 +496,9 @@ def _prereqs(ctx: Ctx, m: dict) -> str:
         caps = {c["id"]: c for p in ctx.packages for c in p.get("capabilities", [])}
         if bare in own:
             label = (caps.get(bare) or {}).get("action") or own_titles.get(bare, "")
-            rows.append(f'<li data-g9-prereq="{esc(ref)}" data-bridged="true"><a href="core1a.html#{esc(own[bare])}">{esc(label)}</a></li>')
+            href = _unit_href(ctx, "CORE1A", own[bare])
+            rows.append(f'<li data-g9-prereq="{esc(ref)}" data-bridged="true">'
+                        + (f'<a href="{esc(href)}">{esc(label)}</a>' if href else esc(label)) + "</li>")
         elif taught:
             href = links.get(ref) or links.get(bare)
             label = f"{taught[3]} ({taught[0]})" if len(taught) > 3 and taught[3] else f"Taught in {taught[0]}"
@@ -700,7 +710,9 @@ def _repair(ctx: Ctx, ref: str | None) -> str:
         for m in p.get("microtopics", []):
             for s in m.get("teaching_path", []):
                 if s["id"] == ref:
-                    return f'<p><a href="core1a.html#{esc(m["id"])}">Revisit: {esc(s["action"])}</a></p>'
+                    href = _unit_href(ctx, "CORE1A", m["id"])
+                    label = f'Revisit: {esc(s["action"])}'
+                    return "<p>" + (f'<a href="{esc(href)}">{label}</a>' if href else label) + "</p>"
     return ""
 
 
@@ -759,12 +771,13 @@ def core2b(ctx: Ctx, q: dict) -> str:
     def _where(b: str) -> str | None:
         """The page and unit where the earlier item is rendered: its Core2A article, or the Core1A
         microtopic that uses it as a worked anchor. None when this product does not show it."""
-        if b in (sel.get("core2a") or []):
-            return f"core2a.html#{b}"
+        href = _unit_href(ctx, "CORE2A", b)
+        if href:
+            return href
         for m in ctx.index("microtopics").values():
             if m["id"] in (sel.get("microtopics") or []) and any(
                     u.get("worked_anchor_ref") == b for u in m.get("construction_units") or []):
-                return f"core1a.html#{m['id']}"
+                return _unit_href(ctx, "CORE1A", m["id"])
         return None
 
     def _earlier(b: str) -> str:
@@ -844,7 +857,9 @@ figure{margin:14px 0;max-width:100%;overflow-x:auto}figure svg{width:100%;height
 h4{margin:.8em 0 .3em}:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 footer{padding:24px 16px;color:var(--muted)}
 @media print{header[data-g9-shell-header],nav[data-g9-breadcrumb],.g9-attempt,button,[data-g9-display-panel]{display:none!important}
-details{border:none}article[data-g9-unit]{break-inside:avoid-page;border:none}body{background:#fff;color:#000}}
+details{border:none}article[data-g9-unit]{break-inside:auto;border:none}
+h1,h2,h3,h4{break-after:avoid-page}footer{padding:0;break-before:avoid-page}
+body{background:#fff;color:#000}}
 .g9-attempt input[type=text],.g9-attempt select,.g9-attempt textarea{min-height:48px;box-sizing:border-box}
 .g9-answer-option,.g9-paper,.g9-match{display:flex;align-items:center;gap:.5rem;min-height:48px}
 .g9-answer-option input,.g9-paper input{min-width:48px;min-height:48px}
@@ -1296,6 +1311,34 @@ def build(manifest_path: Path, mode: str = "PAGES") -> tuple[dict[str, str], lis
 
 
 
+def _retire_previous_outputs(out: Path, pages: dict[str, str]) -> None:
+    """Retire receipt-owned files, never arbitrary files in the output directory.
+
+    PDFs must be regenerated after every render, even when the HTML names stay the same.
+    A fixed basename allowlist also prevents a malformed receipt escaping this directory.
+    """
+    receipt = out / "render-receipt.json"
+    if not receipt.is_file():
+        return
+    try:
+        previous = json.loads(receipt.read_text(encoding="utf-8")).get("pages", [])
+    except (ValueError, AttributeError):
+        return
+    if not isinstance(previous, list):
+        return
+    managed = set(ROLE_FILE.values()) | {"index.html", "product.html"}
+    previous = {name for name in previous if isinstance(name, str) and name in managed}
+    obsolete = previous - set(pages)
+    for name in previous - {"index.html"}:
+        obsolete.update((name.removesuffix(".html") + ".pdf", name.removesuffix(".html") + ".key.pdf"))
+    if previous:
+        obsolete.update(("print-receipt.json", "print-key-receipt.json"))
+    for name in obsolete:
+        target = out / name
+        if target.is_file() and not target.is_symlink() and target.resolve().parent == out.resolve():
+            target.unlink()
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     sub = parser.add_subparsers(dest="cmd", required=True)
@@ -1323,6 +1366,7 @@ def main(argv: list[str] | None = None) -> int:
     if out.resolve().is_relative_to((REPO / "public").resolve()):
         raise ValueError("render_core cannot write to public; use Owner acceptance of a staged render")
     out.mkdir(parents=True, exist_ok=True)
+    _retire_previous_outputs(out, pages)
     for name, text in pages.items():
         if gaps:
             text = text.replace("<html ", '<html data-g9-draft="%d" ' % len(gaps), 1)

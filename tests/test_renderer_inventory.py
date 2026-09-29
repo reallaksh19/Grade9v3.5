@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 import tempfile
 import unittest
@@ -61,13 +62,51 @@ class OutputRoleScope(unittest.TestCase):
         )
 
     def test_output_role_scope_rejects_empty_duplicate_or_unknown_roles(self):
-        for value in ([], ["CORE1", "CORE1"], ["CORE7"]):
+        for value in (None, "CORE1", {}, 1, [], ["CORE1", "CORE1"], ["CORE7"]):
             with self.subTest(value=value):
                 with self.assertRaises(product_manifest.ProductSelectionError):
                     product_manifest.selected_output_roles({"output_roles": value})
 
     def test_product_rederive_preserves_explicit_output_scope(self):
         self.assertIn("output_roles", build_products.PRESERVED_MANIFEST_KEYS)
+
+    def test_scoped_cross_core_links_resolve_in_pages_and_single_file(self):
+        for roles in (["CORE2A"], ["CORE2B"], ["CORE1A", "CORE2A", "CORE2B"]):
+            for mode in ("PAGES", "SINGLE_FILE"):
+                with self.subTest(roles=roles, mode=mode), tempfile.TemporaryDirectory() as tmp:
+                    path = self._scoped_manifest(self.PILOT, roles, tmp)
+                    pages, _, _ = render_core.build(path, mode=mode)
+                    for html in pages.values():
+                        for file, anchor in re.findall(r'href="(core[12][ab]?\.html)#([^"]+)"', html):
+                            self.assertIn(file, pages)
+                            self.assertIn(f'id="{anchor}"', pages[file])
+                        for anchor in re.findall(r'href="#(g9-CORE[^"]+)"', html):
+                            self.assertIn(f'id="{anchor}"', html)
+                    self.assertIn("Revisit:", "".join(pages.values()))
+
+    def test_rerender_retires_only_receipt_owned_outputs_and_invalidates_prints(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "rendered"
+            path = self._scoped_manifest(self.PILOT, list(product_manifest.OUTPUT_ROLES), tmp)
+            args = ["build", "--manifest", str(path), "--out", str(out), "--draft"]
+            self.assertEqual(render_core.main(args), 0)
+            (out / "notes.txt").write_text("keep")
+            (out / "user.pdf").write_bytes(b"keep")
+            for name in ("core1.pdf", "core2.key.pdf", "print-receipt.json", "print-key-receipt.json"):
+                (out / name).write_text("obsolete")
+            self._scoped_manifest(self.PILOT, ["CORE1"], tmp)
+            self.assertEqual(render_core.main(args), 0)
+            self.assertEqual({p.name for p in out.glob("*.html")}, {"core1.html", "index.html"})
+            self.assertEqual({p.name for p in out.glob("*.pdf")}, {"user.pdf"})
+            self.assertFalse((out / "print-receipt.json").exists())
+            self.assertFalse((out / "print-key-receipt.json").exists())
+            from Shared.tools.accept_product import verify_render
+            verify_render(out)
+            self.assertEqual(render_core.main(args + ["--mode", "SINGLE_FILE"]), 0)
+            self.assertEqual({p.name for p in out.glob("*.html")}, {"product.html"})
+            self.assertEqual((out / "notes.txt").read_text(), "keep")
+            self.assertEqual(render_core.main(args), 0)
+            verify_render(out)
 
     def test_issue352_nlm_pilot_declares_complete_core1_first_stage_scope(self):
         manifest = json.loads(self.PILOT.read_text(encoding="utf-8"))
@@ -172,6 +211,8 @@ class OutputRoleScope(unittest.TestCase):
                 standalone = build_products.STANDALONE_WORK / "physics/phy-nlm-momentum-transfer.html"
                 standalone_text = standalone.read_text(encoding="utf-8")
                 pdf_present = (out / "core1.pdf").is_file()
+                from pypdf import PdfReader
+                pdf_text = [page.extract_text() for page in PdfReader(out / "core1.pdf").pages]
             finally:
                 for name, value in original.items():
                     setattr(build_products, name, value)
@@ -181,6 +222,9 @@ class OutputRoleScope(unittest.TestCase):
         self.assertEqual(print_receipt["mode"], "LEARNER_PDF")
         self.assertEqual([page["page"] for page in print_receipt["pages"]], ["core1.html"])
         self.assertTrue(pdf_present)
+        self.assertIn("Governing relation", pdf_text[0], "the title must not consume an otherwise empty page")
+        anchor_page = next(text for text in pdf_text if "Compact anchor" in text)
+        self.assertIn("5", anchor_page.split("Compact anchor", 1)[1], "keep the anchor heading with its example")
         self.assertTrue(report["rendered_measured"])
         self.assertEqual(report["not_measured"], [])
         self.assertIn('id="g9-role-CORE1"', standalone_text)
