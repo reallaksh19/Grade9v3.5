@@ -21,7 +21,11 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.contracts import canonical, load
-from Shared.tools import interaction_local_runtime, interaction_reuse
+from Shared.tools import (
+    interaction_local_runtime,
+    interaction_reuse,
+    interaction_reuse_binding,
+)
 
 
 class InteractionDiscoveryError(ValueError):
@@ -57,6 +61,14 @@ def _explicit_evidence_paths(repo: Path) -> list[Path]:
         path
         for root in _subject_roots(repo)
         for path in sorted((root / "interactions").glob("*.reuse.json"))
+    ]
+
+
+def _reuse_consumer_source_paths(repo: Path) -> list[Path]:
+    return [
+        path
+        for root in _subject_roots(repo)
+        for path in sorted((root / "interactions").glob("*.reuse-consumer.json"))
     ]
 
 
@@ -102,6 +114,7 @@ def build_from_records(
     *,
     local_source_paths: list[str] | None = None,
     explicit_evidence_paths: list[str] | None = None,
+    reuse_consumer_source_paths: list[str] | None = None,
     repo: Path = REPO,
 ) -> dict[str, Any]:
     """Build the projection from supplied concrete runtime/evidence records."""
@@ -173,6 +186,7 @@ def build_from_records(
         "source_inventory": {
             "local_source_paths": sorted(set(local_source_paths or [])),
             "explicit_reuse_evidence_paths": sorted(set(explicit_evidence_paths or [])),
+            "reuse_consumer_source_paths": sorted(set(reuse_consumer_source_paths or [])),
         },
     }
     index = {
@@ -188,16 +202,24 @@ def build(*, repo: Path = REPO) -> dict[str, Any]:
     """Scan production memory under each subject and derive the current index."""
     local_paths = _local_source_paths(repo)
     explicit_paths = _explicit_evidence_paths(repo)
+    consumer_paths = _reuse_consumer_source_paths(repo)
     local_records = [
         interaction_local_runtime.compile_source(path, repo=repo)
         for path in local_paths
     ]
     explicit_records = [load(path) for path in explicit_paths]
+    consumer_records = [
+        interaction_reuse_binding.compile_source(path, repo=repo)
+        for path in consumer_paths
+    ]
+    evidence_records = list(explicit_records)
+    evidence_records.extend(row["reuse_evidence"] for row in consumer_records)
     return build_from_records(
         local_records,
-        explicit_records,
+        evidence_records,
         local_source_paths=[_relative(path, repo) for path in local_paths],
         explicit_evidence_paths=[_relative(path, repo) for path in explicit_paths],
+        reuse_consumer_source_paths=[_relative(path, repo) for path in consumer_paths],
         repo=repo,
     )
 
