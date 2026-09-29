@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/interaction-local-runtime-source.schema.json",
+  "title": "Interaction LOCAL Runtime Source",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "authority",
+    "subject",
+    "microtopic_ref",
+    "implementation_key",
+    "title",
+    "mechanic_refs",
+    "accessibility_refs",
+    "scene",
+    "adapter_rules"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "authority": {
+      "const": "LOCAL_INTERACTION_IMPLEMENTATION_SOURCE"
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1
+    },
+    "microtopic_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "implementation_key": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mechanic_refs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      }
+    },
+    "accessibility_refs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "scene": {
+      "type": "object",
+      "minProperties": 1
+    },
+    "adapter_rules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}
