@@ -8,8 +8,10 @@
 
 4. **Task arc.** Update when tasks change. Decide novelty and family closure from the *final* tasks.
 
-   | Core | Item | Decision practiced | New versus earlier | Builds on |
-   |---|---|---|---|---|
+   | Core | Item | Decision practiced | New versus earlier | Canonical records / source basis | Actual or planned prior exposure | Open dependency and useful next work |
+   |---|---|---|---|---|---|---|
+
+   Use FIRST-STAGE-REVIEW.md as a reasoning guide. An arrow is a learning relationship, not a lock on authoring. State which first-stage outputs were shown and what their findings changed in later designs.
 
 5. **Transfer plan.** What invariant remains, and what demand genuinely changes?
 
@@ -17,5 +19,6 @@
 
 7. **Research log.** Record source, what it contributed, and whether it supports a *fact* (card required) or *pedagogy* (reasoned use).
 
-8. **Known weaknesses.** State what is open, how it affects the learner, and what evidence could settle it.
+   Preserve alternative explanations, independently derived insights and ideas the current schema cannot express. State a useful representation change if needed. No fixed source/query count or completed template is required before researching or drafting.
 
+8. **Known weaknesses.** State what is open, how it affects the learner, and what evidence could settle it.

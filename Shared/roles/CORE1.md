@@ -18,7 +18,9 @@ Give the learner a short, correct orientation to the bucket: what the objects ar
 
 Where a valid frozen Core1 already exists, Core1 **preserves** it: it is instantiated or referenced, not rewritten. Defects found in frozen material are reported separately rather than silently corrected in place, so that the original and the correction remain distinguishable.
 
-Where no frozen Core1 exists, Core1 may be condensed from the reviewed Core1A content for the same bucket. It then carries Core1A's review status — condensing reviewed teaching does not create independently reviewed notes, and condensing unreviewed teaching certainly does not.
+Where no frozen Core1 exists, Core1 may be authored directly from inspected teaching sources and canonical concept records, particularly for the first-stage route when no question bank is available. Record its own source basis, scope, uncertainty and review status; a future Core1A is not a prerequisite for researching or authoring these notes. Later construction work can reveal improvements to the same canonical orientation.
+
+Core1 may also be condensed from the reviewed Core1A content for the same bucket. It then carries Core1A's review status — condensing reviewed teaching does not create independently reviewed notes, and condensing unreviewed teaching certainly does not.
 
 ## What Core1 must not do
 

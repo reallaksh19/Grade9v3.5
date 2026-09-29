@@ -9,6 +9,6 @@
 7. Research widely for pedagogy and log what shaped the design. Cite narrowly and exactly for factual claims. The repo's templates and goldens do not replace fresh reasoning.
 8. Run the full local code suite before pushing a code change. Treat Chromium as NOT_RUN if unavailable. Content authors may use the advisory self-check without waiting on it.
 9. Finish each phase with the nine brief step-back questions in the protocol. Fix wrong-way behavior in the phase or state why it remains open; the reflection is not a gate.
+10. Use the [six-Core dependency guidance](FIRST-STAGE-REVIEW.md) to explain learning relationships and show the first-stage product early. Research, derivation and drafting remain open across Cores. The schema records understood ideas; if it cannot express one, retain the reasoning and propose a shared improvement. Missing metadata, feedback or an upstream artifact is not a new execution blocker. Add no CI or completion quota for this guidance.
 
 **Attempt semantics.** The controls ask an honest self-learner to commit to an answer or to work on paper before seeing a protected solution. They do not mark correctness or prevent a determined learner from reading HTML source. Search, live DOM and accessibility text must not expose protected results before commitment. The Owner alone publishes by accepting the exact render digest.
-

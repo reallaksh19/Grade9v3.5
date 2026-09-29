@@ -24,3 +24,8 @@ Existing records and status notes (do not invent a design note for inherited mat
 
 First prototype and Owner calibration point:
 
+First-stage route (Core2 with a supplied bank, otherwise Core1), source scope and reason:
+
+Links to first-stage HTML, learner PDF, Core2 key PDF where applicable, mappings and known gaps:
+
+Remaining Cores and their learning dependencies (see FIRST-STAGE-REVIEW.md; research and drafting can continue):

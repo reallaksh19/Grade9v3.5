@@ -21,7 +21,7 @@ Six learner products per subtopic bucket. These specifications are **subject-neu
 
 **No manufactured knowledge.** A knowledge percentage is an estimate with a scope and a provenance, not a diagnosis. Absent evidence and absent waiver, practice routing uses the default median learner (`DEFAULT_MEDIAN`, knowledge 50%, full support) and a short diagnostic, then adjusts from actual attempts. Seeing a worked solution is not evidence of independent mastery.
 
-**No escape state.** HOLD, FAILED, INCOMPLETE, BLOCKED and WAITING are never an outcome of an agent's work. Every gap — source custody, question identity, mapping, prerequisite, extension, worked example, visual, learner data — is a research or authoring duty completed in the same job, with truthful provenance. See `Shared/workflows/research-first.v1.json`.
+**Research through gaps.** Missing source custody, question identity, mapping, prerequisites, examples, visuals or learner observations identify useful research and authoring work. Continue what can be done honestly and show unresolved findings with their scope and consequence. Do not fabricate completion or learner evidence to satisfy a schema or requested product count. Partial findings do not create a new whole-task refusal, approval requirement or CI gate.
 
 **Engineering detail is not a learner product.** Technical gates, routing infrastructure and owner boards specify and audit the work; they are not a seventh book. Learner navigation stays simple; engineering detail belongs in the owner view.
 
@@ -39,6 +39,8 @@ Changing numbers alone produces practice **within a family**, not a new transfer
 Turning B into A with the nouns changed, or into A with random blanks punched into it, fails this rule.
 
 ## Authority and dependency graph
+
+[First-stage review and six-Core authoring guidance](../../docs/method/FIRST-STAGE-REVIEW.md) explains how these relationships guide actual work. Show Core2 first with a supplied bank, otherwise Core1, before generating the remaining Cores. Research and drafting can explore all Cores throughout. Guidelines and schemas record the resulting ideas; they do not limit web research, reasoning or pedagogical alternatives. A representation gap belongs in the design note and can motivate a shared schema improvement.
 
 The six role specifications describe learner-product meaning, but they do not make requested
 production order into academic authority. [Core authority and dependency contract](CORE-AUTHORITY-CONTRACT.md)

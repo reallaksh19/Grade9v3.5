@@ -2,6 +2,8 @@
 
 Start with [HOUSE-RULES.md](HOUSE-RULES.md), then [PROTOCOL.md](PROTOCOL.md). The unit author owns the design, records, prototype and revisions; source readers and an independent reviewer contribute evidence and judgement. Nothing in this method authorizes publication. The Owner accepts or rejects one exact rendered digest.
 
+[First-stage review and six-Core guidance](FIRST-STAGE-REVIEW.md) maps each Core's dependencies and shows how research, source demand, learner observations and Owner feedback guide later work. Show Core2 first with a supplied bank, otherwise Core1; present the actual HTML/PDF and gaps before generating the remaining Cores. These are advisory authoring guidelines with no new blocker or CI requirement.
+
 | When | Read or use | Artifact |
 |---|---|---|
 | Scope and source | [Source-reader role](roles/SOURCE-READER.md), [source-reader prompt](prompts/source-reader.prompt.md) | acquisition, inventory, cards, independent `readback[]` |
