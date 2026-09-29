@@ -69,7 +69,7 @@ class OutputRoleScope(unittest.TestCase):
     def test_product_rederive_preserves_explicit_output_scope(self):
         self.assertIn("output_roles", build_products.PRESERVED_MANIFEST_KEYS)
 
-    def test_issue352_nlm_pilot_declares_core1_first_stage_scope(self):
+    def test_issue352_nlm_pilot_declares_complete_core1_first_stage_scope(self):
         manifest = json.loads(self.PILOT.read_text(encoding="utf-8"))
         package = json.loads(
             (REPO / "Physics/library/phy-nlm-momentum-transfer.v1.json").read_text(encoding="utf-8")
@@ -82,29 +82,36 @@ class OutputRoleScope(unittest.TestCase):
         self.assertEqual(manifest["selection"]["core2"], [])
         self.assertEqual(manifest["selection"]["microtopics"], [microtopic["id"]])
         self.assertEqual(microtopic["intrinsic_badge"], "HARD")
+        self.assertEqual(
+            microtopic["compact_anchor"]["result"],
+            "F_avg,on_ejecta = R Delta p_item = 5(+2) = +10 N. The launcher receives the interaction-partner recoil force -10 N, so a fixed launcher requires a +10 N external holding force to balance that recoil.",
+        )
+        self.assertNotIn("representation_ref", microtopic["compact_anchor"])
 
-    def test_renderer_emits_only_declared_first_stage_pages(self):
+    def test_renderer_emits_zero_gap_declared_first_stage_pages(self):
         pages, gaps, _digest = render_core.build(self.PILOT, mode="PAGES")
         self.assertEqual(set(pages), {"core1.html", "index.html"})
+        self.assertEqual(gaps, [])
         self.assertIn("MIC-PHY-NLM-MOMENTUM-TRANSFER-RATE", pages["core1.html"])
         self.assertIn('data-g9-meta-value="HARD"', pages["core1.html"])
+        self.assertIn("5(+2) = +10 N", pages["core1.html"])
         for role in product_manifest.OUTPUT_ROLES[1:]:
             filename = render_core.ROLE_FILE[role]
             self.assertNotIn(filename, pages)
             self.assertNotIn(f'href="{filename}"', pages["core1.html"])
             self.assertNotIn(f'href="{filename}"', pages["index.html"])
-        self.assertTrue(all(gap["core"] in {"CORE1", "INDEX"} for gap in gaps), gaps)
 
-    def test_single_file_contains_only_declared_first_stage_role(self):
+    def test_single_file_contains_only_zero_gap_declared_first_stage_role(self):
         pages, gaps, _digest = render_core.build(self.PILOT, mode="SINGLE_FILE")
         self.assertEqual(set(pages), {"product.html"})
+        self.assertEqual(gaps, [])
         html = pages["product.html"]
         self.assertIn('id="g9-role-CORE1"', html)
         self.assertIn('href="#g9-role-CORE1"', html)
+        self.assertIn("5(+2) = +10 N", html)
         for role in product_manifest.OUTPUT_ROLES[1:]:
             self.assertNotIn(f'id="g9-role-{role}"', html)
             self.assertNotIn(f'href="#g9-role-{role}"', html)
-        self.assertTrue(all(gap["core"] == "CORE1" for gap in gaps), gaps)
 
     def test_bank_first_route_can_emit_core2_only(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -137,7 +144,7 @@ class OutputRoleScope(unittest.TestCase):
             self.assertNotIn(f'href="#g9-role-{role}"', html)
         self.assertTrue(all(gap["core"] == "CORE2" for gap in gaps), gaps)
 
-    def test_build_pipeline_stages_scoped_packet_without_turning_final_quality_into_a_gate(self):
+    def test_build_pipeline_stages_zero_gap_scoped_packet_without_turning_final_quality_into_a_gate(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             names = ("WORK", "PUBLIC", "STANDALONE_WORK", "STANDALONE", "REVIEWS", "ACCEPTANCE")
@@ -159,8 +166,11 @@ class OutputRoleScope(unittest.TestCase):
                 for name, value in original.items():
                     setattr(build_products, name, value)
         self.assertEqual(receipt["pages"], ["core1.html", "index.html"])
+        self.assertEqual(receipt["gaps"], [])
+        self.assertEqual(row["gaps"], 0)
         self.assertIn('id="g9-role-CORE1"', standalone_text)
         self.assertNotIn('id="g9-role-CORE1A"', standalone_text)
+        self.assertIn("5(+2) = +10 N", standalone_text)
         self.assertEqual(row["product"], "phy-nlm-momentum-transfer")
         self.assertEqual(report["verdict"], "FAIL")
         self.assertIn("PRODUCT-ALL-ROLES", {finding["rule"] for finding in report["findings"]})
