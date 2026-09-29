@@ -51,6 +51,7 @@ class InteractionReuseTests(unittest.TestCase):
         )
         result = interaction_reuse.analyse_implementation([created], "IMPL-A")
         self.assertEqual(result["maturity"], "LOCAL")
+        self.assertEqual(result["maturity_status"], "OBSERVED")
         self.assertEqual(result["creator_interaction_refs"], ["INTERACTION-A"])
         self.assertEqual(result["consumer_interaction_refs"], [])
         self.assertFalse(result["subject_neutral_shared_claim_proven"])
@@ -132,11 +133,12 @@ class InteractionReuseTests(unittest.TestCase):
         self.assertTrue(cross_subject["subject_neutral_shared_claim_proven"])
         self.assertEqual(cross_subject["shared_owner_refs"], ["SHARED-OWNER"])
 
-    def test_missing_lineage_is_reconstruction_debt_not_execution_permission(self):
+    def test_missing_lineage_is_unobserved_reconstruction_debt_not_local_claim(self):
         result = interaction_reuse.analyse_implementation([], "IMPL-UNKNOWN")
-        self.assertEqual(result["maturity"], "LOCAL")
+        self.assertIsNone(result["maturity"])
+        self.assertEqual(result["maturity_status"], "UNOBSERVED")
         self.assertEqual(result["reconstruction_debt"], ["NO_IMPLEMENTATION_LINEAGE_EVIDENCE"])
-        self.assertIn("derived", result["claim_note"].lower())
+        self.assertIn("local itself requires evidence", result["claim_note"].lower())
 
     def test_mode_relation_mismatch_is_rejected(self):
         with self.assertRaisesRegex(interaction_reuse.InteractionReuseError, "MODE_RELATION_INVALID"):
