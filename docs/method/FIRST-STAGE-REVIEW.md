@@ -176,7 +176,40 @@ Reuse the first-stage source inventory, concept/Atlas references, uncertainty no
 
 A new bank, changed concept mapping, revised figure or altered familiar task may affect later outputs. Use existing input digests and record refs to identify affected reviews; label their evidence stale, retain the prior result and inspect the affected claims. Staleness guides attention and does not stop research or require rerunning unrelated work.
 
-## 10. Research and thinking remain open
+## 10. Source-question support, figures and interactive purpose
+
+This clarification incorporates the [validated post-mortem feedback](../../evidence/reviews/pr353/FEEDBACK-VALIDATION.md). It defines review intent and remaining shared implementation work, not a new schema gate. Existing source custody, canonical question/representation records, blueprint and sole renderer keep their respective ownership.
+
+### Preserve the source; identify added teaching
+
+Core2 remains a usable learner product around an authentic source question. Source fidelity alone does not establish good learning support. Keep source hints/working distinct from authored hints, worked reasoning and independent verification. An absent source hint is a valid source fact; an unresolved source component and an authored-support omission are different findings. Never write new teaching into `hints[]` merely to satisfy a count or present an authored solution as a printed key.
+
+For difficult decisions, describe useful support by purpose: orientation, a productive next move, reasoning about the crux, and an independent check where meaningful. The number of useful steps depends on the task. Difficulty D1–D4 informs judgement; it does not mechanically impose three rungs, a diagram, an explorer or a delivery threshold. Repeated or answer-revealing hints do not become good teaching by meeting a count.
+
+When supplementary authored help is requested on a Core2 page, keep its provenance and disclosure timing explicit and resolve its owning fields through the existing canonical model. `scaffolds[]` and structured reasoning already exist for other uses, but their Core2 projection/provenance needs reconciliation; this guidance does not claim that the current renderer displays them. Show support provided, not applicable, deferred or unresolved in the existing Owner review view, with reasons; no new completion state grants permission.
+
+### Distinguish what a figure does
+
+- A supplied source figure is part of the question's demand. Preserve its identity/caption and mount it where needed, or explicitly show the unresolved source component. Reuse existing custody component states; an empty array cannot explain whether the source had no figure or a figure was lost.
+- A learner-constructed figure is work the question asks the learner to do. A blank coordinate grid may help; a completed polygon may reveal the answer and belongs after the appropriate attempt/reveal.
+- An authored explanatory or solution figure is labelled as added teaching and receives its own disclosure timing. It is not passed off as a source figure.
+- Phrases such as “in the figure below” are useful advisory review cues. “Plot”, “quadrilateral” or “pentagon” alone do not prove that a supplied figure is missing. No keyword implies a mandatory SVG or a minimum figure count.
+
+The shared projection should reconcile source-resource references with canonical representation mounting. Do not invent a second media authority or recreate a missing source diagram from memory without recording the adaptation.
+
+### Assess a question; explore a concept
+
+A question page preserves the source task and offers its appropriate response, optional staged support and later solution/check. A concept explorer lets the learner manipulate a model and observe an explicitly stated relationship. Use the existing Core/experience mode and Interaction Brief to distinguish these purposes. A slider is not evidence of quality, and commitment is participation rather than correctness or mastery. An explorer may be linked or embedded where it supports the task without exposing its deciding move; keep its stable activity identity and academic basis.
+
+### Exercise the declared delivery contract
+
+Use the existing tablet profiles, 48px touch policy and responsive blueprint. Keep text readable and associated figures near their givens; use two columns when content and width justify them, and reflow in portrait. A fixed `1.4fr:1fr` ratio is an example to compare, not a universal requirement; never reserve a large empty diagram column.
+
+Use declared mathematical input rather than guessing notation from prose. The blueprint already distinguishes relation MathML and typed question TeX with local rendering. The sole renderer still needs question-math projection parity. Observe actual mathematical content, error output and dependency loading, including revealed/template content and PDFs. A `.katex` count is meaningful only for content that should use KaTeX; valid native MathML must not fail that check.
+
+For promised offline/file delivery, exercise that actual package with network access disabled, including scripts, styles and fonts. Capture console/network evidence and readable mathematics. `file://` is not itself proof of a CORS failure. Use local browser observations; no new CI, content blocker or publication authority is introduced.
+
+## 11. Research and thinking remain open
 
 - Research the web and original sources as widely as useful. Repo examples, goldens, current taxonomy and an incomplete Atlas are starting points, not the limits of inquiry. Distinguish factual authority from inspiration for teaching.
 - Think, derive, compare explanations, sketch figures and try alternative tasks before fitting results into fields. There is no mandatory research query list, source count, scaffold count, question count or improvement quota.
