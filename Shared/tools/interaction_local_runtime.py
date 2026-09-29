@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Compile one governed LOCAL interaction source onto the existing portable workbench runtime.
 
-The compiler binds lesson-local engineering data to a CURRENT Interaction Brief, derives stable
-activity identity plus content-addressed scene/adapter/package/binding identities, validates the
-existing data-only portable package contract, and emits R4 production-memory evidence. LOCAL is
-a delivery/maturity fact, not permission to research or a claim of shared architecture.
+The compiler binds lesson-local engineering data to a CURRENT Interaction Brief, requires the
+truth-bearing LOCAL source to pin the exact canonical academic basis it was authored against,
+derives stable activity identity plus content-addressed scene/adapter/package/binding identities,
+validates the existing data-only portable package contract, and emits R4 production-memory
+evidence. LOCAL is a delivery/maturity fact, not permission to research or a claim of shared
+architecture.
 """
 from __future__ import annotations
 
@@ -90,8 +92,15 @@ def compile_source(source_path: Path, *, repo: Path = REPO) -> dict[str, Any]:
         str(brief_freshness.get("status")),
     )
 
-    source_digest = _digest(source)
     brief_digest = brief["provenance"]["canonical_input_digest"]
+    source_basis_digest = source["academic_basis"]["canonical_input_digest"]
+    _require(
+        source_basis_digest == brief_digest,
+        "LOCAL_RUNTIME_ACADEMIC_BASIS_STALE",
+        f"source={source_basis_digest}; current={brief_digest}",
+    )
+
+    source_digest = _digest(source)
     stable_token = _token([brief["brief_id"], source["implementation_key"]])
     revision_token = _token([brief_digest, source_digest])
 
@@ -155,6 +164,7 @@ def compile_source(source_path: Path, *, repo: Path = REPO) -> dict[str, Any]:
         "authority": AUTHORITY,
         "briefRef": brief["brief_id"],
         "canonicalInputDigest": brief_digest,
+        "sourceAcademicBasisDigest": source_basis_digest,
         "sourceDigest": source_digest,
     }
     package = validate_package(package)
@@ -162,6 +172,7 @@ def compile_source(source_path: Path, *, repo: Path = REPO) -> dict[str, Any]:
     identity_body = {
         "brief_ref": brief["brief_id"],
         "canonical_input_digest": brief_digest,
+        "source_academic_basis_digest": source_basis_digest,
         "source_digest": source_digest,
         "runtime": runtime_binding,
         "package": package,
@@ -180,6 +191,7 @@ def compile_source(source_path: Path, *, repo: Path = REPO) -> dict[str, Any]:
             "target_ref": brief["academic_target"]["target_ref"],
             "canonical_record_refs": list(brief["provenance"]["canonical_record_refs"]),
             "canonical_input_digest": brief_digest,
+            "source_academic_basis_digest": source_basis_digest,
             "freshness": brief_freshness["status"],
         },
         "runtime": runtime_binding,
@@ -188,9 +200,11 @@ def compile_source(source_path: Path, *, repo: Path = REPO) -> dict[str, Any]:
         "reuse_analysis": reuse_analysis,
         "binding_digest": binding_digest,
         "claim_note": (
-            "This is a governed LOCAL implementation bound to a current academic handoff. "
-            "The portable package remains non-canonical academic data; LOCAL maturity comes "
-            "from concrete R4 creation evidence and does not imply REUSED or SHARED status."
+            "This is a governed LOCAL implementation bound to the exact current academic basis it "
+            "was authored against. A canonical-basis mismatch invalidates learner-complete binding "
+            "without blocking research/prototyping. The portable package remains non-canonical "
+            "academic data; LOCAL maturity comes from concrete R4 creation evidence and does not "
+            "imply REUSED or SHARED status."
         ),
     }
 
