@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """The one renderer for learner Core pages.
 
-Renders the six Core roles of a product from library records (schema 0.2.0) and a product
-manifest. It renders only through the role's blueprint slots
+Renders the selected Core roles of a product from library records (schema 0.2.0) and a product
+manifest; legacy manifests default to all six roles. It renders only through the role's blueprint slots
 (Shared/web/interactive-page-blueprints.v1.json) and inside the tablet shell
 (docs/specs/TABLET-SHELL-AND-NAVIGATION.md). Every block, figure stage, reveal, attempt
 control and hint rung is marked with a data-g9-* attribute for advisory observation.
@@ -897,10 +897,11 @@ def shell(ctx: Ctx, role: str, mode: str) -> tuple[str, str]:
     m = ctx.manifest
     if mode == "EMBED":
         return "", ""
+    output_roles = product_manifest.selected_output_roles(m)
     nav_links = "".join(
         f'<a href="{"#g9-role-" + r if mode == "SINGLE_FILE" else ROLE_FILE[r]}"'
         f'{" aria-current=page" if mode != "SINGLE_FILE" and r == role else ""}>{esc(r)}</a>'
-        for r in ROLES
+        for r in output_roles
     )
     home_href = _mode_href(m["home_href"], mode)
     question_bank_href = _mode_href(m.get("question_bank_href", m["home_href"]), mode)
@@ -914,7 +915,7 @@ def shell(ctx: Ctx, role: str, mode: str) -> tuple[str, str]:
               f'<button type="button" data-g9-font="inc">A+</button><button type="button" data-g9-theme="light">Light</button>'
               f'<button type="button" data-g9-theme="dark">Dark</button><button type="button" data-g9-zoom="dec">Zoom −</button>'
               f'<button type="button" data-g9-zoom="reset">100%</button><button type="button" data-g9-zoom="inc">Zoom +</button></div></header>')
-    product_href = "#g9-role-CORE1" if mode == "SINGLE_FILE" else "index.html"
+    product_href = f"#g9-role-{output_roles[0]}" if mode == "SINGLE_FILE" else "index.html"
     crumbs = (f'<nav data-g9-breadcrumb aria-label="Breadcrumb"><a href="{esc(home_href)}">Home</a>'
               f'<a href="{product_href}">{esc(m["title"])}</a>{nav_links}</nav>')
     return header, crumbs
@@ -988,8 +989,9 @@ def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
 
 def index_page(ctx: Ctx, digest: str) -> str:
     m = ctx.manifest
-    header, crumbs = shell(ctx, "CORE1", "PAGES")
-    links = "".join(f'<li><a href="{ROLE_FILE[r]}">{esc(r)}: {esc(ROLE_TITLE[r])}</a></li>' for r in ROLES)
+    output_roles = product_manifest.selected_output_roles(m)
+    header, crumbs = shell(ctx, output_roles[0], "PAGES")
+    links = "".join(f'<li><a href="{ROLE_FILE[r]}">{esc(r)}: {esc(ROLE_TITLE[r])}</a></li>' for r in output_roles)
     qs = {**ctx.index("questions"), **{q["id"]: q for q in ctx.bank}}
     diag_ids = m.get("diagnostic", [])
     if len(diag_ids) < m.get("diagnostic_min", 0):
@@ -1258,15 +1260,17 @@ def _artifact_digest(pages: dict[str, str]) -> str:
 
 def build(manifest_path: Path, mode: str = "PAGES") -> tuple[dict[str, str], list[dict], str]:
     ctx = context(manifest_path)
-    role_pages = {ROLE_FILE[r]: page(ctx, r, mode, DIGEST_SLOT) for r in ROLES}
+    output_roles = product_manifest.selected_output_roles(ctx.manifest)
+    role_pages = {ROLE_FILE[r]: page(ctx, r, mode, DIGEST_SLOT) for r in output_roles}
     if mode == "SINGLE_FILE":
         bodies = "".join(
             f'<section id="g9-role-{r}" data-g9-role-section="{r}">'
             f'{_single_file_fragment(role_pages[ROLE_FILE[r]], r)}</section>'
-            for r in ROLES
+            for r in output_roles
         )
-        product = role_pages[ROLE_FILE["CORE1"]].replace(
-            re.search(r"<main>(.*)</main>", role_pages[ROLE_FILE["CORE1"]], re.S).group(1),
+        base_role = output_roles[0]
+        product = role_pages[ROLE_FILE[base_role]].replace(
+            re.search(r"<main>(.*)</main>", role_pages[ROLE_FILE[base_role]], re.S).group(1),
             bodies,
         )
         pages = {"product.html": product}
