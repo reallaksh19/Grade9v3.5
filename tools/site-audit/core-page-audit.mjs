@@ -280,6 +280,15 @@ for (const file of files) {
           return { candidates: candidates.length, focusFailures: failures, visibleFocus };
         })(),
         learningStart: (() => {
+          const first = document.querySelector('[data-g9-bucket-orientation],[data-g9-block="inferential_jump"],[data-g9-derivation-bridge],.g9-cu');
+          if (!first) return { topPx: null, viewportHeights: null };
+          const top = first.getBoundingClientRect().top + window.scrollY;
+          return {
+            topPx: Math.round(top * 10) / 10,
+            viewportHeights: Math.round((top / window.innerHeight) * 1000) / 1000,
+          };
+        })(),
+        constructionStart: (() => {
           const first = document.querySelector('[data-g9-block="inferential_jump"],[data-g9-derivation-bridge],.g9-cu');
           if (!first) return { topPx: null, viewportHeights: null };
           const top = first.getBoundingClientRect().top + window.scrollY;
@@ -388,7 +397,7 @@ for (const [file, r] of Object.entries(report)) {
     `svg=${a.svg} (a11y ${a.svgAccessible}) details=${a.disclosures} gated=${a.gatedDisclosures} attempts=${a.attemptFields} focusCSS=${a.focusStyles} print=${a.printStyles} ` +
     `stage68=${a.stageSupportLayout} metaMissing=${a.metadataMissingUnits} searchMissing=${a.searchCorpusMissingUnits} protectedSearch=${a.protectedSearchMatches} gatedOpen=${a.gatedOpenBeforeAttempt} landmarks=${JSON.stringify(a.landmarks)} js=${a.scripts} errors=${r.errors.length}`);
   if (profile === 'core1a-spec') {
-    console.log(`    core1a: contentWidth=${a.contentWidthPx} layout=${JSON.stringify(a.core1aLayout)} tables=${JSON.stringify(a.tableContainment)} controls=${JSON.stringify(a.controlGeometry)} anchors=${JSON.stringify(a.anchorSafety)} focus=${JSON.stringify(a.focusProbe)} learningStart=${JSON.stringify(a.learningStart)} interaction=${JSON.stringify(a.interaction)}`);
+    console.log(`    core1a: contentWidth=${a.contentWidthPx} layout=${JSON.stringify(a.core1aLayout)} tables=${JSON.stringify(a.tableContainment)} controls=${JSON.stringify(a.controlGeometry)} anchors=${JSON.stringify(a.anchorSafety)} focus=${JSON.stringify(a.focusProbe)} learningStart=${JSON.stringify(a.learningStart)} constructionStart=${JSON.stringify(a.constructionStart)} interaction=${JSON.stringify(a.interaction)}`);
   }
   console.log(`    small targets: ${a.smallTargetSample.join(' | ')}`);
 }
