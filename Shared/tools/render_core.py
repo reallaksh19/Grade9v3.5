@@ -432,13 +432,13 @@ def _safe_mathml(value: str | None) -> str | None:
     return ET.tostring(root, encoding="unicode", short_empty_elements=True)
 
 
-def _relation_expression(ctx: Ctx, relation: dict, record: str) -> str:
+def _relation_expression(ctx: Ctx, relation: dict, record: str, role: str = "CORE1") -> str:
     if relation.get("mathml"):
         mathml = _safe_mathml(relation["mathml"])
         if mathml is None:
             ctx.gap("AUTHOR_GOVERNING_RELATION", relation["id"],
                     "relation.mathml is malformed or outside the restricted presentation-MathML subset",
-                    "CORE1")
+                    role)
         else:
             return f'<div class="g9-math" data-g9-math="mathml">{mathml}</div>'
     return f'<p class="g9-expr">{esc(relation["expression"])}</p>'
@@ -673,6 +673,28 @@ def core1(ctx: Ctx, m: dict) -> str:
     return body
 
 
+def _core1a_relation_matrix(ctx: Ctx, m: dict) -> str:
+    """Preserve governed equation/meaning/validity data as a semantic comparison table."""
+    relations = _relations(ctx, m)
+    if not relations:
+        return ""
+    rows = []
+    for relation in relations:
+        validity = items(relation.get("conditions"))
+        rows.append(
+            f'<tr data-g9-relation-ref="{esc(relation["id"])}">'
+            f'<td>{_relation_expression(ctx, relation, m["id"], "CORE1A")}</td>'
+            f'<td>{para(relation.get("meaning"))}</td>'
+            f'<td>{validity}</td></tr>'
+        )
+    return (
+        '<div class="g9-table-scroll" data-g9-equation-matrix>'
+        '<table><thead><tr><th scope="col">Equation</th>'
+        '<th scope="col">What it tells you</th><th scope="col">When you can use it</th>'
+        f'</tr></thead><tbody>{"".join(rows)}</tbody></table></div>'
+    )
+
+
 def core1a(ctx: Ctx, m: dict) -> str:
     units = m.get("construction_units") or []
     if not units:
@@ -698,10 +720,12 @@ def core1a(ctx: Ctx, m: dict) -> str:
             ctx.gap("AUTHOR_INDEPENDENT_CHECK", u["id"], "no independent check", "CORE1A")
         wrong = _misconceptions(m, u)
         heading = f"<h3>{esc(decision)}</h3>" if decision else (f"<h3>Construction step {n + 1} of {len(units)}</h3>" if len(units) > 1 else "")
+        relation_matrix = _core1a_relation_matrix(ctx, m) if n == 0 else ""
         unit_html += (f'<section id="{esc(u["id"])}" class="g9-cu" data-g9-cu="{esc(u["id"])}">{heading}'
                       + _core1a_unit_navigation(ctx, u["id"])
                       + block("construction", f"<ol>{step_html}</ol>")
                       + figure(ctx, u.get("representation_ref"), "TEACHING", "CORE1A", u["id"])
+                      + block("equation_matrix", relation_matrix, title="Equations and validity")
                       + block("worked_anchor", anchor_html, title="Worked example")
                       + block("wrong_path", items(w["wrong_idea"] for w in wrong), title="A tempting wrong path")
                       + block("diagnose", items(w["diagnostic_prompt"] for w in wrong), title="Diagnose")
@@ -995,6 +1019,11 @@ article[id],section[id]{scroll-margin-top:96px}
 .g9-cu:first-child{border-top:0}
 .g9-cu-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:.35rem 0 .8rem}
 .g9-cu-nav-links{display:flex;gap:8px;flex-wrap:wrap}
+.g9-table-scroll{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.g9-table-scroll table{width:100%;min-width:680px;border-collapse:collapse}
+.g9-table-scroll th,.g9-table-scroll td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+.g9-table-scroll th{background:var(--bg)}
+.g9-table-scroll td>.g9-math,.g9-table-scroll td>.g9-expr{margin:.15rem 0}
 @media (min-width:1100px){.g9-bucket-orientation-grid{display:grid;grid-template-columns:.68fr .32fr;gap:20px}
 article[data-g9-unit].g9-stage-support{display:grid;grid-template-columns:.68fr .32fr;gap:20px}
 article.g9-stage-support>.slot-identity,article.g9-stage-support>.slot-attempt,article.g9-stage-support>.slot-construction,article.g9-stage-support>.slot-reconstruction,article.g9-stage-support>.slot-reasoning,article.g9-stage-support>.slot-post_attempt,article.g9-stage-support>.slot-solution{grid-column:1}
