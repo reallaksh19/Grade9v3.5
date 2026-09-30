@@ -315,6 +315,10 @@ class Renderer(unittest.TestCase):
 
         self.assertRegex(page_digest, r"^[0-9a-f]{16}$")
         self.assertRegex(single_digest, r"^[0-9a-f]{16}$")
+        self.assertEqual(
+            render_core.semantic_metadata_digest(pages, "PAGES"),
+            render_core.semantic_metadata_digest(single, "SINGLE_FILE"),
+        )
         self.assertFalse([gap for gap in page_gaps if gap["core"] == "CORE1A"])
         self.assertFalse([gap for gap in single_gaps if gap["core"] == "CORE1A"])
 
@@ -326,8 +330,8 @@ class Renderer(unittest.TestCase):
         for row in render_core._core1a_route(ctx):
             anchor = row["unit_id"]
             self.assertIn(f'id="{anchor}"', core1a)
-            self.assertIn(f'id="{anchor}"', product)
-            self.assertIn(f'href="#{anchor}"', product)
+            self.assertIn(f'id="g9-CORE1A--{anchor}"', product)
+            self.assertIn(f'href="#g9-CORE1A--{anchor}"', product)
 
         self.assertIn("data-g9-bucket-orientation", core1a)
         self.assertIn("data-g9-equation-matrix", core1a)
