@@ -1,8 +1,5 @@
 name: question-bank-platform
 
-permissions:
-  contents: write
-
 on:
   push:
     branches: ["**"]
@@ -59,13 +56,9 @@ jobs:
         run: node tests/question_bank_data_service.test.mjs
       - name: Legacy browser projection remains current
         run: python3 Shared/tools/build_question_bank_web.py --check
-      - name: Generate shared Question Bank platform artifacts
-        run: python3 Shared/tools/build_question_bank_platform.py --write
-      - name: Generated platform artifacts are deterministic
+      - name: Committed shared Question Bank platform artifacts are current
         run: python3 Shared/tools/build_question_bank_platform.py --check
-      - name: Generate Pages mirror from public source tree
-        run: python3 Shared/tools/build_pages_site.py
-      - name: Pages mirror is deterministic and internally linked
+      - name: Pages mirror is current and internally linked
         run: python3 Shared/tools/build_pages_site.py --check
       - name: Lineage explain witness
         run: python3 Shared/tools/build_question_bank_platform.py --explain PYQ-CHEM-IITJEE-2008-P1-Q66
@@ -73,34 +66,7 @@ jobs:
         run: python3 Shared/tools/question_bank_scale.py --questions 5000 --out artifacts/question-bank/scale-observation.json
       - name: Show scale observation
         run: cat artifacts/question-bank/scale-observation.json
-      - name: Commit generated platform and Pages outputs once on the implementation branch
-        if: github.event_name == 'push' && github.ref_name == 'issue-359/qb-growth-foundation'
-        run: |
-          git add \
-            public/data/question-bank-catalog.js \
-            public/data/question-bank-search.js \
-            public/data/question-bank-resources.js \
-            public/data/question-bank-manifest.js \
-            public/data/question-bank-details/*.js \
-            artifacts/question-bank/dedup-report.json \
-            artifacts/question-bank/lineage.json \
-            artifacts/question-bank/build-receipt.json \
-            docs/data/question-bank-catalog.js \
-            docs/data/question-bank-search.js \
-            docs/data/question-bank-resources.js \
-            docs/data/question-bank-manifest.js \
-            docs/data/question-bank-details/*.js \
-            docs/js/question-bank-data-service.js \
-            docs/.pages-manifest.json
-          if git diff --cached --quiet; then
-            echo "generated outputs already committed"
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "build(qb): commit generated platform projections"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
-      - name: Upload generated platform evidence
+      - name: Upload platform and scale evidence
         uses: actions/upload-artifact@v4
         with:
           name: question-bank-platform-${{ github.sha }}
