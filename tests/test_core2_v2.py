@@ -1,8 +1,15 @@
 from __future__ import annotations
 
+import json
+from pathlib import Path
 import unittest
 
+from jsonschema import Draft202012Validator
+
 from Shared.tools import core2_v2, render_core
+
+
+REPO = Path(__file__).resolve().parents[1]
 
 
 class Core2V2SupportProjection(unittest.TestCase):
@@ -122,6 +129,34 @@ class Core2V2SupportProjection(unittest.TestCase):
         }
         with self.assertRaises(core2_v2.Core2SupportProjectionError):
             core2_v2.project_support(question)
+
+
+class Core2V2SchemaContract(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.schema = json.loads((REPO / "Shared/library/package.schema.json").read_text(encoding="utf-8"))
+        cls.validator = Draft202012Validator(cls.schema["$defs"]["scaffold"])
+
+    def test_prompt_reveal_metadata_is_admitted_by_canonical_scaffold_schema(self):
+        scaffold = {
+            "text": "Resolve each component independently.",
+            "prompt": "Which representation separates the two directions?",
+            "learner_stage": "REPRESENTATION",
+            "support_kind": "REPRESENT",
+            "reveals": "METHOD",
+            "supports_move_ref": "MOVE-1",
+        }
+        self.assertEqual(list(self.validator.iter_errors(scaffold)), [])
+
+    def test_prompt_and_explicit_learner_stage_are_paired(self):
+        base = {
+            "text": "Use the governing relation.",
+            "support_kind": "CONNECT",
+            "reveals": "METHOD",
+            "supports_move_ref": "MOVE-2",
+        }
+        self.assertTrue(list(self.validator.iter_errors({**base, "prompt": "What relation connects the knowns?"})))
+        self.assertTrue(list(self.validator.iter_errors({**base, "learner_stage": "KEY_CONCEPT"})))
 
 
 class Core2V2RendererContract(unittest.TestCase):
