@@ -15,8 +15,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Install schema test dependency
-        run: pip install --quiet jsonschema
+      - name: Install test dependencies
+        run: pip install --quiet jsonschema pypdf
       - name: Informational platform code tests
         continue-on-error: true
         run: >-
@@ -25,3 +25,4 @@ jobs:
           tests.test_render_core
           tests.test_renderer_inventory
           tests.test_quality_contract
+          tests.test_core2_v2
