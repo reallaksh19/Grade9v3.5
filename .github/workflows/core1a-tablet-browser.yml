@@ -12,6 +12,8 @@ on:
       - "tools/site-audit/core-page-audit.mjs"
       - "products/physics/phy-kin-2d-motion.manifest.json"
       - "Physics/library/phy-kin-2d-motion.v1.json"
+      - "products/physics/phy-kin-1d-motion.manifest.json"
+      - "Physics/library/phy-kin-1d-motion.v1.json"
   workflow_dispatch:
 
 permissions:
@@ -77,6 +79,88 @@ jobs:
         run: |
           node tools/site-audit/core-page-audit.mjs             /tmp/core1a-spec/products/physics/phy-kin-2d-motion             --profile core1a-spec             --http-root /tmp/core1a-spec             --enforce             --json /tmp/core1a-spec/core1a-audit.json
 
+      - name: Build derivation-heavy cross-structure witness
+        run: |
+          python3 - <<'PY'
+          import json
+          import shutil
+          from pathlib import Path
+          from Shared.tools import render_core
+
+          manifest = Path("products/physics/phy-kin-1d-motion.manifest.json")
+          pages, gaps, digest = render_core.build(manifest, mode="PAGES")
+          root = Path("/tmp/core1a-spec")
+          out = root / "products" / "physics" / "phy-kin-1d-motion"
+          out.mkdir(parents=True, exist_ok=True)
+          for name, content in pages.items():
+              (out / name).write_text(content, encoding="utf-8")
+
+          css = root / "css"
+          css.mkdir(parents=True, exist_ok=True)
+          shutil.copy2("public/css/tablet-12-7.css", css / "tablet-12-7.css")
+          core1a = pages["core1a.html"]
+          if 'data-g9-derivation-bridge' not in core1a:
+              raise SystemExit("derivation witness did not render the generic derivation bridge")
+          (root / "derivation-render-evidence.json").write_text(
+              json.dumps({
+                  "manifest": manifest.as_posix(),
+                  "mode": "PAGES",
+                  "render_digest": digest,
+                  "core1a_gap_count": len([gap for gap in gaps if gap["core"] == "CORE1A"]),
+                  "all_gap_count": len(gaps),
+                  "derivation_bridge_present": True,
+              }, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          print(f"derivation_render_digest={digest}")
+          print(f"derivation_all_gap_count={len(gaps)}")
+          PY
+
+      - name: Run derivation witness through the same six-viewpoint browser matrix
+        run: |
+          node tools/site-audit/core-page-audit.mjs \
+            /tmp/core1a-spec/products/physics/phy-kin-1d-motion \
+            --profile core1a-spec \
+            --http-root /tmp/core1a-spec \
+            --json /tmp/core1a-spec/core1a-derivation-audit.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          report = json.loads(Path("/tmp/core1a-spec/core1a-derivation-audit.json").read_text(encoding="utf-8"))
+          core = report["core1a.html"]
+          failures = list(core.get("errors") or [])
+          for name, row in core["viewports"].items():
+              if row["horizontalOverflowPx"] != 0:
+                  failures.append(f"{name}: page overflow {row['horizontalOverflowPx']}px")
+              if row["smallTargets"] != 0:
+                  failures.append(f"{name}: {row['smallTargets']} controls below 48px")
+              gap = row["controlGeometry"]["minGapPx"]
+              if gap is not None and gap < 8:
+                  failures.append(f"{name}: intended control gap {gap}px < 8px")
+              if row["tableContainment"]["tablesOutsideLocalScroller"] != 0:
+                  failures.append(f"{name}: relation table escaped local scroller")
+              if row["anchorSafety"]["riskyAnchors"] != 0:
+                  failures.append(f"{name}: sticky-obscured anchor")
+              focus = row["focusProbe"]
+              if focus["focusFailures"] != 0 or focus["visibleFocus"] != focus["candidates"]:
+                  failures.append(
+                      f"{name}: focus {focus['visibleFocus']}/{focus['candidates']}, "
+                      f"failures={focus['focusFailures']}"
+                  )
+              interaction = row.get("interaction") or {}
+              if (interaction.get("reducedMotion") or {}).get("activeAnimations") != 0:
+                  failures.append(f"{name}: reduced-motion animation still active")
+              if (interaction.get("zoom200") or {}).get("horizontalOverflowPx") != 0:
+                  failures.append(f"{name}: 200% text scaling overflow")
+          if failures:
+              print("derivation cross-structure browser validation failed:")
+              for failure in failures:
+                  print(" -", failure)
+              raise SystemExit(1)
+          print("derivation cross-structure browser validation: PASS")
+          PY
+
       - name: Generated architecture and Pages publication checks
         id: generated_checks
         continue-on-error: true
@@ -102,6 +186,8 @@ jobs:
           path: |
             /tmp/core1a-spec/core1a-audit.json
             /tmp/core1a-spec/render-evidence.json
+            /tmp/core1a-spec/core1a-derivation-audit.json
+            /tmp/core1a-spec/derivation-render-evidence.json
             /tmp/core1a-spec/generated-preview
           if-no-files-found: error
 
