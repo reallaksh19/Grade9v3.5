@@ -501,6 +501,39 @@ def _prereqs(ctx: Ctx, m: dict) -> str:
     return "<ul>" + "".join(rows) + "</ul>" if rows else ""
 
 
+def _concept_join(ctx: Ctx, role: str) -> dict[str, dict[str, list[str]]]:
+    """Derive the selected Core1A↔Core2 graph; malformed authority fails as a typed render gap."""
+    try:
+        return core2_v2.concept_question_join(
+            ctx.selection_rows.get("microtopics", []),
+            ctx.selection_rows.get("core2", []),
+        )
+    except core2_v2.Core2ConceptJoinError as exc:
+        ctx.gap("RESOLVE_CORE2_CONCEPT_JOIN", ctx.manifest["product_id"], str(exc), role)
+        return {"question_to_microtopics": {}, "microtopic_to_questions": {}}
+
+
+def _core1a_practice_navigation(ctx: Ctx, m: dict) -> str:
+    """Generate exact Core2 practice links from the selected canonical capability graph."""
+    join = _concept_join(ctx, "CORE1A")
+    ids = join["microtopic_to_questions"].get(m["id"], [])
+    if not ids:
+        return ""
+    questions = {q["id"]: q for q in ctx.selection_rows.get("core2", [])}
+    rows = []
+    for question_id in ids:
+        question = questions.get(question_id)
+        if not question:
+            continue
+        label = _identity(question) or question_id
+        rows.append(
+            f'<li><a data-g9-practice-link data-g9-question-ref="{esc(question_id)}" '
+            f'data-g9-concept-ref="{esc(m["id"])}" href="core2.html#{esc(question_id)}">{esc(label)}</a></li>'
+        )
+    return block("practice_navigation", "<ul>" + "".join(rows) + "</ul>" if rows else "",
+                 title="Practice this concept in Core2")
+
+
 def core1(ctx: Ctx, m: dict) -> str:
     rels = _relations(ctx, m)
     if not rels:
@@ -566,7 +599,8 @@ def core1a(ctx: Ctx, m: dict) -> str:
                    + attempt_box("Your answer", record=m["id"])
                    + reveal("Model answer", block("exit_answer", para((exit_task.get("answer") or {}).get("summary"))
                                                   + items((exit_task.get("answer") or {}).get("reasoning"), True)),
-                            ref=f'CORE1A-{m["id"]}-exit'), True))
+                            ref=f'CORE1A-{m["id"]}-exit')
+                   + _core1a_practice_navigation(ctx, m), True))
 
 
 def core1b(ctx: Ctx, m: dict) -> str:
@@ -622,6 +656,27 @@ def _custody(q: dict) -> str:
         return "Source unverified"
     wording = {"FAITHFUL_NON_VERBATIM_RESTATEMENT": "faithful restatement of the original"}.get(cust.get("wording_custody"), "")
     return "Official past paper" + (f", {wording}" if wording else "")
+
+
+def _core2_concept_navigation(ctx: Ctx, q: dict) -> str:
+    """Link one selected source question back to its exact selected Core1A concept owners."""
+    join = _concept_join(ctx, "CORE2")
+    ids = join["question_to_microtopics"].get(q["id"], [])
+    if not ids:
+        return ""
+    microtopics = {m["id"]: m for m in ctx.selection_rows.get("microtopics", [])}
+    rows = []
+    for microtopic_id in ids:
+        microtopic = microtopics.get(microtopic_id)
+        if not microtopic:
+            continue
+        rows.append(
+            f'<li><a data-g9-concept-link data-g9-question-ref="{esc(q["id"])}" '
+            f'data-g9-concept-ref="{esc(microtopic_id)}" href="core1a.html#{esc(microtopic_id)}">'
+            f'{esc(microtopic.get("title") or microtopic_id)}</a></li>'
+        )
+    return block("concept_navigation", "<ul>" + "".join(rows) + "</ul>" if rows else "",
+                 title="Need the concept again?")
 
 
 def _source_solution(answer: dict) -> str:
@@ -763,7 +818,7 @@ def core2(ctx: Ctx, q: dict) -> str:
     return (slot("identity", block("source_identity", f"<h2>{esc(_identity(q))}</h2><p class=\"g9-prov\">{esc(_custody(q))}</p>") + metadata_strip(ctx, "CORE2", q), True)
             + slot("attempt", block("stem", para(q["stem"])) + block("conditions", items(q.get("conditions")), title="Conditions")
                    + figures + attempt_box("Your answer", response_for(q), q.get("options"), q["id"]), True)
-            + slot("support", _core2_support(ctx, q), False)
+            + slot("support", _core2_support(ctx, q) + _core2_concept_navigation(ctx, q), False)
             + slot("solution", reveal("Answer and working", _source_solution(ans)
                                       + _core2_solution(ctx, q, ans),
                                       ref=f'CORE2-{q["id"]}-solution'), True))
