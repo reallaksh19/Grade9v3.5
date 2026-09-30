@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "registry_version": "1.1.0",
+  "registry_version": "1.2.0",
   "shell": {
     "id": "G9-TABLET-SHELL-V1",
     "fixed_header": true,
@@ -120,12 +120,12 @@
     },
     {
       "id": "BP-CORE2-SOURCE-QUESTION",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "ACTIVE",
       "core_roles": [
         "CORE2"
       ],
-      "learner_job": "Preserve and expose authentic assessment demand with source custody intact.",
+      "learner_job": "Preserve authentic assessment demand while allowing bounded, provenance-explicit help that advances the learner without becoming a Question Clinic.",
       "shell_ref": "G9-TABLET-SHELL-V1",
       "layout_family": "QUESTION_READER",
       "slots": [
@@ -148,7 +148,9 @@
         {
           "id": "support",
           "accepts_blocks": [
-            "source_hint_ladder"
+            "source_hint_ladder",
+            "authored_core2_support",
+            "concept_navigation"
           ],
           "required": false
         },
@@ -156,6 +158,7 @@
           "id": "solution",
           "accepts_blocks": [
             "source_answer_rubric",
+            "verified_solution_reasoning",
             "custody_status"
           ],
           "required": true
@@ -195,17 +198,20 @@
       "forbidden": [
         "PAGE_LOCAL_ACADEMIC_TRUTH",
         "HOVER_ONLY_ESSENTIAL_INFORMATION",
-        "AUTHORED_SCAFFOLD_PRESENTED_AS_SOURCE_HINT"
+        "AUTHORED_SCAFFOLD_PRESENTED_AS_SOURCE_HINT",
+        "ANSWER_REVEALED_BY_PRE_SOLUTION_SUPPORT",
+        "GENERIC_FILLER_SUPPORT_TO_MEET_RUNG_COUNT",
+        "CORE2_COLLAPSED_INTO_QUESTION_CLINIC"
       ]
     },
     {
       "id": "BP-CORE1A-CONSTRUCTION",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "ACTIVE",
       "core_roles": [
         "CORE1A"
       ],
-      "learner_job": "Reveal and explain the complete conceptual construction at intrinsic subtopic depth.",
+      "learner_job": "Reveal and explain the complete conceptual construction at intrinsic subtopic depth, then connect the concept to selected authentic questions that exercise its canonical capability.",
       "shell_ref": "G9-TABLET-SHELL-V1",
       "layout_family": "READING_CONSTRUCTION",
       "slots": [
@@ -235,7 +241,8 @@
             "diagnose",
             "repair",
             "independent_checks",
-            "exit_task_closure"
+            "exit_task_closure",
+            "practice_navigation"
           ],
           "required": true
         }
