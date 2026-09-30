@@ -156,6 +156,62 @@ class Renderer(unittest.TestCase):
         self.assertEqual(html.count("data-g9-next-section"), len(route) - 1)
         self.assertNotIn("data-g9-mastery", html)
 
+    def test_core1a_structural_forms_are_renderer_traits_not_new_academic_schema(self):
+        motion_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        motion_ctx = render_core.context(motion_manifest)
+        motion_html = render_core.page(
+            motion_ctx, "CORE1A", "PAGES", render_core.render_digest(motion_ctx)
+        )
+
+        self.assertIn('data-g9-stage-sequence="true"', motion_html)
+        self.assertIn('data-g9-scene-event="true"', motion_html)
+        self.assertIn('data-g9-compare-boundary="true"', motion_html)
+
+        derivation_manifest = REPO / "products" / "physics" / "phy-kin-1d-motion.manifest.json"
+        derivation_ctx = render_core.context(derivation_manifest)
+        derivation_html = render_core.page(
+            derivation_ctx, "CORE1A", "PAGES", render_core.render_digest(derivation_ctx)
+        )
+        self.assertIn('data-g9-derivation-bridge="true"', derivation_html)
+
+        # The vocabulary is renderer-side only: no selected canonical concept is required
+        # to carry an academic "archetype" discriminator.
+        for ctx in (motion_ctx, derivation_ctx):
+            for microtopic in ctx.selection_rows["microtopics"]:
+                self.assertNotIn("archetype", microtopic)
+
+    def test_core1a_core1b_and_core2_keep_distinct_learner_roles(self):
+        repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(repo_manifest)
+
+        core1a = render_core.page(ctx, "CORE1A", "PAGES", render_core.render_digest(ctx))
+        first_concept = ctx.selection_rows["microtopics"][0]["id"]
+        a_start = core1a.index(f'<article id="{first_concept}"')
+        a_end = core1a.index("</article>", a_start)
+        a_article = core1a[a_start:a_end]
+        self.assertLess(
+            a_article.index('data-g9-block="inferential_jump"'),
+            a_article.index("data-g9-attempt-box"),
+        )
+
+        core1b = render_core.page(ctx, "CORE1B", "PAGES", render_core.render_digest(ctx))
+        b_start = core1b.index(f'<article id="{first_concept}"')
+        b_end = core1b.index("</article>", b_start)
+        b_article = core1b[b_start:b_end]
+        self.assertLess(
+            b_article.index('data-g9-block="predict"'),
+            b_article.index("data-g9-attempt-box"),
+        )
+        self.assertIn("data-requires-attempt", b_article)
+        self.assertGreater(
+            b_article.index('data-g9-block="rejoin_jump"'),
+            b_article.index("data-g9-attempt-box"),
+        )
+
+        core2 = render_core.page(ctx, "CORE2", "PAGES", render_core.render_digest(ctx))
+        self.assertIn('data-g9-block="source_identity"', core2)
+        self.assertNotIn('data-g9-block="inferential_jump"', core2)
+
     def test_core1a_relation_matrix_preserves_equation_meaning_and_validity_semantics(self):
         repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
         ctx = render_core.context(repo_manifest)
