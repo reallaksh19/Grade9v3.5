@@ -165,6 +165,19 @@ class QuestionBankPlatformTest(unittest.TestCase):
         self.assertEqual(len(variant_groups[0]["member_ids"]), 100)
         self.assertLess(report["evidence_count"], 100)
 
+    def test_a_near_duplicate_is_reported_and_an_unrelated_pair_is_not(self):
+        stem = ("A particle moves along a straight line with constant acceleration starting from rest and after "
+                "six seconds its speed is twelve metres per second find the distance covered in that time")
+        original = question("ND1", stem, number="1")
+        reworded = question("ND2", stem.replace("find the distance", "determine the distance"), number="2")
+        unrelated = question("ND3", "Name the organelle that releases usable energy in a plant cell", number="3")
+        self.assertEqual(qbp.compare_pair(original, reworded)["classification"], "NEAR_DUPLICATE")
+        self.assertEqual(qbp.compare_pair(original, unrelated)["classification"], "DISTINCT")
+        report = qbp.build_dedup_report([qbp.enrich_question_refs(q) for q in (original, reworded, unrelated)])
+        pairs = [(row["left_id"], row["right_id"]) for row in report["relationships"]]
+        self.assertEqual(pairs, [("ND1", "ND2")], "the near duplicate is evidence; the unrelated question is not")
+        self.assertEqual(report["question_count"], 3, "nothing is deleted")
+
     def test_exact_dedup_preserves_mathematical_operators(self):
         plus = question("PLUS", "Solve x + 1 = 4", number="10")
         minus = question("MINUS", "Solve x - 1 = 4", number="11")
