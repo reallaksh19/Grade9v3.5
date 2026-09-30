@@ -483,6 +483,7 @@ class Renderer(unittest.TestCase):
         self.assertIn("grid-template-columns:.68fr .32fr", render_core.CSS)
         self.assertIn("min-height:var(--g9-touch-min)", render_core.CSS)
         self.assertIn("overflow-x:auto", render_core.CSS)
+        self.assertIn(".g9-stage-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap", render_core.CSS)
         self.assertIn('data-g9-equation-matrix', html)
 
     def test_core1a_browser_audit_contract_is_syntax_valid_and_covers_required_viewports(self):
