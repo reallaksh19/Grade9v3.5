@@ -488,6 +488,7 @@ class Renderer(unittest.TestCase):
         self.assertIn(".g9-stage-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap", render_core.CSS)
         self.assertIn("[data-g9-concept-route] a,[data-g9-section-route] a{display:flex;width:100%;max-width:100%;min-width:0", render_core.CSS)
         self.assertIn("overflow-wrap:anywhere", render_core.CSS)
+        self.assertIn("[data-g9-meta-item]{display:inline-flex;flex-wrap:wrap", render_core.CSS)
         self.assertIn('data-g9-equation-matrix', html)
 
     def test_core1a_browser_audit_contract_is_syntax_valid_and_covers_required_viewports(self):
