@@ -340,7 +340,7 @@ for (const file of files) {
         stageKeyboard: { available: false, changed: null },
         sectionKeyboard: { available: false, resolved: null, historyRestored: null },
         reducedMotion: { activeAnimations: null },
-        zoom200: { horizontalOverflowPx: null },
+        zoom200: { horizontalOverflowPx: null, overflowSample: [] },
       };
 
       const stageNext = page.locator('[data-g9-stage-step="next"]').first();
@@ -374,14 +374,37 @@ for (const file of files) {
       );
       await page.emulateMedia({ reducedMotion: 'no-preference' });
 
-      r.interaction.zoom200.horizontalOverflowPx = await page.evaluate(() => {
+      r.interaction.zoom200 = await page.evaluate(() => {
         const root = document.documentElement;
         const before = root.style.getPropertyValue('--g9-zoom');
         root.style.setProperty('--g9-zoom', '2');
         const overflow = root.scrollWidth - root.clientWidth;
+        const visible = el => {
+          const box = el.getBoundingClientRect();
+          return box.width > 0 && box.height > 0;
+        };
+        const overflowing = [...document.querySelectorAll('body *')]
+          .filter(el => {
+            if (!visible(el) || el.closest('.g9-table-scroll')) return false;
+            const box = el.getBoundingClientRect();
+            return box.right > root.clientWidth + 1 || box.left < -1;
+          })
+          .slice(0, 8)
+          .map(el => {
+            const box = el.getBoundingClientRect();
+            return {
+              tag: el.tagName.toLowerCase(),
+              id: el.id || null,
+              className: typeof el.className === 'string' ? el.className : null,
+              text: (el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 80),
+              left: Math.round(box.left * 10) / 10,
+              right: Math.round(box.right * 10) / 10,
+              width: Math.round(box.width * 10) / 10,
+            };
+          });
         if (before) root.style.setProperty('--g9-zoom', before);
         else root.style.removeProperty('--g9-zoom');
-        return overflow;
+        return { horizontalOverflowPx: overflow, overflowSample: overflowing };
       });
     }
     out.viewports[vp.name] = r;
