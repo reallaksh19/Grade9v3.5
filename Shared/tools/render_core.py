@@ -209,9 +209,10 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
             svg = svg[:head.start()] + clean + svg[head.end():]
         name = "; ".join(labels[s] for s in shown if labels.get(s)) or rep.get("purpose", "")
         svg = re.sub(r"<svg\b", f'<svg role="img" aria-label="{esc(name)}"', svg, count=1)
+    sequence_attr = ' data-g9-stage-sequence="true"' if len(stage_ids) > 1 else ""
     return (f'<figure data-g9-figure data-g9-fig="{esc(record)}-{esc(rep_id)}" data-g9-stage="{stage}" '
             f'data-g9-representation="{esc(rep_id)}" data-g9-kind="{esc(kind)}" data-reveal-stages="{max(len(shown), 1)}" '
-            f'data-g9-stages-total="{max(len(stage_ids), 1)}" data-g9-stages="{esc(" ".join(shown))}">'
+            f'data-g9-stages-total="{max(len(stage_ids), 1)}" data-g9-stages="{esc(" ".join(shown))}"{sequence_attr}>'
             f'{svg}{controls}{caption}</figure>')
 
 
@@ -338,7 +339,8 @@ def metadata_strip(ctx: Ctx, role: str, record: dict) -> str:
     chips = "".join(
         f'<span data-g9-meta-item data-g9-meta-kind="{esc(item["kind"])}" '
         f'data-g9-meta-ref="{esc(item["ref"])}" data-g9-meta-value="{esc(item["value"])}">'
-        f'<strong>{esc(field_labels[item["kind"]])}:</strong> {esc(item["label"])}</span>'
+        f'<strong>{esc(field_labels[item["kind"]])}:</strong> '
+        f'<span data-g9-meta-label>{esc(item["label"])}</span></span>'
         for item in projection["items"]
     )
     return (
@@ -501,13 +503,13 @@ def _safe_mathml(value: str | None) -> str | None:
     return ET.tostring(root, encoding="unicode", short_empty_elements=True)
 
 
-def _relation_expression(ctx: Ctx, relation: dict, record: str) -> str:
+def _relation_expression(ctx: Ctx, relation: dict, record: str, role: str = "CORE1") -> str:
     if relation.get("mathml"):
         mathml = _safe_mathml(relation["mathml"])
         if mathml is None:
             ctx.gap("AUTHOR_GOVERNING_RELATION", relation["id"],
                     "relation.mathml is malformed or outside the restricted presentation-MathML subset",
-                    "CORE1")
+                    role)
         else:
             return f'<div class="g9-math" data-g9-math="mathml">{mathml}</div>'
     return f'<p class="g9-expr">{esc(relation["expression"])}</p>'
@@ -544,6 +546,174 @@ def teachers() -> dict:
                 _TEACHERS[c["id"]] = row
                 _TEACHERS[f"{pkg['subject']}:{c['id']}"] = row
     return _TEACHERS
+
+
+
+_BUCKETS: dict | None = None
+
+
+def library_buckets() -> dict:
+    """bucket id -> (subject, title) across canonical library packages."""
+    global _BUCKETS
+    if _BUCKETS is None:
+        from Shared.tools.package_migrate import package_paths  # noqa: PLC0415
+        _BUCKETS = {}
+        for path in package_paths():
+            pkg = load_json(path)
+            for bucket in pkg.get("buckets", []):
+                title = bucket.get("title") or bucket.get("topic")
+                if title:
+                    _BUCKETS[bucket["id"]] = (pkg["subject"], title)
+    return _BUCKETS
+
+
+def _core1a_route(ctx: Ctx) -> list[dict]:
+    """Flatten selected canonical construction units into one deterministic Concept Book route."""
+    route: list[dict] = []
+    for microtopic in ctx.selection_rows.get("microtopics", []):
+        units = microtopic.get("construction_units") or []
+        if units:
+            for index, unit in enumerate(units, 1):
+                route.append({
+                    "microtopic_id": microtopic["id"],
+                    "microtopic_title": microtopic["title"],
+                    "unit_id": unit["id"],
+                    "label": unit.get("decision") or f"Construction {index}",
+                })
+        elif microtopic.get("teaching_path"):
+            # Older canonical packages may own a complete teaching path without construction_units.
+            # The concept id is already the stable canonical fragment; do not manufacture section identity.
+            route.append({
+                "microtopic_id": microtopic["id"],
+                "microtopic_title": microtopic["title"],
+                "unit_id": microtopic["id"],
+                "label": microtopic["title"],
+            })
+    return route
+
+
+def _core1a_foundation_route(ctx: Ctx, bucket: dict) -> str:
+    """Render bucket prerequisites as orientation only; absence never blocks entry."""
+    links = ctx.manifest.get("prerequisite_links", {})
+    local = ctx.index("buckets")
+    global_index = library_buckets()
+    rows = []
+    for ref in bucket.get("prerequisite_refs", []):
+        title = None
+        subject = None
+        if ref in local:
+            row = local[ref]
+            title = row.get("title") or row.get("topic")
+            subject = ctx.manifest.get("subject")
+        elif ref in global_index:
+            subject, title = global_index[ref]
+        if not title:
+            continue
+        href = links.get(ref)
+        label = f"{title} ({subject})" if subject and subject != ctx.manifest.get("subject") else title
+        availability = "linked" if href else "unlinked"
+        rows.append(
+            f'<li data-g9-foundation-ref="{esc(ref)}" data-g9-availability="{availability}">'
+            + (f'<a href="{esc(href)}">{esc(label)}</a>' if href
+               else f'{esc(label)} <span class="g9-availability-note">— direct route unavailable in this product</span>')
+            + "</li>"
+        )
+    return "<ul>" + "".join(rows) + "</ul>" if rows else ""
+
+
+def _core1a_concept_route(microtopics: list[dict]) -> str:
+    rows = []
+    for microtopic in microtopics:
+        units = microtopic.get("construction_units") or []
+        sections = "".join(
+            f'<li><a href="#{esc(unit["id"])}">{esc(unit.get("decision") or f"Construction {index}")}</a></li>'
+            for index, unit in enumerate(units, 1)
+        )
+        nested = f"<ol>{sections}</ol>" if sections else ""
+        rows.append(
+            f'<li data-g9-concept-ref="{esc(microtopic["id"])}">'
+            f'<a href="#{esc(microtopic["id"])}">{esc(microtopic["title"])}</a>{nested}</li>'
+        )
+    return "<ol>" + "".join(rows) + "</ol>" if rows else ""
+
+
+def _core1a_bucket_orientation(ctx: Ctx) -> str:
+    """Compose compact bucket orientation only from canonical bucket + selected concept records."""
+    selected = ctx.selection_rows.get("microtopics", [])
+    if not selected:
+        return ""
+    bucket_index = ctx.index("buckets")
+    groups: dict[str, list[dict]] = {}
+    for microtopic in selected:
+        bucket_ref = microtopic.get("bucket_id")
+        if bucket_ref and bucket_ref in bucket_index:
+            groups.setdefault(bucket_ref, []).append(microtopic)
+
+    rendered = []
+    for bucket_ref, microtopics in groups.items():
+        bucket = bucket_index[bucket_ref]
+        scope = bucket.get("scope") or {}
+        covers = scope.get("covers")
+        promise = items(covers) if isinstance(covers, list) else para(covers)
+        conventions = [
+            row.get("statement") for row in bucket.get("conventions", [])
+            if isinstance(row, dict) and row.get("statement")
+        ]
+        primary = (
+            block("learning_promise", promise, title="Learning promise")
+            + f'<nav class="g9-block" data-g9-block="concept_route" data-g9-concept-route '
+              f'aria-label="Concept Book route"><h4>Concept route</h4>{_core1a_concept_route(microtopics)}</nav>'
+        )
+        exclusions = scope.get("excluded") or []
+        companion = (
+            block("foundation_route", _core1a_foundation_route(ctx, bucket), title="Foundation route")
+            + block("model_contract", items(conventions), title="Model contract")
+            + block("scope_boundary", items(exclusions), title="Outside this book")
+        )
+        rendered.append(
+            f'<section class="g9-core1a-book" data-g9-bucket-orientation '
+            f'data-g9-bucket-ref="{esc(bucket_ref)}">'
+            f'<p class="g9-prov">Concept Book</p><h2>{esc(bucket.get("title") or bucket.get("topic") or "")}</h2>'
+            f'<div class="g9-bucket-orientation-grid"><div>{primary}</div><aside>{companion}</aside></div>'
+            f'</section>'
+        )
+    return "".join(rendered)
+
+
+def _core1a_section_route(m: dict) -> str:
+    units = m.get("construction_units") or []
+    if not units:
+        return ""
+    links = "".join(
+        f'<li><a href="#{esc(unit["id"])}">{esc(unit.get("decision") or f"Construction {index}")}</a></li>'
+        for index, unit in enumerate(units, 1)
+    )
+    return f'<nav data-g9-section-route aria-label="Sections in this concept"><ol>{links}</ol></nav>'
+
+
+def _core1a_unit_navigation(ctx: Ctx, unit_id: str) -> str:
+    route = _core1a_route(ctx)
+    index = next((i for i, row in enumerate(route) if row["unit_id"] == unit_id), None)
+    if index is None:
+        return ""
+    previous = route[index - 1] if index > 0 else None
+    following = route[index + 1] if index + 1 < len(route) else None
+    links = []
+    if previous:
+        links.append(
+            f'<a data-g9-prev-section href="#{esc(previous["unit_id"])}" '
+            f'aria-label="Previous section: {esc(previous["label"])}">← Previous</a>'
+        )
+    if following:
+        links.append(
+            f'<a data-g9-next-section href="#{esc(following["unit_id"])}" '
+            f'aria-label="Next section: {esc(following["label"])}">Next →</a>'
+        )
+    return (
+        f'<nav class="g9-cu-nav" data-g9-unit-navigation aria-label="Concept Book section navigation">'
+        f'<span data-g9-route-position>Section {index + 1} of {len(route)}</span>'
+        f'<span class="g9-cu-nav-links">{"".join(links)}</span></nav>'
+    )
 
 
 def _unit_href(ctx: Ctx, role: str, record_id: str) -> str | None:
@@ -633,52 +803,183 @@ def core1(ctx: Ctx, m: dict) -> str:
     return body
 
 
+def _core1a_worked_anchor(question: dict) -> str:
+    """Render WATCH ONE from governed answer structure without inventing missing explanation."""
+    answer = question.get("answer") or {}
+    route = answer.get("reasoning_route") or []
+    if route:
+        steps = "".join(
+            f'<li data-g9-watch-step data-g9-move-ref="{esc(row.get("id", index))}">'
+            f'<strong>{esc(row.get("action", ""))}</strong>'
+            f'{para("Why valid: " + row["why_valid"]) if row.get("why_valid") else ""}'
+            f'{para("Result: " + row["output"]) if row.get("output") else ""}</li>'
+            for index, row in enumerate(route, 1)
+        )
+        working = f'<ol class="g9-watch-steps">{steps}</ol>'
+    else:
+        working = items(answer.get("reasoning"), True)
+    return (
+        para(question.get("stem"))
+        + working
+        + block("worked_result", para(answer.get("summary")), title="Result")
+        + block("worked_check", para(answer.get("check")), title="Check")
+    )
+
+
+def _core1a_relation_matrix(ctx: Ctx, m: dict) -> str:
+    """Preserve governed equation/meaning/validity data as a semantic comparison table."""
+    relations = _relations(ctx, m)
+    if not relations:
+        return ""
+    rows = []
+    for relation in relations:
+        validity = items(relation.get("conditions"))
+        rows.append(
+            f'<tr data-g9-relation-ref="{esc(relation["id"])}">'
+            f'<td>{_relation_expression(ctx, relation, m["id"], "CORE1A")}</td>'
+            f'<td>{para(relation.get("meaning"))}</td>'
+            f'<td>{validity}</td></tr>'
+        )
+    return (
+        '<div class="g9-table-scroll" data-g9-equation-matrix>'
+        '<table><thead><tr><th scope="col">Equation</th>'
+        '<th scope="col">What it tells you</th><th scope="col">When you can use it</th>'
+        f'</tr></thead><tbody>{"".join(rows)}</tbody></table></div>'
+    )
+
+
+def _core1a_path_bridge(ctx: Ctx, m: dict, steps: dict[str, dict]) -> tuple[str, str]:
+    """Render canonical teaching_path when no construction-unit wrapper exists.
+
+    This is a presentation fallback over existing academic records, not a synthetic
+    construction-unit or a new academic taxonomy.
+    """
+    ordered = [step for step in m.get("teaching_path", []) if step.get("id") in steps]
+    if not ordered:
+        return "", ""
+    transform_count = sum(1 for step in ordered if step.get("role") == "TRANSFORM")
+    derivation = transform_count >= 2 and bool(m.get("relation_refs"))
+    attrs = (' data-g9-derivation-bridge="true"' if derivation else ' data-g9-path-construction="true"')
+    rep = (m.get("representation_refs") or [None])[0]
+    step_html = "".join(
+        f'<li data-g9-step="{esc(step["id"])}">'
+        f'<strong>{esc(step["action"])}</strong>'
+        f'<br><em>Why valid:</em> {esc(step["why_valid"])}'
+        f'<br><em>Result:</em> {esc(step["output"])}</li>'
+        for step in ordered
+    )
+    primary = (
+        f'<section class="g9-cu g9-path-bridge"{attrs}>'
+        + _core1a_unit_navigation(ctx, m["id"])
+        + block("construction", f"<ol>{step_html}</ol>")
+        + figure(ctx, rep, "TEACHING", "CORE1A", m["id"])
+        + block("equation_matrix", _core1a_relation_matrix(ctx, m), title="Equations and validity")
+        + "</section>"
+    )
+    wrong = _misconceptions(m, None)
+    support = (
+        f'<section class="g9-cu-support" data-g9-support-for="{esc(m["id"])}">'
+        f'<h3>{esc(m["title"])}</h3>'
+        + block("wrong_path", items(row["wrong_idea"] for row in wrong), title="A tempting wrong path")
+        + block("diagnose", items(row["diagnostic_prompt"] for row in wrong), title="Diagnose")
+        + block("repair", items(row["repair"] for row in wrong), title="Repair")
+        + "</section>"
+    )
+    return primary, support
+
+
 def core1a(ctx: Ctx, m: dict) -> str:
     units = m.get("construction_units") or []
     if not units:
         ctx.gap("AUTHOR_CONSTRUCTION_UNITS", m["id"], "no construction units", "CORE1A")
     steps = {s["id"]: s for s in m.get("teaching_path", [])}
     questions = ctx.index("questions")
-    unit_html = ""
+    exit_task = m.get("exit_task") or {}
+
+    identity = slot(
+        "identity",
+        f"<h2>{esc(m['title'])}</h2>"
+        + metadata_strip(ctx, "CORE1A", m)
+        + block("entry_assumptions", items(m.get("entry_assumptions")) + _prereqs(ctx, m), title="You need")
+        + block("section_route", _core1a_section_route(m), title="Sections"),
+        True,
+    )
+    closure = (
+        block("exit_task", para(exit_task.get("prompt")), title="Try it with less support")
+        + attempt_box("Your answer", record=m["id"])
+        + reveal(
+            "Model answer",
+            block(
+                "exit_answer",
+                para((exit_task.get("answer") or {}).get("summary"))
+                + items((exit_task.get("answer") or {}).get("reasoning"), True),
+            ),
+            ref=f'CORE1A-{m["id"]}-exit',
+        )
+        + _core1a_practice_navigation(ctx, m)
+    )
+
+    if not units:
+        primary, support = _core1a_path_bridge(ctx, m, steps)
+        return (
+            identity
+            + slot(
+                "construction",
+                block("inferential_jump", para(m["inferential_jump"]), title="The key step") + primary,
+                True,
+            )
+            + slot("repair_closure", support + closure, True)
+        )
+
+    paired = ""
     for n, u in enumerate(units):
         decision = "" if u.get("decision_from") == "inferential_jump" else u.get("decision", "")
-        step_html = "".join(f'<li data-g9-step="{esc(sid)}"><strong>{esc(steps[sid]["action"])}</strong>'
-                            f'<br><em>Why valid:</em> {esc(steps[sid]["why_valid"])}'
-                            f'<br><em>Result:</em> {esc(steps[sid]["output"])}</li>'
-                            for sid in u["step_refs"] if sid in steps)
+        step_html = "".join(
+            f'<li data-g9-step="{esc(sid)}"><strong>{esc(steps[sid]["action"])}</strong>'
+            f'<br><em>Why valid:</em> {esc(steps[sid]["why_valid"])}'
+            f'<br><em>Result:</em> {esc(steps[sid]["output"])}</li>'
+            for sid in u["step_refs"] if sid in steps
+        )
         anchor_q = questions.get(u.get("worked_anchor_ref") or "")
         if not anchor_q:
             ctx.gap("AUTHOR_WORKED_ANCHOR", u["id"], "no worked anchor", "CORE1A")
-        anchor_html = ""
-        if anchor_q:
-            ans = anchor_q["answer"]
-            anchor_html = para(anchor_q["stem"]) + items(ans.get("reasoning"), True) + para(ans.get("summary"))
-        checks = [c["statement"] for c in u.get("independent_checks") or []]
+        anchor_html = _core1a_worked_anchor(anchor_q) if anchor_q else ""
+        checks = [check["statement"] for check in u.get("independent_checks") or []]
         if not checks:
             ctx.gap("AUTHOR_INDEPENDENT_CHECK", u["id"], "no independent check", "CORE1A")
         wrong = _misconceptions(m, u)
-        heading = f"<h3>{esc(decision)}</h3>" if decision else (f"<h3>Construction step {n + 1} of {len(units)}</h3>" if len(units) > 1 else "")
-        unit_html += (f'<section class="g9-cu" data-g9-cu="{esc(u["id"])}">{heading}'
-                      + block("construction", f"<ol>{step_html}</ol>")
-                      + figure(ctx, u.get("representation_ref"), "TEACHING", "CORE1A", u["id"])
-                      + block("worked_anchor", anchor_html, title="Worked example")
-                      + block("wrong_path", items(w["wrong_idea"] for w in wrong), title="A tempting wrong path")
-                      + block("diagnose", items(w["diagnostic_prompt"] for w in wrong), title="Diagnose")
-                      + block("repair", items(w["repair"] for w in wrong), title="Repair")
-                      + block("independent_check", items(checks), title="Check it independently")
-                      + "</section>")
-    exit_task = m.get("exit_task") or {}
-    return (slot("identity", f"<h2>{esc(m['title'])}</h2>" + metadata_strip(ctx, "CORE1A", m)
-                 + block("entry_assumptions", items(m.get("entry_assumptions")) + _prereqs(ctx, m), title="You need")
-                 , True)
-            + slot("construction", block("inferential_jump", para(m["inferential_jump"]), title="The key step") + unit_html, True)
-            + slot("repair_closure",
-                   block("exit_task", para(exit_task.get("prompt")), title="Exit task")
-                   + attempt_box("Your answer", record=m["id"])
-                   + reveal("Model answer", block("exit_answer", para((exit_task.get("answer") or {}).get("summary"))
-                                                  + items((exit_task.get("answer") or {}).get("reasoning"), True)),
-                            ref=f'CORE1A-{m["id"]}-exit')
-                   + _core1a_practice_navigation(ctx, m), True))
+        heading = (
+            f"<h3>{esc(decision)}</h3>"
+            if decision
+            else (f"<h3>Construction step {n + 1} of {len(units)}</h3>" if len(units) > 1 else "")
+        )
+        relation_matrix = _core1a_relation_matrix(ctx, m) if n == 0 else ""
+        primary = (
+            (block("inferential_jump", para(m["inferential_jump"]), title="The key step") if n == 0 else "")
+            + f'<section id="{esc(u["id"])}" class="g9-cu" data-g9-cu="{esc(u["id"])}">{heading}'
+            + _core1a_unit_navigation(ctx, u["id"])
+            + block("construction", f"<ol>{step_html}</ol>")
+            + figure(ctx, u.get("representation_ref"), "TEACHING", "CORE1A", u["id"])
+            + block("equation_matrix", relation_matrix, title="Equations and validity")
+            + block("worked_anchor", anchor_html, title="Watch one")
+            + "</section>"
+        )
+        support_label = decision or f"Construction {n + 1}"
+        support = (
+            f'<section class="g9-cu-support" data-g9-support-for="{esc(u["id"])}">'
+            f"<h3>{esc(support_label)}</h3>"
+            + block("wrong_path", items(row["wrong_idea"] for row in wrong), title="A tempting wrong path")
+            + block("diagnose", items(row["diagnostic_prompt"] for row in wrong), title="Diagnose")
+            + block("repair", items(row["repair"] for row in wrong), title="Repair")
+            + block("independent_check", items(checks), title="Check it independently")
+            + "</section>"
+        )
+        # Alternating blueprint-owned slots are deliberate. In compact/medium DOM order,
+        # each companion follows the construction it supports; in expanded grid layout
+        # the same pair occupies the 68/32 primary/support row without duplicating content.
+        paired += slot("construction", primary, True) + slot("repair_closure", support, True)
+
+    return identity + paired + slot("repair_closure", closure, True)
 
 
 def core1b(ctx: Ctx, m: dict) -> str:
@@ -978,16 +1279,27 @@ def _family_title(ctx: Ctx, ref: str | None) -> str:
 
 
 def _repair(ctx: Ctx, ref: str | None) -> str:
-    """A repair pointer as the learner needs it: the step's own action, linked to Core1A."""
+    """Link a canonical repair step to its exact Core1A construction location when one exists."""
     if not ref:
         return ""
     for p in ctx.packages:
         for m in p.get("microtopics", []):
             for s in m.get("teaching_path", []):
-                if s["id"] == ref:
-                    href = _unit_href(ctx, "CORE1A", m["id"])
-                    label = f'Revisit: {esc(s["action"])}'
-                    return "<p>" + (f'<a href="{esc(href)}">{label}</a>' if href else label) + "</p>"
+                if s["id"] != ref:
+                    continue
+                unit = next(
+                    (row for row in m.get("construction_units") or [] if ref in (row.get("step_refs") or [])),
+                    None,
+                )
+                target = unit["id"] if unit else m["id"]
+                label = f'Revisit: {esc(s["action"])}'
+                # Link to the exact owning construction unit, but only when Core1A is part of this packet.
+                if _unit_href(ctx, "CORE1A", m["id"]):
+                    return (
+                        f'<p><a data-g9-repair-ref="{esc(ref)}" data-g9-concept-ref="{esc(m["id"])}" '
+                        f'data-g9-repair-target="{esc(target)}" href="core1a.html#{esc(target)}">{label}</a></p>'
+                    )
+                return f"<p>{label}</p>"
     return ""
 
 
@@ -1119,7 +1431,38 @@ nav[data-g9-breadcrumb]{display:flex;gap:8px;flex-wrap:wrap;padding:8px var(--g9
 main{max-width:var(--g9-content-max);margin:0 auto;padding:var(--g9-space);box-sizing:border-box}
 main>*{min-width:0}article[data-g9-unit]{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:var(--g9-space);margin:18px 0;min-width:0}
 article[data-g9-unit]>*{min-width:0}
-@media (min-width:1100px){article[data-g9-unit].g9-stage-support{display:grid;grid-template-columns:.68fr .32fr;gap:20px}
+article[id],section[id]{scroll-margin-top:96px}
+.g9-core1a-book{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(16px,2vw,24px);margin:0 0 18px;min-width:0}
+.g9-core1a-book>h2{margin:.15em 0 .6em}
+.g9-bucket-orientation-grid{display:block;min-width:0}.g9-bucket-orientation-grid>*{min-width:0}
+[data-g9-concept-route] ol,[data-g9-section-route] ol{padding-left:1.4rem;margin:.5rem 0;box-sizing:border-box;max-width:100%;min-width:0}
+[data-g9-concept-route] li,[data-g9-section-route] li{margin:.35rem 0;max-width:100%;min-width:0}
+[data-g9-concept-route] a,[data-g9-section-route] a{display:flex;width:100%;max-width:100%;min-width:0;justify-content:flex-start;text-align:left;white-space:normal;overflow-wrap:anywhere}
+.g9-cu{padding-top:8px;border-top:1px solid var(--line)}
+.g9-cu:first-child{border-top:0}
+.g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] ol{list-style:none;padding-left:0;counter-reset:g9-derive}
+.g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] li{counter-increment:g9-derive;margin:0 0 12px;padding:12px 14px;border-left:3px solid var(--accent);background:var(--bg)}
+.g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] li::before{content:"Step " counter(g9-derive);display:block;color:var(--muted);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.g9-cu-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:.35rem 0 .8rem}
+.g9-cu-nav-links{display:flex;gap:8px;flex-wrap:wrap}
+.g9-stage-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;max-width:100%}
+.g9-stage-controls>[data-g9-stage-label]{color:var(--muted);flex:0 1 auto}
+.g9-table-scroll{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.g9-table-scroll table{width:100%;min-width:680px;border-collapse:collapse}
+.g9-table-scroll th,.g9-table-scroll td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+.g9-table-scroll th{background:var(--bg)}
+.g9-table-scroll td>.g9-math,.g9-table-scroll td>.g9-expr{margin:.15rem 0}
+[data-g9-block=worked_anchor]{border-left:4px solid var(--accent);padding-left:14px}
+.g9-watch-steps>li{margin:.8rem 0}.g9-watch-steps p{margin:.2rem 0}
+[data-g9-block=wrong_path],[data-g9-block=repair]{border-left:3px solid var(--line);padding-left:12px}
+[data-g9-block=scope_boundary]{color:var(--muted);font-size:.92rem}
+[data-g9-block=scope_boundary] ul{margin:.35rem 0;padding-left:1.2rem}
+.g9-availability-note{color:var(--muted);font-size:.9rem}
+.g9-cu-support{padding:0 0 16px;margin:0 0 16px;border-bottom:1px solid var(--line)}
+.g9-cu-support:last-of-type{border-bottom:0}.g9-cu-support>h3{font-size:1rem;line-height:1.35;margin:.3rem 0 .7rem;color:var(--muted)}
+@media (min-width:1100px){.g9-bucket-orientation-grid{display:grid;grid-template-columns:.68fr .32fr;gap:20px}
+article[data-g9-unit].g9-stage-support{display:grid;grid-template-columns:.68fr .32fr;gap:20px}
+body[data-core=CORE1A] article.g9-stage-support>.slot-identity{grid-column:1/-1}
 article.g9-stage-support>.slot-identity,article.g9-stage-support>.slot-attempt,article.g9-stage-support>.slot-construction,article.g9-stage-support>.slot-reconstruction,article.g9-stage-support>.slot-reasoning,article.g9-stage-support>.slot-post_attempt,article.g9-stage-support>.slot-solution{grid-column:1}
 article.g9-stage-support>.slot-support,article.g9-stage-support>.slot-repair_closure{grid-column:2}}
 textarea{width:100%;min-height:120px;font:inherit;border:1px solid var(--line);border-radius:10px;padding:14px 16px;box-sizing:border-box;background:var(--card);color:var(--fg)}
@@ -1127,8 +1470,9 @@ details{border:1px solid var(--line);border-radius:10px;margin:12px 0;padding:0 
 figure{margin:14px 0;max-width:100%;overflow-x:auto}figure svg{width:100%;height:auto;max-width:720px}figcaption{color:var(--muted)}
 .g9-prov{color:var(--muted);font-size:.95rem}.g9-expr{font-family:ui-monospace,monospace;font-size:1.05rem}
 [data-g9-meta-strip]{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
-[data-g9-meta-item]{display:inline-flex;gap:4px;align-items:baseline;padding:5px 9px;border:1px solid var(--line);border-radius:999px;background:var(--bg);font-size:.9rem}
-[data-g9-meta-item] strong{font-weight:700}
+[data-g9-meta-item]{display:inline-flex;flex-wrap:wrap;gap:4px;align-items:baseline;padding:5px 9px;border:1px solid var(--line);border-radius:999px;background:var(--bg);font-size:.9rem;max-width:100%;min-width:0;box-sizing:border-box}
+[data-g9-meta-item] strong{font-weight:700;flex:0 0 auto}
+[data-g9-meta-label]{min-width:0;overflow-wrap:anywhere}
 h4{margin:.8em 0 .3em}:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 footer{padding:24px 16px;color:var(--muted)}
 @media print{header[data-g9-shell-header],nav[data-g9-breadcrumb],.g9-attempt,button,[data-g9-display-panel]{display:none!important}
@@ -1287,7 +1631,8 @@ def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
             f'<title>{esc(ROLE_TITLE[role])} · {esc(m["title"])}</title><style>{CSS}</style></head>'
             f'<body data-core="{role}" data-blueprint-ref="{esc(bp["id"])}@{esc(bp["version"])}">'
             f'{header}{crumbs}<noscript>Answers open after you attempt; this page needs JavaScript.</noscript>'
-            f'<main><h1>{esc(m["title"])}: {esc(ROLE_TITLE[role])}</h1>{articles}</main>'
+            f'<main><h1>{esc(m["title"])}: {esc(ROLE_TITLE[role])}</h1>'
+            f'{_core1a_bucket_orientation(ctx) if role == "CORE1A" else ""}{articles}</main>'
             f'<footer data-g9-footer>{esc(m["subject"])} · {esc(m["title"])}</footer>'
             f"<script>{JS}</script></body></html>\n")
 
@@ -1459,14 +1804,16 @@ def _single_file_fragment(page_html: str, role: str) -> str:
         raise ValueError(f"{role}: rendered page has no main")
     fragment = match.group(1)
     article_ids = re.findall(r'<article\b[^>]*\bid="([^"]+)"', fragment)
-    for old in article_ids:
+    section_ids = re.findall(r'<section\b[^>]*\bid="([^"]+)"', fragment)
+    local_anchor_ids = list(dict.fromkeys(article_ids + section_ids))
+    for old in local_anchor_ids:
         fragment = fragment.replace(f'id="{old}"', f'id="g9-{role}--{old}"', 1)
     file_to_role = {ROLE_FILE[r]: r for r in ROLES}
     def cross_link(m: re.Match[str]) -> str:
         target_role = file_to_role.get(m.group(1))
         return f'href="#g9-{target_role}--{m.group(2)}"' if target_role else m.group(0)
     fragment = re.sub(r'href="(core\w+\.html)#([^"]+)"', cross_link, fragment)
-    for old in article_ids:
+    for old in local_anchor_ids:
         fragment = fragment.replace(f'href="#{old}"', f'href="#g9-{role}--{old}"')
     fragment = re.sub(
         r'href="\.\./\.\./\.\./([^"]+)"',

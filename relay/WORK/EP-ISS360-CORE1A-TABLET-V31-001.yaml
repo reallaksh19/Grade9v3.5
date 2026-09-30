@@ -1,0 +1,166 @@
+schema_version: "relay-v3.1-ep"
+id: "EP-ISS360-CORE1A-TABLET-V31-001"
+work_package: "WP-ISS360-CORE1A-TABLET"
+outcome:
+  statement: "Deliver Issue #360 as a reusable tablet-native Core1A Concept Book through the sole governed Core renderer, preserving canonical academic authority and Core-family semantics while adding governed bucket/section navigation, differentiated teaching composition, post-teaching closure and truthful Core2 transfer."
+basis:
+  predecessor_checkpoint: null
+  material_base: "e1bfe7a0e45c9a59cde33459d1d6f6bc8febe390"
+  protocol_basis: "reallaksh19/Common@1ced68258afeaf50df113b1d38a4ceb9193587e3:skills/engineering-pr-delivery-v3.1"
+  live_protocol_basis:
+    protocol: "V3.1"
+    common_repository: "reallaksh19/Common"
+    common_sha: "1ced68258afeaf50df113b1d38a4ceb9193587e3"
+    two_pass_revision: "TPG-2P-2026-09-28-R3"
+    resolved_at: "2026-09-30T07:30:42Z"
+  semantic_dependencies:
+    - path: "Issue #360 IMPLEMENTATION_PLAN rev 1 / issuecomment-5906438582"
+      reason: "Owner-approved bounded implementation approach, authority correction and STEP-C1A-01..10 plan."
+    - path: "Shared/tools/render_core.py"
+      reason: "Sole governed production Core renderer."
+    - path: "Shared/web/interactive-page-blueprints.v1.json"
+      reason: "Current Core1A role, stage/support and responsive presentation contract."
+    - path: "Physics/library/phy-kin-2d-motion.v1.json"
+      reason: "Canonical Motion-in-2D bucket, concept, construction, relation, representation and worked-anchor truth."
+    - path: "products/physics/phy-kin-2d-motion.manifest.json"
+      reason: "Current product selection and concept ordering authority."
+    - path: "github:reallaksh19/Grade9V3#361"
+      reason: "Concurrent draft Core2-v2 implementation; concept-level Core1A↔Core2 join must be consumed if landed rather than duplicated."
+scope:
+  write:
+    - ".github/workflows/core1a-tablet-browser.yml"
+    - "docs/architecture-manifest.json"
+    - "Shared/tools/render_core.py"
+    - "tests/test_render_core.py"
+    - "tools/site-audit/core-page-audit.mjs"
+    - "tests/**core1a**"
+    - "relay/WORK/EP-ISS360-CORE1A-TABLET-V31-001.yaml"
+  read:
+    - "Shared/web/interactive-page-blueprints.v1.json"
+    - "Shared/library/package.schema.json"
+    - "Shared/tools/learner_metadata.py"
+    - "Shared/tools/product_manifest.py"
+    - "Shared/tools/build_products.py"
+    - "Shared/tools/build_pages_site.py"
+    - "Shared/quality/learner-quality.v1.json"
+    - "Physics/library/phy-kin-2d-motion.v1.json"
+    - "Physics/matrices/phy-kin-2d-motion.rungs.json"
+    - "Physics/library/phy-kin-1d-motion.v1.json"
+    - "Physics/library/exam-bank/competitive-exam-question-bank.v2.json"
+    - "products/physics/phy-kin-2d-motion.manifest.json"
+    - "standalone/products/physics/phy-kin-2d-motion.html"
+  protect:
+    - "Physics/library/phy-kin-2d-motion.v1.json"
+    - "Physics/matrices/phy-kin-2d-motion.rungs.json"
+    - "Physics/library/exam-bank/competitive-exam-question-bank.v2.json"
+    - "Shared/library/package.schema.json"
+    - "Shared/vocabularies/learner-question-metadata.v1.json"
+  prohibit:
+    - "Do not admit Owner textbook PDF content into canonical academic truth through renderer code."
+    - "Do not add a topic-specific Core1A renderer or Physics/Motion conditional in Shared code."
+    - "Do not create a second curriculum, navigation or Core1A↔Core2 mapping datastore."
+    - "Do not infer mastery/readiness from visited or navigation state."
+    - "Do not turn Core1A into attempt-first reconstruction."
+    - "Do not hand-edit generated docs output; docs/architecture-manifest.json may change only from exact Shared/tools/build_manifest.py output."
+acceptance:
+  - id: "AC-C1A-01"
+    statement: "Core1A remains completed conceptual construction, not attempt-first teaching."
+    evidence_requirements:
+      - oracle: "Exact rendered DOM order and Core1/Core1B semantic regression."
+  - id: "AC-C1A-02"
+    statement: "Expanded Core1A uses the governed stage/support concept at approximately 68/32 where applicable."
+    evidence_requirements:
+      - oracle: "Browser measurement at expanded tablet widths."
+  - id: "AC-C1A-03"
+    statement: "Portrait/medium stacks semantically with no page-level horizontal overflow."
+    evidence_requirements:
+      - oracle: "Browser matrix at 800x1280 and 820x1180 plus overflow measurement."
+  - id: "AC-C1A-04"
+    statement: "Primary interactive controls remain at least 48 CSS px with usable spacing."
+    evidence_requirements:
+      - oracle: "Rendered touch-target measurement."
+  - id: "AC-C1A-05"
+    statement: "Bucket and ordered section navigation are derived from governed data and do not treat visits as mastery."
+    evidence_requirements:
+      - test: "Focused renderer navigation tests plus browser deep-link/history proof."
+  - id: "AC-C1A-06"
+    statement: "Bucket orientation represents promise, prerequisites/foundation route and model contract without blocking entry."
+    evidence_requirements:
+      - test: "Focused canonical Motion orientation projection test."
+  - id: "AC-C1A-07"
+    statement: "At least four generic presentation forms are supported without academic archetype schema."
+    evidence_requirements:
+      - oracle: "Motion staged/event witnesses plus canonical derivation-heavy cross-structure witness."
+  - id: "AC-C1A-08"
+    statement: "Equation/meaning/validity comparison remains semantically tabular where appropriate."
+    evidence_requirements:
+      - oracle: "Rendered semantic table and responsive browser proof."
+  - id: "AC-C1A-09"
+    statement: "Misconception/repair remains explicit, non-punitive and canonically sourced."
+    evidence_requirements:
+      - test: "Renderer content-source regression."
+  - id: "AC-C1A-10"
+    statement: "WATCH ONE preserves complete governed worked explanation and does not invent missing why-valid content."
+    evidence_requirements:
+      - oracle: "Structured-reasoning witness plus truthful fallback witness."
+  - id: "AC-C1A-11"
+    statement: "Post-teaching faded practice is available without attempt-first Core1A teaching."
+    evidence_requirements:
+      - test: "DOM order and learner interaction regression."
+  - id: "AC-C1A-12"
+    statement: "Named Core2 destinations resolve directly from canonical selected relationships."
+    evidence_requirements:
+      - oracle: "Real Motion selected-question link proof."
+  - id: "AC-C1A-13"
+    statement: "Core2 return uses exact canonical teaching location when available and never fabricates one."
+    evidence_requirements:
+      - oracle: "repair_ref resolution proof with concept-level fallback."
+  - id: "AC-C1A-14"
+    statement: "Source/build boundaries render as availability, not learner locks."
+    evidence_requirements:
+      - oracle: "Unavailable-state DOM semantics."
+  - id: "AC-C1A-15"
+    statement: "Difficulty remains contextual metadata and never a progression gate."
+    evidence_requirements:
+      - test: "No navigation/gating dependency on difficulty."
+  - id: "AC-C1A-16"
+    statement: "Learning content begins quickly without oversized hero chrome."
+    evidence_requirements:
+      - oracle: "1280x800 exact browser readback."
+  - id: "AC-C1A-17"
+    statement: "Derivation-heavy presentation is tablet-usable without algebra clipping; current Motion scope is not widened by presentation code."
+    evidence_requirements:
+      - oracle: "Canonical derivation-heavy witness plus SBA-06 design comparison."
+  - id: "AC-C1A-18"
+    statement: "Horizontal-launch route remains usable from orientation through transfer on portrait and landscape."
+    evidence_requirements:
+      - oracle: "Motion projectile witness in required browser matrix."
+  - id: "AC-C1A-19"
+    statement: "Contrasting non-projectile Core1A content uses the same Shared architecture without topic-specific branches."
+    evidence_requirements:
+      - oracle: "MIC-PHY-KIN-CONSTANT-ACCELERATION cross-structure falsifier."
+  - id: "AC-C1A-20"
+    statement: "Exact local-HTTP browser evidence covers touch, keyboard/focus, equations, visuals, navigation and deep links."
+    evidence_requirements:
+      - oracle: "390x844, 800x1280, 820x1180, 1180x820, 1280x800 and 1440x900."
+  - id: "AC-C1A-21"
+    statement: "Core1/Core1B/Core2 semantics remain distinct."
+    evidence_requirements:
+      - test: "Six-role renderer regression."
+  - id: "AC-C1A-22"
+    statement: "No new gate, second renderer, second academic store or duplicate page-local academic truth is introduced."
+    evidence_requirements:
+      - oracle: "Patch readback, topic-independence and authority-flow review."
+quality_policy:
+  level: "HIGH_RISK"
+  independent_review: "REQUIRED"
+admission_policy:
+  qualification: "NOT_REQUIRED"
+  question_policy: "NONE"
+next:
+  first_action: "Implement STEP-C1A-02/03 from current main: subject-neutral Concept Book orientation and canonical construction-unit navigation with focused tests; do not overlap #361 Core2 concept-join code."
+  stop_conditions:
+    - "Publish PLAN_UPDATE if a merged overlapping PR materially changes the renderer seam or approved approach."
+    - "Do not invent learner-facing academic wording when canonical fields are absent."
+    - "Do not widen current Motion scope to trajectory-equation derivation through #360."
+    - "Do not create schema fields for presentation archetype labels without a proven representability falsifier."

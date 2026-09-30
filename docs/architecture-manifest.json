@@ -6,7 +6,7 @@
     "adapter"
   ],
   "component_count": 404,
-  "relation_count": 417,
+  "relation_count": 418,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
@@ -18,7 +18,7 @@
     "WEB_CONTRACT": 3,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:e098d8894f1c5086155102442abc3336880e5af2435c5ad7771d7bf3aa019497",
+  "digest": "sha256:9d99a4c1b05bfb7e048ab9f1ce2ed3806824775fdcfd326f6a59ce0436171541",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -1088,8 +1088,8 @@
       "path": "Shared/tools/render_core.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 96903,
-      "sha256": "723b3a146e2f0c744039859c84cda92ce95f0254890d509fb15a4725edd06869"
+      "bytes": 113218,
+      "sha256": "9b181552bf399785c3fe6dd5f09e77c5ece6077f4e672d6a1ebb6382cb7f9ba1"
     },
     {
       "path": "Shared/tools/renderer_inventory.py",
@@ -2551,8 +2551,8 @@
       "path": "tests/test_render_core.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 13807,
-      "sha256": "71192db24c26858fa340d138bf65ff14a6a646409f04d3a4bd9027b0f19fc5da"
+      "bytes": 35895,
+      "sha256": "1c56af9075c911925349e9e600aca7f93c261cbbb9216a0b2f0a7350bbe133d0"
     },
     {
       "path": "tests/test_renderer_inventory.py",
@@ -2831,8 +2831,8 @@
       "path": "tools/site-audit/core-page-audit.mjs",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 11281,
-      "sha256": "f980a679ddcaccf6f44a519c229ab99595ff009786d489aaf0fc193705122b41"
+      "bytes": 29465,
+      "sha256": "078fdf020f132ae1182d76fa41ea31a44a3c4142f45b771702f4471047cf6319"
     },
     {
       "path": "tools/site-audit/core2-v2-browser-audit.mjs",
@@ -3588,6 +3588,11 @@
     {
       "from": "Shared/tools/render_core.py",
       "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/render_core.py",
+      "to": "Shared.tools.package_migrate",
       "kind": "IMPORTS"
     },
     {
