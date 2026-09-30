@@ -13,9 +13,12 @@ on:
       - "docs/gcdr-suites/**"
       - "public/question-bank/**"
       - "public/js/question-bank.js"
+      - "public/js/question-bank-data-service.js"
       - "public/data/question-bank-*.js"
+      - "public/data/question-bank-details/**"
       - "tests/test_question_bank_web.py"
       - "tests/test_question_bank_platform.py"
+      - "tests/question_bank_data_service.test.mjs"
       - ".github/workflows/question-bank-platform.yml"
   pull_request:
     paths:
@@ -28,9 +31,12 @@ on:
       - "docs/gcdr-suites/**"
       - "public/question-bank/**"
       - "public/js/question-bank.js"
+      - "public/js/question-bank-data-service.js"
       - "public/data/question-bank-*.js"
+      - "public/data/question-bank-details/**"
       - "tests/test_question_bank_web.py"
       - "tests/test_question_bank_platform.py"
+      - "tests/question_bank_data_service.test.mjs"
       - ".github/workflows/question-bank-platform.yml"
   workflow_dispatch:
 
@@ -44,6 +50,8 @@ jobs:
           python-version: "3.11"
       - name: Question Bank contract and growth falsifiers
         run: python3 -m unittest tests.test_question_bank_web tests.test_question_bank_platform
+      - name: Progressive browser data service
+        run: node tests/question_bank_data_service.test.mjs
       - name: Legacy browser projection remains current
         run: python3 Shared/tools/build_question_bank_web.py --check
       - name: Generate shared Question Bank platform artifacts
@@ -66,6 +74,7 @@ jobs:
             public/data/question-bank-search.js
             public/data/question-bank-resources.js
             public/data/question-bank-manifest.js
+            public/data/question-bank-details/*.js
             artifacts/question-bank/dedup-report.json
             artifacts/question-bank/lineage.json
             artifacts/question-bank/build-receipt.json
