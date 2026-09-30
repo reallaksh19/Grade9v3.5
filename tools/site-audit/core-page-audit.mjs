@@ -29,6 +29,7 @@ const profile = process.argv.includes('--profile') ? process.argv[process.argv.i
 const httpRoot = process.argv.includes('--http-root')
   ? path.resolve(process.argv[process.argv.indexOf('--http-root') + 1])
   : null;
+const enforce = process.argv.includes('--enforce');
 const blueprints = JSON.parse(fs.readFileSync(new URL('../../Shared/web/interactive-page-blueprints.v1.json', import.meta.url)));
 const DEFAULT_VIEWPORTS = [
   { name: 'android-landscape', width: 1280, height: 800 },
@@ -374,12 +375,12 @@ for (const file of files) {
       );
       await page.emulateMedia({ reducedMotion: 'no-preference' });
 
-      r.interaction.zoom200 = await page.evaluate(() => {
+      r.interaction.zoom200 = await page.evaluate(async () => {
         const root = document.documentElement;
         const before = root.style.getPropertyValue('--g9-zoom');
         root.style.setProperty('--g9-zoom', '2');
+        await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
         const body = document.body;
-        const overflow = root.scrollWidth - root.clientWidth;
         const visible = el => {
           const box = el.getBoundingClientRect();
           return box.width > 0 && box.height > 0;
@@ -423,16 +424,21 @@ for (const file of files) {
           acc.minLeft = Math.min(acc.minLeft, box.left);
           return acc;
         }, { maxRight: 0, minLeft: 0 });
+        const finalRootClientWidth = root.clientWidth;
+        const finalRootScrollWidth = root.scrollWidth;
+        const finalBodyClientWidth = body.clientWidth;
+        const finalBodyScrollWidth = body.scrollWidth;
+        const overflow = finalRootScrollWidth - finalRootClientWidth;
         if (before) root.style.setProperty('--g9-zoom', before);
         else root.style.removeProperty('--g9-zoom');
         return {
           horizontalOverflowPx: overflow,
           overflowSample: overflowing,
           ownOverflowSample,
-          rootClientWidth: root.clientWidth,
-          rootScrollWidth: root.scrollWidth,
-          bodyClientWidth: body.clientWidth,
-          bodyScrollWidth: body.scrollWidth,
+          rootClientWidth: finalRootClientWidth,
+          rootScrollWidth: finalRootScrollWidth,
+          bodyClientWidth: finalBodyClientWidth,
+          bodyScrollWidth: finalBodyScrollWidth,
           maxRight: Math.round(edges.maxRight * 10) / 10,
           minLeft: Math.round(edges.minLeft * 10) / 10,
         };
@@ -445,6 +451,68 @@ for (const file of files) {
 }
 await browser.close();
 if (server) await new Promise(resolve => server.close(resolve));
+if (enforce && profile === 'core1a-spec') {
+  const core = report['core1a.html'];
+  const failures = [];
+  if (!core) failures.push('core1a.html: missing from audit report');
+  else {
+    if (core.errors.length) failures.push(`core1a.html: page errors: ${core.errors.join(' | ')}`);
+    for (const vp of CORE1A_SPEC_VIEWPORTS) {
+      const row = core.viewports[vp.name];
+      if (!row) {
+        failures.push(`core1a.html ${vp.name}: missing viewport result`);
+        continue;
+      }
+      if (row.horizontalOverflowPx !== 0) failures.push(`${vp.name}: page overflow ${row.horizontalOverflowPx}px`);
+      if (row.smallTargets !== 0) failures.push(`${vp.name}: ${row.smallTargets} controls below 48px`);
+      if (row.controlGeometry.minGapPx != null && row.controlGeometry.minGapPx < 8) {
+        failures.push(`${vp.name}: intended control gap ${row.controlGeometry.minGapPx}px < 8px`);
+      }
+      if (row.tableContainment.tablesOutsideLocalScroller !== 0) {
+        failures.push(`${vp.name}: ${row.tableContainment.tablesOutsideLocalScroller} table(s) outside local scroller`);
+      }
+      if (row.svg !== row.svgAccessible) failures.push(`${vp.name}: accessible SVG ${row.svgAccessible}/${row.svg}`);
+      if (row.anchorSafety.riskyAnchors !== 0) failures.push(`${vp.name}: ${row.anchorSafety.riskyAnchors} sticky-obscured anchor(s)`);
+      if (row.focusProbe.focusFailures !== 0 || row.focusProbe.visibleFocus !== row.focusProbe.candidates) {
+        failures.push(`${vp.name}: focus ${row.focusProbe.visibleFocus}/${row.focusProbe.candidates}, failures=${row.focusProbe.focusFailures}`);
+      }
+      if (row.externalRequests.length !== 0) failures.push(`${vp.name}: external request(s): ${row.externalRequests.join(', ')}`);
+      const layout = row.core1aLayout;
+      if (vp.width >= 1100) {
+        if (layout.expandedCount !== layout.articleCount) failures.push(`${vp.name}: expanded layout ${layout.expandedCount}/${layout.articleCount}`);
+        for (const sample of layout.samples) {
+          if (sample.supportFraction == null || Math.abs(sample.supportFraction - 0.32) > 0.03) {
+            failures.push(`${vp.name}: support fraction for ${sample.unit} is ${sample.supportFraction}`);
+          }
+        }
+      } else if (layout.stackedCount !== layout.articleCount) {
+        failures.push(`${vp.name}: portrait/compact stack ${layout.stackedCount}/${layout.articleCount}`);
+      }
+      const interaction = row.interaction;
+      if (!interaction?.stageKeyboard?.available || interaction.stageKeyboard.changed !== true) {
+        failures.push(`${vp.name}: staged representation keyboard control failed`);
+      }
+      if (!interaction?.sectionKeyboard?.available || interaction.sectionKeyboard.resolved !== true
+          || interaction.sectionKeyboard.historyRestored !== true) {
+        failures.push(`${vp.name}: section deep-link/history keyboard flow failed`);
+      }
+      if (interaction?.reducedMotion?.activeAnimations !== 0) {
+        failures.push(`${vp.name}: reduced-motion active animations=${interaction?.reducedMotion?.activeAnimations}`);
+      }
+      if (interaction?.zoom200?.horizontalOverflowPx !== 0) {
+        failures.push(`${vp.name}: 200% zoom overflow=${interaction?.zoom200?.horizontalOverflowPx}px`);
+      }
+    }
+  }
+  if (failures.length) {
+    console.error('core1a-spec enforcement failed:');
+    failures.forEach(failure => console.error(' - ' + failure));
+    process.exitCode = 1;
+  } else {
+    console.log('core1a-spec enforcement: PASS');
+  }
+}
+
 for (const [file, r] of Object.entries(report)) {
   const a = r.viewports[VIEWPORTS[0].name], p = r.viewports[VIEWPORTS.find(v => v.height > v.width)?.name || VIEWPORTS[1].name];
   console.log(`${file}: bp=${a.blueprint} slots=${a.slotMarkers} home=${JSON.stringify(a.homeLinks)} nav1=${a.navFirstLink} sticky=${a.headerFixedOrSticky} ` +
