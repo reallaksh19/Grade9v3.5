@@ -1,0 +1,85 @@
+name: issue-360-generated-sync
+
+on:
+  push:
+    branches:
+      - issue-360/core1a-tablet-concept-book
+    paths:
+      - .github/workflows/issue-360-generated-sync.yml
+
+permissions:
+  contents: write
+
+jobs:
+  sync-generated:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: issue-360/core1a-tablet-concept-book
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install generation dependencies
+        run: pip install --quiet jsonschema pypdf
+
+      - name: Regenerate final stacked outputs and self-remove
+        run: |
+          set -euo pipefail
+
+          # First prove the builders execute on the stacked #319 + #360 source tree.
+          python3 Shared/tools/build_manifest.py
+          python3 Shared/tools/build_pages_site.py
+
+          # The helper must not become part of the final branch/material truth.
+          rm .github/workflows/issue-360-generated-sync.yml
+
+          # Regenerate again after removal so the architecture manifest represents
+          # the final tree, not this temporary helper.
+          python3 Shared/tools/build_manifest.py
+          python3 Shared/tools/build_pages_site.py
+
+          git diff --name-only | sort > /tmp/generated-changes.txt
+          cat /tmp/generated-changes.txt
+
+          python3 - <<'PY'
+          from pathlib import Path
+
+          allowed = {
+              ".github/workflows/issue-360-generated-sync.yml",
+              "docs/architecture-manifest.json",
+              "docs/core-learning/data.js",
+              "docs/css/tablet-12-7.css",
+              "public/core-learning/data.js",
+          }
+          changed = {
+              line.strip()
+              for line in Path("/tmp/generated-changes.txt").read_text(encoding="utf-8").splitlines()
+              if line.strip()
+          }
+          unexpected = sorted(changed - allowed)
+          required = {
+              ".github/workflows/issue-360-generated-sync.yml",
+              "docs/architecture-manifest.json",
+              "docs/core-learning/data.js",
+              "docs/css/tablet-12-7.css",
+              "public/core-learning/data.js",
+          }
+          missing = sorted(required - changed)
+          if unexpected or missing:
+              raise SystemExit(
+                  f"generated sync boundary mismatch: unexpected={unexpected}, missing={missing}"
+              )
+          PY
+
+          python3 Shared/tools/build_manifest.py --check
+          python3 Shared/tools/build_pages_site.py --check
+
+          git config user.name "grade9v3-generated-sync"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git commit -m "chore(#360): regenerate stacked Core outputs"
+          git push origin HEAD:issue-360/core1a-tablet-concept-book
