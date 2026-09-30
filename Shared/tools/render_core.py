@@ -673,6 +673,29 @@ def core1(ctx: Ctx, m: dict) -> str:
     return body
 
 
+def _core1a_worked_anchor(question: dict) -> str:
+    """Render WATCH ONE from governed answer structure without inventing missing explanation."""
+    answer = question.get("answer") or {}
+    route = answer.get("reasoning_route") or []
+    if route:
+        steps = "".join(
+            f'<li data-g9-watch-step data-g9-move-ref="{esc(row.get("id", index))}">'
+            f'<strong>{esc(row.get("action", ""))}</strong>'
+            f'{para("Why valid: " + row["why_valid"]) if row.get("why_valid") else ""}'
+            f'{para("Result: " + row["output"]) if row.get("output") else ""}</li>'
+            for index, row in enumerate(route, 1)
+        )
+        working = f'<ol class="g9-watch-steps">{steps}</ol>'
+    else:
+        working = items(answer.get("reasoning"), True)
+    return (
+        para(question.get("stem"))
+        + working
+        + block("worked_result", para(answer.get("summary")), title="Result")
+        + block("worked_check", para(answer.get("check")), title="Check")
+    )
+
+
 def _core1a_relation_matrix(ctx: Ctx, m: dict) -> str:
     """Preserve governed equation/meaning/validity data as a semantic comparison table."""
     relations = _relations(ctx, m)
@@ -711,10 +734,7 @@ def core1a(ctx: Ctx, m: dict) -> str:
         anchor_q = questions.get(u.get("worked_anchor_ref") or "")
         if not anchor_q:
             ctx.gap("AUTHOR_WORKED_ANCHOR", u["id"], "no worked anchor", "CORE1A")
-        anchor_html = ""
-        if anchor_q:
-            ans = anchor_q["answer"]
-            anchor_html = para(anchor_q["stem"]) + items(ans.get("reasoning"), True) + para(ans.get("summary"))
+        anchor_html = _core1a_worked_anchor(anchor_q) if anchor_q else ""
         checks = [c["statement"] for c in u.get("independent_checks") or []]
         if not checks:
             ctx.gap("AUTHOR_INDEPENDENT_CHECK", u["id"], "no independent check", "CORE1A")
@@ -726,7 +746,7 @@ def core1a(ctx: Ctx, m: dict) -> str:
                       + block("construction", f"<ol>{step_html}</ol>")
                       + figure(ctx, u.get("representation_ref"), "TEACHING", "CORE1A", u["id"])
                       + block("equation_matrix", relation_matrix, title="Equations and validity")
-                      + block("worked_anchor", anchor_html, title="Worked example")
+                      + block("worked_anchor", anchor_html, title="Watch one")
                       + block("wrong_path", items(w["wrong_idea"] for w in wrong), title="A tempting wrong path")
                       + block("diagnose", items(w["diagnostic_prompt"] for w in wrong), title="Diagnose")
                       + block("repair", items(w["repair"] for w in wrong), title="Repair")
@@ -1024,6 +1044,9 @@ article[id],section[id]{scroll-margin-top:96px}
 .g9-table-scroll th,.g9-table-scroll td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
 .g9-table-scroll th{background:var(--bg)}
 .g9-table-scroll td>.g9-math,.g9-table-scroll td>.g9-expr{margin:.15rem 0}
+[data-g9-block=worked_anchor]{border-left:4px solid var(--accent);padding-left:14px}
+.g9-watch-steps>li{margin:.8rem 0}.g9-watch-steps p{margin:.2rem 0}
+[data-g9-block=wrong_path],[data-g9-block=repair]{border-left:3px solid var(--line);padding-left:12px}
 @media (min-width:1100px){.g9-bucket-orientation-grid{display:grid;grid-template-columns:.68fr .32fr;gap:20px}
 article[data-g9-unit].g9-stage-support{display:grid;grid-template-columns:.68fr .32fr;gap:20px}
 article.g9-stage-support>.slot-identity,article.g9-stage-support>.slot-attempt,article.g9-stage-support>.slot-construction,article.g9-stage-support>.slot-reconstruction,article.g9-stage-support>.slot-reasoning,article.g9-stage-support>.slot-post_attempt,article.g9-stage-support>.slot-solution{grid-column:1}
