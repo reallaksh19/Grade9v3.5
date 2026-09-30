@@ -427,19 +427,21 @@ class Renderer(unittest.TestCase):
         self.assertIn(f'href="#g9-CORE1A--{target}"', html)
         self.assertNotIn(f'href="core1a.html#{target}"', html)
 
-    def test_real_motion_core1a_pages_and_single_file_preserve_concept_book_identity(self):
+    def test_real_motion_core1a_pages_single_file_and_embed_preserve_concept_book_identity(self):
         repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
         pages, page_gaps, page_digest = render_core.build(repo_manifest, mode="PAGES")
         single, single_gaps, single_digest = render_core.build(repo_manifest, mode="SINGLE_FILE")
+        embed, embed_gaps, embed_digest = render_core.build(repo_manifest, mode="EMBED")
 
         self.assertRegex(page_digest, r"^[0-9a-f]{16}$")
         self.assertRegex(single_digest, r"^[0-9a-f]{16}$")
-        self.assertEqual(
-            render_core.semantic_metadata_digest(pages, "PAGES"),
-            render_core.semantic_metadata_digest(single, "SINGLE_FILE"),
-        )
+        self.assertRegex(embed_digest, r"^[0-9a-f]{16}$")
+        semantic = render_core.semantic_metadata_digest(pages, "PAGES")
+        self.assertEqual(semantic, render_core.semantic_metadata_digest(single, "SINGLE_FILE"))
+        self.assertEqual(semantic, render_core.semantic_metadata_digest(embed, "EMBED"))
         self.assertFalse([gap for gap in page_gaps if gap["core"] == "CORE1A"])
         self.assertFalse([gap for gap in single_gaps if gap["core"] == "CORE1A"])
+        self.assertFalse([gap for gap in embed_gaps if gap["core"] == "CORE1A"])
 
         core1a = pages["core1a.html"]
         product = single["product.html"]
