@@ -1,9 +1,10 @@
-"""Typed Core2-v2 support projection.
+"""Typed Core2-v2 learner projections.
 
 Core2 keeps source hints (question.hints) and authored pedagogy
-(question.scaffolds) distinct.  This module orders both lanes without
-changing their provenance and marks answer-revealing rows as unavailable
-before the solution stage.
+(question.scaffolds) distinct. This module orders both support lanes without
+changing their provenance, marks answer-revealing rows as unavailable before
+the solution stage, and projects structured reasoning moves into learner-facing
+solution stages without inventing or collapsing authored intermediate steps.
 """
 from __future__ import annotations
 
@@ -15,8 +16,24 @@ LEARNER_STAGES = {"KEY_CONCEPT", "REPRESENTATION", "FIRST_MOVE", "OTHER"}
 _REVEAL_ORDER = {"CONCEPT": 0, "METHOD": 1, "ANSWER": 2}
 _REF = re.compile(r"^(hints|scaffolds)\[(\d+)\]$")
 
+# The Core2-v2 amendment names these as the preferred learner progression.
+# Existing canonical reasoning_move.kind remains the authoring authority; this
+# mapping is structural and never infers a stage from prose.
+SOLUTION_STAGE_BY_KIND = {
+    "DECIDE": "UNDERSTAND",
+    "REPRESENT": "REPRESENT",
+    "CONNECT": "CONNECT",
+    "TRANSFORM": "CALCULATE",
+    "VERIFY": "INTERPRET",
+}
+SOLUTION_STAGES = tuple(dict.fromkeys(SOLUTION_STAGE_BY_KIND.values()))
+
 
 class Core2SupportProjectionError(ValueError):
+    pass
+
+
+class Core2SolutionProjectionError(ValueError):
     pass
 
 
@@ -104,3 +121,53 @@ def split_pre_solution_support(question: dict) -> tuple[list[dict], list[dict]]:
         [row for row in rows if row["provenance"] == SOURCE_HINT],
         [row for row in rows if row["provenance"] == AUTHORED_CORE2_SUPPORT],
     )
+
+
+def project_solution(answer: dict) -> list[dict]:
+    """Project canonical reasoning moves into Core2 learner solution stages.
+
+    One output row is retained for every authored reasoning move. The preferred
+    UNDERSTAND → REPRESENT → CONNECT → CALCULATE → INTERPRET vocabulary is a
+    rendering classification, not a quota: missing stages are not fabricated and
+    repeated stages remain repeated when the authored reasoning needs them.
+
+    An empty list means the record has only legacy ``reasoning[]`` and the
+    renderer must use that as the backward-compatible fallback.
+    """
+    route = answer.get("reasoning_route") or []
+    if not route:
+        return []
+    crux_ref = answer.get("crux_move_ref")
+    ids: set[str] = set()
+    projected: list[dict] = []
+    for index, move in enumerate(route, 1):
+        if not isinstance(move, dict) or not move.get("id"):
+            raise Core2SolutionProjectionError(f"reasoning_route[{index - 1}] is not a typed reasoning move")
+        move_id = move["id"]
+        if move_id in ids:
+            raise Core2SolutionProjectionError(f"duplicate reasoning move id {move_id!r}")
+        ids.add(move_id)
+        kind = move.get("kind")
+        stage = SOLUTION_STAGE_BY_KIND.get(kind)
+        if stage is None:
+            raise Core2SolutionProjectionError(f"reasoning move {move_id!r} has unsupported kind {kind!r}")
+        for required in ("action", "why_valid", "output"):
+            if not move.get(required):
+                raise Core2SolutionProjectionError(f"reasoning move {move_id!r} is missing {required}")
+        projected.append({
+            "order": index,
+            "move_id": move_id,
+            "kind": kind,
+            "stage": stage,
+            "action": move["action"],
+            "why_valid": move["why_valid"],
+            "inputs": list(move.get("inputs") or []),
+            "output": move["output"],
+            "representation_ref": move.get("representation_ref"),
+            "visual_stage_ref": move.get("visual_stage_ref"),
+            "source_ref": move.get("source_ref"),
+            "is_crux": move_id == crux_ref,
+        })
+    if crux_ref and crux_ref not in ids:
+        raise Core2SolutionProjectionError(f"crux_move_ref {crux_ref!r} does not resolve inside reasoning_route")
+    return projected
