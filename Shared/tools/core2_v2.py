@@ -46,6 +46,10 @@ class Core2ConceptJoinError(ValueError):
 def _rows(question: dict) -> dict[str, dict]:
     out: dict[str, dict] = {}
     for i, hint in enumerate(question.get("hints") or []):
+        if isinstance(hint, str) and hint.strip():
+            # The competitive-exam bank stores a source hint as bare text; a package stores
+            # {text, reveals}. Both are the same lane, and a bare hint declares no reveal depth.
+            hint = {"text": hint}
         if not isinstance(hint, dict) or not hint.get("text"):
             raise Core2SupportProjectionError(f"hints[{i}] is not a typed hint")
         ref = f"hints[{i}]"
@@ -83,9 +87,48 @@ def _rows(question: dict) -> dict[str, dict]:
     return out
 
 
+_INLINE_PROVENANCE = {
+    "SOURCE_HINT": SOURCE_HINT,
+    "AUTHORED_HINT": AUTHORED_CORE2_SUPPORT,
+    "AUTHORED_SCAFFOLD": AUTHORED_CORE2_SUPPORT,
+}
+_INLINE_REVEALS = {"ORIENT": "CONCEPT", "ANSWER": "ANSWER"}
+
+
+def _inline_rows(question: dict) -> dict[str, dict]:
+    """Ladder rungs that carry their own text (`hint_rung` allows `text` instead of `from`).
+
+    Provenance is read from the rung's declared `provenance`, never inferred from the text.
+    """
+    out: dict[str, dict] = {}
+    for i, rung in enumerate(question.get("hint_ladder") or []):
+        if not isinstance(rung, dict) or rung.get("from") or not rung.get("text"):
+            continue
+        provenance = _INLINE_PROVENANCE.get(rung.get("provenance"))
+        if provenance is None:
+            raise Core2SupportProjectionError(
+                f"hint_ladder[{i}] has inline text but no declared provenance")
+        ref = f"hint_ladder[{i}]"
+        out[ref] = {
+            "source": ref,
+            "provenance": provenance,
+            "text": rung["text"],
+            "prompt": None,
+            "learner_stage": None,
+            "support_kind": None,
+            "reveals": _INLINE_REVEALS.get(rung.get("purpose"), "METHOD"),
+            "supports_move_ref": rung.get("supports_move_ref"),
+            "visual_ref": None,
+            "visual_stage_ref": rung.get("visual_stage_ref"),
+        }
+    return out
+
+
 def _fallback_order(rows: dict[str, dict]) -> list[str]:
     keyed = []
     for ref, row in rows.items():
+        if not _REF.match(ref):
+            continue  # inline rungs are reached only through the ladder that carries them
         lane, index = _REF.match(ref).groups()
         keyed.append((_REVEAL_ORDER.get(row["reveals"], 1), 0 if lane == "hints" else 1, int(index), ref))
     return [entry[3] for entry in sorted(keyed)]
@@ -96,9 +139,10 @@ def _order(question: dict, rows: dict[str, dict]) -> list[str]:
     if not ladder:
         return _fallback_order(rows)
     ordered, seen = [], set()
+    positions = {id(rung): position for position, rung in enumerate(ladder)}
     for rung in sorted(ladder, key=lambda value: value.get("order", 0)):
-        ref = rung.get("from")
-        if not ref or not _REF.match(ref) or ref not in rows or ref in seen:
+        ref = rung.get("from") or (f"hint_ladder[{positions[id(rung)]}]" if rung.get("text") else None)
+        if not ref or ref not in rows or ref in seen:
             raise Core2SupportProjectionError(f"invalid hint_ladder reference {ref!r}")
         ordered.append(ref)
         seen.add(ref)
@@ -108,6 +152,7 @@ def _order(question: dict, rows: dict[str, dict]) -> list[str]:
 
 def project_support(question: dict) -> list[dict]:
     rows = _rows(question)
+    rows.update(_inline_rows(question))
     projected = []
     for order, ref in enumerate(_order(question, rows), 1):
         row = dict(rows[ref])

@@ -49,6 +49,41 @@ def fixture(repo: Path, *, review: bool = False, cited: bool = False) -> tuple[P
     return manifest, digest
 
 
+class VerifyRender(unittest.TestCase):
+    """The digest is written into two stamped fields; nowhere else may it appear."""
+
+    TEMPLATE = ('<html data-g9-render-digest="g9-digest-pending"><head>'
+                '<meta name="g9-render" content="render_core/2 g9-digest-pending"></head>'
+                '<body>{body}</body></html>')
+
+    def render(self, body: str = "Prompt", tamper=None) -> Path:
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        out = Path(tmp.name)
+        neutral = self.TEMPLATE.format(body=body)
+        digest = hashlib.sha256(b"core1.html\0" + neutral.encode()).hexdigest()[:16]
+        page = neutral.replace("g9-digest-pending", digest)
+        (out / "core1.html").write_text(tamper(page, digest) if tamper else page)
+        (out / "render-receipt.json").write_text(json.dumps({
+            "renderer": "render_core/2", "digest": digest, "mode": "PAGES",
+            "draft": False, "pages": ["core1.html"], "gaps": []}))
+        return out
+
+    def test_a_render_stamped_in_both_fields_verifies(self):
+        self.assertEqual(len(accept_product.verify_render(self.render())["digest"]), 16)
+
+    def test_the_digest_anywhere_else_in_a_page_is_refused(self):
+        out = self.render(tamper=lambda page, digest: page.replace("Prompt", f"Prompt {digest}"))
+        with self.assertRaisesRegex(ValueError, "outside its stamped fields"):
+            accept_product.verify_render(out)
+
+    def test_a_changed_state_scope_attribute_is_refused(self):
+        out = self.render(tamper=lambda page, digest: page.replace(
+            f'data-g9-render-digest="{digest}"', 'data-g9-render-digest="0000000000000000"'))
+        with self.assertRaisesRegex(ValueError, "no longer match"):
+            accept_product.verify_render(out)
+
+
 class Publication(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
@@ -96,6 +131,28 @@ class Publication(unittest.TestCase):
                          (self.repo / "publication" / "products" / "physics" / "sample" / "core1.html").read_bytes())
         self.assertEqual(json.loads((self.repo / "products" / "acceptance" / "sample.json").read_text())["render_digest"], self.digest)
         mirror.assert_called_once_with(self.repo)
+
+    def test_acceptance_records_where_the_owner_approved_without_requiring_it(self):
+        with mock.patch.object(accept_product, "mirror_pages"):
+            decision = accept_product.accept(
+                "sample", repo=self.repo,
+                approval_ref="  https://github.com/o/r/issues/1#issuecomment-5   \n accepted")
+        self.assertEqual(decision["approval_ref"], "https://github.com/o/r/issues/1#issuecomment-5 accepted")
+        self.assertEqual(decision["accepted_by"], "owner")
+        record = json.loads((self.repo / "products" / "acceptance" / "sample.json").read_text())
+        self.assertEqual(record["approval_ref"], decision["approval_ref"])
+
+    def test_acceptance_without_an_approval_reference_still_publishes(self):
+        with mock.patch.object(accept_product, "mirror_pages"):
+            decision = accept_product.accept("sample", repo=self.repo)
+        self.assertIsNone(decision["approval_ref"])
+        self.assertEqual(decision["accepted_by"], "owner")
+        self.assertTrue((self.repo / "public" / "products" / "physics" / "sample").is_dir())
+
+    def test_an_oversized_approval_reference_is_trimmed_not_refused(self):
+        with mock.patch.object(accept_product, "mirror_pages"):
+            decision = accept_product.accept("sample", repo=self.repo, approval_ref="x" * 900)
+        self.assertEqual(len(decision["approval_ref"]), 500)
 
     def test_owner_acceptance_also_publishes_the_staged_standalone_page(self):
         standalone = self.repo / "publication" / "standalone" / "products" / "physics" / "sample.html"

@@ -123,10 +123,19 @@
       "path": "public/js/question-bank.js",
       "kind": "JS_RENDER",
       "classification": "MIGRATE",
-      "renders": "Question Bank study/browse views (hints, solutions) from question-bank-data.js",
+      "renders": "Question Bank browse and study views (hints, solutions) from the generated catalog, summaries, search index and detail shards",
       "location": "main",
       "reason": "Separate question renderer with its own support/reveal logic; overlaps Core2/Core2A question study",
       "phase3_action": "Render question study through the same Core2/Core2A blueprint components (hint ladder, attempt, reveal) so there is one question grammar"
+    },
+    {
+      "path": "public/js/question-bank-data-service.js",
+      "kind": "JS_RENDER",
+      "classification": "OUT_OF_SCOPE",
+      "renders": "Nothing learner-facing: loads the generated Question Bank artifacts, verifies one build id and serves search; document.createElement is used only for script tags",
+      "location": "main",
+      "reason": "Data loader for the generated Question Bank contracts (#359); it renders no learner content",
+      "phase3_action": "Stays a runtime data service; rendering remains in question-bank.js until Phase 3"
     },
     {
       "path": "public/motion-session/app.mjs",
@@ -253,6 +262,15 @@
       "location": "main",
       "reason": "Verification snapshots, re-verified by republish.py",
       "phase3_action": "Regenerated when publications move to render_core"
+    },
+    {
+      "path": "Shared/tools/packet_check.py",
+      "kind": "PYTHON_HTML",
+      "classification": "OUT_OF_SCOPE",
+      "renders": "Owner packet audit of delivered artifacts and source inventory; no learner content",
+      "location": "main",
+      "reason": "Local numeric and structural review requested by Owner",
+      "phase3_action": "none"
     }
   ]
 }

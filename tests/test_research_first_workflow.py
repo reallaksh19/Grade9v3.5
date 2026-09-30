@@ -87,6 +87,61 @@ class IntakeTests(unittest.TestCase):
         self.assertEqual(b["inputs"]["questions"][0]["supplied_count"], 2)
 
 
+class FirstStageRouteTests(unittest.TestCase):
+    """The first-stage Core follows the owner's choice, then the source state."""
+
+    QUESTIONS = ["Q1. A car goes from 10 m/s to 30 m/s in 8 s. Find its acceleration.",
+                 "Q2. A stone is dropped from 80 m. Find the time to fall. Take g = 10 m/s^2."]
+
+    def plan(self, **extra):
+        return raw_intake.intake({"subject": "Physics", **extra})
+
+    def test_supplied_questions_start_with_core2_and_its_key_pdf(self):
+        plan = self.plan(questions=self.QUESTIONS)
+        stage = plan["first_stage"]
+        self.assertEqual((stage["basis"], stage["cores"]), ("SUPPLIED_QUESTIONS", ["CORE2"]))
+        self.assertEqual(stage["later_cores"], ["CORE1", "CORE1A", "CORE1B", "CORE2A", "CORE2B"])
+        self.assertEqual(plan["deliverables"][:4], ["core2_html", "core2_pdf", "core2_key_pdf",
+                                                    "core2_question_bank_records"])
+        self.assertNotIn("six_cores", plan["deliverables"])
+
+    def test_a_syllabus_alone_starts_with_source_grounded_core1(self):
+        plan = self.plan(syllabus=["Distance and displacement", "Constant acceleration"])
+        self.assertEqual(plan["first_stage"]["basis"], "NO_QUESTION_BANK")
+        self.assertEqual(plan["first_stage"]["cores"], ["CORE1"])
+        self.assertNotIn("core2_key_pdf", plan["deliverables"])
+
+    def test_a_requested_core_wins_over_the_source_state(self):
+        plan = self.plan(questions=self.QUESTIONS, requested_cores=["core1a"])
+        self.assertEqual(plan["requested_cores"], ["CORE1A"])
+        self.assertEqual(plan["first_stage"]["basis"], "REQUESTED_CORES")
+        self.assertEqual(plan["first_stage"]["cores"], ["CORE1A"])
+        self.assertEqual(plan["deliverables"], ["core1a_html", "core1a_pdf", "coverage_view",
+                                                "atlas_links", "owner_review_packet"])
+
+    def test_requested_cores_accept_a_comma_separated_string_in_canonical_order(self):
+        plan = self.plan(syllabus=["Vectors"], requested_cores="CORE2, core1a")
+        self.assertEqual(plan["first_stage"]["cores"], ["CORE1A", "CORE2"])
+
+    def test_core2_without_question_text_is_noted_not_invented(self):
+        plan = self.plan(questions=["Q5"], requested_cores=["CORE2"])
+        self.assertEqual(plan["status"], "RESEARCH_AND_AUTHOR")
+        self.assertEqual(plan["first_stage"]["cores"], ["CORE2"])
+        self.assertTrue(any(n.startswith("CORE2_REQUESTED_WITHOUT_QUESTION_TEXT")
+                            for n in plan["first_stage"]["notes"]))
+
+    def test_an_unknown_core_is_an_input_error_naming_the_valid_ones(self):
+        plan = self.plan(questions=self.QUESTIONS, requested_cores=["CORE9"])
+        self.assertEqual(plan["status"], "INVALID_REQUEST")
+        self.assertIn("CORE9", plan["errors"][0])
+        self.assertIn("CORE1A", plan["errors"][0])
+
+    def test_the_route_does_not_change_the_intake_digest(self):
+        with_route = self.plan(questions=self.QUESTIONS, requested_cores=["CORE1A"])
+        without = self.plan(questions=self.QUESTIONS)
+        self.assertEqual(with_route["intake_digest"], without["intake_digest"])
+
+
 class EntryAndCliTests(unittest.TestCase):
     def test_cli_intake_round_trip(self):
         with tempfile.TemporaryDirectory() as tmp:

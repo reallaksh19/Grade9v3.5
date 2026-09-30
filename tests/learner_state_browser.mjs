@@ -32,14 +32,20 @@ try {
   await page.locator('[data-g9-search-input]').fill('');
   evidence.search_excludes_protected = true;
 
-  const ladder = article.locator('.g9-ladder');
+  // Core2 v2 support stays collapsed until requested: no rung is live before the first request.
+  const ladder = article.locator('.g9-ladder[data-g9-support-group="SOURCE_HINT"]');
+  assert.equal(await ladder.locator('li[data-g9-rung]').count(), 0);
+  assert(!(await ladder.innerText()).includes('Try an inverse operation.'));
+  await ladder.locator('[data-g9-next-rung]').click();
   assert.equal(await ladder.locator('li[data-g9-rung]').count(), 1);
   assert(!(await ladder.innerText()).includes('Remove the added 2 first.'));
   await ladder.locator('[data-g9-next-rung]').click();
   assert.equal(await ladder.locator('li[data-g9-rung]').count(), 2);
   assert(!(await ladder.innerText()).includes('The exact result is 7/3.'));
-  await ladder.locator('[data-g9-next-rung]').click();
-  assert.equal(await ladder.locator('li[data-g9-rung]').count(), 3);
+  // The third source hint reveals the result. Core2 v2 withholds it until the solution stage,
+  // so the ladder ends after two rungs and the request control is spent.
+  assert(await ladder.locator('[data-g9-next-rung]').isDisabled());
+  assert(!(await liveText()).includes('The exact result is 7/3.'));
   evidence.progressive_hints = true;
 
   const box = article.locator('[data-g9-attempt-box]').first();
@@ -49,7 +55,7 @@ try {
   await box.locator('[data-g9-choice]').first().check();
   await box.locator('[data-g9-commit]').click();
   assert.equal(await article.getAttribute('data-attempted'), '1');
-  await article.locator('details[data-requires-attempt] summary').first().click();
+  await article.locator('details[data-g9-payload-ref$="-solution"] summary').click();
   assert((await article.innerText()).includes(phrase));
   assert((await article.ariaSnapshot()).includes(phrase));
   assert((await liveText()).includes(phrase));

@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Derive a product manifest: which units and questions a Core product shows, in which order.
+"""Derive a product manifest: which units, questions and Core roles a product shows.
 
 A manifest holds selection only, never content. render_core.py reads the content from the
 library records the manifest names. The derivation is mechanical:
 - Core1, Core1A and Core1B: every microtopic of the package, in package order.
 - Core2A and Core2B: the package questions exposed to that Core.
 - Core2: exam-bank items whose capability or concept bucket belongs to the package.
+- output_roles: optional learner-product role scope; absent preserves legacy all-six-role output.
 
 Usage:
     product_manifest.py derive --package Physics/library/phy-kin-2d-motion.v1.json \
@@ -21,10 +22,32 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 
 SELECTION_KEYS = ("microtopics", "core2", "core2a", "core2b")
+OUTPUT_ROLES = ("CORE1", "CORE1A", "CORE1B", "CORE2", "CORE2A", "CORE2B")
 
 
 class ProductSelectionError(ValueError):
     """The product manifest cannot be resolved to one unambiguous record authority."""
+
+
+def selected_output_roles(manifest: dict) -> list[str]:
+    """Resolve learner-product role scope without changing legacy manifests.
+
+    Existing manifests predate first-stage scoped delivery and therefore imply all six roles.
+    New manifests may opt into a strict non-empty subset. This field controls projection/output
+    only; it never changes record authority, Core semantics or academic truth.
+    """
+    if "output_roles" not in manifest:
+        return list(OUTPUT_ROLES)
+    value = manifest["output_roles"]
+    if not isinstance(value, list) or not value:
+        raise ProductSelectionError("PRODUCT_OUTPUT_ROLES_INVALID: output_roles must be a non-empty list")
+    if any(not isinstance(role, str) or role not in OUTPUT_ROLES for role in value):
+        raise ProductSelectionError(
+            "PRODUCT_OUTPUT_ROLES_INVALID: allowed=" + ",".join(OUTPUT_ROLES)
+        )
+    if len(value) != len(set(value)):
+        raise ProductSelectionError("PRODUCT_OUTPUT_ROLES_DUPLICATE")
+    return list(value)
 
 
 def _unique_index(records: list[dict], authority: str, collection: str) -> dict[str, dict]:
@@ -48,6 +71,7 @@ def validate_selection(manifest: dict, packages: list[dict], bank_questions: lis
     integrity error, not an authoring-depth gap: strict and draft renders must both refuse a
     manifest that silently drops, duplicates, or crosses the package/source-bank boundary.
     """
+    selected_output_roles(manifest)
     selection = manifest.get("selection")
     if not isinstance(selection, dict):
         raise ProductSelectionError("PRODUCT_SELECTION_INVALID: selection must be an object")
