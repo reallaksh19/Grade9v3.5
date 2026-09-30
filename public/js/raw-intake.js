@@ -137,6 +137,33 @@
     return tasks;
   }
 
+  function coreNames(value) {
+    const parts = typeof value === 'string' ? value.split(/[\s,;]+/) : Array.from(value || []);
+    return parts.map(clean).filter(Boolean).map(name => name.toUpperCase());
+  }
+
+  /* Which Cores to show first. Same rule as Shared/tools/raw_intake.py first_stage(). */
+  function firstStage(request, questions, workflow) {
+    const config = workflow.first_stage, order = config.core_order;
+    const asked = coreNames(request.requested_cores);
+    const unknown = Array.from(new Set(asked.filter(name => !order.includes(name)))).sort();
+    const wanted = order.filter(name => asked.includes(name));
+    const usable = questions.some(row => row.text_status === 'SUPPLIED');
+    let cores, basis;
+    if (wanted.length) { cores = wanted; basis = 'REQUESTED_CORES'; }
+    else if (usable) { cores = config.with_questions.slice(); basis = 'SUPPLIED_QUESTIONS'; }
+    else { cores = config.without_questions.slice(); basis = 'NO_QUESTION_BANK'; }
+    const notes = [];
+    if (cores.includes('CORE2') && !usable) notes.push('CORE2_REQUESTED_WITHOUT_QUESTION_TEXT: acquire the source questions; do not invent a bank');
+    let deliverables = [];
+    cores.forEach(name => {
+      config.per_core.forEach(item => deliverables.push(name.toLowerCase() + '_' + item));
+      ((config.extra_by_core || {})[name] || []).forEach(item => deliverables.push(name.toLowerCase() + '_' + item));
+    });
+    deliverables = deliverables.concat(config.always);
+    return {stage: {basis, cores, later_cores: order.filter(name => !cores.includes(name)), notes}, deliverables, unknown, wanted};
+  }
+
   function intake(request, workflow) {
     const subject = clean(request.subject);
     const prompts = dedupe(lines(request.prompts).map(clean).filter(Boolean).map(t => ({id: itemId('p', t), text: t})));
@@ -145,6 +172,8 @@
     const errors = [];
     if (!subject) errors.push('subject is required (free text; no canonical id needed)');
     if (!(prompts.length || questions.length || syllabus.length)) errors.push('supply at least one prompt, question or syllabus subtopic');
+    const route = firstStage(request, questions, workflow);
+    if (route.unknown.length) errors.push('unknown Core in requested_cores: ' + route.unknown.join(', ') + ' (use ' + workflow.first_stage.core_order.join(', ') + ')');
     const owner = ((request.learner || {}).knowledge_percentage);
     const ownerGiven = typeof owner === 'number' && Number.isFinite(owner);
     const learner = Object.assign({}, workflow.default_learner_start, {
@@ -161,7 +190,7 @@
     const body = {
       schema: SCHEMA, workflow_digest: digest(workflow), subject, grade, learner_start: learner,
       inputs, reconciliation: rec, research_tasks: researchTasks(prompts, questions, syllabus, rec),
-      coverage_ledger_template: ledger, deliverables: workflow.deliverables.slice(),
+      coverage_ledger_template: ledger, requested_cores: route.wanted, first_stage: route.stage, deliverables: route.deliverables,
       invariants: workflow.invariants.map(r => r.id), status: errors.length ? 'INVALID_REQUEST' : STATUS, errors
     };
     body.intake_digest = digest({subject, grade, inputs});
@@ -203,10 +232,15 @@
     }
     out.push('', '## Research and authoring tasks');
     plan.research_tasks.forEach(t => out.push(`- ${t.id} → ${t.needs.join(', ')}`));
-    out.push('', '## Deliver', 'Research and author into the research library, promote verified records',
-      '(`python3 Shared/tools/promote_verified.py`), render the six Cores with',
-      '`python3 Shared/tools/render_core.py build --manifest product.json --out OUT` and pass',
-      '`python3 Shared/tools/quality_gate.py OUT`. A hold is never an output.');
+    const stage = plan.first_stage;
+    out.push('', '## First stage (docs/method/FIRST-STAGE-REVIEW.md)');
+    out.push(`Route: ${stage.basis}. Build and show ${stage.cores.join(', ')} first: the actual learner HTML and PDF${stage.cores.includes('CORE2') ? ', a separate key PDF' : ''}, the complete coverage view and the open findings.`);
+    if (stage.later_cores.length) out.push(`Plan ${stage.later_cores.join(', ')} after that packet has been shown. Research, solving and drafting for them can continue meanwhile.`);
+    stage.notes.forEach(note => out.push(`Note: ${note}`));
+    out.push('', '## Deliver', 'Follow docs/method/PROTOCOL.md. Author into the subject library, render with',
+      '`python3 Shared/tools/render_core.py build --manifest product.json --out OUT` and observe with',
+      '`python3 Shared/tools/quality_gate.py OUT` (advisory). Expected outputs: ' + plan.deliverables.join(', ') + '.',
+      'Only the Owner accepting an exact render publishes. A hold is never an output.');
     return out.join('\n') + '\n';
   }
 
@@ -214,7 +248,7 @@
     const $ = id => doc.getElementById(id);
     const form = $('intakeForm');
     if (!form) return;
-    const fields = ['subject', 'grade', 'prompts', 'questions', 'syllabus', 'knowledge'];
+    const fields = ['subject', 'grade', 'cores', 'prompts', 'questions', 'syllabus', 'knowledge'];
     try {
       const draft = JSON.parse(global.localStorage.getItem(DRAFT_KEY) || '{}');
       fields.forEach(f => { if (draft[f] != null) $(f).value = draft[f]; });
@@ -232,6 +266,7 @@
       const k = draft.knowledge.trim();
       const request = {subject: draft.subject, grade: draft.grade, prompts: draft.prompts,
         questions: parseQuestionBlocks(draft.questions), syllabus: draft.syllabus};
+      if (draft.cores) request.requested_cores = [draft.cores];
       if (k !== '') request.learner = {knowledge_percentage: Number(k)};
       const plan = intake(request, workflow);
       last = {request, plan, prompt: agentPrompt(plan, workflow)};

@@ -15,3 +15,5 @@ Start with [HOUSE-RULES.md](HOUSE-RULES.md), then [PROTOCOL.md](PROTOCOL.md). Th
 The [techniques](../../golden/TECHNIQUES.md) and [anti-pattern cards](../../golden/anti/) are examples for reasoning, not fields to fill. Both v1 goldens are marked CANDIDATE and rendered through `render_core.py`; no candidate is a published product. Research the unit's teaching choices and factual sources afresh.
 
 Reusable templates: [UNIT](templates/UNIT.md), [DESIGN-NOTE](templates/DESIGN-NOTE.md), [SELF-CRITIQUE](templates/SELF-CRITIQUE.md), [WORKLOG](templates/WORKLOG.md), [OWNER-NOTES](templates/OWNER-NOTES.md). Superseded parallel instructions remain in [archive/](archive/) for historical reconstruction.
+
+Starting a new job, choosing the first Core, naming a subtopic and the two meanings of "rung": [REQUESTS.md](REQUESTS.md).

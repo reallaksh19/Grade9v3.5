@@ -31,6 +31,17 @@
             <label>Subject <input id="subject" placeholder="e.g. Physics" required></label>
             <label>Grade (optional) <input id="grade" placeholder="e.g. 9"></label>
           </div>
+          <label for="cores">First Core to build (optional)</label>
+          <select id="cores">
+            <option value="">Choose from what I supplied</option>
+            <option value="CORE2">Core2 — source questions</option>
+            <option value="CORE1A">Core1A — concept construction</option>
+            <option value="CORE1">Core1 — orientation notes</option>
+            <option value="CORE1B">Core1B — reconstruction</option>
+            <option value="CORE2A">Core2A — supported practice</option>
+            <option value="CORE2B">Core2B — transfer</option>
+          </select>
+          <p class="help">Left blank, supplied questions start with Core2 and a syllabus alone starts with Core1. A Core you pick here wins.</p>
         </fieldset>
         <fieldset>
           <legend><span>2</span> Questions</legend>
