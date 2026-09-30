@@ -53,8 +53,33 @@ jobs:
           if text.count(old) != 1:
               raise SystemExit(f"expected one navigation block, found {text.count(old)}")
           text = text.replace(old, new)
-
           path.write_text(text, encoding="utf-8")
+
+          tests = Path("tests/test_core2_v2.py")
+          test_text = tests.read_text(encoding="utf-8")
+          old = """        self.assertIn("state.reveals||[]", js)
+
+    def test_concept_round_trip_marks_only_the_exact_origin_question(self):
+        js = render_core.JS
+        self.assertIn("saveCore2State(a);const key=returnKey(link.dataset.g9ConceptRef)", js)
+        self.assertIn("store.set(key,link.dataset.g9QuestionRef||a.dataset.g9Unit)", js)
+        self.assertIn("store.get(key)!==link.dataset.g9QuestionRef", js)
+        self.assertIn("link.dataset.g9ReturnLink=''", js)
+"""
+          new = """        self.assertIn("state.reveals||[]", js)
+        self.assertIn("d.addEventListener('toggle',()=>saveCore2State(a))", js)
+
+    def test_concept_round_trip_marks_only_the_exact_origin_question(self):
+        js = render_core.JS
+        self.assertIn("saveCore2State(a);const key=returnKey(link.dataset.g9ConceptRef)", js)
+        self.assertIn("store.set(key,link.dataset.g9QuestionRef||a.dataset.g9Unit)", js)
+        self.assertIn("const active=!!key&&store.get(key)===link.dataset.g9QuestionRef", js)
+        self.assertIn("link.dataset.g9ReturnLink=''", js)
+        self.assertIn("store.remove(key);refreshReturnLinks()", js)
+"""
+          if test_text.count(old) != 1:
+              raise SystemExit(f"expected one round-trip assertion block, found {test_text.count(old)}")
+          tests.write_text(test_text.replace(old, new), encoding="utf-8")
           PY
       - name: Validate renderer runtime and focused tests
         run: |
@@ -71,7 +96,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm .github/workflows/issue-319-surgical-runtime-fix.yml
-          git add Shared/tools/render_core.py
+          git add Shared/tools/render_core.py tests/test_core2_v2.py
           git diff --cached --check
           git commit -m "fix(#319): preserve Core2 return and reveal state"
           git push origin HEAD:issue-319/core2-v2-learner-contract
