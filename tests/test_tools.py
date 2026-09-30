@@ -203,7 +203,7 @@ class WebData(unittest.TestCase):
                    if not entry["library_available"]]
         for name in without:
             self.assertEqual(self.payload["subjects"][name]["buckets"], [])
-            self.assertTrue(self.payload["subjects"][name]["contract"]["validator_catalogue"],
+            self.assertTrue(self.payload["subjects"][name]["contract"]["learner_products"],
                             f"{name} should still declare its contract")
 
     def test_unsupported_products_are_reported_not_omitted_silently(self):

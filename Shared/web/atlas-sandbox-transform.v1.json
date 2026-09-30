@@ -1,0 +1,24 @@
+{
+  "schema": "grade9v3-atlas-sandbox-transform-v1",
+  "purpose": "How the sandbox Atlas page is derived from an existing Topic Atlas page. The template page names its own subject and matrix in a handful of places; each entry below replaces one of them. Shared/tools/build_test_site.py applies the entries and refuses to write anything unless every 'old' string occurs in the template exactly once, so a template that changes shape fails loudly instead of publishing a half-converted page. The {sandbox_bar} placeholder in a 'new' string is replaced by the sandbox header (draft label, portal and TEST links).",
+  "template": "public/physics/nlm/index.html",
+  "swaps": [
+    {"old": "<html lang=\"en\">", "new": "<html lang=\"en\" data-g9-test=\"sandbox-draft\">"},
+    {"old": "<title>NLM Topic Atlas · Laws of Motion (Data-Driven Canonical Orchestration)</title>", "new": "<title>TEST Topic Atlas · Data-Driven Canonical Orchestration</title>"},
+    {"old": "<body>", "new": "<body>{sandbox_bar}"},
+    {"old": "<a href=\"../index.html\" style=\"color: var(--text-muted); text-decoration: none;\">Physics</a>", "new": "<a href=\"../index.html\" style=\"color: var(--text-muted); text-decoration: none;\">TEST</a>"},
+    {"old": "<a href=\"../../index.html\" style=\"color: var(--text-muted); text-decoration: none;\">Home</a>", "new": "<a href=\"../../index.html\" style=\"color: var(--text-muted); text-decoration: none;\">Home</a>"},
+    {"old": "<span style=\"color: var(--text); font-weight: 600;\">Laws of Motion</span>", "new": "<span style=\"color: var(--text); font-weight: 600;\">Atlas</span>"},
+    {"old": "<span>45% (R2 Threshold)</span>", "new": "<span>50%</span>"},
+    {"old": "<span>78% (Friction R5)</span>", "new": "<span>75%</span>"},
+    {"old": "<div class=\"stat-value\">Laws of Motion</div>", "new": "<div class=\"stat-value\">TEST</div>"},
+    {"old": "<div class=\"stat-detail\"><code>MATRIX-PHY-NLM-FIRST-LAW</code></div>", "new": "<div class=\"stat-detail\"><code>loaded from TEST/matrices</code></div>"},
+    {"old": "<div class=\"stat-value\" id=\"statRungCount\">11 Rungs</div>", "new": "<div class=\"stat-value\" id=\"statRungCount\">no rungs loaded</div>"},
+    {"old": "Governed by <code>Physics/matrices/phy-nlm-first-law.rungs.json</code>", "new": "Governed by <code>TEST/matrices/*.rungs.json</code> · sandbox, not curriculum"},
+    {"old": "</script>\\n<script src=\"../../js/topic-atlas.js\">", "new": "</script>\n<script src=\"../../js/topic-atlas.js\">"}
+  ],
+  "init": {
+    "block_start": "<script>\n  window.addEventListener('DOMContentLoaded'",
+    "call": "window.ATLAS.init('MATRIX-PHY-NLM-FIRST-LAW')"
+  }
+}

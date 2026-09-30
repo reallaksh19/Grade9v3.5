@@ -271,6 +271,15 @@
       "location": "main",
       "reason": "Local numeric and structural review requested by Owner",
       "phase3_action": "none"
+    },
+    {
+      "path": "Shared/tools/build_test_site.py",
+      "kind": "PYTHON_HTML",
+      "classification": "OUT_OF_SCOPE",
+      "renders": "The TEST sandbox's own hub, rungs table and deployments report (public/test/), and the TEST Atlas as a transform of an existing Atlas page; nothing else",
+      "location": "main",
+      "reason": "Navigation and status for a sandbox subject, not learner teaching content: every learner page it links to is rendered by render_core.py, and a page it reports is labelled an unaccepted draft",
+      "phase3_action": "Fold into a render_core site-page mode if Phase 3 makes one; until then it adds no learner-page generator"
     }
   ]
 }

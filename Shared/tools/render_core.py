@@ -39,7 +39,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
 
-from Shared.tools import core2_v2, learner_metadata, product_manifest  # noqa: E402
+from Shared.tools import core2_v2, learner_metadata, owner_bank, product_manifest  # noqa: E402
 
 BLUEPRINTS = REPO / "Shared/web/interactive-page-blueprints.v1.json"
 CONTRACT = REPO / "Shared/quality/learner-quality.v1.json"
@@ -1029,6 +1029,9 @@ def _identity(q: dict) -> str:
 
 def _custody(q: dict) -> str:
     cust = (q.get("extensions") or {}).get("grade9v3:source_custody") or {}
+    if cust.get("authority_class") == "OWNER_SUPPLIED_RAW_INPUT":
+        # CORE2.md: a question the owner supplied is custody in its own right and is shown as supplied, with no exam identity.
+        return "Owner-supplied question" + (", verbatim" if cust.get("wording_custody") == "VERBATIM" else "")
     if (cust.get("authority_class") != "OFFICIAL_EXAM_ORGANIZER_ARCHIVE"
             or cust.get("source_status") != "PYQ_VERIFIED_PARENT"
             or not cust.get("paper_url")):
@@ -1541,6 +1544,20 @@ def _mode_href(href: str, mode: str) -> str:
     return href
 
 
+def shell_header(home_href: str, question_bank_href: str) -> str:
+    """The shared tablet-shell header. Used by every rendered page and by the TEST area's own pages."""
+    return (f'<header data-g9-shell-header><a data-g9-home href="{esc(home_href)}">Home</a>'
+            f'<button type="button" onclick="history.back()">Back</button>'
+            f'<a href="{esc(question_bank_href)}">Question bank</a>'
+            f'<button type="button" data-g9-action="search">Search</button>'
+            f'<button type="button" data-g9-action="display">Display</button>'
+            f'<div data-g9-search-panel hidden><input data-g9-search-input type="search" aria-label="Search this page"></div>'
+            f'<div data-g9-display-panel hidden><button type="button" data-g9-font="dec">A−</button><button type="button" data-g9-font="reset">A</button>'
+            f'<button type="button" data-g9-font="inc">A+</button><button type="button" data-g9-theme="light">Light</button>'
+            f'<button type="button" data-g9-theme="dark">Dark</button><button type="button" data-g9-zoom="dec">Zoom −</button>'
+            f'<button type="button" data-g9-zoom="reset">100%</button><button type="button" data-g9-zoom="inc">Zoom +</button></div></header>')
+
+
 def shell(ctx: Ctx, role: str, mode: str) -> tuple[str, str]:
     m = ctx.manifest
     if mode == "EMBED":
@@ -1553,16 +1570,7 @@ def shell(ctx: Ctx, role: str, mode: str) -> tuple[str, str]:
     )
     home_href = _mode_href(m["home_href"], mode)
     question_bank_href = _mode_href(m.get("question_bank_href", m["home_href"]), mode)
-    header = (f'<header data-g9-shell-header><a data-g9-home href="{esc(home_href)}">Home</a>'
-              f'<button type="button" onclick="history.back()">Back</button>'
-              f'<a href="{esc(question_bank_href)}">Question bank</a>'
-              f'<button type="button" data-g9-action="search">Search</button>'
-              f'<button type="button" data-g9-action="display">Display</button>'
-              f'<div data-g9-search-panel hidden><input data-g9-search-input type="search" aria-label="Search this page"></div>'
-              f'<div data-g9-display-panel hidden><button type="button" data-g9-font="dec">A−</button><button type="button" data-g9-font="reset">A</button>'
-              f'<button type="button" data-g9-font="inc">A+</button><button type="button" data-g9-theme="light">Light</button>'
-              f'<button type="button" data-g9-theme="dark">Dark</button><button type="button" data-g9-zoom="dec">Zoom −</button>'
-              f'<button type="button" data-g9-zoom="reset">100%</button><button type="button" data-g9-zoom="inc">Zoom +</button></div></header>')
+    header = shell_header(home_href, question_bank_href)
     product_href = f"#g9-role-{output_roles[0]}" if mode == "SINGLE_FILE" else "index.html"
     crumbs = (f'<nav data-g9-breadcrumb aria-label="Breadcrumb"><a href="{esc(home_href)}">Home</a>'
               f'<a href="{product_href}">{esc(m["title"])}</a>{nav_links}</nav>')
@@ -1681,6 +1689,14 @@ def context(manifest_path: Path) -> Ctx:
     ):
         validator = Draft202012Validator(load_json(schema_path))
         for path, record in zip(paths, records):
+            if schema_path == BANK_SCHEMA and owner_bank.is_owner_bank(record):
+                if path.parent.name == "exam-bank":
+                    raise ValueError(f"PRODUCT_STRUCTURE_INVALID: {path}: an owner-supplied bank may not live in exam-bank/")
+                problems = owner_bank.check(record, str(path))
+                if problems:
+                    raise ValueError("PRODUCT_STRUCTURE_INVALID: " + problems[0]
+                                     + (f" (+{len(problems) - 1} more)" if len(problems) > 1 else ""))
+                continue
             if schema_path == BANK_SCHEMA and path.parent.name != "exam-bank":
                 # Fixture and exemplar banks are not canonical bank publications.
                 continue

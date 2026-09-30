@@ -118,6 +118,8 @@ def accept(slug: str, note: str = "", accept_open: str = "", repo: Path = REPO,
     if len(manifests) != 1:
         raise ValueError(f"expected exactly one manifest for {slug}, got {len(manifests)}")
     manifest = _json(manifests[0])
+    if manifest["subject"] == "TEST":
+        raise ValueError("TEST is a sandbox subject: its products are labelled drafts and are never accepted or published as learner products")
     subject = manifest["subject"].lower()
     folder = repo / "publication" / "products" / subject / slug
     receipt = verify_render(folder)
