@@ -155,6 +155,43 @@ class Renderer(unittest.TestCase):
             for condition in relation.get("conditions", []):
                 self.assertIn(condition, html)
 
+    def test_core1a_watch_one_preserves_legacy_reasoning_and_check_without_fabricating_why(self):
+        repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(repo_manifest)
+        microtopic = ctx.selection_rows["microtopics"][0]
+        unit = microtopic["construction_units"][0]
+        question = ctx.index("questions")[unit["worked_anchor_ref"]]
+        html = render_core._core1a_worked_anchor(question)
+
+        self.assertIn(question["stem"], html)
+        for step in question["answer"]["reasoning"]:
+            self.assertIn(step, html)
+        self.assertIn(question["answer"]["summary"], html)
+        self.assertIn(question["answer"]["check"], html)
+        self.assertNotIn("Why valid:", html)
+
+    def test_core1a_watch_one_uses_structured_why_when_canonical_route_supplies_it(self):
+        question = {
+            "stem": "Explain one governed move.",
+            "answer": {
+                "summary": "Done.",
+                "check": "Check independently.",
+                "reasoning_route": [{
+                    "id": "MOVE-1",
+                    "action": "Choose the model.",
+                    "why_valid": "The stated conditions match the model.",
+                    "output": "One valid model.",
+                }],
+            },
+        }
+        html = render_core._core1a_worked_anchor(question)
+
+        self.assertIn('data-g9-watch-step', html)
+        self.assertIn('data-g9-move-ref="MOVE-1"', html)
+        self.assertIn("Choose the model.", html)
+        self.assertIn("Why valid: The stated conditions match the model.", html)
+        self.assertIn("Result: One valid model.", html)
+
     def test_renderer_owns_tablet_asset_and_blueprint_digest(self):
         pkg = json.loads((REPO / PKG).read_text(encoding="utf-8"))
         pkg["representations"][0]["rendered_asset_refs"] = ["Physics/assets/representations/REP-KIN-2D-SHARED-CLOCK.svg"]
