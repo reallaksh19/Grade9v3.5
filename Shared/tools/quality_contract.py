@@ -190,6 +190,41 @@ def _metadata_exact(unit, check, ctx):
     return problems
 
 
+@op("support_provenance_matches_source")
+def _support_provenance_matches_source(unit, check, ctx):
+    """Verify rendered support custody from typed observation facts, not learner prose."""
+    # Legacy calibration/reference observations predate support provenance. The governed
+    # render_core extractor always emits this key, including an empty array.
+    if "support_rows" not in unit:
+        return []
+    rows = unit["support_rows"]
+    problems = []
+    if not rows and any(unit["blocks"].get(block) for block in check.get("support_blocks", [])):
+        problems.append("support is rendered without typed provenance rows")
+    for index, row in enumerate(rows, 1):
+        # A "declared" mapping covers a source whose provenance is stated by the author (an inline
+        # ladder rung), so it is chosen by the row's own provenance; every other mapping is fixed
+        # by where the text lives, so a hint can never be relabelled as authored support.
+        matches = [mapping for mapping in check["mappings"]
+                   if row.get("source", "").startswith(mapping["source_prefix"])
+                   and (not mapping.get("declared") or row.get("provenance") == mapping["provenance"])]
+        if len(matches) != 1:
+            problems.append(f"support row {index} has unrecognized source {row.get('source')!r}")
+            continue
+        expected = matches[0]
+        for field in ("provenance", "group", "block", "label"):
+            if row.get(field) != expected[field]:
+                problems.append(
+                    f"support row {index} from {row.get('source')!r} has {field}={row.get(field)!r}; "
+                    f"expected {expected[field]!r}"
+                )
+        if row.get("pre_solution") and row.get("reveals") in check.get("forbidden_pre_solution_reveals", []):
+            problems.append(
+                f"support row {index} from {row.get('source')!r} exposes {row.get('reveals')} before the solution"
+            )
+    return problems
+
+
 @op("pre_attempt_figures_partial")
 def _pre_attempt_partial(unit, check, ctx):
     full = [f for f in unit["figures"] if f["stage"] == "PRE_ATTEMPT" and f.get("stages_total", 1) > 1

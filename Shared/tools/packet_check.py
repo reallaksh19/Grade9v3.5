@@ -99,9 +99,9 @@ def inspect(ctx, pages: dict[str, str], inventory: dict | None = None) -> dict:
             add("LEARNER_METADATA", bool(node.first(attr="data-g9-meta-strip")) and
                 not node.first(attr="data-g9-meta-incomplete"), "Concept/topic, question difficulty and source labels", qid)
             blocks = [n for n in node.find_all(attr="data-g9-block")
-                      if n.attrs["data-g9-block"] == "authored_hints"]
+                      if n.attrs["data-g9-block"] == "authored_core2_support"]
             rungs = [n.content() for b in blocks for n in b.find_all(attr="data-g9-rung")]
-            moves = list(node.find_all(attr="data-g9-reasoning-move"))
+            moves = list(node.find_all(attr="data-g9-solution-move"))
             if band in {"D2", "D3", "D4"}:
                 add("AUTHORED_HINT_LADDER", len(rungs) >= 3 and all(rungs) and
                     len(set(rungs)) == len(rungs), {"rungs": len(rungs), "minimum": 3}, qid)
@@ -109,7 +109,7 @@ def inspect(ctx, pages: dict[str, str], inventory: dict | None = None) -> dict:
                 fields = ("id", "kind", "action", "why_valid", "inputs", "output")
                 valid = bool(route) and all(all(m.get(f) for f in fields) for m in route)
                 add("REASONING_ROUTE", valid and Counter(m.get("id") for m in route) ==
-                    Counter(n.attrs["data-g9-reasoning-move"] for n in moves) and
+                    Counter(n.attrs["data-g9-solution-move"] for n in moves) and
                     len({m.get("id") for m in route}) == len(route), {"moves": len(moves)}, qid)
             if band in {"D3", "D4"}:
                 svgs = list(node.find_all(tag="svg"))

@@ -177,6 +177,10 @@ it is never permission for an agent to invent a page architecture.
         {
           "id": "exit_task_closure",
           "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "practice_navigation",
+          "visibility": "IMMEDIATE"
         }
       ],
       "required_inputs": [
@@ -193,7 +197,7 @@ it is never permission for an agent to invent a page architecture.
         "RANDOM_BLANK_DELETION",
         "UNANSWERED_PROMPT"
       ],
-      "web_blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0"
+      "web_blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.1.0"
     },
     "CORE1B": {
       "learner_job": "Reconstruct the same inferential truth before seeing the completed route.",
@@ -283,7 +287,19 @@ it is never permission for an agent to invent a page architecture.
           "visibility": "ON_REVEAL"
         },
         {
+          "id": "authored_core2_support",
+          "visibility": "ON_REVEAL"
+        },
+        {
+          "id": "concept_navigation",
+          "visibility": "IMMEDIATE"
+        },
+        {
           "id": "source_answer_rubric",
+          "visibility": "ON_REVEAL"
+        },
+        {
+          "id": "verified_solution_reasoning",
           "visibility": "ON_REVEAL"
         },
         {
@@ -312,7 +328,7 @@ it is never permission for an agent to invent a page architecture.
         "GENERATED_OFFICIAL_IDENTITY",
         "RECONSTRUCTED_WORDING_PRESENTED_AS_ORIGINAL"
       ],
-      "web_blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.0.0"
+      "web_blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.1.0"
     },
     "CORE2A": {
       "learner_job": "Learn a familiar question-family application route with pedagogical support and complete closure.",

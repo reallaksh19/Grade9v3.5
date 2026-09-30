@@ -49,6 +49,41 @@ def fixture(repo: Path, *, review: bool = False, cited: bool = False) -> tuple[P
     return manifest, digest
 
 
+class VerifyRender(unittest.TestCase):
+    """The digest is written into two stamped fields; nowhere else may it appear."""
+
+    TEMPLATE = ('<html data-g9-render-digest="g9-digest-pending"><head>'
+                '<meta name="g9-render" content="render_core/2 g9-digest-pending"></head>'
+                '<body>{body}</body></html>')
+
+    def render(self, body: str = "Prompt", tamper=None) -> Path:
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        out = Path(tmp.name)
+        neutral = self.TEMPLATE.format(body=body)
+        digest = hashlib.sha256(b"core1.html\0" + neutral.encode()).hexdigest()[:16]
+        page = neutral.replace("g9-digest-pending", digest)
+        (out / "core1.html").write_text(tamper(page, digest) if tamper else page)
+        (out / "render-receipt.json").write_text(json.dumps({
+            "renderer": "render_core/2", "digest": digest, "mode": "PAGES",
+            "draft": False, "pages": ["core1.html"], "gaps": []}))
+        return out
+
+    def test_a_render_stamped_in_both_fields_verifies(self):
+        self.assertEqual(len(accept_product.verify_render(self.render())["digest"]), 16)
+
+    def test_the_digest_anywhere_else_in_a_page_is_refused(self):
+        out = self.render(tamper=lambda page, digest: page.replace("Prompt", f"Prompt {digest}"))
+        with self.assertRaisesRegex(ValueError, "outside its stamped fields"):
+            accept_product.verify_render(out)
+
+    def test_a_changed_state_scope_attribute_is_refused(self):
+        out = self.render(tamper=lambda page, digest: page.replace(
+            f'data-g9-render-digest="{digest}"', 'data-g9-render-digest="0000000000000000"'))
+        with self.assertRaisesRegex(ValueError, "no longer match"):
+            accept_product.verify_render(out)
+
+
 class Publication(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()

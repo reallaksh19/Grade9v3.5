@@ -494,6 +494,23 @@ def _render_core_unit(article: Node) -> dict:
             "display_name": display_name,
             "label": label,
         })
+    support_rows = []
+    for row in article.find_all("li", attr="data-g9-support-provenance"):
+        ancestors = list(row.ancestors())
+        group = next((a for a in ancestors if a.tag and "data-g9-support-group" in a.attrs), None)
+        owner = next((a for a in ancestors if a.tag and "data-g9-block" in a.attrs), None)
+        heading = owner.first("h4") if owner is not None else None
+        support_rows.append({
+            "group": group.attrs.get("data-g9-support-group", "") if group is not None else "",
+            "provenance": row.attrs.get("data-g9-support-provenance", ""),
+            "source": row.attrs.get("data-g9-support-source", ""),
+            "reveals": row.attrs.get("data-g9-support-reveals", ""),
+            "block": owner.attrs.get("data-g9-block", "") if owner is not None else "",
+            "label": heading.content() if heading is not None else "",
+            "pre_solution": not any(
+                a.tag == "template" and "data-g9-payload" in a.attrs for a in ancestors
+            ),
+        })
     return {
         "id": article.attrs["data-g9-unit"], "kind": article.attrs.get("data-g9-kind", "CONCEPT"),
         "concept_ref": article.attrs["data-g9-unit"] if article.attrs.get("data-g9-kind") == "CONCEPT" else None,
@@ -503,6 +520,7 @@ def _render_core_unit(article: Node) -> dict:
         "attempt": article.first(attr="data-g9-attempt-box") is not None,
         "reveals": reveals,
         "support_levels": [li.content() for li in article.find_all("li", attr="data-g9-rung")],
+        "support_rows": support_rows,
         "decisions": sum(1 for _ in article.find_all("li", attr="data-g9-step")),
         "worked_anchors": sum(1 for n in article.find_all(attr="data-g9-block") if n.attrs["data-g9-block"] == "worked_anchor"),
         "prerequisites_assumed": [li.attrs["data-g9-prereq"] for li in prereqs],

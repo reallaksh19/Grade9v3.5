@@ -59,13 +59,33 @@ class PacketCheck(unittest.TestCase):
     def test_authored_content_is_inert_and_has_independent_ladder_identity(self):
         q = question(); ctx = context(q); pages = page(ctx, q)
         root = quality_observe.parse(pages["core2.html"])
-        block = next(n for n in root.find_all(attr="data-g9-block") if n.attrs["data-g9-block"] == "authored_hints")
-        self.assertTrue(any(a.tag == "template" for a in block.ancestors()))
+        block = next(n for n in root.find_all(attr="data-g9-block") if n.attrs["data-g9-block"] == "authored_core2_support")
+        rungs = list(block.find_all(attr="data-g9-rung"))
+        self.assertGreaterEqual(len(rungs), 3)
+        # Authored support text stays inert (inside a template) until the learner asks for it.
+        self.assertTrue(all(any(a.tag == "template" for a in rung.ancestors()) for rung in rungs))
         refs = [n.attrs["data-g9-ladder-ref"] for n in root.find_all(attr="data-g9-ladder-ref")]
         self.assertEqual(len(refs), len(set(refs)))
         report = packet_check.inspect(ctx, pages)
         self.assertEqual(result(report, "AUTHORED_HINT_LADDER")["status"], "PASS")
         self.assertEqual(result(report, "REASONING_ROUTE")["status"], "PASS")
+
+    def test_declared_math_reaches_support_rungs_and_legacy_working_after_the_core2_v2_merge(self):
+        q = question()
+        q["hints"] = [{"text": "Use x^2 first."}]
+        q["scaffolds"] = [{"text": "Then square: x^2."}]
+        q["answer"] = {"summary": "ok", "reasoning": ["Since x^2 > 0 the root is real."]}
+        q["extensions"] = {"grade9v3:math_spans": [
+            {"target": "source_hint:0", "literal": "x^2", "tex": "x^{2}", "display": False},
+            {"target": "scaffold:0", "literal": "x^2", "tex": "x^{2}", "display": False},
+            {"target": "answer_reasoning:0", "literal": "x^2", "tex": "x^{2}", "display": False}]}
+        ctx = context(q)
+        html = render_core.core2(ctx, q)
+        # One typeset expression per declared target: the source hint, the authored scaffold and
+        # the legacy working line. None is left as raw text, and nothing is reported as a gap.
+        self.assertEqual(html.count("<math"), 3)
+        self.assertNotIn("x^2", html)
+        self.assertFalse([g for g in ctx.gaps if g["duty"] == "AUTHOR_TYPED_MATH"], ctx.gaps)
 
     def test_visual_exception_goes_stale_after_question_change(self):
         q = question()
