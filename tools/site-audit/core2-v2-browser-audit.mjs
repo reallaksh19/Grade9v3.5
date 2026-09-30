@@ -128,7 +128,7 @@ check(await keyboardSupport.count() === 1, 'keyboard witness has no progressive 
 if (await keyboardSupport.count()) {
   await keyboardSupport.focus();
   check(await keyboardSupport.evaluate(el => document.activeElement === el), 'keyboard support control could not receive focus');
-  await keyboardPage.keyboard.press('Enter');
+  await keyboardSupport.press('Enter');
   check(await keyboardArticle.locator('.slot-support li[data-g9-rung]').count() >= 1, 'Enter did not activate progressive support');
 }
 const keyboardConcept = keyboardArticle.locator('[data-g9-concept-link]').first();
@@ -137,7 +137,10 @@ if (await keyboardConcept.count()) {
   const conceptRef = await keyboardConcept.getAttribute('data-g9-concept-ref');
   await keyboardConcept.focus();
   check(await keyboardConcept.evaluate(el => document.activeElement === el), 'keyboard concept link could not receive focus');
-  await Promise.all([keyboardPage.waitForLoadState('load'), keyboardPage.keyboard.press('Enter')]);
+  await Promise.all([
+    keyboardPage.waitForURL(url => url.pathname.endsWith('/core1a.html') && url.hash === `#${conceptRef}`),
+    keyboardConcept.press('Enter'),
+  ]);
   check(keyboardPage.url().includes(`core1a.html#${conceptRef}`), `keyboard concept navigation landed at ${keyboardPage.url()}`);
 }
 check(keyboardErrors.length === 0, `keyboard runtime leaked page error(s): ${keyboardErrors.join(' | ')}`);
