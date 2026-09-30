@@ -224,6 +224,39 @@ class Renderer(unittest.TestCase):
                 self.assertLess(article.index(f'id="{units[-1]["id"]}"'), article.index('data-g9-attempt-box'))
             self.assertLess(article.rindex('data-g9-block="worked_anchor"'), article.index('data-g9-attempt-box'))
 
+    def test_core1a_derivation_heavy_witness_uses_teaching_path_without_synthetic_units(self):
+        repo_manifest = REPO / "products" / "physics" / "phy-kin-1d-motion.manifest.json"
+        ctx = render_core.context(repo_manifest)
+        target = next(
+            microtopic for microtopic in ctx.selection_rows["microtopics"]
+            if microtopic["id"] == "MIC-PHY-KIN-CONSTANT-ACCELERATION"
+        )
+        self.assertFalse(target.get("construction_units"))
+
+        html = render_core.page(ctx, "CORE1A", "PAGES", render_core.render_digest(ctx))
+        start = html.index(f'<article id="{target["id"]}"')
+        selected = ctx.selection_rows["microtopics"]
+        target_index = selected.index(target)
+        end = (
+            html.index(f'<article id="{selected[target_index + 1]["id"]}"', start)
+            if target_index + 1 < len(selected)
+            else html.index("</main>", start)
+        )
+        article = html[start:end]
+
+        self.assertIn("data-g9-derivation-bridge", article)
+        self.assertIn("data-g9-equation-matrix", article)
+        for step in target["teaching_path"]:
+            self.assertIn(f'data-g9-step="{step["id"]}"', article)
+            self.assertIn(render_core.esc(step["action"]), article)
+            self.assertIn(render_core.esc(step["why_valid"]), article)
+            self.assertIn(render_core.esc(step["output"]), article)
+        self.assertIn(f'href="#{target["id"]}"', html)
+
+        renderer_source = (REPO / "Shared/tools/render_core.py").read_text(encoding="utf-8")
+        self.assertNotIn(target["id"], renderer_source)
+        self.assertNotIn("Trajectory-equation derivation as a first-slice requirement.", article)
+
     def test_renderer_owns_tablet_asset_and_blueprint_digest(self):
         pkg = json.loads((REPO / PKG).read_text(encoding="utf-8"))
         pkg["representations"][0]["rendered_asset_refs"] = ["Physics/assets/representations/REP-KIN-2D-SHARED-CLOCK.svg"]
