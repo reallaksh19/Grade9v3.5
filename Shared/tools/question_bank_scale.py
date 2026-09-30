@@ -33,12 +33,12 @@ def synthetic_questions(count: int) -> list[dict]:
         topic = f"Synthetic Topic {topic_index + 1}"
         value = index + 2
         rows.append({
-            "id": f"SYN-Q-{index:06d}",
+            "id": f"fixture:question:{index:06d}",
             "order": index,
             "subject": subject,
-            "subject_ref": f"SYN-SUBJECT-{subject_index + 1}",
+            "subject_ref": f"fixture:subject:{subject_index + 1}",
             "topic": topic,
-            "topic_ref": f"SYN-TOPIC-{subject_index + 1}-{topic_index + 1}",
+            "topic_ref": f"fixture:topic:{subject_index + 1}:{topic_index + 1}",
             "question_type": "constructed_response",
             "exam": "Synthetic Scale Fixture",
             "year": 2026,
@@ -52,9 +52,9 @@ def synthetic_questions(count: int) -> list[dict]:
             "expected_time_seconds": 60,
             "common_wrong_route": "",
             "stable_crux_move": f"Apply invariant family {family_index}",
-            "primary_capability_ref": f"SYN-CAP-{subject_index + 1}-{topic_index + 1}",
+            "primary_capability_ref": f"fixture:capability:{subject_index + 1}:{topic_index + 1}",
             "secondary_capability_refs": [],
-            "family_ref": f"SYN-FAMILY-{family_index:03d}",
+            "family_ref": f"fixture:family:{family_index:03d}",
             "answer": {"summary": str(value + topic_index)},
         })
     return rows
