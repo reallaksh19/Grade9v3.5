@@ -37,6 +37,9 @@ STANDALONE_WORK = REPO / "publication" / "standalone" / "products"
 STANDALONE = REPO / "standalone" / "products"  # read-only here
 REVIEWS = PRODUCTS / "verification"
 ACCEPTANCE = PRODUCTS / "acceptance"
+PRESERVED_MANIFEST_KEYS = (
+    "ledger", "diagnostic", "diagnostic_min", "intake_digest", "prerequisite_links", "output_roles",
+)
 
 
 def decision_state(name: str, subject: str, digest: str) -> tuple[str, str | None]:
@@ -95,7 +98,7 @@ def derive_all() -> list[Path]:
                                     "../../../index.html", "../../../question-bank/index.html")
         if target.is_file():                           # keep owner/agent selection edits
             old = json.loads(target.read_text(encoding="utf-8"))
-            for key in ("ledger", "diagnostic", "diagnostic_min", "intake_digest", "prerequisite_links"):
+            for key in PRESERVED_MANIFEST_KEYS:
                 if key in old:
                     m[key] = old[key]
         target.parent.mkdir(parents=True, exist_ok=True)

@@ -35,6 +35,63 @@ class Core2V2SupportProjection(unittest.TestCase):
         self.assertEqual(rows[0]["provenance"], core2_v2.SOURCE_HINT)
         self.assertEqual(rows[0]["source"], "hints[0]")
 
+    def test_a_bare_text_bank_hint_is_a_source_hint(self):
+        # The competitive-exam bank stores a source hint as text; packages store {text, reveals}.
+        question = {"hints": ["Relate the vertical displacement to the half-string length."],
+                    "scaffolds": []}
+        source, authored = core2_v2.split_pre_solution_support(question)
+        self.assertEqual(authored, [])
+        self.assertEqual([(r["provenance"], r["source"], r["reveals"]) for r in source],
+                         [(core2_v2.SOURCE_HINT, "hints[0]", "METHOD")])
+
+    def test_an_empty_bare_hint_is_still_refused(self):
+        with self.assertRaises(core2_v2.Core2SupportProjectionError):
+            core2_v2.project_support({"hints": ["   "], "scaffolds": []})
+
+    def test_inline_ladder_rungs_take_their_declared_provenance_not_a_guess(self):
+        question = {
+            "hints": [{"text": "Printed hint", "reveals": "CONCEPT"}],
+            "scaffolds": [],
+            "hint_ladder": [
+                {"order": 1, "purpose": "ORIENT", "from": "hints[0]", "provenance": "SOURCE_HINT"},
+                {"order": 2, "purpose": "REPRESENT", "text": "Mark 2 and 3 on a number line.",
+                 "provenance": "AUTHORED_SCAFFOLD", "visual_stage_ref": None},
+                {"order": 3, "purpose": "FIRST_RELATION", "text": "Take 2 off both sides.",
+                 "provenance": "AUTHORED_HINT"},
+            ],
+        }
+        rows = core2_v2.project_support(question)
+        self.assertEqual([r["order"] for r in rows], [1, 2, 3])
+        self.assertEqual([r["source"] for r in rows], ["hints[0]", "hint_ladder[1]", "hint_ladder[2]"])
+        self.assertEqual([r["provenance"] for r in rows],
+                         [core2_v2.SOURCE_HINT, core2_v2.AUTHORED_CORE2_SUPPORT,
+                          core2_v2.AUTHORED_CORE2_SUPPORT])
+        source, authored = core2_v2.split_pre_solution_support(question)
+        self.assertEqual(len(source), 1)
+        self.assertEqual(len(authored), 2)
+
+    def test_an_inline_source_hint_rung_stays_in_the_source_lane(self):
+        rows = core2_v2.project_support({"hints": [], "scaffolds": [], "hint_ladder": [
+            {"order": 1, "purpose": "ORIENT", "text": "As printed.", "provenance": "SOURCE_HINT"}]})
+        self.assertEqual(rows[0]["provenance"], core2_v2.SOURCE_HINT)
+
+    def test_an_inline_answer_rung_is_not_offered_before_the_solution(self):
+        question = {"hints": [], "scaffolds": [], "hint_ladder": [
+            {"order": 1, "purpose": "ORIENT", "text": "Start here.", "provenance": "AUTHORED_HINT"},
+            {"order": 2, "purpose": "ANSWER", "text": "It is 5.", "provenance": "AUTHORED_HINT"}]}
+        source, authored = core2_v2.split_pre_solution_support(question)
+        self.assertEqual([r["text"] for r in authored], ["Start here."])
+
+    def test_an_inline_rung_without_declared_provenance_is_refused(self):
+        with self.assertRaisesRegex(core2_v2.Core2SupportProjectionError, "no declared provenance"):
+            core2_v2.project_support({"hints": [], "scaffolds": [], "hint_ladder": [
+                {"order": 1, "purpose": "ORIENT", "text": "Start here."}]})
+
+    def test_a_rung_with_neither_from_nor_text_is_still_an_invalid_reference(self):
+        with self.assertRaisesRegex(core2_v2.Core2SupportProjectionError, "invalid hint_ladder reference"):
+            core2_v2.project_support({"hints": [], "scaffolds": [], "hint_ladder": [
+                {"order": 1, "purpose": "ORIENT", "provenance": "AUTHORED_HINT"}]})
+
     def test_authored_scaffold_is_not_presented_as_source_hint(self):
         question = {
             "hints": [],

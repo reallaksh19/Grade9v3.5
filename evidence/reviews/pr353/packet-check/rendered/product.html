@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en" data-g9-shell data-g9-role="CORE2" data-g9-mode="SINGLE_FILE"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="g9-render" content="render_core/2 2f1baf1047c1edfe"><style data-g9-tablet-shell>/* ==========================================================================
+   Grade9V3 · 12.7" Tablet Ergonomics, Touch Targets & Icon Design System
+   Target Viewport: 1366x854 to 1440x900 CSS px (Landscape), 900x1440 (Portrait)
+   WCAG 2.5.5 Enhanced / Android Material Large Tablet Compliance (>= 48x48 px)
+   ========================================================================== */
+
+:root {
+  --tab12-container-max: 1380px;
+  --tab12-touch-min: 48px;
+  --tab12-thumb-size: 30px;
+  --tab12-base-font: 16px;
+  --tab12-radius-sm: 8px;
+  --tab12-radius-md: 12px;
+  --tab12-radius-lg: 16px;
+}
+
+/* 12.7" Base Typography Elevation */
+@media (min-width: 900px) {
+  html {
+    font-size: var(--tab12-base-font);
+  }
+}
+
+/* Large Tablet Container Constraints */
+.container, main, .main-container {
+  max-width: var(--tab12-container-max);
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   1. STRICT 48px+ TOUCH TARGET ENFORCEMENT
+   ========================================================================== */
+
+/* Buttons, Action Links, and Tab Buttons */
+button, 
+.btn, 
+.g9-btn, 
+.tab-btn, 
+.rung-node, 
+.subtopic-actions a, 
+.jump-nav a,
+a.action-btn {
+  min-height: var(--tab12-touch-min);
+  min-width: var(--tab12-touch-min);
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--tab12-radius-sm);
+  padding: 10px 18px;
+}
+
+/* Accordion Summary & Disclosure Controls */
+details summary, 
+summary.rung-summary, 
+details.reveal-block summary, 
+details.core-box summary {
+  min-height: 52px;
+  padding: 14px 20px;
+  cursor: pointer;
+  touch-action: manipulation;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Touch-Optimized Range Sliders */
+input[type="range"] {
+  height: var(--tab12-touch-min) !important;
+  touch-action: pan-y;
+  cursor: pointer;
+  margin: 4px 0;
+  accent-color: #38bdf8;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  width: var(--tab12-thumb-size);
+  height: var(--tab12-thumb-size);
+  border-radius: 50%;
+  background: #38bdf8;
+  cursor: pointer;
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  touch-action: none;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: var(--tab12-thumb-size);
+  height: var(--tab12-thumb-size);
+  border-radius: 50%;
+  background: #38bdf8;
+  cursor: pointer;
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Textareas for Virtual Tablet Keyboard Typing */
+textarea, 
+textarea.attempt-input, 
+.attempt-box textarea {
+  min-height: 120px;
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 14px 16px;
+  border-radius: var(--tab12-radius-sm);
+  box-sizing: border-box;
+  touch-action: manipulation;
+}
+
+/* Elimination of sub-13px micro fonts */
+small, .badge, .subtopic-desc, .node-id, .stat-label, .evidence-citation {
+  font-size: 13.5px !important;
+}
+
+/* Tailwind utility floor: arbitrary micro-font classes are common in legacy explorers.
+   Keep learner-visible text at or above 13px on the tablet target even when a
+   runtime utility stylesheet is injected after this file. */
+.text-xs,
+[class~="text-[9px]"],
+[class~="text-[10px]"],
+[class~="text-[11px]"],
+[class~="text-[12px]"],
+[class~="text-[12.5px]"] {
+  font-size: 13px !important;
+}
+
+/* ==========================================================================
+   2. ICONS-INSTEAD-OF-TABLES COMPONENT SYSTEM
+   ========================================================================== */
+
+/* Metric Tile Clusters (replaces tabular telemetry) */
+.metric-tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin: 14px 0;
+}
+
+.metric-tile {
+  background: var(--bg-card, #1f293b);
+  border: 1px solid var(--border, #2e3d56);
+  border-radius: var(--tab12-radius-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.metric-tile:hover {
+  border-color: var(--accent, #38bdf8);
+}
+
+.metric-tile-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted, #94a3b8);
+}
+
+.metric-tile-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.metric-tile-value {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--accent, #38bdf8);
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.metric-tile-sub {
+  font-size: 13.5px;
+  color: var(--text-muted, #94a3b8);
+}
+
+/* Tablet Card Deck (replaces table rows) */
+.tablet-card-deck {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.tablet-card-row {
+  background: var(--bg-card, #1f293b);
+  border: 1px solid var(--border, #2e3d56);
+  border-radius: var(--tab12-radius-md);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  min-height: 64px;
+}
+
+.tablet-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid var(--accent, #38bdf8);
+  color: var(--accent, #38bdf8);
+}
+
+/* Dual Comparison Cards (replaces side-by-side comparison tables) */
+.dual-frame-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 16px 0;
+}
+
+@media (min-width: 860px) {
+  .dual-frame-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.dual-frame-card {
+  background: var(--bg-card, #161b22);
+  border: 1.5px solid var(--border, #30363d);
+  border-radius: var(--tab12-radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dual-frame-card.active {
+  border-color: var(--accent, #58a6ff);
+  box-shadow: 0 0 16px rgba(88, 166, 255, 0.2);
+}
+
+.dual-frame-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text, #f0f6fc);
+}
+
+/* Visual Arithmetic Flow Pipeline (replaces numeric arrays and synthetic division tables) */
+.arithmetic-pipeline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 16px 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pipeline-step {
+  background: var(--bg-card, #1f293b);
+  border: 1px solid var(--border, #2e3d56);
+  border-radius: var(--tab12-radius-sm);
+  padding: 12px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 110px;
+  text-align: center;
+}
+
+.pipeline-step.highlight {
+  border-color: #34d399;
+  background: rgba(52, 211, 153, 0.1);
+}
+
+.pipeline-arrow {
+  font-size: 20px;
+  color: var(--text-muted, #94a3b8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+}
+
+/* Stage Layout on 12.7" Tablets */
+@media (min-width: 960px) {
+  .stage-grid-12-7 {
+    display: grid;
+    grid-template-columns: 1.85fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+}
+</style><title>Source questions · Force and laws of motion</title><style>
+[hidden]{display:none!important}
+:root{--g9-zoom:1;--g9-content-max:1380px;--g9-touch-min:48px;--g9-space:clamp(16px,2vw,28px);--g9-type-body:17px;--bg:#f6f7fb;--fg:#172033;--card:#fff;--line:#d5dce6;--accent:#1f5fae;--muted:#52627a}
+:root[data-theme=dark]{--bg:#0f1520;--fg:#e8edf5;--card:#18212f;--line:#2c394d;--accent:#8ab4f8;--muted:#a3b1c6}
+html{font-size:calc(var(--g9-type-body) * var(--g9-zoom))}body{margin:0;background:var(--bg);color:var(--fg);font:1rem/1.6 system-ui,sans-serif;overflow-wrap:break-word}
+header[data-g9-shell-header]{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px var(--g9-space);background:var(--card);border-bottom:1px solid var(--line)}
+header a,header button,button,summary,nav a{min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);padding:10px 14px;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg);font:inherit;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;touch-action:manipulation}
+nav[data-g9-breadcrumb]{display:flex;gap:8px;flex-wrap:wrap;padding:8px var(--g9-space)}
+main{max-width:var(--g9-content-max);margin:0 auto;padding:var(--g9-space);box-sizing:border-box}
+main>*{min-width:0}article[data-g9-unit]{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:var(--g9-space);margin:18px 0;min-width:0}
+article[data-g9-unit]>*{min-width:0}
+@media (min-width:1100px){article[data-g9-unit].g9-stage-support{display:grid;grid-template-columns:.68fr .32fr;gap:20px}
+article.g9-stage-support>.slot-identity,article.g9-stage-support>.slot-attempt,article.g9-stage-support>.slot-construction,article.g9-stage-support>.slot-reconstruction,article.g9-stage-support>.slot-reasoning,article.g9-stage-support>.slot-post_attempt,article.g9-stage-support>.slot-solution{grid-column:1}
+article.g9-stage-support>.slot-support,article.g9-stage-support>.slot-repair_closure{grid-column:2}}
+textarea{width:100%;min-height:120px;font:inherit;border:1px solid var(--line);border-radius:10px;padding:14px 16px;box-sizing:border-box;background:var(--card);color:var(--fg)}
+details{border:1px solid var(--line);border-radius:10px;margin:12px 0;padding:0 12px}details[data-locked] summary{opacity:.55;cursor:not-allowed}
+figure{margin:14px 0;max-width:100%;overflow-x:auto}figure svg{width:100%;height:auto;max-width:720px}figcaption{color:var(--muted)}
+.g9-prov{color:var(--muted);font-size:.95rem}.g9-expr{font-family:ui-monospace,monospace;font-size:1.05rem}
+[data-g9-meta-strip]{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+[data-g9-meta-item]{display:inline-flex;gap:4px;align-items:baseline;padding:5px 9px;border:1px solid var(--line);border-radius:999px;background:var(--bg);font-size:.9rem}
+[data-g9-meta-item] strong{font-weight:700}
+h4{margin:.8em 0 .3em}:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+footer{padding:24px 16px;color:var(--muted)}
+@media print{header[data-g9-shell-header],nav[data-g9-breadcrumb],.g9-attempt,button,[data-g9-display-panel]{display:none!important}
+.g9-attempt:has(.g9-answer-options){display:block!important}
+.g9-attempt>:not(.g9-answer-options),.g9-answer-option input{display:none!important}
+details[data-requires-attempt]:not([open]){display:none!important}
+details{border:none}article[data-g9-unit]{break-inside:auto;border:none}
+h1,h2,h3,h4{break-after:avoid-page}footer{padding:0;break-before:avoid-page}
+body{background:#fff;color:#000}}
+.g9-attempt input[type=text],.g9-attempt select,.g9-attempt textarea{min-height:48px;box-sizing:border-box}
+.g9-answer-option,.g9-paper,.g9-match{display:flex;align-items:center;gap:.5rem;min-height:48px}
+.g9-answer-option input,.g9-paper input{min-width:48px;min-height:48px}
+.g9-attempt fieldset{min-height:48px}
+.g9-math,pre,table{max-width:100%;overflow-x:auto}
+input,select{font-size:max(16px,1rem)}
+@media (max-width:899px){header[data-g9-shell-header]{position:relative}article[data-g9-unit]{padding:16px}nav[data-g9-breadcrumb]{font-size:.95rem}}
+</style></head><body data-core="CORE2" data-blueprint-ref="BP-CORE2-SOURCE-QUESTION@1.0.0"><header data-g9-shell-header><a data-g9-home href="../../../public/index.html">Home</a><button type="button" onclick="history.back()">Back</button><a href="../../../public/question-bank/index.html">Question bank</a><button type="button" data-g9-action="search">Search</button><button type="button" data-g9-action="display">Display</button><div data-g9-search-panel hidden><input data-g9-search-input type="search" aria-label="Search this page"></div><div data-g9-display-panel hidden><button type="button" data-g9-font="dec">A−</button><button type="button" data-g9-font="reset">A</button><button type="button" data-g9-font="inc">A+</button><button type="button" data-g9-theme="light">Light</button><button type="button" data-g9-theme="dark">Dark</button><button type="button" data-g9-zoom="dec">Zoom −</button><button type="button" data-g9-zoom="reset">100%</button><button type="button" data-g9-zoom="inc">Zoom +</button></div></header><nav data-g9-breadcrumb aria-label="Breadcrumb"><a href="../../../public/index.html">Home</a><a href="#g9-role-CORE2">Force and laws of motion</a><a href="#g9-role-CORE2">CORE2</a></nav><noscript>Answers open after you attempt; this page needs JavaScript.</noscript><main><section id="g9-role-CORE2" data-g9-role-section="CORE2"><h1>Force and laws of motion: Source questions</h1><article id="g9-CORE2--PYQ-PHY-IITJEE-2007-P1-Q03" data-g9-unit="PYQ-PHY-IITJEE-2007-P1-Q03" data-g9-kind="QUESTION" data-g9-search-text="Physics Laws of Motion Net force, not any one force, sets acceleration Medium concept Multi-step reasoning Newton-law and observer-frame practice Single-correct multiple choice IIT-JEE 2007 · Paper I · Q3 Verified past-exam adaptation Two equal masses m lie on a smooth horizontal surface and are joined by a light string of total length 2a. The midpoint of the initially taut string is pulled vertically upward by a small constant force F. When the masses are separated by 2x, determine the magnitude of the acceleration of either mass. Horizontal surface is frictionless. String is light and remains taut. Each half-string has length a. (A) (F/2m)·a/sqrt(a^2-x^2) (B) (F/2m)·x/sqrt(a^2-x^2) (C) (F/2m)·x/a (D) (F/2m)·sqrt(a^2-x^2)/x" class="g9-stage-support"><section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true"><div class="g9-block" data-g9-block="source_identity"><h2>IIT-JEE · 2007 · Paper I · Q3</h2><p class="g9-prov">Official past paper, faithful restatement of the original</p></div><div data-g9-meta-strip data-g9-meta-role="CORE2" data-g9-meta-record="PYQ-PHY-IITJEE-2007-P1-Q03" data-g9-search-safe><span data-g9-meta-item data-g9-meta-kind="subject" data-g9-meta-ref="Physics" data-g9-meta-value="Physics"><strong>Subject:</strong> Physics</span><span data-g9-meta-item data-g9-meta-kind="topic" data-g9-meta-ref="BUCKET-PHY-NLM-FIRST-LAW" data-g9-meta-value="Laws of Motion"><strong>Topic:</strong> Laws of Motion</span><span data-g9-meta-item data-g9-meta-kind="concept" data-g9-meta-ref="MIC-PHY-NLM-SECOND-LAW" data-g9-meta-value="Net force, not any one force, sets acceleration"><strong>Concept:</strong> Net force, not any one force, sets acceleration</span><span data-g9-meta-item data-g9-meta-kind="concept-difficulty" data-g9-meta-ref="MIC-PHY-NLM-SECOND-LAW" data-g9-meta-value="MEDIUM"><strong>Concept difficulty:</strong> Medium concept</span><span data-g9-meta-item data-g9-meta-kind="question-difficulty" data-g9-meta-ref="PYQ-PHY-IITJEE-2007-P1-Q03" data-g9-meta-value="D3"><strong>Question difficulty:</strong> Multi-step reasoning</span><span data-g9-meta-item data-g9-meta-kind="family" data-g9-meta-ref="FAM-PHY-NLM-PRACTICE" data-g9-meta-value="Newton-law and observer-frame practice"><strong>Family:</strong> Newton-law and observer-frame practice</span><span data-g9-meta-item data-g9-meta-kind="question-type" data-g9-meta-ref="PYQ-PHY-IITJEE-2007-P1-Q03" data-g9-meta-value="single_correct_mcq"><strong>Question type:</strong> Single-correct multiple choice</span><span data-g9-meta-item data-g9-meta-kind="source" data-g9-meta-ref="PYQ-PHY-IITJEE-2007-P1-Q03" data-g9-meta-value="IIT-JEE 2007 · Paper I · Q3"><strong>Source:</strong> IIT-JEE 2007 · Paper I · Q3</span><span data-g9-meta-item data-g9-meta-kind="provenance" data-g9-meta-ref="PYQ-PHY-IITJEE-2007-P1-Q03" data-g9-meta-value="PYQ_ADAPTED"><strong>Provenance:</strong> Verified past-exam adaptation</span></div></section><section class="blueprint-slot slot-attempt" data-blueprint-slot="attempt" data-required="true"><div class="g9-block" data-g9-block="stem"><p>Two equal masses m lie on a smooth horizontal surface and are joined by a light string of total length 2a. The midpoint of the initially taut string is pulled vertically upward by a small constant force F. When the masses are separated by 2x, determine the magnitude of the acceleration of either mass.</p></div><div class="g9-block" data-g9-block="conditions"><h4>Conditions</h4><ul><li>Horizontal surface is frictionless.</li><li>String is light and remains taut.</li><li>Each half-string has length a.</li></ul></div><div class="g9-attempt" data-g9-attempt-box data-g9-response-type="single_choice"><div class="g9-answer-options" data-g9-block="options"><label class="g9-answer-option"><input data-g9-choice type="radio" name="g9-PYQ-PHY-IITJEE-2007-P1-Q03" value="0"><span>(A) (F/2m)·a/<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mrow><msup><mi>a</mi><mn>2</mn></msup><mo>−</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{a^{2}-x^{2}}</annotation></semantics></math></span></span></label><label class="g9-answer-option"><input data-g9-choice type="radio" name="g9-PYQ-PHY-IITJEE-2007-P1-Q03" value="1"><span>(B) (F/2m)·x/<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mrow><msup><mi>a</mi><mn>2</mn></msup><mo>−</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{a^{2}-x^{2}}</annotation></semantics></math></span></span></label><label class="g9-answer-option"><input data-g9-choice type="radio" name="g9-PYQ-PHY-IITJEE-2007-P1-Q03" value="2"><span>(C) (F/2m)·x/a</span></label><label class="g9-answer-option"><input data-g9-choice type="radio" name="g9-PYQ-PHY-IITJEE-2007-P1-Q03" value="3"><span>(D) (F/2m)·<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mrow><msup><mi>a</mi><mn>2</mn></msup><mo>−</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{a^{2}-x^{2}}</annotation></semantics></math></span>/x</span></label></div><button type="button" data-g9-commit>I have attempted this</button></div></section><section class="blueprint-slot slot-support" data-blueprint-slot="support" data-required="false"><div class="g9-block" data-g9-block="source_hints"><h4>Hints from the source</h4><div class="g9-ladder" data-g9-ladder-ref="CORE2-PYQ-PHY-IITJEE-2007-P1-Q03-source"><ol data-g9-ladder><li data-g9-rung="1">How does the vertical displacement relate to half-string length and half-separation?</li></ol><template data-g9-rung-payload="CORE2-PYQ-PHY-IITJEE-2007-P1-Q03-source-2"><li data-g9-rung="2">At the pulled midpoint, which components of the two equal tensions balance the applied force?</li></template><template data-g9-rung-payload="CORE2-PYQ-PHY-IITJEE-2007-P1-Q03-source-3"><li data-g9-rung="3">What horizontal force acts on either mass, and how does Newton’s second law determine its acceleration?</li></template><button type="button" data-g9-next-rung>Next hint</button></div></div><details data-g9-reveal data-requires-attempt data-g9-payload-ref="CORE2-PYQ-PHY-IITJEE-2007-P1-Q03-authored"><summary>Authored learning support</summary><div data-g9-payload-slot></div></details><template data-g9-payload="CORE2-PYQ-PHY-IITJEE-2007-P1-Q03-authored"><div class="g9-block" data-g9-block="authored_hints"><div class="g9-ladder" data-g9-ladder-ref="CORE2-PYQ-PHY-IITJEE-2007-P1-Q03-authored"><ol data-g9-ladder><li data-g9-rung="1">Sketch one half-string as a right triangle with horizontal projection x and vertical rise y.</li></ol><template data-g9-rung-payload="CORE2-PYQ-PHY-IITJEE-2007-P1-Q03-authored-2"><li data-g9-rung="2">At the pulled midpoint, which components of the two equal tensions balance F?</li></template><template data-g9-rung-payload="CORE2-PYQ-PHY-IITJEE-2007-P1-Q03-authored-3"><li data-g9-rung="3">After finding T, resolve only its horizontal component on either mass.</li></template><button type="button" data-g9-next-rung>Next hint</button></div></div></template></section><section class="blueprint-slot slot-solution" data-blueprint-slot="solution" data-required="true"><details data-g9-reveal data-requires-attempt data-g9-payload-ref="CORE2-PYQ-PHY-IITJEE-2007-P1-Q03-solution"><summary>Answer and working</summary><div data-g9-payload-slot></div></details><template data-g9-payload="CORE2-PYQ-PHY-IITJEE-2007-P1-Q03-solution"><div class="g9-block" data-g9-block="answer"><p>Option (B): <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mrow><mi>m</mi><mi>a</mi><mi>s</mi><mi>s</mi></mrow></msub></mrow><annotation encoding="application/x-tex">a_{mass}</annotation></semantics></math></span> = F x / [2m <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mrow><msup><mi>a</mi><mn>2</mn></msup><mo>−</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{a^{2}-x^{2}}</annotation></semantics></math></span>].</p></div><div class="g9-block" data-g9-block="reasoning_route"><h4>Authored reasoning route</h4><ol><li data-g9-reasoning-move="PYQ-PHY-IITJEE-2007-P1-Q03-MOVE-1"><strong>REPRESENT</strong> Let the midpoint rise by y. String geometry gives x^2 + y^2 = a^2, so y = sqrt(a^2-x^2).<br><em>Why valid:</em> This follows from the stated physical or chemical model and the quantities preserved in the source-matched task.<br><em>Uses:</em> stated source quantities<br><em>Establishes:</em> intermediate result 1</li><li data-g9-reasoning-move="PYQ-PHY-IITJEE-2007-P1-Q03-MOVE-2"><strong>CONNECT</strong> At the massless midpoint, vertical force balance gives 2T(y/a)=F, hence T=Fa/(2y).<br><em>Why valid:</em> This follows from the stated physical or chemical model and the quantities preserved in the source-matched task.<br><em>Uses:</em> stated source quantities<br><em>Establishes:</em> intermediate result 2</li><li data-g9-reasoning-move="PYQ-PHY-IITJEE-2007-P1-Q03-MOVE-3"><strong>TRANSFORM</strong> The horizontal force on either mass is T(x/a), so its acceleration is F x/[2m sqrt(a^2-x^2)].<br><em>Why valid:</em> This follows from the stated physical or chemical model and the quantities preserved in the source-matched task.<br><em>Uses:</em> stated source quantities<br><em>Establishes:</em> Option (B): a_mass = F x / [2m sqrt(a^2-x^2)].</li></ol></div><div class="g9-block" data-g9-block="working"><ol><li>Let the midpoint rise by y. String geometry gives <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">x^{2}</annotation></semantics></math></span> + <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">y^{2}</annotation></semantics></math></span> = <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>a</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">a^{2}</annotation></semantics></math></span>, so y = <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mrow><msup><mi>a</mi><mn>2</mn></msup><mo>−</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{a^{2}-x^{2}}</annotation></semantics></math></span>.</li><li>At the massless midpoint, vertical force balance gives 2T(y/a)=F, hence T=Fa/(2y).</li><li>The horizontal force on either mass is T(x/a), so its acceleration is F x/[2m <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mrow><msup><mi>a</mi><mn>2</mn></msup><mo>−</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{a^{2}-x^{2}}</annotation></semantics></math></span>].</li></ol></div><div class="g9-block" data-g9-block="independent_check"><h4>Independent check</h4><p>As x approaches zero, the horizontal acceleration approaches zero because the string segments become nearly vertical.</p></div></template></section></article></section></main><footer data-g9-footer>Physics · Force and laws of motion</footer><script>
+(()=>{const q=(s,r=document)=>[...r.querySelectorAll(s)];
+const store={get:k=>{try{return localStorage.getItem('g9-'+k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem('g9-'+k,v)}catch(e){}}};
+const root=document.documentElement;const apply=()=>{root.dataset.theme=store.get('theme')||root.dataset.theme||'light';root.style.setProperty('--g9-zoom',store.get('zoom')||'1');};apply();
+q('[data-g9-theme]').forEach(b=>b.onclick=()=>{store.set('theme',b.dataset.g9Theme);apply()});
+q('[data-g9-zoom]').forEach(b=>b.onclick=()=>{let z=parseFloat(store.get('zoom')||'1');z=b.dataset.g9Zoom==='inc'?Math.min(1.6,z+0.1):b.dataset.g9Zoom==='dec'?Math.max(0.8,z-0.1):1;store.set('zoom',z.toFixed(1));apply()});
+q('[data-g9-font]').forEach(b=>b.onclick=()=>q('[data-g9-zoom="'+b.dataset.g9Font+'"]')[0]?.click());
+function initFigure(f){if(f.dataset.g9Init)return;f.dataset.g9Init='1';const ids=(f.dataset.g9Stages||'').split(' ').filter(Boolean);if(ids.length<2)return;let i=0;
+const show=()=>{ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=n<=i?'':'none'));const l=q('[data-g9-stage-label]',f)[0];if(l)l.textContent='Stage '+(i+1)+' of '+ids.length};show();
+q('[data-g9-stage-step]',f).forEach(b=>b.onclick=()=>{i=Math.max(0,Math.min(ids.length-1,i+(b.dataset.g9StageStep==='next'?1:-1)));show()})}
+function nextRung(l){const t=q('template[data-g9-rung-payload]',l)[0];if(!t)return false;q('[data-g9-ladder]',l)[0].append(t.content.cloneNode(true));t.remove();q('figure[data-g9-figure]',l).forEach(initFigure);const b=q('[data-g9-next-rung]',l)[0];if(b&&!q('template[data-g9-rung-payload]',l).length)b.disabled=true;return true}
+function materialise(a){q('details[data-g9-payload-ref]',a).forEach(d=>{const slot=q('[data-g9-payload-slot]',d)[0];if(!slot||slot.dataset.g9Filled)return;const t=q('template[data-g9-payload]',a).find(x=>x.dataset.g9Payload===d.dataset.g9PayloadRef);if(!t)return;slot.replaceChildren(t.content.cloneNode(true));slot.dataset.g9Filled='1';q('figure[data-g9-figure]',slot).forEach(initFigure)})}
+const number=t=>{const v=t.trim();if(!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?(?:\s*\/\s*[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?)?$/i.test(v))return false;const p=v.split('/').map(x=>Number(x.trim()));return p.every(Number.isFinite)&&(p.length===1||p[1]!==0)};
+function validAttempt(box){const type=box.dataset.g9ResponseType;if(type==='single_choice'||type==='multiple_choice'||type==='true_false')return q('[data-g9-choice]:checked',box).length>0;
+if(type==='numeric')return number(q('[data-g9-number]',box)[0]?.value||'');if(type==='short_text')return !!q('[data-g9-attempt]',box)[0]?.value.trim();
+if(type==='match'){const fields=q('[data-g9-match]',box);return fields.length>0&&fields.every(x=>x.value!=='')}
+if(q('[data-g9-paper]:checked',box).length)return true;if(type==='multipart'){const fields=q('[data-g9-part-input]',box);return fields.length>0&&fields.every(x=>x.value.trim()&&(!x.dataset.g9PartType||x.dataset.g9PartType!=='numeric'||number(x.value)))}
+return !!q('[data-g9-attempt]',box)[0]?.value.trim()}
+const articles=q('article[data-g9-unit],article[data-g9-diagnostic]');
+articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!a.dataset.attempted){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();
+q('details[data-requires-attempt] summary',a).forEach(s=>s.addEventListener('click',e=>{if(!a.dataset.attempted){e.preventDefault();q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a)[0]?.focus()}}));
+q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-attempt-box]');if(!box||!validAttempt(box)){q('input,textarea,select',box||a)[0]?.focus();return}a.dataset.attempted='1';lock();materialise(a)});
+a.addEventListener('click',e=>{const b=e.target.closest('[data-g9-next-rung]');if(b&&a.contains(b))nextRung(b.closest('.g9-ladder'))})});
+window.g9MaterialiseAll=()=>articles.forEach(a=>{a.dataset.attempted='1';q('details[data-requires-attempt]',a).forEach(d=>delete d.dataset.locked);materialise(a);q('.g9-ladder',a).forEach(l=>{while(nextRung(l)){};})});
+q('figure[data-g9-figure]').forEach(initFigure);
+const input=q('[data-g9-search-input]')[0];if(input)input.oninput=()=>{const v=input.value.trim().toLowerCase();articles.forEach(a=>{a.hidden=!!v&&!(a.dataset.g9SearchText||'').toLowerCase().includes(v)})};
+q('[data-g9-action="search"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-search-panel]')[0];p.hidden=!p.hidden;if(!p.hidden)input.focus()});
+q('[data-g9-action="display"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-display-panel]')[0];p.hidden=!p.hidden});
+})();
+</script></body></html>

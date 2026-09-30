@@ -36,5 +36,10 @@ class GoldenRenderTests(unittest.TestCase):
         page = pages["core2.html"]
         self.assertIn('data-g9-response-type="single_choice"', page)
         self.assertEqual(page.count('data-g9-choice type="radio"'), 4)
-        self.assertEqual(page.count('<template data-g9-rung-payload='), 2)
+        # The Core2-v2 projector keeps every support rung inert until the learner asks for it:
+        # three source hints and three authored rungs, in two ladders with their own identities.
+        self.assertEqual(page.count('<template data-g9-rung-payload='), 6)
+        self.assertIn('-SOURCE_HINT-3"', page)
+        self.assertIn('-AUTHORED_CORE2_PROMPT_REVEAL-3"', page)
+        self.assertIn('data-g9-block="structured_working"', page)
         self.assertIn('<template data-g9-payload="CORE2-PYQ-PHY-IITJEE-2007-P1-Q03-solution">', page)

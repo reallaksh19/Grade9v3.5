@@ -1,31 +1,63 @@
-# First-stage review and six-Core authoring guidance - v2
+# First-stage review and six-Core authoring guidance - v3
 
-Status: working method guidance, 2026-09-29. The Owner directed the first-stage sequence and explicitly prohibited new blockers or CI. Output details and implementation followups remain design recommendations. This document does not claim that the renderer or schemas already implement them. It records learning relationships and review expectations, not build admission conditions.
+Status: working method guidance, 2026-09-29. The Owner directed the first-stage sequence and explicitly prohibited new blockers or CI. Issue #352 adds difficulty-first authoring/review priority inside that existing route. Output details and implementation followups remain design recommendations. This document does not claim that the renderer or schemas already implement them. It records learning relationships and review expectations, not build admission conditions.
 
-Material inspected: PR #346 head `006aa49b2ab494c9bd573ad3e3266db9a21bb34d`; `PROTOCOL.md`; `Shared/roles/CORE1.md` and `CORE2.md`; package, competitive bank and observation schemas; `learner_metadata.py`; `atlas_index.py`; `render_core.py`; `tools/print/print-product.mjs`; the Polynomials stress report and golden candidate descriptions. Common V3.1 was read at `1ced68258afeaf50df113b1d38a4ceb9193587e3`. Revalidate live main before implementing this proposal.
+Material inspected: merged PR #346; issue #352 and its accepted review amendments; `PROTOCOL.md`; `Shared/roles/CORE1.md` and `CORE2.md`; package, competitive bank and observation schemas; `learner_metadata.py`; `atlas_index.py`; `render_core.py`; `tools/print/print-product.mjs`; the Polynomials stress report and golden candidate descriptions. Common V3.1 was read at `1ced68258afeaf50df113b1d38a4ceb9193587e3`. Revalidate live main before implementation.
 
 ## 1. Sequence directed by the Owner
 
-1. When a question bank is provided, produce **Core2 first**. Inventory the supplied scope before selecting questions. A provided bank is not automatically verified, complete or an official PYQ bank; retain those distinctions per item.
-2. When no question bank is available, produce **Core1 first**, grounded in the available teaching sources. Record the source scope and missing material. Do not manufacture a question bank to choose the Core2 route.
-3. Present the first-stage outputs and their review packet to the Owner together before generating the remaining Cores. Research, sketching, independent solving and drafting across all Cores can continue throughout. This is the Owner's requested presentation order, with no new approval token, automated quality threshold or prerequisite PASS. Incorporate feedback when supplied and respect an explicit Owner request to pause.
-4. Revise the same canonical records and the same product manifest. Subsequent Cores extend that product. Preserve the previous review basis and show changes.
+Use this sequence:
+
+```text
+source / supplied question bank / syllabus
+→ establish the real denominator + source state
+→ choose the existing first-stage route
+     usable bank/source-question corpus → Core2
+     no usable bank                     → source-grounded Core1
+→ triage canonical difficulty + why it is difficult + interaction value
+→ author/review the hardest worthwhile vertical slice(s) first inside that route
+→ present the first-stage learner packet with the complete denominator/coverage view
+→ Medium
+→ Low / remaining coverage
+→ later Core work in the requested product scope
+```
+
+1. **Establish the denominator first.** Inventory the supplied source/bank scope or the scoped teaching/syllabus concepts before prioritizing. A supplied bank is not automatically verified, complete or an official PYQ bank; retain those distinctions per item.
+2. **Choose the existing route from that source state.** When a usable question bank/source-question corpus is provided, the first-stage learner product is Core2. When no usable bank exists, the first-stage learner product is source-grounded Core1. Do not manufacture a bank to choose Core2.
+3. **Triage before completing the first-stage artifact.** Use the existing concept difficulty and, for questions, existing D1-D4/question-component model. Separately explain the teaching/solving difficulty and judge interaction value. Do not create a second scoring system.
+4. **Author/review Hard first inside the selected route.** Complete coherent vertical learning slices instead of chapter-wide shells. Hard-first is an authoring/review priority, not source reordering or mandatory learner navigation.
+5. **Present the first-stage outputs and their review packet before generating the remaining Cores.** The packet includes actual learner HTML/PDF and the complete denominator/coverage view. For a Core2 route, Hard-first implementation must not hide Medium/Low/deferred or unresolved source items from that view. Research, sketching, independent solving and drafting across all Cores can continue throughout. This is the Owner's requested presentation order, with no new approval token, automated quality threshold or prerequisite PASS.
+6. **Revise the same canonical records and product manifest.** Subsequent Cores extend that product. Preserve the previous review basis and show changes.
+
+Required ordering distinction:
+
+```text
+authoring priority ≠ source order ≠ learner navigation order
+```
 
 A partially usable bank still takes the Core2 route: show the usable subset and every omitted/unresolved item with its reason. If nothing is usable, show the inventory and source gaps, continue acquisition/research and develop source-grounded Core1 material where possible. Explain that fallback; do not present an empty Core2 shell as the deliverable or wait on a form before doing useful work.
 
-For the currently inspected Polynomials prototype, no verified bank selection exists. Its next first-stage review is therefore Core1 unless a bank is supplied. The previously generated six-Core stress artifacts remain historical evidence.
+`LP-H* / LP-M* / LP-L*` are scheduling identifiers only. Interaction value (`HIGH / MEDIUM / LOW`) is an authoring judgement only. Neither belongs in learner difficulty, package authority or search metadata. Question-difficulty components belong to canonical question metadata when applicable; when the same ideas help explain why a concept is hard to teach, use them descriptively rather than silently creating concept component scores.
+
+For a new or uncalibrated instructional pattern, one or two coherent Hard slices are the default calibration heuristic before broad helper parallelism. For an already-calibrated pattern, bounded helpers may start earlier from the same canonical design. In both cases one unit author owns and reconciles academic meaning. No calibration token is required.
+
+If Polynomials is reused as a #352 pilot, consume a coherent #350 producer handoff plus canonical records. Do not regress to the historical 27-row stress ledger or treat stale/open PR prose as production authority merely because it is newer. The producer handoff should make acquisition identities/digests, denominator meaning, readback state, unresolved items, canonical question handoff, syllabus mapping and validation truth reconstructable to a zero-context consumer. This is producer/consumer coherence, not a permission gate.
 
 ## 2. What the first-stage packet contains
 
 | Artifact | Core2 route | Core1 route |
 |---|---|---|
-| Learner HTML | Topic-organized source questions with stable question links, faithful content, typed commitment and staged help | Compact concept orientation, relations with conditions, representations, prerequisites and scope |
-| Learner PDF | The same selected questions, labels, figures and ordering; readable working space; no protected answer or solution material | The same concept scope and representations, laid out as readable notes |
+| Learner HTML | Topic-organized selected source questions with stable question links, faithful content, typed commitment and staged help; Hard slices may be implemented/reviewed first | Compact concept orientation, relations with conditions, representations, prerequisites and scope; Hard concepts/transitions may be authored/reviewed first |
+| Learner PDF | The same selected learner scope, labels, figures and ordering; readable working space; no protected answer or solution material | The same selected concept scope and representations, laid out as readable notes |
 | Separate key PDF | Source key, independent result where verified, reasoning, hints and discrepancy explanations; missing answers stay explicit | Only applicable if the notes include a separate self-check; otherwise NOT_APPLICABLE |
-| Coverage and mapping view | One row per inventoried question, with inclusion/omission and source status; topic/concept/family coverage | One row per scoped concept, its source, required relationships and coverage |
+| Coverage and mapping view | One row per inventoried question across the **complete supplied denominator**, with implemented/selected/Medium/Low/deferred/omitted/unresolved state and reason, source status, and topic/concept/family coverage | One row per scoped concept across the complete concept denominator, its source, difficulty/priority state, required relationships and coverage |
 | Owner review record | Exact input/render/output hashes, findings, screenshots, PDF pages, test results, revisions and unresolved questions | Same |
 
+Hard-first implementation/review priority must not narrow the denominator view. The first-stage packet may contain only a bounded learner slice while the mapping view still exposes every supplied item/concept and its current state. Distinguish implemented learner scope from denominator coverage explicitly.
+
 Show links to the actual HTML and PDFs directly in the handoff. Include representative rendered pages alongside the mapping view. JSON, a log or a PASS report cannot replace the learner artifacts. Use the existing renderer and its browser print path for both formats.
+
+The existing manifest's optional `output_roles` selects the delivered Core roles, independently of the full denominator view. Omit it for legacy all-six output; when supplied, use a non-empty list of distinct Core names (`null` does not mean all six). Rendered navigation, repair and prerequisite links must name an included role and selected record; otherwise retain useful explanatory text without a dead link. Re-rendering the same staging directory retires prior receipt-owned excluded pages and invalidates their derived PDFs/print receipts. Regenerate PDFs from the new render before showing the packet. None of this scope bookkeeping limits research or changes academic acceptance.
 
 ## 3. Explicit content and metadata
 
@@ -33,20 +65,21 @@ Show links to the actual HTML and PDFs directly in the handoff. Include represen
 |---|---|---|
 | Identity | Product title, subject, Core, topic/subtopic, readable question or concept number | Stable canonical record ID, original source number, artifact revision; display order is not identity |
 | Concept labels | Clear primary concept and relevant supporting concepts, with readable names | Primary/secondary capability refs, microtopic and bucket refs; unresolved or disputed mappings shown explicitly |
-| Topic segregation | Contents and topic sections; HTML topic/concept/difficulty filters and clear empty results | Full supplied denominator, selected count, omitted count, duplicates and multi-concept membership without double counting |
-| Difficulty | Core2: D1-D4 question badge labelled as an estimate, with a short rationale. Core1: existing intrinsic concept badge with its reason | Preserve source rating separately when different; reuse existing five-component model, not a new scoring scheme; unassessed is explicit |
+| Topic segregation | Contents and topic sections; HTML topic/concept/difficulty filters and clear empty results | Full supplied denominator, selected/implemented count, Medium/Low/deferred/omitted/unresolved counts, duplicates and multi-concept membership without double counting |
+| Difficulty | Core2: D1-D4 question badge labelled as an estimate, with a short rationale. Core1: existing intrinsic concept badge with its reason | Preserve source rating separately when different; reuse the existing five-component model for **question** difficulty, not a new score or concept-component schema; unassessed is explicit |
+| Authoring priority | Do not show LP-H/LP-M/LP-L or interaction-value labels as learner difficulty | Design Note/Worklog may record lot and interaction-value reasoning; they are not package/search authority |
 | Source | Source name and original identifier; truthful original/adapted/authored/unverified label | Acquisition, exact locator, retained source digest, custody/readback, changed fields and missing components |
 | Complete question | Stem, subparts, options, conditions, units, figures and captions; original relationships preserved | Component-by-component source comparison, including missing figure/table/key and transcription uncertainty |
 | Response | Control appropriate to the question type and a clear commitment action; paper attempt supported where suitable | Commitment is participation, not correctness, grading or mastery evidence |
 | Support | Hints revealed in sequence; source hints distinguished from authored support; solutions after commitment | Preserve source order; retain original source figures and separate any added solution overlays |
 | Key and result | Post-attempt/key copy distinguishes printed key, independently verified result and disagreement | Reviewer, calculation/evidence and exact reviewed basis; no invented verification claim |
 | Atlas | Link to the actual canonical topic/concept entry when available | Declared question -> capability -> microtopic -> bucket/Atlas edges, mapping basis and missing edges; no inference from similar titles |
-| Interactive activity | Show an activity link only when it has a specific learning purpose and a working destination | Existing resource ID/ref, target concept, purpose, availability and pre/post-attempt timing; mark an identified need without fabricating a page |
+| Interactive activity | Show an activity link only when it has a specific learning purpose and a working destination | Existing resource ID/ref, target concept, purpose, availability and pre/post-attempt timing; interaction value remains authoring rationale, not indexed academic metadata |
 | Learner difficulty | Optional private observations by concept: not yet observed, tried with help, needs another look, demonstrated with evidence | Attempt, question, concept, date, help used, self-report and observed error stage remain distinct; no diagnosis from a chapter percentage |
 | Coverage boundaries | Scope and known omissions stated plainly | Coverage of the provided source is distinguished from coverage of a syllabus; both need an explicit denominator |
 | Next step | Available prerequisite or review destination, with a clear purpose | Missing downstream Cores are listed as planned in the Owner view, not offered as dead learner links |
 
-Concept labels that reveal the deciding move need disclosure care. Default to safe topic/concept labels for learning; put solution-bearing labels, detailed mapping rationales and repair suggestions after commitment. Full mappings remain visible to the Owner. Do not put protected answers or method hints in pre-attempt search metadata, accessibility labels or figure alternatives.
+Concept labels that reveal the deciding move need disclosure care. Default to safe topic/concept labels for learning; put solution-bearing labels, detailed mapping rationales and repair suggestions after commitment. Full mappings remain visible to the Owner. Do not put protected answers, method hints, authoring-lot labels or solution-bearing transfer rationale in pre-attempt search metadata, accessibility labels or figure alternatives.
 
 ## 4. Identity and learner evidence semantics
 
@@ -71,11 +104,13 @@ Core1 first needs a source-grounded authoring path independent of Core1A. Its mi
 - Common confusions or intrinsically difficult transitions, without turning the notes into Core1A construction lessons.
 - Source references, explicit gaps and planned next teaching needs.
 
+Difficulty-first Core1 authoring may complete the hardest transitions first, but the first-stage mapping view still shows the full scoped concept denominator and the state of Medium/Low/remaining coverage.
+
 Preserve existing frozen Core1 material and identify corrections separately. New source-authored Core1 must carry its own review status; it cannot borrow a future Core1A review. Reading notes or ticking "understood" does not establish mastery.
 
 ## 6. HTML and PDF review evidence
 
-Review the same selected scope in both formats. The learner PDF must retain all required givens, conditions and demand-bearing figures while excluding protected hints, keys and solutions. Optional authored help belongs in the key PDF by default; help explicitly printed as part of a source question is retained and labelled as source material.
+Review the same selected learner scope in both formats and reconcile it with the full denominator/coverage view. The learner PDF must retain all required givens, conditions and demand-bearing figures while excluding protected hints, keys and solutions. Optional authored help belongs in the key PDF by default; help explicitly printed as part of a source question is retained and labelled as source material.
 
 Keep stems with options and their figures when practical; long questions may continue with repeated identity. Provide sensible working space, readable mathematics, page numbers and topic headers. Remove web-only disclosure controls. Avoid accidental title-only/footer-only pages. Preserve the existing 280 x 175 mm landscape fixture profile as a comparison basis while judging actual readability and pagination; do not label a format change as fixture parity.
 
@@ -91,16 +126,17 @@ Read-only inspection of `C:/CodeA/Grade9V3/prb-direct-pdf/core2.pdf` and `core2.
 
 | Surface | Required change |
 |---|---|
-| Method protocol, unit-author role/prompt and templates | Replace the initial all-six-Core prototype expectation with source-dependent Core2/Core1 first, explicit review packet and incorporation of available Owner feedback |
+| Method protocol, unit-author role/prompt and templates | Express denominator → route → triage → Hard-first vertical authoring → complete first-stage packet; preserve full denominator visibility and no new gate |
+| Design Note / Worklog | Record difficulty-first authoring rationale, interaction purpose, lot state, calibration/parallel basis and actual/planned exposure without creating a parallel academic datastore |
 | Core1 role | Add the direct source-grounded initial authoring path while preserving frozen notes and truthful review status |
-| Existing product manifest / build command / receipt | Represent intended first-stage role and selected output roles; generate that scope; record other roles as not generated; report selected-scope findings without requiring completion of other Cores |
-| Sole renderer and metadata projection | Topic grouping, secondary concepts, stable item anchors, useful links, explicit missing metadata and truthful partial navigation; display existing difficulty provenance/rationale |
+| Existing product manifest / build command / receipt | Represent intended first-stage role and selected output roles; generate that learner scope; record other roles as not generated; report selected-scope findings without requiring completion of other Cores |
+| Sole renderer and metadata projection | Topic grouping, secondary concepts, stable item anchors, useful links, explicit missing metadata and truthful partial navigation; display existing difficulty provenance/rationale only |
 | Existing canonical schemas | Reuse IDs, capability refs, family refs, figures, source custody, difficulty and resource refs; extend only proven missing mapping/disclosure information in their owning schema |
 | Existing learner/session evidence | Preserve actual attempts, self-reports and help separately; derive the child's concept/topic view from referenced evidence |
 | Existing browser print path | Learner/key content parity, print structure, working space, headers/footers and identity links; no second PDF renderer |
 | Existing evidence and acceptance path | Bind review to inputs/render/file hashes, preserve revisions and mark stale reviews after relevant changes; exact-digest Owner acceptance remains the sole publication action |
 
-New schema fields and implementation details remain proposed until reconciled with live main. Do not copy candidate labels into package records to satisfy schema checks. The next implementation slice should demonstrate this first-stage path and show its outputs before generating other Cores. Topic content, database work and unrelated site/UI repair remain with their separately scoped work; this guidance defines what those consumers should expose. No new CI job, refusal rule, quota, approval state or whole-product completion check is introduced.
+New schema fields and implementation details remain proposed until reconciled with live main. Do not copy authoring lot or interaction-value labels into package records to satisfy checks. The next implementation slice should demonstrate the corrected first-stage path and show its outputs before generating other Cores. Topic content, database work and unrelated site/UI repair remain with their separately scoped work; this guidance defines what those consumers should expose. No new CI job, refusal rule, quota, approval state, calibration state or whole-product completion check is introduced.
 
 ## 8. Dependencies across all six Cores
 
@@ -125,7 +161,7 @@ Core1A and Core1B share conceptual truth, not identical prompts. Core2A and Core
 
 ## 9. How first-stage findings guide later work
 
-Reuse the first-stage source inventory, concept/Atlas references, uncertainty notes and review feedback in the existing UNIT, DESIGN-NOTE and WORKLOG. These remain revisable evidence, not a frozen checklist. For each later Core, explain the specific learner decision, the existing records it uses and the experience it adds. No duplicate handoff schema or academic package is needed.
+Reuse the first-stage source inventory, concept/Atlas references, uncertainty notes, difficulty-first triage and review feedback in the existing UNIT, DESIGN-NOTE and WORKLOG. These remain revisable evidence, not a frozen checklist. For each later Core, explain the specific learner decision, the existing records it uses and the experience it adds. No duplicate handoff schema or academic package is needed.
 
 | First-stage finding | Useful downstream response |
 |---|---|
@@ -140,18 +176,70 @@ Reuse the first-stage source inventory, concept/Atlas references, uncertainty no
 
 A new bank, changed concept mapping, revised figure or altered familiar task may affect later outputs. Use existing input digests and record refs to identify affected reviews; label their evidence stale, retain the prior result and inspect the affected claims. Staleness guides attention and does not stop research or require rerunning unrelated work.
 
-## 10. Research and thinking remain open
+## 10. Source-question support, figures and interactive purpose
+
+This clarification, as amended by the Owner's numeric/structural-check decision, incorporates the [validated post-mortem feedback](../../evidence/reviews/pr353/FEEDBACK-VALIDATION.md). It defines review intent and local packet checks. These checks do not authorize publication or prevent research. Existing source custody, canonical question/representation records, blueprint and sole renderer keep their respective ownership.
+
+### Preserve the source; identify added teaching
+
+Core2 remains a usable learner product around an authentic source question. Source fidelity alone does not establish good learning support. Keep source hints/working distinct from authored hints, worked reasoning and independent verification. An absent source hint is a valid source fact; an unresolved source component and an authored-support omission are different findings. Never write new teaching into `hints[]` merely to satisfy a count or present an authored solution as a printed key.
+
+For difficult decisions, describe support by purpose: orientation, a productive next move, reasoning about the crux, and an independent check. The Owner now requests minimum structure for Medium (question D2) and Hard (question D3–D4): an authored progressive ladder (the existing three-rung baseline) and a structured reasoning route. Hard items also need a useful accessible SVG or a reviewed not-applicable explanation bound to the question digest. Concept difficulty is not a substitute for question difficulty. Repeated or answer-revealing hints do not become good teaching by meeting a count.
+
+When supplementary authored help is requested on a Core2 page, keep its provenance and disclosure timing explicit and resolve its owning fields through the existing canonical model. `scaffolds[]` and structured reasoning already exist for other uses, but Core2 projects authored support separately and exposes the structured route after commitment. Show support provided, not applicable, deferred or unresolved in the existing Owner review view, with reasons; no new completion state grants permission.
+
+### Distinguish what a figure does
+
+- A supplied source figure is part of the question's demand. Preserve its identity/caption and mount it where needed, or explicitly show the unresolved source component. Reuse existing custody component states; an empty array cannot explain whether the source had no figure or a figure was lost.
+- A learner-constructed figure is work the question asks the learner to do. A blank coordinate grid may help; a completed polygon may reveal the answer and belongs after the appropriate attempt/reveal.
+- An authored explanatory or solution figure is labelled as added teaching and receives its own disclosure timing. It is not passed off as a source figure.
+- Phrases such as “in the figure below” are useful advisory review cues. “Plot”, “quadrilateral” or “pentagon” alone do not prove that a supplied figure is missing. No keyword implies a mandatory SVG or a minimum figure count.
+
+The shared projection should reconcile source-resource references with canonical representation mounting. Do not invent a second media authority or recreate a missing source diagram from memory without recording the adaptation.
+
+### Assess a question; explore a concept
+
+A question page preserves the source task and offers its appropriate response, optional staged support and later solution/check. A concept explorer lets the learner manipulate a model and observe an explicitly stated relationship. Use the existing Core/experience mode and Interaction Brief to distinguish these purposes. A slider is not evidence of quality, and commitment is participation rather than correctness or mastery. An explorer may be linked or embedded where it supports the task without exposing its deciding move; keep its stable activity identity and academic basis.
+
+### Exercise the declared delivery contract
+
+Use the existing tablet profiles, 48px touch policy and responsive blueprint. Keep text readable and associated figures near their givens; use two columns when content and width justify them, and reflow in portrait. A fixed `1.4fr:1fr` ratio is an example to compare, not a universal requirement; never reserve a large empty diagram column.
+
+Use declared mathematical input rather than guessing notation from prose. The blueprint already distinguishes relation MathML and typed question TeX with local rendering. The sole renderer still needs question-math projection parity. Observe actual mathematical content, error output and dependency loading, including revealed/template content and PDFs. A `.katex` count is meaningful only for content that should use KaTeX; valid native MathML must not fail that check.
+
+For promised offline/file delivery, exercise that actual package with network access disabled, including scripts, styles and fonts. Capture console/network evidence and readable mathematics. `file://` is not itself proof of a CORS failure. Use local browser observations; no new CI, content blocker or publication authority is introduced.
+
+## 11. Research and thinking remain open
 
 - Research the web and original sources as widely as useful. Repo examples, goldens, current taxonomy and an incomplete Atlas are starting points, not the limits of inquiry. Distinguish factual authority from inspiration for teaching.
-- Think, derive, compare explanations, sketch figures and try alternative tasks before fitting results into fields. There is no mandatory research query list, source count, scaffold count, question count or improvement quota.
+- Think, derive, compare explanations, sketch figures and try alternative tasks before fitting results into fields. There is no mandatory research query list, source count or improvement quota. The packet's minimum support checks apply to delivered Medium/Hard questions; they do not restrict investigation.
 - Keep unexpected ideas and unresolved claims in the existing research log/design note, with evidence and a reasoned next step. A useful idea that lacks a schema field is a representation gap to investigate, not a reason to discard the idea or invent filler.
 - At a canonical write boundary, preserve valid references and serialize accurately. If the current schema cannot express an insight, retain the full reasoning in the design note and propose the smallest shared extension. Do not mislabel the insight to fit a convenient enum. Schema limitations do not constrain exploration or independently solvable work.
 - Separate unknown, unavailable, not applicable and contradicted evidence in prose. Do not give any of them a fake "complete" value. Missing learner observations mean unknown learner state; they do not prevent authoring a useful default experience.
 - Apply every guideline with judgement and a brief explanation when an alternative serves the learner better. An independent reviewer can challenge both the artifact and the guideline. Record meaningful revisions and negative findings, not a transcript of every browser click.
-- Use advisory local observations and actual artifacts. Add no new delivery blockers, CI workflows, schema completeness gates, publication authority or permission requests. The Owner's exact-render acceptance remains the publication decision.
+- Use advisory local observations and actual artifacts. Apply the Owner-requested local numeric and structural checks; do not add CI workflows, another publication authority or permission to research. The Owner's exact-render acceptance remains the publication decision.
 
-## 11. Adoption in existing work processes
+## 12. Adoption in existing work processes
 
-The method index and protocol point to this guidance. Unit-author and reviewer roles/prompts apply it to the chosen first stage and subsequent Cores. UNIT records the entry route and scope; DESIGN-NOTE records the dependency/task arc and research; WORKLOG records outputs, findings, decisions and affected followups. Those existing documents provide the audit trail without a new ledger.
+The method index and protocol point to this guidance. Unit-author and reviewer roles/prompts apply it to the chosen first stage and subsequent Cores. UNIT records the denominator, entry route and scope; DESIGN-NOTE records difficulty-first triage, interaction purpose, dependency/task arc and research; WORKLOG records lot/slice state, denominator coverage, outputs, findings, decisions and affected followups. Those existing documents provide the audit trail without a new ledger.
 
-A practical session is: inspect available inputs; choose the first-stage output; research and reason; author the useful scope; show actual HTML/PDF plus mappings and gaps; incorporate feedback; expand the learner decisions Core by Core; review the exact artifacts. Repeat the research/design loop whenever evidence warrants it. No stage label, missing field, report outcome or reviewer score grants or denies permission to keep working.
+A practical session is: inspect available inputs; establish the denominator; choose the first-stage route; triage difficulty and interaction value; author/review the hardest worthwhile vertical slice; show actual HTML/PDF plus the complete denominator mapping/coverage view and gaps; incorporate feedback; continue Medium/Low coverage and expand learner decisions Core by Core. Repeat the research/design loop whenever evidence warrants it. No stage label, missing field, report outcome or reviewer score grants or denies permission to keep working.
+
+
+## 13. Local numeric and structural packet review
+
+Run `python Shared/tools/packet_check.py --manifest M.json --rendered RENDERED --inventory UPLOADED-INVENTORY.json --out REVIEW` alongside the actual HTML and learner/key PDFs. Use the existing source-inventory/v1 model, with retained-upload member digests and declared scope. REVIEW must be separate from learner HTML. Its HTML table and JSON expose every finding and hash the inspected artifacts. Run again after any change. No inventory means upload coverage is NOT_RUN, never inferred from selected bank size.
+
+| Check | Numeric / structural expectation |
+|---|---|
+| Uploaded → selected → rendered | Exact ID multiset and one-to-one inventory mapping; no omitted, substituted or duplicated item. Declared source scope remains visible. |
+| All selected Cores | Every selected unit appears exactly once in its role's HTML. |
+| Source fidelity | Option counts and source figure references reach the page; source hints remain distinct from added help. Source custody review still checks wording, subparts and captions. |
+| Medium / Hard | Three distinct authored hint rungs; nonempty reasoning moves with unique IDs, action, justification, inputs and output; all reach gated HTML. |
+| Hard figures | Accessible SVG, or `extensions.grade9v3:visual_review` with applicable=false, reason, reviewer and current `packet_check.question_digest(question)`. A stale exception fails. |
+| Metadata | Real learner metadata strip; incomplete mapping is a finding. |
+| Device / interaction | Actual 1366×854 and 1440×900 landscape, 900×1440 portrait; readable text, no overflow, 48px targets, typed commitment, later hints, keyboard/accessibility and search disclosure. |
+| Offline / print | Actual network-disabled HTML, readable math, learner PDF without protected content, key PDF with complete hints/reasoning/figures and question tally. |
+| Judgement | Independent review of hint usefulness, valid reasoning, figure purpose and answer disclosure. Counts cannot establish these. |
+
+The static command deliberately leaves browser, PDF and pedagogical checks NOT_RUN. Link their real evidence at the same artifact hash in the WORKLOG; a static report is not a replacement. A FAIL directs repair and prevents a false completion claim; drafts, research and independent work continue. Only Owner acceptance of the exact render decides publication.

@@ -220,6 +220,34 @@
               },
               "uniqueItems": true,
               "description": "Explicit learner-facing math spans. Runtime text inference is forbidden; only these declared literals may be typeset."
+            },
+            "grade9v3:visual_review": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "applicable",
+                "reason",
+                "reviewer",
+                "question_digest"
+              ],
+              "properties": {
+                "applicable": {
+                  "const": false
+                },
+                "reason": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "reviewer": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "question_digest": {
+                  "type": "string",
+                  "pattern": "^sha256:[0-9a-f]{64}$"
+                }
+              },
+              "description": "Reviewed exception to the Hard-question SVG check; bound to packet_check.question_digest, not a publication approval."
             }
           }
         }

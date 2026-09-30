@@ -50,6 +50,11 @@ def verify_render(folder: Path) -> dict:
         if page.count(stamp) != 1:
             raise ValueError(f"{name}: missing or repeated digest stamp")
         neutral = page.replace(stamp, stamp.replace(digest, "g9-digest-pending"))
+        # The renderer also writes the digest into `data-g9-render-digest`, which scopes a
+        # learner's saved state to this exact render. It is one of the two stamped fields.
+        neutral = neutral.replace(f'data-g9-render-digest="{digest}"', 'data-g9-render-digest="g9-digest-pending"')
+        if digest in neutral:
+            raise ValueError(f"{name}: the digest appears outside its stamped fields")
         if receipt.get("draft"):
             neutral = re.sub(r'<html data-g9-draft="[0-9]+" ', "<html ", neutral, count=1)
         h.update(name.encode() + b"\0" + neutral.encode())

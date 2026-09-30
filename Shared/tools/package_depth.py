@@ -28,6 +28,7 @@ from Shared.tools.package_migrate import package_paths, max_decisions  # noqa: E
 
 # duty kind -> (role that fixes it, contract rules the gap fails)
 DUTIES = {
+    "AUTHOR_TYPED_MATH": ("AUTHOR", []),
     "AUTHOR_CONSTRUCTION_UNITS": ("AUTHOR", ["C1A-ANCHOR-PER-DECISION"]),
     "AUTHOR_WORKED_ANCHOR": ("AUTHOR", ["C1A-BLOCKS", "C1A-ANCHOR-PER-DECISION"]),
     "AUTHOR_INDEPENDENT_CHECK": ("AUTHOR", ["C1A-BLOCKS", "C2A-BLOCKS"]),
