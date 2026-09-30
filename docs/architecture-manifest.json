@@ -5,20 +5,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 389,
+  "component_count": 391,
   "relation_count": 406,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 54,
-    "TEST": 184,
+    "TEST": 186,
     "TOOLING": 106,
     "WEB": 12,
     "WEB_CONTRACT": 3,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:1cf997e23d75554b46bb791383739c6ea90e7945ce8b8fda4b903f7ca73786b2",
+  "digest": "sha256:efa5aee2de198b858cc2920dda9ed9c51d8d4a3130dc308a32b55e1340254492",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -1701,11 +1701,25 @@
       "sha256": "db8267143acd927a2676628da8378b66052a12876d718bc9bfe5c5521943a97e"
     },
     {
+      "path": "tests/question_bank_runtime_browser.mjs",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 24048,
+      "sha256": "bbecdc7262102108e50842be302b6ec8220c60e7b0a805d1872dfa5718dbc4c6"
+    },
+    {
       "path": "tests/question_bank_scale_browser.mjs",
       "role": "TEST",
       "role_description": "Executable checks",
       "bytes": 5406,
       "sha256": "8cafd8c46a897bb834032aa364582bd616008a87524890b4b0a4f69927ce34ab"
+    },
+    {
+      "path": "tests/question_bank_search_parity.test.mjs",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 3153,
+      "sha256": "05946b3d2c1e83ecfba3dd5edb861711c825f601c126bcab666b9a0d6360fb09"
     },
     {
       "path": "tests/raw_intake.test.mjs",
@@ -2432,8 +2446,8 @@
       "path": "tests/test_question_bank_web.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 3620,
-      "sha256": "ad9f9d4ba5a1d739dddb35a571293d36884aede0a5ea24ff8ef2b77a28165955"
+      "bytes": 5779,
+      "sha256": "cfe02df7a5fb27cefe46fce0add78ab0d6f1808a46405d121922b0c5a76dffd2"
     },
     {
       "path": "tests/test_readiness_join_215.py",

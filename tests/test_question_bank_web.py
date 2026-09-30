@@ -39,17 +39,45 @@ class QuestionBankWebTest(unittest.TestCase):
         self.assertEqual((ROOT / "public/data/question-bank-data.js").read_text(encoding="utf-8"), intended)
 
     def test_browser_runtimes_parse_and_do_not_use_inner_html(self):
-        for rel in ("public/js/question-bank.js", "public/js/site-header.js"):
+        for rel in ("public/js/question-bank.js", "public/js/question-bank-data-service.js", "public/js/site-header.js"):
             path = ROOT / rel
             result = subprocess.run(["node", "--check", str(path)], capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, msg=result.stderr)
             self.assertNotIn("innerHTML", path.read_text(encoding="utf-8"))
 
-    def test_question_bank_page_has_shared_shell_and_generated_data(self):
+    def test_question_bank_page_has_shared_shell_and_starts_from_the_manifest(self):
         text = (ROOT / "public/question-bank/index.html").read_text(encoding="utf-8")
-        self.assertIn("../data/question-bank-data.js", text)
+        self.assertIn("../data/question-bank-manifest.js", text)
+        self.assertIn("../js/question-bank-data-service.js", text)
         self.assertIn("../js/site-header.js", text)
         self.assertIn("Question browser", text)
+        # Progressive loading: the page starts from the manifest and never ships the monolith or a
+        # question list of its own; everything else is named by the manifest and loaded in order.
+        self.assertNotIn("../data/question-bank-data.js", text)
+        for artifact in ("catalog", "questions", "search", "resources", "details"):
+            self.assertNotIn(f"question-bank-{artifact}", text, "the manifest, not the page, names artifacts")
+
+    def test_question_bank_page_has_a_modal_study_dialog(self):
+        html = (ROOT / "public/question-bank/index.html").read_text(encoding="utf-8")
+        for marker in ('id="qbStudyDialog"', 'class="qb-study-dialog"', 'id="qbDialogClose"', 'id="qbSubjectTabs"',
+                       'id="qbTopicStrip"', 'id="qbTopicBanner"', 'id="qbStatus"'):
+            self.assertIn(marker, html)
+        js = (ROOT / "public/js/question-bank.js").read_text(encoding="utf-8")
+        for name in ("openStudyModal", "closeStudyModal", "showModal"):
+            self.assertIn(name, js)
+
+    def test_the_runtime_names_no_subject_topic_or_resource_from_the_corpus(self):
+        """Adding a subject must never need a branch in the runtime (#359 falsifier, derived from the corpus)."""
+        text = "\n".join((ROOT / rel).read_text(encoding="utf-8") for rel in (
+            "public/js/question-bank.js", "public/js/question-bank-data-service.js", "public/css/question-bank.css"))
+        lowered = text.casefold()
+        names = {str(q["subject"]) for q in self.data["questions"]} | {str(q["topic"]) for q in self.data["questions"]}
+        names |= {"Mathematics", "Physics", "Chemistry", "Biology"}
+        found = sorted(name for name in names if name.casefold() in lowered)
+        self.assertEqual(found, [], "the runtime and its stylesheet must learn subjects from the generated catalog")
+        for destination in self.data["destinations"]:
+            self.assertNotIn(destination["path"], text)
+        self.assertNotIn("data-subject=", text, "no per-subject styling hooks")
 
     def test_destinations_include_governed_master_suites(self):
         destinations = self.data["destinations"]

@@ -8,7 +8,8 @@
 const script=(typeof document!=='undefined'&&document.currentScript)?document.currentScript:null;
 const ROOT=script&&script.dataset&&script.dataset.siteRoot!==undefined?script.dataset.siteRoot:'../';
 const inflight=new Map();
-let generation=0;
+let generation=0;      // latest-wins for detail requests
+let bootGeneration=0;  // latest-wins for bootstrap, independent of detail requests
 let attempt=0;
 
 const GLOBALS={
@@ -127,11 +128,26 @@ function loadScript(relative,buildId){
   return promise;
 }
 
+let summaryIndex=null,summaryIndexOf=null;
+function summaryById(id){
+  const list=questionList();
+  if(!list)return null;
+  if(summaryIndexOf!==list){
+    summaryIndex=new Map(list.questions.map(row=>[row.id,row]));
+    summaryIndexOf=list;
+  }
+  return summaryIndex.get(id)||null;
+}
+
+// The list carries each question's subject, so Study does not wait for the search index.
 function shardMetaForQuestion(id){
   const m=manifest();
-  const doc=documentById(id);
-  if(!m||!doc||doc.kind!=='question')return null;
-  return (m.detail_shards||[]).find(row=>row.subject_ref===doc.subject_ref)||null;
+  if(!m)return null;
+  const row=summaryById(id);
+  const doc=row?null:documentById(id);
+  const subjectRef=row?row.subject_ref:(doc&&doc.kind==='question'?doc.subject_ref:null);
+  if(!subjectRef)return null;
+  return (m.detail_shards||[]).find(entry=>entry.subject_ref===subjectRef)||null;
 }
 
 function loadedShard(meta){
@@ -160,15 +176,22 @@ function loadShard(meta){
 function beginRequest(){generation+=1;return generation;}
 function isCurrent(token){return token===generation;}
 
-async function loadQuestion(id,token){
-  const requestToken=token===undefined?beginRequest():token;
+// Full detail for one question, from its subject's shard. Callers that show one thing at a time
+// use loadQuestion (latest wins); callers that fill many placeholders use loadDetail.
+async function loadDetail(id){
   assertCoherence();
   const meta=shardMetaForQuestion(id);
   if(!meta)throw failure('QB_NO_SHARD','No Question Bank detail shard registered for '+id);
   const shard=await loadShard(meta);
-  if(!isCurrent(requestToken))return {stale:true,token:requestToken,question:null};
   const question=(shard.questions||[]).find(row=>row.id===id)||null;
   if(!question)throw failure('QB_SHARD_MISSING_QUESTION','Question Bank detail shard does not contain '+id);
+  return question;
+}
+
+async function loadQuestion(id,token){
+  const requestToken=token===undefined?beginRequest():token;
+  const question=await loadDetail(id);
+  if(!isCurrent(requestToken))return {stale:true,token:requestToken,question:null};
   return {stale:false,token:requestToken,question};
 }
 
@@ -200,8 +223,10 @@ async function loadArtifact(name){
 // resources are optional and never block the rest. A required failure rejects with a named code.
 async function bootstrap(options){
   const opts=options||{};
-  const token=opts.token===undefined?beginRequest():opts.token;
-  const stage=name=>{if(typeof opts.onStage==='function'&&isCurrent(token))opts.onStage(name,readiness());};
+  bootGeneration+=1;
+  const token=bootGeneration;
+  const current=()=>token===bootGeneration;
+  const stage=name=>{if(typeof opts.onStage==='function'&&current())opts.onStage(name,readiness());};
   const m=manifest();
   if(!m||!m.build_id)throw failure('QB_MANIFEST_MISSING','Question Bank manifest is not loaded');
   const warnings=[];
@@ -212,13 +237,13 @@ async function bootstrap(options){
   };
 
   settle(await loadArtifact('catalog'));
-  if(!isCurrent(token))return {stale:true,token,warnings};
+  if(!current())return {stale:true,token,warnings};
   stage('CATALOG_READY');
 
   const [questionsResult,searchResult,resourcesResult]=await Promise.all([
     loadArtifact('questions'),loadArtifact('search'),loadArtifact('resources')
   ]);
-  if(!isCurrent(token))return {stale:true,token,warnings};
+  if(!current())return {stale:true,token,warnings};
   settle(questionsResult);
   stage('LIST_READY');
   settle(searchResult);
@@ -232,6 +257,7 @@ async function bootstrap(options){
 // Retry after a failure: clear what is loaded so nothing from a bad attempt survives, and bust caches.
 function reset(){
   attempt+=1;
+  bootGeneration+=1;
   Object.values(GLOBALS).forEach(key=>{delete window[key];});
   window.GRADE9_QUESTION_BANK_DETAIL_SHARDS={};
 }
@@ -249,7 +275,9 @@ window.Grade9QuestionBankData={
   search,
   documentById,
   shardMetaForQuestion,
+  summaryById,
   loadShard,
+  loadDetail,
   loadQuestion,
   beginRequest,
   isCurrent
