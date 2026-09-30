@@ -501,12 +501,22 @@ def _core1a_route(ctx: Ctx) -> list[dict]:
     route: list[dict] = []
     for microtopic in ctx.selection_rows.get("microtopics", []):
         units = microtopic.get("construction_units") or []
-        for index, unit in enumerate(units, 1):
+        if units:
+            for index, unit in enumerate(units, 1):
+                route.append({
+                    "microtopic_id": microtopic["id"],
+                    "microtopic_title": microtopic["title"],
+                    "unit_id": unit["id"],
+                    "label": unit.get("decision") or f"Construction {index}",
+                })
+        elif microtopic.get("teaching_path"):
+            # Older canonical packages may own a complete teaching path without construction_units.
+            # The concept id is already the stable canonical fragment; do not manufacture section identity.
             route.append({
                 "microtopic_id": microtopic["id"],
                 "microtopic_title": microtopic["title"],
-                "unit_id": unit["id"],
-                "label": unit.get("decision") or f"Construction {index}",
+                "unit_id": microtopic["id"],
+                "label": microtopic["title"],
             })
     return route
 
@@ -718,6 +728,46 @@ def _core1a_relation_matrix(ctx: Ctx, m: dict) -> str:
     )
 
 
+def _core1a_path_bridge(ctx: Ctx, m: dict, steps: dict[str, dict]) -> tuple[str, str]:
+    """Render canonical teaching_path when no construction-unit wrapper exists.
+
+    This is a presentation fallback over existing academic records, not a synthetic
+    construction-unit or a new academic taxonomy.
+    """
+    ordered = [step for step in m.get("teaching_path", []) if step.get("id") in steps]
+    if not ordered:
+        return "", ""
+    transform_count = sum(1 for step in ordered if step.get("role") == "TRANSFORM")
+    derivation = transform_count >= 2 and bool(m.get("relation_refs"))
+    attrs = ' data-g9-derivation-bridge' if derivation else ' data-g9-path-construction'
+    step_html = "".join(
+        f'<li data-g9-step="{esc(step["id"])}">'
+        f'<strong>{esc(step["action"])}</strong>'
+        f'<br><em>Why valid:</em> {esc(step["why_valid"])}'
+        f'<br><em>Result:</em> {esc(step["output"])}</li>'
+        for step in ordered
+    )
+    rep = (m.get("representation_refs") or [None])[0]
+    primary = (
+        f'<section class="g9-cu g9-path-bridge"{attrs}>'
+        + _core1a_unit_navigation(ctx, m["id"])
+        + block("construction", f"<ol>{step_html}</ol>")
+        + figure(ctx, rep, "TEACHING", "CORE1A", m["id"])
+        + block("equation_matrix", _core1a_relation_matrix(ctx, m), title="Equations and validity")
+        + "</section>"
+    )
+    wrong = _misconceptions(m, None)
+    support = (
+        f'<section class="g9-cu-support" data-g9-support-for="{esc(m["id"])}">'
+        f'<h3>{esc(m["title"])}</h3>'
+        + block("wrong_path", items(row["wrong_idea"] for row in wrong), title="A tempting wrong path")
+        + block("diagnose", items(row["diagnostic_prompt"] for row in wrong), title="Diagnose")
+        + block("repair", items(row["repair"] for row in wrong), title="Repair")
+        + "</section>"
+    )
+    return primary, support
+
+
 def core1a(ctx: Ctx, m: dict) -> str:
     units = m.get("construction_units") or []
     if not units:
@@ -726,6 +776,8 @@ def core1a(ctx: Ctx, m: dict) -> str:
     questions = ctx.index("questions")
     unit_html = ""
     support_html = ""
+    if not units:
+        unit_html, support_html = _core1a_path_bridge(ctx, m, steps)
     for n, u in enumerate(units):
         decision = "" if u.get("decision_from") == "inferential_jump" else u.get("decision", "")
         step_html = "".join(f'<li data-g9-step="{esc(sid)}"><strong>{esc(steps[sid]["action"])}</strong>'
@@ -1045,6 +1097,9 @@ article[id],section[id]{scroll-margin-top:96px}
 [data-g9-concept-route] li,[data-g9-section-route] li{margin:.35rem 0}
 .g9-cu{padding-top:8px;border-top:1px solid var(--line)}
 .g9-cu:first-child{border-top:0}
+.g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] ol{list-style:none;padding-left:0;counter-reset:g9-derive}
+.g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] li{counter-increment:g9-derive;margin:0 0 12px;padding:12px 14px;border-left:3px solid var(--accent);background:var(--bg)}
+.g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] li::before{content:"Step " counter(g9-derive);display:block;color:var(--muted);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
 .g9-cu-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:.35rem 0 .8rem}
 .g9-cu-nav-links{display:flex;gap:8px;flex-wrap:wrap}
 .g9-table-scroll{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
