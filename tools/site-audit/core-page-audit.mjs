@@ -162,6 +162,10 @@ for (const file of files) {
         smallTargetSample: small.slice(0, 3).map(el => el.tagName.toLowerCase() + ' ' + Math.round(el.getBoundingClientRect().height) + 'px "' + el.textContent.trim().slice(0, 20) + '"'),
         minFontPx: minFont,
         minFontSample: minFontElements.slice(0, 3).map(el => el.tagName.toLowerCase() + ' ' + (el.textContent || '').trim().slice(0, 30)),
+        contentWidthPx: (() => {
+          const main = document.querySelector('main');
+          return main ? Math.round(main.getBoundingClientRect().width * 10) / 10 : null;
+        })(),
         horizontalOverflowPx: document.documentElement.scrollWidth - document.documentElement.clientWidth,
         wideElements: wide,
         hoverOnlyHandlers: hoverOnly.length,
@@ -321,6 +325,55 @@ for (const file of files) {
       };
     }, minTarget);
     r.externalRequests = [...new Set(requests)];
+    if (profile === 'core1a-spec' && file === 'core1a.html') {
+      r.interaction = {
+        stageKeyboard: { available: false, changed: null },
+        sectionKeyboard: { available: false, resolved: null, historyRestored: null },
+        reducedMotion: { activeAnimations: null },
+        zoom200: { horizontalOverflowPx: null },
+      };
+
+      const stageNext = page.locator('[data-g9-stage-step="next"]').first();
+      if (await stageNext.count()) {
+        r.interaction.stageKeyboard.available = true;
+        const label = page.locator('[data-g9-stage-label]').first();
+        const before = (await label.textContent()) || '';
+        await stageNext.focus();
+        await page.keyboard.press('Enter');
+        const after = (await label.textContent()) || '';
+        r.interaction.stageKeyboard.changed = before !== after;
+      }
+
+      const nextSection = page.locator('[data-g9-next-section]').first();
+      if (await nextSection.count()) {
+        r.interaction.sectionKeyboard.available = true;
+        const href = await nextSection.getAttribute('href');
+        const beforeUrl = page.url();
+        await nextSection.focus();
+        await page.keyboard.press('Enter');
+        await page.waitForTimeout(25);
+        r.interaction.sectionKeyboard.resolved = !!href && new URL(page.url()).hash === href;
+        await page.goBack();
+        await page.waitForTimeout(25);
+        r.interaction.sectionKeyboard.historyRestored = page.url() === beforeUrl;
+      }
+
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      r.interaction.reducedMotion.activeAnimations = await page.evaluate(() =>
+        document.getAnimations().filter(animation => animation.playState === 'running').length
+      );
+      await page.emulateMedia({ reducedMotion: 'no-preference' });
+
+      r.interaction.zoom200.horizontalOverflowPx = await page.evaluate(() => {
+        const root = document.documentElement;
+        const before = root.style.getPropertyValue('--g9-zoom');
+        root.style.setProperty('--g9-zoom', '2');
+        const overflow = root.scrollWidth - root.clientWidth;
+        if (before) root.style.setProperty('--g9-zoom', before);
+        else root.style.removeProperty('--g9-zoom');
+        return overflow;
+      });
+    }
     out.viewports[vp.name] = r;
   }
   report[file] = out;
@@ -335,7 +388,7 @@ for (const [file, r] of Object.entries(report)) {
     `svg=${a.svg} (a11y ${a.svgAccessible}) details=${a.disclosures} gated=${a.gatedDisclosures} attempts=${a.attemptFields} focusCSS=${a.focusStyles} print=${a.printStyles} ` +
     `stage68=${a.stageSupportLayout} metaMissing=${a.metadataMissingUnits} searchMissing=${a.searchCorpusMissingUnits} protectedSearch=${a.protectedSearchMatches} gatedOpen=${a.gatedOpenBeforeAttempt} landmarks=${JSON.stringify(a.landmarks)} js=${a.scripts} errors=${r.errors.length}`);
   if (profile === 'core1a-spec') {
-    console.log(`    core1a: layout=${JSON.stringify(a.core1aLayout)} tables=${JSON.stringify(a.tableContainment)} controls=${JSON.stringify(a.controlGeometry)} anchors=${JSON.stringify(a.anchorSafety)} focus=${JSON.stringify(a.focusProbe)} learningStart=${JSON.stringify(a.learningStart)}`);
+    console.log(`    core1a: contentWidth=${a.contentWidthPx} layout=${JSON.stringify(a.core1aLayout)} tables=${JSON.stringify(a.tableContainment)} controls=${JSON.stringify(a.controlGeometry)} anchors=${JSON.stringify(a.anchorSafety)} focus=${JSON.stringify(a.focusProbe)} learningStart=${JSON.stringify(a.learningStart)} interaction=${JSON.stringify(a.interaction)}`);
   }
   console.log(`    small targets: ${a.smallTargetSample.join(' | ')}`);
 }
