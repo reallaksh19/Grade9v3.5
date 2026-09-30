@@ -96,6 +96,77 @@ class QuestionBankPlatformTest(unittest.TestCase):
             self.assertEqual(len(basis), 2)
             self.assertTrue(all(r["subject_ref"] == "SUBJECT-BIOLOGY" for r in resources))
 
+    def _linked_repo(self, root, links, suite_topic="Cell Biology (provider label)"):
+        registry = root / "Biology" / "question-bank"
+        registry.mkdir(parents=True)
+        (registry / "resources.v1.json").write_text(json.dumps({
+            "schema_version": qbp.RESOURCE_SCHEMA, "resources": [], "topic_links": links,
+        }), encoding="utf-8")
+        suites = root / "docs" / "gcdr-suites"
+        suites.mkdir(parents=True)
+        (suites / "bio-cell.json").write_text(json.dumps({
+            "suite_id": "GCDR-BIO-CELL", "title": "Cell Explorer",
+            "external_corpus": {"subject": "Biology", "topic": suite_topic},
+            "delivery_artifacts": [{"profile": "REPO_BUNDLE", "locator": "public/biology/cell/explorer/index.html"}],
+        }), encoding="utf-8")
+
+    def test_recorded_topic_link_puts_a_discovered_suite_in_the_question_topic(self):
+        link = {"resource_id": "GCDR-BIO-CELL", "topic_ref": "TOPIC-BIO-CELL", "reason": "same chapter"}
+        questions = [question("BIO-Q1", "Which organelle releases usable energy?", topic_ref="TOPIC-BIO-CELL")]
+        with tempfile.TemporaryDirectory() as tmp:
+            self._linked_repo(Path(tmp), [])
+            unlinked_resources, unlinked_basis = qbp.load_resources(Path(tmp))
+        unlinked = qbp.assemble_platform({"questions": questions}, unlinked_resources, unlinked_basis)
+        self.assertEqual(len(unlinked["catalog"]["topics"]), 2, "without a link the suite makes a topic of its own")
+        with tempfile.TemporaryDirectory() as tmp:
+            self._linked_repo(Path(tmp), [link])
+            resources, basis = qbp.load_resources(Path(tmp))
+        platform = qbp.assemble_platform({"questions": questions}, resources, basis)
+        topics = platform["catalog"]["topics"]
+        self.assertEqual([(t["id"], t["question_count"], t["resource_count"]) for t in topics], [("TOPIC-BIO-CELL", 1, 1)])
+        row = platform["resources"]["resources"][0]
+        self.assertEqual((row["topic_ref"], row["topic"], row["source_topic"]),
+                         ("TOPIC-BIO-CELL", "Cell Biology", "Cell Biology (provider label)"))
+        self.assertEqual(row["topic_link"]["reason"], "same chapter")
+        self.assertEqual({d["id"] for d in qbp.search(platform["search"], "provider label")}, {"GCDR-BIO-CELL"},
+                         "the provider's own words still find the resource")
+
+    def test_a_topic_link_that_does_not_resolve_fails_the_build(self):
+        questions = [question("BIO-Q1", "A", topic_ref="TOPIC-BIO-CELL")]
+        cases = {
+            "names no resource": ({"resource_id": "GCDR-NOPE", "topic_ref": "TOPIC-BIO-CELL", "reason": "r"}, "GCDR-NOPE"),
+            "creates a topic": ({"resource_id": "GCDR-BIO-CELL", "topic_ref": "TOPIC-BIO-INVENTED", "reason": "r"}, "may not create a topic"),
+            "has no reason": ({"resource_id": "GCDR-BIO-CELL", "topic_ref": "TOPIC-BIO-CELL", "reason": " "}, "needs resource_id, topic_ref and reason"),
+        }
+        for name, (link, expected) in cases.items():
+            with self.subTest(name), tempfile.TemporaryDirectory() as tmp:
+                self._linked_repo(Path(tmp), [link])
+                with self.assertRaises(qbp.ProjectionError) as caught:
+                    resources, basis = qbp.load_resources(Path(tmp))
+                    qbp.assemble_platform({"questions": questions}, resources, basis)
+                self.assertIn(expected, str(caught.exception))
+        twice = {"resource_id": "GCDR-BIO-CELL", "topic_ref": "TOPIC-BIO-CELL", "reason": "r"}
+        with tempfile.TemporaryDirectory() as tmp:
+            self._linked_repo(Path(tmp), [twice, dict(twice, topic_ref="TOPIC-BIO-OTHER")])
+            with self.assertRaisesRegex(qbp.ProjectionError, "more than one topic"):
+                qbp.load_resources(Path(tmp))
+        with tempfile.TemporaryDirectory() as tmp:
+            self._linked_repo(Path(tmp), [twice])
+            resources, basis = qbp.load_resources(Path(tmp))
+        other_subject = [question("PHY-Q1", "A", subject="Physics", topic="Motion", topic_ref="TOPIC-BIO-CELL")]
+        with self.assertRaisesRegex(qbp.ProjectionError, "which belongs to SUBJECT-PHYSICS"):
+            qbp.assemble_platform({"questions": other_subject}, resources, basis)
+
+    def test_changing_a_topic_link_changes_the_build_identity(self):
+        questions = [question("BIO-Q1", "A", topic_ref="TOPIC-BIO-CELL")]
+        ids = []
+        for reason in ("first reason", "second reason"):
+            with tempfile.TemporaryDirectory() as tmp:
+                self._linked_repo(Path(tmp), [{"resource_id": "GCDR-BIO-CELL", "topic_ref": "TOPIC-BIO-CELL", "reason": reason}])
+                resources, basis = qbp.load_resources(Path(tmp))
+            ids.append(qbp.assemble_platform({"questions": questions}, resources, basis)["build_id"])
+        self.assertNotEqual(ids[0], ids[1])
+
     def test_explicit_stable_topic_identity_survives_label_change(self):
         first = qbp.build_catalog([question("BIO-Q1", "A", topic="Cell Biology", topic_ref="TOPIC-BIO-CELL")])
         renamed = qbp.build_catalog([question("BIO-Q1", "A", topic="Cells & Organelles", topic_ref="TOPIC-BIO-CELL")])

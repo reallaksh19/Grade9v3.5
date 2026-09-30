@@ -121,6 +121,25 @@ await check('subject tab, topic pill and the resource banner come from catalog a
   await context.close();
 });
 
+await check('a resource with a recorded topic link is in its question topic banner, not in a topic of its own', async () => {
+  const linked = readGlobal(path.join(repo, 'public/data/question-bank-resources.js')).resources.filter((r) => r.topic_link);
+  assert(linked.length > 0, 'the live corpus records at least one topic link');
+  const { page, context } = await open(live.base);
+  await listed(page);
+  for (const resource of linked) {
+    const topic = catalog.topics.find((t) => t.id === resource.topic_ref);
+    assert(topic && topic.question_count > 0, `${resource.id}: its topic has questions`);
+    assert(!catalog.topics.some((t) => t.label === resource.source_topic && t.id !== topic.id), `${resource.id}: no separate topic carries the provider's label`);
+    await page.click(`#qbSubjectTabs [data-subject-ref="${topic.subject_ref}"]`);
+    await page.click(`#qbTopicStrip .qb-topic-pill:has-text("${topic.label}")`);
+    const hrefs = await page.$$eval('#qbTopicBanner a.qb-topic-action-link', (n) => n.map((a) => a.getAttribute('href')));
+    assert(hrefs.includes(`../${resource.path}`), `${resource.id}: the ${topic.label} banner links ${resource.path}, got ${hrefs.join(', ')}`);
+    const response = await page.request.get(new URL(`../${resource.path}`, `${live.base}/question-bank/`).href);
+    equal(response.status(), 200, `${resource.id} target`);
+  }
+  await context.close();
+});
+
 const untitledTopic = catalog.topics.find((t) => catalog.subtopics.some((s) => s.topic_ref === t.id && s.label_source !== 'CANONICAL_TITLE') && t.question_count > 0);
 
 await check('subtopics: a fully titled topic offers them, filtering matches membership, URL and chip follow', async () => {

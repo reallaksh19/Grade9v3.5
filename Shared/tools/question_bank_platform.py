@@ -467,6 +467,69 @@ def load_gcdr_suite_resources(repo: Path) -> tuple[list[dict], list[dict]]:
     return resources, basis
 
 
+def load_topic_links(repo: Path) -> list[dict]:
+    """Explicit resource-to-question-topic links, recorded beside the resources they describe.
+
+    A discovered explorer suite names its topic in an external provider's words, which is usually not the
+    question topic's. Nothing here guesses the match: a person records it in the subject's registry
+    (``topic_links``) with the reason, and the build refuses a link that does not resolve.
+    """
+    links: list[dict] = []
+    for path in sorted(repo.glob("*/question-bank/resources.v1.json")):
+        source = path.relative_to(repo).as_posix()
+        for row in json.loads(path.read_text(encoding="utf-8")).get("topic_links") or []:
+            if not all(str(row.get(key) or "").strip() for key in ("resource_id", "topic_ref", "reason")):
+                raise ProjectionError(f"Malformed topic link in {source}: {row} (needs resource_id, topic_ref and reason)")
+            links.append({
+                "resource_id": str(row["resource_id"]),
+                "topic_ref": str(row["topic_ref"]),
+                "reason": str(row["reason"]),
+                "source": source,
+            })
+    return links
+
+
+def apply_topic_links(resources: Sequence[Mapping[str, object]], links: Sequence[Mapping[str, str]]) -> list[dict]:
+    by_id = {str(row["id"]): dict(row) for row in resources}
+    linked: set[str] = set()
+    for link in links:
+        rid = link["resource_id"]
+        if rid not in by_id:
+            raise ProjectionError(f"Topic link in {link['source']} names resource {rid!r}, which no registry or suite defines")
+        if rid in linked:
+            raise ProjectionError(f"Resource {rid!r} is linked to more than one topic")
+        linked.add(rid)
+        row = by_id[rid]
+        if row.get("topic"):
+            row["source_topic"] = row["topic"]
+        row["topic_ref"] = link["topic_ref"]
+        row["topic_link"] = {"reason": link["reason"], "source": link["source"]}
+    return [by_id[str(row["id"])] for row in resources]
+
+
+def bind_topic_links(resources: Sequence[Mapping[str, object]],
+                     questions: Sequence[Mapping[str, object]]) -> list[dict]:
+    """Check every explicit link against the question topics and take the topic's own label."""
+    topics = {str(q["topic_ref"]): (str(q["subject_ref"]), str(q["topic"])) for q in questions}
+    bound: list[dict] = []
+    for row in resources:
+        row = dict(row)
+        link = row.get("topic_link")
+        if link:
+            target = topics.get(str(row.get("topic_ref")))
+            if target is None:
+                raise ProjectionError(
+                    f"Resource {row['id']!r} is linked to topic {row.get('topic_ref')!r} ({link['source']}), "
+                    "which no question has; a link may not create a topic")
+            if row.get("subject_ref") and row["subject_ref"] != target[0]:
+                raise ProjectionError(
+                    f"Resource {row['id']!r} ({row['subject_ref']}) is linked to topic {row['topic_ref']!r}, "
+                    f"which belongs to {target[0]}")
+            row["topic"] = target[1]
+        bound.append(row)
+    return bound
+
+
 def load_resources(repo: Path) -> tuple[list[dict], list[dict]]:
     registry_resources, registry_basis = load_resource_registries(repo)
     suite_resources, suite_basis = load_gcdr_suite_resources(repo)
@@ -475,6 +538,7 @@ def load_resources(repo: Path) -> tuple[list[dict], list[dict]]:
     duplicates = sorted(key for key, count in Counter(ids).items() if count > 1)
     if duplicates:
         raise ProjectionError(f"Question Bank resources contain duplicate ids: {duplicates}")
+    rows = apply_topic_links(rows, load_topic_links(repo))
     rows.sort(key=lambda row: (
         str(row.get("subject_ref") or ""),
         str(row.get("topic_ref") or ""),
@@ -676,7 +740,8 @@ def build_search_index(questions: Sequence[Mapping[str, object]], resources: Seq
             "resource_kind": resource["kind"],
             "search_text": _search_text([
                 resource.get("id"), resource.get("title"), resource.get("kind"),
-                resource.get("subject"), resource.get("topic"), " ".join(resource.get("keywords", [])),
+                resource.get("subject"), resource.get("topic"), resource.get("source_topic"),
+                " ".join(resource.get("keywords", [])),
             ]),
         })
 
@@ -926,7 +991,7 @@ def assemble_platform(browser_projection: Mapping[str, object], resources: Seque
     """
     questions = [enrich_question_refs(question) for question in browser_projection.get("questions", []) or []]
     validate_unique_ids(questions)
-    scoped_resources = [_resource_scope(resource) for resource in resources]
+    scoped_resources = bind_topic_links([_resource_scope(resource) for resource in resources], questions)
 
     identity_basis = {
         "browser_projection_digest": digest(browser_projection),
