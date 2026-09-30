@@ -257,6 +257,37 @@ class Renderer(unittest.TestCase):
         self.assertNotIn(target["id"], renderer_source)
         self.assertNotIn("Trajectory-equation derivation as a first-slice requirement.", article)
 
+    def test_core2a_and_core2b_repairs_return_to_exact_core1a_construction_unit_when_owned(self):
+        repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(repo_manifest)
+        step_owner = {}
+        for microtopic in ctx.selection_rows["microtopics"]:
+            for unit in microtopic.get("construction_units") or []:
+                for step_ref in unit.get("step_refs") or []:
+                    step_owner[step_ref] = (microtopic["id"], unit["id"])
+
+        for role in ("CORE2A", "CORE2B"):
+            html = render_core.page(ctx, role, "PAGES", render_core.render_digest(ctx))
+            for question in ctx.selection_rows[role.lower()]:
+                repair_ref = question.get("repair_ref")
+                if repair_ref not in step_owner:
+                    continue
+                concept_id, unit_id = step_owner[repair_ref]
+                self.assertIn(f'data-g9-repair-ref="{repair_ref}"', html)
+                self.assertIn(f'data-g9-concept-ref="{concept_id}"', html)
+                self.assertIn(f'data-g9-repair-target="{unit_id}"', html)
+                self.assertIn(f'href="core1a.html#{unit_id}"', html)
+
+    def test_single_file_scopes_nested_core1a_section_links_for_exact_repair_return(self):
+        repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        pages, _gaps, _digest = render_core.build(repo_manifest, mode="SINGLE_FILE")
+        html = pages["product.html"]
+        target = "CU-PHY-KIN-PROJECTILE-MODEL-3"
+
+        self.assertIn(f'id="g9-CORE1A--{target}"', html)
+        self.assertIn(f'href="#g9-CORE1A--{target}"', html)
+        self.assertNotIn(f'href="core1a.html#{target}"', html)
+
     def test_renderer_owns_tablet_asset_and_blueprint_digest(self):
         pkg = json.loads((REPO / PKG).read_text(encoding="utf-8"))
         pkg["representations"][0]["rendered_asset_refs"] = ["Physics/assets/representations/REP-KIN-2D-SHARED-CLOCK.svg"]
