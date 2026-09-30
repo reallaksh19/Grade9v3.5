@@ -35,8 +35,18 @@ const TABLET_12_7_VIEWPORTS = [
   { name: 'tablet-854-portrait', width: 854, height: 1366 },
   { name: 'tablet-900-portrait', width: 900, height: 1440 },
 ];
-if (!['default', 'tablet-12.7'].includes(profile)) throw new Error(`unknown audit profile: ${profile}`);
-const VIEWPORTS = profile === 'tablet-12.7' ? TABLET_12_7_VIEWPORTS : DEFAULT_VIEWPORTS;
+const CORE1A_SPEC_VIEWPORTS = [
+  { name: 'phone-390x844', width: 390, height: 844 },
+  { name: 'portrait-800x1280', width: 800, height: 1280 },
+  { name: 'portrait-820x1180', width: 820, height: 1180 },
+  { name: 'landscape-1180x820', width: 1180, height: 820 },
+  { name: 'landscape-1280x800', width: 1280, height: 800 },
+  { name: 'desktop-1440x900', width: 1440, height: 900 },
+];
+if (!['default', 'tablet-12.7', 'core1a-spec'].includes(profile)) throw new Error(`unknown audit profile: ${profile}`);
+const VIEWPORTS = profile === 'tablet-12.7'
+  ? TABLET_12_7_VIEWPORTS
+  : profile === 'core1a-spec' ? CORE1A_SPEC_VIEWPORTS : DEFAULT_VIEWPORTS;
 const files = fs.readdirSync(dir).filter(f => /^core.*\.html$/.test(f)).sort();
 const browser = await playwright.chromium.launch();
 const report = {};
@@ -113,6 +123,111 @@ for (const file of files) {
         gatedDisclosures: [...document.querySelectorAll('details')].filter(d => d.hasAttribute('data-requires-attempt') || d.querySelector('summary[aria-disabled="true"]')).length,
         scripts: document.scripts.length,
         stageSupportLayout: /grid-template-columns:[^;]*(68|0?\.68|2fr)/.test(sheetText),
+        core1aLayout: (() => {
+          const articles = [...document.querySelectorAll('article.g9-stage-support')].filter(visible);
+          const samples = articles.map(article => {
+            const primary = article.querySelector('.slot-construction,.slot-attempt,.slot-reasoning,.slot-solution');
+            const support = article.querySelector('.slot-repair_closure,.slot-support');
+            const articleStyle = getComputedStyle(article);
+            const primaryBox = primary?.getBoundingClientRect();
+            const supportBox = support?.getBoundingClientRect();
+            const expanded = articleStyle.display === 'grid' && !!primaryBox && !!supportBox;
+            const denominator = expanded ? primaryBox.width + supportBox.width : 0;
+            return {
+              unit: article.dataset.g9Unit || null,
+              display: articleStyle.display,
+              gridTemplateColumns: articleStyle.gridTemplateColumns,
+              primaryWidthPx: primaryBox ? Math.round(primaryBox.width * 10) / 10 : null,
+              supportWidthPx: supportBox ? Math.round(supportBox.width * 10) / 10 : null,
+              supportFraction: denominator ? Math.round((supportBox.width / denominator) * 1000) / 1000 : null,
+              supportStacksAfterPrimary: !!primaryBox && !!supportBox && supportBox.top >= primaryBox.bottom - 1,
+            };
+          });
+          return {
+            articleCount: samples.length,
+            samples,
+            expandedCount: samples.filter(sample => sample.display === 'grid').length,
+            stackedCount: samples.filter(sample => sample.supportStacksAfterPrimary).length,
+          };
+        })(),
+        tableContainment: (() => {
+          const tables = [...document.querySelectorAll('table')].filter(visible);
+          const outsideLocalScroller = tables.filter(table => !table.closest('.g9-table-scroll'));
+          const localScrollers = [...document.querySelectorAll('.g9-table-scroll')].filter(visible);
+          return {
+            tables: tables.length,
+            tablesOutsideLocalScroller: outsideLocalScroller.length,
+            localScrollers: localScrollers.length,
+            locallyScrollable: localScrollers.filter(el => el.scrollWidth > el.clientWidth + 1).length,
+          };
+        })(),
+        controlGeometry: (() => {
+          const intended = controls.filter(el =>
+            el.matches('button,summary,[data-g9-stage-step],header a,.g9-cu-nav a,nav[data-g9-breadcrumb] a')
+          );
+          const boxes = intended.map(el => ({ el, box: el.getBoundingClientRect() }));
+          const gaps = [];
+          for (let i = 0; i < boxes.length; i += 1) {
+            for (let j = i + 1; j < boxes.length; j += 1) {
+              const a = boxes[i].box, b = boxes[j].box;
+              const verticalOverlap = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
+              const horizontalOverlap = Math.min(a.right, b.right) - Math.max(a.left, b.left);
+              if (verticalOverlap > 0) {
+                const gap = Math.max(b.left - a.right, a.left - b.right);
+                if (gap >= 0) gaps.push(gap);
+              } else if (horizontalOverlap > 0) {
+                const gap = Math.max(b.top - a.bottom, a.top - b.bottom);
+                if (gap >= 0) gaps.push(gap);
+              }
+            }
+          }
+          return {
+            intendedControls: intended.length,
+            minGapPx: gaps.length ? Math.round(Math.min(...gaps) * 10) / 10 : null,
+          };
+        })(),
+        anchorSafety: (() => {
+          const shell = document.querySelector('[data-g9-shell-header]');
+          const sticky = shell && ['fixed', 'sticky'].includes(getComputedStyle(shell).position);
+          const shellHeight = sticky ? shell.getBoundingClientRect().height : 0;
+          const anchors = [...document.querySelectorAll('article[id],section[id]')];
+          const risky = anchors.filter(el => {
+            const margin = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+            return sticky && margin + 1 < shellHeight;
+          });
+          return {
+            stickyHeaderHeightPx: Math.round(shellHeight * 10) / 10,
+            anchors: anchors.length,
+            riskyAnchors: risky.length,
+            riskyAnchorSample: risky.slice(0, 3).map(el => el.id),
+          };
+        })(),
+        focusProbe: (() => {
+          const candidates = controls.filter(el => !el.disabled && el.getAttribute('aria-disabled') !== 'true');
+          let failures = 0;
+          let visibleFocus = 0;
+          for (const el of candidates) {
+            el.focus({ preventScroll: true });
+            if (document.activeElement !== el) {
+              failures += 1;
+              continue;
+            }
+            const style = getComputedStyle(el);
+            const outline = parseFloat(style.outlineWidth) || 0;
+            const boxShadow = style.boxShadow && style.boxShadow !== 'none';
+            if (outline > 0 || boxShadow) visibleFocus += 1;
+          }
+          return { candidates: candidates.length, focusFailures: failures, visibleFocus };
+        })(),
+        learningStart: (() => {
+          const first = document.querySelector('[data-g9-block="inferential_jump"],[data-g9-derivation-bridge],.g9-cu');
+          if (!first) return { topPx: null, viewportHeights: null };
+          const top = first.getBoundingClientRect().top + window.scrollY;
+          return {
+            topPx: Math.round(top * 10) / 10,
+            viewportHeights: Math.round((top / window.innerHeight) * 1000) / 1000,
+          };
+        })(),
         metadataMissingUnits: [...document.querySelectorAll('article[data-g9-unit]')].filter(article => {
           const strip = article.querySelector('[data-g9-meta-strip]');
           return !strip || !strip.querySelector('[data-g9-meta-item]');
@@ -162,6 +277,9 @@ for (const [file, r] of Object.entries(report)) {
     `targets<48=${a.smallTargets}/${a.controls} minFont=${a.minFontPx} overflowL=${a.horizontalOverflowPx} overflowP=${p.horizontalOverflowPx} hoverOnly=${a.hoverOnlyHandlers} external=${a.externalRequests.length} ` +
     `svg=${a.svg} (a11y ${a.svgAccessible}) details=${a.disclosures} gated=${a.gatedDisclosures} attempts=${a.attemptFields} focusCSS=${a.focusStyles} print=${a.printStyles} ` +
     `stage68=${a.stageSupportLayout} metaMissing=${a.metadataMissingUnits} searchMissing=${a.searchCorpusMissingUnits} protectedSearch=${a.protectedSearchMatches} gatedOpen=${a.gatedOpenBeforeAttempt} landmarks=${JSON.stringify(a.landmarks)} js=${a.scripts} errors=${r.errors.length}`);
+  if (profile === 'core1a-spec') {
+    console.log(`    core1a: layout=${JSON.stringify(a.core1aLayout)} tables=${JSON.stringify(a.tableContainment)} controls=${JSON.stringify(a.controlGeometry)} anchors=${JSON.stringify(a.anchorSafety)} focus=${JSON.stringify(a.focusProbe)} learningStart=${JSON.stringify(a.learningStart)}`);
+  }
   console.log(`    small targets: ${a.smallTargetSample.join(' | ')}`);
 }
 if (jsonOut) fs.writeFileSync(jsonOut, JSON.stringify(report, null, 2));
