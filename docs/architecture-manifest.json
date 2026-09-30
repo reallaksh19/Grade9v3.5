@@ -5,20 +5,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 387,
-  "relation_count": 403,
+  "component_count": 390,
+  "relation_count": 409,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 54,
-    "TEST": 182,
+    "TEST": 185,
     "TOOLING": 106,
     "WEB": 12,
     "WEB_CONTRACT": 3,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:f057415aaa508850da9d4f4d99f68000edaa2f634601723eee2da7150448d17e",
+  "digest": "sha256:8d7b6b19d5f694e6f1fb7e632b552aa82e18cd18ba02b5dab378ad47fac23210",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -675,8 +675,8 @@
       "path": "Shared/tools/build_question_bank_platform.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 10434,
-      "sha256": "00a578949431b25513bd3a633bfeb81cacab8831f272a93d0401a1bf54ed2f78"
+      "bytes": 15779,
+      "sha256": "bfd44d650597e62d6dbebad177b5349f3a0e15ce4c11f3d6aeed18f9a4a20e16"
     },
     {
       "path": "Shared/tools/build_question_bank_web.py",
@@ -1039,8 +1039,8 @@
       "path": "Shared/tools/question_bank_platform.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 34769,
-      "sha256": "66ed68ecc6abc8008f39564c5f7ccd4393e7803aa5be88faf98814fb6a85e983"
+      "bytes": 39750,
+      "sha256": "9df90895c84d208a8e785489d21f79fd7bb5c4f823fb7d9b0ff8d6992e8c425a"
     },
     {
       "path": "Shared/tools/question_bank_scale.py",
@@ -1690,8 +1690,15 @@
       "path": "tests/question_bank_data_service.test.mjs",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 2453,
-      "sha256": "0235d72134411d02672d1f02a6b5be66ed594fa2a05dc73410288b813c3964a8"
+      "bytes": 3189,
+      "sha256": "db8267143acd927a2676628da8378b66052a12876d718bc9bfe5c5521943a97e"
+    },
+    {
+      "path": "tests/question_bank_scale_browser.mjs",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 5406,
+      "sha256": "8cafd8c46a897bb834032aa364582bd616008a87524890b4b0a4f69927ce34ab"
     },
     {
       "path": "tests/raw_intake.test.mjs",
@@ -2401,11 +2408,25 @@
       "sha256": "5218b9c7bbe96b2f0407bc7ad55fb28bcaf84aff878ad663199c6cd2ad3419a1"
     },
     {
+      "path": "tests/test_question_bank_determinism.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 8532,
+      "sha256": "21a6496280abe33b7fea695b7241d530f8111e96730201550cd6e572ceaca4a3"
+    },
+    {
+      "path": "tests/test_question_bank_lineage_witnesses.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 9377,
+      "sha256": "017a38c1953bce8ac86833d03041c8f36e5e4c921c9871f12c898eae242bf062"
+    },
+    {
       "path": "tests/test_question_bank_platform.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 10288,
-      "sha256": "dce402fd3074604928cc7d4ade507230501ed30a683668d3dab77b4c94ed048c"
+      "bytes": 13348,
+      "sha256": "453773d8a12b54b7a74fd3edf293e62d2cd04d3b750fa5dd4e75b962b9c6d3e8"
     },
     {
       "path": "tests/test_question_bank_platform_runtime.py",
@@ -4468,6 +4489,36 @@
     },
     {
       "from": "tests/test_quality_gate.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_question_bank_determinism.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_question_bank_determinism.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_question_bank_determinism.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_question_bank_lineage_witnesses.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_question_bank_lineage_witnesses.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_question_bank_lineage_witnesses.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },

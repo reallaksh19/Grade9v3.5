@@ -106,6 +106,11 @@ def _trace_canonical_sources(platform: dict, browser: dict) -> None:
 def build(repo: Path = REPO) -> dict:
     browser = build_question_bank_web.build(repo)
     resources, resource_basis = load_resources(repo)
+    return build_from_projection(browser, resources, resource_basis)
+
+
+def build_from_projection(browser: dict, resources: list[dict] = (), resource_basis: list[dict] = ()) -> dict:
+    """The whole platform, detail shards and receipt included, from one canonical browser projection."""
     platform = assemble_platform(browser, resources, resource_basis)
     _trace_canonical_sources(platform, browser)
 
@@ -130,6 +135,106 @@ def build(repo: Path = REPO) -> dict:
     platform["receipt"]["workers"].sort(key=lambda row: row["worker_id"])
     platform["receipt"]["outputs"]["detail_shards"] = digest(shard_identity)
     return platform
+
+
+TRACE_LINKS = (
+    "canonical_record", "taxonomy_membership", "source_provenance", "normalizing_worker",
+    "generated_artifacts", "search_document", "browser_id", "build",
+)
+
+
+def trace(platform: dict, record_id: str, repo: Path | None = None) -> dict | None:
+    """Answer, for one visible question, the eight lineage questions of #359 STEP-QB-10.
+
+    Every link is read from the build itself (lineage rows, search documents, detail shards,
+    worker receipts), never restated. With ``repo`` the deployment link also compares the committed
+    ``public/`` and ``docs/`` copies of each artifact with the bytes this build would generate.
+    Explanation only: nothing here owns academic truth.
+    """
+    explained = explain(platform, record_id)
+    if explained is None:
+        return None
+    lineage, document = explained["lineage"], explained["search_document"]
+    shard = next((row for row in platform.get("detail_shards", [])
+                  if any(q.get("id") == record_id for q in row["payload"]["questions"])), None)
+    detail = next((q for q in shard["payload"]["questions"] if q.get("id") == record_id), None) if shard else None
+    receipts = {row["worker_id"]: row for row in platform["receipt"]["workers"]}
+
+    chain = {
+        "canonical_record": {
+            "source_path": lineage.get("source_path"),
+            "adapter": lineage.get("adapter"),
+            "package_id": ((detail or {}).get("lineage") or {}).get("package_id"),
+        },
+        "taxonomy_membership": {
+            "subject_ref": lineage["subject_ref"],
+            "topic_ref": lineage["topic_ref"],
+            "subtopic_refs": lineage.get("subtopic_refs", []),
+        },
+        "source_provenance": {
+            key: (detail or {}).get(key)
+            for key in ("exam", "year", "paper", "question_number", "source_status", "authority_class")
+        },
+        "normalizing_worker": {
+            "adapter": lineage.get("adapter"),
+            "reads_it": sorted(w for w in ("catalog", "search", "dedup", "details") if w in receipts),
+            "receipts": {w: receipts[w] for w in ("catalog", "search", "dedup", "details") if w in receipts},
+        },
+        "generated_artifacts": {
+            "search_index": OUTPUTS["search"].as_posix(),
+            "detail_shard": {"id": shard["id"], "path": shard["path"], "digest": shard["digest"]} if shard else None,
+        },
+        "search_document": {"indexed": bool(lineage.get("search_indexed") and document), "label": (document or {}).get("label")},
+        "browser_id": {
+            "id": record_id,
+            "same_in_search_and_detail": bool(document and detail and document["id"] == detail["id"] == record_id),
+        },
+        "build": {"build_id": platform["build_id"], "receipt_digest": digest(platform["receipt"])},
+    }
+    result = {
+        "id": record_id,
+        "found": True,
+        "chain": chain,
+        "broken_links": [name for name, ok in _link_status(chain).items() if not ok],
+    }
+    if repo is not None:
+        result["deployment"] = _deployment(platform, repo, chain)
+    return result
+
+
+def _link_status(chain: dict) -> dict[str, bool]:
+    return {
+        "canonical_record": bool(chain["canonical_record"]["source_path"] or chain["canonical_record"]["package_id"])
+        and bool(chain["canonical_record"]["adapter"]),
+        "taxonomy_membership": bool(chain["taxonomy_membership"]["subject_ref"] and chain["taxonomy_membership"]["topic_ref"]),
+        "source_provenance": any(v not in (None, "") for v in chain["source_provenance"].values()),
+        "normalizing_worker": bool(chain["normalizing_worker"]["adapter"] and chain["normalizing_worker"]["reads_it"]),
+        "generated_artifacts": chain["generated_artifacts"]["detail_shard"] is not None,
+        "search_document": chain["search_document"]["indexed"],
+        "browser_id": chain["browser_id"]["same_in_search_and_detail"],
+        "build": bool(chain["build"]["build_id"]),
+    }
+
+
+def _deployment(platform: dict, repo: Path, chain: dict) -> dict:
+    """Is the committed public/ copy, and its docs/ mirror, exactly what this build generates?"""
+    expected = artifact_payloads(platform)
+    wanted = [OUTPUTS["search"], OUTPUTS["catalog"], OUTPUTS["manifest"]]
+    shard = chain["generated_artifacts"]["detail_shard"]
+    if shard:
+        wanted.append(Path("public") / shard["path"])
+    rows = []
+    for path in wanted:
+        want = expected.get(path)
+        public = repo / path
+        mirror = repo / "docs" / path.relative_to("public")
+        rows.append({
+            "artifact": path.as_posix(),
+            "public_matches_build": bool(want is not None and public.is_file() and public.read_bytes() == want),
+            "docs_matches_build": bool(want is not None and mirror.is_file() and mirror.read_bytes() == want),
+        })
+    return {"checked_against": repo.name, "artifacts": rows,
+            "deployed": all(r["public_matches_build"] and r["docs_matches_build"] for r in rows)}
 
 
 def _detail_script(shard: dict) -> bytes:
@@ -252,7 +357,8 @@ def main(argv: list[str] | None = None) -> int:
         if result is None:
             print(json.dumps({"id": args.explain, "found": False}, indent=2))
             return 1
-        print(json.dumps({"id": args.explain, "found": True, **result}, indent=2, ensure_ascii=False))
+        traced = trace(platform, args.explain, REPO)
+        print(json.dumps({"id": args.explain, "found": True, **result, "trace": traced}, indent=2, ensure_ascii=False))
         return 0
     if args.write or not args.check:
         write(REPO)

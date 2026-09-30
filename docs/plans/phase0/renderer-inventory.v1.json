@@ -129,6 +129,15 @@
       "phase3_action": "Render question study through the same Core2/Core2A blueprint components (hint ladder, attempt, reveal) so there is one question grammar"
     },
     {
+      "path": "public/js/question-bank-data-service.js",
+      "kind": "JS_RENDER",
+      "classification": "OUT_OF_SCOPE",
+      "renders": "Nothing learner-facing: loads the generated Question Bank artifacts, verifies one build id and serves search; document.createElement is used only for script tags",
+      "location": "main",
+      "reason": "Data loader for the generated Question Bank contracts (#359); it renders no learner content",
+      "phase3_action": "Stays a runtime data service; rendering remains in question-bank.js until Phase 3"
+    },
+    {
       "path": "public/motion-session/app.mjs",
       "kind": "JS_RENDER",
       "classification": "MIGRATE",

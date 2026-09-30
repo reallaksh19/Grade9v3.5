@@ -13,9 +13,10 @@ import json
 import re
 import unicodedata
 from collections import Counter, defaultdict
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable, Mapping, Sequence
+from typing import Callable, Iterable, Mapping, Sequence
 
 PLATFORM_SCHEMA = "grade9v3-question-bank-platform-v1"
 CATALOG_SCHEMA = "grade9v3-question-bank-catalog-v1"
@@ -242,12 +243,15 @@ def _shingles(tokens: Sequence[str]) -> set[tuple[str, ...]]:
     }
 
 
-def _near_duplicate_evidence(questions: Sequence[Mapping[str, object]]) -> list[dict]:
+def _near_duplicate_evidence(questions: Sequence[Mapping[str, object]]) -> tuple[list[dict], dict]:
     """Bounded deterministic near-duplicate search within subject/topic partitions.
 
     Shared 3-token shingles generate candidates. Extremely common shingles are ignored and
     each record compares with at most a fixed number of strongest candidates, preventing
     same-topic corpora from degenerating into all-pairs work as the corpus grows.
+
+    Those bounds mean the search can decline to look. The second value says how often it did, so
+    "no near duplicates found" is never confused with "the search skipped most of the corpus".
     """
     partitions: dict[tuple[str, str], list[Mapping[str, object]]] = defaultdict(list)
     for question in questions:
@@ -258,6 +262,9 @@ def _near_duplicate_evidence(questions: Sequence[Mapping[str, object]]) -> list[
 
     relationships: list[dict] = []
     seen_pairs: set[tuple[str, str]] = set()
+    coverage = {"records": 0, "records_with_shingles": 0, "shingle_buckets": 0,
+                "shingle_buckets_skipped_as_too_common": 0, "records_with_truncated_candidates": 0,
+                "records_whose_shingles_were_all_skipped": 0}
     for members in partitions.values():
         by_id = {str(row["id"]): row for row in members}
         tokens_by_id = {qid: tokenize(row.get("stem")) for qid, row in by_id.items()}
@@ -267,10 +274,18 @@ def _near_duplicate_evidence(questions: Sequence[Mapping[str, object]]) -> list[
                 inverted[shingle].append(qid)
 
         candidate_scores: dict[str, Counter] = defaultdict(Counter)
+        examined_shingles: Counter = Counter()
+        skipped_shingles: Counter = Counter()
         for ids in inverted.values():
             unique_ids = sorted(set(ids))
-            if len(unique_ids) < 2 or len(unique_ids) > NEAR_MAX_BUCKET:
+            if len(unique_ids) < 2:
                 continue
+            coverage["shingle_buckets"] += 1
+            if len(unique_ids) > NEAR_MAX_BUCKET:
+                coverage["shingle_buckets_skipped_as_too_common"] += 1
+                skipped_shingles.update(unique_ids)
+                continue
+            examined_shingles.update(unique_ids)
             for qid in unique_ids:
                 for other in unique_ids:
                     if qid != other:
@@ -278,6 +293,13 @@ def _near_duplicate_evidence(questions: Sequence[Mapping[str, object]]) -> list[
 
         for qid in sorted(by_id):
             ranked = sorted(candidate_scores.get(qid, {}).items(), key=lambda row: (-row[1], row[0]))
+            coverage["records"] += 1
+            if _shingles(tokens_by_id[qid]):
+                coverage["records_with_shingles"] += 1
+                if qid in skipped_shingles and qid not in examined_shingles:
+                    coverage["records_whose_shingles_were_all_skipped"] += 1
+            if len(ranked) > NEAR_MAX_CANDIDATES_PER_RECORD:
+                coverage["records_with_truncated_candidates"] += 1
             for other, shared_shingles in ranked[:NEAR_MAX_CANDIDATES_PER_RECORD]:
                 pair = tuple(sorted((qid, other)))
                 if pair in seen_pairs:
@@ -294,13 +316,17 @@ def _near_duplicate_evidence(questions: Sequence[Mapping[str, object]]) -> list[
                 })
 
     relationships.sort(key=lambda row: (row["left_id"], row["right_id"]))
-    return relationships
+    coverage["complete"] = (
+        coverage["shingle_buckets_skipped_as_too_common"] == 0
+        and coverage["records_with_truncated_candidates"] == 0
+    )
+    return relationships, coverage
 
 
 def build_dedup_report(questions: Sequence[Mapping[str, object]]) -> dict:
     validate_unique_ids(questions)
     groups = _group_evidence(questions)
-    relationships = _near_duplicate_evidence(questions)
+    relationships, coverage = _near_duplicate_evidence(questions)
     counts = Counter(row["classification"] for row in groups)
     counts.update(row["classification"] for row in relationships)
     return {
@@ -321,6 +347,7 @@ def build_dedup_report(questions: Sequence[Mapping[str, object]]) -> dict:
         },
         "evidence_counts": dict(sorted(counts.items())),
         "evidence_count": len(groups) + len(relationships),
+        "near_duplicate_coverage": coverage,
         "groups": groups,
         "relationships": relationships,
     }
@@ -701,6 +728,64 @@ def run_worker(worker_id: str, input_value: object, producer) -> WorkerResult:
     )
 
 
+@dataclass(frozen=True)
+class Node:
+    """One logical producer in the build graph.
+
+    ``needs`` names the nodes whose results this node reads; ``read`` turns those results into the
+    exact value the node consumes (that value is what its receipt digests); ``produce`` is a pure
+    function of it. A node never reaches for module state, so any order that respects ``needs``
+    yields the same outputs.
+    """
+
+    worker_id: str
+    needs: tuple[str, ...]
+    read: Callable[[Mapping[str, WorkerResult]], object]
+    produce: Callable[[object], object]
+    receipted: bool = True
+
+
+def run_nodes(
+    nodes: Sequence[Node],
+    *,
+    order: Callable[[list[str]], list[str]] | None = None,
+    parallel: bool = False,
+) -> dict[str, WorkerResult]:
+    """Run ``nodes`` once each, only after everything they need has finished.
+
+    ``order`` picks the sequence among nodes that are ready at the same time (default: by id) and
+    ``parallel`` runs each ready set concurrently. Neither may change any output: that is the
+    determinism contract the build tests hold this function to.
+    """
+    by_id = {node.worker_id: node for node in nodes}
+    if len(by_id) != len(nodes):
+        raise ProjectionError("duplicate worker id in the build graph")
+    for node in nodes:
+        for need in node.needs:
+            if need not in by_id:
+                raise ProjectionError(f"worker {node.worker_id!r} needs unknown worker {need!r}")
+    done: dict[str, WorkerResult] = {}
+    remaining = set(by_id)
+    while remaining:
+        ready = sorted(wid for wid in remaining if all(need in done for need in by_id[wid].needs))
+        if not ready:
+            raise ProjectionError("the build graph has a cycle: " + ", ".join(sorted(remaining)))
+        sequence = order(list(ready)) if order else ready
+        if sorted(sequence) != ready:
+            raise ProjectionError("the order function must return exactly the ready workers")
+        snapshot = dict(done)
+        if parallel and len(sequence) > 1:
+            with ThreadPoolExecutor(max_workers=len(sequence)) as pool:
+                results = list(pool.map(
+                    lambda wid: run_worker(wid, by_id[wid].read(snapshot), by_id[wid].produce), sequence))
+        else:
+            results = [run_worker(wid, by_id[wid].read(snapshot), by_id[wid].produce) for wid in sequence]
+        for wid, result in zip(sequence, results):
+            done[wid] = result
+            remaining.discard(wid)
+    return done
+
+
 def build_lineage(questions: Sequence[Mapping[str, object]], search_index: Mapping[str, object], build_id: str) -> dict:
     indexed = {
         str(row["id"])
@@ -725,24 +810,33 @@ def build_lineage(questions: Sequence[Mapping[str, object]], search_index: Mappi
     return {"schema_version": LINEAGE_SCHEMA, "build_id": build_id, "questions": rows}
 
 
+def platform_nodes(questions: Sequence[Mapping[str, object]], scoped_resources: Sequence[Mapping[str, object]],
+                   build_id: str) -> tuple[Node, ...]:
+    """The build graph: catalog, search and dedup are independent; lineage reads the search result."""
+    shared = {"questions": questions, "resources": scoped_resources}
+    return (
+        Node("catalog", (), lambda done: shared,
+             lambda value: build_catalog(value["questions"], value["resources"])),
+        Node("search", (), lambda done: shared,
+             lambda value: build_search_index(value["questions"], value["resources"])),
+        Node("dedup", (), lambda done: questions, build_dedup_report),
+        Node("lineage", ("search",), lambda done: {"search": done["search"].output, "build_id": build_id},
+             lambda value: build_lineage(questions, value["search"], value["build_id"]), receipted=False),
+    )
+
+
 def assemble_platform(browser_projection: Mapping[str, object], resources: Sequence[Mapping[str, object]] = (),
-                      resource_basis: Sequence[Mapping[str, object]] = ()) -> dict:
-    """Build deterministic derived contracts from the canonical browser projection."""
+                      resource_basis: Sequence[Mapping[str, object]] = (), *,
+                      order: Callable[[list[str]], list[str]] | None = None,
+                      parallel: bool = False) -> dict:
+    """Build deterministic derived contracts from the canonical browser projection.
+
+    ``order`` and ``parallel`` only choose how independent workers are scheduled; the result is
+    identical for every schedule.
+    """
     questions = [enrich_question_refs(question) for question in browser_projection.get("questions", []) or []]
     validate_unique_ids(questions)
     scoped_resources = [_resource_scope(resource) for resource in resources]
-
-    catalog_worker = run_worker(
-        "catalog",
-        {"questions": questions, "resources": scoped_resources},
-        lambda value: build_catalog(value["questions"], value["resources"]),
-    )
-    search_worker = run_worker(
-        "search",
-        {"questions": questions, "resources": scoped_resources},
-        lambda value: build_search_index(value["questions"], value["resources"]),
-    )
-    dedup_worker = run_worker("dedup", questions, build_dedup_report)
 
     identity_basis = {
         "browser_projection_digest": digest(browser_projection),
@@ -750,7 +844,9 @@ def assemble_platform(browser_projection: Mapping[str, object], resources: Seque
         "worker_contract_version": WORKER_CONTRACT_VERSION,
     }
     build_id = digest(identity_basis)
-    lineage = build_lineage(questions, search_worker.output, build_id)
+    results = run_nodes(platform_nodes(questions, scoped_resources, build_id), order=order, parallel=parallel)
+    catalog_worker, search_worker, dedup_worker = results["catalog"], results["search"], results["dedup"]
+    lineage = results["lineage"].output
     workers = [catalog_worker.receipt, search_worker.receipt, dedup_worker.receipt]
     receipt = {
         "schema_version": RECEIPT_SCHEMA,
@@ -761,6 +857,7 @@ def assemble_platform(browser_projection: Mapping[str, object], resources: Seque
             "resources": len(scoped_resources),
             "search_documents": search_worker.output["document_count"],
             "dedup_evidence": dedup_worker.output["evidence_count"],
+            "near_duplicate_search_complete": dedup_worker.output["near_duplicate_coverage"]["complete"],
         },
         "workers": sorted(workers, key=lambda row: row["worker_id"]),
         "outputs": {

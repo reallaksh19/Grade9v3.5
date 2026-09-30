@@ -45,6 +45,19 @@ assert.equal(service.search('mitochondria').length,1);
 assert.equal(service.search('mitochondria',{subject_ref:'fixture:subject:1'}).length,1);
 assert.equal(service.search('mitochondria',{subject_ref:'fixture:subject:2'}).length,0);
 
+// The normalised text is cached per document object: repeated queries agree, and a document from a
+// newer index (a new object with different text) is never answered from an older document's cache.
+assert.deepEqual(service.search('usable energy').map(d=>d.id),service.search('usable energy').map(d=>d.id));
+const currentIndex=globalThis.GRADE9_QUESTION_BANK_SEARCH;
+globalThis.GRADE9_QUESTION_BANK_SEARCH={
+  ...currentIndex,
+  documents:[{...currentIndex.documents[0],search_text:'chloroplast light reactions'}]
+};
+assert.equal(service.search('mitochondria').length,0);
+assert.equal(service.search('chloroplast').length,1);
+globalThis.GRADE9_QUESTION_BANK_SEARCH=currentIndex;
+assert.equal(service.search('mitochondria').length,1);
+
 const token=service.beginRequest();
 const loaded=await service.loadQuestion('fixture:question:1',token);
 assert.equal(loaded.stale,false);
