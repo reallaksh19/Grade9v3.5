@@ -576,7 +576,8 @@ def _core1a_bucket_orientation(ctx: Ctx) -> str:
         ]
         primary = (
             block("learning_promise", promise, title="Learning promise")
-            + block("concept_route", _core1a_concept_route(microtopics), tag="nav", title="Concept route")
+            + f'<nav class="g9-block" data-g9-block="concept_route" data-g9-concept-route '
+              f'aria-label="Concept Book route"><h4>Concept route</h4>{_core1a_concept_route(microtopics)}</nav>'
         )
         companion = (
             block("foundation_route", _core1a_foundation_route(ctx, bucket), title="Foundation route")
