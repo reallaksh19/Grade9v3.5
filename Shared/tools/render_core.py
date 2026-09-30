@@ -1154,6 +1154,8 @@ article[id],section[id]{scroll-margin-top:96px}
 .g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] li::before{content:"Step " counter(g9-derive);display:block;color:var(--muted);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
 .g9-cu-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:.35rem 0 .8rem}
 .g9-cu-nav-links{display:flex;gap:8px;flex-wrap:wrap}
+.g9-stage-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;max-width:100%}
+.g9-stage-controls>[data-g9-stage-label]{color:var(--muted);flex:0 1 auto}
 .g9-table-scroll{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .g9-table-scroll table{width:100%;min-width:680px;border-collapse:collapse}
 .g9-table-scroll th,.g9-table-scroll td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
