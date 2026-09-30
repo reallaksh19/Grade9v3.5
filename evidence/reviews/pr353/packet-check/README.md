@@ -24,15 +24,15 @@ GitHub Actions: **NOT_RUN**. Owner product acceptance: **NOT_RUN**. Merge: **NOT
 
 ## Step back: SBC-1 through SBC-9
 
-- SBC-1: Intent is reusable learner support and transparent packet completeness, not topic-specific patches.
-- SBC-2: Existing source inventory, question scaffolds/routes, representations and sole Core renderer retain ownership.
-- SBC-3: Source hints remain distinct; rendered teaching is not misrepresented as source custody.
-- SBC-4: Equal-count substitution, duplication, omitted inventory items and stale visual exceptions have negative tests.
-- SBC-5: Actual HTML, Chromium, accessibility and PDF bytes were exercised; reports do not substitute for artifacts.
-- SBC-6: Wrong-way findings were corrected here: dynamically inserted hint handlers, later-figure initialization and hidden print options. A global Core2 hint quota in rendering was removed; the difficulty-aware local checker owns the requested threshold.
-- SBC-7: No second learner renderer, parallel academic package, topic library authoring or publication authority was added.
-- SBC-8: Research and draft output remain available. FAIL prevents false completion claims; exact-render Owner acceptance still decides publication.
-- SBC-9: This slice is reviewable separately from #356 recovery. Remaining specimen defects are disclosed, and no merge or product acceptance is claimed.
+- SBC-1 — Learner: Core2 now exposes distinct source/authored hint ladders, reasoning, offline math and correctly printed options after the appropriate commitment.
+- SBC-2 — No new gate: the Owner subsequently authorized local numeric and difficulty-based structural checks. They report FAIL for incomplete support and tally mismatches; they do not prevent research, draft rendering or replace Owner publication. This is an explicit amendment to the original no-count-gate direction, recorded in PLAN_UPDATE.
+- SBC-3 — Thinking, not filling: reviewed actual rendered HTML, browser interaction and PDF pages; found and corrected hidden print options and dynamically inserted hint failures. Counts alone cannot establish pedagogical quality.
+- SBC-4 — One of everything: existing source inventory, package records, sole Core renderer and exact-render publication authority retain ownership. Packet reports are derived observations, not another academic ledger.
+- SBC-5 — Construction over policing: inert payloads prevent premature help exposure; distinct ladder IDs and delegated handlers make inserted hints function; print CSS preserves options. Local tallies catch omissions at the delivery boundary.
+- SBC-6 — Coherence: schemas, renderer, method guidance and negative tests reflect Medium=D2 / Hard=D3–D4 and digest-bound reviewed visual exceptions. The mistaken unconditional renderer hint quota was removed within this slice.
+- SBC-7 — Honest state: full suite FAIL with unchanged failure IDs; actual browser/PDF checks PASS within stated scope; inventory NOT_RUN and specimen SVG FAIL. No golden-quality or acceptance claim.
+- SBC-8 — Convergence and cost: implementation and evidence pushed for review; final full run took 438.627 seconds. Monetary/token cost is unavailable. Remaining review focuses on disclosed content quality and baseline failures.
+- SBC-9 — Reusable by others: FIRST-STAGE-REVIEW documents the command and interpretation; HTML/JSON reports retain item IDs and concrete reasons for any subject's uploaded inventory and selected Core2 packet.
 
 ## Task Snapshot
 
