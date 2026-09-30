@@ -1,0 +1,87 @@
+name: core1a-tablet-browser
+
+# Rendered validation for the governed Core1A Concept Book contract.
+# This workflow never publishes learner output; it builds into /tmp and uploads measurements only.
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/core1a-tablet-browser.yml"
+      - "Shared/tools/render_core.py"
+      - "Shared/web/interactive-page-blueprints.v1.json"
+      - "public/css/tablet-12-7.css"
+      - "tools/site-audit/core-page-audit.mjs"
+      - "products/physics/phy-kin-2d-motion.manifest.json"
+      - "Physics/library/phy-kin-2d-motion.v1.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install render dependencies
+        run: pip install --quiet jsonschema
+
+      - name: Install pinned browser harness
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Build exact Motion Core pages into temporary audit root
+        run: |
+          python3 - <<'PY'
+          import json
+          import shutil
+          import sys
+          from pathlib import Path
+          from Shared.tools import render_core
+
+          manifest = Path("products/physics/phy-kin-2d-motion.manifest.json")
+          pages, gaps, digest = render_core.build(manifest, mode="PAGES")
+          core1a_gaps = [gap for gap in gaps if gap["core"] == "CORE1A"]
+          if core1a_gaps:
+              print(json.dumps(core1a_gaps, indent=2))
+              raise SystemExit("Core1A render has governed gaps; browser audit aborted")
+
+          root = Path("/tmp/core1a-spec")
+          out = root / "products" / "physics" / "phy-kin-2d-motion"
+          out.mkdir(parents=True, exist_ok=True)
+          for name, content in pages.items():
+              (out / name).write_text(content, encoding="utf-8")
+
+          css = root / "css"
+          css.mkdir(parents=True, exist_ok=True)
+          shutil.copy2("public/css/tablet-12-7.css", css / "tablet-12-7.css")
+          (root / "render-evidence.json").write_text(
+              json.dumps({
+                  "manifest": manifest.as_posix(),
+                  "mode": "PAGES",
+                  "render_digest": digest,
+                  "core1a_gap_count": len(core1a_gaps),
+                  "all_gap_count": len(gaps),
+              }, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          print(f"render_digest={digest}")
+          print(f"all_gap_count={len(gaps)} core1a_gap_count={len(core1a_gaps)}")
+          PY
+
+      - name: Run exact Core1A viewport audit over local HTTP
+        run: |
+          node tools/site-audit/core-page-audit.mjs             /tmp/core1a-spec/products/physics/phy-kin-2d-motion             --profile core1a-spec             --http-root /tmp/core1a-spec             --json /tmp/core1a-spec/core1a-audit.json
+
+      - name: Upload measurement evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: core1a-tablet-browser-evidence
+          path: |
+            /tmp/core1a-spec/core1a-audit.json
+            /tmp/core1a-spec/render-evidence.json
+          if-no-files-found: error
