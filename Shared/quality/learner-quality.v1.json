@@ -134,12 +134,28 @@
             "group": "AUTHORED_CORE2_PROMPT_REVEAL",
             "block": "authored_core2_support",
             "label": "Guided support"
+          },
+          {
+            "source_prefix": "hint_ladder[",
+            "declared": true,
+            "provenance": "SOURCE_HINT",
+            "group": "SOURCE_HINT",
+            "block": "source_hints",
+            "label": "Source support"
+          },
+          {
+            "source_prefix": "hint_ladder[",
+            "declared": true,
+            "provenance": "AUTHORED_CORE2_PROMPT_REVEAL",
+            "group": "AUTHORED_CORE2_PROMPT_REVEAL",
+            "block": "authored_core2_support",
+            "label": "Guided support"
           }
         ],
         "forbidden_pre_solution_reveals": ["ANSWER"]
       },
       "audit_refs": [], "grammar": null,
-      "text": "Core2 support keeps source custody exact: question hints remain source support, authored scaffolds remain guided support, and answer-revealing support never appears in the pre-solution lane."
+      "text": "Core2 support keeps source custody exact: question hints remain source support, authored scaffolds remain guided support, an inline ladder rung takes the provenance it declares (never one inferred from its text), and answer-revealing support never appears in the pre-solution lane."
     },
     {
       "id": "C2A-BLOCKS", "family": "DEPTH", "measure": "STATIC", "roles": ["CORE2A"], "unit_kind": "QUESTION", "severity": "S1",
