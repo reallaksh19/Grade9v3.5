@@ -151,6 +151,43 @@ def reconcile(questions: list[dict], syllabus: list[dict]) -> dict:
     }
 
 
+def _core_names(value: object) -> list[str]:
+    parts = re.split(r"[\s,;]+", value) if isinstance(value, str) else list(value or [])
+    return [clean(part).upper() for part in parts if clean(part)]
+
+
+def first_stage(request: dict, questions: list[dict], workflow: dict) -> tuple[dict, list[str], list[str]]:
+    """Which Cores to show first, and what that packet contains.
+
+    A Core the owner requests wins. Otherwise usable supplied question text selects Core2 and
+    its absence selects source-grounded Core1 (docs/method/FIRST-STAGE-REVIEW.md). Later Cores
+    are planned, not generated, until the first-stage packet has been shown.
+    """
+    config = workflow["first_stage"]
+    order = config["core_order"]
+    asked = _core_names(request.get("requested_cores"))
+    unknown = sorted({name for name in asked if name not in order})
+    wanted = [name for name in order if name in set(asked)]
+    usable = any(row["text_status"] == "SUPPLIED" for row in questions)
+    if wanted:
+        cores, basis = wanted, "REQUESTED_CORES"
+    elif usable:
+        cores, basis = list(config["with_questions"]), "SUPPLIED_QUESTIONS"
+    else:
+        cores, basis = list(config["without_questions"]), "NO_QUESTION_BANK"
+    notes = []
+    if "CORE2" in cores and not usable:
+        notes.append("CORE2_REQUESTED_WITHOUT_QUESTION_TEXT: acquire the source questions; do not invent a bank")
+    deliverables: list[str] = []
+    for name in cores:
+        deliverables += [f"{name.lower()}_{item}" for item in config["per_core"]]
+        deliverables += [f"{name.lower()}_{item}" for item in config.get("extra_by_core", {}).get(name, [])]
+    deliverables += list(config["always"])
+    stage = {"basis": basis, "cores": cores, "later_cores": [n for n in order if n not in cores],
+             "notes": notes}
+    return stage, deliverables, unknown
+
+
 def research_tasks(prompts: list[dict], questions: list[dict], syllabus: list[dict], rec: dict) -> list[dict]:
     tasks: list[dict] = []
 
@@ -189,6 +226,10 @@ def intake(request: dict, workflow: dict | None = None) -> dict:
         errors.append("subject is required (free text; no canonical id needed)")
     if not (prompts or questions or syllabus):
         errors.append("supply at least one prompt, question or syllabus subtopic")
+    stage, deliverables, unknown_cores = first_stage(request, questions, workflow)
+    if unknown_cores:
+        errors.append("unknown Core in requested_cores: " + ", ".join(unknown_cores)
+                      + " (use " + ", ".join(workflow["first_stage"]["core_order"]) + ")")
 
     learner = dict(workflow["default_learner_start"])
     owner = (request.get("learner") or {}).get("knowledge_percentage")
@@ -212,7 +253,10 @@ def intake(request: dict, workflow: dict | None = None) -> dict:
         "reconciliation": rec,
         "research_tasks": research_tasks(prompts, questions, syllabus, rec),
         "coverage_ledger_template": ledger,
-        "deliverables": list(workflow["deliverables"]),
+        "requested_cores": [name for name in workflow["first_stage"]["core_order"]
+                            if name in set(_core_names(request.get("requested_cores")))],
+        "first_stage": stage,
+        "deliverables": deliverables,
         "invariants": [row["id"] for row in workflow["invariants"]],
         "status": STATUS if not errors else "INVALID_REQUEST",
         "errors": errors,

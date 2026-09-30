@@ -63,3 +63,47 @@ test('entry page wires the research-first path and keeps the mapped composer sec
   assert.equal(primary && primary[1], 'raw-intake/index.html');
   assert.match(home, /core-prompt-composer\/index\.html/);
 });
+
+test('browser first-stage route equals Python for requested, supplied and syllabus-only jobs', () => {
+  const w = runtime();
+  const questions = ['Q1. A car goes from 10 m/s to 30 m/s in 8 s. Find its acceleration.'];
+  const cases = [
+    { subject: 'Physics', questions },
+    { subject: 'Physics', questions, requested_cores: ['core1a'] },
+    { subject: 'Physics', syllabus: ['Distance and displacement'] },
+    { subject: 'Physics', syllabus: ['Vectors'], requested_cores: 'CORE2, core1a' },
+    { subject: 'Physics', questions: ['Q5'], requested_cores: ['CORE2'] },
+    { subject: 'Physics', questions, requested_cores: ['CORE9'] },
+  ];
+  for (const request of cases) {
+    const tmp = fs.mkdtempSync('/tmp/raw-intake-');
+    fs.writeFileSync(`${tmp}/request.json`, JSON.stringify(request));
+    const run = spawnSync('python3', ['Shared/tools/raw_intake.py', '--input', `${tmp}/request.json`], { cwd: root, encoding: 'utf8' });
+    const python = JSON.parse(run.stdout);
+    const browser = plain(w.RAW_INTAKE.intake(request, w.GRADE9V3_RESEARCH_FIRST_WORKFLOW));
+    assert.deepEqual(browser, python, JSON.stringify(request));
+  }
+});
+
+test('the copy-paste agent prompt follows the first-stage route and not the old six-Core script', () => {
+  const w = runtime();
+  const wf = w.GRADE9V3_RESEARCH_FIRST_WORKFLOW;
+  const bank = w.RAW_INTAKE.intake({ subject: 'Physics', questions: ['Q1. Find x if 2x = 6.'] }, wf);
+  const prompt = w.RAW_INTAKE.agentPrompt(bank, wf);
+  assert.match(prompt, /Route: SUPPLIED_QUESTIONS\. Build and show CORE2 first/);
+  assert.match(prompt, /separate key PDF/);
+  assert.match(prompt, /docs\/method\/PROTOCOL\.md/);
+  assert.doesNotMatch(prompt, /render the six Cores/);
+  assert.doesNotMatch(prompt, /promote_verified/);
+  const concept = w.RAW_INTAKE.intake({ subject: 'Physics', syllabus: ['Vectors'], requested_cores: ['CORE1A'] }, wf);
+  const conceptPrompt = w.RAW_INTAKE.agentPrompt(concept, wf);
+  assert.match(conceptPrompt, /Route: REQUESTED_CORES\. Build and show CORE1A first/);
+  assert.doesNotMatch(conceptPrompt, /separate key PDF/);
+  assert.match(conceptPrompt, /A hold is never an output/);
+});
+
+test('the entry form offers a first-Core choice and sends it with the request', () => {
+  const page = read('public/raw-intake/index.html');
+  assert.match(page, /id="cores"/);
+  assert.match(read('public/js/raw-intake.js'), /requested_cores = \[draft\.cores\]/);
+});
