@@ -376,11 +376,26 @@
     "scaffold": {
       "type": "object",
       "additionalProperties": false,
-      "description": "A practice pedagogical scaffold for Core2A/Core2B. This is deliberately separate from question.hints[], which preserves the question/source hint ladder; Core2B additionally constrains scaffolds through transfer.protected_move_ref.",
+      "description": "An authored pedagogical scaffold usable by Core2, Core2A or Core2B. It is deliberately separate from question.hints[], which preserves source/question hint custody; Core2B additionally constrains scaffolds through transfer.protected_move_ref.",
       "properties": {
         "text": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "The bounded reveal/support body. For Core2 Prompt/Reveal support this is what becomes visible only after the learner requests the reveal."
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Optional Core2 v2 learner prompt shown before the bounded reveal. When present it is paired with learner_stage so stage semantics are explicit rather than inferred from prose."
+        },
+        "learner_stage": {
+          "enum": [
+            "KEY_CONCEPT",
+            "REPRESENTATION",
+            "FIRST_MOVE",
+            "OTHER"
+          ],
+          "description": "Optional Core2 v2 learner-facing support stage. This classifies the Prompt/Reveal job; it does not change source custody or support_kind."
         },
         "support_kind": {
           "enum": [
@@ -419,6 +434,12 @@
         "supports_move_ref"
       ],
       "dependentRequired": {
+        "prompt": [
+          "learner_stage"
+        ],
+        "learner_stage": [
+          "prompt"
+        ],
         "visual_ref": [
           "visual_stage_ref"
         ],
@@ -481,7 +502,7 @@
             "$ref": "#/$defs/reasoning_move"
           },
           "minItems": 1,
-          "description": "Structured application reasoning route. When present with crux_move_ref, this is authoritative for Core2A/Core2B reasoning semantics; reasoning[] remains the legacy prose fallback."
+          "description": "Structured application reasoning route. When present with crux_move_ref, this is authoritative for Core2/Core2A/Core2B reasoning semantics; reasoning[] remains the legacy prose fallback."
         },
         "crux_move_ref": {
           "type": "string",
@@ -2354,7 +2375,7 @@
             }
           },
           "minItems": 0,
-          "description": "The ladder of hints, in order. Order is meaning here -- Core2 preserves the source's ordering. Pedagogical Core2A support belongs in scaffolds[] so source custody and authored support are not conflated."
+          "description": "The ladder of source/question hints, in order. Order is meaning here -- Core2 preserves source ordering and custody. Authored Core2/Core2A/Core2B pedagogy belongs in scaffolds[] so source support and authored support are not conflated."
         },
         "scaffolds": {
           "type": "array",
@@ -2362,7 +2383,7 @@
             "$ref": "#/$defs/scaffold"
           },
           "minItems": 0,
-          "description": "Optional Core2A/Core2B pedagogical scaffold ladder, separate from source/question hints[]. Core2B help must preserve the transfer-protected decision."
+          "description": "Optional authored Core2/Core2A/Core2B pedagogical support, separate from source/question hints[]. Core2 Prompt/Reveal metadata may use prompt + learner_stage; Core2B help must preserve the transfer-protected decision."
         },
         "transfer": {
           "type": "object",
