@@ -6,7 +6,7 @@
     "adapter"
   ],
   "component_count": 379,
-  "relation_count": 396,
+  "relation_count": 397,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
@@ -18,7 +18,7 @@
     "WEB_CONTRACT": 3,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:4e951ace90ee2cd952dba0c608ebf947da98268c8666f81a71fb87b9379f55b2",
+  "digest": "sha256:6d2a6625038069c94b6af6631110f868fadd9f25c5d39184f94869447e9973b2",
   "components": [
     {
       "path": "public/core-learning/data.js",
@@ -528,15 +528,15 @@
       "path": "Shared/roles/CORE-AUTHORITY-CONTRACT.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 8978,
-      "sha256": "ab1d0d737bdcca5186622c655c4bc53fe1de891808136755fcd99c75fa2fe916"
+      "bytes": 9146,
+      "sha256": "3cbf70c177ddaa4914776dca52a40224e0e4dbe24d259b61af3e95ab8ea1bda0"
     },
     {
       "path": "Shared/roles/CORE1.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 3950,
-      "sha256": "e1c6a284c1b4b4b8ce766e66a7d535702846c991fbd2fc98dfd55b449cf6c665"
+      "bytes": 4355,
+      "sha256": "751dd3729721f34710b1f54e4487daf5583ad556e18f241ca548b1bc2a1ab490"
     },
     {
       "path": "Shared/roles/CORE1A.md",
@@ -584,8 +584,8 @@
       "path": "Shared/roles/README.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 8190,
-      "sha256": "1a42943d929ac436651fedf54235122d94df6fec46d15ed04c7603c2645701f0"
+      "bytes": 8805,
+      "sha256": "d59942136ea57841a33f4c36399b701b26ddd5a3e533bab8114e52013f322080"
     },
     {
       "path": "Shared/tools/__init__.py",
@@ -1095,8 +1095,8 @@
       "path": "Shared/tools/render_core.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 75686,
-      "sha256": "7a21eb9faa02cd59e16cb69d8c099e2607bcbd1b681cfdab773e0902199f560e"
+      "bytes": 91899,
+      "sha256": "7de59ab63a82ac03c903c828ed21172aff70c575139f94310cbeb2a5a7831af5"
     },
     {
       "path": "Shared/tools/renderer_inventory.py",
@@ -2383,8 +2383,8 @@
       "path": "tests/test_render_core.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 13807,
-      "sha256": "71192db24c26858fa340d138bf65ff14a6a646409f04d3a4bd9027b0f19fc5da"
+      "bytes": 35895,
+      "sha256": "1c56af9075c911925349e9e600aca7f93c261cbbb9216a0b2f0a7350bbe133d0"
     },
     {
       "path": "tests/test_renderer_inventory.py",
@@ -2663,8 +2663,8 @@
       "path": "tools/site-audit/core-page-audit.mjs",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 11281,
-      "sha256": "f980a679ddcaccf6f44a519c229ab99595ff009786d489aaf0fc193705122b41"
+      "bytes": 29465,
+      "sha256": "078fdf020f132ae1182d76fa41ea31a44a3c4142f45b771702f4471047cf6319"
     },
     {
       "path": "tools/site-audit/tablet-audit.mjs",
@@ -3408,6 +3408,11 @@
     {
       "from": "Shared/tools/render_core.py",
       "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/render_core.py",
+      "to": "Shared.tools.package_migrate",
       "kind": "IMPORTS"
     },
     {
