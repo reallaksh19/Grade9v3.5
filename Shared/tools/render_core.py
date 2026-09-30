@@ -1019,8 +1019,9 @@ input,select{font-size:max(16px,1rem)}
 
 JS = r"""
 (()=>{const q=(s,r=document)=>[...r.querySelectorAll(s)];
-const store={get:k=>{try{return localStorage.getItem('g9-'+k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem('g9-'+k,v)}catch(e){}}};
-const root=document.documentElement;const apply=()=>{root.dataset.theme=store.get('theme')||root.dataset.theme||'light';root.style.setProperty('--g9-zoom',store.get('zoom')||'1');};apply();
+const store={get:k=>{try{return localStorage.getItem('g9-'+k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem('g9-'+k,v);return true}catch(e){return false}},remove:k=>{try{localStorage.removeItem('g9-'+k);return true}catch(e){return false}}};
+const root=document.documentElement;const scope=root.dataset.g9Product&&root.dataset.g9RenderDigest?root.dataset.g9Product+':'+root.dataset.g9RenderDigest:'';
+const apply=()=>{root.dataset.theme=store.get('theme')||root.dataset.theme||'light';root.style.setProperty('--g9-zoom',store.get('zoom')||'1');};apply();
 q('[data-g9-theme]').forEach(b=>b.onclick=()=>{store.set('theme',b.dataset.g9Theme);apply()});
 q('[data-g9-zoom]').forEach(b=>b.onclick=()=>{let z=parseFloat(store.get('zoom')||'1');z=b.dataset.g9Zoom==='inc'?Math.min(1.6,z+0.1):b.dataset.g9Zoom==='dec'?Math.max(0.8,z-0.1):1;store.set('zoom',z.toFixed(1));apply()});
 q('[data-g9-font]').forEach(b=>b.onclick=()=>q('[data-g9-zoom="'+b.dataset.g9Font+'"]')[0]?.click());
@@ -1035,11 +1036,18 @@ if(type==='numeric')return number(q('[data-g9-number]',box)[0]?.value||'');if(ty
 if(type==='match'){const fields=q('[data-g9-match]',box);return fields.length>0&&fields.every(x=>x.value!=='')}
 if(q('[data-g9-paper]:checked',box).length)return true;if(type==='multipart'){const fields=q('[data-g9-part-input]',box);return fields.length>0&&fields.every(x=>x.value.trim()&&(!x.dataset.g9PartType||x.dataset.g9PartType!=='numeric'||number(x.value)))}
 return !!q('[data-g9-attempt]',box)[0]?.value.trim()}
+const stateKey=a=>scope&&a?.dataset.g9Unit?'state:'+scope+':'+a.dataset.g9Unit:null;const returnKey=concept=>scope&&concept?'return:'+scope+':'+concept:null;
+function readState(key){if(!key)return null;const raw=store.get(key);if(!raw)return null;try{const state=JSON.parse(raw);return state&&typeof state==='object'?state:null}catch(e){return null}}
+const attemptFields=a=>q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a);const rungCount=l=>{const list=q('[data-g9-ladder]',l)[0];return list?q('[data-g9-rung]',list).length:0};
+function saveCore2State(a){if(a.dataset.g9Role!=='CORE2')return;const key=stateKey(a);if(!key)return;const fields=attemptFields(a).map(el=>({value:el.value,checked:!!el.checked}));const ladders={};q('.g9-ladder[data-g9-ladder-ref]',a).forEach(l=>ladders[l.dataset.g9LadderRef]=rungCount(l));const reveals=q('details[data-g9-support-reveal]',a).map(d=>!!d.open);store.set(key,JSON.stringify({attempted:!!a.dataset.attempted,fields,ladders,reveals}))}
+function restoreCore2State(a,lock){if(a.dataset.g9Role!=='CORE2')return;const state=readState(stateKey(a));if(!state)return;const fields=attemptFields(a);(state.fields||[]).forEach((saved,i)=>{const el=fields[i];if(!el||!saved||typeof saved!=='object')return;if(Object.prototype.hasOwnProperty.call(saved,'value'))el.value=saved.value??'';if(el.type==='checkbox'||el.type==='radio')el.checked=!!saved.checked});Object.entries(state.ladders||{}).forEach(([ref,count])=>{const l=q('.g9-ladder[data-g9-ladder-ref]',a).find(x=>x.dataset.g9LadderRef===ref);if(!l||!Number.isInteger(count)||count<0)return;while(rungCount(l)<count&&nextRung(l)){};});q('details[data-g9-support-reveal]',a).forEach((d,i)=>d.open=!!(state.reveals||[])[i]);if(state.attempted){a.dataset.attempted='1';materialise(a)}lock()}
 const articles=q('article[data-g9-unit],article[data-g9-diagnostic]');
-articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!a.dataset.attempted){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();
+articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!a.dataset.attempted){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();restoreCore2State(a,lock);
 q('details[data-requires-attempt] summary',a).forEach(s=>s.addEventListener('click',e=>{if(!a.dataset.attempted){e.preventDefault();q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a)[0]?.focus()}}));
-q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-attempt-box]');if(!box||!validAttempt(box)){q('input,textarea,select',box||a)[0]?.focus();return}a.dataset.attempted='1';lock();materialise(a)});
-q('[data-g9-next-rung]',a).forEach(b=>b.onclick=()=>nextRung(b.closest('.g9-ladder')))});
+q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-attempt-box]');if(!box||!validAttempt(box)){q('input,textarea,select',box||a)[0]?.focus();return}a.dataset.attempted='1';lock();materialise(a);saveCore2State(a)});
+q('[data-g9-next-rung]',a).forEach(b=>b.onclick=()=>{nextRung(b.closest('.g9-ladder'));saveCore2State(a)});attemptFields(a).forEach(el=>{el.addEventListener('input',()=>saveCore2State(a));el.addEventListener('change',()=>saveCore2State(a))});
+q('[data-g9-concept-link]',a).forEach(link=>link.addEventListener('click',()=>{saveCore2State(a);const key=returnKey(link.dataset.g9ConceptRef);if(key)store.set(key,link.dataset.g9QuestionRef||a.dataset.g9Unit)}))});
+q('[data-g9-practice-link]').forEach(link=>{const key=returnKey(link.dataset.g9ConceptRef);if(!key||store.get(key)!==link.dataset.g9QuestionRef)return;link.dataset.g9ReturnLink='';link.textContent='Return to question · '+link.textContent;link.addEventListener('click',()=>store.remove(key))});
 window.g9MaterialiseAll=()=>articles.forEach(a=>{a.dataset.attempted='1';q('details[data-requires-attempt]',a).forEach(d=>delete d.dataset.locked);materialise(a);q('.g9-ladder',a).forEach(l=>{while(nextRung(l)){};});q('details[data-g9-support-reveal]',a).forEach(d=>d.open=true)});
 q('figure[data-g9-figure]').forEach(initFigure);
 const input=q('[data-g9-search-input]')[0];if(input)input.oninput=()=>{const v=input.value.trim().toLowerCase();articles.forEach(a=>{a.hidden=!!v&&!(a.dataset.g9SearchText||'').toLowerCase().includes(v)})};
@@ -1133,11 +1141,12 @@ def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
         kind = "CONCEPT" if role in {"CORE1", "CORE1A", "CORE1B"} else "QUESTION"
         search_text = metadata_search_text(ctx, role, rec)
         articles += (f'<article id="{esc(rec["id"])}" data-g9-unit="{esc(rec["id"])}" data-g9-kind="{kind}"'
-                     f' data-g9-search-text="{esc(search_text)}"{klass}>{RENDER[role](ctx, rec)}</article>')
+                     f' data-g9-role="{esc(role)}" data-g9-search-text="{esc(search_text)}"{klass}>{RENDER[role](ctx, rec)}</article>')
     header, crumbs = shell(ctx, role, mode)
     m = ctx.manifest
     return ("<!doctype html>\n"
-            f'<html lang="en" data-g9-shell data-g9-role="{role}" data-g9-mode="{mode}">'
+            f'<html lang="en" data-g9-shell data-g9-role="{role}" data-g9-mode="{mode}" '
+            f'data-g9-product="{esc(m["product_id"])}" data-g9-render-digest="{esc(digest)}">'
             '<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             f'<meta name="g9-render" content="{RENDERER_VERSION} {digest}">'
             f'{_shared_head_assets(ctx, mode)}'
@@ -1163,7 +1172,8 @@ def index_page(ctx: Ctx, digest: str) -> str:
                    for i in diag_ids if i in qs)
     diag_html = f'<section data-g9-diagnostic-set><h2>Start here</h2>{diag}</section>' if diag else ""
     return ("<!doctype html>\n"
-            f'<html lang="en" data-g9-shell data-g9-role="INDEX"><head><meta charset="utf-8">'
+            f'<html lang="en" data-g9-shell data-g9-role="INDEX" data-g9-product="{esc(m["product_id"])}" '
+            f'data-g9-render-digest="{esc(digest)}"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width,initial-scale=1">'
             f'<meta name="g9-render" content="{RENDERER_VERSION} {digest}">{_shared_head_assets(ctx, "PAGES")}<title>{esc(m["title"])}</title><style>{CSS}</style></head>'
             f'<body>{header}{crumbs}<noscript>Answers open after you attempt; this page needs JavaScript.</noscript>'
