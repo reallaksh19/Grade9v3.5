@@ -477,6 +477,157 @@ def teachers() -> dict:
     return _TEACHERS
 
 
+
+_BUCKETS: dict | None = None
+
+
+def library_buckets() -> dict:
+    """bucket id -> (subject, title) across canonical library packages."""
+    global _BUCKETS
+    if _BUCKETS is None:
+        from Shared.tools.package_migrate import package_paths  # noqa: PLC0415
+        _BUCKETS = {}
+        for path in package_paths():
+            pkg = load_json(path)
+            for bucket in pkg.get("buckets", []):
+                title = bucket.get("title") or bucket.get("topic")
+                if title:
+                    _BUCKETS[bucket["id"]] = (pkg["subject"], title)
+    return _BUCKETS
+
+
+def _core1a_route(ctx: Ctx) -> list[dict]:
+    """Flatten selected canonical construction units into one deterministic Concept Book route."""
+    route: list[dict] = []
+    for microtopic in ctx.selection_rows.get("microtopics", []):
+        units = microtopic.get("construction_units") or []
+        for index, unit in enumerate(units, 1):
+            route.append({
+                "microtopic_id": microtopic["id"],
+                "microtopic_title": microtopic["title"],
+                "unit_id": unit["id"],
+                "label": unit.get("decision") or f"Construction {index}",
+            })
+    return route
+
+
+def _core1a_foundation_route(ctx: Ctx, bucket: dict) -> str:
+    """Render bucket prerequisites as orientation only; absence never blocks entry."""
+    links = ctx.manifest.get("prerequisite_links", {})
+    local = ctx.index("buckets")
+    global_index = library_buckets()
+    rows = []
+    for ref in bucket.get("prerequisite_refs", []):
+        title = None
+        subject = None
+        if ref in local:
+            row = local[ref]
+            title = row.get("title") or row.get("topic")
+            subject = ctx.manifest.get("subject")
+        elif ref in global_index:
+            subject, title = global_index[ref]
+        if not title:
+            continue
+        href = links.get(ref)
+        label = f"{title} ({subject})" if subject and subject != ctx.manifest.get("subject") else title
+        rows.append(f'<li data-g9-foundation-ref="{esc(ref)}">'
+                    + (f'<a href="{esc(href)}">{esc(label)}</a>' if href else esc(label))
+                    + "</li>")
+    return "<ul>" + "".join(rows) + "</ul>" if rows else ""
+
+
+def _core1a_concept_route(microtopics: list[dict]) -> str:
+    rows = []
+    for microtopic in microtopics:
+        units = microtopic.get("construction_units") or []
+        sections = "".join(
+            f'<li><a href="#{esc(unit["id"])}">{esc(unit.get("decision") or f"Construction {index}")}</a></li>'
+            for index, unit in enumerate(units, 1)
+        )
+        nested = f"<ol>{sections}</ol>" if sections else ""
+        rows.append(
+            f'<li data-g9-concept-ref="{esc(microtopic["id"])}">'
+            f'<a href="#{esc(microtopic["id"])}">{esc(microtopic["title"])}</a>{nested}</li>'
+        )
+    return "<ol>" + "".join(rows) + "</ol>" if rows else ""
+
+
+def _core1a_bucket_orientation(ctx: Ctx) -> str:
+    """Compose compact bucket orientation only from canonical bucket + selected concept records."""
+    selected = ctx.selection_rows.get("microtopics", [])
+    if not selected:
+        return ""
+    bucket_index = ctx.index("buckets")
+    groups: dict[str, list[dict]] = {}
+    for microtopic in selected:
+        bucket_ref = microtopic.get("bucket_id")
+        if bucket_ref and bucket_ref in bucket_index:
+            groups.setdefault(bucket_ref, []).append(microtopic)
+
+    rendered = []
+    for bucket_ref, microtopics in groups.items():
+        bucket = bucket_index[bucket_ref]
+        scope = bucket.get("scope") or {}
+        covers = scope.get("covers")
+        promise = items(covers) if isinstance(covers, list) else para(covers)
+        conventions = [
+            row.get("statement") for row in bucket.get("conventions", [])
+            if isinstance(row, dict) and row.get("statement")
+        ]
+        primary = (
+            block("learning_promise", promise, title="Learning promise")
+            + block("concept_route", _core1a_concept_route(microtopics), tag="nav", title="Concept route")
+        )
+        companion = (
+            block("foundation_route", _core1a_foundation_route(ctx, bucket), title="Foundation route")
+            + block("model_contract", items(conventions), title="Model contract")
+        )
+        rendered.append(
+            f'<section class="g9-core1a-book" data-g9-bucket-orientation '
+            f'data-g9-bucket-ref="{esc(bucket_ref)}">'
+            f'<p class="g9-prov">Concept Book</p><h2>{esc(bucket.get("title") or bucket.get("topic") or "")}</h2>'
+            f'<div class="g9-bucket-orientation-grid"><div>{primary}</div><aside>{companion}</aside></div>'
+            f'</section>'
+        )
+    return "".join(rendered)
+
+
+def _core1a_section_route(m: dict) -> str:
+    units = m.get("construction_units") or []
+    if not units:
+        return ""
+    links = "".join(
+        f'<li><a href="#{esc(unit["id"])}">{esc(unit.get("decision") or f"Construction {index}")}</a></li>'
+        for index, unit in enumerate(units, 1)
+    )
+    return f'<nav data-g9-section-route aria-label="Sections in this concept"><ol>{links}</ol></nav>'
+
+
+def _core1a_unit_navigation(ctx: Ctx, unit_id: str) -> str:
+    route = _core1a_route(ctx)
+    index = next((i for i, row in enumerate(route) if row["unit_id"] == unit_id), None)
+    if index is None:
+        return ""
+    previous = route[index - 1] if index > 0 else None
+    following = route[index + 1] if index + 1 < len(route) else None
+    links = []
+    if previous:
+        links.append(
+            f'<a data-g9-prev-section href="#{esc(previous["unit_id"])}" '
+            f'aria-label="Previous section: {esc(previous["label"])}">← Previous</a>'
+        )
+    if following:
+        links.append(
+            f'<a data-g9-next-section href="#{esc(following["unit_id"])}" '
+            f'aria-label="Next section: {esc(following["label"])}">Next →</a>'
+        )
+    return (
+        f'<nav class="g9-cu-nav" data-g9-unit-navigation aria-label="Concept Book section navigation">'
+        f'<span data-g9-route-position>Section {index + 1} of {len(route)}</span>'
+        f'<span class="g9-cu-nav-links">{"".join(links)}</span></nav>'
+    )
+
+
 def _prereqs(ctx: Ctx, m: dict) -> str:
     own = {x["primary_capability_ref"]: x["id"] for p in ctx.packages for x in p.get("microtopics", [])}
     own_titles = {x["primary_capability_ref"]: x["title"] for p in ctx.packages for x in p.get("microtopics", [])}
@@ -546,7 +697,8 @@ def core1a(ctx: Ctx, m: dict) -> str:
             ctx.gap("AUTHOR_INDEPENDENT_CHECK", u["id"], "no independent check", "CORE1A")
         wrong = _misconceptions(m, u)
         heading = f"<h3>{esc(decision)}</h3>" if decision else (f"<h3>Construction step {n + 1} of {len(units)}</h3>" if len(units) > 1 else "")
-        unit_html += (f'<section class="g9-cu" data-g9-cu="{esc(u["id"])}">{heading}'
+        unit_html += (f'<section id="{esc(u["id"])}" class="g9-cu" data-g9-cu="{esc(u["id"])}">{heading}'
+                      + _core1a_unit_navigation(ctx, u["id"])
                       + block("construction", f"<ol>{step_html}</ol>")
                       + figure(ctx, u.get("representation_ref"), "TEACHING", "CORE1A", u["id"])
                       + block("worked_anchor", anchor_html, title="Worked example")
@@ -558,6 +710,7 @@ def core1a(ctx: Ctx, m: dict) -> str:
     exit_task = m.get("exit_task") or {}
     return (slot("identity", f"<h2>{esc(m['title'])}</h2>" + metadata_strip(ctx, "CORE1A", m)
                  + block("entry_assumptions", items(m.get("entry_assumptions")) + _prereqs(ctx, m), title="You need")
+                 + block("section_route", _core1a_section_route(m), title="Sections")
                  , True)
             + slot("construction", block("inferential_jump", para(m["inferential_jump"]), title="The key step") + unit_html, True)
             + slot("repair_closure",
@@ -831,7 +984,18 @@ nav[data-g9-breadcrumb]{display:flex;gap:8px;flex-wrap:wrap;padding:8px var(--g9
 main{max-width:var(--g9-content-max);margin:0 auto;padding:var(--g9-space);box-sizing:border-box}
 main>*{min-width:0}article[data-g9-unit]{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:var(--g9-space);margin:18px 0;min-width:0}
 article[data-g9-unit]>*{min-width:0}
-@media (min-width:1100px){article[data-g9-unit].g9-stage-support{display:grid;grid-template-columns:.68fr .32fr;gap:20px}
+article[id],section[id]{scroll-margin-top:96px}
+.g9-core1a-book{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(16px,2vw,24px);margin:0 0 18px;min-width:0}
+.g9-core1a-book>h2{margin:.15em 0 .6em}
+.g9-bucket-orientation-grid{display:block;min-width:0}.g9-bucket-orientation-grid>*{min-width:0}
+[data-g9-concept-route] ol,[data-g9-section-route] ol{padding-left:1.4rem;margin:.5rem 0}
+[data-g9-concept-route] li,[data-g9-section-route] li{margin:.35rem 0}
+.g9-cu{padding-top:8px;border-top:1px solid var(--line)}
+.g9-cu:first-child{border-top:0}
+.g9-cu-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:.35rem 0 .8rem}
+.g9-cu-nav-links{display:flex;gap:8px;flex-wrap:wrap}
+@media (min-width:1100px){.g9-bucket-orientation-grid{display:grid;grid-template-columns:.68fr .32fr;gap:20px}
+article[data-g9-unit].g9-stage-support{display:grid;grid-template-columns:.68fr .32fr;gap:20px}
 article.g9-stage-support>.slot-identity,article.g9-stage-support>.slot-attempt,article.g9-stage-support>.slot-construction,article.g9-stage-support>.slot-reconstruction,article.g9-stage-support>.slot-reasoning,article.g9-stage-support>.slot-post_attempt,article.g9-stage-support>.slot-solution{grid-column:1}
 article.g9-stage-support>.slot-support,article.g9-stage-support>.slot-repair_closure{grid-column:2}}
 textarea{width:100%;min-height:120px;font:inherit;border:1px solid var(--line);border-radius:10px;padding:14px 16px;box-sizing:border-box;background:var(--card);color:var(--fg)}
@@ -981,7 +1145,8 @@ def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
             f'<title>{esc(ROLE_TITLE[role])} · {esc(m["title"])}</title><style>{CSS}</style></head>'
             f'<body data-core="{role}" data-blueprint-ref="{esc(bp["id"])}@{esc(bp["version"])}">'
             f'{header}{crumbs}<noscript>Answers open after you attempt; this page needs JavaScript.</noscript>'
-            f'<main><h1>{esc(m["title"])}: {esc(ROLE_TITLE[role])}</h1>{articles}</main>'
+            f'<main><h1>{esc(m["title"])}: {esc(ROLE_TITLE[role])}</h1>'
+            f'{_core1a_bucket_orientation(ctx) if role == "CORE1A" else ""}{articles}</main>'
             f'<footer data-g9-footer>{esc(m["subject"])} · {esc(m["title"])}</footer>'
             f"<script>{JS}</script></body></html>\n")
 
