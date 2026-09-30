@@ -69,6 +69,36 @@ class Core2V2Motion2DIntegration(unittest.TestCase):
         self.assertIn(f'data-g9-question-ref="{WITNESS_ID}"', core2)
         self.assertIn(f'href="core2.html#{WITNESS_ID}"', core1a)
 
+    def test_real_product_pages_and_single_file_are_semantically_equivalent_and_deterministic(self):
+        pages, page_gaps, page_digest = render_core.build(MANIFEST, "PAGES")
+        pages_again, page_gaps_again, page_digest_again = render_core.build(MANIFEST, "PAGES")
+        single, single_gaps, single_digest = render_core.build(MANIFEST, "SINGLE_FILE")
+
+        self.assertEqual(page_gaps, [])
+        self.assertEqual(page_gaps_again, [])
+        self.assertEqual(single_gaps, [])
+        self.assertEqual(page_digest, page_digest_again)
+        self.assertEqual(pages, pages_again)
+        self.assertNotEqual(page_digest, single_digest)
+
+        page_snapshot = render_core.semantic_metadata_snapshot(pages, "PAGES")
+        single_snapshot = render_core.semantic_metadata_snapshot(single, "SINGLE_FILE")
+        self.assertEqual(page_snapshot, single_snapshot)
+        self.assertEqual(
+            render_core.semantic_metadata_digest(pages, "PAGES"),
+            render_core.semantic_metadata_digest(single, "SINGLE_FILE"),
+        )
+
+        join = core2_v2.concept_question_join(
+            self.ctx.selection_rows["microtopics"],
+            self.ctx.selection_rows["core2"],
+        )
+        owner = join["question_to_microtopics"][WITNESS_ID][0]
+        product = single["product.html"]
+        self.assertIn(f'href="#g9-CORE2--{WITNESS_ID}"', product)
+        self.assertIn(f'href="#g9-CORE1A--{owner}"', product)
+        self.assertNotRegex(product, r'href="core\w+\.html#')
+
 
 if __name__ == "__main__":
     unittest.main()
