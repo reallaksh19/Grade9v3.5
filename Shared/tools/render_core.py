@@ -589,9 +589,11 @@ def _core1a_bucket_orientation(ctx: Ctx) -> str:
             + f'<nav class="g9-block" data-g9-block="concept_route" data-g9-concept-route '
               f'aria-label="Concept Book route"><h4>Concept route</h4>{_core1a_concept_route(microtopics)}</nav>'
         )
+        exclusions = scope.get("excluded") or []
         companion = (
             block("foundation_route", _core1a_foundation_route(ctx, bucket), title="Foundation route")
             + block("model_contract", items(conventions), title="Model contract")
+            + block("scope_boundary", items(exclusions), title="Outside this book")
         )
         rendered.append(
             f'<section class="g9-core1a-book" data-g9-bucket-orientation '
@@ -1120,6 +1122,8 @@ article[id],section[id]{scroll-margin-top:96px}
 [data-g9-block=worked_anchor]{border-left:4px solid var(--accent);padding-left:14px}
 .g9-watch-steps>li{margin:.8rem 0}.g9-watch-steps p{margin:.2rem 0}
 [data-g9-block=wrong_path],[data-g9-block=repair]{border-left:3px solid var(--line);padding-left:12px}
+[data-g9-block=scope_boundary]{color:var(--muted);font-size:.92rem}
+[data-g9-block=scope_boundary] ul{margin:.35rem 0;padding-left:1.2rem}
 .g9-cu-support{padding:0 0 16px;margin:0 0 16px;border-bottom:1px solid var(--line)}
 .g9-cu-support:last-of-type{border-bottom:0}.g9-cu-support>h3{font-size:1rem;line-height:1.35;margin:.3rem 0 .7rem;color:var(--muted)}
 @media (min-width:1100px){.g9-bucket-orientation-grid{display:grid;grid-template-columns:.68fr .32fr;gap:20px}
