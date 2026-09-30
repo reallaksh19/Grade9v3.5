@@ -86,11 +86,13 @@ class Core2V2TabletRailContract(unittest.TestCase):
     def test_renderer_emits_one_representation_not_a_rail_clone(self):
         ctx = self._ctx()
         question = ctx.selection_rows["core2"][0]
-        with patch.object(
-            render_core,
-            "figure",
-            return_value='<figure data-g9-figure data-g9-representation="REP-RAIL"></figure>',
-        ):
+
+        def fake_figure(_ctx, rep_id, *_args, **_kwargs):
+            if not rep_id:
+                return ""
+            return f'<figure data-g9-figure data-g9-representation="{rep_id}"></figure>'
+
+        with patch.object(render_core, "figure", side_effect=fake_figure):
             rendered = render_core.core2(ctx, question)
         self.assertEqual(rendered.count('data-g9-representation="REP-RAIL"'), 1)
         self.assertLess(rendered.index('data-g9-block="stem"'), rendered.index('data-g9-representation="REP-RAIL"'))
