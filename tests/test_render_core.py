@@ -70,6 +70,45 @@ class Renderer(unittest.TestCase):
         render_core.main(["build", "--manifest", str(manifest_file(self.tmp)), "--out", str(out), "--draft"])
         self.assertIn("data-g9-draft", (out / "core1.html").read_text(encoding="utf-8"))
 
+    def test_a_draft_says_when_a_role_in_the_product_has_no_records(self):
+        """A run found a Core2 product with no questions built 'successfully' (rc 0) with nothing said."""
+        import contextlib
+        import io
+
+        def run(selection):
+            out, err = io.StringIO(), io.StringIO()
+            manifest = manifest_file(self.tmp, selection=selection)
+            with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+                rc = render_core.main(["build", "--manifest", str(manifest), "--out", str(self.tmp / "out"), "--draft"])
+            return rc, out.getvalue(), err.getvalue()
+
+        full = product_manifest.derive(PKG, [BANK], "PRODUCT-TEST", "../../index.html")["selection"]
+        self.assertTrue(full["core2"], "the fixture selects Core2 records")
+        rc, out, err = run(full)
+        self.assertEqual(rc, 0)
+        self.assertIn(f"core2={len(full['core2'])}", out)
+        self.assertNotIn("WARNING", err)
+
+        rc, out, err = run({**full, "core2": []})
+        self.assertEqual(rc, 0, "a draft with an empty role still builds")
+        self.assertIn("core2=0", out)
+        self.assertIn("WARNING: CORE2 is part of this product but selects no records", err)
+        self.assertNotIn("WARNING: CORE2A", err)
+
+    def test_a_rejected_selection_is_one_line_not_a_traceback(self):
+        """A run that put a package question in the Core2 selection got a raw traceback."""
+        import contextlib
+        import io
+        full = product_manifest.derive(PKG, [BANK], "PRODUCT-TEST", "../../index.html")["selection"]
+        package_question = next(iter(product_manifest.derive(PKG, [BANK], "PRODUCT-TEST", "../../index.html")["selection"]["core2a"]))
+        err = io.StringIO()
+        manifest = manifest_file(self.tmp, selection={**full, "core2": [package_question]})
+        with contextlib.redirect_stderr(err):
+            rc = render_core.main(["build", "--manifest", str(manifest), "--out", str(self.tmp / "out"), "--draft"])
+        self.assertEqual(rc, 1)
+        self.assertIn("selection rejected: PRODUCT_SELECTION_WRONG_AUTHORITY", err.getvalue())
+        self.assertNotIn("Traceback", err.getvalue())
+
     def test_source_option_labels_are_printed_once(self):
         html = self.pages[render_core.ROLE_FILE["CORE2"]]
         self.assertIsNone(re.search(r"\([a-d]\) \([A-D1-4]\)", html))

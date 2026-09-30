@@ -29,6 +29,15 @@ Give the matrix title or its `bucket_id` and it resolves exactly. Otherwise the 
 
 The planner never picks between competing matrices for you.
 
+## When the input is thin
+
+Four things a cold-start run hit. Each is stated as the tools behave today.
+
+- **Subject.** `raw_intake.py` needs a `subject` (free text, no canonical id). Without one it exits 1 with `INVALID_REQUEST: subject is required`, printed on stderr (and in the `errors` field of the JSON, which is also why `questions` then reads 0: the request was rejected, not empty). Add the subject to **your copy** of the request; never edit the Owner's file.
+- **From an intake to a plan.** The intake output is not a planner input. The planner takes an authoring request (`Requests/*.json`: `request_id`, `subject`, `bucket_id` or a matrix title, `cores`, optional `learner`); see `Requests/relative-motion-g9.request.json`. Write one from the intake's subject and the subtopic you resolved, then `python3 Shared/tools/plan_request.py --plan FILE`. If it lists several candidates and chooses none, say which you took and that the Owner should confirm it. `product_manifest.py derive` also takes the intake (`--intake intake.json`).
+- **Owner-supplied questions in Core2: not possible yet.** [CORE2.md](../../Shared/roles/CORE2.md) says they are custody in their own right (class `OWNER_SUPPLIED`) and appear verbatim. Today Core2 takes its records only from exam-bank files, whose schema requires an official exam, year, paper and archive URLs, and a package question in the `core2` selection is rejected (`PRODUCT_SELECTION_WRONG_AUTHORITY`). Do not invent an exam identity to get past it. Author the answers in your workspace, record the blocker, and keep going with the rest. Tracked in #371.
+- **Checks for a job that is not yet a unit.** `self_check.py --unit SUBJECT/slug` needs an existing unit. For a rendered draft use `python3 Shared/tools/quality_gate.py RENDER_DIR --subject SUBJECT --product-id ID --static --report FILE`. A draft build (`render_core.py build --draft`) succeeds with gaps; it prints `selected records: ...` and warns for any role in the product that selects none.
+
 ## "Rung" means two things
 
 Say which one you mean.

@@ -291,6 +291,9 @@ def main(argv: list[str] | None = None) -> int:
     if not args.input:
         parser.error("--input is required")
     result = intake(json.loads(Path(args.input).read_text(encoding="utf-8")))
+    if result["errors"]:
+        # With --out the JSON goes to a file, so the reason for a non-zero exit must not live only there.
+        print(f"{result['status']}: " + "; ".join(result["errors"]), file=sys.stderr)
     text = json.dumps(result, indent=2, ensure_ascii=False) + "\n"
     if args.out:
         Path(args.out).write_text(text, encoding="utf-8")

@@ -152,6 +152,19 @@ class EntryAndCliTests(unittest.TestCase):
             self.assertEqual(intake.returncode, 0)
             self.assertEqual(json.loads(intake.stdout)["status"], "RESEARCH_AND_AUTHOR")
 
+    def test_a_rejected_request_says_why_on_stderr_even_when_the_json_goes_to_a_file(self):
+        """A cold-start run got exit 1 and no output for a request with no subject: the reason was only inside the file."""
+        with tempfile.TemporaryDirectory() as tmp:
+            request = Path(tmp) / "request.json"
+            request.write_text(json.dumps({"grade": "9", "questions": ["1. Find |a| if a = 3i + 4j."]}), encoding="utf-8")
+            out = Path(tmp) / "intake.json"
+            done = subprocess.run(["python3", "Shared/tools/raw_intake.py", "--input", str(request), "--out", str(out)],
+                                  cwd=REPO, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            self.assertEqual(done.returncode, 1)
+            self.assertEqual(done.stdout, "")
+            self.assertIn("INVALID_REQUEST: subject is required", done.stderr)
+            self.assertEqual(json.loads(out.read_text(encoding="utf-8"))["status"], "INVALID_REQUEST")
+
     def test_browser_entry_matches_python_intake(self):
         for command in (["node", "--check", "public/js/raw-intake.js"],
                         ["node", "--test", "tests/raw_intake.test.mjs"]):

@@ -1979,6 +1979,18 @@ def _retire_previous_outputs(out: Path, pages: dict[str, str]) -> None:
             target.unlink()
 
 
+_ROLE_SELECTION_KEY = {"CORE1": "microtopics", "CORE1A": "microtopics", "CORE1B": "microtopics",
+                       "CORE2": "core2", "CORE2A": "core2a", "CORE2B": "core2b"}
+
+
+def empty_roles(manifest: dict) -> list[str]:
+    """Roles the product includes whose selection is empty: their pages render with no items, and a draft
+    build still succeeds, so the build says so instead of leaving it to be noticed in the page."""
+    selection = manifest.get("selection") or {}
+    return [role for role in product_manifest.selected_output_roles(manifest)
+            if not selection.get(_ROLE_SELECTION_KEY[role])]
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     sub = parser.add_subparsers(dest="cmd", required=True)
@@ -1990,7 +2002,11 @@ def main(argv: list[str] | None = None) -> int:
     g = sub.add_parser("gaps")
     g.add_argument("--manifest", required=True)
     args = parser.parse_args(argv)
-    pages, gaps, digest = build(Path(args.manifest), getattr(args, "mode", "PAGES"))
+    try:
+        pages, gaps, digest = build(Path(args.manifest), getattr(args, "mode", "PAGES"))
+    except product_manifest.ProductSelectionError as caught:
+        print(f"selection rejected: {caught}", file=sys.stderr)  # an input problem, not a crash
+        return 1
     if args.cmd == "gaps":
         for gap in gaps:
             print(f"{gap['core']:7s} {gap['duty']:32s} {gap['record']:44s} {gap['detail']}")
@@ -2025,6 +2041,11 @@ def main(argv: list[str] | None = None) -> int:
         "diagnostic_min": json.loads(Path(args.manifest).read_text(encoding="utf-8")).get("diagnostic_min", 0)},
         indent=2) + "\n", encoding="utf-8")
     print(f"wrote {len(pages)} page(s) to {out}" + (f" as DRAFT with {len(gaps)} gap(s)" if gaps else ""))
+    manifest = json.loads(Path(args.manifest).read_text(encoding="utf-8"))
+    print("selected records: " + " ".join(f"{key}={len(manifest.get('selection', {}).get(key) or [])}"
+                                          for key in product_manifest.SELECTION_KEYS))
+    for role in empty_roles(manifest):
+        print(f"WARNING: {role} is part of this product but selects no records, so its page has no items.", file=sys.stderr)
     return 0
 
 
