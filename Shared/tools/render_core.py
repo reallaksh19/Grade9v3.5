@@ -951,14 +951,24 @@ def _family_title(ctx: Ctx, ref: str | None) -> str:
 
 
 def _repair(ctx: Ctx, ref: str | None) -> str:
-    """A repair pointer as the learner needs it: the step's own action, linked to Core1A."""
+    """Link a canonical repair step to its exact Core1A construction location when one exists."""
     if not ref:
         return ""
     for p in ctx.packages:
         for m in p.get("microtopics", []):
             for s in m.get("teaching_path", []):
-                if s["id"] == ref:
-                    return f'<p><a href="core1a.html#{esc(m["id"])}">Revisit: {esc(s["action"])}</a></p>'
+                if s["id"] != ref:
+                    continue
+                unit = next(
+                    (row for row in m.get("construction_units") or [] if ref in (row.get("step_refs") or [])),
+                    None,
+                )
+                target = unit["id"] if unit else m["id"]
+                return (
+                    f'<p><a data-g9-repair-ref="{esc(ref)}" data-g9-concept-ref="{esc(m["id"])}" '
+                    f'data-g9-repair-target="{esc(target)}" href="core1a.html#{esc(target)}">'
+                    f'Revisit: {esc(s["action"])}</a></p>'
+                )
     return ""
 
 
@@ -1432,14 +1442,16 @@ def _single_file_fragment(page_html: str, role: str) -> str:
         raise ValueError(f"{role}: rendered page has no main")
     fragment = match.group(1)
     article_ids = re.findall(r'<article\b[^>]*\bid="([^"]+)"', fragment)
-    for old in article_ids:
+    section_ids = re.findall(r'<section\b[^>]*\bid="([^"]+)"', fragment)
+    local_anchor_ids = list(dict.fromkeys(article_ids + section_ids))
+    for old in local_anchor_ids:
         fragment = fragment.replace(f'id="{old}"', f'id="g9-{role}--{old}"', 1)
     file_to_role = {ROLE_FILE[r]: r for r in ROLES}
     def cross_link(m: re.Match[str]) -> str:
         target_role = file_to_role.get(m.group(1))
         return f'href="#g9-{target_role}--{m.group(2)}"' if target_role else m.group(0)
     fragment = re.sub(r'href="(core\w+\.html)#([^"]+)"', cross_link, fragment)
-    for old in article_ids:
+    for old in local_anchor_ids:
         fragment = fragment.replace(f'href="#{old}"', f'href="#g9-{role}--{old}"')
     fragment = re.sub(
         r'href="\.\./\.\./\.\./([^"]+)"',
