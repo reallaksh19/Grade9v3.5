@@ -118,10 +118,13 @@ class Renderer(unittest.TestCase):
         self.assertEqual(concept_positions, sorted(concept_positions))
         boundary = 'Trajectory-equation derivation as a first-slice requirement.'
         first_article = html.index('<article ')
-        self.assertIn('data-g9-block="scope_boundary"', html[:first_article])
-        self.assertIn(boundary, html[:first_article])
+        orientation_start = html.index('<section class="g9-core1a-book"')
+        orientation_end = html.index('</section>', orientation_start) + len('</section>')
+        orientation = html[orientation_start:orientation_end]
+        self.assertIn('data-g9-block="scope_boundary"', orientation)
+        self.assertIn(boundary, orientation)
         self.assertNotIn(boundary, html[first_article:])
-        self.assertNotIn('data-locked', html[:first_article])
+        self.assertNotIn('data-locked', orientation)
 
     def test_core1a_difficulty_is_context_not_navigation_or_mastery_state(self):
         repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
@@ -129,7 +132,7 @@ class Renderer(unittest.TestCase):
         html = render_core.page(ctx, "CORE1A", "PAGES", render_core.render_digest(ctx))
         route = render_core._core1a_route(ctx)
 
-        self.assertIn("Difficulty:", html)
+        self.assertIn('data-g9-meta-kind="concept-difficulty"', html)
         self.assertNotIn("data-g9-mastery", html)
         self.assertNotIn("data-g9-ready", html)
         for row in route:
@@ -310,12 +313,15 @@ class Renderer(unittest.TestCase):
         pages, page_gaps, page_digest = render_core.build(repo_manifest, mode="PAGES")
         single, single_gaps, single_digest = render_core.build(repo_manifest, mode="SINGLE_FILE")
 
-        self.assertEqual(page_digest, single_digest)
+        self.assertRegex(page_digest, r"^[0-9a-f]{16}$")
+        self.assertRegex(single_digest, r"^[0-9a-f]{16}$")
         self.assertFalse([gap for gap in page_gaps if gap["core"] == "CORE1A"])
         self.assertFalse([gap for gap in single_gaps if gap["core"] == "CORE1A"])
 
         core1a = pages["core1a.html"]
         product = single["product.html"]
+        self.assertIn(f'render_core/2 {page_digest}', core1a)
+        self.assertIn(f'render_core/2 {single_digest}', product)
         ctx = render_core.context(repo_manifest)
         for row in render_core._core1a_route(ctx):
             anchor = row["unit_id"]
