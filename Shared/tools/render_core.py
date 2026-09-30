@@ -541,9 +541,13 @@ def _core1a_foundation_route(ctx: Ctx, bucket: dict) -> str:
             continue
         href = links.get(ref)
         label = f"{title} ({subject})" if subject and subject != ctx.manifest.get("subject") else title
-        rows.append(f'<li data-g9-foundation-ref="{esc(ref)}">'
-                    + (f'<a href="{esc(href)}">{esc(label)}</a>' if href else esc(label))
-                    + "</li>")
+        availability = "linked" if href else "unlinked"
+        rows.append(
+            f'<li data-g9-foundation-ref="{esc(ref)}" data-g9-availability="{availability}">'
+            + (f'<a href="{esc(href)}">{esc(label)}</a>' if href
+               else f'{esc(label)} <span class="g9-availability-note">— direct route unavailable in this product</span>')
+            + "</li>"
+        )
     return "<ul>" + "".join(rows) + "</ul>" if rows else ""
 
 
@@ -1125,6 +1129,7 @@ article[id],section[id]{scroll-margin-top:96px}
 [data-g9-block=wrong_path],[data-g9-block=repair]{border-left:3px solid var(--line);padding-left:12px}
 [data-g9-block=scope_boundary]{color:var(--muted);font-size:.92rem}
 [data-g9-block=scope_boundary] ul{margin:.35rem 0;padding-left:1.2rem}
+.g9-availability-note{color:var(--muted);font-size:.9rem}
 .g9-cu-support{padding:0 0 16px;margin:0 0 16px;border-bottom:1px solid var(--line)}
 .g9-cu-support:last-of-type{border-bottom:0}.g9-cu-support>h3{font-size:1rem;line-height:1.35;margin:.3rem 0 .7rem;color:var(--muted)}
 @media (min-width:1100px){.g9-bucket-orientation-grid{display:grid;grid-template-columns:.68fr .32fr;gap:20px}
