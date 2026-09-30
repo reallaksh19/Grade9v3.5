@@ -156,16 +156,29 @@ class Renderer(unittest.TestCase):
         self.assertEqual(html.count("data-g9-next-section"), len(route) - 1)
         self.assertNotIn("data-g9-mastery", html)
 
-    def test_core1a_structural_forms_are_renderer_traits_not_new_academic_schema(self):
+    def test_core1a_structural_forms_compose_without_machine_archetype_classification(self):
         motion_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
         motion_ctx = render_core.context(motion_manifest)
         motion_html = render_core.page(
             motion_ctx, "CORE1A", "PAGES", render_core.render_digest(motion_ctx)
         )
 
+        # Explicit structure drives the view: staged representations stay staged,
+        # relations stay semantic matrices, and worked/repair/check material keeps
+        # its governed content. The renderer does not classify every figure or
+        # VERIFY step into a new academic archetype.
         self.assertIn('data-g9-stage-sequence="true"', motion_html)
-        self.assertIn('data-g9-scene-event="true"', motion_html)
-        self.assertIn('data-g9-compare-boundary="true"', motion_html)
+        self.assertIn("data-g9-equation-matrix", motion_html)
+        self.assertIn('data-g9-block="independent_check"', motion_html)
+        for microtopic in motion_ctx.selection_rows["microtopics"]:
+            for unit in microtopic.get("construction_units") or []:
+                if unit.get("representation_ref"):
+                    self.assertIn(
+                        f'data-g9-representation="{unit["representation_ref"]}"',
+                        motion_html,
+                    )
+        self.assertNotIn("data-g9-scene-event", motion_html)
+        self.assertNotIn("data-g9-compare-boundary", motion_html)
 
         derivation_manifest = REPO / "products" / "physics" / "phy-kin-1d-motion.manifest.json"
         derivation_ctx = render_core.context(derivation_manifest)
@@ -174,11 +187,10 @@ class Renderer(unittest.TestCase):
         )
         self.assertIn('data-g9-derivation-bridge="true"', derivation_html)
 
-        # The vocabulary is renderer-side only: no selected canonical concept is required
-        # to carry an academic "archetype" discriminator.
         for ctx in (motion_ctx, derivation_ctx):
             for microtopic in ctx.selection_rows["microtopics"]:
                 self.assertNotIn("archetype", microtopic)
+
 
     def test_core1a_core1b_and_core2_keep_distinct_learner_roles(self):
         repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
