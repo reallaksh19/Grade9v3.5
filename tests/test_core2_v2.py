@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from Shared.tools import core2_v2
+from Shared.tools import core2_v2, render_core
 
 
 class Core2V2SupportProjection(unittest.TestCase):
@@ -122,6 +122,82 @@ class Core2V2SupportProjection(unittest.TestCase):
         }
         with self.assertRaises(core2_v2.Core2SupportProjectionError):
             core2_v2.project_support(question)
+
+
+class Core2V2RendererContract(unittest.TestCase):
+    @staticmethod
+    def _ctx() -> render_core.Ctx:
+        return render_core.Ctx(
+            manifest={"product_id": "test-product"},
+            packages=[],
+            bank=[],
+            blueprints={},
+        )
+
+    @staticmethod
+    def _question() -> dict:
+        return {
+            "id": "Q-1",
+            "stem": "Find the requested quantity.",
+            "answer": {"summary": "Verified result", "reasoning": ["Reasoning step"]},
+            "hints": [{"text": "Printed source hint", "reveals": "CONCEPT"}],
+            "scaffolds": [
+                {
+                    "text": "Use components before substituting values.",
+                    "prompt": "Which representation separates the independent directions?",
+                    "learner_stage": "REPRESENTATION",
+                    "support_kind": "REPRESENT",
+                    "reveals": "METHOD",
+                    "supports_move_ref": "MOVE-1",
+                },
+                {
+                    "text": "The final requested result is 42.",
+                    "learner_stage": "FIRST_MOVE",
+                    "support_kind": "EXECUTE",
+                    "reveals": "ANSWER",
+                    "supports_move_ref": "MOVE-2",
+                },
+            ],
+            "hint_ladder": [
+                {"order": 1, "from": "hints[0]"},
+                {"order": 2, "from": "scaffolds[0]"},
+                {"order": 3, "from": "scaffolds[1]"},
+            ],
+        }
+
+    def test_renderer_keeps_source_and_authored_support_in_separate_groups(self):
+        ctx = self._ctx()
+        rendered = render_core._core2_support(ctx, self._question())
+        self.assertIn('data-g9-support-group="SOURCE_HINT"', rendered)
+        self.assertIn('data-g9-support-group="AUTHORED_CORE2_PROMPT_REVEAL"', rendered)
+        self.assertIn('data-g9-support-provenance="SOURCE_HINT"', rendered)
+        self.assertIn('data-g9-support-provenance="AUTHORED_CORE2_PROMPT_REVEAL"', rendered)
+        self.assertEqual(rendered.count("<ol data-g9-ladder></ol>"), 2)
+        self.assertNotIn("The final requested result is 42.", rendered)
+        self.assertEqual(ctx.gaps, [])
+
+    def test_authored_prompt_precedes_bounded_reveal_and_keeps_explicit_stage(self):
+        rendered = render_core._core2_support(self._ctx(), self._question())
+        prompt = "Which representation separates the independent directions?"
+        reveal = "Use components before substituting values."
+        self.assertIn('data-g9-support-stage="REPRESENTATION"', rendered)
+        self.assertIn('data-g9-support-prompt', rendered)
+        self.assertIn('details data-g9-support-reveal', rendered)
+        self.assertLess(rendered.index(prompt), rendered.index(reveal))
+
+    def test_core2_entrypoint_consumes_authored_support_projection(self):
+        ctx = self._ctx()
+        rendered = render_core.core2(ctx, self._question())
+        self.assertIn('data-g9-block="authored_core2_support"', rendered)
+        self.assertIn('data-g9-support-provenance="AUTHORED_CORE2_PROMPT_REVEAL"', rendered)
+        self.assertNotIn("The final requested result is 42.", rendered)
+
+    def test_projection_error_records_gap_and_renders_no_support(self):
+        ctx = self._ctx()
+        question = self._question()
+        question["hint_ladder"] = [{"order": 1, "from": "scaffolds[99]"}]
+        self.assertEqual(render_core._core2_support(ctx, question), "")
+        self.assertEqual(ctx.gaps[0]["duty"], "AUTHOR_CORE2_SUPPORT")
 
 
 if __name__ == "__main__":
