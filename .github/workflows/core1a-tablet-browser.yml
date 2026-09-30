@@ -77,6 +77,11 @@ jobs:
         run: |
           node tools/site-audit/core-page-audit.mjs             /tmp/core1a-spec/products/physics/phy-kin-2d-motion             --profile core1a-spec             --http-root /tmp/core1a-spec             --enforce             --json /tmp/core1a-spec/core1a-audit.json
 
+      - name: Generated architecture and Pages publication checks
+        run: |
+          python3 Shared/tools/build_manifest.py --check
+          python3 Shared/tools/build_pages_site.py --check
+
       - name: Upload measurement evidence
         uses: actions/upload-artifact@v4
         with:
