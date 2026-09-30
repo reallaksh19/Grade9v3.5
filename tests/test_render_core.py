@@ -99,6 +99,41 @@ class Renderer(unittest.TestCase):
         self.assertNotIn("REP-KIN-2D-SHARED-CLOCK", [g["record"] for g in ctx.gaps if g["duty"] == "BUILD_SCENE"])
 
 
+    def test_core1a_bucket_orientation_uses_canonical_bucket_and_selected_route(self):
+        repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(repo_manifest)
+        html = render_core.page(ctx, "CORE1A", "PAGES", render_core.render_digest(ctx))
+        bucket = ctx.packages[0]["buckets"][0]
+
+        self.assertIn("data-g9-bucket-orientation", html)
+        self.assertIn(f'data-g9-bucket-ref="{bucket["id"]}"', html)
+        self.assertIn(bucket["scope"]["covers"], html)
+        for convention in bucket["conventions"]:
+            self.assertIn(convention["statement"], html)
+
+        concept_positions = [
+            html.index(f'href="#{microtopic["id"]}"')
+            for microtopic in ctx.selection_rows["microtopics"]
+        ]
+        self.assertEqual(concept_positions, sorted(concept_positions))
+        self.assertNotIn("Trajectory-equation derivation as a first-slice requirement.", html)
+
+    def test_core1a_construction_units_are_stable_deep_links_with_global_previous_next(self):
+        repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(repo_manifest)
+        html = render_core.page(ctx, "CORE1A", "PAGES", render_core.render_digest(ctx))
+        route = render_core._core1a_route(ctx)
+
+        self.assertGreater(len(route), 3)
+        for row in route:
+            self.assertIn(f'id="{row["unit_id"]}"', html)
+            self.assertIn(f'href="#{row["unit_id"]}"', html)
+        self.assertIn(f"Section 1 of {len(route)}", html)
+        self.assertIn(f"Section {len(route)} of {len(route)}", html)
+        self.assertEqual(html.count("data-g9-prev-section"), len(route) - 1)
+        self.assertEqual(html.count("data-g9-next-section"), len(route) - 1)
+        self.assertNotIn("data-g9-mastery", html)
+
     def test_renderer_owns_tablet_asset_and_blueprint_digest(self):
         pkg = json.loads((REPO / PKG).read_text(encoding="utf-8"))
         pkg["representations"][0]["rendered_asset_refs"] = ["Physics/assets/representations/REP-KIN-2D-SHARED-CLOCK.svg"]
