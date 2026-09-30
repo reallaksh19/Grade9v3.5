@@ -35,3 +35,7 @@ Say which one you mean.
 
 - **Ladder rung** (`R1`, `R2`, …, from `<Subject>/matrices/*.rungs.json`): a position on a capability ladder. It sets where Core1A and Core1B start for a learner, and it decides the support level of practice.
 - **Hint rung** (first hint, second hint, …): a step of staged help on a question in Core2 and Core2A. Source hints (`hints[]`) and authored support (`scaffolds[]`) are different lanes and are never presented as one another.
+
+## Recording the approval
+
+Only the Owner accepts an exact render. When the Owner has approved one, name where they said so: `python3 Shared/tools/accept_product.py SLUG --approval-ref "<link to the message or comment, or a quotation>"`. The reference is written into the acceptance record beside `accepted_by`. It is recorded, not verified, and acceptance does not require it.
