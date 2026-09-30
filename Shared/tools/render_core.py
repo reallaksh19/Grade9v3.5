@@ -716,6 +716,43 @@ def _core2_support(ctx: Ctx, q: dict) -> str:
                     title="Guided support"))
 
 
+def _core2_solution(ctx: Ctx, q: dict, answer: dict) -> str:
+    """Render structured Core2 solution moves, with legacy prose only when no route exists."""
+    try:
+        rows = core2_v2.project_solution(answer)
+    except core2_v2.Core2SolutionProjectionError as exc:
+        ctx.gap("AUTHOR_CORE2_SOLUTION", q["id"], str(exc), "CORE2")
+        return ""
+    if not rows:
+        return block("working", items(answer.get("reasoning"), True))
+
+    rendered = []
+    for row in rows:
+        attrs = [
+            f'data-g9-solution-order="{row["order"]}"',
+            f'data-g9-solution-move="{esc(row["move_id"])}"',
+            f'data-g9-solution-kind="{esc(row["kind"])}"',
+            f'data-g9-solution-stage="{esc(row["stage"])}"',
+            f'data-g9-solution-crux="{"true" if row["is_crux"] else "false"}"',
+        ]
+        if row.get("source_ref"):
+            attrs.append(f'data-g9-solution-source="{esc(row["source_ref"])}"')
+        allowed = [row["visual_stage_ref"]] if row.get("visual_stage_ref") else None
+        visual = figure(ctx, row.get("representation_ref"), "POST_ATTEMPT", "CORE2",
+                        f'{q["id"]}-solution-{row["order"]}', allowed=allowed)
+        crux = '<p class="g9-prov" data-g9-crux-label>Key move</p>' if row["is_crux"] else ""
+        uses = block("solution_inputs", items(row.get("inputs")), title="Uses")
+        rendered.append(
+            f'<section class="g9-solution-move" {" ".join(attrs)}>'
+            f'<h4 data-g9-solution-stage-label>{esc(row["stage"].title())}</h4>'
+            f'{crux}<p data-g9-solution-action>{esc(row["action"])}</p>{uses}'
+            f'<p data-g9-solution-why><em>Why valid:</em> {esc(row["why_valid"])}</p>'
+            f'<p data-g9-solution-output><strong>Result:</strong> {esc(row["output"])}</p>'
+            f'{visual}</section>'
+        )
+    return block("structured_working", "".join(rendered), title="Reasoning route")
+
+
 def core2(ctx: Ctx, q: dict) -> str:
     q = source_projection(ctx, q)
     ans = q["answer"]
@@ -728,7 +765,7 @@ def core2(ctx: Ctx, q: dict) -> str:
                    + figures + attempt_box("Your answer", response_for(q), q.get("options"), q["id"]), True)
             + slot("support", _core2_support(ctx, q), False)
             + slot("solution", reveal("Answer and working", _source_solution(ans)
-                                      + block("working", items(ans.get("reasoning"), True)),
+                                      + _core2_solution(ctx, q, ans),
                                       ref=f'CORE2-{q["id"]}-solution'), True))
 
 
