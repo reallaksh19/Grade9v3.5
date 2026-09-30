@@ -235,6 +235,44 @@ class Renderer(unittest.TestCase):
         self.assertIn('data-g9-block="source_identity"', core2)
         self.assertNotIn('data-g9-block="inferential_jump"', core2)
 
+    def test_core1a_companion_support_follows_each_unit_in_compact_dom_order(self):
+        repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(repo_manifest)
+        html = render_core.page(ctx, "CORE1A", "PAGES", render_core.render_digest(ctx))
+        projectile = next(
+            row for row in ctx.selection_rows["microtopics"]
+            if row["id"] == "MIC-PHY-KIN-PROJECTILE-MODEL"
+        )
+        article_start = html.index(f'<article id="{projectile["id"]}"')
+        article_end = html.index("</article>", article_start)
+        article = html[article_start:article_end]
+
+        units = projectile["construction_units"]
+        for index, unit in enumerate(units):
+            primary_at = article.index(f'id="{unit["id"]}"')
+            support_at = article.index(f'data-g9-support-for="{unit["id"]}"')
+            next_boundary = (
+                article.index(f'id="{units[index + 1]["id"]}"')
+                if index + 1 < len(units)
+                else article.index('data-g9-block="exit_task"')
+            )
+            self.assertLess(primary_at, support_at)
+            self.assertLess(support_at, next_boundary)
+
+            construction_slot = article.rfind(
+                'data-blueprint-slot="construction"', 0, primary_at
+            )
+            support_slot = article.rfind(
+                'data-blueprint-slot="repair_closure"', 0, support_at
+            )
+            self.assertGreaterEqual(construction_slot, 0)
+            self.assertGreater(support_slot, construction_slot)
+
+        self.assertIn(
+            'body[data-core=CORE1A] article.g9-stage-support>.slot-identity{grid-column:1/-1}',
+            render_core.CSS,
+        )
+
     def test_core1a_relation_matrix_preserves_equation_meaning_and_validity_semantics(self):
         repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
         ctx = render_core.context(repo_manifest)
