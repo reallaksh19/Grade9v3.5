@@ -1,0 +1,65 @@
+name: question-bank-platform
+
+on:
+  push:
+    branches: ["**"]
+    paths:
+      - "Shared/tools/build_question_bank_web.py"
+      - "Shared/tools/build_question_bank_platform.py"
+      - "Shared/tools/question_bank_platform.py"
+      - "*/library/**"
+      - "*/question-bank/**"
+      - "docs/gcdr-suites/**"
+      - "public/question-bank/**"
+      - "public/js/question-bank.js"
+      - "public/data/question-bank-*.js"
+      - "tests/test_question_bank_web.py"
+      - "tests/test_question_bank_platform.py"
+      - ".github/workflows/question-bank-platform.yml"
+  pull_request:
+    paths:
+      - "Shared/tools/build_question_bank_web.py"
+      - "Shared/tools/build_question_bank_platform.py"
+      - "Shared/tools/question_bank_platform.py"
+      - "*/library/**"
+      - "*/question-bank/**"
+      - "docs/gcdr-suites/**"
+      - "public/question-bank/**"
+      - "public/js/question-bank.js"
+      - "public/data/question-bank-*.js"
+      - "tests/test_question_bank_web.py"
+      - "tests/test_question_bank_platform.py"
+      - ".github/workflows/question-bank-platform.yml"
+  workflow_dispatch:
+
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Question Bank contract and growth falsifiers
+        run: python3 -m unittest tests.test_question_bank_web tests.test_question_bank_platform
+      - name: Legacy browser projection remains current
+        run: python3 Shared/tools/build_question_bank_web.py --check
+      - name: Generate shared Question Bank platform artifacts
+        run: python3 Shared/tools/build_question_bank_platform.py --write
+      - name: Generated platform artifacts are deterministic
+        run: python3 Shared/tools/build_question_bank_platform.py --check
+      - name: Lineage explain witness
+        run: python3 Shared/tools/build_question_bank_platform.py --explain PYQ-CHEM-IITJEE-2008-P1-Q66
+      - name: Upload generated platform evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: question-bank-platform-${{ github.sha }}
+          if-no-files-found: error
+          path: |
+            public/data/question-bank-catalog.js
+            public/data/question-bank-search.js
+            public/data/question-bank-resources.js
+            public/data/question-bank-manifest.js
+            artifacts/question-bank/dedup-report.json
+            artifacts/question-bank/lineage.json
+            artifacts/question-bank/build-receipt.json
