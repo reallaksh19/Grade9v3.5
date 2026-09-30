@@ -109,7 +109,8 @@ for (const file of files) {
   const requests = [];
   page.on('pageerror', e => errors.push(e.message));
   page.on('request', request => {
-    if (/^https?:\/\//i.test(request.url())) requests.push(request.url());
+    const url = request.url();
+    if (/^https?:\/\//i.test(url) && (!origin || !url.startsWith(origin + '/'))) requests.push(url);
   });
   await page.addInitScript(() => {
     window.__g9ListenerEvents = [];
