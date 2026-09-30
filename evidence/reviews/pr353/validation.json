@@ -1,0 +1,81 @@
+{
+  "original_head": "739150d86995065efb0219ecd32b5ccffb464d99",
+  "base_head": "d60a939e473817bc55504987840bd30c4e2162d1",
+  "original_full": {
+    "run": "Ran 1521 tests in 486.403s",
+    "result": "FAILED (failures=28, errors=17, skipped=4)"
+  },
+  "corrected_full": {
+    "run": "Ran 1523 tests in 522.962s",
+    "result": "FAILED (failures=28, errors=17, skipped=4)"
+  },
+  "main_targeted_replay": {
+    "run": "Ran 33 tests in 26.894s",
+    "result": "FAILED (failures=28, errors=17)"
+  },
+  "new_failure_occurrences": [],
+  "resolved_failure_occurrences": [],
+  "original_failures_not_reproduced_on_main": [],
+  "corrected_failures": [
+    "ERROR: test_core2a_scaffold_precedes_answer_and_crux_is_visibly_distinct (test_core_projection_pipeline.LearnerFacingStructuredProjection.test_core2a_scaffold_precedes_answer_and_crux_is_visibly_distinct)",
+    "ERROR: test_core2b_protected_decision_is_absent_from_pre_attempt_support (test_core_projection_pipeline.LearnerFacingStructuredProjection.test_core2b_protected_decision_is_absent_from_pre_attempt_support)",
+    "ERROR: test_real_motion2d_publish_keeps_protected_decision_after_attempt (test_core_projection_pipeline.Motion2DRealWitness.test_real_motion2d_publish_keeps_protected_decision_after_attempt)",
+    "ERROR: test_compiles_inputs_that_actually_publish (test_library.Compilation.test_compiles_inputs_that_actually_publish)",
+    "ERROR: test_the_basis_digest_covers_the_inputs_and_not_the_renderer (test_mathematics.EndToEnd.test_the_basis_digest_covers_the_inputs_and_not_the_renderer)",
+    "ERROR: test_the_bucket_publishes_and_its_exact_answer_is_verified (test_mathematics.EndToEnd.test_the_bucket_publishes_and_its_exact_answer_is_verified)",
+    "ERROR: test_the_axis_brackets_the_marks_with_integer_ticks (test_mathematics.NumberLineScene.test_the_axis_brackets_the_marks_with_integer_ticks)",
+    "ERROR: test_the_digest_distinguishes_marks_a_tolerance_would_not (test_mathematics.NumberLineScene.test_the_digest_distinguishes_marks_a_tolerance_would_not)",
+    "ERROR: test_two_marks_on_the_same_pixel_stay_separately_visible (test_mathematics.NumberLineScene.test_two_marks_on_the_same_pixel_stay_separately_visible)",
+    "ERROR: test_publication_renders_familiar_support_and_protects_transfer_decision (test_motion2d_canonical.Motion2DCanonicalData.test_publication_renders_familiar_support_and_protects_transfer_decision)",
+    "ERROR: test_every_committed_run_verifies_against_its_own_runtime (test_publication_engine.CommittedPublications.test_every_committed_run_verifies_against_its_own_runtime) (publication='Physics\\\\content\\\\relative-motion-g9\\\\publication')",
+    "ERROR: test_every_committed_run_verifies_against_its_own_runtime (test_publication_engine.CommittedPublications.test_every_committed_run_verifies_against_its_own_runtime) (publication='Physics\\\\content\\\\relative-motion-library\\\\publication')",
+    "ERROR: test_regeneration_reports_the_change_when_it_is_asked_for (test_publication_engine.CommittedPublications.test_regeneration_reports_the_change_when_it_is_asked_for)",
+    "ERROR: setUpClass (test_publication_engine.ElicitedRevealIsClosedAndOrdered)",
+    "ERROR: test_composed_products_match_the_committed_publication_byte_for_byte (test_publication_engine.PortRegression.test_composed_products_match_the_committed_publication_byte_for_byte)",
+    "ERROR: test_publishes_with_the_basis_digest_recorded_before_the_port (test_publication_engine.PortRegression.test_publishes_with_the_basis_digest_recorded_before_the_port)",
+    "ERROR: test_the_committed_scene_instance_renders_in_a_publication (test_publication_engine.VectorSubtractionIsAConstruction.test_the_committed_scene_instance_renders_in_a_publication)",
+    "FAIL: test_committed_corpus_is_intact (test_calibration_corpus.CalibrationCorpusTest.test_committed_corpus_is_intact)",
+    "FAIL: test_reference_custody_must_be_decided (test_calibration_corpus.CalibrationCorpusTest.test_reference_custody_must_be_decided)",
+    "FAIL: test_current_tree_has_nonvacuous_family_progression_report (test_core_progression.CrossCoreProgression.test_current_tree_has_nonvacuous_family_progression_report)",
+    "FAIL: test_committed_gcdr_activities_pass_the_guard (test_explorer_design_contract.ExplorerDesignContractTest.test_committed_gcdr_activities_pass_the_guard)",
+    "FAIL: test_motion2d_explorers_pass_runtime_integrity_slice (test_gcdr_runtime_audit.GCDRRuntimeAuditTest.test_motion2d_explorers_pass_runtime_integrity_slice)",
+    "FAIL: test_master_suite_guard_passes (test_gcdr_v13_contracts.GcdrV13ContractsTest.test_master_suite_guard_passes)",
+    "FAIL: test_every_committed_bridge_names_a_drawn_part_and_a_used_symbol (test_library.DepictionIsBackedByTheContract.test_every_committed_bridge_names_a_drawn_part_and_a_used_symbol) (figure='REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE', symbol='L(s)')",
+    "FAIL: test_every_committed_bridge_names_a_drawn_part_and_a_used_symbol (test_library.DepictionIsBackedByTheContract.test_every_committed_bridge_names_a_drawn_part_and_a_used_symbol) (figure='REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE', symbol='R(s)')",
+    "FAIL: test_every_committed_bridge_names_a_drawn_part_and_a_used_symbol (test_library.DepictionIsBackedByTheContract.test_every_committed_bridge_names_a_drawn_part_and_a_used_symbol) (figure='REP-MAT-LEQ-02-BALANCE', symbol='L')",
+    "FAIL: test_every_committed_bridge_names_a_drawn_part_and_a_used_symbol (test_library.DepictionIsBackedByTheContract.test_every_committed_bridge_names_a_drawn_part_and_a_used_symbol) (figure='REP-MAT-LEQ-02-BALANCE', symbol='L \u2212 c = R \u2212 c')",
+    "FAIL: test_every_committed_bridge_names_a_drawn_part_and_a_used_symbol (test_library.DepictionIsBackedByTheContract.test_every_committed_bridge_names_a_drawn_part_and_a_used_symbol) (figure='REP-MAT-LEQ-02-BALANCE', symbol='x = s')",
+    "FAIL: test_every_committed_bridge_names_a_drawn_part_and_a_used_symbol (test_library.DepictionIsBackedByTheContract.test_every_committed_bridge_names_a_drawn_part_and_a_used_symbol) (figure='REP-MAT-LEQ-03-BRACKET-AREA-MODEL', symbol='\u22122')",
+    "FAIL: test_every_committed_bridge_names_a_drawn_part_and_a_used_symbol (test_library.DepictionIsBackedByTheContract.test_every_committed_bridge_names_a_drawn_part_and_a_used_symbol) (figure='REP-MAT-LEQ-03-BRACKET-AREA-MODEL', symbol='(\u22122)(2x), (\u22122)(\u22127)')",
+    "FAIL: test_every_committed_bridge_names_a_drawn_part_and_a_used_symbol (test_library.DepictionIsBackedByTheContract.test_every_committed_bridge_names_a_drawn_part_and_a_used_symbol) (figure='REP-MAT-LEQ-03-BRACKET-AREA-MODEL', symbol='\u22124x + 14')",
+    "FAIL: test_every_committed_bridge_names_a_drawn_part_and_a_used_symbol (test_library.DepictionIsBackedByTheContract.test_every_committed_bridge_names_a_drawn_part_and_a_used_symbol) (figure='REP-MAT-LEQ-04-SOLUTION-LINE', symbol='ax + by + c = 0')",
+    "FAIL: test_every_committed_bridge_names_a_drawn_part_and_a_used_symbol (test_library.DepictionIsBackedByTheContract.test_every_committed_bridge_names_a_drawn_part_and_a_used_symbol) (figure='REP-MAT-LEQ-04-SOLUTION-LINE', symbol='(x, 0), (0, y)')",
+    "FAIL: test_every_committed_representation_is_backed (test_library.DepictionIsBackedByTheContract.test_every_committed_representation_is_backed) (subject='Mathematics')",
+    "FAIL: test_every_committed_package_agrees_with_the_gates (test_library.GateAuthorityOverSubjectTruth.test_every_committed_package_agrees_with_the_gates) (subject='Mathematics')",
+    "FAIL: test_every_committed_package_agrees_with_the_gates (test_library.GateAuthorityOverSubjectTruth.test_every_committed_package_agrees_with_the_gates) (subject='Physics')",
+    "FAIL: test_the_committed_library_has_no_ambiguous_id (test_library.NestedIdsAreAddressableAndUnambiguous.test_the_committed_library_has_no_ambiguous_id)",
+    "FAIL: test_the_decimal_a_tolerance_would_accept_is_rejected (test_mathematics.EndToEnd.test_the_decimal_a_tolerance_would_accept_is_rejected)",
+    "FAIL: test_a_figure_may_not_draw_a_value_it_did_not_declare (test_mathematics.NumberLineScene.test_a_figure_may_not_draw_a_value_it_did_not_declare)",
+    "FAIL: test_a_mark_that_does_not_declare_inclusion_is_refused (test_mathematics.NumberLineScene.test_a_mark_that_does_not_declare_inclusion_is_refused)",
+    "FAIL: test_generated_outputs_are_current (test_portable_workbench.PortableWorkbenchPackageTests.test_generated_outputs_are_current) (path='public/portable-workbench/index.html')",
+    "FAIL: test_regeneration_refuses_to_change_what_a_learner_reads (test_publication_engine.CommittedPublications.test_regeneration_refuses_to_change_what_a_learner_reads)",
+    "FAIL: test_the_runtime_snapshot_covers_everything_the_engine_imports (test_publication_engine.CommittedPublications.test_the_runtime_snapshot_covers_everything_the_engine_imports)",
+    "FAIL: test_committed_manifest_matches_the_tree (test_tools.Manifest.test_committed_manifest_matches_the_tree)",
+    "FAIL: test_the_sweep_passes_on_the_committed_tree (test_tools.SubjectCoverage.test_the_sweep_passes_on_the_committed_tree)"
+  ],
+  "tested_file_sha256": {
+    "Shared/tools/render_core.py": "25dc3494e18389c13df805d12fd600a315bda8965448bbe2a4fbee4369a6764d",
+    "Shared/tools/product_manifest.py": "bceb70fbc07cf1e71a94e86fecc9cec342182ef33da06e42d59a469729dfde88",
+    "tests/test_renderer_inventory.py": "840dcf7d490c5ae7757c170663dcbbf38a236f193f9d14542c1c13980195bd1c",
+    ".github/workflows/learner-quality.yml": "7872b6d61c8a183d5c1b8be80ff082f7d412ead828447d35aa3a407a7e12583f"
+  },
+  "packet_sha256": {
+    ".gitattributes": "3b26bab0142722a7adfa1dd3e1c0a73fe0f46f798c450895c9eca940f01a73ca",
+    "core1.html": "f27336ead1af40fc1ccf80a2798c23f1b0136bc3135bf8b31acc85de37eef496",
+    "core1.pdf": "3bd75b6187497af237ba8f885001eab104c12d0c7d865ab41ed2cdc59dd20fc1",
+    "gate-report.json": "227dd19175595cb1791e6af440a0d51d067b2a816aa63bc093c2e80ea7c2233a",
+    "index.html": "ce370724a976d8ca254c0fa1a7fac105ed2ba242c9f794425bf0c1ee679a0522",
+    "print-receipt.json": "6cadb1fcec292826cd40546254502284f5e842c66b217e072f70ead132caeb71",
+    "render-receipt.json": "e03e3186763c3b7d0bef68f2c91ddb5062b79b2a7258819a11738ab30d459fec"
+  }
+}

@@ -111,6 +111,37 @@ class Core2V2QualityContract(unittest.TestCase):
         unit["support_rows"][1]["label"] = "Source support"
         self.assertIn("C2-SUPPORT-PROVENANCE", quality_contract.evaluate(self._obs(unit))["rules_failed"])
 
+    def _inline(self, provenance: str, block: str, label: str, source: str = "hint_ladder[0]") -> dict:
+        unit = self._unit()
+        unit["support_rows"][0].update(
+            source=source, provenance=provenance, group=provenance, block=block, label=label)
+        return unit
+
+    def test_inline_rung_takes_the_provenance_it_declares(self):
+        for provenance, block, label in (
+            ("SOURCE_HINT", "source_hints", "Source support"),
+            ("AUTHORED_CORE2_PROMPT_REVEAL", "authored_core2_support", "Guided support"),
+        ):
+            unit = self._inline(provenance, block, label)
+            self.assertNotIn(
+                "C2-SUPPORT-PROVENANCE",
+                quality_contract.evaluate(self._obs(unit))["rules_failed"], provenance)
+
+    def test_inline_rung_must_still_be_presented_as_what_it_declares(self):
+        unit = self._inline("SOURCE_HINT", "authored_core2_support", "Guided support")
+        self.assertIn("C2-SUPPORT-PROVENANCE", quality_contract.evaluate(self._obs(unit))["rules_failed"])
+
+    def test_inline_rung_with_an_unknown_provenance_is_not_recognised(self):
+        unit = self._inline("INVENTED", "source_hints", "Source support")
+        self.assertIn("C2-SUPPORT-PROVENANCE", quality_contract.evaluate(self._obs(unit))["rules_failed"])
+
+    def test_declared_mapping_does_not_let_a_source_hint_be_relabelled(self):
+        unit = self._unit()
+        unit["support_rows"][0].update(
+            provenance="AUTHORED_CORE2_PROMPT_REVEAL", group="AUTHORED_CORE2_PROMPT_REVEAL",
+            block="authored_core2_support", label="Guided support")
+        self.assertIn("C2-SUPPORT-PROVENANCE", quality_contract.evaluate(self._obs(unit))["rules_failed"])
+
     def test_answer_revealing_support_fails_when_observed_pre_solution(self):
         unit = self._unit()
         unit["support_rows"][1]["reveals"] = "ANSWER"

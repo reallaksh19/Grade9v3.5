@@ -66,9 +66,13 @@ class LearnerState(unittest.TestCase):
         for phrase in ("Printed book key", "Mathematically verified result", "Why they differ"):
             self.assertIn(phrase, source)
             self.assertNotIn(phrase, re.sub(r"<template\b[^>]*>.*?</template>", "", source, flags=re.S))
-        self.assertIn('<li data-g9-rung="1">Try an inverse operation.</li>', source)
+        # Core2 v2: every support rung, the first included, stays inert until the learner asks.
+        live = re.sub(r"<template\b[^>]*>.*?</template>", "", source, flags=re.S)
         self.assertIn('<template data-g9-rung-payload=', source)
-        self.assertNotIn('Remove the added 2 first.', re.sub(r"<template\b[^>]*>.*?</template>", "", source, flags=re.S))
+        self.assertRegex(source, r'<li data-g9-rung="1"[^>]*>.*?Try an inverse operation\.')
+        for hint in ("Try an inverse operation.", "Remove the added 2 first."):
+            self.assertIn(hint, source)
+            self.assertNotIn(hint, live)
         for role in render_core.ROLES:
             html = (self.out / render_core.ROLE_FILE[role]).read_text(encoding="utf-8")
             if role != "CORE1":

@@ -22,10 +22,16 @@ Sources and open source uncertainties:
 
 Existing records and status notes (do not invent a design note for inherited material):
 
+Real denominator/source state used for this execution:
+
+First-stage route after denominator establishment (Core2 with a usable supplied bank/source-question corpus, otherwise Core1) and reason:
+
+Difficulty-first authoring priority: primary Hard vertical slice(s), why they are difficult, and DESIGN-NOTE triage reference:
+
+Full denominator coverage state: implemented/selected, Medium, Low, deferred, omitted and unresolved; preserve authentic source identity/order:
+
 First prototype and Owner calibration point:
 
-First-stage route (Core2 with a supplied bank, otherwise Core1), source scope and reason:
-
-Links to first-stage HTML, learner PDF, Core2 key PDF where applicable, mappings and known gaps:
+Links to first-stage HTML, learner PDF, Core2 key PDF where applicable, complete mappings/coverage view and known gaps:
 
 Remaining Cores and their learning dependencies (see FIRST-STAGE-REVIEW.md; research and drafting can continue):

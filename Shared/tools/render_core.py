@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """The one renderer for learner Core pages.
 
-Renders the six Core roles of a product from library records (schema 0.2.0) and a product
-manifest. It renders only through the role's blueprint slots
+Renders the selected Core roles of a product from library records (schema 0.2.0) and a product
+manifest; legacy manifests default to all six roles. It renders only through the role's blueprint slots
 (Shared/web/interactive-page-blueprints.v1.json) and inside the tablet shell
 (docs/specs/TABLET-SHELL-AND-NAVIGATION.md). Every block, figure stage, reveal, attempt
 control and hint rung is marked with a data-g9-* attribute for advisory observation.
@@ -30,6 +30,8 @@ from html.parser import HTMLParser
 import json
 import re
 import sys
+import subprocess
+from functools import lru_cache
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -143,6 +145,18 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
     if not rep_id:
         return ""
     rep = ctx.index("representations").get(rep_id)
+    source_resource = None
+    if rep is None:
+        source_resource = ctx.index("resources").get(rep_id)
+        if source_resource:
+            snapshot = source_resource.get("snapshot_ref")
+            path = REPO / snapshot if snapshot else None
+            expected = str(source_resource.get("snapshot_digest") or "").removeprefix("sha256:")
+            if not path or not path.is_file() or not expected or _file_sha256(path) != expected:
+                ctx.gap("MOUNT_REPRESENTATION", record, f"{rep_id}: source figure snapshot missing or digest differs", role)
+                return ""
+            rep = {"rendered_asset_refs": [snapshot], "kind": "SOURCE_FIGURE",
+                   "purpose": source_resource.get("caption", "")}
     if rep is None:
         ctx.gap("MOUNT_REPRESENTATION", record, f"{rep_id} is not a representation in the product's packages", role)
         return ""
@@ -181,6 +195,8 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
     else:
         caption = (f'<figcaption data-g9-block="representation_bridge" data-g9-caption="purpose">'
                    f'{esc(rep.get("purpose", ""))}</figcaption>')
+    if source_resource:
+        caption = f'<figcaption data-g9-source-caption>{esc(source_resource.get("caption", ""))}</figcaption>'
     if withheld:
         # A withheld stage is not in the page at all (hiding it with CSS still hands it to the DOM,
         # the hover tooltip and screen readers). The asset's own <title>/<desc> describe the whole
@@ -241,6 +257,58 @@ def block(name: str, body: str, tag: str = "div", title: str | None = None) -> s
 
 def para(text) -> str:
     return f"<p>{esc(text)}</p>" if text else ""
+
+
+@lru_cache(maxsize=1024)
+def _typed_math(tex: str, display: bool) -> str:
+    """Use the pinned local KaTeX compiler to emit native, offline MathML.
+
+    No browser CDN or inference from prose; stdin carries the declared data, not code.
+    """
+    script = ('const fs=require("fs");const k=require(process.argv[1]);'
+              'const v=JSON.parse(fs.readFileSync(0,"utf8"));'
+              'process.stdout.write(k.renderToString(v.tex,{displayMode:v.display,output:"mathml",'
+              'throwOnError:true,trust:false,maxExpand:1000}));')
+    result = subprocess.run(["node", "-e", script, str(REPO / "public/vendor/katex/0.16.8/katex.min.js")],
+                            input=json.dumps({"tex": tex, "display": display}), text=True,
+                            capture_output=True, encoding="utf-8", timeout=15)
+    if result.returncode:
+        raise ValueError("declared TeX could not be typeset")
+    return result.stdout
+
+
+def question_text(ctx: Ctx, q: dict, target: str, value, role="CORE2") -> str:
+    text = str(value or "")
+    spans = [s for s in (q.get("extensions") or {}).get("grade9v3:math_spans", []) if s["target"] == target]
+    parts = []; cursor = 0
+    # Positions are found in the source text, never in generated HTML.
+    located = []
+    for span in spans:
+        literal = span["literal"]
+        if literal not in text:
+            if target == "conditions" and any(literal in c for c in q.get("conditions") or []):
+                continue
+            ctx.gap("AUTHOR_TYPED_MATH", q["id"], f"{target}: declared literal missing", role)
+            continue
+        located.extend((match.start(), span) for match in re.finditer(re.escape(literal), text))
+    # Prefer a whole declared expression to a contained declared symbol (e.g.
+    # sqrt(a^2-x^2) and x^2); both commonly occur in the same source sentence.
+    located = [(start, span) for start, span in located if not any(
+        other <= start and other + len(parent["literal"]) >= start + len(span["literal"])
+        and len(parent["literal"]) > len(span["literal"]) for other, parent in located)]
+    for start, span in sorted(located, key=lambda pair: pair[0]):
+        if start < cursor:
+            ctx.gap("AUTHOR_TYPED_MATH", q["id"], f"{target}: overlapping literals", role)
+            continue
+        parts.append(esc(text[cursor:start]))
+        try:
+            parts.append(_typed_math(span["tex"], span["display"]))
+        except (ValueError, OSError, subprocess.TimeoutExpired):
+            ctx.gap("AUTHOR_TYPED_MATH", q["id"], f"{target}: local typesetting unavailable or invalid", role)
+            parts.append(esc(span["literal"]))
+        cursor = start + len(span["literal"])
+    parts.append(esc(text[cursor:]))
+    return "".join(parts)
 
 
 def items(values, ordered=False) -> str:
@@ -361,7 +429,7 @@ def source_projection(ctx: Ctx, question: dict) -> dict:
 
 
 def attempt_box(label: str, response: dict | None = None, options: list | None = None,
-                record: str = "") -> str:
+                record: str = "", option_html: list[str] | None = None) -> str:
     """Ask an honest self-learner for a typed commitment, not a marked answer."""
     response = response or {"type": "free_response"}
     kind = response["type"]
@@ -371,7 +439,7 @@ def attempt_box(label: str, response: dict | None = None, options: list | None =
         input_type = "checkbox" if kind == "multiple_choice" else "radio"
         controls = "".join(
             f'<label class="g9-answer-option"><input data-g9-choice type="{input_type}" '
-            f'name="{esc(group)}" value="{i}"><span>{esc(choice)}</span></label>'
+            f'name="{esc(group)}" value="{i}"><span>{option_html[i] if option_html is not None else esc(choice)}</span></label>'
             for i, choice in enumerate(choices)
         )
         controls = f'<div class="g9-answer-options" data-g9-block="options">{controls}</div>'
@@ -478,6 +546,14 @@ def teachers() -> dict:
     return _TEACHERS
 
 
+def _unit_href(ctx: Ctx, role: str, record_id: str) -> str | None:
+    """Link only to a unit actually projected into this packet."""
+    key = "microtopics" if role in ("CORE1", "CORE1A", "CORE1B") else role.lower()
+    if role in product_manifest.selected_output_roles(ctx.manifest) and record_id in (ctx.manifest.get("selection", {}).get(key) or []):
+        return f"{ROLE_FILE[role]}#{record_id}"
+    return None
+
+
 def _prereqs(ctx: Ctx, m: dict) -> str:
     own = {x["primary_capability_ref"]: x["id"] for p in ctx.packages for x in p.get("microtopics", [])}
     own_titles = {x["primary_capability_ref"]: x["title"] for p in ctx.packages for x in p.get("microtopics", [])}
@@ -489,7 +565,9 @@ def _prereqs(ctx: Ctx, m: dict) -> str:
         caps = {c["id"]: c for p in ctx.packages for c in p.get("capabilities", [])}
         if bare in own:
             label = (caps.get(bare) or {}).get("action") or own_titles.get(bare, "")
-            rows.append(f'<li data-g9-prereq="{esc(ref)}" data-bridged="true"><a href="core1a.html#{esc(own[bare])}">{esc(label)}</a></li>')
+            href = _unit_href(ctx, "CORE1A", own[bare])
+            rows.append(f'<li data-g9-prereq="{esc(ref)}" data-bridged="true">'
+                        + (f'<a href="{esc(href)}">{esc(label)}</a>' if href else esc(label)) + "</li>")
         elif taught:
             href = links.get(ref) or links.get(bare)
             label = f"{taught[3]} ({taught[0]})" if len(taught) > 3 and taught[3] else f"Taught in {taught[0]}"
@@ -709,6 +787,15 @@ _CORE2_STAGE_LABEL = {
 }
 
 
+def _core2_support_target(source: str) -> str:
+    """The typed-math target a support row's text is declared under in the record."""
+    found = re.match(r"(hints|scaffolds)\[(\d+)\]", source)
+    if not found:
+        return ""  # a ladder rung that carries its own text declares no typed-math span
+    lane, index = found.groups()
+    return f'{"source_hint" if lane == "hints" else "scaffold"}:{index}'
+
+
 def _core2_support_rung(ctx: Ctx, q: dict, row: dict, number: int) -> str:
     """Render one provenance-explicit support rung without manufacturing academic content."""
     attrs = [
@@ -730,7 +817,7 @@ def _core2_support_rung(ctx: Ctx, q: dict, row: dict, number: int) -> str:
     allowed = [row["visual_stage_ref"]] if row.get("visual_stage_ref") else None
     visual = figure(ctx, row.get("visual_ref"), "PRE_ATTEMPT", "CORE2",
                     f'{q["id"]}-support-{number}', allowed=allowed)
-    reveal_body = para(row["text"]) + visual
+    reveal_body = f'<p>{question_text(ctx, q, _core2_support_target(row["source"]), row["text"])}</p>' + visual
     if row.get("prompt"):
         content = (stage_badge
                    + f'<p data-g9-support-prompt>{esc(row["prompt"])}</p>'
@@ -779,7 +866,9 @@ def _core2_solution(ctx: Ctx, q: dict, answer: dict) -> str:
         ctx.gap("AUTHOR_CORE2_SOLUTION", q["id"], str(exc), "CORE2")
         return ""
     if not rows:
-        return block("working", items(answer.get("reasoning"), True))
+        steps = "".join(f'<li>{question_text(ctx, q, f"answer_reasoning:{i}", step)}</li>'
+                        for i, step in enumerate(answer.get("reasoning") or []) if step)
+        return block("working", f"<ol>{steps}</ol>" if steps else "")
 
     rendered = []
     for row in rows:
@@ -815,37 +904,70 @@ def core2(ctx: Ctx, q: dict) -> str:
         ctx.gap("AUTHOR_SOURCE_RESULT_DIFFERS", q["id"], "authored summary differs from current independent result", "CORE2")
     figures = "".join(figure(ctx, ref, "PRE_ATTEMPT", "CORE2", q["id"], first_stage_only=True)
                       for ref in q.get("figure_refs") or [])
+    roles = q.get("representation_roles") or {}
+    teaching_figure = figure(ctx, roles.get("bound_ref"), "POST_ATTEMPT", "CORE2", q["id"] + "-bound")
+    conditions = "".join(f'<li>{question_text(ctx, q, "conditions", c)}</li>' for c in q.get("conditions") or [])
+    options = [question_text(ctx, q, f"option:{i}", opt) for i, opt in enumerate(q.get("options") or [])]
+    solution = _source_solution(ans)
+    if not ans.get("source_key"):
+        solution = block("answer", '<p>' + question_text(ctx, q, "answer_summary", ans.get("summary")) + '</p>')
     return (slot("identity", block("source_identity", f"<h2>{esc(_identity(q))}</h2><p class=\"g9-prov\">{esc(_custody(q))}</p>") + metadata_strip(ctx, "CORE2", q), True)
-            + slot("attempt", block("stem", para(q["stem"])) + block("conditions", items(q.get("conditions")), title="Conditions")
-                   + figures + attempt_box("Your answer", response_for(q), q.get("options"), q["id"]), True)
+            + slot("attempt", block("stem", '<p>' + question_text(ctx, q, "stem", q["stem"]) + '</p>')
+                   + block("conditions", f'<ul>{conditions}</ul>' if conditions else "", title="Conditions")
+                   + figures + attempt_box("Your answer", response_for(q), q.get("options"), q["id"],
+                                          option_html=options if options else None), True)
             + slot("support", _core2_support(ctx, q) + _core2_concept_navigation(ctx, q), False)
-            + slot("solution", reveal("Answer and working", _source_solution(ans)
-                                      + _core2_solution(ctx, q, ans),
+            + slot("solution", reveal("Answer and working", solution
+                                      + _core2_solution(ctx, q, ans)
+                                      + teaching_figure
+                                      + block("independent_check", '<p>' + question_text(ctx, q, "answer_check", ans["check"]) + '</p>'
+                                              if ans.get("check") else "", title="Independent check"),
                                       ref=f'CORE2-{q["id"]}-solution'), True))
 
 
 def _ladder(ctx: Ctx, q: dict, role: str, source: bool = False) -> str:
     rungs = sorted(q.get("hint_ladder") or [], key=lambda r: r["order"])
     texts = []
+    visuals = []
+    targets = []
     if source:
         texts = [h["text"] if isinstance(h, dict) else str(h) for h in q.get("hints") or []]
+        targets = [f"source_hint:{i}" for i in range(len(texts))]
     else:
         for r in rungs:
             if r.get("text"):
                 texts.append(r["text"])
+                visuals.append("")
+                targets.append("")
             elif r.get("from"):
                 kind, i = re.match(r"(hints|scaffolds)\[(\d+)\]", r["from"]).groups()
-                texts.append((q.get(kind) or [])[int(i)]["text"])
-    if not source and len(texts) < 3:
+                if role == "CORE2" and kind == "hints":
+                    continue  # source hints must never count as authored teaching
+                support = (q.get(kind) or [])[int(i)]
+                texts.append(support["text"])
+                targets.append(f'{"source_hint" if kind == "hints" else "scaffold"}:{i}')
+                visuals.append(figure(ctx, support.get("visual_ref"), "POST_ATTEMPT", role,
+                                      f'{q["id"]}-hint-{len(texts)}', allowed=[support["visual_stage_ref"]]
+                                      if support.get("visual_stage_ref") else None))
+        if role == "CORE2" and not rungs:
+            texts = [s["text"] for s in q.get("scaffolds") or []]
+            targets = [f"scaffold:{i}" for i in range(len(texts))]
+            visuals = [figure(ctx, s.get("visual_ref"), "POST_ATTEMPT", role,
+                              f'{q["id"]}-hint-{n}', allowed=[s["visual_stage_ref"]]
+                              if s.get("visual_stage_ref") else None)
+                       for n, s in enumerate(q.get("scaffolds") or [], 1)]
+    if not source and role != "CORE2" and len(texts) < 3:
         ctx.gap("AUTHOR_HINT_LADDER", q["id"], f"{len(texts)} rung(s); need 3", role)
     if not texts:
         return ""
-    ref = f'{role}-{q["id"]}'
+    ref = f'{role}-{q["id"]}' + ("-source" if source else "-authored")
+    payloads = [question_text(ctx, q, targets[i] if i < len(targets) else "", t, role)
+                + (visuals[i] if i < len(visuals) else "") for i, t in enumerate(texts)]
     later = "".join(f'<template data-g9-rung-payload="{esc(ref)}-{n}">'
-                    f'<li data-g9-rung="{n}">{esc(t)}</li></template>'
-                    for n, t in enumerate(texts[1:], 2))
+                    f'<li data-g9-rung="{n}">{t}</li></template>'
+                    for n, t in enumerate(payloads[1:], 2))
     return (f'<div class="g9-ladder" data-g9-ladder-ref="{esc(ref)}">'
-            f'<ol data-g9-ladder><li data-g9-rung="1">{esc(texts[0])}</li></ol>'
+            f'<ol data-g9-ladder><li data-g9-rung="1">{payloads[0]}</li></ol>'
             f'{later}<button type="button" data-g9-next-rung{" disabled" if len(texts) == 1 else ""}>'
             'Next hint</button></div>')
 
@@ -863,7 +985,9 @@ def _repair(ctx: Ctx, ref: str | None) -> str:
         for m in p.get("microtopics", []):
             for s in m.get("teaching_path", []):
                 if s["id"] == ref:
-                    return f'<p><a href="core1a.html#{esc(m["id"])}">Revisit: {esc(s["action"])}</a></p>'
+                    href = _unit_href(ctx, "CORE1A", m["id"])
+                    label = f'Revisit: {esc(s["action"])}'
+                    return "<p>" + (f'<a href="{esc(href)}">{label}</a>' if href else label) + "</p>"
     return ""
 
 
@@ -922,12 +1046,13 @@ def core2b(ctx: Ctx, q: dict) -> str:
     def _where(b: str) -> str | None:
         """The page and unit where the earlier item is rendered: its Core2A article, or the Core1A
         microtopic that uses it as a worked anchor. None when this product does not show it."""
-        if b in (sel.get("core2a") or []):
-            return f"core2a.html#{b}"
+        href = _unit_href(ctx, "CORE2A", b)
+        if href:
+            return href
         for m in ctx.index("microtopics").values():
             if m["id"] in (sel.get("microtopics") or []) and any(
                     u.get("worked_anchor_ref") == b for u in m.get("construction_units") or []):
-                return f"core1a.html#{m['id']}"
+                return _unit_href(ctx, "CORE1A", m["id"])
         return None
 
     def _earlier(b: str) -> str:
@@ -1007,7 +1132,12 @@ figure{margin:14px 0;max-width:100%;overflow-x:auto}figure svg{width:100%;height
 h4{margin:.8em 0 .3em}:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 footer{padding:24px 16px;color:var(--muted)}
 @media print{header[data-g9-shell-header],nav[data-g9-breadcrumb],.g9-attempt,button,[data-g9-display-panel]{display:none!important}
-details{border:none}article[data-g9-unit]{break-inside:avoid-page;border:none}body{background:#fff;color:#000}}
+.g9-attempt:has(.g9-answer-options){display:block!important}
+.g9-attempt>:not(.g9-answer-options),.g9-answer-option input{display:none!important}
+details[data-requires-attempt]:not([open]){display:none!important}
+details{border:none}article[data-g9-unit]{break-inside:auto;border:none}
+h1,h2,h3,h4{break-after:avoid-page}footer{padding:0;break-before:avoid-page}
+body{background:#fff;color:#000}}
 .g9-attempt input[type=text],.g9-attempt select,.g9-attempt textarea{min-height:48px;box-sizing:border-box}
 .g9-answer-option,.g9-paper,.g9-match{display:flex;align-items:center;gap:.5rem;min-height:48px}
 .g9-answer-option input,.g9-paper input{min-width:48px;min-height:48px}
@@ -1046,7 +1176,7 @@ const articles=q('article[data-g9-unit],article[data-g9-diagnostic]');
 articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!a.dataset.attempted){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();restoreCore2State(a,lock);
 q('details[data-requires-attempt] summary',a).forEach(s=>s.addEventListener('click',e=>{if(!a.dataset.attempted){e.preventDefault();q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a)[0]?.focus()}}));
 q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-attempt-box]');if(!box||!validAttempt(box)){q('input,textarea,select',box||a)[0]?.focus();return}a.dataset.attempted='1';lock();materialise(a);saveCore2State(a)});
-q('[data-g9-next-rung]',a).forEach(b=>b.onclick=()=>{nextRung(b.closest('.g9-ladder'));bindSupportRevealState(a);saveCore2State(a)});attemptFields(a).forEach(el=>{el.addEventListener('input',()=>saveCore2State(a));el.addEventListener('change',()=>saveCore2State(a))});
+a.addEventListener('click',e=>{const b=e.target.closest('[data-g9-next-rung]');if(b&&a.contains(b)){nextRung(b.closest('.g9-ladder'));bindSupportRevealState(a);saveCore2State(a)}});attemptFields(a).forEach(el=>{el.addEventListener('input',()=>saveCore2State(a));el.addEventListener('change',()=>saveCore2State(a))});
 q('[data-g9-concept-link]',a).forEach(link=>link.addEventListener('click',()=>{saveCore2State(a);const key=returnKey(link.dataset.g9ConceptRef);if(key)store.set(key,link.dataset.g9QuestionRef||a.dataset.g9Unit);refreshReturnLinks()}))});
 const practiceLinks=q('[data-g9-practice-link]');const practiceLabels=new Map(practiceLinks.map(link=>[link,link.textContent]));
 function refreshReturnLinks(){practiceLinks.forEach(link=>{const key=returnKey(link.dataset.g9ConceptRef);const active=!!key&&store.get(key)===link.dataset.g9QuestionRef;if(active){link.dataset.g9ReturnLink='';link.textContent='Return to question · '+practiceLabels.get(link)}else{delete link.dataset.g9ReturnLink;link.textContent=practiceLabels.get(link)}})}
@@ -1071,10 +1201,11 @@ def shell(ctx: Ctx, role: str, mode: str) -> tuple[str, str]:
     m = ctx.manifest
     if mode == "EMBED":
         return "", ""
+    output_roles = product_manifest.selected_output_roles(m)
     nav_links = "".join(
         f'<a href="{"#g9-role-" + r if mode == "SINGLE_FILE" else ROLE_FILE[r]}"'
         f'{" aria-current=page" if mode != "SINGLE_FILE" and r == role else ""}>{esc(r)}</a>'
-        for r in ROLES
+        for r in output_roles
     )
     home_href = _mode_href(m["home_href"], mode)
     question_bank_href = _mode_href(m.get("question_bank_href", m["home_href"]), mode)
@@ -1088,7 +1219,7 @@ def shell(ctx: Ctx, role: str, mode: str) -> tuple[str, str]:
               f'<button type="button" data-g9-font="inc">A+</button><button type="button" data-g9-theme="light">Light</button>'
               f'<button type="button" data-g9-theme="dark">Dark</button><button type="button" data-g9-zoom="dec">Zoom −</button>'
               f'<button type="button" data-g9-zoom="reset">100%</button><button type="button" data-g9-zoom="inc">Zoom +</button></div></header>')
-    product_href = "#g9-role-CORE1" if mode == "SINGLE_FILE" else "index.html"
+    product_href = f"#g9-role-{output_roles[0]}" if mode == "SINGLE_FILE" else "index.html"
     crumbs = (f'<nav data-g9-breadcrumb aria-label="Breadcrumb"><a href="{esc(home_href)}">Home</a>'
               f'<a href="{product_href}">{esc(m["title"])}</a>{nav_links}</nav>')
     return header, crumbs
@@ -1163,8 +1294,9 @@ def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
 
 def index_page(ctx: Ctx, digest: str) -> str:
     m = ctx.manifest
-    header, crumbs = shell(ctx, "CORE1", "PAGES")
-    links = "".join(f'<li><a href="{ROLE_FILE[r]}">{esc(r)}: {esc(ROLE_TITLE[r])}</a></li>' for r in ROLES)
+    output_roles = product_manifest.selected_output_roles(m)
+    header, crumbs = shell(ctx, output_roles[0], "PAGES")
+    links = "".join(f'<li><a href="{ROLE_FILE[r]}">{esc(r)}: {esc(ROLE_TITLE[r])}</a></li>' for r in output_roles)
     qs = {**ctx.index("questions"), **{q["id"]: q for q in ctx.bank}}
     diag_ids = m.get("diagnostic", [])
     if len(diag_ids) < m.get("diagnostic_min", 0):
@@ -1259,7 +1391,7 @@ def context(manifest_path: Path) -> Ctx:
         for representation in package.get("representations", [])
         for ref in representation.get("rendered_asset_refs", [])
         if isinstance(ref, str)
-    })
+    } | {r["snapshot_ref"] for p in packages for r in p.get("resources", []) if r.get("snapshot_ref")})
     own_capabilities = {
         capability["id"]
         for package in packages
@@ -1290,6 +1422,7 @@ def context(manifest_path: Path) -> Ctx:
         ("blueprints", _file_sha256(BLUEPRINTS)),
         ("quality-contract", _file_sha256(CONTRACT)),
         ("tablet-css", _file_sha256(TABLET_CSS)),
+        ("typed-math-compiler", _file_sha256(REPO / "public/vendor/katex/0.16.8/katex.min.js")),
         *[
             (f"teacher-package:{ref}", _file_sha256(REPO / ref))
             for ref in sorted(teacher_refs)
@@ -1435,15 +1568,17 @@ def _artifact_digest(pages: dict[str, str]) -> str:
 
 def build(manifest_path: Path, mode: str = "PAGES") -> tuple[dict[str, str], list[dict], str]:
     ctx = context(manifest_path)
-    role_pages = {ROLE_FILE[r]: page(ctx, r, mode, DIGEST_SLOT) for r in ROLES}
+    output_roles = product_manifest.selected_output_roles(ctx.manifest)
+    role_pages = {ROLE_FILE[r]: page(ctx, r, mode, DIGEST_SLOT) for r in output_roles}
     if mode == "SINGLE_FILE":
         bodies = "".join(
             f'<section id="g9-role-{r}" data-g9-role-section="{r}">'
             f'{_single_file_fragment(role_pages[ROLE_FILE[r]], r)}</section>'
-            for r in ROLES
+            for r in output_roles
         )
-        product = role_pages[ROLE_FILE["CORE1"]].replace(
-            re.search(r"<main>(.*)</main>", role_pages[ROLE_FILE["CORE1"]], re.S).group(1),
+        base_role = output_roles[0]
+        product = role_pages[ROLE_FILE[base_role]].replace(
+            re.search(r"<main>(.*)</main>", role_pages[ROLE_FILE[base_role]], re.S).group(1),
             bodies,
         )
         pages = {"product.html": product}
@@ -1466,6 +1601,35 @@ def build(manifest_path: Path, mode: str = "PAGES") -> tuple[dict[str, str], lis
             seen.add(key)
             gaps.append(g)
     return pages, gaps, digest
+
+
+
+def _retire_previous_outputs(out: Path, pages: dict[str, str]) -> None:
+    """Retire receipt-owned files, never arbitrary files in the output directory.
+
+    PDFs must be regenerated after every render, even when the HTML names stay the same.
+    A fixed basename allowlist also prevents a malformed receipt escaping this directory.
+    """
+    receipt = out / "render-receipt.json"
+    if not receipt.is_file():
+        return
+    try:
+        previous = json.loads(receipt.read_text(encoding="utf-8")).get("pages", [])
+    except (ValueError, AttributeError):
+        return
+    if not isinstance(previous, list):
+        return
+    managed = set(ROLE_FILE.values()) | {"index.html", "product.html"}
+    previous = {name for name in previous if isinstance(name, str) and name in managed}
+    obsolete = previous - set(pages)
+    for name in previous - {"index.html"}:
+        obsolete.update((name.removesuffix(".html") + ".pdf", name.removesuffix(".html") + ".key.pdf"))
+    if previous:
+        obsolete.update(("print-receipt.json", "print-key-receipt.json"))
+    for name in obsolete:
+        target = out / name
+        if target.is_file() and not target.is_symlink() and target.resolve().parent == out.resolve():
+            target.unlink()
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -1495,6 +1659,7 @@ def main(argv: list[str] | None = None) -> int:
     if out.resolve().is_relative_to((REPO / "public").resolve()):
         raise ValueError("render_core cannot write to public; use Owner acceptance of a staged render")
     out.mkdir(parents=True, exist_ok=True)
+    _retire_previous_outputs(out, pages)
     for name, text in pages.items():
         if gaps:
             text = text.replace("<html ", '<html data-g9-draft="%d" ' % len(gaps), 1)

@@ -177,6 +177,10 @@ it is never permission for an agent to invent a page architecture.
         {
           "id": "exit_task_closure",
           "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "practice_navigation",
+          "visibility": "IMMEDIATE"
         }
       ],
       "required_inputs": [
@@ -283,7 +287,19 @@ it is never permission for an agent to invent a page architecture.
           "visibility": "ON_REVEAL"
         },
         {
+          "id": "authored_core2_support",
+          "visibility": "ON_REVEAL"
+        },
+        {
+          "id": "concept_navigation",
+          "visibility": "IMMEDIATE"
+        },
+        {
           "id": "source_answer_rubric",
+          "visibility": "ON_REVEAL"
+        },
+        {
+          "id": "verified_solution_reasoning",
           "visibility": "ON_REVEAL"
         },
         {

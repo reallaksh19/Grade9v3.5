@@ -2,7 +2,7 @@
 window.GRADE9V3_PROMPT_COMPOSER = {
   "generated_by": "Shared/tools/build_prompt_composer_data.py",
   "contract_version": "1.0.0",
-  "repository_basis": "architecture-manifest@sha256:4e951ace90ee2cd952dba0c608ebf947da98268c8666f81a71fb87b9379f55b2",
+  "repository_basis": "architecture-manifest@sha256:55a37eeb426ffb21c4e78dc3ac3be3f43134a4ed13e22edf10e6215603a295bb",
   "template": {
     "template_id": "CORE-AGENT-PROMPT",
     "version": "1.1.0",
@@ -233,7 +233,7 @@ window.GRADE9V3_PROMPT_COMPOSER = {
       "RESEARCH_AND_AUTHOR"
     ]
   },
-  "authority_contract_ref": "Shared\\roles\\CORE-AUTHORITY-CONTRACT.md",
+  "authority_contract_ref": "Shared/roles/CORE-AUTHORITY-CONTRACT.md",
   "web_blueprints": {
     "CORE1": {
       "core": "CORE1",
@@ -289,9 +289,9 @@ window.GRADE9V3_PROMPT_COMPOSER = {
     },
     "CORE2": {
       "core": "CORE2",
-      "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.0.0",
+      "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.1.0",
       "blueprint_id": "BP-CORE2-SOURCE-QUESTION",
-      "blueprint_version": "1.0.0",
+      "blueprint_version": "1.1.0",
       "shell_ref": "G9-TABLET-SHELL-V1",
       "layout_family": "QUESTION_READER",
       "required_slots": [
@@ -339,14 +339,17 @@ window.GRADE9V3_PROMPT_COMPOSER = {
       "forbidden": [
         "PAGE_LOCAL_ACADEMIC_TRUTH",
         "HOVER_ONLY_ESSENTIAL_INFORMATION",
-        "AUTHORED_SCAFFOLD_PRESENTED_AS_SOURCE_HINT"
+        "AUTHORED_SCAFFOLD_PRESENTED_AS_SOURCE_HINT",
+        "ANSWER_REVEALED_BY_PRE_SOLUTION_SUPPORT",
+        "GENERIC_FILLER_SUPPORT_TO_MEET_RUNG_COUNT",
+        "CORE2_COLLAPSED_INTO_QUESTION_CLINIC"
       ]
     },
     "CORE1A": {
       "core": "CORE1A",
-      "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+      "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.1.0",
       "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-      "blueprint_version": "1.0.0",
+      "blueprint_version": "1.1.0",
       "shell_ref": "G9-TABLET-SHELL-V1",
       "layout_family": "READING_CONSTRUCTION",
       "required_slots": [

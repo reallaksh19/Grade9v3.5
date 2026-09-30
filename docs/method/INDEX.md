@@ -2,7 +2,7 @@
 
 Start with [HOUSE-RULES.md](HOUSE-RULES.md), then [PROTOCOL.md](PROTOCOL.md). The unit author owns the design, records, prototype and revisions; source readers and an independent reviewer contribute evidence and judgement. Nothing in this method authorizes publication. The Owner accepts or rejects one exact rendered digest.
 
-[First-stage review and six-Core guidance](FIRST-STAGE-REVIEW.md) maps each Core's dependencies and shows how research, source demand, learner observations and Owner feedback guide later work. Show Core2 first with a supplied bank, otherwise Core1; present the actual HTML/PDF and gaps before generating the remaining Cores. These are advisory authoring guidelines with no new blocker or CI requirement.
+[First-stage review and six-Core guidance](FIRST-STAGE-REVIEW.md) maps each Core's dependencies and defines the current first-stage sequence: establish the real denominator/source state; choose Core2 with a usable supplied bank/source-question corpus or source-grounded Core1 without one; triage canonical difficulty, why the material is difficult and interaction value; author/review the hardest worthwhile vertical slice(s) first inside that route; then present the learner HTML/PDF together with the **complete denominator/coverage view** before generating the remaining Cores. Hard-first is authoring/review priority only; it does not rewrite authentic source order or require Hard-first learner navigation. These are advisory authoring guidelines with no new blocker or CI requirement.
 
 | When | Read or use | Artifact |
 |---|---|---|
@@ -14,4 +14,4 @@ Start with [HOUSE-RULES.md](HOUSE-RULES.md), then [PROTOCOL.md](PROTOCOL.md). Th
 
 The [techniques](../../golden/TECHNIQUES.md) and [anti-pattern cards](../../golden/anti/) are examples for reasoning, not fields to fill. Both v1 goldens are marked CANDIDATE and rendered through `render_core.py`; no candidate is a published product. Research the unit's teaching choices and factual sources afresh.
 
-Reusable templates: [UNIT](templates/UNIT.md), [DESIGN-NOTE](templates/DESIGN-NOTE.md), [SELF-CRITIQUE](templates/SELF-CRITIQUE.md), [WORKLOG](templates/WORKLOG.md), [OWNER-NOTES](templates/OWNER-NOTES.md). Superseded parallel instructions remain in [archive/](archive/) for historical reconstruction.
+Reusable templates: [UNIT](templates/UNIT.md), [DESIGN-NOTE](templates/DESIGN-NOTE.md), [SELF-CRITIQUE](templates/SELF-CRITIQUE.md), [WORKLOG](templates/WORKLOG.md), [OWNER-NOTES](templates/OWNER-NOTES.md). `DESIGN-NOTE.md` owns difficulty-first authoring rationale and interaction purpose; `WORKLOG.md` owns current lot/slice execution state and full-denominator coverage state. Do not create a parallel difficulty/lot datastore unless a real shared machine consumer proves the need. Superseded parallel instructions remain in [archive/](archive/) for historical reconstruction.
