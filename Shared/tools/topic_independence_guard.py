@@ -48,7 +48,7 @@ SELF = Path(__file__).resolve()
 
 # A hyphenated uppercase token followed by ".md" is a method document name such as
 # DESIGN-NOTE.md or SELF-CHECK.md, not a governed identifier.
-GOVERNED_ID = re.compile(r"\b[A-Z]{2,}(?:-[A-Z0-9]+)+\b(?!\.md\b)")
+GOVERNED_ID = re.compile(r"\b[A-Z]{2,}(?:-[A-Z0-9]+)+(?![A-Za-z0-9-])(?!\.md\b)")
 SUBJECT_NAME = re.compile(r"\b(?:Physics|Mathematics|Chemistry)\b")
 JS_STRING = re.compile(r"""(['"])((?:\\.|(?!\1)[^\\\n])*)\1""")
 PY_SUFFIXES = {".py"}

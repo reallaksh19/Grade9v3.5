@@ -116,7 +116,11 @@ class Guard(unittest.TestCase):
 
     def test_method_document_names_are_not_identifiers_but_real_identifiers_still_are(self):
         from Shared.tools.topic_independence_guard import check_literal
-        for document in ("DESIGN-NOTE.md", "SELF-CHECK.md", "docs/method/roles/SOURCE-READER.md"):
+        for document in (
+            "DESIGN-NOTE.md", "SELF-CHECK.md", "docs/method/roles/SOURCE-READER.md",
+            # Three-part names used to slip through: the pattern backtracked to "FIRST-STAGE" and matched it.
+            "docs/method/FIRST-STAGE-REVIEW.md", "## First stage (docs/method/FIRST-STAGE-REVIEW.md)",
+        ):
             self.assertIsNone(check_literal(document), document)
         for identifier in ("PHY-M2D", "BUCKET-RELATIVE-MOTION", "CAP-SIGNED-PAIR", "PHY-M2D.json"):
             self.assertEqual(check_literal(identifier), "governed identifier in engine code", identifier)
