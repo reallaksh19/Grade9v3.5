@@ -378,14 +378,16 @@ for (const file of files) {
         const root = document.documentElement;
         const before = root.style.getPropertyValue('--g9-zoom');
         root.style.setProperty('--g9-zoom', '2');
+        const body = document.body;
         const overflow = root.scrollWidth - root.clientWidth;
         const visible = el => {
           const box = el.getBoundingClientRect();
           return box.width > 0 && box.height > 0;
         };
-        const overflowing = [...document.querySelectorAll('body *')]
+        const visibleElements = [...document.querySelectorAll('body *')].filter(visible);
+        const overflowing = visibleElements
           .filter(el => {
-            if (!visible(el) || el.closest('.g9-table-scroll')) return false;
+            if (el.closest('.g9-table-scroll')) return false;
             const box = el.getBoundingClientRect();
             return box.right > root.clientWidth + 1 || box.left < -1;
           })
@@ -402,9 +404,38 @@ for (const file of files) {
               width: Math.round(box.width * 10) / 10,
             };
           });
+        const ownOverflowSample = visibleElements
+          .filter(el => !el.closest('.g9-table-scroll') && el.scrollWidth > el.clientWidth + 1)
+          .slice(0, 8)
+          .map(el => ({
+            tag: el.tagName.toLowerCase(),
+            id: el.id || null,
+            className: typeof el.className === 'string' ? el.className : null,
+            clientWidth: el.clientWidth,
+            scrollWidth: el.scrollWidth,
+            delta: el.scrollWidth - el.clientWidth,
+            text: (el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 80),
+          }));
+        const edges = visibleElements.reduce((acc, el) => {
+          if (el.closest('.g9-table-scroll')) return acc;
+          const box = el.getBoundingClientRect();
+          acc.maxRight = Math.max(acc.maxRight, box.right);
+          acc.minLeft = Math.min(acc.minLeft, box.left);
+          return acc;
+        }, { maxRight: 0, minLeft: 0 });
         if (before) root.style.setProperty('--g9-zoom', before);
         else root.style.removeProperty('--g9-zoom');
-        return { horizontalOverflowPx: overflow, overflowSample: overflowing };
+        return {
+          horizontalOverflowPx: overflow,
+          overflowSample: overflowing,
+          ownOverflowSample,
+          rootClientWidth: root.clientWidth,
+          rootScrollWidth: root.scrollWidth,
+          bodyClientWidth: body.clientWidth,
+          bodyScrollWidth: body.scrollWidth,
+          maxRight: Math.round(edges.maxRight * 10) / 10,
+          minLeft: Math.round(edges.minLeft * 10) / 10,
+        };
       });
     }
     out.viewports[vp.name] = r;
