@@ -22,6 +22,25 @@ are one 4-CPU container and are evidence, not thresholds.
   query. "After" normalises each document once (cached per document object) and returns identical
   hits for every measured query. Only the first query pays for it.
 
+## Page render cost (the real page, wired to the generated contracts)
+
+`tests/question_bank_scale_render.mjs` loads the real Question Bank page over local HTTP against N
+synthetic questions and times what the learner waits for. Each interaction figure includes two
+animation frames (about 33 ms at 60 Hz), so a value near 30 ms means "done within the frame".
+
+| Questions | To a drawn list | JS heap | Subject tab | Topic pill | Search | Load more | Open Study |
+|---:|---:|---:|---:|---:|---:|---:|---:|
+| 500 | 184 ms | 3.7 MB | 28 ms | 31 ms | 13 ms | 28 ms | 11 ms |
+| 2,000 | 172 ms | 7.2 MB | 53 ms | 26 ms | 22 ms | 29 ms | 11 ms |
+| 5,000 | 287 ms | 13.9 MB | 48 ms | 31 ms | 17 ms | 30 ms | 13 ms |
+| 10,000 | 432 ms | 24.5 MB | 59 ms | 31 ms | 15 ms | 33 ms | 15 ms |
+
+Median of five runs per interaction. Interactions do not grow with the corpus because the page draws
+one page of 20 cards whatever N is; only the filter over the summaries grows, and it is small. Time to a
+drawn list grows with the artifacts (parse, catalog and list), as the table above predicts.
+A tweak that draws the static navigation once per load was tried and showed no difference above the noise,
+so it was not kept.
+
 ## Decisions
 
 1. **No Web Worker for search.** After the cache a query costs about 1 ms at 5,000 questions and
@@ -47,14 +66,14 @@ corpora, so it is left for the Owner. The committed corpus (77 questions) is sea
 
 ## Not measured
 
-DOM render and update cost (the runtime is not yet wired to these artifacts), a tablet-class CPU,
-memory outside the JS heap, network latency, and the heap the per-document search cache adds after
-the first query (about the size of the index text again; the heap column above is taken before it). The 12.7-inch tablet is expected to be several
-times slower than this container; that ratio has not been measured.
+A tablet-class CPU, memory outside the JS heap, network latency, and the heap the per-document search cache
+adds after the first query (about the size of the index text again; the first heap column is taken before it).
+The 12.7-inch tablet is expected to be several times slower than this container; that ratio has not been measured.
 
 ## Re-running
 
 ```
+node tests/question_bank_scale_render.mjs 500,2000,5000,10000 out.json
 node tests/question_bank_scale_browser.mjs 500,2000,5000,10000,20000 out.json
 python3 Shared/tools/question_bank_scale.py --questions 5000
 ```

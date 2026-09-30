@@ -20,6 +20,7 @@ from typing import Callable, Iterable, Mapping, Sequence
 
 PLATFORM_SCHEMA = "grade9v3-question-bank-platform-v1"
 CATALOG_SCHEMA = "grade9v3-question-bank-catalog-v1"
+SUMMARY_SCHEMA = "grade9v3-question-bank-questions-v1"
 SEARCH_SCHEMA = "grade9v3-question-bank-search-v1"
 RESOURCE_SCHEMA = "grade9v3-question-bank-resources-v1"
 DEDUP_SCHEMA = "grade9v3-question-bank-dedup-v1"
@@ -466,6 +467,69 @@ def load_gcdr_suite_resources(repo: Path) -> tuple[list[dict], list[dict]]:
     return resources, basis
 
 
+def load_topic_links(repo: Path) -> list[dict]:
+    """Explicit resource-to-question-topic links, recorded beside the resources they describe.
+
+    A discovered explorer suite names its topic in an external provider's words, which is usually not the
+    question topic's. Nothing here guesses the match: a person records it in the subject's registry
+    (``topic_links``) with the reason, and the build refuses a link that does not resolve.
+    """
+    links: list[dict] = []
+    for path in sorted(repo.glob("*/question-bank/resources.v1.json")):
+        source = path.relative_to(repo).as_posix()
+        for row in json.loads(path.read_text(encoding="utf-8")).get("topic_links") or []:
+            if not all(str(row.get(key) or "").strip() for key in ("resource_id", "topic_ref", "reason")):
+                raise ProjectionError(f"Malformed topic link in {source}: {row} (needs resource_id, topic_ref and reason)")
+            links.append({
+                "resource_id": str(row["resource_id"]),
+                "topic_ref": str(row["topic_ref"]),
+                "reason": str(row["reason"]),
+                "source": source,
+            })
+    return links
+
+
+def apply_topic_links(resources: Sequence[Mapping[str, object]], links: Sequence[Mapping[str, str]]) -> list[dict]:
+    by_id = {str(row["id"]): dict(row) for row in resources}
+    linked: set[str] = set()
+    for link in links:
+        rid = link["resource_id"]
+        if rid not in by_id:
+            raise ProjectionError(f"Topic link in {link['source']} names resource {rid!r}, which no registry or suite defines")
+        if rid in linked:
+            raise ProjectionError(f"Resource {rid!r} is linked to more than one topic")
+        linked.add(rid)
+        row = by_id[rid]
+        if row.get("topic"):
+            row["source_topic"] = row["topic"]
+        row["topic_ref"] = link["topic_ref"]
+        row["topic_link"] = {"reason": link["reason"], "source": link["source"]}
+    return [by_id[str(row["id"])] for row in resources]
+
+
+def bind_topic_links(resources: Sequence[Mapping[str, object]],
+                     questions: Sequence[Mapping[str, object]]) -> list[dict]:
+    """Check every explicit link against the question topics and take the topic's own label."""
+    topics = {str(q["topic_ref"]): (str(q["subject_ref"]), str(q["topic"])) for q in questions}
+    bound: list[dict] = []
+    for row in resources:
+        row = dict(row)
+        link = row.get("topic_link")
+        if link:
+            target = topics.get(str(row.get("topic_ref")))
+            if target is None:
+                raise ProjectionError(
+                    f"Resource {row['id']!r} is linked to topic {row.get('topic_ref')!r} ({link['source']}), "
+                    "which no question has; a link may not create a topic")
+            if row.get("subject_ref") and row["subject_ref"] != target[0]:
+                raise ProjectionError(
+                    f"Resource {row['id']!r} ({row['subject_ref']}) is linked to topic {row['topic_ref']!r}, "
+                    f"which belongs to {target[0]}")
+            row["topic"] = target[1]
+        bound.append(row)
+    return bound
+
+
 def load_resources(repo: Path) -> tuple[list[dict], list[dict]]:
     registry_resources, registry_basis = load_resource_registries(repo)
     suite_resources, suite_basis = load_gcdr_suite_resources(repo)
@@ -474,6 +538,7 @@ def load_resources(repo: Path) -> tuple[list[dict], list[dict]]:
     duplicates = sorted(key for key, count in Counter(ids).items() if count > 1)
     if duplicates:
         raise ProjectionError(f"Question Bank resources contain duplicate ids: {duplicates}")
+    rows = apply_topic_links(rows, load_topic_links(repo))
     rows.sort(key=lambda row: (
         str(row.get("subject_ref") or ""),
         str(row.get("topic_ref") or ""),
@@ -483,7 +548,85 @@ def load_resources(repo: Path) -> tuple[list[dict], list[dict]]:
     return rows, registry_basis + suite_basis
 
 
-def build_catalog(questions: Sequence[Mapping[str, object]], resources: Sequence[Mapping[str, object]] = ()) -> dict:
+PACKAGE_GLOB = "*/library/*.json"
+
+
+def load_subtopic_titles(repo: Path) -> dict[str, dict]:
+    """Learner-facing names for capability refs, from canonical records only.
+
+    A capability has no title of its own; the concept that owns it does. A ref is titled when exactly one
+    microtopic across the library packages names it as its primary capability. Zero owners or several
+    owners is not resolved here (and never guessed from the identifier): the ref stays untitled and the
+    catalog says so.
+    """
+    owners: dict[str, list[dict]] = defaultdict(list)
+    for path in sorted(repo.glob(PACKAGE_GLOB)):
+        try:
+            package = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if not isinstance(package, dict):
+            continue
+        for microtopic in package.get("microtopics") or []:
+            ref, title = microtopic.get("primary_capability_ref"), microtopic.get("title")
+            if isinstance(ref, str) and ref and isinstance(title, str) and title.strip():
+                owners[ref].append({"title": title.strip(), "source_ref": str(microtopic.get("id") or "")})
+    return {
+        ref: {"title": rows[0]["title"], "source_ref": rows[0]["source_ref"]}
+        for ref, rows in sorted(owners.items()) if len(rows) == 1
+    }
+
+
+_VIEW_FIELDS = ("id", "title", "short_title", "description", "match_mode", "presentation")
+
+
+def normalize_views(views: Sequence[Mapping[str, object]], question_ids: Iterable[str]) -> list[dict]:
+    """Saved collections as membership: each names the questions it contains, none may dangle."""
+    known = set(question_ids)
+    rows: list[dict] = []
+    seen: set[str] = set()
+    for view in views or ():
+        vid = str(view.get("id") or "")
+        if not vid or vid in seen:
+            raise ProjectionError(f"saved view id is missing or repeated: {vid!r}")
+        seen.add(vid)
+        refs = [str(ref) for ref in view.get("resolved_question_refs", []) or []]
+        dangling = [ref for ref in refs if ref not in known]
+        if dangling:
+            raise ProjectionError(f"saved view {vid!r} names unknown questions: {dangling[:3]}")
+        row = {key: view[key] for key in _VIEW_FIELDS if key in view}
+        row["resolved_question_refs"] = refs
+        rows.append(row)
+    return sorted(rows, key=lambda row: row["id"])
+
+
+_SUMMARY_FIELDS = (
+    "id", "order", "subject", "subject_ref", "topic", "topic_ref", "subtopic_refs", "exam", "year", "paper",
+    "question_number", "question_type", "expected_time_seconds", "difficulty", "primary_capability_ref",
+    "secondary_capability_refs", "common_wrong_route", "stem", "source_status",
+)
+
+
+def summarize_question(question: Mapping[str, object]) -> dict:
+    """What a result list needs to show and filter one question; everything else is on demand."""
+    enriched = enrich_question_refs(question)
+    row = {key: enriched[key] for key in _SUMMARY_FIELDS if key in enriched}
+    spans = [span for span in enriched.get("math_spans") or [] if isinstance(span, Mapping) and span.get("target") == "stem"]
+    if spans:
+        row["math_spans"] = spans
+    row["has_visual"] = bool(enriched.get("visual_ref"))
+    row["option_count"] = len(enriched.get("options") or [])
+    return row
+
+
+def build_question_summaries(questions: Sequence[Mapping[str, object]]) -> dict:
+    rows = sorted((summarize_question(q) for q in questions), key=lambda row: (row.get("order", 0), str(row["id"])))
+    return {"schema_version": SUMMARY_SCHEMA, "question_count": len(rows), "questions": rows}
+
+
+def build_catalog(questions: Sequence[Mapping[str, object]], resources: Sequence[Mapping[str, object]] = (),
+                  views: Sequence[Mapping[str, object]] = (),
+                  subtopic_titles: Mapping[str, Mapping[str, str]] | None = None) -> dict:
     enriched = [enrich_question_refs(question) for question in questions]
     subject_rows: dict[str, dict] = {}
     topic_rows: dict[str, dict] = {}
@@ -506,11 +649,14 @@ def build_catalog(questions: Sequence[Mapping[str, object]], resources: Sequence
             "identity_basis": "EXPLICIT_REF" if tref != topic_ref(question["subject"], question["topic"]) else "LEGACY_LABEL_DERIVED",
         })["question_count"] += 1
         for ref in question.get("subtopic_refs", []):
+            titled = (subtopic_titles or {}).get(ref)
             subtopic_rows.setdefault(ref, {
                 "id": ref,
                 "subject_ref": sref,
                 "topic_ref": tref,
-                "label": ref,
+                "label": titled["title"] if titled else ref,
+                "label_source": "CANONICAL_TITLE" if titled else "REF_ONLY",
+                **({"label_source_ref": titled["source_ref"]} if titled else {}),
                 "question_count": 0,
             })["question_count"] += 1
 
@@ -537,6 +683,7 @@ def build_catalog(questions: Sequence[Mapping[str, object]], resources: Sequence
     subjects = sorted(subject_rows.values(), key=lambda row: (str(row["label"]).casefold(), row["id"]))
     topics = sorted(topic_rows.values(), key=lambda row: (row.get("subject_ref") or "", str(row["label"]).casefold(), row["id"]))
     subtopics = sorted(subtopic_rows.values(), key=lambda row: (row.get("topic_ref") or "", row["id"]))
+    saved_views = normalize_views(views, (str(q["id"]) for q in enriched))
     return {
         "schema_version": CATALOG_SCHEMA,
         "counts": {
@@ -545,10 +692,13 @@ def build_catalog(questions: Sequence[Mapping[str, object]], resources: Sequence
             "subjects": len(subjects),
             "topics": len(topics),
             "subtopics": len(subtopics),
+            "subtopics_without_title": sum(1 for row in subtopics if row["label_source"] == "REF_ONLY"),
+            "views": len(saved_views),
         },
         "subjects": subjects,
         "topics": topics,
         "subtopics": subtopics,
+        "views": saved_views,
     }
 
 
@@ -590,7 +740,8 @@ def build_search_index(questions: Sequence[Mapping[str, object]], resources: Seq
             "resource_kind": resource["kind"],
             "search_text": _search_text([
                 resource.get("id"), resource.get("title"), resource.get("kind"),
-                resource.get("subject"), resource.get("topic"), " ".join(resource.get("keywords", [])),
+                resource.get("subject"), resource.get("topic"), resource.get("source_topic"),
+                " ".join(resource.get("keywords", [])),
             ]),
         })
 
@@ -811,12 +962,15 @@ def build_lineage(questions: Sequence[Mapping[str, object]], search_index: Mappi
 
 
 def platform_nodes(questions: Sequence[Mapping[str, object]], scoped_resources: Sequence[Mapping[str, object]],
-                   build_id: str) -> tuple[Node, ...]:
-    """The build graph: catalog, search and dedup are independent; lineage reads the search result."""
+                   build_id: str, views: Sequence[Mapping[str, object]] = (),
+                   subtopic_titles: Mapping[str, Mapping[str, str]] | None = None) -> tuple[Node, ...]:
+    """The build graph: catalog, summaries, search and dedup are independent; lineage reads the search result."""
     shared = {"questions": questions, "resources": scoped_resources}
+    with_views = {**shared, "views": list(views), "subtopic_titles": dict(subtopic_titles or {})}
     return (
-        Node("catalog", (), lambda done: shared,
-             lambda value: build_catalog(value["questions"], value["resources"])),
+        Node("catalog", (), lambda done: with_views,
+             lambda value: build_catalog(value["questions"], value["resources"], value["views"], value["subtopic_titles"])),
+        Node("summaries", (), lambda done: questions, build_question_summaries),
         Node("search", (), lambda done: shared,
              lambda value: build_search_index(value["questions"], value["resources"])),
         Node("dedup", (), lambda done: questions, build_dedup_report),
@@ -828,7 +982,8 @@ def platform_nodes(questions: Sequence[Mapping[str, object]], scoped_resources: 
 def assemble_platform(browser_projection: Mapping[str, object], resources: Sequence[Mapping[str, object]] = (),
                       resource_basis: Sequence[Mapping[str, object]] = (), *,
                       order: Callable[[list[str]], list[str]] | None = None,
-                      parallel: bool = False) -> dict:
+                      parallel: bool = False,
+                      subtopic_titles: Mapping[str, Mapping[str, str]] | None = None) -> dict:
     """Build deterministic derived contracts from the canonical browser projection.
 
     ``order`` and ``parallel`` only choose how independent workers are scheduled; the result is
@@ -836,18 +991,22 @@ def assemble_platform(browser_projection: Mapping[str, object], resources: Seque
     """
     questions = [enrich_question_refs(question) for question in browser_projection.get("questions", []) or []]
     validate_unique_ids(questions)
-    scoped_resources = [_resource_scope(resource) for resource in resources]
+    scoped_resources = bind_topic_links([_resource_scope(resource) for resource in resources], questions)
 
     identity_basis = {
         "browser_projection_digest": digest(browser_projection),
         "resource_basis": list(resource_basis),
+        "subtopic_titles": digest(dict(subtopic_titles or {})),
         "worker_contract_version": WORKER_CONTRACT_VERSION,
     }
     build_id = digest(identity_basis)
-    results = run_nodes(platform_nodes(questions, scoped_resources, build_id), order=order, parallel=parallel)
+    views = browser_projection.get("views", []) or []
+    results = run_nodes(platform_nodes(questions, scoped_resources, build_id, views, subtopic_titles),
+                        order=order, parallel=parallel)
     catalog_worker, search_worker, dedup_worker = results["catalog"], results["search"], results["dedup"]
+    summaries_worker = results["summaries"]
     lineage = results["lineage"].output
-    workers = [catalog_worker.receipt, search_worker.receipt, dedup_worker.receipt]
+    workers = [catalog_worker.receipt, search_worker.receipt, dedup_worker.receipt, summaries_worker.receipt]
     receipt = {
         "schema_version": RECEIPT_SCHEMA,
         "build_id": build_id,
@@ -863,6 +1022,7 @@ def assemble_platform(browser_projection: Mapping[str, object], resources: Seque
         "outputs": {
             "catalog": digest(catalog_worker.output),
             "search": digest(search_worker.output),
+            "summaries": digest(summaries_worker.output),
             "resources": digest(scoped_resources),
             "dedup": digest(dedup_worker.output),
             "lineage": digest(lineage),
@@ -872,6 +1032,7 @@ def assemble_platform(browser_projection: Mapping[str, object], resources: Seque
         "schema_version": PLATFORM_SCHEMA,
         "build_id": build_id,
         "catalog": catalog_worker.output,
+        "summaries": summaries_worker.output,
         "search": search_worker.output,
         "resources": {"schema_version": RESOURCE_SCHEMA, "build_id": build_id, "resources": scoped_resources},
         "dedup": {**dedup_worker.output, "build_id": build_id},

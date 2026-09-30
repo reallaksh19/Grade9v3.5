@@ -96,6 +96,77 @@ class QuestionBankPlatformTest(unittest.TestCase):
             self.assertEqual(len(basis), 2)
             self.assertTrue(all(r["subject_ref"] == "SUBJECT-BIOLOGY" for r in resources))
 
+    def _linked_repo(self, root, links, suite_topic="Cell Biology (provider label)"):
+        registry = root / "Biology" / "question-bank"
+        registry.mkdir(parents=True)
+        (registry / "resources.v1.json").write_text(json.dumps({
+            "schema_version": qbp.RESOURCE_SCHEMA, "resources": [], "topic_links": links,
+        }), encoding="utf-8")
+        suites = root / "docs" / "gcdr-suites"
+        suites.mkdir(parents=True)
+        (suites / "bio-cell.json").write_text(json.dumps({
+            "suite_id": "GCDR-BIO-CELL", "title": "Cell Explorer",
+            "external_corpus": {"subject": "Biology", "topic": suite_topic},
+            "delivery_artifacts": [{"profile": "REPO_BUNDLE", "locator": "public/biology/cell/explorer/index.html"}],
+        }), encoding="utf-8")
+
+    def test_recorded_topic_link_puts_a_discovered_suite_in_the_question_topic(self):
+        link = {"resource_id": "GCDR-BIO-CELL", "topic_ref": "TOPIC-BIO-CELL", "reason": "same chapter"}
+        questions = [question("BIO-Q1", "Which organelle releases usable energy?", topic_ref="TOPIC-BIO-CELL")]
+        with tempfile.TemporaryDirectory() as tmp:
+            self._linked_repo(Path(tmp), [])
+            unlinked_resources, unlinked_basis = qbp.load_resources(Path(tmp))
+        unlinked = qbp.assemble_platform({"questions": questions}, unlinked_resources, unlinked_basis)
+        self.assertEqual(len(unlinked["catalog"]["topics"]), 2, "without a link the suite makes a topic of its own")
+        with tempfile.TemporaryDirectory() as tmp:
+            self._linked_repo(Path(tmp), [link])
+            resources, basis = qbp.load_resources(Path(tmp))
+        platform = qbp.assemble_platform({"questions": questions}, resources, basis)
+        topics = platform["catalog"]["topics"]
+        self.assertEqual([(t["id"], t["question_count"], t["resource_count"]) for t in topics], [("TOPIC-BIO-CELL", 1, 1)])
+        row = platform["resources"]["resources"][0]
+        self.assertEqual((row["topic_ref"], row["topic"], row["source_topic"]),
+                         ("TOPIC-BIO-CELL", "Cell Biology", "Cell Biology (provider label)"))
+        self.assertEqual(row["topic_link"]["reason"], "same chapter")
+        self.assertEqual({d["id"] for d in qbp.search(platform["search"], "provider label")}, {"GCDR-BIO-CELL"},
+                         "the provider's own words still find the resource")
+
+    def test_a_topic_link_that_does_not_resolve_fails_the_build(self):
+        questions = [question("BIO-Q1", "A", topic_ref="TOPIC-BIO-CELL")]
+        cases = {
+            "names no resource": ({"resource_id": "GCDR-NOPE", "topic_ref": "TOPIC-BIO-CELL", "reason": "r"}, "GCDR-NOPE"),
+            "creates a topic": ({"resource_id": "GCDR-BIO-CELL", "topic_ref": "TOPIC-BIO-INVENTED", "reason": "r"}, "may not create a topic"),
+            "has no reason": ({"resource_id": "GCDR-BIO-CELL", "topic_ref": "TOPIC-BIO-CELL", "reason": " "}, "needs resource_id, topic_ref and reason"),
+        }
+        for name, (link, expected) in cases.items():
+            with self.subTest(name), tempfile.TemporaryDirectory() as tmp:
+                self._linked_repo(Path(tmp), [link])
+                with self.assertRaises(qbp.ProjectionError) as caught:
+                    resources, basis = qbp.load_resources(Path(tmp))
+                    qbp.assemble_platform({"questions": questions}, resources, basis)
+                self.assertIn(expected, str(caught.exception))
+        twice = {"resource_id": "GCDR-BIO-CELL", "topic_ref": "TOPIC-BIO-CELL", "reason": "r"}
+        with tempfile.TemporaryDirectory() as tmp:
+            self._linked_repo(Path(tmp), [twice, dict(twice, topic_ref="TOPIC-BIO-OTHER")])
+            with self.assertRaisesRegex(qbp.ProjectionError, "more than one topic"):
+                qbp.load_resources(Path(tmp))
+        with tempfile.TemporaryDirectory() as tmp:
+            self._linked_repo(Path(tmp), [twice])
+            resources, basis = qbp.load_resources(Path(tmp))
+        other_subject = [question("PHY-Q1", "A", subject="Physics", topic="Motion", topic_ref="TOPIC-BIO-CELL")]
+        with self.assertRaisesRegex(qbp.ProjectionError, "which belongs to SUBJECT-PHYSICS"):
+            qbp.assemble_platform({"questions": other_subject}, resources, basis)
+
+    def test_changing_a_topic_link_changes_the_build_identity(self):
+        questions = [question("BIO-Q1", "A", topic_ref="TOPIC-BIO-CELL")]
+        ids = []
+        for reason in ("first reason", "second reason"):
+            with tempfile.TemporaryDirectory() as tmp:
+                self._linked_repo(Path(tmp), [{"resource_id": "GCDR-BIO-CELL", "topic_ref": "TOPIC-BIO-CELL", "reason": reason}])
+                resources, basis = qbp.load_resources(Path(tmp))
+            ids.append(qbp.assemble_platform({"questions": questions}, resources, basis)["build_id"])
+        self.assertNotEqual(ids[0], ids[1])
+
     def test_explicit_stable_topic_identity_survives_label_change(self):
         first = qbp.build_catalog([question("BIO-Q1", "A", topic="Cell Biology", topic_ref="TOPIC-BIO-CELL")])
         renamed = qbp.build_catalog([question("BIO-Q1", "A", topic="Cells & Organelles", topic_ref="TOPIC-BIO-CELL")])
@@ -165,6 +236,19 @@ class QuestionBankPlatformTest(unittest.TestCase):
         self.assertEqual(len(variant_groups[0]["member_ids"]), 100)
         self.assertLess(report["evidence_count"], 100)
 
+    def test_a_near_duplicate_is_reported_and_an_unrelated_pair_is_not(self):
+        stem = ("A particle moves along a straight line with constant acceleration starting from rest and after "
+                "six seconds its speed is twelve metres per second find the distance covered in that time")
+        original = question("ND1", stem, number="1")
+        reworded = question("ND2", stem.replace("find the distance", "determine the distance"), number="2")
+        unrelated = question("ND3", "Name the organelle that releases usable energy in a plant cell", number="3")
+        self.assertEqual(qbp.compare_pair(original, reworded)["classification"], "NEAR_DUPLICATE")
+        self.assertEqual(qbp.compare_pair(original, unrelated)["classification"], "DISTINCT")
+        report = qbp.build_dedup_report([qbp.enrich_question_refs(q) for q in (original, reworded, unrelated)])
+        pairs = [(row["left_id"], row["right_id"]) for row in report["relationships"]]
+        self.assertEqual(pairs, [("ND1", "ND2")], "the near duplicate is evidence; the unrelated question is not")
+        self.assertEqual(report["question_count"], 3, "nothing is deleted")
+
     def test_exact_dedup_preserves_mathematical_operators(self):
         plus = question("PLUS", "Solve x + 1 = 4", number="10")
         minus = question("MINUS", "Solve x - 1 = 4", number="11")
@@ -214,6 +298,94 @@ class QuestionBankPlatformTest(unittest.TestCase):
         platform = qbp.assemble_platform({"questions": [question("BIO-Q1", "A short stem about cells", topic_ref="T")]})
         self.assertIs(platform["receipt"]["counts"]["near_duplicate_search_complete"], True)
 
+    def test_summaries_carry_what_a_result_list_needs_and_nothing_of_the_study_detail(self):
+        rich = question("BIO-Q1", "Which organelle releases usable energy?", topic_ref="TOPIC-BIO-CELL")
+        rich.update({
+            "options": ["(A) x", "(B) y"], "conditions": ["c"], "source_hints": ["h"], "scaffolds": [{"text": "s"}],
+            "visual_ref": "assets/figure.svg", "answer": {"summary": "Mitochondria", "reasoning": ["r"]},
+            "math_spans": [{"target": "stem", "literal": "x", "tex": "x"}, {"target": "option:0", "literal": "y", "tex": "y"}],
+        })
+        platform = qbp.assemble_platform({"questions": [rich]})
+        row = platform["summaries"]["questions"][0]
+        for detail in ("options", "conditions", "source_hints", "scaffolds", "visual_ref", "answer"):
+            self.assertNotIn(detail, row)
+        self.assertEqual((row["id"], row["subject_ref"], row["topic_ref"]), ("BIO-Q1", "SUBJECT-BIOLOGY", "TOPIC-BIO-CELL"))
+        self.assertEqual((row["has_visual"], row["option_count"]), (True, 2))
+        self.assertEqual([span["target"] for span in row["math_spans"]], ["stem"])
+        self.assertEqual(platform["summaries"]["question_count"], 1)
+
+    def test_saved_views_are_membership_in_the_catalog_and_may_not_dangle(self):
+        questions = [question("BIO-Q1", "A", topic_ref="T1"), question("BIO-Q2", "B", topic_ref="T1", number="2")]
+        view = {"id": "v1", "title": "Two", "description": "d", "match_mode": "EXACT_POLICY_SET",
+                "presentation": {"badge": "2", "source_label": "s", "default_mode": "study"},
+                "resolved_question_refs": ["BIO-Q2", "BIO-Q1"], "policy": {"anything": True}}
+        platform = qbp.assemble_platform({"questions": questions, "views": [view]})
+        self.assertEqual(platform["catalog"]["counts"]["views"], 1)
+        saved = platform["catalog"]["views"][0]
+        self.assertEqual(saved["resolved_question_refs"], ["BIO-Q2", "BIO-Q1"], "the collection's own order is kept")
+        self.assertNotIn("policy", saved, "how a view was chosen is not part of what the browser needs")
+        with self.assertRaisesRegex(qbp.ProjectionError, "unknown questions"):
+            qbp.assemble_platform({"questions": questions, "views": [{**view, "resolved_question_refs": ["GONE"]}]})
+        with self.assertRaisesRegex(qbp.ProjectionError, "missing or repeated"):
+            qbp.assemble_platform({"questions": questions, "views": [view, view]})
+
+    def test_live_summaries_and_views_agree_with_the_catalog(self):
+        platform = build_question_bank_platform.build(ROOT)
+        self.assertEqual(platform["summaries"]["question_count"], platform["catalog"]["counts"]["questions"])
+        listed = {row["id"] for row in platform["summaries"]["questions"]}
+        for view in platform["catalog"]["views"]:
+            self.assertLessEqual(set(view["resolved_question_refs"]), listed)
+
+    def test_subtopics_carry_a_canonical_title_or_say_they_have_none(self):
+        a = question("BIO-Q1", "A", topic_ref="T1")
+        a["subtopic_refs"] = ["CAP-A"]
+        b = question("BIO-Q2", "B", topic_ref="T1", number="2")
+        b["subtopic_refs"] = ["CAP-A", "CAP-B"]
+        titles = {"CAP-A": {"title": "Cells release energy", "source_ref": "MIC-A"}}
+        catalog = qbp.assemble_platform({"questions": [a, b]}, subtopic_titles=titles)["catalog"]
+        rows = {row["id"]: row for row in catalog["subtopics"]}
+        self.assertEqual(rows["CAP-A"]["label"], "Cells release energy")
+        self.assertEqual((rows["CAP-A"]["label_source"], rows["CAP-A"]["label_source_ref"]), ("CANONICAL_TITLE", "MIC-A"))
+        self.assertEqual((rows["CAP-B"]["label"], rows["CAP-B"]["label_source"]), ("CAP-B", "REF_ONLY"))
+        self.assertNotIn("label_source_ref", rows["CAP-B"])
+        self.assertEqual(rows["CAP-A"]["question_count"], 2)
+        self.assertEqual(catalog["counts"]["subtopics_without_title"], 1)
+
+    def test_subtopic_titles_are_part_of_the_build_identity(self):
+        browser = {"questions": [question("BIO-Q1", "A", topic_ref="T1")]}
+        plain = qbp.assemble_platform(browser)
+        titled = qbp.assemble_platform(browser, subtopic_titles={"CAP-BIO-CELL": {"title": "Cells", "source_ref": "M"}})
+        self.assertNotEqual(plain["build_id"], titled["build_id"], "an artifact that changed must not keep its build id")
+        self.assertEqual(plain["build_id"], qbp.assemble_platform(browser)["build_id"])
+
+    def test_only_an_unambiguous_owning_microtopic_titles_a_capability(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            library = Path(tmp) / "Subject" / "library"
+            library.mkdir(parents=True)
+            (library / "one.json").write_text(json.dumps({"microtopics": [
+                {"id": "MIC-1", "title": " Sole owner ", "primary_capability_ref": "CAP-A"},
+                {"id": "MIC-2", "title": "First claimant", "primary_capability_ref": "CAP-B"},
+                {"id": "MIC-3", "title": "", "primary_capability_ref": "CAP-D"},
+            ]}), encoding="utf-8")
+            (library / "two.json").write_text(json.dumps({"microtopics": [
+                {"id": "MIC-4", "title": "Second claimant", "primary_capability_ref": "CAP-B"},
+            ]}), encoding="utf-8")
+            (library / "broken.json").write_text("{not json", encoding="utf-8")
+            titles = qbp.load_subtopic_titles(Path(tmp))
+        self.assertEqual(titles, {"CAP-A": {"title": "Sole owner", "source_ref": "MIC-1"}})
+
+    def test_live_subtopic_labels_come_from_records_and_the_rest_are_marked(self):
+        platform = build_question_bank_platform.build(ROOT)
+        titles = qbp.load_subtopic_titles(ROOT)
+        for row in platform["catalog"]["subtopics"]:
+            if row["label_source"] == "CANONICAL_TITLE":
+                self.assertEqual(row["label"], titles[row["id"]]["title"])
+            else:
+                self.assertEqual((row["label"], row["label_source"]), (row["id"], "REF_ONLY"))
+                self.assertNotIn(row["id"], titles)
+        without = sum(1 for row in platform["catalog"]["subtopics"] if row["label_source"] == "REF_ONLY")
+        self.assertEqual(platform["catalog"]["counts"]["subtopics_without_title"], without)
+
     def test_duplicate_canonical_id_fails_closed(self):
         with self.assertRaises(qbp.ProjectionError):
             qbp.validate_unique_ids([question("SAME", "A"), question("SAME", "B")])
@@ -224,7 +396,7 @@ class QuestionBankPlatformTest(unittest.TestCase):
         b = qbp.assemble_platform(browser)
         self.assertEqual(a["build_id"], b["build_id"])
         self.assertEqual(a["receipt"], b["receipt"])
-        self.assertEqual([w["worker_id"] for w in a["receipt"]["workers"]], ["catalog", "dedup", "search"])
+        self.assertEqual([w["worker_id"] for w in a["receipt"]["workers"]], ["catalog", "dedup", "search", "summaries"])
 
     def test_direct_script_entrypoints_import_without_repo_pythonpath(self):
         for rel in (
