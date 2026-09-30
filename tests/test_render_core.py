@@ -420,6 +420,33 @@ class Renderer(unittest.TestCase):
         self.assertIn("data-g9-equation-matrix", product)
         self.assertNotRegex(product, r'href="core\w+\.html#')
 
+    def test_core1a_tablet_contract_reuses_existing_shared_shell_invariants(self):
+        repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(repo_manifest)
+        html = render_core.page(ctx, "CORE1A", "PAGES", render_core.render_digest(ctx))
+        blueprint = next(
+            row for row in ctx.blueprints["blueprints"]
+            if "CORE1A" in row["core_roles"]
+        )
+
+        self.assertEqual(blueprint["responsive_policy"]["expanded"], "STAGE_SUPPORT")
+        self.assertAlmostEqual(
+            blueprint["responsive_policy"]["expanded_primary_fraction"], 0.68, places=2
+        )
+        self.assertAlmostEqual(
+            blueprint["responsive_policy"]["expanded_support_fraction"], 0.32, places=2
+        )
+        self.assertGreaterEqual(blueprint["touch_policy"]["minimum_target_css_px"], 48)
+        self.assertGreaterEqual(blueprint["touch_policy"]["minimum_control_gap_css_px"], 8)
+        self.assertFalse(blueprint["support_policy"]["progressive_support"])
+        self.assertIn("ATTEMPT_FIRST_AS_PRIMARY_MODE", blueprint["forbidden_patterns"])
+
+        self.assertIn("@media (min-width:1100px)", render_core.CSS)
+        self.assertIn("grid-template-columns:.68fr .32fr", render_core.CSS)
+        self.assertIn("min-height:var(--g9-touch-min)", render_core.CSS)
+        self.assertIn("overflow-x:auto", render_core.CSS)
+        self.assertIn('data-g9-equation-matrix', html)
+
     def test_core1a_browser_audit_contract_is_syntax_valid_and_covers_required_viewports(self):
         audit = REPO / "tools" / "site-audit" / "core-page-audit.mjs"
         source = audit.read_text(encoding="utf-8")
