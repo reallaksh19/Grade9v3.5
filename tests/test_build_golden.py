@@ -36,5 +36,9 @@ class GoldenRenderTests(unittest.TestCase):
         page = pages["core2.html"]
         self.assertIn('data-g9-response-type="single_choice"', page)
         self.assertEqual(page.count('data-g9-choice type="radio"'), 4)
-        self.assertEqual(page.count('<template data-g9-rung-payload='), 2)
+        # Both the three source hints and the distinct authored ladder retain two inert later rungs.
+        self.assertEqual(page.count('<template data-g9-rung-payload='), 4)
+        self.assertIn('-source-2"', page)
+        self.assertIn('-authored-2"', page)
+        self.assertIn('data-g9-block="reasoning_route"', page)
         self.assertIn('<template data-g9-payload="CORE2-PYQ-PHY-IITJEE-2007-P1-Q03-solution">', page)

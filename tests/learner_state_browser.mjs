@@ -49,7 +49,7 @@ try {
   await box.locator('[data-g9-choice]').first().check();
   await box.locator('[data-g9-commit]').click();
   assert.equal(await article.getAttribute('data-attempted'), '1');
-  await article.locator('details[data-requires-attempt] summary').first().click();
+  await article.locator('details[data-g9-payload-ref$="-solution"] summary').click();
   assert((await article.innerText()).includes(phrase));
   assert((await article.ariaSnapshot()).includes(phrase));
   assert((await liveText()).includes(phrase));
