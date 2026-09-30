@@ -178,15 +178,15 @@ A new bank, changed concept mapping, revised figure or altered familiar task may
 
 ## 10. Source-question support, figures and interactive purpose
 
-This clarification incorporates the [validated post-mortem feedback](../../evidence/reviews/pr353/FEEDBACK-VALIDATION.md). It defines review intent and remaining shared implementation work, not a new schema gate. Existing source custody, canonical question/representation records, blueprint and sole renderer keep their respective ownership.
+This clarification, as amended by the Owner's numeric/structural-check decision, incorporates the [validated post-mortem feedback](../../evidence/reviews/pr353/FEEDBACK-VALIDATION.md). It defines review intent and local packet checks. These checks do not authorize publication or prevent research. Existing source custody, canonical question/representation records, blueprint and sole renderer keep their respective ownership.
 
 ### Preserve the source; identify added teaching
 
 Core2 remains a usable learner product around an authentic source question. Source fidelity alone does not establish good learning support. Keep source hints/working distinct from authored hints, worked reasoning and independent verification. An absent source hint is a valid source fact; an unresolved source component and an authored-support omission are different findings. Never write new teaching into `hints[]` merely to satisfy a count or present an authored solution as a printed key.
 
-For difficult decisions, describe useful support by purpose: orientation, a productive next move, reasoning about the crux, and an independent check where meaningful. The number of useful steps depends on the task. Difficulty D1–D4 informs judgement; it does not mechanically impose three rungs, a diagram, an explorer or a delivery threshold. Repeated or answer-revealing hints do not become good teaching by meeting a count.
+For difficult decisions, describe support by purpose: orientation, a productive next move, reasoning about the crux, and an independent check. The Owner now requests minimum structure for Medium (question D2) and Hard (question D3–D4): an authored progressive ladder (the existing three-rung baseline) and a structured reasoning route. Hard items also need a useful accessible SVG or a reviewed not-applicable explanation bound to the question digest. Concept difficulty is not a substitute for question difficulty. Repeated or answer-revealing hints do not become good teaching by meeting a count.
 
-When supplementary authored help is requested on a Core2 page, keep its provenance and disclosure timing explicit and resolve its owning fields through the existing canonical model. `scaffolds[]` and structured reasoning already exist for other uses, but their Core2 projection/provenance needs reconciliation; this guidance does not claim that the current renderer displays them. Show support provided, not applicable, deferred or unresolved in the existing Owner review view, with reasons; no new completion state grants permission.
+When supplementary authored help is requested on a Core2 page, keep its provenance and disclosure timing explicit and resolve its owning fields through the existing canonical model. `scaffolds[]` and structured reasoning already exist for other uses, but Core2 projects authored support separately and exposes the structured route after commitment. Show support provided, not applicable, deferred or unresolved in the existing Owner review view, with reasons; no new completion state grants permission.
 
 ### Distinguish what a figure does
 
@@ -212,15 +212,34 @@ For promised offline/file delivery, exercise that actual package with network ac
 ## 11. Research and thinking remain open
 
 - Research the web and original sources as widely as useful. Repo examples, goldens, current taxonomy and an incomplete Atlas are starting points, not the limits of inquiry. Distinguish factual authority from inspiration for teaching.
-- Think, derive, compare explanations, sketch figures and try alternative tasks before fitting results into fields. There is no mandatory research query list, source count, scaffold count, question count or improvement quota.
+- Think, derive, compare explanations, sketch figures and try alternative tasks before fitting results into fields. There is no mandatory research query list, source count or improvement quota. The packet's minimum support checks apply to delivered Medium/Hard questions; they do not restrict investigation.
 - Keep unexpected ideas and unresolved claims in the existing research log/design note, with evidence and a reasoned next step. A useful idea that lacks a schema field is a representation gap to investigate, not a reason to discard the idea or invent filler.
 - At a canonical write boundary, preserve valid references and serialize accurately. If the current schema cannot express an insight, retain the full reasoning in the design note and propose the smallest shared extension. Do not mislabel the insight to fit a convenient enum. Schema limitations do not constrain exploration or independently solvable work.
 - Separate unknown, unavailable, not applicable and contradicted evidence in prose. Do not give any of them a fake "complete" value. Missing learner observations mean unknown learner state; they do not prevent authoring a useful default experience.
 - Apply every guideline with judgement and a brief explanation when an alternative serves the learner better. An independent reviewer can challenge both the artifact and the guideline. Record meaningful revisions and negative findings, not a transcript of every browser click.
-- Use advisory local observations and actual artifacts. Add no new delivery blockers, CI workflows, schema completeness gates, publication authority or permission requests. The Owner's exact-render acceptance remains the publication decision.
+- Use advisory local observations and actual artifacts. Apply the Owner-requested local numeric and structural checks; do not add CI workflows, another publication authority or permission to research. The Owner's exact-render acceptance remains the publication decision.
 
-## 11. Adoption in existing work processes
+## 12. Adoption in existing work processes
 
 The method index and protocol point to this guidance. Unit-author and reviewer roles/prompts apply it to the chosen first stage and subsequent Cores. UNIT records the denominator, entry route and scope; DESIGN-NOTE records difficulty-first triage, interaction purpose, dependency/task arc and research; WORKLOG records lot/slice state, denominator coverage, outputs, findings, decisions and affected followups. Those existing documents provide the audit trail without a new ledger.
 
 A practical session is: inspect available inputs; establish the denominator; choose the first-stage route; triage difficulty and interaction value; author/review the hardest worthwhile vertical slice; show actual HTML/PDF plus the complete denominator mapping/coverage view and gaps; incorporate feedback; continue Medium/Low coverage and expand learner decisions Core by Core. Repeat the research/design loop whenever evidence warrants it. No stage label, missing field, report outcome or reviewer score grants or denies permission to keep working.
+
+
+## 13. Local numeric and structural packet review
+
+Run `python Shared/tools/packet_check.py --manifest M.json --rendered RENDERED --inventory UPLOADED-INVENTORY.json --out REVIEW` alongside the actual HTML and learner/key PDFs. Use the existing source-inventory/v1 model, with retained-upload member digests and declared scope. REVIEW must be separate from learner HTML. Its HTML table and JSON expose every finding and hash the inspected artifacts. Run again after any change. No inventory means upload coverage is NOT_RUN, never inferred from selected bank size.
+
+| Check | Numeric / structural expectation |
+|---|---|
+| Uploaded → selected → rendered | Exact ID multiset and one-to-one inventory mapping; no omitted, substituted or duplicated item. Declared source scope remains visible. |
+| All selected Cores | Every selected unit appears exactly once in its role's HTML. |
+| Source fidelity | Option counts and source figure references reach the page; source hints remain distinct from added help. Source custody review still checks wording, subparts and captions. |
+| Medium / Hard | Three distinct authored hint rungs; nonempty reasoning moves with unique IDs, action, justification, inputs and output; all reach gated HTML. |
+| Hard figures | Accessible SVG, or `extensions.grade9v3:visual_review` with applicable=false, reason, reviewer and current `packet_check.question_digest(question)`. A stale exception fails. |
+| Metadata | Real learner metadata strip; incomplete mapping is a finding. |
+| Device / interaction | Actual 1366×854 and 1440×900 landscape, 900×1440 portrait; readable text, no overflow, 48px targets, typed commitment, later hints, keyboard/accessibility and search disclosure. |
+| Offline / print | Actual network-disabled HTML, readable math, learner PDF without protected content, key PDF with complete hints/reasoning/figures and question tally. |
+| Judgement | Independent review of hint usefulness, valid reasoning, figure purpose and answer disclosure. Counts cannot establish these. |
+
+The static command deliberately leaves browser, PDF and pedagogical checks NOT_RUN. Link their real evidence at the same artifact hash in the WORKLOG; a static report is not a replacement. A FAIL directs repair and prevents a false completion claim; drafts, research and independent work continue. Only Owner acceptance of the exact render decides publication.
