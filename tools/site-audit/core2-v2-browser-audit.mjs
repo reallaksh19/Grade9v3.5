@@ -112,6 +112,35 @@ async function articleMetrics(page, vp) {
   return result;
 }
 
+// Native keyboard path: an Enter key must activate progressive support and the
+// exact semantic concept link. Keep this isolated from the persistence witness.
+const keyboardContext = await browser.newContext();
+const keyboardPage = await keyboardContext.newPage();
+const keyboardErrors = [];
+keyboardPage.on('pageerror', error => keyboardErrors.push(error.message));
+await keyboardPage.setViewportSize({ width: 1366, height: 854 });
+await keyboardPage.goto(`${base}core2.html#${WITNESS}`, { waitUntil: 'load' });
+const keyboardArticle = keyboardPage.locator(`#${WITNESS}`);
+const keyboardSupport = keyboardArticle.locator('[data-g9-next-rung]:not([disabled])').first();
+check(await keyboardSupport.count() === 1, 'keyboard witness has no progressive support button');
+if (await keyboardSupport.count()) {
+  await keyboardSupport.focus();
+  check(await keyboardSupport.evaluate(el => document.activeElement === el), 'keyboard support control could not receive focus');
+  await keyboardPage.keyboard.press('Enter');
+  check(await keyboardArticle.locator('.slot-support li[data-g9-rung]').count() >= 1, 'Enter did not activate progressive support');
+}
+const keyboardConcept = keyboardArticle.locator('[data-g9-concept-link]').first();
+check(await keyboardConcept.count() === 1, 'keyboard witness has no exact Core1A concept link');
+if (await keyboardConcept.count()) {
+  const conceptRef = await keyboardConcept.getAttribute('data-g9-concept-ref');
+  await keyboardConcept.focus();
+  check(await keyboardConcept.evaluate(el => document.activeElement === el), 'keyboard concept link could not receive focus');
+  await Promise.all([keyboardPage.waitForLoadState('load'), keyboardPage.keyboard.press('Enter')]);
+  check(keyboardPage.url().includes(`core1a.html#${conceptRef}`), `keyboard concept navigation landed at ${keyboardPage.url()}`);
+}
+check(keyboardErrors.length === 0, `keyboard runtime leaked page error(s): ${keyboardErrors.join(' | ')}`);
+await keyboardContext.close();
+
 const context = await browser.newContext();
 const page = await context.newPage();
 const pageErrors = [];
@@ -244,4 +273,4 @@ if (failures.length) {
   for (const failure of failures) console.error(`  - ${failure}`);
   process.exit(1);
 }
-console.log(`Core2-v2 browser audit PASS: ${TABLET_VIEWPORTS.length} viewport(s), exact state round trip, storage-failure fallback.`);
+console.log(`Core2-v2 browser audit PASS: ${TABLET_VIEWPORTS.length} viewport(s), keyboard support/navigation, exact state round trip, storage-failure fallback.`);
