@@ -29,7 +29,8 @@ WORKER_CONTRACT_VERSION = "1.0.0"
 _TOKEN = re.compile(r"[a-z0-9]+")
 _SPACE = re.compile(r"\s+")
 _LATEX_DELIMS = re.compile(r"(?:\\\(|\\\)|\\\[|\\\]|\$\$|\$)")
-_PUNCT = re.compile(r"[^a-z0-9]+")
+_MATH_SPACING = re.compile(r"\s*([+\-*/=^<>()\[\]{},])\s*")
+_TERMINAL_PUNCT = re.compile(r"[.!?]+$")
 
 
 class ProjectionError(ValueError):
@@ -60,12 +61,20 @@ def topic_ref(subject: str, label: str, explicit: str | None = None) -> str:
 
 
 def normalize_content(value: object) -> str:
-    """Deterministic presentation-insensitive text normalization for duplicate evidence."""
+    """Conservative exact-content normalization that preserves mathematical semantics.
+
+    Unicode variants, LaTeX delimiters, whitespace and terminal prose punctuation are
+    presentation details. Mathematical operators, signs, grouping and coordinate commas
+    are deliberately retained so x+1 and x-1 can never become an exact duplicate merely
+    because punctuation was stripped.
+    """
     text = unicodedata.normalize("NFKC", str(value or "")).casefold()
-    text = _LATEX_DELIMS.sub(" ", text)
+    text = _LATEX_DELIMS.sub("", text)
     text = text.replace("−", "-").replace("–", "-").replace("—", "-")
-    text = _PUNCT.sub(" ", text)
-    return _SPACE.sub(" ", text).strip()
+    text = _SPACE.sub(" ", text).strip()
+    text = _MATH_SPACING.sub(r"\1", text)
+    text = _TERMINAL_PUNCT.sub("", text).strip()
+    return text
 
 
 def tokenize(value: object) -> tuple[str, ...]:
@@ -104,7 +113,9 @@ def structural_fingerprint(question: Mapping[str, object]) -> str:
 
 
 def source_identity(question: Mapping[str, object]) -> tuple[str, ...] | None:
-    fields = ("exam", "year", "paper", "question_number")
+    # Subject is part of source identity so two subject sections with the same exam/paper
+    # question number cannot be falsely reconciled as one source record.
+    fields = ("subject", "exam", "year", "paper", "question_number")
     values = tuple(str(question.get(k) or "").strip() for k in fields)
     return values if all(values) else None
 
