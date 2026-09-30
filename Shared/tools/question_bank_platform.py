@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Subject-neutral Question Bank growth contracts for catalog, search, dedup and lineage.
 
-This module deliberately owns no curriculum names. Subject/topic variation is input data.
-It consumes the existing canonical browser projection contract and can also normalize
-package-shaped questions when a canonical package explicitly opts into Question Bank
+Curriculum names and learner-resource routes are input data. This module only defines
+stable producer/consumer contracts. It consumes the existing canonical browser projection
+and can also normalize package-shaped questions that explicitly opt into Question Bank
 publication through ``extensions.grade9v3:question_bank``.
 """
 from __future__ import annotations
@@ -25,6 +25,10 @@ DEDUP_SCHEMA = "grade9v3-question-bank-dedup-v1"
 LINEAGE_SCHEMA = "grade9v3-question-bank-lineage-v1"
 RECEIPT_SCHEMA = "grade9v3-question-bank-build-receipt-v1"
 WORKER_CONTRACT_VERSION = "1.0.0"
+NEAR_SHINGLE_SIZE = 3
+NEAR_MAX_BUCKET = 32
+NEAR_MAX_CANDIDATES_PER_RECORD = 24
+NEAR_THRESHOLD = 0.82
 
 _TOKEN = re.compile(r"[a-z0-9]+")
 _SPACE = re.compile(r"\s+")
@@ -34,7 +38,7 @@ _TERMINAL_PUNCT = re.compile(r"[.!?]+$")
 
 
 class ProjectionError(ValueError):
-    """Fail-closed error for contradictory machine identity or malformed opt-in data."""
+    """Fail-closed error for contradictory identity or malformed opted-in data."""
 
 
 def canonical_json(value: object) -> str:
@@ -48,8 +52,7 @@ def digest(value: object) -> str:
 
 def slug(value: object) -> str:
     text = unicodedata.normalize("NFKC", str(value or "")).casefold()
-    parts = _TOKEN.findall(text)
-    return "-".join(parts) or "unknown"
+    return "-".join(_TOKEN.findall(text)) or "unknown"
 
 
 def subject_ref(label: str, explicit: str | None = None) -> str:
@@ -61,20 +64,17 @@ def topic_ref(subject: str, label: str, explicit: str | None = None) -> str:
 
 
 def normalize_content(value: object) -> str:
-    """Conservative exact-content normalization that preserves mathematical semantics.
+    """Normalize presentation differences while preserving mathematical operators.
 
-    Unicode variants, LaTeX delimiters, whitespace and terminal prose punctuation are
-    presentation details. Mathematical operators, signs, grouping and coordinate commas
-    are deliberately retained so x+1 and x-1 can never become an exact duplicate merely
-    because punctuation was stripped.
+    Operators/signs/grouping are semantic. In particular, ``x + 1`` and ``x - 1`` must
+    never collapse to the same exact-content fingerprint.
     """
     text = unicodedata.normalize("NFKC", str(value or "")).casefold()
     text = _LATEX_DELIMS.sub("", text)
     text = text.replace("−", "-").replace("–", "-").replace("—", "-")
     text = _SPACE.sub(" ", text).strip()
     text = _MATH_SPACING.sub(r"\1", text)
-    text = _TERMINAL_PUNCT.sub("", text).strip()
-    return text
+    return _TERMINAL_PUNCT.sub("", text).strip()
 
 
 def tokenize(value: object) -> tuple[str, ...]:
@@ -93,30 +93,28 @@ def _answer_summary(question: Mapping[str, object]) -> str:
 
 
 def normalized_exact_fingerprint(question: Mapping[str, object]) -> str:
-    payload = {
+    return digest({
         "stem": normalize_content(question.get("stem")),
         "subparts": [normalize_content(x) for x in question.get("subparts", []) or []],
         "options": [normalize_content(_option_text(x)) for x in question.get("options", []) or []],
         "conditions": [normalize_content(x) for x in question.get("conditions", []) or []],
-    }
-    return digest(payload)
+    })
 
 
 def structural_fingerprint(question: Mapping[str, object]) -> str:
-    payload = {
+    return digest({
         "stem": normalize_content(question.get("stem")),
         "question_type": normalize_content(question.get("question_type")),
         "options": [normalize_content(_option_text(x)) for x in question.get("options", []) or []],
         "answer": normalize_content(_answer_summary(question)),
-    }
-    return digest(payload)
+    })
 
 
 def source_identity(question: Mapping[str, object]) -> tuple[str, ...] | None:
-    # Subject is part of source identity so two subject sections with the same exam/paper
-    # question number cannot be falsely reconciled as one source record.
+    # Subject participates in source identity so equal paper/question numbers from different
+    # subject sections cannot be reconciled as one source item.
     fields = ("subject", "exam", "year", "paper", "question_number")
-    values = tuple(str(question.get(k) or "").strip() for k in fields)
+    values = tuple(str(question.get(key) or "").strip() for key in fields)
     return values if all(values) else None
 
 
@@ -130,7 +128,7 @@ def _jaccard(left: Iterable[str], right: Iterable[str]) -> float:
 
 
 def compare_pair(left: Mapping[str, object], right: Mapping[str, object]) -> dict:
-    """Classify one pair without deleting or merging either record."""
+    """Classify one pair. This function never mutates, merges or deletes either record."""
     lid, rid = str(left.get("id")), str(right.get("id"))
     if lid == rid:
         same = structural_fingerprint(left) == structural_fingerprint(right)
@@ -157,9 +155,12 @@ def compare_pair(left: Mapping[str, object], right: Mapping[str, object]) -> dic
         return {"classification": "VARIANT", "reason": "explicit_family_ref", "score": 1.0}
 
     similarity = _jaccard(tokenize(left.get("stem")), tokenize(right.get("stem")))
-    if similarity >= 0.82:
-        return {"classification": "NEAR_DUPLICATE", "reason": "stem_token_jaccard", "score": round(similarity, 6)}
-
+    if similarity >= NEAR_THRESHOLD:
+        return {
+            "classification": "NEAR_DUPLICATE",
+            "reason": "stem_token_jaccard",
+            "score": round(similarity, 6),
+        }
     return {"classification": "DISTINCT", "reason": "no_duplicate_signal", "score": round(similarity, 6)}
 
 
@@ -179,26 +180,12 @@ def validate_unique_ids(questions: Sequence[Mapping[str, object]]) -> None:
         by_id[qid] = question
 
 
-def build_dedup_report(questions: Sequence[Mapping[str, object]]) -> dict:
-    validate_unique_ids(questions)
-    relationships: list[dict] = []
-    seen_pairs: set[tuple[str, str]] = set()
-
-    def emit(left: Mapping[str, object], right: Mapping[str, object], result: dict) -> None:
-        key = tuple(sorted((str(left["id"]), str(right["id"]))))
-        if key in seen_pairs or result["classification"] == "DISTINCT":
-            return
-        seen_pairs.add(key)
-        relationships.append({
-            "left_id": key[0],
-            "right_id": key[1],
-            **result,
-        })
-
+def _group_evidence(questions: Sequence[Mapping[str, object]]) -> list[dict]:
+    """Create compact exact/source/family groups; never materialize every family pair."""
+    groups: list[dict] = []
     exact: dict[str, list[Mapping[str, object]]] = defaultdict(list)
     sources: dict[tuple[str, ...], list[Mapping[str, object]]] = defaultdict(list)
     families: dict[str, list[Mapping[str, object]]] = defaultdict(list)
-    topical: dict[tuple[str, str], list[Mapping[str, object]]] = defaultdict(list)
 
     for question in questions:
         exact[normalized_exact_fingerprint(question)].append(question)
@@ -208,32 +195,133 @@ def build_dedup_report(questions: Sequence[Mapping[str, object]]) -> dict:
         fam = str(question.get("family_ref") or "")
         if fam:
             families[fam].append(question)
-        topical[(str(question.get("subject_ref") or question.get("subject") or ""),
-                 str(question.get("topic_ref") or question.get("topic") or ""))].append(question)
 
-    for groups in (exact.values(), sources.values(), families.values()):
-        for group in groups:
-            for i, left in enumerate(group):
-                for right in group[i + 1:]:
-                    emit(left, right, compare_pair(left, right))
+    for fingerprint, members in exact.items():
+        if len(members) > 1:
+            groups.append({
+                "classification": "DUPLICATE",
+                "reason": "normalized_exact_content",
+                "fingerprint": fingerprint,
+                "member_ids": sorted(str(row["id"]) for row in members),
+            })
 
-    for group in topical.values():
-        ordered = sorted(group, key=lambda q: str(q["id"]))
-        for i, left in enumerate(ordered):
-            ltokens = tokenize(left.get("stem"))
-            for right in ordered[i + 1:]:
-                rtokens = tokenize(right.get("stem"))
-                if max(len(ltokens), len(rtokens), 1) > 2 * max(min(len(ltokens), len(rtokens)), 1):
+    for identity, members in sources.items():
+        if len(members) < 2:
+            continue
+        structures = {structural_fingerprint(row) for row in members}
+        classification = "DUPLICATE" if len(structures) == 1 else "SOURCE_COLLISION"
+        groups.append({
+            "classification": classification,
+            "reason": "same_source_identity_same_structure" if classification == "DUPLICATE" else "same_source_identity_conflict",
+            "source_identity": list(identity),
+            "member_ids": sorted(str(row["id"]) for row in members),
+        })
+
+    for family_ref, members in families.items():
+        if len(members) > 1:
+            groups.append({
+                "classification": "VARIANT",
+                "reason": "explicit_family_ref",
+                "family_ref": family_ref,
+                "member_ids": sorted(str(row["id"]) for row in members),
+            })
+
+    groups.sort(key=lambda row: (
+        row["classification"],
+        str(row.get("family_ref") or row.get("fingerprint") or row.get("source_identity") or ""),
+    ))
+    return groups
+
+
+def _shingles(tokens: Sequence[str]) -> set[tuple[str, ...]]:
+    if len(tokens) < NEAR_SHINGLE_SIZE:
+        return set()
+    return {
+        tuple(tokens[index:index + NEAR_SHINGLE_SIZE])
+        for index in range(len(tokens) - NEAR_SHINGLE_SIZE + 1)
+    }
+
+
+def _near_duplicate_evidence(questions: Sequence[Mapping[str, object]]) -> list[dict]:
+    """Bounded deterministic near-duplicate search within subject/topic partitions.
+
+    Shared 3-token shingles generate candidates. Extremely common shingles are ignored and
+    each record compares with at most a fixed number of strongest candidates, preventing
+    same-topic corpora from degenerating into all-pairs work as the corpus grows.
+    """
+    partitions: dict[tuple[str, str], list[Mapping[str, object]]] = defaultdict(list)
+    for question in questions:
+        partitions[(
+            str(question.get("subject_ref") or question.get("subject") or ""),
+            str(question.get("topic_ref") or question.get("topic") or ""),
+        )].append(question)
+
+    relationships: list[dict] = []
+    seen_pairs: set[tuple[str, str]] = set()
+    for members in partitions.values():
+        by_id = {str(row["id"]): row for row in members}
+        tokens_by_id = {qid: tokenize(row.get("stem")) for qid, row in by_id.items()}
+        inverted: dict[tuple[str, ...], list[str]] = defaultdict(list)
+        for qid, tokens in tokens_by_id.items():
+            for shingle in _shingles(tokens):
+                inverted[shingle].append(qid)
+
+        candidate_scores: dict[str, Counter] = defaultdict(Counter)
+        for ids in inverted.values():
+            unique_ids = sorted(set(ids))
+            if len(unique_ids) < 2 or len(unique_ids) > NEAR_MAX_BUCKET:
+                continue
+            for qid in unique_ids:
+                for other in unique_ids:
+                    if qid != other:
+                        candidate_scores[qid][other] += 1
+
+        for qid in sorted(by_id):
+            ranked = sorted(candidate_scores.get(qid, {}).items(), key=lambda row: (-row[1], row[0]))
+            for other, shared_shingles in ranked[:NEAR_MAX_CANDIDATES_PER_RECORD]:
+                pair = tuple(sorted((qid, other)))
+                if pair in seen_pairs:
                     continue
-                emit(left, right, compare_pair(left, right))
+                seen_pairs.add(pair)
+                result = compare_pair(by_id[qid], by_id[other])
+                if result["classification"] != "NEAR_DUPLICATE":
+                    continue
+                relationships.append({
+                    "left_id": pair[0],
+                    "right_id": pair[1],
+                    "shared_shingles": shared_shingles,
+                    **result,
+                })
 
-    relationships.sort(key=lambda row: (row["left_id"], row["right_id"], row["classification"]))
-    counts = dict(sorted(Counter(row["classification"] for row in relationships).items()))
+    relationships.sort(key=lambda row: (row["left_id"], row["right_id"]))
+    return relationships
+
+
+def build_dedup_report(questions: Sequence[Mapping[str, object]]) -> dict:
+    validate_unique_ids(questions)
+    groups = _group_evidence(questions)
+    relationships = _near_duplicate_evidence(questions)
+    counts = Counter(row["classification"] for row in groups)
+    counts.update(row["classification"] for row in relationships)
     return {
         "schema_version": DEDUP_SCHEMA,
         "authority": "EVIDENCE_ONLY_NO_SILENT_DELETION",
         "question_count": len(questions),
-        "relationship_counts": counts,
+        "strategy": {
+            "exact": "normalized_semantic_preserving_fingerprint",
+            "source": "subject_exam_year_paper_question_number",
+            "variants": "compact_family_groups",
+            "near_duplicate": {
+                "partition": "subject_topic",
+                "shingle_size": NEAR_SHINGLE_SIZE,
+                "max_shingle_bucket": NEAR_MAX_BUCKET,
+                "max_candidates_per_record": NEAR_MAX_CANDIDATES_PER_RECORD,
+                "jaccard_threshold": NEAR_THRESHOLD,
+            },
+        },
+        "evidence_counts": dict(sorted(counts.items())),
+        "evidence_count": len(groups) + len(relationships),
+        "groups": groups,
         "relationships": relationships,
     }
 
@@ -243,8 +331,9 @@ def _projection_refs(question: Mapping[str, object]) -> tuple[str, str]:
     topic = str(question.get("topic") or "")
     explicit_subject = question.get("subject_ref")
     explicit_topic = question.get("topic_ref")
-    return subject_ref(subject, str(explicit_subject) if explicit_subject else None), topic_ref(
-        subject, topic, str(explicit_topic) if explicit_topic else None
+    return (
+        subject_ref(subject, str(explicit_subject) if explicit_subject else None),
+        topic_ref(subject, topic, str(explicit_topic) if explicit_topic else None),
     )
 
 
@@ -256,7 +345,7 @@ def enrich_question_refs(question: Mapping[str, object]) -> dict:
     subtopics = list(question.get("subtopic_refs") or [])
     if not subtopics and question.get("primary_capability_ref"):
         subtopics = [str(question["primary_capability_ref"])] + [
-            str(x) for x in question.get("secondary_capability_refs", []) or []
+            str(value) for value in question.get("secondary_capability_refs", []) or []
         ]
     out["subtopic_refs"] = list(dict.fromkeys(subtopics))
     return out
@@ -265,17 +354,19 @@ def enrich_question_refs(question: Mapping[str, object]) -> dict:
 def _resource_scope(resource: Mapping[str, object], fallback_subject: str | None = None) -> dict:
     subject = str(resource.get("subject") or fallback_subject or "")
     topic = str(resource.get("topic") or resource.get("topic_label") or "")
-    explicit_subject = resource.get("subject_ref")
-    explicit_topic = resource.get("topic_ref")
     out = dict(resource)
     if subject:
         out["subject"] = subject
-        out["subject_ref"] = subject_ref(subject, str(explicit_subject) if explicit_subject else None)
+        out["subject_ref"] = subject_ref(subject, str(resource.get("subject_ref")) if resource.get("subject_ref") else None)
     if topic:
         out["topic"] = topic
-        out["topic_ref"] = topic_ref(subject, topic, str(explicit_topic) if explicit_topic else None)
+        out["topic_ref"] = topic_ref(subject, topic, str(resource.get("topic_ref")) if resource.get("topic_ref") else None)
     out["subtopic_refs"] = list(resource.get("subtopic_refs") or [])
-    out["keywords"] = sorted({slug(x).replace("-", " ") for x in resource.get("keywords", []) or [] if str(x).strip()})
+    out["keywords"] = sorted({
+        normalize_content(value)
+        for value in resource.get("keywords", []) or []
+        if str(value).strip()
+    })
     return out
 
 
@@ -289,7 +380,7 @@ def load_resource_registries(repo: Path) -> tuple[list[dict], list[dict]]:
         fallback_subject = path.relative_to(repo).parts[0]
         rows = doc.get("resources") or []
         for row in rows:
-            if not all(row.get(k) for k in ("id", "kind", "title", "path")):
+            if not all(row.get(key) for key in ("id", "kind", "title", "path")):
                 raise ProjectionError(f"Malformed resource record in {path.relative_to(repo)}: {row}")
             resources.append(_resource_scope(row, fallback_subject))
         basis.append({
@@ -297,39 +388,38 @@ def load_resource_registries(repo: Path) -> tuple[list[dict], list[dict]]:
             "digest": digest(doc),
             "resource_count": len(rows),
         })
-    ids = [str(row["id"]) for row in resources]
-    if len(ids) != len(set(ids)):
-        raise ProjectionError("Question Bank resource registries contain duplicate resource ids")
-    return sorted(resources, key=lambda row: (str(row.get("order", 0)), str(row["id"]))), basis
+    return resources, basis
 
 
 def load_gcdr_suite_resources(repo: Path) -> tuple[list[dict], list[dict]]:
-    """Project GCDR suite delivery records as searchable resources without topic branches."""
+    """Project GCDR suite delivery records generically; no curriculum branch is needed."""
     resources: list[dict] = []
     basis: list[dict] = []
     suites_dir = repo / "docs" / "gcdr-suites"
     if not suites_dir.is_dir():
         return resources, basis
+
     for path in sorted(suites_dir.glob("*.json")):
         doc = json.loads(path.read_text(encoding="utf-8"))
         title = doc.get("title")
         artifacts = doc.get("delivery_artifacts") or []
-        bundle = next(
-            (row for row in artifacts if isinstance(row, Mapping) and row.get("profile") == "REPO_BUNDLE" and row.get("locator")),
-            None,
-        )
+        bundle = next((
+            row for row in artifacts
+            if isinstance(row, Mapping) and row.get("profile") == "REPO_BUNDLE" and row.get("locator")
+        ), None)
         if not title or not bundle:
             continue
         locator = str(bundle["locator"])
         public_path = locator[7:] if locator.startswith("public/") else locator
-        path_parts = Path(public_path).parts
-        if not path_parts:
+        parts = Path(public_path).parts
+        if not parts:
             continue
-        subject = str((doc.get("external_corpus") or {}).get("subject") or path_parts[0]).replace("-", " ").title()
-        topic = str((doc.get("external_corpus") or {}).get("topic") or "")
-        suite_id = str(doc.get("suite_id") or f"RES-GCDR-{slug(title).upper()}")
+        corpus = doc.get("external_corpus") or {}
+        subject = str(corpus.get("subject") or parts[0]).replace("-", " ").title()
+        topic = str(corpus.get("topic") or "")
+        suite_id = str(doc.get("suite_id") or f"gcdr-suite:{slug(title)}")
         keywords = sorted(set(_TOKEN.findall(normalize_content(
-            " ".join([title, topic, suite_id, "explorer interactive suite"])
+            " ".join([str(title), topic, suite_id, "explorer interactive suite"])
         ))))
         resources.append(_resource_scope({
             "id": suite_id,
@@ -354,58 +444,68 @@ def load_resources(repo: Path) -> tuple[list[dict], list[dict]]:
     suite_resources, suite_basis = load_gcdr_suite_resources(repo)
     rows = registry_resources + suite_resources
     ids = [str(row["id"]) for row in rows]
-    if len(ids) != len(set(ids)):
-        duplicates = sorted(k for k, count in Counter(ids).items() if count > 1)
+    duplicates = sorted(key for key, count in Counter(ids).items() if count > 1)
+    if duplicates:
         raise ProjectionError(f"Question Bank resources contain duplicate ids: {duplicates}")
-    rows.sort(key=lambda row: (str(row.get("subject_ref") or ""), str(row.get("topic_ref") or ""), str(row.get("order", 0)), str(row["id"])))
+    rows.sort(key=lambda row: (
+        str(row.get("subject_ref") or ""),
+        str(row.get("topic_ref") or ""),
+        str(row.get("order", 0)),
+        str(row["id"]),
+    ))
     return rows, registry_basis + suite_basis
 
 
 def build_catalog(questions: Sequence[Mapping[str, object]], resources: Sequence[Mapping[str, object]] = ()) -> dict:
-    enriched = [enrich_question_refs(q) for q in questions]
+    enriched = [enrich_question_refs(question) for question in questions]
     subject_rows: dict[str, dict] = {}
     topic_rows: dict[str, dict] = {}
     subtopic_rows: dict[str, dict] = {}
 
-    for q in enriched:
-        sref, tref = q["subject_ref"], q["topic_ref"]
-        subject_rows.setdefault(sref, {"id": sref, "label": q["subject"], "question_count": 0, "resource_count": 0})
-        subject_rows[sref]["question_count"] += 1
+    for question in enriched:
+        sref, tref = question["subject_ref"], question["topic_ref"]
+        subject_rows.setdefault(sref, {
+            "id": sref,
+            "label": question["subject"],
+            "question_count": 0,
+            "resource_count": 0,
+        })["question_count"] += 1
         topic_rows.setdefault(tref, {
             "id": tref,
             "subject_ref": sref,
-            "label": q["topic"],
+            "label": question["topic"],
             "question_count": 0,
             "resource_count": 0,
-            "identity_basis": "EXPLICIT_REF" if q.get("topic_ref") and q.get("topic_ref") != topic_ref(q["subject"], q["topic"]) else "LEGACY_LABEL_DERIVED",
-        })
-        topic_rows[tref]["question_count"] += 1
-        for ref in q.get("subtopic_refs", []):
+            "identity_basis": "EXPLICIT_REF" if tref != topic_ref(question["subject"], question["topic"]) else "LEGACY_LABEL_DERIVED",
+        })["question_count"] += 1
+        for ref in question.get("subtopic_refs", []):
             subtopic_rows.setdefault(ref, {
                 "id": ref,
                 "subject_ref": sref,
                 "topic_ref": tref,
                 "label": ref,
                 "question_count": 0,
-            })
-            subtopic_rows[ref]["question_count"] += 1
+            })["question_count"] += 1
 
     for raw in resources:
-        r = _resource_scope(raw)
-        sref, tref = r.get("subject_ref"), r.get("topic_ref")
+        resource = _resource_scope(raw)
+        sref, tref = resource.get("subject_ref"), resource.get("topic_ref")
         if sref:
-            subject_rows.setdefault(sref, {"id": sref, "label": r.get("subject", sref), "question_count": 0, "resource_count": 0})
-            subject_rows[sref]["resource_count"] += 1
+            subject_rows.setdefault(sref, {
+                "id": sref,
+                "label": resource.get("subject", sref),
+                "question_count": 0,
+                "resource_count": 0,
+            })["resource_count"] += 1
         if tref:
             topic_rows.setdefault(tref, {
                 "id": tref,
                 "subject_ref": sref,
-                "label": r.get("topic", tref),
+                "label": resource.get("topic", tref),
                 "question_count": 0,
                 "resource_count": 0,
                 "identity_basis": "EXPLICIT_REF" if raw.get("topic_ref") else "LEGACY_LABEL_DERIVED",
-            })
-            topic_rows[tref]["resource_count"] += 1
+            })["resource_count"] += 1
 
     subjects = sorted(subject_rows.values(), key=lambda row: (str(row["label"]).casefold(), row["id"]))
     topics = sorted(topic_rows.values(), key=lambda row: (row.get("subject_ref") or "", str(row["label"]).casefold(), row["id"]))
@@ -426,42 +526,47 @@ def build_catalog(questions: Sequence[Mapping[str, object]], resources: Sequence
 
 
 def _search_text(parts: Iterable[object]) -> str:
-    return " ".join(x for x in (normalize_content(part) for part in parts) if x)
+    return " ".join(part for part in (normalize_content(value) for value in parts) if part)
 
 
 def build_search_index(questions: Sequence[Mapping[str, object]], resources: Sequence[Mapping[str, object]] = ()) -> dict:
     documents: list[dict] = []
     for raw in questions:
-        q = enrich_question_refs(raw)
+        question = enrich_question_refs(raw)
         parts: list[object] = [
-            q.get("id"), q.get("subject"), q.get("topic"), q.get("exam"), q.get("year"), q.get("paper"),
-            q.get("question_type"), q.get("stem"), q.get("primary_capability_ref"), q.get("family_ref"),
-            q.get("stable_crux_move"), " ".join(q.get("secondary_capability_refs", []) or []),
+            question.get("id"), question.get("subject"), question.get("topic"), question.get("exam"),
+            question.get("year"), question.get("paper"), question.get("question_type"), question.get("stem"),
+            question.get("primary_capability_ref"), question.get("family_ref"), question.get("stable_crux_move"),
+            " ".join(question.get("secondary_capability_refs", []) or []),
         ]
         documents.append({
-            "id": q["id"],
+            "id": question["id"],
             "kind": "question",
-            "subject_ref": q["subject_ref"],
-            "topic_ref": q["topic_ref"],
-            "subtopic_refs": q.get("subtopic_refs", []),
-            "label": q.get("stem") or q["id"],
-            "difficulty": (q.get("difficulty") or {}).get("band") if isinstance(q.get("difficulty"), Mapping) else None,
+            "subject_ref": question["subject_ref"],
+            "topic_ref": question["topic_ref"],
+            "subtopic_refs": question.get("subtopic_refs", []),
+            "label": question.get("stem") or question["id"],
+            "difficulty": (question.get("difficulty") or {}).get("band") if isinstance(question.get("difficulty"), Mapping) else None,
             "search_text": _search_text(parts),
         })
+
     for raw in resources:
-        r = _resource_scope(raw)
-        parts = [r.get("id"), r.get("title"), r.get("kind"), r.get("subject"), r.get("topic"), " ".join(r.get("keywords", []))]
+        resource = _resource_scope(raw)
         documents.append({
-            "id": r["id"],
+            "id": resource["id"],
             "kind": "resource",
-            "subject_ref": r.get("subject_ref"),
-            "topic_ref": r.get("topic_ref"),
-            "subtopic_refs": r.get("subtopic_refs", []),
-            "label": r["title"],
-            "path": r["path"],
-            "resource_kind": r["kind"],
-            "search_text": _search_text(parts),
+            "subject_ref": resource.get("subject_ref"),
+            "topic_ref": resource.get("topic_ref"),
+            "subtopic_refs": resource.get("subtopic_refs", []),
+            "label": resource["title"],
+            "path": resource["path"],
+            "resource_kind": resource["kind"],
+            "search_text": _search_text([
+                resource.get("id"), resource.get("title"), resource.get("kind"),
+                resource.get("subject"), resource.get("topic"), " ".join(resource.get("keywords", [])),
+            ]),
         })
+
     documents.sort(key=lambda row: (row["kind"], str(row["id"])))
     return {"schema_version": SEARCH_SCHEMA, "document_count": len(documents), "documents": documents}
 
@@ -469,70 +574,73 @@ def build_search_index(questions: Sequence[Mapping[str, object]], resources: Seq
 def search(index: Mapping[str, object], query: str, *, kind: str | None = None,
            subject: str | None = None, topic: str | None = None) -> list[dict]:
     terms = tokenize(query)
-    out: list[dict] = []
-    for doc in index.get("documents", []) or []:
-        if kind and doc.get("kind") != kind:
+    output: list[dict] = []
+    for document in index.get("documents", []) or []:
+        if kind and document.get("kind") != kind:
             continue
-        if subject and doc.get("subject_ref") != subject:
+        if subject and document.get("subject_ref") != subject:
             continue
-        if topic and doc.get("topic_ref") != topic:
+        if topic and document.get("topic_ref") != topic:
             continue
-        hay = str(doc.get("search_text") or "")
-        if terms and not all(term in hay for term in terms):
+        haystack = str(document.get("search_text") or "")
+        if terms and not all(term in haystack for term in terms):
             continue
-        out.append(dict(doc))
-    return out
+        output.append(dict(document))
+    return output
 
 
 def _package_qbank_config(package: Mapping[str, object], question: Mapping[str, object]) -> Mapping[str, object] | None:
-    pext = package.get("extensions") or {}
-    qext = question.get("extensions") or {}
-    pcfg = pext.get("grade9v3:question_bank") if isinstance(pext, Mapping) else None
-    qcfg = qext.get("grade9v3:question_bank") if isinstance(qext, Mapping) else None
+    package_extensions = package.get("extensions") or {}
+    question_extensions = question.get("extensions") or {}
+    package_config = package_extensions.get("grade9v3:question_bank") if isinstance(package_extensions, Mapping) else None
+    question_config = question_extensions.get("grade9v3:question_bank") if isinstance(question_extensions, Mapping) else None
     config: dict = {}
-    if isinstance(pcfg, Mapping):
-        config.update(pcfg)
-    if isinstance(qcfg, Mapping):
-        config.update(qcfg)
+    if isinstance(package_config, Mapping):
+        config.update(package_config)
+    if isinstance(question_config, Mapping):
+        config.update(question_config)
     return config if config.get("include") is True else None
 
 
 def project_package_question(package: Mapping[str, object], question: Mapping[str, object], order: int = 0) -> dict | None:
-    """Normalize one explicitly opted-in Shared package question without subject branching."""
+    """Normalize one explicitly opted-in Shared package question without subject branches."""
     config = _package_qbank_config(package, question)
     if config is None:
         return None
+
     extensions = question.get("extensions") or {}
     analysis = extensions.get("grade9v3:analysis") if isinstance(extensions, Mapping) else None
     custody = extensions.get("grade9v3:source_custody") if isinstance(extensions, Mapping) else None
     analysis = analysis if isinstance(analysis, Mapping) else {}
     custody = custody if isinstance(custody, Mapping) else {}
     difficulty = analysis.get("difficulty") or config.get("difficulty")
-    qtype = analysis.get("learner_question_type") or config.get("question_type")
-    expected = analysis.get("expected_time_seconds") or config.get("expected_time_seconds")
-    if not isinstance(difficulty, Mapping) or not difficulty.get("band") or qtype is None or expected is None:
+    question_type = analysis.get("learner_question_type") or config.get("question_type")
+    expected_time = analysis.get("expected_time_seconds") or config.get("expected_time_seconds")
+    if not isinstance(difficulty, Mapping) or not difficulty.get("band") or question_type is None or expected_time is None:
         raise ProjectionError(f"Opted-in package question {question.get('id')} lacks browser metadata")
 
     subject = str(package.get("subject") or "")
     package_id = str(package.get("package_id") or "")
     topic_label = str(config.get("topic_label") or package.get("title") or package_id)
-    tref = str(config.get("topic_ref") or package_id)
-    if not subject or not package_id or not topic_label or not tref:
+    stable_topic_ref = str(config.get("topic_ref") or package_id)
+    if not subject or not package_id or not topic_label or not stable_topic_ref:
         raise ProjectionError(f"Opted-in package question {question.get('id')} lacks stable package/topic identity")
+
     answer = question.get("answer") or {}
     if not isinstance(answer, Mapping):
         raise ProjectionError(f"Opted-in package question {question.get('id')} has malformed answer")
+
     return {
         "id": question["id"],
         "order": order,
         "subject": subject,
         "subject_ref": str(config.get("subject_ref") or subject_ref(subject)),
         "topic": topic_label,
-        "topic_ref": tref,
+        "topic_ref": stable_topic_ref,
         "subtopic_refs": list(config.get("subtopic_refs") or ([question.get("primary_capability_ref")] if question.get("primary_capability_ref") else [])),
         "version": question.get("version"),
         "status": question.get("status"),
-        "question_type": qtype,
+        "question_type": question_type,
         "exam": custody.get("exam") or config.get("exam") or "",
         "year": custody.get("year") or config.get("year") or "",
         "paper": custody.get("paper") or config.get("paper") or "",
@@ -551,14 +659,14 @@ def project_package_question(package: Mapping[str, object], question: Mapping[st
         "options": question.get("options", []),
         "conditions": question.get("conditions", []),
         "difficulty": dict(difficulty),
-        "expected_time_seconds": expected,
+        "expected_time_seconds": expected_time,
         "common_wrong_route": analysis.get("common_wrong_route") or config.get("common_wrong_route") or "",
         "stable_crux_move": analysis.get("stable_crux_move") or config.get("stable_crux_move") or "",
         "primary_capability_ref": question.get("primary_capability_ref"),
         "secondary_capability_refs": question.get("secondary_capability_refs", []),
         "family_ref": question.get("family_ref"),
         "source_hints": question.get("hints", []),
-        "scaffolds": question.get("scaffolds", []),
+        "scaffolds": question.get("scaffolds") or [],
         "answer": {
             "summary": answer.get("summary", ""),
             "reasoning": answer.get("reasoning", []),
@@ -568,10 +676,7 @@ def project_package_question(package: Mapping[str, object], question: Mapping[st
             "verification_status": answer.get("verification_status"),
         },
         "visual_ref": config.get("visual_ref"),
-        "lineage": {
-            "adapter": "shared_package_question_v1",
-            "package_id": package_id,
-        },
+        "lineage": {"adapter": "shared_package_question_v1", "package_id": package_id},
     }
 
 
@@ -597,18 +702,23 @@ def run_worker(worker_id: str, input_value: object, producer) -> WorkerResult:
 
 
 def build_lineage(questions: Sequence[Mapping[str, object]], search_index: Mapping[str, object], build_id: str) -> dict:
-    indexed = {str(row["id"]) for row in search_index.get("documents", []) or [] if row.get("kind") == "question"}
+    indexed = {
+        str(row["id"])
+        for row in search_index.get("documents", []) or []
+        if row.get("kind") == "question"
+    }
     rows = []
     for raw in questions:
-        q = enrich_question_refs(raw)
+        question = enrich_question_refs(raw)
+        lineage = question.get("lineage") or {}
         rows.append({
-            "id": q["id"],
-            "subject_ref": q["subject_ref"],
-            "topic_ref": q["topic_ref"],
-            "subtopic_refs": q.get("subtopic_refs", []),
-            "source_path": q.get("source_path"),
-            "adapter": (q.get("lineage") or {}).get("adapter") if isinstance(q.get("lineage"), Mapping) else q.get("adapter"),
-            "search_indexed": q["id"] in indexed,
+            "id": question["id"],
+            "subject_ref": question["subject_ref"],
+            "topic_ref": question["topic_ref"],
+            "subtopic_refs": question.get("subtopic_refs", []),
+            "source_path": question.get("source_path"),
+            "adapter": lineage.get("adapter") if isinstance(lineage, Mapping) else question.get("adapter"),
+            "search_indexed": question["id"] in indexed,
             "build_id": build_id,
         })
     rows.sort(key=lambda row: str(row["id"]))
@@ -617,15 +727,21 @@ def build_lineage(questions: Sequence[Mapping[str, object]], search_index: Mappi
 
 def assemble_platform(browser_projection: Mapping[str, object], resources: Sequence[Mapping[str, object]] = (),
                       resource_basis: Sequence[Mapping[str, object]] = ()) -> dict:
-    """Build deterministic derived contracts from the existing canonical browser projection."""
-    questions = [enrich_question_refs(q) for q in browser_projection.get("questions", []) or []]
+    """Build deterministic derived contracts from the canonical browser projection."""
+    questions = [enrich_question_refs(question) for question in browser_projection.get("questions", []) or []]
     validate_unique_ids(questions)
-    resources = [_resource_scope(r) for r in resources]
+    scoped_resources = [_resource_scope(resource) for resource in resources]
 
-    catalog_worker = run_worker("catalog", {"questions": questions, "resources": resources},
-                                lambda x: build_catalog(x["questions"], x["resources"]))
-    search_worker = run_worker("search", {"questions": questions, "resources": resources},
-                               lambda x: build_search_index(x["questions"], x["resources"]))
+    catalog_worker = run_worker(
+        "catalog",
+        {"questions": questions, "resources": scoped_resources},
+        lambda value: build_catalog(value["questions"], value["resources"]),
+    )
+    search_worker = run_worker(
+        "search",
+        {"questions": questions, "resources": scoped_resources},
+        lambda value: build_search_index(value["questions"], value["resources"]),
+    )
     dedup_worker = run_worker("dedup", questions, build_dedup_report)
 
     identity_basis = {
@@ -642,15 +758,15 @@ def assemble_platform(browser_projection: Mapping[str, object], resources: Seque
         "basis": identity_basis,
         "counts": {
             "questions": len(questions),
-            "resources": len(resources),
+            "resources": len(scoped_resources),
             "search_documents": search_worker.output["document_count"],
-            "dedup_relationships": len(dedup_worker.output["relationships"]),
+            "dedup_evidence": dedup_worker.output["evidence_count"],
         },
         "workers": sorted(workers, key=lambda row: row["worker_id"]),
         "outputs": {
             "catalog": digest(catalog_worker.output),
             "search": digest(search_worker.output),
-            "resources": digest(resources),
+            "resources": digest(scoped_resources),
             "dedup": digest(dedup_worker.output),
             "lineage": digest(lineage),
         },
@@ -660,7 +776,7 @@ def assemble_platform(browser_projection: Mapping[str, object], resources: Seque
         "build_id": build_id,
         "catalog": catalog_worker.output,
         "search": search_worker.output,
-        "resources": {"schema_version": RESOURCE_SCHEMA, "build_id": build_id, "resources": resources},
+        "resources": {"schema_version": RESOURCE_SCHEMA, "build_id": build_id, "resources": scoped_resources},
         "dedup": {**dedup_worker.output, "build_id": build_id},
         "lineage": lineage,
         "receipt": receipt,
@@ -673,10 +789,12 @@ def render_js(global_name: str, value: object) -> str:
 
 def explain(platform: Mapping[str, object], record_id: str) -> dict | None:
     for row in platform.get("lineage", {}).get("questions", []) or []:
-        if row.get("id") == record_id:
-            search_doc = next(
-                (doc for doc in platform.get("search", {}).get("documents", []) or [] if doc.get("id") == record_id),
-                None,
-            )
-            return {"lineage": row, "search_document": search_doc}
+        if row.get("id") != record_id:
+            continue
+        search_document = next((
+            document
+            for document in platform.get("search", {}).get("documents", []) or []
+            if document.get("id") == record_id
+        ), None)
+        return {"lineage": row, "search_document": search_document}
     return None
