@@ -781,56 +781,91 @@ def core1a(ctx: Ctx, m: dict) -> str:
         ctx.gap("AUTHOR_CONSTRUCTION_UNITS", m["id"], "no construction units", "CORE1A")
     steps = {s["id"]: s for s in m.get("teaching_path", [])}
     questions = ctx.index("questions")
-    unit_html = ""
-    support_html = ""
+    exit_task = m.get("exit_task") or {}
+
+    identity = slot(
+        "identity",
+        f"<h2>{esc(m['title'])}</h2>"
+        + metadata_strip(ctx, "CORE1A", m)
+        + block("entry_assumptions", items(m.get("entry_assumptions")) + _prereqs(ctx, m), title="You need")
+        + block("section_route", _core1a_section_route(m), title="Sections"),
+        True,
+    )
+    closure = (
+        block("exit_task", para(exit_task.get("prompt")), title="Try it with less support")
+        + attempt_box("Your answer", record=m["id"])
+        + reveal(
+            "Model answer",
+            block(
+                "exit_answer",
+                para((exit_task.get("answer") or {}).get("summary"))
+                + items((exit_task.get("answer") or {}).get("reasoning"), True),
+            ),
+            ref=f'CORE1A-{m["id"]}-exit',
+        )
+    )
+
     if not units:
-        unit_html, support_html = _core1a_path_bridge(ctx, m, steps)
+        primary, support = _core1a_path_bridge(ctx, m, steps)
+        return (
+            identity
+            + slot(
+                "construction",
+                block("inferential_jump", para(m["inferential_jump"]), title="The key step") + primary,
+                True,
+            )
+            + slot("repair_closure", support + closure, True)
+        )
+
+    paired = ""
     for n, u in enumerate(units):
         decision = "" if u.get("decision_from") == "inferential_jump" else u.get("decision", "")
-        step_html = "".join(f'<li data-g9-step="{esc(sid)}"><strong>{esc(steps[sid]["action"])}</strong>'
-                            f'<br><em>Why valid:</em> {esc(steps[sid]["why_valid"])}'
-                            f'<br><em>Result:</em> {esc(steps[sid]["output"])}</li>'
-                            for sid in u["step_refs"] if sid in steps)
+        step_html = "".join(
+            f'<li data-g9-step="{esc(sid)}"><strong>{esc(steps[sid]["action"])}</strong>'
+            f'<br><em>Why valid:</em> {esc(steps[sid]["why_valid"])}'
+            f'<br><em>Result:</em> {esc(steps[sid]["output"])}</li>'
+            for sid in u["step_refs"] if sid in steps
+        )
         anchor_q = questions.get(u.get("worked_anchor_ref") or "")
         if not anchor_q:
             ctx.gap("AUTHOR_WORKED_ANCHOR", u["id"], "no worked anchor", "CORE1A")
         anchor_html = _core1a_worked_anchor(anchor_q) if anchor_q else ""
-        checks = [c["statement"] for c in u.get("independent_checks") or []]
+        checks = [check["statement"] for check in u.get("independent_checks") or []]
         if not checks:
             ctx.gap("AUTHOR_INDEPENDENT_CHECK", u["id"], "no independent check", "CORE1A")
         wrong = _misconceptions(m, u)
-        heading = f"<h3>{esc(decision)}</h3>" if decision else (f"<h3>Construction step {n + 1} of {len(units)}</h3>" if len(units) > 1 else "")
+        heading = (
+            f"<h3>{esc(decision)}</h3>"
+            if decision
+            else (f"<h3>Construction step {n + 1} of {len(units)}</h3>" if len(units) > 1 else "")
+        )
         relation_matrix = _core1a_relation_matrix(ctx, m) if n == 0 else ""
-        unit_html += (f'<section id="{esc(u["id"])}" class="g9-cu" data-g9-cu="{esc(u["id"])}">{heading}'
-                      + _core1a_unit_navigation(ctx, u["id"])
-                      + block("construction", f"<ol>{step_html}</ol>")
-                      + figure(ctx, u.get("representation_ref"), "TEACHING", "CORE1A", u["id"])
-                      + block("equation_matrix", relation_matrix, title="Equations and validity")
-                      + block("worked_anchor", anchor_html, title="Watch one")
-                      + "</section>")
+        primary = (
+            (block("inferential_jump", para(m["inferential_jump"]), title="The key step") if n == 0 else "")
+            + f'<section id="{esc(u["id"])}" class="g9-cu" data-g9-cu="{esc(u["id"])}">{heading}'
+            + _core1a_unit_navigation(ctx, u["id"])
+            + block("construction", f"<ol>{step_html}</ol>")
+            + figure(ctx, u.get("representation_ref"), "TEACHING", "CORE1A", u["id"])
+            + block("equation_matrix", relation_matrix, title="Equations and validity")
+            + block("worked_anchor", anchor_html, title="Watch one")
+            + "</section>"
+        )
         support_label = decision or f"Construction {n + 1}"
-        support_html += (
+        support = (
             f'<section class="g9-cu-support" data-g9-support-for="{esc(u["id"])}">'
-            f'<h3>{esc(support_label)}</h3>'
-            + block("wrong_path", items(w["wrong_idea"] for w in wrong), title="A tempting wrong path")
-            + block("diagnose", items(w["diagnostic_prompt"] for w in wrong), title="Diagnose")
-            + block("repair", items(w["repair"] for w in wrong), title="Repair")
+            f"<h3>{esc(support_label)}</h3>"
+            + block("wrong_path", items(row["wrong_idea"] for row in wrong), title="A tempting wrong path")
+            + block("diagnose", items(row["diagnostic_prompt"] for row in wrong), title="Diagnose")
+            + block("repair", items(row["repair"] for row in wrong), title="Repair")
             + block("independent_check", items(checks), title="Check it independently")
             + "</section>"
         )
-    exit_task = m.get("exit_task") or {}
-    return (slot("identity", f"<h2>{esc(m['title'])}</h2>" + metadata_strip(ctx, "CORE1A", m)
-                 + block("entry_assumptions", items(m.get("entry_assumptions")) + _prereqs(ctx, m), title="You need")
-                 + block("section_route", _core1a_section_route(m), title="Sections")
-                 , True)
-            + slot("construction", block("inferential_jump", para(m["inferential_jump"]), title="The key step") + unit_html, True)
-            + slot("repair_closure",
-                   support_html
-                   + block("exit_task", para(exit_task.get("prompt")), title="Try it with less support")
-                   + attempt_box("Your answer", record=m["id"])
-                   + reveal("Model answer", block("exit_answer", para((exit_task.get("answer") or {}).get("summary"))
-                                                  + items((exit_task.get("answer") or {}).get("reasoning"), True)),
-                            ref=f'CORE1A-{m["id"]}-exit'), True))
+        # Alternating blueprint-owned slots are deliberate. In compact/medium DOM order,
+        # each companion follows the construction it supports; in expanded grid layout
+        # the same pair occupies the 68/32 primary/support row without duplicating content.
+        paired += slot("construction", primary, True) + slot("repair_closure", support, True)
+
+    return identity + paired + slot("repair_closure", closure, True)
 
 
 def core1b(ctx: Ctx, m: dict) -> str:
@@ -1134,6 +1169,7 @@ article[id],section[id]{scroll-margin-top:96px}
 .g9-cu-support:last-of-type{border-bottom:0}.g9-cu-support>h3{font-size:1rem;line-height:1.35;margin:.3rem 0 .7rem;color:var(--muted)}
 @media (min-width:1100px){.g9-bucket-orientation-grid{display:grid;grid-template-columns:.68fr .32fr;gap:20px}
 article[data-g9-unit].g9-stage-support{display:grid;grid-template-columns:.68fr .32fr;gap:20px}
+body[data-core=CORE1A] article.g9-stage-support>.slot-identity{grid-column:1/-1}
 article.g9-stage-support>.slot-identity,article.g9-stage-support>.slot-attempt,article.g9-stage-support>.slot-construction,article.g9-stage-support>.slot-reconstruction,article.g9-stage-support>.slot-reasoning,article.g9-stage-support>.slot-post_attempt,article.g9-stage-support>.slot-solution{grid-column:1}
 article.g9-stage-support>.slot-support,article.g9-stage-support>.slot-repair_closure{grid-column:2}}
 textarea{width:100%;min-height:120px;font:inherit;border:1px solid var(--line);border-radius:10px;padding:14px 16px;box-sizing:border-box;background:var(--card);color:var(--fg)}
