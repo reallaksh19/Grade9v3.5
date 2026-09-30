@@ -217,6 +217,63 @@ class Core2V2SolutionProjection(unittest.TestCase):
             core2_v2.project_solution(answer)
 
 
+class Core2V2ConceptJoinProjection(unittest.TestCase):
+    @staticmethod
+    def _microtopics() -> list[dict]:
+        return [
+            {"id": "MIC-A", "title": "Concept A", "primary_capability_ref": "CAP-A"},
+            {"id": "MIC-B", "title": "Concept B", "primary_capability_ref": "CAP-B"},
+        ]
+
+    @staticmethod
+    def _questions() -> list[dict]:
+        return [
+            {
+                "id": "Q-PRIMARY",
+                "primary_capability_ref": "CAP-A",
+                "secondary_capability_refs": [],
+            },
+            {
+                "id": "Q-MULTI",
+                "primary_capability_ref": "CAP-B",
+                "secondary_capability_refs": ["CAP-A", "CAP-B", "CAP-A"],
+            },
+            {
+                "id": "Q-UNRELATED",
+                "primary_capability_ref": "CAP-X",
+                "secondary_capability_refs": [],
+            },
+        ]
+
+    def test_primary_and_secondary_capabilities_generate_both_directions(self):
+        join = core2_v2.concept_question_join(self._microtopics(), self._questions())
+        self.assertEqual(join["question_to_microtopics"]["Q-PRIMARY"], ["MIC-A"])
+        self.assertEqual(join["question_to_microtopics"]["Q-MULTI"], ["MIC-B", "MIC-A"])
+        self.assertEqual(join["microtopic_to_questions"]["MIC-A"], ["Q-PRIMARY", "Q-MULTI"])
+        self.assertEqual(join["microtopic_to_questions"]["MIC-B"], ["Q-MULTI"])
+
+    def test_repeated_capability_refs_do_not_duplicate_reciprocal_links(self):
+        join = core2_v2.concept_question_join(self._microtopics(), self._questions())
+        self.assertEqual(join["question_to_microtopics"]["Q-MULTI"].count("MIC-A"), 1)
+        self.assertEqual(join["microtopic_to_questions"]["MIC-A"].count("Q-MULTI"), 1)
+
+    def test_unrelated_selected_question_does_not_get_generic_chapter_link(self):
+        join = core2_v2.concept_question_join(self._microtopics(), self._questions())
+        self.assertEqual(join["question_to_microtopics"]["Q-UNRELATED"], [])
+
+    def test_ambiguous_selected_capability_ownership_fails_closed(self):
+        microtopics = self._microtopics() + [
+            {"id": "MIC-A2", "title": "Second A", "primary_capability_ref": "CAP-A"},
+        ]
+        with self.assertRaises(core2_v2.Core2ConceptJoinError):
+            core2_v2.concept_question_join(microtopics, self._questions())
+
+    def test_duplicate_selected_question_id_fails_closed(self):
+        questions = self._questions() + [dict(self._questions()[0])]
+        with self.assertRaises(core2_v2.Core2ConceptJoinError):
+            core2_v2.concept_question_join(self._microtopics(), questions)
+
+
 class Core2V2SchemaContract(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -245,6 +302,23 @@ class Core2V2SchemaContract(unittest.TestCase):
         self.assertTrue(list(self.validator.iter_errors({**base, "learner_stage": "KEY_CONCEPT"})))
 
 
+class Core2V2BlueprintContract(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.registry = json.loads((REPO / "Shared/web/interactive-page-blueprints.v1.json").read_text(encoding="utf-8"))
+
+    def _blueprint(self, role: str) -> dict:
+        return next(bp for bp in self.registry["blueprints"] if role in bp["core_roles"])
+
+    def test_both_sides_admit_derived_navigation_blocks(self):
+        core1a = self._blueprint("CORE1A")
+        core2 = self._blueprint("CORE2")
+        core1a_blocks = {block for slot in core1a["slots"] for block in slot["accepts_blocks"]}
+        core2_blocks = {block for slot in core2["slots"] for block in slot["accepts_blocks"]}
+        self.assertIn("practice_navigation", core1a_blocks)
+        self.assertIn("concept_navigation", core2_blocks)
+
+
 class Core2V2RendererContract(unittest.TestCase):
     @staticmethod
     def _ctx() -> render_core.Ctx:
@@ -254,6 +328,32 @@ class Core2V2RendererContract(unittest.TestCase):
             bank=[],
             blueprints={},
         )
+
+    @staticmethod
+    def _join_ctx() -> tuple[render_core.Ctx, dict, dict, dict]:
+        microtopic_a = {"id": "MIC-A", "title": "Concept A", "primary_capability_ref": "CAP-A"}
+        microtopic_b = {"id": "MIC-B", "title": "Concept B", "primary_capability_ref": "CAP-B"}
+        question = {
+            "id": "Q-JOIN",
+            "original_identifier": "Exam|2026|Paper 1|Physics|Q7",
+            "primary_capability_ref": "CAP-B",
+            "secondary_capability_refs": ["CAP-A"],
+            "stem": "A source question.",
+            "answer": {"summary": "Answer", "reasoning": ["Working"]},
+            "hints": [{"text": "Hidden source hint", "reveals": "CONCEPT"}],
+            "scaffolds": [],
+        }
+        ctx = render_core.Ctx(
+            manifest={"product_id": "test-product"},
+            packages=[],
+            bank=[],
+            blueprints={},
+            selection_rows={
+                "microtopics": [microtopic_a, microtopic_b],
+                "core2": [question],
+            },
+        )
+        return ctx, microtopic_a, microtopic_b, question
 
     @staticmethod
     def _question() -> dict:
@@ -379,6 +479,51 @@ class Core2V2RendererContract(unittest.TestCase):
         self.assertIn('data-g9-block="structured_working"', rendered)
         self.assertIn('data-g9-solution-stage="CONNECT"', rendered)
         self.assertNotIn("Legacy line one", rendered)
+
+    def test_core1a_practice_navigation_is_exact_and_safe(self):
+        ctx, microtopic_a, _microtopic_b, _question = self._join_ctx()
+        rendered = render_core._core1a_practice_navigation(ctx, microtopic_a)
+        self.assertIn('data-g9-block="practice_navigation"', rendered)
+        self.assertIn('href="core2.html#Q-JOIN"', rendered)
+        self.assertIn('data-g9-question-ref="Q-JOIN"', rendered)
+        self.assertNotIn("Hidden source hint", rendered)
+
+    def test_core2_concept_navigation_uses_primary_and_secondary_exact_concepts(self):
+        ctx, _microtopic_a, _microtopic_b, question = self._join_ctx()
+        rendered = render_core._core2_concept_navigation(ctx, question)
+        self.assertIn('data-g9-block="concept_navigation"', rendered)
+        self.assertIn('href="core1a.html#MIC-B"', rendered)
+        self.assertIn('href="core1a.html#MIC-A"', rendered)
+        self.assertLess(rendered.index("MIC-B"), rendered.index("MIC-A"))
+        self.assertNotIn("Hidden source hint", rendered)
+
+    def test_unrelated_question_renders_no_generic_concept_navigation(self):
+        ctx, _microtopic_a, _microtopic_b, question = self._join_ctx()
+        question = dict(question)
+        question["id"] = "Q-OTHER"
+        question["primary_capability_ref"] = "CAP-X"
+        question["secondary_capability_refs"] = []
+        ctx.selection_rows["core2"] = [question]
+        self.assertEqual(render_core._core2_concept_navigation(ctx, question), "")
+
+    def test_malformed_join_records_typed_gap_and_no_link(self):
+        ctx, microtopic_a, _microtopic_b, question = self._join_ctx()
+        ctx.selection_rows["microtopics"].append(
+            {"id": "MIC-A2", "title": "Second A", "primary_capability_ref": "CAP-A"}
+        )
+        self.assertEqual(render_core._core2_concept_navigation(ctx, question), "")
+        self.assertEqual(render_core._core1a_practice_navigation(ctx, microtopic_a), "")
+        self.assertTrue(any(gap["duty"] == "RESOLVE_CORE2_CONCEPT_JOIN" for gap in ctx.gaps))
+
+    def test_single_file_rewrite_keeps_cross_core_join_exact(self):
+        page = (
+            '<main><article id="MIC-A">'
+            '<a data-g9-practice-link href="core2.html#Q-JOIN">Practice</a>'
+            '</article></main>'
+        )
+        fragment = render_core._single_file_fragment(page, "CORE1A")
+        self.assertIn('id="g9-CORE1A--MIC-A"', fragment)
+        self.assertIn('href="#g9-CORE2--Q-JOIN"', fragment)
 
 
 if __name__ == "__main__":
