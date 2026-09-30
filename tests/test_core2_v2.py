@@ -131,6 +131,92 @@ class Core2V2SupportProjection(unittest.TestCase):
             core2_v2.project_support(question)
 
 
+class Core2V2SolutionProjection(unittest.TestCase):
+    @staticmethod
+    def _answer() -> dict:
+        return {
+            "summary": "Verified result",
+            "reasoning": ["Legacy line one", "Legacy line two"],
+            "crux_move_ref": "MOVE-C",
+            "reasoning_route": [
+                {
+                    "id": "MOVE-U",
+                    "kind": "DECIDE",
+                    "action": "Identify what the question is asking for.",
+                    "why_valid": "The target determines which model outputs matter.",
+                    "inputs": ["stem"],
+                    "output": "Target quantity identified.",
+                },
+                {
+                    "id": "MOVE-R",
+                    "kind": "REPRESENT",
+                    "action": "Resolve the situation into independent components.",
+                    "why_valid": "The chosen axes make the independent directions explicit.",
+                    "inputs": ["diagram", "axes"],
+                    "output": "Component representation ready.",
+                },
+                {
+                    "id": "MOVE-C",
+                    "kind": "CONNECT",
+                    "action": "Connect each component to its governing relation.",
+                    "why_valid": "Each direction follows the same model under the stated conditions.",
+                    "inputs": ["components", "relations"],
+                    "output": "Equations for the unknowns.",
+                },
+                {
+                    "id": "MOVE-X",
+                    "kind": "TRANSFORM",
+                    "action": "Solve the equations and combine the results.",
+                    "why_valid": "Algebra preserves the established relations.",
+                    "inputs": ["equations"],
+                    "output": "Numerical result obtained.",
+                },
+                {
+                    "id": "MOVE-I",
+                    "kind": "VERIFY",
+                    "action": "Interpret and independently check the result.",
+                    "why_valid": "The sign, unit and limiting behaviour must match the physical situation.",
+                    "inputs": ["result"],
+                    "output": "Result is consistent with the scenario.",
+                },
+            ],
+        }
+
+    def test_structured_route_maps_to_preferred_learner_progression_without_losing_moves(self):
+        rows = core2_v2.project_solution(self._answer())
+        self.assertEqual(
+            [row["stage"] for row in rows],
+            ["UNDERSTAND", "REPRESENT", "CONNECT", "CALCULATE", "INTERPRET"],
+        )
+        self.assertEqual([row["move_id"] for row in rows], ["MOVE-U", "MOVE-R", "MOVE-C", "MOVE-X", "MOVE-I"])
+        self.assertEqual([row["is_crux"] for row in rows], [False, False, True, False, False])
+
+    def test_solution_projection_does_not_fabricate_missing_stage_boxes(self):
+        answer = self._answer()
+        answer["reasoning_route"] = [answer["reasoning_route"][2], answer["reasoning_route"][3]]
+        answer["crux_move_ref"] = "MOVE-C"
+        rows = core2_v2.project_solution(answer)
+        self.assertEqual([row["stage"] for row in rows], ["CONNECT", "CALCULATE"])
+
+    def test_repeated_stage_moves_remain_separate_intermediate_steps(self):
+        answer = self._answer()
+        extra = dict(answer["reasoning_route"][3])
+        extra.update({"id": "MOVE-X2", "action": "Substitute the intermediate value into the second relation."})
+        answer["reasoning_route"].insert(4, extra)
+        rows = core2_v2.project_solution(answer)
+        calculate = [row for row in rows if row["stage"] == "CALCULATE"]
+        self.assertEqual([row["move_id"] for row in calculate], ["MOVE-X", "MOVE-X2"])
+
+    def test_legacy_answer_has_no_structured_projection(self):
+        self.assertEqual(core2_v2.project_solution({"reasoning": ["Legacy line"]}), [])
+
+    def test_invalid_crux_reference_fails_closed(self):
+        answer = self._answer()
+        answer["crux_move_ref"] = "MISSING"
+        with self.assertRaises(core2_v2.Core2SolutionProjectionError):
+            core2_v2.project_solution(answer)
+
+
 class Core2V2SchemaContract(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -200,6 +286,12 @@ class Core2V2RendererContract(unittest.TestCase):
             ],
         }
 
+    @staticmethod
+    def _structured_question() -> dict:
+        q = Core2V2RendererContract._question()
+        q["answer"] = Core2V2SolutionProjection._answer()
+        return q
+
     def test_renderer_keeps_source_and_authored_support_in_separate_groups(self):
         ctx = self._ctx()
         rendered = render_core._core2_support(ctx, self._question())
@@ -233,6 +325,42 @@ class Core2V2RendererContract(unittest.TestCase):
         question["hint_ladder"] = [{"order": 1, "from": "scaffolds[99]"}]
         self.assertEqual(render_core._core2_support(ctx, question), "")
         self.assertEqual(ctx.gaps[0]["duty"], "AUTHOR_CORE2_SUPPORT")
+
+    def test_structured_solution_renders_every_move_with_stage_and_crux_semantics(self):
+        ctx = self._ctx()
+        rendered = render_core._core2_reasoning_solution(ctx, self._structured_question())
+        expected = ["UNDERSTAND", "REPRESENT", "CONNECT", "CALCULATE", "INTERPRET"]
+        positions = [rendered.index(f'data-g9-solution-stage="{stage}"') for stage in expected]
+        self.assertEqual(positions, sorted(positions))
+        for move in ("MOVE-U", "MOVE-R", "MOVE-C", "MOVE-X", "MOVE-I"):
+            self.assertIn(f'data-g9-reasoning-move="{move}"', rendered)
+        self.assertIn('data-g9-solution-crux="true"', rendered)
+        self.assertIn("Equations for the unknowns.", rendered)
+        self.assertEqual(ctx.gaps, [])
+
+    def test_structured_solution_does_not_emit_unwritten_stage_boxes(self):
+        q = self._structured_question()
+        q["answer"]["reasoning_route"] = q["answer"]["reasoning_route"][2:4]
+        q["answer"]["crux_move_ref"] = "MOVE-C"
+        rendered = render_core._core2_reasoning_solution(self._ctx(), q)
+        self.assertIn('data-g9-solution-stage="CONNECT"', rendered)
+        self.assertIn('data-g9-solution-stage="CALCULATE"', rendered)
+        self.assertNotIn('data-g9-solution-stage="UNDERSTAND"', rendered)
+        self.assertNotIn('data-g9-solution-stage="REPRESENT"', rendered)
+        self.assertNotIn('data-g9-solution-stage="INTERPRET"', rendered)
+
+    def test_legacy_solution_keeps_existing_reasoning_fallback(self):
+        rendered = render_core._core2_reasoning_solution(self._ctx(), self._question())
+        self.assertIn('data-g9-block="working"', rendered)
+        self.assertIn("Reasoning step", rendered)
+        self.assertNotIn("data-g9-solution-route", rendered)
+
+    def test_invalid_structured_solution_records_gap_and_does_not_fall_back_silently(self):
+        ctx = self._ctx()
+        q = self._structured_question()
+        q["answer"]["crux_move_ref"] = "MISSING"
+        self.assertEqual(render_core._core2_reasoning_solution(ctx, q), "")
+        self.assertEqual(ctx.gaps[0]["duty"], "AUTHOR_CORE2_SOLUTION")
 
 
 if __name__ == "__main__":
