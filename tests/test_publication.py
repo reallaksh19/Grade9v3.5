@@ -132,6 +132,28 @@ class Publication(unittest.TestCase):
         self.assertEqual(json.loads((self.repo / "products" / "acceptance" / "sample.json").read_text())["render_digest"], self.digest)
         mirror.assert_called_once_with(self.repo)
 
+    def test_acceptance_records_where_the_owner_approved_without_requiring_it(self):
+        with mock.patch.object(accept_product, "mirror_pages"):
+            decision = accept_product.accept(
+                "sample", repo=self.repo,
+                approval_ref="  https://github.com/o/r/issues/1#issuecomment-5   \n accepted")
+        self.assertEqual(decision["approval_ref"], "https://github.com/o/r/issues/1#issuecomment-5 accepted")
+        self.assertEqual(decision["accepted_by"], "owner")
+        record = json.loads((self.repo / "products" / "acceptance" / "sample.json").read_text())
+        self.assertEqual(record["approval_ref"], decision["approval_ref"])
+
+    def test_acceptance_without_an_approval_reference_still_publishes(self):
+        with mock.patch.object(accept_product, "mirror_pages"):
+            decision = accept_product.accept("sample", repo=self.repo)
+        self.assertIsNone(decision["approval_ref"])
+        self.assertEqual(decision["accepted_by"], "owner")
+        self.assertTrue((self.repo / "public" / "products" / "physics" / "sample").is_dir())
+
+    def test_an_oversized_approval_reference_is_trimmed_not_refused(self):
+        with mock.patch.object(accept_product, "mirror_pages"):
+            decision = accept_product.accept("sample", repo=self.repo, approval_ref="x" * 900)
+        self.assertEqual(len(decision["approval_ref"]), 500)
+
     def test_owner_acceptance_also_publishes_the_staged_standalone_page(self):
         standalone = self.repo / "publication" / "standalone" / "products" / "physics" / "sample.html"
         standalone.parent.mkdir(parents=True)

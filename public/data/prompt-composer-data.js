@@ -2,7 +2,7 @@
 window.GRADE9V3_PROMPT_COMPOSER = {
   "generated_by": "Shared/tools/build_prompt_composer_data.py",
   "contract_version": "1.0.0",
-  "repository_basis": "architecture-manifest@sha256:55a37eeb426ffb21c4e78dc3ac3be3f43134a4ed13e22edf10e6215603a295bb",
+  "repository_basis": "architecture-manifest@sha256:e098d8894f1c5086155102442abc3336880e5af2435c5ad7771d7bf3aa019497",
   "template": {
     "template_id": "CORE-AGENT-PROMPT",
     "version": "1.1.0",
