@@ -725,6 +725,7 @@ def core1a(ctx: Ctx, m: dict) -> str:
     steps = {s["id"]: s for s in m.get("teaching_path", [])}
     questions = ctx.index("questions")
     unit_html = ""
+    support_html = ""
     for n, u in enumerate(units):
         decision = "" if u.get("decision_from") == "inferential_jump" else u.get("decision", "")
         step_html = "".join(f'<li data-g9-step="{esc(sid)}"><strong>{esc(steps[sid]["action"])}</strong>'
@@ -747,11 +748,17 @@ def core1a(ctx: Ctx, m: dict) -> str:
                       + figure(ctx, u.get("representation_ref"), "TEACHING", "CORE1A", u["id"])
                       + block("equation_matrix", relation_matrix, title="Equations and validity")
                       + block("worked_anchor", anchor_html, title="Watch one")
-                      + block("wrong_path", items(w["wrong_idea"] for w in wrong), title="A tempting wrong path")
-                      + block("diagnose", items(w["diagnostic_prompt"] for w in wrong), title="Diagnose")
-                      + block("repair", items(w["repair"] for w in wrong), title="Repair")
-                      + block("independent_check", items(checks), title="Check it independently")
                       + "</section>")
+        support_label = decision or f"Construction {n + 1}"
+        support_html += (
+            f'<section class="g9-cu-support" data-g9-support-for="{esc(u["id"])}">'
+            f'<h3>{esc(support_label)}</h3>'
+            + block("wrong_path", items(w["wrong_idea"] for w in wrong), title="A tempting wrong path")
+            + block("diagnose", items(w["diagnostic_prompt"] for w in wrong), title="Diagnose")
+            + block("repair", items(w["repair"] for w in wrong), title="Repair")
+            + block("independent_check", items(checks), title="Check it independently")
+            + "</section>"
+        )
     exit_task = m.get("exit_task") or {}
     return (slot("identity", f"<h2>{esc(m['title'])}</h2>" + metadata_strip(ctx, "CORE1A", m)
                  + block("entry_assumptions", items(m.get("entry_assumptions")) + _prereqs(ctx, m), title="You need")
@@ -759,7 +766,8 @@ def core1a(ctx: Ctx, m: dict) -> str:
                  , True)
             + slot("construction", block("inferential_jump", para(m["inferential_jump"]), title="The key step") + unit_html, True)
             + slot("repair_closure",
-                   block("exit_task", para(exit_task.get("prompt")), title="Exit task")
+                   support_html
+                   + block("exit_task", para(exit_task.get("prompt")), title="Try it with less support")
                    + attempt_box("Your answer", record=m["id"])
                    + reveal("Model answer", block("exit_answer", para((exit_task.get("answer") or {}).get("summary"))
                                                   + items((exit_task.get("answer") or {}).get("reasoning"), True)),
@@ -1047,6 +1055,8 @@ article[id],section[id]{scroll-margin-top:96px}
 [data-g9-block=worked_anchor]{border-left:4px solid var(--accent);padding-left:14px}
 .g9-watch-steps>li{margin:.8rem 0}.g9-watch-steps p{margin:.2rem 0}
 [data-g9-block=wrong_path],[data-g9-block=repair]{border-left:3px solid var(--line);padding-left:12px}
+.g9-cu-support{padding:0 0 16px;margin:0 0 16px;border-bottom:1px solid var(--line)}
+.g9-cu-support:last-of-type{border-bottom:0}.g9-cu-support>h3{font-size:1rem;line-height:1.35;margin:.3rem 0 .7rem;color:var(--muted)}
 @media (min-width:1100px){.g9-bucket-orientation-grid{display:grid;grid-template-columns:.68fr .32fr;gap:20px}
 article[data-g9-unit].g9-stage-support{display:grid;grid-template-columns:.68fr .32fr;gap:20px}
 article.g9-stage-support>.slot-identity,article.g9-stage-support>.slot-attempt,article.g9-stage-support>.slot-construction,article.g9-stage-support>.slot-reconstruction,article.g9-stage-support>.slot-reasoning,article.g9-stage-support>.slot-post_attempt,article.g9-stage-support>.slot-solution{grid-column:1}
