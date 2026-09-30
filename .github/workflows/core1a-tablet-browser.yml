@@ -75,7 +75,7 @@ jobs:
 
       - name: Run exact Core1A viewport audit over local HTTP
         run: |
-          node tools/site-audit/core-page-audit.mjs             /tmp/core1a-spec/products/physics/phy-kin-2d-motion             --profile core1a-spec             --http-root /tmp/core1a-spec             --json /tmp/core1a-spec/core1a-audit.json
+          node tools/site-audit/core-page-audit.mjs             /tmp/core1a-spec/products/physics/phy-kin-2d-motion             --profile core1a-spec             --http-root /tmp/core1a-spec             --enforce             --json /tmp/core1a-spec/core1a-audit.json
 
       - name: Upload measurement evidence
         uses: actions/upload-artifact@v4
