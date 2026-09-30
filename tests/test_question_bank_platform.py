@@ -133,7 +133,7 @@ class QuestionBankPlatformTest(unittest.TestCase):
         package["extensions"] = {}
         self.assertIsNone(qbp.project_package_question(package, q))
 
-    def test_dedup_layers_produce_evidence_without_deleting(self):
+    def test_dedup_layers_produce_compact_evidence_without_deleting(self):
         base = question("Q1", "Find the degree of x^2 + 2x + 1", number="1")
         formatted = question("Q2", "Find  the degree of $x^2 + 2x + 1$.", number="2")
         self.assertEqual(qbp.compare_pair(base, formatted)["classification"], "DUPLICATE")
@@ -146,9 +146,24 @@ class QuestionBankPlatformTest(unittest.TestCase):
         v2 = question("Q5", "Solve 3x + 1 = 7", number="5", family="FAM-LINEAR")
         self.assertEqual(qbp.compare_pair(v1, v2)["classification"], "VARIANT")
 
-        report = qbp.build_dedup_report([base, formatted, v1, v2])
-        self.assertEqual(report["question_count"], 4)
-        self.assertEqual(len({row["left_id"] for row in report["relationships"]} | {row["right_id"] for row in report["relationships"]}), 4)
+        report = qbp.build_dedup_report([base, formatted, collision, v1, v2])
+        self.assertEqual(report["question_count"], 5)
+        classifications = {row["classification"] for row in report["groups"]}
+        self.assertIn("DUPLICATE", classifications)
+        self.assertIn("SOURCE_COLLISION", classifications)
+        self.assertIn("VARIANT", classifications)
+        self.assertEqual(report["authority"], "EVIDENCE_ONLY_NO_SILENT_DELETION")
+
+    def test_variant_evidence_does_not_expand_quadratically(self):
+        rows = [
+            question(f"V{i:03d}", f"Solve {i + 2}x + 1 = {i + 4}", number=str(i + 1), family="FAM-SCALE")
+            for i in range(100)
+        ]
+        report = qbp.build_dedup_report(rows)
+        variant_groups = [row for row in report["groups"] if row["classification"] == "VARIANT"]
+        self.assertEqual(len(variant_groups), 1)
+        self.assertEqual(len(variant_groups[0]["member_ids"]), 100)
+        self.assertLess(report["evidence_count"], 100)
 
     def test_exact_dedup_preserves_mathematical_operators(self):
         plus = question("PLUS", "Solve x + 1 = 4", number="10")
