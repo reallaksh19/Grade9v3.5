@@ -52,11 +52,18 @@ jobs:
       - name: Render real Motion-in-2D product
         run: |
           rm -rf /tmp/g9-core2-v2-site
-          mkdir -p /tmp/g9-core2-v2-site/products/physics/phy-kin-2d-motion /tmp/g9-core2-v2-site/css
+          mkdir -p \
+            /tmp/g9-core2-v2-site/products/physics/phy-kin-2d-motion \
+            /tmp/g9-core2-v2-site/products/physics/phy-kin-2d-motion-single \
+            /tmp/g9-core2-v2-site/css
           python3 Shared/tools/render_core.py build \
             --manifest products/physics/phy-kin-2d-motion.manifest.json \
             --out /tmp/g9-core2-v2-site/products/physics/phy-kin-2d-motion \
             --mode PAGES
+          python3 Shared/tools/render_core.py build \
+            --manifest products/physics/phy-kin-2d-motion.manifest.json \
+            --out /tmp/g9-core2-v2-site/products/physics/phy-kin-2d-motion-single \
+            --mode SINGLE_FILE
           cp public/css/tablet-12-7.css /tmp/g9-core2-v2-site/css/tablet-12-7.css
       - name: Shared tablet rendered audit
         run: |
@@ -82,5 +89,6 @@ jobs:
           PY
           node tools/site-audit/core2-v2-browser-audit.mjs \
             --base http://127.0.0.1:8765/products/physics/phy-kin-2d-motion/ \
+            --single-base http://127.0.0.1:8765/products/physics/phy-kin-2d-motion-single/ \
             --witness PYQ-PHY-IITJEE-2011-P2-Q33 \
             --audit-json /tmp/core-page-audit.json
