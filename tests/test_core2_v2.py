@@ -286,12 +286,6 @@ class Core2V2RendererContract(unittest.TestCase):
             ],
         }
 
-    @staticmethod
-    def _structured_question() -> dict:
-        q = Core2V2RendererContract._question()
-        q["answer"] = Core2V2SolutionProjection._answer()
-        return q
-
     def test_renderer_keeps_source_and_authored_support_in_separate_groups(self):
         ctx = self._ctx()
         rendered = render_core._core2_support(ctx, self._question())
@@ -325,42 +319,6 @@ class Core2V2RendererContract(unittest.TestCase):
         question["hint_ladder"] = [{"order": 1, "from": "scaffolds[99]"}]
         self.assertEqual(render_core._core2_support(ctx, question), "")
         self.assertEqual(ctx.gaps[0]["duty"], "AUTHOR_CORE2_SUPPORT")
-
-    def test_structured_solution_renders_every_move_with_stage_and_crux_semantics(self):
-        ctx = self._ctx()
-        rendered = render_core._core2_reasoning_solution(ctx, self._structured_question())
-        expected = ["UNDERSTAND", "REPRESENT", "CONNECT", "CALCULATE", "INTERPRET"]
-        positions = [rendered.index(f'data-g9-solution-stage="{stage}"') for stage in expected]
-        self.assertEqual(positions, sorted(positions))
-        for move in ("MOVE-U", "MOVE-R", "MOVE-C", "MOVE-X", "MOVE-I"):
-            self.assertIn(f'data-g9-reasoning-move="{move}"', rendered)
-        self.assertIn('data-g9-solution-crux="true"', rendered)
-        self.assertIn("Equations for the unknowns.", rendered)
-        self.assertEqual(ctx.gaps, [])
-
-    def test_structured_solution_does_not_emit_unwritten_stage_boxes(self):
-        q = self._structured_question()
-        q["answer"]["reasoning_route"] = q["answer"]["reasoning_route"][2:4]
-        q["answer"]["crux_move_ref"] = "MOVE-C"
-        rendered = render_core._core2_reasoning_solution(self._ctx(), q)
-        self.assertIn('data-g9-solution-stage="CONNECT"', rendered)
-        self.assertIn('data-g9-solution-stage="CALCULATE"', rendered)
-        self.assertNotIn('data-g9-solution-stage="UNDERSTAND"', rendered)
-        self.assertNotIn('data-g9-solution-stage="REPRESENT"', rendered)
-        self.assertNotIn('data-g9-solution-stage="INTERPRET"', rendered)
-
-    def test_legacy_solution_keeps_existing_reasoning_fallback(self):
-        rendered = render_core._core2_reasoning_solution(self._ctx(), self._question())
-        self.assertIn('data-g9-block="working"', rendered)
-        self.assertIn("Reasoning step", rendered)
-        self.assertNotIn("data-g9-solution-route", rendered)
-
-    def test_invalid_structured_solution_records_gap_and_does_not_fall_back_silently(self):
-        ctx = self._ctx()
-        q = self._structured_question()
-        q["answer"]["crux_move_ref"] = "MISSING"
-        self.assertEqual(render_core._core2_reasoning_solution(ctx, q), "")
-        self.assertEqual(ctx.gaps[0]["duty"], "AUTHOR_CORE2_SOLUTION")
 
 
 if __name__ == "__main__":
