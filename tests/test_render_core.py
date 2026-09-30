@@ -425,6 +425,7 @@ class Renderer(unittest.TestCase):
             "anchorSafety",
             "focusProbe",
             "learningStart",
+            "constructionStart",
             "stageKeyboard",
             "sectionKeyboard",
             "historyRestored",
