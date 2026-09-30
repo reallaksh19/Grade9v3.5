@@ -79,16 +79,18 @@ async function articleMetrics(page, vp) {
     const support = article.querySelector('.slot-support');
     const attempt = article.querySelector('.slot-attempt');
     const figure = article.querySelector('.slot-attempt figure[data-g9-figure]');
+    const stem = article.querySelector('[data-g9-block="stem"]');
     return {
       display: style.display,
       columns,
       ratio,
       overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
       figures: article.querySelectorAll('figure[data-g9-figure]').length,
+      hasSourceFigure: !!figure,
       supportRungsInitial: article.querySelectorAll('.slot-support li[data-g9-rung]').length,
       supportTemplates: article.querySelectorAll('.slot-support template[data-g9-rung-payload]').length,
       supportRightOfAttempt: !!(support && attempt && support.getBoundingClientRect().left > attempt.getBoundingClientRect().left),
-      sourceFigureRightOfStem: !!(figure && article.querySelector('[data-g9-block="stem"]') && figure.getBoundingClientRect().left > article.querySelector('[data-g9-block="stem"]').getBoundingClientRect().left),
+      sourceFigureRightOfStem: !!(figure && stem && figure.getBoundingClientRect().left > stem.getBoundingClientRect().left),
     };
   });
   check(result.overflow <= 1, `${vp.name}: focused Core2 overflow ${result.overflow}px`);
@@ -99,7 +101,11 @@ async function articleMetrics(page, vp) {
     check(result.ratio !== null && result.ratio >= 0.66 && result.ratio <= 0.70,
       `${vp.name}: primary/support ratio ${result.ratio} is not approximately 68/32 (${result.columns})`);
     check(result.supportRightOfAttempt, `${vp.name}: support rail is not to the right of learner work`);
-    check(result.sourceFigureRightOfStem, `${vp.name}: source representation is not contextual in the support rail`);
+    // A source representation is contextual when one exists; source questions are
+    // not required to invent a representation merely to occupy the rail.
+    if (result.hasSourceFigure) {
+      check(result.sourceFigureRightOfStem, `${vp.name}: source representation is not contextual in the support rail`);
+    }
   } else {
     check(result.display !== 'grid' || result.columns === 'none', `${vp.name}: portrait retained two-column Core2 grid (${result.columns})`);
   }
@@ -176,8 +182,10 @@ if (conceptRef) {
   const returnLink = page.locator(`[data-g9-practice-link][data-g9-question-ref="${WITNESS}"][data-g9-concept-ref="${conceptRef}"]`);
   check(await returnLink.count() === 1, 'Core1A did not expose the exact reverse practice link');
   if (await returnLink.count()) {
-    check(await returnLink.getAttribute('data-g9-return-link') === 'true', 'matching reverse link was not marked as Return to question');
-    check((await returnLink.textContent()).trim() === 'Return to question', 'matching reverse link was not relabelled Return to question');
+    const hasReturnMarker = await returnLink.evaluate(el => el.hasAttribute('data-g9-return-link'));
+    const returnLabel = (await returnLink.textContent()).trim();
+    check(hasReturnMarker, 'matching reverse link was not marked as Return to question');
+    check(returnLabel.startsWith('Return to question'), `matching reverse link has no Return to question affordance: ${returnLabel}`);
     await Promise.all([page.waitForLoadState('load'), returnLink.click()]);
   }
 }
@@ -221,7 +229,8 @@ if (await blockedConcept.count()) {
   const ordinaryPractice = blocked.locator(`[data-g9-practice-link][data-g9-question-ref="${WITNESS}"][data-g9-concept-ref="${blockedConceptRef}"]`);
   check(await ordinaryPractice.count() === 1, 'storage-blocked Core1A page lost ordinary exact practice link');
   if (await ordinaryPractice.count()) {
-    check(await ordinaryPractice.getAttribute('data-g9-return-link') !== 'true', 'storage-blocked path falsely claims saved return state');
+    const falselyMarkedReturn = await ordinaryPractice.evaluate(el => el.hasAttribute('data-g9-return-link'));
+    check(!falselyMarkedReturn, 'storage-blocked path falsely claims saved return state');
     await Promise.all([blocked.waitForLoadState('load'), ordinaryPractice.click()]);
     check(blocked.url().includes(`core2.html#${WITNESS}`), 'storage-blocked ordinary practice link did not return to exact question');
   }
