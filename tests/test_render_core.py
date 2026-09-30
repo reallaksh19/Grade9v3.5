@@ -4,6 +4,8 @@ from __future__ import annotations
 import copy
 import json
 import re
+import shutil
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -338,6 +340,40 @@ class Renderer(unittest.TestCase):
         self.assertIn("data-g9-bucket-orientation", product)
         self.assertIn("data-g9-equation-matrix", product)
         self.assertNotRegex(product, r'href="core\w+\.html#')
+
+    def test_core1a_browser_audit_contract_is_syntax_valid_and_covers_required_viewports(self):
+        audit = REPO / "tools" / "site-audit" / "core-page-audit.mjs"
+        source = audit.read_text(encoding="utf-8")
+
+        for width, height in ((390, 844), (800, 1280), (820, 1180), (1180, 820), (1280, 800), (1440, 900)):
+            self.assertIn(f"width: {width}, height: {height}", source)
+        for marker in (
+            "core1a-spec",
+            "--http-root",
+            "contentWidthPx",
+            "core1aLayout",
+            "tableContainment",
+            "controlGeometry",
+            "anchorSafety",
+            "focusProbe",
+            "learningStart",
+            "stageKeyboard",
+            "sectionKeyboard",
+            "historyRestored",
+            "reducedMotion",
+            "zoom200",
+        ):
+            self.assertIn(marker, source)
+
+        if not shutil.which("node"):
+            self.skipTest("Node.js unavailable for audit syntax check")
+        result = subprocess.run(
+            ["node", "--check", str(audit)],
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
 
     def test_renderer_owns_tablet_asset_and_blueprint_digest(self):
         pkg = json.loads((REPO / PKG).read_text(encoding="utf-8"))
