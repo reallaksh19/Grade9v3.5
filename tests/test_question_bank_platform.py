@@ -252,6 +252,56 @@ class QuestionBankPlatformTest(unittest.TestCase):
         for view in platform["catalog"]["views"]:
             self.assertLessEqual(set(view["resolved_question_refs"]), listed)
 
+    def test_subtopics_carry_a_canonical_title_or_say_they_have_none(self):
+        a = question("BIO-Q1", "A", topic_ref="T1")
+        a["subtopic_refs"] = ["CAP-A"]
+        b = question("BIO-Q2", "B", topic_ref="T1", number="2")
+        b["subtopic_refs"] = ["CAP-A", "CAP-B"]
+        titles = {"CAP-A": {"title": "Cells release energy", "source_ref": "MIC-A"}}
+        catalog = qbp.assemble_platform({"questions": [a, b]}, subtopic_titles=titles)["catalog"]
+        rows = {row["id"]: row for row in catalog["subtopics"]}
+        self.assertEqual(rows["CAP-A"]["label"], "Cells release energy")
+        self.assertEqual((rows["CAP-A"]["label_source"], rows["CAP-A"]["label_source_ref"]), ("CANONICAL_TITLE", "MIC-A"))
+        self.assertEqual((rows["CAP-B"]["label"], rows["CAP-B"]["label_source"]), ("CAP-B", "REF_ONLY"))
+        self.assertNotIn("label_source_ref", rows["CAP-B"])
+        self.assertEqual(rows["CAP-A"]["question_count"], 2)
+        self.assertEqual(catalog["counts"]["subtopics_without_title"], 1)
+
+    def test_subtopic_titles_are_part_of_the_build_identity(self):
+        browser = {"questions": [question("BIO-Q1", "A", topic_ref="T1")]}
+        plain = qbp.assemble_platform(browser)
+        titled = qbp.assemble_platform(browser, subtopic_titles={"CAP-BIO-CELL": {"title": "Cells", "source_ref": "M"}})
+        self.assertNotEqual(plain["build_id"], titled["build_id"], "an artifact that changed must not keep its build id")
+        self.assertEqual(plain["build_id"], qbp.assemble_platform(browser)["build_id"])
+
+    def test_only_an_unambiguous_owning_microtopic_titles_a_capability(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            library = Path(tmp) / "Subject" / "library"
+            library.mkdir(parents=True)
+            (library / "one.json").write_text(json.dumps({"microtopics": [
+                {"id": "MIC-1", "title": " Sole owner ", "primary_capability_ref": "CAP-A"},
+                {"id": "MIC-2", "title": "First claimant", "primary_capability_ref": "CAP-B"},
+                {"id": "MIC-3", "title": "", "primary_capability_ref": "CAP-D"},
+            ]}), encoding="utf-8")
+            (library / "two.json").write_text(json.dumps({"microtopics": [
+                {"id": "MIC-4", "title": "Second claimant", "primary_capability_ref": "CAP-B"},
+            ]}), encoding="utf-8")
+            (library / "broken.json").write_text("{not json", encoding="utf-8")
+            titles = qbp.load_subtopic_titles(Path(tmp))
+        self.assertEqual(titles, {"CAP-A": {"title": "Sole owner", "source_ref": "MIC-1"}})
+
+    def test_live_subtopic_labels_come_from_records_and_the_rest_are_marked(self):
+        platform = build_question_bank_platform.build(ROOT)
+        titles = qbp.load_subtopic_titles(ROOT)
+        for row in platform["catalog"]["subtopics"]:
+            if row["label_source"] == "CANONICAL_TITLE":
+                self.assertEqual(row["label"], titles[row["id"]]["title"])
+            else:
+                self.assertEqual((row["label"], row["label_source"]), (row["id"], "REF_ONLY"))
+                self.assertNotIn(row["id"], titles)
+        without = sum(1 for row in platform["catalog"]["subtopics"] if row["label_source"] == "REF_ONLY")
+        self.assertEqual(platform["catalog"]["counts"]["subtopics_without_title"], without)
+
     def test_duplicate_canonical_id_fails_closed(self):
         with self.assertRaises(qbp.ProjectionError):
             qbp.validate_unique_ids([question("SAME", "A"), question("SAME", "B")])

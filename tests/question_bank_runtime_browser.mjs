@@ -48,6 +48,11 @@ const summaries = readGlobal(path.join(repo, 'public/data/question-bank-question
 const physics = catalog.subjects.find((s) => s.label === 'Physics');
 const chemistry = catalog.subjects.find((s) => s.label === 'Chemistry');
 
+const titledTopic = catalog.topics.find((t) => {
+  const rows = catalog.subtopics.filter((s) => s.topic_ref === t.id);
+  return rows.length > 1 && rows.every((s) => s.label_source === 'CANONICAL_TITLE');
+});
+
 const browser = await playwright.chromium.launch();
 const live = await serve(path.join(repo, 'public'));
 
@@ -67,7 +72,8 @@ const visibleIds = (page) => page.$$eval('#qbResults > article', (nodes) => node
 const VIEWPORTS = [[390, 844], [800, 1280], [820, 1180], [1180, 820], [1280, 800], [1440, 900]];
 for (const [width, height] of VIEWPORTS) {
   await check(`matrix ${width}x${height}: renders from the generated contracts, no overflow, touch targets, no errors`, async () => {
-    const { page, context, errors } = await open(live.base, '', { width, height });
+    // Open the strips too: the topic and subtopic pills are primary navigation and must meet the floor.
+    const { page, context, errors } = await open(live.base, `?topic=${encodeURIComponent(titledTopic.id)}`, { width, height });
     await listed(page);
     const failed = [];
     page.on('requestfailed', (r) => failed.push(r.url()));
@@ -76,17 +82,19 @@ for (const [width, height] of VIEWPORTS) {
       clientWidth: document.documentElement.clientWidth,
       stats: [...document.querySelectorAll('#qbStats .qb-stat b')].map((n) => n.textContent),
       tabs: [...document.querySelectorAll('#qbSubjectTabs [role=tab]')].map((n) => n.textContent),
-      small: [...document.querySelectorAll('#qbSubjectTabs button, #qbResults button, #qbCollections button, #qbSubjects button, .qb-filter-panel select')]
+      small: [...document.querySelectorAll('#qbSubjectTabs button, #qbTopicStrip button, #qbSubtopicStrip button, #qbActiveFilters button, #qbResults button, #qbCollections button, #qbSubjects button, .qb-filter-panel select, .qb-filter-panel button')]
         .filter((n) => n.getBoundingClientRect().width > 0)
         .map((n) => ({ w: n.getBoundingClientRect().width, h: n.getBoundingClientRect().height, label: n.textContent.trim().slice(0, 30) }))
         .filter((n) => n.h < 44 || n.w < 44),
       shown: document.querySelectorAll('#qbResults > article').length,
+      stripPills: document.querySelectorAll('#qbTopicStrip button, #qbSubtopicStrip button').length,
     }));
     assert(errors.length === 0, `page errors: ${errors.join('; ')}`);
     assert(facts.scrollWidth <= facts.clientWidth, `horizontal overflow ${facts.scrollWidth} > ${facts.clientWidth}`);
     equal(facts.stats[0], String(catalog.counts.questions), 'question stat comes from the catalog');
     equal(facts.tabs[0], `All Subjects${catalog.counts.questions}`, 'first tab');
-    equal(facts.shown, 20, 'first page of results');
+    assert(facts.shown > 0, 'results are drawn');
+    assert(facts.stripPills > 2, 'the topic and subtopic strips are open while measuring');
     assert(facts.small.length === 0, `touch targets under 44px: ${JSON.stringify(facts.small.slice(0, 3))}`);
     assert(failed.length === 0, `failed requests: ${failed.join(', ')}`);
     await context.close();
@@ -110,6 +118,46 @@ await check('subject tab, topic pill and the resource banner come from catalog a
     equal(response.status(), 200, `resource link ${link.href}`);
   }
   assert(new URL(page.url()).searchParams.get('topic') === topic.id, 'the URL carries the stable topic id');
+  await context.close();
+});
+
+const untitledTopic = catalog.topics.find((t) => catalog.subtopics.some((s) => s.topic_ref === t.id && s.label_source !== 'CANONICAL_TITLE') && t.question_count > 0);
+
+await check('subtopics: a fully titled topic offers them, filtering matches membership, URL and chip follow', async () => {
+  assert(titledTopic, 'the live corpus has a topic whose subtopics are all canonically titled');
+  const { page, context } = await open(live.base, `?topic=${encodeURIComponent(titledTopic.id)}`);
+  await listed(page);
+  const rows = catalog.subtopics.filter((s) => s.topic_ref === titledTopic.id);
+  const labels = await page.$$eval('#qbSubtopicStrip .qb-topic-pill > span:first-child', (n) => n.map((x) => x.textContent));
+  equal(labels.join('|'), ['All subtopics', ...rows.map((r) => r.label)].join('|'), 'pills are the canonical titles');
+  const pick = rows[0];
+  await page.click(`#qbSubtopicStrip .qb-topic-pill:has-text("${pick.label.replace(/"/g, '\\"')}")`);
+  const expected = summaries.filter((q) => q.topic_ref === titledTopic.id && (q.subtopic_refs || []).includes(pick.id)).length;
+  equal((await page.textContent('#qbResultCount')).split(' ')[0], String(expected), 'count equals membership');
+  equal(new URL(page.url()).searchParams.get('subtopic'), pick.id, 'stable ref in the URL');
+  assert((await page.textContent('#qbActiveFilters')).includes(pick.label), 'the active filter names the subtopic');
+  await page.click('#qbTopicStrip .qb-topic-pill:has-text("All topics")');
+  equal(await page.$$eval('#qbSubtopicStrip .qb-topic-pill', (n) => n.length), 0, 'leaving the topic drops its subtopics');
+  await context.close();
+});
+
+await check('subtopics: a topic with an untitled subtopic shows no raw identifiers and says nothing false', async () => {
+  assert(untitledTopic, 'the live corpus has a topic with an untitled subtopic');
+  const { page, context } = await open(live.base, `?topic=${encodeURIComponent(untitledTopic.id)}`);
+  await listed(page);
+  equal(await page.$$eval('#qbSubtopicStrip .qb-topic-pill', (n) => n.length), 0, 'no subtopic strip');
+  const navigation = await page.$$eval('#qbSubjectTabs, #qbTopicStrip, #qbSubtopicStrip, #qbActiveFilters, #qbTopicBanner', (n) => n.map((x) => x.textContent).join(' '));
+  assert(!navigation.includes('CAP-'), 'no capability identifier appears in the navigation strips');
+  await context.close();
+});
+
+await check('a subtopic in the URL selects its topic and subject', async () => {
+  const sub = catalog.subtopics.find((s) => s.label_source === 'CANONICAL_TITLE');
+  const { page, context } = await open(live.base, `?subtopic=${encodeURIComponent(sub.id)}`);
+  await listed(page);
+  const params = await page.evaluate(() => Object.fromEntries(new URLSearchParams(location.search)));
+  equal((await page.$$eval('#qbSubjectTabs [aria-selected=true]', (n) => n.length)), 1, 'a subject tab is selected');
+  assert(await page.locator('#qbTopicStrip .qb-topic-pill.active').count() === 1, 'the owning topic is selected');
   await context.close();
 });
 
@@ -320,21 +368,22 @@ from Shared.tools import build_question_bank_platform as bqp
 out = sys.argv[1]
 def q(i, sub, stem, ans):
     return {"id": f"BIO-Q{i:02d}", "order": i, "subject": "Biology", "topic": "Cell Biology", "topic_ref": "TOPIC-BIO-CELL",
-            "subtopic_refs": ["SUB-BIO-MITOCHONDRIA"], "question_type": "constructed_response", "exam": "Synthetic Board", "year": 2026,
+            "subtopic_refs": [sub], "question_type": "constructed_response", "exam": "Synthetic Board", "year": 2026,
             "paper": "A", "question_number": str(i), "stem": stem, "subparts": [], "options": [], "conditions": [], "difficulty": {"band": "D1", "score": 2},
             "expected_time_seconds": 90, "common_wrong_route": "", "stable_crux_move": "", "primary_capability_ref": "CAP-BIO-CELL",
             "secondary_capability_refs": [], "family_ref": None, "source_status": "SYNTHETIC_FIXTURE", "wording_custody": "TEST_ONLY",
             "source_hints": [], "scaffolds": [], "math_spans": [], "visual_ref": None, "paper_url": None,
             "answer": {"summary": ans, "reasoning": [f"Step for question {i}"], "check": "Recheck the definition."},
             "lineage": {"adapter": "synthetic_fixture_v1", "package_id": "FIXTURE-BIOLOGY"}}
-questions = [q(i, "Cell Biology", f"Question {i}: which organelle {'releases usable energy (mitochondria)' if i % 3 == 0 else 'stores genetic material'}?", "Mitochondria" if i % 3 == 0 else "Nucleus") for i in range(1, 16)]
+questions = [q(i, "SUB-BIO-MITOCHONDRIA" if i % 3 == 0 else "SUB-BIO-NUCLEUS", f"Question {i}: which organelle {'releases usable energy (mitochondria)' if i % 3 == 0 else 'stores genetic material'}?", "Mitochondria" if i % 3 == 0 else "Nucleus") for i in range(1, 16)]
+titles = {"SUB-BIO-MITOCHONDRIA": {"title": "Mitochondria", "source_ref": "MIC-BIO-MITOCHONDRIA"}, "SUB-BIO-NUCLEUS": {"title": "Nucleus", "source_ref": "MIC-BIO-NUCLEUS"}}
 resources = [
   {"id": "BIO-CLINIC-CELL", "kind": "study_clinic", "title": "Cell Biology Study Clinic", "subject": "Biology", "topic": "Cell Biology", "topic_ref": "TOPIC-BIO-CELL", "path": "biology/cell-biology/core2.html", "keywords": ["cell"]},
   {"id": "BIO-EXPLORER-CELL", "kind": "interactive", "title": "Mitochondria explorer", "subject": "Biology", "topic": "Cell Biology", "topic_ref": "TOPIC-BIO-CELL", "path": "biology/cell-biology/explorer.html", "keywords": ["mitochondria"]},
 ]
 views = [{"id": "bio-energy", "title": "Energy questions", "short_title": "Energy", "description": "Questions about usable energy.", "match_mode": "EXACT_POLICY_SET",
           "presentation": {"badge": "5 questions", "source_label": "Fixture", "default_mode": "browse"}, "resolved_question_refs": [f"BIO-Q{i:02d}" for i in (3, 6, 9, 12, 15)]}]
-platform = bqp.build_from_projection({"questions": questions, "views": views}, resources)
+platform = bqp.build_from_projection({"questions": questions, "views": views}, resources, [], titles)
 for path, data in bqp.artifact_payloads(platform).items():
     if path.suffix == ".js":
         target = out + "/" + path.relative_to("public").as_posix()
@@ -345,7 +394,7 @@ print(platform["build_id"])
 execFileSync('python3', ['-c', GENERATE, fixtureRoot]);
 const bio = await serve(fixtureRoot);
 
-await check('growth falsifier: a new subject appears everywhere with no change to the runtime', async () => {
+await check('growth falsifier: a new subject, topic and subtopics appear everywhere with no change to the runtime', async () => {
   const runtime = fs.readFileSync(path.join(repo, 'public/js/question-bank.js'), 'utf8') + fs.readFileSync(path.join(repo, 'public/js/question-bank-data-service.js'), 'utf8');
   for (const word of ['Biology', 'Cell Biology', 'Mitochondria', 'Physics', 'Chemistry', 'Mathematics']) assert(!runtime.includes(word), `the runtime names "${word}"`);
   assert(!/style="[^"]*Biology/.test(fs.readFileSync(path.join(repo, 'public/css/question-bank.css'), 'utf8')) && !/data-subject="/.test(fs.readFileSync(path.join(repo, 'public/css/question-bank.css'), 'utf8')), 'the stylesheet has no per-subject rules');
@@ -358,6 +407,10 @@ await check('growth falsifier: a new subject appears everywhere with no change t
   await page.click('#qbTopicStrip .qb-topic-pill:has-text("Cell Biology")');
   equal(await page.$$eval('#qbTopicBanner a', (n) => n.map((a) => a.dataset.kind).sort().join()), 'interactive,study_clinic', 'resource actions');
   equal((await visibleIds(page)).length, 15, 'all 15 questions listed');
+  equal(await page.$$eval('#qbSubtopicStrip .qb-topic-pill', (n) => n.map((x) => x.textContent).join('|')), 'All subtopics(15)|Mitochondria(5)|Nucleus(10)', 'subtopics with canonical titles');
+  await page.click('#qbSubtopicStrip .qb-topic-pill:has-text("Mitochondria")');
+  equal(await page.textContent('#qbResultCount'), '5 of 15 questions', 'the Mitochondria subtopic');
+  await page.click('#qbSubtopicStrip .qb-topic-pill:has-text("All subtopics")');
   await page.fill('#qbSearch', 'mitochondria');
   await page.waitForTimeout(300);
   equal(await page.textContent('#qbResultCount'), '5 of 15 questions', 'search finds the five energy questions');

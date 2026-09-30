@@ -484,6 +484,35 @@ def load_resources(repo: Path) -> tuple[list[dict], list[dict]]:
     return rows, registry_basis + suite_basis
 
 
+PACKAGE_GLOB = "*/library/*.json"
+
+
+def load_subtopic_titles(repo: Path) -> dict[str, dict]:
+    """Learner-facing names for capability refs, from canonical records only.
+
+    A capability has no title of its own; the concept that owns it does. A ref is titled when exactly one
+    microtopic across the library packages names it as its primary capability. Zero owners or several
+    owners is not resolved here (and never guessed from the identifier): the ref stays untitled and the
+    catalog says so.
+    """
+    owners: dict[str, list[dict]] = defaultdict(list)
+    for path in sorted(repo.glob(PACKAGE_GLOB)):
+        try:
+            package = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if not isinstance(package, dict):
+            continue
+        for microtopic in package.get("microtopics") or []:
+            ref, title = microtopic.get("primary_capability_ref"), microtopic.get("title")
+            if isinstance(ref, str) and ref and isinstance(title, str) and title.strip():
+                owners[ref].append({"title": title.strip(), "source_ref": str(microtopic.get("id") or "")})
+    return {
+        ref: {"title": rows[0]["title"], "source_ref": rows[0]["source_ref"]}
+        for ref, rows in sorted(owners.items()) if len(rows) == 1
+    }
+
+
 _VIEW_FIELDS = ("id", "title", "short_title", "description", "match_mode", "presentation")
 
 
@@ -532,7 +561,8 @@ def build_question_summaries(questions: Sequence[Mapping[str, object]]) -> dict:
 
 
 def build_catalog(questions: Sequence[Mapping[str, object]], resources: Sequence[Mapping[str, object]] = (),
-                  views: Sequence[Mapping[str, object]] = ()) -> dict:
+                  views: Sequence[Mapping[str, object]] = (),
+                  subtopic_titles: Mapping[str, Mapping[str, str]] | None = None) -> dict:
     enriched = [enrich_question_refs(question) for question in questions]
     subject_rows: dict[str, dict] = {}
     topic_rows: dict[str, dict] = {}
@@ -555,11 +585,14 @@ def build_catalog(questions: Sequence[Mapping[str, object]], resources: Sequence
             "identity_basis": "EXPLICIT_REF" if tref != topic_ref(question["subject"], question["topic"]) else "LEGACY_LABEL_DERIVED",
         })["question_count"] += 1
         for ref in question.get("subtopic_refs", []):
+            titled = (subtopic_titles or {}).get(ref)
             subtopic_rows.setdefault(ref, {
                 "id": ref,
                 "subject_ref": sref,
                 "topic_ref": tref,
-                "label": ref,
+                "label": titled["title"] if titled else ref,
+                "label_source": "CANONICAL_TITLE" if titled else "REF_ONLY",
+                **({"label_source_ref": titled["source_ref"]} if titled else {}),
                 "question_count": 0,
             })["question_count"] += 1
 
@@ -595,6 +628,7 @@ def build_catalog(questions: Sequence[Mapping[str, object]], resources: Sequence
             "subjects": len(subjects),
             "topics": len(topics),
             "subtopics": len(subtopics),
+            "subtopics_without_title": sum(1 for row in subtopics if row["label_source"] == "REF_ONLY"),
             "views": len(saved_views),
         },
         "subjects": subjects,
@@ -863,13 +897,14 @@ def build_lineage(questions: Sequence[Mapping[str, object]], search_index: Mappi
 
 
 def platform_nodes(questions: Sequence[Mapping[str, object]], scoped_resources: Sequence[Mapping[str, object]],
-                   build_id: str, views: Sequence[Mapping[str, object]] = ()) -> tuple[Node, ...]:
+                   build_id: str, views: Sequence[Mapping[str, object]] = (),
+                   subtopic_titles: Mapping[str, Mapping[str, str]] | None = None) -> tuple[Node, ...]:
     """The build graph: catalog, summaries, search and dedup are independent; lineage reads the search result."""
     shared = {"questions": questions, "resources": scoped_resources}
-    with_views = {**shared, "views": list(views)}
+    with_views = {**shared, "views": list(views), "subtopic_titles": dict(subtopic_titles or {})}
     return (
         Node("catalog", (), lambda done: with_views,
-             lambda value: build_catalog(value["questions"], value["resources"], value["views"])),
+             lambda value: build_catalog(value["questions"], value["resources"], value["views"], value["subtopic_titles"])),
         Node("summaries", (), lambda done: questions, build_question_summaries),
         Node("search", (), lambda done: shared,
              lambda value: build_search_index(value["questions"], value["resources"])),
@@ -882,7 +917,8 @@ def platform_nodes(questions: Sequence[Mapping[str, object]], scoped_resources: 
 def assemble_platform(browser_projection: Mapping[str, object], resources: Sequence[Mapping[str, object]] = (),
                       resource_basis: Sequence[Mapping[str, object]] = (), *,
                       order: Callable[[list[str]], list[str]] | None = None,
-                      parallel: bool = False) -> dict:
+                      parallel: bool = False,
+                      subtopic_titles: Mapping[str, Mapping[str, str]] | None = None) -> dict:
     """Build deterministic derived contracts from the canonical browser projection.
 
     ``order`` and ``parallel`` only choose how independent workers are scheduled; the result is
@@ -895,11 +931,13 @@ def assemble_platform(browser_projection: Mapping[str, object], resources: Seque
     identity_basis = {
         "browser_projection_digest": digest(browser_projection),
         "resource_basis": list(resource_basis),
+        "subtopic_titles": digest(dict(subtopic_titles or {})),
         "worker_contract_version": WORKER_CONTRACT_VERSION,
     }
     build_id = digest(identity_basis)
     views = browser_projection.get("views", []) or []
-    results = run_nodes(platform_nodes(questions, scoped_resources, build_id, views), order=order, parallel=parallel)
+    results = run_nodes(platform_nodes(questions, scoped_resources, build_id, views, subtopic_titles),
+                        order=order, parallel=parallel)
     catalog_worker, search_worker, dedup_worker = results["catalog"], results["search"], results["dedup"]
     summaries_worker = results["summaries"]
     lineage = results["lineage"].output

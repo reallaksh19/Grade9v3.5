@@ -17,6 +17,7 @@ try:
         enrich_question_refs,
         explain,
         load_resources,
+        load_subtopic_titles,
         render_js,
         subject_ref,
     )
@@ -29,6 +30,7 @@ except ImportError:  # direct: python3 Shared/tools/build_question_bank_platform
         enrich_question_refs,
         explain,
         load_resources,
+        load_subtopic_titles,
         render_js,
         subject_ref,
     )
@@ -107,12 +109,13 @@ def _trace_canonical_sources(platform: dict, browser: dict) -> None:
 def build(repo: Path = REPO) -> dict:
     browser = build_question_bank_web.build(repo)
     resources, resource_basis = load_resources(repo)
-    return build_from_projection(browser, resources, resource_basis)
+    return build_from_projection(browser, resources, resource_basis, load_subtopic_titles(repo))
 
 
-def build_from_projection(browser: dict, resources: list[dict] = (), resource_basis: list[dict] = ()) -> dict:
+def build_from_projection(browser: dict, resources: list[dict] = (), resource_basis: list[dict] = (),
+                          subtopic_titles: dict | None = None) -> dict:
     """The whole platform, detail shards and receipt included, from one canonical browser projection."""
-    platform = assemble_platform(browser, resources, resource_basis)
+    platform = assemble_platform(browser, resources, resource_basis, subtopic_titles=subtopic_titles)
     _trace_canonical_sources(platform, browser)
 
     shards = _detail_shards(browser.get("questions", []), platform["build_id"])

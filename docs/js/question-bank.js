@@ -11,7 +11,7 @@ if(!Data)return;
 const $=id=>document.getElementById(id);
 const els={
   stats:$('qbStats'),collections:$('qbCollections'),subjects:$('qbSubjects'),subjectTabs:$('qbSubjectTabs'),
-  topicStrip:$('qbTopicStrip'),topicBanner:$('qbTopicBanner'),status:$('qbStatus'),resultCount:$('qbResultCount'),
+  topicStrip:$('qbTopicStrip'),subtopicStrip:$('qbSubtopicStrip'),topicBanner:$('qbTopicBanner'),status:$('qbStatus'),resultCount:$('qbResultCount'),
   results:$('qbResults'),active:$('qbActiveFilters'),search:$('qbSearch'),subject:$('qbSubject'),topic:$('qbTopic'),
   difficulty:$('qbDifficulty'),exam:$('qbExam'),type:$('qbType'),mode:$('qbMode'),sort:$('qbSort'),clear:$('qbClear'),
   browseAll:$('qbBrowseAll'),loadMore:$('qbLoadMore'),openSupport:$('qbOpenSupport'),closeSupport:$('qbCloseSupport'),
@@ -27,7 +27,7 @@ const KIND_LABELS={
 };
 
 let catalog=null,summaries=[],views=[],resources=[],warnings=[];
-let subjectById=new Map(),topicById=new Map(),viewById=new Map();
+let subjectById=new Map(),topicById=new Map(),subtopicById=new Map(),viewById=new Map();
 const ready={catalog:false,list:false,search:false};
 let limit=PAGE;
 let state=stateFromUrl();
@@ -83,7 +83,7 @@ function renderDeclaredMath(article,q){
 // ---- URL state: labels from older links still work, stable ids are what gets written ----
 function stateFromUrl(){
   const p=new URLSearchParams(location.search);
-  return {view:p.get('view')||'',q:p.get('q')||'',subject:p.get('subject')||'',topic:p.get('topic')||'',
+  return {view:p.get('view')||'',q:p.get('q')||'',subject:p.get('subject')||'',topic:p.get('topic')||'',subtopic:p.get('subtopic')||'',
     difficulty:p.get('difficulty')||'',exam:p.get('exam')||'',type:p.get('type')||'',mode:p.get('mode')||'browse',sort:p.get('sort')||'canonical'};
 }
 function refFor(rows,value){
@@ -96,7 +96,9 @@ function refFor(rows,value){
 }
 function normalizeState(){
   if(!catalog)return;
-  state={...state,subject:refFor(catalog.subjects,state.subject),topic:refFor(catalog.topics,state.topic)};
+  state={...state,subject:refFor(catalog.subjects,state.subject),topic:refFor(catalog.topics,state.topic),subtopic:refFor(catalog.subtopics,state.subtopic)};
+  const sub=subtopicById.get(state.subtopic);
+  if(sub&&!state.topic)state.topic=sub.topic_ref;
   if(state.topic&&!state.subject){const topic=topicById.get(state.topic);if(topic)state.subject=topic.subject_ref;}
 }
 function writeUrl(push){
@@ -127,6 +129,7 @@ function filtered(){
     if(inView&&!inView.has(q.id))return false;
     if(state.subject&&q.subject_ref!==state.subject)return false;
     if(state.topic&&q.topic_ref!==state.topic)return false;
+    if(state.subtopic&&!(q.subtopic_refs||[]).includes(state.subtopic))return false;
     if(state.difficulty&&q.difficulty.band!==state.difficulty)return false;
     if(state.exam&&q.exam!==state.exam)return false;
     if(state.type&&q.question_type!==state.type)return false;
@@ -181,7 +184,7 @@ function renderCollections(){
   const meta=el('div','qb-card-meta');
   browsable(catalog.subjects).forEach(s=>meta.append(el('span','',s.label+' · '+s.question_count)));
   all.append(meta);
-  all.addEventListener('click',()=>setState({view:'',subject:'',topic:'',difficulty:'',exam:'',type:'',q:'',mode:'browse'}));
+  all.addEventListener('click',()=>setState({view:'',subject:'',topic:'',subtopic:'',difficulty:'',exam:'',type:'',q:'',mode:'browse'}));
   els.collections.append(all);
   views.forEach(v=>{
     const button=el('button','qb-collection-card');
@@ -190,7 +193,7 @@ function renderCollections(){
     const m=el('div','qb-card-meta');
     m.append(el('span','',v.presentation.badge),el('span','',v.presentation.source_label));
     button.append(m);
-    button.addEventListener('click',()=>setState({view:v.id,subject:'',topic:'',difficulty:'',exam:'',type:'',q:'',mode:v.presentation.default_mode||'browse'}));
+    button.addEventListener('click',()=>setState({view:v.id,subject:'',topic:'',subtopic:'',difficulty:'',exam:'',type:'',q:'',mode:v.presentation.default_mode||'browse'}));
     els.collections.append(button);
   });
   els.subjects.replaceChildren();
@@ -198,7 +201,7 @@ function renderCollections(){
     const button=el('button','qb-subject-card');
     button.type='button';
     button.append(el('h3','',s.label),el('p','',s.question_count+' canonical questions'));
-    button.addEventListener('click',()=>setState({view:'',subject:s.id,topic:'',q:''}));
+    button.addEventListener('click',()=>setState({view:'',subject:s.id,topic:'',subtopic:'',q:''}));
     els.subjects.append(button);
   });
 }
@@ -216,7 +219,7 @@ function renderTabs(){
     button.setAttribute('aria-selected',String(selected));
     button.tabIndex=selected?0:-1;
     button.classList.toggle('active',selected);
-    button.addEventListener('click',()=>setState({view:'',subject:tab.id,topic:''}));
+    button.addEventListener('click',()=>setState({view:'',subject:tab.id,topic:'',subtopic:''}));
     button.addEventListener('keydown',event=>{
       const all=[...els.subjectTabs.querySelectorAll('[role="tab"]')];
       const at=all.indexOf(button);
@@ -241,12 +244,35 @@ function renderTopicStrip(){
     button.setAttribute('aria-pressed',String(state.topic===id));
     button.append(el('span','',label));
     if(count!==undefined)button.append(el('span','pill-count','('+count+')'));
-    button.addEventListener('click',()=>setState({view:'',topic:id}));
+    button.addEventListener('click',()=>setState({view:'',topic:id,subtopic:''}));
     return button;
   };
   const subject=subjectById.get(state.subject);
   els.topicStrip.append(pill('','All topics',subject?subject.question_count:undefined));
   topics.forEach(t=>els.topicStrip.append(pill(t.id,t.label,t.question_count)));
+}
+// A topic shows its subtopics only when every one has a canonical title (catalog label_source). An untitled
+// subtopic is named work in the build, never a raw identifier put in front of a learner.
+function titledSubtopics(topicId){
+  const rows=catalog.subtopics.filter(row=>row.topic_ref===topicId);
+  return rows.length&&rows.every(row=>row.label_source==='CANONICAL_TITLE')?rows:[];
+}
+function renderSubtopicStrip(){
+  els.subtopicStrip.replaceChildren();
+  const rows=state.topic?titledSubtopics(state.topic):[];
+  els.subtopicStrip.hidden=!rows.length;
+  if(!rows.length)return;
+  const inTopic=summaries.filter(q=>q.topic_ref===state.topic);
+  const pill=(id,label,count)=>{
+    const button=el('button','qb-topic-pill'+(state.subtopic===id?' active':''));
+    button.type='button';
+    button.setAttribute('aria-pressed',String(state.subtopic===id));
+    button.append(el('span','',label),el('span','pill-count','('+count+')'));
+    button.addEventListener('click',()=>setState({view:'',subtopic:id}));
+    return button;
+  };
+  els.subtopicStrip.append(pill('','All subtopics',inTopic.length));
+  rows.forEach(row=>els.subtopicStrip.append(pill(row.id,row.label,inTopic.filter(q=>(q.subtopic_refs||[]).includes(row.id)).length)));
 }
 function renderBanner(){
   els.topicBanner.replaceChildren();
@@ -297,8 +323,9 @@ function chip(label,key){
 function renderActive(){
   els.active.replaceChildren();
   if(state.view){const v=viewById.get(state.view);if(v)els.active.append(chip(v.short_title||v.title,'view'));}
-  const subject=subjectById.get(state.subject),topic=topicById.get(state.topic);
+  const subject=subjectById.get(state.subject),topic=topicById.get(state.topic),subtopic=subtopicById.get(state.subtopic);
   [['q',state.q&&'Search: '+state.q],['subject',subject?subject.label:state.subject],['topic',topic?topic.label:state.topic],
+    ['subtopic',subtopic?(subtopic.label_source==='CANONICAL_TITLE'?subtopic.label:'Subtopic'):state.subtopic],
     ['difficulty',state.difficulty],['exam',state.exam],['type',state.type&&words(state.type)]]
     .forEach(([key,label])=>{if(state[key])els.active.append(chip(label,key));});
 }
@@ -498,6 +525,7 @@ function render(){
     renderCollections();
     renderTabs();
     renderTopicStrip();
+    renderSubtopicStrip();
     renderBanner();
     renderActive();
     if(ready.list){renderResults();renderSearchNote();}
@@ -514,6 +542,7 @@ function onStage(stage){
     views=Data.views();
     subjectById=new Map(catalog.subjects.map(row=>[row.id,row]));
     topicById=new Map(catalog.topics.map(row=>[row.id,row]));
+    subtopicById=new Map(catalog.subtopics.map(row=>[row.id,row]));
     viewById=new Map(views.map(row=>[row.id,row]));
     ready.catalog=true;
   }
@@ -554,12 +583,12 @@ function handleHash(){
 }
 
 // ---- controls ----
-function bind(select,key){select.addEventListener('change',()=>setState({[key]:select.value}));}
+function bind(select,key){select.addEventListener('change',()=>setState(key==='subject'?{[key]:select.value,topic:'',subtopic:''}:key==='topic'?{[key]:select.value,subtopic:''}:{[key]:select.value}));}
 ['subject','topic','difficulty','exam','type','mode','sort'].forEach(key=>bind(els[key],key));
 let timer=null;
 els.search.addEventListener('input',()=>{clearTimeout(timer);timer=setTimeout(()=>setState({q:els.search.value},{push:false}),120);});
-els.clear.addEventListener('click',()=>setState({view:'',q:'',subject:'',topic:'',difficulty:'',exam:'',type:'',mode:'browse',sort:'canonical'}));
-els.browseAll.addEventListener('click',()=>setState({view:'',q:'',subject:'',topic:'',difficulty:'',exam:'',type:'',mode:'browse'}));
+els.clear.addEventListener('click',()=>setState({view:'',q:'',subject:'',topic:'',subtopic:'',difficulty:'',exam:'',type:'',mode:'browse',sort:'canonical'}));
+els.browseAll.addEventListener('click',()=>setState({view:'',q:'',subject:'',topic:'',subtopic:'',difficulty:'',exam:'',type:'',mode:'browse'}));
 els.loadMore.addEventListener('click',()=>{limit+=PAGE;render();});
 function toggle(selector,open){document.querySelectorAll(selector).forEach(node=>{node.open=open;});}
 els.openSupport.addEventListener('click',()=>toggle('.qb-support',true));
