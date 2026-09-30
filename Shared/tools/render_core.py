@@ -731,25 +731,6 @@ def _core1a_relation_matrix(ctx: Ctx, m: dict) -> str:
     )
 
 
-def _core1a_presentation_traits(ctx: Ctx, m: dict, step_rows: list[dict], rep_id: str | None) -> str:
-    """Return DOM-only presentation traits from explicit governed structure.
-
-    These markers support layout/testing vocabulary; they are not academic classifications
-    and are never written back to packages.
-    """
-    attrs = []
-    if rep_id and ctx.index("representations").get(rep_id):
-        attrs.append('data-g9-scene-event="true"')
-    relations = [ctx.index("relations").get(ref) for ref in m.get("relation_refs") or []]
-    has_boundary = (
-        any(step.get("role") == "VERIFY" for step in step_rows)
-        or any(rel and (rel.get("conditions") or rel.get("limits") or rel.get("checks")) for rel in relations)
-    )
-    if has_boundary:
-        attrs.append('data-g9-compare-boundary="true"')
-    return (" " + " ".join(attrs)) if attrs else ""
-
-
 def _core1a_path_bridge(ctx: Ctx, m: dict, steps: dict[str, dict]) -> tuple[str, str]:
     """Render canonical teaching_path when no construction-unit wrapper exists.
 
@@ -763,7 +744,6 @@ def _core1a_path_bridge(ctx: Ctx, m: dict, steps: dict[str, dict]) -> tuple[str,
     derivation = transform_count >= 2 and bool(m.get("relation_refs"))
     attrs = (' data-g9-derivation-bridge="true"' if derivation else ' data-g9-path-construction="true"')
     rep = (m.get("representation_refs") or [None])[0]
-    attrs += _core1a_presentation_traits(ctx, m, ordered, rep)
     step_html = "".join(
         f'<li data-g9-step="{esc(step["id"])}">'
         f'<strong>{esc(step["action"])}</strong>'
@@ -817,9 +797,7 @@ def core1a(ctx: Ctx, m: dict) -> str:
         wrong = _misconceptions(m, u)
         heading = f"<h3>{esc(decision)}</h3>" if decision else (f"<h3>Construction step {n + 1} of {len(units)}</h3>" if len(units) > 1 else "")
         relation_matrix = _core1a_relation_matrix(ctx, m) if n == 0 else ""
-        unit_steps = [steps[sid] for sid in u["step_refs"] if sid in steps]
-        traits = _core1a_presentation_traits(ctx, m, unit_steps, u.get("representation_ref"))
-        unit_html += (f'<section id="{esc(u["id"])}" class="g9-cu" data-g9-cu="{esc(u["id"])}"{traits}>{heading}'
+        unit_html += (f'<section id="{esc(u["id"])}" class="g9-cu" data-g9-cu="{esc(u["id"])}">{heading}'
                       + _core1a_unit_navigation(ctx, u["id"])
                       + block("construction", f"<ol>{step_html}</ol>")
                       + figure(ctx, u.get("representation_ref"), "TEACHING", "CORE1A", u["id"])
