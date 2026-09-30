@@ -40683,6 +40683,106 @@ window.GRADE9V3 = {
           }
         ]
       }
+    },
+    "TEST": {
+      "contract": {
+        "learner_products": {
+          "CORE1": {
+            "role": "COMPACT_ORIENTATION_NOTES",
+            "production": "COMPILED"
+          },
+          "CORE2": {
+            "role": "SOURCE_QUESTION_CUSTODY",
+            "production": "COMPILED"
+          },
+          "CORE1A": {
+            "role": "DECLARATIVE_STUDY",
+            "production": "COMPILED"
+          },
+          "CORE1B": {
+            "role": "CONCEPTUAL_SELF_TUTOR",
+            "production": "COMPILED"
+          },
+          "CORE2A": {
+            "role": "SOLUTION_APPRENTICESHIP",
+            "production": "COMPILED"
+          },
+          "CORE2B": {
+            "role": "APPLICATION_AND_TRANSFER_TUTOR",
+            "production": "COMPILED"
+          }
+        },
+        "validator_catalogue": [],
+        "representation_kinds": [
+          {
+            "id": "VECTOR",
+            "status": "PROPOSED",
+            "requires": [
+              "frame",
+              "axis labels",
+              "unit",
+              "symbol",
+              "equal coordinate scale"
+            ]
+          },
+          {
+            "id": "VECTOR_SUBTRACTION",
+            "status": "PROPOSED",
+            "requires": [
+              "frame",
+              "both source vectors labelled",
+              "the reversed vector labelled",
+              "tail-to-head placement without rotation",
+              "resultant labelled with tail and head",
+              "one length scale for every vector drawn"
+            ],
+            "limits": [
+              "a construction, not a component readout; VECTOR draws one vector against axes, and using it here would hide the reversal that the construction exists to show"
+            ]
+          }
+        ],
+        "curriculum": {
+          "boards": [
+            "CBSE"
+          ],
+          "grades": [
+            9,
+            10,
+            11
+          ],
+          "tiers": [
+            "NOT_IN_JEE",
+            "JEE_MAINS",
+            "JEE_ADVANCED",
+            "BOTH"
+          ],
+          "binding_authority": "EXACT_REGISTRY_BINDING_REQUIRED",
+          "unbound_scope_state": "HELD_INSUFFICIENT_AUTHORITY"
+        }
+      },
+      "gates": [],
+      "buckets": [],
+      "matrices": [],
+      "packages": [],
+      "library_available": false,
+      "atlas_index_contract_version": "2.0",
+      "atlas_index": [],
+      "visual_targets": {},
+      "findings": [],
+      "coverage": {
+        "rung_count": 0,
+        "availability": {
+          "mapping": {},
+          "core": {},
+          "representation": {},
+          "activity": {},
+          "locator": {},
+          "portable_package": {},
+          "standalone": {}
+        },
+        "finding_counts": {},
+        "matrices": []
+      }
     }
   }
 };

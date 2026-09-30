@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en" data-g9-test="sandbox-draft">
+<head>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js" onload="window.__katexLoaded=true; if(window.renderAllMath) window.renderAllMath();"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TEST Topic Atlas · Data-Driven Canonical Orchestration</title>
+  <link rel="stylesheet" href="../../css/site.css">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-panel: #161b22;
+      --bg-card: #21262d;
+      --bg-card-hover: #292f38;
+      --border: #444c56;
+      --border-muted: #30363d;
+      --border-hover: #58a6ff;
+      --border-accent: #388bfd;
+      --text: #f0f6fc;
+      --text-secondary: #c9d1d9;
+      --text-muted: #919bb0;
+      --text-dim: #9aa4b2;
+      --accent: #58a6ff;
+      --accent-glow: rgba(56, 139, 253, 0.20);
+      --chip-ok-bg: #132b1e;
+      --chip-ok-border: #3fb950;
+      --chip-ok-text: #56d364;
+      --chip-warn-bg: #2e1f08;
+      --chip-warn-border: #d29922;
+      --chip-warn-text: #f0b72f;
+      --chip-hold-bg: #2c1519;
+      --chip-hold-border: #da3633;
+      --chip-hold-text: #ff7b72;
+      --chip-purple-bg: #24183a;
+      --chip-purple-border: #a371f7;
+      --chip-purple-text: #d2a8ff;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.62;
+      padding: 0 0 80px 0;
+    }
+
+    /* Top Sticky Header */
+    header.atlas-header {
+      background: rgba(22, 27, 34, 0.95);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .header-title-group {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .header-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .header-subtitle {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    /* Quick jump nav */
+    nav.jump-nav {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    nav.jump-nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 6px;
+      background: rgba(88, 166, 255, 0.08);
+      border: 1px solid rgba(88, 166, 255, 0.25);
+      transition: all 0.15s ease;
+    }
+    nav.jump-nav a:hover {
+      background: rgba(88, 166, 255, 0.20);
+      border-color: var(--accent);
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px 20px;
+    }
+
+    /* Input Drawer (GAP-WEB-002, GAP-WEB-003) */
+    .input-drawer-panel {
+      background: linear-gradient(180deg, #161f2e 0%, #161b22 100%);
+      border: 1px solid var(--border-accent);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+    .drawer-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Summary Strip Panel */
+    .summary-panel {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .stat-card {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .stat-label {
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .stat-value {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-detail {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* Progression Lane */
+    .progression-container {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 32px;
+      overflow-x: auto;
+    }
+    .lane-heading {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .lane-heading.default { color: #58a6ff; }
+    .lane-heading.non-default { color: #d2a8ff; }
+
+    .cluster-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .cluster-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      flex: 1;
+      min-width: 260px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+    }
+    .cluster-title {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed var(--border);
+      padding-bottom: 6px;
+    }
+    .rung-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .rung-node {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+    .rung-node:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+    }
+    .node-id {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-right: 8px;
+      font-variant-numeric: tabular-nums;
+    }
+    .node-title {
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .non-default-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+    .extension-box {
+      background: var(--bg);
+      border: 1px solid rgba(163, 113, 247, 0.5);
+      border-radius: 8px;
+      padding: 16px;
+      position: relative;
+    }
+    .extension-box::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; bottom: 0; width: 4px;
+      background: var(--chip-purple-border);
+      border-radius: 8px 0 0 8px;
+    }
+
+    /* Rung Cards Details */
+    .rungs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    details.rung-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    details.rung-card[open] {
+      border-color: var(--border-accent);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+    details.rung-card.non-default[open] {
+      border-color: var(--chip-purple-border);
+    }
+    summary.rung-summary {
+      padding: 16px 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+      background: var(--bg-card);
+      gap: 12px;
+      transition: background 0.15s;
+    }
+    summary.rung-summary:hover {
+      background: var(--bg-card-hover);
+    }
+    .summary-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      min-width: 0;
+    }
+    .rung-num-pill {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background: #1c2128;
+      border: 1px solid var(--border);
+      color: var(--accent);
+      min-width: 44px;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+    .summary-title-text {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .summary-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .card-body {
+      padding: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .meta-item-label {
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .meta-item-val {
+      font-family: var(--font-mono);
+      color: var(--text);
+      font-size: 14px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 860px) {
+      .card-grid { grid-template-columns: 1fr; }
+    }
+
+    .block-subcard {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .subcard-heading {
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .quote-box {
+      background: rgba(0,0,0,0.2);
+      border-left: 3px solid var(--accent);
+      padding: 8px 12px;
+      border-radius: 0 4px 4px 0;
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.55;
+    }
+    .quote-box.misconception {
+      border-left-color: var(--chip-hold-border);
+      background: rgba(218, 54, 51, 0.08);
+    }
+    .quote-box.repair {
+      border-left-color: var(--chip-ok-border);
+      background: rgba(63, 185, 80, 0.08);
+    }
+
+    .variation-step {
+      font-size: 14px;
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .variation-step:last-child { border-bottom: none; }
+    .variation-label {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* Active Highlight States */
+    .rung-node.has-gap {
+      border-color: var(--chip-hold-border) !important;
+      background: rgba(218, 54, 51, 0.12) !important;
+      box-shadow: 0 0 10px rgba(218, 54, 51, 0.25) !important;
+    }
+    .rung-node.has-demonstrated {
+      border-color: var(--chip-ok-border) !important;
+      background: rgba(63, 185, 80, 0.10) !important;
+      box-shadow: 0 0 8px rgba(63, 185, 80, 0.2) !important;
+    }
+    .rung-node.has-uncertain {
+      border-color: var(--chip-warn-border) !important;
+      background: rgba(210, 153, 34, 0.12) !important;
+      box-shadow: 0 0 8px rgba(210, 153, 34, 0.2) !important;
+    }
+    .rung-node.is-quick-check {
+      border: 1px dashed #38bdf8 !important;
+    }
+
+    /* Interactive Leaf Mastery & Diagnostic Dimension Styles */
+    .dim-btn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 13.5px;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .dim-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+    .dim-btn.active {
+      background: var(--chip-hold-bg);
+      border-color: var(--chip-hold-border);
+      color: var(--chip-hold-text);
+      font-weight: 700;
+    }
+    .btn.ok {
+      background: var(--chip-ok-bg);
+      border: 1px solid var(--chip-ok-border);
+      color: var(--chip-ok-text);
+    }
+    .btn.ok:hover {
+      background: rgba(63, 185, 80, 0.25);
+    }
+    .btn.hold {
+      background: var(--chip-hold-bg);
+      border: 1px solid var(--chip-hold-border);
+      color: var(--chip-hold-text);
+    }
+    .btn.hold:hover {
+      background: rgba(218, 54, 51, 0.25);
+    }
+    .btn.warn {
+      background: var(--chip-warn-bg);
+      border: 1px solid var(--chip-warn-border);
+      color: var(--chip-warn-text);
+    }
+    .btn.warn:hover {
+      background: rgba(210, 153, 34, 0.25);
+    }
+  </style>
+  <link rel="stylesheet" href="../../css/tablet-12-7.css">
+</head>
+<body><style>header[data-g9-test-banner]{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;padding:6px 14px;background:#7c2d12;color:#fff;font:600 14px/1.4 system-ui,sans-serif}header[data-g9-test-banner] nav{display:flex;flex-wrap:wrap;gap:4px}header[data-g9-test-banner] a{display:inline-flex;align-items:center;min-height:44px;min-width:44px;padding:0 10px;color:#fde68a}</style><header class="g9-shell" data-g9-shell data-g9-test-banner role="banner"><span>TEST sandbox · drafts only · not reviewed, not accepted, not curriculum</span><nav aria-label="TEST"><a href="../../index.html">Portal</a><a href="../../test/index.html">TEST</a><a href="../../test/atlas/index.html">Atlas</a><a href="../../test/rungs/index.html">Rungs</a><a href="../../test/deployments/index.html">Deployments</a></nav></header>
+
+<header class="atlas-header">
+  <div class="header-title-group">
+    <div class="header-title">
+      <span id="atlasTopicTitle">Topic Atlas</span>
+      <span class="badge purple">Canonical Projection</span>
+    </div>
+    <div class="header-subtitle" id="atlasSubtopicSubtitle">Loading canonical data...</div>
+  </div>
+  <nav class="jump-nav">
+    <a href="#summary">Summary</a>
+    <a href="#input-drawer">Input Drawer</a>
+    <a href="#need-map">Need Map</a>
+    <a href="#progression">Progression Lane</a>
+    <a href="#rungs">Rungs & Semantic Leaves</a>
+    <a href="#core-builder">Core Builder</a>
+    <button type="button" class="g9-display-trigger-btn" onclick="window.Grade9Display.togglePopover()" style="background: var(--bg-card); border: 1px solid var(--border); color: var(--text); padding: 4px 10px; border-radius: 6px; font-size: 13.5px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;" title="Adjust Font Size and UI Zoom Scale">
+      <span>🔤 / 🔍 Display</span>
+    </button>
+  </nav>
+</header>
+
+<div class="container">
+
+  <div class="breadcrumb" style="display: flex; gap: 8px; font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">
+    <a href="../../index.html" style="color: var(--text-muted); text-decoration: none;">Home</a>
+    <span>/</span>
+    <a href="../index.html" style="color: var(--text-muted); text-decoration: none;">TEST</a>
+    <span>/</span>
+    <span style="color: var(--text); font-weight: 600;">Atlas</span>
+  </div>
+
+  <!-- Section: Input Drawer (GAP-WEB-002, GAP-WEB-003, GAP-WEB-004, GAP-WEB-012) -->
+  <section id="input-drawer">
+    <div class="input-drawer-panel">
+      <div class="drawer-header">
+        <div class="drawer-title">
+          <span>🎯</span>
+          <span>Learner Diagnostic Input Drawer</span>
+          <span class="badge ok">Optional &amp; Non-Blocking</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <span id="storageStatusBadge" class="badge neutral">💾 LocalStorage Synced</span>
+          <label style="display: flex; align-items: center; gap: 6px; font-size: 14px; cursor: pointer; user-select: none;">
+            <input type="checkbox" id="overlayToggle" checked onchange="window.ATLAS.toggleOverlay(this.checked)" style="accent-color: #38bdf8;">
+            <span>Show Overlay</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Macro Axis: Knowledge Estimate -->
+      <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 14px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+          <div>
+            <strong style="font-size: 13px; color: #fff;">Macro Knowledge Percentile (Ladder Routing Axis)</strong>
+            <div id="estimateStatusText" style="font-size: 14px; margin-top: 2px;">
+              No estimate supplied → neutral/default canonical route
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <input type="number" min="0" max="100" placeholder="none" id="knowledgeInput"
+                   style="width: 70px; font-size: 18px; font-weight: 800; font-family: var(--font-mono); background: var(--bg); border: 1px solid var(--border); color: #38bdf8; border-radius: 4px; text-align: right; padding: 2px 6px;"
+                   oninput="window.ATLAS.setKnowledgeInput(this.value)">
+            <span style="font-size: 16px; font-weight: 700; color: #38bdf8;">%</span>
+          </div>
+        </div>
+        <input type="range" min="0" max="100" value="50" id="knowledgeSlider" style="width: 100%; accent-color: #38bdf8;" oninput="window.ATLAS.setKnowledgeSlider(this.value)">
+        <div style="display: flex; justify-content: space-between; font-size: 13.5px; color: var(--text-dim); margin-top: 4px; font-family: var(--font-mono);">
+          <span>0%</span>
+          <span>50%</span>
+          <span>75%</span>
+          <span>100% (Default Lane Cap)</span>
+        </div>
+      </div>
+
+      <!-- Diagnostic Import & Actions -->
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button type="button" class="btn primary-phy" onclick="window.ATLAS.loadDemoPreset()" title="Load exact snapshot scenario from Issue #118">
+            📥 Load Demo Scenario (45% Gap)
+          </button>
+          <button type="button" class="btn outline" onclick="document.getElementById('fileImportInput').click()" title="Import external scanned gap table">
+            📂 Import Diagnostic Gap Table
+          </button>
+          <input type="file" id="fileImportInput" accept=".json" style="display: none;" onchange="window.ATLAS.handleFileImport(event)">
+          <button type="button" class="btn outline" onclick="window.ATLAS.resetCanonical()" title="Clear estimate and gaps; view canonical atlas">
+            ↺ Reset to Canonical
+          </button>
+        </div>
+
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button type="button" class="btn outline" onclick="window.ATLAS.exportMeasurementPack()" title="Export scanner instructions derived from DB">
+            📤 Export Measurement Pack
+          </button>
+          <button type="button" class="btn outline" onclick="window.ATLAS.exportDiagnosticEnvelope()" title="Export current gap rows">
+            💾 Export Diagnostic Envelope
+          </button>
+        </div>
+      </div>
+
+      <!-- Visible Validation Report Box (GAP-WEB-012) -->
+      <div id="importValidationReport" style="display: none; margin-top: 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 12px;"></div>
+    </div>
+  </section>
+
+  <!-- Section 1: Summary Strip (Projected from DB) -->
+  <section id="summary">
+    <div class="summary-panel">
+      <div class="stat-card">
+        <div class="stat-label">Governed Topic &amp; Matrix</div>
+        <div class="stat-value">TEST</div>
+        <div class="stat-detail"><code>loaded from TEST/matrices</code></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Rungs &amp; Capabilities</div>
+        <div class="stat-value" id="statRungCount">no rungs loaded</div>
+        <div class="stat-detail">Canonical matrix rungs from DB</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Difficulty Mix</div>
+        <div class="stat-value" id="statDiffMix">-</div>
+        <div class="stat-detail">Intrinsic demand across rungs</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Practice &amp; Transfer Items</div>
+        <div class="stat-value" id="statQuestionCount">18 Items</div>
+        <div class="stat-detail">Core2A Practice &amp; Core2B Transfer items</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Need Map (GAP-WEB-010) -->
+  <section id="need-map">
+    <div id="needMapContainer"></div>
+  </section>
+
+  <!-- Section 2: Visual Progression Lane -->
+  <section id="progression">
+    <div class="section-title">
+      <span>Visual Progression Lane</span>
+      <span class="count">Ordered by ladder_position</span>
+    </div>
+    <div class="progression-container" id="progressionLaneContainer">
+      <div style="color: var(--text-muted); font-size: 13px;">Loading progression route...</div>
+    </div>
+  </section>
+
+  <!-- Section 3: Multi-Resolution Rung Cards (Level 1, 2, 3) -->
+  <section id="rungs">
+    <div class="section-title">
+      <span>Rung Cards &amp; Multi-Resolution Semantic Leaves</span>
+      <span class="count">Level 1 Rungs &rarr; Level 2 Leaves &rarr; Level 3 Dimensions</span>
+    </div>
+    <div class="rungs-list" id="rungCardsContainer">
+      <div style="color: var(--text-muted); font-size: 13px;">Loading canonical rungs and semantic leaves...</div>
+    </div>
+  </section>
+
+  <!-- Section: Core Request Builder & Planner Preview (GAP-WEB-013..016) -->
+  <section id="core-builder">
+    <div id="coreBuilderContainer"></div>
+  </section>
+
+</div>
+
+<footer style="max-width: 1280px; margin: 40px auto 0 auto; padding: 20px; text-align: center; color: var(--text-dim); font-size: 14px; border-top: 1px solid var(--border);">
+  Grade9V3 Repository &middot; Data-Driven Topic Atlas &middot; Governed by <code>TEST/matrices/*.rungs.json</code> · sandbox, not curriculum
+</footer>
+
+<!-- Canonical Projected Database Global -->
+<script src="../../data/data.js"></script>
+<!-- Generic Topic Atlas Engine (Issue #118) -->
+<script src="../../core-learning/data.js"></script>
+<script src="../../js/topic-atlas.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const matrices = ((window.GRADE9V3 && window.GRADE9V3.subjects && window.GRADE9V3.subjects.TEST) || {}).matrices || [];
+    const wanted = new URLSearchParams(location.search).get('matrix');
+    const pick = matrices.find((m) => m.matrix_id === wanted) || matrices[0];
+    if (!pick) {
+      document.getElementById('atlasSubtopicSubtitle').textContent = 'No TEST rung matrix yet.';
+      const note = document.createElement('p');
+      note.style.cssText = 'overflow-wrap:anywhere;margin:12px 0;color:var(--text-muted)';
+      note.textContent = 'The Atlas reads TEST/matrices/*.rungs.json through public/data/data.js. '
+        + 'Add a matrix, then run build_web_data.py.';
+      document.querySelector('.breadcrumb').after(note);
+      return;
+    }
+    window.ATLAS.init(pick.matrix_id);
+  });
+</script>
+<script src="../../js/display-controls.js"></script>
+</body>
+</html>

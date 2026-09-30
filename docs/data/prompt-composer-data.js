@@ -2,7 +2,7 @@
 window.GRADE9V3_PROMPT_COMPOSER = {
   "generated_by": "Shared/tools/build_prompt_composer_data.py",
   "contract_version": "1.0.0",
-  "repository_basis": "architecture-manifest@sha256:9d99a4c1b05bfb7e048ab9f1ce2ed3806824775fdcfd326f6a59ce0436171541",
+  "repository_basis": "architecture-manifest@sha256:9c8cd9ed2db81a9901164d072a6441358491f72f262b14ffba7dda45e2bd9571",
   "template": {
     "template_id": "CORE-AGENT-PROMPT",
     "version": "1.1.0",
@@ -4486,6 +4486,9 @@ window.GRADE9V3_PROMPT_COMPOSER = {
           }
         }
       }
+    },
+    "TEST": {
+      "nested_questions": {}
     }
   }
 };
