@@ -29,3 +29,56 @@ jobs:
           tests.test_core2_v2_layout
           tests.test_core2_v2_motion2d
           tests.test_core2_v2_quality
+
+  core2-v2-browser-audit:
+    # Rendered acceptance evidence only. This job is deliberately non-gating;
+    # content/release authority remains with the Owner and the governed review flow.
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install browser-audit dependencies
+        run: |
+          pip install --quiet jsonschema pypdf
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Render real Motion-in-2D product
+        run: |
+          rm -rf /tmp/g9-core2-v2-site
+          mkdir -p /tmp/g9-core2-v2-site/products/physics/phy-kin-2d-motion /tmp/g9-core2-v2-site/css
+          python3 Shared/tools/render_core.py build \
+            --manifest products/physics/phy-kin-2d-motion.manifest.json \
+            --out /tmp/g9-core2-v2-site/products/physics/phy-kin-2d-motion \
+            --mode PAGES
+          cp public/css/tablet-12-7.css /tmp/g9-core2-v2-site/css/tablet-12-7.css
+      - name: Shared tablet rendered audit
+        run: |
+          node tools/site-audit/core-page-audit.mjs \
+            /tmp/g9-core2-v2-site/products/physics/phy-kin-2d-motion \
+            --profile tablet-12.7 \
+            --json /tmp/core-page-audit.json
+      - name: Core2 v2 local HTTP interaction audit
+        run: |
+          python3 -m http.server 8765 --directory /tmp/g9-core2-v2-site >/tmp/g9-core2-v2-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          python3 - <<'PY'
+          import socket, time
+          for _ in range(50):
+              try:
+                  with socket.create_connection(("127.0.0.1", 8765), timeout=0.2):
+                      break
+              except OSError:
+                  time.sleep(0.1)
+          else:
+              raise SystemExit("local HTTP server did not start")
+          PY
+          node tools/site-audit/core2-v2-browser-audit.mjs \
+            --base http://127.0.0.1:8765/products/physics/phy-kin-2d-motion/ \
+            --audit-json /tmp/core-page-audit.json
