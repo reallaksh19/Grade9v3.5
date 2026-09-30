@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import argparse
 import ast
+import fnmatch
 import json
 import re
 import sys
@@ -45,7 +46,9 @@ ALLOWLIST = Path(__file__).resolve().parent / "topic_independence_allowlist.json
 # behaviour is proven independently by --selftest rather than by scanning itself.
 SELF = Path(__file__).resolve()
 
-GOVERNED_ID = re.compile(r"\b[A-Z]{2,}(?:-[A-Z0-9]+)+\b")
+# A hyphenated uppercase token followed by ".md" is a method document name such as
+# DESIGN-NOTE.md or SELF-CHECK.md, not a governed identifier.
+GOVERNED_ID = re.compile(r"\b[A-Z]{2,}(?:-[A-Z0-9]+)+(?![A-Za-z0-9-])(?!\.md\b)")
 SUBJECT_NAME = re.compile(r"\b(?:Physics|Mathematics|Chemistry)\b")
 JS_STRING = re.compile(r"""(['"])((?:\\.|(?!\1)[^\\\n])*)\1""")
 PY_SUFFIXES = {".py"}
@@ -86,6 +89,30 @@ def excluded_paths() -> set[str]:
         if not str(entry.get("reason", "")).strip():
             raise SystemExit(f"exclusion without a reason: {entry}")
     return {entry["path"] for entry in entries}
+
+
+def excluded_globs() -> list[str]:
+    """Generated files whose names carry a content hash, so no exact path can name them.
+
+    Same contract as `exclude_paths`: a written reason is mandatory. A pattern must be
+    anchored in a directory (no leading wildcard), so one entry cannot exempt the
+    repository. The generator that writes such files stays scanned.
+    """
+    entries = _allowlist_document().get("exclude_path_globs", [])
+    patterns = []
+    for entry in entries:
+        if not str(entry.get("reason", "")).strip():
+            raise SystemExit(f"exclusion without a reason: {entry}")
+        pattern = str(entry.get("glob", ""))
+        head = re.split(r"[*?\[]", pattern, maxsplit=1)[0]
+        if "/" not in head:
+            raise SystemExit(f"exclusion glob must be anchored in a directory: {pattern!r}")
+        patterns.append(pattern)
+    return patterns
+
+
+def is_excluded(rel: str, exact: set[str], globs: list[str]) -> bool:
+    return rel in exact or any(fnmatch.fnmatchcase(rel, pattern) for pattern in globs)
 
 
 def allowed(entries: list[dict], path: Path, literal: str) -> bool:
@@ -177,12 +204,13 @@ def default_roots(repo: Path = REPO_ROOT) -> list[Path]:
 
 def scan(roots: list[Path]) -> tuple[list[Violation], int]:
     entries, found, scanned = load_allowlist(), [], 0
-    skip = excluded_paths()
+    skip, skip_globs = excluded_paths(), excluded_globs()
     for root in roots:
         for path in sorted(root.rglob("*")):
             if not path.is_file() or "__pycache__" in path.parts or path.resolve() == SELF:
                 continue
-            if path.is_relative_to(REPO_ROOT) and str(path.relative_to(REPO_ROOT)) in skip:
+            if path.is_relative_to(REPO_ROOT) and is_excluded(
+                    path.relative_to(REPO_ROOT).as_posix(), skip, skip_globs):
                 continue
             if path.suffix in PY_SUFFIXES:
                 found += scan_python(path, entries)

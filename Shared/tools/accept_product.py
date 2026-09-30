@@ -108,7 +108,7 @@ def mirror_pages(repo: Path) -> None:
 
 
 def accept(slug: str, note: str = "", accept_open: str = "", repo: Path = REPO,
-           confirm=input) -> dict:
+           confirm=input, approval_ref: str = "") -> dict:
     manifests = list((repo / "products").glob(f"*/{slug}.manifest.json"))
     if len(manifests) != 1:
         raise ValueError(f"expected exactly one manifest for {slug}, got {len(manifests)}")
@@ -146,6 +146,8 @@ def accept(slug: str, note: str = "", accept_open: str = "", repo: Path = REPO,
     print(f"Subject authority: {len(authority_findings)} finding(s): "
           f"{[(f['point'], f['record']) for f in authority_findings]}")
     print(f"Standalone: {'STAGED_FOR_THIS_RENDER' if standalone_bytes is not None else 'NOT_STAGED'}")
+    approval_ref = " ".join(str(approval_ref or "").split())[:500]
+    print(f"Approval reference: {approval_ref or 'NOT_RECORDED'}")
     if findings or unknown or authority_findings:
         if confirm("Owner acceptance with open/unknown findings? [y/N] ").strip().lower() != "y":
             raise ValueError("Owner did not accept this exact render")
@@ -158,6 +160,10 @@ def accept(slug: str, note: str = "", accept_open: str = "", repo: Path = REPO,
         "accepted_open_findings": sorted((set(accept_open.split(",")) - {""}) |
                                          {f.get("id", f.get("record", "?")) for f in findings}),
         "unverified_fact_records": unknown, "note": note,
+        # Where the Owner's approval was given (a message or comment link, or a quotation).
+        # Recorded so an acceptance can be traced to the Owner's words; never verified and
+        # never required.
+        "approval_ref": approval_ref or None,
         "subject_authority_findings": authority_findings,
         "standalone_sha256": _sha(standalone_bytes) if standalone_bytes is not None else None,
         "standalone_render_digest": standalone_render_digest,
@@ -211,9 +217,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("slug")
     parser.add_argument("--note", default="")
     parser.add_argument("--accept-open", default="")
+    parser.add_argument("--approval-ref", default="",
+                        help="where the Owner's approval was given (message or comment link, or a quotation)")
     args = parser.parse_args(argv)
     try:
-        decision = accept(args.slug, args.note, args.accept_open)
+        decision = accept(args.slug, args.note, args.accept_open, approval_ref=args.approval_ref)
     except (ValueError, OSError, RuntimeError, EOFError) as exc:
         print(str(exc), file=sys.stderr)
         return 1
