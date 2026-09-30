@@ -8,7 +8,8 @@
  *
  * Usage:
  *   node tools/site-audit/core2-v2-browser-audit.mjs \
- *     --base http://127.0.0.1:8765/products/physics/phy-kin-2d-motion/ \
+ *     --base http://127.0.0.1:8765/<product-path>/ \
+ *     --witness <selected-core2-question-id> \
  *     --audit-json /tmp/core-page-audit.json
  */
 import { createRequire } from 'node:module';
@@ -26,12 +27,13 @@ function arg(name, fallback = null) {
 
 const base = (arg('--base') || '').replace(/\/?$/, '/');
 const auditJson = arg('--audit-json');
+const WITNESS = arg('--witness');
 if (!/^https?:\/\/127\.0\.0\.1(?::\d+)?\//.test(base) && !/^https?:\/\/localhost(?::\d+)?\//.test(base)) {
   throw new Error('--base must be a localhost/127.0.0.1 HTTP URL');
 }
+if (!WITNESS) throw new Error('--witness must name one selected Core2 question id');
 if (!auditJson || !fs.existsSync(auditJson)) throw new Error('--audit-json must point to the shared core-page-audit report');
 
-const WITNESS = 'PYQ-PHY-IITJEE-2011-P2-Q33';
 const TABLET_VIEWPORTS = [
   { name: 'tablet-1366-landscape', width: 1366, height: 854, expanded: true },
   { name: 'tablet-1440-landscape', width: 1440, height: 900, expanded: true },
