@@ -305,6 +305,30 @@ class Renderer(unittest.TestCase):
         self.assertIn(f'href="#g9-CORE1A--{target}"', html)
         self.assertNotIn(f'href="core1a.html#{target}"', html)
 
+    def test_real_motion_core1a_pages_and_single_file_preserve_concept_book_identity(self):
+        repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        pages, page_gaps, page_digest = render_core.build(repo_manifest, mode="PAGES")
+        single, single_gaps, single_digest = render_core.build(repo_manifest, mode="SINGLE_FILE")
+
+        self.assertEqual(page_digest, single_digest)
+        self.assertFalse([gap for gap in page_gaps if gap["core"] == "CORE1A"])
+        self.assertFalse([gap for gap in single_gaps if gap["core"] == "CORE1A"])
+
+        core1a = pages["core1a.html"]
+        product = single["product.html"]
+        ctx = render_core.context(repo_manifest)
+        for row in render_core._core1a_route(ctx):
+            anchor = row["unit_id"]
+            self.assertIn(f'id="{anchor}"', core1a)
+            self.assertIn(f'id="{anchor}"', product)
+            self.assertIn(f'href="#{anchor}"', product)
+
+        self.assertIn("data-g9-bucket-orientation", core1a)
+        self.assertIn("data-g9-equation-matrix", core1a)
+        self.assertIn("data-g9-bucket-orientation", product)
+        self.assertIn("data-g9-equation-matrix", product)
+        self.assertNotRegex(product, r'href="core\w+\.html#')
+
     def test_renderer_owns_tablet_asset_and_blueprint_digest(self):
         pkg = json.loads((REPO / PKG).read_text(encoding="utf-8"))
         pkg["representations"][0]["rendered_asset_refs"] = ["Physics/assets/representations/REP-KIN-2D-SHARED-CLOCK.svg"]
