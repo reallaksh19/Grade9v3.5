@@ -5,20 +5,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 387,
-  "relation_count": 403,
+  "component_count": 388,
+  "relation_count": 406,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 54,
-    "TEST": 182,
+    "TEST": 183,
     "TOOLING": 106,
     "WEB": 12,
     "WEB_CONTRACT": 3,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:55f68f84ca5255d2185a6efbe1995c6e6e34a625731aa9aec6fbe6f2c8d2bfee",
+  "digest": "sha256:3221de9a5cb5bb323bb38996ca2af2891c95b0910dc31ce2b94ed5baede30cad",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -675,8 +675,8 @@
       "path": "Shared/tools/build_question_bank_platform.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 10434,
-      "sha256": "00a578949431b25513bd3a633bfeb81cacab8831f272a93d0401a1bf54ed2f78"
+      "bytes": 15779,
+      "sha256": "bfd44d650597e62d6dbebad177b5349f3a0e15ce4c11f3d6aeed18f9a4a20e16"
     },
     {
       "path": "Shared/tools/build_question_bank_web.py",
@@ -2399,6 +2399,13 @@
       "role_description": "Executable checks",
       "bytes": 8532,
       "sha256": "21a6496280abe33b7fea695b7241d530f8111e96730201550cd6e572ceaca4a3"
+    },
+    {
+      "path": "tests/test_question_bank_lineage_witnesses.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 9377,
+      "sha256": "017a38c1953bce8ac86833d03041c8f36e5e4c921c9871f12c898eae242bf062"
     },
     {
       "path": "tests/test_question_bank_platform.py",
@@ -4478,6 +4485,21 @@
     },
     {
       "from": "tests/test_question_bank_determinism.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_question_bank_lineage_witnesses.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_question_bank_lineage_witnesses.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_question_bank_lineage_witnesses.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
