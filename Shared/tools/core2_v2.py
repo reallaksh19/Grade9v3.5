@@ -3,8 +3,10 @@
 Core2 keeps source hints (question.hints) and authored pedagogy
 (question.scaffolds) distinct. This module orders both support lanes without
 changing their provenance, marks answer-revealing rows as unavailable before
-the solution stage, and projects structured reasoning moves into learner-facing
-solution stages without inventing or collapsing authored intermediate steps.
+the solution stage, projects structured reasoning moves into learner-facing
+solution stages without inventing or collapsing authored intermediate steps,
+and derives the Core1A↔Core2 concept/question join from canonical capability
+references rather than persisted reciprocal link lists.
 """
 from __future__ import annotations
 
@@ -34,6 +36,10 @@ class Core2SupportProjectionError(ValueError):
 
 
 class Core2SolutionProjectionError(ValueError):
+    pass
+
+
+class Core2ConceptJoinError(ValueError):
     pass
 
 
@@ -171,3 +177,57 @@ def project_solution(answer: dict) -> list[dict]:
     if crux_ref and crux_ref not in ids:
         raise Core2SolutionProjectionError(f"crux_move_ref {crux_ref!r} does not resolve inside reasoning_route")
     return projected
+
+
+def concept_question_join(microtopics: list[dict], questions: list[dict]) -> dict[str, dict[str, list[str]]]:
+    """Derive the selected Core1A↔Core2 join from canonical capability refs.
+
+    A selected Core1A microtopic owns its ``primary_capability_ref``. Selected
+    Core2 questions point to that same authority through their primary and
+    secondary capability refs. Both directions are generated in memory from
+    those records; no reciprocal academic/link list is persisted.
+    """
+    owner_by_capability: dict[str, str] = {}
+    microtopic_to_questions: dict[str, list[str]] = {}
+    for index, microtopic in enumerate(microtopics):
+        if not isinstance(microtopic, dict) or not microtopic.get("id"):
+            raise Core2ConceptJoinError(f"microtopics[{index}] has no id")
+        microtopic_id = microtopic["id"]
+        capability = microtopic.get("primary_capability_ref")
+        if not capability:
+            raise Core2ConceptJoinError(f"microtopic {microtopic_id!r} has no primary_capability_ref")
+        previous = owner_by_capability.get(capability)
+        if previous and previous != microtopic_id:
+            raise Core2ConceptJoinError(
+                f"selected capability {capability!r} is owned by both {previous!r} and {microtopic_id!r}"
+            )
+        owner_by_capability[capability] = microtopic_id
+        microtopic_to_questions.setdefault(microtopic_id, [])
+
+    question_to_microtopics: dict[str, list[str]] = {}
+    seen_questions: set[str] = set()
+    for index, question in enumerate(questions):
+        if not isinstance(question, dict) or not question.get("id"):
+            raise Core2ConceptJoinError(f"questions[{index}] has no id")
+        question_id = question["id"]
+        if question_id in seen_questions:
+            raise Core2ConceptJoinError(f"duplicate selected Core2 question id {question_id!r}")
+        seen_questions.add(question_id)
+
+        refs = [question.get("primary_capability_ref"), *(question.get("secondary_capability_refs") or [])]
+        matched: list[str] = []
+        seen_refs: set[str] = set()
+        for capability in refs:
+            if not capability or capability in seen_refs:
+                continue
+            seen_refs.add(capability)
+            microtopic_id = owner_by_capability.get(capability)
+            if microtopic_id and microtopic_id not in matched:
+                matched.append(microtopic_id)
+                microtopic_to_questions[microtopic_id].append(question_id)
+        question_to_microtopics[question_id] = matched
+
+    return {
+        "question_to_microtopics": question_to_microtopics,
+        "microtopic_to_questions": microtopic_to_questions,
+    }
