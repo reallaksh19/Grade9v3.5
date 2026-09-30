@@ -320,6 +320,66 @@ class Core2V2RendererContract(unittest.TestCase):
         self.assertEqual(render_core._core2_support(ctx, question), "")
         self.assertEqual(ctx.gaps[0]["duty"], "AUTHOR_CORE2_SUPPORT")
 
+    def test_structured_solution_renders_every_move_stage_and_crux_without_legacy_duplication(self):
+        ctx = self._ctx()
+        question = self._question()
+        question["answer"] = Core2V2SolutionProjection._answer()
+        rendered = render_core._core2_solution(ctx, question, question["answer"])
+        self.assertEqual(rendered.count('class="g9-solution-move"'), 5)
+        for stage in ("UNDERSTAND", "REPRESENT", "CONNECT", "CALCULATE", "INTERPRET"):
+            self.assertIn(f'data-g9-solution-stage="{stage}"', rendered)
+        self.assertIn(
+            'data-g9-solution-move="MOVE-C" data-g9-solution-kind="CONNECT" '
+            'data-g9-solution-stage="CONNECT" data-g9-solution-crux="true"',
+            rendered,
+        )
+        self.assertNotIn("Legacy line one", rendered)
+        self.assertLess(rendered.index("MOVE-U"), rendered.index("MOVE-R"))
+        self.assertLess(rendered.index("MOVE-R"), rendered.index("MOVE-C"))
+        self.assertLess(rendered.index("MOVE-C"), rendered.index("MOVE-X"))
+        self.assertLess(rendered.index("MOVE-X"), rendered.index("MOVE-I"))
+        self.assertEqual(ctx.gaps, [])
+
+    def test_rendered_solution_preserves_repeated_calculation_moves(self):
+        ctx = self._ctx()
+        question = self._question()
+        answer = Core2V2SolutionProjection._answer()
+        extra = dict(answer["reasoning_route"][3])
+        extra.update({"id": "MOVE-X2", "action": "Substitute the intermediate value into the second relation."})
+        answer["reasoning_route"].insert(4, extra)
+        question["answer"] = answer
+        rendered = render_core._core2_solution(ctx, question, answer)
+        self.assertEqual(rendered.count('data-g9-solution-stage="CALCULATE"'), 2)
+        self.assertLess(rendered.index('data-g9-solution-move="MOVE-X"'), rendered.index('data-g9-solution-move="MOVE-X2"'))
+
+    def test_legacy_solution_fallback_remains_plain_working(self):
+        ctx = self._ctx()
+        question = self._question()
+        rendered = render_core._core2_solution(ctx, question, question["answer"])
+        self.assertIn('data-g9-block="working"', rendered)
+        self.assertIn("Reasoning step", rendered)
+        self.assertNotIn("data-g9-solution-stage", rendered)
+        self.assertEqual(ctx.gaps, [])
+
+    def test_invalid_structured_solution_fails_closed_without_legacy_fallback(self):
+        ctx = self._ctx()
+        question = self._question()
+        answer = Core2V2SolutionProjection._answer()
+        answer["crux_move_ref"] = "MISSING"
+        question["answer"] = answer
+        self.assertEqual(render_core._core2_solution(ctx, question, answer), "")
+        self.assertNotIn("Legacy line one", render_core._core2_solution(ctx, question, answer))
+        self.assertTrue(any(gap["duty"] == "AUTHOR_CORE2_SOLUTION" for gap in ctx.gaps))
+
+    def test_core2_entrypoint_consumes_structured_solution_projection(self):
+        ctx = self._ctx()
+        question = self._question()
+        question["answer"] = Core2V2SolutionProjection._answer()
+        rendered = render_core.core2(ctx, question)
+        self.assertIn('data-g9-block="structured_working"', rendered)
+        self.assertIn('data-g9-solution-stage="CONNECT"', rendered)
+        self.assertNotIn("Legacy line one", rendered)
+
 
 if __name__ == "__main__":
     unittest.main()
