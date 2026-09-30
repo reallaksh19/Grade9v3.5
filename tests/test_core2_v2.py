@@ -2,6 +2,9 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import shutil
+import subprocess
+import tempfile
 import unittest
 
 from jsonschema import Draft202012Validator
@@ -524,6 +527,85 @@ class Core2V2RendererContract(unittest.TestCase):
         fragment = render_core._single_file_fragment(page, "CORE1A")
         self.assertIn('id="g9-CORE1A--MIC-A"', fragment)
         self.assertIn('href="#g9-CORE2--Q-JOIN"', fragment)
+
+
+class Core2V2RoundTripStateContract(unittest.TestCase):
+    def test_state_namespace_binds_product_render_digest_and_exact_question(self):
+        js = render_core.JS
+        self.assertIn("root.dataset.g9Product+':'+root.dataset.g9RenderDigest", js)
+        self.assertIn("'state:'+scope+':'+a.dataset.g9Unit", js)
+        self.assertIn("'return:'+scope+':'+concept", js)
+
+    def test_persisted_payload_contains_interaction_state_not_academic_html(self):
+        js = render_core.JS
+        start = js.index("function saveCore2State")
+        end = js.index("function restoreCore2State")
+        save = js[start:end]
+        self.assertIn("JSON.stringify({attempted:!!a.dataset.attempted,fields,ladders,reveals})", save)
+        self.assertNotIn("innerHTML", save)
+        self.assertNotIn("textContent", save)
+
+    def test_restore_replays_attempt_fields_support_depth_and_commitment(self):
+        js = render_core.JS
+        self.assertIn("while(rungCount(l)<count&&nextRung(l)){}", js)
+        self.assertIn("if(state.attempted){a.dataset.attempted='1';materialise(a)}", js)
+        self.assertIn("el.type==='checkbox'||el.type==='radio'", js)
+        self.assertIn("state.reveals||[]", js)
+
+    def test_concept_round_trip_marks_only_the_exact_origin_question(self):
+        js = render_core.JS
+        self.assertIn("saveCore2State(a);const key=returnKey(link.dataset.g9ConceptRef)", js)
+        self.assertIn("store.set(key,link.dataset.g9QuestionRef||a.dataset.g9Unit)", js)
+        self.assertIn("store.get(key)!==link.dataset.g9QuestionRef", js)
+        self.assertIn("link.dataset.g9ReturnLink=''", js)
+
+    def test_storage_failure_is_non_blocking(self):
+        js = render_core.JS
+        self.assertIn("catch(e){return null}", js)
+        self.assertIn("catch(e){return false}", js)
+        # The static exact links remain the navigation authority when storage is unavailable.
+        ctx, microtopic_a, _microtopic_b, question = Core2V2RendererContract._join_ctx()
+        self.assertIn('href="core2.html#Q-JOIN"', render_core._core1a_practice_navigation(ctx, microtopic_a))
+        self.assertIn('href="core1a.html#MIC-B"', render_core._core2_concept_navigation(ctx, question))
+
+    def test_rendered_page_exposes_digest_scope_and_role_on_the_question_article(self):
+        question = Core2V2RendererContract._question()
+        ctx = render_core.Ctx(
+            manifest={
+                "product_id": "PRODUCT-STATE",
+                "title": "State test",
+                "subject": "Physics",
+                "home_href": "index.html",
+                "question_bank_href": "index.html",
+            },
+            packages=[],
+            bank=[],
+            blueprints={
+                "blueprints": [
+                    {
+                        "id": "BP-STATE",
+                        "version": "1.0.0",
+                        "core_roles": ["CORE2"],
+                        "responsive_policy": {"expanded": "STAGE_SUPPORT"},
+                    }
+                ]
+            },
+            selection_rows={"core2": [question], "microtopics": []},
+        )
+        rendered = render_core.page(ctx, "CORE2", "PAGES", "digest-123")
+        self.assertIn('data-g9-product="PRODUCT-STATE"', rendered)
+        self.assertIn('data-g9-render-digest="digest-123"', rendered)
+        self.assertIn('data-g9-unit="Q-1" data-g9-kind="QUESTION" data-g9-role="CORE2"', rendered)
+
+    def test_state_runtime_is_valid_javascript(self):
+        node = shutil.which("node")
+        if not node:
+            self.skipTest("node is unavailable")
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "runtime.js"
+            path.write_text(render_core.JS, encoding="utf-8")
+            result = subprocess.run([node, "--check", str(path)], capture_output=True, text=True, check=False)
+        self.assertEqual(result.returncode, 0, result.stderr)
 
 
 if __name__ == "__main__":
