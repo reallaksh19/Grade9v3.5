@@ -116,7 +116,24 @@ class Renderer(unittest.TestCase):
             for microtopic in ctx.selection_rows["microtopics"]
         ]
         self.assertEqual(concept_positions, sorted(concept_positions))
-        self.assertNotIn("Trajectory-equation derivation as a first-slice requirement.", html)
+        boundary = 'Trajectory-equation derivation as a first-slice requirement.'
+        first_article = html.index('<article ')
+        self.assertIn('data-g9-block="scope_boundary"', html[:first_article])
+        self.assertIn(boundary, html[:first_article])
+        self.assertNotIn(boundary, html[first_article:])
+        self.assertNotIn('data-locked', html[:first_article])
+
+    def test_core1a_difficulty_is_context_not_navigation_or_mastery_state(self):
+        repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(repo_manifest)
+        html = render_core.page(ctx, "CORE1A", "PAGES", render_core.render_digest(ctx))
+        route = render_core._core1a_route(ctx)
+
+        self.assertIn("Difficulty:", html)
+        self.assertNotIn("data-g9-mastery", html)
+        self.assertNotIn("data-g9-ready", html)
+        for row in route:
+            self.assertIn(f'href="#{row["unit_id"]}"', html)
 
     def test_core1a_construction_units_are_stable_deep_links_with_global_previous_next(self):
         repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
