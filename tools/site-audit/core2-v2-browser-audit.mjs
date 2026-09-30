@@ -8,7 +8,8 @@
  *
  * Usage:
  *   node tools/site-audit/core2-v2-browser-audit.mjs \
- *     --base http://127.0.0.1:8765/<product-path>/ \
+ *     --base http://127.0.0.1:8765/<pages-product-path>/ \
+ *     --single-base http://127.0.0.1:8765/<single-file-product-path>/ \
  *     --witness <selected-core2-question-id> \
  *     --audit-json /tmp/core-page-audit.json
  */
@@ -26,11 +27,12 @@ function arg(name, fallback = null) {
 }
 
 const base = (arg('--base') || '').replace(/\/?$/, '/');
+const singleBase = (arg('--single-base') || '').replace(/\/?$/, '/');
 const auditJson = arg('--audit-json');
 const WITNESS = arg('--witness');
-if (!/^https?:\/\/127\.0\.0\.1(?::\d+)?\//.test(base) && !/^https?:\/\/localhost(?::\d+)?\//.test(base)) {
-  throw new Error('--base must be a localhost/127.0.0.1 HTTP URL');
-}
+const isLocal = value => /^https?:\/\/127\.0\.0\.1(?::\d+)?\//.test(value) || /^https?:\/\/localhost(?::\d+)?\//.test(value);
+if (!isLocal(base)) throw new Error('--base must be a localhost/127.0.0.1 HTTP URL');
+if (!isLocal(singleBase)) throw new Error('--single-base must be a localhost/127.0.0.1 HTTP URL');
 if (!WITNESS) throw new Error('--witness must name one selected Core2 question id');
 if (!auditJson || !fs.existsSync(auditJson)) throw new Error('--audit-json must point to the shared core-page-audit report');
 
@@ -114,6 +116,43 @@ async function articleMetrics(page, vp) {
   return result;
 }
 
+async function makeAttempt(attemptBox) {
+  const choices = attemptBox.locator('[data-g9-choice]');
+  if (await choices.count()) {
+    await choices.first().check();
+    return;
+  }
+  const matches = attemptBox.locator('[data-g9-match]');
+  if (await matches.count()) {
+    for (let i = 0; i < await matches.count(); i++) await matches.nth(i).selectOption({ index: 1 });
+    return;
+  }
+  const numeric = attemptBox.locator('[data-g9-number]');
+  if (await numeric.count()) {
+    await numeric.fill('1');
+    const unit = attemptBox.locator('[data-g9-unit-input]');
+    if (await unit.count()) await unit.fill('m');
+    return;
+  }
+  const parts = attemptBox.locator('[data-g9-part-input]');
+  if (await parts.count()) {
+    for (let i = 0; i < await parts.count(); i++) await parts.nth(i).fill('1');
+    return;
+  }
+  const field = attemptBox.locator('[data-g9-attempt]').first();
+  check(await field.count() === 1, 'witness has no usable learner attempt control');
+  if (await field.count()) await field.fill('saved learner attempt');
+}
+
+async function controlState(attemptBox) {
+  return attemptBox.locator('input,textarea,select').evaluateAll(elements => elements.map(el => ({
+    tag: el.tagName,
+    type: el.type || '',
+    value: el.value,
+    checked: !!el.checked,
+  })));
+}
+
 // Native keyboard path: an Enter key must activate progressive support and the
 // exact semantic concept link. Keep this isolated from the persistence witness.
 const keyboardContext = await browser.newContext();
@@ -152,40 +191,12 @@ const pageErrors = [];
 page.on('pageerror', error => pageErrors.push(error.message));
 for (const vp of TABLET_VIEWPORTS) await articleMetrics(page, vp);
 
-// Exercise one real attempt and support state at an expanded tablet viewport.
+// Exercise one real attempt, bounded support disclosure, raw reload, and the
+// PAGES Core2 -> Core1A -> exact Core2 question round trip.
 await page.setViewportSize({ width: 1366, height: 854 });
 await page.goto(`${base}core2.html#${WITNESS}`, { waitUntil: 'load' });
-const article = page.locator(`#${WITNESS}`);
-const box = article.locator('[data-g9-attempt-box]');
-
-async function makeAttempt(attemptBox) {
-  const choices = attemptBox.locator('[data-g9-choice]');
-  if (await choices.count()) {
-    await choices.first().check();
-    return;
-  }
-  const matches = attemptBox.locator('[data-g9-match]');
-  if (await matches.count()) {
-    for (let i = 0; i < await matches.count(); i++) await matches.nth(i).selectOption({ index: 1 });
-    return;
-  }
-  const numeric = attemptBox.locator('[data-g9-number]');
-  if (await numeric.count()) {
-    await numeric.fill('1');
-    const unit = attemptBox.locator('[data-g9-unit-input]');
-    if (await unit.count()) await unit.fill('m');
-    return;
-  }
-  const parts = attemptBox.locator('[data-g9-part-input]');
-  if (await parts.count()) {
-    for (let i = 0; i < await parts.count(); i++) await parts.nth(i).fill('1');
-    return;
-  }
-  const field = attemptBox.locator('[data-g9-attempt]').first();
-  check(await field.count() === 1, 'witness has no usable learner attempt control');
-  if (await field.count()) await field.fill('saved learner attempt');
-}
-
+let article = page.locator(`#${WITNESS}`);
+let box = article.locator('[data-g9-attempt-box]');
 await makeAttempt(box);
 await box.locator('[data-g9-commit]').click();
 check(await article.getAttribute('data-attempted') === '1', 'witness did not record learner commitment');
@@ -193,23 +204,39 @@ check(await article.getAttribute('data-attempted') === '1', 'witness did not rec
 const firstSupportButton = article.locator('[data-g9-next-rung]:not([disabled])').first();
 check(await firstSupportButton.count() === 1, 'witness has no progressive support button');
 if (await firstSupportButton.count()) await firstSupportButton.click();
+
+const authoredSupportButton = article.locator('[data-g9-support-group="AUTHORED_CORE2_PROMPT_REVEAL"] [data-g9-next-rung]:not([disabled])').first();
+if (await authoredSupportButton.count()) await authoredSupportButton.click();
+const supportReveal = article.locator('details[data-g9-support-reveal]').first();
+check(await supportReveal.count() === 1, 'witness has no bounded authored support disclosure for reload persistence');
+if (await supportReveal.count()) {
+  await supportReveal.locator('summary').click();
+  await page.waitForTimeout(50);
+  check(await supportReveal.evaluate(el => el.open), 'bounded support disclosure did not open');
+}
+
+const controlStateBefore = await controlState(box);
 const rungCountBefore = await article.locator('.slot-support li[data-g9-rung]').count();
 check(rungCountBefore >= 1, 'support request did not materialise a rung');
 
-const controlStateBefore = await box.locator('input,textarea,select').evaluateAll(elements => elements.map(el => ({
-  tag: el.tagName,
-  type: el.type || '',
-  value: el.value,
-  checked: !!el.checked,
-})));
+await page.reload({ waitUntil: 'load' });
+article = page.locator(`#${WITNESS}`);
+box = article.locator('[data-g9-attempt-box]');
+check(await article.getAttribute('data-attempted') === '1', 'learner commitment was not restored after raw reload');
+check(JSON.stringify(await controlState(box)) === JSON.stringify(controlStateBefore), 'typed/selected learner attempt state changed after raw reload');
+check(await article.locator('.slot-support li[data-g9-rung]').count() === rungCountBefore, 'support depth changed after raw reload');
+const reloadedReveal = article.locator('details[data-g9-support-reveal]').first();
+check(await reloadedReveal.count() === 1 && await reloadedReveal.evaluate(el => el.open), 'bounded support disclosure state was not restored after raw reload');
 
 const conceptLink = article.locator('[data-g9-concept-link]').first();
 check(await conceptLink.count() === 1, 'witness has no exact Core1A concept link');
 let conceptRef = null;
 if (await conceptLink.count()) {
   conceptRef = await conceptLink.getAttribute('data-g9-concept-ref');
-  await Promise.all([page.waitForLoadState('load'), conceptLink.click()]);
-  check(page.url().includes(`core1a.html#${conceptRef}`), `concept navigation landed at ${page.url()}`);
+  await Promise.all([
+    page.waitForURL(url => url.pathname.endsWith('/core1a.html') && url.hash === `#${conceptRef}`),
+    conceptLink.click(),
+  ]);
 }
 
 if (conceptRef) {
@@ -220,7 +247,10 @@ if (conceptRef) {
     const returnLabel = (await returnLink.textContent()).trim();
     check(hasReturnMarker, 'matching reverse link was not marked as Return to question');
     check(returnLabel.startsWith('Return to question'), `matching reverse link has no Return to question affordance: ${returnLabel}`);
-    await Promise.all([page.waitForLoadState('load'), returnLink.click()]);
+    await Promise.all([
+      page.waitForURL(url => url.pathname.endsWith('/core2.html') && url.hash === `#${WITNESS}`),
+      returnLink.click(),
+    ]);
   }
 }
 
@@ -228,17 +258,66 @@ check(page.url().includes(`core2.html#${WITNESS}`), `round trip did not return t
 const restored = page.locator(`#${WITNESS}`);
 check(await restored.getAttribute('data-attempted') === '1', 'learner commitment was not restored after concept detour');
 const restoredBox = restored.locator('[data-g9-attempt-box]');
-const controlStateAfter = await restoredBox.locator('input,textarea,select').evaluateAll(elements => elements.map(el => ({
-  tag: el.tagName,
-  type: el.type || '',
-  value: el.value,
-  checked: !!el.checked,
-})));
-check(JSON.stringify(controlStateAfter) === JSON.stringify(controlStateBefore), 'typed/selected learner attempt state changed across concept detour');
+check(JSON.stringify(await controlState(restoredBox)) === JSON.stringify(controlStateBefore), 'typed/selected learner attempt state changed across concept detour');
 const rungCountAfter = await restored.locator('.slot-support li[data-g9-rung]').count();
 check(rungCountAfter === rungCountBefore, `support depth changed across concept detour (${rungCountBefore} → ${rungCountAfter})`);
 check(pageErrors.length === 0, `browser page error(s): ${pageErrors.join(' | ')}`);
 await context.close();
+
+// SINGLE_FILE is same-document navigation. The return affordance must therefore
+// refresh immediately after the Core2 concept-link click, without relying on a reload.
+const singleContext = await browser.newContext();
+const singlePage = await singleContext.newPage();
+const singleErrors = [];
+singlePage.on('pageerror', error => singleErrors.push(error.message));
+await singlePage.setViewportSize({ width: 1366, height: 854 });
+await singlePage.goto(`${singleBase}product.html#g9-CORE2--${WITNESS}`, { waitUntil: 'load' });
+let singleArticle = singlePage.locator(`#g9-CORE2--${WITNESS}`);
+let singleBox = singleArticle.locator('[data-g9-attempt-box]');
+await makeAttempt(singleBox);
+await singleBox.locator('[data-g9-commit]').click();
+check(await singleArticle.getAttribute('data-attempted') === '1', 'SINGLE_FILE witness did not record learner commitment');
+const singleSupportButton = singleArticle.locator('[data-g9-next-rung]:not([disabled])').first();
+check(await singleSupportButton.count() === 1, 'SINGLE_FILE witness has no progressive support button');
+if (await singleSupportButton.count()) await singleSupportButton.click();
+const singleRungCount = await singleArticle.locator('.slot-support li[data-g9-rung]').count();
+const singleControlState = await controlState(singleBox);
+const singleConceptLink = singleArticle.locator('[data-g9-concept-link]').first();
+check(await singleConceptLink.count() === 1, 'SINGLE_FILE witness has no exact Core1A concept link');
+let singleConceptRef = null;
+if (await singleConceptLink.count()) {
+  singleConceptRef = await singleConceptLink.getAttribute('data-g9-concept-ref');
+  await Promise.all([
+    singlePage.waitForURL(url => url.pathname.endsWith('/product.html') && url.hash === `#g9-CORE1A--${singleConceptRef}`),
+    singleConceptLink.click(),
+  ]);
+}
+if (singleConceptRef) {
+  const singleReturnLink = singlePage.locator(`[data-g9-practice-link][data-g9-question-ref="${WITNESS}"][data-g9-concept-ref="${singleConceptRef}"]`);
+  check(await singleReturnLink.count() === 1, 'SINGLE_FILE Core1A did not expose the exact reverse practice link');
+  if (await singleReturnLink.count()) {
+    check(await singleReturnLink.evaluate(el => el.hasAttribute('data-g9-return-link')), 'SINGLE_FILE reverse link was not dynamically marked as Return to question');
+    check((await singleReturnLink.textContent()).trim().startsWith('Return to question'), 'SINGLE_FILE reverse link was not dynamically relabelled as Return to question');
+    await Promise.all([
+      singlePage.waitForURL(url => url.pathname.endsWith('/product.html') && url.hash === `#g9-CORE2--${WITNESS}`),
+      singleReturnLink.click(),
+    ]);
+  }
+}
+check(singlePage.url().includes(`product.html#g9-CORE2--${WITNESS}`), `SINGLE_FILE round trip did not return to exact witness: ${singlePage.url()}`);
+singleArticle = singlePage.locator(`#g9-CORE2--${WITNESS}`);
+singleBox = singleArticle.locator('[data-g9-attempt-box]');
+check(await singleArticle.getAttribute('data-attempted') === '1', 'SINGLE_FILE learner commitment changed across same-document concept detour');
+check(JSON.stringify(await controlState(singleBox)) === JSON.stringify(singleControlState), 'SINGLE_FILE typed/selected attempt state changed across concept detour');
+check(await singleArticle.locator('.slot-support li[data-g9-rung]').count() === singleRungCount, 'SINGLE_FILE support depth changed across concept detour');
+await singlePage.reload({ waitUntil: 'load' });
+singleArticle = singlePage.locator(`#g9-CORE2--${WITNESS}`);
+singleBox = singleArticle.locator('[data-g9-attempt-box]');
+check(await singleArticle.getAttribute('data-attempted') === '1', 'SINGLE_FILE learner commitment did not restore after reload');
+check(JSON.stringify(await controlState(singleBox)) === JSON.stringify(singleControlState), 'SINGLE_FILE typed/selected attempt state did not restore after reload');
+check(await singleArticle.locator('.slot-support li[data-g9-rung]').count() === singleRungCount, 'SINGLE_FILE support depth did not restore after reload');
+check(singleErrors.length === 0, `SINGLE_FILE runtime leaked page error(s): ${singleErrors.join(' | ')}`);
+await singleContext.close();
 
 // Storage failure must degrade to ordinary exact navigation, not break the product.
 const blockedContext = await browser.newContext();
@@ -259,13 +338,19 @@ const blockedConcept = blocked.locator(`#${WITNESS} [data-g9-concept-link]`).fir
 check(await blockedConcept.count() === 1, 'storage-blocked page lost static concept navigation');
 if (await blockedConcept.count()) {
   const blockedConceptRef = await blockedConcept.getAttribute('data-g9-concept-ref');
-  await Promise.all([blocked.waitForLoadState('load'), blockedConcept.click()]);
+  await Promise.all([
+    blocked.waitForURL(url => url.pathname.endsWith('/core1a.html') && url.hash === `#${blockedConceptRef}`),
+    blockedConcept.click(),
+  ]);
   const ordinaryPractice = blocked.locator(`[data-g9-practice-link][data-g9-question-ref="${WITNESS}"][data-g9-concept-ref="${blockedConceptRef}"]`);
   check(await ordinaryPractice.count() === 1, 'storage-blocked Core1A page lost ordinary exact practice link');
   if (await ordinaryPractice.count()) {
     const falselyMarkedReturn = await ordinaryPractice.evaluate(el => el.hasAttribute('data-g9-return-link'));
     check(!falselyMarkedReturn, 'storage-blocked path falsely claims saved return state');
-    await Promise.all([blocked.waitForLoadState('load'), ordinaryPractice.click()]);
+    await Promise.all([
+      blocked.waitForURL(url => url.pathname.endsWith('/core2.html') && url.hash === `#${WITNESS}`),
+      ordinaryPractice.click(),
+    ]);
     check(blocked.url().includes(`core2.html#${WITNESS}`), 'storage-blocked ordinary practice link did not return to exact question');
   }
 }
@@ -278,4 +363,4 @@ if (failures.length) {
   for (const failure of failures) console.error(`  - ${failure}`);
   process.exit(1);
 }
-console.log(`Core2-v2 browser audit PASS: ${TABLET_VIEWPORTS.length} viewport(s), keyboard support/navigation, exact state round trip, storage-failure fallback.`);
+console.log(`Core2-v2 browser audit PASS: ${TABLET_VIEWPORTS.length} viewport(s), keyboard support/navigation, reload persistence, PAGES + SINGLE_FILE exact state round trips, storage-failure fallback.`);
