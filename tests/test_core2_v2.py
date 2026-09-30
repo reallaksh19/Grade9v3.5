@@ -551,13 +551,15 @@ class Core2V2RoundTripStateContract(unittest.TestCase):
         self.assertIn("if(state.attempted){a.dataset.attempted='1';materialise(a)}", js)
         self.assertIn("el.type==='checkbox'||el.type==='radio'", js)
         self.assertIn("state.reveals||[]", js)
+        self.assertIn("d.addEventListener('toggle',()=>saveCore2State(a))", js)
 
     def test_concept_round_trip_marks_only_the_exact_origin_question(self):
         js = render_core.JS
         self.assertIn("saveCore2State(a);const key=returnKey(link.dataset.g9ConceptRef)", js)
         self.assertIn("store.set(key,link.dataset.g9QuestionRef||a.dataset.g9Unit)", js)
-        self.assertIn("store.get(key)!==link.dataset.g9QuestionRef", js)
+        self.assertIn("const active=!!key&&store.get(key)===link.dataset.g9QuestionRef", js)
         self.assertIn("link.dataset.g9ReturnLink=''", js)
+        self.assertIn("store.remove(key);refreshReturnLinks()", js)
 
     def test_storage_failure_is_non_blocking(self):
         js = render_core.JS
