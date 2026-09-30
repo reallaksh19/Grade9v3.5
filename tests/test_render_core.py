@@ -134,6 +134,27 @@ class Renderer(unittest.TestCase):
         self.assertEqual(html.count("data-g9-next-section"), len(route) - 1)
         self.assertNotIn("data-g9-mastery", html)
 
+    def test_core1a_relation_matrix_preserves_equation_meaning_and_validity_semantics(self):
+        repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(repo_manifest)
+        html = render_core.page(ctx, "CORE1A", "PAGES", render_core.render_digest(ctx))
+
+        selected_relations = {
+            ref
+            for microtopic in ctx.selection_rows["microtopics"]
+            for ref in microtopic.get("relation_refs", [])
+        }
+        self.assertIn("data-g9-equation-matrix", html)
+        self.assertIn("<th scope=\"col\">Equation</th>", html)
+        self.assertIn("<th scope=\"col\">What it tells you</th>", html)
+        self.assertIn("<th scope=\"col\">When you can use it</th>", html)
+        for relation_ref in selected_relations:
+            relation = ctx.index("relations")[relation_ref]
+            self.assertIn(f'data-g9-relation-ref="{relation_ref}"', html)
+            self.assertIn(relation["meaning"], html)
+            for condition in relation.get("conditions", []):
+                self.assertIn(condition, html)
+
     def test_renderer_owns_tablet_asset_and_blueprint_digest(self):
         pkg = json.loads((REPO / PKG).read_text(encoding="utf-8"))
         pkg["representations"][0]["rendered_asset_refs"] = ["Physics/assets/representations/REP-KIN-2D-SHARED-CLOCK.svg"]
