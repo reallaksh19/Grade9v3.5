@@ -192,6 +192,31 @@ class Renderer(unittest.TestCase):
         self.assertIn("Why valid: The stated conditions match the model.", html)
         self.assertIn("Result: One valid model.", html)
 
+    def test_core1a_repair_and_check_content_occupies_the_blueprint_support_lane(self):
+        repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(repo_manifest)
+        html = render_core.page(ctx, "CORE1A", "PAGES", render_core.render_digest(ctx))
+        construction_at = html.index('data-blueprint-slot="construction"')
+        support_at = html.index('data-blueprint-slot="repair_closure"')
+
+        self.assertLess(construction_at, support_at)
+        self.assertLess(html.index('data-g9-block="worked_anchor"'), support_at)
+        self.assertGreater(html.index('data-g9-block="wrong_path"'), support_at)
+        self.assertGreater(html.index('data-g9-block="diagnose"'), support_at)
+        self.assertGreater(html.index('data-g9-block="repair"'), support_at)
+        self.assertGreater(html.index('data-g9-block="independent_check"'), support_at)
+        self.assertGreater(html.index('data-g9-block="exit_task"'), support_at)
+        self.assertEqual(html.count("data-g9-support-for"), len(render_core._core1a_route(ctx)))
+
+    def test_core1a_attempt_remains_after_complete_construction(self):
+        repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(repo_manifest)
+        html = render_core.page(ctx, "CORE1A", "PAGES", render_core.render_digest(ctx))
+
+        last_unit = render_core._core1a_route(ctx)[-1]["unit_id"]
+        self.assertLess(html.index(f'id="{last_unit}"'), html.index('data-g9-attempt-box'))
+        self.assertLess(html.index('data-g9-block="worked_anchor"'), html.index('data-g9-attempt-box'))
+
     def test_renderer_owns_tablet_asset_and_blueprint_digest(self):
         pkg = json.loads((REPO / PKG).read_text(encoding="utf-8"))
         pkg["representations"][0]["rendered_asset_refs"] = ["Physics/assets/representations/REP-KIN-2D-SHARED-CLOCK.svg"]
