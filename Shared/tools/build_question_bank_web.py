@@ -12,6 +12,7 @@ REPO = Path(__file__).resolve().parents[2]
 OUT = REPO / "public" / "data" / "question-bank-data.js"
 VIEWS = REPO / "Shared" / "tools" / "question-bank-views.v1.json"
 BANK_NAME = "competitive-exam-question-bank.v2.json"
+RESOURCE_SCHEMA = "grade9v3-question-bank-resources-v1"
 
 
 def _suite_destinations(repo: Path) -> list[dict]:
@@ -48,57 +49,29 @@ def _suite_destinations(repo: Path) -> list[dict]:
                 "kind": "explorer",
                 "keywords": keywords,
             })
-    adaptive_proof = (
-        repo
-        / "public"
-        / "chemistry"
-        / "redox"
-        / "explorers"
-        / "redox_reactions"
-        / "adaptive-hard-concept-proof.html"
-    )
-    if adaptive_proof.is_file():
-        destinations.append({
-            "title": "Redox Adaptive Visual Proof",
-            "path": "chemistry/redox/explorers/redox_reactions/adaptive-hard-concept-proof.html",
-            "kind": "explorer",
-            "keywords": [
-                "chemistry",
-                "redox",
-                "adaptive",
-                "proof",
-                "cro5",
-                "peroxide",
-                "n-factor",
-                "explorer",
-                "interactive",
-            ],
-        })
-    motion_2d = (
-        repo
-        / "public"
-        / "physics"
-        / "motion-in-2d"
-        / "explorers"
-        / "motions_in_2d"
-        / "index.html"
-    )
-    if motion_2d.is_file():
-        destinations.append({
-            "title": "Motions in 2D · Master Suite",
-            "path": "physics/motion-in-2d/explorers/motions_in_2d/index.html",
-            "kind": "explorer",
-            "keywords": [
-                "physics",
-                "kinematics",
-                "projectile",
-                "relative",
-                "motion",
-                "2d",
-                "explorer",
-                "interactive",
-            ],
-        })
+
+    # Subject/topic-specific exceptional resources are governed data, not branches here.
+    # A future subject can add <Subject>/question-bank/resources.v1.json without editing
+    # this generator or the browser runtime.
+    for registry_path in sorted(repo.glob("*/question-bank/resources.v1.json")):
+        data = json.loads(registry_path.read_text(encoding="utf-8"))
+        if data.get("schema_version") != RESOURCE_SCHEMA:
+            raise ValueError(f"unsupported Question Bank resource schema: {registry_path}")
+        for resource in data.get("resources", []):
+            missing = [key for key in ("title", "path", "kind", "keywords") if key not in resource]
+            if missing:
+                raise ValueError(f"Question Bank resource missing {missing}: {registry_path}")
+            target = repo / "public" / resource["path"]
+            if not target.is_file():
+                raise ValueError(
+                    f"Question Bank resource target missing: {registry_path}: {resource['path']}"
+                )
+            destinations.append({
+                "title": resource["title"],
+                "path": resource["path"],
+                "kind": resource["kind"],
+                "keywords": resource["keywords"],
+            })
     return destinations
 
 
