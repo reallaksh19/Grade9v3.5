@@ -41,25 +41,71 @@ def _boards(subject: str, repo: Path) -> list[dict]:
     return rows
 
 
+# A person types "Motion in 1D"; the matrix is titled "One-dimensional motion". Exact
+# equality refused that request with no plan. A conservative token match now reaches the
+# matrix, and it says so; when several matrices qualify the planner lists them and asks.
+_STOPWORDS = frozenset("in of the and a an to for on at with from by".split())
+_DIMENSION_WORDS = {"one": "1d", "two": "2d", "three": "3d"}
+_DIMENSION = re.compile(r"\b(one|two|three)[\s-]*dim(?:ension(?:al)?)?\b")
+_SPACED_DIMENSION = re.compile(r"\b([123])[\s-]+d\b")
+
+
+def _tokens(value: str) -> set[str]:
+    text = _DIMENSION.sub(lambda m: _DIMENSION_WORDS[m.group(1)], str(value).lower())
+    text = _SPACED_DIMENSION.sub(lambda m: m.group(1) + "d", text)
+    return {t for t in re.findall(r"[a-z0-9]+", text) if t not in _STOPWORDS}
+
+
+def _board_tokens(board: dict) -> set[str]:
+    stem = Path(board.get("_path", "")).name.split(".")[0]
+    found = _tokens(stem)
+    for key in ("subtopic", "topic", "bucket_id", "matrix_id"):
+        found |= _tokens(board.get(key) or "")
+    return found
+
+
+def _candidate(board: dict) -> dict:
+    return {"bucket_id": board.get("bucket_id"), "subtopic": board.get("subtopic"),
+            "matrix": board.get("_path")}
+
+
 def resolve_board(request: dict, repo: Path = REPO) -> tuple[dict | None, list[dict]]:
     boards = _boards(request.get("subject", ""), repo)
     bucket = request.get("bucket_id")
+    asked = request.get("subtopic", "")
     if bucket:
         matches = [b for b in boards if b.get("bucket_id") == bucket]
     else:
-        needle = _norm(request.get("subtopic", ""))
+        needle = _norm(asked)
         matches = [b for b in boards if needle and needle in {
             _norm(b.get("subtopic", "")), _norm(b.get("bucket_id", "")),
         }]
+        wanted = _tokens(asked)
+        if not matches and wanted:
+            matches = [b for b in boards if wanted <= _board_tokens(b)]
+            if len(matches) == 1:
+                found = matches[0]
+                return {**found, "_resolved_by": {
+                    "basis": "TOKEN_MATCH", "requested": asked,
+                    "matched": found.get("subtopic"), "bucket_id": found.get("bucket_id"),
+                    "detail": "one matrix contains every word of the request; confirm it is the intended subtopic"}}, []
     if len(matches) == 1:
         return matches[0], []
+    where = asked or bucket or ""
     if not matches:
-        return None, [{"point": "AUTHORING_REQUEST_SUBTOPIC_UNRESOLVED",
-                       "where": request.get("subtopic") or bucket or "",
-                       "detail": "no matrix resolves this subject/subtopic request"}]
-    return None, [{"point": "AUTHORING_REQUEST_SUBTOPIC_AMBIGUOUS",
-                   "where": request.get("subtopic") or bucket or "",
-                   "detail": f"matches {', '.join(b['bucket_id'] for b in matches)}"}]
+        wanted = _tokens(asked)
+        ranked = sorted(((len(wanted & _board_tokens(b)), b) for b in boards),
+                        key=lambda row: (-row[0], row[1].get("bucket_id", "")))
+        near = [_candidate(b) for score, b in ranked if score > 0][:3]
+        finding = {"point": "AUTHORING_REQUEST_SUBTOPIC_UNRESOLVED", "where": where,
+                   "detail": "no matrix resolves this subject/subtopic request"}
+        if near:
+            finding["candidates"] = near
+            finding["detail"] += "; nearest matrices are listed in candidates"
+        return None, [finding]
+    return None, [{"point": "AUTHORING_REQUEST_SUBTOPIC_AMBIGUOUS", "where": where,
+                   "detail": f"matches {', '.join(b['bucket_id'] for b in matches)}",
+                   "candidates": [_candidate(b) for b in matches]}]
 
 
 def _records(subject: str, repo: Path) -> dict:
@@ -215,8 +261,10 @@ def plan(request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> di
     request, defaults_applied = research_first_policy.apply_request_defaults(request, workflow)
     board, findings = resolve_board(request, repo)
     requested = list(request.get("requested_cores", []))
+    resolutions = [board["_resolved_by"]] if board and "_resolved_by" in board else []
     if board is None:
         return {"mode": "PLAN_ONLY", "findings": findings, "passed": False,
+                "resolutions": resolutions,
                 "defaults_applied": defaults_applied, "required_owner_inputs": [],
                 "agent_actions": [], "products": []}
 
@@ -273,6 +321,11 @@ def plan(request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> di
 
     intent = request.get("practice", {})
     actions = []
+    for found in resolutions:
+        actions.append({"id": "CONFIRM_SUBTOPIC_RESOLUTION", "owner": "AGENT",
+                        "detail": f'The request "{found["requested"]}" was matched by words to '
+                                  f'"{found["matched"]}" ({found["bucket_id"]}). State this in the '
+                                  "first-stage packet so the Owner can correct it; continue meanwhile."})
 
     source_basis = request.get("source_basis", [])
     receipt = source_receipts.resolve(
@@ -389,6 +442,7 @@ def plan(request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> di
         "compiler_supported": sorted(supported),
         "products": products,
         "defaults_applied": defaults_applied,
+        "resolutions": resolutions,
         # Kept for callers: the planner never waits on the owner; defaults fill every input.
         "required_owner_inputs": [],
         "agent_actions": actions,

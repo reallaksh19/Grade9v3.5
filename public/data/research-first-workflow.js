@@ -58,14 +58,38 @@ window.GRADE9V3_RESEARCH_FIRST_WORKFLOW = {
    "rule": "Begin with a short diagnostic and adjust support from actual attempts, not from an estimate."
   }
  },
- "deliverables": [
-  "six_cores",
-  "book",
-  "webpages",
-  "question_bank",
-  "atlas_links",
-  "builder_integration"
- ],
+ "first_stage": {
+  "rule": "A Core the owner requests wins. Otherwise supplied questions select Core2, and no question bank selects source-grounded Core1. Show the first-stage Cores (actual learner HTML and PDF, the coverage view and the open findings) before generating the later ones. Research, solving and drafting for later Cores continue meanwhile. See docs/method/FIRST-STAGE-REVIEW.md.",
+  "core_order": [
+   "CORE1",
+   "CORE1A",
+   "CORE1B",
+   "CORE2",
+   "CORE2A",
+   "CORE2B"
+  ],
+  "with_questions": [
+   "CORE2"
+  ],
+  "without_questions": [
+   "CORE1"
+  ],
+  "per_core": [
+   "html",
+   "pdf"
+  ],
+  "extra_by_core": {
+   "CORE2": [
+    "key_pdf",
+    "question_bank_records"
+   ]
+  },
+  "always": [
+   "coverage_view",
+   "atlas_links",
+   "owner_review_packet"
+  ]
+ },
  "gate": {
   "min_words_per_book_page": 40,
   "min_worked_steps": 2,

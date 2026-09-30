@@ -6,26 +6,26 @@ Self-study learner-material production system for **Physics, Mathematics and Che
 
 **Learner outcome:** make the learner increasingly capable of deciding what she knows, discovering with little external steering what she does not know, repairing the right Physics gap, and independently verifying a solution. Grade 9 is complete enough when the foundation is usable for Grade 10—not when every optional extension is exhausted.
 
-## Agent start here — mandatory first reads
+## Agent start here
 
 If you are an agent or maintainer entering this repository without prior conversation context, **do not plan from issue titles, old roadmap documents, or repository breadth**. Read these first:
 
-1. [`agents/relay/roadmap/OVERALL_ROADMAP.yaml`](agents/relay/roadmap/OVERALL_ROADMAP.yaml) — the **current machine-authoritative roadmap** and current Grade-9 Physics programme outcome.
-2. [`agents/relay/roadmap/owner-decisions/ODR-0003-G9-PHYSICS-INDEPENDENCE.yaml`](agents/relay/roadmap/owner-decisions/ODR-0003-G9-PHYSICS-INDEPENDENCE.yaml) — the Owner-intent mutation defining what “success” means and what must not be inferred.
-3. [`agents/relay/REPO_STATE.yaml`](agents/relay/REPO_STATE.yaml) — the V2.5 machine bootstrap for the current roadmap revision, work package and `active_ep.path`.
-4. [`agents/relay/roadmap/PROGRESS.yaml`](agents/relay/roadmap/PROGRESS.yaml) — calculated progress authority.
-5. Follow `active_ep.path` from `REPO_STATE.yaml` and execute only that package after satisfying its V2.5 takeover/material-write requirements.
+1. [`relay/PROTOCOL_SELECTION.yaml`](relay/PROTOCOL_SELECTION.yaml) — which engineering protocol is active. It selects **V3.1**, a recorder: it records and reconstructs work and is never permission to start or stop it. Work state lives in `relay/STATE.yaml` and `relay/WORK/`.
+2. [`docs/method/INDEX.md`](docs/method/INDEX.md) — how one learner product is authored, reviewed and accepted: house rules, protocol, roles, templates. The Owner alone publishes, by accepting one exact rendered digest.
+3. [`docs/method/FIRST-STAGE-REVIEW.md`](docs/method/FIRST-STAGE-REVIEW.md) — which Core to show first and what the first-stage packet contains. A Core the Owner requests wins; otherwise supplied questions start with Core2 and a syllabus alone starts with Core1.
+4. To start a job from raw questions or a syllabus, use [`public/raw-intake/index.html`](public/raw-intake/index.html) or `python3 Shared/tools/raw_intake.py --input request.json`. It never returns a hold: every gap becomes research or authoring work. [`docs/method/REQUESTS.md`](docs/method/REQUESTS.md) explains who chooses the first Core, how a subtopic is named, and the two meanings of "rung".
+5. For programme intent (Grade-9 Physics first, learner independence) read [`agents/relay/roadmap/OVERALL_ROADMAP.yaml`](agents/relay/roadmap/OVERALL_ROADMAP.yaml) and [`ODR-0003`](agents/relay/roadmap/owner-decisions/ODR-0003-G9-PHYSICS-INDEPENDENCE.yaml).
 
-For deterministic V2.5 execution routing, `REPO_STATE.yaml` remains the bootstrap locator. The roadmap and Owner decision are first-read programme intent; they do **not** replace the active-EP/write-admission contract.
+**`agents/relay/` is frozen history.** `relay/PROTOCOL_SELECTION.yaml` records it as `READ_ONLY_HISTORY` since 2026-09-22. Its `REPO_STATE.yaml` describes the repository at that time, including `execution: WAITING`, `can_continue: false` and `material_authority: NONE`; those values are a snapshot, not an instruction, and are not a reason to stop. Take intent from its roadmap and Owner decision records, and take permission to work from the Owner's request in front of you.
 
-These relay sources outrank README prose, issue summaries, PR descriptions, and older roadmap-like documents for current programme/execution truth. Do not copy the current percent, work package, or active EP into this README as a second state store; follow the structured sources instead.
+Do not copy live state (percent, work package, active EP) into this README as a second state store; follow the structured sources instead.
 
 The other roadmap-like documents remain useful, but they have different roles:
 
 | Document | Role |
 |---|---|
 | [`docs/PROGRAM-PLAN.md`](docs/PROGRAM-PLAN.md) | Product/architecture programme context; not live execution authority |
-| [`docs/ROADMAP-LEARNER-READY.md`](docs/ROADMAP-LEARNER-READY.md) | Learner-readiness conceptual/historical predecessor; current Grade-9 progression intent is the V2.5 roadmap + ODR-0003 |
+| [`docs/ROADMAP-LEARNER-READY.md`](docs/ROADMAP-LEARNER-READY.md) | Learner-readiness conceptual/historical predecessor; current Grade-9 progression intent is the roadmap + ODR-0003 above |
 | [`docs/PLAN-R0-R2.md`](docs/PLAN-R0-R2.md) and [`docs/PLAN-R3-R4.md`](docs/PLAN-R3-R4.md) | Prior execution plans retained as engineering history |
 | [`docs/FUTURE-ROAD-PLAN.md`](docs/FUTURE-ROAD-PLAN.md) | Evidence-gated ideas and anti-overarchitecture guardrails; the Grade-9 scope/exit items promoted by RM-0006 are no longer merely future ideas |
 

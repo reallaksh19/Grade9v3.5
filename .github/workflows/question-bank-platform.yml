@@ -1,0 +1,83 @@
+name: question-bank-platform
+
+on:
+  push:
+    branches: ["**"]
+    paths:
+      - "Shared/tools/build_question_bank_web.py"
+      - "Shared/tools/build_question_bank_platform.py"
+      - "Shared/tools/question_bank_platform.py"
+      - "Shared/tools/question_bank_scale.py"
+      - "*/library/**"
+      - "*/question-bank/**"
+      - "docs/gcdr-suites/**"
+      - "public/question-bank/**"
+      - "public/js/question-bank.js"
+      - "public/js/question-bank-data-service.js"
+      - "public/data/question-bank-*.js"
+      - "public/data/question-bank-details/**"
+      - "tests/test_question_bank_web.py"
+      - "tests/test_question_bank_platform.py"
+      - "tests/test_question_bank_platform_runtime.py"
+      - "tests/question_bank_data_service.test.mjs"
+      - ".github/workflows/question-bank-platform.yml"
+  pull_request:
+    paths:
+      - "Shared/tools/build_question_bank_web.py"
+      - "Shared/tools/build_question_bank_platform.py"
+      - "Shared/tools/question_bank_platform.py"
+      - "Shared/tools/question_bank_scale.py"
+      - "*/library/**"
+      - "*/question-bank/**"
+      - "docs/gcdr-suites/**"
+      - "public/question-bank/**"
+      - "public/js/question-bank.js"
+      - "public/js/question-bank-data-service.js"
+      - "public/data/question-bank-*.js"
+      - "public/data/question-bank-details/**"
+      - "tests/test_question_bank_web.py"
+      - "tests/test_question_bank_platform.py"
+      - "tests/test_question_bank_platform_runtime.py"
+      - "tests/question_bank_data_service.test.mjs"
+      - ".github/workflows/question-bank-platform.yml"
+  workflow_dispatch:
+
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Question Bank contract and growth falsifiers
+        run: python3 -m unittest tests.test_question_bank_web tests.test_question_bank_platform tests.test_question_bank_platform_runtime
+      - name: Progressive browser data service
+        run: node tests/question_bank_data_service.test.mjs
+      - name: Legacy browser projection remains current
+        run: python3 Shared/tools/build_question_bank_web.py --check
+      - name: Committed shared Question Bank platform artifacts are current
+        run: python3 Shared/tools/build_question_bank_platform.py --check
+      - name: Pages mirror is current and internally linked
+        run: python3 Shared/tools/build_pages_site.py --check
+      - name: Lineage explain witness
+        run: python3 Shared/tools/build_question_bank_platform.py --explain PYQ-CHEM-IITJEE-2008-P1-Q66
+      - name: Measure 5000-question scale fixture
+        run: python3 Shared/tools/question_bank_scale.py --questions 5000 --out artifacts/question-bank/scale-observation.json
+      - name: Show scale observation
+        run: cat artifacts/question-bank/scale-observation.json
+      - name: Upload platform and scale evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: question-bank-platform-${{ github.sha }}
+          if-no-files-found: error
+          path: |
+            public/data/question-bank-catalog.js
+            public/data/question-bank-search.js
+            public/data/question-bank-resources.js
+            public/data/question-bank-manifest.js
+            public/data/question-bank-details/*.js
+            artifacts/question-bank/dedup-report.json
+            artifacts/question-bank/lineage.json
+            artifacts/question-bank/build-receipt.json
+            artifacts/question-bank/scale-observation.json

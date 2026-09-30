@@ -19,7 +19,7 @@ from Shared.tools import (  # noqa: E402
     topic_independence_guard,
 )
 from Shared.tools.topic_independence_guard import (  # noqa: E402
-    excluded_paths, scan_python, selftest,
+    excluded_globs, excluded_paths, is_excluded, scan_python, selftest,
 )
 
 
@@ -95,6 +95,83 @@ class Guard(unittest.TestCase):
                     guard.excluded_paths()
             finally:
                 guard.ALLOWLIST = original
+
+    def test_glob_exclusions_cover_hash_named_generated_files_but_not_their_generator(self):
+        exact, globs = excluded_paths(), excluded_globs()
+        for generated in (
+            "public/data/question-bank-search.js",
+            "docs/data/question-bank-catalog.js",
+            "public/data/question-bank-details/subject-chemistry-97462a79cb.js",
+            "docs/data/question-bank-details/subject-physics-fc07b0f63d.js",
+        ):
+            self.assertTrue(is_excluded(generated, exact, globs), generated)
+        for scanned in (
+            "Shared/tools/question_bank_platform.py",
+            "Shared/tools/build_question_bank_platform.py",
+            "public/js/question-bank.js",
+            "public/js/question-bank-data-service.js",
+            "public/data/question-bank/other.js",
+        ):
+            self.assertFalse(is_excluded(scanned, exact, globs), scanned)
+
+    def test_method_document_names_are_not_identifiers_but_real_identifiers_still_are(self):
+        from Shared.tools.topic_independence_guard import check_literal
+        for document in (
+            "DESIGN-NOTE.md", "SELF-CHECK.md", "docs/method/roles/SOURCE-READER.md",
+            # Three-part names used to slip through: the pattern backtracked to "FIRST-STAGE" and matched it.
+            "docs/method/FIRST-STAGE-REVIEW.md", "## First stage (docs/method/FIRST-STAGE-REVIEW.md)",
+        ):
+            self.assertIsNone(check_literal(document), document)
+        for identifier in ("PHY-M2D", "BUCKET-RELATIVE-MOTION", "CAP-SIGNED-PAIR", "PHY-M2D.json"):
+            self.assertEqual(check_literal(identifier), "governed identifier in engine code", identifier)
+
+    def test_rule_id_allowlist_entries_still_name_rules_in_the_quality_contract(self):
+        document = json.loads(
+            (REPO / "Shared/tools/topic_independence_allowlist.json").read_text(encoding="utf-8"))
+        contract = json.loads(
+            (REPO / "Shared/quality/learner-quality.v1.json").read_text(encoding="utf-8"))
+        rule_ids: set[str] = set()
+
+        def walk(node):
+            if isinstance(node, dict):
+                if isinstance(node.get("id"), str):
+                    rule_ids.add(node["id"])
+                for value in node.values():
+                    walk(value)
+            elif isinstance(node, list):
+                for value in node:
+                    walk(value)
+        walk(contract)
+        entries = [e for e in document["allow"] if e["path"] == "Shared/tools/package_depth.py"]
+        self.assertTrue(entries)
+        for entry in entries:
+            self.assertIn(entry["literal"], rule_ids, entry["literal"])
+
+    def test_every_glob_exclusion_has_a_reason_and_a_directory_anchor(self):
+        document = json.loads(
+            (REPO / "Shared/tools/topic_independence_allowlist.json").read_text(encoding="utf-8"))
+        self.assertTrue(document["exclude_path_globs"])
+        for entry in document["exclude_path_globs"]:
+            self.assertTrue(entry["reason"].strip())
+            self.assertIn("/", entry["glob"].split("*")[0])
+
+    def test_a_glob_exclusion_that_is_unexplained_or_unanchored_is_refused(self):
+        import Shared.tools.topic_independence_guard as guard
+        original = guard.ALLOWLIST
+        try:
+            for entries in (
+                [{"glob": "public/data/x-*.js", "reason": " "}],
+                [{"glob": "*.js", "reason": "would exempt every script"}],
+                [{"glob": "**/*.js", "reason": "would exempt every script"}],
+            ):
+                with tempfile.TemporaryDirectory() as temp:
+                    broken = Path(temp) / "allowlist.json"
+                    broken.write_text(json.dumps({"exclude_path_globs": entries}), encoding="utf-8")
+                    guard.ALLOWLIST = broken
+                    with self.assertRaises(SystemExit):
+                        guard.excluded_globs()
+        finally:
+            guard.ALLOWLIST = original
 
     def test_a_planted_literal_is_still_caught(self):
         with tempfile.TemporaryDirectory() as temp:

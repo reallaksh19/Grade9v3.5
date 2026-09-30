@@ -10,6 +10,9 @@ jobs:
   guardrails:
     runs-on: ubuntu-latest
     steps:
+      # Every guard below runs even when an earlier one fails (`if: !cancelled()`), so one
+      # red guard can no longer hide the state of the others. The job is still red when any
+      # guard fails; this changes what is reported, not what is required.
       - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
@@ -22,31 +25,37 @@ jobs:
       # Proves the guard detects a planted violation. Without this a guard that
       # scanned nothing would pass vacuously.
       - name: Topic independence guard — self-test
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/topic_independence_guard.py --selftest
 
       - name: Topic independence guard — scan engine and tooling
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/topic_independence_guard.py
 
       # Heavy-graphical support routes are governed separately from the academic graph.
       # The guard validates their design contract, semantic-leaf/capability bindings,
       # honest conformance status and implementation locator without granting human review.
       - name: Graphical cognitive deconstruction contracts are valid
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/explorer_design_guard.py --enforce
 
       # Master-suite scale is governed separately: per-item answer/source/fidelity
       # contracts, helper activation and declared repo/standalone delivery profiles.
       - name: GCDR master-suite contracts are valid
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/gcdr_suite_guard.py --enforce
 
       # Execute each governed explorer's inline JS in a DOM-lite Node runtime, mutate
       # controls, verify causal handlers/reset behavior, and reject runtime claims that
       # overstate what the artifact actually does. This is not visual/browser-layout proof.
       - name: GCDR runtime integrity claims are honest
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/gcdr_runtime_audit.py --enforce
 
       # Subject-owned numerical/model falsifiers remain separate from the generic GCDR
       # tooling so shared governance never hard-codes projectile physics.
       - name: Motion2D GCDR scientific invariants hold
+        if: ${{ !cancelled() }}
         run: python3 Physics/tools/motion2d_gcdr_properties.py --enforce
 
       # A role spec may not require content the schema has nowhere to keep. Enforcing:
@@ -56,6 +65,7 @@ jobs:
       # report one shared finding three times and attribute it to a subject that has no
       # say in it.
       - name: Role specs resolve against the library schema
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/spec_conformance.py --enforce
 
       # Core1 orientation is a structural map, not a prose-quality score. Existing
@@ -63,6 +73,7 @@ jobs:
       # unresolved relations, missing relation conditions/meaning, malformed conventions,
       # unqualified curriculum mappings, or broken declared Core1 representation bindings.
       - name: Core1 semantic-orientation debt only moves forward
+        if: ${{ !cancelled() }}
         run: |
           python3 -m Shared.library.core1_orientation \
             --check-baseline docs/core1-orientation-baseline.json
@@ -74,6 +85,7 @@ jobs:
       # microtopic.inferential_jump. Existing representation/worked-anchor debt is
       # frozen; new or materially revised microtopics may not add structural debt.
       - name: Core1A conceptual-construction debt only moves forward
+        if: ${{ !cancelled() }}
         run: |
           python3 -m Shared.library.core1a_construction \
             --check-baseline docs/core1a-construction-baseline.json
@@ -85,6 +97,7 @@ jobs:
       # match Core1A and each self-tutor cycle must close without a tutor. Unrouted
       # concepts are handed to cross-Core progression rather than mislabelled B debt.
       - name: Core1B reconstruction integrity only moves forward
+        if: ${{ !cancelled() }}
         run: |
           python3 -m Shared.library.core1b_reconstruction \
             --check-baseline docs/core1b-reconstruction-baseline.json
@@ -96,6 +109,7 @@ jobs:
       # orientation, completed construction and learner reconstruction. Local Phase-2
       # migration debt remains local; only new ownership/routing/progression drift fails.
       - name: Cross-Core1 conceptual progression only moves forward
+        if: ${{ !cancelled() }}
         run: |
           python3 -m Shared.library.core1_progression \
             --check-baseline docs/core1-progression-baseline.json
@@ -107,6 +121,7 @@ jobs:
       # compiler-backed projections and the shared static/runtime host. Unlike local
       # construction debt, learner delivery admits no baseline exceptions.
       - name: Core1-family learner delivery remains complete and semantically stable
+        if: ${{ !cancelled() }}
         run: |
           python3 -m Shared.library.core1_delivery \
             --check-report docs/core1-delivery-report.json
@@ -115,6 +130,7 @@ jobs:
       # frozen: a new or materially revised familiar-application item must use the
       # structured reasoning route and stable crux rather than creating more fallback debt.
       - name: Core2A reasoning migration only moves forward
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/core2a_inventory.py --enforce-forward
 
       # Core2B is a changed-demand claim relative to prior exposure. Existing transfer
@@ -122,93 +138,112 @@ jobs:
       # decision, establish their capabilities from lineage, carry specific repair and
       # rubric closure, and keep the adaptation parent inside the declared lineage.
       - name: Core2B transfer integrity only moves forward
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/core2b_inventory.py --enforce-forward
 
       # Core2, Core2A and Core2B own different claims. This family-level join proves
       # those claims remain connected without allowing authored practice to become
       # source custody or treating a renderable product as progression readiness.
       - name: Cross-Core progression ownership and lineage remain coherent
+        if: ${{ !cancelled() }}
         run: python3 Shared/library/core_progression.py --enforce
 
       # A claim about a learner must be backed by what was seen, or say it is a waiver.
       # Enforcing from the start: the store landed with its gate, and both committed
       # profiles are waiver-backed with a null percentage, which is the honest value.
       - name: Learner claims are backed by evidence or a waiver
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/learner_evidence.py --enforce
 
       # Regression and empirical acceptance are deliberately separate evidence layers.
       # The blueprint test is enforcing; the empirical audit treats missing live evidence
       # as PENDING and fails only malformed evidence that claims LIVE_LEARNER provenance.
       - name: Blueprint architecture regression
+        if: ${{ !cancelled() }}
         run: python3 -m unittest discover -s tests -p "test_blueprint_regression.py" -v
 
       - name: Empirical learner acceptance status
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/empirical_acceptance.py --enforce
 
       # A matrix may reference the library and may not restate or outrank it. Enforcing
       # from the start: it has no backlog, because the schema and the gate landed before
       # any matrix data did.
       - name: Matrices reference the library without restating it
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/matrix_conformance.py --enforce
 
       - name: Requests resolve to a plan, or refuse with a reason
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/resolve_request.py --enforce
 
       # Acquisition metadata is content-addressed. External availability is not part of
       # CI: committed acquisitions must verify against their pinned local snapshot when
       # one is retained, while URL fetching itself stays an explicit runtime action.
       - name: Source acquisitions remain digest-pinned
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/source_pipeline.py audit --enforce
 
       # Source coverage is evidence, not a request field. A receipt may preserve an
       # inspection fact while still reporting insufficient custody; authored questions
       # can never establish Core2 source custody.
       - name: Source inspection receipts prove their custody claims
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/source_receipts.py --audit --enforce
 
       # A short third-agent request is allowed to be incomplete: the plan must derive
       # what the repository owns and return only the owner decisions that remain.
       - name: Cold-agent authoring requests resolve without guessing
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/plan_request.py --audit --enforce
 
       # Every owner question emitted by the planner must have a typed, stale-safe
       # application path. Adding a new REQUIRED_OWNER_INPUT without an applier fails CI.
       - name: Planner owner inputs have executable decision handlers
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/apply_owner_decisions.py --audit --enforce
 
       # A resolved plan becomes a pinned per-Core work packet. The packet may be partial:
       # unrelated work continues while a source or owner decision holds one Core.
       - name: Third-agent execution packets are current and internally consistent
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/compile_execution_packet.py --audit --enforce
 
       # Every runnable execution-packet write scope must be enforceable by the authoring
       # runner. Candidate records and product outputs have separate, fail-closed paths.
       - name: Authoring run write scopes are enforceable
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/execute_authoring_run.py --audit --enforce
 
       # REVIEWED/CURATED are authority claims, not editable labels. Every committed
       # current-stage promotion receipt must still verify against the exact record digest.
       - name: Review and curation receipts remain digest-authoritative
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/review_authority.py --audit --enforce
 
       # Learner release is an external, recomputable authority receipt. Publication
       # manifests remain release_authorized=false and cannot self-grant approval.
       - name: Final learner-release receipts remain current
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/release_authority.py --audit --enforce
 
       # Mechanical academic-review prerequisites are measurable. Human scientific and
       # pedagogical approval is not; report that state explicitly rather than turning
       # a green CI check into a fake review.
       - name: Academic review readiness report
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/academic_readiness.py
 
       - name: No ceiling forbids the word its own rung teaches
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/ceiling_audit.py --enforce
 
       - name: Every published run declares what it was built from
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/publication_provenance.py --enforce
 
       - name: Committed publications still verify against their inputs
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/republish.py
 
       # A library may not invent a way of depicting its subject, and a figure bound to
@@ -216,6 +251,7 @@ jobs:
       # subject sweep below; this step is the standalone report, which names the record
       # rather than only failing the sweep.
       - name: Representations are backed by their subject's contract
+        if: ${{ !cancelled() }}
         run: python3 Shared/library/depiction.py --enforce
 
       # Every path a role spec requires must survive compilation. Enforcing: the
@@ -223,22 +259,26 @@ jobs:
       # are reported as a named backlog and do not fail this step, because a backlog
       # that fails the build gets the build switched off rather than the backlog closed.
       - name: Requirements survive compilation
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/spec_delivery.py --enforce --summary
 
       # One tested module, not a workflow heredoc: subject discovery is protected by
       # the suite, so CI cannot quietly go back to checking a single named subject.
       - name: Every subject's contract, gate registries and library
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/check_subjects.py
 
       # A contract may not claim a capability nothing backs. Enforcing now that the
       # backlog it found is closed, so the claim and the code cannot drift apart again.
       - name: Contract claims are backed by code
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/capability_audit.py --enforce
 
       # Render the expected architecture index as an artifact without modifying the
       # checkout. This makes drift repair inspectable while the following --check remains
       # read-only and still fails when the committed artifact is stale.
       - name: Render generated-artifact previews
+        if: ${{ !cancelled() }}
         run: |
           python3 - <<'PY'
           import json
@@ -259,6 +299,7 @@ jobs:
           PY
 
       - name: Upload generated-artifact previews
+        if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
           name: generated-artifact-preview
@@ -267,6 +308,7 @@ jobs:
       # --check compares the generated data file and the manifest without writing
       # either, so it covers both artifacts and leaves the checkout untouched.
       - name: Generated artifacts have not drifted
+        if: ${{ !cancelled() }}
         run: python3 Shared/tools/build_manifest.py --check
 
       # Research-first jobs start from raw owner input and are judged on the rendered
@@ -274,6 +316,7 @@ jobs:
       # placeholders, dropped inputs, unbacked identities and the PR #288 Motion-in-2D
       # product must fail. The browser entry must agree with the Python intake.
       - name: Research-first intake and delivery gate hold across subjects
+        if: ${{ !cancelled() }}
         run: |
           python3 Shared/tools/raw_intake.py --check-browser-data
           python3 -m unittest tests.test_research_first_workflow -v
@@ -282,6 +325,7 @@ jobs:
       # planner reports, execution packets) may offer HOLD/BLOCKED/WAITING as an outcome;
       # every gap must arrive as a research or authoring duty with default learner values.
       - name: No escape states on agent-facing surfaces
+        if: ${{ !cancelled() }}
         run: |
           python3 Shared/tools/escape_state_guard.py
           python3 -m unittest tests.test_escape_state_policy -v
@@ -290,15 +334,18 @@ jobs:
       # pinned, allowlisted source (bytes re-downloaded and matched by SHA-256), and stages are
       # derived from files. Needs network for the source snapshots.
       - name: Research library evidence is real and the board computes
+        if: ${{ !cancelled() }}
         run: |
           python3 Shared/tools/evidence_check.py check --subject Physics --fetch
           python3 Shared/tools/library_board.py --subject Physics > /dev/null
           python3 -m unittest tests.test_research_library -v
 
       - name: Tests (engine port, gate falsifiers, library, compilation, tooling)
+        if: ${{ !cancelled() }}
         run: python3 -m unittest discover -s tests -p "test_*.py" -v
 
       - name: All JSON parses
+        if: ${{ !cancelled() }}
         run: |
           python3 - <<'PY'
           import json, sys
