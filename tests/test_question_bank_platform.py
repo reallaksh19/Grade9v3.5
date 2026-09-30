@@ -172,6 +172,48 @@ class QuestionBankPlatformTest(unittest.TestCase):
         self.assertNotEqual(result["classification"], "DUPLICATE")
         self.assertNotEqual(qbp.normalized_exact_fingerprint(plus), qbp.normalized_exact_fingerprint(minus))
 
+    def test_near_duplicate_search_says_when_it_declined_to_look(self):
+        # A small topic is searched completely.
+        small = [question(f"BIO-S{i}", f"Explain organelle number {i} in a plant cell.", topic_ref="TOPIC-BIO-CELL",
+                          number=str(i)) for i in range(6)]
+        report = qbp.build_dedup_report([qbp.enrich_question_refs(q) for q in small])
+        self.assertTrue(report["near_duplicate_coverage"]["complete"])
+        self.assertEqual(report["near_duplicate_coverage"]["shingle_buckets_skipped_as_too_common"], 0)
+        self.assertEqual(report["near_duplicate_coverage"]["records_whose_shingles_were_all_skipped"], 0)
+
+        # A record that shares no shingle with anyone has nothing to compare; that is not a skip.
+        alone = small + [question("BIO-ALONE", "Quantum tunnelling of electrons through a barrier.",
+                                  topic_ref="TOPIC-BIO-CELL", number="99")]
+        report = qbp.build_dedup_report([qbp.enrich_question_refs(q) for q in alone])
+        self.assertEqual(report["near_duplicate_coverage"]["records_whose_shingles_were_all_skipped"], 0)
+        self.assertTrue(report["near_duplicate_coverage"]["complete"])
+
+        # One topic of templated stems is larger than the bucket bound: the search skips the shared
+        # shingles, and the report must say so instead of looking like "no near duplicates".
+        crowd = qbp.NEAR_MAX_BUCKET + 8
+        crowded = [question(f"BIO-C{i}", f"Explain organelle number {i} in a plant cell.",
+                            topic_ref="TOPIC-BIO-CELL", number=str(i)) for i in range(crowd)]
+        report = qbp.build_dedup_report([qbp.enrich_question_refs(q) for q in crowded])
+        coverage = report["near_duplicate_coverage"]
+        self.assertFalse(coverage["complete"])
+        self.assertGreater(coverage["shingle_buckets_skipped_as_too_common"], 0)
+        self.assertEqual(coverage["records_whose_shingles_were_all_skipped"], crowd)
+        self.assertEqual(coverage["records"], crowd)
+
+    def test_truncated_candidate_lists_are_counted(self):
+        count = qbp.NEAR_MAX_CANDIDATES_PER_RECORD + 4  # within the bucket bound, above the per-record cap
+        self.assertLessEqual(count, qbp.NEAR_MAX_BUCKET)
+        rows = [question(f"BIO-T{i}", f"Explain organelle number {i} in a plant cell.",
+                         topic_ref="TOPIC-BIO-CELL", number=str(i)) for i in range(count)]
+        coverage = qbp.build_dedup_report([qbp.enrich_question_refs(q) for q in rows])["near_duplicate_coverage"]
+        self.assertFalse(coverage["complete"])
+        self.assertEqual(coverage["records_with_truncated_candidates"], count)
+        self.assertEqual(coverage["shingle_buckets_skipped_as_too_common"], 0)
+
+    def test_the_build_receipt_carries_whether_the_near_duplicate_search_was_complete(self):
+        platform = qbp.assemble_platform({"questions": [question("BIO-Q1", "A short stem about cells", topic_ref="T")]})
+        self.assertIs(platform["receipt"]["counts"]["near_duplicate_search_complete"], True)
+
     def test_duplicate_canonical_id_fails_closed(self):
         with self.assertRaises(qbp.ProjectionError):
             qbp.validate_unique_ids([question("SAME", "A"), question("SAME", "B")])

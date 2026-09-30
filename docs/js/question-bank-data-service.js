@@ -49,6 +49,14 @@ function norm(value){
   return String(value||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
 }
 
+// The index text never changes within a build, so normalise each document once, not once per query.
+const haystacks=new WeakMap();
+function haystack(doc){
+  let text=haystacks.get(doc);
+  if(text===undefined){text=norm(doc.search_text);haystacks.set(doc,text);}
+  return text;
+}
+
 function search(query,filters){
   assertCoherence();
   const data=index();
@@ -61,7 +69,7 @@ function search(query,filters){
     if(opts.topic_ref&&doc.topic_ref!==opts.topic_ref)return false;
     if(opts.difficulty&&doc.difficulty!==opts.difficulty)return false;
     if(!terms.length)return true;
-    const hay=norm(doc.search_text);
+    const hay=haystack(doc);
     return terms.every(term=>hay.includes(term));
   });
 }

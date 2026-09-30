@@ -243,12 +243,15 @@ def _shingles(tokens: Sequence[str]) -> set[tuple[str, ...]]:
     }
 
 
-def _near_duplicate_evidence(questions: Sequence[Mapping[str, object]]) -> list[dict]:
+def _near_duplicate_evidence(questions: Sequence[Mapping[str, object]]) -> tuple[list[dict], dict]:
     """Bounded deterministic near-duplicate search within subject/topic partitions.
 
     Shared 3-token shingles generate candidates. Extremely common shingles are ignored and
     each record compares with at most a fixed number of strongest candidates, preventing
     same-topic corpora from degenerating into all-pairs work as the corpus grows.
+
+    Those bounds mean the search can decline to look. The second value says how often it did, so
+    "no near duplicates found" is never confused with "the search skipped most of the corpus".
     """
     partitions: dict[tuple[str, str], list[Mapping[str, object]]] = defaultdict(list)
     for question in questions:
@@ -259,6 +262,9 @@ def _near_duplicate_evidence(questions: Sequence[Mapping[str, object]]) -> list[
 
     relationships: list[dict] = []
     seen_pairs: set[tuple[str, str]] = set()
+    coverage = {"records": 0, "records_with_shingles": 0, "shingle_buckets": 0,
+                "shingle_buckets_skipped_as_too_common": 0, "records_with_truncated_candidates": 0,
+                "records_whose_shingles_were_all_skipped": 0}
     for members in partitions.values():
         by_id = {str(row["id"]): row for row in members}
         tokens_by_id = {qid: tokenize(row.get("stem")) for qid, row in by_id.items()}
@@ -268,10 +274,18 @@ def _near_duplicate_evidence(questions: Sequence[Mapping[str, object]]) -> list[
                 inverted[shingle].append(qid)
 
         candidate_scores: dict[str, Counter] = defaultdict(Counter)
+        examined_shingles: Counter = Counter()
+        skipped_shingles: Counter = Counter()
         for ids in inverted.values():
             unique_ids = sorted(set(ids))
-            if len(unique_ids) < 2 or len(unique_ids) > NEAR_MAX_BUCKET:
+            if len(unique_ids) < 2:
                 continue
+            coverage["shingle_buckets"] += 1
+            if len(unique_ids) > NEAR_MAX_BUCKET:
+                coverage["shingle_buckets_skipped_as_too_common"] += 1
+                skipped_shingles.update(unique_ids)
+                continue
+            examined_shingles.update(unique_ids)
             for qid in unique_ids:
                 for other in unique_ids:
                     if qid != other:
@@ -279,6 +293,13 @@ def _near_duplicate_evidence(questions: Sequence[Mapping[str, object]]) -> list[
 
         for qid in sorted(by_id):
             ranked = sorted(candidate_scores.get(qid, {}).items(), key=lambda row: (-row[1], row[0]))
+            coverage["records"] += 1
+            if _shingles(tokens_by_id[qid]):
+                coverage["records_with_shingles"] += 1
+                if qid in skipped_shingles and qid not in examined_shingles:
+                    coverage["records_whose_shingles_were_all_skipped"] += 1
+            if len(ranked) > NEAR_MAX_CANDIDATES_PER_RECORD:
+                coverage["records_with_truncated_candidates"] += 1
             for other, shared_shingles in ranked[:NEAR_MAX_CANDIDATES_PER_RECORD]:
                 pair = tuple(sorted((qid, other)))
                 if pair in seen_pairs:
@@ -295,13 +316,17 @@ def _near_duplicate_evidence(questions: Sequence[Mapping[str, object]]) -> list[
                 })
 
     relationships.sort(key=lambda row: (row["left_id"], row["right_id"]))
-    return relationships
+    coverage["complete"] = (
+        coverage["shingle_buckets_skipped_as_too_common"] == 0
+        and coverage["records_with_truncated_candidates"] == 0
+    )
+    return relationships, coverage
 
 
 def build_dedup_report(questions: Sequence[Mapping[str, object]]) -> dict:
     validate_unique_ids(questions)
     groups = _group_evidence(questions)
-    relationships = _near_duplicate_evidence(questions)
+    relationships, coverage = _near_duplicate_evidence(questions)
     counts = Counter(row["classification"] for row in groups)
     counts.update(row["classification"] for row in relationships)
     return {
@@ -322,6 +347,7 @@ def build_dedup_report(questions: Sequence[Mapping[str, object]]) -> dict:
         },
         "evidence_counts": dict(sorted(counts.items())),
         "evidence_count": len(groups) + len(relationships),
+        "near_duplicate_coverage": coverage,
         "groups": groups,
         "relationships": relationships,
     }
@@ -831,6 +857,7 @@ def assemble_platform(browser_projection: Mapping[str, object], resources: Seque
             "resources": len(scoped_resources),
             "search_documents": search_worker.output["document_count"],
             "dedup_evidence": dedup_worker.output["evidence_count"],
+            "near_duplicate_search_complete": dedup_worker.output["near_duplicate_coverage"]["complete"],
         },
         "workers": sorted(workers, key=lambda row: row["worker_id"]),
         "outputs": {
