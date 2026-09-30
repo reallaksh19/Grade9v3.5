@@ -8,7 +8,10 @@ import re
 from collections import Counter
 from pathlib import Path
 
-from Shared.tools.question_bank_platform import project_package_question
+try:
+    from .question_bank_platform import project_package_question
+except ImportError:  # direct: python3 Shared/tools/build_question_bank_web.py
+    from question_bank_platform import project_package_question
 
 REPO = Path(__file__).resolve().parents[2]
 OUT = REPO / "public" / "data" / "question-bank-data.js"
