@@ -431,15 +431,15 @@ class Renderer(unittest.TestCase):
 
         self.assertEqual(blueprint["responsive_policy"]["expanded"], "STAGE_SUPPORT")
         self.assertAlmostEqual(
-            blueprint["responsive_policy"]["expanded_primary_fraction"], 0.68, places=2
+            blueprint["responsive_policy"]["primary_fraction"], 0.68, places=2
         )
         self.assertAlmostEqual(
-            blueprint["responsive_policy"]["expanded_support_fraction"], 0.32, places=2
+            blueprint["responsive_policy"]["support_fraction"], 0.32, places=2
         )
         self.assertGreaterEqual(blueprint["touch_policy"]["minimum_target_css_px"], 48)
         self.assertGreaterEqual(blueprint["touch_policy"]["minimum_control_gap_css_px"], 8)
-        self.assertFalse(blueprint["support_policy"]["progressive_support"])
-        self.assertIn("ATTEMPT_FIRST_AS_PRIMARY_MODE", blueprint["forbidden_patterns"])
+        self.assertFalse(blueprint["interaction_policy"]["progressive_support"])
+        self.assertIn("ATTEMPT_FIRST_AS_PRIMARY_MODE", blueprint["forbidden"])
 
         self.assertIn("@media (min-width:1100px)", render_core.CSS)
         self.assertIn("grid-template-columns:.68fr .32fr", render_core.CSS)
