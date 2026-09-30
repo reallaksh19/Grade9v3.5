@@ -220,6 +220,21 @@ await check('keyboard: arrow keys move between subject tabs', async () => {
   await context.close();
 });
 
+await check('declared math is typeset in result cards and in Study, with no KaTeX errors', async () => {
+  const withMath = summaries.find((q) => (q.math_spans || []).length > 0);
+  assert(withMath, 'the live corpus has a question with declared stem math');
+  const { page, context, errors } = await open(live.base, `?q=${encodeURIComponent(withMath.id)}`);
+  await listed(page);
+  await page.waitForSelector(`[id="${withMath.id}"] .qb-katex-token .katex`);
+  assert((await page.$$eval(`[id="${withMath.id}"] .qb-katex-token`, (n) => n.length)) >= 1, 'the card typesets its declared spans');
+  await page.locator(`[id="${withMath.id}"] .qb-qactions button`).click();
+  await page.waitForSelector('#qbStudyDialog[open] .qb-panel');
+  await page.waitForSelector('#qbDialogBody .qb-katex-token .katex');
+  equal(await page.$$eval('.katex-error', (n) => n.length), 0, 'no KaTeX errors');
+  assert(errors.length === 0, `page errors: ${errors.join('; ')}`);
+  await context.close();
+});
+
 await check('math and figures stay inside the dialog at phone width', async () => {
   const withMath = summaries.find((q) => (q.math_spans || []).length > 0) || summaries[0];
   const { page, context } = await open(live.base, `#${withMath.id}`, { width: 390, height: 844 });
