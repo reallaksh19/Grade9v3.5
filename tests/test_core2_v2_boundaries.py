@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from Shared.tools import render_core
+from Shared.tools import core_template_contract, render_core
 
 
 class Core2V2LearnerJobBoundary(unittest.TestCase):
@@ -14,6 +14,21 @@ class Core2V2LearnerJobBoundary(unittest.TestCase):
             bank=[],
             blueprints={},
             selection_rows={"microtopics": [], "core2": []},
+        )
+
+    def test_core2_v2_blueprint_versions_are_resolvable_from_the_authoritative_template_contract(self):
+        core1a = core_template_contract.resolve_web_blueprint_for_core("CORE1A")
+        core2 = core_template_contract.resolve_web_blueprint_for_core("CORE2")
+
+        self.assertEqual(core1a["ref"], "BP-CORE1A-CONSTRUCTION@1.1.0")
+        self.assertEqual(core2["ref"], "BP-CORE2-SOURCE-QUESTION@1.1.0")
+        self.assertIn(
+            "practice_navigation",
+            next(slot for slot in core1a["slots"] if slot["id"] == "repair_closure")["accepts_blocks"],
+        )
+        self.assertIn(
+            "concept_navigation",
+            next(slot for slot in core2["slots"] if slot["id"] == "support")["accepts_blocks"],
         )
 
     def test_routine_zero_support_question_stays_lightweight_and_non_clinic(self):
