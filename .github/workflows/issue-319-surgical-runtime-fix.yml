@@ -1,0 +1,77 @@
+name: issue-319-surgical-runtime-fix
+
+on:
+  push:
+    branches:
+      - issue-319/core2-v2-learner-contract
+    paths:
+      - .github/workflows/issue-319-surgical-runtime-fix.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply-runtime-fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: issue-319/core2-v2-learner-contract
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Apply guarded runtime edits
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path("Shared/tools/render_core.py")
+          text = path.read_text(encoding="utf-8")
+
+          old = """function saveCore2State(a){if(a.dataset.g9Role!=='CORE2')return;const key=stateKey(a);if(!key)return;const fields=attemptFields(a).map(el=>({value:el.value,checked:!!el.checked}));const ladders={};q('.g9-ladder[data-g9-ladder-ref]',a).forEach(l=>ladders[l.dataset.g9LadderRef]=rungCount(l));const reveals=q('details[data-g9-support-reveal]',a).map(d=>!!d.open);store.set(key,JSON.stringify({attempted:!!a.dataset.attempted,fields,ladders,reveals}))}
+          function restoreCore2State(a,lock){if(a.dataset.g9Role!=='CORE2')return;const state=readState(stateKey(a));if(!state)return;const fields=attemptFields(a);(state.fields||[]).forEach((saved,i)=>{const el=fields[i];if(!el||!saved||typeof saved!=='object')return;if(Object.prototype.hasOwnProperty.call(saved,'value'))el.value=saved.value??'';if(el.type==='checkbox'||el.type==='radio')el.checked=!!saved.checked});Object.entries(state.ladders||{}).forEach(([ref,count])=>{const l=q('.g9-ladder[data-g9-ladder-ref]',a).find(x=>x.dataset.g9LadderRef===ref);if(!l||!Number.isInteger(count)||count<0)return;while(rungCount(l)<count&&nextRung(l)){};});q('details[data-g9-support-reveal]',a).forEach((d,i)=>d.open=!!(state.reveals||[])[i]);if(state.attempted){a.dataset.attempted='1';materialise(a)}lock()}
+          """
+          new = """function saveCore2State(a){if(a.dataset.g9Role!=='CORE2')return;const key=stateKey(a);if(!key)return;const fields=attemptFields(a).map(el=>({value:el.value,checked:!!el.checked}));const ladders={};q('.g9-ladder[data-g9-ladder-ref]',a).forEach(l=>ladders[l.dataset.g9LadderRef]=rungCount(l));const reveals=q('details[data-g9-support-reveal]',a).map(d=>!!d.open);store.set(key,JSON.stringify({attempted:!!a.dataset.attempted,fields,ladders,reveals}))}
+          function bindSupportRevealState(a){q('details[data-g9-support-reveal]',a).forEach(d=>{if(d.dataset.g9StateBound)return;d.dataset.g9StateBound='1';d.addEventListener('toggle',()=>saveCore2State(a))})}
+          function restoreCore2State(a,lock){if(a.dataset.g9Role!=='CORE2')return;const state=readState(stateKey(a));if(!state)return;const fields=attemptFields(a);(state.fields||[]).forEach((saved,i)=>{const el=fields[i];if(!el||!saved||typeof saved!=='object')return;if(Object.prototype.hasOwnProperty.call(saved,'value'))el.value=saved.value??'';if(el.type==='checkbox'||el.type==='radio')el.checked=!!saved.checked});Object.entries(state.ladders||{}).forEach(([ref,count])=>{const l=q('.g9-ladder[data-g9-ladder-ref]',a).find(x=>x.dataset.g9LadderRef===ref);if(!l||!Number.isInteger(count)||count<0)return;while(rungCount(l)<count&&nextRung(l)){};});bindSupportRevealState(a);q('details[data-g9-support-reveal]',a).forEach((d,i)=>d.open=!!(state.reveals||[])[i]);if(state.attempted){a.dataset.attempted='1';materialise(a)}lock()}
+          """
+          if text.count(old) != 1:
+              raise SystemExit(f"expected one state-helper block, found {text.count(old)}")
+          text = text.replace(old, new)
+
+          old = """q('[data-g9-next-rung]',a).forEach(b=>b.onclick=()=>{nextRung(b.closest('.g9-ladder'));saveCore2State(a)});attemptFields(a).forEach(el=>{el.addEventListener('input',()=>saveCore2State(a));el.addEventListener('change',()=>saveCore2State(a))});
+          q('[data-g9-concept-link]',a).forEach(link=>link.addEventListener('click',()=>{saveCore2State(a);const key=returnKey(link.dataset.g9ConceptRef);if(key)store.set(key,link.dataset.g9QuestionRef||a.dataset.g9Unit)}))});
+          q('[data-g9-practice-link]').forEach(link=>{const key=returnKey(link.dataset.g9ConceptRef);if(!key||store.get(key)!==link.dataset.g9QuestionRef)return;link.dataset.g9ReturnLink='';link.textContent='Return to question · '+link.textContent;link.addEventListener('click',()=>store.remove(key))});
+          """
+          new = """q('[data-g9-next-rung]',a).forEach(b=>b.onclick=()=>{nextRung(b.closest('.g9-ladder'));bindSupportRevealState(a);saveCore2State(a)});attemptFields(a).forEach(el=>{el.addEventListener('input',()=>saveCore2State(a));el.addEventListener('change',()=>saveCore2State(a))});
+          q('[data-g9-concept-link]',a).forEach(link=>link.addEventListener('click',()=>{saveCore2State(a);const key=returnKey(link.dataset.g9ConceptRef);if(key)store.set(key,link.dataset.g9QuestionRef||a.dataset.g9Unit);refreshReturnLinks()}))});
+          const practiceLinks=q('[data-g9-practice-link]');const practiceLabels=new Map(practiceLinks.map(link=>[link,link.textContent]));
+          function refreshReturnLinks(){practiceLinks.forEach(link=>{const key=returnKey(link.dataset.g9ConceptRef);const active=!!key&&store.get(key)===link.dataset.g9QuestionRef;if(active){link.dataset.g9ReturnLink='';link.textContent='Return to question · '+practiceLabels.get(link)}else{delete link.dataset.g9ReturnLink;link.textContent=practiceLabels.get(link)}})}
+          practiceLinks.forEach(link=>link.addEventListener('click',()=>{const key=returnKey(link.dataset.g9ConceptRef);if(key&&store.get(key)===link.dataset.g9QuestionRef){store.remove(key);refreshReturnLinks()}}));refreshReturnLinks();
+          """
+          if text.count(old) != 1:
+              raise SystemExit(f"expected one navigation block, found {text.count(old)}")
+          text = text.replace(old, new)
+
+          path.write_text(text, encoding="utf-8")
+          PY
+      - name: Validate renderer runtime and focused tests
+        run: |
+          pip install --quiet jsonschema pypdf
+          python3 -m unittest \
+            tests.test_render_core \
+            tests.test_core2_v2 \
+            tests.test_core2_v2_layout \
+            tests.test_core2_v2_motion2d \
+            tests.test_core2_v2_quality \
+            tests.test_core2_v2_boundaries
+      - name: Commit validated runtime fix and remove this temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/issue-319-surgical-runtime-fix.yml
+          git add Shared/tools/render_core.py
+          git diff --cached --check
+          git commit -m "fix(#319): preserve Core2 return and reveal state"
+          git push origin HEAD:issue-319/core2-v2-learner-contract
