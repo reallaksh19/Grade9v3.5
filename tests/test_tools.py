@@ -19,7 +19,7 @@ from Shared.tools import (  # noqa: E402
     topic_independence_guard,
 )
 from Shared.tools.topic_independence_guard import (  # noqa: E402
-    excluded_paths, scan_python, selftest,
+    excluded_globs, excluded_paths, is_excluded, scan_python, selftest,
 )
 
 
@@ -95,6 +95,50 @@ class Guard(unittest.TestCase):
                     guard.excluded_paths()
             finally:
                 guard.ALLOWLIST = original
+
+    def test_glob_exclusions_cover_hash_named_generated_files_but_not_their_generator(self):
+        exact, globs = excluded_paths(), excluded_globs()
+        for generated in (
+            "public/data/question-bank-search.js",
+            "docs/data/question-bank-catalog.js",
+            "public/data/question-bank-details/subject-chemistry-97462a79cb.js",
+            "docs/data/question-bank-details/subject-physics-fc07b0f63d.js",
+        ):
+            self.assertTrue(is_excluded(generated, exact, globs), generated)
+        for scanned in (
+            "Shared/tools/question_bank_platform.py",
+            "Shared/tools/build_question_bank_platform.py",
+            "public/js/question-bank.js",
+            "public/js/question-bank-data-service.js",
+            "public/data/question-bank/other.js",
+        ):
+            self.assertFalse(is_excluded(scanned, exact, globs), scanned)
+
+    def test_every_glob_exclusion_has_a_reason_and_a_directory_anchor(self):
+        document = json.loads(
+            (REPO / "Shared/tools/topic_independence_allowlist.json").read_text(encoding="utf-8"))
+        self.assertTrue(document["exclude_path_globs"])
+        for entry in document["exclude_path_globs"]:
+            self.assertTrue(entry["reason"].strip())
+            self.assertIn("/", entry["glob"].split("*")[0])
+
+    def test_a_glob_exclusion_that_is_unexplained_or_unanchored_is_refused(self):
+        import Shared.tools.topic_independence_guard as guard
+        original = guard.ALLOWLIST
+        try:
+            for entries in (
+                [{"glob": "public/data/x-*.js", "reason": " "}],
+                [{"glob": "*.js", "reason": "would exempt every script"}],
+                [{"glob": "**/*.js", "reason": "would exempt every script"}],
+            ):
+                with tempfile.TemporaryDirectory() as temp:
+                    broken = Path(temp) / "allowlist.json"
+                    broken.write_text(json.dumps({"exclude_path_globs": entries}), encoding="utf-8")
+                    guard.ALLOWLIST = broken
+                    with self.assertRaises(SystemExit):
+                        guard.excluded_globs()
+        finally:
+            guard.ALLOWLIST = original
 
     def test_a_planted_literal_is_still_caught(self):
         with tempfile.TemporaryDirectory() as temp:

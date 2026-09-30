@@ -42,5 +42,23 @@
       "path": "docs/data/question-bank-data.js",
       "reason": "Generated GitHub Pages mirror of the declarative Question Bank browser projection; generator and runtime remain scanned."
     }
+  ],
+  "exclude_path_globs": [
+    {
+      "glob": "public/data/question-bank-*.js",
+      "reason": "Generated declarative Question Bank platform artifacts (catalog, search documents, resources, manifest) written by Shared/tools/build_question_bank_platform.py from canonical subject records. Subject and topic identifiers are their entire content; the generator and the browser runtime remain scanned."
+    },
+    {
+      "glob": "docs/data/question-bank-*.js",
+      "reason": "Generated GitHub Pages mirror of the declarative Question Bank platform artifacts under public/data; generator and runtime remain scanned."
+    },
+    {
+      "glob": "public/data/question-bank-details/*.js",
+      "reason": "Generated per-subject Question Bank detail shards. File names carry a content hash, so no exact path can name them; they are declarative projections of canonical records and the generator remains scanned."
+    },
+    {
+      "glob": "docs/data/question-bank-details/*.js",
+      "reason": "Generated GitHub Pages mirror of the per-subject Question Bank detail shards; generator and runtime remain scanned."
+    }
   ]
 }
