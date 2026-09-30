@@ -167,7 +167,7 @@ class Renderer(unittest.TestCase):
         for step in question["answer"]["reasoning"]:
             self.assertIn(step, html)
         self.assertIn(question["answer"]["summary"], html)
-        self.assertIn(question["answer"]["check"], html)
+        self.assertIn(render_core.esc(question["answer"]["check"]), html)
         self.assertNotIn("Why valid:", html)
 
     def test_core1a_watch_one_uses_structured_why_when_canonical_route_supplies_it(self):
@@ -212,10 +212,17 @@ class Renderer(unittest.TestCase):
         repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
         ctx = render_core.context(repo_manifest)
         html = render_core.page(ctx, "CORE1A", "PAGES", render_core.render_digest(ctx))
+        selected = ctx.selection_rows["microtopics"]
 
-        last_unit = render_core._core1a_route(ctx)[-1]["unit_id"]
-        self.assertLess(html.index(f'id="{last_unit}"'), html.index('data-g9-attempt-box'))
-        self.assertLess(html.index('data-g9-block="worked_anchor"'), html.index('data-g9-attempt-box'))
+        for index, microtopic in enumerate(selected):
+            start = html.index(f'<article id="{microtopic["id"]}"')
+            end = (html.index(f'<article id="{selected[index + 1]["id"]}"', start)
+                   if index + 1 < len(selected) else html.index("</main>", start))
+            article = html[start:end]
+            units = microtopic.get("construction_units") or []
+            if units:
+                self.assertLess(article.index(f'id="{units[-1]["id"]}"'), article.index('data-g9-attempt-box'))
+            self.assertLess(article.rindex('data-g9-block="worked_anchor"'), article.index('data-g9-attempt-box'))
 
     def test_renderer_owns_tablet_asset_and_blueprint_digest(self):
         pkg = json.loads((REPO / PKG).read_text(encoding="utf-8"))
