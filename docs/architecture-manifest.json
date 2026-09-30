@@ -5,20 +5,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 381,
-  "relation_count": 399,
+  "component_count": 387,
+  "relation_count": 403,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 54,
-    "TEST": 179,
-    "TOOLING": 103,
+    "TEST": 182,
+    "TOOLING": 106,
     "WEB": 12,
     "WEB_CONTRACT": 3,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:85b043a4fbb8f072d34d75102460a821d6de4637648d731b2bf182c56cc142c0",
+  "digest": "sha256:f057415aaa508850da9d4f4d99f68000edaa2f634601723eee2da7150448d17e",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -672,11 +672,18 @@
       "sha256": "419a004a61aedcb8a0c5182fb5f3f18b08ab61e147be121f4b581bf4c5d118c1"
     },
     {
+      "path": "Shared/tools/build_question_bank_platform.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 10434,
+      "sha256": "00a578949431b25513bd3a633bfeb81cacab8831f272a93d0401a1bf54ed2f78"
+    },
+    {
       "path": "Shared/tools/build_question_bank_web.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 10877,
-      "sha256": "f6416c9af50c276c46793779a18e958f438a333b42357d97425a3529d259f2c2"
+      "bytes": 12158,
+      "sha256": "ed0364da5add4200d85186910d779587de7089f06c93c0ae4497ed19db70655f"
     },
     {
       "path": "Shared/tools/build_web_data.py",
@@ -1027,6 +1034,20 @@
       "role_description": "Guardrails and generators",
       "bytes": 1371,
       "sha256": "68a4d858826dda19ad2173907db94401c2c7e49c9d819f7002bbe5523e852421"
+    },
+    {
+      "path": "Shared/tools/question_bank_platform.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 34769,
+      "sha256": "66ed68ecc6abc8008f39564c5f7ccd4393e7803aa5be88faf98814fb6a85e983"
+    },
+    {
+      "path": "Shared/tools/question_bank_scale.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 5546,
+      "sha256": "bc9cb85f1fc4a4d8450de2a02e2e67390fa7fb91e24208c7e58f26f4f843c67c"
     },
     {
       "path": "Shared/tools/raw_intake.py",
@@ -1664,6 +1685,13 @@
       "role_description": "Executable checks",
       "bytes": 6408,
       "sha256": "af731cd13341c75bce69ed2ebd3b36ebe473cb3515b68d68faa561ed055ad85f"
+    },
+    {
+      "path": "tests/question_bank_data_service.test.mjs",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2453,
+      "sha256": "0235d72134411d02672d1f02a6b5be66ed594fa2a05dc73410288b813c3964a8"
     },
     {
       "path": "tests/raw_intake.test.mjs",
@@ -2371,6 +2399,20 @@
       "role_description": "Executable checks",
       "bytes": 17615,
       "sha256": "5218b9c7bbe96b2f0407bc7ad55fb28bcaf84aff878ad663199c6cd2ad3419a1"
+    },
+    {
+      "path": "tests/test_question_bank_platform.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 10288,
+      "sha256": "dce402fd3074604928cc7d4ade507230501ed30a683668d3dab77b4c94ed048c"
+    },
+    {
+      "path": "tests/test_question_bank_platform_runtime.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2173,
+      "sha256": "8dfdd6b4f2b21beb059b4bbddb21414a7adf4cc5f35a32cdeb772b77145a1171"
     },
     {
       "path": "tests/test_question_bank_web.py",
@@ -4426,6 +4468,26 @@
     },
     {
       "from": "tests/test_quality_gate.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_question_bank_platform.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_question_bank_platform.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_question_bank_platform_runtime.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_question_bank_platform_runtime.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },

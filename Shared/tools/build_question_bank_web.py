@@ -8,10 +8,17 @@ import re
 from collections import Counter
 from pathlib import Path
 
+try:
+    from .question_bank_platform import project_package_question
+except ImportError:  # direct: python3 Shared/tools/build_question_bank_web.py
+    from question_bank_platform import project_package_question
+
 REPO = Path(__file__).resolve().parents[2]
 OUT = REPO / "public" / "data" / "question-bank-data.js"
 VIEWS = REPO / "Shared" / "tools" / "question-bank-views.v1.json"
 BANK_NAME = "competitive-exam-question-bank.v2.json"
+PACKAGE_GLOB = "*/library/*.json"
+RESOURCE_SCHEMA = "grade9v3-question-bank-resources-v1"
 
 
 def _suite_destinations(repo: Path) -> list[dict]:
@@ -48,62 +55,35 @@ def _suite_destinations(repo: Path) -> list[dict]:
                 "kind": "explorer",
                 "keywords": keywords,
             })
-    adaptive_proof = (
-        repo
-        / "public"
-        / "chemistry"
-        / "redox"
-        / "explorers"
-        / "redox_reactions"
-        / "adaptive-hard-concept-proof.html"
-    )
-    if adaptive_proof.is_file():
-        destinations.append({
-            "title": "Redox Adaptive Visual Proof",
-            "path": "chemistry/redox/explorers/redox_reactions/adaptive-hard-concept-proof.html",
-            "kind": "explorer",
-            "keywords": [
-                "chemistry",
-                "redox",
-                "adaptive",
-                "proof",
-                "cro5",
-                "peroxide",
-                "n-factor",
-                "explorer",
-                "interactive",
-            ],
-        })
-    motion_2d = (
-        repo
-        / "public"
-        / "physics"
-        / "motion-in-2d"
-        / "explorers"
-        / "motions_in_2d"
-        / "index.html"
-    )
-    if motion_2d.is_file():
-        destinations.append({
-            "title": "Motions in 2D · Master Suite",
-            "path": "physics/motion-in-2d/explorers/motions_in_2d/index.html",
-            "kind": "explorer",
-            "keywords": [
-                "physics",
-                "kinematics",
-                "projectile",
-                "relative",
-                "motion",
-                "2d",
-                "explorer",
-                "interactive",
-            ],
-        })
+
+    for registry_path in sorted(repo.glob("*/question-bank/resources.v1.json")):
+        data = json.loads(registry_path.read_text(encoding="utf-8"))
+        if data.get("schema_version") != RESOURCE_SCHEMA:
+            raise ValueError(f"unsupported Question Bank resource schema: {registry_path}")
+        for resource in data.get("resources", []):
+            missing = [key for key in ("title", "path", "kind", "keywords") if key not in resource]
+            if missing:
+                raise ValueError(f"Question Bank resource missing {missing}: {registry_path}")
+            target = repo / "public" / resource["path"]
+            if not target.is_file():
+                raise ValueError(
+                    f"Question Bank resource target missing: {registry_path}: {resource['path']}"
+                )
+            destinations.append({
+                "title": resource["title"],
+                "path": resource["path"],
+                "kind": resource["kind"],
+                "keywords": resource["keywords"],
+            })
     return destinations
 
 
 def bank_paths(repo: Path = REPO) -> list[Path]:
     return sorted(repo.glob(f"*/library/exam-bank/{BANK_NAME}"))
+
+
+def package_paths(repo: Path = REPO) -> list[Path]:
+    return sorted(repo.glob(PACKAGE_GLOB))
 
 
 def load_json(path: Path):
@@ -180,6 +160,7 @@ def _matches_policy(question: dict, policy: dict) -> bool:
 def build(repo: Path = REPO) -> dict:
     questions = []
     bank_meta = []
+    package_meta = []
     order = 0
     for path in bank_paths(repo):
         subject = path.relative_to(repo).parts[0]
@@ -194,6 +175,32 @@ def build(repo: Path = REPO) -> dict:
         for question in bank["questions"]:
             questions.append(_project_question(subject, question, order, repo))
             order += 1
+
+    # Package-shaped canonical records use the same projection only when their package
+    # or question explicitly opts into Question Bank publication. Discovery is generic;
+    # no subject name or filename convention is encoded here.
+    for path in package_paths(repo):
+        package = load_json(path)
+        package_questions = package.get("questions")
+        if not isinstance(package_questions, list):
+            continue
+        projected_count = 0
+        for question in package_questions:
+            projected = project_package_question(package, question, order)
+            if projected is None:
+                continue
+            projected["source_path"] = path.relative_to(repo).as_posix()
+            questions.append(projected)
+            order += 1
+            projected_count += 1
+        if projected_count:
+            package_meta.append({
+                "subject": package.get("subject"),
+                "package_id": package.get("package_id"),
+                "version": package.get("version"),
+                "path": path.relative_to(repo).as_posix(),
+                "question_count": projected_count,
+            })
 
     by_id = {q["id"]: q for q in questions}
     if len(by_id) != len(questions):
@@ -221,13 +228,17 @@ def build(repo: Path = REPO) -> dict:
     def counts(key: str):
         return dict(sorted(Counter(q[key] for q in questions).items()))
 
+    basis = {
+        "banks": bank_meta,
+        "view_config": VIEWS.relative_to(repo).as_posix(),
+    }
+    if package_meta:
+        basis["packages"] = package_meta
+
     return {
         "schema_version": "grade9v3-question-bank-browser-v1",
         "authority": "GENERATED_BROWSER_PROJECTION",
-        "basis": {
-            "banks": bank_meta,
-            "view_config": VIEWS.relative_to(repo).as_posix(),
-        },
+        "basis": basis,
         "counts": {
             "questions": len(questions),
             "subjects": counts("subject"),
