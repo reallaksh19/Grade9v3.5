@@ -1,0 +1,91 @@
+{
+  "basis": {
+    "browser_projection_digest": "sha256:8eba47db4413bcdf07f5890397687542c6d3538aa66d67f07981b9fe9f5c9a78",
+    "resource_basis": [
+      {
+        "digest": "sha256:4be0dad664d243c26029f3fe82bd8404d6bbf933c768d96b8ddf76fa3aee0b49",
+        "path": "Chemistry/question-bank/resources.v1.json",
+        "resource_count": 1
+      },
+      {
+        "digest": "sha256:aac778990fac72b76fcc1be1ff868949f361c46ce9f6d65343bea6be54c46183",
+        "path": "Physics/question-bank/resources.v1.json",
+        "resource_count": 1
+      },
+      {
+        "digest": "sha256:cf6439f17f69201d8c75ac67876192a8b5f062d95f78ca4c52f6af0135fde588",
+        "path": "docs/gcdr-suites/chemistry-chemical-bonding.json",
+        "resource_count": 1
+      },
+      {
+        "digest": "sha256:1461644c3533278ac3c62383d210767e5e0e855b2750921f88c0b3c320a7b490",
+        "path": "docs/gcdr-suites/chemistry-gaseous-state.json",
+        "resource_count": 1
+      },
+      {
+        "digest": "sha256:456ac577e7354e55c5f5eb93778954971d3fa56cc520e9e86066115e523d578e",
+        "path": "docs/gcdr-suites/chemistry-mole-concept.json",
+        "resource_count": 1
+      },
+      {
+        "digest": "sha256:9f48569f5744e6a0261a66067cd7870305b934c5e832081d0ae352c26918154a",
+        "path": "docs/gcdr-suites/chemistry-redox.json",
+        "resource_count": 1
+      },
+      {
+        "digest": "sha256:f91f4b2f2311d84bb0effa105756c35f8c507eef0fcc090b140ac92b4439c7c0",
+        "path": "docs/gcdr-suites/motion-1d.json",
+        "resource_count": 1
+      },
+      {
+        "digest": "sha256:cd1432e3a4635dcb839eef3b62e04cfafca36fd9be2af57de79ee45b614abd74",
+        "path": "docs/gcdr-suites/vector-algebra-3d.json",
+        "resource_count": 1
+      }
+    ],
+    "worker_contract_version": "1.0.0"
+  },
+  "build_id": "sha256:6ebee02d27e11c8a6bf2b9b57e6a6b349a364899ac3c9bc6f74344bb7f37b008",
+  "counts": {
+    "dedup_evidence": 7,
+    "detail_shards": 2,
+    "questions": 77,
+    "resources": 8,
+    "search_documents": 85
+  },
+  "outputs": {
+    "catalog": "sha256:19ec361447107a3be636716a6877084029e99d2400c314bf8e95049df8f4183b",
+    "dedup": "sha256:0f59d76a4245e58571ede87564d3642b1a993eb1323e36df324b8d8fa39390ac",
+    "detail_shards": "sha256:cbd79d053314d09fa4d14c713b68159a683ddec52254cd495b71cf5de8377d22",
+    "lineage": "sha256:17301e6cc79f23b1c8c8852d7e1e053de8a9ad4ea4ba5e5d8d7761a30bc6d09c",
+    "resources": "sha256:0326fd117108d52d24fc6bbc0ab710ad8627b9175fc4e8255ebdadac6420b047",
+    "search": "sha256:606fc95b09da89c6661525c6f6ded3d8c63e32dde45f30ee3187432c39e6b58a"
+  },
+  "schema_version": "grade9v3-question-bank-build-receipt-v1",
+  "workers": [
+    {
+      "contract_version": "1.0.0",
+      "input_digest": "sha256:20d4b35ce4c080ca94d1ebde8ed391d8640705dbd5f74ddccdd29ba577408144",
+      "output_digest": "sha256:19ec361447107a3be636716a6877084029e99d2400c314bf8e95049df8f4183b",
+      "worker_id": "catalog"
+    },
+    {
+      "contract_version": "1.0.0",
+      "input_digest": "sha256:e683af8fb025bb981a90fa4cdeffcf637a7faa5da45feb9aed8d801b05e31290",
+      "output_digest": "sha256:0f59d76a4245e58571ede87564d3642b1a993eb1323e36df324b8d8fa39390ac",
+      "worker_id": "dedup"
+    },
+    {
+      "contract_version": "1.0.0",
+      "input_digest": "sha256:06b25078f8c982378ee32e39bbae879fdb41162c8954819e37c6f3adc442db23",
+      "output_digest": "sha256:cbd79d053314d09fa4d14c713b68159a683ddec52254cd495b71cf5de8377d22",
+      "worker_id": "details"
+    },
+    {
+      "contract_version": "1.0.0",
+      "input_digest": "sha256:20d4b35ce4c080ca94d1ebde8ed391d8640705dbd5f74ddccdd29ba577408144",
+      "output_digest": "sha256:606fc95b09da89c6661525c6f6ded3d8c63e32dde45f30ee3187432c39e6b58a",
+      "worker_id": "search"
+    }
+  ]
+}
