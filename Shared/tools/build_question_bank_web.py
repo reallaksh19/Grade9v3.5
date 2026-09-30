@@ -8,10 +8,13 @@ import re
 from collections import Counter
 from pathlib import Path
 
+from Shared.tools.question_bank_platform import project_package_question
+
 REPO = Path(__file__).resolve().parents[2]
 OUT = REPO / "public" / "data" / "question-bank-data.js"
 VIEWS = REPO / "Shared" / "tools" / "question-bank-views.v1.json"
 BANK_NAME = "competitive-exam-question-bank.v2.json"
+PACKAGE_GLOB = "*/library/*.json"
 RESOURCE_SCHEMA = "grade9v3-question-bank-resources-v1"
 
 
@@ -50,9 +53,6 @@ def _suite_destinations(repo: Path) -> list[dict]:
                 "keywords": keywords,
             })
 
-    # Subject/topic-specific exceptional resources are governed data, not branches here.
-    # A future subject can add <Subject>/question-bank/resources.v1.json without editing
-    # this generator or the browser runtime.
     for registry_path in sorted(repo.glob("*/question-bank/resources.v1.json")):
         data = json.loads(registry_path.read_text(encoding="utf-8"))
         if data.get("schema_version") != RESOURCE_SCHEMA:
@@ -77,6 +77,10 @@ def _suite_destinations(repo: Path) -> list[dict]:
 
 def bank_paths(repo: Path = REPO) -> list[Path]:
     return sorted(repo.glob(f"*/library/exam-bank/{BANK_NAME}"))
+
+
+def package_paths(repo: Path = REPO) -> list[Path]:
+    return sorted(repo.glob(PACKAGE_GLOB))
 
 
 def load_json(path: Path):
@@ -153,6 +157,7 @@ def _matches_policy(question: dict, policy: dict) -> bool:
 def build(repo: Path = REPO) -> dict:
     questions = []
     bank_meta = []
+    package_meta = []
     order = 0
     for path in bank_paths(repo):
         subject = path.relative_to(repo).parts[0]
@@ -167,6 +172,32 @@ def build(repo: Path = REPO) -> dict:
         for question in bank["questions"]:
             questions.append(_project_question(subject, question, order, repo))
             order += 1
+
+    # Package-shaped canonical records use the same projection only when their package
+    # or question explicitly opts into Question Bank publication. Discovery is generic;
+    # no subject name or filename convention is encoded here.
+    for path in package_paths(repo):
+        package = load_json(path)
+        package_questions = package.get("questions")
+        if not isinstance(package_questions, list):
+            continue
+        projected_count = 0
+        for question in package_questions:
+            projected = project_package_question(package, question, order)
+            if projected is None:
+                continue
+            projected["source_path"] = path.relative_to(repo).as_posix()
+            questions.append(projected)
+            order += 1
+            projected_count += 1
+        if projected_count:
+            package_meta.append({
+                "subject": package.get("subject"),
+                "package_id": package.get("package_id"),
+                "version": package.get("version"),
+                "path": path.relative_to(repo).as_posix(),
+                "question_count": projected_count,
+            })
 
     by_id = {q["id"]: q for q in questions}
     if len(by_id) != len(questions):
@@ -194,13 +225,17 @@ def build(repo: Path = REPO) -> dict:
     def counts(key: str):
         return dict(sorted(Counter(q[key] for q in questions).items()))
 
+    basis = {
+        "banks": bank_meta,
+        "view_config": VIEWS.relative_to(repo).as_posix(),
+    }
+    if package_meta:
+        basis["packages"] = package_meta
+
     return {
         "schema_version": "grade9v3-question-bank-browser-v1",
         "authority": "GENERATED_BROWSER_PROJECTION",
-        "basis": {
-            "banks": bank_meta,
-            "view_config": VIEWS.relative_to(repo).as_posix(),
-        },
+        "basis": basis,
         "counts": {
             "questions": len(questions),
             "subjects": counts("subject"),
