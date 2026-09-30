@@ -41,6 +41,7 @@ DETAIL_DIR = Path("public/data/question-bank-details")
 OUTPUTS = {
     "catalog": Path("public/data/question-bank-catalog.js"),
     "search": Path("public/data/question-bank-search.js"),
+    "questions": Path("public/data/question-bank-questions.js"),
     "resources": Path("public/data/question-bank-resources.js"),
     "manifest": Path("public/data/question-bank-manifest.js"),
     "dedup": Path("artifacts/question-bank/dedup-report.json"),
@@ -219,7 +220,7 @@ def _link_status(chain: dict) -> dict[str, bool]:
 def _deployment(platform: dict, repo: Path, chain: dict) -> dict:
     """Is the committed public/ copy, and its docs/ mirror, exactly what this build generates?"""
     expected = artifact_payloads(platform)
-    wanted = [OUTPUTS["search"], OUTPUTS["catalog"], OUTPUTS["manifest"]]
+    wanted = [OUTPUTS["search"], OUTPUTS["questions"], OUTPUTS["catalog"], OUTPUTS["manifest"]]
     shard = chain["generated_artifacts"]["detail_shard"]
     if shard:
         wanted.append(Path("public") / shard["path"])
@@ -250,6 +251,7 @@ def artifact_payloads(platform: dict) -> dict[Path, bytes]:
     build_id = platform["build_id"]
     catalog = {**platform["catalog"], "build_id": build_id}
     search = {**platform["search"], "build_id": build_id}
+    summaries = {**platform["summaries"], "build_id": build_id}
     resources = dict(platform["resources"])
 
     detail_manifest = [
@@ -265,6 +267,7 @@ def artifact_payloads(platform: dict) -> dict[Path, bytes]:
     logical = {
         "catalog": {"path": OUTPUTS["catalog"].as_posix().removeprefix("public/"), "digest": digest(catalog)},
         "search": {"path": OUTPUTS["search"].as_posix().removeprefix("public/"), "digest": digest(search)},
+        "questions": {"path": OUTPUTS["questions"].as_posix().removeprefix("public/"), "digest": digest(summaries)},
         "resources": {"path": OUTPUTS["resources"].as_posix().removeprefix("public/"), "digest": digest(resources)},
         "dedup": {"path": OUTPUTS["dedup"].as_posix(), "digest": digest(platform["dedup"])},
         "lineage": {"path": OUTPUTS["lineage"].as_posix(), "digest": digest(platform["lineage"])},
@@ -275,11 +278,12 @@ def artifact_payloads(platform: dict) -> dict[Path, bytes]:
         "generator": "Shared/tools/build_question_bank_platform.py",
         "generator_version": GENERATOR_VERSION,
         "build_id": build_id,
-        "readiness": ["APP_SHELL_READY", "CATALOG_READY", "SEARCH_READY", "STUDY_DETAIL_READY_ON_DEMAND"],
+        "readiness": ["APP_SHELL_READY", "CATALOG_READY", "LIST_READY", "SEARCH_READY", "STUDY_DETAIL_READY_ON_DEMAND"],
         "bootstrap": {
-            "catalog": logical["catalog"],
-            "search": logical["search"],
-            "resources": logical["resources"],
+            "catalog": {**logical["catalog"], "required": True},
+            "questions": {**logical["questions"], "required": True},
+            "search": {**logical["search"], "required": True},
+            "resources": {**logical["resources"], "required": False},
         },
         "detail_shards": detail_manifest,
         "audit_artifacts": {
@@ -295,6 +299,7 @@ def artifact_payloads(platform: dict) -> dict[Path, bytes]:
     payloads: dict[Path, bytes] = {
         OUTPUTS["catalog"]: render_js("GRADE9_QUESTION_BANK_CATALOG", catalog).encode("utf-8"),
         OUTPUTS["search"]: render_js("GRADE9_QUESTION_BANK_SEARCH", search).encode("utf-8"),
+        OUTPUTS["questions"]: render_js("GRADE9_QUESTION_BANK_QUESTIONS", summaries).encode("utf-8"),
         OUTPUTS["resources"]: render_js("GRADE9_QUESTION_BANK_RESOURCES", resources).encode("utf-8"),
         OUTPUTS["manifest"]: render_js("GRADE9_QUESTION_BANK_MANIFEST", manifest).encode("utf-8"),
         OUTPUTS["dedup"]: json_bytes(platform["dedup"]),

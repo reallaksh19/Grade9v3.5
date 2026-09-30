@@ -214,6 +214,44 @@ class QuestionBankPlatformTest(unittest.TestCase):
         platform = qbp.assemble_platform({"questions": [question("BIO-Q1", "A short stem about cells", topic_ref="T")]})
         self.assertIs(platform["receipt"]["counts"]["near_duplicate_search_complete"], True)
 
+    def test_summaries_carry_what_a_result_list_needs_and_nothing_of_the_study_detail(self):
+        rich = question("BIO-Q1", "Which organelle releases usable energy?", topic_ref="TOPIC-BIO-CELL")
+        rich.update({
+            "options": ["(A) x", "(B) y"], "conditions": ["c"], "source_hints": ["h"], "scaffolds": [{"text": "s"}],
+            "visual_ref": "assets/figure.svg", "answer": {"summary": "Mitochondria", "reasoning": ["r"]},
+            "math_spans": [{"target": "stem", "literal": "x", "tex": "x"}, {"target": "option:0", "literal": "y", "tex": "y"}],
+        })
+        platform = qbp.assemble_platform({"questions": [rich]})
+        row = platform["summaries"]["questions"][0]
+        for detail in ("options", "conditions", "source_hints", "scaffolds", "visual_ref", "answer"):
+            self.assertNotIn(detail, row)
+        self.assertEqual((row["id"], row["subject_ref"], row["topic_ref"]), ("BIO-Q1", "SUBJECT-BIOLOGY", "TOPIC-BIO-CELL"))
+        self.assertEqual((row["has_visual"], row["option_count"]), (True, 2))
+        self.assertEqual([span["target"] for span in row["math_spans"]], ["stem"])
+        self.assertEqual(platform["summaries"]["question_count"], 1)
+
+    def test_saved_views_are_membership_in_the_catalog_and_may_not_dangle(self):
+        questions = [question("BIO-Q1", "A", topic_ref="T1"), question("BIO-Q2", "B", topic_ref="T1", number="2")]
+        view = {"id": "v1", "title": "Two", "description": "d", "match_mode": "EXACT_POLICY_SET",
+                "presentation": {"badge": "2", "source_label": "s", "default_mode": "study"},
+                "resolved_question_refs": ["BIO-Q2", "BIO-Q1"], "policy": {"anything": True}}
+        platform = qbp.assemble_platform({"questions": questions, "views": [view]})
+        self.assertEqual(platform["catalog"]["counts"]["views"], 1)
+        saved = platform["catalog"]["views"][0]
+        self.assertEqual(saved["resolved_question_refs"], ["BIO-Q2", "BIO-Q1"], "the collection's own order is kept")
+        self.assertNotIn("policy", saved, "how a view was chosen is not part of what the browser needs")
+        with self.assertRaisesRegex(qbp.ProjectionError, "unknown questions"):
+            qbp.assemble_platform({"questions": questions, "views": [{**view, "resolved_question_refs": ["GONE"]}]})
+        with self.assertRaisesRegex(qbp.ProjectionError, "missing or repeated"):
+            qbp.assemble_platform({"questions": questions, "views": [view, view]})
+
+    def test_live_summaries_and_views_agree_with_the_catalog(self):
+        platform = build_question_bank_platform.build(ROOT)
+        self.assertEqual(platform["summaries"]["question_count"], platform["catalog"]["counts"]["questions"])
+        listed = {row["id"] for row in platform["summaries"]["questions"]}
+        for view in platform["catalog"]["views"]:
+            self.assertLessEqual(set(view["resolved_question_refs"]), listed)
+
     def test_duplicate_canonical_id_fails_closed(self):
         with self.assertRaises(qbp.ProjectionError):
             qbp.validate_unique_ids([question("SAME", "A"), question("SAME", "B")])
@@ -224,7 +262,7 @@ class QuestionBankPlatformTest(unittest.TestCase):
         b = qbp.assemble_platform(browser)
         self.assertEqual(a["build_id"], b["build_id"])
         self.assertEqual(a["receipt"], b["receipt"])
-        self.assertEqual([w["worker_id"] for w in a["receipt"]["workers"]], ["catalog", "dedup", "search"])
+        self.assertEqual([w["worker_id"] for w in a["receipt"]["workers"]], ["catalog", "dedup", "search", "summaries"])
 
     def test_direct_script_entrypoints_import_without_repo_pythonpath(self):
         for rel in (

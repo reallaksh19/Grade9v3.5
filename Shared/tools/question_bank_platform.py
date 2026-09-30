@@ -20,6 +20,7 @@ from typing import Callable, Iterable, Mapping, Sequence
 
 PLATFORM_SCHEMA = "grade9v3-question-bank-platform-v1"
 CATALOG_SCHEMA = "grade9v3-question-bank-catalog-v1"
+SUMMARY_SCHEMA = "grade9v3-question-bank-questions-v1"
 SEARCH_SCHEMA = "grade9v3-question-bank-search-v1"
 RESOURCE_SCHEMA = "grade9v3-question-bank-resources-v1"
 DEDUP_SCHEMA = "grade9v3-question-bank-dedup-v1"
@@ -483,7 +484,55 @@ def load_resources(repo: Path) -> tuple[list[dict], list[dict]]:
     return rows, registry_basis + suite_basis
 
 
-def build_catalog(questions: Sequence[Mapping[str, object]], resources: Sequence[Mapping[str, object]] = ()) -> dict:
+_VIEW_FIELDS = ("id", "title", "short_title", "description", "match_mode", "presentation")
+
+
+def normalize_views(views: Sequence[Mapping[str, object]], question_ids: Iterable[str]) -> list[dict]:
+    """Saved collections as membership: each names the questions it contains, none may dangle."""
+    known = set(question_ids)
+    rows: list[dict] = []
+    seen: set[str] = set()
+    for view in views or ():
+        vid = str(view.get("id") or "")
+        if not vid or vid in seen:
+            raise ProjectionError(f"saved view id is missing or repeated: {vid!r}")
+        seen.add(vid)
+        refs = [str(ref) for ref in view.get("resolved_question_refs", []) or []]
+        dangling = [ref for ref in refs if ref not in known]
+        if dangling:
+            raise ProjectionError(f"saved view {vid!r} names unknown questions: {dangling[:3]}")
+        row = {key: view[key] for key in _VIEW_FIELDS if key in view}
+        row["resolved_question_refs"] = refs
+        rows.append(row)
+    return sorted(rows, key=lambda row: row["id"])
+
+
+_SUMMARY_FIELDS = (
+    "id", "order", "subject", "subject_ref", "topic", "topic_ref", "subtopic_refs", "exam", "year", "paper",
+    "question_number", "question_type", "expected_time_seconds", "difficulty", "primary_capability_ref",
+    "secondary_capability_refs", "common_wrong_route", "stem", "source_status",
+)
+
+
+def summarize_question(question: Mapping[str, object]) -> dict:
+    """What a result list needs to show and filter one question; everything else is on demand."""
+    enriched = enrich_question_refs(question)
+    row = {key: enriched[key] for key in _SUMMARY_FIELDS if key in enriched}
+    spans = [span for span in enriched.get("math_spans") or [] if isinstance(span, Mapping) and span.get("target") == "stem"]
+    if spans:
+        row["math_spans"] = spans
+    row["has_visual"] = bool(enriched.get("visual_ref"))
+    row["option_count"] = len(enriched.get("options") or [])
+    return row
+
+
+def build_question_summaries(questions: Sequence[Mapping[str, object]]) -> dict:
+    rows = sorted((summarize_question(q) for q in questions), key=lambda row: (row.get("order", 0), str(row["id"])))
+    return {"schema_version": SUMMARY_SCHEMA, "question_count": len(rows), "questions": rows}
+
+
+def build_catalog(questions: Sequence[Mapping[str, object]], resources: Sequence[Mapping[str, object]] = (),
+                  views: Sequence[Mapping[str, object]] = ()) -> dict:
     enriched = [enrich_question_refs(question) for question in questions]
     subject_rows: dict[str, dict] = {}
     topic_rows: dict[str, dict] = {}
@@ -537,6 +586,7 @@ def build_catalog(questions: Sequence[Mapping[str, object]], resources: Sequence
     subjects = sorted(subject_rows.values(), key=lambda row: (str(row["label"]).casefold(), row["id"]))
     topics = sorted(topic_rows.values(), key=lambda row: (row.get("subject_ref") or "", str(row["label"]).casefold(), row["id"]))
     subtopics = sorted(subtopic_rows.values(), key=lambda row: (row.get("topic_ref") or "", row["id"]))
+    saved_views = normalize_views(views, (str(q["id"]) for q in enriched))
     return {
         "schema_version": CATALOG_SCHEMA,
         "counts": {
@@ -545,10 +595,12 @@ def build_catalog(questions: Sequence[Mapping[str, object]], resources: Sequence
             "subjects": len(subjects),
             "topics": len(topics),
             "subtopics": len(subtopics),
+            "views": len(saved_views),
         },
         "subjects": subjects,
         "topics": topics,
         "subtopics": subtopics,
+        "views": saved_views,
     }
 
 
@@ -811,12 +863,14 @@ def build_lineage(questions: Sequence[Mapping[str, object]], search_index: Mappi
 
 
 def platform_nodes(questions: Sequence[Mapping[str, object]], scoped_resources: Sequence[Mapping[str, object]],
-                   build_id: str) -> tuple[Node, ...]:
-    """The build graph: catalog, search and dedup are independent; lineage reads the search result."""
+                   build_id: str, views: Sequence[Mapping[str, object]] = ()) -> tuple[Node, ...]:
+    """The build graph: catalog, summaries, search and dedup are independent; lineage reads the search result."""
     shared = {"questions": questions, "resources": scoped_resources}
+    with_views = {**shared, "views": list(views)}
     return (
-        Node("catalog", (), lambda done: shared,
-             lambda value: build_catalog(value["questions"], value["resources"])),
+        Node("catalog", (), lambda done: with_views,
+             lambda value: build_catalog(value["questions"], value["resources"], value["views"])),
+        Node("summaries", (), lambda done: questions, build_question_summaries),
         Node("search", (), lambda done: shared,
              lambda value: build_search_index(value["questions"], value["resources"])),
         Node("dedup", (), lambda done: questions, build_dedup_report),
@@ -844,10 +898,12 @@ def assemble_platform(browser_projection: Mapping[str, object], resources: Seque
         "worker_contract_version": WORKER_CONTRACT_VERSION,
     }
     build_id = digest(identity_basis)
-    results = run_nodes(platform_nodes(questions, scoped_resources, build_id), order=order, parallel=parallel)
+    views = browser_projection.get("views", []) or []
+    results = run_nodes(platform_nodes(questions, scoped_resources, build_id, views), order=order, parallel=parallel)
     catalog_worker, search_worker, dedup_worker = results["catalog"], results["search"], results["dedup"]
+    summaries_worker = results["summaries"]
     lineage = results["lineage"].output
-    workers = [catalog_worker.receipt, search_worker.receipt, dedup_worker.receipt]
+    workers = [catalog_worker.receipt, search_worker.receipt, dedup_worker.receipt, summaries_worker.receipt]
     receipt = {
         "schema_version": RECEIPT_SCHEMA,
         "build_id": build_id,
@@ -863,6 +919,7 @@ def assemble_platform(browser_projection: Mapping[str, object], resources: Seque
         "outputs": {
             "catalog": digest(catalog_worker.output),
             "search": digest(search_worker.output),
+            "summaries": digest(summaries_worker.output),
             "resources": digest(scoped_resources),
             "dedup": digest(dedup_worker.output),
             "lineage": digest(lineage),
@@ -872,6 +929,7 @@ def assemble_platform(browser_projection: Mapping[str, object], resources: Seque
         "schema_version": PLATFORM_SCHEMA,
         "build_id": build_id,
         "catalog": catalog_worker.output,
+        "summaries": summaries_worker.output,
         "search": search_worker.output,
         "resources": {"schema_version": RESOURCE_SCHEMA, "build_id": build_id, "resources": scoped_resources},
         "dedup": {**dedup_worker.output, "build_id": build_id},
