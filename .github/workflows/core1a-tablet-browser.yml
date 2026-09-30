@@ -15,13 +15,15 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   browser-audit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
@@ -93,6 +95,19 @@ jobs:
           mkdir -p /tmp/core1a-spec/generated-preview
           cp docs/architecture-manifest.json /tmp/core1a-spec/generated-preview/architecture-manifest.json
           git diff --name-only > /tmp/core1a-spec/generated-preview/changed-files.txt
+
+      - name: Commit exact generated architecture manifest
+        if: steps.generated_checks.outcome == 'failure' && github.event_name == 'pull_request'
+        run: |
+          if git diff --quiet -- docs/architecture-manifest.json; then
+            echo "No generated architecture-manifest delta to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/architecture-manifest.json
+          git commit -m "chore(generated): refresh architecture manifest (#360)"
+          git push origin HEAD:"${{ github.event.pull_request.head.ref }}"
 
       - name: Upload measurement evidence
         if: always()
