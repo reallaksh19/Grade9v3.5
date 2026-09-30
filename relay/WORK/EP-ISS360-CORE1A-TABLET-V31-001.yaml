@@ -29,6 +29,7 @@ basis:
 scope:
   write:
     - ".github/workflows/core1a-tablet-browser.yml"
+    - "docs/architecture-manifest.json"
     - "Shared/tools/render_core.py"
     - "tests/test_render_core.py"
     - "tools/site-audit/core-page-audit.mjs"
@@ -54,14 +55,13 @@ scope:
     - "Physics/library/exam-bank/competitive-exam-question-bank.v2.json"
     - "Shared/library/package.schema.json"
     - "Shared/vocabularies/learner-question-metadata.v1.json"
-    - "docs/**"
   prohibit:
     - "Do not admit Owner textbook PDF content into canonical academic truth through renderer code."
     - "Do not add a topic-specific Core1A renderer or Physics/Motion conditional in Shared code."
     - "Do not create a second curriculum, navigation or Core1A↔Core2 mapping datastore."
     - "Do not infer mastery/readiness from visited or navigation state."
     - "Do not turn Core1A into attempt-first reconstruction."
-    - "Do not hand-edit generated docs output."
+    - "Do not hand-edit generated docs output; docs/architecture-manifest.json may change only from exact Shared/tools/build_manifest.py output."
 acceptance:
   - id: "AC-C1A-01"
     statement: "Core1A remains completed conceptual construction, not attempt-first teaching."
