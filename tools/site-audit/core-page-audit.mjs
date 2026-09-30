@@ -2,9 +2,11 @@
 /*
  * Rendered audit of standalone Core pages against their role blueprint's shell, touch,
  * responsive and navigation policies (Audit 3, issue #298). Read-only: it loads each page
- * from disk in Chromium at the 10-inch tablet viewports and reports measured facts as JSON.
+ * in Chromium and reports measured facts as JSON. By default it uses file://; pass --http-root
+ * to exercise the same files through a local HTTP origin while preserving repository-relative assets.
  *
- *   node tools/site-audit/core-page-audit.mjs <dir-with-core*.html> [--profile tablet-12.7] [--json out.json]
+ *   node tools/site-audit/core-page-audit.mjs <dir-with-core*.html> [--profile tablet-12.7|core1a-spec] [--json out.json]
+ *   node tools/site-audit/core-page-audit.mjs <dir-with-core*.html> --profile core1a-spec --http-root <served-root>
  *
  * Slot realization is judged from the page's DOM outline (headings, disclosures, attempt
  * controls, figures) that this script also prints; a data-blueprint-ref attribute alone
@@ -13,6 +15,7 @@
 import { createRequire } from 'node:module';
 import { execSync } from 'node:child_process';
 import fs from 'node:fs';
+import http from 'node:http';
 import path from 'node:path';
 
 const require = createRequire(import.meta.url);
@@ -23,6 +26,9 @@ catch { playwright = require(execSync('npm root -g').toString().trim() + '/playw
 const dir = path.resolve(process.argv[2] || '.');
 const jsonOut = process.argv.includes('--json') ? process.argv[process.argv.indexOf('--json') + 1] : null;
 const profile = process.argv.includes('--profile') ? process.argv[process.argv.indexOf('--profile') + 1] : 'default';
+const httpRoot = process.argv.includes('--http-root')
+  ? path.resolve(process.argv[process.argv.indexOf('--http-root') + 1])
+  : null;
 const blueprints = JSON.parse(fs.readFileSync(new URL('../../Shared/web/interactive-page-blueprints.v1.json', import.meta.url)));
 const DEFAULT_VIEWPORTS = [
   { name: 'android-landscape', width: 1280, height: 800 },
@@ -48,6 +54,53 @@ const VIEWPORTS = profile === 'tablet-12.7'
   ? TABLET_12_7_VIEWPORTS
   : profile === 'core1a-spec' ? CORE1A_SPEC_VIEWPORTS : DEFAULT_VIEWPORTS;
 const files = fs.readdirSync(dir).filter(f => /^core.*\.html$/.test(f)).sort();
+
+let server = null;
+let origin = null;
+if (httpRoot) {
+  const relativeDir = path.relative(httpRoot, dir);
+  if (relativeDir.startsWith('..') || path.isAbsolute(relativeDir)) {
+    throw new Error(`audit directory must be inside --http-root: ${dir} not under ${httpRoot}`);
+  }
+  const MIME = {
+    '.css': 'text/css; charset=utf-8',
+    '.html': 'text/html; charset=utf-8',
+    '.js': 'text/javascript; charset=utf-8',
+    '.json': 'application/json; charset=utf-8',
+    '.svg': 'image/svg+xml',
+  };
+  server = http.createServer((req, res) => {
+    try {
+      const pathname = decodeURIComponent(new URL(req.url, 'http://127.0.0.1').pathname);
+      const candidate = path.resolve(httpRoot, '.' + pathname);
+      const allowed = candidate === httpRoot || candidate.startsWith(httpRoot + path.sep);
+      if (!allowed) {
+        res.writeHead(403).end('forbidden');
+        return;
+      }
+      let target = candidate;
+      if (fs.existsSync(target) && fs.statSync(target).isDirectory()) target = path.join(target, 'index.html');
+      if (!fs.existsSync(target) || !fs.statSync(target).isFile()) {
+        res.writeHead(404).end('not found');
+        return;
+      }
+      res.writeHead(200, {
+        'content-type': MIME[path.extname(target).toLowerCase()] || 'application/octet-stream',
+        'cache-control': 'no-store',
+      });
+      fs.createReadStream(target).pipe(res);
+    } catch (error) {
+      res.writeHead(500).end(String(error));
+    }
+  });
+  await new Promise((resolve, reject) => {
+    server.once('error', reject);
+    server.listen(0, '127.0.0.1', resolve);
+  });
+  const address = server.address();
+  origin = `http://127.0.0.1:${address.port}`;
+}
+
 const browser = await playwright.chromium.launch();
 const report = {};
 for (const file of files) {
@@ -70,7 +123,10 @@ for (const file of files) {
   for (const vp of VIEWPORTS) {
     requests.length = 0;
     await page.setViewportSize({ width: vp.width, height: vp.height });
-    await page.goto('file://' + path.join(dir, file));
+    const pageUrl = origin
+      ? origin + '/' + path.relative(httpRoot, path.join(dir, file)).split(path.sep).map(encodeURIComponent).join('/')
+      : 'file://' + path.join(dir, file);
+    await page.goto(pageUrl);
     const bpId = await page.evaluate(() => document.body.dataset.blueprintRef || null);
     const bp = blueprints.blueprints.find(b => b.id === bpId);
     const minTarget = bp ? bp.touch_policy.minimum_target_css_px : 48;
@@ -271,6 +327,7 @@ for (const file of files) {
   await page.close();
 }
 await browser.close();
+if (server) await new Promise(resolve => server.close(resolve));
 for (const [file, r] of Object.entries(report)) {
   const a = r.viewports[VIEWPORTS[0].name], p = r.viewports[VIEWPORTS.find(v => v.height > v.width)?.name || VIEWPORTS[1].name];
   console.log(`${file}: bp=${a.blueprint} slots=${a.slotMarkers} home=${JSON.stringify(a.homeLinks)} nav1=${a.navFirstLink} sticky=${a.headerFixedOrSticky} ` +
