@@ -6,14 +6,24 @@ import argparse
 import json
 from pathlib import Path
 
-from Shared.tools import build_question_bank_web
-from Shared.tools.question_bank_platform import (
-    assemble_platform,
-    digest,
-    explain,
-    load_resources,
-    render_js,
-)
+try:
+    from . import build_question_bank_web
+    from .question_bank_platform import (
+        assemble_platform,
+        digest,
+        explain,
+        load_resources,
+        render_js,
+    )
+except ImportError:  # direct: python3 Shared/tools/build_question_bank_platform.py
+    import build_question_bank_web
+    from question_bank_platform import (
+        assemble_platform,
+        digest,
+        explain,
+        load_resources,
+        render_js,
+    )
 
 REPO = Path(__file__).resolve().parents[2]
 GENERATOR_VERSION = "1.0.0"
