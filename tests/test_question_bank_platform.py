@@ -1,11 +1,16 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
 
+from Shared.tools import build_question_bank_platform
 from Shared.tools import question_bank_platform as qbp
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def question(qid, stem, *, subject="Biology", topic="Cell Biology", topic_ref=None,
@@ -145,6 +150,13 @@ class QuestionBankPlatformTest(unittest.TestCase):
         self.assertEqual(report["question_count"], 4)
         self.assertEqual(len({row["left_id"] for row in report["relationships"]} | {row["right_id"] for row in report["relationships"]}), 4)
 
+    def test_exact_dedup_preserves_mathematical_operators(self):
+        plus = question("PLUS", "Solve x + 1 = 4", number="10")
+        minus = question("MINUS", "Solve x - 1 = 4", number="11")
+        result = qbp.compare_pair(plus, minus)
+        self.assertNotEqual(result["classification"], "DUPLICATE")
+        self.assertNotEqual(qbp.normalized_exact_fingerprint(plus), qbp.normalized_exact_fingerprint(minus))
+
     def test_duplicate_canonical_id_fails_closed(self):
         with self.assertRaises(qbp.ProjectionError):
             qbp.validate_unique_ids([question("SAME", "A"), question("SAME", "B")])
@@ -156,6 +168,29 @@ class QuestionBankPlatformTest(unittest.TestCase):
         self.assertEqual(a["build_id"], b["build_id"])
         self.assertEqual(a["receipt"], b["receipt"])
         self.assertEqual([w["worker_id"] for w in a["receipt"]["workers"]], ["catalog", "dedup", "search"])
+
+    def test_direct_script_entrypoints_import_without_repo_pythonpath(self):
+        for rel in (
+            "Shared/tools/build_question_bank_web.py",
+            "Shared/tools/build_question_bank_platform.py",
+        ):
+            result = subprocess.run(
+                [sys.executable, str(ROOT / rel), "--help"],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(result.returncode, 0, msg=f"{rel}: {result.stderr}")
+
+    def test_live_projection_builds_shared_contracts_without_changing_denominator(self):
+        platform = build_question_bank_platform.build(ROOT)
+        self.assertEqual(platform["catalog"]["counts"]["questions"], 77)
+        question_docs = [row for row in platform["search"]["documents"] if row["kind"] == "question"]
+        self.assertEqual(len(question_docs), 77)
+        self.assertIsNotNone(qbp.explain(platform, "PYQ-CHEM-IITJEE-2008-P1-Q66"))
+        resource_ids = {row["id"] for row in platform["resources"]["resources"]}
+        self.assertIn("RES-PHY-MOTION-2D-MASTER-SUITE", resource_ids)
+        self.assertIn("RES-CHEM-REDOX-ADAPTIVE-PROOF", resource_ids)
 
 
 if __name__ == "__main__":
