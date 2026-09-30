@@ -114,6 +114,35 @@ class Guard(unittest.TestCase):
         ):
             self.assertFalse(is_excluded(scanned, exact, globs), scanned)
 
+    def test_method_document_names_are_not_identifiers_but_real_identifiers_still_are(self):
+        from Shared.tools.topic_independence_guard import check_literal
+        for document in ("DESIGN-NOTE.md", "SELF-CHECK.md", "docs/method/roles/SOURCE-READER.md"):
+            self.assertIsNone(check_literal(document), document)
+        for identifier in ("PHY-M2D", "BUCKET-RELATIVE-MOTION", "CAP-SIGNED-PAIR", "PHY-M2D.json"):
+            self.assertEqual(check_literal(identifier), "governed identifier in engine code", identifier)
+
+    def test_rule_id_allowlist_entries_still_name_rules_in_the_quality_contract(self):
+        document = json.loads(
+            (REPO / "Shared/tools/topic_independence_allowlist.json").read_text(encoding="utf-8"))
+        contract = json.loads(
+            (REPO / "Shared/quality/learner-quality.v1.json").read_text(encoding="utf-8"))
+        rule_ids: set[str] = set()
+
+        def walk(node):
+            if isinstance(node, dict):
+                if isinstance(node.get("id"), str):
+                    rule_ids.add(node["id"])
+                for value in node.values():
+                    walk(value)
+            elif isinstance(node, list):
+                for value in node:
+                    walk(value)
+        walk(contract)
+        entries = [e for e in document["allow"] if e["path"] == "Shared/tools/package_depth.py"]
+        self.assertTrue(entries)
+        for entry in entries:
+            self.assertIn(entry["literal"], rule_ids, entry["literal"])
+
     def test_every_glob_exclusion_has_a_reason_and_a_directory_anchor(self):
         document = json.loads(
             (REPO / "Shared/tools/topic_independence_allowlist.json").read_text(encoding="utf-8"))

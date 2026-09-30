@@ -1,6 +1,82 @@
 {
   "purpose": "Exceptions to the topic independence guard. Every entry needs a written reason; an entry without one fails the guard. Prefer moving the identifier into governed data or a subject adapter over adding an entry here.",
-  "allow": [],
+  "allow": [
+    {
+      "path": "Shared/tools/package_depth.py",
+      "literal": "C1-FAMILY-METADATA",
+      "reason": "Learner-quality contract rule id (defined in Shared/quality/learner-quality.v1.json). The contract is subject-neutral: it names a rule, not a subject, topic, bucket or capability. The duty table maps depth gaps to the rules they would fail."
+    },
+    {
+      "path": "Shared/tools/package_depth.py",
+      "literal": "C1A-ANCHOR-PER-DECISION",
+      "reason": "Learner-quality contract rule id (defined in Shared/quality/learner-quality.v1.json). The contract is subject-neutral: it names a rule, not a subject, topic, bucket or capability. The duty table maps depth gaps to the rules they would fail."
+    },
+    {
+      "path": "Shared/tools/package_depth.py",
+      "literal": "C1A-PREREQUISITES-BRIDGED",
+      "reason": "Learner-quality contract rule id (defined in Shared/quality/learner-quality.v1.json). The contract is subject-neutral: it names a rule, not a subject, topic, bucket or capability. The duty table maps depth gaps to the rules they would fail."
+    },
+    {
+      "path": "Shared/tools/package_depth.py",
+      "literal": "C1A-REPRESENTATION-BRIDGE",
+      "reason": "Learner-quality contract rule id (defined in Shared/quality/learner-quality.v1.json). The contract is subject-neutral: it names a rule, not a subject, topic, bucket or capability. The duty table maps depth gaps to the rules they would fail."
+    },
+    {
+      "path": "Shared/tools/package_depth.py",
+      "literal": "C1A-STAGED-REPRESENTATION",
+      "reason": "Learner-quality contract rule id (defined in Shared/quality/learner-quality.v1.json). The contract is subject-neutral: it names a rule, not a subject, topic, bucket or capability. The duty table maps depth gaps to the rules they would fail."
+    },
+    {
+      "path": "Shared/tools/package_depth.py",
+      "literal": "C2A-FAMILY-CLOSURE",
+      "reason": "Learner-quality contract rule id (defined in Shared/quality/learner-quality.v1.json). The contract is subject-neutral: it names a rule, not a subject, topic, bucket or capability. The duty table maps depth gaps to the rules they would fail."
+    },
+    {
+      "path": "Shared/tools/package_depth.py",
+      "literal": "C2A-SPECIFIC-SUPPORT",
+      "reason": "Learner-quality contract rule id (defined in Shared/quality/learner-quality.v1.json). The contract is subject-neutral: it names a rule, not a subject, topic, bucket or capability. The duty table maps depth gaps to the rules they would fail."
+    },
+    {
+      "path": "Shared/tools/package_depth.py",
+      "literal": "C2B-SAFE-REPRESENTATION",
+      "reason": "Learner-quality contract rule id (defined in Shared/quality/learner-quality.v1.json). The contract is subject-neutral: it names a rule, not a subject, topic, bucket or capability. The duty table maps depth gaps to the rules they would fail."
+    },
+    {
+      "path": "Shared/tools/migrate_math_linear.py",
+      "literal": "MAT-09-LINEAR-EQUATIONS",
+      "reason": "One-time M3 fold of the verified Mathematics staging records into the unit package. Subject-specific by construction; kept only so the migration ledger can still be verified (tests/test_render_core.py). It is not a shared code path."
+    },
+    {
+      "path": "Shared/tools/migrate_math_linear.py",
+      "literal": "MAT-09-LINEAR-EQUATIONS-0",
+      "reason": "One-time M3 fold of the verified Mathematics staging records into the unit package. Subject-specific by construction; kept only so the migration ledger can still be verified (tests/test_render_core.py). It is not a shared code path."
+    },
+    {
+      "path": "Shared/tools/migrate_math_linear.py",
+      "literal": "Mathematics",
+      "reason": "One-time M3 fold of the verified Mathematics staging records into the unit package. Subject-specific by construction; kept only so the migration ledger can still be verified (tests/test_render_core.py). It is not a shared code path."
+    },
+    {
+      "path": "Shared/tools/migrate_math_linear.py",
+      "literal": "Mathematics/library/linear-equations.v1.json",
+      "reason": "One-time M3 fold of the verified Mathematics staging records into the unit package. Subject-specific by construction; kept only so the migration ledger can still be verified (tests/test_render_core.py). It is not a shared code path."
+    },
+    {
+      "path": "Shared/tools/migrate_math_linear.py",
+      "literal": "Mathematics/research/packages/MAT-09-LINEAR-EQUATIONS.package.json",
+      "reason": "One-time M3 fold of the verified Mathematics staging records into the unit package. Subject-specific by construction; kept only so the migration ledger can still be verified (tests/test_render_core.py). It is not a shared code path."
+    },
+    {
+      "path": "Shared/tools/migrate_math_linear.py",
+      "literal": "Mathematics/research/verification/",
+      "reason": "One-time M3 fold of the verified Mathematics staging records into the unit package. Subject-specific by construction; kept only so the migration ledger can still be verified (tests/test_render_core.py). It is not a shared code path."
+    },
+    {
+      "path": "Shared/tools/migrate_math_linear.py",
+      "literal": "Mathematics/units/linear-equations/M3-MIGRATION.json",
+      "reason": "One-time M3 fold of the verified Mathematics staging records into the unit package. Subject-specific by construction; kept only so the migration ledger can still be verified (tests/test_render_core.py). It is not a shared code path."
+    }
+  ],
   "exclude_paths": [
     {
       "path": "tools/data.js",
@@ -41,6 +117,14 @@
     {
       "path": "docs/data/question-bank-data.js",
       "reason": "Generated GitHub Pages mirror of the declarative Question Bank browser projection; generator and runtime remain scanned."
+    },
+    {
+      "path": "public/data/research-first-workflow.js",
+      "reason": "Generated by Shared/tools/raw_intake.py --write-browser-data from Shared/workflows/research-first.v1.json. It is that declarative workflow serialised for a browser, and its prose names quality-contract rule ids; the generator itself is scanned."
+    },
+    {
+      "path": "docs/data/research-first-workflow.js",
+      "reason": "Generated GitHub Pages mirror of public/data/research-first-workflow.js; the generator remains scanned."
     }
   ],
   "exclude_path_globs": [
@@ -59,6 +143,10 @@
     {
       "glob": "docs/data/question-bank-details/*.js",
       "reason": "Generated GitHub Pages mirror of the per-subject Question Bank detail shards; generator and runtime remain scanned."
+    },
+    {
+      "glob": "evidence/stress-tests/*",
+      "reason": "Historical first-execution stress-test evidence for the scanned-Polynomials experiment, retained as negative evidence (issue 319). It is a record of what was built, not engine code that runs for any subject."
     }
   ]
 }
