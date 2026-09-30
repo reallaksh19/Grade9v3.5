@@ -128,6 +128,17 @@ class Renderer(unittest.TestCase):
         self.assertNotIn(boundary, html[first_article:])
         self.assertNotIn('data-locked', orientation)
 
+        prerequisite_refs = bucket.get("prerequisite_refs") or []
+        self.assertTrue(prerequisite_refs)
+        for ref in prerequisite_refs:
+            self.assertIn(f'data-g9-foundation-ref="{ref}"', orientation)
+        self.assertEqual(
+            orientation.count('data-g9-availability="unlinked"'),
+            len(prerequisite_refs),
+        )
+        self.assertIn("direct route unavailable in this product", orientation)
+        self.assertNotIn("locked", orientation.lower())
+
     def test_core1a_difficulty_is_context_not_navigation_or_mastery_state(self):
         repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
         ctx = render_core.context(repo_manifest)
