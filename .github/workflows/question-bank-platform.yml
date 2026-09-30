@@ -18,6 +18,7 @@ on:
       - "public/data/question-bank-details/**"
       - "tests/test_question_bank_web.py"
       - "tests/test_question_bank_platform.py"
+      - "tests/test_question_bank_platform_runtime.py"
       - "tests/question_bank_data_service.test.mjs"
       - ".github/workflows/question-bank-platform.yml"
   pull_request:
@@ -36,6 +37,7 @@ on:
       - "public/data/question-bank-details/**"
       - "tests/test_question_bank_web.py"
       - "tests/test_question_bank_platform.py"
+      - "tests/test_question_bank_platform_runtime.py"
       - "tests/question_bank_data_service.test.mjs"
       - ".github/workflows/question-bank-platform.yml"
   workflow_dispatch:
@@ -49,7 +51,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Question Bank contract and growth falsifiers
-        run: python3 -m unittest tests.test_question_bank_web tests.test_question_bank_platform
+        run: python3 -m unittest tests.test_question_bank_web tests.test_question_bank_platform tests.test_question_bank_platform_runtime
       - name: Progressive browser data service
         run: node tests/question_bank_data_service.test.mjs
       - name: Legacy browser projection remains current
