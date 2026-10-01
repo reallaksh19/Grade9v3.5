@@ -32,8 +32,8 @@ const browser = await playwright.chromium.launch();
 const failures = [];
 let checked = 0;
 
-async function open(width, page, { injectMatrix = false } = {}) {
-  const context = await browser.newContext({ viewport: { width, height: 900 }, hasTouch: true });
+async function open(width, page, { injectMatrix = false, height = 900 } = {}) {
+  const context = await browser.newContext({ viewport: { width, height }, hasTouch: true });
   const tab = await context.newPage();
   const problems = [];
   tab.on('pageerror', (error) => problems.push(`script error: ${error.message}`));
@@ -111,6 +111,35 @@ for (const width of [390, 1280]) {
   if (/Laws of Motion|NLM/.test(facts.text)) failures.push(`atlas with matrix @${width}: the Laws of Motion template shows through`);
   for (const problem of problems) failures.push(`atlas with matrix @${width}: ${problem}`);
   await context.close();
+}
+
+// On a 12.7-inch tablet (either way up) the Atlas, empty or with a matrix, has no control under 48 px and no text under 14 px.
+for (const [width, height] of [[1366, 854], [854, 1366]]) {
+  for (const withMatrix of [false, true]) {
+    const { context, tab, problems } = await open(width, withMatrix ? 'test/atlas/index.html?matrix=MATRIX-TEST-BROWSER' : 'test/atlas/index.html', { injectMatrix: withMatrix, height });
+    if (withMatrix) await tab.waitForFunction(() => /Subtopic:/.test((document.getElementById('atlasSubtopicSubtitle') || {}).textContent || ''), null, { timeout: 8000 }).catch(() => {});
+    const facts = await tab.evaluate(() => {
+      const shown = (el) => { const r = el.getBoundingClientRect(); return r.width > 0 && r.height > 0 && !el.closest('[hidden]') && getComputedStyle(el).visibility !== 'hidden'; };
+      const small = [...document.querySelectorAll('a[href], button, input, select, summary, [role=button]')].filter((el) => shown(el) && el.getBoundingClientRect().height < 47.5)
+        .map((el) => `${el.tagName.toLowerCase()} "${(el.textContent || el.getAttribute('aria-label') || el.type || '').trim().slice(0, 20)}" ${Math.round(el.getBoundingClientRect().height)}px`);
+      const tiny = new Set();
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+        const parent = node.parentElement;
+        if (!node.textContent.trim() || !parent || parent.closest('script, style, [hidden]') || !shown(parent)) continue;
+        const size = parseFloat(getComputedStyle(parent).fontSize);
+        if (size < 14) tiny.add(`${parent.tagName.toLowerCase()}.${String(parent.className).split(' ')[0]} ${size}px`);
+      }
+      return { small, tiny: [...tiny], overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth };
+    });
+    checked += 1;
+    const where = `atlas ${withMatrix ? 'with a matrix' : 'empty'} @${width}x${height}`;
+    if (facts.small.length) failures.push(`${where}: controls under 48px: ${facts.small.slice(0, 6).join('; ')}`);
+    if (facts.tiny.length) failures.push(`${where}: text under 14px: ${facts.tiny.slice(0, 6).join('; ')}`);
+    if (facts.overflow > 1) failures.push(`${where}: ${facts.overflow}px wider than the screen`);
+    for (const problem of problems) failures.push(`${where}: ${problem}`);
+    await context.close();
+  }
 }
 
 // The tab: from the portal and from each subject hub, one tap reaches the TEST hub, and the hub reaches the other pages.
