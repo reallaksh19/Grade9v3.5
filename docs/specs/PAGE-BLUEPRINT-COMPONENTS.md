@@ -3,7 +3,7 @@
 Generated from `Shared/web/interactive-page-blueprints.v1.json` by `Shared/tools/blueprint_spec.py`. Do not edit.
 To change what a page shows, change the blueprint; the renderer, the quality gate and the owner-bank scaffold follow.
 
-Registry 1.5.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
+Registry 1.6.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
 
 Depth: min_items is the floor below which a component does not count as present. target_items is the depth of the reference page, and target_items_by_band gives it by the difficulty band the record declares at band_source (for a Core1A construction unit, the hardest band among the bank questions it names in crux_question_refs). Between the floor and the reference depth the renderer says so as an advisory.
 
@@ -243,3 +243,145 @@ Optional: shown when the record has it.
 - The learner gets: Point to the authentic questions that practise this concept.
 - The reference page: core1a-motion-in-a-plane-tablet: the practice chips
 - Record fields: `practice`
+
+## BP-EXPLORER-GCDR@1.0.0 (EXPLORER)
+
+Learner job: Test the tempting model of the hardest concept of the question set against a model that cannot be argued with, rebuild the mathematics from what is visible, find where it stops being true, and then do a fresh task without the explorer.
+
+Theme: opens dark, and the learner can switch.
+
+Layout: from 1100 px wide, the primary column is 66% and the support column 34%; the support column stays in view while the primary column scrolls. Narrower, everything is one column, primary first.
+
+Route: the learner meets the steps in this order, each after the one before is done: CONTEXT → PREDICT → MANIPULATE → OBSERVE → CONTRADICT → DECONSTRUCT → RECONSTRUCT → INVARIANT → BOUNDARY → FADE → TRANSFER.
+
+| Slot | Column | Kept |
+|---|---|---|
+| `identity` | FULL | always |
+| `stage` | PRIMARY | always |
+| `route` | SUPPORT | always |
+
+### Required components
+
+Required: a page without it is a gap, and the quality gate fails it.
+
+**ROUTE_RAIL** · slot `identity` · ROUTE_RAIL
+
+- The learner gets: See the eleven steps of the route and which one the learner is on, so the page is a path with an end and not a toy.
+- The reference page: GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): the mandatory cognitive sequence, one chip per step
+
+**TARGET** · slot `route` · CALLOUT_INFO
+
+- The learner gets: Name the one concept the page is for, the tempting model it replaces, the move to acquire, what survives and where it stops: the toughest concept of the question set.
+- The reference page: GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): one explorer, one cognitive target
+- Record fields: `target`
+- To author it: target: question_ref is the toughest question of the set (python3 Shared/tools/explorer_build.py new fills it in; python3 Shared/tools/toughest_concept.py MANIFEST names it). failure: the learner's tempting model, one sentence, in the learner's words. operation: the move to acquire. invariant: what survives every valid variation. boundary: where the shortcut stops being right. quantity: the id of the quantity the whole page is about.
+
+**SOURCE** · slot `route` · STEM
+
+- The learner gets: Show the owner's question the concept comes from, word for word, so that the explorer rejoins it.
+- The reference page: GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): the exit rejoins the same semantic leaf
+
+**PARAMETERS** · slot `stage` · CONTROL_PANEL · at least 1 item(s)
+
+- The learner gets: The state the learner moves (sliders) and the givens that stay fixed: the only way the page changes.
+- The reference page: GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): direct manipulation of one governed state
+- Record fields: `parameters`
+- To author it: parameters: each {id, label, unit, min, max, step, value} for a slider, or {id, label, unit, value, fixed: true} for a given of the question. max - min must be a whole number of steps and value a position of the slider. Ids are letters, digits and underscores (theta, v_1); never a word of the expression language (min, max, if, e, pi).
+
+**QUANTITIES** · slot `stage` · CONTROL_PANEL · at least 3 item(s) (the reference has 4)
+
+- The learner gets: Every number the page shows, as an expression of the parameters, so each one is computed and none is typed.
+- The reference page: GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): one authoritative state; no invented exact parameters
+- Record fields: `quantities`
+- To author it: quantities: in order, each {id, label, unit, expr, decimals}; expr uses the parameters and earlier quantities: + - * / ^ ( ), sqrt abs hypot min max clamp round if(c,a,b) sin cos tan (radians), sind cosd tand asind acosd atand atan2d (degrees), pi, and comparisons with and/or/not. Write 2*a*b, never 2ab. Include the quantity the page is about, the tempting model's value, and the parts the mechanism shows.
+
+**SCENE** · slot `stage` · STAGE_VIEW · at least 5 item(s) (the reference has 8)
+
+- The learner gets: The phenomenon and, one step at a time, its hidden mechanism, drawn from the model's own numbers; and the checks that tie the drawing to them.
+- The reference page: GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): G1 phenomenon and G2 mechanism; rendered-geometry truth
+- Record fields: `scene`, `oracles`
+- To author it: scene: title, job (what this view shows that the other cannot), description (what a learner who cannot see it is told), world {x:[min,max], y:[min,max]} (keep the aspect between 0.36 and 1.1), elements of kind point, segment, arrow, circle, arc, polygon, curve, text. Coordinates are expressions: at/from/to/center are [x, y]; curve has param, t_min, t_max, x, y. role: object, given, result, wrong (the tempting model, dashed), helper, frame. label may show a number as {quantity:decimals}. reveal: start (the situation), manipulate (the result), contradict (the tempting model), deconstruct (the mechanism: components, constraints, forces, relative motion). The check says where an element leaves the picture. oracles: expressions that tie the drawing to the quantities using an element's numbers (arrow_x1, arrow_y2, point_x, circle_r, arc_a2).
+
+**SECOND_VIEW** · slot `stage` · STAGE_VIEW · at least 1 item(s)
+
+- The learner gets: A second representation that does a different reasoning job from the picture: the quantity against the slider, with the tempting model's curve as a ghost.
+- The reference page: GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): coordinated representations that add distinct reasoning value
+- Record fields: `second_view`
+- To author it: second_view: kind graph, title, job, description, x (a slider parameter), series [{quantity, label, role}] (include the quantity the page is about), guides [{expr, label, orient: h or v}] for bounds the learner should see, ghost {quantity, label} for the tempting model (drawn only at the contradiction).
+
+**CONTEXT** · slot `route` · ROUTE_STEP
+
+- The learner gets: Place the learner in the situation the question describes, with the question itself, before any equation or control.
+- The reference page: GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): CONTEXT
+- Record fields: `context`
+- To author it: context.situation: one to three sentences placing the learner in the physical or geometric situation, with no equation and no hint of the answer.
+
+**PREDICT** · slot `route` · ROUTE_STEP · at least 3 item(s)
+
+- The learner gets: The learner commits to a prediction before any control moves; the page keeps it and returns to it after the evidence.
+- The reference page: GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): PREDICT; prediction occurs before answer reveal
+- Record fields: `predict`
+- To author it: predict.prompt, predict.options (three): each {text, tests: [{set: {parameter: value}, holds: expression, says: sentence with {quantity:decimals}}]}. An option is true of the model when all its tests hold. Exactly one option is true (predict.correct is its index); every other has a test that fails, and says tells the learner what that test showed. Make the tempting wrong model one of the options. Expressions may read the whole model: at(R, theta, 90) is R with theta set to 90, maxover(R, theta) and minover(R, theta) its largest and smallest, argmax(R, theta) where it is largest.
+
+**MANIPULATE** · slot `route` · ROUTE_STEP · at least 2 item(s) (the reference has 3)
+
+- The learner gets: Direct manipulation with a purpose: goals the learner reaches on the sliders. The controls stay locked until the prediction is made.
+- The reference page: GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): MANIPULATE; meaningful direct manipulation
+- Record fields: `manipulate`
+- To author it: manipulate.goals: each {prompt, goal: an expression true at the state to reach, hint}. Each goal must be reachable on the sliders' steps and not already met at the start; the check says if not.
+
+**OBSERVE** · slot `route` · ROUTE_STEP · at least 3 item(s) (the reference has 4)
+
+- The learner gets: The learner judges statements about what they saw; the page checks each against the whole model and shows a state that settles it.
+- The reference page: GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): OBSERVE
+- Record fields: `observe`
+- To author it: observe.statements: each {text, claim, truth, why}. claim is an expression checked at every state the sliders reach; truth says what that gives: always (a law of the model), never, or sometimes. Include at least one that is always true and the tempting one that is not. why explains it in a sentence.
+
+**CONTRADICT** · slot `route` · ROUTE_STEP · at least 1 item(s)
+
+- The learner gets: The learner imposes the tempting model and sees, in the picture and on the graph, where it cannot be right, and why the correct model works.
+- The reference page: GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): CONTRADICT; counterfactual requirement
+- Record fields: `contradict`
+- To author it: contradict: wrong_model {label, quantity} (the quantity that states the tempting model), imposes (one sentence: suppose the model were true), goal {prompt, goal, hint} (find a state where it visibly fails), why_correct and why_wrong (feedback must answer both why the correct model works and why the tempting one cannot). Show the tempting model in the scene with reveal: contradict, and as second_view.ghost.
+
+**DECONSTRUCT** · slot `route` · ROUTE_STEP · at least 3 item(s) (the reference has 4)
+
+- The learner gets: Expose what is normally invisible, one cause at a time, in the order the cause acts.
+- The reference page: GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): GRAPHICAL DECONSTRUCTION; G2 mechanism; explicit causal chain
+- Record fields: `deconstruct`
+- To author it: deconstruct.steps: each {text, reveals: [element ids], ask?: {prompt, options, correct, why}}; the elements it reveals have reveal: deconstruct in the scene and each is revealed by exactly one step. Order the steps as the causes act. A step may reveal nothing and only say what the last one means.
+
+**RECONSTRUCT** · slot `route` · ROUTE_STEP · at least 2 item(s) (the reference has 3)
+
+- The learner gets: Build the mathematics from the visible mechanism: each step is a quantity the picture shows, and the final equation compresses them and is checked equal to the quantity at every state.
+- The reference page: GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): MATHEMATICAL RECONSTRUCTION; the final equation is a compression of the visible mechanism
+- Record fields: `reconstruct`
+- To author it: reconstruct.steps: each {text, quantity} naming a quantity the mechanism showed; reconstruct.equation {text, expr}: the closed form that must equal the quantity the page is about at every state (the check says where it does not, and rejects an expression identical to the quantity's own).
+
+**INVARIANT** · slot `route` · ROUTE_STEP · at least 2 item(s)
+
+- The learner gets: The learner tries to break what survives every valid variation, and finds they cannot.
+- The reference page: GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): INVARIANT DISCOVERY; representation invariants need an oracle
+- Record fields: `invariants`
+- To author it: invariants: each {text, lhs, rel, rhs, try}; rel is ==, <= or >=; the relation must hold at every state the sliders reach (the check says where it does not). try tells the learner how to look for a state that breaks it.
+
+**BOUNDARY** · slot `route` · ROUTE_STEP · at least 2 item(s) (the reference has 3)
+
+- The learner gets: The learner finds where the shortcut stops being right: cases where it holds and cases where it fails, judged against the model.
+- The reference page: GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): BOUNDARY STRESS
+- Record fields: `boundary`
+- To author it: boundary: assumption (what must hold for the shortcut), learner_must_identify (the point the learner takes away), cases: each {text, set: {parameter: value}, shortcut_label, shortcut: expression, expect: holds or fails}. The page compares the shortcut with the quantity the page is about at that state; expect must agree, and at least one case holds and one fails.
+
+**FADE** · slot `route` · ROUTE_STEP · at least 3 item(s)
+
+- The learner gets: The supports are taken away in three levels: the numbers on the picture, then the relation, then the mechanism; the learner answers with less each time.
+- The reference page: GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): SCAFFOLD FADE
+- Record fields: `fade`
+- To author it: fade: three tasks, each {prompt, set: {parameter: value}, answer: expression, unit, decimals, tolerance, why}. Level 1 hides the numbers on the picture, level 2 also hides the mechanism and the equation, level 3 shows the physical scene only. The page sets the state to `set`; the answer is an expression at that state.
+
+**TRANSFER** · slot `route` · ROUTE_STEP · at least 2 item(s) (the reference has 3)
+
+- The learner gets: A fresh task, with the explorer closed: new numbers the learner has not seen, answered from what was learned.
+- The reference page: GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): FRESH TRANSFER; the exit rejoins the same semantic leaf
+- Record fields: `transfer`
+- To author it: transfer: tasks, each {prompt, set: {parameter: value}, answer: expression, unit, decimals, tolerance, why, worked: [lines with {quantity:decimals}]}. set must differ from the starting numbers (fresh); the answer is an expression at that state; worked is the solution shown after the learner's attempt, every number computed.

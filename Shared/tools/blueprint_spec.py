@@ -75,6 +75,8 @@ def render(registry: dict | None = None) -> str:
             + ("; the support column stays in view while the primary column scrolls" if policy_row.get("support_sticky") else "")
             + ". Narrower, everything is one column, primary first.",
             "",
+            *([f"Route: the learner meets the steps in this order, each after the one before is done: " + " → ".join(blueprint["route"]) + ".", ""]
+              if blueprint.get("route") else []),
             "| Slot | Column | Kept |",
             "|---|---|---|",
         ]

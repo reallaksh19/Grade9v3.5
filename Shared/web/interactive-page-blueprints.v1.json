@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "registry_version": "1.5.0",
+  "registry_version": "1.6.0",
   "shell": {
     "id": "G9-TABLET-SHELL-V1",
     "fixed_header": true,
@@ -1148,6 +1148,797 @@
         "PAGE_LOCAL_ACADEMIC_TRUTH",
         "HOVER_ONLY_ESSENTIAL_INFORMATION",
         "PROTECTED_MOVE_DISCLOSED_PRE_ATTEMPT"
+      ]
+    },
+    {
+      "id": "BP-EXPLORER-GCDR",
+      "version": "1.0.0",
+      "status": "ACTIVE",
+      "core_roles": [
+        "EXPLORER"
+      ],
+      "learner_job": "Test the tempting model of the hardest concept of the question set against a model that cannot be argued with, rebuild the mathematics from what is visible, find where it stops being true, and then do a fresh task without the explorer.",
+      "shell_ref": "G9-TABLET-SHELL-V1",
+      "layout_family": "STAGE_SUPPORT",
+      "route": [
+        "CONTEXT",
+        "PREDICT",
+        "MANIPULATE",
+        "OBSERVE",
+        "CONTRADICT",
+        "DECONSTRUCT",
+        "RECONSTRUCT",
+        "INVARIANT",
+        "BOUNDARY",
+        "FADE",
+        "TRANSFER"
+      ],
+      "slots": [
+        {
+          "id": "identity",
+          "accepts_blocks": [
+            "page_title",
+            "route_rail"
+          ],
+          "required": true,
+          "column": "FULL"
+        },
+        {
+          "id": "stage",
+          "accepts_blocks": [
+            "phenomenon_view",
+            "mechanism_view",
+            "second_representation",
+            "state_controls"
+          ],
+          "required": true,
+          "column": "PRIMARY"
+        },
+        {
+          "id": "route",
+          "accepts_blocks": [
+            "cognitive_target",
+            "source_question",
+            "route_step"
+          ],
+          "required": true,
+          "column": "SUPPORT"
+        }
+      ],
+      "interaction_policy": {
+        "attempt_before_reveal": "ALWAYS",
+        "progressive_support": true,
+        "solution_policy": "POST_ATTEMPT"
+      },
+      "representation_policy": {
+        "preferred_mount_modes": [
+          "COMPONENT"
+        ],
+        "legacy_iframe": "MIGRATION_ONLY"
+      },
+      "responsive_policy": {
+        "compact": "SINGLE_PANE",
+        "medium": "STACKED_SUPPORT",
+        "expanded": "STAGE_SUPPORT",
+        "primary_fraction": 0.66,
+        "support_fraction": 0.34,
+        "expanded_min_px": 1100,
+        "support_sticky": true,
+        "tablet_12_7": {
+          "reference_viewport": {
+            "width": 1366,
+            "height": 854
+          },
+          "identity_max_px": 110,
+          "figure_min_text_css_px": 14,
+          "support_scrolls_inside": true
+        }
+      },
+      "touch_policy": {
+        "minimum_target_css_px": 48,
+        "minimum_control_gap_css_px": 8
+      },
+      "packaging_modes": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ],
+      "forbidden": [
+        "PAGE_LOCAL_ACADEMIC_TRUTH",
+        "HOVER_ONLY_ESSENTIAL_INFORMATION",
+        "FREE_PLAY_BEFORE_PREDICTION",
+        "UNCHECKED_NUMBER",
+        "DECORATIVE_ANIMATION",
+        "TARGET_OTHER_THAN_THE_TOUGHEST_CONCEPT"
+      ],
+      "presentation_policy": {
+        "default_theme": "dark"
+      },
+      "components": [
+        {
+          "id": "ROUTE_RAIL",
+          "slot": "identity",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_RAIL",
+          "purpose": "See the eleven steps of the route and which one the learner is on, so the page is a path with an end and not a toy.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): the mandatory cognitive sequence, one chip per step",
+          "compact_order": 10
+        },
+        {
+          "id": "TARGET",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "CALLOUT_INFO",
+          "purpose": "Name the one concept the page is for, the tempting model it replaces, the move to acquire, what survives and where it stops: the toughest concept of the question set.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): one explorer, one cognitive target",
+          "source": [
+            "target"
+          ],
+          "authoring": {
+            "hint": "target: question_ref is the toughest question of the set (python3 Shared/tools/explorer_build.py new fills it in; python3 Shared/tools/toughest_concept.py MANIFEST names it). failure: the learner's tempting model, one sentence, in the learner's words. operation: the move to acquire. invariant: what survives every valid variation. boundary: where the shortcut stops being right. quantity: the id of the quantity the whole page is about.",
+            "skeleton": {
+              "target": {
+                "question_ref": "",
+                "quantity": "",
+                "failure": "",
+                "operation": "",
+                "invariant": "",
+                "boundary": ""
+              }
+            }
+          },
+          "compact_order": 50
+        },
+        {
+          "id": "SOURCE",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "STEM",
+          "purpose": "Show the owner's question the concept comes from, word for word, so that the explorer rejoins it.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): the exit rejoins the same semantic leaf",
+          "compact_order": 60
+        },
+        {
+          "id": "PARAMETERS",
+          "slot": "stage",
+          "level": "REQUIRED",
+          "presentation": "CONTROL_PANEL",
+          "purpose": "The state the learner moves (sliders) and the givens that stay fixed: the only way the page changes.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): direct manipulation of one governed state",
+          "source": [
+            "parameters"
+          ],
+          "min_items": 1,
+          "target_items": 1,
+          "authoring": {
+            "hint": "parameters: each {id, label, unit, min, max, step, value} for a slider, or {id, label, unit, value, fixed: true} for a given of the question. max - min must be a whole number of steps and value a position of the slider. Ids are letters, digits and underscores (theta, v_1); never a word of the expression language (min, max, if, e, pi).",
+            "skeleton": {
+              "parameters": [
+                {
+                  "id": "",
+                  "label": "",
+                  "unit": "",
+                  "min": 0,
+                  "max": 0,
+                  "step": 1,
+                  "value": 0
+                }
+              ]
+            }
+          },
+          "compact_order": 40
+        },
+        {
+          "id": "QUANTITIES",
+          "slot": "stage",
+          "level": "REQUIRED",
+          "presentation": "CONTROL_PANEL",
+          "purpose": "Every number the page shows, as an expression of the parameters, so each one is computed and none is typed.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): one authoritative state; no invented exact parameters",
+          "source": [
+            "quantities"
+          ],
+          "min_items": 3,
+          "target_items": 4,
+          "authoring": {
+            "hint": "quantities: in order, each {id, label, unit, expr, decimals}; expr uses the parameters and earlier quantities: + - * / ^ ( ), sqrt abs hypot min max clamp round if(c,a,b) sin cos tan (radians), sind cosd tand asind acosd atand atan2d (degrees), pi, and comparisons with and/or/not. Write 2*a*b, never 2ab. Include the quantity the page is about, the tempting model's value, and the parts the mechanism shows.",
+            "skeleton": {
+              "quantities": [
+                {
+                  "id": "",
+                  "label": "",
+                  "unit": "",
+                  "expr": "",
+                  "decimals": 2
+                },
+                {
+                  "id": "",
+                  "label": "",
+                  "unit": "",
+                  "expr": "",
+                  "decimals": 2
+                },
+                {
+                  "id": "",
+                  "label": "",
+                  "unit": "",
+                  "expr": "",
+                  "decimals": 2
+                },
+                {
+                  "id": "",
+                  "label": "",
+                  "unit": "",
+                  "expr": "",
+                  "decimals": 2
+                }
+              ]
+            }
+          },
+          "compact_order": 45
+        },
+        {
+          "id": "SCENE",
+          "slot": "stage",
+          "level": "REQUIRED",
+          "presentation": "STAGE_VIEW",
+          "purpose": "The phenomenon and, one step at a time, its hidden mechanism, drawn from the model's own numbers; and the checks that tie the drawing to them.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): G1 phenomenon and G2 mechanism; rendered-geometry truth",
+          "source": [
+            "scene",
+            "oracles"
+          ],
+          "min_items": 5,
+          "target_items": 8,
+          "authoring": {
+            "hint": "scene: title, job (what this view shows that the other cannot), description (what a learner who cannot see it is told), world {x:[min,max], y:[min,max]} (keep the aspect between 0.36 and 1.1), elements of kind point, segment, arrow, circle, arc, polygon, curve, text. Coordinates are expressions: at/from/to/center are [x, y]; curve has param, t_min, t_max, x, y. role: object, given, result, wrong (the tempting model, dashed), helper, frame. label may show a number as {quantity:decimals}. reveal: start (the situation), manipulate (the result), contradict (the tempting model), deconstruct (the mechanism: components, constraints, forces, relative motion). The check says where an element leaves the picture. oracles: expressions that tie the drawing to the quantities using an element's numbers (arrow_x1, arrow_y2, point_x, circle_r, arc_a2).",
+            "skeleton": {
+              "scene": {
+                "title": "",
+                "job": "",
+                "description": "",
+                "world": {
+                  "x": [
+                    0,
+                    0
+                  ],
+                  "y": [
+                    0,
+                    0
+                  ]
+                },
+                "elements": [
+                  {
+                    "id": "",
+                    "kind": "arrow",
+                    "role": "given",
+                    "from": [
+                      "",
+                      ""
+                    ],
+                    "to": [
+                      "",
+                      ""
+                    ],
+                    "label": "",
+                    "reveal": "start"
+                  },
+                  {
+                    "id": "",
+                    "kind": "point",
+                    "role": "result",
+                    "at": [
+                      "",
+                      ""
+                    ],
+                    "label": "",
+                    "reveal": "manipulate"
+                  }
+                ]
+              },
+              "oracles": [
+                {
+                  "text": "",
+                  "left": "",
+                  "right": ""
+                }
+              ]
+            }
+          },
+          "compact_order": 20
+        },
+        {
+          "id": "SECOND_VIEW",
+          "slot": "stage",
+          "level": "REQUIRED",
+          "presentation": "STAGE_VIEW",
+          "purpose": "A second representation that does a different reasoning job from the picture: the quantity against the slider, with the tempting model's curve as a ghost.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): coordinated representations that add distinct reasoning value",
+          "source": [
+            "second_view"
+          ],
+          "min_items": 1,
+          "target_items": 1,
+          "authoring": {
+            "hint": "second_view: kind graph, title, job, description, x (a slider parameter), series [{quantity, label, role}] (include the quantity the page is about), guides [{expr, label, orient: h or v}] for bounds the learner should see, ghost {quantity, label} for the tempting model (drawn only at the contradiction).",
+            "skeleton": {
+              "second_view": {
+                "kind": "graph",
+                "title": "",
+                "job": "",
+                "description": "",
+                "x": "",
+                "y_label": "",
+                "series": [
+                  {
+                    "quantity": "",
+                    "label": "",
+                    "role": "result"
+                  }
+                ],
+                "guides": [],
+                "ghost": {
+                  "quantity": "",
+                  "label": ""
+                }
+              }
+            }
+          },
+          "compact_order": 30
+        },
+        {
+          "id": "CONTEXT",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_STEP",
+          "purpose": "Place the learner in the situation the question describes, with the question itself, before any equation or control.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): CONTEXT",
+          "source": [
+            "context"
+          ],
+          "authoring": {
+            "hint": "context.situation: one to three sentences placing the learner in the physical or geometric situation, with no equation and no hint of the answer.",
+            "skeleton": {
+              "context": {
+                "situation": ""
+              }
+            }
+          },
+          "compact_order": 70
+        },
+        {
+          "id": "PREDICT",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_STEP",
+          "purpose": "The learner commits to a prediction before any control moves; the page keeps it and returns to it after the evidence.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): PREDICT; prediction occurs before answer reveal",
+          "source": [
+            "predict"
+          ],
+          "min_items": 3,
+          "target_items": 3,
+          "authoring": {
+            "hint": "predict.prompt, predict.options (three): each {text, tests: [{set: {parameter: value}, holds: expression, says: sentence with {quantity:decimals}}]}. An option is true of the model when all its tests hold. Exactly one option is true (predict.correct is its index); every other has a test that fails, and says tells the learner what that test showed. Make the tempting wrong model one of the options. Expressions may read the whole model: at(R, theta, 90) is R with theta set to 90, maxover(R, theta) and minover(R, theta) its largest and smallest, argmax(R, theta) where it is largest.",
+            "skeleton": {
+              "predict": {
+                "prompt": "",
+                "options": [
+                  {
+                    "text": "",
+                    "tests": [
+                      {
+                        "set": {},
+                        "holds": "",
+                        "says": ""
+                      }
+                    ]
+                  },
+                  {
+                    "text": "",
+                    "tests": [
+                      {
+                        "set": {},
+                        "holds": "",
+                        "says": ""
+                      }
+                    ]
+                  },
+                  {
+                    "text": "",
+                    "tests": [
+                      {
+                        "set": {},
+                        "holds": "",
+                        "says": ""
+                      }
+                    ]
+                  }
+                ],
+                "correct": 0
+              }
+            }
+          },
+          "compact_order": 80
+        },
+        {
+          "id": "MANIPULATE",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_STEP",
+          "purpose": "Direct manipulation with a purpose: goals the learner reaches on the sliders. The controls stay locked until the prediction is made.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): MANIPULATE; meaningful direct manipulation",
+          "source": [
+            "manipulate"
+          ],
+          "min_items": 2,
+          "target_items": 3,
+          "authoring": {
+            "hint": "manipulate.goals: each {prompt, goal: an expression true at the state to reach, hint}. Each goal must be reachable on the sliders' steps and not already met at the start; the check says if not.",
+            "skeleton": {
+              "manipulate": {
+                "goals": [
+                  {
+                    "prompt": "",
+                    "goal": "",
+                    "hint": ""
+                  },
+                  {
+                    "prompt": "",
+                    "goal": "",
+                    "hint": ""
+                  },
+                  {
+                    "prompt": "",
+                    "goal": "",
+                    "hint": ""
+                  }
+                ]
+              }
+            }
+          },
+          "compact_order": 90
+        },
+        {
+          "id": "OBSERVE",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_STEP",
+          "purpose": "The learner judges statements about what they saw; the page checks each against the whole model and shows a state that settles it.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): OBSERVE",
+          "source": [
+            "observe"
+          ],
+          "min_items": 3,
+          "target_items": 4,
+          "authoring": {
+            "hint": "observe.statements: each {text, claim, truth, why}. claim is an expression checked at every state the sliders reach; truth says what that gives: always (a law of the model), never, or sometimes. Include at least one that is always true and the tempting one that is not. why explains it in a sentence.",
+            "skeleton": {
+              "observe": {
+                "statements": [
+                  {
+                    "text": "",
+                    "claim": "",
+                    "truth": "always",
+                    "why": ""
+                  },
+                  {
+                    "text": "",
+                    "claim": "",
+                    "truth": "always",
+                    "why": ""
+                  },
+                  {
+                    "text": "",
+                    "claim": "",
+                    "truth": "always",
+                    "why": ""
+                  },
+                  {
+                    "text": "",
+                    "claim": "",
+                    "truth": "always",
+                    "why": ""
+                  }
+                ]
+              }
+            }
+          },
+          "compact_order": 100
+        },
+        {
+          "id": "CONTRADICT",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_STEP",
+          "purpose": "The learner imposes the tempting model and sees, in the picture and on the graph, where it cannot be right, and why the correct model works.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): CONTRADICT; counterfactual requirement",
+          "source": [
+            "contradict"
+          ],
+          "min_items": 1,
+          "target_items": 1,
+          "authoring": {
+            "hint": "contradict: wrong_model {label, quantity} (the quantity that states the tempting model), imposes (one sentence: suppose the model were true), goal {prompt, goal, hint} (find a state where it visibly fails), why_correct and why_wrong (feedback must answer both why the correct model works and why the tempting one cannot). Show the tempting model in the scene with reveal: contradict, and as second_view.ghost.",
+            "skeleton": {
+              "contradict": {
+                "wrong_model": {
+                  "label": "",
+                  "quantity": ""
+                },
+                "imposes": "",
+                "goal": {
+                  "prompt": "",
+                  "goal": "",
+                  "hint": ""
+                },
+                "why_correct": "",
+                "why_wrong": ""
+              }
+            }
+          },
+          "compact_order": 110
+        },
+        {
+          "id": "DECONSTRUCT",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_STEP",
+          "purpose": "Expose what is normally invisible, one cause at a time, in the order the cause acts.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): GRAPHICAL DECONSTRUCTION; G2 mechanism; explicit causal chain",
+          "source": [
+            "deconstruct"
+          ],
+          "min_items": 3,
+          "target_items": 4,
+          "authoring": {
+            "hint": "deconstruct.steps: each {text, reveals: [element ids], ask?: {prompt, options, correct, why}}; the elements it reveals have reveal: deconstruct in the scene and each is revealed by exactly one step. Order the steps as the causes act. A step may reveal nothing and only say what the last one means.",
+            "skeleton": {
+              "deconstruct": {
+                "steps": [
+                  {
+                    "text": "",
+                    "reveals": []
+                  },
+                  {
+                    "text": "",
+                    "reveals": []
+                  },
+                  {
+                    "text": "",
+                    "reveals": []
+                  },
+                  {
+                    "text": "",
+                    "reveals": []
+                  }
+                ]
+              }
+            }
+          },
+          "compact_order": 120
+        },
+        {
+          "id": "RECONSTRUCT",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_STEP",
+          "purpose": "Build the mathematics from the visible mechanism: each step is a quantity the picture shows, and the final equation compresses them and is checked equal to the quantity at every state.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): MATHEMATICAL RECONSTRUCTION; the final equation is a compression of the visible mechanism",
+          "source": [
+            "reconstruct"
+          ],
+          "min_items": 2,
+          "target_items": 3,
+          "authoring": {
+            "hint": "reconstruct.steps: each {text, quantity} naming a quantity the mechanism showed; reconstruct.equation {text, expr}: the closed form that must equal the quantity the page is about at every state (the check says where it does not, and rejects an expression identical to the quantity's own).",
+            "skeleton": {
+              "reconstruct": {
+                "steps": [
+                  {
+                    "text": "",
+                    "quantity": ""
+                  },
+                  {
+                    "text": "",
+                    "quantity": ""
+                  },
+                  {
+                    "text": "",
+                    "quantity": ""
+                  }
+                ],
+                "equation": {
+                  "text": "",
+                  "expr": ""
+                }
+              }
+            }
+          },
+          "compact_order": 130
+        },
+        {
+          "id": "INVARIANT",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_STEP",
+          "purpose": "The learner tries to break what survives every valid variation, and finds they cannot.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): INVARIANT DISCOVERY; representation invariants need an oracle",
+          "source": [
+            "invariants"
+          ],
+          "min_items": 2,
+          "target_items": 2,
+          "authoring": {
+            "hint": "invariants: each {text, lhs, rel, rhs, try}; rel is ==, <= or >=; the relation must hold at every state the sliders reach (the check says where it does not). try tells the learner how to look for a state that breaks it.",
+            "skeleton": {
+              "invariants": [
+                {
+                  "text": "",
+                  "lhs": "",
+                  "rel": "==",
+                  "rhs": "",
+                  "try": ""
+                },
+                {
+                  "text": "",
+                  "lhs": "",
+                  "rel": "==",
+                  "rhs": "",
+                  "try": ""
+                }
+              ]
+            }
+          },
+          "compact_order": 140
+        },
+        {
+          "id": "BOUNDARY",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_STEP",
+          "purpose": "The learner finds where the shortcut stops being right: cases where it holds and cases where it fails, judged against the model.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): BOUNDARY STRESS",
+          "source": [
+            "boundary"
+          ],
+          "min_items": 2,
+          "target_items": 3,
+          "authoring": {
+            "hint": "boundary: assumption (what must hold for the shortcut), learner_must_identify (the point the learner takes away), cases: each {text, set: {parameter: value}, shortcut_label, shortcut: expression, expect: holds or fails}. The page compares the shortcut with the quantity the page is about at that state; expect must agree, and at least one case holds and one fails.",
+            "skeleton": {
+              "boundary": {
+                "assumption": "",
+                "learner_must_identify": "",
+                "cases": [
+                  {
+                    "text": "",
+                    "set": {},
+                    "shortcut_label": "",
+                    "shortcut": "",
+                    "expect": "holds"
+                  },
+                  {
+                    "text": "",
+                    "set": {},
+                    "shortcut_label": "",
+                    "shortcut": "",
+                    "expect": "holds"
+                  },
+                  {
+                    "text": "",
+                    "set": {},
+                    "shortcut_label": "",
+                    "shortcut": "",
+                    "expect": "holds"
+                  }
+                ]
+              }
+            }
+          },
+          "compact_order": 150
+        },
+        {
+          "id": "FADE",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_STEP",
+          "purpose": "The supports are taken away in three levels: the numbers on the picture, then the relation, then the mechanism; the learner answers with less each time.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): SCAFFOLD FADE",
+          "source": [
+            "fade"
+          ],
+          "min_items": 3,
+          "target_items": 3,
+          "authoring": {
+            "hint": "fade: three tasks, each {prompt, set: {parameter: value}, answer: expression, unit, decimals, tolerance, why}. Level 1 hides the numbers on the picture, level 2 also hides the mechanism and the equation, level 3 shows the physical scene only. The page sets the state to `set`; the answer is an expression at that state.",
+            "skeleton": {
+              "fade": [
+                {
+                  "prompt": "",
+                  "set": {},
+                  "answer": "",
+                  "unit": "",
+                  "decimals": 1,
+                  "tolerance": 0.5,
+                  "why": ""
+                },
+                {
+                  "prompt": "",
+                  "set": {},
+                  "answer": "",
+                  "unit": "",
+                  "decimals": 1,
+                  "tolerance": 0.5,
+                  "why": ""
+                },
+                {
+                  "prompt": "",
+                  "set": {},
+                  "answer": "",
+                  "unit": "",
+                  "decimals": 1,
+                  "tolerance": 0.5,
+                  "why": ""
+                }
+              ]
+            }
+          },
+          "compact_order": 160
+        },
+        {
+          "id": "TRANSFER",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_STEP",
+          "purpose": "A fresh task, with the explorer closed: new numbers the learner has not seen, answered from what was learned.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): FRESH TRANSFER; the exit rejoins the same semantic leaf",
+          "source": [
+            "transfer"
+          ],
+          "min_items": 2,
+          "target_items": 3,
+          "authoring": {
+            "hint": "transfer: tasks, each {prompt, set: {parameter: value}, answer: expression, unit, decimals, tolerance, why, worked: [lines with {quantity:decimals}]}. set must differ from the starting numbers (fresh); the answer is an expression at that state; worked is the solution shown after the learner's attempt, every number computed.",
+            "skeleton": {
+              "transfer": [
+                {
+                  "prompt": "",
+                  "set": {},
+                  "answer": "",
+                  "unit": "",
+                  "decimals": 1,
+                  "tolerance": 0.5,
+                  "why": "",
+                  "worked": []
+                },
+                {
+                  "prompt": "",
+                  "set": {},
+                  "answer": "",
+                  "unit": "",
+                  "decimals": 1,
+                  "tolerance": 0.5,
+                  "why": "",
+                  "worked": []
+                },
+                {
+                  "prompt": "",
+                  "set": {},
+                  "answer": "",
+                  "unit": "",
+                  "decimals": 1,
+                  "tolerance": 0.5,
+                  "why": "",
+                  "worked": []
+                }
+              ]
+            }
+          },
+          "compact_order": 170
+        }
       ]
     }
   ]

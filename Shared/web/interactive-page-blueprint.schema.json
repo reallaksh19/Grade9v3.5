@@ -109,7 +109,8 @@
         "CORE1A",
         "CORE1B",
         "CORE2A",
-        "CORE2B"
+        "CORE2B",
+        "EXPLORER"
       ]
     },
     "shell": {
@@ -594,6 +595,16 @@
               "description": "The theme the page opens in; the learner can change it."
             }
           }
+        },
+        "route": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_]*$"
+          },
+          "description": "For a guided route (an explorer): the components that are the learner's steps, in the order the learner meets them. The page walks them one at a time, each only after the one before is done."
         }
       }
     },
@@ -630,7 +641,11 @@
         "STAGED_VISUAL",
         "TRAP_CARD",
         "TRIAD",
-        "RECALL_CARD"
+        "RECALL_CARD",
+        "ROUTE_RAIL",
+        "STAGE_VIEW",
+        "CONTROL_PANEL",
+        "ROUTE_STEP"
       ]
     },
     "component": {

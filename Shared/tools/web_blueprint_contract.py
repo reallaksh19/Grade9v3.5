@@ -11,7 +11,7 @@ from typing import Any
 REPO = Path(__file__).resolve().parents[2]
 SCHEMA_PATH = REPO / "Shared" / "web" / "interactive-page-blueprint.schema.json"
 REGISTRY_PATH = REPO / "Shared" / "web" / "interactive-page-blueprints.v1.json"
-CORE_ROLES = {"CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B"}
+CORE_ROLES = {"CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B", "EXPLORER"}   # EXPLORER is a page the Cores lead to, not a Core
 PACKAGING_MODES = {"PUBLIC", "PAGES", "OFFLINE_DIRECTORY", "SINGLE_FILE", "EMBED"}
 COLUMNS = {"FULL", "PRIMARY", "SUPPORT"}
 BANDS = ("D1", "D2", "D3", "D4")

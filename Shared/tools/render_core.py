@@ -2094,6 +2094,8 @@ def layout_css(registry: dict) -> str:
         if rp.get("expanded") != "STAGE_SUPPORT" or not rp.get("support_fraction"):
             continue
         role = bp["core_roles"][0]
+        if role not in ROLES:
+            continue                 # the explorer lays itself out from the same blueprint fields (Shared/tools/explorer_build.py)
         scope = f'article[data-g9-role="{role}"]'
         columns = f'minmax(0,{rp["primary_fraction"] * 100:g}fr) minmax(0,{rp["support_fraction"] * 100:g}fr)'
         wide = (f'{scope} .g9-split{{display:grid;grid-template-columns:{columns};gap:22px;align-items:start}}'
