@@ -969,7 +969,23 @@
     });
   }
 
+  /* Beside the stage the route is pinned and scrolls inside itself; it is never taller than what is left of the screen below it,
+     so the button that goes on is in reach whatever sits above the page (the TEST header, for one). */
+  function fitRoute() {
+    const route = q('.gx-route');
+    if (!route) return;
+    if (getComputedStyle(route).position !== 'sticky') { route.style.maxHeight = ''; return; }
+    const pinned = parseFloat(getComputedStyle(route).top) || 0;
+    const top = Math.max(pinned, route.getBoundingClientRect().top);
+    route.style.maxHeight = `${Math.max(240, window.innerHeight - top - 12)}px`;
+  }
+
   function pinViews() {
+    let queued = false;
+    const fit = () => { if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; fitRoute(); }); } };
+    window.addEventListener('scroll', fit, { passive: true });
+    window.addEventListener('resize', fit);
+    fitRoute();
     const views = q('.gx-views');
     if (!views || typeof ResizeObserver === 'undefined') return;
     const set = () => document.documentElement.style.setProperty('--gx-views-h', `${views.offsetHeight}px`);

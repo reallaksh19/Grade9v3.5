@@ -7,6 +7,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from Shared.tools import build_test_site, deploy_test
 from Shared.tools import explorer_build as eb
 from Shared.tools import explorer_model as em
 from tests.test_explorer_build import QUESTION, SPEC, brief
@@ -35,7 +36,8 @@ class Explorer(unittest.TestCase):
         cls.tmp = tempfile.TemporaryDirectory()
         cls.page = Path(cls.tmp.name) / "index.html"
         html, _ = eb.page(json.loads(json.dumps(SPEC)), brief(), {"question": None, "concept": None})
-        cls.page.write_text(html, encoding="utf-8")
+        # as it is deployed: under the TEST header, which pushes the whole page down
+        cls.page.write_text(deploy_test._stamp(html, build_test_site.sandbox_bar("../../../")), encoding="utf-8")
         cls.reports = {name: run_browser(cls.page, *size) for name, size in VIEWPORTS.items()}
         cls.floor = em.blueprint()["responsive_policy"]["tablet_12_7"]["figure_min_text_css_px"]
 

@@ -92,10 +92,10 @@ def frame(depth: int, title: str, current: str, body: str, heading: str | None =
             f'<script>{render_core.JS}</script></body></html>\n')
 
 
-BAR_STYLE = ("header[data-g9-test-banner]{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;padding:6px 14px;"
+BAR_STYLE = ("header[data-g9-test-banner]{display:flex;flex-wrap:wrap;gap:0 14px;align-items:center;padding:0 14px;"
              "background:#7c2d12;color:#fff;font:600 14px/1.4 system-ui,sans-serif}"
              "header[data-g9-test-banner] nav{display:flex;flex-wrap:wrap;gap:4px}"
-             "header[data-g9-test-banner] a{display:inline-flex;align-items:center;min-height:44px;min-width:44px;"
+             "header[data-g9-test-banner] a{display:inline-flex;align-items:center;min-height:48px;min-width:48px;"
              "padding:0 10px;color:#fde68a}")
 
 

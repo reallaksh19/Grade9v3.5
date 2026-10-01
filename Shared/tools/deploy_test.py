@@ -108,7 +108,7 @@ def _rel(path: Path) -> str:
 def banner(home: str) -> str:
     return (f'<div data-g9-test-banner role="note" style="background:#7c2d12;color:#fff;padding:0 14px;'
             f'font:600 14px/1.4 system-ui,sans-serif">{BANNER_TEXT} · <a href="{home}" style="color:#fde68a;display:inline-block;'
-            f'min-height:44px;line-height:44px;padding:0 8px">TEST home</a></div>')
+            f'min-height:48px;line-height:48px;padding:0 8px">TEST home</a></div>')
 
 
 def _stamp(page: str, top: str) -> str:
