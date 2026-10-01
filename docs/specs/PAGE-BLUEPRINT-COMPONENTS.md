@@ -293,7 +293,7 @@ Required: a page without it is a gap, and the quality gate fails it.
 - The learner gets: Every number the page shows, as an expression of the parameters, so each one is computed and none is typed.
 - The reference page: GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): one authoritative state; no invented exact parameters
 - Record fields: `quantities`
-- To author it: quantities: in order, each {id, label, unit, expr, decimals}; expr uses the parameters and earlier quantities: + - * / ^ ( ), sqrt abs hypot min max clamp round if(c,a,b) sin cos tan (radians), sind cosd tand asind acosd atand atan2d (degrees), pi, and comparisons with and/or/not. Write 2*a*b, never 2ab. Include the quantity the page is about, the tempting model's value, and the parts the mechanism shows.
+- To author it: quantities: in order, each {id, label, unit, expr, decimals}; expr uses the parameters and earlier quantities: + - * / ^ ( ), sqrt abs hypot min max clamp round if(c,a,b) sin cos tan (radians), sind cosd tand asind acosd atand atan2d (degrees), pi, and comparisons with and/or/not. Write 2*a*b, never 2ab; v_x is written as a subscript. Include the quantity the page is about, the tempting model's value, and the parts the mechanism shows.
 
 **SCENE** · slot `stage` · STAGE_VIEW · at least 5 item(s) (the reference has 8)
 

@@ -23,6 +23,9 @@ from tests.test_test_area import Fixture  # noqa: E402
 
 class Deploy(unittest.TestCase):
     def setUp(self):
+        patcher = mock.patch.object(eb, "EXAMPLE_SPEC", Path("/nonexistent/example.json"))      # these specs reuse the example's content for mechanics
+        patcher.start()
+        self.addCleanup(patcher.stop)
         self.fixture = Fixture()
         self.addCleanup(self.fixture.cleanup)
         self.slug = self.fixture.slug

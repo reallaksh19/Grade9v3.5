@@ -11,7 +11,7 @@ On the site it is the **TEST** tab (`public/test/`, deployed as `docs/test/`): a
 
 1. **Core2**: the Owner's questions, kept verbatim, in an owner-supplied bank.
 2. **Core1A**: the concept construction for the same topic.
-3. **An interactive page** built from the same canonical records.
+3. **An explorer**: a guided page on the toughest concept of the same question set, written as a spec and built by the repo's tools.
 
 Each one is deployed to the TEST tab as a draft. Do them in that order; stop and record friction instead of guessing. (The intake lists the Cores it will make in alphabetical order, `CORE1A` before `CORE2`; that is not the order of work.)
 
@@ -56,7 +56,7 @@ as deliverables. Report each of those as NOT DONE (a limit of TEST) and do not i
 | The ladder (Rungs) | `TEST/matrices/SLUG.rungs.json` | same shape as `Mathematics/matrices/linear-equations.rungs.json`, with `"subject": "TEST"` |
 | Concepts, capabilities, Core1A material | `TEST/library/SLUG.v1.json` | a package (`Shared/library/package.schema.json`) with `"subject": "TEST"`. It needs at least one resource, bucket, capability and microtopic; every capability needs a microtopic whose `primary_capability_ref` names it, and every owner question a `family_ref` naming a question family in the package. Start from the schema and let the resolver tell you what is missing (below): the example `tests/fixtures/render/thin-kin-2d-motion.v1.json` is small as packages go but still about 5,000 lines, most of it gate-contract blocks a TEST package does not need; a real one is `Mathematics/library/linear-equations.v1.json`. A construction unit's `worked_anchor_ref` and a family's `item_refs` name questions **of the package**, never questions of the owner bank (the resolver rejects them): write the worked example as a question of the package, which is yours and not the Owner's, and leave `item_refs` empty. A relation may say `"gate_relation_ref": null`: TEST has no gate registry. A figure is an SVG file you author under `TEST/library/figures/` and name in the representation's `rendered_asset_refs`. Check it before you build a manifest with `python3 -m Shared.library.resolve --schema TEST/library/SLUG.v1.json` (the schema, up to six problems at a time, then the references; without `--schema` it checks references only). |
 | Product manifest | `TEST/products/SLUG.manifest.json` | made by `product_manifest.py derive` (below) |
-| Interactive page source | `TEST/interactive/SLUG/index.html` and `interactive.json` | see "An interactive page" |
+| The explorer | `TEST/interactive/SLUG/explorer.json` | a spec made by `explorer_build.py new` (below); see "An explorer" |
 
 A question is selected into Core2 when its `primary_capability_ref` is a capability of the package. Optional question
 fields (`conditions`, `subparts`, `figure_refs`, `response`, typed maths in `extensions["grade9v3:math_spans"]`) are
@@ -90,7 +90,10 @@ python3 Shared/tools/build_web_data.py                      # the Atlas reads th
 python3 Shared/tools/deploy_test.py pages                   # rebuild the TEST pages and the Pages mirror
 
 # 5  Core1A: extend the package, add "CORE1A" to output_roles, then step 3 again
-# 6  the interactive page, then
+# 6  the explorer for the toughest concept
+python3 Shared/tools/toughest_concept.py TEST/products/SLUG.manifest.json                # which concept that is, and why
+python3 Shared/tools/explorer_build.py new TEST/products/SLUG.manifest.json              # writes TEST/interactive/SLUG/explorer.json
+python3 Shared/tools/explorer_build.py check TEST/interactive/SLUG                        # repeat until it says no error
 python3 Shared/tools/deploy_test.py interactive TEST/interactive/SLUG
 
 # checks
@@ -109,23 +112,65 @@ them all. A package or bank that fails the schema is refused with up to six prob
 It refuses a manifest that is not under `TEST/`, whose subject is not `TEST`, or that uses records outside `TEST/`.
 It sets the page links for its location, so `--home` does not have to be exact.
 
-## An interactive page
+## An explorer
 
-`TEST/interactive/SLUG/interactive.json`:
+The interactive page of a TEST job is an **explorer**, not a sandbox: a guided route through the one concept the question set is hardest on.
+That concept is not your choice: it is the question whose difficulty is most conceptual (`python3 Shared/tools/toughest_concept.py MANIFEST` names it and says why), and the
+Core1A page is built toward the same question. A spec for any other question is refused, and so is a page that could be played with before anything is predicted.
 
-```json
-{"schema": "grade9v3-test-interactive-v1", "slug": "SLUG", "title": "...", "purpose": "what the learner manipulates, what becomes visible, which misconception it targets",
- "records": ["canonical record ids the page is built from"], "blueprint_ref": "a blueprint id, or NONE", "status": "DRAFT"}
-```
+You do not write HTML or JavaScript. You write the **content** of each step as data (`explorer.json`); `Shared/tools/explorer_build.py` writes the page (a layout made for a 12.7-inch
+tablet, the locking, the behaviour, the accessibility) and `Shared/tools/explorer_model.py` checks every number in it, at every position the learner's sliders can reach. The blueprint is
+`BP-EXPLORER-GCDR`, from the repo's own standard for explorers ([docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md](../docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md));
+read it as [docs/specs/PAGE-BLUEPRINT-COMPONENTS.md](../docs/specs/PAGE-BLUEPRINT-COMPONENTS.md), where each component says what to write.
 
-`index.html` needs a viewport meta tag and must not load anything from another host (the site works offline); every
-file it links must be in its folder. Only `.html .css .js .json .svg .png .jpg .webp .txt`, at most 30 files of 2 MB.
-The deploy adds the TEST header (draft label, links to the portal and the TEST pages) to the page; do not add your own.
-The academic content comes from the canonical records; the page may not carry its own facts. There is no registered
-explorer blueprint yet (`Shared/web/interactive-page-blueprints.v1.json` has the six Core blueprints only): if you use
-none, say `NONE` and record that as friction.
+**The route the learner walks** (each step opens only when the one before is done):
+CONTEXT (the question, word for word) → PREDICT (the sliders stay locked until a prediction is locked in) → MANIPULATE (reach goals on the sliders) → OBSERVE (judge statements; the page
+checks each against the whole model) → CONTRADICT (impose the tempting wrong model and see it fail, in the picture and on a graph) → DECONSTRUCT (the hidden mechanism appears one cause at a time)
+→ RECONSTRUCT (build the mathematics from it; the closed-form equation is checked equal to the quantity) → INVARIANT (try to break what survives every position) → BOUNDARY (where the
+shortcut holds and where it fails) → FADE (three levels, with less help each time) → TRANSFER (a fresh task, with the explorer closed, and the way back to the question).
+
+**What you write**, in the order the scaffold lists it:
+
+- the **state**: `parameters` (the sliders, each with min, max, step and a starting value; and the givens of the question with `"fixed": true`) and `quantities` (every number the page shows, as an
+  expression of the parameters and the quantities before it: `"expr": "sqrt(a^2 + b^2 + 2*a*b*cosd(theta))"`; no number is typed anywhere, the page computes them);
+- the **picture**: `scene.elements` of kind point, segment, arrow, circle, arc, polygon, curve or text, with coordinates as expressions, a role (object, given, result, wrong, helper, frame) and when it
+  appears (`reveal`: start, manipulate, contradict, deconstruct), and a `second_view` graph of the quantity against a slider; `oracles` tie the drawing to the numbers;
+- the **route**: the prediction and its options, the goals, the statements, the tempting model and the state where it visibly fails, the causes in the order they act, the steps of the
+  working and the equation they compress into, the invariants, the boundary cases, the three fade tasks and the fresh tasks.
+
+**The expression language**: `+ - * / ^ ( )`, comparisons, `and or not`, `if(c, a, b)`; `sqrt abs hypot min max clamp round floor ceil sign exp ln log10`; `sin cos tan asin acos atan atan2` in radians and
+`sind cosd tand asind acosd atand atan2d` in degrees; `pi`, `e`. Write `2*a*b`, never `2ab`. A quantity that is not a number somewhere the sliders reach (a division by zero, a root of a
+negative) is an error that names the position. For claims about the whole model (predictions, statements, invariants, answers) four forms read it: `at(R, theta, 90)` is R with theta set to 90,
+`maxover(R, theta)` and `minover(R, theta)` its largest and smallest over the slider, `argmax(R, theta)` and `argmin(R, theta)` where they are. In a sentence, show a number as `{R:1}` (R, one
+decimal) and the page computes it; a decimal you type into a sentence is flagged, because nothing checks it.
+
+**What the check holds the spec to** (an *error* stops the deploy: the page would show something false or break; a *gap* is reported and the page deploys as a draft):
+
+- the explorer is for the toughest concept (error);
+- every number is a number at every position of the sliders (error);
+- the right prediction is the one the model supports, and each wrong option is refuted by a test that fails (error); a statement said to hold always does, and one said not to has a position that
+  shows it (error); a goal can be reached on the slider's steps and is not already met at the start (error);
+- the tempting model is wrong somewhere (error) and is drawn in the picture and on the graph (gap);
+- the equation equals the quantity at every position, and is written with the parameters only, not as the quantity's own expression (error); each invariant holds at every position (error);
+- every element stays inside the picture at every position, and each oracle (the drawing against the numbers) holds (error);
+- each boundary case's shortcut holds or fails as declared, with at least one of each (error / gap); a fresh task uses numbers the learner has not seen (error);
+- the reference depth of the blueprint: three prediction options, three goals, four statements, four causes, three steps of working, two invariants, three boundary cases, three fade levels, three
+  fresh tasks (gaps).
+
+`explorer_build.py check` prints each finding with the component it belongs to and the blueprint's own instruction for authoring it. Zero gaps is the standard.
+
+**An example of the format.** [tests/fixtures/explorer/projectile-range.explorer.json](../tests/fixtures/explorer/projectile-range.explorer.json) is a complete spec for a different concept (the range
+of a projectile). It shows what each field looks like; its sentences are about projectiles and are not yours to reuse: a spec that repeats two of them is refused.
+
+`deploy_test.py interactive` builds the page, refuses a spec with an error (nothing is written), and otherwise deploys `index.html` with the TEST header, `explorer-contract.json` (the design
+contract of `Shared/library/explorer_design_contract.schema.json`, `IMPLEMENTATION_PARTIAL`, audit `NOT_RUN`: no machine here certifies it) and `explorer-evidence.json` (what the check computed),
+plus a receipt. The end of the route links back to the question on the product's Core2 page and to its Core1A concept book when the product is deployed, so **deploy the product first**.
+
+A page written by hand (`TEST/interactive/SLUG/index.html` and `interactive.json`, schema `grade9v3-test-interactive-v1`) is still accepted as a draft, but the receipt and the Deployments page say it is
+hand-written, that nothing in it is machine-checked and that it is not built from the explorer blueprint. It needs a viewport meta tag, may load nothing from another host and may carry no facts of its own.
 
 ## Limits
 
-- TEST has a contract (`TEST/adapter/`) and no adapter: no scenes and no validators, so no quantitative claim here is machine-checked by the subject.
+- TEST has a contract (`TEST/adapter/`) and no adapter: no scenes and no validators of its own. An explorer's numbers are checked by the explorer model against the spec's own expressions (that the
+  page agrees with itself and with its equation), not against a subject authority: whether the physics or the mathematics in the spec is the right one is for the Owner to decide.
 - Owner-supplied banks are used only here. Official exam banks are unchanged; an owner bank may not live in an `exam-bank/` directory, and TEST is not part of the public Question Bank. The general design question is issue #371.

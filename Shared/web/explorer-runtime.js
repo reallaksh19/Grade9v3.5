@@ -226,29 +226,30 @@
     }
   }
 
-  /* Labels that would sit on one another are moved apart, so every label can be read at every position of the sliders. */
-  function nudgeLabels() {
+  /* Labels that would sit on one another are moved apart, so every label can be read at every position of the sliders.
+     `labels` are SVG text elements in the order they matter; each stays inside a width x height box. */
+  function nudgeLabels(labels, width, height) {
     const placed = [];
     const offsets = [0, 18, -18, 36, -36, 54, -54];
-    for (const entry of sceneNodes.values()) {
-      const label = entry.parts.label;
-      if (!label || entry.group.style.display === 'none' || !label.textContent) continue;
+    for (const label of labels) {
+      if (!label || !label.textContent) continue;
       let box = label.getBBox();
       const x0 = parseFloat(label.getAttribute('x'));
       const y0 = parseFloat(label.getAttribute('y'));
-      const shift = box.x < 3 ? 3 - box.x : box.x + box.width > VW - 3 ? VW - 3 - (box.x + box.width) : 0;
+      const shift = box.x < 3 ? 3 - box.x : box.x + box.width > width - 3 ? width - 3 - (box.x + box.width) : 0;
       if (shift) { label.setAttribute('x', (x0 + shift).toFixed(1)); box = { x: box.x + shift, y: box.y, width: box.width, height: box.height }; }
       let chosen = 0;
       for (const dy of offsets) {
         const top = box.y + dy;
         const clash = placed.some((p) => box.x < p.x + p.w + 3 && p.x < box.x + box.width + 3 && top < p.y + p.h + 1 && p.y < top + box.height + 1);
-        const inside = top >= 0 && top + box.height <= VH;
-        if (!clash && inside) { chosen = dy; break; }
+        if (!clash && top >= 0 && top + box.height <= height) { chosen = dy; break; }
       }
       if (chosen) label.setAttribute('y', (y0 + chosen).toFixed(1));
       placed.push({ x: box.x, y: box.y + chosen, w: box.width, h: box.height });
     }
   }
+
+  const sceneLabels = () => [...sceneNodes.values()].filter((e) => e.group.style.display !== 'none' && e.parts.label).map((e) => e.parts.label);
 
   function renderScene() {
     if (!sceneSvg) return;
@@ -260,7 +261,7 @@
       entry.group.style.display = visible ? '' : 'none';
       if (visible) drawElement(entry, values, hidden);
     }
-    nudgeLabels();
+    nudgeLabels(sceneLabels(), VW, VH);
     const summary = `State: ${model.free().map((id) => `${span(id).label} ${fmt(state.params[id], decimals[id])} ${span(id).unit || ''}`.trim()).join(', ')}.`
       + (reached('MANIPULATE') && !hidden ? ` ${targetLabel()} is ${fmt(values[targetQuantity], decimals[targetQuantity])} ${targetUnit()}.` : '');
     setText(q('#gx-state-summary'), summary);
@@ -396,6 +397,7 @@
     if (!showCurve && reached('MANIPULATE')) {
       state.trail.forEach(([x, y]) => svg('circle', { cx: gx(x).toFixed(1), cy: gy(y).toFixed(1), r: 3.2, class: 'gx-fill' }, graphNodes.trail));
     }
+    nudgeLabels([graphNodes.readout, graphNodes.ghostLabel, ...graphNodes.guides.filter((g) => g.group.style.display !== 'none').map((g) => g.label)], GRAPH.w, GRAPH.h);
     const figure = q('[data-gx-view=graph]');
     if (figure) figure.classList.toggle('gx-faded', Boolean(rules.graph));
   }

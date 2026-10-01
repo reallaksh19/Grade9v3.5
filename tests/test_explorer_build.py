@@ -10,6 +10,7 @@ import shutil
 import sys
 import unittest
 import xml.etree.ElementTree as ET
+from unittest import mock
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -105,6 +106,9 @@ class FromAProduct(unittest.TestCase):
     """A spec for the product's own toughest concept builds; one for any other question is refused."""
 
     def setUp(self):
+        patcher = mock.patch.object(eb, "EXAMPLE_SPEC", Path("/nonexistent/example.json"))      # these specs reuse the example's content for mechanics
+        patcher.start()
+        self.addCleanup(patcher.stop)
         self.fixture = Fixture()
         self.addCleanup(self.fixture.cleanup)
         self.brief = eb.Brief(self.fixture.manifest)
@@ -157,6 +161,54 @@ class FromAProduct(unittest.TestCase):
         bad = self.write(blueprint_ref="BP-EXPLORER-GCDR@0.1.0")
         with contextlib.redirect_stdout(io.StringIO()):
             self.assertEqual(eb.main(["check", str(bad)]), 1)
+
+
+class TheExample(unittest.TestCase):
+    """The worked example shows the format; copying its sentences into a spec for another concept is refused."""
+
+    def test_the_example_itself_and_a_spec_in_its_own_words_are_not_copies(self):
+        self.assertEqual(eb.copied_from_example(SPEC), [])
+        own = copy.deepcopy(SPEC)
+        own["context"]["situation"] = "Two arrows are drawn tip to tail on a sheet and you can turn the second one."
+        own["contradict"]["imposes"] = "Suppose the length of the sum were always the two lengths added, whatever the angle."
+        own["target"]["failure"] = "The length of a sum of two arrows is just the two lengths added."
+        self.assertLess(len(eb.copied_from_example(own)), 2 + len(eb._sentences(SPEC)))
+
+    def test_two_sentences_taken_from_the_example_are_an_error_that_quotes_one(self):
+        fixture = Fixture()
+        self.addCleanup(fixture.cleanup)
+        folder = eb.INTERACTIVE_ROOT / fixture.slug
+        folder.mkdir(parents=True)
+        self.addCleanup(shutil.rmtree, folder, True)
+        brief_row = eb.Brief(fixture.manifest).brief
+        own = copy.deepcopy(SPEC)
+        own.update(slug=fixture.slug, product=fixture.manifest.relative_to(REPO).as_posix())
+        own["target"]["question_ref"] = brief_row["question_ref"]
+        for key, replacement in (("situation", "Two arrows lie tip to tail on a sheet and you can turn the second one about the first one's tip."),):
+            own["context"][key] = replacement
+        (folder / eb.SPEC_FILE).write_text(json.dumps(own), encoding="utf-8")
+        _, _, report = eb.check_source(folder)
+        copied = [f for f in report.errors if f.where == "text"]
+        self.assertEqual(len(copied), 1, report.errors)
+        self.assertIn("sentences are the worked example's own, written for a different concept", copied[0].detail)
+        self.assertIn("tests/fixtures/explorer/projectile-range.explorer.json", copied[0].detail)
+
+    def test_one_shared_sentence_is_a_coincidence_and_two_are_not(self):
+        keep = eb._sentences(SPEC)[:2]
+        counter = iter(range(10_000))
+
+        def reworded(node, allowed):
+            if isinstance(node, str):
+                return node if (len(node) < 30 or " " not in node or node in allowed) else f"A sentence of this concept, number {next(counter)}, in other words."
+            if isinstance(node, dict):
+                return {k: reworded(v, allowed) for k, v in node.items()}
+            if isinstance(node, list):
+                return [reworded(v, allowed) for v in node]
+            return node
+
+        self.assertEqual(eb.copied_from_example(reworded(SPEC, set(keep[:1]))), [])
+        self.assertEqual(eb.copied_from_example(reworded(SPEC, set(keep))), keep)
+        self.assertEqual(eb.copied_from_example(reworded(SPEC, set())), [])
 
 
 class Page(unittest.TestCase):

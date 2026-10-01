@@ -35,6 +35,7 @@ BUILDER = "explorer_build/1"
 MODEL_JS = REPO / "Shared/web/explorer-model.js"
 RUNTIME_JS = REPO / "Shared/web/explorer-runtime.js"
 INTERACTIVE_ROOT = REPO / "TEST" / "interactive"
+EXAMPLE_SPEC = REPO / "tests" / "fixtures" / "explorer" / "projectile-range.explorer.json"      # the worked example of the format, for another concept
 SPEC_FILE = "explorer.json"
 TITLES = {"CONTEXT": "Context", "PREDICT": "Predict", "MANIPULATE": "Try it", "OBSERVE": "Notice", "CONTRADICT": "Test the tempting model",
           "DECONSTRUCT": "See why", "RECONSTRUCT": "Build the maths", "INVARIANT": "Try to break it", "BOUNDARY": "Where it stops",
@@ -580,6 +581,32 @@ def load_spec(source: Path) -> tuple[dict, Path]:
     return json.loads(spec_path.read_text(encoding="utf-8")), spec_path
 
 
+def _sentences(node, found: list[str] | None = None) -> list[str]:
+    found = [] if found is None else found
+    if isinstance(node, str):
+        if len(node) >= 30 and " " in node:
+            found.append(node)
+    elif isinstance(node, dict):
+        for value in node.values():
+            _sentences(value, found)
+    elif isinstance(node, list):
+        for value in node:
+            _sentences(value, found)
+    return found
+
+
+def copied_from_example(spec: dict) -> list[str]:
+    """Sentences of the spec that are word for word the worked example's. Two is not a coincidence."""
+    if not EXAMPLE_SPEC.is_file():
+        return []
+    example = json.loads(EXAMPLE_SPEC.read_text(encoding="utf-8"))
+    if example == spec:
+        return []
+    mine, theirs = _sentences(spec), set(_sentences(example))
+    matches = [text for text in mine if text in theirs]
+    return matches if len(matches) >= 2 else []
+
+
 def check_source(source: Path) -> tuple[dict, Brief, em.Report]:
     spec, spec_path = load_spec(source)
     if isinstance(spec, dict) and "product" in spec and (REPO / str(spec["product"])).is_file():
@@ -589,6 +616,10 @@ def check_source(source: Path) -> tuple[dict, Brief, em.Report]:
     report = em.check(spec, brief.brief)
     if not report.errors and spec_path.parent.name != spec["slug"] and spec_path.parent.parent == INTERACTIVE_ROOT:
         report.error("SPEC", "slug", f"{spec['slug']!r} must equal the directory name {spec_path.parent.name!r}")
+    copied = copied_from_example(spec)
+    if copied:
+        report.error("SPEC", "text", f"{len(copied)} sentences are the worked example's own, written for a different concept (for example {copied[0]!r}); the "
+                     f"example ({EXAMPLE_SPEC.relative_to(REPO).as_posix()}) shows the format, not what to write. Write the sentences for this concept")
     return spec, brief, report
 
 
