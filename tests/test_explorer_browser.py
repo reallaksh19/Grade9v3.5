@@ -180,6 +180,61 @@ def every_kind(spec: dict) -> dict:
     return spec
 
 
+def two_sliders(spec: dict) -> dict:
+    """The reference spec with the launch speed a slider as well: two parameters move, so the states are a grid and the picture must hold for all of them."""
+    spec["parameters"][0] = {"id": "v", "label": "launch speed", "unit": "m/s", "min": 10, "max": 30, "step": 2, "value": 20}
+    spec["scene"]["world"] = {"x": [-2, 94], "y": [-3, 47]}
+    spec["scene"]["elements"][0]["to"] = ["94", "0"]
+    for element in spec["scene"]["elements"]:
+        if element["id"] == "angleArc":
+            element["r"] = "10"
+    return spec
+
+
+class TwoSliders(unittest.TestCase):
+    """Two sliders: the claims are checked over a grid of positions, and the page is driven through its route by moving either."""
+
+    @classmethod
+    def setUpClass(cls):
+        why_not = _browser_available()
+        if why_not:
+            raise unittest.SkipTest(why_not)
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.spec = two_sliders(json.loads(json.dumps(SPEC)))
+        cls.check = em.check(cls.spec, {"question_ref": "Q-PROJ-8", "label": "Q8", "rule": "x"})
+        html, _ = eb.page(em.normalize(cls.spec), brief(), {"question": None, "concept": None})
+        cls.page = Path(cls.tmp.name) / "index.html"
+        cls.page.write_text(html, encoding="utf-8")
+        cls.report = run_browser(cls.page, 1366, 854)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.tmp.cleanup()
+
+    def test_the_claims_hold_over_the_grid_of_both_sliders(self):
+        self.assertEqual([f.line() for f in self.check.errors], [])
+        self.assertEqual(self.check.evidence["states_checked"], 81 * 11)
+        self.assertEqual(self.check.evidence["observations"], ["sometimes", "always", "always", "never"])
+
+    def test_the_route_is_driven_to_its_end_with_no_script_error_and_the_drawing_is_the_model(self):
+        self.assertEqual(self.report["consoleErrors"], [])
+        self.assertTrue(self.report["done"]["visible"])
+        self.assertLess(self.report["geometry"]["worstPixelError"], 0.2)
+        self.assertLess(self.report["geometry"]["worstOracleError"], 1e-9)
+
+    def test_two_sliders_still_leave_the_primary_button_in_reach_and_the_controls_big_enough(self):
+        for step in self.report["steps"]:
+            if step["label"] not in {"done", "transfer"}:
+                self.assertTrue(step["continueVisible"], step["label"])
+            self.assertGreaterEqual(step["smallestTarget"], 47.5, step["label"])
+
+    def test_a_picture_that_cannot_hold_the_faster_throws_is_an_error_naming_the_element_and_the_position(self):
+        spec = two_sliders(json.loads(json.dumps(SPEC)))
+        spec["scene"]["world"] = {"x": [-2, 44], "y": [-3, 47]}
+        found = [f.line() for f in em.check(spec, {"question_ref": "Q-PROJ-8", "label": "Q8", "rule": "x"}).errors]
+        self.assertTrue(any(line.startswith("SCENE element landing: reaches (") and "right of the picture" in line and "v = " in line for line in found), found)
+
+
 class EveryKind(unittest.TestCase):
     """Each element kind and each guide the vocabulary has, drawn and driven in a browser: nothing breaks and the drawing is the model."""
 

@@ -282,10 +282,21 @@
       }
       return values;
     }
+    caps(free, cap) {
+      const sizes = free.map((id) => this.lattice(id).length);
+      const product = () => sizes.reduce((a, b) => a * b, 1);
+      while (product() > cap) {
+        let index = 0;
+        for (let i = 1; i < sizes.length; i += 1) if (sizes[i] > sizes[index]) index = i;
+        if (sizes[index] <= 5) break;
+        sizes[index] = Math.max(5, Math.min(sizes[index] - 1, Math.floor(sizes[index] * 0.9)));
+      }
+      return sizes;
+    }
     states(cap = STATE_CAP) {
       const free = this.free();
-      const per = free.length ? Math.max(5, Math.floor(Math.pow(cap, 1 / free.length) + 1e-9)) : SWEEP_CAP;
-      const grids = free.map((id) => this.lattice(id, per));
+      const sizes = this.caps(free, cap);
+      const grids = free.map((id, i) => this.lattice(id, sizes[i]));
       const base = this.initial();
       const out = [{ ...base }];
       const index = grids.map(() => 0);

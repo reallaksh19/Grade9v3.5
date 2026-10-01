@@ -187,11 +187,20 @@ class Model:
             values = [values[i] for i in sorted(keep)]
         return values
 
+    def caps(self, free: list[str], cap: int) -> list[int]:
+        """How many values each slider contributes so the grid fits in `cap` states: the largest lattice gives way first, a tenth at a time (never below 5)."""
+        sizes = [len(self.lattice(pid)) for pid in free]
+        while math.prod(sizes) > cap:
+            index = max(range(len(sizes)), key=lambda i: (sizes[i], -i))
+            if sizes[index] <= 5:
+                break
+            sizes[index] = max(5, min(sizes[index] - 1, int(math.floor(sizes[index] * 0.9))))
+        return sizes
+
     def states(self, cap: int = STATE_CAP) -> Iterator[dict[str, float]]:
         """Every combination of the sliders' lattices, thinned to at most `cap` states; the initial state is always among them."""
         free = self.free()
-        per = SWEEP_CAP if not free else max(5, int(math.floor(cap ** (1.0 / len(free)) + 1e-9)))
-        grids = [self.lattice(pid, per) for pid in free]
+        grids = [self.lattice(pid, size) for pid, size in zip(free, self.caps(free, cap))]
         base = self.initial()
         yield dict(base)
         for combo in itertools.product(*grids):
