@@ -316,8 +316,9 @@ def main(argv: list[str] | None = None) -> int:
         resolved.parent.mkdir(parents=True, exist_ok=True)
         resolved.write_text(json.dumps(bank, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"wrote {parsed.out}: {len(bank['questions'])} question(s), each kept exactly as supplied.\n"
-              "For each: fill answer.summary (and answer.reasoning, a list of steps), primary_capability_ref, family_ref "
-              "and the empty values in extensions[\"grade9v3:analysis\"] (question type, difficulty). "
+              "For each: fill every empty field it lists, and primary_capability_ref, family_ref, answer.summary and the "
+              "question type and difficulty in extensions[\"grade9v3:analysis\"]. The fields are the ones the Core2 page "
+              "blueprint asks for (what each is for: docs/specs/PAGE-BLUEPRINT-COMPONENTS.md). "
               "Do not edit a stem: its digest is checked.")
         return 0
 

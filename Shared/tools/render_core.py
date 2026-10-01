@@ -1769,6 +1769,8 @@ article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-
 .g9-c-ladder [data-g9-ladder]>li{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:10px 13px}
 .g9-rung-head{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-weight:800}
 .g9-rung-no{display:inline-grid;place-items:center;min-width:2.3em;height:2.1em;border-radius:8px;background:var(--pill-bg);color:var(--pill-fg);font-size:.85rem}
+.g9-c-ladder details[data-g9-support-reveal]{border:0;padding:0;margin:.5rem 0}
+.g9-c-ladder details[data-g9-support-reveal]>summary{width:100%;justify-content:space-between;font-weight:700}
 .g9-c-ladder [data-g9-support-prompt]{margin:.5rem 0}.g9-c-ladder .g9-ladder>button{margin-top:10px}
 .g9-c-link-list h4{margin:.9rem 0 .3rem;font-size:.85rem;color:var(--muted)}
 .g9-c-link-list ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:.2rem 0;padding:0}
