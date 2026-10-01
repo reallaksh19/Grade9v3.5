@@ -8,6 +8,7 @@
     "schema_version",
     "registry_version",
     "shell",
+    "component_policy",
     "blueprints"
   ],
   "properties": {
@@ -27,6 +28,77 @@
       "items": {
         "$ref": "#/$defs/blueprint"
       }
+    },
+    "component_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "levels",
+        "column",
+        "waivers",
+        "depth",
+        "held_to"
+      ],
+      "properties": {
+        "levels": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "REQUIRED",
+            "EXPECTED",
+            "OPTIONAL"
+          ],
+          "properties": {
+            "REQUIRED": {
+              "type": "string",
+              "minLength": 1
+            },
+            "EXPECTED": {
+              "type": "string",
+              "minLength": 1
+            },
+            "OPTIONAL": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "column": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "FULL",
+            "PRIMARY",
+            "SUPPORT"
+          ],
+          "properties": {
+            "FULL": {
+              "type": "string",
+              "minLength": 1
+            },
+            "PRIMARY": {
+              "type": "string",
+              "minLength": 1
+            },
+            "SUPPORT": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "waivers": {
+          "type": "string",
+          "minLength": 1
+        },
+        "depth": {
+          "type": "string",
+          "minLength": 1
+        },
+        "held_to": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
     }
   },
   "$defs": {
@@ -37,7 +109,8 @@
         "CORE1A",
         "CORE1B",
         "CORE2A",
-        "CORE2B"
+        "CORE2B",
+        "EXPLORER"
       ]
     },
     "shell": {
@@ -65,6 +138,7 @@
               "HOME",
               "SUBJECT_CONTEXT",
               "QUESTION_BANK",
+              "PRINT_PDF",
               "SEARCH",
               "REFRESH",
               "DISPLAY",
@@ -206,6 +280,90 @@
               "minLength": 1
             }
           }
+        },
+        "print_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "control",
+            "applies_to_roles",
+            "icon",
+            "accessible_name",
+            "target",
+            "target_pattern",
+            "never_linked",
+            "opens",
+            "target_css_px_min",
+            "in_print",
+            "single_file_mode"
+          ],
+          "properties": {
+            "control": {
+              "const": "PRINT_PDF"
+            },
+            "purpose": {
+              "type": "string",
+              "minLength": 1
+            },
+            "applies_to_roles": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "CORE1",
+                  "CORE1A",
+                  "CORE1B",
+                  "CORE2",
+                  "CORE2A",
+                  "CORE2B"
+                ]
+              }
+            },
+            "icon": {
+              "const": "PDF"
+            },
+            "accessible_name": {
+              "type": "string",
+              "minLength": 10
+            },
+            "target": {
+              "const": "GENERATED_LEARNER_PDF"
+            },
+            "target_pattern": {
+              "type": "string",
+              "pattern": "^\\{page_stem\\}\\.pdf$"
+            },
+            "never_linked": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "const": "KEY_PDF"
+              }
+            },
+            "opens": {
+              "enum": [
+                "NEW_TAB",
+                "SAME_TAB"
+              ]
+            },
+            "target_css_px_min": {
+              "type": "integer",
+              "minimum": 44
+            },
+            "in_print": {
+              "const": "HIDDEN"
+            },
+            "single_file_mode": {
+              "enum": [
+                "NO_CONTROL"
+              ]
+            },
+            "link_must_resolve": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
         }
       }
     },
@@ -215,7 +373,8 @@
       "required": [
         "id",
         "accepts_blocks",
-        "required"
+        "required",
+        "column"
       ],
       "properties": {
         "id": {
@@ -233,6 +392,9 @@
         },
         "required": {
           "type": "boolean"
+        },
+        "column": {
+          "$ref": "#/$defs/column"
         }
       }
     },
@@ -397,6 +559,61 @@
               "type": "number",
               "minimum": 0,
               "maximum": 1
+            },
+            "expanded_min_px": {
+              "type": "integer",
+              "minimum": 600,
+              "maximum": 1600,
+              "description": "Viewport width from which the expanded layout applies."
+            },
+            "support_sticky": {
+              "type": "boolean",
+              "description": "Whether the support column stays in view while the primary column scrolls."
+            },
+            "tablet_12_7": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "reference_viewport",
+                "identity_max_px",
+                "figure_min_text_css_px"
+              ],
+              "description": "The 12.7-inch tablet as the design target: the viewport the layout is judged at and what must hold there. The portrait viewport is the same size turned.",
+              "properties": {
+                "reference_viewport": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "width",
+                    "height"
+                  ],
+                  "properties": {
+                    "width": {
+                      "type": "integer",
+                      "minimum": 800
+                    },
+                    "height": {
+                      "type": "integer",
+                      "minimum": 600
+                    }
+                  },
+                  "description": "Landscape CSS pixels of the reference tablet (1366 x 854)."
+                },
+                "identity_max_px": {
+                  "type": "integer",
+                  "minimum": 60,
+                  "description": "The tallest the identity block (title, provenance, metadata, difficulty) may be at the reference viewport, so the first screen shows the work and not the labels."
+                },
+                "figure_min_text_css_px": {
+                  "type": "integer",
+                  "minimum": 12,
+                  "description": "The smallest rendered height of a figure label at the reference viewport; an authored figure whose labels would render smaller is a gap for new authoring."
+                },
+                "support_scrolls_inside": {
+                  "type": "boolean",
+                  "description": "With support_sticky: a support column taller than the screen scrolls inside itself, so none of it is out of reach while it is pinned."
+                }
+              }
             }
           }
         },
@@ -440,6 +657,206 @@
             "type": "string",
             "minLength": 1
           }
+        },
+        "components": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/component"
+          }
+        },
+        "presentation_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "default_theme"
+          ],
+          "properties": {
+            "default_theme": {
+              "enum": [
+                "light",
+                "dark"
+              ],
+              "description": "The theme the page opens in; the learner can change it."
+            }
+          }
+        },
+        "route": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_]*$"
+          },
+          "description": "For a guided route (an explorer): the components that are the learner's steps, in the order the learner meets them. The page walks them one at a time, each only after the one before is done."
+        }
+      }
+    },
+    "column": {
+      "enum": [
+        "FULL",
+        "PRIMARY",
+        "SUPPORT"
+      ]
+    },
+    "presentation": {
+      "enum": [
+        "HEADER",
+        "DISCLOSURE_GRID",
+        "STEM",
+        "CALLOUT_INFO",
+        "CALLOUT_WARN",
+        "ATTEMPT",
+        "VISUAL_CARD",
+        "LADDER",
+        "LINK_LIST",
+        "DISCLOSURE",
+        "STEP_LIST",
+        "ANSWER_BOX",
+        "CHECK_BOX",
+        "CONCEPT_HEADER",
+        "TILE",
+        "CHIPS",
+        "BANNER",
+        "UNIT_HEADER",
+        "STEP_CARDS",
+        "EQUATION_CARD",
+        "WORKED_CARD",
+        "STAGED_VISUAL",
+        "TRAP_CARD",
+        "TRIAD",
+        "RECALL_CARD",
+        "ROUTE_RAIL",
+        "STAGE_VIEW",
+        "CONTROL_PANEL",
+        "ROUTE_STEP"
+      ]
+    },
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "slot",
+        "level",
+        "presentation",
+        "purpose",
+        "benchmark"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$"
+        },
+        "slot": {
+          "type": "string",
+          "minLength": 1
+        },
+        "level": {
+          "enum": [
+            "REQUIRED",
+            "EXPECTED",
+            "OPTIONAL"
+          ]
+        },
+        "presentation": {
+          "$ref": "#/$defs/presentation"
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1,
+          "description": "What the learner gets from it, in a sentence."
+        },
+        "benchmark": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The part of the reference page this component comes from."
+        },
+        "parent": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$",
+          "description": "A component this one is shown inside; it takes its slot and place from the parent."
+        },
+        "repeat": {
+          "enum": [
+            "PER_CONSTRUCTION_UNIT"
+          ],
+          "description": "One instance per construction unit instead of one per page."
+        },
+        "source": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Record fields that feed it."
+        },
+        "min_items": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Fewest items (rungs, steps, stages, checks) it needs to count as present."
+        },
+        "duty": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$",
+          "description": "A duty that already reports this component's absence, so the renderer does not report it twice."
+        },
+        "authoring": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "hint": {
+              "type": "string",
+              "minLength": 1,
+              "description": "What an author writes, and where, to supply it."
+            },
+            "skeleton": {
+              "type": "object",
+              "description": "Empty record fields to scaffold a new record with; {qid} stands for the record id."
+            }
+          }
+        },
+        "target_items": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Depth of the reference page. Below it, above min_items, is an advisory; new authoring is held to it."
+        },
+        "target_items_by_band": {
+          "type": "object",
+          "additionalProperties": false,
+          "minProperties": 1,
+          "properties": {
+            "D1": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "D2": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "D3": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "D4": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "description": "Reference depth by the difficulty band the record declares at band_source."
+        },
+        "band_source": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Dotted path to the record's difficulty band."
+        },
+        "compact_order": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Where the component comes in the single-column flow of a phone or a portrait tablet, where both columns are stacked: lower first. It lets the picture follow the question it belongs to and the ladder follow the attempt, whichever column each sits in."
         }
       }
     }

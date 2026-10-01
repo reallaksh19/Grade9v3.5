@@ -480,6 +480,26 @@ class GateAuthorityOverSubjectTruth(unittest.TestCase):
         found = authority.findings(package, authority.gate_relations(subject))
         self.assertIn("GATE_RELATION_BINDING_ABSENT", {f["point"] for f in found})
 
+    def test_a_null_binding_is_caught_for_a_gated_subject_and_allowed_where_the_subject_has_no_gates(self):
+        subject = self._subject("Physics")
+        package = self._package(subject)
+        package["relations"][0]["gate_relation_ref"] = None
+        package["relations"][0]["expression"] = "q = something no gate declares"
+        found = authority.findings(package, authority.gate_relations(subject))
+        self.assertIn("GATE_RELATION_BINDING_ABSENT", {f["point"] for f in found})
+        self.assertEqual(authority.findings(package, {}), [], "a sandbox subject declares no gates, so there is none to bind to")
+
+    def test_the_package_schema_lets_a_relation_say_no_gate_backs_it(self):
+        from jsonschema import Draft202012Validator
+        schema = json.loads((REPO / "Shared/library/package.schema.json").read_text(encoding="utf-8"))
+        package = json.loads((REPO / "tests/fixtures/render/thin-kin-2d-motion.v1.json").read_text(encoding="utf-8"))
+        package["relations"][0]["gate_relation_ref"] = None
+        errors = [e for e in Draft202012Validator(schema).iter_errors(package) if "gate_relation_ref" in "/".join(map(str, e.absolute_path))]
+        self.assertEqual(errors, [])
+        package["relations"][0]["gate_relation_ref"] = ""
+        errors = [e for e in Draft202012Validator(schema).iter_errors(package) if "gate_relation_ref" in "/".join(map(str, e.absolute_path))]
+        self.assertTrue(errors, "an empty string still names nothing")
+
     def test_redeclaring_a_gate_expression_without_binding_is_caught(self):
         subject = self._subject("Physics")
         package = self._package(subject)

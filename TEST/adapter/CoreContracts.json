@@ -1,0 +1,114 @@
+{
+  "schema_version": "2.0.0",
+  "subject": "TEST",
+  "contract_version": "2.0.0",
+  "learner_products": {
+    "CORE1": {
+      "role": "COMPACT_ORIENTATION_NOTES",
+      "production": "COMPILED"
+    },
+    "CORE2": {
+      "role": "SOURCE_QUESTION_CUSTODY",
+      "production": "COMPILED"
+    },
+    "CORE1A": {
+      "role": "DECLARATIVE_STUDY",
+      "production": "COMPILED"
+    },
+    "CORE1B": {
+      "role": "CONCEPTUAL_SELF_TUTOR",
+      "production": "COMPILED"
+    },
+    "CORE2A": {
+      "role": "SOLUTION_APPRENTICESHIP",
+      "production": "COMPILED"
+    },
+    "CORE2B": {
+      "role": "APPLICATION_AND_TRANSFER_TUTOR",
+      "production": "COMPILED"
+    }
+  },
+  "equation_semantic_fields": [
+    "model_assumptions",
+    "axis_and_sign",
+    "dimensions",
+    "physical_interpretation"
+  ],
+  "required_symbol_fields": [
+    "symbol",
+    "meaning",
+    "unit",
+    "dimension"
+  ],
+  "required_symbol_fields_reason": "TEST reuses the Physics symbol rule so that a vector test package is judged the way a Physics one is: a symbol without its unit and dimension is not a checkable symbol.",
+  "validator_catalogue": [],
+  "representation_kinds": [
+    {
+      "id": "VECTOR",
+      "status": "PROPOSED",
+      "requires": [
+        "frame",
+        "axis labels",
+        "unit",
+        "symbol",
+        "equal coordinate scale"
+      ]
+    },
+    {
+      "id": "VECTOR_SUBTRACTION",
+      "status": "PROPOSED",
+      "requires": [
+        "frame",
+        "both source vectors labelled",
+        "the reversed vector labelled",
+        "tail-to-head placement without rotation",
+        "resultant labelled with tail and head",
+        "one length scale for every vector drawn"
+      ],
+      "limits": [
+        "a construction, not a component readout; VECTOR draws one vector against axes, and using it here would hide the reversal that the construction exists to show"
+      ]
+    }
+  ],
+  "risks": [
+    "velocity versus acceleration",
+    "component versus magnitude",
+    "diagram arrow semantics",
+    "model applicability"
+  ],
+  "curriculum": {
+    "boards": [
+      "CBSE"
+    ],
+    "grades": [
+      9,
+      10,
+      11
+    ],
+    "tiers": [
+      "NOT_IN_JEE",
+      "JEE_MAINS",
+      "JEE_ADVANCED",
+      "BOTH"
+    ],
+    "binding_authority": "EXACT_REGISTRY_BINDING_REQUIRED",
+    "unbound_scope_state": "HELD_INSUFFICIENT_AUTHORITY"
+  },
+  "source_truth": "ORIGINAL_EVIDENCE_WITH_EXACT_PROVENANCE",
+  "renderer_authority": "COMPOSITION_ONLY",
+  "new_generated_family_policy": "EXPLICIT_VALIDATOR_AND_SUBJECT_REVIEW_REQUIRED",
+  "release_authority": "NOT_GRANTED_BY_ANY_MACHINE_CHECK",
+  "subject_specific_notes": {
+    "sandbox": "TEST is a sandbox for stress runs. Nothing in it is curriculum, nothing in it is accepted or released, and no machine check here grants release. See TEST/README.md.",
+    "no_validators": "No subject validators exist for TEST, so no quantitative claim in TEST is machine-checked by this subject."
+  },
+  "provenance": {
+    "derived_from": "Chemistry/adapter/CoreContracts.json (contract-only skeleton) with the Physics symbol and vector representation rules",
+    "changes_on_port": [
+      "subject renamed to TEST",
+      "equation_semantic_fields, required_symbol_fields, risks taken from Physics",
+      "validator_catalogue emptied: TEST has no validators",
+      "representation_kinds limited to VECTOR and VECTOR_SUBTRACTION, both PROPOSED (no adapter implements them for TEST)"
+    ]
+  }
+}

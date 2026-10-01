@@ -11,11 +11,13 @@ REPO = Path(__file__).resolve().parents[1]
 
 
 class WebBlueprintContractTests(unittest.TestCase):
-    def test_registry_is_structurally_sound_and_has_six_active_core_blueprints(self):
+    def test_registry_is_structurally_sound_and_has_six_active_core_blueprints_and_the_explorers(self):
         report = web_blueprint_contract.audit_registry()
         self.assertTrue(report["passed"], report["findings"])
-        self.assertEqual(report["blueprints_checked"], 6)
+        self.assertEqual(report["blueprints_checked"], 7)
         registry = web_blueprint_contract.load_registry()
+        roles = sorted(role for row in registry["blueprints"] if row["status"] == "ACTIVE" for role in row["core_roles"])
+        self.assertEqual(roles, ["CORE1", "CORE1A", "CORE1B", "CORE2", "CORE2A", "CORE2B", "EXPLORER"])
         self.assertEqual(registry["shell"]["id"], "G9-TABLET-SHELL-V1")
         self.assertTrue(registry["shell"]["fixed_header"])
 

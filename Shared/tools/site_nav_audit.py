@@ -56,6 +56,20 @@ def _resolve(root: Path, page: Path, url: str) -> Path | None:
     return target
 
 
+def missing_targets(root: Path, page: Path) -> list[str]:
+    """The static href/src values in `page` that resolve to no file: what the audit reports as BROKEN_LINK."""
+    text = page.read_text(encoding="utf-8", errors="replace")
+    missing = []
+    for _attr, raw in REF.findall(text):
+        url = html.unescape(raw).strip()
+        if _skip(url):
+            continue
+        target = _resolve(root.resolve(), page.resolve(), url)
+        if target is not None and not target.exists():
+            missing.append(url)
+    return sorted(set(missing))
+
+
 def audit(root: Path = REPO / "docs") -> dict:
     root = root.resolve()
     pages = sorted(

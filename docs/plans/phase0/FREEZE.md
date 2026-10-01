@@ -42,6 +42,16 @@ approved the phase order and this freeze on 2026-09-26.
 | 4 | `cdnbbsr.s3waas.gov.in` is Tier A; Tier C is a corroborated fallback for questions and keys, with ExamSIDE and six other publishers | `Physics/research/source-allowlist.json`, `Shared/tools/evidence_check.py` |
 | 5 | Cost ceiling per unit: explained in plan §5; the owner sets the number | plan §5 |
 
+## Calls made on the owner's instruction (2026-10-01)
+
+PR #372 left two calls open and named them the owner's. The owner answered "do it", so they were made, with the reason, and each can be undone in one place.
+They are decisions of the implementer on that instruction, not a review by the owner.
+
+| # | Decision | Why | To undo it |
+|---|---|---|---|
+| 6 | The toughest concept of a question set is the question whose difficulty is most *conceptual* (`concept_model_selection` + `trap_exception_sensitivity`), then the higher total score, then `representation_translation`, then `reasoning_chain_length`, then bank order | The owner's complaint was a page "not for the toughest concept" and a Core1A "not for name sake": a question that is hard because of its algebra is practice, not a concept, so conceptual difficulty must lead. It reads only the author's own difficulty estimates and guesses nothing, so the owner can overrule it by changing them | `derive()` in `Shared/tools/toughest_concept.py` and its pinned test `tests/test_toughest_concept.py`; the rule is quoted in `TEST/README.md` and in the authoring hint of the crux component of `Shared/web/interactive-page-blueprints.v1.json` |
+| 7 | `Shared/tools/explorer_build.py` and `Shared/web/explorer-runtime.js` are `ENGINE_KEEP` in the renderer inventory | They render learner content, so rule 2 requires them to be listed, and `OUT_OF_SCOPE` would be untrue. They are not a new hand-written renderer: the page is generated from the blueprint registry (`BP-EXPLORER-GCDR`: route, components, layout, depth) and a checked spec, and Phase 3 merges them into `render_core.py` as the explore adapter. They do not break rule 1: the only deploy path (`deploy_test.py interactive`) writes under `public/test/`, and `explorer_build.py build --out` is a preview | Reclassify or delete the two rows in `renderer-inventory.v1.json` and the two modules; only `deploy_test.py` imports the generator (the other explorer modules, `explorer_expr.py` and `explorer_model.py`, are its checks) |
+
 ## Exit gate status
 
 | Gate | Status |

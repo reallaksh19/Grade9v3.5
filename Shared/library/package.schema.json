@@ -41,7 +41,8 @@
       "enum": [
         "Physics",
         "Mathematics",
-        "Chemistry"
+        "Chemistry",
+        "TEST"
       ]
     },
     "scope_summary": {
@@ -393,9 +394,12 @@
             "KEY_CONCEPT",
             "REPRESENTATION",
             "FIRST_MOVE",
+            "CRUX",
+            "FORMAL_MODEL",
+            "CHECKPOINT",
             "OTHER"
           ],
-          "description": "Optional Core2 v2 learner-facing support stage. This classifies the Prompt/Reveal job; it does not change source custody or support_kind."
+          "description": "Optional Core2 v2 learner-facing support stage. This classifies the Prompt/Reveal job; it does not change source custody or support_kind. CRUX names the move a learner is most likely to miss, FORMAL_MODEL gives the relation or equation to use, CHECKPOINT gives the intermediate result to compare against."
         },
         "support_kind": {
           "enum": [
@@ -1653,8 +1657,11 @@
           "description": "Restricted presentation MathML for this relation, so a product can render it without re-authoring."
         },
         "gate_relation_ref": {
-          "description": "The engineering gate relation this is a bound copy of. Subject truth is owned by the gate registry; the library holds a copy so the compiler can reach it, and that copy is checked against the owner.",
-          "type": "string",
+          "description": "The engineering gate relation this is a bound copy of. Subject truth is owned by the gate registry; the library holds a copy so the compiler can reach it, and that copy is checked against the owner. null says no gate backs this relation: that is true of a subject that declares no gates (a sandbox, or a contract-only subject), and for a subject that has gates Shared/library/authority.py reports it as GATE_RELATION_BINDING_ABSENT.",
+          "type": [
+            "string",
+            "null"
+          ],
           "minLength": 1
         }
       },
@@ -3220,6 +3227,28 @@
           ],
           "description": "Question (exposure CORE1A) whose route exercises this unit's move."
         },
+        "bank_anchor_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "description": "A question of the product's bank (an owner-supplied or exam question, not a question of this package) that this unit works through as its worked example: the page shows the question as its owner wrote it with its verified route. Resolved when the product is built, so a package does not carry a copy of the question. Use it for the question the unit builds toward; use worked_anchor_ref for a question the package authors itself."
+        },
+        "crux_question_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "description": "Bank questions whose crux this unit builds: the move a learner is most likely to miss in each. The unit is shown as building toward them, takes the reference depth of the hardest of them, and the toughest question of a set must be named here by a unit of the concept it belongs to."
+        },
+        "crux_step_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The teaching_path step of this unit (one of its step_refs) that builds the move named questions in crux_question_refs turn on. The page marks that step, so a reader can see where the unit does the work the hard question needs."
+        },
         "misconception_indexes": {
           "type": "array",
           "items": {
@@ -3227,6 +3256,14 @@
             "minimum": 0
           },
           "description": "Indexes into microtopic.misconceptions (wrong path, diagnose, repair)."
+        },
+        "relation_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "The microtopic's relations this unit uses, shown as the unit's own equation card. Absent: the first unit shows all of the microtopic's relations."
         },
         "independent_checks": {
           "type": "array",
@@ -3275,6 +3312,14 @@
             "null"
           ],
           "description": "From <Subject>/adapter/QualityVocabulary.json check_types."
+        },
+        "role": {
+          "enum": [
+            "CHECK",
+            "APPLY",
+            "CONNECT"
+          ],
+          "description": "The job this item does in a construction unit's 1-2-3 quick check: CHECK recalls the idea, APPLY uses it on a small case, CONNECT says which idea it leads to next."
         }
       }
     },

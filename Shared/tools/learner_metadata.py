@@ -15,6 +15,8 @@ import sys
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
 VOCABULARY = REPO / "Shared/vocabularies/learner-question-metadata.v1.json"
+OWNER_CLASS = "OWNER_SUPPLIED_RAW_INPUT"       # the custody class Shared/tools/owner_bank.py writes
+OWNER_PROVENANCE = "OWNER_SUPPLIED"
 CONCEPT_ROLES = {"CORE1", "CORE1A", "CORE1B"}
 ASSESSMENT_ROLES = {"CORE2", "CORE2A", "CORE2B"}
 DIFFICULTY_COMPONENTS = {
@@ -59,7 +61,7 @@ def resolve_concept(packages: list[dict], capability_ref: str, vocabulary: dict[
     ]
     microtopic = _one(
         owners,
-        f"METADATA_CONCEPT_OWNER_MISSING: {capability_ref}",
+        f"METADATA_CONCEPT_OWNER_MISSING: {capability_ref} (no microtopic in the package has it as primary_capability_ref)",
         f"METADATA_CONCEPT_OWNER_AMBIGUOUS: {capability_ref}",
     )
     title = microtopic.get("title")
@@ -111,7 +113,8 @@ def resolve_family(packages: list[dict], family_ref: str) -> dict:
     ]
     family = _one(
         rows,
-        f"METADATA_FAMILY_MISSING: {family_ref}",
+        f"METADATA_FAMILY_MISSING: {family_ref}" if family_ref else
+        "METADATA_FAMILY_MISSING: the question has no family_ref (set it to the id of a question family in the package)",
         f"METADATA_FAMILY_AMBIGUOUS: {family_ref}",
     )
     title = family.get("title")
@@ -125,7 +128,11 @@ def _difficulty(value: Any, record_id: str, vocabulary: dict[str, Any]) -> dict:
         raise LearnerMetadataError(f"METADATA_QUESTION_DIFFICULTY_MISSING: {record_id}")
     band = value.get("band")
     if band not in vocabulary["question_difficulty"]:
-        raise LearnerMetadataError(f"METADATA_QUESTION_DIFFICULTY_INVALID: {record_id}:{band}")
+        ranges_hint = ", ".join(f"{b} = score {r['min']} to {r['max']}"
+                                for b, r in (vocabulary.get("question_difficulty_score_ranges") or {}).items())
+        raise LearnerMetadataError(f"METADATA_QUESTION_DIFFICULTY_INVALID: {record_id}:{band} "
+                                   f"(band is one of {', '.join(vocabulary['question_difficulty'])}; {ranges_hint}; "
+                                   "the score is the sum of the five components, each 0 to 2)")
     ranges = vocabulary.get("question_difficulty_score_ranges") or {}
     score_range = ranges.get(band)
     if not isinstance(score_range, dict):
@@ -155,7 +162,8 @@ def _difficulty(value: Any, record_id: str, vocabulary: dict[str, Any]) -> dict:
 def _question_type(value: Any, record_id: str, vocabulary: dict[str, Any]) -> dict:
     if value not in vocabulary["question_types"]:
         code = "MISSING" if value in (None, "") else "INVALID"
-        raise LearnerMetadataError(f"METADATA_QUESTION_TYPE_{code}: {record_id}:{value}")
+        raise LearnerMetadataError(f"METADATA_QUESTION_TYPE_{code}: {record_id}:{value} "
+                                   f"(learner_question_type is one of {', '.join(vocabulary['question_types'])})")
     return {
         "question_type": value,
         "question_type_label": vocabulary["question_types"][value],
@@ -167,6 +175,18 @@ def _bank_question_metadata(question: dict, vocabulary: dict[str, Any]) -> dict:
     analysis = extensions.get("grade9v3:analysis") or {}
     custody = extensions.get("grade9v3:source_custody") or {}
     provenance = extensions.get("grade9v3:provenance_class")
+    if custody.get("authority_class") == OWNER_CLASS:
+        # A question the Owner supplied is its own class: it names no exam, so it has no exam badge to take.
+        if provenance not in (None, OWNER_PROVENANCE):
+            raise LearnerMetadataError(f"METADATA_PROVENANCE_INVALID: {question['id']}:{provenance} "
+                                       f"(an owner-supplied question is {OWNER_PROVENANCE})")
+        return {
+            **_difficulty(analysis.get("difficulty"), question["id"], vocabulary),
+            **_question_type(analysis.get("learner_question_type"), question["id"], vocabulary),
+            "source": vocabulary["provenance"][OWNER_PROVENANCE],
+            "provenance": OWNER_PROVENANCE,
+            "provenance_label": vocabulary["provenance"][OWNER_PROVENANCE],
+        }
     if provenance not in vocabulary["provenance"]:
         raise LearnerMetadataError(f"METADATA_PROVENANCE_INVALID: {question['id']}:{provenance}")
     source_status = custody.get("source_status")
@@ -186,6 +206,25 @@ def _bank_question_metadata(question: dict, vocabulary: dict[str, Any]) -> dict:
         "provenance": provenance,
         "provenance_label": vocabulary["provenance"][provenance],
     }
+
+
+def bank_question_problems(question: dict, vocabulary: dict[str, Any] | None = None) -> list[str]:
+    """What stops a bank question's own metadata (provenance, difficulty, type) being projected, all at once.
+
+    The projection itself stops at the first problem; an author fixing a new question wants every one."""
+    vocabulary = vocabulary or load_vocabulary()
+    analysis = ((question.get("extensions") or {}).get("grade9v3:analysis")) or {}
+    record_id = question.get("id")
+    problems: list[str] = []
+    for probe in (lambda: _difficulty(analysis.get("difficulty"), record_id, vocabulary),
+                  lambda: _question_type(analysis.get("learner_question_type"), record_id, vocabulary),
+                  lambda: _bank_question_metadata(question, vocabulary)):
+        try:
+            probe()
+        except LearnerMetadataError as caught:
+            if str(caught) not in problems:
+                problems.append(str(caught))
+    return problems
 
 
 def _authored_question_metadata(question: dict, vocabulary: dict[str, Any]) -> dict:

@@ -125,7 +125,7 @@ it is never permission for an agent to invent a page architecture.
         "FULL_MISCONCEPTION_REPAIR_LESSON",
         "PERSONALISED_PRACTICE_ROUTING"
       ],
-      "web_blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0"
+      "web_blueprint_ref": "BP-CORE1-ORIENTATION@1.1.0"
     },
     "CORE1A": {
       "learner_job": "Receive a complete declarative construction of the microtopic's inferential truth.",
@@ -197,7 +197,7 @@ it is never permission for an agent to invent a page architecture.
         "RANDOM_BLANK_DELETION",
         "UNANSWERED_PROMPT"
       ],
-      "web_blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.1.0"
+      "web_blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0"
     },
     "CORE1B": {
       "learner_job": "Reconstruct the same inferential truth before seeing the completed route.",
@@ -261,7 +261,7 @@ it is never permission for an agent to invent a page architecture.
         "ANSWER_BEFORE_ATTEMPT",
         "COVERAGE_REDUCTION_RELATIVE_TO_CORE1A"
       ],
-      "web_blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0"
+      "web_blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.1.0"
     },
     "CORE2": {
       "learner_job": "Preserve and expose the authentic assessment demand with source custody intact.",
@@ -328,7 +328,7 @@ it is never permission for an agent to invent a page architecture.
         "GENERATED_OFFICIAL_IDENTITY",
         "RECONSTRUCTED_WORDING_PRESENTED_AS_ORIGINAL"
       ],
-      "web_blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.1.0"
+      "web_blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0"
     },
     "CORE2A": {
       "learner_job": "Learn a familiar question-family application route with pedagogical support and complete closure.",
@@ -398,7 +398,7 @@ it is never permission for an agent to invent a page architecture.
         "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE",
         "MASTERY_CLAIM_FROM_SUCCESSFUL_GENERATION"
       ],
-      "web_blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0"
+      "web_blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.1.0"
     },
     "CORE2B": {
       "learner_job": "Carry an established capability into a changed demand while protecting the changed learner decision before commitment.",
@@ -463,7 +463,7 @@ it is never permission for an agent to invent a page architecture.
         "NEW_UNTAUGHT_CAPABILITY_AS_TRANSFER",
         "TRANSFER_CLAIM_FROM_COVER_STORY_ONLY"
       ],
-      "web_blueprint_ref": "BP-CORE2B-TRANSFER@1.0.0"
+      "web_blueprint_ref": "BP-CORE2B-TRANSFER@1.1.0"
     }
   }
 }

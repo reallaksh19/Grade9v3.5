@@ -115,7 +115,9 @@ def build_one(manifest: Path, static: bool) -> dict:
         shutil.rmtree(out)
     render_core.main(["build", "--manifest", str(manifest), "--out", str(out), "--draft"])
     receipt = json.loads((out / "render-receipt.json").read_text(encoding="utf-8"))
-    if not receipt["gaps"] and shutil.which("node"):
+    if shutil.which("node"):
+        # Printed even for a draft with gaps: every page links the PDF printed from it (the shell's PRINT_PDF control), and a link
+        # that points at nothing would stop the Owner accepting the render.
         subprocess.run(["node", str(REPO / "tools/print/print-product.mjs"), str(out)], capture_output=True)
     report = quality_gate.gate(out, m["subject"], m["product_id"], static=static)
     (out / "gate-report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")

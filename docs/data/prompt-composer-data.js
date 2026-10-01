@@ -2,7 +2,7 @@
 window.GRADE9V3_PROMPT_COMPOSER = {
   "generated_by": "Shared/tools/build_prompt_composer_data.py",
   "contract_version": "1.0.0",
-  "repository_basis": "architecture-manifest@sha256:9d99a4c1b05bfb7e048ab9f1ce2ed3806824775fdcfd326f6a59ce0436171541",
+  "repository_basis": "architecture-manifest@sha256:0060cff87c37c5eee265c6b91b5abe5d33359f49a72b1662c1d8b245c66db723",
   "template": {
     "template_id": "CORE-AGENT-PROMPT",
     "version": "1.1.0",
@@ -237,9 +237,9 @@ window.GRADE9V3_PROMPT_COMPOSER = {
   "web_blueprints": {
     "CORE1": {
       "core": "CORE1",
-      "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+      "blueprint_ref": "BP-CORE1-ORIENTATION@1.1.0",
       "blueprint_id": "BP-CORE1-ORIENTATION",
-      "blueprint_version": "1.0.0",
+      "blueprint_version": "1.1.0",
       "shell_ref": "G9-TABLET-SHELL-V1",
       "layout_family": "READING_ORIENTATION",
       "required_slots": [
@@ -289,9 +289,9 @@ window.GRADE9V3_PROMPT_COMPOSER = {
     },
     "CORE2": {
       "core": "CORE2",
-      "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.1.0",
+      "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0",
       "blueprint_id": "BP-CORE2-SOURCE-QUESTION",
-      "blueprint_version": "1.1.0",
+      "blueprint_version": "1.5.0",
       "shell_ref": "G9-TABLET-SHELL-V1",
       "layout_family": "QUESTION_READER",
       "required_slots": [
@@ -302,6 +302,7 @@ window.GRADE9V3_PROMPT_COMPOSER = {
       "slot_order": [
         "identity",
         "attempt",
+        "representation",
         "support",
         "solution"
       ],
@@ -322,8 +323,18 @@ window.GRADE9V3_PROMPT_COMPOSER = {
         "compact": "SINGLE_PANE",
         "medium": "STACKED_SUPPORT",
         "expanded": "STAGE_SUPPORT",
-        "primary_fraction": 0.68,
-        "support_fraction": 0.32
+        "primary_fraction": 0.42,
+        "support_fraction": 0.58,
+        "expanded_min_px": 980,
+        "support_sticky": false,
+        "tablet_12_7": {
+          "reference_viewport": {
+            "width": 1366,
+            "height": 854
+          },
+          "identity_max_px": 190,
+          "figure_min_text_css_px": 14
+        }
       },
       "touch_policy": {
         "minimum_target_css_px": 48,
@@ -347,19 +358,21 @@ window.GRADE9V3_PROMPT_COMPOSER = {
     },
     "CORE1A": {
       "core": "CORE1A",
-      "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.1.0",
+      "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
       "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-      "blueprint_version": "1.1.0",
+      "blueprint_version": "1.4.0",
       "shell_ref": "G9-TABLET-SHELL-V1",
       "layout_family": "READING_CONSTRUCTION",
       "required_slots": [
         "identity",
         "construction",
+        "representation",
         "repair_closure"
       ],
       "slot_order": [
         "identity",
         "construction",
+        "representation",
         "repair_closure"
       ],
       "interaction_policy": {
@@ -379,8 +392,19 @@ window.GRADE9V3_PROMPT_COMPOSER = {
         "compact": "SINGLE_PANE",
         "medium": "STACKED_SUPPORT",
         "expanded": "STAGE_SUPPORT",
-        "primary_fraction": 0.68,
-        "support_fraction": 0.32
+        "primary_fraction": 0.6,
+        "support_fraction": 0.4,
+        "expanded_min_px": 1100,
+        "support_sticky": true,
+        "tablet_12_7": {
+          "reference_viewport": {
+            "width": 1366,
+            "height": 854
+          },
+          "identity_max_px": 190,
+          "figure_min_text_css_px": 14,
+          "support_scrolls_inside": true
+        }
       },
       "touch_policy": {
         "minimum_target_css_px": 48,
@@ -401,9 +425,9 @@ window.GRADE9V3_PROMPT_COMPOSER = {
     },
     "CORE1B": {
       "core": "CORE1B",
-      "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+      "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.1.0",
       "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
-      "blueprint_version": "1.0.0",
+      "blueprint_version": "1.1.0",
       "shell_ref": "G9-TABLET-SHELL-V1",
       "layout_family": "GUIDED_RECONSTRUCTION",
       "required_slots": [
@@ -455,9 +479,9 @@ window.GRADE9V3_PROMPT_COMPOSER = {
     },
     "CORE2A": {
       "core": "CORE2A",
-      "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+      "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.1.0",
       "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
-      "blueprint_version": "1.0.0",
+      "blueprint_version": "1.1.0",
       "shell_ref": "G9-TABLET-SHELL-V1",
       "layout_family": "QUESTION_STUDY",
       "required_slots": [
@@ -510,9 +534,9 @@ window.GRADE9V3_PROMPT_COMPOSER = {
     },
     "CORE2B": {
       "core": "CORE2B",
-      "blueprint_ref": "BP-CORE2B-TRANSFER@1.0.0",
+      "blueprint_ref": "BP-CORE2B-TRANSFER@1.1.0",
       "blueprint_id": "BP-CORE2B-TRANSFER",
-      "blueprint_version": "1.0.0",
+      "blueprint_version": "1.1.0",
       "shell_ref": "G9-TABLET-SHELL-V1",
       "layout_family": "TRANSFER_ATTEMPT",
       "required_slots": [
@@ -4486,6 +4510,9 @@ window.GRADE9V3_PROMPT_COMPOSER = {
           }
         }
       }
+    },
+    "TEST": {
+      "nested_questions": {}
     }
   }
 };

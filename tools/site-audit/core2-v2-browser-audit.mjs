@@ -43,6 +43,10 @@ const TABLET_VIEWPORTS = [
   { name: 'tablet-900-portrait', width: 900, height: 1440, expanded: false },
 ];
 
+// The layout expected is the blueprint's: its fractions, not numbers written here.
+const registry = JSON.parse(fs.readFileSync(new URL('../../Shared/web/interactive-page-blueprints.v1.json', import.meta.url), 'utf8'));
+const core2Policy = registry.blueprints.find(b => b.core_roles.includes('CORE2')).responsive_policy;
+
 const failures = [];
 const notes = [];
 const check = (condition, message) => { if (!condition) failures.push(message); };
@@ -77,13 +81,14 @@ async function articleMetrics(page, vp) {
   await page.setViewportSize({ width: vp.width, height: vp.height });
   await page.goto(`${base}core2.html#${WITNESS}`, { waitUntil: 'load' });
   const result = await page.locator(`#${WITNESS}`).evaluate((article) => {
-    const style = getComputedStyle(article);
+    const split = article.querySelector('.g9-split');
+    const style = split ? getComputedStyle(split) : getComputedStyle(article);
     const columns = style.gridTemplateColumns;
     const numbers = columns === 'none' ? [] : columns.split(/\s+/).map(v => Number.parseFloat(v)).filter(Number.isFinite);
     const ratio = numbers.length >= 2 ? numbers[0] / (numbers[0] + numbers[1]) : null;
-    const support = article.querySelector('.slot-support');
-    const attempt = article.querySelector('.slot-attempt');
-    const figure = article.querySelector('.slot-attempt figure[data-g9-figure]');
+    const support = article.querySelector('.g9-col-support');
+    const attempt = article.querySelector('.g9-col-primary');
+    const figure = article.querySelector('.slot-representation figure[data-g9-figure]');
     const stem = article.querySelector('[data-g9-block="stem"]');
     return {
       display: style.display,
@@ -102,9 +107,9 @@ async function articleMetrics(page, vp) {
   check(result.supportRungsInitial === 0, `${vp.name}: support is materialised before learner request`);
   check(result.supportTemplates >= 1, `${vp.name}: no inert support payloads available for witness`);
   if (vp.expanded) {
-    check(result.display === 'grid', `${vp.name}: Core2 article is not an expanded grid`);
-    check(result.ratio !== null && result.ratio >= 0.66 && result.ratio <= 0.70,
-      `${vp.name}: primary/support ratio ${result.ratio} is not approximately 68/32 (${result.columns})`);
+    check(result.display === 'grid', `${vp.name}: the Core2 question is not an expanded two-column grid`);
+    check(result.ratio !== null && Math.abs(result.ratio - core2Policy.primary_fraction) <= 0.03,
+      `${vp.name}: primary/support ratio ${result.ratio} is not the blueprint's ${core2Policy.primary_fraction}/${core2Policy.support_fraction} (${result.columns})`);
     check(result.supportRightOfAttempt, `${vp.name}: support rail is not to the right of learner work`);
     // A source representation is contextual when one exists; source questions are
     // not required to invent a representation merely to occupy the rail.

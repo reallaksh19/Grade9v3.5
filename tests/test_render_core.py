@@ -70,6 +70,45 @@ class Renderer(unittest.TestCase):
         render_core.main(["build", "--manifest", str(manifest_file(self.tmp)), "--out", str(out), "--draft"])
         self.assertIn("data-g9-draft", (out / "core1.html").read_text(encoding="utf-8"))
 
+    def test_a_draft_says_when_a_role_in_the_product_has_no_records(self):
+        """A run found a Core2 product with no questions built 'successfully' (rc 0) with nothing said."""
+        import contextlib
+        import io
+
+        def run(selection):
+            out, err = io.StringIO(), io.StringIO()
+            manifest = manifest_file(self.tmp, selection=selection)
+            with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+                rc = render_core.main(["build", "--manifest", str(manifest), "--out", str(self.tmp / "out"), "--draft"])
+            return rc, out.getvalue(), err.getvalue()
+
+        full = product_manifest.derive(PKG, [BANK], "PRODUCT-TEST", "../../index.html")["selection"]
+        self.assertTrue(full["core2"], "the fixture selects Core2 records")
+        rc, out, err = run(full)
+        self.assertEqual(rc, 0)
+        self.assertIn(f"core2={len(full['core2'])}", out)
+        self.assertNotIn("WARNING", err)
+
+        rc, out, err = run({**full, "core2": []})
+        self.assertEqual(rc, 0, "a draft with an empty role still builds")
+        self.assertIn("core2=0", out)
+        self.assertIn("WARNING: CORE2 is part of this product but selects no records", err)
+        self.assertNotIn("WARNING: CORE2A", err)
+
+    def test_a_rejected_selection_is_one_line_not_a_traceback(self):
+        """A run that put a package question in the Core2 selection got a raw traceback."""
+        import contextlib
+        import io
+        full = product_manifest.derive(PKG, [BANK], "PRODUCT-TEST", "../../index.html")["selection"]
+        package_question = next(iter(product_manifest.derive(PKG, [BANK], "PRODUCT-TEST", "../../index.html")["selection"]["core2a"]))
+        err = io.StringIO()
+        manifest = manifest_file(self.tmp, selection={**full, "core2": [package_question]})
+        with contextlib.redirect_stderr(err):
+            rc = render_core.main(["build", "--manifest", str(manifest), "--out", str(self.tmp / "out"), "--draft"])
+        self.assertEqual(rc, 1)
+        self.assertIn("selection rejected: PRODUCT_SELECTION_WRONG_AUTHORITY", err.getvalue())
+        self.assertNotIn("Traceback", err.getvalue())
+
     def test_source_option_labels_are_printed_once(self):
         html = self.pages[render_core.ROLE_FILE["CORE2"]]
         self.assertIsNone(re.search(r"\([a-d]\) \([A-D1-4]\)", html))
@@ -268,10 +307,9 @@ class Renderer(unittest.TestCase):
             self.assertGreaterEqual(construction_slot, 0)
             self.assertGreater(support_slot, construction_slot)
 
-        self.assertIn(
-            'body[data-core=CORE1A] article.g9-stage-support>.slot-identity{grid-column:1/-1}',
-            render_core.CSS,
-        )
+        # each unit is its own two-column row, then one support-only row for the closing task, laid out by the blueprint's fractions
+        self.assertEqual(article.count('class="g9-split'), len(units) + 1)
+        self.assertIn('article[data-g9-role="CORE1A"] .g9-split{display:grid;', render_core.layout_css(ctx.blueprints))
 
     def test_core1a_relation_matrix_preserves_equation_meaning_and_validity_semantics(self):
         repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
@@ -470,11 +508,13 @@ class Renderer(unittest.TestCase):
         )
 
         self.assertEqual(blueprint["responsive_policy"]["expanded"], "STAGE_SUPPORT")
+        # 60/40: the support column is wide enough that a figure drawn in a 480-unit viewBox renders its labels at 14 px or more
+        # on the 12.7-inch reference tablet (see responsive_policy.tablet_12_7).
         self.assertAlmostEqual(
-            blueprint["responsive_policy"]["primary_fraction"], 0.68, places=2
+            blueprint["responsive_policy"]["primary_fraction"], 0.6, places=2
         )
         self.assertAlmostEqual(
-            blueprint["responsive_policy"]["support_fraction"], 0.32, places=2
+            blueprint["responsive_policy"]["support_fraction"], 0.4, places=2
         )
         self.assertGreaterEqual(blueprint["touch_policy"]["minimum_target_css_px"], 48)
         self.assertGreaterEqual(blueprint["touch_policy"]["minimum_control_gap_css_px"], 8)
@@ -485,7 +525,8 @@ class Renderer(unittest.TestCase):
         self.assertIn("grid-template-columns:.68fr .32fr", render_core.CSS)
         self.assertIn("min-height:var(--g9-touch-min)", render_core.CSS)
         self.assertIn("overflow-x:auto", render_core.CSS)
-        self.assertIn(".g9-stage-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap", render_core.CSS)
+        self.assertIn(".g9-stage-controls{display:grid;gap:8px;max-width:100%}", render_core.CSS)
+        self.assertIn(".g9-stage-chip[aria-pressed=true]", render_core.CSS)
         self.assertIn("[data-g9-concept-route] a,[data-g9-section-route] a{display:flex;width:100%;max-width:100%;min-width:0", render_core.CSS)
         self.assertIn("overflow-wrap:anywhere", render_core.CSS)
         self.assertIn("[data-g9-meta-item]{display:inline-flex;flex-wrap:wrap", render_core.CSS)

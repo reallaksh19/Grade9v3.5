@@ -61,6 +61,8 @@
 
   const digest = value => 'sha256:' + sha256(typeof value === 'string' ? value : canonicalize(value));
   const clean = text => String(text == null ? '' : text).split(/\s+/).filter(Boolean).join(' ');
+  // A question as the Owner laid it out: spacing inside a line is tidied, the line breaks are kept (identity ignores them).
+  const cleanBlock = text => String(text == null ? '' : text).split(/\r\n|\r|\n/).map(clean).filter(Boolean).join('\n');
   const tokens = text => (text.toLowerCase().match(/[a-z0-9]+/g) || []).filter(t => t.length >= 3 && !STOPWORDS.has(t));
   const itemId = (prefix, text) => prefix + sha256(clean(text).toLowerCase()).slice(0, 10);
 
@@ -78,10 +80,10 @@
 
   function question(raw) {
     if (typeof raw === 'string') raw = {text: raw};
-    let text = clean(raw.text);
+    let text = cleanBlock(raw.text);
     let label = clean(raw.label) || null;
     const m = LABEL_PREFIX.exec(text);
-    if (m && !label) { label = m[1]; text = clean(m[2]); }
+    if (m && !label) { label = m[1]; text = cleanBlock(m[2]); }
     const sourceHint = clean(raw.source_hint) || null;
     if (!text || LABEL_ONLY.test(text)) {
       label = label || text || null;
@@ -202,8 +204,8 @@
     return String(text || '').split(/\n\s*\n/).map(block => {
       const rows = block.split(/\r\n|\r|\n/);
       const hint = rows.find(r => /^\s*source\s*:/i.test(r));
-      const body = rows.filter(r => r !== hint).join(' ');
-      const q = {text: clean(body)};
+      const body = rows.filter(r => r !== hint).join('\n');
+      const q = {text: cleanBlock(body)};
       if (hint) q.source_hint = clean(hint.replace(/^\s*source\s*:/i, ''));
       return q;
     }).filter(q => q.text || q.source_hint);

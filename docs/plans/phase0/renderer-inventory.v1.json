@@ -48,6 +48,24 @@
       "phase3_action": "Merge into render_core.py as the representation/explore adapter"
     },
     {
+      "path": "Shared/tools/explorer_build.py",
+      "kind": "PYTHON_HTML",
+      "classification": "ENGINE_KEEP",
+      "renders": "The explorer page (role EXPLORER, blueprint BP-EXPLORER-GCDR) of the toughest concept of a question set, from an explorer spec: layout, locking and the eleven-step route; the page's numbers are checked by explorer_model.py",
+      "location": "main",
+      "reason": "Driven by the blueprint registry (components, route, layout fractions, depth) and by toughest_concept.py; replaces hand-written interactive pages, which a test agent produced as toy sandboxes. It writes no academic content of its own: every sentence and number is the spec's, and the question text is the owner bank's.",
+      "phase3_action": "Fold into Shared/tools/render_core.py as the EXPLORER role's renderer; the spec schema, the model/validator (explorer_model.py, explorer_expr.py) and the runtime are unchanged by the move"
+    },
+    {
+      "path": "Shared/web/explorer-runtime.js",
+      "kind": "JS_RENDER",
+      "classification": "ENGINE_KEEP",
+      "renders": "Browser runtime of the explorer page: draws the scene and the graph and walks the route from the spec's data; text is only ever inserted as text, never as markup",
+      "location": "main",
+      "reason": "Inlined into the page by explorer_build.py; computes through Shared/web/explorer-model.js, which tests/test_explorer_parity.py holds equal to the Python model",
+      "phase3_action": "Stays the explorer's runtime when explorer_build.py folds into render_core.py"
+    },
+    {
       "path": "Shared/tools/build_core_learning_host.py",
       "kind": "PYTHON_HTML",
       "classification": "MIGRATE",
@@ -271,6 +289,15 @@
       "location": "main",
       "reason": "Local numeric and structural review requested by Owner",
       "phase3_action": "none"
+    },
+    {
+      "path": "Shared/tools/build_test_site.py",
+      "kind": "PYTHON_HTML",
+      "classification": "OUT_OF_SCOPE",
+      "renders": "The TEST sandbox's own hub, rungs table and deployments report (public/test/), and the TEST Atlas as a transform of an existing Atlas page; nothing else",
+      "location": "main",
+      "reason": "Navigation and status for a sandbox subject, not learner teaching content: every learner page it links to is rendered by render_core.py, and a page it reports is labelled an unaccepted draft",
+      "phase3_action": "Fold into a render_core site-page mode if Phase 3 makes one; until then it adds no learner-page generator"
     }
   ]
 }

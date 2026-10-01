@@ -50,6 +50,7 @@ DUTIES = {
     "AUTHOR_DIAGNOSTIC": ("AUTHOR", []),
     "AUTHOR_RECONSTRUCTION_TASK": ("AUTHOR", ["C1B-BLOCKS"]),
     "AUTHOR_TRANSFER_NOVELTY": ("AUTHOR", ["C2B-LINEAGE"]),
+    "AUTHOR_COMPONENT": ("AUTHOR", ["BP-COMPONENTS-REQUIRED"]),
     "AUTHOR_LEARNER_METADATA": ("AUTHOR", ["C1-FAMILY-METADATA", "C2-METADATA", "C2A-METADATA", "C2B-METADATA"]),
 }
 
@@ -95,7 +96,7 @@ def package_duties(pkg: dict, rel: str, taught: set[str], limit: int) -> list[di
         for u in units:
             if u.get("migrated_from"):
                 add("REVIEW_MIGRATED_UNIT", u["id"], f"derived from {u['migrated_from']}; an author confirms the decision text and unit boundary")
-            if not u.get("worked_anchor_ref"):
+            if not (u.get("worked_anchor_ref") or u.get("bank_anchor_ref")):
                 add("AUTHOR_WORKED_ANCHOR", u["id"], "no CORE1A question exercises this unit's move")
             if not u.get("independent_checks"):
                 add("AUTHOR_INDEPENDENT_CHECK", u["id"], "no independent check for this unit")

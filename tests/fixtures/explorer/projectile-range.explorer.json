@@ -1,0 +1,159 @@
+{
+  "schema": "grade9v3-explorer-spec-v1",
+  "slug": "projectile-range",
+  "title": "Why the farthest throw is not the steepest throw",
+  "product": "TEST/products/projectile-range.manifest.json",
+  "blueprint_ref": "BP-EXPLORER-GCDR@1.0.0",
+  "target": {
+    "question_ref": "Q-PROJ-8",
+    "quantity": "R",
+    "failure": "The steeper the launch, the farther the ball goes.",
+    "operation": "Split the launch velocity into a part that carries the ball along and a part that keeps it in the air, and see that the range needs both.",
+    "invariant": "Launch angles that add up to 90 degrees land the ball at the same distance, and no angle beats 45 degrees.",
+    "boundary": "The 45 degree rule belongs to level ground with no air resistance; the tempting rule is right at one angle only, by coincidence."
+  },
+  "context": {
+    "situation": "A ball is launched from level ground at a fixed speed of 20 m/s. You can change only the angle it leaves at. It flies, and comes down on the ground again."
+  },
+  "parameters": [
+    {"id": "v", "label": "launch speed", "unit": "m/s", "value": 20, "fixed": true},
+    {"id": "g", "label": "gravity", "unit": "m/s²", "value": 10, "fixed": true},
+    {"id": "theta", "label": "launch angle", "unit": "°", "min": 5, "max": 85, "step": 1, "value": 30}
+  ],
+  "quantities": [
+    {"id": "vx", "label": "horizontal speed", "unit": "m/s", "expr": "v*cosd(theta)", "decimals": 2},
+    {"id": "vy", "label": "vertical speed", "unit": "m/s", "expr": "v*sind(theta)", "decimals": 2},
+    {"id": "T", "label": "time in the air", "unit": "s", "expr": "2*vy/g", "decimals": 2},
+    {"id": "R", "label": "range", "unit": "m", "expr": "vx*T", "decimals": 1},
+    {"id": "H", "label": "peak height", "unit": "m", "expr": "vy^2/(2*g)", "decimals": 1},
+    {"id": "Rtempt", "label": "range if steeper meant farther", "unit": "m", "expr": "v^2/g*sind(theta)", "decimals": 1, "show": false},
+    {"id": "Rmax", "label": "most range any angle can give", "unit": "m", "expr": "v^2/g", "decimals": 1, "show": false}
+  ],
+  "scene": {
+    "title": "The flight, from the side",
+    "job": "Shows where the ball goes and, one cause at a time, why: the launch velocity split into the part that carries it along and the part that keeps it up.",
+    "description": "A side view of level ground. A ball leaves the origin at the angle you set, follows a curved path up to a peak and comes down on the ground at a landing point whose distance from the start is the range.",
+    "world": {"x": [-2, 44], "y": [-1.5, 21.5]},
+    "elements": [
+      {"id": "ground", "kind": "segment", "role": "frame", "from": ["-2", "0"], "to": ["44", "0"]},
+      {"id": "launch", "kind": "point", "role": "object", "at": ["0", "0"]},
+      {"id": "path", "kind": "curve", "role": "object", "param": "t", "t_min": "0", "t_max": "T", "steps": 60, "x": "vx*t", "y": "vy*t - g*t^2/2"},
+      {"id": "angleArc", "kind": "arc", "role": "helper", "center": ["0", "0"], "r": "6", "from_deg": "0", "to_deg": "theta", "label": "{theta:0}°"},
+      {"id": "landing", "kind": "point", "role": "result", "at": ["R", "0"], "label": "lands {R:1} m", "reveal": "manipulate"},
+      {"id": "velocity", "kind": "arrow", "role": "given", "from": ["0", "0"], "to": ["vx/2", "vy/2"], "label": "{v:0} m/s", "reveal": "deconstruct"},
+      {"id": "vxArrow", "kind": "arrow", "role": "helper", "from": ["0", "0"], "to": ["vx/2", "0"], "label": "{vx:1}", "reveal": "deconstruct"},
+      {"id": "vyArrow", "kind": "arrow", "role": "helper", "from": ["0", "0"], "to": ["0", "vy/2"], "label": "{vy:1}", "reveal": "deconstruct"},
+      {"id": "peak", "kind": "point", "role": "helper", "at": ["R/2", "H"], "label": "peak {H:1} m", "reveal": "deconstruct"},
+      {"id": "tempt", "kind": "point", "role": "wrong", "at": ["Rtempt", "0"], "label": "tempting: {Rtempt:1} m", "reveal": "contradict"}
+    ]
+  },
+  "second_view": {
+    "kind": "graph",
+    "title": "How far it lands, at every angle",
+    "job": "Shows the whole pattern at once: the range as the angle changes, which the picture of one flight cannot.",
+    "description": "A graph of the range in metres against the launch angle in degrees. The curve rises from a short range at a low angle to a peak and falls again at steep angles. A dashed line marks the most any angle can give.",
+    "x": "theta",
+    "y_label": "range (m)",
+    "series": [{"quantity": "R", "label": "range", "role": "result"}],
+    "guides": [{"expr": "Rmax", "label": "most possible", "orient": "h"}],
+    "ghost": {"quantity": "Rtempt", "label": "steeper = farther"}
+  },
+  "predict": {
+    "prompt": "The ball always leaves at 20 m/s and you choose only the angle. As you raise the angle from 5° to 85°, what will happen to how far it lands?",
+    "options": [
+      {"text": "It lands farther every time the launch is steeper, right up to 85°.",
+       "tests": [{"set": {"theta": 85}, "holds": "R > at(R, theta, 45)", "says": "At {theta:0}° it lands only {R:1} m away, closer than a 45° launch."}]},
+      {"text": "It lands farther at first, there is a longest distance somewhere in between, and then it lands closer again.",
+       "tests": [{"set": {}, "holds": "argmax(R, theta) > 10 and argmax(R, theta) < 80"}]},
+      {"text": "It lands the same distance whatever the angle, because the speed is the same.",
+       "tests": [{"set": {"theta": 85}, "holds": "abs(R - at(R, theta, 30)) < 1", "says": "At {theta:0}° it lands {R:1} m away; a 30° launch lands much farther."}]}
+    ],
+    "correct": 1
+  },
+  "manipulate": {
+    "goals": [
+      {"prompt": "Find a launch angle that lands the ball more than 38 m away.", "goal": "R > 38", "hint": "Try angles in the middle of the range."},
+      {"prompt": "Now find a LOW launch, under 20°, that still lands more than 12 m away.", "goal": "theta < 20 and R > 12", "hint": "Low launches go further than you might think."},
+      {"prompt": "Find a very steep launch, over 75°, and read where it lands.", "goal": "theta > 75 and R < 15", "hint": "Steep launches spend their time going up and down."}
+    ]
+  },
+  "observe": {
+    "statements": [
+      {"text": "Every time the launch gets steeper, the ball lands farther.",
+       "claim": "if(theta + 1 <= 85, at(R, theta, theta + 1) > R, 1)", "truth": "sometimes",
+       "why": "It is true below 45° and false above it: the range rises to a peak and then falls."},
+      {"text": "The longest range comes from a launch at 45°.", "claim": "argmax(R, theta) == 45", "truth": "always",
+       "why": "The range depends on sin 2θ, which is largest when 2θ is 90°."},
+      {"text": "Launches at 30° and 60° land at the same distance.", "claim": "abs(at(R, theta, 30) - at(R, theta, 60)) < 0.001", "truth": "always",
+       "why": "Angles that add up to 90° give sin 2θ the same value."},
+      {"text": "A launch at 80° goes higher than one at 45° and also lands farther.",
+       "claim": "at(H, theta, 80) > at(H, theta, 45) and at(R, theta, 80) > at(R, theta, 45)", "truth": "never",
+       "why": "A steeper launch goes higher but spends its time going up and down, not along."}
+    ]
+  },
+  "contradict": {
+    "wrong_model": {"label": "steeper means farther", "quantity": "Rtempt"},
+    "imposes": "Suppose the ball landed farther the steeper you launched, as if the range simply grew with the sine of the angle.",
+    "goal": {"prompt": "Find a launch angle where this tempting model is wrong by more than 20 m.", "goal": "abs(Rtempt - R) > 20", "hint": "Look at the steepest launches."},
+    "why_correct": "Tilting the launch up shrinks the horizontal speed while it lengthens the time in the air; the product rises and then falls.",
+    "why_wrong": "The tempting model counts only the time in the air and forgets that a steeper launch has less horizontal speed to cover the ground with."
+  },
+  "deconstruct": {
+    "steps": [
+      {"text": "The launch velocity: one arrow along the direction you chose.", "reveals": ["velocity"]},
+      {"text": "Split it. The horizontal part carries the ball along the ground at a steady rate.", "reveals": ["vxArrow"]},
+      {"text": "The vertical part is slowed by gravity, stops at the peak and reverses.", "reveals": ["vyArrow", "peak"],
+       "ask": {"prompt": "Which part of the velocity decides how long the ball stays in the air?", "options": ["the horizontal part", "the vertical part", "both equally"], "correct": 1,
+               "why": "Gravity acts only on the vertical motion: the time up and down is 2·vy/g whatever the horizontal speed."}},
+      {"text": "So the vertical part sets the time in the air, and the horizontal part decides how far the ball gets in that time.", "reveals": []}
+    ]
+  },
+  "reconstruct": {
+    "steps": [
+      {"text": "The horizontal speed stays the same all through the flight.", "quantity": "vx"},
+      {"text": "The vertical speed at the start.", "quantity": "vy"},
+      {"text": "Time in the air: up and down again at rate g.", "quantity": "T"},
+      {"text": "Range = horizontal speed × time in the air.", "quantity": "R"}
+    ],
+    "equation": {"text": "Put them together: the range depends on sin 2θ.", "expr": "v^2*sind(2*theta)/g"}
+  },
+  "invariants": [
+    {"text": "Launch angles that add up to 90° land at the same distance.", "lhs": "R", "rel": "==", "rhs": "at(R, theta, 90 - theta)",
+     "try": "Pick an angle, then the angle that is 90° minus it, and compare the two ranges."},
+    {"text": "No angle lands the ball farther than v²/g.", "lhs": "R", "rel": "<=", "rhs": "Rmax",
+     "try": "Move through every angle and watch for a range above the dashed line on the graph."}
+  ],
+  "oracles": [
+    {"text": "The landing point drawn is at the range R.", "left": "landing_x", "right": "R"},
+    {"text": "The two component arrows drawn add up to half the launch speed.", "left": "hypot(vxArrow_x2 - vxArrow_x1, vyArrow_y2 - vyArrow_y1)", "right": "v/2"},
+    {"text": "The launch arrow ends where its horizontal component ends.", "left": "velocity_x2", "right": "vxArrow_x2"}
+  ],
+  "boundary": {
+    "assumption": "The ground is level and the air does no work on the ball.",
+    "learner_must_identify": "The tempting rule is right at one angle only, 60°, by coincidence; it cannot be used as a rule.",
+    "cases": [
+      {"text": "Launch at 60°. Does the tempting rule give the true range?", "set": {"theta": 60}, "shortcut_label": "steeper = farther", "shortcut": "Rtempt", "expect": "holds"},
+      {"text": "Launch at 30°. Does it still?", "set": {"theta": 30}, "shortcut_label": "steeper = farther", "shortcut": "Rtempt", "expect": "fails"},
+      {"text": "Launch at 80°. Does it?", "set": {"theta": 80}, "shortcut_label": "steeper = farther", "shortcut": "Rtempt", "expect": "fails"}
+    ]
+  },
+  "fade": [
+    {"prompt": "The ball is launched at 40°. How far does it land? The numbers on the picture are hidden now.", "set": {"theta": 40}, "answer": "R", "unit": "m", "decimals": 1, "tolerance": 1.0,
+     "why": "Range = v²·sin 2θ / g = {R:1} m."},
+    {"prompt": "A ball is launched at 25°. At what other angle would it land the same distance? The mechanism and the graph are hidden now.", "set": {"theta": 25}, "answer": "90 - theta", "unit": "°", "decimals": 0, "tolerance": 0.5,
+     "why": "Angles that add up to 90° land at the same distance: {answer:0}° and {theta:0}°."},
+    {"prompt": "One ball is launched at 70°, another at 45°. How much farther does the 45° ball land? Only the physical scene is left.", "set": {"theta": 70}, "answer": "at(R, theta, 45) - R", "unit": "m", "decimals": 1, "tolerance": 1.0,
+     "why": "The 45° launch gives the longest range; at {theta:0}° much of the speed is spent going up instead of along. The difference is {answer:1} m."}
+  ],
+  "transfer": [
+    {"prompt": "A ball is launched at 15 m/s, 20° above level ground (g = 10 m/s²). How far does it land?", "set": {"v": 15, "theta": 20}, "answer": "R", "unit": "m", "decimals": 1, "tolerance": 0.5,
+     "why": "Horizontal speed times the time in the air.",
+     "worked": ["Horizontal speed {vx:2} m/s and vertical speed {vy:2} m/s.", "Time in the air 2·vy/g = {T:2} s.", "Range = {vx:2} × {T:2} = {R:1} m."]},
+    {"prompt": "A ball launched at 25 m/s at 20° lands at some distance. At what other angle would it land at exactly the same distance?", "set": {"v": 25, "theta": 20}, "answer": "90 - theta", "unit": "°", "decimals": 0, "tolerance": 0.5,
+     "why": "Launch angles that add up to 90° give the same range.",
+     "worked": ["The two angles add up to 90°.", "So the other angle is 90° − {theta:0}° = {answer:0}°."]},
+    {"prompt": "What speed must a ball have, launched at 45°, to land 60 m away? (g = 10 m/s²)", "set": {"theta": 45}, "answer": "sqrt(60*g/sind(2*theta))", "unit": "m/s", "decimals": 1, "tolerance": 0.5,
+     "why": "Turn the range rule round: v² = range × g / sin 2θ.",
+     "worked": ["Range = v²·sin 2θ / g, so v² = 60 × {g:0} / sin 2θ.", "At {theta:0}° sin 2θ = 1, so v² = 600 and v = {answer:1} m/s."]}
+  ]
+}

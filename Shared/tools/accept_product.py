@@ -118,6 +118,8 @@ def accept(slug: str, note: str = "", accept_open: str = "", repo: Path = REPO,
     if len(manifests) != 1:
         raise ValueError(f"expected exactly one manifest for {slug}, got {len(manifests)}")
     manifest = _json(manifests[0])
+    if manifest["subject"] == "TEST":
+        raise ValueError("TEST is a sandbox subject: its products are labelled drafts and are never accepted or published as learner products")
     subject = manifest["subject"].lower()
     folder = repo / "publication" / "products" / subject / slug
     receipt = verify_render(folder)
@@ -174,14 +176,18 @@ def accept(slug: str, note: str = "", accept_open: str = "", repo: Path = REPO,
         "standalone_render_digest": standalone_render_digest,
     }
     # Stage first, then replace the public directory. Check its bytes again before
-    # recording publication; PDFs are print artifacts, not public learner pages.
+    # recording publication. The learner PDFs go with the pages they were printed from, because the pages link them
+    # (the shell's PRINT_PDF control); a key PDF holds the answers and is never copied.
     dest = repo / "public" / "products" / subject / slug
     dest.parent.mkdir(parents=True, exist_ok=True)
     staged = Path(tempfile.mkdtemp(prefix=f".{slug}-", dir=dest.parent))
     try:
         shutil.rmtree(staged)
-        shutil.copytree(folder, staged, ignore=shutil.ignore_patterns("*.pdf"))
+        shutil.copytree(folder, staged, ignore=shutil.ignore_patterns("*.key.pdf", "print-key-receipt.json"))
         verify_render(staged)
+        pdf_problems = render_core.pdf_publication_problems(staged)
+        if pdf_problems:
+            raise ValueError("the PDFs do not match the pages they are linked from: " + "; ".join(pdf_problems))
         previous = dest.with_name(f".{slug}-previous")
         if previous.exists():
             shutil.rmtree(previous)

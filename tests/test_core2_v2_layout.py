@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+import re
 from pathlib import Path
 import unittest
 from unittest.mock import patch
@@ -8,13 +10,16 @@ from Shared.tools import render_core
 
 
 REPO = Path(__file__).resolve().parents[1]
-TABLET_CSS = REPO / "public/css/tablet-12-7.css"
 
 
 class Core2V2TabletRailContract(unittest.TestCase):
+    """The Core2 layout is the blueprint's: its columns, fractions and breakpoint become CSS, its slots become columns."""
+
     @classmethod
     def setUpClass(cls):
-        cls.css = TABLET_CSS.read_text(encoding="utf-8")
+        cls.registry = json.loads((REPO / "Shared/web/interactive-page-blueprints.v1.json").read_text(encoding="utf-8"))
+        cls.css = render_core.layout_css(cls.registry)
+        cls.blueprint = next(bp for bp in cls.registry["blueprints"] if "CORE2" in bp["core_roles"])
 
     @staticmethod
     def _ctx() -> render_core.Ctx:
@@ -53,38 +58,50 @@ class Core2V2TabletRailContract(unittest.TestCase):
             selection_rows={"microtopics": [microtopic], "core2": [question]},
         )
 
-    def test_expanded_core2_uses_bounded_68_32_grid(self):
-        self.assertIn('@media (min-width: 1100px)', self.css)
-        self.assertIn('article[data-g9-role="CORE2"].g9-stage-support', self.css)
-        self.assertIn('grid-template-columns: minmax(0, 2.125fr) minmax(280px, 1fr) !important;', self.css)
-        self.assertIn('grid-auto-flow: dense;', self.css)
+    def test_expanded_core2_layout_is_written_from_the_blueprint(self):
+        policy = self.blueprint["responsive_policy"]
+        self.assertEqual((policy["primary_fraction"], policy["support_fraction"]), (0.42, 0.58))
+        self.assertIn(f'@media (min-width:{policy["expanded_min_px"]}px)', self.css)
+        self.assertIn('article[data-g9-role="CORE2"] .g9-split{display:grid;'
+                      'grid-template-columns:minmax(0,42fr) minmax(0,58fr)', self.css)
 
-    def test_source_representation_and_requested_support_share_the_rail(self):
-        self.assertIn('> .slot-attempt > figure[data-g9-figure],', self.css)
-        self.assertIn('> .slot-support {', self.css)
-        self.assertIn('grid-column: 2;', self.css)
-        self.assertIn('> .slot-attempt {\n    display: contents;', self.css)
+    def test_core1a_layout_is_its_own_blueprints_with_a_sticky_support_column_that_scrolls_inside_itself(self):
+        core1a = next(bp for bp in self.registry["blueprints"] if "CORE1A" in bp["core_roles"])
+        self.assertTrue(core1a["responsive_policy"]["support_sticky"])
+        self.assertTrue(core1a["responsive_policy"]["tablet_12_7"]["support_scrolls_inside"])
+        self.assertIn('article[data-g9-role="CORE1A"] .g9-split{display:grid;'
+                      'grid-template-columns:minmax(0,60fr) minmax(0,40fr)', self.css)
+        self.assertIn('article[data-g9-role="CORE1A"] .g9-split:not(.g9-split-support-only)>.g9-col-support{position:sticky;top:80px;'
+                      'max-height:calc(100vh - 96px);overflow-y:auto', self.css)
 
-    def test_primary_question_work_and_solution_remain_in_primary_column(self):
-        for selector in (
-            '[data-g9-block="stem"]',
-            '[data-g9-block="conditions"]',
-            '> .slot-attempt > .g9-attempt',
-            '> .slot-identity',
-            '> .slot-solution',
-        ):
-            self.assertIn(selector, self.css)
-        self.assertIn('grid-column: 1;', self.css)
+    def test_below_the_breakpoint_one_column_follows_the_blueprints_compact_order_not_the_column_each_part_sits_in(self):
+        compact = self.css.split("@media (max-width:979px){")[1].split("@media print")[0]
+        self.assertIn('article[data-g9-role="CORE2"] .g9-split{display:flex;flex-direction:column}', compact)
+        self.assertIn(".g9-col,", compact)
+        self.assertIn("{display:contents}", compact)
+        orders = {cid: int(n) for cid, n in re.findall(r'\[data-g9-component="([A-Z_]+)"\]\{order:(\d+)\}', compact)}
+        self.assertLess(orders["STEM"], orders["REPRESENTATION"], "the picture follows the question it belongs to")
+        self.assertLess(orders["REPRESENTATION"], orders["ATTEMPT"])
+        self.assertLess(orders["ATTEMPT"], orders["HINT_LADDER"], "the ladder follows the attempt")
+        declared = {c["id"]: c["compact_order"] for c in self.blueprint["components"] if "compact_order" in c}
+        self.assertEqual({k: v for k, v in orders.items() if k in declared}, declared)
 
-    def test_portrait_and_medium_widths_cancel_two_column_compression(self):
-        self.assertIn('@media (max-width: 1099px)', self.css)
-        self.assertIn('display: block !important;', self.css)
-        self.assertIn('overflow-x: clip;', self.css)
-        self.assertIn('max-width: 100%;', self.css)
-        self.assertIn('min-width: 0;', self.css)
+    def test_every_blueprint_slot_has_a_column_and_below_the_breakpoint_nothing_is_a_grid(self):
+        for bp in self.registry["blueprints"]:
+            for slot in bp["slots"]:
+                self.assertIn(slot.get("column"), {"FULL", "PRIMARY", "SUPPORT"}, (bp["id"], slot["id"]))
+        for rule in self.css.split("@media"):
+            if "grid-template-columns" in rule and "print" not in rule.split("{")[0]:
+                self.assertIn("(min-width:", rule.split("{")[0])
 
-    def test_renderer_emits_one_representation_not_a_rail_clone(self):
+    def test_source_representation_and_requested_support_share_the_support_column(self):
+        columns = {slot["id"]: slot["column"] for slot in self.blueprint["slots"]}
+        self.assertEqual(columns, {"identity": "FULL", "attempt": "PRIMARY", "representation": "SUPPORT",
+                                   "support": "SUPPORT", "solution": "FULL"})
+
+    def test_renderer_emits_one_representation_in_the_support_column(self):
         ctx = self._ctx()
+        ctx.blueprints = self.registry
         question = ctx.selection_rows["core2"][0]
 
         def fake_figure(_ctx, rep_id, *_args, **_kwargs):
@@ -95,9 +112,20 @@ class Core2V2TabletRailContract(unittest.TestCase):
         with patch.object(render_core, "figure", side_effect=fake_figure):
             rendered = render_core.core2(ctx, question)
         self.assertEqual(rendered.count('data-g9-representation="REP-RAIL"'), 1)
-        self.assertLess(rendered.index('data-g9-block="stem"'), rendered.index('data-g9-representation="REP-RAIL"'))
-        self.assertLess(rendered.index('data-g9-representation="REP-RAIL"'), rendered.index('data-g9-attempt-box'))
+        primary = rendered[rendered.index('g9-col-primary'):rendered.index('g9-col-support')]
+        support = rendered[rendered.index('g9-col-support'):]
+        self.assertIn('data-g9-block="stem"', primary)
+        self.assertIn('data-g9-attempt-box', primary)
+        self.assertIn('data-g9-representation="REP-RAIL"', support)
+        self.assertIn('data-g9-component="HINT_LADDER"', support)
+        self.assertLess(support.index('data-g9-component="REPRESENTATION"'), support.index('data-g9-component="HINT_LADDER"'))
         self.assertIn('data-blueprint-slot="support"', rendered)
+
+    def test_without_a_blueprint_the_slots_still_render_in_one_flow(self):
+        ctx = self._ctx()
+        rendered = render_core.core2(ctx, ctx.selection_rows["core2"][0])
+        self.assertNotIn("g9-split", rendered)
+        self.assertIn('data-blueprint-slot="attempt"', rendered)
 
     def test_support_rail_is_contextual_not_preexpanded(self):
         ctx = self._ctx()

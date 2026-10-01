@@ -60,6 +60,14 @@ def clean(text: object) -> str:
     return " ".join(str(text or "").split())
 
 
+def clean_block(text: object) -> str:
+    """A question as the Owner laid it out: spacing inside a line is tidied, the line breaks are kept.
+
+    Parts (a), (b), (c) on their own lines stay on their own lines; the page shows them that way. Identity
+    (`item_id`) is taken from the whitespace-collapsed text, so it does not depend on the layout."""
+    return "\n".join(line for line in (clean(row) for row in str(text or "").splitlines()) if line)
+
+
 def tokens(text: str) -> list[str]:
     return [t for t in TOKEN.findall(text.lower()) if len(t) >= 3 and t not in STOPWORDS]
 
@@ -88,11 +96,11 @@ def _lines(value: object) -> list:
 def _question(raw: object) -> dict:
     if isinstance(raw, str):
         raw = {"text": raw}
-    text = clean(raw.get("text"))
+    text = clean_block(raw.get("text"))
     label = clean(raw.get("label")) or None
     match = LABEL_PREFIX.match(text)
     if match and not label:
-        label, text = match.group(1), clean(match.group(2))
+        label, text = match.group(1), clean_block(match.group(2))
     source_hint = clean(raw.get("source_hint")) or None
     if not text or LABEL_ONLY.match(text):
         label = label or text or None
@@ -291,6 +299,9 @@ def main(argv: list[str] | None = None) -> int:
     if not args.input:
         parser.error("--input is required")
     result = intake(json.loads(Path(args.input).read_text(encoding="utf-8")))
+    if result["errors"]:
+        # With --out the JSON goes to a file, so the reason for a non-zero exit must not live only there.
+        print(f"{result['status']}: " + "; ".join(result["errors"]), file=sys.stderr)
     text = json.dumps(result, indent=2, ensure_ascii=False) + "\n"
     if args.out:
         Path(args.out).write_text(text, encoding="utf-8")
