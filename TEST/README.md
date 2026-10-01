@@ -15,6 +15,22 @@ On the site it is the **TEST** tab (`public/test/`, deployed as `docs/test/`): a
 
 Each one is deployed to the TEST tab as a draft. Do them in that order; stop and record friction instead of guessing. (The intake lists the Cores it will make in alphabetical order, `CORE1A` before `CORE2`; that is not the order of work.)
 
+## What a page must show: the blueprint
+
+A Core page is built from its **blueprint** (`Shared/web/interactive-page-blueprints.v1.json`; read it as
+[docs/specs/PAGE-BLUEPRINT-COMPONENTS.md](../docs/specs/PAGE-BLUEPRINT-COMPONENTS.md)). The blueprint names the page's components (for Core2: the
+header, the stem, the conditions, the common wrong route, the representation card, the hint ladder, the numbered working, the answer
+and the check), the column each sits in and how much each matters. The renderer builds the page from it, the quality gate judges the page against
+it, and `owner_bank.py new` scaffolds exactly the fields it lists. So the way to a good page is to supply what the blueprint lists:
+
+- **REQUIRED** and absent or too short: a *gap*, printed by the deploy with the record and the blueprint's own instruction for authoring it.
+- **EXPECTED** and absent: an *advisory*, printed after the gaps. The reference page has it; write it where the question has one to give
+  (a figure only where the question is about a picture; never invent one).
+- Between a component's floor and the reference depth (a hint ladder of 2 rungs where the reference has 3) is an advisory too.
+  `owner_bank.py check` holds a new bank to the reference depth.
+
+Zero gaps does not mean the page is at the reference standard; read the advisories as well.
+
 ## What TEST can and cannot make
 
 TEST makes **HTML drafts**: Core pages, the rungs table, the Atlas view and an interactive page. It cannot make PDFs,
@@ -27,7 +43,7 @@ as deliverables. Report each of those as NOT DONE (a limit of TEST) and do not i
 
 | What | Where | Format |
 |---|---|---|
-| Owner's questions (Core2) | `TEST/question-bank/SLUG.json` | an **owner-supplied bank**, made by `owner_bank.py new` (below). One question per intake question: `stem` is the Owner's text, unchanged. You fill `answer.summary`, `answer.reasoning` (a list of steps), `primary_capability_ref`, `family_ref` and the empty values in `extensions["grade9v3:analysis"]`: `learner_question_type`, and `difficulty` (five components each 0 to 2, `score` their sum, `band` D1 to D4 for that score, `basis` one sentence). The difficulty is your estimate and is shown as one. There is **no exam, year, paper or URL** and you must not add one. |
+| Owner's questions (Core2) | `TEST/question-bank/SLUG.json` | an **owner-supplied bank**, made by `owner_bank.py new` (below). One question per intake question: `stem` is the Owner's text, unchanged. The scaffold lists every field a Core2 page is built from; fill each empty one (what each is for, and what it must hold, is in [the page blueprint](../docs/specs/PAGE-BLUEPRINT-COMPONENTS.md)), and `primary_capability_ref`, `family_ref`, `learner_question_type` and `difficulty` (five components each 0 to 2, `score` their sum, `band` D1 to D4 for that score, `basis` one sentence; your estimate, shown as one). There is **no exam, year, paper or URL** and you must not add one. |
 | The ladder (Rungs) | `TEST/matrices/SLUG.rungs.json` | same shape as `Mathematics/matrices/linear-equations.rungs.json`, with `"subject": "TEST"` |
 | Concepts, capabilities, Core1A material | `TEST/library/SLUG.v1.json` | a package (`Shared/library/package.schema.json`) with `"subject": "TEST"`. It needs at least one resource, bucket, capability and microtopic; every capability needs a microtopic whose `primary_capability_ref` names it, and every owner question a `family_ref` naming a question family in the package. The smallest complete example is `tests/fixtures/render/thin-kin-2d-motion.v1.json`; a real one is `Mathematics/library/linear-equations.v1.json`. Check it before you build a manifest with `python3 -m Shared.library.resolve --schema TEST/library/SLUG.v1.json` (the schema, up to six problems at a time, then the references; without `--schema` it checks references only). |
 | Product manifest | `TEST/products/SLUG.manifest.json` | made by `product_manifest.py derive` (below) |
@@ -48,7 +64,7 @@ edit of this one.
 # 1  the Owner's questions, exactly as supplied (the intake gives each one an id)
 python3 Shared/tools/raw_intake.py --input workspace/request.json --out workspace/intake.json
 python3 Shared/tools/owner_bank.py new --intake workspace/intake.json --bank-id SLUG --out TEST/question-bank/SLUG.json
-#    fill answer.summary, answer.reasoning and primary_capability_ref in each question; never edit a stem
+#    fill every empty field the scaffold lists in each question (docs/specs/PAGE-BLUEPRINT-COMPONENTS.md says what each is for); never edit a stem
 python3 Shared/tools/owner_bank.py check TEST/question-bank/SLUG.json --intake workspace/intake.json
 
 # 2  a package (capabilities first; concepts for Core1A later), then the manifest

@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "registry_version": "1.2.0",
+  "registry_version": "1.3.0",
   "shell": {
     "id": "G9-TABLET-SHELL-V1",
     "fixed_header": true,
@@ -47,10 +47,24 @@
     },
     "version": "1.1.0"
   },
+  "component_policy": {
+    "levels": {
+      "REQUIRED": "The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product.",
+      "EXPECTED": "A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content.",
+      "OPTIONAL": "Shown when the record has it."
+    },
+    "column": {
+      "FULL": "A band across the whole page width.",
+      "PRIMARY": "The main column of the expanded two-column layout; in the compact flow it comes first.",
+      "SUPPORT": "The support column of the expanded layout; it follows the primary column in the compact flow."
+    },
+    "waivers": "NONE: a page never waives a component. A product that cannot supply a REQUIRED component stays a draft with its gap.",
+    "depth": "min_items is the floor below which a component does not count as present. target_items is the depth of the reference page: between the floor and the target the renderer says so as an advisory, and new authoring (a scaffolded owner bank) is held to the target."
+  },
   "blueprints": [
     {
       "id": "BP-CORE1-ORIENTATION",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "ACTIVE",
       "core_roles": [
         "CORE1"
@@ -65,7 +79,8 @@
             "identity_scope",
             "learner_metadata"
           ],
-          "required": true
+          "required": true,
+          "column": "FULL"
         },
         {
           "id": "orientation",
@@ -78,7 +93,8 @@
             "exclusions_extensions",
             "orientation_closure"
           ],
-          "required": true
+          "required": true,
+          "column": "FULL"
         }
       ],
       "interaction_policy": {
@@ -120,7 +136,7 @@
     },
     {
       "id": "BP-CORE2-SOURCE-QUESTION",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "status": "ACTIVE",
       "core_roles": [
         "CORE2"
@@ -135,15 +151,24 @@
             "source_identity_provenance",
             "learner_metadata"
           ],
-          "required": true
+          "required": true,
+          "column": "FULL"
         },
         {
           "id": "attempt",
           "accepts_blocks": [
-            "source_question",
+            "source_question"
+          ],
+          "required": true,
+          "column": "PRIMARY"
+        },
+        {
+          "id": "representation",
+          "accepts_blocks": [
             "source_figure"
           ],
-          "required": true
+          "required": false,
+          "column": "SUPPORT"
         },
         {
           "id": "support",
@@ -152,7 +177,8 @@
             "authored_core2_support",
             "concept_navigation"
           ],
-          "required": false
+          "required": false,
+          "column": "SUPPORT"
         },
         {
           "id": "solution",
@@ -161,7 +187,8 @@
             "verified_solution_reasoning",
             "custody_status"
           ],
-          "required": true
+          "required": true,
+          "column": "FULL"
         }
       ],
       "interaction_policy": {
@@ -181,8 +208,10 @@
         "compact": "SINGLE_PANE",
         "medium": "STACKED_SUPPORT",
         "expanded": "STAGE_SUPPORT",
-        "primary_fraction": 0.68,
-        "support_fraction": 0.32
+        "primary_fraction": 0.42,
+        "support_fraction": 0.58,
+        "expanded_min_px": 980,
+        "support_sticky": false
       },
       "touch_policy": {
         "minimum_target_css_px": 48,
@@ -202,11 +231,272 @@
         "ANSWER_REVEALED_BY_PRE_SOLUTION_SUPPORT",
         "GENERIC_FILLER_SUPPORT_TO_MEET_RUNG_COUNT",
         "CORE2_COLLAPSED_INTO_QUESTION_CLINIC"
+      ],
+      "components": [
+        {
+          "id": "IDENTITY",
+          "slot": "identity",
+          "level": "REQUIRED",
+          "presentation": "HEADER",
+          "purpose": "Say whose question this is and what kind of question it is before anything else.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: question id, source line and badges in the header band",
+          "source": [
+            "id",
+            "original_identifier",
+            "extensions.grade9v3:source_custody"
+          ],
+          "authoring": {
+            "hint": "Identity comes from the question's custody. An owner-supplied question shows 'Owner-supplied question' and carries no exam, year or paper."
+          }
+        },
+        {
+          "id": "DIFFICULTY_WHY",
+          "slot": "identity",
+          "level": "EXPECTED",
+          "presentation": "DISCLOSURE_GRID",
+          "purpose": "Show the difficulty band and the five reasons behind it, folded away until asked.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: the D-pill and the 'Why this difficulty?' grid",
+          "source": [
+            "extensions.grade9v3:analysis.difficulty"
+          ],
+          "authoring": {
+            "hint": "Fill extensions['grade9v3:analysis'].difficulty: five components (each 0 to 2), score (their sum), band for that score, basis (one sentence). It is your estimate and is shown as one."
+          }
+        },
+        {
+          "id": "STEM",
+          "slot": "attempt",
+          "level": "REQUIRED",
+          "presentation": "STEM",
+          "purpose": "The question exactly as set, under the label 'Attempt first'.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: the left column's eyebrow and stem",
+          "source": [
+            "stem"
+          ]
+        },
+        {
+          "id": "CONDITIONS",
+          "slot": "attempt",
+          "level": "EXPECTED",
+          "presentation": "CALLOUT_INFO",
+          "purpose": "The givens and assumptions the question states, apart from the question itself.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: the 'Conditions.' callout under the options",
+          "source": [
+            "conditions"
+          ],
+          "authoring": {
+            "hint": "List each stated condition (a constraint or assumption the question gives) as one entry of conditions[]. Never list a method or a result there.",
+            "skeleton": {
+              "conditions": []
+            }
+          }
+        },
+        {
+          "id": "TRAP",
+          "slot": "attempt",
+          "level": "EXPECTED",
+          "presentation": "CALLOUT_WARN",
+          "purpose": "Name the tempting wrong route so the learner can watch for it.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: the 'Common wrong route.' box",
+          "source": [
+            "extensions.grade9v3:analysis.common_wrong_route"
+          ],
+          "authoring": {
+            "hint": "One sentence naming the wrong route learners take and why it tempts. It must not give the answer or the right route.",
+            "skeleton": {
+              "extensions": {
+                "grade9v3:analysis": {
+                  "common_wrong_route": ""
+                }
+              }
+            }
+          }
+        },
+        {
+          "id": "ATTEMPT",
+          "slot": "attempt",
+          "level": "REQUIRED",
+          "presentation": "ATTEMPT",
+          "purpose": "Ask for a typed commitment before any answer or working opens.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: the options cards; the commit step is this app's own attempt-first rule",
+          "source": [
+            "response",
+            "options"
+          ]
+        },
+        {
+          "id": "REPRESENTATION",
+          "slot": "representation",
+          "level": "EXPECTED",
+          "presentation": "VISUAL_CARD",
+          "purpose": "Show the situation as a picture drawn only from what the question states.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: the 'Representation' card with the question-aligned schematic",
+          "source": [
+            "figure_refs"
+          ],
+          "min_items": 1,
+          "authoring": {
+            "hint": "Add a representation to the package with an authored SVG (role=img, aria-labelledby or aria-label, <title> and <desc>) drawn only from the question's own data, then name its id in figure_refs. If the question is not about a picture, leave figure_refs empty and say so; never invent one.",
+            "skeleton": {
+              "figure_refs": []
+            }
+          }
+        },
+        {
+          "id": "HINT_LADDER",
+          "slot": "support",
+          "level": "REQUIRED",
+          "presentation": "LADDER",
+          "purpose": "Let the learner ask for help one rung at a time; every rung says what it gives away and who wrote it.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: 'Hint ladder · reveal only what you need', H0 to H4 with SOURCE and EXPANSION pills",
+          "source": [
+            "scaffolds",
+            "hints",
+            "hint_ladder"
+          ],
+          "min_items": 2,
+          "authoring": {
+            "hint": "Write 3 or more scaffolds[], one per move of answer.reasoning_route, in the order a learner meets them. Each has text (the hint), prompt (a question that makes the learner do the step), support_kind (REPRESENT, CONNECT or EXECUTE), reveals (CONCEPT or METHOD; ANSWER is held back until the solution), learner_stage (KEY_CONCEPT, REPRESENTATION, FIRST_MOVE or OTHER) and supports_move_ref (the id of the move it prepares). A rung must teach something specific to this question and must not repeat another rung or state the answer.",
+            "skeleton": {
+              "scaffolds": [
+                {
+                  "text": "",
+                  "prompt": "",
+                  "support_kind": "CONNECT",
+                  "reveals": "CONCEPT",
+                  "learner_stage": "KEY_CONCEPT",
+                  "supports_move_ref": "{qid}-MOVE-1"
+                },
+                {
+                  "text": "",
+                  "prompt": "",
+                  "support_kind": "REPRESENT",
+                  "reveals": "METHOD",
+                  "learner_stage": "REPRESENTATION",
+                  "supports_move_ref": "{qid}-MOVE-2"
+                },
+                {
+                  "text": "",
+                  "prompt": "",
+                  "support_kind": "EXECUTE",
+                  "reveals": "METHOD",
+                  "learner_stage": "FIRST_MOVE",
+                  "supports_move_ref": "{qid}-MOVE-3"
+                }
+              ]
+            }
+          },
+          "target_items": 3
+        },
+        {
+          "id": "CONCEPT_NAV",
+          "slot": "support",
+          "level": "OPTIONAL",
+          "presentation": "LINK_LIST",
+          "purpose": "Send the learner back to the concept page for the idea the question uses.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: concept links beside the hints (the Core1A cross-link)",
+          "source": [
+            "primary_capability_ref",
+            "secondary_capability_refs"
+          ]
+        },
+        {
+          "id": "SOLUTION",
+          "slot": "solution",
+          "level": "REQUIRED",
+          "presentation": "DISCLOSURE",
+          "purpose": "Open the full working only after an attempt.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: the 'Teacher solution · complete derivation' disclosure",
+          "source": [
+            "answer"
+          ]
+        },
+        {
+          "id": "SOLUTION_STEPS",
+          "slot": "solution",
+          "level": "REQUIRED",
+          "presentation": "STEP_LIST",
+          "purpose": "Show the working as numbered moves: what is done, why it is valid, what it gives.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: numbered steps with a bold lead and the reason",
+          "parent": "SOLUTION",
+          "source": [
+            "answer.reasoning_route",
+            "answer.crux_move_ref"
+          ],
+          "min_items": 2,
+          "authoring": {
+            "hint": "Write answer.reasoning_route[] with 3 or more moves. Each move has id, kind (DECIDE, REPRESENT, CONNECT, TRANSFORM or VERIFY), action (what is done), why_valid (the physical or logical reason this step is allowed; not 'this follows from the model'), inputs and output. Set crux_move_ref to the id of the move a learner is most likely to miss.",
+            "skeleton": {
+              "answer": {
+                "reasoning_route": [
+                  {
+                    "id": "{qid}-MOVE-1",
+                    "kind": "DECIDE",
+                    "action": "",
+                    "why_valid": "",
+                    "inputs": [],
+                    "output": ""
+                  },
+                  {
+                    "id": "{qid}-MOVE-2",
+                    "kind": "REPRESENT",
+                    "action": "",
+                    "why_valid": "",
+                    "inputs": [],
+                    "output": ""
+                  },
+                  {
+                    "id": "{qid}-MOVE-3",
+                    "kind": "TRANSFORM",
+                    "action": "",
+                    "why_valid": "",
+                    "inputs": [],
+                    "output": ""
+                  }
+                ],
+                "crux_move_ref": ""
+              }
+            }
+          },
+          "target_items": 3
+        },
+        {
+          "id": "ANSWER",
+          "slot": "solution",
+          "level": "REQUIRED",
+          "presentation": "ANSWER_BOX",
+          "purpose": "State the final answer in one place.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: the green answer box",
+          "parent": "SOLUTION",
+          "source": [
+            "answer.summary"
+          ]
+        },
+        {
+          "id": "CHECK",
+          "slot": "solution",
+          "level": "EXPECTED",
+          "presentation": "CHECK_BOX",
+          "purpose": "Test the answer by a route the working did not use.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: the 'Check.' line under the answer",
+          "parent": "SOLUTION",
+          "source": [
+            "answer.check"
+          ],
+          "authoring": {
+            "hint": "One sentence that tests the result independently: a limiting case, a unit check or a special value.",
+            "skeleton": {
+              "answer": {
+                "check": ""
+              }
+            }
+          }
+        }
       ]
     },
     {
       "id": "BP-CORE1A-CONSTRUCTION",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "status": "ACTIVE",
       "core_roles": [
         "CORE1A"
@@ -222,17 +512,26 @@
             "convention_declaration",
             "learner_metadata"
           ],
-          "required": true
+          "required": true,
+          "column": "FULL"
         },
         {
           "id": "construction",
           "accepts_blocks": [
             "inferential_jump",
             "completed_construction",
-            "representation_bridge",
             "worked_conceptual_anchor"
           ],
-          "required": true
+          "required": true,
+          "column": "PRIMARY"
+        },
+        {
+          "id": "representation",
+          "accepts_blocks": [
+            "representation_bridge"
+          ],
+          "required": true,
+          "column": "SUPPORT"
         },
         {
           "id": "repair_closure",
@@ -244,7 +543,8 @@
             "exit_task_closure",
             "practice_navigation"
           ],
-          "required": true
+          "required": true,
+          "column": "SUPPORT"
         }
       ],
       "interaction_policy": {
@@ -265,7 +565,9 @@
         "medium": "STACKED_SUPPORT",
         "expanded": "STAGE_SUPPORT",
         "primary_fraction": 0.68,
-        "support_fraction": 0.32
+        "support_fraction": 0.32,
+        "expanded_min_px": 1100,
+        "support_sticky": true
       },
       "touch_policy": {
         "minimum_target_css_px": 48,
@@ -282,11 +584,192 @@
         "PAGE_LOCAL_ACADEMIC_TRUTH",
         "HOVER_ONLY_ESSENTIAL_INFORMATION",
         "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+      ],
+      "components": [
+        {
+          "id": "CONCEPT_HEADER",
+          "slot": "identity",
+          "level": "REQUIRED",
+          "presentation": "CONCEPT_HEADER",
+          "purpose": "Name the concept and where it sits.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the concept header with title and metadata",
+          "source": [
+            "title",
+            "extensions.grade9v3:learner_metadata"
+          ]
+        },
+        {
+          "id": "MODEL_CONTRACT",
+          "slot": "identity",
+          "level": "EXPECTED",
+          "presentation": "TILE",
+          "purpose": "Say what the learner must already hold and what model is assumed.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the 'Model contract & assumptions' tile",
+          "source": [
+            "entry_assumptions",
+            "prerequisite_refs"
+          ],
+          "authoring": {
+            "hint": "List in entry_assumptions[] each thing a learner must already be able to do before this concept, one per entry and specific to this concept."
+          }
+        },
+        {
+          "id": "SECTION_ROUTE",
+          "slot": "identity",
+          "level": "OPTIONAL",
+          "presentation": "CHIPS",
+          "purpose": "Let the learner jump to a construction step.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the section tabs"
+        },
+        {
+          "id": "KEY_STEP",
+          "slot": "construction",
+          "level": "REQUIRED",
+          "presentation": "BANNER",
+          "purpose": "Name the one step learners cannot infer on their own.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the inferential-leap banner",
+          "source": [
+            "inferential_jump"
+          ],
+          "authoring": {
+            "hint": "inferential_jump: one or two sentences naming the step a learner does not make unaided and why it is not obvious."
+          }
+        },
+        {
+          "id": "UNIT_HEADER",
+          "slot": "construction",
+          "level": "REQUIRED",
+          "presentation": "UNIT_HEADER",
+          "purpose": "Number and title each construction unit.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the concept-card header with number, decision and unit id",
+          "repeat": "PER_CONSTRUCTION_UNIT",
+          "source": [
+            "construction_units[].decision"
+          ],
+          "duty": "AUTHOR_CONSTRUCTION_UNITS"
+        },
+        {
+          "id": "CONSTRUCTION_STEPS",
+          "slot": "construction",
+          "level": "REQUIRED",
+          "presentation": "STEP_CARDS",
+          "purpose": "Build the idea in steps; every step says what is done, why it is valid and what state it gives.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: step cards (action, why physically valid, state output)",
+          "repeat": "PER_CONSTRUCTION_UNIT",
+          "source": [
+            "construction_units[].step_refs",
+            "teaching_path"
+          ],
+          "min_items": 2,
+          "authoring": {
+            "hint": "Each construction unit lists step_refs naming 2 or more teaching_path steps; each step has action, why_valid and output written for this unit, none repeated from another unit."
+          }
+        },
+        {
+          "id": "EQUATIONS",
+          "slot": "construction",
+          "level": "EXPECTED",
+          "presentation": "EQUATION_CARD",
+          "purpose": "Put the governing relations beside their meaning and when they hold.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the equation card",
+          "source": [
+            "relation_refs"
+          ],
+          "authoring": {
+            "hint": "Name the relations of this concept in relation_refs; each relation record needs its meaning and conditions."
+          }
+        },
+        {
+          "id": "WORKED_EXAMPLE",
+          "slot": "construction",
+          "level": "REQUIRED",
+          "presentation": "WORKED_CARD",
+          "purpose": "Walk one authentic question through the construction.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the worked card",
+          "repeat": "PER_CONSTRUCTION_UNIT",
+          "source": [
+            "construction_units[].worked_anchor_ref"
+          ],
+          "duty": "AUTHOR_WORKED_ANCHOR",
+          "authoring": {
+            "hint": "worked_anchor_ref names a question of the package that exercises exactly this unit's move."
+          }
+        },
+        {
+          "id": "STAGED_VISUAL",
+          "slot": "representation",
+          "level": "REQUIRED",
+          "presentation": "STAGED_VISUAL",
+          "purpose": "Show the idea as a picture that builds up stage by stage, with controls to step through it.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the rail's staged visual with stage buttons",
+          "repeat": "PER_CONSTRUCTION_UNIT",
+          "source": [
+            "construction_units[].representation_ref"
+          ],
+          "min_items": 2,
+          "authoring": {
+            "hint": "representation_ref names a representation of the package with an authored SVG that has 2 or more groups marked data-g9-stage-id and reveal_stages naming them. Draw each unit's own picture; do not reuse one figure on many units."
+          },
+          "duty": "STAGE_REPRESENTATION"
+        },
+        {
+          "id": "TRAP_REPAIR",
+          "slot": "repair_closure",
+          "level": "REQUIRED",
+          "presentation": "TRAP_CARD",
+          "purpose": "Show the mistake learners make here, how to notice it and how to repair it.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the easy-mistake card with diagnostic and repair",
+          "repeat": "PER_CONSTRUCTION_UNIT",
+          "source": [
+            "misconceptions",
+            "construction_units[].misconception_indexes"
+          ],
+          "min_items": 1,
+          "authoring": {
+            "hint": "misconceptions[] holds wrong_idea, diagnostic_prompt and repair for this concept; each construction unit names the ones that apply in misconception_indexes."
+          }
+        },
+        {
+          "id": "QUICK_CHECK",
+          "slot": "repair_closure",
+          "level": "REQUIRED",
+          "presentation": "CHECK_LIST",
+          "purpose": "Let the learner test the idea on their own before moving on.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the 1-2-3 quick check",
+          "repeat": "PER_CONSTRUCTION_UNIT",
+          "source": [
+            "construction_units[].independent_checks"
+          ],
+          "min_items": 1,
+          "duty": "AUTHOR_INDEPENDENT_CHECK"
+        },
+        {
+          "id": "EXIT_RECALL",
+          "slot": "repair_closure",
+          "level": "REQUIRED",
+          "presentation": "RECALL_CARD",
+          "purpose": "Ask for the idea back with less support, then show a model answer.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the active-recall attempt",
+          "source": [
+            "exit_task"
+          ]
+        },
+        {
+          "id": "PRACTICE_LINKS",
+          "slot": "repair_closure",
+          "level": "OPTIONAL",
+          "presentation": "CHIPS",
+          "purpose": "Point to the authentic questions that practise this concept.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the practice chips",
+          "source": [
+            "practice"
+          ]
+        }
       ]
     },
     {
       "id": "BP-CORE1B-RECONSTRUCTION",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "ACTIVE",
       "core_roles": [
         "CORE1B"
@@ -301,7 +784,8 @@
             "identity_concept",
             "learner_metadata"
           ],
-          "required": true
+          "required": true,
+          "column": "FULL"
         },
         {
           "id": "attempt",
@@ -309,7 +793,8 @@
             "predict",
             "attempt"
           ],
-          "required": true
+          "required": true,
+          "column": "PRIMARY"
         },
         {
           "id": "reconstruction",
@@ -321,7 +806,8 @@
             "model_response_or_rubric",
             "rejoin_inferential_jump"
           ],
-          "required": true
+          "required": true,
+          "column": "PRIMARY"
         }
       ],
       "interaction_policy": {
@@ -363,7 +849,7 @@
     },
     {
       "id": "BP-CORE2A-SUPPORTED-APPLICATION",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "ACTIVE",
       "core_roles": [
         "CORE2A"
@@ -378,7 +864,8 @@
             "family_identity_provenance",
             "learner_metadata"
           ],
-          "required": true
+          "required": true,
+          "column": "FULL"
         },
         {
           "id": "attempt",
@@ -386,7 +873,8 @@
             "question",
             "initial_representation"
           ],
-          "required": true
+          "required": true,
+          "column": "PRIMARY"
         },
         {
           "id": "support",
@@ -395,7 +883,8 @@
             "application_crux",
             "bound_representation"
           ],
-          "required": false
+          "required": false,
+          "column": "SUPPORT"
         },
         {
           "id": "reasoning",
@@ -406,7 +895,8 @@
             "failure_signal_repair",
             "exposure_family_closure"
           ],
-          "required": true
+          "required": true,
+          "column": "PRIMARY"
         }
       ],
       "interaction_policy": {
@@ -448,7 +938,7 @@
     },
     {
       "id": "BP-CORE2B-TRANSFER",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "ACTIVE",
       "core_roles": [
         "CORE2B"
@@ -463,7 +953,8 @@
             "question_prior_exposure",
             "learner_metadata"
           ],
-          "required": true
+          "required": true,
+          "column": "FULL"
         },
         {
           "id": "attempt",
@@ -472,7 +963,8 @@
             "safe_pre_attempt_support",
             "attempt_commitment"
           ],
-          "required": true
+          "required": true,
+          "column": "PRIMARY"
         },
         {
           "id": "post_attempt",
@@ -483,7 +975,8 @@
             "repair_route",
             "lineage_continuity_check"
           ],
-          "required": true
+          "required": true,
+          "column": "PRIMARY"
         }
       ],
       "interaction_policy": {

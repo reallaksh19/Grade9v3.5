@@ -195,10 +195,25 @@ def deployments_page() -> str:
         gap_list = "".join(f'<li>{esc(g["core"])} · {esc(g["record"])}: {esc(g["detail"])}</li>' for g in r.get("gaps", []))
         gap_details = (f'<details><summary>The {r["gap_count"]} gap(s)</summary><ul>{gap_list}</ul></details>'
                        if gap_list else "")
+        advised = r.get("advisories", [])
+        advice_list = "".join(f'<li>{esc(a["core"])} · {esc(a["component"])} · {esc(a["record"])}: {esc(a["detail"])}</li>' for a in advised)
+        advice_details = (f'<details><summary>{len(advised)} component(s) the blueprint expects and the records do not supply</summary>'
+                          f'<p class="g9-prov">Advisory, not a gap: the reference page has each of these. '
+                          f'Blueprint: {esc(", ".join(r.get("blueprints", {}).values()))}.</p><ul>{advice_list}</ul></details>'
+                          if advice_list else "")
+        quality = r.get("quality") or {}
+        quality_list = "".join(f'<li>{esc(f["severity"])} · {esc(f["rule"])} · {esc(f["where"])}: {esc(f["detail"])}</li>'
+                               for f in quality.get("findings", []))
+        quality_details = (f'<details><summary>Learner-quality check, static: {len(quality["findings"])} finding(s)</summary>'
+                           f'<p class="g9-prov">What the learner would see, read off the pages against the quality contract. '
+                           f'It does not say the content is right.</p><ul>{quality_list}</ul></details>'
+                           if quality.get("findings") else
+                           '<p class="g9-prov">Learner-quality check, static: no finding. That is not a review.</p>'
+                           if quality.get("checked", "").startswith("static") else "")
         body += card(f'product-{r["slug"]}', f'{r["slug"]} {r["title"]} product',
                      f'<h2>{esc(r["title"])}</h2><p class="g9-prov">Product {esc(r["slug"])} · '
                      f'{"DRAFT" if r["draft"] else "no gaps reported, not reviewed"} · accepted: no · render {esc(r["render_digest"])}</p>'
-                     f'<p>{links}</p><p>Selected records: {esc(counts)}. Gaps: {esc(gaps)} ({r["gap_count"]} in total).</p>{gap_details}{empty}')
+                     f'<p>{links}</p><p>Selected records: {esc(counts)}. Gaps: {esc(gaps)} ({r["gap_count"]} in total).</p>{gap_details}{advice_details}{quality_details}{empty}')
     for r in pages:
         body += card(f'interactive-{r["slug"]}', f'{r["slug"]} {r["title"]} {r["purpose"]} interactive',
                      f'<h2>{esc(r["title"])}</h2><p class="g9-prov">Interactive page {esc(r["slug"])} · DRAFT · accepted: no · '

@@ -13,6 +13,8 @@ SCHEMA_PATH = REPO / "Shared" / "web" / "interactive-page-blueprint.schema.json"
 REGISTRY_PATH = REPO / "Shared" / "web" / "interactive-page-blueprints.v1.json"
 CORE_ROLES = {"CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B"}
 PACKAGING_MODES = {"PUBLIC", "PAGES", "OFFLINE_DIRECTORY", "SINGLE_FILE", "EMBED"}
+COLUMNS = {"FULL", "PRIMARY", "SUPPORT"}
+LEVELS = ("REQUIRED", "EXPECTED", "OPTIONAL")
 
 
 class WebBlueprintContractError(ValueError):
@@ -63,8 +65,156 @@ def resolve_blueprint(ref: str, registry: dict[str, Any] | None = None) -> dict[
     return row
 
 
+def presentations(schema_path: Path = SCHEMA_PATH) -> set[str]:
+    """The presentation archetypes a blueprint may name (the schema's closed list)."""
+    schema = json.loads(schema_path.read_text(encoding="utf-8"))
+    return set(schema["$defs"]["presentation"]["enum"])
+
+
+def blueprint_for_role(registry: dict[str, Any], role: str) -> dict[str, Any] | None:
+    """The one active blueprint a Core role renders through, or None when the registry has none."""
+    rows = [row for row in registry.get("blueprints") or []
+            if isinstance(row, dict) and row.get("status") == "ACTIVE" and role in (row.get("core_roles") or [])]
+    return rows[0] if len(rows) == 1 else None
+
+
+def components(blueprint: dict[str, Any]) -> list[dict[str, Any]]:
+    """The components a blueprint declares, in the order they appear on the page."""
+    return [c for c in blueprint.get("components") or [] if isinstance(c, dict)]
+
+
+def slot_column(blueprint: dict[str, Any], slot_id: str) -> str:
+    """Where a slot sits in the expanded layout (FULL, PRIMARY or SUPPORT)."""
+    for slot in blueprint.get("slots") or []:
+        if isinstance(slot, dict) and slot.get("id") == slot_id:
+            return slot.get("column") or "FULL"
+    return "FULL"
+
+
+def required_components(blueprint: dict[str, Any], level: str = "REQUIRED") -> list[dict[str, Any]]:
+    return [c for c in components(blueprint) if c.get("level") == level]
+
+
+def skeleton(blueprint: dict[str, Any]) -> dict[str, Any]:
+    """The empty record fields the blueprint's components ask an author to fill, merged into one object."""
+    out: dict[str, Any] = {}
+
+    def merge(into: dict, add: dict) -> None:
+        for key, value in add.items():
+            if isinstance(value, dict) and isinstance(into.get(key), dict):
+                merge(into[key], value)
+            else:
+                into[key] = copy.deepcopy(value)
+
+    for component in components(blueprint):
+        merge(out, (component.get("authoring") or {}).get("skeleton") or {})
+    return out
+
+
+def _walk(record: Any, path: str) -> Any:
+    for part in path.split("."):
+        if not isinstance(record, dict):
+            return None
+        record = record.get(part)
+    return record
+
+
+def record_items(component: dict[str, Any], record: dict[str, Any]) -> int:
+    """How much a record supplies to a component. A component with a depth (min_items) is counted by the length of
+    the first non-empty list among its source fields; any other is 1 when a source field holds something, else 0."""
+    values = [_walk(record, path) for path in component.get("source") or []]
+    for value in values:
+        if isinstance(value, list) and value:
+            return len(value)
+    if component.get("min_items"):
+        return 0
+    return 1 if any(value not in (None, "", [], {}) for value in values) else 0
+
+
+def record_problems(blueprint: dict[str, Any], record: dict[str, Any], label: str) -> list[str]:
+    """Where a record falls short of what its blueprint requires of it, held to the reference depth.
+
+    Only REQUIRED components that have a depth (min_items) are measured here; the others are supplied by the
+    renderer from fields every record already has. Writing for the reference page means writing to target_items."""
+    out = []
+    for component in required_components(blueprint):
+        needed = component.get("target_items") or component.get("min_items")
+        if not needed:
+            continue
+        found = record_items(component, record)
+        if found < needed:
+            hint = (component.get("authoring") or {}).get("hint", "")
+            out.append(f"{label}: {component['id']} needs {needed}, the record supplies {found}. {hint}".rstrip())
+    return out
+
+
+def expected_absent(blueprint: dict[str, Any], records: list[dict[str, Any]]) -> list[tuple[str, int, str]]:
+    """(component id, records that supply none of it, hint) for each EXPECTED component some record lacks."""
+    out = []
+    for component in required_components(blueprint, "EXPECTED"):
+        lacking = sum(1 for record in records if record_items(component, record) == 0)
+        if lacking:
+            out.append((component["id"], lacking, (component.get("authoring") or {}).get("hint", "")))
+    return out
+
+
+def authoring_hints(blueprint: dict[str, Any]) -> list[tuple[str, str, str]]:
+    """(component id, level, hint) for every component that tells an author what to write."""
+    return [(c["id"], c["level"], c["authoring"]["hint"]) for c in components(blueprint)
+            if (c.get("authoring") or {}).get("hint")]
+
+
 def _finding(point: str, *, ref: str = "", detail: str = "") -> dict[str, str]:
     return {"point": point, "ref": ref, "detail": detail}
+
+
+def _audit_components(row: dict[str, Any], ref: str, slot_ids: set[str]) -> list[dict[str, str]]:
+    """A blueprint that declares components declares them completely: each in a real slot, each presentable."""
+    declared = row.get("components")
+    if declared is None:
+        return []
+    if not isinstance(declared, list) or not declared:
+        return [_finding("WEB_BLUEPRINT_COMPONENTS_INVALID", ref=ref)]
+    findings: list[dict[str, str]] = []
+    try:
+        known = presentations()
+    except (OSError, KeyError, json.JSONDecodeError):
+        known = set()
+    by_id: dict[str, dict[str, Any]] = {}
+    for component in declared:
+        if not isinstance(component, dict) or not isinstance(component.get("id"), str):
+            findings.append(_finding("WEB_BLUEPRINT_COMPONENT_INVALID", ref=ref))
+            continue
+        cid = component["id"]
+        if cid in by_id:
+            findings.append(_finding("WEB_BLUEPRINT_COMPONENT_DUPLICATE", ref=ref, detail=cid))
+        by_id[cid] = component
+        if component.get("slot") not in slot_ids:
+            findings.append(_finding("WEB_BLUEPRINT_COMPONENT_SLOT_UNKNOWN", ref=ref, detail=cid))
+        if component.get("level") not in LEVELS:
+            findings.append(_finding("WEB_BLUEPRINT_COMPONENT_LEVEL_INVALID", ref=ref, detail=cid))
+        if known and component.get("presentation") not in known:
+            findings.append(_finding("WEB_BLUEPRINT_COMPONENT_PRESENTATION_UNKNOWN", ref=ref, detail=cid))
+        if not component.get("purpose") or not component.get("benchmark"):
+            findings.append(_finding("WEB_BLUEPRINT_COMPONENT_UNEXPLAINED", ref=ref, detail=cid))
+        minimum = component.get("min_items")
+        if minimum is not None and (not isinstance(minimum, int) or minimum < 1):
+            findings.append(_finding("WEB_BLUEPRINT_COMPONENT_MIN_ITEMS_INVALID", ref=ref, detail=cid))
+        target = component.get("target_items")
+        if target is not None and (not isinstance(target, int) or target < (minimum or 1)):
+            findings.append(_finding("WEB_BLUEPRINT_COMPONENT_TARGET_INVALID", ref=ref, detail=cid))
+        if component.get("level") == "REQUIRED" and not (component.get("authoring") or {}).get("hint") \
+                and not component.get("duty") and (minimum or component.get("repeat")):
+            findings.append(_finding("WEB_BLUEPRINT_COMPONENT_NO_AUTHORING_HINT", ref=ref, detail=cid))
+    for cid, component in by_id.items():
+        parent = component.get("parent")
+        if parent is not None and (parent not in by_id or by_id[parent].get("slot") != component.get("slot")
+                                   or by_id[parent].get("parent")):
+            findings.append(_finding("WEB_BLUEPRINT_COMPONENT_PARENT_INVALID", ref=ref, detail=cid))
+    unused = slot_ids - {c.get("slot") for c in by_id.values()}
+    for slot_id in sorted(unused):
+        findings.append(_finding("WEB_BLUEPRINT_SLOT_WITHOUT_COMPONENT", ref=ref, detail=slot_id))
+    return findings
 
 
 def audit_registry(registry: dict[str, Any] | None = None) -> dict[str, Any]:
@@ -122,6 +272,11 @@ def audit_registry(registry: dict[str, Any] | None = None) -> dict[str, Any]:
                 if block in mapped_blocks:
                     findings.append(_finding("WEB_BLUEPRINT_BLOCK_AMBIGUOUS", ref=ref, detail=block))
                 mapped_blocks.add(block)
+
+        for slot in slots:
+            if isinstance(slot, dict) and slot.get("column") not in COLUMNS:
+                findings.append(_finding("WEB_BLUEPRINT_SLOT_COLUMN_INVALID", ref=ref, detail=str(slot.get("id"))))
+        findings.extend(_audit_components(row, ref, slot_ids))
 
         touch = row.get("touch_policy") or {}
         if not isinstance(touch.get("minimum_target_css_px"), int) or touch.get("minimum_target_css_px", 0) < 48:

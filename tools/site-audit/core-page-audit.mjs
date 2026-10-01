@@ -130,9 +130,13 @@ for (const file of files) {
       : 'file://' + path.join(dir, file);
     await page.goto(pageUrl);
     const bpId = await page.evaluate(() => document.body.dataset.blueprintRef || null);
-    const bp = blueprints.blueprints.find(b => b.id === bpId);
+    const bp = blueprints.blueprints.find(b => `${b.id}@${b.version}` === bpId);
     const minTarget = bp ? bp.touch_policy.minimum_target_css_px : 48;
-    const r = await page.evaluate((minTarget) => {
+    // The expanded layout is the blueprint's own: its fractions and the width it starts at.
+    const policy = bp ? bp.responsive_policy : null;
+    const pct = x => Number((x * 100).toFixed(4));
+    const expectedColumns = policy && policy.support_fraction ? { primary: pct(policy.primary_fraction), support: pct(policy.support_fraction) } : null;
+    const r = await page.evaluate(({ minTarget, expectedColumns }) => {
       const visible = el => { const b = el.getBoundingClientRect(); return b.width > 0 && b.height > 0; };
       const controls = [...document.querySelectorAll('a[href],button,summary,textarea,input,select')].filter(visible);
       // Inline text links inside a paragraph, list item or table cell are exempt (WCAG 2.5.8), as in tablet-audit.mjs.
@@ -184,21 +188,23 @@ for (const file of files) {
         attemptFields: document.querySelectorAll('textarea').length,
         gatedDisclosures: [...document.querySelectorAll('details')].filter(d => d.hasAttribute('data-requires-attempt') || d.querySelector('summary[aria-disabled="true"]')).length,
         scripts: document.scripts.length,
-        stageSupportLayout: /grid-template-columns:[^;]*(68|0?\.68|2fr)/.test(sheetText),
+        stageSupportLayout: !!expectedColumns && new RegExp(`grid-template-columns:\\s*minmax\\(0(?:px)?,\\s*${expectedColumns.primary}fr\\)\\s*minmax\\(0(?:px)?,\\s*${expectedColumns.support}fr\\)`).test(sheetText),
         core1aLayout: (() => {
-          const articles = [...document.querySelectorAll('article.g9-stage-support')].filter(visible);
-          const samples = articles.map(article => {
-            const primary = article.querySelector('.slot-construction,.slot-attempt,.slot-reasoning,.slot-solution');
-            const support = article.querySelector('.slot-repair_closure,.slot-support');
-            const articleStyle = getComputedStyle(article);
+          // One sample per two-column row (a .g9-split with both columns); a band with only one column is not a row of the layout.
+          const splits = [...document.querySelectorAll('article.g9-stage-support .g9-split')]
+            .filter(split => visible(split) && !split.classList.contains('g9-split-support-only') && !split.classList.contains('g9-split-primary-only'));
+          const samples = splits.map(split => {
+            const primary = split.querySelector(':scope > .g9-col-primary');
+            const support = split.querySelector(':scope > .g9-col-support');
+            const style = getComputedStyle(split);
             const primaryBox = primary?.getBoundingClientRect();
             const supportBox = support?.getBoundingClientRect();
-            const expanded = articleStyle.display === 'grid' && !!primaryBox && !!supportBox;
+            const expanded = style.display === 'grid' && !!primaryBox && !!supportBox;
             const denominator = expanded ? primaryBox.width + supportBox.width : 0;
             return {
-              unit: article.dataset.g9Unit || null,
-              display: articleStyle.display,
-              gridTemplateColumns: articleStyle.gridTemplateColumns,
+              unit: split.closest('article')?.dataset.g9Unit || null,
+              display: style.display,
+              gridTemplateColumns: style.gridTemplateColumns,
               primaryWidthPx: primaryBox ? Math.round(primaryBox.width * 10) / 10 : null,
               supportWidthPx: supportBox ? Math.round(supportBox.width * 10) / 10 : null,
               supportFraction: denominator ? Math.round((supportBox.width / denominator) * 1000) / 1000 : null,
@@ -334,7 +340,9 @@ for (const file of files) {
           return leaks;
         })(),
       };
-    }, minTarget);
+    }, { minTarget, expectedColumns });
+    r.expectedLayout = policy && policy.support_fraction
+      ? { supportFraction: policy.support_fraction, minPx: policy.expanded_min_px || 1100 } : null;
     r.externalRequests = [...new Set(requests)];
     if (profile === 'core1a-spec' && file === 'core1a.html') {
       r.interaction = {
@@ -478,10 +486,12 @@ if (enforce && profile === 'core1a-spec') {
       }
       if (row.externalRequests.length !== 0) failures.push(`${vp.name}: external request(s): ${row.externalRequests.join(', ')}`);
       const layout = row.core1aLayout;
-      if (vp.width >= 1100) {
+      const want = row.expectedLayout;
+      if (!want) failures.push(`${vp.name}: the page's blueprint declares no two-column layout to check against`);
+      else if (vp.width >= want.minPx) {
         if (layout.expandedCount !== layout.articleCount) failures.push(`${vp.name}: expanded layout ${layout.expandedCount}/${layout.articleCount}`);
         for (const sample of layout.samples) {
-          if (sample.supportFraction == null || Math.abs(sample.supportFraction - 0.32) > 0.03) {
+          if (sample.supportFraction == null || Math.abs(sample.supportFraction - want.supportFraction) > 0.03) {
             failures.push(`${vp.name}: support fraction for ${sample.unit} is ${sample.supportFraction}`);
           }
         }

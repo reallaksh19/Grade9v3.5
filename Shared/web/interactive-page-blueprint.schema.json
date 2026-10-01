@@ -8,6 +8,7 @@
     "schema_version",
     "registry_version",
     "shell",
+    "component_policy",
     "blueprints"
   ],
   "properties": {
@@ -26,6 +27,72 @@
       "minItems": 6,
       "items": {
         "$ref": "#/$defs/blueprint"
+      }
+    },
+    "component_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "levels",
+        "column",
+        "waivers",
+        "depth"
+      ],
+      "properties": {
+        "levels": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "REQUIRED",
+            "EXPECTED",
+            "OPTIONAL"
+          ],
+          "properties": {
+            "REQUIRED": {
+              "type": "string",
+              "minLength": 1
+            },
+            "EXPECTED": {
+              "type": "string",
+              "minLength": 1
+            },
+            "OPTIONAL": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "column": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "FULL",
+            "PRIMARY",
+            "SUPPORT"
+          ],
+          "properties": {
+            "FULL": {
+              "type": "string",
+              "minLength": 1
+            },
+            "PRIMARY": {
+              "type": "string",
+              "minLength": 1
+            },
+            "SUPPORT": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "waivers": {
+          "type": "string",
+          "minLength": 1
+        },
+        "depth": {
+          "type": "string",
+          "minLength": 1
+        }
       }
     }
   },
@@ -215,7 +282,8 @@
       "required": [
         "id",
         "accepts_blocks",
-        "required"
+        "required",
+        "column"
       ],
       "properties": {
         "id": {
@@ -233,6 +301,9 @@
         },
         "required": {
           "type": "boolean"
+        },
+        "column": {
+          "$ref": "#/$defs/column"
         }
       }
     },
@@ -397,6 +468,16 @@
               "type": "number",
               "minimum": 0,
               "maximum": 1
+            },
+            "expanded_min_px": {
+              "type": "integer",
+              "minimum": 600,
+              "maximum": 1600,
+              "description": "Viewport width from which the expanded layout applies."
+            },
+            "support_sticky": {
+              "type": "boolean",
+              "description": "Whether the support column stays in view while the primary column scrolls."
             }
           }
         },
@@ -440,6 +521,142 @@
             "type": "string",
             "minLength": 1
           }
+        },
+        "components": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/component"
+          }
+        }
+      }
+    },
+    "column": {
+      "enum": [
+        "FULL",
+        "PRIMARY",
+        "SUPPORT"
+      ]
+    },
+    "presentation": {
+      "enum": [
+        "HEADER",
+        "DISCLOSURE_GRID",
+        "STEM",
+        "CALLOUT_INFO",
+        "CALLOUT_WARN",
+        "ATTEMPT",
+        "VISUAL_CARD",
+        "LADDER",
+        "LINK_LIST",
+        "DISCLOSURE",
+        "STEP_LIST",
+        "ANSWER_BOX",
+        "CHECK_BOX",
+        "CONCEPT_HEADER",
+        "TILE",
+        "CHIPS",
+        "BANNER",
+        "UNIT_HEADER",
+        "STEP_CARDS",
+        "EQUATION_CARD",
+        "WORKED_CARD",
+        "STAGED_VISUAL",
+        "TRAP_CARD",
+        "CHECK_LIST",
+        "RECALL_CARD"
+      ]
+    },
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "slot",
+        "level",
+        "presentation",
+        "purpose",
+        "benchmark"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$"
+        },
+        "slot": {
+          "type": "string",
+          "minLength": 1
+        },
+        "level": {
+          "enum": [
+            "REQUIRED",
+            "EXPECTED",
+            "OPTIONAL"
+          ]
+        },
+        "presentation": {
+          "$ref": "#/$defs/presentation"
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1,
+          "description": "What the learner gets from it, in a sentence."
+        },
+        "benchmark": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The part of the reference page this component comes from."
+        },
+        "parent": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$",
+          "description": "A component this one is shown inside; it takes its slot and place from the parent."
+        },
+        "repeat": {
+          "enum": [
+            "PER_CONSTRUCTION_UNIT"
+          ],
+          "description": "One instance per construction unit instead of one per page."
+        },
+        "source": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Record fields that feed it."
+        },
+        "min_items": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Fewest items (rungs, steps, stages, checks) it needs to count as present."
+        },
+        "duty": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$",
+          "description": "A duty that already reports this component's absence, so the renderer does not report it twice."
+        },
+        "authoring": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "hint": {
+              "type": "string",
+              "minLength": 1,
+              "description": "What an author writes, and where, to supply it."
+            },
+            "skeleton": {
+              "type": "object",
+              "description": "Empty record fields to scaffold a new record with; {qid} stands for the record id."
+            }
+          }
+        },
+        "target_items": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Depth of the reference page. Below it, above min_items, is an advisory; new authoring is held to it."
         }
       }
     }

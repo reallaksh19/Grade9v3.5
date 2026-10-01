@@ -211,6 +211,25 @@
           "items": {"type": "string"},
           "description": "Ordered support rungs (hints/scaffolds), least to most."
         },
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id"],
+            "properties": {
+              "id": {"type": "string", "minLength": 1},
+              "items": {"type": ["integer", "null"], "minimum": 0},
+              "unit": {"type": ["string", "null"]}
+            }
+          },
+          "description": "Blueprint components the page marks (data-g9-component): which one, how many items it holds, and for a per-unit component the construction unit it belongs to."
+        },
+        "construction_units": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Construction units the page shows (data-g9-cu)."
+        },
         "support_rows": {
           "type": "array",
           "items": {

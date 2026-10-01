@@ -1,6 +1,6 @@
 {
   "schema": "learner-quality-contract/v1",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "purpose": "Subject-neutral quality rules for the six Core learner products. Each rule judges a learner observation (Shared/quality/learner-observation.schema.json), i.e. what a learner can see and do, never what a record claims. Rules carry the audit findings they would have caught (audit_refs) and the owner-reference grammar step they encode (grammar). Calibration: every negative specimen in benchmarks/quality-calibration fails for its expected findings; the positive references pass the rules that encode their grammar.",
   "families": {
     "DEPTH": "Content a learner needs, at the depth the references show.",
@@ -288,6 +288,16 @@
       "id": "ALL-CHECK-TYPES-KNOWN", "family": "DEPTH", "measure": "STATIC", "roles": ["*"], "severity": "S3",
       "check": {"op": "check_types_in_vocabulary"}, "audit_refs": [], "grammar": null,
       "text": "Declared independent-check types come from the subject's QualityVocabulary."
+    },
+    {
+      "id": "BP-COMPONENTS-REQUIRED", "family": "DEPTH", "measure": "STATIC", "roles": ["*"], "severity": "S2",
+      "check": {"op": "blueprint_components", "level": "REQUIRED"}, "audit_refs": [], "grammar": null,
+      "text": "Every component the page's blueprint marks REQUIRED is on the page, at least as deep as the blueprint's floor (min_items). The list, levels and depths come from Shared/web/interactive-page-blueprints.v1.json; nothing is restated here."
+    },
+    {
+      "id": "BP-COMPONENTS-EXPECTED", "family": "DEPTH", "measure": "STATIC", "roles": ["*"], "severity": "S3",
+      "check": {"op": "blueprint_components", "level": "EXPECTED"}, "audit_refs": [], "grammar": null,
+      "text": "Every component the page's blueprint marks EXPECTED is on the page. Absent is advisory (S3): it names what the reference page has and this one lacks."
     },
     {
       "id": "PAGE-HOME-LINK", "family": "PAGE", "measure": "STATIC", "roles": ["*"], "severity": "S1",

@@ -37,7 +37,8 @@ REPO = Path(__file__).resolve().parents[2]
 if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
-from Shared.tools import learner_metadata  # noqa: E402
+from Shared.tools import core2_v2, learner_metadata  # noqa: E402
+from Shared.tools import web_blueprint_contract as blueprints  # noqa: E402
 
 BANK_DIR = "TEST/question-bank"
 ANALYSIS_KEY = "grade9v3:analysis"
@@ -50,7 +51,18 @@ OFFICIAL_ONLY = ("exam", "year", "paper", "section", "question_number", "paper_u
 REQUIRED = ("id", "original_identifier", "stem", "answer", "primary_capability_ref", "extensions")
 BANK_ID = re.compile(r"^[a-z0-9][a-z0-9-]{0,63}$")
 HINTS = {"primary_capability_ref": " (the id of a capability in the package this bank is used with)",
-         "answer": " (an object: summary, and reasoning as a list of steps)"}
+         "answer": " (an object: summary, a typed reasoning_route, crux_move_ref)"}
+
+# What a Core2 page needs to be more than a stem and a text box is the Core2 blueprint's to say
+# (Shared/web/interactive-page-blueprints.v1.json): its REQUIRED components, how deep each is, and how to author it.
+# This file asks for what the blueprint asks, at the depth of the reference page, and scaffolds what it lists.
+SUPPORT_KINDS = ("REPRESENT", "CONNECT", "EXECUTE")
+SUPPORT_REVEALS = ("CONCEPT", "METHOD", "ANSWER")
+MOVE_KINDS = tuple(core2_v2.SOLUTION_STAGE_BY_KIND)
+
+
+def core2_blueprint() -> dict:
+    return blueprints.blueprint_for_role(blueprints.load_registry(), "CORE2") or {}
 
 
 def text_digest(text: str) -> str:
@@ -63,6 +75,62 @@ def is_owner_bank(document: object) -> bool:
 
 def intake_questions(intake: dict) -> list[dict]:
     return list((intake.get("inputs") or {}).get("questions") or [])
+
+
+def _page_problems(question: dict, label: str) -> list[str]:
+    """What the learner would not see: the blueprint's required components, then the typing the renderer relies on."""
+    problems: list[str] = []
+    if question.get("hints"):
+        problems.append(f"{label}: hints are a source's own words; an owner question has no source. "
+                        "Put guided support in scaffolds")
+    problems += blueprints.record_problems(core2_blueprint(), question, label)
+    answer = question.get("answer") if isinstance(question.get("answer"), dict) else {}
+    route = answer.get("reasoning_route")
+    moves = [m for m in route if isinstance(m, dict)] if isinstance(route, list) else []
+    ids = [m.get("id") for m in moves]
+    if moves:
+        try:
+            core2_v2.project_solution(answer)
+        except core2_v2.Core2SolutionProjectionError as caught:
+            problems.append(f"{label}: answer.reasoning_route: {caught}")
+        if answer.get("crux_move_ref") not in ids:
+            problems.append(f"{label}: answer.crux_move_ref must be the id of the move a learner is most likely to miss "
+                            f"(one of {ids})")
+    scaffolds = question.get("scaffolds") if isinstance(question.get("scaffolds"), list) else []
+    typed = True
+    for number, rung in enumerate(scaffolds):
+        where = f"{label}: scaffolds[{number}]"
+        if not isinstance(rung, dict) or not str(rung.get("text") or "").strip():
+            problems.append(f"{where}.text is empty: write the hint the learner sees")
+            typed = False
+            continue
+        if rung.get("support_kind") not in SUPPORT_KINDS:
+            problems.append(f"{where}.support_kind must be one of {', '.join(SUPPORT_KINDS)}")
+            typed = False
+        if rung.get("reveals") not in SUPPORT_REVEALS:
+            problems.append(f"{where}.reveals must be one of {', '.join(SUPPORT_REVEALS)}")
+            typed = False
+        if rung.get("supports_move_ref") not in ids:
+            problems.append(f"{where}.supports_move_ref must be the id of a reasoning_route move (one of {ids})")
+            typed = False
+    if typed and scaffolds:
+        try:
+            rungs = core2_v2.pre_solution_support(question)
+        except core2_v2.Core2SupportProjectionError as caught:
+            problems.append(f"{label}: scaffolds: {caught}")
+        else:
+            if len(rungs) < len(scaffolds):
+                problems.append(f"{label}: only {len(rungs)} of {len(scaffolds)} scaffold(s) can be shown before the answer "
+                                "(reveals ANSWER is held back until the solution)")
+    return problems
+
+
+def advice(document: dict) -> list[str]:
+    """What the pages will lack that the blueprint expects but does not require: said once, never a failure."""
+    questions = [q for q in document.get("questions") or [] if isinstance(q, dict)]
+    return [f"{cid}: {lacking} of {len(questions)} question(s) supply none, so the page shows no {cid.lower().replace('_', ' ')} "
+            f"there. {hint}".rstrip()
+            for cid, lacking, hint in blueprints.expected_absent(core2_blueprint(), questions)] if questions else []
 
 
 def check(document: dict, where: str = "bank", intake: dict | None = None) -> list[str]:
@@ -108,6 +176,7 @@ def check(document: dict, where: str = "bank", intake: dict | None = None) -> li
         elif isinstance(stem, str) and text_digest(stem) != custody["text_sha256"]:
             problems.append(f"{label}: the stem is not the text the Owner supplied (its digest differs from "
                             f"{CUSTODY_KEY}.text_sha256); owner questions are kept verbatim, so restore the stem")
+        problems += _page_problems(question, label)
         # The same projection the renderer makes: provenance, difficulty and question type. Say it here, not as a gap later.
         problems += [f"{label}: {problem}" for problem in learner_metadata.bank_question_problems(question)]
         invented = [key for key in OFFICIAL_ONLY if key in custody]
@@ -160,11 +229,12 @@ def new(intake: dict, bank_id: str) -> dict:
         text = item.get("text")
         if not isinstance(text, str) or not text.strip():
             raise ValueError(f"intake question {item.get('id')} has no text; there is nothing to keep verbatim")
+        question_id = f"OWN-{bank_id.upper()}-{number:02d}"
         questions.append({
-            "id": f"OWN-{bank_id.upper()}-{number:02d}",
+            "id": question_id,
             "original_identifier": f"Q{item.get('label') or number}",
             "stem": text,
-            "answer": {"summary": ""},
+            "answer": {"kind": "EXACT", "summary": "", "verification_status": "NOT_RUN"},
             "primary_capability_ref": "",
             "family_ref": "",
             "extensions": {
@@ -186,8 +256,20 @@ def new(intake: dict, bank_id: str) -> dict:
                 },
             },
         })
+    wanted = blueprints.skeleton(core2_blueprint())
+    for question in questions:
+        _merge(question, json.loads(json.dumps(wanted).replace("{qid}", question["id"])))
     return {"schema_version": SCHEMA_VERSION, "bank_id": bank_id, "intake_digest": intake.get("intake_digest"),
             "questions": questions}
+
+
+def _merge(into: dict, add: dict) -> None:
+    """Add the blueprint's empty fields to a new question without replacing anything already set."""
+    for key, value in add.items():
+        if isinstance(value, dict) and isinstance(into.get(key), dict):
+            _merge(into[key], value)
+        else:
+            into.setdefault(key, value)
 
 
 def _load(path: str) -> dict:
@@ -242,8 +324,11 @@ def main(argv: list[str] | None = None) -> int:
     intake = _load(parsed.intake) if parsed.intake else None
     failed = False
     for path in parsed.banks:
-        problems = check(_load(path), path, intake)
+        document = _load(path)
+        problems = check(document, path, intake)
         print("\n".join(problems) if problems else f"{path}: OK")
+        for note in ([] if problems else advice(document)):
+            print(f"NOTE: {note}", file=sys.stderr)
         failed = failed or bool(problems)
     return 1 if failed else 0
 

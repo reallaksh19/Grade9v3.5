@@ -336,6 +336,45 @@ def _rendered_flag(page, check, ctx):
     return [] if r[check["field"]] else [f"{check['field'].replace('_', ' ')} absent"]
 
 
+@op("blueprint_components")
+def _blueprint_components(page, check, ctx):
+    """The components the page's own blueprint lists at this level are all on the page, and deep enough.
+
+    Nothing here is written into the contract: the list, the levels and the depths are read from the blueprint
+    registry (Shared/web/interactive-page-blueprints.v1.json), the same data the renderer builds the page from.
+    """
+    from Shared.tools import web_blueprint_contract as blueprints  # noqa: PLC0415
+    ref = page.get("blueprint_ref")
+    if not ref:
+        return None
+    try:
+        blueprint = blueprints.resolve_blueprint(ref)
+    except blueprints.WebBlueprintContractError:
+        return None  # a page built to a blueprint version the registry no longer serves: not measurable against it
+    wanted = [c for c in blueprints.components(blueprint) if c["level"] == check["level"]]
+    out = []
+    for unit in page["units"]:
+        found = unit.get("components")
+        if found is None:
+            return None  # an observation made before components were marked
+        for spec in wanted:
+            if spec.get("repeat") == "PER_CONSTRUCTION_UNIT":
+                scopes = [(cu, [c for c in found if c["id"] == spec["id"] and c.get("unit") == cu])
+                          for cu in unit.get("construction_units", [])]
+            else:
+                scopes = [(None, [c for c in found if c["id"] == spec["id"]])]
+            for scope, instances in scopes:
+                where = f"{unit['id']}" + (f" / {scope}" if scope else "")
+                if not instances:
+                    out.append(f"{where}: {spec['id']} is absent")
+                    continue
+                shown = max((c.get("items") or 0 for c in instances), default=0)
+                needed = spec.get("min_items")
+                if needed and any(c.get("items") is not None for c in instances) and shown < needed:
+                    out.append(f"{where}: {spec['id']} has {shown} of the {needed} it needs")
+    return out
+
+
 PAGE_OPS = set(OPS) - UNIT_OPS
 
 

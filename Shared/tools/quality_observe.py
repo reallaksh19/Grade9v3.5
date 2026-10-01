@@ -527,6 +527,11 @@ def _render_core_unit(article: Node) -> dict:
         "prerequisites_bridged": [li.attrs["data-g9-prereq"] for li in prereqs if li.attrs.get("data-bridged") == "true"],
         "lineage_refs": [a.attrs.get("href") for a in article.find_all("a", attr="data-g9-lineage")],
         "metadata": metadata,
+        "components": [{"id": n.attrs["data-g9-component"],
+                        "items": int(n.attrs["data-g9-component-items"]) if n.attrs.get("data-g9-component-items", "").isdigit() else None,
+                        "unit": n.attrs.get("data-g9-component-unit")}
+                       for n in article.find_all(attr="data-g9-component")],
+        "construction_units": [n.attrs["data-g9-cu"] for n in article.find_all(attr="data-g9-cu")],
     }
 
 

@@ -26,6 +26,22 @@ OFFICIAL_BANK = "Physics/library/exam-bank/competitive-exam-question-bank.v2.jso
 OWNER_CUSTODY = {"authority_class": "OWNER_SUPPLIED_RAW_INPUT", "intake_ref": "sha256:fixture", "wording_custody": "VERBATIM"}
 
 
+def fill_page(row: dict) -> dict:
+    """The guided-support ladder and typed reasoning route an owner question needs (what `owner_bank.py new` leaves empty)."""
+    moves = [{"id": f"{row['id']}-MOVE-{n}", "kind": kind, "action": f"do step {n}", "why_valid": f"step {n} follows from the data",
+              "inputs": ["the stated data"], "output": f"result {n}"}
+             for n, kind in enumerate(("DECIDE", "REPRESENT", "TRANSFORM"), 1)]
+    row["answer"] = dict(row["answer"], reasoning_route=moves, crux_move_ref=moves[1]["id"])
+    row["scaffolds"] = [{"text": f"hint {n}", "support_kind": kind, "reveals": reveals, "learner_stage": stage,
+                         "supports_move_ref": moves[n - 1]["id"]}
+                        for n, (kind, reveals, stage) in enumerate((("CONNECT", "CONCEPT", "KEY_CONCEPT"),
+                                                                    ("REPRESENT", "METHOD", "REPRESENTATION"),
+                                                                    ("EXECUTE", "METHOD", "FIRST_MOVE")), 1)]
+    row.pop("hints", None)
+    row.pop("hint_ladder", None)
+    return row
+
+
 def owner_questions(package: dict, count: int = 2) -> list[dict]:
     """Official-bank questions for the fixture package's capabilities, rewritten as owner-supplied ones."""
     bank = json.loads((REPO / OFFICIAL_BANK).read_text(encoding="utf-8"))
@@ -36,6 +52,7 @@ def owner_questions(package: dict, count: int = 2) -> list[dict]:
         # An owner question names no exam: no exam badge and no exam provenance class, whatever the borrowed record carried.
         row["extensions"].pop("grade9v3:provenance_class", None)
         row["extensions"]["grade9v3:analysis"].pop("exam_source_badge", None)
+        fill_page(row)
         row["id"] = f"Q-OWNER-FX-{index:02d}"
         row["original_identifier"] = f"Q{index}"
     return rows
@@ -408,7 +425,8 @@ class TestOwnerBankFromIntake(unittest.TestCase):
         bank = owner_bank.new(self.INTAKE, "vec")
         if fill:
             for row in bank["questions"]:
-                row["answer"] = {"summary": "an answer", "reasoning": ["a step"]}
+                fill_page(row)
+                row["answer"]["summary"] = "an answer"
                 row["primary_capability_ref"] = "CAP-X"
                 row["family_ref"] = "FAM-X"
                 analysis = row["extensions"]["grade9v3:analysis"]
@@ -436,6 +454,55 @@ class TestOwnerBankFromIntake(unittest.TestCase):
         self.assertTrue(any("score 0 to 2" in p for p in problems), "the difficulty message says what the bands are")
         self.assertTrue(any("learner_question_type is one of" in p for p in problems), problems)
         self.assertEqual(owner_bank.check(self.bank(), intake=self.INTAKE), [])
+
+    def test_the_skeleton_carries_an_empty_ladder_and_route_and_check_names_what_is_empty(self):
+        bank = self.bank(fill=False)
+        row = bank["questions"][0]
+        self.assertEqual([m["kind"] for m in row["answer"]["reasoning_route"]], ["DECIDE", "REPRESENT", "TRANSFORM"])
+        self.assertEqual([r["support_kind"] for r in row["scaffolds"]], ["CONNECT", "REPRESENT", "EXECUTE"])
+        self.assertEqual({r["supports_move_ref"] for r in row["scaffolds"]}, {m["id"] for m in row["answer"]["reasoning_route"]})
+        problems = " ".join(owner_bank.check(bank))
+        self.assertIn("scaffolds[0].text is empty", problems)
+        self.assertIn("is missing action", problems)
+
+    def test_a_question_with_no_hint_ladder_or_route_is_refused_and_says_why(self):
+        bank = self.bank()
+        row = bank["questions"][0]
+        del row["scaffolds"]
+        del row["answer"]["reasoning_route"]
+        problems = " ".join(owner_bank.check(bank))
+        self.assertIn("HINT_LADDER needs 3, the record supplies 0", problems)
+        self.assertIn("SOLUTION_STEPS needs 3, the record supplies 0", problems)
+        self.assertIn("scaffolds[]", problems, "the message carries the blueprint's own instruction for the author")
+
+    def test_a_rung_must_point_at_a_move_the_crux_must_name_one_and_an_owner_question_has_no_source_hints(self):
+        bank = self.bank()
+        row = bank["questions"][0]
+        row["scaffolds"][0]["supports_move_ref"] = "NOT-A-MOVE"
+        row["answer"]["crux_move_ref"] = "ALSO-NOT"
+        row["hints"] = ["a hint the Owner never wrote"]
+        problems = " ".join(owner_bank.check(bank))
+        self.assertIn("scaffolds[0].supports_move_ref must be the id of a reasoning_route move", problems)
+        self.assertIn("answer.crux_move_ref must be the id of the move", problems)
+        self.assertIn("an owner question has no source", problems)
+
+    def test_a_rung_that_gives_the_answer_does_not_count_towards_the_ladder(self):
+        bank = self.bank()
+        for rung in bank["questions"][0]["scaffolds"]:
+            rung["reveals"] = "ANSWER"
+        self.assertIn("only 0 of 3 scaffold(s) can be shown before the answer", " ".join(owner_bank.check(bank)))
+
+    def test_advice_says_what_no_rule_requires_and_stays_quiet_when_it_is_done(self):
+        bank = self.bank()
+        notes = " ".join(owner_bank.advice(bank))
+        for component in ("CONDITIONS", "TRAP", "REPRESENTATION", "CHECK"):
+            self.assertIn(component, notes)          # the blueprint's EXPECTED components, named as it names them
+        for row in bank["questions"]:
+            row["figure_refs"] = ["REP-X"]
+            row["conditions"] = ["a given"]
+            row["extensions"]["grade9v3:analysis"]["common_wrong_route"] = "the tempting route"
+            row["answer"]["check"] = "a limiting case"
+        self.assertEqual(owner_bank.advice(bank), [])
 
     def test_an_owner_question_cannot_take_an_exam_provenance_class(self):
         bank = self.bank()
@@ -501,12 +568,12 @@ class TestOwnerBankFromIntake(unittest.TestCase):
         self.assertEqual(run(argv), 0)
         written = json.loads(out.read_text(encoding="utf-8"))
         self.assertEqual(len(written["questions"]), 2)
-        written["questions"][0]["answer"] = {"summary": "kept"}
+        written["questions"][0]["answer"]["summary"] = "kept"
         out.write_text(json.dumps(written), encoding="utf-8")
         self.assertEqual(run(argv), 1, "a second run must not erase the answers")
-        self.assertEqual(json.loads(out.read_text(encoding="utf-8"))["questions"][0]["answer"], {"summary": "kept"})
+        self.assertEqual(json.loads(out.read_text(encoding="utf-8"))["questions"][0]["answer"]["summary"], "kept")
         self.assertEqual(run(argv + ["--force"]), 0)
-        self.assertEqual(json.loads(out.read_text(encoding="utf-8"))["questions"][0]["answer"], {"summary": ""})
+        self.assertEqual(json.loads(out.read_text(encoding="utf-8"))["questions"][0]["answer"]["summary"], "")
 
 
 if __name__ == "__main__":

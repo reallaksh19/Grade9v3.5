@@ -27,7 +27,9 @@ REPO = Path(__file__).resolve().parents[2]
 if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
-from Shared.tools import build_pages_site, build_test_site, product_manifest, render_core, site_nav_audit  # noqa: E402
+from Shared.tools import (build_pages_site, build_test_site, product_manifest, quality_gate, render_core,  # noqa: E402
+                          site_nav_audit)
+from Shared.tools import web_blueprint_contract as blueprints  # noqa: E402
 
 TEST_ROOT = REPO / "TEST"
 PUBLIC_TEST = REPO / "public" / "test"
@@ -40,6 +42,53 @@ BANNER_TEXT = "TEST sandbox draft · not reviewed, not accepted, not curriculum"
 ALLOWED_SUFFIXES = {".html", ".css", ".js", ".json", ".svg", ".png", ".jpg", ".jpeg", ".webp", ".txt"}
 MAX_FILES, MAX_BYTES = 30, 2_000_000
 GAPS_SHOWN = 20
+QUALITY_SHOWN = 12
+# Rules about roles a manifest did not ask for follow from the Owner's scope, not from the pages: a Core2-and-Core1A job is
+# not "missing" Core1B. They are left out of the findings and named in the receipt.
+ROLE_SCOPED_RULES = {"PRODUCT-ALL-ROLES"}
+# These two rules read the blueprint's component list off the pages; the gaps and advisories already say the same thing, with
+# the record to author. They stay in the receipt and are left out of the console summary.
+RESTATED_RULES = {"BP-COMPONENTS-REQUIRED", "BP-COMPONENTS-EXPECTED"}
+
+
+def blueprint_refs(roles: list[str]) -> dict[str, str]:
+    """The blueprint each role's page was built from (id@version)."""
+    registry = blueprints.load_registry()
+    return {role: blueprints.blueprint_ref(bp) for role in roles
+            if (bp := blueprints.blueprint_for_role(registry, role)) is not None}
+
+
+def authoring_hints(roles: list[str]) -> dict[str, dict]:
+    """What the blueprint tells an author to write for each component: {component: {level, hint}}."""
+    registry = blueprints.load_registry()
+    out: dict[str, dict] = {}
+    for role in roles:
+        bp = blueprints.blueprint_for_role(registry, role)
+        for cid, level, hint in (blueprints.authoring_hints(bp) if bp else []):
+            out.setdefault(cid, {"level": level, "hint": hint})
+    return out
+
+
+def quality_report(folder: Path, slug: str, roles: list[str]) -> dict:
+    """The learner-quality contract read off the deployed pages (static: no browser), as a receipt block.
+
+    The depth gaps say what a record lacks; this says what the learner would actually see: a figure shared by seventeen
+    units, a figure with no stages, a role with no page. It never says the content is good."""
+    scoped = set(roles) != set(product_manifest.OUTPUT_ROLES)
+    try:
+        report = quality_gate.gate(folder, "TEST", slug, static=True)
+    except Exception as caught:   # the report is advice; a failure to make it must be said, not hidden
+        return {"checked": "not run", "error": f"{type(caught).__name__}: {caught}", "findings": [], "continuity": []}
+    left_out = sorted({f["rule"] for f in report["findings"] if scoped and f["rule"] in ROLE_SCOPED_RULES})
+    findings = [{key: f[key] for key in ("severity", "rule", "where", "detail")} for f in report["findings"]
+                if not (scoped and f["rule"] in ROLE_SCOPED_RULES)]
+    continuity = [c for c in report["continuity"] if not (scoped and "CORE1B" not in roles and c["code"] == "CONT_1A_1B_PARITY")]
+    return {
+        "checked": "static: the pages' own markers against Shared/quality/learner-quality.v1.json; no browser measurement",
+        "findings": findings,
+        "continuity": continuity,
+        "left_out": left_out + (["CONT_1A_1B_PARITY"] if len(continuity) != len(report["continuity"]) else []),
+    }
 EXTERNAL = re.compile(r"""(?:src|href)\s*=\s*["']\s*(?:https?:)?//""", re.IGNORECASE)
 EXTERNAL_CSS = re.compile(r"""@import\s+(?:url\()?\s*["']?\s*(?:https?:)?//""", re.IGNORECASE)
 
@@ -106,7 +155,7 @@ def deploy_product(manifest_path: Path) -> dict:
         staged = Path(tmp) / manifest_path.name
         staged.write_text(json.dumps(deployed, indent=2), encoding="utf-8")
         try:
-            pages, gaps, digest = render_core.build(staged, "PAGES")
+            pages, gaps, digest, advisories = render_core.build_report(staged, "PAGES")
         except product_manifest.ProductSelectionError as caught:
             raise DeployError(f"selection rejected: {caught}") from caught
     out = PUBLIC_TEST / "products" / slug
@@ -136,7 +185,11 @@ def deploy_product(manifest_path: Path) -> dict:
         "draft": bool(gaps),
         "gap_count": len(gaps),
         "gaps_by_core": dict(sorted(by_core.items())),
-        "gaps": [{key: gap.get(key) for key in ("core", "duty", "record", "detail")} for gap in gaps],
+        "gaps": [{key: gap.get(key) for key in ("core", "duty", "record", "detail", "component") if gap.get(key)} for gap in gaps],
+        "advisories": [{key: row.get(key) for key in ("core", "component", "record", "detail")} for row in advisories],
+        "blueprints": blueprint_refs(product_manifest.selected_output_roles(manifest)),
+        "authoring": authoring_hints(product_manifest.selected_output_roles(manifest)),
+        "quality": quality_report(out, slug, product_manifest.selected_output_roles(manifest)),
         "roles": product_manifest.selected_output_roles(manifest),
         "selection_counts": {key: len(selection.get(key) or []) for key in product_manifest.SELECTION_KEYS},
         "empty_roles": render_core.empty_roles(manifest),
@@ -233,6 +286,25 @@ def deploy_interactive(source: Path) -> dict:
 
 # ------------------------------------------------------------------ command line
 
+def _print_blueprint_notes(receipt: dict) -> None:
+    """Say what the blueprint asks for, once per component, beside the gaps and advisories that name the records."""
+    hints = receipt.get("authoring") or {}
+    refs = ", ".join(receipt.get("blueprints", {}).values())
+    gap_components = sorted({g["component"] for g in receipt["gaps"] if g.get("component")})
+    if gap_components:
+        print(f"required by the blueprint ({refs}); how to author each:")
+        for cid in gap_components:
+            print(f"  {cid}: {(hints.get(cid) or {}).get('hint', 'see the blueprint component')}")
+    advised: dict[str, list[str]] = {}
+    for row in receipt.get("advisories", []):
+        advised.setdefault(row["component"], []).append(row["record"])
+    if advised:
+        print("expected by the blueprint and absent (advisory, not a gap; the reference page has each):")
+        for cid, records in sorted(advised.items()):
+            hint = (hints.get(cid) or {}).get("hint")
+            print(f"  {cid}: {len(records)} record(s), e.g. {records[0]}" + (f". {hint}" if hint else ""))
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     sub = parser.add_subparsers(dest="cmd", required=True)
@@ -267,6 +339,22 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"  gap {gap['core']:6s} {gap['record']}: {gap['detail']}")
             if len(receipt["gaps"]) > len(shown):
                 print(f"  ... {len(receipt['gaps']) - len(shown)} more in public/test/products/{receipt['slug']}/deploy-receipt.json")
+            _print_blueprint_notes(receipt)
+            quality = receipt["quality"]
+            if quality.get("error"):
+                print(f"  quality check could not run: {quality['error']}", file=sys.stderr)
+            else:
+                findings = [f for f in quality["findings"] if f["rule"] not in RESTATED_RULES] + [{"severity": "CONT", "rule": c["code"], "where": "", "detail": c["detail"]}
+                                                  for c in quality["continuity"]]
+                counts = {}
+                for finding in findings:
+                    counts[finding["severity"]] = counts.get(finding["severity"], 0) + 1
+                print("quality (static): " + (", ".join(f"{n} {sev}" for sev, n in sorted(counts.items())) if findings
+                                              else "no finding") + "; it checks what the learner sees, not that it is right")
+                for finding in findings[:QUALITY_SHOWN]:
+                    print(f"  {finding['severity']:4s} {finding['rule']} {finding['where']}: {finding['detail']}")
+                if len(findings) > QUALITY_SHOWN:
+                    print(f"  ... {len(findings) - QUALITY_SHOWN} more in public/test/products/{receipt['slug']}/deploy-receipt.json")
             for role in receipt["empty_roles"]:
                 print(f"WARNING: {role} is part of this product but selects no records, so its page has no items.", file=sys.stderr)
         else:

@@ -100,7 +100,9 @@ def inspect(ctx, pages: dict[str, str], inventory: dict | None = None) -> dict:
                 not node.first(attr="data-g9-meta-incomplete"), "Concept/topic, question difficulty and source labels", qid)
             blocks = [n for n in node.find_all(attr="data-g9-block")
                       if n.attrs["data-g9-block"] == "authored_core2_support"]
-            rungs = [n.content() for b in blocks for n in b.find_all(attr="data-g9-rung")]
+            # a rung is its words; the "H1 Represent Guided" label the page puts above it is not part of them
+            rungs = [n.content().replace(head.content(), "", 1).strip() if (head := n.first(cls="g9-rung-head")) is not None
+                     else n.content() for b in blocks for n in b.find_all(attr="data-g9-rung")]
             moves = list(node.find_all(attr="data-g9-solution-move"))
             if band in {"D2", "D3", "D4"}:
                 add("AUTHORED_HINT_LADDER", len(rungs) >= 3 and all(rungs) and

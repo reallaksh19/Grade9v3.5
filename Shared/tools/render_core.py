@@ -40,6 +40,7 @@ REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
 
 from Shared.tools import core2_v2, learner_metadata, owner_bank, product_manifest  # noqa: E402
+from Shared.tools import web_blueprint_contract as blueprints_api  # noqa: E402
 
 BLUEPRINTS = REPO / "Shared/web/interactive-page-blueprints.v1.json"
 CONTRACT = REPO / "Shared/quality/learner-quality.v1.json"
@@ -78,13 +79,22 @@ class Ctx:
     selection_rows: dict[str, list[dict]] = field(default_factory=dict)
     authority_hashes: list[tuple[str, str]] = field(default_factory=list)
     gaps: list[dict] = field(default_factory=list)
+    advisories: list[dict] = field(default_factory=list)
     figure_instances: dict[str, int] = field(default_factory=dict)
     source_items: dict[str, dict] = field(default_factory=dict)
     source_checks: dict[str, dict] = field(default_factory=dict)
 
-    def gap(self, duty: str, record: str, detail: str, role: str) -> None:
-        self.gaps.append({"duty": duty, "record": record, "detail": detail, "core": role,
-                          "product": self.manifest["product_id"]})
+    def gap(self, duty: str, record: str, detail: str, role: str, component: str | None = None) -> None:
+        row = {"duty": duty, "record": record, "detail": detail, "core": role,
+               "product": self.manifest["product_id"]}
+        if component:
+            row["component"] = component
+        self.gaps.append(row)
+
+    def advise(self, component: str, record: str, detail: str, role: str) -> None:
+        """What the blueprint expects a learner to see and the record does not supply: said, never a failure."""
+        self.advisories.append({"component": component, "record": record, "detail": detail, "core": role,
+                                "product": self.manifest["product_id"]})
 
     # record lookup across the manifest's packages
     def index(self, kind: str) -> dict:
@@ -323,6 +333,114 @@ def items(values, ordered=False) -> str:
 def slot(name: str, body: str, required: bool) -> str:
     return (f'<section class="blueprint-slot slot-{name}" data-blueprint-slot="{name}" '
             f'data-required="{"true" if required else "false"}">{body}</section>')
+
+
+# ------------------------------------------------------------------ blueprint components
+# A blueprint (Shared/web/interactive-page-blueprints.v1.json) names the components of a page, the slot each
+# belongs to, how much it matters (REQUIRED, EXPECTED, OPTIONAL) and the column of each slot. The renderer
+# realises exactly that: it wraps what it built as the component, reports a REQUIRED component that is absent or
+# short as a gap that names the record to author, and reports an EXPECTED one as an advisory. It never
+# writes the missing text itself.
+
+_COMPONENT_NOUN = {"HINT_LADDER": "rungs", "SOLUTION_STEPS": "moves", "REPRESENTATION": "figures",
+                   "CONSTRUCTION_STEPS": "steps", "STAGED_VISUAL": "stages", "TRAP_REPAIR": "wrong paths",
+                   "QUICK_CHECK": "checks"}
+
+
+def blueprint_of(ctx: Ctx, role: str) -> dict | None:
+    return blueprints_api.blueprint_for_role(ctx.blueprints, role) if ctx.blueprints else None
+
+
+def component(ctx: Ctx, role: str, cid: str, body: str, record: str, items: int | None = None,
+              unit: str | None = None) -> str:
+    """Wrap `body` as the blueprint's component `cid`; with a blueprint that declares components, report its absence."""
+    bp = blueprint_of(ctx, role)
+    if bp is None or not bp.get("components"):
+        return body
+    spec = next((c for c in blueprints_api.components(bp) if c["id"] == cid), None)
+    if spec is None:
+        raise KeyError(f"{role}: {cid} is not a component of {bp['id']}")
+    present = bool(body and body.strip())
+    minimum = spec.get("min_items")
+    target = spec.get("target_items")
+    count = items if items is not None else (1 if present else 0)
+    if present and items is not None and minimum is not None and minimum <= count < (target or 0):
+        ctx.advise(cid, record, f"{cid} has {count} of the {target} {_COMPONENT_NOUN.get(cid, 'items')} the reference page has", role)
+    if not present or (minimum is not None and count < minimum):
+        noun = _COMPONENT_NOUN.get(cid, "items")
+        detail = (f"{cid} is absent" if not present else f"{cid} has {count} of the {minimum} {noun} it needs")
+        if spec["level"] == "REQUIRED":
+            duty = spec.get("duty")
+            if not (duty and any(g["duty"] == duty and g["record"] == record for g in ctx.gaps)):
+                ctx.gap(duty or "AUTHOR_COMPONENT", record, detail, role, component=cid)
+        elif spec["level"] == "EXPECTED":
+            ctx.advise(cid, record, detail, role)
+    if not present:
+        return ""
+    attrs = (f'data-g9-component="{cid}" data-g9-level="{spec["level"]}" '
+             f'data-g9-presentation="{spec["presentation"]}"')
+    if items is not None:
+        attrs += f' data-g9-component-items="{items}"'
+    if unit:
+        attrs += f' data-g9-component-unit="{esc(unit)}"'
+    return f'<div class="g9-component g9-c-{spec["presentation"].lower().replace("_", "-")}" {attrs}>{body}</div>'
+
+
+def component_body(ctx: Ctx, role: str, parts: dict[str, str], slot_id: str | None = None,
+                   parent: str | None = None) -> str:
+    """Component bodies in the order the blueprint lists them (`parts` keys are component ids)."""
+    bp = blueprint_of(ctx, role)
+    if bp is None or not bp.get("components"):
+        return "".join(parts.values())
+    order = [c["id"] for c in blueprints_api.components(bp)
+             if c.get("parent") == parent and (slot_id is None or c["slot"] == slot_id)]
+    unknown = sorted(set(parts) - set(order))
+    if unknown:
+        raise KeyError(f"{role}: {', '.join(unknown)} not declared in {slot_id or parent} of {bp['id']}")
+    return "".join(parts.get(cid, "") for cid in order)
+
+
+def compose(ctx: Ctx, role: str, bodies: dict[str, str]) -> str:
+    """Slot sections in blueprint order, grouped by column.
+
+    A FULL slot is a band across the page. PRIMARY and SUPPORT slots between two bands share one split: the
+    primary column and the support column. Compact and medium widths stack them, primary first, in the same DOM.
+    """
+    bp = blueprint_of(ctx, role)
+    if bp is None:
+        return "".join(slot(name, body, True) for name, body in bodies.items())
+    out: list[str] = []
+    primary: list[str] = []
+    support: list[str] = []
+    support_filled = False
+
+    def flush() -> None:
+        nonlocal support_filled
+        if primary or support:
+            solo = "" if support_filled else " g9-split-primary-only"
+            solo = solo if primary else " g9-split-support-only"
+            cols = (f'<div class="g9-col g9-col-primary">{"".join(primary)}</div>' if primary else "")
+            cols += (f'<div class="g9-col g9-col-support">{"".join(support)}</div>' if support else "")
+            out.append(f'<div class="g9-split{solo}">{cols}</div>')
+        primary.clear()
+        support.clear()
+        support_filled = False
+
+    for row in bp["slots"]:
+        if row["id"] not in bodies:
+            continue
+        section = slot(row["id"], bodies[row["id"]], bool(row["required"]))
+        column = row.get("column") or "FULL"
+        if column == "FULL":
+            flush()
+            out.append(section)
+        elif column == "PRIMARY":
+            primary.append(section)
+        else:
+            support.append(section)
+            support_filled = support_filled or bool(bodies[row["id"]].strip())
+    flush()
+    return "".join(out)
 
 
 def metadata_strip(ctx: Ctx, role: str, record: dict) -> str:
@@ -793,14 +911,14 @@ def core1(ctx: Ctx, m: dict) -> str:
                        f'{items(r.get("conditions"))}</div>' for r in rels)
     # The compact anchor's own figure; the microtopic's first representation is often shared across the map.
     rep = (anchor or {}).get("representation_ref") or (m.get("representation_refs") or [None])[0]
-    body = (slot("identity", block("scope", f"<h2>{esc(m['title'])}</h2>") + metadata_strip(ctx, "CORE1", m), True)
-            + slot("orientation",
-                   block("hard_transition", para(m["inferential_jump"]), title="Hard transition")
-                   + figure(ctx, rep, "TEACHING", "CORE1", m["id"])
-                   + block("governing_relation", rel_html, title="Governing relation")
-                   + block("compact_anchor", (para(anchor["prompt"]) + para(anchor["result"])) if anchor else "", title="Compact anchor")
-                   + block("exit_prompt", para((m.get("exit_task") or {}).get("prompt")), title="Before you go on"), True))
-    return body
+    return compose(ctx, "CORE1", {
+        "identity": block("scope", f"<h2>{esc(m['title'])}</h2>") + metadata_strip(ctx, "CORE1", m),
+        "orientation": (block("hard_transition", para(m["inferential_jump"]), title="Hard transition")
+                        + figure(ctx, rep, "TEACHING", "CORE1", m["id"])
+                        + block("governing_relation", rel_html, title="Governing relation")
+                        + block("compact_anchor", (para(anchor["prompt"]) + para(anchor["result"])) if anchor else "", title="Compact anchor")
+                        + block("exit_prompt", para((m.get("exit_task") or {}).get("prompt")), title="Before you go on")),
+    })
 
 
 def _core1a_worked_anchor(question: dict) -> str:
@@ -888,6 +1006,11 @@ def _core1a_path_bridge(ctx: Ctx, m: dict, steps: dict[str, dict]) -> tuple[str,
     return primary, support
 
 
+def _stages_of(figure_html: str) -> int:
+    found = re.search(r'data-g9-stages-total="(\d+)"', figure_html)
+    return int(found.group(1)) if found else 0
+
+
 def core1a(ctx: Ctx, m: dict) -> str:
     units = m.get("construction_units") or []
     if not units:
@@ -896,49 +1019,45 @@ def core1a(ctx: Ctx, m: dict) -> str:
     questions = ctx.index("questions")
     exit_task = m.get("exit_task") or {}
 
-    identity = slot(
-        "identity",
-        f"<h2>{esc(m['title'])}</h2>"
-        + metadata_strip(ctx, "CORE1A", m)
-        + block("entry_assumptions", items(m.get("entry_assumptions")) + _prereqs(ctx, m), title="You need")
-        + block("section_route", _core1a_section_route(m), title="Sections"),
-        True,
-    )
-    closure = (
-        block("exit_task", para(exit_task.get("prompt")), title="Try it with less support")
-        + attempt_box("Your answer", record=m["id"])
-        + reveal(
-            "Model answer",
-            block(
-                "exit_answer",
-                para((exit_task.get("answer") or {}).get("summary"))
-                + items((exit_task.get("answer") or {}).get("reasoning"), True),
-            ),
-            ref=f'CORE1A-{m["id"]}-exit',
-        )
-        + _core1a_practice_navigation(ctx, m)
-    )
+    def part(cid: str, body: str, record: str = m["id"], items: int | None = None, unit: str | None = None) -> str:
+        return component(ctx, "CORE1A", cid, body, record, items=items, unit=unit)
+
+    identity = component_body(ctx, "CORE1A", {
+        "CONCEPT_HEADER": part("CONCEPT_HEADER", f"<h2>{esc(m['title'])}</h2>" + metadata_strip(ctx, "CORE1A", m)),
+        "MODEL_CONTRACT": part("MODEL_CONTRACT", block("entry_assumptions", items(m.get("entry_assumptions")) + _prereqs(ctx, m),
+                                                       title="You need")),
+        "SECTION_ROUTE": part("SECTION_ROUTE", block("section_route", _core1a_section_route(m), title="Sections")),
+    }, "identity")
+    closure = component_body(ctx, "CORE1A", {
+        "EXIT_RECALL": part("EXIT_RECALL", (
+            block("exit_task", para(exit_task.get("prompt")), title="Try it with less support")
+            + attempt_box("Your answer", record=m["id"])
+            + reveal("Model answer",
+                     block("exit_answer",
+                           para((exit_task.get("answer") or {}).get("summary"))
+                           + items((exit_task.get("answer") or {}).get("reasoning"), True)),
+                     ref=f'CORE1A-{m["id"]}-exit'))),
+        "PRACTICE_LINKS": part("PRACTICE_LINKS", _core1a_practice_navigation(ctx, m)),
+    }, "repair_closure")
+    closing = compose(ctx, "CORE1A", {"repair_closure": closure})
+    head = compose(ctx, "CORE1A", {"identity": identity})
 
     if not units:
         primary, support = _core1a_path_bridge(ctx, m, steps)
-        return (
-            identity
-            + slot(
-                "construction",
-                block("inferential_jump", para(m["inferential_jump"]), title="The key step") + primary,
-                True,
-            )
-            + slot("repair_closure", support + closure, True)
-        )
+        return head + compose(ctx, "CORE1A", {
+            "construction": part("KEY_STEP", block("inferential_jump", para(m["inferential_jump"]), title="The key step")) + primary,
+            "repair_closure": support + closure,
+        })
 
-    paired = ""
+    rows = ""
     for n, u in enumerate(units):
         decision = "" if u.get("decision_from") == "inferential_jump" else u.get("decision", "")
+        step_items = [steps[sid] for sid in u["step_refs"] if sid in steps]
         step_html = "".join(
-            f'<li data-g9-step="{esc(sid)}"><strong>{esc(steps[sid]["action"])}</strong>'
-            f'<br><em>Why valid:</em> {esc(steps[sid]["why_valid"])}'
-            f'<br><em>Result:</em> {esc(steps[sid]["output"])}</li>'
-            for sid in u["step_refs"] if sid in steps
+            f'<li data-g9-step="{esc(step["id"])}"><strong>{esc(step["action"])}</strong>'
+            f'<br><em>Why valid:</em> {esc(step["why_valid"])}'
+            f'<br><em>Result:</em> {esc(step["output"])}</li>'
+            for step in step_items
         )
         anchor_q = questions.get(u.get("worked_anchor_ref") or "")
         if not anchor_q:
@@ -948,45 +1067,62 @@ def core1a(ctx: Ctx, m: dict) -> str:
         if not checks:
             ctx.gap("AUTHOR_INDEPENDENT_CHECK", u["id"], "no independent check", "CORE1A")
         wrong = _misconceptions(m, u)
-        heading = (
-            f"<h3>{esc(decision)}</h3>"
-            if decision
-            else (f"<h3>Construction step {n + 1} of {len(units)}</h3>" if len(units) > 1 else "")
-        )
+        title = decision or (f"Construction step {n + 1} of {len(units)}" if len(units) > 1 else "Construction")
+        unit_head = (f'<div class="g9-unit-head"><span class="g9-unit-no" aria-hidden="true">{n + 1}</span>'
+                     f'<h3>{esc(title)}</h3></div>'
+                     + _core1a_unit_navigation(ctx, u["id"]))
         relation_matrix = _core1a_relation_matrix(ctx, m) if n == 0 else ""
-        primary = (
-            (block("inferential_jump", para(m["inferential_jump"]), title="The key step") if n == 0 else "")
-            + f'<section id="{esc(u["id"])}" class="g9-cu" data-g9-cu="{esc(u["id"])}">{heading}'
-            + _core1a_unit_navigation(ctx, u["id"])
-            + block("construction", f"<ol>{step_html}</ol>")
-            + figure(ctx, u.get("representation_ref"), "TEACHING", "CORE1A", u["id"])
-            + block("equation_matrix", relation_matrix, title="Equations and validity")
-            + block("worked_anchor", anchor_html, title="Watch one")
-            + "</section>"
+
+        def unit_part(cid: str, body: str, items: int | None = None) -> str:
+            return part(cid, body, record=u["id"], items=items, unit=u["id"])
+
+        figure_html = figure(ctx, u.get("representation_ref"), "TEACHING", "CORE1A", u["id"])
+        # The unit card holds the unit's own components in blueprint order; the key step precedes the first card.
+        card_parts = {
+            "UNIT_HEADER": unit_part("UNIT_HEADER", unit_head),
+            "CONSTRUCTION_STEPS": unit_part("CONSTRUCTION_STEPS",
+                                            block("construction", f"<ol>{step_html}</ol>" if step_html else ""),
+                                            items=len(step_items)),
+            "WORKED_EXAMPLE": unit_part("WORKED_EXAMPLE", block("worked_anchor", anchor_html, title="Watch one")),
+        }
+        if n == 0:
+            card_parts["EQUATIONS"] = part("EQUATIONS", block("equation_matrix", relation_matrix, title="Equations and validity"))
+        card = component_body(ctx, "CORE1A", card_parts, "construction")
+        construction = (
+            (part("KEY_STEP", block("inferential_jump", para(m["inferential_jump"]), title="The key step")) if n == 0 else "")
+            + f'<section id="{esc(u["id"])}" class="g9-cu" data-g9-cu="{esc(u["id"])}">{card}</section>'
         )
         support_label = decision or f"Construction {n + 1}"
+        trap = (block("wrong_path", items(row["wrong_idea"] for row in wrong), title="A tempting wrong path")
+                + block("diagnose", items(row["diagnostic_prompt"] for row in wrong), title="Diagnose")
+                + block("repair", items(row["repair"] for row in wrong), title="Repair"))
         support = (
             f'<section class="g9-cu-support" data-g9-support-for="{esc(u["id"])}">'
             f"<h3>{esc(support_label)}</h3>"
-            + block("wrong_path", items(row["wrong_idea"] for row in wrong), title="A tempting wrong path")
-            + block("diagnose", items(row["diagnostic_prompt"] for row in wrong), title="Diagnose")
-            + block("repair", items(row["repair"] for row in wrong), title="Repair")
-            + block("independent_check", items(checks), title="Check it independently")
+            + component_body(ctx, "CORE1A", {
+                "TRAP_REPAIR": unit_part("TRAP_REPAIR", trap, items=len(wrong)),
+                "QUICK_CHECK": unit_part("QUICK_CHECK", block("independent_check", items(checks), title="Check it independently"),
+                                         items=len(checks)),
+            }, "repair_closure")
             + "</section>"
         )
-        # Alternating blueprint-owned slots are deliberate. In compact/medium DOM order,
-        # each companion follows the construction it supports; in expanded grid layout
-        # the same pair occupies the 68/32 primary/support row without duplicating content.
-        paired += slot("construction", primary, True) + slot("repair_closure", support, True)
+        # Each unit is its own row: its construction on the primary side, its picture and repair on the support side.
+        rows += compose(ctx, "CORE1A", {
+            "construction": construction,
+            "representation": component_body(ctx, "CORE1A", {
+                "STAGED_VISUAL": unit_part("STAGED_VISUAL", figure_html, items=_stages_of(figure_html)),
+            }, "representation"),
+            "repair_closure": support,
+        })
 
-    return identity + paired + slot("repair_closure", closure, True)
+    return head + rows + closing
 
 
 def core1b(ctx: Ctx, m: dict) -> str:
     e = m.get("elicitation")
     if not e:
         ctx.gap("AUTHOR_ELICITATION", m["id"], "no predict/attempt/reconstruct/boundary cycle", "CORE1B")
-        return slot("identity", f"<h2>{esc(m['title'])}</h2>" + metadata_strip(ctx, "CORE1B", m), True)
+        return compose(ctx, "CORE1B", {"identity": f"<h2>{esc(m['title'])}</h2>" + metadata_strip(ctx, "CORE1B", m)})
     unit = (m.get("construction_units") or [{}])[0]
     wrong = _misconceptions(m, unit if unit else None)
     rec = e.get("reconstruct") or {}
@@ -999,26 +1135,27 @@ def core1b(ctx: Ctx, m: dict) -> str:
     if not task:
         # `produces` describes the expected answer; it is not a task the learner can act on.
         ctx.gap("AUTHOR_RECONSTRUCTION_TASK", m["id"], "no concrete Core1B task (elicitation.attempt.task)", "CORE1B")
-    return (slot("identity", f"<h2>{esc(m['title'])}</h2>" + metadata_strip(ctx, "CORE1B", m), True)
-            + slot("attempt",
-                   block("predict", para((e.get("predict") or {}).get("prompt")), title="Predict")
-                   + figure(ctx, task_rep, "PRE_ATTEMPT", "CORE1B", m["id"], first_stage_only=True,
-                            allowed=(task or {}).get("stage_refs") or None)
-                   + block("attempt_prompt", (para(task["prompt"]) + items(task.get("givens"))) if task else "",
-                           title="Attempt")
-                   + attempt_box("Your attempt", (task or {}).get("response"), record=m["id"]), True)
-            + slot("reconstruction",
-                   reveal("Reconstruct", block("reconstruct", items((r["ask"] for r in rec.get("route") or []), True))
-                          + block("diagnose", items(w["diagnostic_prompt"] for w in wrong), title="Diagnose")
-                          + block("repair", items(w["repair"] for w in wrong), title="Repair")
-                          + block("success_criteria", para(att.get("produces")), title="What your answer should contain")
-                          + block("model_response", para(model) + items(att.get("accepted")), title="What a complete answer does")
-                          + block("rejoin_jump", para(m["inferential_jump"]), title="The step you rebuilt")
-                          + figure(ctx, task_rep, "POST_ATTEMPT", "CORE1B", m["id"] + "-full"),
-                          ref=f'CORE1B-{m["id"]}-reconstruct')
-                   + block("boundary_test", para(bt.get("prompt")), title="Boundary test")
-                   + reveal("Boundary answer", block("boundary_answer", para(bt.get("answer")) + para(bt.get("confirms"))),
-                            ref=f'CORE1B-{m["id"]}-boundary'), True))
+    return compose(ctx, "CORE1B", {
+        "identity": f"<h2>{esc(m['title'])}</h2>" + metadata_strip(ctx, "CORE1B", m),
+        "attempt": (block("predict", para((e.get("predict") or {}).get("prompt")), title="Predict")
+                    + figure(ctx, task_rep, "PRE_ATTEMPT", "CORE1B", m["id"], first_stage_only=True,
+                             allowed=(task or {}).get("stage_refs") or None)
+                    + block("attempt_prompt", (para(task["prompt"]) + items(task.get("givens"))) if task else "",
+                            title="Attempt")
+                    + attempt_box("Your attempt", (task or {}).get("response"), record=m["id"])),
+        "reconstruction": (
+            reveal("Reconstruct", block("reconstruct", items((r["ask"] for r in rec.get("route") or []), True))
+                   + block("diagnose", items(w["diagnostic_prompt"] for w in wrong), title="Diagnose")
+                   + block("repair", items(w["repair"] for w in wrong), title="Repair")
+                   + block("success_criteria", para(att.get("produces")), title="What your answer should contain")
+                   + block("model_response", para(model) + items(att.get("accepted")), title="What a complete answer does")
+                   + block("rejoin_jump", para(m["inferential_jump"]), title="The step you rebuilt")
+                   + figure(ctx, task_rep, "POST_ATTEMPT", "CORE1B", m["id"] + "-full"),
+                   ref=f'CORE1B-{m["id"]}-reconstruct')
+            + block("boundary_test", para(bt.get("prompt")), title="Boundary test")
+            + reveal("Boundary answer", block("boundary_answer", para(bt.get("answer")) + para(bt.get("confirms"))),
+                     ref=f'CORE1B-{m["id"]}-boundary')),
+    })
 
 
 def _identity(q: dict) -> str:
@@ -1100,6 +1237,23 @@ def _core2_support_target(source: str) -> str:
     return f'{"source_hint" if lane == "hints" else "scaffold"}:{index}'
 
 
+def _core2_rung_pill(provenance: str) -> str:
+    source = provenance == core2_v2.SOURCE_HINT
+    return f'<span class="g9-pill g9-pill-{"source" if source else "guided"}">{"Source" if source else "Guided"}</span>'
+
+
+_CORE2_KIND_LABEL = {"REPRESENT": "Represent", "CONNECT": "Connect", "EXECUTE": "Carry out"}
+
+
+def _core2_rung_head(number: int, stage: str | None, provenance: str, kind: str | None = None) -> str:
+    """H0, H1, ...: which rung, what it is for, and whose words it carries."""
+    label = (_CORE2_STAGE_LABEL[stage] if stage in _CORE2_STAGE_LABEL and stage != "OTHER"
+             else _CORE2_KIND_LABEL.get(kind or "", "Support"))
+    return (f'<div class="g9-rung-head"><span class="g9-rung-no">H{number - 1}</span>'
+            f'<span class="g9-rung-label" data-g9-support-stage-label>{esc(label)}</span>'
+            f'{_core2_rung_pill(provenance)}</div>')
+
+
 def _core2_support_rung(ctx: Ctx, q: dict, row: dict, number: int) -> str:
     """Render one provenance-explicit support rung without manufacturing academic content."""
     attrs = [
@@ -1116,8 +1270,7 @@ def _core2_support_rung(ctx: Ctx, q: dict, row: dict, number: int) -> str:
         if row.get(key):
             attrs.append(f'{attr}="{esc(row[key])}"')
     stage = row.get("learner_stage")
-    stage_badge = (f'<p class="g9-prov" data-g9-support-stage-label>{esc(_CORE2_STAGE_LABEL[stage])}</p>'
-                   if stage else "")
+    stage_badge = _core2_rung_head(number, stage, row["provenance"], row.get("support_kind"))
     allowed = [row["visual_stage_ref"]] if row.get("visual_stage_ref") else None
     visual = figure(ctx, row.get("visual_ref"), "PRE_ATTEMPT", "CORE2",
                     f'{q["id"]}-support-{number}', allowed=allowed)
@@ -1142,9 +1295,23 @@ def _core2_support_ladder(ctx: Ctx, q: dict, rows: list[dict], provenance: str) 
         for number, row in enumerate(rows, 1)
     )
     label = "Show source hint" if provenance == core2_v2.SOURCE_HINT else "Show guided support"
+    # The rungs still to come are listed by number, purpose and provenance only, so the learner sees the shape of
+    # the ladder; each rung's words stay out of the page until it is asked for.
+    ahead = "".join(f'<li data-g9-rung-ghost>{_core2_rung_head(number, row.get("learner_stage"), row["provenance"], row.get("support_kind"))}</li>'
+                    for number, row in enumerate(rows, 1))
     return (f'<div class="g9-ladder" data-g9-ladder-ref="{esc(ref)}" '
             f'data-g9-support-group="{esc(provenance)}"><ol data-g9-ladder></ol>'
+            f'<ol class="g9-rung-map" aria-label="Rungs still to come">{ahead}</ol>'
             f'{payloads}<button type="button" data-g9-next-rung>{esc(label)}</button></div>')
+
+
+def _core2_support_rungs(q: dict) -> int:
+    """How many rungs the learner can ask for before the solution (0 when the support does not project)."""
+    try:
+        source_rows, authored_rows = core2_v2.split_pre_solution_support(q)
+    except core2_v2.Core2SupportProjectionError:
+        return 0
+    return len(source_rows) + len(authored_rows)
 
 
 def _core2_support(ctx: Ctx, q: dict) -> str:
@@ -1154,12 +1321,22 @@ def _core2_support(ctx: Ctx, q: dict) -> str:
     except core2_v2.Core2SupportProjectionError as exc:
         ctx.gap("AUTHOR_CORE2_SUPPORT", q["id"], str(exc), "CORE2")
         return ""
-    return (block("source_hints",
-                  _core2_support_ladder(ctx, q, source_rows, core2_v2.SOURCE_HINT),
-                  title="Source support")
-            + block("authored_core2_support",
-                    _core2_support_ladder(ctx, q, authored_rows, core2_v2.AUTHORED_CORE2_SUPPORT),
-                    title="Guided support"))
+    lanes = (block("source_hints",
+                   _core2_support_ladder(ctx, q, source_rows, core2_v2.SOURCE_HINT),
+                   title="Source support")
+             + block("authored_core2_support",
+                     _core2_support_ladder(ctx, q, authored_rows, core2_v2.AUTHORED_CORE2_SUPPORT),
+                     title="Guided support"))
+    return ('<div class="g9-eyebrow">Hint ladder · reveal only what you need</div>' + lanes) if lanes else ""
+
+
+def _core2_solution_moves(answer: dict) -> int:
+    """How many steps the learner is shown as the working (route moves, else the legacy reasoning lines)."""
+    try:
+        rows = core2_v2.project_solution(answer)
+    except core2_v2.Core2SolutionProjectionError:
+        return 0
+    return len(rows) if rows else sum(1 for step in answer.get("reasoning") or [] if step)
 
 
 def _core2_solution(ctx: Ctx, q: dict, answer: dict) -> str:
@@ -1192,13 +1369,40 @@ def _core2_solution(ctx: Ctx, q: dict, answer: dict) -> str:
         uses = block("solution_inputs", items(row.get("inputs")), title="Uses")
         rendered.append(
             f'<section class="g9-solution-move" {" ".join(attrs)}>'
-            f'<h4 data-g9-solution-stage-label>{esc(row["stage"].title())}</h4>'
+            f'<div class="g9-step-no" aria-hidden="true">{row["order"]}</div>'
+            f'<div class="g9-step-body"><h4 data-g9-solution-stage-label>{esc(row["stage"].title())}</h4>'
             f'{crux}<p data-g9-solution-action>{esc(row["action"])}</p>{uses}'
             f'<p data-g9-solution-why><em>Why valid:</em> {esc(row["why_valid"])}</p>'
             f'<p data-g9-solution-output><strong>Result:</strong> {esc(row["output"])}</p>'
-            f'{visual}</section>'
+            f'{visual}</div></section>'
         )
     return block("structured_working", "".join(rendered), title="Reasoning route")
+
+
+_DIFFICULTY_PART = {
+    "concept_model_selection": "Choosing the model",
+    "representation_translation": "Representation",
+    "reasoning_chain_length": "Reasoning chain",
+    "algebra_computational_load": "Algebra and numbers",
+    "trap_exception_sensitivity": "Traps and exceptions",
+}
+
+
+def _difficulty_why(rid: str, analysis: dict) -> str:
+    """The band, its score and the five parts behind it, from the record's own difficulty estimate."""
+    d = analysis.get("difficulty")
+    if not isinstance(d, dict) or not d.get("band"):
+        return ""
+    parts = d.get("components") if isinstance(d.get("components"), dict) else {}
+    cells = "".join(f'<div class="g9-dcell"><span>{esc(label)}</span><b>{parts[key]}/2</b></div>'
+                    for key, label in _DIFFICULTY_PART.items() if isinstance(parts.get(key), int))
+    score = f' · {d["score"]}/10' if isinstance(d.get("score"), int) else ""
+    target = f"g9-why-{re.sub(r'[^A-Za-z0-9_-]+', '-', rid)}"
+    return (f'<button type="button" class="g9-why-toggle" data-g9-toggle aria-expanded="false" aria-controls="{target}">'
+            f'<span class="g9-pill g9-pill-band" data-g9-band="{esc(d["band"])}">{esc(d["band"])}{score}</span>'
+            f'<span>Why this difficulty?</span></button>'
+            f'<div id="{target}" class="g9-why" hidden>{para(d.get("basis"))}'
+            f'{f"<div class=g9-dgrid>{cells}</div>" if cells else ""}</div>')
 
 
 def core2(ctx: Ctx, q: dict) -> str:
@@ -1206,27 +1410,56 @@ def core2(ctx: Ctx, q: dict) -> str:
     ans = q["answer"]
     if ans.get("_independent_result") and ans["_independent_result"] != ans.get("summary"):
         ctx.gap("AUTHOR_SOURCE_RESULT_DIFFERS", q["id"], "authored summary differs from current independent result", "CORE2")
-    figures = "".join(figure(ctx, ref, "PRE_ATTEMPT", "CORE2", q["id"], first_stage_only=True)
+    rid = q["id"]
+    analysis = (q.get("extensions") or {}).get(owner_bank.ANALYSIS_KEY) or {}
+    figures = "".join(figure(ctx, ref, "PRE_ATTEMPT", "CORE2", rid, first_stage_only=True)
                       for ref in q.get("figure_refs") or [])
     roles = q.get("representation_roles") or {}
-    teaching_figure = figure(ctx, roles.get("bound_ref"), "POST_ATTEMPT", "CORE2", q["id"] + "-bound")
+    teaching_figure = figure(ctx, roles.get("bound_ref"), "POST_ATTEMPT", "CORE2", rid + "-bound")
     conditions = "".join(f'<li>{question_text(ctx, q, "conditions", c)}</li>' for c in q.get("conditions") or [])
     options = [question_text(ctx, q, f"option:{i}", opt) for i, opt in enumerate(q.get("options") or [])]
     solution = _source_solution(ans)
     if not ans.get("source_key"):
         solution = block("answer", '<p>' + question_text(ctx, q, "answer_summary", ans.get("summary")) + '</p>')
-    return (slot("identity", block("source_identity", f"<h2>{esc(_identity(q))}</h2><p class=\"g9-prov\">{esc(_custody(q))}</p>") + metadata_strip(ctx, "CORE2", q), True)
-            + slot("attempt", block("stem", '<p>' + question_text(ctx, q, "stem", q["stem"]) + '</p>')
-                   + block("conditions", f'<ul>{conditions}</ul>' if conditions else "", title="Conditions")
-                   + figures + attempt_box("Your answer", response_for(q), q.get("options"), q["id"],
-                                          option_html=options if options else None), True)
-            + slot("support", _core2_support(ctx, q) + _core2_concept_navigation(ctx, q), False)
-            + slot("solution", reveal("Answer and working", solution
-                                      + _core2_solution(ctx, q, ans)
-                                      + teaching_figure
-                                      + block("independent_check", '<p>' + question_text(ctx, q, "answer_check", ans["check"]) + '</p>'
-                                              if ans.get("check") else "", title="Independent check"),
-                                      ref=f'CORE2-{q["id"]}-solution'), True))
+    wrong_route = analysis.get("common_wrong_route")
+
+    def part(cid: str, body: str, items: int | None = None) -> str:
+        return component(ctx, "CORE2", cid, body, rid, items=items)
+
+    worked = component_body(ctx, "CORE2", {
+        "SOLUTION_STEPS": part("SOLUTION_STEPS", _core2_solution(ctx, q, ans), items=_core2_solution_moves(ans)),
+        "ANSWER": part("ANSWER", solution),
+        "CHECK": part("CHECK", block("independent_check", '<p>' + question_text(ctx, q, "answer_check", ans["check"]) + '</p>'
+                                     if ans.get("check") else "", title="Independent check")),
+    }, parent="SOLUTION")
+    return compose(ctx, "CORE2", {
+        "identity": component_body(ctx, "CORE2", {
+            "IDENTITY": part("IDENTITY", block("source_identity", f"<h2>{esc(_identity(q))}</h2><p class=\"g9-prov\">{esc(_custody(q))}</p>")
+                             + metadata_strip(ctx, "CORE2", q)),
+            "DIFFICULTY_WHY": part("DIFFICULTY_WHY", _difficulty_why(rid, analysis)),
+        }, "identity"),
+        "attempt": component_body(ctx, "CORE2", {
+            "STEM": part("STEM", '<div class="g9-eyebrow">Attempt first</div>'
+                         + block("stem", '<p>' + question_text(ctx, q, "stem", q["stem"]) + '</p>')),
+            "CONDITIONS": part("CONDITIONS", block("conditions", f'<ul>{conditions}</ul>' if conditions else "", title="Conditions")),
+            "TRAP": part("TRAP", block("common_wrong_route", '<p>' + question_text(ctx, q, "common_wrong_route", wrong_route) + '</p>'
+                                       if isinstance(wrong_route, str) and wrong_route.strip() else "", title="Common wrong route")),
+            "ATTEMPT": part("ATTEMPT", attempt_box("Your answer", response_for(q), q.get("options"), rid,
+                                                   option_html=options if options else None)),
+        }, "attempt"),
+        "representation": component_body(ctx, "CORE2", {
+            "REPRESENTATION": part("REPRESENTATION",
+                                   ('<div class="g9-card-head"><strong>Representation</strong></div>' + figures) if figures else "",
+                                   items=figures.count("<figure ")),
+        }, "representation"),
+        "support": component_body(ctx, "CORE2", {
+            "HINT_LADDER": part("HINT_LADDER", _core2_support(ctx, q), items=_core2_support_rungs(q)),
+            "CONCEPT_NAV": part("CONCEPT_NAV", _core2_concept_navigation(ctx, q)),
+        }, "support"),
+        "solution": component_body(ctx, "CORE2", {
+            "SOLUTION": part("SOLUTION", reveal("Answer and working", worked + teaching_figure, ref=f'CORE2-{rid}-solution')),
+        }, "solution"),
+    })
 
 
 def _ladder(ctx: Ctx, q: dict, role: str, source: bool = False) -> str:
@@ -1319,24 +1552,26 @@ def core2a(ctx: Ctx, q: dict) -> str:
     check = (q.get("independent_check") or {}).get("statement") or ans.get("check")
     route = "".join(f'<li><strong>{esc(s["kind"])}</strong> {esc(s["action"])}<br><em>Why valid:</em> {esc(s["why_valid"])}</li>'
                     for s in ans.get("reasoning_route") or [])
-    return (slot("identity", block("provenance", f'<p class="g9-prov">{esc(q.get("origin"))} practice</p>')
-                 + metadata_strip(ctx, "CORE2A", q)
-                 + block("family_identity", para(_family_title(ctx, fam.get("family_ref") or q.get("family_ref")))), True)
-            + slot("attempt", block("stem", f"<h2>{esc(q['stem'])}</h2>")
-                   + block("conditions", items(q.get("conditions")), title="Conditions")
-                   + figure(ctx, roles.get("initial_ref"), "PRE_ATTEMPT", "CORE2A", q["id"], allowed=roles.get("stage_refs"))
-                   + attempt_box("Your attempt", response_for(q), q.get("options"), q["id"]), True)
-            + slot("support", _ladder(ctx, q, "CORE2A"), False)
-            + slot("reasoning", reveal("Reasoning route and full solution",
-                                       block("reasoning_route", f"<ol>{route}</ol>" if route else "")
-                                       + figure(ctx, roles.get("bound_ref"), "POST_ATTEMPT", "CORE2A", q["id"] + "-bound")
-                                       + block("solution", items(ans.get("reasoning"), True))
-                                       + block("answer", para(ans.get("summary")), title="Answer")
-                                       + block("independent_check", para(check), title="Independent check")
-                                       + block("failure_signal", para(q.get("failure_signal")), title="If you went wrong")
-                                       + block("repair", _repair(ctx, q.get("repair_ref")), title="Repair")
-                                       + block("exposure_closure", para(fam.get("closure")), title="What this establishes"),
-                                       ref=f'CORE2A-{q["id"]}-reasoning'), True))
+    return compose(ctx, "CORE2A", {
+        "identity": (block("provenance", f'<p class="g9-prov">{esc(q.get("origin"))} practice</p>')
+                     + metadata_strip(ctx, "CORE2A", q)
+                     + block("family_identity", para(_family_title(ctx, fam.get("family_ref") or q.get("family_ref"))))),
+        "attempt": (block("stem", f"<h2>{esc(q['stem'])}</h2>")
+                    + block("conditions", items(q.get("conditions")), title="Conditions")
+                    + figure(ctx, roles.get("initial_ref"), "PRE_ATTEMPT", "CORE2A", q["id"], allowed=roles.get("stage_refs"))
+                    + attempt_box("Your attempt", response_for(q), q.get("options"), q["id"])),
+        "support": _ladder(ctx, q, "CORE2A"),
+        "reasoning": reveal("Reasoning route and full solution",
+                            block("reasoning_route", f"<ol>{route}</ol>" if route else "")
+                            + figure(ctx, roles.get("bound_ref"), "POST_ATTEMPT", "CORE2A", q["id"] + "-bound")
+                            + block("solution", items(ans.get("reasoning"), True))
+                            + block("answer", para(ans.get("summary")), title="Answer")
+                            + block("independent_check", para(check), title="Independent check")
+                            + block("failure_signal", para(q.get("failure_signal")), title="If you went wrong")
+                            + block("repair", _repair(ctx, q.get("repair_ref")), title="Repair")
+                            + block("exposure_closure", para(fam.get("closure")), title="What this establishes"),
+                            ref=f'CORE2A-{q["id"]}-reasoning'),
+    })
 
 
 def core2b(ctx: Ctx, q: dict) -> str:
@@ -1383,28 +1618,30 @@ def core2b(ctx: Ctx, q: dict) -> str:
     if rung and not rung_text and rung.get("from"):
         kind, i = re.match(r"(hints|scaffolds)\[(\d+)\]", rung["from"]).groups()
         rung_text = (q.get(kind) or [])[int(i)]["text"]
-    return (slot("identity", block("provenance", f'<p class="g9-prov">{esc(q.get("origin"))} transfer</p>')
-                 + metadata_strip(ctx, "CORE2B", q)
-                 + block("stem", f"<h2>{esc(q['stem'])}</h2>")
-                 + block("lineage", f"<ul>{lineage}</ul>" if lineage else "", title="Builds on"), True)
-            + slot("attempt", block("conditions", items(q.get("conditions")), title="Conditions")
-                   + figure(ctx, roles.get("safe_ref"), "PRE_ATTEMPT", "CORE2B", q["id"], allowed=roles.get("stage_refs"))
-                   + block("safe_support", para(rung_text), title="Where to start")
-                   + attempt_box("Your commitment: the model or representation you choose, and your first relation",
-                                 response_for(q), q.get("options"), q["id"]), True)
-            + slot("post_attempt",
-                   block("lineage_check", para("Before you open the solution: what from the earlier item still holds here, "
-                                               "and what is different?") if tr.get("invariant") else "", title="Lineage check")
-                   + reveal("Review and solution",
-                            block("invariant_changed", para(tr.get("invariant")), title="What stayed valid")
-                            + block("changed_demand", para(tr.get("statement")), title="What changed")
-                            + block("protected_move", para(protected["action"]) if protected else "", title="The deciding move")
-                            + figure(ctx, roles.get("bound_ref"), "POST_ATTEMPT", "CORE2B", q["id"] + "-bound")
-                            + block("answer", para(ans.get("summary")) + items(ans.get("reasoning"), True), title="Answer")
-                            + block("rubric", items(r.get("criterion") for r in ans.get("rubric") or []), title="Rubric")
-                            + block("independent_check", para(check), title="Independent check")
-                            + block("repair", _repair(ctx, q.get("repair_ref")), title="Repair"),
-                            ref=f'CORE2B-{q["id"]}-review'), True))
+    return compose(ctx, "CORE2B", {
+        "identity": (block("provenance", f'<p class="g9-prov">{esc(q.get("origin"))} transfer</p>')
+                     + metadata_strip(ctx, "CORE2B", q)
+                     + block("stem", f"<h2>{esc(q['stem'])}</h2>")
+                     + block("lineage", f"<ul>{lineage}</ul>" if lineage else "", title="Builds on")),
+        "attempt": (block("conditions", items(q.get("conditions")), title="Conditions")
+                    + figure(ctx, roles.get("safe_ref"), "PRE_ATTEMPT", "CORE2B", q["id"], allowed=roles.get("stage_refs"))
+                    + block("safe_support", para(rung_text), title="Where to start")
+                    + attempt_box("Your commitment: the model or representation you choose, and your first relation",
+                                  response_for(q), q.get("options"), q["id"])),
+        "post_attempt": (
+            block("lineage_check", para("Before you open the solution: what from the earlier item still holds here, "
+                                        "and what is different?") if tr.get("invariant") else "", title="Lineage check")
+            + reveal("Review and solution",
+                     block("invariant_changed", para(tr.get("invariant")), title="What stayed valid")
+                     + block("changed_demand", para(tr.get("statement")), title="What changed")
+                     + block("protected_move", para(protected["action"]) if protected else "", title="The deciding move")
+                     + figure(ctx, roles.get("bound_ref"), "POST_ATTEMPT", "CORE2B", q["id"] + "-bound")
+                     + block("answer", para(ans.get("summary")) + items(ans.get("reasoning"), True), title="Answer")
+                     + block("rubric", items(r.get("criterion") for r in ans.get("rubric") or []), title="Rubric")
+                     + block("independent_check", para(check), title="Independent check")
+                     + block("repair", _repair(ctx, q.get("repair_ref")), title="Repair"),
+                     ref=f'CORE2B-{q["id"]}-review')),
+    })
 
 
 RENDER = {"CORE1": core1, "CORE1A": core1a, "CORE1B": core1b, "CORE2": core2, "CORE2A": core2a, "CORE2B": core2b}
@@ -1425,8 +1662,10 @@ def units_for(ctx: Ctx, role: str) -> list[dict]:
 
 CSS = """
 [hidden]{display:none!important}
-:root{--g9-zoom:1;--g9-content-max:1380px;--g9-touch-min:48px;--g9-space:clamp(16px,2vw,28px);--g9-type-body:17px;--bg:#f6f7fb;--fg:#172033;--card:#fff;--line:#d5dce6;--accent:#1f5fae;--muted:#52627a}
-:root[data-theme=dark]{--bg:#0f1520;--fg:#e8edf5;--card:#18212f;--line:#2c394d;--accent:#8ab4f8;--muted:#a3b1c6}
+:root{--g9-zoom:1;--g9-content-max:1380px;--g9-touch-min:48px;--g9-space:clamp(16px,2vw,28px);--g9-type-body:17px;--bg:#f6f7fb;--fg:#172033;--card:#fff;--line:#d5dce6;--accent:#1f5fae;--muted:#52627a;
+--soft:#fbfdff;--pill-bg:#eef2ff;--pill-fg:#4338ca;--src-bg:#ecfdf5;--src-fg:#047857;--info-bg:#f8fbff;--info-line:#93c5fd;--info-fg:#455d72;--warn-bg:#fff7f8;--warn-line:#ffc9d3;--warn-fg:#8a2942;--ok-bg:#f0fdf7;--ok-line:#bbf7d0;--ok-fg:#14532d}
+:root[data-theme=dark]{--bg:#0f1520;--fg:#e8edf5;--card:#18212f;--line:#2c394d;--accent:#8ab4f8;--muted:#a3b1c6;
+--soft:#141c29;--pill-bg:#262f5a;--pill-fg:#c3c9ff;--src-bg:#12301f;--src-fg:#6ee7b7;--info-bg:#14263d;--info-line:#3b6db3;--info-fg:#b8c9de;--warn-bg:#2b1620;--warn-line:#6b3045;--warn-fg:#f3b6c4;--ok-bg:#10281d;--ok-line:#1f6b44;--ok-fg:#b7efcf}
 html{font-size:calc(var(--g9-type-body) * var(--g9-zoom))}body{margin:0;background:var(--bg);color:var(--fg);font:1rem/1.6 system-ui,sans-serif;overflow-wrap:break-word}
 header[data-g9-shell-header]{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px var(--g9-space);background:var(--card);border-bottom:1px solid var(--line)}
 header a,header button,button,summary,nav a{min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);padding:10px 14px;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg);font:inherit;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;touch-action:manipulation}
@@ -1463,11 +1702,7 @@ article[id],section[id]{scroll-margin-top:96px}
 .g9-availability-note{color:var(--muted);font-size:.9rem}
 .g9-cu-support{padding:0 0 16px;margin:0 0 16px;border-bottom:1px solid var(--line)}
 .g9-cu-support:last-of-type{border-bottom:0}.g9-cu-support>h3{font-size:1rem;line-height:1.35;margin:.3rem 0 .7rem;color:var(--muted)}
-@media (min-width:1100px){.g9-bucket-orientation-grid{display:grid;grid-template-columns:.68fr .32fr;gap:20px}
-article[data-g9-unit].g9-stage-support{display:grid;grid-template-columns:.68fr .32fr;gap:20px}
-body[data-core=CORE1A] article.g9-stage-support>.slot-identity{grid-column:1/-1}
-article.g9-stage-support>.slot-identity,article.g9-stage-support>.slot-attempt,article.g9-stage-support>.slot-construction,article.g9-stage-support>.slot-reconstruction,article.g9-stage-support>.slot-reasoning,article.g9-stage-support>.slot-post_attempt,article.g9-stage-support>.slot-solution{grid-column:1}
-article.g9-stage-support>.slot-support,article.g9-stage-support>.slot-repair_closure{grid-column:2}}
+@media (min-width:1100px){.g9-bucket-orientation-grid{display:grid;grid-template-columns:.68fr .32fr;gap:20px}}
 textarea{width:100%;min-height:120px;font:inherit;border:1px solid var(--line);border-radius:10px;padding:14px 16px;box-sizing:border-box;background:var(--card);color:var(--fg)}
 details{border:1px solid var(--line);border-radius:10px;margin:12px 0;padding:0 12px}details[data-locked] summary{opacity:.55;cursor:not-allowed}
 figure{margin:14px 0;max-width:100%;overflow-x:auto}figure svg{width:100%;height:auto;max-width:720px}figcaption{color:var(--muted)}
@@ -1494,6 +1729,117 @@ input,select{font-size:max(16px,1rem)}
 @media (max-width:899px){header[data-g9-shell-header]{position:relative}article[data-g9-unit]{padding:16px}nav[data-g9-breadcrumb]{font-size:.95rem}}
 """
 
+# Presentation of the blueprint's components. One rule set per presentation archetype the schema allows
+# (Shared/web/interactive-page-blueprint.schema.json, $defs/presentation); a test keeps the two lists equal.
+# Text is never below .85rem (14.45px at the base size), the blueprint's learner-text floor.
+COMPONENT_CSS = """
+.g9-split{display:block;min-width:0}.g9-col{min-width:0}
+.g9-component{min-width:0;margin:14px 0}.g9-component:first-child{margin-top:0}
+.g9-eyebrow{font-size:.85rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 6px}
+.g9-pill{display:inline-flex;align-items:center;font-size:.85rem;font-weight:800;line-height:1.2;padding:3px 10px;border-radius:999px;background:var(--pill-bg);color:var(--pill-fg);white-space:nowrap}
+.g9-pill-source{background:var(--src-bg);color:var(--src-fg)}
+article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-bottom:1px solid var(--line)}
+.g9-c-header h2,.g9-c-concept-header h2{font-size:1.2rem;line-height:1.3;margin:0;letter-spacing:-.01em}
+.g9-c-header .g9-prov{margin:2px 0 0}
+.g9-c-disclosure-grid{margin-top:0}
+.g9-c-unit-header{margin-top:0}
+.g9-why-toggle{margin-top:10px;gap:10px;justify-content:flex-start;border:0;background:transparent;padding:6px 0;font-weight:700;color:var(--muted)}
+.g9-pill-band{background:#fff7ed;color:#9a3412}.g9-pill-band[data-g9-band=D1]{background:#ecfdf5;color:#047857}.g9-pill-band[data-g9-band=D2]{background:#eff6ff;color:#1d4ed8}.g9-pill-band[data-g9-band=D4]{background:#fdf2f8;color:#be185d}
+:root[data-theme=dark] .g9-pill-band{background:#3a2a14;color:#fdba74}:root[data-theme=dark] .g9-pill-band[data-g9-band=D1]{background:#12301f;color:#6ee7b7}:root[data-theme=dark] .g9-pill-band[data-g9-band=D2]{background:#172a4d;color:#9ec5ff}:root[data-theme=dark] .g9-pill-band[data-g9-band=D4]{background:#3a1830;color:#f9a8d4}
+.g9-why{margin-top:6px}.g9-why p{margin:.2rem 0 .6rem;color:var(--muted)}
+.g9-dgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.g9-dcell{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:.85rem;color:var(--muted)}.g9-dcell b{display:block;color:var(--fg);font-size:1rem}
+.g9-c-stem [data-g9-block=stem] p{margin:.1rem 0;font-size:1.06rem;line-height:1.62;font-weight:560}
+.g9-c-callout-info{border-left:4px solid var(--info-line);background:var(--info-bg);padding:10px 14px;border-radius:0 12px 12px 0;color:var(--info-fg)}
+.g9-c-callout-warn{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:12px;padding:10px 14px;color:var(--warn-fg)}
+.g9-c-callout-info h4,.g9-c-callout-warn h4{margin:0 0 .2rem;font-size:1rem}.g9-c-callout-warn h4{color:var(--warn-fg)}
+.g9-c-callout-info ul{margin:.2rem 0;padding-left:1.2rem}.g9-c-callout-info p,.g9-c-callout-warn p{margin:.1rem 0}
+.g9-c-attempt .g9-attempt{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--soft)}
+.g9-answer-options{display:grid;gap:8px;counter-reset:g9opt}
+.g9-answer-option{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:6px 12px}
+.g9-answer-option::before{counter-increment:g9opt;content:"(" counter(g9opt,upper-alpha) ")";font-weight:850;color:var(--accent);order:1;min-width:2.2rem}
+.g9-answer-option input{order:0}.g9-answer-option>span{order:2}
+.g9-c-visual-card,.g9-c-staged-visual{border:1px solid var(--line);border-radius:16px;background:var(--soft);padding:10px 12px 12px}
+.g9-card-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:6px}.g9-card-head strong{font-size:.9rem}
+.g9-c-visual-card figure,.g9-c-staged-visual figure{margin:0}
+.g9-c-visual-card figure svg,.g9-c-staged-visual figure svg{display:block;width:100%;height:auto;max-height:280px;max-width:100%}
+.g9-c-ladder .g9-block>h4{margin:.9rem 0 .2rem;font-size:.85rem;color:var(--muted)}
+.g9-rung-map,.g9-c-ladder [data-g9-ladder]{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:8px}
+.g9-rung-map>li{border:1px dashed var(--line);border-radius:12px;padding:9px 13px;color:var(--muted)}
+.g9-c-ladder [data-g9-ladder]>li{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:10px 13px}
+.g9-rung-head{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-weight:800}
+.g9-rung-no{display:inline-grid;place-items:center;min-width:2.3em;height:2.1em;border-radius:8px;background:var(--pill-bg);color:var(--pill-fg);font-size:.85rem}
+.g9-c-ladder [data-g9-support-prompt]{margin:.5rem 0}.g9-c-ladder .g9-ladder>button{margin-top:10px}
+.g9-c-link-list h4{margin:.9rem 0 .3rem;font-size:.85rem;color:var(--muted)}
+.g9-c-link-list ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:.2rem 0;padding:0}
+.g9-c-link-list li{margin:0}.g9-c-link-list a{display:inline-flex;align-items:center;min-height:48px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--fg);text-decoration:none}
+.g9-c-disclosure>details{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:0;overflow:hidden;margin:0}
+.g9-c-disclosure>details>summary{list-style:none;display:flex;width:100%;justify-content:space-between;border:0;border-radius:0;background:transparent;padding:13px 15px;font-weight:850;min-height:48px}
+.g9-c-disclosure>details>summary::-webkit-details-marker{display:none}
+.g9-c-disclosure>details>summary::after{content:"Show";font-size:.85rem;background:var(--pill-bg);color:var(--pill-fg);padding:4px 10px;border-radius:999px}
+.g9-c-disclosure>details[open]>summary::after{content:"Hide"}.g9-c-disclosure>details[data-locked]>summary::after{content:"After you attempt"}
+.g9-c-disclosure>details[open]>summary{border-bottom:1px solid var(--line);background:var(--card)}
+.g9-c-disclosure [data-g9-payload-slot]{padding:6px 16px 16px}
+.g9-solution-move{display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.g9-solution-move:last-child{border-bottom:0}
+.g9-step-no{font-weight:850;font-size:.9rem;color:var(--pill-fg);background:var(--pill-bg);border-radius:8px;padding:5px 6px;text-align:center;height:max-content}
+.g9-step-body [data-g9-block=solution_inputs]{display:flex;flex-wrap:wrap;gap:.4rem;align-items:baseline;color:var(--muted)}
+.g9-step-body [data-g9-block=solution_inputs] h4{margin:0}
+.g9-step-body [data-g9-block=solution_inputs] ul{display:flex;flex-wrap:wrap;gap:.4rem;list-style:none;margin:0;padding:0}
+.g9-step-body [data-g9-block=solution_inputs] li{border:1px solid var(--line);border-radius:999px;padding:1px 10px;font-size:.85rem}
+.g9-step-body p{margin:.25rem 0}.g9-step-body h4{margin:0;font-size:.85rem;color:var(--muted)}
+.g9-solution-move[data-g9-solution-crux=true]{background:var(--info-bg);border-radius:10px;padding-left:8px;padding-right:8px}
+.g9-c-step-list [data-g9-block=working] ol{list-style:none;padding:0;margin:0;counter-reset:g9s}
+.g9-c-step-list [data-g9-block=working] ol>li{counter-increment:g9s;display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.g9-c-step-list [data-g9-block=working] ol>li::before{content:counter(g9s);font-weight:850;font-size:.9rem;color:var(--pill-fg);background:var(--pill-bg);border-radius:8px;padding:5px 6px;text-align:center;height:max-content}
+.g9-c-answer-box{background:var(--ok-bg);border:1px solid var(--ok-line);border-radius:12px;padding:10px 14px;color:var(--ok-fg)}
+.g9-c-answer-box p{margin:.15rem 0}.g9-c-answer-box h4{margin:0 0 .2rem;font-size:.85rem}
+.g9-c-check-box{border-left:4px solid var(--ok-line);padding:4px 14px;color:var(--ok-fg)}.g9-c-check-box h4{margin:0;font-size:.85rem}.g9-c-check-box p{margin:.15rem 0}
+.g9-c-tile,.g9-c-recall-card{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:12px 16px}
+.g9-c-tile h4,.g9-c-recall-card h4{margin:0 0 .3rem}.g9-c-tile ul{margin:.2rem 0;padding-left:1.2rem}
+.g9-c-banner{border-left:5px solid var(--accent);background:var(--info-bg);padding:12px 16px;border-radius:0 14px 14px 0}.g9-c-banner h4{margin:0 0 .2rem;color:var(--accent)}.g9-c-banner p{margin:.1rem 0}
+.g9-unit-head{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.g9-unit-no{display:inline-grid;place-items:center;width:2.3em;height:2.3em;border-radius:50%;background:var(--accent);color:var(--card);font-weight:850}
+.g9-unit-head h3{margin:0;flex:1 1 12rem;font-size:1.12rem;line-height:1.35}
+.g9-c-step-cards [data-g9-block=construction] ol{list-style:none;margin:0;padding:0;counter-reset:g9c;display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+.g9-c-step-cards [data-g9-block=construction] ol>li{counter-increment:g9c;position:relative;border:1px solid var(--line);border-radius:14px;background:var(--card);padding:12px 14px 12px 54px;min-width:0;overflow-wrap:anywhere}
+.g9-c-step-cards [data-g9-block=construction] ol>li::before{content:counter(g9c);position:absolute;left:14px;top:12px;display:grid;place-items:center;width:1.9em;height:1.9em;border-radius:50%;background:var(--pill-bg);color:var(--pill-fg);font-weight:850;font-size:.9rem}
+.g9-c-step-cards li em{display:inline-block;min-width:5.6rem;color:var(--muted);font-style:normal;font-weight:700}
+.g9-c-step-cards li br{display:block;content:"";margin-top:.3rem}
+.g9-c-equation-card,.g9-c-worked-card{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:10px 14px}
+.g9-c-worked-card{border-left:4px solid var(--accent)}.g9-c-worked-card [data-g9-block=worked_anchor]{border-left:0;padding-left:0}
+.g9-c-trap-card{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:14px;padding:10px 14px;color:var(--warn-fg)}
+.g9-c-trap-card [data-g9-block]{border-left:0;padding-left:0}.g9-c-trap-card h4{margin:.5rem 0 .1rem;font-size:.85rem}
+.g9-c-trap-card ul{margin:.1rem 0;padding-left:1.2rem}
+.g9-c-check-list{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:10px 14px}
+.g9-c-check-list h4{margin:0 0 .3rem;font-size:.85rem;color:var(--muted)}
+.g9-c-check-list ul{list-style:none;margin:0;padding:0;counter-reset:g9q}
+.g9-c-check-list li{counter-increment:g9q;display:grid;grid-template-columns:2em minmax(0,1fr);gap:8px;margin:.4rem 0}
+.g9-c-check-list li::before{content:counter(g9q);display:grid;place-items:center;width:1.6em;height:1.6em;border-radius:50%;background:var(--pill-bg);color:var(--pill-fg);font-weight:850;font-size:.85rem}
+.g9-c-chips ul,.g9-c-chips ol{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:.3rem 0;padding:0}
+.g9-c-chips li{margin:0}
+.g9-c-chips a{border:1px solid var(--line);border-radius:999px;background:var(--card);padding:6px 14px;min-height:48px;display:inline-flex;align-items:center;text-decoration:none;color:var(--fg)}
+"""
+
+
+def layout_css(registry: dict) -> str:
+    """The expanded-width layout of every blueprint, written from the blueprint's own columns and fractions."""
+    out = []
+    for bp in registry.get("blueprints") or []:
+        rp = bp.get("responsive_policy") or {}
+        if rp.get("expanded") != "STAGE_SUPPORT" or not rp.get("support_fraction"):
+            continue
+        scope = f'article[data-g9-role="{bp["core_roles"][0]}"]'
+        columns = f'minmax(0,{rp["primary_fraction"] * 100:g}fr) minmax(0,{rp["support_fraction"] * 100:g}fr)'
+        wide = (f'{scope} .g9-split{{display:grid;grid-template-columns:{columns};gap:22px;align-items:start}}'
+                f'{scope} .g9-split-primary-only,{scope} .g9-split-support-only{{grid-template-columns:minmax(0,1fr)}}')
+        if rp.get("support_sticky"):
+            wide += f'{scope} .g9-split:not(.g9-split-support-only)>.g9-col-support{{position:sticky;top:96px}}'
+        out.append(f'@media (min-width:{rp.get("expanded_min_px", 1100)}px){{{wide}}}')
+        out.append(f'@media print{{{scope} .g9-split{{display:grid;grid-template-columns:{columns};gap:12px}}}}')
+    return "".join(out)
+
+
 JS = r"""
 (()=>{const q=(s,r=document)=>[...r.querySelectorAll(s)];
 const store={get:k=>{try{return localStorage.getItem('g9-'+k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem('g9-'+k,v);return true}catch(e){return false}},remove:k=>{try{localStorage.removeItem('g9-'+k);return true}catch(e){return false}}};
@@ -1505,7 +1851,7 @@ q('[data-g9-font]').forEach(b=>b.onclick=()=>q('[data-g9-zoom="'+b.dataset.g9Fon
 function initFigure(f){if(f.dataset.g9Init)return;f.dataset.g9Init='1';const ids=(f.dataset.g9Stages||'').split(' ').filter(Boolean);if(ids.length<2)return;let i=0;
 const show=()=>{ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=n<=i?'':'none'));const l=q('[data-g9-stage-label]',f)[0];if(l)l.textContent='Stage '+(i+1)+' of '+ids.length};show();
 q('[data-g9-stage-step]',f).forEach(b=>b.onclick=()=>{i=Math.max(0,Math.min(ids.length-1,i+(b.dataset.g9StageStep==='next'?1:-1)));show()})}
-function nextRung(l){const t=q('template[data-g9-rung-payload]',l)[0];if(!t)return false;const payload=t.content.cloneNode(true);q('figure[data-g9-figure]',payload).forEach(initFigure);q('[data-g9-ladder]',l)[0].append(payload);t.remove();const b=q('[data-g9-next-rung]',l)[0];if(b){if(!q('template[data-g9-rung-payload]',l).length)b.disabled=true;else b.textContent='Show next support'}return true}
+function nextRung(l){const t=q('template[data-g9-rung-payload]',l)[0];if(!t)return false;const payload=t.content.cloneNode(true);q('[data-g9-rung-ghost]',l)[0]?.remove();q('figure[data-g9-figure]',payload).forEach(initFigure);q('[data-g9-ladder]',l)[0].append(payload);t.remove();const b=q('[data-g9-next-rung]',l)[0];if(b){if(!q('template[data-g9-rung-payload]',l).length)b.disabled=true;else b.textContent='Show next support'}return true}
 function materialise(a){q('details[data-g9-payload-ref]',a).forEach(d=>{const slot=q('[data-g9-payload-slot]',d)[0];if(!slot||slot.dataset.g9Filled)return;const t=q('template[data-g9-payload]',a).find(x=>x.dataset.g9Payload===d.dataset.g9PayloadRef);if(!t)return;slot.replaceChildren(t.content.cloneNode(true));slot.dataset.g9Filled='1';q('figure[data-g9-figure]',slot).forEach(initFigure)})}
 const number=t=>{const v=t.trim();if(!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?(?:\s*\/\s*[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?)?$/i.test(v))return false;const p=v.split('/').map(x=>Number(x.trim()));return p.every(Number.isFinite)&&(p.length===1||p[1]!==0)};
 function validAttempt(box){const type=box.dataset.g9ResponseType;if(type==='single_choice'||type==='multiple_choice'||type==='true_false')return q('[data-g9-choice]:checked',box).length>0;
@@ -1530,6 +1876,7 @@ function refreshReturnLinks(){practiceLinks.forEach(link=>{const key=returnKey(l
 practiceLinks.forEach(link=>link.addEventListener('click',()=>{const key=returnKey(link.dataset.g9ConceptRef);if(key&&store.get(key)===link.dataset.g9QuestionRef){store.remove(key);refreshReturnLinks()}}));refreshReturnLinks();
 window.g9MaterialiseAll=()=>articles.forEach(a=>{a.dataset.attempted='1';q('details[data-requires-attempt]',a).forEach(d=>delete d.dataset.locked);materialise(a);q('.g9-ladder',a).forEach(l=>{while(nextRung(l)){};});q('details[data-g9-support-reveal]',a).forEach(d=>d.open=true)});
 q('figure[data-g9-figure]').forEach(initFigure);
+q('[data-g9-toggle]').forEach(b=>b.onclick=()=>{const t=document.getElementById(b.getAttribute('aria-controls'));if(!t)return;const open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!open));t.hidden=open});
 const input=q('[data-g9-search-input]')[0];if(input)input.oninput=()=>{const v=input.value.trim().toLowerCase();articles.forEach(a=>{a.hidden=!!v&&!(a.dataset.g9SearchText||'').toLowerCase().includes(v)})};
 q('[data-g9-action="search"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-search-panel]')[0];p.hidden=!p.hidden;if(!p.hidden)input.focus()});
 q('[data-g9-action="display"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-display-panel]')[0];p.hidden=!p.hidden});
@@ -1636,7 +1983,7 @@ def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
             '<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             f'<meta name="g9-render" content="{RENDERER_VERSION} {digest}">'
             f'{_shared_head_assets(ctx, mode)}'
-            f'<title>{esc(ROLE_TITLE[role])} · {esc(m["title"])}</title><style>{CSS}</style></head>'
+            f'<title>{esc(ROLE_TITLE[role])} · {esc(m["title"])}</title><style>{CSS}{COMPONENT_CSS}{layout_css(ctx.blueprints)}</style></head>'
             f'<body data-core="{role}" data-blueprint-ref="{esc(bp["id"])}@{esc(bp["version"])}">'
             f'{header}{crumbs}<noscript>Answers open after you attempt; this page needs JavaScript.</noscript>'
             f'<main><h1>{esc(m["title"])}: {esc(ROLE_TITLE[role])}</h1>'
@@ -1932,6 +2279,12 @@ def _artifact_digest(pages: dict[str, str]) -> str:
 
 
 def build(manifest_path: Path, mode: str = "PAGES") -> tuple[dict[str, str], list[dict], str]:
+    pages, gaps, digest, _advisories = build_report(manifest_path, mode)
+    return pages, gaps, digest
+
+
+def build_report(manifest_path: Path, mode: str = "PAGES") -> tuple[dict[str, str], list[dict], str, list[dict]]:
+    """build(), and the advisories too: what the blueprint expects a learner to see and the records do not supply."""
     ctx = context(manifest_path)
     output_roles = product_manifest.selected_output_roles(ctx.manifest)
     role_pages = {ROLE_FILE[r]: page(ctx, r, mode, DIGEST_SLOT) for r in output_roles}
@@ -1965,7 +2318,13 @@ def build(manifest_path: Path, mode: str = "PAGES") -> tuple[dict[str, str], lis
         if key not in seen:
             seen.add(key)
             gaps.append(g)
-    return pages, gaps, digest
+    advised, advisories = set(), []
+    for a in ctx.advisories:
+        key = (a["component"], a["record"])
+        if key not in advised:
+            advised.add(key)
+            advisories.append(a)
+    return pages, gaps, digest, advisories
 
 
 

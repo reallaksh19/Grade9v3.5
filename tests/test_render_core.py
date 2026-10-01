@@ -307,10 +307,9 @@ class Renderer(unittest.TestCase):
             self.assertGreaterEqual(construction_slot, 0)
             self.assertGreater(support_slot, construction_slot)
 
-        self.assertIn(
-            'body[data-core=CORE1A] article.g9-stage-support>.slot-identity{grid-column:1/-1}',
-            render_core.CSS,
-        )
+        # each unit is its own two-column row, then one support-only row for the closing task, laid out by the blueprint's fractions
+        self.assertEqual(article.count('class="g9-split'), len(units) + 1)
+        self.assertIn('article[data-g9-role="CORE1A"] .g9-split{display:grid;', render_core.layout_css(ctx.blueprints))
 
     def test_core1a_relation_matrix_preserves_equation_meaning_and_validity_semantics(self):
         repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
