@@ -123,7 +123,7 @@
       else if (element.kind === 'polygon') parts.shape = svg('polygon', { class: 'gx-stroke gx-soft' }, group);
       else if (element.kind === 'curve') parts.shape = svg('path', { class: 'gx-stroke gx-nofill' }, group);
       if (element.kind === 'arrow') parts.shape.setAttribute('marker-end', `url(#gx-ah-${element.role})`);
-      if (element.label || element.kind === 'text') parts.label = svg('text', { class: 'gx-lab' }, group);
+      if (element.label || element.kind === 'text') parts.label = svg('text', { class: 'gx-lab', 'data-rank': element.role === 'helper' ? '2' : element.role === 'wrong' ? '1' : element.kind === 'text' ? '1' : '0' }, group);
       sceneNodes.set(element.id, { element, group, parts });
     }
   }
@@ -182,6 +182,7 @@
       const my = (geometry.y1 + geometry.y2) / 2;
       label = { x: mx + nx * 15, y: my + ny * 15, anchor: Math.abs(nx) < 0.4 ? 'middle' : nx > 0 ? 'start' : 'end' };
       if (element.kind === 'arrow') parts.shape.style.visibility = length < 2 ? 'hidden' : 'visible';
+      if (element.role === 'helper' && length < 2) label = null;  // an arrow too short to see is not labelled
     } else if (element.kind === 'circle') {
       for (const [k, val] of Object.entries(geometry)) parts.shape.setAttribute(k, val.toFixed(1));
       label = { x: geometry.cx, y: geometry.cy - geometry.r - 10, anchor: 'middle' };
@@ -218,6 +219,7 @@
     } else if (element.kind === 'text') {
       label = { x: geometry.x, y: geometry.y, anchor: element.anchor || 'start' };
     }
+    if (parts.label && !label) parts.label.textContent = '';
     if (parts.label && label) {
       const template = element.kind === 'text' ? element.text : element.label;
       if (!showLabels && element.kind !== 'text') parts.label.textContent = '';
@@ -227,25 +229,45 @@
   }
 
   /* Labels that would sit on one another are moved apart, so every label can be read at every position of the sliders.
-     `labels` are SVG text elements in the order they matter; each stays inside a width x height box. */
+     `labels` are SVG text elements; the ones that matter most (data-rank 0: given and result) are placed first and stay nearest where they
+     belong, each stays inside a width x height box. A label that cannot be placed clear of the others within reach is hidden when it is
+     only a helper (data-rank 2 or more): its number is always in the readouts beside the picture. */
+  const REACH = (() => {
+    const out = [];
+    for (let dy = -84; dy <= 84; dy += 14) for (let dx = -120; dx <= 120; dx += 30) out.push([dx, dy, Math.hypot(dx, dy)]);
+    return out.sort((a, b) => a[2] - b[2] || Math.abs(a[0]) - Math.abs(b[0]));
+  })();
+
   function nudgeLabels(labels, width, height) {
     const placed = [];
-    const offsets = [0, 18, -18, 36, -36, 54, -54];
-    for (const label of labels) {
-      if (!label || !label.textContent) continue;
+    const rank = (node) => Number(node.getAttribute('data-rank') || 1);
+    const ordered = labels.map((node, i) => ({ node, i })).filter((e) => e.node)
+      .sort((a, b) => rank(a.node) - rank(b.node) || a.i - b.i).map((e) => e.node);
+    for (const label of ordered) {
+      label.style.visibility = '';
+      if (!label.textContent) continue;
       let box = label.getBBox();
       const x0 = parseFloat(label.getAttribute('x'));
       const y0 = parseFloat(label.getAttribute('y'));
-      const shift = box.x < 3 ? 3 - box.x : box.x + box.width > width - 3 ? width - 3 - (box.x + box.width) : 0;
-      if (shift) { label.setAttribute('x', (x0 + shift).toFixed(1)); box = { x: box.x + shift, y: box.y, width: box.width, height: box.height }; }
-      let chosen = 0;
-      for (const dy of offsets) {
-        const top = box.y + dy;
-        const clash = placed.some((p) => box.x < p.x + p.w + 3 && p.x < box.x + box.width + 3 && top < p.y + p.h + 1 && p.y < top + box.height + 1);
-        if (!clash && top >= 0 && top + box.height <= height) { chosen = dy; break; }
+      const clashes = (b) => placed.filter((p) => b.x < p.x + p.w + 3 && p.x < b.x + b.w + 3 && b.y < p.y + p.h + 1 && p.y < b.y + b.h + 1).length;
+      const inside = (b) => b.x >= 3 && b.x + b.w <= width - 3 && b.y >= 0 && b.y + b.h <= height;
+      // pull a label that hangs over the edge back inside first, so the search starts from a legal place
+      const pull = box.x < 3 ? 3 - box.x : box.x + box.width > width - 3 ? width - 3 - (box.x + box.width) : 0;
+      let base = { x: box.x + pull, y: box.y, w: box.width, h: box.height };
+      let chosen = null;
+      let best = null;
+      for (const [dx, dy] of REACH) {
+        const b = { x: base.x + dx, y: base.y + dy, w: base.w, h: base.h };
+        if (!inside(b)) continue;
+        const n = clashes(b);
+        if (n === 0) { chosen = { dx, dy, b }; break; }
+        if (!best || n < best.n) best = { dx, dy, b, n };
       }
-      if (chosen) label.setAttribute('y', (y0 + chosen).toFixed(1));
-      placed.push({ x: box.x, y: box.y + chosen, w: box.width, h: box.height });
+      if (!chosen && rank(label) >= 2) { label.style.visibility = 'hidden'; continue; }
+      const pick = chosen || best || { dx: 0, dy: 0, b: base };
+      label.setAttribute('x', (x0 + pull + pick.dx).toFixed(1));
+      label.setAttribute('y', (y0 + pick.dy).toFixed(1));
+      placed.push(pick.b);
     }
   }
 
@@ -326,15 +348,15 @@
     yl.textContent = view.y_label || view.series[0].label;
     graphNodes.guides = (view.guides || []).map((guide) => {
       const g = svg('g', { class: 'gx-guide gx-r-helper' }, graphSvg);
-      return { guide, line: svg('line', { class: 'gx-stroke' }, g), label: svg('text', { class: 'gx-lab' }, g), group: g };
+      return { guide, line: svg('line', { class: 'gx-stroke' }, g), label: svg('text', { class: 'gx-lab', 'data-rank': '2' }, g), group: g };
     });
     graphNodes.ghost = view.ghost ? svg('path', { class: 'gx-stroke gx-nofill gx-r-wrong gx-curve' }, graphSvg) : null;
     graphNodes.series = view.series.map((series) => ({ series, path: svg('path', { class: `gx-stroke gx-nofill gx-curve gx-r-${series.role || 'result'}` }, graphSvg),
       marker: svg('circle', { r: 6.5, class: `gx-fill gx-r-${series.role || 'result'}` }, graphSvg),
       drop: svg('line', { class: 'gx-stroke gx-drop' }, graphSvg) }));
     graphNodes.trail = svg('g', { class: 'gx-trail gx-r-result' }, graphSvg);
-    graphNodes.ghostLabel = view.ghost ? svg('text', { class: 'gx-lab gx-r-wrong' }, graphSvg) : null;
-    graphNodes.readout = svg('text', { class: 'gx-lab gx-r-result', 'text-anchor': 'start', 'dominant-baseline': 'central' }, graphSvg);
+    graphNodes.ghostLabel = view.ghost ? svg('text', { class: 'gx-lab gx-r-wrong', 'data-rank': '1' }, graphSvg) : null;
+    graphNodes.readout = svg('text', { class: 'gx-lab gx-r-result', 'data-rank': '0', 'text-anchor': 'start', 'dominant-baseline': 'central' }, graphSvg);
   }
 
   function curvePath(quantity, others) {

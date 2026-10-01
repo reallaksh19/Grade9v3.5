@@ -1,0 +1,576 @@
+{
+ "schema": "grade9v3-explorer-spec-v1",
+ "slug": "vectors-g9",
+ "title": "Why the size of a sum is not just the sizes added",
+ "product": "TEST/products/vectors-g9.manifest.json",
+ "blueprint_ref": "BP-EXPLORER-GCDR@1.0.0",
+ "target": {
+  "question_ref": "OWN-VECTORS-G9-08",
+  "quantity": "S",
+  "failure": "The size of the sum of two vectors is always their two sizes added.",
+  "operation": "Decide that the size of the sum depends on the angle between the vectors: split the second vector into a part along the first and a part across it, and see that the sum is the hypotenuse of what they leave.",
+  "invariant": "The size of the sum never goes above the two sizes added and never below their difference, and the angle decides where in between it lies.",
+  "boundary": "Adding the two sizes is right only when the vectors point the same way; it fails at every other angle."
+ },
+ "context": {
+  "situation": "Two vectors, of sizes 5 and 12, are drawn one after the other, head to tail. You can turn the second one and change only the angle between the two vectors. The arrow from the start to the far end is their sum."
+ },
+ "parameters": [
+  {
+   "id": "a",
+   "label": "size of the first vector",
+   "unit": "",
+   "value": 5,
+   "fixed": true
+  },
+  {
+   "id": "b",
+   "label": "size of the second vector",
+   "unit": "",
+   "value": 12,
+   "fixed": true
+  },
+  {
+   "id": "phi",
+   "label": "angle between the vectors",
+   "unit": "°",
+   "min": 0,
+   "max": 180,
+   "step": 5,
+   "value": 60
+  }
+ ],
+ "quantities": [
+  {
+   "id": "bx",
+   "label": "part of the second vector along the first",
+   "unit": "",
+   "expr": "b*cosd(phi)",
+   "decimals": 2
+  },
+  {
+   "id": "by",
+   "label": "part of the second vector across the first",
+   "unit": "",
+   "expr": "b*sind(phi)",
+   "decimals": 2
+  },
+  {
+   "id": "sx",
+   "label": "part of the sum along the first vector",
+   "unit": "",
+   "expr": "a + bx",
+   "decimals": 2
+  },
+  {
+   "id": "S",
+   "label": "size of the sum",
+   "unit": "",
+   "expr": "hypot(sx, by)",
+   "decimals": 2
+  },
+  {
+   "id": "Stempt",
+   "label": "size if the sizes always added",
+   "unit": "",
+   "expr": "a + b",
+   "decimals": 1,
+   "show": false
+  },
+  {
+   "id": "Smax",
+   "label": "largest size the sum can have",
+   "unit": "",
+   "expr": "a + b",
+   "decimals": 1,
+   "show": false
+  },
+  {
+   "id": "Smin",
+   "label": "smallest size the sum can have",
+   "unit": "",
+   "expr": "abs(a - b)",
+   "decimals": 1,
+   "show": false
+  }
+ ],
+ "scene": {
+  "title": "The two vectors and their sum",
+  "job": "Shows the second vector joined to the first and the sum from the start to the end, and, one cause at a time, the parts of the second vector that decide the size of the sum.",
+  "description": "A flat picture. The first vector is an arrow pointing right from the origin. The second vector starts at its head and is turned by the angle you set. A third arrow runs from the origin to the far end of the second and is the sum; its length changes as you turn the second vector.",
+  "world": {
+   "x": [
+    -9,
+    19
+   ],
+   "y": [
+    -2,
+    14
+   ]
+  },
+  "elements": [
+   {
+    "id": "vecA",
+    "kind": "arrow",
+    "role": "given",
+    "from": [
+     "0",
+     "0"
+    ],
+    "to": [
+     "a",
+     "0"
+    ],
+    "label": "{a:0}",
+    "reveal": "start"
+   },
+   {
+    "id": "vecB",
+    "kind": "arrow",
+    "role": "given",
+    "from": [
+     "a",
+     "0"
+    ],
+    "to": [
+     "sx",
+     "by"
+    ],
+    "label": "{b:0}",
+    "reveal": "start"
+   },
+   {
+    "id": "angleArc",
+    "kind": "arc",
+    "role": "helper",
+    "center": [
+     "a",
+     "0"
+    ],
+    "r": "2.5",
+    "from_deg": "0",
+    "to_deg": "phi",
+    "label": "{phi:0}°",
+    "reveal": "start"
+   },
+   {
+    "id": "sum",
+    "kind": "arrow",
+    "role": "result",
+    "from": [
+     "0",
+     "0"
+    ],
+    "to": [
+     "sx",
+     "by"
+    ],
+    "label": "sum {S:1}",
+    "reveal": "manipulate"
+   },
+   {
+    "id": "tempt",
+    "kind": "arrow",
+    "role": "wrong",
+    "from": [
+     "0",
+     "-1"
+    ],
+    "to": [
+     "Stempt",
+     "-1"
+    ],
+    "label": "sizes added: {Stempt:0}",
+    "reveal": "contradict"
+   },
+   {
+    "id": "bxArrow",
+    "kind": "arrow",
+    "role": "helper",
+    "from": [
+     "a",
+     "0"
+    ],
+    "to": [
+     "sx",
+     "0"
+    ],
+    "label": "{bx:1}",
+    "reveal": "deconstruct"
+   },
+   {
+    "id": "byArrow",
+    "kind": "arrow",
+    "role": "helper",
+    "from": [
+     "sx",
+     "0"
+    ],
+    "to": [
+     "sx",
+     "by"
+    ],
+    "label": "{by:1}",
+    "reveal": "deconstruct"
+   },
+   {
+    "id": "alongArrow",
+    "kind": "segment",
+    "role": "helper",
+    "from": [
+     "0",
+     "0"
+    ],
+    "to": [
+     "sx",
+     "0"
+    ],
+    "label": "along {sx:1}",
+    "reveal": "deconstruct"
+   }
+  ]
+ },
+ "second_view": {
+  "kind": "graph",
+  "title": "The size of the sum at every angle",
+  "job": "Shows the whole pattern at once: the size of the sum against the angle, which one drawing of one angle cannot.",
+  "description": "A graph of the size of the sum against the angle between the vectors, from 0 to 180 degrees. The curve starts at its highest value at 0 degrees and falls steadily to its lowest at 180 degrees. Two dashed lines mark the largest and smallest sizes the sum can have.",
+  "x": "phi",
+  "y_label": "size of the sum",
+  "series": [
+   {
+    "quantity": "S",
+    "label": "size of the sum",
+    "role": "result"
+   }
+  ],
+  "guides": [
+   {
+    "expr": "Smax",
+    "label": "largest",
+    "orient": "h"
+   },
+   {
+    "expr": "Smin",
+    "label": "smallest",
+    "orient": "h"
+   }
+  ],
+  "ghost": {
+   "quantity": "Stempt",
+   "label": "sizes always added"
+  }
+ },
+ "predict": {
+  "prompt": "The first vector has size 5 and the second size 12, and these never change. As you turn the second vector round, what happens to the size of their sum?",
+  "options": [
+   {
+    "text": "It is always 17, because 5 + 12 = 17.",
+    "tests": [
+     {
+      "set": {
+       "phi": 90
+      },
+      "holds": "abs(S - Stempt) < 0.01",
+      "says": "At {phi:0}° apart the sum is only {S:2}, not {Stempt:0}."
+     }
+    ]
+   },
+   {
+    "text": "It is always 13, whatever the angle.",
+    "tests": [
+     {
+      "set": {
+       "phi": 0
+      },
+      "holds": "abs(S - 13) < 0.01",
+      "says": "At {phi:0}° apart the sum is {S:2}, not 13."
+     }
+    ]
+   },
+   {
+    "text": "It changes with the angle, between a smallest and a largest value.",
+    "tests": [
+     {
+      "set": {},
+      "holds": "maxover(S, phi) > minover(S, phi) + 1"
+     }
+    ]
+   }
+  ],
+  "correct": 2
+ },
+ "manipulate": {
+  "goals": [
+   {
+    "prompt": "Turn the second vector until the sum is longer than 16.5.",
+    "goal": "S > 16.5",
+    "hint": "Turn it so it points nearly the same way as the first."
+   },
+   {
+    "prompt": "Now turn it until the sum is shorter than 7.5.",
+    "goal": "S < 7.5",
+    "hint": "Turn it back so it points nearly against the first."
+   },
+   {
+    "prompt": "Find the angle where the sum is exactly 13.",
+    "goal": "abs(S - 13) < 0.05",
+    "hint": "Try the angle between the two vectors that makes a corner like the corner of a page."
+   }
+  ]
+ },
+ "observe": {
+  "statements": [
+   {
+    "text": "The size of the sum is always 5 + 12.",
+    "claim": "abs(S - Stempt) < 0.001",
+    "truth": "sometimes",
+    "why": "It is true only when the vectors point the same way, at 0°."
+   },
+   {
+    "text": "The sum is never longer than the two sizes added.",
+    "claim": "S <= Smax + 0.0001",
+    "truth": "always",
+    "why": "The sum is the third side of a triangle, and no side is longer than the other two together."
+   },
+   {
+    "text": "The sum is never shorter than the difference of the two sizes.",
+    "claim": "S >= Smin - 0.0001",
+    "truth": "always",
+    "why": "A side of a triangle is at least the difference of the other two."
+   },
+   {
+    "text": "With the right angle, the sum can be made 20.",
+    "claim": "maxover(S, phi) >= 20",
+    "truth": "never",
+    "why": "The largest the sum can be is 17, at 0°; no angle gives more."
+   }
+  ]
+ },
+ "contradict": {
+  "wrong_model": {
+   "label": "sizes always add",
+   "quantity": "Stempt"
+  },
+  "imposes": "Suppose the size of the sum were always the two sizes added, whatever the angle between the vectors.",
+  "goal": {
+   "prompt": "Find an angle where this tempting rule is wrong by more than 8.",
+   "goal": "Stempt - S > 8",
+   "hint": "Turn the second vector back towards the first."
+  },
+  "why_correct": "The sum is the third side of a triangle made by the two vectors, so its length depends on the angle between them.",
+  "why_wrong": "Adding the sizes assumes both arrows point the same way, which is only one angle out of all of them."
+ },
+ "deconstruct": {
+  "steps": [
+   {
+    "text": "Join the second vector to the head of the first. The sum is the arrow from the start to the far end.",
+    "reveals": []
+   },
+   {
+    "text": "Split the second vector. One part lies along the first vector and adds to it or takes from it.",
+    "reveals": [
+     "bxArrow"
+    ],
+    "ask": {
+     "prompt": "When the second vector is at a right angle to the first, how much of it lies along the first?",
+     "options": [
+      "all of it",
+      "none of it",
+      "half of it"
+     ],
+     "correct": 1,
+     "why": "At a right angle the second vector is entirely across the first, so its part along the first is zero."
+    }
+   },
+   {
+    "text": "The other part lies across the first vector and cannot add to its length, but it moves the far end sideways.",
+    "reveals": [
+     "byArrow"
+    ]
+   },
+   {
+    "text": "So the sum has an along-part and an across-part, and its size is the hypotenuse of the two; turning the second vector changes both.",
+    "reveals": [
+     "alongArrow"
+    ]
+   }
+  ]
+ },
+ "reconstruct": {
+  "steps": [
+   {
+    "text": "The part of the second vector along the first.",
+    "quantity": "bx"
+   },
+   {
+    "text": "The part of the second vector across the first.",
+    "quantity": "by"
+   },
+   {
+    "text": "The along-part of the sum: the first vector plus that part.",
+    "quantity": "sx"
+   },
+   {
+    "text": "The size of the sum: the hypotenuse of the along-part and the across-part.",
+    "quantity": "S"
+   }
+  ],
+  "equation": {
+   "text": "Squaring the two parts and adding gives the size of the sum from the angle alone.",
+   "expr": "sqrt(a^2 + b^2 + 2*a*b*cosd(phi))"
+  }
+ },
+ "invariants": [
+  {
+   "text": "The size of the sum is never more than the two sizes added.",
+   "lhs": "S",
+   "rel": "<=",
+   "rhs": "Smax",
+   "try": "Turn through every angle and watch for the sum rising above the top dashed line on the graph."
+  },
+  {
+   "text": "The size of the sum is never less than the difference of the two sizes.",
+   "lhs": "S",
+   "rel": ">=",
+   "rhs": "Smin",
+   "try": "Turn through every angle and watch for the sum falling below the lower dashed line."
+  }
+ ],
+ "oracles": [
+  {
+   "text": "The sum arrow has length S.",
+   "left": "hypot(sum_x2 - sum_x1, sum_y2 - sum_y1)",
+   "right": "S"
+  },
+  {
+   "text": "The second vector arrow has length b.",
+   "left": "hypot(vecB_x2 - vecB_x1, vecB_y2 - vecB_y1)",
+   "right": "b"
+  },
+  {
+   "text": "The second vector starts where the first ends.",
+   "left": "vecB_x1",
+   "right": "vecA_x2"
+  }
+ ],
+ "boundary": {
+  "assumption": "The shortcut 'add the sizes' needs the two vectors to point the same way.",
+  "learner_must_identify": "Adding the sizes is right at one angle only, 0°; at every other angle the sum is shorter.",
+  "cases": [
+   {
+    "text": "The vectors point the same way. Does adding the sizes give the size of the sum?",
+    "set": {
+     "phi": 0
+    },
+    "shortcut_label": "sizes added",
+    "shortcut": "Stempt",
+    "expect": "holds"
+   },
+   {
+    "text": "The vectors are at a right angle. Does it?",
+    "set": {
+     "phi": 90
+    },
+    "shortcut_label": "sizes added",
+    "shortcut": "Stempt",
+    "expect": "fails"
+   },
+   {
+    "text": "The vectors point opposite ways. Does it?",
+    "set": {
+     "phi": 180
+    },
+    "shortcut_label": "sizes added",
+    "shortcut": "Stempt",
+    "expect": "fails"
+   }
+  ]
+ },
+ "fade": [
+  {
+   "prompt": "The two vectors are at a right angle. How large is the sum? The numbers on the picture are hidden now.",
+   "set": {
+    "phi": 90
+   },
+   "answer": "S",
+   "unit": "",
+   "decimals": 1,
+   "tolerance": 0.1,
+   "why": "At a right angle the parts are {a:0} and {b:0}, so the size is {S:1}."
+  },
+  {
+   "prompt": "At what angle between the vectors is the sum smallest? The mechanism and the graph are hidden now.",
+   "set": {
+    "phi": 90
+   },
+   "answer": "argmin(S, phi)",
+   "unit": "°",
+   "decimals": 0,
+   "tolerance": 1,
+   "why": "The sum is smallest when the vectors point against each other, at {answer:0}°."
+  },
+  {
+   "prompt": "At an angle of 120° between them, how much shorter is the sum than the two sizes added? Only the physical scene is left.",
+   "set": {
+    "phi": 120
+   },
+   "answer": "Smax - S",
+   "unit": "",
+   "decimals": 1,
+   "tolerance": 0.2,
+   "why": "The two sizes added come to {Smax:0} and the sum is {S:1}, so it is shorter by {answer:1}."
+  }
+ ],
+ "transfer": [
+  {
+   "prompt": "Two vectors have sizes 3 and 4. What is the largest size their sum can have?",
+   "set": {
+    "a": 3,
+    "b": 4,
+    "phi": 0
+   },
+   "answer": "Smax",
+   "unit": "",
+   "decimals": 0,
+   "tolerance": 0.1,
+   "why": "The sum is largest when the vectors point the same way.",
+   "worked": [
+    "Pointing the same way, the sizes add: {a:0} + {b:0} = {Smax:0}."
+   ]
+  },
+  {
+   "prompt": "Two vectors have sizes 6 and 9. What is the smallest size their sum can have?",
+   "set": {
+    "a": 6,
+    "b": 9,
+    "phi": 180
+   },
+   "answer": "Smin",
+   "unit": "",
+   "decimals": 0,
+   "tolerance": 0.1,
+   "why": "The sum is smallest when the vectors point against each other.",
+   "worked": [
+    "Pointing against each other, the sizes subtract: {b:0} − {a:0} = {Smin:0}."
+   ]
+  },
+  {
+   "prompt": "Two vectors have sizes 8 and 15 and are at a right angle. What is the size of their sum?",
+   "set": {
+    "a": 8,
+    "b": 15,
+    "phi": 90
+   },
+   "answer": "S",
+   "unit": "",
+   "decimals": 0,
+   "tolerance": 0.1,
+   "why": "At a right angle the two parts are the whole sizes, and the sum is their hypotenuse.",
+   "worked": [
+    "The along-part is {sx:0} and the across-part is {by:0}.",
+    "The size of the sum is {S:0}."
+   ]
+  }
+ ]
+}

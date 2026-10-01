@@ -275,3 +275,34 @@ class EveryKind(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class CollinearLabels(unittest.TestCase):
+    """A sum of two vectors drawn along one line (an explorer a Sonnet-low agent wrote for the toughest vectors question): at 0 and 180 degrees
+    the labels of five arrows fall in one row; at no position of the slider may two labels sit on one another."""
+
+    @classmethod
+    def setUpClass(cls):
+        why_not = _browser_available()
+        if why_not:
+            raise unittest.SkipTest(why_not)
+        cls.tmp = tempfile.TemporaryDirectory()
+        spec = json.loads((REPO / "tests/fixtures/explorer/vectors-sum.explorer.json").read_text(encoding="utf-8"))
+        html, _ = eb.page(em.normalize(spec), brief(), {"question": None, "concept": None})
+        cls.page = Path(cls.tmp.name) / "index.html"
+        cls.page.write_text(html, encoding="utf-8")
+        cls.reports = {name: run_browser(cls.page, *size) for name, size in {"landscape": (1366, 854), "portrait": (854, 1366)}.items()}
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.tmp.cleanup()
+
+    def test_no_two_labels_sit_on_one_another_at_any_position(self):
+        for name, report in self.reports.items():
+            self.assertGreaterEqual(report["labels"]["positions"], 30, name)
+            self.assertEqual(report["labels"]["worstOverlap"], 0, (name, report["labels"]["worst"]))
+
+    def test_the_route_still_runs_to_its_end(self):
+        for name, report in self.reports.items():
+            self.assertEqual(report["consoleErrors"], [], name)
+            self.assertTrue(report["done"]["visible"], name)

@@ -37,6 +37,13 @@ official product is judged at:
   with its reason, for the Owner to accept or refuse; never invent content to avoid a gap or a waiver.
 - `owner_bank.py check` holds a bank to the same bar before you deploy, with the same messages.
 - The intake's per-question `conditions` are numbers scraped from the question's text, not the conditions the question states; write `conditions` from what the question gives.
+- The intake reads the Owner's list by words only. A leading number ("1. ") becomes the question's `label`, and the `stem` is the text after it. `questions_outside_syllabus` and the source-identity
+  lines compare words with the syllabus and nothing else, so a question the Owner gave you for this syllabus is for this syllabus whatever they list; do not act on them.
+- The figure kinds a TEST page may use are the `representation_kinds` of `TEST/adapter/QualityVocabulary.json` (`VECTOR_DIAGRAM`, `COMPONENT_DIAGRAM`, `GRAPH_GENERIC`, ...); read the file for the full list before you write a figure.
+- The number of rungs, their order and a rung's `provenance` are not decided by the tool. Copy the shape of `Mathematics/matrices/linear-equations.rungs.json`: `ladder_position` rises from the
+  easiest rung to the hardest (20, 60, 100 there) and a rung you wrote has `provenance` AUTHORED and names the microtopic it is about; record the number of rungs as an Owner decision.
+- `site_nav_audit.py` also prints lines for pages outside TEST (orphans, no shell, no way home, site map); they are not yours. Only a line that starts with `NEW` is, and none may.
+- The documented commands rewrite generated files outside TEST (`docs/.pages-manifest.json`, `docs/data/data.js`, `docs/tools/data.js`, `public/data/data.js`, `tools/data.js`): leave them as written.
 
 Zero gaps, with every waiver reasoned, is the standard. A gap-free page that waives what the question could have given is not at it.
 
@@ -44,7 +51,7 @@ Zero gaps, with every waiver reasoned, is the standard. A gap-free page that wai
 gives the same, with the rule) and reports a gap until a construction unit of the concept book builds toward it. A construction unit does that with three fields (`Shared/library/package.schema.json`):
 `crux_question_refs` (the owner questions whose crux the unit builds, by id), `bank_anchor_ref` (the owner question the unit works through as its example: it is shown as the Owner wrote it, with its own provenance, so the
 unit is about that question and not about a look-alike you made up) and `crux_step_ref` (which of the unit's `step_refs` builds the move the question turns on). A unit that builds toward a question takes the **depth** of that
-question's band (a D3 or D4 question: four step cards and a four-stage figure), and its page says "This unit builds toward Q8" with a link to the question on the Core2 page. Build the idea the question turns on (what a learner who
+question's band (a D3 or D4 question: four step cards and a four-stage figure), and its page has a "This unit builds toward" block that names Q8, with a link to the question on the Core2 page. Build the idea the question turns on (what a learner who
 fails it has not understood), not a sentence that mentions it.
 
 ## What TEST can and cannot make
@@ -141,7 +148,9 @@ shortcut holds and where it fails) → FADE (three levels, with less help each t
 - the **state**: `parameters` (the sliders, each with min, max, step and a starting value; and the givens of the question with `"fixed": true`) and `quantities` (every number the page shows, as an
   expression of the parameters and the quantities before it: `"expr": "sqrt(a^2 + b^2 + 2*a*b*cosd(theta))"`; no number is typed anywhere, the page computes them);
 - the **picture**: `scene.elements` of kind point, segment, arrow, circle, arc, polygon, curve or text, with coordinates as expressions, a role (object, given, result, wrong, helper, frame) and when it
-  appears (`reveal`: start, manipulate, contradict, deconstruct), and a `second_view` graph of the quantity against a slider; `oracles` tie the drawing to the numbers;
+  appears (`reveal`: start, manipulate, contradict, deconstruct), and a `second_view` graph of the quantity against a slider; `oracles` tie the drawing to the numbers: an oracle's `left` and
+  `right` may read where the page draws an element, named `{id}_x` and `{id}_y` for a point, `{id}_x1 {id}_y1 {id}_x2 {id}_y2` for a segment or an arrow, `{id}_r` for a circle (an element's `id` starts with a lowercase letter, then letters and
+  digits, up to 24: `va` is fine);
 - the **route**: the prediction and its options, the goals, the statements, the tempting model and the state where it visibly fails, the causes in the order they act, the steps of the
   working and the equation they compress into, the invariants, the boundary cases, the three fade tasks and the fresh tasks.
 

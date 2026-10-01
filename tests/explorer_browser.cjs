@@ -187,6 +187,35 @@ const { chromium } = require('playwright');
     seen.push(await hook(() => window.__gx.spec.scene.elements.filter((e) => e.reveal === 'deconstruct' && window.__gx.visible(e.id)).map((e) => e.id)));
   }
   report.deconstruct = { revealedAfterEachStep: seen };
+  // --- with everything revealed no two labels sit on one another at any position of the main slider
+  report.labels = { positions: 0, worstOverlap: 0, worst: null };
+  const sweep = lat.length <= 60 ? lat : lat.filter((_, i) => i % Math.ceil(lat.length / 60) === 0).concat(lat[lat.length - 1]);
+  for (const value of sweep) {
+    await slide(main, value);
+    const r = await page.evaluate(() => {
+      const boxes = [];
+      for (const svg of document.querySelectorAll('svg.gx-svg')) {
+        if (svg.closest('[hidden]')) continue;
+        for (const t of svg.querySelectorAll('text.gx-lab')) {
+          if (!t.textContent.trim() || getComputedStyle(t).visibility === 'hidden' || t.closest('[style*="display: none"]')) continue;
+          const b = t.getBBox();
+          boxes.push({ svg: svg.id, text: t.textContent.trim(), x: b.x, y: b.y, w: b.width, h: b.height });
+        }
+      }
+      let worst = 0, pair = null;
+      for (let i = 0; i < boxes.length; i += 1) for (let j = i + 1; j < boxes.length; j += 1) {
+        const a = boxes[i], b = boxes[j];
+        if (a.svg !== b.svg) continue;
+        const w = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x);
+        const h = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y);
+        if (w > 0 && h > 0 && w * h > worst) { worst = w * h; pair = [a.text, b.text, a.svg]; }
+      }
+      return { worst, pair };
+    });
+    report.labels.positions += 1;
+    if (r.worst > report.labels.worstOverlap) { report.labels.worstOverlap = r.worst; report.labels.worst = { value, pair: r.pair }; }
+  }
+  await slide(main, pick(0.5));
   await shot('06-deconstruct');
   await note('deconstruct');
   await cont('DECONSTRUCT');

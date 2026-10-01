@@ -17,6 +17,7 @@ sys.path.insert(0, str(REPO))
 
 from Shared.tools import build_test_site, deploy_test  # noqa: E402
 from Shared.tools import explorer_build as eb  # noqa: E402
+from Shared.tools import explorer_model as em  # noqa: E402
 from tests.test_explorer_build import SPEC  # noqa: E402
 from tests.test_test_area import Fixture  # noqa: E402
 
@@ -72,6 +73,16 @@ class Deploy(unittest.TestCase):
         receipt = deploy_test.deploy_interactive(self.write_spec())
         self.assertEqual(receipt["links"], {"question": None, "concept": None})
         self.assertIn("not deployed yet", (self.out / "index.html").read_text(encoding="utf-8"))
+
+    def test_element_ids_of_two_letters_are_as_good_as_any_other_and_the_contract_still_validates(self):
+        """A run wrote `va` and `vb`: the check passed and the deploy then refused on a rule the spec never stated."""
+        spec = json.loads(json.dumps(SPEC))
+        text = json.dumps(spec).replace("landing", "ld")
+        spec = json.loads(text)
+        self.assertTrue(all(len(e["id"]) >= 2 for e in spec["scene"]["elements"]))
+        contract = eb.contract(em.normalize(spec), self.brief, "public/test/interactive/x/index.html")
+        self.assertEqual(eb.contract_findings(contract), [])
+        self.assertIn("scene element ld", contract["geometry_truth_contract"]["governed_geometry"])
 
     def test_the_contract_is_the_standards_own_schema_and_claims_no_audit(self):
         receipt = deploy_test.deploy_interactive(self.write_spec())

@@ -542,7 +542,7 @@ def contract(spec: dict, brief: Brief, locator: str) -> dict:
                            "certification_scope": "TEST sandbox draft: not eligible for canonical GCDR certification"},
         "representation_invariants": invariants,
         "geometry_truth_contract": {"verification_status": "DECLARED", "oracle_method": "ANALYTIC_ORACLE",
-                                    "governed_geometry": [e["id"] for e in scene["elements"]] or ["scene"], "evidence_ref": "explorer-evidence.json#oracles"},
+                                    "governed_geometry": [f"scene element {e['id']}" for e in scene["elements"]] or ["scene"], "evidence_ref": "explorer-evidence.json#oracles"},
         "delivery_profile": {"profile": "SINGLE_FILE_OFFLINE", "artifact_locator": locator, "remote_dependencies_declared": []},
     }
 
