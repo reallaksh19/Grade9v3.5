@@ -57,6 +57,26 @@ def _shell_lines(shell: dict) -> list[str]:
     return lines
 
 
+def _product_rules(policy: dict) -> list[str]:
+    """The rules about a whole product, not a page: what it covers, what it may select, how its equations are shown."""
+    cov, pro, typ = policy["coverage"], policy["promotion"], policy["typeset"]
+    word = {"ADVISORY": "an advisory", "GAP": "a gap"}
+    return [
+        "## Rules about a whole product", "",
+        f"**Coverage** (component `{cov['component']}`, duty `{cov['duty']}`). {cov['purpose']}", "",
+        f"- The denominator: {cov['denominator']}",
+        f"- The rule: {cov['rule']}",
+        f"- A shortfall is {word[cov['held_to']['FLOOR']]} for an official product (held to the floor) and {word[cov['held_to']['REFERENCE']]} for new authoring (held to the reference).",
+        f"- {cov['sources']}", "",
+        f"**Promotion.** {pro['purpose']}", "",
+        f"- Selectable statuses: {', '.join(pro['selectable_statuses'])}. Refused: {', '.join(pro['refused_statuses'])}, with `{pro['refusal']}`; it applies to {', '.join(pro['applies_to'])}.",
+        f"- {pro['note']}", "",
+        f"**Typeset** (component `{typ['component']}`, duty `{typ['duty']}`). {typ['purpose']}", "",
+        f"- {typ['rule']}",
+        f"- It is {word[typ['held_to']['FLOOR']]} for an official product and {word[typ['held_to']['REFERENCE']]} for new authoring.", "",
+    ]
+
+
 def render(registry: dict | None = None) -> str:
     registry = registry or blueprints.load_registry()
     policy = registry["component_policy"]
@@ -75,6 +95,7 @@ def render(registry: dict | None = None) -> str:
         f"Held to: {policy['held_to']}",
         "",
         *_shell_lines(registry["shell"]),
+        *_product_rules(policy),
     ]
     for blueprint in registry["blueprints"]:
         if not blueprints.components(blueprint):

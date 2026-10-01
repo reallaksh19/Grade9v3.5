@@ -21,7 +21,7 @@ REPO = Path(__file__).resolve().parents[2]
 if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
-from Shared.tools import matrix_conformance, render_core  # noqa: E402
+from Shared.tools import matrix_conformance, product_coverage, render_core  # noqa: E402
 
 esc = render_core.esc
 TEST_ROOT = REPO / "TEST"
@@ -219,6 +219,10 @@ def deployments_page() -> str:
                           f'<p class="g9-prov">Advisory, not a gap: the reference page has each of these. '
                           f'Blueprint: {esc(", ".join(r.get("blueprints", {}).values()))}.</p><ul>{advice_list}</ul></details>'
                           if advice_list else "")
+        cover = r.get("coverage") or {}
+        cover_lines = product_coverage.summary_lines(cover)[1:] if cover.get("cores") else []
+        cover_block = ('<p class="g9-prov">Coverage of what the library holds: ' + esc(" | ".join(line.strip() for line in cover_lines)) + '</p>'
+                       if cover_lines else "")
         hardest = r.get("toughest")
         hardest_line = (f'<p>Toughest concept (what Core1A and the interactive page are built for): {esc(hardest["label"])} · '
                         f'{esc(hardest["band"])} · {esc(hardest.get("microtopic_title") or hardest.get("microtopic_ref") or "no concept book")}'
@@ -242,7 +246,7 @@ def deployments_page() -> str:
         body += card(f'product-{r["slug"]}', f'{r["slug"]} {r["title"]} product',
                      f'<h2>{esc(r["title"])}</h2><p class="g9-prov">Product {esc(r["slug"])} · '
                      f'DRAFT, {"with gaps" if r["gap_count"] else "no gaps reported, not reviewed"} · accepted: no · render {esc(r["render_digest"])}</p>'
-                     f'<p>{links}</p>{pdf_block}<p>Selected records: {esc(counts)}. Gaps: {esc(gaps)} ({r["gap_count"]} in total).</p>{hardest_line}{gap_details}{advice_details}{waived_details}{quality_details}{empty}')
+                     f'<p>{links}</p>{pdf_block}{cover_block}<p>Selected records: {esc(counts)}. Gaps: {esc(gaps)} ({r["gap_count"]} in total).</p>{hardest_line}{gap_details}{advice_details}{waived_details}{quality_details}{empty}')
     for r in pages:
         built = r.get("built_by") == "EXPLORER_BUILDER"
         how = ("Built by the explorer builder from a spec: every number on it is computed, and was checked at every position of the sliders."

@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "registry_version": "1.7.0",
+  "registry_version": "1.8.0",
   "shell": {
     "id": "G9-TABLET-SHELL-V1",
     "fixed_header": true,
@@ -85,7 +85,51 @@
     },
     "waivers": "A record may declare an EXPECTED component not applicable, with a written reason, in extensions['grade9v3:component_waivers'] as {COMPONENT_ID: reason}; the reason is kept in the page and the receipt. A REQUIRED component cannot be waived, and a page never waives anything itself.",
     "depth": "min_items is the floor below which a component does not count as present. target_items is the depth of the reference page, and target_items_by_band gives it by the difficulty band the record declares at band_source (for a Core1A construction unit, the hardest band among the bank questions it names in crux_question_refs). Between the floor and the reference depth the renderer says so as an advisory.",
-    "held_to": "FLOOR: official records and products are judged at the floor; an EXPECTED component that is absent is an advisory. REFERENCE: new authoring (a TEST deploy, a scaffolded owner bank) is judged at the reference depth, and an EXPECTED component must be present or waived by the record; otherwise it is a gap."
+    "held_to": "FLOOR: official records and products are judged at the floor; an EXPECTED component that is absent is an advisory. REFERENCE: new authoring (a TEST deploy, a scaffolded owner bank) is judged at the reference depth, and an EXPECTED component must be present or waived by the record; otherwise it is a gap.",
+    "coverage": {
+      "purpose": "A product shows what the library holds for its subject, not what an author happened to list: the list of selected questions is a choice, and a choice leaves a record.",
+      "denominator": "What product_manifest.derive would select: for Core2, the exam-bank questions whose capability or concept bucket belongs to the package; for Core2A and Core2B, the package questions exposed to that Core.",
+      "rule": "Every record of the denominator is selected, or omitted by the manifest with a reason (coverage.omitted: {record id: why}); the hardest question of the denominator, by the toughest-concept rule, is selected.",
+      "held_to": {
+        "FLOOR": "ADVISORY",
+        "REFERENCE": "GAP"
+      },
+      "component": "COVERAGE",
+      "duty": "AUTHOR_COVERAGE",
+      "sources": "Source documents whose questions the library does not hold as records yet are declared in the manifest (coverage.sources: source, kind, questions, ingested, status). They are counted and said on the page of Deployments and in the receipt; nothing is rendered from them, and the figures are the author's claim."
+    },
+    "promotion": {
+      "purpose": "A record that its own status says is not ready to teach is not selected into a product.",
+      "selectable_statuses": [
+        "CANDIDATE",
+        "REVIEWED",
+        "CURATED"
+      ],
+      "refused_statuses": [
+        "DISCOVERED",
+        "DISPUTED",
+        "STALE",
+        "RETIRED"
+      ],
+      "applies_to": [
+        "microtopics",
+        "core2",
+        "core2a",
+        "core2b"
+      ],
+      "refusal": "PRODUCT_SELECTION_STATUS_NOT_SELECTABLE",
+      "note": "A record that declares no status makes no claim and is not refused. What a selected record must contain is the blueprint's own components: a REQUIRED one that is absent is a gap, as before."
+    },
+    "typeset": {
+      "purpose": "An equation a learner is meant to read is typeset, not left as the author's plain text.",
+      "rule": "A relation shown on a page carries presentation MathML (relation.mathml, the restricted subset the renderer accepts). One that has only an expression is shown as plain text, and the build says so.",
+      "held_to": {
+        "FLOOR": "ADVISORY",
+        "REFERENCE": "GAP"
+      },
+      "component": "TYPESET",
+      "duty": "AUTHOR_TYPESET"
+    }
   },
   "blueprints": [
     {

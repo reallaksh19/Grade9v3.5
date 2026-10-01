@@ -37,7 +37,10 @@
         "column",
         "waivers",
         "depth",
-        "held_to"
+        "held_to",
+        "coverage",
+        "promotion",
+        "typeset"
       ],
       "properties": {
         "levels": {
@@ -97,6 +100,170 @@
         "held_to": {
           "type": "string",
           "minLength": 1
+        },
+        "coverage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "purpose",
+            "denominator",
+            "rule",
+            "held_to",
+            "component",
+            "duty",
+            "sources"
+          ],
+          "properties": {
+            "purpose": {
+              "type": "string",
+              "minLength": 1
+            },
+            "denominator": {
+              "type": "string",
+              "minLength": 1
+            },
+            "rule": {
+              "type": "string",
+              "minLength": 1
+            },
+            "held_to": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "FLOOR",
+                "REFERENCE"
+              ],
+              "properties": {
+                "FLOOR": {
+                  "enum": [
+                    "ADVISORY",
+                    "GAP"
+                  ]
+                },
+                "REFERENCE": {
+                  "enum": [
+                    "ADVISORY",
+                    "GAP"
+                  ]
+                }
+              }
+            },
+            "component": {
+              "const": "COVERAGE"
+            },
+            "duty": {
+              "const": "AUTHOR_COVERAGE"
+            },
+            "sources": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "promotion": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "purpose",
+            "selectable_statuses",
+            "refused_statuses",
+            "applies_to",
+            "refusal",
+            "note"
+          ],
+          "properties": {
+            "purpose": {
+              "type": "string",
+              "minLength": 1
+            },
+            "selectable_statuses": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "refused_statuses": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "applies_to": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "microtopics",
+                  "core2",
+                  "core2a",
+                  "core2b"
+                ]
+              }
+            },
+            "refusal": {
+              "type": "string",
+              "pattern": "^PRODUCT_[A-Z_]+$"
+            },
+            "note": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "typeset": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "purpose",
+            "rule",
+            "held_to",
+            "component",
+            "duty"
+          ],
+          "properties": {
+            "purpose": {
+              "type": "string",
+              "minLength": 1
+            },
+            "rule": {
+              "type": "string",
+              "minLength": 1
+            },
+            "held_to": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "FLOOR",
+                "REFERENCE"
+              ],
+              "properties": {
+                "FLOOR": {
+                  "enum": [
+                    "ADVISORY",
+                    "GAP"
+                  ]
+                },
+                "REFERENCE": {
+                  "enum": [
+                    "ADVISORY",
+                    "GAP"
+                  ]
+                }
+              }
+            },
+            "component": {
+              "const": "TYPESET"
+            },
+            "duty": {
+              "const": "AUTHOR_TYPESET"
+            }
+          }
         }
       }
     }

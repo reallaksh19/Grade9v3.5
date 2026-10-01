@@ -3,7 +3,7 @@
 Generated from `Shared/web/interactive-page-blueprints.v1.json` by `Shared/tools/blueprint_spec.py`. Do not edit.
 To change what a page shows, change the blueprint; the renderer, the quality gate and the owner-bank scaffold follow.
 
-Registry 1.7.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
+Registry 1.8.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
 
 Depth: min_items is the floor below which a component does not count as present. target_items is the depth of the reference page, and target_items_by_band gives it by the difficulty band the record declares at band_source (for a Core1A construction unit, the hardest band among the bank questions it names in crux_question_refs). Between the floor and the reference depth the renderer says so as an advisory.
 
@@ -23,6 +23,25 @@ Held to: FLOOR: official records and products are judged at the floor; an EXPECT
 - It never links: KEY_PDF (a key PDF holds the answers).
 - A page that links its PDF is published only with that PDF beside it, printed from the same bytes (print-receipt.json); a link that does not resolve refuses the publication.
 - A Core2 question whose source is a verified official past paper also links the paper itself as a PDF: see the `SOURCE_PDF` component.
+
+## Rules about a whole product
+
+**Coverage** (component `COVERAGE`, duty `AUTHOR_COVERAGE`). A product shows what the library holds for its subject, not what an author happened to list: the list of selected questions is a choice, and a choice leaves a record.
+
+- The denominator: What product_manifest.derive would select: for Core2, the exam-bank questions whose capability or concept bucket belongs to the package; for Core2A and Core2B, the package questions exposed to that Core.
+- The rule: Every record of the denominator is selected, or omitted by the manifest with a reason (coverage.omitted: {record id: why}); the hardest question of the denominator, by the toughest-concept rule, is selected.
+- A shortfall is an advisory for an official product (held to the floor) and a gap for new authoring (held to the reference).
+- Source documents whose questions the library does not hold as records yet are declared in the manifest (coverage.sources: source, kind, questions, ingested, status). They are counted and said on the page of Deployments and in the receipt; nothing is rendered from them, and the figures are the author's claim.
+
+**Promotion.** A record that its own status says is not ready to teach is not selected into a product.
+
+- Selectable statuses: CANDIDATE, REVIEWED, CURATED. Refused: DISCOVERED, DISPUTED, STALE, RETIRED, with `PRODUCT_SELECTION_STATUS_NOT_SELECTABLE`; it applies to microtopics, core2, core2a, core2b.
+- A record that declares no status makes no claim and is not refused. What a selected record must contain is the blueprint's own components: a REQUIRED one that is absent is a gap, as before.
+
+**Typeset** (component `TYPESET`, duty `AUTHOR_TYPESET`). An equation a learner is meant to read is typeset, not left as the author's plain text.
+
+- A relation shown on a page carries presentation MathML (relation.mathml, the restricted subset the renderer accepts). One that has only an expression is shown as plain text, and the build says so.
+- It is an advisory for an official product and a gap for new authoring.
 
 ## BP-CORE2-SOURCE-QUESTION@1.5.0 (CORE2)
 

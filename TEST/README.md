@@ -37,6 +37,12 @@ official product is judged at:
   with its reason, for the Owner to accept or refuse; never invent content to avoid a gap or a waiver.
 - `owner_bank.py check` holds a bank to the same bar before you deploy, with the same messages.
 - The intake's per-question `conditions` are numbers scraped from the question's text, not the conditions the question states; write `conditions` from what the question gives.
+- A product is judged against what the library holds for its package, not against what its manifest lists: every question `python3 Shared/tools/product_coverage.py MANIFEST` counts for the package is selected, or left out in the manifest's
+  `coverage.omitted` with a reason (`{"record id": "a sentence saying why"}`); the hardest of them is selected. A gap, `AUTHOR_COVERAGE`, names each Core that falls short. The source documents whose questions are not records yet go in
+  `coverage.sources` (`source`, `kind`, `questions`, `ingested`, `status`: NOT_INGESTED, PARTLY_INGESTED, INGESTED or EXCLUDED with a `reason`); they are counted and said on the Deployments page and in the receipt, never rendered, and the figures are yours.
+- A record whose own status is DISCOVERED, DISPUTED, STALE or RETIRED cannot be selected (`PRODUCT_SELECTION_STATUS_NOT_SELECTABLE`); a record that declares no status is not refused.
+- An equation a page shows carries presentation MathML in `relation.mathml`; with only an expression it is shown as plain text and the deploy reports a gap, `AUTHOR_TYPESET`, for each such relation. For an equation in plain arithmetic
+  `python3 Shared/tools/typeset_relation.py "t = 2*v0y/g" --json` prints the markup to paste; an equation with words in it is written by hand, in the subset the pages allow.
 - The intake reads the Owner's list by words only. A leading number ("1. ") becomes the question's `label`, and the `stem` is the text after it. `questions_outside_syllabus` and the source-identity
   lines compare words with the syllabus and nothing else, so a question the Owner gave you for this syllabus is for this syllabus whatever they list; do not act on them.
 - The figure kinds a TEST page may use are the `representation_kinds` of `TEST/adapter/QualityVocabulary.json` (`VECTOR_DIAGRAM`, `COMPONENT_DIAGRAM`, `GRAPH_GENERIC`, ...); read the file for the full list before you write a figure.
