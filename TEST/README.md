@@ -180,4 +180,5 @@ hand-written, that nothing in it is machine-checked and that it is not built fro
 
 - TEST has a contract (`TEST/adapter/`) and no adapter: no scenes and no validators of its own. An explorer's numbers are checked by the explorer model against the spec's own expressions (that the
   page agrees with itself and with its equation), not against a subject authority: whether the physics or the mathematics in the spec is the right one is for the Owner to decide.
+- An explorer keeps a learner's progress only while the page is open: reloading it starts the route again, and nothing is stored or sent anywhere. (It does emit its evidence events in the page, as `g9:evidence` events, for a platform that would listen.)
 - Owner-supplied banks are used only here. Official exam banks are unchanged; an owner bank may not live in an `exam-bank/` directory, and TEST is not part of the public Question Bank. The general design question is issue #371.
