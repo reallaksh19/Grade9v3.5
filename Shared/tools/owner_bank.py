@@ -21,7 +21,8 @@ year, paper or URL from this file kind, so a guessed identity cannot hide under 
     python3 Shared/tools/owner_bank.py new --intake workspace/intake.json --bank-id SLUG --out TEST/question-bank/SLUG.json
     python3 Shared/tools/owner_bank.py check TEST/question-bank/SLUG.json --intake workspace/intake.json
 
-`new` leaves `answer.summary` and `primary_capability_ref` empty for the author to fill; `check` names each one.
+`new` leaves the answer, the capability and family refs, the question type and the difficulty estimate empty for the
+author to fill; `check` names each one, with the same messages the renderer would give.
 """
 from __future__ import annotations
 
@@ -33,7 +34,13 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
+if __package__ in (None, ""):
+    sys.path.insert(0, str(REPO))
+
+from Shared.tools import learner_metadata  # noqa: E402
+
 BANK_DIR = "TEST/question-bank"
+ANALYSIS_KEY = "grade9v3:analysis"
 
 SCHEMA_VERSION = "grade9v3-owner-supplied-bank-v1"
 CUSTODY_CLASS = "OWNER_SUPPLIED_RAW_INPUT"
@@ -101,6 +108,8 @@ def check(document: dict, where: str = "bank", intake: dict | None = None) -> li
         elif isinstance(stem, str) and text_digest(stem) != custody["text_sha256"]:
             problems.append(f"{label}: the stem is not the text the Owner supplied (its digest differs from "
                             f"{CUSTODY_KEY}.text_sha256); owner questions are kept verbatim, so restore the stem")
+        # The same projection the renderer makes: provenance, difficulty and question type. Say it here, not as a gap later.
+        problems += [f"{label}: {problem}" for problem in learner_metadata.bank_question_problems(question)]
         invented = [key for key in OFFICIAL_ONLY if key in custody]
         if invented:
             problems.append(f"{label}: {CUSTODY_KEY} must not carry official-exam fields {invented}; "
@@ -157,12 +166,22 @@ def new(intake: dict, bank_id: str) -> dict:
             "stem": text,
             "answer": {"summary": ""},
             "primary_capability_ref": "",
-            "extensions": {CUSTODY_KEY: {
-                "authority_class": CUSTODY_CLASS,
-                "intake_ref": item["id"],
-                "wording_custody": "VERBATIM",
-                "text_sha256": text_digest(text),
-            }},
+            "family_ref": "",
+            "extensions": {
+                CUSTODY_KEY: {
+                    "authority_class": CUSTODY_CLASS,
+                    "intake_ref": item["id"],
+                    "wording_custody": "VERBATIM",
+                    "text_sha256": text_digest(text),
+                },
+                # The difficulty is the author's estimate: five components, each 0 to 2, their sum as the score, and the
+                # band that sum falls in (see Shared/vocabularies/learner-question-metadata.v1.json). Fill every empty value.
+                ANALYSIS_KEY: {
+                    "learner_question_type": "",
+                    "difficulty": {"band": "", "score": 0, "basis": "",
+                                   "components": {name: 0 for name in sorted(learner_metadata.DIFFICULTY_COMPONENTS)}},
+                },
+            },
         })
     return {"schema_version": SCHEMA_VERSION, "bank_id": bank_id, "intake_digest": intake.get("intake_digest"),
             "questions": questions}
@@ -212,8 +231,9 @@ def main(argv: list[str] | None = None) -> int:
         resolved.parent.mkdir(parents=True, exist_ok=True)
         resolved.write_text(json.dumps(bank, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"wrote {parsed.out}: {len(bank['questions'])} question(s), each kept exactly as supplied.\n"
-              "Fill answer.summary (and answer.reasoning, a list of steps) and primary_capability_ref for each; "
-              "do not edit a stem, its digest is checked.")
+              "For each: fill answer.summary (and answer.reasoning, a list of steps), primary_capability_ref, family_ref "
+              "and the empty values in extensions[\"grade9v3:analysis\"] (question type, difficulty). "
+              "Do not edit a stem: its digest is checked.")
         return 0
 
     intake = _load(parsed.intake) if parsed.intake else None

@@ -31,6 +31,9 @@ def owner_questions(package: dict, count: int = 2) -> list[dict]:
     rows = copy.deepcopy([q for q in bank["questions"] if q.get("primary_capability_ref") in caps][:count])
     for index, row in enumerate(rows, 1):
         row["extensions"]["grade9v3:source_custody"] = dict(OWNER_CUSTODY, text_sha256=owner_bank.text_digest(row["stem"]))
+        # An owner question names no exam: no exam badge and no exam provenance class, whatever the borrowed record carried.
+        row["extensions"].pop("grade9v3:provenance_class", None)
+        row["extensions"]["grade9v3:analysis"].pop("exam_source_badge", None)
         row["id"] = f"Q-OWNER-FX-{index:02d}"
         row["original_identifier"] = f"Q{index}"
     return rows
@@ -151,6 +154,8 @@ class TestDeploy(unittest.TestCase):
         self.assertIn("<h2>Q1</h2>", core2)
         self.assertIn("Owner-supplied question, verbatim", core2)
         self.assertNotIn("Source unverified", core2)
+        self.assertFalse([g for g in receipt["gaps"] if "PROVENANCE" in g["detail"] or "SOURCE_LABEL" in g["detail"]],
+                         "an owner question needs no exam badge and takes the owner provenance")
         identity = re.findall(r'data-g9-block="source_identity">(.*?)</div>', core2, flags=re.S)
         self.assertEqual(len(identity), 2, "one identity block per owner question")
         for block in identity:
@@ -159,9 +164,21 @@ class TestDeploy(unittest.TestCase):
             page = (out / name).read_text(encoding="utf-8")
             self.assertIn('data-g9-test="sandbox-draft"', page)
             self.assertIn("data-g9-test-banner", page)
+            self.assertIn("<title>TEST draft · ", page)
             self.assertEqual(deploy_test._sha(page.encode("utf-8")), sha)
         self.assertEqual(json.loads((out / "deploy-receipt.json").read_text(encoding="utf-8"))["render_digest"],
                          receipt["render_digest"])
+
+    def test_the_receipt_and_the_deployments_page_say_what_each_gap_is(self):
+        receipt = deploy_test.deploy_product(self.fixture.manifest)
+        self.assertEqual(len(receipt["gaps"]), receipt["gap_count"])
+        self.assertTrue(receipt["gaps"], "the fixture package leaves gaps")
+        first = receipt["gaps"][0]
+        self.assertEqual(sorted(first), ["core", "detail", "duty", "record"])
+        page = build_test_site.deployments_page()
+        self.assertIn(f"The {receipt['gap_count']} gap(s)", page)
+        self.assertIn(first["record"], page)
+        self.assertIn(first["detail"].replace("&", "&amp;"), page.replace("&#x27;", "'"))
 
     def test_the_hub_and_deployments_pages_report_the_deployment_without_calling_it_done(self):
         deploy_test.deploy_product(self.fixture.manifest)
@@ -245,6 +262,7 @@ class TestInteractive(unittest.TestCase):
         self.assertIn("data-g9-test-banner", page)
         self.assertIn('data-g9-test="sandbox-draft"', page)
         self.assertIn("data-g9-shell", page)
+        self.assertIn("<title>TEST draft · x</title>", page)
         self.assertIn('href="../../../index.html">Portal</a>', page)
         self.assertIs(receipt["accepted"], False)
         self.assertEqual(receipt["blueprint_ref"], "NONE")
@@ -349,6 +367,11 @@ class TestOwnerBankFromIntake(unittest.TestCase):
             for row in bank["questions"]:
                 row["answer"] = {"summary": "an answer", "reasoning": ["a step"]}
                 row["primary_capability_ref"] = "CAP-X"
+                row["family_ref"] = "FAM-X"
+                analysis = row["extensions"]["grade9v3:analysis"]
+                analysis["learner_question_type"] = "constructed_response"
+                analysis["difficulty"].update(band="D1", score=1, basis="a direct application")
+                analysis["difficulty"]["components"]["concept_model_selection"] = 1
         return bank
 
     def test_new_copies_the_text_exactly_and_records_where_it_came_from(self):
@@ -365,7 +388,17 @@ class TestOwnerBankFromIntake(unittest.TestCase):
         problems = owner_bank.check(self.bank(fill=False), intake=self.INTAKE)
         self.assertEqual(sum("answer.summary is required" in p for p in problems), 2, problems)
         self.assertEqual(sum("primary_capability_ref is required" in p for p in problems), 2, problems)
+        self.assertEqual(sum("METADATA_QUESTION_DIFFICULTY" in p for p in problems), 2, problems)
+        self.assertEqual(sum("METADATA_QUESTION_TYPE" in p for p in problems), 2, problems)
+        self.assertTrue(any("score 0 to 2" in p for p in problems), "the difficulty message says what the bands are")
+        self.assertTrue(any("learner_question_type is one of" in p for p in problems), problems)
         self.assertEqual(owner_bank.check(self.bank(), intake=self.INTAKE), [])
+
+    def test_an_owner_question_cannot_take_an_exam_provenance_class(self):
+        bank = self.bank()
+        bank["questions"][0]["extensions"]["grade9v3:provenance_class"] = "PYQ_ADAPTED"
+        problems = owner_bank.check(bank)
+        self.assertTrue(any("METADATA_PROVENANCE_INVALID" in p and "OWNER_SUPPLIED" in p for p in problems), problems)
 
     def test_tidying_a_stem_is_caught_even_without_the_intake(self):
         bank = self.bank()

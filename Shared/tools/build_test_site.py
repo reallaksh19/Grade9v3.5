@@ -190,10 +190,13 @@ def deployments_page() -> str:
         empty = (f'<p class="g9-prov">Roles with no records selected: {esc(", ".join(r["empty_roles"]))}. '
                  'Their pages have no items.</p>') if r["empty_roles"] else ""
         counts = ", ".join(f"{k} {v}" for k, v in r["selection_counts"].items())
+        gap_list = "".join(f'<li>{esc(g["core"])} · {esc(g["record"])}: {esc(g["detail"])}</li>' for g in r.get("gaps", []))
+        gap_details = (f'<details><summary>The {r["gap_count"]} gap(s)</summary><ul>{gap_list}</ul></details>'
+                       if gap_list else "")
         body += card(f'product-{r["slug"]}', f'{r["slug"]} {r["title"]} product',
                      f'<h2>{esc(r["title"])}</h2><p class="g9-prov">Product {esc(r["slug"])} · '
                      f'{"DRAFT" if r["draft"] else "no gaps"} · accepted: no · render {esc(r["render_digest"])}</p>'
-                     f'<p>{links}</p><p>Selected records: {esc(counts)}. Gaps: {esc(gaps)} ({r["gap_count"]} in total).</p>{empty}')
+                     f'<p>{links}</p><p>Selected records: {esc(counts)}. Gaps: {esc(gaps)} ({r["gap_count"]} in total).</p>{gap_details}{empty}')
     for r in pages:
         body += card(f'interactive-{r["slug"]}', f'{r["slug"]} {r["title"]} {r["purpose"]} interactive',
                      f'<h2>{esc(r["title"])}</h2><p class="g9-prov">Interactive page {esc(r["slug"])} · DRAFT · accepted: no · '

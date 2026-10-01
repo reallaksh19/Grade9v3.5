@@ -39,6 +39,7 @@ NOTICE = "TEST sandbox draft: not reviewed, not accepted, not curriculum. accept
 BANNER_TEXT = "TEST sandbox draft · not reviewed, not accepted, not curriculum"
 ALLOWED_SUFFIXES = {".html", ".css", ".js", ".json", ".svg", ".png", ".jpg", ".jpeg", ".webp", ".txt"}
 MAX_FILES, MAX_BYTES = 30, 2_000_000
+GAPS_SHOWN = 20
 EXTERNAL = re.compile(r"""(?:src|href)\s*=\s*["']\s*(?:https?:)?//""", re.IGNORECASE)
 EXTERNAL_CSS = re.compile(r"""@import\s+(?:url\()?\s*["']?\s*(?:https?:)?//""", re.IGNORECASE)
 
@@ -56,8 +57,9 @@ def _rel(path: Path) -> str:
 
 
 def banner(home: str) -> str:
-    return (f'<div data-g9-test-banner role="note" style="background:#7c2d12;color:#fff;padding:8px 14px;'
-            f'font:600 14px/1.4 system-ui,sans-serif">{BANNER_TEXT} · <a href="{home}" style="color:#fde68a">TEST home</a></div>')
+    return (f'<div data-g9-test-banner role="note" style="background:#7c2d12;color:#fff;padding:0 14px;'
+            f'font:600 14px/1.4 system-ui,sans-serif">{BANNER_TEXT} · <a href="{home}" style="color:#fde68a;display:inline-block;'
+            f'min-height:44px;line-height:44px;padding:0 8px">TEST home</a></div>')
 
 
 def _stamp(page: str, top: str) -> str:
@@ -65,6 +67,7 @@ def _stamp(page: str, top: str) -> str:
     if page.count("<body") != 1 or page.count("<html") != 1:
         raise DeployError("a page must have exactly one html element and one body element to be stamped as TEST")
     page = re.sub(r"(<html\b)", r'\1 data-g9-test="sandbox-draft"', page, count=1)
+    page = re.sub(r"(<title[^>]*>)", r"\1TEST draft · ", page, count=1)   # the browser tab and history say it too
     return re.sub(r"(<body[^>]*>)", lambda m: m.group(1) + top, page, count=1)
 
 
@@ -133,6 +136,7 @@ def deploy_product(manifest_path: Path) -> dict:
         "draft": bool(gaps),
         "gap_count": len(gaps),
         "gaps_by_core": dict(sorted(by_core.items())),
+        "gaps": [{key: gap.get(key) for key in ("core", "duty", "record", "detail")} for gap in gaps],
         "roles": product_manifest.selected_output_roles(manifest),
         "selection_counts": {key: len(selection.get(key) or []) for key in product_manifest.SELECTION_KEYS},
         "empty_roles": render_core.empty_roles(manifest),
@@ -254,6 +258,11 @@ def main(argv: list[str] | None = None) -> int:
             print(f"deployed {receipt['slug']}: {len(receipt['pages'])} page(s), "
                   f"{'DRAFT with ' + str(receipt['gap_count']) + ' gap(s)' if receipt['draft'] else 'no gaps'}, accepted=false")
             print("selected records: " + " ".join(f"{k}={v}" for k, v in receipt["selection_counts"].items()))
+            shown = receipt["gaps"][:GAPS_SHOWN]
+            for gap in shown:
+                print(f"  gap {gap['core']:6s} {gap['record']}: {gap['detail']}")
+            if len(receipt["gaps"]) > len(shown):
+                print(f"  ... {len(receipt['gaps']) - len(shown)} more in public/test/products/{receipt['slug']}/deploy-receipt.json")
             for role in receipt["empty_roles"]:
                 print(f"WARNING: {role} is part of this product but selects no records, so its page has no items.", file=sys.stderr)
         else:

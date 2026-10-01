@@ -27,9 +27,9 @@ as deliverables. Report each of those as NOT DONE (a limit of TEST) and do not i
 
 | What | Where | Format |
 |---|---|---|
-| Owner's questions (Core2) | `TEST/question-bank/SLUG.json` | an **owner-supplied bank**, made by `owner_bank.py new` (below). One question per intake question: `stem` is the Owner's text, unchanged; you fill `answer.summary`, `answer.reasoning` (a list of steps) and `primary_capability_ref`. There is **no exam, year, paper or URL** and you must not add one. |
+| Owner's questions (Core2) | `TEST/question-bank/SLUG.json` | an **owner-supplied bank**, made by `owner_bank.py new` (below). One question per intake question: `stem` is the Owner's text, unchanged. You fill `answer.summary`, `answer.reasoning` (a list of steps), `primary_capability_ref`, `family_ref` and the empty values in `extensions["grade9v3:analysis"]`: `learner_question_type`, and `difficulty` (five components each 0 to 2, `score` their sum, `band` D1 to D4 for that score, `basis` one sentence). The difficulty is your estimate and is shown as one. There is **no exam, year, paper or URL** and you must not add one. |
 | The ladder (Rungs) | `TEST/matrices/SLUG.rungs.json` | same shape as `Mathematics/matrices/linear-equations.rungs.json`, with `"subject": "TEST"` |
-| Concepts, capabilities, Core1A material | `TEST/library/SLUG.v1.json` | a package (`Shared/library/package.schema.json`) with `"subject": "TEST"`. The smallest complete example is `tests/fixtures/render/thin-kin-2d-motion.v1.json`; a real one is `Mathematics/library/linear-equations.v1.json` |
+| Concepts, capabilities, Core1A material | `TEST/library/SLUG.v1.json` | a package (`Shared/library/package.schema.json`) with `"subject": "TEST"`. It needs at least one resource, bucket, capability and microtopic; every capability needs a microtopic whose `primary_capability_ref` names it, and every owner question a `family_ref` naming a question family in the package. The smallest complete example is `tests/fixtures/render/thin-kin-2d-motion.v1.json`; a real one is `Mathematics/library/linear-equations.v1.json`. Check references with `python3 -m Shared.library.resolve TEST/library/SLUG.v1.json`. |
 | Product manifest | `TEST/products/SLUG.manifest.json` | made by `product_manifest.py derive` (below) |
 | Interactive page source | `TEST/interactive/SLUG/index.html` and `interactive.json` | see "An interactive page" |
 
@@ -51,7 +51,8 @@ python3 Shared/tools/owner_bank.py check TEST/question-bank/SLUG.json --intake w
 # 2  a package (capabilities first; concepts for Core1A later), then the manifest
 python3 Shared/tools/product_manifest.py derive --package TEST/library/SLUG.v1.json --bank TEST/question-bank/SLUG.json \
     --product-id SLUG --home ../../../index.html --intake workspace/intake.json --out TEST/products/SLUG.manifest.json
-#    then set "output_roles" in the manifest to the Cores the Owner asked for, for example ["CORE2"]; without it all six are rendered
+#    then edit the manifest: "output_roles" = the Cores the Owner asked for, for example ["CORE2"] (without it all six are rendered);
+#    "diagnostic" = the ids of three owner questions to show as "start here" on the product's index page
 
 # 3  Core2 on the TEST tab
 python3 Shared/tools/deploy_test.py product TEST/products/SLUG.manifest.json
@@ -71,6 +72,8 @@ python3 Shared/tools/site_nav_audit.py                      # no line may start 
 
 `deploy_test.py product` renders the manifest as a draft (gaps allowed), stamps every page with the TEST banner,
 writes `public/test/products/SLUG/` and a receipt (`accepted: false`), then rebuilds the TEST pages and the Pages mirror.
+It prints each gap (a thing the page still lacks, with the record it is about); the receipt and the Deployments page list
+them all. A package or bank that fails the schema is refused with up to six problems named together and nothing written.
 It refuses a manifest that is not under `TEST/`, whose subject is not `TEST`, or that uses records outside `TEST/`.
 It sets the page links for its location, so `--home` does not have to be exact.
 
