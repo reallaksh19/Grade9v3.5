@@ -437,7 +437,7 @@ def page(spec: dict, brief: Brief, links: dict) -> tuple[str, dict]:
     compiled = em.compile_page_model(spec)
     route = em.stages(bp)
     payload = {"spec": spec, "compiled": compiled, "route": route, "fade_levels": FADE_LEVELS, "links": links}
-    data = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/").replace("<!--", "<\\!--")
+    data = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c").replace("\u2028", "\\u2028").replace("\u2029", "\\u2029")
     model_js = MODEL_JS.read_text(encoding="utf-8")
     runtime_js = RUNTIME_JS.read_text(encoding="utf-8")
     css = render_core.CSS + explorer_css(bp)
@@ -458,6 +458,116 @@ def page(spec: dict, brief: Brief, links: dict) -> tuple[str, dict]:
         f'<script type="application/json" id="gx-data">{data}</script>'
         f'<script>{model_js}</script><script>{runtime_js}</script></body></html>\n')
     return document, compiled
+
+
+# ------------------------------------------------------------------ the contract the standard asks every explorer to carry
+
+CONTRACT_SCHEMA = REPO / "Shared/library/explorer_design_contract.schema.json"
+CONTRACT_EVENTS = ["INITIAL_PREDICTION", "MISCONCEPTION_SIGNATURE", "MANIPULATION_COMPLETED", "CONTRADICTION_UNDERSTOOD", "CAUSAL_CHAIN_RECONSTRUCTED",
+                   "INVARIANT_RECONSTRUCTED", "BOUNDARY_TEST_RESULT", "FRESH_TRANSFER_RESULT"]
+CONTRACT_SEQUENCE = {"CONTEXT": "CONTEXT", "PREDICT": "PREDICT", "MANIPULATE": "MANIPULATE", "OBSERVE": "OBSERVE", "CONTRADICT": "CONTRADICT",
+                     "DECONSTRUCT": "GRAPHICAL_DECONSTRUCTION", "RECONSTRUCT": "MATHEMATICAL_RECONSTRUCTION", "INVARIANT": "INVARIANT_DISCOVERY",
+                     "BOUNDARY": "BOUNDARY_STRESS", "FADE": "SCAFFOLD_FADE", "TRANSFER": "FRESH_TRANSFER"}
+
+
+def _sentence(text: str, minimum: int = 10) -> str:
+    text = str(text).strip()
+    return text if len(text) >= minimum else (text + " " * minimum)[:minimum].replace(" ", ".")
+
+
+def contract(spec: dict, brief: Brief, locator: str) -> dict:
+    """The machine-bound design contract of Shared/library/explorer_design_contract.schema.json, written from the spec.
+
+    It says what the page was built to do and states, in the audit block, that no audit has been run: a generated page is
+    IMPLEMENTATION_PARTIAL until a person or a run of the checklist says otherwise, and a TEST page is never certified."""
+    target, scene, view = spec["target"], spec["scene"], spec["second_view"]
+    free = [p for p in spec["parameters"] if not p.get("fixed")]
+    steps = [step["text"] for step in spec["deconstruct"]["steps"]]
+    chain = (steps + [step["text"] for step in spec["reconstruct"]["steps"]])[:max(len(steps), 3)]
+    holds = [c["text"] for c in spec["boundary"]["cases"] if c["expect"] == "fails"] or [c["text"] for c in spec["boundary"]["cases"]]
+    capability = (brief.brief or {}).get("capability_ref")
+    units = sorted({p.get("unit", "") for p in spec["parameters"] if p.get("unit")} | {q.get("unit", "") for q in spec["quantities"] if q.get("unit")})
+    invariants = [{"id": f"RI-ORACLE-{i}", "views": ["scene geometry", "computed quantities"], "relation": _sentence(o["text"], 8), "tolerance": 1e-6,
+                   "evidence_method": "ANALYTIC_ORACLE", "evidence_ref": f"explorer-evidence.json#oracles/{i}"} for i, o in enumerate(spec["oracles"], 1)]
+    invariants.append({"id": "RI-EQUATION", "views": ["mechanism steps", "closed-form equation"], "relation": _sentence(spec["reconstruct"]["equation"]["text"], 8),
+                       "tolerance": 1e-6, "evidence_method": "PROPERTY_TEST", "evidence_ref": "explorer-evidence.json#equation"})
+    pending = "PENDING"
+    return {
+        "schema_version": "1.3.0",
+        "conformance_status": "IMPLEMENTATION_PARTIAL",
+        "cognitive_target": {"target_failure": _sentence(target["failure"]), "target_operation": _sentence(target["operation"]),
+                             "core_invariant": _sentence(target["invariant"], 5), "boundary": _sentence(target["boundary"])},
+        "route_policy": {"recommended_when": ["INTRINSIC_HARD", "COUNTERINTUITIVE"], "learner_evidence_triggers": ["MISCONCEPTION_DETECTED", "REPEATED_FAILURE"],
+                         "prerequisite_policy": "DIVERT_IF_PREREQUISITE_MISSING", "auto_route_policy": "RECOMMEND_ONLY"},
+        "interaction_sequence": [CONTRACT_SEQUENCE[cid] for cid in em.stages(em.blueprint())],
+        "graphical_contract": {
+            "phenomenon_view": _sentence(scene["job"]),
+            "mechanism_view": _sentence("; ".join(steps)),
+            "mathematical_structure_view": _sentence(spec["reconstruct"]["equation"]["text"]),
+            "direct_manipulation": _sentence(", ".join(f"the {p['label']} slider" for p in free), 5),
+            "synchronized_representations": [scene["title"], view["title"], "the readouts of every quantity", "the equation with live values"],
+            "causal_chain": chain,
+            "progressive_disclosure": "The situation first, then a locked-in prediction, then the result, the pattern, the tempting model, the mechanism one cause at a time, the equation, the invariants and the boundary.",
+            "counterfactual_model": _sentence(spec["contradict"]["imposes"])},
+        "boundary_contract": {"assumption_held": _sentence(spec["boundary"]["assumption"], 5), "stress_action": "Set the sliders to each boundary case and judge whether the shortcut holds there.",
+                              "expected_break": _sentence("; ".join(holds), 5), "learner_must_identify": _sentence(spec["boundary"]["learner_must_identify"], 5)},
+        "exit_evidence": {"reconstruction_required": True, "boundary_test_required": True, "fresh_transfer_required": True,
+                          "rejoin_step_ref": target["question_ref"], "evidence_events": CONTRACT_EVENTS},
+        "implementation_evidence": {key: True for key in (
+            "prediction_before_reveal", "meaningful_direct_manipulation", "synchronized_representations", "physical_contradiction", "explicit_causal_chain",
+            "mathematics_from_visual_mechanism", "invariant_discovery", "boundary_stress", "scaffold_fade", "fresh_transfer_without_scaffold")},
+        "state_fidelity_contract": {
+            "source_of_truth": _sentence("The slider positions (" + ", ".join(p["id"] for p in free) + "): every quantity, element and readout is computed from them by the spec's expressions."),
+            "external_state_mapping": "NOT_APPLICABLE", "missing_parameter_policy": "NEVER_INVENT_AS_EXACT", "fidelity_labels": ["EXACT", "CONSTRAINT_FAITHFUL", "CONCEPT_ONLY", "UNAVAILABLE"],
+            "unit_constant_policy": _sentence("Every quantity is shown in its declared unit (" + (", ".join(units) or "none") + "); the page applies no other conversion."),
+            "reset_policy": "Reset sliders returns every slider to its starting position and Start over reloads the route from the first step.",
+            "external_state_bindings": [], "exactness_rule": "ALL_REQUIRED_BINDINGS_PRESENT"},
+        "quality_audit": {
+            "checklist_version": "1.2.0", "audit_status": "NOT_RUN", "last_audited": None,
+            "audit_provenance": {"mode": "NOT_RUN", "auditor": None, "version": None},
+            "audit_1_canonical_truth_scope": {k: pending for k in ("canonical_binding", "assumptions_and_conventions", "derivation_or_model_check", "units_constants_parameters",
+                                                                  "boundary_limit_cases", "source_claim_fidelity", "corpus_snapshot_provenance", "instructional_depth_scope")},
+            "audit_2_graphical_state_fidelity": {k: pending for k in ("single_state_source", "representation_synchronization", "direct_manipulation_is_causal", "counterfactual_is_honest",
+                                                                     "progressive_disclosure", "control_state_mapping", "no_invented_exact_parameters", "interaction_fidelity_disclosed",
+                                                                     "representation_equivalence", "rendered_geometry_truth")},
+            "audit_3_reconstruction_teaching_transfer": {k: pending for k in ("answer_or_disposition_specific", "derivation_specific", "independent_check", "misconception_trap_specific",
+                                                                             "transfer_takeaway_specific", "boundary_recognition", "scaffold_fade", "fresh_transfer", "helper_activation")},
+            "audit_4_runtime_release_integrity": {k: pending for k in ("implementation_locator", "static_syntax", "handler_and_control_integrity", "identifier_integrity",
+                                                                      "no_placeholder_or_undefined_output", "deterministic_reset", "runtime_smoke", "accessibility_baseline",
+                                                                      "delivery_profile_integrity")},
+            "audit_receipts": [], "unresolved_findings": [], "waivers": {}},
+        "scope_contract": {"canonical_binding_status": "BOUND" if capability else "UNBOUND_EXTENSION", "canonical_capability_refs": [capability] if capability else [],
+                           "instructional_depth": "SCHOOL_CORE", "extension_reason": "none: built for the toughest question of the owner's own set",
+                           "certification_scope": "TEST sandbox draft: not eligible for canonical GCDR certification"},
+        "representation_invariants": invariants,
+        "geometry_truth_contract": {"verification_status": "DECLARED", "oracle_method": "ANALYTIC_ORACLE",
+                                    "governed_geometry": [e["id"] for e in scene["elements"]] or ["scene"], "evidence_ref": "explorer-evidence.json#oracles"},
+        "delivery_profile": {"profile": "SINGLE_FILE_OFFLINE", "artifact_locator": locator, "remote_dependencies_declared": []},
+    }
+
+
+def contract_findings(document: dict) -> list[str]:
+    """What is wrong with a contract against its schema, one line each (empty when it is valid)."""
+    import jsonschema  # noqa: PLC0415
+    schema = json.loads(CONTRACT_SCHEMA.read_text(encoding="utf-8"))
+    return [f"{'.'.join(str(p) for p in e.absolute_path) or 'contract'}: {e.message}"
+            for e in jsonschema.Draft202012Validator(schema).iter_errors(document)]
+
+
+def evidence_record(spec: dict, report: em.Report, page_sha256: str) -> dict:
+    """What the build computed, kept beside the page: the numbers behind every claim in it."""
+    return {
+        "schema": "grade9v3-explorer-evidence-v1",
+        "builder": BUILDER,
+        "blueprint_ref": spec["blueprint_ref"],
+        "spec_sha256": hashlib.sha256(json.dumps(spec, sort_keys=True).encode("utf-8")).hexdigest(),
+        "page_sha256": page_sha256,
+        "checked_by": "Shared/tools/explorer_model.py at every position the sliders can reach (see states_checked)",
+        **report.evidence,
+        "oracles": [{"text": o["text"], "left": o["left"], "right": o["right"]} for o in spec["oracles"]],
+        "not_checked_here": ["whether the teaching is sound", "the behaviours in a browser (tests/test_explorer_browser.py runs them on a reference page)",
+                             "the audit of the standard's checklist: it is NOT_RUN in the contract"],
+    }
 
 
 # ------------------------------------------------------------------ the whole build

@@ -6,7 +6,7 @@ this is deliberately not `accept_product.py`: it renders a TEST manifest as a dr
 TEST banner, and writes a receipt that says `accepted: false`. It refuses anything that is not TEST.
 
     python3 Shared/tools/deploy_test.py product TEST/products/SLUG.manifest.json
-    python3 Shared/tools/deploy_test.py interactive TEST/interactive/SLUG
+    python3 Shared/tools/deploy_test.py interactive TEST/interactive/SLUG   # explorer.json: built and checked; or index.html + interactive.json: hand-written
     python3 Shared/tools/deploy_test.py pages            # rebuild the TEST pages, then the Pages mirror (docs/)
     python3 Shared/tools/deploy_test.py pages --check    # verify both without writing
 
@@ -27,7 +27,7 @@ REPO = Path(__file__).resolve().parents[2]
 if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
-from Shared.tools import (build_pages_site, build_test_site, product_manifest, quality_gate, render_core,  # noqa: E402
+from Shared.tools import (build_pages_site, build_test_site, explorer_build, product_manifest, quality_gate, render_core,  # noqa: E402
                           site_nav_audit, toughest_concept)
 from Shared.tools import web_blueprint_contract as blueprints  # noqa: E402
 
@@ -246,31 +246,107 @@ def _validate_interactive(source: Path) -> tuple[dict, list[Path]]:
 
 
 def deploy_interactive(source: Path) -> dict:
+    """An explorer spec (explorer.json) is built into a page whose numbers are checked; a hand-written page is accepted as a draft and said to be unchecked."""
     source = source.resolve()
-    meta, files = _validate_interactive(source)
-    out = PUBLIC_TEST / "interactive" / meta["slug"]
+    if (source / explorer_build.SPEC_FILE).is_file():
+        return deploy_explorer(source)
+    return deploy_hand_written(source)
+
+
+def _write_interactive(out: Path, files: dict[str, bytes]) -> dict[str, str]:
     if out.exists():
         shutil.rmtree(out)
     out.mkdir(parents=True)
     written = {}
-    for path in files:
-        rel = path.relative_to(source)
-        target = out / rel
+    for name, data in sorted(files.items()):
+        target = out / name
         target.parent.mkdir(parents=True, exist_ok=True)
-        data = path.read_bytes()
-        if rel.as_posix() == "index.html":
-            # The page brings no shell header of its own, so it gets the sandbox header: draft label, portal, TEST pages.
-            data = _stamp(data.decode("utf-8"), build_test_site.sandbox_bar("../../../")).encode("utf-8")
         target.write_bytes(data)
-        written[rel.as_posix()] = _sha(data)
-    missing = {name: site_nav_audit.missing_targets(REPO / "public", out / name)
-               for name in written if name.endswith(".html")}
+        written[name] = _sha(data)
+    return written
+
+
+def _links_resolve(out: Path, slug: str, written: dict[str, str]) -> None:
+    missing = {name: site_nav_audit.missing_targets(REPO / "public", out / name) for name in written if name.endswith(".html")}
     missing = {name: refs for name, refs in missing.items() if refs}
     if missing:
         shutil.rmtree(out)
         detail = "; ".join(f"{name} links to {', '.join(refs)}" for name, refs in sorted(missing.items()))
-        raise DeployError(f"{detail} (no such file at the deployed location public/test/interactive/{meta['slug']}/; "
+        raise DeployError(f"{detail} (no such file at the deployed location public/test/interactive/{slug}/; "
                           "put it in the page's folder and link it relative to index.html)")
+
+
+def deploy_explorer(source: Path) -> dict:
+    """Build the explorer from its spec, refuse it if a number in it is wrong, and deploy it as a draft with its contract and its evidence."""
+    if not source.is_dir() or not source.resolve().is_relative_to((TEST_ROOT / "interactive").resolve()):
+        raise DeployError("an interactive page source must be a directory under TEST/interactive/")
+    try:
+        document, compiled, spec, report, brief = explorer_build.build(source)
+    except (ValueError, json.JSONDecodeError) as caught:
+        raise DeployError(str(caught)) from caught
+    rel = source.relative_to(REPO).as_posix()
+    if report.errors:
+        shown = "\n".join(f"  {f.line()}" for f in report.errors[:12])
+        more = f"\n  ... {len(report.errors) - 12} more" if len(report.errors) > 12 else ""
+        raise DeployError(f"{len(report.errors)} error(s) in {explorer_build.SPEC_FILE}; no page was written (a page that would show a number nobody checked, "
+                          f"or break, is not deployed):\n{shown}{more}\nrun python3 Shared/tools/explorer_build.py check {rel} for the rest and how to author each")
+    slug = _slug(str(spec["slug"]), "slug")
+    out = PUBLIC_TEST / "interactive" / slug
+    page = _stamp(document, build_test_site.sandbox_bar("../../../")).encode("utf-8")
+    locator = f"public/test/interactive/{slug}/index.html"
+    design = explorer_build.contract(spec, brief, locator)
+    problems = explorer_build.contract_findings(design)
+    if problems:
+        raise DeployError("the design contract written for this page does not match Shared/library/explorer_design_contract.schema.json "
+                          "(a fault in the builder, not in the spec): " + "; ".join(problems[:4]))
+    evidence = explorer_build.evidence_record(spec, report, _sha(page))
+    written = _write_interactive(out, {"index.html": page,
+                                       "explorer-contract.json": (json.dumps(design, indent=2, ensure_ascii=False) + "\n").encode("utf-8"),
+                                       "explorer-evidence.json": (json.dumps(evidence, indent=2, ensure_ascii=False) + "\n").encode("utf-8")})
+    _links_resolve(out, slug, written)
+    toughest = brief.brief
+    spec_path = source / explorer_build.SPEC_FILE
+    receipt = {
+        "schema": INTERACTIVE_RECEIPT_SCHEMA,
+        "slug": slug,
+        "title": spec["title"],
+        "purpose": f"A guided explorer of the toughest concept of the set ({toughest['label']}): {spec['target']['operation']}",
+        "records": [r for r in [toughest["question_ref"], toughest.get("microtopic_ref"), *(toughest.get("relation_refs") or [])] if r],
+        "blueprint_ref": spec["blueprint_ref"],
+        "built_by": "EXPLORER_BUILDER",
+        "builder": explorer_build.BUILDER,
+        "machine_checked": True,
+        "toughest": toughest,
+        "product": spec["product"],
+        "links": brief.links(),
+        "gap_count": len(report.gaps),
+        "gaps": [{"component": f.component, "where": f.where, "detail": f.detail} for f in report.gaps],
+        "checks": report.evidence,
+        "design_contract": {"file": "explorer-contract.json", "conformance_status": design["conformance_status"], "audit_status": design["quality_audit"]["audit_status"]},
+        "source": rel,
+        "source_sha256": {explorer_build.SPEC_FILE: _sha(spec_path.read_bytes())},
+        "files": written,
+        "status": "DRAFT",
+        "accepted": False,
+        "notice": NOTICE,
+    }
+    (out / "interactive-receipt.json").write_text(json.dumps(receipt, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    return receipt
+
+
+def deploy_hand_written(source: Path) -> dict:
+    meta, files = _validate_interactive(source)
+    out = PUBLIC_TEST / "interactive" / meta["slug"]
+    contents = {}
+    for path in files:
+        rel = path.relative_to(source).as_posix()
+        data = path.read_bytes()
+        if rel == "index.html":
+            # The page brings no shell header of its own, so it gets the sandbox header: draft label, portal, TEST pages.
+            data = _stamp(data.decode("utf-8"), build_test_site.sandbox_bar("../../../")).encode("utf-8")
+        contents[rel] = data
+    written = _write_interactive(out, contents)
+    _links_resolve(out, meta["slug"], written)
     receipt = {
         "schema": INTERACTIVE_RECEIPT_SCHEMA,
         "slug": meta["slug"],
@@ -278,6 +354,8 @@ def deploy_interactive(source: Path) -> dict:
         "purpose": meta["purpose"],
         "records": meta["records"],
         "blueprint_ref": meta["blueprint_ref"],
+        "built_by": "HAND_WRITTEN",
+        "machine_checked": False,
         "source": _rel(source),
         "source_sha256": {p.relative_to(source).as_posix(): _sha(p.read_bytes()) for p in files},
         "files": written,
@@ -371,6 +449,22 @@ def main(argv: list[str] | None = None) -> int:
         else:
             receipt = deploy_interactive(Path(args.source))
             print(f"deployed interactive {receipt['slug']}: {len(receipt['files'])} file(s), DRAFT, accepted=false")
+            if receipt["built_by"] == "EXPLORER_BUILDER":
+                brief = receipt["toughest"]
+                print(f"built by the explorer builder for the toughest concept of the set, {brief['label']} ({brief['question_ref']}); "
+                      f"{receipt['checks'].get('states_checked', 0)} positions of the sliders checked; {receipt['gap_count']} gap(s)")
+                for gap in receipt["gaps"][:GAPS_SHOWN]:
+                    print(f"  gap {gap['component']:12s} {gap['where']}: {gap['detail']}")
+                if receipt["gaps"]:
+                    print("how to author what is flagged: python3 Shared/tools/explorer_build.py check " + receipt["source"])
+                links = receipt["links"]
+                if not (links.get("question") or links.get("concept")):
+                    print("note: the product pages for this question are not deployed, so the end of the route has nothing to link back to. "
+                          "Deploy the product first, then this page again.")
+            else:
+                print("note: this page was written by hand, so nothing in it is machine-checked and it is not built from the explorer blueprint. "
+                      "Write TEST/interactive/SLUG/explorer.json instead (python3 Shared/tools/explorer_build.py new TEST/products/SLUG.manifest.json).",
+                      file=sys.stderr)
         build_test_site.write()
         if not args.no_mirror:
             build_pages_site.write(REPO)

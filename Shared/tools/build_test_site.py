@@ -238,11 +238,29 @@ def deployments_page() -> str:
                      f'DRAFT, {"with gaps" if r["gap_count"] else "no gaps reported, not reviewed"} · accepted: no · render {esc(r["render_digest"])}</p>'
                      f'<p>{links}</p><p>Selected records: {esc(counts)}. Gaps: {esc(gaps)} ({r["gap_count"]} in total).</p>{hardest_line}{gap_details}{advice_details}{waived_details}{quality_details}{empty}')
     for r in pages:
+        built = r.get("built_by") == "EXPLORER_BUILDER"
+        how = ("Built by the explorer builder from a spec: every number on it is computed, and was checked at every position of the sliders."
+               if built else "Written by hand: nothing in it is machine-checked, and it is not built from the explorer blueprint.")
+        hardest = r.get("toughest")
+        target = (f'<p>Built for the toughest concept of the set: {esc(hardest["label"])} · {esc(hardest["band"])} · '
+                  f'{esc(hardest.get("microtopic_title") or "no concept book")}</p>' if built and hardest else "")
+        gaps = r.get("gaps") or []
+        gap_list = "".join(f'<li>{esc(g["component"])} · {esc(g["where"])}: {esc(g["detail"])}</li>' for g in gaps)
+        gap_details = (f'<details><summary>The {len(gaps)} gap(s): where the page is shallower than the blueprint asks</summary><ul>{gap_list}</ul></details>'
+                       if gaps else ('<p class="g9-prov">No gap against the blueprint. That counts what is absent, not how good it is.</p>' if built else ""))
+        checks = r.get("checks") or {}
+        contract = r.get("design_contract") or {}
+        evidence = (f'<p class="g9-prov">Checked at {checks.get("states_checked", 0)} positions of the sliders; design contract '
+                    f'{esc(contract.get("conformance_status", ""))}, audit {esc(contract.get("audit_status", "").replace("_", " ").lower())}; '
+                    f'{link("../interactive/" + r["slug"] + "/explorer-evidence.json", "evidence")} · '
+                    f'{link("../interactive/" + r["slug"] + "/explorer-contract.json", "contract")}</p>' if built else "")
+        links = r.get("links") or {}
+        back = (f'<p>{link("../interactive/" + r["slug"] + "/" + links["question"], "The question it returns to")}</p>' if links.get("question") else "")
         body += card(f'interactive-{r["slug"]}', f'{r["slug"]} {r["title"]} {r["purpose"]} interactive',
                      f'<h2>{esc(r["title"])}</h2><p class="g9-prov">Interactive page {esc(r["slug"])} · DRAFT · accepted: no · '
-                     f'blueprint {esc(r["blueprint_ref"])}</p><p>{esc(r["purpose"])}</p>'
+                     f'blueprint {esc(r["blueprint_ref"])}</p><p>{esc(r["purpose"])}</p><p>{esc(how)}</p>{target}'
                      f'<p>{link("../interactive/" + r["slug"] + "/index.html", "Open the page")} · built from '
-                     f'{esc(", ".join(r["records"]))}</p>')
+                     f'{esc(", ".join(r["records"]))}</p>{back}{gap_details}{evidence}')
     if not body:
         body = '<p>Nothing is deployed yet.</p><p class="g9-prov">deploy_test.py product / interactive puts drafts here.</p>'
     return frame(2, "Deployments", "deployments/index.html", body)
