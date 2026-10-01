@@ -67,6 +67,54 @@ class Structure(unittest.TestCase):
         self.assertTrue(any("not the active explorer blueprint BP-EXPLORER-GCDR@1.0.0" in line for line in found), found)
 
 
+class NeverCrashes(unittest.TestCase):
+    """Whatever an author puts in a field, the check answers with findings; it never stops with a traceback."""
+
+    JUNK_TEXT = ["", "1/0", "at(R)", "maxover(R, theta", "nonexistent", "R == ", "at(R, 5, 6)", "θ"]
+    JUNK_NUMBER = [-1, 0, 1e9]
+
+    def leaves(self, node, path=()):
+        if isinstance(node, dict):
+            for key, value in node.items():
+                yield from self.leaves(value, path + (key,))
+        elif isinstance(node, list):
+            for index, value in enumerate(node):
+                yield from self.leaves(value, path + (index,))
+        elif isinstance(node, (str, int, float)) and not isinstance(node, bool):
+            yield path, node
+
+    def put(self, spec, path, value):
+        node = spec
+        for part in path[:-1]:
+            node = node[part]
+        node[path[-1]] = value
+
+    def test_a_junk_value_in_any_field_gives_findings_and_never_a_traceback(self):
+        leaves = list(self.leaves(BASE))
+        ran = 0
+        for number, (path, original) in enumerate(leaves):
+            if number % 9:
+                continue
+            for junk in (self.JUNK_TEXT if isinstance(original, str) else self.JUNK_NUMBER):
+                spec = copy.deepcopy(BASE)
+                self.put(spec, path, junk)
+                try:
+                    report = em.check(spec, BRIEF)
+                except Exception as caught:      # noqa: BLE001
+                    self.fail(f"{'.'.join(map(str, path))} = {junk!r} stopped the check: {type(caught).__name__}: {caught}")
+                self.assertIsInstance(report.findings, list)
+                ran += 1
+        self.assertGreater(ran, 150)
+
+    def test_a_field_of_the_wrong_kind_gives_a_structure_finding(self):
+        for change in (lambda s: s.update(scene=[]), lambda s: s.update(parameters={}), lambda s: s["scene"]["elements"].append("point"),
+                       lambda s: s["predict"].update(options="three"), lambda s: s.update(transfer=None)):
+            spec = copy.deepcopy(BASE)
+            change(spec)
+            report = em.check(spec, BRIEF)
+            self.assertTrue(report.errors)
+
+
 class Numbers(unittest.TestCase):
     def test_a_number_where_an_expression_goes_is_the_expression_that_number(self):
         def change(spec):

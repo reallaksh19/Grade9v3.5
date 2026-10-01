@@ -156,5 +156,58 @@ class Explorer(unittest.TestCase):
             self.assertEqual(self.reports[name]["layout"]["mainDisplay"], "block", name)
 
 
+def every_kind(spec: dict) -> dict:
+    """The reference spec with one element of each kind the vocabulary has, a vertical guide and a reversed arc added to it."""
+    spec["scene"]["elements"] += [
+        {"id": "wedge", "kind": "polygon", "role": "helper", "points": [["0", "0"], ["vx/2", "0"], ["vx/2", "vy/2"]], "label": "wedge", "reveal": "deconstruct"},
+        {"id": "ring", "kind": "circle", "role": "frame", "center": ["R/2", "H"], "r": 1.5, "label": "peak"},
+        {"id": "note", "kind": "text", "role": "result", "at": [30, 19], "text": "range {R:1} m", "anchor": "end", "reveal": "manipulate"},
+        {"id": "back", "kind": "arc", "role": "given", "center": [0, 0], "r": 9, "from_deg": "theta", "to_deg": 0, "label": "back"},
+        {"id": "rim", "kind": "curve", "role": "helper", "param": "u", "t_min": 0, "t_max": 6.2832, "steps": 24, "x": "40 + 1.5*cos(u)", "y": "17 + 1.5*sin(u)", "label": "rim"},
+    ]
+    spec["deconstruct"]["steps"][0]["reveals"].append("wedge")
+    spec["second_view"]["guides"].append({"expr": "45", "label": "best at {theta:0}", "orient": "v"})
+    spec["second_view"]["guides"].append({"expr": "Rmax/2", "label": "half of {Rmax:0} m", "orient": "h"})
+    return spec
+
+
+class EveryKind(unittest.TestCase):
+    """Each element kind and each guide the vocabulary has, drawn and driven in a browser: nothing breaks and the drawing is the model."""
+
+    @classmethod
+    def setUpClass(cls):
+        why_not = _browser_available()
+        if why_not:
+            raise unittest.SkipTest(why_not)
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.spec = every_kind(json.loads(json.dumps(SPEC)))
+        report = em.check(cls.spec, {"question_ref": "Q-PROJ-8", "label": "Q8", "rule": "x"})
+        cls.findings = [f.line() for f in report.errors]
+        html, _ = eb.page(em.normalize(cls.spec), brief(), {"question": None, "concept": None})
+        cls.page = Path(cls.tmp.name) / "index.html"
+        cls.page.write_text(html, encoding="utf-8")
+        cls.report = run_browser(cls.page, 1366, 854)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.tmp.cleanup()
+
+    def test_the_spec_with_every_kind_has_no_error(self):
+        self.assertEqual(self.findings, [])
+
+    def test_every_kind_is_drawn_without_a_script_error_and_the_route_reaches_its_end(self):
+        self.assertEqual(self.report["consoleErrors"], [])
+        self.assertTrue(self.report["done"]["visible"])
+
+    def test_the_drawing_is_still_the_model(self):
+        self.assertLess(self.report["geometry"]["worstPixelError"], 0.2)
+
+    def test_no_label_of_any_kind_is_below_the_floor_or_off_the_screen(self):
+        for step in self.report["steps"]:
+            if step["smallestText"] is not None:
+                self.assertGreaterEqual(step["smallestText"], 14, step["label"])
+            self.assertEqual(step["overflow"], 0, step["label"])
+
+
 if __name__ == "__main__":
     unittest.main()

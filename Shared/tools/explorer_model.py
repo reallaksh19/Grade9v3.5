@@ -394,19 +394,29 @@ def check(spec: dict, brief: dict | None, bp: dict | None = None) -> Report:
     _check_numbers(model, states, report)
     if report.errors:
         return report
-    _check_predict(spec, model, report, count, known, parameter_names)
-    _check_goals(spec["manipulate"]["goals"], [f"manipulate.goals[{i}].goal" for i in range(len(spec["manipulate"]["goals"]))],
-                 "MANIPULATE", model, states, report, known, parameter_names)
+
+    def guarded(component: str, where: str, fn, *args) -> None:
+        """One check that cannot run (an expression the model cannot evaluate, a field in the wrong place) is an error of its own, not a crash."""
+        try:
+            fn(*args)
+        except expr.ExprError as caught:
+            report.error(component, where, f"cannot be evaluated: {caught}")
+        except (KeyError, TypeError, ValueError, ZeroDivisionError, RecursionError, OverflowError, AttributeError) as caught:
+            report.error(component, where, f"the check could not run on this ({type(caught).__name__}: {caught}); look for a missing or misplaced field")
+
+    goal_places = [f"manipulate.goals[{i}].goal" for i in range(len(spec["manipulate"]["goals"]))]
+    guarded("PREDICT", "predict", _check_predict, spec, model, report, count, known, parameter_names)
+    guarded("MANIPULATE", "manipulate", _check_goals, spec["manipulate"]["goals"], goal_places, "MANIPULATE", model, states, report, known, parameter_names)
     count("MANIPULATE", "manipulate.goals", len(spec["manipulate"]["goals"]), "goal(s)")
-    _check_observe(spec, model, states, report, count, known, parameter_names)
-    _check_contradict(spec, model, states, report, known, parameter_names, elements)
-    _check_deconstruct(spec, report, count, elements)
-    _check_reconstruct(spec, model, states, report, count, {q["id"] for q in spec["quantities"]})
-    _check_invariants(spec, model, states, report, count, known, parameter_names)
-    _check_oracles(spec, model, states, report, known | {name for name, _ in model.steps}, parameter_names)
-    _check_boundary(spec, model, report, count, known, parameter_names)
-    _check_tasks(spec, model, report, count, known, parameter_names)
-    _check_prose(spec, report)
+    guarded("OBSERVE", "observe", _check_observe, spec, model, states, report, count, known, parameter_names)
+    guarded("CONTRADICT", "contradict", _check_contradict, spec, model, states, report, known, parameter_names, elements)
+    guarded("DECONSTRUCT", "deconstruct", _check_deconstruct, spec, report, count, elements)
+    guarded("RECONSTRUCT", "reconstruct", _check_reconstruct, spec, model, states, report, count, {q["id"] for q in spec["quantities"]})
+    guarded("INVARIANT", "invariants", _check_invariants, spec, model, states, report, count, known, parameter_names)
+    guarded("SCENE", "oracles", _check_oracles, spec, model, states, report, known | {name for name, _ in model.steps}, parameter_names)
+    guarded("BOUNDARY", "boundary", _check_boundary, spec, model, report, count, known, parameter_names)
+    guarded("TRANSFER", "fade and transfer", _check_tasks, spec, model, report, count, known, parameter_names)
+    guarded("SPEC", "text", _check_prose, spec, report)
     return report
 
 
