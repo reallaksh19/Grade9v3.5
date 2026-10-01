@@ -3,7 +3,7 @@
 Generated from `Shared/web/interactive-page-blueprints.v1.json` by `Shared/tools/blueprint_spec.py`. Do not edit.
 To change what a page shows, change the blueprint; the renderer, the quality gate and the owner-bank scaffold follow.
 
-Registry 1.6.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
+Registry 1.7.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
 
 Depth: min_items is the floor below which a component does not count as present. target_items is the depth of the reference page, and target_items_by_band gives it by the difficulty band the record declares at band_source (for a Core1A construction unit, the hardest band among the bank questions it names in crux_question_refs). Between the floor and the reference depth the renderer says so as an advisory.
 
@@ -11,7 +11,20 @@ Waivers: A record may declare an EXPECTED component not applicable, with a writt
 
 Held to: FLOOR: official records and products are judged at the floor; an EXPECTED component that is absent is an advisory. REFERENCE: new authoring (a TEST deploy, a scaffolded owner bank) is judged at the reference depth, and an EXPECTED component must be present or waived by the record; otherwise it is a gap.
 
-## BP-CORE2-SOURCE-QUESTION@1.4.0 (CORE2)
+## The shell (every page)
+
+`G9-TABLET-SHELL-V1` 1.2.0: a fixed header with `BACK`, `HOME`, `SUBJECT_CONTEXT`, `QUESTION_BANK`, `PRINT_PDF`, `SEARCH`, `REFRESH`, `DISPLAY`, `OVERFLOW`.
+
+**PRINT_PDF** · the PDF icon in the header. A learner or a teacher can print the page: a PDF icon in the fixed header opens the PDF printed from this very page, ready for the print dialog of the tablet.
+
+- Pages: CORE1, CORE1A, CORE1B, CORE2, CORE2A, CORE2B, in PAGES mode; a single-file page has no control (no file beside it).
+- It opens (in a new tab): the PDF printed from this very page, `{page_stem}.pdf`; its accessible name is "Open the PDF of this page to print it".
+- It is a touch target of at least 48 px and is hidden when the page is printed.
+- It never links: KEY_PDF (a key PDF holds the answers).
+- A page that links its PDF is published only with that PDF beside it, printed from the same bytes (print-receipt.json); a link that does not resolve refuses the publication.
+- A Core2 question whose source is a verified official past paper also links the paper itself as a PDF: see the `SOURCE_PDF` component.
+
+## BP-CORE2-SOURCE-QUESTION@1.5.0 (CORE2)
 
 Learner job: Preserve authentic assessment demand while allowing bounded, provenance-explicit help that advances the learner without becoming a Question Clinic.
 
@@ -118,6 +131,13 @@ Expected: an official page missing it carries an advisory naming the field to au
 ### Optional components
 
 Optional: shown when the record has it.
+
+**SOURCE_PDF** · slot `identity` · LINK_LIST
+
+- The learner gets: Give the learner the original past paper as a PDF, ready to print, when the question's custody names it.
+- The reference page: Owner request 2026-10-01: a PDF icon that links the generated or the source PDF so that it is readily available for print
+- Record fields: `extensions.grade9v3:source_custody.paper_url`, `extensions.grade9v3:source_custody.authority_class`, `extensions.grade9v3:source_custody.source_status`
+- To author it: Nothing to write: the page links the paper when the question's source custody is an official exam organizer archive, verified (source_status PYQ_VERIFIED_PARENT), and paper_url is an https link to a PDF. An owner-supplied question has no source file and shows no link; never put a link in the record to make the icon appear.
 
 **CONCEPT_NAV** · slot `support` · LINK_LIST
 

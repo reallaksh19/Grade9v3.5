@@ -231,6 +231,46 @@ class TestDeploy(unittest.TestCase):
         self.assertEqual(json.loads((out / "deploy-receipt.json").read_text(encoding="utf-8"))["render_digest"],
                          receipt["render_digest"])
 
+    def test_every_role_page_links_the_pdf_printed_from_it_and_the_deploy_prints_them_never_a_key_pdf(self):
+        receipt = deploy_test.deploy_product(self.fixture.manifest)
+        out = deploy_test.PUBLIC_TEST / "products" / self.fixture.slug
+        self.assertEqual(receipt["pdf"]["status"], "PRINTED", receipt["pdf"])
+        role_pages = sorted(name for name in receipt["pages"] if name != "index.html")
+        self.assertEqual(sorted(receipt["pdf"]["files"]), [name.replace(".html", ".pdf") for name in role_pages])
+        for name in role_pages:
+            link = re.search(r'<a data-g9-action="pdf"[^>]*href="([^"]+)"', (out / name).read_text(encoding="utf-8"))
+            self.assertEqual(link.group(1), name.replace(".html", ".pdf"))
+            data = (out / link.group(1)).read_bytes()
+            self.assertTrue(data.startswith(b"%PDF"), name)
+            self.assertEqual(receipt["pdf"]["files"][link.group(1)], deploy_test._sha(data))
+        self.assertNotIn('data-g9-action="pdf"', (out / "index.html").read_text(encoding="utf-8"))
+        self.assertEqual(list(out.glob("*.key.pdf")), [])
+        self.assertEqual(render_core.pdf_publication_problems(out), [])
+        self.assertEqual(json.loads((out / "print-receipt.json").read_text(encoding="utf-8"))["mode"], "LEARNER_PDF")
+        page = build_test_site.deployments_page()
+        self.assertIn("Print copies:", page)
+        self.assertIn(f"../products/{self.fixture.slug}/core2.pdf", page)
+
+    def test_a_printed_draft_still_says_it_is_a_draft(self):
+        try:
+            from pypdf import PdfReader
+        except ImportError:
+            self.skipTest("pypdf is not installed")
+        deploy_test.deploy_product(self.fixture.manifest)
+        out = deploy_test.PUBLIC_TEST / "products" / self.fixture.slug
+        text = " ".join(page.extract_text() for page in PdfReader(str(out / "core2.pdf")).pages)
+        self.assertIn("not accepted", text, "the sandbox label is printed with the page")
+        self.assertIn("Owner-supplied question", text)
+
+    def test_where_nothing_can_print_the_deploy_says_the_pdf_links_go_nowhere(self):
+        stderr = io.StringIO()
+        with mock.patch.object(deploy_test.shutil, "which", return_value=None), contextlib.redirect_stderr(stderr):
+            receipt = deploy_test.deploy_product(self.fixture.manifest)
+        self.assertEqual((receipt["pdf"]["status"], receipt["pdf"]["files"]), ("NOT_PRINTED", {}))
+        self.assertIn("go nowhere", receipt["pdf"]["reason"])
+        self.assertIn("do not work", stderr.getvalue())
+        self.assertIn("No PDF copies:", build_test_site.deployments_page())
+
     def test_the_receipt_and_the_deployments_page_say_what_each_gap_is(self):
         receipt = deploy_test.deploy_product(self.fixture.manifest)
         self.assertEqual(len(receipt["gaps"]), receipt["gap_count"])

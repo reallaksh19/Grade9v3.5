@@ -200,6 +200,12 @@ def deployments_page() -> str:
     for r in deployed:
         present = [(name, label) for name, label in ROLE_PAGES if name in r["pages"]]
         links = " · ".join(link(f'../products/{r["slug"]}/{name}', label) for name, label in present)
+        pdfs = (r.get("pdf") or {})
+        copies = [(name, label) for name, label in present if name.replace(".html", ".pdf") in (pdfs.get("files") or {})]
+        pdf_line = (" · ".join(link(f'../products/{r["slug"]}/{name.replace(".html", ".pdf")}', f"{label} (PDF)") for name, label in copies)
+                    if copies else "")
+        pdf_block = (f'<p>Print copies: {pdf_line}</p>' if pdf_line
+                     else f'<p class="g9-prov">No PDF copies: {esc(pdfs.get("reason") or "this deploy printed none")}.</p>' if pdfs else "")
         gaps = ", ".join(f"{core} {count}" for core, count in r["gaps_by_core"].items()) or "none"
         empty = (f'<p class="g9-prov">Roles with no records selected: {esc(", ".join(r["empty_roles"]))}. '
                  'Their pages have no items.</p>') if r["empty_roles"] else ""
@@ -236,7 +242,7 @@ def deployments_page() -> str:
         body += card(f'product-{r["slug"]}', f'{r["slug"]} {r["title"]} product',
                      f'<h2>{esc(r["title"])}</h2><p class="g9-prov">Product {esc(r["slug"])} · '
                      f'DRAFT, {"with gaps" if r["gap_count"] else "no gaps reported, not reviewed"} · accepted: no · render {esc(r["render_digest"])}</p>'
-                     f'<p>{links}</p><p>Selected records: {esc(counts)}. Gaps: {esc(gaps)} ({r["gap_count"]} in total).</p>{hardest_line}{gap_details}{advice_details}{waived_details}{quality_details}{empty}')
+                     f'<p>{links}</p>{pdf_block}<p>Selected records: {esc(counts)}. Gaps: {esc(gaps)} ({r["gap_count"]} in total).</p>{hardest_line}{gap_details}{advice_details}{waived_details}{quality_details}{empty}')
     for r in pages:
         built = r.get("built_by") == "EXPLORER_BUILDER"
         how = ("Built by the explorer builder from a spec: every number on it is computed, and was checked at every position of the sliders."

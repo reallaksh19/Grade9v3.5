@@ -41,6 +41,22 @@ def _depth(component: dict) -> str:
     return f" · at least {floor} item(s)" + (f" (the reference has {target})" if target and target != floor else "")
 
 
+def _shell_lines(shell: dict) -> list[str]:
+    """The header every rendered page carries, and the one control an author or a run must know about: the PDF icon."""
+    pp = shell.get("print_policy")
+    lines = ["## The shell (every page)", "",
+             f"`{shell['id']}` {shell.get('version', '')}: a fixed header with " + ", ".join(f"`{c}`" for c in shell["controls"]) + ".", ""]
+    if pp:
+        lines += [f"**{pp['control']}** · the PDF icon in the header. {pp['purpose']}", "",
+                  f"- Pages: {', '.join(pp['applies_to_roles'])}, in PAGES mode; a single-file page has {pp['single_file_mode'].replace('_', ' ').lower()} (no file beside it).",
+                  f"- It opens (in a {pp['opens'].replace('_', ' ').lower()}): the PDF printed from this very page, `{pp['target_pattern']}`; its accessible name is \"{pp['accessible_name']}\".",
+                  f"- It is a touch target of at least {pp['target_css_px_min']} px and is {pp['in_print'].lower()} when the page is printed.",
+                  f"- It never links: {', '.join(pp['never_linked'])} (a key PDF holds the answers).",
+                  f"- {pp['link_must_resolve']}",
+                  "- A Core2 question whose source is a verified official past paper also links the paper itself as a PDF: see the `SOURCE_PDF` component.", ""]
+    return lines
+
+
 def render(registry: dict | None = None) -> str:
     registry = registry or blueprints.load_registry()
     policy = registry["component_policy"]
@@ -58,6 +74,7 @@ def render(registry: dict | None = None) -> str:
         "",
         f"Held to: {policy['held_to']}",
         "",
+        *_shell_lines(registry["shell"]),
     ]
     for blueprint in registry["blueprints"]:
         if not blueprints.components(blueprint):

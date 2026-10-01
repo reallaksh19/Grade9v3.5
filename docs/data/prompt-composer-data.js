@@ -2,7 +2,7 @@
 window.GRADE9V3_PROMPT_COMPOSER = {
   "generated_by": "Shared/tools/build_prompt_composer_data.py",
   "contract_version": "1.0.0",
-  "repository_basis": "architecture-manifest@sha256:ce45bbcf55e5d89d40b80f74028fe3bc4d196b042e72d5562f216fff8863dbf2",
+  "repository_basis": "architecture-manifest@sha256:0060cff87c37c5eee265c6b91b5abe5d33359f49a72b1662c1d8b245c66db723",
   "template": {
     "template_id": "CORE-AGENT-PROMPT",
     "version": "1.1.0",
@@ -289,9 +289,9 @@ window.GRADE9V3_PROMPT_COMPOSER = {
     },
     "CORE2": {
       "core": "CORE2",
-      "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.4.0",
+      "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0",
       "blueprint_id": "BP-CORE2-SOURCE-QUESTION",
-      "blueprint_version": "1.4.0",
+      "blueprint_version": "1.5.0",
       "shell_ref": "G9-TABLET-SHELL-V1",
       "layout_family": "QUESTION_READER",
       "required_slots": [

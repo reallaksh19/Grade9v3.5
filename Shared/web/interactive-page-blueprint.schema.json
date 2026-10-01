@@ -138,6 +138,7 @@
               "HOME",
               "SUBJECT_CONTEXT",
               "QUESTION_BANK",
+              "PRINT_PDF",
               "SEARCH",
               "REFRESH",
               "DISPLAY",
@@ -275,6 +276,90 @@
               "minLength": 1
             },
             "unknown_runtime_dependency": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "print_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "control",
+            "applies_to_roles",
+            "icon",
+            "accessible_name",
+            "target",
+            "target_pattern",
+            "never_linked",
+            "opens",
+            "target_css_px_min",
+            "in_print",
+            "single_file_mode"
+          ],
+          "properties": {
+            "control": {
+              "const": "PRINT_PDF"
+            },
+            "purpose": {
+              "type": "string",
+              "minLength": 1
+            },
+            "applies_to_roles": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "CORE1",
+                  "CORE1A",
+                  "CORE1B",
+                  "CORE2",
+                  "CORE2A",
+                  "CORE2B"
+                ]
+              }
+            },
+            "icon": {
+              "const": "PDF"
+            },
+            "accessible_name": {
+              "type": "string",
+              "minLength": 10
+            },
+            "target": {
+              "const": "GENERATED_LEARNER_PDF"
+            },
+            "target_pattern": {
+              "type": "string",
+              "pattern": "^\\{page_stem\\}\\.pdf$"
+            },
+            "never_linked": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "const": "KEY_PDF"
+              }
+            },
+            "opens": {
+              "enum": [
+                "NEW_TAB",
+                "SAME_TAB"
+              ]
+            },
+            "target_css_px_min": {
+              "type": "integer",
+              "minimum": 44
+            },
+            "in_print": {
+              "const": "HIDDEN"
+            },
+            "single_file_mode": {
+              "enum": [
+                "NO_CONTROL"
+              ]
+            },
+            "link_must_resolve": {
               "type": "string",
               "minLength": 1
             }

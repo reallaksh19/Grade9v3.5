@@ -56,9 +56,12 @@ fails it has not understood), not a sentence that mentions it.
 
 ## What TEST can and cannot make
 
-TEST makes **HTML drafts**: Core pages, the rungs table, the Atlas view and an interactive page. It cannot make PDFs,
-a key PDF, question-bank records, a coverage export or an owner review packet, although the intake lists some of them
-as deliverables. Report each of those as NOT DONE (a limit of TEST) and do not invent one.
+TEST makes **HTML drafts**: Core pages, the rungs table, the Atlas view and an interactive page, and the **learner PDF** of each Core page: the deploy
+prints every page as the browser prints it (the TEST banner included) and each page carries a **PDF icon** in its header that opens its own PDF, ready for the
+print dialog (the blueprint's `PRINT_PDF` control; `deploy_test.py` says so if it cannot print, and the Deployments page then lists no PDF copies). A Core2
+question whose source is a verified official past paper also links that paper as a PDF (the `SOURCE_PDF` component); an owner-supplied question has no source
+file and shows none. TEST cannot make a key PDF (it holds the answers and is never linked or published), question-bank records, a coverage export or an owner
+review packet, although the intake lists some of them as deliverables. Report each of those as NOT DONE (a limit of TEST) and do not invent one.
 
 ## Where each thing goes
 

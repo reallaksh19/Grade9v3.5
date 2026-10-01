@@ -34,6 +34,7 @@ import subprocess
 from functools import lru_cache
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass, field
+from urllib.parse import urlsplit
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
@@ -1394,6 +1395,23 @@ def _custody(q: dict) -> str:
     return "Official past paper" + (f", {wording}" if wording else "")
 
 
+def _source_pdf(q: dict) -> str:
+    """The original past paper as a PDF, for a question whose source custody is a verified official exam organizer archive.
+
+    Only an https link to a PDF is ever offered (never a script, a plain-http link or a page that is not a PDF), and only where the custody is
+    verified; an owner-supplied question has no source file, and nothing is invented to make the icon appear."""
+    cust = (q.get("extensions") or {}).get("grade9v3:source_custody") or {}
+    url = cust.get("paper_url")
+    if (cust.get("authority_class") != "OFFICIAL_EXAM_ORGANIZER_ARCHIVE" or cust.get("source_status") != "PYQ_VERIFIED_PARENT"
+            or not isinstance(url, str) or not re.fullmatch(r"[^\s<>\"'`]+", url.strip())):
+        return ""
+    parts = urlsplit(url.strip())
+    if parts.scheme != "https" or not parts.netloc or not parts.path.lower().endswith(".pdf"):
+        return ""
+    return block("source_pdf", f'<a class="g9-pdf-link g9-source-pdf" data-g9-source-pdf href="{esc(url.strip())}" target="_blank" rel="noopener noreferrer" '
+                 f'type="application/pdf" aria-label="{esc(SOURCE_PDF_ACCESSIBLE_NAME)}">{PDF_ICON}<span>Source paper (PDF)</span></a>')
+
+
 def _core2_concept_navigation(ctx: Ctx, q: dict) -> str:
     """Link one selected source question back to its exact selected Core1A concept owners."""
     if "CORE1A" not in product_manifest.selected_output_roles(ctx.manifest):
@@ -1665,6 +1683,7 @@ def core2(ctx: Ctx, q: dict) -> str:
         "identity": component_body(ctx, "CORE2", {
             "IDENTITY": part("IDENTITY", block("source_identity", f"<h2>{esc(_identity(q))}</h2><p class=\"g9-prov\">{esc(_custody(q))}</p>")
                              + metadata_strip(ctx, "CORE2", q)),
+            "SOURCE_PDF": part("SOURCE_PDF", _source_pdf(q)),
             "DIFFICULTY_WHY": part("DIFFICULTY_WHY", _difficulty_why(rid, analysis)),
         }, "identity"),
         "attempt": component_body(ctx, "CORE2", {
@@ -1948,7 +1967,7 @@ figure{margin:14px 0;max-width:100%;overflow-x:auto}figure svg{width:100%;height
 h4{margin:.8em 0 .3em}:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 footer{padding:24px 16px;color:var(--muted)}
 @media print{:root,:root[data-theme=dark]{--bg:#fff;--fg:#000;--card:#fff;--line:#bbb;--accent:#1f5fae;--muted:#333;--soft:#fff;--pill-bg:#eee;--pill-fg:#222;--src-bg:#eee;--src-fg:#222;--info-bg:#fff;--info-line:#888;--info-fg:#222;--warn-bg:#fff;--warn-line:#888;--warn-fg:#222;--ok-bg:#fff;--ok-line:#888;--ok-fg:#222}
-header[data-g9-shell-header],nav[data-g9-breadcrumb],.g9-attempt,button,[data-g9-display-panel]{display:none!important}
+header[data-g9-shell-header],nav[data-g9-breadcrumb],.g9-attempt,button,[data-g9-display-panel],[data-g9-source-pdf]{display:none!important}
 .g9-attempt:has(.g9-answer-options){display:block!important}
 .g9-attempt>:not(.g9-answer-options),.g9-answer-option input{display:none!important}
 details[data-requires-attempt]:not([open]){display:none!important}
@@ -2013,6 +2032,7 @@ article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-
 .g9-c-ladder details[data-g9-support-reveal]{border:0;padding:0;margin:.5rem 0}
 .g9-c-ladder details[data-g9-support-reveal]>summary{width:100%;justify-content:space-between;font-weight:700}
 .g9-c-ladder [data-g9-support-prompt]{margin:.5rem 0}.g9-c-ladder .g9-ladder>button{margin-top:10px}
+.g9-pdf-link{gap:6px;font-weight:700}.g9-pdf-icon{flex:none;width:24px;height:24px}.g9-pdf-link span{white-space:nowrap}header .g9-pdf-link{color:var(--accent)}.g9-c-link-list .g9-source-pdf{border-radius:12px}
 .g9-c-link-list h4{margin:.9rem 0 .3rem;font-size:.85rem;color:var(--muted)}
 .g9-c-link-list ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:.2rem 0;padding:0}
 .g9-c-link-list li{margin:0}.g9-c-link-list a{display:inline-flex;align-items:center;min-height:48px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--fg);text-decoration:none}
@@ -2170,11 +2190,28 @@ def _mode_href(href: str, mode: str) -> str:
     return href
 
 
-def shell_header(home_href: str, question_bank_href: str) -> str:
-    """The shared tablet-shell header. Used by every rendered page and by the TEST area's own pages."""
+# A page of a document: the corner folded, three lines of text. Decorative; the word "PDF" beside it is what says what the control is.
+PDF_ICON = ('<svg class="g9-pdf-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="24" height="24">'
+            '<path d="M6 2.5h8l4.5 4.5v14.5H6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>'
+            '<path d="M14 2.5V7h4.5M9 12h6.5M9 15.5h6.5M9 19h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+PDF_ACCESSIBLE_NAME = "Open the PDF of this page to print it"
+SOURCE_PDF_ACCESSIBLE_NAME = "Open the original past paper as a PDF to print it"
+
+
+def pdf_control(href: str, accessible_name: str = PDF_ACCESSIBLE_NAME) -> str:
+    """The shell's PRINT_PDF control (Shared/web/interactive-page-blueprints.v1.json, shell.print_policy): the PDF printed from this page."""
+    return (f'<a data-g9-action="pdf" class="g9-pdf-link" href="{esc(href)}" target="_blank" rel="noopener" type="application/pdf" '
+            f'aria-label="{esc(accessible_name)}">{PDF_ICON}<span>PDF</span></a>')
+
+
+def shell_header(home_href: str, question_bank_href: str, pdf_href: str | None = None, pdf_name: str = PDF_ACCESSIBLE_NAME) -> str:
+    """The shared tablet-shell header. Used by every rendered page and by the TEST area's own pages.
+
+    `pdf_href` is the PDF printed from this very page; a header made without one (a hub, an index) has no PDF icon."""
     return (f'<header data-g9-shell-header><a data-g9-home href="{esc(home_href)}">Home</a>'
             f'<button type="button" onclick="history.back()">Back</button>'
             f'<a href="{esc(question_bank_href)}">Question bank</a>'
+            f'{pdf_control(pdf_href, pdf_name) if pdf_href else ""}'
             f'<button type="button" data-g9-action="search">Search</button>'
             f'<button type="button" data-g9-action="display">Display</button>'
             f'<div data-g9-search-panel hidden><input data-g9-search-input type="search" aria-label="Search this page"></div>'
@@ -2184,7 +2221,16 @@ def shell_header(home_href: str, question_bank_href: str) -> str:
             f'<button type="button" data-g9-zoom="reset">100%</button><button type="button" data-g9-zoom="inc">Zoom +</button></div></header>')
 
 
-def shell(ctx: Ctx, role: str, mode: str) -> tuple[str, str]:
+def _pdf_target(ctx: Ctx, role: str, mode: str) -> tuple[str | None, str]:
+    """Where the PRINT_PDF control of this page points, and what it is called, as the registry's shell.print_policy says; None where the page has no PDF beside it."""
+    policy = ((ctx.blueprints or {}).get("shell") or {}).get("print_policy")
+    if not policy or role not in policy.get("applies_to_roles", []) or mode != "PAGES":
+        return None, PDF_ACCESSIBLE_NAME
+    stem = ROLE_FILE[role].removesuffix(".html")
+    return policy["target_pattern"].format(page_stem=stem), policy["accessible_name"]
+
+
+def shell(ctx: Ctx, role: str, mode: str, pdf: bool = True) -> tuple[str, str]:
     m = ctx.manifest
     if mode == "EMBED":
         return "", ""
@@ -2196,7 +2242,8 @@ def shell(ctx: Ctx, role: str, mode: str) -> tuple[str, str]:
     )
     home_href = _mode_href(m["home_href"], mode)
     question_bank_href = _mode_href(m.get("question_bank_href", m["home_href"]), mode)
-    header = shell_header(home_href, question_bank_href)
+    pdf_href, pdf_name = _pdf_target(ctx, role, mode) if pdf else (None, PDF_ACCESSIBLE_NAME)
+    header = shell_header(home_href, question_bank_href, pdf_href, pdf_name)
     product_href = f"#g9-role-{output_roles[0]}" if mode == "SINGLE_FILE" else "index.html"
     crumbs = (f'<nav data-g9-breadcrumb aria-label="Breadcrumb"><a href="{esc(home_href)}">Home</a>'
               f'<a href="{product_href}">{esc(m["title"])}</a>{nav_links}</nav>')
@@ -2277,7 +2324,7 @@ def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
 def index_page(ctx: Ctx, digest: str) -> str:
     m = ctx.manifest
     output_roles = product_manifest.selected_output_roles(m)
-    header, crumbs = shell(ctx, output_roles[0], "PAGES")
+    header, crumbs = shell(ctx, output_roles[0], "PAGES", pdf=False)   # the index is not printed: it has no PDF beside it
     links = "".join(f'<li><a href="{ROLE_FILE[r]}">{esc(r)}: {esc(ROLE_TITLE[r])}</a></li>' for r in output_roles)
     qs = {**ctx.index("questions"), **{q["id"]: q for q in ctx.bank}}
     diag_ids = m.get("diagnostic", [])
@@ -2635,6 +2682,59 @@ def build_report(manifest_path: Path, mode: str = "PAGES", held_to: str = "FLOOR
             waived.append(w)
     return pages, gaps, digest, advisories, waived
 
+
+
+def pdf_publication_problems(folder: Path) -> list[str]:
+    """What stands between a rendered product folder and publishing its learner PDFs beside its pages (empty: nothing).
+
+    A page that links its PDF (the shell's PRINT_PDF control) is only as good as the file behind the link. Every such link must name a plain
+    learner PDF in the folder, and print-receipt.json (mode LEARNER_PDF) must say that exact PDF was printed from that exact page: same bytes
+    of the page, same bytes of the PDF. A key PDF is never a target and never published (it holds the answers). A PDF in the folder that the
+    receipt does not vouch for is a problem too: the folder would carry bytes nobody can trace to a page."""
+    problems: list[str] = []
+    receipt_path = folder / "print-receipt.json"
+    receipt = None
+    if receipt_path.is_file():
+        try:
+            receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+        except ValueError:
+            problems.append("print-receipt.json is not valid JSON")
+    printed = {}
+    if isinstance(receipt, dict):
+        if receipt.get("mode") != "LEARNER_PDF":
+            problems.append(f"print-receipt.json is a {receipt.get('mode')!r} receipt, not a LEARNER_PDF one")
+        else:
+            printed = {row.get("pdf"): row for row in receipt.get("pages", []) if isinstance(row, dict)}
+
+    def digest(data: bytes) -> str:
+        return "sha256:" + hashlib.sha256(data).hexdigest()
+
+    linked: set[str] = set()
+    for page in sorted(folder.glob("*.html")):
+        text = page.read_text(encoding="utf-8")
+        for href in re.findall(r'<a data-g9-action="pdf"[^>]*?\shref="([^"]*)"', text):
+            if not re.fullmatch(r"[a-z0-9]+\.pdf", href):
+                problems.append(f"{page.name}: the PDF link {href!r} is not a learner PDF beside the page")
+                continue
+            linked.add(href)
+            target = folder / href
+            row = printed.get(href)
+            if not target.is_file():
+                problems.append(f"{page.name}: links {href}, which is not there (print the pages: node tools/print/print-product.mjs {folder.name})")
+            elif row is None:
+                problems.append(f"{page.name}: {href} is not in print-receipt.json")
+            elif row.get("page") != page.name:
+                problems.append(f"{page.name}: {href} was printed from {row.get('page')}, not from this page")
+            elif row.get("page_digest") != digest(page.read_bytes()):
+                problems.append(f"{page.name}: changed after {href} was printed from it")
+            elif row.get("pdf_digest") != digest(target.read_bytes()):
+                problems.append(f"{href}: its bytes differ from the print receipt")
+    for pdf in sorted(folder.glob("*.pdf")):
+        if pdf.name.endswith(".key.pdf"):
+            problems.append(f"{pdf.name}: a key PDF holds the answers and is never published")
+        elif pdf.name not in printed:
+            problems.append(f"{pdf.name}: not in print-receipt.json")
+    return problems
 
 
 def _retire_previous_outputs(out: Path, pages: dict[str, str]) -> None:

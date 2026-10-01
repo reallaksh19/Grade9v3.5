@@ -9,12 +9,23 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-from Shared.tools import accept_product, build_products, quality_gate
+from Shared.tools import accept_product, build_products, quality_gate, render_core
 
 REPO = Path(__file__).resolve().parents[1]
 
 
-def fixture(repo: Path, *, review: bool = False, cited: bool = False) -> tuple[Path, str]:
+LINK = '<a data-g9-action="pdf" class="g9-pdf-link" href="core1.pdf" target="_blank" rel="noopener" type="application/pdf" aria-label="PDF"><span>PDF</span></a>'
+
+
+def printed(out: Path, *, mode: str = "LEARNER_PDF", pdf: bytes = b"%PDF-1.4 learner copy", page_digest: str | None = None) -> None:
+    """What print-product.mjs leaves beside the pages: core1.pdf and the receipt that ties it to the exact bytes of core1.html."""
+    sha = lambda data: "sha256:" + hashlib.sha256(data).hexdigest()  # noqa: E731
+    (out / "core1.pdf").write_bytes(pdf)
+    (out / "print-receipt.json").write_text(json.dumps({"tool": "print-product/2", "mode": mode, "pages": [
+        {"page": "core1.html", "page_digest": page_digest or sha((out / "core1.html").read_bytes()), "pdf": "core1.pdf", "pdf_digest": sha(pdf), "figures": 0}]}))
+
+
+def fixture(repo: Path, *, review: bool = False, cited: bool = False, link: bool = False) -> tuple[Path, str]:
     manifest = repo / "products" / "physics" / "sample.manifest.json"
     manifest.parent.mkdir(parents=True, exist_ok=True)
     pkg = repo / "Physics" / "library" / "sample.v1.json"
@@ -28,12 +39,13 @@ def fixture(repo: Path, *, review: bool = False, cited: bool = False) -> tuple[P
     out = repo / "publication" / "products" / "physics" / "sample"
     out.mkdir(parents=True, exist_ok=True)
     neutral = '<html><head><meta name="g9-render" content="render_core/1 g9-digest-pending"></head><body>Prompt</body></html>'
+    neutrals = {"core1.html": neutral.replace("<body>", "<body>" + LINK) if link else neutral, "index.html": neutral}
     h = hashlib.sha256()
     for name in ("core1.html", "index.html"):
-        h.update(name.encode() + b"\0" + neutral.encode())
+        h.update(name.encode() + b"\0" + neutrals[name].encode())
     digest = h.hexdigest()[:16]
     for name in ("core1.html", "index.html"):
-        (out / name).write_text(neutral.replace("g9-digest-pending", digest))
+        (out / name).write_text(neutrals[name].replace("g9-digest-pending", digest))
     (out / "render-receipt.json").write_text(json.dumps({
         "renderer": "render_core/1", "digest": digest, "mode": "PAGES",
         "draft": False, "pages": ["core1.html", "index.html"], "gaps": []
@@ -131,6 +143,60 @@ class Publication(unittest.TestCase):
                          (self.repo / "publication" / "products" / "physics" / "sample" / "core1.html").read_bytes())
         self.assertEqual(json.loads((self.repo / "products" / "acceptance" / "sample.json").read_text())["render_digest"], self.digest)
         mirror.assert_called_once_with(self.repo)
+
+    def accept_with_links(self, **printing):
+        fixture(self.repo, link=True)
+        out = self.repo / "publication" / "products" / "physics" / "sample"
+        if printing is not None:
+            printed(out, **printing)
+        return out
+
+    def test_the_learner_pdf_a_page_links_is_published_beside_it_and_the_key_pdf_never_is(self):
+        out = self.accept_with_links()
+        (out / "core1.key.pdf").write_bytes(b"%PDF-1.4 THE ANSWERS")
+        (out / "print-key-receipt.json").write_text("{}")
+        with mock.patch.object(accept_product, "mirror_pages"):
+            accept_product.accept("sample", repo=self.repo)
+        published = self.repo / "public" / "products" / "physics" / "sample"
+        self.assertEqual((published / "core1.pdf").read_bytes(), b"%PDF-1.4 learner copy")
+        self.assertFalse((published / "core1.key.pdf").exists(), "a key PDF holds the answers")
+        self.assertFalse((published / "print-key-receipt.json").exists())
+        self.assertEqual(render_core.pdf_publication_problems(published), [])
+
+    def test_a_page_that_links_a_pdf_that_is_not_there_is_not_published(self):
+        fixture(self.repo, link=True)
+        with mock.patch.object(accept_product, "mirror_pages"), self.assertRaises(ValueError) as caught:
+            accept_product.accept("sample", repo=self.repo)
+        self.assertIn("core1.pdf", str(caught.exception))
+        self.assertIn("print-product.mjs", str(caught.exception))
+        self.assertFalse((self.repo / "public" / "products" / "physics" / "sample").exists())
+
+    def test_a_pdf_that_is_not_the_one_printed_from_that_page_is_not_published(self):
+        for what, printing in {"the page changed after it was printed": {"page_digest": "sha256:" + "0" * 64},
+                               "a key receipt": {"mode": "KEY_PDF"}}.items():
+            with self.subTest(what):
+                out = self.accept_with_links(**printing)
+                with mock.patch.object(accept_product, "mirror_pages"), self.assertRaises(ValueError):
+                    accept_product.accept("sample", repo=self.repo)
+                self.assertFalse((self.repo / "public" / "products" / "physics" / "sample").exists())
+        out = self.accept_with_links()
+        (out / "core1.pdf").write_bytes(b"%PDF-1.4 swapped after printing")
+        with mock.patch.object(accept_product, "mirror_pages"), self.assertRaises(ValueError) as caught:
+            accept_product.accept("sample", repo=self.repo)
+        self.assertIn("bytes differ", str(caught.exception))
+
+    def test_a_pdf_nobody_can_trace_to_a_page_is_not_published(self):
+        out = self.accept_with_links()
+        (out / "extra.pdf").write_bytes(b"%PDF-1.4 who made this")
+        with mock.patch.object(accept_product, "mirror_pages"), self.assertRaises(ValueError) as caught:
+            accept_product.accept("sample", repo=self.repo)
+        self.assertIn("extra.pdf", str(caught.exception))
+
+    def test_a_link_that_points_anywhere_but_a_learner_pdf_beside_the_page_is_refused(self):
+        out = self.accept_with_links()
+        page = out / "core1.html"
+        page.write_text(page.read_text().replace('href="core1.pdf"', 'href="../../../secret/core1.key.pdf"'))
+        self.assertTrue(any("not a learner PDF beside the page" in p for p in render_core.pdf_publication_problems(out)))
 
     def test_acceptance_records_where_the_owner_approved_without_requiring_it(self):
         with mock.patch.object(accept_product, "mirror_pages"):

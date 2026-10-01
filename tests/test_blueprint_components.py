@@ -142,7 +142,7 @@ class Reporting(unittest.TestCase):
             render_core.component_body(ctx, "CORE2", {"NOT_A_COMPONENT": "x"}, "attempt")
 
     def test_the_gate_rule_reads_the_registry_not_a_copy_of_it(self):
-        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.4.0",
+        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0",
                 "units": [{"id": "Q", "components": [{"id": "STEM", "items": None, "unit": None},
                                                      {"id": "HINT_LADDER", "items": 1, "unit": None}]}]}
         problems = quality_contract.OPS["blueprint_components"](page, {"level": "REQUIRED"}, {})
@@ -204,7 +204,7 @@ class ReferenceDepth(unittest.TestCase):
         self.assertEqual(ctx.waived, [])
 
     def test_the_gate_holds_a_deep_question_to_its_band_and_skips_what_the_record_waived(self):
-        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.4.0",
+        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0",
                 "units": [{"id": "Q", "metadata": [{"kind": "question-difficulty", "ref": "D3", "value": "D3",
                                                    "display_name": "Difficulty", "label": "D3"}],
                            "components": [{"id": "HINT_LADDER", "items": 3, "unit": None}],
@@ -352,3 +352,86 @@ class Authoring(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class PrintPdf(unittest.TestCase):
+    """A PDF icon in the header opens the PDF printed from the page; a verified past paper is linked as its own PDF; the key is never linked."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.pages, cls.gaps, _ = render_core.build(MOTION_2D)
+        cls.policy = REGISTRY["shell"]["print_policy"]
+
+    def link(self, html: str) -> str:
+        found = re.findall(r'<a data-g9-action="pdf"[^>]*>.*?</a>', html)
+        self.assertLessEqual(len(found), 1)
+        return found[0] if found else ""
+
+    def test_the_registry_says_what_the_icon_is_where_it_goes_and_what_it_never_opens(self):
+        self.assertIn("PRINT_PDF", REGISTRY["shell"]["controls"])
+        self.assertEqual((self.policy["target"], self.policy["never_linked"], self.policy["in_print"]), ("GENERATED_LEARNER_PDF", ["KEY_PDF"], "HIDDEN"))
+        self.assertGreaterEqual(self.policy["target_css_px_min"], 48)
+
+    def test_each_role_page_links_the_pdf_printed_from_itself_and_the_index_links_none(self):
+        for role in self.policy["applies_to_roles"]:
+            name = render_core.ROLE_FILE[role]
+            html = self.pages[name]
+            link = self.link(html)
+            self.assertIn(f'href="{name.removesuffix(".html")}.pdf"', link, name)
+            self.assertIn('target="_blank"', link)
+            self.assertIn('rel="noopener"', link)
+            self.assertIn('type="application/pdf"', link)
+            self.assertIn(f'aria-label="{self.policy["accessible_name"]}"', link)
+            self.assertIn("<span>PDF</span>", link, "the icon is never the only thing that says what it is")
+            self.assertIn("aria-hidden=\"true\"", link)
+            self.assertNotIn(".key.pdf", html)
+        self.assertEqual(self.link(self.pages["index.html"]), "")
+
+    def test_the_icon_sits_in_the_fixed_header_among_the_other_controls(self):
+        header = re.search(r"<header data-g9-shell-header>.*?</header>", self.pages["core2.html"]).group(0)
+        self.assertIn('data-g9-action="pdf"', header)
+        self.assertLess(header.index("Question bank"), header.index('data-g9-action="pdf"'))
+        self.assertLess(header.index('data-g9-action="pdf"'), header.index('data-g9-action="search"'))
+
+    def test_the_icon_is_a_touch_target_and_is_not_printed(self):
+        css = render_core.CSS + render_core.COMPONENT_CSS
+        self.assertRegex(css, r"header a,header button[^{]*\{[^}]*min-height:var\(--g9-touch-min\)")
+        self.assertRegex(render_core.CSS, r"@media print\{[^@]*header\[data-g9-shell-header\][^{]*\{display:none!important\}")
+
+    def test_a_single_file_page_has_no_icon_because_it_has_no_file_beside_it(self):
+        pages, _, _ = render_core.build(MOTION_2D, mode="SINGLE_FILE")
+        self.assertEqual(self.link(pages["product.html"]), "")
+
+    def test_a_header_made_without_a_pdf_has_no_icon(self):
+        self.assertNotIn('data-g9-action="pdf"', render_core.shell_header("../index.html", "../qb.html"))
+        self.assertIn('data-g9-action="pdf"', render_core.shell_header("../index.html", "../qb.html", pdf_href="core2.pdf"))
+
+    def test_a_verified_past_paper_is_linked_as_a_pdf_and_an_owner_supplied_question_is_not(self):
+        verified = {"extensions": {"grade9v3:source_custody": {"authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE", "source_status": "PYQ_VERIFIED_PARENT",
+                                                                  "paper_url": "https://jeeadv.ac.in/past_qps/2007_1.pdf"}}}
+        html = render_core._source_pdf(verified)
+        self.assertIn('href="https://jeeadv.ac.in/past_qps/2007_1.pdf"', html)
+        self.assertIn('rel="noopener noreferrer"', html)
+        self.assertIn('target="_blank"', html)
+        self.assertIn("Source paper", html)
+        self.assertIn("(PDF)", html)
+        owner = {"extensions": {"grade9v3:source_custody": {"authority_class": "OWNER_SUPPLIED_RAW_INPUT", "wording_custody": "VERBATIM"}}}
+        self.assertEqual(render_core._source_pdf(owner), "")
+
+    def test_only_an_https_link_to_a_verified_pdf_is_ever_linked(self):
+        base = {"authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE", "source_status": "PYQ_VERIFIED_PARENT"}
+        def link(**more):
+            return render_core._source_pdf({"extensions": {"grade9v3:source_custody": {**base, **more}}})
+        self.assertEqual(link(paper_url="http://jeeadv.ac.in/past_qps/2007_1.pdf"), "", "not https")
+        self.assertEqual(link(paper_url="https://jeeadv.ac.in/past_qps/index.html"), "", "not a pdf")
+        self.assertEqual(link(paper_url="javascript:alert(1).pdf"), "")
+        self.assertEqual(link(paper_url=""), "")
+        self.assertEqual(render_core._source_pdf({"extensions": {"grade9v3:source_custody": {**base, "source_status": "UNVERIFIED", "paper_url": "https://x.org/a.pdf"}}}), "",
+                         "an unverified source is not offered")
+        self.assertIn('href="https://x.org/a.pdf?download=1"', link(paper_url="https://x.org/a.pdf?download=1"))
+        self.assertNotIn("<script", link(paper_url='https://x.org/"><script>.pdf'))
+
+    def test_the_source_pdf_is_a_component_of_the_core2_blueprint_in_the_identity_slot_and_is_optional(self):
+        core2 = next(b for b in REGISTRY["blueprints"] if b["id"] == "BP-CORE2-SOURCE-QUESTION")
+        row = next(c for c in core2["components"] if c["id"] == "SOURCE_PDF")
+        self.assertEqual((row["slot"], row["level"], row["presentation"]), ("identity", "OPTIONAL", "LINK_LIST"))

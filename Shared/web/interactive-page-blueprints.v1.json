@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "registry_version": "1.6.0",
+  "registry_version": "1.7.0",
   "shell": {
     "id": "G9-TABLET-SHELL-V1",
     "fixed_header": true,
@@ -9,6 +9,7 @@
       "HOME",
       "SUBJECT_CONTEXT",
       "QUESTION_BANK",
+      "PRINT_PDF",
       "SEARCH",
       "REFRESH",
       "DISPLAY",
@@ -45,7 +46,31 @@
       "publication_rewrite": "BUILD_PIPELINE",
       "unknown_runtime_dependency": "FAIL_CLOSED"
     },
-    "version": "1.1.0"
+    "version": "1.2.0",
+    "print_policy": {
+      "control": "PRINT_PDF",
+      "purpose": "A learner or a teacher can print the page: a PDF icon in the fixed header opens the PDF printed from this very page, ready for the print dialog of the tablet.",
+      "applies_to_roles": [
+        "CORE1",
+        "CORE1A",
+        "CORE1B",
+        "CORE2",
+        "CORE2A",
+        "CORE2B"
+      ],
+      "icon": "PDF",
+      "accessible_name": "Open the PDF of this page to print it",
+      "target": "GENERATED_LEARNER_PDF",
+      "target_pattern": "{page_stem}.pdf",
+      "never_linked": [
+        "KEY_PDF"
+      ],
+      "opens": "NEW_TAB",
+      "target_css_px_min": 48,
+      "in_print": "HIDDEN",
+      "single_file_mode": "NO_CONTROL",
+      "link_must_resolve": "A page that links its PDF is published only with that PDF beside it, printed from the same bytes (print-receipt.json); a link that does not resolve refuses the publication."
+    }
   },
   "component_policy": {
     "levels": {
@@ -137,7 +162,7 @@
     },
     {
       "id": "BP-CORE2-SOURCE-QUESTION",
-      "version": "1.4.0",
+      "version": "1.5.0",
       "status": "ACTIVE",
       "core_roles": [
         "CORE2"
@@ -258,6 +283,23 @@
             "hint": "Identity comes from the question's custody. An owner-supplied question shows 'Owner-supplied question' and carries no exam, year or paper."
           },
           "compact_order": 10
+        },
+        {
+          "id": "SOURCE_PDF",
+          "slot": "identity",
+          "level": "OPTIONAL",
+          "presentation": "LINK_LIST",
+          "purpose": "Give the learner the original past paper as a PDF, ready to print, when the question's custody names it.",
+          "benchmark": "Owner request 2026-10-01: a PDF icon that links the generated or the source PDF so that it is readily available for print",
+          "source": [
+            "extensions.grade9v3:source_custody.paper_url",
+            "extensions.grade9v3:source_custody.authority_class",
+            "extensions.grade9v3:source_custody.source_status"
+          ],
+          "authoring": {
+            "hint": "Nothing to write: the page links the paper when the question's source custody is an official exam organizer archive, verified (source_status PYQ_VERIFIED_PARENT), and paper_url is an https link to a PDF. An owner-supplied question has no source file and shows no link; never put a link in the record to make the icon appear."
+          },
+          "compact_order": 15
         },
         {
           "id": "DIFFICULTY_WHY",

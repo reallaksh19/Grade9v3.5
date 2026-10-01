@@ -19,6 +19,7 @@ import hashlib
 import json
 import re
 import shutil
+import subprocess
 import sys
 import tempfile
 from pathlib import Path
@@ -133,6 +134,30 @@ def _slug(value: str, what: str) -> str:
 
 # ------------------------------------------------------------------ products
 
+PRINT_TOOL = REPO / "tools" / "print" / "print-product.mjs"
+
+
+def print_pdfs(out: Path) -> dict:
+    """Print the learner PDF of each deployed page, as the browser prints it (the draft's TEST banner included).
+
+    Every role page links the PDF printed from it (the shell's PRINT_PDF control), so a deploy that cannot print leaves links that go
+    nowhere: it says so, in the receipt and on the page of Deployments, and does not pretend. Only the learner copy is printed here; a key
+    PDF holds the answers and a TEST sandbox does not make one."""
+    node = shutil.which("node")
+    if not node:
+        return {"status": "NOT_PRINTED", "reason": "node is not installed, so the PDF links of these pages go nowhere", "files": {}}
+    try:
+        run = subprocess.run([node, str(PRINT_TOOL), str(out)], capture_output=True, text=True, timeout=300)
+    except (OSError, subprocess.TimeoutExpired) as caught:
+        return {"status": "NOT_PRINTED", "reason": f"printing failed: {caught}", "files": {}}
+    if run.returncode:
+        reason = (run.stderr or run.stdout).strip().splitlines()[-1:] or ["no message"]
+        return {"status": "NOT_PRINTED", "reason": f"print-product.mjs exited {run.returncode}: {reason[0][:200]}", "files": {}}
+    problems = render_core.pdf_publication_problems(out)
+    files = {pdf.name: _sha(pdf.read_bytes()) for pdf in sorted(out.glob("*.pdf"))}
+    return {"status": "PRINTED" if not problems else "MISMATCH", "reason": "; ".join(problems), "files": files}
+
+
 def deploy_product(manifest_path: Path) -> dict:
     manifest_path = manifest_path.resolve()
     if not manifest_path.is_file():
@@ -169,6 +194,9 @@ def deploy_product(manifest_path: Path) -> dict:
         data = stamp(text, "../../index.html").encode("utf-8")
         (out / name).write_bytes(data)
         written[name] = _sha(data)
+    printed = print_pdfs(out)
+    if printed["status"] != "PRINTED":
+        print(f"deploy_test: the PDF links of {slug} do not work: {printed['reason']}", file=sys.stderr)
     selection = manifest.get("selection") or {}
     by_core: dict[str, int] = {}
     for gap in gaps:
@@ -199,6 +227,7 @@ def deploy_product(manifest_path: Path) -> dict:
         "selection_counts": {key: len(selection.get(key) or []) for key in product_manifest.SELECTION_KEYS},
         "empty_roles": render_core.empty_roles(manifest),
         "pages": written,
+        "pdf": printed,                     # the learner PDF printed from each role page, which the page links (never a key PDF)
         "accepted": False,
         "notice": NOTICE,
     }
