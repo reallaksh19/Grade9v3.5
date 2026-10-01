@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import tempfile
 import unittest
@@ -19,9 +20,9 @@ EXPECTED_EVIDENCE = ["INITIAL_PREDICTION", "MANIPULATION_COMPLETED", "MISCONCEPT
                      "EQUATION_TESTED", "INVARIANT_RECONSTRUCTED", "BOUNDARY_TEST_RESULT", "SCAFFOLD_FADE_RESULT", "FRESH_TRANSFER_RESULT"]
 
 
-def run_browser(page: Path, width: int, height: int) -> dict:
+def run_browser(page: Path, width: int, height: int, env: dict | None = None) -> dict:
     run = subprocess.run(["node", str(REPO / "tests/explorer_browser.cjs"), str(page), str(width), str(height)], capture_output=True, text=True,
-                         cwd=REPO, timeout=300)
+                         cwd=REPO, timeout=300, env={**os.environ, **(env or {})})
     if run.returncode:
         raise AssertionError(run.stderr[-2500:])
     return json.loads(run.stdout)
@@ -306,3 +307,69 @@ class CollinearLabels(unittest.TestCase):
         for name, report in self.reports.items():
             self.assertEqual(report["consoleErrors"], [], name)
             self.assertTrue(report["done"]["visible"], name)
+
+
+class Persistence(unittest.TestCase):
+    """The route survives a reload: what the learner did is done again, quietly, so the page comes back where it was; Start over forgets it."""
+
+    @classmethod
+    def setUpClass(cls):
+        why_not = _browser_available()
+        if why_not:
+            raise unittest.SkipTest(why_not)
+        cls.tmp = tempfile.TemporaryDirectory()
+        root = Path(cls.tmp.name)
+        links = {"question": None, "concept": None}
+        html, _ = eb.page(json.loads(json.dumps(SPEC)), brief(), links)
+        rebuilt = json.loads(json.dumps(SPEC))
+        rebuilt["title"] += " (rebuilt)"
+        (root / "a.html").write_text(html, encoding="utf-8")
+        (root / "b.html").write_text(eb.page(rebuilt, brief(), links)[0], encoding="utf-8")
+        cls.reload_run = run_browser(root / "a.html", 1366, 854, {"GX_PERSIST": "1"})
+        cls.no_storage = run_browser(root / "a.html", 1366, 854, {"GX_NOSTORE": "1"})
+        run = subprocess.run(["node", str(REPO / "tests/explorer_persist.cjs"), str(root / "a.html"), str(root / "b.html")], capture_output=True, text=True,
+                             cwd=REPO, timeout=300)
+        if run.returncode:
+            raise AssertionError(run.stderr[-2500:])
+        cls.scenes = json.loads(run.stdout)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.tmp.cleanup()
+
+    def test_after_every_step_a_reload_brings_back_the_same_page(self):
+        rows = self.reload_run["persist"]
+        self.assertEqual(len(rows), 12, "one reload after each of the eleven steps and one in the middle of the fresh tasks")
+        for row in rows:
+            self.assertTrue(row["same"], (row["label"], row["differs"]))
+            self.assertEqual(row["restored"], row["kept"], row["label"])
+            self.assertGreater(row["kept"], 0, row["label"])
+        self.assertEqual(self.reload_run["consoleErrors"], [])
+        self.assertTrue(self.reload_run["done"]["visible"])
+
+    def test_the_page_comes_back_quietly_and_the_host_is_not_told_twice(self):
+        back = self.scenes["back"]
+        self.assertEqual((back["stage"], self.scenes["before"]["stage"]), ("MANIPULATE", "MANIPULATE"))
+        self.assertEqual(back["host"], [], "what the host heard before the reload it does not hear again")
+        self.assertTrue(all(replayed for _, replayed in back["evidence"]), back["evidence"])
+        self.assertEqual([name for name, _ in back["evidence"]], self.scenes["before"]["host"])
+        self.assertEqual(back["slider"], back["expectedSlider"])
+        self.assertTrue(back["unlocked"])
+        self.assertGreater(back["restored"], 0)
+
+    def test_start_over_forgets_what_was_kept(self):
+        self.assertEqual(self.scenes["startOver"], {"stage": "CONTEXT", "kept": None, "restored": 0})
+
+    def test_a_page_rebuilt_from_another_spec_starts_fresh(self):
+        self.assertEqual((self.scenes["beforeRebuild"]["stage"], self.scenes["beforeRebuild"]["kept"]), ("MANIPULATE", True))
+        self.assertEqual(self.scenes["rebuilt"], {"stage": "CONTEXT", "restored": 0})
+
+    def test_a_kept_list_that_does_not_fit_is_dropped_without_a_loop(self):
+        self.assertEqual(self.scenes["mismatchAtOnce"], {"stage": "CONTEXT", "restored": 0, "kept": None, "loads": 1})
+        self.assertEqual(self.scenes["mismatchAfterSome"], {"stage": "CONTEXT", "restored": 0, "kept": None, "loads": 2})
+        self.assertEqual(self.scenes["consoleErrors"], [])
+
+    def test_where_the_browser_keeps_nothing_the_page_still_runs_to_its_end(self):
+        self.assertEqual(self.no_storage["consoleErrors"], [])
+        self.assertTrue(self.no_storage["done"]["visible"])
+        self.assertEqual(self.no_storage["evidence"][-1], "FRESH_TRANSFER_RESULT")

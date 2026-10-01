@@ -11,6 +11,8 @@ const { chromium } = require('playwright');
   const report = { viewport: { width, height }, consoleErrors: [], steps: [] };
   page.on('console', (m) => { if (m.type() === 'error') report.consoleErrors.push(m.text()); });
   page.on('pageerror', (e) => report.consoleErrors.push(`PAGEERROR: ${e.message}`));
+  // GX_NOSTORE=1: the browser keeps nothing (a private window, storage blocked); GX_PERSIST=1: reload at every step and compare what comes back
+  if (process.env.GX_NOSTORE === '1') await page.addInitScript(() => { Object.defineProperty(window, 'localStorage', { get() { throw new DOMException('blocked', 'SecurityError'); } }); });
   await page.goto('file://' + file);
   await page.waitForSelector('html[data-gx-ready]');
   const shot = async (name) => { if (shots) await page.screenshot({ path: `${shots}/${name}.png` }); };
@@ -76,10 +78,39 @@ const { chromium } = require('playwright');
   await shot('01-context');
   await note('context');
 
+  const persist = process.env.GX_PERSIST === '1';
+  if (persist) report.persist = [];
+  const snapshot = () => page.evaluate(() => {
+    const g = window.__gx;
+    const plain = JSON.parse(JSON.stringify(g.state, (k, v) => (v instanceof Set ? [...v].sort() : k === 'evidence' ? v.map((e) => e.type) : v)));
+    return {
+      state: plain,
+      cards: [...document.querySelectorAll('[data-gx-step]')].map((c) => [c.dataset.gxStep, c.dataset.state, c.hidden, c.hasAttribute('data-open')]),
+      route: document.querySelector('.gx-route').innerText,
+      sliders: [...document.querySelectorAll('input[type=range]')].map((i) => [i.id, i.value, i.disabled]),
+      scene: [...document.querySelectorAll('#gx-scene-svg text.gx-lab')].map((t) => t.textContent),
+      graph: [...document.querySelectorAll('#gx-graph-svg path')].map((d) => d.getAttribute('d')),
+      readouts: [...document.querySelectorAll('.gx-readouts')].map((r) => r.innerText).join('|'),
+      done: !document.querySelector('#gx-done').hidden,
+    };
+  });
+  const checkpoint = async (label) => {
+    if (!persist) return;
+    const before = await snapshot();
+    const kept = await hook(() => window.__gx.progress.size());
+    await page.reload();
+    await page.waitForSelector('html[data-gx-ready]');
+    const after = await snapshot();
+    const restored = await hook(() => window.__gx.progress.restored());
+    const differs = Object.keys(before).filter((k) => JSON.stringify(before[k]) !== JSON.stringify(after[k]));
+    report.persist.push({ label, kept, restored, same: differs.length === 0, differs, stage: before.state.stage });
+    if (process.env.GX_DEBUG) console.error('checkpoint', JSON.stringify(report.persist[report.persist.length - 1]));
+  };
   const cont = async (id) => {
     const button = page.locator(`[data-gx-step="${id}"] [data-gx-continue]`);
     if (await button.isDisabled()) throw new Error(`the continue button of ${id} is disabled`);
     await button.click();
+    await checkpoint(`after ${id}`);
   };
   const disabled = (id) => page.locator(`[data-gx-step="${id}"] [data-gx-continue]`).isDisabled();
 
@@ -287,6 +318,7 @@ const { chromium } = require('playwright');
         await item.locator('[data-gx-check]').click();
       }
       report.transfer.revealedAfterTwoWrong = (await item.locator('.gx-feedback').textContent()).includes('The answer is');
+      await checkpoint('transfer, first task answered');
     } else {
       await item.locator('[data-gx-answer]').fill(String(await answerOf(spec.transfer[i])));
       await item.locator('[data-gx-check]').click();

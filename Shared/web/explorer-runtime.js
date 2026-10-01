@@ -46,18 +46,22 @@
 
   /* ------------------------------------------------------------------ small helpers */
 
+  /* While a saved route is being replayed the page must not talk, scroll or tell the host again: it is only getting back to where it was. */
+  let replaying = false;
+  let replayAt = null;
   const fmt = (value, digits) => GX.fixed(value, digits);
   const key = (params) => model.ids.map((id) => params[id]).join('|');
   const env = () => model.values(state.params);
-  const live = (message) => { const node = q('#gx-live'); if (node) node.textContent = message; };
+  const live = (message) => { const node = q('#gx-live'); if (node && !replaying) node.textContent = message; };
   const stageId = () => ROUTE[state.stage];
   const stageIndex = (id) => ROUTE.indexOf(id);
   const reached = (id) => state.stage >= stageIndex(id);
   const span = (id) => (spec.parameters.find((p) => p.id === id) || {});
   const emit = (type, detail) => {
-    const event = { type, at: new Date().toISOString(), stage: stageId(), detail: detail || {} };
+    const event = { type, at: new Date(replayAt === null ? Date.now() : replayAt).toISOString(), stage: stageId(), detail: detail || {} };
+    if (replaying) event.replayed = true;
     state.evidence.push(event);
-    document.dispatchEvent(new CustomEvent('g9:evidence', { detail: event }));
+    if (!replaying) document.dispatchEvent(new CustomEvent('g9:evidence', { detail: event }));
   };
 
   function fadeRules() {
@@ -67,7 +71,7 @@
 
   function setText(node, text) { if (node && node.textContent !== text) node.textContent = text; }
   const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const reveal = (node) => { if (node && node.scrollIntoView) node.scrollIntoView({ block: 'nearest', behavior: calm ? 'auto' : 'smooth' }); };
+  const reveal = (node) => { if (node && node.scrollIntoView && !replaying) node.scrollIntoView({ block: 'nearest', behavior: calm ? 'auto' : 'smooth' }); };
 
   function nearest(predicate) {
     let best = null;
@@ -520,7 +524,7 @@
     if (id && stages[id] && stages[id].enter) stages[id].enter();
     renderRail();
     render();
-    if (moveFocus) {
+    if (moveFocus && !replaying) {
       const target = state.stage >= ROUTE.length ? q('#gx-done h2') : q('h2', cards[id]);
       if (target) { target.setAttribute('tabindex', '-1'); target.focus({ preventScroll: false }); }
       live(state.stage >= ROUTE.length ? 'You have finished the route.' : `Step ${state.stage + 1} of ${ROUTE.length}: ${q('.gx-t', cards[id]).textContent}.`);
@@ -953,6 +957,111 @@
     parts.forEach((line) => { const li = document.createElement('li'); li.textContent = line; list.appendChild(li); });
   }
 
+  /* ------------------------------------------------------------------ progress kept across a reload
+
+     What the learner did is kept as the list of their actions (a button pressed, a slider position, a typed answer, an option chosen) and, when the page
+     is opened again, done again through the same handlers while the page is quiet: so it comes back exactly where it was, and the page holds no second
+     copy of its own state that could drift from the first. The key carries the render digest, so a page rebuilt from another spec, or by another
+     runtime, starts fresh, and a list that no longer fits the page is dropped, once, and the page starts fresh. Where the browser keeps nothing
+     (a private window, storage blocked) the page works as before and keeps its progress only while it is open. */
+  const progress = (() => {
+    const digest = document.documentElement.dataset.g9RenderDigest || '';
+    const storeKey = `gx1:${location.pathname}:${digest}`;
+    const LIMIT = 1500;
+    let log = [];
+    let timer = null;
+    let reloaded = false;
+    const get = () => { try { return JSON.parse(localStorage.getItem(storeKey) || 'null'); } catch (e) { return null; } };
+    const put = () => { timer = null; try { localStorage.setItem(storeKey, JSON.stringify({ v: 1, log })); } catch (e) { /* kept only while the page is open */ } };
+    const clear = () => { log = []; if (timer) { clearTimeout(timer); timer = null; } try { localStorage.removeItem(storeKey); } catch (e) { /* nothing was kept */ } };
+    const flush = () => { if (timer) { clearTimeout(timer); put(); } };
+
+    const pathOf = (node) => {
+      const parts = [];
+      for (let n = node; n && n.nodeType === 1 && n !== document.body; n = n.parentElement) {
+        if (n.id) { parts.unshift(`#${CSS.escape(n.id)}`); break; }
+        parts.unshift(`${n.tagName.toLowerCase()}:nth-child(${Array.prototype.indexOf.call(n.parentElement.children, n) + 1})`);
+      }
+      return parts.join('>');
+    };
+
+    function describe(event) {
+      const node = event.target;
+      if (!(node instanceof Element)) return null;
+      if (event.type === 'click') {
+        const button = node.closest('button');
+        if (!button || button.matches('[data-gx-theme], [data-gx-restart]') || button.closest('label')) return null;
+        return ['c', pathOf(button), null];
+      }
+      if (event.type === 'input') {
+        if (node.matches('input[type=range]')) return ['r', pathOf(node), node.value];
+        if (node.matches('input[type=text], input[type=number], input:not([type]), textarea')) return ['t', pathOf(node), node.value];
+      }
+      if (event.type === 'change' && node.matches('input[type=radio], input[type=checkbox]')) return ['o', pathOf(node), node.checked ? 1 : 0];
+      return null;
+    }
+
+    function record(event) {
+      if (replaying || !digest) return;
+      const entry = describe(event);   // [kind, path, value]
+      if (!entry) return;
+      const last = log[log.length - 1];
+      if (last && entry[0] === 't' && last[0] === 't' && last[1] === entry[1]) last[2] = entry[2];   // typing is one answer, not a keystroke each
+      else if (last && entry[0] === 'r' && last[0] === 'r' && last[1] === entry[1] && last[2] === entry[2]) return;
+      else if (log.length < LIMIT) log.push([...entry, Date.now()]);
+      else return;
+      if (!timer) timer = setTimeout(put, 300);
+    }
+
+    /* Do the saved actions again, in order. Returns how many were done and whether all were. */
+    function replay(entries) {
+      let done = 0;
+      replaying = true;
+      try {
+        for (const [kind, path, value, at] of entries) {
+          replayAt = at;
+          const node = document.querySelector(path);
+          if (!node || node.disabled) break;
+          if (kind === 'c') node.click();
+          else if (kind === 'o') { node.checked = Boolean(value); node.dispatchEvent(new Event('change', { bubbles: true })); }
+          else { node.value = value; node.dispatchEvent(new Event('input', { bubbles: true })); }
+          done += 1;
+        }
+      } catch (e) {
+        /* an action the page cannot do again counts as one that did not fit */
+      } finally {
+        replaying = false;
+        replayAt = null;
+      }
+      return { done, all: done === entries.length };
+    }
+
+    function restore() {
+      const saved = digest ? get() : null;
+      if (!saved || saved.v !== 1 || !Array.isArray(saved.log) || !saved.log.length) return 0;
+      const result = replay(saved.log);
+      if (result.all) {
+        log = saved.log;
+        document.documentElement.dataset.gxRestored = String(log.length);
+        live('Your progress on this page was kept. Use Start over to begin again.');
+        const card = stageId() ? cards[stageId()] : q('#gx-done');
+        if (card && card.scrollIntoView) card.scrollIntoView({ block: 'nearest' });
+        return log.length;
+      }
+      // the saved list does not fit this page: forget it. If part of it was already done the page is no longer at the start, so start again from the top, once
+      clear();
+      if (result.done) {
+        try { if (!sessionStorage.getItem(`${storeKey}:retry`)) { sessionStorage.setItem(`${storeKey}:retry`, '1'); location.reload(); } } catch (e) { /* the page stays as it is */ }
+      }
+      return 0;
+    }
+
+    ['click', 'input', 'change'].forEach((type) => document.addEventListener(type, record, true));
+    window.addEventListener('pagehide', flush);
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') flush(); });
+    return { restore, clear, key: storeKey, size: () => log.length };
+  })();
+
   /* ------------------------------------------------------------------ wiring */
 
   function bindPredict() {
@@ -977,7 +1086,7 @@
     if (restart) {
       let armed = null;
       restart.addEventListener('click', () => {
-        if (armed) { clearTimeout(armed); location.reload(); return; }
+        if (armed) { clearTimeout(armed); progress.clear(); location.reload(); return; }
         restart.textContent = 'Sure? Tap again';
         armed = setTimeout(() => { armed = null; restart.textContent = 'Start over'; }, 4000);
       });
@@ -1040,6 +1149,7 @@
     stages.OBSERVE.update = () => { baseUpdate(); renderRecall(); };
     document.documentElement.dataset.gxReady = '1';
     goto(0, false);
+    progress.restore();
   }
 
   window.__gx = {
@@ -1062,6 +1172,7 @@
       }
       return out;
     },
+    progress: { key: progress.key, size: progress.size, restored: () => Number(document.documentElement.dataset.gxRestored || 0) },
     goto(id) { if (testMode) goto(typeof id === 'number' ? id : stageIndex(id)); },
     visible: (id) => { const entry = sceneNodes.get(id); return Boolean(entry) && entry.group.style.display !== 'none'; },
   };
