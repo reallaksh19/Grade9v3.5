@@ -197,6 +197,20 @@ class TestDeploy(unittest.TestCase):
         with self.assertRaisesRegex(deploy_test.DeployError, "selection rejected: PRODUCT_SELECTION_WRONG_AUTHORITY"):
             deploy_test.deploy_product(self.fixture.manifest)
 
+    def test_a_package_with_several_schema_problems_reports_them_together(self):
+        package_path = self.fixture.root / "package.v1.json"
+        package = json.loads(package_path.read_text(encoding="utf-8"))
+        package["resources"], package["buckets"], package["microtopics"] = [], [], []
+        package["capabilities"][0]["acceptance_status"] = "UNREVIEWED"
+        package_path.write_text(json.dumps(package), encoding="utf-8")
+        with self.assertRaises(ValueError) as caught:
+            deploy_test.deploy_product(self.fixture.manifest)
+        message = str(caught.exception)
+        self.assertIn("PRODUCT_STRUCTURE_INVALID", message)
+        for needle in ("buckets:", "microtopics:", "resources:", "acceptance_status:"):
+            self.assertIn(needle, message)
+        self.assertFalse((deploy_test.PUBLIC_TEST / "products" / self.fixture.slug).exists(), "a refused product leaves nothing")
+
     def test_an_empty_role_is_reported_in_the_receipt(self):
         manifest = json.loads(self.fixture.manifest.read_text(encoding="utf-8"))
         manifest["selection"]["core2"] = []

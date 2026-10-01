@@ -1702,9 +1702,11 @@ def context(manifest_path: Path) -> Ctx:
                 continue
             errors = sorted(validator.iter_errors(record), key=lambda error: tuple(str(x) for x in error.absolute_path))
             if errors:
-                error = errors[0]
-                location = "/".join(str(x) for x in error.absolute_path) or "<root>"
-                raise ValueError(f"PRODUCT_STRUCTURE_INVALID: {path}: {location}: {error.message}")
+                # Name the first several together: fixing them one deploy at a time costs a cold-start author a round each.
+                shown = "; ".join(f'{"/".join(str(x) for x in error.absolute_path) or "<root>"}: {error.message}'
+                                  for error in errors[:6])
+                raise ValueError(f"PRODUCT_STRUCTURE_INVALID: {path}: {shown}"
+                                 + (f" (+{len(errors) - 6} more)" if len(errors) > 6 else ""))
     manifest["title"] = (next((p.get("title") for p in packages if p.get("title")), None)
                          or next((b.get("title") for p in packages for b in p.get("buckets", []) if b.get("title")), None)
                          or manifest["product_id"].replace("-", " ").title())
