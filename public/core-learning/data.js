@@ -395,9 +395,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -840,9 +840,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -1331,9 +1331,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -7529,9 +7529,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -7925,9 +7925,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -8287,9 +8287,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -8737,9 +8737,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -9240,9 +9240,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -9631,9 +9631,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -9981,9 +9981,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -10332,9 +10332,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -10687,9 +10687,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -11047,9 +11047,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -11409,9 +11409,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -11771,9 +11771,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -12127,9 +12127,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -12485,9 +12485,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -12856,9 +12856,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -13214,9 +13214,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -13564,9 +13564,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -13914,9 +13914,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -14274,9 +14274,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -14634,9 +14634,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -14991,9 +14991,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -15351,9 +15351,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -15719,9 +15719,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -16084,9 +16084,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -16440,9 +16440,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -16796,9 +16796,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -17175,9 +17175,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -17576,9 +17576,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -17965,9 +17965,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -18343,9 +18343,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -18719,9 +18719,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -19075,9 +19075,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -19573,9 +19573,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -20203,9 +20203,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -20707,9 +20707,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -21188,9 +21188,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -21824,9 +21824,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -22351,9 +22351,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -22862,9 +22862,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -23582,9 +23582,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -24108,9 +24108,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -24489,9 +24489,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -24857,9 +24857,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -25243,9 +25243,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -25633,9 +25633,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -26240,9 +26240,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -26657,9 +26657,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -27055,9 +27055,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -27464,9 +27464,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -28133,9 +28133,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -28559,9 +28559,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -29193,9 +29193,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -29640,9 +29640,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -30041,9 +30041,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -30444,9 +30444,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -31084,9 +31084,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -31476,9 +31476,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -31851,9 +31851,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -32206,9 +32206,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -32562,9 +32562,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -32918,9 +32918,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -33289,9 +33289,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -33673,9 +33673,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -34068,9 +34068,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -34460,9 +34460,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -35031,9 +35031,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -35596,9 +35596,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -35951,9 +35951,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -36307,9 +36307,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -36663,9 +36663,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -37061,9 +37061,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -37476,9 +37476,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -37852,9 +37852,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -38228,9 +38228,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -38597,9 +38597,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -38967,9 +38967,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -39326,9 +39326,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -39711,9 +39711,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -40144,9 +40144,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -40550,9 +40550,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -40925,9 +40925,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -41280,9 +41280,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -41657,9 +41657,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -42034,9 +42034,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -42399,9 +42399,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -42793,9 +42793,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -43166,9 +43166,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.2.0",
+            "blueprint_version": "1.3.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [

@@ -27,16 +27,28 @@ OWNER_CUSTODY = {"authority_class": "OWNER_SUPPLIED_RAW_INPUT", "intake_ref": "s
 
 
 def fill_page(row: dict) -> dict:
-    """The guided-support ladder and typed reasoning route an owner question needs (what `owner_bank.py new` leaves empty)."""
+    """What an owner question needs to meet the Core2 blueprint at the reference depth (what `owner_bank.py new` leaves empty):
+    a typed route and ladder at the band's depth, the EXPECTED components, and a recorded waiver for the one thing a fixture
+    cannot draw."""
+    band = ((row.get("extensions") or {}).get("grade9v3:analysis") or {}).get("difficulty", {}).get("band") or "D1"
+    deep = band in ("D3", "D4")
+    kinds = ["DECIDE", "REPRESENT", "TRANSFORM"] + (["VERIFY"] if deep else [])
     moves = [{"id": f"{row['id']}-MOVE-{n}", "kind": kind, "action": f"do step {n}", "why_valid": f"step {n} follows from the data",
               "inputs": ["the stated data"], "output": f"result {n}"}
-             for n, kind in enumerate(("DECIDE", "REPRESENT", "TRANSFORM"), 1)]
-    row["answer"] = dict(row["answer"], reasoning_route=moves, crux_move_ref=moves[1]["id"])
+             for n, kind in enumerate(kinds, 1)]
+    row["answer"] = dict(row["answer"], reasoning_route=moves, crux_move_ref=moves[1]["id"], check="a limiting case agrees")
+    rungs = (("CONNECT", "CONCEPT", "KEY_CONCEPT"), ("REPRESENT", "METHOD", "REPRESENTATION"), ("EXECUTE", "METHOD", "FIRST_MOVE"))
+    if deep:
+        rungs += (("EXECUTE", "METHOD", "FORMAL_MODEL"), ("EXECUTE", "METHOD", "CHECKPOINT"))
     row["scaffolds"] = [{"text": f"hint {n}", "support_kind": kind, "reveals": reveals, "learner_stage": stage,
-                         "supports_move_ref": moves[n - 1]["id"]}
-                        for n, (kind, reveals, stage) in enumerate((("CONNECT", "CONCEPT", "KEY_CONCEPT"),
-                                                                    ("REPRESENT", "METHOD", "REPRESENTATION"),
-                                                                    ("EXECUTE", "METHOD", "FIRST_MOVE")), 1)]
+                         "supports_move_ref": moves[min(n, len(moves)) - 1]["id"]}
+                        for n, (kind, reveals, stage) in enumerate(rungs, 1)]
+    row["conditions"] = row.get("conditions") or ["the stated model holds"]
+    analysis = row["extensions"].setdefault("grade9v3:analysis", {})
+    analysis["common_wrong_route"] = analysis.get("common_wrong_route") or "the tempting route that ignores the sign"
+    analysis["expected_time_seconds"] = analysis.get("expected_time_seconds") or 120
+    row["extensions"]["grade9v3:component_waivers"] = {"REPRESENTATION": "the fixture package has no authored figure"}
+    row["figure_refs"] = []
     row.pop("hints", None)
     row.pop("hint_ladder", None)
     return row
@@ -198,6 +210,22 @@ class TestDeploy(unittest.TestCase):
         self.assertIn(f"The {receipt['gap_count']} gap(s)", page)
         self.assertIn(first["record"], page)
         self.assertIn(first["detail"].replace("&", "&amp;"), page.replace("&#x27;", "'"))
+
+    def test_two_components_one_record_lacks_are_two_gaps_not_one(self):
+        bank_path = self.fixture.root / "owner.bank.json"
+        bank = json.loads(bank_path.read_text(encoding="utf-8"))
+        row = bank["questions"][0]
+        del row["scaffolds"]
+        del row["answer"]["reasoning_route"]
+        row["conditions"] = []
+        row["extensions"]["grade9v3:component_waivers"].pop("REPRESENTATION")
+        bank_path.write_text(json.dumps(bank), encoding="utf-8")
+        receipt = deploy_test.deploy_product(self.fixture.manifest)
+        mine = [g["detail"] for g in receipt["gaps"] if g["record"] == row["id"]]
+        for component in ("HINT_LADDER", "SOLUTION_STEPS", "CONDITIONS", "REPRESENTATION"):
+            self.assertTrue(any(d.startswith(component) for d in mine), (component, mine))
+        self.assertLessEqual({g["component"] for g in receipt["gaps"] if g.get("component")}, set(receipt["authoring"]),
+                             "the blueprint's instruction is kept for each component that has a gap")
 
     def test_the_hub_and_deployments_pages_report_the_deployment_without_calling_it_done(self):
         deploy_test.deploy_product(self.fixture.manifest)
@@ -455,12 +483,14 @@ class TestOwnerBankFromIntake(unittest.TestCase):
         self.assertTrue(any("learner_question_type is one of" in p for p in problems), problems)
         self.assertEqual(owner_bank.check(self.bank(), intake=self.INTAKE), [])
 
-    def test_the_skeleton_carries_an_empty_ladder_and_route_and_check_names_what_is_empty(self):
+    def test_the_skeleton_carries_the_deepest_ladder_and_route_and_check_names_what_is_empty(self):
         bank = self.bank(fill=False)
         row = bank["questions"][0]
-        self.assertEqual([m["kind"] for m in row["answer"]["reasoning_route"]], ["DECIDE", "REPRESENT", "TRANSFORM"])
-        self.assertEqual([r["support_kind"] for r in row["scaffolds"]], ["CONNECT", "REPRESENT", "EXECUTE"])
-        self.assertEqual({r["supports_move_ref"] for r in row["scaffolds"]}, {m["id"] for m in row["answer"]["reasoning_route"]})
+        # The skeleton is the reference depth for a D3 or D4 question: the author deletes what the band does not need.
+        self.assertEqual([m["kind"] for m in row["answer"]["reasoning_route"]], ["DECIDE", "REPRESENT", "TRANSFORM", "VERIFY"])
+        self.assertEqual([r["learner_stage"] for r in row["scaffolds"]],
+                         ["REPRESENTATION", "KEY_CONCEPT", "CRUX", "FORMAL_MODEL", "CHECKPOINT"])
+        self.assertEqual({r["supports_move_ref"] for r in row["scaffolds"]} - {m["id"] for m in row["answer"]["reasoning_route"]}, set())
         problems = " ".join(owner_bank.check(bank))
         self.assertIn("scaffolds[0].text is empty", problems)
         self.assertIn("is missing action", problems)
@@ -492,17 +522,30 @@ class TestOwnerBankFromIntake(unittest.TestCase):
             rung["reveals"] = "ANSWER"
         self.assertIn("only 0 of 3 scaffold(s) can be shown before the answer", " ".join(owner_bank.check(bank)))
 
-    def test_advice_says_what_no_rule_requires_and_stays_quiet_when_it_is_done(self):
+    def test_every_expected_component_is_supplied_or_waived_with_a_reason(self):
         bank = self.bank()
-        notes = " ".join(owner_bank.advice(bank))
-        for component in ("CONDITIONS", "TRAP", "REPRESENTATION", "CHECK"):
-            self.assertIn(component, notes)          # the blueprint's EXPECTED components, named as it names them
         for row in bank["questions"]:
-            row["figure_refs"] = ["REP-X"]
-            row["conditions"] = ["a given"]
-            row["extensions"]["grade9v3:analysis"]["common_wrong_route"] = "the tempting route"
-            row["answer"]["check"] = "a limiting case"
-        self.assertEqual(owner_bank.advice(bank), [])
+            row["extensions"].pop("grade9v3:component_waivers")
+            row["conditions"] = []
+            row["extensions"]["grade9v3:analysis"].pop("common_wrong_route")
+            del row["answer"]["check"]
+        notes = " ".join(owner_bank.check(bank))
+        for component in ("CONDITIONS", "TRAP", "REPRESENTATION", "CHECK"):
+            self.assertIn(f"{component} is absent", notes)   # the blueprint's EXPECTED components, named as it names them
+        self.assertIn("component_waivers", notes, "the message says how to waive")
+        self.assertEqual(owner_bank.check(bank, complete=False), [], "the renderer builds a draft and reports a gap instead")
+        for row in bank["questions"]:
+            row["extensions"]["grade9v3:component_waivers"] = {"CONDITIONS": "the question states none", "TRAP": "no tempting route",
+                                                               "REPRESENTATION": "nothing to draw", "CHECK": "a unit check adds nothing"}
+        self.assertEqual(owner_bank.check(bank), [])
+
+    def test_a_deep_question_is_held_to_the_deep_ladder_and_route(self):
+        bank = self.bank()
+        row = bank["questions"][0]
+        row["extensions"]["grade9v3:analysis"]["difficulty"].update(band="D3", score=5)
+        problems = " ".join(owner_bank.check(bank))
+        self.assertIn("HINT_LADDER needs 5, the record supplies 3", problems)
+        self.assertIn("SOLUTION_STEPS needs 4, the record supplies 3", problems)
 
     def test_an_owner_question_cannot_take_an_exam_provenance_class(self):
         bank = self.bank()

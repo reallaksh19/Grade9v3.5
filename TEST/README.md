@@ -21,15 +21,23 @@ A Core page is built from its **blueprint** (`Shared/web/interactive-page-bluepr
 [docs/specs/PAGE-BLUEPRINT-COMPONENTS.md](../docs/specs/PAGE-BLUEPRINT-COMPONENTS.md)). The blueprint names the page's components (for Core2: the
 header, the stem, the conditions, the common wrong route, the representation card, the hint ladder, the numbered working, the answer
 and the check), the column each sits in and how much each matters. The renderer builds the page from it, the quality gate judges the page against
-it, and `owner_bank.py new` scaffolds exactly the fields it lists. So the way to a good page is to supply what the blueprint lists:
+it, and `owner_bank.py new` scaffolds exactly the fields it lists. So the way to a good page is to supply what the blueprint lists.
 
-- **REQUIRED** and absent or too short: a *gap*, printed by the deploy with the record and the blueprint's own instruction for authoring it.
-- **EXPECTED** and absent: an *advisory*, printed after the gaps. The reference page has it; write it where the question has one to give
-  (a figure only where the question is about a picture; never invent one).
-- Between a component's floor and the reference depth (a hint ladder of 2 rungs where the reference has 3) is an advisory too.
-  `owner_bank.py check` holds a new bank to the reference depth.
+A TEST page is new authoring, so it is held to the **reference page** (the benchmark the blueprint was measured from), not to the floor an
+official product is judged at:
 
-Zero gaps does not mean the page is at the reference standard; read the advisories as well.
+- **REQUIRED** and absent or shallower than the reference for the question's difficulty band: a *gap*, printed by the deploy with the record
+  and the blueprint's own instruction for authoring it. The reference depth depends on the band you declare in
+  `difficulty.band`: a D1 or D2 question has 3 hint rungs and 3 working steps, a D3 or D4 question 5 rungs and 4 steps
+  (the spec lists each component's depth by band). Delete the scaffold's rungs and steps your band does not need.
+- **EXPECTED** and absent: also a *gap*, unless the record **waives** it. Write the component where the question has one to give (a figure
+  for every question: even a pure-number question can show its quantities as a labelled diagram, drawn only from the question's own data).
+  Where a question truly has none, say so, with the reason, in the question's `extensions["grade9v3:component_waivers"]`
+  as `{"COMPONENT_ID": "why it does not apply"}`. A REQUIRED component cannot be waived. The receipt and the Deployments page list every waiver
+  with its reason, for the Owner to accept or refuse; never invent content to avoid a gap or a waiver.
+- `owner_bank.py check` holds a bank to the same bar before you deploy, with the same messages.
+
+Zero gaps, with every waiver reasoned, is the standard. A gap-free page that waives what the question could have given is not at it.
 
 ## What TEST can and cannot make
 

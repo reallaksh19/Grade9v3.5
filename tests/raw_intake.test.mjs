@@ -53,6 +53,25 @@ test('pasted blocks keep owner labels and source hints as data, not identity', (
   assert.match(prompt, /A hold is never an output/);
 });
 
+test('a question keeps the lines the Owner wrote, in the browser as in Python, and its identity ignores the layout', () => {
+  const w = runtime();
+  const laid = '2.  A boat points due east at 4 m/s.\n(a)  Find its velocity.\n\n(b) Find the distance in 10 s.';
+  const flat = '2. A boat points due east at 4 m/s. (a) Find its velocity. (b) Find the distance in 10 s.';
+  const request = { subject: 'Anything', questions: [laid] };
+  const tmp = fs.mkdtempSync('/tmp/raw-intake-');
+  fs.writeFileSync(`${tmp}/request.json`, JSON.stringify(request));
+  const run = spawnSync('python3', ['Shared/tools/raw_intake.py', '--input', `${tmp}/request.json`], { cwd: root, encoding: 'utf8' });
+  assert.equal(run.status, 0, run.stderr || run.stdout);
+  const python = JSON.parse(run.stdout);
+  const browser = plain(w.RAW_INTAKE.intake(request, w.GRADE9V3_RESEARCH_FIRST_WORKFLOW));
+  assert.deepEqual(browser, python);
+  const kept = browser.inputs.questions[0];
+  assert.equal(kept.text, 'A boat points due east at 4 m/s.\n(a) Find its velocity.\n(b) Find the distance in 10 s.');
+  assert.equal(kept.label, '2');
+  const alone = plain(w.RAW_INTAKE.intake({ subject: 'Anything', questions: [flat] }, w.GRADE9V3_RESEARCH_FIRST_WORKFLOW));
+  assert.equal(alone.inputs.questions[0].id, kept.id, 'the same question laid out differently is the same question');
+});
+
 test('entry page wires the research-first path and keeps the mapped composer secondary', () => {
   const page = read('public/raw-intake/index.html');
   assert.match(page, /research-first-workflow\.js/);

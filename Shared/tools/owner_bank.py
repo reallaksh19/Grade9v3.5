@@ -77,13 +77,14 @@ def intake_questions(intake: dict) -> list[dict]:
     return list((intake.get("inputs") or {}).get("questions") or [])
 
 
-def _page_problems(question: dict, label: str) -> list[str]:
+def _page_problems(question: dict, label: str, complete: bool = True, seen: set | None = None) -> list[str]:
     """What the learner would not see: the blueprint's required components, then the typing the renderer relies on."""
     problems: list[str] = []
     if question.get("hints"):
         problems.append(f"{label}: hints are a source's own words; an owner question has no source. "
                         "Put guided support in scaffolds")
-    problems += blueprints.record_problems(core2_blueprint(), question, label)
+    if complete:
+        problems += blueprints.record_problems(core2_blueprint(), question, label, seen)
     answer = question.get("answer") if isinstance(question.get("answer"), dict) else {}
     route = answer.get("reasoning_route")
     moves = [m for m in route if isinstance(m, dict)] if isinstance(route, list) else []
@@ -125,19 +126,13 @@ def _page_problems(question: dict, label: str) -> list[str]:
     return problems
 
 
-def advice(document: dict) -> list[str]:
-    """What the pages will lack that the blueprint expects but does not require: said once, never a failure."""
-    questions = [q for q in document.get("questions") or [] if isinstance(q, dict)]
-    return [f"{cid}: {lacking} of {len(questions)} question(s) supply none, so the page shows no {cid.lower().replace('_', ' ')} "
-            f"there. {hint}".rstrip()
-            for cid, lacking, hint in blueprints.expected_absent(core2_blueprint(), questions)] if questions else []
-
-
-def check(document: dict, where: str = "bank", intake: dict | None = None) -> list[str]:
+def check(document: dict, where: str = "bank", intake: dict | None = None, complete: bool = True) -> list[str]:
     """Problems with an owner bank, one line each. Empty means it can be used.
 
     With the intake it was made from, each stem is also compared with the intake's text and every intake
-    question must be in the bank."""
+    question must be in the bank. With `complete`, the bank is also held to the page blueprint at the reference depth:
+    each REQUIRED component as deep as the question's band asks, each EXPECTED one supplied or waived with a reason.
+    The renderer asks with complete=False: it builds the draft and reports each of those as a gap, all of them, in the receipt."""
     problems: list[str] = []
     if not is_owner_bank(document):
         return [f"{where}: schema_version must be {SCHEMA_VERSION}"]
@@ -147,6 +142,7 @@ def check(document: dict, where: str = "bank", intake: dict | None = None) -> li
     if not isinstance(questions, list) or not questions:
         return problems + [f"{where}: questions must be a non-empty list"]
     seen: set[str] = set()
+    explained: set[str] = set()          # a component's authoring instruction is given once, at its first shortfall
     for index, question in enumerate(questions):
         label = f"{where}: questions[{index}]" + (f" {question.get('id')}" if isinstance(question, dict) else "")
         if not isinstance(question, dict):
@@ -176,7 +172,7 @@ def check(document: dict, where: str = "bank", intake: dict | None = None) -> li
         elif isinstance(stem, str) and text_digest(stem) != custody["text_sha256"]:
             problems.append(f"{label}: the stem is not the text the Owner supplied (its digest differs from "
                             f"{CUSTODY_KEY}.text_sha256); owner questions are kept verbatim, so restore the stem")
-        problems += _page_problems(question, label)
+        problems += _page_problems(question, label, complete, explained)
         # The same projection the renderer makes: provenance, difficulty and question type. Say it here, not as a gap later.
         problems += [f"{label}: {problem}" for problem in learner_metadata.bank_question_problems(question)]
         invented = [key for key in OFFICIAL_ONLY if key in custody]
@@ -328,8 +324,6 @@ def main(argv: list[str] | None = None) -> int:
         document = _load(path)
         problems = check(document, path, intake)
         print("\n".join(problems) if problems else f"{path}: OK")
-        for note in ([] if problems else advice(document)):
-            print(f"NOTE: {note}", file=sys.stderr)
         failed = failed or bool(problems)
     return 1 if failed else 0
 

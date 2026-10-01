@@ -2,7 +2,7 @@
 window.GRADE9V3_PROMPT_COMPOSER = {
   "generated_by": "Shared/tools/build_prompt_composer_data.py",
   "contract_version": "1.0.0",
-  "repository_basis": "architecture-manifest@sha256:83b3c41a1c2f939ff76d3db627ec2bdd4de8c60aab92f20c621fa455f207d547",
+  "repository_basis": "architecture-manifest@sha256:65f639b9ec652a0c72b0d08b22eab592cbb62e14e36b37466db5ac9649cc8e98",
   "template": {
     "template_id": "CORE-AGENT-PROMPT",
     "version": "1.1.0",
@@ -289,9 +289,9 @@ window.GRADE9V3_PROMPT_COMPOSER = {
     },
     "CORE2": {
       "core": "CORE2",
-      "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.2.0",
+      "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.3.0",
       "blueprint_id": "BP-CORE2-SOURCE-QUESTION",
-      "blueprint_version": "1.2.0",
+      "blueprint_version": "1.3.0",
       "shell_ref": "G9-TABLET-SHELL-V1",
       "layout_family": "QUESTION_READER",
       "required_slots": [
@@ -350,9 +350,9 @@ window.GRADE9V3_PROMPT_COMPOSER = {
     },
     "CORE1A": {
       "core": "CORE1A",
-      "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+      "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
       "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-      "blueprint_version": "1.2.0",
+      "blueprint_version": "1.3.0",
       "shell_ref": "G9-TABLET-SHELL-V1",
       "layout_family": "READING_CONSTRUCTION",
       "required_slots": [

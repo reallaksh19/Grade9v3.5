@@ -14,6 +14,8 @@ REGISTRY_PATH = REPO / "Shared" / "web" / "interactive-page-blueprints.v1.json"
 CORE_ROLES = {"CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B"}
 PACKAGING_MODES = {"PUBLIC", "PAGES", "OFFLINE_DIRECTORY", "SINGLE_FILE", "EMBED"}
 COLUMNS = {"FULL", "PRIMARY", "SUPPORT"}
+BANDS = ("D1", "D2", "D3", "D4")
+WAIVER_KEY = "grade9v3:component_waivers"
 LEVELS = ("REQUIRED", "EXPECTED", "OPTIONAL")
 
 
@@ -131,30 +133,62 @@ def record_items(component: dict[str, Any], record: dict[str, Any]) -> int:
     return 1 if any(value not in (None, "", [], {}) for value in values) else 0
 
 
-def record_problems(blueprint: dict[str, Any], record: dict[str, Any], label: str) -> list[str]:
-    """Where a record falls short of what its blueprint requires of it, held to the reference depth.
+def band_of(component: dict[str, Any], record: dict[str, Any]) -> str | None:
+    """The difficulty band the record declares where the component says to look, if it is one of D1 to D4."""
+    path = component.get("band_source")
+    band = _walk(record, path) if path else None
+    return band if band in BANDS else None
 
-    Only REQUIRED components that have a depth (min_items) are measured here; the others are supplied by the
-    renderer from fields every record already has. Writing for the reference page means writing to target_items."""
+
+def target_for(component: dict[str, Any], band: str | None = None) -> int | None:
+    """The reference depth of a component for a record of this band (the flat target when the band is unknown)."""
+    by_band = component.get("target_items_by_band") or {}
+    if band in by_band:
+        return by_band[band]
+    if by_band and component.get("target_items") is None:
+        return max(by_band.values())      # a band that is not declared is held to the deepest reference
+    return component.get("target_items")
+
+
+def waivers_of(record: dict[str, Any]) -> dict[str, str]:
+    """{component id: reason} the record's author declared not applicable (reasons that are blank do not count)."""
+    found = (record.get("extensions") or {}).get(WAIVER_KEY)
+    if not isinstance(found, dict):
+        return {}
+    return {key: reason.strip() for key, reason in found.items() if isinstance(reason, str) and reason.strip()}
+
+
+def record_problems(blueprint: dict[str, Any], record: dict[str, Any], label: str, explained: set[str] | None = None) -> list[str]:
+    """Where a record falls short of what its blueprint asks of new authoring.
+
+    Held to the reference page: every REQUIRED component that has a depth is measured against its target for the
+    record's band, and every EXPECTED component must be present or waived by the record with a reason. With
+    `explained`, a component's authoring instruction is given at its first shortfall and left out of later ones."""
     out = []
-    for component in required_components(blueprint):
-        needed = component.get("target_items") or component.get("min_items")
-        if not needed:
-            continue
-        found = record_items(component, record)
-        if found < needed:
-            hint = (component.get("authoring") or {}).get("hint", "")
-            out.append(f"{label}: {component['id']} needs {needed}, the record supplies {found}. {hint}".rstrip())
-    return out
+    waivers = waivers_of(record)
 
+    def say(component: dict[str, Any], message: str) -> str:
+        hint = (component.get("authoring") or {}).get("hint", "")
+        if not hint or (explained is not None and component["id"] in explained):
+            return f"{label}: {message}"
+        if explained is not None:
+            explained.add(component["id"])
+        return f"{label}: {message} {hint}"
 
-def expected_absent(blueprint: dict[str, Any], records: list[dict[str, Any]]) -> list[tuple[str, int, str]]:
-    """(component id, records that supply none of it, hint) for each EXPECTED component some record lacks."""
-    out = []
-    for component in required_components(blueprint, "EXPECTED"):
-        lacking = sum(1 for record in records if record_items(component, record) == 0)
-        if lacking:
-            out.append((component["id"], lacking, (component.get("authoring") or {}).get("hint", "")))
+    for component in components(blueprint):
+        level = component.get("level")
+        if level == "REQUIRED" and (component.get("min_items") or component.get("target_items")
+                                    or component.get("target_items_by_band")):
+            needed = target_for(component, band_of(component, record)) or component.get("min_items")
+            if not needed:
+                continue
+            found = record_items(component, record)
+            if found < needed:
+                out.append(say(component, f"{component['id']} needs {needed}, the record supplies {found}."))
+        elif level == "EXPECTED" and not component.get("repeat") and component["id"] not in waivers:
+            if record_items(component, record) == 0:
+                out.append(say(component, f"{component['id']} is absent: supply it, or waive it in "
+                                          f"extensions['{WAIVER_KEY}'] with the reason."))
     return out
 
 
@@ -203,6 +237,11 @@ def _audit_components(row: dict[str, Any], ref: str, slot_ids: set[str]) -> list
         target = component.get("target_items")
         if target is not None and (not isinstance(target, int) or target < (minimum or 1)):
             findings.append(_finding("WEB_BLUEPRINT_COMPONENT_TARGET_INVALID", ref=ref, detail=cid))
+        by_band = component.get("target_items_by_band")
+        if by_band is not None:
+            if not component.get("band_source") or not isinstance(by_band, dict) \
+                    or any(k not in BANDS or not isinstance(v, int) or v < (minimum or 1) for k, v in by_band.items()):
+                findings.append(_finding("WEB_BLUEPRINT_COMPONENT_BAND_TARGETS_INVALID", ref=ref, detail=cid))
         if component.get("level") == "REQUIRED" and not (component.get("authoring") or {}).get("hint") \
                 and not component.get("duty") and (minimum or component.get("repeat")):
             findings.append(_finding("WEB_BLUEPRINT_COMPONENT_NO_AUTHORING_HINT", ref=ref, detail=cid))

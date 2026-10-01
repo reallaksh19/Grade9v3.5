@@ -134,7 +134,7 @@ class Reporting(unittest.TestCase):
             render_core.component_body(ctx, "CORE2", {"NOT_A_COMPONENT": "x"}, "attempt")
 
     def test_the_gate_rule_reads_the_registry_not_a_copy_of_it(self):
-        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.2.0",
+        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.3.0",
                 "units": [{"id": "Q", "components": [{"id": "STEM", "items": None, "unit": None},
                                                      {"id": "HINT_LADDER", "items": 1, "unit": None}]}]}
         problems = quality_contract.OPS["blueprint_components"](page, {"level": "REQUIRED"}, {})
@@ -149,12 +149,105 @@ class Reporting(unittest.TestCase):
                              quality_contract.OPS["blueprint_components"](page, {"level": "REQUIRED"}, {}))
 
     def test_a_per_unit_component_is_expected_once_for_each_construction_unit(self):
-        page = {"role": "CORE1A", "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.2.0",
+        page = {"role": "CORE1A", "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
                 "units": [{"id": "MIC", "construction_units": ["CU-1", "CU-2"],
                            "components": [{"id": "STAGED_VISUAL", "items": 3, "unit": "CU-1"}]}]}
         problems = quality_contract.OPS["blueprint_components"](page, {"level": "REQUIRED"}, {})
         self.assertIn("MIC / CU-2: STAGED_VISUAL is absent", problems)
         self.assertNotIn("MIC / CU-1: STAGED_VISUAL is absent", problems)
+
+
+class ReferenceDepth(unittest.TestCase):
+    """New authoring is held to the benchmark, by difficulty band; official products stay at their floor."""
+
+    @staticmethod
+    def ctx(held_to: str) -> render_core.Ctx:
+        ctx = ctx_with(REGISTRY)
+        ctx.held_to = held_to
+        return ctx
+
+    def test_the_depth_a_ladder_is_held_to_follows_the_questions_band(self):
+        ctx = self.ctx("REFERENCE")
+        render_core.component(ctx, "CORE2", "HINT_LADDER", "<p>x</p>", "Q-EASY", items=3, band="D1")
+        render_core.component(ctx, "CORE2", "HINT_LADDER", "<p>x</p>", "Q-HARD", items=3, band="D3")
+        self.assertEqual([(g["record"], g["component"]) for g in ctx.gaps], [("Q-HARD", "HINT_LADDER")])
+        self.assertIn("3 of the 5 rungs the reference page has for a D3 question", ctx.gaps[0]["detail"])
+
+    def test_the_same_shortfall_is_only_an_advisory_for_an_official_product(self):
+        ctx = self.ctx("FLOOR")
+        render_core.component(ctx, "CORE2", "HINT_LADDER", "<p>x</p>", "Q-HARD", items=3, band="D3")
+        self.assertEqual(ctx.gaps, [])
+        self.assertEqual([a["record"] for a in ctx.advisories], ["Q-HARD"])
+
+    def test_an_expected_component_is_a_gap_for_new_authoring_until_the_record_waives_it_with_a_reason(self):
+        ctx = self.ctx("REFERENCE")
+        render_core.component(ctx, "CORE2", "TRAP", "", "Q1")
+        self.assertEqual([(g["record"], g["component"]) for g in ctx.gaps], [("Q1", "TRAP")])
+        marked = render_core.component(ctx, "CORE2", "TRAP", "", "Q2", waivers={"TRAP": "no tempting route"})
+        self.assertEqual(len(ctx.gaps), 1, "a waiver is not a gap")
+        self.assertIn('data-g9-component-waiver="TRAP"', marked)
+        self.assertIn("no tempting route", marked)
+        self.assertEqual([(w["record"], w["component"], w["reason"]) for w in ctx.waived], [("Q2", "TRAP", "no tempting route")])
+
+    def test_a_required_component_cannot_be_waived(self):
+        ctx = self.ctx("REFERENCE")
+        render_core.component(ctx, "CORE2", "ATTEMPT", "", "Q", waivers={"ATTEMPT": "not needed"})
+        self.assertEqual([g["component"] for g in ctx.gaps], ["ATTEMPT"])
+        self.assertEqual(ctx.waived, [])
+
+    def test_the_gate_holds_a_deep_question_to_its_band_and_skips_what_the_record_waived(self):
+        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.3.0",
+                "units": [{"id": "Q", "metadata": [{"kind": "question-difficulty", "ref": "D3", "value": "D3",
+                                                   "display_name": "Difficulty", "label": "D3"}],
+                           "components": [{"id": "HINT_LADDER", "items": 3, "unit": None}],
+                           "waived": {"TRAP": "no tempting route"}}]}
+        depth = quality_contract.OPS["blueprint_components"](page, {"level": "DEPTH"}, {})
+        self.assertTrue([p for p in depth if "HINT_LADDER" in p], depth)
+        expected = quality_contract.OPS["blueprint_components"](page, {"level": "EXPECTED"}, {})
+        self.assertFalse([p for p in expected if "TRAP" in p], expected)
+
+
+class Core1aBenchmark(unittest.TestCase):
+    """What the Core1A benchmark page has per concept, read off the product the renderer builds from the blueprint."""
+
+    @classmethod
+    def setUpClass(cls):
+        ctx = render_core.context(MOTION_2D)
+        digest = render_core.render_digest(ctx)
+        cls.html = render_core.page(ctx, "CORE1A", "PAGES", digest)
+        cls.blueprint = blueprints.blueprint_for_role(REGISTRY, "CORE1A")
+
+    def test_the_page_opens_in_the_blueprints_theme_and_the_learner_can_switch(self):
+        self.assertEqual(self.blueprint["presentation_policy"]["default_theme"], "dark")
+        self.assertRegex(self.html, r"<html[^>]*data-theme=\"dark\"")
+        self.assertIn('data-g9-theme="light"', self.html)
+        self.assertIn('data-g9-theme="dark"', self.html)
+
+    def test_the_independent_checks_are_a_numbered_triad_that_names_each_items_job(self):
+        triad = render_core._quick_check([{"statement": "Substitute back", "role": "CHECK"},
+                                          {"statement": "Use it on new numbers", "role": "APPLY"},
+                                          {"statement": "Tie it to the next idea", "role": "CONNECT"}])
+        self.assertEqual(re.findall(r'data-g9-triad-role="(\w+)"', triad), ["CHECK", "APPLY", "CONNECT"])
+        self.assertEqual(re.findall(r'g9-triad-head">(\d) · (\w+)', triad), [("1", "Check"), ("2", "Apply"), ("3", "Connect")])
+        self.assertIn(".g9-triad{", render_core.COMPONENT_CSS)
+        self.assertTrue(re.search(r'<ol class="g9-triad">', self.html), "the unit's checks are a triad even where a package declares no job")
+
+    def test_each_equation_card_belongs_to_a_construction_unit_and_every_stage_has_a_named_button(self):
+        units = set(re.findall(r'data-g9-component="CONSTRUCTION_STEPS"[^>]*data-g9-component-unit="([^"]+)"', self.html))
+        cards = re.findall(r'data-g9-component="EQUATIONS"[^>]*data-g9-component-unit="([^"]+)"', self.html)
+        self.assertTrue(cards)
+        self.assertLessEqual(set(cards), units, "an equation card is per construction unit, never per page")
+        self.assertEqual(len(cards), len(set(cards)))
+        stages = [int(n) for n in re.findall(r'data-g9-stages-total="(\d+)"', self.html)]
+        described = re.findall(r'class="g9-stage-chip"[^>]*data-g9-stage-desc="[^"]+"', self.html)
+        self.assertTrue(stages)
+        self.assertEqual(len(described), sum(stages), "every stage of every figure is a button with its own description")
+
+    def test_the_blueprint_asks_for_three_steps_and_three_stages_as_the_reference_has(self):
+        by_id = {c["id"]: c for c in blueprints.components(self.blueprint)}
+        self.assertEqual((by_id["CONSTRUCTION_STEPS"]["target_items"], by_id["STAGED_VISUAL"]["target_items"]), (3, 3))
+        self.assertEqual(by_id["QUICK_CHECK"]["presentation"], "TRIAD")
+        self.assertEqual(by_id["EQUATIONS"]["level"], "EXPECTED")
 
 
 class Links(unittest.TestCase):
@@ -176,14 +269,15 @@ class Authoring(unittest.TestCase):
         self.assertEqual(question["answer"]["reasoning_route"], wanted["answer"]["reasoning_route"])
         self.assertEqual(question["extensions"]["grade9v3:analysis"]["common_wrong_route"], "")
 
-    def test_the_depth_an_owner_bank_is_held_to_is_the_blueprints_target_not_a_number_in_the_tool(self):
+    def test_the_depth_an_owner_bank_is_held_to_is_the_blueprints_target_for_its_band_not_a_number_in_the_tool(self):
         bank = owner_bank.new(self.INTAKE, "demo")
+        bank["questions"][0]["extensions"]["grade9v3:analysis"]["difficulty"]["band"] = "D1"
         raised = copy.deepcopy(REGISTRY)
         next(c for b in raised["blueprints"] if b["id"] == "BP-CORE2-SOURCE-QUESTION"
-             for c in b["components"] if c["id"] == "HINT_LADDER")["target_items"] = 5
+             for c in b["components"] if c["id"] == "HINT_LADDER")["target_items_by_band"]["D1"] = 6
         with patch.object(blueprints, "load_registry", return_value=raised):
-            self.assertIn("HINT_LADDER needs 5", " ".join(owner_bank.check(bank)))
-        self.assertNotIn("HINT_LADDER needs", " ".join(owner_bank.check(bank)), "three rungs meet the blueprint's target of three")
+            self.assertIn("HINT_LADDER needs 6, the record supplies 5", " ".join(owner_bank.check(bank)))
+        self.assertNotIn("HINT_LADDER needs", " ".join(owner_bank.check(bank)), "five rungs meet the blueprint's three for a D1 question")
 
 
 if __name__ == "__main__":

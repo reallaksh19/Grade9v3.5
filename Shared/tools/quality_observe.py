@@ -532,6 +532,9 @@ def _render_core_unit(article: Node) -> dict:
                         "unit": n.attrs.get("data-g9-component-unit")}
                        for n in article.find_all(attr="data-g9-component")],
         "construction_units": [n.attrs["data-g9-cu"] for n in article.find_all(attr="data-g9-cu")],
+        "waived": {(n.attrs["data-g9-component-waiver"] + (f"@{n.attrs['data-g9-component-unit']}" if n.attrs.get("data-g9-component-unit") else "")):
+                   n.attrs.get("data-g9-waiver-reason", "")
+                   for n in article.find_all(attr="data-g9-component-waiver")},
     }
 
 

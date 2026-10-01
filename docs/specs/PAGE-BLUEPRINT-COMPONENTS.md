@@ -3,15 +3,19 @@
 Generated from `Shared/web/interactive-page-blueprints.v1.json` by `Shared/tools/blueprint_spec.py`. Do not edit.
 To change what a page shows, change the blueprint; the renderer, the quality gate and the owner-bank scaffold follow.
 
-Registry 1.3.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
+Registry 1.4.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
 
-Depth: min_items is the floor below which a component does not count as present. target_items is the depth of the reference page: between the floor and the target the renderer says so as an advisory, and new authoring (a scaffolded owner bank) is held to the target.
+Depth: min_items is the floor below which a component does not count as present. target_items is the depth of the reference page, and target_items_by_band gives it by the difficulty band the record declares at band_source. Between the floor and the reference depth the renderer says so as an advisory.
 
-Waivers: NONE: a page never waives a component. A product that cannot supply a REQUIRED component stays a draft with its gap.
+Waivers: A record may declare an EXPECTED component not applicable, with a written reason, in extensions['grade9v3:component_waivers'] as {COMPONENT_ID: reason}; the reason is kept in the page and the receipt. A REQUIRED component cannot be waived, and a page never waives anything itself.
 
-## BP-CORE2-SOURCE-QUESTION@1.2.0 (CORE2)
+Held to: FLOOR: official records and products are judged at the floor; an EXPECTED component that is absent is an advisory. REFERENCE: new authoring (a TEST deploy, a scaffolded owner bank) is judged at the reference depth, and an EXPECTED component must be present or waived by the record; otherwise it is a gap.
+
+## BP-CORE2-SOURCE-QUESTION@1.3.0 (CORE2)
 
 Learner job: Preserve authentic assessment demand while allowing bounded, provenance-explicit help that advances the learner without becoming a Question Clinic.
+
+Theme: opens light, and the learner can switch.
 
 Layout: from 980 px wide, the primary column is 42% and the support column 58%. Narrower, everything is one column, primary first.
 
@@ -46,12 +50,12 @@ Required: a page without it is a gap, and the quality gate fails it.
 - The reference page: selected_question_bank_TABLET_STUDY: the options cards; the commit step is this app's own attempt-first rule
 - Record fields: `response`, `options`
 
-**HINT_LADDER** · slot `support` · LADDER · at least 2 item(s) (the reference has 3)
+**HINT_LADDER** · slot `support` · LADDER · at least 2 item(s); the reference has D1 3, D2 3, D3 5, D4 5 by difficulty band
 
-- The learner gets: Let the learner ask for help one rung at a time; every rung says what it gives away and who wrote it.
-- The reference page: selected_question_bank_TABLET_STUDY: 'Hint ladder · reveal only what you need', H0 to H4 with SOURCE and EXPANSION pills
+- The learner gets: Let the learner ask for help one rung at a time; every rung says what it is for and whose words it carries.
+- The reference page: selected_question_bank_TABLET_STUDY: 'Hint ladder · reveal only what you need', five rungs on a hard question (represent / first move, connect, crux, equation / formal model, assembly checkpoint) with SOURCE and EXPANSION pills
 - Record fields: `scaffolds`, `hints`, `hint_ladder`
-- To author it: Write 3 or more scaffolds[], one per move of answer.reasoning_route, in the order a learner meets them. Each has text (the hint), prompt (a question that makes the learner do the step), support_kind (REPRESENT, CONNECT or EXECUTE), reveals (CONCEPT or METHOD; ANSWER is held back until the solution), learner_stage (KEY_CONCEPT, REPRESENTATION, FIRST_MOVE or OTHER) and supports_move_ref (the id of the move it prepares). A rung must teach something specific to this question and must not repeat another rung or state the answer.
+- To author it: Write scaffolds[], one rung per job, in the order a learner meets them: a D1 or D2 question needs 3 (REPRESENTATION, KEY_CONCEPT, CRUX), a D3 or D4 question 5 (then FORMAL_MODEL, which gives the relation to use, and CHECKPOINT, which gives an intermediate result to compare against). Each has text (the hint), prompt (a question that makes the learner do the step), support_kind (REPRESENT, CONNECT or EXECUTE), reveals (CONCEPT or METHOD; ANSWER is held back until the solution), learner_stage and supports_move_ref (the id of the move it prepares). A rung must teach something specific to this question and must not repeat another rung or state the answer. Delete the rungs the question's band does not need.
 
 **SOLUTION** · slot `solution` · DISCLOSURE
 
@@ -59,12 +63,12 @@ Required: a page without it is a gap, and the quality gate fails it.
 - The reference page: selected_question_bank_TABLET_STUDY: the 'Teacher solution · complete derivation' disclosure
 - Record fields: `answer`
 
-**SOLUTION_STEPS** · slot `solution`, inside SOLUTION · STEP_LIST · at least 2 item(s) (the reference has 3)
+**SOLUTION_STEPS** · slot `solution`, inside SOLUTION · STEP_LIST · at least 2 item(s); the reference has D1 3, D2 3, D3 4, D4 4 by difficulty band
 
 - The learner gets: Show the working as numbered moves: what is done, why it is valid, what it gives.
-- The reference page: selected_question_bank_TABLET_STUDY: numbered steps with a bold lead and the reason
+- The reference page: selected_question_bank_TABLET_STUDY: three or four numbered steps with a bold lead and the reason (geometry, balance, Newton II, eliminate)
 - Record fields: `answer.reasoning_route`, `answer.crux_move_ref`
-- To author it: Write answer.reasoning_route[] with 3 or more moves. Each move has id, kind (DECIDE, REPRESENT, CONNECT, TRANSFORM or VERIFY), action (what is done), why_valid (the physical or logical reason this step is allowed; not 'this follows from the model'), inputs and output. Set crux_move_ref to the id of the move a learner is most likely to miss.
+- To author it: Write answer.reasoning_route[]: 3 moves for a D1 or D2 question, 4 for a D3 or D4. Each move has id, kind (DECIDE, REPRESENT, CONNECT, TRANSFORM or VERIFY), action (what is done), why_valid (the physical or logical reason this step is allowed; not 'this follows from the model'), inputs and output. Set crux_move_ref to the id of the move a learner is most likely to miss. Delete the move the band does not need.
 
 **ANSWER** · slot `solution`, inside SOLUTION · ANSWER_BOX
 
@@ -74,14 +78,14 @@ Required: a page without it is a gap, and the quality gate fails it.
 
 ### Expected components
 
-Expected: its absence is an advisory naming the field to author.
+Expected: an official page missing it carries an advisory naming the field to author; new authoring must supply it or waive it with a written reason, else it is a gap.
 
 **DIFFICULTY_WHY** · slot `identity` · DISCLOSURE_GRID
 
-- The learner gets: Show the difficulty band and the five reasons behind it, folded away until asked.
+- The learner gets: Show the difficulty band, its score and about how long the question should take, with the five reasons behind it folded away until asked.
 - The reference page: selected_question_bank_TABLET_STUDY: the D-pill and the 'Why this difficulty?' grid
-- Record fields: `extensions.grade9v3:analysis.difficulty`
-- To author it: Fill extensions['grade9v3:analysis'].difficulty: five components (each 0 to 2), score (their sum), band for that score, basis (one sentence). It is your estimate and is shown as one.
+- Record fields: `extensions.grade9v3:analysis.difficulty`, `extensions.grade9v3:analysis.expected_time_seconds`
+- To author it: Fill extensions['grade9v3:analysis'].difficulty: five components (each 0 to 2), score (their sum), band for that score, basis (one sentence); and expected_time_seconds, your estimate of the time a prepared learner needs. They are your estimates and are shown as estimates.
 
 **CONDITIONS** · slot `attempt` · CALLOUT_INFO
 
@@ -99,10 +103,10 @@ Expected: its absence is an advisory naming the field to author.
 
 **REPRESENTATION** · slot `representation` · VISUAL_CARD · at least 1 item(s)
 
-- The learner gets: Show the situation as a picture drawn only from what the question states.
+- The learner gets: Show the situation as a picture drawn only from what the question states; every question in the benchmark has one.
 - The reference page: selected_question_bank_TABLET_STUDY: the 'Representation' card with the question-aligned schematic
 - Record fields: `figure_refs`
-- To author it: Add a representation to the package with an authored SVG (role=img, aria-labelledby or aria-label, <title> and <desc>) drawn only from the question's own data, then name its id in figure_refs. If the question is not about a picture, leave figure_refs empty and say so; never invent one.
+- To author it: Add a representation to the package with an authored SVG (role=img, aria-labelledby or aria-label, <title> and <desc>) drawn only from the question's own data (labels at least 13 units high in a viewBox up to 640 wide), then name its id in figure_refs. Every question gets one; a classification or a pure-number question can show the quantities as a labelled diagram. If a question truly has nothing to draw, say so in extensions['grade9v3:component_waivers'] with the reason.
 
 **CHECK** · slot `solution`, inside SOLUTION · CHECK_BOX
 
@@ -121,9 +125,11 @@ Optional: shown when the record has it.
 - The reference page: selected_question_bank_TABLET_STUDY: concept links beside the hints (the Core1A cross-link)
 - Record fields: `primary_capability_ref`, `secondary_capability_refs`
 
-## BP-CORE1A-CONSTRUCTION@1.2.0 (CORE1A)
+## BP-CORE1A-CONSTRUCTION@1.3.0 (CORE1A)
 
 Learner job: Reveal and explain the complete conceptual construction at intrinsic subtopic depth, then connect the concept to selected authentic questions that exercise its canonical capability.
+
+Theme: opens dark, and the learner can switch.
 
 Layout: from 1100 px wide, the primary column is 68% and the support column 32%; the support column stays in view while the primary column scrolls. Narrower, everything is one column, primary first.
 
@@ -157,7 +163,7 @@ Required: a page without it is a gap, and the quality gate fails it.
 - The reference page: core1a-motion-in-a-plane-tablet: the concept-card header with number, decision and unit id
 - Record fields: `construction_units[].decision`
 
-**CONSTRUCTION_STEPS** · slot `construction`, once per construction unit · STEP_CARDS · at least 2 item(s)
+**CONSTRUCTION_STEPS** · slot `construction`, once per construction unit · STEP_CARDS · at least 2 item(s) (the reference has 3)
 
 - The learner gets: Build the idea in steps; every step says what is done, why it is valid and what state it gives.
 - The reference page: core1a-motion-in-a-plane-tablet: step cards (action, why physically valid, state output)
@@ -171,7 +177,7 @@ Required: a page without it is a gap, and the quality gate fails it.
 - Record fields: `construction_units[].worked_anchor_ref`
 - To author it: worked_anchor_ref names a question of the package that exercises exactly this unit's move.
 
-**STAGED_VISUAL** · slot `representation`, once per construction unit · STAGED_VISUAL · at least 2 item(s)
+**STAGED_VISUAL** · slot `representation`, once per construction unit · STAGED_VISUAL · at least 2 item(s) (the reference has 3)
 
 - The learner gets: Show the idea as a picture that builds up stage by stage, with controls to step through it.
 - The reference page: core1a-motion-in-a-plane-tablet: the rail's staged visual with stage buttons
@@ -185,11 +191,12 @@ Required: a page without it is a gap, and the quality gate fails it.
 - Record fields: `misconceptions`, `construction_units[].misconception_indexes`
 - To author it: misconceptions[] holds wrong_idea, diagnostic_prompt and repair for this concept; each construction unit names the ones that apply in misconception_indexes.
 
-**QUICK_CHECK** · slot `repair_closure`, once per construction unit · CHECK_LIST · at least 1 item(s)
+**QUICK_CHECK** · slot `repair_closure`, once per construction unit · TRIAD · at least 1 item(s) (the reference has 3)
 
-- The learner gets: Let the learner test the idea on their own before moving on.
-- The reference page: core1a-motion-in-a-plane-tablet: the 1-2-3 quick check
+- The learner gets: Let the learner test the idea three ways before moving on: recall it, use it on a small case, and say where it leads next.
+- The reference page: core1a-motion-in-a-plane-tablet: the 1-2-3 quick check (CHECK, APPLY, CONNECT)
 - Record fields: `construction_units[].independent_checks`
+- To author it: Each construction unit lists three independent_checks, each with a role: CHECK (a question that recalls the idea), APPLY (a small case to work with numbers or a picture given in the question) and CONNECT (one sentence saying which idea this leads to next). Each statement is specific to the unit.
 
 **EXIT_RECALL** · slot `repair_closure` · RECALL_CARD
 
@@ -199,7 +206,7 @@ Required: a page without it is a gap, and the quality gate fails it.
 
 ### Expected components
 
-Expected: its absence is an advisory naming the field to author.
+Expected: an official page missing it carries an advisory naming the field to author; new authoring must supply it or waive it with a written reason, else it is a gap.
 
 **MODEL_CONTRACT** · slot `identity` · TILE
 
@@ -208,12 +215,12 @@ Expected: its absence is an advisory naming the field to author.
 - Record fields: `entry_assumptions`, `prerequisite_refs`
 - To author it: List in entry_assumptions[] each thing a learner must already be able to do before this concept, one per entry and specific to this concept.
 
-**EQUATIONS** · slot `construction` · EQUATION_CARD
+**EQUATIONS** · slot `construction`, once per construction unit · EQUATION_CARD
 
-- The learner gets: Put the governing relations beside their meaning and when they hold.
-- The reference page: core1a-motion-in-a-plane-tablet: the equation card
-- Record fields: `relation_refs`
-- To author it: Name the relations of this concept in relation_refs; each relation record needs its meaning and conditions.
+- The learner gets: Put the relations a unit uses beside their meaning and when they hold.
+- The reference page: core1a-motion-in-a-plane-tablet: the equation card of every concept card (definition and validity scope)
+- Record fields: `construction_units[].relation_refs`, `relation_refs`
+- To author it: Each construction unit names the microtopic's relations it uses in construction_units[].relation_refs; each relation record needs its expression, meaning and conditions. A subject that declares no gates writes gate_relation_ref: null.
 
 ### Optional components
 

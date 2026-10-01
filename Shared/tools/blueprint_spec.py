@@ -24,15 +24,20 @@ from Shared.tools import web_blueprint_contract as blueprints  # noqa: E402
 OUT = REPO / "docs/specs/PAGE-BLUEPRINT-COMPONENTS.md"
 LEVEL_WORDS = {
     "REQUIRED": "Required: a page without it is a gap, and the quality gate fails it.",
-    "EXPECTED": "Expected: its absence is an advisory naming the field to author.",
+    "EXPECTED": "Expected: an official page missing it carries an advisory naming the field to author; new authoring "
+                "must supply it or waive it with a written reason, else it is a gap.",
     "OPTIONAL": "Optional: shown when the record has it.",
 }
 
 
 def _depth(component: dict) -> str:
     floor, target = component.get("min_items"), component.get("target_items")
+    by_band = component.get("target_items_by_band")
     if not floor:
         return ""
+    if by_band:
+        shown = ", ".join(f"{band} {count}" for band, count in sorted(by_band.items()))
+        return f" · at least {floor} item(s); the reference has {shown} by difficulty band"
     return f" · at least {floor} item(s)" + (f" (the reference has {target})" if target and target != floor else "")
 
 
@@ -51,6 +56,8 @@ def render(registry: dict | None = None) -> str:
         "",
         f"Waivers: {policy['waivers']}",
         "",
+        f"Held to: {policy['held_to']}",
+        "",
     ]
     for blueprint in registry["blueprints"]:
         if not blueprints.components(blueprint):
@@ -60,6 +67,8 @@ def render(registry: dict | None = None) -> str:
             f"## {blueprint['id']}@{blueprint['version']} ({', '.join(blueprint['core_roles'])})",
             "",
             f"Learner job: {blueprint['learner_job']}",
+            "",
+            f"Theme: opens {blueprint.get('presentation_policy', {}).get('default_theme', 'light')}, and the learner can switch.",
             "",
             f"Layout: from {policy_row.get('expanded_min_px', 1100)} px wide, the primary column is "
             f"{policy_row['primary_fraction'] * 100:g}% and the support column {policy_row['support_fraction'] * 100:g}%"

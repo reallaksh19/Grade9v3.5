@@ -230,6 +230,11 @@
           "items": {"type": "string"},
           "description": "Construction units the page shows (data-g9-cu)."
         },
+        "waived": {
+          "type": "object",
+          "additionalProperties": {"type": "string"},
+          "description": "Expected components the record's author declared not applicable: component id (suffixed @unit for a per-unit component) to the reason written in the record."
+        },
         "support_rows": {
           "type": "array",
           "items": {

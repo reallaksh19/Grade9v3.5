@@ -41,14 +41,14 @@ NOTICE = "TEST sandbox draft: not reviewed, not accepted, not curriculum. accept
 BANNER_TEXT = "TEST sandbox draft · not reviewed, not accepted, not curriculum"
 ALLOWED_SUFFIXES = {".html", ".css", ".js", ".json", ".svg", ".png", ".jpg", ".jpeg", ".webp", ".txt"}
 MAX_FILES, MAX_BYTES = 30, 2_000_000
-GAPS_SHOWN = 20
+GAPS_SHOWN = 60          # a ten-question bank held to the benchmark can have dozens; the receipt keeps all
 QUALITY_SHOWN = 12
 # Rules about roles a manifest did not ask for follow from the Owner's scope, not from the pages: a Core2-and-Core1A job is
 # not "missing" Core1B. They are left out of the findings and named in the receipt.
 ROLE_SCOPED_RULES = {"PRODUCT-ALL-ROLES"}
-# These two rules read the blueprint's component list off the pages; the gaps and advisories already say the same thing, with
+# These three rules read the blueprint's component list off the pages; the gaps and advisories already say the same thing, with
 # the record to author. They stay in the receipt and are left out of the console summary.
-RESTATED_RULES = {"BP-COMPONENTS-REQUIRED", "BP-COMPONENTS-EXPECTED"}
+RESTATED_RULES = {"BP-COMPONENTS-REQUIRED", "BP-COMPONENTS-EXPECTED", "BP-COMPONENTS-DEPTH"}
 
 
 def blueprint_refs(roles: list[str]) -> dict[str, str]:
@@ -155,7 +155,8 @@ def deploy_product(manifest_path: Path) -> dict:
         staged = Path(tmp) / manifest_path.name
         staged.write_text(json.dumps(deployed, indent=2), encoding="utf-8")
         try:
-            pages, gaps, digest, advisories = render_core.build_report(staged, "PAGES")
+            # New authoring is held to the benchmark: the reference depth, and every expected component present or waived.
+            pages, gaps, digest, advisories, waived = render_core.build_report(staged, "PAGES", held_to="REFERENCE")
         except product_manifest.ProductSelectionError as caught:
             raise DeployError(f"selection rejected: {caught}") from caught
     out = PUBLIC_TEST / "products" / slug
@@ -187,6 +188,8 @@ def deploy_product(manifest_path: Path) -> dict:
         "gaps_by_core": dict(sorted(by_core.items())),
         "gaps": [{key: gap.get(key) for key in ("core", "duty", "record", "detail", "component") if gap.get(key)} for gap in gaps],
         "advisories": [{key: row.get(key) for key in ("core", "component", "record", "detail")} for row in advisories],
+        "waived": [{key: row.get(key) for key in ("core", "component", "record", "reason")} for row in waived],
+        "held_to": "REFERENCE",
         "blueprints": blueprint_refs(product_manifest.selected_output_roles(manifest)),
         "authoring": authoring_hints(product_manifest.selected_output_roles(manifest)),
         "quality": quality_report(out, slug, product_manifest.selected_output_roles(manifest)),
@@ -295,6 +298,11 @@ def _print_blueprint_notes(receipt: dict) -> None:
         print(f"required by the blueprint ({refs}); how to author each:")
         for cid in gap_components:
             print(f"  {cid}: {(hints.get(cid) or {}).get('hint', 'see the blueprint component')}")
+    waived = receipt.get("waived") or []
+    if waived:
+        print(f"waived by the records, each with a written reason ({len(waived)}):")
+        for row in waived:
+            print(f"  {row['component']} · {row['record']}: {row['reason']}")
     advised: dict[str, list[str]] = {}
     for row in receipt.get("advisories", []):
         advised.setdefault(row["component"], []).append(row["record"])

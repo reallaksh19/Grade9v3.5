@@ -36,7 +36,8 @@
         "levels",
         "column",
         "waivers",
-        "depth"
+        "depth",
+        "held_to"
       ],
       "properties": {
         "levels": {
@@ -90,6 +91,10 @@
           "minLength": 1
         },
         "depth": {
+          "type": "string",
+          "minLength": 1
+        },
+        "held_to": {
           "type": "string",
           "minLength": 1
         }
@@ -528,6 +533,22 @@
           "items": {
             "$ref": "#/$defs/component"
           }
+        },
+        "presentation_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "default_theme"
+          ],
+          "properties": {
+            "default_theme": {
+              "enum": [
+                "light",
+                "dark"
+              ],
+              "description": "The theme the page opens in; the learner can change it."
+            }
+          }
         }
       }
     },
@@ -563,7 +584,7 @@
         "WORKED_CARD",
         "STAGED_VISUAL",
         "TRAP_CARD",
-        "CHECK_LIST",
+        "TRIAD",
         "RECALL_CARD"
       ]
     },
@@ -657,6 +678,35 @@
           "type": "integer",
           "minimum": 1,
           "description": "Depth of the reference page. Below it, above min_items, is an advisory; new authoring is held to it."
+        },
+        "target_items_by_band": {
+          "type": "object",
+          "additionalProperties": false,
+          "minProperties": 1,
+          "properties": {
+            "D1": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "D2": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "D3": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "D4": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "description": "Reference depth by the difficulty band the record declares at band_source."
+        },
+        "band_source": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Dotted path to the record's difficulty band."
         }
       }
     }
