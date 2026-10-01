@@ -157,6 +157,15 @@ class Reporting(unittest.TestCase):
         self.assertNotIn("MIC / CU-1: STAGED_VISUAL is absent", problems)
 
 
+class Links(unittest.TestCase):
+    def test_a_core2_page_links_to_concepts_only_when_the_product_has_a_core1a_page(self):
+        ctx = render_core.context(MOTION_2D)
+        question = ctx.selection_rows["core2"][0]
+        self.assertIn('href="core1a.html#', render_core._core2_concept_navigation(ctx, question))
+        ctx.manifest["output_roles"] = ["CORE2"]
+        self.assertEqual(render_core._core2_concept_navigation(ctx, question), "")
+
+
 class Authoring(unittest.TestCase):
     INTAKE = {"status": "OK", "inputs": {"questions": [{"id": "q1", "label": "1", "text": "Find 3 + 4."}]}, "intake_digest": "d"}
 

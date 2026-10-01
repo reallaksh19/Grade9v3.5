@@ -182,7 +182,7 @@ def deploy_product(manifest_path: Path) -> dict:
         "links_overridden_for_location": True,
         "renderer": render_core.RENDERER_VERSION,
         "render_digest": digest,
-        "draft": bool(gaps),
+        "draft": True,                      # everything deployed here is a sandbox draft, whatever the gap count
         "gap_count": len(gaps),
         "gaps_by_core": dict(sorted(by_core.items())),
         "gaps": [{key: gap.get(key) for key in ("core", "duty", "record", "detail", "component") if gap.get(key)} for gap in gaps],
@@ -332,7 +332,7 @@ def main(argv: list[str] | None = None) -> int:
         if args.cmd == "product":
             receipt = deploy_product(Path(args.manifest))
             print(f"deployed {receipt['slug']}: {len(receipt['pages'])} page(s), "
-                  f"{'DRAFT with ' + str(receipt['gap_count']) + ' gap(s)' if receipt['draft'] else 'no gaps'}, accepted=false")
+                  f"DRAFT, {str(receipt['gap_count']) + ' gap(s)' if receipt['gap_count'] else 'no gaps reported (that is not a review)'}, accepted=false")
             print("selected records: " + " ".join(f"{k}={v}" for k, v in receipt["selection_counts"].items()))
             shown = receipt["gaps"][:GAPS_SHOWN]
             for gap in shown:

@@ -212,7 +212,7 @@ def deployments_page() -> str:
                            if quality.get("checked", "").startswith("static") else "")
         body += card(f'product-{r["slug"]}', f'{r["slug"]} {r["title"]} product',
                      f'<h2>{esc(r["title"])}</h2><p class="g9-prov">Product {esc(r["slug"])} · '
-                     f'{"DRAFT" if r["draft"] else "no gaps reported, not reviewed"} · accepted: no · render {esc(r["render_digest"])}</p>'
+                     f'DRAFT, {"with gaps" if r["gap_count"] else "no gaps reported, not reviewed"} · accepted: no · render {esc(r["render_digest"])}</p>'
                      f'<p>{links}</p><p>Selected records: {esc(counts)}. Gaps: {esc(gaps)} ({r["gap_count"]} in total).</p>{gap_details}{advice_details}{quality_details}{empty}')
     for r in pages:
         body += card(f'interactive-{r["slug"]}', f'{r["slug"]} {r["title"]} {r["purpose"]} interactive',

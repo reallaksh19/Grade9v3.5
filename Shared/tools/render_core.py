@@ -1179,6 +1179,8 @@ def _custody(q: dict) -> str:
 
 def _core2_concept_navigation(ctx: Ctx, q: dict) -> str:
     """Link one selected source question back to its exact selected Core1A concept owners."""
+    if "CORE1A" not in product_manifest.selected_output_roles(ctx.manifest):
+        return ""   # a link to a page this product does not have would be a dead link
     join = _concept_join(ctx, "CORE2")
     ids = join["question_to_microtopics"].get(q["id"], [])
     if not ids:
