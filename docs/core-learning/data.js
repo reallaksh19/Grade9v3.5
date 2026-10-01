@@ -395,9 +395,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -429,10 +429,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -840,9 +849,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -874,10 +883,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -1331,9 +1349,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -1365,10 +1383,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -7529,9 +7556,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -7563,10 +7590,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -7925,9 +7961,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -7959,10 +7995,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -8287,9 +8332,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -8321,10 +8366,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -8737,9 +8791,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -8771,10 +8825,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -9240,9 +9303,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -9274,10 +9337,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -9631,9 +9703,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -9665,10 +9737,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -9981,9 +10062,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -10015,10 +10096,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -10332,9 +10422,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -10366,10 +10456,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -10687,9 +10786,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -10721,10 +10820,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -11047,9 +11155,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -11081,10 +11189,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -11409,9 +11526,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -11443,10 +11560,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -11771,9 +11897,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -11805,10 +11931,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -12127,9 +12262,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -12161,10 +12296,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -12485,9 +12629,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -12519,10 +12663,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -12856,9 +13009,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -12890,10 +13043,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -13214,9 +13376,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -13248,10 +13410,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -13564,9 +13735,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -13598,10 +13769,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -13914,9 +14094,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -13948,10 +14128,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -14274,9 +14463,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -14308,10 +14497,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -14634,9 +14832,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -14668,10 +14866,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -14991,9 +15198,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -15025,10 +15232,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -15351,9 +15567,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -15385,10 +15601,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -15719,9 +15944,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -15753,10 +15978,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -16084,9 +16318,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -16118,10 +16352,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -16440,9 +16683,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -16474,10 +16717,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -16796,9 +17048,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -16830,10 +17082,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -17175,9 +17436,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -17209,10 +17470,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -17576,9 +17846,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -17610,10 +17880,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -17965,9 +18244,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -17999,10 +18278,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -18343,9 +18631,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -18377,10 +18665,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -18719,9 +19016,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -18753,10 +19050,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -19075,9 +19381,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -19109,10 +19415,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -19573,9 +19888,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -19607,10 +19922,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -20203,9 +20527,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -20237,10 +20561,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -20707,9 +21040,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -20741,10 +21074,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -21188,9 +21530,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -21222,10 +21564,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -21824,9 +22175,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -21858,10 +22209,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -22351,9 +22711,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -22385,10 +22745,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -22862,9 +23231,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -22896,10 +23265,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -23582,9 +23960,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -23616,10 +23994,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -24108,9 +24495,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -24142,10 +24529,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -24489,9 +24885,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -24523,10 +24919,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -24857,9 +25262,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -24891,10 +25296,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -25243,9 +25657,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -25277,10 +25691,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -25633,9 +26056,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -25667,10 +26090,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -26240,9 +26672,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -26274,10 +26706,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -26657,9 +27098,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -26691,10 +27132,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -27055,9 +27505,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -27089,10 +27539,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -27464,9 +27923,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -27498,10 +27957,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -28133,9 +28601,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -28167,10 +28635,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -28559,9 +29036,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -28593,10 +29070,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -29193,9 +29679,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -29227,10 +29713,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -29640,9 +30135,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -29674,10 +30169,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -30041,9 +30545,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -30075,10 +30579,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -30444,9 +30957,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -30478,10 +30991,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -31084,9 +31606,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -31118,10 +31640,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -31476,9 +32007,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -31510,10 +32041,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -31851,9 +32391,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -31885,10 +32425,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -32206,9 +32755,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -32240,10 +32789,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -32562,9 +33120,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -32596,10 +33154,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -32918,9 +33485,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -32952,10 +33519,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -33289,9 +33865,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -33323,10 +33899,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -33673,9 +34258,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -33707,10 +34292,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -34068,9 +34662,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -34102,10 +34696,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -34460,9 +35063,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -34494,10 +35097,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -35031,9 +35643,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -35065,10 +35677,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -35596,9 +36217,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -35630,10 +36251,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -35951,9 +36581,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -35985,10 +36615,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -36307,9 +36946,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -36341,10 +36980,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -36663,9 +37311,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -36697,10 +37345,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -37061,9 +37718,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -37095,10 +37752,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -37476,9 +38142,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -37510,10 +38176,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -37852,9 +38527,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -37886,10 +38561,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -38228,9 +38912,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -38262,10 +38946,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -38597,9 +39290,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -38631,10 +39324,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -38967,9 +39669,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -39001,10 +39703,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -39326,9 +40037,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -39360,10 +40071,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -39711,9 +40431,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -39745,10 +40465,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -40144,9 +40873,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -40178,10 +40907,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -40550,9 +41288,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -40584,10 +41322,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -40925,9 +41672,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -40959,10 +41706,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -41280,9 +42036,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -41314,10 +42070,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -41657,9 +42422,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -41691,10 +42456,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -42034,9 +42808,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -42068,10 +42842,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -42399,9 +43182,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -42433,10 +43216,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -42793,9 +43585,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -42827,10 +43619,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,
@@ -43166,9 +43967,9 @@ window.GRADE9V3_CORE = {
         "application": null,
         "delivery": {
           "web": {
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
             "blueprint_id": "BP-CORE1A-CONSTRUCTION",
-            "blueprint_version": "1.3.0",
+            "blueprint_version": "1.4.0",
             "shell_ref": "G9-TABLET-SHELL-V1",
             "layout_family": "READING_CONSTRUCTION",
             "required_slots": [
@@ -43200,10 +44001,19 @@ window.GRADE9V3_CORE = {
               "compact": "SINGLE_PANE",
               "medium": "STACKED_SUPPORT",
               "expanded": "STAGE_SUPPORT",
-              "primary_fraction": 0.68,
-              "support_fraction": 0.32,
+              "primary_fraction": 0.6,
+              "support_fraction": 0.4,
               "expanded_min_px": 1100,
-              "support_sticky": true
+              "support_sticky": true,
+              "tablet_12_7": {
+                "reference_viewport": {
+                  "width": 1366,
+                  "height": 854
+                },
+                "identity_max_px": 190,
+                "figure_min_text_css_px": 14,
+                "support_scrolls_inside": true
+              }
             },
             "touch_policy": {
               "minimum_target_css_px": 48,

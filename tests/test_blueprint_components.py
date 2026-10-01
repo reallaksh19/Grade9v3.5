@@ -68,7 +68,8 @@ class Realisation(unittest.TestCase):
         cls.html = {role: render_core.page(cls.ctx, role, "PAGES", cls.digest) for role in ("CORE2", "CORE1A")}
 
     def marked(self, role: str) -> set[str]:
-        return set(re.findall(r'data-g9-component="([A-Z_]+)"', self.html[role]))
+        body = re.sub(r"<style\b.*?</style>", "", self.html[role], flags=re.S)       # the layout CSS names components too
+        return set(re.findall(r'data-g9-component="([A-Z_]+)"', body))
 
     def test_every_marker_on_a_page_is_a_component_its_blueprint_declares(self):
         for role in ("CORE2", "CORE1A"):
@@ -139,7 +140,7 @@ class Reporting(unittest.TestCase):
             render_core.component_body(ctx, "CORE2", {"NOT_A_COMPONENT": "x"}, "attempt")
 
     def test_the_gate_rule_reads_the_registry_not_a_copy_of_it(self):
-        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.3.0",
+        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.4.0",
                 "units": [{"id": "Q", "components": [{"id": "STEM", "items": None, "unit": None},
                                                      {"id": "HINT_LADDER", "items": 1, "unit": None}]}]}
         problems = quality_contract.OPS["blueprint_components"](page, {"level": "REQUIRED"}, {})
@@ -154,7 +155,7 @@ class Reporting(unittest.TestCase):
                              quality_contract.OPS["blueprint_components"](page, {"level": "REQUIRED"}, {}))
 
     def test_a_per_unit_component_is_expected_once_for_each_construction_unit(self):
-        page = {"role": "CORE1A", "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.3.0",
+        page = {"role": "CORE1A", "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
                 "units": [{"id": "MIC", "construction_units": ["CU-1", "CU-2"],
                            "components": [{"id": "STAGED_VISUAL", "items": 3, "unit": "CU-1"}]}]}
         problems = quality_contract.OPS["blueprint_components"](page, {"level": "REQUIRED"}, {})
@@ -201,7 +202,7 @@ class ReferenceDepth(unittest.TestCase):
         self.assertEqual(ctx.waived, [])
 
     def test_the_gate_holds_a_deep_question_to_its_band_and_skips_what_the_record_waived(self):
-        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.3.0",
+        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.4.0",
                 "units": [{"id": "Q", "metadata": [{"kind": "question-difficulty", "ref": "D3", "value": "D3",
                                                    "display_name": "Difficulty", "label": "D3"}],
                            "components": [{"id": "HINT_LADDER", "items": 3, "unit": None}],
@@ -253,6 +254,68 @@ class Core1aBenchmark(unittest.TestCase):
         self.assertEqual((by_id["CONSTRUCTION_STEPS"]["target_items"], by_id["STAGED_VISUAL"]["target_items"]), (3, 3))
         self.assertEqual(by_id["QUICK_CHECK"]["presentation"], "TRIAD")
         self.assertEqual(by_id["EQUATIONS"]["level"], "EXPECTED")
+
+
+class Tablet(unittest.TestCase):
+    """The 12.7-inch tablet is the design target: what the blueprint promises there is read by the renderer and the audit."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.ctx = render_core.context(MOTION_2D)
+        cls.digest = render_core.render_digest(cls.ctx)
+        cls.core1a = render_core.page(cls.ctx, "CORE1A", "PAGES", cls.digest)
+
+    def test_both_question_and_concept_pages_declare_the_tablet_promises(self):
+        for role in ("CORE2", "CORE1A"):
+            promise = blueprints.blueprint_for_role(REGISTRY, role)["responsive_policy"]["tablet_12_7"]
+            self.assertEqual(promise["reference_viewport"], {"width": 1366, "height": 854})
+            self.assertGreaterEqual(promise["figure_min_text_css_px"], 14)
+            self.assertLessEqual(promise["identity_max_px"], 200)
+
+    def test_the_key_step_and_what_the_learner_needs_open_the_first_unit_beside_the_figure_not_above_it(self):
+        article = re.search(r"<article .*?</article>", self.core1a, re.S).group(0)
+        split = article.index("g9-split")
+        for marker in ('data-g9-component="KEY_STEP"', 'data-g9-component="MODEL_CONTRACT"'):
+            self.assertGreater(article.index(marker), split, marker)
+        self.assertEqual(article.count('data-g9-component="KEY_STEP"'), 1)
+        self.assertLess(article.index('data-g9-component="UNIT_HEADER"'), article.index('data-g9-component="KEY_STEP"'))
+        self.assertLess(article.index('data-g9-component="KEY_STEP"'), article.index('data-g9-component="MODEL_CONTRACT"'))
+
+    def test_a_concept_with_one_section_has_no_route_to_itself(self):
+        one = {"construction_units": [{"id": "CU-A", "decision": "Only"}]}
+        two = {"construction_units": [{"id": "CU-A", "decision": "First"}, {"id": "CU-B", "decision": "Second"}]}
+        self.assertEqual(render_core._core1a_section_route(one), "")
+        self.assertIn("data-g9-section-route", render_core._core1a_section_route(two))
+
+    def test_an_authored_figure_is_held_to_the_labels_a_tablet_can_read_and_none_cut_off(self):
+        def figure(size, width, x=60, anchor="start", text="magnitude 5"):
+            return (f'<svg viewBox="0 0 {width} 300" role="img" aria-label="a"><title>t</title><desc>d</desc>'
+                    f'<text x="{x}" y="40" font-size="{size}" text-anchor="{anchor}">{text}</text></svg>')
+        column = 468.0
+        self.assertEqual(render_core._figure_text_findings(figure(14, 440), column, 14.0), [])
+        small = render_core._figure_text_findings(figure(14, 520), column, 14.0)
+        self.assertEqual(len(small), 1)
+        self.assertIn("12.6 px", small[0])
+        self.assertIn("at least 16 units high", small[0])
+        cut = render_core._figure_text_findings(figure(16, 440, x=4, anchor="end"), column, 14.0)
+        self.assertTrue(any("cut off" in line for line in cut), cut)
+        self.assertEqual(render_core._figure_text_findings("<svg><text>no viewBox</text></svg>", column, 14.0), [])
+
+    def test_only_new_authoring_is_asked_for_legible_figures(self):
+        figure = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" role="img" aria-label="a"><title>t</title><desc>d</desc>'
+                  '<text x="20" y="40" font-size="12">small label</text></svg>')
+        package = {"representations": [{"id": "REP-X", "rendered_asset_refs": ["tests/fixtures/_tablet_figure.svg"]}]}
+        path = REPO / "tests/fixtures/_tablet_figure.svg"
+        path.write_text(figure, encoding="utf-8")
+        self.addCleanup(lambda: path.unlink(missing_ok=True))
+        for held_to, expected in (("FLOOR", 0), ("REFERENCE", 1)):
+            ctx = render_core.Ctx(manifest={"product_id": "P"}, packages=[package], bank=[], blueprints=REGISTRY, held_to=held_to)
+            html = render_core.figure(ctx, "REP-X", "TEACHING", "CORE2", "Q")
+            self.assertIn("<figure", html)
+            self.assertEqual(len([g for g in ctx.gaps if g["duty"] == "AUTHOR_FIGURE_TEXT"]), expected, held_to)
+
+    def test_links_inside_the_page_use_the_themes_accent_so_they_read_on_dark(self):
+        self.assertIn("a{color:var(--accent)}", render_core.CSS)
 
 
 class Links(unittest.TestCase):

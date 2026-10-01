@@ -96,7 +96,7 @@ def package_duties(pkg: dict, rel: str, taught: set[str], limit: int) -> list[di
         for u in units:
             if u.get("migrated_from"):
                 add("REVIEW_MIGRATED_UNIT", u["id"], f"derived from {u['migrated_from']}; an author confirms the decision text and unit boundary")
-            if not u.get("worked_anchor_ref"):
+            if not (u.get("worked_anchor_ref") or u.get("bank_anchor_ref")):
                 add("AUTHOR_WORKED_ANCHOR", u["id"], "no CORE1A question exercises this unit's move")
             if not u.get("independent_checks"):
                 add("AUTHOR_INDEPENDENT_CHECK", u["id"], "no independent check for this unit")

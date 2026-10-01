@@ -3,15 +3,15 @@
 Generated from `Shared/web/interactive-page-blueprints.v1.json` by `Shared/tools/blueprint_spec.py`. Do not edit.
 To change what a page shows, change the blueprint; the renderer, the quality gate and the owner-bank scaffold follow.
 
-Registry 1.4.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
+Registry 1.5.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
 
-Depth: min_items is the floor below which a component does not count as present. target_items is the depth of the reference page, and target_items_by_band gives it by the difficulty band the record declares at band_source. Between the floor and the reference depth the renderer says so as an advisory.
+Depth: min_items is the floor below which a component does not count as present. target_items is the depth of the reference page, and target_items_by_band gives it by the difficulty band the record declares at band_source (for a Core1A construction unit, the hardest band among the bank questions it names in crux_question_refs). Between the floor and the reference depth the renderer says so as an advisory.
 
 Waivers: A record may declare an EXPECTED component not applicable, with a written reason, in extensions['grade9v3:component_waivers'] as {COMPONENT_ID: reason}; the reason is kept in the page and the receipt. A REQUIRED component cannot be waived, and a page never waives anything itself.
 
 Held to: FLOOR: official records and products are judged at the floor; an EXPECTED component that is absent is an advisory. REFERENCE: new authoring (a TEST deploy, a scaffolded owner bank) is judged at the reference depth, and an EXPECTED component must be present or waived by the record; otherwise it is a gap.
 
-## BP-CORE2-SOURCE-QUESTION@1.3.0 (CORE2)
+## BP-CORE2-SOURCE-QUESTION@1.4.0 (CORE2)
 
 Learner job: Preserve authentic assessment demand while allowing bounded, provenance-explicit help that advances the learner without becoming a Question Clinic.
 
@@ -106,7 +106,7 @@ Expected: an official page missing it carries an advisory naming the field to au
 - The learner gets: Show the situation as a picture drawn only from what the question states; every question in the benchmark has one.
 - The reference page: selected_question_bank_TABLET_STUDY: the 'Representation' card with the question-aligned schematic
 - Record fields: `figure_refs`
-- To author it: Add a representation to the package with an authored SVG (role=img, aria-labelledby or aria-label, <title> and <desc>) drawn only from the question's own data (labels at least 13 units high in a viewBox up to 640 wide), then name its id in figure_refs. Every question gets one; a classification or a pure-number question can show the quantities as a labelled diagram. If a question truly has nothing to draw, say so in extensions['grade9v3:component_waivers'] with the reason.
+- To author it: Add a representation to the package with an authored SVG (role=img, aria-labelledby or aria-label, <title> and <desc>) drawn only from the question's own data (labels at least 14 units high in a viewBox no wider than 440 units, so they read on a tablet), then name its id in figure_refs. Every question gets one; a classification or a pure-number question can show the quantities as a labelled diagram. If a question truly has nothing to draw, say so in extensions['grade9v3:component_waivers'] with the reason.
 
 **CHECK** · slot `solution`, inside SOLUTION · CHECK_BOX
 
@@ -125,13 +125,13 @@ Optional: shown when the record has it.
 - The reference page: selected_question_bank_TABLET_STUDY: concept links beside the hints (the Core1A cross-link)
 - Record fields: `primary_capability_ref`, `secondary_capability_refs`
 
-## BP-CORE1A-CONSTRUCTION@1.3.0 (CORE1A)
+## BP-CORE1A-CONSTRUCTION@1.4.0 (CORE1A)
 
 Learner job: Reveal and explain the complete conceptual construction at intrinsic subtopic depth, then connect the concept to selected authentic questions that exercise its canonical capability.
 
 Theme: opens dark, and the learner can switch.
 
-Layout: from 1100 px wide, the primary column is 68% and the support column 32%; the support column stays in view while the primary column scrolls. Narrower, everything is one column, primary first.
+Layout: from 1100 px wide, the primary column is 60% and the support column 40%; the support column stays in view while the primary column scrolls. Narrower, everything is one column, primary first.
 
 | Slot | Column | Kept |
 |---|---|---|
@@ -150,6 +150,12 @@ Required: a page without it is a gap, and the quality gate fails it.
 - The reference page: core1a-motion-in-a-plane-tablet: the concept header with title and metadata
 - Record fields: `title`, `extensions.grade9v3:learner_metadata`
 
+**UNIT_HEADER** · slot `construction`, once per construction unit · UNIT_HEADER
+
+- The learner gets: Number and title each construction unit.
+- The reference page: core1a-motion-in-a-plane-tablet: the concept-card header with number, decision and unit id
+- Record fields: `construction_units[].decision`
+
 **KEY_STEP** · slot `construction` · BANNER
 
 - The learner gets: Name the one step learners cannot infer on their own.
@@ -157,32 +163,26 @@ Required: a page without it is a gap, and the quality gate fails it.
 - Record fields: `inferential_jump`
 - To author it: inferential_jump: one or two sentences naming the step a learner does not make unaided and why it is not obvious.
 
-**UNIT_HEADER** · slot `construction`, once per construction unit · UNIT_HEADER
-
-- The learner gets: Number and title each construction unit.
-- The reference page: core1a-motion-in-a-plane-tablet: the concept-card header with number, decision and unit id
-- Record fields: `construction_units[].decision`
-
-**CONSTRUCTION_STEPS** · slot `construction`, once per construction unit · STEP_CARDS · at least 2 item(s) (the reference has 3)
+**CONSTRUCTION_STEPS** · slot `construction`, once per construction unit · STEP_CARDS · at least 2 item(s); the reference has D1 3, D2 3, D3 4, D4 4 by difficulty band
 
 - The learner gets: Build the idea in steps; every step says what is done, why it is valid and what state it gives.
 - The reference page: core1a-motion-in-a-plane-tablet: step cards (action, why physically valid, state output)
 - Record fields: `construction_units[].step_refs`, `teaching_path`
-- To author it: Each construction unit lists step_refs naming 2 or more teaching_path steps; each step has action, why_valid and output written for this unit, none repeated from another unit.
+- To author it: Each construction unit lists step_refs naming 2 or more teaching_path steps; each step has action, why_valid and output written for this unit, none repeated from another unit. A unit that builds the crux of a D3 or D4 question (it names that question in crux_question_refs) needs 4 steps, and its last step is the move that question turns on.
 
 **WORKED_EXAMPLE** · slot `construction`, once per construction unit · WORKED_CARD
 
 - The learner gets: Walk one authentic question through the construction.
 - The reference page: core1a-motion-in-a-plane-tablet: the worked card
-- Record fields: `construction_units[].worked_anchor_ref`
-- To author it: worked_anchor_ref names a question of the package that exercises exactly this unit's move.
+- Record fields: `construction_units[].worked_anchor_ref`, `construction_units[].bank_anchor_ref`
+- To author it: worked_anchor_ref names a question of the package that exercises exactly this unit's move. For the unit that builds toward a question of the product's bank (an owner-supplied question), set bank_anchor_ref to that question's id instead: the page then walks through the Owner's own question with its verified route, and nothing is copied into the package.
 
-**STAGED_VISUAL** · slot `representation`, once per construction unit · STAGED_VISUAL · at least 2 item(s) (the reference has 3)
+**STAGED_VISUAL** · slot `representation`, once per construction unit · STAGED_VISUAL · at least 2 item(s); the reference has D1 3, D2 3, D3 4, D4 4 by difficulty band
 
 - The learner gets: Show the idea as a picture that builds up stage by stage, with controls to step through it.
 - The reference page: core1a-motion-in-a-plane-tablet: the rail's staged visual with stage buttons
 - Record fields: `construction_units[].representation_ref`
-- To author it: representation_ref names a representation of the package with an authored SVG that has 2 or more groups marked data-g9-stage-id and reveal_stages naming them. Draw each unit's own picture; do not reuse one figure on many units.
+- To author it: representation_ref names a representation of the package with an authored SVG that has 2 or more groups marked data-g9-stage-id and reveal_stages naming them (3 stages is the reference, 4 for a unit that builds the crux of a D3 or D4 question). Draw each unit's own picture; do not reuse one figure on many units. Draw it in a viewBox no wider than 440 units with every label at least 14 units high, so the labels read on a tablet.
 
 **TRAP_REPAIR** · slot `repair_closure`, once per construction unit · TRAP_CARD · at least 1 item(s)
 
@@ -208,7 +208,7 @@ Required: a page without it is a gap, and the quality gate fails it.
 
 Expected: an official page missing it carries an advisory naming the field to author; new authoring must supply it or waive it with a written reason, else it is a gap.
 
-**MODEL_CONTRACT** · slot `identity` · TILE
+**MODEL_CONTRACT** · slot `construction` · TILE
 
 - The learner gets: Say what the learner must already hold and what model is assumed.
 - The reference page: core1a-motion-in-a-plane-tablet: the 'Model contract & assumptions' tile
@@ -230,6 +230,13 @@ Optional: shown when the record has it.
 
 - The learner gets: Let the learner jump to a construction step.
 - The reference page: core1a-motion-in-a-plane-tablet: the section tabs
+
+**QUESTION_BRIDGE** · slot `construction`, once per construction unit · CALLOUT_INFO
+
+- The learner gets: Say which source question this unit builds toward and the move a learner most often misses in it, so the concept is taught for that question and not only named after it.
+- The reference page: core1a-motion-in-a-plane-tablet: each concept card is built around the inferential leap the practice questions need
+- Record fields: `construction_units[].crux_question_refs`, `construction_units[].crux_step_ref`, `answer.crux_move_ref`
+- To author it: Write crux_question_refs on a construction unit: the ids of the bank questions whose crux the unit builds, and crux_step_ref: the one of its step_refs that builds the move those questions turn on (the page marks that step). The toughest question of the set (the deploy names it) must be named by a unit of the concept it belongs to; that unit's steps must lead to the move the question turns on, and its worked example is that question (bank_anchor_ref). A unit that only shares the question's topic does not build its crux, and a step that mentions the idea in passing is not the step that builds it: draw the whole idea (for a sum of two vectors, every angle and not only the right angle).
 
 **PRACTICE_LINKS** · slot `repair_closure` · CHIPS
 

@@ -508,11 +508,13 @@ class Renderer(unittest.TestCase):
         )
 
         self.assertEqual(blueprint["responsive_policy"]["expanded"], "STAGE_SUPPORT")
+        # 60/40: the support column is wide enough that a figure drawn in a 480-unit viewBox renders its labels at 14 px or more
+        # on the 12.7-inch reference tablet (see responsive_policy.tablet_12_7).
         self.assertAlmostEqual(
-            blueprint["responsive_policy"]["primary_fraction"], 0.68, places=2
+            blueprint["responsive_policy"]["primary_fraction"], 0.6, places=2
         )
         self.assertAlmostEqual(
-            blueprint["responsive_policy"]["support_fraction"], 0.32, places=2
+            blueprint["responsive_policy"]["support_fraction"], 0.4, places=2
         )
         self.assertGreaterEqual(blueprint["touch_policy"]["minimum_target_css_px"], 48)
         self.assertGreaterEqual(blueprint["touch_policy"]["minimum_control_gap_css_px"], 8)

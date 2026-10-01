@@ -28,7 +28,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.tools import (build_pages_site, build_test_site, product_manifest, quality_gate, render_core,  # noqa: E402
-                          site_nav_audit)
+                          site_nav_audit, toughest_concept)
 from Shared.tools import web_blueprint_contract as blueprints  # noqa: E402
 
 TEST_ROOT = REPO / "TEST"
@@ -157,6 +157,7 @@ def deploy_product(manifest_path: Path) -> dict:
         try:
             # New authoring is held to the benchmark: the reference depth, and every expected component present or waived.
             pages, gaps, digest, advisories, waived = render_core.build_report(staged, "PAGES", held_to="REFERENCE")
+            toughest = toughest_concept.for_manifest(staged)
         except product_manifest.ProductSelectionError as caught:
             raise DeployError(f"selection rejected: {caught}") from caught
     out = PUBLIC_TEST / "products" / slug
@@ -190,6 +191,7 @@ def deploy_product(manifest_path: Path) -> dict:
         "advisories": [{key: row.get(key) for key in ("core", "component", "record", "detail")} for row in advisories],
         "waived": [{key: row.get(key) for key in ("core", "component", "record", "reason")} for row in waived],
         "held_to": "REFERENCE",
+        "toughest": toughest,               # the concept the concept book and the interactive page are built for
         "blueprints": blueprint_refs(product_manifest.selected_output_roles(manifest)),
         "authoring": authoring_hints(product_manifest.selected_output_roles(manifest)),
         "quality": quality_report(out, slug, product_manifest.selected_output_roles(manifest)),
@@ -348,6 +350,7 @@ def main(argv: list[str] | None = None) -> int:
             if len(receipt["gaps"]) > len(shown):
                 print(f"  ... {len(receipt['gaps']) - len(shown)} more in public/test/products/{receipt['slug']}/deploy-receipt.json")
             _print_blueprint_notes(receipt)
+            print("\n".join(toughest_concept.describe(receipt.get("toughest"))))
             quality = receipt["quality"]
             if quality.get("error"):
                 print(f"  quality check could not run: {quality['error']}", file=sys.stderr)

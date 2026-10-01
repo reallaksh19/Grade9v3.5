@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "registry_version": "1.4.0",
+  "registry_version": "1.5.0",
   "shell": {
     "id": "G9-TABLET-SHELL-V1",
     "fixed_header": true,
@@ -59,7 +59,7 @@
       "SUPPORT": "The support column of the expanded layout; it follows the primary column in the compact flow."
     },
     "waivers": "A record may declare an EXPECTED component not applicable, with a written reason, in extensions['grade9v3:component_waivers'] as {COMPONENT_ID: reason}; the reason is kept in the page and the receipt. A REQUIRED component cannot be waived, and a page never waives anything itself.",
-    "depth": "min_items is the floor below which a component does not count as present. target_items is the depth of the reference page, and target_items_by_band gives it by the difficulty band the record declares at band_source. Between the floor and the reference depth the renderer says so as an advisory.",
+    "depth": "min_items is the floor below which a component does not count as present. target_items is the depth of the reference page, and target_items_by_band gives it by the difficulty band the record declares at band_source (for a Core1A construction unit, the hardest band among the bank questions it names in crux_question_refs). Between the floor and the reference depth the renderer says so as an advisory.",
     "held_to": "FLOOR: official records and products are judged at the floor; an EXPECTED component that is absent is an advisory. REFERENCE: new authoring (a TEST deploy, a scaffolded owner bank) is judged at the reference depth, and an EXPECTED component must be present or waived by the record; otherwise it is a gap."
   },
   "blueprints": [
@@ -137,7 +137,7 @@
     },
     {
       "id": "BP-CORE2-SOURCE-QUESTION",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "status": "ACTIVE",
       "core_roles": [
         "CORE2"
@@ -212,7 +212,15 @@
         "primary_fraction": 0.42,
         "support_fraction": 0.58,
         "expanded_min_px": 980,
-        "support_sticky": false
+        "support_sticky": false,
+        "tablet_12_7": {
+          "reference_viewport": {
+            "width": 1366,
+            "height": 854
+          },
+          "identity_max_px": 190,
+          "figure_min_text_css_px": 14
+        }
       },
       "touch_policy": {
         "minimum_target_css_px": 48,
@@ -248,7 +256,8 @@
           ],
           "authoring": {
             "hint": "Identity comes from the question's custody. An owner-supplied question shows 'Owner-supplied question' and carries no exam, year or paper."
-          }
+          },
+          "compact_order": 10
         },
         {
           "id": "DIFFICULTY_WHY",
@@ -270,7 +279,8 @@
                 }
               }
             }
-          }
+          },
+          "compact_order": 20
         },
         {
           "id": "STEM",
@@ -281,7 +291,8 @@
           "benchmark": "selected_question_bank_TABLET_STUDY: the left column's eyebrow and stem",
           "source": [
             "stem"
-          ]
+          ],
+          "compact_order": 30
         },
         {
           "id": "CONDITIONS",
@@ -298,7 +309,8 @@
             "skeleton": {
               "conditions": []
             }
-          }
+          },
+          "compact_order": 50
         },
         {
           "id": "TRAP",
@@ -319,7 +331,8 @@
                 }
               }
             }
-          }
+          },
+          "compact_order": 60
         },
         {
           "id": "ATTEMPT",
@@ -331,7 +344,8 @@
           "source": [
             "response",
             "options"
-          ]
+          ],
+          "compact_order": 70
         },
         {
           "id": "REPRESENTATION",
@@ -345,11 +359,12 @@
           ],
           "min_items": 1,
           "authoring": {
-            "hint": "Add a representation to the package with an authored SVG (role=img, aria-labelledby or aria-label, <title> and <desc>) drawn only from the question's own data (labels at least 13 units high in a viewBox up to 640 wide), then name its id in figure_refs. Every question gets one; a classification or a pure-number question can show the quantities as a labelled diagram. If a question truly has nothing to draw, say so in extensions['grade9v3:component_waivers'] with the reason.",
+            "hint": "Add a representation to the package with an authored SVG (role=img, aria-labelledby or aria-label, <title> and <desc>) drawn only from the question's own data (labels at least 14 units high in a viewBox no wider than 440 units, so they read on a tablet), then name its id in figure_refs. Every question gets one; a classification or a pure-number question can show the quantities as a labelled diagram. If a question truly has nothing to draw, say so in extensions['grade9v3:component_waivers'] with the reason.",
             "skeleton": {
               "figure_refs": []
             }
-          }
+          },
+          "compact_order": 40
         },
         {
           "id": "HINT_LADDER",
@@ -418,7 +433,8 @@
             "D3": 5,
             "D4": 5
           },
-          "band_source": "extensions.grade9v3:analysis.difficulty.band"
+          "band_source": "extensions.grade9v3:analysis.difficulty.band",
+          "compact_order": 80
         },
         {
           "id": "CONCEPT_NAV",
@@ -430,7 +446,8 @@
           "source": [
             "primary_capability_ref",
             "secondary_capability_refs"
-          ]
+          ],
+          "compact_order": 90
         },
         {
           "id": "SOLUTION",
@@ -441,7 +458,8 @@
           "benchmark": "selected_question_bank_TABLET_STUDY: the 'Teacher solution · complete derivation' disclosure",
           "source": [
             "answer"
-          ]
+          ],
+          "compact_order": 100
         },
         {
           "id": "SOLUTION_STEPS",
@@ -546,7 +564,7 @@
     },
     {
       "id": "BP-CORE1A-CONSTRUCTION",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "status": "ACTIVE",
       "core_roles": [
         "CORE1A"
@@ -614,10 +632,19 @@
         "compact": "SINGLE_PANE",
         "medium": "STACKED_SUPPORT",
         "expanded": "STAGE_SUPPORT",
-        "primary_fraction": 0.68,
-        "support_fraction": 0.32,
+        "primary_fraction": 0.6,
+        "support_fraction": 0.4,
         "expanded_min_px": 1100,
-        "support_sticky": true
+        "support_sticky": true,
+        "tablet_12_7": {
+          "reference_viewport": {
+            "width": 1366,
+            "height": 854
+          },
+          "identity_max_px": 190,
+          "figure_min_text_css_px": 14,
+          "support_scrolls_inside": true
+        }
       },
       "touch_policy": {
         "minimum_target_css_px": 48,
@@ -646,22 +673,8 @@
           "source": [
             "title",
             "extensions.grade9v3:learner_metadata"
-          ]
-        },
-        {
-          "id": "MODEL_CONTRACT",
-          "slot": "identity",
-          "level": "EXPECTED",
-          "presentation": "TILE",
-          "purpose": "Say what the learner must already hold and what model is assumed.",
-          "benchmark": "core1a-motion-in-a-plane-tablet: the 'Model contract & assumptions' tile",
-          "source": [
-            "entry_assumptions",
-            "prerequisite_refs"
           ],
-          "authoring": {
-            "hint": "List in entry_assumptions[] each thing a learner must already be able to do before this concept, one per entry and specific to this concept."
-          }
+          "compact_order": 10
         },
         {
           "id": "SECTION_ROUTE",
@@ -669,7 +682,22 @@
           "level": "OPTIONAL",
           "presentation": "CHIPS",
           "purpose": "Let the learner jump to a construction step.",
-          "benchmark": "core1a-motion-in-a-plane-tablet: the section tabs"
+          "benchmark": "core1a-motion-in-a-plane-tablet: the section tabs",
+          "compact_order": 20
+        },
+        {
+          "id": "UNIT_HEADER",
+          "slot": "construction",
+          "level": "REQUIRED",
+          "presentation": "UNIT_HEADER",
+          "purpose": "Number and title each construction unit.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the concept-card header with number, decision and unit id",
+          "repeat": "PER_CONSTRUCTION_UNIT",
+          "source": [
+            "construction_units[].decision"
+          ],
+          "duty": "AUTHOR_CONSTRUCTION_UNITS",
+          "compact_order": 30
         },
         {
           "id": "KEY_STEP",
@@ -683,20 +711,42 @@
           ],
           "authoring": {
             "hint": "inferential_jump: one or two sentences naming the step a learner does not make unaided and why it is not obvious."
-          }
+          },
+          "compact_order": 40
         },
         {
-          "id": "UNIT_HEADER",
+          "id": "MODEL_CONTRACT",
           "slot": "construction",
-          "level": "REQUIRED",
-          "presentation": "UNIT_HEADER",
-          "purpose": "Number and title each construction unit.",
-          "benchmark": "core1a-motion-in-a-plane-tablet: the concept-card header with number, decision and unit id",
+          "level": "EXPECTED",
+          "presentation": "TILE",
+          "purpose": "Say what the learner must already hold and what model is assumed.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the 'Model contract & assumptions' tile",
+          "source": [
+            "entry_assumptions",
+            "prerequisite_refs"
+          ],
+          "authoring": {
+            "hint": "List in entry_assumptions[] each thing a learner must already be able to do before this concept, one per entry and specific to this concept."
+          },
+          "compact_order": 50
+        },
+        {
+          "id": "QUESTION_BRIDGE",
+          "slot": "construction",
+          "level": "OPTIONAL",
+          "presentation": "CALLOUT_INFO",
+          "purpose": "Say which source question this unit builds toward and the move a learner most often misses in it, so the concept is taught for that question and not only named after it.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: each concept card is built around the inferential leap the practice questions need",
           "repeat": "PER_CONSTRUCTION_UNIT",
           "source": [
-            "construction_units[].decision"
+            "construction_units[].crux_question_refs",
+            "construction_units[].crux_step_ref",
+            "answer.crux_move_ref"
           ],
-          "duty": "AUTHOR_CONSTRUCTION_UNITS"
+          "authoring": {
+            "hint": "Write crux_question_refs on a construction unit: the ids of the bank questions whose crux the unit builds, and crux_step_ref: the one of its step_refs that builds the move those questions turn on (the page marks that step). The toughest question of the set (the deploy names it) must be named by a unit of the concept it belongs to; that unit's steps must lead to the move the question turns on, and its worked example is that question (bank_anchor_ref). A unit that only shares the question's topic does not build its crux, and a step that mentions the idea in passing is not the step that builds it: draw the whole idea (for a sum of two vectors, every angle and not only the right angle)."
+          },
+          "compact_order": 60
         },
         {
           "id": "CONSTRUCTION_STEPS",
@@ -712,9 +762,17 @@
           ],
           "min_items": 2,
           "authoring": {
-            "hint": "Each construction unit lists step_refs naming 2 or more teaching_path steps; each step has action, why_valid and output written for this unit, none repeated from another unit."
+            "hint": "Each construction unit lists step_refs naming 2 or more teaching_path steps; each step has action, why_valid and output written for this unit, none repeated from another unit. A unit that builds the crux of a D3 or D4 question (it names that question in crux_question_refs) needs 4 steps, and its last step is the move that question turns on."
           },
-          "target_items": 3
+          "target_items": 3,
+          "target_items_by_band": {
+            "D1": 3,
+            "D2": 3,
+            "D3": 4,
+            "D4": 4
+          },
+          "band_source": "crux_question_refs",
+          "compact_order": 80
         },
         {
           "id": "EQUATIONS",
@@ -730,7 +788,8 @@
           "authoring": {
             "hint": "Each construction unit names the microtopic's relations it uses in construction_units[].relation_refs; each relation record needs its expression, meaning and conditions. A subject that declares no gates writes gate_relation_ref: null."
           },
-          "repeat": "PER_CONSTRUCTION_UNIT"
+          "repeat": "PER_CONSTRUCTION_UNIT",
+          "compact_order": 90
         },
         {
           "id": "WORKED_EXAMPLE",
@@ -741,12 +800,14 @@
           "benchmark": "core1a-motion-in-a-plane-tablet: the worked card",
           "repeat": "PER_CONSTRUCTION_UNIT",
           "source": [
-            "construction_units[].worked_anchor_ref"
+            "construction_units[].worked_anchor_ref",
+            "construction_units[].bank_anchor_ref"
           ],
           "duty": "AUTHOR_WORKED_ANCHOR",
           "authoring": {
-            "hint": "worked_anchor_ref names a question of the package that exercises exactly this unit's move."
-          }
+            "hint": "worked_anchor_ref names a question of the package that exercises exactly this unit's move. For the unit that builds toward a question of the product's bank (an owner-supplied question), set bank_anchor_ref to that question's id instead: the page then walks through the Owner's own question with its verified route, and nothing is copied into the package."
+          },
+          "compact_order": 100
         },
         {
           "id": "STAGED_VISUAL",
@@ -761,10 +822,18 @@
           ],
           "min_items": 2,
           "authoring": {
-            "hint": "representation_ref names a representation of the package with an authored SVG that has 2 or more groups marked data-g9-stage-id and reveal_stages naming them. Draw each unit's own picture; do not reuse one figure on many units."
+            "hint": "representation_ref names a representation of the package with an authored SVG that has 2 or more groups marked data-g9-stage-id and reveal_stages naming them (3 stages is the reference, 4 for a unit that builds the crux of a D3 or D4 question). Draw each unit's own picture; do not reuse one figure on many units. Draw it in a viewBox no wider than 440 units with every label at least 14 units high, so the labels read on a tablet."
           },
           "duty": "STAGE_REPRESENTATION",
-          "target_items": 3
+          "target_items": 3,
+          "target_items_by_band": {
+            "D1": 3,
+            "D2": 3,
+            "D3": 4,
+            "D4": 4
+          },
+          "band_source": "crux_question_refs",
+          "compact_order": 70
         },
         {
           "id": "TRAP_REPAIR",
@@ -781,7 +850,8 @@
           "min_items": 1,
           "authoring": {
             "hint": "misconceptions[] holds wrong_idea, diagnostic_prompt and repair for this concept; each construction unit names the ones that apply in misconception_indexes."
-          }
+          },
+          "compact_order": 110
         },
         {
           "id": "QUICK_CHECK",
@@ -799,7 +869,8 @@
           "target_items": 3,
           "authoring": {
             "hint": "Each construction unit lists three independent_checks, each with a role: CHECK (a question that recalls the idea), APPLY (a small case to work with numbers or a picture given in the question) and CONNECT (one sentence saying which idea this leads to next). Each statement is specific to the unit."
-          }
+          },
+          "compact_order": 120
         },
         {
           "id": "EXIT_RECALL",
@@ -810,7 +881,8 @@
           "benchmark": "core1a-motion-in-a-plane-tablet: the active-recall attempt",
           "source": [
             "exit_task"
-          ]
+          ],
+          "compact_order": 130
         },
         {
           "id": "PRACTICE_LINKS",
@@ -821,7 +893,8 @@
           "benchmark": "core1a-motion-in-a-plane-tablet: the practice chips",
           "source": [
             "practice"
-          ]
+          ],
+          "compact_order": 140
         }
       ],
       "presentation_policy": {

@@ -136,7 +136,8 @@ for (const file of files) {
     const policy = bp ? bp.responsive_policy : null;
     const pct = x => Number((x * 100).toFixed(4));
     const expectedColumns = policy && policy.support_fraction ? { primary: pct(policy.primary_fraction), support: pct(policy.support_fraction) } : null;
-    const r = await page.evaluate(({ minTarget, expectedColumns }) => {
+    const expectedTablet = policy && policy.tablet_12_7 ? policy.tablet_12_7 : null;
+    const r = await page.evaluate(({ minTarget, expectedColumns, expectedTablet }) => {
       const visible = el => { const b = el.getBoundingClientRect(); return b.width > 0 && b.height > 0; };
       const controls = [...document.querySelectorAll('a[href],button,summary,textarea,input,select')].filter(visible);
       // Inline text links inside a paragraph, list item or table cell are exempt (WCAG 2.5.8), as in tablet-audit.mjs.
@@ -188,6 +189,31 @@ for (const file of files) {
         attemptFields: document.querySelectorAll('textarea').length,
         gatedDisclosures: [...document.querySelectorAll('details')].filter(d => d.hasAttribute('data-requires-attempt') || d.querySelector('summary[aria-disabled="true"]')).length,
         scripts: document.scripts.length,
+        tablet: !expectedTablet ? null : (() => {
+          // What the 12.7-inch tablet blueprint promises: the labels are short, the two columns start together, the figure is legible.
+          const top = el => el.getBoundingClientRect().top + window.scrollY;
+          const rows = [...document.querySelectorAll('article[data-g9-unit]')].filter(visible).map(article => {
+            const identity = article.querySelector(':scope > .slot-identity');
+            const primary = article.querySelector('.g9-split:not(.g9-split-support-only) > .g9-col-primary');
+            const support = article.querySelector('.g9-split:not(.g9-split-support-only) > .g9-col-support');
+            const labels = [...article.querySelectorAll('figure svg text')].filter(x => x.getClientRects().length);
+            let smallest = null;
+            for (const label of labels) {
+              const size = parseFloat(getComputedStyle(label).fontSize), m = label.getScreenCTM();
+              if (m && size) { const px = size * Math.hypot(m.a, m.b); if (smallest === null || px < smallest) smallest = px; }
+            }
+            return {
+              unit: article.dataset.g9Unit || article.id,
+              identityPx: identity ? Math.round(identity.getBoundingClientRect().height) : null,
+              supportOffsetPx: primary && support ? Math.round(Math.abs(top(support) - top(primary))) : null,
+              smallestFigureTextPx: smallest === null ? null : Math.round(smallest * 10) / 10,
+            };
+          });
+          const max = key => rows.reduce((m, row) => row[key] === null ? m : Math.max(m, row[key]), 0);
+          const min = key => rows.reduce((m, row) => row[key] === null ? m : (m === null ? row[key] : Math.min(m, row[key])), null);
+          return { articles: rows.length, identityMaxPx: max('identityPx'), supportOffsetMaxPx: max('supportOffsetPx'),
+                   smallestFigureTextPx: min('smallestFigureTextPx'), worstIdentity: rows.sort((a, b) => (b.identityPx || 0) - (a.identityPx || 0))[0] || null };
+        })(),
         stageSupportLayout: !!expectedColumns && new RegExp(`grid-template-columns:\\s*minmax\\(0(?:px)?,\\s*${expectedColumns.primary}fr\\)\\s*minmax\\(0(?:px)?,\\s*${expectedColumns.support}fr\\)`).test(sheetText),
         core1aLayout: (() => {
           // One sample per two-column row (a .g9-split with both columns); a band with only one column is not a row of the layout.
@@ -340,7 +366,7 @@ for (const file of files) {
           return leaks;
         })(),
       };
-    }, { minTarget, expectedColumns });
+    }, { minTarget, expectedColumns, expectedTablet });
     r.expectedLayout = policy && policy.support_fraction
       ? { supportFraction: policy.support_fraction, minPx: policy.expanded_min_px || 1100 } : null;
     r.externalRequests = [...new Set(requests)];
@@ -523,12 +549,47 @@ if (enforce && profile === 'core1a-spec') {
   }
 }
 
+if (enforce && profile === 'tablet-12.7') {
+  // The 12.7-inch tablet blueprint's promises, for every page whose blueprint declares them: the identity block is short enough that
+  // the first screen shows the work, the two columns start together, nothing overflows, and every control is a touch target.
+  const failures = [];
+  for (const [file, r] of Object.entries(report)) {
+    if (r.errors.length) failures.push(`${file}: page errors: ${r.errors.join(' | ')}`);
+    for (const vp of TABLET_12_7_VIEWPORTS) {
+      const row = r.viewports[vp.name];
+      if (!row) { failures.push(`${file} ${vp.name}: missing viewport result`); continue; }
+      if (row.horizontalOverflowPx !== 0) failures.push(`${file} ${vp.name}: page overflow ${row.horizontalOverflowPx}px`);
+      if (row.smallTargets !== 0) failures.push(`${file} ${vp.name}: ${row.smallTargets} controls below 48px`);
+      if (!row.tablet) continue;
+      const bp = blueprints.blueprints.find(b => `${b.id}@${b.version}` === row.blueprint);
+      const promise = bp.responsive_policy.tablet_12_7;
+      const landscape = vp.width > vp.height;
+      if (landscape && row.tablet.identityMaxPx > promise.identity_max_px + 12) {
+        failures.push(`${file} ${vp.name}: the identity block is ${row.tablet.identityMaxPx}px tall (${row.tablet.worstIdentity?.unit}); the blueprint allows ${promise.identity_max_px}px`);
+      }
+      if (vp.width >= bp.responsive_policy.expanded_min_px && row.tablet.supportOffsetMaxPx > 2) {
+        failures.push(`${file} ${vp.name}: the support column starts ${row.tablet.supportOffsetMaxPx}px away from the primary column's top`);
+      }
+    }
+  }
+  if (failures.length) {
+    console.error('tablet-12.7 enforcement failed:');
+    failures.forEach(failure => console.error(' - ' + failure));
+    process.exitCode = 1;
+  } else {
+    console.log('tablet-12.7 enforcement: PASS');
+  }
+}
+
 for (const [file, r] of Object.entries(report)) {
   const a = r.viewports[VIEWPORTS[0].name], p = r.viewports[VIEWPORTS.find(v => v.height > v.width)?.name || VIEWPORTS[1].name];
   console.log(`${file}: bp=${a.blueprint} slots=${a.slotMarkers} home=${JSON.stringify(a.homeLinks)} nav1=${a.navFirstLink} sticky=${a.headerFixedOrSticky} ` +
     `targets<48=${a.smallTargets}/${a.controls} minFont=${a.minFontPx} overflowL=${a.horizontalOverflowPx} overflowP=${p.horizontalOverflowPx} hoverOnly=${a.hoverOnlyHandlers} external=${a.externalRequests.length} ` +
     `svg=${a.svg} (a11y ${a.svgAccessible}) details=${a.disclosures} gated=${a.gatedDisclosures} attempts=${a.attemptFields} focusCSS=${a.focusStyles} print=${a.printStyles} ` +
     `stage68=${a.stageSupportLayout} metaMissing=${a.metadataMissingUnits} searchMissing=${a.searchCorpusMissingUnits} protectedSearch=${a.protectedSearchMatches} gatedOpen=${a.gatedOpenBeforeAttempt} landmarks=${JSON.stringify(a.landmarks)} js=${a.scripts} errors=${r.errors.length}`);
+  if (profile === 'tablet-12.7') {
+    for (const vp of TABLET_12_7_VIEWPORTS) console.log(`    tablet ${vp.name}: ${JSON.stringify(r.viewports[vp.name]?.tablet)}`);
+  }
   if (profile === 'core1a-spec') {
     console.log(`    core1a: contentWidth=${a.contentWidthPx} layout=${JSON.stringify(a.core1aLayout)} tables=${JSON.stringify(a.tableContainment)} controls=${JSON.stringify(a.controlGeometry)} anchors=${JSON.stringify(a.anchorSafety)} focus=${JSON.stringify(a.focusProbe)} learningStart=${JSON.stringify(a.learningStart)} constructionStart=${JSON.stringify(a.constructionStart)} interaction=${JSON.stringify(a.interaction)}`);
   }

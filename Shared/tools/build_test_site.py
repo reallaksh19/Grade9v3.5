@@ -213,6 +213,11 @@ def deployments_page() -> str:
                           f'<p class="g9-prov">Advisory, not a gap: the reference page has each of these. '
                           f'Blueprint: {esc(", ".join(r.get("blueprints", {}).values()))}.</p><ul>{advice_list}</ul></details>'
                           if advice_list else "")
+        hardest = r.get("toughest")
+        hardest_line = (f'<p>Toughest concept (what Core1A and the interactive page are built for): {esc(hardest["label"])} · '
+                        f'{esc(hardest["band"])} · {esc(hardest.get("microtopic_title") or hardest.get("microtopic_ref") or "no concept book")}'
+                        f'{" · the move learners miss: " + esc(hardest["crux_move"]["action"]) if hardest.get("crux_move") else ""}</p>'
+                        if hardest else "")
         waived = r.get("waived", [])
         waived_list = "".join(f'<li>{esc(w["core"])} · {esc(w["component"])} · {esc(w["record"])}: {esc(w["reason"])}</li>' for w in waived)
         waived_details = (f'<details><summary>{len(waived)} component(s) the records waive, with their reasons</summary>'
@@ -231,7 +236,7 @@ def deployments_page() -> str:
         body += card(f'product-{r["slug"]}', f'{r["slug"]} {r["title"]} product',
                      f'<h2>{esc(r["title"])}</h2><p class="g9-prov">Product {esc(r["slug"])} · '
                      f'DRAFT, {"with gaps" if r["gap_count"] else "no gaps reported, not reviewed"} · accepted: no · render {esc(r["render_digest"])}</p>'
-                     f'<p>{links}</p><p>Selected records: {esc(counts)}. Gaps: {esc(gaps)} ({r["gap_count"]} in total).</p>{gap_details}{advice_details}{waived_details}{quality_details}{empty}')
+                     f'<p>{links}</p><p>Selected records: {esc(counts)}. Gaps: {esc(gaps)} ({r["gap_count"]} in total).</p>{hardest_line}{gap_details}{advice_details}{waived_details}{quality_details}{empty}')
     for r in pages:
         body += card(f'interactive-{r["slug"]}', f'{r["slug"]} {r["title"]} {r["purpose"]} interactive',
                      f'<h2>{esc(r["title"])}</h2><p class="g9-prov">Interactive page {esc(r["slug"])} · DRAFT · accepted: no · '

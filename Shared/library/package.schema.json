@@ -3227,6 +3227,28 @@
           ],
           "description": "Question (exposure CORE1A) whose route exercises this unit's move."
         },
+        "bank_anchor_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "description": "A question of the product's bank (an owner-supplied or exam question, not a question of this package) that this unit works through as its worked example: the page shows the question as its owner wrote it with its verified route. Resolved when the product is built, so a package does not carry a copy of the question. Use it for the question the unit builds toward; use worked_anchor_ref for a question the package authors itself."
+        },
+        "crux_question_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "description": "Bank questions whose crux this unit builds: the move a learner is most likely to miss in each. The unit is shown as building toward them, takes the reference depth of the hardest of them, and the toughest question of a set must be named here by a unit of the concept it belongs to."
+        },
+        "crux_step_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The teaching_path step of this unit (one of its step_refs) that builds the move named questions in crux_question_refs turn on. The page marks that step, so a reader can see where the unit does the work the hard question needs."
+        },
         "misconception_indexes": {
           "type": "array",
           "items": {

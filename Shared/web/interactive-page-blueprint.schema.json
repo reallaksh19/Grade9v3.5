@@ -483,6 +483,51 @@
             "support_sticky": {
               "type": "boolean",
               "description": "Whether the support column stays in view while the primary column scrolls."
+            },
+            "tablet_12_7": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "reference_viewport",
+                "identity_max_px",
+                "figure_min_text_css_px"
+              ],
+              "description": "The 12.7-inch tablet as the design target: the viewport the layout is judged at and what must hold there. The portrait viewport is the same size turned.",
+              "properties": {
+                "reference_viewport": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "width",
+                    "height"
+                  ],
+                  "properties": {
+                    "width": {
+                      "type": "integer",
+                      "minimum": 800
+                    },
+                    "height": {
+                      "type": "integer",
+                      "minimum": 600
+                    }
+                  },
+                  "description": "Landscape CSS pixels of the reference tablet (1366 x 854)."
+                },
+                "identity_max_px": {
+                  "type": "integer",
+                  "minimum": 60,
+                  "description": "The tallest the identity block (title, provenance, metadata, difficulty) may be at the reference viewport, so the first screen shows the work and not the labels."
+                },
+                "figure_min_text_css_px": {
+                  "type": "integer",
+                  "minimum": 12,
+                  "description": "The smallest rendered height of a figure label at the reference viewport; an authored figure whose labels would render smaller is a gap for new authoring."
+                },
+                "support_scrolls_inside": {
+                  "type": "boolean",
+                  "description": "With support_sticky: a support column taller than the screen scrolls inside itself, so none of it is out of reach while it is pinned."
+                }
+              }
             }
           }
         },
@@ -707,6 +752,11 @@
           "type": "string",
           "minLength": 1,
           "description": "Dotted path to the record's difficulty band."
+        },
+        "compact_order": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Where the component comes in the single-column flow of a phone or a portrait tablet, where both columns are stacked: lower first. It lets the picture follow the question it belongs to and the ladder follow the attempt, whichever column each sits in."
         }
       }
     }

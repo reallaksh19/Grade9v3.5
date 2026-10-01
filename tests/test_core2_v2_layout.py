@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 import unittest
 from unittest.mock import patch
@@ -64,12 +65,26 @@ class Core2V2TabletRailContract(unittest.TestCase):
         self.assertIn('article[data-g9-role="CORE2"] .g9-split{display:grid;'
                       'grid-template-columns:minmax(0,42fr) minmax(0,58fr)', self.css)
 
-    def test_core1a_layout_is_its_own_blueprints_with_a_sticky_support_column(self):
+    def test_core1a_layout_is_its_own_blueprints_with_a_sticky_support_column_that_scrolls_inside_itself(self):
         core1a = next(bp for bp in self.registry["blueprints"] if "CORE1A" in bp["core_roles"])
         self.assertTrue(core1a["responsive_policy"]["support_sticky"])
+        self.assertTrue(core1a["responsive_policy"]["tablet_12_7"]["support_scrolls_inside"])
         self.assertIn('article[data-g9-role="CORE1A"] .g9-split{display:grid;'
-                      'grid-template-columns:minmax(0,68fr) minmax(0,32fr)', self.css)
-        self.assertIn('article[data-g9-role="CORE1A"] .g9-split:not(.g9-split-support-only)>.g9-col-support{position:sticky', self.css)
+                      'grid-template-columns:minmax(0,60fr) minmax(0,40fr)', self.css)
+        self.assertIn('article[data-g9-role="CORE1A"] .g9-split:not(.g9-split-support-only)>.g9-col-support{position:sticky;top:80px;'
+                      'max-height:calc(100vh - 96px);overflow-y:auto', self.css)
+
+    def test_below_the_breakpoint_one_column_follows_the_blueprints_compact_order_not_the_column_each_part_sits_in(self):
+        compact = self.css.split("@media (max-width:979px){")[1].split("@media print")[0]
+        self.assertIn('article[data-g9-role="CORE2"] .g9-split{display:flex;flex-direction:column}', compact)
+        self.assertIn(".g9-col,", compact)
+        self.assertIn("{display:contents}", compact)
+        orders = {cid: int(n) for cid, n in re.findall(r'\[data-g9-component="([A-Z_]+)"\]\{order:(\d+)\}', compact)}
+        self.assertLess(orders["STEM"], orders["REPRESENTATION"], "the picture follows the question it belongs to")
+        self.assertLess(orders["REPRESENTATION"], orders["ATTEMPT"])
+        self.assertLess(orders["ATTEMPT"], orders["HINT_LADDER"], "the ladder follows the attempt")
+        declared = {c["id"]: c["compact_order"] for c in self.blueprint["components"] if "compact_order" in c}
+        self.assertEqual({k: v for k, v in orders.items() if k in declared}, declared)
 
     def test_every_blueprint_slot_has_a_column_and_below_the_breakpoint_nothing_is_a_grid(self):
         for bp in self.registry["blueprints"]:

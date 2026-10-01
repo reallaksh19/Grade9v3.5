@@ -315,6 +315,99 @@ class TestDeploy(unittest.TestCase):
         self.assertIn("Roles with no records selected: CORE2", build_test_site.deployments_page())
 
 
+class TestToughestConcept(unittest.TestCase):
+    """The concept book is built for the hardest question, not only named after it."""
+
+    def setUp(self):
+        self.fixture = Fixture()
+        self.addCleanup(self.fixture.cleanup)
+        self.package_path = self.fixture.root / "package.v1.json"
+
+    def deploy(self):
+        return deploy_test.deploy_product(self.fixture.manifest)
+
+    def unit_for(self, receipt: dict, **overrides) -> dict:
+        """A construction unit of the concept the hardest question belongs to, built from that concept's own steps."""
+        package = json.loads(self.package_path.read_text(encoding="utf-8"))
+        brief = receipt["toughest"]
+        microtopic = next(m for m in package["microtopics"] if m["id"] == brief["microtopic_ref"])
+        steps = [step["id"] for step in microtopic["teaching_path"]][:4]
+        unit = {"id": "CU-FX-HARD-1", "decision": "Build the idea the hardest question turns on", "step_refs": steps,
+                "representation_ref": microtopic["representation_refs"][-1],
+                "independent_checks": [{"statement": f"check {n}", "role": role}
+                                       for n, role in enumerate(("CHECK", "APPLY", "CONNECT"), 1)],
+                "bank_anchor_ref": brief["question_ref"], "crux_question_refs": [brief["question_ref"]],
+                "crux_step_ref": steps[-1], **overrides}
+        microtopic["construction_units"] = [unit]
+        self.package_path.write_text(json.dumps(package), encoding="utf-8")
+        return unit
+
+    def toughest_gaps(self, receipt: dict) -> list[str]:
+        return [f"{g.get('component')}: {g['detail']}" for g in receipt["gaps"] if g["duty"] == "AUTHOR_TOUGHEST_CONCEPT"]
+
+    def test_the_deploy_names_the_toughest_concept_and_a_book_that_never_builds_toward_it_is_a_gap(self):
+        receipt = self.deploy()
+        brief = receipt["toughest"]
+        self.assertEqual((brief["question_ref"], brief["band"]), ("Q-OWNER-FX-01", "D3"))
+        self.assertTrue(brief["microtopic_ref"] and brief["crux_move"]["action"])
+        gaps = self.toughest_gaps(receipt)
+        self.assertEqual(len(gaps), 1, gaps)
+        self.assertIn("Q1 is the toughest question in this set", gaps[0])
+        self.assertIn("crux_question_refs", gaps[0])
+        self.assertIn("QUESTION_BRIDGE", receipt["authoring"])
+        self.assertIn("Toughest concept", build_test_site.deployments_page())
+
+    def test_a_unit_that_builds_toward_it_and_works_the_question_itself_closes_the_gap_and_shows_why(self):
+        receipt = self.deploy()
+        self.unit_for(receipt)
+        receipt = self.deploy()
+        self.assertEqual(self.toughest_gaps(receipt), [])
+        page = (deploy_test.PUBLIC_TEST / "products" / self.fixture.slug / "core1a.html").read_text(encoding="utf-8")
+        self.assertIn('data-g9-component="QUESTION_BRIDGE"', page)
+        self.assertIn("the hardest question in this set", page)
+        self.assertIn('href="core2.html#Q-OWNER-FX-01"', page)
+        self.assertIn("data-g9-crux-step", page)
+        self.assertRegex(page, r'data-g9-anchor-source>Q1 · Owner-supplied question, verbatim')
+        depth = [g["detail"] for g in receipt["gaps"] if g.get("component") == "CONSTRUCTION_STEPS"]
+        self.assertEqual(depth, [], "four steps meet the reference for a D3 question")
+
+    def test_the_unit_takes_the_depth_of_the_hard_question_it_builds_toward(self):
+        receipt = self.deploy()
+        unit = self.unit_for(receipt)
+        package = json.loads(self.package_path.read_text(encoding="utf-8"))
+        microtopic = next(m for m in package["microtopics"] if m["id"] == receipt["toughest"]["microtopic_ref"])
+        microtopic["construction_units"][0]["step_refs"] = unit["step_refs"][:3]
+        microtopic["construction_units"][0]["crux_step_ref"] = unit["step_refs"][2]
+        self.package_path.write_text(json.dumps(package), encoding="utf-8")
+        details = [g["detail"] for g in self.deploy()["gaps"] if g.get("component") == "CONSTRUCTION_STEPS"]
+        self.assertEqual(len(details), 1, details)
+        self.assertIn("3 of the 4 steps the reference page has for a D3 question", details[0])
+
+    def test_naming_the_question_is_not_enough_the_unit_must_work_it_and_point_at_its_step(self):
+        receipt = self.deploy()
+        self.unit_for(receipt, bank_anchor_ref=None, worked_anchor_ref=None)
+        gaps = self.toughest_gaps(self.deploy())
+        self.assertEqual(len(gaps), 1, gaps)
+        self.assertIn("its worked example is not Q1", gaps[0])
+        self.unit_for(receipt, crux_step_ref="NOT-A-STEP")
+        details = [g["detail"] for g in self.deploy()["gaps"] if g["duty"] == "AUTHOR_QUESTION_BRIDGE"]
+        self.assertEqual(len(details), 1, details)
+        self.assertIn("crux_step_ref", details[0])
+
+    def test_a_bank_ref_that_names_no_question_of_the_bank_is_a_gap_that_says_which(self):
+        receipt = self.deploy()
+        self.unit_for(receipt, bank_anchor_ref="Q-NOT-IN-THE-BANK", crux_question_refs=["Q-ALSO-NOT"])
+        gaps = {g["duty"]: g["detail"] for g in self.deploy()["gaps"] if g["duty"] in ("AUTHOR_WORKED_ANCHOR", "AUTHOR_QUESTION_BRIDGE")}
+        self.assertIn("Q-NOT-IN-THE-BANK is not a question of this product's bank", gaps["AUTHOR_WORKED_ANCHOR"])
+        self.assertIn("Q-ALSO-NOT", gaps["AUTHOR_QUESTION_BRIDGE"])
+
+    def test_an_official_product_is_judged_at_its_floor_and_is_not_asked_for_this(self):
+        from Shared.tools import render_core
+        manifest = REPO / "products/physics/phy-kin-2d-motion.manifest.json"
+        _pages, gaps, _digest, _advisories, _waived = render_core.build_report(manifest, "PAGES")
+        self.assertEqual([g for g in gaps if g["duty"] in ("AUTHOR_TOUGHEST_CONCEPT", "AUTHOR_QUESTION_BRIDGE")], [])
+
+
 class TestPagesCommand(unittest.TestCase):
     """`deploy_test.py pages` is what a person runs after build_web_data.py: it must refresh the Pages mirror too."""
 

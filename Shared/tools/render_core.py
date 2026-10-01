@@ -39,7 +39,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
 
-from Shared.tools import core2_v2, learner_metadata, owner_bank, product_manifest  # noqa: E402
+from Shared.tools import core2_v2, learner_metadata, owner_bank, product_manifest, toughest_concept  # noqa: E402
 from Shared.tools import web_blueprint_contract as blueprints_api  # noqa: E402
 
 BLUEPRINTS = REPO / "Shared/web/interactive-page-blueprints.v1.json"
@@ -85,6 +85,14 @@ class Ctx:
     figure_instances: dict[str, int] = field(default_factory=dict)
     source_items: dict[str, dict] = field(default_factory=dict)
     source_checks: dict[str, dict] = field(default_factory=dict)
+    _toughest: list = field(default_factory=list, repr=False)
+
+    def toughest(self) -> dict | None:
+        """The toughest concept of the selected questions (see Shared/tools/toughest_concept.py), worked out once."""
+        if not self._toughest:
+            self._toughest.append(toughest_concept.derive(self.selection_rows.get("core2", []),
+                                                          self.selection_rows.get("microtopics", [])))
+        return self._toughest[0]
 
     def gap(self, duty: str, record: str, detail: str, role: str, component: str | None = None) -> None:
         row = {"duty": duty, "record": record, "detail": detail, "core": role,
@@ -156,6 +164,67 @@ def _scope_svg_ids(svg: str, scope: str) -> str:
     return out
 
 
+def _number(value: str | None, default: float | None = None) -> float | None:
+    found = re.match(r"\s*(-?\d+(?:\.\d+)?)", value or "")
+    return float(found.group(1)) if found else default
+
+
+def _figure_text_findings(svg: str, column_px: float, minimum_px: float) -> list[str]:
+    """What would make an authored figure's labels unreadable on the reference tablet.
+
+    The figure fills its column, so its scale is the column's width over the viewBox's width; a label of `size` units renders at
+    size x scale CSS pixels. A label whose estimated extent leaves the viewBox is cut off at the figure's edge."""
+    head = re.search(r"<svg\b[^>]*>", svg, re.I)
+    box = re.search(r'viewBox\s*=\s*"([^"]+)"', head.group(0)) if head else None
+    numbers = re.findall(r"-?\d+(?:\.\d+)?", box.group(1)) if box else []
+    if len(numbers) != 4 or float(numbers[2]) <= 0:
+        return []
+    left, width = float(numbers[0]), float(numbers[2])
+    scale = column_px / width
+    root_size = _number(re.search(r'font-size\s*=\s*"([^"]+)"', head.group(0)).group(1) if re.search(r'font-size\s*=\s*"([^"]+)"', head.group(0)) else None, 16.0)
+    smallest: tuple[float, str] | None = None
+    outside: list[str] = []
+    for found in re.finditer(r"<text\b([^>]*)>(.*?)</text>", svg, re.S | re.I):
+        attrs, inner = found.group(1), re.sub(r"<[^>]+>", "", found.group(2)).strip()
+        if not inner:
+            continue
+        size_text = (re.search(r'font-size\s*=\s*"([^"]+)"', attrs) or re.search(r"font-size\s*:\s*([^;\"]+)", attrs))
+        size = _number(size_text.group(1) if size_text else None, root_size)
+        if size and (smallest is None or size < smallest[0]):
+            smallest = (size, inner)
+        x = _number((re.search(r'\sx\s*=\s*"([^"]+)"', attrs) or [None, None])[1])
+        if x is None or not size:
+            continue
+        bold = bool(re.search(r'font-weight\s*[=:]\s*"?(bold|[6-9]00)', attrs, re.I))
+        extent = len(inner) * size * (0.58 if bold else 0.52)
+        anchor = (re.search(r'text-anchor\s*[=:]\s*"?(\w+)', attrs) or [None, "start"])[1]
+        low = x - (extent if anchor == "end" else extent / 2 if anchor == "middle" else 0)
+        high = low + extent
+        if low < left - 4 or high > left + width + 4:
+            outside.append(inner[:28])
+    out: list[str] = []
+    if smallest and smallest[0] * scale < minimum_px - 0.05:
+        need = minimum_px / scale
+        out.append(f"the smallest label ({smallest[1][:24]!r}, {smallest[0]:g} units) renders at {smallest[0] * scale:.1f} px on a "
+                   f"12.7-inch tablet, under the {minimum_px:g} px floor: draw labels at least {need:.0f} units high in a viewBox "
+                   f"no wider than {column_px / minimum_px * min(smallest[0], 99):.0f} units, or both")
+    if outside:
+        out.append(f"label(s) run outside the viewBox and are cut off at the figure's edge: {', '.join(repr(t) for t in outside[:3])}")
+    return out
+
+
+def _figure_column_px(ctx: Ctx, role: str) -> tuple[float, float] | None:
+    """(the support column's usable width, the label floor) in CSS px on the blueprint's reference tablet, if it declares one."""
+    bp = blueprint_of(ctx, role)
+    policy = ((bp or {}).get("responsive_policy") or {})
+    tablet = policy.get("tablet_12_7")
+    if not tablet or not policy.get("support_fraction"):
+        return None
+    reference = tablet["reference_viewport"]["width"]
+    inner = min(reference, 1380) - 108 - 22        # main and article padding, and the gap between the columns
+    return policy["support_fraction"] * inner - 26, float(tablet["figure_min_text_css_px"])
+
+
 def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, first_stage_only: bool = False,
            allowed: list[str] | None = None) -> str:
     """Mount a representation's authored SVG, or record the gap (never a stand-in)."""
@@ -187,6 +256,11 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
     if not (named and described):
         ctx.gap("BUILD_SCENE", rep_id, "authored SVG lacks an accessible name and title/description pair", role)
         return ""
+    column = _figure_column_px(ctx, role) if ctx.held_to == "REFERENCE" else None
+    if column:
+        for detail in _figure_text_findings(svg, *column):
+            ctx.gap("AUTHOR_FIGURE_TEXT", rep_id, detail, role,
+                    component="STAGED_VISUAL" if role == "CORE1A" else "REPRESENTATION")
     instance_base = re.sub(r"[^A-Za-z0-9_-]+", "-", f"{role}-{record}-{rep_id}").strip("-")
     instance_no = ctx.figure_instances.get(instance_base, 0) + 1
     ctx.figure_instances[instance_base] = instance_no
@@ -831,8 +905,8 @@ def _core1a_bucket_orientation(ctx: Ctx) -> str:
 
 def _core1a_section_route(m: dict) -> str:
     units = m.get("construction_units") or []
-    if not units:
-        return ""
+    if len(units) < 2:
+        return ""          # one section has nowhere to route to: its own title is already the heading below
     links = "".join(
         f'<li><a href="#{esc(unit["id"])}">{esc(unit.get("decision") or f"Construction {index}")}</a></li>'
         for index, unit in enumerate(units, 1)
@@ -952,8 +1026,11 @@ def core1(ctx: Ctx, m: dict) -> str:
     })
 
 
-def _core1a_worked_anchor(question: dict) -> str:
-    """Render WATCH ONE from governed answer structure without inventing missing explanation."""
+def _core1a_worked_anchor(question: dict, ctx: Ctx | None = None, owner: bool = False) -> str:
+    """Render WATCH ONE from governed answer structure without inventing missing explanation.
+
+    `owner` is a question of the product's bank worked through as the unit's example: it is shown as its owner wrote it,
+    under its own identity and custody line."""
     answer = question.get("answer") or {}
     route = answer.get("reasoning_route") or []
     if route:
@@ -967,12 +1044,36 @@ def _core1a_worked_anchor(question: dict) -> str:
         working = f'<ol class="g9-watch-steps">{steps}</ol>'
     else:
         working = items(answer.get("reasoning"), True)
+    stem = question.get("stem")
+    head = (f'<p class="g9-prov" data-g9-anchor-source>{esc(_identity(question))} · {esc(_custody(question))}</p>'
+            if owner else "")
     return (
-        para(question.get("stem"))
+        head
+        + (f'<p class="g9-lines">{question_text(ctx, question, "stem", stem, "CORE1A")}</p>' if ctx and stem else para(stem))
         + working
         + block("worked_result", para(answer.get("summary")), title="Result")
         + block("worked_check", para(answer.get("check")), title="Check")
     )
+
+
+def _core1a_question_bridge(ctx: Ctx, unit: dict, questions: list[dict], toughest: dict | None) -> str:
+    """Say which source question a unit builds toward, and the move learners most often miss in it."""
+    if not questions:
+        return ""
+    selected = "CORE2" in product_manifest.selected_output_roles(ctx.manifest)
+    rows = []
+    for question in questions:
+        difficulty = (((question.get("extensions") or {}).get(toughest_concept.ANALYSIS_KEY) or {}).get("difficulty") or {})
+        move = toughest_concept.crux_move(question) or {}
+        hardest = bool(toughest and toughest["question_ref"] == question["id"])
+        link = (f' <a class="g9-bridge-link" data-g9-practice-link data-g9-question-ref="{esc(question["id"])}" href="core2.html#{esc(question["id"])}">'
+                f'Try it in Core2</a>') if selected else ""
+        rows.append(
+            f'<li data-g9-bridge-question="{esc(question["id"])}"><strong>{esc(toughest_concept.label_of(question))}</strong>'
+            f'{" · " + esc(difficulty["band"]) if difficulty.get("band") else ""}'
+            f'{" · the hardest question in this set" if hardest else ""}'
+            f'{"<br>The move learners miss: " + esc(move["action"]) if move.get("action") else ""}{link}</li>')
+    return block("question_bridge", "<ul>" + "".join(rows) + "</ul>", title="This unit builds toward")
 
 
 def _core1a_relation_matrix(ctx: Ctx, m: dict, refs: list[str] | None = None) -> str:
@@ -1066,16 +1167,23 @@ def core1a(ctx: Ctx, m: dict) -> str:
     exit_task = m.get("exit_task") or {}
 
     waivers = blueprints_api.waivers_of(m)
+    toughest = ctx.toughest() if ctx.held_to == "REFERENCE" else None
 
     def part(cid: str, body: str, record: str = m["id"], items: int | None = None, unit: str | None = None) -> str:
         return component(ctx, "CORE1A", cid, body, record, items=items, unit=unit, waivers=waivers)
 
     identity = component_body(ctx, "CORE1A", {
         "CONCEPT_HEADER": part("CONCEPT_HEADER", f"<h2>{esc(m['title'])}</h2>" + metadata_strip(ctx, "CORE1A", m)),
-        "MODEL_CONTRACT": part("MODEL_CONTRACT", block("entry_assumptions", items(m.get("entry_assumptions")) + _prereqs(ctx, m),
-                                                       title="You need")),
         "SECTION_ROUTE": part("SECTION_ROUTE", block("section_route", _core1a_section_route(m), title="Sections")),
     }, "identity")
+
+    def opening() -> dict[str, str]:
+        """What opens the construction, once per concept: the key step, then what the learner must already hold."""
+        return {
+            "KEY_STEP": part("KEY_STEP", block("inferential_jump", para(m["inferential_jump"]), title="The key step")),
+            "MODEL_CONTRACT": part("MODEL_CONTRACT", block("entry_assumptions", items(m.get("entry_assumptions")) + _prereqs(ctx, m),
+                                                           title="You need")),
+        }
     closure = component_body(ctx, "CORE1A", {
         "EXIT_RECALL": part("EXIT_RECALL", (
             block("exit_task", para(exit_task.get("prompt")), title="Try it with less support")
@@ -1091,13 +1199,18 @@ def core1a(ctx: Ctx, m: dict) -> str:
     head = compose(ctx, "CORE1A", {"identity": identity})
 
     if not units:
+        if toughest and m["id"] == toughest["microtopic_ref"]:
+            _toughest_unit_gaps(ctx, m, units, toughest)
         primary, support = _core1a_path_bridge(ctx, m, steps)
+        opened = opening()
         return head + compose(ctx, "CORE1A", {
-            "construction": part("KEY_STEP", block("inferential_jump", para(m["inferential_jump"]), title="The key step")) + primary,
+            "construction": opened["KEY_STEP"] + opened["MODEL_CONTRACT"] + primary,
             "repair_closure": support + closure,
         })
 
     rows = ""
+    bank_questions = [q for q in ctx.bank if isinstance(q, dict) and q.get("id")]
+    bank_by_id = {q["id"]: q for q in bank_questions}
     try:       # the concept's difficulty, as the metadata strip already projects it
         concept_difficulty = next(item["label"] for item in learner_metadata.project("CORE1A", m, ctx.packages)["items"]
                                   if item["kind"] == "concept-difficulty")
@@ -1107,16 +1220,39 @@ def core1a(ctx: Ctx, m: dict) -> str:
     for n, u in enumerate(units):
         decision = "" if u.get("decision_from") == "inferential_jump" else u.get("decision", "")
         step_items = [steps[sid] for sid in u["step_refs"] if sid in steps]
+        crux_step = u.get("crux_step_ref") if u.get("crux_question_refs") else None
         step_html = "".join(
-            f'<li data-g9-step="{esc(step["id"])}"><strong>{esc(step["action"])}</strong>'
+            f'<li data-g9-step="{esc(step["id"])}"{" data-g9-crux-step" if step["id"] == crux_step else ""}>'
+            + ('<span class="g9-crux-tag">The step the hard question turns on</span>' if step["id"] == crux_step else "")
+            + f'<strong>{esc(step["action"])}</strong>'
             f'<br><em>Why valid:</em> {esc(step["why_valid"])}'
             f'<br><em>Result:</em> {esc(step["output"])}</li>'
             for step in step_items
         )
-        anchor_q = questions.get(u.get("worked_anchor_ref") or "")
-        if not anchor_q:
-            ctx.gap("AUTHOR_WORKED_ANCHOR", u["id"], "no worked anchor", "CORE1A")
-        anchor_html = _core1a_worked_anchor(anchor_q) if anchor_q else ""
+        bank_ref = u.get("bank_anchor_ref")
+        if bank_ref:
+            anchor_q = bank_by_id.get(bank_ref)
+            if not anchor_q:
+                ctx.gap("AUTHOR_WORKED_ANCHOR", u["id"], f"bank_anchor_ref {bank_ref} is not a question of this product's bank "
+                        f"({', '.join(sorted(bank_by_id)[:4])}...)", "CORE1A", component="WORKED_EXAMPLE")
+            anchor_html = _core1a_worked_anchor(anchor_q, ctx, owner=True) if anchor_q else ""
+        else:
+            anchor_q = questions.get(u.get("worked_anchor_ref") or "")
+            if not anchor_q:
+                ctx.gap("AUTHOR_WORKED_ANCHOR", u["id"], "no worked anchor", "CORE1A")
+            anchor_html = _core1a_worked_anchor(anchor_q) if anchor_q else ""
+        crux_refs = [ref for ref in u.get("crux_question_refs") or [] if isinstance(ref, str)]
+        crux_questions = [bank_by_id[ref] for ref in crux_refs if ref in bank_by_id]
+        for ref in crux_refs:
+            if ref not in bank_by_id:
+                ctx.gap("AUTHOR_QUESTION_BRIDGE", u["id"], f"crux_question_refs names {ref}, which is not a question of this "
+                        "product's bank", "CORE1A", component="QUESTION_BRIDGE")
+        unit_band = toughest_concept.crux_band(u, crux_questions)   # the reference depth of the hardest question it builds toward
+        if crux_questions and u.get("crux_step_ref") not in (u.get("step_refs") or []):
+            ctx.gap("AUTHOR_QUESTION_BRIDGE", u["id"],
+                    "this unit builds toward " + ", ".join(toughest_concept.label_of(q) for q in crux_questions)
+                    + ": set crux_step_ref to the one of its step_refs that builds the move the question turns on", "CORE1A",
+                    component="QUESTION_BRIDGE")
         check_rows = [c for c in u.get("independent_checks") or [] if c.get("statement")]
         checks = [c["statement"] for c in check_rows]
         if not checks:
@@ -1131,24 +1267,23 @@ def core1a(ctx: Ctx, m: dict) -> str:
         relation_matrix = (_core1a_relation_matrix(ctx, m, unit_relations) if unit_relations is not None
                            else (_core1a_relation_matrix(ctx, m) if n == 0 else ""))
 
-        def unit_part(cid: str, body: str, items: int | None = None) -> str:
-            return part(cid, body, record=u["id"], items=items, unit=u["id"])
+        def unit_part(cid: str, body: str, items: int | None = None, band: str | None = None) -> str:
+            return component(ctx, "CORE1A", cid, body, u["id"], items=items, unit=u["id"], band=band, waivers=waivers)
 
         figure_html = figure(ctx, u.get("representation_ref"), "TEACHING", "CORE1A", u["id"])
         # The unit card holds the unit's own components in blueprint order; the key step precedes the first card.
         card_parts = {
             "UNIT_HEADER": unit_part("UNIT_HEADER", unit_head),
+            **(opening() if n == 0 else {}),
+            "QUESTION_BRIDGE": unit_part("QUESTION_BRIDGE", _core1a_question_bridge(ctx, u, crux_questions, ctx.toughest())),
             "CONSTRUCTION_STEPS": unit_part("CONSTRUCTION_STEPS",
                                             block("construction", f"<ol>{step_html}</ol>" if step_html else ""),
-                                            items=len(step_items)),
+                                            items=len(step_items), band=unit_band),
             "EQUATIONS": unit_part("EQUATIONS", block("equation_matrix", relation_matrix, title="Equations and validity")),
             "WORKED_EXAMPLE": unit_part("WORKED_EXAMPLE", block("worked_anchor", anchor_html, title="Watch one")),
         }
         card = component_body(ctx, "CORE1A", card_parts, "construction")
-        construction = (
-            (part("KEY_STEP", block("inferential_jump", para(m["inferential_jump"]), title="The key step")) if n == 0 else "")
-            + f'<section id="{esc(u["id"])}" class="g9-cu" data-g9-cu="{esc(u["id"])}">{card}</section>'
-        )
+        construction = f'<section id="{esc(u["id"])}" class="g9-cu" data-g9-cu="{esc(u["id"])}">{card}</section>'
         support_label = decision or f"Construction {n + 1}"
         trap = (block("wrong_path", items(row["wrong_idea"] for row in wrong), title="A tempting wrong path")
                 + block("diagnose", items(row["diagnostic_prompt"] for row in wrong), title="Diagnose")
@@ -1166,12 +1301,38 @@ def core1a(ctx: Ctx, m: dict) -> str:
         rows += compose(ctx, "CORE1A", {
             "construction": construction,
             "representation": component_body(ctx, "CORE1A", {
-                "STAGED_VISUAL": unit_part("STAGED_VISUAL", figure_html, items=_stages_of(figure_html)),
+                "STAGED_VISUAL": unit_part("STAGED_VISUAL", figure_html, items=_stages_of(figure_html), band=unit_band),
             }, "representation"),
             "repair_closure": support,
         })
 
+    if toughest and m["id"] == toughest["microtopic_ref"]:
+        _toughest_unit_gaps(ctx, m, units, toughest)
     return head + rows + closing
+
+
+def _toughest_unit_gaps(ctx: Ctx, m: dict, units: list[dict], toughest: dict) -> None:
+    """New authoring must build the toughest question's concept, not only name it.
+
+    The unit that builds it names the question in crux_question_refs, works it through as its example (bank_anchor_ref), and
+    takes the depth of the question's band (the steps and the stages), so the concept book is built for the question a
+    learner is most likely to fail."""
+    ref, label = toughest["question_ref"], toughest["label"]
+    move = (toughest.get("crux_move") or {}).get("action")
+    why = (f"{label} is the toughest question in this set ({toughest['band']}, {toughest['score']}/10, "
+           f"{toughest['conceptual']}/4 conceptual) and belongs to this concept")
+    builders = [u for u in units if ref in (u.get("crux_question_refs") or [])]
+    if not builders:
+        ctx.gap("AUTHOR_TOUGHEST_CONCEPT", m["id"],
+                f"{why}, but no construction unit builds toward it: name {ref} in crux_question_refs on the unit whose steps lead to "
+                + (f"the move a learner misses ({move!r}), " if move else "the move the question turns on, ")
+                + f"and set that unit's bank_anchor_ref to {ref}", "CORE1A", component="QUESTION_BRIDGE")
+        return
+    for u in builders:
+        if u.get("bank_anchor_ref") != ref:
+            ctx.gap("AUTHOR_TOUGHEST_CONCEPT", u["id"],
+                    f"{why}; this unit builds toward it but its worked example is not {label}: set bank_anchor_ref to {ref} so the "
+                    "unit walks through the question itself", "CORE1A", component="WORKED_EXAMPLE")
 
 
 def core1b(ctx: Ctx, m: dict) -> str:
@@ -1736,6 +1897,7 @@ CSS = """
 --soft:#141c29;--pill-bg:#262f5a;--pill-fg:#c3c9ff;--src-bg:#12301f;--src-fg:#6ee7b7;--info-bg:#14263d;--info-line:#3b6db3;--info-fg:#b8c9de;--warn-bg:#2b1620;--warn-line:#6b3045;--warn-fg:#f3b6c4;--ok-bg:#10281d;--ok-line:#1f6b44;--ok-fg:#b7efcf}
 html{font-size:calc(var(--g9-type-body) * var(--g9-zoom))}body{margin:0;background:var(--bg);color:var(--fg);font:1rem/1.6 system-ui,sans-serif;overflow-wrap:break-word}
 header[data-g9-shell-header]{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px var(--g9-space);background:var(--card);border-bottom:1px solid var(--line)}
+a{color:var(--accent)}
 header a,header button,button,summary,nav a{min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);padding:10px 14px;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg);font:inherit;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;touch-action:manipulation}
 nav[data-g9-breadcrumb]{display:flex;gap:8px;flex-wrap:wrap;padding:8px var(--g9-space)}
 main{max-width:var(--g9-content-max);margin:0 auto;padding:var(--g9-space);box-sizing:border-box}
@@ -1822,11 +1984,16 @@ article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-
 .g9-why{margin-top:6px}.g9-why p{margin:.2rem 0 .6rem;color:var(--muted)}
 .g9-dgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
 .g9-dcell{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:.85rem;color:var(--muted)}.g9-dcell b{display:block;color:var(--fg);font-size:1rem}
-.g9-c-stem [data-g9-block=stem] p{margin:.1rem 0;font-size:1.06rem;line-height:1.62;font-weight:560;white-space:pre-line}
+.g9-c-stem [data-g9-block=stem] p{margin:.1rem 0;font-size:1.12rem;line-height:1.58;font-weight:560;white-space:pre-line}
 .g9-c-callout-info{border-left:4px solid var(--info-line);background:var(--info-bg);padding:10px 14px;border-radius:0 12px 12px 0;color:var(--info-fg)}
 .g9-c-callout-warn{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:12px;padding:10px 14px;color:var(--warn-fg)}
 .g9-c-callout-info h4,.g9-c-callout-warn h4{margin:0 0 .2rem;font-size:1rem}.g9-c-callout-warn h4{color:var(--warn-fg)}
 .g9-c-callout-info ul{margin:.2rem 0;padding-left:1.2rem}.g9-c-callout-info p,.g9-c-callout-warn p{margin:.1rem 0}
+.g9-bridge-link{color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.g9-crux-tag{display:inline-block;margin:0 0 4px;padding:1px 10px;border-radius:999px;background:var(--pill-bg);color:var(--pill-fg);font-size:.85rem;font-weight:800}
+.g9-c-step-cards [data-g9-block=construction] ol>li[data-g9-crux-step]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.g9-lines{white-space:pre-line}
+.g9-cu-support>h3{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .g9-c-attempt .g9-attempt{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--soft)}
 .g9-answer-options{display:grid;gap:8px;counter-reset:g9opt}
 .g9-answer-option{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:6px 12px}
@@ -1835,7 +2002,8 @@ article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-
 .g9-c-visual-card,.g9-c-staged-visual{border:1px solid var(--line);border-radius:16px;background:var(--soft);padding:10px 12px 12px}
 .g9-card-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:6px}.g9-card-head strong{font-size:.9rem}
 .g9-c-visual-card figure,.g9-c-staged-visual figure{margin:0}
-.g9-c-visual-card figure svg,.g9-c-staged-visual figure svg{display:block;width:100%;height:auto;max-height:280px;max-width:100%}
+.g9-c-visual-card figure svg,.g9-c-staged-visual figure svg{display:block;width:100%;height:auto;max-width:100%}
+.g9-c-visual-card figure svg{max-height:min(48vh,440px)}.g9-c-staged-visual figure svg{max-height:min(42vh,360px)}
 .g9-c-ladder .g9-block>h4{margin:.9rem 0 .2rem;font-size:.85rem;color:var(--muted)}
 .g9-rung-map,.g9-c-ladder [data-g9-ladder]{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:8px}
 .g9-rung-map>li{border:1px dashed var(--line);border-radius:12px;padding:9px 13px;color:var(--muted)}
@@ -1895,23 +2063,55 @@ article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-
 .g9-c-chips ul,.g9-c-chips ol{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:.3rem 0;padding:0}
 .g9-c-chips li{margin:0}
 .g9-c-chips a{border:1px solid var(--line);border-radius:999px;background:var(--card);padding:6px 14px;min-height:48px;display:inline-flex;align-items:center;text-decoration:none;color:var(--fg)}
+/* 12.7-inch tablet: the identity block is a title row and a chip row, so the first screen shows the work and not the labels */
+article[data-g9-role=CORE2]>.slot-identity,article[data-g9-role=CORE1A]>.slot-identity{display:flex;flex-wrap:wrap;align-items:center;gap:4px 16px;padding:0 0 8px;margin-bottom:12px}
+article[data-g9-role=CORE2]>.slot-identity>.g9-component,article[data-g9-role=CORE1A]>.slot-identity>.g9-component{display:contents}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-block=source_identity]{order:1;flex:1 1 16rem;display:flex;align-items:baseline;flex-wrap:wrap;gap:0 14px;min-width:0}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-block=source_identity] h2,article[data-g9-role=CORE1A]>.slot-identity h2{margin:0}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-block=source_identity] .g9-prov{margin:0}
+article[data-g9-role=CORE2]>.slot-identity .g9-why-toggle{order:2;margin:0;padding:2px 0;min-height:var(--g9-touch-min)}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-meta-strip],article[data-g9-role=CORE1A]>.slot-identity [data-g9-meta-strip]{order:3;flex:1 0 100%;margin:0;gap:6px}
+article[data-g9-role=CORE2]>.slot-identity .g9-why{order:4;flex:1 0 100%}
+article[data-g9-role=CORE1A]>.slot-identity h2{order:1;flex:1 1 auto}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-block=section_route]{order:4;flex:1 0 100%;display:flex;align-items:center;gap:6px 12px;flex-wrap:wrap}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-block=section_route] h4{margin:0;white-space:nowrap}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] ol{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] li{margin:0}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] a{display:inline-block;width:auto;max-width:24rem;padding:4px 14px;border-radius:999px;line-height:38px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-meta-item],article[data-g9-role=CORE1A]>.slot-identity [data-g9-meta-item]{padding:2px 10px;line-height:1.35}
 """
 
 
 def layout_css(registry: dict) -> str:
-    """The expanded-width layout of every blueprint, written from the blueprint's own columns and fractions."""
+    """The layout of every blueprint, written from the blueprint's own columns, fractions and component order.
+
+    Expanded: the primary and support columns side by side (the support column pinned, and scrolling inside itself when it is
+    taller than the screen, where the blueprint says so). Narrower: one column in the blueprint's compact order, whichever
+    column each component sits in, so a picture follows the question it belongs to and the ladder follows the attempt."""
     out = []
     for bp in registry.get("blueprints") or []:
         rp = bp.get("responsive_policy") or {}
         if rp.get("expanded") != "STAGE_SUPPORT" or not rp.get("support_fraction"):
             continue
-        scope = f'article[data-g9-role="{bp["core_roles"][0]}"]'
+        role = bp["core_roles"][0]
+        scope = f'article[data-g9-role="{role}"]'
         columns = f'minmax(0,{rp["primary_fraction"] * 100:g}fr) minmax(0,{rp["support_fraction"] * 100:g}fr)'
         wide = (f'{scope} .g9-split{{display:grid;grid-template-columns:{columns};gap:22px;align-items:start}}'
                 f'{scope} .g9-split-primary-only,{scope} .g9-split-support-only{{grid-template-columns:minmax(0,1fr)}}')
         if rp.get("support_sticky"):
-            wide += f'{scope} .g9-split:not(.g9-split-support-only)>.g9-col-support{{position:sticky;top:96px}}'
-        out.append(f'@media (min-width:{rp.get("expanded_min_px", 1100)}px){{{wide}}}')
+            pinned = "position:sticky;top:80px"
+            if (rp.get("tablet_12_7") or {}).get("support_scrolls_inside"):
+                pinned += ";max-height:calc(100vh - 96px);overflow-y:auto;overscroll-behavior:contain"
+            wide += f'{scope} .g9-split:not(.g9-split-support-only)>.g9-col-support{{{pinned}}}'
+        expanded_min = rp.get("expanded_min_px", 1100)
+        out.append(f'@media (min-width:{expanded_min}px){{{wide}}}')
+        order = [(c["id"], c["compact_order"]) for c in blueprints_api.components(bp) if isinstance(c.get("compact_order"), int)]
+        if order:
+            flat = (f'{scope} .g9-split{{display:flex;flex-direction:column}}'
+                    f'{scope} .g9-split .g9-col,{scope} .g9-split .blueprint-slot,{scope} .g9-split .g9-cu,'
+                    f'{scope} .g9-split .g9-cu-support{{display:contents}}')
+            flat += "".join(f'{scope} [data-g9-component="{cid}"]{{order:{n}}}' for cid, n in order)
+            out.append(f'@media (max-width:{expanded_min - 1}px){{{flat}}}')
         out.append(f'@media print{{{scope} .g9-split{{display:grid;grid-template-columns:{columns};gap:12px}}}}')
     return "".join(out)
 
@@ -2202,6 +2402,7 @@ def context(manifest_path: Path) -> Ctx:
         ("renderer-source", _file_sha256(Path(__file__))),
         ("core2-v2-source", _file_sha256(CORE2_V2_SOURCE)),
         ("product-manifest-source", _file_sha256(PRODUCT_MANIFEST_SOURCE)),
+        ("toughest-concept-source", _file_sha256(Path(toughest_concept.__file__))),
         ("learner-metadata-source", _file_sha256(LEARNER_METADATA_SOURCE)),
         ("learner-metadata-vocabulary", _file_sha256(LEARNER_METADATA_VOCABULARY)),
         ("package-schema", _file_sha256(PACKAGE_SCHEMA)),
@@ -2363,6 +2564,18 @@ def build(manifest_path: Path, mode: str = "PAGES") -> tuple[dict[str, str], lis
     return pages, gaps, digest
 
 
+def _toughest_host_gap(ctx: Ctx) -> None:
+    """The toughest question's concept must be one of the concept books this product has."""
+    toughest = ctx.toughest()
+    if not toughest or toughest["microtopic_ref"] in {m["id"] for m in ctx.selection_rows.get("microtopics", [])}:
+        return
+    capability = toughest.get("capability_ref")
+    ctx.gap("AUTHOR_TOUGHEST_CONCEPT", toughest["question_ref"],
+            f"{toughest['label']} is the toughest question in this set, but no concept book of this product owns its capability "
+            f"({capability}): write the microtopic whose primary_capability_ref is {capability}, with a construction unit that "
+            f"builds toward {toughest['label']}", "CORE1A", component="QUESTION_BRIDGE")
+
+
 def build_report(manifest_path: Path, mode: str = "PAGES", held_to: str = "FLOOR"
                  ) -> tuple[dict[str, str], list[dict], str, list[dict], list[dict]]:
     """build(), and the advisories and waivers too.
@@ -2374,6 +2587,8 @@ def build_report(manifest_path: Path, mode: str = "PAGES", held_to: str = "FLOOR
     ctx.held_to = held_to
     output_roles = product_manifest.selected_output_roles(ctx.manifest)
     role_pages = {ROLE_FILE[r]: page(ctx, r, mode, DIGEST_SLOT) for r in output_roles}
+    if held_to == "REFERENCE" and "CORE1A" in output_roles:
+        _toughest_host_gap(ctx)
     if mode == "SINGLE_FILE":
         bodies = "".join(
             f'<section id="g9-role-{r}" data-g9-role-section="{r}">'
