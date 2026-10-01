@@ -274,6 +274,15 @@ const { chromium } = require('playwright');
   report.fadeResults = await hook(() => window.__gx.state.fade.results.map((r) => r.correct));
   report.transferResults = await hook(() => window.__gx.state.transfer.results.map((r) => r.correct));
 
+  // --- every control and picture has a name a reader who cannot see it can use
+  report.a11y = await page.evaluate(() => {
+    const name = (el) => (el.getAttribute('aria-label') || (el.labels && el.labels[0] && el.labels[0].textContent) || el.textContent || el.getAttribute('title') || '').trim();
+    const unnamed = [...document.querySelectorAll('button, a[href], input, select, textarea')].filter((el) => !name(el)).map((el) => `${el.tagName.toLowerCase()}${el.id ? '#' + el.id : ''}`);
+    const pictures = [...document.querySelectorAll('svg.gx-svg')].map((svg) => ({ role: svg.getAttribute('role'), named: Boolean(svg.getAttribute('aria-labelledby') && document.getElementById(svg.getAttribute('aria-labelledby').split(' ')[0])), described: Boolean(svg.querySelector('desc')) }));
+    const liveOutputs = [...document.querySelectorAll('output')].filter((o) => o.getAttribute('aria-live') !== 'off').length;
+    return { unnamed, pictures, liveOutputs, lang: document.documentElement.lang, landmarks: ['header', 'main', 'aside'].map((t) => document.querySelectorAll(t).length), headings: document.querySelectorAll('h1').length };
+  });
+
   // --- layout at the end of the route and the head block
   report.layout = await page.evaluate(() => {
     const head = document.querySelector('.gx-head').getBoundingClientRect();

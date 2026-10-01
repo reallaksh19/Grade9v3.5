@@ -132,6 +132,15 @@ class Explorer(unittest.TestCase):
             for step in report["steps"]:
                 self.assertGreaterEqual(step["smallestTarget"], 47.5, f"{name} at {step['label']}: {step['smallestTargetIs']}")
 
+    def test_every_control_and_picture_has_a_name_and_the_numbers_do_not_talk_over_a_reader(self):
+        for name, report in self.each():
+            a11y = report["a11y"]
+            self.assertEqual(a11y["unnamed"], [], name)
+            self.assertEqual(a11y["liveOutputs"], 0, f"{name}: a readout that is a live region speaks at every slider move")
+            self.assertEqual(a11y["lang"], "en", name)
+            self.assertEqual((a11y["headings"], a11y["landmarks"]), (1, [1, 1, 1]), name)
+            self.assertTrue(all(p["role"] == "img" and p["named"] and p["described"] for p in a11y["pictures"]), name)
+
     def test_the_head_block_is_short_and_the_button_that_goes_on_is_always_in_reach(self):
         limit = em.blueprint()["responsive_policy"]["tablet_12_7"]["identity_max_px"]
         for name, report in self.each():

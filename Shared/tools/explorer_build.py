@@ -193,7 +193,7 @@ def render_cards(spec: dict, brief: Brief) -> str:
     bodies["CONTRADICT"] = (
         f'<p class="gx-prompt">{esc(c["imposes"])}</p>'
         f'<button type="button" class="gx-toggle" data-gx-impose aria-pressed="false">Impose the tempting model: {esc(c["wrong_model"]["label"])}</button>'
-        '<p class="gx-compare" data-gx-wrong-compare hidden>The tempting model says <output data-gx-wrong></output>; the real model says <output data-gx-true></output>.</p>'
+        '<p class="gx-compare" data-gx-wrong-compare hidden>The tempting model says <output aria-live="off" data-gx-wrong></output>; the real model says <output aria-live="off" data-gx-true></output>.</p>'
         + _goals([c["goal"]])
         + f'<div class="gx-why" data-gx-why hidden><p><strong>Why the tempting model cannot be right.</strong> {esc(c["why_wrong"])}</p>'
           f'<p><strong>Why the real model works.</strong> {esc(c["why_correct"])}</p></div>')
@@ -215,26 +215,26 @@ def render_cards(spec: dict, brief: Brief) -> str:
         unit = f' <span class="gx-unit">{esc(row.get("unit", ""))}</span>' if row.get("unit") else ""
         formula = _math(row["id"] + " == " + row["expr"])
         rsteps += (f'<li data-gx-rstep="{i}" hidden><p>{esc(step["text"])}</p><div class="gx-eq">{formula}'
-                   f'<span class="gx-val">now <output data-gx-val>—</output>{unit}</span></div></li>')
+                   f'<span class="gx-val">now <output aria-live="off" data-gx-val>—</output>{unit}</span></div></li>')
     equation = spec["reconstruct"]["equation"]
     closed_form = _math(spec["target"]["quantity"] + " == " + equation["expr"])
     bodies["RECONSTRUCT"] = (
         f'<ol class="gx-derive">{rsteps}</ol>'
         '<button type="button" class="gx-secondary" data-gx-more>Show the next step</button>'
         f'<div class="gx-equation" data-gx-equation hidden><p>{esc(equation["text"])}</p><div class="gx-eq gx-eq-final">{closed_form}</div>'
-        '<p class="gx-compare">The equation gives <output data-gx-eq-value></output>; the picture measures <output data-gx-eq-measured></output> <strong data-gx-eq-ok></strong></p>'
-        '<p class="gx-note">Move the sliders to test it at two more positions: <output data-gx-eq-count>0</output> of 2.</p></div>')
+        '<p class="gx-compare">The equation gives <output aria-live="off" data-gx-eq-value></output>; the picture measures <output aria-live="off" data-gx-eq-measured></output> <strong data-gx-eq-ok></strong></p>'
+        '<p class="gx-note">Move the sliders to test it at two more positions: <output aria-live="off" data-gx-eq-count>0</output> of 2.</p></div>')
     signs = {"==": "=", "<=": "≤", ">=": "≥"}
     invs = "".join(
         f'<li data-gx-inv="{i}"><p class="gx-inv-text">{esc(inv["text"])}</p><div class="gx-eq">{_math(inv["lhs"] + " " + inv["rel"] + " " + inv["rhs"])}</div>'
-        f'<p class="gx-inv-live">Here: <output data-gx-inv-lhs></output> {signs[inv["rel"]]} <output data-gx-inv-rhs></output> <strong data-gx-inv-ok></strong></p>'
+        f'<p class="gx-inv-live">Here: <output aria-live="off" data-gx-inv-lhs></output> {signs[inv["rel"]]} <output aria-live="off" data-gx-inv-rhs></output> <strong data-gx-inv-ok></strong></p>'
         f'<p class="gx-try">{esc(inv["try"])}</p>'
-        '<p class="gx-note">Positions tried: <output data-gx-inv-count>0</output> of 5. Try five different ones; if it breaks anywhere, you will see it.</p></li>'
+        '<p class="gx-note">Positions tried: <output aria-live="off" data-gx-inv-count>0</output> of 5. Try five different ones; if it breaks anywhere, you will see it.</p></li>'
         for i, inv in enumerate(spec["invariants"]))
     bodies["INVARIANT"] = f'<p class="gx-prompt">What survives every position of the sliders?</p><ul class="gx-invs">{invs}</ul>'
     cases = "".join(
         f'<li data-gx-case="{i}"><p>{esc(cs["text"])}</p><button type="button" class="gx-mini" data-gx-go>Set the sliders here</button>'
-        f'<p class="gx-compare" hidden>{esc(cs["shortcut_label"])} gives <output data-gx-sc></output>; the true value is <output data-gx-true></output>.</p>'
+        f'<p class="gx-compare" hidden>{esc(cs["shortcut_label"])} gives <output aria-live="off" data-gx-sc></output>; the true value is <output aria-live="off" data-gx-true></output>.</p>'
         '<div class="gx-choice" role="group" aria-label="Does the shortcut give the true value here?"><button type="button" data-gx-yes aria-pressed="false">It holds</button>'
         '<button type="button" data-gx-no aria-pressed="false">It fails</button></div><p class="gx-feedback" hidden aria-live="polite"></p></li>'
         for i, cs in enumerate(spec["boundary"]["cases"]))
@@ -256,7 +256,7 @@ def render_stage(spec: dict, compiled: dict) -> str:
             continue
         unit = f'<span class="gx-unit">{esc(p.get("unit", ""))}</span>' if p.get("unit") else ""
         sliders += (f'<div class="gx-ctl" data-gx-param="{esc(p["id"])}"><label for="gx-p-{esc(p["id"])}"><span class="gx-ctl-name">{esc(p["label"])}</span> '
-                    f'<span class="gx-ctl-val"><output data-gx-out="{esc(p["id"])}"></output>{unit}</span></label>'
+                    f'<span class="gx-ctl-val"><output aria-live="off" data-gx-out="{esc(p["id"])}"></output>{unit}</span></label>'
                     f'<input type="range" id="gx-p-{esc(p["id"])}" min="{p["min"]}" max="{p["max"]}" step="{p["step"]}" value="{p["value"]}" disabled></div>')
     wrong = spec["contradict"]["wrong_model"]["quantity"]
     rows = ""
@@ -264,7 +264,7 @@ def render_stage(spec: dict, compiled: dict) -> str:
         if p.get("fixed"):
             unit = f' <span class="gx-unit">{esc(p.get("unit", ""))}</span>' if p.get("unit") else ""
             rows += (f'<div class="gx-ro" data-gx-reveal="start"><span class="gx-ro-l">{esc(p["label"])} (given)</span>'
-                     f'<span class="gx-ro-v"><output data-gx-q="{esc(p["id"])}"></output>{unit}</span></div>')
+                     f'<span class="gx-ro-v"><output aria-live="off" data-gx-q="{esc(p["id"])}"></output>{unit}</span></div>')
     for row in spec["quantities"]:
         if row.get("show", True) is False and row["id"] != wrong:
             continue
@@ -272,7 +272,7 @@ def render_stage(spec: dict, compiled: dict) -> str:
         unit = f' <span class="gx-unit">{esc(row.get("unit", ""))}</span>' if row.get("unit") else ""
         cls = " gx-ro-target" if row["id"] == spec["target"]["quantity"] else ""
         rows += (f'<div class="gx-ro{cls}" data-gx-reveal="{reveal}" hidden><span class="gx-ro-l">{esc(row["label"])}</span>'
-                 f'<span class="gx-ro-v"><output data-gx-q="{esc(row["id"])}"></output>{unit}</span></div>')
+                 f'<span class="gx-ro-v"><output aria-live="off" data-gx-q="{esc(row["id"])}"></output>{unit}</span></div>')
     return (
         '<section class="gx-stage" aria-label="The explorer">'
         '<div class="gx-views">'
@@ -292,10 +292,10 @@ def render_stage(spec: dict, compiled: dict) -> str:
 def render_head(spec: dict, brief: Brief) -> str:
     rail = "".join(f'<li data-gx-rail="{cid}" data-gx-title="{esc(SHORT[cid])}" data-state="todo"><span class="gx-n" aria-hidden="true">{i}</span>'
                    f'<span class="gx-lab">{esc(SHORT[cid])}</span></li>' for i, cid in enumerate(em.stages(em.blueprint()), 1))
-    return (f'<header class="gx-head g9-c-route-rail" data-g9-component="ROUTE_RAIL"><h1>{esc(spec["title"])}</h1>'
+    return (f'<div class="gx-head g9-c-route-rail" role="group" aria-label="Title and route" data-g9-component="ROUTE_RAIL"><h1>{esc(spec["title"])}</h1>'
             f'<ol class="gx-rail" aria-label="The route, eleven steps">{rail}</ol>'
             '<button type="button" class="gx-secondary" data-gx-theme aria-pressed="true">Theme</button>'
-            '<button type="button" class="gx-secondary" data-gx-restart>Start over</button></header>')
+            '<button type="button" class="gx-secondary" data-gx-restart>Start over</button></div>')
 
 
 def render_done(spec: dict, links: dict) -> str:

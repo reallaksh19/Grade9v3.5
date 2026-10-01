@@ -270,7 +270,7 @@ class Page(unittest.TestCase):
     def test_a_number_the_spec_does_not_show_never_reaches_the_page_as_text_the_page_computes_them(self):
         steps = re.search(r'<ol class="gx-derive">(.*?)</ol>', self.html, re.S).group(1)
         self.assertNotRegex(steps, r"\d+\.\d+")
-        self.assertEqual(steps.count("<output data-gx-val>"), 4)
+        self.assertEqual(steps.count("<output aria-live=\"off\" data-gx-val>"), 4)
 
     def test_the_same_spec_is_the_same_page_and_a_changed_spec_is_a_different_one(self):
         self.assertEqual(build_page(), self.html)
