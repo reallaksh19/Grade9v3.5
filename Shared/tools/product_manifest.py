@@ -139,24 +139,53 @@ def validate_selection(manifest: dict, packages: list[dict], bank_questions: lis
             rows.append(row)
         resolved[key] = rows
 
+    _refuse_unselectable(resolved)
     return resolved
+
+
+def promotion_policy() -> dict:
+    """The blueprint registry's rule for which statuses a product may select (component_policy.promotion)."""
+    from Shared.tools import web_blueprint_contract  # noqa: PLC0415  (the registry owns the rule)
+    return web_blueprint_contract.load_registry()["component_policy"]["promotion"]
+
+
+def _refuse_unselectable(resolved: dict[str, list[dict]]) -> None:
+    """A record whose own status says it is not ready to teach is not selected. A record that declares no status makes no claim."""
+    policy = promotion_policy()
+    selectable = set(policy["selectable_statuses"])
+    for key in policy["applies_to"]:
+        for row in resolved.get(key, []):
+            status = row.get("status")
+            if status is not None and status not in selectable:
+                raise ProductSelectionError(
+                    f"{policy['refusal']}: {key}:{row.get('id')}:{status} (selectable: {', '.join(policy['selectable_statuses'])})")
+
+
+def derivable(packages: list[dict], bank_questions: list[dict]) -> dict[str, list[str]]:
+    """What the library holds for these packages, by Core: the denominator a product is judged against.
+
+    Core2: the bank questions whose capability or concept bucket belongs to a package. Core2A and Core2B: the package
+    questions exposed to that Core. `derive` selects exactly this; a manifest that selects less has chosen, and the
+    blueprint's coverage rule asks the choice to leave a record (Shared/tools/product_coverage.py)."""
+    caps = {c["id"] for pkg in packages for c in pkg.get("capabilities", [])}
+    buckets = {b["id"] for pkg in packages for b in pkg.get("buckets", [])}
+
+    def exposed(core):
+        return [q["id"] for pkg in packages for q in pkg.get("questions", []) if any(e["core"] == core for e in q.get("exposure", []))]
+
+    core2 = []
+    for q in bank_questions:
+        bucket = ((q.get("extensions") or {}).get("grade9v3:analysis") or {}).get("concept_bucket")
+        if q.get("primary_capability_ref") in caps or bucket in buckets:
+            core2.append(q["id"])
+    return {"core2": core2, "core2a": exposed("CORE2A"), "core2b": exposed("CORE2B")}
 
 
 def derive(package_ref: str, bank_refs: list[str], product_id: str, home: str,
            question_bank_href: str | None = None) -> dict:
     pkg = json.loads((REPO / package_ref).read_text(encoding="utf-8"))
-    caps = {c["id"] for c in pkg.get("capabilities", [])}
-    buckets = {b["id"] for b in pkg.get("buckets", [])}
-
-    def exposed(core):
-        return [q["id"] for q in pkg.get("questions", []) if any(e["core"] == core for e in q.get("exposure", []))]
-
-    core2 = []
-    for ref in bank_refs:
-        for q in json.loads((REPO / ref).read_text(encoding="utf-8")).get("questions", []):
-            bucket = ((q.get("extensions") or {}).get("grade9v3:analysis") or {}).get("concept_bucket")
-            if q.get("primary_capability_ref") in caps or bucket in buckets:
-                core2.append(q["id"])
+    bank = [q for ref in bank_refs for q in json.loads((REPO / ref).read_text(encoding="utf-8")).get("questions", [])]
+    held = derivable([pkg], bank)
     return {
         "schema": "product-manifest/v1",
         "product_id": product_id,
@@ -167,9 +196,9 @@ def derive(package_ref: str, bank_refs: list[str], product_id: str, home: str,
         "bank_refs": bank_refs,
         "selection": {
             "microtopics": [m["id"] for m in pkg.get("microtopics", [])],
-            "core2": core2,
-            "core2a": exposed("CORE2A"),
-            "core2b": exposed("CORE2B"),
+            "core2": held["core2"],
+            "core2a": held["core2a"],
+            "core2b": held["core2b"],
         },
     }
 

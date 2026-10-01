@@ -28,7 +28,7 @@ REPO = Path(__file__).resolve().parents[2]
 if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
-from Shared.tools import (build_pages_site, build_test_site, explorer_build, product_manifest, quality_gate, render_core,  # noqa: E402
+from Shared.tools import (build_pages_site, build_test_site, explorer_build, product_coverage, product_manifest, quality_gate, render_core,  # noqa: E402
                           site_nav_audit, toughest_concept)
 from Shared.tools import web_blueprint_contract as blueprints  # noqa: E402
 
@@ -67,6 +67,13 @@ def authoring_hints(roles: list[str]) -> dict[str, dict]:
         bp = blueprints.blueprint_for_role(registry, role)
         for cid, level, hint in (blueprints.authoring_hints(bp) if bp else []):
             out.setdefault(cid, {"level": level, "hint": hint})
+    policy = registry["component_policy"]
+    out["COVERAGE"] = {"level": "GAP at the reference", "hint": policy["coverage"]["rule"]
+                       + " Say what was left out and what is not yet a record in the manifest: coverage.omitted ({record id: why}) and coverage.sources "
+                         "(source, kind, questions, ingested, status). `python3 Shared/tools/product_coverage.py MANIFEST` shows the figures."}
+    out["TYPESET"] = {"level": "GAP at the reference", "hint": policy["typeset"]["rule"]
+                      + " Write relation.mathml for each relation a page shows (math, mi, mn, mo, mrow, msub, msup, mfrac, msqrt, mtext); for an "
+                        "equation in plain arithmetic, `python3 Shared/tools/typeset_relation.py \"EXPRESSION\" --json` prints it."}
     return out
 
 
@@ -183,6 +190,7 @@ def deploy_product(manifest_path: Path) -> dict:
             # New authoring is held to the benchmark: the reference depth, and every expected component present or waived.
             pages, gaps, digest, advisories, waived = render_core.build_report(staged, "PAGES", held_to="REFERENCE")
             toughest = toughest_concept.for_manifest(staged)
+            coverage = product_coverage.for_manifest(staged)
         except product_manifest.ProductSelectionError as caught:
             raise DeployError(f"selection rejected: {caught}") from caught
     out = PUBLIC_TEST / "products" / slug
@@ -220,6 +228,7 @@ def deploy_product(manifest_path: Path) -> dict:
         "waived": [{key: row.get(key) for key in ("core", "component", "record", "reason")} for row in waived],
         "held_to": "REFERENCE",
         "toughest": toughest,               # the concept the concept book and the interactive page are built for
+        "coverage": coverage,               # what the product selects of what the library holds, what is omitted and why, and the sources not yet records
         "blueprints": blueprint_refs(product_manifest.selected_output_roles(manifest)),
         "authoring": authoring_hints(product_manifest.selected_output_roles(manifest)),
         "quality": quality_report(out, slug, product_manifest.selected_output_roles(manifest)),
