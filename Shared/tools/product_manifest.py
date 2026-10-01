@@ -205,6 +205,7 @@ def main(argv: list[str] | None = None) -> int:
     m = derive(a.package, a.bank, a.product_id, a.home, a.question_bank)
     if a.intake:
         m = with_intake(m, json.loads(Path(a.intake).read_text(encoding="utf-8")))
+    Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     Path(a.out).write_text(json.dumps(m, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     s = m["selection"]
     print(f"{a.out}: {len(s['microtopics'])} microtopics, Core2 {len(s['core2'])}, Core2A {len(s['core2a'])}, Core2B {len(s['core2b'])}")

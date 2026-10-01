@@ -21,7 +21,7 @@ REPO = Path(__file__).resolve().parents[2]
 if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
-from Shared.tools import render_core  # noqa: E402
+from Shared.tools import matrix_conformance, render_core  # noqa: E402
 
 esc = render_core.esc
 TEST_ROOT = REPO / "TEST"
@@ -40,6 +40,14 @@ def _json(path: Path):
 
 def matrices() -> list[dict]:
     return [_json(p) for p in sorted((TEST_ROOT / "matrices").glob("*.rungs.json"))]
+
+
+def matrix_findings(board: dict) -> list[dict]:
+    """What the matrix conformance check says about one TEST rung matrix (the same check the other subjects' matrices pass)."""
+    try:
+        return matrix_conformance.board_findings(board)
+    except (KeyError, TypeError, ValueError) as caught:
+        return [{"point": "MATRIX_UNREADABLE", "where": "", "detail": str(caught)}]
 
 
 def products() -> list[dict]:
@@ -174,10 +182,14 @@ def rungs_page() -> str:
                      f'<td>{esc(", ".join(rung.get("ceiling", [])))}</td></tr>')
         table = ('<div class="g9-table-scroll"><table><thead><tr><th>Rung</th><th>Position</th><th>Microtopic</th>'
                  f'<th>Must contain</th><th>Ceiling</th></tr></thead><tbody>{rows}</tbody></table></div>')
+        found = matrix_findings(board)
+        check = ("".join(f'<li>{esc(f["point"])} · {esc(f["where"])}: {esc(f["detail"])}</li>' for f in found))
+        check = (f'<details open><summary>Matrix check: {len(found)} finding(s)</summary><ul>{check}</ul></details>' if found else
+                 '<p class="g9-prov">Matrix check: no finding. That is not a review.</p>')
         body += card(str(board.get("matrix_id")), f'{board.get("topic", "")} {board.get("subtopic", "")} {board.get("matrix_id", "")}',
                      f'<h2>{esc(board.get("topic"))}: {esc(board.get("subtopic"))}</h2>'
                      f'<p class="g9-prov">{esc(board.get("matrix_id"))} · {len(board.get("rungs", []))} rung(s) · '
-                     f'{link("../atlas/index.html?matrix=" + str(board.get("matrix_id")), "Open in the Atlas")}</p>{table}')
+                     f'{link("../atlas/index.html?matrix=" + str(board.get("matrix_id")), "Open in the Atlas")}</p>{check}{table}')
     return frame(2, "Rungs", "rungs/index.html", body)
 
 
@@ -282,6 +294,9 @@ def write() -> None:
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(text.encode("utf-8"))
     print(f"wrote {len(render_all())} TEST page(s) in public/test")
+    for board in matrices():
+        for found in matrix_findings(board):
+            print(f"  matrix {board.get('matrix_id')}: {found['point']} {found['where']}: {found['detail']}")
 
 
 def check() -> list[str]:

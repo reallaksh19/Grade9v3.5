@@ -153,6 +153,23 @@ def findings(board: dict, mics: dict, dimensions: set[str]) -> list[dict]:
     return found
 
 
+def board_findings(board: dict, validator=None) -> list[dict]:
+    """One board's findings: its structure first, then its meaning.
+
+    The semantic checks read a rung as a mapping with a label and a position; running them on a board that is not yet
+    that shape turned a malformed file into a traceback, and a traceback names no rule. Found by feeding the gate the
+    shapes thirteen parallel authors could produce, rather than the one committed board that is already well formed."""
+    if validator is None:
+        try:
+            import jsonschema
+        except ModuleNotFoundError:
+            jsonschema = None
+        validator = jsonschema.Draft202012Validator(load(SCHEMA)) if jsonschema is not None else None
+    structural = ([{"point": "MATRIX_STRUCTURE", "where": "/".join(str(p) for p in e.path), "detail": e.message}
+                   for e in validator.iter_errors(board)] if validator else [])
+    return structural or findings(board, *library(board.get("subject", "")))
+
+
 def audit(repo: Path = REPO) -> dict:
     try:
         import jsonschema
@@ -163,15 +180,7 @@ def audit(repo: Path = REPO) -> dict:
     rows = []
     for path in sorted(repo.glob("*/matrices/*.rungs.json")):
         board = load(path)
-        # Structure first, then meaning. The semantic checks below read a rung as a
-        # mapping with a label and a position; running them on a board that is not yet
-        # that shape turned a malformed file into a traceback, and a traceback names no
-        # rule. Found by feeding the gate the shapes thirteen parallel authors could
-        # produce, rather than the one committed board that is already well formed.
-        structural = ([{"point": "MATRIX_STRUCTURE",
-                        "where": "/".join(str(p) for p in e.path), "detail": e.message}
-                       for e in validator.iter_errors(board)] if validator else [])
-        found = structural or findings(board, *library(board.get("subject", "")))
+        found = board_findings(board, validator)
         rows.append({"matrix": str(path.relative_to(repo)),
                      "bucket": board.get("bucket_id"),
                      "rungs": len(board.get("rungs") or []), "findings": found,

@@ -51,6 +51,11 @@ class Registry(unittest.TestCase):
         for size in re.findall(r"font-size:([0-9.]+)px", render_core.COMPONENT_CSS):
             self.assertGreaterEqual(float(size), floor, size)
 
+    def test_a_toggle_that_holds_a_badge_and_a_label_wraps_instead_of_overflowing_a_320px_screen(self):
+        rule = re.search(r"\.g9-why-toggle\{([^}]*)\}", render_core.CSS + render_core.COMPONENT_CSS).group(1)
+        self.assertIn("flex-wrap:wrap", rule)
+        self.assertIn("max-width:100%", rule)
+
     def test_the_written_specification_is_current(self):
         self.assertEqual(blueprint_spec.OUT.read_text(encoding="utf-8"), blueprint_spec.render())
 

@@ -36,6 +36,7 @@ official product is judged at:
   as `{"COMPONENT_ID": "why it does not apply"}`. A REQUIRED component cannot be waived. The receipt and the Deployments page list every waiver
   with its reason, for the Owner to accept or refuse; never invent content to avoid a gap or a waiver.
 - `owner_bank.py check` holds a bank to the same bar before you deploy, with the same messages.
+- The intake's per-question `conditions` are numbers scraped from the question's text, not the conditions the question states; write `conditions` from what the question gives.
 
 Zero gaps, with every waiver reasoned, is the standard. A gap-free page that waives what the question could have given is not at it.
 
@@ -53,7 +54,7 @@ as deliverables. Report each of those as NOT DONE (a limit of TEST) and do not i
 |---|---|---|
 | Owner's questions (Core2) | `TEST/question-bank/SLUG.json` | an **owner-supplied bank**, made by `owner_bank.py new` (below). One question per intake question: `stem` is the Owner's text, unchanged. The scaffold lists every field a Core2 page is built from; fill each empty one (what each is for, and what it must hold, is in [the page blueprint](../docs/specs/PAGE-BLUEPRINT-COMPONENTS.md)), and `primary_capability_ref`, `family_ref`, `learner_question_type` and `difficulty` (five components each 0 to 2, `score` their sum, `band` D1 to D4 for that score, `basis` one sentence; your estimate, shown as one). There is **no exam, year, paper or URL** and you must not add one. |
 | The ladder (Rungs) | `TEST/matrices/SLUG.rungs.json` | same shape as `Mathematics/matrices/linear-equations.rungs.json`, with `"subject": "TEST"` |
-| Concepts, capabilities, Core1A material | `TEST/library/SLUG.v1.json` | a package (`Shared/library/package.schema.json`) with `"subject": "TEST"`. It needs at least one resource, bucket, capability and microtopic; every capability needs a microtopic whose `primary_capability_ref` names it, and every owner question a `family_ref` naming a question family in the package. Start from the schema and let the resolver tell you what is missing (below): the example `tests/fixtures/render/thin-kin-2d-motion.v1.json` is small as packages go but still about 5,000 lines, most of it gate-contract blocks a TEST package does not need; a real one is `Mathematics/library/linear-equations.v1.json`. A figure is an SVG file you author under `TEST/library/figures/` and name in the representation's `rendered_asset_refs`. Check it before you build a manifest with `python3 -m Shared.library.resolve --schema TEST/library/SLUG.v1.json` (the schema, up to six problems at a time, then the references; without `--schema` it checks references only). |
+| Concepts, capabilities, Core1A material | `TEST/library/SLUG.v1.json` | a package (`Shared/library/package.schema.json`) with `"subject": "TEST"`. It needs at least one resource, bucket, capability and microtopic; every capability needs a microtopic whose `primary_capability_ref` names it, and every owner question a `family_ref` naming a question family in the package. Start from the schema and let the resolver tell you what is missing (below): the example `tests/fixtures/render/thin-kin-2d-motion.v1.json` is small as packages go but still about 5,000 lines, most of it gate-contract blocks a TEST package does not need; a real one is `Mathematics/library/linear-equations.v1.json`. A construction unit's `worked_anchor_ref` and a family's `item_refs` name questions **of the package**, never questions of the owner bank (the resolver rejects them): write the worked example as a question of the package, which is yours and not the Owner's, and leave `item_refs` empty. A relation may say `"gate_relation_ref": null`: TEST has no gate registry. A figure is an SVG file you author under `TEST/library/figures/` and name in the representation's `rendered_asset_refs`. Check it before you build a manifest with `python3 -m Shared.library.resolve --schema TEST/library/SLUG.v1.json` (the schema, up to six problems at a time, then the references; without `--schema` it checks references only). |
 | Product manifest | `TEST/products/SLUG.manifest.json` | made by `product_manifest.py derive` (below) |
 | Interactive page source | `TEST/interactive/SLUG/index.html` and `interactive.json` | see "An interactive page" |
 
@@ -95,7 +96,11 @@ python3 Shared/tools/deploy_test.py interactive TEST/interactive/SLUG
 # checks
 python3 Shared/tools/deploy_test.py pages --check           # the TEST pages and the Pages mirror (docs/) are current
 python3 Shared/tools/site_nav_audit.py                      # no line may start with NEW
+python3 Shared/tools/matrix_conformance.py                  # the rung matrix (the Rungs page shows its findings too)
 ```
+
+`self_check.py --unit` writes its report under `publication/` (git-ignored), outside TEST/; run it only if the method asks you to, and say so.
+A deploy prints `matrix ...` lines when a rung matrix breaks the matrix schema (for example `ladder_position` above 100): fix the matrix.
 
 `deploy_test.py product` renders the manifest as a draft (gaps allowed), stamps every page with the TEST banner,
 writes `public/test/products/SLUG/` and a receipt (`accepted: false`), then rebuilds the TEST pages and the Pages mirror.

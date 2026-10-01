@@ -108,9 +108,40 @@ class TestSubject(unittest.TestCase):
                          ["OFFICIAL_EXAM_ORGANIZER_ARCHIVE"])
 
 
+class TestManifestCommand(unittest.TestCase):
+    def test_the_manifest_is_written_even_where_the_products_folder_does_not_exist_yet(self):
+        package = REPO / "TEST" / f"_{uuid.uuid4().hex[:8]}"
+        package.mkdir(parents=True)
+        self.addCleanup(shutil.rmtree, package, True)
+        (package / "package.v1.json").write_text(json.dumps(dict(json.loads((REPO / PKG).read_text(encoding="utf-8")), subject="TEST")),
+                                                 encoding="utf-8")
+        out = package / "products" / "m.manifest.json"
+        with contextlib.redirect_stdout(io.StringIO()):
+            code = product_manifest.main(["derive", "--package", f"TEST/{package.name}/package.v1.json", "--product-id", "m",
+                                          "--home", "../../../index.html", "--out", str(out)])
+        self.assertEqual(code, 0)
+        self.assertTrue(out.is_file())
+
+
 class TestPages(unittest.TestCase):
     def test_committed_pages_are_what_the_generator_writes(self):
         self.assertEqual(build_test_site.check(), [])
+
+    def test_a_rung_matrix_that_breaks_the_matrix_schema_says_so_on_the_rungs_page_and_in_the_build(self):
+        board = {"matrix_id": "MX-BAD", "subject": "TEST", "topic": "Vectors", "subtopic": "Sums",
+                 "rungs": [{"rung": "R1", "ladder_position": 110, "microtopic_ref": "MIC-X"}]}
+        with mock.patch.object(build_test_site, "matrices", return_value=[board]):
+            page = build_test_site.rungs_page()
+            out = io.StringIO()
+            with mock.patch.object(build_test_site, "PUBLIC_TEST", Path(tempfile.mkdtemp())), contextlib.redirect_stdout(out):
+                build_test_site.write()
+        self.assertIn("Matrix check:", page)
+        self.assertIn("MATRIX_STRUCTURE", page)
+        self.assertRegex(out.getvalue(), r"matrix MX-BAD: MATRIX_STRUCTURE .*110")
+
+    def test_the_committed_matrix_passes_the_matrix_check_without_a_finding(self):
+        for board in build_test_site.matrices():
+            self.assertEqual(build_test_site.matrix_findings(board), [], board.get("matrix_id"))
 
     def test_every_test_page_says_it_is_a_sandbox_draft(self):
         pages = sorted((REPO / "public" / "test").rglob("*.html"))
