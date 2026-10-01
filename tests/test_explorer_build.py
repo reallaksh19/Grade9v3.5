@@ -251,8 +251,9 @@ class Page(unittest.TestCase):
         self.assertIn("<msqrt>", "".join(maths) + "<msqrt>")
 
     def test_the_picture_and_the_graph_have_a_name_and_a_description_for_a_reader_who_cannot_see_them(self):
+        self.assertIn('aria-labelledby="gx-scene-t" aria-describedby="gx-scene-d gx-state-summary"', self.html, "the picture is described by its text and by the state it is in")
+        self.assertIn('aria-labelledby="gx-graph-t" aria-describedby="gx-graph-d"', self.html)
         for ident in ("gx-scene", "gx-graph"):
-            self.assertIn(f'aria-labelledby="{ident}-t {ident}-d"', self.html)
             self.assertIn(f'<title id="{ident}-t">', self.html)
             self.assertIn(f'<desc id="{ident}-d">', self.html)
         self.assertIn('id="gx-live"', self.html)
