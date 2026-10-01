@@ -199,6 +199,20 @@ class Scene(unittest.TestCase):
         self.assertTrue(any(line.startswith("SCENE element landing: reaches (") and "right of the picture" in line and "when theta = " in line for line in found), found)
         self.assertTrue(any("widen scene.world" in line for line in found))
 
+    def test_a_picture_that_uses_little_of_its_panel_at_any_position_is_a_gap_that_says_which_world_would_fit(self):
+        gaps = lines(run(lambda spec: spec["scene"].update(world={"x": [-40, 200], "y": [-30, 100]})), "gap")
+        found = [line for line in gaps if line.startswith("SCENE scene.world:")]
+        self.assertEqual(len(found), 1, gaps)
+        self.assertIn("uses only", found[0])
+        self.assertIn("a world of x", found[0])
+
+    def test_the_reference_world_fits_and_the_suggested_world_clears_the_gap_and_keeps_everything_in_view(self):
+        self.assertEqual([line for line in lines(run()) if "uses only" in line], [])
+        report = run(lambda spec: spec["scene"].update(world={"x": [-40, 200], "y": [-30, 100]}))
+        suggestion = report.evidence["scene_fit"]["suggested_world"]
+        again = run(lambda spec: spec["scene"].update(world=suggestion))
+        self.assertEqual([line for line in lines(again) if "uses only" in line or line.startswith("SCENE element")], [])
+
     def test_a_picture_that_is_too_tall_or_too_flat_is_an_error(self):
         found = lines(run(lambda spec: spec["scene"].update(world={"x": [-2, 44], "y": [-1.5, 80]})), "error")
         self.assertTrue(any("keep the ratio between" in line for line in found), found)

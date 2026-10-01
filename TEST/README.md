@@ -168,7 +168,8 @@ decimal) and the page computes it; a decimal you type into a sentence is flagged
   shows it (error); a goal can be reached on the slider's steps and is not already met at the start (error);
 - the tempting model is wrong somewhere (error) and is drawn in the picture and on the graph (gap);
 - the equation equals the quantity at every position, and is written with the parameters only, not as the quantity's own expression (error); each invariant holds at every position (error);
-- every element stays inside the picture at every position, and each oracle (the drawing against the numbers) holds (error);
+- every element stays inside the picture at every position, and each oracle (the drawing against the numbers) holds (error); the picture is not drawn small: a world that is much larger than everything
+  drawn over every position of the sliders (less than 60% of the panel's width and of its height) is a gap that names a world that would fit;
 - each boundary case's shortcut holds or fails as declared, with at least one of each (error / gap); a fresh task uses numbers the learner has not seen (error);
 - the reference depth of the blueprint: three prediction options, three goals, four statements, four causes, three steps of working, two invariants, three boundary cases, three fade levels, three
   fresh tasks (gaps).

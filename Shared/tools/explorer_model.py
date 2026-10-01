@@ -46,6 +46,8 @@ STATE_CAP = 3000         # most states a claim is evaluated at
 GEOMETRY_STATES = 400    # most states the scene is checked at
 VIEW_WIDTH = 440         # the scene is drawn 440 units wide, and its labels are 15 units high
 ASPECT = (0.36, 1.1)     # the picture's height over its width
+FIT_MIN = 0.6            # a picture that draws less than this of its panel (in its larger direction), over every position, is a gap
+FIT_MARGIN = 0.08        # the margin a suggested world leaves, as a fraction of what is drawn
 MARGIN = 0.005           # how far outside the world an element may reach, as a fraction of the world
 TEMPLATE = re.compile(r"\{([A-Za-z][A-Za-z0-9_]*)(?::(\d+))?\}")
 ELEMENT_FIELDS: dict[str, tuple[set[str], set[str]]] = {      # kind -> (required, optional) beyond id, kind, role, label, reveal
@@ -612,6 +614,7 @@ def check_in_view(model: Model, report: Report) -> None:
     mx, my = (x1 - x0) * MARGIN, (y1 - y0) * MARGIN
     sampled = list(model.states(GEOMETRY_STATES))
     first: dict[str, str] = {}
+    reach = [math.inf, -math.inf, math.inf, -math.inf]       # the least and greatest x and y anything is drawn at, over every position
     for element in spec["scene"]["elements"]:
         for state in sampled:
             try:
@@ -621,6 +624,7 @@ def check_in_view(model: Model, report: Report) -> None:
             for x, y in points:
                 if math.isnan(x) or math.isnan(y):
                     continue
+                reach = [min(reach[0], x), max(reach[1], x), min(reach[2], y), max(reach[3], y)]
                 side = ("left of" if x < x0 - mx else "right of" if x > x1 + mx else "below" if y < y0 - my else "above" if y > y1 + my else "")
                 if side and element["id"] not in first:
                     first[element["id"]] = (f"reaches ({_short(x)}, {_short(y)}), {side} the picture "
@@ -628,6 +632,46 @@ def check_in_view(model: Model, report: Report) -> None:
                     break
     for eid, detail in first.items():
         report.error("SCENE", f"element {eid}", detail)
+    if not first:
+        _check_fit(report, (x0, x1, y0, y1), reach)
+
+
+def _fitting_world(reach: list[float]) -> dict[str, list[float]]:
+    """The smallest world, with a margin, that holds what is drawn at every position and keeps the picture's proportions legal."""
+    x_lo, x_hi, y_lo, y_hi = reach
+    pad = max(x_hi - x_lo, y_hi - y_lo, 1e-9) * FIT_MARGIN
+    x_lo, x_hi, y_lo, y_hi = x_lo - pad, x_hi + pad, y_lo - pad, y_hi + pad
+    ratio = (y_hi - y_lo) / (x_hi - x_lo)
+    if ratio < ASPECT[0]:                                    # too flat: give it height
+        extra = ((x_hi - x_lo) * ASPECT[0] - (y_hi - y_lo)) / 2
+        y_lo, y_hi = y_lo - extra, y_hi + extra
+    elif ratio > ASPECT[1]:                                  # too tall: give it width
+        extra = ((y_hi - y_lo) / ASPECT[1] - (x_hi - x_lo)) / 2
+        x_lo, x_hi = x_lo - extra, x_hi + extra
+    return {"x": [_nice(x_lo, math.floor), _nice(x_hi, math.ceil)], "y": [_nice(y_lo, math.floor), _nice(y_hi, math.ceil)]}
+
+
+def _nice(value: float, rounder) -> float:
+    """Round outward to two significant figures, so a suggested world reads like one a person would write."""
+    if value == 0:
+        return 0.0
+    step = 10 ** (math.floor(math.log10(abs(value))) - 1)
+    return round(rounder(value / step) * step, 10)
+
+
+def _check_fit(report: Report, world: tuple[float, float, float, float], reach: list[float]) -> None:
+    """The picture is as large as its panel allows only if the world is not much larger than what is drawn over every position of the sliders."""
+    x0, x1, y0, y1 = world
+    if not all(math.isfinite(v) for v in reach):
+        return
+    fill_x = (reach[1] - reach[0]) / (x1 - x0)
+    fill_y = (reach[3] - reach[2]) / (y1 - y0)
+    suggested = _fitting_world(reach)
+    report.evidence["scene_fit"] = {"width_used": round(fill_x, 3), "height_used": round(fill_y, 3), "suggested_world": suggested}
+    if max(fill_x, fill_y) < FIT_MIN:
+        sx, sy = suggested["x"], suggested["y"]
+        report.gap("SCENE", "scene.world", f"the picture uses only {fill_x:.0%} of the width and {fill_y:.0%} of the height of its panel at every position of "
+                   f"the sliders, so everything is drawn small; a world of x {sx[0]:g} to {sx[1]:g} and y {sy[0]:g} to {sy[1]:g} holds all of it")
 
 
 def _check_predict(spec: dict, model: Model, report: Report, count, known: set[str], parameters: set[str]) -> None:
