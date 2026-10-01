@@ -40,6 +40,13 @@ official product is judged at:
 
 Zero gaps, with every waiver reasoned, is the standard. A gap-free page that waives what the question could have given is not at it.
 
+**Core1A is built toward the toughest question, not only named after it.** The deploy prints which question of your set is the toughest (the one whose difficulty is most conceptual; `python3 Shared/tools/toughest_concept.py MANIFEST`
+gives the same, with the rule) and reports a gap until a construction unit of the concept book builds toward it. A construction unit does that with three fields (`Shared/library/package.schema.json`):
+`crux_question_refs` (the owner questions whose crux the unit builds, by id), `bank_anchor_ref` (the owner question the unit works through as its example: it is shown as the Owner wrote it, with its own provenance, so the
+unit is about that question and not about a look-alike you made up) and `crux_step_ref` (which of the unit's `step_refs` builds the move the question turns on). A unit that builds toward a question takes the **depth** of that
+question's band (a D3 or D4 question: four step cards and a four-stage figure), and its page says "This unit builds toward Q8" with a link to the question on the Core2 page. Build the idea the question turns on (what a learner who
+fails it has not understood), not a sentence that mentions it.
+
 ## What TEST can and cannot make
 
 TEST makes **HTML drafts**: Core pages, the rungs table, the Atlas view and an interactive page. It cannot make PDFs,

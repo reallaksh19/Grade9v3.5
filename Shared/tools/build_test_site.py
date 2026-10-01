@@ -145,13 +145,13 @@ def hub_page() -> str:
     inter = [f'{esc(r["slug"])}: {esc(r["title"])}' for r in pages]
     body = (
         '<p>TEST is a sandbox for stress runs. A test agent prepares <strong>Core2</strong>, then <strong>Core1A</strong>, then '
-        'an <strong>interactive page</strong> for one topic, and each lands here as a labelled draft. Nothing here is reviewed, '
+        'an <strong>explorer</strong> for the toughest concept of the same question set, and each lands here as a labelled draft. Nothing here is reviewed, '
         'accepted or curriculum, and <code>accept_product.py</code> refuses TEST.</p>'
         '<p class="g9-prov">A gap count of 0 means the depth check found nothing missing. It counts what is absent, '
         'not how good it is, and it does not say the content has been reviewed.</p>'
         + stage(1, "Core2", "Owner-supplied questions, preserved verbatim", core2)
         + stage(2, "Core1A", "Concept construction for the same topic", core1a)
-        + stage(3, "Interactive page", "A page built from the same canonical records", inter)
+        + stage(3, "Explorer", "A guided page on the toughest concept of the same question set", inter)
         + card("places", "atlas rungs deployments",
                '<h2>Where things are</h2><ul>'
                f'<li>{link("atlas/index.html", "Atlas")}: the Topic Atlas for the TEST matrix</li>'
