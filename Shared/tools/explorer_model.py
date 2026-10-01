@@ -21,6 +21,7 @@ blueprint (BP-EXPLORER-GCDR) asks; deploy reports it and says what to write.
 """
 from __future__ import annotations
 
+import copy
 import itertools
 import json
 import math
@@ -283,6 +284,33 @@ def _equal(x: float, y: float, tolerance: float = 1e-6) -> bool:
 
 # ------------------------------------------------------------------ the checks
 
+def _text_of(value: Any) -> Any:
+    """A number written where an expression goes is the expression that is that number."""
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return value
+    return str(int(value)) if float(value).is_integer() else repr(float(value))
+
+
+def normalize(spec: Any) -> Any:
+    """The spec with the numbers an author wrote where an expression goes ([0, 0], "r": 2.5) written as the expressions they are.
+    A copy; anything that is not a spec is returned as it is, for the structure check to say what is wrong with it."""
+    if not isinstance(spec, dict) or not isinstance(spec.get("scene"), dict) or not isinstance(spec["scene"].get("elements"), list):
+        return spec
+    out = copy.deepcopy(spec)
+    for element in out["scene"]["elements"]:
+        if not isinstance(element, dict):
+            continue
+        for key in ("at", "from", "to", "center"):
+            if isinstance(element.get(key), list):
+                element[key] = [_text_of(v) for v in element[key]]
+        if isinstance(element.get("points"), list):
+            element["points"] = [[_text_of(v) for v in point] if isinstance(point, list) else point for point in element["points"]]
+        for key in ("r", "from_deg", "to_deg", "t_min", "t_max", "x", "y"):
+            if key in element:
+                element[key] = _text_of(element[key])
+    return out
+
+
 def _schema_findings(spec: Any, report: Report) -> None:
     import jsonschema  # noqa: PLC0415
     schema = json.loads(SPEC_SCHEMA.read_text(encoding="utf-8"))
@@ -337,6 +365,7 @@ def _prose(report: Report, component: str, where: str, text: str, minimum: int =
 def check(spec: dict, brief: dict | None, bp: dict | None = None) -> Report:
     """Hold a spec to the blueprint and to its own numbers."""
     report = Report()
+    spec = normalize(spec)
     _schema_findings(spec, report)
     if report.errors:
         return report

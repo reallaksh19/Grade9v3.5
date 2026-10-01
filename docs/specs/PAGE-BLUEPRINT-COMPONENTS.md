@@ -377,7 +377,7 @@ Required: a page without it is a gap, and the quality gate fails it.
 - The learner gets: The supports are taken away in three levels: the numbers on the picture, then the relation, then the mechanism; the learner answers with less each time.
 - The reference page: GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): SCAFFOLD FADE
 - Record fields: `fade`
-- To author it: fade: three tasks, each {prompt, set: {parameter: value}, answer: expression, unit, decimals, tolerance, why}. Level 1 hides the numbers on the picture, level 2 also hides the mechanism and the equation, level 3 shows the physical scene only. The page sets the state to `set`; the answer is an expression at that state.
+- To author it: fade: three tasks, each {prompt, set: {parameter: value}, answer: expression, unit, decimals, tolerance, why}. Level 1 hides the numbers on the picture, level 2 also hides the mechanism and the graph, level 3 shows the physical scene only. The page sets the state to `set`; the answer is an expression at that state.
 
 **TRANSFER** · slot `route` · ROUTE_STEP · at least 2 item(s) (the reference has 3)
 

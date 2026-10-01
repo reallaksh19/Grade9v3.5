@@ -67,6 +67,26 @@ class Structure(unittest.TestCase):
         self.assertTrue(any("not the active explorer blueprint BP-EXPLORER-GCDR@1.0.0" in line for line in found), found)
 
 
+class Numbers(unittest.TestCase):
+    def test_a_number_where_an_expression_goes_is_the_expression_that_number(self):
+        def change(spec):
+            elements = {e["id"]: e for e in spec["scene"]["elements"]}
+            elements["ground"].update({"from": [-2, 0], "to": [44, 0]})
+            elements["angleArc"].update({"r": 6, "from_deg": 0})
+            elements["launch"].update({"at": [0, 0.0]})
+            elements["path"].update({"t_min": 0})
+        report = run(change)
+        self.assertEqual(lines(report), [])
+        normalized = em.normalize(json.loads(json.dumps(BASE | {"scene": {**BASE["scene"], "elements": [
+            {"id": "a", "kind": "polygon", "points": [[0, 0], [1.5, 2], [3, 0]]}, {"id": "b", "kind": "arc", "center": [1, 1], "r": 2.5, "from_deg": 0, "to_deg": 90}]}})))
+        self.assertEqual(normalized["scene"]["elements"][0]["points"], [["0", "0"], ["1.5", "2"], ["3", "0"]])
+        self.assertEqual(normalized["scene"]["elements"][1]["r"], "2.5")
+
+    def test_normalising_never_touches_what_is_not_a_spec(self):
+        self.assertEqual(em.normalize("not a spec"), "not a spec")
+        self.assertEqual(em.normalize({"scene": 3}), {"scene": 3})
+
+
 class Target(unittest.TestCase):
     def test_an_explorer_for_another_question_than_the_toughest_is_refused_and_the_toughest_is_named(self):
         found = lines(run(lambda spec: spec["target"].update(question_ref="Q-OTHER")), "error")

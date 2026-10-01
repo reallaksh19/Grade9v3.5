@@ -95,6 +95,26 @@ FUNCTIONS: dict[str, tuple[int, Any]] = {          # name -> (arity, function); 
 
 # ------------------------------------------------------------------ parsing
 
+# What an author most likely meant by a character the language does not have.
+_ADVICE = {
+    "=": "a single = is not a comparison: write == (and a quantity's own expression has no name = before it)",
+    "×": "write multiplication as *", "·": "write multiplication as *", "⋅": "write multiplication as *", "÷": "write division as /",
+    "√": "write sqrt(x)", "²": "write powers with ^, as x^2", "³": "write powers with ^, as x^3", "π": "write pi",
+    "°": "angles are plain numbers: use sind, cosd, tand (degrees) instead of a degree sign",
+    "%": "there is no % operator: write /100", "&": "write and", "|": "write or, or abs(x) for a size", "!": "write not (or != for not equal)",
+    "[": "use ( ) for brackets", "]": "use ( ) for brackets", "{": "use ( ) for brackets", "}": "use ( ) for brackets",
+    "$": "write the expression as plain text, with no $", "\\": "write the expression as plain text, not LaTeX", "_": "a name may contain an underscore only after its first letter",
+}
+
+
+def _advice(text: str, where: int) -> str:
+    char = text[where]
+    if char in "θαβγδφωμλρστ" or "Α" <= char <= "ω":
+        return " (write Greek letters as plain names: theta, alpha, beta)"
+    if char == "*" or (where and text[where - 1] == "*" and char == "*"):
+        return " (write powers with ^)"
+    return f" ({_ADVICE[char]})" if char in _ADVICE else ""
+
 Node = tuple
 
 
@@ -105,7 +125,7 @@ def _tokens(text: str) -> list[tuple[str, str]]:
         found = TOKEN.match(text, position)
         if not found or found.end() == position:
             where = position + len(text[position:]) - len(text[position:].lstrip())
-            raise ExprError(f"unexpected character {text[where]!r} at position {where + 1}")
+            raise ExprError(f"unexpected character {text[where]!r} at position {where + 1}" + _advice(text, where))
         number, name, symbol = found.groups()
         out.append(("num", number) if number is not None else ("name", name) if name is not None else ("sym", symbol))
         position = found.end()
@@ -146,6 +166,12 @@ class _Parser:
         if self.peek() is not None:
             raise ExprError(f"unexpected {self.peek()[1]!r}" + self._hint())
         return node
+
+    def unexpected(self, symbol: str) -> ExprError:
+        before = self.tokens[self.at - 2] if self.at >= 2 else None
+        if symbol == "*" and before and before[1] == "*":
+            return ExprError("unexpected '*' (write powers with ^, as x^2, not **)")
+        return ExprError(f"unexpected {symbol!r}")
 
     def _hint(self) -> str:
         token, before = self.peek(), self.tokens[self.at - 1] if self.at else None
@@ -225,7 +251,7 @@ class _Parser:
             node = self.or_()
             self.expect(")")
             return node
-        raise ExprError(f"unexpected {value!r}")
+        raise self.unexpected(value)
 
 
 def parse(text: str) -> Node:

@@ -609,6 +609,7 @@ def copied_from_example(spec: dict) -> list[str]:
 
 def check_source(source: Path) -> tuple[dict, Brief, em.Report]:
     spec, spec_path = load_spec(source)
+    spec = em.normalize(spec)
     if isinstance(spec, dict) and "product" in spec and (REPO / str(spec["product"])).is_file():
         brief = Brief(REPO / spec["product"])
     else:

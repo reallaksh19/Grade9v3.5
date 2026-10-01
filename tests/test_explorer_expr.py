@@ -89,6 +89,12 @@ class Check(unittest.TestCase):
         self.assertIn("keyword", expr.check("and + 1")[0])
         self.assertEqual(expr.check(7), ["an expression is a string"])
 
+    def test_a_character_the_language_does_not_have_comes_with_what_to_write_instead(self):
+        for text, advice in [("a ** 2", "write powers with ^"), ("a = b", "write =="), ("5 × 3", "write multiplication as *"), ("√x", "write sqrt(x)"),
+                             ("θ + 1", "theta"), ("x²", "x^2"), ("30°", "sind, cosd"), ("a & b", "write and"), ("a | b", "write or"), ("50%", "/100"),
+                             ("\\frac{1}{2}", "not LaTeX"), ("[a]", "use ( )")]:
+            self.assertIn(advice, expr.check(text, {"a", "b", "x", "theta"})[0], text)
+
     def test_each_problem_is_listed_once(self):
         problems = expr.check("foo(a) + bar(a) + zed", {"a"})
         self.assertEqual(len(problems), 3, problems)
