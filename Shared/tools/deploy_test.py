@@ -7,8 +7,8 @@ TEST banner, and writes a receipt that says `accepted: false`. It refuses anythi
 
     python3 Shared/tools/deploy_test.py product TEST/products/SLUG.manifest.json
     python3 Shared/tools/deploy_test.py interactive TEST/interactive/SLUG
-    python3 Shared/tools/deploy_test.py pages            # rebuild the TEST hub, rungs and deployments pages
-    python3 Shared/tools/deploy_test.py pages --check    # verify them without writing
+    python3 Shared/tools/deploy_test.py pages            # rebuild the TEST pages, then the Pages mirror (docs/)
+    python3 Shared/tools/deploy_test.py pages --check    # verify both without writing
 
 `product` and `interactive` rebuild the TEST pages and then the GitHub Pages mirror (docs/) unless `--no-mirror`.
 """
@@ -244,14 +244,18 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--no-mirror", action="store_true")
     p = sub.add_parser("pages")
     p.add_argument("--check", action="store_true")
+    p.add_argument("--no-mirror", action="store_true")
     args = parser.parse_args(argv)
     try:
         if args.cmd == "pages":
             if args.check:
-                findings = build_test_site.check()
-                print("\n".join(findings) if findings else "TEST pages are current")
+                # The Atlas reads public/data/data.js and the site is served from docs/, so a stale copy there counts.
+                findings = build_test_site.check() + ([] if args.no_mirror else build_pages_site.check(REPO))
+                print("\n".join(findings) if findings else "TEST pages and the Pages mirror are current")
                 return 1 if findings else 0
             build_test_site.write()
+            if not args.no_mirror:
+                build_pages_site.write(REPO)
             return 0
         if args.cmd == "product":
             receipt = deploy_product(Path(args.manifest))

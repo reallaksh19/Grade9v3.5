@@ -13,7 +13,7 @@ On the site it is the **TEST** tab (`public/test/`, deployed as `docs/test/`): a
 2. **Core1A**: the concept construction for the same topic.
 3. **An interactive page** built from the same canonical records.
 
-Each one is deployed to the TEST tab as a draft. Do them in that order; stop and record friction instead of guessing.
+Each one is deployed to the TEST tab as a draft. Do them in that order; stop and record friction instead of guessing. (The intake lists the Cores it will make in alphabetical order, `CORE1A` before `CORE2`; that is not the order of work.)
 
 ## What TEST can and cannot make
 
@@ -29,7 +29,7 @@ as deliverables. Report each of those as NOT DONE (a limit of TEST) and do not i
 |---|---|---|
 | Owner's questions (Core2) | `TEST/question-bank/SLUG.json` | an **owner-supplied bank**, made by `owner_bank.py new` (below). One question per intake question: `stem` is the Owner's text, unchanged. You fill `answer.summary`, `answer.reasoning` (a list of steps), `primary_capability_ref`, `family_ref` and the empty values in `extensions["grade9v3:analysis"]`: `learner_question_type`, and `difficulty` (five components each 0 to 2, `score` their sum, `band` D1 to D4 for that score, `basis` one sentence). The difficulty is your estimate and is shown as one. There is **no exam, year, paper or URL** and you must not add one. |
 | The ladder (Rungs) | `TEST/matrices/SLUG.rungs.json` | same shape as `Mathematics/matrices/linear-equations.rungs.json`, with `"subject": "TEST"` |
-| Concepts, capabilities, Core1A material | `TEST/library/SLUG.v1.json` | a package (`Shared/library/package.schema.json`) with `"subject": "TEST"`. It needs at least one resource, bucket, capability and microtopic; every capability needs a microtopic whose `primary_capability_ref` names it, and every owner question a `family_ref` naming a question family in the package. The smallest complete example is `tests/fixtures/render/thin-kin-2d-motion.v1.json`; a real one is `Mathematics/library/linear-equations.v1.json`. Check references with `python3 -m Shared.library.resolve TEST/library/SLUG.v1.json`. |
+| Concepts, capabilities, Core1A material | `TEST/library/SLUG.v1.json` | a package (`Shared/library/package.schema.json`) with `"subject": "TEST"`. It needs at least one resource, bucket, capability and microtopic; every capability needs a microtopic whose `primary_capability_ref` names it, and every owner question a `family_ref` naming a question family in the package. The smallest complete example is `tests/fixtures/render/thin-kin-2d-motion.v1.json`; a real one is `Mathematics/library/linear-equations.v1.json`. Check it before you build a manifest with `python3 -m Shared.library.resolve --schema TEST/library/SLUG.v1.json` (the schema, up to six problems at a time, then the references; without `--schema` it checks references only). |
 | Product manifest | `TEST/products/SLUG.manifest.json` | made by `product_manifest.py derive` (below) |
 | Interactive page source | `TEST/interactive/SLUG/index.html` and `interactive.json` | see "An interactive page" |
 
@@ -66,7 +66,7 @@ python3 Shared/tools/deploy_test.py pages                   # rebuild the TEST p
 python3 Shared/tools/deploy_test.py interactive TEST/interactive/SLUG
 
 # checks
-python3 Shared/tools/deploy_test.py pages --check           # the TEST pages are what the generator writes
+python3 Shared/tools/deploy_test.py pages --check           # the TEST pages and the Pages mirror (docs/) are current
 python3 Shared/tools/site_nav_audit.py                      # no line may start with NEW
 ```
 

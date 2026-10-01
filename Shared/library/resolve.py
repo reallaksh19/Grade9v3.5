@@ -258,13 +258,32 @@ def load_packages(paths: list[Path]) -> list[dict]:
     return [load(path) for path in paths]
 
 
-def main() -> int:
+def schema_problems(package: dict, limit: int = 6) -> list[str]:
+    """The first few places a package breaks package.schema.json, one line each, then how many more."""
+    from jsonschema import Draft202012Validator
+    schema = json.loads((Path(__file__).parent / "package.schema.json").read_text(encoding="utf-8"))
+    errors = sorted(Draft202012Validator(schema).iter_errors(package), key=lambda e: tuple(str(x) for x in e.absolute_path))
+    lines = [f'{"/".join(str(x) for x in e.absolute_path) or "<root>"}: {e.message}' for e in errors[:limit]]
+    return lines + ([f"(+{len(errors) - limit} more)"] if len(errors) > limit else [])
+
+
+def main(argv: list[str] | None = None) -> int:
     import argparse
     parser = argparse.ArgumentParser(description="Validate a library and optionally print a bucket slice")
     parser.add_argument("packages", nargs="+", type=Path)
     parser.add_argument("--slice", help="bucket id to retrieve")
-    args = parser.parse_args()
+    parser.add_argument("--schema", action="store_true",
+                        help="first check each package against package.schema.json (what a product build also requires)")
+    args = parser.parse_args(argv)
     packages = load_packages(args.packages)
+    if args.schema:
+        failed = False
+        for path, package in zip(args.packages, packages):
+            for line in schema_problems(package):
+                print(f"{path}: {line}")
+                failed = True
+        if failed:
+            return 1
     report = validate_library(packages)
     if args.slice:
         records = build_index(packages)

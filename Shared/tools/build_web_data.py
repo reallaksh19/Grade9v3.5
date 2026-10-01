@@ -296,7 +296,8 @@ def write() -> dict:
 def main() -> int:
     payload = write()
     buckets = sum(len(s["buckets"]) for s in payload["subjects"].values())
-    print(f"wrote {OUT.relative_to(REPO)}: {len(payload['subjects'])} subject(s), {buckets} bucket(s)")
+    print(f"wrote {OUT.relative_to(REPO)} and {PUBLIC_OUT.relative_to(REPO)}: "
+          f"{len(payload['subjects'])} subject(s), {buckets} bucket(s)")
     return 0
 
 

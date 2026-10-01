@@ -12,12 +12,14 @@ import tempfile
 import unittest
 import uuid
 from pathlib import Path
+from unittest import mock
 
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
-from Shared.tools import (accept_product, build_question_bank_web, build_test_site, check_subjects, deploy_test,  # noqa: E402
-                          owner_bank, product_manifest, render_core)
+from Shared.library import resolve  # noqa: E402
+from Shared.tools import (accept_product, build_pages_site, build_question_bank_web, build_test_site, check_subjects,  # noqa: E402
+                          deploy_test, owner_bank, product_manifest, render_core)
 
 PKG = "tests/fixtures/render/thin-kin-2d-motion.v1.json"
 OFFICIAL_BANK = "Physics/library/exam-bank/competitive-exam-question-bank.v2.json"
@@ -235,6 +237,47 @@ class TestDeploy(unittest.TestCase):
         receipt = deploy_test.deploy_product(self.fixture.manifest)
         self.assertIn("CORE2", receipt["empty_roles"])
         self.assertIn("Roles with no records selected: CORE2", build_test_site.deployments_page())
+
+
+class TestPagesCommand(unittest.TestCase):
+    """`deploy_test.py pages` is what a person runs after build_web_data.py: it must refresh the Pages mirror too."""
+
+    def run_pages(self, *args):
+        with mock.patch.object(build_test_site, "write") as write, mock.patch.object(build_pages_site, "write") as mirror, \
+                mock.patch.object(build_test_site, "check", return_value=[]) as check, \
+                mock.patch.object(build_pages_site, "check", return_value=["docs/data/data.js is stale"]) as mirror_check, \
+                contextlib.redirect_stdout(io.StringIO()) as out:
+            code = deploy_test.main(["pages", *args])
+        return code, out.getvalue(), write, mirror, check, mirror_check
+
+    def test_pages_rebuilds_the_test_pages_and_then_the_mirror(self):
+        code, _out, write, mirror, _check, _mc = self.run_pages()
+        self.assertEqual((code, write.call_count, mirror.call_count), (0, 1, 1))
+
+    def test_no_mirror_leaves_the_mirror_alone(self):
+        _code, _out, write, mirror, _check, _mc = self.run_pages("--no-mirror")
+        self.assertEqual((write.call_count, mirror.call_count), (1, 0))
+
+    def test_check_fails_on_a_stale_mirror_not_only_on_stale_test_pages(self):
+        code, out, _w, _m, _c, mirror_check = self.run_pages("--check")
+        self.assertEqual(code, 1)
+        self.assertIn("docs/data/data.js is stale", out)
+        self.assertEqual(self.run_pages("--check", "--no-mirror")[0], 0)
+
+
+class TestLibraryCheck(unittest.TestCase):
+    def test_the_schema_option_reports_what_a_product_build_would_refuse(self):
+        package = json.loads((REPO / PKG).read_text(encoding="utf-8"))
+        package["subject"] = "TEST"
+        package["capabilities"][0]["acceptance_status"] = "UNREVIEWED"
+        package["capabilities"][1]["acceptance_status"] = "NOT-A-STATUS"
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "p.json"
+            path.write_text(json.dumps(package), encoding="utf-8")
+            with contextlib.redirect_stdout(io.StringIO()) as strict:
+                self.assertEqual(resolve.main(["--schema", str(path)]), 1)
+        self.assertIn("capabilities/0/acceptance_status", strict.getvalue())
+        self.assertIn("capabilities/1/acceptance_status", strict.getvalue())
 
 
 class TestInteractive(unittest.TestCase):
