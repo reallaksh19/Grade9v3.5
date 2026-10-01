@@ -295,6 +295,8 @@ def _schema_findings(spec: Any, report: Report) -> None:
         if error.validator == "required":
             missing = re.findall(r"'([^']+)'", message)
             message = f"the key {missing[0]!r} is missing" if missing else message
+            if not top and missing:
+                top = missing[0]
         elif error.validator == "additionalProperties":
             extra = re.findall(r"'([^']+)'", message)
             message = f"unknown key {extra[0]!r}" if extra else message
@@ -477,7 +479,8 @@ def _check_scene(spec: dict, report: Report, count, known: set[str]) -> dict[str
         for key in ("label", "text"):
             if key in element:
                 _template(report, "SCENE", f"{where}.{key}", element[key], visible)
-        visible |= {var for var, _ in element_vars(element)}
+        if not (required - set(element)):
+            visible |= {var for var, _ in element_vars(element)}
     if scene["elements"] and not any(e.get("reveal", "start") == "start" for e in scene["elements"]):
         report.error("SCENE", "scene.elements", "nothing is on show at the start (every element has a later reveal), so the learner meets an empty picture")
     count("SCENE", "scene.elements", len(scene["elements"]), "elements")
@@ -738,11 +741,24 @@ def _check_reconstruct(spec: dict, model: Model, states: list[dict], report: Rep
             report.error("RECONSTRUCT", f"reconstruct.steps[{i}].quantity", f"{step['quantity']!r} is not one of the quantities")
     equation = rec["equation"]["expr"]
     truth = spec["target"]["quantity"]
-    if not _expression(report, "RECONSTRUCT", "reconstruct.equation.expr", equation, set(model.ids) | {truth}, None, model_forms=False):
+    try:
+        used = expr.names(expr.parse(equation))[0]
+    except expr.ExprError as caught:
+        report.error("RECONSTRUCT", "reconstruct.equation.expr", f"{equation!r}: {caught}")
+        return
+    steps_used = sorted(used & known_q)
+    if steps_used:
+        report.error("RECONSTRUCT", "reconstruct.equation.expr",
+                     f"{equation!r} uses {', '.join(steps_used)}, which are steps of the working. The equation is the closed form the steps compress into: "
+                     f"write it with the parameters only ({', '.join(model.ids)})")
+        return
+    if not _expression(report, "RECONSTRUCT", "reconstruct.equation.expr", equation, set(model.ids), None, model_forms=False):
         return
     quantity_text = next(q["expr"] for q in spec["quantities"] if q["id"] == truth)
     if _normal(equation) == _normal(quantity_text):
-        report.error("RECONSTRUCT", "reconstruct.equation.expr", f"is the same expression as the quantity {truth!r}; the equation is the closed form the working compresses into, so write it differently")
+        report.error("RECONSTRUCT", "reconstruct.equation.expr",
+                     f"is the same expression as the quantity {truth!r}, so nothing was compressed: define {truth!r} from the steps the mechanism shows, "
+                     "and write the equation as the closed form of them")
     worst, at = 0.0, None
     for state in states:
         a, b = model.evaluate(equation, state), model.values(state)[truth]

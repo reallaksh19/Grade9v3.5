@@ -9,7 +9,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from Shared.tools import blueprint_spec, owner_bank, quality_contract, render_core
+from Shared.tools import blueprint_spec, explorer_build, explorer_model, owner_bank, quality_contract, render_core
 from Shared.tools import web_blueprint_contract as blueprints
 
 REPO = Path(__file__).resolve().parents[1]
@@ -39,9 +39,11 @@ class Registry(unittest.TestCase):
                          "WEB_BLUEPRINT_SLOT_WITHOUT_COMPONENT"} <= points, points)
 
     def test_every_presentation_the_schema_allows_has_its_own_css(self):
+        # The Core pages are styled by the renderer; the explorer's own presentations by the explorer builder, which writes the same class names.
+        rules = render_core.COMPONENT_CSS + explorer_build.explorer_css(explorer_model.blueprint(REGISTRY))
         for name in sorted(blueprints.presentations()):
             cls = "g9-c-" + name.lower().replace("_", "-")
-            self.assertTrue(re.search(r"\." + re.escape(cls) + r"(?![\w-])", render_core.COMPONENT_CSS), f"{name} has no .{cls} rule")
+            self.assertTrue(re.search(r"\." + re.escape(cls) + r"(?![\w-])", rules), f"{name} has no .{cls} rule")
 
     def test_learner_text_in_components_never_drops_below_the_blueprint_floor(self):
         floor = REGISTRY["shell"]["typography_policy"]["minimum_learner_text_css_px"]

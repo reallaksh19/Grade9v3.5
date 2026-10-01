@@ -87,6 +87,8 @@
   function setParams(next) {
     for (const id of model.ids) if (id in next) state.params[id] = Number(next[id]);
     syncSliders();
+    if (!['FADE', 'TRANSFER'].includes(stageId())) trailAdd();
+    noteVisit();
     render();
   }
 
@@ -1012,7 +1014,7 @@
       const out = {};
       for (const entry of sceneNodes.values()) {
         const { element, parts } = entry;
-        if (!parts.shape) continue;
+        if (!parts.shape || entry.group.style.display === 'none') continue;
         const read = (name) => parseFloat(parts.shape.getAttribute(name));
         if (element.kind === 'point') out[element.id] = { x: read('cx'), y: read('cy'), expect: [X(values[element.vars[0]]), Y(values[element.vars[1]])] };
         else if (element.kind === 'segment' || element.kind === 'arrow') out[element.id] = { x1: read('x1'), y1: read('y1'), x2: read('x2'), y2: read('y2'),

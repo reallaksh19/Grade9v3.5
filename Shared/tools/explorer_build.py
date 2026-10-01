@@ -130,8 +130,10 @@ def _math(expression: str) -> str:
 
 
 def _card(cid: str, number: int, body: str) -> str:
-    return (f'<section class="gx-card g9-c-route-step" id="gx-card-{cid}" data-gx-step="{cid}" data-g9-component="{cid}" data-state="locked" hidden '
-            f'aria-labelledby="gx-h-{cid}"><div class="gx-card-head"><h2 id="gx-h-{cid}"><span class="gx-n" aria-hidden="true">{number}</span>'
+    """One step of the route. The first is shown as it is; the page's script opens the others one at a time, as each is earned."""
+    first = number == 1
+    return (f'<section class="gx-card g9-c-route-step" id="gx-card-{cid}" data-gx-step="{cid}" data-g9-component="{cid}" '
+            f'data-state="{"current" if first else "locked"}"{"" if first else " hidden"} aria-labelledby="gx-h-{cid}"><div class="gx-card-head"><h2 id="gx-h-{cid}"><span class="gx-n" aria-hidden="true">{number}</span>'
             f'<span class="gx-t">{esc(TITLES[cid])}</span></h2><p class="gx-sum" data-gx-summary></p></div>'
             f'<div class="gx-card-body">{body}'
             f'<div class="gx-actions"><button type="button" class="gx-primary" data-gx-continue disabled>{esc(CONTINUE[cid])}</button></div></div></section>')
@@ -318,7 +320,7 @@ def explorer_css(bp: dict) -> str:
 :root{{--gx-object:#8ab4f8;--gx-given:#fbbf24;--gx-result:#34d399;--gx-wrong:#fb7185;--gx-helper:#c4b5fd;--gx-frame:#8190a5;--gx-grid:rgba(148,163,184,.25);--gx-plot:rgba(148,163,184,.07)}}
 :root[data-theme=light]{{--gx-object:#1f5fae;--gx-given:#b45309;--gx-result:#047857;--gx-wrong:#be123c;--gx-helper:#6d28d9;--gx-frame:#64748b;--gx-grid:rgba(100,116,139,.28);--gx-plot:rgba(100,116,139,.06)}}
 .sr-only{{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}}
-.gx-skip{{position:absolute;left:8px;top:-60px;z-index:20;background:var(--card);padding:10px 14px;border-radius:8px}}.gx-skip:focus{{top:8px}}
+.gx-skip{{position:absolute;left:8px;top:-60px;z-index:20;background:var(--card);padding:0 14px;border-radius:8px;min-height:48px;box-sizing:border-box;display:inline-flex;align-items:center}}.gx-skip:focus{{top:8px}}
 .g9-c-route-rail{{position:sticky;top:0;z-index:6;display:flex;align-items:center;gap:10px;padding:6px 16px;background:var(--card);border-bottom:1px solid var(--line);min-height:60px;box-sizing:border-box}}
 .gx-head h1{{font-size:1.05rem;line-height:1.2;margin:0;flex:0 1 27%;min-width:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}}
 .gx-rail{{display:flex;gap:6px;list-style:none;margin:0;padding:0;flex:1 1 auto;min-width:0;overflow-x:auto;justify-content:center;scrollbar-width:none}}
@@ -326,13 +328,13 @@ def explorer_css(bp: dict) -> str:
 .gx-rail li .gx-lab{{display:none}}.gx-rail li[data-state=current]{{border-color:var(--accent);color:var(--fg);font-weight:700}}.gx-rail li[data-state=current] .gx-lab{{display:inline}}
 .gx-rail li[data-state=done]{{color:var(--fg)}}.gx-rail li[data-state=done] .gx-n{{background:var(--ok-bg);color:var(--ok-fg);border:1px solid var(--ok-line)}}
 .gx-n{{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--pill-bg);color:var(--pill-fg);font-size:.85rem;font-weight:700;flex:0 0 auto}}
-.gx-head>button{{min-height:44px;padding:6px 12px}}
+.gx-head>button{{min-height:48px;padding:6px 12px}}
 .gx-main{{max-width:var(--g9-content-max);margin:0 auto;padding:12px 16px 28px;box-sizing:border-box}}
 .gx-stage{{display:grid;gap:12px;min-width:0}}
 .gx-views{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:stretch}}
-.gx-view{{margin:0;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 8px 4px;overflow:visible;min-width:0;display:flex;flex-direction:column}}
-.gx-view svg{{display:block;width:100%;height:auto;max-width:none;max-height:min(52vh,420px);flex:1 1 auto;min-height:0}}
-.gx-view figcaption{{font-size:.9rem;color:var(--muted);padding:2px 6px 4px}}
+.g9-c-stage-view{{margin:0;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 8px 4px;overflow:visible;min-width:0;display:flex;flex-direction:column}}
+.g9-c-stage-view svg{{display:block;width:100%;height:auto;max-width:none;max-height:min(52vh,420px);flex:1 1 auto;min-height:0}}
+.g9-c-stage-view figcaption{{font-size:.9rem;color:var(--muted);padding:2px 6px 4px}}
 .gx-closed-note{{margin:0;padding:14px;border:1px dashed var(--line);border-radius:12px;color:var(--muted)}}
 .gx-panel{{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:12px 18px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px}}
 .gx-controls{{display:grid;gap:4px;align-content:start}}
@@ -343,7 +345,8 @@ def explorer_css(bp: dict) -> str:
 .gx-ro-target .gx-ro-v{{color:var(--gx-result)}}
 .gx-unit{{color:var(--muted);font-weight:500;font-size:.92rem}}
 .gx-route{{min-width:0}}
-.gx-card{{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:0 0 10px;min-width:0}}
+.gx-card,.g9-c-route-step{{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:0 0 10px;min-width:0}}
+.g9-c-control-panel{{min-width:0}}
 .gx-card[data-state=current]{{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}}
 .gx-card-head{{display:flex;align-items:center;gap:10px;padding:10px 14px;flex-wrap:wrap}}.gx-card[data-state=done] .gx-card-head{{cursor:pointer}}
 .gx-card h2{{font-size:1.08rem;margin:0;display:flex;align-items:center;gap:8px}}
@@ -386,7 +389,7 @@ def explorer_css(bp: dict) -> str:
 .gx-answer{{display:flex;gap:10px;align-items:center;flex-wrap:wrap}}.gx-answer input{{width:9rem;min-height:48px;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg);padding:6px 12px}}
 .gx-done .gx-links{{justify-content:flex-start}}
 /* the pictures */
-.gx-svg text{{font:600 15px system-ui,sans-serif;fill:currentColor}}
+.gx-svg text{{font:600 16px system-ui,sans-serif;fill:currentColor}}
 .gx-lab{{paint-order:stroke;stroke:var(--card);stroke-width:5px;stroke-linejoin:round}}
 .gx-stroke{{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}}
 .gx-fill{{fill:currentColor;stroke:var(--card);stroke-width:2}}
@@ -398,7 +401,7 @@ def explorer_css(bp: dict) -> str:
 .gx-tick,.gx-axis-label{{fill:var(--muted)!important;font-weight:500!important}}
 .gx-curve{{stroke-width:3.5}}.gx-drop{{stroke-dasharray:3 4;stroke-width:1.6;color:var(--muted)}}.gx-guide .gx-stroke{{stroke-dasharray:6 5;stroke-width:1.8}}
 .gx-svg *{{vector-effect:none}}
-.gx-view{{position:relative}}.gx-faded svg{{visibility:hidden}}.gx-faded::after{{content:'Hidden at this level';position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-weight:600}}
+.g9-c-stage-view{{position:relative}}.gx-faded svg{{visibility:hidden}}.gx-faded::after{{content:'Hidden at this level';position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-weight:600}}
 .gx-latest{{border-color:var(--accent)!important}}
 /* layout: from the blueprint's own fractions; the route stays in view and scrolls inside itself */
 @media (min-width:{wide}px){{
