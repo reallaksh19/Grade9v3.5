@@ -7,7 +7,7 @@
     "adapter"
   ],
   "component_count": 410,
-  "relation_count": 422,
+  "relation_count": 423,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
@@ -19,7 +19,7 @@
     "WEB_CONTRACT": 4,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:41250ca97ad0bc34e6910da892a93a5e6860a3ffe45a4324a4da95dc3bc6f77e",
+  "digest": "sha256:70fe99cb10a185c97803f52dc9a4d265ae96c01fd1fa5853745207f4d5c09d70",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -305,8 +305,8 @@
       "path": "Shared/library/resolve.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 11845,
-      "sha256": "ac039a9e8b5c32ad39c43cbf7423daf9cc37e28c6c9db0fc8637e8ee08eaca96"
+      "bytes": 12962,
+      "sha256": "be589c2ea0aac1cd1dec2f5ef2f9a3e20e546a4f27368d7ed4f9acde24d5cc4d"
     },
     {
       "path": "Shared/library/review-promotion-receipt.schema.json",
@@ -697,8 +697,8 @@
       "path": "Shared/tools/build_web_data.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 16238,
-      "sha256": "cb29b5bd44e64c2c13f1f197adf8ee7ab1d068d26887f699884e21d1d0c0536f"
+      "bytes": 16287,
+      "sha256": "96b681ad580b177e242cbd7314180731b7021645731927a217c82f83b76d848d"
     },
     {
       "path": "Shared/tools/calibration_corpus.py",
@@ -823,8 +823,8 @@
       "path": "Shared/tools/deploy_test.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 13937,
-      "sha256": "785646936e3807c4770608978625ed8b136ad35f813855d762fc2c5ea0310d7d"
+      "bytes": 14275,
+      "sha256": "e129017df5a2b66e1cfd5b808f92fa1a0fdf320346dbe560c05c9fc801252428"
     },
     {
       "path": "Shared/tools/derived_artifact_registry.py",
@@ -2713,8 +2713,8 @@
       "path": "tests/test_test_area.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 28501,
-      "sha256": "1b98147650a72b8972f57f08efd1d2da92a332ec5ca3488510dd41206278ced0"
+      "bytes": 30895,
+      "sha256": "d249689241e54cb1bebfad152c09a3999d5a965b94d39fb7280d7ab0099a8ebd"
     },
     {
       "path": "tests/test_tools.py",
@@ -4886,6 +4886,11 @@
     {
       "from": "tests/test_study_start.py",
       "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_test_area.py",
+      "to": "Shared.library",
       "kind": "IMPORTS"
     },
     {
