@@ -139,6 +139,8 @@ def hub_page() -> str:
         '<p>TEST is a sandbox for stress runs. A test agent prepares <strong>Core2</strong>, then <strong>Core1A</strong>, then '
         'an <strong>interactive page</strong> for one topic, and each lands here as a labelled draft. Nothing here is reviewed, '
         'accepted or curriculum, and <code>accept_product.py</code> refuses TEST.</p>'
+        '<p class="g9-prov">A gap count of 0 means the depth check found nothing missing. It counts what is absent, '
+        'not how good it is, and it does not say the content has been reviewed.</p>'
         + stage(1, "Core2", "Owner-supplied questions, preserved verbatim", core2)
         + stage(2, "Core1A", "Concept construction for the same topic", core1a)
         + stage(3, "Interactive page", "A page built from the same canonical records", inter)
@@ -195,7 +197,7 @@ def deployments_page() -> str:
                        if gap_list else "")
         body += card(f'product-{r["slug"]}', f'{r["slug"]} {r["title"]} product',
                      f'<h2>{esc(r["title"])}</h2><p class="g9-prov">Product {esc(r["slug"])} · '
-                     f'{"DRAFT" if r["draft"] else "no gaps"} · accepted: no · render {esc(r["render_digest"])}</p>'
+                     f'{"DRAFT" if r["draft"] else "no gaps reported, not reviewed"} · accepted: no · render {esc(r["render_digest"])}</p>'
                      f'<p>{links}</p><p>Selected records: {esc(counts)}. Gaps: {esc(gaps)} ({r["gap_count"]} in total).</p>{gap_details}{empty}')
     for r in pages:
         body += card(f'interactive-{r["slug"]}', f'{r["slug"]} {r["title"]} {r["purpose"]} interactive',

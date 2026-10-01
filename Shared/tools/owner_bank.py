@@ -176,6 +176,9 @@ def new(intake: dict, bank_id: str) -> dict:
                 },
                 # The difficulty is the author's estimate: five components, each 0 to 2, their sum as the score, and the
                 # band that sum falls in (see Shared/vocabularies/learner-question-metadata.v1.json). Fill every empty value.
+                # To typeset maths, add {"target": "answer_reasoning:1", "literal": "sqrt(3^2 + 4^2)", "tex": "\\sqrt{3^{2}+4^{2}}",
+                # "display": false} here; the literal must occur in the target text (stem, answer_summary, answer_reasoning:N).
+                "grade9v3:math_spans": [],
                 ANALYSIS_KEY: {
                     "learner_question_type": "",
                     "difficulty": {"band": "", "score": 0, "basis": "",

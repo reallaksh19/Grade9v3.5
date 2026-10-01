@@ -35,8 +35,11 @@ as deliverables. Report each of those as NOT DONE (a limit of TEST) and do not i
 
 A question is selected into Core2 when its `primary_capability_ref` is a capability of the package. Optional question
 fields (`conditions`, `subparts`, `figure_refs`, `response`, typed maths in `extensions["grade9v3:math_spans"]`) are
-shown by any question in `Physics/library/exam-bank/competitive-exam-question-bank.v2.json`. An owner question has no exam
-identity. Do not give it one. If research matches the original later, that is a new record with its own custody, not an
+shown by any question in `Physics/library/exam-bank/competitive-exam-question-bank.v2.json`. Maths in a question or its steps shows
+as the plain text you typed (`sqrt(3^2 + 4^2)`) unless you declare it in `extensions["grade9v3:math_spans"]`, for example
+`{"target": "answer_reasoning:1", "literal": "sqrt(3^2 + 4^2)", "tex": "\\sqrt{3^{2}+4^{2}}", "display": false}`; the literal must occur
+in the text at that target (`stem`, `answer_summary`, `answer_reasoning:N`, `conditions`), or the page reports a gap. An owner
+question has no exam identity. Do not give it one. If research matches the original later, that is a new record with its own custody, not an
 edit of this one.
 
 ## Step by step
