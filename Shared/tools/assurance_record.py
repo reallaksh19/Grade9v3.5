@@ -37,7 +37,7 @@ def make_evidence(
             "name": producer_name,
             "version": producer_version,
         },
-        "produced_at": datetime.utcnow().isoformat() + 'Z'
+        "produced_at": datetime.now(datetime.timezone.utc).replace(tzinfo=None).isoformat() + 'Z'
     }
     if findings is not None:
         evidence["findings"] = findings
