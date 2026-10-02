@@ -66,7 +66,7 @@ test('bootstrap draws navigation first, then the list and search, then optional 
   assert.equal(stages[0][1].CATALOG_READY, true);
   assert.equal(stages[0][1].LIST_READY, false, 'the list is not claimed before it has loaded');
   assert.equal(filesOf(requests)[0], NAMES.catalog, 'the catalog is requested before anything else');
-  assert.equal(qb.summaries().length, 77);
+  assert.equal(qb.summaries().length, 81);
   assert.equal(qb.views().length, 1);
   assert.ok(qb.resources().length > 0);
   assert.equal(qb.assertCoherence(), globalThis.GRADE9_QUESTION_BANK_MANIFEST.build_id);
@@ -222,7 +222,7 @@ test('search finds documents from the loaded index and honours filters', async (
   const qb = await service();
   await qb.bootstrap();
   const all = qb.search('');
-  assert.ok(all.length >= 77);
+  assert.ok(all.length >= 81);
   const physics = qb.search('', { subject_ref: 'SUBJECT-PHYSICS', kind: 'question' });
   assert.ok(physics.length > 0 && physics.every((doc) => doc.subject_ref === 'SUBJECT-PHYSICS'));
 });

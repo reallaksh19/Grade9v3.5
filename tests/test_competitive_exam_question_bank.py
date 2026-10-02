@@ -14,10 +14,11 @@ PHYS_CANONICAL_LIBRARIES = [
     ROOT / "Physics/library/relative-motion.v1.json",
 ]
 
-OFFICIAL_HOSTS = {"jeeadv.ac.in", "www.jeeadv.ac.in", "neet.nta.nic.in", "cdnbbsr.s3waas.gov.in", "nta.ac.in", "www.nta.ac.in", "jeemain.nta.nic.in"}
+OFFICIAL_HOSTS = {"jeeadv.ac.in", "www.jeeadv.ac.in", "neet.nta.nic.in", "cdnbbsr.s3waas.gov.in", "nta.ac.in", "www.nta.ac.in", "jeemain.nta.nic.in", "olympiads.hbcse.tifr.res.in"}
+# INJSO friction records are canonical Pass-1 custody, not product-local fixtures.
 EXPECTED_COUNTS = {
     "Physics": {
-        "Newton's Laws of Motion / NLM": 13,
+        "Newton's Laws of Motion / NLM": 17,
         "Motion in 2D / Motion in a Plane — linear/projectile only": 15,
         "Motion in 1D — relative motion only": 3,
     },
@@ -58,9 +59,9 @@ class CompetitiveExamQuestionBankV2Test(unittest.TestCase):
             cls.physics_family_ids.update(x["id"] for x in package["question_families"])
 
     def test_fixture_native_v2_shape_and_counts(self):
-        self.assertEqual(len(self.physics["questions"]), 31)
+        self.assertEqual(len(self.physics["questions"]), 35)
         self.assertEqual(len(self.chemistry["questions"]), 46)
-        self.assertEqual(len(self.questions), 77)
+        self.assertEqual(len(self.questions), 81)
         for bank in self.banks:
             self.assertEqual(bank["version"], "2.5.0")
             self.assertFalse(bank["extensions"]["grade9v3:generated_sets"])
@@ -97,7 +98,7 @@ class CompetitiveExamQuestionBankV2Test(unittest.TestCase):
             self.assertEqual(custody["authority_class"], "OFFICIAL_EXAM_ORGANIZER_ARCHIVE")
             self.assertEqual(custody["source_status"], "PYQ_VERIFIED_PARENT")
             self.assertEqual(custody["wording_custody"], "FAITHFUL_NON_VERBATIM_RESTATEMENT")
-            self.assertEqual(custody["last_checked"], "2026-09-23")
+            self.assertGreaterEqual(custody["last_checked"], "2026-09-23")
             self.assertIn(custody["section"], {"Physics", "Chemistry"})
             self.assertIn(f"|{custody['section']}|", q["original_identifier"])
             self.assertEqual(custody["parent_ref"], q["original_identifier"])

@@ -2,7 +2,7 @@
 window.GRADE9V3_PROMPT_COMPOSER = {
   "generated_by": "Shared/tools/build_prompt_composer_data.py",
   "contract_version": "1.0.0",
-  "repository_basis": "architecture-manifest@sha256:bf47399702e050dd0ca8a0f478fc16fc38a355808120570f79f2ef06b924e806",
+  "repository_basis": "architecture-manifest@sha256:e578893537390193c7511de3ee55bdaf483615e6be914c65b1470d11e5b36458",
   "template": {
     "template_id": "CORE-AGENT-PROMPT",
     "version": "1.1.0",
@@ -3538,6 +3538,211 @@ window.GRADE9V3_PROMPT_COMPOSER = {
             "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
           }
         },
+        "PYQ-PHY-INJSO-2011-Q22": {
+          "id": "PYQ-PHY-INJSO-2011-Q22",
+          "status": "CANDIDATE",
+          "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+          "secondary_capability_refs": [
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "analysis": {
+            "topic": "Newton's Laws of Motion / NLM",
+            "concept_bucket": "BUCKET-PHY-NLM-FIRST-LAW",
+            "exam_source_badge": "INJSO 2011 · Q22",
+            "original_question_type": "single_correct_mcq",
+            "learner_question_type": "single_correct_mcq",
+            "difficulty": {
+              "band": "D2",
+              "score": 4,
+              "components": {
+                "concept_model_selection": 1,
+                "representation_translation": 0,
+                "reasoning_chain_length": 1,
+                "algebra_computational_load": 0,
+                "trap_exception_sensitivity": 2
+              },
+              "basis": "The arithmetic is tiny; the main difficulty is the high-salience trap of treating μ_sN as the actual static friction instead of first solving the no-slip force demand."
+            },
+            "expected_time_seconds": 75,
+            "common_wrong_route": "Taking static friction to be μ_sN merely because μ_s is given, instead of finding the friction required for rest.",
+            "stable_crux_move": "Solve for the required static friction first, then compare that demand with μ_sN.",
+            "transfer_profile": {
+              "core2b_candidate": false,
+              "dimension": null,
+              "classification": "SAME_FAMILY_VARIATION"
+            }
+          },
+          "source_custody": {
+            "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+            "exam": "INJSO",
+            "year": 2011,
+            "paper": "29 Jan 2011",
+            "section": "Physics",
+            "question_number": "22",
+            "paper_url": "https://olympiads.hbcse.tifr.res.in/olympiads/wp-content/uploads/2016/09/injso2011-Q.pdf",
+            "archive_url": "https://olympiads.hbcse.tifr.res.in/how-to-prepare/past-papers/",
+            "answer_key_url": "https://olympiads.hbcse.tifr.res.in/olympiads/wp-content/uploads/2016/09/injso2011-S.pdf",
+            "answer_authority": "OFFICIAL_FINAL_KEY",
+            "last_checked": "2026-10-02",
+            "source_status": "PYQ_VERIFIED_PARENT",
+            "parent_ref": "INJSO|2011|29 Jan 2011|Physics|Q22",
+            "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+          }
+        },
+        "PYQ-PHY-INJSO-2016-Q32A": {
+          "id": "PYQ-PHY-INJSO-2016-Q32A",
+          "status": "CANDIDATE",
+          "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+          "secondary_capability_refs": [
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "analysis": {
+            "topic": "Newton's Laws of Motion / NLM",
+            "concept_bucket": "BUCKET-PHY-NLM-FIRST-LAW",
+            "exam_source_badge": "INJSO 2016 · Q32A",
+            "original_question_type": "constructed_response",
+            "learner_question_type": "constructed_response",
+            "difficulty": {
+              "band": "D3",
+              "score": 7,
+              "components": {
+                "concept_model_selection": 2,
+                "representation_translation": 2,
+                "reasoning_chain_length": 1,
+                "algebra_computational_load": 1,
+                "trap_exception_sensitivity": 1
+              },
+              "basis": "Requires switching system boundaries: use P+Q to eliminate the internal contact, then isolate Q and distinguish the table's vector reaction from the inter-block force."
+            },
+            "expected_time_seconds": 180,
+            "common_wrong_route": "Using only one friction coefficient for the two-box system, or treating the P-on-Q contact force as part of the table's resultant reaction on Q.",
+            "stable_crux_move": "Choose P+Q for the applied-force balance, then isolate Q and keep table friction, table normal and inter-block contact as different interactions.",
+            "transfer_profile": {
+              "core2b_candidate": false,
+              "dimension": null,
+              "classification": "SAME_FAMILY_VARIATION"
+            }
+          },
+          "source_custody": {
+            "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+            "exam": "INJSO",
+            "year": 2016,
+            "paper": "30 Jan 2016",
+            "section": "Physics",
+            "question_number": "32A",
+            "paper_url": "https://olympiads.hbcse.tifr.res.in/olympiads/wp-content/uploads/2016/09/injso2016-Q.pdf",
+            "archive_url": "https://olympiads.hbcse.tifr.res.in/how-to-prepare/past-papers/",
+            "answer_key_url": "https://olympiads.hbcse.tifr.res.in/olympiads/wp-content/uploads/2016/09/injso2016-S.pdf",
+            "answer_authority": "OFFICIAL_FINAL_KEY",
+            "last_checked": "2026-10-02",
+            "source_status": "PYQ_VERIFIED_PARENT",
+            "parent_ref": "INJSO|2016|30 Jan 2016|Physics|Q32A",
+            "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+          }
+        },
+        "PYQ-PHY-INJSO-2018-Q12": {
+          "id": "PYQ-PHY-INJSO-2018-Q12",
+          "status": "CANDIDATE",
+          "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+          "secondary_capability_refs": [
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "analysis": {
+            "topic": "Newton's Laws of Motion / NLM",
+            "concept_bucket": "BUCKET-PHY-NLM-FIRST-LAW",
+            "exam_source_badge": "INJSO 2018 · Q12",
+            "original_question_type": "single_correct_mcq",
+            "learner_question_type": "single_correct_mcq",
+            "difficulty": {
+              "band": "D3",
+              "score": 7,
+              "components": {
+                "concept_model_selection": 2,
+                "representation_translation": 1,
+                "reasoning_chain_length": 2,
+                "algebra_computational_load": 1,
+                "trap_exception_sensitivity": 1
+              },
+              "basis": "The crux is recognizing that the two moving trials share one kinetic-friction force and eliminating it; the one-person static statement is only a consistency bound."
+            },
+            "expected_time_seconds": 150,
+            "common_wrong_route": "Trying to infer μ from the one-person failure to move, or changing the kinetic-friction force between the two moving trials.",
+            "stable_crux_move": "Write both moving-state equations with the same f_k, then subtract them before solving for μ.",
+            "transfer_profile": {
+              "core2b_candidate": false,
+              "dimension": null,
+              "classification": "SAME_FAMILY_VARIATION"
+            }
+          },
+          "source_custody": {
+            "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+            "exam": "INJSO",
+            "year": 2018,
+            "paper": "27 Jan 2018",
+            "section": "Physics",
+            "question_number": "12",
+            "paper_url": "https://olympiads.hbcse.tifr.res.in/olympiads/wp-content/uploads/2017/09/INJSO2018-Question.pdf",
+            "archive_url": "https://olympiads.hbcse.tifr.res.in/how-to-prepare/past-papers/",
+            "answer_key_url": "https://olympiads.hbcse.tifr.res.in/olympiads/wp-content/uploads/2017/09/INJSO2018-Solution-20180228.pdf",
+            "answer_authority": "OFFICIAL_FINAL_KEY",
+            "last_checked": "2026-10-02",
+            "source_status": "PYQ_VERIFIED_PARENT",
+            "parent_ref": "INJSO|2018|27 Jan 2018|Physics|Q12",
+            "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+          }
+        },
+        "PYQ-PHY-INJSO-2023-Q24": {
+          "id": "PYQ-PHY-INJSO-2023-Q24",
+          "status": "CANDIDATE",
+          "primary_capability_ref": "CAP-NLM-FRICTION",
+          "secondary_capability_refs": [
+            "CAP-NLM-THIRD-LAW",
+            "CAP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "analysis": {
+            "topic": "Newton's Laws of Motion / NLM",
+            "concept_bucket": "BUCKET-PHY-NLM-FIRST-LAW",
+            "exam_source_badge": "INJSO 2023 · Q24",
+            "original_question_type": "multi_correct_mcq",
+            "learner_question_type": "multi_correct_mcq",
+            "difficulty": {
+              "band": "D2",
+              "score": 4,
+              "components": {
+                "concept_model_selection": 2,
+                "representation_translation": 1,
+                "reasoning_chain_length": 0,
+                "algebra_computational_load": 0,
+                "trap_exception_sensitivity": 1
+              },
+              "basis": "No calculation is needed; the trap is force ownership—distinguishing the ground-on-cycle external contact force from forces attributed to tyres inside the chosen system."
+            },
+            "expected_time_seconds": 75,
+            "common_wrong_route": "Naming a tyre as the external agent that slows the whole rider+cycle system because the brake acts on that tyre.",
+            "stable_crux_move": "Choose the rider+cycle system and name the ground as the external horizontal force agent.",
+            "transfer_profile": {
+              "core2b_candidate": false,
+              "dimension": null,
+              "classification": "SAME_FAMILY_VARIATION"
+            }
+          },
+          "source_custody": {
+            "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+            "exam": "INJSO",
+            "year": 2023,
+            "paper": "28 Jan 2023",
+            "section": "Physics",
+            "question_number": "24",
+            "paper_url": "https://olympiads.hbcse.tifr.res.in/wp-content/uploads/2023/01/INJSO2023-Question.pdf",
+            "archive_url": "https://olympiads.hbcse.tifr.res.in/how-to-prepare/past-papers/",
+            "answer_key_url": "https://olympiads.hbcse.tifr.res.in/wp-content/uploads/2023/02/INJSO2023-Solution-20230215.pdf",
+            "answer_authority": "OFFICIAL_FINAL_KEY",
+            "last_checked": "2026-10-02",
+            "source_status": "PYQ_VERIFIED_PARENT",
+            "parent_ref": "INJSO|2023|28 Jan 2023|Physics|Q24",
+            "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+          }
+        },
         "PYQ-PHY-JEEADV-2013-P1-Q07": {
           "id": "PYQ-PHY-JEEADV-2013-P1-Q07",
           "status": "CANDIDATE",
@@ -3922,8 +4127,8 @@ window.GRADE9V3_PROMPT_COMPOSER = {
               "basis": "A two-stage quasistatic friction process must be combined with changing support reactions from torque balance."
             },
             "expected_time_seconds": 240,
-            "common_wrong_route": "Assuming both fingers slide together or using one constant normal reaction throughout.",
-            "stable_crux_move": "At each stick-slip transition, recompute the support reactions from torque balance before applying mu_k N = mu_s N.",
+            "common_wrong_route": "Using one fixed normal reaction or one friction state throughout both stages, so the second stick-slip threshold is written with stale contact data.",
+            "stable_crux_move": "After each support-reaction update, switch the friction model with the contact state: the slipping finger uses μ_kN and the sticking finger reaches μ_sN at the next transition.",
             "transfer_profile": {
               "core2b_candidate": true,
               "dimension": "reasoning_steps",

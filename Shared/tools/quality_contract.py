@@ -407,8 +407,9 @@ def _stamp(obs, check, ctx):
 def _roles(obs, check, ctx):
     if "roles_rendered" not in obs:
         return None
-    missing = [r for r in check["roles"] if r not in obs["roles_rendered"]]
-    return [f"roles not rendered: {', '.join(missing)}"] if missing else []
+    expected = obs.get("roles_expected") if isinstance(obs.get("roles_expected"), list) else check["roles"]
+    missing = [r for r in expected if r not in obs["roles_rendered"]]
+    return [f"declared roles not rendered: {', '.join(missing)}"] if missing else []
 
 
 @op("product_shared_atlas")

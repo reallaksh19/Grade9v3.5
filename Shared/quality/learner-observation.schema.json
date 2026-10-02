@@ -34,7 +34,12 @@
     "roles_rendered": {
       "type": "array",
       "items": {"$ref": "#/$defs/role"},
-      "description": "Core roles delivered as their own learner product. Omit when the observation covers only part of a product."
+      "description": "Core roles actually rendered as learner pages. Omit when the observation covers only part of a product."
+    },
+    "roles_expected": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/role"},
+      "description": "Core roles the product manifest explicitly declares for delivery. Absent preserves the legacy all-six-role expectation."
     },
     "atlas": {
       "type": ["object", "null"],

@@ -197,7 +197,7 @@ class TestPages(unittest.TestCase):
     def test_test_is_not_a_question_bank_subject(self):
         projection = build_question_bank_web.build(REPO)
         self.assertNotIn("TEST", {q.get("subject") for q in projection["questions"]})
-        self.assertEqual(len(projection["questions"]), 77)
+        self.assertEqual(len(projection["questions"]), 81)
 
 
 class TestDeploy(unittest.TestCase):

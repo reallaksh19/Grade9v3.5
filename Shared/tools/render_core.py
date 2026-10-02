@@ -2816,11 +2816,16 @@ def main(argv: list[str] | None = None) -> int:
     b.add_argument("--out", required=True)
     b.add_argument("--mode", choices=MODES, default="PAGES")
     b.add_argument("--draft", action="store_true", help="write a draft even when gaps remain (never published)")
+    b.add_argument("--reference", action="store_true", help="judge authored depth against the blueprint reference bar")
     g = sub.add_parser("gaps")
     g.add_argument("--manifest", required=True)
+    g.add_argument("--reference", action="store_true", help="judge authored depth against the blueprint reference bar")
     args = parser.parse_args(argv)
+    held_to = "REFERENCE" if getattr(args, "reference", False) else "FLOOR"
     try:
-        pages, gaps, digest = build(Path(args.manifest), getattr(args, "mode", "PAGES"))
+        pages, gaps, digest, _advisories, _waived = build_report(
+            Path(args.manifest), getattr(args, "mode", "PAGES"), held_to=held_to
+        )
     except product_manifest.ProductSelectionError as caught:
         print(f"selection rejected: {caught}", file=sys.stderr)  # an input problem, not a crash
         return 1
@@ -2845,6 +2850,7 @@ def main(argv: list[str] | None = None) -> int:
             text = text.replace("<html ", '<html data-g9-draft="%d" ' % len(gaps), 1)
         (out / name).write_bytes(text.encode("utf-8"))
     manifest_path = Path(args.manifest).resolve()
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     try:
         manifest_ref = manifest_path.relative_to(REPO.resolve()).as_posix()
     except ValueError:
@@ -2852,13 +2858,13 @@ def main(argv: list[str] | None = None) -> int:
     (out / "render-receipt.json").write_text(json.dumps({
         "renderer": RENDERER_VERSION, "digest": digest,
         "semantic_digest": semantic_metadata_digest(pages, args.mode),
-        "manifest": manifest_ref, "mode": args.mode,
+        "manifest": manifest_ref, "mode": args.mode, "held_to": held_to,
         "draft": bool(gaps), "gaps": gaps, "pages": sorted(pages),
+        "output_roles": product_manifest.selected_output_roles(manifest),
         "ledger": json.loads(Path(args.manifest).read_text(encoding="utf-8")).get("ledger", []),
         "diagnostic_min": json.loads(Path(args.manifest).read_text(encoding="utf-8")).get("diagnostic_min", 0)},
         indent=2) + "\n", encoding="utf-8")
     print(f"wrote {len(pages)} page(s) to {out}" + (f" as DRAFT with {len(gaps)} gap(s)" if gaps else ""))
-    manifest = json.loads(Path(args.manifest).read_text(encoding="utf-8"))
     print("selected records: " + " ".join(f"{key}={len(manifest.get('selection', {}).get(key) or [])}"
                                           for key in product_manifest.SELECTION_KEYS))
     for role in empty_roles(manifest):
