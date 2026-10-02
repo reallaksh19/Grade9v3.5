@@ -36,7 +36,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   friction-evidence:
@@ -270,6 +270,135 @@ jobs:
             await browser.close();
           })().catch(err => { console.error(err); process.exit(1); });
           JS
+
+      - name: Publish validated friction pages to Physics Practice
+        if: github.event_name == 'push' && github.ref == 'refs/heads/chatgpt/friction-core1a-core2'
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin main
+
+          # Start learner-navigation files from current main so this draft branch
+          # cannot regress the already-published #397/#398/#399 navigation/search work.
+          for path in             public/index.html             public/physics/index.html             public/standalone/practice/index.html             public/data/site-search-resources.js
+          do
+            git show origin/main:"$path" > "$path"
+          done
+
+          dest=public/standalone/practice/friction
+          mkdir -p "$dest"
+          cp /tmp/friction-core-site/products/physics/phy-nlm-friction/index.html "$dest/index.html"
+          cp /tmp/friction-core-site/products/physics/phy-nlm-friction/core1a.html "$dest/core1a.html"
+          cp /tmp/friction-core-site/products/physics/phy-nlm-friction/core2.html "$dest/core2.html"
+          cp /tmp/friction-core-site/products/physics/phy-nlm-friction/core1a.pdf "$dest/core1a.pdf"
+          cp /tmp/friction-core-site/products/physics/phy-nlm-friction/core2.pdf "$dest/core2.pdf"
+          cp /tmp/friction-core-site/products/physics/phy-nlm-friction/print-receipt.json "$dest/print-receipt.json"
+
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          # Homepage: one friction product = one additional practice module.
+          home = Path("public/index.html")
+          text = home.read_text(encoding="utf-8")
+          text = text.replace("13 repaired learner modules", "14 repaired learner modules")
+          text = text.replace(">13 MODULES<", ">14 MODULES<")
+          home.write_text(text, encoding="utf-8")
+
+          # Physics portal module count.
+          physics = Path("public/physics/index.html")
+          text = physics.read_text(encoding="utf-8")
+          text = text.replace(">13 Modules<", ">14 Modules<")
+          physics.write_text(text, encoding="utf-8")
+
+          # Practice hub: count + dedicated friction product card with direct
+          # Core1A/Core2 entry points.
+          hub = Path("public/standalone/practice/index.html")
+          text = hub.read_text(encoding="utf-8")
+          text = text.replace(
+              '<div class="number">13</div><div class="label">Modules</div>',
+              '<div class="number">14</div><div class="label">Modules</div>',
+              1,
+          )
+          anchor = '<section class="section-header"><h2>Newton\'s Laws of Motion (NLM)</h2></section>'
+          if anchor not in text:
+              raise SystemExit("NLM section anchor missing from practice hub")
+          card = r'''
+<section class="section-header"><h2>Friction — Blueprint 1.9 Product</h2></section>
+<div class="grid">
+  <div class="card" style="border-color:#38bdf8;">
+    <div class="card-title">Friction — Concept Book + Source Questions</div>
+    <div class="card-desc">Blueprint 1.9.0-validated friction product. Core 1A constructs contact-state reasoning and the stick/slip threshold; Core 2 contains 10 selected source questions with 7 denominator omissions explicitly explained.</div>
+    <div class="card-meta">
+      <div class="tags"><span class="tag tag-cons">Friction</span><span class="tag tag-vec">NLM</span><span class="tag tag-proj">Blueprint 1.9</span></div>
+      <div class="q-count">Core 1A + 10 Core 2</div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:.5rem">
+      <a class="open-btn" href="friction/core1a.html">Open Core 1A Concept Book →</a>
+      <a class="open-btn" href="friction/core2.html">Open Core 2 Questions →</a>
+      <a class="open-btn" href="friction/index.html">Product index →</a>
+    </div>
+  </div>
+</div>
+
+'''
+          text = text.replace(anchor, card + anchor, 1)
+          hub.write_text(text, encoding="utf-8")
+
+          # Global search: keep current-main entries and add the product and both
+          # direct learner pages.
+          search = Path("public/data/site-search-resources.js")
+          raw = search.read_text(encoding="utf-8").strip()
+          prefix = "window.GRADE9_SITE_SEARCH_RESOURCES="
+          if not raw.startswith(prefix) or not raw.endswith(";"):
+              raise SystemExit("unexpected site-search-resources.js format")
+          rows = json.loads(raw[len(prefix):-1])
+          additions = [
+              {
+                  "title": "Friction — Core 1A Concept Book",
+                  "path": "standalone/practice/friction/core1a.html",
+                  "kind": "practice",
+                  "keywords": ["physics","friction","nlm","newton","static friction","kinetic friction","stick slip","core1a","concept book"],
+              },
+              {
+                  "title": "Friction — Core 2 Source Questions",
+                  "path": "standalone/practice/friction/core2.html",
+                  "kind": "practice",
+                  "keywords": ["physics","friction","nlm","newton","jee","injso","core2","source questions","stick slip"],
+              },
+              {
+                  "title": "Friction — Blueprint 1.9 Product",
+                  "path": "standalone/practice/friction/index.html",
+                  "kind": "practice",
+                  "keywords": ["physics","friction","nlm","blueprint 1.9","core1a","core2","practice"],
+              },
+          ]
+          known = {r.get("path") for r in rows}
+          rows.extend(r for r in additions if r["path"] not in known)
+          search.write_text(prefix + json.dumps(rows, ensure_ascii=False, separators=(",", ":")) + ";\n", encoding="utf-8")
+          PY
+
+          # The Pages mirror is generated from public; never hand-author docs.
+          python3 Shared/tools/build_pages_site.py
+          python3 Shared/tools/build_manifest.py
+
+          # Publication-level sanity checks.
+          test -f docs/standalone/practice/friction/core1a.html
+          test -f docs/standalone/practice/friction/core2.html
+          test -f docs/standalone/practice/friction/core1a.pdf
+          test -f docs/standalone/practice/friction/core2.pdf
+          grep -q 'friction/core1a.html' public/standalone/practice/index.html
+          grep -q 'friction/core2.html' public/data/site-search-resources.js
+          python3 Shared/tools/build_pages_site.py --check
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public docs
+          if git diff --cached --quiet; then
+            echo "Published friction pages already current."
+          else
+            git commit -m "feat(friction): publish Blueprint 1.9 learner pages"
+            git push origin HEAD:chatgpt/friction-core1a-core2
+          fi
 
       - name: Upload friction evidence
         if: always()
