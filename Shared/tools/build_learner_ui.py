@@ -496,7 +496,10 @@ def generate_subject_hub(subject: str, registry: list[dict], bundles: list[dict]
     for tid, tmeta in sorted(topics.items()):
         badge = '<span class="g9-card-tag g9-tag-physics">Interactive Models</span>' if tmeta["has_interactive"] else '<span class="g9-card-tag g9-tag-physics">Core Study</span>'
         # Topic link
-        topic_href = f"../topics/nlm/index.html" if "nlm" in tid else f"../topics/{tid}/index.html"
+        if "nlm" in tid:
+            topic_href = "../topics/nlm/index.html"
+        else:
+            topic_href = "../standalone/practice/index.html"
         topic_cards.append(f"""
     <a class="g9-card" href="{topic_href}">
       <div class="g9-card-header">
