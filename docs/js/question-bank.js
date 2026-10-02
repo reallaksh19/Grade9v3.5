@@ -88,11 +88,17 @@ function stateFromUrl(){
 }
 function refFor(rows,value){
   if(!value)return '';
-  const wanted=String(value).toLowerCase();
+  const wanted=String(value).toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
   const byId=rows.find(row=>row.id===value);
   if(byId)return byId.id;
-  const byLabel=rows.find(row=>String(row.label).toLowerCase()===wanted);
-  return byLabel?byLabel.id:value;
+  const byExactLabel=rows.find(row=>String(row.label).toLowerCase()===wanted);
+  if(byExactLabel)return byExactLabel.id;
+  const bySlug=rows.find(row=>{
+    const idNorm=row.id.toLowerCase().replace(/[^a-z0-9]+/g, ' ');
+    const lblNorm=String(row.label).toLowerCase().replace(/[^a-z0-9]+/g, ' ');
+    return idNorm.includes(wanted) || lblNorm.includes(wanted);
+  });
+  return bySlug?bySlug.id:value;
 }
 function normalizeState(){
   if(!catalog)return;
@@ -207,20 +213,14 @@ function renderCollections(){
 }
 function renderTabs(){
   els.subjectTabs.replaceChildren();
-  const ICONS = {
-    '': '⚡',
-    'subject-physics': '🔬',
-    'subject-chemistry': '⚗️',
-    'subject-mathematics': '📐',
-    'iit-jee': '🎯'
-  };
+  const ICONS = ['⚗️', '📐', '🔬', '🧬', '🪐'];
   const tabs=[
     {id:'',label:'All Questions',count:catalog.counts.questions,icon:'⚡'},
-    ...browsable(catalog.subjects).map(s=>({
+    ...browsable(catalog.subjects).map((s, idx)=>({
       id:s.id,
       label:s.label,
       count:s.question_count,
-      icon:ICONS[s.id.toLowerCase()]||'📚'
+      icon:s.icon || ICONS[idx % ICONS.length] || '📚'
     })),
     {id:'iit-jee',label:'IIT-JEE PYQs',count:215,icon:'🎯'}
   ];

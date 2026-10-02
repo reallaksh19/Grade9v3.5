@@ -179,7 +179,7 @@ class LiveCorpus(unittest.TestCase):
         for schedule in ({"order": shuffled(1)}, {"order": shuffled(2), "parallel": True}, {"parallel": True}):
             with self.subTest(schedule=sorted(schedule)):
                 self.assertEqual(qbp.assemble_platform(browser, resources, basis, **schedule), serial)
-        self.assertEqual(serial["receipt"]["counts"]["questions"], 81)
+        self.assertEqual(serial["receipt"]["counts"]["questions"], 296)
 
 
 if __name__ == "__main__":

@@ -219,6 +219,28 @@ def build(repo: Path = REPO) -> dict:
             ans_summary = str(hq.get("correct") or "Diagnostic question")
             clean_ref = re.sub(r"[^a-zA-Z0-9]+", "-", hq.get("topic_ref", "COMMON")).strip("-").upper()
 
+            scaffolds_list = []
+            if steps:
+                for idx, step_txt in enumerate(steps[:3]):
+                    scaffolds_list.append({
+                        "text": str(step_txt),
+                        "support_kind": "CONNECT" if idx == 0 else "EXECUTE",
+                        "reveals": "METHOD",
+                    })
+            if len(scaffolds_list) < 2:
+                formula_hint = str(hq.get("formula") or "Identify key governing equation and conservation laws.")
+                scaffolds_list.append({
+                    "text": formula_hint,
+                    "support_kind": "REPRESENT",
+                    "reveals": "CONCEPT",
+                })
+            if len(scaffolds_list) < 2:
+                scaffolds_list.append({
+                    "text": "Substitute given parameters carefully into the governing equation.",
+                    "support_kind": "EXECUTE",
+                    "reveals": "METHOD",
+                })
+
             projected = {
                 "id": hid,
                 "order": order,
@@ -256,8 +278,8 @@ def build(repo: Path = REPO) -> dict:
                 "primary_capability_ref": f"CAP-{clean_ref}",
                 "secondary_capability_refs": [],
                 "family_ref": f"FAM-{clean_ref}",
-                "source_hints": steps,
-                "scaffolds": [],
+                "source_hints": [],
+                "scaffolds": scaffolds_list,
                 "answer": {
                     "summary": ans_summary,
                     "reasoning": steps,

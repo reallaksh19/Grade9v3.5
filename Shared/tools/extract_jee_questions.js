@@ -78,7 +78,13 @@ for (const cfg of explorerConfigs) {
     // Parse options if available
     let opts = [];
     if (Array.isArray(item.options)) {
-      opts = item.options.map(o => String(o).trim());
+      opts = item.options.map(o => {
+        if (typeof o === 'string') return o.trim();
+        if (o && typeof o === 'object') {
+          return String(o.text || o.label || o.value || o.str || JSON.stringify(o)).trim();
+        }
+        return String(o).trim();
+      });
     }
 
     allQuestions.push({

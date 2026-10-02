@@ -587,11 +587,90 @@ def discover_owner_lab_surfaces(repo_root: Path) -> list[dict]:
     return surfaces
 
 
+def discover_core1a_books(repo_root: Path) -> list[dict]:
+    books = []
+    # Chemistry Core 1A: Chemical Bonding
+    chem_c1a = repo_root / "public" / "chemistry" / "bonding" / "core1a.html"
+    if chem_c1a.exists():
+        books.append({
+            "schema": "grade9v3-resource/v1",
+            "id": "chem.bonding.core1a",
+            "resource_kind": "STRUCTURED_PRODUCT",
+            "learner_role": "LEARN",
+            "audience": "LEARNER",
+            "presentation": "FULL_PAGE",
+            "classification": {
+                "subject_ref": "Chemistry",
+                "topic_refs": ["chem.bonding"],
+                "capability_refs": ["MIC-CHEM-BONDING"]
+            },
+            "artifact": {
+                "entrypoint": "chemistry/bonding/core1a.html",
+                "generated": True
+            },
+            "platform_capabilities": ["staged-representation", "worked-anchor", "related-practice"],
+            "search": {
+                "title": "Chemical Bonding · VSEPR & Geometry — Learn",
+                "aliases": ["chemical bonding", "vsepr", "molecular geometry", "bonding core1a"],
+                "visibility": "LEARNER"
+            },
+            "source": {
+                "authority_ref": "chemistry/bonding/core1a.html",
+                "generator_ref": "Shared/tools/build_learner_ui.py"
+            },
+            "validation": {
+                "academic_evidence_ref": None,
+                "structural_evidence_ref": None,
+                "browser_evidence_ref": None,
+                "publication_evidence_ref": None
+            }
+        })
+
+    # Mathematics Core 1A: Vector Algebra
+    math_c1a = repo_root / "public" / "mathematics" / "vectors" / "core1a.html"
+    if math_c1a.exists():
+        books.append({
+            "schema": "grade9v3-resource/v1",
+            "id": "math.vectors.core1a",
+            "resource_kind": "STRUCTURED_PRODUCT",
+            "learner_role": "LEARN",
+            "audience": "LEARNER",
+            "presentation": "FULL_PAGE",
+            "classification": {
+                "subject_ref": "Mathematics",
+                "topic_refs": ["math.vectors"],
+                "capability_refs": ["MIC-MATH-VECTOR-ALGEBRA"]
+            },
+            "artifact": {
+                "entrypoint": "mathematics/vectors/core1a.html",
+                "generated": True
+            },
+            "platform_capabilities": ["staged-representation", "worked-anchor", "related-practice"],
+            "search": {
+                "title": "Vector Algebra · Resolution & Components — Learn",
+                "aliases": ["vector algebra", "vector resolution", "orthogonal components", "vectors core1a"],
+                "visibility": "LEARNER"
+            },
+            "source": {
+                "authority_ref": "mathematics/vectors/core1a.html",
+                "generator_ref": "Shared/tools/build_learner_ui.py"
+            },
+            "validation": {
+                "academic_evidence_ref": None,
+                "structural_evidence_ref": None,
+                "browser_evidence_ref": None,
+                "publication_evidence_ref": None
+            }
+        })
+    return books
+
+
 def build_registry(repo_root: Path) -> list[dict]:
     records: list[dict] = []
     records.extend(discover_subject_homes(repo_root))
     records.extend(discover_question_bank(repo_root))
     records.extend(discover_product_manifests(repo_root))
+    records.extend(discover_core1a_books(repo_root))
     records.extend(discover_opaque_explorers(repo_root))
     records.extend(discover_owner_lab_surfaces(repo_root))
 

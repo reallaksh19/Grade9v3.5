@@ -21,6 +21,30 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
     ]
   },
   {
+    "title": "Chemical Bonding \u00b7 VSEPR & Geometry \u2014 Learn",
+    "path": "chemistry/bonding/core1a.html",
+    "kind": "learn",
+    "keywords": [
+      "chemical",
+      "bonding",
+      "\u00b7",
+      "vsepr",
+      "&",
+      "geometry",
+      "\u2014",
+      "learn",
+      "chemical",
+      "bonding",
+      "vsepr",
+      "molecular",
+      "geometry",
+      "bonding",
+      "core1a",
+      "mic-chem-bonding",
+      "chemistry"
+    ]
+  },
+  {
     "title": "Behaviour of Gases Explorer",
     "path": "chemistry/gases/explorers/behaviour_of_gases/index.html",
     "kind": "explore",
@@ -88,6 +112,31 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "chemistry",
       "hub",
       "chemistry"
+    ]
+  },
+  {
+    "title": "Vector Algebra \u00b7 Resolution & Components \u2014 Learn",
+    "path": "mathematics/vectors/core1a.html",
+    "kind": "learn",
+    "keywords": [
+      "vector",
+      "algebra",
+      "\u00b7",
+      "resolution",
+      "&",
+      "components",
+      "\u2014",
+      "learn",
+      "vector",
+      "algebra",
+      "vector",
+      "resolution",
+      "orthogonal",
+      "components",
+      "vectors",
+      "core1a",
+      "mic-math-vector-algebra",
+      "mathematics"
     ]
   },
   {

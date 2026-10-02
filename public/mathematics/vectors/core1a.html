@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-g9-shell data-g9-role="CORE1A" data-g9-product="PRODUCT-MATH-VECTOR-RESOLUTION">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Vector Algebra · Construction (Core 1A)</title>
+  <link rel="stylesheet" href="../../css/modern-learner.css">
+  <style>
+    :root {
+      --g9-space: clamp(16px, 2vw, 28px);
+      --accent: #7c3aed;
+    }
+    main { max-width: 1240px; margin: 0 auto; padding: var(--g9-space); }
+    .g9-core1a-book { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 24px; }
+    .g9-core1a-book h1 { font-size: 26px; font-weight: 800; margin-bottom: 8px; color: var(--text-main); }
+    .g9-split { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+    @media (max-width: 960px) { .g9-split { grid-template-columns: 1fr; } }
+    .g9-card-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px; margin-bottom: 18px; }
+    .g9-step-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: cstep; }
+    .g9-step-item { counter-increment: cstep; position: relative; padding: 14px 16px 14px 50px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); }
+    .g9-step-item::before { content: counter(cstep); position: absolute; left: 14px; top: 14px; width: 26px; height: 26px; border-radius: 50%; background: #fae8ff; color: #86198f; font-weight: 800; display: grid; place-items: center; font-size: 13px; }
+    .g9-crux-step { border-color: #86198f; box-shadow: 0 0 0 1px #86198f; background: var(--bg-card); }
+    .g9-crux-badge { display: inline-block; background: #fae8ff; color: #86198f; font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; }
+    .g9-worked-card { border-left: 4px solid #86198f; background: var(--bg-soft); padding: 16px 20px; border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+    .g9-worked-card h4 { margin-bottom: 8px; font-size: 15px; color: #86198f; text-transform: uppercase; letter-spacing: 0.04em; }
+    .g9-worked-card ol { padding-left: 20px; margin: 10px 0; }
+    .g9-worked-card li { margin-bottom: 8px; font-size: 14.5px; }
+    .g9-visual-container { position: sticky; top: 80px; }
+    .g9-svg-wrap { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 14px; text-align: center; }
+    .g9-stage-controls { display: flex; gap: 8px; justify-content: center; margin-top: 12px; }
+    .g9-stage-btn { padding: 6px 14px; border-radius: var(--radius-pill); border: 1px solid var(--border); background: var(--bg-card); font-size: 13px; font-weight: 700; cursor: pointer; color: var(--text-main); }
+    .g9-stage-btn.active { background: #86198f; color: #fff; border-color: #86198f; }
+    .g9-actions-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <header class="g9-shell-header">
+    <div class="g9-header-inner">
+      <a href="../../index.html" class="g9-brand">
+        <span class="logo-icon">⚡</span>
+        <span class="brand-title">Grade9V3.5</span>
+        <span class="g9-brand-badge">Learner Platform</span>
+      </a>
+      <nav class="g9-header-nav" aria-label="Portal Navigation">
+        <a href="../../index.html">Home</a>
+        <a href="../../physics/index.html">Physics</a>
+        <a href="../../chemistry/index.html">Chemistry</a>
+        <a href="../../mathematics/index.html" class="active">Mathematics</a>
+        <a href="../../question-bank/index.html">Question Bank</a>
+      </nav>
+      <div class="g9-header-actions">
+        <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search">
+          <span class="g9-btn-icon">🔍</span>
+          <span class="g9-btn-text">Search</span>
+        </button>
+        <button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings" aria-label="Display & Theme">
+          <span class="g9-btn-icon">🌙 / ☀️</span>
+          <span class="g9-btn-text">Display</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="g9-breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="g9-breadcrumbs">
+      <a href="../../index.html">Home</a>
+      <span>/</span>
+      <a href="../index.html">Mathematics</a>
+      <span>/</span>
+      <a href="index.html">Vector Algebra</a>
+      <span>/</span>
+      <span>Core 1A: Concept Construction</span>
+    </div>
+  </nav>
+
+  <main>
+    <section class="g9-core1a-book">
+      <span class="g9-card-tag g9-tag-math">Core 1A · Concept Construction</span>
+      <h1>Vector Resolution & Orthogonal Decomposition</h1>
+      <p style="color: var(--text-muted); font-size: 15px; margin-bottom: 16px;">
+        Mathematical construction of Cartesian unit vectors (\(\hat{i}, \hat{j}, \hat{k}\)), trigonometric projection, quadrant sign integrity, and resultant reconstruction.
+      </p>
+
+      <div class="g9-actions-bar">
+        <a class="g9-btn-action g9-btn-practice" href="../../question-bank/index.html?subject=Mathematics&topic=vectors&mode=study">
+          <span>🎯 Practice in Question Bank (13 Canonical Qs) &rarr;</span>
+        </a>
+        <a class="g9-btn-action g9-btn-explore" href="explorers/vector_algebra/index.html" target="_blank" rel="noopener">
+          <span>⚡ Try 3D Vector Engine &rarr;</span>
+        </a>
+      </div>
+    </section>
+
+    <div class="g9-split">
+      <!-- Left Column: Construction Protocol -->
+      <div class="g9-col-primary">
+        <div class="g9-card-panel">
+          <h2 style="font-size: 18px; font-weight: 800; margin-bottom: 14px;">4-Step Vector Resolution Protocol</h2>
+          <ol class="g9-step-list">
+            <li class="g9-step-item">
+              <strong>Establish Reference Frame & Angle Orientation:</strong><br>
+              Define the origin and orthogonal axes (\(x\) horizontal, \(y\) vertical). Identify the precise reference line for angle \(\theta\):
+              <code style="display:block; margin-top:4px; font-weight:700; color:#86198f;">Adjacent side = Hypotenuse &times; cos(&theta;); Opposite side = Hypotenuse &times; sin(&theta;)</code>
+              <em>Rule:</em> The component along the arm with which angle \(\theta\) is made takes the <strong>cosine</strong>; the perpendicular arm takes the <strong>sine</strong>.
+            </li>
+            <li class="g9-step-item">
+              <strong>Assign Orthogonal Unit Vector Projections:</strong><br>
+              Decompose the vector into signed rectangular components along unit vectors \(\hat{i}\) (along \(+x\)) and \(\hat{j}\) (along \(+y\)):
+              <code style="display:block; margin-top:4px; font-weight:700; color:#86198f;">\vec{A} = A_x \hat{i} + A_y \hat{j}</code>
+            </li>
+            <li class="g9-step-item g9-crux-step">
+              <span class="g9-crux-badge">Crux Step · The Quadrant Trap</span><br>
+              <strong>Verify Quadrant Sign Integrity:</strong><br>
+              Never blindly assume components are positive. Match the algebraic sign of \(A_x\) and \(A_y\) to the spatial quadrant:<br>
+              &bull; <strong>Quadrant I:</strong> \(+x, +y\) (\(+\hat{i}, +\hat{j}\))<br>
+              &bull; <strong>Quadrant II:</strong> \(-x, +y\) (\(-\hat{i}, +\hat{j}\))<br>
+              &bull; <strong>Quadrant III:</strong> \(-x, -y\) (\(-\hat{i}, -\hat{j}\))<br>
+              &bull; <strong>Quadrant IV:</strong> \(+x, -y\) (\(+\hat{i}, -\hat{j}\))
+            </li>
+            <li class="g9-step-item">
+              <strong>Recombine Multi-Vector Resultants:</strong><br>
+              To add arbitrary vectors \(\vec{A} + \vec{B} + \vec{C}\), sum components independently:
+              <code style="display:block; margin-top:4px; font-weight:700; color:#86198f;">R_x = \sum A_x, \quad R_y = \sum A_y \implies |\vec{R}| = \sqrt{R_x^2 + R_y^2}</code>
+              Direction relative to \(+x\) is given by \(\alpha = \tan^{-1}(R_y / R_x)\).
+            </li>
+          </ol>
+        </div>
+
+        <div class="g9-card-panel g9-worked-card">
+          <h4>Watch One · Authentic Vector Resolution Exemplar</h4>
+          <p><strong>Problem:</strong> A force vector of magnitude \(20\text{ N}\) points \(30^\circ\) above the \(-x\) axis. Resolve it into Cartesian unit vector notation.</p>
+          <ol>
+            <li><strong>Identify Orientation:</strong> The vector lies in Quadrant II. The angle \(\theta = 30^\circ\) is measured relative to the \(-x\) axis.</li>
+            <li><strong>Calculate Magnitudes:</strong><br>
+              \(|F_x| = 20 \cos(30^\circ) = 20 \times \frac{\sqrt{3}}{2} = 10\sqrt{3}\text{ N} \approx 17.32\text{ N}\).<br>
+              \(|F_y| = 20 \sin(30^\circ) = 20 \times \frac{1}{2} = 10\text{ N}\).
+            </li>
+            <li><strong>Apply Quadrant Signs (Crux Step):</strong> Since it points along the negative \(x\)-direction and positive \(y\)-direction:
+              \(F_x = -10\sqrt{3}\), \(F_y = +10\).
+            </li>
+            <li><strong>Vector Notation:</strong> \(\vec{F} = -10\sqrt{3}\hat{i} + 10\hat{j}\text{ N}\).</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Right Column: Staged Visual Proof -->
+      <div class="g9-col-support g9-visual-container">
+        <div class="g9-card-panel">
+          <h3 style="font-size: 16px; font-weight: 800; margin-bottom: 10px;">Staged Visual Proof</h3>
+          <div class="g9-svg-wrap">
+            <svg id="vecSvg" viewBox="0 0 380 260" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#7c3aed"/>
+                </marker>
+                <marker id="arrowX" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7"/>
+                </marker>
+                <marker id="arrowY" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#16a34a"/>
+                </marker>
+              </defs>
+
+              <!-- Cartesian Grid Axes -->
+              <line x1="40" y1="200" x2="340" y2="200" stroke="#cbd5e1" stroke-width="2"/>
+              <line x1="80" y1="20" x2="80" y2="230" stroke="#cbd5e1" stroke-width="2"/>
+              <text x="345" y="205" font-size="12" font-weight="700" fill="#64748b">+x</text>
+              <text x="75" y="18" font-size="12" font-weight="700" fill="#64748b">+y</text>
+              <text x="70" y="215" font-size="12" font-weight="700" fill="#64748b">O</text>
+
+              <!-- Stage 1: Vector Hypotenuse -->
+              <g id="vecStage1">
+                <line x1="80" y1="200" x2="260" y2="80" stroke="#7c3aed" stroke-width="3.5" marker-end="url(#arrow)"/>
+                <text x="180" y="130" font-size="14" font-weight="800" fill="#6b21a8">A⃗</text>
+                <!-- Arc for theta -->
+                <path d="M 130 200 A 50 50 0 0 0 120 173" fill="none" stroke="#7c3aed" stroke-width="2"/>
+                <text x="136" y="188" font-size="12" font-weight="700" fill="#7c3aed">&theta;</text>
+                <text x="190" y="28" text-anchor="middle" font-size="12" font-weight="700" fill="#64748b">Stage 1: Vector A⃗ at angle &theta;</text>
+              </g>
+
+              <!-- Stage 2: Orthogonal Drops -->
+              <g id="vecStage2" style="display:none;">
+                <line x1="80" y1="200" x2="260" y2="80" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow)"/>
+                <line x1="260" y1="80" x2="260" y2="200" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4"/>
+                <line x1="260" y1="80" x2="80" y2="80" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4"/>
+                <rect x="246" y="186" width="14" height="14" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+                <text x="190" y="28" text-anchor="middle" font-size="12" font-weight="700" fill="#0284c7">Stage 2: Orthogonal Drops to Axes</text>
+              </g>
+
+              <!-- Stage 3: Components Rx and Ry -->
+              <g id="vecStage3" style="display:none;">
+                <line x1="80" y1="200" x2="260" y2="80" stroke="#7c3aed" stroke-width="2.5" opacity="0.6" marker-end="url(#arrow)"/>
+                <!-- Horizontal Component -->
+                <line x1="80" y1="200" x2="260" y2="200" stroke="#0284c7" stroke-width="3.5" marker-end="url(#arrowX)"/>
+                <text x="160" y="222" font-size="13" font-weight="800" fill="#0369a1">A_x = |A| cos&theta;</text>
+                <!-- Vertical Component -->
+                <line x1="260" y1="200" x2="260" y2="80" stroke="#16a34a" stroke-width="3.5" marker-end="url(#arrowY)"/>
+                <text x="272" y="145" font-size="13" font-weight="800" fill="#15803d">A_y = |A| sin&theta;</text>
+                <text x="190" y="28" text-anchor="middle" font-size="12" font-weight="800" fill="#059669">Stage 3: Orthogonal Decomposition Complete</text>
+              </g>
+            </svg>
+          </div>
+          <div class="g9-stage-controls">
+            <button type="button" class="g9-stage-btn active" onclick="setVecStage(1)">1: Vector</button>
+            <button type="button" class="g9-stage-btn" onclick="setVecStage(2)">2: Projections</button>
+            <button type="button" class="g9-stage-btn" onclick="setVecStage(3)">3: Components</button>
+          </div>
+          <p id="vecDesc" style="font-size: 13px; color: var(--text-muted); margin-top: 12px; text-align: center;">
+            Stage 1: Vector A⃗ with magnitude |A| inclined at angle &theta; to the horizontal.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="g9-footer">
+    <p>Grade9V3.5 Concept-Centred Learner Platform · Mathematics Core 1A</p>
+  </footer>
+
+  <script src="../../js/display-controls.js"></script>
+  <script src="../../js/site-header.js"></script>
+  <script>
+    function setVecStage(stage) {
+      document.querySelectorAll('.g9-stage-btn').forEach((b, i) => b.classList.toggle('active', i === stage - 1));
+      document.getElementById('vecStage1').style.display = stage === 1 ? 'block' : 'none';
+      document.getElementById('vecStage2').style.display = stage === 2 ? 'block' : 'none';
+      document.getElementById('vecStage3').style.display = stage === 3 ? 'block' : 'none';
+      const descs = [
+        'Stage 1: Vector A⃗ with magnitude |A| inclined at angle θ to the horizontal axis.',
+        'Stage 2: Perpendicular lines dropped from the arrowhead onto the Cartesian axes.',
+        'Stage 3: Resolved components A_x = |A|cosθ along +x and A_y = |A|sinθ along +y.'
+      ];
+      document.getElementById('vecDesc').textContent = descs[stage - 1];
+    }
+  </script>
+</body>
+</html>

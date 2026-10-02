@@ -388,6 +388,149 @@ a { color: inherit; text-decoration: none; }
 }
 .g9-btn-qb-white:hover { background: #f8fafc; transform: scale(1.02); }
 
+/* Search Dialog (Unified Across Portal) */
+.g9-search-dialog {
+  width: min(680px, calc(100vw - 32px));
+  max-height: min(80vh, 720px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  color: var(--text-main);
+  padding: 0;
+  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.35);
+  margin: auto;
+  overflow: hidden;
+}
+.g9-search-dialog::backdrop {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.g9-search-wrap {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 14px;
+}
+.g9-search-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.g9-search-top strong {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-main);
+}
+.g9-search-top .site-icon-btn {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 20px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.g9-search-top .site-icon-btn:hover {
+  background: var(--border);
+  color: var(--text-main);
+}
+.g9-search-wrap input[type="search"] {
+  width: 100%;
+  min-height: 48px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  background: var(--bg);
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+.g9-search-wrap input[type="search"]:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+.g9-search-hint {
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.g9-search-results {
+  max-height: 420px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 4px;
+}
+.g9-search-result {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  gap: 2px 12px;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+.g9-search-result:hover, .g9-search-result:focus-visible {
+  background: var(--bg-soft);
+  border-color: var(--accent-learn);
+  transform: translateY(-1px);
+}
+.g9-search-result-main {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+  grid-column: 1;
+}
+.g9-search-result-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  grid-column: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.g9-search-result-kind {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  font-size: 11.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-soft);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+.g9-search-result:hover .g9-search-result-kind {
+  background: var(--accent-learn-bg);
+  color: var(--accent-learn);
+  border-color: var(--accent-learn);
+}
+.g9-search-empty {
+  text-align: center;
+  padding: 32px 16px;
+  font-size: 14.5px;
+  color: var(--text-muted);
+}
+
 /* Footer */
 .g9-footer {
   background: var(--bg-card);
@@ -629,10 +772,10 @@ TOPIC_TITLES = {
 
 
 def generate_subject_hub(subject: str, registry: list[dict], bundles: list[dict], rel_root: str = "") -> str:
-    # Discover topics for this subject from bundles and registry
+    # Discover topics for this subject from bundles: ONLY topics with Core 1 / Core 1A learning content
     topics = {}
     for b in bundles:
-        if b.get("subject_ref") == subject:
+        if b.get("subject_ref") == subject and len(b.get("learn", [])) > 0:
             t = b.get("topic_ref", "")
             if t not in topics:
                 title = TOPIC_TITLES.get(t, t.replace(".", " ").title())
@@ -640,18 +783,16 @@ def generate_subject_hub(subject: str, registry: list[dict], bundles: list[dict]
                     "id": t,
                     "title": title,
                     "concept_count": 0,
-                    "has_interactive": False
+                    "learn_items": b.get("learn", [])
                 }
             topics[t]["concept_count"] += 1
-            if b.get("interactive"):
-                topics[t]["has_interactive"] = True
 
     tag_classes = {"Physics": "g9-tag-physics", "Chemistry": "g9-tag-chemistry", "Mathematics": "g9-tag-math"}
     tag_cls = tag_classes.get(subject, "g9-tag-physics")
 
     topic_cards = []
     for tid, tmeta in sorted(topics.items()):
-        badge = f'<span class="g9-card-tag {tag_cls}">Interactive Models</span>' if tmeta["has_interactive"] else f'<span class="g9-card-tag {tag_cls}">Core Study</span>'
+        badge = f'<span class="g9-card-tag {tag_cls}">Core Study</span>'
         # Topic link: use local subject-relative folder or topics/
         tid_short = tid.split(".")[-1]
         if tid == "chem.mole":
@@ -663,7 +804,7 @@ def generate_subject_hub(subject: str, registry: list[dict], bundles: list[dict]
       <div class="g9-card-header">
         {badge}
         <h3 class="g9-card-title">{html.escape(tmeta['title'])}</h3>
-        <p class="g9-card-desc">{tmeta['concept_count']} core concept(s) with dedicated Learn derivations, Practice problem sets, and Question Bank coverage.</p>
+        <p class="g9-card-desc">{tmeta['concept_count']} core concept(s) with dedicated Learn derivations and Question Bank practice.</p>
       </div>
       <div class="g9-card-action">
         <span>Open Topic Workspace</span>
@@ -725,30 +866,24 @@ def generate_topic_workspace(topic_id: str, topic_title: str, subject: str, bund
         c_title = b.get("title", b["concept_ref"])
         c_ref = b["concept_ref"]
         learn_items = b.get("learn", [])
-        practice_items = b.get("practice", [])
         interactive_items = b.get("interactive", [])
-        qb = b.get("question_bank", {})
 
         learn_btn = ""
         if learn_items:
             ep = f"{rel_root}{learn_items[0]['entrypoint']}"
-            learn_btn = f'<a class="g9-btn-action g9-btn-learn" href="{html.escape(ep)}">📖 Learn</a>'
+            learn_btn = f'<a class="g9-btn-action g9-btn-learn" href="{html.escape(ep)}">📖 Learn (Core 1A)</a>'
 
-        practice_btn = ""
-        if practice_items:
-            ep = f"{rel_root}{practice_items[0]['entrypoint']}"
-            count = practice_items[0].get("question_count", 10)
-            practice_btn = f'<a class="g9-btn-action g9-btn-practice" href="{html.escape(ep)}">✍️ Practice · {count}</a>'
+        topic_slug = topic_id.split(".")[-1]
+        practice_url = f"{rel_root}question-bank/index.html?subject={html.escape(subject)}&topic={html.escape(topic_slug)}&mode=study"
+        practice_btn = f'<a class="g9-btn-action g9-btn-practice" href="{practice_url}">🎯 Practice in Question Bank &rarr;</a>'
 
         interactive_btn = ""
         if interactive_items:
             ep = f"{rel_root}{interactive_items[0]['entrypoint']}"
             interactive_btn = f'<a class="g9-btn-action g9-btn-explore" href="{html.escape(ep)}" target="_blank" rel="noopener">⚡ Try visually</a>'
 
-        qb_btn = ""
-        if qb:
-            url = f"{rel_root}{qb.get('url', 'question-bank/index.html')}"
-            qb_btn = f'<a class="g9-btn-action g9-btn-qb" href="{html.escape(url)}">All questions in QB &rarr;</a>'
+        qb_browse_url = f"{rel_root}question-bank/index.html?subject={html.escape(subject)}&topic={html.escape(topic_slug)}"
+        qb_btn = f'<a class="g9-btn-action g9-btn-qb" href="{qb_browse_url}">Browse in QB &rarr;</a>'
 
         concept_sections.append(f"""
   <div class="g9-concept-card" id="{html.escape(c_ref)}">
@@ -829,11 +964,11 @@ def main():
             f.write(hub_html)
         print(f"Wrote public/{subj.lower()}/index.html")
 
-    # 4. Generate Topic Workspaces dynamically from concept bundles
+    # 4. Generate Topic Workspaces dynamically from concept bundles that have Core 1/Core 1A
     discovered_topics = {}
     for b in bundles:
         t = b.get("topic_ref")
-        if t:
+        if t and len(b.get("learn", [])) > 0:
             if t not in discovered_topics:
                 title = TOPIC_TITLES.get(t, t.replace(".", " ").title())
                 discovered_topics[t] = {

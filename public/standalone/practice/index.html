@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Physics Practice — G9 Standalone</title>
+  <title>Grade 9 Practice Hub — G9 Standalone</title>
   <style>
     :root {
       --bg: #0f172a;
@@ -20,6 +20,10 @@
       --tag-sba: #831843;
       --tag-proj: #1e3a5f;
       --tag-cons: #374151;
+      --tag-chem: #047857;
+      --tag-math: #b45309;
+      --tag-phy: #1d4ed8;
+      --tag-qb: #be185d;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -33,7 +37,7 @@
       text-align: center;
       padding: 2rem 1rem 1.5rem;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
     .practice-hero h1 {
       font-size: 1.75rem;
@@ -57,11 +61,112 @@
     .stat .number { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
     .stat .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
 
+    .qb-banner-card {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border: 1px solid #38bdf8;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.1);
+    }
+    .qb-banner-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .qb-banner-desc {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+    .qb-action-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+    .qb-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      background: #0284c7;
+      color: #ffffff;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.15s ease;
+      min-height: 44px;
+    }
+    .qb-btn:hover { background: #0369a1; }
+    .qb-btn-sub {
+      background: #334155;
+      color: #f1f5f9;
+    }
+    .qb-btn-sub:hover { background: #475569; }
+
+    .subject-filter-bar {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 1.5rem auto;
+      max-width: 1200px;
+      padding: 0 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.5rem 1.25rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .filter-tab:hover {
+      border-color: var(--accent);
+      color: #f1f5f9;
+    }
+    .filter-tab.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    .subject-section {
+      max-width: 1200px;
+      margin: 0 auto 2.5rem;
+    }
+    .subject-heading {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #f8fafc;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 1rem;
-      max-width: 1200px;
       margin: 0 auto;
     }
     .card {
@@ -116,6 +221,11 @@
     .tag-sba  { background: var(--tag-sba);  color: #fbcfe8; }
     .tag-proj { background: var(--tag-proj); color: #93c5fd; }
     .tag-cons { background: var(--tag-cons); color: #d1d5db; }
+    .tag-chem { background: var(--tag-chem); color: #a7f3d0; }
+    .tag-math { background: var(--tag-math); color: #fde68a; }
+    .tag-phy  { background: var(--tag-phy);  color: #bfdbfe; }
+    .tag-qb   { background: var(--tag-qb);   color: #fbcfe8; }
+
     .q-count {
       font-size: 0.8rem;
       font-weight: 700;
@@ -134,8 +244,7 @@
     .open-btn svg { width: 14px; height: 14px; }
 
     section.section-header {
-      max-width: 1200px;
-      margin: 2rem auto 0.75rem;
+      margin: 1.5rem auto 0.75rem;
       padding: 0 0.25rem;
     }
     section.section-header h2 {
@@ -149,7 +258,7 @@
     }
   </style>
 <style id="pr375-u4-remediation">
-/* PR #375 U4 remediation: accessibility, reflow and alternate viewports. */
+/* Accessibility, reflow and alternate viewports */
 *, *::before, *::after { box-sizing: border-box; }
 :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
   outline: 3px solid #38bdf8 !important;
@@ -162,7 +271,7 @@ input, select, textarea { max-width: 100%; }
 .u4-clear-button { color: #f8fafc !important; }
 [data-theme="light"] .u4-clear-button { color: #0f172a !important; }
 
-/* Never communicate correctness by colour alone. */
+/* Never communicate correctness by colour alone */
 .opt-btn.selected-correct::after {
   content: " ✓ Correct";
   margin-inline-start: .4rem;
@@ -174,7 +283,7 @@ input, select, textarea { max-width: 100%; }
   font-weight: 800;
 }
 
-/* Contrast repairs for the learner-visible light theme. */
+/* Contrast repairs for the learner-visible light theme */
 [data-theme="light"] .step-content-calc {
   color: #7c2d12 !important;
   background: #fff7ed !important;
@@ -202,36 +311,14 @@ input, select, textarea { max-width: 100%; }
 }
 [data-theme="light"] footer { color: #475569 !important; }
 
-/* Default dark-theme contrast repairs from U4. */
+/* Default dark-theme contrast repairs */
 html[data-theme="dark"] .step-label { color: #7dd3fc !important; }
 html[data-theme="dark"] details > summary { color: #7dd3fc !important; }
 .q-count, .open-btn { color: #93c5fd !important; }
-.tag-2d, .tag-1d, .tag-vec, .tag-ncert, .tag-sba, .tag-proj, .tag-cons { color: #ffffff !important; }
+.tag-2d, .tag-1d, .tag-vec, .tag-ncert, .tag-sba, .tag-proj, .tag-cons, .tag-chem, .tag-math, .tag-phy, .tag-qb { color: #ffffff !important; }
 footer { color: #94a3b8 !important; }
 
-/* The offline 1D master lost Tailwind preflight + custom theme utilities. */
-body.u4-tailwind-offline {
-  margin: 0 !important;
-  background: #090d16 !important;
-  color: #f1f5f9 !important;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
-}
-.u4-tailwind-offline.bg-background, .u4-tailwind-offline .bg-background { background-color: #090d16 !important; }
-.u4-tailwind-offline .bg-card { background-color: #111827 !important; }
-.u4-tailwind-offline .border-border { border-color: #334155 !important; }
-.u4-tailwind-offline .bg-slate-950\/90 { background-color: rgba(2, 6, 23, .94) !important; }
-.u4-tailwind-offline .bg-slate-900 { background-color: #0f172a !important; }
-.u4-tailwind-offline .bg-slate-800 { background-color: #1e293b !important; }
-.u4-tailwind-offline .max-w-7xl { max-width: 80rem !important; }
-.u4-tailwind-offline .overflow-x-auto { overflow-x: auto !important; }
-.u4-tailwind-offline .whitespace-nowrap { white-space: nowrap !important; }
-.u4-tailwind-offline .font-sans { font-family: ui-sans-serif, system-ui, sans-serif !important; }
-.u4-tailwind-offline .text-slate-500,
-.u4-tailwind-offline .text-slate-600 { color: #cbd5e1 !important; }
-.u4-tailwind-offline .text-slate-400 { color: #a8b5c7 !important; }
-.u4-tailwind-offline header { max-width: 100%; }
-
-/* Reflow at phone width and at a 200% zoom-equivalent viewport. */
+/* Reflow at phone width and at a 200% zoom-equivalent viewport */
 @media (max-width: 700px) {
   header.sticky, .sticky-header, .top-nav.sticky { position: static !important; top: auto !important; }
 }
@@ -283,22 +370,6 @@ body.u4-tailwind-offline {
 </style>
 <style id="pr375-u4-residual-remediation">
 @media (max-width: 480px) {
-  /* Generated CORE1A section-route pills used 24rem + padding, producing ~467px boxes. */
-  [data-g9-section-route] a,
-  [data-g9-concept-route] a,
-  article[data-g9-role="CORE1A"] > .slot-identity [data-g9-section-route] a {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    box-sizing: border-box !important;
-    white-space: normal !important;
-    line-height: 1.4 !important;
-    overflow: visible !important;
-    text-overflow: clip !important;
-    overflow-wrap: anywhere !important;
-  }
-
-  /* Consolidated and interactive headers must reflow as complete units, not just their children. */
   .header-inner,
   header.g9-shell {
     width: 100% !important;
@@ -332,14 +403,11 @@ body.u4-tailwind-offline {
   header.g9-shell .g9-breadcrumb { flex: 1 1 100% !important; overflow-wrap: anywhere !important; }
 }
 </style>
-<style id="pr375-u1-hub">.stat .label,.card-desc,.tag,.q-count,.open-btn,section.section-header h2,footer{font-size:14px!important}</style>
+<style id="pr375-u1-hub">.stat .label,.card-desc,.tag,.q-count,.open-btn,section.section-header h2,.subject-heading,footer{font-size:14px!important}</style>
 <style id="pr375-u1-remediation">
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%} body{overflow-wrap:anywhere} p,li{line-height:1.4}
-:where(p,li,label,button,input,select,textarea,summary,td,th,figcaption,.btn,.q-badge,.tag-pill,.hint-badge,.hint-tag,.subject-badge,.step-label,.diag-header,.formula-box,#saveStatus,.save-status,.tag,.q-count,.open-btn,.stat .label,section.section-header h2,.study-kicker,.brand-badge,.hero-pill,.badge,.core-tag,.telemetry-title,.control-label,.card-action,.breadcrumb){font-size:max(14px,1em)!important}
-:where(a[href="index.html"],header a,nav a,.breadcrumb a,a.g9-bridge-link,[data-g9-block="entry_assumptions"] a){min-height:48px!important;min-width:48px!important;display:inline-flex!important;align-items:center!important;justify-content:center;padding-block:10px!important;box-sizing:border-box!important}
-@media(min-width:1100px){article[data-g9-role="CORE1A"] .g9-split{grid-template-columns:minmax(0,1fr)!important}article[data-g9-role="CORE1A"] .g9-col-support{position:static!important;top:auto!important}}
-article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;line-height:1.35!important;min-height:48px!important}
-
+:where(p,li,label,button,input,select,textarea,summary,td,th,figcaption,.btn,.q-badge,.tag-pill,.hint-badge,.hint-tag,.subject-badge,.step-label,.diag-header,.formula-box,#saveStatus,.save-status,.tag,.q-count,.open-btn,.stat .label,section.section-header h2,.study-kicker,.brand-badge,.hero-pill,.badge,.core-tag,.telemetry-title,.control-label,.card-action,.breadcrumb,.qb-btn,.filter-tab){font-size:max(14px,1em)!important}
+:where(a[href="index.html"],header a,nav a,.breadcrumb a,a.g9-bridge-link,[data-g9-block="entry_assumptions"] a,.filter-tab,.qb-btn){min-height:48px!important;min-width:48px!important;display:inline-flex!important;align-items:center!important;justify-content:center;padding-block:10px!important;box-sizing:border-box!important}
 .badge,.study-kicker{font-size:14px!important}
 </style>
   <link rel="stylesheet" href="../../css/site.css">
@@ -353,208 +421,363 @@ article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-sp
   </a>
   <nav class="nav-links" aria-label="Primary">
     <a href="../../index.html">Home</a>
-    <a href="../../physics/index.html" class="active phy-link">Physics</a>
+    <a href="../../physics/index.html">Physics</a>
     <a href="../../chemistry/index.html">Chemistry</a>
     <a href="../../mathematics/index.html">Mathematics</a>
+    <a href="../../question-bank/index.html">Question Bank</a>
   </nav>
 </header>
 
 <header class="practice-hero">
-  <h1>⚡ Physics Practice Hub</h1>
-  <p>Grade 9 · Standalone offline modules · CBSE + IIT-JEE</p>
+  <h1>⚡ Grade 9 Practice Hub</h1>
+  <p>Multi-subject offline practice, concept construction books, and visual suites · Physics, Chemistry &amp; Mathematics</p>
   <div class="stats-bar">
-    <div class="stat"><div class="number">14</div><div class="label">Modules</div></div>
-    <div class="stat"><div class="number">395+</div><div class="label">Questions</div></div>
-    <div class="stat"><div class="number">7</div><div class="label">Topics</div></div>
-    <div class="stat"><div class="number">0</div><div class="label">Remote CDN</div></div>
+    <div class="stat"><div class="number">22+</div><div class="label">Modules</div></div>
+    <div class="stat"><div class="number">550+</div><div class="label">Questions</div></div>
+    <div class="stat"><div class="number">3</div><div class="label">Subjects</div></div>
+    <div class="stat"><div class="number">100%</div><div class="label">Offline (0 CDN)</div></div>
   </div>
 </header>
 
-<section class="section-header"><h2>2D Motion — Motion in a Plane</h2></section>
-<div class="grid">
-
-  <a class="card" href="core2-motion-in-a-plane-tablet.html">
-    <div class="card-title">2D Motion — Full Challenge Bank</div>
-    <div class="card-desc">T1–T59 projectile &amp; 2D challenges. Hint ladders, worked solutions, JEE PYQs embedded.</div>
-    <div class="card-meta">
-      <div class="tags"><span class="tag tag-2d">2D Motion</span><span class="tag tag-proj">Projectile</span></div>
-      <div class="q-count">59 questions</div>
-    </div>
-    <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
-  </a>
-
-  <a class="card" href="core2a-projectile-study.html">
-    <div class="card-title">Projectile Study — Interactive Guided</div>
-    <div class="card-desc">Stage-by-stage projectile exploration with angle picker, velocity decomposition, and animated trajectory.</div>
-    <div class="card-meta">
-      <div class="tags"><span class="tag tag-2d">2D Motion</span><span class="tag tag-proj">Projectile</span></div>
-      <div class="q-count">Interactive</div>
-    </div>
-    <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
-  </a>
-
-  <a class="card" href="core1a-physics-motion-2d-ncert-tablet.html">
-    <div class="card-title">2D Motion — NCERT Problems</div>
-    <div class="card-desc">19 NCERT textbook problems on motion in a plane, with full solutions and formula references.</div>
-    <div class="card-meta">
-      <div class="tags"><span class="tag tag-2d">2D Motion</span><span class="tag tag-ncert">NCERT</span></div>
-      <div class="q-count">19 problems</div>
-    </div>
-    <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
-  </a>
-
-</div>
-
-<section class="section-header"><h2>SBA — Structured Board Assessment Practice</h2></section>
-<div class="grid">
-
-  <a class="card" href="core1a-sba-motion-in-a-plane-master-tablet.html">
-    <div class="card-title">SBA Master — Motion in a Plane</div>
-    <div class="card-desc">70-question SBA practice set spanning all sub-topics. Full board exam style with answer checking.</div>
-    <div class="card-meta">
-      <div class="tags"><span class="tag tag-sba">SBA</span><span class="tag tag-2d">2D Motion</span></div>
-      <div class="q-count">70 questions</div>
-    </div>
-    <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
-  </a>
-
-  <a class="card" href="core1a-sba-06-07-trajectory-and-height-tablet.html">
-    <div class="card-title">SBA Focus — Trajectory &amp; Max Height</div>
-    <div class="card-desc">Deep-practice set on trajectory equation derivation and maximum height problems (SBA 06–07).</div>
-    <div class="card-meta">
-      <div class="tags"><span class="tag tag-sba">SBA</span><span class="tag tag-proj">Projectile</span></div>
-      <div class="q-count">Focused set</div>
-    </div>
-    <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
-  </a>
-
-</div>
-
-<section class="section-header"><h2>1D Motion — Straight Line</h2></section>
-<div class="grid">
-
-  <a class="card" href="core2-motion-1d-straight-line-tablet.html">
-    <div class="card-title">1D Motion — Challenge Bank</div>
-    <div class="card-desc">29 1D motion challenges: uniform acceleration, relative motion, variable acceleration integration problems.</div>
-    <div class="card-meta">
-      <div class="tags"><span class="tag tag-1d">1D Motion</span></div>
-      <div class="q-count">29 challenges</div>
-    </div>
-    <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
-  </a>
-
-  <a class="card" href="motion-in-1d-master-suite.html">
-    <div class="card-title">1D Motion — Master Suite</div>
-    <div class="card-desc">Comprehensive 1D motion suite with PYQ bank, depth-drill navigator, diagnostic corpus (123 PYQs), and simulation toasts.</div>
-    <div class="card-meta">
-      <div class="tags"><span class="tag tag-1d">1D Motion</span><span class="tag tag-cons">JEE PYQ</span></div>
-      <div class="q-count">123+ PYQs</div>
-    </div>
-    <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
-  </a>
-
-  <a class="card" href="core2-motion-consolidated-practice-tablet.html">
-    <div class="card-title">Consolidated Practice — 1D &amp; 2D</div>
-    <div class="card-desc">48 cross-topic practice problems mixing 1D and 2D motion for integrated exam preparation.</div>
-    <div class="card-meta">
-      <div class="tags"><span class="tag tag-1d">1D Motion</span><span class="tag tag-2d">2D Motion</span><span class="tag tag-cons">Mixed</span></div>
-      <div class="q-count">48 problems</div>
-    </div>
-    <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
-  </a>
-
-</div>
-
-<section class="section-header"><h2>Vectors</h2></section>
-<div class="grid">
-
-  <a class="card" href="core1a-physics-vectors-tablet.html">
-    <div class="card-title">Vectors — Challenge Bank</div>
-    <div class="card-desc">29 vector challenges: addition, subtraction, dot product, cross product, unit vectors, component decomposition.</div>
-    <div class="card-meta">
-      <div class="tags"><span class="tag tag-vec">Vectors</span></div>
-      <div class="q-count">29 challenges</div>
-    </div>
-    <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
-  </a>
-
-</div>
-
-<section class="section-header"><h2>2D Motion — Advanced Master Suites</h2></section>
-<div class="grid">
-
-  <a class="card" href="motion-in-2d-master-suite.html">
-    <div class="card-title">2D Motion — Master Suite</div>
-    <div class="card-desc">Full 2D motion master suite: stage-gated problems, JEE-style worked solutions, platform-landing, and cross-axis transfer problems.</div>
-    <div class="card-meta">
-      <div class="tags"><span class="tag tag-2d">2D Motion</span><span class="tag tag-proj">Projectile</span><span class="tag tag-cons">JEE</span></div>
-      <div class="q-count">8+ problems</div>
-    </div>
-    <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
-  </a>
-
-  <a class="card" href="physics-motion-in-a-plane-interactive-suite.html">
-    <div class="card-title">Motion in a Plane — Interactive Suite</div>
-    <div class="card-desc">Interactive walkthrough: projectile range formula, circular motion (banked/unbanked roads), centripetal force derivations with reveal-block solutions.</div>
-    <div class="card-meta">
-      <div class="tags"><span class="tag tag-2d">2D Motion</span><span class="tag tag-proj">Circular</span></div>
-      <div class="q-count">Interactive</div>
-    </div>
-    <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
-  </a>
-
-</div>
-
-<section class="section-header"><h2>Friction — Blueprint 1.9 Product</h2></section>
-<div class="grid">
-  <div class="card" style="border-color:#38bdf8;">
-    <div class="card-title">Friction — Concept Book + Source Questions</div>
-    <div class="card-desc">Blueprint 1.9.0-validated friction product. Core 1A constructs contact-state reasoning and the stick/slip threshold; Core 2 contains 10 selected source questions with 7 denominator omissions explicitly explained.</div>
-    <div class="card-meta">
-      <div class="tags"><span class="tag tag-cons">Friction</span><span class="tag tag-vec">NLM</span><span class="tag tag-proj">Blueprint 1.9</span></div>
-      <div class="q-count">Core 1A + 10 Core 2</div>
-    </div>
-    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:.5rem">
-      <a class="open-btn" href="friction/core1a.html">Open Core 1A Concept Book →</a>
-      <a class="open-btn" href="friction/core2.html">Open Core 2 Questions →</a>
-      <a class="open-btn" href="friction/index.html">Product index →</a>
-    </div>
+<!-- Unified Question Bank Banner Card -->
+<div class="qb-banner-card">
+  <div class="qb-banner-title">
+    <span>🎯 Unified Question Bank &amp; IIT-JEE Exam Suite</span>
+  </div>
+  <div class="qb-banner-desc">
+    Interactive question bank containing 155+ canonical questions and IIT-JEE problems across Physics, Chemistry, and Mathematics. Includes instant answer checking, multi-step hint ladders, worked reasoning routes, and custom exam filtering.
+  </div>
+  <div class="qb-action-row">
+    <a class="qb-btn" href="../../question-bank/index.html">Launch Full Question Bank →</a>
+    <a class="qb-btn qb-btn-sub" href="../../question-bank/index.html?subject=Physics">Physics Questions</a>
+    <a class="qb-btn qb-btn-sub" href="../../question-bank/index.html?subject=Chemistry">Chemistry Questions</a>
+    <a class="qb-btn qb-btn-sub" href="../../question-bank/index.html?subject=Mathematics">Mathematics Questions</a>
   </div>
 </div>
 
-<section class="section-header"><h2>Newton's Laws of Motion (NLM)</h2></section>
-<div class="grid">
-
-  <a class="card" href="core1a-physics-nlm-tablet.html">
-    <div class="card-title">Newton's Laws of Motion — Master Suite</div>
-    <div class="card-desc">Complete tablet study suite for NLM: Inertia, Free Body Diagrams, F=ma, Action-Reaction, Friction, Atwood Pulley Systems, and 20+ Structured Challenges.</div>
-    <div class="card-meta">
-      <div class="tags"><span class="tag tag-cons">NLM</span><span class="tag tag-vec">Dynamics</span></div>
-      <div class="q-count">20 challenges</div>
-    </div>
-    <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
-  </a>
-
+<!-- Subject Filter Tabs -->
+<div class="subject-filter-bar" role="tablist" aria-label="Filter practice modules by subject">
+  <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">All Subjects (22)</button>
+  <button class="filter-tab" data-filter="Physics" role="tab" aria-selected="false">Physics (14)</button>
+  <button class="filter-tab" data-filter="Chemistry" role="tab" aria-selected="false">Chemistry (5)</button>
+  <button class="filter-tab" data-filter="Mathematics" role="tab" aria-selected="false">Mathematics (3)</button>
 </div>
 
-<section class="section-header"><h2>Thrust &amp; Pressure — Competitive Foundations</h2></section>
-<div class="grid">
+<!-- ================= CHEMISTRY SECTION ================= -->
+<div class="subject-section" data-subject="Chemistry">
+  <h2 class="subject-heading">🧪 Chemistry Practice &amp; Concepts</h2>
 
-  <a class="card" href="core2-physics-thrust-pressure-tablet.html">
-    <div class="card-title">Thrust &amp; Pressure — Competitive Foundations</div>
-    <div class="card-desc">Governed 12.7" tablet edition: Concept construction (normal balance, scaling, hydrostatic bridge) and competitive INJSO Olympiad past paper problems with 14 SVG representations.</div>
-    <div class="card-meta">
-      <div class="tags"><span class="tag tag-proj">Thrust</span><span class="tag tag-2d">Pressure</span></div>
-      <div class="q-count">4 Olympiad PYQs</div>
+  <section class="section-header"><h2>Chemical Bonding &amp; Molecular Structure</h2></section>
+  <div class="grid">
+    <a class="card" href="../../chemistry/bonding/core1a.html" style="border-color:#10b981;">
+      <div class="card-title">Chemical Bonding · VSEPR &amp; Geometry — Learn</div>
+      <div class="card-desc">Core 1A concept construction book: Lewis dot diagrams, Steric Number rule, lone-pair repulsion hierarchies, and 3-stage SVG geometry visualization (XeF4 vs SF4).</div>
+      <div class="card-meta">
+        <div class="tags"><span class="tag tag-chem">Chemistry</span><span class="tag tag-cons">Core Study</span></div>
+        <div class="q-count">Concept Book</div>
+      </div>
+      <div class="open-btn">Open Concept Book <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
+    </a>
+
+    <a class="card" href="../../chemistry/bonding/explorers/chemical_bonding/index.html">
+      <div class="card-title">Chemical Bonding &amp; Molecular Structure Explorer</div>
+      <div class="card-desc">Interactive explorer: orbital hybridization, dipole moment summation, Lewis formal charge calculator, and 3D molecular structure inspection.</div>
+      <div class="card-meta">
+        <div class="tags"><span class="tag tag-chem">Chemistry</span><span class="tag tag-proj">Interactive</span></div>
+        <div class="q-count">Simulation</div>
+      </div>
+      <div class="open-btn">Open Explorer <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
+    </a>
+  </div>
+
+  <section class="section-header"><h2>Physical &amp; General Chemistry Suites</h2></section>
+  <div class="grid">
+    <a class="card" href="../../chemistry/gases/explorers/behaviour_of_gases/index.html">
+      <div class="card-title">Behaviour of Gases Explorer</div>
+      <div class="card-desc">Boyle's, Charles's, and Avogadro's laws with real-time PVT state changes, Maxwell-Boltzmann velocity distributions, and van der Waals real gas deviations.</div>
+      <div class="card-meta">
+        <div class="tags"><span class="tag tag-chem">Chemistry</span><span class="tag tag-proj">Gases</span></div>
+        <div class="q-count">Interactive</div>
+      </div>
+      <div class="open-btn">Open Explorer <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
+    </a>
+
+    <a class="card" href="../../chemistry/some-basic-concepts/explorers/mole_concept/index.html">
+      <div class="card-title">Mole Concept &amp; Stoichiometry Explorer</div>
+      <div class="card-desc">Stoichiometric conversion matrix: moles, mass, particle count, and gas volume at STP with interactive limiting reagent analysis.</div>
+      <div class="card-meta">
+        <div class="tags"><span class="tag tag-chem">Chemistry</span><span class="tag tag-proj">Stoichiometry</span></div>
+        <div class="q-count">Interactive</div>
+      </div>
+      <div class="open-btn">Open Explorer <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
+    </a>
+
+    <a class="card" href="../../chemistry/redox/explorers/redox_reactions/index.html">
+      <div class="card-title">Redox Reactions &amp; Oxidation States Explorer</div>
+      <div class="card-desc">Interactive oxidation state assignment engine, ion-electron half-reaction balancer, and electrochemical electron transfer visualizations.</div>
+      <div class="card-meta">
+        <div class="tags"><span class="tag tag-chem">Chemistry</span><span class="tag tag-proj">Redox</span></div>
+        <div class="q-count">Interactive</div>
+      </div>
+      <div class="open-btn">Open Explorer <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
+    </a>
+  </div>
+</div>
+
+<!-- ================= MATHEMATICS SECTION ================= -->
+<div class="subject-section" data-subject="Mathematics">
+  <h2 class="subject-heading">📐 Mathematics Practice &amp; Concepts</h2>
+
+  <section class="section-header"><h2>Vectors &amp; Analytical Geometry</h2></section>
+  <div class="grid">
+    <a class="card" href="../../mathematics/vectors/core1a.html" style="border-color:#f59e0b;">
+      <div class="card-title">Vector Algebra · Resolution &amp; Components — Learn</div>
+      <div class="card-desc">Core 1A concept construction book: Orthogonal 2D projection, quadrant sign invariants, vector addition triangle law, and worked unit vector exemplars.</div>
+      <div class="card-meta">
+        <div class="tags"><span class="tag tag-math">Mathematics</span><span class="tag tag-cons">Core Study</span></div>
+        <div class="q-count">Concept Book</div>
+      </div>
+      <div class="open-btn">Open Concept Book <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
+    </a>
+
+    <a class="card" href="../../mathematics/vectors/explorers/vector_algebra/index.html">
+      <div class="card-title">Vector Algebra · 3D Master Suite</div>
+      <div class="card-desc">Interactive 3D vector canvas: vector addition, dot product, cross product, projection vectors, coordinate angle computations, and JEE problem tests.</div>
+      <div class="card-meta">
+        <div class="tags"><span class="tag tag-math">Mathematics</span><span class="tag tag-proj">3D Engine</span></div>
+        <div class="q-count">Interactive</div>
+      </div>
+      <div class="open-btn">Open Explorer <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
+    </a>
+
+    <a class="card" href="../../question-bank/index.html?subject=Mathematics">
+      <div class="card-title">Mathematics Question Bank Practice</div>
+      <div class="card-desc">Vector algebra and coordinate geometry challenges in the canonical Question Bank engine with live verification and step-by-step solutions.</div>
+      <div class="card-meta">
+        <div class="tags"><span class="tag tag-math">Mathematics</span><span class="tag tag-qb">Question Bank</span></div>
+        <div class="q-count">13+ Problems</div>
+      </div>
+      <div class="open-btn">Practice in Question Bank <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
+    </a>
+  </div>
+</div>
+
+<!-- ================= PHYSICS SECTION ================= -->
+<div class="subject-section" data-subject="Physics">
+  <h2 class="subject-heading">⚡ Physics Practice &amp; Concepts</h2>
+
+  <section class="section-header"><h2>2D Motion — Motion in a Plane</h2></section>
+  <div class="grid">
+
+    <a class="card" href="core2-motion-in-a-plane-tablet.html">
+      <div class="card-title">2D Motion — Full Challenge Bank</div>
+      <div class="card-desc">T1–T59 projectile &amp; 2D challenges. Hint ladders, worked solutions, JEE PYQs embedded.</div>
+      <div class="card-meta">
+        <div class="tags"><span class="tag tag-2d">2D Motion</span><span class="tag tag-proj">Projectile</span></div>
+        <div class="q-count">59 questions</div>
+      </div>
+      <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
+    </a>
+
+    <a class="card" href="core2a-projectile-study.html">
+      <div class="card-title">Projectile Study — Interactive Guided</div>
+      <div class="card-desc">Stage-by-stage projectile exploration with angle picker, velocity decomposition, and animated trajectory.</div>
+      <div class="card-meta">
+        <div class="tags"><span class="tag tag-2d">2D Motion</span><span class="tag tag-proj">Projectile</span></div>
+        <div class="q-count">Interactive</div>
+      </div>
+      <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
+    </a>
+
+    <a class="card" href="core1a-physics-motion-2d-ncert-tablet.html">
+      <div class="card-title">2D Motion — NCERT Problems</div>
+      <div class="card-desc">19 NCERT textbook problems on motion in a plane, with full solutions and formula references.</div>
+      <div class="card-meta">
+        <div class="tags"><span class="tag tag-2d">2D Motion</span><span class="tag tag-ncert">NCERT</span></div>
+        <div class="q-count">19 problems</div>
+      </div>
+      <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
+    </a>
+
+  </div>
+
+  <section class="section-header"><h2>SBA — Structured Board Assessment Practice</h2></section>
+  <div class="grid">
+
+    <a class="card" href="core1a-sba-motion-in-a-plane-master-tablet.html">
+      <div class="card-title">SBA Master — Motion in a Plane</div>
+      <div class="card-desc">70-question SBA practice set spanning all sub-topics. Full board exam style with answer checking.</div>
+      <div class="card-meta">
+        <div class="tags"><span class="tag tag-sba">SBA</span><span class="tag tag-2d">2D Motion</span></div>
+        <div class="q-count">70 questions</div>
+      </div>
+      <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
+    </a>
+
+    <a class="card" href="core1a-sba-06-07-trajectory-and-height-tablet.html">
+      <div class="card-title">SBA Focus — Trajectory &amp; Max Height</div>
+      <div class="card-desc">Deep-practice set on trajectory equation derivation and maximum height problems (SBA 06–07).</div>
+      <div class="card-meta">
+        <div class="tags"><span class="tag tag-sba">SBA</span><span class="tag tag-proj">Projectile</span></div>
+        <div class="q-count">Focused set</div>
+      </div>
+      <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
+    </a>
+
+  </div>
+
+  <section class="section-header"><h2>1D Motion — Straight Line</h2></section>
+  <div class="grid">
+
+    <a class="card" href="core2-motion-1d-straight-line-tablet.html">
+      <div class="card-title">1D Motion — Challenge Bank</div>
+      <div class="card-desc">29 1D motion challenges: uniform acceleration, relative motion, variable acceleration integration problems.</div>
+      <div class="card-meta">
+        <div class="tags"><span class="tag tag-1d">1D Motion</span></div>
+        <div class="q-count">29 challenges</div>
+      </div>
+      <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
+    </a>
+
+    <a class="card" href="motion-in-1d-master-suite.html">
+      <div class="card-title">1D Motion — Master Suite</div>
+      <div class="card-desc">Comprehensive 1D motion suite with PYQ bank, depth-drill navigator, diagnostic corpus (123 PYQs), and simulation toasts.</div>
+      <div class="card-meta">
+        <div class="tags"><span class="tag tag-1d">1D Motion</span><span class="tag tag-cons">JEE PYQ</span></div>
+        <div class="q-count">123+ PYQs</div>
+      </div>
+      <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
+    </a>
+
+    <a class="card" href="core2-motion-consolidated-practice-tablet.html">
+      <div class="card-title">Consolidated Practice — 1D &amp; 2D</div>
+      <div class="card-desc">48 cross-topic practice problems mixing 1D and 2D motion for integrated exam preparation.</div>
+      <div class="card-meta">
+        <div class="tags"><span class="tag tag-1d">1D Motion</span><span class="tag tag-2d">2D Motion</span><span class="tag tag-cons">Mixed</span></div>
+        <div class="q-count">48 problems</div>
+      </div>
+      <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
+    </a>
+
+  </div>
+
+  <section class="section-header"><h2>Vectors (Physics)</h2></section>
+  <div class="grid">
+
+    <a class="card" href="core1a-physics-vectors-tablet.html">
+      <div class="card-title">Vectors — Challenge Bank</div>
+      <div class="card-desc">29 vector challenges: addition, subtraction, dot product, cross product, unit vectors, component decomposition.</div>
+      <div class="card-meta">
+        <div class="tags"><span class="tag tag-vec">Vectors</span><span class="tag tag-phy">Physics</span></div>
+        <div class="q-count">29 challenges</div>
+      </div>
+      <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
+    </a>
+
+  </div>
+
+  <section class="section-header"><h2>2D Motion — Advanced Master Suites</h2></section>
+  <div class="grid">
+
+    <a class="card" href="motion-in-2d-master-suite.html">
+      <div class="card-title">2D Motion — Master Suite</div>
+      <div class="card-desc">Full 2D motion master suite: stage-gated problems, JEE-style worked solutions, platform-landing, and cross-axis transfer problems.</div>
+      <div class="card-meta">
+        <div class="tags"><span class="tag tag-2d">2D Motion</span><span class="tag tag-proj">Projectile</span><span class="tag tag-cons">JEE</span></div>
+        <div class="q-count">8+ problems</div>
+      </div>
+      <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
+    </a>
+
+    <a class="card" href="physics-motion-in-a-plane-interactive-suite.html">
+      <div class="card-title">Motion in a Plane — Interactive Suite</div>
+      <div class="card-desc">Interactive walkthrough: projectile range formula, circular motion (banked/unbanked roads), centripetal force derivations with reveal-block solutions.</div>
+      <div class="card-meta">
+        <div class="tags"><span class="tag tag-2d">2D Motion</span><span class="tag tag-proj">Circular</span></div>
+        <div class="q-count">Interactive</div>
+      </div>
+      <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
+    </a>
+
+  </div>
+
+  <section class="section-header"><h2>Friction — Blueprint 1.9 Product</h2></section>
+  <div class="grid">
+    <div class="card" style="border-color:#38bdf8;">
+      <div class="card-title">Friction — Concept Book + Source Questions</div>
+      <div class="card-desc">Blueprint 1.9.0-validated friction product. Core 1A constructs contact-state reasoning and the stick/slip threshold; Core 2 contains 10 selected source questions with 7 denominator omissions explicitly explained.</div>
+      <div class="card-meta">
+        <div class="tags"><span class="tag tag-cons">Friction</span><span class="tag tag-vec">NLM</span><span class="tag tag-proj">Blueprint 1.9</span></div>
+        <div class="q-count">Core 1A + 10 Practice</div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:.5rem">
+        <a class="open-btn" href="friction/core1a.html">Open Core 1A Concept Book →</a>
+        <a class="open-btn" href="friction/core2.html">Open Core 2 Questions →</a>
+        <a class="open-btn" href="friction/index.html">Product index →</a>
+      </div>
     </div>
-    <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
-  </a>
+  </div>
 
+  <section class="section-header"><h2>Newton's Laws of Motion (NLM)</h2></section>
+  <div class="grid">
+
+    <a class="card" href="core1a-physics-nlm-tablet.html">
+      <div class="card-title">Newton's Laws of Motion — Master Suite</div>
+      <div class="card-desc">Complete tablet study suite for NLM: Inertia, Free Body Diagrams, F=ma, Action-Reaction, Friction, Atwood Pulley Systems, and 20+ Structured Challenges.</div>
+      <div class="card-meta">
+        <div class="tags"><span class="tag tag-cons">NLM</span><span class="tag tag-vec">Dynamics</span></div>
+        <div class="q-count">20 challenges</div>
+      </div>
+      <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
+    </a>
+
+  </div>
+
+  <section class="section-header"><h2>Thrust &amp; Pressure — Competitive Foundations</h2></section>
+  <div class="grid">
+
+    <a class="card" href="core2-physics-thrust-pressure-tablet.html">
+      <div class="card-title">Thrust &amp; Pressure — Competitive Foundations</div>
+      <div class="card-desc">Governed 12.7" tablet edition: Concept construction (normal balance, scaling, hydrostatic bridge) and competitive INJSO Olympiad past paper problems with 14 SVG representations.</div>
+      <div class="card-meta">
+        <div class="tags"><span class="tag tag-proj">Thrust</span><span class="tag tag-2d">Pressure</span></div>
+        <div class="q-count">4 Olympiad PYQs</div>
+      </div>
+      <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
+    </a>
+
+  </div>
 </div>
 
 <footer style="text-align:center;padding:2rem 1rem;color:#475569;font-size:0.8rem;margin-top:2rem;border-top:1px solid #1e293b;">
-  G9 Physics Practice Hub · Standalone offline · No remote CDN · Touch-optimized
+  G9 Multi-Subject Practice Hub · Standalone offline · No remote CDN · Touch-optimized
 </footer>
+
+<script>
+  // Subject Filter Tabs Interactivity
+  (() => {
+    const tabs = document.querySelectorAll('.filter-tab');
+    const sections = document.querySelectorAll('.subject-section');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        const filter = tab.getAttribute('data-filter');
+        sections.forEach(sec => {
+          if (filter === 'all' || sec.getAttribute('data-subject') === filter) {
+            sec.style.display = '';
+          } else {
+            sec.style.display = 'none';
+          }
+        });
+      });
+    });
+  })();
+</script>
 
 <script id="pr375-u4-remediation-script">
 (() => {
@@ -632,14 +855,14 @@ article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-sp
       svg.setAttribute('focusable', 'false');
     } else {
       svg.setAttribute('role', 'img');
-      svg.setAttribute('aria-label', figureName(svg, 'Physics diagram'));
+      svg.setAttribute('aria-label', figureName(svg, 'Diagram'));
     }
   });
 
   document.querySelectorAll('canvas').forEach(canvas => {
     if (canvas.hasAttribute('aria-label') || canvas.hasAttribute('aria-labelledby') || canvas.hasAttribute('aria-hidden')) return;
     canvas.setAttribute('role', 'img');
-    canvas.setAttribute('aria-label', figureName(canvas, 'Interactive physics simulation'));
+    canvas.setAttribute('aria-label', figureName(canvas, 'Interactive simulation'));
   });
 
   if (!document.querySelector('main, [role="main"]')) {
@@ -673,7 +896,7 @@ article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-sp
         return;
       }
       el.setAttribute('role', 'img');
-      el.setAttribute('aria-label', textName(el, el.tagName.toLowerCase() === 'canvas' ? 'Interactive physics simulation' : 'Physics diagram'));
+      el.setAttribute('aria-label', textName(el, el.tagName.toLowerCase() === 'canvas' ? 'Interactive simulation' : 'Diagram'));
     });
   };
 
@@ -697,6 +920,6 @@ article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-sp
   }).observe(document.documentElement, { childList: true, subtree: true });
 })();
 </script>
-<script src="../../js/site-header.js" data-site-root="../../" data-site-parent="../../physics/index.html"></script>
+<script src="../../js/site-header.js" data-site-root="../../" data-site-parent="../../index.html"></script>
 </body>
 </html>
