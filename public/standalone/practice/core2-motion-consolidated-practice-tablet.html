@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-g9-shell>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>GRADE 9 PHYSICS - Motion Consolidated Student Practice Edition | 12.7" Tablet Standalone Edition</title>
+  <meta name="description" content="Complete 12.7-inch tablet study suite for Motion Consolidated Student Core: Concept + Difficulty Edition, 7 Assimilation Sets, Multi-Phase Kinematics, and Step-by-Step Derivations.">
+  <style>
+/* ==========================================================================
+   Physics: Motion Consolidated Practice 12.7" Tablet Standalone Stylesheet
+   WCAG 2.5.5 >= 48px touch targets, >= 120px textareas, no micro-fonts (<13.5px)
+   100% Offline Standalone · Dark/Light Mode · Responsive Stage/Support Grid
+   ========================================================================== */
+
+:root {
+  --tab12-container-max: 1400px;
+  --tab12-touch-min: 48px;
+  --tab12-base-font: 16px;
+  --tab12-radius-sm: 8px;
+  --tab12-radius-md: 12px;
+  --tab12-radius-lg: 16px;
+
+  --bg-app: #080d1a;
+  --bg-surface: #0f172a;
+  --bg-card: #152238;
+  --bg-card-subtle: #1a2942;
+  --border: #263859;
+  --border-light: #334b75;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.25);
+  --success: #34d399;
+  --warning: #f59e0b;
+  --danger: #f87171;
+  --purple: #c084fc;
+}
+
+[data-theme="light"] {
+  --bg-app: #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f8fafc;
+  --border: #cbd5e1;
+  --border-light: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --accent: #0284c7;
+  --accent-glow: rgba(2, 132, 199, 0.15);
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --purple: #7e22ce;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--tab12-base-font);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-app);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+button, .btn, .tab-btn, summary {
+  min-height: var(--tab12-touch-min);
+  min-width: var(--tab12-touch-min);
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--tab12-radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: all 0.18s ease;
+  border: 1px solid transparent;
+}
+
+button:focus-visible, .btn:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+textarea.tablet-safe-input {
+  min-height: 120px;
+  width: 100%;
+  padding: 14px;
+  font-family: monospace, inherit;
+  font-size: 14.5px;
+  line-height: 1.5;
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  resize: vertical;
+  display: block;
+}
+
+textarea.tablet-safe-input:focus {
+  border-color: var(--accent);
+  background-color: var(--bg-card);
+}
+
+header.app-header {
+  background-color: var(--bg-surface);
+  border-bottom: 1.5px solid var(--border);
+  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.header-inner {
+  max-width: var(--tab12-container-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header-brand h1 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.subject-badge {
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: rgba(56, 189, 248, 0.15);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  font-weight: 700;
+}
+
+.theme-toggle-btn {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+}
+
+nav.tab-nav {
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 24px 0 24px;
+  overflow-x: auto;
+}
+
+.tab-nav-inner {
+  max-width: var(--tab12-container-max);
+  margin: 0 auto;
+  display: flex;
+  gap: 8px;
+}
+
+.tab-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: var(--tab12-radius-sm) var(--tab12-radius-sm) 0 0;
+  padding: 12px 18px;
+  white-space: nowrap;
+}
+
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  background: var(--bg-app);
+}
+
+main.layout-container {
+  max-width: var(--tab12-container-max);
+  margin: 20px auto;
+  padding: 0 20px;
+  width: 100%;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 24px;
+}
+
+@media (max-width: 1040px) {
+  main.layout-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stage-area {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.content-card {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.content-card h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.q-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+.q-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.q-badge {
+  background: rgba(192, 132, 252, 0.15);
+  border: 1px solid var(--purple);
+  color: var(--purple);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tag-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.q-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.q-prompt {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+
+details.solution-detail {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--tab12-radius-sm);
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+details.solution-detail summary {
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.02);
+  color: var(--accent);
+  user-select: none;
+}
+
+.solution-content {
+  padding: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 14.5px;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.support-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.support-widget {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 20px;
+}
+
+.support-widget h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.formula-box {
+  background: var(--bg-card-subtle);
+  border-left: 4px solid var(--accent);
+  padding: 14px 18px;
+  border-radius: 0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;
+  margin: 12px 0;
+  font-family: monospace;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+  </style>
+<style id="pr375-u4-remediation">
+/* PR #375 U4 remediation: accessibility, reflow and alternate viewports. */
+*, *::before, *::after { box-sizing: border-box; }
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid #38bdf8 !important;
+  outline-offset: 2px !important;
+}
+img, svg, canvas { max-width: 100%; }
+input, select, textarea { max-width: 100%; }
+::placeholder { color: #94a3b8 !important; opacity: 1 !important; }
+[data-theme="light"] ::placeholder { color: #475569 !important; }
+.u4-clear-button { color: #f8fafc !important; }
+[data-theme="light"] .u4-clear-button { color: #0f172a !important; }
+
+/* Never communicate correctness by colour alone. */
+.opt-btn.selected-correct::after {
+  content: " ✓ Correct";
+  margin-inline-start: .4rem;
+  font-weight: 800;
+}
+.opt-btn.selected-incorrect::after {
+  content: " ✕ Incorrect";
+  margin-inline-start: .4rem;
+  font-weight: 800;
+}
+
+/* Contrast repairs for the learner-visible light theme. */
+[data-theme="light"] .step-content-calc {
+  color: #7c2d12 !important;
+  background: #fff7ed !important;
+  border: 1px solid #c2410c !important;
+}
+[data-theme="light"] .answer-banner,
+[data-theme="light"] .badge-success,
+[data-theme="light"] .saved-pill {
+  color: #065f46 !important;
+}
+[data-theme="light"] .badge-warning,
+[data-theme="light"] .hint-tag,
+[data-theme="light"] .diag-header-another {
+  color: #7c2d12 !important;
+}
+[data-theme="light"] .step-label,
+[data-theme="light"] details > summary {
+  color: #075985 !important;
+}
+[data-theme="light"] .formula-box,
+[data-theme="light"] .math-banner {
+  color: #422006 !important;
+  background: #fef3c7 !important;
+  border-color: #92400e !important;
+}
+[data-theme="light"] footer { color: #475569 !important; }
+
+/* Default dark-theme contrast repairs from U4. */
+html[data-theme="dark"] .step-label { color: #7dd3fc !important; }
+html[data-theme="dark"] details > summary { color: #7dd3fc !important; }
+.q-count, .open-btn { color: #93c5fd !important; }
+.tag-2d, .tag-1d, .tag-vec, .tag-ncert, .tag-sba, .tag-proj, .tag-cons { color: #ffffff !important; }
+footer { color: #94a3b8 !important; }
+
+/* The offline 1D master lost Tailwind preflight + custom theme utilities. */
+body.u4-tailwind-offline {
+  margin: 0 !important;
+  background: #090d16 !important;
+  color: #f1f5f9 !important;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+.u4-tailwind-offline.bg-background, .u4-tailwind-offline .bg-background { background-color: #090d16 !important; }
+.u4-tailwind-offline .bg-card { background-color: #111827 !important; }
+.u4-tailwind-offline .border-border { border-color: #334155 !important; }
+.u4-tailwind-offline .bg-slate-950\/90 { background-color: rgba(2, 6, 23, .94) !important; }
+.u4-tailwind-offline .bg-slate-900 { background-color: #0f172a !important; }
+.u4-tailwind-offline .bg-slate-800 { background-color: #1e293b !important; }
+.u4-tailwind-offline .max-w-7xl { max-width: 80rem !important; }
+.u4-tailwind-offline .overflow-x-auto { overflow-x: auto !important; }
+.u4-tailwind-offline .whitespace-nowrap { white-space: nowrap !important; }
+.u4-tailwind-offline .font-sans { font-family: ui-sans-serif, system-ui, sans-serif !important; }
+.u4-tailwind-offline .text-slate-500,
+.u4-tailwind-offline .text-slate-600 { color: #cbd5e1 !important; }
+.u4-tailwind-offline .text-slate-400 { color: #a8b5c7 !important; }
+.u4-tailwind-offline header { max-width: 100%; }
+
+/* Reflow at phone width and at a 200% zoom-equivalent viewport. */
+@media (max-width: 700px) {
+  header.sticky, .sticky-header, .top-nav.sticky { position: static !important; top: auto !important; }
+}
+@media (max-width: 480px) {
+  .header-actions,
+  .g9-nav-group,
+  .g9-header-actions,
+  .top-nav-header,
+  .course-badge-row,
+  .workspace-title-row {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-wrap: wrap !important;
+  }
+  .g9-block, nav, ol, ul, main, section, article, .app-container, .container {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  ol, ul { padding-inline-start: 1.5rem !important; }
+  #jump-select { width: 100% !important; max-width: 100% !important; }
+  .tab-btn { white-space: normal !important; min-width: 0 !important; flex: 1 1 140px !important; }
+  .tabs, .tab-strip, .tab-nav, .tab-bar, .g9-tabs, [class*="tabs-row"] {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .g9-nav-group > *, .header-actions > * { max-width: 100% !important; }
+  pre { white-space: pre-wrap !important; overflow-wrap: anywhere !important; max-width: 100% !important; }
+  table { display: block; max-width: 100% !important; overflow-x: auto !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (forced-colors: active) {
+  svg text { fill: CanvasText !important; stroke: transparent !important; }
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 3px solid Highlight !important;
+  }
+}
+</style>
+<style id="pr375-u4-residual-remediation">
+@media (max-width: 480px) {
+  /* Generated CORE1A section-route pills used 24rem + padding, producing ~467px boxes. */
+  [data-g9-section-route] a,
+  [data-g9-concept-route] a,
+  article[data-g9-role="CORE1A"] > .slot-identity [data-g9-section-route] a {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    line-height: 1.4 !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  /* Consolidated and interactive headers must reflow as complete units, not just their children. */
+  .header-inner,
+  header.g9-shell {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+  }
+  .header-inner > *,
+  header.g9-shell > .g9-nav-group {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .header-brand,
+  .header-brand h1,
+  .header-actions,
+  header.g9-shell .g9-nav-group,
+  header.g9-shell .g9-breadcrumb {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+  }
+  .header-brand h1 { align-items: flex-start !important; }
+  .header-actions { width: 100% !important; justify-content: flex-start !important; }
+  header.g9-shell { padding-block: 8px !important; }
+  header.g9-shell .g9-breadcrumb { flex: 1 1 100% !important; overflow-wrap: anywhere !important; }
+}
+</style>
+<style id="pr375-u1-remediation">
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%} body{overflow-wrap:anywhere} p,li{line-height:1.4}
+:where(p,li,label,button,input,select,textarea,summary,td,th,figcaption,.btn,.q-badge,.tag-pill,.hint-badge,.hint-tag,.subject-badge,.step-label,.diag-header,.formula-box,#saveStatus,.save-status,.tag,.q-count,.open-btn,.stat .label,section.section-header h2,.study-kicker,.brand-badge,.hero-pill,.badge,.core-tag,.telemetry-title,.control-label,.card-action,.breadcrumb){font-size:max(14px,1em)!important}
+:where(a[href="index.html"],header a,nav a,.breadcrumb a,a.g9-bridge-link,[data-g9-block="entry_assumptions"] a){min-height:48px!important;min-width:48px!important;display:inline-flex!important;align-items:center!important;justify-content:center;padding-block:10px!important;box-sizing:border-box!important}
+@media(min-width:1100px){article[data-g9-role="CORE1A"] .g9-split{grid-template-columns:minmax(0,1fr)!important}article[data-g9-role="CORE1A"] .g9-col-support{position:static!important;top:auto!important}}
+article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;line-height:1.35!important;min-height:48px!important}
+
+.badge,.study-kicker{font-size:14px!important}
+</style>
+<style id="u2-practice-hub-target">
+a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center}
+</style>
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <h1>
+          <span>📚</span> Motion Consolidated Student Practice Edition
+          <span class="subject-badge">Grade 9 Physics · Consolidated</span>
+        </h1>
+      </div>
+      <div class="header-actions" style="display:flex;align-items:center;gap:10px;">
+        <a href="index.html" class="nav-hub-btn" aria-label="Back to Practice Hub" title="Back to Practice Hub" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 16px;border-radius:8px;background:var(--bg-card,#1e293b);color:var(--text-primary,#f8fafc);border:1.5px solid var(--border,#334155);font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;white-space:nowrap;">← Practice Hub</a>
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">🌓 Mode</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tab-nav">
+    <div class="tab-nav-inner">
+      <button class="tab-btn active">Assimilation Sets &amp; Practice (48)</button>
+    </div>
+  </nav>
+
+  <main class="layout-container">
+    
+    <div class="stage-area">
+
+      <div class="content-card">
+        <h2><span>🎯</span> 1D &amp; 2D Motion Consolidated Practice Bank</h2>
+        <p>
+          Structured difficulty tiers, multi-phase acceleration profiles, position-time slopes, and verified worked methodologies.
+        </p>
+      </div>
+
+
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 3</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 1 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Averages &amp; acceleration basics Q1 EX-M2B-02 Q2 EX-M2B-04 EASY M-ST02B · Equal Time vs Equal Distance Averages EASY M-ST02B · Equal Time vs Equal Distance Averages Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For averages, use total displacement/total time for average velocity and total distance/total time for average speed. Equal-time speeds average arithmetically; equal-distance two-speed cases use 2v₁v₂/(v₁+v₂).
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 4</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 1 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Averages &amp; acceleration basics Q3 EX-M2B-05 Q4 EX-M2B-03 EASY M-ST02B · Equal Time vs Equal Distance Averages MEDIUM M-ST02B · Equal Time vs Equal Distance Averages Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For averages, use total displacement/total time for average velocity and total distance/total time for average speed. Equal-time speeds average arithmetically; equal-distance two-speed cases use 2v₁v₂/(v₁+v₂).
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 5</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 1 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Averages &amp; acceleration basics Q5 EX-M2B-06 Q6 EX-M2B-08 MEDIUM M-ST02B · Equal Time vs Equal Distance Averages MEDIUM M-ST02B · Equal Time vs Equal Distance Averages Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For averages, use total displacement/total time for average velocity and total distance/total time for average speed. Equal-time speeds average arithmetically; equal-distance two-speed cases use 2v₁v₂/(v₁+v₂).
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 6</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 1 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Averages &amp; acceleration basics Q7 EX-M2B-01 Q8 EX-M3A-01 HARD M-ST02B · Equal Time vs Equal Distance Averages HARD M-ST03A · Acceleration as Change in Velocity Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For averages, use total displacement/total time for average velocity and total distance/total time for average speed. Equal-time speeds average arithmetically; equal-distance two-speed cases use 2v₁v₂/(v₁+v₂).
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 7</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 2 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Constant acceleration core Q9 EX-M4A-01 Q10 EX-M4B-01 EASY M-ST04A · Constant Acceleration and v = u + at MEDIUM M-ST04B · Displacement under Constant Acceleration Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For one constant-acceleration interval, use v = u+at and s = ut+½at². Keep signs consistent and do not apply one acceleration across multiple phases.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 8</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 2 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Constant acceleration core Q11 EX-M4B-04 MEDIUM M-ST04B · Displacement under Constant Acceleration Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For one constant-acceleration interval, use v = u+at and s = ut+½at². Keep signs consistent and do not apply one acceleration across multiple phases.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 9</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 2 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Constant acceleration core Q12 EX-M4C-01 Q13 EX-M4D-01 MEDIUM M-ST04C · Average Velocity under Constant Acceleration MEDIUM M-ST04D · Remove Time: Why Velocities Become Squared Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For constant acceleration, vavg = (u+v)/2 and s = vavg t. This shortcut depends on acceleration being constant.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 10</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 2 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Constant acceleration core Q14 EX-M4D-02 Q15 EX-M4D-03 HARD M-ST04D · Remove Time: Why Velocities Become Squared HARD M-ST04D · Remove Time: Why Velocities Become Squared Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              When time is absent, eliminate it with v²−u² = 2as. Check that the signed a and s give a physically possible v².
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 11</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 3 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Polynomial motion, intervals &amp; braking pairs Q16 EX-M4E-01 Q17 EX-M4E-02 MEDIUM M-ST04E · Read a Motion Equation from Its Coefficients MEDIUM M-ST04E · Read a Motion Equation from Its Coefficients Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              Read x(t) term by term, then obtain velocity and acceleration from its time dependence; interpret coefficients before substituting a time.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 12</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 3 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Polynomial motion, intervals &amp; braking pairs Q18 EX-M4E-03 Q19 EX-M5A-02 MEDIUM M-ST04E · Read a Motion Equation from Its Coefficients MEDIUM M-ST05A · Distance During the nth Second Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              Read x(t) term by term, then obtain velocity and acceleration from its time dependence; interpret coefficients before substituting a time.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 13</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 3 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Polynomial motion, intervals &amp; braking pairs Q20 EX-M5A-01 Q21 EX-M5B-01 HARD M-ST05A · Distance During the nth Second HARD M-ST05B · Why Successive Distances Follow 1 : 3 : 5 : 7 Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For constant acceleration, displacement in the nth second is sₙ = u+½a(2n−1) for one-second intervals, or subtract cumulative positions S(n)−S(n−1).
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 14</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 3 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Polynomial motion, intervals &amp; braking pairs Q22 EX-M6B-01 Q23 EX-M6C-01 MEDIUM M-ST06B · Two Braking Cars: Kinematics, Then Geometry HARD M-ST06C · Velocity Change + Average Velocity: A Short Route Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              Solve each braking motion with its own constant-acceleration equation first, then compare stopping positions geometrically; do not combine the two cars into one kinematics equation.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 15</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 4 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Free fall &amp; vertical stages Q24 EX-M7B-01 Q25 EX-M7B-02 MEDIUM M-ST07B · Free Fall from Rest HARD M-ST07B · Free Fall from Rest Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For free fall from rest, choose a vertical sign convention and use s = ½gt² and v = gt consistently.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 16</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 4 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Free fall &amp; vertical stages Q26 EX-M7B-03 Q27 EX-M7C-01 HARD M-ST07B · Free Fall from Rest HARD M-ST07C · Last-Distance and Between-Point Fall Problems Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For free fall from rest, choose a vertical sign convention and use s = ½gt² and v = gt consistently.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 17</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 4 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Free fall &amp; vertical stages Q28 EX-M8A-01 Q29 EX-M8B-01 EASY M-ST08A · Highest Point: v = 0, a = -g MEDIUM M-ST08B · Time to Top, Maximum Height, Flight Time Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              At the highest point v = 0 but acceleration remains −g. Use that event condition in v = u−gt or v² = u²−2gH.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 18</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 4 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Free fall &amp; vertical stages Q30 EX-M8B-02 Q31 EX-M8C-01 HARD M-ST08B · Time to Top, Maximum Height, Flight Time HARD M-ST08C · Same Height Twice Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For vertical projection, ttop = u/g and H = u²/(2g); for return to the same height the total flight time is 2u/g.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 19</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 5 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Relative motion &amp; paired launches Q32 EX-M9A-01 Q33 EX-M9B-01 HARD M-ST09A · Relative Acceleration: Common Gravity Cancels MEDIUM M-ST09B · Dropped from a Moving Platform Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For two bodies in the same gravitational field, relative acceleration is arel = aA−aB; common g cancels when both accelerations are identical.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 20</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 5 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Relative motion &amp; paired launches Q34 EX-M9C-01 Q35 EX-M9D-02 MEDIUM M-ST09C · Upward vs Downward Launch: Same Impact Speed MEDIUM M-ST09D · Time Gap: Upward vs Downward Launch from a Tower Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For upward/downward launches under the same gravity, use v² = u²+2aΔy to compare impact-speed magnitudes without solving time when possible.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 21</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 6 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Graph reading &amp; graph families Q36 EX-M10A-01 HARD M-ST10A · Position-Time Graph: Slope Is Velocity Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              On an x-t graph, slope is velocity. A valid single-particle x(t) must be single-valued in time.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 22</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 6 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Graph reading &amp; graph families Q37 EX-M10B-02 MEDIUM M-ST10B · Velocity-Time Graph: Slope, Area, Distance Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              On a v-t graph, slope is acceleration, signed area is displacement, and absolute area gives distance. Split the graph where the sign or slope changes.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 23</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 6 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Graph reading &amp; graph families Q38 EX-M10B-03 MEDIUM M-ST10B · Velocity-Time Graph: Slope, Area, Distance Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              On a v-t graph, slope is acceleration, signed area is displacement, and absolute area gives distance. Split the graph where the sign or slope changes.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 24</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 6 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Graph reading &amp; graph families Q39 EX-M10B-05 MEDIUM M-ST10B · Velocity-Time Graph: Slope, Area, Distance Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              On a v-t graph, slope is acceleration, signed area is displacement, and absolute area gives distance. Split the graph where the sign or slope changes.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 25</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 6 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Graph reading &amp; graph families Q40 EX-M10B-01 HARD M-ST10B · Velocity-Time Graph: Slope, Area, Distance Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              On a v-t graph, slope is acceleration, signed area is displacement, and absolute area gives distance. Split the graph where the sign or slope changes.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 26</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 6 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Graph reading &amp; graph families Q41 EX-M10B-04 HARD M-ST10B · Velocity-Time Graph: Slope, Area, Distance Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              On a v-t graph, slope is acceleration, signed area is displacement, and absolute area gives distance. Split the graph where the sign or slope changes.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 27</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 6 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Graph reading &amp; graph families Q42 EX-M10C-01 MEDIUM M-ST10C · Vertical Projection on a v-t Graph Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For vertical motion on a v-t graph, use the chosen sign convention: the zero crossing is the turning point and signed area gives vertical displacement.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 28</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 6 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Graph reading &amp; graph families Q43 EX-M10C-02 HARD M-ST10C · Vertical Projection on a v-t Graph Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For vertical motion on a v-t graph, use the chosen sign convention: the zero crossing is the turning point and signed area gives vertical displacement.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 29</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 6 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Graph reading &amp; graph families Q44 EX-M10D-01 MEDIUM M-ST10D · Constant Acceleration: x-t Parabola, v-t Line, a-t Constant Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              Constant acceleration appears as a parabola on x-t, a straight line on v-t and a constant level on a-t; cross-check that the three representations are mutually consistent.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 30</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 7 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Advanced graph models &amp; interval review Q45 EX-M10E-03 MEDIUM M-ST10E · Velocity vs Displacement: Read the Axes Before Naming the Curve Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              Read the axes before naming a curve. Under constant acceleration, v² = u²+2a(x−x₀) is linear in v² versus x, not generally in v versus x.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 31</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 7 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Advanced graph models &amp; interval review Q46 EX-M10E-04 HARD M-ST10E · Velocity vs Displacement: Read the Axes Before Naming the Curve Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              Read the axes before naming a curve. Under constant acceleration, v² = u²+2a(x−x₀) is linear in v² versus x, not generally in v versus x.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 32</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 7 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Advanced graph models &amp; interval review Q47 EX-M10E-01 CHALLENGE M-ST10E · Velocity vs Displacement: Read the Axes Before Naming the Curve Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              Read the axes before naming a curve. Under constant acceleration, v² = u²+2a(x−x₀) is linear in v² versus x, not generally in v versus x.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 33</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 7 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Advanced graph models &amp; interval review Q48 EX-M10F-01 CHALLENGE M-ST10F · Impossible and Inconsistent Motion Graphs Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              Reject motion graphs that violate representation rules: x(t) must be single-valued, v is the slope of x(t), and a is the slope of v(t).
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 34</span>
+        </div>
+        <div class="q-title">ASSIMILATION · SET 7 / 7</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Advanced graph models &amp; interval review Q49 EX-M11D-01 HARD M-ST11D · Ratio of nth-Second Distance to Total Distance Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For constant acceleration from rest, use Sₙ∝n² and sₙ = Sₙ−Sₙ₋₁ to form ratios of nth-second displacement to total displacement.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 35</span>
+        </div>
+        <div class="q-title">MIXED TRANSFER · SET 1 / 2</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Mixed transfer I · identify the concept before checking Q50 EX-M2B-07 HARD CONCEPT · IDENTIFY FIRST Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For averages, use total displacement/total time for average velocity and total distance/total time for average speed. Equal-time speeds average arithmetically; equal-distance two-speed cases use 2v₁v₂/(v₁+v₂).
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 36</span>
+        </div>
+        <div class="q-title">MIXED TRANSFER · SET 1 / 2</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Mixed transfer I · identify the concept before checking Q51 EX-M4C-02 CHALLENGE CONCEPT · IDENTIFY FIRST Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For constant acceleration, vavg = (u+v)/2 and s = vavg t. This shortcut depends on acceleration being constant.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 37</span>
+        </div>
+        <div class="q-title">MIXED TRANSFER · SET 1 / 2</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Mixed transfer I · identify the concept before checking Q52 EX-M4E-04 HARD CONCEPT · IDENTIFY FIRST Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              Read x(t) term by term, then obtain velocity and acceleration from its time dependence; interpret coefficients before substituting a time.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 38</span>
+        </div>
+        <div class="q-title">MIXED TRANSFER · SET 1 / 2</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Mixed transfer I · identify the concept before checking Q53 EX-M9A-02 CHALLENGE CONCEPT · IDENTIFY FIRST Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For two bodies in the same gravitational field, relative acceleration is arel = aA−aB; common g cancels when both accelerations are identical.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 39</span>
+        </div>
+        <div class="q-title">MIXED TRANSFER · SET 1 / 2</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Mixed transfer I · identify the concept before checking Q54 EX-M10B-06 HARD CONCEPT · IDENTIFY FIRST Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              On a v-t graph, slope is acceleration, signed area is displacement, and absolute area gives distance. Split the graph where the sign or slope changes.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 40</span>
+        </div>
+        <div class="q-title">MIXED TRANSFER · SET 1 / 2</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Mixed transfer I · identify the concept before checking Q55 EX-M10E-02 CHALLENGE CONCEPT · IDENTIFY FIRST Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              Read the axes before naming a curve. Under constant acceleration, v² = u²+2a(x−x₀) is linear in v² versus x, not generally in v versus x.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 41</span>
+        </div>
+        <div class="q-title">MIXED TRANSFER · SET 2 / 2</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Mixed transfer II · identify the concept before checking Q56 EX-M4B-03 Q57 EX-M4D-04 HARD CONCEPT · IDENTIFY FIRST HARD CONCEPT · IDENTIFY FIRST Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For one constant-acceleration interval, use v = u+at and s = ut+½at². Keep signs consistent and do not apply one acceleration across multiple phases.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 42</span>
+        </div>
+        <div class="q-title">MIXED TRANSFER · SET 2 / 2</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Mixed transfer II · identify the concept before checking Q58 EX-M7C-02 CHALLENGE CONCEPT · IDENTIFY FIRST Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For between-point or last-distance fall problems, write cumulative positions/times and subtract the two events instead of treating the final segment as a fresh fall from rest.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 43</span>
+        </div>
+        <div class="q-title">MIXED TRANSFER · SET 2 / 2</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Mixed transfer II · identify the concept before checking Q59 EX-M9D-01 HARD CONCEPT · IDENTIFY FIRST Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For time-gap comparisons from a tower, write the signed vertical position equation for each launch and compare the positive roots; do not use same-height symmetry.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 44</span>
+        </div>
+        <div class="q-title">MIXED TRANSFER · SET 2 / 2</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Mixed transfer II · identify the concept before checking Q60 EX-M10D-02 HARD CONCEPT · IDENTIFY FIRST Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              Constant acceleration appears as a parabola on x-t, a straight line on v-t and a constant level on a-t; cross-check that the three representations are mutually consistent.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 45</span>
+        </div>
+        <div class="q-title">MIXED TRANSFER · SET 2 / 2</div>
+        <p class="q-prompt">Method check — MOTION IN A STRAIGHT LINE Mixed transfer II · identify the concept before checking Q61 EX-M10F-02 CHALLENGE CONCEPT · IDENTIFY FIRST Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              Reject motion graphs that violate representation rules: x(t) must be single-valued, v is the slope of x(t), and a is the slope of v(t).
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 46</span>
+        </div>
+        <div class="q-title">CHECK YOUR METHOD</div>
+        <p class="q-prompt">Review check — Concept-assimilating solutions · use only after attempting QUESTION RECAP -&gt; required representation -&gt; WHY THIS WORKS -&gt; METHOD -&gt; ANSWER / CHECK -&gt; CONCEPT TO KEEP The difficulty badge stays learner-friendly. The canonical concept is always revealed here, including questions that were mixed-transfer in the practice book. Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              Identify the representation first, choose the relation whose variables match the givens, keep one sign convention, and verify units and limiting behavior.
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 47</span>
+        </div>
+        <div class="q-title">CHECK YOUR METHOD · ASSIMILATION SET 1 / 7</div>
+        <p class="q-prompt">Review check — USE AFTER ATTEMPTING Averages &amp; acceleration basics Q1 EX-M2B-02 Q2 EX-M2B-04 EASY M-ST02B · Equal Time vs Equal Distance Averages EASY M-ST02B · Equal Time vs Equal Distance Averages Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For averages, use total displacement/total time for average velocity and total distance/total time for average speed. Equal-time speeds average arithmetically; equal-distance two-speed cases use 2v₁v₂/(v₁+v₂).
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 48</span>
+        </div>
+        <div class="q-title">CHECK YOUR METHOD · ASSIMILATION SET 1 / 7</div>
+        <p class="q-prompt">Review check — USE AFTER ATTEMPTING Averages &amp; acceleration basics Q3 EX-M2B-05 Q4 EX-M2B-03 EASY M-ST02B · Equal Time vs Equal Distance Averages MEDIUM M-ST02B · Equal Time vs Equal Distance Averages Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For averages, use total displacement/total time for average velocity and total distance/total time for average speed. Equal-time speeds average arithmetically; equal-distance two-speed cases use 2v₁v₂/(v₁+v₂).
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 49</span>
+        </div>
+        <div class="q-title">CHECK YOUR METHOD · ASSIMILATION SET 1 / 7</div>
+        <p class="q-prompt">Review check — USE AFTER ATTEMPTING Averages &amp; acceleration basics Q5 EX-M2B-06 Q6 EX-M2B-08 MEDIUM M-ST02B · Equal Time vs Equal Distance Averages MEDIUM M-ST02B · Equal Time vs Equal Distance Averages Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For averages, use total displacement/total time for average velocity and total distance/total time for average speed. Equal-time speeds average arithmetically; equal-distance two-speed cases use 2v₁v₂/(v₁+v₂).
+            </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">Practice Set</span>
+          <span class="tag-pill">Page 50</span>
+        </div>
+        <div class="q-title">CHECK YOUR METHOD · ASSIMILATION SET 1 / 7</div>
+        <p class="q-prompt">Review check — USE AFTER ATTEMPTING Averages &amp; acceleration basics Q7 EX-M2B-01 Q8 EX-M3A-01 HARD M-ST02B · Equal Time vs Equal Distance Averages HARD M-ST03A · Acceleration as Change in Velocity Before doing arithmetic, identify the governing relation(s) and the representation or sign check needed for this set.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Methodology</summary>
+          <div class="solution-content">
+              For averages, use total displacement/total time for average velocity and total distance/total time for average speed. Equal-time speeds average arithmetically; equal-distance two-speed cases use 2v₁v₂/(v₁+v₂).
+            </div>
+        </details>
+      </div>
+    
+    </div>
+
+    <aside class="support-rail">
+      
+      <div class="support-widget">
+        <h3><span>⚡</span> Kinematics Formula Card</h3>
+        <div class="formula-box">
+          v = u + at<br>
+          s = ut + ½ at²<br>
+          v² - u² = 2as<br>
+          v_avg = Δx / Δt<br>
+          T = 2u sin θ / g<br>
+          H = u² sin² θ / (2g)<br>
+          R = u² sin 2θ / g
+        </div>
+      </div>
+
+      <div class="support-widget">
+        <h3><span>📝</span> Practice Scratchpad</h3>
+        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 8px;">
+          Virtual keyboard safe (min-height: 120px) with auto-saving:
+        </p>
+        <textarea id="scratchpadNotes" class="tablet-safe-input" placeholder="Draft kinematic setups, track suvat variables, or write quadratic solutions..."></textarea>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+          <span id="saveStatus" style="font-size: 12.5px; color: var(--success);">✓ Auto-saved</span>
+          <button class="btn" style="min-height: 48px; padding: 6px 14px; font-size: 13px; background: var(--bg-surface); border: 1px solid var(--border);" onclick="clearNotes()">Clear</button>
+        </div>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <script>
+    const themeBtn = document.getElementById('themeToggle');
+    const htmlEl = document.documentElement;
+    const savedTheme = localStorage.getItem('tablet12_theme') || 'dark';
+    htmlEl.setAttribute('data-theme', savedTheme);
+    themeBtn.addEventListener('click', () => {
+      const current = htmlEl.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      htmlEl.setAttribute('data-theme', next);
+      localStorage.setItem('tablet12_theme', next);
+    });
+
+    const pad = document.getElementById('scratchpadNotes');
+    const status = document.getElementById('saveStatus');
+    pad.value = localStorage.getItem('motion_consol_notes') || '';
+    pad.addEventListener('input', () => {
+      localStorage.setItem('motion_consol_notes', pad.value);
+      status.textContent = '✓ Saved ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    });
+
+    function clearNotes() {
+      if (confirm('Clear scratchpad notes?')) {
+        pad.value = '';
+        localStorage.removeItem('motion_consol_notes');
+        status.textContent = 'Notes cleared';
+      }
+    }
+  </script>
+<script id="pr375-u4-remediation-script">
+(() => {
+  const humanize = (value) => String(value || '')
+    .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+    .replace(/[_-]+/g, ' ')
+    .replace(/\b(vec)([ab])\b/gi, 'vector $2')
+    .replace(/\bproj\b/gi, 'projectile')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const explicitNames = {
+    mass1: 'Mass m1 in kilograms', mass2: 'Mass m2 in kilograms',
+    vecA: 'Vector A', vecB: 'Vector B',
+    projU: 'Projectile launch speed', projAngle: 'Projectile launch angle',
+    'jump-select': 'Jump to question', search: 'Search questions',
+    searchInput: 'Search questions', questionSearch: 'Search questions'
+  };
+
+  const hasLabel = (el) => {
+    if (el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.title) return true;
+    if (el.id && document.querySelector(`label[for="${CSS.escape(el.id)}"]`)) return true;
+    return !!el.closest('label');
+  };
+
+  document.querySelectorAll('input, select, textarea').forEach((el, index) => {
+    if (hasLabel(el)) return;
+    let name = explicitNames[el.id] || el.getAttribute('placeholder') || el.getAttribute('name') || el.id;
+    if (!name) {
+      const nearby = el.parentElement?.textContent?.trim();
+      if (nearby && nearby.length <= 100) name = nearby;
+    }
+    name = humanize(name) || `${el.tagName.toLowerCase()} ${index + 1}`;
+    el.setAttribute('aria-label', name);
+  });
+
+  document.querySelectorAll('button').forEach(btn => {
+    if (btn.textContent.trim().toLowerCase() === 'clear') btn.classList.add('u4-clear-button');
+  });
+
+  const syncOptions = () => {
+    document.querySelectorAll('.opt-btn').forEach(btn => {
+      const correct = btn.classList.contains('selected-correct');
+      const incorrect = btn.classList.contains('selected-incorrect');
+      btn.setAttribute('aria-pressed', correct || incorrect ? 'true' : 'false');
+      const base = btn.getAttribute('data-u4-base-label') || btn.getAttribute('aria-label') || btn.textContent.trim();
+      if (!btn.hasAttribute('data-u4-base-label')) btn.setAttribute('data-u4-base-label', base);
+      btn.setAttribute('aria-label', `${base}${correct ? ' — Correct' : incorrect ? ' — Incorrect' : ''}`);
+    });
+  };
+  syncOptions();
+
+  const syncTabs = () => {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.setAttribute('role', 'tab');
+      const active = btn.classList.contains('active') || btn.classList.contains('tab-btn-active') || btn.getAttribute('aria-current') === 'page';
+      btn.setAttribute('aria-selected', active ? 'true' : 'false');
+      if (btn.parentElement && !btn.parentElement.hasAttribute('role')) btn.parentElement.setAttribute('role', 'tablist');
+    });
+  };
+  syncTabs();
+
+  const figureName = (el, fallback) => {
+    const scope = el.closest('figure, section, article, .card, .panel, .simulator, .canvas-container') || el.parentElement;
+    const caption = scope?.querySelector('figcaption, h1, h2, h3, h4, .title, [class*="title"]');
+    const txt = caption?.textContent?.replace(/\s+/g, ' ').trim();
+    return txt && txt.length <= 120 ? txt : fallback;
+  };
+
+  document.querySelectorAll('svg').forEach(svg => {
+    if (svg.hasAttribute('aria-label') || svg.hasAttribute('aria-labelledby') || svg.hasAttribute('aria-hidden') || svg.querySelector('title')) return;
+    const control = svg.closest('a, button');
+    if (control && control.textContent.trim()) {
+      svg.setAttribute('aria-hidden', 'true');
+      svg.setAttribute('focusable', 'false');
+    } else {
+      svg.setAttribute('role', 'img');
+      svg.setAttribute('aria-label', figureName(svg, 'Physics diagram'));
+    }
+  });
+
+  document.querySelectorAll('canvas').forEach(canvas => {
+    if (canvas.hasAttribute('aria-label') || canvas.hasAttribute('aria-labelledby') || canvas.hasAttribute('aria-hidden')) return;
+    canvas.setAttribute('role', 'img');
+    canvas.setAttribute('aria-label', figureName(canvas, 'Interactive physics simulation'));
+  });
+
+  if (!document.querySelector('main, [role="main"]')) {
+    const mainCandidate = document.querySelector('.app-container, .container, .page-shell, #app');
+    if (mainCandidate) mainCandidate.setAttribute('role', 'main');
+  }
+
+  const observer = new MutationObserver(() => { syncOptions(); syncTabs(); });
+  observer.observe(document.documentElement, { subtree: true, attributes: true, attributeFilter: ['class', 'aria-current'] });
+})();
+</script>
+<script id="pr375-u4-dynamic-remediation">
+(() => {
+  const textName = (el, fallback) => {
+    const scope = el.closest('figure, section, article, .panel, .card, .simulator, .canvas-wrap, .canvas-container') || el.parentElement;
+    const title = scope?.querySelector('figcaption, h1, h2, h3, h4, .title, [class*="title"]');
+    const text = title?.textContent?.replace(/\s+/g, ' ').trim();
+    return text && text.length <= 140 ? text : fallback;
+  };
+
+  const nameFigures = (root = document) => {
+    const nodes = [];
+    if (root.nodeType === 1 && root.matches?.('svg, canvas')) nodes.push(root);
+    root.querySelectorAll?.('svg, canvas').forEach(el => nodes.push(el));
+    nodes.forEach(el => {
+      if (el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.getAttribute('aria-hidden') || el.querySelector?.('title')) return;
+      const control = el.closest('a, button');
+      if (control && control.textContent.trim()) {
+        el.setAttribute('aria-hidden', 'true');
+        el.setAttribute('focusable', 'false');
+        return;
+      }
+      el.setAttribute('role', 'img');
+      el.setAttribute('aria-label', textName(el, el.tagName.toLowerCase() === 'canvas' ? 'Interactive physics simulation' : 'Physics diagram'));
+    });
+  };
+
+  const nameControls = (root = document) => {
+    const nodes = [];
+    if (root.nodeType === 1 && root.matches?.('input, select, textarea')) nodes.push(root);
+    root.querySelectorAll?.('input, select, textarea').forEach(el => nodes.push(el));
+    nodes.forEach((el, index) => {
+      const has = el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.title || el.closest('label') || (el.id && document.querySelector(`label[for="${CSS.escape(el.id)}"]`));
+      if (has) return;
+      const nearby = el.closest('.control-row, .form-group, .field, .panel, .card')?.querySelector('.control-label, label, h3, h4');
+      const raw = el.getAttribute('placeholder') || el.getAttribute('name') || el.id || nearby?.textContent || `${el.tagName.toLowerCase()} ${index + 1}`;
+      el.setAttribute('aria-label', String(raw).replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim());
+    });
+  };
+
+  const sync = root => { nameFigures(root); nameControls(root); };
+  sync(document);
+  new MutationObserver(records => {
+    for (const record of records) for (const node of record.addedNodes) if (node.nodeType === 1) sync(node);
+  }).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
+</body>
+</html>

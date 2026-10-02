@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-g9-shell>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>GRADE 9 PHYSICS - Vector Algebra &amp; Resolution Master Suite | 12.7" Tablet Standalone Edition</title>
+  <meta name="description" content="Complete 12.7-inch tablet study suite for Vector Algebra: Scalars vs Vectors, Component Resolution, Triangle/Parallelogram Law, Dot & Cross Products, and 25+ Structured Vector Challenges.">
+  <style>
+/* ==========================================================================
+   Physics: Vectors 12.7" Tablet Standalone Stylesheet
+   WCAG 2.5.5 >= 48px touch targets, >= 120px textareas, no micro-fonts (<13.5px)
+   100% Offline Standalone · Dark/Light Mode · Responsive Stage/Support Grid
+   ========================================================================== */
+
+:root {
+  --tab12-container-max: 1400px;
+  --tab12-touch-min: 48px;
+  --tab12-base-font: 16px;
+  --tab12-radius-sm: 8px;
+  --tab12-radius-md: 12px;
+  --tab12-radius-lg: 16px;
+
+  --bg-app: #080d1a;
+  --bg-surface: #0f172a;
+  --bg-card: #152238;
+  --bg-card-subtle: #1a2942;
+  --border: #263859;
+  --border-light: #334b75;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.25);
+  --success: #34d399;
+  --warning: #f59e0b;
+  --danger: #f87171;
+  --purple: #c084fc;
+}
+
+[data-theme="light"] {
+  --bg-app: #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f8fafc;
+  --border: #cbd5e1;
+  --border-light: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --accent: #0284c7;
+  --accent-glow: rgba(2, 132, 199, 0.15);
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --purple: #7e22ce;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--tab12-base-font);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-app);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+button, .btn, .tab-btn, summary {
+  min-height: var(--tab12-touch-min);
+  min-width: var(--tab12-touch-min);
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--tab12-radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: all 0.18s ease;
+  border: 1px solid transparent;
+}
+
+button:focus-visible, .btn:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+textarea.tablet-safe-input {
+  min-height: 120px;
+  width: 100%;
+  padding: 14px;
+  font-family: monospace, inherit;
+  font-size: 14.5px;
+  line-height: 1.5;
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  resize: vertical;
+  display: block;
+}
+
+textarea.tablet-safe-input:focus {
+  border-color: var(--accent);
+  background-color: var(--bg-card);
+}
+
+header.app-header {
+  background-color: var(--bg-surface);
+  border-bottom: 1.5px solid var(--border);
+  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.header-inner {
+  max-width: var(--tab12-container-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header-brand h1 {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.subject-badge {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: rgba(56, 189, 248, 0.15);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  font-weight: 700;
+}
+
+.theme-toggle-btn {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+}
+
+nav.tab-nav {
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 24px 0 24px;
+  overflow-x: auto;
+}
+
+.tab-nav-inner {
+  max-width: var(--tab12-container-max);
+  margin: 0 auto;
+  display: flex;
+  gap: 8px;
+}
+
+.tab-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: var(--tab12-radius-sm) var(--tab12-radius-sm) 0 0;
+  padding: 12px 18px;
+  white-space: nowrap;
+}
+
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  background: var(--bg-app);
+}
+
+main.layout-container {
+  max-width: var(--tab12-container-max);
+  margin: 20px auto;
+  padding: 0 20px;
+  width: 100%;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 24px;
+}
+
+@media (max-width: 1040px) {
+  main.layout-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stage-area {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.content-card {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.content-card h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.content-card h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 18px 0 10px 0;
+  color: var(--accent);
+}
+
+.formula-box {
+  background: var(--bg-card-subtle);
+  border-left: 4px solid var(--accent);
+  padding: 14px 18px;
+  border-radius: 0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;
+  margin: 14px 0;
+  font-family: monospace;
+  font-size: 15px;
+  color: var(--text-primary);
+}
+
+.callout-box {
+  background: rgba(56, 189, 248, 0.08);
+  border: 1.5px solid var(--accent);
+  border-radius: var(--tab12-radius-sm);
+  padding: 16px 20px;
+  margin: 16px 0;
+}
+
+.q-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+.q-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.q-badge {
+  background: rgba(192, 132, 252, 0.15);
+  border: 1px solid var(--purple);
+  color: var(--purple);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tag-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.q-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.q-prompt {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+
+details.solution-detail {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--tab12-radius-sm);
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+details.solution-detail summary {
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.02);
+  color: var(--accent);
+  user-select: none;
+}
+
+.solution-content {
+  padding: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 14.5px;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.support-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.support-widget {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 20px;
+}
+
+.support-widget h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.calc-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.calc-input-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.calc-input-group input {
+  width: 100%;
+  min-height: 48px;
+  padding: 8px 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  color: var(--text-primary);
+  font-size: 14.5px;
+}
+
+.calc-result {
+  background: rgba(56, 189, 248, 0.1);
+  border: 1.5px solid var(--accent);
+  padding: 12px;
+  border-radius: var(--tab12-radius-sm);
+  font-weight: 700;
+  color: var(--accent);
+  text-align: center;
+  font-size: 15px;
+  margin-top: 12px;
+}
+  </style>
+<style id="pr375-u4-remediation">
+/* PR #375 U4 remediation: accessibility, reflow and alternate viewports. */
+*, *::before, *::after { box-sizing: border-box; }
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid #38bdf8 !important;
+  outline-offset: 2px !important;
+}
+img, svg, canvas { max-width: 100%; }
+input, select, textarea { max-width: 100%; }
+::placeholder { color: #94a3b8 !important; opacity: 1 !important; }
+[data-theme="light"] ::placeholder { color: #475569 !important; }
+.u4-clear-button { color: #f8fafc !important; }
+[data-theme="light"] .u4-clear-button { color: #0f172a !important; }
+
+/* Never communicate correctness by colour alone. */
+.opt-btn.selected-correct::after {
+  content: " ✓ Correct";
+  margin-inline-start: .4rem;
+  font-weight: 800;
+}
+.opt-btn.selected-incorrect::after {
+  content: " ✕ Incorrect";
+  margin-inline-start: .4rem;
+  font-weight: 800;
+}
+
+/* Contrast repairs for the learner-visible light theme. */
+[data-theme="light"] .step-content-calc {
+  color: #7c2d12 !important;
+  background: #fff7ed !important;
+  border: 1px solid #c2410c !important;
+}
+[data-theme="light"] .answer-banner,
+[data-theme="light"] .badge-success,
+[data-theme="light"] .saved-pill {
+  color: #065f46 !important;
+}
+[data-theme="light"] .badge-warning,
+[data-theme="light"] .hint-tag,
+[data-theme="light"] .diag-header-another {
+  color: #7c2d12 !important;
+}
+[data-theme="light"] .step-label,
+[data-theme="light"] details > summary {
+  color: #075985 !important;
+}
+[data-theme="light"] .formula-box,
+[data-theme="light"] .math-banner {
+  color: #422006 !important;
+  background: #fef3c7 !important;
+  border-color: #92400e !important;
+}
+[data-theme="light"] footer { color: #475569 !important; }
+
+/* Default dark-theme contrast repairs from U4. */
+html[data-theme="dark"] .step-label { color: #7dd3fc !important; }
+html[data-theme="dark"] details > summary { color: #7dd3fc !important; }
+.q-count, .open-btn { color: #93c5fd !important; }
+.tag-2d, .tag-1d, .tag-vec, .tag-ncert, .tag-sba, .tag-proj, .tag-cons { color: #ffffff !important; }
+footer { color: #94a3b8 !important; }
+
+/* The offline 1D master lost Tailwind preflight + custom theme utilities. */
+body.u4-tailwind-offline {
+  margin: 0 !important;
+  background: #090d16 !important;
+  color: #f1f5f9 !important;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+.u4-tailwind-offline.bg-background, .u4-tailwind-offline .bg-background { background-color: #090d16 !important; }
+.u4-tailwind-offline .bg-card { background-color: #111827 !important; }
+.u4-tailwind-offline .border-border { border-color: #334155 !important; }
+.u4-tailwind-offline .bg-slate-950\/90 { background-color: rgba(2, 6, 23, .94) !important; }
+.u4-tailwind-offline .bg-slate-900 { background-color: #0f172a !important; }
+.u4-tailwind-offline .bg-slate-800 { background-color: #1e293b !important; }
+.u4-tailwind-offline .max-w-7xl { max-width: 80rem !important; }
+.u4-tailwind-offline .overflow-x-auto { overflow-x: auto !important; }
+.u4-tailwind-offline .whitespace-nowrap { white-space: nowrap !important; }
+.u4-tailwind-offline .font-sans { font-family: ui-sans-serif, system-ui, sans-serif !important; }
+.u4-tailwind-offline .text-slate-500,
+.u4-tailwind-offline .text-slate-600 { color: #cbd5e1 !important; }
+.u4-tailwind-offline .text-slate-400 { color: #a8b5c7 !important; }
+.u4-tailwind-offline header { max-width: 100%; }
+
+/* Reflow at phone width and at a 200% zoom-equivalent viewport. */
+@media (max-width: 700px) {
+  header.sticky, .sticky-header, .top-nav.sticky { position: static !important; top: auto !important; }
+}
+@media (max-width: 480px) {
+  .header-actions,
+  .g9-nav-group,
+  .g9-header-actions,
+  .top-nav-header,
+  .course-badge-row,
+  .workspace-title-row {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-wrap: wrap !important;
+  }
+  .g9-block, nav, ol, ul, main, section, article, .app-container, .container {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  ol, ul { padding-inline-start: 1.5rem !important; }
+  #jump-select { width: 100% !important; max-width: 100% !important; }
+  .tab-btn { white-space: normal !important; min-width: 0 !important; flex: 1 1 140px !important; }
+  .tabs, .tab-strip, .tab-nav, .tab-bar, .g9-tabs, [class*="tabs-row"] {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .g9-nav-group > *, .header-actions > * { max-width: 100% !important; }
+  pre { white-space: pre-wrap !important; overflow-wrap: anywhere !important; max-width: 100% !important; }
+  table { display: block; max-width: 100% !important; overflow-x: auto !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (forced-colors: active) {
+  svg text { fill: CanvasText !important; stroke: transparent !important; }
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 3px solid Highlight !important;
+  }
+}
+</style>
+<style id="pr375-u4-residual-remediation">
+@media (max-width: 480px) {
+  /* Generated CORE1A section-route pills used 24rem + padding, producing ~467px boxes. */
+  [data-g9-section-route] a,
+  [data-g9-concept-route] a,
+  article[data-g9-role="CORE1A"] > .slot-identity [data-g9-section-route] a {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    line-height: 1.4 !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  /* Consolidated and interactive headers must reflow as complete units, not just their children. */
+  .header-inner,
+  header.g9-shell {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+  }
+  .header-inner > *,
+  header.g9-shell > .g9-nav-group {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .header-brand,
+  .header-brand h1,
+  .header-actions,
+  header.g9-shell .g9-nav-group,
+  header.g9-shell .g9-breadcrumb {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+  }
+  .header-brand h1 { align-items: flex-start !important; }
+  .header-actions { width: 100% !important; justify-content: flex-start !important; }
+  header.g9-shell { padding-block: 8px !important; }
+  header.g9-shell .g9-breadcrumb { flex: 1 1 100% !important; overflow-wrap: anywhere !important; }
+}
+</style>
+<style id="pr375-u1-remediation">
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%} body{overflow-wrap:anywhere} p,li{line-height:1.4}
+:where(p,li,label,button,input,select,textarea,summary,td,th,figcaption,.btn,.q-badge,.tag-pill,.hint-badge,.hint-tag,.subject-badge,.step-label,.diag-header,.formula-box,#saveStatus,.save-status,.tag,.q-count,.open-btn,.stat .label,section.section-header h2,.study-kicker,.brand-badge,.hero-pill,.badge,.core-tag,.telemetry-title,.control-label,.card-action,.breadcrumb){font-size:max(14px,1em)!important}
+:where(a[href="index.html"],header a,nav a,.breadcrumb a,a.g9-bridge-link,[data-g9-block="entry_assumptions"] a){min-height:48px!important;min-width:48px!important;display:inline-flex!important;align-items:center!important;justify-content:center;padding-block:10px!important;box-sizing:border-box!important}
+@media(min-width:1100px){article[data-g9-role="CORE1A"] .g9-split{grid-template-columns:minmax(0,1fr)!important}article[data-g9-role="CORE1A"] .g9-col-support{position:static!important;top:auto!important}}
+article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;line-height:1.35!important;min-height:48px!important}
+
+.badge,.study-kicker{font-size:14px!important}
+</style>
+<style id="u2-practice-hub-target">
+a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center}
+</style>
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <h1>
+          <span>🧭</span> Vector Algebra &amp; Resolution Master Suite
+          <span class="subject-badge">Physics · 12.7" Tablet</span>
+        </h1>
+      </div>
+      <div class="header-actions" style="display:flex;align-items:center;gap:10px;">
+        <a href="index.html" class="nav-hub-btn" aria-label="Back to Practice Hub" title="Back to Practice Hub" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 16px;border-radius:8px;background:var(--bg-card,#1e293b);color:var(--text-primary,#f8fafc);border:1.5px solid var(--border,#334155);font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;white-space:nowrap;">← Practice Hub</a>
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">🌓 Mode</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tab-nav">
+    <div class="tab-nav-inner">
+      <button class="tab-btn active" onclick="switchTab('tab-fundamentals')">1. Vector Fundamentals</button>
+      <button class="tab-btn" onclick="switchTab('tab-addition')">2. Laws of Addition</button>
+      <button class="tab-btn" onclick="switchTab('tab-resolution')">3. Orthogonal Resolution</button>
+      <button class="tab-btn" onclick="switchTab('tab-products')">4. Dot &amp; Cross Products</button>
+      <button class="tab-btn" onclick="switchTab('tab-challenges')">5. Core 2 Challenges (29)</button>
+    </div>
+  </nav>
+
+  <main class="layout-container">
+    
+    <div class="stage-area">
+
+      <!-- Tab 1: Fundamentals -->
+      <div id="tab-fundamentals" class="tab-content active">
+        <div class="content-card">
+          <h2><span>📐</span> Scalars vs. Vectors &amp; Notation</h2>
+          <p>
+            A scalar quantity possesses only magnitude (e.g. mass, speed, time, temperature, work). A vector quantity possesses both magnitude and direction AND strictly obeys the vector laws of addition (e.g. displacement, velocity, acceleration, force, momentum).
+          </p>
+          <div class="formula-box">
+            Vector Notation: &nbsp; A⃗ = A_x î + A_y ĵ + A_z k̂<br>
+            Magnitude: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |A⃗| = A = √(A_x² + A_y² + A_z²)<br>
+            Unit Vector: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Â = A⃗ / |A⃗| &nbsp; (Dimensionless, |Â| = 1)
+          </div>
+          <div class="callout-box">
+            <strong>Critical Test for Vectorhood:</strong>
+            Electric current has magnitude and direction, but it adds algebraically like a scalar ($I = I_1 + I_2$), violating vector addition. Hence, current is a scalar quantity, NOT a vector!
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Addition -->
+      <div id="tab-addition" class="tab-content">
+        <div class="content-card">
+          <h2><span>➕</span> Triangle &amp; Parallelogram Laws of Addition</h2>
+          <p>
+            The resultant of two vectors $ec{A}$ and $ec{B}$ acting at an angle $	heta$:
+          </p>
+          <div class="formula-box">
+            Resultant Magnitude: &nbsp; R = √(A² + B² + 2 A B cos θ)<br>
+            Direction Angle α (with vector A⃗):<br>
+            &nbsp; tan α = (B sin θ) / (A + B cos θ)<br><br>
+            Special Cases:<br>
+            • Parallel (θ = 0°): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; R_max = A + B<br>
+            • Anti-parallel (θ = 180°): R_min = |A - B|<br>
+            • Perpendicular (θ = 90°): &nbsp; R = √(A² + B²), &nbsp; tan α = B / A
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Resolution -->
+      <div id="tab-resolution" class="tab-content">
+        <div class="content-card">
+          <h2><span>✂️</span> Component Resolution in 2D &amp; 3D</h2>
+          <p>
+            Resolving a vector into mutually perpendicular components along the coordinate axes simplifies complex multi-vector problems into independent 1D algebraic additions.
+          </p>
+          <div class="formula-box">
+            2D Resolution (Angle θ with x-axis):<br>
+            &nbsp; A_x = A cos θ, &nbsp; A_y = A sin θ<br>
+            &nbsp; A = √(A_x² + A_y²), &nbsp; tan θ = A_y / A_x<br><br>
+            3D Direction Cosines (Angles α, β, γ with x, y, z axes):<br>
+            &nbsp; cos α = A_x / A, &nbsp; cos β = A_y / A, &nbsp; cos γ = A_z / A<br>
+            &nbsp; Fundamental Identity: cos² α + cos² β + cos² γ = 1
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 4: Products -->
+      <div id="tab-products" class="tab-content">
+        <div class="content-card">
+          <h2><span>✖️</span> Scalar (Dot) &amp; Vector (Cross) Products</h2>
+          <div class="formula-box">
+            Scalar (Dot) Product: &nbsp; A⃗ · B⃗ = A B cos θ = A_x B_x + A_y B_y + A_z B_z<br>
+            • Condition for Orthogonality: A⃗ ⊥ B⃗ ⇔ A⃗ · B⃗ = 0<br>
+            • Work done: W = F⃗ · d⃗<br><br>
+            Vector (Cross) Product: A⃗ × B⃗ = (A B sin θ) n̂<br>
+            • Condition for Parallelism: A⃗ ∥ B⃗ ⇔ A⃗ × B⃗ = 0<br>
+            • Torque: τ⃗ = r⃗ × F⃗
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 5: Core 2 Challenges -->
+      <div id="tab-challenges" class="tab-content">
+        <div class="content-card">
+          <h2><span>🎯</span> Core 2 Vector Challenges (29)</h2>
+          <p>
+            Master campus routes, return trajectories, missing components, and multi-vector polygons.
+          </p>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q01 · Page 1</span>
+          </div>
+          <div class="q-title">VECTORS - Revised Core 2</div>
+          <p class="q-prompt">REVISED CORE 2 Challenge practice with context-anchored open-question hints Attempt first. Each challenge uses a three-rung hint ladder. Every rung asks an open-ended question before the reveal. The reveal must answer that exact question</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Decompose into orthogonal components Rx = ΣAx, Ry = ΣAy.
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Use component resolution: R = √(Rx² + Ry²), tan θ = Ry / Rx.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q02 · Page 2</span>
+          </div>
+          <div class="q-title">T1 - Campus route resultant</div>
+          <p class="q-prompt">CHALLENGE Attempt page - answer protected QUESTION A student walks 9 m east, then 12 m north. Find the magnitude and compass-style direction</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> What makes this different from simply adding 9 m and 12 m? REVEAL The two legs point in perpendicular directions. The requested quantity is the straight-line displacement
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Use component resolution: R = √(Rx² + Ry²), tan θ = Ry / Rx.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q03 · Page 3</span>
+          </div>
+          <div class="q-title">T2 - Return past the start</div>
+          <p class="q-prompt">CHALLENGE Attempt page - answer protected QUESTION Take east as positive. A robot moves +7 m, then -11 m, then +2 m. Find its displacement</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Which requested quantity keeps direction information, and which one does not? REVEAL Displacement is a vector, so the signed legs matter. Distance is a scalar, so every travelled segment
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Use component resolution: R = √(Rx² + Ry²), tan θ = Ry / Rx.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q04 · Page 4</span>
+          </div>
+          <div class="q-title">T3 - Find a missing component</div>
+          <p class="q-prompt">CHALLENGE Attempt page - answer protected QUESTION A vector has magnitude 10 units and x-component +6 units. Its y-component is positive. Find</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> What geometric shape is formed by a vector and its perpendicular x- and y-components? REVEAL
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Use component resolution: R = √(Rx² + Ry²), tan θ = Ry / Rx.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q05 · Page 5</span>
+          </div>
+          <div class="q-title">T4 - Three-vector closure</div>
+          <p class="q-prompt">CHALLENGE Attempt page - answer protected QUESTION A particle moves 4 m east, then 3 m north, then a final displacement returns exactly to the</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> What must the total resultant be if the path finishes exactly where it started? REVEAL A closed displacement path has zero resultant: A+B+C=0.
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Use component resolution: R = √(Rx² + Ry²), tan θ = Ry / Rx.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q06 · Page 6</span>
+          </div>
+          <div class="q-title">T5 - Change in velocity at a corner</div>
+          <p class="q-prompt">CHALLENGE Attempt page - answer protected QUESTION A cyclist moves 6 m/s east, then immediately 6 m/s north. Find the magnitude of the change</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> The speed is 6 m/s before and after. Does that make the two velocity vectors equal? REVEAL No. Velocity includes direction, so east and north are different vector states even though their
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Use component resolution: R = √(Rx² + Ry²), tan θ = Ry / Rx.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q07 · Page 7</span>
+          </div>
+          <div class="q-title">T6 - Constant speed around a circle</div>
+          <p class="q-prompt">CHALLENGE Attempt page - answer protected QUESTION A rider moves at constant speed around a circular track. At the rightmost point of the circle,</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> At the rightmost point, where is the centre relative to the rider? REVEAL The centre lies directly to the left, so the inward radial direction is left.
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Use component resolution: R = √(Rx² + Ry²), tan θ = Ry / Rx.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q08 · Page 8</span>
+          </div>
+          <div class="q-title">T7 - Action-reaction versus net force</div>
+          <p class="q-prompt">CHALLENGE Attempt page - answer protected QUESTION A book rests on a table. Identify one Newton-III pair and explain why the two forces in that</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> What is the body-ownership rule for a Newton-III pair? REVEAL The two forces in a third-law pair act on two different bodies. Each force should be named “body A on
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Use component resolution: R = √(Rx² + Ry²), tan θ = Ry / Rx.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q09 · Page 9</span>
+          </div>
+          <div class="q-title">T8 - Momentum reversal</div>
+          <p class="q-prompt">CHALLENGE Attempt page - answer protected QUESTION A 0.50 kg ball moves east at 8 m/s and rebounds west at 6 m/s. Find Δp.</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Before computing momentum change, what direction convention will keep east and west distinct? REVEAL
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Use component resolution: R = √(Rx² + Ry²), tan θ = Ry / Rx.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q10 · Page 10</span>
+          </div>
+          <div class="q-title">T9 - String breaks at the top</div>
+          <p class="q-prompt">CHALLENGE Attempt page - answer protected QUESTION A stone moves clockwise in a horizontal circle. At the topmost point, the string breaks. Which</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> At the instant before the string breaks, which direction does the stone’s velocity point? REVEAL Instantaneous velocity is tangent to the circle, not radial. For clockwise motion at the top, that tangent
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Use component resolution: R = √(Rx² + Ry²), tan θ = Ry / Rx.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q11 · Page 11</span>
+          </div>
+          <div class="q-title">T10 - Negative work from vector direction</div>
+          <p class="q-prompt">CHALLENGE Attempt page - answer protected QUESTION A braking force of 200 N acts exactly opposite a 15 m displacement. Find the work done by</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Which geometric feature of the force and displacement decides the sign of work? REVEAL The angle between the two vectors controls the cosine factor. Here the arrows are antiparallel.
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Use component resolution: R = √(Rx² + Ry²), tan θ = Ry / Rx.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q12 · Page 12</span>
+          </div>
+          <div class="q-title">T11 - Relative velocity bridge</div>
+          <p class="q-prompt">CHALLENGE Attempt page - answer protected QUESTION Cyclist A moves east at 8 m/s. Cyclist B moves east at 5 m/s. What is A’s velocity relative to</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Who is the object and who is the observer in “A relative to B”? REVEAL A is the object whose motion is being described; B is the observer whose velocity must be removed
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Use component resolution: R = √(Rx² + Ry²), tan θ = Ry / Rx.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q13 · Page 13</span>
+          </div>
+          <div class="q-title">T12 - Component sum of forces</div>
+          <p class="q-prompt">CHALLENGE Attempt page - answer protected QUESTION Two perpendicular forces act on an object: 9 N east and 12 N south. Find the net force</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Before finding a magnitude, what signed x- and y-components describe the net force? REVEAL Take east as +x and north as +y. The force state is F=(+9,-12) N.
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Use component resolution: R = √(Rx² + Ry²), tan θ = Ry / Rx.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q14 · Page 14</span>
+          </div>
+          <div class="q-title">T13 - Choose the correct resultant</div>
+          <p class="q-prompt">CHALLENGE Attempt page - answer protected QUESTION Two vectors of 5 units each act at right angles. Which resultant magnitude is correct?</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> What shape is formed when two equal 5-unit vectors act at right angles from the same origin? REVEAL
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Use component resolution: R = √(Rx² + Ry²), tan θ = Ry / Rx.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q15 · Page 15</span>
+          </div>
+          <div class="q-title">T14 - Motion-in-2D bridge</div>
+          <p class="q-prompt">CHALLENGE Attempt page - answer protected QUESTION A ball has velocity components vₓ=6 m/s and vᵧ=8 m/s at an instant. Find the speed and</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> What part of a velocity vector is represented by “speed”, and what information is still missing? REVEAL
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Use component resolution: R = √(Rx² + Ry²), tan θ = Ry / Rx.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q16 · Page 17</span>
+          </div>
+          <div class="q-title">T1 - Solution: Campus route resultant</div>
+          <p class="q-prompt"></p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Decompose into orthogonal components Rx = ΣAx, Ry = ΣAy.
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Full reasoning ladder - no skipped learner steps<br>QUESTION RECAP<br>A student walks 9 m east, then 12 m north. Find the magnitude and compass-style direction of the<br>net displacement.<br>WHAT DO WE KNOW?<br>R<br>Rᵧ Rₓ=9 m, Rᵧ=12 m; east = +x, north = +y.<br>+y<br>θ<br>Rₓ +x<br>REASONING LADDER<br>1 UNDERSTAND<br>The route has two perpendicular displacement components; resultant displacement is not path<br>length.<br>2 REPRESENT<br>Write R=(9,12) m and draw the diagonal from start to finish.<br>3 CONNECT<br>Because the components are perpendicular, use |R|=√(Rₓ²+Rᵧ²) and tanθ=Rᵧ/Rₓ.<br>4 CALCULATE<br>|R|=√(9²+12²)=√225=15 m. θ=tan⁻¹(12/9)=53.1°.<br>5 INTERPRET<br>The net displacement is 15 m at 53.1° north of east.<br>ANSWER<br>15 m, 53.1° north of east.<br>QUICK CHECK CHECK IT ANOTHER WAY<br>15 m < 21 m path length, as a resultant A 9-12-15 right triangle independently confirms<br>displacement should be. the magnitude.<br>WATCH OUT<br>Do not report 21 m; that is total distance travelled, not displacement.<br>REVIEW THIS IDEA<br>Core 1: Vectors 04 - Add vectors and find a resultant<br>Vectors - Revised Core 2 17
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q17 · Page 18</span>
+          </div>
+          <div class="q-title">T2 - Solution: Return past the start</div>
+          <p class="q-prompt"></p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Decompose into orthogonal components Rx = ΣAx, Ry = ΣAy.
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Full reasoning ladder - no skipped learner steps<br>QUESTION RECAP<br>Take east as positive. A robot moves +7 m, then -11 m, then +2 m. Find its displacement and total<br>distance.<br>WHAT DO WE KNOW?<br>+y<br>east = +x; signed legs +7, -11, +2 m.<br>Cumulative positions: +7 m, -4 m, -2 m.<br>Sign has meaning only after the positive axis is declared.<br>REASONING LADDER<br>1 UNDERSTAND<br>The same path produces a vector displacement and a scalar distance.<br>2 REPRESENT<br>Keep a signed displacement channel and a magnitude-only distance channel.<br>3 CONNECT<br>Δx=Σ signed legs; distance=Σ |leg|.<br>4 CALCULATE<br>Δx=7-11+2=-2 m. Distance=7+11+2=20 m.<br>5 INTERPRET<br>The robot finishes 2 m west of the start after travelling 20 m.<br>ANSWER<br>Displacement = 2 m west; distance = 20 m.<br>QUICK CHECK CHECK IT ANOTHER WAY<br>|Δx|=2 m is less than the 20 m distance. Tracing the number line ends 2 m to the west of<br>the origin.<br>WATCH OUT<br>Do not make distance negative; distance adds path lengths, not signed directions.<br>REVIEW THIS IDEA<br>Core 1: Vectors 01 - Scalars, vectors and sign<br>Vectors - Revised Core 2 18
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q18 · Page 19</span>
+          </div>
+          <div class="q-title">T3 - Solution: Find a missing component</div>
+          <p class="q-prompt"></p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Decompose into orthogonal components Rx = ΣAx, Ry = ΣAy.
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Full reasoning ladder - no skipped learner steps<br>QUESTION RECAP<br>A vector has magnitude 10 units and x-component +6 units. Its y-component is positive. Find Aᵧ.<br>WHAT DO WE KNOW?<br>|A|=10, Aₓ=+6, Aᵧ>0.<br>+y<br>A<br>Aᵧ &gt; 0; Aₓ &gt; 0; quadrant I<br>REASONING LADDER<br>1 UNDERSTAND<br>The unknown is one leg of a perpendicular component triangle.<br>2 REPRESENT<br>A=(6,Aᵧ), with the arrow in the upper half-plane.<br>3 CONNECT<br>Use |A|²=Aₓ²+Aᵧ².<br>4 CALCULATE<br>Aᵧ²=10²-6²=100-36=64. Aᵧ=+√64=+8.<br>5 INTERPRET<br>The positive root is required because the problem states Aᵧ is positive.<br>ANSWER<br>Aᵧ = +8 units.<br>QUICK CHECK CHECK IT ANOTHER WAY<br>√(6²+8²)=10 reconstructs the given magnitude. The 6-8-10 right triangle confirms the component<br>immediately.<br>WATCH OUT<br>Do not keep both ±8; the sign condition Aᵧ>0 removes the negative root.<br>REVIEW THIS IDEA<br>Core 1: Vectors 03 - Components, quadrants and angle reference<br>Vectors - Revised Core 2 19
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q19 · Page 20</span>
+          </div>
+          <div class="q-title">T4 - Solution: Three-vector closure</div>
+          <p class="q-prompt"></p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Decompose into orthogonal components Rx = ΣAx, Ry = ΣAy.
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Full reasoning ladder - no skipped learner steps<br>QUESTION RECAP<br>A particle moves 4 m east, then 3 m north, then a final displacement returns exactly to the start.<br>Find the final vector.<br>A-B = A + (-B)<br>WHAT DO WE KNOW?<br>R=A+B<br>-BB first two legs: (4,0) m and (0,3) m; closed path.<br>A A<br>REASONING LADDER<br>1 UNDERSTAND<br>Returning to the start means the vector sum of all three displacements is zero.<br>2 REPRESENT<br>First two displacements give R=(4,3) m.<br>3 CONNECT<br>Closure requires R+C=0, so C=-R.<br>4 CALCULATE<br>C=-(4,3)=(-4,-3) m. |C|=√(4²+3²)=5 m.<br>5 INTERPRET<br>The final vector is 4 m west and 3 m south; magnitude 5 m.<br>ANSWER<br>C=(-4,-3) m; magnitude 5 m, southwest.<br>QUICK CHECK CHECK IT ANOTHER WAY<br>(4,3)+(-4,-3)=(0,0), so the path closes exactly. The 3-4-5 triangle confirms the 5 m closing<br>magnitude.<br>WATCH OUT<br>Do not reverse only one component; the entire resultant vector must be negated.<br>REVIEW THIS IDEA<br>Core 1: Vectors 04 and 05 - Addition and subtraction<br>Vectors - Revised Core 2 20
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q20 · Page 21</span>
+          </div>
+          <div class="q-title">T5 - Solution: Change in velocity at a corner</div>
+          <p class="q-prompt"></p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Decompose into orthogonal components Rx = ΣAx, Ry = ΣAy.
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Full reasoning ladder - no skipped learner steps<br>QUESTION RECAP<br>A cyclist moves 6 m/s east, then immediately 6 m/s north. Find the magnitude of the change in<br>velocity.<br>v_f Δv=v_f-vᵢ WHAT DO WE KNOW?<br>vᵢ=(6,0) m/s; v_f=(0,6) m/s.<br>vᵢ<br>REASONING LADDER<br>1 UNDERSTAND<br>Equal speeds do not imply equal velocities because direction changed.<br>2 REPRESENT<br>Use a common-origin diagram for vᵢ and v_f.<br>3 CONNECT<br>Change in velocity is final minus initial: Δv=v_f-vᵢ.<br>4 CALCULATE<br>Δv=(0,6)-(6,0)=(-6,6) m/s. |Δv|=√(36+36)=6√2≈8.49 m/s.<br>5 INTERPRET<br>The velocity change points 45° north of west; its magnitude is 6√2 m/s.<br>ANSWER<br>|Δv| = 6√2 ≈ 8.49 m/s.<br>QUICK CHECK CHECK IT ANOTHER WAY<br>A 90° turn must give nonzero Δv even though Geometry gives a square diagonal: √(6²+6²)=6√2.<br>speed is unchanged.<br>WATCH OUT<br>Do not subtract the speeds 6-6; the vectors, not only their magnitudes, must be subtracted.<br>REVIEW THIS IDEA<br>Core 1: Vectors 05 - Subtract vectors and build change vectors<br>Vectors - Revised Core 2 21
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q21 · Page 22</span>
+          </div>
+          <div class="q-title">T6 - Solution: Constant speed around a circle</div>
+          <p class="q-prompt"></p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Decompose into orthogonal components Rx = ΣAx, Ry = ΣAy.
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Full reasoning ladder - no skipped learner steps<br>QUESTION RECAP<br>A rider moves at constant speed around a circular track. At the rightmost point of the circle, what<br>are the directions of velocity and acceleration?<br>WHAT DO WE KNOW?<br>v tangent<br>rightmost point; constant speed; travel sense<br>a inward not specified.<br>REASONING LADDER<br>1 UNDERSTAND<br>Constant speed still allows velocity direction to change.<br>2 REPRESENT<br>At the rightmost point, draw the radius horizontally toward the centre.<br>3 CONNECT<br>v is tangent and perpendicular to the radius; a_c is inward along the radius.<br>4 CALCULATE<br>No magnitude calculation is needed. Inward is left; the tangent is vertical.<br>5 INTERPRET<br>Acceleration points left. Velocity points vertically up or down depending on direction of travel.<br>ANSWER<br>Acceleration: left, toward centre. Velocity: vertical tangent;<br>up/down depends on travel direction.<br>QUICK CHECK CHECK IT ANOTHER WAY<br>v and a are perpendicular at that point. Changing the travel direction reverses v but<br>leaves the inward acceleration direction<br>unchanged at the same point.<br>WATCH OUT<br>Do not infer an up/down velocity direction when the problem does not specify clockwise or counterclockwise<br>travel.<br>REVIEW THIS IDEA<br>Core 1: Vectors 08 - Tangent and radial directions<br>Vectors - Revised Core 2 22
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q22 · Page 23</span>
+          </div>
+          <div class="q-title">T7 - Solution: Action-reaction versus net force</div>
+          <p class="q-prompt"></p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Decompose into orthogonal components Rx = ΣAx, Ry = ΣAy.
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Full reasoning ladder - no skipped learner steps<br>QUESTION RECAP<br>A book rests on a table. Identify one Newton-III pair and explain why the two forces in that pair do<br>not cancel on the book.<br>table on book<br>WHAT DO WE KNOW?<br>book chosen body for cancellation question: the book.<br>table<br>book on table<br>REASONING LADDER<br>1 UNDERSTAND<br>Third-law equality/opposition applies across two interacting bodies.<br>2 REPRESENT<br>Label N_table on book and N_book on table as separate arrows on separate bodies.<br>3 CONNECT<br>Newton III: F_A on B = -F_B on A.<br>4 CALCULATE<br>No numerical calculation is needed. The pair is equal and opposite, but only N_table on book acts<br>on the book.<br>5 INTERPRET<br>The pair does not cancel on the book because its two members act on different bodies.<br>ANSWER<br>Pair: table on book / book on table; they do not cancel on the<br>book because they act on different bodies.<br>QUICK CHECK CHECK IT ANOTHER WAY<br>The book’s weight and table normal may balance, Draw separate FBDs for book and table; the paired<br>but those are not a Newton-III pair. forces appear on different diagrams.<br>WATCH OUT<br>Never cancel forces from different bodies inside one free-body diagram.<br>REVIEW THIS IDEA<br>Core 1: Vectors 09 - Interaction pairs and body ownership<br>Vectors - Revised Core 2 23
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q23 · Page 24</span>
+          </div>
+          <div class="q-title">T8 - Solution: Momentum reversal</div>
+          <p class="q-prompt"></p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Decompose into orthogonal components Rx = ΣAx, Ry = ΣAy.
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Full reasoning ladder - no skipped learner steps<br>QUESTION RECAP<br>A 0.50 kg ball moves east at 8 m/s and rebounds west at 6 m/s. Find Δp.<br>WHAT DO WE KNOW?<br>+y<br>m=0.50 kg; east=+; vᵢ=+8 m/s; v_f=-6 m/s.<br>Initial velocity: +8 m/s east; final velocity: -6 m/s west.<br>Sign has meaning only after the positive axis is declared.<br>REASONING LADDER<br>1 UNDERSTAND<br>Momentum is a vector; reversal changes the sign of the velocity component.<br>2 REPRESENT<br>pᵢ=mvᵢ and p_f=mv_f with east positive.<br>3 CONNECT<br>Momentum change is final minus initial: Δp=p_f-pᵢ.<br>4 CALCULATE<br>pᵢ=0.50(8)=+4 kg·m/s. p_f=0.50(-6)=-3 kg·m/s. Δp=-3-(+4)=-7 kg·m/s.<br>5 INTERPRET<br>The momentum changes by 7 kg·m/s toward the west.<br>ANSWER<br>Δp = -7 kg·m/s = 7 kg·m/s west.<br>QUICK CHECK CHECK IT ANOTHER WAY<br>A reversal should make |Δp| larger than either 4 or Vector-tip separation on a 1D number line is<br>3 alone; 7 satisfies that. 4-(-3)=7 kg·m/s.<br>WATCH OUT<br>Do not use 3-4=-1 by stripping away the directions first.<br>REVIEW THIS IDEA<br>Core 1: Vectors 05 - Subtract vectors and build change vectors<br>Vectors - Revised Core 2 24
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q24 · Page 25</span>
+          </div>
+          <div class="q-title">T9 - Solution: String breaks at the top</div>
+          <p class="q-prompt"></p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Decompose into orthogonal components Rx = ΣAx, Ry = ΣAy.
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Full reasoning ladder - no skipped learner steps<br>QUESTION RECAP<br>A stone moves clockwise in a horizontal circle. At the topmost point, the string breaks. Which way<br>does it move immediately after release?<br>WHAT DO WE KNOW?<br>clockwise motion; release occurs at topmost<br>a inward point.<br>v tangent<br>REASONING LADDER<br>1 UNDERSTAND<br>The release question asks for the direction of the instantaneous velocity at the breaking instant.<br>2 REPRESENT<br>At the top of a clockwise circle, draw the tangent horizontally to the right.<br>3 CONNECT<br>The string force supplied centripetal acceleration; breaking the string removes that inward<br>constraint.<br>4 CALCULATE<br>No numerical calculation is required. The existing velocity vector at release is rightward along the<br>tangent.<br>5 INTERPRET<br>The stone moves immediately to the right, tangent to the former circle.<br>ANSWER<br>Rightward along the tangent.<br>QUICK CHECK CHECK IT ANOTHER WAY<br>Radial inward/outward directions are Newton I gives the same prediction: without the<br>perpendicular to the actual release velocity at that inward constraint, motion initially continues in the<br>instant. current velocity direction.<br>WATCH OUT<br>Do not draw an outward radial “throw-off” direction.<br>REVIEW THIS IDEA<br>Core 1: Vectors 08 - Tangent and radial directions<br>Vectors - Revised Core 2 25
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q25 · Page 26</span>
+          </div>
+          <div class="q-title">T10 - Solution: Negative work from vector direction</div>
+          <p class="q-prompt"></p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Decompose into orthogonal components Rx = ΣAx, Ry = ΣAy.
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Full reasoning ladder - no skipped learner steps<br>QUESTION RECAP<br>A braking force of 200 N acts exactly opposite a 15 m displacement. Find the work done by the<br>braking force.<br>WHAT DO WE KNOW?<br>θ = 180°<br>F=200 N; s=15 m; θ=180°.<br>displacement s<br>force F<br>REASONING LADDER<br>1 UNDERSTAND<br>The braking force points opposite the displacement, so its work must be negative.<br>2 REPRESENT<br>Draw F and s antiparallel; the included angle is 180°.<br>3 CONNECT<br>Use W=Fs cosθ.<br>4 CALCULATE<br>W=(200)(15)cos180° =3000(-1) =-3000 J.<br>5 INTERPRET<br>The braking force removes mechanical energy from the motion.<br>ANSWER<br>W = -3000 J.<br>QUICK CHECK CHECK IT ANOTHER WAY<br>The magnitude is Fs=3000 J and only the sign flips The force component along the displacement is<br>because the vectors are opposite. -200 N, so W=F_parallel s=(-200)(15)=-3000 J.<br>WATCH OUT<br>Do not use +Fs for an opposite-direction force.<br>REVIEW THIS IDEA<br>Core 1: Vectors 10 - Angle between vectors and work<br>Vectors - Revised Core 2 26
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q26 · Page 27</span>
+          </div>
+          <div class="q-title">T11 - Solution: Relative velocity bridge</div>
+          <p class="q-prompt"></p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Decompose into orthogonal components Rx = ΣAx, Ry = ΣAy.
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Full reasoning ladder - no skipped learner steps<br>QUESTION RECAP<br>Cyclist A moves east at 8 m/s. Cyclist B moves east at 5 m/s. What is A’s velocity relative to B?<br>WHAT DO WE KNOW?<br>v_A v_A/B observer B<br>subtracts v_B east=+; v_A=+8 m/s; v_B=+5 m/s.<br>v_B<br>REASONING LADDER<br>1 UNDERSTAND<br>The question asks what B sees A doing.<br>2 REPRESENT<br>Put both velocities in the same signed coordinate frame.<br>3 CONNECT<br>Relative velocity of A with respect to B is v_A/B=v_A-v_B.<br>4 CALCULATE<br>v_A/B=+8-(+5)=+3 m/s.<br>5 INTERPRET<br>B sees A moving east at 3 m/s.<br>ANSWER<br>3 m/s east.<br>QUICK CHECK CHECK IT ANOTHER WAY<br>If both cyclists had 8 m/s east, the same formula From B’s moving frame, subtracting 5 m/s east<br>would give zero relative velocity. from every ground velocity leaves A at 3 m/s east.<br>WATCH OUT<br>Do not reverse the observer order: v_B/A=-3 m/s.<br>REVIEW THIS IDEA<br>Core 1: Vectors 07 - Relative velocity<br>Vectors - Revised Core 2 27
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q27 · Page 28</span>
+          </div>
+          <div class="q-title">T12 - Solution: Component sum of forces</div>
+          <p class="q-prompt"></p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Decompose into orthogonal components Rx = ΣAx, Ry = ΣAy.
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Full reasoning ladder - no skipped learner steps<br>QUESTION RECAP<br>Two perpendicular forces act on an object: 9 N east and 12 N south. Find the net force magnitude<br>and direction.<br>WHAT DO WE KNOW?<br>R<br>Rᵧ Fₓ=+9 N; Fᵧ=-12 N.<br>+y<br>θ<br>Rₓ +x<br>REASONING LADDER<br>1 UNDERSTAND<br>The net force is the vector sum of two perpendicular forces.<br>2 REPRESENT<br>Use F=(9,-12) N; quadrant IV.<br>3 CONNECT<br>Magnitude from Pythagoras; direction from the component ratio plus quadrant.<br>4 CALCULATE<br>|F|=√(81+144)=√225=15 N. θ=tan⁻¹(12/9)=53.1°.<br>5 INTERPRET<br>Net force = 15 N at 53.1° south of east.<br>ANSWER<br>15 N, 53.1° south of east.<br>QUICK CHECK CHECK IT ANOTHER WAY<br>The resultant must be greater than 12 N but less The 9-12-15 triangle independently confirms the<br>than 21 N; 15 N fits. magnitude.<br>WATCH OUT<br>Do not report 53.1° north of east; the y-component is negative.<br>REVIEW THIS IDEA<br>Core 1: Vectors 06 - Recover magnitude and direction<br>Vectors - Revised Core 2 28
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q28 · Page 29</span>
+          </div>
+          <div class="q-title">T13 - Solution: Choose the correct resultant</div>
+          <p class="q-prompt"></p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Decompose into orthogonal components Rx = ΣAx, Ry = ΣAy.
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Full reasoning ladder - no skipped learner steps<br>QUESTION RECAP<br>Two vectors of 5 units each act at right angles. Which resultant magnitude is correct?<br>WHAT DO WE KNOW?<br>R<br>Rᵧ two perpendicular vectors, each magnitude 5.<br>+y<br>θ<br>Rₓ +x<br>REASONING LADDER<br>1 UNDERSTAND<br>Perpendicular vectors do not add by simply adding magnitudes.<br>2 REPRESENT<br>Use a right isosceles triangle with legs 5 and 5.<br>3 CONNECT<br>Pythagoras: R²=5²+5².<br>4 CALCULATE<br>R=√50=5√2≈7.07 units.<br>5 INTERPRET<br>The resultant is greater than either single vector but less than the 10-unit straight-line sum.<br>ANSWER<br>5√2 ≈ 7.07 units.<br>QUICK CHECK CHECK IT ANOTHER WAY<br>5 < 7.07 < 10, consistent with vector bounds. It is the diagonal of a 5-by-5 square, whose<br>diagonal is side×√2.<br>WATCH OUT<br>Do not add 5+5 unless the vectors point in the same direction.<br>REVIEW THIS IDEA<br>Core 1: Vectors 04 - Add vectors and find a resultant<br>Vectors - Revised Core 2 29
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">Vector Challenge</span>
+            <span class="tag-pill">Q29 · Page 30</span>
+          </div>
+          <div class="q-title">T14 - Solution: Motion-in-2D bridge</div>
+          <p class="q-prompt"></p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Decompose into orthogonal components Rx = ΣAx, Ry = ΣAy.
+          </div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Full reasoning ladder - no skipped learner steps<br>QUESTION RECAP<br>A ball has velocity components vₓ=6 m/s and vᵧ=8 m/s at an instant. Find the speed and state the<br>direction information required for a complete velocity vector.<br>WHAT DO WE KNOW?<br>v = vₓ i + vᵧ j vₓ=+6 m/s; vᵧ=+8 m/s.<br>+y<br>Same vector state in quadrant I.<br>vₓ &gt; 0; vᵧ &gt; 0.<br>REASONING LADDER<br>1 UNDERSTAND<br>The problem asks for magnitude and enough direction information to specify the velocity.<br>2 REPRESENT<br>v=(6,8) m/s in quadrant I.<br>3 CONNECT<br>v=√(vₓ²+vᵧ²); tanθ=vᵧ/vₓ.<br>4 CALCULATE<br>v=√(6²+8²)=10 m/s. θ=tan⁻¹(8/6)=53.1°.<br>5 INTERPRET<br>Velocity = 10 m/s at 53.1° above +x.<br>ANSWER<br>Speed = 10 m/s; direction = 53.1° above +x.<br>QUICK CHECK CHECK IT ANOTHER WAY<br>10 m/s is larger than each component, as the The 6-8-10 triangle confirms the speed exactly.<br>hypotenuse should be.<br>WATCH OUT<br>Do not stop at “10 m/s” if the requested quantity is the full velocity vector.<br>REVIEW THIS IDEA<br>Core 1: Vectors 11 - Bridge to Motion in 2D<br>Vectors - Revised Core 2 30
+            </div>
+          </details>
+        </div>
+    
+      </div>
+
+    </div>
+
+    <!-- Support Rail -->
+    <aside class="support-rail">
+      
+      <div class="support-widget">
+        <h3><span>⚡</span> Vector Formulas</h3>
+        <div class="formula-box" style="font-size: 13.5px;">
+          R = √(A² + B² + 2AB cos θ)<br>
+          tan α = B sin θ / (A + B cos θ)<br>
+          A⃗ · B⃗ = A_x B_x + A_y B_y<br>
+          cos² α + cos² β + cos² γ = 1
+        </div>
+      </div>
+
+      <!-- Interactive 2-Vector Resultant Solver -->
+      <div class="support-widget">
+        <h3><span>🧮</span> 2-Vector Resultant Solver</h3>
+        <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 10px;">
+          Enter vector magnitudes and angle θ between them:
+        </p>
+        <div class="calc-row">
+          <div class="calc-input-group">
+            <label>Mag |A⃗|:</label>
+            <input type="number" id="vecA" value="3.0" step="0.5" oninput="solveVectors()">
+          </div>
+          <div class="calc-input-group">
+            <label>Mag |B⃗|:</label>
+            <input type="number" id="vecB" value="4.0" step="0.5" oninput="solveVectors()">
+          </div>
+        </div>
+        <div class="calc-row">
+          <div class="calc-input-group" style="grid-column: span 2;">
+            <label>Angle θ (degrees):</label>
+            <input type="number" id="vecTheta" value="90" step="5" oninput="solveVectors()">
+          </div>
+        </div>
+        <div class="calc-result" id="vecResult">
+          |R⃗| = 5.00 | α = 53.13°
+        </div>
+      </div>
+
+      <!-- Virtual Keyboard Safe Scratchpad -->
+      <div class="support-widget">
+        <h3><span>📝</span> Study Scratchpad</h3>
+        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 8px;">
+          Virtual keyboard safe (min-height: 120px) with auto-saving:
+        </p>
+        <textarea id="scratchpadNotes" class="tablet-safe-input" placeholder="Resolve components Ax, Ay, write closure equations, or compute cross products..."></textarea>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+          <span id="saveStatus" style="font-size: 12.5px; color: var(--success);">✓ Auto-saved</span>
+          <button class="btn" style="min-height: 48px; padding: 6px 14px; font-size: 13px; background: var(--bg-surface); border: 1px solid var(--border);" onclick="clearNotes()">Clear</button>
+        </div>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+      if (activeBtn) activeBtn.classList.add('active');
+      const targetContent = document.getElementById(tabId);
+      if (targetContent) targetContent.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    const themeBtn = document.getElementById('themeToggle');
+    const htmlEl = document.documentElement;
+    const savedTheme = localStorage.getItem('tablet12_theme') || 'dark';
+    htmlEl.setAttribute('data-theme', savedTheme);
+    themeBtn.addEventListener('click', () => {
+      const current = htmlEl.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      htmlEl.setAttribute('data-theme', next);
+      localStorage.setItem('tablet12_theme', next);
+    });
+
+    const pad = document.getElementById('scratchpadNotes');
+    const status = document.getElementById('saveStatus');
+    pad.value = localStorage.getItem('vectors_tablet_notes') || '';
+    pad.addEventListener('input', () => {
+      localStorage.setItem('vectors_tablet_notes', pad.value);
+      status.textContent = '✓ Saved ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    });
+
+    function clearNotes() {
+      if (confirm('Clear scratchpad notes?')) {
+        pad.value = '';
+        localStorage.removeItem('vectors_tablet_notes');
+        status.textContent = 'Notes cleared';
+      }
+    }
+
+    function solveVectors() {
+      const A = parseFloat(document.getElementById('vecA').value) || 0;
+      const B = parseFloat(document.getElementById('vecB').value) || 0;
+      const deg = parseFloat(document.getElementById('vecTheta').value) || 0;
+      const rad = deg * Math.PI / 180;
+      const R = Math.sqrt(A * A + B * B + 2 * A * B * Math.cos(rad));
+      const alphaRad = Math.atan2(B * Math.sin(rad), A + B * Math.cos(rad));
+      const alphaDeg = alphaRad * 180 / Math.PI;
+      document.getElementById('vecResult').textContent = `|R⃗| = ${R.toFixed(2)} | α = ${alphaDeg.toFixed(2)}°`;
+    }
+    solveVectors();
+  </script>
+<script id="pr375-u4-remediation-script">
+(() => {
+  const humanize = (value) => String(value || '')
+    .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+    .replace(/[_-]+/g, ' ')
+    .replace(/\b(vec)([ab])\b/gi, 'vector $2')
+    .replace(/\bproj\b/gi, 'projectile')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const explicitNames = {
+    mass1: 'Mass m1 in kilograms', mass2: 'Mass m2 in kilograms',
+    vecA: 'Vector A', vecB: 'Vector B',
+    projU: 'Projectile launch speed', projAngle: 'Projectile launch angle',
+    'jump-select': 'Jump to question', search: 'Search questions',
+    searchInput: 'Search questions', questionSearch: 'Search questions'
+  };
+
+  const hasLabel = (el) => {
+    if (el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.title) return true;
+    if (el.id && document.querySelector(`label[for="${CSS.escape(el.id)}"]`)) return true;
+    return !!el.closest('label');
+  };
+
+  document.querySelectorAll('input, select, textarea').forEach((el, index) => {
+    if (hasLabel(el)) return;
+    let name = explicitNames[el.id] || el.getAttribute('placeholder') || el.getAttribute('name') || el.id;
+    if (!name) {
+      const nearby = el.parentElement?.textContent?.trim();
+      if (nearby && nearby.length <= 100) name = nearby;
+    }
+    name = humanize(name) || `${el.tagName.toLowerCase()} ${index + 1}`;
+    el.setAttribute('aria-label', name);
+  });
+
+  document.querySelectorAll('button').forEach(btn => {
+    if (btn.textContent.trim().toLowerCase() === 'clear') btn.classList.add('u4-clear-button');
+  });
+
+  const syncOptions = () => {
+    document.querySelectorAll('.opt-btn').forEach(btn => {
+      const correct = btn.classList.contains('selected-correct');
+      const incorrect = btn.classList.contains('selected-incorrect');
+      btn.setAttribute('aria-pressed', correct || incorrect ? 'true' : 'false');
+      const base = btn.getAttribute('data-u4-base-label') || btn.getAttribute('aria-label') || btn.textContent.trim();
+      if (!btn.hasAttribute('data-u4-base-label')) btn.setAttribute('data-u4-base-label', base);
+      btn.setAttribute('aria-label', `${base}${correct ? ' — Correct' : incorrect ? ' — Incorrect' : ''}`);
+    });
+  };
+  syncOptions();
+
+  const syncTabs = () => {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.setAttribute('role', 'tab');
+      const active = btn.classList.contains('active') || btn.classList.contains('tab-btn-active') || btn.getAttribute('aria-current') === 'page';
+      btn.setAttribute('aria-selected', active ? 'true' : 'false');
+      if (btn.parentElement && !btn.parentElement.hasAttribute('role')) btn.parentElement.setAttribute('role', 'tablist');
+    });
+  };
+  syncTabs();
+
+  const figureName = (el, fallback) => {
+    const scope = el.closest('figure, section, article, .card, .panel, .simulator, .canvas-container') || el.parentElement;
+    const caption = scope?.querySelector('figcaption, h1, h2, h3, h4, .title, [class*="title"]');
+    const txt = caption?.textContent?.replace(/\s+/g, ' ').trim();
+    return txt && txt.length <= 120 ? txt : fallback;
+  };
+
+  document.querySelectorAll('svg').forEach(svg => {
+    if (svg.hasAttribute('aria-label') || svg.hasAttribute('aria-labelledby') || svg.hasAttribute('aria-hidden') || svg.querySelector('title')) return;
+    const control = svg.closest('a, button');
+    if (control && control.textContent.trim()) {
+      svg.setAttribute('aria-hidden', 'true');
+      svg.setAttribute('focusable', 'false');
+    } else {
+      svg.setAttribute('role', 'img');
+      svg.setAttribute('aria-label', figureName(svg, 'Physics diagram'));
+    }
+  });
+
+  document.querySelectorAll('canvas').forEach(canvas => {
+    if (canvas.hasAttribute('aria-label') || canvas.hasAttribute('aria-labelledby') || canvas.hasAttribute('aria-hidden')) return;
+    canvas.setAttribute('role', 'img');
+    canvas.setAttribute('aria-label', figureName(canvas, 'Interactive physics simulation'));
+  });
+
+  if (!document.querySelector('main, [role="main"]')) {
+    const mainCandidate = document.querySelector('.app-container, .container, .page-shell, #app');
+    if (mainCandidate) mainCandidate.setAttribute('role', 'main');
+  }
+
+  const observer = new MutationObserver(() => { syncOptions(); syncTabs(); });
+  observer.observe(document.documentElement, { subtree: true, attributes: true, attributeFilter: ['class', 'aria-current'] });
+})();
+</script>
+<script id="pr375-u4-dynamic-remediation">
+(() => {
+  const textName = (el, fallback) => {
+    const scope = el.closest('figure, section, article, .panel, .card, .simulator, .canvas-wrap, .canvas-container') || el.parentElement;
+    const title = scope?.querySelector('figcaption, h1, h2, h3, h4, .title, [class*="title"]');
+    const text = title?.textContent?.replace(/\s+/g, ' ').trim();
+    return text && text.length <= 140 ? text : fallback;
+  };
+
+  const nameFigures = (root = document) => {
+    const nodes = [];
+    if (root.nodeType === 1 && root.matches?.('svg, canvas')) nodes.push(root);
+    root.querySelectorAll?.('svg, canvas').forEach(el => nodes.push(el));
+    nodes.forEach(el => {
+      if (el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.getAttribute('aria-hidden') || el.querySelector?.('title')) return;
+      const control = el.closest('a, button');
+      if (control && control.textContent.trim()) {
+        el.setAttribute('aria-hidden', 'true');
+        el.setAttribute('focusable', 'false');
+        return;
+      }
+      el.setAttribute('role', 'img');
+      el.setAttribute('aria-label', textName(el, el.tagName.toLowerCase() === 'canvas' ? 'Interactive physics simulation' : 'Physics diagram'));
+    });
+  };
+
+  const nameControls = (root = document) => {
+    const nodes = [];
+    if (root.nodeType === 1 && root.matches?.('input, select, textarea')) nodes.push(root);
+    root.querySelectorAll?.('input, select, textarea').forEach(el => nodes.push(el));
+    nodes.forEach((el, index) => {
+      const has = el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.title || el.closest('label') || (el.id && document.querySelector(`label[for="${CSS.escape(el.id)}"]`));
+      if (has) return;
+      const nearby = el.closest('.control-row, .form-group, .field, .panel, .card')?.querySelector('.control-label, label, h3, h4');
+      const raw = el.getAttribute('placeholder') || el.getAttribute('name') || el.id || nearby?.textContent || `${el.tagName.toLowerCase()} ${index + 1}`;
+      el.setAttribute('aria-label', String(raw).replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim());
+    });
+  };
+
+  const sync = root => { nameFigures(root); nameControls(root); };
+  sync(document);
+  new MutationObserver(records => {
+    for (const record of records) for (const node of record.addedNodes) if (node.nodeType === 1) sync(node);
+  }).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
+</body>
+</html>
