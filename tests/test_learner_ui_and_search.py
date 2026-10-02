@@ -96,6 +96,39 @@ class TestLearnerUiAndSearch(unittest.TestCase):
         }]
         home_html = generate_home(synthetic_registry)
         self.assertIn("Biology", home_html, "Synthetic fourth subject must be discovered dynamically")
+    def test_physics_hub_has_thrust_pressure_topic_workspace(self):
+        hub_html = generate_subject_hub("Physics", self.registry, self.bundles)
+        self.assertIn("Thrust &amp; Hydrostatic Pressure", hub_html)
+        self.assertIn("fluids/index.html", hub_html)
+
+        ws_path = REPO / "public" / "physics" / "fluids" / "index.html"
+        self.assertTrue(ws_path.exists(), "Physics fluids workspace must be generated")
+        ws_content = ws_path.read_text(encoding="utf-8")
+        self.assertIn("core1a-physics-thrust-pressure-tablet.html", ws_content)
+
+    def test_math_hub_has_polynomials_and_coordinate_geometry(self):
+        hub_html = generate_subject_hub("Mathematics", self.registry, self.bundles)
+        self.assertIn("Polynomials &amp; Remainder Theorem", hub_html)
+        self.assertIn("polynomials/index.html", hub_html)
+        self.assertIn("Coordinate Geometry", hub_html)
+        self.assertIn("coordinate-geometry/index.html", hub_html)
+
+        poly_ws = REPO / "public" / "mathematics" / "polynomials" / "index.html"
+        self.assertTrue(poly_ws.exists(), "Math polynomials workspace must be generated")
+        self.assertIn("polynomials/core1a.html", poly_ws.read_text(encoding="utf-8"))
+
+        coord_ws = REPO / "public" / "mathematics" / "coordinate-geometry" / "index.html"
+        self.assertTrue(coord_ws.exists(), "Math coordinate geometry workspace must be generated")
+        self.assertIn("coordinate-geometry/core1a.html", coord_ws.read_text(encoding="utf-8"))
+
+    def test_topics_only_appear_when_learn_exists(self):
+        # A topic without learn (like Gases or Redox currently) must NOT appear under Core Topic Workspaces
+        hub_html = generate_subject_hub("Chemistry", self.registry, self.bundles)
+        # Bonding has learn, so it must appear under Core Topic Workspaces
+        self.assertIn('href="bonding/index.html"', hub_html)
+        # Gases and Redox do not have learn, so their topic workspace cards must not appear
+        self.assertNotIn('href="gases/index.html"', hub_html)
+        self.assertNotIn('href="redox/index.html"', hub_html)
 
 
 if __name__ == "__main__":

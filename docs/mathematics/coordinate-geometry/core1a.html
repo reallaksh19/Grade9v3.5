@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-g9-shell data-g9-role="CORE1A" data-g9-product="PRODUCT-MATH-COORDINATE-GEOMETRY">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Coordinate Geometry: Cartesian Plane & Coordinates · Construction (Core 1A)</title>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="../../css/modern-learner.css">
+  <style>
+    :root {
+      --g9-space: clamp(16px, 2vw, 28px);
+      --accent: #0284c7;
+    }
+    .g9-formula-block {
+      margin: 10px 0;
+      padding: 12px 18px;
+      background: var(--bg-soft, #f8fafc);
+      border: 1px solid var(--border, #e2e8f0);
+      border-radius: var(--radius-sm, 8px);
+      text-align: center;
+      font-size: 1.15rem;
+      overflow-x: auto;
+    }
+    [data-theme="dark"] .g9-formula-block {
+      background: #1e293b;
+      border-color: #334155;
+    }
+    main { max-width: 1240px; margin: 0 auto; padding: var(--g9-space); }
+    .g9-core1a-book { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 24px; }
+    .g9-core1a-book h1 { font-size: 26px; font-weight: 800; margin-bottom: 8px; color: var(--text-main); }
+    .g9-split { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+    @media (max-width: 960px) { .g9-split { grid-template-columns: 1fr; } }
+    .g9-card-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px; margin-bottom: 18px; }
+    .g9-step-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: cstep; }
+    .g9-step-item { counter-increment: cstep; position: relative; padding: 14px 16px 14px 50px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); }
+    .g9-step-item::before { content: counter(cstep); position: absolute; left: 14px; top: 14px; width: 26px; height: 26px; border-radius: 50%; background: var(--accent-learn-bg); color: var(--accent-learn); font-weight: 800; display: grid; place-items: center; font-size: 13px; }
+    .g9-crux-step { border-color: var(--accent-learn); box-shadow: 0 0 0 1px var(--accent-learn); background: var(--bg-card); }
+    .g9-crux-badge { display: inline-block; background: #fee2e2; color: #991b1b; font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; }
+    .g9-worked-card { border-left: 4px solid var(--accent-learn); background: var(--bg-soft); padding: 16px 20px; border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+    .g9-worked-card h4 { margin-bottom: 8px; font-size: 15px; color: var(--accent-learn); text-transform: uppercase; letter-spacing: 0.04em; }
+    .g9-worked-card ol { padding-left: 20px; margin: 10px 0; }
+    .g9-worked-card li { margin-bottom: 8px; font-size: 14.5px; }
+    .g9-visual-container { position: sticky; top: 80px; }
+    .g9-svg-wrap { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 14px; text-align: center; }
+    .g9-stage-controls { display: flex; gap: 8px; justify-content: center; margin-top: 12px; }
+    .g9-stage-btn { padding: 6px 14px; border-radius: var(--radius-pill); border: 1px solid var(--border); background: var(--bg-card); font-size: 13px; font-weight: 700; cursor: pointer; color: var(--text-main); }
+    .g9-stage-btn.active { background: var(--accent-learn); color: #fff; border-color: var(--accent-learn); }
+    .g9-actions-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <header class="g9-shell-header">
+    <div class="g9-header-inner">
+      <a href="../../index.html" class="g9-brand">
+        <span class="logo-icon">⚡</span>
+        <span class="brand-title">Grade9V3.5</span>
+        <span class="g9-brand-badge">Learner Platform</span>
+      </a>
+      <nav class="g9-header-nav" aria-label="Portal Navigation">
+        <a href="../../index.html">Home</a>
+        <a href="../../physics/index.html">Physics</a>
+        <a href="../../chemistry/index.html">Chemistry</a>
+        <a href="../../mathematics/index.html" class="active">Mathematics</a>
+        <a href="../../question-bank/index.html">Question Bank</a>
+      </nav>
+      <div class="g9-header-actions">
+        <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search">
+          <span class="g9-btn-icon">🔍</span>
+          <span class="g9-btn-text">Search</span>
+        </button>
+        <button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings" aria-label="Display & Theme">
+          <span class="g9-btn-icon">🌙 / ☀️</span>
+          <span class="g9-btn-text">Display</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="g9-breadcrumb" aria-label="Breadcrumb">
+    <div class="g9-breadcrumb-inner">
+      <a href="../../index.html">Home</a>
+      <span>/</span>
+      <a href="../../mathematics/index.html">Mathematics</a>
+      <span>/</span>
+      <a href="../coordinate-geometry/index.html">Coordinate Geometry</a>
+      <span>/</span>
+      <span class="current">Learn (Core 1A)</span>
+    </div>
+  </nav>
+
+  <main>
+    <div class="g9-core1a-book">
+      <span class="g9-tag g9-tag-math">Mathematics Core 1A</span>
+      <h1 style="margin-top: 8px;">Coordinate Geometry: Cartesian Plane &amp; Orthogonal Projections</h1>
+      <p style="color: var(--text-muted); font-size: 15px;">
+        Authentic spatial and metric foundations from Assessment Module m2 Chapter 3 (Pages 12–24): the Cartesian coordinate system, quadrant sign rules, abscissa and ordinate definitions, and metric projections.
+      </p>
+
+      <div class="g9-actions-bar">
+        <a href="../../standalone/mathematics-polynomials-and-coordinates-suite.html#tab-coords" class="g9-btn g9-btn-outline" style="border-color: var(--accent); color: var(--accent);">
+          ⚡ Open Interactive 2D Cartesian Explorer
+        </a>
+        <a href="../../question-bank/index.html?q=coordinate" class="g9-btn g9-btn-outline">
+          📖 Practice in Question Bank
+        </a>
+      </div>
+    </div>
+
+    <!-- CONCEPT 1 -->
+    <article class="g9-card-panel" id="mic-coord-plane">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag g9-tag-math">Concept 1 of 5</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px;">The Cartesian Coordinate Plane &amp; Four Quadrants</h2>
+          <p style="font-size: 15px; margin-bottom: 12px;">
+            The Cartesian plane is formed by two mutually perpendicular real number lines intersecting at their common zero point, known as the <strong>origin</strong> $O(0, 0)$.
+          </p>
+
+          <div class="g9-formula-block">
+            $$	ext{Plane } \mathbb{R}^2 = 	ext{Quadrant I } \cup 	ext{II } \cup 	ext{III } \cup 	ext{IV } \cup 	ext{Axes}$$
+          </div>
+
+          <ul class="g9-step-list">
+            <li class="g9-step-item">
+              <strong>Horizontal Axis ($X$-axis):</strong> Directed from negative infinity on the left ($X'$) to positive infinity on the right ($X$).
+            </li>
+            <li class="g9-step-item">
+              <strong>Vertical Axis ($Y$-axis):</strong> Directed from negative infinity at the bottom ($Y'$) to positive infinity at the top ($Y$).
+            </li>
+            <li class="g9-step-item g9-crux-step">
+              <span class="g9-crux-badge">Quadrant Sign Conventions</span><br>
+              <strong>Four Quadrants:</strong> Numbered counter-clockwise starting from the top-right:
+              <ul>
+                <li><strong>Quadrant I:</strong> $(+x, +y)$ &mdash; both coordinates positive</li>
+                <li><strong>Quadrant II:</strong> $(-x, +y)$ &mdash; negative abscissa, positive ordinate</li>
+                <li><strong>Quadrant III:</strong> $(-x, -y)$ &mdash; both coordinates negative</li>
+                <li><strong>Quadrant IV:</strong> $(+x, -y)$ &mdash; positive abscissa, negative ordinate</li>
+              </ul>
+            </li>
+          </ul>
+
+          <div class="g9-worked-card" style="margin-top: 18px;">
+            <h4>Worked Anchor (m2 Page 15 Item 1)</h4>
+            <p><strong>Problem:</strong> Determine the quadrant or axis for: (a) $(3, -2)$, (b) $(-4, 5)$, (c) $(-2, -3)$, (d) $(5, 0)$, (e) $(0, 4)$.</p>
+            <ol>
+              <li>$(3, -2)$: $x > 0, y < 0 \implies \mathbf{	ext{Quadrant IV}}$.</li>
+              <li>$(-4, 5)$: $x < 0, y > 0 \implies \mathbf{	ext{Quadrant II}}$.</li>
+              <li>$(-2, -3)$: $x < 0, y < 0 \implies \mathbf{	ext{Quadrant III}}$.</li>
+              <li>$(5, 0)$: $y = 0 \implies \mathbf{	ext{On positive } X	ext{-axis}}$ (axes belong to no quadrant).</li>
+              <li>$(0, 4)$: $x = 0 \implies \mathbf{	ext{On positive } Y	ext{-axis}}$.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-muted);">Cartesian Quadrants</h4>
+            <svg viewBox="0 0 280 280" width="100%" height="auto" style="max-width: 260px;">
+              <rect x="10" y="10" width="125" height="125" fill="#f0fdf4" stroke="#86efac"/>
+              <text x="72" y="70" font-family="sans-serif" font-size="14" font-weight="700" fill="#15803d" text-anchor="middle">Quadrant II</text>
+              <text x="72" y="90" font-family="sans-serif" font-size="13" fill="#15803d" text-anchor="middle">(-, +)</text>
+
+              <rect x="145" y="10" width="125" height="125" fill="#eff6ff" stroke="#93c5fd"/>
+              <text x="207" y="70" font-family="sans-serif" font-size="14" font-weight="700" fill="#1d4ed8" text-anchor="middle">Quadrant I</text>
+              <text x="207" y="90" font-family="sans-serif" font-size="13" fill="#1d4ed8" text-anchor="middle">(+, +)</text>
+
+              <rect x="10" y="145" width="125" height="125" fill="#fef2f2" stroke="#fca5a5"/>
+              <text x="72" y="205" font-family="sans-serif" font-size="14" font-weight="700" fill="#b91c1c" text-anchor="middle">Quadrant III</text>
+              <text x="72" y="225" font-family="sans-serif" font-size="13" fill="#b91c1c" text-anchor="middle">(-, -)</text>
+
+              <rect x="145" y="145" width="125" height="125" fill="#fffbeb" stroke="#fde68a"/>
+              <text x="207" y="205" font-family="sans-serif" font-size="14" font-weight="700" fill="#b45309" text-anchor="middle">Quadrant IV</text>
+              <text x="207" y="225" font-family="sans-serif" font-size="13" fill="#b45309" text-anchor="middle">(+, -)</text>
+
+              <line x1="5" y1="140" x2="275" y2="140" stroke="#0f172a" stroke-width="2"/>
+              <line x1="140" y1="5" x2="140" y2="275" stroke="#0f172a" stroke-width="2"/>
+              <circle cx="140" cy="140" r="4" fill="#0f172a"/>
+              <text x="148" y="155" font-size="12" font-weight="700">O(0,0)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CONCEPT 2 -->
+    <article class="g9-card-panel" id="mic-coord-abscissa">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag g9-tag-math">Concept 2 of 5</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px;">Abscissa and Ordinate: Orthogonal Projections</h2>
+          <p style="font-size: 15px; margin-bottom: 12px;">
+            Every point $P(x, y)$ in the plane represents a unique pair of signed perpendicular distances to the coordinate axes.
+          </p>
+
+          <div class="g9-formula-block">
+            $$	ext{Abscissa } = x = 	ext{Signed distance from } Y	ext{-axis}$$
+            $$	ext{Ordinate } = y = 	ext{Signed distance from } X	ext{-axis}$$
+          </div>
+
+          <ul class="g9-step-list">
+            <li class="g9-step-item">
+              <strong>Foot on $X$-axis:</strong> Drop a perpendicular from $P(x, y)$ to the horizontal axis. It meets at point $M(x, 0)$.
+            </li>
+            <li class="g9-step-item">
+              <strong>Foot on $Y$-axis:</strong> Drop a perpendicular from $P(x, y)$ to the vertical axis. It meets at point $N(0, y)$.
+            </li>
+            <li class="g9-step-item g9-crux-step">
+              <span class="g9-crux-badge">Crux Definition</span><br>
+              <strong>Order Matters:</strong> The ordered pair $(x, y)$ is not interchangeable. $(3, 8) 
+eq (8, 3)$. Abscissa always precedes ordinate.
+            </li>
+          </ul>
+
+          <div class="g9-worked-card" style="margin-top: 18px;">
+            <h4>Worked Anchor (m2 Page 17 FIB-02)</h4>
+            <p><strong>Problem:</strong> State the signs of the abscissa and ordinate of a point in the second quadrant.</p>
+            <ol>
+              <li>Second quadrant lies to the left of the $Y$-axis $\implies x < 0$ (abscissa is negative, $-$).</li>
+              <li>Second quadrant lies above the $X$-axis $\implies y > 0$ (ordinate is positive, $+$).</li>
+              <li>Official key: <strong>$-, +$</strong>.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-muted);">Orthogonal Perpendiculars</h4>
+            <svg viewBox="0 0 300 220" width="100%" height="auto">
+              <line x1="30" y1="180" x2="280" y2="180" stroke="#64748b" stroke-width="2"/>
+              <line x1="80" y1="20" x2="80" y2="200" stroke="#64748b" stroke-width="2"/>
+              <text x="270" y="172" font-size="12">X</text>
+              <text x="88" y="32" font-size="12">Y</text>
+
+              <circle cx="200" cy="80" r="5" fill="#0284c7"/>
+              <text x="208" y="76" font-size="14" font-weight="700" fill="#0284c7">P(x, y)</text>
+
+              <line x1="200" y1="80" x2="200" y2="180" stroke="#0284c7" stroke-width="2" stroke-dasharray="4"/>
+              <text x="206" y="135" font-size="13" fill="#0284c7">y (ordinate)</text>
+              <circle cx="200" cy="180" r="4" fill="#64748b"/>
+              <text x="190" y="198" font-size="12">M(x, 0)</text>
+
+              <line x1="200" y1="80" x2="80" y2="80" stroke="#0284c7" stroke-width="2" stroke-dasharray="4"/>
+              <text x="120" y="72" font-size="13" fill="#0284c7">x (abscissa)</text>
+              <circle cx="80" cy="80" r="4" fill="#64748b"/>
+              <text x="36" y="84" font-size="12">N(0, y)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CONCEPT 3 -->
+    <article class="g9-card-panel" id="mic-coord-axes">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag g9-tag-math">Concept 3 of 5</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px;">Axis Boundary Invariants</h2>
+          <p style="font-size: 15px; margin-bottom: 12px;">
+            The coordinate axes themselves do not belong to any quadrant; they serve as boundaries where one coordinate vanishes identically.
+          </p>
+
+          <div class="g9-formula-block">
+            $$	ext{Point on } X	ext{-axis} \iff y = 0 \quad [P(x, 0)]$$
+            $$	ext{Point on } Y	ext{-axis} \iff x = 0 \quad [P(0, y)]$$
+          </div>
+
+          <ul class="g9-step-list">
+            <li class="g9-step-item">
+              <strong>Equation of the $X$-axis:</strong> The equation of the horizontal axis is $y = 0$, because every point on it has zero vertical height.
+            </li>
+            <li class="g9-step-item">
+              <strong>Equation of the $Y$-axis:</strong> The equation of the vertical axis is $x = 0$, because every point on it has zero horizontal displacement.
+            </li>
+            <li class="g9-step-item g9-crux-step">
+              <span class="g9-crux-badge">Intersection</span><br>
+              <strong>The Origin:</strong> The only point belonging simultaneously to both axes is $O(0, 0)$, where both $x = 0$ and $y = 0$.
+            </li>
+          </ul>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-muted);">Axis Boundary Invariants</h4>
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 14px; text-align: left; font-size: 14px;">
+              <p>• <strong>(5, 0)</strong> &rarr; On positive $X$-axis</p>
+              <p>• <strong>(-3, 0)</strong> &rarr; On negative $X$-axis</p>
+              <p>• <strong>(0, 4)</strong> &rarr; On positive $Y$-axis</p>
+              <p>• <strong>(0, -6)</strong> &rarr; On negative $Y$-axis</p>
+              <p>• <strong>(0, 0)</strong> &rarr; The Origin</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CONCEPT 4 -->
+    <article class="g9-card-panel" id="mic-coord-distances">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag g9-tag-math">Concept 4 of 5</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px;">Metric Projections &amp; Distances from Axes</h2>
+          <p style="font-size: 15px; margin-bottom: 12px;">
+            Physical geometric distances are strictly non-negative real quantities, computed via absolute values of coordinates.
+          </p>
+
+          <div class="g9-formula-block">
+            $$	ext{Dist}(P, X	ext{-axis}) = |y| \qquad 	ext{Dist}(P, Y	ext{-axis}) = |x|$$
+            $$	ext{Dist}(P, 	ext{Origin } O) = \sqrt{x^2 + y^2}$$
+          </div>
+
+          <ul class="g9-step-list">
+            <li class="g9-step-item">
+              <strong>Distance from $X$-axis:</strong> Equals the absolute value of the <em>ordinate</em> ($|y|$), regardless of quadrant.
+            </li>
+            <li class="g9-step-item">
+              <strong>Distance from $Y$-axis:</strong> Equals the absolute value of the <em>abscissa</em> ($|x|$).
+            </li>
+            <li class="g9-step-item g9-crux-step">
+              <span class="g9-crux-badge">Crux Pitfall</span><br>
+              <strong>Common Inversion Mistake:</strong> Learners frequently confuse distance from $X$-axis with $x$. Remember: distance to the horizontal axis is the vertical distance, which is $|y|$.
+            </li>
+          </ul>
+
+          <div class="g9-worked-card" style="margin-top: 18px;">
+            <h4>Worked Anchor (m2 Page 15 Item 2)</h4>
+            <p><strong>Problem:</strong> Find the distance of point $P(3, 8)$ from (i) $X$-axis, (ii) $Y$-axis.</p>
+            <ol>
+              <li>Distance from $X$-axis $= |y| = |8| = \mathbf{8}$.</li>
+              <li>Distance from $Y$-axis $= |x| = |3| = \mathbf{3}$.</li>
+            </ol>
+            <p><strong>Follow-up:</strong> For point $Q(-5, -7)$: distance from $X$-axis is $|-7| = 7$; distance from $Y$-axis is $|-5| = 5$.</p>
+          </div>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-muted);">Metric Hypotenuse (Pythagoras)</h4>
+            <svg viewBox="0 0 240 180" width="100%" height="auto">
+              <polygon points="40,140 180,140 180,40" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+              <text x="110" y="160" font-size="13" font-weight="700" fill="#0369a1">x = 3</text>
+              <text x="190" y="95" font-size="13" font-weight="700" fill="#0369a1">y = 4</text>
+              <text x="90" y="80" font-size="13" font-weight="700" fill="#b91c1c">OP = √(3²+4²) = 5</text>
+              <circle cx="40" cy="140" r="4" fill="#0f172a"/>
+              <text x="25" y="155" font-size="12">O</text>
+              <circle cx="180" cy="40" r="4" fill="#0284c7"/>
+              <text x="186" y="36" font-size="12">P(3,4)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CONCEPT 5 -->
+    <article class="g9-card-panel" id="mic-coord-figures">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag g9-tag-math">Concept 5 of 5</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px;">Geometric Figures in the Coordinate Plane</h2>
+          <p style="font-size: 15px; margin-bottom: 12px;">
+            Plotting sets of ordered coordinates and joining them sequentially produces polygons whose geometric properties (lengths, areas, perpendicularities) can be verified algebraically.
+          </p>
+
+          <div class="g9-formula-block">
+            $$	ext{Area}(	ext{Rectangle}) = 	ext{base} 	imes 	ext{height} = |x_2 - x_1| 	imes |y_2 - y_1|$$
+          </div>
+
+          <ul class="g9-step-list">
+            <li class="g9-step-item">
+              <strong>Horizontal Segment:</strong> Between $(x_1, y_0)$ and $(x_2, y_0)$, length is $|x_2 - x_1|$.
+            </li>
+            <li class="g9-step-item">
+              <strong>Vertical Segment:</strong> Between $(x_0, y_1)$ and $(x_0, y_2)$, length is $|y_2 - y_1|$.
+            </li>
+            <li class="g9-step-item g9-crux-step">
+              <span class="g9-crux-badge">Crux Identification</span><br>
+              <strong>Identifying Rectangles &amp; Squares:</strong> Vertices with matching horizontal and vertical coordinates form right angles with axes, confirming rectangular boundaries.
+            </li>
+          </ul>
+
+          <div class="g9-worked-card" style="margin-top: 18px;">
+            <h4>Worked Anchor (m2 Page 15 Item 5)</h4>
+            <p><strong>Problem:</strong> Plot points $A(0, 0), B(5, 0), C(5, 4), D(0, 4)$ and identify the figure $ABCD$.</p>
+            <ol>
+              <li>Segment $AB$: along $X$-axis from $x=0$ to $x=5$, length $= 5$.</li>
+              <li>Segment $BC$: vertical from $y=0$ to $y=4$ at $x=5$, length $= 4$.</li>
+              <li>Segment $CD$: horizontal from $x=5$ to $x=0$ at $y=4$, length $= 5$.</li>
+              <li>Segment $DA$: vertical from $y=4$ to $y=0$ at $x=0$, length $= 4$.</li>
+              <li>Adjacent sides are perpendicular ($5 
+eq 4$), opposite sides are equal. Figure is a <strong>Rectangle</strong> with area $5 	imes 4 = 20 	ext{ sq units}$.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-muted);">Figure ABCD: Rectangle</h4>
+            <svg viewBox="0 0 260 200" width="100%" height="auto">
+              <rect x="40" y="40" width="160" height="120" fill="#f0fdf4" stroke="#15803d" stroke-width="2"/>
+              <circle cx="40" cy="160" r="4" fill="#0f172a"/>
+              <text x="25" y="178" font-size="12" font-weight="700">A(0,0)</text>
+
+              <circle cx="200" cy="160" r="4" fill="#0f172a"/>
+              <text x="195" y="178" font-size="12" font-weight="700">B(5,0)</text>
+
+              <circle cx="200" cy="40" r="4" fill="#0f172a"/>
+              <text x="195" y="32" font-size="12" font-weight="700">C(5,4)</text>
+
+              <circle cx="40" cy="40" r="4" fill="#0f172a"/>
+              <text x="25" y="32" font-size="12" font-weight="700">D(0,4)</text>
+
+              <text x="120" y="105" font-size="14" font-weight="700" fill="#15803d" text-anchor="middle">Rectangle ABCD</text>
+              <text x="120" y="125" font-size="12" fill="#15803d" text-anchor="middle">Area = 5 × 4 = 20</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <footer style="margin-top: 40px; padding: 24px 20px; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 14px;">
+    Grade 9 Mathematics · Core 1A Construction Suite · Zero External CDN Dependencies
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false},
+            {left: "\\[", right: "\\]", display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+</body>
+</html>

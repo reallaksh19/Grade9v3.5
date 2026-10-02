@@ -702,6 +702,12 @@ SUBJECT_EXPLORERS = {
             "href": "vectors/explorers/vector_algebra/index.html",
             "desc": "Rotatable 3D Euclidean vector engine, Gram-Schmidt orthogonal projection split, cross product, and triple products.",
             "tag": "Interactive"
+        },
+        {
+            "title": "Polynomials & Coordinate Geometry Research Suite",
+            "href": "../standalone/mathematics-polynomials-and-coordinates-suite.html",
+            "desc": "2D Cartesian coordinate plane, orthogonal axis projections, Remainder Theorem calculator, and cubic identity visualizer.",
+            "tag": "Interactive"
         }
     ],
     "Physics": [
@@ -768,11 +774,13 @@ TOPIC_TITLES = {
     "phy.motion-1d": "Motion in One Dimension",
     "phy.motion-2d": "Motion in a Plane (2D)",
     "phy.vectors": "Vector Methods in Physics",
-    "phy.fluids": "Fluids & Hydrostatic Pressure",
+    "phy.fluids": "Thrust & Hydrostatic Pressure",
     "chem.bonding": "Chemical Bonding & Molecular Structure",
     "chem.mole": "Mole Concept & Stoichiometry",
     "chem.gases": "Behaviour of Gases",
     "chem.redox": "Redox Reactions",
+    "math.polynomials": "Polynomials & Remainder Theorem",
+    "math.coordinate-geometry": "Coordinate Geometry",
 }
 
 
@@ -781,8 +789,6 @@ def generate_subject_hub(subject: str, registry: list[dict], bundles: list[dict]
     topics = {}
     for b in bundles:
         if b.get("subject_ref") == subject and len(b.get("learn", [])) > 0:
-            if subject == "Mathematics":
-                continue  # Mathematics has no Core 1/Core 1A on main; interactives remain under Explorers
             t = b.get("topic_ref", "")
             if t not in topics:
                 title = TOPIC_TITLES.get(t, t.replace(".", " ").title())
@@ -975,8 +981,6 @@ def main():
     discovered_topics = {}
     for b in bundles:
         subj = b.get("subject_ref", "Physics")
-        if subj == "Mathematics":
-            continue  # Mathematics has no Core 1/Core 1A on main; interactives remain under Explorers
         t = b.get("topic_ref")
         if t and len(b.get("learn", [])) > 0:
             if t not in discovered_topics:

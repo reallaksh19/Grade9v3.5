@@ -56,6 +56,30 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
     ]
   },
   {
+    "title": "Coordinate Geometry",
+    "path": "mathematics/coordinate-geometry/index.html#MIC-MATH-COORDINATE-GEOMETRY",
+    "kind": "concept",
+    "keywords": [
+      "coordinate",
+      "geometry",
+      "mic-math-coordinate-geometry",
+      "mathematics"
+    ]
+  },
+  {
+    "title": "Polynomials & Remainder Theorem",
+    "path": "mathematics/polynomials/index.html#MIC-MATH-POLYNOMIALS",
+    "kind": "concept",
+    "keywords": [
+      "polynomials",
+      "&",
+      "remainder",
+      "theorem",
+      "mic-math-polynomials",
+      "mathematics"
+    ]
+  },
+  {
     "title": "Vector Algebra \u00b7 3D Engine",
     "path": "mathematics/vectors/explorers/vector_algebra/index.html",
     "kind": "concept",
