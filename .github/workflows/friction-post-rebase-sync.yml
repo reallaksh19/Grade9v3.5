@@ -1,0 +1,40 @@
+name: friction-post-rebase-sync
+
+on:
+  push:
+    branches:
+      - chatgpt/friction-core1a-core2
+    paths:
+      - ".github/workflows/friction-post-rebase-sync.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/friction-core1a-core2
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Regenerate governed projections on current main
+        run: |
+          pip install --quiet jsonschema
+          python3 Shared/tools/competitive_exam_bank.py
+          python3 Shared/tools/build_manifest.py
+          python3 Shared/tools/build_prompt_composer_data.py
+          python3 Shared/tools/build_question_bank_web.py
+          python3 Shared/tools/build_question_bank_platform.py --write
+          python3 Shared/tools/build_pages_site.py
+      - name: Commit projections and remove one-shot workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/friction-post-rebase-sync.yml
+          git add -A
+          git commit -m "Regenerate friction projections on current main"
+          git push origin HEAD:chatgpt/friction-core1a-core2
