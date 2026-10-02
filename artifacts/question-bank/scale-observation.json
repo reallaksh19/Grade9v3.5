@@ -1,0 +1,50 @@
+{
+  "environment": {
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.14"
+  },
+  "fixture": {
+    "generator": "Shared/tools/question_bank_scale.py",
+    "question_count": 5000,
+    "subject_count": 5,
+    "topic_count": 100,
+    "version": "1.0.0"
+  },
+  "interpretation": {
+    "purpose": "Expose monolithic indexing/dedup regressions before choosing sharding or Web Worker architecture.",
+    "runtime_metadata_in_build_identity": false,
+    "timings_are_thresholds": false
+  },
+  "observations": {
+    "build_seconds": 7.093506499993964,
+    "catalog_bytes": 34692,
+    "dedup_evidence_count": 50,
+    "dedup_report_bytes": 136275,
+    "lineage_bytes": 1420653,
+    "peak_traced_bytes": 18870181,
+    "receipt_bytes": 1976,
+    "search_batch_seconds": 0.02036450000014156,
+    "search_document_count": 5000,
+    "search_index_bytes": 2680661,
+    "search_queries": [
+      {
+        "hit_count": 5000,
+        "query": "synthetic invariant"
+      },
+      {
+        "hit_count": 22,
+        "query": "record 250"
+      },
+      {
+        "hit_count": 2580,
+        "query": "topic 7"
+      },
+      {
+        "hit_count": 750,
+        "query": "family 12"
+      }
+    ]
+  },
+  "schema_version": "grade9v3-question-bank-scale-observation-v1"
+}

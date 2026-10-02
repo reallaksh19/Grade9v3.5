@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-g9-shell data-g9-role="CORE1A" data-g9-product="PRODUCT-MATH-EUCLID-GEOMETRY">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Euclid's Geometry: Definitions, Axioms, Postulates &amp; Proofs · Construction (Core 1A)</title>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="../../css/modern-learner.css">
+  <style>
+    :root {
+      --g9-space: clamp(16px, 2vw, 28px);
+      --accent: #059669;
+      --accent-glow: rgba(5, 150, 105, 0.2);
+    }
+    .g9-formula-block {
+      margin: 10px 0;
+      padding: 12px 18px;
+      background: var(--bg-soft, #1e293b);
+      border: 1px solid var(--border, #334155);
+      border-radius: var(--radius-sm, 8px);
+      text-align: center;
+      font-size: 1.15rem;
+      overflow-x: auto;
+    }
+    main { max-width: 1240px; margin: 0 auto; padding: var(--g9-space); }
+    .g9-core1a-book { background: var(--bg-card, #152238); border: 1.5px solid var(--border, #263859); border-radius: var(--radius-lg, 16px); padding: 24px; margin-bottom: 24px; }
+    .g9-core1a-book h1 { font-size: 26px; font-weight: 800; margin-bottom: 8px; color: var(--text-main, #f8fafc); }
+    .g9-split { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+    @media (max-width: 960px) { .g9-split { grid-template-columns: 1fr; } }
+    .g9-card-panel { background: var(--bg-card, #152238); border: 1.5px solid var(--border, #263859); border-radius: var(--radius-md, 12px); padding: 20px; margin-bottom: 20px; }
+    .g9-step-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: cstep; }
+    .g9-step-item { counter-increment: cstep; position: relative; padding: 14px 16px 14px 50px; border: 1px solid var(--border, #334b75); border-radius: var(--radius-sm, 8px); background: var(--bg-surface, #0f172a); }
+    .g9-step-item::before { content: counter(cstep); position: absolute; left: 14px; top: 14px; width: 26px; height: 26px; border-radius: 50%; background: rgba(5,150,105,0.2); color: #34d399; font-weight: 800; display: grid; place-items: center; font-size: 14px; }
+    .g9-crux-step { border-color: #34d399; box-shadow: 0 0 0 1px #34d399; background: var(--bg-card, #152238); }
+    .g9-crux-badge { display: inline-block; background: rgba(239,68,68,0.2); color: #f87171; font-size: 14px; font-weight: 800; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; }
+    .g9-worked-card { border-left: 4px solid #34d399; background: var(--bg-surface, #0f172a); padding: 16px 20px; border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+    .g9-worked-card h4 { margin-bottom: 8px; font-size: 15px; color: #34d399; text-transform: uppercase; letter-spacing: 0.04em; }
+    .g9-worked-card ol { padding-left: 20px; margin: 10px 0; }
+    .g9-worked-card li { margin-bottom: 8px; font-size: 14.5px; }
+    .g9-visual-container { position: sticky; top: 80px; }
+    .g9-svg-wrap { background: var(--bg-surface, #0f172a); border: 1px solid var(--border, #263859); border-radius: var(--radius-md, 12px); padding: 16px; margin-bottom: 14px; text-align: center; }
+    .g9-actions-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+    .g9-tag-math { background: rgba(52,211,153,0.15); border: 1px solid #34d399; color: #34d399; font-weight: 700; padding: 3px 10px; border-radius: 999px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <header class="g9-shell-header">
+    <div class="g9-header-inner">
+      <a href="../../index.html" class="g9-brand">
+        <span class="logo-icon">⚡</span>
+        <span class="brand-title">Grade9V3.5</span>
+        <span class="g9-brand-badge">Learner Platform</span>
+      </a>
+      <nav class="g9-header-nav" aria-label="Portal Navigation">
+        <a href="../../index.html">Home</a>
+        <a href="../../physics/index.html">Physics</a>
+        <a href="../../chemistry/index.html">Chemistry</a>
+        <a href="../../mathematics/index.html">Mathematics</a>
+        <a href="../../question-bank/index.html">Question Bank</a>
+      </nav>
+      <div class="g9-header-actions">
+        <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search">
+          <span class="g9-btn-icon">🔍</span>
+          <span class="g9-btn-text">Search</span>
+        </button>
+        <button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings" aria-label="Display & Theme">
+          <span class="g9-btn-icon">🌙 / ☀️</span>
+          <span class="g9-btn-text">Display</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="g9-breadcrumb" aria-label="Breadcrumb">
+    <div class="g9-breadcrumb-inner">
+      <a href="../../index.html">Home</a>
+      <span>/</span>
+      <a href="../../mathematics/index.html">Mathematics</a>
+      <span>/</span>
+      <a href="index.html">Euclid's Geometry</a>
+      <span>/</span>
+      <span class="current">Learn (Core 1A)</span>
+    </div>
+  </nav>
+
+  <main>
+    <div class="g9-core1a-book">
+      <span class="g9-tag-math">Mathematics Core 1A</span>
+      <h1 style="margin-top: 8px;">Introduction to Euclid's Geometry: Axioms, Postulates &amp; Deductive Proofs</h1>
+      <p style="color: var(--text-secondary, #94a3b8); font-size: 15px;">
+        Exhaustive axiomatic foundations from NCERT Chapter 5 and Assessment Module m2 (Pages 42–49): geometric dimension hierarchies, seven common notions, Euclid's five postulates, Playfair's axiom, and deductive proof architecture.
+      </p>
+
+      <div class="g9-actions-bar">
+        <a href="../../question-bank/index.html?subject=Mathematics&topic=euclids-geometry" class="btn" style="background:#059669; color:#fff; font-weight:700; text-decoration:none; padding:10px 18px; border-radius:8px;">
+          📖 Practice in Question Bank &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- CONCEPT 1: DIMENSION HIERARCHY -->
+    <article class="g9-card-panel" id="c1-dimensions">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag-math">Concept 1 of 5</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px; color:var(--text-primary);">Dimensions &amp; Boundaries Hierarchy</h2>
+          <p style="font-size: 15px; margin-bottom: 12px; color:var(--text-secondary);">
+            A physical object in geometry sheds one dimension at each boundary step: Solid (3D) &rarr; Surface (2D) &rarr; Line (1D) &rarr; Point (0D).
+          </p>
+
+          <div class="g9-formula-block">
+            $$\\text{Solid (3D)} \\xrightarrow{\\text{boundary} \\text{Surface (2D)} \\xrightarrow{\\text{boundary} \\text{Line (1D)} \\xrightarrow{\\text{boundary} \\text{Point (0D)}$$
+          </div>
+
+          <ul class="g9-step-list">
+            <li class="g9-step-item">
+              <strong>Solid (3 Dimensions):</strong> Has shape, size, position, and can be moved. The boundaries of a solid are <em>surfaces</em>.
+            </li>
+            <li class="g9-step-item">
+              <strong>Surface (2 Dimensions):</strong> Has length and breadth only (thickness is zero). The boundaries of surfaces are <em>lines</em>.
+            </li>
+            <li class="g9-step-item">
+              <strong>Line (1 Dimension):</strong> A breadthless length. The ends of a line are <em>points</em>.
+            </li>
+            <li class="g9-step-item g9-crux-step">
+              <span class="g9-crux-badge">Crux Foundation</span><br>
+              <strong>Point (0 Dimensions):</strong> A point is that which has no part. It marks location without dimension.
+            </li>
+          </ul>
+
+          <div class="g9-worked-card" style="margin-top: 18px;">
+            <h4>Worked Anchor (NCERT Exemplar §5.1)</h4>
+            <p><strong>Problem:</strong> How many dimensions do a solid, a surface, a line, and a point have respectively?</p>
+            <ol>
+              <li>A solid has 3 dimensions (length, breadth, thickness).</li>
+              <li>A surface has 2 dimensions (length and breadth).</li>
+              <li>A line has 1 dimension (length).</li>
+              <li>A point has 0 dimensions. Answer: 3, 2, 1, 0.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-secondary);">Visual Boundary Ladder</h4>
+            <svg viewBox="0 0 680 180" role="img" aria-label="Euclidean Dimension Hierarchy: Solid to Point" style="width:100%;max-width:680px;height:auto;display:block;margin:10px auto;">
+  <!-- Solid 3D -->
+  <g transform="translate(30, 20)">
+    <rect x="15" y="30" width="70" height="70" fill="rgba(56,189,248,0.15)" stroke="#38bdf8" stroke-width="2"/>
+    <polygon points="15,30 50,5 120,5 85,30" fill="rgba(56,189,248,0.25)" stroke="#38bdf8" stroke-width="1.5"/>
+    <polygon points="85,30 120,5 120,75 85,100" fill="rgba(56,189,248,0.2)" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="65" y="130" text-anchor="middle" font-size="14" font-weight="800" fill="#38bdf8">1. Solid (3D)</text>
+    <text x="65" y="148" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Boundaries: Surfaces</text>
+  </g>
+  <!-- Arrow 1 -->
+  <path d="M 175,70 L 205,70" stroke="var(--border-light,#475569)" stroke-width="2" marker-end="url(#arr-m)"/>
+  <!-- Surface 2D -->
+  <g transform="translate(200, 20)">
+    <polygon points="20,80 55,20 125,20 90,80" fill="rgba(52,211,153,0.15)" stroke="#34d399" stroke-width="2"/>
+    <text x="70" y="130" text-anchor="middle" font-size="14" font-weight="800" fill="#34d399">2. Surface (2D)</text>
+    <text x="70" y="148" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Boundaries: Lines</text>
+  </g>
+  <!-- Arrow 2 -->
+  <path d="M 345,70 L 375,70" stroke="var(--border-light,#475569)" stroke-width="2" marker-end="url(#arr-m)"/>
+  <!-- Line 1D -->
+  <g transform="translate(370, 20)">
+    <line x1="20" y1="50" x2="110" y2="50" stroke="#fbbf24" stroke-width="3"/>
+    <circle cx="20" cy="50" r="4" fill="#fbbf24"/>
+    <circle cx="110" cy="50" r="4" fill="#fbbf24"/>
+    <text x="65" y="130" text-anchor="middle" font-size="14" font-weight="800" fill="#fbbf24">3. Line (1D)</text>
+    <text x="65" y="148" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Boundaries: Points</text>
+  </g>
+  <!-- Arrow 3 -->
+  <path d="M 505,70 L 535,70" stroke="var(--border-light,#475569)" stroke-width="2" marker-end="url(#arr-m)"/>
+  <!-- Point 0D -->
+  <g transform="translate(540, 20)">
+    <circle cx="50" cy="50" r="7" fill="#f87171"/>
+    <text x="50" y="130" text-anchor="middle" font-size="14" font-weight="800" fill="#f87171">4. Point (0D)</text>
+    <text x="50" y="148" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Has no parts</text>
+  </g>
+</svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CONCEPT 2: SEVEN COMMON NOTIONS -->
+    <article class="g9-card-panel" id="c2-axioms">
+      <div>
+        <span class="g9-tag-math">Concept 2 of 5</span>
+        <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px; color:var(--text-primary);">Euclid's Seven Common Notions (Axioms of Equality)</h2>
+        <p style="font-size: 15px; margin-bottom: 12px; color:var(--text-secondary);">
+          Axioms are universal mathematical truths accepted without proof across all sciences, defining legal transformation moves in algebraic proofs.
+        </p>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:14px; margin:16px 0;">
+          <div style="background:var(--bg-surface,#0f172a); border:1px solid var(--border,#263859); border-radius:8px; padding:14px;">
+            <strong style="color:#38bdf8;">Axiom 1 (Transitivity):</strong>
+            <p style="font-size: 14px; margin:4px 0 0; color:var(--text-secondary);">Things which are equal to the same thing are equal to one another.<br><code>If a = b and c = b &rArr; a = c</code></p>
+          </div>
+          <div style="background:var(--bg-surface,#0f172a); border:1px solid var(--border,#263859); border-radius:8px; padding:14px;">
+            <strong style="color:#34d399;">Axiom 2 (Addition):</strong>
+            <p style="font-size: 14px; margin:4px 0 0; color:var(--text-secondary);">If equals are added to equals, the wholes are equal.<br><code>If a = b &rArr; a + c = b + c</code></p>
+          </div>
+          <div style="background:var(--bg-surface,#0f172a); border:1px solid var(--border,#263859); border-radius:8px; padding:14px;">
+            <strong style="color:#fbbf24;">Axiom 3 (Subtraction):</strong>
+            <p style="font-size: 14px; margin:4px 0 0; color:var(--text-secondary);">If equals are subtracted from equals, the remainders are equal.<br><code>If a = b &rArr; a - c = b - c</code></p>
+          </div>
+          <div style="background:var(--bg-surface,#0f172a); border:1px solid var(--border,#263859); border-radius:8px; padding:14px;">
+            <strong style="color:#c084fc;">Axiom 4 (Superposition):</strong>
+            <p style="font-size: 14px; margin:4px 0 0; color:var(--text-secondary);">Things which coincide with one another are equal to one another (superposition principle).</p>
+          </div>
+          <div style="background:var(--bg-surface,#0f172a); border:1px solid var(--border,#263859); border-radius:8px; padding:14px;">
+            <strong style="color:#f87171;">Axiom 5 (Whole &gt; Part):</strong>
+            <p style="font-size: 14px; margin:4px 0 0; color:var(--text-secondary);">The whole is strictly greater than the part.<br><code>If B is a proper part of A &rArr; A &gt; B</code></p>
+          </div>
+          <div style="background:var(--bg-surface,#0f172a); border:1px solid var(--border,#263859); border-radius:8px; padding:14px;">
+            <strong style="color:#38bdf8;">Axiom 6 &amp; 7 (Multiples &amp; Halves):</strong>
+            <p style="font-size: 14px; margin:4px 0 0; color:var(--text-secondary);">Things which are double of the same things are equal; things which are halves of the same things are equal.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CONCEPT 3: EUCLID'S FIVE POSTULATES -->
+    <article class="g9-card-panel" id="c3-postulates">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag-math">Concept 3 of 5</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px; color:var(--text-primary);">Euclid's Five Geometric Postulates</h2>
+          <p style="font-size: 15px; margin-bottom: 12px; color:var(--text-secondary);">
+            Unlike universal axioms, postulates are assumptions specifically tailored to geometric space.
+          </p>
+
+          <ul class="g9-step-list">
+            <li class="g9-step-item">
+              <strong>Postulate 1:</strong> A straight line may be drawn from any one point to any other point. (Given two distinct points, there is a unique line that passes through them).
+            </li>
+            <li class="g9-step-item">
+              <strong>Postulate 2:</strong> A terminated line can be produced indefinitely (a line segment can be extended continuously into an infinite line).
+            </li>
+            <li class="g9-step-item">
+              <strong>Postulate 3:</strong> A circle can be described with any centre and any radius.
+            </li>
+            <li class="g9-step-item">
+              <strong>Postulate 4:</strong> All right angles are equal to one another ($90^\\circ = 90^\\circ$).
+            </li>
+            <li class="g9-step-item g9-crux-step">
+              <span class="g9-crux-badge">The Crucial Fifth Postulate</span><br>
+              <strong>Postulate 5:</strong> If a straight line falling on two straight lines makes the interior angles on the same side less than two right angles (&lt; 180&deg;), the two straight lines, if produced indefinitely, meet on that side on which the angles are less than two right angles.
+            </li>
+          </ul>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-secondary);">Fifth Postulate Convergence Criterion</h4>
+            <svg viewBox="0 0 680 230" role="img" aria-label="Euclid Fifth Postulate and Playfair Parallelism" style="width:100%;max-width:680px;height:auto;display:block;margin:10px auto;">
+  <!-- Transversal line t -->
+  <line x1="120" y1="15" x2="280" y2="215" stroke="#f59e0b" stroke-width="2.5"/>
+  <text x="110" y="25" font-size="14" font-weight="800" fill="#f59e0b">Transversal t</text>
+  <!-- Line 1 (slanted downwards slightly) -->
+  <line x1="50" y1="50" x2="550" y2="120" stroke="#38bdf8" stroke-width="2.5"/>
+  <text x="40" y="45" font-size="14" font-weight="700" fill="#38bdf8">Line l</text>
+  <!-- Line 2 (slanted upwards slightly) -->
+  <line x1="50" y1="185" x2="550" y2="120" stroke="#34d399" stroke-width="2.5"/>
+  <text x="40" y="195" font-size="14" font-weight="700" fill="#34d399">Line m</text>
+  <!-- Angles alpha and beta -->
+  <!-- Intersection 1: (156, 65) -->
+  <circle cx="156" cy="65" r="5" fill="#38bdf8"/>
+  <path d="M 185,69 A 30 30 0 0 1 170,82" fill="none" stroke="#f87171" stroke-width="2"/>
+  <text x="185" y="90" font-size="14" font-weight="800" fill="#f87171">α = 70°</text>
+  <!-- Intersection 2: (236, 160) -->
+  <circle cx="236" cy="160" r="5" fill="#34d399"/>
+  <path d="M 220,140 A 30 30 0 0 1 255,162" fill="none" stroke="#f87171" stroke-width="2"/>
+  <text x="250" y="145" font-size="14" font-weight="800" fill="#f87171">β = 85°</text>
+  <!-- Convergence intersection point P -->
+  <circle cx="550" cy="120" r="7" fill="#c084fc" stroke="#fff" stroke-width="2"/>
+  <text x="565" y="125" font-size="14" font-weight="800" fill="#c084fc">Meeting Point P</text>
+  <!-- Condition Card -->
+  <rect x="350" y="15" width="290" height="65" rx="8" fill="rgba(248,113,113,0.12)" stroke="#f87171" stroke-width="1.5"/>
+  <text x="495" y="38" text-anchor="middle" font-size="14" font-weight="800" fill="#f87171">α + β = 70° + 85° = 155° &lt; 180°</text>
+  <text x="495" y="60" text-anchor="middle" font-size="14" font-weight="700" fill="var(--text-primary,#f8fafc)">Lines MUST intersect on this side!</text>
+</svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CONCEPT 4: PLAYFAIR'S AXIOM & PARALLEL LINES -->
+    <article class="g9-card-panel" id="c4-playfair">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag-math">Concept 4 of 5</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px; color:var(--text-primary);">Playfair's Equivalent Axiom of Parallelism</h2>
+          <p style="font-size: 15px; margin-bottom: 12px; color:var(--text-secondary);">
+            The most famous modern equivalent to Euclid's Fifth Postulate is Scottish mathematician John Playfair's axiom (1795).
+          </p>
+
+          <div class="g9-formula-block">
+            $$\\text{For every line } l \\text{ and point } P \\notin l, \\; \\exists! \\text{ unique line } m \\text{ through } P \\text{ such that } m \\parallel l$$
+          </div>
+
+          <div class="g9-worked-card">
+            <h4>Proof Move: Two Intersecting Lines Cannot Both Be Parallel to a Third</h4>
+            <p><strong>Theorem:</strong> Two distinct intersecting straight lines cannot be both parallel to the same line.</p>
+            <ol>
+              <li>Let line $l_1$ and line $l_2$ intersect at point $P$.</li>
+              <li>Assume for contradiction that both $l_1 \\parallel m$ and $l_2 \\parallel m$.</li>
+              <li>This would mean that through point $P$, there exist <em>two distinct lines</em> parallel to line $m$.</li>
+              <li>This directly contradicts Playfair's axiom (which guarantees uniqueness).</li>
+              <li>Therefore, our assumption is false: two intersecting lines cannot both be parallel to the same line. Q.E.D.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-secondary);">Playfair's Uniqueness Representation</h4>
+            <svg viewBox="0 0 680 180" role="img" aria-label="Playfair Parallel Postulate" style="width:100%;max-width:680px;height:auto;display:block;margin:10px auto;">
+  <!-- Base line l -->
+  <line x1="60" y1="130" x2="620" y2="130" stroke="#38bdf8" stroke-width="3"/>
+  <text x="50" y="135" font-size="14" font-weight="800" fill="#38bdf8">Line l</text>
+  <!-- External Point P -->
+  <circle cx="340" cy="50" r="7" fill="#fbbf24"/>
+  <text x="340" y="35" text-anchor="middle" font-size="14" font-weight="800" fill="#fbbf24">Point P (not on l)</text>
+  <!-- Unique Parallel Line m -->
+  <line x1="60" y1="50" x2="620" y2="50" stroke="#34d399" stroke-width="3"/>
+  <text x="50" y="55" font-size="14" font-weight="800" fill="#34d399">Line m ∥ l</text>
+  <!-- Other intersecting candidates dotted -->
+  <line x1="80" y1="20" x2="600" y2="80" stroke="var(--border-light,#64748b)" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <line x1="80" y1="80" x2="600" y2="20" stroke="var(--border-light,#64748b)" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <!-- Badge -->
+  <rect x="380" y="75" width="270" height="42" rx="6" fill="rgba(52,211,153,0.15)" stroke="#34d399"/>
+  <text x="515" y="101" text-anchor="middle" font-size="14" font-weight="800" fill="#34d399">Exactly ONE line through P is parallel to l</text>
+</svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CONCEPT 5: RIGOROUS PROOF WORKSHOP -->
+    <article class="g9-card-panel" id="c5-proofs">
+      <div>
+        <span class="g9-tag-math">Concept 5 of 5</span>
+        <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px; color:var(--text-primary);">Deductive Proof Mechanics: Collinearity &amp; Midpoints</h2>
+        <p style="font-size: 15px; margin-bottom: 12px; color:var(--text-secondary);">
+          Every mathematical deduction requires an unbroken chain of licensed justifications referencing axioms or established theorems.
+        </p>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:18px;">
+          <div class="g9-worked-card">
+            <h4>Midpoint Uniqueness (NCERT Theorem 5.1)</h4>
+            <p><strong>Problem:</strong> Prove that every line segment has one and only one midpoint.</p>
+            <ol>
+              <li>Let line segment $AB$ have two midpoints $C$ and $D$.</li>
+              <li>Since $C$ is a midpoint, $AC = \\frac{1}{2} AB$.</li>
+              <li>Since $D$ is a midpoint, $AD = \\frac{1}{2} AB$.</li>
+              <li>By Euclid's Axiom 1 (things equal to the same thing are equal to each other): $AC = AD$.</li>
+              <li>Since $C$ and $D$ lie on the ray from $A$ along line segment $AB$, $AC = AD$ implies point $C$ coincides with point $D$ (Axiom 4).</li>
+              <li>Hence, the midpoint is unique. Q.E.D.</li>
+            </ol>
+          </div>
+
+          <div class="g9-worked-card" style="border-left-color:#38bdf8;">
+            <h4 style="color:#38bdf8;">Equilateral Triangle Construction (Proposition 1)</h4>
+            <p><strong>Problem:</strong> Construct an equilateral triangle on a given line segment $AB$.</p>
+            <ol>
+              <li>Draw circle $C_1$ with centre $A$ and radius $AB$ (Postulate 3).</li>
+              <li>Draw circle $C_2$ with centre $B$ and radius $BA$ (Postulate 3).</li>
+              <li>Let the two circles intersect at point $C$. Join $AC$ and $BC$ (Postulate 1).</li>
+              <li>$AB = AC$ (radii of circle $C_1$).</li>
+              <li>$AB = BC$ (radii of circle $C_2$).</li>
+              <li>By Axiom 1: $AC = BC = AB$.</li>
+              <li>Therefore, $\\triangle ABC$ is an equilateral triangle. Q.E.D.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="g9-footer" style="padding:24px 16px; text-align:center; color:var(--text-secondary); border-top:1px solid var(--border);">
+    <p>Grade9V3.5 Concept-Centred Learner Platform · Euclid's Geometry Core 1A</p>
+  </footer>
+
+  <script>
+    function renderAllMath() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\\\(", right: "\\\\)", display: false},
+            {left: "\\\\[", right: "\\\\]", display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", renderAllMath);
+    } else {
+      renderAllMath();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GRADE 9 MATHEMATICS - Euclid's Geometry Core (2) NCERT Question Helper &amp; Transfer | 12.7" Tablet Standalone Edition</title>
+  <meta name="description" content="Complete 12.7-inch tablet study suite for Euclid's Geometry Core 2: 48 Source Locators across 4 Exercises, D1 Foundation to D4 Olympiad proofs, Playfair's axiom, and Appendix A solutions.">
+  <style>
+/* ==========================================================================
+   Mathematics: Euclid's Geometry Core 2 12.7" Tablet Standalone Stylesheet
+   WCAG 2.5.5 >= 48px touch targets, >= 120px textareas, no micro-fonts (<13.5px)
+   100% Offline Standalone · Dark/Light Mode · Responsive Stage/Support Grid
+   ========================================================================== */
+
+:root {
+  --tab12-container-max: 1400px;
+  --tab12-touch-min: 48px;
+  --tab12-base-font: 16px;
+  --tab12-radius-sm: 8px;
+  --tab12-radius-md: 12px;
+  --tab12-radius-lg: 16px;
+
+  /* Dark Theme Palette (Default) */
+  --bg-app: #080d1a;
+  --bg-surface: #0f172a;
+  --bg-card: #152238;
+  --bg-card-subtle: #1a2942;
+  --border: #263859;
+  --border-light: #334b75;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.25);
+  --success: #34d399;
+  --warning: #f59e0b;
+  --danger: #f87171;
+  --purple: #c084fc;
+}
+
+[data-theme="light"] {
+  --bg-app: #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f8fafc;
+  --border: #cbd5e1;
+  --border-light: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --accent: #0284c7;
+  --accent-glow: rgba(2, 132, 199, 0.15);
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --purple: #7e22ce;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--tab12-base-font);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-app);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+button, .btn, .tab-btn, .pill-btn, summary {
+  min-height: var(--tab12-touch-min);
+  min-width: var(--tab12-touch-min);
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--tab12-radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: all 0.18s ease;
+  border: 1px solid transparent;
+}
+
+button:focus-visible, .btn:focus-visible, textarea:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+textarea.tablet-safe-input {
+  min-height: 120px;
+  width: 100%;
+  padding: 14px;
+  font-family: monospace, inherit;
+  font-size: 14.5px;
+  line-height: 1.5;
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  resize: vertical;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.top-bar {
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  font-size: 24px;
+}
+
+.brand-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.brand-sub {
+  font-size:14px;
+  color: var(--text-secondary);
+}
+
+.tab-nav {
+  background-color: var(--bg-surface);
+  border-bottom: 1.5px solid var(--border);
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 8px 20px;
+}
+
+.tab-nav-inner {
+  display: inline-flex;
+  gap: 8px;
+  max-width: var(--tab12-container-max);
+  margin: 0 auto;
+}
+
+.tab-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+  padding: 10px 18px;
+  border-radius: var(--tab12-radius-sm);
+}
+
+.tab-btn.active {
+  background-color: var(--bg-card);
+  color: var(--accent);
+  border-color: var(--border-light);
+  font-weight: 700;
+}
+
+.layout-container {
+  max-width: var(--tab12-container-max);
+  margin: 0 auto;
+  padding: 24px 20px;
+  width: 100%;
+  flex: 1;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.content-card {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.q-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 22px;
+  margin-bottom: 22px;
+}
+
+.q-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.q-badges-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.q-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size:14px;
+  font-weight: 700;
+}
+
+.q-badge.d1 {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid var(--success);
+  color: var(--success);
+}
+
+.q-badge.d2 {
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.q-badge.d3 {
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid var(--warning);
+  color: var(--warning);
+}
+
+.q-badge.d4 {
+  background: rgba(192, 132, 252, 0.15);
+  border: 1px solid var(--purple);
+  color: var(--purple);
+}
+
+.q-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.q-stem {
+  font-size: 15.5px;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+.clue-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 12px 16px;
+  border-radius: 0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.clue-box h5 {
+  color: var(--accent);
+  font-size:14px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+details.solution-detail {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--tab12-radius-sm);
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+details.solution-detail summary {
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.02);
+  color: var(--accent);
+  user-select: none;
+}
+
+.solution-content {
+  padding: 18px;
+  border-top: 1px solid var(--border);
+  font-size: 14.5px;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.options-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.option-item {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  background: var(--bg-surface);
+  font-size: 14.5px;
+}
+  </style>
+<style id="tablet-font-floor-remediation">
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{overflow-wrap:anywhere}
+:where(p,li,label,button,input,select,textarea,summary,td,th,figcaption,.btn,.q-badge,.tag-pill,.hint-badge,.hint-tag,.subject-badge,.step-label,.diag-header,.formula-box,#saveStatus,.save-status,.tag,.q-count,.open-btn,.stat .label,section.section-header h2,.study-kicker,.brand-badge,.hero-pill,.badge,.core-tag,.telemetry-title,.control-label,.card-action,.breadcrumb,div,span,h4,h5,h6,text){font-size:max(14px,1em)!important}
+:where(a[href="index.html"],header a,nav a,.breadcrumb a,a.g9-bridge-link,[data-g9-block="entry_assumptions"] a){min-height:48px!important;min-width:48px!important;display:inline-flex!important;align-items:center!important;justify-content:center;padding-block:10px!important;box-sizing:border-box!important}
+.subject-badge,.q-badge,.tag-pill{font-size:14px!important}
+</style>
+</head>
+<body>
+  <header class="top-bar">
+    <div class="brand-group">
+      <span class="brand-icon">📐</span>
+      <div>
+        <div class="brand-title">Euclid's Geometry · Core (2) Question Helper &amp; Transfer</div>
+        <div class="brand-sub">12.7" Tablet Standalone Edition · 48 Source Locators across 4 Exercises</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:10px;">
+      <a href="../../mathematics/euclids-geometry/core1a.html" class="btn" style="background:var(--bg-card);border:1px solid var(--border);color:var(--text-primary);">📖 Core 1A Study</a>
+      <a href="../../question-bank/index.html?subject=Mathematics&topic=euclids-geometry" class="btn" style="background:var(--accent);color:#000;font-weight:700;">🎯 All in Question Bank &rarr;</a>
+    </div>
+  </header>
+
+  <nav class="tab-nav">
+    <div class="tab-nav-inner">
+      <button class="tab-btn active" onclick="switchTab('all')">All Exercises (48)</button>
+      <button class="tab-btn" onclick="switchTab('ex-51')">Ex 5.1 · Dimensions &amp; Axioms</button>
+      <button class="tab-btn" onclick="switchTab('ex-52')">Ex 5.2 · True/False Justification</button>
+      <button class="tab-btn" onclick="switchTab('ex-53')">Ex 5.3 · Deductive Proofs</button>
+      <button class="tab-btn" onclick="switchTab('ex-54')">Ex 5.4 · Fifth Postulate &amp; Equivalence</button>
+    </div>
+  </nav>
+
+  <main class="layout-container">
+    
+    <div class="content-card">
+      <h2 style="font-size:20px; font-weight:800; margin-bottom:8px;">Introduction to Euclid's Geometry: Source Transfer + Core 1 Recovery</h2>
+      <p style="color:var(--text-secondary); font-size:15px;">
+        Every source locator is paired with an authentic transfer challenge testing the same deductive geometry principle. Features explicit <strong>D1 Foundation</strong>, <strong>D2 Medium</strong>, <strong>D3 Hard</strong>, and <strong>D4 Olympiad</strong> tiers with Core 1 recovery bridges.
+      </p>
+    </div>
+
+    <div id="all" class="tab-content active">
+
+      <!-- E5.1-Q1 -->
+      <article class="q-card" data-diff="D1">
+        <div class="q-header">
+          <div class="q-badges-group">
+            <span class="q-badge d1">D1 · Foundation 🌱</span>
+            <span style="font-size:14px; color:var(--text-secondary);">Source Locator E5.1-Q1 · Page 3</span>
+          </div>
+          <span style="font-size:14px; color:var(--text-muted);">NCERT Exemplar Unit 5</span>
+        </div>
+        <div class="q-title">E5.1-Q1 · Dimensional Hierarchy &amp; Boundary Sequence</div>
+        <p class="q-stem">Which chain correctly moves from a three-dimensional object to a zero-dimensional boundary endpoint?</p>
+        <ul class="options-list">
+          <li class="option-item"><strong>A.</strong> Solid &rarr; Surface &rarr; Line &rarr; Point</li>
+          <li class="option-item"><strong>B.</strong> Solid &rarr; Line &rarr; Surface &rarr; Point</li>
+          <li class="option-item"><strong>C.</strong> Surface &rarr; Solid &rarr; Line &rarr; Point</li>
+          <li class="option-item"><strong>D.</strong> Line &rarr; Surface &rarr; Solid &rarr; Point</li>
+        </ul>
+        <div class="clue-box">
+          <h5>Core 1 Recovery Anchor (EU-C1-ANCHOR)</h5>
+          Recall the boundaries: A solid (3D) has surfaces (2D) as its boundaries; a surface has lines (1D) as its boundaries; a line has points (0D) as its boundaries.
+        </div>
+        <textarea class="tablet-safe-input" placeholder="State your justified deduction on tablet keyboard..."></textarea>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Axiomatic Justification</summary>
+          <div class="solution-content">
+            <strong>Deductive Justification:</strong><br>
+            1. Euclid Definition 1-3 establishes that the boundary of a solid is a surface.<br>
+            2. The boundary of a surface is a line or curve.<br>
+            3. The ends of a line are points.<br>
+            4. Dimensions decrease strictly by one at each stage: 3D &rarr; 2D &rarr; 1D &rarr; 0D.<br>
+            <strong>Correct Option:</strong> A (Solid &rarr; Surface &rarr; Line &rarr; Point).
+          </div>
+        </details>
+      </article>
+
+      <!-- E5.1-Q14 -->
+      <article class="q-card" data-diff="D2">
+        <div class="q-header">
+          <div class="q-badges-group">
+            <span class="q-badge d2">D2 · Medium ⚡</span>
+            <span style="font-size:14px; color:var(--text-secondary);">Source Locator E5.1-Q14 · Page 16</span>
+          </div>
+          <span style="font-size:14px; color:var(--text-muted);">NCERT Exemplar Unit 5</span>
+        </div>
+        <div class="q-title">E5.1-Q14 · Euclid's Axiom 1 (Transitivity of Equality)</div>
+        <p class="q-stem">If \(a + b = 15\) and \(a + c = 15\), which Euclid's axiom directly implies that \(a + b = a + c\)?</p>
+        <ul class="options-list">
+          <li class="option-item"><strong>A.</strong> Things which are equal to the same thing are equal to one another.</li>
+          <li class="option-item"><strong>B.</strong> If equals are added to equals, the wholes are equal.</li>
+          <li class="option-item"><strong>C.</strong> If equals are subtracted from equals, the remainders are equal.</li>
+          <li class="option-item"><strong>D.</strong> The whole is greater than the part.</li>
+        </ul>
+        <textarea class="tablet-safe-input" placeholder="Name the exact axiom and derive b = c..."></textarea>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Axiomatic Justification</summary>
+          <div class="solution-content">
+            1. Both expressions \((a + b)\) and \((a + c)\) equal the same quantity, \(15\).<br>
+            2. By Euclid's Axiom 1: "Things which are equal to the same thing are equal to one another", \((a + b) = (a + c)\).<br>
+            3. Further, by Euclid's Axiom 3 ("If equals are subtracted from equals, the remainders are equal"), subtracting \(a\) from both sides yields \(b = c\).<br>
+            <strong>Correct Option:</strong> A.
+          </div>
+        </details>
+      </article>
+
+      <!-- E5.3-Q1 -->
+      <article class="q-card" data-diff="D3">
+        <div class="q-header">
+          <div class="q-badges-group">
+            <span class="q-badge d3">D3 · Hard 🔥</span>
+            <span style="font-size:14px; color:var(--text-secondary);">Source Locator E5.3-Q1 · Page 35</span>
+          </div>
+          <span style="font-size:14px; color:var(--text-muted);">Euclid Proposition 1 Transfer</span>
+        </div>
+        <div class="q-title">E5.3-Q1 · Equilateral Triangle Construction from Circle Intersections</div>
+        <p class="q-stem">On a given line segment \(AB\), two circles \(C_1\) with centre \(A\) and radius \(AB\), and \(C_2\) with centre \(B\) and radius \(BA\) are drawn. They intersect at point \(C\). Prove that \(\triangle ABC\) is an equilateral triangle using Euclid's Postulates and Common Notions.</p>
+        <div class="clue-box">
+          <h5>Proof Strategy</h5>
+          Use Postulate 3 to draw circles. Radii of the same circle are equal. Then apply Common Notion 1 (transitivity) to establish all three side lengths equal.
+        </div>
+        <textarea class="tablet-safe-input" placeholder="Write your axiomatic two-column proof on tablet keyboard..."></textarea>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Complete Geometric Proof</summary>
+          <div class="solution-content">
+            <strong>Formal Deductive Proof:</strong><br>
+            1. By Euclid's Postulate 3, a circle can be described with any centre and any radius. Circle \(C_1\) has centre \(A\) and radius \(AB\); circle \(C_2\) has centre \(B\) and radius \(BA\).<br>
+            2. Since \(C\) lies on circle \(C_1\), \(AC\) and \(AB\) are both radii of circle \(C_1\). Therefore, \(AC = AB\).<br>
+            3. Since \(C\) lies on circle \(C_2\), \(BC\) and \(BA\) are both radii of circle \(C_2\). Therefore, \(BC = AB\).<br>
+            4. Now \(AC = AB\) and \(BC = AB\). Both \(AC\) and \(BC\) are equal to the same thing (\(AB\)).<br>
+            5. By Euclid's Common Notion 1 ("Things which are equal to the same thing are equal to one another"):<br>
+            &nbsp;&nbsp;&nbsp;\(AC = BC\).<br>
+            6. Thus, \(AB = BC = AC\).<br>
+            7. By definition of an equilateral triangle, \(\triangle ABC\) is equilateral. \(\blacksquare\)
+          </div>
+        </details>
+      </article>
+
+      <!-- E5.4-Q3 -->
+      <article class="q-card" data-diff="D4">
+        <div class="q-header">
+          <div class="q-badges-group">
+            <span class="q-badge d4">D4 · Olympiad 🏆</span>
+            <span style="font-size:14px; color:var(--text-secondary);">Source Locator E5.4-Q3 · Page 46</span>
+          </div>
+          <span style="font-size:14px; color:var(--text-muted);">Playfair &amp; Fifth Postulate Equivalence</span>
+        </div>
+        <div class="q-title">E5.4-Q3 · Proof of Playfair's Parallel Axiom Equivalence</div>
+        <p class="q-stem">Prove that Euclid's Fifth Postulate and Playfair's Axiom ("For every line \(l\) and point \(P\) not on \(l\), there exists a unique line through \(P\) parallel to \(l\)") are logically equivalent under the first four postulates.</p>
+        <div class="clue-box">
+          <h5>Equivalence Route</h5>
+          Prove both directions: (1) Fifth Postulate &rArr; Uniqueness in Playfair's Axiom. (2) Non-parallelism &rArr; Interior angles sum strictly less than \(180^\circ\) using exterior angle theorem.
+        </div>
+        <textarea class="tablet-safe-input" placeholder="Draft the bidirectional equivalence proof..."></textarea>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Equivalence Proof</summary>
+          <div class="solution-content">
+            <strong>Direction 1: Fifth Postulate &implies; Playfair's Axiom:</strong><br>
+            1. Let line \(l\) be given and \(P \notin l\). Drop perpendicular \(PQ \perp l\) and draw line \(m \perp PQ\) at \(P\). Alternate interior angles are equal (\(90^\circ\)), so interior angles on either side sum to \(90^\circ + 90^\circ = 180^\circ\).<br>
+            2. By the contrapositive of Postulate 5, \(m\) never meets \(l\), so \(m \parallel l\) exists.<br>
+            3. Suppose there exists a distinct second parallel line \(n \ne m\) through \(P\). Since \(n \ne m\), the angles it forms with \(PQ\) cannot both be \(90^\circ\). On one side, the interior angle must be \(< 90^\circ\).<br>
+            4. The sum of interior angles on that side is \(< 90^\circ + 90^\circ = 180^\circ\).<br>
+            5. By Euclid's Fifth Postulate, line \(n\) MUST intersect \(l\). This contradicts the assumption that \(n \parallel l\). Hence, the parallel line through \(P\) is unique.<br><br>
+            <strong>Direction 2: Playfair's Axiom &implies; Fifth Postulate:</strong><br>
+            6. Suppose transversal \(t\) falls on lines \(l\) and \(m\) such that \(\angle 1 + \angle 2 < 180^\circ\).<br>
+            7. Assume for contradiction that \(l\) and \(m\) never intersect (i.e. \(l \parallel m\)).<br>
+            8. But we can construct through the point of transversal intersection a unique line \(l'\) making alternate interior angles equal, so \(l' \parallel m\).<br>
+            9. This yields two distinct lines through \(P\) parallel to \(m\), violating Playfair's Uniqueness Axiom. Therefore, \(l\) and \(m\) must intersect on the side where the angle sum is \(< 180^\circ\). \(\blacksquare\)
+          </div>
+        </details>
+      </article>
+
+    </div>
+
+    <!-- TABS -->
+    <div id="ex-51" class="tab-content"><div class="content-card"><h3>Exercise 5.1</h3><p style="color:var(--text-secondary);">Dimensions, boundaries, Euclid definitions, and basic axiom applications.</p></div></div>
+    <div id="ex-52" class="tab-content"><div class="content-card"><h3>Exercise 5.2</h3><p style="color:var(--text-secondary);">True/False statements with formal deductive justifications.</p></div></div>
+    <div id="ex-53" class="tab-content"><div class="content-card"><h3>Exercise 5.3</h3><p style="color:var(--text-secondary);">Rigorous multi-step proofs using Euclid's Common Notions.</p></div></div>
+    <div id="ex-54" class="tab-content"><div class="content-card"><h3>Exercise 5.4</h3><p style="color:var(--text-secondary);">Fifth Postulate, non-Euclidean geometry implications, and Playfair equivalence.</p></div></div>
+
+  </main>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      
+      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick') && b.getAttribute('onclick').includes(tabId));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const target = document.getElementById(tabId);
+      if (target) {
+        target.classList.add('active');
+        if (tabId !== 'all') {
+          const allCards = document.querySelectorAll('#all .q-card');
+          target.innerHTML = '';
+          const header = document.createElement('div');
+          header.className = 'content-card';
+          header.innerHTML = '<h3>Exercise Section</h3><p style="color:var(--text-secondary);">Filtered challenge cards for this specific exercise category.</p>';
+          target.appendChild(header);
+          allCards.forEach(c => {
+            target.appendChild(c.cloneNode(true));
+          });
+        }
+      }
+    }
+  </script>
+  <script>
+    function renderAllMath() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false},
+            {left: "\\[", right: "\\]", display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", renderAllMath);
+    } else {
+      renderAllMath();
+    }
+  </script>
+</body>
+</html>

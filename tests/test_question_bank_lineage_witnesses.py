@@ -19,9 +19,10 @@ PHYSICS = "PYQ-PHY-IITJEE-2007-P1-Q03"
 
 
 def math_question_projection() -> tuple[dict, dict]:
-    """A real canonical Mathematics record, opted in in memory only: production content is untouched."""
+    """A real canonical Mathematics record, projected through the package adapter."""
     package = json.loads((ROOT / "Mathematics/library/linear-equations.v1.json").read_text(encoding="utf-8"))
     question = copy.deepcopy(package["questions"][0])
+    question["id"] = "Q-MAT-LEQ-WITNESS-PROJECTION"
     question.setdefault("extensions", {})["grade9v3:question_bank"] = {
         "include": True,
         "difficulty": question["difficulty"],
@@ -81,7 +82,7 @@ class LiveWitnesses(unittest.TestCase):
 
     def test_every_live_question_has_an_unbroken_chain(self):
         ids = [row["id"] for row in self.platform["lineage"]["questions"]]
-        self.assertEqual(len(ids), 305)
+        self.assertEqual(len(ids), 310)
         broken = {qid: bqp.trace(self.platform, qid)["broken_links"] for qid in ids}
         self.assertEqual({qid: links for qid, links in broken.items() if links}, {})
 
@@ -118,11 +119,11 @@ class MathematicsWitness(unittest.TestCase):
         # It appears in search and lineage without any Mathematics branch in the platform code.
         self.assertTrue(qbp.search(platform["search"], "linear"))
 
-    def test_production_content_is_not_changed_by_the_witness(self):
+    def test_canonical_mathematics_linear_equations_are_admitted(self):
         package = json.loads((ROOT / "Mathematics/library/linear-equations.v1.json").read_text(encoding="utf-8"))
         opted_in = [q["id"] for q in package["questions"]
                     if ((q.get("extensions") or {}).get("grade9v3:question_bank") or {}).get("include")]
-        self.assertEqual(opted_in, [], "the witness must not opt production Mathematics into the public bank")
+        self.assertEqual(len(opted_in), 18, "the 18 canonical Linear Equations questions must be admitted")
 
 
 class BiologyWitness(unittest.TestCase):

@@ -1,0 +1,43 @@
+<svg aria-labelledby="title-ja13q07 desc-ja13q07" class="question-svg" role="img" viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg">
+<style>
+  .label { font-size: 15px; fill: #18324a; font-family: system-ui, sans-serif; }
+  .small { font-size: 13px; fill: #64748b; font-family: system-ui, sans-serif; }
+  .equation { font-size: 15px; fill: #16324f; font-family: Cambria, "Times New Roman", serif; }
+</style>
+<title id="title-ja13q07">Inelastic Collision of Projectiles at Apex</title>
+<desc id="desc-ja13q07">Particle 1 reaches its apex and collides completely inelastically with identical particle 2 thrown vertically upward, resulting in a composite trajectory at angle beta.</desc>
+<defs>
+  <marker id="arr-blue" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10">
+    <path d="M0 0 L10 5 L0 10 z" fill="#2563eb"/>
+  </marker>
+  <marker id="arr-green" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10">
+    <path d="M0 0 L10 5 L0 10 z" fill="#059669"/>
+  </marker>
+  <marker id="arr-purple" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10">
+    <path d="M0 0 L10 5 L0 10 z" fill="#7c3aed"/>
+  </marker>
+</defs>
+<rect fill="#fbfdff" height="258" rx="16" stroke="#dbe6f0" stroke-width="2" width="638" x="1" y="1"/>
+<!-- Ground Line -->
+<line stroke="#cbd5e1" stroke-linecap="round" stroke-width="3" x1="40" x2="600" y1="215" y2="215"/>
+<!-- Particle 1 parabola -->
+<path d="M 60 215 Q 180 50 300 80" fill="none" stroke="#2563eb" stroke-linecap="round" stroke-width="3"/>
+<line marker-end="url(#arr-blue)" stroke="#2563eb" stroke-linecap="round" stroke-width="2.5" x1="60" x2="115" y1="215" y2="170"/>
+<text class="equation" fill="#2563eb" x="65" y="160">Particle 1 (m, u₀, α)</text>
+<!-- Particle 2 vertical throw -->
+<line stroke="#059669" stroke-dasharray="4 4" stroke-linecap="round" stroke-width="2.5" x1="300" x2="300" y1="215" y2="90"/>
+<line marker-end="url(#arr-green)" stroke="#059669" stroke-linecap="round" stroke-width="2.5" x1="300" x2="300" y1="215" y2="160"/>
+<text class="equation" fill="#059669" x="310" y="195">Particle 2 (m, u₀ vertical)</text>
+<!-- Apex Collision point -->
+<circle cx="300" cy="80" fill="#dc2626" r="7"/>
+<text class="label" font-weight="700" text-anchor="middle" x="300" y="45">Apex Collision (m + m = 2m)</text>
+<!-- Vectors at collision -->
+<line marker-end="url(#arr-blue)" stroke="#2563eb" stroke-linecap="round" stroke-width="2.5" x1="300" x2="360" y1="80" y2="80"/>
+<text class="equation" fill="#2563eb" x="365" y="78">v₁ = u₀ cos α î</text>
+<line marker-end="url(#arr-green)" stroke="#059669" stroke-linecap="round" stroke-width="2.5" x1="300" x2="300" y1="80" y2="35"/>
+<text class="equation" fill="#059669" x="215" y="35">v₂ = u₀ cos α ĵ</text>
+<!-- Resultant vector of composite body -->
+<line marker-end="url(#arr-purple)" stroke="#7c3aed" stroke-linecap="round" stroke-width="3" x1="300" x2="355" y1="80" y2="25"/>
+<text class="equation" fill="#7c3aed" font-weight="700" x="365" y="32">V_composite (β = 45°)</text>
+<text class="small" text-anchor="middle" x="300" y="240">tan β = (u₀ cos α) / (u₀ cos α) = 1  ⇒  β = 45° with horizontal</text>
+</svg>

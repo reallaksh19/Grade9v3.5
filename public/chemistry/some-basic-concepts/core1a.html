@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-g9-shell data-g9-role="CORE1A" data-g9-product="PRODUCT-CHEM-SOME-BASIC-CONCEPTS">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Some Basic Concepts: Chemical Formulae, Mole Concept &amp; Stoichiometry · Construction (Core 1A)</title>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="../../css/modern-learner.css">
+  <style>
+    :root {
+      --g9-space: clamp(16px, 2vw, 28px);
+      --accent: #10b981;
+      --accent-glow: rgba(16, 185, 129, 0.2);
+    }
+    .g9-formula-block {
+      margin: 10px 0;
+      padding: 12px 18px;
+      background: var(--bg-soft, #1e293b);
+      border: 1px solid var(--border, #334155);
+      border-radius: var(--radius-sm, 8px);
+      text-align: center;
+      font-size: 1.15rem;
+      overflow-x: auto;
+    }
+    main { max-width: 1240px; margin: 0 auto; padding: var(--g9-space); }
+    .g9-core1a-book { background: var(--bg-card, #152238); border: 1.5px solid var(--border, #263859); border-radius: var(--radius-lg, 16px); padding: 24px; margin-bottom: 24px; }
+    .g9-core1a-book h1 { font-size: 26px; font-weight: 800; margin-bottom: 8px; color: var(--text-main, #f8fafc); }
+    .g9-split { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+    @media (max-width: 960px) { .g9-split { grid-template-columns: 1fr; } }
+    .g9-card-panel { background: var(--bg-card, #152238); border: 1.5px solid var(--border, #263859); border-radius: var(--radius-md, 12px); padding: 20px; margin-bottom: 20px; }
+    .g9-step-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: cstep; }
+    .g9-step-item { counter-increment: cstep; position: relative; padding: 14px 16px 14px 50px; border: 1px solid var(--border, #334b75); border-radius: var(--radius-sm, 8px); background: var(--bg-surface, #0f172a); }
+    .g9-step-item::before { content: counter(cstep); position: absolute; left: 14px; top: 14px; width: 26px; height: 26px; border-radius: 50%; background: rgba(16,185,129,0.2); color: #34d399; font-weight: 800; display: grid; place-items: center; font-size: 14px; }
+    .g9-crux-step { border-color: #34d399; box-shadow: 0 0 0 1px #34d399; background: var(--bg-card, #152238); }
+    .g9-crux-badge { display: inline-block; background: rgba(239,68,68,0.2); color: #f87171; font-size: 14px; font-weight: 800; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; }
+    .g9-worked-card { border-left: 4px solid #34d399; background: var(--bg-surface, #0f172a); padding: 16px 20px; border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+    .g9-worked-card h4 { margin-bottom: 8px; font-size: 15px; color: #34d399; text-transform: uppercase; letter-spacing: 0.04em; }
+    .g9-worked-card ol { padding-left: 20px; margin: 10px 0; }
+    .g9-worked-card li { margin-bottom: 8px; font-size: 14.5px; }
+    .g9-visual-container { position: sticky; top: 80px; }
+    .g9-svg-wrap { background: var(--bg-surface, #0f172a); border: 1px solid var(--border, #263859); border-radius: var(--radius-md, 12px); padding: 16px; margin-bottom: 14px; text-align: center; }
+    .g9-actions-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+    .g9-tag-chem { background: rgba(52,211,153,0.15); border: 1px solid #34d399; color: #34d399; font-weight: 700; padding: 3px 10px; border-radius: 999px; font-size: 14px; }
+    .dual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0; }
+    @media (max-width: 640px) { .dual-grid { grid-template-columns: 1fr; } }
+    .what-happening { background: rgba(56,189,248,0.08); border-left: 3px solid #38bdf8; padding: 10px 14px; border-radius: 4px; }
+    .key-idea { background: rgba(52,211,153,0.08); border-left: 3px solid #34d399; padding: 10px 14px; border-radius: 4px; }
+    .watch-out { background: rgba(248,113,113,0.08); border-left: 3px solid #f87171; padding: 10px 14px; border-radius: 4px; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <header class="g9-shell-header">
+    <div class="g9-header-inner">
+      <a class="g9-brand" href="../../index.html">
+        <span class="logo-icon">⚡</span>
+        <span class="brand-title">Grade9V3.5</span>
+        <span class="g9-brand-badge">Learner Platform</span>
+      </a>
+      <nav class="g9-header-nav" aria-label="Portal Navigation">
+        <a href="../../index.html">Home</a>
+        <a href="../../physics/index.html">Physics</a>
+        <a href="../../chemistry/index.html">Chemistry</a>
+        <a href="../../mathematics/index.html">Mathematics</a>
+        <a href="../../question-bank/index.html">Question Bank</a>
+      </nav>
+      <div class="g9-header-actions">
+        <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search">
+          <span class="g9-btn-icon">🔍</span>
+          <span class="g9-btn-text">Search</span>
+        </button>
+        <button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings" aria-label="Display & Theme">
+          <span class="g9-btn-icon">🌙 / ☀️</span>
+          <span class="g9-btn-text">Display</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="g9-breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="g9-breadcrumbs">
+      <a href="../../index.html">Home</a> <span>/</span> <a href="../../chemistry/index.html">Chemistry</a> <span>/</span> <a href="index.html">Mole Concept</a> <span>/</span> <span>Core 1A Study Guide</span>
+    </div>
+  </nav>
+
+  <main>
+    <div class="g9-core1a-book">
+      <span class="g9-tag-chem">Chemistry · Foundational Stoichiometry</span>
+      <h1>Some Basic Concepts of Chemistry: Core Study Guide (Core 1A)</h1>
+      <p style="font-size: 16px; color: var(--text-secondary); max-width: 850px; line-height: 1.5;">
+        A systematic, paper-ready guide to chemical nomenclature, criss-cross valency formulas, relative formula masses, Avogadro's number, the complete Mole Bridge, and limiting reagent stoichiometry.
+      </p>
+
+      <div class="g9-actions-bar">
+        <a class="g9-btn-action g9-btn-qb" href="../../question-bank/index.html?subject=Chemistry&topic=mole-concept">Browse Questions in QB &rarr;</a>
+        <a class="g9-btn-action g9-btn-explore" href="explorers/mole_concept/index.html" target="_blank" rel="noopener">⚡ Open Interactive Visual Simulation</a>
+      </div>
+    </div>
+
+    <!-- UNIT 1: THE UNIVERSAL MOLE BRIDGE -->
+    <article class="g9-card-panel" id="u1-mole-bridge">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag-chem">Unit 1 of 4</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px; color:var(--text-primary);">The Mole Concept &amp; Avogadro's Bridge</h2>
+          
+          <div class="dual-grid">
+            <div class="what-happening">
+              <strong style="color:#38bdf8;">What is happening?</strong>
+              <p style="font-size: 14px; margin:4px 0 0;">Atoms and molecules are too small to count individually. One mole of any substance contains exactly Avogadro's number ($N_A = 6.022 \times 10^{23}$) of elementary particles, with mass equal to its molar mass in grams.</p>
+            </div>
+            <div class="key-idea">
+              <strong style="color:#34d399;">Key Idea</strong>
+              <p style="font-size: 14px; margin:4px 0 0;">The mole ($n$) is the universal translation hub: $\text{Mass} \leftrightarrow \text{Moles} \leftrightarrow \text{Particles} \leftrightarrow \text{Volume at STP}$.</p>
+            </div>
+          </div>
+
+          <div class="g9-formula-block">
+            $$n = \frac{m}{M} = \frac{N}{N_A} = \frac{V_{\text{STP}}}{22.4 \text{ L}}$$
+          </div>
+
+          <ul class="g9-step-list">
+            <li class="g9-step-item">
+              <strong>Mass to Moles:</strong> Divide given mass $m$ in grams by the molar mass $M$ in $\text{g/mol}$.
+            </li>
+            <li class="g9-step-item">
+              <strong>Moles to Particles:</strong> Multiply moles $n$ by Avogadro's constant $N_A = 6.022 \times 10^{23} \text{ particles/mol}$.
+            </li>
+            <li class="g9-step-item g9-crux-step">
+              <span class="g9-crux-badge">Gas Standard</span><br>
+              <strong>Molar Volume at STP:</strong> At STP ($0^\circ\text{C}$ and $1\text{ atm}$), $1\text{ mole}$ of ANY ideal gas occupies exactly $22.4\text{ L}$ ($22400\text{ mL}$).
+            </li>
+          </ul>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-secondary);">The Universal Mole Bridge Hub</h4>
+            <svg viewBox="0 0 680 200" role="img" aria-label="The Universal Mole Bridge Conversion Hub" style="width:100%;max-width:680px;height:auto;display:block;margin:10px auto;">
+  <!-- Central Mole Hub -->
+  <g transform="translate(260, 50)">
+    <circle cx="80" cy="50" r="48" fill="rgba(56,189,248,0.15)" stroke="#38bdf8" stroke-width="2.5"/>
+    <text x="80" y="46" text-anchor="middle" font-size="16" font-weight="900" fill="#38bdf8">MOLES (n)</text>
+    <text x="80" y="66" text-anchor="middle" font-size="14" font-weight="700" fill="var(--text-secondary,#94a3b8)">The Central Bridge</text>
+  </g>
+
+  <!-- Left: Mass in Grams -->
+  <g transform="translate(20, 50)">
+    <rect x="0" y="15" width="140" height="70" rx="8" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="1.5"/>
+    <text x="70" y="42" text-anchor="middle" font-size="14" font-weight="800" fill="#34d399">MASS (m in grams)</text>
+    <text x="70" y="64" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Weighed on balance</text>
+  </g>
+  <!-- Connector Left -->
+  <g transform="translate(165, 75)">
+    <line x1="0" y1="10" x2="85" y2="10" stroke="#34d399" stroke-width="2"/>
+    <text x="42" y="2" text-anchor="middle" font-size="14" font-weight="800" fill="#34d399">÷ M (molar mass) →</text>
+    <text x="42" y="24" text-anchor="middle" font-size="14" font-weight="800" fill="#34d399">← × M (molar mass)</text>
+  </g>
+
+  <!-- Right: Particle Count -->
+  <g transform="translate(520, 50)">
+    <rect x="0" y="15" width="140" height="70" rx="8" fill="rgba(251,191,36,0.1)" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="70" y="42" text-anchor="middle" font-size="14" font-weight="800" fill="#fbbf24">PARTICLES (N)</text>
+    <text x="70" y="64" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Atoms / Molecules</text>
+  </g>
+  <!-- Connector Right -->
+  <g transform="translate(430, 75)">
+    <line x1="0" y1="10" x2="85" y2="10" stroke="#fbbf24" stroke-width="2"/>
+    <text x="42" y="2" text-anchor="middle" font-size="14" font-weight="800" fill="#fbbf24">→ × N_A (6.022×10²³)</text>
+    <text x="42" y="24" text-anchor="middle" font-size="14" font-weight="800" fill="#fbbf24">← ÷ N_A (6.022×10²³)</text>
+  </g>
+
+  <!-- Bottom: Gas Volume at STP -->
+  <g transform="translate(260, 155)">
+    <rect x="10" y="0" width="140" height="40" rx="6" fill="rgba(192,132,252,0.1)" stroke="#c084fc" stroke-width="1.5"/>
+    <text x="80" y="18" text-anchor="middle" font-size="14" font-weight="800" fill="#c084fc">GAS VOLUME (STP)</text>
+    <text x="80" y="32" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">V = n × 22.4 L</text>
+  </g>
+  <!-- Vertical Connector -->
+  <line x1="340" y1="148" x2="340" y2="155" stroke="#c084fc" stroke-width="2"/>
+</svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- UNIT 2: CRISS-CROSS VALENCY -->
+    <article class="g9-card-panel" id="u2-criss-cross">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag-chem">Unit 2 of 4</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px; color:var(--text-primary);">Chemical Formulae: The Criss-Cross Valency Rule</h2>
+          
+          <div class="dual-grid">
+            <div class="what-happening">
+              <strong style="color:#38bdf8;">What is happening?</strong>
+              <p style="font-size: 14px; margin:4px 0 0;">In an electrically neutral chemical compound, the total positive charge of the cations must exactly cancel the total negative charge of the anions.</p>
+            </div>
+            <div class="key-idea">
+              <strong style="color:#34d399;">Key Idea</strong>
+              <p style="font-size: 14px; margin:4px 0 0;">Cross the numerical valencies as subscripts. Enclose polyatomic ions (e.g. $\text{SO}_4^{2-}, \text{NO}_3^-$) in parentheses whenever subscript $> 1$.</p>
+            </div>
+          </div>
+
+          <div class="g9-worked-card">
+            <h4>Common Ionic Formulations:</h4>
+            <ol>
+              <li><strong>Calcium Phosphate:</strong> $\text{Ca}^{2+}$ and $\text{PO}_4^{3-} \implies \mathbf{\text{Ca}_3(\text{PO}_4)_2}$.</li>
+              <li><strong>Ammonium Carbonate:</strong> $\text{NH}_4^+$ and $\text{CO}_3^{2-} \implies \mathbf{(\text{NH}_4)_2\text{CO}_3}$.</li>
+              <li><strong>Magnesium Nitride:</strong> $\text{Mg}^{2+}$ and $\text{N}^{3-} \implies \mathbf{\text{Mg}_3\text{N}_2}$.</li>
+              <li><strong>Aluminum Oxide:</strong> $\text{Al}^{3+}$ and $\text{O}^{2-} \implies \mathbf{\text{Al}_2\text{O}_3}$.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-secondary);">Criss-Cross Valency Construction Model</h4>
+            <svg viewBox="0 0 680 180" role="img" aria-label="Criss-Cross Chemical Valency Method" style="width:100%;max-width:680px;height:auto;display:block;margin:10px auto;">
+  <!-- Step 1: Write Symbols -->
+  <g transform="translate(50, 20)">
+    <rect x="0" y="0" width="160" height="135" rx="8" fill="var(--bg-card,#1e293b)" stroke="var(--border,#334155)" stroke-width="1.5"/>
+    <text x="80" y="26" text-anchor="middle" font-size="14" font-weight="800" fill="#38bdf8">1. SYMBOLS &amp; CHARGES</text>
+    <line x1="15" y1="36" x2="145" y2="36" stroke="var(--border,#334155)"/>
+    <text x="45" y="70" text-anchor="middle" font-size="18" font-weight="900" fill="#38bdf8">Al</text>
+    <text x="65" y="55" font-size="14" font-weight="800" fill="#f43f5e">3+</text>
+    <text x="115" y="70" text-anchor="middle" font-size="18" font-weight="900" fill="#fbbf24">SO₄</text>
+    <text x="135" y="55" font-size="14" font-weight="800" fill="#f43f5e">2-</text>
+    <text x="80" y="115" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Aluminum + Sulfate</text>
+  </g>
+
+  <!-- Arrow -->
+  <g transform="translate(225, 75)">
+    <path d="M 0,10 L 30,10" stroke="#f59e0b" stroke-width="3"/>
+    <polygon points="30,5 40,10 30,15" fill="#f59e0b"/>
+  </g>
+
+  <!-- Step 2: Criss-Cross Valencies -->
+  <g transform="translate(275, 20)">
+    <rect x="0" y="0" width="160" height="135" rx="8" fill="rgba(56,189,248,0.08)" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="80" y="26" text-anchor="middle" font-size="14" font-weight="800" fill="#38bdf8">2. CRISS-CROSS</text>
+    <line x1="15" y1="36" x2="145" y2="36" stroke="var(--border,#334155)"/>
+    <text x="45" y="65" text-anchor="middle" font-size="18" font-weight="900" fill="#38bdf8">Al</text>
+    <text x="115" y="65" text-anchor="middle" font-size="18" font-weight="900" fill="#fbbf24">SO₄</text>
+    <text x="45" y="105" text-anchor="middle" font-size="16" font-weight="900" fill="#f43f5e">3</text>
+    <text x="115" y="105" text-anchor="middle" font-size="16" font-weight="900" fill="#f43f5e">2</text>
+    <!-- Crossing Arrows -->
+    <path d="M 52,108 Q 80,120 105,108" fill="none" stroke="#f59e0b" stroke-width="2"/>
+    <path d="M 105,98 Q 80,85 52,98" fill="none" stroke="#f59e0b" stroke-width="2"/>
+  </g>
+
+  <!-- Arrow -->
+  <g transform="translate(450, 75)">
+    <path d="M 0,10 L 30,10" stroke="#34d399" stroke-width="3"/>
+    <polygon points="30,5 40,10 30,15" fill="#34d399"/>
+  </g>
+
+  <!-- Step 3: Final Compound -->
+  <g transform="translate(500, 20)">
+    <rect x="0" y="0" width="160" height="135" rx="8" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="2"/>
+    <text x="80" y="26" text-anchor="middle" font-size="14" font-weight="800" fill="#34d399">3. FINAL FORMULA</text>
+    <line x1="15" y1="36" x2="145" y2="36" stroke="var(--border,#334155)"/>
+    <text x="80" y="75" text-anchor="middle" font-size="18" font-weight="900" fill="#34d399">Al₂(SO₄)₃</text>
+    <text x="80" y="105" text-anchor="middle" font-size="14" fill="var(--text-main,#f8fafc)">Net charge: 2(+3) + 3(-2) = 0</text>
+    <text x="80" y="122" text-anchor="middle" font-size="14" font-weight="700" fill="#38bdf8">Parentheses for polyatomic!</text>
+  </g>
+</svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- UNIT 3: RELATIVE FORMULA MASS & COMPOSITION -->
+    <article class="g9-card-panel" id="u3-composition">
+      <div>
+        <span class="g9-tag-chem">Unit 3 of 4</span>
+        <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px; color:var(--text-primary);">Molecular Mass, Formula Mass &amp; Mass Percentage</h2>
+        <p style="font-size: 15px; margin-bottom: 14px; color:var(--text-secondary);">
+          The molecular mass is the sum of atomic masses of all atoms present in a molecular formula, expressed in unified atomic mass units ($\text{u}$) or $\text{g/mol}$.
+        </p>
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+          <div class="g9-worked-card">
+            <h4>1. Molecular Mass Calculation: Glucose ($\text{C}_6\text{H}_{12}\text{O}_6$)</h4>
+            <ul>
+              <li>$\text{C}: 6 \times 12.011 = 72.066\text{ u}$</li>
+              <li>$\text{H}: 12 \times 1.008 = 12.096\text{ u}$</li>
+              <li>$\text{O}: 6 \times 16.00 = 96.00\text{ u}$</li>
+              <li><strong>Total Molar Mass:</strong> $180.16\text{ g/mol}$</li>
+            </ul>
+          </div>
+
+          <div class="g9-worked-card" style="border-left-color:#38bdf8;">
+            <h4 style="color:#38bdf8;">2. Mass Percentage of Carbon in Glucose</h4>
+            <p>$$\% \text{ by mass} = \frac{\text{Mass of element in 1 mol}}{\text{Molar mass of compound}} \times 100$$</p>
+            <p>$$\% \text{ C} = \frac{72.066}{180.16} \times 100 = \mathbf{40.0\%}$$</p>
+            <p style="font-size: 14px; color:var(--text-secondary);">Satisfies the Law of Definite Proportions across all pure specimens.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- UNIT 4: LIMITING REAGENT STOICHIOMETRY -->
+    <article class="g9-card-panel" id="u4-limiting-reagent">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag-chem">Unit 4 of 4</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px; color:var(--text-primary);">Stoichiometry &amp; Limiting Reagent Balance</h2>
+          
+          <div class="dual-grid">
+            <div class="what-happening">
+              <strong style="color:#38bdf8;">What is happening?</strong>
+              <p style="font-size: 14px; margin:4px 0 0;">Reactants are rarely combined in exact stoichiometric proportions. The reactant that is completely consumed first stops the reaction and limits the theoretical yield of products.</p>
+            </div>
+            <div class="key-idea">
+              <strong style="color:#34d399;">Key Idea</strong>
+              <p style="font-size: 14px; margin:4px 0 0;">To identify the Limiting Reagent: divide available moles of each reactant by its balanced stoichiometric coefficient. <strong>The smallest quotient identifies the limiting reagent!</strong></p>
+            </div>
+          </div>
+
+          <div class="g9-worked-card">
+            <h4>Rule of Smallest Quotient</h4>
+            <p>For reaction: $a A + b B \to \text{Products}$</p>
+            <p>Compare $\frac{n_A}{a}$ vs $\frac{n_B}{b}$.</p>
+            <p>If $\frac{n_A}{a} < \frac{n_B}{b}$, then reactant $A$ is strictly limiting, and all product calculations MUST proceed from $n_A$.</p>
+          </div>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-secondary);">Stoichiometric Limiting Reagent Balance</h4>
+            <svg viewBox="0 0 680 180" role="img" aria-label="Limiting Reagent Stoichiometric Balance" style="width:100%;max-width:680px;height:auto;display:block;margin:10px auto;">
+  <!-- Reaction Equation Top -->
+  <g transform="translate(180, 15)">
+    <rect x="0" y="0" width="320" height="34" rx="6" fill="rgba(56,189,248,0.1)" stroke="#38bdf8"/>
+    <text x="160" y="22" text-anchor="middle" font-size="14" font-weight="900" fill="#38bdf8">2 H₂ (g)  +  O₂ (g)  ⟶  2 H₂O (l)</text>
+  </g>
+
+  <!-- Left: 4 moles H2 -->
+  <g transform="translate(60, 65)">
+    <rect x="0" y="0" width="160" height="95" rx="8" fill="rgba(244,63,94,0.1)" stroke="#f43f5e" stroke-width="2"/>
+    <text x="80" y="24" text-anchor="middle" font-size="14" font-weight="800" fill="#f43f5e">Given: 4 mol H₂</text>
+    <text x="80" y="48" text-anchor="middle" font-size="14" fill="var(--text-main,#f8fafc)">Ratio: 4 / 2 = 2.0</text>
+    <rect x="15" y="60" width="130" height="24" rx="4" fill="#f43f5e"/>
+    <text x="80" y="76" text-anchor="middle" font-size="14" font-weight="900" fill="#fff">LIMITING REAGENT</text>
+  </g>
+
+  <!-- Plus -->
+  <text x="245" y="120" font-size="22" font-weight="900" fill="var(--text-secondary,#94a3b8)">+</text>
+
+  <!-- Center: 3 moles O2 -->
+  <g transform="translate(270, 65)">
+    <rect x="0" y="0" width="160" height="95" rx="8" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="1.5"/>
+    <text x="80" y="24" text-anchor="middle" font-size="14" font-weight="800" fill="#34d399">Given: 3 mol O₂</text>
+    <text x="80" y="48" text-anchor="middle" font-size="14" fill="var(--text-main,#f8fafc)">Ratio: 3 / 1 = 3.0</text>
+    <rect x="15" y="60" width="130" height="24" rx="4" fill="rgba(52,211,153,0.2)" stroke="#34d399"/>
+    <text x="80" y="76" text-anchor="middle" font-size="14" font-weight="800" fill="#34d399">EXCESS (1 mol left)</text>
+  </g>
+
+  <!-- Arrow -->
+  <g transform="translate(445, 105)">
+    <path d="M 0,10 L 30,10" stroke="#fbbf24" stroke-width="3"/>
+    <polygon points="30,5 40,10 30,15" fill="#fbbf24"/>
+  </g>
+
+  <!-- Right: 4 moles H2O product -->
+  <g transform="translate(495, 65)">
+    <rect x="0" y="0" width="150" height="95" rx="8" fill="rgba(251,191,36,0.1)" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="75" y="24" text-anchor="middle" font-size="14" font-weight="800" fill="#fbbf24">Product Yield</text>
+    <text x="75" y="48" text-anchor="middle" font-size="14" font-weight="900" fill="#fff">4 mol H₂O</text>
+    <text x="75" y="74" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Governed by Limiting</text>
+  </g>
+</svg>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="g9-footer" style="padding:24px 16px; text-align:center; color:var(--text-secondary); border-top:1px solid var(--border);">
+    <p>Grade9V3.5 Concept-Centred Learner Platform · Some Basic Concepts Core 1A</p>
+  </footer>
+
+  <script>
+    function renderAllMath() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false},
+            {left: "\\[", right: "\\]", display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", renderAllMath);
+    } else {
+      renderAllMath();
+    }
+  </script>
+</body>
+</html>

@@ -36,7 +36,7 @@ globalThis.GRADE9_QUESTION_BANK_DETAIL_SHARDS={
   }
 };
 
-await import(pathToFileURL(new URL('../public/js/question-bank-data-service.js',import.meta.url).pathname).href+'?test='+Date.now());
+await import(new URL('../public/js/question-bank-data-service.js', import.meta.url).href + '?test=' + Date.now());
 const service=globalThis.Grade9QuestionBankData;
 assert.ok(service);
 assert.equal(service.assertCoherence(),buildId);

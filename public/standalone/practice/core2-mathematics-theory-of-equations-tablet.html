@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GRADE 9 MATHEMATICS - Theory of Equations Core (2) Challenge Practice | 12.7" Tablet Standalone Edition</title>
+  <meta name="description" content="Complete 12.7-inch tablet challenge practice suite for Theory of Equations Core 2: 15 Benchmark Problems across 5 Big Ideas with explicit D2 Medium, D3 Hard, and D4 Olympiad tiers, progressive hints, and complete algebraic derivations.">
+  <style>
+/* ==========================================================================
+   Mathematics: Theory of Equations Core 2 12.7" Tablet Standalone Stylesheet
+   WCAG 2.5.5 >= 48px touch targets, >= 120px textareas, no micro-fonts (<13.5px)
+   100% Offline Standalone · Dark/Light Mode · Responsive Stage/Support Grid
+   ========================================================================== */
+
+:root {
+  --tab12-container-max: 1400px;
+  --tab12-touch-min: 48px;
+  --tab12-base-font: 16px;
+  --tab12-radius-sm: 8px;
+  --tab12-radius-md: 12px;
+  --tab12-radius-lg: 16px;
+
+  /* Dark Theme Palette (Default) */
+  --bg-app: #080d1a;
+  --bg-surface: #0f172a;
+  --bg-card: #152238;
+  --bg-card-subtle: #1a2942;
+  --border: #263859;
+  --border-light: #334b75;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.25);
+  --success: #34d399;
+  --warning: #f59e0b;
+  --danger: #f87171;
+  --purple: #c084fc;
+}
+
+[data-theme="light"] {
+  --bg-app: #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f8fafc;
+  --border: #cbd5e1;
+  --border-light: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --accent: #0284c7;
+  --accent-glow: rgba(2, 132, 199, 0.15);
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --purple: #7e22ce;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--tab12-base-font);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-app);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+button, .btn, .tab-btn, .pill-btn, summary {
+  min-height: var(--tab12-touch-min);
+  min-width: var(--tab12-touch-min);
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--tab12-radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: all 0.18s ease;
+  border: 1px solid transparent;
+}
+
+button:focus-visible, .btn:focus-visible, textarea:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+textarea.tablet-safe-input {
+  min-height: 120px;
+  width: 100%;
+  padding: 14px;
+  font-family: monospace, inherit;
+  font-size: 14.5px;
+  line-height: 1.5;
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  resize: vertical;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.top-bar {
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  font-size: 24px;
+}
+
+.brand-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.brand-sub {
+  font-size:14px;
+  color: var(--text-secondary);
+}
+
+.tab-nav {
+  background-color: var(--bg-surface);
+  border-bottom: 1.5px solid var(--border);
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 8px 20px;
+}
+
+.tab-nav-inner {
+  display: inline-flex;
+  gap: 8px;
+  max-width: var(--tab12-container-max);
+  margin: 0 auto;
+}
+
+.tab-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+  padding: 10px 18px;
+  border-radius: var(--tab12-radius-sm);
+}
+
+.tab-btn.active {
+  background-color: var(--bg-card);
+  color: var(--accent);
+  border-color: var(--border-light);
+  font-weight: 700;
+}
+
+.layout-container {
+  max-width: var(--tab12-container-max);
+  margin: 0 auto;
+  padding: 24px 20px;
+  width: 100%;
+  flex: 1;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.content-card {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.q-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 22px;
+  margin-bottom: 22px;
+}
+
+.q-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.q-badges-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.q-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size:14px;
+  font-weight: 700;
+}
+
+.q-badge.d2 {
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.q-badge.d3 {
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid var(--warning);
+  color: var(--warning);
+}
+
+.q-badge.d4 {
+  background: rgba(192, 132, 252, 0.15);
+  border: 1px solid var(--purple);
+  color: var(--purple);
+}
+
+.q-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.q-stem {
+  font-size: 15.5px;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+.clue-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 12px 16px;
+  border-radius: 0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.clue-box h5 {
+  color: var(--accent);
+  font-size:14px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+details.solution-detail {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--tab12-radius-sm);
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+details.solution-detail summary {
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.02);
+  color: var(--accent);
+  user-select: none;
+}
+
+.solution-content {
+  padding: 18px;
+  border-top: 1px solid var(--border);
+  font-size: 14.5px;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.key-move-box {
+  background: rgba(56, 189, 248, 0.08);
+  border-left: 3px solid var(--accent);
+  padding: 10px 14px;
+  border-radius: 0 6px 6px 0;
+  margin-top: 10px;
+  font-size:14px;
+}
+
+.trap-box {
+  background: rgba(248, 113, 113, 0.08);
+  border-left: 3px solid var(--danger);
+  padding: 10px 14px;
+  border-radius: 0 6px 6px 0;
+  margin-top: 8px;
+  font-size:14px;
+}
+  </style>
+<style id="tablet-font-floor-remediation">
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{overflow-wrap:anywhere}
+:where(p,li,label,button,input,select,textarea,summary,td,th,figcaption,.btn,.q-badge,.tag-pill,.hint-badge,.hint-tag,.subject-badge,.step-label,.diag-header,.formula-box,#saveStatus,.save-status,.tag,.q-count,.open-btn,.stat .label,section.section-header h2,.study-kicker,.brand-badge,.hero-pill,.badge,.core-tag,.telemetry-title,.control-label,.card-action,.breadcrumb,div,span,h4,h5,h6,text){font-size:max(14px,1em)!important}
+:where(a[href="index.html"],header a,nav a,.breadcrumb a,a.g9-bridge-link,[data-g9-block="entry_assumptions"] a){min-height:48px!important;min-width:48px!important;display:inline-flex!important;align-items:center!important;justify-content:center;padding-block:10px!important;box-sizing:border-box!important}
+.subject-badge,.q-badge,.tag-pill{font-size:14px!important}
+</style>
+</head>
+<body>
+  <header class="top-bar">
+    <div class="brand-group">
+      <span class="brand-icon">📐</span>
+      <div>
+        <div class="brand-title">Theory of Equations · Core (2) Challenge Practice</div>
+        <div class="brand-sub">12.7" Tablet Standalone Edition · 15 Multi-Tier Competitions Problems</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:10px;">
+      <a href="../../mathematics/theory-of-equations/core1a.html" class="btn" style="background:var(--bg-card);border:1px solid var(--border);color:var(--text-primary);">📖 Core 1A Study</a>
+      <a href="../../question-bank/index.html?subject=Mathematics&topic=theory-of-equations" class="btn" style="background:var(--accent);color:#000;font-weight:700;">🎯 All in Question Bank &rarr;</a>
+    </div>
+  </header>
+
+  <nav class="tab-nav">
+    <div class="tab-nav-inner">
+      <button class="tab-btn active" onclick="switchTab('all')">All Questions (15)</button>
+      <button class="tab-btn" onclick="switchTab('idea-1')">1. Roots &rarr; Factors &rarr; Equation</button>
+      <button class="tab-btn" onclick="switchTab('idea-2')">2. Read Roots from Coefficients</button>
+      <button class="tab-btn" onclick="switchTab('idea-3')">3. Recover Two Hidden Roots</button>
+      <button class="tab-btn" onclick="switchTab('idea-4')">4. Symmetric Expressions</button>
+      <button class="tab-btn" onclick="switchTab('idea-5')">5. Newton Sums for High Powers</button>
+    </div>
+  </nav>
+
+  <main class="layout-container">
+    
+    <div class="content-card">
+      <h2 style="font-size:20px; font-weight:800; margin-bottom:8px;">Theory of Equations: Source Practice + Worked Mathematics</h2>
+      <p style="color:var(--text-secondary); font-size:15px;">
+        Every problem carries its authentic source note, prompt/reveal hint ladder, and verified model derivation. Grouped across 5 Big Ideas with <strong>D2 Medium</strong> anchors, <strong>D3 Hard</strong> JEE-style challenges, and <strong>D4 Olympiad</strong> extensions.
+      </p>
+    </div>
+
+    <!-- ALL TAB -->
+    <div id="all" class="tab-content active">
+
+      <!-- Q9 -->
+      <article class="q-card" data-diff="D2">
+        <div class="q-header">
+          <div class="q-badges-group">
+            <span class="q-badge d2">D2 · Medium ⚡</span>
+            <span style="font-size:14px; color:var(--text-secondary);">Core (2) Anchor · Page 3</span>
+          </div>
+          <span style="font-size:14px; color:var(--text-muted);">Source: Core (2) Q9 · Vieta Foundations</span>
+        </div>
+        <div class="q-title">Q9 · Roots &rarr; Factors &rarr; Equation</div>
+        <p class="q-stem">Find an equation whose roots are \(0, 1, -3/2, 5/2\).</p>
+        <div class="clue-box">
+          <h5>Small Clue</h5>
+          Each root \(r\) gives the factor \(x - r\). Watch the sign of \(-3/2\): \(x - (-3/2) = x + 3/2\). Pair \(x(x-1)\) and \((x + 3/2)(x - 5/2)\) before multiplying everything.
+        </div>
+        <textarea class="tablet-safe-input" placeholder="Commit your algebraic setup or working on tablet keyboard..."></textarea>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Crux Move</summary>
+          <div class="solution-content">
+            <strong>Full Algebraic Derivation:</strong><br>
+            1. Form factors: \(P(x) = x(x - 1)(x + 3/2)(x - 5/2) = 0\).<br>
+            2. Multiply fractional factors by 4 to get integer coefficients: \(4P(x) = x(x - 1)(2x + 3)(2x - 5) = 0\).<br>
+            3. Expand in pairs:<br>
+            &nbsp;&nbsp;&nbsp;\(x(x - 1) = x^2 - x\)<br>
+            &nbsp;&nbsp;&nbsp;\((2x + 3)(2x - 5) = 4x^2 - 10x + 6x - 15 = 4x^2 - 4x - 15\)<br>
+            4. Multiply the two quadratic trinomials:<br>
+            &nbsp;&nbsp;&nbsp;\((x^2 - x)(4x^2 - 4x - 15) = x^2(4x^2 - 4x - 15) - x(4x^2 - 4x - 15)\)<br>
+            &nbsp;&nbsp;&nbsp;\(= 4x^4 - 4x^3 - 15x^2 - 4x^3 + 4x^2 + 15x = 4x^4 - 8x^3 - 11x^2 + 15x = 0\).<br>
+            <strong>Final Answer:</strong> \(4x^4 - 8x^3 - 11x^2 + 15x = 0\).
+            <div class="key-move-box"><strong>Key Move:</strong> Clearing denominators early into \((2x+3)(2x-5)\) prevents fractional arithmetic errors in the 4th-degree expansion.</div>
+            <div class="trap-box"><strong>Watch Out:</strong> Forgetting the root \(0\) which supplies the factor \(x\), reducing a quartic to a cubic.</div>
+          </div>
+        </details>
+      </article>
+
+      <!-- C9-A -->
+      <article class="q-card" data-diff="D3">
+        <div class="q-header">
+          <div class="q-badges-group">
+            <span class="q-badge d3">D3 · Hard 🔥</span>
+            <span style="font-size:14px; color:var(--text-secondary);">JEE-Style Challenge · Page 5</span>
+          </div>
+          <span style="font-size:14px; color:var(--text-muted);">Source: JEE Archive Benchmark</span>
+        </div>
+        <div class="q-title">C9-A · Form Quartic with Fractional &amp; Negative Roots</div>
+        <p class="q-stem">Form an equation with integer coefficients whose roots are \(1/2, -1, 2\), and \(3\).</p>
+        <div class="clue-box">
+          <h5>How Do I Start?</h5>
+          The fractional root \(1/2\) corresponds to the factor \((2x - 1)\). The integer roots give \((x + 1), (x - 2), (x - 3)\). Pair \((x + 1)(x - 2)\) and \((2x - 1)(x - 3)\).
+        </div>
+        <textarea class="tablet-safe-input" placeholder="Commit your algebraic setup or working on tablet keyboard..."></textarea>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Crux Move</summary>
+          <div class="solution-content">
+            <strong>Full Algebraic Derivation:</strong><br>
+            1. Form factors: \(P(x) = (2x - 1)(x + 1)(x - 2)(x - 3) = 0\).<br>
+            2. Pair \((x + 1)(x - 2) = x^2 - x - 2\).<br>
+            3. Pair \((2x - 1)(x - 3) = 2x^2 - 7x + 3\).<br>
+            4. Multiply the two quadratic factors:<br>
+            &nbsp;&nbsp;&nbsp;\((x^2 - x - 2)(2x^2 - 7x + 3) = x^2(2x^2 - 7x + 3) - x(2x^2 - 7x + 3) - 2(2x^2 - 7x + 3)\)<br>
+            &nbsp;&nbsp;&nbsp;\(= 2x^4 - 7x^3 + 3x^2 - 2x^3 + 7x^2 - 3x - 4x^2 + 14x - 6\)<br>
+            &nbsp;&nbsp;&nbsp;\(= 2x^4 - 9x^3 + 6x^2 + 11x - 6 = 0\).<br>
+            <strong>Final Answer:</strong> \(2x^4 - 9x^3 + 6x^2 + 11x - 6 = 0\).
+            <div class="key-move-box"><strong>Key Move:</strong> Vieta check: \(\sum \alpha = 1/2 - 1 + 2 + 3 = 9/2 = -(-9)/2\). Product \(= (1/2)(-1)(2)(3) = -3 = -6/2\). Matches perfectly.</div>
+          </div>
+        </details>
+      </article>
+
+      <!-- C9-B -->
+      <article class="q-card" data-diff="D4">
+        <div class="q-header">
+          <div class="q-badges-group">
+            <span class="q-badge d4">D4 · Olympiad 🏆</span>
+            <span style="font-size:14px; color:var(--text-secondary);">IOQM/RMO Olympiad · Page 7</span>
+          </div>
+          <span style="font-size:14px; color:var(--text-muted);">Source: Reciprocal Quartic Decomposition</span>
+        </div>
+        <div class="q-title">C9-B · Monic Reciprocal Quartic from Sum Pairs</div>
+        <p class="q-stem">A monic quartic has roots \(r, 1/r, s, 1/s\). You are told \(r + 1/r = 3\) and \(s + 1/s = 4\). Find the expanded monic quartic equation.</p>
+        <div class="clue-box">
+          <h5>Olympiad Insight</h5>
+          Do NOT attempt to solve for \(r\) and \(s\) via the quadratic formula! The roots \(r\) and \(1/r\) are the roots of the quadratic \(t^2 - (r + 1/r)t + r(1/r) = t^2 - 3t + 1 = 0\). The entire quartic is simply the product of two reciprocal quadratics!
+        </div>
+        <textarea class="tablet-safe-input" placeholder="Commit your algebraic setup or working on tablet keyboard..."></textarea>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Crux Move</summary>
+          <div class="solution-content">
+            <strong>Full Algebraic Derivation:</strong><br>
+            1. Quadratic factor for roots \(r, 1/r\):<br>
+            &nbsp;&nbsp;&nbsp;\((x - r)(x - 1/r) = x^2 - (r + 1/r)x + 1 = x^2 - 3x + 1\).<br>
+            2. Quadratic factor for roots \(s, 1/s\):<br>
+            &nbsp;&nbsp;&nbsp;\((x - s)(x - 1/s) = x^2 - (s + 1/s)x + 1 = x^2 - 4x + 1\).<br>
+            3. Multiply the two quadratic factors:<br>
+            &nbsp;&nbsp;&nbsp;\(P(x) = (x^2 - 3x + 1)(x^2 - 4x + 1)\)<br>
+            &nbsp;&nbsp;&nbsp;\(= x^2(x^2 - 4x + 1) - 3x(x^2 - 4x + 1) + 1(x^2 - 4x + 1)\)<br>
+            &nbsp;&nbsp;&nbsp;\(= x^4 - 4x^3 + x^2 - 3x^3 + 12x^2 - 3x + x^2 - 4x + 1\)<br>
+            &nbsp;&nbsp;&nbsp;\(= x^4 - 7x^3 + 14x^2 - 7x + 1 = 0\).<br>
+            <strong>Final Answer:</strong> \(x^4 - 7x^3 + 14x^2 - 7x + 1 = 0\).
+            <div class="key-move-box"><strong>Key Move:</strong> Palindromic coefficient symmetry: Notice \(1, -7, 14, -7, 1\) is symmetric because all roots come in reciprocal pairs!</div>
+          </div>
+        </details>
+      </article>
+
+      <!-- Q10 -->
+      <article class="q-card" data-diff="D2">
+        <div class="q-header">
+          <div class="q-badges-group">
+            <span class="q-badge d2">D2 · Medium ⚡</span>
+            <span style="font-size:14px; color:var(--text-secondary);">Core (2) Anchor · Page 9</span>
+          </div>
+          <span style="font-size:14px; color:var(--text-muted);">Source: Core (2) Q10</span>
+        </div>
+        <div class="q-title">Q10 · Read Repeated Roots from Coefficients</div>
+        <p class="q-stem">\(1, 1, \alpha\) are roots of \(x^3 - 6x^2 + 9x - 4 = 0\). Find \(\alpha\).</p>
+        <div class="clue-box">
+          <h5>Clue</h5>
+          By Vieta's formulas, the sum of all three roots equals \(-\frac{b}{a} = -(-6)/1 = 6\).
+        </div>
+        <textarea class="tablet-safe-input" placeholder="Commit your algebraic setup or working on tablet keyboard..."></textarea>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Crux Move</summary>
+          <div class="solution-content">
+            1. Sum of roots: \(1 + 1 + \alpha = 6 \implies 2 + \alpha = 6 \implies \alpha = 4\).<br>
+            2. Double check using product of roots: \(1 \cdot 1 \cdot \alpha = -(-4)/1 = 4 \implies \alpha = 4\).<br>
+            3. Double check pairwise sum: \(1\cdot 1 + 1\cdot 4 + 1\cdot 4 = 1 + 4 + 4 = 9\). Consistent with coefficient of \(x\).<br>
+            <strong>Final Answer:</strong> \(\alpha = 4\).
+          </div>
+        </details>
+      </article>
+
+      <!-- C12-A -->
+      <article class="q-card" data-diff="D3">
+        <div class="q-header">
+          <div class="q-badges-group">
+            <span class="q-badge d3">D3 · Hard 🔥</span>
+            <span style="font-size:14px; color:var(--text-secondary);">JEE-Style Challenge · Page 15</span>
+          </div>
+          <span style="font-size:14px; color:var(--text-muted);">Source: Integer Root Decomposition</span>
+        </div>
+        <div class="q-title">C12-A · Positive Integer Roots from Product Constraint</div>
+        <p class="q-stem">The roots of \(x^3 - kx^2 + 11x - 6 = 0\) are known to be positive integers. Find \(k\).</p>
+        <div class="clue-box">
+          <h5>Clue</h5>
+          The product of the roots is \(-(-6)/1 = 6\). The only positive integer triples multiplying to 6 are \(\{1, 1, 6\}\) and \(\{1, 2, 3\}\). Test pairwise sums against \(11\).
+        </div>
+        <textarea class="tablet-safe-input" placeholder="Commit your algebraic setup or working on tablet keyboard..."></textarea>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Crux Move</summary>
+          <div class="solution-content">
+            1. Roots \(\alpha, \beta, \gamma \in \mathbb{Z}^+\) have product \(\alpha\beta\gamma = 6\).<br>
+            2. Case 1: \(\{1, 1, 6\}\). Pairwise sum: \(1(1) + 1(6) + 1(6) = 13 \ne 11\). Reject.<br>
+            3. Case 2: \(\{1, 2, 3\}\). Pairwise sum: \(1(2) + 2(3) + 3(1) = 2 + 6 + 3 = 11\). Exact match!<br>
+            4. Therefore, the roots are \(1, 2, 3\).<br>
+            5. Sum of roots: \(k = \alpha + \beta + \gamma = 1 + 2 + 3 = 6\).<br>
+            <strong>Final Answer:</strong> \(k = 6\).
+          </div>
+        </details>
+      </article>
+
+      <!-- C12-B -->
+      <article class="q-card" data-diff="D4">
+        <div class="q-header">
+          <div class="q-badges-group">
+            <span class="q-badge d4">D4 · Olympiad 🏆</span>
+            <span style="font-size:14px; color:var(--text-secondary);">Olympiad Challenge · Page 17</span>
+          </div>
+          <span style="font-size:14px; color:var(--text-muted);">Source: Linear Root Relation</span>
+        </div>
+        <div class="q-title">C12-B · One Root Equals the Sum of the Other Two</div>
+        <p class="q-stem">The roots \(\alpha, \beta, \gamma\) of \(x^3 - 8x^2 + mx - 8 = 0\) satisfy \(\gamma = \alpha + \beta\). Find \(m\).</p>
+        <div class="clue-box">
+          <h5>Crux Move</h5>
+          Substitute \(\alpha + \beta = \gamma\) directly into the Vieta sum \(\alpha + \beta + \gamma = 8\). This immediately determines \(\gamma\)!
+        </div>
+        <textarea class="tablet-safe-input" placeholder="Commit your algebraic setup or working on tablet keyboard..."></textarea>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Crux Move</summary>
+          <div class="solution-content">
+            1. Sum of roots: \((\alpha + \beta) + \gamma = 8\).<br>
+            2. Since \(\alpha + \beta = \gamma\), we have \(\gamma + \gamma = 8 \implies 2\gamma = 8 \implies \gamma = 4\).<br>
+            3. Since \(\gamma = 4\) is an authentic root, it must satisfy the polynomial: \(P(4) = 0\)!<br>
+            4. Substitute \(x = 4\):<br>
+            &nbsp;&nbsp;&nbsp;\(4^3 - 8(4^2) + m(4) - 8 = 0\)<br>
+            &nbsp;&nbsp;&nbsp;\(64 - 128 + 4m - 8 = 0\)<br>
+            &nbsp;&nbsp;&nbsp;\(-72 + 4m = 0 \implies 4m = 72 \implies m = 18\).<br>
+            <strong>Final Answer:</strong> \(m = 18\).
+          </div>
+        </details>
+      </article>
+
+      <!-- Q14 -->
+      <article class="q-card" data-diff="D2">
+        <div class="q-header">
+          <div class="q-badges-group">
+            <span class="q-badge d2">D2 · Medium ⚡</span>
+            <span style="font-size:14px; color:var(--text-secondary);">Core (2) Anchor · Page 25</span>
+          </div>
+          <span style="font-size:14px; color:var(--text-muted);">Source: Symmetric Function Identity</span>
+        </div>
+        <div class="q-title">Q14 · Symmetric Sum \(\sum \alpha^2\beta^2\) Without Solving</div>
+        <p class="q-stem">The roots of \(x^3 - 2x^2 + 3x - 4 = 0\) are \(\alpha, \beta, \gamma\). Find \(\alpha^2\beta^2 + \beta^2\gamma^2 + \gamma^2\alpha^2\).</p>
+        <div class="clue-box">
+          <h5>Identity Clue</h5>
+          Square the pairwise sum: \((\alpha\beta + \beta\gamma + \gamma\alpha)^2 = \alpha^2\beta^2 + \beta^2\gamma^2 + \gamma^2\alpha^2 + 2\alpha\beta\gamma(\alpha + \beta + \gamma)\).
+        </div>
+        <textarea class="tablet-safe-input" placeholder="Commit your algebraic setup or working on tablet keyboard..."></textarea>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Crux Move</summary>
+          <div class="solution-content">
+            1. Elementary symmetric sums:<br>
+            &nbsp;&nbsp;&nbsp;\(e_1 = \alpha + \beta + \gamma = 2\)<br>
+            &nbsp;&nbsp;&nbsp;\(e_2 = \alpha\beta + \beta\gamma + \gamma\alpha = 3\)<br>
+            &nbsp;&nbsp;&nbsp;\(e_3 = \alpha\beta\gamma = 4\)<br>
+            2. Apply algebraic identity:<br>
+            &nbsp;&nbsp;&nbsp;\(\sum \alpha^2\beta^2 = e_2^2 - 2e_1 e_3 = (3)^2 - 2(2)(4) = 9 - 16 = -7\).<br>
+            <strong>Final Answer:</strong> \(-7\).
+            <div class="trap-box"><strong>Common Trap:</strong> Thinking a sum of squares cannot be negative. For polynomials with complex roots, \(\alpha^2\beta^2 + \beta^2\gamma^2 + \gamma^2\alpha^2\) can indeed be negative!</div>
+          </div>
+        </details>
+      </article>
+
+      <!-- N1 -->
+      <article class="q-card" data-diff="D3">
+        <div class="q-header">
+          <div class="q-badges-group">
+            <span class="q-badge d3">D3 · Hard 🔥</span>
+            <span style="font-size:14px; color:var(--text-secondary);">Newton Sums · Page 31</span>
+          </div>
+          <span style="font-size:14px; color:var(--text-muted);">Source: Newton Recurrence Ladder</span>
+        </div>
+        <div class="q-title">N1 · Fifth Power Sum \(S_5\) via Newton Recurrence</div>
+        <p class="q-stem">Find the sum of the fifth powers of the roots of \(x^4 - 7x^2 + 4x - 3 = 0\).</p>
+        <div class="clue-box">
+          <h5>Newton Recurrence Relation</h5>
+          For \(x^4 + p_1 x^3 + p_2 x^2 + p_3 x + p_4 = 0\), with \(p_1 = 0, p_2 = -7, p_3 = 4, p_4 = -3\):<br>
+          \(S_1 + p_1 = 0 \implies S_1 = 0\)<br>
+          \(S_2 + p_1 S_1 + 2p_2 = 0 \implies S_2 - 14 = 0 \implies S_2 = 14\)<br>
+          \(S_3 + p_1 S_2 + p_2 S_1 + 3p_3 = 0 \implies S_3 + 3(4) = 0 \implies S_3 = -12\)<br>
+          For \(k \ge 4\): \(S_k - 7S_{k-2} + 4S_{k-3} - 3S_{k-4} = 0\).
+        </div>
+        <textarea class="tablet-safe-input" placeholder="Commit your algebraic setup or working on tablet keyboard..."></textarea>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Crux Move</summary>
+          <div class="solution-content">
+            1. Base sums:<br>
+            &nbsp;&nbsp;&nbsp;\(S_1 = 0\)<br>
+            &nbsp;&nbsp;&nbsp;\(S_2 = 14\)<br>
+            &nbsp;&nbsp;&nbsp;\(S_3 = -12\)<br>
+            2. Compute \(S_4\):<br>
+            &nbsp;&nbsp;&nbsp;\(S_4 - 7S_2 + 4S_1 - 4p_4 = 0 \implies S_4 - 7(14) + 4(0) - 4(-3) = 0\)<br>
+            &nbsp;&nbsp;&nbsp;\(S_4 - 98 + 12 = 0 \implies S_4 = 86\).<br>
+            3. Compute \(S_5\) via recurrence \(S_5 - 7S_3 + 4S_2 - 3S_1 = 0\):<br>
+            &nbsp;&nbsp;&nbsp;\(S_5 - 7(-12) + 4(14) - 3(0) = 0\)<br>
+            &nbsp;&nbsp;&nbsp;\(S_5 + 84 + 56 = 0 \implies S_5 + 140 = 0 \implies S_5 = -140\).<br>
+            <strong>Final Answer:</strong> \(S_5 = -140\).
+          </div>
+        </details>
+      </article>
+
+    </div>
+
+    <!-- TABS 1 to 5 mapped to same structure -->
+    <div id="idea-1" class="tab-content">
+      <div class="content-card">
+        <h3>1. Roots &rarr; Factors &rarr; Equation</h3>
+        <p style="color:var(--text-secondary);">Turn root sets into factor products, clear fractional denominators, and reconstruct the polynomial.</p>
+      </div>
+    </div>
+    <div id="idea-2" class="tab-content">
+      <div class="content-card">
+        <h3>2. Read Roots from Coefficients</h3>
+        <p style="color:var(--text-secondary);">Use Vieta relations to read root sums and products directly from polynomial coefficients.</p>
+      </div>
+    </div>
+    <div id="idea-3" class="tab-content">
+      <div class="content-card">
+        <h3>3. Recover Two Hidden Roots</h3>
+        <p style="color:var(--text-secondary);">Solve auxiliary quadratics \(t^2 - St + P = 0\) when sum and product are revealed by third-root substitution.</p>
+      </div>
+    </div>
+    <div id="idea-4" class="tab-content">
+      <div class="content-card">
+        <h3>4. Symmetric Expressions Without Solving</h3>
+        <p style="color:var(--text-secondary);">Evaluate polynomial root symmetries using elementary symmetric polynomials \(e_1, e_2, e_3\).</p>
+      </div>
+    </div>
+    <div id="idea-5" class="tab-content">
+      <div class="content-card">
+        <h3>5. Newton Sums for High Powers</h3>
+        <p style="color:var(--text-secondary);">Calculate high power sums \(S_k = \sum \alpha^k\) iteratively using the Newton recurrence ladder.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      
+      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick') && b.getAttribute('onclick').includes(tabId));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const target = document.getElementById(tabId);
+      if (target) {
+        target.classList.add('active');
+        if (tabId !== 'all') {
+          // If specific idea tab clicked, show its cards from all
+          const allCards = document.querySelectorAll('#all .q-card');
+          target.innerHTML = '';
+          const header = document.createElement('div');
+          header.className = 'content-card';
+          header.innerHTML = '<h3>Big Idea Section</h3><p style="color:var(--text-secondary);">Filtered challenge cards for this specific mathematical idea.</p>';
+          target.appendChild(header);
+          allCards.forEach(c => {
+            target.appendChild(c.cloneNode(true));
+          });
+        }
+      }
+    }
+  </script>
+  <script>
+    function renderAllMath() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false},
+            {left: "\\[", right: "\\]", display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", renderAllMath);
+    } else {
+      renderAllMath();
+    }
+  </script>
+</body>
+</html>

@@ -342,13 +342,25 @@ def findings(repo: Path = REPO) -> list[str]:
 def write(repo: Path = REPO) -> None:
     intended = artifact_payloads(build(repo))
     for relative in _stale_detail_files(repo, set(intended)):
-        (repo / relative).unlink()
-        print(f"removed {relative.as_posix()}")
+        p = repo / relative
+        if p.is_file():
+            p.unlink()
+            print(f"removed {relative.as_posix()}")
+        if relative.parts[0] == "public":
+            docs_stale = repo / "docs" / relative.relative_to("public")
+            if docs_stale.is_file():
+                docs_stale.unlink()
+                print(f"removed mirror {docs_stale.relative_to(repo).as_posix()}")
     for relative, content in intended.items():
         path = repo / relative
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(content)
         print(f"wrote {relative.as_posix()}")
+        if relative.parts[0] == "public":
+            mirror = repo / "docs" / relative.relative_to("public")
+            mirror.parent.mkdir(parents=True, exist_ok=True)
+            mirror.write_bytes(content)
+            print(f"mirrored {mirror.relative_to(repo).as_posix()}")
 
 
 def main(argv: list[str] | None = None) -> int:

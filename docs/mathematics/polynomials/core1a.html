@@ -1,514 +1,514 @@
-<!doctype html>
-<html lang="en" data-theme="light" data-g9-shell data-g9-role="CORE1A" data-g9-product="PRODUCT-MATH-POLYNOMIALS">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Polynomials: Degree, Remainder & Factor Theorems · Construction (Core 1A)</title>
-  <!-- KaTeX Typography (Khan Academy Standard) -->
-  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
-  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
-  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
-  <link rel="stylesheet" href="../../css/modern-learner.css">
-  <style>
-    :root {
-      --g9-space: clamp(16px, 2vw, 28px);
-      --accent: #0284c7;
-    }
-    .g9-formula-block {
-      margin: 10px 0;
-      padding: 12px 18px;
-      background: var(--bg-soft, #f8fafc);
-      border: 1px solid var(--border, #e2e8f0);
-      border-radius: var(--radius-sm, 8px);
-      text-align: center;
-      font-size: 1.15rem;
-      overflow-x: auto;
-    }
-    [data-theme="dark"] .g9-formula-block {
-      background: #1e293b;
-      border-color: #334155;
-    }
-    main { max-width: 1240px; margin: 0 auto; padding: var(--g9-space); }
-    .g9-core1a-book { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 24px; }
-    .g9-core1a-book h1 { font-size: 26px; font-weight: 800; margin-bottom: 8px; color: var(--text-main); }
-    .g9-split { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: start; }
-    @media (max-width: 960px) { .g9-split { grid-template-columns: 1fr; } }
-    .g9-card-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px; margin-bottom: 18px; }
-    .g9-step-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: cstep; }
-    .g9-step-item { counter-increment: cstep; position: relative; padding: 14px 16px 14px 50px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); }
-    .g9-step-item::before { content: counter(cstep); position: absolute; left: 14px; top: 14px; width: 26px; height: 26px; border-radius: 50%; background: var(--accent-learn-bg); color: var(--accent-learn); font-weight: 800; display: grid; place-items: center; font-size: 13px; }
-    .g9-crux-step { border-color: var(--accent-learn); box-shadow: 0 0 0 1px var(--accent-learn); background: var(--bg-card); }
-    .g9-crux-badge { display: inline-block; background: #fee2e2; color: #991b1b; font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; }
-    .g9-worked-card { border-left: 4px solid var(--accent-learn); background: var(--bg-soft); padding: 16px 20px; border-radius: 0 var(--radius-md) var(--radius-md) 0; }
-    .g9-worked-card h4 { margin-bottom: 8px; font-size: 15px; color: var(--accent-learn); text-transform: uppercase; letter-spacing: 0.04em; }
-    .g9-worked-card ol { padding-left: 20px; margin: 10px 0; }
-    .g9-worked-card li { margin-bottom: 8px; font-size: 14.5px; }
-    .g9-visual-container { position: sticky; top: 80px; }
-    .g9-svg-wrap { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 14px; text-align: center; }
-    .g9-stage-controls { display: flex; gap: 8px; justify-content: center; margin-top: 12px; }
-    .g9-stage-btn { padding: 6px 14px; border-radius: var(--radius-pill); border: 1px solid var(--border); background: var(--bg-card); font-size: 13px; font-weight: 700; cursor: pointer; color: var(--text-main); }
-    .g9-stage-btn.active { background: var(--accent-learn); color: #fff; border-color: var(--accent-learn); }
-    .g9-actions-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
-  </style>
-</head>
-<body>
-  <header class="g9-shell-header">
-    <div class="g9-header-inner">
-      <a href="../../index.html" class="g9-brand">
-        <span class="logo-icon">⚡</span>
-        <span class="brand-title">Grade9V3.5</span>
-        <span class="g9-brand-badge">Learner Platform</span>
-      </a>
-      <nav class="g9-header-nav" aria-label="Portal Navigation">
-        <a href="../../index.html">Home</a>
-        <a href="../../physics/index.html">Physics</a>
-        <a href="../../chemistry/index.html">Chemistry</a>
-        <a href="../../mathematics/index.html" class="active">Mathematics</a>
-        <a href="../../question-bank/index.html">Question Bank</a>
-      </nav>
-      <div class="g9-header-actions">
-        <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search">
-          <span class="g9-btn-icon">🔍</span>
-          <span class="g9-btn-text">Search</span>
-        </button>
-        <button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings" aria-label="Display & Theme">
-          <span class="g9-btn-icon">🌙 / ☀️</span>
-          <span class="g9-btn-text">Display</span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <nav class="g9-breadcrumb" aria-label="Breadcrumb">
-    <div class="g9-breadcrumb-inner">
-      <a href="../../index.html">Home</a>
-      <span>/</span>
-      <a href="../../mathematics/index.html">Mathematics</a>
-      <span>/</span>
-      <a href="../polynomials/index.html">Polynomials</a>
-      <span>/</span>
-      <span class="current">Learn (Core 1A)</span>
-    </div>
-  </nav>
-
-  <main>
-    <div class="g9-core1a-book">
-      <span class="g9-tag g9-tag-math">Mathematics Core 1A</span>
-      <h1 style="margin-top: 8px;">Polynomials: Degree, Remainder &amp; Factor Theorems</h1>
-      <p style="color: var(--text-muted); font-size: 15px;">
-        Rigorous foundations from NCERT Ganita Manjari §2.1 and Assessment Module m2 (Pages 1–11): algebraic degrees, linear remainder theorems, monic factorization, and cyclic symmetric identities.
-      </p>
-
-      <div class="g9-actions-bar">
-        <a href="../../standalone/mathematics-polynomials-and-coordinates-suite.html#tab-poly" class="g9-btn g9-btn-outline" style="border-color: var(--accent); color: var(--accent);">
-          ⚡ Open Interactive Polynomial Suite
-        </a>
-        <a href="../../question-bank/index.html?q=polynomial" class="g9-btn g9-btn-outline">
-          📖 Practice in Question Bank
-        </a>
-      </div>
-    </div>
-
-    <!-- CONCEPT 1 -->
-    <article class="g9-card-panel" id="mic-poly-degree">
-      <div class="g9-split">
-        <div>
-          <span class="g9-tag g9-tag-math">Concept 1 of 6</span>
-          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px;">Degree Classification &amp; Like-Term Simplification</h2>
-          <p style="font-size: 15px; margin-bottom: 12px;">
-            The degree of a polynomial in one variable is the highest exponent of the variable with a <strong>non-zero coefficient</strong> in its fully simplified form.
-          </p>
-
-          <div class="g9-formula-block">
-            $$	ext{deg}\Big(\sum_{k=0}^n a_k x^k\Big) = n \quad 	ext{where } a_n 
-eq 0$$
-          </div>
-
-          <ul class="g9-step-list">
-            <li class="g9-step-item">
-              <strong>Combine All Like Powers:</strong> Terms with identical variable exponents must be algebraically grouped before inspecting powers.
-            </li>
-            <li class="g9-step-item g9-crux-step">
-              <span class="g9-crux-badge">Crux Distinction</span><br>
-              <strong>Inspect Non-Zero Leading Coefficients:</strong> If the coefficient of the written highest-power term cancels out to zero ($0 \cdot x^n$), it does NOT determine the degree.
-            </li>
-            <li class="g9-step-item">
-              <strong>Constant Polynomials:</strong> Any non-zero constant $c 
-eq 0$ can be written as $c x^0$, hence has degree $0$. The zero polynomial $P(x) = 0$ has <em>undefined degree</em>.
-            </li>
-          </ul>
-
-          <div class="g9-worked-card" style="margin-top: 18px;">
-            <h4>Worked Anchor (NCERT Ganita Manjari §2.1)</h4>
-            <p><strong>Problem:</strong> Determine the degree of $P(x) = 3x^3 - 3x^3 + 2x + 5$.</p>
-            <ol>
-              <li>Combine like cubic terms: $3x^3 - 3x^3 = 0$.</li>
-              <li>Simplified expression: $P(x) = 2x + 5 = 2x^1 + 5x^0$.</li>
-              <li>Highest power with non-zero coefficient is $1$. Therefore, $	ext{deg}(P) = 1$.</li>
-            </ol>
-          </div>
-        </div>
-
-        <div class="g9-visual-container">
-          <div class="g9-svg-wrap">
-            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-muted);">Visual Power Slots</h4>
-            <svg viewBox="0 0 400 200" width="100%" height="auto" style="max-width: 360px;">
-              <rect x="20" y="20" width="80" height="70" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
-              <text x="60" y="55" font-family="sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#0f172a">x⁰ (Const)</text>
-              <text x="60" y="75" font-family="sans-serif" font-size="13" text-anchor="middle" fill="#0284c7">deg = 0</text>
-
-              <rect x="110" y="20" width="80" height="70" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
-              <text x="150" y="55" font-family="sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#0f172a">x¹ (Linear)</text>
-              <text x="150" y="75" font-family="sans-serif" font-size="13" text-anchor="middle" fill="#0284c7">deg = 1</text>
-
-              <rect x="200" y="20" width="80" height="70" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
-              <text x="240" y="55" font-family="sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#0f172a">x² (Quadratic)</text>
-              <text x="240" y="75" font-family="sans-serif" font-size="13" text-anchor="middle" fill="#0284c7">deg = 2</text>
-
-              <rect x="290" y="20" width="90" height="70" rx="8" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
-              <text x="335" y="55" font-family="sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#991b1b">x³ (Canceled)</text>
-              <text x="335" y="75" font-family="sans-serif" font-size="13" text-anchor="middle" fill="#991b1b">coeff = 0</text>
-
-              <path d="M 290 100 L 150 140" stroke="#0284c7" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrow)"/>
-              <rect x="40" y="140" width="320" height="40" rx="6" fill="#e0f2fe" stroke="#0284c7"/>
-              <text x="200" y="165" font-family="sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#0369a1">
-                Highest surviving power = 1 ⇒ Linear
-              </text>
-            </svg>
-          </div>
-
-          <details class="g9-card-panel" style="padding: 14px; margin-top: 10px;">
-            <summary style="font-weight: 700; cursor: pointer; color: var(--accent);">
-              ✍️ Self-Check: Degree of 2
-            </summary>
-            <p style="font-size: 14px; margin-top: 8px;">
-              <strong>Question:</strong> "2 is a polynomial of degree _____." (m2 Page 1 Item 1)<br>
-              <strong>Answer:</strong> <strong>Zero ($0$)</strong>, because $2 = 2x^0$.
-            </p>
-          </details>
-        </div>
-      </div>
-    </article>
-
-    <!-- CONCEPT 2 -->
-    <article class="g9-card-panel" id="mic-poly-zeros">
-      <div class="g9-split">
-        <div>
-          <span class="g9-tag g9-tag-math">Concept 2 of 6</span>
-          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px;">Zeros of a Polynomial &amp; Functional Evaluation</h2>
-          <p style="font-size: 15px; margin-bottom: 12px;">
-            A real number $lpha$ is a <strong>zero</strong> (or root) of a polynomial $p(x)$ if and only if $p(lpha) = 0$.
-          </p>
-
-          <div class="g9-formula-block">
-            $$p(lpha) = 0 \iff (x - lpha) 	ext{ is a linear factor of } p(x)$$
-          </div>
-
-          <ul class="g9-step-list">
-            <li class="g9-step-item">
-              <strong>Value at a Point:</strong> Evaluating $p(k)$ involves direct functional substitution of $x = k$ into every term.
-            </li>
-            <li class="g9-step-item g9-crux-step">
-              <span class="g9-crux-badge">Geometric Core</span><br>
-              <strong>X-Axis Intercepts:</strong> The zeros of $p(x)$ correspond exactly to the coordinates where the graph $y = p(x)$ crosses or touches the horizontal $X$-axis ($y = 0$).
-            </li>
-            <li class="g9-step-item">
-              <strong>Linear Polynomial Zero:</strong> For $p(x) = ax + b$ with $a 
-eq 0$, solving $ax + b = 0$ yields the unique root $lpha = -b/a$.
-            </li>
-          </ul>
-
-          <div class="g9-worked-card" style="margin-top: 18px;">
-            <h4>Worked Example</h4>
-            <p><strong>Problem:</strong> Find the zeros of $p(x) = 2x^2 - 8$.</p>
-            <ol>
-              <li>Set $p(x) = 0 \implies 2x^2 - 8 = 0$.</li>
-              <li>Divide by $2$: $x^2 - 4 = 0 \implies (x - 2)(x + 2) = 0$.</li>
-              <li>Roots are $x = 2$ and $x = -2$. Graph intersects $X$-axis at $(2, 0)$ and $(-2, 0)$.</li>
-            </ol>
-          </div>
-        </div>
-
-        <div class="g9-visual-container">
-          <div class="g9-svg-wrap">
-            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-muted);">Root Intercepts on Plane</h4>
-            <svg viewBox="0 0 320 180" width="100%" height="auto">
-              <line x1="20" y1="90" x2="300" y2="90" stroke="#64748b" stroke-width="2"/>
-              <line x1="160" y1="10" x2="160" y2="170" stroke="#64748b" stroke-width="2"/>
-              <text x="290" y="82" font-size="12" fill="#64748b">X</text>
-              <text x="168" y="24" font-size="12" fill="#64748b">Y</text>
-
-              <path d="M 60 20 Q 160 160 260 20" fill="none" stroke="#0284c7" stroke-width="3"/>
-              <circle cx="100" cy="90" r="5" fill="#ef4444"/>
-              <text x="80" y="112" font-size="12" font-weight="700" fill="#ef4444">(-2, 0)</text>
-              <circle cx="220" cy="90" r="5" fill="#ef4444"/>
-              <text x="210" y="112" font-size="12" font-weight="700" fill="#ef4444">(+2, 0)</text>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- CONCEPT 3 -->
-    <article class="g9-card-panel" id="mic-poly-remainder">
-      <div class="g9-split">
-        <div>
-          <span class="g9-tag g9-tag-math">Concept 3 of 6</span>
-          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px;">Polynomial Remainder Theorem</h2>
-          <p style="font-size: 15px; margin-bottom: 12px;">
-            Let $p(x)$ be any polynomial of degree $\ge 1$ and let $a$ be any real constant. When $p(x)$ is divided by the linear divisor $(x - a)$, the remainder is directly given by $p(a)$ without polynomial long division.
-          </p>
-
-          <div class="g9-formula-block">
-            $$p(x) = (ax - b) q(x) + R \implies R = p\Big(rac{b}{a}\Big)$$
-          </div>
-
-          <ul class="g9-step-list">
-            <li class="g9-step-item">
-              <strong>Division Invariant:</strong> Divisor degree is $1$, so remainder $R$ must have degree $< 1$, meaning $R$ is a constant.
-            </li>
-            <li class="g9-step-item g9-crux-step">
-              <span class="g9-crux-badge">Crux Move</span><br>
-              <strong>Zeroing the Quotient:</strong> Substitute the root of the divisor ($ax - b = 0 \implies x = b/a$). The quotient term $(ax - b)q(x)$ vanishes identically to zero, isolating $R = p(b/a)$.
-            </li>
-            <li class="g9-step-item">
-              <strong>Linear Invariance:</strong> Holds for any monic or non-monic linear divisor $(b - ax)$, giving remainder $p(b/a)$. (m2 Page 1 Item 2).
-            </li>
-          </ul>
-
-          <div class="g9-worked-card" style="margin-top: 18px;">
-            <h4>Worked Anchor (m2 Page 1 Item 2)</h4>
-            <p><strong>Problem:</strong> Find the remainder when $p(x) = x^4 + x^3 - 2x^2 + x + 1$ is divided by $(x - 1)$.</p>
-            <ol>
-              <li>Find the root of linear divisor: $x - 1 = 0 \implies x = 1$.</li>
-              <li>Evaluate $p(1) = 1^4 + 1^3 - 2(1)^2 + 1 + 1 = 1 + 1 - 2 + 1 + 1 = 2$.</li>
-              <li>By the Remainder Theorem, $R = 2$.</li>
-            </ol>
-          </div>
-        </div>
-
-        <div class="g9-visual-container">
-          <div class="g9-svg-wrap">
-            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-muted);">Arithmetic Division Pipeline</h4>
-            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-family: monospace; font-size: 13px; text-align: left; line-height: 1.8;">
-              <div>Divisor: <strong>(x - a)</strong></div>
-              <div>Equation: <strong>p(x) = (x - a)·q(x) + R</strong></div>
-              <div style="color: var(--accent); margin: 6px 0;">⚡ Set x = a:</div>
-              <div style="background: #e0f2fe; padding: 4px 8px; border-radius: 4px; color: #0369a1;">
-                p(a) = (a - a)·q(a) + R<br>
-                p(a) = 0 + R ⇒ <strong>R = p(a)</strong>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- CONCEPT 4 -->
-    <article class="g9-card-panel" id="mic-poly-factor">
-      <div class="g9-split">
-        <div>
-          <span class="g9-tag g9-tag-math">Concept 4 of 6</span>
-          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px;">Factor Theorem &amp; Monic Factorization</h2>
-          <p style="font-size: 15px; margin-bottom: 12px;">
-            The Factor Theorem is the immediate zero-remainder corollary of the Remainder Theorem: $(x - a)$ is a factor of $p(x)$ if and only if $p(a) = 0$.
-          </p>
-
-          <div class="g9-formula-block">
-            $$(x - a) \mid p(x) \iff p(a) = 0$$
-          </div>
-
-          <ul class="g9-step-list">
-            <li class="g9-step-item">
-              <strong>Testing Potential Factors:</strong> To test if $(x - a)$ divides $p(x)$, compute $p(a)$. If $p(a) = 0$, it is a factor; if $p(a) 
-eq 0$, it is not.
-            </li>
-            <li class="g9-step-item g9-crux-step">
-              <span class="g9-crux-badge">Crux Move</span><br>
-              <strong>Solving Unknown Parameter $k$:</strong> When told $(x - a)$ is a factor of a polynomial containing parameter $k$, set $p(a) = 0$ to solve for $k$.
-            </li>
-          </ul>
-
-          <div class="g9-worked-card" style="margin-top: 18px;">
-            <h4>Worked Anchor (m2 Page 2 Q25)</h4>
-            <p><strong>Problem:</strong> If $(x - a)$ is a factor of $p(x) = x^3 - a^2 x + x + 2$, find the value of $a$.</p>
-            <ol>
-              <li>By Factor Theorem, $(x - a)$ a factor $\implies p(a) = 0$.</li>
-              <li>Substitute $x = a$: $a^3 - a^2(a) + a + 2 = 0$.</li>
-              <li>Simplify: $a^3 - a^3 + a + 2 = 0 \implies a + 2 = 0 \implies a = -2$.</li>
-            </ol>
-          </div>
-        </div>
-
-        <div class="g9-visual-container">
-          <div class="g9-svg-wrap">
-            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-muted);">Factor Bifurcation</h4>
-            <div style="display: flex; gap: 8px; justify-content: center;">
-              <div style="flex: 1; background: #ecfdf5; border: 1px solid #10b981; border-radius: 8px; padding: 12px; font-size: 13px;">
-                <strong style="color: #047857;">p(a) = 0</strong><br>
-                ✓ Remainder = 0<br>
-                ✓ (x - a) is a <strong>factor</strong>
-              </div>
-              <div style="flex: 1; background: #fef2f2; border: 1px solid #ef4444; border-radius: 8px; padding: 12px; font-size: 13px;">
-                <strong style="color: #b91c1c;">p(a) ≠ 0</strong><br>
-                ✗ Remainder ≠ 0<br>
-                ✗ (x - a) is <strong>not</strong> a factor
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- CONCEPT 5 -->
-    <article class="g9-card-panel" id="mic-poly-id-quad">
-      <div class="g9-split">
-        <div>
-          <span class="g9-tag g9-tag-math">Concept 5 of 6</span>
-          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px;">Quadratic Identities &amp; Square of Trinomial</h2>
-          <p style="font-size: 15px; margin-bottom: 12px;">
-            Standard algebraic identities represent geometric surface-area decompositions of multi-variable polynomials.
-          </p>
-
-          <div class="g9-formula-block">
-            $$(x + y + z)^2 = x^2 + y^2 + z^2 + 2xy + 2yz + 2zx$$
-          </div>
-
-          <ul class="g9-step-list">
-            <li class="g9-step-item">
-              <strong>Square of Trinomial:</strong> The expansion contains three pure quadratic squares ($x^2 + y^2 + z^2$) plus three doubled cross-products ($2(xy + yz + zx)$).
-            </li>
-            <li class="g9-step-item g9-crux-step">
-              <span class="g9-crux-badge">Crux Symmetry</span><br>
-              <strong>Sign Conservation:</strong> When terms have negative signs, e.g. $(x - 2y - z)^2$, treat as $(x + (-2y) + (-z))^2$. Squares remain positive; cross-products carry product of signs.
-            </li>
-          </ul>
-
-          <div class="g9-worked-card" style="margin-top: 18px;">
-            <h4>Worked Example (m2 Checkpoint 2)</h4>
-            <p><strong>Problem:</strong> If $x + y + z = 12$ and $x^2 + y^2 + z^2 = 64$, find $xy + yz + zx$.</p>
-            <ol>
-              <li>Expand: $(x+y+z)^2 = (x^2+y^2+z^2) + 2(xy+yz+zx)$.</li>
-              <li>Substitute: $12^2 = 64 + 2(xy+yz+zx) \implies 144 - 64 = 2(xy+yz+zx)$.</li>
-              <li>$80 = 2(xy+yz+zx) \implies xy + yz + zx = 40$.</li>
-            </ol>
-          </div>
-        </div>
-
-        <div class="g9-visual-container">
-          <div class="g9-svg-wrap">
-            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-muted);">Trinomial Area Matrix (3x3)</h4>
-            <svg viewBox="0 0 240 240" width="100%" height="auto" style="max-width: 220px;">
-              <rect x="20" y="20" width="70" height="70" fill="#e0f2fe" stroke="#0284c7"/>
-              <text x="55" y="60" font-size="14" font-weight="700" text-anchor="middle">x²</text>
-
-              <rect x="90" y="20" width="60" height="70" fill="#f1f5f9" stroke="#cbd5e1"/>
-              <text x="120" y="60" font-size="13" text-anchor="middle">xy</text>
-
-              <rect x="150" y="20" width="70" height="70" fill="#f1f5f9" stroke="#cbd5e1"/>
-              <text x="185" y="60" font-size="13" text-anchor="middle">xz</text>
-
-              <rect x="20" y="90" width="70" height="60" fill="#f1f5f9" stroke="#cbd5e1"/>
-              <text x="55" y="125" font-size="13" text-anchor="middle">yx</text>
-
-              <rect x="90" y="90" width="60" height="60" fill="#e0f2fe" stroke="#0284c7"/>
-              <text x="120" y="125" font-size="14" font-weight="700" text-anchor="middle">y²</text>
-
-              <rect x="150" y="90" width="70" height="60" fill="#f1f5f9" stroke="#cbd5e1"/>
-              <text x="185" y="125" font-size="13" text-anchor="middle">yz</text>
-
-              <rect x="20" y="150" width="70" height="70" fill="#f1f5f9" stroke="#cbd5e1"/>
-              <text x="55" y="190" font-size="13" text-anchor="middle">zx</text>
-
-              <rect x="90" y="150" width="60" height="70" fill="#f1f5f9" stroke="#cbd5e1"/>
-              <text x="120" y="190" font-size="13" text-anchor="middle">zy</text>
-
-              <rect x="150" y="150" width="70" height="70" fill="#e0f2fe" stroke="#0284c7"/>
-              <text x="185" y="190" font-size="14" font-weight="700" text-anchor="middle">z²</text>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- CONCEPT 6 -->
-    <article class="g9-card-panel" id="mic-poly-id-cubic">
-      <div class="g9-split">
-        <div>
-          <span class="g9-tag g9-tag-math">Concept 6 of 6</span>
-          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px;">Special Cubic Identity &amp; Conditional Sum Zero</h2>
-          <p style="font-size: 15px; margin-bottom: 12px;">
-            The three-variable cubic identity connects the sum of cubes to the product $3abc$ under linear condition $a + b + c = 0$.
-          </p>
-
-          <div class="g9-formula-block">
-            $$a^3 + b^3 + c^3 - 3abc = (a+b+c)(a^2+b^2+c^2 - ab - bc - ca)$$
-          </div>
-
-          <div class="g9-formula-block" style="border-color: var(--accent); background: #e0f2fe; color: #0369a1;">
-            $$	ext{If } a + b + c = 0 \implies a^3 + b^3 + c^3 = 3abc$$
-          </div>
-
-          <ul class="g9-step-list">
-            <li class="g9-step-item">
-              <strong>Conditional Vanishing:</strong> If $a + b + c = 0$, the right-hand factor $(a + b + c)$ becomes zero, causing the entire RHS to vanish: $a^3 + b^3 + c^3 - 3abc = 0$.
-            </li>
-            <li class="g9-step-item g9-crux-step">
-              <span class="g9-crux-badge">Competitive Shortcut</span><br>
-              <strong>Evaluating Cube Sums:</strong> Allows calculating sums of large numerical cubes without computing single cubes, e.g., $(-12)^3 + 7^3 + 5^3$.
-            </li>
-            <li class="g9-step-item">
-              <strong>Cyclic Fractions:</strong> For expressions like $\sum rac{(a-b)^2}{(b-c)(c-a)}$, setting common denominator $(a-b)(b-c)(c-a)$ converts numerator into $(a-b)^3+(b-c)^3+(c-a)^3 = 3(a-b)(b-c)(c-a)$, giving value $3$. (m2 Page 3 Q8).
-            </li>
-          </ul>
-
-          <div class="g9-worked-card" style="margin-top: 18px;">
-            <h4>Worked Anchor (m2 Page 1 Item 5 & Page 3 Q8)</h4>
-            <p><strong>Problem:</strong> Evaluate $(-12)^3 + 7^3 + 5^3$ without cubing directly.</p>
-            <ol>
-              <li>Let $a = -12, b = 7, c = 5$.</li>
-              <li>Check sum: $a + b + c = -12 + 7 + 5 = 0$.</li>
-              <li>Apply identity: $a^3 + b^3 + c^3 = 3abc = 3(-12)(7)(5) = -36 	imes 35 = -1260$.</li>
-            </ol>
-          </div>
-        </div>
-
-        <div class="g9-visual-container">
-          <div class="g9-svg-wrap">
-            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-muted);">Conditional Zero Balance</h4>
-            <div style="background: #f0fdf4; border: 1px solid #10b981; border-radius: 8px; padding: 16px; text-align: center;">
-              <div style="font-size: 16px; font-weight: 800; color: #047857;">a + b + c = 0</div>
-              <div style="margin: 8px 0; font-size: 20px;">⬇️</div>
-              <div style="font-size: 17px; font-weight: 800; color: #0f172a;">a³ + b³ + c³ = 3abc</div>
-              <p style="font-size: 12.5px; color: #475569; margin-top: 6px;">
-                Instant evaluation without multiplying large cubes!
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-  </main>
-
-  <footer style="margin-top: 40px; padding: 24px 20px; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 14px;">
-    Grade 9 Mathematics · Core 1A Construction Suite · Zero External CDN Dependencies
-  </footer>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      if (window.renderMathInElement) {
-        renderMathInElement(document.body, {
-          delimiters: [
-            {left: "$$", right: "$$", display: true},
-            {left: "$", right: "$", display: false},
-            {left: "\\(", right: "\\)", display: false},
-            {left: "\\[", right: "\\]", display: true}
-          ],
-          throwOnError: false
-        });
-      }
-    });
-  </script>
-</body>
-</html>
+<!doctype html>
+<html lang="en" data-theme="light" data-g9-shell data-g9-role="CORE1A" data-g9-product="PRODUCT-MATH-POLYNOMIALS">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Polynomials: Degree, Remainder & Factor Theorems · Construction (Core 1A)</title>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="../../css/modern-learner.css">
+  <style>
+    :root {
+      --g9-space: clamp(16px, 2vw, 28px);
+      --accent: #0284c7;
+    }
+    .g9-formula-block {
+      margin: 10px 0;
+      padding: 12px 18px;
+      background: var(--bg-soft, #f8fafc);
+      border: 1px solid var(--border, #e2e8f0);
+      border-radius: var(--radius-sm, 8px);
+      text-align: center;
+      font-size: 1.15rem;
+      overflow-x: auto;
+    }
+    [data-theme="dark"] .g9-formula-block {
+      background: #1e293b;
+      border-color: #334155;
+    }
+    main { max-width: 1240px; margin: 0 auto; padding: var(--g9-space); }
+    .g9-core1a-book { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 24px; }
+    .g9-core1a-book h1 { font-size: 26px; font-weight: 800; margin-bottom: 8px; color: var(--text-main); }
+    .g9-split { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+    @media (max-width: 960px) { .g9-split { grid-template-columns: 1fr; } }
+    .g9-card-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px; margin-bottom: 18px; }
+    .g9-step-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: cstep; }
+    .g9-step-item { counter-increment: cstep; position: relative; padding: 14px 16px 14px 50px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); }
+    .g9-step-item::before { content: counter(cstep); position: absolute; left: 14px; top: 14px; width: 26px; height: 26px; border-radius: 50%; background: var(--accent-learn-bg); color: var(--accent-learn); font-weight: 800; display: grid; place-items: center; font-size: 14px; }
+    .g9-crux-step { border-color: var(--accent-learn); box-shadow: 0 0 0 1px var(--accent-learn); background: var(--bg-card); }
+    .g9-crux-badge { display: inline-block; background: #fee2e2; color: #991b1b; font-size: 14px; font-weight: 800; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; }
+    .g9-worked-card { border-left: 4px solid var(--accent-learn); background: var(--bg-soft); padding: 16px 20px; border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+    .g9-worked-card h4 { margin-bottom: 8px; font-size: 15px; color: var(--accent-learn); text-transform: uppercase; letter-spacing: 0.04em; }
+    .g9-worked-card ol { padding-left: 20px; margin: 10px 0; }
+    .g9-worked-card li { margin-bottom: 8px; font-size: 14.5px; }
+    .g9-visual-container { position: sticky; top: 80px; }
+    .g9-svg-wrap { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 14px; text-align: center; }
+    .g9-stage-controls { display: flex; gap: 8px; justify-content: center; margin-top: 12px; }
+    .g9-stage-btn { padding: 6px 14px; border-radius: var(--radius-pill); border: 1px solid var(--border); background: var(--bg-card); font-size: 14px; font-weight: 700; cursor: pointer; color: var(--text-main); }
+    .g9-stage-btn.active { background: var(--accent-learn); color: #fff; border-color: var(--accent-learn); }
+    .g9-actions-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <header class="g9-shell-header">
+    <div class="g9-header-inner">
+      <a href="../../index.html" class="g9-brand">
+        <span class="logo-icon">⚡</span>
+        <span class="brand-title">Grade9V3.5</span>
+        <span class="g9-brand-badge">Learner Platform</span>
+      </a>
+      <nav class="g9-header-nav" aria-label="Portal Navigation">
+        <a href="../../index.html">Home</a>
+        <a href="../../physics/index.html">Physics</a>
+        <a href="../../chemistry/index.html">Chemistry</a>
+        <a href="../../mathematics/index.html" class="active">Mathematics</a>
+        <a href="../../question-bank/index.html">Question Bank</a>
+      </nav>
+      <div class="g9-header-actions">
+        <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search">
+          <span class="g9-btn-icon">🔍</span>
+          <span class="g9-btn-text">Search</span>
+        </button>
+        <button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings" aria-label="Display & Theme">
+          <span class="g9-btn-icon">🌙 / ☀️</span>
+          <span class="g9-btn-text">Display</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="g9-breadcrumb" aria-label="Breadcrumb">
+    <div class="g9-breadcrumb-inner">
+      <a href="../../index.html">Home</a>
+      <span>/</span>
+      <a href="../../mathematics/index.html">Mathematics</a>
+      <span>/</span>
+      <a href="../polynomials/index.html">Polynomials</a>
+      <span>/</span>
+      <span class="current">Learn (Core 1A)</span>
+    </div>
+  </nav>
+
+  <main>
+    <div class="g9-core1a-book">
+      <span class="g9-tag g9-tag-math">Mathematics Core 1A</span>
+      <h1 style="margin-top: 8px;">Polynomials: Degree, Remainder &amp; Factor Theorems</h1>
+      <p style="color: var(--text-muted); font-size: 15px;">
+        Rigorous foundations from NCERT Ganita Manjari §2.1 and Assessment Module m2 (Pages 1–11): algebraic degrees, linear remainder theorems, monic factorization, and cyclic symmetric identities.
+      </p>
+
+      <div class="g9-actions-bar">
+        <a href="../../standalone/mathematics-polynomials-and-coordinates-suite.html#tab-poly" class="g9-btn g9-btn-outline" style="border-color: var(--accent); color: var(--accent);">
+          ⚡ Open Interactive Polynomial Suite
+        </a>
+        <a href="../../question-bank/index.html?q=polynomial" class="g9-btn g9-btn-outline">
+          📖 Practice in Question Bank
+        </a>
+      </div>
+    </div>
+
+    <!-- CONCEPT 1 -->
+    <article class="g9-card-panel" id="mic-poly-degree">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag g9-tag-math">Concept 1 of 6</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px;">Degree Classification &amp; Like-Term Simplification</h2>
+          <p style="font-size: 15px; margin-bottom: 12px;">
+            The degree of a polynomial in one variable is the highest exponent of the variable with a <strong>non-zero coefficient</strong> in its fully simplified form.
+          </p>
+
+          <div class="g9-formula-block">
+            $$\text{deg}\Big(\sum_{k=0}^n a_k x^k\Big) = n \quad \text{where } a_n 
+eq 0$$
+          </div>
+
+          <ul class="g9-step-list">
+            <li class="g9-step-item">
+              <strong>Combine All Like Powers:</strong> Terms with identical variable exponents must be algebraically grouped before inspecting powers.
+            </li>
+            <li class="g9-step-item g9-crux-step">
+              <span class="g9-crux-badge">Crux Distinction</span><br>
+              <strong>Inspect Non-Zero Leading Coefficients:</strong> If the coefficient of the written highest-power term cancels out to zero ($0 \cdot x^n$), it does NOT determine the degree.
+            </li>
+            <li class="g9-step-item">
+              <strong>Constant Polynomials:</strong> Any non-zero constant $c 
+eq 0$ can be written as $c x^0$, hence has degree $0$. The zero polynomial $P(x) = 0$ has <em>undefined degree</em>.
+            </li>
+          </ul>
+
+          <div class="g9-worked-card" style="margin-top: 18px;">
+            <h4>Worked Anchor (NCERT Ganita Manjari §2.1)</h4>
+            <p><strong>Problem:</strong> Determine the degree of $P(x) = 3x^3 - 3x^3 + 2x + 5$.</p>
+            <ol>
+              <li>Combine like cubic terms: $3x^3 - 3x^3 = 0$.</li>
+              <li>Simplified expression: $P(x) = 2x + 5 = 2x^1 + 5x^0$.</li>
+              <li>Highest power with non-zero coefficient is $1$. Therefore, $\text{deg}(P) = 1$.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-muted);">Visual Power Slots</h4>
+            <svg viewBox="0 0 400 200" width="100%" height="auto" style="max-width: 360px;">
+              <rect x="20" y="20" width="80" height="70" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+              <text x="60" y="55" font-family="sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#0f172a">x⁰ (Const)</text>
+              <text x="60" y="75" font-family="sans-serif" font-size="14" text-anchor="middle" fill="#0284c7">deg = 0</text>
+
+              <rect x="110" y="20" width="80" height="70" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+              <text x="150" y="55" font-family="sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#0f172a">x¹ (Linear)</text>
+              <text x="150" y="75" font-family="sans-serif" font-size="14" text-anchor="middle" fill="#0284c7">deg = 1</text>
+
+              <rect x="200" y="20" width="80" height="70" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+              <text x="240" y="55" font-family="sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#0f172a">x² (Quadratic)</text>
+              <text x="240" y="75" font-family="sans-serif" font-size="14" text-anchor="middle" fill="#0284c7">deg = 2</text>
+
+              <rect x="290" y="20" width="90" height="70" rx="8" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+              <text x="335" y="55" font-family="sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#991b1b">x³ (Canceled)</text>
+              <text x="335" y="75" font-family="sans-serif" font-size="14" text-anchor="middle" fill="#991b1b">coeff = 0</text>
+
+              <path d="M 290 100 L 150 140" stroke="#0284c7" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrow)"/>
+              <rect x="40" y="140" width="320" height="40" rx="6" fill="#e0f2fe" stroke="#0284c7"/>
+              <text x="200" y="165" font-family="sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#0369a1">
+                Highest surviving power = 1 ⇒ Linear
+              </text>
+            </svg>
+          </div>
+
+          <details class="g9-card-panel" style="padding: 14px; margin-top: 10px;">
+            <summary style="font-weight: 700; cursor: pointer; color: var(--accent);">
+              ✍️ Self-Check: Degree of 2
+            </summary>
+            <p style="font-size: 14px; margin-top: 8px;">
+              <strong>Question:</strong> "2 is a polynomial of degree _____." (m2 Page 1 Item 1)<br>
+              <strong>Answer:</strong> <strong>Zero ($0$)</strong>, because $2 = 2x^0$.
+            </p>
+          </details>
+        </div>
+      </div>
+    </article>
+
+    <!-- CONCEPT 2 -->
+    <article class="g9-card-panel" id="mic-poly-zeros">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag g9-tag-math">Concept 2 of 6</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px;">Zeros of a Polynomial &amp; Functional Evaluation</h2>
+          <p style="font-size: 15px; margin-bottom: 12px;">
+            A real number $\alpha$ is a <strong>zero</strong> (or root) of a polynomial $p(x)$ if and only if $p(\alpha) = 0$.
+          </p>
+
+          <div class="g9-formula-block">
+            $$p(\alpha) = 0 \iff (x - \alpha) \text{ is a linear factor of } p(x)$$
+          </div>
+
+          <ul class="g9-step-list">
+            <li class="g9-step-item">
+              <strong>Value at a Point:</strong> Evaluating $p(k)$ involves direct functional substitution of $x = k$ into every term.
+            </li>
+            <li class="g9-step-item g9-crux-step">
+              <span class="g9-crux-badge">Geometric Core</span><br>
+              <strong>X-Axis Intercepts:</strong> The zeros of $p(x)$ correspond exactly to the coordinates where the graph $y = p(x)$ crosses or touches the horizontal $X$-axis ($y = 0$).
+            </li>
+            <li class="g9-step-item">
+              <strong>Linear Polynomial Zero:</strong> For $p(x) = ax + b$ with $a 
+eq 0$, solving $ax + b = 0$ yields the unique root $\alpha = -b/a$.
+            </li>
+          </ul>
+
+          <div class="g9-worked-card" style="margin-top: 18px;">
+            <h4>Worked Example</h4>
+            <p><strong>Problem:</strong> Find the zeros of $p(x) = 2x^2 - 8$.</p>
+            <ol>
+              <li>Set $p(x) = 0 \implies 2x^2 - 8 = 0$.</li>
+              <li>Divide by $2$: $x^2 - 4 = 0 \implies (x - 2)(x + 2) = 0$.</li>
+              <li>Roots are $x = 2$ and $x = -2$. Graph intersects $X$-axis at $(2, 0)$ and $(-2, 0)$.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-muted);">Root Intercepts on Plane</h4>
+            <svg viewBox="0 0 320 180" width="100%" height="auto">
+              <line x1="20" y1="90" x2="300" y2="90" stroke="#64748b" stroke-width="2"/>
+              <line x1="160" y1="10" x2="160" y2="170" stroke="#64748b" stroke-width="2"/>
+              <text x="290" y="82" font-size="14" fill="#64748b">X</text>
+              <text x="168" y="24" font-size="14" fill="#64748b">Y</text>
+
+              <path d="M 60 20 Q 160 160 260 20" fill="none" stroke="#0284c7" stroke-width="3"/>
+              <circle cx="100" cy="90" r="5" fill="#ef4444"/>
+              <text x="80" y="112" font-size="14" font-weight="700" fill="#ef4444">(-2, 0)</text>
+              <circle cx="220" cy="90" r="5" fill="#ef4444"/>
+              <text x="210" y="112" font-size="14" font-weight="700" fill="#ef4444">(+2, 0)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CONCEPT 3 -->
+    <article class="g9-card-panel" id="mic-poly-remainder">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag g9-tag-math">Concept 3 of 6</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px;">Polynomial Remainder Theorem</h2>
+          <p style="font-size: 15px; margin-bottom: 12px;">
+            Let $p(x)$ be any polynomial of degree $\ge 1$ and let $a$ be any real constant. When $p(x)$ is divided by the linear divisor $(x - a)$, the remainder is directly given by $p(a)$ without polynomial long division.
+          </p>
+
+          <div class="g9-formula-block">
+            $$p(x) = (ax - b) q(x) + R \implies R = p\Big(\frac{b}{a}\Big)$$
+          </div>
+
+          <ul class="g9-step-list">
+            <li class="g9-step-item">
+              <strong>Division Invariant:</strong> Divisor degree is $1$, so remainder $R$ must have degree $< 1$, meaning $R$ is a constant.
+            </li>
+            <li class="g9-step-item g9-crux-step">
+              <span class="g9-crux-badge">Crux Move</span><br>
+              <strong>Zeroing the Quotient:</strong> Substitute the root of the divisor ($ax - b = 0 \implies x = b/a$). The quotient term $(ax - b)q(x)$ vanishes identically to zero, isolating $R = p(b/a)$.
+            </li>
+            <li class="g9-step-item">
+              <strong>Linear Invariance:</strong> Holds for any monic or non-monic linear divisor $(b - ax)$, giving remainder $p(b/a)$. (m2 Page 1 Item 2).
+            </li>
+          </ul>
+
+          <div class="g9-worked-card" style="margin-top: 18px;">
+            <h4>Worked Anchor (m2 Page 1 Item 2)</h4>
+            <p><strong>Problem:</strong> Find the remainder when $p(x) = x^4 + x^3 - 2x^2 + x + 1$ is divided by $(x - 1)$.</p>
+            <ol>
+              <li>Find the root of linear divisor: $x - 1 = 0 \implies x = 1$.</li>
+              <li>Evaluate $p(1) = 1^4 + 1^3 - 2(1)^2 + 1 + 1 = 1 + 1 - 2 + 1 + 1 = 2$.</li>
+              <li>By the Remainder Theorem, $R = 2$.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-muted);">Arithmetic Division Pipeline</h4>
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-family: monospace; font-size: 14px; text-align: left; line-height: 1.8;">
+              <div>Divisor: <strong>(x - a)</strong></div>
+              <div>Equation: <strong>p(x) = (x - a)·q(x) + R</strong></div>
+              <div style="color: var(--accent); margin: 6px 0;">⚡ Set x = a:</div>
+              <div style="background: #e0f2fe; padding: 4px 8px; border-radius: 4px; color: #0369a1;">
+                p(a) = (a - a)·q(a) + R<br>
+                p(a) = 0 + R ⇒ <strong>R = p(a)</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CONCEPT 4 -->
+    <article class="g9-card-panel" id="mic-poly-factor">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag g9-tag-math">Concept 4 of 6</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px;">Factor Theorem &amp; Monic Factorization</h2>
+          <p style="font-size: 15px; margin-bottom: 12px;">
+            The Factor Theorem is the immediate zero-remainder corollary of the Remainder Theorem: $(x - a)$ is a factor of $p(x)$ if and only if $p(a) = 0$.
+          </p>
+
+          <div class="g9-formula-block">
+            $$(x - a) \mid p(x) \iff p(a) = 0$$
+          </div>
+
+          <ul class="g9-step-list">
+            <li class="g9-step-item">
+              <strong>Testing Potential Factors:</strong> To test if $(x - a)$ divides $p(x)$, compute $p(a)$. If $p(a) = 0$, it is a factor; if $p(a) 
+eq 0$, it is not.
+            </li>
+            <li class="g9-step-item g9-crux-step">
+              <span class="g9-crux-badge">Crux Move</span><br>
+              <strong>Solving Unknown Parameter $k$:</strong> When told $(x - a)$ is a factor of a polynomial containing parameter $k$, set $p(a) = 0$ to solve for $k$.
+            </li>
+          </ul>
+
+          <div class="g9-worked-card" style="margin-top: 18px;">
+            <h4>Worked Anchor (m2 Page 2 Q25)</h4>
+            <p><strong>Problem:</strong> If $(x - a)$ is a factor of $p(x) = x^3 - a^2 x + x + 2$, find the value of $a$.</p>
+            <ol>
+              <li>By Factor Theorem, $(x - a)$ a factor $\implies p(a) = 0$.</li>
+              <li>Substitute $x = a$: $a^3 - a^2(a) + a + 2 = 0$.</li>
+              <li>Simplify: $a^3 - a^3 + a + 2 = 0 \implies a + 2 = 0 \implies a = -2$.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-muted);">Factor Bifurcation</h4>
+            <div style="display: flex; gap: 8px; justify-content: center;">
+              <div style="flex: 1; background: #ecfdf5; border: 1px solid #10b981; border-radius: 8px; padding: 12px; font-size: 14px;">
+                <strong style="color: #047857;">p(a) = 0</strong><br>
+                ✓ Remainder = 0<br>
+                ✓ (x - a) is a <strong>factor</strong>
+              </div>
+              <div style="flex: 1; background: #fef2f2; border: 1px solid #ef4444; border-radius: 8px; padding: 12px; font-size: 14px;">
+                <strong style="color: #b91c1c;">p(a) ≠ 0</strong><br>
+                ✗ Remainder ≠ 0<br>
+                ✗ (x - a) is <strong>not</strong> a factor
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CONCEPT 5 -->
+    <article class="g9-card-panel" id="mic-poly-id-quad">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag g9-tag-math">Concept 5 of 6</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px;">Quadratic Identities &amp; Square of Trinomial</h2>
+          <p style="font-size: 15px; margin-bottom: 12px;">
+            Standard algebraic identities represent geometric surface-area decompositions of multi-variable polynomials.
+          </p>
+
+          <div class="g9-formula-block">
+            $$(x + y + z)^2 = x^2 + y^2 + z^2 + 2xy + 2yz + 2zx$$
+          </div>
+
+          <ul class="g9-step-list">
+            <li class="g9-step-item">
+              <strong>Square of Trinomial:</strong> The expansion contains three pure quadratic squares ($x^2 + y^2 + z^2$) plus three doubled cross-products ($2(xy + yz + zx)$).
+            </li>
+            <li class="g9-step-item g9-crux-step">
+              <span class="g9-crux-badge">Crux Symmetry</span><br>
+              <strong>Sign Conservation:</strong> When terms have negative signs, e.g. $(x - 2y - z)^2$, treat as $(x + (-2y) + (-z))^2$. Squares remain positive; cross-products carry product of signs.
+            </li>
+          </ul>
+
+          <div class="g9-worked-card" style="margin-top: 18px;">
+            <h4>Worked Example (m2 Checkpoint 2)</h4>
+            <p><strong>Problem:</strong> If $x + y + z = 12$ and $x^2 + y^2 + z^2 = 64$, find $xy + yz + zx$.</p>
+            <ol>
+              <li>Expand: $(x+y+z)^2 = (x^2+y^2+z^2) + 2(xy+yz+zx)$.</li>
+              <li>Substitute: $12^2 = 64 + 2(xy+yz+zx) \implies 144 - 64 = 2(xy+yz+zx)$.</li>
+              <li>$80 = 2(xy+yz+zx) \implies xy + yz + zx = 40$.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-muted);">Trinomial Area Matrix (3x3)</h4>
+            <svg viewBox="0 0 240 240" width="100%" height="auto" style="max-width: 220px;">
+              <rect x="20" y="20" width="70" height="70" fill="#e0f2fe" stroke="#0284c7"/>
+              <text x="55" y="60" font-size="14" font-weight="700" text-anchor="middle">x²</text>
+
+              <rect x="90" y="20" width="60" height="70" fill="#f1f5f9" stroke="#cbd5e1"/>
+              <text x="120" y="60" font-size="14" text-anchor="middle">xy</text>
+
+              <rect x="150" y="20" width="70" height="70" fill="#f1f5f9" stroke="#cbd5e1"/>
+              <text x="185" y="60" font-size="14" text-anchor="middle">xz</text>
+
+              <rect x="20" y="90" width="70" height="60" fill="#f1f5f9" stroke="#cbd5e1"/>
+              <text x="55" y="125" font-size="14" text-anchor="middle">yx</text>
+
+              <rect x="90" y="90" width="60" height="60" fill="#e0f2fe" stroke="#0284c7"/>
+              <text x="120" y="125" font-size="14" font-weight="700" text-anchor="middle">y²</text>
+
+              <rect x="150" y="90" width="70" height="60" fill="#f1f5f9" stroke="#cbd5e1"/>
+              <text x="185" y="125" font-size="14" text-anchor="middle">yz</text>
+
+              <rect x="20" y="150" width="70" height="70" fill="#f1f5f9" stroke="#cbd5e1"/>
+              <text x="55" y="190" font-size="14" text-anchor="middle">zx</text>
+
+              <rect x="90" y="150" width="60" height="70" fill="#f1f5f9" stroke="#cbd5e1"/>
+              <text x="120" y="190" font-size="14" text-anchor="middle">zy</text>
+
+              <rect x="150" y="150" width="70" height="70" fill="#e0f2fe" stroke="#0284c7"/>
+              <text x="185" y="190" font-size="14" font-weight="700" text-anchor="middle">z²</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CONCEPT 6 -->
+    <article class="g9-card-panel" id="mic-poly-id-cubic">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag g9-tag-math">Concept 6 of 6</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px;">Special Cubic Identity &amp; Conditional Sum Zero</h2>
+          <p style="font-size: 15px; margin-bottom: 12px;">
+            The three-variable cubic identity connects the sum of cubes to the product $3abc$ under linear condition $a + b + c = 0$.
+          </p>
+
+          <div class="g9-formula-block">
+            $$a^3 + b^3 + c^3 - 3abc = (a+b+c)(a^2+b^2+c^2 - ab - bc - ca)$$
+          </div>
+
+          <div class="g9-formula-block" style="border-color: var(--accent); background: #e0f2fe; color: #0369a1;">
+            $$\text{If } a + b + c = 0 \implies a^3 + b^3 + c^3 = 3abc$$
+          </div>
+
+          <ul class="g9-step-list">
+            <li class="g9-step-item">
+              <strong>Conditional Vanishing:</strong> If $a + b + c = 0$, the right-hand factor $(a + b + c)$ becomes zero, causing the entire RHS to vanish: $a^3 + b^3 + c^3 - 3abc = 0$.
+            </li>
+            <li class="g9-step-item g9-crux-step">
+              <span class="g9-crux-badge">Competitive Shortcut</span><br>
+              <strong>Evaluating Cube Sums:</strong> Allows calculating sums of large numerical cubes without computing single cubes, e.g., $(-12)^3 + 7^3 + 5^3$.
+            </li>
+            <li class="g9-step-item">
+              <strong>Cyclic Fractions:</strong> For expressions like $\sum \frac{(a-b)^2}{(b-c)(c-a)}$, setting common denominator $(a-b)(b-c)(c-a)$ converts numerator into $(a-b)^3+(b-c)^3+(c-a)^3 = 3(a-b)(b-c)(c-a)$, giving value $3$. (m2 Page 3 Q8).
+            </li>
+          </ul>
+
+          <div class="g9-worked-card" style="margin-top: 18px;">
+            <h4>Worked Anchor (m2 Page 1 Item 5 & Page 3 Q8)</h4>
+            <p><strong>Problem:</strong> Evaluate $(-12)^3 + 7^3 + 5^3$ without cubing directly.</p>
+            <ol>
+              <li>Let $a = -12, b = 7, c = 5$.</li>
+              <li>Check sum: $a + b + c = -12 + 7 + 5 = 0$.</li>
+              <li>Apply identity: $a^3 + b^3 + c^3 = 3abc = 3(-12)(7)(5) = -36 \times 35 = -1260$.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-muted);">Conditional Zero Balance</h4>
+            <div style="background: #f0fdf4; border: 1px solid #10b981; border-radius: 8px; padding: 16px; text-align: center;">
+              <div style="font-size: 16px; font-weight: 800; color: #047857;">a + b + c = 0</div>
+              <div style="margin: 8px 0; font-size: 20px;">⬇️</div>
+              <div style="font-size: 17px; font-weight: 800; color: #0f172a;">a³ + b³ + c³ = 3abc</div>
+              <p style="font-size: 14px; color: #475569; margin-top: 6px;">
+                Instant evaluation without multiplying large cubes!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <footer style="margin-top: 40px; padding: 24px 20px; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 14px;">
+    Grade 9 Mathematics · Core 1A Construction Suite · Zero External CDN Dependencies
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false},
+            {left: "\\[", right: "\\]", display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -612,10 +612,21 @@
   font-weight: 700;
 }
 
-.qb-diff[data-band="D1"] { color: #10b981; border-color: rgba(16, 185, 129, 0.3); }
-.qb-diff[data-band="D2"] { color: #38bdf8; border-color: rgba(56, 189, 248, 0.3); }
-.qb-diff[data-band="D3"] { color: #f59e0b; border-color: rgba(245, 158, 11, 0.3); }
-.qb-diff[data-band="D4"] { color: #ec4899; border-color: rgba(236, 72, 153, 0.3); }
+.qb-diff[data-band="D1"], .qb-diff[data-band="Easy"] { color: #10b981; border-color: rgba(16, 185, 129, 0.3); }
+.qb-diff[data-band="D2"], .qb-diff[data-band="Medium"] { color: #38bdf8; border-color: rgba(56, 189, 248, 0.3); }
+.qb-diff[data-band="D3"], .qb-diff[data-band="Hard"] { color: #f59e0b; border-color: rgba(245, 158, 11, 0.3); }
+.qb-diff[data-band="D4"], .qb-diff[data-band="Advanced"] { color: #ec4899; border-color: rgba(236, 72, 153, 0.3); }
+
+.qb-topic-action-link.qb-btn-core1a {
+  background: var(--qb-accent, #38bdf8);
+  color: #0f172a !important;
+  font-weight: 700;
+  border-color: var(--qb-accent, #38bdf8);
+}
+.qb-topic-action-link.qb-btn-core1a:hover {
+  background: #0284c7;
+  color: #ffffff !important;
+}
 
 .qb-badges {
   display: flex;
@@ -633,6 +644,53 @@
   color: var(--qb-muted);
 }
 
+.qb-badge.qb-badge-hard {
+  color: #d97706;
+  border-color: rgba(217, 119, 6, 0.4);
+  background: rgba(245, 158, 11, 0.12);
+  font-weight: 700;
+}
+[data-theme="dark"] .qb-badge.qb-badge-hard {
+  color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.4);
+  background: rgba(245, 158, 11, 0.2);
+}
+
+.qb-badge.qb-badge-olympiad {
+  color: #db2777;
+  border-color: rgba(219, 39, 119, 0.4);
+  background: rgba(236, 72, 153, 0.12);
+  font-weight: 700;
+}
+[data-theme="dark"] .qb-badge.qb-badge-olympiad {
+  color: #f472b6;
+  border-color: rgba(244, 114, 182, 0.4);
+  background: rgba(236, 72, 153, 0.2);
+}
+
+.qb-badge.qb-badge-medium {
+  color: #0284c7;
+  border-color: rgba(2, 132, 199, 0.4);
+  background: rgba(56, 189, 248, 0.12);
+  font-weight: 700;
+}
+[data-theme="dark"] .qb-badge.qb-badge-medium {
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.4);
+  background: rgba(56, 189, 248, 0.18);
+}
+
+.qb-badge.qb-badge-easy {
+  color: #059669;
+  border-color: rgba(5, 150, 105, 0.4);
+  background: rgba(16, 185, 129, 0.12);
+  font-weight: 700;
+}
+[data-theme="dark"] .qb-badge.qb-badge-easy {
+  color: #34d399;
+  border-color: rgba(52, 211, 153, 0.4);
+  background: rgba(16, 185, 129, 0.18);
+}
 
 .qb-badge.ncert {
   color: #059669;
@@ -644,6 +702,18 @@
   color: #34d399;
   border-color: rgba(52, 211, 153, 0.4);
   background: rgba(52, 211, 153, 0.15);
+}
+
+.qb-badge.core2 {
+  color: #0284c7;
+  border-color: rgba(2, 132, 199, 0.4);
+  background: rgba(2, 132, 199, 0.12);
+  font-weight: 700;
+}
+[data-theme="dark"] .qb-badge.core2 {
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.4);
+  background: rgba(56, 189, 248, 0.15);
 }
 
 .qb-badge.trap {

@@ -25,7 +25,7 @@ STATUS: ALL UNITS COMPLETED & RECONCILED
 - [x] **UNIT-10**: Opaque learner-app registration (`public/physics/nlm/explorers/friction-threshold/index.html`)
 - [x] **UNIT-11**: Topic Workspace projection (`public/topics/nlm/index.html`)
 - [x] **UNIT-12**: Subject Hub projection (`public/{physics,chemistry,mathematics}/index.html`)
-- [x] **UNIT-13**: Unified learner discovery/search (`Shared/tools/build_learner_search_index.py`, 259 items)
+- [x] **UNIT-13**: Unified learner discovery/search (`Shared/tools/build_learner_search_index.py`, 366 items including 310 canonical questions)
 - [x] **UNIT-14**: Shared learner shell & context navigation (`public/css/modern-learner.css`)
 - [x] **UNIT-15**: Audience enforcement & LAB separation (`tests/test_learner_ui_and_search.py`)
 - [x] **UNIT-16**: Migration and route compatibility (`tests/test_migration_and_links.py`, 0 dead links)

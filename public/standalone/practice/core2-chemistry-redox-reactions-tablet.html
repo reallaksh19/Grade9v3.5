@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GRADE 9 CHEMISTRY - Redox Reactions Core (2) NCERT Question Helper | 12.7" Tablet Standalone Edition</title>
+  <meta name="description" content="Complete 12.7-inch tablet study suite for Redox Reactions Core 2: 11 NCERT Question Helper instances, Corrosion, Oxidation Numbers, Electron Transfer, and Appendix A solutions.">
+  <style>
+/* ==========================================================================
+   Chemistry: Redox Reactions Core 2 12.7" Tablet Standalone Stylesheet
+   WCAG 2.5.5 >= 48px touch targets, >= 120px textareas, no micro-fonts (<13.5px)
+   100% Offline Standalone · Dark/Light Mode · Responsive Stage/Support Grid
+   ========================================================================== */
+
+:root {
+  --tab12-container-max: 1400px;
+  --tab12-touch-min: 48px;
+  --tab12-base-font: 16px;
+  --tab12-radius-sm: 8px;
+  --tab12-radius-md: 12px;
+  --tab12-radius-lg: 16px;
+
+  /* Dark Theme Palette (Default) */
+  --bg-app: #080d1a;
+  --bg-surface: #0f172a;
+  --bg-card: #152238;
+  --bg-card-subtle: #1a2942;
+  --border: #263859;
+  --border-light: #334b75;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.25);
+  --success: #34d399;
+  --warning: #f59e0b;
+  --danger: #f87171;
+  --purple: #c084fc;
+}
+
+[data-theme="light"] {
+  --bg-app: #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f8fafc;
+  --border: #cbd5e1;
+  --border-light: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --accent: #0284c7;
+  --accent-glow: rgba(2, 132, 199, 0.15);
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --purple: #7e22ce;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--tab12-base-font);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-app);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+button, .btn, .tab-btn, summary {
+  min-height: var(--tab12-touch-min);
+  min-width: var(--tab12-touch-min);
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--tab12-radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: all 0.18s ease;
+  border: 1px solid transparent;
+}
+
+textarea.tablet-safe-input {
+  min-height: 120px;
+  width: 100%;
+  padding: 14px;
+  font-family: monospace, inherit;
+  font-size: 14.5px;
+  line-height: 1.5;
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  resize: vertical;
+  display: block;
+}
+
+textarea.tablet-safe-input:focus {
+  border-color: var(--accent);
+  background-color: var(--bg-card);
+}
+
+header.app-header {
+  background-color: var(--bg-surface);
+  border-bottom: 1.5px solid var(--border);
+  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: var(--tab12-container-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header-brand h1 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.subject-badge {
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: rgba(56, 189, 248, 0.15);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  font-weight: 700;
+}
+
+.theme-toggle-btn {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+}
+
+nav.tab-nav {
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 24px 0 24px;
+  overflow-x: auto;
+}
+
+.tab-nav-inner {
+  max-width: var(--tab12-container-max);
+  margin: 0 auto;
+  display: flex;
+  gap: 8px;
+}
+
+.tab-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: var(--tab12-radius-sm) var(--tab12-radius-sm) 0 0;
+  padding: 12px 18px;
+  white-space: nowrap;
+}
+
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  background: var(--bg-app);
+}
+
+main.layout-container {
+  max-width: var(--tab12-container-max);
+  margin: 20px auto;
+  padding: 0 20px;
+  width: 100%;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 24px;
+}
+
+@media (max-width: 1040px) {
+  main.layout-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stage-area {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.content-card {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.content-card h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.q-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+.q-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.q-badge {
+  background: rgba(192, 132, 252, 0.15);
+  border: 1px solid var(--purple);
+  color: var(--purple);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tag-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.q-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.q-prompt {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+details.solution-detail {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--tab12-radius-sm);
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+details.solution-detail summary {
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.02);
+  color: var(--accent);
+  user-select: none;
+}
+
+.solution-content {
+  padding: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 14.5px;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.support-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.support-widget {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 20px;
+}
+
+.support-widget h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.formula-box {
+  background: var(--bg-card-subtle);
+  border-left: 4px solid var(--accent);
+  padding: 14px 18px;
+  border-radius: 0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;
+  margin: 12px 0;
+  font-family: monospace;
+  font-size: 14.5px;
+  color: var(--text-primary);
+}
+  </style>
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <h1>
+          <span>⚡</span> Redox Reactions Core (2) NCERT Helper
+          <span class="subject-badge">Core (2) · 11 Questions</span>
+        </h1>
+      </div>
+      <div class="header-actions">
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">🌓 Mode</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tab-nav">
+    <div class="tab-nav-inner">
+      <button class="tab-btn active" onclick="switchTab('part-all')">All Questions (11)</button>
+      <button class="tab-btn" onclick="switchTab('part-1')">1. Chemical Change &amp; Corrosion</button>
+      <button class="tab-btn" onclick="switchTab('part-2')">2. Oxidation &amp; Reduction</button>
+      <button class="tab-btn" onclick="switchTab('part-3')">3. Redox Agents</button>
+      <button class="tab-btn" onclick="switchTab('part-4')">4. Displacement</button>
+      <button class="tab-btn" onclick="switchTab('part-5')">5. Balancing &amp; Synthesis</button>
+    </div>
+  </nav>
+
+  <main class="layout-container">
+    
+    <div class="stage-area">
+
+      <div class="content-card">
+        <h2><span>📚</span> Redox Reactions Core (2) Question Helper</h2>
+        <p>
+          11 retained NCERT source questions covering oxidation/reduction tracking, corrosion mechanisms, reducing agents, and displacement equations.
+        </p>
+      </div>
+
+<div id="part-all" class="tab-content active">
+
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 1</span>
+          <span class="tag-pill">Q01 · Page 3</span>
+        </div>
+        <div class="q-title">Question 1 - Unit 2 Q2: Rusting: corrosion and</div>
+        <p class="q-prompt">chemical change committed to an answer. NCERT Try the question First nudge Rusting of an article made of iron is called what, and is it a Rust is not just a change of shape or state. Iron reacts with oxygen/ physical or chemical change? moisture and forms new corrosion products. See the idea - corrosion is chemistry, not a surface-only change</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            01. Unit 2 Q2 - Rusting: corrosion and chemical change
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 1</span>
+          <span class="tag-pill">Q02 · Page 4</span>
+        </div>
+        <div class="q-title">Question 2 - Unit 2 Q6: Find the physical changes Try it first. Cover the answer-check box until you have committed</div>
+        <p class="q-prompt">to an answer. NCERT Try the question First nudge Which are physical changes: (i) melting iron, (ii) rusting iron, (iii) Melting, bending and wire-drawing change state/shape; rusting bending an iron rod, (iv) drawing iron into a wire? creates new substances. See the idea - identity test</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            02. Unit 2 Q6 - Find the physical changes<br>Set-up: NCERT choice test: corrosion + chemical change. Set-up: (i), (iii), (iv) are physical; (ii) is chemical.<br>Rusting forms new substances on iron. Melting changes only state.<br>1 1<br>Formation of new substances means it is a chemical change. Bending and drawing change form.<br>2 2<br>The deterioration of iron in this way is corrosion. Rusting changes composition, so it is chemical.<br>3 3<br>Final answer Final answer<br>Corrosion; it is a chemical change (option c). (i), (iii) and (iv) - option (c).<br>NCERT source - Unit 2 Q2 NCERT source - Unit 2 Q6<br>Core (2) | worked solutions 19
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 1</span>
+          <span class="tag-pill">Q03 · Page 5</span>
+        </div>
+        <div class="q-title">Question 3 - Sample I Q3: Rusting repeat - sample</div>
+        <p class="q-prompt">paper I to an answer. NCERT Try the question First nudge Rusting of an iron article is called what and what kind of change Rusting produces new corrosion products, so it is chemical. is it?</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            03. Unit 2 Q7 - Burning wood is a chemical change
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 1</span>
+          <span class="tag-pill">Q04 · Page 6</span>
+        </div>
+        <div class="q-title">Question 4 - Sample II Q2: Rusting repeat -</div>
+        <p class="q-prompt">sample paper II to an answer. NCERT Try the question First nudge Which are physical changes: melting iron, rusting iron, bending Rusting alone among these changes composition. an iron rod, drawing iron into wire?</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            04. Unit 2 Q15(c) - Heating iron and sulphur<br>Set-up: Chemical: decaying and burning. Physical: sawing and Set-up: Fe + S → FeS; Fe is oxidised, S is reduced.<br>hammering.<br>Before heating, Fe and S are elements: oxidation number 0.<br>1<br>Decaying changes the chemical composition.<br>1<br>In FeS, Fe is +2 and S is -2.<br>2<br>Burning reacts the material with oxygen and forms new products.<br>2<br>Fe rises 0→+2: oxidation. S falls 0→-2: reduction.<br>3<br>Sawing and hammering do not create a new substance.<br>3<br>Final answer<br>Final answer<br>Iron and sulphur react to form iron sulphide, FeS; the formation<br>(i) and (ii) - option (a). step is redox (Fe oxidised, S reduced).<br>NCERT source - Unit 2 Q7 NCERT source - Unit 2 Q15(c)<br>Core (2) | worked solutions 20
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 2</span>
+          <span class="tag-pill">Q05 · Page 8</span>
+        </div>
+        <div class="q-title">Question 1 - Unit 2 Q15(c): Heating iron and sulphur Try it first. Cover the answer-check box until you have committed</div>
+        <p class="q-prompt">to an answer. NCERT Try the question First nudge What would you observe when a mixture of iron filings and Track the same atoms before and after: Fe 0 → +2; S 0 → -2 in FeS. sulphur powder is heated strongly?</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            05. Unit 2 Q18(b) - Zinc + hydrochloric acid
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 3</span>
+          <span class="tag-pill">Q06 · Page 10</span>
+        </div>
+        <div class="q-title">Question 1 - Unit 2 Q18(b): Zinc + hydrochloric acid Try it first. Cover the answer-check box until you have committed</div>
+        <p class="q-prompt">to an answer. NCERT Try the question First nudge Classify this property: zinc dissolves in hydrochloric acid with Track Zn and H. Chloride does not change oxidation number. evolution of hydrogen gas. Then interpret the redox change.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            06. Unit 2 Q29 - Chemical but non-redox decomposition<br>Set-up: Zn: 0→+2 (oxidation); H: +1→0 (reduction). Set-up: CaCO₃: Ca +2, C +4, O -2 → CaO: Ca +2/O -2; CO₂: C<br>+4/O -2.<br>Write Zn + 2HCl → ZnCl₂ + H₂.<br>1<br>The equation shows new substances, so it is chemical.<br>1<br>Zn changes 0→+2, so Zn is oxidised.<br>2<br>Track oxidation numbers across the reaction.<br>2<br>Hydrogen changes +1→0, so H⁺ is reduced.<br>3<br>All tracked oxidation numbers remain unchanged.<br>3<br>Oxidised reactant = reducing agent; reduced reactant species belongs to<br>4<br>the oxidising side. Therefore the reaction is non-redox.<br>4<br>Final answer<br>Final answer<br>It is a chemical property. Zn is oxidised and acts as the reducing<br>It is a chemical decomposition but not a redox reaction because<br>agent; H⁺ from HCl is reduced (HCl is the oxidising reagent in the<br>no oxidation number changes.<br>source-level equation).<br>NCERT source - Unit 2 Q29<br>NCERT source - Unit 2 Q18(b)<br>Core (2) | worked solutions 21
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 4</span>
+          <span class="tag-pill">Q07 · Page 12</span>
+        </div>
+        <div class="q-title">Question 1 - Unit 2 Q29: Chemical but non-redox</div>
+        <p class="q-prompt">decomposition committed to an answer. NCERT Try the question First nudge On heating calcium carbonate, CaCO₃ → CaO + CO₂. It is a Ca is +2 on both sides; C is +4 on both sides; O is -2 on both sides. chemical change. Is it redox?</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            07. Unit 2 Q30(f) - Non-metal required for combustion
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 4</span>
+          <span class="tag-pill">Q08 · Page 14</span>
+        </div>
+        <div class="q-title">Question 1 - Unit 2 Q7: Burning wood is a</div>
+        <p class="q-prompt">chemical change to an answer. NCERT Try the question First nudge Which are chemical changes: (i) decaying wood, (ii) burning Burning creates new substances and is an oxidation/combustion wood, (iii) sawing wood, (iv) hammering a nail into wood? process. Sawing and hammering are physical. See the idea - combustion route</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            08. Unit 2 Q35 - Heated vs unheated iron-sulphur mixture<br>Set-up: fuel + O₂ → oxidised products + energy (general Set-up: A: H₂S (rotten-egg smell); B: H₂ (burns with a pop).<br>pattern).<br>Heating A forms FeS by a redox combination: Fe 0→+2 and S 0→-2.<br>1<br>Oxygen is a non-metal gas.<br>1<br>A + HCl: FeS forms H₂S gas; oxidation numbers do not change in this acid<br>2<br>It supports ordinary combustion. reaction.<br>2<br>B + HCl: iron displaces hydrogen, giving H₂; Zn/Fe-style metal-acid<br>3<br>In combustion, oxidation-number changes can be used to prove the redox<br>3<br>displacement is redox.<br>process.<br>Identify H₂ by pop test; H₂S by characteristic odour (waft cautiously in real<br>4<br>laboratory practice).<br>Final answer<br>Oxygen (O₂).<br>Final answer<br>Part A gives H₂S, identified by its characteristic rotten-egg smell;<br>NCERT source - Unit 2 Q30(f) Part B gives H₂, identified by the pop test.<br>NCERT source - Unit 2 Q35<br>Core (2) | worked solutions 22
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 5</span>
+          <span class="tag-pill">Q09 · Page 15</span>
+        </div>
+        <div class="q-title">Question 2 - Unit 2 Q30(f): Non-metal required for</div>
+        <p class="q-prompt">combustion to an answer. NCERT Try the question First nudge Name the non-metal required for combustion and connect it to Combustion commonly involves reaction with molecular oxygen, O₂. the redox idea.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            09. Unit 2 Q38(c) - Burning kerosene
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 5</span>
+          <span class="tag-pill">Q10 · Page 16</span>
+        </div>
+        <div class="q-title">Question 3 - Unit 2 Q35: Heated vs unheated iron-</div>
+        <p class="q-prompt">sulphur mixture committed to an answer. NCERT Try the question First nudge Iron filings and sulphur are split into A (heated strongly) and B Use two equations: FeS + 2HCl → FeCl₂ + H₂S; Fe + 2HCl → FeCl₂ + H₂. (not heated). Dilute HCl is added to both and gas evolves. How can the gases be identified?</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            10. Sample I Q3 - Rusting repeat - sample paper I<br>Set-up: hydrocarbon fuel + O₂ → CO₂ + H₂O (ideal complete- Set-up: corrosion + chemical change.<br>combustion model).<br>Rusting is corrosion.<br>1<br>Kerosene reacts with oxygen.<br>1<br>New substances form.<br>2<br>New products are formed, so it is a chemical change.<br>2<br>Therefore it is a chemical change.<br>3<br>Carbon/hydrogen are oxidised while oxygen is reduced in the combustion<br>3<br>process.<br>Final answer<br>Corrosion; chemical change - option (c).<br>Final answer<br>Chemical change; combustion is an oxidation/redox process.<br>NCERT source - Sample I Q3<br>NCERT source - Unit 2 Q38(c)<br>Core (2) | worked solutions 23
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 5</span>
+          <span class="tag-pill">Q11 · Page 17</span>
+        </div>
+        <div class="q-title">Question 4 - Unit 2 Q38(c): Burning kerosene Try it first. Cover the answer-check box until you have committed</div>
+        <p class="q-prompt">to an answer. NCERT Try the question First nudge Classify burning of kerosene in a lantern as physical or chemical Combustion forms new substances such as oxides; it is not a change, and connect it to oxidation. reversible state change. See the idea - combustion route</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            11. Sample II Q2 - Rusting repeat - sample paper II<br>Set-up: (i), (iii), (iv).<br>Melting is physical.<br>1<br>Bending and wire drawing are physical.<br>2<br>Rusting is chemical/corrosion.<br>3<br>Final answer<br>(i), (iii) and (iv) - option (c).<br>NCERT source - Sample II Q2<br>Core (2) | worked solutions 24
+          </div>
+        </details>
+      </div>
+    </div>
+<div id="part-1" class="tab-content">
+
+      <div class="content-card">
+        <h2><span>⚡</span> PART 1: CHEMICAL CHANGE, OXIDATION & CORROSION</h2>
+        <p>Targeted NCERT questions with answer-checks and electron transfer reasoning.</p>
+      </div>
+    
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 1</span>
+                  <span class="tag-pill">Q01 · Page 3</span>
+                </div>
+                <div class="q-title">Question 1 - Unit 2 Q2: Rusting: corrosion and</div>
+                <p class="q-prompt">chemical change committed to an answer. NCERT Try the question First nudge Rusting of an article made of iron is called what, and is it a Rust is not just a change of shape or state. Iron reacts with oxygen/ physical or chemical change? moisture and forms new corrosion products. See the idea - corrosion is chemistry, not a surface-only change</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    01. Unit 2 Q2 - Rusting: corrosion and chemical change
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 1</span>
+                  <span class="tag-pill">Q02 · Page 4</span>
+                </div>
+                <div class="q-title">Question 2 - Unit 2 Q6: Find the physical changes Try it first. Cover the answer-check box until you have committed</div>
+                <p class="q-prompt">to an answer. NCERT Try the question First nudge Which are physical changes: (i) melting iron, (ii) rusting iron, (iii) Melting, bending and wire-drawing change state/shape; rusting bending an iron rod, (iv) drawing iron into a wire? creates new substances. See the idea - identity test</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    02. Unit 2 Q6 - Find the physical changes<br>Set-up: NCERT choice test: corrosion + chemical change. Set-up: (i), (iii), (iv) are physical; (ii) is chemical.<br>Rusting forms new substances on iron. Melting changes only state.<br>1 1<br>Formation of new substances means it is a chemical change. Bending and drawing change form.<br>2 2<br>The deterioration of iron in this way is corrosion. Rusting changes composition, so it is chemical.<br>3 3<br>Final answer Final answer<br>Corrosion; it is a chemical change (option c). (i), (iii) and (iv) - option (c).<br>NCERT source - Unit 2 Q2 NCERT source - Unit 2 Q6<br>Core (2) | worked solutions 19
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 1</span>
+                  <span class="tag-pill">Q03 · Page 5</span>
+                </div>
+                <div class="q-title">Question 3 - Sample I Q3: Rusting repeat - sample</div>
+                <p class="q-prompt">paper I to an answer. NCERT Try the question First nudge Rusting of an iron article is called what and what kind of change Rusting produces new corrosion products, so it is chemical. is it?</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    03. Unit 2 Q7 - Burning wood is a chemical change
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 1</span>
+                  <span class="tag-pill">Q04 · Page 6</span>
+                </div>
+                <div class="q-title">Question 4 - Sample II Q2: Rusting repeat -</div>
+                <p class="q-prompt">sample paper II to an answer. NCERT Try the question First nudge Which are physical changes: melting iron, rusting iron, bending Rusting alone among these changes composition. an iron rod, drawing iron into wire?</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    04. Unit 2 Q15(c) - Heating iron and sulphur<br>Set-up: Chemical: decaying and burning. Physical: sawing and Set-up: Fe + S → FeS; Fe is oxidised, S is reduced.<br>hammering.<br>Before heating, Fe and S are elements: oxidation number 0.<br>1<br>Decaying changes the chemical composition.<br>1<br>In FeS, Fe is +2 and S is -2.<br>2<br>Burning reacts the material with oxygen and forms new products.<br>2<br>Fe rises 0→+2: oxidation. S falls 0→-2: reduction.<br>3<br>Sawing and hammering do not create a new substance.<br>3<br>Final answer<br>Final answer<br>Iron and sulphur react to form iron sulphide, FeS; the formation<br>(i) and (ii) - option (a). step is redox (Fe oxidised, S reduced).<br>NCERT source - Unit 2 Q7 NCERT source - Unit 2 Q15(c)<br>Core (2) | worked solutions 20
+                  </div>
+                </details>
+              </div>
+            </div>
+<div id="part-2" class="tab-content">
+
+      <div class="content-card">
+        <h2><span>⚡</span> PART 2: OXIDATION & REDUCTION TRACKING</h2>
+        <p>Targeted NCERT questions with answer-checks and electron transfer reasoning.</p>
+      </div>
+    
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 2</span>
+                  <span class="tag-pill">Q05 · Page 8</span>
+                </div>
+                <div class="q-title">Question 1 - Unit 2 Q15(c): Heating iron and sulphur Try it first. Cover the answer-check box until you have committed</div>
+                <p class="q-prompt">to an answer. NCERT Try the question First nudge What would you observe when a mixture of iron filings and Track the same atoms before and after: Fe 0 → +2; S 0 → -2 in FeS. sulphur powder is heated strongly?</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    05. Unit 2 Q18(b) - Zinc + hydrochloric acid
+                  </div>
+                </details>
+              </div>
+            </div>
+<div id="part-3" class="tab-content">
+
+      <div class="content-card">
+        <h2><span>⚡</span> PART 3: REDUCING / OXIDISING AGENTS</h2>
+        <p>Targeted NCERT questions with answer-checks and electron transfer reasoning.</p>
+      </div>
+    
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 3</span>
+                  <span class="tag-pill">Q06 · Page 10</span>
+                </div>
+                <div class="q-title">Question 1 - Unit 2 Q18(b): Zinc + hydrochloric acid Try it first. Cover the answer-check box until you have committed</div>
+                <p class="q-prompt">to an answer. NCERT Try the question First nudge Classify this property: zinc dissolves in hydrochloric acid with Track Zn and H. Chloride does not change oxidation number. evolution of hydrogen gas. Then interpret the redox change.</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    06. Unit 2 Q29 - Chemical but non-redox decomposition<br>Set-up: Zn: 0→+2 (oxidation); H: +1→0 (reduction). Set-up: CaCO₃: Ca +2, C +4, O -2 → CaO: Ca +2/O -2; CO₂: C<br>+4/O -2.<br>Write Zn + 2HCl → ZnCl₂ + H₂.<br>1<br>The equation shows new substances, so it is chemical.<br>1<br>Zn changes 0→+2, so Zn is oxidised.<br>2<br>Track oxidation numbers across the reaction.<br>2<br>Hydrogen changes +1→0, so H⁺ is reduced.<br>3<br>All tracked oxidation numbers remain unchanged.<br>3<br>Oxidised reactant = reducing agent; reduced reactant species belongs to<br>4<br>the oxidising side. Therefore the reaction is non-redox.<br>4<br>Final answer<br>Final answer<br>It is a chemical property. Zn is oxidised and acts as the reducing<br>It is a chemical decomposition but not a redox reaction because<br>agent; H⁺ from HCl is reduced (HCl is the oxidising reagent in the<br>no oxidation number changes.<br>source-level equation).<br>NCERT source - Unit 2 Q29<br>NCERT source - Unit 2 Q18(b)<br>Core (2) | worked solutions 21
+                  </div>
+                </details>
+              </div>
+            </div>
+<div id="part-4" class="tab-content">
+
+      <div class="content-card">
+        <h2><span>⚡</span> PART 4: DISPLACEMENT & COMPETITIVE REDOX</h2>
+        <p>Targeted NCERT questions with answer-checks and electron transfer reasoning.</p>
+      </div>
+    
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 4</span>
+                  <span class="tag-pill">Q07 · Page 12</span>
+                </div>
+                <div class="q-title">Question 1 - Unit 2 Q29: Chemical but non-redox</div>
+                <p class="q-prompt">decomposition committed to an answer. NCERT Try the question First nudge On heating calcium carbonate, CaCO₃ → CaO + CO₂. It is a Ca is +2 on both sides; C is +4 on both sides; O is -2 on both sides. chemical change. Is it redox?</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    07. Unit 2 Q30(f) - Non-metal required for combustion
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 4</span>
+                  <span class="tag-pill">Q08 · Page 14</span>
+                </div>
+                <div class="q-title">Question 1 - Unit 2 Q7: Burning wood is a</div>
+                <p class="q-prompt">chemical change to an answer. NCERT Try the question First nudge Which are chemical changes: (i) decaying wood, (ii) burning Burning creates new substances and is an oxidation/combustion wood, (iii) sawing wood, (iv) hammering a nail into wood? process. Sawing and hammering are physical. See the idea - combustion route</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    08. Unit 2 Q35 - Heated vs unheated iron-sulphur mixture<br>Set-up: fuel + O₂ → oxidised products + energy (general Set-up: A: H₂S (rotten-egg smell); B: H₂ (burns with a pop).<br>pattern).<br>Heating A forms FeS by a redox combination: Fe 0→+2 and S 0→-2.<br>1<br>Oxygen is a non-metal gas.<br>1<br>A + HCl: FeS forms H₂S gas; oxidation numbers do not change in this acid<br>2<br>It supports ordinary combustion. reaction.<br>2<br>B + HCl: iron displaces hydrogen, giving H₂; Zn/Fe-style metal-acid<br>3<br>In combustion, oxidation-number changes can be used to prove the redox<br>3<br>displacement is redox.<br>process.<br>Identify H₂ by pop test; H₂S by characteristic odour (waft cautiously in real<br>4<br>laboratory practice).<br>Final answer<br>Oxygen (O₂).<br>Final answer<br>Part A gives H₂S, identified by its characteristic rotten-egg smell;<br>NCERT source - Unit 2 Q30(f) Part B gives H₂, identified by the pop test.<br>NCERT source - Unit 2 Q35<br>Core (2) | worked solutions 22
+                  </div>
+                </details>
+              </div>
+            </div>
+<div id="part-5" class="tab-content">
+
+      <div class="content-card">
+        <h2><span>⚡</span> PART 5: BALANCING & MULTI-STEP REASONING</h2>
+        <p>Targeted NCERT questions with answer-checks and electron transfer reasoning.</p>
+      </div>
+    
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 5</span>
+                  <span class="tag-pill">Q09 · Page 15</span>
+                </div>
+                <div class="q-title">Question 2 - Unit 2 Q30(f): Non-metal required for</div>
+                <p class="q-prompt">combustion to an answer. NCERT Try the question First nudge Name the non-metal required for combustion and connect it to Combustion commonly involves reaction with molecular oxygen, O₂. the redox idea.</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    09. Unit 2 Q38(c) - Burning kerosene
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 5</span>
+                  <span class="tag-pill">Q10 · Page 16</span>
+                </div>
+                <div class="q-title">Question 3 - Unit 2 Q35: Heated vs unheated iron-</div>
+                <p class="q-prompt">sulphur mixture committed to an answer. NCERT Try the question First nudge Iron filings and sulphur are split into A (heated strongly) and B Use two equations: FeS + 2HCl → FeCl₂ + H₂S; Fe + 2HCl → FeCl₂ + H₂. (not heated). Dilute HCl is added to both and gas evolves. How can the gases be identified?</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    10. Sample I Q3 - Rusting repeat - sample paper I<br>Set-up: hydrocarbon fuel + O₂ → CO₂ + H₂O (ideal complete- Set-up: corrosion + chemical change.<br>combustion model).<br>Rusting is corrosion.<br>1<br>Kerosene reacts with oxygen.<br>1<br>New substances form.<br>2<br>New products are formed, so it is a chemical change.<br>2<br>Therefore it is a chemical change.<br>3<br>Carbon/hydrogen are oxidised while oxygen is reduced in the combustion<br>3<br>process.<br>Final answer<br>Corrosion; chemical change - option (c).<br>Final answer<br>Chemical change; combustion is an oxidation/redox process.<br>NCERT source - Sample I Q3<br>NCERT source - Unit 2 Q38(c)<br>Core (2) | worked solutions 23
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 5</span>
+                  <span class="tag-pill">Q11 · Page 17</span>
+                </div>
+                <div class="q-title">Question 4 - Unit 2 Q38(c): Burning kerosene Try it first. Cover the answer-check box until you have committed</div>
+                <p class="q-prompt">to an answer. NCERT Try the question First nudge Classify burning of kerosene in a lantern as physical or chemical Combustion forms new substances such as oxides; it is not a change, and connect it to oxidation. reversible state change. See the idea - combustion route</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    11. Sample II Q2 - Rusting repeat - sample paper II<br>Set-up: (i), (iii), (iv).<br>Melting is physical.<br>1<br>Bending and wire drawing are physical.<br>2<br>Rusting is chemical/corrosion.<br>3<br>Final answer<br>(i), (iii) and (iv) - option (c).<br>NCERT source - Sample II Q2<br>Core (2) | worked solutions 24
+                  </div>
+                </details>
+              </div>
+            </div>
+
+    </div>
+
+    <aside class="support-rail">
+      
+      <div class="support-widget">
+        <h3><span>⚡</span> Core Redox Rules</h3>
+        <div class="formula-box">
+          • Oxidation: Loss of electrons (LEO) / Increase in O.N.<br>
+          • Reduction: Gain of electrons (GER) / Decrease in O.N.<br>
+          • Oxidizing Agent: Accepts e⁻ (gets reduced).<br>
+          • Reducing Agent: Donates e⁻ (gets oxidized).<br>
+          • Rusting Formula: 4Fe + 3O₂ + 2xH₂O → 2Fe₂O₃·xH₂O (hydrated ferric oxide).
+        </div>
+      </div>
+
+      <div class="support-widget">
+        <h3><span>📝</span> Study Scratchpad</h3>
+        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 8px;">
+          Virtual keyboard safe (min-height: 120px) with auto-saving:
+        </p>
+        <textarea id="scratchpadNotes" class="tablet-safe-input" placeholder="Track half-equations, oxidation states, or spectator ions..."></textarea>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+          <span id="saveStatus" style="font-size: 12.5px; color: var(--success);">✓ Auto-saved</span>
+          <button class="btn" style="min-height: 40px; padding: 6px 14px; font-size: 13px; background: var(--bg-surface); border: 1px solid var(--border);" onclick="clearNotes()">Clear</button>
+        </div>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+      if (activeBtn) activeBtn.classList.add('active');
+      const targetContent = document.getElementById(tabId);
+      if (targetContent) targetContent.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    const themeBtn = document.getElementById('themeToggle');
+    const htmlEl = document.documentElement;
+    const savedTheme = localStorage.getItem('tablet12_theme') || 'dark';
+    htmlEl.setAttribute('data-theme', savedTheme);
+    themeBtn.addEventListener('click', () => {
+      const current = htmlEl.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      htmlEl.setAttribute('data-theme', next);
+      localStorage.setItem('tablet12_theme', next);
+    });
+
+    const pad = document.getElementById('scratchpadNotes');
+    const status = document.getElementById('saveStatus');
+    pad.value = localStorage.getItem('redox_core2_notes') || '';
+    pad.addEventListener('input', () => {
+      localStorage.setItem('redox_core2_notes', pad.value);
+      status.textContent = '✓ Saved ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    });
+
+    function clearNotes() {
+      if (confirm('Clear scratchpad notes?')) {
+        pad.value = '';
+        localStorage.removeItem('redox_core2_notes');
+        status.textContent = 'Notes cleared';
+      }
+    }
+  </script>
+</body>
+</html>

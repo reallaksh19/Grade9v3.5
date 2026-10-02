@@ -96,7 +96,13 @@ def _project_question(subject: str, question: dict, order: int, repo: Path) -> d
     custody = extensions["grade9v3:source_custody"]
     answer = question["answer"]
     visual_rel = f"question-bank/visuals/{question['id']}.svg"
-    visual_ref = visual_rel if (repo / "public" / visual_rel).is_file() else None
+    alt_rel = f"assets/figures/questions/{question['id']}.svg"
+    visual_ref = visual_rel if (repo / "public" / visual_rel).is_file() else (
+        alt_rel if (repo / "public" / alt_rel).is_file() else None
+    )
+    figures = [f"assets/figures/questions/{question['id']}.svg"] if (
+        (repo / "public" / f"assets/figures/questions/{question['id']}.svg").is_file()
+    ) else ([visual_ref] if visual_ref else [])
     return {
         "id": question["id"],
         "order": order,
@@ -131,6 +137,7 @@ def _project_question(subject: str, question: dict, order: int, repo: Path) -> d
         "family_ref": question["family_ref"],
         "source_hints": question["hints"],
         "scaffolds": question["scaffolds"],
+        "figures": figures,
         "answer": {
             "summary": answer["summary"],
             "reasoning": answer["reasoning"],
@@ -217,7 +224,14 @@ def build(repo: Path = REPO) -> dict:
             hid = str(hq["id"])
             if hid in by_id:
                 continue
+            if hq.get("status") in {"CANDIDATE", "HELD"} or hq.get("admission_status") in {"HELD", "CANDIDATE"}:
+                continue
             subj = hq.get("subject", "Physics")
+            if subj == "Mathematics":
+                # Academic authority boundary: Page-local explorer question sets (like Vector Algebra)
+                # must not bypass canonical admission. Mathematics canonical admission belongs exclusively
+                # to Mathematics/library/*.json (Linear Equations 18 admitted).
+                continue
             topic = hq.get("topic", "General")
             opt_list = hq.get("options", [])
             steps = hq.get("steps", [])
@@ -297,7 +311,12 @@ def build(repo: Path = REPO) -> dict:
                     "check": hq.get("teacher_check") or "",
                     "verification_status": default_verif
                 },
-                "visual_ref": None,
+                "figures": [f"assets/figures/questions/{hid}.svg"] if (
+                    (repo / "public" / f"assets/figures/questions/{hid}.svg").is_file()
+                ) else ([f"question-bank/visuals/{hid}.svg"] if (repo / "public" / f"question-bank/visuals/{hid}.svg").is_file() else []),
+                "visual_ref": f"question-bank/visuals/{hid}.svg" if (repo / "public" / f"question-bank/visuals/{hid}.svg").is_file() else (
+                    f"assets/figures/questions/{hid}.svg" if (repo / "public" / f"assets/figures/questions/{hid}.svg").is_file() else None
+                ),
                 "source_path": f"public/{hq.get('explorer_entrypoint', '')}",
                 "adapter": adapter_name,
                 "lineage": {

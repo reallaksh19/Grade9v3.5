@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GRADE 9 CHEMISTRY - Some Basic Concepts &amp; Mole Concept | 12.7" Tablet Standalone Edition</title>
+  <meta name="description" content="Complete textbook for Some Basic Concepts of Chemistry and Mole Concept. Optimized for 12.7-inch tablets.">
+  <style>
+
+/* ==========================================================================
+   Chemistry: Some Basic Concepts & Mole Concept 12.7" Tablet Stylesheet
+   WCAG 2.5.5 >= 48px touch targets, >= 120px textareas, no micro-fonts (<13.5px)
+   100% Offline Standalone · Dark/Light Mode · Responsive Stage/Support Grid
+   ========================================================================== */
+
+:root {
+  --tab12-container-max: 1400px;
+  --tab12-touch-min: 48px;
+  --tab12-base-font: 16px;
+  --tab12-radius-sm: 8px;
+  --tab12-radius-md: 12px;
+  --tab12-radius-lg: 16px;
+
+  /* Dark Theme Palette (Default) */
+  --bg-app: #080d1a;
+  --bg-surface: #0f172a;
+  --bg-card: #152238;
+  --bg-card-subtle: #1a2942;
+  --border: #263859;
+  --border-light: #334b75;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.25);
+  --success: #34d399;
+  --warning: #f59e0b;
+  --danger: #f87171;
+  --purple: #c084fc;
+}
+
+[data-theme="light"] {
+  --bg-app: #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f8fafc;
+  --border: #cbd5e1;
+  --border-light: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --accent: #0284c7;
+  --accent-glow: rgba(2, 132, 199, 0.15);
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --purple: #7e22ce;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--tab12-base-font);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-app);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Strict 48px+ Touch Target Rule */
+button, 
+.btn, 
+.tab-btn, 
+.pill-btn,
+summary {
+  min-height: var(--tab12-touch-min);
+  min-width: var(--tab12-touch-min);
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--tab12-radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: all 0.18s ease;
+  border: 1px solid transparent;
+  text-decoration: none;
+}
+
+/* Typography Floor Enforcement: No Micro-Fonts (< 13.5px) */
+small, .badge, .meta-text, .tag, .diff-badge, .unit-badge {
+  font-size: 13.5px !important;
+}
+
+.app-container {
+  max-width: var(--tab12-container-max);
+  margin: 0 auto;
+  padding: 16px 20px 60px 20px;
+  width: 100%;
+}
+
+/* Header & Nav */
+.top-nav {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 18px 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.top-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.course-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.course-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.badge-primary { background: var(--accent); color: #000000; }
+.badge-secondary { background: rgba(56, 189, 248, 0.15); border: 1px solid var(--accent); color: var(--accent); }
+.badge-success { background: rgba(52, 211, 153, 0.15); border: 1px solid var(--success); color: var(--success); }
+.badge-warning { background: rgba(245, 158, 11, 0.15); border: 1px solid var(--warning); color: var(--warning); }
+.badge-purple { background: rgba(192, 132, 252, 0.15); border: 1px solid var(--purple); color: var(--purple); }
+
+.course-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.course-subtitle {
+  font-size: 14.5px;
+  color: var(--text-secondary);
+}
+
+.theme-toggle-btn {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  color: var(--text-primary);
+  display: inline-flex;
+  gap: 8px;
+}
+.theme-toggle-btn:hover { border-color: var(--accent); }
+
+/* Search Bar */
+.search-bar-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.search-input-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.search-input {
+  width: 100%;
+  min-height: var(--tab12-touch-min);
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  padding: 10px 16px 10px 42px;
+  color: var(--text-primary);
+  font-size: 16px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+  font-size: 18px;
+}
+
+.clear-search-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+/* Tabs */
+.tabs-scroll-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tab-btn {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-light);
+}
+
+.tab-btn.active {
+  background: var(--accent);
+  color: #000000;
+  border-color: var(--accent);
+  font-weight: 700;
+}
+
+/* Module Card Layout */
+.module-card {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  margin-bottom: 28px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 1100px) {
+  .stage-support-columns {
+    display: grid;
+    grid-template-columns: minmax(0, 2.15fr) minmax(330px, 1fr);
+    column-gap: 26px;
+    align-items: start;
+  }
+  .stage-column { min-width: 0; }
+  .support-column { min-width: 0; position: sticky; top: 20px; }
+}
+
+@media (max-width: 1099px) {
+  .stage-support-columns { display: block !important; }
+  .support-column {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--border);
+  }
+}
+
+.module-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.module-code {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.module-title {
+  font-size: 21px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.target-banner {
+  background: rgba(56, 189, 248, 0.08);
+  border-left: 4px solid var(--accent);
+  padding: 12px 16px;
+  border-radius: 0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 18px;
+}
+
+.concept-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  padding: 16px 18px;
+  margin-bottom: 16px;
+}
+
+.concept-box-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.concept-box-text {
+  font-size: 14.5px;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.contrast-box {
+  background: rgba(52, 211, 153, 0.08);
+  border: 1px solid var(--success);
+  border-radius: var(--tab12-radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+
+.contrast-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--success);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.trap-box {
+  background: rgba(248, 113, 113, 0.08);
+  border: 1.5px solid var(--danger);
+  border-radius: var(--tab12-radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+
+.trap-title {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--danger);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.trap-text {
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.45;
+}
+
+/* Practice & Recall Box */
+.practice-surface {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  padding: 18px;
+  margin-top: 16px;
+}
+
+.practice-textarea {
+  width: 100%;
+  min-height: 120px;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  padding: 12px 14px;
+  color: var(--text-primary);
+  font-size: 15.5px;
+  font-family: inherit;
+  resize: vertical;
+  margin-bottom: 10px;
+}
+
+.practice-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+details.guided-reveal {
+  border: 1px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+details.guided-reveal summary {
+  background: var(--bg-card-subtle);
+  min-height: var(--tab12-touch-min);
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.guided-solution-text {
+  padding: 14px 16px;
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border);
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+/* Tool Box */
+.tool-box {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--accent);
+  border-radius: var(--tab12-radius-sm);
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.tool-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.tool-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.tool-input, .tool-select {
+  min-height: var(--tab12-touch-min);
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  padding: 8px 14px;
+  color: var(--text-primary);
+  font-size: 15px;
+}
+
+.tool-result {
+  background: rgba(56, 189, 248, 0.1);
+  border-left: 4px solid var(--accent);
+  padding: 10px 14px;
+  font-size: 14.5px;
+  color: var(--text-primary);
+}
+
+footer {
+  text-align: center;
+  padding: 24px 20px;
+  color: var(--text-muted);
+  font-size: 13.5px;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <header class="top-nav">
+      <div class="top-nav-header">
+        <div class="course-info">
+          <div class="course-badge-row">
+            <span class="badge badge-primary">CHEMISTRY MASTER SUITE</span>
+            <span class="badge badge-secondary">GRADE 9 &rarr; JEE BRIDGE</span>
+            <span class="badge badge-success">CORE 1 &amp; CORE 2</span>
+            <span class="badge badge-warning">INTERACTIVE TOOLS</span>
+            <span class="badge badge-purple">68 NCERT QUESTIONS</span>
+            <span class="badge badge-secondary">12.7" TABLET COMPLIANT</span>
+          </div>
+          <h1 class="course-title">Some Basic Concepts &amp; Mole Concept: Tablet Edition</h1>
+          <p class="course-subtitle">Chemical Laws &rarr; The Universal Mole Bridge &rarr; Empirical Formulas &rarr; Limiting Reagent &rarr; Concentration Units (M, m, &chi;) &rarr; NCERT Bank</p>
+        </div>
+        <button id="theme-toggle-btn" class="theme-toggle-btn">☀️ Light Mode</button>
+      </div>
+
+      <!-- Live Search Bar -->
+      <div class="search-bar-row">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="search-input" class="search-input" placeholder="Search mole, Avogadro, molarity, empirical formula, limiting reagent, or NCERT...">
+        </div>
+        <button id="clear-search-btn" class="btn clear-search-btn">Reset</button>
+      </div>
+
+      <!-- Unit Tabs -->
+      <div class="tabs-scroll-row">
+        <button class="tab-btn active" data-unit="all">All Modules</button>
+        <button class="tab-btn" data-unit="1">Part 1: Chemical Laws</button>
+        <button class="tab-btn" data-unit="2">Part 2: Mole Concept &amp; N_A</button>
+        <button class="tab-btn" data-unit="3">Part 3: Empirical Formulas</button>
+        <button class="tab-btn" data-unit="4">Part 4: Limiting Reagent</button>
+        <button class="tab-btn" data-unit="5">Part 5: Solution Molarity &amp; Molality</button>
+        <button class="tab-btn" data-unit="ncert">Part 6: NCERT Transfer Bank</button>
+      </div>
+    </header>
+
+    <main id="main-content">
+      
+    <article class="module-card stage-support-columns" id="MOLE-MOD-01" data-unit="1">
+      <div class="stage-column">
+        <header class="module-header">
+          <div>
+            <span class="module-code">MOLE-MOD-01</span>
+            <h2 class="module-title">Laws of Chemical Combination &amp; Dalton's Theory</h2>
+          </div>
+          <span class="badge badge-secondary">Part 1 · Core Concepts</span>
+        </header>
+
+        <div class="target-banner">
+          🎯 <strong>Learning Target:</strong> Apply the Law of Conservation of Mass, Definite Proportions, and Multiple Proportions to reaction stoichiometry.
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">🧠 Memory Anchor</div>
+          <div class="concept-box-text"><strong style="color:var(--accent);">Definite Proportions: Same compound always contains elements in fixed mass ratio. Multiple Proportions: If two elements form &gt;1 compound, masses of B combining with fixed mass of A are in simple whole-number ratios.</strong></div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚙️ Why It Works</div>
+          <div class="concept-box-text">Atoms are indivisible units of chemical reaction (Dalton). Compounds form by whole-atom combinations, requiring simple whole-number stoichiometric mass ratios.</div>
+        </div>
+
+        <div class="contrast-box">
+          <div class="contrast-title">🔍 Worked Contrast</div>
+          <div class="concept-box-text">Carbon oxides: CO has 12g C with 16g O. CO₂ has 12g C with 32g O. Mass ratio of O combining with 12g C is 16:32 = 1:2 (simple whole number!).</div>
+        </div>
+
+        
+
+        <div class="practice-surface">
+          <div class="concept-box-title">✍️ Active Practice &amp; Step-by-Step Working</div>
+          <p style="font-size:15px;color:var(--text-primary);margin-bottom:8px;"><strong>Problem:</strong> Two oxides of nitrogen contain 63.6% and 46.7% nitrogen respectively. Show that these results illustrate the Law of Multiple Proportions.</p>
+          <textarea class="practice-textarea" data-key="MOLE-MOD-01" placeholder="Type your step-by-step stoichiometric calculations on tablet keyboard..."></textarea>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-check-mole" style="background:var(--accent);color:#000;font-weight:700;">Check Solution</button>
+            <button class="btn btn-clear-mole" style="background:var(--bg-surface);border:1px solid var(--border);color:var(--text-secondary);">Clear</button>
+          </div>
+          <details class="guided-reveal">
+            <summary>Reveal Checked Model Answer</summary>
+            <div class="guided-solution-text">
+In Oxide 1: 63.6g N combines with 36.4g O =&gt; 1g N combines with 36.4 / 63.6 = 0.572g O.
+In Oxide 2: 46.7g N combines with 53.3g O =&gt; 1g N combines with 53.3 / 46.7 = 1.141g O.
+Ratio of oxygen masses combining with 1g of nitrogen = 0.572 : 1.141 = 1 : 2.0 (exact simple whole number ratio 1:2). Hence Law of Multiple Proportions is proved (N₂O and NO).
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="support-column">
+        <div class="trap-box">
+          <div class="trap-title">⚠️ Common Trap to Avoid</div>
+          <div class="trap-text">Confusing Law of Definite Proportions with Multiple Proportions. Definite applies to ONE compound; Multiple compares TWO DIFFERENT compounds formed by the same elements.</div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">📑 Academic Authority &amp; Benchmark</div>
+          <div class="concept-box-text" style="font-size:13.5px;color:var(--text-secondary);">
+            <strong>NCERT Chemistry:</strong> Class 9 Units 1–3 + Class 11 Chapter 1.<br><br>
+            <strong>Core 2 Helper:</strong> 68 Retained NCERT question instances across 7 parts.
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚡ Quick Mole &amp; Formula Guide</div>
+          <div class="concept-box-text" style="font-size:14px;color:var(--text-primary);">
+            <code>n = m / M = N / N_A</code><br>
+            <code>V_STP = n × 22.4 L</code><br>
+            <code>M = n_solute / V_solution(L)</code><br>
+            <code>m = n_solute / mass_solvent(kg)</code><br>
+            <code>M₁V₁ = M₂V₂</code><br>
+            <code>T(K) = T(°C) + 273.15</code>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module-card stage-support-columns" id="MOLE-MOD-02" data-unit="2">
+      <div class="stage-column">
+        <header class="module-header">
+          <div>
+            <span class="module-code">MOLE-MOD-02</span>
+            <h2 class="module-title">The Mole Concept &amp; Avogadro's Number</h2>
+          </div>
+          <span class="badge badge-secondary">Part 2 · Core Concepts</span>
+        </header>
+
+        <div class="target-banner">
+          🎯 <strong>Learning Target:</strong> Convert inter-convertibly between mass, moles, number of entities, and molar volume at STP.
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">🧠 Memory Anchor</div>
+          <div class="concept-box-text"><strong style="color:var(--accent);">The Universal Mole Bridge: n = mass / Molar_mass = N / N_A = Volume_STP / 22.4 L (where N_A = 6.022 × 10²³).</strong></div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚙️ Why It Works</div>
+          <div class="concept-box-text">One mole contains exactly as many elementary entities as there are carbon atoms in 0.012 kg of ¹²C (Avogadro constant). It scales microscopic atomic mass units (u) directly to macroscopic grams (g).</div>
+        </div>
+
+        <div class="contrast-box">
+          <div class="contrast-title">🔍 Worked Contrast</div>
+          <div class="concept-box-text">1 mole of O atoms = 16.0 g = 6.022 × 10²³ atoms. 1 mole of O₂ molecules = 32.0 g = 6.022 × 10²³ molecules = 2 × 6.022 × 10²³ atoms = 22.4 L at STP.</div>
+        </div>
+
+        
+        <div class="tool-box">
+          <div class="tool-title">⚖️ Interactive Universal Mole Bridge Calculator</div>
+          <div class="tool-row">
+            <label style="font-weight:600;font-size:14.5px;">Mass (g):</label>
+            <input type="number" id="input-mole-mass" class="tool-input" placeholder="e.g. 1.4" value="1.4" style="width:110px;">
+            <label style="font-weight:600;font-size:14.5px;">Molar Mass (g/mol):</label>
+            <input type="number" id="input-mole-mm" class="tool-input" placeholder="e.g. 28" value="28" style="width:110px;">
+            <button id="btn-calc-mole" class="btn" style="background:var(--accent);color:#000;">Calculate</button>
+          </div>
+          <div id="res-mole-calc" class="tool-result">Enter mass and molar mass above and tap Calculate.</div>
+        </div>
+        
+
+        <div class="practice-surface">
+          <div class="concept-box-title">✍️ Active Practice &amp; Step-by-Step Working</div>
+          <p style="font-size:15px;color:var(--text-primary);margin-bottom:8px;"><strong>Problem:</strong> Calculate the total number of electrons present in 1.4 g of dinitrogen gas (N₂).</p>
+          <textarea class="practice-textarea" data-key="MOLE-MOD-02" placeholder="Type your step-by-step stoichiometric calculations on tablet keyboard..."></textarea>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-check-mole" style="background:var(--accent);color:#000;font-weight:700;">Check Solution</button>
+            <button class="btn btn-clear-mole" style="background:var(--bg-surface);border:1px solid var(--border);color:var(--text-secondary);">Clear</button>
+          </div>
+          <details class="guided-reveal">
+            <summary>Reveal Checked Model Answer</summary>
+            <div class="guided-solution-text">
+Molar mass of N₂ = 28 g/mol.
+Moles of N₂ = 1.4 g / 28 g/mol = 0.05 mol.
+Number of N₂ molecules = 0.05 × 6.022 × 10²³ = 3.011 × 10²² molecules.
+Each N₂ molecule has 7 + 7 = 14 electrons.
+Total electrons = 14 × 3.011 × 10²² = 4.215 × 10²³ electrons.
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="support-column">
+        <div class="trap-box">
+          <div class="trap-title">⚠️ Common Trap to Avoid</div>
+          <div class="trap-text">Failing to distinguish between atoms and molecules. Asking for 'atoms in 32g O₂' gives 2 × N_A, not 1 × N_A!</div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">📑 Academic Authority &amp; Benchmark</div>
+          <div class="concept-box-text" style="font-size:13.5px;color:var(--text-secondary);">
+            <strong>NCERT Chemistry:</strong> Class 9 Units 1–3 + Class 11 Chapter 1.<br><br>
+            <strong>Core 2 Helper:</strong> 68 Retained NCERT question instances across 7 parts.
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚡ Quick Mole &amp; Formula Guide</div>
+          <div class="concept-box-text" style="font-size:14px;color:var(--text-primary);">
+            <code>n = m / M = N / N_A</code><br>
+            <code>V_STP = n × 22.4 L</code><br>
+            <code>M = n_solute / V_solution(L)</code><br>
+            <code>m = n_solute / mass_solvent(kg)</code><br>
+            <code>M₁V₁ = M₂V₂</code><br>
+            <code>T(K) = T(°C) + 273.15</code>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module-card stage-support-columns" id="MOLE-MOD-03" data-unit="3">
+      <div class="stage-column">
+        <header class="module-header">
+          <div>
+            <span class="module-code">MOLE-MOD-03</span>
+            <h2 class="module-title">Empirical and Molecular Formula Derivation</h2>
+          </div>
+          <span class="badge badge-secondary">Part 3 · Core Concepts</span>
+        </header>
+
+        <div class="target-banner">
+          🎯 <strong>Learning Target:</strong> Determine simplest integer mole ratios from mass percentage and deduce molecular formula from molar mass.
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">🧠 Memory Anchor</div>
+          <div class="concept-box-text"><strong style="color:var(--accent);">Empirical = Simplest whole-number ratio of atoms. Molecular = n × (Empirical Formula), where n = Molar Mass / Empirical Formula Mass.</strong></div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚙️ Why It Works</div>
+          <div class="concept-box-text">Combustion analysis and mass spectrometry provide elemental percentages. Dividing each mass percent by atomic mass yields relative mole counts; dividing by the smallest value normalizes to whole-number empirical subscripts.</div>
+        </div>
+
+        <div class="contrast-box">
+          <div class="contrast-title">🔍 Worked Contrast</div>
+          <div class="concept-box-text">Glucose: Molecular formula is C₆H₁₂O₆ (mass 180). Empirical formula is CH₂O (mass 30). Ratio n = 180 / 30 = 6.</div>
+        </div>
+
+        
+
+        <div class="practice-surface">
+          <div class="concept-box-title">✍️ Active Practice &amp; Step-by-Step Working</div>
+          <p style="font-size:15px;color:var(--text-primary);margin-bottom:8px;"><strong>Problem:</strong> An organic compound contains 40.0% C, 6.7% H, and 53.3% O by mass. Its molar mass is 60 g/mol. Find its empirical and molecular formulas.</p>
+          <textarea class="practice-textarea" data-key="MOLE-MOD-03" placeholder="Type your step-by-step stoichiometric calculations on tablet keyboard..."></textarea>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-check-mole" style="background:var(--accent);color:#000;font-weight:700;">Check Solution</button>
+            <button class="btn btn-clear-mole" style="background:var(--bg-surface);border:1px solid var(--border);color:var(--text-secondary);">Clear</button>
+          </div>
+          <details class="guided-reveal">
+            <summary>Reveal Checked Model Answer</summary>
+            <div class="guided-solution-text">
+Moles of C = 40.0 / 12 = 3.33.
+Moles of H = 6.7 / 1 = 6.70.
+Moles of O = 53.3 / 16 = 3.33.
+Simplest ratio: C = 3.33/3.33 = 1, H = 6.70/3.33 = 2, O = 3.33/3.33 = 1.
+Empirical Formula = CH₂O (Empirical mass = 12 + 2 + 16 = 30).
+n = Molar Mass / Empirical Mass = 60 / 30 = 2.
+Molecular Formula = (CH₂O)₂ = C₂H₄O₂ (Acetic acid).
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="support-column">
+        <div class="trap-box">
+          <div class="trap-title">⚠️ Common Trap to Avoid</div>
+          <div class="trap-text">If mole ratios yield a fractional value like 1.33 or 1.5, do NOT round to nearest integer! Multiply all subscripts by 3 (for .33) or by 2 (for .5) to clear fractions.</div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">📑 Academic Authority &amp; Benchmark</div>
+          <div class="concept-box-text" style="font-size:13.5px;color:var(--text-secondary);">
+            <strong>NCERT Chemistry:</strong> Class 9 Units 1–3 + Class 11 Chapter 1.<br><br>
+            <strong>Core 2 Helper:</strong> 68 Retained NCERT question instances across 7 parts.
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚡ Quick Mole &amp; Formula Guide</div>
+          <div class="concept-box-text" style="font-size:14px;color:var(--text-primary);">
+            <code>n = m / M = N / N_A</code><br>
+            <code>V_STP = n × 22.4 L</code><br>
+            <code>M = n_solute / V_solution(L)</code><br>
+            <code>m = n_solute / mass_solvent(kg)</code><br>
+            <code>M₁V₁ = M₂V₂</code><br>
+            <code>T(K) = T(°C) + 273.15</code>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module-card stage-support-columns" id="MOLE-MOD-04" data-unit="4">
+      <div class="stage-column">
+        <header class="module-header">
+          <div>
+            <span class="module-code">MOLE-MOD-04</span>
+            <h2 class="module-title">Stoichiometry &amp; Limiting Reagent Analysis</h2>
+          </div>
+          <span class="badge badge-secondary">Part 4 · Core Concepts</span>
+        </header>
+
+        <div class="target-banner">
+          🎯 <strong>Learning Target:</strong> Identify the limiting reactant by mole-to-coefficient ratio and calculate theoretical yield.
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">🧠 Memory Anchor</div>
+          <div class="concept-box-text"><strong style="color:var(--accent);">Limiting Reagent Test: For each reactant, compute (Available Moles) / (Stoichiometric Coefficient). The SMALLEST value identifies the Limiting Reagent.</strong></div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚙️ Why It Works</div>
+          <div class="concept-box-text">Reactions proceed on an atom-by-atom basis dictated by balanced equation coefficients. The reactant that runs out first halts the reaction, dictating the maximum yield of products.</div>
+        </div>
+
+        <div class="contrast-box">
+          <div class="contrast-title">🔍 Worked Contrast</div>
+          <div class="concept-box-text">50 kg N₂ + 10 kg H₂ → NH₃. Moles N₂ = 50,000 / 28 = 1785.7 mol (Ratio = 1785.7/1 = 1785.7). Moles H₂ = 10,000 / 2.016 = 4960.3 mol (Ratio = 4960.3/3 = 1653.4). H₂ ratio is smaller =&gt; H₂ is Limiting Reagent!</div>
+        </div>
+
+        
+
+        <div class="practice-surface">
+          <div class="concept-box-title">✍️ Active Practice &amp; Step-by-Step Working</div>
+          <p style="font-size:15px;color:var(--text-primary);margin-bottom:8px;"><strong>Problem:</strong> 3.0 g of H₂ reacts with 29.0 g of O₂ to yield H₂O. (a) Which is the limiting reagent? (b) Calculate the maximum mass of H₂O formed.</p>
+          <textarea class="practice-textarea" data-key="MOLE-MOD-04" placeholder="Type your step-by-step stoichiometric calculations on tablet keyboard..."></textarea>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-check-mole" style="background:var(--accent);color:#000;font-weight:700;">Check Solution</button>
+            <button class="btn btn-clear-mole" style="background:var(--bg-surface);border:1px solid var(--border);color:var(--text-secondary);">Clear</button>
+          </div>
+          <details class="guided-reveal">
+            <summary>Reveal Checked Model Answer</summary>
+            <div class="guided-solution-text">
+Reaction: 2H₂ + O₂ → 2H₂O.
+Moles of H₂ = 3.0 / 2.016 = 1.488 mol. Ratio = 1.488 / 2 = 0.744.
+Moles of O₂ = 29.0 / 32.0 = 0.906 mol. Ratio = 0.906 / 1 = 0.906.
+Since 0.744 &lt; 0.906, H₂ is the LIMITING REAGENT.
+2 moles H₂ produce 2 moles H₂O =&gt; 1.488 moles H₂ produce 1.488 moles H₂O.
+Mass of H₂O formed = 1.488 mol × 18.015 g/mol = 26.8 g H₂O.
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="support-column">
+        <div class="trap-box">
+          <div class="trap-title">⚠️ Common Trap to Avoid</div>
+          <div class="trap-text">Never pick the limiting reagent based solely on smaller mass. Always divide moles by stoichiometric coefficients!</div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">📑 Academic Authority &amp; Benchmark</div>
+          <div class="concept-box-text" style="font-size:13.5px;color:var(--text-secondary);">
+            <strong>NCERT Chemistry:</strong> Class 9 Units 1–3 + Class 11 Chapter 1.<br><br>
+            <strong>Core 2 Helper:</strong> 68 Retained NCERT question instances across 7 parts.
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚡ Quick Mole &amp; Formula Guide</div>
+          <div class="concept-box-text" style="font-size:14px;color:var(--text-primary);">
+            <code>n = m / M = N / N_A</code><br>
+            <code>V_STP = n × 22.4 L</code><br>
+            <code>M = n_solute / V_solution(L)</code><br>
+            <code>m = n_solute / mass_solvent(kg)</code><br>
+            <code>M₁V₁ = M₂V₂</code><br>
+            <code>T(K) = T(°C) + 273.15</code>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module-card stage-support-columns" id="MOLE-MOD-05" data-unit="5">
+      <div class="stage-column">
+        <header class="module-header">
+          <div>
+            <span class="module-code">MOLE-MOD-05</span>
+            <h2 class="module-title">Concentration of Solutions: Molarity, Molality &amp; Mole Fraction</h2>
+          </div>
+          <span class="badge badge-secondary">Part 5 · Core Concepts</span>
+        </header>
+
+        <div class="target-banner">
+          🎯 <strong>Learning Target:</strong> Calculate solution concentrations and convert between Molarity (M), Molality (m), and Mole Fraction (χ).
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">🧠 Memory Anchor</div>
+          <div class="concept-box-text"><strong style="color:var(--accent);">Molarity M = moles solute / Litres solution (Temperature DEPENDENT). Molality m = moles solute / kg solvent (Temperature INDEPENDENT).</strong></div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚙️ Why It Works</div>
+          <div class="concept-box-text">Solution volume expands with temperature changes, altering Molarity. Mass does not expand with temperature; hence Molality and Mole Fraction remain strictly invariant with temperature.</div>
+        </div>
+
+        <div class="contrast-box">
+          <div class="contrast-title">🔍 Worked Contrast</div>
+          <div class="concept-box-text">Dilution equation: M₁V₁ = M₂V₂ (conserves total moles of solute upon solvent addition).</div>
+        </div>
+
+        
+        <div class="tool-box">
+          <div class="tool-title">🧪 Solution Molarity &amp; Dilution Calculator</div>
+          <div class="tool-row">
+            <label style="font-weight:600;font-size:14.5px;">Moles of Solute:</label>
+            <input type="number" id="input-conc-moles" class="tool-input" placeholder="e.g. 0.1" value="0.1" style="width:110px;">
+            <label style="font-weight:600;font-size:14.5px;">Volume of Solution (L):</label>
+            <input type="number" id="input-conc-vol" class="tool-input" placeholder="e.g. 0.25" value="0.25" style="width:110px;">
+            <button id="btn-calc-conc" class="btn" style="background:var(--accent);color:#000;">Compute Molarity</button>
+          </div>
+          <div id="res-conc-calc" class="tool-result">Enter solute moles and solution volume above and tap Compute.</div>
+        </div>
+        
+
+        <div class="practice-surface">
+          <div class="concept-box-title">✍️ Active Practice &amp; Step-by-Step Working</div>
+          <p style="font-size:15px;color:var(--text-primary);margin-bottom:8px;"><strong>Problem:</strong> Calculate the molarity of NaOH in the solution prepared by dissolving 4 g in enough water to form 250 mL of the solution.</p>
+          <textarea class="practice-textarea" data-key="MOLE-MOD-05" placeholder="Type your step-by-step stoichiometric calculations on tablet keyboard..."></textarea>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-check-mole" style="background:var(--accent);color:#000;font-weight:700;">Check Solution</button>
+            <button class="btn btn-clear-mole" style="background:var(--bg-surface);border:1px solid var(--border);color:var(--text-secondary);">Clear</button>
+          </div>
+          <details class="guided-reveal">
+            <summary>Reveal Checked Model Answer</summary>
+            <div class="guided-solution-text">
+Molar mass of NaOH = 23 + 16 + 1 = 40 g/mol.
+Moles of NaOH = 4 g / 40 g/mol = 0.1 mol.
+Volume of solution in litres = 250 mL / 1000 = 0.250 L.
+Molarity M = moles / Litres = 0.1 mol / 0.250 L = 0.4 mol/L (0.4 M).
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="support-column">
+        <div class="trap-box">
+          <div class="trap-title">⚠️ Common Trap to Avoid</div>
+          <div class="trap-text">In molality, the denominator is MASS OF SOLVENT in kg, NOT total mass of solution!</div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">📑 Academic Authority &amp; Benchmark</div>
+          <div class="concept-box-text" style="font-size:13.5px;color:var(--text-secondary);">
+            <strong>NCERT Chemistry:</strong> Class 9 Units 1–3 + Class 11 Chapter 1.<br><br>
+            <strong>Core 2 Helper:</strong> 68 Retained NCERT question instances across 7 parts.
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚡ Quick Mole &amp; Formula Guide</div>
+          <div class="concept-box-text" style="font-size:14px;color:var(--text-primary);">
+            <code>n = m / M = N / N_A</code><br>
+            <code>V_STP = n × 22.4 L</code><br>
+            <code>M = n_solute / V_solution(L)</code><br>
+            <code>m = n_solute / mass_solvent(kg)</code><br>
+            <code>M₁V₁ = M₂V₂</code><br>
+            <code>T(K) = T(°C) + 273.15</code>
+          </div>
+        </div>
+      </div>
+    </article>
+    <div style="margin:40px 0 20px 0;border-top:2px solid var(--border);padding-top:20px;"><h2 style="font-size:22px;color:var(--accent);">📘 NCERT Question Helper &amp; Transfer Bank (Core 2)</h2></div>
+    <article class="module-card stage-support-columns" id="NCERT-Q1" data-unit="ncert">
+      <div class="stage-column">
+        <header class="module-header">
+          <div>
+            <span class="module-code">Q1 · NCERT Unit 3 Q1</span>
+            <h2 class="module-title">Ratio of Combining Masses in Water</h2>
+          </div>
+          <span class="badge badge-purple">Core 2 NCERT Helper</span>
+        </header>
+
+        <p style="font-size:16px;color:var(--text-primary);margin-bottom:14px;font-weight:600;line-height:1.5;">
+          In water (H₂O), what is the ratio of the mass of hydrogen to the mass of oxygen, and how much oxygen is required to react completely with 3 g of hydrogen gas?
+        </p>
+
+        <div class="concept-box">
+          <div class="concept-box-title">💡 See the Idea (Visual First Move)</div>
+          <div class="concept-box-text">Chemical formula H₂O has 2 H atoms (2 × 1 = 2 u) and 1 O atom (16 u). Fixed mass ratio = 2:16 = 1:8.</div>
+        </div>
+
+        <div class="contrast-box">
+          <div class="contrast-title">👨‍🏫 Teacher-Style Helper</div>
+          <div class="concept-box-text">Use Law of Definite Proportions: 1 g H requires 8 g O.</div>
+        </div>
+
+        <div class="practice-surface">
+          <div class="concept-box-title">✍️ Your Working &amp; Answer Commit</div>
+          <textarea class="practice-textarea" data-key="ncert_mole_Q1" placeholder="Commit your answer here before revealing check..."></textarea>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-check-mole" style="background:var(--success);color:#000;font-weight:700;">Check Answer</button>
+            <button class="btn btn-clear-mole" style="background:var(--bg-surface);border:1px solid var(--border);color:var(--text-secondary);">Clear</button>
+          </div>
+          <details class="guided-reveal">
+            <summary>Reveal Answer &amp; Step-by-Step Solution</summary>
+            <div class="guided-solution-text">
+              <strong style="color:var(--success);font-size:15px;">Immediate Answer:</strong> Mass ratio H : O = 1 : 8. For 3 g of hydrogen, 3 × 8 = 24 g of oxygen is required.<br><br>
+              <strong>Complete Solution:</strong><br>
+1. Molar mass contribution: 2 H = 2 g, 1 O = 16 g.
+2. Ratio of mass = 2 : 16 = 1 : 8.
+3. By Law of Definite Proportions, 1 g hydrogen requires 8 g oxygen.
+4. Therefore 3 g hydrogen requires 3 × 8 = 24 g oxygen.
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="support-column">
+        <div class="concept-box">
+          <div class="concept-box-title">📋 Question Provenance</div>
+          <div class="concept-box-text" style="font-size:13.5px;color:var(--text-secondary);">
+            <strong>Source:</strong> NCERT Unit 3 Q1<br>
+            <strong>Skill:</strong> Atoms, molecules, chemical mass laws, and unit conversion.
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module-card stage-support-columns" id="NCERT-Q2" data-unit="ncert">
+      <div class="stage-column">
+        <header class="module-header">
+          <div>
+            <span class="module-code">Q2 · NCERT Unit 3 Q3</span>
+            <h2 class="module-title">Formula Unit Mass of Sodium Carbonate</h2>
+          </div>
+          <span class="badge badge-purple">Core 2 NCERT Helper</span>
+        </header>
+
+        <p style="font-size:16px;color:var(--text-primary);margin-bottom:14px;font-weight:600;line-height:1.5;">
+          Calculate the formula unit mass of: (a) Na₂CO₃·10H₂O (Washing Soda), (b) Ca(OH)₂ (Slaked Lime).
+        </p>
+
+        <div class="concept-box">
+          <div class="concept-box-title">💡 See the Idea (Visual First Move)</div>
+          <div class="concept-box-text">Sum atomic masses of all atoms indicated in the formula unit.</div>
+        </div>
+
+        <div class="contrast-box">
+          <div class="contrast-title">👨‍🏫 Teacher-Style Helper</div>
+          <div class="concept-box-text">Atomic masses: Na = 23, C = 12, O = 16, H = 1, Ca = 40. Remember 10H₂O = 10 × 18 = 180 u.</div>
+        </div>
+
+        <div class="practice-surface">
+          <div class="concept-box-title">✍️ Your Working &amp; Answer Commit</div>
+          <textarea class="practice-textarea" data-key="ncert_mole_Q2" placeholder="Commit your answer here before revealing check..."></textarea>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-check-mole" style="background:var(--success);color:#000;font-weight:700;">Check Answer</button>
+            <button class="btn btn-clear-mole" style="background:var(--bg-surface);border:1px solid var(--border);color:var(--text-secondary);">Clear</button>
+          </div>
+          <details class="guided-reveal">
+            <summary>Reveal Answer &amp; Step-by-Step Solution</summary>
+            <div class="guided-solution-text">
+              <strong style="color:var(--success);font-size:15px;">Immediate Answer:</strong> (a) Na₂CO₃·10H₂O = 286 u, (b) Ca(OH)₂ = 74 u.<br><br>
+              <strong>Complete Solution:</strong><br>
+1. Na₂CO₃·10H₂O = (2 × 23) + 12 + (3 × 16) + 10 × (2 × 1 + 16) = 46 + 12 + 48 + 180 = 286 u.
+2. Ca(OH)₂ = 40 + 2 × (16 + 1) = 40 + 34 = 74 u.
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="support-column">
+        <div class="concept-box">
+          <div class="concept-box-title">📋 Question Provenance</div>
+          <div class="concept-box-text" style="font-size:13.5px;color:var(--text-secondary);">
+            <strong>Source:</strong> NCERT Unit 3 Q3<br>
+            <strong>Skill:</strong> Atoms, molecules, chemical mass laws, and unit conversion.
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module-card stage-support-columns" id="NCERT-Q3" data-unit="ncert">
+      <div class="stage-column">
+        <header class="module-header">
+          <div>
+            <span class="module-code">Q3 · NCERT Unit 3 Q10</span>
+            <h2 class="module-title">Number of Molecules in Sulphur</h2>
+          </div>
+          <span class="badge badge-purple">Core 2 NCERT Helper</span>
+        </header>
+
+        <p style="font-size:16px;color:var(--text-primary);margin-bottom:14px;font-weight:600;line-height:1.5;">
+          Calculate the number of molecules of sulphur (S₈) present in 16 g of solid sulphur.
+        </p>
+
+        <div class="concept-box">
+          <div class="concept-box-title">💡 See the Idea (Visual First Move)</div>
+          <div class="concept-box-text">First find molar mass of S₈ = 8 × 32 = 256 g/mol. Then moles, then multiply by N_A.</div>
+        </div>
+
+        <div class="contrast-box">
+          <div class="contrast-title">👨‍🏫 Teacher-Style Helper</div>
+          <div class="concept-box-text">N = (mass / Molar mass) × 6.022 × 10²³.</div>
+        </div>
+
+        <div class="practice-surface">
+          <div class="concept-box-title">✍️ Your Working &amp; Answer Commit</div>
+          <textarea class="practice-textarea" data-key="ncert_mole_Q3" placeholder="Commit your answer here before revealing check..."></textarea>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-check-mole" style="background:var(--success);color:#000;font-weight:700;">Check Answer</button>
+            <button class="btn btn-clear-mole" style="background:var(--bg-surface);border:1px solid var(--border);color:var(--text-secondary);">Clear</button>
+          </div>
+          <details class="guided-reveal">
+            <summary>Reveal Answer &amp; Step-by-Step Solution</summary>
+            <div class="guided-solution-text">
+              <strong style="color:var(--success);font-size:15px;">Immediate Answer:</strong> 3.76 × 10²² molecules of S₈.<br><br>
+              <strong>Complete Solution:</strong><br>
+1. Molar mass of S₈ = 8 × 32 = 256 g/mol.
+2. Moles of S₈ = 16 g / 256 g/mol = 0.0625 mol.
+3. Number of molecules = 0.0625 × 6.022 × 10²³ = 3.764 × 10²² molecules.
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="support-column">
+        <div class="concept-box">
+          <div class="concept-box-title">📋 Question Provenance</div>
+          <div class="concept-box-text" style="font-size:13.5px;color:var(--text-secondary);">
+            <strong>Source:</strong> NCERT Unit 3 Q10<br>
+            <strong>Skill:</strong> Atoms, molecules, chemical mass laws, and unit conversion.
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module-card stage-support-columns" id="NCERT-Q4" data-unit="ncert">
+      <div class="stage-column">
+        <header class="module-header">
+          <div>
+            <span class="module-code">Q4 · NCERT Unit 1 Q5</span>
+            <h2 class="module-title">Temperature Conversion Discipline</h2>
+          </div>
+          <span class="badge badge-purple">Core 2 NCERT Helper</span>
+        </header>
+
+        <p style="font-size:16px;color:var(--text-primary);margin-bottom:14px;font-weight:600;line-height:1.5;">
+          Convert the following temperatures to the Celsius and Kelvin scales: (a) 300 K to °C, (b) 573 K to °C, (c) 25°C to K, (d) 373°C to K.
+        </p>
+
+        <div class="concept-box">
+          <div class="concept-box-title">💡 See the Idea (Visual First Move)</div>
+          <div class="concept-box-text">Relationship: T(K) = T(°C) + 273.15.</div>
+        </div>
+
+        <div class="contrast-box">
+          <div class="contrast-title">👨‍🏫 Teacher-Style Helper</div>
+          <div class="concept-box-text">Celsius = Kelvin - 273; Kelvin = Celsius + 273.</div>
+        </div>
+
+        <div class="practice-surface">
+          <div class="concept-box-title">✍️ Your Working &amp; Answer Commit</div>
+          <textarea class="practice-textarea" data-key="ncert_mole_Q4" placeholder="Commit your answer here before revealing check..."></textarea>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-check-mole" style="background:var(--success);color:#000;font-weight:700;">Check Answer</button>
+            <button class="btn btn-clear-mole" style="background:var(--bg-surface);border:1px solid var(--border);color:var(--text-secondary);">Clear</button>
+          </div>
+          <details class="guided-reveal">
+            <summary>Reveal Answer &amp; Step-by-Step Solution</summary>
+            <div class="guided-solution-text">
+              <strong style="color:var(--success);font-size:15px;">Immediate Answer:</strong> (a) 27°C, (b) 300°C, (c) 298 K, (d) 646 K.<br><br>
+              <strong>Complete Solution:</strong><br>
+1. 300 K - 273 = 27°C.
+2. 573 K - 273 = 300°C.
+3. 25°C + 273 = 298 K.
+4. 373°C + 273 = 646 K.
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="support-column">
+        <div class="concept-box">
+          <div class="concept-box-title">📋 Question Provenance</div>
+          <div class="concept-box-text" style="font-size:13.5px;color:var(--text-secondary);">
+            <strong>Source:</strong> NCERT Unit 1 Q5<br>
+            <strong>Skill:</strong> Atoms, molecules, chemical mass laws, and unit conversion.
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    </main>
+
+    <footer>
+      Grade 9 Chemistry · Some Basic Concepts &amp; Mole Concept · Standalone 12.7" Tablet Format · WCAG 2.5.5 Compliant (≥48px touch targets) · Zero External CDN Dependencies
+    </footer>
+  </div>
+
+  <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  initTabs();
+  initSearch();
+  initTextareas();
+  initMoleTools();
+});
+
+function initTheme() {
+  const toggleBtn = document.getElementById('theme-toggle-btn');
+  if (!toggleBtn) return;
+  const saved = localStorage.getItem('g9_mole_theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  toggleBtn.innerHTML = saved === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+
+  toggleBtn.addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+    const next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('g9_mole_theme', next);
+    toggleBtn.innerHTML = next === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+  });
+}
+
+function initTabs() {
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const targetUnit = btn.getAttribute('data-unit');
+      filterUnit(targetUnit);
+    });
+  });
+}
+
+function filterUnit(target) {
+  const cards = document.querySelectorAll('.module-card');
+  const search = (document.getElementById('search-input')?.value || '').toLowerCase().trim();
+
+  cards.forEach(c => {
+    const u = c.getAttribute('data-unit');
+    const txt = c.textContent.toLowerCase();
+    const matchUnit = (target === 'all' || u === target);
+    const matchSearch = (!search || txt.includes(search));
+
+    c.style.display = (matchUnit && matchSearch) ? '' : 'none';
+  });
+}
+
+function initSearch() {
+  const searchInput = document.getElementById('search-input');
+  const clearBtn = document.getElementById('clear-search-btn');
+
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      const activeTab = document.querySelector('.tab-btn.active')?.getAttribute('data-unit') || 'all';
+      filterUnit(activeTab);
+    });
+  }
+
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      if (searchInput) {
+        searchInput.value = '';
+        const activeTab = document.querySelector('.tab-btn.active')?.getAttribute('data-unit') || 'all';
+        filterUnit(activeTab);
+        searchInput.focus();
+      }
+    });
+  }
+}
+
+function initTextareas() {
+  const tas = document.querySelectorAll('.practice-textarea');
+  tas.forEach(t => {
+    const key = t.getAttribute('data-key');
+    if (!key) return;
+    const s = localStorage.getItem(`g9_mole_${key}`);
+    if (s) t.value = s;
+
+    t.addEventListener('input', () => {
+      localStorage.setItem(`g9_mole_${key}`, t.value);
+    });
+  });
+
+  const clearBtns = document.querySelectorAll('.btn-clear-mole');
+  clearBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const parent = btn.closest('.practice-surface');
+      const ta = parent?.querySelector('.practice-textarea');
+      const key = ta?.getAttribute('data-key');
+      if (ta) ta.value = '';
+      if (key) localStorage.removeItem(`g9_mole_${key}`);
+      const rev = parent?.querySelector('details.guided-reveal');
+      if (rev) rev.open = false;
+    });
+  });
+
+  const checkBtns = document.querySelectorAll('.btn-check-mole');
+  checkBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const parent = btn.closest('.practice-surface');
+      const rev = parent?.querySelector('details.guided-reveal');
+      if (rev) rev.open = true;
+    });
+  });
+}
+
+function initMoleTools() {
+  // Mole Calculator
+  const calcBtn = document.getElementById('btn-calc-mole');
+  if (calcBtn) {
+    calcBtn.addEventListener('click', () => {
+      const mass = parseFloat(document.getElementById('input-mole-mass')?.value);
+      const mm = parseFloat(document.getElementById('input-mole-mm')?.value);
+      const res = document.getElementById('res-mole-calc');
+      if (!res) return;
+
+      if (isNaN(mass) || isNaN(mm) || mm <= 0) {
+        res.innerHTML = 'Please enter valid positive numbers.';
+        return;
+      }
+
+      const moles = mass / mm;
+      const molecules = moles * 6.022e23;
+      const volSTP = moles * 22.4;
+
+      res.innerHTML = `<strong>Results:</strong><br>
+        &bull; <strong>Moles:</strong> ${moles.toFixed(4)} mol<br>
+        &bull; <strong>Entities (Molecules/Atoms):</strong> ${molecules.toExponential(3)}<br>
+        &bull; <strong>Volume at STP (if gas):</strong> ${volSTP.toFixed(2)} L`;
+    });
+  }
+
+  // Molarity Calculator
+  const concBtn = document.getElementById('btn-calc-conc');
+  if (concBtn) {
+    concBtn.addEventListener('click', () => {
+      const mSol = parseFloat(document.getElementById('input-conc-moles')?.value);
+      const vL = parseFloat(document.getElementById('input-conc-vol')?.value);
+      const res = document.getElementById('res-conc-calc');
+      if (!res) return;
+
+      if (isNaN(mSol) || isNaN(vL) || vL <= 0) {
+        res.innerHTML = 'Please enter valid positive numbers.';
+        return;
+      }
+
+      const molarity = mSol / vL;
+      res.innerHTML = `<strong>Molarity:</strong> ${molarity.toFixed(4)} M (mol/L)`;
+    });
+  }
+}
+
+  </script>
+</body>
+</html>

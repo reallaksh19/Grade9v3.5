@@ -1,0 +1,874 @@
+<!doctype html>
+<html data-g9-authority-sha="0e08782fd55ded0a2968f09b40c52cb1d8453633" data-g9-snapshot="review" data-g9-draft="106" lang="en" data-theme="dark" data-g9-shell data-g9-role="CORE1A" data-g9-mode="PAGES" data-g9-product="PRODUCT-PHY-KIN-1D-MOTION" data-g9-render-digest="561552996afd9957"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0"><meta name="g9-render" content="render_core/2 561552996afd9957"><style data-g9-inlined-tablet-css>
+/* ==========================================================================
+   Grade9V3 · 12.7" Tablet Ergonomics, Touch Targets & Icon Design System
+   Target Viewport: 1366x854 to 1440x900 CSS px (Landscape), 900x1440 (Portrait)
+   WCAG 2.5.5 Enhanced / Android Material Large Tablet Compliance (>= 48x48 px)
+   ========================================================================== */
+
+:root {
+  --tab12-container-max: 1380px;
+  --tab12-touch-min: 48px;
+  --tab12-thumb-size: 30px;
+  --tab12-base-font: 16px;
+  --tab12-radius-sm: 8px;
+  --tab12-radius-md: 12px;
+  --tab12-radius-lg: 16px;
+}
+
+/* 12.7" Base Typography Elevation */
+@media (min-width: 900px) {
+  html {
+    font-size: var(--tab12-base-font);
+  }
+}
+
+/* Large Tablet Container Constraints */
+.container, main, .main-container {
+  max-width: var(--tab12-container-max);
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   1. STRICT 48px+ TOUCH TARGET ENFORCEMENT
+   ========================================================================== */
+
+/* Buttons, Action Links, and Tab Buttons */
+button,
+.btn,
+.g9-btn,
+.tab-btn,
+.rung-node,
+.subtopic-actions a,
+.jump-nav a,
+a.action-btn {
+  min-height: var(--tab12-touch-min);
+  min-width: var(--tab12-touch-min);
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--tab12-radius-sm);
+  padding: 10px 18px;
+}
+
+/* Accordion Summary & Disclosure Controls */
+details summary,
+summary.rung-summary,
+details.reveal-block summary,
+details.core-box summary {
+  min-height: 52px;
+  padding: 14px 20px;
+  cursor: pointer;
+  touch-action: manipulation;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Touch-Optimized Range Sliders */
+input[type="range"] {
+  height: var(--tab12-touch-min) !important;
+  touch-action: pan-y;
+  cursor: pointer;
+  margin: 4px 0;
+  accent-color: #38bdf8;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  width: var(--tab12-thumb-size);
+  height: var(--tab12-thumb-size);
+  border-radius: 50%;
+  background: #38bdf8;
+  cursor: pointer;
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  touch-action: none;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: var(--tab12-thumb-size);
+  height: var(--tab12-thumb-size);
+  border-radius: 50%;
+  background: #38bdf8;
+  cursor: pointer;
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Textareas for Virtual Tablet Keyboard Typing */
+textarea,
+textarea.attempt-input,
+.attempt-box textarea {
+  min-height: 120px;
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 14px 16px;
+  border-radius: var(--tab12-radius-sm);
+  box-sizing: border-box;
+  touch-action: manipulation;
+}
+
+/* Elimination of sub-13px micro fonts */
+small, .badge, .subtopic-desc, .node-id, .stat-label, .evidence-citation {
+  font-size: 13.5px !important;
+}
+
+/* Tailwind utility floor: arbitrary micro-font classes are common in legacy explorers.
+   Keep learner-visible text at or above 13px on the tablet target even when a
+   runtime utility stylesheet is injected after this file. */
+.text-xs,
+[class~="text-[9px]"],
+[class~="text-[10px]"],
+[class~="text-[11px]"],
+[class~="text-[12px]"],
+[class~="text-[12.5px]"] {
+  font-size: 13px !important;
+}
+
+/* ==========================================================================
+   2. ICONS-INSTEAD-OF-TABLES COMPONENT SYSTEM
+   ========================================================================== */
+
+/* Metric Tile Clusters (replaces tabular telemetry) */
+.metric-tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin: 14px 0;
+}
+
+.metric-tile {
+  background: var(--bg-card, #1f293b);
+  border: 1px solid var(--border, #2e3d56);
+  border-radius: var(--tab12-radius-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.metric-tile:hover {
+  border-color: var(--accent, #38bdf8);
+}
+
+.metric-tile-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted, #94a3b8);
+}
+
+.metric-tile-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.metric-tile-value {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--accent, #38bdf8);
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.metric-tile-sub {
+  font-size: 13.5px;
+  color: var(--text-muted, #94a3b8);
+}
+
+/* Tablet Card Deck (replaces table rows) */
+.tablet-card-deck {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.tablet-card-row {
+  background: var(--bg-card, #1f293b);
+  border: 1px solid var(--border, #2e3d56);
+  border-radius: var(--tab12-radius-md);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  min-height: 64px;
+}
+
+.tablet-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid var(--accent, #38bdf8);
+  color: var(--accent, #38bdf8);
+}
+
+/* Dual Comparison Cards (replaces side-by-side comparison tables) */
+.dual-frame-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 16px 0;
+}
+
+@media (min-width: 860px) {
+  .dual-frame-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.dual-frame-card {
+  background: var(--bg-card, #161b22);
+  border: 1.5px solid var(--border, #30363d);
+  border-radius: var(--tab12-radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dual-frame-card.active {
+  border-color: var(--accent, #58a6ff);
+  box-shadow: 0 0 16px rgba(88, 166, 255, 0.2);
+}
+
+.dual-frame-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text, #f0f6fc);
+}
+
+/* Visual Arithmetic Flow Pipeline (replaces numeric arrays and synthetic division tables) */
+.arithmetic-pipeline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 16px 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pipeline-step {
+  background: var(--bg-card, #1f293b);
+  border: 1px solid var(--border, #2e3d56);
+  border-radius: var(--tab12-radius-sm);
+  padding: 12px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 110px;
+  text-align: center;
+}
+
+.pipeline-step.highlight {
+  border-color: #34d399;
+  background: rgba(52, 211, 153, 0.1);
+}
+
+.pipeline-arrow {
+  font-size: 20px;
+  color: var(--text-muted, #94a3b8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+}
+
+/* Stage Layout on 12.7" Tablets */
+@media (min-width: 960px) {
+  .stage-grid-12-7 {
+    display: grid;
+    grid-template-columns: 1.85fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+}
+
+</style><title>Construction · One-dimensional motion</title><style>
+[hidden]{display:none!important}
+:root{--g9-zoom:1;--g9-content-max:1380px;--g9-touch-min:48px;--g9-space:clamp(16px,2vw,28px);--g9-type-body:17px;--bg:#f6f7fb;--fg:#172033;--card:#fff;--line:#d5dce6;--accent:#1f5fae;--muted:#52627a;
+--soft:#fbfdff;--pill-bg:#eef2ff;--pill-fg:#4338ca;--src-bg:#ecfdf5;--src-fg:#047857;--info-bg:#f8fbff;--info-line:#93c5fd;--info-fg:#455d72;--warn-bg:#fff7f8;--warn-line:#ffc9d3;--warn-fg:#8a2942;--ok-bg:#f0fdf7;--ok-line:#bbf7d0;--ok-fg:#14532d}
+:root[data-theme=dark]{--bg:#0f1520;--fg:#e8edf5;--card:#18212f;--line:#2c394d;--accent:#8ab4f8;--muted:#a3b1c6;
+--soft:#141c29;--pill-bg:#262f5a;--pill-fg:#c3c9ff;--src-bg:#12301f;--src-fg:#6ee7b7;--info-bg:#14263d;--info-line:#3b6db3;--info-fg:#b8c9de;--warn-bg:#2b1620;--warn-line:#6b3045;--warn-fg:#f3b6c4;--ok-bg:#10281d;--ok-line:#1f6b44;--ok-fg:#b7efcf}
+html{font-size:calc(var(--g9-type-body) * var(--g9-zoom))}body{margin:0;background:var(--bg);color:var(--fg);font:1rem/1.6 system-ui,sans-serif;overflow-wrap:break-word}
+header[data-g9-shell-header]{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px var(--g9-space);background:var(--card);border-bottom:1px solid var(--line)}
+a{color:var(--accent)}
+header a,header button,button,summary,nav a{min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);padding:10px 14px;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg);font:inherit;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;touch-action:manipulation}
+nav[data-g9-breadcrumb]{display:flex;gap:8px;flex-wrap:wrap;padding:8px var(--g9-space)}
+main{max-width:var(--g9-content-max);margin:0 auto;padding:var(--g9-space);box-sizing:border-box}
+main>*{min-width:0}article[data-g9-unit]{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:var(--g9-space);margin:18px 0;min-width:0}
+article[data-g9-unit]>*{min-width:0}
+article[id],section[id]{scroll-margin-top:96px}
+.g9-core1a-book{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(16px,2vw,24px);margin:0 0 18px;min-width:0}
+.g9-core1a-book>h2{margin:.15em 0 .6em}
+.g9-bucket-orientation-grid{display:block;min-width:0}.g9-bucket-orientation-grid>*{min-width:0}
+[data-g9-concept-route] ol,[data-g9-section-route] ol{padding-left:1.4rem;margin:.5rem 0;box-sizing:border-box;max-width:100%;min-width:0}
+[data-g9-concept-route] li,[data-g9-section-route] li{margin:.35rem 0;max-width:100%;min-width:0}
+[data-g9-concept-route] a,[data-g9-section-route] a{display:flex;width:100%;max-width:100%;min-width:0;justify-content:flex-start;text-align:left;white-space:normal;overflow-wrap:anywhere}
+.g9-cu{padding-top:8px;border-top:1px solid var(--line)}
+.g9-cu:first-child{border-top:0}
+.g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] ol{list-style:none;padding-left:0;counter-reset:g9-derive}
+.g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] li{counter-increment:g9-derive;margin:0 0 12px;padding:12px 14px;border-left:3px solid var(--accent);background:var(--bg)}
+.g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] li::before{content:"Step " counter(g9-derive);display:block;color:var(--muted);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.g9-cu-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:.35rem 0 .8rem}
+.g9-cu-nav-links{display:flex;gap:8px;flex-wrap:wrap}
+.g9-stage-controls{display:grid;gap:8px;max-width:100%}
+.g9-stage-chips{display:flex;flex-wrap:wrap;gap:8px}
+.g9-stage-chip{border-radius:999px;padding:6px 14px;font-size:.9rem}.g9-stage-chip[aria-pressed=true]{background:var(--accent);color:var(--card);border-color:var(--accent);font-weight:700}
+.g9-stage-desc{margin:0;color:var(--muted);font-size:.92rem;min-height:1.4em}
+.g9-stage-stepper{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.g9-stage-stepper>[data-g9-stage-label]{color:var(--muted);flex:0 1 auto}
+.g9-table-scroll{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.g9-table-scroll table{width:100%;min-width:680px;border-collapse:collapse}
+.g9-table-scroll th,.g9-table-scroll td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+.g9-table-scroll th{background:var(--bg)}
+.g9-table-scroll td>.g9-math,.g9-table-scroll td>.g9-expr{margin:.15rem 0}
+[data-g9-block=worked_anchor]{border-left:4px solid var(--accent);padding-left:14px}
+.g9-watch-steps>li{margin:.8rem 0}.g9-watch-steps p{margin:.2rem 0}
+[data-g9-block=wrong_path],[data-g9-block=repair]{border-left:3px solid var(--line);padding-left:12px}
+[data-g9-block=scope_boundary]{color:var(--muted);font-size:.92rem}
+[data-g9-block=scope_boundary] ul{margin:.35rem 0;padding-left:1.2rem}
+.g9-availability-note{color:var(--muted);font-size:.9rem}
+.g9-cu-support{padding:0 0 16px;margin:0 0 16px;border-bottom:1px solid var(--line)}
+.g9-cu-support:last-of-type{border-bottom:0}.g9-cu-support>h3{font-size:1rem;line-height:1.35;margin:.3rem 0 .7rem;color:var(--muted)}
+@media (min-width:1100px){.g9-bucket-orientation-grid{display:grid;grid-template-columns:.68fr .32fr;gap:20px}}
+textarea{width:100%;min-height:120px;font:inherit;border:1px solid var(--line);border-radius:10px;padding:14px 16px;box-sizing:border-box;background:var(--card);color:var(--fg)}
+details{border:1px solid var(--line);border-radius:10px;margin:12px 0;padding:0 12px}details[data-locked] summary{opacity:.55;cursor:not-allowed}
+figure{margin:14px 0;max-width:100%;overflow-x:auto}figure svg{width:100%;height:auto;max-width:720px}figcaption{color:var(--muted)}
+.g9-prov{color:var(--muted);font-size:.95rem}.g9-expr{font-family:ui-monospace,monospace;font-size:1.05rem}
+[data-g9-meta-strip]{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+[data-g9-meta-item]{display:inline-flex;flex-wrap:wrap;gap:4px;align-items:baseline;padding:5px 9px;border:1px solid var(--line);border-radius:999px;background:var(--bg);font-size:.9rem;max-width:100%;min-width:0;box-sizing:border-box}
+[data-g9-meta-item] strong{font-weight:700;flex:0 0 auto}
+[data-g9-meta-label]{min-width:0;overflow-wrap:anywhere}
+h4{margin:.8em 0 .3em}:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+footer{padding:24px 16px;color:var(--muted)}
+@media print{:root,:root[data-theme=dark]{--bg:#fff;--fg:#000;--card:#fff;--line:#bbb;--accent:#1f5fae;--muted:#333;--soft:#fff;--pill-bg:#eee;--pill-fg:#222;--src-bg:#eee;--src-fg:#222;--info-bg:#fff;--info-line:#888;--info-fg:#222;--warn-bg:#fff;--warn-line:#888;--warn-fg:#222;--ok-bg:#fff;--ok-line:#888;--ok-fg:#222}
+header[data-g9-shell-header],nav[data-g9-breadcrumb],.g9-attempt,button,[data-g9-display-panel],[data-g9-source-pdf]{display:none!important}
+.g9-attempt:has(.g9-answer-options){display:block!important}
+.g9-attempt>:not(.g9-answer-options),.g9-answer-option input{display:none!important}
+details[data-requires-attempt]:not([open]){display:none!important}
+details{border:none}article[data-g9-unit]{break-inside:auto;border:none}
+h1,h2,h3,h4{break-after:avoid-page}footer{padding:0;break-before:avoid-page}
+body{background:#fff;color:#000}}
+.g9-attempt input[type=text],.g9-attempt select,.g9-attempt textarea{min-height:48px;box-sizing:border-box}
+.g9-answer-option,.g9-paper,.g9-match{display:flex;align-items:center;gap:.5rem;min-height:48px}
+.g9-answer-option input,.g9-paper input{min-width:48px;min-height:48px}
+.g9-attempt fieldset{min-height:48px}
+.g9-math,pre,table{max-width:100%;overflow-x:auto}
+input,select{font-size:max(16px,1rem)}
+@media (max-width:899px){header[data-g9-shell-header]{position:relative}article[data-g9-unit]{padding:16px}nav[data-g9-breadcrumb]{font-size:.95rem}}
+
+.g9-split{display:block;min-width:0}.g9-col{min-width:0}
+.g9-component{min-width:0;margin:14px 0}.g9-component:first-child{margin-top:0}
+.g9-eyebrow{font-size:.85rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 6px}
+.g9-pill{display:inline-flex;align-items:center;font-size:.85rem;font-weight:800;line-height:1.2;padding:3px 10px;border-radius:999px;background:var(--pill-bg);color:var(--pill-fg);white-space:nowrap}
+.g9-pill-source{background:var(--src-bg);color:var(--src-fg)}
+article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-bottom:1px solid var(--line)}
+.g9-c-header h2,.g9-c-concept-header h2{font-size:1.2rem;line-height:1.3;margin:0;letter-spacing:-.01em}
+.g9-c-header .g9-prov{margin:2px 0 0}
+.g9-c-disclosure-grid{margin-top:0}
+.g9-c-unit-header{margin-top:0}
+.g9-why-toggle{margin-top:10px;gap:4px 10px;flex-wrap:wrap;max-width:100%;text-align:left;justify-content:flex-start;border:0;background:transparent;padding:6px 0;font-weight:700;color:var(--muted)}
+.g9-pill-band{background:#fff7ed;color:#9a3412}.g9-pill-band[data-g9-band=D1]{background:#ecfdf5;color:#047857}.g9-pill-band[data-g9-band=D2]{background:#eff6ff;color:#1d4ed8}.g9-pill-band[data-g9-band=D4]{background:#fdf2f8;color:#be185d}
+:root[data-theme=dark] .g9-pill-band{background:#3a2a14;color:#fdba74}:root[data-theme=dark] .g9-pill-band[data-g9-band=D1]{background:#12301f;color:#6ee7b7}:root[data-theme=dark] .g9-pill-band[data-g9-band=D2]{background:#172a4d;color:#9ec5ff}:root[data-theme=dark] .g9-pill-band[data-g9-band=D4]{background:#3a1830;color:#f9a8d4}
+.g9-why{margin-top:6px}.g9-why p{margin:.2rem 0 .6rem;color:var(--muted)}
+.g9-dgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.g9-dcell{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:.85rem;color:var(--muted)}.g9-dcell b{display:block;color:var(--fg);font-size:1rem}
+.g9-c-stem [data-g9-block=stem] p{margin:.1rem 0;font-size:1.12rem;line-height:1.58;font-weight:560;white-space:pre-line}
+.g9-c-callout-info{border-left:4px solid var(--info-line);background:var(--info-bg);padding:10px 14px;border-radius:0 12px 12px 0;color:var(--info-fg)}
+.g9-c-callout-warn{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:12px;padding:10px 14px;color:var(--warn-fg)}
+.g9-c-callout-info h4,.g9-c-callout-warn h4{margin:0 0 .2rem;font-size:1rem}.g9-c-callout-warn h4{color:var(--warn-fg)}
+.g9-c-callout-info ul{margin:.2rem 0;padding-left:1.2rem}.g9-c-callout-info p,.g9-c-callout-warn p{margin:.1rem 0}
+.g9-bridge-link{color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.g9-crux-tag{display:inline-block;margin:0 0 4px;padding:1px 10px;border-radius:999px;background:var(--pill-bg);color:var(--pill-fg);font-size:.85rem;font-weight:800}
+.g9-c-step-cards [data-g9-block=construction] ol>li[data-g9-crux-step]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.g9-lines{white-space:pre-line}
+.g9-cu-support>h3{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.g9-c-attempt .g9-attempt{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--soft)}
+.g9-answer-options{display:grid;gap:8px;counter-reset:g9opt}
+.g9-answer-option{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:6px 12px}
+.g9-answer-option::before{counter-increment:g9opt;content:"(" counter(g9opt,upper-alpha) ")";font-weight:850;color:var(--accent);order:1;min-width:2.2rem}
+.g9-answer-option input{order:0}.g9-answer-option>span{order:2}
+.g9-c-visual-card,.g9-c-staged-visual{border:1px solid var(--line);border-radius:16px;background:var(--soft);padding:10px 12px 12px}
+.g9-card-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:6px}.g9-card-head strong{font-size:.9rem}
+.g9-c-visual-card figure,.g9-c-staged-visual figure{margin:0}
+.g9-c-visual-card figure svg,.g9-c-staged-visual figure svg{display:block;width:100%;height:auto;max-width:100%}
+.g9-c-visual-card figure svg{max-height:min(48vh,440px)}.g9-c-staged-visual figure svg{max-height:min(42vh,360px)}
+.g9-c-ladder .g9-block>h4{margin:.9rem 0 .2rem;font-size:.85rem;color:var(--muted)}
+.g9-rung-map,.g9-c-ladder [data-g9-ladder]{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:8px}
+.g9-rung-map>li{border:1px dashed var(--line);border-radius:12px;padding:9px 13px;color:var(--muted)}
+.g9-c-ladder [data-g9-ladder]>li{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:10px 13px}
+.g9-rung-head{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-weight:800}
+.g9-rung-no{display:inline-grid;place-items:center;min-width:2.3em;height:2.1em;border-radius:8px;background:var(--pill-bg);color:var(--pill-fg);font-size:.85rem}
+.g9-c-ladder details[data-g9-support-reveal]{border:0;padding:0;margin:.5rem 0}
+.g9-c-ladder details[data-g9-support-reveal]>summary{width:100%;justify-content:space-between;font-weight:700}
+.g9-c-ladder [data-g9-support-prompt]{margin:.5rem 0}.g9-c-ladder .g9-ladder>button{margin-top:10px}
+.g9-pdf-link{gap:6px;font-weight:700}.g9-pdf-icon{flex:none;width:24px;height:24px}.g9-pdf-link span{white-space:nowrap}header .g9-pdf-link{color:var(--accent)}.g9-c-link-list .g9-source-pdf{border-radius:12px}
+.g9-c-link-list h4{margin:.9rem 0 .3rem;font-size:.85rem;color:var(--muted)}
+.g9-c-link-list ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:.2rem 0;padding:0}
+.g9-c-link-list li{margin:0}.g9-c-link-list a{display:inline-flex;align-items:center;min-height:48px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--fg);text-decoration:none}
+.g9-c-disclosure>details{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:0;overflow:hidden;margin:0}
+.g9-c-disclosure>details>summary{list-style:none;display:flex;width:100%;justify-content:space-between;border:0;border-radius:0;background:transparent;padding:13px 15px;font-weight:850;min-height:48px}
+.g9-c-disclosure>details>summary::-webkit-details-marker{display:none}
+.g9-c-disclosure>details>summary::after{content:"Show";font-size:.85rem;background:var(--pill-bg);color:var(--pill-fg);padding:4px 10px;border-radius:999px}
+.g9-c-disclosure>details[open]>summary::after{content:"Hide"}.g9-c-disclosure>details[data-locked]>summary::after{content:"After you attempt"}
+.g9-c-disclosure>details[open]>summary{border-bottom:1px solid var(--line);background:var(--card)}
+.g9-c-disclosure [data-g9-payload-slot]{padding:6px 16px 16px}
+.g9-solution-move{display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.g9-solution-move:last-child{border-bottom:0}
+.g9-step-no{font-weight:850;font-size:.9rem;color:var(--pill-fg);background:var(--pill-bg);border-radius:8px;padding:5px 6px;text-align:center;height:max-content}
+.g9-step-body [data-g9-block=solution_inputs]{display:flex;flex-wrap:wrap;gap:.4rem;align-items:baseline;color:var(--muted)}
+.g9-step-body [data-g9-block=solution_inputs] h4{margin:0}
+.g9-step-body [data-g9-block=solution_inputs] ul{display:flex;flex-wrap:wrap;gap:.4rem;list-style:none;margin:0;padding:0}
+.g9-step-body [data-g9-block=solution_inputs] li{border:1px solid var(--line);border-radius:999px;padding:1px 10px;font-size:.85rem}
+.g9-step-body p{margin:.25rem 0}.g9-step-body h4{margin:0;font-size:.85rem;color:var(--muted)}
+.g9-solution-move[data-g9-solution-crux=true]{background:var(--info-bg);border-radius:10px;padding-left:8px;padding-right:8px}
+.g9-c-step-list [data-g9-block=working] ol{list-style:none;padding:0;margin:0;counter-reset:g9s}
+.g9-c-step-list [data-g9-block=working] ol>li{counter-increment:g9s;display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.g9-c-step-list [data-g9-block=working] ol>li::before{content:counter(g9s);font-weight:850;font-size:.9rem;color:var(--pill-fg);background:var(--pill-bg);border-radius:8px;padding:5px 6px;text-align:center;height:max-content}
+.g9-c-answer-box{background:var(--ok-bg);border:1px solid var(--ok-line);border-radius:12px;padding:10px 14px;color:var(--ok-fg)}
+.g9-c-answer-box p{margin:.15rem 0}.g9-c-answer-box h4{margin:0 0 .2rem;font-size:.85rem}
+.g9-c-check-box{border-left:4px solid var(--ok-line);padding:4px 14px;color:var(--ok-fg)}.g9-c-check-box h4{margin:0;font-size:.85rem}.g9-c-check-box p{margin:.15rem 0}
+.g9-c-tile,.g9-c-recall-card{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:12px 16px}
+.g9-c-tile h4,.g9-c-recall-card h4{margin:0 0 .3rem}.g9-c-tile ul{margin:.2rem 0;padding-left:1.2rem}
+.g9-c-banner{border-left:5px solid var(--accent);background:var(--info-bg);padding:12px 16px;border-radius:0 14px 14px 0}.g9-c-banner h4{margin:0 0 .2rem;color:var(--accent)}.g9-c-banner p{margin:.1rem 0}
+.g9-unit-head{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.g9-unit-no{display:inline-grid;place-items:center;width:2.3em;height:2.3em;border-radius:50%;background:var(--accent);color:var(--card);font-weight:850}
+.g9-unit-head h3{margin:0;flex:1 1 12rem;font-size:1.12rem;line-height:1.35}.g9-pill-concept{background:var(--info-bg);color:var(--info-fg);border:1px solid var(--info-line)}
+.g9-c-step-cards [data-g9-block=construction] ol{list-style:none;margin:0;padding:0;counter-reset:g9c;display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+.g9-c-step-cards [data-g9-block=construction] ol>li{counter-increment:g9c;position:relative;border:1px solid var(--line);border-radius:14px;background:var(--card);padding:12px 14px 12px 54px;min-width:0;overflow-wrap:anywhere}
+.g9-c-step-cards [data-g9-block=construction] ol>li::before{content:counter(g9c);position:absolute;left:14px;top:12px;display:grid;place-items:center;width:1.9em;height:1.9em;border-radius:50%;background:var(--pill-bg);color:var(--pill-fg);font-weight:850;font-size:.9rem}
+.g9-c-step-cards li em{display:inline-block;min-width:5.6rem;color:var(--muted);font-style:normal;font-weight:700}
+.g9-c-step-cards li br{display:block;content:"";margin-top:.3rem}
+.g9-c-equation-card,.g9-c-worked-card{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:10px 14px}
+.g9-c-worked-card{border-left:4px solid var(--accent)}.g9-c-worked-card [data-g9-block=worked_anchor]{border-left:0;padding-left:0}
+.g9-c-trap-card{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:14px;padding:10px 14px;color:var(--warn-fg)}
+.g9-c-trap-card [data-g9-block]{border-left:0;padding-left:0}.g9-c-trap-card h4{margin:.5rem 0 .1rem;font-size:.85rem}
+.g9-c-trap-card ul{margin:.1rem 0;padding-left:1.2rem}
+.g9-c-triad{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:10px 14px}
+.g9-c-triad h4{margin:0 0 .4rem;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.g9-triad{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.g9-triad>li{display:grid;gap:2px;border-left:4px solid var(--line);padding:2px 0 2px 10px}
+.g9-triad>li[data-g9-triad-role=CHECK]{border-color:var(--info-line)}.g9-triad>li[data-g9-triad-role=APPLY]{border-color:var(--ok-line)}.g9-triad>li[data-g9-triad-role=CONNECT]{border-color:var(--pill-fg)}
+.g9-triad-head{font-size:.85rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.g9-c-chips ul,.g9-c-chips ol{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:.3rem 0;padding:0}
+.g9-c-chips li{margin:0}
+.g9-c-chips a{border:1px solid var(--line);border-radius:999px;background:var(--card);padding:6px 14px;min-height:48px;display:inline-flex;align-items:center;text-decoration:none;color:var(--fg)}
+/* 12.7-inch tablet: the identity block is a title row and a chip row, so the first screen shows the work and not the labels */
+article[data-g9-role=CORE2]>.slot-identity,article[data-g9-role=CORE1A]>.slot-identity{display:flex;flex-wrap:wrap;align-items:center;gap:4px 16px;padding:0 0 8px;margin-bottom:12px}
+article[data-g9-role=CORE2]>.slot-identity>.g9-component,article[data-g9-role=CORE1A]>.slot-identity>.g9-component{display:contents}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-block=source_identity]{order:1;flex:1 1 16rem;display:flex;align-items:baseline;flex-wrap:wrap;gap:0 14px;min-width:0}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-block=source_identity] h2,article[data-g9-role=CORE1A]>.slot-identity h2{margin:0}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-block=source_identity] .g9-prov{margin:0}
+article[data-g9-role=CORE2]>.slot-identity .g9-why-toggle{order:2;margin:0;padding:2px 0;min-height:var(--g9-touch-min)}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-meta-strip],article[data-g9-role=CORE1A]>.slot-identity [data-g9-meta-strip]{order:3;flex:1 0 100%;margin:0;gap:6px}
+article[data-g9-role=CORE2]>.slot-identity .g9-why{order:4;flex:1 0 100%}
+article[data-g9-role=CORE1A]>.slot-identity h2{order:1;flex:1 1 auto}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-block=section_route]{order:4;flex:1 0 100%;display:flex;align-items:center;gap:6px 12px;flex-wrap:wrap}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-block=section_route] h4{margin:0;white-space:nowrap}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] ol{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] li{margin:0}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] a{display:inline-block;width:auto;max-width:24rem;padding:4px 14px;border-radius:999px;line-height:38px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-meta-item],article[data-g9-role=CORE1A]>.slot-identity [data-g9-meta-item]{padding:2px 10px;line-height:1.35}
+@media (min-width:980px){article[data-g9-role="CORE2"] .g9-split{display:grid;grid-template-columns:minmax(0,42fr) minmax(0,58fr);gap:22px;align-items:start}article[data-g9-role="CORE2"] .g9-split-primary-only,article[data-g9-role="CORE2"] .g9-split-support-only{grid-template-columns:minmax(0,1fr)}}@media (max-width:979px){article[data-g9-role="CORE2"] .g9-split{display:flex;flex-direction:column}article[data-g9-role="CORE2"] .g9-split .g9-col,article[data-g9-role="CORE2"] .g9-split .blueprint-slot,article[data-g9-role="CORE2"] .g9-split .g9-cu,article[data-g9-role="CORE2"] .g9-split .g9-cu-support{display:contents}article[data-g9-role="CORE2"] [data-g9-component="IDENTITY"]{order:10}article[data-g9-role="CORE2"] [data-g9-component="SOURCE_PDF"]{order:15}article[data-g9-role="CORE2"] [data-g9-component="DIFFICULTY_WHY"]{order:20}article[data-g9-role="CORE2"] [data-g9-component="STEM"]{order:30}article[data-g9-role="CORE2"] [data-g9-component="CONDITIONS"]{order:50}article[data-g9-role="CORE2"] [data-g9-component="TRAP"]{order:60}article[data-g9-role="CORE2"] [data-g9-component="ATTEMPT"]{order:70}article[data-g9-role="CORE2"] [data-g9-component="REPRESENTATION"]{order:40}article[data-g9-role="CORE2"] [data-g9-component="HINT_LADDER"]{order:80}article[data-g9-role="CORE2"] [data-g9-component="CONCEPT_NAV"]{order:90}article[data-g9-role="CORE2"] [data-g9-component="SOLUTION"]{order:100}}@media print{article[data-g9-role="CORE2"] .g9-split{display:grid;grid-template-columns:minmax(0,42fr) minmax(0,58fr);gap:12px}}@media (min-width:1100px){article[data-g9-role="CORE1A"] .g9-split{display:grid;grid-template-columns:minmax(0,60fr) minmax(0,40fr);gap:22px;align-items:start}article[data-g9-role="CORE1A"] .g9-split-primary-only,article[data-g9-role="CORE1A"] .g9-split-support-only{grid-template-columns:minmax(0,1fr)}article[data-g9-role="CORE1A"] .g9-split:not(.g9-split-support-only)>.g9-col-support{position:sticky;top:80px;max-height:calc(100vh - 96px);overflow-y:auto;overscroll-behavior:contain}}@media (max-width:1099px){article[data-g9-role="CORE1A"] .g9-split{display:flex;flex-direction:column}article[data-g9-role="CORE1A"] .g9-split .g9-col,article[data-g9-role="CORE1A"] .g9-split .blueprint-slot,article[data-g9-role="CORE1A"] .g9-split .g9-cu,article[data-g9-role="CORE1A"] .g9-split .g9-cu-support{display:contents}article[data-g9-role="CORE1A"] [data-g9-component="CONCEPT_HEADER"]{order:10}article[data-g9-role="CORE1A"] [data-g9-component="SECTION_ROUTE"]{order:20}article[data-g9-role="CORE1A"] [data-g9-component="UNIT_HEADER"]{order:30}article[data-g9-role="CORE1A"] [data-g9-component="KEY_STEP"]{order:40}article[data-g9-role="CORE1A"] [data-g9-component="MODEL_CONTRACT"]{order:50}article[data-g9-role="CORE1A"] [data-g9-component="QUESTION_BRIDGE"]{order:60}article[data-g9-role="CORE1A"] [data-g9-component="CONSTRUCTION_STEPS"]{order:80}article[data-g9-role="CORE1A"] [data-g9-component="EQUATIONS"]{order:90}article[data-g9-role="CORE1A"] [data-g9-component="WORKED_EXAMPLE"]{order:100}article[data-g9-role="CORE1A"] [data-g9-component="STAGED_VISUAL"]{order:70}article[data-g9-role="CORE1A"] [data-g9-component="TRAP_REPAIR"]{order:110}article[data-g9-role="CORE1A"] [data-g9-component="QUICK_CHECK"]{order:120}article[data-g9-role="CORE1A"] [data-g9-component="EXIT_RECALL"]{order:130}article[data-g9-role="CORE1A"] [data-g9-component="PRACTICE_LINKS"]{order:140}}@media print{article[data-g9-role="CORE1A"] .g9-split{display:grid;grid-template-columns:minmax(0,60fr) minmax(0,40fr);gap:12px}}@media (min-width:1100px){article[data-g9-role="CORE1B"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:22px;align-items:start}article[data-g9-role="CORE1B"] .g9-split-primary-only,article[data-g9-role="CORE1B"] .g9-split-support-only{grid-template-columns:minmax(0,1fr)}}@media print{article[data-g9-role="CORE1B"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:12px}}@media (min-width:1100px){article[data-g9-role="CORE2A"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:22px;align-items:start}article[data-g9-role="CORE2A"] .g9-split-primary-only,article[data-g9-role="CORE2A"] .g9-split-support-only{grid-template-columns:minmax(0,1fr)}}@media print{article[data-g9-role="CORE2A"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:12px}}@media (min-width:1100px){article[data-g9-role="CORE2B"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:22px;align-items:start}article[data-g9-role="CORE2B"] .g9-split-primary-only,article[data-g9-role="CORE2B"] .g9-split-support-only{grid-template-columns:minmax(0,1fr)}}@media print{article[data-g9-role="CORE2B"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:12px}}</style><style id="pr375-u4-remediation">
+/* PR #375 U4 remediation: accessibility, reflow and alternate viewports. */
+*, *::before, *::after { box-sizing: border-box; }
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid #38bdf8 !important;
+  outline-offset: 2px !important;
+}
+img, svg, canvas { max-width: 100%; }
+input, select, textarea { max-width: 100%; }
+::placeholder { color: #94a3b8 !important; opacity: 1 !important; }
+[data-theme="light"] ::placeholder { color: #475569 !important; }
+.u4-clear-button { color: #f8fafc !important; }
+[data-theme="light"] .u4-clear-button { color: #0f172a !important; }
+
+/* Never communicate correctness by colour alone. */
+.opt-btn.selected-correct::after {
+  content: " ✓ Correct";
+  margin-inline-start: .4rem;
+  font-weight: 800;
+}
+.opt-btn.selected-incorrect::after {
+  content: " ✕ Incorrect";
+  margin-inline-start: .4rem;
+  font-weight: 800;
+}
+
+/* Contrast repairs for the learner-visible light theme. */
+[data-theme="light"] .step-content-calc {
+  color: #7c2d12 !important;
+  background: #fff7ed !important;
+  border: 1px solid #c2410c !important;
+}
+[data-theme="light"] .answer-banner,
+[data-theme="light"] .badge-success,
+[data-theme="light"] .saved-pill {
+  color: #065f46 !important;
+}
+[data-theme="light"] .badge-warning,
+[data-theme="light"] .hint-tag,
+[data-theme="light"] .diag-header-another {
+  color: #7c2d12 !important;
+}
+[data-theme="light"] .step-label,
+[data-theme="light"] details > summary {
+  color: #075985 !important;
+}
+[data-theme="light"] .formula-box,
+[data-theme="light"] .math-banner {
+  color: #422006 !important;
+  background: #fef3c7 !important;
+  border-color: #92400e !important;
+}
+[data-theme="light"] footer { color: #475569 !important; }
+
+/* Default dark-theme contrast repairs from U4. */
+html[data-theme="dark"] .step-label { color: #7dd3fc !important; }
+html[data-theme="dark"] details > summary { color: #7dd3fc !important; }
+.q-count, .open-btn { color: #93c5fd !important; }
+.tag-2d, .tag-1d, .tag-vec, .tag-ncert, .tag-sba, .tag-proj, .tag-cons { color: #ffffff !important; }
+footer { color: #94a3b8 !important; }
+
+/* The offline 1D master lost Tailwind preflight + custom theme utilities. */
+body.u4-tailwind-offline {
+  margin: 0 !important;
+  background: #090d16 !important;
+  color: #f1f5f9 !important;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+.u4-tailwind-offline.bg-background, .u4-tailwind-offline .bg-background { background-color: #090d16 !important; }
+.u4-tailwind-offline .bg-card { background-color: #111827 !important; }
+.u4-tailwind-offline .border-border { border-color: #334155 !important; }
+.u4-tailwind-offline .bg-slate-950\/90 { background-color: rgba(2, 6, 23, .94) !important; }
+.u4-tailwind-offline .bg-slate-900 { background-color: #0f172a !important; }
+.u4-tailwind-offline .bg-slate-800 { background-color: #1e293b !important; }
+.u4-tailwind-offline .max-w-7xl { max-width: 80rem !important; }
+.u4-tailwind-offline .overflow-x-auto { overflow-x: auto !important; }
+.u4-tailwind-offline .whitespace-nowrap { white-space: nowrap !important; }
+.u4-tailwind-offline .font-sans { font-family: ui-sans-serif, system-ui, sans-serif !important; }
+.u4-tailwind-offline .text-slate-500,
+.u4-tailwind-offline .text-slate-600 { color: #cbd5e1 !important; }
+.u4-tailwind-offline .text-slate-400 { color: #a8b5c7 !important; }
+.u4-tailwind-offline header { max-width: 100%; }
+
+/* Reflow at phone width and at a 200% zoom-equivalent viewport. */
+@media (max-width: 700px) {
+  header.sticky, .sticky-header, .top-nav.sticky { position: static !important; top: auto !important; }
+}
+@media (max-width: 480px) {
+  .header-actions,
+  .g9-nav-group,
+  .g9-header-actions,
+  .top-nav-header,
+  .course-badge-row,
+  .workspace-title-row {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-wrap: wrap !important;
+  }
+  .g9-block, nav, ol, ul, main, section, article, .app-container, .container {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  ol, ul { padding-inline-start: 1.5rem !important; }
+  #jump-select { width: 100% !important; max-width: 100% !important; }
+  .tab-btn { white-space: normal !important; min-width: 0 !important; flex: 1 1 140px !important; }
+  .tabs, .tab-strip, .tab-nav, .tab-bar, .g9-tabs, [class*="tabs-row"] {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .g9-nav-group > *, .header-actions > * { max-width: 100% !important; }
+  pre { white-space: pre-wrap !important; overflow-wrap: anywhere !important; max-width: 100% !important; }
+  table { display: block; max-width: 100% !important; overflow-x: auto !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (forced-colors: active) {
+  svg text { fill: CanvasText !important; stroke: transparent !important; }
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 3px solid Highlight !important;
+  }
+}
+</style>
+<style id="pr375-u4-residual-remediation">
+@media (max-width: 480px) {
+  /* Generated CORE1A section-route pills used 24rem + padding, producing ~467px boxes. */
+  [data-g9-section-route] a,
+  [data-g9-concept-route] a,
+  article[data-g9-role="CORE1A"] > .slot-identity [data-g9-section-route] a {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    line-height: 1.4 !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  /* Consolidated and interactive headers must reflow as complete units, not just their children. */
+  .header-inner,
+  header.g9-shell {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+  }
+  .header-inner > *,
+  header.g9-shell > .g9-nav-group {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .header-brand,
+  .header-brand h1,
+  .header-actions,
+  header.g9-shell .g9-nav-group,
+  header.g9-shell .g9-breadcrumb {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+  }
+  .header-brand h1 { align-items: flex-start !important; }
+  .header-actions { width: 100% !important; justify-content: flex-start !important; }
+  header.g9-shell { padding-block: 8px !important; }
+  header.g9-shell .g9-breadcrumb { flex: 1 1 100% !important; overflow-wrap: anywhere !important; }
+}
+</style>
+<style id="pr375-u1-remediation">
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%} body{overflow-wrap:anywhere} p,li{line-height:1.4}
+:where(p,li,label,button,input,select,textarea,summary,td,th,figcaption,.btn,.q-badge,.tag-pill,.hint-badge,.hint-tag,.subject-badge,.step-label,.diag-header,.formula-box,#saveStatus,.save-status,.tag,.q-count,.open-btn,.stat .label,section.section-header h2,.study-kicker,.brand-badge,.hero-pill,.badge,.core-tag,.telemetry-title,.control-label,.card-action,.breadcrumb){font-size:max(14px,1em)!important}
+:where(a[href="index.html"],header a,nav a,.breadcrumb a,a.g9-bridge-link,[data-g9-block="entry_assumptions"] a){min-height:48px!important;min-width:48px!important;display:inline-flex!important;align-items:center!important;justify-content:center;padding-block:10px!important;box-sizing:border-box!important}
+@media(min-width:1100px){article[data-g9-role="CORE1A"] .g9-split{grid-template-columns:minmax(0,1fr)!important}article[data-g9-role="CORE1A"] .g9-col-support{position:static!important;top:auto!important}}
+article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;line-height:1.35!important;min-height:48px!important}
+
+.badge,.study-kicker{font-size:14px!important}
+</style>
+</head><body data-core="CORE1A" data-blueprint-ref="BP-CORE1A-CONSTRUCTION@1.4.0"><header data-g9-shell-header><a data-g9-home href="index.html">Home</a><button type="button" onclick="history.back()">Back</button><button type="button" data-g9-action="search">Search</button><button type="button" data-g9-action="display">Display</button><div data-g9-search-panel hidden><input data-g9-search-input type="search" aria-label="Search this page"></div><div data-g9-display-panel hidden><button type="button" data-g9-font="dec">A−</button><button type="button" data-g9-font="reset">A</button><button type="button" data-g9-font="inc">A+</button><button type="button" data-g9-theme="light">Light</button><button type="button" data-g9-theme="dark">Dark</button><button type="button" data-g9-zoom="dec">Zoom −</button><button type="button" data-g9-zoom="reset">100%</button><button type="button" data-g9-zoom="inc">Zoom +</button></div></header><nav data-g9-breadcrumb aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-current="page">CORE1A</span></nav><noscript>Answers open after you attempt; this page needs JavaScript.</noscript><main><aside data-g9-snapshot-note class="g9-card" style="margin:0 0 14px"><strong>Review snapshot.</strong> Generated by render_core/2 from merged blueprint authority <code>main@0e08782fd55ded0a2968f09b40c52cb1d8453633</code>. Academic content is the governed manifest/package/bank projection; only standalone navigation, PDF-control removal and CSS inlining are adapted.</aside><h1>One-dimensional motion: Construction</h1><section class="g9-core1a-book" data-g9-bucket-orientation data-g9-bucket-ref="BUCKET-PHY-KIN-1D-MOTION"><p class="g9-prov">Concept Book</p><h2>One-dimensional motion</h2><div class="g9-bucket-orientation-grid"><div><div class="g9-block" data-g9-block="learning_promise"><h4>Learning promise</h4><p>Grade-9 Motion foundations: distance/displacement, average speed/velocity, velocity/acceleration distinction, position-time and velocity-time graphs, constant-acceleration equations by graphical reasoning, and elementary uniform circular motion.</p></div><nav class="g9-block" data-g9-block="concept_route" data-g9-concept-route aria-label="Concept Book route"><h4>Concept route</h4><ol><li data-g9-concept-ref="MIC-PHY-KIN-DISTANCE-DISPLACEMENT"><a href="#MIC-PHY-KIN-DISTANCE-DISPLACEMENT">Path travelled is not start-to-finish change</a><ol><li><a href="#CU-PHY-KIN-DISTANCE-DISPLACEMENT-1">Construction 1</a></li></ol></li><li data-g9-concept-ref="MIC-PHY-KIN-ZERO-V-NONZERO-A"><a href="#MIC-PHY-KIN-ZERO-V-NONZERO-A">Zero velocity at an instant does not mean zero acceleration</a><ol><li><a href="#CU-PHY-KIN-ZERO-V-NONZERO-A-1">Construction 1</a></li></ol></li><li data-g9-concept-ref="MIC-PHY-KIN-AVERAGE-RATES"><a href="#MIC-PHY-KIN-AVERAGE-RATES">Average speed and average velocity come from different totals</a><ol><li><a href="#CU-PHY-KIN-AVERAGE-RATES-1">Construction 1</a></li></ol></li><li data-g9-concept-ref="MIC-PHY-KIN-CONSTANT-ACCELERATION"><a href="#MIC-PHY-KIN-CONSTANT-ACCELERATION">Derive the constant-acceleration equations from one velocity-time graph</a></li><li data-g9-concept-ref="MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION"><a href="#MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION">Uniform circular motion keeps speed while velocity turns</a><ol><li><a href="#CU-PHY-KIN-UNIFORM-CIRCULAR-MOTION-1">Construction 1</a></li></ol></li><li data-g9-concept-ref="MIC-PHY-KIN-MOTION-GRAPHS"><a href="#MIC-PHY-KIN-MOTION-GRAPHS">Motion graphs turn coordinate change into rate</a><ol><li><a href="#CU-PHY-KIN-MOTION-GRAPHS-1">Construction 1</a></li></ol></li><li data-g9-concept-ref="MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE"><a href="#MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE">Circular dynamics: centripetal is a net-force role, not a new force</a></li></ol></nav></div><aside><div class="g9-block" data-g9-block="model_contract"><h4>Model contract</h4><ul><li>Declare one positive direction before describing a one-dimensional change in position.</li></ul></div><div class="g9-block" data-g9-block="scope_boundary"><h4>Outside this book</h4><ul><li>General two-dimensional vector addition or component decomposition unless a real question explicitly demands it.</li><li>Projectile motion and higher-grade kinematics.</li><li>Calculus-based kinematics.</li></ul></div></aside></div></section><article id="MIC-PHY-KIN-DISTANCE-DISPLACEMENT" data-g9-unit="MIC-PHY-KIN-DISTANCE-DISPLACEMENT" data-g9-kind="CONCEPT" data-g9-role="CORE1A" data-g9-search-text="Physics Motion Path travelled is not start-to-finish change Medium concept Path travelled is not start-to-finish change" class="g9-stage-support"><section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true"><div class="g9-component g9-c-concept-header" data-g9-component="CONCEPT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="CONCEPT_HEADER"><h2>Path travelled is not start-to-finish change</h2><div data-g9-meta-strip data-g9-meta-role="CORE1A" data-g9-meta-record="MIC-PHY-KIN-DISTANCE-DISPLACEMENT" data-g9-search-safe><span data-g9-meta-item data-g9-meta-kind="subject" data-g9-meta-ref="Physics" data-g9-meta-value="Physics"><strong>Subject:</strong> <span data-g9-meta-label>Physics</span></span><span data-g9-meta-item data-g9-meta-kind="topic" data-g9-meta-ref="BUCKET-PHY-KIN-1D-MOTION" data-g9-meta-value="Motion"><strong>Topic:</strong> <span data-g9-meta-label>Motion</span></span><span data-g9-meta-item data-g9-meta-kind="concept" data-g9-meta-ref="MIC-PHY-KIN-DISTANCE-DISPLACEMENT" data-g9-meta-value="Path travelled is not start-to-finish change"><strong>Concept:</strong> <span data-g9-meta-label>Path travelled is not start-to-finish change</span></span><span data-g9-meta-item data-g9-meta-kind="concept-difficulty" data-g9-meta-ref="MIC-PHY-KIN-DISTANCE-DISPLACEMENT" data-g9-meta-value="MEDIUM"><strong>Concept difficulty:</strong> <span data-g9-meta-label>Medium concept</span></span></div></div></section><div class="g9-split"><div class="g9-col g9-col-primary"><section class="blueprint-slot slot-construction" data-blueprint-slot="construction" data-required="true"><section id="CU-PHY-KIN-DISTANCE-DISPLACEMENT-1" class="g9-cu" data-g9-cu="CU-PHY-KIN-DISTANCE-DISPLACEMENT-1"><div class="g9-component g9-c-unit-header" data-g9-component="UNIT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="UNIT_HEADER" data-g9-component-unit="CU-PHY-KIN-DISTANCE-DISPLACEMENT-1"><div class="g9-unit-head"><span class="g9-unit-no" aria-hidden="true">1</span><h3>Construction</h3><span class="g9-pill g9-pill-concept">Medium concept</span></div><nav class="g9-cu-nav" data-g9-unit-navigation aria-label="Concept Book section navigation"><span data-g9-route-position>Section 1 of 7</span><span class="g9-cu-nav-links"><a data-g9-next-section href="#CU-PHY-KIN-ZERO-V-NONZERO-A-1" aria-label="Next section: Construction 1">Next →</a></span></nav></div><div class="g9-component g9-c-banner" data-g9-component="KEY_STEP" data-g9-level="REQUIRED" data-g9-presentation="BANNER"><div class="g9-block" data-g9-block="inferential_jump"><h4>The key step</h4><p>Distance counts the whole route travelled, while displacement records only the directed change from start to finish; a return to the start leaves zero displacement after a nonzero journey.</p></div></div><div class="g9-component g9-c-tile" data-g9-component="MODEL_CONTRACT" data-g9-level="EXPECTED" data-g9-presentation="TILE"><div class="g9-block" data-g9-block="entry_assumptions"><h4>You need</h4><ul><li>Can trace a route from a marked start to a marked finish on a straight line.</li></ul></div></div><div class="g9-component g9-c-step-cards" data-g9-component="CONSTRUCTION_STEPS" data-g9-level="REQUIRED" data-g9-presentation="STEP_CARDS" data-g9-component-items="3" data-g9-component-unit="CU-PHY-KIN-DISTANCE-DISPLACEMENT-1"><div class="g9-block" data-g9-block="construction"><ol><li data-g9-step="KIN1-1"><strong>Mark a start point on a straight path and declare east as the positive direction.</strong><br><em>Why valid:</em> A directed change is only readable once the line has a stated positive way.<br><em>Result:</em> start: S.  east: positive.  west: opposite.</li><li data-g9-step="KIN1-2"><strong>Trace a walk away from S and then back to S, counting every part of the route.</strong><br><em>Why valid:</em> The route count accumulates what was travelled even though the final place can match the initial place.<br><em>Result:</em> route travelled: nonzero.  start-to-finish change: zero because finish = S.</li><li data-g9-step="KIN1-3"><strong>Compare that return trip with a one-way trip chosen to have the same total route length.</strong><br><em>Why valid:</em> Holding route length fixed while changing the finish isolates the information displacement carries.<br><em>Result:</em> same route length; different finish -&gt; different displacement.</li></ol></div></div></section></section></div><div class="g9-col g9-col-support"><section class="blueprint-slot slot-representation" data-blueprint-slot="representation" data-required="true"></section><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><section class="g9-cu-support" data-g9-support-for="CU-PHY-KIN-DISTANCE-DISPLACEMENT-1"><h3>Construction 1</h3><div class="g9-component g9-c-trap-card" data-g9-component="TRAP_REPAIR" data-g9-level="REQUIRED" data-g9-presentation="TRAP_CARD" data-g9-component-items="1" data-g9-component-unit="CU-PHY-KIN-DISTANCE-DISPLACEMENT-1"><div class="g9-block" data-g9-block="wrong_path"><h4>A tempting wrong path</h4><ul><li>Distance travelled and displacement are always the same number.</li></ul></div><div class="g9-block" data-g9-block="diagnose"><h4>Diagnose</h4><ul><li>A walker leaves a marker, turns around, and finishes back at the marker. Is the journey length zero just because the final change in position is zero?</li></ul></div><div class="g9-block" data-g9-block="repair"><h4>Repair</h4><ul><li>Count every part of the route for distance; compare only the start and finish for displacement, keeping the declared direction.</li></ul></div></div></section></section></div></div><div class="g9-split g9-split-support-only"><div class="g9-col g9-col-support"><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><div class="g9-component g9-c-recall-card" data-g9-component="EXIT_RECALL" data-g9-level="REQUIRED" data-g9-presentation="RECALL_CARD"><div class="g9-block" data-g9-block="exit_task"><h4>Try it with less support</h4><p>Route A leaves a marker and returns to it. Route B travels the same total amount but ends away from the marker. Without calculating a value, compare their distance and displacement.</p></div><div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response"><label>Your answer<textarea data-g9-attempt rows="4"></textarea></label><label class="g9-paper"><input data-g9-paper type="checkbox">I worked this on paper</label><button type="button" data-g9-commit>I have attempted this</button></div><details data-g9-reveal data-requires-attempt data-g9-payload-ref="CORE1A-MIC-PHY-KIN-DISTANCE-DISPLACEMENT-exit"><summary>Model answer</summary><div data-g9-payload-slot></div></details><template data-g9-payload="CORE1A-MIC-PHY-KIN-DISTANCE-DISPLACEMENT-exit"><div class="g9-block" data-g9-block="exit_answer"><p>The routes can have the same distance, but Route A has zero displacement while Route B has a nonzero directed displacement.</p><ol><li>Distance follows the whole route, so equal total travel can give equal distance.</li><li>Displacement compares only the finish with the start.</li><li>Returning to the marker erases the start-to-finish change, not the travelled route.</li></ol></div></template></div></section></div></div></article><article id="MIC-PHY-KIN-ZERO-V-NONZERO-A" data-g9-unit="MIC-PHY-KIN-ZERO-V-NONZERO-A" data-g9-kind="CONCEPT" data-g9-role="CORE1A" data-g9-search-text="Physics Motion Zero velocity at an instant does not mean zero acceleration Medium concept Zero velocity at an instant does not mean zero acceleration" class="g9-stage-support"><section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true"><div class="g9-component g9-c-concept-header" data-g9-component="CONCEPT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="CONCEPT_HEADER"><h2>Zero velocity at an instant does not mean zero acceleration</h2><div data-g9-meta-strip data-g9-meta-role="CORE1A" data-g9-meta-record="MIC-PHY-KIN-ZERO-V-NONZERO-A" data-g9-search-safe><span data-g9-meta-item data-g9-meta-kind="subject" data-g9-meta-ref="Physics" data-g9-meta-value="Physics"><strong>Subject:</strong> <span data-g9-meta-label>Physics</span></span><span data-g9-meta-item data-g9-meta-kind="topic" data-g9-meta-ref="BUCKET-PHY-KIN-1D-MOTION" data-g9-meta-value="Motion"><strong>Topic:</strong> <span data-g9-meta-label>Motion</span></span><span data-g9-meta-item data-g9-meta-kind="concept" data-g9-meta-ref="MIC-PHY-KIN-ZERO-V-NONZERO-A" data-g9-meta-value="Zero velocity at an instant does not mean zero acceleration"><strong>Concept:</strong> <span data-g9-meta-label>Zero velocity at an instant does not mean zero acceleration</span></span><span data-g9-meta-item data-g9-meta-kind="concept-difficulty" data-g9-meta-ref="MIC-PHY-KIN-ZERO-V-NONZERO-A" data-g9-meta-value="MEDIUM"><strong>Concept difficulty:</strong> <span data-g9-meta-label>Medium concept</span></span></div></div></section><div class="g9-split"><div class="g9-col g9-col-primary"><section class="blueprint-slot slot-construction" data-blueprint-slot="construction" data-required="true"><section id="CU-PHY-KIN-ZERO-V-NONZERO-A-1" class="g9-cu" data-g9-cu="CU-PHY-KIN-ZERO-V-NONZERO-A-1"><div class="g9-component g9-c-unit-header" data-g9-component="UNIT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="UNIT_HEADER" data-g9-component-unit="CU-PHY-KIN-ZERO-V-NONZERO-A-1"><div class="g9-unit-head"><span class="g9-unit-no" aria-hidden="true">1</span><h3>Construction</h3><span class="g9-pill g9-pill-concept">Medium concept</span></div><nav class="g9-cu-nav" data-g9-unit-navigation aria-label="Concept Book section navigation"><span data-g9-route-position>Section 2 of 7</span><span class="g9-cu-nav-links"><a data-g9-prev-section href="#CU-PHY-KIN-DISTANCE-DISPLACEMENT-1" aria-label="Previous section: Construction 1">← Previous</a><a data-g9-next-section href="#CU-PHY-KIN-AVERAGE-RATES-1" aria-label="Next section: Construction 1">Next →</a></span></nav></div><div class="g9-component g9-c-banner" data-g9-component="KEY_STEP" data-g9-level="REQUIRED" data-g9-presentation="BANNER"><div class="g9-block" data-g9-block="inferential_jump"><h4>The key step</h4><p>Velocity and acceleration answer different questions: velocity can be zero at one instant while a nonzero acceleration determines the change through that instant.</p></div></div><div class="g9-component g9-c-tile" data-g9-component="MODEL_CONTRACT" data-g9-level="EXPECTED" data-g9-presentation="TILE"><div class="g9-block" data-g9-block="entry_assumptions"><h4>You need</h4><ul><li>Can distinguish the direction of motion just before and just after a turning point.</li></ul><ul><li data-g9-prereq="CAP-KIN-DISTANCE-DISPLACEMENT" data-bridged="true"><a href="#MIC-PHY-KIN-DISTANCE-DISPLACEMENT">Distinguish travelled path length from the directed start-to-finish change.</a></li></ul></div></div><div class="g9-component g9-c-step-cards" data-g9-component="CONSTRUCTION_STEPS" data-g9-level="REQUIRED" data-g9-presentation="STEP_CARDS" data-g9-component-items="4" data-g9-component-unit="CU-PHY-KIN-ZERO-V-NONZERO-A-1"><div class="g9-block" data-g9-block="construction"><ol><li data-g9-step="KIN3-1"><strong>Record three moments around a vertical turning point: just before the top, at the top, and just after.</strong><br><em>Why valid:</em> A single snapshot hides change; neighbouring moments reveal whether the zero-velocity state persists.<br><em>Result:</em> before: moving upward.  top: velocity zero.  after: moving downward.</li><li data-g9-step="KIN3-2"><strong>Compare the direction of the velocity change across those three moments.</strong><br><em>Why valid:</em> Going from upward through zero to downward requires the velocity to keep changing through the top instant.<br><em>Result:</em> velocity change through the top: downward, including at the zero-velocity instant.</li><li data-g9-step="KIN3-3"><strong>Contrast the turning point with an object that is simply resting on a shelf.</strong><br><em>Why valid:</em> Both can have zero velocity now, but only one immediately changes velocity, so zero velocity alone cannot determine acceleration.<br><em>Result:</em> turning point: zero velocity with continuing change.  shelf: zero velocity with no motion change in the comparison.</li><li data-g9-step="KIN3-4"><strong>Use v=0 only as the event condition for the vertical turning point while keeping the signed gravitational acceleration nonzero in the same instant.</strong><br><em>Why valid:</em> Velocity describes the instantaneous state of motion; acceleration describes how that velocity is changing. At the apex the upward velocity has just decreased to zero and immediately continues toward negative values under the same downward acceleration.<br><em>Result:</em> apex event: v=0 at one instant; acceleration remains downward, so +up gives a=-g and +down gives a=+g</li></ol></div></div></section></section></div><div class="g9-col g9-col-support"><section class="blueprint-slot slot-representation" data-blueprint-slot="representation" data-required="true"></section><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><section class="g9-cu-support" data-g9-support-for="CU-PHY-KIN-ZERO-V-NONZERO-A-1"><h3>Construction 1</h3><div class="g9-component g9-c-trap-card" data-g9-component="TRAP_REPAIR" data-g9-level="REQUIRED" data-g9-presentation="TRAP_CARD" data-g9-component-items="1" data-g9-component-unit="CU-PHY-KIN-ZERO-V-NONZERO-A-1"><div class="g9-block" data-g9-block="wrong_path"><h4>A tempting wrong path</h4><ul><li>If velocity is zero at an instant, acceleration must also be zero at that instant.</li></ul></div><div class="g9-block" data-g9-block="diagnose"><h4>Diagnose</h4><ul><li>At the highest point of a vertically thrown object, velocity is momentarily zero. Does the next moment have the same velocity?</li></ul></div><div class="g9-block" data-g9-block="repair"><h4>Repair</h4><ul><li>Compare moments immediately before and after the top; the velocity changes from upward to downward, so acceleration remains nonzero through the zero-velocity instant.</li></ul></div></div></section></section></div></div><div class="g9-split g9-split-support-only"><div class="g9-col g9-col-support"><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><div class="g9-component g9-c-recall-card" data-g9-component="EXIT_RECALL" data-g9-level="REQUIRED" data-g9-presentation="RECALL_CARD"><div class="g9-block" data-g9-block="exit_task"><h4>Try it with less support</h4><p>Two objects have zero velocity at one instant: one is at the top of a vertical flight, the other is resting on a shelf. What can you conclude about their accelerations from velocity alone?</p></div><div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response"><label>Your answer<textarea data-g9-attempt rows="4"></textarea></label><label class="g9-paper"><input data-g9-paper type="checkbox">I worked this on paper</label><button type="button" data-g9-commit>I have attempted this</button></div><details data-g9-reveal data-requires-attempt data-g9-payload-ref="CORE1A-MIC-PHY-KIN-ZERO-V-NONZERO-A-exit"><summary>Model answer</summary><div data-g9-payload-slot></div></details><template data-g9-payload="CORE1A-MIC-PHY-KIN-ZERO-V-NONZERO-A-exit"><div class="g9-block" data-g9-block="exit_answer"><p>Nothing definite from the zero velocity alone. The turning object can have nonzero downward acceleration while the resting object can have zero acceleration in the stated comparison.</p><ol><li>Velocity describes motion at the instant.</li><li>Acceleration describes how velocity is changing through the instant.</li><li>Neighbouring moments distinguish the turning point from sustained rest.</li></ol></div></template></div></section></div></div></article><article id="MIC-PHY-KIN-AVERAGE-RATES" data-g9-unit="MIC-PHY-KIN-AVERAGE-RATES" data-g9-kind="CONCEPT" data-g9-role="CORE1A" data-g9-search-text="Physics Motion Average speed and average velocity come from different totals Medium concept Average speed and average velocity come from different totals" class="g9-stage-support"><section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true"><div class="g9-component g9-c-concept-header" data-g9-component="CONCEPT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="CONCEPT_HEADER"><h2>Average speed and average velocity come from different totals</h2><div data-g9-meta-strip data-g9-meta-role="CORE1A" data-g9-meta-record="MIC-PHY-KIN-AVERAGE-RATES" data-g9-search-safe><span data-g9-meta-item data-g9-meta-kind="subject" data-g9-meta-ref="Physics" data-g9-meta-value="Physics"><strong>Subject:</strong> <span data-g9-meta-label>Physics</span></span><span data-g9-meta-item data-g9-meta-kind="topic" data-g9-meta-ref="BUCKET-PHY-KIN-1D-MOTION" data-g9-meta-value="Motion"><strong>Topic:</strong> <span data-g9-meta-label>Motion</span></span><span data-g9-meta-item data-g9-meta-kind="concept" data-g9-meta-ref="MIC-PHY-KIN-AVERAGE-RATES" data-g9-meta-value="Average speed and average velocity come from different totals"><strong>Concept:</strong> <span data-g9-meta-label>Average speed and average velocity come from different totals</span></span><span data-g9-meta-item data-g9-meta-kind="concept-difficulty" data-g9-meta-ref="MIC-PHY-KIN-AVERAGE-RATES" data-g9-meta-value="MEDIUM"><strong>Concept difficulty:</strong> <span data-g9-meta-label>Medium concept</span></span></div></div></section><div class="g9-split"><div class="g9-col g9-col-primary"><section class="blueprint-slot slot-construction" data-blueprint-slot="construction" data-required="true"><section id="CU-PHY-KIN-AVERAGE-RATES-1" class="g9-cu" data-g9-cu="CU-PHY-KIN-AVERAGE-RATES-1"><div class="g9-component g9-c-unit-header" data-g9-component="UNIT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="UNIT_HEADER" data-g9-component-unit="CU-PHY-KIN-AVERAGE-RATES-1"><div class="g9-unit-head"><span class="g9-unit-no" aria-hidden="true">1</span><h3>Construction</h3><span class="g9-pill g9-pill-concept">Medium concept</span></div><nav class="g9-cu-nav" data-g9-unit-navigation aria-label="Concept Book section navigation"><span data-g9-route-position>Section 3 of 7</span><span class="g9-cu-nav-links"><a data-g9-prev-section href="#CU-PHY-KIN-ZERO-V-NONZERO-A-1" aria-label="Previous section: Construction 1">← Previous</a><a data-g9-next-section href="#MIC-PHY-KIN-CONSTANT-ACCELERATION" aria-label="Next section: Derive the constant-acceleration equations from one velocity-time graph">Next →</a></span></nav></div><div class="g9-component g9-c-banner" data-g9-component="KEY_STEP" data-g9-level="REQUIRED" data-g9-presentation="BANNER"><div class="g9-block" data-g9-block="inferential_jump"><h4>The key step</h4><p>Average speed divides total path length by total time, while average velocity divides signed displacement by that same time; neither is obtained by averaging listed speeds unless the weighting justifies it.</p></div></div><div class="g9-component g9-c-tile" data-g9-component="MODEL_CONTRACT" data-g9-level="EXPECTED" data-g9-presentation="TILE"><div class="g9-block" data-g9-block="entry_assumptions"><h4>You need</h4><ul><li>Can distinguish total travelled path from signed displacement and can read one positive elapsed interval.</li></ul><ul><li data-g9-prereq="CAP-KIN-DISTANCE-DISPLACEMENT" data-bridged="true"><a href="#MIC-PHY-KIN-DISTANCE-DISPLACEMENT">Distinguish travelled path length from the directed start-to-finish change.</a></li></ul></div></div><div class="g9-component g9-c-step-cards" data-g9-component="CONSTRUCTION_STEPS" data-g9-level="REQUIRED" data-g9-presentation="STEP_CARDS" data-g9-component-items="3" data-g9-component-unit="CU-PHY-KIN-AVERAGE-RATES-1"><div class="g9-block" data-g9-block="construction"><ol><li data-g9-step="KIN2-1"><strong>For one two-leg trip, record total path length, signed start-to-finish displacement, and the total elapsed time in separate rows.</strong><br><em>Why valid:</em> The two averages differ only in the numerator, so separating the totals prevents path and endpoint information from being merged.<br><em>Result:</em> distance_total = sum of leg lengths; Delta x = x_final - x_initial; Delta t = total elapsed time.</li><li data-g9-step="KIN2-2"><strong>Divide total path length by total time, then divide signed displacement by the same total time.</strong><br><em>Why valid:</em> Each relation is a total-over-common-interval average and the gate owns both formulas.<br><em>Result:</em> speed_avg = distance_total / Delta t; v_avg = Delta x / Delta t.</li><li data-g9-step="KIN2-3"><strong>Check a return trip where the finish equals the start.</strong><br><em>Why valid:</em> The boundary keeps nonzero path length while forcing displacement to zero, so it tests whether the two averages stayed distinct.<br><em>Result:</em> return trip -&gt; average speed may be nonzero; whole-trip average velocity = 0.</li></ol></div></div><div class="g9-component g9-c-equation-card" data-g9-component="EQUATIONS" data-g9-level="EXPECTED" data-g9-presentation="EQUATION_CARD" data-g9-component-unit="CU-PHY-KIN-AVERAGE-RATES-1"><div class="g9-block" data-g9-block="equation_matrix"><h4>Equations and validity</h4><div class="g9-table-scroll" data-g9-equation-matrix><table><thead><tr><th scope="col">Equation</th><th scope="col">What it tells you</th><th scope="col">When you can use it</th></tr></thead><tbody><tr data-g9-relation-ref="REL-AVERAGE-SPEED"><td><p class="g9-expr">speed_avg = distance_total / Delta t</p></td><td><p>Average speed is total distance travelled divided by the positive elapsed time.</p></td><td><ul><li>Delta t &gt; 0.</li><li>distance_total &gt;= 0.</li></ul></td></tr><tr data-g9-relation-ref="REL-AVERAGE-VELOCITY"><td><p class="g9-expr">v_avg = Delta x / Delta t</p></td><td><p>Average velocity is signed displacement divided by the same positive elapsed time.</p></td><td><ul><li>Delta t &gt; 0.</li><li>Delta x uses one declared axis/sign convention.</li></ul></td></tr></tbody></table></div></div></div></section></section></div><div class="g9-col g9-col-support"><section class="blueprint-slot slot-representation" data-blueprint-slot="representation" data-required="true"></section><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><section class="g9-cu-support" data-g9-support-for="CU-PHY-KIN-AVERAGE-RATES-1"><h3>Construction 1</h3><div class="g9-component g9-c-trap-card" data-g9-component="TRAP_REPAIR" data-g9-level="REQUIRED" data-g9-presentation="TRAP_CARD" data-g9-component-items="1" data-g9-component-unit="CU-PHY-KIN-AVERAGE-RATES-1"><div class="g9-block" data-g9-block="wrong_path"><h4>A tempting wrong path</h4><ul><li>Average speed is always the arithmetic mean of the speeds listed for the trip.</li></ul></div><div class="g9-block" data-g9-block="diagnose"><h4>Diagnose</h4><ul><li>Two equal-distance legs are travelled at different speeds. Did the traveller spend equal time at each speed?</li></ul></div><div class="g9-block" data-g9-block="repair"><h4>Repair</h4><ul><li>Build total distance and total time first. Only equal time weighting permits an unweighted arithmetic mean of speeds.</li></ul></div></div></section></section></div></div><div class="g9-split g9-split-support-only"><div class="g9-col g9-col-support"><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><div class="g9-component g9-c-recall-card" data-g9-component="EXIT_RECALL" data-g9-level="REQUIRED" data-g9-presentation="RECALL_CARD"><div class="g9-block" data-g9-block="exit_task"><h4>Try it with less support</h4><p>A trip covers 120 m of total path, finishes 40 m in the positive direction from its start, and lasts 20 s. Find the average speed and average velocity.</p></div><div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response"><label>Your answer<textarea data-g9-attempt rows="4"></textarea></label><label class="g9-paper"><input data-g9-paper type="checkbox">I worked this on paper</label><button type="button" data-g9-commit>I have attempted this</button></div><details data-g9-reveal data-requires-attempt data-g9-payload-ref="CORE1A-MIC-PHY-KIN-AVERAGE-RATES-exit"><summary>Model answer</summary><div data-g9-payload-slot></div></details><template data-g9-payload="CORE1A-MIC-PHY-KIN-AVERAGE-RATES-exit"><div class="g9-block" data-g9-block="exit_answer"><p>Average speed is 6 m/s and average velocity is +2 m/s.</p><ol><li>Average speed uses 120 m / 20 s = 6 m/s.</li><li>Average velocity uses the signed displacement +40 m / 20 s = +2 m/s.</li><li>The different numerators explain why the two averages differ.</li></ol></div></template></div></section></div></div></article><article id="MIC-PHY-KIN-CONSTANT-ACCELERATION" data-g9-unit="MIC-PHY-KIN-CONSTANT-ACCELERATION" data-g9-kind="CONCEPT" data-g9-role="CORE1A" data-g9-search-text="Physics Motion Derive the constant-acceleration equations from one velocity-time graph Medium concept Derive the constant-acceleration equations from one velocity-time graph" class="g9-stage-support"><section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true"><div class="g9-component g9-c-concept-header" data-g9-component="CONCEPT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="CONCEPT_HEADER"><h2>Derive the constant-acceleration equations from one velocity-time graph</h2><div data-g9-meta-strip data-g9-meta-role="CORE1A" data-g9-meta-record="MIC-PHY-KIN-CONSTANT-ACCELERATION" data-g9-search-safe><span data-g9-meta-item data-g9-meta-kind="subject" data-g9-meta-ref="Physics" data-g9-meta-value="Physics"><strong>Subject:</strong> <span data-g9-meta-label>Physics</span></span><span data-g9-meta-item data-g9-meta-kind="topic" data-g9-meta-ref="BUCKET-PHY-KIN-1D-MOTION" data-g9-meta-value="Motion"><strong>Topic:</strong> <span data-g9-meta-label>Motion</span></span><span data-g9-meta-item data-g9-meta-kind="concept" data-g9-meta-ref="MIC-PHY-KIN-CONSTANT-ACCELERATION" data-g9-meta-value="Derive the constant-acceleration equations from one velocity-time graph"><strong>Concept:</strong> <span data-g9-meta-label>Derive the constant-acceleration equations from one velocity-time graph</span></span><span data-g9-meta-item data-g9-meta-kind="concept-difficulty" data-g9-meta-ref="MIC-PHY-KIN-CONSTANT-ACCELERATION" data-g9-meta-value="MEDIUM"><strong>Concept difficulty:</strong> <span data-g9-meta-label>Medium concept</span></span></div></div></section><div class="g9-split"><div class="g9-col g9-col-primary"><section class="blueprint-slot slot-construction" data-blueprint-slot="construction" data-required="true"><div class="g9-component g9-c-banner" data-g9-component="KEY_STEP" data-g9-level="REQUIRED" data-g9-presentation="BANNER"><div class="g9-block" data-g9-block="inferential_jump"><h4>The key step</h4><p>One straight velocity-time segment carries all three Grade 9 kinematic equations: its slope gives v = u + at, its rectangle-plus-triangle area gives s = ut + 0.5at^2, and combining trapezoid area with the slope relation eliminates time to give v^2 = u^2 + 2as.</p></div></div><div class="g9-component g9-c-tile" data-g9-component="MODEL_CONTRACT" data-g9-level="EXPECTED" data-g9-presentation="TILE"><div class="g9-block" data-g9-block="entry_assumptions"><h4>You need</h4><ul><li>Can read a velocity-time graph, calculate a segment slope, and calculate rectangle, triangle and trapezoid areas.</li><li>Can distinguish a constant-slope velocity-time segment from a curved changing-acceleration segment.</li></ul><ul><li data-g9-prereq="CAP-KIN-MOTION-GRAPHS" data-bridged="true"><a href="#MIC-PHY-KIN-MOTION-GRAPHS">Plot and interpret position-time and velocity-time graphs, using interval slope to obtain average velocity or average acceleration.</a></li></ul></div></div><section class="g9-cu g9-path-bridge" data-g9-derivation-bridge="true"><nav class="g9-cu-nav" data-g9-unit-navigation aria-label="Concept Book section navigation"><span data-g9-route-position>Section 4 of 7</span><span class="g9-cu-nav-links"><a data-g9-prev-section href="#CU-PHY-KIN-AVERAGE-RATES-1" aria-label="Previous section: Construction 1">← Previous</a><a data-g9-next-section href="#CU-PHY-KIN-UNIFORM-CIRCULAR-MOTION-1" aria-label="Next section: Construction 1">Next →</a></span></nav><div class="g9-block" data-g9-block="construction"><ol><li data-g9-step="KIN4-1"><strong>Read the straight velocity-time graph from (0,u) to (t,v) and identify one constant slope.</strong><br><em>Why valid:</em> A straight velocity-time segment means one acceleration value describes the whole interval.<br><em>Result:</em> slope = (v-u)/t = a; graph area = signed displacement s.</li><li data-g9-step="KIN4-2"><strong>Rearrange the straight-line slope equation.</strong><br><em>Why valid:</em> The graph slope is the constant acceleration for the interval.<br><em>Result:</em> a = (v-u)/t -&gt; a t = v-u -&gt; v = u + a t.</li><li data-g9-step="KIN4-3"><strong>Split the graph area into the initial-velocity rectangle and the acceleration triangle, then substitute v-u = a t.</strong><br><em>Why valid:</em> REL-CONSTANT-ACCELERATION-GRAPH-AREA owns the displacement area and the two regions exactly partition it.<br><em>Result:</em> s = u t + 0.5 (v-u)t -&gt; s = u t + 0.5 (a t)t = u t + 0.5 a t^2.</li><li data-g9-step="KIN4-4"><strong>Write the same graph area as a trapezoid, substitute t = (v-u)/a from the slope, and factor the difference of squares.</strong><br><em>Why valid:</em> Both equations describe the same straight graph interval, so the common time variable can be eliminated.<br><em>Result:</em> s = 0.5(u+v)t; t=(v-u)/a -&gt; 2as=(u+v)(v-u)=v^2-u^2 -&gt; v^2=u^2+2as.</li><li data-g9-step="KIN4-5"><strong>Replace the straight segment with a curved velocity-time trace and ask whether the same graphical derivation is exact over the whole interval.</strong><br><em>Why valid:</em> A curved trace has changing slope, so one constant a no longer describes the interval and the straight-line rectangle/triangle construction is not the exact graph.<br><em>Result:</em> curved v-t trace -&gt; changing a -&gt; the constant-a graphical derivation does not apply exactly to the whole interval.</li><li data-g9-step="KIN4-6"><strong>For bounded vertical motion in a region where local gravitational acceleration can be treated as constant, choose one positive vertical direction and translate the downward gravitational acceleration into one signed constant a before using any kinematic equation; do not change the sign of a when the velocity reverses.</strong><br><em>Why valid:</em> The sign of acceleration is set by the declared coordinate axis and the physical downward direction of gravity, not by whether the object is currently moving upward or downward.<br><em>Result:</em> +up -&gt; a=-g; +down -&gt; a=+g, where g&gt;0 is the local acceleration magnitude; v may change sign while a keeps the same signed value over the constant-g interval</li></ol></div><div class="g9-block" data-g9-block="equation_matrix"><h4>Equations and validity</h4><div class="g9-table-scroll" data-g9-equation-matrix><table><thead><tr><th scope="col">Equation</th><th scope="col">What it tells you</th><th scope="col">When you can use it</th></tr></thead><tbody><tr data-g9-relation-ref="REL-AVERAGE-ACCELERATION"><td><p class="g9-expr">a_avg = Delta v / Delta t</p></td><td><p>Average acceleration over an interval is signed velocity change divided by the positive elapsed time.</p></td><td><ul><li>Delta t &gt; 0.</li><li>Velocity values use one declared one-dimensional sign convention.</li></ul></td></tr><tr data-g9-relation-ref="REL-CONSTANT-ACCELERATION-GRAPH-AREA"><td><p class="g9-expr">s = u t + 0.5 (v-u) t = 0.5 (u+v) t</p></td><td><p>For constant acceleration, signed displacement over the interval is the signed geometric area under the straight velocity-time segment.</p></td><td><ul><li>Acceleration is constant over the whole interval, so the velocity-time segment is straight.</li><li>u, v and s use one declared one-dimensional sign convention.</li><li>t &gt;= 0.</li></ul></td></tr><tr data-g9-relation-ref="REL-CONSTANT-ACCELERATION-VELOCITY"><td><p class="g9-expr">v = u + a t</p></td><td><p>For constant acceleration over the interval, final velocity equals initial velocity plus acceleration times elapsed time.</p></td><td><ul><li>Acceleration is constant over the whole interval.</li><li>u, v and a use one declared one-dimensional sign convention.</li><li>t &gt;= 0.</li></ul></td></tr><tr data-g9-relation-ref="REL-CONSTANT-ACCELERATION-DISPLACEMENT"><td><p class="g9-expr">s = u t + 0.5 a t^2</p></td><td><p>For constant acceleration, signed displacement equals the initial-velocity contribution plus the acceleration contribution.</p></td><td><ul><li>Acceleration is constant over the whole interval.</li><li>s, u and a use one declared one-dimensional sign convention.</li><li>t &gt;= 0.</li></ul></td></tr><tr data-g9-relation-ref="REL-CONSTANT-ACCELERATION-NO-TIME"><td><p class="g9-expr">v^2 = u^2 + 2 a s</p></td><td><p>For constant acceleration, squared velocities and signed displacement satisfy the no-time kinematic relation.</p></td><td><ul><li>Acceleration is constant over the whole interval.</li><li>u, v, a and s use one declared one-dimensional sign convention.</li></ul></td></tr></tbody></table></div></div></section></section></div><div class="g9-col g9-col-support"><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><section class="g9-cu-support" data-g9-support-for="MIC-PHY-KIN-CONSTANT-ACCELERATION"><h3>Derive the constant-acceleration equations from one velocity-time graph</h3><div class="g9-block" data-g9-block="wrong_path"><h4>A tempting wrong path</h4><ul><li>The constant-acceleration equations are independent formulas to memorize rather than consequences of one straight velocity-time graph.</li><li>Gravitational acceleration is -g while the object rises and +g after it starts falling.</li></ul></div><div class="g9-block" data-g9-block="diagnose"><h4>Diagnose</h4><ul><li>If the velocity-time graph is curved, can the same rectangle-plus-triangle derivation still use one constant a for the whole interval?</li><li>If +up is fixed for the whole trip, did the physical direction of gravity reverse when the object&#x27;s velocity changed from upward to downward?</li></ul></div><div class="g9-block" data-g9-block="repair"><h4>Repair</h4><ul><li>Return to the graph: slope must be constant. Derive the equations from that slope and the graph area before using them.</li><li>No. Keep the chosen axis fixed. With +up, gravity remains a=-g throughout the bounded flight; only velocity changes sign at the turning point.</li></ul></div></section><div class="g9-component g9-c-recall-card" data-g9-component="EXIT_RECALL" data-g9-level="REQUIRED" data-g9-presentation="RECALL_CARD"><div class="g9-block" data-g9-block="exit_task"><h4>Try it with less support</h4><p>A velocity-time graph is a straight segment from 5 m/s at t = 0 to 11 m/s at t = 3 s. Use the graph slope to identify a, use its rectangle-plus-triangle area to find displacement, and show how the same graph yields v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as.</p></div><div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response"><label>Your answer<textarea data-g9-attempt rows="4"></textarea></label><label class="g9-paper"><input data-g9-paper type="checkbox">I worked this on paper</label><button type="button" data-g9-commit>I have attempted this</button></div><details data-g9-reveal data-requires-attempt data-g9-payload-ref="CORE1A-MIC-PHY-KIN-CONSTANT-ACCELERATION-exit"><summary>Model answer</summary><div data-g9-payload-slot></div></details><template data-g9-payload="CORE1A-MIC-PHY-KIN-CONSTANT-ACCELERATION-exit"><div class="g9-block" data-g9-block="exit_answer"><p>The slope gives a = 2 m/s^2 and v = u + at. The graph area is 15 m + 9 m = 24 m, giving s = ut + 0.5at^2. The trapezoid form combined with t = (v-u)/a gives v^2 = u^2 + 2as.</p><ol><li>Slope: a = (11-5)/3 = 2 m/s^2, so a = (v-u)/t rearranges to v = u + at.</li><li>Rectangle area: u t = 5 x 3 = 15 m.</li><li>Triangle area: 0.5(v-u)t = 0.5 x 6 x 3 = 9 m, so s = 24 m; substituting v-u = at gives s = ut + 0.5at^2.</li><li>The same area is s = 0.5(u+v)t. Substitute t=(v-u)/a: 2as=(u+v)(v-u)=v^2-u^2, hence v^2=u^2+2as.</li></ol></div></template></div></section></div></div></article><article id="MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION" data-g9-unit="MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION" data-g9-kind="CONCEPT" data-g9-role="CORE1A" data-g9-search-text="Physics Motion Uniform circular motion keeps speed while velocity turns Medium concept Uniform circular motion keeps speed while velocity turns" class="g9-stage-support"><section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true"><div class="g9-component g9-c-concept-header" data-g9-component="CONCEPT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="CONCEPT_HEADER"><h2>Uniform circular motion keeps speed while velocity turns</h2><div data-g9-meta-strip data-g9-meta-role="CORE1A" data-g9-meta-record="MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION" data-g9-search-safe><span data-g9-meta-item data-g9-meta-kind="subject" data-g9-meta-ref="Physics" data-g9-meta-value="Physics"><strong>Subject:</strong> <span data-g9-meta-label>Physics</span></span><span data-g9-meta-item data-g9-meta-kind="topic" data-g9-meta-ref="BUCKET-PHY-KIN-1D-MOTION" data-g9-meta-value="Motion"><strong>Topic:</strong> <span data-g9-meta-label>Motion</span></span><span data-g9-meta-item data-g9-meta-kind="concept" data-g9-meta-ref="MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION" data-g9-meta-value="Uniform circular motion keeps speed while velocity turns"><strong>Concept:</strong> <span data-g9-meta-label>Uniform circular motion keeps speed while velocity turns</span></span><span data-g9-meta-item data-g9-meta-kind="concept-difficulty" data-g9-meta-ref="MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION" data-g9-meta-value="MEDIUM"><strong>Concept difficulty:</strong> <span data-g9-meta-label>Medium concept</span></span></div></div></section><div class="g9-split"><div class="g9-col g9-col-primary"><section class="blueprint-slot slot-construction" data-blueprint-slot="construction" data-required="true"><section id="CU-PHY-KIN-UNIFORM-CIRCULAR-MOTION-1" class="g9-cu" data-g9-cu="CU-PHY-KIN-UNIFORM-CIRCULAR-MOTION-1"><div class="g9-component g9-c-unit-header" data-g9-component="UNIT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="UNIT_HEADER" data-g9-component-unit="CU-PHY-KIN-UNIFORM-CIRCULAR-MOTION-1"><div class="g9-unit-head"><span class="g9-unit-no" aria-hidden="true">1</span><h3>Construction</h3><span class="g9-pill g9-pill-concept">Medium concept</span></div><nav class="g9-cu-nav" data-g9-unit-navigation aria-label="Concept Book section navigation"><span data-g9-route-position>Section 5 of 7</span><span class="g9-cu-nav-links"><a data-g9-prev-section href="#MIC-PHY-KIN-CONSTANT-ACCELERATION" aria-label="Previous section: Derive the constant-acceleration equations from one velocity-time graph">← Previous</a><a data-g9-next-section href="#CU-PHY-KIN-MOTION-GRAPHS-1" aria-label="Next section: Construction 1">Next →</a></span></nav></div><div class="g9-component g9-c-banner" data-g9-component="KEY_STEP" data-g9-level="REQUIRED" data-g9-presentation="BANNER"><div class="g9-block" data-g9-block="inferential_jump"><h4>The key step</h4><p>An object moving around a circle at constant speed is still accelerating because velocity direction changes continuously; velocity is tangent, acceleration points inward, and the constant speed for one revolution is circumference divided by period: v = 2 pi r / T.</p></div></div><div class="g9-component g9-c-tile" data-g9-component="MODEL_CONTRACT" data-g9-level="EXPECTED" data-g9-presentation="TILE"><div class="g9-block" data-g9-block="entry_assumptions"><h4>You need</h4><ul><li>Can distinguish speed from directed velocity and can recognize acceleration as a change of velocity.</li></ul></div></div><div class="g9-component g9-c-step-cards" data-g9-component="CONSTRUCTION_STEPS" data-g9-level="REQUIRED" data-g9-presentation="STEP_CARDS" data-g9-component-items="4" data-g9-component-unit="CU-PHY-KIN-UNIFORM-CIRCULAR-MOTION-1"><div class="g9-block" data-g9-block="construction"><ol><li data-g9-step="KIN5-1"><strong>Mark equal-length velocity arrows tangent to a circle at several positions.</strong><br><em>Why valid:</em> Equal arrow length represents constant speed while tangent direction follows the instantaneous motion.<br><em>Result:</em> same speed; different tangent velocity directions.</li><li data-g9-step="KIN5-2"><strong>Compare successive velocity arrows and identify the change in velocity direction.</strong><br><em>Why valid:</em> Velocity changes whenever either its magnitude or direction changes.<br><em>Result:</em> At two different points A and B: |v_A| = |v_B| = v, but v_A and v_B point in different tangent directions, so Delta v = v_B - v_A is nonzero.</li><li data-g9-step="KIN5-3"><strong>Use symmetry at opposite points to check that the required acceleration is directed toward the centre rather than along the tangent.</strong><br><em>Why valid:</em> A tangential acceleration would change speed, while inward turning changes direction while preserving speed in the ideal uniform case.<br><em>Result:</em> uniform circular motion -&gt; acceleration inward; velocity tangent.</li><li data-g9-step="KIN5-4"><strong>For one complete uniform revolution, divide the circumference 2 pi r by the positive revolution period T.</strong><br><em>Why valid:</em> REL-UNIFORM-CIRCULAR-SPEED is the gate-owned Grade 9 speed expression.<br><em>Result:</em> v = 2 pi r / T; for r = 7 m and T = 14 s, v = pi m/s ≈ 3.14 m/s.</li></ol></div></div><div class="g9-component g9-c-equation-card" data-g9-component="EQUATIONS" data-g9-level="EXPECTED" data-g9-presentation="EQUATION_CARD" data-g9-component-unit="CU-PHY-KIN-UNIFORM-CIRCULAR-MOTION-1"><div class="g9-block" data-g9-block="equation_matrix"><h4>Equations and validity</h4><div class="g9-table-scroll" data-g9-equation-matrix><table><thead><tr><th scope="col">Equation</th><th scope="col">What it tells you</th><th scope="col">When you can use it</th></tr></thead><tbody><tr data-g9-relation-ref="REL-UNIFORM-CIRCULAR-SPEED"><td><p class="g9-expr">v = 2 pi r / T</p></td><td><p>For one complete uniform circular revolution, speed equals circumference divided by the positive period.</p></td><td><ul><li>r &gt; 0.</li><li>T &gt; 0.</li><li>Motion is uniform and the path is circular over the measured revolution.</li></ul></td></tr></tbody></table></div></div></div></section></section></div><div class="g9-col g9-col-support"><section class="blueprint-slot slot-representation" data-blueprint-slot="representation" data-required="true"></section><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><section class="g9-cu-support" data-g9-support-for="CU-PHY-KIN-UNIFORM-CIRCULAR-MOTION-1"><h3>Construction 1</h3><div class="g9-component g9-c-trap-card" data-g9-component="TRAP_REPAIR" data-g9-level="REQUIRED" data-g9-presentation="TRAP_CARD" data-g9-component-items="1" data-g9-component-unit="CU-PHY-KIN-UNIFORM-CIRCULAR-MOTION-1"><div class="g9-block" data-g9-block="wrong_path"><h4>A tempting wrong path</h4><ul><li>Constant speed means zero acceleration.</li></ul></div><div class="g9-block" data-g9-block="diagnose"><h4>Diagnose</h4><ul><li>A car moves around a circular track with a steady speedometer reading. Is its velocity unchanged?</li></ul></div><div class="g9-block" data-g9-block="repair"><h4>Repair</h4><ul><li>Compare the tangent directions at different points: the direction changes, so velocity changes and acceleration is nonzero.</li></ul></div></div></section></section></div></div><div class="g9-split g9-split-support-only"><div class="g9-col g9-col-support"><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><div class="g9-component g9-c-recall-card" data-g9-component="EXIT_RECALL" data-g9-level="REQUIRED" data-g9-presentation="RECALL_CARD"><div class="g9-block" data-g9-block="exit_task"><h4>Try it with less support</h4><p>A runner moves uniformly around a circular track of radius 7 m and completes one revolution in 14 s. Find the speed, then state the qualitative directions of velocity and acceleration at any point.</p></div><div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response"><label>Your answer<textarea data-g9-attempt rows="4"></textarea></label><label class="g9-paper"><input data-g9-paper type="checkbox">I worked this on paper</label><button type="button" data-g9-commit>I have attempted this</button></div><details data-g9-reveal data-requires-attempt data-g9-payload-ref="CORE1A-MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION-exit"><summary>Model answer</summary><div data-g9-payload-slot></div></details><template data-g9-payload="CORE1A-MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION-exit"><div class="g9-block" data-g9-block="exit_answer"><p>The speed is pi m/s, about 3.14 m/s. Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre.</p><ol><li>One revolution covers circumference 2 pi r = 14 pi m.</li><li>v = 14 pi m / 14 s = pi m/s ≈ 3.14 m/s.</li><li>Constant speed does not make velocity constant because its direction changes.</li><li>The velocity is tangent and the turning acceleration is inward.</li></ol></div></template></div></section></div></div></article><article id="MIC-PHY-KIN-MOTION-GRAPHS" data-g9-unit="MIC-PHY-KIN-MOTION-GRAPHS" data-g9-kind="CONCEPT" data-g9-role="CORE1A" data-g9-search-text="Physics Motion Motion graphs turn coordinate change into rate Medium concept Motion graphs turn coordinate change into rate" class="g9-stage-support"><section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true"><div class="g9-component g9-c-concept-header" data-g9-component="CONCEPT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="CONCEPT_HEADER"><h2>Motion graphs turn coordinate change into rate</h2><div data-g9-meta-strip data-g9-meta-role="CORE1A" data-g9-meta-record="MIC-PHY-KIN-MOTION-GRAPHS" data-g9-search-safe><span data-g9-meta-item data-g9-meta-kind="subject" data-g9-meta-ref="Physics" data-g9-meta-value="Physics"><strong>Subject:</strong> <span data-g9-meta-label>Physics</span></span><span data-g9-meta-item data-g9-meta-kind="topic" data-g9-meta-ref="BUCKET-PHY-KIN-1D-MOTION" data-g9-meta-value="Motion"><strong>Topic:</strong> <span data-g9-meta-label>Motion</span></span><span data-g9-meta-item data-g9-meta-kind="concept" data-g9-meta-ref="MIC-PHY-KIN-MOTION-GRAPHS" data-g9-meta-value="Motion graphs turn coordinate change into rate"><strong>Concept:</strong> <span data-g9-meta-label>Motion graphs turn coordinate change into rate</span></span><span data-g9-meta-item data-g9-meta-kind="concept-difficulty" data-g9-meta-ref="MIC-PHY-KIN-MOTION-GRAPHS" data-g9-meta-value="MEDIUM"><strong>Concept difficulty:</strong> <span data-g9-meta-label>Medium concept</span></span></div></div></section><div class="g9-split"><div class="g9-col g9-col-primary"><section class="blueprint-slot slot-construction" data-blueprint-slot="construction" data-required="true"><section id="CU-PHY-KIN-MOTION-GRAPHS-1" class="g9-cu" data-g9-cu="CU-PHY-KIN-MOTION-GRAPHS-1"><div class="g9-component g9-c-unit-header" data-g9-component="UNIT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="UNIT_HEADER" data-g9-component-unit="CU-PHY-KIN-MOTION-GRAPHS-1"><div class="g9-unit-head"><span class="g9-unit-no" aria-hidden="true">1</span><h3>Construction</h3><span class="g9-pill g9-pill-concept">Medium concept</span></div><nav class="g9-cu-nav" data-g9-unit-navigation aria-label="Concept Book section navigation"><span data-g9-route-position>Section 6 of 7</span><span class="g9-cu-nav-links"><a data-g9-prev-section href="#CU-PHY-KIN-UNIFORM-CIRCULAR-MOTION-1" aria-label="Previous section: Construction 1">← Previous</a><a data-g9-next-section href="#MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE" aria-label="Next section: Circular dynamics: centripetal is a net-force role, not a new force">Next →</a></span></nav></div><div class="g9-component g9-c-banner" data-g9-component="KEY_STEP" data-g9-level="REQUIRED" data-g9-presentation="BANNER"><div class="g9-block" data-g9-block="inferential_jump"><h4>The key step</h4><p>On a position-time graph, segment slope is average velocity over that interval; on a velocity-time graph, segment slope is average acceleration. Graph height and graph slope answer different physical questions.</p></div></div><div class="g9-component g9-c-tile" data-g9-component="MODEL_CONTRACT" data-g9-level="EXPECTED" data-g9-presentation="TILE"><div class="g9-block" data-g9-block="entry_assumptions"><h4>You need</h4><ul><li>Can distinguish position, velocity and acceleration and can compute an interval average rate from two values.</li></ul><ul><li data-g9-prereq="CAP-KIN-AVERAGE-RATES" data-bridged="true"><a href="#MIC-PHY-KIN-AVERAGE-RATES">Compute average speed from total distance and average velocity from signed displacement over one common interval.</a></li></ul></div></div><div class="g9-component g9-c-step-cards" data-g9-component="CONSTRUCTION_STEPS" data-g9-level="REQUIRED" data-g9-presentation="STEP_CARDS" data-g9-component-items="4" data-g9-component-unit="CU-PHY-KIN-MOTION-GRAPHS-1"><div class="g9-block" data-g9-block="construction"><ol><li data-g9-step="KIN-G1"><strong>Read the axis names, units and two plotted coordinates before describing the motion.</strong><br><em>Why valid:</em> A graph only acquires physical meaning through its labelled quantities and coordinate values.<br><em>Result:</em> position-time graph: horizontal t in s, vertical x in m; velocity-time graph: horizontal t in s, vertical v in m/s.</li><li data-g9-step="KIN-G2"><strong>On the position-time graph, subtract two position coordinates and divide by their time separation.</strong><br><em>Why valid:</em> REL-AVERAGE-VELOCITY is the gate-owned interval relation and the graph supplies Delta x and Delta t.<br><em>Result:</em> between (2 s, 4 m) and (4 s, 8 m): v_avg = (8 - 4)/(4 - 2) = +2 m/s.</li><li data-g9-step="KIN-G3"><strong>On the velocity-time graph, subtract two velocity coordinates and divide by their time separation.</strong><br><em>Why valid:</em> REL-AVERAGE-ACCELERATION is the gate-owned interval relation and the graph supplies Delta v and Delta t.<br><em>Result:</em> between (2 s, 3 m/s) and (4 s, 5 m/s): a_avg = (5 - 3)/(4 - 2) = +1 m/s^2.</li><li data-g9-step="KIN-G4"><strong>Use horizontal segments as boundary checks.</strong><br><em>Why valid:</em> A horizontal position-time segment has zero position change, while a horizontal velocity-time segment has zero velocity change.<br><em>Result:</em> horizontal x-t -&gt; v_avg = 0; horizontal v-t -&gt; a_avg = 0.</li></ol></div></div><div class="g9-component g9-c-equation-card" data-g9-component="EQUATIONS" data-g9-level="EXPECTED" data-g9-presentation="EQUATION_CARD" data-g9-component-unit="CU-PHY-KIN-MOTION-GRAPHS-1"><div class="g9-block" data-g9-block="equation_matrix"><h4>Equations and validity</h4><div class="g9-table-scroll" data-g9-equation-matrix><table><thead><tr><th scope="col">Equation</th><th scope="col">What it tells you</th><th scope="col">When you can use it</th></tr></thead><tbody><tr data-g9-relation-ref="REL-AVERAGE-VELOCITY"><td><p class="g9-expr">v_avg = Delta x / Delta t</p></td><td><p>Average velocity is signed displacement divided by the same positive elapsed time.</p></td><td><ul><li>Delta t &gt; 0.</li><li>Delta x uses one declared axis/sign convention.</li></ul></td></tr><tr data-g9-relation-ref="REL-AVERAGE-ACCELERATION"><td><p class="g9-expr">a_avg = Delta v / Delta t</p></td><td><p>Average acceleration over an interval is signed velocity change divided by the positive elapsed time.</p></td><td><ul><li>Delta t &gt; 0.</li><li>Velocity values use one declared one-dimensional sign convention.</li></ul></td></tr></tbody></table></div></div></div></section></section></div><div class="g9-col g9-col-support"><section class="blueprint-slot slot-representation" data-blueprint-slot="representation" data-required="true"></section><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><section class="g9-cu-support" data-g9-support-for="CU-PHY-KIN-MOTION-GRAPHS-1"><h3>Construction 1</h3><div class="g9-component g9-c-trap-card" data-g9-component="TRAP_REPAIR" data-g9-level="REQUIRED" data-g9-presentation="TRAP_CARD" data-g9-component-items="1" data-g9-component-unit="CU-PHY-KIN-MOTION-GRAPHS-1"><div class="g9-block" data-g9-block="wrong_path"><h4>A tempting wrong path</h4><ul><li>A higher point on a motion graph always means the object is moving faster.</li></ul></div><div class="g9-block" data-g9-block="diagnose"><h4>Diagnose</h4><ul><li>Two position-time graph points are high on the page but connected by a horizontal segment. Is the object moving quickly during that interval?</li></ul></div><div class="g9-block" data-g9-block="repair"><h4>Repair</h4><ul><li>Read slope, not page height, for rate: a horizontal position-time segment has zero average velocity.</li></ul></div></div></section></section></div></div><div class="g9-split g9-split-support-only"><div class="g9-col g9-col-support"><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><div class="g9-component g9-c-recall-card" data-g9-component="EXIT_RECALL" data-g9-level="REQUIRED" data-g9-presentation="RECALL_CARD"><div class="g9-block" data-g9-block="exit_task"><h4>Try it with less support</h4><p>On a velocity-time graph, velocity changes from +3 m/s at 2 s to +5 m/s at 4 s. Find the average acceleration over that interval and state what a horizontal velocity-time segment would mean.</p></div><div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response"><label>Your answer<textarea data-g9-attempt rows="4"></textarea></label><label class="g9-paper"><input data-g9-paper type="checkbox">I worked this on paper</label><button type="button" data-g9-commit>I have attempted this</button></div><details data-g9-reveal data-requires-attempt data-g9-payload-ref="CORE1A-MIC-PHY-KIN-MOTION-GRAPHS-exit"><summary>Model answer</summary><div data-g9-payload-slot></div></details><template data-g9-payload="CORE1A-MIC-PHY-KIN-MOTION-GRAPHS-exit"><div class="g9-block" data-g9-block="exit_answer"><p>Average acceleration is +1 m/s^2. A horizontal velocity-time segment means zero acceleration over that interval.</p><ol><li>Delta v = +5 - (+3) = +2 m/s.</li><li>Delta t = 4 - 2 = 2 s.</li><li>a_avg = Delta v / Delta t = +1 m/s^2.</li><li>A horizontal velocity-time segment has Delta v = 0, so its average acceleration is zero.</li></ol></div></template></div></section></div></div></article><article id="MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE" data-g9-unit="MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE" data-g9-kind="CONCEPT" data-g9-role="CORE1A" data-g9-search-text="Physics Motion Circular dynamics: centripetal is a net-force role, not a new force Hard concept Circular dynamics: centripetal is a net-force role, not a new force" class="g9-stage-support"><section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true"><div class="g9-component g9-c-concept-header" data-g9-component="CONCEPT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="CONCEPT_HEADER"><h2>Circular dynamics: centripetal is a net-force role, not a new force</h2><div data-g9-meta-strip data-g9-meta-role="CORE1A" data-g9-meta-record="MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE" data-g9-search-safe><span data-g9-meta-item data-g9-meta-kind="subject" data-g9-meta-ref="Physics" data-g9-meta-value="Physics"><strong>Subject:</strong> <span data-g9-meta-label>Physics</span></span><span data-g9-meta-item data-g9-meta-kind="topic" data-g9-meta-ref="BUCKET-PHY-KIN-1D-MOTION" data-g9-meta-value="Motion"><strong>Topic:</strong> <span data-g9-meta-label>Motion</span></span><span data-g9-meta-item data-g9-meta-kind="concept" data-g9-meta-ref="MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE" data-g9-meta-value="Circular dynamics: centripetal is a net-force role, not a new force"><strong>Concept:</strong> <span data-g9-meta-label>Circular dynamics: centripetal is a net-force role, not a new force</span></span><span data-g9-meta-item data-g9-meta-kind="concept-difficulty" data-g9-meta-ref="MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE" data-g9-meta-value="HARD"><strong>Concept difficulty:</strong> <span data-g9-meta-label>Hard concept</span></span></div></div></section><div class="g9-split"><div class="g9-col g9-col-primary"><section class="blueprint-slot slot-construction" data-blueprint-slot="construction" data-required="true"><div class="g9-component g9-c-banner" data-g9-component="KEY_STEP" data-g9-level="REQUIRED" data-g9-presentation="BANNER"><div class="g9-block" data-g9-block="inferential_jump"><h4>The key step</h4><p>The inward acceleration requirement v^2/r fixes only the net radial component m v^2/r; tension, friction, gravity, normal force, or combinations may supply that resultant, so &#x27;centripetal force&#x27; must not be added as another interaction.</p></div></div><div class="g9-component g9-c-tile" data-g9-component="MODEL_CONTRACT" data-g9-level="EXPECTED" data-g9-presentation="TILE"><div class="g9-block" data-g9-block="entry_assumptions"><h4>You need</h4><ul><li>Can identify tangent velocity and inward acceleration in elementary uniform circular motion.</li><li>Can draw a chosen-body FBD and apply Newton II along a declared axis.</li></ul><ul><li data-g9-prereq="CAP-KIN-UNIFORM-CIRCULAR-MOTION" data-bridged="true"><a href="#MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION">Explain why uniform circular motion can have constant speed while velocity changes continuously, and calculate that speed from radius and revolution period.</a></li><li data-g9-prereq="CAP-NLM-SECOND-LAW" data-bridged="true">Net force, not any one force, sets acceleration (Physics)</li></ul></div></div><section class="g9-cu g9-path-bridge" data-g9-derivation-bridge="true"><nav class="g9-cu-nav" data-g9-unit-navigation aria-label="Concept Book section navigation"><span data-g9-route-position>Section 7 of 7</span><span class="g9-cu-nav-links"><a data-g9-prev-section href="#CU-PHY-KIN-MOTION-GRAPHS-1" aria-label="Previous section: Construction 1">← Previous</a></span></nav><div class="g9-block" data-g9-block="construction"><ol><li data-g9-step="KIN6-1"><strong>Hold speed constant and compare tangent velocity arrows at nearby points before showing any force.</strong><br><em>Why valid:</em> Direction change establishes nonzero inward acceleration without invoking a force label.<br><em>Result:</em> velocity tangent; acceleration inward.</li><li data-g9-step="KIN6-2"><strong>Quantify the inward acceleration as a_r=v^2/r.</strong><br><em>Why valid:</em> REL-CIRC-RADIAL-ACCELERATION is the gate-owned curvature relation.<br><em>Result:</em> a_r = v^2/r; for v=4 m/s and r=2 m, a_r=8 m/s^2.</li><li data-g9-step="KIN6-3"><strong>Choose one body and draw only real interactions, then declare inward-positive radial/tangential axes.</strong><br><em>Why valid:</em> Force ownership and sign choice must precede Newton-II components.<br><em>Result:</em> real-force FBD with radial components.</li><li data-g9-step="KIN6-4"><strong>Set the signed real-force radial resultant equal to m v^2/r.</strong><br><em>Why valid:</em> REL-CIRC-NET-RADIAL-FORCE is Newton II applied to the established radial acceleration.<br><em>Result:</em> Sigma F_r=m v^2/r without an extra Fc arrow.</li><li data-g9-step="KIN6-5"><strong>Switch among string, flat-curve friction, and gravity-supplied mechanisms while holding the same radial requirement.</strong><br><em>Why valid:</em> The force type can change while the centripetal role remains the net radial resultant.<br><em>Result:</em> mechanism changes; radial invariant remains.</li><li data-g9-step="KIN6-6"><strong>Remove the string interaction and predict the immediate inertial path.</strong><br><em>Why valid:</em> Without inward tension, instantaneous velocity remains tangent at the cut event.<br><em>Result:</em> initial post-cut path tangent, not radially outward.</li><li data-g9-step="KIN6-7"><strong>At vertical-circle top and bottom, re-declare inward and write the corresponding signed radial equations.</strong><br><em>Why valid:</em> Gravity keeps its physical downward direction while the radial positive direction changes around the circle.<br><em>Result:</em> top T+mg=mv_top^2/r; bottom T-mg=mv_bottom^2/r.</li><li data-g9-step="KIN6-8"><strong>At the top impose the just-taut boundary T=0 to derive the minimum top speed.</strong><br><em>Why valid:</em> A string cannot push, so negative tension signals failure of the taut-string model.<br><em>Result:</em> v_min=sqrt(gr).</li></ol></div><div class="g9-block" data-g9-block="equation_matrix"><h4>Equations and validity</h4><div class="g9-table-scroll" data-g9-equation-matrix><table><thead><tr><th scope="col">Equation</th><th scope="col">What it tells you</th><th scope="col">When you can use it</th></tr></thead><tbody><tr data-g9-relation-ref="REL-CIRC-RADIAL-ACCELERATION"><td><p class="g9-expr">a_r = v^2 / r</p></td><td><p>For uniform circular motion of speed v on a path of positive radius r, the acceleration magnitude toward the centre is v^2/r.</p></td><td><ul><li>r &gt; 0.</li><li>The path is circular at the represented instant.</li><li>For the acceleration to be exactly radial with no tangential component, speed is constant at that instant/over the uniform model.</li></ul></td></tr><tr data-g9-relation-ref="REL-CIRC-NET-RADIAL-FORCE"><td><p class="g9-expr">Sigma F_r = m v^2 / r</p></td><td><p>With inward chosen as positive radial direction, the signed sum of real radial force components equals m v^2/r for uniform circular motion.</p></td><td><ul><li>Choose one body and declare inward as positive radial direction before resolving forces.</li><li>Only real interactions appear in an inertial-frame free-body diagram.</li><li>The represented motion has radial acceleration v^2/r.</li><li>Do not add an extra force named centripetal; Sigma F_r is the resultant radial role of the real forces.</li></ul></td></tr><tr data-g9-relation-ref="REL-CIRC-VERTICAL-TOP"><td><p class="g9-expr">T + m g = m v_top^2 / r</p></td><td><p>At the top of a vertical circle for a mass on a taut string, inward is downward so tension and weight both contribute positively to the radial resultant.</p></td><td><ul><li>The body is at the top of the vertical circle.</li><li>The string is taut and massless in the bounded model.</li><li>Gravity acts downward and the radial positive direction is inward (downward at the top).</li></ul></td></tr><tr data-g9-relation-ref="REL-CIRC-VERTICAL-BOTTOM"><td><p class="g9-expr">T - m g = m v_bottom^2 / r</p></td><td><p>At the bottom of a vertical circle for a mass on a taut string, inward is upward so tension contributes positively and weight negatively to the radial resultant.</p></td><td><ul><li>The body is at the bottom of the vertical circle.</li><li>The string is taut and massless in the bounded model.</li><li>Gravity acts downward and the radial positive direction is inward (upward at the bottom).</li></ul></td></tr><tr data-g9-relation-ref="REL-CIRC-TOP-MIN-SPEED"><td><p class="g9-expr">v_min = sqrt(g r)</p></td><td><p>At the just-taut top boundary T=0, the vertical-circle top radial equation gives v_min=sqrt(gr).</p></td><td><ul><li>The body is at the top of the vertical circle.</li><li>The string is at the just-taut boundary, so T = 0.</li><li>r &gt; 0 and g &gt; 0.</li><li>This is a boundary result for the declared string model, not a generic circular-motion formula.</li></ul></td></tr></tbody></table></div></div></section></section></div><div class="g9-col g9-col-support"><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><section class="g9-cu-support" data-g9-support-for="MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE"><h3>Circular dynamics: centripetal is a net-force role, not a new force</h3><div class="g9-block" data-g9-block="wrong_path"><h4>A tempting wrong path</h4><ul><li>Tension plus an additional centripetal force both point inward.</li><li>A cut string makes the object fly radially outward.</li><li>Static friction on a flat curve always equals mu_s N.</li></ul></div><div class="g9-block" data-g9-block="diagnose"><h4>Diagnose</h4><ul><li>A mass moves in a horizontal circle on one string. Which horizontal force arrows belong on its inertial-frame FBD?</li><li>At the instant a circular-motion string is cut, which direction does the object initially move?</li><li>At a low speed on a high-friction flat curve, must friction already be at its maximum?</li></ul></div><div class="g9-block" data-g9-block="repair"><h4>Repair</h4><ul><li>Draw the string tension only; &#x27;centripetal&#x27; names the role of the net inward component.</li><li>Keep the instantaneous tangent velocity; removing tension removes inward acceleration, not the tangent velocity.</li><li>Compute m v^2/r first and compare that demand with the static bound.</li></ul></div></section><div class="g9-component g9-c-recall-card" data-g9-component="EXIT_RECALL" data-g9-level="REQUIRED" data-g9-presentation="RECALL_CARD"><div class="g9-block" data-g9-block="exit_task"><h4>Try it with less support</h4><p>A 2 kg mass moves at 4 m/s in a horizontal circle of radius 2 m on a string. Draw the inertial-frame horizontal FBD and find the required inward net force. Then state the immediate path if the string is cut.</p></div><div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response"><label>Your answer<textarea data-g9-attempt rows="4"></textarea></label><label class="g9-paper"><input data-g9-paper type="checkbox">I worked this on paper</label><button type="button" data-g9-commit>I have attempted this</button></div><details data-g9-reveal data-requires-attempt data-g9-payload-ref="CORE1A-MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE-exit"><summary>Model answer</summary><div data-g9-payload-slot></div></details><template data-g9-payload="CORE1A-MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE-exit"><div class="g9-block" data-g9-block="exit_answer"><p>Only tension is drawn horizontally. The required inward net force is m v^2/r=16 N, so tension supplies 16 N in the simplified horizontal model. If the string is cut, tension vanishes and the mass initially follows the tangent.</p><ol><li>Velocity is tangent while acceleration is inward.</li><li>Draw the real string interaction only.</li><li>Apply Sigma F_r=m v^2/r=2*16/2=16 N.</li><li>The cut removes inward tension; instantaneous tangent velocity remains.</li></ol></div></template></div></section></div></div></article></main><footer data-g9-footer>Physics · One-dimensional motion</footer><script>
+(()=>{const q=(s,r=document)=>[...r.querySelectorAll(s)];
+const store={get:k=>{try{return localStorage.getItem('g9-'+k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem('g9-'+k,v);return true}catch(e){return false}},remove:k=>{try{localStorage.removeItem('g9-'+k);return true}catch(e){return false}}};
+const root=document.documentElement;const scope=root.dataset.g9Product&&root.dataset.g9RenderDigest?root.dataset.g9Product+':'+root.dataset.g9RenderDigest:'';
+const apply=()=>{root.dataset.theme=store.get('theme')||root.dataset.theme||'light';root.style.setProperty('--g9-zoom',store.get('zoom')||'1');};apply();
+q('[data-g9-theme]').forEach(b=>b.onclick=()=>{store.set('theme',b.dataset.g9Theme);apply()});
+q('[data-g9-zoom]').forEach(b=>b.onclick=()=>{let z=parseFloat(store.get('zoom')||'1');z=b.dataset.g9Zoom==='inc'?Math.min(1.6,z+0.1):b.dataset.g9Zoom==='dec'?Math.max(0.8,z-0.1):1;store.set('zoom',z.toFixed(1));apply()});
+q('[data-g9-font]').forEach(b=>b.onclick=()=>q('[data-g9-zoom="'+b.dataset.g9Font+'"]')[0]?.click());
+function initFigure(f){if(f.dataset.g9Init)return;f.dataset.g9Init='1';const ids=(f.dataset.g9Stages||'').split(' ').filter(Boolean);if(ids.length<2)return;let i=0;
+const chips=q('[data-g9-stage-goto]',f);const desc=q('[data-g9-stage-desc-text]',f)[0];
+const isSeq=f.dataset.g9StageSequence==='true'||ids.every(id=>{const g=q('[data-g9-stage-id="'+id+'"]',f)[0];return g&&g.querySelector('text[y="24"]');});
+ids.forEach(id=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display='none'));
+const show=()=>{ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>{const hasBase=g.classList.contains('g9-stage-base')||g.dataset.g9StageRole==='base'||!ids.every(x=>{const el=q('[data-g9-stage-id="'+x+'"]',f)[0];return el&&el.querySelector('text[y="24"]');});const isBase=(n===0&&hasBase);g.style.display=(isBase||(isSeq?n===i:n<=i))?'':'none'}));const l=q('[data-g9-stage-label]',f)[0];if(l)l.textContent='Stage '+(i+1)+' of '+ids.length;chips.forEach((c,n)=>c.setAttribute('aria-pressed',String(n===i)));if(desc)desc.textContent=(chips[i]&&chips[i].dataset.g9StageDesc)||''};show();chips.forEach((c,n)=>c.onclick=()=>{i=n;show()});
+q('[data-g9-stage-step]',f).forEach(b=>b.onclick=()=>{i=Math.max(0,Math.min(ids.length-1,i+(b.dataset.g9StageStep==='next'?1:-1)));show()})}
+function nextRung(l){const t=q('template[data-g9-rung-payload]',l)[0];if(!t)return false;const payload=t.content.cloneNode(true);q('[data-g9-rung-ghost]',l)[0]?.remove();q('figure[data-g9-figure]',payload).forEach(initFigure);q('[data-g9-ladder]',l)[0].append(payload);t.remove();const b=q('[data-g9-next-rung]',l)[0];if(b){if(!q('template[data-g9-rung-payload]',l).length)b.disabled=true;else b.textContent='Show next support'}return true}
+function materialise(a){q('details[data-g9-payload-ref]',a).forEach(d=>{const slot=q('[data-g9-payload-slot]',d)[0];if(!slot||slot.dataset.g9Filled)return;const t=q('template[data-g9-payload]',a).find(x=>x.dataset.g9Payload===d.dataset.g9PayloadRef);if(!t)return;slot.replaceChildren(t.content.cloneNode(true));slot.dataset.g9Filled='1';q('figure[data-g9-figure]',slot).forEach(initFigure)})}
+const number=t=>{const v=t.trim();if(!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?(?:\s*\/\s*[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?)?$/i.test(v))return false;const p=v.split('/').map(x=>Number(x.trim()));return p.every(Number.isFinite)&&(p.length===1||p[1]!==0)};
+function validAttempt(box){const type=box.dataset.g9ResponseType;if(type==='single_choice'||type==='multiple_choice'||type==='true_false')return q('[data-g9-choice]:checked',box).length>0;
+if(type==='numeric')return number(q('[data-g9-number]',box)[0]?.value||'');if(type==='short_text')return !!q('[data-g9-attempt]',box)[0]?.value.trim();
+if(type==='match'){const fields=q('[data-g9-match]',box);return fields.length>0&&fields.every(x=>x.value!=='')}
+if(q('[data-g9-paper]:checked',box).length)return true;if(type==='multipart'){const fields=q('[data-g9-part-input]',box);return fields.length>0&&fields.every(x=>x.value.trim()&&(!x.dataset.g9PartType||x.dataset.g9PartType!=='numeric'||number(x.value)))}
+return !!q('[data-g9-attempt]',box)[0]?.value.trim()}
+const stateKey=a=>scope&&a?.dataset.g9Unit?'state:'+scope+':'+a.dataset.g9Unit:null;const returnKey=concept=>scope&&concept?'return:'+scope+':'+concept:null;
+function readState(key){if(!key)return null;const raw=store.get(key);if(!raw)return null;try{const state=JSON.parse(raw);return state&&typeof state==='object'?state:null}catch(e){return null}}
+const attemptFields=a=>q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a);const rungCount=l=>{const list=q('[data-g9-ladder]',l)[0];return list?q('[data-g9-rung]',list).length:0};
+function saveCore2State(a){if(a.dataset.g9Role!=='CORE2')return;const key=stateKey(a);if(!key)return;const fields=attemptFields(a).map(el=>({value:el.value,checked:!!el.checked}));const ladders={};q('.g9-ladder[data-g9-ladder-ref]',a).forEach(l=>ladders[l.dataset.g9LadderRef]=rungCount(l));const reveals=q('details[data-g9-support-reveal]',a).map(d=>!!d.open);store.set(key,JSON.stringify({attempted:!!a.dataset.attempted,fields,ladders,reveals}))}
+function bindSupportRevealState(a){q('details[data-g9-support-reveal]',a).forEach(d=>{if(d.dataset.g9StateBound)return;d.dataset.g9StateBound='1';d.addEventListener('toggle',()=>saveCore2State(a))})}
+function restoreCore2State(a,lock){if(a.dataset.g9Role!=='CORE2')return;const state=readState(stateKey(a));if(!state)return;const fields=attemptFields(a);(state.fields||[]).forEach((saved,i)=>{const el=fields[i];if(!el||!saved||typeof saved!=='object')return;if(Object.prototype.hasOwnProperty.call(saved,'value'))el.value=saved.value??'';if(el.type==='checkbox'||el.type==='radio')el.checked=!!saved.checked});Object.entries(state.ladders||{}).forEach(([ref,count])=>{const l=q('.g9-ladder[data-g9-ladder-ref]',a).find(x=>x.dataset.g9LadderRef===ref);if(!l||!Number.isInteger(count)||count<0)return;while(rungCount(l)<count&&nextRung(l)){};});bindSupportRevealState(a);q('details[data-g9-support-reveal]',a).forEach((d,i)=>d.open=!!(state.reveals||[])[i]);if(state.attempted){a.dataset.attempted='1';materialise(a)}lock()}
+const articles=q('article[data-g9-unit],article[data-g9-diagnostic]');
+articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!a.dataset.attempted){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();restoreCore2State(a,lock);
+q('details[data-requires-attempt] summary',a).forEach(s=>s.addEventListener('click',e=>{if(!a.dataset.attempted){e.preventDefault();q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a)[0]?.focus()}}));
+q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-attempt-box]');if(!box||!validAttempt(box)){q('input,textarea,select',box||a)[0]?.focus();return}a.dataset.attempted='1';lock();materialise(a);saveCore2State(a)});
+a.addEventListener('click',e=>{const b=e.target.closest('[data-g9-next-rung]');if(b&&a.contains(b)){nextRung(b.closest('.g9-ladder'));bindSupportRevealState(a);saveCore2State(a)}});attemptFields(a).forEach(el=>{el.addEventListener('input',()=>saveCore2State(a));el.addEventListener('change',()=>saveCore2State(a))});
+q('[data-g9-concept-link]',a).forEach(link=>link.addEventListener('click',()=>{saveCore2State(a);const key=returnKey(link.dataset.g9ConceptRef);if(key)store.set(key,link.dataset.g9QuestionRef||a.dataset.g9Unit);refreshReturnLinks()}))});
+const practiceLinks=q('[data-g9-practice-link]');const practiceLabels=new Map(practiceLinks.map(link=>[link,link.textContent]));
+function refreshReturnLinks(){practiceLinks.forEach(link=>{const key=returnKey(link.dataset.g9ConceptRef);const active=!!key&&store.get(key)===link.dataset.g9QuestionRef;if(active){link.dataset.g9ReturnLink='';link.textContent='Return to question · '+practiceLabels.get(link)}else{delete link.dataset.g9ReturnLink;link.textContent=practiceLabels.get(link)}})}
+practiceLinks.forEach(link=>link.addEventListener('click',()=>{const key=returnKey(link.dataset.g9ConceptRef);if(key&&store.get(key)===link.dataset.g9QuestionRef){store.remove(key);refreshReturnLinks()}}));refreshReturnLinks();
+window.g9MaterialiseAll=()=>articles.forEach(a=>{a.dataset.attempted='1';q('details[data-requires-attempt]',a).forEach(d=>delete d.dataset.locked);materialise(a);q('.g9-ladder',a).forEach(l=>{while(nextRung(l)){};});q('details[data-g9-support-reveal]',a).forEach(d=>d.open=true)});
+q('figure[data-g9-figure]').forEach(initFigure);
+q('[data-g9-toggle]').forEach(b=>b.onclick=()=>{const t=document.getElementById(b.getAttribute('aria-controls'));if(!t)return;const open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!open));t.hidden=open});
+const input=q('[data-g9-search-input]')[0];if(input)input.oninput=()=>{const v=input.value.trim().toLowerCase();articles.forEach(a=>{a.hidden=!!v&&!(a.dataset.g9SearchText||'').toLowerCase().includes(v)})};
+q('[data-g9-action="search"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-search-panel]')[0];p.hidden=!p.hidden;if(!p.hidden)input.focus()});
+q('[data-g9-action="display"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-display-panel]')[0];p.hidden=!p.hidden});
+})();
+</script><script id="pr375-u4-remediation-script">
+(() => {
+  const humanize = (value) => String(value || '')
+    .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+    .replace(/[_-]+/g, ' ')
+    .replace(/\b(vec)([ab])\b/gi, 'vector $2')
+    .replace(/\bproj\b/gi, 'projectile')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const explicitNames = {
+    mass1: 'Mass m1 in kilograms', mass2: 'Mass m2 in kilograms',
+    vecA: 'Vector A', vecB: 'Vector B',
+    projU: 'Projectile launch speed', projAngle: 'Projectile launch angle',
+    'jump-select': 'Jump to question', search: 'Search questions',
+    searchInput: 'Search questions', questionSearch: 'Search questions'
+  };
+
+  const hasLabel = (el) => {
+    if (el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.title) return true;
+    if (el.id && document.querySelector(`label[for="${CSS.escape(el.id)}"]`)) return true;
+    return !!el.closest('label');
+  };
+
+  document.querySelectorAll('input, select, textarea').forEach((el, index) => {
+    if (hasLabel(el)) return;
+    let name = explicitNames[el.id] || el.getAttribute('placeholder') || el.getAttribute('name') || el.id;
+    if (!name) {
+      const nearby = el.parentElement?.textContent?.trim();
+      if (nearby && nearby.length <= 100) name = nearby;
+    }
+    name = humanize(name) || `${el.tagName.toLowerCase()} ${index + 1}`;
+    el.setAttribute('aria-label', name);
+  });
+
+  document.querySelectorAll('button').forEach(btn => {
+    if (btn.textContent.trim().toLowerCase() === 'clear') btn.classList.add('u4-clear-button');
+  });
+
+  const syncOptions = () => {
+    document.querySelectorAll('.opt-btn').forEach(btn => {
+      const correct = btn.classList.contains('selected-correct');
+      const incorrect = btn.classList.contains('selected-incorrect');
+      btn.setAttribute('aria-pressed', correct || incorrect ? 'true' : 'false');
+      const base = btn.getAttribute('data-u4-base-label') || btn.getAttribute('aria-label') || btn.textContent.trim();
+      if (!btn.hasAttribute('data-u4-base-label')) btn.setAttribute('data-u4-base-label', base);
+      btn.setAttribute('aria-label', `${base}${correct ? ' — Correct' : incorrect ? ' — Incorrect' : ''}`);
+    });
+  };
+  syncOptions();
+
+  const syncTabs = () => {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.setAttribute('role', 'tab');
+      const active = btn.classList.contains('active') || btn.classList.contains('tab-btn-active') || btn.getAttribute('aria-current') === 'page';
+      btn.setAttribute('aria-selected', active ? 'true' : 'false');
+      if (btn.parentElement && !btn.parentElement.hasAttribute('role')) btn.parentElement.setAttribute('role', 'tablist');
+    });
+  };
+  syncTabs();
+
+  const figureName = (el, fallback) => {
+    const scope = el.closest('figure, section, article, .card, .panel, .simulator, .canvas-container') || el.parentElement;
+    const caption = scope?.querySelector('figcaption, h1, h2, h3, h4, .title, [class*="title"]');
+    const txt = caption?.textContent?.replace(/\s+/g, ' ').trim();
+    return txt && txt.length <= 120 ? txt : fallback;
+  };
+
+  document.querySelectorAll('svg').forEach(svg => {
+    if (svg.hasAttribute('aria-label') || svg.hasAttribute('aria-labelledby') || svg.hasAttribute('aria-hidden') || svg.querySelector('title')) return;
+    const control = svg.closest('a, button');
+    if (control && control.textContent.trim()) {
+      svg.setAttribute('aria-hidden', 'true');
+      svg.setAttribute('focusable', 'false');
+    } else {
+      svg.setAttribute('role', 'img');
+      svg.setAttribute('aria-label', figureName(svg, 'Physics diagram'));
+    }
+  });
+
+  document.querySelectorAll('canvas').forEach(canvas => {
+    if (canvas.hasAttribute('aria-label') || canvas.hasAttribute('aria-labelledby') || canvas.hasAttribute('aria-hidden')) return;
+    canvas.setAttribute('role', 'img');
+    canvas.setAttribute('aria-label', figureName(canvas, 'Interactive physics simulation'));
+  });
+
+  if (!document.querySelector('main, [role="main"]')) {
+    const mainCandidate = document.querySelector('.app-container, .container, .page-shell, #app');
+    if (mainCandidate) mainCandidate.setAttribute('role', 'main');
+  }
+
+  const observer = new MutationObserver(() => { syncOptions(); syncTabs(); });
+  observer.observe(document.documentElement, { subtree: true, attributes: true, attributeFilter: ['class', 'aria-current'] });
+})();
+</script>
+<script id="pr375-u4-dynamic-remediation">
+(() => {
+  const textName = (el, fallback) => {
+    const scope = el.closest('figure, section, article, .panel, .card, .simulator, .canvas-wrap, .canvas-container') || el.parentElement;
+    const title = scope?.querySelector('figcaption, h1, h2, h3, h4, .title, [class*="title"]');
+    const text = title?.textContent?.replace(/\s+/g, ' ').trim();
+    return text && text.length <= 140 ? text : fallback;
+  };
+
+  const nameFigures = (root = document) => {
+    const nodes = [];
+    if (root.nodeType === 1 && root.matches?.('svg, canvas')) nodes.push(root);
+    root.querySelectorAll?.('svg, canvas').forEach(el => nodes.push(el));
+    nodes.forEach(el => {
+      if (el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.getAttribute('aria-hidden') || el.querySelector?.('title')) return;
+      const control = el.closest('a, button');
+      if (control && control.textContent.trim()) {
+        el.setAttribute('aria-hidden', 'true');
+        el.setAttribute('focusable', 'false');
+        return;
+      }
+      el.setAttribute('role', 'img');
+      el.setAttribute('aria-label', textName(el, el.tagName.toLowerCase() === 'canvas' ? 'Interactive physics simulation' : 'Physics diagram'));
+    });
+  };
+
+  const nameControls = (root = document) => {
+    const nodes = [];
+    if (root.nodeType === 1 && root.matches?.('input, select, textarea')) nodes.push(root);
+    root.querySelectorAll?.('input, select, textarea').forEach(el => nodes.push(el));
+    nodes.forEach((el, index) => {
+      const has = el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.title || el.closest('label') || (el.id && document.querySelector(`label[for="${CSS.escape(el.id)}"]`));
+      if (has) return;
+      const nearby = el.closest('.control-row, .form-group, .field, .panel, .card')?.querySelector('.control-label, label, h3, h4');
+      const raw = el.getAttribute('placeholder') || el.getAttribute('name') || el.id || nearby?.textContent || `${el.tagName.toLowerCase()} ${index + 1}`;
+      el.setAttribute('aria-label', String(raw).replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim());
+    });
+  };
+
+  const sync = root => { nameFigures(root); nameControls(root); };
+  sync(document);
+  new MutationObserver(records => {
+    for (const record of records) for (const node of record.addedNodes) if (node.nodeType === 1) sync(node);
+  }).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
+</body></html>

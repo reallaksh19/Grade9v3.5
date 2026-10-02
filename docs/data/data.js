@@ -105,14 +105,8 @@ window.GRADE9V3 = {
       "gates": [],
       "buckets": [],
       "matrices": [],
-      "packages": [
-        {
-          "package_id": "LIB-CHEM-BONDING-NCERT",
-          "status": "CANDIDATE",
-          "admitted": false
-        }
-      ],
-      "library_available": true,
+      "packages": [],
+      "library_available": false,
       "atlas_index_contract_version": "2.0",
       "atlas_index": [],
       "visual_targets": {},

@@ -622,92 +622,965 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
     </div>
   </header>
 
-  <nav class="tab-nav">
+    <nav class="tab-nav">
     <div class="tab-nav-inner">
-      <button class="tab-btn active" onclick="switchTab('tab-fundamentals')">1. Vector Fundamentals</button>
-      <button class="tab-btn" onclick="switchTab('tab-addition')">2. Laws of Addition</button>
-      <button class="tab-btn" onclick="switchTab('tab-resolution')">3. Orthogonal Resolution</button>
-      <button class="tab-btn" onclick="switchTab('tab-products')">4. Dot &amp; Cross Products</button>
-      <button class="tab-btn" onclick="switchTab('tab-challenges')">5. Core 2 Challenges (29)</button>
+      <button class="tab-btn active" onclick="switchTab('tab-core1')">Core 1 Vector Concepts (11 Units)</button>
+      <button class="tab-btn" onclick="switchTab('tab-challenges')">Core 2 Vector Challenges (29)</button>
     </div>
   </nav>
 
   <main class="layout-container">
     
     <div class="stage-area">
-
-      <!-- Tab 1: Fundamentals -->
-      <div id="tab-fundamentals" class="tab-content active">
+      <!-- Tab 1: Core 1 Vector Concepts (11 Units) -->
+      <div id="tab-core1" class="tab-content active">
         <div class="content-card">
-          <h2><span>📐</span> Scalars vs. Vectors &amp; Notation</h2>
+          <h2><span>🧭</span> Vector Reasoning Foundations (Core 1)</h2>
           <p>
-            A scalar quantity possesses only magnitude (e.g. mass, speed, time, temperature, work). A vector quantity possesses both magnitude and direction AND strictly obeys the vector laws of addition (e.g. displacement, velocity, acceleration, force, momentum).
+            Build vector reasoning as a reusable system before transfer: Physical Meaning &rarr; Geometric Diagram &rarr; Component Projections &rarr; Dot/Cross Interpretation &rarr; Sanity Check.
           </p>
           <div class="formula-box">
-            <div><strong>Vector Notation:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \(\vec{A} = A_x\,\hat{i} + A_y\,\hat{j} + A_z\,\hat{k}\)</div>
-            <div><strong>Magnitude:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \(|\vec{A}| = A = \sqrt{A_x^2 + A_y^2 + A_z^2}\)</div>
-            <div><strong>Unit Vector:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \(\hat{A} = \frac{\vec{A}}{|\vec{A}|}\) &nbsp; (Dimensionless, \(|\hat{A}| = 1\))</div>
-          </div>
-          <div class="callout-box">
-            <strong>Critical Test for Vectorhood:</strong>
-            Electric current has magnitude and direction, but it adds algebraically like a scalar (\(I = I_1 + I_2\)), violating vector addition. Hence, current is a scalar quantity, NOT a vector!
+            <div><strong>Vector Form:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \(\vec{A} = A_x\,\hat{i} + A_y\,\hat{j} + A_z\,\hat{k}\)</div>
+            <div><strong>Resultant:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \(|\vec{A} + \vec{B}| = \sqrt{A^2 + B^2 + 2AB\cos\theta}\)</div>
+            <div><strong>Relative Velocity:</strong> &nbsp;&nbsp;&nbsp; \(\vec{v}_{AB} = \vec{v}_A - \vec{v}_B\) (observer vector is subtracted)</div>
+            <div><strong>Scalar Product:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \(\vec{A} \cdot \vec{B} = AB\cos\theta = A_x B_x + A_y B_y\)</div>
           </div>
         </div>
-      </div>
 
-      <!-- Tab 2: Addition -->
-      <div id="tab-addition" class="tab-content">
-        <div class="content-card">
-          <h2><span>➕</span> Triangle &amp; Parallelogram Laws of Addition</h2>
-          <p>
-            The resultant of two vectors \(\vec{A}\) and \(\vec{B}\) acting at an angle \(\theta\):
-          </p>
-          <div class="formula-box">
-            <div><strong>Resultant Magnitude:</strong> &nbsp; \(R = \sqrt{A^2 + B^2 + 2AB\cos\theta}\)</div>
-            <div><strong>Direction Angle \(\alpha\) (with vector \(\vec{A}\)):</strong></div>
-            <div style="margin-left: 1rem;">\(\tan\alpha = \frac{B\sin\theta}{A + B\cos\theta}\)</div><br>
-            <div><strong>Special Cases:</strong></div>
-            <div>• Parallel (\(\theta = 0^\circ\)): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \(R_{\max} = A + B\)</div>
-            <div>• Anti-parallel (\(\theta = 180^\circ\)): \(R_{\min} = |A - B|\)</div>
-            <div>• Perpendicular (\(\theta = 90^\circ\)): &nbsp; \(R = \sqrt{A^2 + B^2}, \quad \tan\alpha = \frac{B}{A}\)</div>
+<!-- Unit 01: VECTORS 01 - Scalars, vectors and sign -->
+        <article class="content-card" id="unit-01" style="margin-bottom: 28px; border: 1.5px solid var(--border); border-radius: var(--tab12-radius-md); padding: 24px; background: var(--bg-card);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+            <div>
+              <span class="q-badge" style="background:rgba(56,189,248,0.15); border:1px solid var(--accent); color:var(--accent); font-weight:800; font-size:12px; padding:4px 10px; border-radius:999px;">Concept Unit 01</span>
+              <h2 style="font-size:20px; font-weight:700; margin:8px 0 4px; color:var(--text-primary);">VECTORS 01 - Scalars, vectors and sign</h2>
+              <p style="font-size:14px; color:var(--accent); font-weight:600; margin:0;">Direction is information; sign belongs to a declared axis</p>
+            </div>
+            <span class="tag-pill" style="font-size:12px; font-weight:700; background:rgba(192,132,252,0.15); border:1px solid var(--purple); color:var(--purple);">VEC-01 · Core 1</span>
           </div>
-        </div>
-      </div>
 
-      <!-- Tab 3: Resolution -->
-      <div id="tab-resolution" class="tab-content">
-        <div class="content-card">
-          <h2><span>✂️</span> Component Resolution in 2D &amp; 3D</h2>
-          <p>
-            Resolving a vector into mutually perpendicular components along the coordinate axes simplifies complex multi-vector problems into independent 1D algebraic additions.
-          </p>
-          <div class="formula-box">
-            <div><strong>2D Resolution (Angle \(\theta\) with x-axis):</strong></div>
-            <div style="margin-left: 1rem;">\(A_x = A\cos\theta, \quad A_y = A\sin\theta\)</div>
-            <div style="margin-left: 1rem;">\(A = \sqrt{A_x^2 + A_y^2}, \quad \tan\theta = \frac{A_y}{A_x}\)</div><br>
-            <div><strong>3D Direction Cosines (Angles \(\alpha, \beta, \gamma\) with x, y, z axes):</strong></div>
-            <div style="margin-left: 1rem;">\(\cos\alpha = \frac{A_x}{A}, \quad \cos\beta = \frac{A_y}{A}, \quad \cos\gamma = \frac{A_z}{A}\)</div>
-            <div style="margin-left: 1rem;">Fundamental Identity: \(\cos^2\alpha + \cos^2\beta + \cos^2\gamma = 1\)</div>
+          <!-- Publication-grade Diagram -->
+          <div style="background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--tab12-radius-sm); padding:16px; margin-bottom:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 220" role="img" aria-label="1D signed axis and displacement vectors" style="width:100%;max-width:540px;height:auto;display:block;margin:12px auto;">
+  <defs>
+    <marker id="arr-vx" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/></marker>
+    <marker id="arr-ve" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#38bdf8"/></marker>
+    <marker id="arr-vw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#f43f5e"/></marker>
+  </defs>
+  <!-- Declared +x Axis -->
+  <line x1="50" y1="130" x2="480" y2="130" stroke="currentColor" stroke-width="2" marker-end="url(#arr-vx)"/>
+  <text x="495" y="135" font-size="14" font-weight="800" fill="currentColor">+x (East)</text>
+  <!-- Origin -->
+  <line x1="220" y1="120" x2="220" y2="140" stroke="currentColor" stroke-width="2"/>
+  <text x="220" y="155" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">0</text>
+  <!-- +8 m East displacement -->
+  <line x1="220" y1="90" x2="380" y2="90" stroke="#38bdf8" stroke-width="3.5" marker-end="url(#arr-ve)"/>
+  <text x="300" y="78" text-anchor="middle" font-size="13" font-weight="800" fill="#38bdf8">+8 m East (along +x)</text>
+  <!-- -5 m West displacement -->
+  <line x1="220" y1="50" x2="120" y2="50" stroke="#f43f5e" stroke-width="3.5" marker-end="url(#arr-vw)"/>
+  <text x="170" y="38" text-anchor="middle" font-size="13" font-weight="800" fill="#f43f5e">-5 m West (opposite +x)</text>
+  <!-- Rule banner -->
+  <rect x="110" y="175" width="320" height="28" rx="6" fill="rgba(56,189,248,0.12)" stroke="#38bdf8"/>
+  <text x="270" y="194" text-anchor="middle" font-size="12" font-weight="700" fill="#38bdf8">Sign has meaning ONLY after positive axis is declared</text>
+</svg>
           </div>
-        </div>
-      </div>
 
-      <!-- Tab 4: Products -->
-      <div id="tab-products" class="tab-content">
-        <div class="content-card">
-          <h2><span>✖️</span> Scalar (Dot) &amp; Vector (Cross) Products</h2>
-          <div class="formula-box">
-            <div><strong>Scalar (Dot) Product:</strong> &nbsp; \(\vec{A} \cdot \vec{B} = AB\cos\theta = A_x B_x + A_y B_y + A_z B_z\)</div>
-            <div>• Condition for Orthogonality: \(\vec{A} \perp \vec{B} \iff \vec{A} \cdot \vec{B} = 0\)</div>
-            <div>• Work done: \(W = \vec{F} \cdot \vec{d}\)</div><br>
-            <div><strong>Vector (Cross) Product:</strong> \(\vec{A} \times \vec{B} = (AB\sin\theta)\,\hat{n}\)</div>
-            <div>• Condition for Parallelism: \(\vec{A} \parallel \vec{B} \iff \vec{A} \times \vec{B} = 0\)</div>
-            <div>• Torque: \(\vec{\tau} = \vec{r} \times \vec{F}\)</div>
+          <!-- Dual explanation grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:20px;">
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--accent); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:6px;">What is happening?</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">A scalar is complete with magnitude alone. A vector needs magnitude and direction. In one dimension, direction can be encoded by sign only after you declare the positive axis.</p>
+            </div>
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--success); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">Key Idea</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">Do not classify from the unit. Ask whether reversing direction changes the physical state. Then declare an axis before attaching + or - signs.</p>
+            </div>
           </div>
-        </div>
+
+          <!-- How it works numbered sequence -->
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:var(--tab12-radius-sm); padding:16px 20px; margin-bottom:20px;">
+            <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary); margin-bottom:10px;">How It Works</h4>
+            <ol style="margin:0; padding-left:22px; display:grid; gap:8px;">
+              <li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Recognise: displacement, velocity, acceleration, force and momentum are vectors; distance, speed, time and mass are scalars.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Represent: in 1D, choose +x first; then words such as east/west become signed components.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Interpret: a negative answer is not a failed calculation. It points opposite the chosen positive axis.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Validity: the sign changes if the axis convention changes; the physical motion does not.</li>
+            </ol>
+          </div>
+
+          <!-- Work the Idea: Worked Example -->
+          <div style="border:1px solid var(--border); border-radius:var(--tab12-radius-sm); overflow:hidden; margin-bottom:16px; background:var(--bg-card-subtle);">
+            <div style="background:rgba(56,189,248,0.08); padding:10px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px;">
+              <span style="font-weight:800; font-size:13px; color:var(--accent);">⚡ WORKED EXAMPLE</span>
+            </div>
+            <div style="padding:14px 16px; font-size:14.5px; line-height:1.6;">
+              Example. Take east as +x. A trolley moves 5 m east then 9 m west. Displacement = +5 + (-9) = -4 m = 4 m west. Distance = 5 + 9 = 14 m.
+            </div>
+          </div>
+
+          <!-- Watch out & Quick Check -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+            <div style="background:rgba(245,158,11,0.08); border:1px solid var(--warning); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--warning); margin-bottom:6px;">⚠️ Watch Out</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0; color:var(--text-primary);">Do not use “negative = smaller” or “negative = wrong”. For a vector component, negative normally means opposite the declared positive axis.</p>
+            </div>
+            <div style="background:rgba(52,211,153,0.08); border:1px solid var(--success); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">✅ Quick Check</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0 0 6px; color:var(--text-primary);">Take north as +y. A displacement is 7 m south.</p>
+              <details style="margin-top:6px; cursor:pointer;">
+                <summary style="font-size:13px; font-weight:700; color:var(--success); padding:4px 0;">Reveal Answer</summary>
+                <div style="padding-top:6px; font-size:13.5px; font-weight:600; color:var(--text-primary);">-7 m.</div>
+              </details>
+            </div>
+          </div>
+        </article>
+    
+
+        <!-- Unit 02: VECTORS 02 - Draw, compare and reverse vectors -->
+        <article class="content-card" id="unit-02" style="margin-bottom: 28px; border: 1.5px solid var(--border); border-radius: var(--tab12-radius-md); padding: 24px; background: var(--bg-card);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+            <div>
+              <span class="q-badge" style="background:rgba(56,189,248,0.15); border:1px solid var(--accent); color:var(--accent); font-weight:800; font-size:12px; padding:4px 10px; border-radius:999px;">Concept Unit 02</span>
+              <h2 style="font-size:20px; font-weight:700; margin:8px 0 4px; color:var(--text-primary);">VECTORS 02 - Draw, compare and reverse vectors</h2>
+              <p style="font-size:14px; color:var(--accent); font-weight:600; margin:0;">Length represents magnitude; the arrowhead represents direction</p>
+            </div>
+            <span class="tag-pill" style="font-size:12px; font-weight:700; background:rgba(192,132,252,0.15); border:1px solid var(--purple); color:var(--purple);">VEC-02 · Core 1</span>
+          </div>
+
+          <!-- Publication-grade Diagram -->
+          <div style="background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--tab12-radius-sm); padding:16px; margin-bottom:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 220" role="img" aria-label="Equal, parallel and opposite vectors" style="width:100%;max-width:540px;height:auto;display:block;margin:12px auto;">
+  <defs>
+    <marker id="arr-va" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#38bdf8"/></marker>
+    <marker id="arr-neg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#f43f5e"/></marker>
+  </defs>
+  <!-- Vector A -->
+  <line x1="70" y1="150" x2="180" y2="70" stroke="#38bdf8" stroke-width="3.5" marker-end="url(#arr-va)"/>
+  <text x="110" y="95" font-size="15" font-weight="800" fill="#38bdf8">Vector A</text>
+  <text x="110" y="170" text-anchor="middle" font-size="12" fill="var(--text-secondary,#94a3b8)">Length = Magnitude</text>
+  <!-- Equal Vector B = A -->
+  <line x1="220" y1="150" x2="330" y2="70" stroke="#38bdf8" stroke-width="3.5" marker-end="url(#arr-va)"/>
+  <text x="260" y="95" font-size="15" font-weight="800" fill="#38bdf8">Vector B = A</text>
+  <text x="275" y="170" text-anchor="middle" font-size="12" fill="#34d399">Same length &amp; direction</text>
+  <!-- Opposite Vector -A -->
+  <line x1="470" y1="70" x2="360" y2="150" stroke="#f43f5e" stroke-width="3.5" marker-end="url(#arr-neg)"/>
+  <text x="430" y="125" font-size="15" font-weight="800" fill="#f43f5e">-A (Opposite)</text>
+  <text x="420" y="170" text-anchor="middle" font-size="12" fill="#f43f5e">Same length, inverted arrow</text>
+</svg>
+          </div>
+
+          <!-- Dual explanation grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:20px;">
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--accent); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:6px;">What is happening?</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">A vector diagram is a physical representation, not decoration. Translating a free vector without rotating or resizing it leaves the vector unchanged. Reversing it creates the opposite vector.</p>
+            </div>
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--success); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">Key Idea</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">Equal vectors need both the same magnitude and the same direction. The opposite vector -A has the same magnitude as A but points exactly the other way.</p>
+            </div>
+          </div>
+
+          <!-- How it works numbered sequence -->
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:var(--tab12-radius-sm); padding:16px 20px; margin-bottom:20px;">
+            <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary); margin-bottom:10px;">How It Works</h4>
+            <ol style="margin:0; padding-left:22px; display:grid; gap:8px;">
+              <li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Read: direction runs from tail to head.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Scale: relative arrow length should track relative magnitude.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Translate: a free vector may slide without changing.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Reverse: -A reverses direction, not magnitude.</li>
+            </ol>
+          </div>
+
+          <!-- Work the Idea: Worked Example -->
+          <div style="border:1px solid var(--border); border-radius:var(--tab12-radius-sm); overflow:hidden; margin-bottom:16px; background:var(--bg-card-subtle);">
+            <div style="background:rgba(56,189,248,0.08); padding:10px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px;">
+              <span style="font-weight:800; font-size:13px; color:var(--accent);">⚡ WORKED EXAMPLE</span>
+            </div>
+            <div style="padding:14px 16px; font-size:14.5px; line-height:1.6;">
+              Example. A 6 N force east and a 6 N force west have equal magnitudes, but they are not equal vectors. They are opposites.
+            </div>
+          </div>
+
+          <!-- Watch out & Quick Check -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+            <div style="background:rgba(245,158,11,0.08); border:1px solid var(--warning); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--warning); margin-bottom:6px;">⚠️ Watch Out</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0; color:var(--text-primary);">Do not compare arrows only by length. Two arrows with the same length but different directions are different vectors.</p>
+            </div>
+            <div style="background:rgba(52,211,153,0.08); border:1px solid var(--success); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">✅ Quick Check</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0 0 6px; color:var(--text-primary);">If B is equal to A but drawn elsewhere on the</p>
+              <details style="margin-top:6px; cursor:pointer;">
+                <summary style="font-size:13px; font-weight:700; color:var(--success); padding:4px 0;">Reveal Answer</summary>
+                <div style="padding-top:6px; font-size:13.5px; font-weight:600; color:var(--text-primary);">No. Same magnitude and direction are</div>
+              </details>
+            </div>
+          </div>
+        </article>
+    
+
+        <!-- Unit 03: VECTORS 03 - Components, quadrants and angle reference -->
+        <article class="content-card" id="unit-03" style="margin-bottom: 28px; border: 1.5px solid var(--border); border-radius: var(--tab12-radius-md); padding: 24px; background: var(--bg-card);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+            <div>
+              <span class="q-badge" style="background:rgba(56,189,248,0.15); border:1px solid var(--accent); color:var(--accent); font-weight:800; font-size:12px; padding:4px 10px; border-radius:999px;">Concept Unit 03</span>
+              <h2 style="font-size:20px; font-weight:700; margin:8px 0 4px; color:var(--text-primary);">VECTORS 03 - Components, quadrants and angle reference</h2>
+              <p style="font-size:14px; color:var(--accent); font-weight:600; margin:0;">Choose the frame first; then project the arrow</p>
+            </div>
+            <span class="tag-pill" style="font-size:12px; font-weight:700; background:rgba(192,132,252,0.15); border:1px solid var(--purple); color:var(--purple);">VEC-03 · Core 1</span>
+          </div>
+
+          <!-- Publication-grade Diagram -->
+          <div style="background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--tab12-radius-sm); padding:16px; margin-bottom:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 220" role="img" aria-label="Vector components in Cartesian quadrants" style="width:100%;max-width:540px;height:auto;display:block;margin:12px auto;">
+  <defs>
+    <marker id="arr-v3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#34d399"/></marker>
+    <marker id="arr-cx" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#38bdf8"/></marker>
+  </defs>
+  <!-- Axes -->
+  <line x1="60" y1="130" x2="480" y2="130" stroke="var(--border,#475569)" stroke-width="1.5"/>
+  <text x="490" y="135" font-size="12" font-weight="700" fill="currentColor">+x</text>
+  <line x1="270" y1="200" x2="270" y2="30" stroke="var(--border,#475569)" stroke-width="1.5"/>
+  <text x="275" y="30" font-size="12" font-weight="700" fill="currentColor">+y</text>
+  <!-- Vector in Quadrant II -->
+  <line x1="270" y1="130" x2="150" y2="50" stroke="#34d399" stroke-width="4" marker-end="url(#arr-v3)"/>
+  <text x="180" y="70" font-size="15" font-weight="800" fill="#34d399">v</text>
+  <!-- Component projections -->
+  <line x1="270" y1="130" x2="150" y2="130" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-cx)"/>
+  <text x="210" y="152" text-anchor="middle" font-size="12" font-weight="800" fill="#38bdf8">v_x = -v cos θ &lt; 0</text>
+  <line x1="150" y1="130" x2="150" y2="55" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-cx)"/>
+  <text x="95" y="95" text-anchor="middle" font-size="12" font-weight="800" fill="#38bdf8">v_y = +v sin θ &gt; 0</text>
+  <!-- Angle arc -->
+  <path d="M 230 130 A 40 40 0 0 1 245 113" fill="none" stroke="#fbbf24" stroke-width="2"/>
+  <text x="228" y="118" font-size="12" font-weight="800" fill="#fbbf24">θ</text>
+  <!-- Quadrant II pill -->
+  <rect x="330" y="50" width="160" height="50" rx="6" fill="rgba(56,189,248,0.1)" stroke="#38bdf8"/>
+  <text x="410" y="72" text-anchor="middle" font-size="12" font-weight="800" fill="#38bdf8">QUADRANT II</text>
+  <text x="410" y="90" text-anchor="middle" font-size="12" fill="currentColor">x &lt; 0,  y &gt; 0</text>
+</svg>
+          </div>
+
+          <!-- Dual explanation grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:20px;">
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--accent); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:6px;">What is happening?</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">Components are the signed projections of one vector onto chosen axes. They are not extra physical vectors; they are another description of the same arrow.</p>
+            </div>
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--success); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">Key Idea</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">Geometry decides sine/cosine. The component adjacent to the stated angle uses cosine; the opposite component uses sine. Signs come from the arrow direction.</p>
+            </div>
+          </div>
+
+          <!-- How it works numbered sequence -->
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:var(--tab12-radius-sm); padding:16px 20px; margin-bottom:20px;">
+            <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary); margin-bottom:10px;">How It Works</h4>
+            <ol style="margin:0; padding-left:22px; display:grid; gap:8px;">
+              <li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Frame: mark +x and +y before calculating.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Project: identify adjacent and opposite sides relative to the stated angle.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Sign: decide the quadrant before writing the final component values.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Reconstruct: perpendicular components must satisfy A²=Aₓ²+Aᵧ².</li>
+            </ol>
+          </div>
+
+          <!-- Work the Idea: Worked Example -->
+          <div style="border:1px solid var(--border); border-radius:var(--tab12-radius-sm); overflow:hidden; margin-bottom:16px; background:var(--bg-card-subtle);">
+            <div style="background:rgba(56,189,248,0.08); padding:10px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px;">
+              <span style="font-weight:800; font-size:13px; color:var(--accent);">⚡ WORKED EXAMPLE</span>
+            </div>
+            <div style="padding:14px 16px; font-size:14.5px; line-height:1.6;">
+              Example. A 10 N vector is 30° above the negative x-axis. Aₓ = -10 cos30° = -5√3 N Aᵧ = +10 sin30° = +5 N.
+            </div>
+          </div>
+
+          <!-- Watch out & Quick Check -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+            <div style="background:rgba(245,158,11,0.08); border:1px solid var(--warning); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--warning); margin-bottom:6px;">⚠️ Watch Out</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0; color:var(--text-primary);">Do not memorize “cosine means x”. If the angle is measured from the y-axis, the y-component may be the adjacent side instead.</p>
+            </div>
+            <div style="background:rgba(52,211,153,0.08); border:1px solid var(--success); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">✅ Quick Check</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0 0 6px; color:var(--text-primary);">A vector has Aₓ=-6 and Aᵧ=+8. Which quadrant?</p>
+              <details style="margin-top:6px; cursor:pointer;">
+                <summary style="font-size:13px; font-weight:700; color:var(--success); padding:4px 0;">Reveal Answer</summary>
+                <div style="padding-top:6px; font-size:13.5px; font-weight:600; color:var(--text-primary);">Quadrant II; magnitude 10.</div>
+              </details>
+            </div>
+          </div>
+        </article>
+    
+
+        <!-- Unit 04: VECTORS 04 - Add vectors and find a resultant -->
+        <article class="content-card" id="unit-04" style="margin-bottom: 28px; border: 1.5px solid var(--border); border-radius: var(--tab12-radius-md); padding: 24px; background: var(--bg-card);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+            <div>
+              <span class="q-badge" style="background:rgba(56,189,248,0.15); border:1px solid var(--accent); color:var(--accent); font-weight:800; font-size:12px; padding:4px 10px; border-radius:999px;">Concept Unit 04</span>
+              <h2 style="font-size:20px; font-weight:700; margin:8px 0 4px; color:var(--text-primary);">VECTORS 04 - Add vectors and find a resultant</h2>
+              <p style="font-size:14px; color:var(--accent); font-weight:600; margin:0;">Head-to-tail geometry and component addition must agree</p>
+            </div>
+            <span class="tag-pill" style="font-size:12px; font-weight:700; background:rgba(192,132,252,0.15); border:1px solid var(--purple); color:var(--purple);">VEC-04 · Core 1</span>
+          </div>
+
+          <!-- Publication-grade Diagram -->
+          <div style="background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--tab12-radius-sm); padding:16px; margin-bottom:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 220" role="img" aria-label="Head to tail vector addition" style="width:100%;max-width:540px;height:auto;display:block;margin:12px auto;">
+  <defs>
+    <marker id="arr-va4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#38bdf8"/></marker>
+    <marker id="arr-vb4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#c084fc"/></marker>
+    <marker id="arr-vr4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#34d399"/></marker>
+  </defs>
+  <!-- Vector A -->
+  <line x1="80" y1="160" x2="230" y2="160" stroke="#38bdf8" stroke-width="3.5" marker-end="url(#arr-va4)"/>
+  <text x="155" y="180" text-anchor="middle" font-size="14" font-weight="800" fill="#38bdf8">A</text>
+  <!-- Vector B from head of A -->
+  <line x1="230" y1="160" x2="350" y2="70" stroke="#c084fc" stroke-width="3.5" marker-end="url(#arr-vb4)"/>
+  <text x="310" y="125" font-size="14" font-weight="800" fill="#c084fc">B</text>
+  <!-- Resultant R from tail of A to head of B -->
+  <line x1="80" y1="160" x2="344" y2="75" stroke="#34d399" stroke-width="4" marker-end="url(#arr-vr4)"/>
+  <text x="190" y="95" font-size="15" font-weight="800" fill="#34d399">R = A + B</text>
+  <!-- Component pill right -->
+  <rect x="380" y="60" width="130" height="90" rx="8" fill="rgba(52,211,153,0.1)" stroke="#34d399"/>
+  <text x="445" y="85" text-anchor="middle" font-size="12" font-weight="800" fill="#34d399">COMPONENTS</text>
+  <text x="445" y="112" text-anchor="middle" font-size="12" fill="currentColor">R_x = A_x + B_x</text>
+  <text x="445" y="132" text-anchor="middle" font-size="12" fill="currentColor">R_y = A_y + B_y</text>
+</svg>
+          </div>
+
+          <!-- Dual explanation grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:20px;">
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--accent); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:6px;">What is happening?</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">Vector addition combines directional changes. Place vectors head-to-tail; the resultant runs from the first tail to the final head. In components, add x with x and y with y.</p>
+            </div>
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--success); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">Key Idea</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">The resultant is not the path length. Geometry and components are two views of the same addition.</p>
+            </div>
+          </div>
+
+          <!-- How it works numbered sequence -->
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:var(--tab12-radius-sm); padding:16px 20px; margin-bottom:20px;">
+            <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary); margin-bottom:10px;">How It Works</h4>
+            <ol style="margin:0; padding-left:22px; display:grid; gap:8px;">
+              <li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Diagram route: place vectors head-to-tail and draw the closing diagonal.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Component route: Rₓ=ΣAₓ, Rᵧ=ΣAᵧ.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Magnitude: for perpendicular components, |R|=√(Rₓ²+Rᵧ²).</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Direction: use signs to fix the quadrant before using an inverse tangent.</li>
+            </ol>
+          </div>
+
+          <!-- Work the Idea: Worked Example -->
+          <div style="border:1px solid var(--border); border-radius:var(--tab12-radius-sm); overflow:hidden; margin-bottom:16px; background:var(--bg-card-subtle);">
+            <div style="background:rgba(56,189,248,0.08); padding:10px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px;">
+              <span style="font-weight:800; font-size:13px; color:var(--accent);">⚡ WORKED EXAMPLE</span>
+            </div>
+            <div style="padding:14px 16px; font-size:14.5px; line-height:1.6;">
+              Example. 9 m east then 12 m north gives R=(9,12) m. |R|=√(9²+12²)=15 m. θ=tan⁻¹(12/9)=53.1° north of east.
+            </div>
+          </div>
+
+          <!-- Watch out & Quick Check -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+            <div style="background:rgba(245,158,11,0.08); border:1px solid var(--warning); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--warning); margin-bottom:6px;">⚠️ Watch Out</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0; color:var(--text-primary);">Do not add magnitudes blindly when directions differ. 9+12=21 m is the path distance, not the resultant displacement.</p>
+            </div>
+            <div style="background:rgba(52,211,153,0.08); border:1px solid var(--success); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">✅ Quick Check</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0 0 6px; color:var(--text-primary);">A walker moves 3 m east then 4 m north.</p>
+              <details style="margin-top:6px; cursor:pointer;">
+                <summary style="font-size:13px; font-weight:700; color:var(--success); padding:4px 0;">Reveal Answer</summary>
+                <div style="padding-top:6px; font-size:13.5px; font-weight:600; color:var(--text-primary);">5 m.</div>
+              </details>
+            </div>
+          </div>
+        </article>
+    
+
+        <!-- Unit 05: VECTORS 05 - Subtract vectors and build change vectors -->
+        <article class="content-card" id="unit-05" style="margin-bottom: 28px; border: 1.5px solid var(--border); border-radius: var(--tab12-radius-md); padding: 24px; background: var(--bg-card);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+            <div>
+              <span class="q-badge" style="background:rgba(56,189,248,0.15); border:1px solid var(--accent); color:var(--accent); font-weight:800; font-size:12px; padding:4px 10px; border-radius:999px;">Concept Unit 05</span>
+              <h2 style="font-size:20px; font-weight:700; margin:8px 0 4px; color:var(--text-primary);">VECTORS 05 - Subtract vectors and build change vectors</h2>
+              <p style="font-size:14px; color:var(--accent); font-weight:600; margin:0;">Final minus initial is a geometric operation</p>
+            </div>
+            <span class="tag-pill" style="font-size:12px; font-weight:700; background:rgba(192,132,252,0.15); border:1px solid var(--purple); color:var(--purple);">VEC-05 · Core 1</span>
+          </div>
+
+          <!-- Publication-grade Diagram -->
+          <div style="background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--tab12-radius-sm); padding:16px; margin-bottom:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 220" role="img" aria-label="Vector subtraction and change vector" style="width:100%;max-width:540px;height:auto;display:block;margin:12px auto;">
+  <defs>
+    <marker id="arr-vi" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#38bdf8"/></marker>
+    <marker id="arr-vf" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#38bdf8"/></marker>
+    <marker id="arr-dv" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#f43f5e"/></marker>
+  </defs>
+  <!-- Initial vector v_i -->
+  <line x1="120" y1="160" x2="260" y2="160" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-vi)"/>
+  <text x="190" y="180" text-anchor="middle" font-size="14" font-weight="800" fill="#38bdf8">v_initial</text>
+  <!-- Final vector v_f from common origin -->
+  <line x1="120" y1="160" x2="240" y2="60" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-vf)"/>
+  <text x="160" y="95" font-size="14" font-weight="800" fill="#38bdf8">v_final</text>
+  <!-- Change vector Delta v from head of v_i to head of v_f -->
+  <line x1="260" y1="160" x2="244" y2="68" stroke="#f43f5e" stroke-width="3.5" marker-end="url(#arr-dv)"/>
+  <text x="275" y="110" font-size="14" font-weight="800" fill="#f43f5e">Δv = v_f - v_i</text>
+  <!-- Rule banner -->
+  <rect x="330" y="70" width="170" height="70" rx="8" fill="rgba(244,63,94,0.1)" stroke="#f43f5e"/>
+  <text x="415" y="95" text-anchor="middle" font-size="12" font-weight="800" fill="#f43f5e">SUBTRACTION</text>
+  <text x="415" y="120" text-anchor="middle" font-size="12" fill="currentColor">Draw from TIP of v_i to TIP of v_f</text>
+</svg>
+          </div>
+
+          <!-- Dual explanation grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:20px;">
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--accent); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:6px;">What is happening?</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">Vector subtraction means add the opposite: A-B=A+(-B). Changes use the same rule: Δv=v_f-v_i and Δp=p_f-p_i.</p>
+            </div>
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--success); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">Key Idea</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">A change vector compares two states. Equal magnitudes do not imply zero change when directions differ.</p>
+            </div>
+          </div>
+
+          <!-- How it works numbered sequence -->
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:var(--tab12-radius-sm); padding:16px 20px; margin-bottom:20px;">
+            <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary); margin-bottom:10px;">How It Works</h4>
+            <ol style="margin:0; padding-left:22px; display:grid; gap:8px;">
+              <li style="font-size:14px; line-height:1.5; color:var(--text-primary);">State: draw or write the initial and final vectors from a common origin.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Reverse: subtracting a vector means reversing it before addition.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Compute: subtract corresponding components.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Interpret: the change vector has its own magnitude and direction.</li>
+            </ol>
+          </div>
+
+          <!-- Work the Idea: Worked Example -->
+          <div style="border:1px solid var(--border); border-radius:var(--tab12-radius-sm); overflow:hidden; margin-bottom:16px; background:var(--bg-card-subtle);">
+            <div style="background:rgba(56,189,248,0.08); padding:10px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px;">
+              <span style="font-weight:800; font-size:13px; color:var(--accent);">⚡ WORKED EXAMPLE</span>
+            </div>
+            <div style="padding:14px 16px; font-size:14.5px; line-height:1.6;">
+              Example. vᵢ=(6,0) m/s and v_f=(0,6) m/s. Δv=(-6,6) m/s |Δv|=√72=6√2 m/s.
+            </div>
+          </div>
+
+          <!-- Watch out & Quick Check -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+            <div style="background:rgba(245,158,11,0.08); border:1px solid var(--warning); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--warning); margin-bottom:6px;">⚠️ Watch Out</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0; color:var(--text-primary);">Do not say “speed did not change, so velocity did not change”. Turning changes velocity even at constant speed.</p>
+            </div>
+            <div style="background:rgba(52,211,153,0.08); border:1px solid var(--success); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">✅ Quick Check</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0 0 6px; color:var(--text-primary);">Velocity changes from +5 m/s to -2 m/s. What is</p>
+              <details style="margin-top:6px; cursor:pointer;">
+                <summary style="font-size:13px; font-weight:700; color:var(--success); padding:4px 0;">Reveal Answer</summary>
+                <div style="padding-top:6px; font-size:13.5px; font-weight:600; color:var(--text-primary);">-7 m/s.</div>
+              </details>
+            </div>
+          </div>
+        </article>
+    
+
+        <!-- Unit 06: VECTORS 06 - Recover magnitude and direction -->
+        <article class="content-card" id="unit-06" style="margin-bottom: 28px; border: 1.5px solid var(--border); border-radius: var(--tab12-radius-md); padding: 24px; background: var(--bg-card);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+            <div>
+              <span class="q-badge" style="background:rgba(56,189,248,0.15); border:1px solid var(--accent); color:var(--accent); font-weight:800; font-size:12px; padding:4px 10px; border-radius:999px;">Concept Unit 06</span>
+              <h2 style="font-size:20px; font-weight:700; margin:8px 0 4px; color:var(--text-primary);">VECTORS 06 - Recover magnitude and direction</h2>
+              <p style="font-size:14px; color:var(--accent); font-weight:600; margin:0;">Components are coordinates of the vector state</p>
+            </div>
+            <span class="tag-pill" style="font-size:12px; font-weight:700; background:rgba(192,132,252,0.15); border:1px solid var(--purple); color:var(--purple);">VEC-06 · Core 1</span>
+          </div>
+
+          <!-- Publication-grade Diagram -->
+          <div style="background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--tab12-radius-sm); padding:16px; margin-bottom:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 220" role="img" aria-label="Recovering magnitude and direction from components" style="width:100%;max-width:540px;height:auto;display:block;margin:12px auto;">
+  <defs>
+    <marker id="arr-m6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#34d399"/></marker>
+  </defs>
+  <!-- Base component triangle -->
+  <line x1="100" y1="160" x2="260" y2="160" stroke="#38bdf8" stroke-width="3"/>
+  <text x="180" y="180" text-anchor="middle" font-size="13" font-weight="800" fill="#38bdf8">A_x = 3</text>
+  <line x1="260" y1="160" x2="260" y2="60" stroke="#38bdf8" stroke-width="3"/>
+  <text x="290" y="115" font-size="13" font-weight="800" fill="#38bdf8">A_y = 4</text>
+  <!-- Hypotenuse Vector -->
+  <line x1="100" y1="160" x2="255" y2="64" stroke="#34d399" stroke-width="4" marker-end="url(#arr-m6)"/>
+  <text x="150" y="95" font-size="15" font-weight="800" fill="#34d399">|A| = 5</text>
+  <!-- Angle -->
+  <path d="M 140 160 A 40 40 0 0 0 133 139" fill="none" stroke="#fbbf24" stroke-width="2"/>
+  <text x="150" y="148" font-size="12" font-weight="800" fill="#fbbf24">θ = 53°</text>
+  <!-- Formulas card -->
+  <rect x="330" y="55" width="170" height="95" rx="8" fill="rgba(56,189,248,0.08)" stroke="#38bdf8"/>
+  <text x="415" y="82" text-anchor="middle" font-size="13" font-weight="800" fill="#38bdf8">RECONSTRUCTION</text>
+  <text x="415" y="110" text-anchor="middle" font-size="12" fill="currentColor">|A| = √(Ax² + Ay²)</text>
+  <text x="415" y="132" text-anchor="middle" font-size="12" fill="currentColor">tan θ = |Ay| / |Ax|</text>
+</svg>
+          </div>
+
+          <!-- Dual explanation grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:20px;">
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--accent); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:6px;">What is happening?</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">When Rₓ and Rᵧ are known, the magnitude follows from the component triangle. The direction needs both a reference axis and the correct quadrant.</p>
+            </div>
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--success); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">Key Idea</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">Magnitude alone is not a complete vector answer. Report direction whenever the question asks for a vector.</p>
+            </div>
+          </div>
+
+          <!-- How it works numbered sequence -->
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:var(--tab12-radius-sm); padding:16px 20px; margin-bottom:20px;">
+            <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary); margin-bottom:10px;">How It Works</h4>
+            <ol style="margin:0; padding-left:22px; display:grid; gap:8px;">
+              <li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Magnitude: |R|=√(Rₓ²+Rᵧ²) for perpendicular Cartesian components.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Reference angle: tan α=|Rᵧ/Rₓ|.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Quadrant: use the signs of Rₓ and Rᵧ to convert α into a physical direction.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Check: reconstruct the components from the final magnitude and direction.</li>
+            </ol>
+          </div>
+
+          <!-- Work the Idea: Worked Example -->
+          <div style="border:1px solid var(--border); border-radius:var(--tab12-radius-sm); overflow:hidden; margin-bottom:16px; background:var(--bg-card-subtle);">
+            <div style="background:rgba(56,189,248,0.08); padding:10px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px;">
+              <span style="font-weight:800; font-size:13px; color:var(--accent);">⚡ WORKED EXAMPLE</span>
+            </div>
+            <div style="padding:14px 16px; font-size:14.5px; line-height:1.6;">
+              Example. F=(9,-12) N. |F|=15 N. Reference angle = tan⁻¹(12/9)=53.1°. Signs (+,-) place it in quadrant IV: 53.1° south of east.
+            </div>
+          </div>
+
+          <!-- Watch out & Quick Check -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+            <div style="background:rgba(245,158,11,0.08); border:1px solid var(--warning); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--warning); margin-bottom:6px;">⚠️ Watch Out</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0; color:var(--text-primary);">A calculator inverse tangent can return only a reference angle. It cannot choose the physical quadrant for you.</p>
+            </div>
+            <div style="background:rgba(52,211,153,0.08); border:1px solid var(--success); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">✅ Quick Check</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0 0 6px; color:var(--text-primary);">R=(-3,-4). Give magnitude and compass-style</p>
+              <details style="margin-top:6px; cursor:pointer;">
+                <summary style="font-size:13px; font-weight:700; color:var(--success); padding:4px 0;">Reveal Answer</summary>
+                <div style="padding-top:6px; font-size:13.5px; font-weight:600; color:var(--text-primary);">5 units; 53.1° south of west.</div>
+              </details>
+            </div>
+          </div>
+        </article>
+    
+
+        <!-- Unit 07: VECTORS 07 - Relative velocity -->
+        <article class="content-card" id="unit-07" style="margin-bottom: 28px; border: 1.5px solid var(--border); border-radius: var(--tab12-radius-md); padding: 24px; background: var(--bg-card);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+            <div>
+              <span class="q-badge" style="background:rgba(56,189,248,0.15); border:1px solid var(--accent); color:var(--accent); font-weight:800; font-size:12px; padding:4px 10px; border-radius:999px;">Concept Unit 07</span>
+              <h2 style="font-size:20px; font-weight:700; margin:8px 0 4px; color:var(--text-primary);">VECTORS 07 - Relative velocity</h2>
+              <p style="font-size:14px; color:var(--accent); font-weight:600; margin:0;">The observer is the vector you subtract</p>
+            </div>
+            <span class="tag-pill" style="font-size:12px; font-weight:700; background:rgba(192,132,252,0.15); border:1px solid var(--purple); color:var(--purple);">VEC-07 · Core 1</span>
+          </div>
+
+          <!-- Publication-grade Diagram -->
+          <div style="background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--tab12-radius-sm); padding:16px; margin-bottom:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 220" role="img" aria-label="Relative velocity subtraction" style="width:100%;max-width:540px;height:auto;display:block;margin:12px auto;">
+  <defs>
+    <marker id="arr-car" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#38bdf8"/></marker>
+    <marker id="arr-rel" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#34d399"/></marker>
+  </defs>
+  <!-- Car A -->
+  <rect x="70" y="50" width="80" height="40" rx="6" fill="rgba(56,189,248,0.2)" stroke="#38bdf8"/>
+  <text x="110" y="75" text-anchor="middle" font-size="13" font-weight="800" fill="currentColor">Car A</text>
+  <line x1="150" y1="70" x2="270" y2="70" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-car)"/>
+  <text x="210" y="60" text-anchor="middle" font-size="12" font-weight="800" fill="#38bdf8">v_A = 20 m/s</text>
+  <!-- Car B -->
+  <rect x="70" y="120" width="80" height="40" rx="6" fill="rgba(192,132,252,0.2)" stroke="#c084fc"/>
+  <text x="110" y="145" text-anchor="middle" font-size="13" font-weight="800" fill="currentColor">Car B</text>
+  <line x1="150" y1="140" x2="230" y2="140" stroke="#c084fc" stroke-width="3" marker-end="url(#arr-car)"/>
+  <text x="190" y="130" text-anchor="middle" font-size="12" font-weight="800" fill="#c084fc">v_B = 15 m/s</text>
+  <!-- Relative velocity vector -->
+  <rect x="310" y="60" width="190" height="90" rx="8" fill="rgba(52,211,153,0.1)" stroke="#34d399"/>
+  <text x="405" y="85" text-anchor="middle" font-size="13" font-weight="800" fill="#34d399">RELATIVE VELOCITY</text>
+  <line x1="340" y1="110" x2="400" y2="110" stroke="#34d399" stroke-width="3" marker-end="url(#arr-rel)"/>
+  <text x="440" y="115" font-size="12" font-weight="800" fill="#34d399">v_AB = v_A - v_B</text>
+  <text x="405" y="138" text-anchor="middle" font-size="12" fill="currentColor">= 20 - 15 = +5 m/s</text>
+</svg>
+          </div>
+
+          <!-- Dual explanation grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:20px;">
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--accent); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:6px;">What is happening?</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">Relative velocity asks what one observer sees another object doing. “Velocity of A relative to B” means subtract the observer B from A.</p>
+            </div>
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--success); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">Key Idea</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">Order follows the words: v_A/B = v_A - v_B. Express both velocities in the same axes before subtracting.</p>
+            </div>
+          </div>
+
+          <!-- How it works numbered sequence -->
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:var(--tab12-radius-sm); padding:16px 20px; margin-bottom:20px;">
+            <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary); margin-bottom:10px;">How It Works</h4>
+            <ol style="margin:0; padding-left:22px; display:grid; gap:8px;">
+              <li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Name roles: object A, observer B.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Same frame: write both ground-frame velocity vectors using one coordinate system.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Subtract: component-by-component.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Special case: if A and B move together with identical velocity, v_A/B must be zero.</li>
+            </ol>
+          </div>
+
+          <!-- Work the Idea: Worked Example -->
+          <div style="border:1px solid var(--border); border-radius:var(--tab12-radius-sm); overflow:hidden; margin-bottom:16px; background:var(--bg-card-subtle);">
+            <div style="background:rgba(56,189,248,0.08); padding:10px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px;">
+              <span style="font-weight:800; font-size:13px; color:var(--accent);">⚡ WORKED EXAMPLE</span>
+            </div>
+            <div style="padding:14px 16px; font-size:14.5px; line-height:1.6;">
+              Example. Cyclist A moves east at 8 m/s and B east at 5 m/s. v_A/B = +8-(+5)=+3 m/s: A moves 3 m/s east relative to B.
+            </div>
+          </div>
+
+          <!-- Watch out & Quick Check -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+            <div style="background:rgba(245,158,11,0.08); border:1px solid var(--warning); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--warning); margin-bottom:6px;">⚠️ Watch Out</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0; color:var(--text-primary);">Do not reverse the order. v_A/B and v_B/A are opposites.</p>
+            </div>
+            <div style="background:rgba(52,211,153,0.08); border:1px solid var(--success); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">✅ Quick Check</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0 0 6px; color:var(--text-primary);">If A and B have identical velocity vectors, what is</p>
+              <details style="margin-top:6px; cursor:pointer;">
+                <summary style="font-size:13px; font-weight:700; color:var(--success); padding:4px 0;">Reveal Answer</summary>
+                <div style="padding-top:6px; font-size:13.5px; font-weight:600; color:var(--text-primary);">0.</div>
+              </details>
+            </div>
+          </div>
+        </article>
+    
+
+        <!-- Unit 08: VECTORS 08 - Tangent and radial directions -->
+        <article class="content-card" id="unit-08" style="margin-bottom: 28px; border: 1.5px solid var(--border); border-radius: var(--tab12-radius-md); padding: 24px; background: var(--bg-card);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+            <div>
+              <span class="q-badge" style="background:rgba(56,189,248,0.15); border:1px solid var(--accent); color:var(--accent); font-weight:800; font-size:12px; padding:4px 10px; border-radius:999px;">Concept Unit 08</span>
+              <h2 style="font-size:20px; font-weight:700; margin:8px 0 4px; color:var(--text-primary);">VECTORS 08 - Tangent and radial directions</h2>
+              <p style="font-size:14px; color:var(--accent); font-weight:600; margin:0;">Circular motion separates velocity direction from acceleration direction</p>
+            </div>
+            <span class="tag-pill" style="font-size:12px; font-weight:700; background:rgba(192,132,252,0.15); border:1px solid var(--purple); color:var(--purple);">VEC-08 · Core 1</span>
+          </div>
+
+          <!-- Publication-grade Diagram -->
+          <div style="background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--tab12-radius-sm); padding:16px; margin-bottom:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 220" role="img" aria-label="Tangent velocity and radial acceleration" style="width:100%;max-width:540px;height:auto;display:block;margin:12px auto;">
+  <defs>
+    <marker id="arr-tan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#34d399"/></marker>
+    <marker id="arr-rad" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ef4444"/></marker>
+  </defs>
+  <!-- Circle path -->
+  <circle cx="270" cy="120" r="70" fill="none" stroke="var(--border,#475569)" stroke-width="2" stroke-dasharray="4 4"/>
+  <circle cx="270" cy="120" r="4" fill="currentColor"/>
+  <text x="270" y="140" text-anchor="middle" font-size="11" fill="var(--text-secondary,#94a3b8)">Center</text>
+  <!-- Particle at top -->
+  <circle cx="270" cy="50" r="7" fill="#38bdf8"/>
+  <!-- Tangent velocity -->
+  <line x1="270" y1="50" x2="360" y2="50" stroke="#34d399" stroke-width="3.5" marker-end="url(#arr-tan)"/>
+  <text x="320" y="40" font-size="13" font-weight="800" fill="#34d399">v_t (Tangent)</text>
+  <!-- Inward radial acceleration -->
+  <line x1="270" y1="50" x2="270" y2="95" stroke="#ef4444" stroke-width="3.5" marker-end="url(#arr-rad)"/>
+  <text x="280" y="80" font-size="13" font-weight="800" fill="#ef4444">a_c (Radial)</text>
+  <!-- 90 degree angle indicator -->
+  <rect x="270" y="50" width="10" height="10" fill="none" stroke="currentColor"/>
+  <!-- Callout left -->
+  <rect x="60" y="70" width="150" height="70" rx="8" fill="rgba(56,189,248,0.08)" stroke="#38bdf8"/>
+  <text x="135" y="95" text-anchor="middle" font-size="12" font-weight="800" fill="#38bdf8">ORTHOGONAL</text>
+  <text x="135" y="115" text-anchor="middle" font-size="12" fill="currentColor">v_t ⊥ a_c at all times</text>
+</svg>
+          </div>
+
+          <!-- Dual explanation grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:20px;">
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--accent); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:6px;">What is happening?</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">At any point on a circular path, instantaneous velocity is tangent to the path. Centripetal acceleration points radially inward toward the centre.</p>
+            </div>
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--success); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">Key Idea</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">Constant speed does not mean constant velocity. Direction changes continuously, so the velocity vector changes and acceleration is nonzero.</p>
+            </div>
+          </div>
+
+          <!-- How it works numbered sequence -->
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:var(--tab12-radius-sm); padding:16px 20px; margin-bottom:20px;">
+            <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary); margin-bottom:10px;">How It Works</h4>
+            <ol style="margin:0; padding-left:22px; display:grid; gap:8px;">
+              <li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Draw: mark the radius from the particle to the centre.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Velocity: draw a tangent perpendicular to the radius.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Acceleration: point inward along the radius.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Release: if the inward constraint disappears, the object initially continues along the tangent.</li>
+            </ol>
+          </div>
+
+          <!-- Work the Idea: Worked Example -->
+          <div style="border:1px solid var(--border); border-radius:var(--tab12-radius-sm); overflow:hidden; margin-bottom:16px; background:var(--bg-card-subtle);">
+            <div style="background:rgba(56,189,248,0.08); padding:10px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px;">
+              <span style="font-weight:800; font-size:13px; color:var(--accent);">⚡ WORKED EXAMPLE</span>
+            </div>
+            <div style="padding:14px 16px; font-size:14.5px; line-height:1.6;">
+              Example. At the rightmost point of a circle, acceleration points left toward the centre. Velocity is vertical along the tangent; up/down depends on the direction of travel.
+            </div>
+          </div>
+
+          <!-- Watch out & Quick Check -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+            <div style="background:rgba(245,158,11,0.08); border:1px solid var(--warning); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--warning); margin-bottom:6px;">⚠️ Watch Out</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0; color:var(--text-primary);">Do not draw the release direction radially outward. “Centrifugal” is not the instantaneous velocity direction in an inertial frame.</p>
+            </div>
+            <div style="background:rgba(52,211,153,0.08); border:1px solid var(--success); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">✅ Quick Check</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0 0 6px; color:var(--text-primary);">A stone moves clockwise. At the top of the circle</p>
+              <details style="margin-top:6px; cursor:pointer;">
+                <summary style="font-size:13px; font-weight:700; color:var(--success); padding:4px 0;">Reveal Answer</summary>
+                <div style="padding-top:6px; font-size:13.5px; font-weight:600; color:var(--text-primary);">Rightward along the tangent.</div>
+              </details>
+            </div>
+          </div>
+        </article>
+    
+
+        <!-- Unit 09: VECTORS 09 - Interaction pairs and body ownership -->
+        <article class="content-card" id="unit-09" style="margin-bottom: 28px; border: 1.5px solid var(--border); border-radius: var(--tab12-radius-md); padding: 24px; background: var(--bg-card);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+            <div>
+              <span class="q-badge" style="background:rgba(56,189,248,0.15); border:1px solid var(--accent); color:var(--accent); font-weight:800; font-size:12px; padding:4px 10px; border-radius:999px;">Concept Unit 09</span>
+              <h2 style="font-size:20px; font-weight:700; margin:8px 0 4px; color:var(--text-primary);">VECTORS 09 - Interaction pairs and body ownership</h2>
+              <p style="font-size:14px; color:var(--accent); font-weight:600; margin:0;">Equal-and-opposite forces can act on different bodies</p>
+            </div>
+            <span class="tag-pill" style="font-size:12px; font-weight:700; background:rgba(192,132,252,0.15); border:1px solid var(--purple); color:var(--purple);">VEC-09 · Core 1</span>
+          </div>
+
+          <!-- Publication-grade Diagram -->
+          <div style="background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--tab12-radius-sm); padding:16px; margin-bottom:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 220" role="img" aria-label="Interaction pairs and body ownership" style="width:100%;max-width:540px;height:auto;display:block;margin:12px auto;">
+  <defs>
+    <marker id="arr-fa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#38bdf8"/></marker>
+    <marker id="arr-fb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#c084fc"/></marker>
+  </defs>
+  <!-- Floor -->
+  <line x1="60" y1="160" x2="480" y2="160" stroke="var(--border,#334155)" stroke-width="2"/>
+  <!-- Block A -->
+  <rect x="140" y="80" width="80" height="80" rx="6" fill="rgba(56,189,248,0.15)" stroke="#38bdf8" stroke-width="2"/>
+  <text x="180" y="125" text-anchor="middle" font-size="18" font-weight="800" fill="#38bdf8">A</text>
+  <!-- Block B -->
+  <rect x="250" y="80" width="100" height="80" rx="6" fill="rgba(192,132,252,0.15)" stroke="#c084fc" stroke-width="2"/>
+  <text x="300" y="125" text-anchor="middle" font-size="18" font-weight="800" fill="#c084fc">B</text>
+  <!-- Contact force on B by A -->
+  <line x1="250" y1="120" x2="320" y2="120" stroke="#38bdf8" stroke-width="3.5" marker-end="url(#arr-fa)"/>
+  <text x="285" y="105" text-anchor="middle" font-size="11" font-weight="800" fill="#38bdf8">F_BA</text>
+  <!-- Contact force on A by B -->
+  <line x1="220" y1="120" x2="150" y2="120" stroke="#c084fc" stroke-width="3.5" marker-end="url(#arr-fb)"/>
+  <text x="185" y="105" text-anchor="middle" font-size="11" font-weight="800" fill="#c084fc">F_AB</text>
+  <!-- Bottom rule -->
+  <text x="270" y="195" text-anchor="middle" font-size="13" font-weight="800" fill="var(--accent,#38bdf8)">Different bodies: F_AB acts on A, F_BA acts on B</text>
+</svg>
+          </div>
+
+          <!-- Dual explanation grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:20px;">
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--accent); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:6px;">What is happening?</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">Newton-III pairs are vector pairs with equal magnitude and opposite direction, but they act on different bodies. Net-force equations contain only forces acting on the chosen body.</p>
+            </div>
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--success); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">Key Idea</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">Body ownership prevents false cancellation. Always label force as “A on B”.</p>
+            </div>
+          </div>
+
+          <!-- How it works numbered sequence -->
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:var(--tab12-radius-sm); padding:16px 20px; margin-bottom:20px;">
+            <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary); margin-bottom:10px;">How It Works</h4>
+            <ol style="margin:0; padding-left:22px; display:grid; gap:8px;">
+              <li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Choose body: decide whose force diagram you are drawing.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Name interaction: table on book, book on table, Earth on book, etc.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Pair: F_A on B = -F_B on A.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Net force: only sum forces acting on the same chosen body.</li>
+            </ol>
+          </div>
+
+          <!-- Work the Idea: Worked Example -->
+          <div style="border:1px solid var(--border); border-radius:var(--tab12-radius-sm); overflow:hidden; margin-bottom:16px; background:var(--bg-card-subtle);">
+            <div style="background:rgba(56,189,248,0.08); padding:10px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px;">
+              <span style="font-weight:800; font-size:13px; color:var(--accent);">⚡ WORKED EXAMPLE</span>
+            </div>
+            <div style="padding:14px 16px; font-size:14.5px; line-height:1.6;">
+              Example. The normal force of the table on the book and the normal force of the book on the table form a third-law pair. They do not cancel on the book because only one of them acts on the book.
+            </div>
+          </div>
+
+          <!-- Watch out & Quick Check -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+            <div style="background:rgba(245,158,11,0.08); border:1px solid var(--warning); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--warning); margin-bottom:6px;">⚠️ Watch Out</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0; color:var(--text-primary);">Weight and normal may balance on a resting book, but they are not a Newton-III pair because both act on the same body.</p>
+            </div>
+            <div style="background:rgba(52,211,153,0.08); border:1px solid var(--success); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">✅ Quick Check</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0 0 6px; color:var(--text-primary);">Can forces acting on different bodies cancel in</p>
+              <details style="margin-top:6px; cursor:pointer;">
+                <summary style="font-size:13px; font-weight:700; color:var(--success); padding:4px 0;">Reveal Answer</summary>
+                <div style="padding-top:6px; font-size:13.5px; font-weight:600; color:var(--text-primary);">No.</div>
+              </details>
+            </div>
+          </div>
+        </article>
+    
+
+        <!-- Unit 10: VECTORS 10 - Angle between vectors and work -->
+        <article class="content-card" id="unit-10" style="margin-bottom: 28px; border: 1.5px solid var(--border); border-radius: var(--tab12-radius-md); padding: 24px; background: var(--bg-card);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+            <div>
+              <span class="q-badge" style="background:rgba(56,189,248,0.15); border:1px solid var(--accent); color:var(--accent); font-weight:800; font-size:12px; padding:4px 10px; border-radius:999px;">Concept Unit 10</span>
+              <h2 style="font-size:20px; font-weight:700; margin:8px 0 4px; color:var(--text-primary);">VECTORS 10 - Angle between vectors and work</h2>
+              <p style="font-size:14px; color:var(--accent); font-weight:600; margin:0;">The angle between force and displacement controls the sign</p>
+            </div>
+            <span class="tag-pill" style="font-size:12px; font-weight:700; background:rgba(192,132,252,0.15); border:1px solid var(--purple); color:var(--purple);">VEC-10 · Core 1</span>
+          </div>
+
+          <!-- Publication-grade Diagram -->
+          <div style="background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--tab12-radius-sm); padding:16px; margin-bottom:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 220" role="img" aria-label="Angle between vectors controls work done" style="width:100%;max-width:540px;height:auto;display:block;margin:12px auto;">
+  <defs>
+    <marker id="arr-f10" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#38bdf8"/></marker>
+    <marker id="arr-d10" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#34d399"/></marker>
+  </defs>
+  <!-- Ground -->
+  <line x1="60" y1="160" x2="480" y2="160" stroke="var(--border,#334155)" stroke-width="2"/>
+  <!-- Crate -->
+  <rect x="120" y="110" width="70" height="50" rx="6" fill="rgba(56,189,248,0.12)" stroke="#38bdf8"/>
+  <!-- Displacement vector -->
+  <line x1="190" y1="135" x2="340" y2="135" stroke="#34d399" stroke-width="3.5" marker-end="url(#arr-d10)"/>
+  <text x="265" y="152" text-anchor="middle" font-size="13" font-weight="800" fill="#34d399">Δr (Displacement)</text>
+  <!-- Pulling force at angle theta -->
+  <line x1="190" y1="135" x2="290" y2="55" stroke="#38bdf8" stroke-width="3.5" marker-end="url(#arr-f10)"/>
+  <text x="260" y="70" font-size="14" font-weight="800" fill="#38bdf8">F</text>
+  <!-- Angle arc -->
+  <path d="M 230 135 A 40 40 0 0 0 220 111" fill="none" stroke="#fbbf24" stroke-width="2"/>
+  <text x="238" y="125" font-size="12" font-weight="800" fill="#fbbf24">θ</text>
+  <!-- Work formula -->
+  <rect x="360" y="65" width="140" height="70" rx="8" fill="rgba(52,211,153,0.1)" stroke="#34d399"/>
+  <text x="430" y="92" text-anchor="middle" font-size="12" font-weight="800" fill="#34d399">DOT PRODUCT</text>
+  <text x="430" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">W = F · Δr · cos θ</text>
+</svg>
+          </div>
+
+          <!-- Dual explanation grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:20px;">
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--accent); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:6px;">What is happening?</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">Work is a scalar built from two vectors. Its sign depends on the angle between force and displacement: parallel gives positive work; opposite gives negative work.</p>
+            </div>
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--success); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">Key Idea</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">Read the angle from the physical arrows before using the equation.</p>
+            </div>
+          </div>
+
+          <!-- How it works numbered sequence -->
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:var(--tab12-radius-sm); padding:16px 20px; margin-bottom:20px;">
+            <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary); margin-bottom:10px;">How It Works</h4>
+            <ol style="margin:0; padding-left:22px; display:grid; gap:8px;">
+              <li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Represent: draw F and s from a common reference.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Angle: identify θ between the vectors.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Relation: W=Fs cosθ.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Checks: θ=0° gives +Fs, θ=90° gives 0, θ=180° gives -Fs.</li>
+            </ol>
+          </div>
+
+          <!-- Work the Idea: Worked Example -->
+          <div style="border:1px solid var(--border); border-radius:var(--tab12-radius-sm); overflow:hidden; margin-bottom:16px; background:var(--bg-card-subtle);">
+            <div style="background:rgba(56,189,248,0.08); padding:10px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px;">
+              <span style="font-weight:800; font-size:13px; color:var(--accent);">⚡ WORKED EXAMPLE</span>
+            </div>
+            <div style="padding:14px 16px; font-size:14.5px; line-height:1.6;">
+              Example. A 200 N braking force acts opposite a 15 m displacement. θ=180° W=(200)(15)cos180°=-3000 J.
+            </div>
+          </div>
+
+          <!-- Watch out & Quick Check -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+            <div style="background:rgba(245,158,11,0.08); border:1px solid var(--warning); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--warning); margin-bottom:6px;">⚠️ Watch Out</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0; color:var(--text-primary);">Do not infer the work sign from the word “force” alone. Direction relative to displacement decides the sign.</p>
+            </div>
+            <div style="background:rgba(52,211,153,0.08); border:1px solid var(--success); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">✅ Quick Check</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0 0 6px; color:var(--text-primary);">If force is perpendicular to displacement, what</p>
+              <details style="margin-top:6px; cursor:pointer;">
+                <summary style="font-size:13px; font-weight:700; color:var(--success); padding:4px 0;">Reveal Answer</summary>
+                <div style="padding-top:6px; font-size:13.5px; font-weight:600; color:var(--text-primary);">0 J.</div>
+              </details>
+            </div>
+          </div>
+        </article>
+    
+
+        <!-- Unit 11: VECTORS 11 - Bridge to Motion in 2D -->
+        <article class="content-card" id="unit-11" style="margin-bottom: 28px; border: 1.5px solid var(--border); border-radius: var(--tab12-radius-md); padding: 24px; background: var(--bg-card);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+            <div>
+              <span class="q-badge" style="background:rgba(56,189,248,0.15); border:1px solid var(--accent); color:var(--accent); font-weight:800; font-size:12px; padding:4px 10px; border-radius:999px;">Concept Unit 11</span>
+              <h2 style="font-size:20px; font-weight:700; margin:8px 0 4px; color:var(--text-primary);">VECTORS 11 - Bridge to Motion in 2D</h2>
+              <p style="font-size:14px; color:var(--accent); font-weight:600; margin:0;">One vector state becomes two component equations</p>
+            </div>
+            <span class="tag-pill" style="font-size:12px; font-weight:700; background:rgba(192,132,252,0.15); border:1px solid var(--purple); color:var(--purple);">VEC-11 · Core 1</span>
+          </div>
+
+          <!-- Publication-grade Diagram -->
+          <div style="background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--tab12-radius-sm); padding:16px; margin-bottom:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 220" role="img" aria-label="Bridge to Motion in 2D orthogonal axes" style="width:100%;max-width:540px;height:auto;display:block;margin:12px auto;">
+  <defs>
+    <marker id="arr-pj" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#38bdf8"/></marker>
+  </defs>
+  <!-- Ground -->
+  <line x1="50" y1="170" x2="480" y2="170" stroke="var(--border,#334155)" stroke-width="2"/>
+  <!-- Parabolic arc -->
+  <path d="M 80 170 Q 230 20 380 170" fill="none" stroke="#38bdf8" stroke-width="3" stroke-dasharray="6 4"/>
+  <!-- Launch vector -->
+  <line x1="80" y1="170" x2="160" y2="90" stroke="#34d399" stroke-width="3.5" marker-end="url(#arr-pj)"/>
+  <text x="110" y="110" font-size="13" font-weight="800" fill="#34d399">u</text>
+  <!-- Apex -->
+  <circle cx="230" cy="58" r="5" fill="#fbbf24"/>
+  <text x="230" y="45" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24">Apex (v_y = 0)</text>
+  <!-- Orthogonal equation cards -->
+  <rect x="380" y="45" width="140" height="50" rx="6" fill="rgba(56,189,248,0.12)" stroke="#38bdf8"/>
+  <text x="450" y="66" text-anchor="middle" font-size="11" font-weight="800" fill="#38bdf8">X: a_x = 0</text>
+  <text x="450" y="84" text-anchor="middle" font-size="11" fill="currentColor">x(t) = (u cos θ) t</text>
+  <rect x="380" y="105" width="140" height="50" rx="6" fill="rgba(52,211,153,0.12)" stroke="#34d399"/>
+  <text x="450" y="126" text-anchor="middle" font-size="11" font-weight="800" fill="#34d399">Y: a_y = -g</text>
+  <text x="450" y="144" text-anchor="middle" font-size="11" fill="currentColor">y(t) = u_y t - ½gt²</text>
+</svg>
+          </div>
+
+          <!-- Dual explanation grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:20px;">
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--accent); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:6px;">What is happening?</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">Motion in a plane becomes manageable when position, velocity and acceleration are split into x and y components. The components share the same time but may evolve differently.</p>
+            </div>
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--success); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">Key Idea</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">The component method is the bridge: represent the vector state first, then solve each axis, then reconstruct the final vector if needed.</p>
+            </div>
+          </div>
+
+          <!-- How it works numbered sequence -->
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:var(--tab12-radius-sm); padding:16px 20px; margin-bottom:20px;">
+            <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary); margin-bottom:10px;">How It Works</h4>
+            <ol style="margin:0; padding-left:22px; display:grid; gap:8px;">
+              <li style="font-size:14px; line-height:1.5; color:var(--text-primary);">State: v=vₓ i+vᵧ j.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Separate: write one equation for x and one for y.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Shared clock: the same time variable belongs to both component motions.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Reconstruct: speed = √(vₓ²+vᵧ²); direction comes from the component ratio and quadrant.</li>
+            </ol>
+          </div>
+
+          <!-- Work the Idea: Worked Example -->
+          <div style="border:1px solid var(--border); border-radius:var(--tab12-radius-sm); overflow:hidden; margin-bottom:16px; background:var(--bg-card-subtle);">
+            <div style="background:rgba(56,189,248,0.08); padding:10px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px;">
+              <span style="font-weight:800; font-size:13px; color:var(--accent);">⚡ WORKED EXAMPLE</span>
+            </div>
+            <div style="padding:14px 16px; font-size:14.5px; line-height:1.6;">
+              Example. vₓ=6 m/s, vᵧ=8 m/s. speed = √(6²+8²)=10 m/s. Direction = tan⁻¹(8/6)=53.1° above +x.
+            </div>
+          </div>
+
+          <!-- Watch out & Quick Check -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+            <div style="background:rgba(245,158,11,0.08); border:1px solid var(--warning); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--warning); margin-bottom:6px;">⚠️ Watch Out</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0; color:var(--text-primary);">Do not solve x and y with different times for the same physical instant.</p>
+            </div>
+            <div style="background:rgba(52,211,153,0.08); border:1px solid var(--success); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">✅ Quick Check</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0 0 6px; color:var(--text-primary);">If vₓ=0 and vᵧ<0, which way does the velocity</p>
+              <details style="margin-top:6px; cursor:pointer;">
+                <summary style="font-size:13px; font-weight:700; color:var(--success); padding:4px 0;">Reveal Answer</summary>
+                <div style="padding-top:6px; font-size:13.5px; font-weight:600; color:var(--text-primary);">Straight downward.</div>
+              </details>
+            </div>
+          </div>
+        </article>
       </div>
 
-      <!-- Tab 5: Core 2 Challenges -->
       <div id="tab-challenges" class="tab-content">
         <div class="content-card" style="border: 2px solid var(--accent); background: linear-gradient(180deg, rgba(56, 189, 248, 0.08), var(--bg-card));">
           <h2><span>🎯</span> Core 2 Vector Challenges (29 Questions)</h2>
@@ -729,6 +1602,24 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
 
     <!-- Support Rail -->
     <aside class="support-rail">
+            <!-- Concept Navigation Widget -->
+      <div class="support-widget">
+        <h3><span>📑</span> Concept Units (01–11)</h3>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <a href="#unit-01" class="btn" style="min-height:36px; padding:6px 10px; font-size:12px; text-decoration:none; background:var(--bg-surface); border:1px solid var(--border); color:var(--text-primary); text-align:left; border-radius:6px; display:flex; align-items:center; gap:6px;"><strong>01</strong> Scalars, Vectors &amp; Sign</a>
+          <a href="#unit-02" class="btn" style="min-height:36px; padding:6px 10px; font-size:12px; text-decoration:none; background:var(--bg-surface); border:1px solid var(--border); color:var(--text-primary); text-align:left; border-radius:6px; display:flex; align-items:center; gap:6px;"><strong>02</strong> Draw, Compare &amp; Reverse</a>
+          <a href="#unit-03" class="btn" style="min-height:36px; padding:6px 10px; font-size:12px; text-decoration:none; background:var(--bg-surface); border:1px solid var(--border); color:var(--text-primary); text-align:left; border-radius:6px; display:flex; align-items:center; gap:6px;"><strong>03</strong> Components &amp; Quadrants</a>
+          <a href="#unit-04" class="btn" style="min-height:36px; padding:6px 10px; font-size:12px; text-decoration:none; background:var(--bg-surface); border:1px solid var(--border); color:var(--text-primary); text-align:left; border-radius:6px; display:flex; align-items:center; gap:6px;"><strong>04</strong> Vector Addition &amp; Resultant</a>
+          <a href="#unit-05" class="btn" style="min-height:36px; padding:6px 10px; font-size:12px; text-decoration:none; background:var(--bg-surface); border:1px solid var(--border); color:var(--text-primary); text-align:left; border-radius:6px; display:flex; align-items:center; gap:6px;"><strong>05</strong> Vector Subtraction &amp; Change</a>
+          <a href="#unit-06" class="btn" style="min-height:36px; padding:6px 10px; font-size:12px; text-decoration:none; background:var(--bg-surface); border:1px solid var(--border); color:var(--text-primary); text-align:left; border-radius:6px; display:flex; align-items:center; gap:6px;"><strong>06</strong> Recover Mag &amp; Direction</a>
+          <a href="#unit-07" class="btn" style="min-height:36px; padding:6px 10px; font-size:12px; text-decoration:none; background:var(--bg-surface); border:1px solid var(--border); color:var(--text-primary); text-align:left; border-radius:6px; display:flex; align-items:center; gap:6px;"><strong>07</strong> Relative Velocity Frame</a>
+          <a href="#unit-08" class="btn" style="min-height:36px; padding:6px 10px; font-size:12px; text-decoration:none; background:var(--bg-surface); border:1px solid var(--border); color:var(--text-primary); text-align:left; border-radius:6px; display:flex; align-items:center; gap:6px;"><strong>08</strong> Tangent &amp; Radial Vectors</a>
+          <a href="#unit-09" class="btn" style="min-height:36px; padding:6px 10px; font-size:12px; text-decoration:none; background:var(--bg-surface); border:1px solid var(--border); color:var(--text-primary); text-align:left; border-radius:6px; display:flex; align-items:center; gap:6px;"><strong>09</strong> Interaction Pairs Ownership</a>
+          <a href="#unit-10" class="btn" style="min-height:36px; padding:6px 10px; font-size:12px; text-decoration:none; background:var(--bg-surface); border:1px solid var(--border); color:var(--text-primary); text-align:left; border-radius:6px; display:flex; align-items:center; gap:6px;"><strong>10</strong> Vector Angle &amp; Work Done</a>
+          <a href="#unit-11" class="btn" style="min-height:36px; padding:6px 10px; font-size:12px; text-decoration:none; background:var(--bg-surface); border:1px solid var(--border); color:var(--text-primary); text-align:left; border-radius:6px; display:flex; align-items:center; gap:6px;"><strong>11</strong> Bridge to 2D Planar Motion</a>
+        </div>
+      </div>
+
       
       <div class="support-widget">
         <h3><span>⚡</span> Vector Formulas</h3>

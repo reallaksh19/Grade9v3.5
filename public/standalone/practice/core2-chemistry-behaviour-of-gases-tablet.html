@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GRADE 9 CHEMISTRY - Behaviour of Gases Core (2) NCERT Question Helper | 12.7" Tablet Standalone Edition</title>
+  <meta name="description" content="Complete 12.7-inch tablet study suite for Behaviour of Gases Core 2: 27 NCERT Question Helper instances across 6 Parts, D1 Foundation to D3 Hard questions, visual models, and Appendix A solutions.">
+  <style>
+/* ==========================================================================
+   Chemistry: Behaviour of Gases Core 2 12.7" Tablet Standalone Stylesheet
+   WCAG 2.5.5 >= 48px touch targets, >= 120px textareas, no micro-fonts (<13.5px)
+   100% Offline Standalone · Dark/Light Mode · Responsive Stage/Support Grid
+   ========================================================================== */
+
+:root {
+  --tab12-container-max: 1400px;
+  --tab12-touch-min: 48px;
+  --tab12-base-font: 16px;
+  --tab12-radius-sm: 8px;
+  --tab12-radius-md: 12px;
+  --tab12-radius-lg: 16px;
+
+  /* Dark Theme Palette (Default) */
+  --bg-app: #080d1a;
+  --bg-surface: #0f172a;
+  --bg-card: #152238;
+  --bg-card-subtle: #1a2942;
+  --border: #263859;
+  --border-light: #334b75;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.25);
+  --success: #34d399;
+  --warning: #f59e0b;
+  --danger: #f87171;
+  --purple: #c084fc;
+}
+
+[data-theme="light"] {
+  --bg-app: #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f8fafc;
+  --border: #cbd5e1;
+  --border-light: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --accent: #0284c7;
+  --accent-glow: rgba(2, 132, 199, 0.15);
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --purple: #7e22ce;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--tab12-base-font);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-app);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+button, .btn, .tab-btn, .pill-btn, summary {
+  min-height: var(--tab12-touch-min);
+  min-width: var(--tab12-touch-min);
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--tab12-radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: all 0.18s ease;
+  border: 1px solid transparent;
+}
+
+button:focus-visible, .btn:focus-visible, textarea:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+textarea.tablet-safe-input {
+  min-height: 120px;
+  width: 100%;
+  padding: 14px;
+  font-family: monospace, inherit;
+  font-size: 14.5px;
+  line-height: 1.5;
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  resize: vertical;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.top-bar {
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  font-size: 24px;
+}
+
+.brand-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.brand-sub {
+  font-size:14px;
+  color: var(--text-secondary);
+}
+
+.tab-nav {
+  background-color: var(--bg-surface);
+  border-bottom: 1.5px solid var(--border);
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 8px 20px;
+}
+
+.tab-nav-inner {
+  display: inline-flex;
+  gap: 8px;
+  max-width: var(--tab12-container-max);
+  margin: 0 auto;
+}
+
+.tab-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+  padding: 10px 18px;
+  border-radius: var(--tab12-radius-sm);
+}
+
+.tab-btn.active {
+  background-color: var(--bg-card);
+  color: var(--accent);
+  border-color: var(--border-light);
+  font-weight: 700;
+}
+
+.layout-container {
+  max-width: var(--tab12-container-max);
+  margin: 0 auto;
+  padding: 24px 20px;
+  width: 100%;
+  flex: 1;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.content-card {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.q-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 22px;
+  margin-bottom: 22px;
+}
+
+.q-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.q-badges-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.q-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size:14px;
+  font-weight: 700;
+}
+
+.q-badge.d1 {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid var(--success);
+  color: var(--success);
+}
+
+.q-badge.d2 {
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.q-badge.d3 {
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid var(--warning);
+  color: var(--warning);
+}
+
+.q-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.q-stem {
+  font-size: 15.5px;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+.clue-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 12px 16px;
+  border-radius: 0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.clue-box h5 {
+  color: var(--accent);
+  font-size:14px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+details.solution-detail {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--tab12-radius-sm);
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+details.solution-detail summary {
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.02);
+  color: var(--accent);
+  user-select: none;
+}
+
+.solution-content {
+  padding: 18px;
+  border-top: 1px solid var(--border);
+  font-size: 14.5px;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+  </style>
+<style id="tablet-font-floor-remediation">
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{overflow-wrap:anywhere}
+:where(p,li,label,button,input,select,textarea,summary,td,th,figcaption,.btn,.q-badge,.tag-pill,.hint-badge,.hint-tag,.subject-badge,.step-label,.diag-header,.formula-box,#saveStatus,.save-status,.tag,.q-count,.open-btn,.stat .label,section.section-header h2,.study-kicker,.brand-badge,.hero-pill,.badge,.core-tag,.telemetry-title,.control-label,.card-action,.breadcrumb,div,span,h4,h5,h6,text){font-size:max(14px,1em)!important}
+:where(a[href="index.html"],header a,nav a,.breadcrumb a,a.g9-bridge-link,[data-g9-block="entry_assumptions"] a){min-height:48px!important;min-width:48px!important;display:inline-flex!important;align-items:center!important;justify-content:center;padding-block:10px!important;box-sizing:border-box!important}
+.subject-badge,.q-badge,.tag-pill{font-size:14px!important}
+</style>
+</head>
+<body>
+  <header class="top-bar">
+    <div class="brand-group">
+      <span class="brand-icon">⚗️</span>
+      <div>
+        <div class="brand-title">Behaviour of Gases · Core (2) NCERT Question Helper</div>
+        <div class="brand-sub">12.7" Tablet Standalone Edition · 27 Retained NCERT Source Instances across 6 Parts</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:10px;">
+      <a href="../../chemistry/gases/core1a.html" class="btn" style="background:var(--bg-card);border:1px solid var(--border);color:var(--text-primary);">📖 Core 1A Study</a>
+      <a href="../../question-bank/index.html?subject=Chemistry&topic=behaviour-of-gases" class="btn" style="background:var(--accent);color:#000;font-weight:700;">🎯 All in Question Bank &rarr;</a>
+    </div>
+  </header>
+
+  <nav class="tab-nav">
+    <div class="tab-nav-inner">
+      <button class="tab-btn active" onclick="switchTab('all')">All Questions (27)</button>
+      <button class="tab-btn" onclick="switchTab('part-1')">Part 1 · Particle Model (3)</button>
+      <button class="tab-btn" onclick="switchTab('part-2')">Part 2 · T, P &amp; Volume (6)</button>
+      <button class="tab-btn" onclick="switchTab('part-3')">Part 3 · Evaporation &amp; Cooling (6)</button>
+      <button class="tab-btn" onclick="switchTab('part-4')">Part 4 · Boiling &amp; Latent Heat (5)</button>
+      <button class="tab-btn" onclick="switchTab('part-5')">Part 5 · Sublimation (5)</button>
+      <button class="tab-btn" onclick="switchTab('part-6')">Part 6 · Measurement &amp; Graphs (2)</button>
+    </div>
+  </nav>
+
+  <main class="layout-container">
+    
+    <div class="content-card">
+      <h2 style="font-size:20px; font-weight:800; margin-bottom:8px;">Behaviour of Gases: NCERT Question Helper &amp; Transfer</h2>
+      <p style="color:var(--text-secondary); font-size:15px;">
+        Attempt first on paper or tablet scratchpad, use the visual model and conceptual nudges only when needed, then reveal the verified Appendix A model solution. Every card carries explicit <strong>D1 Foundation</strong>, <strong>D2 Medium</strong>, and <strong>D3 Hard</strong> badges.
+      </p>
+    </div>
+
+    <div id="all" class="tab-content active">
+
+      <!-- Q1 -->
+      <article class="q-card" data-diff="D1">
+        <div class="q-header">
+          <div class="q-badges-group">
+            <span class="q-badge d1">D1 · Foundation 🌱</span>
+            <span style="font-size:14px; color:var(--text-secondary);">Unit 1 Q1 · Part 1 · Page 4</span>
+          </div>
+          <span style="font-size:14px; color:var(--text-muted);">NCERT Exemplar Class IX</span>
+        </div>
+        <div class="q-title">Q1 · What Property Rises When Temperature Rises?</div>
+        <p class="q-stem">Compare diffusion, evaporation, gas compression, and gas expansion when temperature is raised. Which of these properties actually increase with temperature?</p>
+        <div class="clue-box">
+          <h5>See the Idea</h5>
+          Temperature &uarr; &rArr; Kinetic energy and particle speed &uarr; &rArr; Diffusion rate &uarr;, Evaporation rate &uarr;, Gas volume/expansion tendency &uarr;. But compression requires external applied pressure; heating alone resists compression!
+        </div>
+        <textarea class="tablet-safe-input" placeholder="Draft your physical reasoning on tablet keyboard..."></textarea>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            <strong>Reasoning Route:</strong><br>
+            1. As temperature increases, average kinetic energy of particles increases proportionally: \(\text{KE}_{\text{avg}} = \frac{3}{2} k_B T\).<br>
+            2. Faster moving particles intermix more rapidly, increasing the rate of diffusion.<br>
+            3. More surface particles possess kinetic energy exceeding the intermolecular barrier, increasing evaporation rate.<br>
+            4. At constant pressure, gases expand as \(V \propto T\) (Charles's Law).<br>
+            5. Compression is forced reduction of volume by external work and pressure, which becomes harder at higher temperatures.<br>
+            <strong>Final Answer:</strong> Diffusion, evaporation, and expansion increase. Compression does not.
+          </div>
+        </details>
+      </article>
+
+      <!-- Q4 -->
+      <article class="q-card" data-diff="D1">
+        <div class="q-header">
+          <div class="q-badges-group">
+            <span class="q-badge d1">D1 · Foundation 🌱</span>
+            <span style="font-size:14px; color:var(--text-secondary);">Unit 1 Q6 · Part 2 · Page 8</span>
+          </div>
+          <span style="font-size:14px; color:var(--text-muted);">Celsius to Kelvin Absolute Scale</span>
+        </div>
+        <div class="q-title">Q4 · Convert Celsius to Kelvin Scale</div>
+        <p class="q-stem">Convert the following Celsius temperatures into the absolute Kelvin scale: (a) \(25^\circ\text{C}\), (b) \(373^\circ\text{C}\), (c) \(-100^\circ\text{C}\).</p>
+        <div class="clue-box">
+          <h5>Conversion Rule</h5>
+          \(T(\text{K}) = \theta(^\circ\text{C}) + 273.15\) (use \(+273\) for NCERT standard). Notice the Kelvin scale never carries a degree symbol!
+        </div>
+        <textarea class="tablet-safe-input" placeholder="Show the explicit addition step for each temperature..."></textarea>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            1. (a) \(25^\circ\text{C} + 273 = 298\text{ K}\) (Standard room temperature).<br>
+            2. (b) \(373^\circ\text{C} + 273 = 646\text{ K}\).<br>
+            3. (c) \(-100^\circ\text{C} + 273 = 173\text{ K}\).<br>
+            <strong>Final Answers:</strong> (a) 298 K, (b) 646 K, (c) 173 K.
+          </div>
+        </details>
+      </article>
+
+      <!-- Q7 -->
+      <article class="q-card" data-diff="D2">
+        <div class="q-header">
+          <div class="q-badges-group">
+            <span class="q-badge d2">D2 · Medium ⚡</span>
+            <span style="font-size:14px; color:var(--text-secondary);">Unit 1 Q12 · Part 2 · Page 12</span>
+          </div>
+          <span style="font-size:14px; color:var(--text-muted);">Compression &amp; Liquefaction</span>
+        </div>
+        <div class="q-title">Q7 · Dual Conditions Required to Liquefy Atmospheric Gases</div>
+        <p class="q-stem">Explain why both high pressure AND low temperature are simultaneously required to liquefy atmospheric gases into liquids.</p>
+        <div class="clue-box">
+          <h5>Two-Factor Mechanism</h5>
+          High pressure forces molecules into close proximity (decreasing mean intermolecular separation \(r\)). Low temperature drains kinetic energy so attraction can lock particles into liquid phase!
+        </div>
+        <textarea class="tablet-safe-input" placeholder="Explain the molecular mechanism for both factors..."></textarea>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            <strong>Complete Molecular Derivation:</strong><br>
+            1. Gas particles possess high kinetic energy and are separated by enormous intermolecular spaces compared to their diameter.<br>
+            2. Applying <strong>high pressure</strong> compresses the gas, reducing volume and forcing particles close together where short-range intermolecular forces (van der Waals attraction) become significant.<br>
+            3. However, compression alone generates thermal heat and if kinetic energy remains high, thermal agitation causes particles to rebound upon collision.<br>
+            4. Lowering <strong>temperature</strong> drains thermal kinetic energy, slowing particles down so attractive forces can overcome kinetic motion and bind particles into the condensed liquid state.<br>
+            <strong>Key Conclusion:</strong> High pressure brings particles close together; low temperature slows them down so attraction can hold them.
+          </div>
+        </details>
+      </article>
+
+      <!-- Q14 -->
+      <article class="q-card" data-diff="D2">
+        <div class="q-header">
+          <div class="q-badges-group">
+            <span class="q-badge d2">D2 · Medium ⚡</span>
+            <span style="font-size:14px; color:var(--text-secondary);">Unit 1 Q15 · Part 3 · Page 18</span>
+          </div>
+          <span style="font-size:14px; color:var(--text-muted);">Evaporative Cooling Mechanism</span>
+        </div>
+        <div class="q-title">Q14 · Why Water in an Earthen Pot (Matka) Remains Cold in Summer</div>
+        <p class="q-stem">Explain the thermodynamic reason why water stored in an earthen pot (matka) cools down considerably during hot summer days.</p>
+        <textarea class="tablet-safe-input" placeholder="Trace the latent heat transfer through pot pores..."></textarea>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            1. An earthen pot has millions of microscopic pores through which water continuously seeps to the outer surface.<br>
+            2. The water on the exterior surface evaporates into the dry, hot summer air.<br>
+            3. To vaporise, the escaping water molecules absorb their latent heat of vaporisation from the earthen pot and the remaining bulk water.<br>
+            4. This continuous loss of thermal energy lowers the temperature of the pot and water within, producing substantial evaporative cooling.<br>
+            <strong>Final Answer:</strong> Continuous seepage through porous walls followed by surface evaporation absorbs latent heat of vaporisation from the water.
+          </div>
+        </details>
+      </article>
+
+      <!-- Q20 -->
+      <article class="q-card" data-diff="D3">
+        <div class="q-header">
+          <div class="q-badges-group">
+            <span class="q-badge d3">D3 · Hard 🔥</span>
+            <span style="font-size:14px; color:var(--text-secondary);">Unit 1 Q20 · Part 4 · Page 26</span>
+          </div>
+          <span style="font-size:14px; color:var(--text-muted);">Latent Heat of Vaporisation</span>
+        </div>
+        <div class="q-title">Q20 · Why Steam at 373 K Produces More Severe Burns Than Boiling Water at 373 K</div>
+        <p class="q-stem">Both boiling water and steam exist at \(100^\circ\text{C}\) (\(373\text{ K}\)). Why does exposure to steam cause far more severe burns than boiling water? Support your answer with energy quantification.</p>
+        <div class="clue-box">
+          <h5>Energy Ledger</h5>
+          Steam at \(373\text{ K}\) contains latent heat of vaporisation (\(2.26 \times 10^6\text{ J/kg}\) or \(540\text{ cal/g}\)) in addition to the sensible heat possessed by liquid water at \(373\text{ K}\)!
+        </div>
+        <textarea class="tablet-safe-input" placeholder="Quantify the extra energy delivered during steam condensation..."></textarea>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Energy Ledger</summary>
+          <div class="solution-content">
+            <strong>Thermodynamic Energy Derivation:</strong><br>
+            1. Liquid water at \(373\text{ K}\) delivers only sensible heat as it cools down to skin temperature: \(\Delta Q = m c \Delta T\).<br>
+            2. Steam at \(373\text{ K}\) must first undergo a phase change from vapor to liquid at constant \(373\text{ K}\), releasing its entire latent heat of vaporisation: \(\Delta Q_L = m L_v = m \times 2.26 \times 10^6\text{ J/kg}\).<br>
+            3. Subsequently, the condensed boiling water still delivers sensible cooling heat \(\Delta Q_S = m c \Delta T\).<br>
+            4. Therefore, each kilogram of steam delivers \(2.26\text{ MJ}\) of extra energy directly onto the skin tissue at the moment of contact, causing much deeper, catastrophic cellular burn damage.<br>
+            <strong>Key Conclusion:</strong> Steam contains \(2.26 \times 10^6\text{ J/kg}\) of extra latent heat of vaporisation absorbed during phase transition.
+          </div>
+        </details>
+      </article>
+
+    </div>
+
+    <!-- TABS -->
+    <div id="part-1" class="tab-content"><div class="content-card"><h3>Part 1 · Gas Particle Model</h3><p style="color:var(--text-secondary);">Spacing, intermolecular attraction, fluidity, and diffusion.</p></div></div>
+    <div id="part-2" class="tab-content"><div class="content-card"><h3>Part 2 · Temperature, Pressure &amp; Volume</h3><p style="color:var(--text-secondary);">Kelvin absolute scale conversion, piston compression, and gas liquefaction.</p></div></div>
+    <div id="part-3" class="tab-content"><div class="content-card"><h3>Part 3 · Evaporation &amp; Cooling</h3><p style="color:var(--text-secondary);">Surface phenomenon, 4-factor rate grid, and everyday cooling applications.</p></div></div>
+    <div id="part-4" class="tab-content"><div class="content-card"><h3>Part 4 · Boiling, Steam &amp; Latent Heat</h3><p style="color:var(--text-secondary);">Phase change plateaus, latent heat of vaporisation, and steam severity.</p></div></div>
+    <div id="part-5" class="tab-content"><div class="content-card"><h3>Part 5 · Sublimation &amp; Phase Change</h3><p style="color:var(--text-secondary);">Solid to gas direct transition, inverted funnel experiment, and dry ice.</p></div></div>
+    <div id="part-6" class="tab-content"><div class="content-card"><h3>Part 6 · Measurement &amp; Integrated Reasoning</h3><p style="color:var(--text-secondary);">Heating curve graph reading, SI units, and multi-state synthesis.</p></div></div>
+
+  </main>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      
+      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick') && b.getAttribute('onclick').includes(tabId));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const target = document.getElementById(tabId);
+      if (target) {
+        target.classList.add('active');
+        if (tabId !== 'all') {
+          const allCards = document.querySelectorAll('#all .q-card');
+          target.innerHTML = '';
+          const header = document.createElement('div');
+          header.className = 'content-card';
+          header.innerHTML = '<h3>Question Family Section</h3><p style="color:var(--text-secondary);">Filtered challenge cards for this specific physical concept.</p>';
+          target.appendChild(header);
+          allCards.forEach(c => {
+            target.appendChild(c.cloneNode(true));
+          });
+        }
+      }
+    }
+  </script>
+  <script>
+    function renderAllMath() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false},
+            {left: "\\[", right: "\\]", display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", renderAllMath);
+    } else {
+      renderAllMath();
+    }
+  </script>
+</body>
+</html>

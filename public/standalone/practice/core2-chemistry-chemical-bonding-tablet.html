@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GRADE 9 CHEMISTRY - Chemical Bonding Core (2) NCERT Question Helper | 12.7" Tablet Standalone Edition</title>
+  <meta name="description" content="Complete 12.7-inch tablet study suite for Chemical Bonding & Molecular Structure Core 2: 38 NCERT Question Helper instances, Electronic Configuration, Octet Rule, Ionic & Covalent Formulas, and Appendix A solutions.">
+  <style>
+/* ==========================================================================
+   Chemistry: Chemical Bonding Core 2 12.7" Tablet Standalone Stylesheet
+   WCAG 2.5.5 >= 48px touch targets, >= 120px textareas, no micro-fonts (<13.5px)
+   100% Offline Standalone · Dark/Light Mode · Responsive Stage/Support Grid
+   ========================================================================== */
+
+:root {
+  --tab12-container-max: 1400px;
+  --tab12-touch-min: 48px;
+  --tab12-base-font: 16px;
+  --tab12-radius-sm: 8px;
+  --tab12-radius-md: 12px;
+  --tab12-radius-lg: 16px;
+
+  /* Dark Theme Palette (Default) */
+  --bg-app: #080d1a;
+  --bg-surface: #0f172a;
+  --bg-card: #152238;
+  --bg-card-subtle: #1a2942;
+  --border: #263859;
+  --border-light: #334b75;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.25);
+  --success: #34d399;
+  --warning: #f59e0b;
+  --danger: #f87171;
+  --purple: #c084fc;
+}
+
+[data-theme="light"] {
+  --bg-app: #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f8fafc;
+  --border: #cbd5e1;
+  --border-light: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --accent: #0284c7;
+  --accent-glow: rgba(2, 132, 199, 0.15);
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --purple: #7e22ce;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--tab12-base-font);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-app);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Strict 48px+ Touch Target Rule */
+button, 
+.btn, 
+.tab-btn, 
+.pill-btn,
+summary {
+  min-height: var(--tab12-touch-min);
+  min-width: var(--tab12-touch-min);
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--tab12-radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: all 0.18s ease;
+  border: 1px solid transparent;
+}
+
+button:focus-visible, 
+.btn:focus-visible, 
+input:focus-visible, 
+textarea:focus-visible, 
+summary:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Virtual Tablet Keyboard Safe Textareas */
+textarea.tablet-safe-input {
+  min-height: 120px;
+  width: 100%;
+  padding: 14px;
+  font-family: monospace, inherit;
+  font-size: 14.5px;
+  line-height: 1.5;
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  resize: vertical;
+  display: block;
+}
+
+textarea.tablet-safe-input:focus {
+  border-color: var(--accent);
+  background-color: var(--bg-card);
+}
+
+/* App Header */
+header.app-header {
+  background-color: var(--bg-surface);
+  border-bottom: 1.5px solid var(--border);
+  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.header-inner {
+  max-width: var(--tab12-container-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header-brand h1 {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.subject-badge {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: rgba(56, 189, 248, 0.15);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  font-weight: 700;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-toggle-btn {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+}
+
+/* Nav Tabs */
+nav.tab-nav {
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 24px 0 24px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tab-nav-inner {
+  max-width: var(--tab12-container-max);
+  margin: 0 auto;
+  display: flex;
+  gap: 8px;
+}
+
+.tab-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: var(--tab12-radius-sm) var(--tab12-radius-sm) 0 0;
+  padding: 12px 18px;
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.03);
+}
+
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  background: var(--bg-app);
+}
+
+/* Main Container Grid: Stage & Support */
+main.layout-container {
+  max-width: var(--tab12-container-max);
+  margin: 20px auto;
+  padding: 0 20px;
+  width: 100%;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 24px;
+}
+
+@media (max-width: 1040px) {
+  main.layout-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stage-area {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.content-card {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.content-card h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.q-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+.q-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.q-badge {
+  background: rgba(192, 132, 252, 0.15);
+  border: 1px solid var(--purple);
+  color: var(--purple);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tag-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.q-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.q-prompt {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+details.solution-detail {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--tab12-radius-sm);
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+details.solution-detail summary {
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.02);
+  color: var(--accent);
+  user-select: none;
+}
+
+.solution-content {
+  padding: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 14.5px;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.support-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.support-widget {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 20px;
+}
+
+.support-widget h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.formula-box {
+  background: var(--bg-card-subtle);
+  border-left: 4px solid var(--accent);
+  padding: 14px 18px;
+  border-radius: 0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;
+  margin: 12px 0;
+  font-family: monospace;
+  font-size: 14.5px;
+  color: var(--text-primary);
+}
+  </style>
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <h1>
+          <span>🧪</span> Chemical Bonding &amp; Molecular Structure
+          <span class="subject-badge">Core (2) · 38 Questions</span>
+        </h1>
+      </div>
+      <div class="header-actions">
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">🌓 Mode</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav class="tab-nav">
+    <div class="tab-nav-inner">
+      <button class="tab-btn active" onclick="switchTab('part-all')">All Questions (38)</button>
+      <button class="tab-btn" onclick="switchTab('part-1')">1. Config &amp; Valence</button>
+      <button class="tab-btn" onclick="switchTab('part-2')">2. Valency &amp; Octet</button>
+      <button class="tab-btn" onclick="switchTab('part-3')">3. Ions &amp; Transfer</button>
+      <button class="tab-btn" onclick="switchTab('part-4')">4. Ionic Compounds</button>
+      <button class="tab-btn" onclick="switchTab('part-5')">5. Molecules &amp; Atomicity</button>
+      <button class="tab-btn" onclick="switchTab('part-6')">6. Formula Writing</button>
+      <button class="tab-btn" onclick="switchTab('part-7')">7. Evidence &amp; Reasoning</button>
+    </div>
+  </nav>
+
+  <!-- Layout Container -->
+  <main class="layout-container">
+    
+    <!-- Stage Area -->
+    <div class="stage-area">
+
+      <div class="content-card">
+        <h2><span>📚</span> Chemical Bonding Core (2) NCERT Question Helper</h2>
+        <p>
+          Master 38 retained NCERT source questions with teacher-style conceptual helpers, visual first moves, and step-by-step verified worked solutions.
+        </p>
+      </div>
+
+<div id="part-all" class="tab-content active">
+
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 1</span>
+          <span class="tag-pill">Q01 · Page 3</span>
+        </div>
+        <div class="q-title">Question 1 - Unit 4 Q1: Electronic distribution of</div>
+        <p class="q-prompt">magnesium to an answer. NCERT Try the question First nudge Choose the correct shell distribution for Mg. Fill shells as 2, then 8, then the remainder. See the idea - outer shell controls ordinary valency</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            01. Unit 3 Q2 - Atoms, molecules and ions
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 1</span>
+          <span class="tag-pill">Q02 · Page 4</span>
+        </div>
+        <div class="q-title">Question 2 - Unit 4 Q15: Electronic distribution of</div>
+        <p class="q-prompt">aluminium to an answer. NCERT Try the question First nudge Choose the correct shell distribution for aluminium. Fill 2, then 8, then 3. See the idea - outer shell controls ordinary valency</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            02. Unit 3 Q3 - Nitrogen gas: symbol or molecule?<br>Set-up: Atoms can build molecules/ions, and many atoms Set-up: N atom symbol = N; nitrogen gas molecule = N₂.<br>aggregate to form matter; but it is false that atoms can<br>never exist independently. 1 The element symbol is N.<br>Nitrogen gas exists as diatomic molecules.<br>2<br>Noble gases such as helium exist as individual atoms.<br>1<br>So the correct representation is N₂.<br>3<br>Therefore the absolute statement “atoms cannot exist independently” is<br>2<br>false.<br>Final answer<br>Atoms are nevertheless the basic units from which molecules and ions are<br>3<br>formed. N₂.<br>Final answer<br>NCERT source - Unit 3 Q3<br>The false statement is: “Atoms are not able to exist<br>independently.”<br>NCERT source - Unit 3 Q2<br>Core (2) | worked solutions 48
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 1</span>
+          <span class="tag-pill">Q03 · Page 5</span>
+        </div>
+        <div class="q-title">Question 3 - Unit 4 Q25: Chlorine shell distribution Try it first. Cover the answer-check box until you have committed</div>
+        <p class="q-prompt">to an answer. NCERT Try the question First nudge Write chlorine electron distribution and state electrons in the L Fill shells 2,8, then 7. shell.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            03. Unit 3 Q11 - Which chemical formula is valid?
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 1</span>
+          <span class="tag-pill">Q04 · Page 6</span>
+        </div>
+        <div class="q-title">Question 4 - Unit 4 Q34(c,d): Valencies and</div>
+        <p class="q-prompt">electronic configurations committed to an answer. NCERT Try the question First nudge For the bonding-relevant parts: find valencies of Ne (Z=10) and Ne: 2,8; Cl: 2,8,7; Si: 2,8,4; S: 2,8,6. Cl (Z=17), and write configurations of Si and S.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            04. Unit 3 Q12 - Write formulae from compound names<br>Set-up: CaCl would need CaCl₂; NaSO₄ would need Na₂SO₄; NaS Set-up: Cu²⁺/Br⁻; Al³⁺/NO₃⁻; Ca²⁺/PO₄³⁻; Fe³⁺/S²⁻; Hg²⁺/<br>would need Na₂S; Bi³⁺ and PO₄³⁻ combine 1:1. Cl⁻; Mg²⁺/CH₃COO⁻.<br>Write the ion charges. Write each ion with charge.<br>1 1<br>Balance total positive and negative charge. Use LCM of charge magnitudes where needed.<br>2 2<br>Only Bi³⁺ + PO₄³⁻ gives a neutral 1:1 formula: BiPO₄. Convert the ion ratio into subscripts.<br>3 3<br>Use brackets if a polyatomic ion occurs more than once.<br>4<br>Final answer<br>BiPO₄, bismuth phosphate.<br>Final answer<br>CuBr₂; Al(NO₃)₃; Ca₃(PO₄)₂; Fe₂S₃; HgCl₂; Mg(CH₃COO)₂.<br>NCERT source - Unit 3 Q11<br>NCERT source - Unit 3 Q12<br>Core (2) | worked solutions 49
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 2</span>
+          <span class="tag-pill">Q05 · Page 8</span>
+        </div>
+        <div class="q-title">Question 1 - Unit 4 Q12: Can valency 1 occur in</div>
+        <p class="q-prompt">metals and non-metals? committed to an answer. NCERT Try the question First nudge Choose the correct statement about elements with valency 1. Na has valency 1 as a metal; Cl has valency 1 as a non-metal. See the idea</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            05. Unit 3 Q13 - All neutral compounds from a set of ions
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 2</span>
+          <span class="tag-pill">Q06 · Page 9</span>
+        </div>
+        <div class="q-title">Question 2 - Unit 4 Q14: Valency from 3 protons Try it first. Cover the answer-check box until you have committed</div>
+        <p class="q-prompt">to an answer. NCERT Try the question First nudge An atom has 3 protons and 4 neutrons. Find its valency. 3 electrons distribute as 2,1; one outer electron is easiest to lose. See the idea - outer shell controls ordinary valency</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            06. Unit 3 Q14 - Identify cations and anions<br>Set-up: Examples: Cu²⁺ + 2Cl⁻ → CuCl₂; 2Fe³⁺ + 3SO₄²⁻ → Set-up: CH₃COONa → Na⁺ + CH₃COO⁻; NaCl → Na⁺ + Cl⁻; H₂ has<br>Fe₂(SO₄)₃. no ions; NH₄NO₃ → NH₄⁺ + NO₃⁻.<br>Make the cation-anion grid. Classify each substance as ionic or molecular.<br>1 1<br>Balance each pair to net charge zero. For ionic compounds, identify positive and negative charged species.<br>2 2<br>Reduce to the simplest whole-number ratio. Keep polyatomic ions intact.<br>3 3<br>Final answer Final answer<br>CuCl₂, CuSO₄, Cu₃(PO₄)₂; NaCl, Na₂SO₄, Na₃PO₄; FeCl₃, Fe₂(SO₄)₃, CH₃COONa: Na⁺/CH₃COO⁻; NaCl: Na⁺/Cl⁻; H₂: none; NH₄NO₃: NH₄⁺/<br>FePO₄. NO₃⁻.<br>NCERT source - Unit 3 Q13 NCERT source - Unit 3 Q14<br>Core (2) | worked solutions 50
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 2</span>
+          <span class="tag-pill">Q07 · Page 10</span>
+        </div>
+        <div class="q-title">Question 3 - Unit 4 Q21: Do chlorine isotopes have</div>
+        <p class="q-prompt">different valencies? committed to an answer. NCERT Try the question First nudge Compare ³⁵Cl and ³⁷Cl: will their valencies differ? Isotopes have the same atomic number, so neutral atoms have the same electron configuration. See the idea - separate nucleus data from valence data atomic number mass number valency</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            07. Unit 3 Q15 - Formulae from pairs of elements
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 2</span>
+          <span class="tag-pill">Q08 · Page 11</span>
+        </div>
+        <div class="q-title">Question 4 - Unit 4 Q23: Valency from shell</div>
+        <p class="q-prompt">diagrams to an answer. NCERT Try the question First nudge The source diagrams show (a) 2,8,8 and (b) 2,7. Find their For 2,7, the valency magnitude is 1 and the atom tends to gain one valencies. electron. See the idea - outer shell controls ordinary valency</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            08. Unit 3 Q17 - Formula plus combining-mass ratio<br>Set-up: Ca(2), F(1); H(1), S(2); N(3), H(1); C(4), Cl(1); Set-up: NH₃: 14:(3×1); CO: 12:16; HCl: 1:35.5; AlF₃: 27:<br>Na(1), O(2); C(4), O(2). (3×19); MgS: 24:32.<br>Write the valency of each element. Write each correct formula.<br>1 1<br>Choose the smallest ratio that satisfies both valencies. Multiply atomic mass by subscript.<br>2 2<br>Simplify ratios such as C:O = 1:2 rather than 2:4. Simplify the mass ratio where appropriate.<br>3 3<br>Final answer Final answer<br>CaF₂, H₂S, NH₃, CCl₄, Na₂O, CO₂. NH₃ 14:3; CO 3:4; HCl 2:71; AlF₃ 9:19; MgS 3:4.<br>NCERT source - Unit 3 Q15 NCERT source - Unit 3 Q17<br>Core (2) | worked solutions 51
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 2</span>
+          <span class="tag-pill">Q09 · Page 12</span>
+        </div>
+        <div class="q-title">Question 5 - Unit 4 Q27: Atomic number, mass number</div>
+        <p class="q-prompt">and valency from diagrams committed to an answer. NCERT Try the question First nudge From the source shell diagrams X, Y and Z, determine atomic The figure shows X: 5p/6n with 2,3; Y: 8p/10n with 2,6; Z: 15p/16n number, mass number and valency. with 2,8,5. See the idea - separate nucleus data from valence data</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            09. Unit 3 Q18 - Count atoms in ions and molecules
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 2</span>
+          <span class="tag-pill">Q10 · Page 13</span>
+        </div>
+        <div class="q-title">Question 6 - Unit 4 Q33: Why helium valency is zero Try it first. Cover the answer-check box until you have committed</div>
+        <p class="q-prompt">to an answer. NCERT Try the question First nudge Helium has two valence-shell electrons. Why is its valency not Helium already has a stable duplet, so it does not need to gain, lose or 2? share electrons in the simple model. See the idea - outer shell controls ordinary valency</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            10. Unit 3 Q21 - Classify species by atomicity<br>Set-up: CO₃²⁻: 1 C + 3 O; PO₄³⁻: 1 P + 4 O; P₂O₅: 2 P + 5 Set-up: Examples: F₂ = 2 atoms; NO₂ = 3; CH₄ = 5; He = 1.<br>O; CO: 1 C + 1 O.<br>Count atoms in one formula/molecule.<br>1<br>Read element symbols and subscripts.<br>1<br>Convert the count to mono-/di-/tri-/tetra-/polyatomic language.<br>2<br>Add the atom counts.<br>2<br>Final answer<br>Treat the superscript charge separately from composition.<br>3<br>F₂ diatomic; NO₂ triatomic; N₂O triatomic; C₂H₆ octatomic; P₄<br>tetraatomic; H₂O₂ tetraatomic; P₄O₁₀ 14-atomic/polyatomic; O₃<br>Final answer<br>triatomic; HCl diatomic; CH₄ pentatomic; He monoatomic; Ag<br>4, 5, 7 and 2 atoms respectively. monoatomic.<br>NCERT source - Unit 3 Q18 NCERT source - Unit 3 Q21<br>Core (2) | worked solutions 52
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 2</span>
+          <span class="tag-pill">Q11 · Page 14</span>
+        </div>
+        <div class="q-title">Question 7 - Unit 4 Q35: Valency from mass and</div>
+        <p class="q-prompt">atomic number committed to an answer. NCERT Try the question First nudge Element X has mass number 4 and atomic number 2. Find its Distribution 2: full K shell (duplet). valency.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            11. Unit 3 Q22 - Distinguish sugar from salt without tasting
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 2</span>
+          <span class="tag-pill">Q12 · Page 15</span>
+        </div>
+        <div class="q-title">Question 8 - Unit 4 Q36: Why noble gases have</div>
+        <p class="q-prompt">zero valency to an answer. NCERT Try the question First nudge Explain why helium, neon and argon have zero valency. He has a complete duplet; Ne and Ar have complete octets in the simple shell model. See the idea - outer shell controls ordinary valency Na Cl Ne</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            12. Unit 3 Q26 - CaCl₂ dissociation into ions<br>Set-up: Salt solution contains mobile ions and conducts; Set-up: 2 mol CaCl₂ → 6 mol ions → 6Nₐ ions.<br>sugar solution remains molecular and conducts poorly/not<br>appreciably. 1 M(CaCl₂)=40+2×35.5=111 g mol⁻¹.<br>n=222/111=2 mol CaCl₂.<br>2<br>Prepare separate aqueous test solution.<br>1<br>Each formula unit gives 3 ions, so ion amount=6 mol.<br>3<br>Use a conductivity tester.<br>2<br>N=6×6.022×10²³=3.6132×10²⁴ ions.<br>4<br>Conducting solution indicates salt; non-conducting/very poor conducting<br>3<br>solution indicates sugar.<br>Final answer<br>Final answer 3.6132 × 10²⁴ ions (using Nₐ = 6.022 × 10²³ mol⁻¹).<br>Dissolve in water and test conductivity: salt solution conducts<br>because of ions; sugar solution does not appreciably conduct.<br>NCERT source - Unit 3 Q26<br>NCERT source - Unit 3 Q22<br>Core (2) | worked solutions 53
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 2</span>
+          <span class="tag-pill">Q13 · Page 16</span>
+        </div>
+        <div class="q-title">Question 9 - Sample I Q19: Sample I: read valency</div>
+        <p class="q-prompt">from atomic diagrams committed to an answer. NCERT Try the question First nudge Use the sample-paper diagrams to report valency, atomic X and Y follow simple octet valency; Z represents phosphorus and the number and mass number of X, Y and Z. source answer table lists variable valency. See the idea - separate nucleus data from valence data</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            13. Unit 3 Q38 - Ion count from NaCl
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 2</span>
+          <span class="tag-pill">Q14 · Page 17</span>
+        </div>
+        <div class="q-title">Question 10 - Sample II Q20: Sample II: helium</div>
+        <p class="q-prompt">valency to an answer. NCERT Try the question First nudge Explain why helium has 2 electrons in its valence shell but Duplet completion makes helium stable. valency 0.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            14. Unit 3 Q40 - Ionic versus molecular compounds<br>Set-up: 0.10 mol NaCl → 0.20 mol ions → 0.20Nₐ. Set-up: Examples: NaCl/CaCl₂ ionic; H₂O/CO₂ molecular.<br>n(NaCl)=5.85/58.5=0.10 mol. State what particles are present.<br>1 1<br>Ion amount=2×0.10=0.20 mol. Give at least one valid example of each.<br>2 2<br>Number of ions=0.20×6.022×10²³=1.2044×10²³. Use “formula unit” language for ionic solids.<br>3 3<br>Final answer Final answer<br>1.2044 × 10²³ ions. Ionic compounds are built from cations and anions (e.g., NaCl);<br>molecular compounds consist of molecules (e.g., H₂O or CO₂).<br>NCERT source - Unit 3 Q38<br>NCERT source - Unit 3 Q40<br>Core (2) | worked solutions 54
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 3</span>
+          <span class="tag-pill">Q15 · Page 19</span>
+        </div>
+        <div class="q-title">Question 1 - Unit 3 Q14: Identify cations and anions Try it first. Cover the answer-check box until you have committed</div>
+        <p class="q-prompt">to an answer. NCERT Try the question First nudge State the cation and anion, if any, in CH₃COONa, NaCl, H₂ and Recognise polyatomic ions as intact charged groups. NH₄NO₃.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            15. Unit 3 Q44(b,d) - Polyatomic ion and formula recall
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 3</span>
+          <span class="tag-pill">Q16 · Page 20</span>
+        </div>
+        <div class="q-title">Question 2 - Unit 4 Q9: Electron count in a +3 ion Try it first. Cover the answer-check box until you have committed</div>
+        <p class="q-prompt">to an answer. NCERT Try the question First nudge An atom has mass number 27 and 14 neutrons; its ion carries Neutral atom electrons = protons; a +3 ion has lost 3 electrons. +3 charge. How many electrons are in the ion?</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            16. Unit 3 Q47 - Formulae from common names<br>Set-up: 2Na⁺ + CO₃²⁻ → Na₂CO₃; 2NH₄⁺ + SO₄²⁻ → (NH₄)₂SO₄. Set-up: KOH; NaHCO₃; CaCO₃; NaOH; C₂H₅OH; NaCl.<br>Recognise the charged group as a polyatomic ion. Write each standard formula.<br>1 1<br>Balance Na⁺ with CO₃²⁻. Add atomic-mass contributions using subscripts.<br>2 2<br>Balance NH₄⁺ with SO₄²⁻ and bracket repeated NH₄. For ionic solids, “formula mass” is the more precise term even where the<br>3 3<br>source uses molecular mass.<br>Final answer<br>Final answer<br>Polyatomic ion; Na₂CO₃; (NH₄)₂SO₄.<br>KOH 56 u; NaHCO₃ 84 u; CaCO₃ 100 u; NaOH 40 u; C₂H₅OH 46 u;<br>NaCl 58.5 u.<br>NCERT source - Unit 3 Q44(b,d)<br>NCERT source - Unit 3 Q47<br>Core (2) | worked solutions 55
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 3</span>
+          <span class="tag-pill">Q17 · Page 21</span>
+        </div>
+        <div class="q-title">Question 3 - Unit 4 Q10: Identify Mg²⁺ Try it first. Cover the answer-check box until you have committed</div>
+        <p class="q-prompt">to an answer. NCERT Try the question First nudge From the source figure, identify the representation of Mg²⁺. Look for p=12, n=12 and electron distribution 2,8. See the idea - charge is electron bookkeeping</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            17. Unit 4 Q1 - Electronic distribution of magnesium
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 3</span>
+          <span class="tag-pill">Q18 · Page 22</span>
+        </div>
+        <div class="q-title">Question 4 - Unit 4 Q24: Ion formed by losing one</div>
+        <p class="q-prompt">outer electron committed to an answer. NCERT Try the question First nudge An atom has one electron in its outermost shell. What ion forms One electron lost corresponds to +1 charge. if that electron is removed?</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            18. Unit 4 Q9 - Electron count in a +3 ion<br>Set-up: 12 electrons → K=2, L=8, M=2. Set-up: p=27-14=13; neutral e=13; ion e=13-3=10.<br>Neutral Mg has 12 electrons. Protons=27-14=13.<br>1 1<br>K shell gets 2, L shell 8, leaving 2 for M. Neutral atom would have 13 electrons.<br>2 2<br>+3 means 3 electrons lost: 13-3=10.<br>3<br>Final answer<br>2, 8, 2.<br>Final answer<br>10 electrons.<br>NCERT source - Unit 4 Q1<br>NCERT source - Unit 4 Q9<br>Core (2) | worked solutions 56
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 3</span>
+          <span class="tag-pill">Q19 · Page 23</span>
+        </div>
+        <div class="q-title">Question 5 - Unit 4 Q26: Charge after gaining</div>
+        <p class="q-prompt">electrons to an answer. NCERT Try the question First nudge An atom has 6 electrons in its outermost shell. What ion forms if 6 → needs 2 more; gaining 2 electrons gives charge −2. it reaches noble-gas configuration by accepting electrons?</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            19. Unit 4 Q10 - Identify Mg²⁺
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 3</span>
+          <span class="tag-pill">Q20 · Page 24</span>
+        </div>
+        <div class="q-title">Question 6 - Unit 4 Q42: Sodium atom versus</div>
+        <p class="q-prompt">sodium ion to an answer. NCERT Try the question First nudge Show electron distributions in a sodium atom and sodium ion, Na atom = 2,8,1. Na⁺ forms by losing one outer electron → 2,8. and state atomic number.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            20. Unit 4 Q12 - Can valency 1 occur in metals and non-<br>metals?<br>Set-up: Mg atom 2,8,2 → lose 2 e⁻ → Mg²⁺ 2,8; nucleus<br>unchanged. Set-up: Valency 1 can occur for metals and non-metals.<br>1 Atomic number Mg=12 → 12 protons. 1 Use examples: Na (metal) and Cl (non-metal).<br>2 Mass number 24 → 12 neutrons. 2 Both have valency magnitude 1, for opposite electron-transfer tendencies.<br>Mg²⁺ has lost 2 electrons → 10 electrons.<br>3<br>Final answer<br>Either metals or non-metals.<br>Final answer<br>Option (d): p=12, n=12, e=10 (2,8).<br>NCERT source - Unit 4 Q12<br>NCERT source - Unit 4 Q10<br>Core (2) | worked solutions 57
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 3</span>
+          <span class="tag-pill">Q21 · Page 25</span>
+        </div>
+        <div class="q-title">Question 7 - Sample I Q20: Sample I: ion formed</div>
+        <p class="q-prompt">after electron loss committed to an answer. NCERT Try the question First nudge A source item repeats the case of one outer electron being One electron removed → +1. removed. State ion type and charge.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            21. Unit 4 Q14 - Valency from 3 protons
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 4</span>
+          <span class="tag-pill">Q22 · Page 27</span>
+        </div>
+        <div class="q-title">Question 1 - Unit 3 Q12: Write formulae from</div>
+        <p class="q-prompt">compound names committed to an answer. NCERT Try the question First nudge Write formulae for copper(II) bromide, aluminium(III) nitrate, Use the smallest whole-number ratio that makes net charge zero; calcium phosphate, iron(III) sulphide, mercury(II) chloride and bracket a repeated polyatomic ion. magnesium acetate.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            22. Unit 4 Q15 - Electronic distribution of aluminium<br>Set-up: 2,1 → valence electrons=1 → valency=1. Set-up: 13 electrons → 2,8,3.<br>3 protons means atomic number 3 and 3 electrons. Neutral Al has 13 electrons.<br>1 1<br>Distribution 2,1. K=2, L=8, M=3.<br>2 2<br>One outer electron gives valency 1.<br>3<br>Final answer<br>2, 8, 3.<br>Final answer<br>1.<br>NCERT source - Unit 4 Q15<br>NCERT source - Unit 4 Q14<br>Core (2) | worked solutions 58
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 4</span>
+          <span class="tag-pill">Q23 · Page 28</span>
+        </div>
+        <div class="q-title">Question 2 - Unit 3 Q13: All neutral compounds from</div>
+        <p class="q-prompt">a set of ions committed to an answer. NCERT Try the question First nudge Form every neutral compound possible from Cu²⁺, Na⁺, Fe³⁺ For each pair, balance charges independently. with Cl⁻, SO₄²⁻ and PO₄³⁻.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            23. Unit 4 Q21 - Do chlorine isotopes have different
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 4</span>
+          <span class="tag-pill">Q24 · Page 29</span>
+        </div>
+        <div class="q-title">Question 3 - Unit 3 Q44(b,d): Polyatomic ion and</div>
+        <p class="q-prompt">formula recall committed to an answer. NCERT Try the question First nudge For the bonding-relevant parts of Q44: name a fixed charged Use CO₃²⁻ with Na⁺ and NH₄⁺ with SO₄²⁻. group of atoms and write formulae of sodium carbonate and ammonium sulphate.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            24. Unit 4 Q23 - Valency from shell diagrams<br>valencies?<br>Set-up: (a) 2,8,8 → 0; (b) 2,7 → 1 (anion tendency, −1<br>Set-up: Both chlorine isotopes have 17 electrons: 2,8,7 → charge if it gains one electron).<br>valency 1.<br>Read the outermost-shell occupancy.<br>1<br>Isotopes differ in neutrons, not protons.<br>1<br>Complete octet → valency 0.<br>2<br>Same atomic number gives the same electron distribution.<br>2<br>Seven valence electrons → one electron needed → valency 1.<br>3<br>Therefore both chlorine isotopes have valency 1.<br>3<br>Final answer<br>Final answer<br>(a) 0; (b) 1.<br>No. Both have the same valency, 1.<br>NCERT source - Unit 4 Q23<br>NCERT source - Unit 4 Q21<br>Core (2) | worked solutions 59
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 4</span>
+          <span class="tag-pill">Q25 · Page 30</span>
+        </div>
+        <div class="q-title">Question 4 - Sample II Q19: Sample II: ionic</div>
+        <p class="q-prompt">formula writing to an answer. NCERT Try the question First nudge Write formulae for aluminium nitrate, calcium phosphate, Al³⁺/NO₃⁻; Ca²⁺/PO₄³⁻; Hg²⁺/Cl⁻; Mg²⁺/CH₃COO⁻. mercury(II) chloride and magnesium acetate.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            25. Unit 4 Q24 - Ion formed by losing one outer electron
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 5</span>
+          <span class="tag-pill">Q26 · Page 32</span>
+        </div>
+        <div class="q-title">Question 1 - Unit 3 Q2: Atoms, molecules and ions Try it first. Cover the answer-check box until you have committed</div>
+        <p class="q-prompt">to an answer. NCERT Try the question First nudge Which statement about atoms is NOT true? The source Test each statement against a counterexample: He, Ne and Ar exist as contrasts independent atoms with atoms as building units of single atoms. molecules and ions.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            26. Unit 4 Q25 - Chlorine shell distribution<br>Set-up: X → X⁺ + e⁻. Set-up: Cl: 2,8,7; L shell contains 8 electrons.<br>Start with neutral atom. 17 electrons distribute 2,8,7.<br>1 1<br>Remove one electron. The L shell is the second shell, containing 8 electrons.<br>2 2<br>Net charge becomes +1; the ion is a cation.<br>3<br>Final answer<br>2,8,7; L shell has 8 electrons.<br>Final answer<br>A +1 cation.<br>NCERT source - Unit 4 Q25<br>NCERT source - Unit 4 Q24<br>Core (2) | worked solutions 60
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 5</span>
+          <span class="tag-pill">Q27 · Page 33</span>
+        </div>
+        <div class="q-title">Question 2 - Unit 3 Q3: Nitrogen gas: symbol or</div>
+        <p class="q-prompt">molecule? to an answer. NCERT Try the question First nudge Choose the correct chemical representation of nitrogen gas. Nitrogen gas is diatomic under ordinary conditions. See the idea - read notation by position</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            27. Unit 4 Q26 - Charge after gaining electrons
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 5</span>
+          <span class="tag-pill">Q28 · Page 34</span>
+        </div>
+        <div class="q-title">Question 3 - Unit 3 Q18: Count atoms in ions and</div>
+        <p class="q-prompt">molecules to an answer. NCERT Try the question First nudge Count total atoms in CO₃²⁻, PO₄³⁻, P₂O₅ and CO. An absent subscript means 1. See the idea - read notation by position</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            28. Unit 4 Q27 - Atomic number, mass number and valency<br>from diagrams<br>Set-up: X + 2e⁻ → X²⁻.<br>Set-up: X → Z=5, A=11, valency3; Y → 8,18,2; Z → 15,31,<br>1 Outer shell has 6 electrons. valency3 in the simple octet rule (source answer<br>conventions may also list 3,5 for phosphorus).<br>Two electrons are needed for an octet.<br>2<br>3 Gain of 2 e⁻ gives 2− charge. 1 Read p and n from each nucleus.<br>Atomic number=p; mass number=p+n.<br>2<br>Final answer<br>Count valence electrons and apply the octet rule for the simple valency.<br>3<br>A −2 anion.<br>Final answer<br>NCERT source - Unit 4 Q26<br>X: 5,11,3; Y: 8,18,2; Z: 15,31,3 (phosphorus is also commonly<br>listed with variable valency 3,5).<br>NCERT source - Unit 4 Q27<br>Core (2) | worked solutions 61
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 5</span>
+          <span class="tag-pill">Q29 · Page 35</span>
+        </div>
+        <div class="q-title">Question 4 - Unit 3 Q21: Classify species by</div>
+        <p class="q-prompt">atomicity to an answer. NCERT Try the question First nudge Classify F₂, NO₂, N₂O, C₂H₆, P₄, H₂O₂, P₄O₁₀, O₃, HCl, CH₄, He and Add all subscripts; an absent subscript means 1. Ag by the number of atoms in one particle.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            29. Unit 4 Q33 - Why helium valency is zero
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 6</span>
+          <span class="tag-pill">Q30 · Page 37</span>
+        </div>
+        <div class="q-title">Question 1 - Unit 3 Q11: Which chemical formula</div>
+        <p class="q-prompt">is valid? to an answer. NCERT Try the question First nudge From CaCl, BiPO₄, NaSO₄ and NaS, identify the correctly written Use common charges: Ca²⁺, Cl⁻; Bi³⁺, PO₄³⁻; Na⁺, SO₄²⁻; S²⁻. neutral compound and name it.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            30. Unit 4 Q34(c,d) - Valencies and electronic configurations<br>Set-up: He: K shell = 2/2 complete → valency 0. Set-up: Ne complete octet → valency0; Cl needs one →<br>valency1.<br>Helium has only the K shell.<br>1<br>Write shell distributions.<br>1<br>K shell capacity at this level is 2.<br>2<br>Apply complete-shell / octet logic for valency.<br>2<br>Its shell is complete, so valency is 0.<br>3<br>Final answer<br>Final answer<br>Ne valency 0; Cl valency 1; Si = 2,8,4; S = 2,8,6.<br>Valency 0 because helium has a complete duplet.<br>NCERT source - Unit 4 Q34(c,d)<br>NCERT source - Unit 4 Q33<br>Core (2) | worked solutions 62
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 6</span>
+          <span class="tag-pill">Q31 · Page 38</span>
+        </div>
+        <div class="q-title">Question 2 - Unit 3 Q15: Formulae from pairs of</div>
+        <p class="q-prompt">elements to an answer. NCERT Try the question First nudge Write formulae for compounds formed by Ca/F, H/S, N/H, C/Cl, Cross the valency only as a temporary aid; simplify if needed. Na/O and C/O.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            31. Unit 4 Q35 - Valency from mass and atomic number
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 6</span>
+          <span class="tag-pill">Q32 · Page 39</span>
+        </div>
+        <div class="q-title">Question 3 - Unit 3 Q17: Formula plus combining-</div>
+        <p class="q-prompt">mass ratio to an answer. NCERT Try the question First nudge Write formulae and mass ratios for ammonia, carbon monoxide, Mass contribution = subscript × atomic mass. hydrogen chloride, aluminium fluoride and magnesium sulphide.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            32.<br>Write the valency of each element. Write each correct formula.<br>1 1<br>Choose the smallest ratio that satisfies both valencies. Multiply atomic mass by subscript.<br>2 2<br>Simplify ratios such as C:O = 1:2 rather than 2:4. Simplify the mass ratio where appropriate.<br>3 3<br>Final answer Final answer<br>CaF₂, H₂S, NH₃, CCl₄, Na₂O, CO₂. NH₃ 14:3; CO 3:4; HCl 2:71; AlF₃ 9:19; MgS 3:4.<br>NCERT source - Unit 3 Q15 NCERT source - Unit 3 Q17<br>Core (2) | worked solutions 51<br>09. Unit 3 Q18 - Count atoms in ions and molecules 10. Unit 3 Q21 - Classify species by atomicity<br>Set-up: CO₃²⁻: 1 C + 3 O; PO₄³⁻: 1 P + 4 O; P₂O₅: 2 P + 5 Set-up: Examples: F₂ = 2 atoms; NO₂ = 3; CH₄ = 5; He = 1.<br>O; CO: 1 C + 1 O.<br>Count atoms in one formula/molecule.<br>1<br>Read element symbols and subscripts.<br>1<br>Convert the count to mono-/di-/tri-/tetra-/polyatomic language.<br>2<br>Add the atom counts.<br>2<br>Final answer<br>Treat the superscript charge separately from composition.<br>3<br>F₂ diatomic; NO₂ triatomic; N₂O triatomic; C₂H₆ octatomic; P₄<br>tetraatomic; H₂O₂ tetraatomic; P₄O₁₀ 14-atomic/polyatomic; O₃<br>Final answer<br>triatomic; HCl diatomic; CH₄ pentatomic; He monoatomic; Ag<br>4, 5, 7 and 2 atoms respectively. monoatomic.<br>NCERT source - Unit 3 Q18 NCERT source - Unit 3 Q21<br>Core (2) | worked solutions 52<br>11. Unit 3 Q22 - Distinguish sugar from salt without tasting 12. Unit 3 Q26 - CaCl₂ dissociation into ions<br>Set-up: Salt solution contains mobile ions and conducts; Set-up: 2 mol CaCl₂ → 6 mol ions → 6Nₐ ions.<br>sugar solution remains molecular and conducts poorly/not<br>appreciably. 1 M(CaCl₂)=40+2×35.5=111 g mol⁻¹.<br>n=222/111=2 mol CaCl₂.<br>2<br>Prepare separate aqueous test solution.<br>1<br>Each formula unit gives 3 ions, so ion amount=6 mol.<br>3<br>Use a conductivity tester.<br>2<br>N=6×6.022×10²³=3.6132×10²⁴ ions.<br>4<br>Conducting solution indicates salt; non-conducting/very poor conducting<br>3<br>solution indicates sugar.<br>Final answer<br>Final answer 3.6132 × 10²⁴ ions (using Nₐ = 6.022 × 10²³ mol⁻¹).<br>Dissolve in water and test conductivity: salt solution conducts<br>because of ions; sugar solution does not appreciably conduct.<br>NCERT source - Unit 3 Q26<br>NCERT source - Unit 3 Q22<br>Core (2) | worked solutions 53<br>13. Unit 3 Q38 - Ion count from NaCl 14. Unit 3 Q40 - Ionic versus molecular compounds<br>Set-up: 0.10 mol NaCl → 0.20 mol ions → 0.20Nₐ. Set-up: Examples: NaCl/CaCl₂ ionic; H₂O/CO₂ molecular.<br>n(NaCl)=5.85/58.5=0.10 mol. State what particles are present.<br>1 1<br>Ion amount=2×0.10=0.20 mol. Give at least one valid example of each.<br>2 2<br>Number of ions=0.20×6.022×10²³=1.2044×10²³. Use “formula unit” language for ionic solids.<br>3 3<br>Final answer Final answer<br>1.2044 × 10²³ ions. Ionic compounds are built from cations and anions (e.g., NaCl);<br>molecular compounds consist of molecules (e.g., H₂O or CO₂).<br>NCERT source - Unit 3 Q38<br>NCERT source - Unit 3 Q40<br>Core (2) | worked solutions 54<br>15. Unit 3 Q44(b,d) - Polyatomic ion and formula recall 16. Unit 3 Q47 - Formulae from common names<br>Set-up: 2Na⁺ + CO₃²⁻ → Na₂CO₃; 2NH₄⁺ + SO₄²⁻ → (NH₄)₂SO₄. Set-up: KOH; NaHCO₃; CaCO₃; NaOH; C₂H₅OH; NaCl.<br>Recognise the charged group as a polyatomic ion. Write each standard formula.<br>1 1<br>Balance Na⁺ with CO₃²⁻. Add atomic-mass contributions using subscripts.<br>2 2<br>Balance NH₄⁺ with SO₄²⁻ and bracket repeated NH₄. For ionic solids, “formula mass” is the more precise term even where the<br>3 3<br>source uses molecular mass.<br>Final answer<br>Final answer<br>Polyatomic ion; Na₂CO₃; (NH₄)₂SO₄.<br>KOH 56 u; NaHCO₃ 84 u; CaCO₃ 100 u; NaOH 40 u; C₂H₅OH 46 u;<br>NaCl 58.5 u.<br>NCERT source - Unit 3 Q44(b,d)<br>NCERT source - Unit 3 Q47<br>Core (2) | worked solutions 55<br>17. Unit 4 Q1 - Electronic distribution of magnesium 18. Unit 4 Q9 - Electron count in a +3 ion<br>Set-up: 12 electrons → K=2, L=8, M=2. Set-up: p=27-14=13; neutral e=13; ion e=13-3=10.<br>Neutral Mg has 12 electrons. Protons=27-14=13.<br>1 1<br>K shell gets 2, L shell 8, leaving 2 for M. Neutral atom would have 13 electrons.<br>2 2<br>+3 means 3 electrons lost: 13-3=10.<br>3<br>Final answer<br>2, 8, 2.<br>Final answer<br>10 electrons.<br>NCERT source - Unit 4 Q1<br>NCERT source - Unit 4 Q9<br>Core (2) | worked solutions 56<br>19. Unit 4 Q10 - Identify Mg²⁺ 20. Unit 4 Q12 - Can valency 1 occur in metals and non-<br>metals?<br>Set-up: Mg atom 2,8,2 → lose 2 e⁻ → Mg²⁺ 2,8; nucleus<br>unchanged. Set-up: Valency 1 can occur for metals and non-metals.<br>1 Atomic number Mg=12 → 12 protons. 1 Use examples: Na (metal) and Cl (non-metal).<br>2 Mass number 24 → 12 neutrons. 2 Both have valency magnitude 1, for opposite electron-transfer tendencies.<br>Mg²⁺ has lost 2 electrons → 10 electrons.<br>3<br>Final answer<br>Either metals or non-metals.<br>Final answer<br>Option (d): p=12, n=12, e=10 (2,8).<br>NCERT source - Unit 4 Q12<br>NCERT source - Unit 4 Q10<br>Core (2) | worked solutions 57<br>21. Unit 4 Q14 - Valency from 3 protons 22. Unit 4 Q15 - Electronic distribution of aluminium<br>Set-up: 2,1 → valence electrons=1 → valency=1. Set-up: 13 electrons → 2,8,3.<br>3 protons means atomic number 3 and 3 electrons. Neutral Al has 13 electrons.<br>1 1<br>Distribution 2,1. K=2, L=8, M=3.<br>2 2<br>One outer electron gives valency 1.<br>3<br>Final answer<br>2, 8, 3.<br>Final answer<br>1.<br>NCERT source - Unit 4 Q15<br>NCERT source - Unit 4 Q14<br>Core (2) | worked solutions 58<br>23. Unit 4 Q21 - Do chlorine isotopes have different 24. Unit 4 Q23 - Valency from shell diagrams<br>valencies?<br>Set-up: (a) 2,8,8 → 0; (b) 2,7 → 1 (anion tendency, −1<br>Set-up: Both chlorine isotopes have 17 electrons: 2,8,7 → charge if it gains one electron).<br>valency 1.<br>Read the outermost-shell occupancy.<br>1<br>Isotopes differ in neutrons, not protons.<br>1<br>Complete octet → valency 0.<br>2<br>Same atomic number gives the same electron distribution.<br>2<br>Seven valence electrons → one electron needed → valency 1.<br>3<br>Therefore both chlorine isotopes have valency 1.<br>3<br>Final answer<br>Final answer<br>(a) 0; (b) 1.<br>No. Both have the same valency, 1.<br>NCERT source - Unit 4 Q23<br>NCERT source - Unit 4 Q21<br>Core (2) | worked solutions 59<br>25. Unit 4 Q24 - Ion formed by losing one outer electron 26. Unit 4 Q25 - Chlorine shell distribution<br>Set-up: X → X⁺ + e⁻. Set-up: Cl: 2,8,7; L shell contains 8 electrons.<br>Start with neutral atom. 17 electrons distribute 2,8,7.<br>1 1<br>Remove one electron. The L shell is the second shell, containing 8 electrons.<br>2 2<br>Net charge becomes +1; the ion is a cation.<br>3<br>Final answer<br>2,8,7; L shell has 8 electrons.<br>Final answer<br>A +1 cation.<br>NCERT source - Unit 4 Q25<br>NCERT source - Unit 4 Q24<br>Core (2) | worked solutions 60<br>27. Unit 4 Q26 - Charge after gaining electrons 28. Unit 4 Q27 - Atomic number, mass number and valency<br>from diagrams<br>Set-up: X + 2e⁻ → X²⁻.<br>Set-up: X → Z=5, A=11, valency3; Y → 8,18,2; Z → 15,31,<br>1 Outer shell has 6 electrons. valency3 in the simple octet rule (source answer<br>conventions may also list 3,5 for phosphorus).<br>Two electrons are needed for an octet.<br>2<br>3 Gain of 2 e⁻ gives 2− charge. 1 Read p and n from each nucleus.<br>Atomic number=p; mass number=p+n.<br>2<br>Final answer<br>Count valence electrons and apply the octet rule for the simple valency.<br>3<br>A −2 anion.<br>Final answer<br>NCERT source - Unit 4 Q26<br>X: 5,11,3; Y: 8,18,2; Z: 15,31,3 (phosphorus is also commonly<br>listed with variable valency 3,5).<br>NCERT source - Unit 4 Q27<br>Core (2) | worked solutions 61<br>29. Unit 4 Q33 - Why helium valency is zero 30. Unit 4 Q34(c,d) - Valencies and electronic configurations<br>Set-up: He: K shell = 2/2 complete → valency 0. Set-up: Ne complete octet → valency0; Cl needs one →<br>valency1.<br>Helium has only the K shell.<br>1<br>Write shell distributions.<br>1<br>K shell capacity at this level is 2.<br>2<br>Apply complete-shell / octet logic for valency.<br>2<br>Its shell is complete, so valency is 0.<br>3<br>Final answer<br>Final answer<br>Ne valency 0; Cl valency 1; Si = 2,8,4; S = 2,8,6.<br>Valency 0 because helium has a complete duplet.<br>NCERT source - Unit 4 Q34(c,d)<br>NCERT source - Unit 4 Q33<br>Core (2) | worked solutions 62<br>31. Unit 4 Q35 - Valency from mass and atomic number 32. Unit 4 Q36 - Why noble gases have zero valency<br>Set-up: 2 electrons completely fill K shell → valency 0. Set-up: Complete valence shell → little tendency to gain/<br>lose/share electrons → valency 0.<br>Atomic number 2 → 2 electrons.<br>1<br>He: 2; Ne: 2,8; Ar: 2,8,8.<br>1<br>K shell is full at 2.<br>2<br>Each has a filled outer shell.<br>2<br>Therefore valency is 0.<br>3<br>Hence zero valency in this model.<br>3<br>Final answer<br>Final answer<br>0.<br>They have complete outer shells (He duplet; Ne/Ar octet), so<br>valency is zero.<br>NCERT source - Unit 4 Q35<br>NCERT source - Unit 4 Q36<br>Core (2) | worked solutions 63
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 6</span>
+          <span class="tag-pill">Q33 · Page 40</span>
+        </div>
+        <div class="q-title">Question 4 - Unit 3 Q47: Formulae from common</div>
+        <p class="q-prompt">names to an answer. NCERT Try the question First nudge Write formulae (and source-requested formula/molecular Then count atoms to find mass. masses) for caustic potash, baking powder, limestone, caustic soda, ethanol and common salt.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            33. Unit 4 Q42 - Sodium atom versus sodium ion
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 6</span>
+          <span class="tag-pill">Q34 · Page 41</span>
+        </div>
+        <div class="q-title">Question 5 - Sample II Q18: Sample II: formulae and</div>
+        <p class="q-prompt">mass ratios committed to an answer. NCERT Try the question First nudge Write formulae and combining-mass ratios for NH₃, CO, HCl and Use subscript × atomic mass for each element. AlF₃.</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            34. Sample I Q19 - Sample I: read valency from atomic<br>diagrams<br>Set-up: Na → Na⁺ + e⁻; Z remains 11.<br>Set-up: Source answer table: X valency3/Z=5/A=11; Y<br>1 Neutral Na has 11 electrons: 2,8,1. valency2/Z=8/A=18; Z valency3,5/Z=15/A=31.<br>Losing one electron gives Na⁺ with 10 electrons: 2,8.<br>2 Read the diagram nucleus and shells.<br>1<br>Protons remain 11, so atomic number stays 11.<br>3 Atomic no.=protons; mass no.=protons+neutrons.<br>2<br>Use outer-shell electrons for valency; phosphorus may show 3 and 5 in<br>Final answer 3<br>the source convention.<br>Na atom: 2,8,1; Na⁺: 2,8; atomic number 11 for both.<br>Final answer<br>NCERT source - Unit 4 Q42 X: 3,5,11; Y: 2,8,18; Z: 3,5 valency, 15 atomic number, 31 mass<br>number.<br>NCERT source - Sample I Q19<br>Core (2) | worked solutions 64
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 7</span>
+          <span class="tag-pill">Q35 · Page 43</span>
+        </div>
+        <div class="q-title">Question 1 - Unit 3 Q22: Distinguish sugar from salt</div>
+        <p class="q-prompt">without tasting committed to an answer. NCERT Try the question First nudge A white powder is either sugar or salt. Suggest a safe Dissolve a small amount in water and test electrical conductivity with identification method without tasting. a simple circuit. See the idea - what particles are present?</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            35.5; AlF₃: 27:<br>Na(1), O(2); C(4), O(2). (3×19); MgS: 24:32.<br>Write the valency of each element. Write each correct formula.<br>1 1<br>Choose the smallest ratio that satisfies both valencies. Multiply atomic mass by subscript.<br>2 2<br>Simplify ratios such as C:O = 1:2 rather than 2:4. Simplify the mass ratio where appropriate.<br>3 3<br>Final answer Final answer<br>CaF₂, H₂S, NH₃, CCl₄, Na₂O, CO₂. NH₃ 14:3; CO 3:4; HCl 2:71; AlF₃ 9:19; MgS 3:4.<br>NCERT source - Unit 3 Q15 NCERT source - Unit 3 Q17<br>Core (2) | worked solutions 51<br>09. Unit 3 Q18 - Count atoms in ions and molecules 10. Unit 3 Q21 - Classify species by atomicity<br>Set-up: CO₃²⁻: 1 C + 3 O; PO₄³⁻: 1 P + 4 O; P₂O₅: 2 P + 5 Set-up: Examples: F₂ = 2 atoms; NO₂ = 3; CH₄ = 5; He = 1.<br>O; CO: 1 C + 1 O.<br>Count atoms in one formula/molecule.<br>1<br>Read element symbols and subscripts.<br>1<br>Convert the count to mono-/di-/tri-/tetra-/polyatomic language.<br>2<br>Add the atom counts.<br>2<br>Final answer<br>Treat the superscript charge separately from composition.<br>3<br>F₂ diatomic; NO₂ triatomic; N₂O triatomic; C₂H₆ octatomic; P₄<br>tetraatomic; H₂O₂ tetraatomic; P₄O₁₀ 14-atomic/polyatomic; O₃<br>Final answer<br>triatomic; HCl diatomic; CH₄ pentatomic; He monoatomic; Ag<br>4, 5, 7 and 2 atoms respectively. monoatomic.<br>NCERT source - Unit 3 Q18 NCERT source - Unit 3 Q21<br>Core (2) | worked solutions 52<br>11. Unit 3 Q22 - Distinguish sugar from salt without tasting 12. Unit 3 Q26 - CaCl₂ dissociation into ions<br>Set-up: Salt solution contains mobile ions and conducts; Set-up: 2 mol CaCl₂ → 6 mol ions → 6Nₐ ions.<br>sugar solution remains molecular and conducts poorly/not<br>appreciably. 1 M(CaCl₂)=40+2×35.5=111 g mol⁻¹.<br>n=222/111=2 mol CaCl₂.<br>2<br>Prepare separate aqueous test solution.<br>1<br>Each formula unit gives 3 ions, so ion amount=6 mol.<br>3<br>Use a conductivity tester.<br>2<br>N=6×6.022×10²³=3.6132×10²⁴ ions.<br>4<br>Conducting solution indicates salt; non-conducting/very poor conducting<br>3<br>solution indicates sugar.<br>Final answer<br>Final answer 3.6132 × 10²⁴ ions (using Nₐ = 6.022 × 10²³ mol⁻¹).<br>Dissolve in water and test conductivity: salt solution conducts<br>because of ions; sugar solution does not appreciably conduct.<br>NCERT source - Unit 3 Q26<br>NCERT source - Unit 3 Q22<br>Core (2) | worked solutions 53<br>13. Unit 3 Q38 - Ion count from NaCl 14. Unit 3 Q40 - Ionic versus molecular compounds<br>Set-up: 0.10 mol NaCl → 0.20 mol ions → 0.20Nₐ. Set-up: Examples: NaCl/CaCl₂ ionic; H₂O/CO₂ molecular.<br>n(NaCl)=5.85/58.5=0.10 mol. State what particles are present.<br>1 1<br>Ion amount=2×0.10=0.20 mol. Give at least one valid example of each.<br>2 2<br>Number of ions=0.20×6.022×10²³=1.2044×10²³. Use “formula unit” language for ionic solids.<br>3 3<br>Final answer Final answer<br>1.2044 × 10²³ ions. Ionic compounds are built from cations and anions (e.g., NaCl);<br>molecular compounds consist of molecules (e.g., H₂O or CO₂).<br>NCERT source - Unit 3 Q38<br>NCERT source - Unit 3 Q40<br>Core (2) | worked solutions 54<br>15. Unit 3 Q44(b,d) - Polyatomic ion and formula recall 16. Unit 3 Q47 - Formulae from common names<br>Set-up: 2Na⁺ + CO₃²⁻ → Na₂CO₃; 2NH₄⁺ + SO₄²⁻ → (NH₄)₂SO₄. Set-up: KOH; NaHCO₃; CaCO₃; NaOH; C₂H₅OH; NaCl.<br>Recognise the charged group as a polyatomic ion. Write each standard formula.<br>1 1<br>Balance Na⁺ with CO₃²⁻. Add atomic-mass contributions using subscripts.<br>2 2<br>Balance NH₄⁺ with SO₄²⁻ and bracket repeated NH₄. For ionic solids, “formula mass” is the more precise term even where the<br>3 3<br>source uses molecular mass.<br>Final answer<br>Final answer<br>Polyatomic ion; Na₂CO₃; (NH₄)₂SO₄.<br>KOH 56 u; NaHCO₃ 84 u; CaCO₃ 100 u; NaOH 40 u; C₂H₅OH 46 u;<br>NaCl 58.5 u.<br>NCERT source - Unit 3 Q44(b,d)<br>NCERT source - Unit 3 Q47<br>Core (2) | worked solutions 55<br>17. Unit 4 Q1 - Electronic distribution of magnesium 18. Unit 4 Q9 - Electron count in a +3 ion<br>Set-up: 12 electrons → K=2, L=8, M=2. Set-up: p=27-14=13; neutral e=13; ion e=13-3=10.<br>Neutral Mg has 12 electrons. Protons=27-14=13.<br>1 1<br>K shell gets 2, L shell 8, leaving 2 for M. Neutral atom would have 13 electrons.<br>2 2<br>+3 means 3 electrons lost: 13-3=10.<br>3<br>Final answer<br>2, 8, 2.<br>Final answer<br>10 electrons.<br>NCERT source - Unit 4 Q1<br>NCERT source - Unit 4 Q9<br>Core (2) | worked solutions 56<br>19. Unit 4 Q10 - Identify Mg²⁺ 20. Unit 4 Q12 - Can valency 1 occur in metals and non-<br>metals?<br>Set-up: Mg atom 2,8,2 → lose 2 e⁻ → Mg²⁺ 2,8; nucleus<br>unchanged. Set-up: Valency 1 can occur for metals and non-metals.<br>1 Atomic number Mg=12 → 12 protons. 1 Use examples: Na (metal) and Cl (non-metal).<br>2 Mass number 24 → 12 neutrons. 2 Both have valency magnitude 1, for opposite electron-transfer tendencies.<br>Mg²⁺ has lost 2 electrons → 10 electrons.<br>3<br>Final answer<br>Either metals or non-metals.<br>Final answer<br>Option (d): p=12, n=12, e=10 (2,8).<br>NCERT source - Unit 4 Q12<br>NCERT source - Unit 4 Q10<br>Core (2) | worked solutions 57<br>21. Unit 4 Q14 - Valency from 3 protons 22. Unit 4 Q15 - Electronic distribution of aluminium<br>Set-up: 2,1 → valence electrons=1 → valency=1. Set-up: 13 electrons → 2,8,3.<br>3 protons means atomic number 3 and 3 electrons. Neutral Al has 13 electrons.<br>1 1<br>Distribution 2,1. K=2, L=8, M=3.<br>2 2<br>One outer electron gives valency 1.<br>3<br>Final answer<br>2, 8, 3.<br>Final answer<br>1.<br>NCERT source - Unit 4 Q15<br>NCERT source - Unit 4 Q14<br>Core (2) | worked solutions 58<br>23. Unit 4 Q21 - Do chlorine isotopes have different 24. Unit 4 Q23 - Valency from shell diagrams<br>valencies?<br>Set-up: (a) 2,8,8 → 0; (b) 2,7 → 1 (anion tendency, −1<br>Set-up: Both chlorine isotopes have 17 electrons: 2,8,7 → charge if it gains one electron).<br>valency 1.<br>Read the outermost-shell occupancy.<br>1<br>Isotopes differ in neutrons, not protons.<br>1<br>Complete octet → valency 0.<br>2<br>Same atomic number gives the same electron distribution.<br>2<br>Seven valence electrons → one electron needed → valency 1.<br>3<br>Therefore both chlorine isotopes have valency 1.<br>3<br>Final answer<br>Final answer<br>(a) 0; (b) 1.<br>No. Both have the same valency, 1.<br>NCERT source - Unit 4 Q23<br>NCERT source - Unit 4 Q21<br>Core (2) | worked solutions 59<br>25. Unit 4 Q24 - Ion formed by losing one outer electron 26. Unit 4 Q25 - Chlorine shell distribution<br>Set-up: X → X⁺ + e⁻. Set-up: Cl: 2,8,7; L shell contains 8 electrons.<br>Start with neutral atom. 17 electrons distribute 2,8,7.<br>1 1<br>Remove one electron. The L shell is the second shell, containing 8 electrons.<br>2 2<br>Net charge becomes +1; the ion is a cation.<br>3<br>Final answer<br>2,8,7; L shell has 8 electrons.<br>Final answer<br>A +1 cation.<br>NCERT source - Unit 4 Q25<br>NCERT source - Unit 4 Q24<br>Core (2) | worked solutions 60<br>27. Unit 4 Q26 - Charge after gaining electrons 28. Unit 4 Q27 - Atomic number, mass number and valency<br>from diagrams<br>Set-up: X + 2e⁻ → X²⁻.<br>Set-up: X → Z=5, A=11, valency3; Y → 8,18,2; Z → 15,31,<br>1 Outer shell has 6 electrons. valency3 in the simple octet rule (source answer<br>conventions may also list 3,5 for phosphorus).<br>Two electrons are needed for an octet.<br>2<br>3 Gain of 2 e⁻ gives 2− charge. 1 Read p and n from each nucleus.<br>Atomic number=p; mass number=p+n.<br>2<br>Final answer<br>Count valence electrons and apply the octet rule for the simple valency.<br>3<br>A −2 anion.<br>Final answer<br>NCERT source - Unit 4 Q26<br>X: 5,11,3; Y: 8,18,2; Z: 15,31,3 (phosphorus is also commonly<br>listed with variable valency 3,5).<br>NCERT source - Unit 4 Q27<br>Core (2) | worked solutions 61<br>29. Unit 4 Q33 - Why helium valency is zero 30. Unit 4 Q34(c,d) - Valencies and electronic configurations<br>Set-up: He: K shell = 2/2 complete → valency 0. Set-up: Ne complete octet → valency0; Cl needs one →<br>valency1.<br>Helium has only the K shell.<br>1<br>Write shell distributions.<br>1<br>K shell capacity at this level is 2.<br>2<br>Apply complete-shell / octet logic for valency.<br>2<br>Its shell is complete, so valency is 0.<br>3<br>Final answer<br>Final answer<br>Ne valency 0; Cl valency 1; Si = 2,8,4; S = 2,8,6.<br>Valency 0 because helium has a complete duplet.<br>NCERT source - Unit 4 Q34(c,d)<br>NCERT source - Unit 4 Q33<br>Core (2) | worked solutions 62<br>31. Unit 4 Q35 - Valency from mass and atomic number 32. Unit 4 Q36 - Why noble gases have zero valency<br>Set-up: 2 electrons completely fill K shell → valency 0. Set-up: Complete valence shell → little tendency to gain/<br>lose/share electrons → valency 0.<br>Atomic number 2 → 2 electrons.<br>1<br>He: 2; Ne: 2,8; Ar: 2,8,8.<br>1<br>K shell is full at 2.<br>2<br>Each has a filled outer shell.<br>2<br>Therefore valency is 0.<br>3<br>Hence zero valency in this model.<br>3<br>Final answer<br>Final answer<br>0.<br>They have complete outer shells (He duplet; Ne/Ar octet), so<br>valency is zero.<br>NCERT source - Unit 4 Q35<br>NCERT source - Unit 4 Q36<br>Core (2) | worked solutions 63<br>33. Unit 4 Q42 - Sodium atom versus sodium ion 34. Sample I Q19 - Sample I: read valency from atomic<br>diagrams<br>Set-up: Na → Na⁺ + e⁻; Z remains 11.<br>Set-up: Source answer table: X valency3/Z=5/A=11; Y<br>1 Neutral Na has 11 electrons: 2,8,1. valency2/Z=8/A=18; Z valency3,5/Z=15/A=31.<br>Losing one electron gives Na⁺ with 10 electrons: 2,8.<br>2 Read the diagram nucleus and shells.<br>1<br>Protons remain 11, so atomic number stays 11.<br>3 Atomic no.=protons; mass no.=protons+neutrons.<br>2<br>Use outer-shell electrons for valency; phosphorus may show 3 and 5 in<br>Final answer 3<br>the source convention.<br>Na atom: 2,8,1; Na⁺: 2,8; atomic number 11 for both.<br>Final answer<br>NCERT source - Unit 4 Q42 X: 3,5,11; Y: 2,8,18; Z: 3,5 valency, 15 atomic number, 31 mass<br>number.<br>NCERT source - Sample I Q19<br>Core (2) | worked solutions 64<br>35. Sample I Q20 - Sample I: ion formed after electron loss
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 7</span>
+          <span class="tag-pill">Q36 · Page 44</span>
+        </div>
+        <div class="q-title">Question 2 - Unit 3 Q26: CaCl₂ dissociation into ions Try it first. Cover the answer-check box until you have committed</div>
+        <p class="q-prompt">to an answer. NCERT Try the question First nudge 222 g CaCl₂ is dissolved in water. How many ions are produced One formula unit gives 3 ions. 222 g CaCl₂ is 2 mol if M = 111 g mol⁻¹. according to CaCl₂ → Ca²⁺ + 2Cl⁻?</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            36. Sample II Q18 - Sample II: formulae and mass ratios<br>Set-up: X → X⁺ + e⁻. Set-up: NH₃ 14:3; CO 12:16; HCl 1:35.5; AlF₃ 27:57.<br>One negative charge is removed from a neutral atom. Write formula.<br>1 1<br>The resulting ion has net +1 charge. Calculate element mass contributions.<br>2 2<br>Simplify ratio.<br>3<br>Final answer<br>A +1 cation.<br>Final answer<br>NH₃ 14:3; CO 3:4; HCl 2:71; AlF₃ 9:19.<br>NCERT source - Sample I Q20<br>NCERT source - Sample II Q18<br>Core (2) | worked solutions 65
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 7</span>
+          <span class="tag-pill">Q37 · Page 45</span>
+        </div>
+        <div class="q-title">Question 3 - Unit 3 Q38: Ion count from NaCl Try it first. Cover the answer-check box until you have committed</div>
+        <p class="q-prompt">to an answer. NCERT Try the question First nudge Compute the number of ions present when 5.85 g NaCl is M(NaCl)=58.5 g mol⁻¹; 5.85 g = 0.10 mol NaCl; each formula unit treated as dissociated ions. gives 2 ions. See the idea - count particles after dissociation</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            37. Sample II Q19 - Sample II: ionic formula writing
+          </div>
+        </details>
+      </div>
+    
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-badge">PART 7</span>
+          <span class="tag-pill">Q38 · Page 46</span>
+        </div>
+        <div class="q-title">Question 4 - Unit 3 Q40: Ionic versus molecular</div>
+        <p class="q-prompt">compounds to an answer. NCERT Try the question First nudge Define ionic and molecular compounds and give examples. Ionic compounds consist of oppositely charged ions; molecular compounds consist of discrete molecules formed by atoms joined together. See the idea - what particles are present? ionic vs molecular cations + anions</p>
+        <details class="solution-detail">
+          <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+          <div class="solution-content">
+            38. Sample II Q20 - Sample II: helium valency<br>Set-up: Al(NO₃)₃; Ca₃(PO₄)₂; HgCl₂; Mg(CH₃COO)₂. Set-up: He: 2 → complete K shell → valency 0.<br>Balance charges to the smallest neutral ratio. K shell holds a maximum of 2 electrons.<br>1 1<br>Bracket any polyatomic ion used more than once. Helium already has 2, so no gain/loss is needed.<br>2 2<br>Final answer Final answer<br>Al(NO₃)₃; Ca₃(PO₄)₂; HgCl₂; Mg(CH₃COO)₂. Helium has a complete duplet, so its valency is zero.<br>NCERT source - Sample II Q19 NCERT source - Sample II Q20<br>Core (2) | worked solutions 66
+          </div>
+        </details>
+      </div>
+    </div>
+<div id="part-1" class="tab-content">
+
+      <div class="content-card">
+        <h2><span>⚡</span> PART 1: ELECTRONIC CONFIGURATION & VALENCE SHELL</h2>
+        <p>Focused practice problems with immediate answer-check boxes and reasoning steps.</p>
+      </div>
+    
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 1</span>
+                  <span class="tag-pill">Q01 · Page 3</span>
+                </div>
+                <div class="q-title">Question 1 - Unit 4 Q1: Electronic distribution of</div>
+                <p class="q-prompt">magnesium to an answer. NCERT Try the question First nudge Choose the correct shell distribution for Mg. Fill shells as 2, then 8, then the remainder. See the idea - outer shell controls ordinary valency</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    01. Unit 3 Q2 - Atoms, molecules and ions
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 1</span>
+                  <span class="tag-pill">Q02 · Page 4</span>
+                </div>
+                <div class="q-title">Question 2 - Unit 4 Q15: Electronic distribution of</div>
+                <p class="q-prompt">aluminium to an answer. NCERT Try the question First nudge Choose the correct shell distribution for aluminium. Fill 2, then 8, then 3. See the idea - outer shell controls ordinary valency</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    02. Unit 3 Q3 - Nitrogen gas: symbol or molecule?<br>Set-up: Atoms can build molecules/ions, and many atoms Set-up: N atom symbol = N; nitrogen gas molecule = N₂.<br>aggregate to form matter; but it is false that atoms can<br>never exist independently. 1 The element symbol is N.<br>Nitrogen gas exists as diatomic molecules.<br>2<br>Noble gases such as helium exist as individual atoms.<br>1<br>So the correct representation is N₂.<br>3<br>Therefore the absolute statement “atoms cannot exist independently” is<br>2<br>false.<br>Final answer<br>Atoms are nevertheless the basic units from which molecules and ions are<br>3<br>formed. N₂.<br>Final answer<br>NCERT source - Unit 3 Q3<br>The false statement is: “Atoms are not able to exist<br>independently.”<br>NCERT source - Unit 3 Q2<br>Core (2) | worked solutions 48
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 1</span>
+                  <span class="tag-pill">Q03 · Page 5</span>
+                </div>
+                <div class="q-title">Question 3 - Unit 4 Q25: Chlorine shell distribution Try it first. Cover the answer-check box until you have committed</div>
+                <p class="q-prompt">to an answer. NCERT Try the question First nudge Write chlorine electron distribution and state electrons in the L Fill shells 2,8, then 7. shell.</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    03. Unit 3 Q11 - Which chemical formula is valid?
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 1</span>
+                  <span class="tag-pill">Q04 · Page 6</span>
+                </div>
+                <div class="q-title">Question 4 - Unit 4 Q34(c,d): Valencies and</div>
+                <p class="q-prompt">electronic configurations committed to an answer. NCERT Try the question First nudge For the bonding-relevant parts: find valencies of Ne (Z=10) and Ne: 2,8; Cl: 2,8,7; Si: 2,8,4; S: 2,8,6. Cl (Z=17), and write configurations of Si and S.</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    04. Unit 3 Q12 - Write formulae from compound names<br>Set-up: CaCl would need CaCl₂; NaSO₄ would need Na₂SO₄; NaS Set-up: Cu²⁺/Br⁻; Al³⁺/NO₃⁻; Ca²⁺/PO₄³⁻; Fe³⁺/S²⁻; Hg²⁺/<br>would need Na₂S; Bi³⁺ and PO₄³⁻ combine 1:1. Cl⁻; Mg²⁺/CH₃COO⁻.<br>Write the ion charges. Write each ion with charge.<br>1 1<br>Balance total positive and negative charge. Use LCM of charge magnitudes where needed.<br>2 2<br>Only Bi³⁺ + PO₄³⁻ gives a neutral 1:1 formula: BiPO₄. Convert the ion ratio into subscripts.<br>3 3<br>Use brackets if a polyatomic ion occurs more than once.<br>4<br>Final answer<br>BiPO₄, bismuth phosphate.<br>Final answer<br>CuBr₂; Al(NO₃)₃; Ca₃(PO₄)₂; Fe₂S₃; HgCl₂; Mg(CH₃COO)₂.<br>NCERT source - Unit 3 Q11<br>NCERT source - Unit 3 Q12<br>Core (2) | worked solutions 49
+                  </div>
+                </details>
+              </div>
+            </div>
+<div id="part-2" class="tab-content">
+
+      <div class="content-card">
+        <h2><span>⚡</span> PART 2: VALENCY, DUPLET & OCTET</h2>
+        <p>Focused practice problems with immediate answer-check boxes and reasoning steps.</p>
+      </div>
+    
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 2</span>
+                  <span class="tag-pill">Q05 · Page 8</span>
+                </div>
+                <div class="q-title">Question 1 - Unit 4 Q12: Can valency 1 occur in</div>
+                <p class="q-prompt">metals and non-metals? committed to an answer. NCERT Try the question First nudge Choose the correct statement about elements with valency 1. Na has valency 1 as a metal; Cl has valency 1 as a non-metal. See the idea</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    05. Unit 3 Q13 - All neutral compounds from a set of ions
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 2</span>
+                  <span class="tag-pill">Q06 · Page 9</span>
+                </div>
+                <div class="q-title">Question 2 - Unit 4 Q14: Valency from 3 protons Try it first. Cover the answer-check box until you have committed</div>
+                <p class="q-prompt">to an answer. NCERT Try the question First nudge An atom has 3 protons and 4 neutrons. Find its valency. 3 electrons distribute as 2,1; one outer electron is easiest to lose. See the idea - outer shell controls ordinary valency</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    06. Unit 3 Q14 - Identify cations and anions<br>Set-up: Examples: Cu²⁺ + 2Cl⁻ → CuCl₂; 2Fe³⁺ + 3SO₄²⁻ → Set-up: CH₃COONa → Na⁺ + CH₃COO⁻; NaCl → Na⁺ + Cl⁻; H₂ has<br>Fe₂(SO₄)₃. no ions; NH₄NO₃ → NH₄⁺ + NO₃⁻.<br>Make the cation-anion grid. Classify each substance as ionic or molecular.<br>1 1<br>Balance each pair to net charge zero. For ionic compounds, identify positive and negative charged species.<br>2 2<br>Reduce to the simplest whole-number ratio. Keep polyatomic ions intact.<br>3 3<br>Final answer Final answer<br>CuCl₂, CuSO₄, Cu₃(PO₄)₂; NaCl, Na₂SO₄, Na₃PO₄; FeCl₃, Fe₂(SO₄)₃, CH₃COONa: Na⁺/CH₃COO⁻; NaCl: Na⁺/Cl⁻; H₂: none; NH₄NO₃: NH₄⁺/<br>FePO₄. NO₃⁻.<br>NCERT source - Unit 3 Q13 NCERT source - Unit 3 Q14<br>Core (2) | worked solutions 50
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 2</span>
+                  <span class="tag-pill">Q07 · Page 10</span>
+                </div>
+                <div class="q-title">Question 3 - Unit 4 Q21: Do chlorine isotopes have</div>
+                <p class="q-prompt">different valencies? committed to an answer. NCERT Try the question First nudge Compare ³⁵Cl and ³⁷Cl: will their valencies differ? Isotopes have the same atomic number, so neutral atoms have the same electron configuration. See the idea - separate nucleus data from valence data atomic number mass number valency</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    07. Unit 3 Q15 - Formulae from pairs of elements
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 2</span>
+                  <span class="tag-pill">Q08 · Page 11</span>
+                </div>
+                <div class="q-title">Question 4 - Unit 4 Q23: Valency from shell</div>
+                <p class="q-prompt">diagrams to an answer. NCERT Try the question First nudge The source diagrams show (a) 2,8,8 and (b) 2,7. Find their For 2,7, the valency magnitude is 1 and the atom tends to gain one valencies. electron. See the idea - outer shell controls ordinary valency</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    08. Unit 3 Q17 - Formula plus combining-mass ratio<br>Set-up: Ca(2), F(1); H(1), S(2); N(3), H(1); C(4), Cl(1); Set-up: NH₃: 14:(3×1); CO: 12:16; HCl: 1:35.5; AlF₃: 27:<br>Na(1), O(2); C(4), O(2). (3×19); MgS: 24:32.<br>Write the valency of each element. Write each correct formula.<br>1 1<br>Choose the smallest ratio that satisfies both valencies. Multiply atomic mass by subscript.<br>2 2<br>Simplify ratios such as C:O = 1:2 rather than 2:4. Simplify the mass ratio where appropriate.<br>3 3<br>Final answer Final answer<br>CaF₂, H₂S, NH₃, CCl₄, Na₂O, CO₂. NH₃ 14:3; CO 3:4; HCl 2:71; AlF₃ 9:19; MgS 3:4.<br>NCERT source - Unit 3 Q15 NCERT source - Unit 3 Q17<br>Core (2) | worked solutions 51
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 2</span>
+                  <span class="tag-pill">Q09 · Page 12</span>
+                </div>
+                <div class="q-title">Question 5 - Unit 4 Q27: Atomic number, mass number</div>
+                <p class="q-prompt">and valency from diagrams committed to an answer. NCERT Try the question First nudge From the source shell diagrams X, Y and Z, determine atomic The figure shows X: 5p/6n with 2,3; Y: 8p/10n with 2,6; Z: 15p/16n number, mass number and valency. with 2,8,5. See the idea - separate nucleus data from valence data</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    09. Unit 3 Q18 - Count atoms in ions and molecules
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 2</span>
+                  <span class="tag-pill">Q10 · Page 13</span>
+                </div>
+                <div class="q-title">Question 6 - Unit 4 Q33: Why helium valency is zero Try it first. Cover the answer-check box until you have committed</div>
+                <p class="q-prompt">to an answer. NCERT Try the question First nudge Helium has two valence-shell electrons. Why is its valency not Helium already has a stable duplet, so it does not need to gain, lose or 2? share electrons in the simple model. See the idea - outer shell controls ordinary valency</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    10. Unit 3 Q21 - Classify species by atomicity<br>Set-up: CO₃²⁻: 1 C + 3 O; PO₄³⁻: 1 P + 4 O; P₂O₅: 2 P + 5 Set-up: Examples: F₂ = 2 atoms; NO₂ = 3; CH₄ = 5; He = 1.<br>O; CO: 1 C + 1 O.<br>Count atoms in one formula/molecule.<br>1<br>Read element symbols and subscripts.<br>1<br>Convert the count to mono-/di-/tri-/tetra-/polyatomic language.<br>2<br>Add the atom counts.<br>2<br>Final answer<br>Treat the superscript charge separately from composition.<br>3<br>F₂ diatomic; NO₂ triatomic; N₂O triatomic; C₂H₆ octatomic; P₄<br>tetraatomic; H₂O₂ tetraatomic; P₄O₁₀ 14-atomic/polyatomic; O₃<br>Final answer<br>triatomic; HCl diatomic; CH₄ pentatomic; He monoatomic; Ag<br>4, 5, 7 and 2 atoms respectively. monoatomic.<br>NCERT source - Unit 3 Q18 NCERT source - Unit 3 Q21<br>Core (2) | worked solutions 52
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 2</span>
+                  <span class="tag-pill">Q11 · Page 14</span>
+                </div>
+                <div class="q-title">Question 7 - Unit 4 Q35: Valency from mass and</div>
+                <p class="q-prompt">atomic number committed to an answer. NCERT Try the question First nudge Element X has mass number 4 and atomic number 2. Find its Distribution 2: full K shell (duplet). valency.</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    11. Unit 3 Q22 - Distinguish sugar from salt without tasting
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 2</span>
+                  <span class="tag-pill">Q12 · Page 15</span>
+                </div>
+                <div class="q-title">Question 8 - Unit 4 Q36: Why noble gases have</div>
+                <p class="q-prompt">zero valency to an answer. NCERT Try the question First nudge Explain why helium, neon and argon have zero valency. He has a complete duplet; Ne and Ar have complete octets in the simple shell model. See the idea - outer shell controls ordinary valency Na Cl Ne</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    12. Unit 3 Q26 - CaCl₂ dissociation into ions<br>Set-up: Salt solution contains mobile ions and conducts; Set-up: 2 mol CaCl₂ → 6 mol ions → 6Nₐ ions.<br>sugar solution remains molecular and conducts poorly/not<br>appreciably. 1 M(CaCl₂)=40+2×35.5=111 g mol⁻¹.<br>n=222/111=2 mol CaCl₂.<br>2<br>Prepare separate aqueous test solution.<br>1<br>Each formula unit gives 3 ions, so ion amount=6 mol.<br>3<br>Use a conductivity tester.<br>2<br>N=6×6.022×10²³=3.6132×10²⁴ ions.<br>4<br>Conducting solution indicates salt; non-conducting/very poor conducting<br>3<br>solution indicates sugar.<br>Final answer<br>Final answer 3.6132 × 10²⁴ ions (using Nₐ = 6.022 × 10²³ mol⁻¹).<br>Dissolve in water and test conductivity: salt solution conducts<br>because of ions; sugar solution does not appreciably conduct.<br>NCERT source - Unit 3 Q26<br>NCERT source - Unit 3 Q22<br>Core (2) | worked solutions 53
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 2</span>
+                  <span class="tag-pill">Q13 · Page 16</span>
+                </div>
+                <div class="q-title">Question 9 - Sample I Q19: Sample I: read valency</div>
+                <p class="q-prompt">from atomic diagrams committed to an answer. NCERT Try the question First nudge Use the sample-paper diagrams to report valency, atomic X and Y follow simple octet valency; Z represents phosphorus and the number and mass number of X, Y and Z. source answer table lists variable valency. See the idea - separate nucleus data from valence data</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    13. Unit 3 Q38 - Ion count from NaCl
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 2</span>
+                  <span class="tag-pill">Q14 · Page 17</span>
+                </div>
+                <div class="q-title">Question 10 - Sample II Q20: Sample II: helium</div>
+                <p class="q-prompt">valency to an answer. NCERT Try the question First nudge Explain why helium has 2 electrons in its valence shell but Duplet completion makes helium stable. valency 0.</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    14. Unit 3 Q40 - Ionic versus molecular compounds<br>Set-up: 0.10 mol NaCl → 0.20 mol ions → 0.20Nₐ. Set-up: Examples: NaCl/CaCl₂ ionic; H₂O/CO₂ molecular.<br>n(NaCl)=5.85/58.5=0.10 mol. State what particles are present.<br>1 1<br>Ion amount=2×0.10=0.20 mol. Give at least one valid example of each.<br>2 2<br>Number of ions=0.20×6.022×10²³=1.2044×10²³. Use “formula unit” language for ionic solids.<br>3 3<br>Final answer Final answer<br>1.2044 × 10²³ ions. Ionic compounds are built from cations and anions (e.g., NaCl);<br>molecular compounds consist of molecules (e.g., H₂O or CO₂).<br>NCERT source - Unit 3 Q38<br>NCERT source - Unit 3 Q40<br>Core (2) | worked solutions 54
+                  </div>
+                </details>
+              </div>
+            </div>
+<div id="part-3" class="tab-content">
+
+      <div class="content-card">
+        <h2><span>⚡</span> PART 3: IONS & ELECTRON TRANSFER</h2>
+        <p>Focused practice problems with immediate answer-check boxes and reasoning steps.</p>
+      </div>
+    
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 3</span>
+                  <span class="tag-pill">Q15 · Page 19</span>
+                </div>
+                <div class="q-title">Question 1 - Unit 3 Q14: Identify cations and anions Try it first. Cover the answer-check box until you have committed</div>
+                <p class="q-prompt">to an answer. NCERT Try the question First nudge State the cation and anion, if any, in CH₃COONa, NaCl, H₂ and Recognise polyatomic ions as intact charged groups. NH₄NO₃.</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    15. Unit 3 Q44(b,d) - Polyatomic ion and formula recall
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 3</span>
+                  <span class="tag-pill">Q16 · Page 20</span>
+                </div>
+                <div class="q-title">Question 2 - Unit 4 Q9: Electron count in a +3 ion Try it first. Cover the answer-check box until you have committed</div>
+                <p class="q-prompt">to an answer. NCERT Try the question First nudge An atom has mass number 27 and 14 neutrons; its ion carries Neutral atom electrons = protons; a +3 ion has lost 3 electrons. +3 charge. How many electrons are in the ion?</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    16. Unit 3 Q47 - Formulae from common names<br>Set-up: 2Na⁺ + CO₃²⁻ → Na₂CO₃; 2NH₄⁺ + SO₄²⁻ → (NH₄)₂SO₄. Set-up: KOH; NaHCO₃; CaCO₃; NaOH; C₂H₅OH; NaCl.<br>Recognise the charged group as a polyatomic ion. Write each standard formula.<br>1 1<br>Balance Na⁺ with CO₃²⁻. Add atomic-mass contributions using subscripts.<br>2 2<br>Balance NH₄⁺ with SO₄²⁻ and bracket repeated NH₄. For ionic solids, “formula mass” is the more precise term even where the<br>3 3<br>source uses molecular mass.<br>Final answer<br>Final answer<br>Polyatomic ion; Na₂CO₃; (NH₄)₂SO₄.<br>KOH 56 u; NaHCO₃ 84 u; CaCO₃ 100 u; NaOH 40 u; C₂H₅OH 46 u;<br>NaCl 58.5 u.<br>NCERT source - Unit 3 Q44(b,d)<br>NCERT source - Unit 3 Q47<br>Core (2) | worked solutions 55
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 3</span>
+                  <span class="tag-pill">Q17 · Page 21</span>
+                </div>
+                <div class="q-title">Question 3 - Unit 4 Q10: Identify Mg²⁺ Try it first. Cover the answer-check box until you have committed</div>
+                <p class="q-prompt">to an answer. NCERT Try the question First nudge From the source figure, identify the representation of Mg²⁺. Look for p=12, n=12 and electron distribution 2,8. See the idea - charge is electron bookkeeping</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    17. Unit 4 Q1 - Electronic distribution of magnesium
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 3</span>
+                  <span class="tag-pill">Q18 · Page 22</span>
+                </div>
+                <div class="q-title">Question 4 - Unit 4 Q24: Ion formed by losing one</div>
+                <p class="q-prompt">outer electron committed to an answer. NCERT Try the question First nudge An atom has one electron in its outermost shell. What ion forms One electron lost corresponds to +1 charge. if that electron is removed?</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    18. Unit 4 Q9 - Electron count in a +3 ion<br>Set-up: 12 electrons → K=2, L=8, M=2. Set-up: p=27-14=13; neutral e=13; ion e=13-3=10.<br>Neutral Mg has 12 electrons. Protons=27-14=13.<br>1 1<br>K shell gets 2, L shell 8, leaving 2 for M. Neutral atom would have 13 electrons.<br>2 2<br>+3 means 3 electrons lost: 13-3=10.<br>3<br>Final answer<br>2, 8, 2.<br>Final answer<br>10 electrons.<br>NCERT source - Unit 4 Q1<br>NCERT source - Unit 4 Q9<br>Core (2) | worked solutions 56
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 3</span>
+                  <span class="tag-pill">Q19 · Page 23</span>
+                </div>
+                <div class="q-title">Question 5 - Unit 4 Q26: Charge after gaining</div>
+                <p class="q-prompt">electrons to an answer. NCERT Try the question First nudge An atom has 6 electrons in its outermost shell. What ion forms if 6 → needs 2 more; gaining 2 electrons gives charge −2. it reaches noble-gas configuration by accepting electrons?</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    19. Unit 4 Q10 - Identify Mg²⁺
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 3</span>
+                  <span class="tag-pill">Q20 · Page 24</span>
+                </div>
+                <div class="q-title">Question 6 - Unit 4 Q42: Sodium atom versus</div>
+                <p class="q-prompt">sodium ion to an answer. NCERT Try the question First nudge Show electron distributions in a sodium atom and sodium ion, Na atom = 2,8,1. Na⁺ forms by losing one outer electron → 2,8. and state atomic number.</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    20. Unit 4 Q12 - Can valency 1 occur in metals and non-<br>metals?<br>Set-up: Mg atom 2,8,2 → lose 2 e⁻ → Mg²⁺ 2,8; nucleus<br>unchanged. Set-up: Valency 1 can occur for metals and non-metals.<br>1 Atomic number Mg=12 → 12 protons. 1 Use examples: Na (metal) and Cl (non-metal).<br>2 Mass number 24 → 12 neutrons. 2 Both have valency magnitude 1, for opposite electron-transfer tendencies.<br>Mg²⁺ has lost 2 electrons → 10 electrons.<br>3<br>Final answer<br>Either metals or non-metals.<br>Final answer<br>Option (d): p=12, n=12, e=10 (2,8).<br>NCERT source - Unit 4 Q12<br>NCERT source - Unit 4 Q10<br>Core (2) | worked solutions 57
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 3</span>
+                  <span class="tag-pill">Q21 · Page 25</span>
+                </div>
+                <div class="q-title">Question 7 - Sample I Q20: Sample I: ion formed</div>
+                <p class="q-prompt">after electron loss committed to an answer. NCERT Try the question First nudge A source item repeats the case of one outer electron being One electron removed → +1. removed. State ion type and charge.</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    21. Unit 4 Q14 - Valency from 3 protons
+                  </div>
+                </details>
+              </div>
+            </div>
+<div id="part-4" class="tab-content">
+
+      <div class="content-card">
+        <h2><span>⚡</span> PART 4: IONIC COMPOUNDS & FORMULA UNITS</h2>
+        <p>Focused practice problems with immediate answer-check boxes and reasoning steps.</p>
+      </div>
+    
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 4</span>
+                  <span class="tag-pill">Q22 · Page 27</span>
+                </div>
+                <div class="q-title">Question 1 - Unit 3 Q12: Write formulae from</div>
+                <p class="q-prompt">compound names committed to an answer. NCERT Try the question First nudge Write formulae for copper(II) bromide, aluminium(III) nitrate, Use the smallest whole-number ratio that makes net charge zero; calcium phosphate, iron(III) sulphide, mercury(II) chloride and bracket a repeated polyatomic ion. magnesium acetate.</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    22. Unit 4 Q15 - Electronic distribution of aluminium<br>Set-up: 2,1 → valence electrons=1 → valency=1. Set-up: 13 electrons → 2,8,3.<br>3 protons means atomic number 3 and 3 electrons. Neutral Al has 13 electrons.<br>1 1<br>Distribution 2,1. K=2, L=8, M=3.<br>2 2<br>One outer electron gives valency 1.<br>3<br>Final answer<br>2, 8, 3.<br>Final answer<br>1.<br>NCERT source - Unit 4 Q15<br>NCERT source - Unit 4 Q14<br>Core (2) | worked solutions 58
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 4</span>
+                  <span class="tag-pill">Q23 · Page 28</span>
+                </div>
+                <div class="q-title">Question 2 - Unit 3 Q13: All neutral compounds from</div>
+                <p class="q-prompt">a set of ions committed to an answer. NCERT Try the question First nudge Form every neutral compound possible from Cu²⁺, Na⁺, Fe³⁺ For each pair, balance charges independently. with Cl⁻, SO₄²⁻ and PO₄³⁻.</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    23. Unit 4 Q21 - Do chlorine isotopes have different
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 4</span>
+                  <span class="tag-pill">Q24 · Page 29</span>
+                </div>
+                <div class="q-title">Question 3 - Unit 3 Q44(b,d): Polyatomic ion and</div>
+                <p class="q-prompt">formula recall committed to an answer. NCERT Try the question First nudge For the bonding-relevant parts of Q44: name a fixed charged Use CO₃²⁻ with Na⁺ and NH₄⁺ with SO₄²⁻. group of atoms and write formulae of sodium carbonate and ammonium sulphate.</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    24. Unit 4 Q23 - Valency from shell diagrams<br>valencies?<br>Set-up: (a) 2,8,8 → 0; (b) 2,7 → 1 (anion tendency, −1<br>Set-up: Both chlorine isotopes have 17 electrons: 2,8,7 → charge if it gains one electron).<br>valency 1.<br>Read the outermost-shell occupancy.<br>1<br>Isotopes differ in neutrons, not protons.<br>1<br>Complete octet → valency 0.<br>2<br>Same atomic number gives the same electron distribution.<br>2<br>Seven valence electrons → one electron needed → valency 1.<br>3<br>Therefore both chlorine isotopes have valency 1.<br>3<br>Final answer<br>Final answer<br>(a) 0; (b) 1.<br>No. Both have the same valency, 1.<br>NCERT source - Unit 4 Q23<br>NCERT source - Unit 4 Q21<br>Core (2) | worked solutions 59
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 4</span>
+                  <span class="tag-pill">Q25 · Page 30</span>
+                </div>
+                <div class="q-title">Question 4 - Sample II Q19: Sample II: ionic</div>
+                <p class="q-prompt">formula writing to an answer. NCERT Try the question First nudge Write formulae for aluminium nitrate, calcium phosphate, Al³⁺/NO₃⁻; Ca²⁺/PO₄³⁻; Hg²⁺/Cl⁻; Mg²⁺/CH₃COO⁻. mercury(II) chloride and magnesium acetate.</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    25. Unit 4 Q24 - Ion formed by losing one outer electron
+                  </div>
+                </details>
+              </div>
+            </div>
+<div id="part-5" class="tab-content">
+
+      <div class="content-card">
+        <h2><span>⚡</span> PART 5: MOLECULAR COMPOUNDS & ATOMICITY</h2>
+        <p>Focused practice problems with immediate answer-check boxes and reasoning steps.</p>
+      </div>
+    
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 5</span>
+                  <span class="tag-pill">Q26 · Page 32</span>
+                </div>
+                <div class="q-title">Question 1 - Unit 3 Q2: Atoms, molecules and ions Try it first. Cover the answer-check box until you have committed</div>
+                <p class="q-prompt">to an answer. NCERT Try the question First nudge Which statement about atoms is NOT true? The source Test each statement against a counterexample: He, Ne and Ar exist as contrasts independent atoms with atoms as building units of single atoms. molecules and ions.</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    26. Unit 4 Q25 - Chlorine shell distribution<br>Set-up: X → X⁺ + e⁻. Set-up: Cl: 2,8,7; L shell contains 8 electrons.<br>Start with neutral atom. 17 electrons distribute 2,8,7.<br>1 1<br>Remove one electron. The L shell is the second shell, containing 8 electrons.<br>2 2<br>Net charge becomes +1; the ion is a cation.<br>3<br>Final answer<br>2,8,7; L shell has 8 electrons.<br>Final answer<br>A +1 cation.<br>NCERT source - Unit 4 Q25<br>NCERT source - Unit 4 Q24<br>Core (2) | worked solutions 60
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 5</span>
+                  <span class="tag-pill">Q27 · Page 33</span>
+                </div>
+                <div class="q-title">Question 2 - Unit 3 Q3: Nitrogen gas: symbol or</div>
+                <p class="q-prompt">molecule? to an answer. NCERT Try the question First nudge Choose the correct chemical representation of nitrogen gas. Nitrogen gas is diatomic under ordinary conditions. See the idea - read notation by position</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    27. Unit 4 Q26 - Charge after gaining electrons
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 5</span>
+                  <span class="tag-pill">Q28 · Page 34</span>
+                </div>
+                <div class="q-title">Question 3 - Unit 3 Q18: Count atoms in ions and</div>
+                <p class="q-prompt">molecules to an answer. NCERT Try the question First nudge Count total atoms in CO₃²⁻, PO₄³⁻, P₂O₅ and CO. An absent subscript means 1. See the idea - read notation by position</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    28. Unit 4 Q27 - Atomic number, mass number and valency<br>from diagrams<br>Set-up: X + 2e⁻ → X²⁻.<br>Set-up: X → Z=5, A=11, valency3; Y → 8,18,2; Z → 15,31,<br>1 Outer shell has 6 electrons. valency3 in the simple octet rule (source answer<br>conventions may also list 3,5 for phosphorus).<br>Two electrons are needed for an octet.<br>2<br>3 Gain of 2 e⁻ gives 2− charge. 1 Read p and n from each nucleus.<br>Atomic number=p; mass number=p+n.<br>2<br>Final answer<br>Count valence electrons and apply the octet rule for the simple valency.<br>3<br>A −2 anion.<br>Final answer<br>NCERT source - Unit 4 Q26<br>X: 5,11,3; Y: 8,18,2; Z: 15,31,3 (phosphorus is also commonly<br>listed with variable valency 3,5).<br>NCERT source - Unit 4 Q27<br>Core (2) | worked solutions 61
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 5</span>
+                  <span class="tag-pill">Q29 · Page 35</span>
+                </div>
+                <div class="q-title">Question 4 - Unit 3 Q21: Classify species by</div>
+                <p class="q-prompt">atomicity to an answer. NCERT Try the question First nudge Classify F₂, NO₂, N₂O, C₂H₆, P₄, H₂O₂, P₄O₁₀, O₃, HCl, CH₄, He and Add all subscripts; an absent subscript means 1. Ag by the number of atoms in one particle.</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    29. Unit 4 Q33 - Why helium valency is zero
+                  </div>
+                </details>
+              </div>
+            </div>
+<div id="part-6" class="tab-content">
+
+      <div class="content-card">
+        <h2><span>⚡</span> PART 6: FORMULA WRITING & NOTATION</h2>
+        <p>Focused practice problems with immediate answer-check boxes and reasoning steps.</p>
+      </div>
+    
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 6</span>
+                  <span class="tag-pill">Q30 · Page 37</span>
+                </div>
+                <div class="q-title">Question 1 - Unit 3 Q11: Which chemical formula</div>
+                <p class="q-prompt">is valid? to an answer. NCERT Try the question First nudge From CaCl, BiPO₄, NaSO₄ and NaS, identify the correctly written Use common charges: Ca²⁺, Cl⁻; Bi³⁺, PO₄³⁻; Na⁺, SO₄²⁻; S²⁻. neutral compound and name it.</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    30. Unit 4 Q34(c,d) - Valencies and electronic configurations<br>Set-up: He: K shell = 2/2 complete → valency 0. Set-up: Ne complete octet → valency0; Cl needs one →<br>valency1.<br>Helium has only the K shell.<br>1<br>Write shell distributions.<br>1<br>K shell capacity at this level is 2.<br>2<br>Apply complete-shell / octet logic for valency.<br>2<br>Its shell is complete, so valency is 0.<br>3<br>Final answer<br>Final answer<br>Ne valency 0; Cl valency 1; Si = 2,8,4; S = 2,8,6.<br>Valency 0 because helium has a complete duplet.<br>NCERT source - Unit 4 Q34(c,d)<br>NCERT source - Unit 4 Q33<br>Core (2) | worked solutions 62
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 6</span>
+                  <span class="tag-pill">Q31 · Page 38</span>
+                </div>
+                <div class="q-title">Question 2 - Unit 3 Q15: Formulae from pairs of</div>
+                <p class="q-prompt">elements to an answer. NCERT Try the question First nudge Write formulae for compounds formed by Ca/F, H/S, N/H, C/Cl, Cross the valency only as a temporary aid; simplify if needed. Na/O and C/O.</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    31. Unit 4 Q35 - Valency from mass and atomic number
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 6</span>
+                  <span class="tag-pill">Q32 · Page 39</span>
+                </div>
+                <div class="q-title">Question 3 - Unit 3 Q17: Formula plus combining-</div>
+                <p class="q-prompt">mass ratio to an answer. NCERT Try the question First nudge Write formulae and mass ratios for ammonia, carbon monoxide, Mass contribution = subscript × atomic mass. hydrogen chloride, aluminium fluoride and magnesium sulphide.</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    32.<br>Write the valency of each element. Write each correct formula.<br>1 1<br>Choose the smallest ratio that satisfies both valencies. Multiply atomic mass by subscript.<br>2 2<br>Simplify ratios such as C:O = 1:2 rather than 2:4. Simplify the mass ratio where appropriate.<br>3 3<br>Final answer Final answer<br>CaF₂, H₂S, NH₃, CCl₄, Na₂O, CO₂. NH₃ 14:3; CO 3:4; HCl 2:71; AlF₃ 9:19; MgS 3:4.<br>NCERT source - Unit 3 Q15 NCERT source - Unit 3 Q17<br>Core (2) | worked solutions 51<br>09. Unit 3 Q18 - Count atoms in ions and molecules 10. Unit 3 Q21 - Classify species by atomicity<br>Set-up: CO₃²⁻: 1 C + 3 O; PO₄³⁻: 1 P + 4 O; P₂O₅: 2 P + 5 Set-up: Examples: F₂ = 2 atoms; NO₂ = 3; CH₄ = 5; He = 1.<br>O; CO: 1 C + 1 O.<br>Count atoms in one formula/molecule.<br>1<br>Read element symbols and subscripts.<br>1<br>Convert the count to mono-/di-/tri-/tetra-/polyatomic language.<br>2<br>Add the atom counts.<br>2<br>Final answer<br>Treat the superscript charge separately from composition.<br>3<br>F₂ diatomic; NO₂ triatomic; N₂O triatomic; C₂H₆ octatomic; P₄<br>tetraatomic; H₂O₂ tetraatomic; P₄O₁₀ 14-atomic/polyatomic; O₃<br>Final answer<br>triatomic; HCl diatomic; CH₄ pentatomic; He monoatomic; Ag<br>4, 5, 7 and 2 atoms respectively. monoatomic.<br>NCERT source - Unit 3 Q18 NCERT source - Unit 3 Q21<br>Core (2) | worked solutions 52<br>11. Unit 3 Q22 - Distinguish sugar from salt without tasting 12. Unit 3 Q26 - CaCl₂ dissociation into ions<br>Set-up: Salt solution contains mobile ions and conducts; Set-up: 2 mol CaCl₂ → 6 mol ions → 6Nₐ ions.<br>sugar solution remains molecular and conducts poorly/not<br>appreciably. 1 M(CaCl₂)=40+2×35.5=111 g mol⁻¹.<br>n=222/111=2 mol CaCl₂.<br>2<br>Prepare separate aqueous test solution.<br>1<br>Each formula unit gives 3 ions, so ion amount=6 mol.<br>3<br>Use a conductivity tester.<br>2<br>N=6×6.022×10²³=3.6132×10²⁴ ions.<br>4<br>Conducting solution indicates salt; non-conducting/very poor conducting<br>3<br>solution indicates sugar.<br>Final answer<br>Final answer 3.6132 × 10²⁴ ions (using Nₐ = 6.022 × 10²³ mol⁻¹).<br>Dissolve in water and test conductivity: salt solution conducts<br>because of ions; sugar solution does not appreciably conduct.<br>NCERT source - Unit 3 Q26<br>NCERT source - Unit 3 Q22<br>Core (2) | worked solutions 53<br>13. Unit 3 Q38 - Ion count from NaCl 14. Unit 3 Q40 - Ionic versus molecular compounds<br>Set-up: 0.10 mol NaCl → 0.20 mol ions → 0.20Nₐ. Set-up: Examples: NaCl/CaCl₂ ionic; H₂O/CO₂ molecular.<br>n(NaCl)=5.85/58.5=0.10 mol. State what particles are present.<br>1 1<br>Ion amount=2×0.10=0.20 mol. Give at least one valid example of each.<br>2 2<br>Number of ions=0.20×6.022×10²³=1.2044×10²³. Use “formula unit” language for ionic solids.<br>3 3<br>Final answer Final answer<br>1.2044 × 10²³ ions. Ionic compounds are built from cations and anions (e.g., NaCl);<br>molecular compounds consist of molecules (e.g., H₂O or CO₂).<br>NCERT source - Unit 3 Q38<br>NCERT source - Unit 3 Q40<br>Core (2) | worked solutions 54<br>15. Unit 3 Q44(b,d) - Polyatomic ion and formula recall 16. Unit 3 Q47 - Formulae from common names<br>Set-up: 2Na⁺ + CO₃²⁻ → Na₂CO₃; 2NH₄⁺ + SO₄²⁻ → (NH₄)₂SO₄. Set-up: KOH; NaHCO₃; CaCO₃; NaOH; C₂H₅OH; NaCl.<br>Recognise the charged group as a polyatomic ion. Write each standard formula.<br>1 1<br>Balance Na⁺ with CO₃²⁻. Add atomic-mass contributions using subscripts.<br>2 2<br>Balance NH₄⁺ with SO₄²⁻ and bracket repeated NH₄. For ionic solids, “formula mass” is the more precise term even where the<br>3 3<br>source uses molecular mass.<br>Final answer<br>Final answer<br>Polyatomic ion; Na₂CO₃; (NH₄)₂SO₄.<br>KOH 56 u; NaHCO₃ 84 u; CaCO₃ 100 u; NaOH 40 u; C₂H₅OH 46 u;<br>NaCl 58.5 u.<br>NCERT source - Unit 3 Q44(b,d)<br>NCERT source - Unit 3 Q47<br>Core (2) | worked solutions 55<br>17. Unit 4 Q1 - Electronic distribution of magnesium 18. Unit 4 Q9 - Electron count in a +3 ion<br>Set-up: 12 electrons → K=2, L=8, M=2. Set-up: p=27-14=13; neutral e=13; ion e=13-3=10.<br>Neutral Mg has 12 electrons. Protons=27-14=13.<br>1 1<br>K shell gets 2, L shell 8, leaving 2 for M. Neutral atom would have 13 electrons.<br>2 2<br>+3 means 3 electrons lost: 13-3=10.<br>3<br>Final answer<br>2, 8, 2.<br>Final answer<br>10 electrons.<br>NCERT source - Unit 4 Q1<br>NCERT source - Unit 4 Q9<br>Core (2) | worked solutions 56<br>19. Unit 4 Q10 - Identify Mg²⁺ 20. Unit 4 Q12 - Can valency 1 occur in metals and non-<br>metals?<br>Set-up: Mg atom 2,8,2 → lose 2 e⁻ → Mg²⁺ 2,8; nucleus<br>unchanged. Set-up: Valency 1 can occur for metals and non-metals.<br>1 Atomic number Mg=12 → 12 protons. 1 Use examples: Na (metal) and Cl (non-metal).<br>2 Mass number 24 → 12 neutrons. 2 Both have valency magnitude 1, for opposite electron-transfer tendencies.<br>Mg²⁺ has lost 2 electrons → 10 electrons.<br>3<br>Final answer<br>Either metals or non-metals.<br>Final answer<br>Option (d): p=12, n=12, e=10 (2,8).<br>NCERT source - Unit 4 Q12<br>NCERT source - Unit 4 Q10<br>Core (2) | worked solutions 57<br>21. Unit 4 Q14 - Valency from 3 protons 22. Unit 4 Q15 - Electronic distribution of aluminium<br>Set-up: 2,1 → valence electrons=1 → valency=1. Set-up: 13 electrons → 2,8,3.<br>3 protons means atomic number 3 and 3 electrons. Neutral Al has 13 electrons.<br>1 1<br>Distribution 2,1. K=2, L=8, M=3.<br>2 2<br>One outer electron gives valency 1.<br>3<br>Final answer<br>2, 8, 3.<br>Final answer<br>1.<br>NCERT source - Unit 4 Q15<br>NCERT source - Unit 4 Q14<br>Core (2) | worked solutions 58<br>23. Unit 4 Q21 - Do chlorine isotopes have different 24. Unit 4 Q23 - Valency from shell diagrams<br>valencies?<br>Set-up: (a) 2,8,8 → 0; (b) 2,7 → 1 (anion tendency, −1<br>Set-up: Both chlorine isotopes have 17 electrons: 2,8,7 → charge if it gains one electron).<br>valency 1.<br>Read the outermost-shell occupancy.<br>1<br>Isotopes differ in neutrons, not protons.<br>1<br>Complete octet → valency 0.<br>2<br>Same atomic number gives the same electron distribution.<br>2<br>Seven valence electrons → one electron needed → valency 1.<br>3<br>Therefore both chlorine isotopes have valency 1.<br>3<br>Final answer<br>Final answer<br>(a) 0; (b) 1.<br>No. Both have the same valency, 1.<br>NCERT source - Unit 4 Q23<br>NCERT source - Unit 4 Q21<br>Core (2) | worked solutions 59<br>25. Unit 4 Q24 - Ion formed by losing one outer electron 26. Unit 4 Q25 - Chlorine shell distribution<br>Set-up: X → X⁺ + e⁻. Set-up: Cl: 2,8,7; L shell contains 8 electrons.<br>Start with neutral atom. 17 electrons distribute 2,8,7.<br>1 1<br>Remove one electron. The L shell is the second shell, containing 8 electrons.<br>2 2<br>Net charge becomes +1; the ion is a cation.<br>3<br>Final answer<br>2,8,7; L shell has 8 electrons.<br>Final answer<br>A +1 cation.<br>NCERT source - Unit 4 Q25<br>NCERT source - Unit 4 Q24<br>Core (2) | worked solutions 60<br>27. Unit 4 Q26 - Charge after gaining electrons 28. Unit 4 Q27 - Atomic number, mass number and valency<br>from diagrams<br>Set-up: X + 2e⁻ → X²⁻.<br>Set-up: X → Z=5, A=11, valency3; Y → 8,18,2; Z → 15,31,<br>1 Outer shell has 6 electrons. valency3 in the simple octet rule (source answer<br>conventions may also list 3,5 for phosphorus).<br>Two electrons are needed for an octet.<br>2<br>3 Gain of 2 e⁻ gives 2− charge. 1 Read p and n from each nucleus.<br>Atomic number=p; mass number=p+n.<br>2<br>Final answer<br>Count valence electrons and apply the octet rule for the simple valency.<br>3<br>A −2 anion.<br>Final answer<br>NCERT source - Unit 4 Q26<br>X: 5,11,3; Y: 8,18,2; Z: 15,31,3 (phosphorus is also commonly<br>listed with variable valency 3,5).<br>NCERT source - Unit 4 Q27<br>Core (2) | worked solutions 61<br>29. Unit 4 Q33 - Why helium valency is zero 30. Unit 4 Q34(c,d) - Valencies and electronic configurations<br>Set-up: He: K shell = 2/2 complete → valency 0. Set-up: Ne complete octet → valency0; Cl needs one →<br>valency1.<br>Helium has only the K shell.<br>1<br>Write shell distributions.<br>1<br>K shell capacity at this level is 2.<br>2<br>Apply complete-shell / octet logic for valency.<br>2<br>Its shell is complete, so valency is 0.<br>3<br>Final answer<br>Final answer<br>Ne valency 0; Cl valency 1; Si = 2,8,4; S = 2,8,6.<br>Valency 0 because helium has a complete duplet.<br>NCERT source - Unit 4 Q34(c,d)<br>NCERT source - Unit 4 Q33<br>Core (2) | worked solutions 62<br>31. Unit 4 Q35 - Valency from mass and atomic number 32. Unit 4 Q36 - Why noble gases have zero valency<br>Set-up: 2 electrons completely fill K shell → valency 0. Set-up: Complete valence shell → little tendency to gain/<br>lose/share electrons → valency 0.<br>Atomic number 2 → 2 electrons.<br>1<br>He: 2; Ne: 2,8; Ar: 2,8,8.<br>1<br>K shell is full at 2.<br>2<br>Each has a filled outer shell.<br>2<br>Therefore valency is 0.<br>3<br>Hence zero valency in this model.<br>3<br>Final answer<br>Final answer<br>0.<br>They have complete outer shells (He duplet; Ne/Ar octet), so<br>valency is zero.<br>NCERT source - Unit 4 Q35<br>NCERT source - Unit 4 Q36<br>Core (2) | worked solutions 63
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 6</span>
+                  <span class="tag-pill">Q33 · Page 40</span>
+                </div>
+                <div class="q-title">Question 4 - Unit 3 Q47: Formulae from common</div>
+                <p class="q-prompt">names to an answer. NCERT Try the question First nudge Write formulae (and source-requested formula/molecular Then count atoms to find mass. masses) for caustic potash, baking powder, limestone, caustic soda, ethanol and common salt.</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    33. Unit 4 Q42 - Sodium atom versus sodium ion
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 6</span>
+                  <span class="tag-pill">Q34 · Page 41</span>
+                </div>
+                <div class="q-title">Question 5 - Sample II Q18: Sample II: formulae and</div>
+                <p class="q-prompt">mass ratios committed to an answer. NCERT Try the question First nudge Write formulae and combining-mass ratios for NH₃, CO, HCl and Use subscript × atomic mass for each element. AlF₃.</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    34. Sample I Q19 - Sample I: read valency from atomic<br>diagrams<br>Set-up: Na → Na⁺ + e⁻; Z remains 11.<br>Set-up: Source answer table: X valency3/Z=5/A=11; Y<br>1 Neutral Na has 11 electrons: 2,8,1. valency2/Z=8/A=18; Z valency3,5/Z=15/A=31.<br>Losing one electron gives Na⁺ with 10 electrons: 2,8.<br>2 Read the diagram nucleus and shells.<br>1<br>Protons remain 11, so atomic number stays 11.<br>3 Atomic no.=protons; mass no.=protons+neutrons.<br>2<br>Use outer-shell electrons for valency; phosphorus may show 3 and 5 in<br>Final answer 3<br>the source convention.<br>Na atom: 2,8,1; Na⁺: 2,8; atomic number 11 for both.<br>Final answer<br>NCERT source - Unit 4 Q42 X: 3,5,11; Y: 2,8,18; Z: 3,5 valency, 15 atomic number, 31 mass<br>number.<br>NCERT source - Sample I Q19<br>Core (2) | worked solutions 64
+                  </div>
+                </details>
+              </div>
+            </div>
+<div id="part-7" class="tab-content">
+
+      <div class="content-card">
+        <h2><span>⚡</span> PART 7: BONDING EVIDENCE & INTEGRATED REASONING</h2>
+        <p>Focused practice problems with immediate answer-check boxes and reasoning steps.</p>
+      </div>
+    
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 7</span>
+                  <span class="tag-pill">Q35 · Page 43</span>
+                </div>
+                <div class="q-title">Question 1 - Unit 3 Q22: Distinguish sugar from salt</div>
+                <p class="q-prompt">without tasting committed to an answer. NCERT Try the question First nudge A white powder is either sugar or salt. Suggest a safe Dissolve a small amount in water and test electrical conductivity with identification method without tasting. a simple circuit. See the idea - what particles are present?</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    35.5; AlF₃: 27:<br>Na(1), O(2); C(4), O(2). (3×19); MgS: 24:32.<br>Write the valency of each element. Write each correct formula.<br>1 1<br>Choose the smallest ratio that satisfies both valencies. Multiply atomic mass by subscript.<br>2 2<br>Simplify ratios such as C:O = 1:2 rather than 2:4. Simplify the mass ratio where appropriate.<br>3 3<br>Final answer Final answer<br>CaF₂, H₂S, NH₃, CCl₄, Na₂O, CO₂. NH₃ 14:3; CO 3:4; HCl 2:71; AlF₃ 9:19; MgS 3:4.<br>NCERT source - Unit 3 Q15 NCERT source - Unit 3 Q17<br>Core (2) | worked solutions 51<br>09. Unit 3 Q18 - Count atoms in ions and molecules 10. Unit 3 Q21 - Classify species by atomicity<br>Set-up: CO₃²⁻: 1 C + 3 O; PO₄³⁻: 1 P + 4 O; P₂O₅: 2 P + 5 Set-up: Examples: F₂ = 2 atoms; NO₂ = 3; CH₄ = 5; He = 1.<br>O; CO: 1 C + 1 O.<br>Count atoms in one formula/molecule.<br>1<br>Read element symbols and subscripts.<br>1<br>Convert the count to mono-/di-/tri-/tetra-/polyatomic language.<br>2<br>Add the atom counts.<br>2<br>Final answer<br>Treat the superscript charge separately from composition.<br>3<br>F₂ diatomic; NO₂ triatomic; N₂O triatomic; C₂H₆ octatomic; P₄<br>tetraatomic; H₂O₂ tetraatomic; P₄O₁₀ 14-atomic/polyatomic; O₃<br>Final answer<br>triatomic; HCl diatomic; CH₄ pentatomic; He monoatomic; Ag<br>4, 5, 7 and 2 atoms respectively. monoatomic.<br>NCERT source - Unit 3 Q18 NCERT source - Unit 3 Q21<br>Core (2) | worked solutions 52<br>11. Unit 3 Q22 - Distinguish sugar from salt without tasting 12. Unit 3 Q26 - CaCl₂ dissociation into ions<br>Set-up: Salt solution contains mobile ions and conducts; Set-up: 2 mol CaCl₂ → 6 mol ions → 6Nₐ ions.<br>sugar solution remains molecular and conducts poorly/not<br>appreciably. 1 M(CaCl₂)=40+2×35.5=111 g mol⁻¹.<br>n=222/111=2 mol CaCl₂.<br>2<br>Prepare separate aqueous test solution.<br>1<br>Each formula unit gives 3 ions, so ion amount=6 mol.<br>3<br>Use a conductivity tester.<br>2<br>N=6×6.022×10²³=3.6132×10²⁴ ions.<br>4<br>Conducting solution indicates salt; non-conducting/very poor conducting<br>3<br>solution indicates sugar.<br>Final answer<br>Final answer 3.6132 × 10²⁴ ions (using Nₐ = 6.022 × 10²³ mol⁻¹).<br>Dissolve in water and test conductivity: salt solution conducts<br>because of ions; sugar solution does not appreciably conduct.<br>NCERT source - Unit 3 Q26<br>NCERT source - Unit 3 Q22<br>Core (2) | worked solutions 53<br>13. Unit 3 Q38 - Ion count from NaCl 14. Unit 3 Q40 - Ionic versus molecular compounds<br>Set-up: 0.10 mol NaCl → 0.20 mol ions → 0.20Nₐ. Set-up: Examples: NaCl/CaCl₂ ionic; H₂O/CO₂ molecular.<br>n(NaCl)=5.85/58.5=0.10 mol. State what particles are present.<br>1 1<br>Ion amount=2×0.10=0.20 mol. Give at least one valid example of each.<br>2 2<br>Number of ions=0.20×6.022×10²³=1.2044×10²³. Use “formula unit” language for ionic solids.<br>3 3<br>Final answer Final answer<br>1.2044 × 10²³ ions. Ionic compounds are built from cations and anions (e.g., NaCl);<br>molecular compounds consist of molecules (e.g., H₂O or CO₂).<br>NCERT source - Unit 3 Q38<br>NCERT source - Unit 3 Q40<br>Core (2) | worked solutions 54<br>15. Unit 3 Q44(b,d) - Polyatomic ion and formula recall 16. Unit 3 Q47 - Formulae from common names<br>Set-up: 2Na⁺ + CO₃²⁻ → Na₂CO₃; 2NH₄⁺ + SO₄²⁻ → (NH₄)₂SO₄. Set-up: KOH; NaHCO₃; CaCO₃; NaOH; C₂H₅OH; NaCl.<br>Recognise the charged group as a polyatomic ion. Write each standard formula.<br>1 1<br>Balance Na⁺ with CO₃²⁻. Add atomic-mass contributions using subscripts.<br>2 2<br>Balance NH₄⁺ with SO₄²⁻ and bracket repeated NH₄. For ionic solids, “formula mass” is the more precise term even where the<br>3 3<br>source uses molecular mass.<br>Final answer<br>Final answer<br>Polyatomic ion; Na₂CO₃; (NH₄)₂SO₄.<br>KOH 56 u; NaHCO₃ 84 u; CaCO₃ 100 u; NaOH 40 u; C₂H₅OH 46 u;<br>NaCl 58.5 u.<br>NCERT source - Unit 3 Q44(b,d)<br>NCERT source - Unit 3 Q47<br>Core (2) | worked solutions 55<br>17. Unit 4 Q1 - Electronic distribution of magnesium 18. Unit 4 Q9 - Electron count in a +3 ion<br>Set-up: 12 electrons → K=2, L=8, M=2. Set-up: p=27-14=13; neutral e=13; ion e=13-3=10.<br>Neutral Mg has 12 electrons. Protons=27-14=13.<br>1 1<br>K shell gets 2, L shell 8, leaving 2 for M. Neutral atom would have 13 electrons.<br>2 2<br>+3 means 3 electrons lost: 13-3=10.<br>3<br>Final answer<br>2, 8, 2.<br>Final answer<br>10 electrons.<br>NCERT source - Unit 4 Q1<br>NCERT source - Unit 4 Q9<br>Core (2) | worked solutions 56<br>19. Unit 4 Q10 - Identify Mg²⁺ 20. Unit 4 Q12 - Can valency 1 occur in metals and non-<br>metals?<br>Set-up: Mg atom 2,8,2 → lose 2 e⁻ → Mg²⁺ 2,8; nucleus<br>unchanged. Set-up: Valency 1 can occur for metals and non-metals.<br>1 Atomic number Mg=12 → 12 protons. 1 Use examples: Na (metal) and Cl (non-metal).<br>2 Mass number 24 → 12 neutrons. 2 Both have valency magnitude 1, for opposite electron-transfer tendencies.<br>Mg²⁺ has lost 2 electrons → 10 electrons.<br>3<br>Final answer<br>Either metals or non-metals.<br>Final answer<br>Option (d): p=12, n=12, e=10 (2,8).<br>NCERT source - Unit 4 Q12<br>NCERT source - Unit 4 Q10<br>Core (2) | worked solutions 57<br>21. Unit 4 Q14 - Valency from 3 protons 22. Unit 4 Q15 - Electronic distribution of aluminium<br>Set-up: 2,1 → valence electrons=1 → valency=1. Set-up: 13 electrons → 2,8,3.<br>3 protons means atomic number 3 and 3 electrons. Neutral Al has 13 electrons.<br>1 1<br>Distribution 2,1. K=2, L=8, M=3.<br>2 2<br>One outer electron gives valency 1.<br>3<br>Final answer<br>2, 8, 3.<br>Final answer<br>1.<br>NCERT source - Unit 4 Q15<br>NCERT source - Unit 4 Q14<br>Core (2) | worked solutions 58<br>23. Unit 4 Q21 - Do chlorine isotopes have different 24. Unit 4 Q23 - Valency from shell diagrams<br>valencies?<br>Set-up: (a) 2,8,8 → 0; (b) 2,7 → 1 (anion tendency, −1<br>Set-up: Both chlorine isotopes have 17 electrons: 2,8,7 → charge if it gains one electron).<br>valency 1.<br>Read the outermost-shell occupancy.<br>1<br>Isotopes differ in neutrons, not protons.<br>1<br>Complete octet → valency 0.<br>2<br>Same atomic number gives the same electron distribution.<br>2<br>Seven valence electrons → one electron needed → valency 1.<br>3<br>Therefore both chlorine isotopes have valency 1.<br>3<br>Final answer<br>Final answer<br>(a) 0; (b) 1.<br>No. Both have the same valency, 1.<br>NCERT source - Unit 4 Q23<br>NCERT source - Unit 4 Q21<br>Core (2) | worked solutions 59<br>25. Unit 4 Q24 - Ion formed by losing one outer electron 26. Unit 4 Q25 - Chlorine shell distribution<br>Set-up: X → X⁺ + e⁻. Set-up: Cl: 2,8,7; L shell contains 8 electrons.<br>Start with neutral atom. 17 electrons distribute 2,8,7.<br>1 1<br>Remove one electron. The L shell is the second shell, containing 8 electrons.<br>2 2<br>Net charge becomes +1; the ion is a cation.<br>3<br>Final answer<br>2,8,7; L shell has 8 electrons.<br>Final answer<br>A +1 cation.<br>NCERT source - Unit 4 Q25<br>NCERT source - Unit 4 Q24<br>Core (2) | worked solutions 60<br>27. Unit 4 Q26 - Charge after gaining electrons 28. Unit 4 Q27 - Atomic number, mass number and valency<br>from diagrams<br>Set-up: X + 2e⁻ → X²⁻.<br>Set-up: X → Z=5, A=11, valency3; Y → 8,18,2; Z → 15,31,<br>1 Outer shell has 6 electrons. valency3 in the simple octet rule (source answer<br>conventions may also list 3,5 for phosphorus).<br>Two electrons are needed for an octet.<br>2<br>3 Gain of 2 e⁻ gives 2− charge. 1 Read p and n from each nucleus.<br>Atomic number=p; mass number=p+n.<br>2<br>Final answer<br>Count valence electrons and apply the octet rule for the simple valency.<br>3<br>A −2 anion.<br>Final answer<br>NCERT source - Unit 4 Q26<br>X: 5,11,3; Y: 8,18,2; Z: 15,31,3 (phosphorus is also commonly<br>listed with variable valency 3,5).<br>NCERT source - Unit 4 Q27<br>Core (2) | worked solutions 61<br>29. Unit 4 Q33 - Why helium valency is zero 30. Unit 4 Q34(c,d) - Valencies and electronic configurations<br>Set-up: He: K shell = 2/2 complete → valency 0. Set-up: Ne complete octet → valency0; Cl needs one →<br>valency1.<br>Helium has only the K shell.<br>1<br>Write shell distributions.<br>1<br>K shell capacity at this level is 2.<br>2<br>Apply complete-shell / octet logic for valency.<br>2<br>Its shell is complete, so valency is 0.<br>3<br>Final answer<br>Final answer<br>Ne valency 0; Cl valency 1; Si = 2,8,4; S = 2,8,6.<br>Valency 0 because helium has a complete duplet.<br>NCERT source - Unit 4 Q34(c,d)<br>NCERT source - Unit 4 Q33<br>Core (2) | worked solutions 62<br>31. Unit 4 Q35 - Valency from mass and atomic number 32. Unit 4 Q36 - Why noble gases have zero valency<br>Set-up: 2 electrons completely fill K shell → valency 0. Set-up: Complete valence shell → little tendency to gain/<br>lose/share electrons → valency 0.<br>Atomic number 2 → 2 electrons.<br>1<br>He: 2; Ne: 2,8; Ar: 2,8,8.<br>1<br>K shell is full at 2.<br>2<br>Each has a filled outer shell.<br>2<br>Therefore valency is 0.<br>3<br>Hence zero valency in this model.<br>3<br>Final answer<br>Final answer<br>0.<br>They have complete outer shells (He duplet; Ne/Ar octet), so<br>valency is zero.<br>NCERT source - Unit 4 Q35<br>NCERT source - Unit 4 Q36<br>Core (2) | worked solutions 63<br>33. Unit 4 Q42 - Sodium atom versus sodium ion 34. Sample I Q19 - Sample I: read valency from atomic<br>diagrams<br>Set-up: Na → Na⁺ + e⁻; Z remains 11.<br>Set-up: Source answer table: X valency3/Z=5/A=11; Y<br>1 Neutral Na has 11 electrons: 2,8,1. valency2/Z=8/A=18; Z valency3,5/Z=15/A=31.<br>Losing one electron gives Na⁺ with 10 electrons: 2,8.<br>2 Read the diagram nucleus and shells.<br>1<br>Protons remain 11, so atomic number stays 11.<br>3 Atomic no.=protons; mass no.=protons+neutrons.<br>2<br>Use outer-shell electrons for valency; phosphorus may show 3 and 5 in<br>Final answer 3<br>the source convention.<br>Na atom: 2,8,1; Na⁺: 2,8; atomic number 11 for both.<br>Final answer<br>NCERT source - Unit 4 Q42 X: 3,5,11; Y: 2,8,18; Z: 3,5 valency, 15 atomic number, 31 mass<br>number.<br>NCERT source - Sample I Q19<br>Core (2) | worked solutions 64<br>35. Sample I Q20 - Sample I: ion formed after electron loss
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 7</span>
+                  <span class="tag-pill">Q36 · Page 44</span>
+                </div>
+                <div class="q-title">Question 2 - Unit 3 Q26: CaCl₂ dissociation into ions Try it first. Cover the answer-check box until you have committed</div>
+                <p class="q-prompt">to an answer. NCERT Try the question First nudge 222 g CaCl₂ is dissolved in water. How many ions are produced One formula unit gives 3 ions. 222 g CaCl₂ is 2 mol if M = 111 g mol⁻¹. according to CaCl₂ → Ca²⁺ + 2Cl⁻?</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    36. Sample II Q18 - Sample II: formulae and mass ratios<br>Set-up: X → X⁺ + e⁻. Set-up: NH₃ 14:3; CO 12:16; HCl 1:35.5; AlF₃ 27:57.<br>One negative charge is removed from a neutral atom. Write formula.<br>1 1<br>The resulting ion has net +1 charge. Calculate element mass contributions.<br>2 2<br>Simplify ratio.<br>3<br>Final answer<br>A +1 cation.<br>Final answer<br>NH₃ 14:3; CO 3:4; HCl 2:71; AlF₃ 9:19.<br>NCERT source - Sample I Q20<br>NCERT source - Sample II Q18<br>Core (2) | worked solutions 65
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 7</span>
+                  <span class="tag-pill">Q37 · Page 45</span>
+                </div>
+                <div class="q-title">Question 3 - Unit 3 Q38: Ion count from NaCl Try it first. Cover the answer-check box until you have committed</div>
+                <p class="q-prompt">to an answer. NCERT Try the question First nudge Compute the number of ions present when 5.85 g NaCl is M(NaCl)=58.5 g mol⁻¹; 5.85 g = 0.10 mol NaCl; each formula unit treated as dissociated ions. gives 2 ions. See the idea - count particles after dissociation</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    37. Sample II Q19 - Sample II: ionic formula writing
+                  </div>
+                </details>
+              </div>
+            
+              <div class="q-card">
+                <div class="q-header">
+                  <span class="q-badge">PART 7</span>
+                  <span class="tag-pill">Q38 · Page 46</span>
+                </div>
+                <div class="q-title">Question 4 - Unit 3 Q40: Ionic versus molecular</div>
+                <p class="q-prompt">compounds to an answer. NCERT Try the question First nudge Define ionic and molecular compounds and give examples. Ionic compounds consist of oppositely charged ions; molecular compounds consist of discrete molecules formed by atoms joined together. See the idea - what particles are present? ionic vs molecular cations + anions</p>
+                <details class="solution-detail">
+                  <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+                  <div class="solution-content">
+                    38. Sample II Q20 - Sample II: helium valency<br>Set-up: Al(NO₃)₃; Ca₃(PO₄)₂; HgCl₂; Mg(CH₃COO)₂. Set-up: He: 2 → complete K shell → valency 0.<br>Balance charges to the smallest neutral ratio. K shell holds a maximum of 2 electrons.<br>1 1<br>Bracket any polyatomic ion used more than once. Helium already has 2, so no gain/loss is needed.<br>2 2<br>Final answer Final answer<br>Al(NO₃)₃; Ca₃(PO₄)₂; HgCl₂; Mg(CH₃COO)₂. Helium has a complete duplet, so its valency is zero.<br>NCERT source - Sample II Q19 NCERT source - Sample II Q20<br>Core (2) | worked solutions 66
+                  </div>
+                </details>
+              </div>
+            </div>
+
+    </div>
+
+    <!-- Support Rail -->
+    <aside class="support-rail">
+      
+      <!-- Quick Reference -->
+      <div class="support-widget">
+        <h3><span>⚡</span> Core Bonding Rules</h3>
+        <div class="formula-box">
+          • Bohr-Bury Max Shell Capacity: 2n² (K=2, L=8, M=18, N=32)<br>
+          • Octet Rule: Outermost shell max 8 electrons.<br>
+          • Duplet Rule: H, He stable with 2 electrons.<br>
+          • Valency = Valence e⁻ (if ≤ 4) OR (8 - Valence e⁻) (if > 4).<br>
+          • Criss-Cross Formula Rule: Cation charge &amp; Anion charge cross to form neutral unit.
+        </div>
+      </div>
+
+      <!-- Common Ions & Valencies Reference Table -->
+      <div class="support-widget">
+        <h3><span>🧪</span> Polyatomic Ions Reference</h3>
+        <div style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.6;">
+          <strong>+1:</strong> Ammonium (NH₄⁺)<br>
+          <strong>-1:</strong> Hydroxide (OH⁻), Nitrate (NO₃⁻), Bicarbonate (HCO₃⁻)<br>
+          <strong>-2:</strong> Carbonate (CO₃²⁻), Sulphate (SO₄²⁻), Sulphite (SO₃²⁻)<br>
+          <strong>-3:</strong> Phosphate (PO₄³⁻), Nitride (N³⁻)
+        </div>
+      </div>
+
+      <!-- Virtual Keyboard Safe Scratchpad -->
+      <div class="support-widget">
+        <h3><span>📝</span> Study Scratchpad</h3>
+        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 8px;">
+          Virtual keyboard safe (min-height: 120px) with auto-saving:
+        </p>
+        <textarea id="scratchpadNotes" class="tablet-safe-input" placeholder="Draft electron dot structures, cross-valency formulas, or ionic balances..."></textarea>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+          <span id="saveStatus" style="font-size: 12.5px; color: var(--success);">✓ Auto-saved</span>
+          <button class="btn" style="min-height: 40px; padding: 6px 14px; font-size: 13px; background: var(--bg-surface); border: 1px solid var(--border);" onclick="clearNotes()">Clear</button>
+        </div>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+      if (activeBtn) activeBtn.classList.add('active');
+      const targetContent = document.getElementById(tabId);
+      if (targetContent) targetContent.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    const themeBtn = document.getElementById('themeToggle');
+    const htmlEl = document.documentElement;
+    const savedTheme = localStorage.getItem('tablet12_theme') || 'dark';
+    htmlEl.setAttribute('data-theme', savedTheme);
+    themeBtn.addEventListener('click', () => {
+      const current = htmlEl.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      htmlEl.setAttribute('data-theme', next);
+      localStorage.setItem('tablet12_theme', next);
+    });
+
+    const pad = document.getElementById('scratchpadNotes');
+    const status = document.getElementById('saveStatus');
+    pad.value = localStorage.getItem('bonding_core2_notes') || '';
+    pad.addEventListener('input', () => {
+      localStorage.setItem('bonding_core2_notes', pad.value);
+      status.textContent = '✓ Saved ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    });
+
+    function clearNotes() {
+      if (confirm('Clear scratchpad notes?')) {
+        pad.value = '';
+        localStorage.removeItem('bonding_core2_notes');
+        status.textContent = 'Notes cleared';
+      }
+    }
+  </script>
+</body>
+</html>

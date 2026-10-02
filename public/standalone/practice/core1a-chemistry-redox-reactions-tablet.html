@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GRADE 9 CHEMISTRY - Redox Reactions Master Suite | 12.7" Tablet Standalone Edition</title>
+  <meta name="description" content="Complete textbook for Redox Reactions: Oxidation states, balancing, n-factors, and NCERT transfer bank. Optimized for 12.7-inch tablets.">
+  <style>
+
+/* ==========================================================================
+   Chemistry: Redox Reactions 12.7" Tablet Standalone Stylesheet
+   WCAG 2.5.5 >= 48px touch targets, >= 120px textareas, no micro-fonts (<13.5px)
+   100% Offline Standalone · Dark/Light Mode · Responsive Stage/Support Grid
+   ========================================================================== */
+
+:root {
+  --tab12-container-max: 1400px;
+  --tab12-touch-min: 48px;
+  --tab12-base-font: 16px;
+  --tab12-radius-sm: 8px;
+  --tab12-radius-md: 12px;
+  --tab12-radius-lg: 16px;
+
+  /* Dark Theme Palette (Default) */
+  --bg-app: #080d1a;
+  --bg-surface: #0f172a;
+  --bg-card: #152238;
+  --bg-card-subtle: #1a2942;
+  --border: #263859;
+  --border-light: #334b75;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.25);
+  --success: #34d399;
+  --warning: #f59e0b;
+  --danger: #f87171;
+  --purple: #c084fc;
+}
+
+[data-theme="light"] {
+  --bg-app: #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f8fafc;
+  --border: #cbd5e1;
+  --border-light: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --accent: #0284c7;
+  --accent-glow: rgba(2, 132, 199, 0.15);
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --purple: #7e22ce;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--tab12-base-font);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-app);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Strict 48px+ Touch Target Rule */
+button, 
+.btn, 
+.tab-btn, 
+.pill-btn,
+summary {
+  min-height: var(--tab12-touch-min);
+  min-width: var(--tab12-touch-min);
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--tab12-radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: all 0.18s ease;
+  border: 1px solid transparent;
+  text-decoration: none;
+}
+
+/* Typography Floor Enforcement: No Micro-Fonts (< 13.5px) */
+small, .badge, .meta-text, .tag, .diff-badge, .unit-badge {
+  font-size: 13.5px !important;
+}
+
+.app-container {
+  max-width: var(--tab12-container-max);
+  margin: 0 auto;
+  padding: 16px 20px 60px 20px;
+  width: 100%;
+}
+
+/* Header & Nav */
+.top-nav {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 18px 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.top-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.course-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.course-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.badge-primary { background: var(--accent); color: #000000; }
+.badge-secondary { background: rgba(56, 189, 248, 0.15); border: 1px solid var(--accent); color: var(--accent); }
+.badge-success { background: rgba(52, 211, 153, 0.15); border: 1px solid var(--success); color: var(--success); }
+.badge-warning { background: rgba(245, 158, 11, 0.15); border: 1px solid var(--warning); color: var(--warning); }
+.badge-purple { background: rgba(192, 132, 252, 0.15); border: 1px solid var(--purple); color: var(--purple); }
+
+.course-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.course-subtitle {
+  font-size: 14.5px;
+  color: var(--text-secondary);
+}
+
+.theme-toggle-btn {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  color: var(--text-primary);
+  display: inline-flex;
+  gap: 8px;
+}
+.theme-toggle-btn:hover { border-color: var(--accent); }
+
+/* Search Bar */
+.search-bar-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.search-input-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.search-input {
+  width: 100%;
+  min-height: var(--tab12-touch-min);
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  padding: 10px 16px 10px 42px;
+  color: var(--text-primary);
+  font-size: 16px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+  font-size: 18px;
+}
+
+.clear-search-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+/* Tabs */
+.tabs-scroll-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tab-btn {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-light);
+}
+
+.tab-btn.active {
+  background: var(--accent);
+  color: #000000;
+  border-color: var(--accent);
+  font-weight: 700;
+}
+
+/* Module Card Layout */
+.module-card {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  margin-bottom: 28px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 1100px) {
+  .stage-support-columns {
+    display: grid;
+    grid-template-columns: minmax(0, 2.15fr) minmax(330px, 1fr);
+    column-gap: 26px;
+    align-items: start;
+  }
+  .stage-column { min-width: 0; }
+  .support-column { min-width: 0; position: sticky; top: 20px; }
+}
+
+@media (max-width: 1099px) {
+  .stage-support-columns { display: block !important; }
+  .support-column {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--border);
+  }
+}
+
+.module-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.module-code {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.module-title {
+  font-size: 21px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.target-banner {
+  background: rgba(56, 189, 248, 0.08);
+  border-left: 4px solid var(--accent);
+  padding: 12px 16px;
+  border-radius: 0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 18px;
+}
+
+.concept-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  padding: 16px 18px;
+  margin-bottom: 16px;
+}
+
+.concept-box-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.concept-box-text {
+  font-size: 14.5px;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.contrast-box {
+  background: rgba(52, 211, 153, 0.08);
+  border: 1px solid var(--success);
+  border-radius: var(--tab12-radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+
+.contrast-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--success);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.trap-box {
+  background: rgba(248, 113, 113, 0.08);
+  border: 1.5px solid var(--danger);
+  border-radius: var(--tab12-radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+
+.trap-title {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--danger);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.trap-text {
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.45;
+}
+
+/* Practice & Active Recall Area */
+.practice-surface {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  padding: 18px;
+  margin-top: 16px;
+}
+
+.practice-textarea {
+  width: 100%;
+  min-height: 120px;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  padding: 12px 14px;
+  color: var(--text-primary);
+  font-size: 15.5px;
+  font-family: inherit;
+  resize: vertical;
+  margin-bottom: 10px;
+}
+
+.practice-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+details.guided-reveal {
+  border: 1px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+details.guided-reveal summary {
+  background: var(--bg-card-subtle);
+  min-height: var(--tab12-touch-min);
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.guided-solution-text {
+  padding: 14px 16px;
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border);
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+/* Interactive Calculator Tool Widget */
+.calc-widget {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--accent);
+  border-radius: var(--tab12-radius-sm);
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.calc-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.calc-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.calc-select, .calc-input {
+  min-height: var(--tab12-touch-min);
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  padding: 8px 14px;
+  color: var(--text-primary);
+  font-size: 15px;
+}
+
+.calc-result {
+  background: rgba(56, 189, 248, 0.1);
+  border-left: 4px solid var(--accent);
+  padding: 10px 14px;
+  font-size: 14.5px;
+  color: var(--text-primary);
+  border-radius: 0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;
+}
+
+footer {
+  text-align: center;
+  padding: 24px 20px;
+  color: var(--text-muted);
+  font-size: 13.5px;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <header class="top-nav">
+      <div class="top-nav-header">
+        <div class="course-info">
+          <div class="course-badge-row">
+            <span class="badge badge-primary">CHEMISTRY MASTER SUITE</span>
+            <span class="badge badge-secondary">GRADE 9 &rarr; JEE BRIDGE</span>
+            <span class="badge badge-success">CORE 1 &amp; CORE 2</span>
+            <span class="badge badge-warning">INTERACTIVE TOOLS</span>
+            <span class="badge badge-purple">NCERT QUESTION HELPER</span>
+            <span class="badge badge-secondary">12.7" TABLET COMPLIANT</span>
+          </div>
+          <h1 class="course-title">Redox Reactions: Complete Consolidated Tablet Textbook</h1>
+          <p class="course-subtitle">Oxidation States &rarr; Dual Language OIL RIG &rarr; Agent Inversion &rarr; Disproportionation &rarr; Ion-Electron Balancing &rarr; n-Factor &rarr; NCERT Transfer Bank</p>
+        </div>
+        <button id="theme-toggle-btn" class="theme-toggle-btn">☀️ Light Mode</button>
+      </div>
+
+      <!-- Live Search Bar -->
+      <div class="search-bar-row">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="search-input" class="search-input" placeholder="Search oxidation states, disproportionation, balancing, n-factor, or NCERT questions...">
+        </div>
+        <button id="clear-search-btn" class="btn clear-search-btn">Reset</button>
+      </div>
+
+      <!-- Unit Tabs -->
+      <div class="tabs-scroll-row">
+        <button class="tab-btn active" data-unit="all">All Modules</button>
+        <button class="tab-btn" data-unit="1">Part 1: Oxidation Numbers</button>
+        <button class="tab-btn" data-unit="2">Part 2: Oxidation &amp; Reduction</button>
+        <button class="tab-btn" data-unit="3">Part 3: Agents</button>
+        <button class="tab-btn" data-unit="4">Part 4: Redox vs Non-Redox</button>
+        <button class="tab-btn" data-unit="5">Part 5: Reaction Types</button>
+        <button class="tab-btn" data-unit="6">Part 6: Half-Reaction Balancing</button>
+        <button class="tab-btn" data-unit="7">Part 7: n-Factor &amp; Equivalent Mass</button>
+        <button class="tab-btn" data-unit="ncert">Part 8: NCERT Transfer Bank</button>
+      </div>
+    </header>
+
+    <main id="main-content">
+      
+    <article class="module-card stage-support-columns" id="MOD-RED-01" data-unit="1">
+      <div class="stage-column">
+        <header class="module-header">
+          <div>
+            <span class="module-code">MOD-RED-01</span>
+            <h2 class="module-title">Oxidation Number — Definition &amp; Priority Rules</h2>
+          </div>
+          <span class="badge badge-secondary">Core 1 · Pages 3–4</span>
+        </header>
+
+        <div class="target-banner">
+          🎯 <strong>Learning Target:</strong> Assign oxidation numbers systematically using strict hierarchy and total charge sum rule.
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">🧠 Memory Anchor</div>
+          <div class="concept-box-text"><strong style="color:var(--accent);">Elemental state = 0. Group 1 = +1, Group 2 = +2, F = -1, H = +1 (hydrides -1), O = -2 (peroxides -1, OF₂ +2). Sum equals net charge.</strong></div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚙️ Why It Works</div>
+          <div class="concept-box-text">Oxidation numbers are formal bookkeeping tools tracking electron control assuming 100% ionic character. When electronegative bonds break heterolytically, shared pairs are credited to the more electronegative atom.</div>
+        </div>
+
+        <div class="contrast-box">
+          <div class="contrast-title">🔍 Worked Contrast</div>
+          <div class="concept-box-text">Flawed: Assuming Cr in CrO₅ is +10 from formula x - 10 = 0. Correct: Butterfly structure has 4 peroxo oxygens (-1) and 1 oxo oxygen (-2), yielding Cr = +6 (maximum possible).</div>
+        </div>
+
+        <!-- Live Tool if applicable -->
+        
+        <div class="calc-widget">
+          <div class="calc-title">🧪 Live Structural Oxidation State Solver</div>
+          <div class="calc-row">
+            <label style="font-weight:600;font-size:14.5px;">Select Compound:</label>
+            <select id="select-ox-formula" class="calc-select">
+              <option value="KMnO4">Potassium Permanganate (KMnO₄)</option>
+              <option value="K2Cr2O7">Potassium Dichromate (K₂Cr₂O₇)</option>
+              <option value="CrO5">Chromium Pentoxide (CrO₅ - Butterfly Peroxide)</option>
+              <option value="H2SO5">Peroxomonosulphuric Acid (H₂SO₅ - Caro's Acid)</option>
+              <option value="Fe3O4">Magnetite Mixed Oxide (Fe₃O₄)</option>
+            </select>
+            <button id="btn-calc-ox" class="btn" style="background:var(--accent);color:#000;">Calculate O.S.</button>
+          </div>
+          <div id="res-ox-calc" class="calc-result">Select a compound above and tap Calculate.</div>
+        </div>
+        
+
+        <!-- Active Recall / Tablet Practice Surface -->
+        <div class="practice-surface">
+          <div class="concept-box-title">✍️ Active Practice &amp; Step-by-Step Working</div>
+          <p style="font-size:15px;color:var(--text-primary);margin-bottom:8px;"><strong>Problem:</strong> Determine the oxidation state of S in Caro's acid (H₂SO₅) and Cr in CrO₅.</p>
+          <textarea class="practice-textarea" data-key="MOD-RED-01" placeholder="Type your step-by-step chemical equations or oxidation calculations on tablet keyboard..."></textarea>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-check-redox" style="background:var(--accent);color:#000;font-weight:700;">Check Solution</button>
+            <button class="btn btn-clear-redox" style="background:var(--bg-surface);border:1px solid var(--border);color:var(--text-secondary);">Clear</button>
+          </div>
+          <details class="guided-reveal">
+            <summary>Reveal Checked Model Answer</summary>
+            <div class="guided-solution-text">
+H₂SO₅: Structure contains one peroxo bond (-O-O-). Two peroxo oxygens are -1, three oxo oxygens are -2. 2(+1) + S + 3(-2) + 2(-1) = 0 =&gt; S = +6. CrO₅: Cr = +6.
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="support-column">
+        <div class="trap-box">
+          <div class="trap-title">⚠️ Common Trap to Avoid</div>
+          <div class="trap-text">Do not exceed maximum oxidation state (group valence). If calculation yields Cr &gt; +6 or S &gt; +6, suspect peroxide linkage (-O-O-).</div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">📑 Academic Authority &amp; Benchmark</div>
+          <div class="concept-box-text" style="font-size:13.5px;color:var(--text-secondary);">
+            <strong>NCERT Chemistry:</strong> Chapter 8 / Unit 2 (Redox Reactions).<br><br>
+            <strong>ExamSIDE Coverage:</strong> 74 Past JEE Main Questions indexed across 7 Learning Tracks.
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚡ Quick Rule Summary</div>
+          <div class="concept-box-text" style="font-size:14px;color:var(--text-primary);">
+            <code>Oxidation: Loss of e⁻ (O.S. ↑)</code><br>
+            <code>Reduction: Gain of e⁻ (O.S. ↓)</code><br>
+            <code>Oxidant: Gets Reduced</code><br>
+            <code>Reductant: Gets Oxidised</code><br>
+            <code>Equiv = Moles × n-factor</code>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module-card stage-support-columns" id="MOD-RED-02" data-unit="2">
+      <div class="stage-column">
+        <header class="module-header">
+          <div>
+            <span class="module-code">MOD-RED-02</span>
+            <h2 class="module-title">Oxidation &amp; Reduction — Dual Language Equivalence</h2>
+          </div>
+          <span class="badge badge-secondary">Core 1 · Page 5</span>
+        </header>
+
+        <div class="target-banner">
+          🎯 <strong>Learning Target:</strong> Map classical oxygen/hydrogen transfer onto modern electron transfer and oxidation-number shifts.
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">🧠 Memory Anchor</div>
+          <div class="concept-box-text"><strong style="color:var(--accent);">OIL RIG: Oxidation Is Loss of electrons (ON increases). Reduction Is Gain of electrons (ON decreases).</strong></div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚙️ Why It Works</div>
+          <div class="concept-box-text">Every redox reaction is an electron exchange. The increase in oxidation state of one species must exactly equal the decrease in oxidation state of the other species.</div>
+        </div>
+
+        <div class="contrast-box">
+          <div class="contrast-title">🔍 Worked Contrast</div>
+          <div class="concept-box-text">Flawed: Thinking oxidation always requires oxygen. Correct: 2Na + Cl₂ → 2NaCl is oxidation of Na (0 → +1) without oxygen present.</div>
+        </div>
+
+        <!-- Live Tool if applicable -->
+        
+
+        <!-- Active Recall / Tablet Practice Surface -->
+        <div class="practice-surface">
+          <div class="concept-box-title">✍️ Active Practice &amp; Step-by-Step Working</div>
+          <p style="font-size:15px;color:var(--text-primary);margin-bottom:8px;"><strong>Problem:</strong> In the reaction H₂S + Cl₂ → 2HCl + S, identify what is oxidised and what is reduced.</p>
+          <textarea class="practice-textarea" data-key="MOD-RED-02" placeholder="Type your step-by-step chemical equations or oxidation calculations on tablet keyboard..."></textarea>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-check-redox" style="background:var(--accent);color:#000;font-weight:700;">Check Solution</button>
+            <button class="btn btn-clear-redox" style="background:var(--bg-surface);border:1px solid var(--border);color:var(--text-secondary);">Clear</button>
+          </div>
+          <details class="guided-reveal">
+            <summary>Reveal Checked Model Answer</summary>
+            <div class="guided-solution-text">
+S in H₂S goes from -2 to 0 (ON increases → H₂S is oxidised). Cl in Cl₂ goes from 0 to -1 (ON decreases → Cl₂ is reduced).
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="support-column">
+        <div class="trap-box">
+          <div class="trap-title">⚠️ Common Trap to Avoid</div>
+          <div class="trap-text">Forgetting that negative to less negative (e.g. -2 to 0) is an INCREASE in oxidation number (oxidation).</div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">📑 Academic Authority &amp; Benchmark</div>
+          <div class="concept-box-text" style="font-size:13.5px;color:var(--text-secondary);">
+            <strong>NCERT Chemistry:</strong> Chapter 8 / Unit 2 (Redox Reactions).<br><br>
+            <strong>ExamSIDE Coverage:</strong> 74 Past JEE Main Questions indexed across 7 Learning Tracks.
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚡ Quick Rule Summary</div>
+          <div class="concept-box-text" style="font-size:14px;color:var(--text-primary);">
+            <code>Oxidation: Loss of e⁻ (O.S. ↑)</code><br>
+            <code>Reduction: Gain of e⁻ (O.S. ↓)</code><br>
+            <code>Oxidant: Gets Reduced</code><br>
+            <code>Reductant: Gets Oxidised</code><br>
+            <code>Equiv = Moles × n-factor</code>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module-card stage-support-columns" id="MOD-RED-03" data-unit="3">
+      <div class="stage-column">
+        <header class="module-header">
+          <div>
+            <span class="module-code">MOD-RED-03</span>
+            <h2 class="module-title">Oxidising &amp; Reducing Agents — The Naming Inversion</h2>
+          </div>
+          <span class="badge badge-secondary">Core 1 · Page 6</span>
+        </header>
+
+        <div class="target-banner">
+          🎯 <strong>Learning Target:</strong> Identify oxidants and reductants without confusing the agent with the process it undergoes.
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">🧠 Memory Anchor</div>
+          <div class="concept-box-text"><strong style="color:var(--accent);">THE INVERSION: The Oxidising Agent gets reduced (accepts e⁻). The Reducing Agent gets oxidised (donates e⁻).</strong></div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚙️ Why It Works</div>
+          <div class="concept-box-text">An agent causes change in something else. An oxidising agent oxidises its partner by stripping electrons from it, thereby absorbing those electrons and getting reduced.</div>
+        </div>
+
+        <div class="contrast-box">
+          <div class="contrast-title">🔍 Worked Contrast</div>
+          <div class="concept-box-text">Flawed: Calling Zn the oxidising agent because it undergoes oxidation. Correct: Zn causes reduction of H⁺; therefore Zn is the reducing agent.</div>
+        </div>
+
+        <!-- Live Tool if applicable -->
+        
+
+        <!-- Active Recall / Tablet Practice Surface -->
+        <div class="practice-surface">
+          <div class="concept-box-title">✍️ Active Practice &amp; Step-by-Step Working</div>
+          <p style="font-size:15px;color:var(--text-primary);margin-bottom:8px;"><strong>Problem:</strong> In CuO + H₂ → Cu + H₂O, name the oxidising agent and the reducing agent with physical reasoning.</p>
+          <textarea class="practice-textarea" data-key="MOD-RED-03" placeholder="Type your step-by-step chemical equations or oxidation calculations on tablet keyboard..."></textarea>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-check-redox" style="background:var(--accent);color:#000;font-weight:700;">Check Solution</button>
+            <button class="btn btn-clear-redox" style="background:var(--bg-surface);border:1px solid var(--border);color:var(--text-secondary);">Clear</button>
+          </div>
+          <details class="guided-reveal">
+            <summary>Reveal Checked Model Answer</summary>
+            <div class="guided-solution-text">
+CuO is reduced (Cu: +2 → 0) =&gt; CuO is the Oxidising Agent. H₂ is oxidised (H: 0 → +1) =&gt; H₂ is the Reducing Agent.
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="support-column">
+        <div class="trap-box">
+          <div class="trap-title">⚠️ Common Trap to Avoid</div>
+          <div class="trap-text">Do not identify single atoms as agents; name the entire reactant molecule/formula unit as the agent.</div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">📑 Academic Authority &amp; Benchmark</div>
+          <div class="concept-box-text" style="font-size:13.5px;color:var(--text-secondary);">
+            <strong>NCERT Chemistry:</strong> Chapter 8 / Unit 2 (Redox Reactions).<br><br>
+            <strong>ExamSIDE Coverage:</strong> 74 Past JEE Main Questions indexed across 7 Learning Tracks.
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚡ Quick Rule Summary</div>
+          <div class="concept-box-text" style="font-size:14px;color:var(--text-primary);">
+            <code>Oxidation: Loss of e⁻ (O.S. ↑)</code><br>
+            <code>Reduction: Gain of e⁻ (O.S. ↓)</code><br>
+            <code>Oxidant: Gets Reduced</code><br>
+            <code>Reductant: Gets Oxidised</code><br>
+            <code>Equiv = Moles × n-factor</code>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module-card stage-support-columns" id="MOD-RED-04" data-unit="4">
+      <div class="stage-column">
+        <header class="module-header">
+          <div>
+            <span class="module-code">MOD-RED-04</span>
+            <h2 class="module-title">Redox vs Non-Redox — Verification from Oxidation Numbers</h2>
+          </div>
+          <span class="badge badge-secondary">Core 1 · Page 7</span>
+        </header>
+
+        <div class="target-banner">
+          🎯 <strong>Learning Target:</strong> Differentiate true redox reactions from acid-base neutralisations and precipitation reactions.
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">🧠 Memory Anchor</div>
+          <div class="concept-box-text"><strong style="color:var(--accent);">Redox criterion: At least one atom must increase in ON AND at least one atom must decrease in ON.</strong></div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚙️ Why It Works</div>
+          <div class="concept-box-text">Many vivid chemical reactions involve precipitate formation or colour change without any electron transfer. Only changes in oxidation numbers prove redox character.</div>
+        </div>
+
+        <div class="contrast-box">
+          <div class="contrast-title">🔍 Worked Contrast</div>
+          <div class="concept-box-text">Flawed: Classifying NaOH + HCl → NaCl + H₂O as redox because bonds broke. Correct: Na(+1), O(-2), H(+1), Cl(-1) throughout; zero ON change =&gt; Non-Redox.</div>
+        </div>
+
+        <!-- Live Tool if applicable -->
+        
+
+        <!-- Active Recall / Tablet Practice Surface -->
+        <div class="practice-surface">
+          <div class="concept-box-title">✍️ Active Practice &amp; Step-by-Step Working</div>
+          <p style="font-size:15px;color:var(--text-primary);margin-bottom:8px;"><strong>Problem:</strong> Classify as redox or non-redox: (a) AgNO₃ + NaCl → AgCl + NaNO₃, (b) 2KClO₃ → 2KCl + 3O₂.</p>
+          <textarea class="practice-textarea" data-key="MOD-RED-04" placeholder="Type your step-by-step chemical equations or oxidation calculations on tablet keyboard..."></textarea>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-check-redox" style="background:var(--accent);color:#000;font-weight:700;">Check Solution</button>
+            <button class="btn btn-clear-redox" style="background:var(--bg-surface);border:1px solid var(--border);color:var(--text-secondary);">Clear</button>
+          </div>
+          <details class="guided-reveal">
+            <summary>Reveal Checked Model Answer</summary>
+            <div class="guided-solution-text">
+(a) Non-redox: Ag(+1), N(+5), O(-2), Na(+1), Cl(-1) unchanged. (b) Redox: Cl(+5 → -1, reduced), O(-2 → 0, oxidised).
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="support-column">
+        <div class="trap-box">
+          <div class="trap-title">⚠️ Common Trap to Avoid</div>
+          <div class="trap-text">Assuming all decomposition reactions are redox. CaCO₃ → CaO + CO₂ is non-redox (Ca=+2, C=+4, O=-2 unchanged!).</div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">📑 Academic Authority &amp; Benchmark</div>
+          <div class="concept-box-text" style="font-size:13.5px;color:var(--text-secondary);">
+            <strong>NCERT Chemistry:</strong> Chapter 8 / Unit 2 (Redox Reactions).<br><br>
+            <strong>ExamSIDE Coverage:</strong> 74 Past JEE Main Questions indexed across 7 Learning Tracks.
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚡ Quick Rule Summary</div>
+          <div class="concept-box-text" style="font-size:14px;color:var(--text-primary);">
+            <code>Oxidation: Loss of e⁻ (O.S. ↑)</code><br>
+            <code>Reduction: Gain of e⁻ (O.S. ↓)</code><br>
+            <code>Oxidant: Gets Reduced</code><br>
+            <code>Reductant: Gets Oxidised</code><br>
+            <code>Equiv = Moles × n-factor</code>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module-card stage-support-columns" id="MOD-RED-05" data-unit="5">
+      <div class="stage-column">
+        <header class="module-header">
+          <div>
+            <span class="module-code">MOD-RED-05</span>
+            <h2 class="module-title">Reaction Types: Displacement, Disproportionation &amp; Comproportionation</h2>
+          </div>
+          <span class="badge badge-secondary">Core 1 · Pages 8–9</span>
+        </header>
+
+        <div class="target-banner">
+          🎯 <strong>Learning Target:</strong> Classify redox topologies: combination, decomposition, displacement, and disproportionation.
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">🧠 Memory Anchor</div>
+          <div class="concept-box-text"><strong style="color:var(--accent);">Disproportionation: SAME element in an intermediate oxidation state simultaneously oxidises and reduces.</strong></div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚙️ Why It Works</div>
+          <div class="concept-box-text">For an element to disproportionate, it must possess at least 3 available oxidation states (one higher, one lower). Elements in their highest oxidation state (e.g. Cl in ClO₄⁻) cannot disproportionate.</div>
+        </div>
+
+        <div class="contrast-box">
+          <div class="contrast-title">🔍 Worked Contrast</div>
+          <div class="concept-box-text">Flawed: Claiming 2H₂O₂ → 2H₂O + O₂ has two different elements reacting. Correct: Oxygen in H₂O₂ (-1) splits into O in H₂O (-2, reduced) and O in O₂ (0, oxidised).</div>
+        </div>
+
+        <!-- Live Tool if applicable -->
+        
+
+        <!-- Active Recall / Tablet Practice Surface -->
+        <div class="practice-surface">
+          <div class="concept-box-title">✍️ Active Practice &amp; Step-by-Step Working</div>
+          <p style="font-size:15px;color:var(--text-primary);margin-bottom:8px;"><strong>Problem:</strong> Why can Cl₂ disproportionate in alkaline medium to Cl⁻ and ClO⁻, but F₂ cannot?</p>
+          <textarea class="practice-textarea" data-key="MOD-RED-05" placeholder="Type your step-by-step chemical equations or oxidation calculations on tablet keyboard..."></textarea>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-check-redox" style="background:var(--accent);color:#000;font-weight:700;">Check Solution</button>
+            <button class="btn btn-clear-redox" style="background:var(--bg-surface);border:1px solid var(--border);color:var(--text-secondary);">Clear</button>
+          </div>
+          <details class="guided-reveal">
+            <summary>Reveal Checked Model Answer</summary>
+            <div class="guided-solution-text">
+Cl has oxidation states -1, 0, +1, +3, +5, +7, so 0 can split to -1 and +1. Fluorine is the most electronegative element with only 0 and -1 oxidation states; it cannot exhibit positive oxidation states.
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="support-column">
+        <div class="trap-box">
+          <div class="trap-title">⚠️ Common Trap to Avoid</div>
+          <div class="trap-text">Confusing disproportionation with intermolecular redox. In disproportionation, a single species acts as both oxidant and reductant.</div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">📑 Academic Authority &amp; Benchmark</div>
+          <div class="concept-box-text" style="font-size:13.5px;color:var(--text-secondary);">
+            <strong>NCERT Chemistry:</strong> Chapter 8 / Unit 2 (Redox Reactions).<br><br>
+            <strong>ExamSIDE Coverage:</strong> 74 Past JEE Main Questions indexed across 7 Learning Tracks.
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚡ Quick Rule Summary</div>
+          <div class="concept-box-text" style="font-size:14px;color:var(--text-primary);">
+            <code>Oxidation: Loss of e⁻ (O.S. ↑)</code><br>
+            <code>Reduction: Gain of e⁻ (O.S. ↓)</code><br>
+            <code>Oxidant: Gets Reduced</code><br>
+            <code>Reductant: Gets Oxidised</code><br>
+            <code>Equiv = Moles × n-factor</code>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module-card stage-support-columns" id="MOD-RED-06" data-unit="6">
+      <div class="stage-column">
+        <header class="module-header">
+          <div>
+            <span class="module-code">MOD-RED-06</span>
+            <h2 class="module-title">Half-Reaction Balancing — Acidic &amp; Basic Medium</h2>
+          </div>
+          <span class="badge badge-secondary">Core 1 · Pages 10–11</span>
+        </header>
+
+        <div class="target-banner">
+          🎯 <strong>Learning Target:</strong> Balance complex redox equations using the Ion-Electron method with exact mass and charge conservation.
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">🧠 Memory Anchor</div>
+          <div class="concept-box-text"><strong style="color:var(--accent);">Acidic: Balance atoms ≠ H, O → Balance O with H₂O → Balance H with H⁺ → Balance charge with e⁻. Basic: Add OH⁻ equal to H⁺ to both sides to form H₂O.</strong></div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚙️ Why It Works</div>
+          <div class="concept-box-text">Electrons cannot exist free in solution; total electrons lost in oxidation must strictly equal total electrons gained in reduction.</div>
+        </div>
+
+        <div class="contrast-box">
+          <div class="contrast-title">🔍 Worked Contrast</div>
+          <div class="concept-box-text">Flawed: Balancing atoms but leaving unequal charges on product and reactant sides. Correct: Mass balance AND charge balance must both match.</div>
+        </div>
+
+        <!-- Live Tool if applicable -->
+        
+
+        <!-- Active Recall / Tablet Practice Surface -->
+        <div class="practice-surface">
+          <div class="concept-box-title">✍️ Active Practice &amp; Step-by-Step Working</div>
+          <p style="font-size:15px;color:var(--text-primary);margin-bottom:8px;"><strong>Problem:</strong> Balance in acidic medium: MnO₄⁻ + Fe²⁺ → Mn²⁺ + Fe³⁺.</p>
+          <textarea class="practice-textarea" data-key="MOD-RED-06" placeholder="Type your step-by-step chemical equations or oxidation calculations on tablet keyboard..."></textarea>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-check-redox" style="background:var(--accent);color:#000;font-weight:700;">Check Solution</button>
+            <button class="btn btn-clear-redox" style="background:var(--bg-surface);border:1px solid var(--border);color:var(--text-secondary);">Clear</button>
+          </div>
+          <details class="guided-reveal">
+            <summary>Reveal Checked Model Answer</summary>
+            <div class="guided-solution-text">
+Oxidation: 5(Fe²⁺ → Fe³⁺ + e⁻). Reduction: MnO₄⁻ + 8H⁺ + 5e⁻ → Mn²⁺ + 4H₂O. Overall: MnO₄⁻ + 5Fe²⁺ + 8H⁺ → Mn²⁺ + 5Fe³⁺ + 4H₂O.
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="support-column">
+        <div class="trap-box">
+          <div class="trap-title">⚠️ Common Trap to Avoid</div>
+          <div class="trap-text">Forgetting to multiply half-reactions by integers before summing so that electrons cancel out completely.</div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">📑 Academic Authority &amp; Benchmark</div>
+          <div class="concept-box-text" style="font-size:13.5px;color:var(--text-secondary);">
+            <strong>NCERT Chemistry:</strong> Chapter 8 / Unit 2 (Redox Reactions).<br><br>
+            <strong>ExamSIDE Coverage:</strong> 74 Past JEE Main Questions indexed across 7 Learning Tracks.
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚡ Quick Rule Summary</div>
+          <div class="concept-box-text" style="font-size:14px;color:var(--text-primary);">
+            <code>Oxidation: Loss of e⁻ (O.S. ↑)</code><br>
+            <code>Reduction: Gain of e⁻ (O.S. ↓)</code><br>
+            <code>Oxidant: Gets Reduced</code><br>
+            <code>Reductant: Gets Oxidised</code><br>
+            <code>Equiv = Moles × n-factor</code>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module-card stage-support-columns" id="MOD-RED-07" data-unit="7">
+      <div class="stage-column">
+        <header class="module-header">
+          <div>
+            <span class="module-code">MOD-RED-07</span>
+            <h2 class="module-title">Equivalent Mass &amp; n-Factor in Redox</h2>
+          </div>
+          <span class="badge badge-secondary">Core 1 · Pages 12–13</span>
+        </header>
+
+        <div class="target-banner">
+          🎯 <strong>Learning Target:</strong> Calculate reaction-dependent n-factor and equivalent mass for oxidants, reductants, and titrations.
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">🧠 Memory Anchor</div>
+          <div class="concept-box-text"><strong style="color:var(--accent);">n-factor for Redox = Total change in oxidation number PER MOLE of the specified formula unit. Equivalent Mass = Molar Mass / n.</strong></div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚙️ Why It Works</div>
+          <div class="concept-box-text">Unlike acid-base acidity/basicity, redox n-factor is not fixed by formula; it depends strictly on the reaction medium and product formed.</div>
+        </div>
+
+        <div class="contrast-box">
+          <div class="contrast-title">🔍 Worked Contrast</div>
+          <div class="concept-box-text">KMnO₄ in acidic medium: Mn(+7) → Mn²⁺(Δ=5, n=5). In neutral/faintly alkaline: Mn(+7) → MnO₂(Δ=3, n=3). In strongly alkaline: Mn(+7) → MnO₄²⁻(Δ=1, n=1).</div>
+        </div>
+
+        <!-- Live Tool if applicable -->
+        
+        <div class="calc-widget">
+          <div class="calc-title">⚖️ Reaction-Dependent n-Factor &amp; Equivalent Mass Solver</div>
+          <div class="calc-row">
+            <label style="font-weight:600;font-size:14.5px;">Select Reagent &amp; Medium:</label>
+            <select id="select-nf-reagent" class="calc-select">
+              <option value="kmno4_acid">KMnO₄ in Acidic Medium (→ Mn²⁺)</option>
+              <option value="kmno4_neutral">KMnO₄ in Neutral/Faintly Alkaline (→ MnO₂)</option>
+              <option value="kmno4_alkaline">KMnO₄ in Strongly Alkaline (→ MnO₄²⁻)</option>
+              <option value="k2cr2o7_acid">K₂Cr₂O₇ in Acidic Medium (→ 2Cr³⁺)</option>
+              <option value="h2o2_ox">H₂O₂ as Oxidant (→ 2H₂O)</option>
+              <option value="fe_c2o4">Ferrous Oxalate FeC₂O₄ (→ Fe³⁺ + 2CO₂)</option>
+            </select>
+            <button id="btn-calc-nf" class="btn" style="background:var(--accent);color:#000;">Compute n-Factor</button>
+          </div>
+          <div id="res-nf-calc" class="calc-result">Select a reagent above and tap Compute.</div>
+        </div>
+        
+
+        <!-- Active Recall / Tablet Practice Surface -->
+        <div class="practice-surface">
+          <div class="concept-box-title">✍️ Active Practice &amp; Step-by-Step Working</div>
+          <p style="font-size:15px;color:var(--text-primary);margin-bottom:8px;"><strong>Problem:</strong> Find the n-factor of Cr₂O₇²⁻ when it reduces to Cr³⁺ in acidic medium.</p>
+          <textarea class="practice-textarea" data-key="MOD-RED-07" placeholder="Type your step-by-step chemical equations or oxidation calculations on tablet keyboard..."></textarea>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-check-redox" style="background:var(--accent);color:#000;font-weight:700;">Check Solution</button>
+            <button class="btn btn-clear-redox" style="background:var(--bg-surface);border:1px solid var(--border);color:var(--text-secondary);">Clear</button>
+          </div>
+          <details class="guided-reveal">
+            <summary>Reveal Checked Model Answer</summary>
+            <div class="guided-solution-text">
+Cr₂O₇²⁻ has 2 Cr atoms. Each Cr goes from +6 to +3 (change = 3). Total change per formula unit = 2 × 3 = 6. Therefore n-factor = 6, Equivalent weight = M/6.
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="support-column">
+        <div class="trap-box">
+          <div class="trap-title">⚠️ Common Trap to Avoid</div>
+          <div class="trap-text">Multiplying the change in oxidation state by the coefficient in the balanced equation instead of the subscript in the reactant formula unit.</div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">📑 Academic Authority &amp; Benchmark</div>
+          <div class="concept-box-text" style="font-size:13.5px;color:var(--text-secondary);">
+            <strong>NCERT Chemistry:</strong> Chapter 8 / Unit 2 (Redox Reactions).<br><br>
+            <strong>ExamSIDE Coverage:</strong> 74 Past JEE Main Questions indexed across 7 Learning Tracks.
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="concept-box-title">⚡ Quick Rule Summary</div>
+          <div class="concept-box-text" style="font-size:14px;color:var(--text-primary);">
+            <code>Oxidation: Loss of e⁻ (O.S. ↑)</code><br>
+            <code>Reduction: Gain of e⁻ (O.S. ↓)</code><br>
+            <code>Oxidant: Gets Reduced</code><br>
+            <code>Reductant: Gets Oxidised</code><br>
+            <code>Equiv = Moles × n-factor</code>
+          </div>
+        </div>
+      </div>
+    </article>
+    <div style="margin:40px 0 20px 0;border-top:2px solid var(--border);padding-top:20px;"><h2 style="font-size:22px;color:var(--accent);">📘 NCERT Question Helper &amp; Transfer Bank (Core 2)</h2></div>
+    <article class="module-card stage-support-columns" id="NCERT-Q1" data-unit="ncert">
+      <div class="stage-column">
+        <header class="module-header">
+          <div>
+            <span class="module-code">Q1 · NCERT Unit 2 Q2</span>
+            <h2 class="module-title">Rusting: Corrosion &amp; Chemical Change</h2>
+          </div>
+          <span class="badge badge-purple">Core 2 NCERT Helper</span>
+        </header>
+
+        <p style="font-size:16px;color:var(--text-primary);margin-bottom:14px;font-weight:600;line-height:1.5;">
+          Rusting of an article made of iron is called what, and is it a physical or chemical change?
+        </p>
+
+        <div class="concept-box">
+          <div class="concept-box-title">💡 See the Idea (Visual First Move)</div>
+          <div class="concept-box-text">Rusting converts metallic iron into hydrated iron(III) oxide (Fe₂O₃·xH₂O). New chemical bonds form and electrons are transferred.</div>
+        </div>
+
+        <div class="contrast-box">
+          <div class="contrast-title">👨‍🏫 Teacher-Style Helper</div>
+          <div class="concept-box-text">Physical changes alter appearance or state without changing composition. Rusting forms a completely new chemical compound with distinct properties.</div>
+        </div>
+
+        <!-- Practice & Scratchpad -->
+        <div class="practice-surface">
+          <div class="concept-box-title">✍️ Your Working &amp; Answer Commit</div>
+          <textarea class="practice-textarea" data-key="ncert_Q1" placeholder="Commit your answer here before revealing check..."></textarea>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-check-redox" style="background:var(--success);color:#000;font-weight:700;">Check Answer</button>
+            <button class="btn btn-clear-redox" style="background:var(--bg-surface);border:1px solid var(--border);color:var(--text-secondary);">Clear</button>
+          </div>
+          <details class="guided-reveal">
+            <summary>Reveal Answer &amp; 5-Step Solution</summary>
+            <div class="guided-solution-text">
+              <strong style="color:var(--success);font-size:15px;">Immediate Answer:</strong> Rusting is called Corrosion, and it is a Chemical Change.<br><br>
+              <strong>Complete Solution:</strong><br>
+1. Understand: Identify the process transforming shiny iron metal into reddish-brown flaky material.
+2. Chemistry: Fe(s) is oxidised by O₂(g) in the presence of H₂O to form hydrated ferric oxide Fe₂O₃·xH₂O.
+3. Electron transfer: Fe(0) → Fe³⁺ + 3e⁻ (oxidation). O₂(0) + 4e⁻ → 2O²⁻ (reduction).
+4. Conclusion: A new substance with distinct chemical identity is formed irreversibly, satisfying the definition of a chemical change.
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="support-column">
+        <div class="concept-box">
+          <div class="concept-box-title">📋 Question Provenance</div>
+          <div class="concept-box-text" style="font-size:13.5px;color:var(--text-secondary);">
+            <strong>Source:</strong> NCERT Unit 2 Q2<br>
+            <strong>Category:</strong> Chemical Change &amp; Redox Classification.<br>
+            <strong>Transfer Skill:</strong> Connecting macroscopic observation to atomic electron transfer.
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module-card stage-support-columns" id="NCERT-Q2" data-unit="ncert">
+      <div class="stage-column">
+        <header class="module-header">
+          <div>
+            <span class="module-code">Q2 · NCERT Unit 2 Q6</span>
+            <h2 class="module-title">Distinguishing Physical from Chemical Changes</h2>
+          </div>
+          <span class="badge badge-purple">Core 2 NCERT Helper</span>
+        </header>
+
+        <p style="font-size:16px;color:var(--text-primary);margin-bottom:14px;font-weight:600;line-height:1.5;">
+          Which of the following are physical changes? (a) Melting of iron, (b) Rusting of iron, (c) Bending of an iron rod, (d) Drawing a wire of iron metal.
+        </p>
+
+        <div class="concept-box">
+          <div class="concept-box-title">💡 See the Idea (Visual First Move)</div>
+          <div class="concept-box-text">State changes (melting) and shape changes (bending, drawing) preserve elemental Fe bonds; only rusting alters chemical composition.</div>
+        </div>
+
+        <div class="contrast-box">
+          <div class="contrast-title">👨‍🏫 Teacher-Style Helper</div>
+          <div class="concept-box-text">Ask: Can the original material be restored by simple physical reversal without a chemical reaction?</div>
+        </div>
+
+        <!-- Practice & Scratchpad -->
+        <div class="practice-surface">
+          <div class="concept-box-title">✍️ Your Working &amp; Answer Commit</div>
+          <textarea class="practice-textarea" data-key="ncert_Q2" placeholder="Commit your answer here before revealing check..."></textarea>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-check-redox" style="background:var(--success);color:#000;font-weight:700;">Check Answer</button>
+            <button class="btn btn-clear-redox" style="background:var(--bg-surface);border:1px solid var(--border);color:var(--text-secondary);">Clear</button>
+          </div>
+          <details class="guided-reveal">
+            <summary>Reveal Answer &amp; 5-Step Solution</summary>
+            <div class="guided-solution-text">
+              <strong style="color:var(--success);font-size:15px;">Immediate Answer:</strong> (a) Melting of iron, (c) Bending of an iron rod, and (d) Drawing a wire are physical changes.<br><br>
+              <strong>Complete Solution:</strong><br>
+1. Melting (a) is a phase transition solid → liquid, preserving atomic iron.
+2. Bending (c) and drawing (d) are mechanical deformations affecting lattice geometry without altering chemical composition.
+3. Rusting (b) forms iron oxide, which is a chemical reaction.
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="support-column">
+        <div class="concept-box">
+          <div class="concept-box-title">📋 Question Provenance</div>
+          <div class="concept-box-text" style="font-size:13.5px;color:var(--text-secondary);">
+            <strong>Source:</strong> NCERT Unit 2 Q6<br>
+            <strong>Category:</strong> Chemical Change &amp; Redox Classification.<br>
+            <strong>Transfer Skill:</strong> Connecting macroscopic observation to atomic electron transfer.
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module-card stage-support-columns" id="NCERT-Q3" data-unit="ncert">
+      <div class="stage-column">
+        <header class="module-header">
+          <div>
+            <span class="module-code">Q3 · NCERT Unit 2 Q15(c)</span>
+            <h2 class="module-title">Heating Iron and Sulphur</h2>
+          </div>
+          <span class="badge badge-purple">Core 2 NCERT Helper</span>
+        </header>
+
+        <p style="font-size:16px;color:var(--text-primary);margin-bottom:14px;font-weight:600;line-height:1.5;">
+          When a mixture of iron filings and sulphur powder is heated strongly, a black compound FeS is formed. Is this a physical or chemical change? Identify oxidation states.
+        </p>
+
+        <div class="concept-box">
+          <div class="concept-box-title">💡 See the Idea (Visual First Move)</div>
+          <div class="concept-box-text">Elemental Fe (0) and S (0) react exothermically to form iron(II) sulphide (Fe²⁺S²⁻).</div>
+        </div>
+
+        <div class="contrast-box">
+          <div class="contrast-title">👨‍🏫 Teacher-Style Helper</div>
+          <div class="concept-box-text">Notice the change in magnetic properties: iron in FeS is no longer attracted to a magnet because it is chemically bonded.</div>
+        </div>
+
+        <!-- Practice & Scratchpad -->
+        <div class="practice-surface">
+          <div class="concept-box-title">✍️ Your Working &amp; Answer Commit</div>
+          <textarea class="practice-textarea" data-key="ncert_Q3" placeholder="Commit your answer here before revealing check..."></textarea>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-check-redox" style="background:var(--success);color:#000;font-weight:700;">Check Answer</button>
+            <button class="btn btn-clear-redox" style="background:var(--bg-surface);border:1px solid var(--border);color:var(--text-secondary);">Clear</button>
+          </div>
+          <details class="guided-reveal">
+            <summary>Reveal Answer &amp; 5-Step Solution</summary>
+            <div class="guided-solution-text">
+              <strong style="color:var(--success);font-size:15px;">Immediate Answer:</strong> Chemical change (Redox combination). Fe is oxidised (0 to +2), S is reduced (0 to -2).<br><br>
+              <strong>Complete Solution:</strong><br>
+1. Reaction: Fe(s) + S(s) → FeS(s).
+2. Oxidation states: Fe goes from 0 to +2 (loss of 2e⁻, oxidation). S goes from 0 to -2 (gain of 2e⁻, reduction).
+3. Fe acts as reducing agent; S acts as oxidising agent.
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="support-column">
+        <div class="concept-box">
+          <div class="concept-box-title">📋 Question Provenance</div>
+          <div class="concept-box-text" style="font-size:13.5px;color:var(--text-secondary);">
+            <strong>Source:</strong> NCERT Unit 2 Q15(c)<br>
+            <strong>Category:</strong> Chemical Change &amp; Redox Classification.<br>
+            <strong>Transfer Skill:</strong> Connecting macroscopic observation to atomic electron transfer.
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module-card stage-support-columns" id="NCERT-Q4" data-unit="ncert">
+      <div class="stage-column">
+        <header class="module-header">
+          <div>
+            <span class="module-code">Q4 · NCERT Unit 2 Q18(b)</span>
+            <h2 class="module-title">Zinc + Hydrochloric Acid</h2>
+          </div>
+          <span class="badge badge-purple">Core 2 NCERT Helper</span>
+        </header>
+
+        <p style="font-size:16px;color:var(--text-primary);margin-bottom:14px;font-weight:600;line-height:1.5;">
+          Zinc granules react with dilute hydrochloric acid to produce hydrogen gas and zinc chloride. Identify: (a) what is oxidised, (b) what is reduced, (c) the oxidising agent.
+        </p>
+
+        <div class="concept-box">
+          <div class="concept-box-title">💡 See the Idea (Visual First Move)</div>
+          <div class="concept-box-text">Displacement of hydrogen by a more electropositive metal: Zn + 2HCl → ZnCl₂ + H₂.</div>
+        </div>
+
+        <div class="contrast-box">
+          <div class="contrast-title">👨‍🏫 Teacher-Style Helper</div>
+          <div class="concept-box-text">Write net ionic equation: Zn(s) + 2H⁺(aq) → Zn²⁺(aq) + H₂(g). Chloride is a spectator ion.</div>
+        </div>
+
+        <!-- Practice & Scratchpad -->
+        <div class="practice-surface">
+          <div class="concept-box-title">✍️ Your Working &amp; Answer Commit</div>
+          <textarea class="practice-textarea" data-key="ncert_Q4" placeholder="Commit your answer here before revealing check..."></textarea>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-check-redox" style="background:var(--success);color:#000;font-weight:700;">Check Answer</button>
+            <button class="btn btn-clear-redox" style="background:var(--bg-surface);border:1px solid var(--border);color:var(--text-secondary);">Clear</button>
+          </div>
+          <details class="guided-reveal">
+            <summary>Reveal Answer &amp; 5-Step Solution</summary>
+            <div class="guided-solution-text">
+              <strong style="color:var(--success);font-size:15px;">Immediate Answer:</strong> (a) Zn is oxidised, (b) H⁺ is reduced, (c) HCl (or H⁺) is the oxidising agent.<br><br>
+              <strong>Complete Solution:</strong><br>
+1. Ionic form: Zn⁰ + 2H⁺ + 2Cl⁻ → Zn²⁺ + H₂⁰ + 2Cl⁻.
+2. Zn: 0 to +2 (oxidised; reducing agent).
+3. H⁺: +1 to 0 (reduced; oxidising agent).
+4. Cl⁻: -1 on both sides (spectator ion).
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="support-column">
+        <div class="concept-box">
+          <div class="concept-box-title">📋 Question Provenance</div>
+          <div class="concept-box-text" style="font-size:13.5px;color:var(--text-secondary);">
+            <strong>Source:</strong> NCERT Unit 2 Q18(b)<br>
+            <strong>Category:</strong> Chemical Change &amp; Redox Classification.<br>
+            <strong>Transfer Skill:</strong> Connecting macroscopic observation to atomic electron transfer.
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="module-card stage-support-columns" id="NCERT-Q5" data-unit="ncert">
+      <div class="stage-column">
+        <header class="module-header">
+          <div>
+            <span class="module-code">Q5 · NCERT Unit 2 Q29</span>
+            <h2 class="module-title">Chemical but Non-Redox: Double Displacement</h2>
+          </div>
+          <span class="badge badge-purple">Core 2 NCERT Helper</span>
+        </header>
+
+        <p style="font-size:16px;color:var(--text-primary);margin-bottom:14px;font-weight:600;line-height:1.5;">
+          Barium chloride solution is mixed with sodium sulphate solution. A white precipitate forms. Write the reaction, state if it is redox, and explain.
+        </p>
+
+        <div class="concept-box">
+          <div class="concept-box-title">💡 See the Idea (Visual First Move)</div>
+          <div class="concept-box-text">BaCl₂(aq) + Na₂SO₄(aq) → BaSO₄(s) + 2NaCl(aq).</div>
+        </div>
+
+        <div class="contrast-box">
+          <div class="contrast-title">👨‍🏫 Teacher-Style Helper</div>
+          <div class="concept-box-text">Track the oxidation number of each element before and after precipitation.</div>
+        </div>
+
+        <!-- Practice & Scratchpad -->
+        <div class="practice-surface">
+          <div class="concept-box-title">✍️ Your Working &amp; Answer Commit</div>
+          <textarea class="practice-textarea" data-key="ncert_Q5" placeholder="Commit your answer here before revealing check..."></textarea>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-check-redox" style="background:var(--success);color:#000;font-weight:700;">Check Answer</button>
+            <button class="btn btn-clear-redox" style="background:var(--bg-surface);border:1px solid var(--border);color:var(--text-secondary);">Clear</button>
+          </div>
+          <details class="guided-reveal">
+            <summary>Reveal Answer &amp; 5-Step Solution</summary>
+            <div class="guided-solution-text">
+              <strong style="color:var(--success);font-size:15px;">Immediate Answer:</strong> BaCl₂ + Na₂SO₄ → BaSO₄↓ + 2NaCl. It is a NON-REDOX double displacement reaction.<br><br>
+              <strong>Complete Solution:</strong><br>
+1. Reactants: Ba = +2, Cl = -1, Na = +1, S = +6, O = -2.
+2. Products: Ba = +2, S = +6, O = -2 (in BaSO₄); Na = +1, Cl = -1 (in NaCl).
+3. No atom changes oxidation state. It is an ionic precipitation (exchange of partner ions), hence non-redox.
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="support-column">
+        <div class="concept-box">
+          <div class="concept-box-title">📋 Question Provenance</div>
+          <div class="concept-box-text" style="font-size:13.5px;color:var(--text-secondary);">
+            <strong>Source:</strong> NCERT Unit 2 Q29<br>
+            <strong>Category:</strong> Chemical Change &amp; Redox Classification.<br>
+            <strong>Transfer Skill:</strong> Connecting macroscopic observation to atomic electron transfer.
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    </main>
+
+    <footer>
+      Grade 9 Chemistry · Redox Reactions Master Suite · Standalone 12.7" Tablet Format · WCAG 2.5.5 Compliant (≥48px touch targets) · Zero External CDN Dependencies
+    </footer>
+  </div>
+
+  <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  initTabs();
+  initSearch();
+  initTextareas();
+  initCalculators();
+});
+
+function initTheme() {
+  const toggleBtn = document.getElementById('theme-toggle-btn');
+  if (!toggleBtn) return;
+  const saved = localStorage.getItem('g9_redox_theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  toggleBtn.innerHTML = saved === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+
+  toggleBtn.addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+    const next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('g9_redox_theme', next);
+    toggleBtn.innerHTML = next === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+  });
+}
+
+function initTabs() {
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const targetUnit = btn.getAttribute('data-unit');
+      filterUnit(targetUnit);
+    });
+  });
+}
+
+function filterUnit(target) {
+  const cards = document.querySelectorAll('.module-card');
+  const search = (document.getElementById('search-input')?.value || '').toLowerCase().trim();
+
+  cards.forEach(c => {
+    const u = c.getAttribute('data-unit');
+    const txt = c.textContent.toLowerCase();
+    const matchUnit = (target === 'all' || u === target);
+    const matchSearch = (!search || txt.includes(search));
+
+    c.style.display = (matchUnit && matchSearch) ? '' : 'none';
+  });
+}
+
+function initSearch() {
+  const searchInput = document.getElementById('search-input');
+  const clearBtn = document.getElementById('clear-search-btn');
+
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      const activeTab = document.querySelector('.tab-btn.active')?.getAttribute('data-unit') || 'all';
+      filterUnit(activeTab);
+    });
+  }
+
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      if (searchInput) {
+        searchInput.value = '';
+        const activeTab = document.querySelector('.tab-btn.active')?.getAttribute('data-unit') || 'all';
+        filterUnit(activeTab);
+        searchInput.focus();
+      }
+    });
+  }
+}
+
+function initTextareas() {
+  const tas = document.querySelectorAll('.practice-textarea');
+  tas.forEach(t => {
+    const key = t.getAttribute('data-key');
+    if (!key) return;
+    const s = localStorage.getItem(`g9_redox_${key}`);
+    if (s) t.value = s;
+
+    t.addEventListener('input', () => {
+      localStorage.setItem(`g9_redox_${key}`, t.value);
+    });
+  });
+
+  const clearBtns = document.querySelectorAll('.btn-clear-redox');
+  clearBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const parent = btn.closest('.practice-surface');
+      const ta = parent?.querySelector('.practice-textarea');
+      const key = ta?.getAttribute('data-key');
+      if (ta) ta.value = '';
+      if (key) localStorage.removeItem(`g9_redox_${key}`);
+      const rev = parent?.querySelector('details.guided-reveal');
+      if (rev) rev.open = false;
+    });
+  });
+
+  const checkBtns = document.querySelectorAll('.btn-check-redox');
+  checkBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const parent = btn.closest('.practice-surface');
+      const rev = parent?.querySelector('details.guided-reveal');
+      if (rev) rev.open = true;
+    });
+  });
+}
+
+function initCalculators() {
+  // 1. Oxidation State Solver
+  const oxBtn = document.getElementById('btn-calc-ox');
+  if (oxBtn) {
+    oxBtn.addEventListener('click', () => {
+      const formula = document.getElementById('select-ox-formula')?.value;
+      const resDiv = document.getElementById('res-ox-calc');
+      if (!resDiv) return;
+
+      const data = {
+        'KMnO4': 'K = +1, O = -2 (x4 = -8). Sum = 0 => <strong>Mn = +7</strong> (Maximum permanganate state)',
+        'K2Cr2O7': 'K = +1 (x2 = +2), O = -2 (x7 = -14). 2 + 2Cr - 14 = 0 => 2Cr = +12 => <strong>Cr = +6</strong>',
+        'CrO5': 'Contains butterfly peroxo structure: 1 oxo (=O, -2) + 2 peroxo (-O-O-, -1 each x4 = -4). Sum = 0 => <strong>Cr = +6</strong> (NOT +10!)',
+        'H2SO5': "Caro's acid: contains one peroxo link (-O-O-). H = +1 (x2), 3 oxo O (-6), 2 peroxo O (-2). => <strong>S = +6</strong> (NOT +8!)",
+        'Fe3O4': 'Mixed oxide: FeO·Fe₂O₃. Average ON = <strong>+8/3</strong>; structural breakdown = one Fe²⁺ (+2) and two Fe³⁺ (+3).'
+      };
+      resDiv.innerHTML = data[formula] || 'Select formula to compute.';
+    });
+  }
+
+  // 2. n-Factor Calculator
+  const nfBtn = document.getElementById('btn-calc-nf');
+  if (nfBtn) {
+    nfBtn.addEventListener('click', () => {
+      const reagent = document.getElementById('select-nf-reagent')?.value;
+      const resDiv = document.getElementById('res-nf-calc');
+      if (!resDiv) return;
+
+      const data = {
+        'kmno4_acid': '<strong>KMnO₄ in Acidic Medium:</strong> MnO₄⁻ (+7) + 5e⁻ → Mn²⁺ (+2). ΔO.S. = 5. => <strong>n = 5</strong>, Eq. Mass = M / 5.',
+        'kmno4_neutral': '<strong>KMnO₄ in Neutral / Faintly Alkaline Medium:</strong> MnO₄⁻ (+7) + 3e⁻ → MnO₂ (+4). ΔO.S. = 3. => <strong>n = 3</strong>, Eq. Mass = M / 3.',
+        'kmno4_alkaline': '<strong>KMnO₄ in Strongly Alkaline Medium:</strong> MnO₄⁻ (+7) + e⁻ → MnO₄²⁻ (+6). ΔO.S. = 1. => <strong>n = 1</strong>, Eq. Mass = M / 1.',
+        'k2cr2o7_acid': '<strong>K₂Cr₂O₇ in Acidic Medium:</strong> Cr₂O₇²⁻ (+6) + 6e⁻ → 2Cr³⁺ (+3). ΔO.S. per Cr = 3. Total for 2 Cr = <strong>6</strong>. => <strong>n = 6</strong>, Eq. Mass = M / 6.',
+        'h2o2_ox': '<strong>H₂O₂ as Oxidant:</strong> H₂O₂ (-1) + 2e⁻ → 2H₂O (-2). Total ΔO.S. for 2 oxygens = <strong>2</strong>. => <strong>n = 2</strong>, Eq. Mass = M / 2.',
+        'fe_c2o4': '<strong>Ferrous Oxalate (FeC₂O₄):</strong> Fe²⁺ → Fe³⁺ (1e⁻) + C₂O₄²⁻ → 2CO₂ (2e⁻). Total electrons lost = 1 + 2 = <strong>3</strong>. => <strong>n = 3</strong>, Eq. Mass = M / 3.'
+      };
+      resDiv.innerHTML = data[reagent] || 'Select reagent to calculate.';
+    });
+  }
+}
+
+  </script>
+</body>
+</html>

@@ -84,7 +84,10 @@ function renderDeclaredMath(article,q){
 // ---- URL state: labels from older links still work, stable ids are what gets written ----
 function stateFromUrl(){
   const p=new URLSearchParams(location.search);
-  return {view:p.get('view')||'',q:p.get('q')||p.get('search')||p.get('id')||'',subject:p.get('subject')||'',topic:p.get('topic')||'',subtopic:p.get('subtopic')||'',
+  let view=p.get('view')||'';
+  const tag=(p.get('tag')||'').toLowerCase();
+  if(!view && (tag==='core2' || tag==='core-2')) view='core2-motion-1d';
+  return {view:view,q:p.get('q')||p.get('search')||p.get('id')||'',subject:p.get('subject')||'',topic:p.get('topic')||'',subtopic:p.get('subtopic')||'',
     difficulty:p.get('difficulty')||'',exam:p.get('exam')||'',type:p.get('type')||'',mode:p.get('mode')||'browse',sort:p.get('sort')||'canonical'};
 }
 function stem(word){
@@ -266,6 +269,7 @@ function renderTabs(){
   els.subjectTabs.replaceChildren();
   const ICONS = ['⚗️', '📐', '🔬', '🧬', '🪐'];
   const ncertCount = summaries.filter(q => q.exam === 'NCERT' || (q.tags || []).includes('NCERT')).length;
+  const core2Count = summaries.filter(q => (q.id && q.id.startsWith('1D-Q')) || (q.tags || []).includes('core2') || (q.tags || []).includes('CORE2')).length;
   const tabs=[
     {id:'',label:'All Questions',count:catalog.counts.questions,icon:'⚡'},
     ...browsable(catalog.subjects).map((s, idx)=>({
@@ -274,7 +278,8 @@ function renderTabs(){
       count:s.question_count,
       icon:s.icon || ICONS[idx % ICONS.length] || '📚'
     })),
-    {id:'iit-jee',label:'IIT-JEE PYQs',count:215,icon:'🎯'},
+    {id:'core2',label:'Core 2 Challenges',count:core2Count || 18,icon:'🎯'},
+    {id:'iit-jee',label:'IIT-JEE PYQs',count:215,icon:'🏆'},
     {id:'ncert',label:'NCERT',count:ncertCount,icon:'📖'}
   ];
   tabs.forEach(tab=>{
@@ -282,7 +287,8 @@ function renderTabs(){
     button.type='button';
     button.setAttribute('role','tab');
     button.dataset.subjectRef=tab.id;
-    if(tab.id && tab.id !== 'iit-jee' && tab.id !== 'ncert') button.style.setProperty('--qb-tab-accent',accentFor(tab.id));
+    if(tab.id && tab.id !== 'core2' && tab.id !== 'iit-jee' && tab.id !== 'ncert') button.style.setProperty('--qb-tab-accent',accentFor(tab.id));
+    if(tab.id === 'core2') button.style.setProperty('--qb-tab-accent','#38bdf8');
     if(tab.id === 'iit-jee') button.style.setProperty('--qb-tab-accent','#a855f7');
     if(tab.id === 'ncert') button.style.setProperty('--qb-tab-accent','#059669');
     button.append(
@@ -290,14 +296,17 @@ function renderTabs(){
       el('span','qb-tab-label',tab.label),
       el('span','qb-tab-badge',String(tab.count))
     );
-    const selected = tab.id === 'iit-jee' ? (state.exam === 'IIT-JEE Diagnostic' || state.exam === 'IIT-JEE') :
+    const selected = tab.id === 'core2' ? (state.view === 'core2-motion-1d') :
+                     tab.id === 'iit-jee' ? (state.exam === 'IIT-JEE Diagnostic' || state.exam === 'IIT-JEE') :
                      tab.id === 'ncert' ? (state.exam === 'NCERT') :
-                     (state.subject === tab.id && !state.exam);
+                     (state.subject === tab.id && !state.exam && !state.view);
     button.setAttribute('aria-selected',String(selected));
     button.tabIndex=selected?0:-1;
     button.classList.toggle('active',selected);
     button.addEventListener('click',()=>{
-      if(tab.id === 'iit-jee'){
+      if(tab.id === 'core2'){
+        setState({view:'core2-motion-1d',subject:'',topic:'',subtopic:'',exam:''});
+      } else if(tab.id === 'iit-jee'){
         setState({view:'',subject:'',topic:'',subtopic:'',exam:'IIT-JEE Diagnostic'});
       } else if(tab.id === 'ncert'){
         setState({view:'',subject:'',topic:'',subtopic:'',exam:'NCERT'});
@@ -415,20 +424,48 @@ function renderActive(){
     .forEach(([key,label])=>{if(state[key])els.active.append(chip(label,key));});
 }
 
-// ---- question cards ----
 function qHeader(q){
   const header=el('header','qb-qhead'),top=el('div','qb-qhead-top'),left=el('div');
   left.append(el('div','qb-qtitle',q.exam+' '+q.year+' · '+q.paper+' · Q'+q.question_number),
     el('div','qb-qsource',words(q.question_type)+' · '+q.expected_time_seconds+' s target · '+q.topic));
-  const diff=el('span','qb-diff',q.difficulty.band+' · '+q.difficulty.score+'/10');
-  diff.dataset.band=q.difficulty.band;
-  top.append(left,diff);
+  
+  const rawBand = (q.difficulty && (q.difficulty.band || q.difficulty)) || 'D2';
+  const band = (rawBand === 'Easy' ? 'D1' : rawBand === 'Medium' ? 'D2' : rawBand === 'Hard' ? 'D3' : rawBand === 'Advanced' ? 'D4' : rawBand);
+  const bandLabelMap = {
+    'D1': 'D1 · Easy',
+    'D2': 'D2 · Medium',
+    'D3': 'D3 · Hard',
+    'D4': 'D4 · Olympiad',
+    'Easy': 'D1 · Easy',
+    'Medium': 'D2 · Medium',
+    'Hard': 'D3 · Hard',
+    'Advanced': 'D4 · Olympiad'
+  };
+  const diffLabel = bandLabelMap[band] || rawBand;
+  const score = (q.difficulty && q.difficulty.score !== undefined) ? q.difficulty.score : '';
+  const diff = el('span', 'qb-diff', diffLabel + (score !== '' ? (' · ' + score + '/10') : ''));
+  diff.dataset.band = band;
+  top.append(left, diff);
   header.append(top);
-  const badges=el('div','qb-badges');
-  if(q.exam === 'NCERT' || (q.tags || []).includes('NCERT')) badges.append(el('span','qb-badge ncert','NCERT'));
-  if(q.primary_capability_ref)badges.append(el('span','qb-badge',q.primary_capability_ref));
-  (q.secondary_capability_refs||[]).forEach(ref=>badges.append(el('span','qb-badge',ref)));
-  if(q.common_wrong_route)badges.append(el('span','qb-badge trap','TRAP: '+q.common_wrong_route));
+
+  const badges = el('div', 'qb-badges');
+  if (band === 'D3' || rawBand === 'Hard') {
+    badges.append(el('span', 'qb-badge qb-badge-hard', 'HARD 🔥'));
+  } else if (band === 'D4' || rawBand === 'Advanced') {
+    badges.append(el('span', 'qb-badge qb-badge-olympiad', 'OLYMPIAD / D4 🏆'));
+  } else if (band === 'D2' || rawBand === 'Medium') {
+    badges.append(el('span', 'qb-badge qb-badge-medium', 'MEDIUM ⚡'));
+  } else if (band === 'D1' || rawBand === 'Easy') {
+    badges.append(el('span', 'qb-badge qb-badge-easy', 'FOUNDATION 🌱'));
+  }
+
+  if (q.exam === 'NCERT' || (q.tags || []).includes('NCERT')) badges.append(el('span', 'qb-badge ncert', 'NCERT'));
+  if (q.id && (q.id.startsWith('1D-Q') || (q.tags || []).includes('core2') || (q.tags || []).includes('CORE2'))) {
+    badges.append(el('span', 'qb-badge core2', 'Core 2 Practice'));
+  }
+  if (q.primary_capability_ref) badges.append(el('span', 'qb-badge', q.primary_capability_ref));
+  (q.secondary_capability_refs || []).forEach(ref => badges.append(el('span', 'qb-badge', ref)));
+  if (q.common_wrong_route) badges.append(el('span', 'qb-badge trap', 'TRAP: ' + q.common_wrong_route));
   header.append(badges);
   return header;
 }

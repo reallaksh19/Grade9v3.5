@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-g9-shell data-g9-role="CORE1A" data-g9-product="PRODUCT-CHEM-REDOX-REACTIONS">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Redox Reactions: Oxidation Numbers, Agents &amp; Disproportionation · Construction (Core 1A)</title>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="../../css/modern-learner.css">
+  <style>
+    :root {
+      --g9-space: clamp(16px, 2vw, 28px);
+      --accent: #e11d48;
+      --accent-glow: rgba(225, 29, 72, 0.2);
+    }
+    .g9-formula-block {
+      margin: 10px 0;
+      padding: 12px 18px;
+      background: var(--bg-soft, #1e293b);
+      border: 1px solid var(--border, #334155);
+      border-radius: var(--radius-sm, 8px);
+      text-align: center;
+      font-size: 1.15rem;
+      overflow-x: auto;
+    }
+    main { max-width: 1240px; margin: 0 auto; padding: var(--g9-space); }
+    .g9-core1a-book { background: var(--bg-card, #152238); border: 1.5px solid var(--border, #263859); border-radius: var(--radius-lg, 16px); padding: 24px; margin-bottom: 24px; }
+    .g9-core1a-book h1 { font-size: 26px; font-weight: 800; margin-bottom: 8px; color: var(--text-main, #f8fafc); }
+    .g9-split { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+    @media (max-width: 960px) { .g9-split { grid-template-columns: 1fr; } }
+    .g9-card-panel { background: var(--bg-card, #152238); border: 1.5px solid var(--border, #263859); border-radius: var(--radius-md, 12px); padding: 20px; margin-bottom: 20px; }
+    .g9-step-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: cstep; }
+    .g9-step-item { counter-increment: cstep; position: relative; padding: 14px 16px 14px 50px; border: 1px solid var(--border, #334b75); border-radius: var(--radius-sm, 8px); background: var(--bg-surface, #0f172a); }
+    .g9-step-item::before { content: counter(cstep); position: absolute; left: 14px; top: 14px; width: 26px; height: 26px; border-radius: 50%; background: rgba(225,29,72,0.2); color: #f43f5e; font-weight: 800; display: grid; place-items: center; font-size: 14px; }
+    .g9-crux-step { border-color: #f43f5e; box-shadow: 0 0 0 1px #f43f5e; background: var(--bg-card, #152238); }
+    .g9-crux-badge { display: inline-block; background: rgba(239,68,68,0.2); color: #f87171; font-size: 14px; font-weight: 800; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; }
+    .g9-worked-card { border-left: 4px solid #f43f5e; background: var(--bg-surface, #0f172a); padding: 16px 20px; border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+    .g9-worked-card h4 { margin-bottom: 8px; font-size: 15px; color: #f43f5e; text-transform: uppercase; letter-spacing: 0.04em; }
+    .g9-worked-card ol { padding-left: 20px; margin: 10px 0; }
+    .g9-worked-card li { margin-bottom: 8px; font-size: 14.5px; }
+    .g9-visual-container { position: sticky; top: 80px; }
+    .g9-svg-wrap { background: var(--bg-surface, #0f172a); border: 1px solid var(--border, #263859); border-radius: var(--radius-md, 12px); padding: 16px; margin-bottom: 14px; text-align: center; }
+    .g9-actions-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+    .g9-tag-chem { background: rgba(244,63,94,0.15); border: 1px solid #f43f5e; color: #f43f5e; font-weight: 700; padding: 3px 10px; border-radius: 999px; font-size: 14px; }
+    .dual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0; }
+    @media (max-width: 640px) { .dual-grid { grid-template-columns: 1fr; } }
+    .what-happening { background: rgba(244,63,94,0.08); border-left: 3px solid #f43f5e; padding: 10px 14px; border-radius: 4px; }
+    .key-idea { background: rgba(52,211,153,0.08); border-left: 3px solid #34d399; padding: 10px 14px; border-radius: 4px; }
+    .watch-out { background: rgba(248,113,113,0.08); border-left: 3px solid #f87171; padding: 10px 14px; border-radius: 4px; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <header class="g9-shell-header">
+    <div class="g9-header-inner">
+      <a class="g9-brand" href="../../index.html">
+        <span class="logo-icon">⚡</span>
+        <span class="brand-title">Grade9V3.5</span>
+        <span class="g9-brand-badge">Learner Platform</span>
+      </a>
+      <nav class="g9-header-nav" aria-label="Portal Navigation">
+        <a href="../../index.html">Home</a>
+        <a href="../../physics/index.html">Physics</a>
+        <a href="../../chemistry/index.html">Chemistry</a>
+        <a href="../../mathematics/index.html">Mathematics</a>
+        <a href="../../question-bank/index.html">Question Bank</a>
+      </nav>
+      <div class="g9-header-actions">
+        <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search">
+          <span class="g9-btn-icon">🔍</span>
+          <span class="g9-btn-text">Search</span>
+        </button>
+        <button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings" aria-label="Display & Theme">
+          <span class="g9-btn-icon">🌙 / ☀️</span>
+          <span class="g9-btn-text">Display</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="g9-breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="g9-breadcrumbs">
+      <a href="../../index.html">Home</a> <span>/</span> <a href="../../chemistry/index.html">Chemistry</a> <span>/</span> <a href="index.html">Redox Reactions</a> <span>/</span> <span>Core 1A Study Guide</span>
+    </div>
+  </nav>
+
+  <main>
+    <div class="g9-core1a-book">
+      <span class="g9-tag-chem">Chemistry · Competitive Foundation</span>
+      <h1>Redox Reactions: Systematic Core Study Guide (Core 1A)</h1>
+      <p style="font-size: 16px; color: var(--text-secondary); max-width: 850px; line-height: 1.5;">
+        A disciplined, bookkeeping approach to oxidation numbers, electron transfer, oxidizing and reducing agents, reaction classification, and disproportionation mechanics.
+      </p>
+
+      <div class="g9-actions-bar">
+        <a class="g9-btn-action g9-btn-qb" href="../../question-bank/index.html?subject=Chemistry&topic=redox-reactions">Browse Questions in QB &rarr;</a>
+        <a class="g9-btn-action g9-btn-explore" href="explorers/redox_reactions/index.html" target="_blank" rel="noopener">⚡ Open Interactive Visual Simulation</a>
+      </div>
+    </div>
+
+    <!-- UNIT 1: OXIDATION NUMBER LADDER -->
+    <article class="g9-card-panel" id="u1-on-ladder">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag-chem">Unit 1 of 4</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px; color:var(--text-primary);">Oxidation Number: Bookkeeping &amp; Rule Priority Ladder</h2>
+          
+          <div class="dual-grid">
+            <div class="what-happening">
+              <strong style="color:#f43f5e;">What is happening?</strong>
+              <p style="font-size: 14px; margin:4px 0 0;">An oxidation number is a formal bookkeeping charge assigned to an atom by assuming all shared bonding electrons belong completely to the more electronegative element.</p>
+            </div>
+            <div class="key-idea">
+              <strong style="color:#34d399;">Key Idea</strong>
+              <p style="font-size: 14px; margin:4px 0 0;">Never guess oxidation states! Always follow the strict rule priority ladder from highest precedence to lowest.</p>
+            </div>
+          </div>
+
+          <ul class="g9-step-list">
+            <li class="g9-step-item">
+              <strong>1. Elemental Form:</strong> Any uncombined element in its allotropic state has $\text{ON} = 0$ (e.g. $\text{H}_2, \text{O}_2, \text{P}_4, \text{S}_8, \text{Fe}$).
+            </li>
+            <li class="g9-step-item">
+              <strong>2. Monatomic Ions:</strong> $\text{ON} = \text{ionic charge}$ (e.g. $\text{Na}^+ = +1, \text{Cl}^- = -1, \text{Al}^{3+} = +3$).
+            </li>
+            <li class="g9-step-item">
+              <strong>3. High Priority Elements:</strong> Fluorine is always $-1$. Group 1 alkali metals are always $+1$. Group 2 alkaline earth metals are always $+2$.
+            </li>
+            <li class="g9-step-item g9-crux-step">
+              <span class="g9-crux-badge">Crux Exceptions</span><br>
+              <strong>Hydrogen &amp; Oxygen:</strong> $\text{H}$ is usually $+1$ (except in metal hydrides like $\text{NaH}$ where $\text{H} = -1$). $\text{O}$ is usually $-2$ (except peroxides $\text{H}_2\text{O}_2$ where $\text{O} = -1$, and $\text{OF}_2$ where $\text{O} = +2$).
+            </li>
+          </ul>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-secondary);">Rule Priority Ladder &amp; Sum Rule</h4>
+            <svg viewBox="0 0 680 180" role="img" aria-label="Oxidation Number Rule Priority Ladder" style="width:100%;max-width:680px;height:auto;display:block;margin:10px auto;">
+  <!-- Ladder steps -->
+  <g transform="translate(40, 15)">
+    <rect x="0" y="0" width="180" height="30" rx="6" fill="rgba(56,189,248,0.12)" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="15" y="20" font-size="14" font-weight="800" fill="#38bdf8">1. Free Element: 0</text>
+    <text x="135" y="20" font-size="14" fill="var(--text-secondary,#94a3b8)">O₂, Fe, S₈</text>
+  </g>
+  <g transform="translate(40, 52)">
+    <rect x="0" y="0" width="180" height="30" rx="6" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="1.5"/>
+    <text x="15" y="20" font-size="14" font-weight="800" fill="#34d399">2. Monatomic Ion</text>
+    <text x="135" y="20" font-size="14" fill="var(--text-secondary,#94a3b8)">= Charge</text>
+  </g>
+  <g transform="translate(40, 89)">
+    <rect x="0" y="0" width="180" height="30" rx="6" fill="rgba(251,191,36,0.12)" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="15" y="20" font-size="14" font-weight="800" fill="#fbbf24">3. Group 1/2, F</text>
+    <text x="135" y="20" font-size="14" fill="var(--text-secondary,#94a3b8)">+1, +2, -1</text>
+  </g>
+  <g transform="translate(40, 126)">
+    <rect x="0" y="0" width="180" height="30" rx="6" fill="rgba(244,63,94,0.12)" stroke="#f43f5e" stroke-width="1.5"/>
+    <text x="15" y="20" font-size="14" font-weight="800" fill="#f43f5e">4. H (+1), O (-2)</text>
+    <text x="135" y="20" font-size="14" fill="var(--text-secondary,#94a3b8)">Exceptions</text>
+  </g>
+
+  <!-- Big Sum Rule Card on the Right -->
+  <g transform="translate(250, 15)">
+    <rect x="0" y="0" width="390" height="142" rx="10" fill="var(--bg-card,#1e293b)" stroke="var(--border,#334155)" stroke-width="1.5"/>
+    <text x="195" y="28" text-anchor="middle" font-size="14" font-weight="800" fill="#38bdf8">THE UNIVERSAL SUM RULE</text>
+    <line x1="20" y1="38" x2="370" y2="38" stroke="var(--border,#334155)"/>
+    <text x="30" y="65" font-size="14" font-weight="700" fill="var(--text-main,#f8fafc)">Neutral Molecule: ∑ (Oxidation Numbers) = 0</text>
+    <text x="30" y="90" font-size="14" font-weight="700" fill="var(--text-main,#f8fafc)">Polyatomic Ion: ∑ (Oxidation Numbers) = Overall Charge</text>
+    <rect x="30" y="105" width="330" height="28" rx="4" fill="rgba(52,211,153,0.1)" stroke="#34d399"/>
+    <text x="195" y="123" text-anchor="middle" font-size="14" font-weight="800" fill="#34d399">Example Cr₂O₇²⁻: 2x + 7(-2) = -2 ⟹ 2x = 12 ⟹ Cr = +6</text>
+  </g>
+</svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- UNIT 2: OXIDATION & REDUCTION (OIL RIG) -->
+    <article class="g9-card-panel" id="u2-oil-rig">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag-chem">Unit 2 of 4</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px; color:var(--text-primary);">Oxidation &amp; Reduction: The Dual Perspective</h2>
+          
+          <div class="dual-grid">
+            <div class="what-happening">
+              <strong style="color:#f43f5e;">What is happening?</strong>
+              <p style="font-size: 14px; margin:4px 0 0;">Oxidation and reduction are complementary and simultaneous: electrons released by the reducing agent must be captured by the oxidizing agent.</p>
+            </div>
+            <div class="key-idea">
+              <strong style="color:#34d399;">Key Idea</strong>
+              <p style="font-size: 14px; margin:4px 0 0;"><strong>OIL RIG:</strong> Oxidation Is Loss of electrons ($\text{ON} \uparrow$). Reduction Is Gain of electrons ($\text{ON} \downarrow$).</p>
+            </div>
+          </div>
+
+          <div class="g9-worked-card">
+            <h4>Agent Identification Model: $\text{Zn} + \text{CuSO}_4 \to \text{ZnSO}_4 + \text{Cu}$</h4>
+            <ol>
+              <li>Assign oxidation states: $\text{Zn}^0 \to \text{Zn}^{+2}$, and $\text{Cu}^{+2} \to \text{Cu}^0$. $\text{SO}_4^{2-}$ is a spectator ion ($\text{S} = +6, \text{O} = -2$).</li>
+              <li>$\text{Zn}$ loses 2 electrons $\implies$ $\text{Zn}$ is <strong>oxidised</strong> $\implies$ $\text{Zn}$ is the <strong>Reducing Agent</strong>.</li>
+              <li>$\text{Cu}^{2+}$ gains 2 electrons $\implies$ $\text{Cu}^{2+}$ (or $\text{CuSO}_4$) is <strong>reduced</strong> $\implies$ $\text{CuSO}_4$ is the <strong>Oxidising Agent</strong>.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-secondary);">Electron Transfer &amp; Agent Classification</h4>
+            <svg viewBox="0 0 680 180" role="img" aria-label="Oxidation and Reduction: Electron Transfer vs ON Change" style="width:100%;max-width:680px;height:auto;display:block;margin:10px auto;">
+  <!-- Oxidation Panel -->
+  <g transform="translate(30, 20)">
+    <rect x="0" y="0" width="290" height="135" rx="8" fill="rgba(244,63,94,0.08)" stroke="#f43f5e" stroke-width="1.5"/>
+    <text x="145" y="26" text-anchor="middle" font-size="14" font-weight="800" fill="#f43f5e">OXIDATION (OIL: Loss Is Oxidation)</text>
+    <line x1="15" y1="36" x2="275" y2="36" stroke="var(--border,#334155)"/>
+    <text x="145" y="62" text-anchor="middle" font-size="14" font-weight="700" fill="var(--text-main,#f8fafc)">Mg  ⟶  Mg²⁺ + 2e⁻</text>
+    <text x="145" y="86" text-anchor="middle" font-size="14" font-weight="800" fill="#f43f5e">ON Rises: 0 ⟶ +2</text>
+    <text x="145" y="112" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Acts as Reducing Agent (Reductant)</text>
+  </g>
+
+  <!-- Reduction Panel -->
+  <g transform="translate(360, 20)">
+    <rect x="0" y="0" width="290" height="135" rx="8" fill="rgba(52,211,153,0.08)" stroke="#34d399" stroke-width="1.5"/>
+    <text x="145" y="26" text-anchor="middle" font-size="14" font-weight="800" fill="#34d399">REDUCTION (RIG: Gain Is Reduction)</text>
+    <line x1="15" y1="36" x2="275" y2="36" stroke="var(--border,#334155)"/>
+    <text x="145" y="62" text-anchor="middle" font-size="14" font-weight="700" fill="var(--text-main,#f8fafc)">Fe³⁺ + e⁻  ⟶  Fe²⁺</text>
+    <text x="145" y="86" text-anchor="middle" font-size="14" font-weight="800" fill="#34d399">ON Falls: +3 ⟶ +2</text>
+    <text x="145" y="112" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Acts as Oxidising Agent (Oxidant)</text>
+  </g>
+</svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- UNIT 3: DISPROPORTIONATION MECHANICS -->
+    <article class="g9-card-panel" id="u3-disproportionation">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag-chem">Unit 3 of 4</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px; color:var(--text-primary);">Disproportionation &amp; Comproportionation Reactions</h2>
+          
+          <div class="dual-grid">
+            <div class="what-happening">
+              <strong style="color:#f43f5e;">What is happening?</strong>
+              <p style="font-size: 14px; margin:4px 0 0;">In a disproportionation reaction, the same element in a single intermediate oxidation state is simultaneously oxidized to a higher state and reduced to a lower state.</p>
+            </div>
+            <div class="key-idea">
+              <strong style="color:#34d399;">Key Idea</strong>
+              <p style="font-size: 14px; margin:4px 0 0;">For an element to disproportionate, it MUST exist in an intermediate oxidation state (capable of both rising and falling).</p>
+            </div>
+          </div>
+
+          <div class="g9-worked-card">
+            <h4>Worked Example: Thermal Decomposition of Hydrogen Peroxide</h4>
+            <p>$$2\text{H}_2\text{O}_2 \xrightarrow{\Delta} 2\text{H}_2\text{O} + \text{O}_2$$</p>
+            <ol>
+              <li>In $\text{H}_2\text{O}_2$, Oxygen has oxidation state $-1$.</li>
+              <li>In $\text{O}_2$, Oxygen has oxidation state $0$ ($\text{ON}$ rises by $1 \implies$ oxidation).</li>
+              <li>In $\text{H}_2\text{O}$, Oxygen has oxidation state $-2$ ($\text{ON}$ falls by $1 \implies$ reduction).</li>
+              <li>Since the single species $\text{H}_2\text{O}_2$ undergoes both oxidation and reduction, it is a classic <strong>disproportionation reaction</strong>.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-secondary);">Disproportionation Splitting Architecture</h4>
+            <svg viewBox="0 0 680 180" role="img" aria-label="Disproportionation Reaction Model" style="width:100%;max-width:680px;height:auto;display:block;margin:10px auto;">
+  <!-- Reactant: H2O2 -->
+  <g transform="translate(50, 45)">
+    <rect x="0" y="0" width="160" height="85" rx="8" fill="rgba(251,191,36,0.12)" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="80" y="30" text-anchor="middle" font-size="14" font-weight="800" fill="#fbbf24">2 H₂O₂ (aq)</text>
+    <text x="80" y="55" text-anchor="middle" font-size="14" font-weight="700" fill="#f8fafc">Oxygen ON = -1</text>
+    <text x="80" y="72" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Peroxide State</text>
+  </g>
+
+  <!-- Arrow Up to Oxidation -->
+  <path d="M 220,70 Q 300,30 380,45" fill="none" stroke="#f43f5e" stroke-width="2.5"/>
+  <polygon points="380,40 392,45 382,50" fill="#f43f5e"/>
+  <text x="300" y="32" font-size="14" font-weight="800" fill="#f43f5e">Oxidised (Loss of e⁻)</text>
+
+  <!-- Arrow Down to Reduction -->
+  <path d="M 220,95 Q 300,135 380,120" fill="none" stroke="#34d399" stroke-width="2.5"/>
+  <polygon points="382,115 392,120 380,125" fill="#34d399"/>
+  <text x="300" y="145" font-size="14" font-weight="800" fill="#34d399">Reduced (Gain of e⁻)</text>
+
+  <!-- Product 1: O2 -->
+  <g transform="translate(400, 20)">
+    <rect x="0" y="0" width="220" height="55" rx="6" fill="rgba(244,63,94,0.1)" stroke="#f43f5e" stroke-width="1.5"/>
+    <text x="110" y="24" text-anchor="middle" font-size="14" font-weight="800" fill="#f43f5e">O₂ (g) [Oxygen Gas]</text>
+    <text x="110" y="44" text-anchor="middle" font-size="14" font-weight="700" fill="#f8fafc">ON: -1 ⟶ 0 (Rises ⟹ Oxidised)</text>
+  </g>
+
+  <!-- Product 2: H2O -->
+  <g transform="translate(400, 95)">
+    <rect x="0" y="0" width="220" height="55" rx="6" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="1.5"/>
+    <text x="110" y="24" text-anchor="middle" font-size="14" font-weight="800" fill="#34d399">2 H₂O (l) [Water]</text>
+    <text x="110" y="44" text-anchor="middle" font-size="14" font-weight="700" fill="#f8fafc">ON: -1 ⟶ -2 (Falls ⟹ Reduced)</text>
+  </g>
+</svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- UNIT 4: REDOX VS NON-REDOX DISCRIMINATION -->
+    <article class="g9-card-panel" id="u4-redox-discrimination">
+      <div>
+        <span class="g9-tag-chem">Unit 4 of 4</span>
+        <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px; color:var(--text-primary);">Distinguishing Redox from Non-Redox Reactions</h2>
+        <p style="font-size: 15px; margin-bottom: 14px; color:var(--text-secondary);">
+          Not all chemical reactions involve electron transfer. Neutralisation and double displacement reactions are strictly non-redox.
+        </p>
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+          <div class="g9-worked-card" style="border-left-color:#34d399;">
+            <h4 style="color:#34d399;">1. Non-Redox: Double Displacement</h4>
+            <p>$$\text{AgNO}_3 + \text{NaCl} \to \text{AgCl}\downarrow + \text{NaNO}_3$$</p>
+            <ul>
+              <li>$\text{Ag}: +1 \to +1$ (no change)</li>
+              <li>$\text{N}: +5 \to +5$ (no change)</li>
+              <li>$\text{O}: -2 \to -2$ (no change)</li>
+              <li>$\text{Na}: +1 \to +1$ (no change)</li>
+              <li>$\text{Cl}: -1 \to -1$ (no change)</li>
+            </ul>
+            <p style="font-weight:700; color:#94a3b8;">Zero change in oxidation states $\implies$ NON-REDOX.</p>
+          </div>
+
+          <div class="g9-worked-card">
+            <h4>2. Redox: Displacement</h4>
+            <p>$$\text{Fe} + \text{CuSO}_4 \to \text{FeSO}_4 + \text{Cu}$$</p>
+            <ul>
+              <li>$\text{Fe}: 0 \to +2$ (oxidised, $\text{ON} \uparrow$)</li>
+              <li>$\text{Cu}: +2 \to 0$ (reduced, $\text{ON} \downarrow$)</li>
+              <li>$\text{SO}_4^{2-}$ remains static.</li>
+            </ul>
+            <p style="font-weight:700; color:#f43f5e;">Electron transfer occurs $\implies$ AUTHENTIC REDOX.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="g9-footer" style="padding:24px 16px; text-align:center; color:var(--text-secondary); border-top:1px solid var(--border);">
+    <p>Grade9V3.5 Concept-Centred Learner Platform · Redox Reactions Core 1A</p>
+  </footer>
+
+  <script>
+    function renderAllMath() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false},
+            {left: "\\[", right: "\\]", display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", renderAllMath);
+    } else {
+      renderAllMath();
+    }
+  </script>
+</body>
+</html>

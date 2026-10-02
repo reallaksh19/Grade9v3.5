@@ -299,7 +299,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 12px;
   font-weight: 700;
   margin-bottom: 10px;
-  font-family: ui-monospace, monospace;
+  font-family: inherit;
 }
 .g9-concept-title {
   font-size: 24px;
@@ -886,30 +886,33 @@ def generate_topic_workspace(topic_id: str, topic_title: str, subject: str, bund
             ep = f"{rel_root}{learn_items[0]['entrypoint']}"
             learn_btn = f'<a class="g9-btn-action g9-btn-learn" href="{html.escape(ep)}">📖 Learn (Core 1A)</a>'
 
-        topic_slug = topic_id.split(".")[-1]
-        practice_url = f"{rel_root}question-bank/index.html?subject={html.escape(subject)}&topic={html.escape(topic_slug)}&mode=study"
-        practice_btn = f'<a class="g9-btn-action g9-btn-practice" href="{practice_url}">🎯 Practice in Question Bank &rarr;</a>'
+        practice_items = b.get("practice", [])
+        tablet_btn = ""
+        if practice_items:
+            ep = f"{rel_root}{practice_items[0]['entrypoint']}"
+            tablet_btn = f'<a class="g9-btn-action g9-btn-practice" href="{html.escape(ep)}">✍️ Practice Tablet (Core 2)</a>'
 
         interactive_btn = ""
         if interactive_items:
             ep = f"{rel_root}{interactive_items[0]['entrypoint']}"
             interactive_btn = f'<a class="g9-btn-action g9-btn-explore" href="{html.escape(ep)}" target="_blank" rel="noopener">⚡ Try visually</a>'
 
-        qb_browse_url = f"{rel_root}question-bank/index.html?subject={html.escape(subject)}&topic={html.escape(topic_slug)}"
-        qb_btn = f'<a class="g9-btn-action g9-btn-qb" href="{qb_browse_url}">Browse in QB &rarr;</a>'
+        topic_slug = topic_id.split(".")[-1]
+        practice_url = f"{rel_root}question-bank/index.html?subject={html.escape(subject)}&topic={html.escape(topic_slug)}&mode=study"
+        practice_btn = f'<a class="g9-btn-action g9-btn-qb" href="{practice_url}">🎯 Practice in Question Bank &rarr;</a>'
+
+        action_buttons = [learn_btn, tablet_btn, interactive_btn, practice_btn]
+        action_row = "\n      ".join(btn for btn in action_buttons if btn)
 
         concept_sections.append(f"""
   <div class="g9-concept-card" id="{html.escape(c_ref)}">
     <div class="g9-concept-header">
-      <span class="g9-concept-badge">{html.escape(c_ref)}</span>
+      <span class="g9-concept-badge">{html.escape(c_title)}</span>
       <h2 class="g9-concept-title">{html.escape(c_title)}</h2>
       <p class="g9-concept-desc">Organised learning path connecting mathematical construction, authentic past-paper practice, and visual simulation.</p>
     </div>
     <div class="g9-action-row">
-      {learn_btn}
-      {practice_btn}
-      {interactive_btn}
-      {qb_btn}
+      {action_row}
     </div>
   </div>""")
 

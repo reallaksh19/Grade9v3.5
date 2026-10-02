@@ -36,9 +36,9 @@
     .g9-card-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px; margin-bottom: 18px; }
     .g9-step-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: cstep; }
     .g9-step-item { counter-increment: cstep; position: relative; padding: 14px 16px 14px 50px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); }
-    .g9-step-item::before { content: counter(cstep); position: absolute; left: 14px; top: 14px; width: 26px; height: 26px; border-radius: 50%; background: var(--accent-learn-bg); color: var(--accent-learn); font-weight: 800; display: grid; place-items: center; font-size: 13px; }
+    .g9-step-item::before { content: counter(cstep); position: absolute; left: 14px; top: 14px; width: 26px; height: 26px; border-radius: 50%; background: var(--accent-learn-bg); color: var(--accent-learn); font-weight: 800; display: grid; place-items: center; font-size: 14px; }
     .g9-crux-step { border-color: var(--accent-learn); box-shadow: 0 0 0 1px var(--accent-learn); background: var(--bg-card); }
-    .g9-crux-badge { display: inline-block; background: #fee2e2; color: #991b1b; font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; }
+    .g9-crux-badge { display: inline-block; background: #fee2e2; color: #991b1b; font-size: 14px; font-weight: 800; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; }
     .g9-worked-card { border-left: 4px solid var(--accent-learn); background: var(--bg-soft); padding: 16px 20px; border-radius: 0 var(--radius-md) var(--radius-md) 0; }
     .g9-worked-card h4 { margin-bottom: 8px; font-size: 15px; color: var(--accent-learn); text-transform: uppercase; letter-spacing: 0.04em; }
     .g9-worked-card ol { padding-left: 20px; margin: 10px 0; }
@@ -46,7 +46,7 @@
     .g9-visual-container { position: sticky; top: 80px; }
     .g9-svg-wrap { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 14px; text-align: center; }
     .g9-stage-controls { display: flex; gap: 8px; justify-content: center; margin-top: 12px; }
-    .g9-stage-btn { padding: 6px 14px; border-radius: var(--radius-pill); border: 1px solid var(--border); background: var(--bg-card); font-size: 13px; font-weight: 700; cursor: pointer; color: var(--text-main); }
+    .g9-stage-btn { padding: 6px 14px; border-radius: var(--radius-pill); border: 1px solid var(--border); background: var(--bg-card); font-size: 14px; font-weight: 700; cursor: pointer; color: var(--text-main); }
     .g9-stage-btn.active { background: var(--accent-learn); color: #fff; border-color: var(--accent-learn); }
     .g9-actions-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
   </style>
@@ -124,7 +124,7 @@
             <li class="g9-step-item">
               <strong>Identify Electron Domain Arrangement:</strong><br>
               Electron domains repel each other to maximize distance and minimize Coulombic repulsion in 3D space:
-              <ul style="margin: 4px 0 0 18px; font-size: 13.5px;">
+              <ul style="margin: 4px 0 0 18px; font-size: 14px;">
                 <li>SN = 4 &rarr; Tetrahedral (109.5°)</li>
                 <li>SN = 5 &rarr; Trigonal Bipyramidal (Axial 180°, Equatorial 120°)</li>
                 <li>SN = 6 &rarr; Octahedral (All 90° angles)</li>
@@ -173,7 +173,7 @@
                 <line x1="190" y1="130" x2="280" y2="130" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4"/>
                 <line x1="190" y1="130" x2="130" y2="170" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4"/>
                 <line x1="190" y1="130" x2="250" y2="90" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4"/>
-                <text x="190" y="24" text-anchor="middle" font-size="12" font-weight="700" fill="#64748b">Stage 1: Octahedral Domain (SN = 6)</text>
+                <text x="190" y="24" text-anchor="middle" font-size="14" font-weight="700" fill="#64748b">Stage 1: Octahedral Domain (SN = 6)</text>
               </g>
 
               <!-- Stage 2: Lone Pair Trans-Axial Placement -->
@@ -183,9 +183,9 @@
                 <!-- Lone pair lobes top and bottom -->
                 <ellipse cx="190" cy="65" rx="14" ry="24" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5" opacity="0.85"/>
                 <ellipse cx="190" cy="195" rx="14" ry="24" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5" opacity="0.85"/>
-                <text x="190" y="69" text-anchor="middle" font-size="11" font-weight="800" fill="#991b1b">: :</text>
-                <text x="190" y="199" text-anchor="middle" font-size="11" font-weight="800" fill="#991b1b">: :</text>
-                <text x="190" y="24" text-anchor="middle" font-size="12" font-weight="700" fill="#dc2626">Stage 2: 2 Lone Pairs in Trans-Axial (180°)</text>
+                <text x="190" y="69" text-anchor="middle" font-size="14" font-weight="800" fill="#991b1b">: :</text>
+                <text x="190" y="199" text-anchor="middle" font-size="14" font-weight="800" fill="#991b1b">: :</text>
+                <text x="190" y="24" text-anchor="middle" font-size="14" font-weight="700" fill="#dc2626">Stage 2: 2 Lone Pairs in Trans-Axial (180°)</text>
               </g>
 
               <!-- Stage 3: Square Planar Observed Geometry & Dipole Cancellation -->
@@ -195,21 +195,21 @@
                 <!-- 4 Fluorine Atoms in Plane -->
                 <line x1="190" y1="130" x2="100" y2="130" stroke="#059669" stroke-width="3"/>
                 <circle cx="100" cy="130" r="16" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
-                <text x="100" y="135" text-anchor="middle" font-weight="700" font-size="12" fill="#065f46">F</text>
+                <text x="100" y="135" text-anchor="middle" font-weight="700" font-size="14" fill="#065f46">F</text>
 
                 <line x1="190" y1="130" x2="280" y2="130" stroke="#059669" stroke-width="3"/>
                 <circle cx="280" cy="130" r="16" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
-                <text x="280" y="135" text-anchor="middle" font-weight="700" font-size="12" fill="#065f46">F</text>
+                <text x="280" y="135" text-anchor="middle" font-weight="700" font-size="14" fill="#065f46">F</text>
 
                 <line x1="190" y1="130" x2="140" y2="70" stroke="#059669" stroke-width="3"/>
                 <circle cx="140" cy="70" r="16" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
-                <text x="140" y="75" text-anchor="middle" font-weight="700" font-size="12" fill="#065f46">F</text>
+                <text x="140" y="75" text-anchor="middle" font-weight="700" font-size="14" fill="#065f46">F</text>
 
                 <line x1="190" y1="130" x2="240" y2="190" stroke="#059669" stroke-width="3"/>
                 <circle cx="240" cy="190" r="16" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
-                <text x="240" y="195" text-anchor="middle" font-weight="700" font-size="12" fill="#065f46">F</text>
+                <text x="240" y="195" text-anchor="middle" font-weight="700" font-size="14" fill="#065f46">F</text>
 
-                <text x="190" y="24" text-anchor="middle" font-size="12" font-weight="800" fill="#059669">Stage 3: Square Planar · Σμ = 0 (Nonpolar)</text>
+                <text x="190" y="24" text-anchor="middle" font-size="14" font-weight="800" fill="#059669">Stage 3: Square Planar · Σμ = 0 (Nonpolar)</text>
               </g>
             </svg>
           </div>
@@ -218,7 +218,7 @@
             <button type="button" class="g9-stage-btn" onclick="setVseprStage(2)">2: Lone Pairs</button>
             <button type="button" class="g9-stage-btn" onclick="setVseprStage(3)">3: Geometry</button>
           </div>
-          <p id="vseprDesc" style="font-size: 13px; color: var(--text-muted); margin-top: 12px; text-align: center;">
+          <p id="vseprDesc" style="font-size: 14px; color: var(--text-muted); margin-top: 12px; text-align: center;">
             Stage 1: Six electron pairs organize octahedrally with 90° bond angles.
           </p>
         </div>

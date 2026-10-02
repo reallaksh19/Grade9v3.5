@@ -36,9 +36,9 @@
     .g9-card-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px; margin-bottom: 18px; }
     .g9-step-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: cstep; }
     .g9-step-item { counter-increment: cstep; position: relative; padding: 14px 16px 14px 50px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); }
-    .g9-step-item::before { content: counter(cstep); position: absolute; left: 14px; top: 14px; width: 26px; height: 26px; border-radius: 50%; background: #fae8ff; color: #86198f; font-weight: 800; display: grid; place-items: center; font-size: 13px; }
+    .g9-step-item::before { content: counter(cstep); position: absolute; left: 14px; top: 14px; width: 26px; height: 26px; border-radius: 50%; background: #fae8ff; color: #86198f; font-weight: 800; display: grid; place-items: center; font-size: 14px; }
     .g9-crux-step { border-color: #86198f; box-shadow: 0 0 0 1px #86198f; background: var(--bg-card); }
-    .g9-crux-badge { display: inline-block; background: #fae8ff; color: #86198f; font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; }
+    .g9-crux-badge { display: inline-block; background: #fae8ff; color: #86198f; font-size: 14px; font-weight: 800; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; }
     .g9-worked-card { border-left: 4px solid #86198f; background: var(--bg-soft); padding: 16px 20px; border-radius: 0 var(--radius-md) var(--radius-md) 0; }
     .g9-worked-card h4 { margin-bottom: 8px; font-size: 15px; color: #86198f; text-transform: uppercase; letter-spacing: 0.04em; }
     .g9-worked-card ol { padding-left: 20px; margin: 10px 0; }
@@ -46,7 +46,7 @@
     .g9-visual-container { position: sticky; top: 80px; }
     .g9-svg-wrap { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 14px; text-align: center; }
     .g9-stage-controls { display: flex; gap: 8px; justify-content: center; margin-top: 12px; }
-    .g9-stage-btn { padding: 6px 14px; border-radius: var(--radius-pill); border: 1px solid var(--border); background: var(--bg-card); font-size: 13px; font-weight: 700; cursor: pointer; color: var(--text-main); }
+    .g9-stage-btn { padding: 6px 14px; border-radius: var(--radius-pill); border: 1px solid var(--border); background: var(--bg-card); font-size: 14px; font-weight: 700; cursor: pointer; color: var(--text-main); }
     .g9-stage-btn.active { background: #86198f; color: #fff; border-color: #86198f; }
     .g9-actions-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
   </style>
@@ -184,9 +184,9 @@
               <!-- Cartesian Grid Axes -->
               <line x1="40" y1="200" x2="340" y2="200" stroke="#cbd5e1" stroke-width="2"/>
               <line x1="80" y1="20" x2="80" y2="230" stroke="#cbd5e1" stroke-width="2"/>
-              <text x="345" y="205" font-size="12" font-weight="700" fill="#64748b">+x</text>
-              <text x="75" y="18" font-size="12" font-weight="700" fill="#64748b">+y</text>
-              <text x="70" y="215" font-size="12" font-weight="700" fill="#64748b">O</text>
+              <text x="345" y="205" font-size="14" font-weight="700" fill="#64748b">+x</text>
+              <text x="75" y="18" font-size="14" font-weight="700" fill="#64748b">+y</text>
+              <text x="70" y="215" font-size="14" font-weight="700" fill="#64748b">O</text>
 
               <!-- Stage 1: Vector Hypotenuse -->
               <g id="vecStage1">
@@ -194,8 +194,8 @@
                 <text x="180" y="130" font-size="14" font-weight="800" fill="#6b21a8">A</text>
                 <!-- Arc for theta -->
                 <path d="M 130 200 A 50 50 0 0 0 120 173" fill="none" stroke="#7c3aed" stroke-width="2"/>
-                <text x="136" y="188" font-size="12" font-weight="700" fill="#7c3aed">&theta;</text>
-                <text x="190" y="28" text-anchor="middle" font-size="12" font-weight="700" fill="#64748b">Stage 1: Vector A at angle &theta;</text>
+                <text x="136" y="188" font-size="14" font-weight="700" fill="#7c3aed">&theta;</text>
+                <text x="190" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#64748b">Stage 1: Vector A at angle &theta;</text>
               </g>
 
               <!-- Stage 2: Orthogonal Drops -->
@@ -204,7 +204,7 @@
                 <line x1="260" y1="80" x2="260" y2="200" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4"/>
                 <line x1="260" y1="80" x2="80" y2="80" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4"/>
                 <rect x="246" y="186" width="14" height="14" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
-                <text x="190" y="28" text-anchor="middle" font-size="12" font-weight="700" fill="#0284c7">Stage 2: Orthogonal Drops to Axes</text>
+                <text x="190" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#0284c7">Stage 2: Orthogonal Drops to Axes</text>
               </g>
 
               <!-- Stage 3: Components Rx and Ry -->
@@ -212,11 +212,11 @@
                 <line x1="80" y1="200" x2="260" y2="80" stroke="#7c3aed" stroke-width="2.5" opacity="0.6" marker-end="url(#arrow)"/>
                 <!-- Horizontal Component -->
                 <line x1="80" y1="200" x2="260" y2="200" stroke="#0284c7" stroke-width="3.5" marker-end="url(#arrowX)"/>
-                <text x="160" y="222" font-size="13" font-weight="800" fill="#0369a1">A_x = |A| cos&theta;</text>
+                <text x="160" y="222" font-size="14" font-weight="800" fill="#0369a1">A_x = |A| cos&theta;</text>
                 <!-- Vertical Component -->
                 <line x1="260" y1="200" x2="260" y2="80" stroke="#16a34a" stroke-width="3.5" marker-end="url(#arrowY)"/>
-                <text x="272" y="145" font-size="13" font-weight="800" fill="#15803d">A_y = |A| sin&theta;</text>
-                <text x="190" y="28" text-anchor="middle" font-size="12" font-weight="800" fill="#059669">Stage 3: Orthogonal Decomposition Complete</text>
+                <text x="272" y="145" font-size="14" font-weight="800" fill="#15803d">A_y = |A| sin&theta;</text>
+                <text x="190" y="28" text-anchor="middle" font-size="14" font-weight="800" fill="#059669">Stage 3: Orthogonal Decomposition Complete</text>
               </g>
             </svg>
           </div>
@@ -225,7 +225,7 @@
             <button type="button" class="g9-stage-btn" onclick="setVecStage(2)">2: Projections</button>
             <button type="button" class="g9-stage-btn" onclick="setVecStage(3)">3: Components</button>
           </div>
-          <p id="vecDesc" style="font-size: 13px; color: var(--text-muted); margin-top: 12px; text-align: center;">
+          <p id="vecDesc" style="font-size: 14px; color: var(--text-muted); margin-top: 12px; text-align: center;">
             Stage 1: Vector A with magnitude |A| inclined at angle &theta; to the horizontal.
           </p>
         </div>

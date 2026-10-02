@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-g9-shell data-g9-role="CORE1A" data-g9-product="PRODUCT-PHY-KIN-1D-MOTION">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Motion in One Dimension · Core Study (Core 1A) · Grade9V3.5</title>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="../../css/modern-learner.css">
+  <style>
+    :root {
+      --g9-space: clamp(16px, 2vw, 28px);
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.2);
+    }
+    main { max-width: 1240px; margin: 0 auto; padding: var(--g9-space); }
+    .g9-core1a-book { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+    .g9-core1a-book h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; color: var(--text-main); }
+    .g9-split { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+    @media (max-width: 960px) { .g9-split { grid-template-columns: 1fr; } }
+    .g9-card-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 22px; margin-bottom: 20px; }
+    
+    .g9-grounding-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+    @media (max-width: 640px) { .g9-grounding-grid { grid-template-columns: 1fr; } }
+    .g9-grounding-cell { padding: 14px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--bg-soft); }
+    .g9-grounding-cell h4 { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+    .g9-grounding-happening { border-left: 4px solid #38bdf8; }
+    .g9-grounding-happening h4 { color: #38bdf8; }
+    .g9-grounding-keyidea { border-left: 4px solid #10b981; }
+    .g9-grounding-keyidea h4 { color: #10b981; }
+
+    .g9-step-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: cstep; }
+    .g9-step-item { counter-increment: cstep; position: relative; padding: 14px 16px 14px 50px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); }
+    .g9-step-item::before { content: counter(cstep); position: absolute; left: 14px; top: 14px; width: 26px; height: 26px; border-radius: 50%; background: rgba(56, 189, 248, 0.15); color: #38bdf8; font-weight: 800; display: grid; place-items: center; font-size: 14px; border: 1px solid rgba(56, 189, 248, 0.3); }
+    
+    .g9-worked-card { border-left: 4px solid #38bdf8; background: var(--bg-soft); padding: 18px 20px; border-radius: 0 var(--radius-md) var(--radius-md) 0; margin: 16px 0; }
+    .g9-worked-card h4 { margin-bottom: 8px; font-size: 15px; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.04em; }
+    .g9-trap-card { border-left: 4px solid #ef4444; background: rgba(239, 68, 68, 0.08); padding: 14px 18px; border-radius: 0 var(--radius-md) var(--radius-md) 0; margin: 14px 0; }
+    .g9-trap-card h5 { color: #ef4444; font-size: 14px; font-weight: 800; text-transform: uppercase; margin-bottom: 4px; }
+
+    .g9-visual-container { position: sticky; top: 80px; }
+    .g9-svg-wrap { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px; margin-bottom: 18px; text-align: center; }
+    .g9-svg-wrap svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+    .g9-svg-caption { font-size: 14px; color: var(--text-muted); margin-top: 10px; font-style: italic; }
+
+    .g9-disclosure { border: 1px solid var(--border); border-radius: var(--radius-sm); margin: 10px 0; overflow: hidden; }
+    .g9-disclosure summary { padding: 12px 16px; background: var(--bg-soft); cursor: pointer; font-weight: 700; color: var(--text-main); user-select: none; }
+    .g9-disclosure summary:hover { color: #38bdf8; }
+    .g9-disclosure-body { padding: 14px 16px; background: var(--bg-card); font-size: 14.5px; line-height: 1.6; border-top: 1px solid var(--border); }
+    
+    .g9-actions-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <header class="g9-shell-header">
+    <div class="g9-header-inner">
+      <a href="../../index.html" class="g9-brand">
+        <span class="logo-icon">⚡</span>
+        <span class="brand-title">Grade9V3.5</span>
+        <span class="g9-brand-badge">Learner Platform</span>
+      </a>
+      <nav class="g9-header-nav" aria-label="Portal Navigation">
+        <a href="../../index.html">Home</a>
+        <a href="../../physics/index.html" class="active">Physics</a>
+        <a href="../../chemistry/index.html">Chemistry</a>
+        <a href="../../mathematics/index.html">Mathematics</a>
+        <a href="../../question-bank/index.html">Question Bank</a>
+      </nav>
+      <div class="g9-header-actions">
+        <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search">
+          <span class="g9-btn-icon">🔍</span>
+          <span class="g9-btn-text">Search</span>
+        </button>
+        <button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings" aria-label="Display & Theme">
+          <span class="g9-btn-icon">🌙 / ☀️</span>
+          <span class="g9-btn-text">Display</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="g9-breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="g9-breadcrumbs">
+      <a href="../../index.html">Home</a>
+      <span>/</span>
+      <a href="../index.html">Physics</a>
+      <span>/</span>
+      <a href="index.html">Motion in One Dimension</a>
+      <span>/</span>
+      <span>Core 1A: Core Study</span>
+    </div>
+  </nav>
+
+  <main>
+    <section class="g9-core1a-book">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:12px;">
+        <span class="g9-card-tag g9-tag-physics">Core 1A · Core Study Against Topic</span>
+        <a href="../../standalone/practice/core1a-motion-1d-straight-line-tablet.html" class="g9-btn-action g9-btn-practice" style="padding:6px 14px; font-size: 14px;">📱 Open 12.7" Tablet Suite (11 Units) &rarr;</a>
+      </div>
+      <h1>Motion in One Dimension: Kinematics &amp; Graphs</h1>
+      <p style="color: var(--text-muted); font-size: 15px; margin-bottom: 20px;">
+        Rigorous concept foundations: distance vs. displacement, average speed vs. velocity, kinematic state tables, and calculus graph translation. Built from benchmark source <em>physics-motion-1d-revised-core1.pdf</em>.
+      </p>
+
+      <div class="g9-split">
+        <!-- Left: Explanations, Procedures, Worked Examples -->
+        <div class="g9-content-col">
+          
+          <!-- UNIT 1 -->
+          <article class="g9-card-panel" id="unit-01">
+            <h2 style="font-size: 20px; font-weight: 800; color: var(--text-main); margin-bottom: 8px;">
+              Unit 1 · Distance vs. Displacement &amp; Path Reversal
+            </h2>
+            <div class="g9-grounding-grid">
+              <div class="g9-grounding-cell g9-grounding-happening">
+                <h4>What is Happening?</h4>
+                <p style="font-size: 14px; line-height: 1.5; color: var(--text-secondary);">
+                  A particle executes a sequence of movements along a straight axis. Distance accumulates every segment scalar length regardless of orientation. Displacement records only the net change from initial to final position: \(\Delta x = x_f - x_i\).
+                </p>
+              </div>
+              <div class="g9-grounding-cell g9-grounding-keyidea">
+                <h4>Key Idea</h4>
+                <p style="font-size: 14px; line-height: 1.5; color: var(--text-secondary);">
+                  Reversal is the decisive criterion. Unidirectional motion preserves \(s = |\Delta x|\). The instant velocity reverses sign, \(s > |\Delta x|\). Distance is monotonically non-decreasing, while displacement can decrease or vanish.
+                </p>
+              </div>
+            </div>
+
+            <h3 style="font-size: 16px; font-weight: 700; margin: 14px 0 8px;">4-Step Kinematic Setup Procedure</h3>
+            <ol class="g9-step-list">
+              <li class="g9-step-item">
+                <strong>Fix the origin and sign convention:</strong> Declare \(x=0\) and whether right/upwards is positive. Keep this choice invariant throughout the analysis.
+              </li>
+              <li class="g9-step-item">
+                <strong>Identify all turning events:</strong> Set \(v(t) = 0\) to detect instants where motion changes direction.
+              </li>
+              <li class="g9-step-item">
+                <strong>Segment the journey by turning points:</strong> Compute the scalar length \(|\Delta x_k|\) of each monotonic leg. Sum for distance: \(s = \sum |\Delta x_k|\).
+              </li>
+              <li class="g9-step-item">
+                <strong>Vector subtraction for net displacement:</strong> Evaluate \(\Delta x = x_{\text{final}} - x_{\text{initial}}\). Verify that \(s \ge |\Delta x|\).
+              </li>
+            </ol>
+
+            <div class="g9-trap-card">
+              <h5>Watch Out (Common Misconception)</h5>
+              <p style="font-size: 14px; color: var(--text-secondary);">
+                Never integrate \(\int v\,dt\) directly to find distance when \(v(t)\) changes sign! \(\int v\,dt\) yields displacement. Total distance requires integrating absolute speed: \(s = \int |v(t)|\,dt\).
+              </p>
+            </div>
+
+            <div class="g9-worked-card">
+              <h4>Worked Example: Particle with Reversal</h4>
+              <p style="font-size: 14.5px; margin-bottom: 8px;">
+                <strong>Problem:</strong> A particle starts at \(x = 0\), moves to \(x = +8\text{ m}\) in \(4\text{ s}\), then reverses to \(x = +2\text{ m}\) in \(2\text{ s}\). Find total distance, displacement, average speed, and average velocity.
+              </p>
+              <div style="font-size: 14px; line-height: 1.6;">
+                1. Leg 1: \(\Delta x_1 = 8 - 0 = +8\text{ m}\), length \(= 8\text{ m}\).<br>
+                2. Leg 2: \(\Delta x_2 = 2 - 8 = -6\text{ m}\), length \(= 6\text{ m}\).<br>
+                3. Total Distance: \(s = 8 + 6 = 14\text{ m}\).<br>
+                4. Net Displacement: \(\Delta x = x_f - x_i = 2 - 0 = +2\text{ m}\).<br>
+                5. Total Elapsed Time: \(\Delta t = 4 + 2 = 6\text{ s}\).<br>
+                6. Average Speed: \(v_{\text{avg}} = \frac{14\text{ m}}{6\text{ s}} = 2.33\text{ m/s}\).<br>
+                7. Average Velocity: \(\vec{v}_{\text{avg}} = \frac{+2\text{ m}}{6\text{ s}} = +0.33\text{ m/s}\).
+              </div>
+            </div>
+
+            <details class="g9-disclosure">
+              <summary>Self-Check Question: Round Trip Ratio</summary>
+              <div class="g9-disclosure-body">
+                <strong>Question:</strong> An athlete runs around a circular track of circumference \(400\text{ m}\) in \(50\text{ s}\), returning to the starting block. What is the ratio of average velocity to average speed?<br><br>
+                <strong>Answer:</strong> Zero. Displacement is \(\Delta \vec{x} = 0\), so \(\vec{v}_{\text{avg}} = 0\text{ m/s}\). Average speed is \(v_{\text{avg}} = \frac{400}{50} = 8\text{ m/s}\). Ratio \(= \frac{0}{8} = 0\).
+              </div>
+            </details>
+          </article>
+
+          <!-- UNIT 2 -->
+          <article class="g9-card-panel" id="unit-02">
+            <h2 style="font-size: 20px; font-weight: 800; color: var(--text-main); margin-bottom: 8px;">
+              Unit 2 · Average Speed: Equal-Time vs. Equal-Distance Weighting
+            </h2>
+            <div class="g9-grounding-grid">
+              <div class="g9-grounding-cell g9-grounding-happening">
+                <h4>What is Happening?</h4>
+                <p style="font-size: 14px; line-height: 1.5; color: var(--text-secondary);">
+                  A car travels at speed \(v_1\) and then at speed \(v_2\). Whether average speed is the arithmetic mean or harmonic mean depends entirely on whether the journey was split equally in <em>time</em> or in <em>distance</em>.
+                </p>
+              </div>
+              <div class="g9-grounding-cell g9-grounding-keyidea">
+                <h4>Key Idea</h4>
+                <p style="font-size: 14px; line-height: 1.5; color: var(--text-secondary);">
+                  Equal-time weighting biases toward the higher speed: \(v_{\text{avg}} = \frac{v_1 + v_2}{2}\). Equal-distance weighting biases toward the slower speed because more time is spent traversing the distance at the lower speed: \(v_{\text{avg}} = \frac{2 v_1 v_2}{v_1 + v_2}\).
+                </p>
+              </div>
+            </div>
+
+            <div class="g9-worked-card">
+              <h4>Derivation: Equal-Distance Harmonic Mean</h4>
+              <p style="font-size: 14.5px; line-height: 1.6;">
+                Let each half of the total distance \(2d\) be \(d\).<br>
+                Time for first half: \(t_1 = \frac{d}{v_1}\).<br>
+                Time for second half: \(t_2 = \frac{d}{v_2}\).<br>
+                Total time: \(T = t_1 + t_2 = d\left(\frac{1}{v_1} + \frac{1}{v_2}\right) = d \frac{v_1 + v_2}{v_1 v_2}\).<br>
+                \[v_{\text{avg}} = \frac{2d}{T} = \frac{2d}{d \frac{v_1 + v_2}{v_1 v_2}} = \frac{2 v_1 v_2}{v_1 + v_2}\]
+                Notice: By Cauchy-Schwarz / AM-HM inequality, \(\frac{2 v_1 v_2}{v_1 + v_2} \le \frac{v_1 + v_2}{2}\), with equality iff \(v_1 = v_2\).
+              </p>
+            </div>
+          </article>
+
+          <!-- UNIT 3 -->
+          <article class="g9-card-panel" id="unit-03">
+            <h2 style="font-size: 20px; font-weight: 800; color: var(--text-main); margin-bottom: 8px;">
+              Unit 3 · The Constant-Acceleration Kinematic Hub
+            </h2>
+            <p style="font-size: 14.5px; color: var(--text-secondary); margin-bottom: 12px;">
+              Every constant-\(a\) problem connects five parameters: \(u\) (initial velocity), \(v\) (final velocity), \(a\) (acceleration), \(s\) (displacement), and \(t\) (time). Selecting the right formula eliminates the unknown you do not need:
+            </p>
+            <div style="background:var(--bg-soft); border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px; margin-bottom:14px; font-family:monospace; font-size:14px; line-height:1.8;">
+              • Missing \(s\): \(v = u + at\)<br>
+              • Missing \(v\): \(s = ut + \frac{1}{2}at^2\)<br>
+              • Missing \(t\): \(v^2 = u^2 + 2as\)<br>
+              • Missing \(a\): \(s = \frac{u + v}{2} t\)<br>
+              • Distance in \(n\)-th second: \(s_n = u + \frac{a}{2}(2n - 1)\)
+            </div>
+            <div class="g9-trap-card">
+              <h5>Watch Out (Sign Consistency Trap)</h5>
+              <p style="font-size: 14px; color: var(--text-secondary);">
+                In vertical projection under gravity, if upwards is taken as positive, acceleration must be entered as \(a = -g = -9.8\text{ m/s}^2\). At the peak, \(v = 0\), but acceleration is still \(-g\), never zero!
+              </p>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Right: Responsive Vector SVGs & Sticky Architecture -->
+        <div class="g9-visual-col">
+          <div class="g9-visual-container">
+            
+            <!-- SVG 1: Number Line Reversal -->
+            <div class="g9-svg-wrap">
+              <svg viewBox="0 0 460 210" width="100%" height="210" xmlns="http://www.w3.org/2000/svg">
+                <!-- Axis -->
+                <line x1="30" y1="120" x2="430" y2="120" stroke="currentColor" stroke-width="2.5" />
+                <polygon points="430,115 442,120 430,125" fill="currentColor" />
+                <!-- Ticks -->
+                <g stroke="currentColor" stroke-width="1.5" font-size="14" text-anchor="middle" fill="currentColor">
+                  <line x1="60" y1="112" x2="60" y2="128" /><text x="60" y="146">-2m</text>
+                  <line x1="120" y1="112" x2="120" y2="128" /><text x="120" y="146">0m</text>
+                  <line x1="180" y1="112" x2="180" y2="128" /><text x="180" y="146">+2m</text>
+                  <line x1="240" y1="112" x2="240" y2="128" /><text x="240" y="146">+4m</text>
+                  <line x1="300" y1="112" x2="300" y2="128" /><text x="300" y="146">+6m</text>
+                  <line x1="360" y1="112" x2="360" y2="128" /><text x="360" y="146">+8m</text>
+                </g>
+                <!-- Leg 1: 0 to +8m -->
+                <path d="M 120,105 Q 240,40 360,105" fill="none" stroke="#38bdf8" stroke-width="3" stroke-dasharray="4,3" />
+                <polygon points="360,105 352,95 348,107" fill="#38bdf8" />
+                <text x="240" y="52" fill="#38bdf8" font-size="14" font-weight="700" text-anchor="middle">Leg 1: +8 m (Forward)</text>
+                <!-- Leg 2: +8 to +2m -->
+                <path d="M 360,105 Q 270,165 180,105" fill="none" stroke="#ef4444" stroke-width="3" stroke-dasharray="4,3" />
+                <polygon points="180,105 188,95 192,107" fill="#ef4444" />
+                <text x="270" y="180" fill="#ef4444" font-size="14" font-weight="700" text-anchor="middle">Leg 2: -6 m (Reversal)</text>
+                <!-- Displacement Vector -->
+                <line x1="120" y1="90" x2="180" y2="90" stroke="#10b981" stroke-width="4" />
+                <polygon points="180,90 172,84 172,96" fill="#10b981" />
+                <text x="150" y="78" fill="#10b981" font-size="14" font-weight="800" text-anchor="middle">Δx = +2 m</text>
+                <!-- Points -->
+                <circle cx="120" cy="120" r="5" fill="#38bdf8" />
+                <circle cx="360" cy="120" r="5" fill="#ef4444" />
+                <circle cx="180" cy="120" r="5" fill="#10b981" />
+              </svg>
+              <div class="g9-svg-caption">Figure 1.1 · 1D Axis Trajectory with Reversal: Distance = 14 m, Net Displacement = +2 m.</div>
+            </div>
+
+            <!-- SVG 2: v-t Graph Area & Slope -->
+            <div class="g9-svg-wrap">
+              <svg viewBox="0 0 460 220" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">
+                <!-- Axes -->
+                <line x1="50" y1="180" x2="420" y2="180" stroke="currentColor" stroke-width="2" />
+                <line x1="50" y1="180" x2="50" y2="20" stroke="currentColor" stroke-width="2" />
+                <text x="420" y="200" fill="currentColor" font-size="14">t (s)</text>
+                <text x="20" y="30" fill="currentColor" font-size="14">v (m/s)</text>
+                <!-- Curve -->
+                <polygon points="50,180 150,80 300,80 400,180" fill="rgba(56, 189, 248, 0.15)" stroke="none" />
+                <polyline points="50,180 150,80 300,80 400,180" fill="none" stroke="#38bdf8" stroke-width="3" />
+                <!-- Labels -->
+                <text x="100" y="125" fill="#38bdf8" font-size="14" font-weight="700" text-anchor="middle">Slope = a > 0</text>
+                <text x="225" y="70" fill="#38bdf8" font-size="14" font-weight="700" text-anchor="middle">a = 0 (v = const)</text>
+                <text x="350" y="125" fill="#ef4444" font-size="14" font-weight="700" text-anchor="middle">Slope = a &lt; 0</text>
+                <!-- Shaded Area Marker -->
+                <text x="225" y="140" fill="currentColor" font-size="14" font-weight="800" text-anchor="middle">Area Under v-t = Displacement Δx</text>
+              </svg>
+              <div class="g9-svg-caption">Figure 1.2 · The v-t Graph Dual: Instantaneous slope gives acceleration \(a(t)\); bounded area gives displacement \(\Delta x\).</div>
+            </div>
+
+            <!-- SVG 3: Equal Time vs Equal Distance -->
+            <div class="g9-svg-wrap">
+              <svg viewBox="0 0 460 170" width="100%" height="170" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="20" width="200" height="130" rx="8" fill="var(--bg-card)" stroke="#38bdf8" stroke-width="1.5" />
+                <text x="120" y="45" fill="#38bdf8" font-size="14" font-weight="800" text-anchor="middle">Equal Time Split (t₁ = t₂)</text>
+                <text x="120" y="75" fill="currentColor" font-size="14" text-anchor="middle">Arithmetic Mean</text>
+                <text x="120" y="105" fill="#38bdf8" font-size="16" font-weight="800" text-anchor="middle">v_avg = (v₁ + v₂) / 2</text>
+                <text x="120" y="130" fill="var(--text-muted)" font-size="14" text-anchor="middle">Biased toward faster speed</text>
+
+                <rect x="240" y="20" width="200" height="130" rx="8" fill="var(--bg-card)" stroke="#10b981" stroke-width="1.5" />
+                <text x="340" y="45" fill="#10b981" font-size="14" font-weight="800" text-anchor="middle">Equal Distance (d₁ = d₂)</text>
+                <text x="340" y="75" fill="currentColor" font-size="14" text-anchor="middle">Harmonic Mean</text>
+                <text x="340" y="105" fill="#10b981" font-size="16" font-weight="800" text-anchor="middle">v_avg = 2v₁v₂ / (v₁ + v₂)</text>
+                <text x="340" y="130" fill="var(--text-muted)" font-size="14" text-anchor="middle">Biased toward slower speed</text>
+              </svg>
+              <div class="g9-svg-caption">Figure 1.3 · Weighting Invariance: Arithmetic Mean for equal time; Harmonic Mean for equal distance.</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Footer -->
+      <div class="g9-actions-bar">
+        <a class="g9-btn-action g9-btn-practice" href="../../question-bank/index.html?subject=Physics&topic=motion-1d&mode=study">🎯 Practice in Question Bank (Core 2) &rarr;</a>
+        <a class="g9-btn-action g9-btn-explore" href="../../physics/motion-1d/explorers/motion_in_1d/index.html" target="_blank" rel="noopener">⚡ Try visually in Explorer</a>
+        <a class="g9-btn-action g9-btn-learn" href="../../standalone/practice/core1a-motion-1d-straight-line-tablet.html">📱 Full 12.7" Tablet Suite (11 Units)</a>
+        <a class="g9-btn-action g9-btn-qb" href="index.html">&larr; Back to Motion 1D Workspace</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="g9-footer">
+    <p>Grade9V3.5 Concept-Centred Learner Platform · Authentic Question Bank &amp; Concepts</p>
+  </footer>
+
+  <script src="../../js/display-controls.js"></script>
+  <script src="../../js/site-header.js" data-site-root="../../"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "\\[", right: "\\]", display: true },
+            { left: "$", right: "$", display: false },
+            { left: "\\(", right: "\\)", display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -122,11 +122,15 @@ class TestLearnerUiAndSearch(unittest.TestCase):
         self.assertIn("coordinate-geometry/core1a.html", coord_ws.read_text(encoding="utf-8"))
 
     def test_topics_only_appear_when_learn_exists(self):
-        # A topic without learn (like Gases or Redox currently) must NOT appear under Core Topic Workspaces
-        hub_html = generate_subject_hub("Chemistry", self.registry, self.bundles)
+        # A topic without learn must NOT appear under Core Topic Workspaces
+        bundles_no_learn = [
+            dict(b, learn=[]) if b.get("topic_ref") in {"chem.gases", "chem.redox"} else b
+            for b in self.bundles
+        ]
+        hub_html = generate_subject_hub("Chemistry", self.registry, bundles_no_learn)
         # Bonding has learn, so it must appear under Core Topic Workspaces
         self.assertIn('href="bonding/index.html"', hub_html)
-        # Gases and Redox do not have learn, so their topic workspace cards must not appear
+        # Topics with empty learn must not appear under Core Topic Workspaces
         self.assertNotIn('href="gases/index.html"', hub_html)
         self.assertNotIn('href="redox/index.html"', hub_html)
 

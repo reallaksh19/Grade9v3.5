@@ -1,11 +1,27 @@
 {
   "authority": "EVIDENCE_ONLY_NO_SILENT_DELETION",
-  "build_id": "sha256:1ee7ed30b2d32bff448395f5de6e26f691608d6578e61c69d3acdfdcf726b973",
-  "evidence_count": 15,
+  "build_id": "sha256:2a4119b1724eb6889d88676cfaa8b9462369fd600dfedda978c2b0cb5a019cff",
+  "evidence_count": 19,
   "evidence_counts": {
-    "VARIANT": 15
+    "SOURCE_COLLISION": 1,
+    "VARIANT": 18
   },
   "groups": [
+    {
+      "classification": "SOURCE_COLLISION",
+      "member_ids": [
+        "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q1",
+        "Q-MAT-LEQ-04-EXEMPLAR9-4-2-Q1"
+      ],
+      "reason": "same_source_identity_conflict",
+      "source_identity": [
+        "Mathematics",
+        "NCERT Exemplar",
+        "2024",
+        "Class 8/9 Mathematics",
+        "Q1"
+      ]
+    },
     {
       "classification": "VARIANT",
       "family_ref": "FAM-CHEM-BONDING",
@@ -190,21 +206,47 @@
     },
     {
       "classification": "VARIANT",
-      "family_ref": "FAM-MATH-VECTORS",
+      "family_ref": "FAM-MAT-LEQ-01-SUBSTITUTION",
       "member_ids": [
-        "VEC-Q01",
-        "VEC-Q02",
-        "VEC-Q03",
-        "VEC-Q04",
-        "VEC-Q05",
-        "VEC-Q06",
-        "VEC-Q07",
-        "VEC-Q08",
-        "VEC-Q09",
-        "VEC-Q10",
-        "VEC-Q11",
-        "VEC-Q12",
-        "VEC-Q13"
+        "Q-MAT-LEQ-01-EXEMPLAR8-Q17",
+        "Q-MAT-LEQ-01-EXEMPLAR8-Q20",
+        "Q-MAT-LEQ-01-EXEMPLAR8-Q6"
+      ],
+      "reason": "explicit_family_ref"
+    },
+    {
+      "classification": "VARIANT",
+      "family_ref": "FAM-MAT-LEQ-02-BOTH-SIDES",
+      "member_ids": [
+        "Q-MAT-LEQ-02-EXEMPLAR9-4-1-Q16",
+        "Q-MAT-LEQ-02-NCERT8-EX2-1-Q1",
+        "Q-MAT-LEQ-02-NCERT8-EX2-1-Q2",
+        "Q-MAT-LEQ-02-NCERT8-EX2-1-Q3",
+        "Q-MAT-LEQ-02-NCERT8-EX2-1-Q5"
+      ],
+      "reason": "explicit_family_ref"
+    },
+    {
+      "classification": "VARIANT",
+      "family_ref": "FAM-MAT-LEQ-03-REDUCTION",
+      "member_ids": [
+        "Q-MAT-LEQ-03-EXEMPLAR8-Q58",
+        "Q-MAT-LEQ-03-EXEMPLAR8-Q61",
+        "Q-MAT-LEQ-03-NCERT8-EX2-2-Q10",
+        "Q-MAT-LEQ-03-NCERT8-EX2-2-Q7",
+        "Q-MAT-LEQ-03-NCERT8-EX2-2-Q9"
+      ],
+      "reason": "explicit_family_ref"
+    },
+    {
+      "classification": "VARIANT",
+      "family_ref": "FAM-MAT-LEQ-04-TWO-VARIABLES",
+      "member_ids": [
+        "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q1",
+        "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q11",
+        "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q3",
+        "Q-MAT-LEQ-04-EXEMPLAR9-4-2-Q1",
+        "Q-MAT-LEQ-04-EXEMPLAR9-4-3-Q7"
       ],
       "reason": "explicit_family_ref"
     },
@@ -419,14 +461,14 @@
   ],
   "near_duplicate_coverage": {
     "complete": false,
-    "records": 305,
+    "records": 310,
     "records_whose_shingles_were_all_skipped": 0,
-    "records_with_shingles": 305,
+    "records_with_shingles": 310,
     "records_with_truncated_candidates": 47,
-    "shingle_buckets": 873,
+    "shingle_buckets": 867,
     "shingle_buckets_skipped_as_too_common": 0
   },
-  "question_count": 305,
+  "question_count": 310,
   "relationships": [],
   "schema_version": "grade9v3-question-bank-dedup-v1",
   "strategy": {

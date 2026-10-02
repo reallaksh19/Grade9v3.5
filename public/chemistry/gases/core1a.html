@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-g9-shell data-g9-role="CORE1A" data-g9-product="PRODUCT-CHEM-BEHAVIOUR-OF-GASES">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Behaviour of Gases: Particle Model, Gas Laws &amp; State Changes · Construction (Core 1A)</title>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="../../css/modern-learner.css">
+  <style>
+    :root {
+      --g9-space: clamp(16px, 2vw, 28px);
+      --accent: #0284c7;
+      --accent-glow: rgba(2, 132, 199, 0.2);
+    }
+    .g9-formula-block {
+      margin: 10px 0;
+      padding: 12px 18px;
+      background: var(--bg-soft, #1e293b);
+      border: 1px solid var(--border, #334155);
+      border-radius: var(--radius-sm, 8px);
+      text-align: center;
+      font-size: 1.15rem;
+      overflow-x: auto;
+    }
+    main { max-width: 1240px; margin: 0 auto; padding: var(--g9-space); }
+    .g9-core1a-book { background: var(--bg-card, #152238); border: 1.5px solid var(--border, #263859); border-radius: var(--radius-lg, 16px); padding: 24px; margin-bottom: 24px; }
+    .g9-core1a-book h1 { font-size: 26px; font-weight: 800; margin-bottom: 8px; color: var(--text-main, #f8fafc); }
+    .g9-split { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+    @media (max-width: 960px) { .g9-split { grid-template-columns: 1fr; } }
+    .g9-card-panel { background: var(--bg-card, #152238); border: 1.5px solid var(--border, #263859); border-radius: var(--radius-md, 12px); padding: 20px; margin-bottom: 20px; }
+    .g9-step-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: cstep; }
+    .g9-step-item { counter-increment: cstep; position: relative; padding: 14px 16px 14px 50px; border: 1px solid var(--border, #334b75); border-radius: var(--radius-sm, 8px); background: var(--bg-surface, #0f172a); }
+    .g9-step-item::before { content: counter(cstep); position: absolute; left: 14px; top: 14px; width: 26px; height: 26px; border-radius: 50%; background: rgba(2,132,199,0.2); color: #38bdf8; font-weight: 800; display: grid; place-items: center; font-size: 14px; }
+    .g9-crux-step { border-color: #38bdf8; box-shadow: 0 0 0 1px #38bdf8; background: var(--bg-card, #152238); }
+    .g9-crux-badge { display: inline-block; background: rgba(239,68,68,0.2); color: #f87171; font-size: 14px; font-weight: 800; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; }
+    .g9-worked-card { border-left: 4px solid #38bdf8; background: var(--bg-surface, #0f172a); padding: 16px 20px; border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+    .g9-worked-card h4 { margin-bottom: 8px; font-size: 15px; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.04em; }
+    .g9-worked-card ol { padding-left: 20px; margin: 10px 0; }
+    .g9-worked-card li { margin-bottom: 8px; font-size: 14.5px; }
+    .g9-visual-container { position: sticky; top: 80px; }
+    .g9-svg-wrap { background: var(--bg-surface, #0f172a); border: 1px solid var(--border, #263859); border-radius: var(--radius-md, 12px); padding: 16px; margin-bottom: 14px; text-align: center; }
+    .g9-actions-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+    .g9-tag-chem { background: rgba(56,189,248,0.15); border: 1px solid #38bdf8; color: #38bdf8; font-weight: 700; padding: 3px 10px; border-radius: 999px; font-size: 14px; }
+    .dual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0; }
+    @media (max-width: 640px) { .dual-grid { grid-template-columns: 1fr; } }
+    .what-happening { background: rgba(56,189,248,0.08); border-left: 3px solid #38bdf8; padding: 10px 14px; border-radius: 4px; }
+    .key-idea { background: rgba(52,211,153,0.08); border-left: 3px solid #34d399; padding: 10px 14px; border-radius: 4px; }
+    .watch-out { background: rgba(248,113,113,0.08); border-left: 3px solid #f87171; padding: 10px 14px; border-radius: 4px; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <header class="g9-shell-header">
+    <div class="g9-header-inner">
+      <a class="g9-brand" href="../../index.html">
+        <span class="logo-icon">⚡</span>
+        <span class="brand-title">Grade9V3.5</span>
+        <span class="g9-brand-badge">Learner Platform</span>
+      </a>
+      <nav class="g9-header-nav" aria-label="Portal Navigation">
+        <a href="../../index.html">Home</a>
+        <a href="../../physics/index.html">Physics</a>
+        <a href="../../chemistry/index.html">Chemistry</a>
+        <a href="../../mathematics/index.html">Mathematics</a>
+        <a href="../../question-bank/index.html">Question Bank</a>
+      </nav>
+      <div class="g9-header-actions">
+        <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search">
+          <span class="g9-btn-icon">🔍</span>
+          <span class="g9-btn-text">Search</span>
+        </button>
+        <button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings" aria-label="Display & Theme">
+          <span class="g9-btn-icon">🌙 / ☀️</span>
+          <span class="g9-btn-text">Display</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="g9-breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="g9-breadcrumbs">
+      <a href="../../index.html">Home</a> <span>/</span> <a href="../../chemistry/index.html">Chemistry</a> <span>/</span> <a href="index.html">Behaviour of Gases</a> <span>/</span> <span>Core 1A Study Guide</span>
+    </div>
+  </nav>
+
+  <main>
+    <div class="g9-core1a-book">
+      <span class="g9-tag-chem">Chemistry · Unit 1 NCERT</span>
+      <h1>Behaviour of Gases: Core Study Guide (Core 1A)</h1>
+      <p style="font-size: 16px; color: var(--text-secondary); max-width: 850px; line-height: 1.5;">
+        A comprehensive conceptual guide to kinetic molecular theory, gas variables, evaporation, boiling plateaus, latent heats, and state changes. Every reasoning family starts with an authentic visual model before mathematical execution.
+      </p>
+
+      <div class="g9-actions-bar">
+        <a class="g9-btn-action g9-btn-qb" href="../../question-bank/index.html?subject=Chemistry&topic=behaviour-of-gases">Browse Questions in QB &rarr;</a>
+        <a class="g9-btn-action g9-btn-explore" href="explorers/behaviour_of_gases/index.html" target="_blank" rel="noopener">⚡ Open Interactive Visual Simulation</a>
+      </div>
+    </div>
+
+    <!-- UNIT 1: GAS PARTICLE MODEL -->
+    <article class="g9-card-panel" id="u1-particle-model">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag-chem">Unit 1 of 6</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px; color:var(--text-primary);">Gas Particle Model: Spacing, Motion &amp; Attraction</h2>
+          
+          <div class="dual-grid">
+            <div class="what-happening">
+              <strong style="color:#38bdf8;">What is happening?</strong>
+              <p style="font-size: 14px; margin:4px 0 0;">Particles of matter are in continuous random motion. In solids they vibrate in place; in liquids they slide past each other; in gases they move freely at high speeds with negligible intermolecular attraction.</p>
+            </div>
+            <div class="key-idea">
+              <strong style="color:#34d399;">Key Idea</strong>
+              <p style="font-size: 14px; margin:4px 0 0;">Gas properties (fluidity, expansion, high compressibility) derive directly from massive intermolecular space and high particle kinetic energy.</p>
+            </div>
+          </div>
+
+          <ul class="g9-step-list">
+            <li class="g9-step-item">
+              <strong>Intermolecular Space:</strong> Gases possess huge intermolecular spaces ($> 100\times$ molecular diameter), enabling extreme compressibility.
+            </li>
+            <li class="g9-step-item">
+              <strong>Intermolecular Force:</strong> Attraction forces are minimum in gases and maximum in solids. Gas particles exert force only during collisions.
+            </li>
+            <li class="g9-step-item g9-crux-step">
+              <span class="g9-crux-badge">Crux Distinction</span><br>
+              <strong>Diffusion Rate:</strong> $\text{Rate of diffusion} \propto \text{Kinetic energy} \propto T$. Gases diffuse rapidly into other gases due to empty space and high molecular speeds.
+            </li>
+          </ul>
+
+          <div class="watch-out">
+            <strong style="color:#f87171;">⚠️ Watch Out:</strong>
+            <p style="font-size: 14px; margin:4px 0 0;">Never say "gases flow because they have no mass". Gas particles have mass; they flow because intermolecular forces cannot hold them in fixed positions.</p>
+          </div>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-secondary);">State Comparison: Particle Arrangement</h4>
+            <svg viewBox="0 0 680 180" role="img" aria-label="Particle State Comparison: Solid, Liquid, Gas" style="width:100%;max-width:680px;height:auto;display:block;margin:10px auto;">
+  <!-- Solid -->
+  <g transform="translate(20, 10)">
+    <rect x="0" y="0" width="180" height="130" rx="8" fill="rgba(56,189,248,0.06)" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="90" y="24" text-anchor="middle" font-size="14" font-weight="800" fill="#38bdf8">SOLID</text>
+    <!-- Ordered Grid -->
+    <g fill="#38bdf8">
+      <circle cx="45" cy="50" r="7"/><circle cx="75" cy="50" r="7"/><circle cx="105" cy="50" r="7"/><circle cx="135" cy="50" r="7"/>
+      <circle cx="45" cy="75" r="7"/><circle cx="75" cy="75" r="7"/><circle cx="105" cy="75" r="7"/><circle cx="135" cy="75" r="7"/>
+      <circle cx="45" cy="100" r="7"/><circle cx="75" cy="100" r="7"/><circle cx="105" cy="100" r="7"/><circle cx="135" cy="100" r="7"/>
+    </g>
+    <text x="90" y="152" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Close + Ordered (Vibrates)</text>
+  </g>
+  <!-- Liquid -->
+  <g transform="translate(250, 10)">
+    <rect x="0" y="0" width="180" height="130" rx="8" fill="rgba(52,211,153,0.06)" stroke="#34d399" stroke-width="1.5"/>
+    <text x="90" y="24" text-anchor="middle" font-size="14" font-weight="800" fill="#34d399">LIQUID</text>
+    <!-- Disordered close particles -->
+    <g fill="#34d399">
+      <circle cx="40" cy="58" r="7"/><circle cx="70" cy="48" r="7"/><circle cx="102" cy="54" r="7"/><circle cx="138" cy="46" r="7"/>
+      <circle cx="50" cy="84" r="7"/><circle cx="85" cy="80" r="7"/><circle cx="120" cy="78" r="7"/><circle cx="145" cy="82" r="7"/>
+      <circle cx="38" cy="106" r="7"/><circle cx="72" cy="108" r="7"/><circle cx="108" cy="104" r="7"/><circle cx="138" cy="108" r="7"/>
+    </g>
+    <text x="90" y="152" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Close + Disordered (Slides)</text>
+  </g>
+  <!-- Gas -->
+  <g transform="translate(480, 10)">
+    <rect x="0" y="0" width="180" height="130" rx="8" fill="rgba(244,63,94,0.06)" stroke="#f43f5e" stroke-width="1.5"/>
+    <text x="90" y="24" text-anchor="middle" font-size="14" font-weight="800" fill="#f43f5e">GAS</text>
+    <!-- Far apart with velocity vectors -->
+    <g fill="#f43f5e">
+      <circle cx="40" cy="45" r="6"/>
+      <line x1="40" y1="45" x2="62" y2="35" stroke="#f43f5e" stroke-width="1.5" marker-end="url(#arr-g)"/>
+      <circle cx="140" cy="55" r="6"/>
+      <line x1="140" y1="55" x2="115" y2="40" stroke="#f43f5e" stroke-width="1.5"/>
+      <circle cx="90" cy="85" r="6"/>
+      <line x1="90" y1="85" x2="110" y2="105" stroke="#f43f5e" stroke-width="1.5"/>
+      <circle cx="50" cy="108" r="6"/>
+      <line x1="50" y1="108" x2="30" y2="90" stroke="#f43f5e" stroke-width="1.5"/>
+      <circle cx="145" cy="112" r="6"/>
+      <line x1="145" y1="112" x2="160" y2="95" stroke="#f43f5e" stroke-width="1.5"/>
+    </g>
+    <text x="90" y="152" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Far Apart + Free Movement</text>
+  </g>
+</svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- UNIT 2: TEMPERATURE, PRESSURE & VOLUME -->
+    <article class="g9-card-panel" id="u2-compression">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag-chem">Unit 2 of 6</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px; color:var(--text-primary);">Compression &amp; Liquefaction: Effect of Pressure &amp; Temperature</h2>
+          
+          <div class="dual-grid">
+            <div class="what-happening">
+              <strong style="color:#38bdf8;">What is happening?</strong>
+              <p style="font-size: 14px; margin:4px 0 0;">Applying external pressure via a piston forces gas particles into closer proximity. Lowering temperature reduces molecular kinetic energy so attractive forces can bind them into a liquid.</p>
+            </div>
+            <div class="key-idea">
+              <strong style="color:#34d399;">Key Idea</strong>
+              <p style="font-size: 14px; margin:4px 0 0;"><strong>Gases can be liquefied by: High Pressure + Low Temperature.</strong> Solid $\text{CO}_2$ (dry ice) sublimes directly back to gas when pressure drops to 1 atm.</p>
+            </div>
+          </div>
+
+          <div class="g9-worked-card">
+            <h4>Worked Scenario: Gas Under Piston Compression</h4>
+            <p><strong>Question:</strong> Why can massive volumes of natural gas or petroleum gas be stored in compact steel cylinders (CNG / LPG)?</p>
+            <ol>
+              <li>Gas particles have huge intermolecular space compared to solids and liquids.</li>
+              <li>When large mechanical pressure is applied, this empty space is eliminated without particle deformation.</li>
+              <li>Compressibility allows thousands of litres of gas to contract into a portable container under moderate pressures.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-secondary);">Piston Compression &amp; Liquefaction Mechanism</h4>
+            <svg viewBox="0 0 680 180" role="img" aria-label="Gas Compression and Liquefaction in Piston" style="width:100%;max-width:680px;height:auto;display:block;margin:10px auto;">
+  <!-- Low Pressure Gas -->
+  <g transform="translate(60, 15)">
+    <rect x="0" y="0" width="120" height="130" fill="none" stroke="#64748b" stroke-width="2"/>
+    <!-- Piston High -->
+    <rect x="5" y="20" width="110" height="14" fill="#94a3b8" rx="2"/>
+    <line x1="60" y1="20" x2="60" y2="0" stroke="#94a3b8" stroke-width="4"/>
+    <!-- Sparse particles -->
+    <circle cx="30" cy="55" r="4" fill="#38bdf8"/><circle cx="85" cy="50" r="4" fill="#38bdf8"/>
+    <circle cx="50" cy="80" r="4" fill="#38bdf8"/><circle cx="95" cy="90" r="4" fill="#38bdf8"/>
+    <circle cx="35" cy="110" r="4" fill="#38bdf8"/><circle cx="75" cy="115" r="4" fill="#38bdf8"/>
+    <text x="60" y="155" text-anchor="middle" font-size="14" font-weight="700" fill="#38bdf8">1. Low Pressure</text>
+    <text x="60" y="170" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Large Intermolecular Gap</text>
+  </g>
+  <!-- Arrow -->
+  <g transform="translate(230, 70)">
+    <path d="M 0,10 L 40,10" stroke="#f59e0b" stroke-width="3"/>
+    <polygon points="40,5 52,10 40,15" fill="#f59e0b"/>
+    <text x="25" y="-5" text-anchor="middle" font-size="14" font-weight="800" fill="#f59e0b">+ Pressure</text>
+    <text x="25" y="28" text-anchor="middle" font-size="14" fill="#f59e0b">- Temp</text>
+  </g>
+  <!-- High Pressure Compressed Gas -->
+  <g transform="translate(320, 15)">
+    <rect x="0" y="0" width="120" height="130" fill="none" stroke="#64748b" stroke-width="2"/>
+    <!-- Piston Low -->
+    <rect x="5" y="70" width="110" height="14" fill="#94a3b8" rx="2"/>
+    <line x1="60" y1="70" x2="60" y2="10" stroke="#94a3b8" stroke-width="4"/>
+    <!-- Dense particles -->
+    <circle cx="25" cy="95" r="4" fill="#fbbf24"/><circle cx="55" cy="92" r="4" fill="#fbbf24"/>
+    <circle cx="85" cy="96" r="4" fill="#fbbf24"/><circle cx="40" cy="112" r="4" fill="#fbbf24"/>
+    <circle cx="70" cy="114" r="4" fill="#fbbf24"/><circle cx="100" cy="110" r="4" fill="#fbbf24"/>
+    <text x="60" y="155" text-anchor="middle" font-size="14" font-weight="700" fill="#fbbf24">2. High Pressure</text>
+    <text x="60" y="170" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Particles Forced Close</text>
+  </g>
+  <!-- Arrow to Liquefaction -->
+  <g transform="translate(480, 70)">
+    <path d="M 0,10 L 40,10" stroke="#34d399" stroke-width="3"/>
+    <polygon points="40,5 52,10 40,15" fill="#34d399"/>
+    <text x="25" y="-5" text-anchor="middle" font-size="14" font-weight="800" fill="#34d399">Liquefies</text>
+  </g>
+  <!-- Liquid State (e.g. LPG / Liquid N2) -->
+  <g transform="translate(560, 15)">
+    <rect x="0" y="0" width="100" height="130" fill="none" stroke="#64748b" stroke-width="2"/>
+    <rect x="2" y="85" width="96" height="43" fill="rgba(52,211,153,0.3)" stroke="#34d399" stroke-width="1"/>
+    <text x="50" y="112" text-anchor="middle" font-size="14" font-weight="800" fill="#34d399">LIQUID</text>
+    <text x="50" y="155" text-anchor="middle" font-size="14" font-weight="700" fill="#34d399">3. Liquid State</text>
+    <text x="50" y="170" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">e.g. CNG, LPG, Liq O2</text>
+  </g>
+</svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- UNIT 3: KELVIN TEMPERATURE SCALE -->
+    <article class="g9-card-panel" id="u3-kelvin">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag-chem">Unit 3 of 6</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px; color:var(--text-primary);">The Kelvin Scale &amp; Thermal Energy Conversions</h2>
+          
+          <div class="dual-grid">
+            <div class="what-happening">
+              <strong style="color:#38bdf8;">What is happening?</strong>
+              <p style="font-size: 14px; margin:4px 0 0;">Temperature is a statistical measure of average particle kinetic energy. The Kelvin scale starts at absolute zero ($0\text{ K}$), where molecular motion ceases.</p>
+            </div>
+            <div class="key-idea">
+              <strong style="color:#34d399;">Key Idea</strong>
+              <p style="font-size: 14px; margin:4px 0 0;">$T(\text{K}) = t(^\circ\text{C}) + 273.15$. The Kelvin scale has no negative values because thermal kinetic energy cannot be negative.</p>
+            </div>
+          </div>
+
+          <div class="g9-formula-block">
+            $$T \text{ (in Kelvin)} = t \text{ (in } ^\circ\text{C)} + 273.15$$
+          </div>
+
+          <div class="g9-worked-card">
+            <h4>Quick Conversions:</h4>
+            <ol>
+              <li>Convert $25^\circ\text{C}$ to Kelvin: $T = 25 + 273.15 = 298.15\text{ K}$.</li>
+              <li>Convert $373\text{ K}$ to Celsius: $t = 373 - 273.15 = 99.85^\circ\text{C} \approx 100^\circ\text{C}$ (boiling point of water).</li>
+              <li>Convert $0^\circ\text{C}$ to Kelvin: $T = 0 + 273.15 = 273.15\text{ K}$ (ice melting point).</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-secondary);">Kelvin vs. Celsius Thermal Benchmark Ladder</h4>
+            <svg viewBox="0 0 680 180" role="img" aria-label="Kelvin and Celsius Temperature Conversion Ladder" style="width:100%;max-width:680px;height:auto;display:block;margin:10px auto;">
+  <!-- Ladder Axis -->
+  <line x1="80" y1="90" x2="600" y2="90" stroke="var(--border-light,#475569)" stroke-width="4"/>
+  <!-- Point 1: Absolute Zero -->
+  <circle cx="100" cy="90" r="7" fill="#38bdf8"/>
+  <text x="100" y="65" text-anchor="middle" font-size="14" font-weight="800" fill="#38bdf8">0 K</text>
+  <text x="100" y="120" text-anchor="middle" font-size="14" font-weight="700" fill="#94a3b8">-273.15°C</text>
+  <text x="100" y="140" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Absolute Zero</text>
+
+  <!-- Point 2: Freezing Point of Water -->
+  <circle cx="270" cy="90" r="7" fill="#34d399"/>
+  <text x="270" y="65" text-anchor="middle" font-size="14" font-weight="800" fill="#34d399">273.15 K</text>
+  <text x="270" y="120" text-anchor="middle" font-size="14" font-weight="700" fill="#34d399">0°C</text>
+  <text x="270" y="140" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Ice Melting Point</text>
+
+  <!-- Point 3: Room Temperature -->
+  <circle cx="410" cy="90" r="7" fill="#fbbf24"/>
+  <text x="410" y="65" text-anchor="middle" font-size="14" font-weight="800" fill="#fbbf24">298.15 K</text>
+  <text x="410" y="120" text-anchor="middle" font-size="14" font-weight="700" fill="#fbbf24">25°C</text>
+  <text x="410" y="140" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Room Temperature</text>
+
+  <!-- Point 4: Boiling Point of Water -->
+  <circle cx="560" cy="90" r="7" fill="#f87171"/>
+  <text x="560" y="65" text-anchor="middle" font-size="14" font-weight="800" fill="#f87171">373.15 K</text>
+  <text x="560" y="120" text-anchor="middle" font-size="14" font-weight="700" fill="#f87171">100°C</text>
+  <text x="560" y="140" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Water Boiling Point</text>
+
+  <!-- Badge formula -->
+  <rect x="230" y="8" width="220" height="34" rx="6" fill="rgba(56,189,248,0.12)" stroke="#38bdf8"/>
+  <text x="340" y="30" text-anchor="middle" font-size="14" font-weight="800" fill="#38bdf8">T (K) = t (°C) + 273.15</text>
+</svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- UNIT 4: EVAPORATION & COOLING -->
+    <article class="g9-card-panel" id="u4-evaporation">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag-chem">Unit 4 of 6</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px; color:var(--text-primary);">Evaporation: Surface Phenomenon &amp; Evaporative Cooling</h2>
+          
+          <div class="dual-grid">
+            <div class="what-happening">
+              <strong style="color:#38bdf8;">What is happening?</strong>
+              <p style="font-size: 14px; margin:4px 0 0;">In any liquid, particles at the surface have a distribution of speeds. Those with sufficient kinetic energy overcome intermolecular forces and escape into the vapor phase at any temperature below the boiling point.</p>
+            </div>
+            <div class="key-idea">
+              <strong style="color:#34d399;">Key Idea</strong>
+              <p style="font-size: 14px; margin:4px 0 0;"><strong>Evaporation causes cooling.</strong> When high-energy particles leave, the remaining liquid's average kinetic energy decreases, lowering its temperature.</p>
+            </div>
+          </div>
+
+          <ul class="g9-step-list">
+            <li class="g9-step-item">
+              <strong>Surface Area $\uparrow$:</strong> More surface particles exposed $\implies$ higher rate of escape (e.g. saucer cools tea faster than cup).
+            </li>
+            <li class="g9-step-item">
+              <strong>Temperature $\uparrow$:</strong> Higher average kinetic energy $\implies$ greater fraction of particles cross escape threshold.
+            </li>
+            <li class="g9-step-item">
+              <strong>Wind Speed $\uparrow$:</strong> Rapid air movement sweeps water vapor molecules away, preventing local saturation.
+            </li>
+            <li class="g9-step-item g9-crux-step">
+              <span class="g9-crux-badge">Inverse Factor</span><br>
+              <strong>Humidity $\downarrow$:</strong> Humidity is the amount of water vapor already present in air. If air is already saturated, evaporation rate drops drastically.
+            </li>
+          </ul>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-secondary);">Surface Escape &amp; Four-Factor Grid</h4>
+            <svg viewBox="0 0 680 180" role="img" aria-label="Evaporation Surface Escape Mechanism and Four Factors" style="width:100%;max-width:680px;height:auto;display:block;margin:10px auto;">
+  <!-- Dish with liquid -->
+  <g transform="translate(30, 25)">
+    <path d="M 10,70 Q 110,130 210,70 Z" fill="rgba(56,189,248,0.2)" stroke="#38bdf8" stroke-width="2"/>
+    <!-- Liquid surface line -->
+    <line x1="10" y1="70" x2="210" y2="70" stroke="#38bdf8" stroke-width="2.5"/>
+    <text x="110" y="95" text-anchor="middle" font-size="14" font-weight="700" fill="#38bdf8">Bulk Liquid</text>
+    <text x="110" y="112" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Lower Kinetic Energy</text>
+    <!-- Escaping surface particles with upward vectors -->
+    <circle cx="50" cy="65" r="5" fill="#f43f5e"/>
+    <line x1="50" y1="65" x2="45" y2="35" stroke="#f43f5e" stroke-width="2" marker-end="url(#arr-e)"/>
+    <circle cx="95" cy="64" r="5" fill="#f43f5e"/>
+    <line x1="95" y1="64" x2="95" y2="25" stroke="#f43f5e" stroke-width="2"/>
+    <circle cx="140" cy="65" r="5" fill="#f43f5e"/>
+    <line x1="140" y1="65" x2="148" y2="32" stroke="#f43f5e" stroke-width="2"/>
+    <circle cx="180" cy="66" r="5" fill="#f43f5e"/>
+    <line x1="180" y1="66" x2="190" y2="38" stroke="#f43f5e" stroke-width="2"/>
+    <text x="110" y="18" text-anchor="middle" font-size="14" font-weight="800" fill="#f43f5e">Fast Surface Particles Escape</text>
+    <text x="110" y="145" text-anchor="middle" font-size="14" font-weight="800" fill="#34d399">Cooling Effect: T_bulk drops</text>
+  </g>
+  <!-- 4 Driving Factors Box -->
+  <g transform="translate(290, 15)">
+    <rect x="0" y="0" width="360" height="150" rx="8" fill="var(--bg-card,#1e293b)" stroke="var(--border,#334155)" stroke-width="1.5"/>
+    <text x="180" y="24" text-anchor="middle" font-size="14" font-weight="800" fill="#38bdf8">4 Driving Factors of Evaporation</text>
+    <line x1="20" y1="34" x2="340" y2="34" stroke="var(--border,#334155)"/>
+    <!-- Factor 1 -->
+    <text x="30" y="58" font-size="14" font-weight="700" fill="var(--text-main,#f8fafc)">1. Surface Area:</text>
+    <text x="170" y="58" font-size="14" fill="#34d399">Area ↑  ⟹  Evaporation Rate ↑</text>
+    <!-- Factor 2 -->
+    <text x="30" y="86" font-size="14" font-weight="700" fill="var(--text-main,#f8fafc)">2. Temperature:</text>
+    <text x="170" y="86" font-size="14" fill="#34d399">Temp ↑  ⟹  Kinetic Energy ↑</text>
+    <!-- Factor 3 -->
+    <text x="30" y="114" font-size="14" font-weight="700" fill="var(--text-main,#f8fafc)">3. Wind Speed:</text>
+    <text x="170" y="114" font-size="14" fill="#34d399">Wind ↑  ⟹  Vapour Blown Away ↑</text>
+    <!-- Factor 4 -->
+    <text x="30" y="142" font-size="14" font-weight="700" fill="var(--text-main,#f8fafc)">4. Humidity:</text>
+    <text x="170" y="142" font-size="14" fill="#f87171">Humidity ↑  ⟹  Evaporation Rate ↓</text>
+  </g>
+</svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- UNIT 5: BOILING & LATENT HEAT -->
+    <article class="g9-card-panel" id="u5-boiling">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag-chem">Unit 5 of 6</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px; color:var(--text-primary);">Boiling vs. Evaporation &amp; Latent Heat Plateaus</h2>
+          
+          <div class="dual-grid">
+            <div class="what-happening">
+              <strong style="color:#38bdf8;">What is happening?</strong>
+              <p style="font-size: 14px; margin:4px 0 0;">While heating water, temperature rises continuously until $100^\circ\text{C}$. Then temperature remains completely constant until all water converts into steam, despite heat being supplied continuously.</p>
+            </div>
+            <div class="key-idea">
+              <strong style="color:#34d399;">Key Idea</strong>
+              <p style="font-size: 14px; margin:4px 0 0;"><strong>Latent Heat ($Q = m L$):</strong> The hidden thermal energy consumed solely to break intermolecular attraction bonds during state transition without raising kinetic energy.</p>
+            </div>
+          </div>
+
+          <div class="g9-worked-card">
+            <h4>Crucial Competitive Reasoning: Why Steam Burns Worse than Boiling Water</h4>
+            <p><strong>Question:</strong> Why does steam at $100^\circ\text{C}$ produce significantly more severe burns than boiling water at $100^\circ\text{C}$?</p>
+            <ol>
+              <li>Both are at the same temperature ($100^\circ\text{C}$), so their average particle kinetic energies are identical.</li>
+              <li>However, particles in steam have absorbed an additional <strong>Latent Heat of Vaporization ($L_v \approx 2.26 \times 10^6\text{ J/kg}$)</strong> to overcome liquid intermolecular bonds.</li>
+              <li>When steam contacts skin, it condenses first (releasing the enormous latent heat $L_v$), and then cools down as hot liquid, delivering double the heat payload to tissue.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-secondary);">Heating Curve: Latent Heat Phase Plateaus</h4>
+            <svg viewBox="0 0 680 190" role="img" aria-label="Temperature-Time Plateau Heating Curve of Water" style="width:100%;max-width:680px;height:auto;display:block;margin:10px auto;">
+  <!-- Axes -->
+  <line x1="80" y1="150" x2="620" y2="150" stroke="var(--border-light,#475569)" stroke-width="2"/>
+  <line x1="80" y1="150" x2="80" y2="20" stroke="var(--border-light,#475569)" stroke-width="2"/>
+  <text x="620" y="170" text-anchor="end" font-size="14" fill="var(--text-secondary,#94a3b8)">Time (Heat Supplied) →</text>
+  <text x="70" y="25" text-anchor="end" font-size="14" fill="var(--text-secondary,#94a3b8)">Temp (°C) ↑</text>
+
+  <!-- Curve line -->
+  <!-- Solid ice warming from -10 to 0 -->
+  <line x1="80" y1="140" x2="160" y2="110" stroke="#38bdf8" stroke-width="2.5"/>
+  <text x="120" y="122" font-size="14" fill="#38bdf8">Ice warming</text>
+
+  <!-- Melting plateau at 0°C -->
+  <line x1="160" y1="110" x2="260" y2="110" stroke="#fbbf24" stroke-width="3"/>
+  <text x="210" y="100" text-anchor="middle" font-size="14" font-weight="800" fill="#fbbf24">Melting Plateau (0°C)</text>
+  <text x="210" y="128" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Latent Heat Fusion L_f</text>
+
+  <!-- Liquid water warming from 0 to 100 -->
+  <line x1="260" y1="110" x2="380" y2="45" stroke="#34d399" stroke-width="2.5"/>
+  <text x="320" y="70" font-size="14" fill="#34d399">Liquid heating</text>
+
+  <!-- Boiling plateau at 100°C -->
+  <line x1="380" y1="45" x2="520" y2="45" stroke="#f43f5e" stroke-width="3"/>
+  <text x="450" y="35" text-anchor="middle" font-size="14" font-weight="800" fill="#f43f5e">Boiling Plateau (100°C)</text>
+  <text x="450" y="60" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">Latent Heat Vaporization L_v</text>
+
+  <!-- Steam heating above 100 -->
+  <line x1="520" y1="45" x2="600" y2="25" stroke="#c084fc" stroke-width="2.5"/>
+  <text x="560" y="20" font-size="14" fill="#c084fc">Steam</text>
+
+  <!-- Temperature tick marks -->
+  <line x1="75" y1="110" x2="80" y2="110" stroke="#fff" stroke-width="1.5"/>
+  <text x="70" y="114" text-anchor="end" font-size="14" font-weight="700" fill="#fbbf24">0°C</text>
+  <line x1="75" y1="45" x2="80" y2="45" stroke="#fff" stroke-width="1.5"/>
+  <text x="70" y="49" text-anchor="end" font-size="14" font-weight="700" fill="#f43f5e">100°C</text>
+</svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- UNIT 6: SUBLIMATION & DIRECT STATE TRANSITIONS -->
+    <article class="g9-card-panel" id="u6-sublimation">
+      <div class="g9-split">
+        <div>
+          <span class="g9-tag-chem">Unit 6 of 6</span>
+          <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 12px; color:var(--text-primary);">Sublimation &amp; Deposition: Direct Solid ⇄ Gas Transitions</h2>
+          
+          <div class="dual-grid">
+            <div class="what-happening">
+              <strong style="color:#38bdf8;">What is happening?</strong>
+              <p style="font-size: 14px; margin:4px 0 0;">Certain substances bypass the liquid state completely when heated at atmospheric pressure: Solid $\xrightarrow{\text{sublimation}} \text{Gas}$, and Gas $\xrightarrow{\text{deposition}} \text{Solid}$.</p>
+            </div>
+            <div class="key-idea">
+              <strong style="color:#34d399;">Key Idea</strong>
+              <p style="font-size: 14px; margin:4px 0 0;">Common sublimable substances: Ammonium Chloride ($\text{NH}_4\text{Cl}$), Camphor, Naphthalene, Anthracene, and Solid Carbon Dioxide (Dry Ice).</p>
+            </div>
+          </div>
+
+          <div class="g9-worked-card">
+            <h4>Experimental Apparatus &amp; Separation Technique</h4>
+            <ol>
+              <li>Place a mixture of common salt ($\text{NaCl}$) and ammonium chloride ($\text{NH}_4\text{Cl}$) in a china dish.</li>
+              <li>Invert a glass funnel over the dish and put a cotton plug on the funnel stem to prevent vapor loss.</li>
+              <li>Heat gently with a burner. Ammonium chloride sublimes directly into white vapours.</li>
+              <li>The vapours cool on the upper funnel walls and deposit back as pure crystalline solid, while non-volatile $\text{NaCl}$ remains in the dish.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="g9-visual-container">
+          <div class="g9-svg-wrap">
+            <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-secondary);">Inverted Funnel Sublimation Setup</h4>
+            <svg viewBox="0 0 680 180" role="img" aria-label="Sublimation of Ammonium Chloride in Inverted Funnel Apparatus" style="width:100%;max-width:680px;height:auto;display:block;margin:10px auto;">
+  <!-- Burner / Flame -->
+  <g transform="translate(180, 140)">
+    <polygon points="10,20 18,5 26,20" fill="#f59e0b"/>
+    <polygon points="14,20 18,10 22,20" fill="#ef4444"/>
+    <rect x="5" y="20" width="26" height="10" fill="#64748b"/>
+  </g>
+  <!-- China Dish -->
+  <ellipse cx="200" cy="135" rx="70" ry="12" fill="none" stroke="#94a3b8" stroke-width="2"/>
+  <!-- Mixture / Solid Camphor or NH4Cl -->
+  <ellipse cx="200" cy="137" rx="50" ry="6" fill="#fbbf24"/>
+  <text x="290" y="142" font-size="14" font-weight="700" fill="#fbbf24">Solid NH₄Cl / Camphor</text>
+
+  <!-- Inverted Funnel -->
+  <polygon points="135,133 265,133 205,35 195,35" fill="rgba(56,189,248,0.08)" stroke="#38bdf8" stroke-width="1.5"/>
+  <!-- Funnel Stem -->
+  <rect x="195" y="15" width="10" height="20" fill="rgba(56,189,248,0.08)" stroke="#38bdf8" stroke-width="1.5"/>
+  <!-- Cotton plug -->
+  <ellipse cx="200" cy="15" rx="10" ry="5" fill="#f8fafc" stroke="#94a3b8" stroke-width="1"/>
+  <text x="220" y="18" font-size="14" font-weight="700" fill="var(--text-main,#f8fafc)">Cotton Plug (prevents escape)</text>
+
+  <!-- Sublimed Vapours rising -->
+  <path d="M 190,120 Q 185,90 195,65" fill="none" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <path d="M 210,120 Q 215,90 205,65" fill="none" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <text x="215" y="85" font-size="14" fill="#c084fc">Vapours (Gas)</text>
+
+  <!-- Solidified NH4Cl on cool inner funnel neck -->
+  <rect x="180" y="45" width="8" height="22" rx="2" fill="#34d399"/>
+  <rect x="212" y="45" width="8" height="22" rx="2" fill="#34d399"/>
+  <text x="290" y="58" font-size="14" font-weight="700" fill="#34d399">Solidified Sublimate on cool walls</text>
+
+  <!-- Definition Box -->
+  <g transform="translate(430, 25)">
+    <rect x="0" y="0" width="220" height="130" rx="8" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="1.5"/>
+    <text x="110" y="24" text-anchor="middle" font-size="14" font-weight="800" fill="#34d399">SUBLIMATION</text>
+    <text x="110" y="50" text-anchor="middle" font-size="14" font-weight="700" fill="var(--text-main,#f8fafc)">Solid  ⇄  Gas</text>
+    <text x="110" y="72" text-anchor="middle" font-size="14" fill="var(--text-secondary,#94a3b8)">(No liquid intermediate!)</text>
+    <line x1="20" y1="84" x2="200" y2="84" stroke="var(--border,#334155)"/>
+    <text x="110" y="104" text-anchor="middle" font-size="14" fill="var(--text-main,#f8fafc)">Examples: Camphor,</text>
+    <text x="110" y="120" text-anchor="middle" font-size="14" fill="var(--text-main,#f8fafc)">NH₄Cl, Naphthalene, Dry Ice</text>
+  </g>
+</svg>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="g9-footer" style="padding:24px 16px; text-align:center; color:var(--text-secondary); border-top:1px solid var(--border);">
+    <p>Grade9V3.5 Concept-Centred Learner Platform · Behaviour of Gases Core 1A</p>
+  </footer>
+
+  <script>
+    function renderAllMath() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\(", right: "\)", display: false},
+            {left: "\[", right: "\]", display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", renderAllMath);
+    } else {
+      renderAllMath();
+    }
+  </script>
+</body>
+</html>

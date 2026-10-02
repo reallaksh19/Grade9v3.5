@@ -594,96 +594,807 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
           </div>
         </div>
 
-        <div class="content-card">
-          <h2><span>⚡</span> 01 Curved path: distance is not displacement</h2>
-          <p>U8-Q1 + Sample-I-Q10<br><br>The path can bend; displacement still joins the two positions directly<br><br>displacement = diameter<br><br>end B start A<br><br>path follows half the circle; displacement joins start to end directly<br><br>WHAT IS HAPPENING? KEY IDEA<br><br>A particle can travel along a curved path while For half a circle of radius r, the start and end</p>
-        </div>
+        <!-- Unit 01: 01  Curved path: distance is not displacement -->
+        <article class="content-card" id="unit-01" style="margin-bottom: 28px; border: 1.5px solid var(--border); border-radius: var(--tab12-radius-md); padding: 24px; background: var(--bg-card);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+            <div>
+              <span class="q-badge" style="background:rgba(56,189,248,0.15); border:1px solid var(--accent); color:var(--accent); font-weight:800; font-size:12px; padding:4px 10px; border-radius:999px;">Concept Unit 01</span>
+              <h2 style="font-size:20px; font-weight:700; margin:8px 0 4px; color:var(--text-primary);">01  Curved path: distance is not displacement</h2>
+              <p style="font-size:14px; color:var(--accent); font-weight:600; margin:0;">The path can bend; displacement still joins the two positions directly</p>
+            </div>
+            <span class="tag-pill" style="font-size:12px; font-weight:700; background:rgba(192,132,252,0.15); border:1px solid var(--purple); color:var(--purple);">U8-Q1 + Sample-I-Q10</span>
+          </div>
+
+          <!-- Publication-grade Diagram -->
+          <div style="background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--tab12-radius-sm); padding:16px; margin-bottom:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 220" role="img" aria-label="Semicircular path vs diameter displacement" style="width:100%;max-width:540px;height:auto;display:block;margin:12px auto;">
+  <defs>
+    <marker id="arr-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#38bdf8"/></marker>
+    <marker id="arr-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#34d399"/></marker>
+  </defs>
+  <!-- Background ground line -->
+  <line x1="40" y1="170" x2="500" y2="170" stroke="var(--border,#334155)" stroke-width="2"/>
+  <!-- Semicircle path -->
+  <path d="M 400 170 A 130 130 0 0 0 140 170" fill="none" stroke="#38bdf8" stroke-width="3" stroke-dasharray="6 4"/>
+  <!-- Direct displacement chord -->
+  <line x1="400" y1="170" x2="146" y2="170" stroke="#34d399" stroke-width="3.5" marker-end="url(#arr-green)"/>
+  <!-- Start & End dots -->
+  <circle cx="400" cy="170" r="7" fill="#38bdf8"/>
+  <text x="400" y="195" text-anchor="middle" font-weight="700" fill="currentColor">Start A</text>
+  <circle cx="140" cy="170" r="7" fill="#34d399"/>
+  <text x="140" y="195" text-anchor="middle" font-weight="700" fill="currentColor">End B</text>
+  <!-- Center & Radius -->
+  <circle cx="270" cy="170" r="4" fill="currentColor"/>
+  <line x1="270" y1="170" x2="270" y2="40" stroke="var(--border,#64748b)" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <text x="278" y="110" font-size="14" fill="var(--text-secondary,#94a3b8)">radius r</text>
+  <!-- Labels -->
+  <rect x="200" y="18" width="140" height="28" rx="6" fill="rgba(56,189,248,0.15)" stroke="#38bdf8"/>
+  <text x="270" y="37" text-anchor="middle" font-size="13" font-weight="700" fill="#38bdf8">Path length = πr</text>
+  <rect x="195" y="132" width="150" height="26" rx="6" fill="rgba(52,211,153,0.15)" stroke="#34d399"/>
+  <text x="270" y="150" text-anchor="middle" font-size="13" font-weight="700" fill="#34d399">Displacement = 2r</text>
+</svg>
+          </div>
+
+          <!-- Dual explanation grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:20px;">
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--accent); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:6px;">What is happening?</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">A particle can travel along a curved path while its displacement is a single straight vector from its starting position to its ending position.</p>
+            </div>
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--success); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">Key Idea</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">For half a circle of radius r, the start and end points are opposite ends of a diameter. The path length is πr, but the displacement magnitude is 2r.</p>
+            </div>
+          </div>
+
+          <!-- How it works numbered sequence -->
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:var(--tab12-radius-sm); padding:16px 20px; margin-bottom:20px;">
+            <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary); margin-bottom:10px;">How It Works</h4>
+            <ol style="margin:0; padding-left:22px; display:grid; gap:8px;">
+              <li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Mark only the initial and final positions first.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Draw the direct arrow from initial to final position; that arrow is displacement.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Use the actual travelled path only when finding distance.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">A closed trip can have non-zero distance and zero displacement.</li>
+            </ol>
+          </div>
+
+          <!-- Work the Idea: Worked Example -->
+          <div style="border:1px solid var(--border); border-radius:var(--tab12-radius-sm); overflow:hidden; margin-bottom:16px; background:var(--bg-card-subtle);">
+            <div style="background:rgba(56,189,248,0.08); padding:10px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px;">
+              <span style="font-weight:800; font-size:13px; color:var(--accent);">⚡ WORKED EXAMPLE</span>
+            </div>
+            <div style="padding:14px 16px; font-size:14.5px; line-height:1.6;">
+              A runner moves from the rightmost point of a circular track to the leftmost point along the upper semicircle. Distance = πr; displacement magnitude = 2r, directed across the diameter.
+            </div>
+          </div>
+
+          <!-- Watch out & Quick Check -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+            <div style="background:rgba(245,158,11,0.08); border:1px solid var(--warning); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--warning); margin-bottom:6px;">⚠️ Watch Out</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0; color:var(--text-primary);">Do not use arc length as displacement. Curved distance and straight displacement answer different questions.</p>
+            </div>
+            <div style="background:rgba(52,211,153,0.08); border:1px solid var(--success); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">✅ Quick Check</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0 0 6px; color:var(--text-primary);">A particle completes one full circle. What is its displacement magnitude?</p>
+              <details style="margin-top:6px; cursor:pointer;">
+                <summary style="font-size:13px; font-weight:700; color:var(--success); padding:4px 0;">Reveal Answer</summary>
+                <div style="padding-top:6px; font-size:13.5px; font-weight:600; color:var(--text-primary);">0.</div>
+              </details>
+            </div>
+          </div>
+        </article>
     
-        <div class="content-card">
-          <h2><span>⚡</span> 01 Work the idea</h2>
-          <p>U8-Q1 + Sample-I-Q10<br><br>Worked example → guided try → faded try → anti-trigger → quick check<br><br>WORKED EXAMPLE<br><br>A runner moves from the rightmost point of a circular track to the leftmost point along the upper<br><br>semicircle. Distance = πr; displacement magnitude = 2r, directed across the diameter.<br><br>GUIDED TRY FADED TRY<br><br>1. Identify the state/event that decides the answer. Redraw the figure from memory. Label only the</p>
-        </div>
+
+        <!-- Unit 02: 02  Constant speed can still mean acceleration -->
+        <article class="content-card" id="unit-02" style="margin-bottom: 28px; border: 1.5px solid var(--border); border-radius: var(--tab12-radius-md); padding: 24px; background: var(--bg-card);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+            <div>
+              <span class="q-badge" style="background:rgba(56,189,248,0.15); border:1px solid var(--accent); color:var(--accent); font-weight:800; font-size:12px; padding:4px 10px; border-radius:999px;">Concept Unit 02</span>
+              <h2 style="font-size:20px; font-weight:700; margin:8px 0 4px; color:var(--text-primary);">02  Constant speed can still mean acceleration</h2>
+              <p style="font-size:14px; color:var(--accent); font-weight:600; margin:0;">Velocity changes whenever direction changes</p>
+            </div>
+            <span class="tag-pill" style="font-size:12px; font-weight:700; background:rgba(192,132,252,0.15); border:1px solid var(--purple); color:var(--purple);">U8-Q6</span>
+          </div>
+
+          <!-- Publication-grade Diagram -->
+          <div style="background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--tab12-radius-sm); padding:16px; margin-bottom:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 220" role="img" aria-label="Circular motion: tangential velocity and inward acceleration" style="width:100%;max-width:540px;height:auto;display:block;margin:12px auto;">
+  <defs>
+    <marker id="arr-v" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#38bdf8"/></marker>
+    <marker id="arr-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#f59e0b"/></marker>
+  </defs>
+  <!-- Circle orbit -->
+  <circle cx="270" cy="110" r="80" fill="none" stroke="var(--border,#334155)" stroke-width="2.5" stroke-dasharray="5 5"/>
+  <circle cx="270" cy="110" r="5" fill="currentColor"/>
+  <text x="270" y="130" text-anchor="middle" font-size="13" fill="var(--text-secondary,#94a3b8)">centre</text>
+  <!-- Rider at top -->
+  <circle cx="270" cy="30" r="7" fill="#38bdf8"/>
+  <!-- Tangent velocity -->
+  <line x1="270" y1="30" x2="190" y2="30" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-v)"/>
+  <text x="180" y="24" text-anchor="end" font-weight="700" fill="#38bdf8">v (tangent)</text>
+  <!-- Inward centripetal acceleration -->
+  <line x1="270" y1="30" x2="270" y2="75" stroke="#f59e0b" stroke-width="3" marker-end="url(#arr-a)"/>
+  <text x="280" y="65" font-weight="700" fill="#f59e0b">a (inward)</text>
+  <!-- Side rider -->
+  <circle cx="190" cy="110" r="7" fill="#38bdf8"/>
+  <line x1="190" y1="110" x2="190" y2="180" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-v)"/>
+  <text x="185" y="195" text-anchor="end" font-size="13" font-weight="700" fill="#38bdf8">v</text>
+  <line x1="190" y1="110" x2="235" y2="110" stroke="#f59e0b" stroke-width="3" marker-end="url(#arr-a)"/>
+  <text x="220" y="100" font-size="13" font-weight="700" fill="#f59e0b">a</text>
+  <!-- Insight badge -->
+  <rect x="365" y="85" width="165" height="50" rx="8" fill="rgba(245,158,11,0.1)" stroke="#f59e0b"/>
+  <text x="447" y="106" text-anchor="middle" font-size="12" font-weight="700" fill="#f59e0b">Speed |v| is constant</text>
+  <text x="447" y="124" text-anchor="middle" font-size="12" fill="currentColor">Direction turns → a ≠ 0</text>
+</svg>
+          </div>
+
+          <!-- Dual explanation grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:20px;">
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--accent); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:6px;">What is happening?</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">On a merry-go-round, the rider can keep the same speed while the direction of motion changes continuously.</p>
+            </div>
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--success); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">Key Idea</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">Velocity is a vector. Constant magnitude with changing direction means changing velocity, so acceleration is non-zero.</p>
+            </div>
+          </div>
+
+          <!-- How it works numbered sequence -->
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:var(--tab12-radius-sm); padding:16px 20px; margin-bottom:20px;">
+            <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary); margin-bottom:10px;">How It Works</h4>
+            <ol style="margin:0; padding-left:22px; display:grid; gap:8px;">
+              <li style="font-size:14px; line-height:1.5; color:var(--text-primary);">At two nearby points, draw the velocity tangent to the path.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Compare the two velocity arrows: equal length, different direction.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">A change in velocity means acceleration.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">For circular motion, the acceleration points inward toward the centre.</li>
+            </ol>
+          </div>
+
+          <!-- Work the Idea: Worked Example -->
+          <div style="border:1px solid var(--border); border-radius:var(--tab12-radius-sm); overflow:hidden; margin-bottom:16px; background:var(--bg-card-subtle);">
+            <div style="background:rgba(56,189,248,0.08); padding:10px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px;">
+              <span style="font-weight:800; font-size:13px; color:var(--accent);">⚡ WORKED EXAMPLE</span>
+            </div>
+            <div style="padding:14px 16px; font-size:14.5px; line-height:1.6;">
+              A rider moving at 10 m/s around a circle has constant speed, but not uniform velocity. The velocity turns continuously, so the rider is accelerated.
+            </div>
+          </div>
+
+          <!-- Watch out & Quick Check -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+            <div style="background:rgba(245,158,11,0.08); border:1px solid var(--warning); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--warning); margin-bottom:6px;">⚠️ Watch Out</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0; color:var(--text-primary);">Do not equate “constant speed” with “zero acceleration”. That is true only when the velocity vector is constant.</p>
+            </div>
+            <div style="background:rgba(52,211,153,0.08); border:1px solid var(--success); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">✅ Quick Check</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0 0 6px; color:var(--text-primary);">Can an object accelerate while its speed stays constant?</p>
+              <details style="margin-top:6px; cursor:pointer;">
+                <summary style="font-size:13px; font-weight:700; color:var(--success); padding:4px 0;">Reveal Answer</summary>
+                <div style="padding-top:6px; font-size:13.5px; font-weight:600; color:var(--text-primary);">Yes - if the direction of velocity changes.</div>
+              </details>
+            </div>
+          </div>
+        </article>
     
-        <div class="content-card">
-          <h2><span>⚡</span> 02 Constant speed can still mean acceleration</h2>
-          <p>U8-Q6<br><br>Velocity changes whenever direction changes<br><br>v tangent<br><br>a inward<br><br>WHAT IS HAPPENING? KEY IDEA<br><br>On a merry-go-round, the rider can keep the Velocity is a vector. Constant magnitude with<br><br>same speed while the direction of motion changing direction means changing velocity, so</p>
-        </div>
+
+        <!-- Unit 03: 03  When are distance and displacement equal? -->
+        <article class="content-card" id="unit-03" style="margin-bottom: 28px; border: 1.5px solid var(--border); border-radius: var(--tab12-radius-md); padding: 24px; background: var(--bg-card);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+            <div>
+              <span class="q-badge" style="background:rgba(56,189,248,0.15); border:1px solid var(--accent); color:var(--accent); font-weight:800; font-size:12px; padding:4px 10px; border-radius:999px;">Concept Unit 03</span>
+              <h2 style="font-size:20px; font-weight:700; margin:8px 0 4px; color:var(--text-primary);">03  When are distance and displacement equal?</h2>
+              <p style="font-size:14px; color:var(--accent); font-weight:600; margin:0;">Equality requires the travelled path to match the straight separation</p>
+            </div>
+            <span class="tag-pill" style="font-size:12px; font-weight:700; background:rgba(192,132,252,0.15); border:1px solid var(--purple); color:var(--purple);">U8-Q11</span>
+          </div>
+
+          <!-- Publication-grade Diagram -->
+          <div style="background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--tab12-radius-sm); padding:16px; margin-bottom:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 200" role="img" aria-label="Straight path vs curved path distance comparison" style="width:100%;max-width:540px;height:auto;display:block;margin:12px auto;">
+  <defs>
+    <marker id="arr-gr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#34d399"/></marker>
+    <marker id="arr-bl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#38bdf8"/></marker>
+  </defs>
+  <!-- Panel 1: Straight, no reversal -->
+  <rect x="25" y="20" width="235" height="160" rx="10" fill="var(--bg-card-subtle,#1a2942)" stroke="var(--border,#334b75)"/>
+  <text x="142" y="45" text-anchor="middle" font-weight="700" fill="#34d399">Straight, No Reversal</text>
+  <circle cx="50" cy="95" r="5" fill="currentColor"/>
+  <text x="50" y="115" text-anchor="middle" font-size="12">Start</text>
+  <circle cx="225" cy="95" r="5" fill="currentColor"/>
+  <text x="225" y="115" text-anchor="middle" font-size="12">End</text>
+  <line x1="50" y1="95" x2="218" y2="95" stroke="#34d399" stroke-width="3" marker-end="url(#arr-gr)"/>
+  <rect x="55" y="130" width="175" height="30" rx="6" fill="rgba(52,211,153,0.15)"/>
+  <text x="142" y="150" text-anchor="middle" font-size="13" font-weight="700" fill="#34d399">Distance = |Displacement|</text>
+  <!-- Panel 2: Curved / Detour path -->
+  <rect x="280" y="20" width="235" height="160" rx="10" fill="var(--bg-card-subtle,#1a2942)" stroke="var(--border,#334155)"/>
+  <text x="397" y="45" text-anchor="middle" font-weight="700" fill="#f87171">Curved Path or Reversal</text>
+  <circle cx="305" cy="115" r="5" fill="currentColor"/>
+  <circle cx="485" cy="115" r="5" fill="currentColor"/>
+  <!-- Direct displacement dashed -->
+  <line x1="305" y1="115" x2="478" y2="115" stroke="var(--text-muted,#64748b)" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arr-gr)"/>
+  <!-- Actual curved path -->
+  <path d="M 305 115 Q 395 50 485 115" fill="none" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-bl)"/>
+  <text x="395" y="70" text-anchor="middle" font-size="12" fill="#38bdf8">curved path</text>
+  <rect x="310" y="130" width="175" height="30" rx="6" fill="rgba(248,113,113,0.15)"/>
+  <text x="397" y="150" text-anchor="middle" font-size="13" font-weight="700" fill="#f87171">Distance &gt; |Displacement|</text>
+</svg>
+          </div>
+
+          <!-- Dual explanation grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:20px;">
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--accent); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:6px;">What is happening?</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">Distance measures the full path travelled. Displacement magnitude measures only the straight separation between start and finish.</p>
+            </div>
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--success); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">Key Idea</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">Distance equals |displacement| only when the object moves along the straight line from start to finish without reversing direction.</p>
+            </div>
+          </div>
+
+          <!-- How it works numbered sequence -->
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:var(--tab12-radius-sm); padding:16px 20px; margin-bottom:20px;">
+            <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary); margin-bottom:10px;">How It Works</h4>
+            <ol style="margin:0; padding-left:22px; display:grid; gap:8px;">
+              <li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Sketch the actual path.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Join start to finish with a straight displacement arrow.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Compare path length with the direct separation.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Any detour, curve or reversal makes distance greater than |displacement|.</li>
+            </ol>
+          </div>
+
+          <!-- Work the Idea: Worked Example -->
+          <div style="border:1px solid var(--border); border-radius:var(--tab12-radius-sm); overflow:hidden; margin-bottom:16px; background:var(--bg-card-subtle);">
+            <div style="background:rgba(56,189,248,0.08); padding:10px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px;">
+              <span style="font-weight:800; font-size:13px; color:var(--accent);">⚡ WORKED EXAMPLE</span>
+            </div>
+            <div style="padding:14px 16px; font-size:14.5px; line-height:1.6;">
+              A car travelling 80 m east along a straight road with no reversal has distance 80 m and displacement magnitude 80 m. If it detours around a bend, the distance becomes larger.
+            </div>
+          </div>
+
+          <!-- Watch out & Quick Check -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+            <div style="background:rgba(245,158,11,0.08); border:1px solid var(--warning); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--warning); margin-bottom:6px;">⚠️ Watch Out</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0; color:var(--text-primary);">“Straight road” alone is not enough if the object reverses direction. The no-reversal condition matters.</p>
+            </div>
+            <div style="background:rgba(52,211,153,0.08); border:1px solid var(--success); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">✅ Quick Check</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0 0 6px; color:var(--text-primary);">A runner goes 20 m east then 5 m west. Are distance and displacement magnitude equal?</p>
+              <details style="margin-top:6px; cursor:pointer;">
+                <summary style="font-size:13px; font-weight:700; color:var(--success); padding:4px 0;">Reveal Answer</summary>
+                <div style="padding-top:6px; font-size:13.5px; font-weight:600; color:var(--text-primary);">No. Distance = 25 m; |displacement| = 15 m.</div>
+              </details>
+            </div>
+          </div>
+        </article>
     
-        <div class="content-card">
-          <h2><span>⚡</span> 02 Work the idea</h2>
-          <p>U8-Q6<br><br>Worked example → guided try → faded try → anti-trigger → quick check<br><br>WORKED EXAMPLE<br><br>A rider moving at 10 m/s around a circle has constant speed, but not uniform velocity. The velocity<br><br>turns continuously, so the rider is accelerated.<br><br>GUIDED TRY FADED TRY<br><br>1. Identify the state/event that decides the answer. Redraw the figure from memory. Label only the</p>
-        </div>
+
+        <!-- Unit 04: 04  Release from circular motion: follow the tangent -->
+        <article class="content-card" id="unit-04" style="margin-bottom: 28px; border: 1.5px solid var(--border); border-radius: var(--tab12-radius-md); padding: 24px; background: var(--bg-card);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+            <div>
+              <span class="q-badge" style="background:rgba(56,189,248,0.15); border:1px solid var(--accent); color:var(--accent); font-weight:800; font-size:12px; padding:4px 10px; border-radius:999px;">Concept Unit 04</span>
+              <h2 style="font-size:20px; font-weight:700; margin:8px 0 4px; color:var(--text-primary);">04  Release from circular motion: follow the tangent</h2>
+              <p style="font-size:14px; color:var(--accent); font-weight:600; margin:0;">The inward force turns the velocity; it is not the velocity direction</p>
+            </div>
+            <span class="tag-pill" style="font-size:12px; font-weight:700; background:rgba(192,132,252,0.15); border:1px solid var(--purple); color:var(--purple);">U10-Q4</span>
+          </div>
+
+          <!-- Publication-grade Diagram -->
+          <div style="background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--tab12-radius-sm); padding:16px; margin-bottom:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 220" role="img" aria-label="String breaks in circular motion: tangential release" style="width:100%;max-width:540px;height:auto;display:block;margin:12px auto;">
+  <defs>
+    <marker id="arr-tang" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#34d399"/></marker>
+    <marker id="arr-out" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#f87171"/></marker>
+  </defs>
+  <!-- Orbit -->
+  <circle cx="220" cy="110" r="75" fill="none" stroke="var(--border,#334155)" stroke-width="2" stroke-dasharray="4 4"/>
+  <circle cx="220" cy="110" r="5" fill="currentColor"/>
+  <text x="210" y="115" text-anchor="end" font-size="12" fill="var(--text-secondary,#94a3b8)">centre O</text>
+  <!-- String to release point -->
+  <line x1="220" y1="110" x2="295" y2="110" stroke="#f59e0b" stroke-width="2.5"/>
+  <text x="250" y="103" text-anchor="middle" font-size="12" fill="#f59e0b">string</text>
+  <!-- Release point -->
+  <circle cx="295" cy="110" r="8" fill="#34d399"/>
+  <text x="305" y="125" font-size="12" font-weight="700" fill="#f59e0b">snaps here ✕</text>
+  <!-- Tangential release arrow -->
+  <line x1="295" y1="110" x2="295" y2="25" stroke="#34d399" stroke-width="3.5" marker-end="url(#arr-tang)"/>
+  <text x="305" y="35" font-weight="700" fill="#34d399">Release along tangent ✓</text>
+  <text x="305" y="52" font-size="12" fill="#34d399">v = instantaneous velocity</text>
+  <!-- Misconception radial arrow -->
+  <line x1="295" y1="110" x2="380" y2="110" stroke="#f87171" stroke-width="2" stroke-dasharray="3 3" marker-end="url(#arr-out)"/>
+  <text x="390" y="114" font-size="12" font-weight="700" fill="#f87171">NOT radially outward ✗</text>
+  <text x="390" y="130" font-size="11" fill="var(--text-muted,#64748b)">(inertial frame)</text>
+</svg>
+          </div>
+
+          <!-- Dual explanation grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:20px;">
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--accent); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:6px;">What is happening?</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">Before the string breaks, tension supplies the inward acceleration needed to bend the stone’s path. At the instant of breaking, the stone already has a tangential velocity.</p>
+            </div>
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--success); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">Key Idea</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">When the inward constraint disappears, the stone does not move toward or away from the centre first. Its immediate motion follows the tangent.</p>
+            </div>
+          </div>
+
+          <!-- How it works numbered sequence -->
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:var(--tab12-radius-sm); padding:16px 20px; margin-bottom:20px;">
+            <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary); margin-bottom:10px;">How It Works</h4>
+            <ol style="margin:0; padding-left:22px; display:grid; gap:8px;">
+              <li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Mark the release point on the circle.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Draw the radius to that point.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Draw the instantaneous velocity perpendicular to the radius.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Remove the inward force; keep the existing velocity state.</li>
+            </ol>
+          </div>
+
+          <!-- Work the Idea: Worked Example -->
+          <div style="border:1px solid var(--border); border-radius:var(--tab12-radius-sm); overflow:hidden; margin-bottom:16px; background:var(--bg-card-subtle);">
+            <div style="background:rgba(56,189,248,0.08); padding:10px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px;">
+              <span style="font-weight:800; font-size:13px; color:var(--accent);">⚡ WORKED EXAMPLE</span>
+            </div>
+            <div style="padding:14px 16px; font-size:14.5px; line-height:1.6;">
+              At the rightmost point of a counter-clockwise circular path, the instantaneous velocity points upward. If the string breaks there, the stone initially moves upward along the tangent.
+            </div>
+          </div>
+
+          <!-- Watch out & Quick Check -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+            <div style="background:rgba(245,158,11,0.08); border:1px solid var(--warning); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--warning); margin-bottom:6px;">⚠️ Watch Out</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0; color:var(--text-primary);">Radially outward is not the release direction in an inertial frame. The object keeps its instantaneous tangential velocity.</p>
+            </div>
+            <div style="background:rgba(52,211,153,0.08); border:1px solid var(--success); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">✅ Quick Check</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0 0 6px; color:var(--text-primary);">At the top of a clockwise circle, which way is the tangent velocity?</p>
+              <details style="margin-top:6px; cursor:pointer;">
+                <summary style="font-size:13px; font-weight:700; color:var(--success); padding:4px 0;">Reveal Answer</summary>
+                <div style="padding-top:6px; font-size:13.5px; font-weight:600; color:var(--text-primary);">To the right.</div>
+              </details>
+            </div>
+          </div>
+        </article>
     
-        <div class="content-card">
-          <h2><span>⚡</span> 03 When are distance and displacement equal?</h2>
-          <p>U8-Q11<br><br>Equality requires the travelled path to match the straight separation<br><br>straight, no reversal<br><br>distance = |displacement|<br><br>curved path<br><br>distance > |displacement|<br><br>WHAT IS HAPPENING? KEY IDEA</p>
-        </div>
+
+        <!-- Unit 05: 05  Gravity can be the centripetal force -->
+        <article class="content-card" id="unit-05" style="margin-bottom: 28px; border: 1.5px solid var(--border); border-radius: var(--tab12-radius-md); padding: 24px; background: var(--bg-card);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+            <div>
+              <span class="q-badge" style="background:rgba(56,189,248,0.15); border:1px solid var(--accent); color:var(--accent); font-weight:800; font-size:12px; padding:4px 10px; border-radius:999px;">Concept Unit 05</span>
+              <h2 style="font-size:20px; font-weight:700; margin:8px 0 4px; color:var(--text-primary);">05  Gravity can be the centripetal force</h2>
+              <p style="font-size:14px; color:var(--accent); font-weight:600; margin:0;">Orbiting means continuous inward turning under gravity</p>
+            </div>
+            <span class="tag-pill" style="font-size:12px; font-weight:700; background:rgba(192,132,252,0.15); border:1px solid var(--purple); color:var(--purple);">U10-Q16</span>
+          </div>
+
+          <!-- Publication-grade Diagram -->
+          <div style="background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--tab12-radius-sm); padding:16px; margin-bottom:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 220" role="img" aria-label="Sun and orbiting planet with inward gravitational force" style="width:100%;max-width:540px;height:auto;display:block;margin:12px auto;">
+  <defs>
+    <marker id="arr-grav" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#f59e0b"/></marker>
+    <marker id="arr-vel" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#38bdf8"/></marker>
+  </defs>
+  <!-- Circular orbit -->
+  <circle cx="200" cy="110" r="85" fill="none" stroke="var(--border,#334155)" stroke-width="2" stroke-dasharray="5 4"/>
+  <!-- Sun -->
+  <circle cx="200" cy="110" r="22" fill="#f59e0b"/>
+  <text x="200" y="115" text-anchor="middle" font-weight="800" fill="#080d1a">Sun</text>
+  <!-- Planet -->
+  <circle cx="285" cy="110" r="9" fill="#38bdf8"/>
+  <text x="300" y="125" font-size="13" font-weight="700" fill="#38bdf8">Planet</text>
+  <!-- Tangential velocity -->
+  <line x1="285" y1="110" x2="285" y2="35" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-vel)"/>
+  <text x="295" y="45" font-weight="700" fill="#38bdf8">v (tangential)</text>
+  <!-- Inward gravity force -->
+  <line x1="285" y1="110" x2="230" y2="110" stroke="#f59e0b" stroke-width="3" marker-end="url(#arr-grav)"/>
+  <text x="255" y="100" text-anchor="middle" font-size="12" font-weight="700" fill="#f59e0b">F_grav (inward)</text>
+  <!-- Formula Card -->
+  <rect x="360" y="60" width="165" height="100" rx="8" fill="var(--bg-card-subtle,#1a2942)" stroke="var(--border,#334b75)"/>
+  <text x="442" y="85" text-anchor="middle" font-size="13" font-weight="700" fill="#f59e0b">Centripetal Role</text>
+  <text x="442" y="110" text-anchor="middle" font-size="13" fill="currentColor">F_g = G·M·m / r²</text>
+  <text x="442" y="132" text-anchor="middle" font-size="12" fill="#34d399">F_g supplies m·v²/r</text>
+  <text x="442" y="150" text-anchor="middle" font-size="11" fill="var(--text-muted,#64748b)">Gravity turns velocity</text>
+</svg>
+          </div>
+
+          <!-- Dual explanation grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:20px;">
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--accent); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:6px;">What is happening?</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">A planet has tangential motion, while the Sun’s gravitational pull continuously bends that motion inward.</p>
+            </div>
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--success); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">Key Idea</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">The force that provides the centripetal acceleration is gravity. Its magnitude depends on the two masses and their separation.</p>
+            </div>
+          </div>
+
+          <!-- How it works numbered sequence -->
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:var(--tab12-radius-sm); padding:16px 20px; margin-bottom:20px;">
+            <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary); margin-bottom:10px;">How It Works</h4>
+            <ol style="margin:0; padding-left:22px; display:grid; gap:8px;">
+              <li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Choose the planet as the body.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Draw its velocity tangent to the orbit.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Draw gravitational force toward the Sun.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">For a circular-orbit model, the inward gravitational force supplies the centripetal requirement.</li>
+            </ol>
+          </div>
+
+          <!-- Work the Idea: Worked Example -->
+          <div style="border:1px solid var(--border); border-radius:var(--tab12-radius-sm); overflow:hidden; margin-bottom:16px; background:var(--bg-card-subtle);">
+            <div style="background:rgba(56,189,248,0.08); padding:10px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px;">
+              <span style="font-weight:800; font-size:13px; color:var(--accent);">⚡ WORKED EXAMPLE</span>
+            </div>
+            <div style="padding:14px 16px; font-size:14.5px; line-height:1.6;">
+              For masses M and m separated by r, the gravitational force has magnitude F = GMm/r2. That inward force changes the direction of the planet’s velocity.
+            </div>
+          </div>
+
+          <!-- Watch out & Quick Check -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+            <div style="background:rgba(245,158,11,0.08); border:1px solid var(--warning); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--warning); margin-bottom:6px;">⚠️ Watch Out</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0; color:var(--text-primary);">“Centripetal force” is not an extra force. It names the net inward force role; here gravity fills that role.</p>
+            </div>
+            <div style="background:rgba(52,211,153,0.08); border:1px solid var(--success); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">✅ Quick Check</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0 0 6px; color:var(--text-primary);">What happens to gravitational force if the separation doubles while masses stay fixed?</p>
+              <details style="margin-top:6px; cursor:pointer;">
+                <summary style="font-size:13px; font-weight:700; color:var(--success); padding:4px 0;">Reveal Answer</summary>
+                <div style="padding-top:6px; font-size:13.5px; font-weight:600; color:var(--text-primary);">It becomes one quarter as large.</div>
+              </details>
+            </div>
+          </div>
+        </article>
     
-        <div class="content-card">
-          <h2><span>⚡</span> 03 Work the idea</h2>
-          <p>U8-Q11<br><br>Worked example → guided try → faded try → anti-trigger → quick check<br><br>WORKED EXAMPLE<br><br>A car travelling 80 m east along a straight road with no reversal has distance 80 m and displacement<br><br>magnitude 80 m. If it detours around a bend, the distance becomes larger.<br><br>GUIDED TRY FADED TRY<br><br>1. Identify the state/event that decides the answer. Redraw the figure from memory. Label only the</p>
-        </div>
+
+        <!-- Unit 06: 06  Horizontal launch and drop share the same vertical motion -->
+        <article class="content-card" id="unit-06" style="margin-bottom: 28px; border: 1.5px solid var(--border); border-radius: var(--tab12-radius-md); padding: 24px; background: var(--bg-card);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+            <div>
+              <span class="q-badge" style="background:rgba(56,189,248,0.15); border:1px solid var(--accent); color:var(--accent); font-weight:800; font-size:12px; padding:4px 10px; border-radius:999px;">Concept Unit 06</span>
+              <h2 style="font-size:20px; font-weight:700; margin:8px 0 4px; color:var(--text-primary);">06  Horizontal launch and drop share the same vertical motion</h2>
+              <p style="font-size:14px; color:var(--accent); font-weight:600; margin:0;">Horizontal motion does not delay gravitational fall in the ideal model</p>
+            </div>
+            <span class="tag-pill" style="font-size:12px; font-weight:700; background:rgba(192,132,252,0.15); border:1px solid var(--purple); color:var(--purple);">U10-Q17</span>
+          </div>
+
+          <!-- Publication-grade Diagram -->
+          <div style="background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--tab12-radius-sm); padding:16px; margin-bottom:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 220" role="img" aria-label="Dropped vs horizontally thrown stones hit ground together" style="width:100%;max-width:540px;height:auto;display:block;margin:12px auto;">
+  <defs>
+    <marker id="arr-drop" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#34d399"/></marker>
+    <marker id="arr-throw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#38bdf8"/></marker>
+  </defs>
+  <!-- Cliff -->
+  <rect x="40" y="40" width="80" height="150" fill="var(--bg-card-subtle,#1a2942)" stroke="var(--border,#334155)"/>
+  <line x1="30" y1="190" x2="510" y2="190" stroke="currentColor" stroke-width="2"/>
+  <text x="80" y="115" text-anchor="middle" font-size="13" fill="var(--text-muted,#94a3b8)">Cliff height h</text>
+  <!-- Dropped stone -->
+  <circle cx="120" cy="40" r="6" fill="#34d399"/>
+  <line x1="120" y1="40" x2="120" y2="182" stroke="#34d399" stroke-width="2.5" stroke-dasharray="4 4" marker-end="url(#arr-drop)"/>
+  <text x="120" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#34d399">1. Dropped</text>
+  <!-- Horizontally thrown stone -->
+  <circle cx="130" cy="40" r="6" fill="#38bdf8"/>
+  <line x1="130" y1="40" x2="180" y2="40" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arr-throw)"/>
+  <text x="190" y="35" font-size="12" font-weight="700" fill="#38bdf8">2. Thrown u_x</text>
+  <path d="M 130 40 Q 280 45 380 182" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="5 4" marker-end="url(#arr-throw)"/>
+  <!-- Timing ticks showing identical vertical positions -->
+  <line x1="110" y1="75" x2="175" y2="75" stroke="var(--border,#64748b)" stroke-width="1.5" stroke-dasharray="2 2"/>
+  <line x1="110" y1="125" x2="275" y2="125" stroke="var(--border,#64748b)" stroke-width="1.5" stroke-dasharray="2 2"/>
+  <line x1="110" y1="185" x2="380" y2="185" stroke="var(--border,#64748b)" stroke-width="1.5" stroke-dasharray="2 2"/>
+  <text x="445" y="110" text-anchor="middle" font-size="13" font-weight="700" fill="#34d399">Same vertical timing!</text>
+  <text x="445" y="130" text-anchor="middle" font-size="12" fill="currentColor">t = √(2h / g)</text>
+  <text x="445" y="150" text-anchor="middle" font-size="11" fill="var(--text-muted,#64748b)">Both hit level ground together</text>
+</svg>
+          </div>
+
+          <!-- Dual explanation grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:20px;">
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--accent); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:6px;">What is happening?</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">Two stones start at the same height. One is dropped; the other is given only horizontal velocity. Their horizontal states differ, but their initial vertical states are the same.</p>
+            </div>
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--success); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">Key Idea</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">Ignoring air resistance, both have initial vertical velocity zero and the same downward acceleration g. Therefore their vertical positions match at every equal time.</p>
+            </div>
+          </div>
+
+          <!-- How it works numbered sequence -->
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:var(--tab12-radius-sm); padding:16px 20px; margin-bottom:20px;">
+            <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary); margin-bottom:10px;">How It Works</h4>
+            <ol style="margin:0; padding-left:22px; display:grid; gap:8px;">
+              <li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Separate the state into horizontal and vertical components.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Vertical: both start with vy0=0 and acceleration g downward.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Horizontal: the thrown stone moves sideways; the dropped stone does not.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">The ground is reached when the common vertical position reaches zero.</li>
+            </ol>
+          </div>
+
+          <!-- Work the Idea: Worked Example -->
+          <div style="border:1px solid var(--border); border-radius:var(--tab12-radius-sm); overflow:hidden; margin-bottom:16px; background:var(--bg-card-subtle);">
+            <div style="background:rgba(56,189,248,0.08); padding:10px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px;">
+              <span style="font-weight:800; font-size:13px; color:var(--accent);">⚡ WORKED EXAMPLE</span>
+            </div>
+            <div style="padding:14px 16px; font-size:14.5px; line-height:1.6;">
+              From height h, both obey the same vertical relation y(t) = h - ½gt2. Their horizontal coordinates differ, but their landing time is the same.
+            </div>
+          </div>
+
+          <!-- Watch out & Quick Check -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+            <div style="background:rgba(245,158,11,0.08); border:1px solid var(--warning); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--warning); margin-bottom:6px;">⚠️ Watch Out</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0; color:var(--text-primary);">Do not add horizontal speed to the vertical falling speed. Perpendicular components evolve independently in this model.</p>
+            </div>
+            <div style="background:rgba(52,211,153,0.08); border:1px solid var(--success); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">✅ Quick Check</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0 0 6px; color:var(--text-primary);">If the horizontal launch speed doubles, does the ideal landing time change?</p>
+              <details style="margin-top:6px; cursor:pointer;">
+                <summary style="font-size:13px; font-weight:700; color:var(--success); padding:4px 0;">Reveal Answer</summary>
+                <div style="padding-top:6px; font-size:13.5px; font-weight:600; color:var(--text-primary);">No. The vertical initial state and g are unchanged.</div>
+              </details>
+            </div>
+          </div>
+        </article>
     
-        <div class="content-card">
-          <h2><span>⚡</span> 04 Release from circular motion: follow the tangent</h2>
-          <p>U10-Q4<br><br>The inward force turns the velocity; it is not the velocity direction<br><br>v tangent<br><br>string breaks here<br><br>release → tangent<br><br>WHAT IS HAPPENING? KEY IDEA<br><br>Before the string breaks, tension supplies the When the inward constraint disappears, the</p>
-        </div>
+
+        <!-- Unit 07: 07  If gravity vanished: Moon follows the tangent -->
+        <article class="content-card" id="unit-07" style="margin-bottom: 28px; border: 1.5px solid var(--border); border-radius: var(--tab12-radius-md); padding: 24px; background: var(--bg-card);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+            <div>
+              <span class="q-badge" style="background:rgba(56,189,248,0.15); border:1px solid var(--accent); color:var(--accent); font-weight:800; font-size:12px; padding:4px 10px; border-radius:999px;">Concept Unit 07</span>
+              <h2 style="font-size:20px; font-weight:700; margin:8px 0 4px; color:var(--text-primary);">07  If gravity vanished: Moon follows the tangent</h2>
+              <p style="font-size:14px; color:var(--accent); font-weight:600; margin:0;">Without inward acceleration, instantaneous velocity persists</p>
+            </div>
+            <span class="tag-pill" style="font-size:12px; font-weight:700; background:rgba(192,132,252,0.15); border:1px solid var(--purple); color:var(--purple);">U10-Q18</span>
+          </div>
+
+          <!-- Publication-grade Diagram -->
+          <div style="background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--tab12-radius-sm); padding:16px; margin-bottom:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 220" role="img" aria-label="Moon tangential continuation if gravity vanishes" style="width:100%;max-width:540px;height:auto;display:block;margin:12px auto;">
+  <defs>
+    <marker id="arr-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#38bdf8"/></marker>
+  </defs>
+  <!-- Orbit arc -->
+  <path d="M 120 180 A 100 100 0 0 1 270 50" fill="none" stroke="var(--border,#334155)" stroke-width="2" stroke-dasharray="4 4"/>
+  <!-- Earth -->
+  <circle cx="210" cy="140" r="18" fill="#34d399"/>
+  <text x="210" y="145" text-anchor="middle" font-size="11" font-weight="700" fill="#080d1a">Earth</text>
+  <!-- Moon at release instant -->
+  <circle cx="270" cy="50" r="9" fill="#f8fafc" stroke="#38bdf8" stroke-width="2"/>
+  <text x="270" y="35" text-anchor="middle" font-size="12" font-weight="700" fill="#f8fafc">Moon</text>
+  <!-- Tangent line into space -->
+  <line x1="270" y1="50" x2="490" y2="50" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-m)"/>
+  <text x="430" y="40" font-weight="700" fill="#38bdf8">Straight line tangent path</text>
+  <!-- Gravity cuts out indicator -->
+  <line x1="260" y1="65" x2="225" y2="120" stroke="#f87171" stroke-width="2" stroke-dasharray="3 3"/>
+  <text x="220" y="80" text-anchor="end" font-size="12" font-weight="700" fill="#f87171">Gravity → 0 ✕</text>
+  <!-- Law note -->
+  <rect x="290" y="110" width="225" height="55" rx="8" fill="rgba(56,189,248,0.1)" stroke="#38bdf8"/>
+  <text x="402" y="132" text-anchor="middle" font-size="12" font-weight="700" fill="#38bdf8">Newton's First Law</text>
+  <text x="402" y="150" text-anchor="middle" font-size="11" fill="currentColor">No force → uniform velocity persists</text>
+</svg>
+          </div>
+
+          <!-- Dual explanation grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:20px;">
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--accent); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:6px;">What is happening?</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">The Moon’s velocity is tangential to its orbit. Earth’s gravity continuously changes the direction of that velocity.</p>
+            </div>
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--success); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">Key Idea</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">If Earth’s gravity suddenly became zero and no other force acted, there would be no inward acceleration. The Moon would continue in the direction of its instantaneous tangential velocity.</p>
+            </div>
+          </div>
+
+          <!-- How it works numbered sequence -->
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:var(--tab12-radius-sm); padding:16px 20px; margin-bottom:20px;">
+            <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary); margin-bottom:10px;">How It Works</h4>
+            <ol style="margin:0; padding-left:22px; display:grid; gap:8px;">
+              <li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Freeze the orbital state at one instant.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Keep the current velocity vector.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Remove the inward gravitational force and acceleration.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">With no net force, the velocity remains constant: straight-line tangent motion.</li>
+            </ol>
+          </div>
+
+          <!-- Work the Idea: Worked Example -->
+          <div style="border:1px solid var(--border); border-radius:var(--tab12-radius-sm); overflow:hidden; margin-bottom:16px; background:var(--bg-card-subtle);">
+            <div style="background:rgba(56,189,248,0.08); padding:10px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px;">
+              <span style="font-weight:800; font-size:13px; color:var(--accent);">⚡ WORKED EXAMPLE</span>
+            </div>
+            <div style="padding:14px 16px; font-size:14.5px; line-height:1.6;">
+              At a point where the Moon’s velocity points northeast, removing Earth’s gravity makes the Moon initially continue northeast along the tangent line.
+            </div>
+          </div>
+
+          <!-- Watch out & Quick Check -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+            <div style="background:rgba(245,158,11,0.08); border:1px solid var(--warning); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--warning); margin-bottom:6px;">⚠️ Watch Out</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0; color:var(--text-primary);">The Moon would not shoot radially outward. Removing the inward force does not rotate the velocity vector.</p>
+            </div>
+            <div style="background:rgba(52,211,153,0.08); border:1px solid var(--success); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">✅ Quick Check</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0 0 6px; color:var(--text-primary);">What changes immediately when gravity is removed: the Moon’s velocity or its acceleration?</p>
+              <details style="margin-top:6px; cursor:pointer;">
+                <summary style="font-size:13px; font-weight:700; color:var(--success); padding:4px 0;">Reveal Answer</summary>
+                <div style="padding-top:6px; font-size:13.5px; font-weight:600; color:var(--text-primary);">Its acceleration changes immediately; its velocity is initially unchanged.</div>
+              </details>
+            </div>
+          </div>
+        </article>
     
-        <div class="content-card">
-          <h2><span>⚡</span> 04 Work the idea</h2>
-          <p>U10-Q4<br><br>Worked example → guided try → faded try → anti-trigger → quick check<br><br>WORKED EXAMPLE<br><br>At the rightmost point of a counter-clockwise circular path, the instantaneous velocity points upward.<br><br>If the string breaks there, the stone initially moves upward along the tangent.<br><br>GUIDED TRY FADED TRY<br><br>1. Identify the state/event that decides the answer. Redraw the figure from memory. Label only the</p>
-        </div>
+
+        <!-- Unit 08: 08  Why Earth does not simply fall into the Sun -->
+        <article class="content-card" id="unit-08" style="margin-bottom: 28px; border: 1.5px solid var(--border); border-radius: var(--tab12-radius-md); padding: 24px; background: var(--bg-card);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+            <div>
+              <span class="q-badge" style="background:rgba(56,189,248,0.15); border:1px solid var(--accent); color:var(--accent); font-weight:800; font-size:12px; padding:4px 10px; border-radius:999px;">Concept Unit 08</span>
+              <h2 style="font-size:20px; font-weight:700; margin:8px 0 4px; color:var(--text-primary);">08  Why Earth does not simply fall into the Sun</h2>
+              <p style="font-size:14px; color:var(--accent); font-weight:600; margin:0;">Tangential motion plus inward gravity produces an orbit</p>
+            </div>
+            <span class="tag-pill" style="font-size:12px; font-weight:700; background:rgba(192,132,252,0.15); border:1px solid var(--purple); color:var(--purple);">U10-Q22</span>
+          </div>
+
+          <!-- Publication-grade Diagram -->
+          <div style="background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--tab12-radius-sm); padding:16px; margin-bottom:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 220" role="img" aria-label="Why Earth does not fall into the Sun: tangential velocity plus inward drop" style="width:100%;max-width:540px;height:auto;display:block;margin:12px auto;">
+  <defs>
+    <marker id="arr-step" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#38bdf8"/></marker>
+    <marker id="arr-pull" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#f59e0b"/></marker>
+  </defs>
+  <!-- Sun -->
+  <circle cx="160" cy="140" r="26" fill="#f59e0b"/>
+  <text x="160" y="145" text-anchor="middle" font-weight="800" fill="#080d1a">Sun</text>
+  <!-- Earth orbit path -->
+  <path d="M 160 30 A 110 110 0 0 1 270 140" fill="none" stroke="#34d399" stroke-width="2.5"/>
+  <!-- Position 1 -->
+  <circle cx="160" cy="30" r="7" fill="#38bdf8"/>
+  <text x="160" y="20" text-anchor="middle" font-size="12" font-weight="700" fill="#38bdf8">Earth</text>
+  <!-- Tangential step -->
+  <line x1="160" y1="30" x2="245" y2="30" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arr-step)"/>
+  <text x="210" y="22" font-size="11" fill="#38bdf8">tangential step (v·Δt)</text>
+  <!-- Inward gravitational fall step -->
+  <line x1="245" y1="30" x2="238" y2="65" stroke="#f59e0b" stroke-width="2" marker-end="url(#arr-pull)"/>
+  <text x="250" y="55" font-size="11" fill="#f59e0b">gravity drop (½g·Δt²)</text>
+  <!-- Curving back onto circular orbit -->
+  <circle cx="238" cy="65" r="5" fill="#34d399"/>
+  <text x="250" y="80" font-size="12" font-weight="700" fill="#34d399">Stays in orbit</text>
+  <!-- Explanation box -->
+  <rect x="315" y="80" width="205" height="75" rx="8" fill="var(--bg-card-subtle,#1a2942)" stroke="var(--border,#334b75)"/>
+  <text x="417" y="105" text-anchor="middle" font-size="13" font-weight="700" fill="#34d399">Continuous "Free Fall"</text>
+  <text x="417" y="125" text-anchor="middle" font-size="12" fill="currentColor">Earth falls around the Sun,</text>
+  <text x="417" y="142" text-anchor="middle" font-size="11" fill="var(--text-muted,#64748b)">continually missing it sideways</text>
+</svg>
+          </div>
+
+          <!-- Dual explanation grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:20px;">
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--accent); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:6px;">What is happening?</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">The Sun pulls Earth inward, but Earth also has substantial tangential velocity. Gravity continually bends that motion rather than stopping it.</p>
+            </div>
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--success); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">Key Idea</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">An orbit can be viewed as continuous free fall in which the body keeps missing the central object because its tangential motion carries it sideways while gravity turns the velocity inward.</p>
+            </div>
+          </div>
+
+          <!-- How it works numbered sequence -->
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:var(--tab12-radius-sm); padding:16px 20px; margin-bottom:20px;">
+            <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary); margin-bottom:10px;">How It Works</h4>
+            <ol style="margin:0; padding-left:22px; display:grid; gap:8px;">
+              <li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Draw Earth’s instantaneous velocity tangent to the orbit.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Draw gravitational acceleration toward the Sun.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Over a short time, gravity changes the direction of velocity.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Repeating this inward turning generates the curved orbital path.</li>
+            </ol>
+          </div>
+
+          <!-- Work the Idea: Worked Example -->
+          <div style="border:1px solid var(--border); border-radius:var(--tab12-radius-sm); overflow:hidden; margin-bottom:16px; background:var(--bg-card-subtle);">
+            <div style="background:rgba(56,189,248,0.08); padding:10px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px;">
+              <span style="font-weight:800; font-size:13px; color:var(--accent);">⚡ WORKED EXAMPLE</span>
+            </div>
+            <div style="padding:14px 16px; font-size:14.5px; line-height:1.6;">
+              In an ideal circular model, inward acceleration has magnitude v2/r. Gravity supplies that inward acceleration, so the trajectory curves around the Sun.
+            </div>
+          </div>
+
+          <!-- Watch out & Quick Check -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+            <div style="background:rgba(245,158,11,0.08); border:1px solid var(--warning); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--warning); margin-bottom:6px;">⚠️ Watch Out</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0; color:var(--text-primary);">Do not describe the orbit as “gravity balanced by a centrifugal force” in the inertial-frame picture used here.</p>
+            </div>
+            <div style="background:rgba(52,211,153,0.08); border:1px solid var(--success); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">✅ Quick Check</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0 0 6px; color:var(--text-primary);">If the tangential velocity vanished while gravity remained, would the orbital picture persist?</p>
+              <details style="margin-top:6px; cursor:pointer;">
+                <summary style="font-size:13px; font-weight:700; color:var(--success); padding:4px 0;">Reveal Answer</summary>
+                <div style="padding-top:6px; font-size:13.5px; font-weight:600; color:var(--text-primary);">No. The body would begin falling more directly inward.</div>
+              </details>
+            </div>
+          </div>
+        </article>
     
-        <div class="content-card">
-          <h2><span>⚡</span> 05 Gravity can be the centripetal force</h2>
-          <p>U10-Q16<br><br>Orbiting means continuous inward turning under gravity<br><br>v<br><br>gravity tangent state<br><br>inward turn<br><br>Sun<br><br>WHAT IS HAPPENING? KEY IDEA</p>
-        </div>
-    
-        <div class="content-card">
-          <h2><span>⚡</span> 05 Work the idea</h2>
-          <p>U10-Q16<br><br>Worked example → guided try → faded try → anti-trigger → quick check<br><br>WORKED EXAMPLE<br><br>2<br><br>For masses M and m separated by r, the gravitational force has magnitude F = GMm/r . That inward<br><br>force changes the direction of the planet’s velocity.<br><br>GUIDED TRY FADED TRY</p>
-        </div>
-    
-        <div class="content-card">
-          <h2><span>⚡</span> 06 Horizontal launch and drop share the same vertical motion</h2>
-          <p>U10-Q17<br><br>Horizontal motion does not delay gravitational fall in the ideal model<br><br>dropped thrown horizontally<br><br>same height + same initial vertical velocity + same g → same vertical timing<br><br>WHAT IS HAPPENING? KEY IDEA<br><br>Two stones start at the same height. One is Ignoring air resistance, both have initial vertical<br><br>dropped; the other is given only horizontal velocity zero and the same downward</p>
-        </div>
-    
-        <div class="content-card">
-          <h2><span>⚡</span> 06 Work the idea</h2>
-          <p>U10-Q17<br><br>Worked example → guided try → faded try → anti-trigger → quick check<br><br>WORKED EXAMPLE<br><br>2<br><br>From height h, both obey the same vertical relation y(t) = h - ½gt . Their horizontal coordinates differ,<br><br>but their landing time is the same.<br><br>GUIDED TRY FADED TRY</p>
-        </div>
-    
-        <div class="content-card">
-          <h2><span>⚡</span> 07 If gravity vanished: Moon follows the tangent</h2>
-          <p>U10-Q18<br><br>Without inward acceleration, instantaneous velocity persists<br><br>v<br><br>tangent state<br><br>straight continuation<br><br>Sun<br><br>gravity → 0</p>
-        </div>
-    
-        <div class="content-card">
-          <h2><span>⚡</span> 07 Work the idea</h2>
-          <p>U10-Q18<br><br>Worked example → guided try → faded try → anti-trigger → quick check<br><br>WORKED EXAMPLE<br><br>At a point where the Moon’s velocity points northeast, removing Earth’s gravity makes the Moon<br><br>initially continue northeast along the tangent line.<br><br>GUIDED TRY FADED TRY<br><br>1. Identify the state/event that decides the answer. Redraw the figure from memory. Label only the</p>
-        </div>
-    
-        <div class="content-card">
-          <h2><span>⚡</span> 08 Why Earth does not simply fall into the Sun</h2>
-          <p>U10-Q22<br><br>Tangential motion plus inward gravity produces an orbit<br><br>v<br><br>gravity tangent state<br><br>inward turn<br><br>Sun<br><br>WHAT IS HAPPENING? KEY IDEA</p>
-        </div>
-    
-        <div class="content-card">
-          <h2><span>⚡</span> 08 Work the idea</h2>
-          <p>U10-Q22<br><br>Worked example → guided try → faded try → anti-trigger → quick check<br><br>WORKED EXAMPLE<br><br>2<br><br>In an ideal circular model, inward acceleration has magnitude v /r. Gravity supplies that inward<br><br>acceleration, so the trajectory curves around the Sun.<br><br>GUIDED TRY FADED TRY</p>
-        </div>
-    
-        <div class="content-card">
-          <h2><span>⚡</span> 09 A tossed coin can reveal train acceleration</h2>
-          <p>U9-Q5 (transfer)<br><br>Compare the coin’s inertial horizontal motion with the train’s changing motion<br><br>train gains x<br><br>train accelerating →<br><br>coin keeps release horizontal velocity<br><br>train speeds ahead, so coin lands behind<br><br>WHAT IS HAPPENING? KEY IDEA</p>
-        </div>
-    
-        <div class="content-card">
-          <h2><span>⚡</span> 09 Work the idea</h2>
-          <p>U9-Q5 (transfer)<br><br>Worked example → guided try → faded try → anti-trigger → quick check<br><br>WORKED EXAMPLE<br><br>2<br><br>Over time t, a simple model gives x =v t while x =v t+½at . For a>0, the train moves farther<br><br>coin 0 train 0<br><br>forward.</p>
-        </div>
-    
+
+        <!-- Unit 09: 09  A tossed coin can reveal train acceleration -->
+        <article class="content-card" id="unit-09" style="margin-bottom: 28px; border: 1.5px solid var(--border); border-radius: var(--tab12-radius-md); padding: 24px; background: var(--bg-card);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+            <div>
+              <span class="q-badge" style="background:rgba(56,189,248,0.15); border:1px solid var(--accent); color:var(--accent); font-weight:800; font-size:12px; padding:4px 10px; border-radius:999px;">Concept Unit 09</span>
+              <h2 style="font-size:20px; font-weight:700; margin:8px 0 4px; color:var(--text-primary);">09  A tossed coin can reveal train acceleration</h2>
+              <p style="font-size:14px; color:var(--accent); font-weight:600; margin:0;">Compare the coin’s inertial horizontal motion with the train’s changing motion</p>
+            </div>
+            <span class="tag-pill" style="font-size:12px; font-weight:700; background:rgba(192,132,252,0.15); border:1px solid var(--purple); color:var(--purple);">U9-Q5 (transfer)</span>
+          </div>
+
+          <!-- Publication-grade Diagram -->
+          <div style="background:var(--bg-surface); border:1px solid var(--border); border-radius:var(--tab12-radius-sm); padding:16px; margin-bottom:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 220" role="img" aria-label="Coin tossed inside accelerating train lands behind passenger" style="width:100%;max-width:540px;height:auto;display:block;margin:12px auto;">
+  <defs>
+    <marker id="arr-tr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#38bdf8"/></marker>
+    <marker id="arr-coin" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#f59e0b"/></marker>
+  </defs>
+  <!-- Train carriage -->
+  <rect x="60" y="40" width="420" height="120" rx="8" fill="var(--bg-card-subtle,#1a2942)" stroke="var(--border,#334155)" stroke-width="2"/>
+  <line x1="30" y1="160" x2="510" y2="160" stroke="currentColor" stroke-width="2.5"/>
+  <circle cx="120" cy="170" r="10" fill="var(--border,#64748b)"/>
+  <circle cx="420" cy="170" r="10" fill="var(--border,#64748b)"/>
+  <!-- Passenger -->
+  <circle cx="280" cy="90" r="8" fill="#38bdf8"/>
+  <line x1="280" y1="98" x2="280" y2="135" stroke="#38bdf8" stroke-width="3"/>
+  <text x="280" y="150" text-anchor="middle" font-size="11" font-weight="700" fill="#38bdf8">Passenger</text>
+  <!-- Coin at apex -->
+  <circle cx="210" cy="60" r="6" fill="#f59e0b"/>
+  <text x="210" y="50" text-anchor="middle" font-size="11" font-weight="700" fill="#f59e0b">Coin lands behind</text>
+  <path d="M 210 110 Q 210 60 210 110" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3 3"/>
+  <line x1="210" y1="110" x2="210" y2="135" stroke="#f59e0b" stroke-width="2" marker-end="url(#arr-coin)"/>
+  <!-- Acceleration arrow -->
+  <line x1="340" y1="100" x2="440" y2="100" stroke="#34d399" stroke-width="3" marker-end="url(#arr-tr)"/>
+  <text x="390" y="90" text-anchor="middle" font-size="13" font-weight="700" fill="#34d399">Train accelerating a &gt; 0 →</text>
+  <!-- Math summary badge -->
+  <rect x="75" y="60" width="160" height="45" rx="6" fill="rgba(245,158,11,0.1)" stroke="#f59e0b"/>
+  <text x="155" y="78" text-anchor="middle" font-size="11" fill="currentColor">x_coin = v₀·t</text>
+  <text x="155" y="95" text-anchor="middle" font-size="11" fill="#34d399">x_train = v₀·t + ½a·t²</text>
+</svg>
+          </div>
+
+          <!-- Dual explanation grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:20px;">
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--accent); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-bottom:6px;">What is happening?</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">At release, the coin shares the train’s horizontal velocity. While airborne, it approximately keeps that horizontal velocity, but an accelerating train can move ahead beneath it.</p>
+            </div>
+            <div style="background:var(--bg-card-subtle); border-left:4px solid var(--success); padding:14px 16px; border-radius:0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;">
+              <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">Key Idea</h4>
+              <p style="font-size:14.5px; line-height:1.6; margin:0; color:var(--text-primary);">If the coin lands behind the passenger, the train has gained forward speed after release. That indicates forward acceleration of the train.</p>
+            </div>
+          </div>
+
+          <!-- How it works numbered sequence -->
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:var(--tab12-radius-sm); padding:16px 20px; margin-bottom:20px;">
+            <h4 style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary); margin-bottom:10px;">How It Works</h4>
+            <ol style="margin:0; padding-left:22px; display:grid; gap:8px;">
+              <li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Use the ground as an inertial reference for the comparison.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">At release: coin and train share horizontal velocity v0.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Airborne coin: horizontal acceleration is approximately zero.</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">Train: positive horizontal acceleration makes its position advance faster, so the coin appears to fall</li><li style="font-size:14px; line-height:1.5; color:var(--text-primary);">behind inside the train.</li>
+            </ol>
+          </div>
+
+          <!-- Work the Idea: Worked Example -->
+          <div style="border:1px solid var(--border); border-radius:var(--tab12-radius-sm); overflow:hidden; margin-bottom:16px; background:var(--bg-card-subtle);">
+            <div style="background:rgba(56,189,248,0.08); padding:10px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px;">
+              <span style="font-weight:800; font-size:13px; color:var(--accent);">⚡ WORKED EXAMPLE</span>
+            </div>
+            <div style="padding:14px 16px; font-size:14.5px; line-height:1.6;">
+              Over time t, a simple model gives xcoin=v0t while xtrain=v0t+½at2. For a>0, the train moves farther forward.
+            </div>
+          </div>
+
+          <!-- Watch out & Quick Check -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+            <div style="background:rgba(245,158,11,0.08); border:1px solid var(--warning); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--warning); margin-bottom:6px;">⚠️ Watch Out</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0; color:var(--text-primary);">This is a reference-frame question. “Behind the passenger” does not mean the coin accelerated backward in the ground frame.</p>
+            </div>
+            <div style="background:rgba(52,211,153,0.08); border:1px solid var(--success); border-radius:var(--tab12-radius-sm); padding:14px 16px;">
+              <h4 style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--success); margin-bottom:6px;">✅ Quick Check</h4>
+              <p style="font-size:14px; line-height:1.5; margin:0 0 6px; color:var(--text-primary);">If the train moved at constant velocity, where would an ideal vertically tossed coin return relative to the passenger?</p>
+              <details style="margin-top:6px; cursor:pointer;">
+                <summary style="font-size:13px; font-weight:700; color:var(--success); padding:4px 0;">Reveal Answer</summary>
+                <div style="padding-top:6px; font-size:13.5px; font-weight:600; color:var(--text-primary);">Back to the passenger (ignoring air effects).</div>
+              </details>
+            </div>
+          </div>
+        </article>
       </div>
 
       <!-- Core 2 Tab -->
@@ -707,6 +1418,21 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
     </div>
 
     <aside class="support-rail">
+            <div class="support-widget">
+        <h3><span>📑</span> Concept Units (01–09)</h3>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <a href="#unit-01" class="btn" style="min-height:38px; padding:6px 10px; font-size:12.5px; text-decoration:none; background:var(--bg-surface); border:1px solid var(--border); color:var(--text-primary); text-align:left; border-radius:6px; display:flex; align-items:center; gap:6px;"><strong>01</strong> Curved Path &amp; Displacement</a>
+          <a href="#unit-02" class="btn" style="min-height:38px; padding:6px 10px; font-size:12.5px; text-decoration:none; background:var(--bg-surface); border:1px solid var(--border); color:var(--text-primary); text-align:left; border-radius:6px; display:flex; align-items:center; gap:6px;"><strong>02</strong> Constant Speed &amp; Acceleration</a>
+          <a href="#unit-03" class="btn" style="min-height:38px; padding:6px 10px; font-size:12.5px; text-decoration:none; background:var(--bg-surface); border:1px solid var(--border); color:var(--text-primary); text-align:left; border-radius:6px; display:flex; align-items:center; gap:6px;"><strong>03</strong> Distance vs Displacement</a>
+          <a href="#unit-04" class="btn" style="min-height:38px; padding:6px 10px; font-size:12.5px; text-decoration:none; background:var(--bg-surface); border:1px solid var(--border); color:var(--text-primary); text-align:left; border-radius:6px; display:flex; align-items:center; gap:6px;"><strong>04</strong> Tangential Release: String Break</a>
+          <a href="#unit-05" class="btn" style="min-height:38px; padding:6px 10px; font-size:12.5px; text-decoration:none; background:var(--bg-surface); border:1px solid var(--border); color:var(--text-primary); text-align:left; border-radius:6px; display:flex; align-items:center; gap:6px;"><strong>05</strong> Gravity as Centripetal Force</a>
+          <a href="#unit-06" class="btn" style="min-height:38px; padding:6px 10px; font-size:12.5px; text-decoration:none; background:var(--bg-surface); border:1px solid var(--border); color:var(--text-primary); text-align:left; border-radius:6px; display:flex; align-items:center; gap:6px;"><strong>06</strong> Dropped vs Thrown Stone Fall</a>
+          <a href="#unit-07" class="btn" style="min-height:38px; padding:6px 10px; font-size:12.5px; text-decoration:none; background:var(--bg-surface); border:1px solid var(--border); color:var(--text-primary); text-align:left; border-radius:6px; display:flex; align-items:center; gap:6px;"><strong>07</strong> Moon Path if Gravity Ceased</a>
+          <a href="#unit-08" class="btn" style="min-height:38px; padding:6px 10px; font-size:12.5px; text-decoration:none; background:var(--bg-surface); border:1px solid var(--border); color:var(--text-primary); text-align:left; border-radius:6px; display:flex; align-items:center; gap:6px;"><strong>08</strong> Why Earth Doesn't Fall into Sun</a>
+          <a href="#unit-09" class="btn" style="min-height:38px; padding:6px 10px; font-size:12.5px; text-decoration:none; background:var(--bg-surface); border:1px solid var(--border); color:var(--text-primary); text-align:left; border-radius:6px; display:flex; align-items:center; gap:6px;"><strong>09</strong> Coin in Accelerating Train</a>
+        </div>
+      </div>
+
       
       <div class="support-widget">
         <h3><span>⚡</span> 2D Kinematics Formulas</h3>

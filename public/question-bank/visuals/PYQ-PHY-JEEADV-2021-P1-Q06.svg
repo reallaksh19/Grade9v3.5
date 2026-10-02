@@ -1,0 +1,47 @@
+<svg aria-labelledby="title-ja21q06 desc-ja21q06" class="question-svg" role="img" viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg">
+<style>
+  .label { font-size: 15px; fill: #18324a; font-family: system-ui, sans-serif; }
+  .small { font-size: 13px; fill: #64748b; font-family: system-ui, sans-serif; }
+  .equation { font-size: 15px; fill: #16324f; font-family: Cambria, "Times New Roman", serif; }
+</style>
+<title id="title-ja21q06">Projectile Splitting at Apex</title>
+<desc id="desc-ja21q06">A projectile splits into two equal fragments at its apex: one drops vertically, and the other travels forward to land at distance x.</desc>
+<defs>
+  <marker id="arrow-blue" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10">
+    <path d="M0 0 L10 5 L0 10 z" fill="#2563eb"/>
+  </marker>
+  <marker id="arrow-red" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10">
+    <path d="M0 0 L10 5 L0 10 z" fill="#dc2626"/>
+  </marker>
+  <marker id="arrow-cyan" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10">
+    <path d="M0 0 L10 5 L0 10 z" fill="#0891b2"/>
+  </marker>
+</defs>
+<rect fill="#fbfdff" height="258" rx="16" stroke="#dbe6f0" stroke-width="2" width="638" x="1" y="1"/>
+<!-- Ground Line -->
+<line stroke="#cbd5e1" stroke-linecap="round" stroke-width="3" x1="40" x2="600" y1="215" y2="215"/>
+<!-- Initial trajectory to apex -->
+<path d="M 60 215 Q 160 55 260 85" fill="none" stroke="#2563eb" stroke-linecap="round" stroke-width="3"/>
+<!-- Launch velocity vector -->
+<line marker-end="url(#arrow-blue)" stroke="#2563eb" stroke-linecap="round" stroke-width="2.5" x1="60" x2="110" y1="215" y2="165"/>
+<text class="equation" x="118" y="165">v₀ = 5√2 m/s (45°)</text>
+<!-- Apex point and splitting explosion -->
+<circle cx="260" cy="85" fill="#f59e0b" r="6"/>
+<text class="label" font-weight="700" text-anchor="middle" x="260" y="60">Apex (H = 1.25 m)</text>
+<text class="small" text-anchor="middle" x="260" y="75">splits into m₁ and m₂</text>
+<!-- Fragment 1: vertical drop -->
+<line marker-end="url(#arrow-red)" stroke="#dc2626" stroke-dasharray="4 4" stroke-linecap="round" stroke-width="2.5" x1="260" x2="260" y1="95" y2="208"/>
+<circle cx="260" cy="215" fill="#dc2626" r="5"/>
+<text class="small" fill="#dc2626" text-anchor="middle" x="260" y="235">m₁ drops vertically</text>
+<text class="small" fill="#dc2626" text-anchor="middle" x="260" y="250">(t = 0.5 s, x = 2.5 m)</text>
+<!-- Fragment 2: horizontal boost and trajectory -->
+<line marker-end="url(#arrow-cyan)" stroke="#0891b2" stroke-linecap="round" stroke-width="2.5" x1="265" x2="335" y1="85" y2="85"/>
+<text class="equation" fill="#0891b2" x="342" y="82">v₂ₓ = 2uₓ = 10 m/s</text>
+<path d="M 260 85 Q 400 85 540 215" fill="none" stroke="#0891b2" stroke-dasharray="5 5" stroke-linecap="round" stroke-width="3"/>
+<circle cx="540" cy="215" fill="#0891b2" r="5"/>
+<text class="label" fill="#0891b2" font-weight="700" text-anchor="middle" x="540" y="235">m₂ lands at x</text>
+<text class="equation" fill="#0891b2" text-anchor="middle" x="540" y="250">x = 7.5 m</text>
+<!-- Distance dimension -->
+<line stroke="#94a3b8" stroke-dasharray="2 2" stroke-width="1.5" x1="60" x2="60" y1="215" y2="245"/>
+<line stroke="#94a3b8" stroke-dasharray="2 2" stroke-width="1.5" x1="540" x2="540" y1="215" y2="245"/>
+</svg>

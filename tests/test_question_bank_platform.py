@@ -413,9 +413,9 @@ class QuestionBankPlatformTest(unittest.TestCase):
 
     def test_live_projection_builds_shared_contracts_without_changing_denominator(self):
         platform = build_question_bank_platform.build(ROOT)
-        self.assertEqual(platform["catalog"]["counts"]["questions"], 305)
+        self.assertEqual(platform["catalog"]["counts"]["questions"], 310)
         question_docs = [row for row in platform["search"]["documents"] if row["kind"] == "question"]
-        self.assertEqual(len(question_docs), 305)
+        self.assertEqual(len(question_docs), 310)
         self.assertIsNotNone(qbp.explain(platform, "PYQ-CHEM-IITJEE-2008-P1-Q66"))
         resource_ids = {row["id"] for row in platform["resources"]["resources"]}
         self.assertIn("RES-PHY-MOTION-2D-MASTER-SUITE", resource_ids)
