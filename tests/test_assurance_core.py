@@ -220,6 +220,105 @@ class Needs(World):
         self.assertEqual(self.decide(bundle, waivers)["status"], "INCOMPLETE", "a waiver rescues only a required_pass_or_reviewed type")
 
 
+class OwnerWaivers(World):
+    """A waiver the Owner grants for every subject of a type that has no working checker yet. It covers what is open and never what failed."""
+
+    def waiver(self, assurance_type, **changes):
+        row = {"type": assurance_type, "subject": "*", "reason": "no working checker exists for this type yet", "approval_ref": "the Owner's reply, quoted"}
+        row.update(changes)
+        return {f"{assurance_type}@*": row}
+
+    def open_need(self, assurance_type, outcome=None):
+        """Every package passes everything, except that `assurance_type` has no evidence or has `outcome`."""
+        self.everything_passes()
+        for r in list(self.evidence.glob("*.json")):
+            if json.loads(r.read_text())["assurance_type"] == assurance_type:
+                r.unlink()
+        if outcome:
+            for subject in self.subjects:
+                self.put(assurance_type, outcome, subject)
+
+    def test_it_covers_a_need_that_is_missing_inconclusive_or_not_run_in_any_bucket(self):
+        for t in ("SELF_CONTAINMENT", "REASONING_VALIDITY", "STRUCTURAL_VALIDITY"):          # required_pass, reviewed, required_pass
+            for outcome in (None, "INCONCLUSIVE", "NOT_RUN"):
+                self.setUp()
+                self.open_need(t, outcome)
+                bundle, _ = self.bundle()
+                self.assertEqual(self.decide(bundle)["status"], "INCOMPLETE", (t, outcome))
+                decision = self.decide(bundle, self.waiver(t))
+                self.assertEqual(decision["status"], "ELIGIBLE", (t, outcome))
+                self.assertEqual({(w["type"], w["subject"]) for w in decision["waived"]}, {(t, s.key) for s in self.subjects}, "the decision says what it waived")
+
+    def test_it_never_covers_a_failure(self):
+        self.open_need("SELF_CONTAINMENT", "FAIL")
+        bundle, _ = self.bundle()
+        decision = self.decide(bundle, self.waiver("SELF_CONTAINMENT"))
+        self.assertEqual(decision["status"], "INELIGIBLE")
+        self.assertNotIn("waived", decision)
+
+    def test_it_does_not_cover_evidence_that_has_gone_stale(self):
+        self.everything_passes()
+        bundle, _ = self.bundle()
+        (self.repo / "lib" / "one.json").write_text(json.dumps({"package_id": "one", "questions": [{"id": "new"}]}), encoding="utf-8")
+        decision = self.decide(bundle, self.waiver("SELF_CONTAINMENT"))
+        self.assertEqual(decision["status"], "INCOMPLETE")
+        self.assertIn(("SELF_CONTAINMENT", "STALE"), {(m["type"], m["reason"]) for m in decision["missing"]}, "the changed package is stale, not waived")
+
+    def test_old_evidence_lying_in_the_directory_does_not_make_a_correct_bundle_look_broken(self):
+        self.everything_passes()
+        for subject in self.subjects:
+            self.put("SELF_CONTAINMENT", "PASS", subject, digest="sha256:" + "1" * 64)      # about an earlier content of the package
+        bundle, _ = self.bundle()
+        self.assertEqual(self.decide(bundle)["status"], "ELIGIBLE", "the current evidence is there and counts; the old is not cited")
+        self.setUp()
+        self.open_need("SELF_CONTAINMENT")
+        for subject in self.subjects:
+            self.put("SELF_CONTAINMENT", "PASS", subject, digest="sha256:" + "1" * 64)
+        bundle, _ = self.bundle()
+        decision = self.decide(bundle)
+        self.assertEqual((decision["status"], decision["problems"]), ("INCOMPLETE", []))
+
+    def test_a_real_verdict_is_what_counts_once_a_checker_exists(self):
+        self.everything_passes()
+        bundle, _ = self.bundle()
+        decision = self.decide(bundle, self.waiver("SELF_CONTAINMENT"))
+        self.assertEqual((decision["status"], decision.get("waived")), ("ELIGIBLE", None), "a PASS needs no waiver and none is reported")
+
+    def test_a_waiver_without_a_reason_or_an_approval_is_not_applied(self):
+        self.open_need("SELF_CONTAINMENT")
+        bundle, _ = self.bundle()
+        for changes in ({"reason": "no"}, {"approval_ref": ""}):
+            decision = self.decide(bundle, self.waiver("SELF_CONTAINMENT", **changes))
+            self.assertEqual(decision["status"], "INCOMPLETE", changes)
+            self.assertIn("WAIVER_INVALID", {p["code"] for p in decision["problems"]}, changes)
+
+    def test_the_bundle_is_facts_and_a_waiver_is_only_a_decision(self):
+        self.open_need("SELF_CONTAINMENT")
+        bundle, _ = self.bundle()
+        self.assertIn("SELF_CONTAINMENT", bundle["missing_types"], "the bundle says the need is open")
+        baked, _ = self.bundle(self.waiver("SELF_CONTAINMENT"))
+        self.assertNotIn("SELF_CONTAINMENT", baked["missing_types"])
+        self.assertIn("BUNDLE_MISMATCH", {p["code"] for p in self.decide(baked)["problems"]}, "a bundle with the waiver written into it is not what its evidence gives")
+
+    def test_the_committed_waivers_are_the_owners_and_every_one_names_a_type_a_policy_requires(self):
+        waivers = aggregate.default_waivers()
+        required = set(aggregate.required_types(aggregate.load_policies()))
+        self.assertTrue(waivers)
+        for key, row in waivers.items():
+            self.assertEqual((row["subject"], row["approved_by"]), ("*", "owner"), key)
+            self.assertIn(row["type"], required, f"{key} waives a type no policy requires")
+            self.assertIn("future_scope", row, key)
+
+    def test_a_waiver_file_that_does_not_satisfy_the_schema_is_not_read(self):
+        path = self.tmp / "w.json"
+        for change in ({"approved_by": "agent"}, {"reason": "short"}, {"approval_ref": "ok"}, {"approved_at": "yesterday"}):
+            row = {**self.waiver("SELF_CONTAINMENT")["SELF_CONTAINMENT@*"], "reason": "no working checker exists for this type yet", "approved_by": "owner",
+                   "approval_ref": "the Owner's reply, quoted in full here", "approved_at": "2026-10-02T04:45:02Z", **change}
+            path.write_text(json.dumps([row]), encoding="utf-8")
+            with self.assertRaises(contract.ContractViolation, msg=change):
+                aggregate.load_waivers(path)
+
+
 class Integrity(World):
     def test_the_bundle_and_the_decision_satisfy_their_schemas(self):
         self.everything_passes()

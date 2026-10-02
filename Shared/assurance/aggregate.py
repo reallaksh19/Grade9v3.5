@@ -11,6 +11,9 @@ The rules, each of which a test breaks if it is removed:
   * Several records for one need reduce to the worst (FAIL, INCONCLUSIVE, NOT_RUN, PASS, NOT_APPLICABLE); the last one written does not win.
   * required_pass is satisfied only by PASS; required_pass_or_na by PASS or NOT_APPLICABLE; required_pass_or_reviewed by those or by a waiver
     that names the need, gives a reason and says where the approval was given.
+  * A waiver for every subject of a type (subject "*", the Owner's, for a type that has no working checker yet) covers that type in any bucket, when the
+    need is missing, inconclusive or not run. It never covers a FAIL, or evidence that has gone stale, and it does not have to be taken down when a checker
+    arrives: a real verdict, PASS or FAIL, is what counts from then on.
   * A policy with no subject of its kind is not satisfied: nothing proved is not everything proved.
   * An evidence file that is unreadable, schema-invalid, edited after it was written, or missing though the bundle cites it breaks the bundle.
   * A bundle whose id, digest or outcomes are not what its evidence gives is broken, and so is a PASS that carries an S0 or S1 finding.
@@ -34,6 +37,8 @@ SATISFIES = {"required_pass": {"PASS"}, "required_pass_or_na": {"PASS", "NOT_APP
 BUCKETS = tuple(SATISFIES)
 SEVERE = ("S0", "S1")
 MIN_WAIVER_REASON = 10
+EVERY_SUBJECT = "*"                                  # a waiver for every subject of a type: the type has no working checker yet
+NOT_CHECKED = {"MISSING", "INCONCLUSIVE", "NOT_RUN"}   # what a waiver for a type without a checker can cover; a FAIL, or evidence gone stale, it cannot
 
 
 @dataclass(frozen=True)
@@ -159,13 +164,22 @@ def collect(evidence_dir: Path, refs: Iterable[str] | None = None) -> tuple[dict
 
 
 def load_waivers(path: Path | None) -> dict[str, dict]:
-    """Waivers by need (`TYPE@KIND:ID`). Each names the need, gives a reason and says where the approval was given."""
+    """Waivers by need (`TYPE@KIND:ID`, or `TYPE@*` for every subject of the type), from a file that satisfies the waivers schema."""
     if path is None:
         return {}
-    rows = json.loads(Path(path).read_text(encoding="utf-8"))
+    rows = contract.require_valid("waivers", json.loads(Path(path).read_text(encoding="utf-8")))
+    return {f"{row['type']}@{row['subject']}": row for row in rows}
+
+
+def waivers_dir() -> Path:
+    return contract.HERE / "waivers"
+
+
+def default_waivers() -> dict[str, dict]:
+    """The waivers the Owner has granted for the repository (Shared/assurance/waivers/*.json)."""
     out: dict[str, dict] = {}
-    for row in rows:
-        out[f"{row['type']}@{row['subject']}"] = row
+    for path in sorted(waivers_dir().glob("*.json")):
+        out.update(load_waivers(path))
     return out
 
 
@@ -179,6 +193,7 @@ class Evaluation:
     severe: list[dict] = field(default_factory=list)               # S0 / S1 findings anywhere in the evidence considered
     reviewable: list[dict] = field(default_factory=list)           # S2 / S3 findings
     considered: list[str] = field(default_factory=list)            # ids of the evidence about the expected subjects, current
+    waived: list[dict] = field(default_factory=list)               # needs that are open and that an Owner waiver covers
     problems: list[dict] = field(default_factory=list)
 
     @property
@@ -240,11 +255,19 @@ def evaluate(subjects: list[Subject], policies: list[dict], records: Mapping[str
                     group = current.get(cell, [])
                     outcome = reduce_outcomes(r["outcome"] for r in group) or ("STALE" if stale.get(cell) else "MISSING")
                     ev.outcomes[cell_key(t, s)] = outcome
-                    waived = bucket == "required_pass_or_reviewed" and cell_key(t, s) in valid_waivers
                     if outcome == "FAIL":
                         ev.failing.append(cell_key(t, s))
-                    if outcome not in SATISFIES[bucket] and not waived:
+                    if outcome in SATISFIES[bucket]:
+                        continue
+                    waiver = None
+                    if bucket == "required_pass_or_reviewed" and cell_key(t, s) in valid_waivers:
+                        waiver = cell_key(t, s)
+                    elif f"{t}@{EVERY_SUBJECT}" in valid_waivers and outcome in NOT_CHECKED:
+                        waiver = f"{t}@{EVERY_SUBJECT}"
+                    if waiver is None:
                         ev.missing.append({"type": t, "subject": s.key, "reason": outcome})
+                    else:
+                        ev.waived.append({"type": t, "subject": s.key, "outcome": outcome, "waiver": waiver, "approval_ref": str(waivers[waiver]["approval_ref"]).strip()})
     return ev
 
 
@@ -306,7 +329,9 @@ def evaluate_release(bundle: dict, evidence_dir: Path, policies: list[dict], wai
         problems.append({"code": "POLICY_MISMATCH", "message": f"the bundle was built for {bundle['policies']}, not for the policies given"})
     recorded = subjects_of(bundle)
     claimed = evaluate(recorded, policies, records)       # the bundle is facts: waivers are a decision, applied below
-    if (dict(sorted(claimed.outcomes.items())) != bundle["outcomes"] or claimed.missing_types != bundle["missing_types"]
+    # evidence of older content that was lying in the directory when the bundle was made is not cited by it, so it cannot be seen again: STALE there is MISSING here
+    stated = {k: ("MISSING" if v == "STALE" else v) for k, v in bundle["outcomes"].items()}
+    if (dict(sorted(claimed.outcomes.items())) != stated or claimed.missing_types != bundle["missing_types"]
             or snapshot_digest(recorded) != bundle["canonical_snapshot_digest"] or required_types(policies) != bundle["required_types"]):
         problems.append({"code": "BUNDLE_MISMATCH", "message": "the bundle's outcomes, snapshot or required types are not what its own evidence and subjects give"})
 
@@ -345,4 +370,6 @@ def evaluate_release(bundle: dict, evidence_dir: Path, policies: list[dict], wai
     }
     if projections:
         record["projection_digests"] = projections
+    if decided.waived:
+        record["waived"] = sorted(decided.waived, key=lambda w: (w["type"], w["subject"]))
     return contract.require_valid("eligibility", record)

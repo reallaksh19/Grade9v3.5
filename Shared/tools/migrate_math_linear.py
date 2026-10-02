@@ -135,10 +135,45 @@ def migrate() -> dict:
     return ledger
 
 
+def amend(record_ids: list[str], reason: str) -> list[str]:
+    """Move the ledger to a deliberate change made to records of the fold after it: the row's digest and references are taken from the package as it is now, and the
+    digest the row had is kept in `amendments` with the reason. The ledger of the fold itself cannot be written again (the staging file is retired), so this is the
+    one way it changes. Returns the records whose row changed."""
+    if len(reason.strip()) < 20:
+        raise ValueError("an amendment gives its reason (at least 20 characters)")
+    current = rows(json.loads(TARGET.read_text(encoding="utf-8")))
+    ledger = json.loads(LEDGER.read_text(encoding="utf-8"))
+    changed = []
+    for record_id in record_ids:
+        collection = next((c for c, records in ledger["records"].items() if record_id in records), None)
+        if collection is None:
+            raise ValueError(f"{record_id} is not a record of this migration")
+        row = current[collection].get(record_id)
+        if row is None:
+            raise ValueError(f"{collection}:{record_id} is not in the package")
+        now = {"digest": digest(row), "references": references(row)}
+        was = ledger["records"][collection][record_id]
+        if now != was:
+            ledger.setdefault("amendments", []).append({"collection": collection, "record": record_id, "was_digest": was["digest"], "reason": reason.strip()})
+            ledger["records"][collection][record_id] = now
+            changed.append(record_id)
+    LEDGER.write_text(json.dumps(ledger, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
+    return changed
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--write", action="store_true")
+    parser.add_argument("--amend", nargs="+", metavar="RECORD", help="move the ledger to a deliberate change made to these records since the fold (needs --reason)")
+    parser.add_argument("--reason", default="")
     args = parser.parse_args(argv)
+    if args.amend:
+        try:
+            changed = amend(args.amend, args.reason)
+        except ValueError as exc:
+            print(exc, file=sys.stderr)
+            return 1
+        print("amended: " + (", ".join(changed) or "nothing changed"))
     ledger = migrate() if args.write else json.loads(LEDGER.read_text(encoding="utf-8"))
     issues = verify_ledger(json.loads(TARGET.read_text(encoding="utf-8")), ledger)
     if issues:

@@ -26,6 +26,12 @@ VERSION = "1.0.0"
 PACKAGE_TYPES = ("STRUCTURAL_VALIDITY", "REFERENCE_INTEGRITY", "CORPUS_SPECIFICITY", "SELF_CONTAINMENT", "ANSWER_CORRECTNESS", "DIMENSIONAL_CORRECTNESS",
                  "REASONING_VALIDITY", "SCOPE_CONFORMANCE", "DISCLOSURE_CONFORMANCE")
 PAGE_TYPES = ("NETWORK_POLICY", "LINK_INTEGRITY", "PROJECTION_STATIC_CONFORMANCE")
+# What the release policy asks of every projection and a set of pages is not the subject of: the search index is a projection of its own (verify_search_index.py
+# judges it), and drift is judged against an accepted release fingerprint, which a first acceptance does not have yet (drift_detector.py).
+NOT_ABOUT_PAGES = {"SEARCH_MEMBERSHIP": "the search index is a projection of its own, judged where it is built (verify_search_index.py)",
+                   "SEARCH_RETRIEVABILITY": "the search index is a projection of its own, judged where it is built (verify_search_index.py)",
+                   "DEPLOYMENT_INTEGRITY": "drift is judged against an accepted release fingerprint (drift_detector.py), and a set of pages has none before it is accepted"}
+RECEIPT = "render-receipt.json"
 SUBSTANCE_POINTS = {"DUPLICATED", "TEMPLATED", "SELF_NAMING", "NAMED_WITHOUT_DEMONSTRATING"}   # intake's corpus checks (Shared/library/substance.py)
 SEVERITY_OF = {"BLOCK": "S1", "ADVISE": "S3"}
 FEW = 8        # how many examples an aggregate finding names
@@ -235,6 +241,29 @@ def verify_projection(subject: Subject, repo: Path) -> dict[str, Verdict]:
     return out
 
 
+def verify_receipt(subject: Subject, repo: Path) -> Verdict | None:
+    """PROJECTION_INTEGRITY: the pages are exactly what the render receipt beside them says (the check acceptance itself makes of a staged render).
+    None for a projection that has no receipt: nothing was claimed, so nothing is proved."""
+    root = repo / subject.path if not Path(subject.path).is_absolute() else Path(subject.path)
+    if not root.is_dir() or not (root / RECEIPT).is_file():
+        return None
+    from Shared.tools import accept_product
+    try:
+        accept_product.verify_render(root)
+    except (ValueError, OSError, KeyError) as exc:
+        return Verdict("FAIL", [finding("RECEIPT_MISMATCH", "S1", subject.path, f"the pages are not what {RECEIPT} says: {exc}"[:300])])
+    return Verdict("PASS")
+
+
+def projection_extras(subject: Subject, repo: Path) -> dict[str, Verdict]:
+    """The other verdicts about a set of pages: the receipt (where there is one), and what is not about pages."""
+    out = {t: Verdict("NOT_APPLICABLE") for t in NOT_ABOUT_PAGES}
+    receipt = verify_receipt(subject, repo)
+    if receipt is not None:
+        out["PROJECTION_INTEGRITY"] = receipt
+    return out
+
+
 def projection_ratchet(subject: Subject, repo: Path) -> list[str]:
     """Pages worse than the ledger allows (Shared/web/standalone-ledger.v1.json), for a projection under a governed root; [] otherwise."""
     from Shared.tools import standalone_conformance as sc
@@ -286,7 +315,7 @@ def run(repo: Path, packages: list[str], projections: list[str], evidence_dir: P
         for t, v in sorted(verdicts.items()):
             result.evidence.append(emit(evidence_dir, t, s, v, config))
     for s in aggregate.projection_subjects(projections, repo):
-        for t, v in sorted(verify_projection(s, repo).items()):
+        for t, v in sorted({**verify_projection(s, repo), **projection_extras(s, repo)}.items()):
             result.evidence.append(emit(evidence_dir, t, s, v, config))
         if any(e["outcome"] == "FAIL" and e["subject"]["kind"] == "PROJECTION" and e["subject"]["id"] == s.id for e in result.evidence):
             result.ratchet_problems += projection_ratchet(s, repo)

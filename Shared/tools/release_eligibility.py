@@ -34,7 +34,7 @@ def load_and_check(bundle_path: str, product_id: str, evidence_dir: str = DEFAUL
     if bundle["subject"]["id"] != product_id:
         raise ContractError("ASSURANCE_BUNDLE_OTHER_PRODUCT", f"the bundle is for {bundle['subject']['id']!r}, not {product_id!r}")
     policies = aggregate.load_policies(bundle["policies"])
-    waivers = aggregate.load_waivers(Path(waivers_path)) if waivers_path else {}
+    waivers = {**aggregate.default_waivers(), **aggregate.load_waivers(Path(waivers_path) if waivers_path else None)}
     return aggregate.evaluate_release(bundle, REPO / evidence_dir, policies, waivers)
 
 
@@ -59,6 +59,11 @@ def main(argv: list[str] | None = None) -> int:
         print(f"  open     {m['type']:<26} {m['subject']:<40} {m['reason']}")
     for p in record["problems"]:
         print(f"  problem  {p['code']}: {p['message']}")
+    waived: dict[str, int] = {}
+    for w in record.get("waived", []):
+        waived[w["type"]] = waived.get(w["type"], 0) + 1
+    for t, n in sorted(waived.items()):
+        print(f"  waived   {t:<26} {n} need(s), by the Owner's waiver")
     for f in record["reviewable_findings"][:8]:
         print(f"  finding  {f['severity']} {f['code']} {f['subject']}: {f['message'][:100]}")
     return 1 if (args.enforce and record["status"] != "ELIGIBLE") else 0

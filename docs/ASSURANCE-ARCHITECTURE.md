@@ -21,7 +21,7 @@ subject  ->  verifier  ->  evidence (AE)  ->  bundle  ->  eligibility  ->  accep
 | aggregation | `Shared/assurance/aggregate.py` | Bundle and decision. Worst-of reduction per (type, subject); stale evidence ignored; no vacuous truth. |
 | ratchet | `Shared/assurance/baseline.py`, `Shared/web/standalone-ledger.v1.json` | What CI measures against: known canonical findings (by key) and known page counts (by count). Written by tools only. |
 | projections | `build_search_index.py`, `build_projection_manifest.py`, `release_fingerprint.py`, `drift_detector.py` | What a release was made of, by digest, and whether it has drifted. |
-| gate | `accept_product.py` | Refuses a product whose eligibility is not `ELIGIBLE`, once the policy's `acceptance_gate` is `REQUIRED` (Section 8). |
+| gate | `accept_product.py`, `Shared/assurance/product.py` | `acceptance_gate` is `REQUIRED`: accepting a product assures it as staged and refuses unless it is `ELIGIBLE`, counting the Owner's recorded waivers (Section 7). |
 
 ## 2. Design rules
 
@@ -43,7 +43,7 @@ subject  ->  verifier  ->  evidence (AE)  ->  bundle  ->  eligibility  ->  accep
 | A known failure | Does not fail the run | Is still a `FAIL`; the product is not eligible |
 | Where | `.github/workflows/canonical-assurance.yml`: `assurance`, `regression-delta` (gating) | `release_eligibility.py`; the `release-status` job reports it and never gates |
 
-The ratchet does not soften the evidence. The 4 known canonical findings are `FAIL` in the evidence, and the product is `INELIGIBLE` with them. CI refuses only what is new. Neither the baseline nor the ledger is edited by hand: `assurance_run.py --write-baseline`, `standalone_conformance.py --write-ledger`.
+The ratchet does not soften the evidence. A known finding stays a `FAIL` in the evidence, and a product with one is `INELIGIBLE`; CI refuses only what is new. (The canonical baseline is empty today. The page ledger is not: the pages merged from #375 carry known text-size, storage and maths findings, and a product page set with one fails the gate.) Neither the baseline nor the ledger is edited by hand: `assurance_run.py --write-baseline`, `standalone_conformance.py --write-ledger`.
 
 The regression delta compares **test ids**, not counts (`run_test_ids.py`, `diff_test_failures.py`). One test fixed and another broken has an unchanged count. A HEAD that ran no tests, or has a module that no longer loads, fails the comparison; it is not "no new failures". There is no `|| true`, no `continue-on-error` and no path filter on a gate.
 
@@ -74,21 +74,34 @@ Intake (`Shared/library/intake.py`) remains the gate of record for a new package
 - **A new type.** Add it to the evidence schema and to a policy. Until a verifier writes evidence for it, it is an open need in every bundle, which is correct.
 - **Paying down debt.** Fix the finding, run `assurance_run.py` (it prints `FIXED (tighten the baseline)`), then `--write-baseline`. The baseline only gets shorter.
 
-## 7. What is not built
+## 7. The acceptance gate, and the Owner's waiver
 
-| Gap | Effect today |
-|---|---|
-| No verifier for `SOURCE_INTEGRITY`, `ANSWERABILITY`, `PROJECTION_COMPLETENESS` | Open needs in every bundle. |
-| `PROJECTION_INTEGRITY` and `DEPLOYMENT_INTEGRITY` are produced on demand | `verify_projection_manifest.py` and `drift_detector.py` write them when someone runs them (the latter against an accepted fingerprint). CI runs neither, so they are open in the bundle. `SEARCH_MEMBERSHIP` and `SEARCH_RETRIEVABILITY` are produced by `verify_search_index.py`, which CI does run. |
-| `RESPONSIVE_LAYOUT`, `ACCESSIBILITY` | Open. The browser audits exist (`tools/site-audit/`) but are not wired to write evidence. |
-| `SELF_CONTAINMENT`, `ANSWER_CORRECTNESS`, `DIMENSIONAL_CORRECTNESS` on authored questions | `INCONCLUSIVE` or `NOT_APPLICABLE`: no authored record declares a `problem_specification` or a `computation_model`. Declaring them is authoring work. |
-| `ANSWER_VERIFIED` is advisory | A key checked only by its author is reported (`AUTHOR_ONLY`), not blocked. |
-| Two ratchets | The baseline (canonical, by key) and the ledger (pages, by count) are separate files with separate tools. |
-| Mathematics reference collisions | 4 nested-id collisions in `LIB-MATH-LINEAR-EQUATIONS` exist on `main`. They are real, they are in the baseline, and they keep `REFERENCE_INTEGRITY` failing for that package until fixed. |
+`learner-release-default.acceptance_gate` is `REQUIRED`. `accept_product.py <slug>` assures the product as it is staged (`build_products.py build` first): its packages (the manifest's `package_refs`), the staged PAGES render, and the staged single-file page when there is one, judged where they will be served (`public/`). It writes the evidence, bundle and decision to `build/assurance/<slug>/`, prints the decision, and refuses unless it is `ELIGIBLE`. The acceptance record says what the decision rested on (`assurance`: status, bundle digest, the waived types). A bundle given with `--eligibility` is recomputed the same way.
 
-## 8. Owner decisions
+A set of pages is not the subject of `SEARCH_MEMBERSHIP`, `SEARCH_RETRIEVABILITY` or `DEPLOYMENT_INTEGRITY` (the search index is a projection of its own; drift is judged against an accepted fingerprint, which a first acceptance has not got), so a page set gets an explicit `NOT_APPLICABLE` for them. The render receipt beside the pages is verified as `PROJECTION_INTEGRITY`.
 
-1. `learner-release-default.acceptance_gate` is `ADVISORY`. Setting it to `REQUIRED` makes `accept_product.py` refuse a product that is not `ELIGIBLE`. Today no product would be (Section 7).
-2. `ANSWER_VERIFIED`: whether a key checked only by its author should block admission.
-3. The scope policy's `DEFER` entries that no scope document row names.
-4. The Mathematics collisions: fix in the library, or record as accepted debt.
+**Waivers.** Seven types have no working checker or cannot conclude. The Owner waived them, on 2026-10-02, "waive all, record as future scope" (`Shared/assurance/waivers/learner-release.v1.json`, which quotes the approval). A waiver:
+
+- covers a need that is **missing, inconclusive or not run**, for every subject of its type; and nothing else. It never covers a `FAIL`, evidence gone stale, a broken record or an S0/S1 finding;
+- is part of the decision, not of the bundle (the bundle stays facts), and every use is listed in the eligibility record (`waived`) and in the acceptance record;
+- needs no taking down when a checker arrives: from then on the real verdict, `PASS` or `FAIL`, is what counts.
+
+| Waived type | Why there is no verdict | What ends the waiver (future scope) |
+|---|---|---|
+| `RESPONSIVE_LAYOUT` | a rendered fact; the static page checks do not claim it | a verifier that runs `tools/site-audit/core-page-audit.mjs` and writes evidence |
+| `ACCESSIBILITY` | contrast, tap targets and focus are rendered facts | the same browser audit, for contrast, 48 px targets, keyboard focus |
+| `ANSWERABILITY` | needs each question to declare what it gives and asks | questions that declare `problem_specification` and `answer_contract`, and a verifier over them |
+| `SOURCE_INTEGRITY` | no tool that writes evidence checks the cited sources | a verifier over the fact-status machinery `accept_product` already prints |
+| `PROJECTION_COMPLETENESS` | no tool that writes evidence compares selection with pages | a verifier over the manifest's selection and the receipt's gaps |
+| `SELF_CONTAINMENT` | inconclusive: no authored question declares its givens | authored questions that declare `problem_specification` and `computation_model` |
+| `REASONING_VALIDITY` | inconclusive: keys are checked by their author or not at all | an independent check of each key, by a person or a declared computation |
+
+## 8. What is not built, and what remains for the Owner
+
+- The seven waived checkers above are future scope. Until they exist, an `ELIGIBLE` product is eligible for what is checked, and says so in its record.
+- `DEPLOYMENT_INTEGRITY` and the search types are produced against the release (`drift_detector.py`, `verify_search_index.py`); nothing gates acceptance on them.
+- Competitive banks (`bank_refs`) are not packages and are not judged by the package verifiers.
+- Two ratchets (baseline by key, ledger by count) remain separate files with separate tools. The canonical baseline is now empty: the four Mathematics nested-id collisions were renamed (with the Owner's approval) and the migration ledger of that package was amended by its tool (`migrate_math_linear.py --amend`).
+- The committed single-file copies under `standalone/products/` carry the shared stylesheet as it was; the stylesheet now keeps learner text at 14 px, and a copy takes it up when the Owner next accepts that product.
+- `ANSWER_VERIFIED` blocks a key nobody ran (`NOT_RUN`), by the Owner's decision; a key checked only by its author is reported (`AUTHOR_ONLY`), not blocked.
+- Scope-policy `DEFER` entries that no scope-document row names are advisory until the row is added or the entry dropped.

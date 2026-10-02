@@ -105,6 +105,22 @@
         ]
       }
     },
+    "waived": {
+      "type": "array",
+      "description": "Needs that are open or inconclusive and that an Owner waiver covers; the decision above counts them as met",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {"type": "string"},
+          "subject": {"type": "string"},
+          "outcome": {"type": "string"},
+          "waiver": {"type": "string"},
+          "approval_ref": {"type": "string"}
+        },
+        "required": ["type", "subject", "outcome", "waiver", "approval_ref"]
+      }
+    },
     "problems": {
       "type": "array",
       "items": {

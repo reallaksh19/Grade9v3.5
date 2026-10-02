@@ -27,6 +27,7 @@ SCHEMAS = {
     "policy": "policy.schema.json",
     "projection-manifest": "projection-manifest.schema.json",
     "release-fingerprint": "release-fingerprint.schema.json",
+    "waivers": "waivers.schema.json",
 }
 # Evidence is about a subject; it must not be written into the subject's own tree (that changes the digest it claims, and a Pages mirror is not a
 # place for CI output).

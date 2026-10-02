@@ -6,20 +6,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 456,
-  "relation_count": 506,
+  "component_count": 457,
+  "relation_count": 509,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 56,
-    "TEST": 218,
+    "TEST": 219,
     "TOOLING": 131,
     "WEB": 13,
     "WEB_CONTRACT": 8,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:bbed27ef12c13bafd4df6246a7de9117058d497432f06b608e5a39b715df276a",
+  "digest": "sha256:9e97164a372a2e7856aca9115537685c714deb5974969f30d93fe7615cd69f3c",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -578,8 +578,8 @@
       "path": "Shared/tools/accept_product.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 14478,
-      "sha256": "205c94a4a5ab9c0a8a8bfcacc8d049abbc5129ce9eb91331cd6a6b9187239023"
+      "bytes": 15498,
+      "sha256": "27c884714d81ab44ee968d0b0348a7c0f611b6cedb99233043e2681821ed237a"
     },
     {
       "path": "Shared/tools/apply_owner_decisions.py",
@@ -1061,8 +1061,8 @@
       "path": "Shared/tools/migrate_math_linear.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 6901,
-      "sha256": "679cb21d0ce34c3584e4822e12faa9bb54997a8ded022ee9e0100bcd36d419db"
+      "bytes": 9016,
+      "sha256": "8a8afdfb7385f0358256ccec6609ada81bb311d0df8580d1122609dd3a179773"
     },
     {
       "path": "Shared/tools/migrate_unit_titles.py",
@@ -1208,8 +1208,8 @@
       "path": "Shared/tools/release_eligibility.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 3319,
-      "sha256": "3ef0f3544e543b32e4f520d731e5bea84279be8ae99f36ffc1c43395f078fd28"
+      "bytes": 3596,
+      "sha256": "e89850c221c8c7a14341b8155e632064cc5ad34bc7fff7ffd54afa4e5b58aabe"
     },
     {
       "path": "Shared/tools/release_fingerprint.py",
@@ -1572,8 +1572,8 @@
       "path": "public/core-learning/data.js",
       "role": "WEB",
       "role_description": "Static Core learner host and generated projection data",
-      "bytes": 2468715,
-      "sha256": "81161a33191ca6e7fa9843cdd67111ae12a607ecf48f5034ffe5eb3aca2d29ef"
+      "bytes": 2468735,
+      "sha256": "f399480eeef3992d548f1f7817f046715f939258352521b9b403123efb1183c4"
     },
     {
       "path": "public/core-learning/index.html",
@@ -2031,11 +2031,18 @@
       "sha256": "746a66c28f2e5830784743a34a6fbbb6dfe886c610c930f95fda00901b69f253"
     },
     {
+      "path": "tests/test_assurance_acceptance.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 8875,
+      "sha256": "6da5eb9e8b0b4263b58c060456da1f5dd2cba7fa675970d7b1ca3f52bbb7aa3d"
+    },
+    {
       "path": "tests/test_assurance_core.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 19755,
-      "sha256": "15ca7973b77f9703b44f1b3ec6ecd29dc4e13b941f208424d930b3bea7fe6442"
+      "bytes": 25789,
+      "sha256": "fb2eafa6de9e0a9c91b8c8b47e23b6ed67c37c9e9e0bfe829b2b592dfe98f497"
     },
     {
       "path": "tests/test_assurance_projections.py",
@@ -2797,8 +2804,8 @@
       "path": "tests/test_publication.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 19227,
-      "sha256": "a2da9632992ccbfc64bd1cdaabf18a463710dbbc9a263eb144b6e5c6ad6bce24"
+      "bytes": 20722,
+      "sha256": "61237becf928566912fd15b5a138bc7cd47d4b42455c481c57f11a64c663af80"
     },
     {
       "path": "tests/test_publication_engine.py",
@@ -2888,8 +2895,8 @@
       "path": "tests/test_render_core.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 38518,
-      "sha256": "ed20d77099a746f1df244288202b1527b6524ecade9616acc1305c1725aa1a62"
+      "bytes": 40504,
+      "sha256": "014e78060e501acb48cab912c610dce865c9d006edcb7eb91cb1af607b220c83"
     },
     {
       "path": "tests/test_renderer_inventory.py",
@@ -4497,6 +4504,21 @@
     },
     {
       "from": "tests/test_architecture.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_assurance_acceptance.py",
+      "to": "Shared.assurance",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_assurance_acceptance.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_assurance_acceptance.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
