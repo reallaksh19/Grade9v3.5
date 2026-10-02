@@ -7,7 +7,7 @@ import hashlib
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
@@ -134,7 +134,7 @@ def main():
         "canonical_ids": canonical_ids,
         "excluded_ids": excluded_ids,
         "index_digest": index_digest,
-        "generated_at": datetime.now(datetime.timezone.utc).replace(tzinfo=None).isoformat() + "Z"
+        "generated_at": datetime.now(timezone.utc).replace(tzinfo=None).isoformat() + "Z"
     }
     output_manifest_json = json.dumps(manifest, indent=2, sort_keys=True)
 

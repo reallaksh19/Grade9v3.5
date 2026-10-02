@@ -23,6 +23,8 @@ def main():
 
     questions = lib_data.get("questions", [])
     
+    any_fail = False
+    
     for q in questions:
         qid = q.get("id")
         hints = q.get("hints", [])
@@ -45,9 +47,14 @@ def main():
                 leak = True
                 
         if leak:
+            any_fail = True
             print(f"{qid} | DISCLOSURE_CONFORMANCE | FAIL | hint leaks info")
         else:
             print(f"{qid} | DISCLOSURE_CONFORMANCE | PASS | ")
+
+    if args.enforce and any_fail:
+        import sys
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()

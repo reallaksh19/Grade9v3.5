@@ -191,6 +191,11 @@ def main():
     if args.output:
         with open(args.output, "w") as f:
             json.dump(all_evidence, f, indent=2)
+            
+    if args.enforce:
+        any_fail = any(ev.get("result") == "FAIL" for ev in all_evidence)
+        if any_fail:
+            sys.exit(1)
 
 if __name__ == "__main__":
     main()

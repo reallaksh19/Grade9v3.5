@@ -89,5 +89,71 @@ class TestPhaseC(unittest.TestCase):
         res, det = verify_dimensional_correctness(q)
         self.assertEqual(res, "FAIL")
 
+    def test_scope_conformance_policy_driven(self):
+        import subprocess
+        import json
+        import tempfile
+        from pathlib import Path
+        import sys
+
+        repo = Path(__file__).resolve().parents[1]
+        scope_script = repo / "Shared" / "tools" / "assurance_scope.py"
+        policy_file = repo / "Shared" / "policy" / "grade9-physics.v1.json"
+        
+        q = {
+            "id": "Q1",
+            "primary_capability_ref": "",
+            "stem": "",
+            "extensions": {
+                "problem_specification": {
+                    "concept_refs": ["CONCEPT-ANGULAR-MOMENTUM"]
+                }
+            }
+        }
+        lib = {"questions": [q]}
+        
+        with tempfile.NamedTemporaryFile("w", delete=False, suffix=".json") as f:
+            json.dump(lib, f)
+            lib_file = f.name
+            
+        res = subprocess.run([sys.executable, str(scope_script), "--library-file", lib_file, "--policy-file", str(policy_file)], capture_output=True, text=True)
+        Path(lib_file).unlink()
+        
+        self.assertIn("FAIL", res.stdout)
+        self.assertIn("ANGULAR_MOMENTUM", res.stdout)
+        
+    def test_scope_conformance_rotational_ke_fails(self):
+        import subprocess
+        import json
+        import tempfile
+        from pathlib import Path
+        import sys
+
+        repo = Path(__file__).resolve().parents[1]
+        scope_script = repo / "Shared" / "tools" / "assurance_scope.py"
+        policy_file = repo / "Shared" / "policy" / "grade9-physics.v1.json"
+        
+        q = {
+            "id": "Q2",
+            "primary_capability_ref": "CONCEPT-ROTATIONAL-KINETIC-ENERGY",
+            "stem": "",
+            "extensions": {
+                "problem_specification": {
+                    "concept_refs": []
+                }
+            }
+        }
+        lib = {"questions": [q]}
+        
+        with tempfile.NamedTemporaryFile("w", delete=False, suffix=".json") as f:
+            json.dump(lib, f)
+            lib_file = f.name
+            
+        res = subprocess.run([sys.executable, str(scope_script), "--library-file", lib_file, "--policy-file", str(policy_file)], capture_output=True, text=True)
+        Path(lib_file).unlink()
+        
+        self.assertIn("FAIL", res.stdout)
+        self.assertIn("ROTATIONAL_KINETIC_ENERGY", res.stdout.upper())
+
 if __name__ == '__main__':
     unittest.main()

@@ -113,7 +113,8 @@ def main():
         outcome=outcome,
         producer_name="assurance_corpus",
         producer_version="1.0.0",
-        findings=findings
+        findings=findings,
+        severity="S1" if outcome == "FAIL" else None
     )
     
     if args.output:

@@ -4,7 +4,7 @@
 import sys
 import json
 import hashlib
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
@@ -23,37 +23,73 @@ def make_evidence(
     dependencies: list[str] = None,
     subject_digest: str = None,
     producer_config_digest: str = None,
+    severity: str = None,
 ) -> dict:
     """Build a validated assurance-evidence/v1 record."""
+    kind_mapping = {
+        "library": "CANONICAL_RECORD",
+        "question": "CANONICAL_RECORD",
+        "product": "PRODUCT",
+        "projection": "PROJECTION",
+        "source": "SOURCE"
+    }
+    mapped_kind = kind_mapping.get(subject_kind.lower()) if subject_kind.lower() in kind_mapping else subject_kind
+    
     evidence = {
-        "schema_version": "assurance-evidence/v1",
+        "schema": "assurance-evidence/v1",
         "assurance_type": assurance_type,
         "subject": {
-            "kind": subject_kind,
+            "kind": mapped_kind,
             "id": subject_id,
         },
         "outcome": outcome,
         "producer": {
             "name": producer_name,
             "version": producer_version,
+            "configuration_digest": producer_config_digest or ""
         },
-        "produced_at": datetime.now(datetime.timezone.utc).replace(tzinfo=None).isoformat() + 'Z'
+        "findings": findings if findings is not None else [],
+        "produced_at": datetime.now(timezone.utc).replace(tzinfo=None).isoformat() + 'Z'
     }
-    if findings is not None:
-        evidence["findings"] = findings
+    
+    if subject_digest is not None:
+        evidence["subject"]["digest"] = subject_digest
+    if outcome == "FAIL" and severity is not None:
+        evidence["severity"] = severity
     if confidence is not None:
         evidence["confidence"] = confidence
     if dependencies is not None:
         evidence["dependencies"] = dependencies
-    if subject_digest is not None:
-        evidence["subject"]["digest"] = subject_digest
-    if producer_config_digest is not None:
-        evidence["producer"]["config_digest"] = producer_config_digest
+    else:
+        evidence["dependencies"] = []
     
     content_str = json.dumps(evidence, sort_keys=True).encode('utf-8')
     digest = hashlib.sha256(content_str).hexdigest()[:16]
     evidence["evidence_id"] = f"AE-{digest}"
     return evidence
+
+def validate_evidence(ev: dict) -> bool:
+    """Check the evidence dict against the schema's required fields and log any mismatch."""
+    required_top = ["schema", "evidence_id", "subject", "assurance_type", "producer", "outcome", "findings", "produced_at"]
+    required_subject = ["kind", "id"]
+    required_producer = ["name", "version", "configuration_digest"]
+    
+    for req in required_top:
+        if req not in ev:
+            print(f"Missing top-level field: {req}", file=sys.stderr)
+            return False
+    for req in required_subject:
+        if req not in ev["subject"]:
+            print(f"Missing subject field: {req}", file=sys.stderr)
+            return False
+    for req in required_producer:
+        if req not in ev["producer"]:
+            print(f"Missing producer field: {req}", file=sys.stderr)
+            return False
+    if ev["outcome"] == "FAIL" and "severity" not in ev:
+        print("Missing severity for FAIL outcome", file=sys.stderr)
+        return False
+    return True
 
 def write_evidence(evidence: dict, output_path: Path) -> None:
     """Write a single evidence record to output_path as JSON."""

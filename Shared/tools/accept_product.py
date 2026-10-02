@@ -230,7 +230,23 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--accept-open", default="")
     parser.add_argument("--approval-ref", default="",
                         help="where the Owner's approval was given (message or comment link, or a quotation)")
+    parser.add_argument("--eligibility", default=None)
     args = parser.parse_args(argv)
+
+    # Phase F: check release eligibility if a bundle is provided
+    if args.eligibility:
+        from Shared.tools.release_eligibility import load_and_check
+        eligibility = load_and_check(args.eligibility, args.slug)
+        if eligibility['status'] == 'INELIGIBLE':
+            print(f"Release ineligible: {eligibility['hard_integrity']}")
+            for f in eligibility.get('reviewable_findings', []):
+                print(f"  [{f.get('severity','?')}] {f.get('code')}: {f.get('message')}") 
+            sys.exit(1)
+        elif eligibility['status'] == 'INCOMPLETE':
+            print(f"Release incomplete: missing assurance types")
+            sys.exit(1)
+        print(f"Release eligibility: {eligibility['status']}")
+
     try:
         decision = accept(args.slug, args.note, args.accept_open, approval_ref=args.approval_ref)
     except (ValueError, OSError, RuntimeError, EOFError) as exc:

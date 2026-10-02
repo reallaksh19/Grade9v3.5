@@ -11,7 +11,7 @@ REPO = Path(__file__).resolve().parents[2]
 if str(REPO) not in sys.path:
     sys.path.insert(0, str(REPO))
 
-from Shared.tools.assurance_record import make_evidence, write_evidence, load_policy, check_missing
+from Shared.tools.assurance_record import make_evidence, write_evidence
 
 def hash_dir(directory: Path) -> str:
     hashes = []
@@ -22,6 +22,34 @@ def hash_dir(directory: Path) -> str:
                     hashes.append(hashlib.sha256(f.read()).hexdigest())
     content = "".join(hashes).encode("utf-8")
     return hashlib.sha256(content).hexdigest()
+
+def check_missing(evidence_list: list[dict], policy: dict, waivers: set = None) -> list[str]:
+    """Check missing types based on required policy fields."""
+    if waivers is None:
+        waivers = set()
+        
+    req_pass = policy.get("required_pass", [])
+    req_pass_na = policy.get("required_pass_or_na", [])
+    req_pass_rev = policy.get("required_pass_or_reviewed", [])
+    
+    missing = []
+    
+    # Map assurance_type to outcome
+    outcomes = {ev.get("assurance_type"): ev.get("outcome") for ev in evidence_list}
+    
+    for t in req_pass:
+        if outcomes.get(t) != "PASS":
+            missing.append(t)
+            
+    for t in req_pass_na:
+        if outcomes.get(t) not in ("PASS", "NOT_APPLICABLE"):
+            missing.append(t)
+            
+    for t in req_pass_rev:
+        if outcomes.get(t) not in ("PASS", "NOT_APPLICABLE") and t not in waivers:
+            missing.append(t)
+            
+    return missing
 
 def main():
     parser = argparse.ArgumentParser()
@@ -47,12 +75,12 @@ def main():
                 pass
 
     policy_path = REPO / "Shared" / "assurance" / "policies" / "canonical-admission.v1.json"
-    required_types = []
+    policy = {}
     if policy_path.exists():
-        policy = load_policy(policy_path)
-        required_types = policy.get("required_types", [])
+        with policy_path.open("r", encoding="utf-8") as f:
+            policy = json.load(f)
         
-    missing = check_missing(evidence_list, required_types)
+    missing = check_missing(evidence_list, policy)
     
     bundle = {
         "schema_version": "assurance-bundle/v1",
