@@ -153,13 +153,12 @@ def generate_compatibility_site_search_js(docs: list[dict]) -> str:
     """Generate the legacy window.GRADE9_SITE_SEARCH_RESOURCES compatibility projection."""
     compat_list = []
     for d in docs:
-        if d["type"] in ("LEARN_RESOURCE", "PRACTICE_RESOURCE", "EXPLORE_RESOURCE"):
-            compat_list.append({
-                "title": d["title"],
-                "path": d["url"],
-                "kind": d["type"].lower().replace("_resource", ""),
-                "keywords": d["search_text"].split()
-            })
+        compat_list.append({
+            "title": d["title"],
+            "path": d["url"],
+            "kind": d["type"].lower().replace("_resource", ""),
+            "keywords": d["search_text"].split()[:50]
+        })
 
     js_code = f"window.GRADE9_SITE_SEARCH_RESOURCES = {json.dumps(compat_list, indent=2)};\n"
     return js_code

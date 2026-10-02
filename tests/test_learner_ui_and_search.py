@@ -40,12 +40,12 @@ class TestLearnerUiAndSearch(unittest.TestCase):
         self.assertIn("MIC-PHY-NLM-FRICTION", ws_html)
         self.assertIn("Try visually", ws_html)
         self.assertIn("core1a.html", ws_html)
-        self.assertIn("core2.html", ws_html)
-        self.assertIn("capability=MIC-PHY-NLM-FRICTION", ws_html)
+        self.assertIn("Practice in Question Bank", ws_html)
+        self.assertIn("topic=nlm", ws_html)
 
         # Anti-cheating verification: Remove explorer from bundles and regenerate
         bundles_no_exp = [
-            dict(b, interactive=[]) if b["concept_ref"] == "MIC-PHY-NLM-FRICTION" else b
+            dict(b, interactive=[]) if b.get("topic_ref") == "phy.nlm" else b
             for b in self.bundles
         ]
         ws_no_exp = generate_topic_workspace("phy.nlm", "Newton's Laws", "Physics", bundles_no_exp)

@@ -81,7 +81,7 @@ class LiveWitnesses(unittest.TestCase):
 
     def test_every_live_question_has_an_unbroken_chain(self):
         ids = [row["id"] for row in self.platform["lineage"]["questions"]]
-        self.assertEqual(len(ids), 296)
+        self.assertEqual(len(ids), 305)
         broken = {qid: bqp.trace(self.platform, qid)["broken_links"] for qid in ids}
         self.assertEqual({qid: links for qid, links in broken.items() if links}, {})
 

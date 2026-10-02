@@ -204,11 +204,16 @@ def build(repo: Path = REPO) -> dict:
 
     by_id = {q["id"]: q for q in questions}
 
-    # Merge extracted IIT-JEE Diagnostic Hub questions
-    hub_file = repo / "public" / "data" / "iit-jee-hub-questions.v1.json"
-    if hub_file.is_file():
-        hub_data = load_json(hub_file)
-        for hq in hub_data:
+    # Merge extracted IIT-JEE Diagnostic Hub and NCERT practice questions
+    external_sets = [
+        (repo / "public" / "data" / "iit-jee-hub-questions.v1.json", "diagnostic_hub_v1", "DIAGNOSTIC", "IIT-JEE Diagnostic", "Diagnostic Hub", "PYQ_AUTHENTIC_DIAGNOSTIC", "CORPUS_SNAPSHOT", "FAITHFUL_DIAGNOSTIC", "DIAGNOSTIC_HUB", "EXAM_CORPUS_SNAPSHOT", "VERIFIED_DIAGNOSTIC"),
+        (repo / "public" / "data" / "ncert-practice-questions.v1.json", "ncert_practice_v1", "NCERT", "NCERT", "NCERT Textbook", "NCERT_AUTHENTIC_PRACTICE", "CURRICULAR_STANDARD", "FAITHFUL_NCERT", "NCERT_TEXTBOOK", "NCERT_PRACTICE_RECORD", "VERIFIED_NCERT"),
+    ]
+    for ext_file, adapter_name, pkg_prefix, default_exam, default_paper, default_src_status, default_auth, default_custody, default_origin, default_prov, default_verif in external_sets:
+        if not ext_file.is_file():
+            continue
+        ext_data = load_json(ext_file)
+        for hq in ext_data:
             hid = str(hq["id"])
             if hid in by_id:
                 continue
@@ -216,7 +221,7 @@ def build(repo: Path = REPO) -> dict:
             topic = hq.get("topic", "General")
             opt_list = hq.get("options", [])
             steps = hq.get("steps", [])
-            ans_summary = str(hq.get("correct") or "Diagnostic question")
+            ans_summary = str(hq.get("correct") or "Practice problem")
             clean_ref = re.sub(r"[^a-zA-Z0-9]+", "-", hq.get("topic_ref", "COMMON")).strip("-").upper()
 
             scaffolds_list = []
@@ -241,6 +246,10 @@ def build(repo: Path = REPO) -> dict:
                     "reveals": "METHOD",
                 })
 
+            exam_val = hq.get("exam") or default_exam
+            diff_val = hq.get("difficulty", "D1")
+            diff_band = diff_val if isinstance(diff_val, str) else (diff_val or {}).get("band", "D1")
+
             projected = {
                 "id": hid,
                 "order": order,
@@ -249,26 +258,26 @@ def build(repo: Path = REPO) -> dict:
                 "status": "PUBLISHED",
                 "topic": topic,
                 "question_type": "single_correct_mcq" if opt_list else "numerical_value",
-                "exam": "IIT-JEE Diagnostic",
+                "exam": exam_val,
                 "year": hq.get("year") or 2024,
-                "paper": "Diagnostic Hub",
-                "question_number": "1",
-                "source_status": "PYQ_AUTHENTIC_DIAGNOSTIC",
-                "authority_class": "CORPUS_SNAPSHOT",
-                "wording_custody": "FAITHFUL_DIAGNOSTIC",
+                "paper": default_paper,
+                "question_number": str(hq.get("question_number") or hid),
+                "source_status": default_src_status,
+                "authority_class": default_auth,
+                "wording_custody": default_custody,
                 "paper_url": "",
                 "answer_key_url": None,
                 "last_checked": "2026-09-20",
-                "origin": "DIAGNOSTIC_HUB",
-                "provenance_class": "EXAM_CORPUS_SNAPSHOT",
+                "origin": default_origin,
+                "provenance_class": default_prov,
                 "math_spans": [],
                 "stem": hq["stem"],
                 "subparts": [],
                 "options": opt_list,
                 "conditions": [],
                 "difficulty": {
-                    "band": "D1",
-                    "basis": f"Diagnostic problem from {topic}",
+                    "band": diff_band,
+                    "basis": f"Problem from {topic}",
                     "components": {"algebra_computational_load": 1, "concept_model_selection": 1, "reasoning_chain_length": 1, "representation_translation": 1, "trap_exception_sensitivity": 0},
                     "score": 2
                 },
@@ -286,15 +295,15 @@ def build(repo: Path = REPO) -> dict:
                     "reasoning_route": steps,
                     "crux_move_ref": hq.get("formula") or "",
                     "check": hq.get("teacher_check") or "",
-                    "verification_status": "VERIFIED_DIAGNOSTIC"
+                    "verification_status": default_verif
                 },
                 "visual_ref": None,
                 "source_path": f"public/{hq.get('explorer_entrypoint', '')}",
-                "adapter": "diagnostic_hub_v1",
+                "adapter": adapter_name,
                 "lineage": {
-                    "adapter": "diagnostic_hub_v1",
+                    "adapter": adapter_name,
                     "source_path": f"public/{hq.get('explorer_entrypoint', '')}",
-                    "package_id": f"DIAGNOSTIC-{clean_ref}",
+                    "package_id": f"{pkg_prefix}-{clean_ref}",
                 }
             }
             questions.append(projected)

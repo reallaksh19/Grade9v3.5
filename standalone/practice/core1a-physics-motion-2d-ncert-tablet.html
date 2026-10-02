@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>GRADE 9 PHYSICS - Motion in 2D NCERT Revised Edition | 12.7" Tablet Standalone Edition</title>
+  <title>GRADE 9 PHYSICS - Motion in 2D NCERT Revised Edition</title>
   <meta name="description" content="Complete 12.7-inch tablet study suite for Motion in 2D NCERT Revised Core: Half-circle displacement, Average velocity in plane, Uniform circular motion, and 20 NCERT problem instances.">
   <style>
 /* ==========================================================================
-   Physics: 2D Motion NCERT 12.7" Tablet Standalone Stylesheet
+   Physics: 2D Motion NCERT Standalone Stylesheet
    WCAG 2.5.5 >= 48px touch targets, >= 120px textareas, no micro-fonts (<13.5px)
    100% Offline Standalone · Dark/Light Mode · Responsive Stage/Support Grid
    ========================================================================== */
@@ -344,9 +344,10 @@ details.solution-detail summary {
   padding: 14px 18px;
   border-radius: 0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;
   margin: 12px 0;
-  font-family: monospace;
-  font-size: 14px;
+  font-size: 15px;
+  line-height: 1.8;
   color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "KaTeX_Main", "Cambria Math", monospace, sans-serif;
 }
   </style>
 <style id="pr375-u4-remediation">
@@ -545,6 +546,10 @@ article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-sp
 <style id="u2-practice-hub-target">
 a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center}
 </style>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
 </head>
 <body>
 
@@ -566,7 +571,7 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
   <nav class="tab-nav">
     <div class="tab-nav-inner">
       <button class="tab-btn active" onclick="switchTab('tab-core1')">Core 1 Concepts &amp; Theory</button>
-      <button class="tab-btn" onclick="switchTab('tab-core2')">Core 2 NCERT Problems (19)</button>
+      <button class="tab-btn" onclick="switchTab('tab-core2')">Core 2 NCERT Problems (9)</button>
     </div>
   </nav>
 
@@ -582,10 +587,10 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
             Understanding displacement, velocity vectors, tangential acceleration, and centripetal force in planar motion.
           </p>
           <div class="formula-box">
-            Position Vector: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r⃗(t) = x(t) î + y(t) ĵ<br>
-            Displacement: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Δr⃗ = (x₂ - x₁) î + (y₂ - y₁) ĵ<br>
-            Average Velocity: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v⃗_avg = Δr⃗ / Δt<br>
-            Instantaneous Velocity: v⃗ = dr⃗/dt = (dx/dt) î + (dy/dt) ĵ
+            <div><strong>Position Vector:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \(\vec{r}(t) = x(t)\,\hat{i} + y(t)\,\hat{j}\)</div>
+            <div><strong>Displacement:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \(\Delta\vec{r} = (x_2 - x_1)\,\hat{i} + (y_2 - y_1)\,\hat{j}\)</div>
+            <div><strong>Average Velocity:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \(\vec{v}_{\text{avg}} = \frac{\Delta\vec{r}}{\Delta t}\)</div>
+            <div><strong>Instantaneous Velocity:</strong> \(\vec{v} = \frac{d\vec{r}}{dt} = \frac{dx}{dt}\,\hat{i} + \frac{dy}{dt}\,\hat{j}\)</div>
           </div>
         </div>
 
@@ -683,17 +688,25 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
 
       <!-- Core 2 Tab -->
       <div id="tab-core2" class="tab-content">
-        <div class="content-card">
-          <h2><span>🎯</span> 2D Motion NCERT Revised Core Instances (19)</h2>
-          <p>
-            Curated NCERT problems spanning curved path distance-displacement ratios, average speed vs average velocity, and circular trajectories.
+        <div class="content-card" style="border: 2px solid var(--accent); background: linear-gradient(180deg, rgba(56, 189, 248, 0.08), var(--bg-card));">
+          <h2><span>🎯</span> 2D Motion NCERT Revised Core Instances (9 Problems)</h2>
+          <p style="font-size: 15px; color: var(--text-secondary); margin-bottom: 16px;">
+            Curated NCERT problems spanning curved path distance-displacement ratios, average speed vs average velocity, and circular trajectories. Fully integrated into the canonical Question Bank.
           </p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+            <a class="btn" href="../../question-bank/index.html?exam=NCERT&topic=motion-2d&mode=study" style="background: var(--accent); color: #080d1a; font-weight: 800; text-decoration: none; padding: 12px 22px; border-radius: var(--tab12-radius-sm); display: inline-flex; align-items: center; gap: 8px;">
+              <span>🎯</span> Practice All 9 NCERT Problems in Question Bank →
+            </a>
+            <a class="btn" href="../../question-bank/index.html?topic=motion-2d" style="background: var(--bg-card-subtle); color: var(--text-primary); border: 1px solid var(--border); text-decoration: none; padding: 12px 18px; border-radius: var(--tab12-radius-sm); font-weight: 600;">
+              Browse Full 2D Motion Bank
+            </a>
+          </div>
         </div>
 
         <div class="q-card">
           <div class="q-header">
             <span class="q-badge">NCERT 2D</span>
-            <span class="tag-pill">Page 2</span>
+            <span class="tag-pill">Page 2</span><a href="../../question-bank/index.html?search=M2D-NC-01&mode=study" class="tag-pill" style="color:var(--accent); border-color:var(--accent); text-decoration:none; font-weight:700;" title="Open M2D-NC-01 in Question Bank">Open in QB ↗</a>
           </div>
           <div class="q-title">M2D-NC-01 Half-circle displacement</div>
           <p class="q-prompt">A particle travels from one end of a diameter to the opposite end along a semicircular path of radius r. What is the magnitude of its displacement?</p>
@@ -708,7 +721,7 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
         <div class="q-card">
           <div class="q-header">
             <span class="q-badge">NCERT 2D</span>
-            <span class="tag-pill">Page 3</span>
+            <span class="tag-pill">Page 3</span><a href="../../question-bank/index.html?search=M2D-NC-02&mode=study" class="tag-pill" style="color:var(--accent); border-color:var(--accent); text-decoration:none; font-weight:700;" title="Open M2D-NC-02 in Question Bank">Open in QB ↗</a>
           </div>
           <div class="q-title">M2D-NC-02 Constant-speed merry-go-round</div>
           <p class="q-prompt">A rider moves around a merry-go-round at constant speed. Is the rider's velocity constant? State the direction of the acceleration.</p>
@@ -723,7 +736,7 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
         <div class="q-card">
           <div class="q-header">
             <span class="q-badge">NCERT 2D</span>
-            <span class="tag-pill">Page 4</span>
+            <span class="tag-pill">Page 4</span><a href="../../question-bank/index.html?search=M2D-NC-03&mode=study" class="tag-pill" style="color:var(--accent); border-color:var(--accent); text-decoration:none; font-weight:700;" title="Open M2D-NC-03 in Question Bank">Open in QB ↗</a>
           </div>
           <div class="q-title">M2D-NC-03 Distance versus displacement</div>
           <p class="q-prompt">When can the distance travelled equal the magnitude of displacement?</p>
@@ -738,7 +751,7 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
         <div class="q-card">
           <div class="q-header">
             <span class="q-badge">NCERT 2D</span>
-            <span class="tag-pill">Page 5</span>
+            <span class="tag-pill">Page 5</span><a href="../../question-bank/index.html?search=M2D-NC-04&mode=study" class="tag-pill" style="color:var(--accent); border-color:var(--accent); text-decoration:none; font-weight:700;" title="Open M2D-NC-04 in Question Bank">Open in QB ↗</a>
           </div>
           <div class="q-title">M2D-NC-04 String breaks in circular motion</div>
           <p class="q-prompt">A stone moves in a horizontal circle on a string. If the string suddenly breaks, in what direction does the stone move immediately after release?</p>
@@ -753,7 +766,7 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
         <div class="q-card">
           <div class="q-header">
             <span class="q-badge">NCERT 2D</span>
-            <span class="tag-pill">Page 6</span>
+            <span class="tag-pill">Page 6</span><a href="../../question-bank/index.html?search=M2D-NC-05&mode=study" class="tag-pill" style="color:var(--accent); border-color:var(--accent); text-decoration:none; font-weight:700;" title="Open M2D-NC-05 in Question Bank">Open in QB ↗</a>
           </div>
           <div class="q-title">M2D-NC-05 What keeps a planet turning?</div>
           <p class="q-prompt">What provides the centripetal force for a planet revolving around the Sun, and what is the direction of its acceleration?</p>
@@ -768,7 +781,7 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
         <div class="q-card">
           <div class="q-header">
             <span class="q-badge">NCERT 2D</span>
-            <span class="tag-pill">Page 7</span>
+            <span class="tag-pill">Page 7</span><a href="../../question-bank/index.html?search=M2D-NC-06&mode=study" class="tag-pill" style="color:var(--accent); border-color:var(--accent); text-decoration:none; font-weight:700;" title="Open M2D-NC-06 in Question Bank">Open in QB ↗</a>
           </div>
           <div class="q-title">M2D-NC-06 Horizontal throw versus drop</div>
           <p class="q-prompt">Two stones start simultaneously from the same height. One is dropped and the other is thrown horizontally. Neglect air resistance. Which reaches the ground first?</p>
@@ -783,7 +796,7 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
         <div class="q-card">
           <div class="q-header">
             <span class="q-badge">NCERT 2D</span>
-            <span class="tag-pill">Page 8</span>
+            <span class="tag-pill">Page 8</span><a href="../../question-bank/index.html?search=M2D-NC-07&mode=study" class="tag-pill" style="color:var(--accent); border-color:var(--accent); text-decoration:none; font-weight:700;" title="Open M2D-NC-07 in Question Bank">Open in QB ↗</a>
           </div>
           <div class="q-title">M2D-NC-07 Moon if Earth gravity vanished</div>
           <p class="q-prompt">Suppose Earth's gravitational pull on the Moon suddenly became zero and no other celestial body affected the Moon. What path would the Moon follow immediately afterward?</p>
@@ -798,7 +811,7 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
         <div class="q-card">
           <div class="q-header">
             <span class="q-badge">NCERT 2D</span>
-            <span class="tag-pill">Page 9</span>
+            <span class="tag-pill">Page 9</span><a href="../../question-bank/index.html?search=M2D-NC-08&mode=study" class="tag-pill" style="color:var(--accent); border-color:var(--accent); text-decoration:none; font-weight:700;" title="Open M2D-NC-08 in Question Bank">Open in QB ↗</a>
           </div>
           <div class="q-title">M2D-NC-08 Why Earth does not fall into the Sun</div>
           <p class="q-prompt">The Sun attracts Earth gravitationally. Why does Earth not simply fall straight into the Sun?</p>
@@ -813,7 +826,7 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
         <div class="q-card">
           <div class="q-header">
             <span class="q-badge">NCERT 2D</span>
-            <span class="tag-pill">Page 10</span>
+            <span class="tag-pill">Page 10</span><a href="../../question-bank/index.html?search=M2D-NC-09&mode=study" class="tag-pill" style="color:var(--accent); border-color:var(--accent); text-decoration:none; font-weight:700;" title="Open M2D-NC-09 in Question Bank">Open in QB ↗</a>
           </div>
           <div class="q-title">M2D-NC-09 Coin tossed inside a train</div>
           <p class="q-prompt">A passenger tosses a coin vertically inside a moving train and the coin lands behind the passenger. What does that imply about the train's motion while the coin was airborne?</p>
@@ -984,11 +997,11 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
       <div class="support-widget">
         <h3><span>⚡</span> 2D Kinematics Formulas</h3>
         <div class="formula-box">
-          r⃗(t) = x(t) î + y(t) ĵ<br>
-          v⃗ = dr⃗/dt = v_x î + v_y ĵ<br>
-          a⃗ = dv⃗/dt = a_x î + a_y ĵ<br>
-          Circular: a_c = v² / R = ω² R<br>
-          Half-Circle: Disp = 2R, Dist = πR
+          <div>\(\vec{r}(t) = x(t)\,\hat{i} + y(t)\,\hat{j}\)</div>
+          <div>\(\vec{v} = \frac{d\vec{r}}{dt} = v_x\,\hat{i} + v_y\,\hat{j}\)</div>
+          <div>\(\vec{a} = \frac{d\vec{v}}{dt} = a_x\,\hat{i} + a_y\,\hat{j}\)</div>
+          <div>Circular: \(a_c = \frac{v^2}{R} = \omega^2 R\)</div>
+          <div>Half-Circle: \(\text{Disp} = 2R\), \(\text{Dist} = \pi R\)</div>
         </div>
       </div>
 
@@ -1187,5 +1200,24 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
   }).observe(document.documentElement, { childList: true, subtree: true });
 })();
 </script>
+  <script>
+    function renderAllMath() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\[", right: "\]", display: true},
+            {left: "\(", right: "\)", display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", renderAllMath);
+    } else {
+      renderAllMath();
+    }
+  </script>
 </body>
 </html>

@@ -83,7 +83,7 @@ function renderDeclaredMath(article,q){
 // ---- URL state: labels from older links still work, stable ids are what gets written ----
 function stateFromUrl(){
   const p=new URLSearchParams(location.search);
-  return {view:p.get('view')||'',q:p.get('q')||'',subject:p.get('subject')||'',topic:p.get('topic')||'',subtopic:p.get('subtopic')||'',
+  return {view:p.get('view')||'',q:p.get('q')||p.get('search')||'',subject:p.get('subject')||'',topic:p.get('topic')||'',subtopic:p.get('subtopic')||'',
     difficulty:p.get('difficulty')||'',exam:p.get('exam')||'',type:p.get('type')||'',mode:p.get('mode')||'browse',sort:p.get('sort')||'canonical'};
 }
 function refFor(rows,value){
