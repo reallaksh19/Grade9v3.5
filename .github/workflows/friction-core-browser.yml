@@ -42,6 +42,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Checkout Blueprint 1.9.0 rules
+        uses: actions/checkout@v4
+        with:
+          ref: claude/jolly-planck-xmtj44
+          path: blueprint-1.9
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
@@ -89,6 +95,34 @@ jobs:
               raise SystemExit(f"strict render unexpectedly contains {len(receipt['gaps'])} gap(s)")
           print("reference render gaps: 0")
           PY
+
+      - name: Blueprint 1.9.0 compatibility
+        run: |
+          set -o pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          registry = json.loads(Path("blueprint-1.9/Shared/web/interactive-page-blueprints.v1.json").read_text())
+          if registry.get("registry_version") != "1.9.0":
+              raise SystemExit(f"expected Blueprint registry 1.9.0, got {registry.get('registry_version')}")
+          print("Blueprint registry:", registry["registry_version"])
+          PY
+
+          # Run the exact 1.9.0 admission gate against the friction package/bank in
+          # the rule branch's own environment, so scope and admission semantics are
+          # not reimplemented in this PR.
+          cp Physics/library/phy-nlm-first-law.v1.json blueprint-1.9/Physics/library/phy-nlm-first-law.v1.json
+          cp Physics/library/exam-bank/competitive-exam-question-bank.v2.json blueprint-1.9/Physics/library/exam-bank/competitive-exam-question-bank.v2.json
+          cp -R Physics/assets/representations/. blueprint-1.9/Physics/assets/representations/
+          (
+            cd blueprint-1.9
+            python3 -m unittest tests.test_question_admission
+          ) | tee /tmp/friction-blueprint19-admission.txt
+
+          # Generated renderer pages are new pages for the 1.9.0 static policy:
+          # any blocking finding is therefore unacceptable (there is no legacy
+          # ledger allowance for these /tmp pages).
+          python3 blueprint-1.9/Shared/tools/standalone_conformance.py             /tmp/friction-core-site/products/physics/phy-nlm-friction/core1a.html             /tmp/friction-core-site/products/physics/phy-nlm-friction/core2.html             --enforce | tee /tmp/friction-blueprint19-pages.txt
 
       - name: Build through product pipeline
         run: |
@@ -219,8 +253,11 @@ jobs:
             /tmp/friction-tablet.txt
             /tmp/friction-tablet-audit.json
             /tmp/friction-browser-proof.json
+            /tmp/friction-blueprint19-admission.txt
+            /tmp/friction-blueprint19-pages.txt
             /tmp/hardest-core2-1366x854.png
             /tmp/core1a-friction-unit-1366x854.png
+            /tmp/friction-core-site/products/physics/phy-nlm-friction/*.html
             /tmp/friction-core-site/products/physics/phy-nlm-friction/*.pdf
             /tmp/friction-core-site/products/physics/phy-nlm-friction/print-receipt.json
           if-no-files-found: warn
