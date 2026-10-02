@@ -16,9 +16,9 @@ class QuestionBankPlatformRuntimeTest(unittest.TestCase):
 
     def test_detail_shards_cover_current_denominator_without_eager_global_payload(self):
         shards = self.platform["detail_shards"]
-        self.assertEqual(len(shards), 2)
-        self.assertEqual(sum(row["question_count"] for row in shards), 81)
-        self.assertEqual({row["subject_ref"] for row in shards}, {"SUBJECT-CHEMISTRY", "SUBJECT-PHYSICS"})
+        self.assertEqual(len(shards), 3)
+        self.assertEqual(sum(row["question_count"] for row in shards), 296)
+        self.assertEqual({row["subject_ref"] for row in shards}, {"SUBJECT-CHEMISTRY", "SUBJECT-PHYSICS", "SUBJECT-MATHEMATICS"})
         workers = {row["worker_id"] for row in self.platform["receipt"]["workers"]}
         self.assertIn("details", workers)
 
@@ -40,7 +40,7 @@ class QuestionBankPlatformRuntimeTest(unittest.TestCase):
         self.assertTrue(raw.startswith(prefix))
         manifest = json.loads(raw[len(prefix):].rstrip().rstrip(";"))
         self.assertEqual(manifest["build_id"], self.platform["build_id"])
-        self.assertEqual(len(manifest["detail_shards"]), 2)
+        self.assertEqual(len(manifest["detail_shards"]), 3)
         self.assertIn("STUDY_DETAIL_READY_ON_DEMAND", manifest["readiness"])
         self.assertTrue(all(row["path"].startswith("data/question-bank-details/") for row in manifest["detail_shards"]))
 

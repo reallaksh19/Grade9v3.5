@@ -289,7 +289,13 @@ def build(repo: Path = REPO) -> dict:
                     "verification_status": "VERIFIED_DIAGNOSTIC"
                 },
                 "visual_ref": None,
-                "source_path": f"public/{hq.get('explorer_entrypoint', '')}"
+                "source_path": f"public/{hq.get('explorer_entrypoint', '')}",
+                "adapter": "diagnostic_hub_v1",
+                "lineage": {
+                    "adapter": "diagnostic_hub_v1",
+                    "source_path": f"public/{hq.get('explorer_entrypoint', '')}",
+                    "package_id": f"DIAGNOSTIC-{clean_ref}",
+                }
             }
             questions.append(projected)
             by_id[hid] = projected

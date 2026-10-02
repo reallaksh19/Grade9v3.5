@@ -605,7 +605,7 @@ def render_shell(title: str, content: str, breadcrumbs: list[tuple[str, str]] = 
     <p>Grade9V3.5 Concept-Centred Learner Platform · Authentic Question Bank & Concepts</p>
   </footer>
 <script src="{rel_root}js/display-controls.js"></script>
-<script src="{rel_root}js/site-header.js"></script></body>
+<script src="{rel_root}js/site-header.js" data-site-root="{rel_root}"></script></body>
 </html>
 """
 
@@ -675,19 +675,25 @@ SUBJECT_EXPLORERS = {
             "title": "Chemical Bonding & Molecular Structure",
             "href": "bonding/explorers/chemical_bonding/index.html",
             "desc": "Lewis formal charge diagrams, VSEPR 3D electron geometry, net dipole cancellation, and PCl5 axial vs equatorial geometry.",
-            "tag": "Interactive Suite"
+            "tag": "Interactive"
         },
         {
             "title": "Mole Concept & Stoichiometry",
             "href": "some-basic-concepts/explorers/mole_concept/index.html",
             "desc": "Mole scale, limiting reagent exhaustion, sequential and parallel reaction yield tracking, and eudiometry.",
-            "tag": "Interactive Suite"
+            "tag": "Interactive"
         },
         {
             "title": "Behaviour of Gases",
             "href": "gases/explorers/behaviour_of_gases/index.html",
             "desc": "Ideal/real gases, Maxwell speed distributions, excluded volume, compressibility factor Z, and critical state.",
-            "tag": "Interactive Suite"
+            "tag": "Interactive"
+        },
+        {
+            "title": "Redox Reactions",
+            "href": "redox/explorers/redox_reactions/index.html",
+            "desc": "Oxidation state balance, electrochemical potential, and electron transfer visualizer.",
+            "tag": "Interactive"
         }
     ],
     "Mathematics": [
@@ -695,7 +701,7 @@ SUBJECT_EXPLORERS = {
             "title": "Vector Algebra · 3D Master Suite",
             "href": "vectors/explorers/vector_algebra/index.html",
             "desc": "Rotatable 3D Euclidean vector engine, Gram-Schmidt orthogonal projection split, cross product, and triple products.",
-            "tag": "3D Visual Engine"
+            "tag": "Interactive"
         }
     ],
     "Physics": [
@@ -703,55 +709,55 @@ SUBJECT_EXPLORERS = {
             "title": "Motion in 1D Suite",
             "href": "motion-1d/explorers/motion_in_1d/index.html",
             "desc": "Kinematic equations, free fall under gravity, velocity-time graph area integrals, and turnaround points.",
-            "tag": "Interactive Rig"
+            "tag": "Interactive"
         },
         {
             "title": "Motion in a Plane Research Suite",
             "href": "motion-2d/explorers/motion-in-a-plane/index.html",
             "desc": "Cartesian projectile resolution, parabolic trajectory tracing, complementary angle invariance, and banked roads.",
-            "tag": "Interactive Rig"
+            "tag": "Interactive"
         },
         {
             "title": "2D Motion Master Suite",
             "href": "motion-in-2d/explorers/motions_in_2d/index.html",
             "desc": "Full 2D kinematic engine: rain-man relative velocity, river-boat crossing drift, and cliff-launch trajectories.",
-            "tag": "Master Suite"
+            "tag": "Interactive"
         },
         {
             "title": "Independent Components & Shared Clock",
             "href": "motion-in-2d/explorers/independent_components_shared_clock/index.html",
             "desc": "Direct visual proof of orthogonal independence in two-dimensional kinematics under uniform gravity.",
-            "tag": "Concept Rig"
+            "tag": "Interactive"
         },
         {
             "title": "Same Height Same Speed Symmetries",
             "href": "motion-in-2d/explorers/same_height_same_speed/index.html",
             "desc": "Horizontal symmetry and kinetic-potential energy conservation along parabolic flight trajectories.",
-            "tag": "Concept Rig"
+            "tag": "Interactive"
         },
         {
             "title": "The Apex Fallacy",
             "href": "motion-in-2d/explorers/the_apex_fallacy/index.html",
             "desc": "Non-zero acceleration at the apex: why net force is not zero when vertical velocity vanishes.",
-            "tag": "Concept Rig"
+            "tag": "Interactive"
         },
         {
             "title": "Atwood Machines & Pulley Constraints",
             "href": "nlm/explorers/atwood-pulleys/index.html",
             "desc": "Inextensible string kinematics, movable pulley mechanical advantage, and acceleration constraint equations.",
-            "tag": "Dynamics Rig"
+            "tag": "Interactive"
         },
         {
             "title": "Connected Blocks Dynamics",
             "href": "nlm/explorers/connected-blocks/index.html",
             "desc": "Multi-body contact forces, internal tension cancellation, and common acceleration systems.",
-            "tag": "Dynamics Rig"
+            "tag": "Interactive"
         },
         {
             "title": "Static-to-Kinetic Friction Threshold",
             "href": "nlm/explorers/friction-threshold/index.html",
             "desc": "Real-time physical simulation of self-adjusting static friction, impending slip threshold, and kinetic drop.",
-            "tag": "Physical Simulator"
+            "tag": "Interactive"
         }
     ]
 }
@@ -767,7 +773,6 @@ TOPIC_TITLES = {
     "chem.mole": "Mole Concept & Stoichiometry",
     "chem.gases": "Behaviour of Gases",
     "chem.redox": "Redox Reactions",
-    "math.vectors": "Vector Algebra · 3D Geometry",
 }
 
 
@@ -776,6 +781,8 @@ def generate_subject_hub(subject: str, registry: list[dict], bundles: list[dict]
     topics = {}
     for b in bundles:
         if b.get("subject_ref") == subject and len(b.get("learn", [])) > 0:
+            if subject == "Mathematics":
+                continue  # Mathematics has no Core 1/Core 1A on main; interactives remain under Explorers
             t = b.get("topic_ref", "")
             if t not in topics:
                 title = TOPIC_TITLES.get(t, t.replace(".", " ").title())
@@ -967,12 +974,15 @@ def main():
     # 4. Generate Topic Workspaces dynamically from concept bundles that have Core 1/Core 1A
     discovered_topics = {}
     for b in bundles:
+        subj = b.get("subject_ref", "Physics")
+        if subj == "Mathematics":
+            continue  # Mathematics has no Core 1/Core 1A on main; interactives remain under Explorers
         t = b.get("topic_ref")
         if t and len(b.get("learn", [])) > 0:
             if t not in discovered_topics:
                 title = TOPIC_TITLES.get(t, t.replace(".", " ").title())
                 discovered_topics[t] = {
-                    "subject": b.get("subject_ref", "Physics"),
+                    "subject": subj,
                     "title": title
                 }
     if not discovered_topics:

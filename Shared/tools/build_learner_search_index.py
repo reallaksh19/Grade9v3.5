@@ -38,30 +38,18 @@ def build_search_documents(repo_root: Path) -> tuple[list[dict], dict]:
         with open(bundles_file, "r", encoding="utf-8") as f:
             bundles = json.load(f)
 
-    qb_questions = []
-    if qb_search_file.exists():
-        with open(qb_search_file, "r", encoding="utf-8") as f:
-            qb_questions = json.load(f)
-
-    jee_file = repo_root / "public" / "data" / "iit-jee-hub-questions.v1.json"
-    if jee_file.exists():
+    qb_data_file = repo_root / "public" / "data" / "question-bank-data.js"
+    loaded_questions = []
+    if qb_data_file.exists():
         try:
-            with open(jee_file, "r", encoding="utf-8") as f:
-                jee_questions = json.load(f)
-                seen_qids = {q.get("canonical_id") or q.get("id") for q in qb_questions}
-                for jq in jee_questions:
-                    qid = jq.get("id")
-                    if qid and qid not in seen_qids:
-                        seen_qids.add(qid)
-                        qb_questions.append({
-                            "canonical_id": qid,
-                            "title": jq.get("label", jq.get("stem", ""))[:80],
-                            "search_text": f"{jq.get('stem', '')} {jq.get('answer', {}).get('summary', '')}",
-                            "subject": jq.get("subject", "Physics"),
-                            "concept_refs": jq.get("concept_refs", [])
-                        })
-        except Exception:
-            pass
+            raw = qb_data_file.read_text(encoding="utf-8")
+            prefix = "window.GRADE9_QUESTION_BANK="
+            if raw.startswith(prefix):
+                raw_json = raw[len(prefix):].rstrip(";\n ")
+                qb_obj = json.loads(raw_json)
+                loaded_questions = qb_obj.get("questions", [])
+        except Exception as e:
+            print("Failed loading question-bank-data.js:", e)
 
     docs = []
     seen_ids = set()
@@ -105,6 +93,8 @@ def build_search_documents(repo_root: Path) -> tuple[list[dict], dict]:
         subj_slug = subj.lower()
         if b.get("topic_ref") == "chem.mole":
             target_url = f"{subj_slug}/some-basic-concepts/index.html#{cref}"
+        elif len(b.get("learn", [])) == 0 and len(b.get("interactive", [])) > 0:
+            target_url = b["interactive"][0]["entrypoint"]
         else:
             target_url = f"{subj_slug}/{slug}/index.html#{cref}"
         docs.append({
@@ -118,23 +108,33 @@ def build_search_documents(repo_root: Path) -> tuple[list[dict], dict]:
             "concept_refs": [cref]
         })
 
-    # 3. Canonical Questions (from existing search index)
-    for q in qb_questions:
-        qid = q.get("canonical_id") or q.get("id")
+    # 3. Canonical Questions (with Stems, Options, Worked Reasoning, Scaffolds, and Hints)
+    for q in loaded_questions:
+        qid = q.get("id")
         if not qid:
             continue
-        title = q.get("title") or f"Question {qid}"
-        stext = q.get("search_text", "")
+        stem = q.get("stem", "")
+        title = stem[:80] or f"Question {qid}"
+        ans = q.get("answer", {})
+        ans_summary = ans.get("summary", "") if isinstance(ans, dict) else str(ans)
+        ans_reasoning = " ".join(ans.get("reasoning", [])) if isinstance(ans, dict) else ""
+        scaffolds = " ".join(s.get("text", "") for s in q.get("scaffolds", []) if isinstance(s, dict))
+        hints = " ".join(str(h) for h in q.get("source_hints", []))
+        options_text = " ".join(opt.get("text", "") for opt in q.get("options", []) if isinstance(opt, dict))
+        topic = q.get("topic", "")
         subj = q.get("subject", "Physics")
+        cap = q.get("primary_capability_ref", "")
+
+        search_vector = f"{qid} {title} {stem} {options_text} {ans_summary} {ans_reasoning} {scaffolds} {hints} {topic} {cap} {subj}".lower()
         docs.append({
             "id": f"Q-{qid}",
             "type": "QUESTION",
             "subject": subj,
             "title": title,
-            "search_text": f"{title} {stext} {subj}".lower(),
+            "search_text": search_vector,
             "url": f"question-bank/index.html?search={qid}",
             "target": "_self",
-            "concept_refs": q.get("concept_refs", [])
+            "concept_refs": [cap] if cap else []
         })
 
     # Build stats

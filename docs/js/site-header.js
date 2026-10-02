@@ -121,17 +121,50 @@
     document.addEventListener('DOMContentLoaded', () => document.body.appendChild(dialog));
   }
 
-  // 3. Search Data Loader
+  // 3. Search Data Loader with robust multi-depth path resolution
   let searchDataPromise = null;
+  function getCandidateSearchUrls() {
+    let scriptRoot = (script && script.dataset.siteRoot);
+    if (!scriptRoot && script && script.src) {
+      try {
+        const u = new URL(script.src, window.location.href);
+        const idx = u.pathname.lastIndexOf('/js/');
+        if (idx !== -1) {
+          scriptRoot = u.pathname.slice(0, idx + 1);
+        }
+      } catch (e) {}
+    }
+    const prefix = scriptRoot || '';
+    const candidates = [
+      prefix + 'data/learner-search-index.v1.json',
+      '/data/learner-search-index.v1.json',
+      '../data/learner-search-index.v1.json',
+      '../../data/learner-search-index.v1.json',
+      'data/learner-search-index.v1.json'
+    ];
+    return Array.from(new Set(candidates));
+  }
+
   function loadSearchData() {
     if (searchDataPromise) return searchDataPromise;
-    searchDataPromise = fetch(root + 'data/learner-search-index.v1.json')
-      .then(res => {
-        if (!res.ok) throw new Error('Search index fetch failed: ' + res.status);
-        return res.json();
-      })
-      .catch(() => {
-        // Fallback to question-bank-data.js if present
+    const urls = getCandidateSearchUrls();
+
+    async function tryFetch() {
+      for (const u of urls) {
+        try {
+          const res = await fetch(u);
+          if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data) && data.length > 0) return data;
+          }
+        } catch (e) {}
+      }
+      throw new Error('All search index candidate URLs failed');
+    }
+
+    searchDataPromise = tryFetch()
+      .catch((err) => {
+        console.warn('Search index fetch failed, falling back to QB data:', err);
         return new Promise(resolve => {
           if (window.GRADE9_QUESTION_BANK) {
             resolve(mapQbData(window.GRADE9_QUESTION_BANK));
@@ -222,8 +255,23 @@
       return;
     }
 
+    let effectiveRoot = (script && script.dataset.siteRoot);
+    if (!effectiveRoot && script && script.src) {
+      try {
+        const u = new URL(script.src, window.location.href);
+        const idx = u.pathname.lastIndexOf('/js/');
+        if (idx !== -1) {
+          effectiveRoot = u.pathname.slice(0, idx + 1);
+        }
+      } catch (e) {}
+    }
+    effectiveRoot = effectiveRoot || '';
+
     matched.forEach(item => {
-      const itemUrl = item.url.startsWith('http') || item.url.startsWith('/') ? item.url : (root + item.url);
+      let itemUrl = item.url || '';
+      if (!itemUrl.startsWith('http') && !itemUrl.startsWith('/')) {
+        itemUrl = effectiveRoot + itemUrl;
+      }
       const sub = item.search_text ? item.search_text.slice(0, 120) + '…' : (item.id || '');
       results.appendChild(resultLink(item.title || item.id, sub, itemUrl, item.type));
     });

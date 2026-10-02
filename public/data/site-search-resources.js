@@ -115,31 +115,6 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
     ]
   },
   {
-    "title": "Vector Algebra \u00b7 Resolution & Components \u2014 Learn",
-    "path": "mathematics/vectors/core1a.html",
-    "kind": "learn",
-    "keywords": [
-      "vector",
-      "algebra",
-      "\u00b7",
-      "resolution",
-      "&",
-      "components",
-      "\u2014",
-      "learn",
-      "vector",
-      "algebra",
-      "vector",
-      "resolution",
-      "orthogonal",
-      "components",
-      "vectors",
-      "core1a",
-      "mic-math-vector-algebra",
-      "mathematics"
-    ]
-  },
-  {
     "title": "Vector Algebra \u00b7 3D Master Suite",
     "path": "mathematics/vectors/explorers/vector_algebra/index.html",
     "kind": "explore",
