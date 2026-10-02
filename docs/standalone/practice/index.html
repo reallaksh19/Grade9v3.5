@@ -29,19 +29,19 @@
       min-height: 100vh;
       padding: 1.5rem;
     }
-    header {
+    .practice-hero {
       text-align: center;
       padding: 2rem 1rem 1.5rem;
       border-bottom: 1px solid var(--border);
       margin-bottom: 2rem;
     }
-    header h1 {
+    .practice-hero h1 {
       font-size: 1.75rem;
       font-weight: 700;
       letter-spacing: -0.02em;
       color: #f1f5f9;
     }
-    header p {
+    .practice-hero p {
       margin-top: 0.5rem;
       color: var(--muted);
       font-size: 0.95rem;
@@ -342,15 +342,28 @@ article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-sp
 
 .badge,.study-kicker{font-size:14px!important}
 </style>
+  <link rel="stylesheet" href="../../css/site.css">
+  <link rel="stylesheet" href="../../css/tablet-12-7.css">
 </head>
 <body>
-  <a href="../../physics/index.html" aria-label="Back to Physics Portal" style="display:inline-flex;align-items:center;min-height:48px;padding:0.65rem 1rem;margin:0 0 1rem;border:1px solid var(--border);border-radius:0.65rem;color:#bfdbfe;text-decoration:none;font-weight:700;background:#172033;">← Back to Physics Portal</a>
+<header class="site-nav">
+  <a href="../../index.html" class="brand-link">
+    <span class="logo-icon">⚡</span>
+    <span>Grade9V3 Knowledge Portal</span>
+  </a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="../../index.html">Home</a>
+    <a href="../../physics/index.html" class="active phy-link">Physics</a>
+    <a href="../../chemistry/index.html">Chemistry</a>
+    <a href="../../mathematics/index.html">Mathematics</a>
+  </nav>
+</header>
 
-<header>
+<header class="practice-hero">
   <h1>⚡ Physics Practice Hub</h1>
   <p>Grade 9 · Standalone offline modules · CBSE + IIT-JEE</p>
   <div class="stats-bar">
-    <div class="stat"><div class="number">13</div><div class="label">Modules</div></div>
+    <div class="stat"><div class="number">14</div><div class="label">Modules</div></div>
     <div class="stat"><div class="number">395+</div><div class="label">Questions</div></div>
     <div class="stat"><div class="number">7</div><div class="label">Topics</div></div>
     <div class="stat"><div class="number">0</div><div class="label">Remote CDN</div></div>
@@ -490,6 +503,23 @@ article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-sp
     <div class="open-btn">Open module <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 8a.75.75 0 0 1 .75-.75h6.19L7.47 4.78a.75.75 0 0 1 1.06-1.06l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 1 1-1.06-1.06l2.47-2.47H3.75A.75.75 0 0 1 3 8z"/></svg></div>
   </a>
 
+</div>
+
+<section class="section-header"><h2>Friction — Blueprint 1.9 Product</h2></section>
+<div class="grid">
+  <div class="card" style="border-color:#38bdf8;">
+    <div class="card-title">Friction — Concept Book + Source Questions</div>
+    <div class="card-desc">Blueprint 1.9.0-validated friction product. Core 1A constructs contact-state reasoning and the stick/slip threshold; Core 2 contains 10 selected source questions with 7 denominator omissions explicitly explained.</div>
+    <div class="card-meta">
+      <div class="tags"><span class="tag tag-cons">Friction</span><span class="tag tag-vec">NLM</span><span class="tag tag-proj">Blueprint 1.9</span></div>
+      <div class="q-count">Core 1A + 10 Core 2</div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:.5rem">
+      <a class="open-btn" href="friction/core1a.html">Open Core 1A Concept Book →</a>
+      <a class="open-btn" href="friction/core2.html">Open Core 2 Questions →</a>
+      <a class="open-btn" href="friction/index.html">Product index →</a>
+    </div>
+  </div>
 </div>
 
 <section class="section-header"><h2>Newton's Laws of Motion (NLM)</h2></section>
@@ -667,5 +697,6 @@ article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-sp
   }).observe(document.documentElement, { childList: true, subtree: true });
 })();
 </script>
+<script src="../../js/site-header.js" data-site-root="../../" data-site-parent="../../physics/index.html"></script>
 </body>
 </html>
