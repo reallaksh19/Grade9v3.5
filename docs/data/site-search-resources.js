@@ -202,7 +202,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The velocity-time graph of a particle moving along a straight line is shown. In ",
-    "path": "question-bank/index.html?search=1D-Q01",
+    "path": "question-bank/index.html?q=1D-Q01#1D-Q01",
     "kind": "question",
     "keywords": [
       "1d-q01",
@@ -259,7 +259,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A particle moves along the x-axis with position x(t) = 6t - t\u00b2 (in meters). What",
-    "path": "question-bank/index.html?search=1D-Q02",
+    "path": "question-bank/index.html?q=1D-Q02#1D-Q02",
     "kind": "question",
     "keywords": [
       "1d-q02",
@@ -316,7 +316,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The position of a particle is given by x(t) = 4t\u00b3 - 18t\u00b2 + 24t + 2 (in meters). ",
-    "path": "question-bank/index.html?search=1D-Q03",
+    "path": "question-bank/index.html?q=1D-Q03#1D-Q03",
     "kind": "question",
     "keywords": [
       "1d-q03",
@@ -373,7 +373,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A body travels the first half of a total distance D with speed v\u2081 = 30 km/h and ",
-    "path": "question-bank/index.html?search=1D-Q04",
+    "path": "question-bank/index.html?q=1D-Q04#1D-Q04",
     "kind": "question",
     "keywords": [
       "1d-q04",
@@ -430,7 +430,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A particle moves in a straight line such that its displacement x at time t is re",
-    "path": "question-bank/index.html?search=1D-Q05",
+    "path": "question-bank/index.html?q=1D-Q05#1D-Q05",
     "kind": "question",
     "keywords": [
       "1d-q05",
@@ -487,7 +487,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The velocity-displacement (v-x) graph of a particle moving in a straight line is",
-    "path": "question-bank/index.html?search=1D-Q06",
+    "path": "question-bank/index.html?q=1D-Q06#1D-Q06",
     "kind": "question",
     "keywords": [
       "1d-q06",
@@ -544,7 +544,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The v\u00b2 versus x graph of a particle moving in a straight line is a straight line",
-    "path": "question-bank/index.html?search=1D-Q07",
+    "path": "question-bank/index.html?q=1D-Q07#1D-Q07",
     "kind": "question",
     "keywords": [
       "1d-q07",
@@ -601,7 +601,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The acceleration-time (a-t) graph of a particle starting from rest at t = 0 is a",
-    "path": "question-bank/index.html?search=1D-Q08",
+    "path": "question-bank/index.html?q=1D-Q08#1D-Q08",
     "kind": "question",
     "keywords": [
       "1d-q08",
@@ -658,7 +658,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A particle moves such that its acceleration a versus displacement x is given by ",
-    "path": "question-bank/index.html?search=1D-Q09",
+    "path": "question-bank/index.html?q=1D-Q09#1D-Q09",
     "kind": "question",
     "keywords": [
       "1d-q09",
@@ -715,7 +715,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A gas balloon is going up with a constant velocity of 10 m/s. When this balloon ",
-    "path": "question-bank/index.html?search=1D-Q10",
+    "path": "question-bank/index.html?q=1D-Q10#1D-Q10",
     "kind": "question",
     "keywords": [
       "1d-q10",
@@ -772,7 +772,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Water drops fall from a tap on the floor 5 m below at regular time intervals. Th",
-    "path": "question-bank/index.html?search=1D-Q11",
+    "path": "question-bank/index.html?q=1D-Q11#1D-Q11",
     "kind": "question",
     "keywords": [
       "1d-q11",
@@ -829,7 +829,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A paratrooper after bailing out falls 50 m without friction. When the parachute ",
-    "path": "question-bank/index.html?search=1D-Q12",
+    "path": "question-bank/index.html?q=1D-Q12#1D-Q12",
     "kind": "question",
     "keywords": [
       "1d-q12",
@@ -886,7 +886,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A ball is thrown vertically upwards from the top of a tower of height h with vel",
-    "path": "question-bank/index.html?search=1D-Q13",
+    "path": "question-bank/index.html?q=1D-Q13#1D-Q13",
     "kind": "question",
     "keywords": [
       "1d-q13",
@@ -943,7 +943,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The deceleration experienced by a moving motor boat after its engine is cut off ",
-    "path": "question-bank/index.html?search=1D-Q14",
+    "path": "question-bank/index.html?q=1D-Q14#1D-Q14",
     "kind": "question",
     "keywords": [
       "1d-q14",
@@ -1000,7 +1000,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A particle moves in a resistive medium with acceleration a = -\u03b2 v, where \u03b2 is a ",
-    "path": "question-bank/index.html?search=1D-Q15",
+    "path": "question-bank/index.html?q=1D-Q15#1D-Q15",
     "kind": "question",
     "keywords": [
       "1d-q15",
@@ -1057,7 +1057,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Two cars A and B travel in the same direction along a straight highway. Car A mo",
-    "path": "question-bank/index.html?search=1D-Q16",
+    "path": "question-bank/index.html?q=1D-Q16#1D-Q16",
     "kind": "question",
     "keywords": [
       "1d-q16",
@@ -1114,7 +1114,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Two trains A and B, each of length 150 m, are moving in opposite directions on p",
-    "path": "question-bank/index.html?search=1D-Q17",
+    "path": "question-bank/index.html?q=1D-Q17#1D-Q17",
     "kind": "question",
     "keywords": [
       "1d-q17",
@@ -1171,7 +1171,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Two trains travelling on the same track are approaching each other with speeds o",
-    "path": "question-bank/index.html?search=1D-Q18",
+    "path": "question-bank/index.html?q=1D-Q18#1D-Q18",
     "kind": "question",
     "keywords": [
       "1d-q18",
@@ -1228,7 +1228,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "According to Molecular Orbital Theory (MOT), which of the following oxygen speci",
-    "path": "question-bank/index.html?search=BOND-Q01",
+    "path": "question-bank/index.html?q=BOND-Q01#BOND-Q01",
     "kind": "question",
     "keywords": [
       "bond-q01",
@@ -1264,28 +1264,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "shortest",
       "bond",
       "length?",
-      "a",
-      "step",
-      "1:",
-      "write",
-      "electronic",
-      "configuration",
-      "of",
-      "neutral",
-      "o\u2082",
-      "(16",
-      "electrons,",
-      ">",
-      "14",
-      "e\u207b,",
-      "no",
-      "2s-2p",
-      "mixing):"
+      "chemical",
+      "bonding",
+      "cap-chem-bonding",
+      "chemistry"
     ]
   },
   {
     "title": "The geometry and net dipole moment of XeF\u2084 and SF\u2084 respectively are:",
-    "path": "question-bank/index.html?search=BOND-Q02",
+    "path": "question-bank/index.html?q=BOND-Q02#BOND-Q02",
     "kind": "question",
     "keywords": [
       "bond-q02",
@@ -1313,36 +1300,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "sf\u2084",
       "respectively",
       "are:",
-      "a",
-      "step",
-      "1:",
-      "calculate",
-      "steric",
-      "number",
-      "for",
-      "xef\u2084:",
-      "xe",
-      "has",
-      "8",
-      "valence",
-      "electrons.",
-      "4",
-      "bond",
-      "pairs",
-      "to",
-      "f",
-      "+",
-      "2",
-      "lone",
-      "pairs",
-      "=",
-      "6",
-      "electron"
+      "chemical",
+      "bonding",
+      "cap-chem-bonding",
+      "chemistry"
     ]
   },
   {
     "title": "Although Nitrogen and Fluorine are both highly electronegative, the dipole momen",
-    "path": "question-bank/index.html?search=BOND-Q03",
+    "path": "question-bank/index.html?q=BOND-Q03#BOND-Q03",
     "kind": "question",
     "keywords": [
       "bond-q03",
@@ -1385,21 +1351,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "correct",
       "explanation",
       "is:",
-      "a",
-      "step",
-      "1:",
-      "both",
-      "nh\u2083",
-      "and",
-      "nf\u2083",
-      "have",
-      "trigonal",
-      "pyramidal"
+      "chemical",
+      "bonding",
+      "cap-chem-bonding",
+      "chemistry"
     ]
   },
   {
     "title": "In gaseous phosphorus pentachloride (PCl\u2085), the axial P-Cl bonds are longer and ",
-    "path": "question-bank/index.html?search=BOND-Q04",
+    "path": "question-bank/index.html?q=BOND-Q04#BOND-Q04",
     "kind": "question",
     "keywords": [
       "bond-q04",
@@ -1434,29 +1394,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "p-cl",
       "bonds",
       "because:",
-      "a",
-      "step",
-      "1:",
-      "pcl\u2085",
-      "has",
-      "sp\u00b3d",
-      "hybridization",
-      "(steric",
-      "number",
-      "=",
-      "5,",
-      "trigonal",
-      "bipyramidal",
-      "geometry).",
-      "step",
-      "2:",
-      "an",
-      "axial"
+      "chemical",
+      "bonding",
+      "cap-chem-bonding",
+      "chemistry"
     ]
   },
   {
     "title": "ortho-Nitrophenol is steam volatile and has a lower boiling point than para-nitr",
-    "path": "question-bank/index.html?search=BOND-Q05",
+    "path": "question-bank/index.html?q=BOND-Q05#BOND-Q05",
     "kind": "question",
     "keywords": [
       "bond-q05",
@@ -1485,35 +1431,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "than",
       "para-nitrophenol",
       "because:",
-      "a",
-      "step",
-      "1:",
-      "in",
-      "ortho-nitrophenol,",
-      "the",
-      "-oh",
-      "and",
-      "-no\u2082",
-      "groups",
-      "are",
-      "adjacent",
-      "(1,2-positions",
-      "on",
-      "benzene",
-      "ring).",
-      "step",
-      "2:",
-      "the",
-      "phenolic",
-      "hydrogen",
-      "forms",
-      "a",
-      "6-membered"
+      "chemical",
+      "bonding",
+      "cap-chem-bonding",
+      "chemistry"
     ]
   },
   {
     "title": "According to Molecular Orbital Theory (MOT), which of the following homonuclear ",
-    "path": "question-bank/index.html?search=BOND-Q06",
+    "path": "question-bank/index.html?q=BOND-Q06#BOND-Q06",
     "kind": "question",
     "keywords": [
       "bond-q06",
@@ -1559,18 +1485,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "number",
       "of",
       "electrons?",
-      "a",
-      "step",
-      "1:",
-      "write",
-      "mot",
-      "configuration",
-      "for"
+      "chemical",
+      "bonding",
+      "cap-chem-bonding",
+      "chemistry"
     ]
   },
   {
     "title": "Both ammonia (NH\u2083) and nitrogen trifluoride (NF\u2083) have trigonal pyramidal geomet",
-    "path": "question-bank/index.html?search=BOND-Q07",
+    "path": "question-bank/index.html?q=BOND-Q07#BOND-Q07",
     "kind": "question",
     "keywords": [
       "bond-q07",
@@ -1620,14 +1543,14 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "(0.24",
       "d)",
       "because:",
-      "a",
-      "step",
-      "1:"
+      "chemical",
+      "bonding",
+      "cap-chem-bonding"
     ]
   },
   {
     "title": "In the resonance contributor of the ozone molecule (O\u2083: O_a - O_b = O_c), the fo",
-    "path": "question-bank/index.html?search=BOND-Q08",
+    "path": "question-bank/index.html?q=BOND-Q08#BOND-Q08",
     "kind": "question",
     "keywords": [
       "bond-q08",
@@ -1684,7 +1607,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The total number of lone pairs on the central atom of XeF\u2084, SF\u2084, and ClF\u2083 respec",
-    "path": "question-bank/index.html?search=BOND-Q09",
+    "path": "question-bank/index.html?q=BOND-Q09#BOND-Q09",
     "kind": "question",
     "keywords": [
       "bond-q09",
@@ -1721,27 +1644,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "clf\u2083",
       "respectively",
       "are:",
-      "a",
-      "step",
-      "1:",
-      "for",
-      "xef\u2084:",
-      "xe",
-      "has",
-      "8",
-      "valence",
-      "electrons.",
-      "steric",
-      "number",
-      "=",
-      "4",
-      "\u03c3-bonds",
-      "+"
+      "chemical",
+      "bonding",
+      "cap-chem-bonding",
+      "chemistry"
     ]
   },
   {
     "title": "The formal charge on each oxygen atom in the resonance hybrid of the carbonate i",
-    "path": "question-bank/index.html?search=BOND-Q10",
+    "path": "question-bank/index.html?q=BOND-Q10#BOND-Q10",
     "kind": "question",
     "keywords": [
       "bond-q10",
@@ -1777,28 +1688,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "ion",
       "(co\u2083\u00b2\u207b)",
       "is:",
-      "a",
-      "step",
-      "1:",
-      "write",
-      "the",
-      "canonical",
-      "lewis",
-      "resonance",
-      "forms",
-      "of",
-      "co\u2083\u00b2\u207b.",
-      "carbon",
-      "forms",
-      "1",
-      "c=o",
-      "double",
-      "bond"
+      "chemical",
+      "bonding",
+      "cap-chem-bonding",
+      "chemistry"
     ]
   },
   {
     "title": "According to Molecular Orbital Theory (MOT), in which of the following diatomic ",
-    "path": "question-bank/index.html?search=BOND-Q11",
+    "path": "question-bank/index.html?q=BOND-Q11#BOND-Q11",
     "kind": "question",
     "keywords": [
       "bond-q11",
@@ -1840,22 +1738,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "no",
       "\u03c3",
       "bond?",
-      "a",
-      "step",
-      "1:",
-      "carbon",
-      "has",
-      "z",
-      "=",
-      "6",
-      "\u2264",
-      "7,",
-      "so"
+      "chemical",
+      "bonding",
+      "cap-chem-bonding",
+      "chemistry"
     ]
   },
   {
     "title": "In gaseous PCl\u2085, the axial P-Cl bonds are longer (240 pm) than the equatorial P-",
-    "path": "question-bank/index.html?search=BOND-Q12",
+    "path": "question-bank/index.html?q=BOND-Q12#BOND-Q12",
     "kind": "question",
     "keywords": [
       "bond-q12",
@@ -1893,26 +1784,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "(202",
       "pm)",
       "because:",
-      "a",
-      "step",
-      "1:",
-      "trigonal",
-      "bipyramidal",
-      "geometry",
-      "(sp\u00b3d)",
-      "has",
-      "two",
-      "geometrically",
-      "distinct",
-      "sets",
-      "of",
-      "bonds:",
-      "3"
+      "chemical",
+      "bonding",
+      "cap-chem-bonding",
+      "chemistry"
     ]
   },
   {
     "title": "Among the following molecules, which one has a non-zero permanent dipole moment ",
-    "path": "question-bank/index.html?search=BOND-Q13",
+    "path": "question-bank/index.html?q=BOND-Q13#BOND-Q13",
     "kind": "question",
     "keywords": [
       "bond-q13",
@@ -1943,33 +1823,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "(\u03bc",
       "\u2260",
       "0)?",
-      "a",
-      "step",
-      "1:",
-      "check",
-      "bf\u2083:",
-      "trigonal",
-      "planar",
-      "(sp\u00b2),",
-      "120\u00b0",
-      "bond",
-      "angles.",
-      "the",
-      "three",
-      "equal",
-      "b-f",
-      "bond",
-      "dipoles",
-      "cancel",
-      "completely",
-      "by",
-      "symmetry",
-      "\u21d2"
+      "chemical",
+      "bonding",
+      "cap-chem-bonding",
+      "chemistry"
     ]
   },
   {
     "title": "The hybridization of the central atom and the molecular shape of BrF\u2085 are:",
-    "path": "question-bank/index.html?search=BOND-Q14",
+    "path": "question-bank/index.html?q=BOND-Q14#BOND-Q14",
     "kind": "question",
     "keywords": [
       "bond-q14",
@@ -1999,34 +1861,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "brf\u2085",
       "are:",
-      "a",
-      "step",
-      "1:",
-      "bromine",
-      "has",
-      "7",
-      "valence",
-      "electrons",
-      "in",
-      "its",
-      "outer",
-      "shell.",
-      "step",
-      "2:",
-      "5",
-      "valence",
-      "electrons",
-      "form",
-      "5",
-      "single",
-      "\u03c3-bonds",
-      "with",
-      "5"
+      "chemical",
+      "bonding",
+      "cap-chem-bonding",
+      "chemistry"
     ]
   },
   {
     "title": "The correct order of bond dissociation enthalpy of halogen molecules (X\u2082) is:",
-    "path": "question-bank/index.html?search=BOND-Q15",
+    "path": "question-bank/index.html?q=BOND-Q15#BOND-Q15",
     "kind": "question",
     "keywords": [
       "bond-q15",
@@ -2054,36 +1897,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "molecules",
       "(x\u2082)",
       "is:",
-      "a",
-      "step",
-      "1:",
-      "in",
-      "general,",
-      "bond",
-      "dissociation",
-      "energy",
-      "decreases",
-      "down",
-      "the",
-      "group",
-      "as",
-      "bond",
-      "length",
-      "increases:",
-      "cl\u2082",
-      ">",
-      "br\u2082",
-      ">",
-      "i\u2082.",
-      "step",
-      "2:",
-      "fluorine",
-      "(f\u2082)"
+      "chemical",
+      "bonding",
+      "cap-chem-bonding",
+      "chemistry"
     ]
   },
   {
     "title": "The hybridization and geometry of the triiodide ion (I\u2083\u207b) are:",
-    "path": "question-bank/index.html?search=BOND-Q16",
+    "path": "question-bank/index.html?q=BOND-Q16#BOND-Q16",
     "kind": "question",
     "keywords": [
       "bond-q16",
@@ -2107,40 +1929,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "ion",
       "(i\u2083\u207b)",
       "are:",
-      "a",
-      "step",
-      "1:",
-      "central",
-      "iodine",
-      "atom",
-      "has",
-      "7",
-      "valence",
-      "electrons",
-      "+",
-      "1",
-      "extra",
-      "electron",
-      "(negative",
-      "charge)",
-      "=",
-      "8",
-      "electrons.",
-      "step",
-      "2:",
-      "2",
-      "electrons",
-      "are",
-      "shared",
-      "with",
-      "two",
-      "terminal",
-      "iodine"
+      "chemical",
+      "bonding",
+      "cap-chem-bonding",
+      "chemistry"
     ]
   },
   {
     "title": "The correct order of boiling points for the Group 16 hydrides (chalcogen hydride",
-    "path": "question-bank/index.html?search=BOND-Q17",
+    "path": "question-bank/index.html?q=BOND-Q17#BOND-Q17",
     "kind": "question",
     "keywords": [
       "bond-q17",
@@ -2171,33 +1968,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "(chalcogen",
       "hydrides)",
       "is:",
-      "a",
-      "step",
-      "1:",
-      "from",
-      "h\u2082s",
-      "to",
-      "h\u2082te,",
-      "molecular",
-      "mass",
-      "increases",
-      "\u21d2",
-      "van",
-      "der",
-      "waals",
-      "dispersion",
-      "forces",
-      "increase",
-      "\u21d2",
-      "boiling",
-      "point",
-      "increases:",
-      "h\u2082te"
+      "chemical",
+      "bonding",
+      "cap-chem-bonding",
+      "chemistry"
     ]
   },
   {
     "title": "In the solid state, PCl\u2085 exists as an ionic compound composed of:",
-    "path": "question-bank/index.html?search=BOND-Q18",
+    "path": "question-bank/index.html?q=BOND-Q18#BOND-Q18",
     "kind": "question",
     "keywords": [
       "bond-q18",
@@ -2225,36 +2004,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "compound",
       "composed",
       "of:",
-      "a",
-      "step",
-      "1:",
-      "in",
-      "the",
-      "gas",
-      "and",
-      "liquid",
-      "phases,",
-      "pcl\u2085",
-      "exists",
-      "as",
-      "discrete",
-      "trigonal",
-      "bipyramidal",
-      "molecules",
-      "with",
-      "sp\u00b3d",
-      "hybridization.",
-      "step",
-      "2:",
-      "in",
-      "the",
-      "solid",
-      "state,"
+      "chemical",
+      "bonding",
+      "cap-chem-bonding",
+      "chemistry"
     ]
   },
   {
     "title": "The bond order and magnetic behavior of the carbon monoxide cation (CO\u207a) accordi",
-    "path": "question-bank/index.html?search=BOND-Q19",
+    "path": "question-bank/index.html?q=BOND-Q19#BOND-Q19",
     "kind": "question",
     "keywords": [
       "bond-q19",
@@ -2287,31 +2045,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "to",
       "mot",
       "are:",
-      "b",
-      "step",
-      "1:",
-      "neutral",
-      "co",
-      "has",
-      "14",
-      "electrons",
-      "and",
-      "is",
-      "treated",
-      "as",
-      "isoelectronic",
-      "with",
-      "n\u2082",
-      "in",
-      "the",
-      "standard",
-      "introductory",
-      "mo"
+      "chemical",
+      "bonding",
+      "cap-chem-bonding",
+      "chemistry"
     ]
   },
   {
     "title": "Ortho-nitrophenol is more volatile in steam than para-nitrophenol because:",
-    "path": "question-bank/index.html?search=BOND-Q20",
+    "path": "question-bank/index.html?q=BOND-Q20#BOND-Q20",
     "kind": "question",
     "keywords": [
       "bond-q20",
@@ -2333,42 +2075,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "than",
       "para-nitrophenol",
       "because:",
-      "a",
-      "step",
-      "1:",
-      "in",
-      "ortho-nitrophenol,",
-      "the",
-      "-oh",
-      "and",
-      "-no\u2082",
-      "groups",
-      "are",
-      "on",
-      "adjacent",
-      "carbon",
-      "atoms.",
-      "step",
-      "2:",
-      "the",
-      "hydrogen",
-      "of",
-      "-oh",
-      "forms",
-      "an",
-      "intramolecular",
-      "h-bond",
-      "with",
-      "the",
-      "oxygen",
-      "of",
-      "-no\u2082,",
-      "closing"
+      "chemical",
+      "bonding",
+      "cap-chem-bonding",
+      "chemistry"
     ]
   },
   {
     "title": "56 g of N\u2082 gas and 10 g of H\u2082 gas are mixed to produce NH\u2083 gas via the Haber pro",
-    "path": "question-bank/index.html?search=CHEM02-Q01",
+    "path": "question-bank/index.html?q=CHEM02-Q01#CHEM02-Q01",
     "kind": "question",
     "keywords": [
       "chem02-q01",
@@ -2425,7 +2140,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Which of the following sets of concentration terms is completely independent of ",
-    "path": "question-bank/index.html?search=CHEM02-Q02",
+    "path": "question-bank/index.html?q=CHEM02-Q02#CHEM02-Q02",
     "kind": "question",
     "keywords": [
       "chem02-q02",
@@ -2455,34 +2170,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "temperature",
       "changes?",
-      "b",
-      "step",
-      "1:",
-      "temperature",
-      "affects",
-      "liquid",
-      "volume:",
-      "v(t)",
-      "=",
-      "v\u2080(1",
-      "+",
-      "\u03b3",
-      "\u03b4t).",
-      "density",
-      "changes",
-      "with",
-      "temperature.",
-      "step",
-      "2:",
-      "any",
-      "concentration",
-      "unit",
-      "that"
+      "mole",
+      "concept",
+      "cap-chem-mole",
+      "chemistry"
     ]
   },
   {
     "title": "Consider the two-step synthesis: A + 2B \u2192 C (yield = 80%), followed by C + D \u2192 E",
-    "path": "question-bank/index.html?search=CHEM02-Q03",
+    "path": "question-bank/index.html?q=CHEM02-Q03#CHEM02-Q03",
     "kind": "question",
     "keywords": [
       "chem02-q03",
@@ -2539,7 +2235,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "10 mL of a gaseous hydrocarbon C_x H_y is exploded with 80 mL of O\u2082 in an eudiom",
-    "path": "question-bank/index.html?search=CHEM02-Q04",
+    "path": "question-bank/index.html?q=CHEM02-Q04#CHEM02-Q04",
     "kind": "question",
     "keywords": [
       "chem02-q04",
@@ -2596,7 +2292,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "An organic compound contains 40.0% Carbon, 6.7% Hydrogen, and 53.3% Oxygen by ma",
-    "path": "question-bank/index.html?search=CHEM02-Q05",
+    "path": "question-bank/index.html?q=CHEM02-Q05#CHEM02-Q05",
     "kind": "question",
     "keywords": [
       "chem02-q05",
@@ -2636,24 +2332,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "molecular",
       "formula",
       "is:",
-      "b",
-      "step",
-      "1:",
-      "compute",
-      "moles",
-      "in",
-      "100",
-      "g",
-      "sample:",
-      "n(c)",
-      "=",
-      "40.0",
-      "/"
+      "mole",
+      "concept",
+      "cap-chem-mole",
+      "chemistry"
     ]
   },
   {
     "title": "The molality of a 10% (w/w) aqueous solution of glucose (C\u2086H\u2081\u2082O\u2086, Molar mass = 1",
-    "path": "question-bank/index.html?search=CHEM02-Q06",
+    "path": "question-bank/index.html?q=CHEM02-Q06#CHEM02-Q06",
     "kind": "question",
     "keywords": [
       "chem02-q06",
@@ -2689,28 +2376,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "180",
       "g/mol)",
       "is:",
-      "a",
-      "step",
-      "1:",
-      "basis:",
-      "take",
-      "100",
-      "g",
-      "of",
-      "solution.",
-      "mass",
-      "of",
-      "glucose",
-      "solute",
-      "=",
-      "10",
-      "g.",
-      "mass"
+      "mole",
+      "concept",
+      "cap-chem-mole",
+      "chemistry"
     ]
   },
   {
     "title": "The total number of atoms present in 4.4 g of CO\u2082 gas at STP is (N_A = 6.022 \u00d7 1",
-    "path": "question-bank/index.html?search=CHEM02-Q07",
+    "path": "question-bank/index.html?q=CHEM02-Q07#CHEM02-Q07",
     "kind": "question",
     "keywords": [
       "chem02-q07",
@@ -2755,19 +2429,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "\u00d7",
       "10\u00b2\u00b3",
       "mol\u207b\u00b9):",
-      "a",
-      "step",
-      "1:",
-      "calculate",
-      "moles",
-      "of",
-      "co\u2082:",
-      "n"
+      "mole",
+      "concept",
+      "cap-chem-mole",
+      "chemistry"
     ]
   },
   {
     "title": "When 50 mL of 0.5 M BaCl\u2082 solution is mixed with 50 mL of 0.2 M Na\u2082SO\u2084 solution,",
-    "path": "question-bank/index.html?search=CHEM02-Q08",
+    "path": "question-bank/index.html?q=CHEM02-Q08#CHEM02-Q08",
     "kind": "question",
     "keywords": [
       "chem02-q08",
@@ -2824,7 +2494,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Two identical bodies, projected with the same speed at two different angles cove",
-    "path": "question-bank/index.html?search=EXAM-01",
+    "path": "question-bank/index.html?q=EXAM-01#EXAM-01",
     "kind": "question",
     "keywords": [
       "exam-01",
@@ -2881,7 +2551,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "At t=0 , a body of mass 100 g starts moving under the influence of a force (5i\u02c6+",
-    "path": "question-bank/index.html?search=EXAM-02",
+    "path": "question-bank/index.html?q=EXAM-02#EXAM-02",
     "kind": "question",
     "keywords": [
       "exam-02",
@@ -2938,7 +2608,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "If x and y coordinates of a projectile as a function of time (t) are given as 24",
-    "path": "question-bank/index.html?search=EXAM-03",
+    "path": "question-bank/index.html?q=EXAM-03#EXAM-03",
     "kind": "question",
     "keywords": [
       "exam-03",
@@ -2995,7 +2665,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The two projectiles are projected with the same initial velocities at the 15\u2218 an",
-    "path": "question-bank/index.html?search=EXAM-04",
+    "path": "question-bank/index.html?q=EXAM-04#EXAM-04",
     "kind": "question",
     "keywords": [
       "exam-04",
@@ -3046,13 +2716,13 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "x",
       "is",
-      "x",
-      "="
+      "motion",
+      "in"
     ]
   },
   {
     "title": "A boy throws a ball into air at 45\u2218 from the horizontal to land it on a roof of ",
-    "path": "question-bank/index.html?search=EXAM-05",
+    "path": "question-bank/index.html?q=EXAM-05#EXAM-05",
     "kind": "question",
     "keywords": [
       "exam-05",
@@ -3109,7 +2779,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A projectile is thrown upward at an angle 60\u2218 with the horizontal. The speed of ",
-    "path": "question-bank/index.html?search=EXAM-06",
+    "path": "question-bank/index.html?q=EXAM-06#EXAM-06",
     "kind": "question",
     "keywords": [
       "exam-06",
@@ -3166,7 +2836,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A river of width 200 m is flowing from west to east with a speed of 18 km/h. A b",
-    "path": "question-bank/index.html?search=EXAM-07",
+    "path": "question-bank/index.html?q=EXAM-07#EXAM-07",
     "kind": "question",
     "keywords": [
       "exam-07",
@@ -3223,7 +2893,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Two balls with same mass and initial velocity, are projected at different angles",
-    "path": "question-bank/index.html?search=EXAM-08",
+    "path": "question-bank/index.html?q=EXAM-08#EXAM-08",
     "kind": "question",
     "keywords": [
       "exam-08",
@@ -3280,7 +2950,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A helicopter flying horizontally with a speed of 360 km/h at an altitude of 2 km",
-    "path": "question-bank/index.html?search=EXAM-09",
+    "path": "question-bank/index.html?q=EXAM-09#EXAM-09",
     "kind": "question",
     "keywords": [
       "exam-09",
@@ -3337,7 +3007,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Two projectiles are fired from ground with same initial speeds from same point a",
-    "path": "question-bank/index.html?search=EXAM-10",
+    "path": "question-bank/index.html?q=EXAM-10#EXAM-10",
     "kind": "question",
     "keywords": [
       "exam-10",
@@ -3385,16 +3055,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "flights",
       "is",
-      "t(45\u00b0+\u03b1)/t(45\u00b0\u2212\u03b1)",
-      "=",
-      "(1+tan\u03b1)/(1\u2212tan\u03b1)",
-      "t\u208a/t\u208b=sin(45\u00b0+\u03b1)/sin(45\u00b0\u2212\u03b1).",
-      "expand"
+      "motion",
+      "in",
+      "2d",
+      "cap-phy-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "A particle is projected with velocity u so that its horizontal range is three ti",
-    "path": "question-bank/index.html?search=EXAM-11",
+    "path": "question-bank/index.html?q=EXAM-11#EXAM-11",
     "kind": "question",
     "keywords": [
       "exam-11",
@@ -3451,7 +3121,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The angle of projection of a particle is measured from the vertical axis as \u03c6 an",
-    "path": "question-bank/index.html?search=EXAM-12",
+    "path": "question-bank/index.html?q=EXAM-12#EXAM-12",
     "kind": "question",
     "keywords": [
       "exam-12",
@@ -3508,7 +3178,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A river is flowing from west to east direction with speed of 9kmh\u22121 . If a boat ",
-    "path": "question-bank/index.html?search=EXAM-13",
+    "path": "question-bank/index.html?q=EXAM-13#EXAM-13",
     "kind": "question",
     "keywords": [
       "exam-13",
@@ -3565,7 +3235,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Two projectiles are fired with same initial speed from same point on ground at a",
-    "path": "question-bank/index.html?search=EXAM-14",
+    "path": "question-bank/index.html?q=EXAM-14#EXAM-14",
     "kind": "question",
     "keywords": [
       "exam-14",
@@ -3622,7 +3292,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The position vector of a moving body at any instant of time is given as r\u2192=(5t2i",
-    "path": "question-bank/index.html?search=EXAM-15",
+    "path": "question-bank/index.html?q=EXAM-15#EXAM-15",
     "kind": "question",
     "keywords": [
       "exam-15",
@@ -3668,18 +3338,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "at",
       "t=2s",
       "is,",
-      "5\u221a17",
-      "m/s,",
-      "tan",
-      "\u03b8",
-      "=",
-      "-1/4",
-      "position"
+      "motion",
+      "in",
+      "2d",
+      "cap-phy-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "An object of mass ' m ' is projected from origin in a vertical xy plane at an an",
-    "path": "question-bank/index.html?search=EXAM-16",
+    "path": "question-bank/index.html?q=EXAM-16#EXAM-16",
     "kind": "question",
     "keywords": [
       "exam-16",
@@ -3736,7 +3404,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A ball of mass 100 g is projected with velocity 20m/s at 60\u2218 with horizontal. Th",
-    "path": "question-bank/index.html?search=EXAM-17",
+    "path": "question-bank/index.html?q=EXAM-17#EXAM-17",
     "kind": "question",
     "keywords": [
       "exam-17",
@@ -3793,7 +3461,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The angle of projection for a projectile to have same horizontal range and maxim",
-    "path": "question-bank/index.html?search=EXAM-18",
+    "path": "question-bank/index.html?q=EXAM-18#EXAM-18",
     "kind": "question",
     "keywords": [
       "exam-18",
@@ -3828,29 +3496,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "height",
       "is",
       ":",
-      "tan",
-      "\u03b8",
-      "=",
-      "4",
-      "(\u03b8",
-      "\u2248",
-      "76\u00b0)",
-      "given",
-      "r",
-      "=",
-      "h.",
-      "from",
-      "the",
-      "4h",
-      "identity:",
-      "r",
-      "tan",
-      "\u03b8"
+      "motion",
+      "in",
+      "2d",
+      "cap-phy-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "The co-ordinates of a particle moving in x - y plane are given by : x=2+4t,y=3t+",
-    "path": "question-bank/index.html?search=EXAM-19",
+    "path": "question-bank/index.html?q=EXAM-19#EXAM-19",
     "kind": "question",
     "keywords": [
       "exam-19",
@@ -3894,20 +3549,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "particle",
       "is",
       ":",
-      "uniformly",
-      "accelerated",
-      "planar",
       "motion",
-      "with",
-      "a",
-      "=",
-      "16",
-      "\u0135"
+      "in",
+      "2d",
+      "cap-phy-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "Projectiles A and B are thrown at angles of 45\u2218 and 60\u2218 with vertical respective",
-    "path": "question-bank/index.html?search=EXAM-20",
+    "path": "question-bank/index.html?q=EXAM-20#EXAM-20",
     "kind": "question",
     "keywords": [
       "exam-20",
@@ -3964,7 +3615,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Position of an ant ( S in metres) moving in Y - Z plane is given by S=2t2j\u02c6+5k\u02c6 ",
-    "path": "question-bank/index.html?search=EXAM-21",
+    "path": "question-bank/index.html?q=EXAM-21#EXAM-21",
     "kind": "question",
     "keywords": [
       "exam-21",
@@ -4021,7 +3672,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A projectile is projected at 30\u2218 from horizontal with initial velocity 40ms\u22121 . ",
-    "path": "question-bank/index.html?search=EXAM-22",
+    "path": "question-bank/index.html?q=EXAM-22#EXAM-22",
     "kind": "question",
     "keywords": [
       "exam-22",
@@ -4067,18 +3718,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "(given",
       "g=10m/s2",
       ")",
-      "20\u221a3",
-      "\u00ee",
-      "m/s",
-      "(horizontal)",
-      "v_x=40cos30\u00b0=20\u221a3",
-      "m/s.",
-      "v_y=40sin30\u00b0\u221210(2)=20\u221220=0."
+      "motion",
+      "in",
+      "2d",
+      "cap-phy-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "Two projectiles are projected at 30\u2218 and 60\u2218 with the horizontal with the same s",
-    "path": "question-bank/index.html?search=EXAM-23",
+    "path": "question-bank/index.html?q=EXAM-23#EXAM-23",
     "kind": "question",
     "keywords": [
       "exam-23",
@@ -4125,17 +3774,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "projectiles",
       "respectively",
       "is:",
-      "1:3",
-      "for",
-      "equal",
-      "u",
-      "and",
-      "g,"
+      "motion",
+      "in",
+      "2d",
+      "cap-phy-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "The range of the projectile projected at an angle of 15 \u2218 with horizontal is 50 ",
-    "path": "question-bank/index.html?search=EXAM-24",
+    "path": "question-bank/index.html?q=EXAM-24#EXAM-24",
     "kind": "question",
     "keywords": [
       "exam-24",
@@ -4192,7 +3840,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The trajectory of projectile, projected from the ground is given by y=x\u2212x220 . W",
-    "path": "question-bank/index.html?search=EXAM-25",
+    "path": "question-bank/index.html?q=EXAM-25#EXAM-25",
     "kind": "question",
     "keywords": [
       "exam-25",
@@ -4240,16 +3888,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "projectile",
       "will",
       "be.",
-      "h",
-      "=",
-      "5",
-      "m",
-      "given"
+      "motion",
+      "in",
+      "2d",
+      "cap-phy-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "Two projectiles A and B are thrown with initial velocities of 40m/s and 60m/s at",
-    "path": "question-bank/index.html?search=EXAM-26",
+    "path": "question-bank/index.html?q=EXAM-26#EXAM-26",
     "kind": "question",
     "keywords": [
       "exam-26",
@@ -4299,14 +3947,14 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "respectively",
       "is",
       "(g=10m/s2)",
-      "4:9",
-      "r_a\u221d40\u00b2sin60\u00b0.",
-      "r_b\u221d60\u00b2sin120\u00b0,"
+      "motion",
+      "in",
+      "2d"
     ]
   },
   {
     "title": "Given below are two statements : one is labelled as Assertion A and the other is",
-    "path": "question-bank/index.html?search=EXAM-27",
+    "path": "question-bank/index.html?q=EXAM-27#EXAM-27",
     "kind": "question",
     "keywords": [
       "exam-27",
@@ -4363,7 +4011,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A child stands on the edge of the cliff 10m above the ground and throws a stone ",
-    "path": "question-bank/index.html?search=EXAM-28",
+    "path": "question-bank/index.html?q=EXAM-28#EXAM-28",
     "kind": "question",
     "keywords": [
       "exam-28",
@@ -4420,7 +4068,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The initial speed of a projectile fired from ground is u . At the highest point ",
-    "path": "question-bank/index.html?search=EXAM-29",
+    "path": "question-bank/index.html?q=EXAM-29#EXAM-29",
     "kind": "question",
     "keywords": [
       "exam-29",
@@ -4477,7 +4125,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Two objects are projected with same velocity 'u' however at different angles \u03b1 a",
-    "path": "question-bank/index.html?search=EXAM-30",
+    "path": "question-bank/index.html?q=EXAM-30#EXAM-30",
     "kind": "question",
     "keywords": [
       "exam-30",
@@ -4534,7 +4182,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The maximum vertical height to which a man can throw a ball is 136 m. The maximu",
-    "path": "question-bank/index.html?search=EXAM-31",
+    "path": "question-bank/index.html?q=EXAM-31#EXAM-31",
     "kind": "question",
     "keywords": [
       "exam-31",
@@ -4584,14 +4232,14 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "ball",
       "is",
       ":",
-      "272",
-      "m",
-      "the"
+      "motion",
+      "in",
+      "2d"
     ]
   },
   {
     "title": "At time t=0 a particle starts travelling from a height 7z\u02c6cm in a plane keeping ",
-    "path": "question-bank/index.html?search=EXAM-32",
+    "path": "question-bank/index.html?q=EXAM-32#EXAM-32",
     "kind": "question",
     "keywords": [
       "exam-32",
@@ -4648,7 +4296,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Two projectiles are thrown with same initial velocity making an angle of 45\u2218 and",
-    "path": "question-bank/index.html?search=EXAM-33",
+    "path": "question-bank/index.html?q=EXAM-33#EXAM-33",
     "kind": "question",
     "keywords": [
       "exam-33",
@@ -4694,18 +4342,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "will",
       "be",
       ":",
-      "2:\u221a3",
-      "for",
-      "45\u00b0,",
-      "r\u2084\u2085\u221dsin90\u00b0=1.",
-      "for",
-      "30\u00b0,",
-      "r\u2083\u2080\u221dsin60\u00b0=\u221a3/2."
+      "motion",
+      "in",
+      "2d",
+      "cap-phy-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "Two projectiles thrown at 30\u2218 and 45\u2218 with the horizontal respectively, reach th",
-    "path": "question-bank/index.html?search=EXAM-34",
+    "path": "question-bank/index.html?q=EXAM-34#EXAM-34",
     "kind": "question",
     "keywords": [
       "exam-34",
@@ -4748,21 +4394,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "velocities",
       "is",
       ":",
-      "\u221a2:1",
-      "equal",
-      "times",
-      "to",
-      "maximum",
-      "height",
-      "imply",
-      "u\u2081sin30\u00b0=u\u2082sin45\u00b0.",
-      "hence",
-      "u\u2081/u\u2082=sin45\u00b0/sin30\u00b0."
+      "motion",
+      "in",
+      "2d",
+      "cap-phy-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "A ball is projected from the ground with a speed 15 ms \u2212 1 at an angle \u03b8 with ho",
-    "path": "question-bank/index.html?search=EXAM-35",
+    "path": "question-bank/index.html?q=EXAM-35#EXAM-35",
     "kind": "question",
     "keywords": [
       "exam-35",
@@ -4819,7 +4460,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "At t = 0, truck, starting from rest, moves in the positive x-direction at unifor",
-    "path": "question-bank/index.html?search=EXAM-36",
+    "path": "question-bank/index.html?q=EXAM-36#EXAM-36",
     "kind": "question",
     "keywords": [
       "exam-36",
@@ -4876,7 +4517,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Two projectiles P 1 and P 2 thrown with speed in the ratio sqrt3 : sqrt2 , attai",
-    "path": "question-bank/index.html?search=EXAM-37",
+    "path": "question-bank/index.html?q=EXAM-37#EXAM-37",
     "kind": "question",
     "keywords": [
       "exam-37",
@@ -4933,7 +4574,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A person can throw a ball upto a maximum range of 100 m. How high above the grou",
-    "path": "question-bank/index.html?search=EXAM-38",
+    "path": "question-bank/index.html?q=EXAM-38#EXAM-38",
     "kind": "question",
     "keywords": [
       "exam-38",
@@ -4979,18 +4620,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "same",
       "ball?",
-      "50",
-      "m",
-      "r_max=100",
-      "m",
-      "implies",
-      "u\u00b2/g=100",
-      "m."
+      "motion",
+      "in",
+      "2d",
+      "cap-phy-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "A projectile is launched at an angle ' \u03b1 ' with the horizontal with a velocity 2",
-    "path": "question-bank/index.html?search=EXAM-39",
+    "path": "question-bank/index.html?q=EXAM-39#EXAM-39",
     "kind": "question",
     "keywords": [
       "exam-39",
@@ -5047,7 +4686,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A girl standing on road holds her umbrella at 45 \u2218 with the vertical to keep the",
-    "path": "question-bank/index.html?search=EXAM-40",
+    "path": "question-bank/index.html?q=EXAM-40#EXAM-40",
     "kind": "question",
     "keywords": [
       "exam-40",
@@ -5104,7 +4743,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Given below are two statements. One is labelled as Assertion A and the other is ",
-    "path": "question-bank/index.html?search=EXAM-41",
+    "path": "question-bank/index.html?q=EXAM-41#EXAM-41",
     "kind": "question",
     "keywords": [
       "exam-41",
@@ -5161,7 +4800,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A projectile is projected with velocity of 25 m/s at an angle \u03b8 with the horizon",
-    "path": "question-bank/index.html?search=EXAM-42",
+    "path": "question-bank/index.html?q=EXAM-42#EXAM-42",
     "kind": "question",
     "keywords": [
       "exam-42",
@@ -5218,7 +4857,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The ranges and heights for two projectiles projected with the same initial veloc",
-    "path": "question-bank/index.html?search=EXAM-43",
+    "path": "question-bank/index.html?q=EXAM-43#EXAM-43",
     "kind": "question",
     "keywords": [
       "exam-43",
@@ -5275,7 +4914,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A helicopter is flying horizontally with a speed 'v' at an altitude 'h' has to d",
-    "path": "question-bank/index.html?search=EXAM-44",
+    "path": "question-bank/index.html?q=EXAM-44#EXAM-44",
     "kind": "question",
     "keywords": [
       "exam-44",
@@ -5332,7 +4971,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A player kicks a football with an initial speed of 25 ms \u2212 1 at an angle of 45 \u2218",
-    "path": "question-bank/index.html?search=EXAM-45",
+    "path": "question-bank/index.html?q=EXAM-45#EXAM-45",
     "kind": "question",
     "keywords": [
       "exam-45",
@@ -5389,7 +5028,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A bomb is dropped by fighter plane flying horizontally. To an observer sitting i",
-    "path": "question-bank/index.html?search=EXAM-46",
+    "path": "question-bank/index.html?q=EXAM-46#EXAM-46",
     "kind": "question",
     "keywords": [
       "exam-46",
@@ -5431,22 +5070,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       "a",
       ":",
-      "a",
-      "vertical",
-      "straight",
-      "line",
-      "at",
-      "release,",
-      "the",
-      "bomb",
-      "and",
-      "plane",
-      "have"
+      "motion",
+      "in",
+      "2d",
+      "cap-phy-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "A butterfly is flying with a velocity 4sqrt2 m/s in North-East direction. Wind i",
-    "path": "question-bank/index.html?search=EXAM-47",
+    "path": "question-bank/index.html?q=EXAM-47#EXAM-47",
     "kind": "question",
     "keywords": [
       "exam-47",
@@ -5498,12 +5131,12 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "seconds",
       "is",
       ":",
-      "12"
+      "motion"
     ]
   },
   {
     "title": "A mosquito is moving with a velocity v\u2192=0.5t2i\u02c6+3tj\u02c6+9k\u02c6 m/s and accelerating in",
-    "path": "question-bank/index.html?search=EXAM-48",
+    "path": "question-bank/index.html?q=EXAM-48#EXAM-48",
     "kind": "question",
     "keywords": [
       "exam-48",
@@ -5543,24 +5176,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "after",
       "2",
       "s?",
-      "direction",
-      "=",
-      "(2\u00ee",
-      "+",
-      "6\u0135",
-      "+",
-      "9k\u0302)/11;",
-      "direction",
-      "cosines",
-      "are",
-      "2/11,",
-      "6/11,",
-      "9/11"
+      "motion",
+      "in",
+      "2d",
+      "cap-phy-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "The trajectory of a projectile in a vertical plane is y = \u03b1 x \u2212 \u03b2 x 2 , where \u03b1 ",
-    "path": "question-bank/index.html?search=EXAM-49",
+    "path": "question-bank/index.html?q=EXAM-49#EXAM-49",
     "kind": "question",
     "keywords": [
       "exam-49",
@@ -5617,7 +5242,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "When a car is at rest, its driver sees rain drops falling on it vertically. When",
-    "path": "question-bank/index.html?search=EXAM-50",
+    "path": "question-bank/index.html?q=EXAM-50#EXAM-50",
     "kind": "question",
     "keywords": [
       "exam-50",
@@ -5674,7 +5299,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A balloon is moving up in air vertically above a point A on the ground. When it ",
-    "path": "question-bank/index.html?search=EXAM-51",
+    "path": "question-bank/index.html?q=EXAM-51#EXAM-51",
     "kind": "question",
     "keywords": [
       "exam-51",
@@ -5731,7 +5356,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Starting from the origin at time t = 0, with initial velocity 5 j\u02c6 ms -1 , a par",
-    "path": "question-bank/index.html?search=EXAM-52",
+    "path": "question-bank/index.html?q=EXAM-52#EXAM-52",
     "kind": "question",
     "keywords": [
       "exam-52",
@@ -5788,7 +5413,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A particle starts from the origin at t = 0 with an initial velocity of 3.0 i\u02c6 m/",
-    "path": "question-bank/index.html?search=EXAM-53",
+    "path": "question-bank/index.html?q=EXAM-53#EXAM-53",
     "kind": "question",
     "keywords": [
       "exam-53",
@@ -5845,7 +5470,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A particle moves such that its position vector r\u2192(t)=cos\u2061\u03c9ti\u02c6+sin\u2061\u03c9tj\u02c6 where \u03c9 i",
-    "path": "question-bank/index.html?search=EXAM-54",
+    "path": "question-bank/index.html?q=EXAM-54#EXAM-54",
     "kind": "question",
     "keywords": [
       "exam-54",
@@ -5902,7 +5527,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Two particles are projected from the same point with the same speed u such that ",
-    "path": "question-bank/index.html?search=EXAM-55",
+    "path": "question-bank/index.html?q=EXAM-55#EXAM-55",
     "kind": "question",
     "keywords": [
       "exam-55",
@@ -5959,7 +5584,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The trajectory of a projectile near the surface of the earth is given as y = 2x ",
-    "path": "question-bank/index.html?search=EXAM-56",
+    "path": "question-bank/index.html?q=EXAM-56#EXAM-56",
     "kind": "question",
     "keywords": [
       "exam-56",
@@ -6016,7 +5641,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A shell is fired from a fixed artillery gun with an initial speed u such that it",
-    "path": "question-bank/index.html?search=EXAM-57",
+    "path": "question-bank/index.html?q=EXAM-57#EXAM-57",
     "kind": "question",
     "keywords": [
       "exam-57",
@@ -6073,7 +5698,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A plane is inclined at an angle \u03b1 = 30\u00b0 with respect to the horizontal. A partic",
-    "path": "question-bank/index.html?search=EXAM-58",
+    "path": "question-bank/index.html?q=EXAM-58#EXAM-58",
     "kind": "question",
     "keywords": [
       "exam-58",
@@ -6130,7 +5755,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The stream of a river is flowing with a speed of 2km/h. A swimmer can swim at a ",
-    "path": "question-bank/index.html?search=EXAM-59",
+    "path": "question-bank/index.html?q=EXAM-59#EXAM-59",
     "kind": "question",
     "keywords": [
       "exam-59",
@@ -6187,7 +5812,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Ship A is sailing towards north-east with velocity v\u2192=30i\u2227+50j\u2227 km/hr where i\u2227 p",
-    "path": "question-bank/index.html?search=EXAM-60",
+    "path": "question-bank/index.html?q=EXAM-60#EXAM-60",
     "kind": "question",
     "keywords": [
       "exam-60",
@@ -6244,7 +5869,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A person standing on an open ground hears the sound of a jet aeroplane, coming f",
-    "path": "question-bank/index.html?search=EXAM-61",
+    "path": "question-bank/index.html?q=EXAM-61#EXAM-61",
     "kind": "question",
     "keywords": [
       "exam-61",
@@ -6301,7 +5926,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Two guns A and B can fire bullets at speeds 1 km/s and 2 km/s respectively. From",
-    "path": "question-bank/index.html?search=EXAM-62",
+    "path": "question-bank/index.html?q=EXAM-62#EXAM-62",
     "kind": "question",
     "keywords": [
       "exam-62",
@@ -6358,7 +5983,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The position co-ordinates of a particle moving in a 3-D coordinate system is giv",
-    "path": "question-bank/index.html?search=EXAM-63",
+    "path": "question-bank/index.html?q=EXAM-63#EXAM-63",
     "kind": "question",
     "keywords": [
       "exam-63",
@@ -6415,7 +6040,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A particle is moving with a velocity v\u2192=K(yi\u02c6+xj\u02c6), where K is a constant. The g",
-    "path": "question-bank/index.html?search=EXAM-64",
+    "path": "question-bank/index.html?q=EXAM-64#EXAM-64",
     "kind": "question",
     "keywords": [
       "exam-64",
@@ -6455,24 +6080,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "path",
       "is",
       ":",
-      "y\u00b2",
-      "\u2212",
-      "x\u00b2",
-      "=",
-      "c",
-      "from",
-      "v=k(y\u00ee+x\u0135),",
-      "dx/dt=ky",
-      "and",
-      "dy/dt=kx.",
-      "thus",
-      "dy/dx=x/y,",
-      "so"
+      "motion",
+      "in",
+      "2d",
+      "cap-phy-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "A man in a car at location Q on a straight highway is moving with speed \u03c5 . He d",
-    "path": "question-bank/index.html?search=EXAM-65",
+    "path": "question-bank/index.html?q=EXAM-65#EXAM-65",
     "kind": "question",
     "keywords": [
       "exam-65",
@@ -6529,7 +6146,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A projectile is given an initial velocity of (i\u02c6+2j\u02c6) m/s, where i\u02c6 is along the",
-    "path": "question-bank/index.html?search=EXAM-66",
+    "path": "question-bank/index.html?q=EXAM-66#EXAM-66",
     "kind": "question",
     "keywords": [
       "exam-66",
@@ -6586,7 +6203,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A boy can throw a stone up to a maximum height of 10 m. The maximum horizontal d",
-    "path": "question-bank/index.html?search=EXAM-67",
+    "path": "question-bank/index.html?q=EXAM-67#EXAM-67",
     "kind": "question",
     "keywords": [
       "exam-67",
@@ -6638,12 +6255,12 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "to",
       "will",
       "be",
-      "20"
+      "motion"
     ]
   },
   {
     "title": "A water fountain on the ground sprinkles water all around it. If the speed of wa",
-    "path": "question-bank/index.html?search=EXAM-68",
+    "path": "question-bank/index.html?q=EXAM-68#EXAM-68",
     "kind": "question",
     "keywords": [
       "exam-68",
@@ -6700,7 +6317,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A particle is moving with velocity v\u2192=k(yi\u02c6+xj\u02c6) , where K is a constant. The ge",
-    "path": "question-bank/index.html?search=EXAM-69",
+    "path": "question-bank/index.html?q=EXAM-69#EXAM-69",
     "kind": "question",
     "keywords": [
       "exam-69",
@@ -6739,25 +6356,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "its",
       "path",
       "is",
-      "y\u00b2",
-      "\u2212",
-      "x\u00b2",
-      "=",
-      "c",
-      "dx/dt=ky",
-      "and",
-      "dy/dt=kx.",
-      "therefore",
-      "y",
-      "dy=x",
-      "dx.",
-      "integration",
-      "gives"
+      "motion",
+      "in",
+      "2d",
+      "cap-phy-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "A particle has an initial velocity 3i\u02c6+4j\u02c6 and an acceleration of 0.4i\u02c6+0.3j\u02c6 . ",
-    "path": "question-bank/index.html?search=EXAM-70",
+    "path": "question-bank/index.html?q=EXAM-70#EXAM-70",
     "kind": "question",
     "keywords": [
       "exam-70",
@@ -6793,28 +6401,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "10",
       "s",
       "is:",
-      "7\u221a2",
-      "m/s",
-      "after",
-      "10",
-      "s,",
-      "v_x=3+0.4(10)=7",
-      "m/s.",
-      "v_y=4+0.3(10)=7",
-      "m/s.",
-      "speed=\u221a(7\u00b2+7\u00b2)=7\u221a2",
-      "m/s.",
-      "after",
-      "10",
-      "s,",
-      "v_x=3+0.4(10)=7",
-      "m/s.",
-      "v_y=4+0.3(10)=7"
+      "motion",
+      "in",
+      "2d",
+      "cap-phy-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "A particle is moving eastwards with a velocity of 5 m/s. In 10 seconds the veloc",
-    "path": "question-bank/index.html?search=EXAM-71",
+    "path": "question-bank/index.html?q=EXAM-71#EXAM-71",
     "kind": "question",
     "keywords": [
       "exam-71",
@@ -6862,16 +6458,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "this",
       "time",
       "is",
-      "a_avg",
-      "=",
-      "(\u22120.5",
-      "\u00ee",
-      "+"
+      "motion",
+      "in",
+      "2d",
+      "cap-phy-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "A projectile can have the same range 'R' for two angles of projection. If T 1 an",
-    "path": "question-bank/index.html?search=EXAM-72",
+    "path": "question-bank/index.html?q=EXAM-72#EXAM-72",
     "kind": "question",
     "keywords": [
       "exam-72",
@@ -6928,7 +6524,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A ball is thrown from a point with a speed \u03bd 0 at an angle of projection \u03b8. From",
-    "path": "question-bank/index.html?search=EXAM-73",
+    "path": "question-bank/index.html?q=EXAM-73#EXAM-73",
     "kind": "question",
     "keywords": [
       "exam-73",
@@ -6985,7 +6581,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A boy playing on the roof of a 10 m high building throws a ball with a speed of ",
-    "path": "question-bank/index.html?search=EXAM-74",
+    "path": "question-bank/index.html?q=EXAM-74#EXAM-74",
     "kind": "question",
     "keywords": [
       "exam-74",
@@ -7042,7 +6638,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The maximum speed of a boat in still water is 27 km/h. Now this boat is moving d",
-    "path": "question-bank/index.html?search=EXAM-75",
+    "path": "question-bank/index.html?q=EXAM-75#EXAM-75",
     "kind": "question",
     "keywords": [
       "exam-75",
@@ -7099,7 +6695,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A particle is projected at an angle of 30\u2218 from horizontal at a speed of 60m/s .",
-    "path": "question-bank/index.html?search=EXAM-76",
+    "path": "question-bank/index.html?q=EXAM-76#EXAM-76",
     "kind": "question",
     "keywords": [
       "exam-76",
@@ -7156,7 +6752,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A body of mass M thrown horizontally with velocity v from the top of the tower o",
-    "path": "question-bank/index.html?search=EXAM-77",
+    "path": "question-bank/index.html?q=EXAM-77#EXAM-77",
     "kind": "question",
     "keywords": [
       "exam-77",
@@ -7213,7 +6809,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The maximum height reached by a projectile is 64m . If the initial velocity is h",
-    "path": "question-bank/index.html?search=EXAM-78",
+    "path": "question-bank/index.html?q=EXAM-78#EXAM-78",
     "kind": "question",
     "keywords": [
       "exam-78",
@@ -7260,17 +6856,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "______",
       "m",
       ".",
-      "16",
-      "m",
-      "halving",
-      "u",
-      "multiplies",
-      "maximum"
+      "motion",
+      "in",
+      "2d",
+      "cap-phy-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "A ball rolls off the top of a stairway with horizontal velocity u . The steps ar",
-    "path": "question-bank/index.html?search=EXAM-79",
+    "path": "question-bank/index.html?q=EXAM-79#EXAM-79",
     "kind": "question",
     "keywords": [
       "exam-79",
@@ -7327,7 +6922,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A particle starts from origin at t=0 with a velocity 5i\u02c6m/s and moves in x\u2212y pla",
-    "path": "question-bank/index.html?search=EXAM-80",
+    "path": "question-bank/index.html?q=EXAM-80#EXAM-80",
     "kind": "question",
     "keywords": [
       "exam-80",
@@ -7384,7 +6979,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A projectile fired at 30\u2218 to the ground is observed to be at same height at time",
-    "path": "question-bank/index.html?search=EXAM-81",
+    "path": "question-bank/index.html?q=EXAM-81#EXAM-81",
     "kind": "question",
     "keywords": [
       "exam-81",
@@ -7441,7 +7036,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Two bodies are projected from ground with same speeds 40ms\u22121 at two different an",
-    "path": "question-bank/index.html?search=EXAM-82",
+    "path": "question-bank/index.html?q=EXAM-82#EXAM-82",
     "kind": "question",
     "keywords": [
       "exam-82",
@@ -7498,7 +7093,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The speed of a swimmer is 4kmh\u22121 in still water. If the swimmer makes his stroke",
-    "path": "question-bank/index.html?search=EXAM-83",
+    "path": "question-bank/index.html?q=EXAM-83#EXAM-83",
     "kind": "question",
     "keywords": [
       "exam-83",
@@ -7555,7 +7150,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "An object is projected in the air with initial velocity u at an angle \u03b8 . The pr",
-    "path": "question-bank/index.html?search=EXAM-84",
+    "path": "question-bank/index.html?q=EXAM-84#EXAM-84",
     "kind": "question",
     "keywords": [
       "exam-84",
@@ -7612,7 +7207,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A ball of mass m is thrown vertically upward. Another ball of mass 2m is thrown ",
-    "path": "question-bank/index.html?search=EXAM-85",
+    "path": "question-bank/index.html?q=EXAM-85#EXAM-85",
     "kind": "question",
     "keywords": [
       "exam-85",
@@ -7669,7 +7264,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "If the initial velocity in horizontal direction of a projectile is unit vector i",
-    "path": "question-bank/index.html?search=EXAM-86",
+    "path": "question-bank/index.html?q=EXAM-86#EXAM-86",
     "kind": "question",
     "keywords": [
       "exam-86",
@@ -7726,7 +7321,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A fighter jet is flying horizontally at a certain altitude with a speed of 200 m",
-    "path": "question-bank/index.html?search=EXAM-87",
+    "path": "question-bank/index.html?q=EXAM-87#EXAM-87",
     "kind": "question",
     "keywords": [
       "exam-87",
@@ -7783,7 +7378,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A body is projected from the ground at an angle of 45 \u2218 with the horizontal. Its",
-    "path": "question-bank/index.html?search=EXAM-88",
+    "path": "question-bank/index.html?q=EXAM-88#EXAM-88",
     "kind": "question",
     "keywords": [
       "exam-88",
@@ -7840,7 +7435,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A swimmer wants to cross a river from point A to point B. Line AB makes an angle",
-    "path": "question-bank/index.html?search=EXAM-89",
+    "path": "question-bank/index.html?q=EXAM-89#EXAM-89",
     "kind": "question",
     "keywords": [
       "exam-89",
@@ -7897,7 +7492,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A person is swimming with a speed of 10 m/s at an angle of 120 \u2218 with the flow a",
-    "path": "question-bank/index.html?search=EXAM-90",
+    "path": "question-bank/index.html?q=EXAM-90#EXAM-90",
     "kind": "question",
     "keywords": [
       "exam-90",
@@ -7954,7 +7549,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A swimmer can swim with velocity of 12 km/h in still water. Water flowing in a r",
-    "path": "question-bank/index.html?search=EXAM-91",
+    "path": "question-bank/index.html?q=EXAM-91#EXAM-91",
     "kind": "question",
     "keywords": [
       "exam-91",
@@ -8011,7 +7606,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A gun mounted on the ground fires bullets in all directions with same speed. The",
-    "path": "question-bank/index.html?search=EXAM-92",
+    "path": "question-bank/index.html?q=EXAM-92#EXAM-92",
     "kind": "question",
     "keywords": [
       "exam-92",
@@ -8068,7 +7663,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A particle is moving along the x-axis with its coordinate with the time t given ",
-    "path": "question-bank/index.html?search=EXAM-93",
+    "path": "question-bank/index.html?q=EXAM-93#EXAM-93",
     "kind": "question",
     "keywords": [
       "exam-93",
@@ -8125,7 +7720,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "For one mole of a van der Waals gas at low pressure, the compressibility factor ",
-    "path": "question-bank/index.html?search=GAS-Q01",
+    "path": "question-bank/index.html?q=GAS-Q01#GAS-Q01",
     "kind": "question",
     "keywords": [
       "gas-q01",
@@ -8163,26 +7758,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       "expressed",
       "as:",
-      "a",
-      "step",
-      "1:",
-      "start",
-      "from",
-      "the",
-      "van",
-      "der",
-      "waals",
-      "equation",
-      "for",
-      "1",
-      "mole:",
-      "(p",
-      "+"
+      "behaviour",
+      "of",
+      "gases",
+      "cap-chem-gases",
+      "chemistry"
     ]
   },
   {
     "title": "The van der Waals constant 'a' for four gases are: Gas W = 4.17, Gas X = 0.244, ",
-    "path": "question-bank/index.html?search=GAS-Q02",
+    "path": "question-bank/index.html?q=GAS-Q02#GAS-Q02",
     "kind": "question",
     "keywords": [
       "gas-q02",
@@ -8239,7 +7824,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The ratio of the most probable speed (v_mp), average speed (v_avg), and root mea",
-    "path": "question-bank/index.html?search=GAS-Q03",
+    "path": "question-bank/index.html?q=GAS-Q03#GAS-Q03",
     "kind": "question",
     "keywords": [
       "gas-q03",
@@ -8281,22 +7866,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "temperature",
       "t",
       "is:",
-      "a",
-      "step",
-      "1:",
-      "write",
-      "explicit",
-      "formulas",
-      "for",
-      "molecular",
-      "speeds:",
-      "v_mp",
-      "="
+      "behaviour",
+      "of",
+      "gases",
+      "cap-chem-gases",
+      "chemistry"
     ]
   },
   {
     "title": "The effective excluded volume 'b' for 1 mole of a gas having spherical molecules",
-    "path": "question-bank/index.html?search=GAS-Q04",
+    "path": "question-bank/index.html?q=GAS-Q04#GAS-Q04",
     "kind": "question",
     "keywords": [
       "gas-q04",
@@ -8334,26 +7913,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       "equal",
       "to:",
-      "a",
-      "step",
-      "1:",
-      "when",
-      "two",
-      "spherical",
-      "molecules",
+      "behaviour",
       "of",
-      "radius",
-      "r",
-      "collide,",
-      "the",
-      "distance",
-      "between",
-      "their"
+      "gases",
+      "cap-chem-gases",
+      "chemistry"
     ]
   },
   {
     "title": "Under identical conditions of temperature and pressure, 50 mL of gas A effuses t",
-    "path": "question-bank/index.html?search=GAS-Q05",
+    "path": "question-bank/index.html?q=GAS-Q05#GAS-Q05",
     "kind": "question",
     "keywords": [
       "gas-q05",
@@ -8410,7 +7979,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "At the Boyle temperature (T_B), a real gas behaves like an ideal gas over an app",
-    "path": "question-bank/index.html?search=GAS-Q06",
+    "path": "question-bank/index.html?q=GAS-Q06#GAS-Q06",
     "kind": "question",
     "keywords": [
       "gas-q06",
@@ -8467,7 +8036,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The critical constants of a van der Waals gas are P_c = a / (27 b\u00b2), V_c = 3 b, ",
-    "path": "question-bank/index.html?search=GAS-Q07",
+    "path": "question-bank/index.html?q=GAS-Q07#GAS-Q07",
     "kind": "question",
     "keywords": [
       "gas-q07",
@@ -8524,7 +8093,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "At very high pressure, the van der Waals equation for 1 mole of a real gas simpl",
-    "path": "question-bank/index.html?search=GAS-Q08",
+    "path": "question-bank/index.html?q=GAS-Q08#GAS-Q08",
     "kind": "question",
     "keywords": [
       "gas-q08",
@@ -8573,15 +8142,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "compressibility",
       "factor",
       "z?",
-      "a",
-      "step",
-      "1:",
-      "at"
+      "behaviour",
+      "of",
+      "gases",
+      "cap-chem-gases"
     ]
   },
   {
     "title": "The ratio of the most probable speed (v_mp), average speed (v_avg), and root-mea",
-    "path": "question-bank/index.html?search=GAS-Q09",
+    "path": "question-bank/index.html?q=GAS-Q09#GAS-Q09",
     "kind": "question",
     "keywords": [
       "gas-q09",
@@ -8621,24 +8190,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "given",
       "temperature",
       "is:",
-      "a",
-      "step",
-      "1:",
-      "write",
-      "explicit",
-      "expressions",
-      "for",
-      "molecular",
-      "speeds",
-      "from",
-      "maxwell-boltzmann",
-      "kinetic",
-      "distribution:"
+      "behaviour",
+      "of",
+      "gases",
+      "cap-chem-gases",
+      "chemistry"
     ]
   },
   {
     "title": "At very high pressures, the van der Waals equation for 1 mole of a real gas redu",
-    "path": "question-bank/index.html?search=GAS-Q10",
+    "path": "question-bank/index.html?q=GAS-Q10#GAS-Q10",
     "kind": "question",
     "keywords": [
       "gas-q10",
@@ -8680,22 +8241,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "linear",
       "equation:",
-      "a",
-      "step",
-      "1:",
-      "write",
-      "van",
-      "der",
-      "waals",
-      "equation",
-      "for",
-      "1",
-      "mole:"
+      "behaviour",
+      "of",
+      "gases",
+      "cap-chem-gases",
+      "chemistry"
     ]
   },
   {
     "title": "A gas is collected over water at 27\u00b0C and a total pressure of 750 mm Hg. If the ",
-    "path": "question-bank/index.html?search=GAS-Q11",
+    "path": "question-bank/index.html?q=GAS-Q11#GAS-Q11",
     "kind": "question",
     "keywords": [
       "gas-q11",
@@ -8752,7 +8307,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Under identical conditions of temperature and pressure, 50 mL of gas X effuses t",
-    "path": "question-bank/index.html?search=GAS-Q12",
+    "path": "question-bank/index.html?q=GAS-Q12#GAS-Q12",
     "kind": "question",
     "keywords": [
       "gas-q12",
@@ -8809,7 +8364,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The excluded volume (van der Waals constant b) for a gas composed of spherical m",
-    "path": "question-bank/index.html?search=GAS-Q13",
+    "path": "question-bank/index.html?q=GAS-Q13#GAS-Q13",
     "kind": "question",
     "keywords": [
       "gas-q13",
@@ -8855,18 +8410,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "volume",
       "(v_m)",
       "by:",
-      "a",
-      "step",
-      "1:",
-      "consider",
-      "two",
-      "spherical",
-      "molecules"
+      "behaviour",
+      "of",
+      "gases",
+      "cap-chem-gases",
+      "chemistry"
     ]
   },
   {
     "title": "For which of the following gases is the compressibility factor Z strictly greate",
-    "path": "question-bank/index.html?search=GAS-Q14",
+    "path": "question-bank/index.html?q=GAS-Q14#GAS-Q14",
     "kind": "question",
     "keywords": [
       "gas-q14",
@@ -8907,23 +8460,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "at",
       "room",
       "temperature?",
-      "a",
-      "step",
-      "1:",
-      "h\u2082",
-      "and",
-      "he",
-      "are",
-      "extremely",
-      "light",
-      "molecules",
-      "with",
-      "very"
+      "behaviour",
+      "of",
+      "gases",
+      "cap-chem-gases",
+      "chemistry"
     ]
   },
   {
     "title": "The Boyle temperature (T_B) of a van der Waals gas is defined as the temperature",
-    "path": "question-bank/index.html?search=GAS-Q15",
+    "path": "question-bank/index.html?q=GAS-Q15#GAS-Q15",
     "kind": "question",
     "keywords": [
       "gas-q15",
@@ -8969,18 +8515,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       "given",
       "by:",
-      "a",
-      "step",
-      "1:",
-      "write",
-      "virial",
-      "expansion",
-      "of"
+      "behaviour",
+      "of",
+      "gases",
+      "cap-chem-gases",
+      "chemistry"
     ]
   },
   {
     "title": "The value of the critical compressibility factor (Z_c = P_c V_c / R T_c) for any",
-    "path": "question-bank/index.html?search=GAS-Q16",
+    "path": "question-bank/index.html?q=GAS-Q16#GAS-Q16",
     "kind": "question",
     "keywords": [
       "gas-q16",
@@ -9029,15 +8573,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "constant",
       "equal",
       "to:",
-      "a",
-      "step",
-      "1:",
-      "write"
+      "behaviour",
+      "of",
+      "gases",
+      "cap-chem-gases"
     ]
   },
   {
     "title": "Two flasks A and B of equal volume contain 1.0 g of H\u2082 and 1.0 g of O\u2082 respectiv",
-    "path": "question-bank/index.html?search=GAS-Q17",
+    "path": "question-bank/index.html?q=GAS-Q17#GAS-Q17",
     "kind": "question",
     "keywords": [
       "gas-q17",
@@ -9094,7 +8638,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Under what condition can a gas be liquefied purely by applying mechanical pressu",
-    "path": "question-bank/index.html?search=GAS-Q18",
+    "path": "question-bank/index.html?q=GAS-Q18#GAS-Q18",
     "kind": "question",
     "keywords": [
       "gas-q18",
@@ -9126,32 +8670,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "pressure",
       "without",
       "cooling?",
-      "a",
-      "step",
-      "1:",
-      "thomas",
-      "andrews'",
-      "experiments",
-      "on",
-      "co\u2082",
-      "established",
-      "the",
-      "fundamental",
-      "concept",
+      "behaviour",
       "of",
-      "critical",
-      "temperature",
-      "(t_c).",
-      "step",
-      "2:",
-      "above",
-      "t_c,",
-      "the"
+      "gases",
+      "cap-chem-gases",
+      "chemistry"
     ]
   },
   {
     "title": "The SI units of the van der Waals constants a and b respectively are:",
-    "path": "question-bank/index.html?search=GAS-Q19",
+    "path": "question-bank/index.html?q=GAS-Q19#GAS-Q19",
     "kind": "question",
     "keywords": [
       "gas-q19",
@@ -9183,32 +8711,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "b",
       "respectively",
       "are:",
-      "a",
-      "step",
-      "1:",
-      "in",
-      "the",
-      "van",
-      "der",
-      "waals",
-      "equation:",
-      "(p",
-      "+",
-      "an\u00b2/v\u00b2)(v",
-      "-",
-      "nb)",
-      "=",
-      "nrt.",
-      "step",
-      "2:",
-      "by",
-      "dimensional",
-      "homogeneity,"
+      "behaviour",
+      "of",
+      "gases",
+      "cap-chem-gases",
+      "chemistry"
     ]
   },
   {
     "title": "At what absolute temperature will the root mean square speed (v_rms) of SO\u2082 mole",
-    "path": "question-bank/index.html?search=GAS-Q20",
+    "path": "question-bank/index.html?q=GAS-Q20#GAS-Q20",
     "kind": "question",
     "keywords": [
       "gas-q20",
@@ -9265,7 +8777,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A particle travels from one end of a diameter to the opposite end along a semici",
-    "path": "question-bank/index.html?search=M2D-NC-01",
+    "path": "question-bank/index.html?q=M2D-NC-01#M2D-NC-01",
     "kind": "question",
     "keywords": [
       "m2d-nc-01",
@@ -9312,17 +8824,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "its",
       "displacement?",
-      "the",
-      "displacement",
-      "magnitude",
-      "is",
-      "2r,",
-      "the"
+      "motion",
+      "in",
+      "2d",
+      "cap-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "A rider moves around a merry-go-round at constant speed. Is the rider's velocity",
-    "path": "question-bank/index.html?search=M2D-NC-02",
+    "path": "question-bank/index.html?q=M2D-NC-02#M2D-NC-02",
     "kind": "question",
     "keywords": [
       "m2d-nc-02",
@@ -9359,27 +8870,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "the",
       "acceleration.",
-      "no.",
-      "the",
-      "speed",
-      "is",
-      "constant",
-      "but",
-      "the",
-      "velocity",
-      "direction",
-      "changes",
-      "continuously.",
-      "the",
-      "acceleration",
-      "is",
-      "centripetal:",
-      "it"
+      "motion",
+      "in",
+      "2d",
+      "cap-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "When can the distance travelled equal the magnitude of displacement?",
-    "path": "question-bank/index.html?search=M2D-NC-03",
+    "path": "question-bank/index.html?q=M2D-NC-03#M2D-NC-03",
     "kind": "question",
     "keywords": [
       "m2d-nc-03",
@@ -9403,40 +8903,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "magnitude",
       "of",
       "displacement?",
-      "when",
-      "the",
       "motion",
-      "is",
-      "along",
-      "a",
-      "straight",
-      "line",
       "in",
-      "one",
-      "direction",
-      "without",
-      "reversal;",
-      "then",
-      "the",
-      "path",
-      "length",
-      "equals",
-      "the",
-      "start-to-finish",
-      "separation.",
-      "when",
-      "the",
-      "motion",
-      "is",
-      "along",
-      "a",
-      "straight",
-      "line"
+      "2d",
+      "cap-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "A stone moves in a horizontal circle on a string. If the string suddenly breaks,",
-    "path": "question-bank/index.html?search=M2D-NC-04",
+    "path": "question-bank/index.html?q=M2D-NC-04#M2D-NC-04",
     "kind": "question",
     "keywords": [
       "m2d-nc-04",
@@ -9480,20 +8956,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "immediately",
       "after",
       "release?",
-      "it",
-      "moves",
-      "along",
-      "the",
-      "tangent",
-      "to",
-      "the",
-      "circle",
-      "at"
+      "motion",
+      "in",
+      "2d",
+      "cap-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "What provides the centripetal force for a planet revolving around the Sun, and w",
-    "path": "question-bank/index.html?search=M2D-NC-05",
+    "path": "question-bank/index.html?q=M2D-NC-05#M2D-NC-05",
     "kind": "question",
     "keywords": [
       "m2d-nc-05",
@@ -9531,26 +9003,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "its",
       "acceleration?",
-      "the",
-      "sun's",
-      "gravitational",
-      "force",
-      "provides",
-      "the",
-      "centripetal",
-      "force.",
-      "the",
-      "planet's",
-      "acceleration",
-      "points",
-      "toward",
-      "the",
-      "sun."
+      "motion",
+      "in",
+      "2d",
+      "cap-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "Two stones start simultaneously from the same height. One is dropped and the oth",
-    "path": "question-bank/index.html?search=M2D-NC-06",
+    "path": "question-bank/index.html?q=M2D-NC-06#M2D-NC-06",
     "kind": "question",
     "keywords": [
       "m2d-nc-06",
@@ -9593,21 +9055,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "ground",
       "first?",
-      "they",
-      "reach",
-      "the",
-      "ground",
-      "at",
-      "the",
-      "same",
-      "time",
-      "because",
-      "their"
+      "motion",
+      "in",
+      "2d",
+      "cap-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "Suppose Earth's gravitational pull on the Moon suddenly became zero and no other",
-    "path": "question-bank/index.html?search=M2D-NC-07",
+    "path": "question-bank/index.html?q=M2D-NC-07#M2D-NC-07",
     "kind": "question",
     "keywords": [
       "m2d-nc-07",
@@ -9650,21 +9107,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "follow",
       "immediately",
       "afterward?",
-      "it",
-      "would",
-      "move",
+      "motion",
       "in",
-      "a",
-      "straight",
-      "line",
-      "tangent",
-      "to",
-      "its"
+      "2d",
+      "cap-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "The Sun attracts Earth gravitationally. Why does Earth not simply fall straight ",
-    "path": "question-bank/index.html?search=M2D-NC-08",
+    "path": "question-bank/index.html?q=M2D-NC-08#M2D-NC-08",
     "kind": "question",
     "keywords": [
       "m2d-nc-08",
@@ -9695,33 +9147,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "into",
       "the",
       "sun?",
-      "earth",
-      "has",
-      "tangential",
-      "velocity.",
-      "gravity",
-      "continually",
-      "bends",
-      "that",
-      "velocity",
-      "toward",
-      "the",
-      "sun,",
-      "producing",
-      "orbital",
       "motion",
-      "rather",
-      "than",
-      "a",
-      "straight",
-      "radial",
-      "fall.",
-      "earth"
+      "in",
+      "2d",
+      "cap-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "A passenger tosses a coin vertically inside a moving train and the coin lands be",
-    "path": "question-bank/index.html?search=M2D-NC-09",
+    "path": "question-bank/index.html?q=M2D-NC-09#M2D-NC-09",
     "kind": "question",
     "keywords": [
       "m2d-nc-09",
@@ -9770,15 +9205,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "coin",
       "was",
       "airborne?",
-      "the",
-      "train",
-      "accelerated",
-      "forward"
+      "motion",
+      "in",
+      "2d",
+      "cap-motion-2d"
     ]
   },
   {
     "title": "Which of the following concentration units changes when the temperature of the s",
-    "path": "question-bank/index.html?search=MOLE-Q09",
+    "path": "question-bank/index.html?q=MOLE-Q09#MOLE-Q09",
     "kind": "question",
     "keywords": [
       "mole-q09",
@@ -9810,32 +9245,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "solution",
       "is",
       "altered?",
-      "a",
-      "step",
-      "1:",
-      "examine",
-      "mass-based",
-      "units:",
-      "molality",
-      "(m",
-      "=",
-      "n_solute",
-      "/",
-      "kg_solvent),",
       "mole",
-      "fraction",
-      "(x",
-      "=",
-      "n_i",
-      "/",
-      "n_total),",
-      "and",
-      "mass"
+      "concept",
+      "cap-chem-mole",
+      "chemistry"
     ]
   },
   {
     "title": "10 mL of a gaseous hydrocarbon (C_x H_y) requires 65 mL of O\u2082 for complete combu",
-    "path": "question-bank/index.html?search=MOLE-Q10",
+    "path": "question-bank/index.html?q=MOLE-Q10#MOLE-Q10",
     "kind": "question",
     "keywords": [
       "mole-q10",
@@ -9892,7 +9310,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The number of moles of electrons in 1.0 kg of electrons is approximately: (Mass ",
-    "path": "question-bank/index.html?search=MOLE-Q11",
+    "path": "question-bank/index.html?q=MOLE-Q11#MOLE-Q11",
     "kind": "question",
     "keywords": [
       "mole-q11",
@@ -9938,18 +9356,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "\u00d7",
       "10\u00b2\u00b3",
       "mol\u207b\u00b9)",
-      "a",
-      "step",
-      "1:",
-      "total",
-      "mass",
-      "m",
-      "="
+      "mole",
+      "concept",
+      "cap-chem-mole",
+      "chemistry"
     ]
   },
   {
     "title": "56.0 g of nitrogen gas (N\u2082) and 10.0 g of hydrogen gas (H\u2082) are mixed and allowe",
-    "path": "question-bank/index.html?search=MOLE-Q12",
+    "path": "question-bank/index.html?q=MOLE-Q12#MOLE-Q12",
     "kind": "question",
     "keywords": [
       "mole-q12",
@@ -10006,7 +9421,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The mole fraction of a solute in an aqueous solution is 0.05. The molality of th",
-    "path": "question-bank/index.html?search=MOLE-Q13",
+    "path": "question-bank/index.html?q=MOLE-Q13#MOLE-Q13",
     "kind": "question",
     "keywords": [
       "mole-q13",
@@ -10052,18 +9467,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "=",
       "18",
       "g/mol)",
-      "a",
-      "step",
-      "1:",
-      "in",
-      "1",
       "mole",
-      "of"
+      "concept",
+      "cap-chem-mole",
+      "chemistry"
     ]
   },
   {
     "title": "A synthesis involves two sequential steps: A \u2192 B with 80% yield, followed by B \u2192",
-    "path": "question-bank/index.html?search=MOLE-Q14",
+    "path": "question-bank/index.html?q=MOLE-Q14#MOLE-Q14",
     "kind": "question",
     "keywords": [
       "mole-q14",
@@ -10120,7 +9532,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "An organic compound contains 40.0% Carbon, 6.7% Hydrogen, and 53.3% Oxygen by ma",
-    "path": "question-bank/index.html?search=MOLE-Q15",
+    "path": "question-bank/index.html?q=MOLE-Q15#MOLE-Q15",
     "kind": "question",
     "keywords": [
       "mole-q15",
@@ -10160,24 +9572,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "molecular",
       "formula",
       "is:",
-      "a",
-      "step",
-      "1:",
-      "find",
       "mole",
-      "ratio",
-      "of",
-      "elements",
-      "in",
-      "100",
-      "g",
-      "sample:",
-      "moles"
+      "concept",
+      "cap-chem-mole",
+      "chemistry"
     ]
   },
   {
     "title": "100 mL of 0.2 M H\u2082SO\u2084 is mixed with 200 mL of 0.1 M HCl. What is the resulting c",
-    "path": "question-bank/index.html?search=MOLE-Q16",
+    "path": "question-bank/index.html?q=MOLE-Q16#MOLE-Q16",
     "kind": "question",
     "keywords": [
       "mole-q16",
@@ -10228,13 +9631,13 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "final",
       "mixture?",
-      "a",
-      "step"
+      "mole",
+      "concept"
     ]
   },
   {
     "title": "The strength of an aqueous KOH solution is 30% by mass (% w/w). If its density i",
-    "path": "question-bank/index.html?search=MOLE-Q17",
+    "path": "question-bank/index.html?q=MOLE-Q17#MOLE-Q17",
     "kind": "question",
     "keywords": [
       "mole-q17",
@@ -10284,14 +9687,14 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "=",
       "56.1",
       "g/mol)",
-      "a",
-      "step",
-      "1:"
+      "mole",
+      "concept",
+      "cap-chem-mole"
     ]
   },
   {
     "title": "A 20.0 g sample of limestone (impure CaCO\u2083) on thermal decomposition yields 4.4 ",
-    "path": "question-bank/index.html?search=MOLE-Q18",
+    "path": "question-bank/index.html?q=MOLE-Q18#MOLE-Q18",
     "kind": "question",
     "keywords": [
       "mole-q18",
@@ -10348,7 +9751,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A mixture of 20 mL of CO and 20 mL of O\u2082 is sparked in an eudiometer. After comp",
-    "path": "question-bank/index.html?search=MOLE-Q19",
+    "path": "question-bank/index.html?q=MOLE-Q19#MOLE-Q19",
     "kind": "question",
     "keywords": [
       "mole-q19",
@@ -10405,7 +9808,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Which of the following samples contains the MAXIMUM number of molecules?",
-    "path": "question-bank/index.html?search=MOLE-Q20",
+    "path": "question-bank/index.html?q=MOLE-Q20#MOLE-Q20",
     "kind": "question",
     "keywords": [
       "mole-q20",
@@ -10431,38 +9834,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "number",
       "of",
       "molecules?",
-      "a",
-      "step",
-      "1:",
-      "number",
-      "of",
-      "molecules",
-      "in",
-      "equal",
-      "mass",
-      "m",
-      "=",
-      "1.0",
-      "g",
-      "is",
-      "inversely",
-      "proportional",
-      "to",
-      "molar",
-      "mass",
-      "m:",
-      "n",
-      "\u221d",
-      "1",
-      "/",
-      "m.",
-      "step",
-      "2:"
+      "mole",
+      "concept",
+      "cap-chem-mole",
+      "chemistry"
     ]
   },
   {
     "title": "A body is projected with a velocity of 12 m/s at an angle of 45\u00b0 with the horizo",
-    "path": "question-bank/index.html?search=PDF-01",
+    "path": "question-bank/index.html?q=PDF-01#PDF-01",
     "kind": "question",
     "keywords": [
       "pdf-01",
@@ -10511,15 +9891,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "=",
       "10",
       "m/s\u00b2)",
-      "14.4",
-      "m",
-      "launch",
-      "velocity"
+      "motion",
+      "in",
+      "2d",
+      "cap-phy-motion-2d"
     ]
   },
   {
     "title": "At what angle of projection with the horizontal will the horizontal range of a p",
-    "path": "question-bank/index.html?search=PDF-02",
+    "path": "question-bank/index.html?q=PDF-02#PDF-02",
     "kind": "question",
     "keywords": [
       "pdf-02",
@@ -10559,24 +9939,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "its",
       "maximum",
       "height?",
-      "\u03b8",
-      "=",
-      "arctan(4)",
-      "\u2248",
-      "76\u00b0",
-      "use",
-      "the",
-      "universal",
-      "relation",
-      "between",
-      "range",
-      "and",
-      "apex"
+      "motion",
+      "in",
+      "2d",
+      "cap-phy-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "A shore defense gun fires at a pirate ship anchored at R = 560 m with muzzle spe",
-    "path": "question-bank/index.html?search=PDF-03",
+    "path": "question-bank/index.html?q=PDF-03#PDF-03",
     "kind": "question",
     "keywords": [
       "pdf-03",
@@ -10633,7 +10005,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "An outfielder tracks a fly ball hit with u = 40 m/s at \u03b8 = 35\u00b0. The line-of-sigh",
-    "path": "question-bank/index.html?search=PDF-04",
+    "path": "question-bank/index.html?q=PDF-04#PDF-04",
     "kind": "question",
     "keywords": [
       "pdf-04",
@@ -10690,7 +10062,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A stone is thrown horizontally from a cliff h = 490 m high with speed u = 98 m/s",
-    "path": "question-bank/index.html?search=PDF-05",
+    "path": "question-bank/index.html?q=PDF-05#PDF-05",
     "kind": "question",
     "keywords": [
       "pdf-05",
@@ -10747,7 +10119,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Car A moves east at 1 m/s, Car B moves west at 2 m/s along a straight road. Find",
-    "path": "question-bank/index.html?search=PDF-09",
+    "path": "question-bank/index.html?q=PDF-09#PDF-09",
     "kind": "question",
     "keywords": [
       "pdf-09",
@@ -10804,7 +10176,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Rain falls vertically at 15 m/s. A cyclist moves horizontally at 5\u221a3 m/s. In whi",
-    "path": "question-bank/index.html?search=PDF-10",
+    "path": "question-bank/index.html?q=PDF-10#PDF-10",
     "kind": "question",
     "keywords": [
       "pdf-10",
@@ -10848,20 +10220,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "to",
       "protect",
       "himself?",
-      "30\u00b0",
-      "forward",
-      "with",
-      "the",
-      "vertical",
-      "rain",
-      "velocity:",
-      "v_r",
-      "="
+      "motion",
+      "in",
+      "2d",
+      "cap-phy-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "A car travels East at 80 km/h. To a passenger in the car, a train appears to mov",
-    "path": "question-bank/index.html?search=PDF-11",
+    "path": "question-bank/index.html?q=PDF-11#PDF-11",
     "kind": "question",
     "keywords": [
       "pdf-11",
@@ -10913,12 +10281,12 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "the",
       "train.",
-      "160"
+      "motion"
     ]
   },
   {
     "title": "An airplane wishes to fly towards 45\u00b0 North of East. Wind blows from West at 40 ",
-    "path": "question-bank/index.html?search=PDF-12",
+    "path": "question-bank/index.html?q=PDF-12#PDF-12",
     "kind": "question",
     "keywords": [
       "pdf-12",
@@ -10966,16 +10334,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "sine",
       "rule.",
-      "steer",
-      "53.13\u00b0",
-      "north",
-      "of",
-      "east,"
+      "motion",
+      "in",
+      "2d",
+      "cap-phy-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "A river flows East at 2 m/s. A boat motors upstream (West) at 5 m/s in water. A ",
-    "path": "question-bank/index.html?search=PDF-13",
+    "path": "question-bank/index.html?q=PDF-13#PDF-13",
     "kind": "question",
     "keywords": [
       "pdf-13",
@@ -11032,7 +10400,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A man walking at 3 km/h observes rain falling vertically. At 6 km/h, rain appear",
-    "path": "question-bank/index.html?search=PDF-14",
+    "path": "question-bank/index.html?q=PDF-14#PDF-14",
     "kind": "question",
     "keywords": [
       "pdf-14",
@@ -11077,19 +10445,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "the",
       "rain.",
-      "3\u221a2",
-      "km/h",
-      "at",
-      "45\u00b0",
-      "with",
-      "vertical",
-      "(falling",
-      "towards"
+      "motion",
+      "in",
+      "2d",
+      "cap-phy-motion-2d",
+      "physics"
     ]
   },
   {
     "title": "A 500 mL portion of 4.0 M aqueous NaCl is completely electrolysed. Determine the",
-    "path": "question-bank/index.html?search=PYQ-CHEM-IITJEE-2007-P1-Q39",
+    "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2007-P1-Q39#PYQ-CHEM-IITJEE-2007-P1-Q39",
     "kind": "question",
     "keywords": [
       "pyq-chem-iitjee-2007-p1-q39",
@@ -11126,27 +10491,23 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "chlorine",
       "gas",
       "evolved.",
-      "option",
-      "(b):",
-      "1.0",
-      "mol",
-      "cl2.",
-      "moles",
+      "some",
+      "basic",
+      "concepts",
       "of",
-      "nacl,",
-      "hence",
-      "cl(-),",
-      "are",
-      "4.0",
-      "mol/l",
-      "\u00d7",
-      "0.500",
-      "l"
+      "chemistry",
+      "/",
+      "mole",
+      "concept",
+      "/",
+      "stoichiometry",
+      "cap-chem-mole-concentration-to-amount",
+      "chemistry"
     ]
   },
   {
     "title": "In the same complete electrolysis of 500 mL of 4.0 M NaCl, mercury is used as th",
-    "path": "question-bank/index.html?search=PYQ-CHEM-IITJEE-2007-P1-Q40",
+    "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2007-P1-Q40#PYQ-CHEM-IITJEE-2007-P1-Q40",
     "kind": "question",
     "keywords": [
       "pyq-chem-iitjee-2007-p1-q40",
@@ -11203,7 +10564,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "For complete electrolysis of 500 mL of 4.0 M NaCl, calculate the total charge re",
-    "path": "question-bank/index.html?search=PYQ-CHEM-IITJEE-2007-P1-Q41",
+    "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2007-P1-Q41#PYQ-CHEM-IITJEE-2007-P1-Q41",
     "kind": "question",
     "keywords": [
       "pyq-chem-iitjee-2007-p1-q41",
@@ -11241,26 +10602,23 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "f=96500",
       "c",
       "mol^-1.",
-      "option",
-      "(d):",
-      "193000",
-      "c.",
-      "the",
-      "sample",
-      "contains",
-      "4.0\u00d70.500=2.0",
-      "mol",
-      "nacl.",
-      "complete",
-      "electrolysis",
-      "corresponds",
-      "to",
-      "transfer"
+      "some",
+      "basic",
+      "concepts",
+      "of",
+      "chemistry",
+      "/",
+      "mole",
+      "concept",
+      "/",
+      "stoichiometry",
+      "cap-chem-stoich-mole-ratio",
+      "chemistry"
     ]
   },
   {
     "title": "White phosphorus reacts with aqueous sodium hydroxide, producing phosphine and a",
-    "path": "question-bank/index.html?search=PYQ-CHEM-IITJEE-2008-P1-Q66",
+    "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2008-P1-Q66#PYQ-CHEM-IITJEE-2008-P1-Q66",
     "kind": "question",
     "keywords": [
       "pyq-chem-iitjee-2008-p1-q66",
@@ -11292,32 +10650,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "redox",
       "pattern.",
-      "disproportionation",
-      "(official",
-      "option",
-      "b).",
-      "elemental",
-      "phosphorus",
-      "starts",
-      "at",
-      "oxidation",
-      "state",
-      "0.",
-      "in",
-      "ph3",
-      "phosphorus",
-      "is",
-      "-3,",
-      "while",
-      "in",
-      "hypophosphite",
-      "h2po2(-)",
-      "phosphorus"
+      "redox",
+      "reactions",
+      "cap-chem-redox-disproportionation",
+      "chemistry"
     ]
   },
   {
     "title": "During electrolysis of dilute aqueous NaCl, a current of 10 mA is passed. Calcul",
-    "path": "question-bank/index.html?search=PYQ-CHEM-IITJEE-2008-P2-Q51",
+    "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2008-P2-Q51#PYQ-CHEM-IITJEE-2008-P2-Q51",
     "kind": "question",
     "keywords": [
       "pyq-chem-iitjee-2008-p2-q51",
@@ -11363,18 +10704,18 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "f=96500",
       "c",
       "mol^-1.",
-      "1.93\u00d710^5",
-      "s.",
-      "0.010",
-      "mol",
-      "h2",
-      "requires",
-      "0.020"
+      "some",
+      "basic",
+      "concepts",
+      "of",
+      "chemistry",
+      "/",
+      "mole"
     ]
   },
   {
     "title": "Iron consists of isotopes 54Fe, 56Fe and 57Fe with abundances 5%, 90% and 5%, re",
-    "path": "question-bank/index.html?search=PYQ-CHEM-IITJEE-2009-P1-Q01",
+    "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2009-P1-Q01#PYQ-CHEM-IITJEE-2009-P1-Q01",
     "kind": "question",
     "keywords": [
       "pyq-chem-iitjee-2009-p1-q01",
@@ -11417,21 +10758,21 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "from",
       "these",
       "data.",
-      "option",
-      "(b):",
-      "55.95.",
-      "compute",
-      "the",
-      "abundance-weighted",
-      "mean:",
-      "0.05(54)+0.90(56)+0.05(57).",
-      "the",
-      "contributions"
+      "some",
+      "basic",
+      "concepts",
+      "of",
+      "chemistry",
+      "/",
+      "mole",
+      "concept",
+      "/",
+      "stoichiometry"
     ]
   },
   {
     "title": "At 298 K the Henry-law constant for nitrogen in water is 1.0\u00d710^5 atm. Air has n",
-    "path": "question-bank/index.html?search=PYQ-CHEM-IITJEE-2009-P1-Q04",
+    "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2009-P1-Q04#PYQ-CHEM-IITJEE-2009-P1-Q04",
     "kind": "question",
     "keywords": [
       "pyq-chem-iitjee-2009-p1-q04",
@@ -11488,7 +10829,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The standard reduction potential for nitrate reduction in aqueous solution is +0",
-    "path": "question-bank/index.html?search=PYQ-CHEM-IITJEE-2009-P2-Q05",
+    "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2009-P2-Q05#PYQ-CHEM-IITJEE-2009-P2-Q05",
     "kind": "question",
     "keywords": [
       "pyq-chem-iitjee-2009-p2-q05",
@@ -11545,7 +10886,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "What is the oxidation number of manganese in the product formed by alkaline oxid",
-    "path": "question-bank/index.html?search=PYQ-CHEM-IITJEE-2009-P2-Q16",
+    "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2009-P2-Q16#PYQ-CHEM-IITJEE-2009-P2-Q16",
     "kind": "question",
     "keywords": [
       "pyq-chem-iitjee-2009-p2-q16",
@@ -11580,29 +10921,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "fusion",
       "of",
       "mno2?",
-      "6.",
-      "in",
-      "manganate",
-      "mno4^2-,",
-      "let",
-      "the",
-      "manganese",
-      "oxidation",
-      "number",
-      "be",
-      "x.",
-      "charge",
-      "balance",
-      "gives",
-      "x+4(-2)=-2,",
-      "so",
-      "x=+6.",
-      "recall"
+      "redox",
+      "reactions",
+      "cap-chem-redox-oxidation-state",
+      "chemistry"
     ]
   },
   {
     "title": "In the self-reduction stage of copper extraction from chalcopyrite, which listed",
-    "path": "question-bank/index.html?search=PYQ-CHEM-IITJEE-2010-P1-Q16",
+    "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2010-P1-Q16#PYQ-CHEM-IITJEE-2010-P1-Q16",
     "kind": "question",
     "keywords": [
       "pyq-chem-iitjee-2010-p1-q16",
@@ -11634,32 +10961,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "reducing",
       "species?",
-      "option",
-      "(c):",
-      "s2-.",
-      "in",
-      "self-reduction,",
-      "sulfide",
-      "sulfur",
-      "in",
-      "the",
-      "copper",
-      "sulfide",
-      "species",
-      "is",
-      "oxidized",
-      "while",
-      "reducing",
-      "the",
-      "copper",
-      "oxide",
-      "species",
-      "to"
+      "redox",
+      "reactions",
+      "cap-chem-redox-oxidation-state",
+      "chemistry"
     ]
   },
   {
     "title": "In sodium tetrathionate, Na2S4O6, there are two chemically distinct kinds of sul",
-    "path": "question-bank/index.html?search=PYQ-CHEM-IITJEE-2011-P1-Q17",
+    "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2011-P1-Q17#PYQ-CHEM-IITJEE-2011-P1-Q17",
     "kind": "question",
     "keywords": [
       "pyq-chem-iitjee-2011-p1-q17",
@@ -11695,28 +11005,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "their",
       "oxidation",
       "numbers.",
-      "5.",
-      "the",
-      "two",
-      "inner",
-      "sulfur",
-      "atoms",
-      "in",
-      "the",
-      "s-s",
-      "portion",
-      "have",
-      "oxidation",
-      "state",
-      "0.",
-      "charge",
-      "balance",
-      "in"
+      "redox",
+      "reactions",
+      "cap-chem-redox-oxidation-state",
+      "chemistry"
     ]
   },
   {
     "title": "Bromine reacts with aqueous sodium carbonate to form sodium bromide, sodium brom",
-    "path": "question-bank/index.html?search=PYQ-CHEM-IITJEE-2011-P1-Q18",
+    "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2011-P1-Q18#PYQ-CHEM-IITJEE-2011-P1-Q18",
     "kind": "question",
     "keywords": [
       "pyq-chem-iitjee-2011-p1-q18",
@@ -11762,18 +11059,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "stoichiometric",
       "coefficient?",
-      "5.",
-      "bromine",
-      "disproportionates",
-      "from",
-      "oxidation",
-      "state",
-      "0"
+      "redox",
+      "reactions",
+      "cap-chem-redox-balance-electron",
+      "chemistry"
     ]
   },
   {
     "title": "Identify the oxidation states of iron in haematite and magnetite, respectively.",
-    "path": "question-bank/index.html?search=PYQ-CHEM-IITJEE-2011-P2-Q01",
+    "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2011-P2-Q01#PYQ-CHEM-IITJEE-2011-P2-Q01",
     "kind": "question",
     "keywords": [
       "pyq-chem-iitjee-2011-p2-q01",
@@ -11799,38 +11093,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "and",
       "magnetite,",
       "respectively.",
-      "option",
-      "(d):",
-      "fe",
-      "is",
-      "+3",
-      "in",
-      "haematite,",
-      "while",
-      "magnetite",
-      "contains",
-      "both",
-      "fe(ii)",
-      "and",
-      "fe(iii).",
-      "in",
-      "fe2o3,",
-      "oxygen",
-      "contributes",
-      "-6,",
-      "so",
-      "the",
-      "two",
-      "iron",
-      "atoms",
-      "total",
-      "+6",
-      "and"
+      "redox",
+      "reactions",
+      "cap-chem-redox-oxidation-state",
+      "chemistry"
     ]
   },
   {
     "title": "A 30 mL sample of 0.010 M [Cr(H2O)5Cl]Cl2 is treated with 0.100 M AgNO3 to preci",
-    "path": "question-bank/index.html?search=PYQ-CHEM-IITJEE-2011-P2-Q14",
+    "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2011-P2-Q14#PYQ-CHEM-IITJEE-2011-P2-Q14",
     "kind": "question",
     "keywords": [
       "pyq-chem-iitjee-2011-p2-q14",
@@ -11877,17 +11148,17 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "volume",
       "in",
       "ml.",
-      "6",
-      "ml.",
-      "moles",
+      "some",
+      "basic",
+      "concepts",
       "of",
-      "complex",
-      "are"
+      "chemistry",
+      "/"
     ]
   },
   {
     "title": "In the cyanide extraction of silver from argentite, identify the oxidizing agent",
-    "path": "question-bank/index.html?search=PYQ-CHEM-IITJEE-2012-P2-Q22",
+    "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2012-P2-Q22#PYQ-CHEM-IITJEE-2012-P2-Q22",
     "kind": "question",
     "keywords": [
       "pyq-chem-iitjee-2012-p2-q22",
@@ -11930,21 +11201,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "cyanide",
       "complex.",
-      "option",
-      "(b):",
-      "o2",
-      "is",
-      "the",
-      "oxidizing",
-      "agent",
-      "and",
-      "zn",
-      "dust"
+      "redox",
+      "reactions",
+      "cap-chem-redox-oxidation-state",
+      "chemistry"
     ]
   },
   {
     "title": "Balance the acidic reaction in which iodide and chlorate react in sulfuric-acid ",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2014-P1-Q29",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2014-P1-Q29#PYQ-CHEM-JEEADV-2014-P1-Q29",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2014-p1-q29",
@@ -11989,19 +11254,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "equation",
       "are",
       "correct.",
-      "options",
-      "(a),",
-      "(b)",
-      "and",
-      "(d)",
-      "(the",
-      "official",
-      "paper"
+      "redox",
+      "reactions",
+      "cap-chem-redox-balance-electron",
+      "chemistry"
     ]
   },
   {
     "title": "A compound H2X of molar mass 80 g/mol forms a 3.2 M solution in a solvent of den",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2014-P1-Q39",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2014-P1-Q39#PYQ-CHEM-JEEADV-2014-P1-Q39",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2014-p1-q39",
@@ -12053,12 +11314,12 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "solution",
       "molality.",
-      "8"
+      "some"
     ]
   },
   {
     "title": "A reaction X->Y releases 193 kJ per mole under standard conditions. Assume all o",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2015-P1-Q27",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2015-P1-Q27#PYQ-CHEM-JEEADV-2015-P1-Q27",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2015-p1-q27",
@@ -12115,7 +11376,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Three moles of diborane, B2H6, react completely with methanol. How many moles of",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2015-P2-Q25",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2015-P2-Q25#PYQ-CHEM-JEEADV-2015-P2-Q25",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2015-p2-q25",
@@ -12150,29 +11411,23 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "product",
       "are",
       "formed?",
-      "6",
-      "mol.",
-      "complete",
-      "methanolysis",
-      "can",
-      "be",
-      "represented",
-      "as",
-      "b2h6",
-      "+",
-      "6ch3oh",
-      "->",
-      "2b(och3)3",
-      "+",
-      "6h2.",
-      "thus",
-      "one",
-      "mole"
+      "some",
+      "basic",
+      "concepts",
+      "of",
+      "chemistry",
+      "/",
+      "mole",
+      "concept",
+      "/",
+      "stoichiometry",
+      "cap-chem-stoich-mole-ratio",
+      "chemistry"
     ]
   },
   {
     "title": "In dilute sulfuric acid, diaquodioxalatoferrate(II) is oxidized by permanganate.",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2015-P2-Q28",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2015-P2-Q28#PYQ-CHEM-JEEADV-2015-P2-Q28",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2015-p2-q28",
@@ -12215,21 +11470,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "balanced",
       "reaction.",
-      "8.",
-      "oxidizing",
-      "one",
-      "[fe(c2o4)2(h2o)2]^2-",
-      "unit",
-      "to",
-      "fe3+",
-      "plus",
-      "four",
-      "co2"
+      "redox",
+      "reactions",
+      "cap-chem-redox-balance-electron",
+      "chemistry"
     ]
   },
   {
     "title": "A solution has solute mole fraction 0.1. At 298 K its molarity equals its molali",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2016-P1-Q32",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2016-P1-Q32#PYQ-CHEM-JEEADV-2016-P1-Q32",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2016-p1-q32",
@@ -12281,12 +11530,12 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "solvent",
       "molar",
       "mass.",
-      "9."
+      "some"
     ]
   },
   {
     "title": "In neutral or faintly alkaline solution, 8 mol permanganate ions quantitatively ",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2016-P1-Q34",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2016-P1-Q34#PYQ-CHEM-JEEADV-2016-P1-Q34",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2016-p1-q34",
@@ -12327,23 +11576,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "by",
       "the",
       "source.",
-      "6",
-      "mol.",
-      "in",
-      "neutral/basic",
-      "medium,",
-      "mno4-",
-      "gains",
-      "3",
-      "electrons",
-      "per",
-      "mn",
-      "to"
+      "redox",
+      "reactions",
+      "cap-chem-redox-balance-electron",
+      "chemistry"
     ]
   },
   {
     "title": "A pure crystalline substance has an FCC structure with cell edge 400 pm and dens",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2017-P1-Q26",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2017-P1-Q26#PYQ-CHEM-JEEADV-2017-P1-Q26",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2017-p1-q26",
@@ -12391,16 +11632,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "n\u00d710^24.",
       "find",
       "n.",
-      "2.",
-      "the",
-      "cell",
-      "edge",
-      "is"
+      "some",
+      "basic",
+      "concepts",
+      "of",
+      "chemistry"
     ]
   },
   {
     "title": "Ammonia generated by reacting 1584 g ammonium sulfate with calcium hydroxide is ",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2018-P1-Q08",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2018-P1-Q08#PYQ-CHEM-JEEADV-2018-P1-Q08",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2018-p1-q08",
@@ -12457,7 +11698,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Galena is partially oxidized in air and then heated without further air so that ",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2018-P2-Q08",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2018-P2-Q08#PYQ-CHEM-JEEADV-2018-P2-Q08",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2018-p2-q08",
@@ -12502,19 +11743,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "oxygen",
       "consumed.",
-      "6.47",
-      "kg",
-      "pb",
-      "per",
-      "kg",
-      "o2.",
-      "combining",
-      "roasting"
+      "redox",
+      "reactions",
+      "cap-chem-stoich-mole-ratio",
+      "chemistry"
     ]
   },
   {
     "title": "An unknown amount of MnCl2 is converted completely to permanganate. After acidif",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2018-P2-Q09",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2018-P2-Q09#PYQ-CHEM-JEEADV-2018-P2-Q09",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2018-p2-q09",
@@ -12560,18 +11797,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "mncl2",
       "originally",
       "present.",
-      "126",
-      "mg.",
-      "225",
-      "mg",
-      "oxalic",
-      "acid",
-      "is"
+      "redox",
+      "reactions",
+      "cap-chem-redox-balance-electron",
+      "chemistry"
     ]
   },
   {
     "title": "One mole of rhombic sulfur is completely oxidized by concentrated nitric acid to",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2019-P2-Q09",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2019-P2-Q09#PYQ-CHEM-JEEADV-2019-P2-Q09",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2019-p2-q09",
@@ -12611,24 +11845,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "water",
       "produced.",
-      "288",
-      "g.",
-      "rhombic",
-      "sulfur",
-      "is",
-      "s8,",
-      "so",
-      "one",
-      "mole",
-      "contains",
-      "8",
-      "mol",
-      "sulfur"
+      "redox",
+      "reactions",
+      "cap-chem-redox-balance-electron",
+      "chemistry"
     ]
   },
   {
     "title": "In weakly basic solution, permanganate oxidizes iodide to iodine while manganese",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2020-P2-Q03",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2020-P2-Q03#PYQ-CHEM-JEEADV-2020-P2-Q03",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2020-p2-q03",
@@ -12670,22 +11895,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "i2",
       "formed.",
-      "6",
-      "mol",
-      "i2.",
-      "mno4-",
-      "to",
-      "mno2",
-      "is",
-      "a",
-      "3-electron",
-      "reduction",
-      "per"
+      "redox",
+      "reactions",
+      "cap-chem-redox-balance-electron",
+      "chemistry"
     ]
   },
   {
     "title": "A 5.6 g iron sample is converted to Fe2+ solution and diluted to 250 mL. A 25 mL",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2021-P2-Q11",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2021-P2-Q11#PYQ-CHEM-JEEADV-2021-P2-Q11",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2021-p2-q11",
@@ -12742,7 +11960,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Using the same iron-sample titration data as the preceding item, determine the m",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2021-P2-Q12",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2021-P2-Q12#PYQ-CHEM-JEEADV-2021-P2-Q12",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2021-p2-q12",
@@ -12781,25 +11999,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "5.6",
       "g",
       "sample.",
-      "18.75%.",
-      "iron",
-      "amount",
-      "is",
-      "1.875\u00d710^-2",
-      "mol,",
-      "corresponding",
-      "to",
-      "mass",
-      "0.01875\u00d756=1.05",
-      "g.",
-      "mass",
-      "percent",
-      "fe=(1.05/5.6)\u00d7100=18.75%."
+      "redox",
+      "reactions",
+      "cap-chem-stoich-mass-mole",
+      "chemistry"
     ]
   },
   {
     "title": "A 3.74 g sample of Cu(NO3)2 is treated with excess iodide, and the iodine produc",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2022-P1-Q04",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2022-P1-Q04#PYQ-CHEM-JEEADV-2022-P1-Q04",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2022-p1-q04",
@@ -12848,15 +12056,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "sulfur",
       "formed.",
-      "0.32",
-      "g.",
-      "3.74/187=0.020",
-      "mol"
+      "redox",
+      "reactions",
+      "cap-chem-stoich-mole-ratio",
+      "chemistry"
     ]
   },
   {
     "title": "Stoichiometric hydrolysis of 516 g dimethyldichlorosilane gives a tetrameric cyc",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2023-P1-Q08",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2023-P1-Q08#PYQ-CHEM-JEEADV-2023-P1-Q08",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2023-p1-q08",
@@ -12898,22 +12106,22 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "mass",
       "of",
       "x.",
-      "222",
-      "g.",
-      "molar",
-      "mass",
+      "some",
+      "basic",
+      "concepts",
       "of",
-      "(ch3)2sicl2",
-      "is",
-      "129",
-      "g/mol,",
-      "so",
-      "516"
+      "chemistry",
+      "/",
+      "mole",
+      "concept",
+      "/",
+      "stoichiometry",
+      "cap-chem-stoich-mass-mole"
     ]
   },
   {
     "title": "Five moles of H2S react completely with acidified aqueous potassium permanganate",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2023-P2-Q08",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2023-P2-Q08#PYQ-CHEM-JEEADV-2023-P2-Q08",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2023-p2-q08",
@@ -12957,20 +12165,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "transferred,",
       "find",
       "x+y.",
-      "18.",
-      "oxidation:",
-      "h2s",
-      "->",
-      "s",
-      "+",
-      "2h(+)",
-      "+",
-      "2e(-)."
+      "redox",
+      "reactions",
+      "cap-chem-redox-balance-electron",
+      "chemistry"
     ]
   },
   {
     "title": "Across the source list F2O, H2S4O6, H2S5O6, C3O2 and Br3O8, count the atoms whos",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2023-P2-Q10",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2023-P2-Q10#PYQ-CHEM-JEEADV-2023-P2-Q10",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2023-p2-q10",
@@ -13007,27 +12210,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       "exactly",
       "zero.",
-      "6.",
-      "f2o",
-      "contributes",
-      "no",
-      "zero-state",
-      "atoms;",
-      "in",
-      "tetrathionic",
-      "acid,",
-      "the",
-      "two",
-      "inner",
-      "sulfur",
-      "atoms",
-      "are",
-      "at"
+      "redox",
+      "reactions",
+      "cap-chem-redox-oxidation-state",
+      "chemistry"
     ]
   },
   {
     "title": "A metal-deficient oxide has composition M_xY2O4. Metal M occurs as M2+ and M3+, ",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2024-P2-Q02",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2024-P2-Q02#PYQ-CHEM-JEEADV-2024-P2-Q02",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2024-p2-q02",
@@ -13072,19 +12263,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "m2+.",
       "determine",
       "x.",
-      "option",
-      "(d):",
-      "x=0.75.",
-      "average",
-      "oxidation",
-      "state",
-      "of",
-      "m"
+      "redox",
+      "reactions",
+      "cap-chem-redox-oxidation-state",
+      "chemistry"
     ]
   },
   {
     "title": "In an acidic electrochemical cell, dichromate is reduced to Cr3+. What current i",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2025-P1-Q08",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2025-P1-Q08#PYQ-CHEM-JEEADV-2025-P1-Q08",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2025-p1-q08",
@@ -13133,15 +12320,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "96500",
       "c",
       "mol^-1.",
-      "100",
-      "a.",
-      "producing",
-      "1"
+      "redox",
+      "reactions",
+      "cap-chem-redox-balance-electron",
+      "chemistry"
     ]
   },
   {
     "title": "The Nylon-6,6 monomer X that gives a positive carbylamine test is analyzed by th",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2025-P1-Q12",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2025-P1-Q12#PYQ-CHEM-JEEADV-2025-P1-Q12",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2025-p1-q12",
@@ -13192,13 +12379,13 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "atomic",
       "mass",
       "n=14.",
-      "280",
-      "g"
+      "some",
+      "basic"
     ]
   },
   {
     "title": "A linear octasaccharide has molar mass 1024 g/mol. Complete hydrolysis yields ri",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2025-P2-Q16",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2025-P2-Q16#PYQ-CHEM-JEEADV-2025-P2-Q16",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2025-p2-q16",
@@ -13255,7 +12442,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Two equal-volume cylinders at the same temperature contain He-Ar mixtures. Cylin",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEADV-2026-P1-Q09",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2026-P1-Q09#PYQ-CHEM-JEEADV-2026-P1-Q09",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeeadv-2026-p1-q09",
@@ -13312,7 +12499,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Let |x| be the difference between the oxidation states of Mn in its highest fluo",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEMAIN-2026-04APR-S2-Q62",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEMAIN-2026-04APR-S2-Q62#PYQ-CHEM-JEEMAIN-2026-04APR-S2-Q62",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeemain-2026-04apr-s2-q62",
@@ -13369,7 +12556,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Which of these samples contain the same total number of atoms? A: 2 g O2; B: 4 g",
-    "path": "question-bank/index.html?search=PYQ-CHEM-JEEMAIN-2026-06APR-S2-Q51",
+    "path": "question-bank/index.html?q=PYQ-CHEM-JEEMAIN-2026-06APR-S2-Q51#PYQ-CHEM-JEEMAIN-2026-06APR-S2-Q51",
     "kind": "question",
     "keywords": [
       "pyq-chem-jeemain-2026-06apr-s2-q51",
@@ -13426,7 +12613,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Dilute sulfuric acid is electrolysed using inert platinum electrodes. Identify t",
-    "path": "question-bank/index.html?search=PYQ-CHEM-NEET-2020-E1-Q099",
+    "path": "question-bank/index.html?q=PYQ-CHEM-NEET-2020-E1-Q099#PYQ-CHEM-NEET-2020-E1-Q099",
     "kind": "question",
     "keywords": [
       "pyq-chem-neet-2020-e1-q099",
@@ -13457,33 +12644,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "at",
       "the",
       "anode.",
-      "option",
-      "(2):",
-      "o2.",
-      "at",
-      "the",
-      "cathode,",
-      "h+",
-      "is",
-      "reduced;",
-      "at",
-      "the",
-      "inert",
-      "anode,",
-      "water",
-      "is",
-      "the",
-      "species",
-      "oxidized.",
-      "the",
-      "anode",
-      "half-reaction",
-      "is"
+      "redox",
+      "reactions",
+      "cap-chem-redox-balance-electron",
+      "chemistry"
     ]
   },
   {
     "title": "How many Faradays are needed to produce 20 g of calcium from molten CaCl2? Use m",
-    "path": "question-bank/index.html?search=PYQ-CHEM-NEET-2020-E1-Q106",
+    "path": "question-bank/index.html?q=PYQ-CHEM-NEET-2020-E1-Q106#PYQ-CHEM-NEET-2020-E1-Q106",
     "kind": "question",
     "keywords": [
       "pyq-chem-neet-2020-e1-q106",
@@ -13522,25 +12691,23 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "mass",
       "ca=40",
       "g/mol.",
-      "option",
-      "(1):",
-      "1",
-      "f.",
-      "20",
-      "g",
-      "ca",
-      "corresponds",
-      "to",
-      "0.5",
-      "mol",
-      "ca.",
-      "ca2+",
-      "+"
+      "some",
+      "basic",
+      "concepts",
+      "of",
+      "chemistry",
+      "/",
+      "mole",
+      "concept",
+      "/",
+      "stoichiometry",
+      "cap-chem-stoich-mole-ratio",
+      "chemistry"
     ]
   },
   {
     "title": "A gas mixture contains 7 g N2 and 8 g Ar at total pressure 27 bar. Using N=14 an",
-    "path": "question-bank/index.html?search=PYQ-CHEM-NEET-2020-E1-Q110",
+    "path": "question-bank/index.html?q=PYQ-CHEM-NEET-2020-E1-Q110#PYQ-CHEM-NEET-2020-E1-Q110",
     "kind": "question",
     "keywords": [
       "pyq-chem-neet-2020-e1-q110",
@@ -13589,15 +12756,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "pressure",
       "of",
       "n2.",
-      "option",
-      "(3):",
-      "15",
-      "bar."
+      "some",
+      "basic",
+      "concepts",
+      "of"
     ]
   },
   {
     "title": "Which 1 g sample contains the greatest number of atoms: Ag (108), Mg (24), O2 (O",
-    "path": "question-bank/index.html?search=PYQ-CHEM-NEET-2020-E1-Q123",
+    "path": "question-bank/index.html?q=PYQ-CHEM-NEET-2020-E1-Q123#PYQ-CHEM-NEET-2020-E1-Q123",
     "kind": "question",
     "keywords": [
       "pyq-chem-neet-2020-e1-q123",
@@ -13636,25 +12803,23 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "or",
       "li",
       "(7)?",
-      "option",
-      "(4):",
-      "1",
-      "g",
-      "li.",
-      "for",
-      "elemental",
-      "metals,",
-      "atom",
-      "moles",
-      "per",
-      "gram",
-      "are",
-      "1/m;"
+      "some",
+      "basic",
+      "concepts",
+      "of",
+      "chemistry",
+      "/",
+      "mole",
+      "concept",
+      "/",
+      "stoichiometry",
+      "cap-chem-stoich-mass-mole",
+      "chemistry"
     ]
   },
   {
     "title": "For the conversion CH4 + 4Cl2 -> CCl4 + 4HCl, identify the change in oxidation n",
-    "path": "question-bank/index.html?search=PYQ-CHEM-NEET-2020-E1-Q125",
+    "path": "question-bank/index.html?q=PYQ-CHEM-NEET-2020-E1-Q125#PYQ-CHEM-NEET-2020-E1-Q125",
     "kind": "question",
     "keywords": [
       "pyq-chem-neet-2020-e1-q125",
@@ -13692,26 +12857,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "number",
       "of",
       "carbon.",
-      "option",
-      "(3):",
-      "-4",
-      "to",
-      "+4.",
-      "in",
-      "ch4,",
-      "four",
-      "h(+1)",
-      "atoms",
-      "require",
-      "carbon",
-      "to",
-      "be",
-      "-4."
+      "redox",
+      "reactions",
+      "cap-chem-redox-oxidation-state",
+      "chemistry"
     ]
   },
   {
     "title": "Two equal masses m lie on a smooth horizontal surface and are joined by a light ",
-    "path": "question-bank/index.html?search=PYQ-PHY-IITJEE-2007-P1-Q03",
+    "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2007-P1-Q03#PYQ-PHY-IITJEE-2007-P1-Q03",
     "kind": "question",
     "keywords": [
       "pyq-phy-iitjee-2007-p1-q03",
@@ -13768,7 +12922,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A block moving on a rough horizontal surface stops after losing its kinetic ener",
-    "path": "question-bank/index.html?search=PYQ-PHY-IITJEE-2007-P1-Q10",
+    "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2007-P1-Q10#PYQ-PHY-IITJEE-2007-P1-Q10",
     "kind": "question",
     "keywords": [
       "pyq-phy-iitjee-2007-p1-q10",
@@ -13825,7 +12979,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A train observer sees nearby stationary ground objects sweep backward while very",
-    "path": "question-bank/index.html?search=PYQ-PHY-IITJEE-2008-P2-Q32",
+    "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2008-P2-Q32#PYQ-PHY-IITJEE-2008-P2-Q32",
     "kind": "question",
     "keywords": [
       "pyq-phy-iitjee-2008-p2-q32",
@@ -13882,7 +13036,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Judge the pair of statements: (1) pulling a heavy body across level ground is ea",
-    "path": "question-bank/index.html?search=PYQ-PHY-IITJEE-2008-P2-Q33",
+    "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2008-P2-Q33#PYQ-PHY-IITJEE-2008-P2-Q33",
     "kind": "question",
     "keywords": [
       "pyq-phy-iitjee-2008-p2-q33",
@@ -13939,7 +13093,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "In an inertial frame, the resultant of all external forces on a system of partic",
-    "path": "question-bank/index.html?search=PYQ-PHY-IITJEE-2009-P1-Q49",
+    "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2009-P1-Q49#PYQ-PHY-IITJEE-2009-P1-Q49",
     "kind": "question",
     "keywords": [
       "pyq-phy-iitjee-2009-p1-q49",
@@ -13984,19 +13138,19 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "change",
       "with",
       "time?",
-      "option",
-      "(a)",
-      "only:",
-      "total",
-      "linear",
-      "momentum",
-      "is",
-      "constant."
+      "newton's",
+      "laws",
+      "of",
+      "motion",
+      "/",
+      "nlm",
+      "cap-nlm-forces-sum-zero",
+      "physics"
     ]
   },
   {
     "title": "A bead can slide without friction on a wire shaped as the parabola y=kx^2, with ",
-    "path": "question-bank/index.html?search=PYQ-PHY-IITJEE-2009-P2-Q40",
+    "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2009-P2-Q40#PYQ-PHY-IITJEE-2009-P2-Q40",
     "kind": "question",
     "keywords": [
       "pyq-phy-iitjee-2009-p2-q40",
@@ -14053,7 +13207,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A light inextensible string passes over a smooth fixed pulley and connects masse",
-    "path": "question-bank/index.html?search=PYQ-PHY-IITJEE-2009-P2-Q55",
+    "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2009-P2-Q55#PYQ-PHY-IITJEE-2009-P2-Q55",
     "kind": "question",
     "keywords": [
       "pyq-phy-iitjee-2009-p2-q55",
@@ -14110,7 +13264,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A block is on a plane inclined at 45 degrees. The coefficient of friction is mu.",
-    "path": "question-bank/index.html?search=PYQ-PHY-IITJEE-2011-P1-Q41",
+    "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2011-P1-Q41#PYQ-PHY-IITJEE-2011-P1-Q41",
     "kind": "question",
     "keywords": [
       "pyq-phy-iitjee-2011-p1-q41",
@@ -14167,7 +13321,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A 0.2 kg ball rests on top of a 5 m vertical post. A 0.01 kg bullet moving horiz",
-    "path": "question-bank/index.html?search=PYQ-PHY-IITJEE-2011-P2-Q26",
+    "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2011-P2-Q26#PYQ-PHY-IITJEE-2011-P2-Q26",
     "kind": "question",
     "keywords": [
       "pyq-phy-iitjee-2011-p2-q26",
@@ -14224,7 +13378,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Inside a train accelerating uniformly along a straight track, a boy throws a bal",
-    "path": "question-bank/index.html?search=PYQ-PHY-IITJEE-2011-P2-Q33",
+    "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2011-P2-Q33#PYQ-PHY-IITJEE-2011-P2-Q33",
     "kind": "question",
     "keywords": [
       "pyq-phy-iitjee-2011-p2-q33",
@@ -14281,7 +13435,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A 0.18 kg block on a rough horizontal surface is attached to a spring of force c",
-    "path": "question-bank/index.html?search=PYQ-PHY-IITJEE-2011-P2-Q34",
+    "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2011-P2-Q34#PYQ-PHY-IITJEE-2011-P2-Q34",
     "kind": "question",
     "keywords": [
       "pyq-phy-iitjee-2011-p2-q34",
@@ -14338,7 +13492,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A block on a frictionless horizontal surface is attached to a spring of natural ",
-    "path": "question-bank/index.html?search=PYQ-PHY-IITJEE-2012-P1-Q05",
+    "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2012-P1-Q05#PYQ-PHY-IITJEE-2012-P1-Q05",
     "kind": "question",
     "keywords": [
       "pyq-phy-iitjee-2012-p1-q05",
@@ -14395,7 +13549,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A 5 kg block is to be dragged along a rough horizontal surface with coefficients",
-    "path": "question-bank/index.html?search=PYQ-PHY-INJSO-2011-Q22",
+    "path": "question-bank/index.html?q=PYQ-PHY-INJSO-2011-Q22#PYQ-PHY-INJSO-2011-Q22",
     "kind": "question",
     "keywords": [
       "pyq-phy-injso-2011-q22",
@@ -14452,7 +13606,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Two solid cubical boxes P (4.0 kg) and Q (8.0 kg) stay in contact while a horizo",
-    "path": "question-bank/index.html?search=PYQ-PHY-INJSO-2016-Q32A",
+    "path": "question-bank/index.html?q=PYQ-PHY-INJSO-2016-Q32A#PYQ-PHY-INJSO-2016-Q32A",
     "kind": "question",
     "keywords": [
       "pyq-phy-injso-2016-q32a",
@@ -14509,7 +13663,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A 100 kg block is on a level rough surface. One person pushing with force F cann",
-    "path": "question-bank/index.html?search=PYQ-PHY-INJSO-2018-Q12",
+    "path": "question-bank/index.html?q=PYQ-PHY-INJSO-2018-Q12#PYQ-PHY-INJSO-2018-Q12",
     "kind": "question",
     "keywords": [
       "pyq-phy-injso-2018-q12",
@@ -14566,7 +13720,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A rider is cycling on a level road, applies a brake, and the cycle slows. Select",
-    "path": "question-bank/index.html?search=PYQ-PHY-INJSO-2023-Q24",
+    "path": "question-bank/index.html?q=PYQ-PHY-INJSO-2023-Q24#PYQ-PHY-INJSO-2023-Q24",
     "kind": "question",
     "keywords": [
       "pyq-phy-injso-2023-q24",
@@ -14623,7 +13777,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A particle of mass m is projected from the ground with speed u0 at angle alpha. ",
-    "path": "question-bank/index.html?search=PYQ-PHY-JEEADV-2013-P1-Q07",
+    "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2013-P1-Q07#PYQ-PHY-JEEADV-2013-P1-Q07",
     "kind": "question",
     "keywords": [
       "pyq-phy-jeeadv-2013-p1-q07",
@@ -14680,7 +13834,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A uniform ladder of mass m leans against a vertical wall, making angle theta wit",
-    "path": "question-bank/index.html?search=PYQ-PHY-JEEADV-2014-P1-Q08",
+    "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2014-P1-Q08#PYQ-PHY-JEEADV-2014-P1-Q08",
     "kind": "question",
     "keywords": [
       "pyq-phy-jeeadv-2014-p1-q08",
@@ -14737,7 +13891,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Airplanes A and B fly at constant velocities in the same vertical plane, at 30 d",
-    "path": "question-bank/index.html?search=PYQ-PHY-JEEADV-2014-P1-Q11",
+    "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2014-P1-Q11#PYQ-PHY-JEEADV-2014-P1-Q11",
     "kind": "question",
     "keywords": [
       "pyq-phy-jeeadv-2014-p1-q11",
@@ -14794,7 +13948,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A rocket accelerates at 2 m/s^2 along +x in gravity-free space. Its internal cha",
-    "path": "question-bank/index.html?search=PYQ-PHY-JEEADV-2014-P1-Q18",
+    "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2014-P1-Q18#PYQ-PHY-JEEADV-2014-P1-Q18",
     "kind": "question",
     "keywords": [
       "pyq-phy-jeeadv-2014-p1-q18",
@@ -14851,7 +14005,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Two touching blocks m1=1 kg and m2=2 kg rest on an incline of angle theta, with ",
-    "path": "question-bank/index.html?search=PYQ-PHY-JEEADV-2014-P2-Q19",
+    "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2014-P2-Q19#PYQ-PHY-JEEADV-2014-P2-Q19",
     "kind": "question",
     "keywords": [
       "pyq-phy-jeeadv-2014-p2-q19",
@@ -14908,7 +14062,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A ball is launched from level ground at 45 degrees and reaches a maximum height ",
-    "path": "question-bank/index.html?search=PYQ-PHY-JEEADV-2018-P2-Q08",
+    "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2018-P2-Q08#PYQ-PHY-JEEADV-2018-P2-Q08",
     "kind": "question",
     "keywords": [
       "pyq-phy-jeeadv-2018-p2-q08",
@@ -14965,7 +14119,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A projectile is launched from the ground at speed u0 and angle theta. After each",
-    "path": "question-bank/index.html?search=PYQ-PHY-JEEADV-2019-P2-Q09",
+    "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2019-P2-Q09#PYQ-PHY-JEEADV-2019-P2-Q09",
     "kind": "question",
     "keywords": [
       "pyq-phy-jeeadv-2019-p2-q09",
@@ -15022,7 +14176,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A uniform metre scale is supported horizontally on two index fingers initially a",
-    "path": "question-bank/index.html?search=PYQ-PHY-JEEADV-2020-P1-Q13",
+    "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2020-P1-Q13#PYQ-PHY-JEEADV-2020-P1-Q13",
     "kind": "question",
     "keywords": [
       "pyq-phy-jeeadv-2020-p1-q13",
@@ -15079,7 +14233,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A projectile is launched from ground at 5sqrt(2) m/s, at 45 degrees from the ver",
-    "path": "question-bank/index.html?search=PYQ-PHY-JEEADV-2021-P1-Q05",
+    "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2021-P1-Q05#PYQ-PHY-JEEADV-2021-P1-Q05",
     "kind": "question",
     "keywords": [
       "pyq-phy-jeeadv-2021-p1-q05",
@@ -15136,7 +14290,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Use the same projectile-splitting setup as Q5: launch speed 5sqrt(2) m/s at 45 d",
-    "path": "question-bank/index.html?search=PYQ-PHY-JEEADV-2021-P1-Q06",
+    "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2021-P1-Q06#PYQ-PHY-JEEADV-2021-P1-Q06",
     "kind": "question",
     "keywords": [
       "pyq-phy-jeeadv-2021-p1-q06",
@@ -15193,7 +14347,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A projectile has ordinary range d when launched at speed v and angle theta under",
-    "path": "question-bank/index.html?search=PYQ-PHY-JEEADV-2022-P1-Q08",
+    "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2022-P1-Q08#PYQ-PHY-JEEADV-2022-P1-Q08",
     "kind": "question",
     "keywords": [
       "pyq-phy-jeeadv-2022-p1-q08",
@@ -15250,7 +14404,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A ball slides without friction from a height h above a terrace whose top is 3h a",
-    "path": "question-bank/index.html?search=PYQ-PHY-JEEADV-2023-P1-Q01",
+    "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2023-P1-Q01#PYQ-PHY-JEEADV-2023-P1-Q01",
     "kind": "question",
     "keywords": [
       "pyq-phy-jeeadv-2023-p1-q01",
@@ -15307,7 +14461,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A ball is thrown from (0,0) with fixed speed v0 at angle theta0. Simultaneously,",
-    "path": "question-bank/index.html?search=PYQ-PHY-JEEADV-2024-P2-Q09",
+    "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2024-P2-Q09#PYQ-PHY-JEEADV-2024-P2-Q09",
     "kind": "question",
     "keywords": [
       "pyq-phy-jeeadv-2024-p2-q09",
@@ -15364,7 +14518,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A 0.2 kg projectile is launched at 270 m/s at 60 degrees in a medium with linear",
-    "path": "question-bank/index.html?search=PYQ-PHY-JEEADV-2025-P2-Q15",
+    "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2025-P2-Q15#PYQ-PHY-JEEADV-2025-P2-Q15",
     "kind": "question",
     "keywords": [
       "pyq-phy-jeeadv-2025-p2-q15",
@@ -15421,7 +14575,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A projectile launched from O with speed v at angle theta passes through P, which",
-    "path": "question-bank/index.html?search=PYQ-PHY-JEEADV-2026-P1-Q06",
+    "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2026-P1-Q06#PYQ-PHY-JEEADV-2026-P1-Q06",
     "kind": "question",
     "keywords": [
       "pyq-phy-jeeadv-2026-p1-q06",
@@ -15478,7 +14632,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Cars A and B move in the same direction at 100 km/h and 80 km/h, with A ahead. A",
-    "path": "question-bank/index.html?search=PYQ-PHY-JEEMAIN-2026-04APR-S2-Q27",
+    "path": "question-bank/index.html?q=PYQ-PHY-JEEMAIN-2026-04APR-S2-Q27#PYQ-PHY-JEEMAIN-2026-04APR-S2-Q27",
     "kind": "question",
     "keywords": [
       "pyq-phy-jeemain-2026-04apr-s2-q27",
@@ -15535,7 +14689,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "A projectile has coordinates x=24t and y=43.6t-4.9t^2, with x and y in metres an",
-    "path": "question-bank/index.html?search=PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29",
+    "path": "question-bank/index.html?q=PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29#PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29",
     "kind": "question",
     "keywords": [
       "pyq-phy-jeemain-2026-04apr-s2-q29",
@@ -15583,16 +14737,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "at",
       "t=2",
       "s?",
-      "45\u00b0.",
-      "differentiate",
-      "the",
-      "coordinate",
-      "laws:"
+      "motion",
+      "in",
+      "2d",
+      "/",
+      "motion"
     ]
   },
   {
     "title": "A block takes time t to slide from rest down a 45\u00b0 inclined plane. When the same",
-    "path": "question-bank/index.html?search=PYQ-PHY-JEEMAIN-2026-06APR-S2-Q46",
+    "path": "question-bank/index.html?q=PYQ-PHY-JEEMAIN-2026-06APR-S2-Q46#PYQ-PHY-JEEMAIN-2026-06APR-S2-Q46",
     "kind": "question",
     "keywords": [
       "pyq-phy-jeemain-2026-06apr-s2-q46",
@@ -15649,7 +14803,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Two masses, 4 kg and 6 kg, are connected by a massless string over a frictionles",
-    "path": "question-bank/index.html?search=PYQ-PHY-NEET-2020-E1-Q160",
+    "path": "question-bank/index.html?q=PYQ-PHY-NEET-2020-E1-Q160#PYQ-PHY-NEET-2020-E1-Q160",
     "kind": "question",
     "keywords": [
       "pyq-phy-neet-2020-e1-q160",
@@ -15697,16 +14851,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "terms",
       "of",
       "g.",
-      "option",
-      "(3):",
-      "g/5.",
-      "for",
-      "an"
+      "newton's",
+      "laws",
+      "of",
+      "motion",
+      "/"
     ]
   },
   {
     "title": "The oxidation state of Chromium in chromium pentoxide (CrO\u2085, blue butterfly pero",
-    "path": "question-bank/index.html?search=REDOX-Q01",
+    "path": "question-bank/index.html?q=REDOX-Q01#REDOX-Q01",
     "kind": "question",
     "keywords": [
       "redox-q01",
@@ -15736,34 +14890,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "peroxo",
       "compound)",
       "is:",
-      "a",
-      "step",
-      "1:",
-      "inspect",
-      "the",
-      "structure",
-      "before",
-      "using",
-      "the",
-      "usual",
-      "oxygen",
-      "rule.",
-      "cro\u2085",
-      "contains",
-      "one",
-      "oxo",
-      "oxygen",
-      "and",
-      "two",
-      "o\u2013o",
-      "peroxo",
-      "groups;",
-      "oxygen"
+      "redox",
+      "reactions",
+      "cap-chem-redox",
+      "chemistry"
     ]
   },
   {
     "title": "The n-factor (valency factor) of potassium permanganate (KMnO\u2084) when it acts as ",
-    "path": "question-bank/index.html?search=REDOX-Q02",
+    "path": "question-bank/index.html?q=REDOX-Q02#REDOX-Q02",
     "kind": "question",
     "keywords": [
       "redox-q02",
@@ -15804,23 +14939,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "mediums",
       "respectively",
       "is:",
-      "a",
-      "step",
-      "1:",
-      "initial",
-      "oxidation",
-      "state",
-      "of",
-      "mn",
-      "in",
-      "kmno\u2084:",
-      "+1",
-      "+"
+      "redox",
+      "reactions",
+      "cap-chem-redox",
+      "chemistry"
     ]
   },
   {
     "title": "In the disproportionation reaction of white phosphorus in basic solution: P\u2084 + 3",
-    "path": "question-bank/index.html?search=REDOX-Q03",
+    "path": "question-bank/index.html?q=REDOX-Q03#REDOX-Q03",
     "kind": "question",
     "keywords": [
       "redox-q03",
@@ -15865,19 +14992,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "mass",
       "m)",
       "is:",
-      "a",
-      "step",
-      "1:",
-      "in",
-      "p\u2084,",
-      "phosphorus",
-      "is",
-      "0."
+      "redox",
+      "reactions",
+      "cap-chem-redox",
+      "chemistry"
     ]
   },
   {
     "title": "In the tetrathionate ion (S\u2084O\u2086\u00b2\u207b), the oxidation states of the four sulfur atoms",
-    "path": "question-bank/index.html?search=REDOX-Q04",
+    "path": "question-bank/index.html?q=REDOX-Q04#REDOX-Q04",
     "kind": "question",
     "keywords": [
       "redox-q04",
@@ -15909,32 +15032,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "atoms",
       "are",
       "respectively:",
-      "a",
-      "step",
-      "1:",
-      "formula",
-      "algebra",
-      "gives",
-      "an",
-      "average",
-      "sulfur",
-      "oxidation",
-      "number",
-      "of",
-      "+2.5",
-      "because",
-      "4x",
-      "+",
-      "6(-2)",
-      "=",
-      "-2.",
-      "step",
-      "2:"
+      "redox",
+      "reactions",
+      "cap-chem-redox",
+      "chemistry"
     ]
   },
   {
     "title": "How many moles of acidified K\u2082Cr\u2082O\u2087 are required to completely oxidize 1 mole of",
-    "path": "question-bank/index.html?search=REDOX-Q05",
+    "path": "question-bank/index.html?q=REDOX-Q05#REDOX-Q05",
     "kind": "question",
     "keywords": [
       "redox-q05",
@@ -15969,29 +15075,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "ferrous",
       "oxalate",
       "(fec\u2082o\u2084)?",
-      "a",
-      "step",
-      "1:",
-      "calculate",
-      "the",
-      "n-factor",
-      "of",
-      "k\u2082cr\u2082o\u2087",
-      "in",
-      "acidic",
-      "medium:",
-      "cr\u2082o\u2087\u00b2\u207b",
-      "+",
-      "14h\u207a",
-      "+",
-      "6e\u207b",
-      "\u2192",
-      "2cr\u00b3\u207a"
+      "redox",
+      "reactions",
+      "cap-chem-redox",
+      "chemistry"
     ]
   },
   {
     "title": "In magnetic iron oxide (Fe\u2083O\u2084, magnetite), the oxidation state of iron is best d",
-    "path": "question-bank/index.html?search=REDOX-Q06",
+    "path": "question-bank/index.html?q=REDOX-Q06#REDOX-Q06",
     "kind": "question",
     "keywords": [
       "redox-q06",
@@ -16024,31 +15116,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "best",
       "described",
       "as:",
-      "a",
-      "step",
-      "1:",
-      "formula",
-      "algebra",
-      "gives",
-      "the",
-      "average",
-      "value",
-      "3x",
-      "+",
-      "4(-2)",
-      "=",
-      "0,",
-      "so",
-      "x",
-      "=",
-      "+8/3.",
-      "step",
-      "2:"
+      "redox",
+      "reactions",
+      "cap-chem-redox",
+      "chemistry"
     ]
   },
   {
     "title": "When potassium permanganate (KMnO\u2084, molar mass M) acts as an oxidizing agent in ",
-    "path": "question-bank/index.html?search=REDOX-Q07",
+    "path": "question-bank/index.html?q=REDOX-Q07#REDOX-Q07",
     "kind": "question",
     "keywords": [
       "redox-q07",
@@ -16105,7 +15181,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "For the standard galvanic cell Zn(s) | Zn\u00b2\u207a(aq, 1M) || Cu\u00b2\u207a(aq, 1M) | Cu(s), giv",
-    "path": "question-bank/index.html?search=REDOX-Q08",
+    "path": "question-bank/index.html?q=REDOX-Q08#REDOX-Q08",
     "kind": "question",
     "keywords": [
       "redox-q08",
@@ -16162,7 +15238,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The oxidation states of sulfur in Caro's acid (H\u2082SO\u2085) and Marshall's acid (H\u2082S\u2082O",
-    "path": "question-bank/index.html?search=REDOX-Q09",
+    "path": "question-bank/index.html?q=REDOX-Q09#REDOX-Q09",
     "kind": "question",
     "keywords": [
       "redox-q09",
@@ -16194,32 +15270,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "(h\u2082s\u2082o\u2088)",
       "respectively",
       "are:",
-      "a",
-      "step",
-      "1:",
-      "inspect",
-      "each",
-      "acid",
-      "for",
-      "an",
-      "o\u2013o",
-      "peroxide",
-      "linkage",
-      "before",
-      "assigning",
-      "every",
-      "oxygen",
-      "as",
-      "-2.",
-      "step",
-      "2:",
-      "in",
-      "h\u2082so\u2085,"
+      "redox",
+      "reactions",
+      "cap-chem-redox",
+      "chemistry"
     ]
   },
   {
     "title": "In the brown ring complex [Fe(H\u2082O)\u2085(NO)]SO\u2084 formed during the nitrate ring test,",
-    "path": "question-bank/index.html?search=REDOX-Q10",
+    "path": "question-bank/index.html?q=REDOX-Q10#REDOX-Q10",
     "kind": "question",
     "keywords": [
       "redox-q10",
@@ -16258,25 +15317,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "moment",
       "(\u03bc)",
       "are:",
-      "a",
-      "step",
-      "1:",
-      "the",
-      "complex",
-      "cation",
-      "[fe(h\u2082o)\u2085(no)]\u00b2\u207a",
-      "has",
-      "overall",
-      "charge",
-      "+2;",
-      "water",
-      "is",
-      "neutral."
+      "redox",
+      "reactions",
+      "cap-chem-redox",
+      "chemistry"
     ]
   },
   {
     "title": "When ferrous oxalate (FeC\u2082O\u2084) is oxidized completely by acidic KMnO\u2084 to Fe\u00b3\u207a and",
-    "path": "question-bank/index.html?search=REDOX-Q11",
+    "path": "question-bank/index.html?q=REDOX-Q11#REDOX-Q11",
     "kind": "question",
     "keywords": [
       "redox-q11",
@@ -16312,28 +15361,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "fec\u2082o\u2084",
       "is:",
-      "a",
-      "step",
-      "1:",
-      "in",
-      "fec\u2082o\u2084,",
-      "both",
-      "the",
-      "cation",
-      "(fe\u00b2\u207a)",
-      "and",
-      "the",
-      "anion",
-      "(c\u2082o\u2084\u00b2\u207b)",
-      "undergo",
-      "oxidation!",
-      "step",
-      "2:"
+      "redox",
+      "reactions",
+      "cap-chem-redox",
+      "chemistry"
     ]
   },
   {
     "title": "Bleaching powder (CaOCl\u2082) contains two chlorine atoms. Their individual oxidatio",
-    "path": "question-bank/index.html?search=REDOX-Q12",
+    "path": "question-bank/index.html?q=REDOX-Q12#REDOX-Q12",
     "kind": "question",
     "keywords": [
       "redox-q12",
@@ -16359,38 +15395,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "oxidation",
       "states",
       "are:",
-      "a",
-      "step",
-      "1:",
-      "use",
-      "the",
-      "textbook/jee",
-      "representation",
-      "ca(ocl)cl",
-      "for",
-      "bleaching",
-      "powder;",
-      "real",
-      "commercial",
-      "bleaching",
-      "powder",
-      "can",
-      "have",
-      "more",
-      "complex",
-      "composition.",
-      "step",
-      "2:",
-      "the",
-      "chloride",
-      "component",
-      "is",
-      "cl\u207b,"
+      "redox",
+      "reactions",
+      "cap-chem-redox",
+      "chemistry"
     ]
   },
   {
     "title": "The equivalent weight of potassium permanganate (KMnO\u2084, molecular mass M) in aci",
-    "path": "question-bank/index.html?search=REDOX-Q13",
+    "path": "question-bank/index.html?q=REDOX-Q13#REDOX-Q13",
     "kind": "question",
     "keywords": [
       "redox-q13",
@@ -16426,28 +15439,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "media",
       "respectively",
       "is:",
-      "a",
-      "step",
-      "1:",
-      "acidic",
-      "medium:",
-      "mno\u2084\u207b",
-      "+",
-      "8",
-      "h\u207a",
-      "+",
-      "5",
-      "e\u207b",
-      "\u2192",
-      "mn\u00b2\u207a",
-      "+",
-      "4",
-      "h\u2082o."
+      "redox",
+      "reactions",
+      "cap-chem-redox",
+      "chemistry"
     ]
   },
   {
     "title": "In the disproportionation reaction of white phosphorus with alkali: P\u2084 + 3 OH\u207b +",
-    "path": "question-bank/index.html?search=REDOX-Q14",
+    "path": "question-bank/index.html?q=REDOX-Q14#REDOX-Q14",
     "kind": "question",
     "keywords": [
       "redox-q14",
@@ -16491,20 +15491,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "p\u2084",
       "is:",
-      "a",
-      "step",
-      "1:",
-      "determine",
-      "oxidation",
-      "state",
-      "changes",
-      "from",
-      "p\u2084"
+      "redox",
+      "reactions",
+      "cap-chem-redox",
+      "chemistry"
     ]
   },
   {
     "title": "When iodide (I\u207b) is oxidized by permanganate (MnO\u2084\u207b) in faint alkaline medium, i",
-    "path": "question-bank/index.html?search=REDOX-Q15",
+    "path": "question-bank/index.html?q=REDOX-Q15#REDOX-Q15",
     "kind": "question",
     "keywords": [
       "redox-q15",
@@ -16553,15 +15548,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "balanced",
       "equation",
       "is:",
-      "a",
-      "step",
-      "1:",
-      "reduction"
+      "redox",
+      "reactions",
+      "cap-chem-redox",
+      "chemistry"
     ]
   },
   {
     "title": "Given standard reduction potentials: E\u00b0(Zn\u00b2\u207a/Zn) = -0.76 V and E\u00b0(Fe\u00b2\u207a/Fe) = -0.",
-    "path": "question-bank/index.html?search=REDOX-Q16",
+    "path": "question-bank/index.html?q=REDOX-Q16#REDOX-Q16",
     "kind": "question",
     "keywords": [
       "redox-q16",
@@ -16612,13 +15607,13 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "forward",
       "reaction",
       "are:",
-      "a",
-      "step"
+      "redox",
+      "reactions"
     ]
   },
   {
     "title": "The individual oxidation states of the two nitrogen atoms in ammonium nitrate (N",
-    "path": "question-bank/index.html?search=REDOX-Q17",
+    "path": "question-bank/index.html?q=REDOX-Q17#REDOX-Q17",
     "kind": "question",
     "keywords": [
       "redox-q17",
@@ -16649,33 +15644,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "nitrate",
       "(nh\u2084no\u2083)",
       "are:",
-      "a",
-      "step",
-      "1:",
-      "treat",
-      "nh\u2084no\u2083",
-      "as",
-      "the",
-      "ionic",
-      "compound",
-      "nh\u2084\u207a",
-      "+",
-      "no\u2083\u207b.",
-      "step",
-      "2:",
-      "in",
-      "nh\u2084\u207a:",
-      "x",
-      "+",
-      "4(+1)",
-      "=",
-      "+1,",
-      "so"
+      "redox",
+      "reactions",
+      "cap-chem-redox",
+      "chemistry"
     ]
   },
   {
     "title": "The volume of 0.1 M Na\u2082S\u2082O\u2083 (hypo) required to titrate the iodine liberated by a",
-    "path": "question-bank/index.html?search=REDOX-Q18",
+    "path": "question-bank/index.html?q=REDOX-Q18#REDOX-Q18",
     "kind": "question",
     "keywords": [
       "redox-q18",
@@ -16722,17 +15699,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "acidic",
       "solution",
       "is:",
-      "a",
-      "step",
-      "1:",
-      "in",
-      "acid,",
-      "one"
+      "redox",
+      "reactions",
+      "cap-chem-redox",
+      "chemistry"
     ]
   },
   {
     "title": "For the Daniell cell Zn(s) | Zn\u00b2\u207a(aq) || Cu\u00b2\u207a(aq) | Cu(s), if the concentration ",
-    "path": "question-bank/index.html?search=REDOX-Q19",
+    "path": "question-bank/index.html?q=REDOX-Q19#REDOX-Q19",
     "kind": "question",
     "keywords": [
       "redox-q19",
@@ -16789,7 +15764,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Red lead (minium, Pb\u2083O\u2084) is a mixed oxide. The individual oxidation states of le",
-    "path": "question-bank/index.html?search=REDOX-Q20",
+    "path": "question-bank/index.html?q=REDOX-Q20#REDOX-Q20",
     "kind": "question",
     "keywords": [
       "redox-q20",
@@ -16826,27 +15801,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "stoichiometric",
       "ratio",
       "are:",
-      "a",
-      "step",
-      "1:",
-      "formula",
-      "algebra",
-      "gives",
-      "the",
-      "average",
-      "lead",
-      "oxidation",
-      "number",
-      "+8/3",
-      "because",
-      "3x",
-      "+",
-      "4(-2)"
+      "redox",
+      "reactions",
+      "cap-chem-redox",
+      "chemistry"
     ]
   },
   {
     "title": "Let O be the origin, vector OP = a and vector OQ = b. If R is a point on OP such",
-    "path": "question-bank/index.html?search=VEC-Q01",
+    "path": "question-bank/index.html?q=VEC-Q01#VEC-Q01",
     "kind": "question",
     "keywords": [
       "vec-q01",
@@ -16903,7 +15866,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "If a and b are unit vectors such that |a + b| = \u221a3, then the value of (2a - 5b) ",
-    "path": "question-bank/index.html?search=VEC-Q02",
+    "path": "question-bank/index.html?q=VEC-Q02#VEC-Q02",
     "kind": "question",
     "keywords": [
       "vec-q02",
@@ -16954,13 +15917,13 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "+",
       "b)",
       "is:",
-      "a",
-      "given:"
+      "vector",
+      "algebra"
     ]
   },
   {
     "title": "If a unit vector u makes angles \u03c0/3 with i, \u03c0/4 with j, and an acute angle \u03b8 wit",
-    "path": "question-bank/index.html?search=VEC-Q03",
+    "path": "question-bank/index.html?q=VEC-Q03#VEC-Q03",
     "kind": "question",
     "keywords": [
       "vec-q03",
@@ -17009,15 +15972,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "\u03b8",
       "is:",
-      "b",
-      "direction",
-      "cosines",
-      "of"
+      "vector",
+      "algebra",
+      "cap-math-vectors",
+      "mathematics"
     ]
   },
   {
     "title": "Let a = 2i + 3j - k and b = i - 2j + 2k. The vector component of a orthogonal (p",
-    "path": "question-bank/index.html?search=VEC-Q04",
+    "path": "question-bank/index.html?q=VEC-Q04#VEC-Q04",
     "kind": "question",
     "keywords": [
       "vec-q04",
@@ -17074,7 +16037,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "Let a and b be two non-zero vectors such that |a + b| = |a - b|. The angle betwe",
-    "path": "question-bank/index.html?search=VEC-Q05",
+    "path": "question-bank/index.html?q=VEC-Q05#VEC-Q05",
     "kind": "question",
     "keywords": [
       "vec-q05",
@@ -17122,16 +16085,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "and",
       "b",
       "is:",
-      "c",
-      "square",
-      "both",
-      "sides:",
-      "|a"
+      "vector",
+      "algebra",
+      "cap-math-vectors",
+      "mathematics"
     ]
   },
   {
     "title": "Let a = 2i + 3j + 3k and b = 6i + 3j + 3k. The square of the area of the triangl",
-    "path": "question-bank/index.html?search=VEC-Q06",
+    "path": "question-bank/index.html?q=VEC-Q06#VEC-Q06",
     "kind": "question",
     "keywords": [
       "vec-q06",
@@ -17188,7 +16150,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The diagonals of a parallelogram are given by vectors d\u2081 = 3i + j - 2k and d\u2082 = ",
-    "path": "question-bank/index.html?search=VEC-Q07",
+    "path": "question-bank/index.html?q=VEC-Q07#VEC-Q07",
     "kind": "question",
     "keywords": [
       "vec-q07",
@@ -17245,7 +16207,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "For any two vectors a and b, if |a| = 10, |b| = 2, and a \u00b7 b = 12, then the magn",
-    "path": "question-bank/index.html?search=VEC-Q08",
+    "path": "question-bank/index.html?q=VEC-Q08#VEC-Q08",
     "kind": "question",
     "keywords": [
       "vec-q08",
@@ -17302,7 +16264,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "If the vectors \u03bci + j + k, i + \u03bcj + k and i + j + \u03bck are coplanar, then the sum ",
-    "path": "question-bank/index.html?search=VEC-Q09",
+    "path": "question-bank/index.html?q=VEC-Q09#VEC-Q09",
     "kind": "question",
     "keywords": [
       "vec-q09",
@@ -17359,7 +16321,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The volume of the parallelepiped whose coterminous edges are represented by vect",
-    "path": "question-bank/index.html?search=VEC-Q10",
+    "path": "question-bank/index.html?q=VEC-Q10#VEC-Q10",
     "kind": "question",
     "keywords": [
       "vec-q10",
@@ -17410,13 +16372,13 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "+",
       "2k",
       "is:",
-      "a",
-      "set"
+      "vector",
+      "algebra"
     ]
   },
   {
     "title": "Let a = \u221a7 i + j - k and b = j + 2k. If r is a vector such that r \u00d7 a + a \u00d7 b = ",
-    "path": "question-bank/index.html?search=VEC-Q11",
+    "path": "question-bank/index.html?q=VEC-Q11#VEC-Q11",
     "kind": "question",
     "keywords": [
       "vec-q11",
@@ -17473,7 +16435,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "For any three vectors a, b, c, the vector triple product a \u00d7 (b \u00d7 c) is equal to",
-    "path": "question-bank/index.html?search=VEC-Q12",
+    "path": "question-bank/index.html?q=VEC-Q12#VEC-Q12",
     "kind": "question",
     "keywords": [
       "vec-q12",
@@ -17530,7 +16492,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
   },
   {
     "title": "The shortest distance between the two skew lines r\u2081 = (i + 2j + 3k) + \u03bb (2i + 3j",
-    "path": "question-bank/index.html?search=VEC-Q13",
+    "path": "question-bank/index.html?q=VEC-Q13#VEC-Q13",
     "kind": "question",
     "keywords": [
       "vec-q13",

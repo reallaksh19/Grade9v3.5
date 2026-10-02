@@ -125,14 +125,14 @@ def build_search_documents(repo_root: Path) -> tuple[list[dict], dict]:
         subj = q.get("subject", "Physics")
         cap = q.get("primary_capability_ref", "")
 
-        search_vector = f"{qid} {title} {stem} {options_text} {ans_summary} {ans_reasoning} {scaffolds} {hints} {topic} {cap} {subj}".lower()
+        search_vector = f"{qid} {title} {stem} {options_text} {topic} {cap} {subj}".lower()
         docs.append({
             "id": f"Q-{qid}",
             "type": "QUESTION",
             "subject": subj,
             "title": title,
             "search_text": search_vector,
-            "url": f"question-bank/index.html?search={qid}",
+            "url": f"question-bank/index.html?q={qid}#{qid}",
             "target": "_self",
             "concept_refs": [cap] if cap else []
         })

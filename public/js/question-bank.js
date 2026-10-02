@@ -83,7 +83,7 @@ function renderDeclaredMath(article,q){
 // ---- URL state: labels from older links still work, stable ids are what gets written ----
 function stateFromUrl(){
   const p=new URLSearchParams(location.search);
-  return {view:p.get('view')||'',q:p.get('q')||p.get('search')||'',subject:p.get('subject')||'',topic:p.get('topic')||'',subtopic:p.get('subtopic')||'',
+  return {view:p.get('view')||'',q:p.get('q')||p.get('search')||p.get('id')||'',subject:p.get('subject')||'',topic:p.get('topic')||'',subtopic:p.get('subtopic')||'',
     difficulty:p.get('difficulty')||'',exam:p.get('exam')||'',type:p.get('type')||'',mode:p.get('mode')||'browse',sort:p.get('sort')||'canonical'};
 }
 function refFor(rows,value){
@@ -114,7 +114,10 @@ function writeUrl(push){
   });
   history[push?'pushState':'replaceState'](null,'',location.pathname+(p.toString()?'?'+p.toString():'')+location.hash);
 }
-function syncControls(){FILTER_KEYS.forEach(key=>{if(els[key])els[key].value=state[key]||'';});}
+function syncControls(){
+  FILTER_KEYS.forEach(key=>{if(els[key])els[key].value=state[key]||'';});
+  if(els.search)els.search.value=state.q||'';
+}
 function setState(patch,opts){
   const o=opts||{};
   state={...state,...patch};
@@ -130,7 +133,15 @@ function filtered(){
   const view=state.view?viewById.get(state.view):null;
   const inView=view?new Set(view.resolved_question_refs):null;
   let matching=null;
-  if(state.q&&ready.search)matching=new Set(Data.search(state.q,{kind:'question'}).map(doc=>doc.id));
+  if(state.q){
+    const exactId=state.q.trim().toLowerCase();
+    const byId=summaries.find(s=>s.id.toLowerCase()===exactId);
+    if(byId){
+      matching=new Set([byId.id]);
+    }else if(ready.search){
+      matching=new Set(Data.search(state.q,{kind:'question'}).map(doc=>doc.id));
+    }
+  }
   const list=summaries.filter(q=>{
     if(inView&&!inView.has(q.id))return false;
     if(state.subject&&q.subject_ref!==state.subject)return false;
@@ -609,13 +620,13 @@ async function start(){
   }
 }
 function handleHash(){
-  if(!location.hash)return;
-  const id=decodeURIComponent(location.hash.slice(1));
-  if(!Data.summaryById(id))return;
+  const targetId=location.hash?decodeURIComponent(location.hash.slice(1)):(state.q&&Data.summaryById(state.q.trim())?state.q.trim():'');
+  if(!targetId)return;
+  if(!Data.summaryById(targetId))return;
   if(state.mode==='study'){
-    const card=document.getElementById(id);
+    const card=document.getElementById(targetId);
     if(card)card.scrollIntoView({block:'start'});
-  }else openStudyModal(id,null);
+  }else openStudyModal(targetId,null);
 }
 
 // ---- controls ----

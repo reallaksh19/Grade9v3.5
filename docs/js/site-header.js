@@ -195,7 +195,7 @@
       list.push({
         id: q.id,
         title: (q.exam || '') + ' ' + (q.year || '') + ' - ' + (q.topic || ''),
-        url: 'question-bank/index.html?q=' + encodeURIComponent(q.id),
+        url: 'question-bank/index.html?q=' + encodeURIComponent(q.id) + '#' + encodeURIComponent(q.id),
         type: 'QUESTION',
         search_text: [q.id, q.subject, q.topic, q.stem].join(' ')
       });
