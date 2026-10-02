@@ -215,6 +215,7 @@ function renderCollections(){
 function renderTabs(){
   els.subjectTabs.replaceChildren();
   const ICONS = ['⚗️', '📐', '🔬', '🧬', '🪐'];
+  const ncertCount = summaries.filter(q => q.exam === 'NCERT' || (q.tags || []).includes('NCERT')).length;
   const tabs=[
     {id:'',label:'All Questions',count:catalog.counts.questions,icon:'⚡'},
     ...browsable(catalog.subjects).map((s, idx)=>({
@@ -223,27 +224,33 @@ function renderTabs(){
       count:s.question_count,
       icon:s.icon || ICONS[idx % ICONS.length] || '📚'
     })),
-    {id:'iit-jee',label:'IIT-JEE PYQs',count:215,icon:'🎯'}
+    {id:'iit-jee',label:'IIT-JEE PYQs',count:215,icon:'🎯'},
+    {id:'ncert',label:'NCERT',count:ncertCount,icon:'📖'}
   ];
   tabs.forEach(tab=>{
     const button=el('button','qb-tab-btn');
     button.type='button';
     button.setAttribute('role','tab');
     button.dataset.subjectRef=tab.id;
-    if(tab.id && tab.id !== 'iit-jee') button.style.setProperty('--qb-tab-accent',accentFor(tab.id));
+    if(tab.id && tab.id !== 'iit-jee' && tab.id !== 'ncert') button.style.setProperty('--qb-tab-accent',accentFor(tab.id));
     if(tab.id === 'iit-jee') button.style.setProperty('--qb-tab-accent','#a855f7');
+    if(tab.id === 'ncert') button.style.setProperty('--qb-tab-accent','#059669');
     button.append(
       el('span','qb-tab-icon',tab.icon),
       el('span','qb-tab-label',tab.label),
       el('span','qb-tab-badge',String(tab.count))
     );
-    const selected = tab.id === 'iit-jee' ? (state.exam === 'IIT-JEE Diagnostic' || state.exam === 'IIT-JEE') : (state.subject === tab.id && !state.exam);
+    const selected = tab.id === 'iit-jee' ? (state.exam === 'IIT-JEE Diagnostic' || state.exam === 'IIT-JEE') :
+                     tab.id === 'ncert' ? (state.exam === 'NCERT') :
+                     (state.subject === tab.id && !state.exam);
     button.setAttribute('aria-selected',String(selected));
     button.tabIndex=selected?0:-1;
     button.classList.toggle('active',selected);
     button.addEventListener('click',()=>{
       if(tab.id === 'iit-jee'){
         setState({view:'',subject:'',topic:'',subtopic:'',exam:'IIT-JEE Diagnostic'});
+      } else if(tab.id === 'ncert'){
+        setState({view:'',subject:'',topic:'',subtopic:'',exam:'NCERT'});
       } else {
         setState({view:'',subject:tab.id,topic:'',subtopic:'',exam:''});
       }
@@ -368,6 +375,7 @@ function qHeader(q){
   top.append(left,diff);
   header.append(top);
   const badges=el('div','qb-badges');
+  if(q.exam === 'NCERT' || (q.tags || []).includes('NCERT')) badges.append(el('span','qb-badge ncert','NCERT'));
   if(q.primary_capability_ref)badges.append(el('span','qb-badge',q.primary_capability_ref));
   (q.secondary_capability_refs||[]).forEach(ref=>badges.append(el('span','qb-badge',ref)));
   if(q.common_wrong_route)badges.append(el('span','qb-badge trap','TRAP: '+q.common_wrong_route));

@@ -600,6 +600,10 @@ article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-sp
 <style id="u2-practice-hub-target">
 a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center}
 </style>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
 </head>
 <body>
 
@@ -702,7 +706,7 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
         <div class="content-card">
           <h2><span>🔄</span> Newton's Third Law &amp; Connected Systems</h2>
           <p>
-            To every action there is always an equal and opposite reaction: $ec{F}_{AB} = -ec{F}_{BA}$.
+            To every action there is always an equal and opposite reaction: \(\vec{F}_{AB} = -\vec{F}_{BA}\).
             Action-reaction pairs NEVER act on the same body, and therefore NEVER cancel each other!
           </p>
           <div class="formula-box">
@@ -717,353 +721,20 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
 
       <!-- Tab 5: Core 2 Challenges -->
       <div id="tab-challenges" class="tab-content">
-        <div class="content-card">
-          <h2><span>🎯</span> Core 2 Structured NLM Challenges (20)</h2>
-          <p>
-            Test and consolidate your dynamics reasoning across 35+ verified problem instances from the revised core.
+        <div class="content-card" style="border: 2px solid var(--accent); background: linear-gradient(180deg, rgba(56, 189, 248, 0.08), var(--bg-card));">
+          <h2><span>🎯</span> Core 2 Structured NLM Challenges (20 Questions)</h2>
+          <p style="font-size: 15px; color: var(--text-secondary); margin-bottom: 16px;">
+            Test and consolidate your dynamics reasoning across 35+ verified problem instances from the revised core. Fully integrated into the canonical Question Bank.
           </p>
-        </div>
-
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">NLM Challenge</span>
-            <span class="tag-pill">Q01 · Page 2</span>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+            <a class="btn" href="../../question-bank/index.html?subject=Physics&topic=nlm&mode=study" style="background: var(--accent); color: #080d1a; font-weight: 800; text-decoration: none; padding: 12px 22px; border-radius: var(--tab12-radius-sm); display: inline-flex; align-items: center; gap: 8px;">
+              <span>🎯</span> Practice All NLM Challenges in Question Bank →
+            </a>
+            <a class="btn" href="../../question-bank/index.html?subject=Physics&topic=nlm" style="background: var(--bg-card-subtle); color: var(--text-primary); border: 1px solid var(--border); text-decoration: none; padding: 12px 18px; border-radius: var(--tab12-radius-sm); font-weight: 600;">
+              Browse NLM Question Bank
+            </a>
           </div>
-          <div class="q-title">Q01 - Changing velocity means net force</div>
-          <p class="q-prompt">A trolley moves to the right and its speed increases steadily. What are the directions of its acceleration and net horizontal force?</p>
-          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
-            💡 <strong>Hint:</strong> The trolley is moving right and speeding up. What does that tell you about the direction of its acceleration?</div>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Both acceleration and net horizontal force point to the right.<br>Speeding up while moving right means the velocity change is rightward, so acceleration is rightward. By ΣF = ma, the net force has the same direction as acceleration.
-            </div>
-          </details>
         </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">NLM Challenge</span>
-            <span class="tag-pill">Q02 · Page 3</span>
-          </div>
-          <div class="q-title">Q02 - Identify the Newton-III pair</div>
-          <p class="q-prompt">A student pushes a wall horizontally with 120 N. What force does the wall exert on the student?</p>
-          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
-            💡 <strong>Hint:</strong> The student and wall are one interaction pair. What does Newton III say about the two interaction forces?</div>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              The wall exerts 120 N on the student in the opposite direction.<br>Newton's third-law forces are equal in magnitude, opposite in direction, and act on different bodies.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">NLM Challenge</span>
-            <span class="tag-pill">Q03 · Page 4</span>
-          </div>
-          <div class="q-title">Q03 - Catching time and average force</div>
-          <p class="q-prompt">A 0.40 kg ball moving at 15 m/s is brought to rest in two catches. The momentum change is the same, but one catch takes longer. Which catch has the smaller average force, and why?</p>
-          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
-            💡 <strong>Hint:</strong> The initial and final momenta are the same in both catches. What quantity changes between the two cases?</div>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              The longer-duration catch has the smaller average force magnitude because |F<sub>avg</sub>| = |Δp|/Δt. Both catches have the same momentum change, so increasing the stopping time reduces the average force.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">NLM Challenge</span>
-            <span class="tag-pill">Q04 · Page 5</span>
-          </div>
-          <div class="q-title">Q04 - Inertia during sudden braking</div>
-          <p class="q-prompt">A standing passenger in a bus lurches forward when the bus brakes suddenly. Explain the effect using inertia.</p>
-          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
-            💡 <strong>Hint:</strong> Immediately before braking, what horizontal velocity does the passenger’s upper body already have?</div>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              The passenger's body tends to keep its previous forward velocity while the bus slows, so relative to the bus the passenger lurches forward. This is Newton's first law.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">NLM Challenge</span>
-            <span class="tag-pill">Q05 · Page 6</span>
-          </div>
-          <div class="q-title">Q05 - Coin tossed in an accelerating train</div>
-          <p class="q-prompt">Inside a train accelerating forward, a passenger tosses a coin vertically. Neglect air resistance. Relative to the train, where does the coin tend to land?</p>
-          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
-            💡 <strong>Hint:</strong> While the coin is airborne, does it automatically share the train’s continuing forward acceleration?</div>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              The coin tends to land behind the passenger. Once released, it keeps the horizontal velocity it had at release while the train continues to accelerate forward beneath it.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">NLM Challenge</span>
-            <span class="tag-pill">Q06 · Page 7</span>
-          </div>
-          <div class="q-title">Q06 - Constant velocity on a frictionless table</div>
-          <p class="q-prompt">A puck slides at constant velocity on a perfectly frictionless horizontal table. What horizontal net force acts on it?</p>
-          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
-            💡 <strong>Hint:</strong> The puck’s velocity is constant. What is its acceleration?</div>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              The horizontal net force is 0 N. Constant velocity means zero acceleration, so ΣF<sub>x</sub> = ma<sub>x</sub> = 0.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">NLM Challenge</span>
-            <span class="tag-pill">Q07 · Page 8</span>
-          </div>
-          <div class="q-title">Q07 - Rocket propulsion and momentum</div>
-          <p class="q-prompt">A rocket ejects exhaust backward in deep space. Explain why the rocket accelerates forward.</p>
-          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
-            💡 <strong>Hint:</strong> Which two parts exchange momentum during the short ejection event?</div>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              The rocket gives the exhaust backward momentum; the exhaust gives the rocket an equal and opposite impulse, so the rocket gains forward momentum. The same interaction is described by Newton's third law.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">NLM Challenge</span>
-            <span class="tag-pill">Q08 · Page 9</span>
-          </div>
-          <div class="q-title">Q08 - Water tanker braking and inertia</div>
-          <p class="q-prompt">A partly filled tanker brakes suddenly. Why does the water surge toward the front of the tank?</p>
-          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
-            💡 <strong>Hint:</strong> Before braking, what velocity does the water already have relative to the road?</div>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              The water tends to keep its previous forward velocity while the tanker slows, so it moves forward relative to the tank. This is inertia.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">NLM Challenge</span>
-            <span class="tag-pill">Q09 · Page 10</span>
-          </div>
-          <div class="q-title">Q09 - Mass as a measure of inertia</div>
-          <p class="q-prompt">Three blocks have the same shape but masses 1 kg, 3 kg and 5 kg. Rank their translational inertia.</p>
-          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
-            💡 <strong>Hint:</strong> What property measures resistance to a change in velocity in translational motion?</div>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              5 kg &gt; 3 kg &gt; 1 kg. Mass measures translational inertia, so the larger mass resists a change in velocity more strongly.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">NLM Challenge</span>
-            <span class="tag-pill">Q10 · Page 11</span>
-          </div>
-          <div class="q-title">Q10 - Ambiguous rolling claim on a smooth train floor</div>
-          <p class="q-prompt">A source question places balls on a perfectly smooth (frictionless) train floor during braking and asks about rolling. Can the floor by itself change a ball's horizontal speed or spin?</p>
-          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
-            💡 <strong>Hint:</strong> If the floor is truly frictionless, what horizontal contact force and rolling torque can it exert on a ball?</div>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              No. A perfectly frictionless floor supplies no horizontal contact force and no frictional torque, so it cannot by itself change the ball's horizontal momentum or spin. Relative motion in the braking train is not the same as friction-driven rolling.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">NLM Challenge</span>
-            <span class="tag-pill">Q11 · Page 12</span>
-          </div>
-          <div class="q-title">Q11 - Light and heavy rifle recoil</div>
-          <p class="q-prompt">Two rifles fire bullets with the same forward momentum. One rifle has half the mass of the other. Compare the recoil momenta and recoil speeds of the rifles.</p>
-          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
-            💡 <strong>Hint:</strong> For rifle+bullet systems initially at rest, what must the rifle momentum do when the bullet gets forward momentum?</div>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              The recoil momenta have the same magnitude and are opposite the bullet momentum. For the same recoil momentum, |v| = |p|/M, so the rifle with half the mass recoils at twice the speed.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">NLM Challenge</span>
-            <span class="tag-pill">Q12 · Page 13</span>
-          </div>
-          <div class="q-title">Q12 - Horse and cart at constant speed</div>
-          <p class="q-prompt">A horse pulls a cart at constant speed on a level road. What is the cart's net horizontal force, and how must the total backward resistance compare with the horse's forward pull?</p>
-          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
-            💡 <strong>Hint:</strong> The cart moves at constant velocity. What does that say about its acceleration and net force?</div>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              The net horizontal force is zero. Constant velocity means a = 0, so the total backward resistance equals the forward pull in magnitude.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">NLM Challenge</span>
-            <span class="tag-pill">Q13 · Page 14</span>
-          </div>
-          <div class="q-title">Q13 - Why a falling ball alone does not conserve momentum</div>
-          <p class="q-prompt">A ball falls freely and its downward momentum increases. Is the momentum of the ball alone conserved? Explain.</p>
-          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
-            💡 <strong>Hint:</strong> What external force acts on the ball-only system during the fall?</div>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              No. Gravity is an external force on the ball-only system, so the ball's momentum changes. Momentum conservation requires zero net external impulse on the chosen system.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">NLM Challenge</span>
-            <span class="tag-pill">Q14 · Page 15</span>
-          </div>
-          <div class="q-title">Q14 - Friction from a velocity-time graph</div>
-          <p class="q-prompt">A 50 g slider slows uniformly from 80 m/s to rest in 8 s. If friction is the only horizontal force, find the friction force on the slider.</p>
-          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
-            💡 <strong>Hint:</strong> The graph is velocity versus time. What physical quantity is the slope?</div>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              m = 0.050 kg and a = (0 − 80)/8 = −10 m/s². Therefore F = ma = −0.50 N: the friction force has magnitude 0.50 N and acts opposite the motion.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">NLM Challenge</span>
-            <span class="tag-pill">Q15 · Page 16</span>
-          </div>
-          <div class="q-title">Q15 - Force-mass scaling</div>
-          <p class="q-prompt">An object accelerates at a under net force F and mass m. The force becomes F/2 while the mass becomes 2m. What is the new acceleration?</p>
-          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
-            💡 <strong>Hint:</strong> Both numerator and denominator of a=F/m change. Which way does each change push the acceleration?</div>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Initially a = F/m. The new acceleration is (F/2)/(2m) = F/(4m) = a/4.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">NLM Challenge</span>
-            <span class="tag-pill">Q16 · Page 17</span>
-          </div>
-          <div class="q-title">Q16 - Skaters push apart</div>
-          <p class="q-prompt">Two skaters of masses 50 kg and 75 kg push apart from rest. The 50 kg skater moves left at 3 m/s. Find the velocity of the 75 kg skater.</p>
-          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
-            💡 <strong>Hint:</strong> For the two-skater system initially at rest, what is the total momentum before they push?</div>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Initial total momentum is zero. Taking right as positive: 50(−3) + 75v = 0, so v = +2 m/s. The 75 kg skater moves right at 2 m/s.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">NLM Challenge</span>
-            <span class="tag-pill">Q17 · Page 18</span>
-          </div>
-          <div class="q-title">Q17 - Sprinkler reaction</div>
-          <p class="q-prompt">A sprinkler ejects water tangentially backward from its nozzles. Why does the sprinkler rotate in the opposite direction?</p>
-          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
-            💡 <strong>Hint:</strong> What body exerts the force that accelerates the outgoing water?</div>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              The sprinkler pushes the water backward/tangentially; the water exerts an equal and opposite force on the sprinkler, producing an opposite torque and rotation.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">NLM Challenge</span>
-            <span class="tag-pill">Q18 · Page 19</span>
-          </div>
-          <div class="q-title">Q18 - Bullet stopping force and time</div>
-          <p class="q-prompt">A 0.020 kg bullet enters a block at 100 m/s and stops uniformly in 0.10 m. Find the average stopping force magnitude and stopping time.</p>
-          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
-            💡 <strong>Hint:</strong> Distance is given but acceleration is not. Which model must be used before Newton II?</div>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Use v² − u² = 2as: 0 − 10000 = 2a(0.10), so a = −50000 m/s². The force magnitude is m|a| = 1000 N. From v = u + at, the stopping time is 0.0020 s.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">NLM Challenge</span>
-            <span class="tag-pill">Q19 · Page 20</span>
-          </div>
-          <div class="q-title">Q19 - Combined masses under the same force</div>
-          <p class="q-prompt">A 5 N force gives mass m₁ acceleration 8 m/s² and mass m₂ acceleration 24 m/s². If the two masses are joined and the same 5 N net force acts on the combined system, find its acceleration.</p>
-          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
-            💡 <strong>Hint:</strong> The same force produces different accelerations. What does F=ma let you infer about each mass?</div>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              m₁ = 5/8 kg and m₂ = 5/24 kg, so m₁ + m₂ = 5/6 kg. Therefore a = F/(m₁ + m₂) = 5/(5/6) = 6 m/s².
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">NLM Challenge</span>
-            <span class="tag-pill">Q20 · Page 21</span>
-          </div>
-          <div class="q-title">Q20 - Momentum graphs and force as rate of change</div>
-          <p class="q-prompt">For p = mv, what are the slopes of a p-v graph at fixed mass and a p-m graph at fixed velocity? How is force related to a p-t graph?</p>
-          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
-            💡 <strong>Hint:</strong> In p=mv, if m is held fixed and v varies, which quantity multiplies the horizontal-axis variable?</div>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Slope of p versus v = m; slope of p versus m = v; and the slope of a momentum-time graph is dp/dt = F<sub>net</sub>.
-            </div>
-          </details>
-        </div>
-    
       </div>
 
     </div>
@@ -1311,5 +982,25 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
   }).observe(document.documentElement, { childList: true, subtree: true });
 })();
 </script>
+  <script>
+    function renderAllMath() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false},
+            {left: "\\[", right: "\\]", display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", renderAllMath);
+    } else {
+      renderAllMath();
+    }
+  </script>
 </body>
 </html>
