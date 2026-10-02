@@ -238,3 +238,34 @@ jobs:
               --policy-file Shared/policy/disclosure-policy.v1.json \
               --enforce || true
           done
+
+  # ── Job 5 ──────────────────────────────────────────────────────────────────
+  # Projection assurance (Phase D): link integrity, network policy,
+  # viewport conformance, projection completeness.
+  # Runs on any committed standalone/ or docs/ HTML files.
+  # ───────────────────────────────────────────────────────────────────────────
+  projection-assurance:
+    name: Projection assurance (Phase D)
+    runs-on: ubuntu-latest
+    needs: canonical-integrity
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Link integrity, network policy, viewport conformance
+        if: ${{ !cancelled() }}
+        run: |
+          if [ -d standalone ]; then
+            python3 Shared/tools/assurance_projection.py \
+              --render-dir standalone \
+              --enforce
+          fi
+          if [ -d docs ]; then
+            python3 Shared/tools/assurance_projection.py \
+              --render-dir docs \
+              --enforce || true
+          fi
