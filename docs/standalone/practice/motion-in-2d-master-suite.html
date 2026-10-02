@@ -4855,11 +4855,11 @@ a[href^="https://"]::after,a[href^="http://"]::after{content:" · online";font-s
 
       if (choice === 'B') {
         fb.className = 'p-3 rounded-lg bg-emerald-950/50 border border-emerald-500/50 text-emerald-200 text-[13px] leading-relaxed block';
-        fb.innerHTML = '<strong>✓ CORRECT!</strong> Because the track is curved, the surface normal force <span class="font-mono text-cyan-300">N⃗</span> is tilted perpendicular to the slope <span class="font-mono">dy/dx = -2kx</span>. This guarantees a non-zero horizontal component <span class="font-mono text-amber-300">N_x = -N sinφ &ne; 0</span>. Therefore <span class="font-mono text-red-400">a_x &ne; 0</span>, completely violating the fundamental projectile condition <span class="font-mono">a_x = 0</span>!';
+        fb.innerHTML = '<strong>✓ CORRECT!</strong> Because the track is curved, the surface normal force <span class="font-mono text-cyan-300">N</span> is tilted perpendicular to the slope <span class="font-mono">dy/dx = -2kx</span>. This guarantees a non-zero horizontal component <span class="font-mono text-amber-300">N_x = -N sinφ &ne; 0</span>. Therefore <span class="font-mono text-red-400">a_x &ne; 0</span>, completely violating the fundamental projectile condition <span class="font-mono">a_x = 0</span>!';
         if (btnB) btnB.classList.add('border-emerald-500', 'bg-emerald-950/40');
       } else {
         fb.className = 'p-3 rounded-lg bg-rose-950/50 border border-rose-500/50 text-rose-200 text-[13px] leading-relaxed block';
-        fb.innerHTML = '<strong>❌ CONTRADICTION!</strong> While gravity is strictly vertical, the wire is a rigid surface constraint. A curved surface exerts a normal force <span class="font-mono text-cyan-300">N⃗</span> perpendicular to the tangent. On any slope, <span class="font-mono text-amber-300">N_x = -N sinφ &ne; 0</span>, which continuously accelerates or decelerates the bead horizontally!';
+        fb.innerHTML = '<strong>❌ CONTRADICTION!</strong> While gravity is strictly vertical, the wire is a rigid surface constraint. A curved surface exerts a normal force <span class="font-mono text-cyan-300">N</span> perpendicular to the tangent. On any slope, <span class="font-mono text-amber-300">N_x = -N sinφ &ne; 0</span>, which continuously accelerates or decelerates the bead horizontally!';
         if (btnA) btnA.classList.add('border-rose-500', 'bg-rose-950/40');
       }
     }
@@ -7181,7 +7181,7 @@ a[href^="https://"]::after,a[href^="http://"]::after{content:" · online";font-s
         if (typeof t3Update === 'function') t3Update();
         if (typeof toggleTeacherChalk === 'function') toggleTeacherChalk(3, true);
         flashSliders(['t3SliderU']);
-        pObj.summary = ['Ballistic Free Projectile', 'Torque τ = r⃗ × mg = -mg(u cosθ)t k̂', 'Torque grows linearly with time!'];
+        pObj.summary = ['Ballistic Free Projectile', 'Torque τ = r × mg = -mg(u cosθ)t k̂', 'Torque grows linearly with time!'];
       } else if (item.id === 7 || item.id === 8) {
         // Apex Fallacy: u = 40, theta = 60, snap to apex
         const sT = document.getElementById('t4SliderT');
@@ -7685,5 +7685,25 @@ a[href^="https://"]::after,a[href^="http://"]::after{content:" · online";font-s
   }).observe(document.documentElement, { childList: true, subtree: true });
 })();
 </script>
+  <script>
+    window.renderAllMath = function() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false},
+            {left: "\\[", right: "\\]", display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", window.renderAllMath);
+    } else {
+      window.renderAllMath();
+    }
+  </script>
 </body>
 </html>

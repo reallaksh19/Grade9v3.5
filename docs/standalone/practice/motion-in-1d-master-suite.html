@@ -115,6 +115,7 @@
   <!-- KaTeX for crisp mathematical typography -->
   <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
   <script defer src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script defer src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
 
   <!-- High-Yield Question Bank -->
   <script>
@@ -4448,5 +4449,25 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
   }).observe(document.documentElement, { childList: true, subtree: true });
 })();
 </script>
+  <script>
+    window.renderAllMath = function() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false},
+            {left: "\\[", right: "\\]", display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", window.renderAllMath);
+    } else {
+      window.renderAllMath();
+    }
+  </script>
 </body>
 </html>

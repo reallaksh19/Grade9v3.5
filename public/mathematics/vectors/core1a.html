@@ -191,11 +191,11 @@
               <!-- Stage 1: Vector Hypotenuse -->
               <g id="vecStage1">
                 <line x1="80" y1="200" x2="260" y2="80" stroke="#7c3aed" stroke-width="3.5" marker-end="url(#arrow)"/>
-                <text x="180" y="130" font-size="14" font-weight="800" fill="#6b21a8">A⃗</text>
+                <text x="180" y="130" font-size="14" font-weight="800" fill="#6b21a8">A</text>
                 <!-- Arc for theta -->
                 <path d="M 130 200 A 50 50 0 0 0 120 173" fill="none" stroke="#7c3aed" stroke-width="2"/>
                 <text x="136" y="188" font-size="12" font-weight="700" fill="#7c3aed">&theta;</text>
-                <text x="190" y="28" text-anchor="middle" font-size="12" font-weight="700" fill="#64748b">Stage 1: Vector A⃗ at angle &theta;</text>
+                <text x="190" y="28" text-anchor="middle" font-size="12" font-weight="700" fill="#64748b">Stage 1: Vector A at angle &theta;</text>
               </g>
 
               <!-- Stage 2: Orthogonal Drops -->
@@ -226,7 +226,7 @@
             <button type="button" class="g9-stage-btn" onclick="setVecStage(3)">3: Components</button>
           </div>
           <p id="vecDesc" style="font-size: 13px; color: var(--text-muted); margin-top: 12px; text-align: center;">
-            Stage 1: Vector A⃗ with magnitude |A| inclined at angle &theta; to the horizontal.
+            Stage 1: Vector A with magnitude |A| inclined at angle &theta; to the horizontal.
           </p>
         </div>
       </div>
@@ -246,7 +246,7 @@
       document.getElementById('vecStage2').style.display = stage === 2 ? 'block' : 'none';
       document.getElementById('vecStage3').style.display = stage === 3 ? 'block' : 'none';
       const descs = [
-        'Stage 1: Vector A⃗ with magnitude |A| inclined at angle θ to the horizontal axis.',
+        'Stage 1: Vector A with magnitude |A| inclined at angle θ to the horizontal axis.',
         'Stage 2: Perpendicular lines dropped from the arrowhead onto the Cartesian axes.',
         'Stage 3: Resolved components A_x = |A|cosθ along +x and A_y = |A|sinθ along +y.'
       ];

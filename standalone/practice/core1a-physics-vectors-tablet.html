@@ -600,6 +600,10 @@ article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-sp
 <style id="u2-practice-hub-target">
 a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center}
 </style>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
 </head>
 <body>
 
@@ -640,13 +644,13 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
             A scalar quantity possesses only magnitude (e.g. mass, speed, time, temperature, work). A vector quantity possesses both magnitude and direction AND strictly obeys the vector laws of addition (e.g. displacement, velocity, acceleration, force, momentum).
           </p>
           <div class="formula-box">
-            Vector Notation: &nbsp; A⃗ = A_x î + A_y ĵ + A_z k̂<br>
-            Magnitude: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |A⃗| = A = √(A_x² + A_y² + A_z²)<br>
-            Unit Vector: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Â = A⃗ / |A⃗| &nbsp; (Dimensionless, |Â| = 1)
+            <div><strong>Vector Notation:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \(\vec{A} = A_x\,\hat{i} + A_y\,\hat{j} + A_z\,\hat{k}\)</div>
+            <div><strong>Magnitude:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \(|\vec{A}| = A = \sqrt{A_x^2 + A_y^2 + A_z^2}\)</div>
+            <div><strong>Unit Vector:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \(\hat{A} = \frac{\vec{A}}{|\vec{A}|}\) &nbsp; (Dimensionless, \(|\hat{A}| = 1\))</div>
           </div>
           <div class="callout-box">
             <strong>Critical Test for Vectorhood:</strong>
-            Electric current has magnitude and direction, but it adds algebraically like a scalar ($I = I_1 + I_2$), violating vector addition. Hence, current is a scalar quantity, NOT a vector!
+            Electric current has magnitude and direction, but it adds algebraically like a scalar (\(I = I_1 + I_2\)), violating vector addition. Hence, current is a scalar quantity, NOT a vector!
           </div>
         </div>
       </div>
@@ -656,16 +660,16 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
         <div class="content-card">
           <h2><span>➕</span> Triangle &amp; Parallelogram Laws of Addition</h2>
           <p>
-            The resultant of two vectors $ec{A}$ and $ec{B}$ acting at an angle $	heta$:
+            The resultant of two vectors \(\vec{A}\) and \(\vec{B}\) acting at an angle \(\theta\):
           </p>
           <div class="formula-box">
-            Resultant Magnitude: &nbsp; R = √(A² + B² + 2 A B cos θ)<br>
-            Direction Angle α (with vector A⃗):<br>
-            &nbsp; tan α = (B sin θ) / (A + B cos θ)<br><br>
-            Special Cases:<br>
-            • Parallel (θ = 0°): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; R_max = A + B<br>
-            • Anti-parallel (θ = 180°): R_min = |A - B|<br>
-            • Perpendicular (θ = 90°): &nbsp; R = √(A² + B²), &nbsp; tan α = B / A
+            <div><strong>Resultant Magnitude:</strong> &nbsp; \(R = \sqrt{A^2 + B^2 + 2AB\cos\theta}\)</div>
+            <div><strong>Direction Angle \(\alpha\) (with vector \(\vec{A}\)):</strong></div>
+            <div style="margin-left: 1rem;">\(\tan\alpha = \frac{B\sin\theta}{A + B\cos\theta}\)</div><br>
+            <div><strong>Special Cases:</strong></div>
+            <div>• Parallel (\(\theta = 0^\circ\)): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \(R_{\max} = A + B\)</div>
+            <div>• Anti-parallel (\(\theta = 180^\circ\)): \(R_{\min} = |A - B|\)</div>
+            <div>• Perpendicular (\(\theta = 90^\circ\)): &nbsp; \(R = \sqrt{A^2 + B^2}, \quad \tan\alpha = \frac{B}{A}\)</div>
           </div>
         </div>
       </div>
@@ -678,12 +682,12 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
             Resolving a vector into mutually perpendicular components along the coordinate axes simplifies complex multi-vector problems into independent 1D algebraic additions.
           </p>
           <div class="formula-box">
-            2D Resolution (Angle θ with x-axis):<br>
-            &nbsp; A_x = A cos θ, &nbsp; A_y = A sin θ<br>
-            &nbsp; A = √(A_x² + A_y²), &nbsp; tan θ = A_y / A_x<br><br>
-            3D Direction Cosines (Angles α, β, γ with x, y, z axes):<br>
-            &nbsp; cos α = A_x / A, &nbsp; cos β = A_y / A, &nbsp; cos γ = A_z / A<br>
-            &nbsp; Fundamental Identity: cos² α + cos² β + cos² γ = 1
+            <div><strong>2D Resolution (Angle \(\theta\) with x-axis):</strong></div>
+            <div style="margin-left: 1rem;">\(A_x = A\cos\theta, \quad A_y = A\sin\theta\)</div>
+            <div style="margin-left: 1rem;">\(A = \sqrt{A_x^2 + A_y^2}, \quad \tan\theta = \frac{A_y}{A_x}\)</div><br>
+            <div><strong>3D Direction Cosines (Angles \(\alpha, \beta, \gamma\) with x, y, z axes):</strong></div>
+            <div style="margin-left: 1rem;">\(\cos\alpha = \frac{A_x}{A}, \quad \cos\beta = \frac{A_y}{A}, \quad \cos\gamma = \frac{A_z}{A}\)</div>
+            <div style="margin-left: 1rem;">Fundamental Identity: \(\cos^2\alpha + \cos^2\beta + \cos^2\gamma = 1\)</div>
           </div>
         </div>
       </div>
@@ -693,12 +697,12 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
         <div class="content-card">
           <h2><span>✖️</span> Scalar (Dot) &amp; Vector (Cross) Products</h2>
           <div class="formula-box">
-            Scalar (Dot) Product: &nbsp; A⃗ · B⃗ = A B cos θ = A_x B_x + A_y B_y + A_z B_z<br>
-            • Condition for Orthogonality: A⃗ ⊥ B⃗ ⇔ A⃗ · B⃗ = 0<br>
-            • Work done: W = F⃗ · d⃗<br><br>
-            Vector (Cross) Product: A⃗ × B⃗ = (A B sin θ) n̂<br>
-            • Condition for Parallelism: A⃗ ∥ B⃗ ⇔ A⃗ × B⃗ = 0<br>
-            • Torque: τ⃗ = r⃗ × F⃗
+            <div><strong>Scalar (Dot) Product:</strong> &nbsp; \(\vec{A} \cdot \vec{B} = AB\cos\theta = A_x B_x + A_y B_y + A_z B_z\)</div>
+            <div>• Condition for Orthogonality: \(\vec{A} \perp \vec{B} \iff \vec{A} \cdot \vec{B} = 0\)</div>
+            <div>• Work done: \(W = \vec{F} \cdot \vec{d}\)</div><br>
+            <div><strong>Vector (Cross) Product:</strong> \(\vec{A} \times \vec{B} = (AB\sin\theta)\,\hat{n}\)</div>
+            <div>• Condition for Parallelism: \(\vec{A} \parallel \vec{B} \iff \vec{A} \times \vec{B} = 0\)</div>
+            <div>• Torque: \(\vec{\tau} = \vec{r} \times \vec{F}\)</div>
           </div>
         </div>
       </div>
@@ -1243,11 +1247,11 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
       
       <div class="support-widget">
         <h3><span>⚡</span> Vector Formulas</h3>
-        <div class="formula-box" style="font-size: 13.5px;">
-          R = √(A² + B² + 2AB cos θ)<br>
-          tan α = B sin θ / (A + B cos θ)<br>
-          A⃗ · B⃗ = A_x B_x + A_y B_y<br>
-          cos² α + cos² β + cos² γ = 1
+        <div class="formula-box" style="font-size: 13.5px; line-height: 1.6;">
+          <div>\(R = \sqrt{A^2 + B^2 + 2AB\cos\theta}\)</div>
+          <div>\(\tan\alpha = \frac{B\sin\theta}{A + B\cos\theta}\)</div>
+          <div>\(\vec{A} \cdot \vec{B} = A_x B_x + A_y B_y\)</div>
+          <div>\(\cos^2\alpha + \cos^2\beta + \cos^2\gamma = 1\)</div>
         </div>
       </div>
 
@@ -1259,11 +1263,11 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
         </p>
         <div class="calc-row">
           <div class="calc-input-group">
-            <label>Mag |A⃗|:</label>
+            <label>Mag |A|:</label>
             <input type="number" id="vecA" value="3.0" step="0.5" oninput="solveVectors()">
           </div>
           <div class="calc-input-group">
-            <label>Mag |B⃗|:</label>
+            <label>Mag |B|:</label>
             <input type="number" id="vecB" value="4.0" step="0.5" oninput="solveVectors()">
           </div>
         </div>
@@ -1274,7 +1278,7 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
           </div>
         </div>
         <div class="calc-result" id="vecResult">
-          |R⃗| = 5.00 | α = 53.13°
+          |R| = 5.00 | α = 53.13°
         </div>
       </div>
 
@@ -1341,7 +1345,7 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
       const R = Math.sqrt(A * A + B * B + 2 * A * B * Math.cos(rad));
       const alphaRad = Math.atan2(B * Math.sin(rad), A + B * Math.cos(rad));
       const alphaDeg = alphaRad * 180 / Math.PI;
-      document.getElementById('vecResult').textContent = `|R⃗| = ${R.toFixed(2)} | α = ${alphaDeg.toFixed(2)}°`;
+      document.getElementById('vecResult').textContent = `|R| = ${R.toFixed(2)} | α = ${alphaDeg.toFixed(2)}°`;
     }
     solveVectors();
   </script>
@@ -1486,5 +1490,25 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
   }).observe(document.documentElement, { childList: true, subtree: true });
 })();
 </script>
+  <script>
+    function renderAllMath() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false},
+            {left: "\\[", right: "\\]", display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", renderAllMath);
+    } else {
+      renderAllMath();
+    }
+  </script>
 </body>
 </html>
