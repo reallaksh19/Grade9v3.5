@@ -176,6 +176,7 @@ function stat(label,value){const d=el('div','qb-stat');d.append(el('b','',String
 function browsable(rows){return rows.filter(row=>row.question_count>0);}
 
 function renderStats(){
+  if(!els.stats)return;
   els.stats.replaceChildren(
     stat('canonical questions',catalog.counts.questions),
     stat('subjects',browsable(catalog.subjects).length),
