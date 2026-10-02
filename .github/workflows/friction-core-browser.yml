@@ -122,26 +122,29 @@ jobs:
           # The friction product's selected source questions live in the exam bank,
           # which the package-wide admission unittest does not enumerate. Run the
           # exact 1.9.0 admission implementation over those 10 selected records too.
-          PYTHONPATH=blueprint-1.9 python3 - <<'PY' | tee -a /tmp/friction-blueprint19-admission.txt
-          import json
-          from pathlib import Path
-          from Shared.library.question_admission import findings
+          (
+            cd blueprint-1.9
+            python3 - <<'PY'
+            import json
+            from pathlib import Path
+            from Shared.library.question_admission import findings
 
-          manifest = json.loads(Path("products/physics/phy-nlm-friction.manifest.json").read_text())
-          bank = json.loads(Path("Physics/library/exam-bank/competitive-exam-question-bank.v2.json").read_text())
-          selected = set(manifest["selection"]["core2"])
-          rows = [q for q in bank.get("questions", []) if q.get("id") in selected]
-          if {q.get("id") for q in rows} != selected:
-              missing = sorted(selected - {q.get("id") for q in rows})
-              raise SystemExit(f"selected friction records missing from bank: {missing}")
-          report = list(findings({"package_id": "phy-nlm-first-law", "questions": rows}))
-          for item in report:
-              print(f"{item['severity']} {item['point']}: {item['detail']}")
-          blockers = [item for item in report if item["severity"] == "BLOCK"]
-          if blockers:
-              raise SystemExit(f"Blueprint 1.9.0 admission blocked {len(blockers)} selected friction record(s)")
-          print(f"Blueprint 1.9.0 selected-bank admission: PASS ({len(rows)} records; {len(report)} advisory finding(s))")
-          PY
+            manifest = json.loads(Path("../products/physics/phy-nlm-friction.manifest.json").read_text())
+            bank = json.loads(Path("../Physics/library/exam-bank/competitive-exam-question-bank.v2.json").read_text())
+            selected = set(manifest["selection"]["core2"])
+            rows = [q for q in bank.get("questions", []) if q.get("id") in selected]
+            if {q.get("id") for q in rows} != selected:
+                missing = sorted(selected - {q.get("id") for q in rows})
+                raise SystemExit(f"selected friction records missing from bank: {missing}")
+            report = list(findings({"package_id": "phy-nlm-first-law", "questions": rows}))
+            for item in report:
+                print(f"{item['severity']} {item['point']}: {item['detail']}")
+            blockers = [item for item in report if item["severity"] == "BLOCK"]
+            if blockers:
+                raise SystemExit(f"Blueprint 1.9.0 admission blocked {len(blockers)} selected friction record(s)")
+            print(f"Blueprint 1.9.0 selected-bank admission: PASS ({len(rows)} records; {len(report)} advisory finding(s))")
+            PY
+          ) | tee -a /tmp/friction-blueprint19-admission.txt
 
           # Generated renderer pages are new pages for the 1.9.0 static policy:
           # any blocking finding is therefore unacceptable (there is no legacy
