@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.org/schemas/resource/v1",
+  "title": "Grade9V3 Resource Specification",
+  "description": "Schema for registered publishable resources in Grade9V3.5",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "resource_kind",
+    "learner_role",
+    "audience",
+    "presentation",
+    "classification",
+    "artifact",
+    "search"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "grade9v3-resource/v1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_.-]+$",
+      "description": "Unique, deterministic, lowercase resource identifier"
+    },
+    "resource_kind": {
+      "type": "string",
+      "enum": [
+        "STRUCTURED_PRODUCT",
+        "QUESTION_COLLECTION",
+        "OPAQUE_APP",
+        "GUIDED_SESSION",
+        "CONVERTED_DOCUMENT",
+        "OWNER_TOOL",
+        "RUNTIME_HOST"
+      ]
+    },
+    "learner_role": {
+      "type": "string",
+      "enum": [
+        "LEARN",
+        "PRACTICE",
+        "EXPLORE",
+        "QUESTION_BANK",
+        "REFERENCE",
+        "NONE"
+      ]
+    },
+    "audience": {
+      "type": "string",
+      "enum": [
+        "LEARNER",
+        "OWNER",
+        "LAB",
+        "INTERNAL"
+      ]
+    },
+    "presentation": {
+      "type": "string",
+      "enum": [
+        "FULL_PAGE",
+        "TOPIC_ACTION",
+        "STUDY_SURFACE",
+        "COMPANION",
+        "INLINE",
+        "GUIDED",
+        "INTERNAL_HOST"
+      ]
+    },
+    "classification": {
+      "type": "object",
+      "required": ["subject_ref", "topic_refs", "capability_refs"],
+      "properties": {
+        "subject_ref": {
+          "type": "string"
+        },
+        "topic_refs": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "capability_refs": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "required": ["entrypoint"],
+      "properties": {
+        "entrypoint": {
+          "type": "string",
+          "description": "Relative path to entrypoint file from web root"
+        },
+        "generated": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "platform_capabilities": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": []
+    },
+    "search": {
+      "type": "object",
+      "required": ["title", "visibility"],
+      "properties": {
+        "title": { "type": "string" },
+        "aliases": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": []
+        },
+        "visibility": {
+          "type": "string",
+          "enum": ["LEARNER", "EXCLUDED"]
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "authority_ref": { "type": ["string", "null"] },
+        "generator_ref": { "type": ["string", "null"] }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "academic_evidence_ref": { "type": ["string", "null"] },
+        "structural_evidence_ref": { "type": ["string", "null"] },
+        "browser_evidence_ref": { "type": ["string", "null"] },
+        "publication_evidence_ref": { "type": ["string", "null"] }
+      }
+    }
+  },
+  "additionalProperties": false
+}
