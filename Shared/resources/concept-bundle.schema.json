@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.org/schemas/concept-bundle/v1",
+  "title": "Grade9V3 Concept Bundle Specification",
+  "description": "Schema for derived concept-centred relationships (Learn, Practice, Interactive, Question Bank)",
+  "type": "object",
+  "required": [
+    "schema",
+    "concept_ref",
+    "subject_ref",
+    "topic_ref",
+    "title",
+    "learn",
+    "practice",
+    "interactive",
+    "question_bank"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "concept-bundle/v1"
+    },
+    "concept_ref": {
+      "type": "string",
+      "pattern": "^MIC-[A-Z0-9-]+$"
+    },
+    "subject_ref": {
+      "type": "string"
+    },
+    "topic_ref": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "learn": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["resource_ref", "entrypoint"],
+        "properties": {
+          "resource_ref": { "type": "string" },
+          "entrypoint": { "type": "string" },
+          "title": { "type": "string" }
+        }
+      }
+    },
+    "practice": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["resource_ref", "entrypoint"],
+        "properties": {
+          "resource_ref": { "type": "string" },
+          "entrypoint": { "type": "string" },
+          "title": { "type": "string" },
+          "question_count": { "type": "integer" }
+        }
+      }
+    },
+    "interactive": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["resource_ref", "entrypoint"],
+        "properties": {
+          "resource_ref": { "type": "string" },
+          "entrypoint": { "type": "string" },
+          "title": { "type": "string" }
+        }
+      }
+    },
+    "question_bank": {
+      "type": "object",
+      "required": ["filter", "url"],
+      "properties": {
+        "filter": {
+          "type": "object",
+          "required": ["capability_ref"],
+          "properties": {
+            "capability_ref": { "type": "string" }
+          }
+        },
+        "url": { "type": "string" }
+      }
+    }
+  },
+  "additionalProperties": false
+}
