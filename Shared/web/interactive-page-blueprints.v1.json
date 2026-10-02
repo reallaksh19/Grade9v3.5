@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "registry_version": "1.8.0",
+  "registry_version": "1.9.0",
   "shell": {
     "id": "G9-TABLET-SHELL-V1",
     "fixed_header": true,
@@ -46,7 +46,7 @@
       "publication_rewrite": "BUILD_PIPELINE",
       "unknown_runtime_dependency": "FAIL_CLOSED"
     },
-    "version": "1.2.0",
+    "version": "1.3.0",
     "print_policy": {
       "control": "PRINT_PDF",
       "purpose": "A learner or a teacher can print the page: a PDF icon in the fixed header opens the PDF printed from this very page, ready for the print dialog of the tablet.",
@@ -70,6 +70,101 @@
       "in_print": "HIDDEN",
       "single_file_mode": "NO_CONTROL",
       "link_must_resolve": "A page that links its PDF is published only with that PDF beside it, printed from the same bytes (print-receipt.json); a link that does not resolve refuses the publication."
+    },
+    "standalone_policy": {
+      "purpose": "A learner page that did not come through render_core (a snapshot, a suite, a page written by hand or taken from another tool) meets the shell's own policies, read from its own bytes. The renderer meets them by construction; nothing else does unless something checks.",
+      "applies_to": "LEARNER_HTML_OUTSIDE_THE_RENDERER",
+      "governed_roots": [
+        "standalone"
+      ],
+      "unknown_page": "FAIL_CLOSED",
+      "zoom_max_scale_min": 5,
+      "rules": [
+        {
+          "id": "REMOTE_RUNTIME",
+          "severity": "BLOCK",
+          "executes": "vendor_policy.pages_external_runtime",
+          "statement": "A page loads no script, stylesheet, font, image or frame from the network. A link to a source is a citation and is allowed; a dependency is not.",
+          "assurance_type": "NETWORK_POLICY"
+        },
+        {
+          "id": "VIEWPORT_ZOOM",
+          "severity": "BLOCK",
+          "executes": "responsive_modes",
+          "statement": "A page declares a viewport and never turns zoom off: no user-scalable=no, no maximum-scale under the limit.",
+          "assurance_type": "PROJECTION_STATIC_CONFORMANCE"
+        },
+        {
+          "id": "FONT_FLOOR",
+          "severity": "BLOCK",
+          "executes": "typography_policy.minimum_learner_text_css_px",
+          "statement": "No declared text size is under the learner text floor. A size that scaling changes (an SVG label in a narrow column) is measured by the browser audit.",
+          "assurance_type": "PROJECTION_STATIC_CONFORMANCE"
+        },
+        {
+          "id": "LINKS_RESOLVE",
+          "severity": "BLOCK",
+          "executes": "responsive_modes",
+          "statement": "Every relative reference lands on a file that exists, and every fragment on an id that page holds.",
+          "assurance_type": "LINK_INTEGRITY"
+        },
+        {
+          "id": "LINKS_LEAVE_ROOT",
+          "severity": "ADVISE",
+          "executes": "vendor_policy.pages_external_runtime",
+          "statement": "A reference that leaves the governed root means the page is not whole where it is shipped alone. Said, not held: whether it matters depends on what is shipped.",
+          "assurance_type": "LINK_INTEGRITY"
+        },
+        {
+          "id": "MATH_CONTROL_CHARS",
+          "severity": "BLOCK",
+          "executes": "math_policy",
+          "statement": "No control character in the source: a TeX escape read as one (\\v for \\vec, \\f for \\frac) is gone from the maths.",
+          "assurance_type": "PROJECTION_STATIC_CONFORMANCE"
+        },
+        {
+          "id": "MATH_UNRENDERED",
+          "severity": "BLOCK",
+          "executes": "math_policy.dynamic_renderer",
+          "statement": "TeX in the visible text means a script on the page renders it; maths shown as raw delimiters is not maths.",
+          "assurance_type": "PROJECTION_STATIC_CONFORMANCE"
+        },
+        {
+          "id": "STORAGE_GUARDED",
+          "severity": "BLOCK",
+          "executes": "representation_accessibility_policy",
+          "statement": "Storage is read only inside a try block: with storage blocked the read throws, and one throw ends the script.",
+          "assurance_type": "PROJECTION_STATIC_CONFORMANCE"
+        },
+        {
+          "id": "VENDOR_CONFIG_DANGLING",
+          "severity": "BLOCK",
+          "executes": "vendor_policy.unknown_runtime_dependency",
+          "statement": "No configuration for a vendor script the page does not load: it throws on every load.",
+          "assurance_type": "PROJECTION_STATIC_CONFORMANCE"
+        },
+        {
+          "id": "UNIQUE_IDS",
+          "severity": "BLOCK",
+          "executes": "representation_accessibility_policy",
+          "statement": "An id appears once on a page.",
+          "assurance_type": "PROJECTION_STATIC_CONFORMANCE"
+        }
+      ],
+      "checker": "Shared/tools/standalone_conformance.py",
+      "ledger": "Shared/web/standalone-ledger.v1.json",
+      "ledger_rule": "A page may have no more findings of a rule than the ledger records, and a page the ledger does not list has none. The ledger holds what was already there when the rule arrived; the checker writes it, and it can only be tightened.",
+      "browser_audit": {
+        "tool": "tools/site-audit/core-page-audit.mjs",
+        "profile": "tablet-12.7",
+        "measures": [
+          "horizontal overflow",
+          "touch targets of at least 48 px",
+          "rendered text size, SVG labels included",
+          "return navigation"
+        ],
+        "note": "These need a rendered page. A snapshot is not done until this audit has run on it; the static rules above are what a pull request can be held to without a browser."
+      }
     }
   },
   "component_policy": {
@@ -129,6 +224,71 @@
       },
       "component": "TYPESET",
       "duty": "AUTHOR_TYPESET"
+    },
+    "admission": {
+      "purpose": "A question record is admitted by the library's own intake and resolver. A registration does not bring a gate of its own: a gate that checks that fields are non-empty cannot see a record that says nothing.",
+      "authority": [
+        "Shared/library/intake.py",
+        "Shared/library/resolve.py",
+        "Shared/library/question_admission.py"
+      ],
+      "points": [
+        {
+          "id": "QUESTION_STEM",
+          "severity": "BLOCK",
+          "statement": "The stem asks something: it has at least 6 words and is not made of sentences that the record's own hints or solution also say.",
+          "assurance_type": "STRUCTURAL_VALIDITY"
+        },
+        {
+          "id": "QUESTION_STEM_COMPLETE",
+          "severity": "ADVISE",
+          "statement": "The stem ends where a sentence ends; a stem cut off mid-sentence asks half a question. Said, not held: a stem that ends on a variable looks the same from the text.",
+          "assurance_type": "STRUCTURAL_VALIDITY"
+        },
+        {
+          "id": "QUESTION_OPTIONS",
+          "severity": "BLOCK",
+          "statement": "An option carries text. A letter standing for itself ('(A) A') is a choice with nothing to choose.",
+          "assurance_type": "STRUCTURAL_VALIDITY"
+        },
+        {
+          "id": "QUESTION_GIVENS",
+          "severity": "ADVISE",
+          "statement": "A number a hint relies on is in the stem, the options or the conditions, so a learner who has not opened the hint can already start. Said, not held: a constant or a value worked out from the stem looks the same from the text.",
+          "assurance_type": "DISCLOSURE_CONFORMANCE"
+        },
+        {
+          "id": "QUESTION_SCOPE",
+          "severity": "BLOCK",
+          "statement": "The question does not teach a concept the scope document defers (read from Shared/policy/grade9-physics.v1.json; an entry that names a row of the scope document is held to it by a test), unless the record is routed as a declared extension. A concept only the policy defers is said, not held, until the document names it. A question that excludes the concept ('do not invent a torque equation') is not refused. The capability tag is not the test: the registrar writes it.",
+          "assurance_type": "SCOPE_CONFORMANCE"
+        },
+        {
+          "id": "ANSWER_ANCHORED",
+          "severity": "BLOCK",
+          "statement": "The answer is about this question: it shares at least 2 words or numbers with the stem, options and conditions. No list of banned phrases is kept; an answer that could stand under any question fails without one.",
+          "assurance_type": "CORPUS_SPECIFICITY"
+        },
+        {
+          "id": "ANSWER_WORKED",
+          "severity": "BLOCK",
+          "statement": "The answer is worked: at least 2 reasoning steps and 80 characters of reasoning, and a summary of at most 500 characters that states the result; a page pasted in as the summary is not a result.",
+          "assurance_type": "CORPUS_SPECIFICITY"
+        },
+        {
+          "id": "ANSWER_VERIFIED",
+          "severity": "BLOCK",
+          "statement": "A key that nobody ran (NOT_RUN), or that someone disputes, does not enter a library. The status is the author's word, so it is a floor and not a proof.",
+          "assurance_type": "REASONING_VALIDITY"
+        }
+      ],
+      "note": "Intake and the resolver stay the one gate of record: CI runs them over every committed library (tests/test_question_admission.py), and a registration does not bring a gate of its own. These sit beside the corpus checks that were already there (duplicated and templated text, unresolved references). A package intake refuses is not registered, whatever else is said about it. What none of this can do is tell a plausible wrong explanation from a right one; a numeric key computed from the stem's own givens by an oracle would. Each point and each page rule names the assurance type its evidence is of; a check that proves part of a type (a static page rule cannot prove a layout) feeds a type of its own and leaves the whole type open."
+    },
+    "evidence": {
+      "purpose": "A digest is taken over the bytes of a file, so the bytes must be the same on every machine.",
+      "line_endings": "LF",
+      "attributes_file": ".gitattributes",
+      "note": "Text is LF in every working tree (`* text=auto eol=lf`). A file already committed with CRLF keeps its bytes, so no recorded digest moves; a new file is LF."
     }
   },
   "blueprints": [

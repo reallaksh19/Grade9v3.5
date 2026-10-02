@@ -1,0 +1,65 @@
+[
+  {
+    "type": "RESPONSIVE_LAYOUT",
+    "subject": "*",
+    "reason": "No verifier writes evidence for it. Whether a page fits and works at tablet and phone widths is a rendered fact; the static page checks do not claim it.",
+    "future_scope": "A verifier that runs tools/site-audit/core-page-audit.mjs (Chromium) over the pages at the tablet-12.7 and phone profiles and writes the result as evidence.",
+    "approved_by": "owner",
+    "approval_ref": "The Owner, in this session on 2026-10-02, answering \"REQUIRED can't be met today because 7 assurance types have no working checker or can't conclude. Do you grant a recorded waiver for them until each checker exists?\": \"waive all, record as future scope\"",
+    "approved_at": "2026-10-02T04:45:02Z"
+  },
+  {
+    "type": "ACCESSIBILITY",
+    "subject": "*",
+    "reason": "No verifier writes evidence for it. Contrast, tap-target size and focus order are rendered facts; the static page checks do not claim them.",
+    "future_scope": "A verifier that runs the browser audit for contrast, 48 px targets and keyboard focus and writes the result as evidence.",
+    "approved_by": "owner",
+    "approval_ref": "The Owner, in this session on 2026-10-02, answering \"REQUIRED can't be met today because 7 assurance types have no working checker or can't conclude. Do you grant a recorded waiver for them until each checker exists?\": \"waive all, record as future scope\"",
+    "approved_at": "2026-10-02T04:45:02Z"
+  },
+  {
+    "type": "ANSWERABILITY",
+    "subject": "*",
+    "reason": "No verifier writes evidence for it. Whether a learner can answer from what the page shows needs each question to declare what it gives and asks.",
+    "future_scope": "Questions that declare problem_specification and answer_contract, and a verifier that checks the answer is reachable from the visible facts.",
+    "approved_by": "owner",
+    "approval_ref": "The Owner, in this session on 2026-10-02, answering \"REQUIRED can't be met today because 7 assurance types have no working checker or can't conclude. Do you grant a recorded waiver for them until each checker exists?\": \"waive all, record as future scope\"",
+    "approved_at": "2026-10-02T04:45:02Z"
+  },
+  {
+    "type": "SOURCE_INTEGRITY",
+    "subject": "*",
+    "reason": "No verifier writes evidence for it. Whether each cited source is current and independently verified is not checked by any tool that writes evidence.",
+    "future_scope": "A verifier over the cited source records (the fact-status machinery accept_product prints) that writes its result as evidence.",
+    "approved_by": "owner",
+    "approval_ref": "The Owner, in this session on 2026-10-02, answering \"REQUIRED can't be met today because 7 assurance types have no working checker or can't conclude. Do you grant a recorded waiver for them until each checker exists?\": \"waive all, record as future scope\"",
+    "approved_at": "2026-10-02T04:45:02Z"
+  },
+  {
+    "type": "PROJECTION_COMPLETENESS",
+    "subject": "*",
+    "reason": "No verifier writes evidence for it. Whether every selected canonical record reached the rendered pages is not checked by any tool that writes evidence.",
+    "future_scope": "A verifier that compares the manifest's selected records with the rendered pages and the render receipt's gaps.",
+    "approved_by": "owner",
+    "approval_ref": "The Owner, in this session on 2026-10-02, answering \"REQUIRED can't be met today because 7 assurance types have no working checker or can't conclude. Do you grant a recorded waiver for them until each checker exists?\": \"waive all, record as future scope\"",
+    "approved_at": "2026-10-02T04:45:02Z"
+  },
+  {
+    "type": "SELF_CONTAINMENT",
+    "subject": "*",
+    "reason": "The verifier runs and is inconclusive: no authored question declares a problem_specification, so self-containment cannot be certified, and it is never reported as a pass.",
+    "future_scope": "Authored questions that declare problem_specification (visible facts, permitted constants, assumptions) and a computation_model.",
+    "approved_by": "owner",
+    "approval_ref": "The Owner, in this session on 2026-10-02, answering \"REQUIRED can't be met today because 7 assurance types have no working checker or can't conclude. Do you grant a recorded waiver for them until each checker exists?\": \"waive all, record as future scope\"",
+    "approved_at": "2026-10-02T04:45:02Z"
+  },
+  {
+    "type": "REASONING_VALIDITY",
+    "subject": "*",
+    "reason": "The verifier runs and is inconclusive for most keys: they are checked by their author or not at all, and no independent check exists to certify the reasoning.",
+    "future_scope": "An independent check of each key and its reasoning, by a person or by a computation_model the question declares.",
+    "approved_by": "owner",
+    "approval_ref": "The Owner, in this session on 2026-10-02, answering \"REQUIRED can't be met today because 7 assurance types have no working checker or can't conclude. Do you grant a recorded waiver for them until each checker exists?\": \"waive all, record as future scope\"",
+    "approved_at": "2026-10-02T04:45:02Z"
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "assurance-waivers/v1",
+  "description": "Waivers the Owner has granted. A row names a need (a type and a subject; subject '*' is every subject of the type: the type has no working checker yet), gives a reason and says where and when the Owner approved it. A waiver covers a need that is open or inconclusive and never one that failed.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["type", "subject", "reason", "approved_by", "approval_ref", "approved_at"],
+    "properties": {
+      "type": {"type": "string", "pattern": "^[A-Z][A-Z_]+$"},
+      "subject": {"type": "string", "minLength": 1},
+      "reason": {"type": "string", "minLength": 40},
+      "future_scope": {"type": "string", "minLength": 20, "description": "What has to exist for the waiver to end"},
+      "approved_by": {"const": "owner"},
+      "approval_ref": {"type": "string", "minLength": 20, "description": "Where the Owner's approval was given: a link, or the words quoted"},
+      "approved_at": {"type": "string", "format": "date-time"}
+    }
+  }
+}

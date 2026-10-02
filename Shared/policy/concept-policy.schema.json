@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "concept-policy/v1",
+  "type": "object",
+  "additionalProperties": false,
+  "description": "A concept policy set: which concepts a grade teaches (CORE, PREREQUISITE), which are routed (QUESTION_DEMAND, DECLARED_EXTENSION) and which are deferred or prohibited. A deferred concept names the terms by which a question mentions it and the packages that own it, so a verifier can read the policy and not a list of its own.",
+  "properties": {
+    "schema": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+-policy/v1$"
+    },
+    "policy_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "waiver_routes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "QUESTION_DEMAND",
+          "DECLARED_EXTENSION"
+        ]
+      }
+    },
+    "concept_policies": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/concept"
+      }
+    }
+  },
+  "required": [
+    "schema",
+    "policy_id",
+    "version",
+    "source",
+    "waiver_routes",
+    "concept_policies"
+  ],
+  "$defs": {
+    "concept": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "concept_id": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$"
+        },
+        "scope_class": {
+          "type": "string",
+          "enum": [
+            "CORE",
+            "PREREQUISITE",
+            "QUESTION_DEMAND",
+            "DECLARED_EXTENSION",
+            "DEFER",
+            "PROHIBITED"
+          ]
+        },
+        "extension_required": {
+          "type": "boolean"
+        },
+        "permitted_roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "permitted_contexts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "terms": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "owners": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "document_row": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "concept_id",
+        "scope_class",
+        "extension_required"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "scope_class": {
+                "enum": [
+                  "DEFER",
+                  "PROHIBITED"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "terms",
+              "document_row"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -40,7 +40,9 @@
         "held_to",
         "coverage",
         "promotion",
-        "typeset"
+        "typeset",
+        "admission",
+        "evidence"
       ],
       "properties": {
         "levels": {
@@ -264,6 +266,95 @@
               "const": "AUTHOR_TYPESET"
             }
           }
+        },
+        "admission": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "purpose",
+            "authority",
+            "points",
+            "note"
+          ],
+          "properties": {
+            "purpose": {
+              "type": "string",
+              "minLength": 1
+            },
+            "authority": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "points": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "statement",
+                  "severity",
+                  "assurance_type"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^(QUESTION|ANSWER)_[A-Z_]+$"
+                  },
+                  "statement": {
+                    "type": "string",
+                    "minLength": 10
+                  },
+                  "severity": {
+                    "enum": [
+                      "BLOCK",
+                      "ADVISE"
+                    ]
+                  },
+                  "assurance_type": {
+                    "type": "string",
+                    "pattern": "^[A-Z_]+$"
+                  }
+                }
+              }
+            },
+            "note": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "purpose",
+            "line_endings",
+            "attributes_file",
+            "note"
+          ],
+          "properties": {
+            "purpose": {
+              "type": "string",
+              "minLength": 1
+            },
+            "line_endings": {
+              "const": "LF"
+            },
+            "attributes_file": {
+              "type": "string",
+              "minLength": 1
+            },
+            "note": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
         }
       }
     }
@@ -287,7 +378,8 @@
         "id",
         "fixed_header",
         "controls",
-        "responsive_modes"
+        "responsive_modes",
+        "standalone_policy"
       ],
       "properties": {
         "id": {
@@ -529,6 +621,130 @@
             "link_must_resolve": {
               "type": "string",
               "minLength": 1
+            }
+          }
+        },
+        "standalone_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "purpose",
+            "applies_to",
+            "governed_roots",
+            "unknown_page",
+            "zoom_max_scale_min",
+            "rules",
+            "checker",
+            "ledger",
+            "ledger_rule",
+            "browser_audit"
+          ],
+          "properties": {
+            "purpose": {
+              "type": "string",
+              "minLength": 1
+            },
+            "applies_to": {
+              "const": "LEARNER_HTML_OUTSIDE_THE_RENDERER"
+            },
+            "governed_roots": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "unknown_page": {
+              "const": "FAIL_CLOSED"
+            },
+            "zoom_max_scale_min": {
+              "type": "number",
+              "minimum": 2
+            },
+            "rules": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "severity",
+                  "executes",
+                  "statement",
+                  "assurance_type"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Z_]+$"
+                  },
+                  "severity": {
+                    "enum": [
+                      "BLOCK",
+                      "ADVISE"
+                    ]
+                  },
+                  "executes": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "statement": {
+                    "type": "string",
+                    "minLength": 10
+                  },
+                  "assurance_type": {
+                    "type": "string",
+                    "pattern": "^[A-Z_]+$"
+                  }
+                }
+              }
+            },
+            "checker": {
+              "type": "string",
+              "minLength": 1
+            },
+            "ledger": {
+              "type": "string",
+              "minLength": 1
+            },
+            "ledger_rule": {
+              "type": "string",
+              "minLength": 10
+            },
+            "browser_audit": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "tool",
+                "profile",
+                "measures",
+                "note"
+              ],
+              "properties": {
+                "tool": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "profile": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "measures": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "note": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
             }
           }
         }

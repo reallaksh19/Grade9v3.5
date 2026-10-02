@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "release-eligibility/v1"
+    },
+    "product": {
+      "type": "string"
+    },
+    "canonical_snapshot_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "projection_digests": {
+      "type": "object",
+      "properties": {
+        "web": {
+          "type": "string",
+          "pattern": "^sha256:"
+        },
+        "standalone": {
+          "type": "string",
+          "pattern": "^sha256:"
+        },
+        "pdf": {
+          "type": "string",
+          "pattern": "^sha256:"
+        },
+        "search": {
+          "type": "string",
+          "pattern": "^sha256:"
+        }
+      }
+    },
+    "assurance_bundle_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "hard_integrity": {
+      "type": "string",
+      "enum": [
+        "PASS",
+        "FAIL"
+      ]
+    },
+    "reviewable_findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "severity",
+          "message"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ELIGIBLE",
+        "INELIGIBLE",
+        "INCOMPLETE"
+      ]
+    },
+    "evaluated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "missing": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "subject",
+          "reason"
+        ]
+      }
+    },
+    "waived": {
+      "type": "array",
+      "description": "Needs that are open or inconclusive and that an Owner waiver covers; the decision above counts them as met",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {"type": "string"},
+          "subject": {"type": "string"},
+          "outcome": {"type": "string"},
+          "waiver": {"type": "string"},
+          "approval_ref": {"type": "string"}
+        },
+        "required": ["type", "subject", "outcome", "waiver", "approval_ref"]
+      }
+    },
+    "problems": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema",
+    "product",
+    "canonical_snapshot_digest",
+    "assurance_bundle_digest",
+    "hard_integrity",
+    "reviewable_findings",
+    "missing",
+    "problems",
+    "status",
+    "evaluated_at"
+  ],
+  "$id": "release-eligibility/v1",
+  "additionalProperties": false,
+  "description": "The release decision, recomputed from the bundle's evidence. ELIGIBLE needs hard_integrity PASS and nothing missing; INELIGIBLE is a failed required check or a broken record; INCOMPLETE is everything not yet proved."
+}

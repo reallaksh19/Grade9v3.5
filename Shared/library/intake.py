@@ -29,6 +29,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from Shared.contracts import load, normalise, require
+from Shared.library.question_admission import findings as question_findings
 from Shared.library.substance import (
     findings as substance_findings, step_findings as substance_step_findings,
 )
@@ -265,13 +266,22 @@ def check(package: dict) -> dict:
                                     f'{ask["from_step_ref"]}, which is not a step of this '
                                     "microtopic's teaching path")
 
+    # 10. A question record asks a question, offers a choice, and can be started before the first hint
+    #     (the registry's component_policy.admission; the checks live in question_admission.py).
+    advisories: list[dict] = []
+    for finding in question_findings(package):
+        if finding["severity"] == "BLOCK":
+            fail(finding["point"], finding["detail"])
+        else:
+            advisories.append({"point": finding["point"], "detail": finding["detail"]})
+
     status = package.get("status")
     if status not in LIFECYCLE:
         fail("LIFECYCLE", f"status {status!r} is not one of {LIFECYCLE}")
 
     return {"package_id": package.get("package_id"), "subject": package.get("subject"),
             "status": status, "microtopic_count": len(microtopics),
-            "admitted": not findings, "findings": findings,
+            "admitted": not findings, "findings": findings, "advisories": advisories,
             "acceptance": "STRUCTURAL_AND_SUBSTANCE_CHECKS_ONLY; "
                           "no scientific or pedagogical acceptance is granted by intake"}
 

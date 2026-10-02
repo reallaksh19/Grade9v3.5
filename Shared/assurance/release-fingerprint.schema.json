@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "release-fingerprint/v1",
+  "type": "object",
+  "additionalProperties": false,
+  "description": "What a release was made of, by digest: the canonical inputs, the sources, the policy, the assurance bundle and each projection. Drift is a comparison of two of these (drift_detector.py). A digest that is null says the part was not part of the release.",
+  "properties": {
+    "schema": {
+      "const": "release-fingerprint/v1"
+    },
+    "product": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_set_digest": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "canonical_snapshot_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "policy_digest": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "assurance_bundle_digest": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "renderer_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "web_projection_digest": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "standalone_projection_digest": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "pdf_projection_digest": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "search_projection_digest": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "fingerprinted_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "schema",
+    "product",
+    "source_set_digest",
+    "canonical_snapshot_digest",
+    "policy_digest",
+    "assurance_bundle_digest",
+    "renderer_version",
+    "web_projection_digest",
+    "standalone_projection_digest",
+    "pdf_projection_digest",
+    "search_projection_digest",
+    "fingerprinted_at"
+  ]
+}

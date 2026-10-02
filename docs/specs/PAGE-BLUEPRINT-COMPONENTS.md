@@ -3,7 +3,7 @@
 Generated from `Shared/web/interactive-page-blueprints.v1.json` by `Shared/tools/blueprint_spec.py`. Do not edit.
 To change what a page shows, change the blueprint; the renderer, the quality gate and the owner-bank scaffold follow.
 
-Registry 1.8.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
+Registry 1.9.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
 
 Depth: min_items is the floor below which a component does not count as present. target_items is the depth of the reference page, and target_items_by_band gives it by the difficulty band the record declares at band_source (for a Core1A construction unit, the hardest band among the bank questions it names in crux_question_refs). Between the floor and the reference depth the renderer says so as an advisory.
 
@@ -13,7 +13,7 @@ Held to: FLOOR: official records and products are judged at the floor; an EXPECT
 
 ## The shell (every page)
 
-`G9-TABLET-SHELL-V1` 1.2.0: a fixed header with `BACK`, `HOME`, `SUBJECT_CONTEXT`, `QUESTION_BANK`, `PRINT_PDF`, `SEARCH`, `REFRESH`, `DISPLAY`, `OVERFLOW`.
+`G9-TABLET-SHELL-V1` 1.3.0: a fixed header with `BACK`, `HOME`, `SUBJECT_CONTEXT`, `QUESTION_BANK`, `PRINT_PDF`, `SEARCH`, `REFRESH`, `DISPLAY`, `OVERFLOW`.
 
 **PRINT_PDF** · the PDF icon in the header. A learner or a teacher can print the page: a PDF icon in the fixed header opens the PDF printed from this very page, ready for the print dialog of the tablet.
 
@@ -23,6 +23,29 @@ Held to: FLOOR: official records and products are judged at the floor; an EXPECT
 - It never links: KEY_PDF (a key PDF holds the answers).
 - A page that links its PDF is published only with that PDF beside it, printed from the same bytes (print-receipt.json); a link that does not resolve refuses the publication.
 - A Core2 question whose source is a verified official past paper also links the paper itself as a PDF: see the `SOURCE_PDF` component.
+
+## Pages that do not come through the renderer
+
+A learner page that did not come through render_core (a snapshot, a suite, a page written by hand or taken from another tool) meets the shell's own policies, read from its own bytes. The renderer meets them by construction; nothing else does unless something checks.
+
+Governed roots: `standalone/`. A page there that is not listed in the ledger has no findings; an unknown page fails closed. Checker: `Shared/tools/standalone_conformance.py`; zoom is never limited below 5x.
+
+| Rule | Held | Assurance type | Executes | What it asks |
+|---|---|---|---|---|
+| `REMOTE_RUNTIME` | blocks | `NETWORK_POLICY` | `vendor_policy.pages_external_runtime` | A page loads no script, stylesheet, font, image or frame from the network. A link to a source is a citation and is allowed; a dependency is not. |
+| `VIEWPORT_ZOOM` | blocks | `PROJECTION_STATIC_CONFORMANCE` | `responsive_modes` | A page declares a viewport and never turns zoom off: no user-scalable=no, no maximum-scale under the limit. |
+| `FONT_FLOOR` | blocks | `PROJECTION_STATIC_CONFORMANCE` | `typography_policy.minimum_learner_text_css_px` | No declared text size is under the learner text floor. A size that scaling changes (an SVG label in a narrow column) is measured by the browser audit. |
+| `LINKS_RESOLVE` | blocks | `LINK_INTEGRITY` | `responsive_modes` | Every relative reference lands on a file that exists, and every fragment on an id that page holds. |
+| `LINKS_LEAVE_ROOT` | said | `LINK_INTEGRITY` | `vendor_policy.pages_external_runtime` | A reference that leaves the governed root means the page is not whole where it is shipped alone. Said, not held: whether it matters depends on what is shipped. |
+| `MATH_CONTROL_CHARS` | blocks | `PROJECTION_STATIC_CONFORMANCE` | `math_policy` | No control character in the source: a TeX escape read as one (\v for \vec, \f for \frac) is gone from the maths. |
+| `MATH_UNRENDERED` | blocks | `PROJECTION_STATIC_CONFORMANCE` | `math_policy.dynamic_renderer` | TeX in the visible text means a script on the page renders it; maths shown as raw delimiters is not maths. |
+| `STORAGE_GUARDED` | blocks | `PROJECTION_STATIC_CONFORMANCE` | `representation_accessibility_policy` | Storage is read only inside a try block: with storage blocked the read throws, and one throw ends the script. |
+| `VENDOR_CONFIG_DANGLING` | blocks | `PROJECTION_STATIC_CONFORMANCE` | `vendor_policy.unknown_runtime_dependency` | No configuration for a vendor script the page does not load: it throws on every load. |
+| `UNIQUE_IDS` | blocks | `PROJECTION_STATIC_CONFORMANCE` | `representation_accessibility_policy` | An id appears once on a page. |
+
+Ledger (`Shared/web/standalone-ledger.v1.json`): A page may have no more findings of a rule than the ledger records, and a page the ledger does not list has none. The ledger holds what was already there when the rule arrived; the checker writes it, and it can only be tightened.
+
+Browser audit (`tools/site-audit/core-page-audit.mjs --profile tablet-12.7`): measures horizontal overflow, touch targets of at least 48 px, rendered text size, SVG labels included, return navigation. These need a rendered page. A snapshot is not done until this audit has run on it; the static rules above are what a pull request can be held to without a browser.
 
 ## Rules about a whole product
 
@@ -42,6 +65,22 @@ Held to: FLOOR: official records and products are judged at the floor; an EXPECT
 
 - A relation shown on a page carries presentation MathML (relation.mathml, the restricted subset the renderer accepts). One that has only an expression is shown as plain text, and the build says so.
 - It is an advisory for an official product and a gap for new authoring.
+
+## Rules about a record and its evidence
+
+**Admission.** A question record is admitted by the library's own intake and resolver. A registration does not bring a gate of its own: a gate that checks that fields are non-empty cannot see a record that says nothing. Authority: `Shared/library/intake.py`, `Shared/library/resolve.py`, `Shared/library/question_admission.py`.
+
+- `QUESTION_STEM` (blocks; evidence of type `STRUCTURAL_VALIDITY`): The stem asks something: it has at least 6 words and is not made of sentences that the record's own hints or solution also say.
+- `QUESTION_STEM_COMPLETE` (said; evidence of type `STRUCTURAL_VALIDITY`): The stem ends where a sentence ends; a stem cut off mid-sentence asks half a question. Said, not held: a stem that ends on a variable looks the same from the text.
+- `QUESTION_OPTIONS` (blocks; evidence of type `STRUCTURAL_VALIDITY`): An option carries text. A letter standing for itself ('(A) A') is a choice with nothing to choose.
+- `QUESTION_GIVENS` (said; evidence of type `DISCLOSURE_CONFORMANCE`): A number a hint relies on is in the stem, the options or the conditions, so a learner who has not opened the hint can already start. Said, not held: a constant or a value worked out from the stem looks the same from the text.
+- `QUESTION_SCOPE` (blocks; evidence of type `SCOPE_CONFORMANCE`): The question does not teach a concept the scope document defers (read from Shared/policy/grade9-physics.v1.json; an entry that names a row of the scope document is held to it by a test), unless the record is routed as a declared extension. A concept only the policy defers is said, not held, until the document names it. A question that excludes the concept ('do not invent a torque equation') is not refused. The capability tag is not the test: the registrar writes it.
+- `ANSWER_ANCHORED` (blocks; evidence of type `CORPUS_SPECIFICITY`): The answer is about this question: it shares at least 2 words or numbers with the stem, options and conditions. No list of banned phrases is kept; an answer that could stand under any question fails without one.
+- `ANSWER_WORKED` (blocks; evidence of type `CORPUS_SPECIFICITY`): The answer is worked: at least 2 reasoning steps and 80 characters of reasoning, and a summary of at most 500 characters that states the result; a page pasted in as the summary is not a result.
+- `ANSWER_VERIFIED` (blocks; evidence of type `REASONING_VALIDITY`): A key that nobody ran (NOT_RUN), or that someone disputes, does not enter a library. The status is the author's word, so it is a floor and not a proof.
+- Intake and the resolver stay the one gate of record: CI runs them over every committed library (tests/test_question_admission.py), and a registration does not bring a gate of its own. These sit beside the corpus checks that were already there (duplicated and templated text, unresolved references). A package intake refuses is not registered, whatever else is said about it. What none of this can do is tell a plausible wrong explanation from a right one; a numeric key computed from the stem's own givens by an oracle would. Each point and each page rule names the assurance type its evidence is of; a check that proves part of a type (a static page rule cannot prove a layout) feeds a type of its own and leaves the whole type open.
+
+**Evidence.** A digest is taken over the bytes of a file, so the bytes must be the same on every machine. Line endings: LF (`.gitattributes`). Text is LF in every working tree (`* text=auto eol=lf`). A file already committed with CRLF keeps its bytes, so no recorded digest moves; a new file is LF.
 
 ## BP-CORE2-SOURCE-QUESTION@1.5.0 (CORE2)
 

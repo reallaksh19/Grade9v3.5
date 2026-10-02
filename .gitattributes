@@ -1,0 +1,14 @@
+# Digests (receipts, accept_product, calibration corpus) are taken over file bytes. A Windows checkout
+# with core.autocrlf turns LF into CRLF, so the same file digests differently on two machines.
+# Text is LF in the working tree on every platform; binary files are left alone.
+* text=auto eol=lf
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.zip binary

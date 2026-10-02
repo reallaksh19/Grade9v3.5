@@ -144,6 +144,22 @@ class Publication(unittest.TestCase):
         self.assertEqual(json.loads((self.repo / "products" / "acceptance" / "sample.json").read_text())["render_digest"], self.digest)
         mirror.assert_called_once_with(self.repo)
 
+    def test_the_acceptance_records_what_the_release_decision_rested_on(self):
+        assurance = {"status": "ELIGIBLE", "assurance_bundle_digest": "sha256:" + "a" * 64,
+                     "waived": [{"type": "ACCESSIBILITY", "subject": "PROJECTION:sample", "outcome": "MISSING", "waiver": "ACCESSIBILITY@*", "approval_ref": "the Owner"},
+                                {"type": "ACCESSIBILITY", "subject": "PROJECTION:sample-standalone", "outcome": "MISSING", "waiver": "ACCESSIBILITY@*", "approval_ref": "the Owner"},
+                                {"type": "SOURCE_INTEGRITY", "subject": "CANONICAL_RECORD:p", "outcome": "MISSING", "waiver": "SOURCE_INTEGRITY@*", "approval_ref": "the Owner"}]}
+        with mock.patch.object(accept_product, "mirror_pages"):
+            decision = accept_product.accept("sample", repo=self.repo, assurance=assurance)
+        recorded = json.loads((self.repo / "products" / "acceptance" / "sample.json").read_text())["assurance"]
+        self.assertEqual(recorded, decision["assurance"])
+        self.assertEqual(recorded, {"status": "ELIGIBLE", "bundle_digest": "sha256:" + "a" * 64, "waived": ["ACCESSIBILITY", "SOURCE_INTEGRITY"]})
+
+    def test_an_acceptance_without_a_release_decision_records_none(self):
+        with mock.patch.object(accept_product, "mirror_pages"):
+            accept_product.accept("sample", repo=self.repo)
+        self.assertNotIn("assurance", json.loads((self.repo / "products" / "acceptance" / "sample.json").read_text()))
+
     def accept_with_links(self, **printing):
         fixture(self.repo, link=True)
         out = self.repo / "publication" / "products" / "physics" / "sample"
