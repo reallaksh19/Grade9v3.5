@@ -1,0 +1,55 @@
+name: friction-main-sync-once
+
+on:
+  push:
+    branches:
+      - chatgpt/friction-core1a-core2
+    paths:
+      - ".github/workflows/friction-main-sync-once.yml"
+      - "Physics/library/**"
+      - "products/physics/phy-nlm-friction.manifest.json"
+      - "public/**"
+      - "docs/**"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install generator dependencies
+        run: pip install --quiet jsonschema pypdf cffi
+      - name: Regenerate merged derived artifacts
+        run: |
+          set -euo pipefail
+          python3 Shared/tools/build_web_data.py
+          python3 Shared/tools/build_core_learning_data.py
+          python3 Shared/tools/build_question_bank_web.py
+          python3 Shared/tools/build_question_bank_platform.py
+          python3 Shared/tools/build_search_index.py \
+            --library-dirs Physics/library Chemistry/library Mathematics/library \
+            --output-index public/data/search-index.v1.json \
+            --output-manifest public/data/search-index-manifest.v1.json
+          python3 Shared/tools/build_manifest.py
+          python3 Shared/tools/build_prompt_composer_data.py
+          python3 Shared/tools/build_pages_site.py
+          python3 Shared/tools/build_manifest.py
+      - name: Commit deterministic reconciliation
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No generated reconciliation changes."
+          else
+            git commit -m "chore(friction): reconcile generated artifacts with current main"
+            git push origin HEAD:chatgpt/friction-core1a-core2
+          fi
