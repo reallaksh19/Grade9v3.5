@@ -1,164 +1,102 @@
 #!/usr/bin/env python3
-"""Builds a search index from canonical library files."""
+"""Build the search index: one document per canonical question, and the manifest that says which canonical state it was built from.
+
+The index is a projection. Its manifest names the canonical inputs it read by digest (every JSON file under the library directories, LF-normalised), the ids it
+holds and the ids it left out, and the digest of the index itself, so that verify_search_index.py can say whether it is current, complete and unaltered.
+A library file that does not parse stops the build: an index built over what could be read would be missing questions and say nothing.
+"""
 from __future__ import annotations
 
 import argparse
 import hashlib
 import json
-import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
+if str(REPO) not in sys.path:
+    sys.path.insert(0, str(REPO))
 
-
-def compute_sha256_of_files(files: list[Path]) -> str:
-    h = hashlib.sha256()
-    for f in sorted(files, key=lambda x: str(x)):
-        if f.is_file():
-            h.update(f.read_bytes())
-    return "sha256:" + h.hexdigest()
-
-def compute_digest(data: dict | list | str | bytes) -> str:
-    if isinstance(data, (dict, list)):
-        content_str = json.dumps(data, sort_keys=True).encode("utf-8")
-    elif isinstance(data, str):
-        content_str = data.encode("utf-8")
-    else:
-        content_str = data
-    return "sha256:" + hashlib.sha256(content_str).hexdigest()
+from Shared.assurance import contract  # noqa: E402
+from Shared.contracts import ContractError  # noqa: E402
 
 
 def build_search_document(q: dict, subject: str) -> dict | None:
-    # Check exclusion
     if q.get("extensions", {}).get("search_visibility") == "EXCLUDED":
         return None
-
-    canonical_id = q["id"]
-    canonical_digest = compute_digest(q)
-
     concept_refs = []
     if "extensions" in q and "problem_specification" in q["extensions"]:
         concept_refs = q["extensions"]["problem_specification"].get("concept_refs", [])
-
     stem = q.get("stem", "")
-    title = stem[:80]
-
-    search_parts = [stem]
     answer = q.get("answer", {})
-    if isinstance(answer, dict) and "summary" in answer:
-        search_parts.append(answer["summary"])
-    
-    conditions = q.get("conditions", [])
-    if conditions:
-        search_parts.extend(conditions)
-    
-    search_text = " ".join(part for part in search_parts if part)
-
-    primary_cap = q.get("primary_capability_ref", "")
-    subject_lower = subject.lower()
-    canonical_url = f"/products/{subject_lower}/{primary_cap}/"
-
+    parts = [stem] + ([answer["summary"]] if isinstance(answer, dict) and "summary" in answer else []) + list(q.get("conditions", []))
     source_refs = q.get("source_refs", [])
-    doc_source_refs = [source_refs[0]] if source_refs else []
-
     return {
         "schema": "search-document/v1",
-        "canonical_id": canonical_id,
-        "canonical_digest": canonical_digest,
+        "canonical_id": q["id"],
+        "canonical_digest": contract.digest(q),
         "type": "QUESTION",
         "subject": subject,
         "concept_refs": concept_refs,
-        "title": title,
-        "search_text": search_text,
-        "aliases": [canonical_id],
-        "canonical_url": canonical_url,
-        "source_refs": doc_source_refs
+        "title": stem[:80],
+        "search_text": " ".join(part for part in parts if part),
+        "aliases": [q["id"]],
+        "canonical_url": f"/products/{subject.lower()}/{q.get('primary_capability_ref', '')}/",
+        "source_refs": [source_refs[0]] if source_refs else [],
     }
 
 
-def main():
-    parser = argparse.ArgumentParser()
+def read_questions(roots: list[Path]) -> list[tuple[str, dict]]:
+    """(subject, question) for every question under the library directories, in a fixed order; a file that cannot be read is an error."""
+    found = []
+    for root in roots:
+        for path in sorted(root.rglob("*.json")):
+            try:
+                data = json.loads(path.read_text(encoding="utf-8"))
+            except (OSError, ValueError) as exc:
+                raise ContractError("SEARCH_INDEX_UNREADABLE_LIBRARY", f"{path}: {exc}") from exc
+            if isinstance(data, dict) and isinstance(data.get("questions"), list):
+                found += [(data.get("subject", "Unknown"), q) for q in data["questions"]]
+    return found
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--library-dirs", nargs="+", required=True)
     parser.add_argument("--output-index", required=True)
     parser.add_argument("--output-manifest", required=True)
     parser.add_argument("--canonical-snapshot-digest", default="")
     parser.add_argument("--dry-run", action="store_true")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
-    documents = []
-    excluded_ids = []
-    canonical_ids = []
-    canonical_files = []
-
-    for d in args.library_dirs:
-        dir_path = Path(d)
-        if not dir_path.exists():
-            continue
-        for root, _, files in os.walk(dir_path):
-            for f in files:
-                if f.endswith(".json"):
-                    filepath = Path(root) / f
-                    canonical_files.append(filepath)
-                    try:
-                        with open(filepath, "r", encoding="utf-8") as file_obj:
-                            data = json.load(file_obj)
-                    except Exception:
-                        continue
-                    
-                    if not isinstance(data, dict) or "questions" not in data:
-                        continue
-                    
-                    subject = data.get("subject", "Unknown")
-                    
-                    for q in data["questions"]:
-                        doc = build_search_document(q, subject)
-                        if doc:
-                            documents.append(doc)
-                            canonical_ids.append(doc["canonical_id"])
-                        else:
-                            excluded_ids.append(q["id"])
-
-    # Output index
-    output_index_json = json.dumps(documents, indent=2, sort_keys=True)
-    index_digest = compute_digest(output_index_json)
-
-    # Output manifest
+    roots = [Path(d) for d in args.library_dirs if Path(d).exists()]
+    documents, excluded = [], []
+    for subject, q in read_questions(roots):
+        doc = build_search_document(q, subject)
+        (documents if doc else excluded).append(doc or q["id"])
+    documents.sort(key=lambda d: d["canonical_id"])
+    index_text = json.dumps(documents, indent=2, sort_keys=True)
     manifest = {
         "schema": "search-index-manifest/v1",
         "index_version": "1",
-        "canonical_snapshot_digest": args.canonical_snapshot_digest or compute_sha256_of_files(canonical_files),
-        "generator": {"name": "build_search_index", "version": "1.0.0"},
+        "canonical_snapshot_digest": args.canonical_snapshot_digest or contract.digest_roots(roots),
+        "generator": {"name": "build_search_index", "version": "1.1.0"},
         "record_count": len(documents),
-        "canonical_ids": canonical_ids,
-        "excluded_ids": excluded_ids,
-        "index_digest": index_digest,
-        "generated_at": datetime.now(timezone.utc).replace(tzinfo=None).isoformat() + "Z"
+        "canonical_ids": [d["canonical_id"] for d in documents],
+        "excluded_ids": sorted(excluded),
+        "index_digest": "sha256:" + hashlib.sha256(contract.normalise_text(index_text.encode("utf-8"))).hexdigest(),
+        "generated_at": datetime.now(timezone.utc).replace(tzinfo=None, microsecond=0).isoformat() + "Z",
     }
-    output_manifest_json = json.dumps(manifest, indent=2, sort_keys=True)
-
     if args.dry_run:
-        print(f"Would write index to {args.output_index}:")
-        print(f"  {len(documents)} documents")
-        print(f"Would write manifest to {args.output_manifest}:")
-        print(f"  {len(excluded_ids)} excluded")
-        return
+        print(f"Would write {len(documents)} documents to {args.output_index} and a manifest with {len(excluded)} excluded to {args.output_manifest}")
+        return 0
+    for path, text in ((Path(args.output_index), index_text), (Path(args.output_manifest), json.dumps(manifest, indent=2, sort_keys=True))):
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(text, encoding="utf-8", newline="\n")
+    print(f"Indexed {len(documents)} documents; excluded {len(excluded)}. Wrote {args.output_index} and {args.output_manifest}")
+    return 0
 
-    out_idx = Path(args.output_index)
-    out_idx.parent.mkdir(parents=True, exist_ok=True)
-    with open(out_idx, "w", encoding="utf-8", newline="\n") as f:
-        f.write(output_index_json)
-
-    out_mnf = Path(args.output_manifest)
-    out_mnf.parent.mkdir(parents=True, exist_ok=True)
-    with open(out_mnf, "w", encoding="utf-8", newline="\n") as f:
-        f.write(output_manifest_json)
-
-    print(f"Indexed {len(documents)} documents.")
-    print(f"Excluded {len(excluded_ids)} documents.")
-    print(f"Wrote index to {args.output_index}")
-    print(f"Wrote manifest to {args.output_manifest}")
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

@@ -87,8 +87,8 @@ def _standalone_lines(shell: dict) -> list[str]:
              sp["purpose"], "",
              f"Governed roots: {', '.join(f'`{r}/`' for r in sp['governed_roots'])}. A page there that is not listed in the ledger has no findings; an unknown page fails closed. "
              f"Checker: `{sp['checker']}`; zoom is never limited below {sp['zoom_max_scale_min']}x.", "",
-             "| Rule | Held | Executes | What it asks |", "|---|---|---|---|"]
-    lines += [f"| `{r['id']}` | {'blocks' if r['severity'] == 'BLOCK' else 'said'} | `{r['executes']}` | {r['statement']} |" for r in sp["rules"]]
+             "| Rule | Held | Assurance type | Executes | What it asks |", "|---|---|---|---|---|"]
+    lines += [f"| `{r['id']}` | {'blocks' if r['severity'] == 'BLOCK' else 'said'} | `{r['assurance_type']}` | `{r['executes']}` | {r['statement']} |" for r in sp["rules"]]
     lines += ["", f"Ledger (`{sp['ledger']}`): {sp['ledger_rule']}", "",
               f"Browser audit (`{audit['tool']} --profile {audit['profile']}`): measures {', '.join(audit['measures'])}. {audit['note']}", ""]
     return lines
@@ -99,7 +99,7 @@ def _admission_lines(policy: dict) -> list[str]:
     adm, ev = policy["admission"], policy["evidence"]
     return ["## Rules about a record and its evidence", "",
             f"**Admission.** {adm['purpose']} Authority: {', '.join(f'`{a}`' for a in adm['authority'])}.", "",
-            *[f"- `{pt['id']}` ({'blocks' if pt['severity'] == 'BLOCK' else 'said'}): {pt['statement']}" for pt in adm["points"]],
+            *[f"- `{pt['id']}` ({'blocks' if pt['severity'] == 'BLOCK' else 'said'}; evidence of type `{pt['assurance_type']}`): {pt['statement']}" for pt in adm["points"]],
             f"- {adm['note']}", "",
             f"**Evidence.** {ev['purpose']} Line endings: {ev['line_endings']} (`{ev['attributes_file']}`). {ev['note']}", ""]
 

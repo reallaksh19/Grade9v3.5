@@ -298,7 +298,8 @@
                 "required": [
                   "id",
                   "statement",
-                  "severity"
+                  "severity",
+                  "assurance_type"
                 ],
                 "properties": {
                   "id": {
@@ -314,6 +315,10 @@
                       "BLOCK",
                       "ADVISE"
                     ]
+                  },
+                  "assurance_type": {
+                    "type": "string",
+                    "pattern": "^[A-Z_]+$"
                   }
                 }
               }
@@ -668,7 +673,8 @@
                   "id",
                   "severity",
                   "executes",
-                  "statement"
+                  "statement",
+                  "assurance_type"
                 ],
                 "properties": {
                   "id": {
@@ -688,6 +694,10 @@
                   "statement": {
                     "type": "string",
                     "minLength": 10
+                  },
+                  "assurance_type": {
+                    "type": "string",
+                    "pattern": "^[A-Z_]+$"
                   }
                 }
               }

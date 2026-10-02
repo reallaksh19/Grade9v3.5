@@ -1,80 +1,90 @@
 #!/usr/bin/env python3
-"""Builds a projection manifest from a render receipt."""
+"""Build the manifest of a projection: what it was built from, by digest, and what it holds.
+
+A projection (pages, a PDF set, a search index) is not canonical. Its manifest names the canonical inputs it was built from (every JSON file under the library directories,
+LF-normalised), the digest of the artifact (the pages under the render directory), and the canonical records the pages cite, so that verify_projection_manifest.py can say whether
+the projection is still a projection of the library as it is now.
+
+    python3 Shared/tools/build_projection_manifest.py --render-dir standalone --projection-type STANDALONE --canonical-dir Physics/library [--output M.json]
+"""
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
+import re
 import sys
-from datetime import datetime
 from pathlib import Path
 
-# Add Shared/tools to sys.path if needed
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-try:
-    from assurance_record import make_evidence, write_evidence
-except ImportError:
-    pass  # We'll fail later if it's really missing, but this makes it robust
+REPO = Path(__file__).resolve().parents[2]
+if str(REPO) not in sys.path:
+    sys.path.insert(0, str(REPO))
 
-def compute_sha256(files: list[Path]) -> str:
-    h = hashlib.sha256()
-    for f in sorted(files, key=lambda x: str(x)):
-        if f.is_file():
-            h.update(f.read_bytes())
-    return "sha256:" + h.hexdigest()
+from Shared.assurance import contract  # noqa: E402
+from Shared.contracts import ContractError  # noqa: E402
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--render-dir", required=True)
-    parser.add_argument("--projection-type", choices=["WEB", "STANDALONE", "PDF", "SEARCH"], required=True)
-    parser.add_argument("--canonical-dir", required=True)
-    parser.add_argument("--output")
-    args = parser.parse_args()
+GENERATOR = {"name": "build_projection_manifest", "version": "1.1.0"}
+ID = re.compile(r"[A-Za-z][A-Za-z0-9]*(?:-[A-Za-z0-9]+)+")
 
-    render_dir = Path(args.render_dir)
-    canonical_dir = Path(args.canonical_dir)
-    
-    receipt_file = render_dir / "render-receipt.json"
-    if not receipt_file.exists():
-        print(f"Error: {receipt_file} not found")
-        sys.exit(1)
-        
-    receipt = json.loads(receipt_file.read_text(encoding="utf-8"))
-    
-    canonical_files = list(canonical_dir.rglob("*.json"))
-    canonical_digest = compute_sha256(canonical_files)
-    
-    html_files = list(render_dir.rglob("*.html"))
-    artifact_digest = compute_sha256(html_files)
-    
-    record_ids = [str(Path(p).with_suffix("")) for p in receipt.get("pages", [])]
-    
+
+def canonical_ids(roots: list[Path]) -> set[str]:
+    """The id of every record in every package under `roots`: the things a page may cite."""
+    from Shared.library import resolve
+    ids: set[str] = set()
+    for root in roots:
+        for path in sorted(root.glob("*.json")):
+            try:
+                package = json.loads(path.read_text(encoding="utf-8"))
+            except (OSError, ValueError) as exc:
+                raise ContractError("PROJECTION_UNREADABLE_LIBRARY", f"{path}: {exc}") from exc
+            if isinstance(package, dict):
+                ids |= {row["id"] for c in resolve.COLLECTIONS for row in package.get(c, []) if isinstance(row, dict) and isinstance(row.get("id"), str)}
+    return ids
+
+
+def cited(render_dir: Path, ids: set[str]) -> list[str]:
+    """The canonical record ids that appear in the pages. (A page named after a record is not a record; a record is cited when its id is in the page.)"""
+    found: set[str] = set()
+    for page in render_dir.rglob("*.html"):
+        found |= {token for token in ID.findall(page.read_text(encoding="utf-8", errors="replace")) if token in ids}
+    return sorted(found)
+
+
+def build(render_dir: Path, projection_type: str, canonical_dirs: list[Path]) -> dict:
+    artifact = contract.digest_tree(render_dir, ("*.html",))
+    if artifact is None:
+        raise ContractError("PROJECTION_EMPTY", f"{render_dir} holds no pages")
+    canonical = contract.digest_roots(canonical_dirs)
     manifest = {
         "schema": "projection-manifest/v1",
-        "projection_type": args.projection_type,
-        "canonical_snapshot_digest": canonical_digest,
-        "generator": {"name": "render_core", "version": "render_core/2"},
-        "generator_input_digest": canonical_digest,
-        "record_ids": record_ids,
-        "artifact_digest": artifact_digest,
-        "generated_at": datetime.utcnow().isoformat() + "Z"
+        "projection_type": projection_type,
+        "canonical_snapshot_digest": canonical,
+        "generator": GENERATOR,
+        "generator_input_digest": contract.digest({"canonical": canonical, "generator": GENERATOR}),
+        "record_ids": cited(render_dir, canonical_ids(canonical_dirs)),
+        "artifact_digest": artifact,
+        "generated_at": contract.now(),
     }
-    
+    return contract.require_valid("projection-manifest", manifest)
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--render-dir", required=True)
+    parser.add_argument("--projection-type", choices=["WEB", "STANDALONE", "PDF", "SEARCH", "BROWSER_DATA"], required=True)
+    parser.add_argument("--canonical-dir", required=True, nargs="+")
+    parser.add_argument("--output")
+    args = parser.parse_args(argv)
+    try:
+        manifest = build(Path(args.render_dir), args.projection_type, [Path(d) for d in args.canonical_dir])
+    except ContractError as exc:
+        print(f"Error: {exc}", file=sys.stderr)
+        return 1
     if args.output:
-        Path(args.output).write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+        contract.write_json(Path(args.output), manifest)
     else:
-        print(json.dumps(manifest, indent=2))
-        
-    is_pass = (artifact_digest == receipt.get("digest"))
-    evidence = make_evidence(
-        assurance_type="PROJECTION_INTEGRITY",
-        subject_kind="PROJECTION",
-        subject_id=str(render_dir),
-        outcome="PASS" if is_pass else "FAIL",
-        producer_name="build_projection_manifest",
-        producer_version="1.0"
-    )
-    write_evidence(evidence, render_dir / "build_manifest_evidence.json")
+        print(json.dumps(manifest, indent=2, sort_keys=True))
+    return 0
+
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

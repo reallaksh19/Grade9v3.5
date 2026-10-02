@@ -223,6 +223,36 @@ def accept(slug: str, note: str = "", accept_open: str = "", repo: Path = REPO,
     return accepted
 
 
+def _release_eligible(slug: str, bundle: str | None) -> bool:
+    """The assurance gate. With a bundle, its evidence is recomputed and the product must be ELIGIBLE. Without one, the release policy decides: acceptance_gate
+    REQUIRED refuses, ADVISORY (the policy as shipped, until every verifier the release policy asks for exists) says so and goes on."""
+    from Shared.assurance import aggregate
+    from Shared.contracts import ContractError
+    if bundle is None:
+        gate = next((p.get("acceptance_gate", "ADVISORY") for p in aggregate.load_policies(["learner-release-default"])), "ADVISORY")
+        if gate == "REQUIRED":
+            print("No assurance bundle was supplied (--eligibility) and the release policy requires one.", file=sys.stderr)
+            return False
+        print("Note: no assurance bundle was supplied (--eligibility); the release policy treats it as advisory for now.")
+        return True
+    from Shared.tools.release_eligibility import load_and_check
+    try:
+        decision = load_and_check(bundle, slug)
+    except ContractError as exc:
+        print(f"Release ineligible: {exc}", file=sys.stderr)
+        return False
+    print(f"Release eligibility: {decision['status']}")
+    if decision["status"] != "ELIGIBLE":
+        for row in decision["missing"][:12]:
+            print(f"  open     {row['type']} {row['subject']} {row['reason']}", file=sys.stderr)
+        for row in decision["problems"]:
+            print(f"  problem  {row['code']}: {row['message']}", file=sys.stderr)
+        for row in decision["reviewable_findings"][:8]:
+            print(f"  [{row['severity']}] {row['code']} {row['subject']}: {row['message'][:100]}", file=sys.stderr)
+        return False
+    return True
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("slug")
@@ -230,22 +260,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--accept-open", default="")
     parser.add_argument("--approval-ref", default="",
                         help="where the Owner's approval was given (message or comment link, or a quotation)")
-    parser.add_argument("--eligibility", default=None)
+    parser.add_argument("--eligibility", default=None, metavar="BUNDLE",
+                        help="the assurance bundle (assurance_product.py) whose evidence the release decision is recomputed from")
     args = parser.parse_args(argv)
 
-    # Phase F: check release eligibility if a bundle is provided
-    if args.eligibility:
-        from Shared.tools.release_eligibility import load_and_check
-        eligibility = load_and_check(args.eligibility, args.slug)
-        if eligibility['status'] == 'INELIGIBLE':
-            print(f"Release ineligible: {eligibility['hard_integrity']}")
-            for f in eligibility.get('reviewable_findings', []):
-                print(f"  [{f.get('severity','?')}] {f.get('code')}: {f.get('message')}") 
-            sys.exit(1)
-        elif eligibility['status'] == 'INCOMPLETE':
-            print(f"Release incomplete: missing assurance types")
-            sys.exit(1)
-        print(f"Release eligibility: {eligibility['status']}")
+    if not _release_eligible(args.slug, args.eligibility):
+        return 1
 
     try:
         decision = accept(args.slug, args.note, args.accept_open, approval_ref=args.approval_ref)

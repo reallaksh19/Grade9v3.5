@@ -12,7 +12,8 @@ that blocks was measured against every question the library held before it (0 re
   QUESTION_STEM_COMPLETE  the stem ends where a sentence ends (a stem cut off mid-sentence asks half a question)            said
   QUESTION_OPTIONS        an option has text; a letter standing for itself ('(A) A') is a choice with nothing to choose
   QUESTION_GIVENS         a number a hint relies on is in the stem, the options or the conditions                              said
-  QUESTION_SCOPE          the question does not teach a concept the scope defers, unless it is routed as a declared extension
+  QUESTION_SCOPE          the question does not teach a concept the scope document defers, unless it is routed as a declared extension
+                          (a concept only the policy defers is said, not held)
   ANSWER_ANCHORED         the answer is about this question: it shares words or numbers with the stem, the options or the conditions
   ANSWER_WORKED           the answer is worked (two steps, a few lines) and its summary states a result; it is not a page pasted in
   ANSWER_VERIFIED         nobody has been asked to stand behind the key: a key not run, or disputed, does not enter a library
@@ -39,7 +40,7 @@ ANCHORS_MIN = 2
 WORKED_MIN_STEPS = 2
 WORKED_MIN_CHARS = 80
 SUMMARY_MAX_CHARS = 500
-SCOPE_DATA = Path(__file__).with_name("scope") / "deferred.v1.json"   # a directory of its own: the library tests glob */library/*.json for packages
+SCOPE_POLICY = Path(__file__).resolve().parents[1] / "policy" / "grade9-physics.v1.json"      # the one place the scope is written as data
 
 SENTENCE = re.compile(r"(?<=[.?!])\s+")
 OPTION_LABEL = re.compile(r"^\s*\(?([A-Za-z0-9])\)?\s*[.:)]?\s*")
@@ -105,26 +106,44 @@ def _significant(numbers: set[str]) -> set[str]:
 
 @lru_cache(maxsize=1)
 def scope() -> dict:
-    """The concepts the scope defers, as data (`scope/deferred.v1.json`, checked against the scope document by a test)."""
-    return json.loads(SCOPE_DATA.read_text(encoding="utf-8")) if SCOPE_DATA.exists() else {"deferred": [], "waiver_routes": []}
+    """The concepts the scope defers, read from the scope policy (`Shared/policy/grade9-physics.v1.json`), the one place the scope is written as data."""
+    policy = json.loads(SCOPE_POLICY.read_text(encoding="utf-8"))
+    deferred = [{"concept": c["concept_id"], "row": c.get("document_row") or c["concept_id"], "document_row": c.get("document_row"), "terms": c["terms"],
+                 "owners": c.get("owners", []), "route": c["scope_class"]}
+                for c in policy["concept_policies"] if c["scope_class"] in ("DEFER", "PROHIBITED")]
+    return {"policy": policy["policy_id"], "source": policy["source"], "waiver_routes": policy["waiver_routes"], "deferred": deferred}
 
 
-def _scope_findings(row: dict, package_id: str | None) -> Iterator[str]:
+def _concept_refs(row: dict) -> list:
+    spec = (row.get("extensions") or {}).get("problem_specification") if isinstance(row.get("extensions"), dict) else None
+    refs = spec.get("concept_refs") if isinstance(spec, dict) else None
+    return refs if isinstance(refs, list) else []
+
+
+def _scope_findings(row: dict, package_id: str | None) -> Iterator[tuple[str, str]]:
     """A deferred concept used as a concept: a mention that excludes it ('do not invent a torque equation') is not a use."""
     route = (row.get("extensions") or {}).get("grade9v3:scope_route") if isinstance(row.get("extensions"), dict) else None
     if route in scope().get("waiver_routes", []):
         return
     parts = [_question_text(row), *_reasoning(row), str(_answer(row).get("summary", ""))]
     sentences = [s.lower().replace("-", " ") for part in parts for s in SENTENCE_RAW.split(part) if s.strip()]
+    declared = {re.sub(r"^CONCEPT_", "", re.sub(r"[^A-Z0-9]+", "_", str(ref).upper())) for ref in _concept_refs(row)}
     for entry in scope().get("deferred", []):
         if package_id in entry.get("owners", []):
+            continue
+        if entry["concept"] in declared:                                   # the question says so itself, in its problem specification
+            held = "BLOCK" if entry["document_row"] else "ADVISE"
+            yield (f"declares the concept {entry['concept']}, which the scope defers ({entry['row']!r}: {entry['route']}); route the record as a declared extension "
+                   f"(extensions['grade9v3:scope_route']), or take the concept out", held)
             continue
         for term in entry["terms"]:
             pattern = re.compile(rf"\b{re.escape(term.lower().replace('-', ' '))}\b")
             used = any(not NEGATION.search(s[max(0, m.start() - 60):m.start()]) for s in sentences for m in pattern.finditer(s))
             if used:
-                yield (f"uses '{term}', which the scope defers ({entry['row']!r}: {entry['route']}); take it out, or route the record as a "
-                       f"declared extension (extensions['grade9v3:scope_route'])")
+                held = "BLOCK" if entry["document_row"] else "ADVISE"       # the scope document is the authority; a deferral only the policy states is said
+                yield (f"uses '{term}', which the scope defers ({entry['row']!r}: {entry['route']}"
+                       f"{'' if entry['document_row'] else ', in the policy and not yet in the scope document'}); take it out, or route the record as a "
+                       f"declared extension (extensions['grade9v3:scope_route'])", held)
 
 
 def findings(package: dict) -> Iterator[dict]:
@@ -162,8 +181,8 @@ def findings(package: dict) -> Iterator[dict]:
         if late:
             yield found("QUESTION_GIVENS", f"a hint relies on {', '.join(late[:4])}, which the stem, options and conditions do not give")
 
-        for detail in _scope_findings(row, package_id):
-            yield found("QUESTION_SCOPE", detail)
+        for detail, severity in _scope_findings(row, package_id):
+            yield {**found("QUESTION_SCOPE", detail), "severity": severity}
 
         answer, steps = _answer(row), _reasoning(row)
         said = " ".join([str(answer.get("summary", "")), *steps])

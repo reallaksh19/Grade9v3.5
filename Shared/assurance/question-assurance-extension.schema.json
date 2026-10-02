@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.com/question-assurance-extension.schema.json",
+  "$id": "question-assurance-extension/v1",
   "title": "Phase C Question Assurance Extensions",
   "description": "Schema for the problem_specification, answer_contract, and computation_model extensions.",
   "type": "object",
@@ -13,10 +13,17 @@
           "items": {
             "type": "object",
             "properties": {
-              "id": {"type": "string"},
-              "quantity_kind": {"type": "string"}
+              "id": {
+                "type": "string"
+              },
+              "quantity_kind": {
+                "type": "string"
+              }
             },
-            "required": ["id", "quantity_kind"]
+            "required": [
+              "id",
+              "quantity_kind"
+            ]
           }
         },
         "visible_facts": {
@@ -24,93 +31,171 @@
           "items": {
             "type": "object",
             "properties": {
-              "symbol": {"type": "string"},
+              "symbol": {
+                "type": "string"
+              },
               "value": {},
-              "unit": {"type": "string"},
-              "expression": {"type": "string"}
+              "unit": {
+                "type": "string"
+              },
+              "expression": {
+                "type": "string"
+              },
+              "visible_in": {
+                "type": "string",
+                "enum": [
+                  "STEM",
+                  "FIGURE"
+                ],
+                "description": "Where the learner sees the fact. A STEM fact is held to be in the text; a FIGURE fact is not."
+              }
             },
-            "required": ["symbol"]
+            "required": [
+              "symbol"
+            ]
           }
         },
         "declared_assumptions": {
           "type": "array",
-          "items": {"type": "string"}
+          "items": {
+            "type": "string"
+          }
         },
         "permitted_constants": {
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
-              "symbol": {"type": "string"},
+              "symbol": {
+                "type": "string"
+              },
               "value": {},
-              "unit": {"type": "string"}
+              "unit": {
+                "type": "string"
+              }
             },
-            "required": ["symbol", "value", "unit"]
+            "required": [
+              "symbol",
+              "value",
+              "unit"
+            ]
           }
         },
         "concept_refs": {
           "type": "array",
-          "items": {"type": "string"}
+          "items": {
+            "type": "string"
+          }
         }
       },
-      "required": ["requested_outputs", "visible_facts", "declared_assumptions", "permitted_constants"]
+      "required": [
+        "requested_outputs",
+        "visible_facts",
+        "declared_assumptions",
+        "permitted_constants"
+      ]
     },
     "answer_contract": {
       "type": "object",
       "properties": {
         "answer_type": {
           "type": "string",
-          "enum": ["NUMERIC", "QUANTITY", "SYMBOLIC_EXPRESSION", "EQUATION", "VECTOR", "OPTION", "TRUE_FALSE", "PROPOSITION", "COMPOUND"]
+          "enum": [
+            "NUMERIC",
+            "QUANTITY",
+            "SYMBOLIC_EXPRESSION",
+            "EQUATION",
+            "VECTOR",
+            "OPTION",
+            "TRUE_FALSE",
+            "PROPOSITION",
+            "COMPOUND"
+          ]
         },
         "requested_outputs": {
           "type": "array",
-          "items": {"type": "string"}
+          "items": {
+            "type": "string"
+          }
         },
-        "expected_dimension": {"type": "string"},
+        "expected_dimension": {
+          "type": "string"
+        },
         "equivalence_policy": {
           "type": "string",
-          "enum": ["EXACT", "NUMERIC_UNIT_EQUIVALENCE", "SYMBOLIC_EQUIVALENCE", "OPTION_MATCH"]
+          "enum": [
+            "EXACT",
+            "NUMERIC_UNIT_EQUIVALENCE",
+            "SYMBOLIC_EQUIVALENCE",
+            "OPTION_MATCH"
+          ]
         },
         "tolerance": {
           "type": "object",
           "properties": {
-            "relative": {"type": "number"},
-            "absolute": {"type": "number"}
+            "relative": {
+              "type": "number"
+            },
+            "absolute": {
+              "type": "number"
+            }
           }
         }
       },
-      "required": ["answer_type", "requested_outputs", "equivalence_policy"]
+      "required": [
+        "answer_type",
+        "requested_outputs",
+        "equivalence_policy"
+      ]
     },
     "computation_model": {
       "type": "object",
       "properties": {
-        "model_type": {"type": "string"},
+        "model_type": {
+          "type": "string"
+        },
         "variables": {
           "type": "object",
           "additionalProperties": {
             "type": "object",
             "properties": {
               "value": {},
-              "unit": {"type": "string"}
+              "unit": {
+                "type": "string"
+              }
             },
-            "required": ["value"]
+            "required": [
+              "value"
+            ]
           }
         },
         "equations": {
           "type": "array",
-          "items": {"type": "string"}
+          "items": {
+            "type": "string"
+          }
         },
         "constraints": {
           "type": "array",
-          "items": {"type": "string"}
+          "items": {
+            "type": "string"
+          }
         },
-        "coordinate_system": {"type": "string"},
+        "coordinate_system": {
+          "type": "string"
+        },
         "requested_outputs": {
           "type": "array",
-          "items": {"type": "string"}
+          "items": {
+            "type": "string"
+          }
         }
       },
-      "required": ["model_type", "variables", "requested_outputs"]
+      "required": [
+        "model_type",
+        "variables",
+        "requested_outputs"
+      ]
     }
   }
 }

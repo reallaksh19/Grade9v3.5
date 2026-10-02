@@ -30,18 +30,18 @@ A learner page that did not come through render_core (a snapshot, a suite, a pag
 
 Governed roots: `standalone/`. A page there that is not listed in the ledger has no findings; an unknown page fails closed. Checker: `Shared/tools/standalone_conformance.py`; zoom is never limited below 5x.
 
-| Rule | Held | Executes | What it asks |
-|---|---|---|---|
-| `REMOTE_RUNTIME` | blocks | `vendor_policy.pages_external_runtime` | A page loads no script, stylesheet, font, image or frame from the network. A link to a source is a citation and is allowed; a dependency is not. |
-| `VIEWPORT_ZOOM` | blocks | `responsive_modes` | A page declares a viewport and never turns zoom off: no user-scalable=no, no maximum-scale under the limit. |
-| `FONT_FLOOR` | blocks | `typography_policy.minimum_learner_text_css_px` | No declared text size is under the learner text floor. A size that scaling changes (an SVG label in a narrow column) is measured by the browser audit. |
-| `LINKS_RESOLVE` | blocks | `responsive_modes` | Every relative reference lands on a file that exists, and every fragment on an id that page holds. |
-| `LINKS_LEAVE_ROOT` | said | `vendor_policy.pages_external_runtime` | A reference that leaves the governed root means the page is not whole where it is shipped alone. Said, not held: whether it matters depends on what is shipped. |
-| `MATH_CONTROL_CHARS` | blocks | `math_policy` | No control character in the source: a TeX escape read as one (\v for \vec, \f for \frac) is gone from the maths. |
-| `MATH_UNRENDERED` | blocks | `math_policy.dynamic_renderer` | TeX in the visible text means a script on the page renders it; maths shown as raw delimiters is not maths. |
-| `STORAGE_GUARDED` | blocks | `representation_accessibility_policy` | Storage is read only inside a try block: with storage blocked the read throws, and one throw ends the script. |
-| `VENDOR_CONFIG_DANGLING` | blocks | `vendor_policy.unknown_runtime_dependency` | No configuration for a vendor script the page does not load: it throws on every load. |
-| `UNIQUE_IDS` | blocks | `representation_accessibility_policy` | An id appears once on a page. |
+| Rule | Held | Assurance type | Executes | What it asks |
+|---|---|---|---|---|
+| `REMOTE_RUNTIME` | blocks | `NETWORK_POLICY` | `vendor_policy.pages_external_runtime` | A page loads no script, stylesheet, font, image or frame from the network. A link to a source is a citation and is allowed; a dependency is not. |
+| `VIEWPORT_ZOOM` | blocks | `PROJECTION_STATIC_CONFORMANCE` | `responsive_modes` | A page declares a viewport and never turns zoom off: no user-scalable=no, no maximum-scale under the limit. |
+| `FONT_FLOOR` | blocks | `PROJECTION_STATIC_CONFORMANCE` | `typography_policy.minimum_learner_text_css_px` | No declared text size is under the learner text floor. A size that scaling changes (an SVG label in a narrow column) is measured by the browser audit. |
+| `LINKS_RESOLVE` | blocks | `LINK_INTEGRITY` | `responsive_modes` | Every relative reference lands on a file that exists, and every fragment on an id that page holds. |
+| `LINKS_LEAVE_ROOT` | said | `LINK_INTEGRITY` | `vendor_policy.pages_external_runtime` | A reference that leaves the governed root means the page is not whole where it is shipped alone. Said, not held: whether it matters depends on what is shipped. |
+| `MATH_CONTROL_CHARS` | blocks | `PROJECTION_STATIC_CONFORMANCE` | `math_policy` | No control character in the source: a TeX escape read as one (\v for \vec, \f for \frac) is gone from the maths. |
+| `MATH_UNRENDERED` | blocks | `PROJECTION_STATIC_CONFORMANCE` | `math_policy.dynamic_renderer` | TeX in the visible text means a script on the page renders it; maths shown as raw delimiters is not maths. |
+| `STORAGE_GUARDED` | blocks | `PROJECTION_STATIC_CONFORMANCE` | `representation_accessibility_policy` | Storage is read only inside a try block: with storage blocked the read throws, and one throw ends the script. |
+| `VENDOR_CONFIG_DANGLING` | blocks | `PROJECTION_STATIC_CONFORMANCE` | `vendor_policy.unknown_runtime_dependency` | No configuration for a vendor script the page does not load: it throws on every load. |
+| `UNIQUE_IDS` | blocks | `PROJECTION_STATIC_CONFORMANCE` | `representation_accessibility_policy` | An id appears once on a page. |
 
 Ledger (`Shared/web/standalone-ledger.v1.json`): A page may have no more findings of a rule than the ledger records, and a page the ledger does not list has none. The ledger holds what was already there when the rule arrived; the checker writes it, and it can only be tightened.
 
@@ -70,15 +70,15 @@ Browser audit (`tools/site-audit/core-page-audit.mjs --profile tablet-12.7`): me
 
 **Admission.** A question record is admitted by the library's own intake and resolver. A registration does not bring a gate of its own: a gate that checks that fields are non-empty cannot see a record that says nothing. Authority: `Shared/library/intake.py`, `Shared/library/resolve.py`, `Shared/library/question_admission.py`.
 
-- `QUESTION_STEM` (blocks): The stem asks something: it has at least 6 words and is not made of sentences that the record's own hints or solution also say.
-- `QUESTION_STEM_COMPLETE` (said): The stem ends where a sentence ends; a stem cut off mid-sentence asks half a question. Said, not held: a stem that ends on a variable looks the same from the text.
-- `QUESTION_OPTIONS` (blocks): An option carries text. A letter standing for itself ('(A) A') is a choice with nothing to choose.
-- `QUESTION_GIVENS` (said): A number a hint relies on is in the stem, the options or the conditions, so a learner who has not opened the hint can already start. Said, not held: a constant or a value worked out from the stem looks the same from the text.
-- `QUESTION_SCOPE` (blocks): The question does not teach a concept the scope defers (Shared/library/scope/deferred.v1.json, held by a test to the DEFER rows of the scope document), unless the record is routed as a declared extension. A question that excludes the concept ('do not invent a torque equation') is not refused. The capability tag is not the test: the registrar writes it.
-- `ANSWER_ANCHORED` (blocks): The answer is about this question: it shares at least 2 words or numbers with the stem, options and conditions. No list of banned phrases is kept; an answer that could stand under any question fails without one.
-- `ANSWER_WORKED` (blocks): The answer is worked: at least 2 reasoning steps and 80 characters of reasoning, and a summary of at most 500 characters that states the result; a page pasted in as the summary is not a result.
-- `ANSWER_VERIFIED` (blocks): A key that nobody ran (NOT_RUN), or that someone disputes, does not enter a library. The status is the author's word, so it is a floor and not a proof.
-- Intake and the resolver stay the one gate of record: CI runs them over every committed library (tests/test_question_admission.py), and a registration does not bring a gate of its own. These sit beside the corpus checks that were already there (duplicated and templated text, unresolved references). A package intake refuses is not registered, whatever else is said about it. What none of this can do is tell a plausible wrong explanation from a right one; a numeric key computed from the stem's own givens by an oracle would.
+- `QUESTION_STEM` (blocks; evidence of type `STRUCTURAL_VALIDITY`): The stem asks something: it has at least 6 words and is not made of sentences that the record's own hints or solution also say.
+- `QUESTION_STEM_COMPLETE` (said; evidence of type `STRUCTURAL_VALIDITY`): The stem ends where a sentence ends; a stem cut off mid-sentence asks half a question. Said, not held: a stem that ends on a variable looks the same from the text.
+- `QUESTION_OPTIONS` (blocks; evidence of type `STRUCTURAL_VALIDITY`): An option carries text. A letter standing for itself ('(A) A') is a choice with nothing to choose.
+- `QUESTION_GIVENS` (said; evidence of type `DISCLOSURE_CONFORMANCE`): A number a hint relies on is in the stem, the options or the conditions, so a learner who has not opened the hint can already start. Said, not held: a constant or a value worked out from the stem looks the same from the text.
+- `QUESTION_SCOPE` (blocks; evidence of type `SCOPE_CONFORMANCE`): The question does not teach a concept the scope document defers (read from Shared/policy/grade9-physics.v1.json; an entry that names a row of the scope document is held to it by a test), unless the record is routed as a declared extension. A concept only the policy defers is said, not held, until the document names it. A question that excludes the concept ('do not invent a torque equation') is not refused. The capability tag is not the test: the registrar writes it.
+- `ANSWER_ANCHORED` (blocks; evidence of type `CORPUS_SPECIFICITY`): The answer is about this question: it shares at least 2 words or numbers with the stem, options and conditions. No list of banned phrases is kept; an answer that could stand under any question fails without one.
+- `ANSWER_WORKED` (blocks; evidence of type `CORPUS_SPECIFICITY`): The answer is worked: at least 2 reasoning steps and 80 characters of reasoning, and a summary of at most 500 characters that states the result; a page pasted in as the summary is not a result.
+- `ANSWER_VERIFIED` (blocks; evidence of type `REASONING_VALIDITY`): A key that nobody ran (NOT_RUN), or that someone disputes, does not enter a library. The status is the author's word, so it is a floor and not a proof.
+- Intake and the resolver stay the one gate of record: CI runs them over every committed library (tests/test_question_admission.py), and a registration does not bring a gate of its own. These sit beside the corpus checks that were already there (duplicated and templated text, unresolved references). A package intake refuses is not registered, whatever else is said about it. What none of this can do is tell a plausible wrong explanation from a right one; a numeric key computed from the stem's own givens by an oracle would. Each point and each page rule names the assurance type its evidence is of; a check that proves part of a type (a static page rule cannot prove a layout) feeds a type of its own and leaves the whole type open.
 
 **Evidence.** A digest is taken over the bytes of a file, so the bytes must be the same on every machine. Line endings: LF (`.gitattributes`). Text is LF in every working tree (`* text=auto eol=lf`). A file already committed with CRLF keeps its bytes, so no recorded digest moves; a new file is LF.
 

@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Drift classification per spec 33-34."""
+"""Drift of the current state from an accepted release fingerprint.
+
+For the canonical inputs and the policy: CURRENT, or REQUIRES_REBUILD / REQUIRES_REASSURANCE (they changed, which is allowed and means the release needs doing again).
+For each projection: CURRENT, REQUIRES_REBUILD (it changed together with the canonical inputs), or UNAUTHORIZED (it changed and the canonical inputs did not: someone edited
+a projection by hand, or built it from something other than the library). The evidence is DEPLOYMENT_INTEGRITY about the PRODUCT, bound to the digest of the current fingerprint:
+FAIL for an unauthorized change, INCONCLUSIVE while a rebuild or a reassurance is owed, PASS when nothing drifted. With --enforce the exit status is 1 on FAIL only: a library
+that changed is not a defect, a projection that changed without it is.
+"""
 from __future__ import annotations
 
 import argparse
@@ -11,107 +18,52 @@ REPO = Path(__file__).resolve().parents[2]
 if str(REPO) not in sys.path:
     sys.path.insert(0, str(REPO))
 
-from Shared.tools.release_fingerprint import build_fingerprint
-from Shared.tools.assurance_record import make_evidence
+from Shared.assurance import contract  # noqa: E402
+from Shared.assurance.evidence import finding, make_evidence, write_evidence  # noqa: E402
+from Shared.tools.release_fingerprint import build_fingerprint  # noqa: E402
+
+PROJECTIONS = ("web_projection", "standalone_projection", "search_projection")
 
 
-class DummyArgs:
-    def __init__(self, product_id, canonical_dir, web_dir, standalone_dir, search_index, search_manifest, assurance_bundle):
-        self.product_id = product_id
-        self.canonical_dir = canonical_dir
-        self.web_dir = web_dir
-        self.standalone_dir = standalone_dir
-        self.search_index = search_index
-        self.search_manifest = search_manifest
-        self.assurance_bundle = assurance_bundle
+def classify(accepted: dict, current: dict) -> dict[str, str]:
+    drift = {"canonical_snapshot": "CURRENT" if current["canonical_snapshot_digest"] == accepted["canonical_snapshot_digest"] else "REQUIRES_REBUILD",
+             "policy": "CURRENT" if current["policy_digest"] == accepted["policy_digest"] else "REQUIRES_REASSURANCE"}
+    for name in PROJECTIONS:
+        was, now = accepted.get(f"{name}_digest"), current.get(f"{name}_digest")
+        drift[name] = "CURRENT" if (was is None or was == now) else "REQUIRES_REBUILD"
+        if drift[name] == "REQUIRES_REBUILD" and drift["canonical_snapshot"] == "CURRENT":
+            drift[name] = "UNAUTHORIZED"
+    return drift
 
 
-def main():
-    parser = argparse.ArgumentParser()
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--accepted-fingerprint", required=True)
-    parser.add_argument("--canonical-dir", required=True)
-    parser.add_argument("--web-dir", default="")
-    parser.add_argument("--standalone-dir", default="")
-    parser.add_argument("--search-index", default="")
+    parser.add_argument("--canonical-dir", required=True, nargs="+")
+    parser.add_argument("--web-dir")
+    parser.add_argument("--standalone-dir")
+    parser.add_argument("--search-index")
+    parser.add_argument("--evidence-dir", default="build/assurance/evidence")
     parser.add_argument("--enforce", action="store_true")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
-    with Path(args.accepted_fingerprint).open("r", encoding="utf-8") as f:
-        accepted = json.load(f)
+    accepted = contract.require_valid("release-fingerprint", json.loads(Path(args.accepted_fingerprint).read_text(encoding="utf-8")))
+    current = build_fingerprint(accepted["product"], [Path(d) for d in args.canonical_dir], Path(args.web_dir) if args.web_dir else None,
+                                Path(args.standalone_dir) if args.standalone_dir else None, Path(args.search_index) if args.search_index else None)
+    drift = classify(accepted, current)
+    for name, state in drift.items():
+        print(f"{name:<22} {state}")
 
-    # Re-calculate current fingerprint
-    dummy = DummyArgs(
-        product_id=accepted.get("product", "unknown"),
-        canonical_dir=args.canonical_dir,
-        web_dir=args.web_dir,
-        standalone_dir=args.standalone_dir,
-        search_index=args.search_index,
-        search_manifest=None,
-        assurance_bundle=None
-    )
-    current = build_fingerprint(dummy)
+    unauthorized = [n for n, s in drift.items() if s == "UNAUTHORIZED"]
+    owed = [n for n, s in drift.items() if s.startswith("REQUIRES_")]
+    outcome = "FAIL" if unauthorized else ("INCONCLUSIVE" if owed else "PASS")
+    found = [finding("UNAUTHORIZED_CHANGE", "S1", n, f"{n} changed and the canonical inputs did not") for n in unauthorized]
+    found += [finding("DRIFT_OWED", "S3", n, f"{n}: {drift[n]}") for n in owed]
+    record = make_evidence("DEPLOYMENT_INTEGRITY", "PRODUCT", accepted["product"], outcome, "drift_detector", "1.1.0", findings=found,
+                           subject_digest=contract.digest({k: v for k, v in current.items() if k != "fingerprinted_at"}), configuration={"accepted": contract.digest(accepted)})
+    write_evidence(record, REPO / args.evidence_dir / f"{record['evidence_id']}.json")
+    return 1 if (args.enforce and outcome == "FAIL") else 0
 
-    drifts = {}
-    
-    # Check canonical
-    if current.get("canonical_snapshot_digest") != accepted.get("canonical_snapshot_digest"):
-        drifts["canonical_snapshot"] = "REQUIRES_REBUILD"
-    else:
-        drifts["canonical_snapshot"] = "CURRENT"
-
-    # Check policy
-    if current.get("policy_digest") != accepted.get("policy_digest"):
-        drifts["policy"] = "REQUIRES_REASSURANCE"
-    else:
-        drifts["policy"] = "CURRENT"
-
-    # Check projections
-    for proj in ["web_projection", "standalone_projection", "search_projection"]:
-        accepted_dig = accepted.get(f"{proj}_digest")
-        if not accepted_dig:
-            drifts[proj] = "CURRENT"
-            continue
-            
-        current_dig = current.get(f"{proj}_digest")
-        if current_dig != accepted_dig:
-            drifts[proj] = "REQUIRES_REBUILD"
-        else:
-            drifts[proj] = "CURRENT"
-
-    # UNAUTHORIZED override: projection changed but canonical didn't
-    canonical_current = drifts["canonical_snapshot"] == "CURRENT"
-    has_unauthorized = False
-    
-    for proj in ["web_projection", "standalone_projection", "search_projection"]:
-        if drifts[proj] == "REQUIRES_REBUILD" and canonical_current:
-            drifts[proj] = "UNAUTHORIZED"
-            has_unauthorized = True
-
-    print(f"{'canonical_snapshot':<20} {drifts['canonical_snapshot']}")
-    for proj in ["web_projection", "standalone_projection", "search_projection"]:
-        name = proj.replace("_projection", "")
-        print(f"{name:<20} {drifts[proj]}")
-
-    outcome = "PASS"
-    if has_unauthorized:
-        outcome = "FAIL"
-    elif any(d == "REQUIRES_REBUILD" for d in drifts.values()):
-        outcome = "INCONCLUSIVE"
-    elif any(d == "REQUIRES_REASSURANCE" for d in drifts.values()):
-        outcome = "INCONCLUSIVE"
-
-    evidence = make_evidence(
-        assurance_type="DEPLOYMENT_INTEGRITY",
-        subject_kind="RELEASE_FINGERPRINT",
-        subject_id=accepted.get("product", "unknown"),
-        outcome=outcome,
-        producer_name="drift_detector",
-        producer_version="1.0"
-    )
-    
-    # Just printing the evidence for debug could be helpful but not strictly required unless instructed.
-    if args.enforce and outcome == "FAIL":
-        sys.exit(1)
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

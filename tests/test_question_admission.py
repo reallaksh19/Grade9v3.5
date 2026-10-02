@@ -97,6 +97,14 @@ class Points(unittest.TestCase):
         self.assertNotIn(("QUESTION_SCOPE", "BLOCK"), self.points(extensions={"grade9v3:scope_route": "DECLARED_EXTENSION"}, **question))
         self.assertEqual({f["point"] for f in findings(package("phy-rot-rigid-body", **question))} & {"QUESTION_SCOPE"}, set(), "the package that owns the concept may teach it")
 
+    def test_a_concept_the_question_declares_in_its_specification_is_held_to_the_policy(self):
+        """The typed way: problem_specification.concept_refs names the concepts. Every DEFER concept, by its own id, however the id is spelled."""
+        for entry in qa.scope()["deferred"]:
+            for spelling in (entry["concept"], "CONCEPT-" + entry["concept"].replace("_", "-"), entry["concept"].lower().replace("_", "-")):
+                spec = {"problem_specification": {"concept_refs": [spelling]}}
+                held = "BLOCK" if entry["document_row"] else "ADVISE"
+                self.assertIn(("QUESTION_SCOPE", held), self.points(extensions=spec), f"{entry['concept']} as {spelling}")
+
     def test_a_question_that_excludes_a_deferred_concept_is_not_refused(self):
         """A Grade-9 question on a pulley says 'Do not invent a torque equation': it excludes the concept."""
         self.assertNotIn(("QUESTION_SCOPE", "BLOCK"), self.points(conditions=["Do not invent a torque or rotational-inertia equation."]))
@@ -133,11 +141,16 @@ class Library(unittest.TestCase):
 
 
 class Scope(unittest.TestCase):
-    def test_every_deferred_row_is_a_DEFER_row_of_the_scope_document(self):
+    def test_a_deferred_entry_that_names_a_document_row_is_held_to_that_row(self):
         document = (REPO / qa.scope()["source"]).read_text(encoding="utf-8")
+        named = [e for e in qa.scope()["deferred"] if e["document_row"]]
+        self.assertTrue(named, "the scope policy names no document row: nothing holds it to the document")
+        for entry in named:
+            rows = [line for line in document.splitlines() if line.lstrip().startswith("|") and entry["document_row"] in line and "`DEFER`" in line]
+            self.assertTrue(rows, f"{entry['document_row']!r} is not a DEFER row of {qa.scope()['source']}")
+
+    def test_every_owner_is_a_package_that_exists(self):
         for entry in qa.scope()["deferred"]:
-            rows = [line for line in document.splitlines() if line.lstrip().startswith("|") and entry["row"] in line and "`DEFER`" in line]
-            self.assertTrue(rows, f"{entry['row']!r} is not a DEFER row of {qa.scope()['source']}")
             for owner in entry["owners"]:
                 self.assertTrue((REPO / "Physics/library" / f"{owner}.v1.json").exists(), owner)
 
@@ -145,6 +158,27 @@ class Scope(unittest.TestCase):
         document = (REPO / qa.scope()["source"]).read_text(encoding="utf-8")
         for route in qa.scope()["waiver_routes"]:
             self.assertIn(route, document)
+
+    def test_the_policy_satisfies_its_schema(self):
+        import jsonschema
+        schema = json.loads((REPO / "Shared/policy/concept-policy.schema.json").read_text(encoding="utf-8"))
+        policy = json.loads(qa.SCOPE_POLICY.read_text(encoding="utf-8"))
+        self.assertEqual([e.message for e in jsonschema.Draft202012Validator(schema).iter_errors(policy)], [])
+
+    def test_every_deferred_concept_in_the_policy_is_refused_unless_routed(self):
+        """Generated from the policy file, not from a list of its own: each DEFER or PROHIBITED concept, by each of its terms; blocking for a document row, said otherwise."""
+        for entry in qa.scope()["deferred"]:
+            for term in entry["terms"]:
+                question = {"id": "Q-1", "stem": f"A block of mass 2 kg slides down a smooth ramp; find the {term} of the block about the foot of the ramp.",
+                            "answer": {"summary": f"The {term} of the 2 kg block about the foot of the ramp is found from its speed and position.",
+                                       "reasoning": [f"Define the {term} of the block about the foot of the ramp.", "Substitute the 2 kg mass and the speed from the ramp."]}}
+                found = list(findings({"package_id": "phy-kin-2d-motion", "questions": [question]}))
+                held = "BLOCK" if entry["document_row"] else "ADVISE"
+                self.assertIn(("QUESTION_SCOPE", held), {(f["point"], f["severity"]) for f in found}, f"{entry['concept']}: {term}")
+                routed = dict(question, extensions={"grade9v3:scope_route": entry and qa.scope()["waiver_routes"][0]})
+                self.assertNotIn("QUESTION_SCOPE", {f["point"] for f in findings({"package_id": "phy-kin-2d-motion", "questions": [routed]})})
+                for owner in entry["owners"]:
+                    self.assertNotIn("QUESTION_SCOPE", {f["point"] for f in findings({"package_id": owner, "questions": [question]})})
 
 
 class Registry(unittest.TestCase):
