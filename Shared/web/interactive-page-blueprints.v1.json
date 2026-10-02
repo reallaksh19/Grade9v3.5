@@ -618,7 +618,7 @@
           "level": "REQUIRED",
           "presentation": "LADDER",
           "purpose": "Let the learner ask for help one rung at a time; every rung says what it is for and whose words it carries.",
-          "benchmark": "selected_question_bank_TABLET_STUDY: 'Hint ladder · reveal only what you need', five rungs on a hard question (represent / first move, connect, crux, equation / formal model, assembly checkpoint) with SOURCE and EXPANSION pills",
+          "benchmark": "selected_question_bank_TABLET_STUDY: 'Hint ladder \u00b7 reveal only what you need', five rungs on a hard question (represent / first move, connect, crux, equation / formal model, assembly checkpoint) with SOURCE and EXPANSION pills",
           "source": [
             "scaffolds",
             "hints",
@@ -701,7 +701,7 @@
           "level": "REQUIRED",
           "presentation": "DISCLOSURE",
           "purpose": "Open the full working only after an attempt.",
-          "benchmark": "selected_question_bank_TABLET_STUDY: the 'Teacher solution · complete derivation' disclosure",
+          "benchmark": "selected_question_bank_TABLET_STUDY: the 'Teacher solution \u00b7 complete derivation' disclosure",
           "source": [
             "answer"
           ],
@@ -1141,6 +1141,30 @@
             "practice"
           ],
           "compact_order": 140
+        },
+        {
+          "id": "INTERACTIVE_BRIDGE",
+          "slot": "repair_closure",
+          "level": "OPTIONAL",
+          "presentation": "VISUAL_CARD",
+          "purpose": "Contextual action to open an interactive simulation when one is bound to this concept.",
+          "benchmark": "core1a-nlm-friction-tablet: interactive threshold explorer bridge",
+          "source": [
+            "concept_bundle.interactive"
+          ],
+          "compact_order": 145
+        },
+        {
+          "id": "LEARNING_TRANSITIONS",
+          "slot": "repair_closure",
+          "level": "OPTIONAL",
+          "presentation": "CHIPS",
+          "purpose": "Derived transitions connecting Learn, Practice, Interactive, and Question Bank.",
+          "benchmark": "core1a-nlm-friction-tablet: learning transition bar",
+          "source": [
+            "concept_bundle"
+          ],
+          "compact_order": 150
         }
       ],
       "presentation_policy": {

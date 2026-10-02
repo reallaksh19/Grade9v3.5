@@ -322,6 +322,18 @@ Optional: shown when the record has it.
 - The reference page: core1a-motion-in-a-plane-tablet: the practice chips
 - Record fields: `practice`
 
+**INTERACTIVE_BRIDGE** · slot `repair_closure` · VISUAL_CARD
+
+- The learner gets: Contextual action to open an interactive simulation when one is bound to this concept.
+- The reference page: core1a-nlm-friction-tablet: interactive threshold explorer bridge
+- Record fields: `concept_bundle.interactive`
+
+**LEARNING_TRANSITIONS** · slot `repair_closure` · CHIPS
+
+- The learner gets: Derived transitions connecting Learn, Practice, Interactive, and Question Bank.
+- The reference page: core1a-nlm-friction-tablet: learning transition bar
+- Record fields: `concept_bundle`
+
 ## BP-EXPLORER-GCDR@1.0.0 (EXPLORER)
 
 Learner job: Test the tempting model of the hardest concept of the question set against a model that cannot be argued with, rebuild the mathematics from what is visible, find where it stops being true, and then do a fresh task without the explorer.

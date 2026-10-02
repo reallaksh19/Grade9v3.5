@@ -1035,6 +1035,60 @@ def _core1a_practice_navigation(ctx: Ctx, m: dict) -> str:
                  title="Practice this concept in Core2")
 
 
+def _core1a_interactive_bridge(ctx: Ctx, m: dict) -> str:
+    """Conditionally render contextual interactive bridge if an eligible explorer is registered for this concept."""
+    concept_id = m.get("id")
+    if not concept_id:
+        return ""
+    try:
+        from Shared.tools.resolve_concept_bundle import resolve_bundle
+        registry_path = REPO / "public" / "data" / "resource-registry.v1.json"
+        if not registry_path.exists():
+            return ""
+        with open(registry_path, "r", encoding="utf-8") as f:
+            registry = json.load(f)
+        bundle = resolve_bundle(concept_id, registry)
+        interactives = bundle.get("interactive", [])
+        if not interactives:
+            return ""
+        cards = []
+        for it in interactives:
+            ep = it.get("entrypoint", "")
+            title = it.get("title", "Interactive Explorer")
+            rel_href = f"../../../{ep}"
+            cards.append(
+                f'<aside class="g9-interactive-bridge" data-g9-interactive-bridge>'
+                f'<span class="g9-pill g9-pill-interactive">Try Visually</span>'
+                f'<h3 class="g9-interactive-title">{esc(title)}</h3>'
+                f'<p class="g9-interactive-desc">Explore this concept with interactive controls and real-time visual response.</p>'
+                f'<a class="g9-bridge-link g9-action-interactive" data-g9-interactive-link href="{esc(rel_href)}" target="_blank" rel="noopener">'
+                f'Try it visually &rarr;</a>'
+                f'</aside>'
+            )
+        return "".join(cards)
+    except Exception:
+        return ""
+
+
+def _core1a_learning_transitions(ctx: Ctx, m: dict) -> str:
+    """Render derived transitions connecting Learn to Practice, Interactive, and Question Bank."""
+    concept_id = m.get("id")
+    if not concept_id:
+        return ""
+    chips = []
+    if "CORE2" in product_manifest.selected_output_roles(ctx.manifest):
+        chips.append(
+            f'<a class="g9-transition-chip g9-chip-practice" data-g9-transition="PRACTICE" href="core2.html">'
+            f'Practice this concept &rarr;</a>'
+        )
+    qb_url = f"../../../question-bank/index.html?capability={esc(concept_id)}"
+    chips.append(
+        f'<a class="g9-transition-chip g9-chip-qb" data-g9-transition="QUESTION_BANK" href="{esc(qb_url)}">'
+        f'All questions in Question Bank &rarr;</a>'
+    )
+    return block("learning_transitions", f'<div class="g9-transitions-row" data-g9-transitions>{"".join(chips)}</div>', title="Next steps")
+
+
 def core1(ctx: Ctx, m: dict) -> str:
     rels = _relations(ctx, m)
     if not rels:
@@ -1224,6 +1278,8 @@ def core1a(ctx: Ctx, m: dict) -> str:
                            + items((exit_task.get("answer") or {}).get("reasoning"), True)),
                      ref=f'CORE1A-{m["id"]}-exit'))),
         "PRACTICE_LINKS": part("PRACTICE_LINKS", _core1a_practice_navigation(ctx, m)),
+        "INTERACTIVE_BRIDGE": part("INTERACTIVE_BRIDGE", _core1a_interactive_bridge(ctx, m)),
+        "LEARNING_TRANSITIONS": part("LEARNING_TRANSITIONS", _core1a_learning_transitions(ctx, m)),
     }, "repair_closure")
     closing = compose(ctx, "CORE1A", {"repair_closure": closure})
     head = compose(ctx, "CORE1A", {"identity": identity})
@@ -2128,6 +2184,14 @@ article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] ol{display:f
 article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] li{margin:0}
 article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] a{display:inline-block;width:auto;max-width:24rem;padding:4px 14px;border-radius:999px;line-height:38px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 article[data-g9-role=CORE2]>.slot-identity [data-g9-meta-item],article[data-g9-role=CORE1A]>.slot-identity [data-g9-meta-item]{padding:2px 10px;line-height:1.35}
+.g9-interactive-bridge{border:2px solid var(--accent);border-radius:16px;background:var(--card);padding:16px 20px;margin:18px 0}
+.g9-interactive-bridge h3{margin:8px 0 4px;font-size:1.15rem;color:var(--fg)}
+.g9-interactive-desc{color:var(--muted);font-size:.92rem;margin:0 0 12px}
+.g9-action-interactive{display:inline-flex;align-items:center;min-height:var(--g9-touch-min);padding:8px 16px;border-radius:10px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700}
+.g9-action-interactive:hover{opacity:.95}
+.g9-transitions-row{display:flex;flex-wrap:wrap;gap:12px;margin:10px 0}
+.g9-transition-chip{display:inline-flex;align-items:center;min-height:var(--g9-touch-min);padding:8px 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--accent);font-weight:700;text-decoration:none}
+.g9-transition-chip:hover{background:var(--soft);border-color:var(--accent)}
 """
 
 
