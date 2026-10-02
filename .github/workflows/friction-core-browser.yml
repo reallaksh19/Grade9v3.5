@@ -322,25 +322,24 @@ jobs:
           anchor = '<section class="section-header"><h2>Newton\'s Laws of Motion (NLM)</h2></section>'
           if anchor not in text:
               raise SystemExit("NLM section anchor missing from practice hub")
-          card = r'''
-<section class="section-header"><h2>Friction — Blueprint 1.9 Product</h2></section>
-<div class="grid">
-  <div class="card" style="border-color:#38bdf8;">
-    <div class="card-title">Friction — Concept Book + Source Questions</div>
-    <div class="card-desc">Blueprint 1.9.0-validated friction product. Core 1A constructs contact-state reasoning and the stick/slip threshold; Core 2 contains 10 selected source questions with 7 denominator omissions explicitly explained.</div>
-    <div class="card-meta">
-      <div class="tags"><span class="tag tag-cons">Friction</span><span class="tag tag-vec">NLM</span><span class="tag tag-proj">Blueprint 1.9</span></div>
-      <div class="q-count">Core 1A + 10 Core 2</div>
-    </div>
-    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:.5rem">
-      <a class="open-btn" href="friction/core1a.html">Open Core 1A Concept Book →</a>
-      <a class="open-btn" href="friction/core2.html">Open Core 2 Questions →</a>
-      <a class="open-btn" href="friction/index.html">Product index →</a>
-    </div>
-  </div>
-</div>
-
-'''
+          card = (
+              '<section class="section-header"><h2>Friction — Blueprint 1.9 Product</h2></section>\n'
+              '<div class="grid">\n'
+              '  <div class="card" style="border-color:#38bdf8;">\n'
+              '    <div class="card-title">Friction — Concept Book + Source Questions</div>\n'
+              '    <div class="card-desc">Blueprint 1.9.0-validated friction product. Core 1A constructs contact-state reasoning and the stick/slip threshold; Core 2 contains 10 selected source questions with 7 denominator omissions explicitly explained.</div>\n'
+              '    <div class="card-meta">\n'
+              '      <div class="tags"><span class="tag tag-cons">Friction</span><span class="tag tag-vec">NLM</span><span class="tag tag-proj">Blueprint 1.9</span></div>\n'
+              '      <div class="q-count">Core 1A + 10 Core 2</div>\n'
+              '    </div>\n'
+              '    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:.5rem">\n'
+              '      <a class="open-btn" href="friction/core1a.html">Open Core 1A Concept Book →</a>\n'
+              '      <a class="open-btn" href="friction/core2.html">Open Core 2 Questions →</a>\n'
+              '      <a class="open-btn" href="friction/index.html">Product index →</a>\n'
+              '    </div>\n'
+              '  </div>\n'
+              '</div>\n\n'
+          )
           text = text.replace(anchor, card + anchor, 1)
           hub.write_text(text, encoding="utf-8")
 
