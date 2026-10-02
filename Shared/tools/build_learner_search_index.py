@@ -43,6 +43,26 @@ def build_search_documents(repo_root: Path) -> tuple[list[dict], dict]:
         with open(qb_search_file, "r", encoding="utf-8") as f:
             qb_questions = json.load(f)
 
+    jee_file = repo_root / "public" / "data" / "iit-jee-hub-questions.v1.json"
+    if jee_file.exists():
+        try:
+            with open(jee_file, "r", encoding="utf-8") as f:
+                jee_questions = json.load(f)
+                seen_qids = {q.get("canonical_id") or q.get("id") for q in qb_questions}
+                for jq in jee_questions:
+                    qid = jq.get("id")
+                    if qid and qid not in seen_qids:
+                        seen_qids.add(qid)
+                        qb_questions.append({
+                            "canonical_id": qid,
+                            "title": jq.get("label", jq.get("stem", ""))[:80],
+                            "search_text": f"{jq.get('stem', '')} {jq.get('answer', {}).get('summary', '')}",
+                            "subject": jq.get("subject", "Physics"),
+                            "concept_refs": jq.get("concept_refs", [])
+                        })
+        except Exception:
+            pass
+
     docs = []
     seen_ids = set()
 
@@ -81,13 +101,19 @@ def build_search_documents(repo_root: Path) -> tuple[list[dict], dict]:
         cref = b["concept_ref"]
         title = b.get("title", cref)
         subj = b.get("subject_ref", "Physics")
+        slug = b.get("topic_ref", "").split(".")[-1]
+        subj_slug = subj.lower()
+        if b.get("topic_ref") == "chem.mole":
+            target_url = f"{subj_slug}/some-basic-concepts/index.html#{cref}"
+        else:
+            target_url = f"{subj_slug}/{slug}/index.html#{cref}"
         docs.append({
             "id": f"CON-{cref}",
             "type": "CONCEPT",
             "subject": subj,
             "title": title,
             "search_text": f"{title} {cref} {subj}".lower(),
-            "url": f"topics/nlm/index.html#{cref}" if "nlm" in b.get("topic_ref", "") else f"topics/{b.get('topic_ref')}/index.html",
+            "url": target_url,
             "target": "_self",
             "concept_refs": [cref]
         })

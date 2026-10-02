@@ -203,6 +203,76 @@ def build(repo: Path = REPO) -> dict:
             })
 
     by_id = {q["id"]: q for q in questions}
+
+    # Merge extracted IIT-JEE Diagnostic Hub questions
+    hub_file = repo / "public" / "data" / "iit-jee-hub-questions.v1.json"
+    if hub_file.is_file():
+        hub_data = load_json(hub_file)
+        for hq in hub_data:
+            hid = str(hq["id"])
+            if hid in by_id:
+                continue
+            subj = hq.get("subject", "Physics")
+            topic = hq.get("topic", "General")
+            opt_list = hq.get("options", [])
+            steps = hq.get("steps", [])
+            ans_summary = str(hq.get("correct") or "Diagnostic question")
+            clean_ref = re.sub(r"[^a-zA-Z0-9]+", "-", hq.get("topic_ref", "COMMON")).strip("-").upper()
+
+            projected = {
+                "id": hid,
+                "order": order,
+                "subject": subj,
+                "version": "0.1.0",
+                "status": "PUBLISHED",
+                "topic": topic,
+                "question_type": "single_correct_mcq" if opt_list else "numerical_value",
+                "exam": "IIT-JEE Diagnostic",
+                "year": hq.get("year") or 2024,
+                "paper": "Diagnostic Hub",
+                "question_number": "1",
+                "source_status": "PYQ_AUTHENTIC_DIAGNOSTIC",
+                "authority_class": "CORPUS_SNAPSHOT",
+                "wording_custody": "FAITHFUL_DIAGNOSTIC",
+                "paper_url": "",
+                "answer_key_url": None,
+                "last_checked": "2026-09-20",
+                "origin": "DIAGNOSTIC_HUB",
+                "provenance_class": "EXAM_CORPUS_SNAPSHOT",
+                "math_spans": [],
+                "stem": hq["stem"],
+                "subparts": [],
+                "options": opt_list,
+                "conditions": [],
+                "difficulty": {
+                    "band": "D1",
+                    "basis": f"Diagnostic problem from {topic}",
+                    "components": {"algebra_computational_load": 1, "concept_model_selection": 1, "reasoning_chain_length": 1, "representation_translation": 1, "trap_exception_sensitivity": 0},
+                    "score": 2
+                },
+                "expected_time_seconds": 90,
+                "common_wrong_route": hq.get("trap") or "Concept misconception",
+                "stable_crux_move": hq.get("formula") or "Standard equation",
+                "primary_capability_ref": f"CAP-{clean_ref}",
+                "secondary_capability_refs": [],
+                "family_ref": f"FAM-{clean_ref}",
+                "source_hints": steps,
+                "scaffolds": [],
+                "answer": {
+                    "summary": ans_summary,
+                    "reasoning": steps,
+                    "reasoning_route": steps,
+                    "crux_move_ref": hq.get("formula") or "",
+                    "check": hq.get("teacher_check") or "",
+                    "verification_status": "VERIFIED_DIAGNOSTIC"
+                },
+                "visual_ref": None,
+                "source_path": f"public/{hq.get('explorer_entrypoint', '')}"
+            }
+            questions.append(projected)
+            by_id[hid] = projected
+            order += 1
+
     if len(by_id) != len(questions):
         raise ValueError("Question Bank projection contains duplicate canonical IDs")
 

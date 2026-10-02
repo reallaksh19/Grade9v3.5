@@ -77,11 +77,15 @@ MODERN_CSS = """/* Grade9V3.5 Modern Kid-Friendly Design System */
 *, *::before, *::after { box-sizing: border-box; }
 body, h1, h2, h3, h4, p { margin: 0; }
 
+html {
+  font-size: calc(16px * var(--font-scale, 1));
+}
+
 body {
   background-color: var(--bg);
   color: var(--text-main);
   font-family: var(--font-family);
-  font-size: 16px;
+  font-size: calc(1rem * var(--font-scale, 1));
   line-height: 1.6;
   min-height: 100vh;
   display: flex;
@@ -549,12 +553,6 @@ SUBJECT_EXPLORERS = {
             "href": "vectors/explorers/vector_algebra/index.html",
             "desc": "Rotatable 3D Euclidean vector engine, Gram-Schmidt orthogonal projection split, cross product, and triple products.",
             "tag": "3D Visual Engine"
-        },
-        {
-            "title": "Linear Equations in One Unknown",
-            "href": "linear-equations/index.html",
-            "desc": "Reversible algebraic operations, non-zero divisor check (ME-1, ME-2, ME-3), and exact solution trees.",
-            "tag": "Interactive Atlas"
         }
     ],
     "Physics": [
@@ -616,6 +614,20 @@ SUBJECT_EXPLORERS = {
 }
 
 
+TOPIC_TITLES = {
+    "phy.nlm": "Newton's Laws of Motion",
+    "phy.motion-1d": "Motion in One Dimension",
+    "phy.motion-2d": "Motion in a Plane (2D)",
+    "phy.vectors": "Vector Methods in Physics",
+    "phy.fluids": "Fluids & Hydrostatic Pressure",
+    "chem.bonding": "Chemical Bonding & Molecular Structure",
+    "chem.mole": "Mole Concept & Stoichiometry",
+    "chem.gases": "Behaviour of Gases",
+    "chem.redox": "Redox Reactions",
+    "math.vectors": "Vector Algebra · 3D Geometry",
+}
+
+
 def generate_subject_hub(subject: str, registry: list[dict], bundles: list[dict], rel_root: str = "") -> str:
     # Discover topics for this subject from bundles and registry
     topics = {}
@@ -623,9 +635,10 @@ def generate_subject_hub(subject: str, registry: list[dict], bundles: list[dict]
         if b.get("subject_ref") == subject:
             t = b.get("topic_ref", "")
             if t not in topics:
+                title = TOPIC_TITLES.get(t, t.replace(".", " ").title())
                 topics[t] = {
                     "id": t,
-                    "title": "Newton's Laws of Motion" if "nlm" in t else t.replace(".", " ").title(),
+                    "title": title,
                     "concept_count": 0,
                     "has_interactive": False
                 }
@@ -639,9 +652,12 @@ def generate_subject_hub(subject: str, registry: list[dict], bundles: list[dict]
     topic_cards = []
     for tid, tmeta in sorted(topics.items()):
         badge = f'<span class="g9-card-tag {tag_cls}">Interactive Models</span>' if tmeta["has_interactive"] else f'<span class="g9-card-tag {tag_cls}">Core Study</span>'
-        # Topic link
+        # Topic link: use local subject-relative folder or topics/
         tid_short = tid.split(".")[-1]
-        topic_href = f"../topics/{tid_short}/index.html"
+        if tid == "chem.mole":
+            topic_href = "some-basic-concepts/index.html"
+        else:
+            topic_href = f"{tid_short}/index.html"
         topic_cards.append(f"""
     <a class="g9-card" href="{topic_href}">
       <div class="g9-card-header">
@@ -819,21 +835,35 @@ def main():
         t = b.get("topic_ref")
         if t:
             if t not in discovered_topics:
+                title = TOPIC_TITLES.get(t, t.replace(".", " ").title())
                 discovered_topics[t] = {
                     "subject": b.get("subject_ref", "Physics"),
-                    "title": "Newton's Laws of Motion" if "nlm" in t else t.replace(".", " ").title()
+                    "title": title
                 }
     if not discovered_topics:
         discovered_topics["phy.nlm"] = {"subject": "Physics", "title": "Newton's Laws of Motion"}
 
+    generated_topic_rel_paths = []
     for tid, tinfo in discovered_topics.items():
         slug = tid.split(".")[-1]
-        topic_dir = repo / "public" / "topics" / slug
-        topic_dir.mkdir(parents=True, exist_ok=True)
+        subj_slug = tinfo["subject"].lower()
+
         topic_html = generate_topic_workspace(tid, tinfo["title"], tinfo["subject"], bundles, rel_root="../../")
-        with open(topic_dir / "index.html", "w", encoding="utf-8") as f:
-            f.write(topic_html)
-        print(f"Wrote public/topics/{slug}/index.html")
+
+        target_dirs = [
+            repo / "public" / "topics" / slug,
+            repo / "public" / subj_slug / slug,
+        ]
+        if tid == "chem.mole":
+            target_dirs.append(repo / "public" / subj_slug / "some-basic-concepts")
+
+        for tdir in target_dirs:
+            tdir.mkdir(parents=True, exist_ok=True)
+            with open(tdir / "index.html", "w", encoding="utf-8") as f:
+                f.write(topic_html)
+            rel_str = str((tdir / "index.html").relative_to(repo)).replace("\\", "/")
+            generated_topic_rel_paths.append(rel_str)
+            print(f"Wrote {rel_str}")
 
     # Copy to docs/ for publication
     sync_targets = [
@@ -842,9 +872,8 @@ def main():
     ]
     for subj in discovered_subjects:
         sync_targets.append((f"public/{subj.lower()}/index.html", f"docs/{subj.lower()}/index.html"))
-    for tid in discovered_topics.keys():
-        slug = tid.split(".")[-1]
-        sync_targets.append((f"public/topics/{slug}/index.html", f"docs/topics/{slug}/index.html"))
+    for rel_path in generated_topic_rel_paths:
+        sync_targets.append((rel_path, rel_path.replace("public/", "docs/")))
 
     for src_rel, dst_rel in sync_targets:
         src = repo / src_rel

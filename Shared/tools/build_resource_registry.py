@@ -215,31 +215,135 @@ def discover_product_manifests(repo_root: Path) -> list[dict]:
     return records
 
 
-def discover_opaque_explorers(repo_root: Path) -> list[dict]:
-    explorers = []
-    # Friction Threshold explorer
-    fric_exp = repo_root / "public" / "physics" / "nlm" / "explorers" / "friction-threshold" / "index.html"
-    if fric_exp.exists():
-        explorers.append({
+def _parse_html_title(path: Path) -> str:
+    """Extract and clean the <title> tag text from an HTML file."""
+    import re as _re
+    try:
+        text = path.read_text(encoding="utf-8", errors="ignore")
+    except Exception:
+        return path.stem
+    m = _re.search(r"<title>(.*?)</title>", text, _re.IGNORECASE | _re.DOTALL)
+    if not m:
+        return path.stem
+    title = m.group(1).strip()
+    # Decode common HTML entities
+    for entity, char in [("&amp;", "&"), ("&middot;", "\u00b7"), ("&lt;", "<"), ("&gt;", ">"), ("&quot;", '"')]:
+        title = title.replace(entity, char)
+    # Truncate after first long separator
+    for sep in [" | ", " \u00b7 ", " \u2014 ", " - "]:
+        if sep in title:
+            title = title.split(sep)[0].strip()
+            break
+    return title or path.stem
+
+
+def _subject_from_name(name: str) -> str:
+    if any(k in name for k in ("physics", "nlm", "motion", "thrust", "friction", "vector", "projectile", "sba")):
+        return "Physics"
+    if "chem" in name:
+        return "Chemistry"
+    if "math" in name or "equation" in name:
+        return "Mathematics"
+    return "Physics"
+
+
+def _topic_refs_from_name(name: str) -> list:
+    if "nlm" in name:
+        return ["phy.nlm"]
+    if "vector" in name:
+        return ["phy.vectors"]
+    if "thrust" in name or "pressure" in name:
+        return ["phy.fluids"]
+    if "projectile" in name:
+        return ["phy.motion-2d"]
+    if "2d" in name or "plane" in name:
+        return ["phy.motion-2d"]
+    if "1d" in name or "straight" in name:
+        return ["phy.motion-1d"]
+    if "motion" in name:
+        return ["phy.motion"]
+    return []
+
+
+def _capability_refs_from_name(name: str) -> list:
+    if "friction" in name:
+        return ["MIC-PHY-NLM-FRICTION"]
+    if "nlm" in name:
+        return ["MIC-PHY-NLM-FIRST-LAW"]
+    if "vector" in name:
+        return ["MIC-PHY-VEC-ADDITION"]
+    if "1d" in name or "straight" in name:
+        return ["MIC-PHY-KIN-1D-MOTION"]
+    if "2d" in name or "plane" in name or "projectile" in name or "sba" in name or "trajectory" in name:
+        return ["MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"]
+    if "thrust" in name or "pressure" in name:
+        return ["MIC-PHY-FLUIDS-THRUST-PRESSURE"]
+    return ["MIC-PHY-GENERAL-PRACTICE"]
+
+
+def discover_standalone_practice(repo_root: Path, existing_entrypoints=None) -> list:
+    """Auto-discover all standalone HTML files in public/standalone/practice/.
+
+    Excludes:
+    - index.html (navigation hub, not a product)
+    - Files whose entrypoint is already registered (checked via existing_entrypoints set)
+    - Files inside the friction/ subdirectory (handled by discover_product_manifests)
+    """
+    records = []
+    practice_dir = repo_root / "public" / "standalone" / "practice"
+    if not practice_dir.exists():
+        return records
+
+    if existing_entrypoints is None:
+        existing_entrypoints = set()
+
+    for html_path in sorted(practice_dir.glob("*.html")):
+        fname = html_path.name
+        # Skip navigation index
+        if fname == "index.html":
+            continue
+
+        entrypoint = f"standalone/practice/{fname}"
+        if entrypoint in existing_entrypoints:
+            continue
+
+        name = html_path.stem.lower()
+
+        # learner_role from filename
+        if "core1a" in name or ("core1" in name and "core2" not in name):
+            learner_role = "LEARN"
+        else:
+            learner_role = "PRACTICE"
+
+        # Generate schema-valid lowercase ID
+        safe_stem = name.replace("_", "-")
+        resource_id = f"product.{safe_stem}"
+
+        title = _parse_html_title(html_path)
+        subject = _subject_from_name(name)
+        topic_refs = _topic_refs_from_name(name)
+        capability_refs = _capability_refs_from_name(name)
+
+        records.append({
             "schema": "grade9v3-resource/v1",
-            "id": "phy.nlm.friction.threshold-explorer",
-            "resource_kind": "OPAQUE_APP",
-            "learner_role": "EXPLORE",
+            "id": resource_id,
+            "resource_kind": "STRUCTURED_PRODUCT",
+            "learner_role": learner_role,
             "audience": "LEARNER",
-            "presentation": "COMPANION",
+            "presentation": "FULL_PAGE",
             "classification": {
-                "subject_ref": "Physics",
-                "topic_refs": ["phy.nlm"],
-                "capability_refs": ["MIC-PHY-NLM-FRICTION"]
+                "subject_ref": subject,
+                "topic_refs": topic_refs,
+                "capability_refs": capability_refs
             },
             "artifact": {
-                "entrypoint": "physics/nlm/explorers/friction-threshold/index.html",
-                "generated": False
+                "entrypoint": entrypoint,
+                "generated": True
             },
-            "platform_capabilities": ["interactive", "svg-animation", "parameter-control"],
+            "platform_capabilities": [],
             "search": {
-                "title": "Static-to-Kinetic Friction Threshold Explorer",
-                "aliases": ["friction threshold", "friction simulation", "friction visualizer"],
+                "title": title,
+                "aliases": [],
                 "visibility": "LEARNER"
             },
             "source": {
@@ -253,6 +357,155 @@ def discover_opaque_explorers(repo_root: Path) -> list[dict]:
                 "publication_evidence_ref": None
             }
         })
+
+    return records
+
+
+def discover_opaque_explorers(repo_root: Path) -> list[dict]:
+    explorers = []
+
+    explorer_specs = [
+        # Physics
+        {
+            "id": "phy.nlm.friction.threshold-explorer",
+            "rel_path": "public/physics/nlm/explorers/friction-threshold/index.html",
+            "subject": "Physics",
+            "topics": ["phy.nlm"],
+            "caps": ["MIC-PHY-NLM-FRICTION"],
+            "title": "Static-to-Kinetic Friction Threshold Explorer",
+            "aliases": ["friction threshold", "friction simulation", "friction visualizer"]
+        },
+        {
+            "id": "phy.nlm.atwood-pulleys.explorer",
+            "rel_path": "public/physics/nlm/explorers/atwood-pulleys/index.html",
+            "subject": "Physics",
+            "topics": ["phy.nlm"],
+            "caps": ["MIC-PHY-NLM-FIRST-LAW"],
+            "title": "Atwood Machines & Pulley Constraints",
+            "aliases": ["atwood machine", "pulleys", "constraints"]
+        },
+        {
+            "id": "phy.nlm.connected-blocks.explorer",
+            "rel_path": "public/physics/nlm/explorers/connected-blocks/index.html",
+            "subject": "Physics",
+            "topics": ["phy.nlm"],
+            "caps": ["MIC-PHY-NLM-FIRST-LAW"],
+            "title": "Connected Blocks Dynamics",
+            "aliases": ["connected blocks", "tension", "contact forces"]
+        },
+        {
+            "id": "phy.motion-1d.motion-in-1d.explorer",
+            "rel_path": "public/physics/motion-1d/explorers/motion_in_1d/index.html",
+            "subject": "Physics",
+            "topics": ["phy.motion-1d"],
+            "caps": ["MIC-PHY-KIN-1D-MOTION"],
+            "title": "Motion in 1D Interactive Suite",
+            "aliases": ["motion 1d", "kinematics 1d", "free fall"]
+        },
+        {
+            "id": "phy.motion-2d.motion-in-a-plane.explorer",
+            "rel_path": "public/physics/motion-2d/explorers/motion-in-a-plane/index.html",
+            "subject": "Physics",
+            "topics": ["phy.motion-2d"],
+            "caps": ["MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"],
+            "title": "Motion in a Plane Research Suite",
+            "aliases": ["projectile motion", "motion in a plane", "trajectories"]
+        },
+        {
+            "id": "phy.motion-in-2d.motions-in-2d.explorer",
+            "rel_path": "public/physics/motion-in-2d/explorers/motions_in_2d/index.html",
+            "subject": "Physics",
+            "topics": ["phy.motion-2d"],
+            "caps": ["MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"],
+            "title": "2D Motion Master Suite",
+            "aliases": ["2d kinematics", "relative motion", "river boat"]
+        },
+        # Chemistry
+        {
+            "id": "chem.bonding.chemical-bonding.explorer",
+            "rel_path": "public/chemistry/bonding/explorers/chemical_bonding/index.html",
+            "subject": "Chemistry",
+            "topics": ["chem.bonding"],
+            "caps": ["MIC-CHEM-BONDING"],
+            "title": "Chemical Bonding & Molecular Structure Explorer",
+            "aliases": ["chemical bonding", "vsepr", "lewis structures", "dipole"]
+        },
+        {
+            "id": "chem.mole.mole-concept.explorer",
+            "rel_path": "public/chemistry/some-basic-concepts/explorers/mole_concept/index.html",
+            "subject": "Chemistry",
+            "topics": ["chem.mole"],
+            "caps": ["MIC-CHEM-MOLE-CONCEPT"],
+            "title": "Mole Concept & Stoichiometry Explorer",
+            "aliases": ["mole concept", "stoichiometry", "limiting reagent"]
+        },
+        {
+            "id": "chem.gases.behaviour-of-gases.explorer",
+            "rel_path": "public/chemistry/gases/explorers/behaviour_of_gases/index.html",
+            "subject": "Chemistry",
+            "topics": ["chem.gases"],
+            "caps": ["MIC-CHEM-GAS-LAWS"],
+            "title": "Behaviour of Gases Explorer",
+            "aliases": ["gas laws", "ideal gas", "maxwell speed distribution"]
+        },
+        {
+            "id": "chem.redox.redox-reactions.explorer",
+            "rel_path": "public/chemistry/redox/explorers/redox_reactions/index.html",
+            "subject": "Chemistry",
+            "topics": ["chem.redox"],
+            "caps": ["MIC-CHEM-REDOX"],
+            "title": "Redox Reactions Explorer",
+            "aliases": ["redox", "oxidation states", "electron transfer"]
+        },
+        # Mathematics
+        {
+            "id": "math.vectors.vector-algebra.explorer",
+            "rel_path": "public/mathematics/vectors/explorers/vector_algebra/index.html",
+            "subject": "Mathematics",
+            "topics": ["math.vectors"],
+            "caps": ["MIC-MATH-VECTOR-ALGEBRA"],
+            "title": "Vector Algebra · 3D Master Suite",
+            "aliases": ["vector algebra", "cross product", "dot product", "3d vectors"]
+        }
+    ]
+
+    for spec in explorer_specs:
+        target_path = repo_root / spec["rel_path"]
+        if target_path.exists():
+            entrypoint = spec["rel_path"].replace("public/", "").replace("\\", "/")
+            explorers.append({
+                "schema": "grade9v3-resource/v1",
+                "id": spec["id"],
+                "resource_kind": "OPAQUE_APP",
+                "learner_role": "EXPLORE",
+                "audience": "LEARNER",
+                "presentation": "COMPANION",
+                "classification": {
+                    "subject_ref": spec["subject"],
+                    "topic_refs": spec["topics"],
+                    "capability_refs": spec["caps"]
+                },
+                "artifact": {
+                    "entrypoint": entrypoint,
+                    "generated": False
+                },
+                "platform_capabilities": ["interactive", "simulation", "visual-engine"],
+                "search": {
+                    "title": spec["title"],
+                    "aliases": spec["aliases"],
+                    "visibility": "LEARNER"
+                },
+                "source": {
+                    "authority_ref": None,
+                    "generator_ref": None
+                },
+                "validation": {
+                    "academic_evidence_ref": None,
+                    "structural_evidence_ref": None,
+                    "browser_evidence_ref": None,
+                    "publication_evidence_ref": None
+                }
+            })
     return explorers
 
 
@@ -341,6 +594,10 @@ def build_registry(repo_root: Path) -> list[dict]:
     records.extend(discover_product_manifests(repo_root))
     records.extend(discover_opaque_explorers(repo_root))
     records.extend(discover_owner_lab_surfaces(repo_root))
+
+    # Collect already-registered entrypoints before auto-discovering standalone files
+    existing_entrypoints = {r["artifact"]["entrypoint"] for r in records}
+    records.extend(discover_standalone_practice(repo_root, existing_entrypoints))
 
     # Verify duplicate IDs
     seen_ids = set()

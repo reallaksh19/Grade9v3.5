@@ -11,7 +11,7 @@ class TestThemeAndOwnerIsolation(unittest.TestCase):
     def get_learner_html_files(self):
         html_files = []
         for root, dirs, files in os.walk(PUBLIC_DIR):
-            if "test" in Path(root).parts:
+            if "test" in Path(root).parts or "owner" in Path(root).parts:
                 continue
             for f in files:
                 if f.endswith(".html"):

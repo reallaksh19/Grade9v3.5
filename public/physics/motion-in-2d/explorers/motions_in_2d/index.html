@@ -211,9 +211,7 @@
         <button id="nav-relative" onclick="switchTab('relative')" class="tab-btn-inactive px-3 py-2 rounded-xl transition whitespace-nowrap">
           7. Relative Motion, Rain-Man &amp; River
         </button>
-        <button id="nav-quiz" onclick="switchTab('quiz')" class="tab-btn-inactive px-3 py-2 rounded-xl transition whitespace-nowrap">
-          8. IIT-JEE Diagnostic Hub
-        </button>
+        <a href="../../../../question-bank/index.html?exam=IIT-JEE+Diagnostic" id="nav-quiz" class="tab-btn-inactive px-3 py-2 rounded-xl transition whitespace-nowrap text-purple-300 hover:text-white" title="Open authentic IIT-JEE questions in canonical Question Bank"><span>🎯 Questions in QB &rarr;</span></a>
         <button id="nav-sandbox" onclick="switchTab('sandbox')" class="tab-btn-inactive px-3.5 py-2.5 rounded-lg transition whitespace-nowrap text-slate-300 font-medium">
           9. Master Sandbox
         </button>
@@ -2209,75 +2207,7 @@
     <!-- ================================================================= -->
     <!-- TAB 8: TAB-WISE 2D MOTIONS DIAGNOSTIC MASTERY HUB                 -->
     <!-- ================================================================= -->
-    <section id="tab-quiz-content" class="hidden space-y-6">
-      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 md:p-6 shadow-xl space-y-5">
-        
-        <!-- Header & Live Score Dashboard -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--border)] pb-4">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-black text-xl shadow-md shadow-amber-950/40">
-              &#127919;
-            </div>
-            <div>
-              <h2 class="text-lg md:text-xl font-black text-white tracking-wide flex items-center gap-2">
-                <span>2D MOTIONS &middot; DIAGNOSTIC MASTERY HUB</span>
-                <span class="text-[13px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold">Tab-Wise</span>
-              </h2>
-              <p class="text-[13px] text-slate-400">Targeted conceptual checkpoints testing physical invariants, governing formulas, and examiner traps across all 7 topic areas</p>
-            </div>
-          </div>
-          
-          <div class="flex items-center gap-2.5">
-            <div class="text-[13px] font-mono text-slate-300 bg-slate-950/80 px-3.5 py-1.5 rounded-xl border border-slate-800 flex items-center gap-2 shadow-inner">
-              <span class="text-slate-400">Total Score:</span>
-              <span id="hubScore" class="text-amber-400 font-black text-sm">0 / 17</span>
-              <span id="hubScorePct" class="text-[13px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 font-bold">0%</span>
-            </div>
-            <button onclick="resetHubQuiz()" class="touch-target px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-200 text-[13px] font-bold transition" title="Reset all answers">
-              &#8635; Reset
-            </button>
-          </div>
-        </div>
-
-        <!-- Topic Tab Filter Bar (Horizontal Scroll on Tablet) -->
-        <div class="space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="text-[13px] font-mono text-slate-400 uppercase tracking-wider font-bold">Filter By Topic:</span>
-            <span id="diagFilterStatus" class="text-[13px] font-mono text-amber-400 font-semibold">Showing All 17 Checkpoints</span>
-          </div>
-          <div class="flex tablet-scroll-x gap-1.5 pb-1 text-[13px]">
-            <button id="diag-pill-all" onclick="filterDiagTopic('all')" class="touch-target px-3 py-1.5 rounded-xl bg-amber-500 text-slate-950 font-black transition whitespace-nowrap shadow-md shadow-amber-950/30">
-              All Checkpoints (17)
-            </button>
-            <button id="diag-pill-1" onclick="filterDiagTopic('1')" class="touch-target px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
-              1. Shared Clock (2)
-            </button>
-            <button id="diag-pill-2" onclick="filterDiagTopic('2')" class="touch-target px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
-              2. Event Clock (2)
-            </button>
-            <button id="diag-pill-3" onclick="filterDiagTopic('3')" class="touch-target px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
-              3. Model Audit (2)
-            </button>
-            <button id="diag-pill-4" onclick="filterDiagTopic('4')" class="touch-target px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
-              4. Apex Fallacy (2)
-            </button>
-            <button id="diag-pill-5" onclick="filterDiagTopic('5')" class="touch-target px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
-              5. Equal Height (3)
-            </button>
-            <button id="diag-pill-6" onclick="filterDiagTopic('6')" class="touch-target px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
-              6. Unequal Landing (2)
-            </button>
-            <button id="diag-pill-7" onclick="filterDiagTopic('7')" class="touch-target px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap text-cyan-300">
-              7. Relative Motion (4)
-            </button>
-          </div>
-        </div>
-
-        <!-- Question Cards Container -->
-        <div id="quizContainer" class="space-y-4"></div>
-
-      </div>
-    </section>
+    <!-- IIT-JEE questions moved to Question Bank -->
 
     <!-- FOOTER -->
     <footer class="text-center text-[13px] text-slate-500 pt-2 pb-6">

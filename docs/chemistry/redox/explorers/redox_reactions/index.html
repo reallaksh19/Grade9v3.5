@@ -6,7 +6,7 @@
   <title>Grade 9 Bridge → JEE Chemistry · Redox Reactions Master Suite</title>
   
   <!-- Tailwind CSS -->
-  <script src="../../../../vendor/tailwind/3.4.17/tailwind-play.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   
   <!-- KaTeX -->
   <link rel="stylesheet" href="../../../../vendor/katex/0.16.8/katex.min.css">
@@ -2025,9 +2025,7 @@ window.REDOX_TRACK_QUESTION_HELPERS = [
         <span class="px-1 py-0.2 rounded bg-amber-500/20 text-[13px] font-bold text-amber-400">Draft</span>
         <span>7. Master Sandbox</span>
       </button>
-      <button role="tab" aria-selected="false" aria-controls="tab-quiz" onclick="switchTab('tab-quiz')" id="btn-tab-quiz" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap flex items-center gap-1.5 text-purple-300">
-        <span>⭐ Local 20 Question Hub</span>
-      </button>
+      <a href="../../../../question-bank/index.html?exam=IIT-JEE+Diagnostic" id="btn-tab-quiz" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap flex items-center gap-1.5 text-purple-300 hover:text-white" title="Open authentic IIT-JEE questions in canonical Question Bank"><span>🎯 Questions in QB &rarr;</span></a>
     </div>
   </header>
 
@@ -2449,34 +2447,7 @@ window.REDOX_TRACK_QUESTION_HELPERS = [
     <!-- ================================================================= -->
     <!-- TAB 8: IIT-JEE DIAGNOSTIC HUB                                     -->
     <!-- ================================================================= -->
-    <section id="tab-quiz" class="space-y-6 hidden">
-      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="text-lg">⭐</span>
-              <h2 class="font-bold text-base text-white">JEE Extension Question Hub &middot; Locally Audited 20-item Slice</h2>
-            </div>
-            <p class="text-[13px] text-slate-400 mt-1">
-              Source labels are attributed to <a href="https://questions.examside.com/past-years/jee/jee-main/chemistry/redox-reactions" target="_blank" rel="noopener noreferrer" class="text-amber-400 underline hover:text-amber-300">ExamSIDE Redox Reactions</a>; the repository still marks individual source provenance as pending. Attempt independently before opening the Chalkboard.
-            </p>
-          </div>
-
-          <div class="w-full md:w-72">
-            <input type="text" id="qSearchInput" oninput="filterQuestions()" aria-label="Search redox questions" placeholder="Search by topic, formula, year..." class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-border text-[13px] text-slate-200 placeholder-slate-500 focus:outline-none focus:border-amber-500">
-          </div>
-        </div>
-
-        <div class="flex flex-wrap items-center gap-1.5 text-[13px]">
-          <button onclick="filterSubTab('all')" id="btnQFilterAll" class="px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-300 border border-amber-500/40 font-semibold">All Questions</button>
-          <button onclick="filterSubTab(1)" id="btnQFilter1" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">1. Structural O.S.</button>
-          <button onclick="filterSubTab(4)" id="btnQFilter4" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">4. Valency n-Factor</button>
-          <button onclick="filterSubTab(5)" id="btnQFilter5" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">5. Titrations</button>
-        </div>
-
-        <div id="questionsContainer" class="space-y-4 pt-2"></div>
-      </div>
-    </section>
+    <!-- IIT-JEE questions moved to Question Bank -->
 
   </main>
 

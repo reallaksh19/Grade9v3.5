@@ -2004,6 +2004,10 @@ header[data-g9-shell-header]{position:sticky;top:0;z-index:5;display:flex;flex-w
 a{color:var(--accent)}
 header a,header button,button,summary,nav a{min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);padding:10px 14px;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg);font:inherit;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;touch-action:manipulation}
 nav[data-g9-breadcrumb]{display:flex;gap:8px;flex-wrap:wrap;padding:8px var(--g9-space)}
+.g9-breadcrumb-bar{display:none!important}
+.g9-triad-context{font-size:.78rem;opacity:.7;margin-bottom:4px;display:block}
+.g9-triad-context a{color:inherit;text-decoration:none}
+.g9-triad-context a:hover{text-decoration:underline}
 main{max-width:var(--g9-content-max);margin:0 auto;padding:var(--g9-space);box-sizing:border-box}
 main>*{min-width:0}article[data-g9-unit]{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:var(--g9-space);margin:18px 0;min-width:0}
 article[data-g9-unit]>*{min-width:0}
@@ -2242,6 +2246,7 @@ q('[data-g9-font]').forEach(b=>b.onclick=()=>q('[data-g9-zoom="'+b.dataset.g9Fon
 function initFigure(f){if(f.dataset.g9Init)return;f.dataset.g9Init='1';const ids=(f.dataset.g9Stages||'').split(' ').filter(Boolean);if(ids.length<2)return;let i=0;
 const chips=q('[data-g9-stage-goto]',f);const desc=q('[data-g9-stage-desc-text]',f)[0];
 const isSeq=f.dataset.g9StageSequence==='true'||ids.every(id=>{const g=q('[data-g9-stage-id="'+id+'"]',f)[0];return g&&g.querySelector('text[y="24"]');});
+ids.forEach(id=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display='none'));
 const show=()=>{ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=(isSeq?n===i:n<=i)?'':'none'));const l=q('[data-g9-stage-label]',f)[0];if(l)l.textContent='Stage '+(i+1)+' of '+ids.length;chips.forEach((c,n)=>c.setAttribute('aria-pressed',String(n===i)));if(desc)desc.textContent=(chips[i]&&chips[i].dataset.g9StageDesc)||''};show();chips.forEach((c,n)=>c.onclick=()=>{i=n;show()});
 q('[data-g9-stage-step]',f).forEach(b=>b.onclick=()=>{i=Math.max(0,Math.min(ids.length-1,i+(b.dataset.g9StageStep==='next'?1:-1)));show()})}
 function nextRung(l){const t=q('template[data-g9-rung-payload]',l)[0];if(!t)return false;const payload=t.content.cloneNode(true);q('[data-g9-rung-ghost]',l)[0]?.remove();q('figure[data-g9-figure]',payload).forEach(initFigure);q('[data-g9-ladder]',l)[0].append(payload);t.remove();const b=q('[data-g9-next-rung]',l)[0];if(b){if(!q('template[data-g9-rung-payload]',l).length)b.disabled=true;else b.textContent='Show next support'}return true}
@@ -2380,20 +2385,20 @@ def shell(ctx: Ctx, role: str, mode: str, pdf: bool = True) -> tuple[str, str]:
         
     topic_href = f"../../../topics/{topic_slug}/index.html"
     
-    crumbs = (f'<nav class="g9-breadcrumb-bar"><div class="g9-breadcrumbs">'
-              f'<a href="{esc(home_href)}">Home</a> <span>/</span> '
-              f'<a href="{subject_href}">{esc(subject)}</a> <span>/</span> '
-              f'<a href="{topic_href}">Topic</a> <span>/</span> '
-              f'<a href="#">{esc(m.get("title", ""))}</a> <span>/</span> '
-              f'<span aria-current="page">{esc(current_role)}</span>'
-              f'</div></nav>')
-              
+    triad_context = (f'<div class="g9-triad-context" aria-label="breadcrumb">'
+                     f'<a href="{esc(home_href)}">Home</a>'
+                     f' / <a href="{subject_href}">{esc(subject)}</a>'
+                     f' / <a href="{topic_href}">{esc(m.get("title", ""))}</a>'
+                     f' / <span aria-current="page">{esc(current_role)}</span>'
+                     f'</div>')
+
     qb_url = f"../../../question-bank/index.html?capability={esc(cap_ref)}"
-    
+
     c1a_active = ' active' if role == 'CORE1A' else ''
     c2_active = ' active' if role == 'CORE2' else ''
-    
+
     triad = (f'<div class="g9-concept-triad-bar"><div class="g9-triad-inner">'
+             f'{triad_context}'
              f'<span class="g9-triad-concept-title">Concept: {esc(m.get("title", ""))}</span>'
              f'<div class="g9-triad-actions">'
              f'<a class="g9-triad-btn g9-btn-learn{c1a_active}" href="core1a.html">📖 Learn</a>'
@@ -2401,8 +2406,8 @@ def shell(ctx: Ctx, role: str, mode: str, pdf: bool = True) -> tuple[str, str]:
              f'{explore_btn}'
              f'<a class="g9-triad-btn g9-btn-qb" href="{qb_url}">All questions in QB &rarr;</a>'
              f'</div></div></div>')
-             
-    return header, crumbs + triad
+
+    return header, triad
 
 
 DIGEST_SLOT = "g9-digest-pending"

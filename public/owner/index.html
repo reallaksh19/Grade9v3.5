@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Owner & Internal Tools · Grade9V3</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --border: #334155;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 32px 20px;
+      max-width: 960px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+    header {
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+    }
+    h1 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+    .badge {
+      display: inline-block;
+      background: #7c2d12;
+      color: #fed7aa;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+    p.desc {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.15s;
+    }
+    .card:hover {
+      border-color: var(--accent);
+    }
+    .card h2 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .card p {
+      font-size: 13px;
+      color: var(--muted);
+      flex: 1;
+      margin-bottom: 14px;
+    }
+    .card .link {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    footer {
+      margin-top: 48px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="badge">Owner & Internal Tools</span>
+    <h1>Authoring, Atlas & Verification Workspaces</h1>
+    <p class="desc">Isolated internal environments and proving grounds. Excluded from primary learner discovery.</p>
+  </header>
+
+  <main>
+    <div class="grid">
+      <a class="card" href="../test/atlas/index.html">
+        <div>
+          <h2>TEST Atlas Browser</h2>
+          <p>Authoring and capability coverage inspection for all registered learning capabilities.</p>
+        </div>
+        <span class="link">Open Atlas &rarr;</span>
+      </a>
+
+      <a class="card" href="../test/rungs/index.html">
+        <div>
+          <h2>TEST Rung Ladder Browser</h2>
+          <p>Multi-step scaffolding, hint escalation ladder diagnostics, and step revelation validator.</p>
+        </div>
+        <span class="link">Open Rung Ladders &rarr;</span>
+      </a>
+
+      <a class="card" href="../mathematics/linear-equations/index.html">
+        <div>
+          <h2>Interactive Atlas: Linear Equations</h2>
+          <p>Algebraic operations, non-zero divisor check (ME-1, ME-2, ME-3), and exact solution trees.</p>
+        </div>
+        <span class="link">Open Linear Equations Atlas &rarr;</span>
+      </a>
+
+      <a class="card" href="../test/deployments/index.html">
+        <div>
+          <h2>TEST Deployments Proving Ground</h2>
+          <p>Deployment verification harness, receipt inspection, and runtime contract assertions.</p>
+        </div>
+        <span class="link">Open Deployments &rarr;</span>
+      </a>
+
+      <a class="card" href="../raw-intake/index.html">
+        <div>
+          <h2>Raw Intake & OCR Staging</h2>
+          <p>Authoring tool for ingest, text tokenization, LaTeX normalisation, and draft question packaging.</p>
+        </div>
+        <span class="link">Open Raw Intake &rarr;</span>
+      </a>
+
+      <a class="card" href="../core-prompt-composer/index.html">
+        <div>
+          <h2>Core Prompt Composer</h2>
+          <p>Prompt compilation and instruction design for AI authoring and capability alignment.</p>
+        </div>
+        <span class="link">Open Prompt Composer &rarr;</span>
+      </a>
+
+      <a class="card" href="../portable-workbench/index.html">
+        <div>
+          <h2>Portable Workbench Generic Host</h2>
+          <p>Standalone component runtime and isolated execution container for web interactive testing.</p>
+        </div>
+        <span class="link">Open Workbench &rarr;</span>
+      </a>
+
+      <a class="card" href="nlm-topic-atlas.html">
+        <div>
+          <h2>NLM Topic Atlas</h2>
+          <p>Data-driven canonical orchestration and capability matrix for Newton's Laws of Motion.</p>
+        </div>
+        <span class="link">Open NLM Atlas &rarr;</span>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <p>Grade9V3 Architecture — Internal Tools Partition (Audience: OWNER / LAB)</p>
+  </footer>
+</body>
+</html>

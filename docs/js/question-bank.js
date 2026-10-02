@@ -207,26 +207,53 @@ function renderCollections(){
 }
 function renderTabs(){
   els.subjectTabs.replaceChildren();
-  const tabs=[{id:'',label:'All Subjects',count:catalog.counts.questions},...browsable(catalog.subjects).map(s=>({id:s.id,label:s.label,count:s.question_count}))];
+  const ICONS = {
+    '': '⚡',
+    'subject-physics': '🔬',
+    'subject-chemistry': '⚗️',
+    'subject-mathematics': '📐',
+    'iit-jee': '🎯'
+  };
+  const tabs=[
+    {id:'',label:'All Questions',count:catalog.counts.questions,icon:'⚡'},
+    ...browsable(catalog.subjects).map(s=>({
+      id:s.id,
+      label:s.label,
+      count:s.question_count,
+      icon:ICONS[s.id.toLowerCase()]||'📚'
+    })),
+    {id:'iit-jee',label:'IIT-JEE PYQs',count:215,icon:'🎯'}
+  ];
   tabs.forEach(tab=>{
     const button=el('button','qb-tab-btn');
     button.type='button';
     button.setAttribute('role','tab');
     button.dataset.subjectRef=tab.id;
-    if(tab.id)button.style.setProperty('--qb-tab-accent',accentFor(tab.id));
-    button.append(el('span','',tab.label),el('span','qb-tab-badge',String(tab.count)));
-    const selected=state.subject===tab.id;
+    if(tab.id && tab.id !== 'iit-jee') button.style.setProperty('--qb-tab-accent',accentFor(tab.id));
+    if(tab.id === 'iit-jee') button.style.setProperty('--qb-tab-accent','#a855f7');
+    button.append(
+      el('span','qb-tab-icon',tab.icon),
+      el('span','qb-tab-label',tab.label),
+      el('span','qb-tab-badge',String(tab.count))
+    );
+    const selected = tab.id === 'iit-jee' ? (state.exam === 'IIT-JEE Diagnostic' || state.exam === 'IIT-JEE') : (state.subject === tab.id && !state.exam);
     button.setAttribute('aria-selected',String(selected));
     button.tabIndex=selected?0:-1;
     button.classList.toggle('active',selected);
-    button.addEventListener('click',()=>setState({view:'',subject:tab.id,topic:'',subtopic:''}));
+    button.addEventListener('click',()=>{
+      if(tab.id === 'iit-jee'){
+        setState({view:'',subject:'',topic:'',subtopic:'',exam:'IIT-JEE Diagnostic'});
+      } else {
+        setState({view:'',subject:tab.id,topic:'',subtopic:'',exam:''});
+      }
+    });
     button.addEventListener('keydown',event=>{
       const all=[...els.subjectTabs.querySelectorAll('[role="tab"]')];
       const at=all.indexOf(button);
       const to={ArrowRight:(at+1)%all.length,ArrowLeft:(at-1+all.length)%all.length,Home:0,End:all.length-1}[event.key];
       if(to===undefined)return;
       event.preventDefault();
-      all[to].click();  // selecting a tab redraws the strip, so focus the redrawn tab
+      all[to].click();
       const redrawn=els.subjectTabs.querySelectorAll('[role="tab"]')[to];
       if(redrawn)redrawn.focus();
     });

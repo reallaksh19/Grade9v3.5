@@ -35,6 +35,13 @@ CONCEPT_TITLES = {
     "MIC-PHY-NLM-FIRST-LAW": "First Law & Inertia",
     "MIC-PHY-KIN-1D-MOTION": "Motion in a Straight Line",
     "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS": "Motion in a Plane & Projectiles",
+    "MIC-PHY-VEC-ADDITION": "Vector Addition & Resolution",
+    "MIC-PHY-FLUIDS-THRUST-PRESSURE": "Thrust & Hydrostatic Pressure",
+    "MIC-CHEM-BONDING": "Chemical Bonding & Molecular Structure",
+    "MIC-CHEM-GAS-LAWS": "Behaviour of Gases & Molecular Speeds",
+    "MIC-CHEM-REDOX": "Redox Reactions & Oxidation States",
+    "MIC-CHEM-MOLE-CONCEPT": "Mole Concept & Stoichiometry",
+    "MIC-MATH-VECTOR-ALGEBRA": "Vector Algebra · 3D Engine",
 }
 
 
