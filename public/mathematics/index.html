@@ -1,108 +1,47 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!-- KaTeX Typography (Khan Academy Standard) -->
-  <link rel="stylesheet" href="../vendor/katex/0.16.8/katex.min.css">
-  <script src="../vendor/katex/0.16.8/katex.min.js"></script>
-  <script src="../vendor/katex/0.16.8/contrib/auto-render.min.js" onload="window.__katexLoaded=true; if(window.renderAllMath) window.renderAllMath();"></script>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mathematics · Grade9V3 Knowledge Portal</title>
-  <link rel="stylesheet" href="../css/site.css">
-  <link rel="stylesheet" href="../css/tablet-12-7.css">
+  <title>Mathematics Hub · Grade9V3.5</title>
+  <link rel="stylesheet" href="../css/modern-learner.css">
 </head>
 <body>
-
-<header class="site-nav">
-  <a href="../index.html" class="brand-link">
-    <span class="logo-icon">⚡</span>
-    <span>Grade9V3 Knowledge Portal</span>
-  </a>
-  <nav class="nav-links">
-    <a href="../index.html">Home</a>
-    <a href="../physics/index.html">Physics</a>
-    <a href="../chemistry/index.html">Chemistry</a>
-    <a href="index.html" class="active math-link">Mathematics</a>
-    <a href="../test/index.html" class="test-link" data-site-test>TEST</a>
-    <button type="button" class="g9-display-trigger-btn" onclick="window.Grade9Display.togglePopover()" style="background: var(--bg-card); border: 1px solid var(--border); color: var(--text); padding: 4px 10px; border-radius: 6px; font-size: 13.5px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;" title="Adjust Font Size and UI Zoom Scale">
-      <span>🔤 / 🔍 Display</span>
-    </button>
-  </nav>
-</header>
-
-<div class="container">
-  <div class="breadcrumb">
-    <a href="../index.html">Home</a>
-    <span class="sep">/</span>
-    <span class="current">Mathematics</span>
-  </div>
-
-  <div style="margin-bottom: 32px;">
-    <div style="display: flex; gap: 8px; margin-bottom: 10px;">
-      <span class="badge math">Subject Hub</span>
-      <span class="badge ok">Physical Provider Bridges</span>
-    </div>
-    <h1 style="font-size: 32px; font-weight: 800; margin-bottom: 8px;">📐 Mathematics Subject Intelligence</h1>
-    <p style="color: var(--text-muted); font-size: 15px; max-width: 800px;">
-      Foundational algebra, geometry, and trigonometric bridges that license physical calculations across kinematics and dynamics.
-    </p>
-  </div>
-
-  <div class="chapter-list">
-    <div class="chapter-card">
-      <div class="chapter-header">
-        <div class="chapter-title">
-          <span>📏</span>
-          <span>Foundation & Provider Acceptance</span>
-        </div>
-        <span class="badge math">3 Technical Gates</span>
-      </div>
-      <div class="subtopics-grid">
-        <div class="subtopic-card">
-          <span class="subtopic-title">Trigonometric Ratios & Right Triangles</span>
-          <p class="subtopic-desc">Trigonometric definitions (sin, cos, tan) licensing arbitrary-angle vector resolution into orthogonal components.</p>
-          <span class="badge ok">Accepted Bridge</span>
-        </div>
-        <div class="subtopic-card" style="border-color: #7c3aed;">
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
-            <span class="subtopic-title">Vector Algebra · 3D IIT-JEE Master Suite</span>
-            <span class="badge neutral">GCDR audit partial</span>
-          </div>
-          <p class="subtopic-desc">8 rotatable 3D modules: Basis &amp; Direction Cosines, Dot Product &amp; Gram-Schmidt Projection Split, Cross Product &amp; Parallelogram Area Invariants, Scalar Triple Product &amp; Parallelepiped Volume, Vector Triple Product BAC-CAB Non-Associativity, Vector Equations Solver ($r \times a = b$), and 13 locally audited diagnostic questions selected from the current 282-question ExamSIDE Mathematics Vector Algebra corpus.</p>
-          <div style="margin-top: 10px;">
-            <a href="vectors/explorers/vector_algebra/index.html" class="btn primary-math" style="background: linear-gradient(135deg, #7c3aed, #4f46e5); border: none; color: white; padding: 6px 14px; font-weight: 700;">
-              Launch 3D Vector Suite 📐
-            </a>
-          </div>
-        </div>
-        <div class="subtopic-card" style="border-color: #a855f7;">
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
-            <span class="subtopic-title">Linear Equations in One Unknown</span>
-            <span class="badge math">Topic Atlas</span>
-          </div>
-          <p class="subtopic-desc">Reversible operations, non-zero divisor check (ME-1, ME-2, ME-3), and exact solution vs decimal residue.</p>
-          <div style="margin-top: 10px;">
-            <a href="linear-equations/index.html" class="btn outline" style="border-color: var(--math-accent); color: var(--math-accent);">
-              View Mathematics Atlas 🗺️
-            </a>
-          </div>
-        </div>
-        <div class="subtopic-card">
-          <span class="subtopic-title">Linear Equations in Two Variables</span>
-          <p class="subtopic-desc">Simultaneous constraint solutions powering connected-body tension equations and pulley kinematic constraints.</p>
-          <span class="badge ok">Accepted Bridge</span>
-        </div>
+  <header class="g9-shell-header">
+    <div class="g9-header-inner">
+      <a class="g9-brand" href="../index.html">
+        <span>⚡ Grade9V3.5</span>
+        <span class="g9-brand-badge">Learner Platform</span>
+      </a>
+      <div class="g9-header-actions">
+        <a class="g9-search-trigger" href="../question-bank/index.html">
+          <span>🔍</span>
+          <span>Search topics & questions</span>
+        </a>
       </div>
     </div>
+  </header>
+  
+<nav class="g9-breadcrumb-bar" aria-label="Breadcrumb">
+  <div class="g9-breadcrumbs">
+    <a href="../index.html">Home</a> <span>/</span> <span>Mathematics</span>
   </div>
-</div>
+</nav>
 
-<footer class="site-footer">
-  Grade9V3 Mathematics Knowledge Hub &middot; Static, Offline-Safe, & GitHub Pages Compatible
-</footer>
+  <main class="g9-container">
+    
+  <div class="g9-hero">
+    <h1 class="g9-hero-title">Mathematics Hub</h1>
+    <p class="g9-hero-subtitle">Select a topic to enter its dedicated concept workspace.</p>
+  </div>
 
-<script src="../js/display-controls.js"></script>
-<script src="../js/site-header.js" data-site-root="../" data-site-parent="../index.html"></script>
+  <div class="g9-grid">
+    
+  </div>
+
+  </main>
+  <footer class="g9-footer">
+    <p>Grade9V3.5 Concept-Centred Learner Platform · Authentic Question Bank & Concepts</p>
+  </footer>
 </body>
 </html>
