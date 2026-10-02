@@ -29,19 +29,19 @@
       min-height: 100vh;
       padding: 1.5rem;
     }
-    header {
+    .practice-hero {
       text-align: center;
       padding: 2rem 1rem 1.5rem;
       border-bottom: 1px solid var(--border);
       margin-bottom: 2rem;
     }
-    header h1 {
+    .practice-hero h1 {
       font-size: 1.75rem;
       font-weight: 700;
       letter-spacing: -0.02em;
       color: #f1f5f9;
     }
-    header p {
+    .practice-hero p {
       margin-top: 0.5rem;
       color: var(--muted);
       font-size: 0.95rem;
@@ -342,11 +342,24 @@ article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-sp
 
 .badge,.study-kicker{font-size:14px!important}
 </style>
+  <link rel="stylesheet" href="../../css/site.css">
+  <link rel="stylesheet" href="../../css/tablet-12-7.css">
 </head>
 <body>
-  <a href="../../physics/index.html" aria-label="Back to Physics Portal" style="display:inline-flex;align-items:center;min-height:48px;padding:0.65rem 1rem;margin:0 0 1rem;border:1px solid var(--border);border-radius:0.65rem;color:#bfdbfe;text-decoration:none;font-weight:700;background:#172033;">← Back to Physics Portal</a>
+<header class="site-nav">
+  <a href="../../index.html" class="brand-link">
+    <span class="logo-icon">⚡</span>
+    <span>Grade9V3 Knowledge Portal</span>
+  </a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="../../index.html">Home</a>
+    <a href="../../physics/index.html" class="active phy-link">Physics</a>
+    <a href="../../chemistry/index.html">Chemistry</a>
+    <a href="../../mathematics/index.html">Mathematics</a>
+  </nav>
+</header>
 
-<header>
+<header class="practice-hero">
   <h1>⚡ Physics Practice Hub</h1>
   <p>Grade 9 · Standalone offline modules · CBSE + IIT-JEE</p>
   <div class="stats-bar">
@@ -667,5 +680,6 @@ article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-sp
   }).observe(document.documentElement, { childList: true, subtree: true });
 })();
 </script>
+<script src="../../js/site-header.js" data-site-root="../../" data-site-parent="../../physics/index.html"></script>
 </body>
 </html>
