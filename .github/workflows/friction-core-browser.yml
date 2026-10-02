@@ -47,7 +47,7 @@ jobs:
       - name: Checkout Blueprint 1.9.0 rules
         uses: actions/checkout@v4
         with:
-          ref: claude/jolly-planck-xmtj44
+          ref: 9eaf57beb48c9bcf71011593fefd59516078a762
           path: blueprint-1.9
 
       - uses: actions/setup-python@v5
@@ -280,9 +280,16 @@ jobs:
           cmp "$generated/index.html" "$published/index.html"
           cmp "$generated/core1a.html" "$published/core1a.html"
           cmp "$generated/core2.html" "$published/core2.html"
-          cmp "$generated/core1a.pdf" "$published/core1a.pdf"
-          cmp "$generated/core2.pdf" "$published/core2.pdf"
-          cmp "$generated/print-receipt.json" "$published/print-receipt.json"
+          python3 - <<'PY'
+          from pathlib import Path
+          from Shared.tools.render_core import pdf_publication_problems
+          folder = Path("public/standalone/practice/friction")
+          problems = pdf_publication_problems(folder)
+          if problems:
+              print("\n".join(problems))
+              raise SystemExit("published friction PDF receipt verification failed")
+          print("published friction PDF receipt verification: PASS")
+          PY
 
           cmp public/standalone/practice/friction/index.html docs/standalone/practice/friction/index.html
           cmp public/standalone/practice/friction/core1a.html docs/standalone/practice/friction/core1a.html
