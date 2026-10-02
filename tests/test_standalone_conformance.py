@@ -57,6 +57,32 @@ class Rules(unittest.TestCase):
         self.assertEqual(self.check(page(body='<span style="font-size:12px">x</span><i class="text-xs">y</i><i class="text-[11px]">z</i>')), {"FONT_FLOOR": 3})
         self.assertEqual(self.check(page(head="<style>.a{font-size:14px}.b{font-size:0}</style>")), {})
 
+    def test_a_rem_is_the_size_the_page_itself_declares_for_its_root(self):
+        """The renderer writes html{font-size:calc(var(--g9-type-body) * var(--g9-zoom))} with 17px and 1: 0.85rem is 14.45 px there, not 13.6."""
+        renderer = "<style>:root{--g9-type-body:17px;--g9-zoom:1}html{font-size:calc(var(--g9-type-body) * var(--g9-zoom))}.a{font-size:.85rem}</style>"
+        self.assertEqual(self.check(page(head=renderer)), {})
+        self.assertEqual(self.check(page(head=renderer.replace(".85rem", ".8rem"))), {"FONT_FLOOR": 1}, "0.8rem is 13.6 px on a 17 px root")
+        self.assertEqual(self.check(page(head="<style>html{font-size:18px}.a{font-size:.8rem}</style>")), {})
+        self.assertEqual(self.check(page(head="<style>.a{font-size:.85rem}</style>")), {"FONT_FLOOR": 1}, "no root declared: 16 px, as a browser has it")
+
+    def test_a_root_the_checker_does_not_follow_is_not_guessed(self):
+        for root in ("html{font-size:calc(100% + 4px)}", "html{font-size:calc(var(--missing) * 1)}", "html{font-size:200px}",
+                     "@media (min-width:900px){html{font-size:20px}}", ".x html{font-size:20px}"):
+            self.assertEqual(self.check(page(head=f"<style>{root}.a{{font-size:.85rem}}</style>")), {"FONT_FLOOR": 1}, root)
+        self.assertEqual(self.check(page(head="<style>html{font-size:2px}</style>")), {"FONT_FLOOR": 1}, "a root that is itself under the floor is refused")
+
+    def test_a_staged_page_is_judged_where_it_will_be_served(self):
+        staged, site = self.dir / "publication", self.dir / "public"
+        (staged / "products").mkdir(parents=True)
+        (site / "css").mkdir(parents=True)
+        (site / "css" / "tablet.css").write_text("/* the site's stylesheet */", encoding="utf-8")
+        path = staged / "products" / "p.html"
+        path.write_text(page(head='<link rel="stylesheet" href="../css/tablet.css">', body='<a href="gone.html">x</a>'), encoding="utf-8")
+        self.assertEqual(sc.counts(sc.check_page(path)), {"LINKS_RESOLVE": 2})
+        found = sc.check_page(path, published=(staged, site))
+        self.assertEqual(sc.counts(found), {"LINKS_RESOLVE": 1})
+        self.assertIn("gone.html", found[0]["detail"], "what is missing from the site is still missing")
+
     def test_every_relative_reference_lands_on_a_file_and_every_fragment_on_an_id(self):
         (self.dir / "other.html").write_text(page(body='<h2 id="here">h</h2>'), encoding="utf-8")
         self.assertEqual(self.check(page(body='<a href="other.html#here">a</a><a href="#">b</a><a href="mailto:a@b.c">c</a>')), {})

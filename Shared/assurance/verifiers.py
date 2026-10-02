@@ -147,7 +147,9 @@ def _typed(subject: Subject, questions: list[dict], assurance_type: str, check, 
 
 
 def verify_references(subjects: list[Subject], repo: Path) -> dict[str, Verdict]:
-    """REFERENCE_INTEGRITY, one library at a time: the packages of one directory are one universe (Physics and Mathematics share nested ids, and are not one)."""
+    """REFERENCE_INTEGRITY, one library at a time: the packages of one directory are one universe (Physics and Mathematics share nested ids, and are not one).
+
+    A package refers to its siblings, so a single package is judged against the whole directory it lives in; only the subjects asked about get a verdict."""
     from Shared.library import resolve
     universes: dict[str, list[Subject]] = defaultdict(list)
     for s in subjects:
@@ -163,6 +165,16 @@ def verify_references(subjects: list[Subject], repo: Path) -> dict[str, Verdict]
                 packages.append(package)
             except (OSError, ValueError):
                 unreadable.add(s.key)
+        asked = {s.path for s in members}
+        for sibling in sorted((repo / parent).glob("*.json")):
+            if sibling.relative_to(repo).as_posix() in asked:
+                continue
+            try:
+                package = json.loads(sibling.read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                continue                                    # a sibling that does not parse is the verdict of its own subject, not of this one
+            if isinstance(package, dict):
+                packages.append(package)
         local: dict[str, list[dict]] = {s.id: [] for s in members}
         shared: list[dict] = []
         try:
@@ -200,10 +212,11 @@ def page_findings(subject: Subject, repo: Path) -> dict[str, dict[tuple[str, str
     pages = sorted(root.rglob("*.html")) if root.is_dir() else [root]
     base = root if root.is_dir() else root.parent
     cache: dict = {}
+    staged = (repo / "publication", repo / "public") if root.is_relative_to(repo / "publication") else None   # a product is judged where it will be served
     out: dict[str, dict[tuple[str, str], list[dict]]] = {t: defaultdict(list) for t in PAGE_TYPES}
     for page in pages:
-        rel = page.relative_to(repo).as_posix()
-        for f in sc.check_page(page, root=base, shell=shell, _ids=cache):
+        rel = (page.relative_to(repo) if page.is_relative_to(repo) else page.relative_to(base)).as_posix()
+        for f in sc.check_page(page, root=base, shell=shell, _ids=cache, published=staged):
             out[types[f["rule"]]][(f["rule"], rel)].append(f)
     return out
 

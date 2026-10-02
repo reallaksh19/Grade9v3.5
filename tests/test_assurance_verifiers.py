@@ -125,6 +125,19 @@ class Defects(Repo):
         self.edit(lambda p: p["capabilities"][0].update(prerequisite_refs=["CAP-DOES-NOT-EXIST"]))
         self.assert_fails("REFERENCE_INTEGRITY", "LIBRARY_UNRESOLVED_REFERENCE")
 
+    def test_a_package_is_judged_against_its_whole_library_not_against_itself_alone(self):
+        everyone = verifiers.verify_references(self.subjects(), self.repo)
+        for s in self.subjects():
+            self.assertEqual(verifiers.verify_references([s], self.repo)[s.key].outcome, everyone[s.key].outcome, s.id)
+
+    def test_a_package_asked_about_alone_fails_on_its_own_dangling_reference_and_not_on_a_siblings(self):
+        self.edit(lambda p: p["capabilities"][0].update(prerequisite_refs=["CAP-DOES-NOT-EXIST"]))
+        subjects = self.subjects()
+        target = next(s for s in subjects if s.path.endswith(TARGET))
+        other = next(s for s in subjects if not s.path.endswith(TARGET))
+        self.assertEqual(verifiers.verify_references([target], self.repo)[target.key].outcome, "FAIL")
+        self.assertEqual(verifiers.verify_references([other], self.repo)[other.key].outcome, "PASS")
+
     def test_a_package_that_does_not_parse_fails_structural_validity_and_runs_nothing_else(self):
         (self.repo / LIB / TARGET).write_text("{ not json", encoding="utf-8")
         out = verifiers.verify_package(next(s for s in self.subjects() if s.path.endswith(TARGET)), self.repo)
@@ -240,6 +253,17 @@ class Projections(unittest.TestCase):
         self.assertEqual({t: v.outcome for t, v in out.items()}, {"NETWORK_POLICY": "FAIL", "LINK_INTEGRITY": "FAIL", "PROJECTION_STATIC_CONFORMANCE": "FAIL"})
         self.assertEqual({f["code"] for f in out["PROJECTION_STATIC_CONFORMANCE"].findings}, {"FONT_FLOOR", "MATH_CONTROL_CHARS"})
         self.assertEqual({f["code"] for f in out["NETWORK_POLICY"].findings}, {"REMOTE_RUNTIME"})
+
+    def test_a_projection_outside_the_repository_is_judged_not_crashed_on(self):
+        elsewhere = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, elsewhere, True)
+        (elsewhere / "a.html").write_text(
+            '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>t</title>'
+            '<script src="https://www.gstatic.com/x.js"></script></head><body><h1>t</h1></body></html>', encoding="utf-8")
+        subject = aggregate.projection_subjects([f"product={elsewhere}"], self.repo)[0]
+        out = verifiers.verify_projection(subject, self.repo)
+        self.assertEqual(out["NETWORK_POLICY"].outcome, "FAIL")
+        self.assertEqual({f["subject"] for f in out["NETWORK_POLICY"].findings}, {"a.html"})
 
     def test_the_rule_to_type_assignment_is_the_registrys_and_every_type_is_one_the_evidence_schema_knows(self):
         known = set(json.loads((REPO / "Shared/assurance/assurance-evidence.schema.json").read_text())["properties"]["assurance_type"]["enum"])

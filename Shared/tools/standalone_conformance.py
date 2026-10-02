@@ -46,6 +46,74 @@ TAILWIND_SMALL = re.compile(r"(?<![\w-])text-xs(?![\w-])|(?<![\w-])text-\[\s*([0
 REMOTE_IN_CODE = re.compile(r"""['"`](?:https?:)?//[^'"`\s]+?\.(?:js|mjs|css|woff2?|ttf|otf)(?:\?[^'"`\s]*)?['"`]""", re.I)
 CSS_REMOTE = re.compile(r"(?:@import\s+(?:url\()?\s*|url\(\s*)['\"]?((?:https?:)?//[^'\")\s]+)", re.I)
 STORAGE = re.compile(r"\b(?:localStorage|sessionStorage)\b")
+ROOT_SELECTORS = {"html", ":root", "html,:root", ":root,html"}
+ROOT_FONT = re.compile(r"(?<![\w-])font-size\s*:\s*([^;}]+)", re.I)
+CUSTOM_PROPERTY = re.compile(r"(--[\w-]+)\s*:\s*([^;}]+)")
+VAR_CALL = re.compile(r"var\(\s*(--[\w-]+)\s*(?:,[^)]*)?\)")
+PX_OR_NUMBER = re.compile(r"([0-9]*\.?[0-9]+)\s*(px)?$", re.I)
+
+
+def _top_level_rules(css: str) -> list[tuple[str, str]]:
+    """(selector, body) of each rule that is not inside another block: an at-rule such as @media comes back with its own selector and is the caller's to skip."""
+    out: list[tuple[str, str]] = []
+    depth, selector_start, body_start, selector = 0, 0, 0, ""
+    for i, ch in enumerate(css):
+        if ch == "{":
+            if depth == 0:
+                selector, body_start = css[selector_start:i].strip(), i + 1
+            depth += 1
+        elif ch == "}":
+            depth = max(depth - 1, 0)
+            if depth == 0:
+                out.append((selector, css[body_start:i]))
+                selector_start = i + 1
+    return out
+
+
+def _root_font_px(style_bodies: list[str]) -> float:
+    """What a rem is on this page: the page's own `html { font-size: ... }`, where it is a px size, or a product of px sizes and plain numbers over the page's own
+    custom properties (the renderer writes `calc(var(--g9-type-body) * var(--g9-zoom))` with 17px and 1). 16 where the page does not say, or says it in a way that is not
+    followed here (a media query, a unit that depends on the parent): a size not known is not guessed."""
+    custom: dict[str, str] = {}
+    root = None
+    for sheet in style_bodies:
+        for selector, body in _top_level_rules(sheet):
+            if re.sub(r"\s+", "", selector).lower() not in ROOT_SELECTORS:    # not an at-rule (a media query is not followed), not another element
+                continue
+            for m in CUSTOM_PROPERTY.finditer(body):
+                custom[m.group(1)] = m.group(2).strip()
+            for decl in ROOT_FONT.finditer(body):
+                root = decl.group(1).strip()
+    if root is None:
+        return 16.0
+
+    def value(text: str, depth: int = 0) -> tuple[float, bool] | None:
+        """(number, is_px) of one term, or None."""
+        text = text.strip()
+        call = VAR_CALL.fullmatch(text)
+        if call:
+            return value(custom[call.group(1)], depth + 1) if call.group(1) in custom and depth < 5 else None
+        calc = re.fullmatch(r"calc\((.*)\)", text, re.I | re.S)
+        if calc:
+            if depth >= 5 or any(c in calc.group(1) for c in "+/") or re.search(r"\s-\s", calc.group(1)):
+                return None
+            number, px = 1.0, 0
+            for term in calc.group(1).split("*"):
+                got = value(term, depth + 1)
+                if got is None:
+                    return None
+                number *= got[0]
+                px += got[1]
+            return number, px == 1
+        plain = PX_OR_NUMBER.match(text)
+        return (float(plain.group(1)), plain.group(2) is not None) if plain else None
+
+    got = value(root)
+    if got is None or not got[1] or not 8 <= got[0] <= 40:
+        return 16.0
+    return got[0]
+
+
 # a link rel that is a statement about the page, not something the page needs in order to run
 PASSIVE_RELS = {"canonical", "alternate", "author", "license", "help", "next", "prev", "search"}
 LINK_ATTRS = {"a": ("href",), "link": ("href",), "script": ("src",), "img": ("src",), "iframe": ("src",), "source": ("src",),
@@ -176,8 +244,12 @@ def _fragment_ids(path: Path, cache: dict) -> set[str]:
     return cache[path]
 
 
-def check_page(path: Path, *, root: Path | None = None, shell: dict | None = None, _ids: dict | None = None) -> list[dict]:
-    """Every finding of the standalone policy on one page: {rule, line, detail, severity}."""
+def check_page(path: Path, *, root: Path | None = None, shell: dict | None = None, _ids: dict | None = None,
+               published: tuple[Path, Path] | None = None) -> list[dict]:
+    """Every finding of the standalone policy on one page: {rule, line, detail, severity}.
+
+    `published` is (staged tree, site tree) for a page that is checked before it is copied to where it is served: a target that is not under the page where it is staged
+    is looked for under the site tree at the same relative place (a staged product links the site's stylesheet, which exists only once it is published)."""
     shell = shell or policy()
     rules = {r["id"]: r for r in shell["standalone_policy"]["rules"]}
     floor = shell["typography_policy"]["minimum_learner_text_css_px"]
@@ -216,12 +288,13 @@ def check_page(path: Path, *, root: Path | None = None, shell: dict | None = Non
             add("VIEWPORT_ZOOM", 1, f"maximum-scale={view['maximum-scale']!r} is not a number")
 
     # FONT_FLOOR: a declared size under the learner text floor (a rendered size, which scaling can change, is the browser audit's)
+    rem = _root_font_px([b for b, _ in page.styles])
     for body, line in [(b, ln) for b, ln in page.styles] + [(s, ln) for s, ln in page.inline_styles]:
         for m in FONT_SIZE.finditer(body):
             value, unit = float(m.group(1)), m.group(2).lower()
             if value == 0:
                 continue
-            px = value * {"px": 1, "rem": 16, "em": 16, "pt": 4 / 3}[unit]
+            px = value * {"px": 1, "rem": rem, "em": rem, "pt": 4 / 3}[unit]
             if px < floor:
                 add("FONT_FLOOR", line + body[:m.start()].count("\n"), f"font-size {m.group(1)}{unit} is {px:g} px, under the {floor} px floor")
     for value, line in page.classes:
@@ -236,6 +309,10 @@ def check_page(path: Path, *, root: Path | None = None, shell: dict | None = Non
         if value == "#" or value.startswith("//") or parts.scheme:   # a bare #, a remote reference (judged above), mailto:, javascript:, data:
             continue
         target = path if not parts.path else (path.parent / unquote(parts.path)).resolve()
+        if published is not None and not target.exists():
+            staged, site = published[0].resolve(), published[1].resolve()
+            if target.is_relative_to(staged):
+                target = site / target.relative_to(staged)
         if target.is_dir():
             target = target / "index.html"
         if not target.exists():
