@@ -1,0 +1,1624 @@
+<!doctype html>
+<html lang="en" data-g9-shell>
+<head>
+  <!-- KaTeX for crisp mathematical typography (Local with CDN fallback) -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js" onload="window.__katexLoaded=true; if(window.renderAllMath) { window.renderAllMath(); }"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0">
+  <title>Motion in a Plane · Interactive Research Suite</title>
+  <style>
+    :root {
+      color-scheme: dark light;
+      --bg: #0f141c;
+      --surface: #171f2c;
+      --card: #1f293b;
+      --border: #2e3d56;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-hover: #0ea5e9;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
+      --font-scale: 1;
+      --shell-height: 56px;
+    }
+
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --card: #f1f5f9;
+      --border: #cbd5e1;
+      --text: #0f172a;
+      --muted: #64748b;
+      --accent: #0284c7;
+      --accent-hover: #0369a1;
+      --success: #059669;
+      --warning: #d97706;
+      --danger: #dc2626;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      font-size: calc(15px * var(--font-scale));
+      line-height: 1.5;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Sticky Tablet Shell Navigation */
+    header.g9-shell {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: var(--shell-height);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      gap: 12px;
+    }
+
+    .g9-nav-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .g9-btn {
+      min-height: 44px;
+      min-width: 44px;
+      padding: 8px 14px;
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .g9-btn:hover {
+      background: var(--border);
+    }
+
+    .g9-btn.primary {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+
+    .g9-breadcrumb {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .g9-breadcrumb a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1240px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px 16px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    /* Tabs */
+    .tab-bar {
+      display: flex;
+      gap: 8px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 8px;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      padding: 10px 18px;
+      min-height: 44px;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .tab-btn.active {
+      color: var(--accent);
+      background: var(--card);
+      border-bottom: 3px solid var(--accent);
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Stage Layout (Tablet 0.65 / 0.35 Split) */
+    .stage-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 920px) {
+      .stage-grid {
+        grid-template-columns: 1.8fr 1fr;
+        align-items: start;
+      }
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .canvas-wrap {
+      background: #000;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Telemetry & Controls */
+    .control-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .control-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .control-label span.val {
+      color: var(--accent);
+      font-family: ui-monospace, monospace;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 44px; /* touch target */
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .telemetry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+    }
+
+    .telemetry-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .telemetry-title {
+      font-size: 13.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+    }
+
+    .telemetry-value {
+      font-family: ui-monospace, monospace;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* Core Role Sections */
+    section.core-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .core-tag {
+      align-self: flex-start;
+      font-size: 13.5px;
+      font-family: ui-monospace, monospace;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--accent);
+    }
+
+    h2 { font-size: 20px; font-weight: 700; }
+    h3 { font-size: 16px; font-weight: 600; }
+
+    .formula-banner {
+      background: var(--card);
+      border-left: 4px solid var(--accent);
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      font-family: ui-monospace, monospace;
+      font-size: 15px;
+    }
+
+    .misconception {
+      background: rgba(251, 191, 36, 0.1);
+      border-left: 4px solid var(--warning);
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      font-size: 14px;
+    }
+
+    /* Attempt & Reveal Gating */
+    .attempt-box {
+      background: var(--card);
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    textarea.attempt-input {
+      width: 100%;
+      min-height: 120px;
+      padding: 10px;
+      background: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 14px;
+      resize: vertical;
+    }
+
+    details.reveal-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+    }
+
+    details.reveal-block summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--accent);
+      user-select: none;
+    }
+
+    details.reveal-block summary:focus {
+      outline: 2px solid var(--accent);
+    }
+
+    details.reveal-block[open] {
+      border-color: var(--accent);
+    }
+
+    .reveal-content {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Citation Badge */
+    .evidence-citation {
+      font-size: 14px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .evidence-citation code {
+      background: var(--card);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--accent);
+    }
+
+    /* Mathematical Typography Styling */
+    .formula-banner {
+      font-family: "KaTeX_Math", "Cambria Math", "Latin Modern Math", "STIX Two Math", Georgia, serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.02em;
+    }
+    .math-inline, .math-display {
+      font-family: "KaTeX_Math", "Cambria Math", "Latin Modern Math", "STIX Two Math", Georgia, serif;
+    }
+    .math-display {
+      display: block;
+      text-align: center;
+      margin: 8px 0;
+      font-size: 1.15em;
+    }
+    .math-frac {
+      display: inline-flex;
+      flex-direction: column;
+      vertical-align: -0.55em;
+      padding: 0 0.25em;
+      text-align: center;
+      font-size: 0.88em;
+      line-height: 1.1;
+      font-style: normal;
+    }
+    .math-num {
+      border-bottom: 1.5px solid currentColor;
+      padding-bottom: 1px;
+    }
+    .math-denom {
+      padding-top: 1px;
+    }
+    .math-sqrt-wrap {
+      display: inline-flex;
+      align-items: center;
+      font-style: normal;
+    }
+    .math-sqrt {
+      border-top: 1.5px solid currentColor;
+      padding-top: 1px;
+      margin-left: 1px;
+      padding-left: 2px;
+      padding-right: 2px;
+      font-style: normal;
+    }
+  
+  /* 12.7" Tablet Touch & Ergonomics Rules */
+  button, .btn, .g9-btn, .tab-btn { min-height: 48px !important; min-width: 48px !important; font-size: 15px; }
+  input[type="range"] { height: 48px !important; }
+  input[type="range"]::-webkit-slider-thumb { width: 30px !important; height: 30px !important; border-radius: 50% !important; }
+  input[type="range"]::-moz-range-thumb { width: 30px !important; height: 30px !important; border-radius: 50% !important; }
+  details summary { min-height: 52px !important; font-size: 15px !important; }
+
+</style>
+<style id="pr375-u4-remediation">
+/* PR #375 U4 remediation: accessibility, reflow and alternate viewports. */
+*, *::before, *::after { box-sizing: border-box; }
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid #38bdf8 !important;
+  outline-offset: 2px !important;
+}
+img, svg, canvas { max-width: 100%; }
+input, select, textarea { max-width: 100%; }
+::placeholder { color: #94a3b8 !important; opacity: 1 !important; }
+[data-theme="light"] ::placeholder { color: #475569 !important; }
+.u4-clear-button { color: #f8fafc !important; }
+[data-theme="light"] .u4-clear-button { color: #0f172a !important; }
+
+/* Never communicate correctness by colour alone. */
+.opt-btn.selected-correct::after {
+  content: " ✓ Correct";
+  margin-inline-start: .4rem;
+  font-weight: 800;
+}
+.opt-btn.selected-incorrect::after {
+  content: " ✕ Incorrect";
+  margin-inline-start: .4rem;
+  font-weight: 800;
+}
+
+/* Contrast repairs for the learner-visible light theme. */
+[data-theme="light"] .step-content-calc {
+  color: #7c2d12 !important;
+  background: #fff7ed !important;
+  border: 1px solid #c2410c !important;
+}
+[data-theme="light"] .answer-banner,
+[data-theme="light"] .badge-success,
+[data-theme="light"] .saved-pill {
+  color: #065f46 !important;
+}
+[data-theme="light"] .badge-warning,
+[data-theme="light"] .hint-tag,
+[data-theme="light"] .diag-header-another {
+  color: #7c2d12 !important;
+}
+[data-theme="light"] .step-label,
+[data-theme="light"] details > summary {
+  color: #075985 !important;
+}
+[data-theme="light"] .formula-box,
+[data-theme="light"] .math-banner {
+  color: #422006 !important;
+  background: #fef3c7 !important;
+  border-color: #92400e !important;
+}
+[data-theme="light"] footer { color: #475569 !important; }
+
+/* Default dark-theme contrast repairs from U4. */
+html[data-theme="dark"] .step-label { color: #7dd3fc !important; }
+html[data-theme="dark"] details > summary { color: #7dd3fc !important; }
+.q-count, .open-btn { color: #93c5fd !important; }
+.tag-2d, .tag-1d, .tag-vec, .tag-ncert, .tag-sba, .tag-proj, .tag-cons { color: #ffffff !important; }
+footer { color: #94a3b8 !important; }
+
+/* The offline 1D master lost Tailwind preflight + custom theme utilities. */
+body.u4-tailwind-offline {
+  margin: 0 !important;
+  background: #090d16 !important;
+  color: #f1f5f9 !important;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+.u4-tailwind-offline.bg-background, .u4-tailwind-offline .bg-background { background-color: #090d16 !important; }
+.u4-tailwind-offline .bg-card { background-color: #111827 !important; }
+.u4-tailwind-offline .border-border { border-color: #334155 !important; }
+.u4-tailwind-offline .bg-slate-950\/90 { background-color: rgba(2, 6, 23, .94) !important; }
+.u4-tailwind-offline .bg-slate-900 { background-color: #0f172a !important; }
+.u4-tailwind-offline .bg-slate-800 { background-color: #1e293b !important; }
+.u4-tailwind-offline .max-w-7xl { max-width: 80rem !important; }
+.u4-tailwind-offline .overflow-x-auto { overflow-x: auto !important; }
+.u4-tailwind-offline .whitespace-nowrap { white-space: nowrap !important; }
+.u4-tailwind-offline .font-sans { font-family: ui-sans-serif, system-ui, sans-serif !important; }
+.u4-tailwind-offline .text-slate-500,
+.u4-tailwind-offline .text-slate-600 { color: #cbd5e1 !important; }
+.u4-tailwind-offline .text-slate-400 { color: #a8b5c7 !important; }
+.u4-tailwind-offline header { max-width: 100%; }
+
+/* Reflow at phone width and at a 200% zoom-equivalent viewport. */
+@media (max-width: 700px) {
+  header.sticky, .sticky-header, .top-nav.sticky { position: static !important; top: auto !important; }
+}
+@media (max-width: 480px) {
+  .header-actions,
+  .g9-nav-group,
+  .g9-header-actions,
+  .top-nav-header,
+  .course-badge-row,
+  .workspace-title-row {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-wrap: wrap !important;
+  }
+  .g9-block, nav, ol, ul, main, section, article, .app-container, .container {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  ol, ul { padding-inline-start: 1.5rem !important; }
+  #jump-select { width: 100% !important; max-width: 100% !important; }
+  .tab-btn { white-space: normal !important; min-width: 0 !important; flex: 1 1 140px !important; }
+  .tabs, .tab-strip, .tab-nav, .tab-bar, .g9-tabs, [class*="tabs-row"] {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .g9-nav-group > *, .header-actions > * { max-width: 100% !important; }
+  pre { white-space: pre-wrap !important; overflow-wrap: anywhere !important; max-width: 100% !important; }
+  table { display: block; max-width: 100% !important; overflow-x: auto !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (forced-colors: active) {
+  svg text { fill: CanvasText !important; stroke: transparent !important; }
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 3px solid Highlight !important;
+  }
+}
+</style>
+<style id="pr375-u4-residual-remediation">
+@media (max-width: 480px) {
+  /* Generated CORE1A section-route pills used 24rem + padding, producing ~467px boxes. */
+  [data-g9-section-route] a,
+  [data-g9-concept-route] a,
+  article[data-g9-role="CORE1A"] > .slot-identity [data-g9-section-route] a {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    line-height: 1.4 !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  /* Consolidated and interactive headers must reflow as complete units, not just their children. */
+  .header-inner,
+  header.g9-shell {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+  }
+  .header-inner > *,
+  header.g9-shell > .g9-nav-group {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .header-brand,
+  .header-brand h1,
+  .header-actions,
+  header.g9-shell .g9-nav-group,
+  header.g9-shell .g9-breadcrumb {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+  }
+  .header-brand h1 { align-items: flex-start !important; }
+  .header-actions { width: 100% !important; justify-content: flex-start !important; }
+  header.g9-shell { padding-block: 8px !important; }
+  header.g9-shell .g9-breadcrumb { flex: 1 1 100% !important; overflow-wrap: anywhere !important; }
+}
+</style>
+<style id="pr375-u4-math-reflow">
+@media (max-width: 480px) {
+  .formula-banner {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-gutter: stable;
+  }
+  .formula-banner .katex-display {
+    max-width: none !important;
+    margin-inline: 0 !important;
+    padding-block-end: .25rem;
+  }
+}
+</style>
+<style id="pr375-u1-katex">.katex{font-size:1.8em!important}</style>
+    <style id="pr375-u1-interactive-reflow">header.g9-shell{height:auto!important;min-height:56px;flex-wrap:wrap!important}.g9-nav-group{flex-wrap:wrap!important;min-width:0}.g9-breadcrumb{white-space:normal!important;min-width:0;overflow:visible!important}.g9-shell>*{min-width:0}main,.panel,section,.formula-banner,.math-display{min-width:0;max-width:100%}.katex-display{max-width:100%;overflow-x:auto;overflow-y:hidden}</style>
+    <style id="pr375-u1-remediation">
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%} body{overflow-wrap:anywhere} p,li{line-height:1.4}
+:where(p,li,label,button,input,select,textarea,summary,td,th,figcaption,.btn,.q-badge,.tag-pill,.hint-badge,.hint-tag,.subject-badge,.step-label,.diag-header,.formula-box,#saveStatus,.save-status,.tag,.q-count,.open-btn,.stat .label,section.section-header h2,.study-kicker,.brand-badge,.hero-pill,.badge,.core-tag,.telemetry-title,.control-label,.card-action,.breadcrumb){font-size:max(14px,1em)!important}
+:where(a[href="index.html"],header a,nav a,.breadcrumb a,a.g9-bridge-link,[data-g9-block="entry_assumptions"] a){min-height:48px!important;min-width:48px!important;display:inline-flex!important;align-items:center!important;justify-content:center;padding-block:10px!important;box-sizing:border-box!important}
+@media(min-width:1100px){article[data-g9-role="CORE1A"] .g9-split{grid-template-columns:minmax(0,1fr)!important}article[data-g9-role="CORE1A"] .g9-col-support{position:static!important;top:auto!important}}
+article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;line-height:1.35!important;min-height:48px!important}
+
+.badge,.study-kicker{font-size:14px!important}
+</style>
+<style id="u2-practice-hub-target">
+a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center}
+</style>
+</head>
+<body data-theme="dark">
+
+  <!-- Tablet Shell Sticky Header -->
+  <header class="g9-shell" role="banner">
+    <div class="g9-nav-group">
+      <a href="index.html" class="g9-btn" title="Back to Practice Hub" aria-label="Practice Hub" style="min-height:48px;display:inline-flex;align-items:center;">← Practice Hub</a>
+      <div class="g9-breadcrumb">
+        <a href="index.html">Physics Hub</a> /
+        <span>Motion in a Plane</span>
+      </div>
+    </div>
+    <div class="g9-nav-group">
+      <button class="g9-btn" id="themeToggle" aria-label="Toggle Light/Dark Theme" title="Toggle Theme">🌓</button>
+      <button class="g9-btn" id="fontInc" aria-label="Increase Font Size" title="Font Size +">A+</button>
+      <button class="g9-btn" id="fontDec" aria-label="Decrease Font Size" title="Font Size -">A-</button>
+      <button class="g9-btn" id="fullscreenToggle" aria-label="Toggle Fullscreen" title="Fullscreen">⛶</button>
+    </div>
+  </header>
+
+  <main>
+    <div>
+      <h1 style="font-size: 26px; margin-bottom: 6px;">Motion in a Plane · Interactive Research Suite</h1>
+      <p style="color: var(--muted);">Direct conversion of scanned experimental diagrams, vector resolutions, and force dynamics into interactive simulation environments.</p>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="tab-bar" aria-label="Physics Units">
+      <button class="tab-btn active" data-tab="tab-projectile">Unit 1: Ground-to-Ground Projectile</button>
+      <button class="tab-btn" data-tab="tab-banking">Unit 2: Banked Curve with Friction</button>
+      <button class="tab-btn" data-tab="tab-practice">Unit 3: Active Reconstruction & Practice</button>
+    </nav>
+
+    <!-- ========================================== -->
+    <!-- TAB 1: PROJECTILE MOTION SIMULATOR         -->
+    <!-- ========================================== -->
+    <div class="tab-pane active" id="tab-projectile">
+      
+      <!-- CORE1: Orientation -->
+      <section class="core-block" data-core="CORE1">
+        <span class="core-tag">CORE1 · ORIENTATION</span>
+        <h2>Governing Idea & Orthogonal Independence</h2>
+        <p>A projectile launched from origin $O(0,0)$ with velocity $u$ at angle $\theta$ moves simultaneously along two mutually perpendicular, independent axes. Because gravity acts purely downward, horizontal acceleration is zero while vertical acceleration is constant:</p>
+        <div class="formula-banner">
+          $$u_x = u \cos\theta, \quad a_x = 0 \qquad\text{and}\qquad u_y = u \sin\theta, \quad a_y = -g$$
+        </div>
+        <div class="evidence-citation">
+          Cited from scanned book <code>p1.pdf</code> p. 88 · Evidence Card: <code>EV-PHY-11-MIP-08-021</code>
+        </div>
+      </section>
+
+      <!-- Stage Grid: Simulation & Controls -->
+      <div class="stage-grid">
+        <div class="panel">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3>Interactive Parabolic Trajectory</h3>
+            <span style="font-size: 14px; color:var(--muted);">Parabola: y = x\tan\theta - \frac{gx^2}{2u^2\cos^2\theta}</span>
+          </div>
+          <div class="canvas-wrap">
+            <canvas id="projectileCanvas"></canvas>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button class="g9-btn primary" id="projLaunchBtn">🚀 Launch Simulation</button>
+            <button class="g9-btn" id="projResetBtn">↺ Reset</button>
+            <button class="g9-btn" id="projCompBtn" title="Test Complementary Angle (90 - θ)">⇄ Switch Angle (90° - θ)</button>
+          </div>
+        </div>
+
+        <!-- Telemetry & Parameters -->
+        <div class="panel">
+          <h3>Parameters & Controls</h3>
+          
+          <div class="control-row">
+            <div class="control-label">
+              <span>Launch Velocity (u)</span>
+              <span class="val" id="valU">20 m/s</span>
+            </div>
+            <input type="range" id="sliderU" min="5" max="50" value="20" step="1" aria-label="Launch Velocity">
+          </div>
+
+          <div class="control-row">
+            <div class="control-label">
+              <span>Launch Angle (θ)</span>
+              <span class="val" id="valTheta">45°</span>
+            </div>
+            <input type="range" id="sliderTheta" min="5" max="85" value="45" step="1" aria-label="Launch Angle">
+          </div>
+
+          <div class="control-row">
+            <div class="control-label">
+              <span>Gravity (g)</span>
+              <span class="val" id="valG">9.8 m/s²</span>
+            </div>
+            <input type="range" id="sliderG" min="5" max="15" value="9.8" step="0.2" aria-label="Gravity">
+          </div>
+
+          <hr style="border:0; border-top:1px solid var(--border); margin:6px 0;">
+
+          <h3>Live Telemetry (Calculated)</h3>
+          <div class="telemetry-grid">
+            <div class="telemetry-card">
+              <span class="telemetry-title">Time of Flight (T)</span>
+              <span class="telemetry-value" id="telemT">2.89 s</span>
+            </div>
+            <div class="telemetry-card">
+              <span class="telemetry-title">Max Height (H)</span>
+              <span class="telemetry-value" id="telemH">10.20 m</span>
+            </div>
+            <div class="telemetry-card">
+              <span class="telemetry-title">Horizontal Range (R)</span>
+              <span class="telemetry-value" id="telemR">40.82 m</span>
+            </div>
+            <div class="telemetry-card">
+              <span class="telemetry-title">Horizontal Speed (u_x)</span>
+              <span class="telemetry-value" id="telemUx">14.14 m/s</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CORE1A: Detailed Teaching & Worked Example -->
+      <section class="core-block" data-core="CORE1A">
+        <span class="core-tag">CORE1A · DETAILED TEACHING</span>
+        <h2>Scanned Illustration 1 Walkthrough</h2>
+        <p><strong>Problem Stem (scanned p. 90):</strong> <em>Assume that a ball is thrown from a field at a speed of 12.0 m/s and at an angle of 45° with the horizontal. At what distance will it hit the field again? Take g = 10.0 m/s².</em></p>
+        <div style="background:var(--card); padding:16px; border-radius:8px; display:flex; flex-direction:column; gap:8px;">
+          <div><strong>Step 1: Identify Formula for Range:</strong> $R = \frac{u^2 \sin(2\theta)}{g}$</div>
+          <div><strong>Step 2: Substitute Angle Factor:</strong> For $\theta = 45^\circ$, $2\theta = 90^\circ \implies \sin(90^\circ) = 1.0$.</div>
+          <div><strong>Step 3: Execute Numerical Solution:</strong> $R = \frac{(12.0\text{ m/s})^2 \times 1.0}{10.0\text{ m/s}^2} = \frac{144}{10} = 14.4\text{ m}$.</div>
+        </div>
+        <div class="misconception">
+          <strong>Common Misconception Alert:</strong> At the apex of flight, the total velocity is <em>not zero</em>! Only the vertical component $v_y = 0$, while the horizontal velocity $v_x = u\cos\theta$ remains fully active and constant.
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TAB 2: BANKED CURVED ROAD SIMULATOR        -->
+    <!-- ========================================== -->
+    <div class="tab-pane" id="tab-banking">
+
+      <section class="core-block" data-core="CORE1">
+        <span class="core-tag">CORE1 · ORIENTATION</span>
+        <h2>Curved Road Banking Dynamics (Figure 4.57)</h2>
+        <p>On a curved road banked at angle $\theta$, the normal force $\vec{N}$ is tilted inward, contributing to the required centripetal acceleration. Depending on the car's speed $v$, friction $f$ adapts direction:</p>
+        <div class="formula-banner">
+          $$\text{Horizontal: } N\sin\theta \mp f\cos\theta = \frac{mv^2}{r}, \qquad \text{Vertical: } N\cos\theta \pm f\sin\theta = mg$$
+        </div>
+        <div class="evidence-citation">
+          Cited from scanned book <code>p2.pdf</code> p. 138 · Evidence Card: <code>EV-PHY-11-MIP-09-017</code>
+        </div>
+      </section>
+
+      <div class="stage-grid">
+        <div class="panel">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3>Interactive Free-Body Force Diagram (FBD)</h3>
+            <span id="regimeBadge" style="font-size: 14px; font-weight:700; padding:4px 8px; border-radius:4px; background:var(--card); color:var(--warning);">Regime 1: Low Speed</span>
+          </div>
+          <div class="canvas-wrap">
+            <canvas id="bankingCanvas"></canvas>
+          </div>
+          <p id="regimeExplanation" style="font-size:13px; color:var(--muted);">At rest or low velocity, friction points upward along the incline to stop the vehicle from slipping down.</p>
+        </div>
+
+        <div class="panel">
+          <h3>Banking Parameters</h3>
+
+          <div class="control-row">
+            <div class="control-label">
+              <span>Vehicle Speed (v)</span>
+              <span class="val" id="valSpeed">15 m/s</span>
+            </div>
+            <input type="range" id="sliderSpeed" min="0" max="40" value="15" step="1" aria-label="Vehicle Speed">
+          </div>
+
+          <div class="control-row">
+            <div class="control-label">
+              <span>Banking Angle (θ)</span>
+              <span class="val" id="valBankAngle">20°</span>
+            </div>
+            <input type="range" id="sliderBankAngle" min="0" max="45" value="20" step="1" aria-label="Banking Angle">
+          </div>
+
+          <div class="control-row">
+            <div class="control-label">
+              <span>Curve Radius (r)</span>
+              <span class="val" id="valRadius">60 m</span>
+            </div>
+            <input type="range" id="sliderRadius" min="20" max="150" value="60" step="5" aria-label="Curve Radius">
+          </div>
+
+          <div class="control-row">
+            <div class="control-label">
+              <span>Friction Coefficient (μ)</span>
+              <span class="val" id="valMu">0.30</span>
+            </div>
+            <input type="range" id="sliderMu" min="0.0" max="0.8" value="0.30" step="0.05" aria-label="Friction Coefficient">
+          </div>
+
+          <hr style="border:0; border-top:1px solid var(--border); margin:6px 0;">
+
+          <h3>Dynamic Force Analysis</h3>
+          <div class="telemetry-grid">
+            <div class="telemetry-card">
+              <span class="telemetry-title">Ideal Speed (f=0)</span>
+              <span class="telemetry-value" id="telemOptSpeed">14.6 m/s</span>
+            </div>
+            <div class="telemetry-card">
+              <span class="telemetry-title">Friction Force (f)</span>
+              <span class="telemetry-value" id="telemFriction">+120 N</span>
+            </div>
+            <div class="telemetry-card">
+              <span class="telemetry-title">Normal Force (N)</span>
+              <span class="telemetry-value" id="telemNormal">10.4 kN</span>
+            </div>
+            <div class="telemetry-card">
+              <span class="telemetry-title">Max Safe Speed</span>
+              <span class="telemetry-value" id="telemMaxSpeed">23.8 m/s</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TAB 3: ACTIVE RECONSTRUCTION & PRACTICE    -->
+    <!-- ========================================== -->
+    <div class="tab-pane" id="tab-practice">
+      
+      <section class="core-block" data-core="CORE1B">
+        <span class="core-tag">CORE1B · RECONSTRUCTION</span>
+        <h2>Active Recall Task: The Independent Velocity Principle</h2>
+        <p>Explain why a bullet fired horizontally from a rifle and a bullet dropped vertically from the exact same height hit level ground at the identical instant (assuming negligible air drag).</p>
+        
+        <div class="attempt-box">
+          <label for="reconInput" style="font-size:13px; font-weight:600; color:var(--muted);">Write your physical reasoning before revealing the model verification:</label>
+          <textarea id="reconInput" class="attempt-input" placeholder="Type your answer here..."></textarea>
+          <button class="g9-btn primary" style="align-self:flex-start;" onclick="document.getElementById('reconAnswer').style.display='block'; if(window.renderAllMath) window.renderAllMath();">Check Understanding</button>
+        </div>
+
+        <div id="reconAnswer" style="display:none;" class="reveal-content">
+          <div class="formula-banner">
+            $$y(t) = h - \frac{1}{2}gt^2 \implies t_{\text{ground}} = \sqrt{\frac{2h}{g}}$$
+          </div>
+          <p><strong>Model Answer:</strong> Vertical motion is dictated exclusively by downward gravitational acceleration $g$. Because both bullets begin with zero initial vertical velocity ($u_y = 0$), their vertical positions at every instant follow $y(t) = h - \frac{1}{2}gt^2$. The horizontal velocity $u_x$ changes only horizontal displacement ($x = u_x t$) and has no bearing on vertical fall time.</p>
+        </div>
+      </section>
+
+      <section class="core-block" data-core="CORE2">
+        <span class="core-tag">CORE2 · PRACTICE</span>
+        <h2>Practice Problem with Progressive Hint Ladder</h2>
+        <p><strong>Question:</strong> A stunt motorcycle enters a flat curve of radius $50\text{ m}$. If the coefficient of static friction is $\mu_s = 0.50$, what is the maximum velocity the motorcycle can round the turn without skidding? (Take $g = 9.8\text{ m/s}^2$).</p>
+        
+        <details class="reveal-block">
+          <summary>💡 Hint 1: Governing Force Balance</summary>
+          <p class="reveal-content">On an unbanked flat road ($\theta = 0$), the only horizontal force providing centripetal acceleration is static friction: $f_s = \frac{mv^2}{r}$.</p>
+        </details>
+
+        <details class="reveal-block">
+          <summary>💡 Hint 2: Maximum Static Friction Limit</summary>
+          <p class="reveal-content">The maximum static friction before slipping is $f_{\max} = \mu_s N = \mu_s mg$. Equate this to required centripetal force: $\frac{mv_{\max}^2}{r} = \mu_s mg$.</p>
+        </details>
+
+        <details class="reveal-block">
+          <summary>🎯 Reveal Final Worked Solution</summary>
+          <div class="reveal-content">
+            <p>Cancelling mass $m$ gives: $v_{\max} = \sqrt{\mu_s r g}$.</p>
+            <p>Substitute parameters: $v_{\max} = \sqrt{0.50 \times 50 \times 9.8} = \sqrt{245} \approx 15.65\text{ m/s}$ ($56.3\text{ km/h}$).</p>
+          </div>
+        </details>
+      </section>
+
+    </div>
+
+  </main>
+
+  <script>
+    // Tab Switching Logic
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        setTimeout(renderAllMath, 50);
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabPanes.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+        if (btn.dataset.tab === 'tab-projectile') resizeProjCanvas();
+        if (btn.dataset.tab === 'tab-banking') resizeBankCanvas();
+      });
+    });
+
+    // Theme & Shell Controls
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.body.getAttribute('data-theme') === 'dark';
+      document.body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+      drawProjectile();
+      drawBanking();
+    });
+
+    let currentScale = 1.0;
+    document.getElementById('fontInc').addEventListener('click', () => {
+      currentScale = Math.min(1.3, currentScale + 0.1);
+      document.documentElement.style.setProperty('--font-scale', currentScale);
+    });
+    document.getElementById('fontDec').addEventListener('click', () => {
+      currentScale = Math.max(0.8, currentScale - 0.1);
+      document.documentElement.style.setProperty('--font-scale', currentScale);
+    });
+
+    document.getElementById('fullscreenToggle').addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    });
+
+    // ========================================================
+    // UNIT 1: PROJECTILE MOTION CANVAS SIMULATOR
+    // ========================================================
+    const projCanvas = document.getElementById('projectileCanvas');
+    const pCtx = projCanvas.getContext('2d');
+    let u = 20, thetaDeg = 45, g = 9.8;
+    let animTime = 0, isSimulating = false, animFrameId = null;
+
+    function resizeProjCanvas() {
+      const rect = projCanvas.parentElement.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      projCanvas.width = rect.width * dpr;
+      projCanvas.height = rect.height * dpr;
+      drawProjectile();
+    }
+    window.addEventListener('resize', () => {
+      resizeProjCanvas();
+      resizeBankCanvas();
+    });
+
+    function updateProjTelemetry() {
+      const thetaRad = thetaDeg * Math.PI / 180;
+      const T = (2 * u * Math.sin(thetaRad)) / g;
+      const H = (u * u * Math.sin(thetaRad) * Math.sin(thetaRad)) / (2 * g);
+      const R = (u * u * Math.sin(2 * thetaRad)) / g;
+      const ux = u * Math.cos(thetaRad);
+
+      document.getElementById('valU').textContent = u + ' m/s';
+      document.getElementById('valTheta').textContent = thetaDeg + '°';
+      document.getElementById('valG').textContent = g.toFixed(1) + ' m/s²';
+
+      document.getElementById('telemT').textContent = T.toFixed(2) + ' s';
+      document.getElementById('telemH').textContent = H.toFixed(2) + ' m';
+      document.getElementById('telemR').textContent = R.toFixed(2) + ' m';
+      document.getElementById('telemUx').textContent = ux.toFixed(2) + ' m/s';
+    }
+
+    function drawProjectile() {
+      const dpr = window.devicePixelRatio || 1;
+      const w = projCanvas.width / dpr;
+      const h = projCanvas.height / dpr;
+
+      pCtx.save();
+      pCtx.scale(dpr, dpr);
+      pCtx.clearRect(0, 0, w, h);
+
+      // Coordinate System mapping
+      const thetaRad = thetaDeg * Math.PI / 180;
+      const T = (2 * u * Math.sin(thetaRad)) / g;
+      const R = (u * u * Math.sin(2 * thetaRad)) / g;
+      const H = (u * u * Math.sin(thetaRad) * Math.sin(thetaRad)) / (2 * g);
+
+      const marginX = 40, marginY = 35;
+      const plotW = w - marginX * 2;
+      const plotH = h - marginY * 2;
+
+      const maxRangeScale = Math.max(50, R * 1.15);
+      const maxHeightScale = Math.max(15, H * 1.4);
+
+      const scaleX = plotW / maxRangeScale;
+      const scaleY = plotH / maxHeightScale;
+      const originX = marginX;
+      const originY = h - marginY;
+
+      // Draw Ground & Grid
+      pCtx.strokeStyle = '#334155';
+      pCtx.lineWidth = 1;
+      pCtx.beginPath();
+      pCtx.moveTo(originX - 10, originY);
+      pCtx.lineTo(w - marginX + 10, originY);
+      pCtx.stroke();
+
+      pCtx.fillStyle = '#64748b';
+      pCtx.font = '13px monospace';
+      pCtx.fillText('O (0,0)', originX - 15, originY + 18);
+      pCtx.fillText('R = ' + R.toFixed(1) + 'm', originX + R * scaleX - 20, originY + 18);
+
+      // Theoretical Parabolic Path
+      pCtx.strokeStyle = '#0284c7';
+      pCtx.lineWidth = 2.5;
+      pCtx.beginPath();
+      const steps = 100;
+      for (let i = 0; i <= steps; i++) {
+        const t = (i / steps) * T;
+        const px = u * Math.cos(thetaRad) * t;
+        const py = u * Math.sin(thetaRad) * t - 0.5 * g * t * t;
+        const cx = originX + px * scaleX;
+        const cy = originY - py * scaleY;
+        if (i === 0) pCtx.moveTo(cx, cy);
+        else pCtx.lineTo(cx, cy);
+      }
+      pCtx.stroke();
+
+      // Peak Indicator
+      const peakX = originX + (R / 2) * scaleX;
+      const peakY = originY - H * scaleY;
+      pCtx.fillStyle = '#f59e0b';
+      pCtx.beginPath();
+      pCtx.arc(peakX, peakY, 4, 0, Math.PI * 2);
+      pCtx.fill();
+      pCtx.fillText('Apex (H=' + H.toFixed(1) + 'm)', peakX - 35, peakY - 8);
+
+      // Simulation Ball & Live Vectors
+      const curT = Math.min(animTime, T);
+      const curX = u * Math.cos(thetaRad) * curT;
+      const curY = Math.max(0, u * Math.sin(thetaRad) * curT - 0.5 * g * curT * curT);
+      const ballCx = originX + curX * scaleX;
+      const ballCy = originY - curY * scaleY;
+
+      // Ball
+      pCtx.fillStyle = '#38bdf8';
+      pCtx.beginPath();
+      pCtx.arc(ballCx, ballCy, 6, 0, Math.PI * 2);
+      pCtx.fill();
+
+      // Vectors: vx, vy, v
+      const curVx = u * Math.cos(thetaRad);
+      const curVy = u * Math.sin(thetaRad) - g * curT;
+      const vScale = 1.8;
+
+      // Horizontal vx (green)
+      pCtx.strokeStyle = '#10b981';
+      pCtx.lineWidth = 2;
+      pCtx.beginPath();
+      pCtx.moveTo(ballCx, ballCy);
+      pCtx.lineTo(ballCx + curVx * vScale, ballCy);
+      pCtx.stroke();
+
+      // Vertical vy (orange)
+      pCtx.strokeStyle = '#f97316';
+      pCtx.beginPath();
+      pCtx.moveTo(ballCx, ballCy);
+      pCtx.lineTo(ballCx, ballCy - curVy * vScale);
+      pCtx.stroke();
+
+      pCtx.restore();
+    }
+
+    function animateProjectile() {
+      const thetaRad = thetaDeg * Math.PI / 180;
+      const T = (2 * u * Math.sin(thetaRad)) / g;
+      animTime += 0.025;
+      drawProjectile();
+      if (animTime < T) {
+        animFrameId = requestAnimationFrame(animateProjectile);
+      } else {
+        isSimulating = false;
+        animTime = T;
+        drawProjectile();
+      }
+    }
+
+    document.getElementById('projLaunchBtn').addEventListener('click', () => {
+      cancelAnimationFrame(animFrameId);
+      animTime = 0;
+      isSimulating = true;
+      animateProjectile();
+    });
+
+    document.getElementById('projResetBtn').addEventListener('click', () => {
+      cancelAnimationFrame(animFrameId);
+      isSimulating = false;
+      animTime = 0;
+      drawProjectile();
+    });
+
+    document.getElementById('projCompBtn').addEventListener('click', () => {
+      thetaDeg = 90 - thetaDeg;
+      document.getElementById('sliderTheta').value = thetaDeg;
+      updateProjTelemetry();
+      drawProjectile();
+    });
+
+    document.getElementById('sliderU').addEventListener('input', e => {
+      u = parseFloat(e.target.value);
+      updateProjTelemetry();
+      drawProjectile();
+    });
+    document.getElementById('sliderTheta').addEventListener('input', e => {
+      thetaDeg = parseFloat(e.target.value);
+      updateProjTelemetry();
+      drawProjectile();
+    });
+    document.getElementById('sliderG').addEventListener('input', e => {
+      g = parseFloat(e.target.value);
+      updateProjTelemetry();
+      drawProjectile();
+    });
+
+    // ========================================================
+    // UNIT 2: BANKED CURVED ROAD SIMULATOR
+    // ========================================================
+    const bankCanvas = document.getElementById('bankingCanvas');
+    const bCtx = bankCanvas.getContext('2d');
+    let speed = 15, bankAngleDeg = 20, radius = 60, mu = 0.30;
+    const carMass = 1000; // 1000 kg
+
+    function resizeBankCanvas() {
+      const rect = bankCanvas.parentElement.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      bankCanvas.width = rect.width * dpr;
+      bankCanvas.height = rect.height * dpr;
+      drawBanking();
+    }
+
+    function updateBankTelemetry() {
+      const thetaRad = bankAngleDeg * Math.PI / 180;
+      const gLocal = 9.8;
+      const vOpt = Math.sqrt(radius * gLocal * Math.tan(thetaRad));
+      
+      // Critical speeds with friction
+      const denomMax = 1 - mu * Math.tan(thetaRad);
+      const vMax = denomMax > 0 ? Math.sqrt(radius * gLocal * (Math.tan(thetaRad) + mu) / denomMax) : Infinity;
+
+      // Friction force magnitude calculation
+      // N * sin(theta) - f * cos(theta) = m * v^2 / r
+      // N * cos(theta) + f * sin(theta) = m * g
+      // Solving: f = m * (g * sin(theta) - (v^2/r) * cos(theta))
+      const frictionSigned = carMass * (gLocal * Math.sin(thetaRad) - (speed * speed / radius) * Math.cos(thetaRad));
+      const normalForce = carMass * (gLocal * Math.cos(thetaRad) + (speed * speed / radius) * Math.sin(thetaRad));
+
+      document.getElementById('valSpeed').textContent = speed + ' m/s';
+      document.getElementById('valBankAngle').textContent = bankAngleDeg + '°';
+      document.getElementById('valRadius').textContent = radius + ' m';
+      document.getElementById('valMu').textContent = mu.toFixed(2);
+
+      document.getElementById('telemOptSpeed').textContent = vOpt.toFixed(1) + ' m/s';
+      document.getElementById('telemNormal').textContent = (normalForce / 1000).toFixed(1) + ' kN';
+      document.getElementById('telemFriction').textContent = Math.abs(frictionSigned / 1000).toFixed(2) + ' kN ' + (frictionSigned > 0 ? '(Up)' : '(Down)');
+      document.getElementById('telemMaxSpeed').textContent = vMax === Infinity ? 'No limit' : vMax.toFixed(1) + ' m/s';
+
+      // Regime Badge
+      const badge = document.getElementById('regimeBadge');
+      const expl = document.getElementById('regimeExplanation');
+      if (Math.abs(speed - vOpt) < 0.5) {
+        badge.textContent = 'Ideal Speed (f = 0)';
+        badge.style.color = 'var(--success)';
+        expl.textContent = 'Normal force alone provides full centripetal acceleration. Zero lateral tire friction!';
+      } else if (speed < vOpt) {
+        badge.textContent = 'Low Speed: f Upwards';
+        badge.style.color = 'var(--warning)';
+        expl.textContent = 'Vehicle tends to slip downhill; static friction points up the incline to maintain elevation.';
+      } else if (speed <= vMax) {
+        badge.textContent = 'High Speed: f Downwards';
+        badge.style.color = 'var(--accent)';
+        expl.textContent = 'Vehicle tends to skid outwards; static friction pulls down into the curve to assist turning.';
+      } else {
+        badge.textContent = 'SKIDDING OUTWARD!';
+        badge.style.color = 'var(--danger)';
+        expl.textContent = 'Velocity exceeds maximum allowable friction threshold. Lateral skid inevitable!';
+      }
+    }
+
+    function drawBanking() {
+      const dpr = window.devicePixelRatio || 1;
+      const w = bankCanvas.width / dpr;
+      const h = bankCanvas.height / dpr;
+
+      bCtx.save();
+      bCtx.scale(dpr, dpr);
+      bCtx.clearRect(0, 0, w, h);
+
+      const thetaRad = bankAngleDeg * Math.PI / 180;
+      const centerX = w * 0.45;
+      const centerY = h * 0.65;
+      const inclineLength = 260;
+
+      // Draw Banked Incline
+      const x1 = centerX - Math.cos(thetaRad) * (inclineLength * 0.6);
+      const y1 = centerY + Math.sin(thetaRad) * (inclineLength * 0.6);
+      const x2 = centerX + Math.cos(thetaRad) * (inclineLength * 0.4);
+      const y2 = centerY - Math.sin(thetaRad) * (inclineLength * 0.4);
+
+      // Incline wedge
+      bCtx.fillStyle = '#1e293b';
+      bCtx.strokeStyle = '#475569';
+      bCtx.lineWidth = 2;
+      bCtx.beginPath();
+      bCtx.moveTo(x1, y1);
+      bCtx.lineTo(x2, y2);
+      bCtx.lineTo(x2, y1);
+      bCtx.closePath();
+      bCtx.fill();
+      bCtx.stroke();
+
+      // Angle arc θ
+      bCtx.strokeStyle = '#38bdf8';
+      bCtx.beginPath();
+      bCtx.arc(x1, y1, 45, 0, -thetaRad, true);
+      bCtx.stroke();
+      bCtx.fillStyle = '#38bdf8';
+      bCtx.font = '13px monospace';
+      bCtx.fillText('θ = ' + bankAngleDeg + '°', x1 + 52, y1 - 10);
+
+      // Car on the Incline (centered)
+      const carX = centerX;
+      const carY = centerY - 12;
+      bCtx.save();
+      bCtx.translate(carX, carY);
+      bCtx.rotate(-thetaRad);
+
+      bCtx.fillStyle = '#3b82f6';
+      bCtx.fillRect(-25, -18, 50, 18);
+      bCtx.fillStyle = '#0f172a';
+      bCtx.fillRect(-20, -2, 12, 6);
+      bCtx.fillRect(8, -2, 12, 6);
+      bCtx.restore();
+
+      // Force Vectors from center of car
+      // 1. Weight mg (Down)
+      bCtx.strokeStyle = '#ef4444';
+      bCtx.lineWidth = 2.5;
+      bCtx.beginPath();
+      bCtx.moveTo(carX, carY);
+      bCtx.lineTo(carX, carY + 60);
+      bCtx.stroke();
+      bCtx.fillStyle = '#ef4444';
+      bCtx.fillText('mg', carX + 8, carY + 55);
+
+      // 2. Normal force N (perpendicular to incline)
+      const normLen = 65;
+      const nx = -Math.sin(thetaRad) * normLen;
+      const ny = -Math.cos(thetaRad) * normLen;
+      bCtx.strokeStyle = '#10b981';
+      bCtx.beginPath();
+      bCtx.moveTo(carX, carY);
+      bCtx.lineTo(carX + nx, carY + ny);
+      bCtx.stroke();
+      bCtx.fillStyle = '#10b981';
+      bCtx.fillText('N', carX + nx - 12, carY + ny - 4);
+
+      // 3. Friction Force f (along incline)
+      const thetaR = bankAngleDeg * Math.PI / 180;
+      const vOpt = Math.sqrt(radius * 9.8 * Math.tan(thetaR));
+      const fDiff = speed - vOpt;
+      if (Math.abs(fDiff) > 0.5) {
+        const fDir = fDiff > 0 ? 1 : -1; // Downhill if v > vOpt, Uphill if v < vOpt
+        const fLen = Math.min(50, Math.abs(fDiff) * 3);
+        const fx = fDir * Math.cos(thetaRad) * fLen;
+        const fy = -fDir * Math.sin(thetaRad) * fLen;
+
+        bCtx.strokeStyle = '#f59e0b';
+        bCtx.beginPath();
+        bCtx.moveTo(carX, carY);
+        bCtx.lineTo(carX + fx, carY + fy);
+        bCtx.stroke();
+        bCtx.fillStyle = '#f59e0b';
+        bCtx.fillText(fDir > 0 ? 'f (inward)' : 'f (upward)', carX + fx + 6, carY + fy + 4);
+      }
+
+      bCtx.restore();
+    }
+
+    document.getElementById('sliderSpeed').addEventListener('input', e => {
+      speed = parseFloat(e.target.value);
+      updateBankTelemetry();
+      drawBanking();
+    });
+    document.getElementById('sliderBankAngle').addEventListener('input', e => {
+      bankAngleDeg = parseFloat(e.target.value);
+      updateBankTelemetry();
+      drawBanking();
+    });
+    document.getElementById('sliderRadius').addEventListener('input', e => {
+      radius = parseFloat(e.target.value);
+      updateBankTelemetry();
+      drawBanking();
+    });
+    document.getElementById('sliderMu').addEventListener('input', e => {
+      mu = parseFloat(e.target.value);
+      updateBankTelemetry();
+      drawBanking();
+    });
+
+    // Initial Render
+    setTimeout(() => {
+      resizeProjCanvas();
+      updateProjTelemetry();
+      resizeBankCanvas();
+      updateBankTelemetry();
+    }, 100);
+
+    /* Math Typography & KaTeX Auto-Rendering */
+    function renderAllMath() {
+      if (window.renderMathInElement) {
+        try {
+          window.renderMathInElement(document.body, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\\[', right: '\\]', display: true },
+              { left: '\\(', right: '\\)', display: false }
+            ],
+            ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'canvas'],
+            throwOnError: false
+          });
+          return;
+        } catch (e) {
+          console.warn('KaTeX render error:', e);
+        }
+      }
+      fallbackRenderMath(document.body);
+    }
+
+    function fallbackRenderMath(root) {
+      if (!root) root = document.body;
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+      const textNodes = [];
+      let node;
+      while (node = walker.nextNode()) {
+        if (node.parentElement && !['SCRIPT', 'STYLE', 'TEXTAREA', 'CODE', 'CANVAS'].includes(node.parentElement.tagName)) {
+          if (node.nodeValue.includes('$') || node.nodeValue.includes('\\')) {
+            textNodes.push(node);
+          }
+        }
+      }
+
+      textNodes.forEach(tNode => {
+        let val = tNode.nodeValue;
+        if (!val.includes('$') && !val.includes('\\')) return;
+        val = val.replace(/\$\$([\s\S]+?)\$\$/g, (m, math) => `<span class="math-display">${formatMathString(math)}</span>`);
+        val = val.replace(/\$([^\$]+?)\$/g, (m, math) => `<span class="math-inline">${formatMathString(math)}</span>`);
+        if (val !== tNode.nodeValue) {
+          const span = document.createElement('span');
+          span.innerHTML = val;
+          tNode.parentNode.replaceChild(span, tNode);
+        }
+      });
+
+      document.querySelectorAll('.formula-banner').forEach(fb => {
+        if (!fb.querySelector('.katex') && (fb.innerHTML.includes('\\') || fb.innerHTML.includes('$$'))) {
+          let raw = fb.innerHTML.replace(/\$\$/g, '').trim();
+          fb.innerHTML = `<span class="math-display">${formatMathString(raw)}</span>`;
+        }
+      });
+    }
+
+    function formatMathString(str) {
+      return str
+        .replace(/\\text\{([^\}]+)\}/g, '$1')
+        .replace(/\\implies/g, '&rArr;')
+        .replace(/\\approx/g, '&asymp;')
+        .replace(/\\times/g, '&times;')
+        .replace(/\\le/g, '&le;')
+        .replace(/\\ge/g, '&ge;')
+        .replace(/\\mp/g, '&mp;')
+        .replace(/\\pm/g, '&plusmn;')
+        .replace(/\\theta/g, '<em>&theta;</em>')
+        .replace(/\\mu_s/g, '<em>&mu;</em><sub>s</sub>')
+        .replace(/\\mu/g, '<em>&mu;</em>')
+        .replace(/\\cos/g, 'cos')
+        .replace(/\\sin/g, 'sin')
+        .replace(/\\tan/g, 'tan')
+        .replace(/\\quad/g, '&emsp;')
+        .replace(/\\qquad/g, '&emsp;&emsp;')
+        .replace(/\\vec\{([^\}]+)\}/g, '<span style="text-decoration:overline; font-weight:bold;">$1</span>')
+        .replace(/\\frac\{([^\}]+)\}\{([^\}]+)\}/g, '<span class="math-frac"><span class="math-num">$1</span><span class="math-denom">$2</span></span>')
+        .replace(/\\sqrt\{([^\}]+)\}/g, '<span class="math-sqrt-wrap">&radic;<span class="math-sqrt">$1</span></span>')
+        .replace(/\^2/g, '&sup2;')
+        .replace(/\^3/g, '&sup3;')
+        .replace(/\^\{([^\}]+)\}/g, '<sup>$1</sup>')
+        .replace(/_\{([^\}]+)\}/g, '<sub>$1</sub>')
+        .replace(/_([a-zA-Z0-9])/g, '<sub>$1</sub>');
+    }
+
+    // Details elements toggle listener for hint ladder
+    document.querySelectorAll('details').forEach(d => {
+      d.addEventListener('toggle', () => {
+        if (d.open) setTimeout(renderAllMath, 50);
+      });
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderAllMath();
+      let pollCount = 0;
+      const poll = setInterval(() => {
+        pollCount++;
+        if (window.renderMathInElement) {
+          clearInterval(poll);
+          renderAllMath();
+        } else if (pollCount > 20) {
+          clearInterval(poll);
+        }
+      }, 100);
+    });
+  </script>
+<script id="pr375-u4-remediation-script">
+(() => {
+  const humanize = (value) => String(value || '')
+    .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+    .replace(/[_-]+/g, ' ')
+    .replace(/\b(vec)([ab])\b/gi, 'vector $2')
+    .replace(/\bproj\b/gi, 'projectile')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const explicitNames = {
+    mass1: 'Mass m1 in kilograms', mass2: 'Mass m2 in kilograms',
+    vecA: 'Vector A', vecB: 'Vector B',
+    projU: 'Projectile launch speed', projAngle: 'Projectile launch angle',
+    'jump-select': 'Jump to question', search: 'Search questions',
+    searchInput: 'Search questions', questionSearch: 'Search questions'
+  };
+
+  const hasLabel = (el) => {
+    if (el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.title) return true;
+    if (el.id && document.querySelector(`label[for="${CSS.escape(el.id)}"]`)) return true;
+    return !!el.closest('label');
+  };
+
+  document.querySelectorAll('input, select, textarea').forEach((el, index) => {
+    if (hasLabel(el)) return;
+    let name = explicitNames[el.id] || el.getAttribute('placeholder') || el.getAttribute('name') || el.id;
+    if (!name) {
+      const nearby = el.parentElement?.textContent?.trim();
+      if (nearby && nearby.length <= 100) name = nearby;
+    }
+    name = humanize(name) || `${el.tagName.toLowerCase()} ${index + 1}`;
+    el.setAttribute('aria-label', name);
+  });
+
+  document.querySelectorAll('button').forEach(btn => {
+    if (btn.textContent.trim().toLowerCase() === 'clear') btn.classList.add('u4-clear-button');
+  });
+
+  const syncOptions = () => {
+    document.querySelectorAll('.opt-btn').forEach(btn => {
+      const correct = btn.classList.contains('selected-correct');
+      const incorrect = btn.classList.contains('selected-incorrect');
+      btn.setAttribute('aria-pressed', correct || incorrect ? 'true' : 'false');
+      const base = btn.getAttribute('data-u4-base-label') || btn.getAttribute('aria-label') || btn.textContent.trim();
+      if (!btn.hasAttribute('data-u4-base-label')) btn.setAttribute('data-u4-base-label', base);
+      btn.setAttribute('aria-label', `${base}${correct ? ' — Correct' : incorrect ? ' — Incorrect' : ''}`);
+    });
+  };
+  syncOptions();
+
+  const syncTabs = () => {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.setAttribute('role', 'tab');
+      const active = btn.classList.contains('active') || btn.classList.contains('tab-btn-active') || btn.getAttribute('aria-current') === 'page';
+      btn.setAttribute('aria-selected', active ? 'true' : 'false');
+      if (btn.parentElement && !btn.parentElement.hasAttribute('role')) btn.parentElement.setAttribute('role', 'tablist');
+    });
+  };
+  syncTabs();
+
+  const figureName = (el, fallback) => {
+    const scope = el.closest('figure, section, article, .card, .panel, .simulator, .canvas-container') || el.parentElement;
+    const caption = scope?.querySelector('figcaption, h1, h2, h3, h4, .title, [class*="title"]');
+    const txt = caption?.textContent?.replace(/\s+/g, ' ').trim();
+    return txt && txt.length <= 120 ? txt : fallback;
+  };
+
+  document.querySelectorAll('svg').forEach(svg => {
+    if (svg.hasAttribute('aria-label') || svg.hasAttribute('aria-labelledby') || svg.hasAttribute('aria-hidden') || svg.querySelector('title')) return;
+    const control = svg.closest('a, button');
+    if (control && control.textContent.trim()) {
+      svg.setAttribute('aria-hidden', 'true');
+      svg.setAttribute('focusable', 'false');
+    } else {
+      svg.setAttribute('role', 'img');
+      svg.setAttribute('aria-label', figureName(svg, 'Physics diagram'));
+    }
+  });
+
+  document.querySelectorAll('canvas').forEach(canvas => {
+    if (canvas.hasAttribute('aria-label') || canvas.hasAttribute('aria-labelledby') || canvas.hasAttribute('aria-hidden')) return;
+    canvas.setAttribute('role', 'img');
+    canvas.setAttribute('aria-label', figureName(canvas, 'Interactive physics simulation'));
+  });
+
+  if (!document.querySelector('main, [role="main"]')) {
+    const mainCandidate = document.querySelector('.app-container, .container, .page-shell, #app');
+    if (mainCandidate) mainCandidate.setAttribute('role', 'main');
+  }
+
+  const observer = new MutationObserver(() => { syncOptions(); syncTabs(); });
+  observer.observe(document.documentElement, { subtree: true, attributes: true, attributeFilter: ['class', 'aria-current'] });
+})();
+</script>
+<script id="pr375-u4-dynamic-remediation">
+(() => {
+  const textName = (el, fallback) => {
+    const scope = el.closest('figure, section, article, .panel, .card, .simulator, .canvas-wrap, .canvas-container') || el.parentElement;
+    const title = scope?.querySelector('figcaption, h1, h2, h3, h4, .title, [class*="title"]');
+    const text = title?.textContent?.replace(/\s+/g, ' ').trim();
+    return text && text.length <= 140 ? text : fallback;
+  };
+
+  const nameFigures = (root = document) => {
+    const nodes = [];
+    if (root.nodeType === 1 && root.matches?.('svg, canvas')) nodes.push(root);
+    root.querySelectorAll?.('svg, canvas').forEach(el => nodes.push(el));
+    nodes.forEach(el => {
+      if (el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.getAttribute('aria-hidden') || el.querySelector?.('title')) return;
+      const control = el.closest('a, button');
+      if (control && control.textContent.trim()) {
+        el.setAttribute('aria-hidden', 'true');
+        el.setAttribute('focusable', 'false');
+        return;
+      }
+      el.setAttribute('role', 'img');
+      el.setAttribute('aria-label', textName(el, el.tagName.toLowerCase() === 'canvas' ? 'Interactive physics simulation' : 'Physics diagram'));
+    });
+  };
+
+  const nameControls = (root = document) => {
+    const nodes = [];
+    if (root.nodeType === 1 && root.matches?.('input, select, textarea')) nodes.push(root);
+    root.querySelectorAll?.('input, select, textarea').forEach(el => nodes.push(el));
+    nodes.forEach((el, index) => {
+      const has = el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.title || el.closest('label') || (el.id && document.querySelector(`label[for="${CSS.escape(el.id)}"]`));
+      if (has) return;
+      const nearby = el.closest('.control-row, .form-group, .field, .panel, .card')?.querySelector('.control-label, label, h3, h4');
+      const raw = el.getAttribute('placeholder') || el.getAttribute('name') || el.id || nearby?.textContent || `${el.tagName.toLowerCase()} ${index + 1}`;
+      el.setAttribute('aria-label', String(raw).replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim());
+    });
+  };
+
+  const sync = root => { nameFigures(root); nameControls(root); };
+  sync(document);
+  new MutationObserver(records => {
+    for (const record of records) for (const node of record.addedNodes) if (node.nodeType === 1) sync(node);
+  }).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
+<script id="pr375-u4-math-reflow-script">
+(() => {
+  const syncScrollableFormulae = () => {
+    document.querySelectorAll('.formula-banner').forEach((el) => {
+      const needsScroll = el.scrollWidth > el.clientWidth + 1;
+      if (needsScroll) {
+        el.tabIndex = 0;
+        el.setAttribute('role', 'region');
+        el.setAttribute('aria-label', 'Scrollable formula');
+      } else if (el.getAttribute('aria-label') === 'Scrollable formula') {
+        el.removeAttribute('tabindex');
+        el.removeAttribute('role');
+        el.removeAttribute('aria-label');
+      }
+    });
+  };
+  requestAnimationFrame(() => requestAnimationFrame(syncScrollableFormulae));
+  setTimeout(syncScrollableFormulae, 120);
+  addEventListener('resize', syncScrollableFormulae, { passive: true });
+})();
+</script>
+</body>
+</html>

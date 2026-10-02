@@ -1,0 +1,1996 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>GRADE 9 PHYSICS - Motion in a Plane SBA Master Suite | 12.7" Tablet Standalone Edition</title>
+  <meta name="description" content="Complete 12.7-inch tablet study suite for Scenario-Based Assessment (SBA) in 2D Projectile Motion: SBA-03, 04, 05, 06, 07, 21, 22. Trajectory equation, launch from height, inclined planes, and time-independent geometry.">
+  <style>
+/* ==========================================================================
+   Physics: SBA Master Suite 12.7" Tablet Standalone Stylesheet
+   WCAG 2.5.5 >= 48px touch targets, >= 120px textareas, no micro-fonts (<13.5px)
+   100% Offline Standalone · Dark/Light Mode · Responsive Stage/Support Grid
+   ========================================================================== */
+
+:root {
+  --tab12-container-max: 1400px;
+  --tab12-touch-min: 48px;
+  --tab12-base-font: 16px;
+  --tab12-radius-sm: 8px;
+  --tab12-radius-md: 12px;
+  --tab12-radius-lg: 16px;
+
+  --bg-app: #080d1a;
+  --bg-surface: #0f172a;
+  --bg-card: #152238;
+  --bg-card-subtle: #1a2942;
+  --border: #263859;
+  --border-light: #334b75;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.25);
+  --success: #34d399;
+  --warning: #f59e0b;
+  --danger: #f87171;
+  --purple: #c084fc;
+}
+
+[data-theme="light"] {
+  --bg-app: #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f8fafc;
+  --border: #cbd5e1;
+  --border-light: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --accent: #0284c7;
+  --accent-glow: rgba(2, 132, 199, 0.15);
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --purple: #7e22ce;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--tab12-base-font);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-app);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+button, .btn, .tab-btn, summary {
+  min-height: var(--tab12-touch-min);
+  min-width: var(--tab12-touch-min);
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--tab12-radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: all 0.18s ease;
+  border: 1px solid transparent;
+}
+
+button:focus-visible, .btn:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+textarea.tablet-safe-input {
+  min-height: 120px;
+  width: 100%;
+  padding: 14px;
+  font-family: monospace, inherit;
+  font-size: 14.5px;
+  line-height: 1.5;
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  resize: vertical;
+  display: block;
+}
+
+textarea.tablet-safe-input:focus {
+  border-color: var(--accent);
+  background-color: var(--bg-card);
+}
+
+header.app-header {
+  background-color: var(--bg-surface);
+  border-bottom: 1.5px solid var(--border);
+  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.header-inner {
+  max-width: var(--tab12-container-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header-brand h1 {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.subject-badge {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: rgba(56, 189, 248, 0.15);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  font-weight: 700;
+}
+
+.theme-toggle-btn {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+}
+
+nav.tab-nav {
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 24px 0 24px;
+  overflow-x: auto;
+}
+
+.tab-nav-inner {
+  max-width: var(--tab12-container-max);
+  margin: 0 auto;
+  display: flex;
+  gap: 8px;
+}
+
+.tab-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: var(--tab12-radius-sm) var(--tab12-radius-sm) 0 0;
+  padding: 12px 18px;
+  white-space: nowrap;
+}
+
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  background: var(--bg-app);
+}
+
+main.layout-container {
+  max-width: var(--tab12-container-max);
+  margin: 20px auto;
+  padding: 0 20px;
+  width: 100%;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 24px;
+}
+
+@media (max-width: 1040px) {
+  main.layout-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stage-area {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.content-card {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.content-card h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.content-card h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 18px 0 10px 0;
+  color: var(--accent);
+}
+
+.formula-box {
+  background: var(--bg-card-subtle);
+  border-left: 4px solid var(--accent);
+  padding: 14px 18px;
+  border-radius: 0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;
+  margin: 14px 0;
+  font-family: monospace;
+  font-size: 15px;
+  color: var(--text-primary);
+}
+
+.q-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+.q-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.q-badge {
+  background: rgba(192, 132, 252, 0.15);
+  border: 1px solid var(--purple);
+  color: var(--purple);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tag-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.q-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.q-prompt {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+
+details.solution-detail {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--tab12-radius-sm);
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+details.solution-detail summary {
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.02);
+  color: var(--accent);
+  user-select: none;
+}
+
+.solution-content {
+  padding: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 14.5px;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.support-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.support-widget {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 20px;
+}
+
+.support-widget h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.calc-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.calc-input-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.calc-input-group input {
+  width: 100%;
+  min-height: 48px;
+  padding: 8px 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  color: var(--text-primary);
+  font-size: 14.5px;
+}
+
+.calc-result {
+  background: rgba(56, 189, 248, 0.1);
+  border: 1.5px solid var(--accent);
+  padding: 12px;
+  border-radius: var(--tab12-radius-sm);
+  font-weight: 700;
+  color: var(--accent);
+  text-align: center;
+  font-size: 14.5px;
+  margin-top: 12px;
+}
+  </style>
+<style id="pr375-u4-remediation">
+/* PR #375 U4 remediation: accessibility, reflow and alternate viewports. */
+*, *::before, *::after { box-sizing: border-box; }
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid #38bdf8 !important;
+  outline-offset: 2px !important;
+}
+img, svg, canvas { max-width: 100%; }
+input, select, textarea { max-width: 100%; }
+::placeholder { color: #94a3b8 !important; opacity: 1 !important; }
+[data-theme="light"] ::placeholder { color: #475569 !important; }
+.u4-clear-button { color: #f8fafc !important; }
+[data-theme="light"] .u4-clear-button { color: #0f172a !important; }
+
+/* Never communicate correctness by colour alone. */
+.opt-btn.selected-correct::after {
+  content: " ✓ Correct";
+  margin-inline-start: .4rem;
+  font-weight: 800;
+}
+.opt-btn.selected-incorrect::after {
+  content: " ✕ Incorrect";
+  margin-inline-start: .4rem;
+  font-weight: 800;
+}
+
+/* Contrast repairs for the learner-visible light theme. */
+[data-theme="light"] .step-content-calc {
+  color: #7c2d12 !important;
+  background: #fff7ed !important;
+  border: 1px solid #c2410c !important;
+}
+[data-theme="light"] .answer-banner,
+[data-theme="light"] .badge-success,
+[data-theme="light"] .saved-pill {
+  color: #065f46 !important;
+}
+[data-theme="light"] .badge-warning,
+[data-theme="light"] .hint-tag,
+[data-theme="light"] .diag-header-another {
+  color: #7c2d12 !important;
+}
+[data-theme="light"] .step-label,
+[data-theme="light"] details > summary {
+  color: #075985 !important;
+}
+[data-theme="light"] .formula-box,
+[data-theme="light"] .math-banner {
+  color: #422006 !important;
+  background: #fef3c7 !important;
+  border-color: #92400e !important;
+}
+[data-theme="light"] footer { color: #475569 !important; }
+
+/* Default dark-theme contrast repairs from U4. */
+html[data-theme="dark"] .step-label { color: #7dd3fc !important; }
+html[data-theme="dark"] details > summary { color: #7dd3fc !important; }
+.q-count, .open-btn { color: #93c5fd !important; }
+.tag-2d, .tag-1d, .tag-vec, .tag-ncert, .tag-sba, .tag-proj, .tag-cons { color: #ffffff !important; }
+footer { color: #94a3b8 !important; }
+
+/* The offline 1D master lost Tailwind preflight + custom theme utilities. */
+body.u4-tailwind-offline {
+  margin: 0 !important;
+  background: #090d16 !important;
+  color: #f1f5f9 !important;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+.u4-tailwind-offline.bg-background, .u4-tailwind-offline .bg-background { background-color: #090d16 !important; }
+.u4-tailwind-offline .bg-card { background-color: #111827 !important; }
+.u4-tailwind-offline .border-border { border-color: #334155 !important; }
+.u4-tailwind-offline .bg-slate-950\/90 { background-color: rgba(2, 6, 23, .94) !important; }
+.u4-tailwind-offline .bg-slate-900 { background-color: #0f172a !important; }
+.u4-tailwind-offline .bg-slate-800 { background-color: #1e293b !important; }
+.u4-tailwind-offline .max-w-7xl { max-width: 80rem !important; }
+.u4-tailwind-offline .overflow-x-auto { overflow-x: auto !important; }
+.u4-tailwind-offline .whitespace-nowrap { white-space: nowrap !important; }
+.u4-tailwind-offline .font-sans { font-family: ui-sans-serif, system-ui, sans-serif !important; }
+.u4-tailwind-offline .text-slate-500,
+.u4-tailwind-offline .text-slate-600 { color: #cbd5e1 !important; }
+.u4-tailwind-offline .text-slate-400 { color: #a8b5c7 !important; }
+.u4-tailwind-offline header { max-width: 100%; }
+
+/* Reflow at phone width and at a 200% zoom-equivalent viewport. */
+@media (max-width: 700px) {
+  header.sticky, .sticky-header, .top-nav.sticky { position: static !important; top: auto !important; }
+}
+@media (max-width: 480px) {
+  .header-actions,
+  .g9-nav-group,
+  .g9-header-actions,
+  .top-nav-header,
+  .course-badge-row,
+  .workspace-title-row {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-wrap: wrap !important;
+  }
+  .g9-block, nav, ol, ul, main, section, article, .app-container, .container {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  ol, ul { padding-inline-start: 1.5rem !important; }
+  #jump-select { width: 100% !important; max-width: 100% !important; }
+  .tab-btn { white-space: normal !important; min-width: 0 !important; flex: 1 1 140px !important; }
+  .tabs, .tab-strip, .tab-nav, .tab-bar, .g9-tabs, [class*="tabs-row"] {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .g9-nav-group > *, .header-actions > * { max-width: 100% !important; }
+  pre { white-space: pre-wrap !important; overflow-wrap: anywhere !important; max-width: 100% !important; }
+  table { display: block; max-width: 100% !important; overflow-x: auto !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (forced-colors: active) {
+  svg text { fill: CanvasText !important; stroke: transparent !important; }
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 3px solid Highlight !important;
+  }
+}
+</style>
+<style id="pr375-u4-residual-remediation">
+@media (max-width: 480px) {
+  /* Generated CORE1A section-route pills used 24rem + padding, producing ~467px boxes. */
+  [data-g9-section-route] a,
+  [data-g9-concept-route] a,
+  article[data-g9-role="CORE1A"] > .slot-identity [data-g9-section-route] a {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    line-height: 1.4 !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  /* Consolidated and interactive headers must reflow as complete units, not just their children. */
+  .header-inner,
+  header.g9-shell {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+  }
+  .header-inner > *,
+  header.g9-shell > .g9-nav-group {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .header-brand,
+  .header-brand h1,
+  .header-actions,
+  header.g9-shell .g9-nav-group,
+  header.g9-shell .g9-breadcrumb {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+  }
+  .header-brand h1 { align-items: flex-start !important; }
+  .header-actions { width: 100% !important; justify-content: flex-start !important; }
+  header.g9-shell { padding-block: 8px !important; }
+  header.g9-shell .g9-breadcrumb { flex: 1 1 100% !important; overflow-wrap: anywhere !important; }
+}
+</style>
+<style id="pr375-u1-remediation">
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%} body{overflow-wrap:anywhere} p,li{line-height:1.4}
+:where(p,li,label,button,input,select,textarea,summary,td,th,figcaption,.btn,.q-badge,.tag-pill,.hint-badge,.hint-tag,.subject-badge,.step-label,.diag-header,.formula-box,#saveStatus,.save-status,.tag,.q-count,.open-btn,.stat .label,section.section-header h2,.study-kicker,.brand-badge,.hero-pill,.badge,.core-tag,.telemetry-title,.control-label,.card-action,.breadcrumb){font-size:max(14px,1em)!important}
+:where(a[href="index.html"],header a,nav a,.breadcrumb a,a.g9-bridge-link,[data-g9-block="entry_assumptions"] a){min-height:48px!important;min-width:48px!important;display:inline-flex!important;align-items:center!important;justify-content:center;padding-block:10px!important;box-sizing:border-box!important}
+@media(min-width:1100px){article[data-g9-role="CORE1A"] .g9-split{grid-template-columns:minmax(0,1fr)!important}article[data-g9-role="CORE1A"] .g9-col-support{position:static!important;top:auto!important}}
+article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;line-height:1.35!important;min-height:48px!important}
+
+.badge,.study-kicker{font-size:14px!important}
+</style>
+<style id="u2-practice-hub-target">
+a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center}
+</style>
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <h1>
+          <span>🎯</span> Motion in a Plane · SBA Master Suite
+          <span class="subject-badge">SBA 03–22 · 12.7" Tablet</span>
+        </h1>
+      </div>
+      <div class="header-actions" style="display:flex;align-items:center;gap:10px;">
+        <a href="index.html" class="nav-hub-btn" aria-label="Back to Practice Hub" title="Back to Practice Hub" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 16px;border-radius:8px;background:var(--bg-card,#1e293b);color:var(--text-primary,#f8fafc);border:1.5px solid var(--border,#334155);font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;white-space:nowrap;">← Practice Hub</a>
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">🌓 Mode</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tab-nav">
+    <div class="tab-nav-inner">
+      <button class="tab-btn active" onclick="switchTab('tab-sba03')">SBA-03 Bridge</button>
+      <button class="tab-btn" onclick="switchTab('tab-sba04')">SBA-04 Range Opt</button>
+      <button class="tab-btn" onclick="switchTab('tab-sba05')">SBA-05 Point Velocity</button>
+      <button class="tab-btn" onclick="switchTab('tab-sba06')">SBA-06 Path Without Time</button>
+      <button class="tab-btn" onclick="switchTab('tab-sba07')">SBA-07 Height Launch</button>
+      <button class="tab-btn" onclick="switchTab('tab-sba21')">SBA-21 Incline Plane</button>
+      <button class="tab-btn" onclick="switchTab('tab-sba22')">SBA-22 One Clock</button>
+    </div>
+  </nav>
+
+  <main class="layout-container">
+    
+    <div class="stage-area">
+
+      <!-- SBA-03 -->
+      <div id="tab-sba03" class="tab-content active">
+        <div class="content-card">
+          <h2><span>🚀</span> SBA-03: D1 → D2 Knowledge Bridge</h2>
+          <p>
+            Master orthogonal launch decomposition ($u_x = u\cos	heta, u_y = u\sin	heta$) and symmetric flight parameters.
+          </p>
+          <div class="formula-box">
+            Time of Flight: T = 2 u_y / g = (2 u sin θ) / g<br>
+            Max Height: &nbsp;&nbsp;&nbsp; H = u_y² / (2g) = (u² sin² θ) / (2g)<br>
+            Range: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; R = u_x · T = (u² sin 2θ) / g
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-03</span>
+            <span class="tag-pill">Task 01</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-03 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D1 → D2 BRIDGE START HERE: CAN YOUR FOUNDATION HOLD? NOVICE BUILD A 20% learner gets a real entry gate, not just a label. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              State the ideal projectile model before calculating: choose x horizontal and y vertical, use one shared clock, take aₓ = 0 and aᵧ = −g, and state whether launch and landing are at the same height.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-03</span>
+            <span class="tag-pill">Task 02</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-03 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY OUR MODEL: SET THE RULES BEFORE THE EQUATIONS NOVICE BUILD Coordinates and assumptions are part of the physics, not decoration. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              State the ideal projectile model before calculating: choose x horizontal and y vertical, use one shared clock, take aₓ = 0 and aᵧ = −g, and state whether launch and landing are at the same height.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-03</span>
+            <span class="tag-pill">Task 03</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-03 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY 03A · ONE SLANTED VELOCITY, TWO COMPONENTS NOVICE BUILD Build the geometry first; the trig equations should feel inevitable. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Resolve the launch velocity first: uₓ = u cosθ and uᵧ = u sinθ, with signs fixed by the chosen axes. Then evolve both components with the same time t.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-03</span>
+            <span class="tag-pill">Task 04</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-03 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY 03B · THE SIDEWAYS STORY NOVICE BUILD No horizontal acceleration means a simple, steady motion. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              With no horizontal acceleration, vₓ = uₓ is constant and x = x₀ + uₓt.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-03</span>
+            <span class="tag-pill">Task 05</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-03 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY 03C · THE UP-DOWN STORY NOVICE BUILD The falling phase must be visible, not merely mentioned. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Vertical motion obeys vᵧ = uᵧ − gt and y − y₀ = uᵧt − ½gt². At the apex vᵧ = 0; after the apex vᵧ changes sign.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-03</span>
+            <span class="tag-pill">Task 06</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-03 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY 03D · ONE BALL · ONE CLOCK NOVICE BUILD Synchronize the actual path, x-view, and y-view. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              The x and y equations describe the same object, so one physical event must use the same elapsed time in both components.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-03</span>
+            <span class="tag-pill">Task 07</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-03 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY 03E · WHEN THE CLOCK IS NOT NEEDED NOVICE BUILD Do not list an equation until the learner knows why it exists. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              When time is unnecessary, use vᵧ² = uᵧ² − 2g(y−y₀), then combine components if total speed is needed.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-03</span>
+            <span class="tag-pill">Task 08</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-03 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · METHOD BUILD PROBLEM FAMILY · VELOCITY COMPONENTS NOVICE BUILD This is the transfer routine behind Core (2) Q10. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Resolve the launch velocity first: uₓ = u cosθ and uᵧ = u sinθ, with signs fixed by the chosen axes. Then evolve both components with the same time t.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-03</span>
+            <span class="tag-pill">Task 09</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-03 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">D2 · WORKED EXAMPLE</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">NOVICE BUILD<br>The goal is to see the same method repeat.<br>EXAMPLE<br>A projectile is launched at 40 m/s at 60°. Find its velocity components after 1.5 s. Take g = 10 m/s².<br>1 DRAW + FIX THE AXES<br>+y<br>40<br>θ is measured from +x. Up is +y, so gravity is negative.</div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-03</span>
+            <span class="tag-pill">Task 10</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-03 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">D2 · FADING SUPPORT</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">NOVICE BUILD<br>This is the bridge between watching and independent solving.<br>QUESTION<br>A projectile is launched at 30 m/s at 30°. Find v and v after 1.0 s. Take g = 10 m/s².<br>x y<br>Draw the launch arrow and mark 30°.<br>What sign will gravity have?<br>uₓ = 30 cos30° = __________________</div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-03</span>
+            <span class="tag-pill">Task 11</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-03 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · INDEPENDENT INDEPENDENT PRACTICE · TRY FIRST NOVICE BUILD No scaffold is supplied on this page. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Resolve the launch velocity into horizontal and vertical components, use one shared time with aₓ = 0 and aᵧ = −g, and impose the specific event or symmetry condition named in the prompt.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-03</span>
+            <span class="tag-pill">Task 12</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-03 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">D2 · HINTS HINT LADDER · REVEAL ONLY WHAT YOU NEED NOVICE BUILD The ladder mirrors Core (2): physics → representation → first move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">u = 40 m/s, u = 30 m/s.<br>x y<br>At t = 2 s:<br>v = 40 m/s<br>x<br>v = 30 - 20 = 10 m/s<br>y<br>x = 40(2) = 80 m</div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-03</span>
+            <span class="tag-pill">Task 13</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-03 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · READINESS READY TO MOVE ON? · CORE (2) TRANSFER GATE NOVICE BUILD Readiness means you can recognise, represent, start, and finish. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              A complete method identifies the event, declares axes, resolves the initial velocity, chooses the matching component equation, keeps one shared time, and checks units and signs.
+            </div>
+          </details>
+        </div>
+    </div>
+
+      <div id="tab-sba04" class="tab-content">
+        <div class="content-card">
+          <h2><span>🎯</span> SBA-04: Range Optimization &amp; Complementary Angles</h2>
+          <p>
+            When projection angles sum to 90° ($	heta$ and $90^\circ - 	heta$), horizontal ranges are strictly identical: $R(	heta) = R(90^\circ - 	heta)$.
+          </p>
+          <div class="formula-box">
+            Product of Flights: &nbsp;&nbsp; T₁ · T₂ = (2 / g) · R<br>
+            Ratio of Heights: &nbsp;&nbsp;&nbsp; H₁ / H₂ = tan² θ<br>
+            Geometric Mean: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; R = 4 √(H₁ · H₂)
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-04</span>
+            <span class="tag-pill">Task 01</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-04 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D3 · CHALLENGE START HERE: VELOCITY IS A CHANGING ARROW FOUNDATION PATH Prerequisite: SBA-03. This bucket turns component motion into event reasoning. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Write v(t) = (uₓ, uᵧ−gt). The horizontal component is constant while the vertical component changes under gravity.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-04</span>
+            <span class="tag-pill">Task 02</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-04 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D3 · CHALLENGE 04A · VELOCITY IS AN ARROW, NOT JUST A NUMBER FOUNDATION PATH At every point, the velocity points along the path and can be rebuilt from vₓ and vᵧ. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Write v(t) = (uₓ, uᵧ−gt). The horizontal component is constant while the vertical component changes under gravity.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-04</span>
+            <span class="tag-pill">Task 03</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-04 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D3 · CHALLENGE 04B · RISING → APEX → FALLING FOUNDATION PATH Hold vₓ fixed. Watch only vᵧ change under gravity. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              For an ideal projectile, vₓ stays constant. vᵧ is positive while rising, zero at the apex, and negative while falling.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-04</span>
+            <span class="tag-pill">Task 04</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-04 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D3 · CHALLENGE 04C · DIRECTION COMES FROM THE COMPONENTS FOUNDATION PATH The later velocity angle is not automatically the launch angle. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Find the instantaneous direction from tanφ = vᵧ/vₓ using the signs of both components; the later direction is not automatically the launch angle.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-04</span>
+            <span class="tag-pill">Task 05</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-04 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D3 · CHALLENGE 04D · SPEED IS THE LENGTH OF THE VELOCITY ARROW FOUNDATION PATH Why the speed is smallest at the apex. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Speed is √(vₓ²+vᵧ²). For an ideal projectile, the minimum speed occurs at the apex where vᵧ = 0, so vmin = |uₓ|.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-04</span>
+            <span class="tag-pill">Task 06</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-04 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D3 · CHALLENGE 04E · SAME HEIGHT: SAME SPEED, DIFFERENT VELOCITY FOUNDATION PATH Symmetry is about magnitudes and signs, not identical arrows. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              At the same height in ideal projectile motion, speed magnitude is the same on ascent and descent; vₓ is unchanged and vᵧ has equal magnitude with opposite sign.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-04</span>
+            <span class="tag-pill">Task 07</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-04 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D3 · CHALLENGE 04F · PERPENDICULAR VELOCITY FOUNDATION PATH A dot product is a geometry test written in components. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Represent perpendicularity with a dot product: u·v(t) = 0. Then substitute the component form of the later velocity.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-04</span>
+            <span class="tag-pill">Task 08</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-04 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D3 · CHALLENGE 04G · SPEED AT A HEIGHT WITHOUT USING THE CLOCK FOUNDATION PATH Use the vertical no-time relation, then rebuild total speed. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Use vᵧ² = uᵧ² − 2gΔy to find the vertical component at the stated height, then v = √(vₓ²+vᵧ²).
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-04</span>
+            <span class="tag-pill">Task 09</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-04 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">D3 · CHALLENGE WATCH ONE · SOURCE-BASED LAUNCH VALUES FOUNDATION PATH Use the supplied 12 m/s at 45° launch to study the apex velocity.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">uₓ = 12 cos45° = 6√2 vᵧ = 0<br>uᵧ = 12 sin45° = 6√2<br>At the apex, only the vertical component has vanished. The<br>Why? The later velocity is built from these two initial<br>horizontal component is unchanged.<br>components.<br>+y<br>The apex speed is therefore 6√2 m/s,</div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-04</span>
+            <span class="tag-pill">Task 10</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-04 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D3 · CHALLENGE COMPLETE ONE · WORK BACKWARD FROM THE APEX FOUNDATION PATH Pre-teach the two-time reasoning used by Q17 without copying its full solution. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Use the apex condition vᵧ = 0 to connect ascent time and uᵧ while uₓ remains unchanged. Reconstruct the launch components before using any same-height shortcut.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-04</span>
+            <span class="tag-pill">Task 11</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-04 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D3 · METHOD MAP TRANSFER MAP · THREE CORE (2) PROBLEM FAMILIES FOUNDATION PATH Concept knowledge now becomes repeatable question-solving routines. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              A complete method identifies the event, declares axes, resolves the initial velocity, chooses the matching component equation, keeps one shared time, and checks units and signs.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-04</span>
+            <span class="tag-pill">Task 12</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-04 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D3 · METHOD BUILD R1 · VELOCITY DIRECTION / HORIZONTAL EVENT FOUNDATION PATH Core (2) Q11 and Q17. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              For a velocity-direction or horizontal-event problem, write vₓ = u cosθ and vᵧ = u sinθ − gt. Translate the named event into vᵧ = 0 or tanφ = vᵧ/vₓ, then solve with one shared time.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-04</span>
+            <span class="tag-pill">Task 13</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-04 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D3 · INDEPENDENT R1 · INDEPENDENT PRACTICE FOUNDATION PATH Try the complete method before revealing any hint. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Resolve the launch velocity, write v(t) = (u cosθ, u sinθ − gt), and impose the requested direction/event condition before doing arithmetic.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-04</span>
+            <span class="tag-pill">Task 14</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-04 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D3 · READINESS R1 · HINTS + READINESS FOUNDATION PATH Physics → representation → first move → transfer. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Readiness check: identify the velocity event, resolve u into components, write vₓ and vᵧ at the same t, then choose vᵧ = 0 or tanφ = vᵧ/vₓ as the first relation.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-04</span>
+            <span class="tag-pill">Task 15</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-04 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D3 · METHOD BUILD R2 · PERPENDICULAR VELOCITY FOUNDATION PATH Core (2) Q01 and Q13. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              For perpendicular velocity, use the dot product u·v(t) = 0. Substitute v(t) = (u cosθ, u sinθ − gt) only after writing that condition.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-04</span>
+            <span class="tag-pill">Task 16</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-04 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D3 · INDEPENDENT R2 · INDEPENDENT PRACTICE FOUNDATION PATH Do not turn perpendicularity into an apex condition. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Do not replace perpendicularity with the apex condition. Write u·v(t) = 0 first, then substitute the component expressions.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-04</span>
+            <span class="tag-pill">Task 17</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-04 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D3 · READINESS R2 · HINTS + READINESS FOUNDATION PATH The first mathematical move must represent perpendicularity. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Readiness check for perpendicular velocity: the first mathematical move is u·v(t) = 0; component kinematics comes after that.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-04</span>
+            <span class="tag-pill">Task 18</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-04 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D3 · METHOD BUILD R3 · SPEED AT A GIVEN HEIGHT FOUNDATION PATH Core (2) Q40. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              For speed at a stated height, use vᵧ² = uᵧ² − 2gΔy, keep vₓ = uₓ, then rebuild total speed with v = √(vₓ²+vᵧ²).
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-04</span>
+            <span class="tag-pill">Task 19</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-04 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D3 · INDEPENDENT R3 · INDEPENDENT PRACTICE FOUNDATION PATH This time you must work backward from the speed ratio. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              For speed-at-height transfer, work backward from the given speed using v² = vₓ²+vᵧ², then connect vᵧ to height with the vertical no-time relation.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-04</span>
+            <span class="tag-pill">Task 20</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-04 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D3 · READINESS R3 · HINTS + READINESS FOUNDATION PATH Compare squared speeds; do not hide the component structure. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Readiness check for speed at height: compare squared speeds/components, use vᵧ² = uᵧ² − 2gΔy, and avoid introducing time unless the question requires it.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-04</span>
+            <span class="tag-pill">Task 21</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-04 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">D3 · CROSS-BUCKET BRIDGE HELD BRIDGE · APEX / MINIMUM SPEED FOUNDATION PATH Key physics is ready; full transfer waits for SBA-05.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">WHY Q14 AND Q27 ARE STILL HELD<br>Q14: needs same-height maximum/minimum-speed context plus further range/height information.<br>Q27: after cosθ is found from apex speed, it explicitly needs the same-height range relation.<br>Those connections become legitimate only after M2D-SBA-05.<br>Motion in a Plane · Subtopic Bucket Assimilation 21 / 22</div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-04</span>
+            <span class="tag-pill">Task 22</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-04 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D3 · TRANSFER GATE FINAL READINESS · SBA-04 → CORE (2) FOUNDATION PATH Transfer is released by problem family, not by reaching the last page. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              A complete method identifies the event, declares axes, resolves the initial velocity, chooses the matching component equation, keeps one shared time, and checks units and signs.
+            </div>
+          </details>
+        </div>
+    </div>
+
+      <div id="tab-sba05" class="tab-content">
+        <div class="content-card">
+          <h2><span>🧭</span> SBA-05: Velocity Vector at Any Instant</h2>
+          <p>
+            At any time $t$ during flight, the velocity vector is $ec{v}(t) = u_x \hat{i} + (u_y - gt) \hat{j}$.
+          </p>
+          <div class="formula-box">
+            Instantaneous Speed: &nbsp;&nbsp; v = √(u_x² + (u_y - gt)²)<br>
+            Angle with Horizontal: tan α = v_y / v_x = (u_y - gt) / u_x<br>
+            Condition v ⊥ u: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v⃗ · u⃗ = 0 &nbsp;⇒&nbsp; t = u / (g sin θ)
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 01</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY START HERE: WHEN DO THE SHORTCUT FORMULAS WORK? FOUNDATION PATH Same-height flight is a special model, not a universal projectile rule. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Use T = 2u sinθ/g, R = u²sin2θ/g and H = u²sin²θ/(2g) only for the ideal gravity-only model when launch and landing are at the same height.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 02</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY 05A · THE SAME-HEIGHT MODEL CONTRACT FOUNDATION PATH The formulas are powerful because the launch and landing heights match. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Use T = 2u sinθ/g, R = u²sin2θ/g and H = u²sin²θ/(2g) only for the ideal gravity-only model when launch and landing are at the same height.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 03</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY 05B · TIME OF FLIGHT COMES FROM VERTICAL SYMMETRY FOUNDATION PATH Up to the apex, then the same vertical time back down. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              For same-height flight, t_up = uᵧ/g and total T = 2uᵧ/g = 2u sinθ/g.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 04</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY 05C · MAXIMUM HEIGHT: USE ONLY THE VERTICAL MOTION FOUNDATION PATH At the apex, vertical velocity is zero. That removes time from the calculation. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              At the apex vᵧ = 0. From vᵧ² = uᵧ² − 2gH, obtain H = uᵧ²/(2g).
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 05</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY 05D · RANGE = HORIZONTAL SPEED × TOTAL FLIGHT TIME FOUNDATION PATH The range formula is not magic: it comes from SBA-03 plus the shared clock. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Range is horizontal speed times total flight time: R = uₓT = u²sin2θ/g for the same-height ideal model.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 06</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY 05E · MAXIMUM RANGE OCCURS AT 45° FOUNDATION PATH For fixed speed, only sin2θ changes in the same-height range formula. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              For fixed u and g, R = (u²/g)sin2θ is maximum when sin2θ = 1, so θ = 45°.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 07</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY 05F · COMPLEMENTARY ANGLES GIVE THE SAME RANGE FOUNDATION PATH Same range does not mean same path, time or height. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Angles θ and 90°−θ give the same range because sin(2(90°−θ)) = sin2θ, although their times and maximum heights differ.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 08</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY 05G · COMPARE FLIGHTS WITHOUT CALCULATING EVERYTHING FOUNDATION PATH For fixed u and g, common factors cancel in ratios. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Write the relevant proportionality and cancel common u and g factors before calculating: T∝sinθ, H∝sin²θ and R∝sin2θ.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 09</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY 05H · COMPLEMENTARY HEIGHTS CAN REVEAL THE ANGLES FOUNDATION PATH A useful pair: sin²θ and cos²θ always add to 1. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              For complementary angles at fixed u, H₁∝sin²θ and H₂∝cos²θ, so the normalized heights add through sin²θ+cos²θ = 1.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 10</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY 05I · RANGE-HEIGHT RATIO: ONE SHORTCUT, MANY QUESTIONS FOUNDATION PATH Eliminate u and g when a question compares R with H. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              For the ideal same-height model, divide R by H to eliminate u and g: R/H = 4cotθ.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 11</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY WATCH TWO SOURCE-GROUNDED EXAMPLES FOUNDATION PATH See the same-height toolkit used in two different ways. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Choose the shortest relation that matches the event and model; do not mix same-height shortcuts with unequal-height motion. State the assumption before applying T, R or H formulas.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 12</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY NOW YOU TRY — WITH FADING SUPPORT FOUNDATION PATH First compare the flights. Then choose the shortest relation. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Choose the shortest relation that matches the event and model; do not mix same-height shortcuts with unequal-height motion. State the assumption before applying T, R or H formulas.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 13</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY CONCEPT RETRIEVAL GATE → PROBLEM FAMILIES FOUNDATION PATH First prove the concepts. Then practise each Core (2) problem family independently. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Choose the shortest relation that matches the event and model; do not mix same-height shortcuts with unequal-height motion. State the assumption before applying T, R or H formulas.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 14</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY TRANSFER MAP · 13 PRIMARY QUESTIONS → 7 FAMILIES FOUNDATION PATH Plus one cross-bucket routine that releases Q14 and Q27 from SBA-04. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              A complete method identifies the event, declares axes, resolves the initial velocity, chooses the matching component equation, keeps one shared time, and checks units and signs.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 15</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">D2 · THINK CAREFULLY PROBLEM FAMILY R1 FOUNDATION PATH HEIGHT REVEALS VERTICAL COMPONENT + TIME · Use maximum height as information about the vertical launch component.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">Confirm launch and landing are at the same height.<br>At maximum height vᵧ=0, so H=uᵧ²/(2g).<br>Write uᵧ=√(2gH).<br>Use T=2uᵧ/g and check units.<br>METHOD MEMORY<br>Recognise the family first. Then execute the numbered routine. Do not hunt through every projectile formula.<br>Motion in a Plane · Subtopic Bucket Assimilation 16 / 31</div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 16</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY R1 · INDEPENDENT PRACTICE + READINESS FOUNDATION PATH Attempt first. Use H1, then H2, then H3 only if you are still stuck. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Height-to-time family: establish the same-height model, recover uᵧ from H = uᵧ²/(2g), then obtain T = 2uᵧ/g.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 17</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">D2 · THINK CAREFULLY PROBLEM FAMILY R2 FOUNDATION PATH MAXIMUM RANGE + 45° COMPONENTS · The maximum-range condition is a geometry condition and a range shortcut together.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">Maximum same-height range occurs at θ=45°.<br>Rmax=u²/g.<br>u=√(gRmax).<br>uₓ=uᵧ=u/√2.<br>METHOD MEMORY<br>Recognise the family first. Then execute the numbered routine. Do not hunt through every projectile formula.<br>Motion in a Plane · Subtopic Bucket Assimilation 18 / 31</div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 18</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY R2 · INDEPENDENT PRACTICE + READINESS FOUNDATION PATH Attempt first. Use H1, then H2, then H3 only if you are still stuck. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Maximum-range family: set θ = 45°, recover u from Rmax = u²/g, then resolve equal horizontal and vertical launch components.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 19</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">D2 · THINK CAREFULLY PROBLEM FAMILY R3 FOUNDATION PATH EQUAL FLIGHT TIME + ANGLE CONVENTION · The hard part is usually the angle convention, not the algebra.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">Convert any angle from vertical into an angle from horizontal.<br>For same-height flight T=2uᵧ/g, so equal T means equal uᵧ.<br>Resolve carefully using the same convention.<br>Set the two uᵧ values equal and check the diagram.<br>METHOD MEMORY<br>Recognise the family first. Then execute the numbered routine. Do not hunt through every projectile formula.<br>Motion in a Plane · Subtopic Bucket Assimilation 20 / 31</div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 20</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY R3 · INDEPENDENT PRACTICE + READINESS FOUNDATION PATH Attempt first. Use H1, then H2, then H3 only if you are still stuck. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Equal-flight-time family: express each initial vertical component in the same angle convention and set them equal.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 21</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">D2 · THINK CAREFULLY PROBLEM FAMILY R4 FOUNDATION PATH COMPLEMENTARY PAIR: RANGE + HEIGHT · Complementary shots share range but not the rest of the flight.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">At fixed u and g, R∝sin2θ.<br>Two different equal-range angles satisfy θ₁+θ₂=90°.<br>Range matches; T and H usually do not.<br>H₁=Ksin²θ, H₂=Kcos²θ, so H₁+H₂=K.<br>METHOD MEMORY<br>Recognise the family first. Then execute the numbered routine. Do not hunt through every projectile formula.<br>Motion in a Plane · Subtopic Bucket Assimilation 22 / 31</div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 22</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY R4 · INDEPENDENT PRACTICE + READINESS FOUNDATION PATH Attempt first. Use H1, then H2, then H3 only if you are still stuck. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Complementary-angle family: use θ₁+θ₂ = 90° for equal range at fixed u and g, then compare H or T separately.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 23</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">D2 · THINK CAREFULLY PROBLEM FAMILY R5 FOUNDATION PATH TIME / HEIGHT RATIOS · Ratio problems should become shorter, not longer.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">Confirm u and g are common.<br>T∝sinθ; H∝sin²θ.<br>Compare only angle factors.<br>Time uses sin; height uses sin².<br>METHOD MEMORY<br>Recognise the family first. Then execute the numbered routine. Do not hunt through every projectile formula.<br>Motion in a Plane · Subtopic Bucket Assimilation 24 / 31</div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 24</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY R5 · INDEPENDENT PRACTICE + READINESS FOUNDATION PATH Attempt first. Use H1, then H2, then H3 only if you are still stuck. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Time/height-ratio family: T₂/T₁ = sinθ₂/sinθ₁ and H₂/H₁ = sin²θ₂/sin²θ₁.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 25</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">D2 · THINK CAREFULLY PROBLEM FAMILY R6 FOUNDATION PATH RANGE-HEIGHT RATIO · This family is about cancellation: remove u and g before doing arithmetic.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">Use the shortcut only for the same-height ideal model.<br>R/H=4cotθ.<br>Do not solve R and H separately.<br>A large R/H should correspond to a shallower launch.<br>METHOD MEMORY<br>Recognise the family first. Then execute the numbered routine. Do not hunt through every projectile formula.<br>Motion in a Plane · Subtopic Bucket Assimilation 26 / 31</div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 26</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY R6 · INDEPENDENT PRACTICE + READINESS FOUNDATION PATH Attempt first. Use H1, then H2, then H3 only if you are still stuck. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Range-height-ratio family: verify the same-height model, set R/H = 4cotθ, then solve the angle.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 27</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">D2 · THINK CAREFULLY PROBLEM FAMILY R7 FOUNDATION PATH RANGE SCALING WITH ANGLE · The angle factor is the only thing changing.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">At fixed u,g use R∝sin2θ.<br>R₂/R₁=sin2θ₂/sin2θ₁.<br>Check the required value is ≤1.<br>Supplementary double-angles give complementary launch angles.<br>METHOD MEMORY<br>Recognise the family first. Then execute the numbered routine. Do not hunt through every projectile formula.<br>Motion in a Plane · Subtopic Bucket Assimilation 28 / 31</div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 28</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY R7 · INDEPENDENT PRACTICE + READINESS FOUNDATION PATH Attempt first. Use H1, then H2, then H3 only if you are still stuck. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Range-scaling family: cancel the common u²/g factor and solve using only the sin2θ factors.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 29</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">D2 · THINK CAREFULLY PROBLEM FAMILY R8 FOUNDATION PATH CROSS-BUCKET APEX / MINIMUM-SPEED COMPLETION · This family deliberately crosses a bucket boundary.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">At apex vmin=u cosθ.<br>Translate the speed information before touching R or H.<br>Choose R, H or R/H according to the question.<br>The apex event and same-height assumptions must both be valid.<br>METHOD MEMORY<br>Recognise the family first. Then execute the numbered routine. Do not hunt through every projectile formula.<br>Motion in a Plane · Subtopic Bucket Assimilation 30 / 31</div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-05</span>
+            <span class="tag-pill">Task 30</span>
+          </div>
+          <div class="q-title">CORE (1A) · M2D-SBA-05 · 20% KNOWLEDGE PATH</div>
+          <p class="q-prompt">Method check — D2 · THINK CAREFULLY R8 · INDEPENDENT PRACTICE + READINESS FOUNDATION PATH Attempt first. Use H1, then H2, then H3 only if you are still stuck. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Cross-bucket apex family: obtain u cosθ from the minimum speed, then choose R, H or R/H only after confirming the same-height model.
+            </div>
+          </details>
+        </div>
+    </div>
+
+      <div id="tab-sba06" class="tab-content">
+        <div class="content-card">
+          <h2><span>📉</span> SBA-06: Describe Path Without Time (Trajectory Equation)</h2>
+          <p>
+            Eliminating time $t = x / (u\cos	heta)$ gives the timeless geometric parabola connecting $y$ to $x$:
+          </p>
+          <div class="formula-box">
+            Standard Trajectory: &nbsp;&nbsp; y = x tan θ - [g / (2 u² cos² θ)] · x²<br>
+            Factorized Range Form: y = x tan θ · (1 - x / R)<br>
+            Secant Expansion: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; y = x tan θ - [g x² / (2u²)] · (1 + tan² θ)
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-06</span>
+            <span class="tag-pill">Task 01</span>
+          </div>
+          <div class="q-title">MOTION IN A PLANE · M2D-SBA-06 Describe the path without time</div>
+          <p class="q-prompt">Method check — Describe a projectile path without time. Starting from the ideal component equations, eliminate the shared time and state the trajectory relation y(x).</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Eliminate t between x = u cosθ·t and y = u sinθ·t − ½gt² to obtain y = x tanθ − gx²/(2u²cos²θ).
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-06</span>
+            <span class="tag-pill">Task 02</span>
+          </div>
+          <div class="q-title">MOTION IN A PLANE · M2D-SBA-06 Describe the path without time</div>
+          <p class="q-prompt">FADED PRACTICE · Q47 FAMILY Complete one: build y(x) from vector notation The initial velocity is u = 6î + 8ĵ m/s. Take g = 10 m/s². Derive the trajectory equation, then find y when x = 6 m.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">trajectory<br>sign/units<br>ANSWER CHECK<br>The simplified trajectory should be y = (4/3)x − (5/36)x². At x = 6 m, y = 3 m.<br>Core (1A) · professional lossless learner edition 13</div>
+          </details>
+        </div>
+    </div>
+
+      <div id="tab-sba07" class="tab-content">
+        <div class="content-card">
+          <h2><span>🏢</span> SBA-07: Launch from Height &amp; Horizontal Projection</h2>
+          <p>
+            When projected horizontally from height $h$ ($u_y = 0, u_x = u$):
+          </p>
+          <div class="formula-box">
+            Time to Impact: &nbsp;&nbsp; t = √(2h / g)<br>
+            Horizontal Range: R = u · √(2h / g)<br>
+            Impact Velocity: &nbsp; v = √(u² + 2gh), &nbsp; tan β = √(2gh) / u
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-07</span>
+            <span class="tag-pill">Task 01</span>
+          </div>
+          <div class="q-title">MOTION IN A PLANE · M2D-SBA-07 Horizontal launch and launch from height</div>
+          <p class="q-prompt">Method check — Horizontal launch from a height. State the horizontal and vertical equations, explain how the shared time is obtained, and identify which component determines the landing time.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              For a horizontal launch, uᵧ = 0: x = uₓt and vertical drop h = ½gt². Determine the shared time from one component, then use it in the other.
+            </div>
+          </details>
+        </div>
+    </div>
+
+      <div id="tab-sba21" class="tab-content">
+        <div class="content-card">
+          <h2><span>⛰️</span> SBA-21: Projectile Meets a Sloping Plane</h2>
+          <p>
+            Rotate coordinates along the inclined plane (angle $eta$). Gravity resolves into $g\sineta$ parallel and $g\coseta$ perpendicular:
+          </p>
+          <div class="formula-box">
+            Up-Plane Range: &nbsp;&nbsp; R_up = [u² / (g cos² β)] · [sin(2α - β) - sin β]<br>
+            Max Up-Plane Range: R_max = u² / [g (1 + sin β)] &nbsp; at &nbsp; α = π/4 + β/2<br>
+            Down-Plane Range: &nbsp; R_down = [u² / (g cos² β)] · [sin(2α + β) + sin β]
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-21 · Declared extension</span>
+            <span class="tag-pill">Task 01</span>
+          </div>
+          <div class="q-title">MOTION IN A PLANE · M2D-SBA-21 Projectile meets a sloping plane</div>
+          <p class="q-prompt">Declared extension method check — Projectile meets a sloping plane. Represent both the projectile trajectory and the plane in one coordinate system, then state the intersection condition used for the second meeting.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Declared extension: represent the inclined plane as y = x tanβ in the same axes as the projectile trajectory, then solve their non-launch intersection.
+            </div>
+          </details>
+        </div>
+    </div>
+
+      <div id="tab-sba22" class="tab-content">
+        <div class="content-card">
+          <h2><span>⏱️</span> SBA-22: One Clock at a Special Event (Symmetry)</h2>
+          <p>
+            Parabolic motion exhibits exact time symmetry about the apex event $t_{	ext{apex}} = T / 2$.
+          </p>
+          <div class="formula-box">
+            Two Times at Same Height h: t₁ + t₂ = (2 u sin θ) / g = T<br>
+            Product of Times: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t₁ · t₂ = 2h / g &nbsp;⇒&nbsp; h = ½ g t₁ t₂<br>
+            Time Interval Δt: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t₂ - t₁ = √[(4 u² sin² θ - 8gh) / g²]
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">SBA-22</span>
+            <span class="tag-pill">Task 01</span>
+          </div>
+          <div class="q-title">M2D-SBA-22 · D3 CHALLENGE</div>
+          <p class="q-prompt">Method check — Use one clock at a special event A projectile question can mention several moments: launch, a wall, a point P, the apex and landing. The event may feel like a new problem, but it is still the same projectile on the same clock. State the governing relation(s), the model assumption that makes them valid, and the first mathematical move.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Derivation</summary>
+            <div class="solution-content">
+              Translate the named event into simultaneous x(t) and y(t) conditions and use the same t in both; apex, wall, point P and landing are different events on one trajectory.
+            </div>
+          </details>
+        </div>
+    </div>
+
+    </div>
+
+    <!-- Support Rail -->
+    <aside class="support-rail">
+      
+      <div class="support-widget">
+        <h3><span>⚡</span> Projectile Formula Card</h3>
+        <div class="formula-box" style="font-size: 13.5px;">
+          T = 2 u sin θ / g<br>
+          H = u² sin² θ / (2g)<br>
+          R = u² sin 2θ / g<br>
+          y = x tan θ (1 - x/R)<br>
+          h = ½ g t₁ t₂
+        </div>
+      </div>
+
+      <!-- Interactive Projectile Solver -->
+      <div class="support-widget">
+        <h3><span>🧮</span> Projectile Solver</h3>
+        <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 10px;">
+          Compute T, H, and R from speed and angle:
+        </p>
+        <div class="calc-row">
+          <div class="calc-input-group">
+            <label>Speed u (m/s):</label>
+            <input type="number" id="projU" value="20" step="5" oninput="solveProj()">
+          </div>
+          <div class="calc-input-group">
+            <label>Angle θ (deg):</label>
+            <input type="number" id="projAngle" value="30" step="5" oninput="solveProj()">
+          </div>
+        </div>
+        <div class="calc-result" id="projResult">
+          T = 2.04 s | H = 5.10 m | R = 35.35 m
+        </div>
+      </div>
+
+      <!-- Virtual Keyboard Safe Scratchpad -->
+      <div class="support-widget">
+        <h3><span>📝</span> SBA Scratchpad</h3>
+        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 8px;">
+          Virtual keyboard safe (min-height: 120px) with auto-saving:
+        </p>
+        <textarea id="scratchpadNotes" class="tablet-safe-input" placeholder="Draft projectile trajectories, equate time clocks, or resolve incline planes..."></textarea>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+          <span id="saveStatus" style="font-size: 12.5px; color: var(--success);">✓ Auto-saved</span>
+          <button class="btn" style="min-height: 48px; padding: 6px 14px; font-size: 13px; background: var(--bg-surface); border: 1px solid var(--border);" onclick="clearNotes()">Clear</button>
+        </div>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+      if (activeBtn) activeBtn.classList.add('active');
+      const targetContent = document.getElementById(tabId);
+      if (targetContent) targetContent.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    const themeBtn = document.getElementById('themeToggle');
+    const htmlEl = document.documentElement;
+    const savedTheme = localStorage.getItem('tablet12_theme') || 'dark';
+    htmlEl.setAttribute('data-theme', savedTheme);
+    themeBtn.addEventListener('click', () => {
+      const current = htmlEl.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      htmlEl.setAttribute('data-theme', next);
+      localStorage.setItem('tablet12_theme', next);
+    });
+
+    const pad = document.getElementById('scratchpadNotes');
+    const status = document.getElementById('saveStatus');
+    pad.value = localStorage.getItem('sba_master_notes') || '';
+    pad.addEventListener('input', () => {
+      localStorage.setItem('sba_master_notes', pad.value);
+      status.textContent = '✓ Saved ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    });
+
+    function clearNotes() {
+      if (confirm('Clear scratchpad notes?')) {
+        pad.value = '';
+        localStorage.removeItem('sba_master_notes');
+        status.textContent = 'Notes cleared';
+      }
+    }
+
+    function solveProj() {
+      const u = parseFloat(document.getElementById('projU').value) || 0;
+      const deg = parseFloat(document.getElementById('projAngle').value) || 0;
+      const g = 9.80;
+      const rad = deg * Math.PI / 180;
+      const T = (2 * u * Math.sin(rad)) / g;
+      const H = (u * u * Math.sin(rad) * Math.sin(rad)) / (2 * g);
+      const R = (u * u * Math.sin(2 * rad)) / g;
+      document.getElementById('projResult').textContent = `T = ${T.toFixed(2)} s | H = ${H.toFixed(2)} m | R = ${R.toFixed(2)} m`;
+    }
+    solveProj();
+  </script>
+<script id="pr375-u4-remediation-script">
+(() => {
+  const humanize = (value) => String(value || '')
+    .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+    .replace(/[_-]+/g, ' ')
+    .replace(/\b(vec)([ab])\b/gi, 'vector $2')
+    .replace(/\bproj\b/gi, 'projectile')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const explicitNames = {
+    mass1: 'Mass m1 in kilograms', mass2: 'Mass m2 in kilograms',
+    vecA: 'Vector A', vecB: 'Vector B',
+    projU: 'Projectile launch speed', projAngle: 'Projectile launch angle',
+    'jump-select': 'Jump to question', search: 'Search questions',
+    searchInput: 'Search questions', questionSearch: 'Search questions'
+  };
+
+  const hasLabel = (el) => {
+    if (el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.title) return true;
+    if (el.id && document.querySelector(`label[for="${CSS.escape(el.id)}"]`)) return true;
+    return !!el.closest('label');
+  };
+
+  document.querySelectorAll('input, select, textarea').forEach((el, index) => {
+    if (hasLabel(el)) return;
+    let name = explicitNames[el.id] || el.getAttribute('placeholder') || el.getAttribute('name') || el.id;
+    if (!name) {
+      const nearby = el.parentElement?.textContent?.trim();
+      if (nearby && nearby.length <= 100) name = nearby;
+    }
+    name = humanize(name) || `${el.tagName.toLowerCase()} ${index + 1}`;
+    el.setAttribute('aria-label', name);
+  });
+
+  document.querySelectorAll('button').forEach(btn => {
+    if (btn.textContent.trim().toLowerCase() === 'clear') btn.classList.add('u4-clear-button');
+  });
+
+  const syncOptions = () => {
+    document.querySelectorAll('.opt-btn').forEach(btn => {
+      const correct = btn.classList.contains('selected-correct');
+      const incorrect = btn.classList.contains('selected-incorrect');
+      btn.setAttribute('aria-pressed', correct || incorrect ? 'true' : 'false');
+      const base = btn.getAttribute('data-u4-base-label') || btn.getAttribute('aria-label') || btn.textContent.trim();
+      if (!btn.hasAttribute('data-u4-base-label')) btn.setAttribute('data-u4-base-label', base);
+      btn.setAttribute('aria-label', `${base}${correct ? ' — Correct' : incorrect ? ' — Incorrect' : ''}`);
+    });
+  };
+  syncOptions();
+
+  const syncTabs = () => {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.setAttribute('role', 'tab');
+      const active = btn.classList.contains('active') || btn.classList.contains('tab-btn-active') || btn.getAttribute('aria-current') === 'page';
+      btn.setAttribute('aria-selected', active ? 'true' : 'false');
+      if (btn.parentElement && !btn.parentElement.hasAttribute('role')) btn.parentElement.setAttribute('role', 'tablist');
+    });
+  };
+  syncTabs();
+
+  const figureName = (el, fallback) => {
+    const scope = el.closest('figure, section, article, .card, .panel, .simulator, .canvas-container') || el.parentElement;
+    const caption = scope?.querySelector('figcaption, h1, h2, h3, h4, .title, [class*="title"]');
+    const txt = caption?.textContent?.replace(/\s+/g, ' ').trim();
+    return txt && txt.length <= 120 ? txt : fallback;
+  };
+
+  document.querySelectorAll('svg').forEach(svg => {
+    if (svg.hasAttribute('aria-label') || svg.hasAttribute('aria-labelledby') || svg.hasAttribute('aria-hidden') || svg.querySelector('title')) return;
+    const control = svg.closest('a, button');
+    if (control && control.textContent.trim()) {
+      svg.setAttribute('aria-hidden', 'true');
+      svg.setAttribute('focusable', 'false');
+    } else {
+      svg.setAttribute('role', 'img');
+      svg.setAttribute('aria-label', figureName(svg, 'Physics diagram'));
+    }
+  });
+
+  document.querySelectorAll('canvas').forEach(canvas => {
+    if (canvas.hasAttribute('aria-label') || canvas.hasAttribute('aria-labelledby') || canvas.hasAttribute('aria-hidden')) return;
+    canvas.setAttribute('role', 'img');
+    canvas.setAttribute('aria-label', figureName(canvas, 'Interactive physics simulation'));
+  });
+
+  if (!document.querySelector('main, [role="main"]')) {
+    const mainCandidate = document.querySelector('.app-container, .container, .page-shell, #app');
+    if (mainCandidate) mainCandidate.setAttribute('role', 'main');
+  }
+
+  const observer = new MutationObserver(() => { syncOptions(); syncTabs(); });
+  observer.observe(document.documentElement, { subtree: true, attributes: true, attributeFilter: ['class', 'aria-current'] });
+})();
+</script>
+<script id="pr375-u4-dynamic-remediation">
+(() => {
+  const textName = (el, fallback) => {
+    const scope = el.closest('figure, section, article, .panel, .card, .simulator, .canvas-wrap, .canvas-container') || el.parentElement;
+    const title = scope?.querySelector('figcaption, h1, h2, h3, h4, .title, [class*="title"]');
+    const text = title?.textContent?.replace(/\s+/g, ' ').trim();
+    return text && text.length <= 140 ? text : fallback;
+  };
+
+  const nameFigures = (root = document) => {
+    const nodes = [];
+    if (root.nodeType === 1 && root.matches?.('svg, canvas')) nodes.push(root);
+    root.querySelectorAll?.('svg, canvas').forEach(el => nodes.push(el));
+    nodes.forEach(el => {
+      if (el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.getAttribute('aria-hidden') || el.querySelector?.('title')) return;
+      const control = el.closest('a, button');
+      if (control && control.textContent.trim()) {
+        el.setAttribute('aria-hidden', 'true');
+        el.setAttribute('focusable', 'false');
+        return;
+      }
+      el.setAttribute('role', 'img');
+      el.setAttribute('aria-label', textName(el, el.tagName.toLowerCase() === 'canvas' ? 'Interactive physics simulation' : 'Physics diagram'));
+    });
+  };
+
+  const nameControls = (root = document) => {
+    const nodes = [];
+    if (root.nodeType === 1 && root.matches?.('input, select, textarea')) nodes.push(root);
+    root.querySelectorAll?.('input, select, textarea').forEach(el => nodes.push(el));
+    nodes.forEach((el, index) => {
+      const has = el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.title || el.closest('label') || (el.id && document.querySelector(`label[for="${CSS.escape(el.id)}"]`));
+      if (has) return;
+      const nearby = el.closest('.control-row, .form-group, .field, .panel, .card')?.querySelector('.control-label, label, h3, h4');
+      const raw = el.getAttribute('placeholder') || el.getAttribute('name') || el.id || nearby?.textContent || `${el.tagName.toLowerCase()} ${index + 1}`;
+      el.setAttribute('aria-label', String(raw).replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim());
+    });
+  };
+
+  const sync = root => { nameFigures(root); nameControls(root); };
+  sync(document);
+  new MutationObserver(records => {
+    for (const record of records) for (const node of record.addedNodes) if (node.nodeType === 1) sync(node);
+  }).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
+</body>
+</html>

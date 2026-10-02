@@ -1,0 +1,1 @@
+window.GRADE9_SITE_SEARCH_RESOURCES=[{"title":"Physics Practice Library","path":"standalone/practice/index.html","kind":"practice","keywords":["physics","practice","standalone","tablet","offline","1d","2d","motion","kinematics","motion in a plane","vectors","nlm","newton","newton laws","laws of motion","force","sba","projectile","thrust","pressure"]}];

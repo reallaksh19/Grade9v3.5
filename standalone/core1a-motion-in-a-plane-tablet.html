@@ -1,0 +1,1124 @@
+<!doctype html>
+<html data-g9-authority-sha="0e08782fd55ded0a2968f09b40c52cb1d8453633" data-g9-snapshot="review" lang="en" data-theme="dark" data-g9-shell data-g9-role="CORE1A" data-g9-mode="PAGES" data-g9-product="PRODUCT-PHY-KIN-2D-MOTION" data-g9-render-digest="8ee8ed7c8c4f5344"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0"><meta name="g9-render" content="render_core/2 8ee8ed7c8c4f5344"><style data-g9-inlined-tablet-css>
+/* ==========================================================================
+   Grade9V3 · 12.7" Tablet Ergonomics, Touch Targets & Icon Design System
+   Target Viewport: 1366x854 to 1440x900 CSS px (Landscape), 900x1440 (Portrait)
+   WCAG 2.5.5 Enhanced / Android Material Large Tablet Compliance (>= 48x48 px)
+   ========================================================================== */
+
+:root {
+  --tab12-container-max: 1380px;
+  --tab12-touch-min: 48px;
+  --tab12-thumb-size: 30px;
+  --tab12-base-font: 16px;
+  --tab12-radius-sm: 8px;
+  --tab12-radius-md: 12px;
+  --tab12-radius-lg: 16px;
+}
+
+/* 12.7" Base Typography Elevation */
+@media (min-width: 900px) {
+  html {
+    font-size: var(--tab12-base-font);
+  }
+}
+
+/* Large Tablet Container Constraints */
+.container, main, .main-container {
+  max-width: var(--tab12-container-max);
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   1. STRICT 48px+ TOUCH TARGET ENFORCEMENT
+   ========================================================================== */
+
+/* Buttons, Action Links, and Tab Buttons */
+button,
+.btn,
+.g9-btn,
+.tab-btn,
+.rung-node,
+.subtopic-actions a,
+.jump-nav a,
+a.action-btn {
+  min-height: var(--tab12-touch-min);
+  min-width: var(--tab12-touch-min);
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--tab12-radius-sm);
+  padding: 10px 18px;
+}
+
+/* Accordion Summary & Disclosure Controls */
+details summary,
+summary.rung-summary,
+details.reveal-block summary,
+details.core-box summary {
+  min-height: 52px;
+  padding: 14px 20px;
+  cursor: pointer;
+  touch-action: manipulation;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Touch-Optimized Range Sliders */
+input[type="range"] {
+  height: var(--tab12-touch-min) !important;
+  touch-action: pan-y;
+  cursor: pointer;
+  margin: 4px 0;
+  accent-color: #38bdf8;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  width: var(--tab12-thumb-size);
+  height: var(--tab12-thumb-size);
+  border-radius: 50%;
+  background: #38bdf8;
+  cursor: pointer;
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  touch-action: none;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: var(--tab12-thumb-size);
+  height: var(--tab12-thumb-size);
+  border-radius: 50%;
+  background: #38bdf8;
+  cursor: pointer;
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Textareas for Virtual Tablet Keyboard Typing */
+textarea,
+textarea.attempt-input,
+.attempt-box textarea {
+  min-height: 120px;
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 14px 16px;
+  border-radius: var(--tab12-radius-sm);
+  box-sizing: border-box;
+  touch-action: manipulation;
+}
+
+/* Elimination of sub-13px micro fonts */
+small, .badge, .subtopic-desc, .node-id, .stat-label, .evidence-citation {
+  font-size: 13.5px !important;
+}
+
+/* Tailwind utility floor: arbitrary micro-font classes are common in legacy explorers.
+   Keep learner-visible text at or above 13px on the tablet target even when a
+   runtime utility stylesheet is injected after this file. */
+.text-xs,
+[class~="text-[9px]"],
+[class~="text-[10px]"],
+[class~="text-[11px]"],
+[class~="text-[12px]"],
+[class~="text-[12.5px]"] {
+  font-size: 13px !important;
+}
+
+/* ==========================================================================
+   2. ICONS-INSTEAD-OF-TABLES COMPONENT SYSTEM
+   ========================================================================== */
+
+/* Metric Tile Clusters (replaces tabular telemetry) */
+.metric-tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin: 14px 0;
+}
+
+.metric-tile {
+  background: var(--bg-card, #1f293b);
+  border: 1px solid var(--border, #2e3d56);
+  border-radius: var(--tab12-radius-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.metric-tile:hover {
+  border-color: var(--accent, #38bdf8);
+}
+
+.metric-tile-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted, #94a3b8);
+}
+
+.metric-tile-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.metric-tile-value {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--accent, #38bdf8);
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.metric-tile-sub {
+  font-size: 13.5px;
+  color: var(--text-muted, #94a3b8);
+}
+
+/* Tablet Card Deck (replaces table rows) */
+.tablet-card-deck {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.tablet-card-row {
+  background: var(--bg-card, #1f293b);
+  border: 1px solid var(--border, #2e3d56);
+  border-radius: var(--tab12-radius-md);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  min-height: 64px;
+}
+
+.tablet-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid var(--accent, #38bdf8);
+  color: var(--accent, #38bdf8);
+}
+
+/* Dual Comparison Cards (replaces side-by-side comparison tables) */
+.dual-frame-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 16px 0;
+}
+
+@media (min-width: 860px) {
+  .dual-frame-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.dual-frame-card {
+  background: var(--bg-card, #161b22);
+  border: 1.5px solid var(--border, #30363d);
+  border-radius: var(--tab12-radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dual-frame-card.active {
+  border-color: var(--accent, #58a6ff);
+  box-shadow: 0 0 16px rgba(88, 166, 255, 0.2);
+}
+
+.dual-frame-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text, #f0f6fc);
+}
+
+/* Visual Arithmetic Flow Pipeline (replaces numeric arrays and synthetic division tables) */
+.arithmetic-pipeline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 16px 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pipeline-step {
+  background: var(--bg-card, #1f293b);
+  border: 1px solid var(--border, #2e3d56);
+  border-radius: var(--tab12-radius-sm);
+  padding: 12px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 110px;
+  text-align: center;
+}
+
+.pipeline-step.highlight {
+  border-color: #34d399;
+  background: rgba(52, 211, 153, 0.1);
+}
+
+.pipeline-arrow {
+  font-size: 20px;
+  color: var(--text-muted, #94a3b8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+}
+
+/* Stage Layout on 12.7" Tablets */
+@media (min-width: 960px) {
+  .stage-grid-12-7 {
+    display: grid;
+    grid-template-columns: 1.85fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+}
+
+</style><title>Construction · Two-dimensional kinematics and projectile model</title><style>
+[hidden]{display:none!important}
+:root{--g9-zoom:1;--g9-content-max:1380px;--g9-touch-min:48px;--g9-space:clamp(16px,2vw,28px);--g9-type-body:17px;--bg:#f6f7fb;--fg:#172033;--card:#fff;--line:#d5dce6;--accent:#1f5fae;--muted:#52627a;
+--soft:#fbfdff;--pill-bg:#eef2ff;--pill-fg:#4338ca;--src-bg:#ecfdf5;--src-fg:#047857;--info-bg:#f8fbff;--info-line:#93c5fd;--info-fg:#455d72;--warn-bg:#fff7f8;--warn-line:#ffc9d3;--warn-fg:#8a2942;--ok-bg:#f0fdf7;--ok-line:#bbf7d0;--ok-fg:#14532d}
+:root[data-theme=dark]{--bg:#0f1520;--fg:#e8edf5;--card:#18212f;--line:#2c394d;--accent:#8ab4f8;--muted:#a3b1c6;
+--soft:#141c29;--pill-bg:#262f5a;--pill-fg:#c3c9ff;--src-bg:#12301f;--src-fg:#6ee7b7;--info-bg:#14263d;--info-line:#3b6db3;--info-fg:#b8c9de;--warn-bg:#2b1620;--warn-line:#6b3045;--warn-fg:#f3b6c4;--ok-bg:#10281d;--ok-line:#1f6b44;--ok-fg:#b7efcf}
+html{font-size:calc(var(--g9-type-body) * var(--g9-zoom))}body{margin:0;background:var(--bg);color:var(--fg);font:1rem/1.6 system-ui,sans-serif;overflow-wrap:break-word}
+header[data-g9-shell-header]{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px var(--g9-space);background:var(--card);border-bottom:1px solid var(--line)}
+a{color:var(--accent)}
+header a,header button,button,summary,nav a{min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);padding:10px 14px;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg);font:inherit;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;touch-action:manipulation}
+nav[data-g9-breadcrumb]{display:flex;gap:8px;flex-wrap:wrap;padding:8px var(--g9-space)}
+main{max-width:var(--g9-content-max);margin:0 auto;padding:var(--g9-space);box-sizing:border-box}
+main>*{min-width:0}article[data-g9-unit]{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:var(--g9-space);margin:18px 0;min-width:0}
+article[data-g9-unit]>*{min-width:0}
+article[id],section[id]{scroll-margin-top:96px}
+.g9-core1a-book{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(16px,2vw,24px);margin:0 0 18px;min-width:0}
+.g9-core1a-book>h2{margin:.15em 0 .6em}
+.g9-bucket-orientation-grid{display:block;min-width:0}.g9-bucket-orientation-grid>*{min-width:0}
+[data-g9-concept-route] ol,[data-g9-section-route] ol{padding-left:1.4rem;margin:.5rem 0;box-sizing:border-box;max-width:100%;min-width:0}
+[data-g9-concept-route] li,[data-g9-section-route] li{margin:.35rem 0;max-width:100%;min-width:0}
+[data-g9-concept-route] a,[data-g9-section-route] a{display:flex;width:100%;max-width:100%;min-width:0;justify-content:flex-start;text-align:left;white-space:normal;overflow-wrap:anywhere}
+.g9-cu{padding-top:8px;border-top:1px solid var(--line)}
+.g9-cu:first-child{border-top:0}
+.g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] ol{list-style:none;padding-left:0;counter-reset:g9-derive}
+.g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] li{counter-increment:g9-derive;margin:0 0 12px;padding:12px 14px;border-left:3px solid var(--accent);background:var(--bg)}
+.g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] li::before{content:"Step " counter(g9-derive);display:block;color:var(--muted);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.g9-cu-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:.35rem 0 .8rem}
+.g9-cu-nav-links{display:flex;gap:8px;flex-wrap:wrap}
+.g9-stage-controls{display:grid;gap:8px;max-width:100%}
+.g9-stage-chips{display:flex;flex-wrap:wrap;gap:8px}
+.g9-stage-chip{border-radius:999px;padding:6px 14px;font-size:.9rem}.g9-stage-chip[aria-pressed=true]{background:var(--accent);color:var(--card);border-color:var(--accent);font-weight:700}
+.g9-stage-desc{margin:0;color:var(--muted);font-size:.92rem;min-height:1.4em}
+.g9-stage-stepper{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.g9-stage-stepper>[data-g9-stage-label]{color:var(--muted);flex:0 1 auto}
+.g9-table-scroll{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.g9-table-scroll table{width:100%;min-width:680px;border-collapse:collapse}
+.g9-table-scroll th,.g9-table-scroll td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+.g9-table-scroll th{background:var(--bg)}
+.g9-table-scroll td>.g9-math,.g9-table-scroll td>.g9-expr{margin:.15rem 0}
+[data-g9-block=worked_anchor]{border-left:4px solid var(--accent);padding-left:14px}
+.g9-watch-steps>li{margin:.8rem 0}.g9-watch-steps p{margin:.2rem 0}
+[data-g9-block=wrong_path],[data-g9-block=repair]{border-left:3px solid var(--line);padding-left:12px}
+[data-g9-block=scope_boundary]{color:var(--muted);font-size:.92rem}
+[data-g9-block=scope_boundary] ul{margin:.35rem 0;padding-left:1.2rem}
+.g9-availability-note{color:var(--muted);font-size:.9rem}
+.g9-cu-support{padding:0 0 16px;margin:0 0 16px;border-bottom:1px solid var(--line)}
+.g9-cu-support:last-of-type{border-bottom:0}.g9-cu-support>h3{font-size:1rem;line-height:1.35;margin:.3rem 0 .7rem;color:var(--muted)}
+@media (min-width:1100px){.g9-bucket-orientation-grid{display:grid;grid-template-columns:.68fr .32fr;gap:20px}}
+textarea{width:100%;min-height:120px;font:inherit;border:1px solid var(--line);border-radius:10px;padding:14px 16px;box-sizing:border-box;background:var(--card);color:var(--fg)}
+details{border:1px solid var(--line);border-radius:10px;margin:12px 0;padding:0 12px}details[data-locked] summary{opacity:.55;cursor:not-allowed}
+figure{margin:14px 0;max-width:100%;overflow-x:auto}figure svg{width:100%;height:auto;max-width:720px}figcaption{color:var(--muted)}
+.g9-prov{color:var(--muted);font-size:.95rem}.g9-expr{font-family:ui-monospace,monospace;font-size:1.05rem}
+[data-g9-meta-strip]{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+[data-g9-meta-item]{display:inline-flex;flex-wrap:wrap;gap:4px;align-items:baseline;padding:5px 9px;border:1px solid var(--line);border-radius:999px;background:var(--bg);font-size:.9rem;max-width:100%;min-width:0;box-sizing:border-box}
+[data-g9-meta-item] strong{font-weight:700;flex:0 0 auto}
+[data-g9-meta-label]{min-width:0;overflow-wrap:anywhere}
+h4{margin:.8em 0 .3em}:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+footer{padding:24px 16px;color:var(--muted)}
+@media print{:root,:root[data-theme=dark]{--bg:#fff;--fg:#000;--card:#fff;--line:#bbb;--accent:#1f5fae;--muted:#333;--soft:#fff;--pill-bg:#eee;--pill-fg:#222;--src-bg:#eee;--src-fg:#222;--info-bg:#fff;--info-line:#888;--info-fg:#222;--warn-bg:#fff;--warn-line:#888;--warn-fg:#222;--ok-bg:#fff;--ok-line:#888;--ok-fg:#222}
+header[data-g9-shell-header],nav[data-g9-breadcrumb],.g9-attempt,button,[data-g9-display-panel],[data-g9-source-pdf]{display:none!important}
+.g9-attempt:has(.g9-answer-options){display:block!important}
+.g9-attempt>:not(.g9-answer-options),.g9-answer-option input{display:none!important}
+details[data-requires-attempt]:not([open]){display:none!important}
+details{border:none}article[data-g9-unit]{break-inside:auto;border:none}
+h1,h2,h3,h4{break-after:avoid-page}footer{padding:0;break-before:avoid-page}
+body{background:#fff;color:#000}}
+.g9-attempt input[type=text],.g9-attempt select,.g9-attempt textarea{min-height:48px;box-sizing:border-box}
+.g9-answer-option,.g9-paper,.g9-match{display:flex;align-items:center;gap:.5rem;min-height:48px}
+.g9-answer-option input,.g9-paper input{min-width:48px;min-height:48px}
+.g9-attempt fieldset{min-height:48px}
+.g9-math,pre,table{max-width:100%;overflow-x:auto}
+input,select{font-size:max(16px,1rem)}
+@media (max-width:899px){header[data-g9-shell-header]{position:relative}article[data-g9-unit]{padding:16px}nav[data-g9-breadcrumb]{font-size:.95rem}}
+
+.g9-split{display:block;min-width:0}.g9-col{min-width:0}
+.g9-component{min-width:0;margin:14px 0}.g9-component:first-child{margin-top:0}
+.g9-eyebrow{font-size:.85rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 6px}
+.g9-pill{display:inline-flex;align-items:center;font-size:.85rem;font-weight:800;line-height:1.2;padding:3px 10px;border-radius:999px;background:var(--pill-bg);color:var(--pill-fg);white-space:nowrap}
+.g9-pill-source{background:var(--src-bg);color:var(--src-fg)}
+article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-bottom:1px solid var(--line)}
+.g9-c-header h2,.g9-c-concept-header h2{font-size:1.2rem;line-height:1.3;margin:0;letter-spacing:-.01em}
+.g9-c-header .g9-prov{margin:2px 0 0}
+.g9-c-disclosure-grid{margin-top:0}
+.g9-c-unit-header{margin-top:0}
+.g9-why-toggle{margin-top:10px;gap:4px 10px;flex-wrap:wrap;max-width:100%;text-align:left;justify-content:flex-start;border:0;background:transparent;padding:6px 0;font-weight:700;color:var(--muted)}
+.g9-pill-band{background:#fff7ed;color:#9a3412}.g9-pill-band[data-g9-band=D1]{background:#ecfdf5;color:#047857}.g9-pill-band[data-g9-band=D2]{background:#eff6ff;color:#1d4ed8}.g9-pill-band[data-g9-band=D4]{background:#fdf2f8;color:#be185d}
+:root[data-theme=dark] .g9-pill-band{background:#3a2a14;color:#fdba74}:root[data-theme=dark] .g9-pill-band[data-g9-band=D1]{background:#12301f;color:#6ee7b7}:root[data-theme=dark] .g9-pill-band[data-g9-band=D2]{background:#172a4d;color:#9ec5ff}:root[data-theme=dark] .g9-pill-band[data-g9-band=D4]{background:#3a1830;color:#f9a8d4}
+.g9-why{margin-top:6px}.g9-why p{margin:.2rem 0 .6rem;color:var(--muted)}
+.g9-dgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.g9-dcell{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:.85rem;color:var(--muted)}.g9-dcell b{display:block;color:var(--fg);font-size:1rem}
+.g9-c-stem [data-g9-block=stem] p{margin:.1rem 0;font-size:1.12rem;line-height:1.58;font-weight:560;white-space:pre-line}
+.g9-c-callout-info{border-left:4px solid var(--info-line);background:var(--info-bg);padding:10px 14px;border-radius:0 12px 12px 0;color:var(--info-fg)}
+.g9-c-callout-warn{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:12px;padding:10px 14px;color:var(--warn-fg)}
+.g9-c-callout-info h4,.g9-c-callout-warn h4{margin:0 0 .2rem;font-size:1rem}.g9-c-callout-warn h4{color:var(--warn-fg)}
+.g9-c-callout-info ul{margin:.2rem 0;padding-left:1.2rem}.g9-c-callout-info p,.g9-c-callout-warn p{margin:.1rem 0}
+.g9-bridge-link{color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.g9-crux-tag{display:inline-block;margin:0 0 4px;padding:1px 10px;border-radius:999px;background:var(--pill-bg);color:var(--pill-fg);font-size:.85rem;font-weight:800}
+.g9-c-step-cards [data-g9-block=construction] ol>li[data-g9-crux-step]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.g9-lines{white-space:pre-line}
+.g9-cu-support>h3{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.g9-c-attempt .g9-attempt{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--soft)}
+.g9-answer-options{display:grid;gap:8px;counter-reset:g9opt}
+.g9-answer-option{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:6px 12px}
+.g9-answer-option::before{counter-increment:g9opt;content:"(" counter(g9opt,upper-alpha) ")";font-weight:850;color:var(--accent);order:1;min-width:2.2rem}
+.g9-answer-option input{order:0}.g9-answer-option>span{order:2}
+.g9-c-visual-card,.g9-c-staged-visual{border:1px solid var(--line);border-radius:16px;background:var(--soft);padding:10px 12px 12px}
+.g9-card-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:6px}.g9-card-head strong{font-size:.9rem}
+.g9-c-visual-card figure,.g9-c-staged-visual figure{margin:0}
+.g9-c-visual-card figure svg,.g9-c-staged-visual figure svg{display:block;width:100%;height:auto;max-width:100%}
+.g9-c-visual-card figure svg{max-height:min(48vh,440px)}.g9-c-staged-visual figure svg{max-height:min(42vh,360px)}
+.g9-c-ladder .g9-block>h4{margin:.9rem 0 .2rem;font-size:.85rem;color:var(--muted)}
+.g9-rung-map,.g9-c-ladder [data-g9-ladder]{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:8px}
+.g9-rung-map>li{border:1px dashed var(--line);border-radius:12px;padding:9px 13px;color:var(--muted)}
+.g9-c-ladder [data-g9-ladder]>li{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:10px 13px}
+.g9-rung-head{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-weight:800}
+.g9-rung-no{display:inline-grid;place-items:center;min-width:2.3em;height:2.1em;border-radius:8px;background:var(--pill-bg);color:var(--pill-fg);font-size:.85rem}
+.g9-c-ladder details[data-g9-support-reveal]{border:0;padding:0;margin:.5rem 0}
+.g9-c-ladder details[data-g9-support-reveal]>summary{width:100%;justify-content:space-between;font-weight:700}
+.g9-c-ladder [data-g9-support-prompt]{margin:.5rem 0}.g9-c-ladder .g9-ladder>button{margin-top:10px}
+.g9-pdf-link{gap:6px;font-weight:700}.g9-pdf-icon{flex:none;width:24px;height:24px}.g9-pdf-link span{white-space:nowrap}header .g9-pdf-link{color:var(--accent)}.g9-c-link-list .g9-source-pdf{border-radius:12px}
+.g9-c-link-list h4{margin:.9rem 0 .3rem;font-size:.85rem;color:var(--muted)}
+.g9-c-link-list ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:.2rem 0;padding:0}
+.g9-c-link-list li{margin:0}.g9-c-link-list a{display:inline-flex;align-items:center;min-height:48px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--fg);text-decoration:none}
+.g9-c-disclosure>details{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:0;overflow:hidden;margin:0}
+.g9-c-disclosure>details>summary{list-style:none;display:flex;width:100%;justify-content:space-between;border:0;border-radius:0;background:transparent;padding:13px 15px;font-weight:850;min-height:48px}
+.g9-c-disclosure>details>summary::-webkit-details-marker{display:none}
+.g9-c-disclosure>details>summary::after{content:"Show";font-size:.85rem;background:var(--pill-bg);color:var(--pill-fg);padding:4px 10px;border-radius:999px}
+.g9-c-disclosure>details[open]>summary::after{content:"Hide"}.g9-c-disclosure>details[data-locked]>summary::after{content:"After you attempt"}
+.g9-c-disclosure>details[open]>summary{border-bottom:1px solid var(--line);background:var(--card)}
+.g9-c-disclosure [data-g9-payload-slot]{padding:6px 16px 16px}
+.g9-solution-move{display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.g9-solution-move:last-child{border-bottom:0}
+.g9-step-no{font-weight:850;font-size:.9rem;color:var(--pill-fg);background:var(--pill-bg);border-radius:8px;padding:5px 6px;text-align:center;height:max-content}
+.g9-step-body [data-g9-block=solution_inputs]{display:flex;flex-wrap:wrap;gap:.4rem;align-items:baseline;color:var(--muted)}
+.g9-step-body [data-g9-block=solution_inputs] h4{margin:0}
+.g9-step-body [data-g9-block=solution_inputs] ul{display:flex;flex-wrap:wrap;gap:.4rem;list-style:none;margin:0;padding:0}
+.g9-step-body [data-g9-block=solution_inputs] li{border:1px solid var(--line);border-radius:999px;padding:1px 10px;font-size:.85rem}
+.g9-step-body p{margin:.25rem 0}.g9-step-body h4{margin:0;font-size:.85rem;color:var(--muted)}
+.g9-solution-move[data-g9-solution-crux=true]{background:var(--info-bg);border-radius:10px;padding-left:8px;padding-right:8px}
+.g9-c-step-list [data-g9-block=working] ol{list-style:none;padding:0;margin:0;counter-reset:g9s}
+.g9-c-step-list [data-g9-block=working] ol>li{counter-increment:g9s;display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.g9-c-step-list [data-g9-block=working] ol>li::before{content:counter(g9s);font-weight:850;font-size:.9rem;color:var(--pill-fg);background:var(--pill-bg);border-radius:8px;padding:5px 6px;text-align:center;height:max-content}
+.g9-c-answer-box{background:var(--ok-bg);border:1px solid var(--ok-line);border-radius:12px;padding:10px 14px;color:var(--ok-fg)}
+.g9-c-answer-box p{margin:.15rem 0}.g9-c-answer-box h4{margin:0 0 .2rem;font-size:.85rem}
+.g9-c-check-box{border-left:4px solid var(--ok-line);padding:4px 14px;color:var(--ok-fg)}.g9-c-check-box h4{margin:0;font-size:.85rem}.g9-c-check-box p{margin:.15rem 0}
+.g9-c-tile,.g9-c-recall-card{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:12px 16px}
+.g9-c-tile h4,.g9-c-recall-card h4{margin:0 0 .3rem}.g9-c-tile ul{margin:.2rem 0;padding-left:1.2rem}
+.g9-c-banner{border-left:5px solid var(--accent);background:var(--info-bg);padding:12px 16px;border-radius:0 14px 14px 0}.g9-c-banner h4{margin:0 0 .2rem;color:var(--accent)}.g9-c-banner p{margin:.1rem 0}
+.g9-unit-head{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.g9-unit-no{display:inline-grid;place-items:center;width:2.3em;height:2.3em;border-radius:50%;background:var(--accent);color:var(--card);font-weight:850}
+.g9-unit-head h3{margin:0;flex:1 1 12rem;font-size:1.12rem;line-height:1.35}.g9-pill-concept{background:var(--info-bg);color:var(--info-fg);border:1px solid var(--info-line)}
+.g9-c-step-cards [data-g9-block=construction] ol{list-style:none;margin:0;padding:0;counter-reset:g9c;display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+.g9-c-step-cards [data-g9-block=construction] ol>li{counter-increment:g9c;position:relative;border:1px solid var(--line);border-radius:14px;background:var(--card);padding:12px 14px 12px 54px;min-width:0;overflow-wrap:anywhere}
+.g9-c-step-cards [data-g9-block=construction] ol>li::before{content:counter(g9c);position:absolute;left:14px;top:12px;display:grid;place-items:center;width:1.9em;height:1.9em;border-radius:50%;background:var(--pill-bg);color:var(--pill-fg);font-weight:850;font-size:.9rem}
+.g9-c-step-cards li em{display:inline-block;min-width:5.6rem;color:var(--muted);font-style:normal;font-weight:700}
+.g9-c-step-cards li br{display:block;content:"";margin-top:.3rem}
+.g9-c-equation-card,.g9-c-worked-card{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:10px 14px}
+.g9-c-worked-card{border-left:4px solid var(--accent)}.g9-c-worked-card [data-g9-block=worked_anchor]{border-left:0;padding-left:0}
+.g9-c-trap-card{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:14px;padding:10px 14px;color:var(--warn-fg)}
+.g9-c-trap-card [data-g9-block]{border-left:0;padding-left:0}.g9-c-trap-card h4{margin:.5rem 0 .1rem;font-size:.85rem}
+.g9-c-trap-card ul{margin:.1rem 0;padding-left:1.2rem}
+.g9-c-triad{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:10px 14px}
+.g9-c-triad h4{margin:0 0 .4rem;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.g9-triad{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.g9-triad>li{display:grid;gap:2px;border-left:4px solid var(--line);padding:2px 0 2px 10px}
+.g9-triad>li[data-g9-triad-role=CHECK]{border-color:var(--info-line)}.g9-triad>li[data-g9-triad-role=APPLY]{border-color:var(--ok-line)}.g9-triad>li[data-g9-triad-role=CONNECT]{border-color:var(--pill-fg)}
+.g9-triad-head{font-size:.85rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.g9-c-chips ul,.g9-c-chips ol{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:.3rem 0;padding:0}
+.g9-c-chips li{margin:0}
+.g9-c-chips a{border:1px solid var(--line);border-radius:999px;background:var(--card);padding:6px 14px;min-height:48px;display:inline-flex;align-items:center;text-decoration:none;color:var(--fg)}
+/* 12.7-inch tablet: the identity block is a title row and a chip row, so the first screen shows the work and not the labels */
+article[data-g9-role=CORE2]>.slot-identity,article[data-g9-role=CORE1A]>.slot-identity{display:flex;flex-wrap:wrap;align-items:center;gap:4px 16px;padding:0 0 8px;margin-bottom:12px}
+article[data-g9-role=CORE2]>.slot-identity>.g9-component,article[data-g9-role=CORE1A]>.slot-identity>.g9-component{display:contents}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-block=source_identity]{order:1;flex:1 1 16rem;display:flex;align-items:baseline;flex-wrap:wrap;gap:0 14px;min-width:0}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-block=source_identity] h2,article[data-g9-role=CORE1A]>.slot-identity h2{margin:0}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-block=source_identity] .g9-prov{margin:0}
+article[data-g9-role=CORE2]>.slot-identity .g9-why-toggle{order:2;margin:0;padding:2px 0;min-height:var(--g9-touch-min)}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-meta-strip],article[data-g9-role=CORE1A]>.slot-identity [data-g9-meta-strip]{order:3;flex:1 0 100%;margin:0;gap:6px}
+article[data-g9-role=CORE2]>.slot-identity .g9-why{order:4;flex:1 0 100%}
+article[data-g9-role=CORE1A]>.slot-identity h2{order:1;flex:1 1 auto}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-block=section_route]{order:4;flex:1 0 100%;display:flex;align-items:center;gap:6px 12px;flex-wrap:wrap}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-block=section_route] h4{margin:0;white-space:nowrap}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] ol{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] li{margin:0}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] a{display:inline-block;width:auto;max-width:24rem;padding:4px 14px;border-radius:999px;line-height:38px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-meta-item],article[data-g9-role=CORE1A]>.slot-identity [data-g9-meta-item]{padding:2px 10px;line-height:1.35}
+@media (min-width:980px){article[data-g9-role="CORE2"] .g9-split{display:grid;grid-template-columns:minmax(0,42fr) minmax(0,58fr);gap:22px;align-items:start}article[data-g9-role="CORE2"] .g9-split-primary-only,article[data-g9-role="CORE2"] .g9-split-support-only{grid-template-columns:minmax(0,1fr)}}@media (max-width:979px){article[data-g9-role="CORE2"] .g9-split{display:flex;flex-direction:column}article[data-g9-role="CORE2"] .g9-split .g9-col,article[data-g9-role="CORE2"] .g9-split .blueprint-slot,article[data-g9-role="CORE2"] .g9-split .g9-cu,article[data-g9-role="CORE2"] .g9-split .g9-cu-support{display:contents}article[data-g9-role="CORE2"] [data-g9-component="IDENTITY"]{order:10}article[data-g9-role="CORE2"] [data-g9-component="SOURCE_PDF"]{order:15}article[data-g9-role="CORE2"] [data-g9-component="DIFFICULTY_WHY"]{order:20}article[data-g9-role="CORE2"] [data-g9-component="STEM"]{order:30}article[data-g9-role="CORE2"] [data-g9-component="CONDITIONS"]{order:50}article[data-g9-role="CORE2"] [data-g9-component="TRAP"]{order:60}article[data-g9-role="CORE2"] [data-g9-component="ATTEMPT"]{order:70}article[data-g9-role="CORE2"] [data-g9-component="REPRESENTATION"]{order:40}article[data-g9-role="CORE2"] [data-g9-component="HINT_LADDER"]{order:80}article[data-g9-role="CORE2"] [data-g9-component="CONCEPT_NAV"]{order:90}article[data-g9-role="CORE2"] [data-g9-component="SOLUTION"]{order:100}}@media print{article[data-g9-role="CORE2"] .g9-split{display:grid;grid-template-columns:minmax(0,42fr) minmax(0,58fr);gap:12px}}@media (min-width:1100px){article[data-g9-role="CORE1A"] .g9-split{display:grid;grid-template-columns:minmax(0,60fr) minmax(0,40fr);gap:22px;align-items:start}article[data-g9-role="CORE1A"] .g9-split-primary-only,article[data-g9-role="CORE1A"] .g9-split-support-only{grid-template-columns:minmax(0,1fr)}article[data-g9-role="CORE1A"] .g9-split:not(.g9-split-support-only)>.g9-col-support{position:sticky;top:80px;max-height:calc(100vh - 96px);overflow-y:auto;overscroll-behavior:contain}}@media (max-width:1099px){article[data-g9-role="CORE1A"] .g9-split{display:flex;flex-direction:column}article[data-g9-role="CORE1A"] .g9-split .g9-col,article[data-g9-role="CORE1A"] .g9-split .blueprint-slot,article[data-g9-role="CORE1A"] .g9-split .g9-cu,article[data-g9-role="CORE1A"] .g9-split .g9-cu-support{display:contents}article[data-g9-role="CORE1A"] [data-g9-component="CONCEPT_HEADER"]{order:10}article[data-g9-role="CORE1A"] [data-g9-component="SECTION_ROUTE"]{order:20}article[data-g9-role="CORE1A"] [data-g9-component="UNIT_HEADER"]{order:30}article[data-g9-role="CORE1A"] [data-g9-component="KEY_STEP"]{order:40}article[data-g9-role="CORE1A"] [data-g9-component="MODEL_CONTRACT"]{order:50}article[data-g9-role="CORE1A"] [data-g9-component="QUESTION_BRIDGE"]{order:60}article[data-g9-role="CORE1A"] [data-g9-component="CONSTRUCTION_STEPS"]{order:80}article[data-g9-role="CORE1A"] [data-g9-component="EQUATIONS"]{order:90}article[data-g9-role="CORE1A"] [data-g9-component="WORKED_EXAMPLE"]{order:100}article[data-g9-role="CORE1A"] [data-g9-component="STAGED_VISUAL"]{order:70}article[data-g9-role="CORE1A"] [data-g9-component="TRAP_REPAIR"]{order:110}article[data-g9-role="CORE1A"] [data-g9-component="QUICK_CHECK"]{order:120}article[data-g9-role="CORE1A"] [data-g9-component="EXIT_RECALL"]{order:130}article[data-g9-role="CORE1A"] [data-g9-component="PRACTICE_LINKS"]{order:140}}@media print{article[data-g9-role="CORE1A"] .g9-split{display:grid;grid-template-columns:minmax(0,60fr) minmax(0,40fr);gap:12px}}@media (min-width:1100px){article[data-g9-role="CORE1B"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:22px;align-items:start}article[data-g9-role="CORE1B"] .g9-split-primary-only,article[data-g9-role="CORE1B"] .g9-split-support-only{grid-template-columns:minmax(0,1fr)}}@media print{article[data-g9-role="CORE1B"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:12px}}@media (min-width:1100px){article[data-g9-role="CORE2A"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:22px;align-items:start}article[data-g9-role="CORE2A"] .g9-split-primary-only,article[data-g9-role="CORE2A"] .g9-split-support-only{grid-template-columns:minmax(0,1fr)}}@media print{article[data-g9-role="CORE2A"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:12px}}@media (min-width:1100px){article[data-g9-role="CORE2B"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:22px;align-items:start}article[data-g9-role="CORE2B"] .g9-split-primary-only,article[data-g9-role="CORE2B"] .g9-split-support-only{grid-template-columns:minmax(0,1fr)}}@media print{article[data-g9-role="CORE2B"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:12px}}</style><style id="pr375-u4-remediation">
+/* PR #375 U4 remediation: accessibility, reflow and alternate viewports. */
+*, *::before, *::after { box-sizing: border-box; }
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid #38bdf8 !important;
+  outline-offset: 2px !important;
+}
+img, svg, canvas { max-width: 100%; }
+input, select, textarea { max-width: 100%; }
+::placeholder { color: #94a3b8 !important; opacity: 1 !important; }
+[data-theme="light"] ::placeholder { color: #475569 !important; }
+.u4-clear-button { color: #f8fafc !important; }
+[data-theme="light"] .u4-clear-button { color: #0f172a !important; }
+
+/* Never communicate correctness by colour alone. */
+.opt-btn.selected-correct::after {
+  content: " ✓ Correct";
+  margin-inline-start: .4rem;
+  font-weight: 800;
+}
+.opt-btn.selected-incorrect::after {
+  content: " ✕ Incorrect";
+  margin-inline-start: .4rem;
+  font-weight: 800;
+}
+
+/* Contrast repairs for the learner-visible light theme. */
+[data-theme="light"] .step-content-calc {
+  color: #7c2d12 !important;
+  background: #fff7ed !important;
+  border: 1px solid #c2410c !important;
+}
+[data-theme="light"] .answer-banner,
+[data-theme="light"] .badge-success,
+[data-theme="light"] .saved-pill {
+  color: #065f46 !important;
+}
+[data-theme="light"] .badge-warning,
+[data-theme="light"] .hint-tag,
+[data-theme="light"] .diag-header-another {
+  color: #7c2d12 !important;
+}
+[data-theme="light"] .step-label,
+[data-theme="light"] details > summary {
+  color: #075985 !important;
+}
+[data-theme="light"] .formula-box,
+[data-theme="light"] .math-banner {
+  color: #422006 !important;
+  background: #fef3c7 !important;
+  border-color: #92400e !important;
+}
+[data-theme="light"] footer { color: #475569 !important; }
+
+/* Default dark-theme contrast repairs from U4. */
+html[data-theme="dark"] .step-label { color: #7dd3fc !important; }
+html[data-theme="dark"] details > summary { color: #7dd3fc !important; }
+.q-count, .open-btn { color: #93c5fd !important; }
+.tag-2d, .tag-1d, .tag-vec, .tag-ncert, .tag-sba, .tag-proj, .tag-cons { color: #ffffff !important; }
+footer { color: #94a3b8 !important; }
+
+/* The offline 1D master lost Tailwind preflight + custom theme utilities. */
+body.u4-tailwind-offline {
+  margin: 0 !important;
+  background: #090d16 !important;
+  color: #f1f5f9 !important;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+.u4-tailwind-offline.bg-background, .u4-tailwind-offline .bg-background { background-color: #090d16 !important; }
+.u4-tailwind-offline .bg-card { background-color: #111827 !important; }
+.u4-tailwind-offline .border-border { border-color: #334155 !important; }
+.u4-tailwind-offline .bg-slate-950\/90 { background-color: rgba(2, 6, 23, .94) !important; }
+.u4-tailwind-offline .bg-slate-900 { background-color: #0f172a !important; }
+.u4-tailwind-offline .bg-slate-800 { background-color: #1e293b !important; }
+.u4-tailwind-offline .max-w-7xl { max-width: 80rem !important; }
+.u4-tailwind-offline .overflow-x-auto { overflow-x: auto !important; }
+.u4-tailwind-offline .whitespace-nowrap { white-space: nowrap !important; }
+.u4-tailwind-offline .font-sans { font-family: ui-sans-serif, system-ui, sans-serif !important; }
+.u4-tailwind-offline .text-slate-500,
+.u4-tailwind-offline .text-slate-600 { color: #cbd5e1 !important; }
+.u4-tailwind-offline .text-slate-400 { color: #a8b5c7 !important; }
+.u4-tailwind-offline header { max-width: 100%; }
+
+/* Reflow at phone width and at a 200% zoom-equivalent viewport. */
+@media (max-width: 700px) {
+  header.sticky, .sticky-header, .top-nav.sticky { position: static !important; top: auto !important; }
+}
+@media (max-width: 480px) {
+  .header-actions,
+  .g9-nav-group,
+  .g9-header-actions,
+  .top-nav-header,
+  .course-badge-row,
+  .workspace-title-row {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-wrap: wrap !important;
+  }
+  .g9-block, nav, ol, ul, main, section, article, .app-container, .container {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  ol, ul { padding-inline-start: 1.5rem !important; }
+  #jump-select { width: 100% !important; max-width: 100% !important; }
+  .tab-btn { white-space: normal !important; min-width: 0 !important; flex: 1 1 140px !important; }
+  .tabs, .tab-strip, .tab-nav, .tab-bar, .g9-tabs, [class*="tabs-row"] {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .g9-nav-group > *, .header-actions > * { max-width: 100% !important; }
+  pre { white-space: pre-wrap !important; overflow-wrap: anywhere !important; max-width: 100% !important; }
+  table { display: block; max-width: 100% !important; overflow-x: auto !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (forced-colors: active) {
+  svg text { fill: CanvasText !important; stroke: transparent !important; }
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 3px solid Highlight !important;
+  }
+}
+</style>
+<style id="pr375-u4-residual-remediation">
+@media (max-width: 480px) {
+  /* Generated CORE1A section-route pills used 24rem + padding, producing ~467px boxes. */
+  [data-g9-section-route] a,
+  [data-g9-concept-route] a,
+  article[data-g9-role="CORE1A"] > .slot-identity [data-g9-section-route] a {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    line-height: 1.4 !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  /* Consolidated and interactive headers must reflow as complete units, not just their children. */
+  .header-inner,
+  header.g9-shell {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+  }
+  .header-inner > *,
+  header.g9-shell > .g9-nav-group {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .header-brand,
+  .header-brand h1,
+  .header-actions,
+  header.g9-shell .g9-nav-group,
+  header.g9-shell .g9-breadcrumb {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+  }
+  .header-brand h1 { align-items: flex-start !important; }
+  .header-actions { width: 100% !important; justify-content: flex-start !important; }
+  header.g9-shell { padding-block: 8px !important; }
+  header.g9-shell .g9-breadcrumb { flex: 1 1 100% !important; overflow-wrap: anywhere !important; }
+}
+</style>
+<style id="pr375-u1-svg-scale">figure svg,.g9-c-visual-card figure svg,.g9-c-staged-visual figure svg{width:100%!important;max-width:100%!important;max-height:none!important}</style>
+<style id="pr375-u1-remediation">
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%} body{overflow-wrap:anywhere} p,li{line-height:1.4}
+:where(p,li,label,button,input,select,textarea,summary,td,th,figcaption,.btn,.q-badge,.tag-pill,.hint-badge,.hint-tag,.subject-badge,.step-label,.diag-header,.formula-box,#saveStatus,.save-status,.tag,.q-count,.open-btn,.stat .label,section.section-header h2,.study-kicker,.brand-badge,.hero-pill,.badge,.core-tag,.telemetry-title,.control-label,.card-action,.breadcrumb){font-size:max(14px,1em)!important}
+:where(a[href="practice/index.html"],header a,nav a,.breadcrumb a,a.g9-bridge-link,[data-g9-block="entry_assumptions"] a){min-height:48px!important;min-width:48px!important;display:inline-flex!important;align-items:center!important;justify-content:center;padding-block:10px!important;box-sizing:border-box!important}
+@media(min-width:1100px){article[data-g9-role="CORE1A"] .g9-split{grid-template-columns:minmax(0,1fr)!important}article[data-g9-role="CORE1A"] .g9-col-support{position:static!important;top:auto!important}}
+article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;line-height:1.35!important;min-height:48px!important}
+
+.badge,.study-kicker{font-size:14px!important}
+</style>
+</head><body data-core="CORE1A" data-blueprint-ref="BP-CORE1A-CONSTRUCTION@1.4.0"><header data-g9-shell-header><a data-g9-home href="practice/index.html">Home</a><button type="button" onclick="history.back()">Back</button><button type="button" data-g9-action="search">Search</button><button type="button" data-g9-action="display">Display</button><div data-g9-search-panel hidden><input data-g9-search-input type="search" aria-label="Search this page"></div><div data-g9-display-panel hidden><button type="button" data-g9-font="dec">A−</button><button type="button" data-g9-font="reset">A</button><button type="button" data-g9-font="inc">A+</button><button type="button" data-g9-theme="light">Light</button><button type="button" data-g9-theme="dark">Dark</button><button type="button" data-g9-zoom="dec">Zoom −</button><button type="button" data-g9-zoom="reset">100%</button><button type="button" data-g9-zoom="inc">Zoom +</button></div></header><nav data-g9-breadcrumb aria-label="Breadcrumb"><a href="practice/index.html">Home</a><span aria-current="page">CORE1A</span><a href="core2-motion-in-a-plane-tablet.html">CORE2</a></nav><noscript>Answers open after you attempt; this page needs JavaScript.</noscript><main><aside data-g9-snapshot-note class="g9-card" style="margin:0 0 14px"><strong>Review snapshot.</strong> Generated by render_core/2 from merged blueprint authority <code>main@0e08782fd55ded0a2968f09b40c52cb1d8453633</code>. Academic content is the governed manifest/package/bank projection; only standalone navigation, PDF-control removal and CSS inlining are adapted.</aside><h1>Two-dimensional kinematics and projectile model: Construction</h1><section class="g9-core1a-book" data-g9-bucket-orientation data-g9-bucket-ref="BUCKET-PHY-KIN-2D-MOTION"><p class="g9-prov">Concept Book</p><h2>Two-dimensional kinematics and projectile model</h2><div class="g9-bucket-orientation-grid"><div><div class="g9-block" data-g9-block="learning_promise"><h4>Learning promise</h4><p>Independent perpendicular component motion in one frame, constant-acceleration component equations with common time, and the ideal near-Earth projectile specialization for horizontal and oblique launch questions.</p></div><nav class="g9-block" data-g9-block="concept_route" data-g9-concept-route aria-label="Concept Book route"><h4>Concept route</h4><ol><li data-g9-concept-ref="MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"><a href="#MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS">Split one plane-motion event into independent x/y components with one clock</a><ol><li><a href="#CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1">Solve each axis on its own, but read both coordinates at one shared instant before calling the pair a position.</a></li></ol></li><li data-g9-concept-ref="MIC-PHY-KIN-2D-CONSTANT-ACCELERATION"><a href="#MIC-PHY-KIN-2D-CONSTANT-ACCELERATION">Apply constant-acceleration kinematics component by component</a><ol><li><a href="#CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1">Check on each axis that its acceleration component is constant, then run the one-dimensional equations once per axis with one shared time.</a></li></ol></li><li data-g9-concept-ref="MIC-PHY-KIN-PROJECTILE-MODEL"><a href="#MIC-PHY-KIN-PROJECTILE-MODEL">Select the gravity-only projectile model before using projectile consequences</a><ol><li><a href="#CU-PHY-KIN-PROJECTILE-MODEL-1">Decide from what acts after release whether the gravity-only model applies, and only then put a_x = 0 and a_y = −g into the component equations.</a></li><li><a href="#CU-PHY-KIN-PROJECTILE-MODEL-2">Name the requested event as a component condition before solving for its time: v_y = 0 at the apex, Δy = 0 at a return to launch height.</a></li><li><a href="#CU-PHY-KIN-PROJECTILE-MODEL-3">Write the landing event from the actual drop while keeping the actual u_y, then read every requested quantity at that one event time.</a></li></ol></li></ol></nav></div><aside><div class="g9-block" data-g9-block="foundation_route"><h4>Foundation route</h4><ul><li data-g9-foundation-ref="BUCKET-PHY-VEC-ADD-SUB" data-g9-availability="unlinked">Vector addition, subtraction and orientation <span class="g9-availability-note">— direct route unavailable in this product</span></li><li data-g9-foundation-ref="BUCKET-PHY-KIN-1D-MOTION" data-g9-availability="unlinked">One-dimensional motion <span class="g9-availability-note">— direct route unavailable in this product</span></li></ul></div><div class="g9-block" data-g9-block="model_contract"><h4>Model contract</h4><ul><li>Use one declared non-rotating x-y frame for the whole event; both component equations use the same elapsed time.</li><li>When +y is chosen upward, the ideal projectile model uses a_x=0 and a_y=-g after release.</li></ul></div><div class="g9-block" data-g9-block="scope_boundary"><h4>Outside this book</h4><ul><li>Calculus-based differentiation of a time-dependent position vector.</li><li>Derivation or memorization of a large catalogue of range/height/time-of-flight formulas as separate capabilities.</li><li>Trajectory-equation derivation as a first-slice requirement.</li><li>Air drag, Coriolis effects, variable gravity, target-on-incline projectile geometry and other advanced variants.</li></ul></div></aside></div></section><article id="MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS" data-g9-unit="MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS" data-g9-kind="CONCEPT" data-g9-role="CORE1A" data-g9-search-text="Physics Motion in 2 D Split one plane-motion event into independent x/y components with one clock Medium concept Split one plane-motion event into independent x/y components with one clock" class="g9-stage-support"><section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true"><div class="g9-component g9-c-concept-header" data-g9-component="CONCEPT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="CONCEPT_HEADER"><h2>Split one plane-motion event into independent x/y components with one clock</h2><div data-g9-meta-strip data-g9-meta-role="CORE1A" data-g9-meta-record="MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS" data-g9-search-safe><span data-g9-meta-item data-g9-meta-kind="subject" data-g9-meta-ref="Physics" data-g9-meta-value="Physics"><strong>Subject:</strong> <span data-g9-meta-label>Physics</span></span><span data-g9-meta-item data-g9-meta-kind="topic" data-g9-meta-ref="BUCKET-PHY-KIN-2D-MOTION" data-g9-meta-value="Motion in 2 D"><strong>Topic:</strong> <span data-g9-meta-label>Motion in 2 D</span></span><span data-g9-meta-item data-g9-meta-kind="concept" data-g9-meta-ref="MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS" data-g9-meta-value="Split one plane-motion event into independent x/y components with one clock"><strong>Concept:</strong> <span data-g9-meta-label>Split one plane-motion event into independent x/y components with one clock</span></span><span data-g9-meta-item data-g9-meta-kind="concept-difficulty" data-g9-meta-ref="MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS" data-g9-meta-value="MEDIUM"><strong>Concept difficulty:</strong> <span data-g9-meta-label>Medium concept</span></span></div></div></section><div class="g9-split"><div class="g9-col g9-col-primary"><section class="blueprint-slot slot-construction" data-blueprint-slot="construction" data-required="true"><section id="CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1" class="g9-cu" data-g9-cu="CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1"><div class="g9-component g9-c-unit-header" data-g9-component="UNIT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="UNIT_HEADER" data-g9-component-unit="CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1"><div class="g9-unit-head"><span class="g9-unit-no" aria-hidden="true">1</span><h3>Solve each axis on its own, but read both coordinates at one shared instant before calling the pair a position.</h3><span class="g9-pill g9-pill-concept">Medium concept</span></div><nav class="g9-cu-nav" data-g9-unit-navigation aria-label="Concept Book section navigation"><span data-g9-route-position>Section 1 of 5</span><span class="g9-cu-nav-links"><a data-g9-next-section href="#CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1" aria-label="Next section: Check on each axis that its acceleration component is constant, then run the one-dimensional equations once per axis with one shared time.">Next →</a></span></nav></div><div class="g9-component g9-c-banner" data-g9-component="KEY_STEP" data-g9-level="REQUIRED" data-g9-presentation="BANNER"><div class="g9-block" data-g9-block="inferential_jump"><h4>The key step</h4><p>Perpendicular components may be solved separately because each axis equation contains only that axis&#x27;s quantities, but they still describe one object at one physical time.</p></div></div><div class="g9-component g9-c-tile" data-g9-component="MODEL_CONTRACT" data-g9-level="EXPECTED" data-g9-presentation="TILE"><div class="g9-block" data-g9-block="entry_assumptions"><h4>You need</h4><ul><li>Can read signed vector components in a declared x-y frame.</li></ul><ul><li data-g9-prereq="CAP-VECTOR-SIGNED-COMPONENT" data-bridged="true">Choosing axes and keeping components signed (Physics)</li></ul></div></div><div class="g9-component g9-c-step-cards" data-g9-component="CONSTRUCTION_STEPS" data-g9-level="REQUIRED" data-g9-presentation="STEP_CARDS" data-g9-component-items="4" data-g9-component-unit="CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1"><div class="g9-block" data-g9-block="construction"><ol><li data-g9-step="K2D1-1"><strong>Choose one fixed x-y frame, one origin and one time origin for the whole plane-motion event.</strong><br><em>Why valid:</em> A component value is meaningful only after its frame and sign convention are fixed.<br><em>Result:</em> one declared frame, origin, axis orientation and t=0</li><li data-g9-step="K2D1-2"><strong>Represent position, velocity and acceleration as signed x and y components in that same frame.</strong><br><em>Why valid:</em> A plane vector is completely represented by its perpendicular Cartesian components once the frame is declared.<br><em>Result:</em> For x = 3t and y = 5t − t² at t = 1 s: (x, y) = (3, 4) m, (v_x, v_y) = (3, 3) m/s, (a_x, a_y) = (0, −2) m/s²</li><li data-g9-step="K2D1-3"><strong>Keep x-quantities in the x description and y-quantities in the y description while using one shared elapsed time.</strong><br><em>Why valid:</em> The perpendicular component equations are independent in Cartesian kinematics, but both describe the same object during the same physical interval.<br><em>Result:</em> x(1) = 3 × 1 = 3 m uses only x-quantities; y(1) = 5 × 1 − 1² = 4 m uses only y-quantities; both use t = 1 s</li><li data-g9-step="K2D1-4"><strong>Recombine only component values that refer to the same frame and the same instant.</strong><br><em>Why valid:</em> Mixing x at one time with y at another does not describe any single physical state of the object.<br><em>Result:</em> one physically valid plane state reconstructed from simultaneous components</li></ol></div></div><div class="g9-component g9-c-equation-card" data-g9-component="EQUATIONS" data-g9-level="EXPECTED" data-g9-presentation="EQUATION_CARD" data-g9-component-unit="CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1"><div class="g9-block" data-g9-block="equation_matrix"><h4>Equations and validity</h4><div class="g9-table-scroll" data-g9-equation-matrix><table><thead><tr><th scope="col">Equation</th><th scope="col">What it tells you</th><th scope="col">When you can use it</th></tr></thead><tbody><tr data-g9-relation-ref="REL-KIN-2D-DISPLACEMENT"><td><div class="g9-math" data-g9-math="mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>Δ</mi><mi>x</mi><mo>=</mo><msub><mi>u</mi><mi>x</mi></msub><mi>t</mi><mo>+</mo><mn>0.5</mn><msub><mi>a</mi><mi>x</mi></msub><msup><mi>t</mi><mn>2</mn></msup><mo>;</mo><mi>Δ</mi><mi>y</mi><mo>=</mo><msub><mi>u</mi><mi>y</mi></msub><mi>t</mi><mo>+</mo><mn>0.5</mn><msub><mi>a</mi><mi>y</mi></msub><msup><mi>t</mi><mn>2</mn></msup></mrow></math></div></td><td><p>Each perpendicular displacement component follows the 1D constant-acceleration displacement relation over one common interval.</p></td><td><ul><li>a_x and a_y are constant over the interval.</li><li>Both component equations use the same elapsed time and frame.</li></ul></td></tr></tbody></table></div></div></div><div class="g9-component g9-c-worked-card" data-g9-component="WORKED_EXAMPLE" data-g9-level="REQUIRED" data-g9-presentation="WORKED_CARD" data-g9-component-unit="CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1"><div class="g9-block" data-g9-block="worked_anchor"><h4>Watch one</h4><p>A drone flies in a frame with origin at its launch pad, +x east, +y up and t = 0 at launch. Its position is x(t) = 6t m and y(t) = (8t − t²) m. Find its position at t = 2 s, and decide whether the pair x(2 s), y(4 s) is a position the drone ever occupies.</p><ol><li>The frame, origin and clock are declared once for the whole flight, so both functions share one t.</li><li>At t = 2 s: x(2) = 6 × 2 = 12 m and y(2) = 8 × 2 − 2² = 12 m, so the drone is at (12, 12) m.</li><li>y(4) = 8 × 4 − 4² = 16 m, so the pair x(2 s), y(4 s) is (12, 16) m.</li><li>x = 12 m happens only at t = 2 s, when y is 12 m rather than 16 m, so (12, 16) m is never a position of the drone.</li></ol><div class="g9-block" data-g9-block="worked_result"><h4>Result</h4><p>At t = 2 s the drone is at (12, 12) m. The pair (12, 16) m mixes two instants and is not a position the drone ever occupies.</p></div><div class="g9-block" data-g9-block="worked_check"><h4>Check</h4><p>At t = 4 s the drone is really at (24, 16) m: substituting t = 4 into both functions gives a genuine position, and its x differs from the mixed pair&#x27;s.</p></div></div></div></section></section></div><div class="g9-col g9-col-support"><section class="blueprint-slot slot-representation" data-blueprint-slot="representation" data-required="true"><div class="g9-component g9-c-staged-visual" data-g9-component="STAGED_VISUAL" data-g9-level="REQUIRED" data-g9-presentation="STAGED_VISUAL" data-g9-component-items="4" data-g9-component-unit="CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1"><figure data-g9-figure data-g9-fig="CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1-REP-KIN-2D-DRONE-SHARED-CLOCK" data-g9-stage="TEACHING" data-g9-representation="REP-KIN-2D-DRONE-SHARED-CLOCK" data-g9-kind="VECTOR" data-reveal-stages="4" data-g9-stages-total="4" data-g9-stages="VIS-KIN-2D-DRONE-V0 VIS-KIN-2D-DRONE-V1 VIS-KIN-2D-DRONE-V2 VIS-KIN-2D-DRONE-V3" data-g9-stage-sequence="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 510" role="img" aria-labelledby="g9fig-CORE1A-CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1-REP-KIN-2D-DRONE-SHARED-CLOCK-1--rep-kin-drone-title g9fig-CORE1A-CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1-REP-KIN-2D-DRONE-SHARED-CLOCK-1--rep-kin-drone-desc">
+  <title id="g9fig-CORE1A-CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1-REP-KIN-2D-DRONE-SHARED-CLOCK-1--rep-kin-drone-title">Drone x(t) = 6t, y(t) = 8t − t²: both coordinates read at one shared instant</title>
+  <desc id="g9fig-CORE1A-CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1-REP-KIN-2D-DRONE-SHARED-CLOCK-1--rep-kin-drone-desc">Stage 1: a drone lifts off from its launch pad and flies along a curved path. Stage 2: one declared frame with origin O at the pad, +x east, +y up, and one shared clock with t = 0 at launch; the axes are marked at x = 12 and 24 m and y = 12 and 16 m. Stage 3: the two component descriptions kept apart: the x-description x(t) = 6t gives x(2) = 12 m and x(4) = 24 m; the y-description y(t) = 8t − t² gives y(2) = 12 m and y(4) = 16 m. Stage 4: reading both at t = 2 s gives the position (12, 12) m, marked on the path; at t = 4 s the drone is at (24, 16) m, also on the path; the mixed pair x(2 s), y(4 s) = (12, 16) m is marked off the path and rejected, because at x = 12 m the drone is at y = 12 m, so it never occupies (12, 16) m.</desc>
+  <defs>
+    <marker id="g9fig-CORE1A-CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1-REP-KIN-2D-DRONE-SHARED-CLOCK-1--rep-kin-drone-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/></marker>
+    <marker id="g9fig-CORE1A-CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1-REP-KIN-2D-DRONE-SHARED-CLOCK-1--rep-kin-drone-arrow-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1f6fb2"/></marker>
+  </defs>
+  <g data-g9-stage-id="VIS-KIN-2D-DRONE-V0" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="20" y="26" font-weight="600">A drone flies from its launch pad</text>
+    <line x1="30" y1="300" x2="470" y2="300" stroke="currentColor" stroke-width="2"/>
+    <rect x="62" y="300" width="36" height="8" fill="currentColor"/>
+    <text x="104" y="322">launch pad</text>
+    <path d="M80 300 Q260 -84 440 300" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <g transform="translate(80 290)"><rect x="-12" y="-4" width="24" height="8" rx="2" fill="currentColor"/><line x1="-20" y1="-8" x2="-6" y2="-8" stroke="currentColor" stroke-width="2"/><line x1="6" y1="-8" x2="20" y2="-8" stroke="currentColor" stroke-width="2"/></g>
+    <text x="100" y="278">drone</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-DRONE-V1" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <line x1="80" y1="300" x2="470" y2="300" stroke="currentColor" stroke-width="1.5" marker-end="url(#g9fig-CORE1A-CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1-REP-KIN-2D-DRONE-SHARED-CLOCK-1--rep-kin-drone-arrow)"/>
+    <line x1="80" y1="300" x2="80" y2="60" stroke="currentColor" stroke-width="1.5" marker-end="url(#g9fig-CORE1A-CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1-REP-KIN-2D-DRONE-SHARED-CLOCK-1--rep-kin-drone-arrow)"/>
+    <text x="476" y="305">+x (east), m</text>
+    <text x="88" y="60">+y (up), m</text>
+    <text x="58" y="320" text-anchor="middle">O</text>
+    <line x1="170" y1="295" x2="170" y2="305" stroke="currentColor"/>
+    <text x="170" y="344" text-anchor="middle" font-size="14">12</text>
+    <line x1="260" y1="295" x2="260" y2="305" stroke="currentColor"/>
+    <text x="260" y="344" text-anchor="middle" font-size="14">24</text>
+    <line x1="75" y1="156" x2="85" y2="156" stroke="currentColor"/>
+    <text x="70" y="161" text-anchor="end" font-size="14">12</text>
+    <line x1="75" y1="108" x2="85" y2="108" stroke="currentColor"/>
+    <text x="70" y="113" text-anchor="end" font-size="14">16</text>
+    <circle cx="514" cy="70" r="14" fill="none" stroke="currentColor" stroke-width="2"/>
+    <path d="M514 70 V60 M514 70 H522" stroke="currentColor" stroke-width="2"/>
+    <text x="492" y="104" font-weight="600">one shared clock t</text>
+    <text x="492" y="126">t = 0 at launch</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-DRONE-V2" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="20" y="372" font-weight="600">x-description (x only)</text>
+    <text x="20" y="394">x(t) = 6t</text>
+    <text x="20" y="416">x(2) = 6 × 2 = 12 m</text>
+    <text x="20" y="438">x(4) = 6 × 4 = 24 m</text>
+    <text x="300" y="372" font-weight="600">y-description (y only)</text>
+    <text x="300" y="394">y(t) = 8t − t²</text>
+    <text x="300" y="416">y(2) = 8 × 2 − 2² = 12 m</text>
+    <text x="300" y="438">y(4) = 8 × 4 − 4² = 16 m</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-DRONE-V3" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <line x1="170" y1="300" x2="170" y2="88" stroke="currentColor" stroke-width="1" stroke-dasharray="3 4"/>
+    <circle cx="170" cy="156" r="7" fill="#1f6fb2"/>
+    <text x="182" y="182" font-weight="600" fill="#1f6fb2">t = 2 s: (12, 12) m ✓</text>
+    <circle cx="260" cy="108" r="6" fill="currentColor"/>
+    <text x="260" y="94" text-anchor="middle">t = 4 s: (24, 16) m</text>
+    <circle cx="170" cy="108" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="184" y="70">x(2 s), y(4 s) = (12, 16) m ✗</text>
+    <text x="20" y="470">(12, 16) m mixes two instants: at x = 12 m the drone is at y = 12 m,</text>
+    <text x="20" y="492">so it never occupies (12, 16) m.</text>
+  </g>
+</svg>
+<div class="g9-stage-controls"><div class="g9-stage-chips" role="group" aria-label="Stages"><button type="button" class="g9-stage-chip" data-g9-stage-goto="0" data-g9-stage-desc="Show the drone&#x27;s flight from the pad without the component description.">1: Problem only</button><button type="button" class="g9-stage-chip" data-g9-stage-goto="1" data-g9-stage-desc="Declare the origin, axes and one clock for the whole flight.">2: Frame and clock</button><button type="button" class="g9-stage-chip" data-g9-stage-goto="2" data-g9-stage-desc="Evaluate x and y separately at 2 s and 4 s, each from its own function.">3: Component descriptions</button><button type="button" class="g9-stage-chip" data-g9-stage-goto="3" data-g9-stage-desc="Pair only same-time values into positions and reject the mixed pair.">4: Same-time pairing</button></div><p class="g9-stage-desc" data-g9-stage-desc-text></p><div class="g9-stage-stepper"><button type="button" data-g9-stage-step="prev">Previous stage</button><span data-g9-stage-label></span><button type="button" data-g9-stage-step="next">Next stage</button></div></div><figcaption data-g9-block="representation_bridge" data-g9-caption="purpose">Show the drone of x(t) = 6t, y(t) = 8t − t² in one frame with one clock, so each axis is evaluated on its own and only same-time values are paired into a position.</figcaption></figure></div></section><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><section class="g9-cu-support" data-g9-support-for="CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1"><h3>Solve each axis on its own, but read both coordinates at one shared instant before calling the pair a position.</h3><div class="g9-component g9-c-trap-card" data-g9-component="TRAP_REPAIR" data-g9-level="REQUIRED" data-g9-presentation="TRAP_CARD" data-g9-component-items="2" data-g9-component-unit="CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1"><div class="g9-block" data-g9-block="wrong_path"><h4>A tempting wrong path</h4><ul><li>Independent x and y motions may use different elapsed times.</li><li>The x-motion and y-motion are two different objects that can be paired arbitrarily later.</li></ul></div><div class="g9-block" data-g9-block="diagnose"><h4>Diagnose</h4><ul><li>At one instant 2 s after launch, may the x equation use t=2 s while the y equation uses another time?</li><li>May x(2 s) be combined with y(3 s) to describe the particle&#x27;s position?</li></ul></div><div class="g9-block" data-g9-block="repair"><h4>Repair</h4><ul><li>No. Independence separates the axis equations; it does not give the same object two clocks.</li><li>No. A plane state is a simultaneous pair. Recombine x(t) and y(t) only at the same t in the same frame.</li></ul></div></div><div class="g9-component g9-c-triad" data-g9-component="QUICK_CHECK" data-g9-level="REQUIRED" data-g9-presentation="TRIAD" data-g9-component-items="2" data-g9-component-unit="CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1"><div class="g9-block" data-g9-block="independent_check"><h4>1-2-3 quick check</h4><ol class="g9-triad"><li data-g9-triad-role=""><span class="g9-triad-head">1 · Check</span><span class="g9-triad-text">Substitute the reported t back into both component functions: each must return its reported coordinate. If one coordinate only matches at a different t, the pair is not a position.</span></li><li data-g9-triad-role=""><span class="g9-triad-head">2 · Check</span><span class="g9-triad-text">Reverse the declared +y direction: every y-quantity must change sign together while no x-quantity changes, and the physical position stays the same.</span></li></ol></div></div></section></section></div></div><div class="g9-split g9-split-support-only"><div class="g9-col g9-col-support"><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><div class="g9-component g9-c-recall-card" data-g9-component="EXIT_RECALL" data-g9-level="REQUIRED" data-g9-presentation="RECALL_CARD"><div class="g9-block" data-g9-block="exit_task"><h4>Try it with less support</h4><p>A particle has x-velocity 6 m/s and y-velocity -8 m/s at t=3 s. Explain what &#x27;independent components&#x27; means and what must remain shared between the x and y descriptions.</p></div><div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response"><label>Your answer<textarea data-g9-attempt rows="4"></textarea></label><label class="g9-paper"><input data-g9-paper type="checkbox">I worked this on paper</label><button type="button" data-g9-commit>I have attempted this</button></div><details data-g9-reveal data-requires-attempt data-g9-payload-ref="CORE1A-MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS-exit"><summary>Model answer</summary><div data-g9-payload-slot></div></details><template data-g9-payload="CORE1A-MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS-exit"><div class="g9-block" data-g9-block="exit_answer"><p>The x and y component equations are solved separately in the same frame, but both describe the same particle at the same t=3 s.</p><ol><li>Keep x quantities in the x equation and y quantities in the y equation.</li><li>Use one common elapsed time for the same physical instant.</li><li>Recombine components only after each axis is handled consistently.</li></ol></div></template></div><div class="g9-component g9-c-chips" data-g9-component="PRACTICE_LINKS" data-g9-level="OPTIONAL" data-g9-presentation="CHIPS"><div class="g9-block" data-g9-block="practice_navigation"><h4>Practice this concept in Core2</h4><ul><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-IITJEE-2011-P2-Q33" data-g9-concept-ref="MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-IITJEE-2011-P2-Q33">IIT-JEE · 2011 · Paper II · Q33</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEADV-2018-P2-Q08" data-g9-concept-ref="MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEADV-2018-P2-Q08">JEE (Advanced) · 2018 · Paper 2 · Q8</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEADV-2019-P2-Q09" data-g9-concept-ref="MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEADV-2019-P2-Q09">JEE (Advanced) · 2019 · Paper 2 · Q9</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEADV-2021-P1-Q05" data-g9-concept-ref="MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEADV-2021-P1-Q05">JEE (Advanced) · 2021 · Paper 1 · Q5</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEADV-2021-P1-Q06" data-g9-concept-ref="MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEADV-2021-P1-Q06">JEE (Advanced) · 2021 · Paper 1 · Q6</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEADV-2024-P2-Q09" data-g9-concept-ref="MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEADV-2024-P2-Q09">JEE (Advanced) · 2024 · Paper 2 · Q9</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-IITJEE-2012-P1-Q05" data-g9-concept-ref="MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-IITJEE-2012-P1-Q05">IIT-JEE · 2012 · Paper I · Q5</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEADV-2022-P1-Q08" data-g9-concept-ref="MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEADV-2022-P1-Q08">JEE (Advanced) · 2022 · Paper 1 · Q8</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEADV-2023-P1-Q01" data-g9-concept-ref="MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEADV-2023-P1-Q01">JEE (Advanced) · 2023 · Paper 1 · Q1</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEADV-2025-P2-Q15" data-g9-concept-ref="MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEADV-2025-P2-Q15">JEE (Advanced) · 2025 · Paper 2 · Q15</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-IITJEE-2011-P2-Q26" data-g9-concept-ref="MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-IITJEE-2011-P2-Q26">IIT-JEE · 2011 · Paper II · Q26</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEADV-2014-P1-Q11" data-g9-concept-ref="MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEADV-2014-P1-Q11">JEE (Advanced) · 2014 · Paper 1 · Q11</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEADV-2026-P1-Q06" data-g9-concept-ref="MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEADV-2026-P1-Q06">JEE (Advanced) · 2026 · Paper 1 · Q6</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEADV-2013-P1-Q07" data-g9-concept-ref="MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEADV-2013-P1-Q07">JEE (Advanced) · 2013 · Paper 1 · Q7</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29" data-g9-concept-ref="MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29">JEE Main · 2026 · Session 2 · 04 Apr 2026 · Shift 2 · Q29</a></li></ul></div></div></section></div></div></article><article id="MIC-PHY-KIN-2D-CONSTANT-ACCELERATION" data-g9-unit="MIC-PHY-KIN-2D-CONSTANT-ACCELERATION" data-g9-kind="CONCEPT" data-g9-role="CORE1A" data-g9-search-text="Physics Motion in 2 D Apply constant-acceleration kinematics component by component Medium concept Apply constant-acceleration kinematics component by component" class="g9-stage-support"><section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true"><div class="g9-component g9-c-concept-header" data-g9-component="CONCEPT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="CONCEPT_HEADER"><h2>Apply constant-acceleration kinematics component by component</h2><div data-g9-meta-strip data-g9-meta-role="CORE1A" data-g9-meta-record="MIC-PHY-KIN-2D-CONSTANT-ACCELERATION" data-g9-search-safe><span data-g9-meta-item data-g9-meta-kind="subject" data-g9-meta-ref="Physics" data-g9-meta-value="Physics"><strong>Subject:</strong> <span data-g9-meta-label>Physics</span></span><span data-g9-meta-item data-g9-meta-kind="topic" data-g9-meta-ref="BUCKET-PHY-KIN-2D-MOTION" data-g9-meta-value="Motion in 2 D"><strong>Topic:</strong> <span data-g9-meta-label>Motion in 2 D</span></span><span data-g9-meta-item data-g9-meta-kind="concept" data-g9-meta-ref="MIC-PHY-KIN-2D-CONSTANT-ACCELERATION" data-g9-meta-value="Apply constant-acceleration kinematics component by component"><strong>Concept:</strong> <span data-g9-meta-label>Apply constant-acceleration kinematics component by component</span></span><span data-g9-meta-item data-g9-meta-kind="concept-difficulty" data-g9-meta-ref="MIC-PHY-KIN-2D-CONSTANT-ACCELERATION" data-g9-meta-value="MEDIUM"><strong>Concept difficulty:</strong> <span data-g9-meta-label>Medium concept</span></span></div></div></section><div class="g9-split"><div class="g9-col g9-col-primary"><section class="blueprint-slot slot-construction" data-blueprint-slot="construction" data-required="true"><section id="CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1" class="g9-cu" data-g9-cu="CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1"><div class="g9-component g9-c-unit-header" data-g9-component="UNIT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="UNIT_HEADER" data-g9-component-unit="CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1"><div class="g9-unit-head"><span class="g9-unit-no" aria-hidden="true">1</span><h3>Check on each axis that its acceleration component is constant, then run the one-dimensional equations once per axis with one shared time.</h3><span class="g9-pill g9-pill-concept">Medium concept</span></div><nav class="g9-cu-nav" data-g9-unit-navigation aria-label="Concept Book section navigation"><span data-g9-route-position>Section 2 of 5</span><span class="g9-cu-nav-links"><a data-g9-prev-section href="#CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1" aria-label="Previous section: Solve each axis on its own, but read both coordinates at one shared instant before calling the pair a position.">← Previous</a><a data-g9-next-section href="#CU-PHY-KIN-PROJECTILE-MODEL-1" aria-label="Next section: Decide from what acts after release whether the gravity-only model applies, and only then put a_x = 0 and a_y = −g into the component equations.">Next →</a></span></nav></div><div class="g9-component g9-c-banner" data-g9-component="KEY_STEP" data-g9-level="REQUIRED" data-g9-presentation="BANNER"><div class="g9-block" data-g9-block="inferential_jump"><h4>The key step</h4><p>The one-dimensional constant-acceleration equations can be applied to each perpendicular component independently when a_x and a_y are each constant over the same interval.</p></div></div><div class="g9-component g9-c-tile" data-g9-component="MODEL_CONTRACT" data-g9-level="EXPECTED" data-g9-presentation="TILE"><div class="g9-block" data-g9-block="entry_assumptions"><h4>You need</h4><ul><li>Can use the existing one-dimensional constant-acceleration model.</li><li>Can keep x/y components separate with one common time.</li></ul><ul><li data-g9-prereq="CAP-KIN-2D-INDEPENDENT-COMPONENTS" data-bridged="true"><a href="#MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS">Represent one plane-motion event as independent signed x/y component histories that share one elapsed time.</a></li><li data-g9-prereq="CAP-KIN-CONSTANT-ACCELERATION" data-bridged="true">Derive the constant-acceleration equations from one velocity-time graph (Physics)</li></ul></div></div><div class="g9-component g9-c-step-cards" data-g9-component="CONSTRUCTION_STEPS" data-g9-level="REQUIRED" data-g9-presentation="STEP_CARDS" data-g9-component-items="3" data-g9-component-unit="CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1"><div class="g9-block" data-g9-block="construction"><ol><li data-g9-step="K2D2-1"><strong>Check separately whether a_x and a_y are constant over the interval before choosing constant-acceleration equations on either axis.</strong><br><em>Why valid:</em> The familiar one-dimensional kinematic relations are exact only on an axis whose acceleration component is constant over the interval.<br><em>Result:</em> per-axis model-validity decision</li><li data-g9-step="K2D2-2"><strong>Apply the one-dimensional constant-acceleration relations independently to x and y using only that axis&#x27;s signed values and the same t.</strong><br><em>Why valid:</em> Each Cartesian component obeys the same one-dimensional relation when its acceleration component is constant.<br><em>Result:</em> v_x=u_x+a_x t; v_y=u_y+a_y t; Delta x=u_x t+0.5a_x t^2; Delta y=u_y t+0.5a_y t^2</li><li data-g9-step="K2D2-3"><strong>If one axis determines an event time, reuse that same time on the other axis before recombining and checking the plane state.</strong><br><em>Why valid:</em> The event occurs once for the object; a time obtained from one component is the clock value for every component at that same event.<br><em>Result:</em> event time transferred across axes, then one checked plane state</li></ol></div></div><div class="g9-component g9-c-equation-card" data-g9-component="EQUATIONS" data-g9-level="EXPECTED" data-g9-presentation="EQUATION_CARD" data-g9-component-unit="CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1"><div class="g9-block" data-g9-block="equation_matrix"><h4>Equations and validity</h4><div class="g9-table-scroll" data-g9-equation-matrix><table><thead><tr><th scope="col">Equation</th><th scope="col">What it tells you</th><th scope="col">When you can use it</th></tr></thead><tbody><tr data-g9-relation-ref="REL-KIN-2D-VELOCITY"><td><div class="g9-math" data-g9-math="mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>v</mi><mi>x</mi></msub><mo>=</mo><msub><mi>u</mi><mi>x</mi></msub><mo>+</mo><msub><mi>a</mi><mi>x</mi></msub><mi>t</mi><mo>;</mo><msub><mi>v</mi><mi>y</mi></msub><mo>=</mo><msub><mi>u</mi><mi>y</mi></msub><mo>+</mo><msub><mi>a</mi><mi>y</mi></msub><mi>t</mi></mrow></math></div></td><td><p>Each perpendicular velocity component follows the 1D constant-acceleration relation over one common interval.</p></td><td><ul><li>a_x and a_y are constant over the interval.</li><li>Both component equations use the same elapsed time and frame.</li></ul></td></tr><tr data-g9-relation-ref="REL-KIN-2D-DISPLACEMENT"><td><div class="g9-math" data-g9-math="mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>Δ</mi><mi>x</mi><mo>=</mo><msub><mi>u</mi><mi>x</mi></msub><mi>t</mi><mo>+</mo><mn>0.5</mn><msub><mi>a</mi><mi>x</mi></msub><msup><mi>t</mi><mn>2</mn></msup><mo>;</mo><mi>Δ</mi><mi>y</mi><mo>=</mo><msub><mi>u</mi><mi>y</mi></msub><mi>t</mi><mo>+</mo><mn>0.5</mn><msub><mi>a</mi><mi>y</mi></msub><msup><mi>t</mi><mn>2</mn></msup></mrow></math></div></td><td><p>Each perpendicular displacement component follows the 1D constant-acceleration displacement relation over one common interval.</p></td><td><ul><li>a_x and a_y are constant over the interval.</li><li>Both component equations use the same elapsed time and frame.</li></ul></td></tr></tbody></table></div></div></div><div class="g9-component g9-c-worked-card" data-g9-component="WORKED_EXAMPLE" data-g9-level="REQUIRED" data-g9-presentation="WORKED_CARD" data-g9-component-unit="CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1"><div class="g9-block" data-g9-block="worked_anchor"><h4>Watch one</h4><p>A puck on a tilted air table starts at the origin with velocity (4 i + 6 j) m/s, and its acceleration is (0 i − 2 j) m/s² throughout. Using the table&#x27;s x-y frame, decide which constant-acceleration equations apply on each axis, find when the puck is next at y = 0, and find its x-position and velocity at that instant.</p><ol><li>a_x = 0 and a_y = −2 m/s² are both constant, so the constant-acceleration relations are exact on both axes.</li><li>On y: Δy = 6t − 0.5 × 2 × t² = 6t − t². Setting Δy = 0 gives t(6 − t) = 0, and the later root is t = 6 s.</li><li>On x, at the same t = 6 s: Δx = 4 × 6 = 24 m.</li><li>Velocity at t = 6 s: v_x = 4 m/s and v_y = 6 − 2 × 6 = −6 m/s, so v = (4 i − 6 j) m/s.</li></ol><div class="g9-block" data-g9-block="worked_result"><h4>Result</h4><p>The puck is next at y = 0 at t = 6 s, at x = 24 m, moving with v = (4 i − 6 j) m/s.</p></div><div class="g9-block" data-g9-block="worked_check"><h4>Check</h4><p>v_y comes back with its starting size, 6 m/s, and the opposite sign, as v_y² = u_y² + 2a_y Δy requires when Δy = 0; v_x is unchanged because a_x = 0.</p></div></div></div></section></section></div><div class="g9-col g9-col-support"><section class="blueprint-slot slot-representation" data-blueprint-slot="representation" data-required="true"><div class="g9-component g9-c-staged-visual" data-g9-component="STAGED_VISUAL" data-g9-level="REQUIRED" data-g9-presentation="STAGED_VISUAL" data-g9-component-items="4" data-g9-component-unit="CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1"><figure data-g9-figure data-g9-fig="CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1-REP-KIN-2D-PUCK-AXIS-CHECK" data-g9-stage="TEACHING" data-g9-representation="REP-KIN-2D-PUCK-AXIS-CHECK" data-g9-kind="VECTOR" data-reveal-stages="4" data-g9-stages-total="4" data-g9-stages="VIS-KIN-2D-PUCK-V0 VIS-KIN-2D-PUCK-V1 VIS-KIN-2D-PUCK-V2 VIS-KIN-2D-PUCK-V3" data-g9-stage-sequence="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 390" role="img" aria-labelledby="g9fig-CORE1A-CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1-REP-KIN-2D-PUCK-AXIS-CHECK-1--rep-kin-puck-title g9fig-CORE1A-CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1-REP-KIN-2D-PUCK-AXIS-CHECK-1--rep-kin-puck-desc">
+  <title id="g9fig-CORE1A-CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1-REP-KIN-2D-PUCK-AXIS-CHECK-1--rep-kin-puck-title">Puck with u = (4 i + 6 j) m/s and a = (0 i − 2 j) m/s²: check each axis, then one shared time</title>
+  <desc id="g9fig-CORE1A-CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1-REP-KIN-2D-PUCK-AXIS-CHECK-1--rep-kin-puck-desc">Stage 1: a puck on a tilted air table starts at the origin with velocity u = (4 i + 6 j) m/s and constant acceleration a = (0 i − 2 j) m/s², and follows a curved path back to its starting line. Stage 2: the table's frame, +x and +y, and a per-axis check: a_x = 0 is constant and a_y = −2 m/s² is constant, so the constant-acceleration equations are exact on x and on y. Stage 3: the equations run once per axis with one shared t: Δx = 4t and v_x = 4 on x; Δy = 6t − t² and v_y = 6 − 2t on y; the puck is next at y = 0 when t(6 − t) = 0, at the later root t = 6 s. Stage 4: the same t = 6 s is used on both axes: the puck is at x = 24 m, marked on the starting line, moving with v = (4 i − 6 j) m/s, drawn as an arrow. The drawing's vertical scale is stretched relative to its horizontal scale.</desc>
+  <defs>
+    <marker id="g9fig-CORE1A-CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1-REP-KIN-2D-PUCK-AXIS-CHECK-1--rep-kin-puck-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/></marker>
+    <marker id="g9fig-CORE1A-CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1-REP-KIN-2D-PUCK-AXIS-CHECK-1--rep-kin-puck-arrow-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1f6fb2"/></marker>
+  </defs>
+  <g data-g9-stage-id="VIS-KIN-2D-PUCK-V0" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="20" y="26" font-weight="600">A puck on a tilted air table</text>
+    <rect x="30" y="50" width="400" height="300" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M80 290 Q212 -34 344 290" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <circle cx="80" cy="290" r="8" fill="currentColor"/>
+    <line x1="80" y1="290" x2="119.6" y2="192.8" stroke="currentColor" stroke-width="2.5" marker-end="url(#g9fig-CORE1A-CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1-REP-KIN-2D-PUCK-AXIS-CHECK-1--rep-kin-puck-arrow)"/>
+    <text x="112" y="262">u = (4 i + 6 j) m/s</text>
+    <line x1="405" y1="64" x2="405" y2="114" stroke="currentColor" stroke-width="2.5" marker-end="url(#g9fig-CORE1A-CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1-REP-KIN-2D-PUCK-AXIS-CHECK-1--rep-kin-puck-arrow)"/>
+    <text x="392" y="80" text-anchor="end">a = (0 i − 2 j) m/s²</text>
+    <text x="392" y="100" text-anchor="end">throughout</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-PUCK-V1" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <line x1="80" y1="290" x2="420" y2="290" stroke="currentColor" stroke-width="1.5" marker-end="url(#g9fig-CORE1A-CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1-REP-KIN-2D-PUCK-AXIS-CHECK-1--rep-kin-puck-arrow)"/>
+    <line x1="80" y1="290" x2="80" y2="64" stroke="currentColor" stroke-width="1.5" marker-end="url(#g9fig-CORE1A-CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1-REP-KIN-2D-PUCK-AXIS-CHECK-1--rep-kin-puck-arrow)"/>
+    <text x="410" y="312">+x</text>
+    <text x="88" y="74">+y</text>
+    <text x="64" y="310">O</text>
+    <text x="460" y="60" font-weight="600">Check each axis first</text>
+    <text x="460" y="84">x: a_x = 0, constant ✓</text>
+    <text x="460" y="106">y: a_y = −2 m/s², constant ✓</text>
+    <text x="460" y="128">→ constant-a equations</text>
+    <text x="460" y="148">exact on x and on y</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-PUCK-V2" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="460" y="186" font-weight="600">One shared t on both axes</text>
+    <text x="460" y="208">x: Δx = 4t,  v_x = 4</text>
+    <text x="460" y="230">y: Δy = 6t − t²,  v_y = 6 − 2t</text>
+    <text x="460" y="252">next y = 0: t(6 − t) = 0</text>
+    <text x="460" y="274" font-weight="600">later root t = 6 s</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-PUCK-V3" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <circle cx="344" cy="290" r="7" fill="#1f6fb2"/>
+    <line x1="344" y1="290" x2="366" y2="344" stroke="#1f6fb2" stroke-width="2.5" marker-end="url(#g9fig-CORE1A-CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1-REP-KIN-2D-PUCK-AXIS-CHECK-1--rep-kin-puck-arrow-acc)"/>
+    <text x="318" y="280" text-anchor="end" font-weight="600" fill="#1f6fb2">t = 6 s: x = 24 m</text>
+    <text x="460" y="316" font-weight="600" fill="#1f6fb2">same t = 6 s on x and y:</text>
+    <text x="460" y="338">Δx = 4 × 6 = 24 m</text>
+    <text x="460" y="360">v = (4 i − 6 j) m/s</text>
+  </g>
+</svg>
+<div class="g9-stage-controls"><div class="g9-stage-chips" role="group" aria-label="Stages"><button type="button" class="g9-stage-chip" data-g9-stage-goto="0" data-g9-stage-desc="Show the puck with its stated initial velocity and constant acceleration.">1: The puck&#x27;s launch</button><button type="button" class="g9-stage-chip" data-g9-stage-goto="1" data-g9-stage-desc="Declare the frame and check that a_x and a_y are each constant.">2: Per-axis check</button><button type="button" class="g9-stage-chip" data-g9-stage-goto="2" data-g9-stage-desc="Write each axis&#x27;s equations and solve the event on y.">3: One time on both axes</button><button type="button" class="g9-stage-chip" data-g9-stage-goto="3" data-g9-stage-desc="Read x and the velocity at the same t = 6 s.">4: State at the event</button></div><p class="g9-stage-desc" data-g9-stage-desc-text></p><div class="g9-stage-stepper"><button type="button" data-g9-stage-step="prev">Previous stage</button><span data-g9-stage-label></span><button type="button" data-g9-stage-step="next">Next stage</button></div></div><figcaption data-g9-block="representation_bridge" data-g9-caption="purpose">Show the air-table puck with u = (4, 6) m/s and a = (0, −2) m/s²: check that each axis&#x27;s acceleration is constant, run the one-dimensional equations once per axis, and carry the one event time t = 6 s across both axes.</figcaption></figure></div></section><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><section class="g9-cu-support" data-g9-support-for="CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1"><h3>Check on each axis that its acceleration component is constant, then run the one-dimensional equations once per axis with one shared time.</h3><div class="g9-component g9-c-trap-card" data-g9-component="TRAP_REPAIR" data-g9-level="REQUIRED" data-g9-presentation="TRAP_CARD" data-g9-component-items="3" data-g9-component-unit="CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1"><div class="g9-block" data-g9-block="wrong_path"><h4>A tempting wrong path</h4><ul><li>The magnitude of acceleration should be inserted unchanged into both x and y equations.</li><li>If one acceleration component is constant, the constant-acceleration equations are automatically valid on both axes.</li><li>A time found from the x equation may be replaced by a different convenient time in the y equation.</li></ul></div><div class="g9-block" data-g9-block="diagnose"><h4>Diagnose</h4><ul><li>If a=(10 i + 4 j) m/s², should both component equations use a=√116?</li><li>If a_x is constant but a_y changes with time, may the same constant-acceleration displacement formula be used exactly on y over the whole interval?</li><li>If x-motion says an event occurs at t=3 s, what time belongs in the y equation for that same event?</li></ul></div><div class="g9-block" data-g9-block="repair"><h4>Repair</h4><ul><li>No. Use a_x=10 only in the x equation and a_y=4 only in the y equation; the magnitude is not either component.</li><li>No. Model validity is checked per axis. A constant a_x does not make a_y constant.</li><li>Use t=3 s. Both components describe the same event and therefore share one clock.</li></ul></div></div><div class="g9-component g9-c-triad" data-g9-component="QUICK_CHECK" data-g9-level="REQUIRED" data-g9-presentation="TRIAD" data-g9-component-items="2" data-g9-component-unit="CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1"><div class="g9-block" data-g9-block="independent_check"><h4>1-2-3 quick check</h4><ol class="g9-triad"><li data-g9-triad-role=""><span class="g9-triad-head">1 · Check</span><span class="g9-triad-text">Every term of Δy = u_y t + 0.5 a_y t² must come out in metres: (m/s)(s) and (m/s²)(s²). A velocity term in m/s beside them means a t is missing.</span></li><li data-g9-triad-role=""><span class="g9-triad-head">2 · Check</span><span class="g9-triad-text">Set a_x = 0: the x equations must reduce to uniform motion, v_x = u_x and Δx = u_x t, whatever happens on y.</span></li></ol></div></div></section></section></div></div><div class="g9-split g9-split-support-only"><div class="g9-col g9-col-support"><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><div class="g9-component g9-c-recall-card" data-g9-component="EXIT_RECALL" data-g9-level="REQUIRED" data-g9-presentation="RECALL_CARD"><div class="g9-block" data-g9-block="exit_task"><h4>Try it with less support</h4><p>A particle starts with u=(0,5) m/s and constant a=(10,4) m/s². Set up the x and y position equations at common time t without solving a particular numerical t.</p></div><div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response"><label>Your answer<textarea data-g9-attempt rows="4"></textarea></label><label class="g9-paper"><input data-g9-paper type="checkbox">I worked this on paper</label><button type="button" data-g9-commit>I have attempted this</button></div><details data-g9-reveal data-requires-attempt data-g9-payload-ref="CORE1A-MIC-PHY-KIN-2D-CONSTANT-ACCELERATION-exit"><summary>Model answer</summary><div data-g9-payload-slot></div></details><template data-g9-payload="CORE1A-MIC-PHY-KIN-2D-CONSTANT-ACCELERATION-exit"><div class="g9-block" data-g9-block="exit_answer"><p>Use Delta x=0*t+0.5(10)t² and Delta y=5t+0.5(4)t² with the same t.</p><ol><li>Read signed component initial velocities and accelerations.</li><li>Apply the 1D constant-acceleration displacement relation separately.</li><li>Keep one common elapsed time.</li></ol></div></template></div><div class="g9-component g9-c-chips" data-g9-component="PRACTICE_LINKS" data-g9-level="OPTIONAL" data-g9-presentation="CHIPS"><div class="g9-block" data-g9-block="practice_navigation"><h4>Practice this concept in Core2</h4><ul><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-IITJEE-2011-P2-Q33" data-g9-concept-ref="MIC-PHY-KIN-2D-CONSTANT-ACCELERATION" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-IITJEE-2011-P2-Q33">IIT-JEE · 2011 · Paper II · Q33</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEADV-2025-P2-Q15" data-g9-concept-ref="MIC-PHY-KIN-2D-CONSTANT-ACCELERATION" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEADV-2025-P2-Q15">JEE (Advanced) · 2025 · Paper 2 · Q15</a></li></ul></div></div></section></div></div></article><article id="MIC-PHY-KIN-PROJECTILE-MODEL" data-g9-unit="MIC-PHY-KIN-PROJECTILE-MODEL" data-g9-kind="CONCEPT" data-g9-role="CORE1A" data-g9-search-text="Physics Motion in 2 D Select the gravity-only projectile model before using projectile consequences Medium concept Select the gravity-only projectile model before using projectile consequences" class="g9-stage-support"><section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true"><div class="g9-component g9-c-concept-header" data-g9-component="CONCEPT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="CONCEPT_HEADER"><h2>Select the gravity-only projectile model before using projectile consequences</h2><div data-g9-meta-strip data-g9-meta-role="CORE1A" data-g9-meta-record="MIC-PHY-KIN-PROJECTILE-MODEL" data-g9-search-safe><span data-g9-meta-item data-g9-meta-kind="subject" data-g9-meta-ref="Physics" data-g9-meta-value="Physics"><strong>Subject:</strong> <span data-g9-meta-label>Physics</span></span><span data-g9-meta-item data-g9-meta-kind="topic" data-g9-meta-ref="BUCKET-PHY-KIN-2D-MOTION" data-g9-meta-value="Motion in 2 D"><strong>Topic:</strong> <span data-g9-meta-label>Motion in 2 D</span></span><span data-g9-meta-item data-g9-meta-kind="concept" data-g9-meta-ref="MIC-PHY-KIN-PROJECTILE-MODEL" data-g9-meta-value="Select the gravity-only projectile model before using projectile consequences"><strong>Concept:</strong> <span data-g9-meta-label>Select the gravity-only projectile model before using projectile consequences</span></span><span data-g9-meta-item data-g9-meta-kind="concept-difficulty" data-g9-meta-ref="MIC-PHY-KIN-PROJECTILE-MODEL" data-g9-meta-value="MEDIUM"><strong>Concept difficulty:</strong> <span data-g9-meta-label>Medium concept</span></span></div></div><div class="g9-component g9-c-chips" data-g9-component="SECTION_ROUTE" data-g9-level="OPTIONAL" data-g9-presentation="CHIPS"><div class="g9-block" data-g9-block="section_route"><h4>Sections</h4><nav data-g9-section-route aria-label="Sections in this concept"><ol><li><a href="#CU-PHY-KIN-PROJECTILE-MODEL-1">Decide from what acts after release whether the gravity-only model applies, and only then put a_x = 0 and a_y = −g into the component equations.</a></li><li><a href="#CU-PHY-KIN-PROJECTILE-MODEL-2">Name the requested event as a component condition before solving for its time: v_y = 0 at the apex, Δy = 0 at a return to launch height.</a></li><li><a href="#CU-PHY-KIN-PROJECTILE-MODEL-3">Write the landing event from the actual drop while keeping the actual u_y, then read every requested quantity at that one event time.</a></li></ol></nav></div></div></section><div class="g9-split"><div class="g9-col g9-col-primary"><section class="blueprint-slot slot-construction" data-blueprint-slot="construction" data-required="true"><section id="CU-PHY-KIN-PROJECTILE-MODEL-1" class="g9-cu" data-g9-cu="CU-PHY-KIN-PROJECTILE-MODEL-1"><div class="g9-component g9-c-unit-header" data-g9-component="UNIT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="UNIT_HEADER" data-g9-component-unit="CU-PHY-KIN-PROJECTILE-MODEL-1"><div class="g9-unit-head"><span class="g9-unit-no" aria-hidden="true">1</span><h3>Decide from what acts after release whether the gravity-only model applies, and only then put a_x = 0 and a_y = −g into the component equations.</h3><span class="g9-pill g9-pill-concept">Medium concept</span></div><nav class="g9-cu-nav" data-g9-unit-navigation aria-label="Concept Book section navigation"><span data-g9-route-position>Section 3 of 5</span><span class="g9-cu-nav-links"><a data-g9-prev-section href="#CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1" aria-label="Previous section: Check on each axis that its acceleration component is constant, then run the one-dimensional equations once per axis with one shared time.">← Previous</a><a data-g9-next-section href="#CU-PHY-KIN-PROJECTILE-MODEL-2" aria-label="Next section: Name the requested event as a component condition before solving for its time: v_y = 0 at the apex, Δy = 0 at a return to launch height.">Next →</a></span></nav></div><div class="g9-component g9-c-banner" data-g9-component="KEY_STEP" data-g9-level="REQUIRED" data-g9-presentation="BANNER"><div class="g9-block" data-g9-block="inferential_jump"><h4>The key step</h4><p>After release in the ideal near-Earth model, projectile motion is not a new set of laws: it is the same component kinematics with a_x=0 and a_y=-g (for +y upward).</p></div></div><div class="g9-component g9-c-tile" data-g9-component="MODEL_CONTRACT" data-g9-level="EXPECTED" data-g9-presentation="TILE"><div class="g9-block" data-g9-block="entry_assumptions"><h4>You need</h4><ul><li>Can solve 2D constant-acceleration component equations.</li><li>If an oblique launch angle is given, angle-based vector decomposition is available as a separate prerequisite for that question.</li></ul><ul><li data-g9-prereq="CAP-KIN-2D-CONSTANT-ACCELERATION" data-bridged="true"><a href="#MIC-PHY-KIN-2D-CONSTANT-ACCELERATION">Apply constant-acceleration kinematics independently to x and y components of one plane-motion event.</a></li></ul></div></div><div class="g9-component g9-c-step-cards" data-g9-component="CONSTRUCTION_STEPS" data-g9-level="REQUIRED" data-g9-presentation="STEP_CARDS" data-g9-component-items="2" data-g9-component-unit="CU-PHY-KIN-PROJECTILE-MODEL-1"><div class="g9-block" data-g9-block="construction"><ol><li data-g9-step="K2D3-1"><strong>Decide whether the object is in ideal near-Earth free flight after release; neglect air resistance, declare +y, then set a_x=0 and a_y=-g.</strong><br><em>Why valid:</em> The standard projectile equations are a conditional specialization of 2D constant acceleration, not an automatic label for every launched object.<br><em>Result:</em> gravity-only projectile acceleration state</li><li data-g9-step="K2D3-2"><strong>Use supplied or separately resolved u_x and u_y with one common t in the horizontal and vertical component equations.</strong><br><em>Why valid:</em> Horizontal, oblique and downward/upward initial components change the initial state, not the gravity-only model.<br><em>Result:</em> v_x=u_x; v_y=u_y-g t; Delta x=u_x t; Delta y=u_y t-0.5g t^2</li></ol></div></div><div class="g9-component g9-c-equation-card" data-g9-component="EQUATIONS" data-g9-level="EXPECTED" data-g9-presentation="EQUATION_CARD" data-g9-component-unit="CU-PHY-KIN-PROJECTILE-MODEL-1"><div class="g9-block" data-g9-block="equation_matrix"><h4>Equations and validity</h4><div class="g9-table-scroll" data-g9-equation-matrix><table><thead><tr><th scope="col">Equation</th><th scope="col">What it tells you</th><th scope="col">When you can use it</th></tr></thead><tbody><tr data-g9-relation-ref="REL-PROJECTILE-COMPONENT-MODEL"><td><div class="g9-math" data-g9-math="mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>a</mi><mi>x</mi></msub><mo>=</mo><mn>0</mn><mo>;</mo><msub><mi>a</mi><mi>y</mi></msub><mo>=</mo><mo>−</mo><mi>g</mi><mo>;</mo><msub><mi>v</mi><mi>x</mi></msub><mo>=</mo><msub><mi>u</mi><mi>x</mi></msub><mo>;</mo><msub><mi>v</mi><mi>y</mi></msub><mo>=</mo><msub><mi>u</mi><mi>y</mi></msub><mo>−</mo><mi>g</mi><mi>t</mi><mo>;</mo><mi>Δ</mi><mi>x</mi><mo>=</mo><msub><mi>u</mi><mi>x</mi></msub><mi>t</mi><mo>;</mo><mi>Δ</mi><mi>y</mi><mo>=</mo><msub><mi>u</mi><mi>y</mi></msub><mi>t</mi><mo>−</mo><mn>0.5</mn><mi>g</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></math></div></td><td><p>With +y upward, air resistance neglected and near-Earth constant g, projectile motion is 2D constant acceleration specialized to zero horizontal and downward vertical acceleration.</p></td><td><ul><li>Near-Earth region with approximately constant g.</li><li>Air resistance neglected.</li><li>+y is declared upward for the displayed signs.</li><li>The object is in free flight after release.</li></ul></td></tr></tbody></table></div></div></div><div class="g9-component g9-c-worked-card" data-g9-component="WORKED_EXAMPLE" data-g9-level="REQUIRED" data-g9-presentation="WORKED_CARD" data-g9-component-unit="CU-PHY-KIN-PROJECTILE-MODEL-1"><div class="g9-block" data-g9-block="worked_anchor"><h4>Watch one</h4><p>A ball is thrown from a balcony with u_x = 8 m/s and u_y = 6 m/s. After release only gravity acts, and air resistance is negligible. Take +y upward and g = 10 m/s². Decide whether the ideal projectile model applies, write its component relations, and find the ball&#x27;s displacement and velocity 1 s after release.</p><ol><li>After release the only retained interaction is gravity, so the ideal model applies: a_x = 0 and a_y = −10 m/s².</li><li>Component relations: v_x = 8, v_y = 6 − 10t, Δx = 8t and Δy = 6t − 5t², in metres and seconds.</li><li>At t = 1 s: Δx = 8 m and Δy = 6 − 5 = 1 m, so the displacement is (8 i + 1 j) m.</li><li>At t = 1 s: v_x = 8 m/s and v_y = 6 − 10 = −4 m/s, so v = (8 i − 4 j) m/s.</li></ol><div class="g9-block" data-g9-block="worked_result"><h4>Result</h4><p>The model applies with a = (0, −10) m/s². After 1 s the displacement is (8 i + 1 j) m and the velocity is (8 i − 4 j) m/s.</p></div><div class="g9-block" data-g9-block="worked_check"><h4>Check</h4><p>v_y is negative at 1 s, so the ball is already falling; its apex was at t = 6/10 = 0.6 s. Its speed squared, 8² + 4² = 80, equals u² − 2gΔy = 100 − 20.</p></div></div></div></section></section></div><div class="g9-col g9-col-support"><section class="blueprint-slot slot-representation" data-blueprint-slot="representation" data-required="true"><div class="g9-component g9-c-staged-visual" data-g9-component="STAGED_VISUAL" data-g9-level="REQUIRED" data-g9-presentation="STAGED_VISUAL" data-g9-component-items="4" data-g9-component-unit="CU-PHY-KIN-PROJECTILE-MODEL-1"><figure data-g9-figure data-g9-fig="CU-PHY-KIN-PROJECTILE-MODEL-1-REP-KIN-2D-BALCONY-8-6" data-g9-stage="TEACHING" data-g9-representation="REP-KIN-2D-BALCONY-8-6" data-g9-kind="GRAPH" data-reveal-stages="4" data-g9-stages-total="4" data-g9-stages="VIS-KIN-2D-BALCONY-V0 VIS-KIN-2D-BALCONY-V1 VIS-KIN-2D-BALCONY-V2 VIS-KIN-2D-BALCONY-V3" data-g9-stage-sequence="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 380" role="img" aria-labelledby="g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-1-REP-KIN-2D-BALCONY-8-6-1--rep-kin-balcony-title g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-1-REP-KIN-2D-BALCONY-8-6-1--rep-kin-balcony-desc">
+  <title id="g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-1-REP-KIN-2D-BALCONY-8-6-1--rep-kin-balcony-title">A ball thrown from a balcony with u_x = 8 m/s and u_y = 6 m/s</title>
+  <desc id="g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-1-REP-KIN-2D-BALCONY-8-6-1--rep-kin-balcony-desc">Stage 1: a ball is thrown from a balcony with u_x = 8 m/s and u_y = 6 m/s; +y is upward and g = 10 m/s². Stage 2: after release only gravity acts and air resistance is negligible, so the ideal model applies with a = (0, −10) m/s². Stage 3: the component relations are v_x = 8, v_y = 6 − 10t, Δx = 8t and Δy = 6t − 5t². Stage 4: at t = 1 s the displacement is (8 i + 1 j) m and the velocity is (8 i − 4 j) m/s.</desc>
+  <defs>
+    <marker id="g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-1-REP-KIN-2D-BALCONY-8-6-1--rep-kin-balcony-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/></marker>
+    <marker id="g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-1-REP-KIN-2D-BALCONY-8-6-1--rep-kin-balcony-arrow-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1f6fb2"/></marker>
+  </defs>
+  <g data-g9-stage-id="VIS-KIN-2D-BALCONY-V0" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="20" y="26" font-weight="600">A ball thrown from a balcony</text>
+    <rect x="30" y="200" width="100" height="170" fill="none" stroke="currentColor" stroke-width="2"/>
+    <line x1="100" y1="200" x2="140" y2="200" stroke="currentColor" stroke-width="3"/>
+    <circle cx="140" cy="200" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+    <line x1="147" y1="200" x2="207" y2="200" stroke="currentColor" stroke-width="2.5" marker-end="url(#g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-1-REP-KIN-2D-BALCONY-8-6-1--rep-kin-balcony-arrow)"/>
+    <text x="212" y="205">u_x = 8 m/s</text>
+    <line x1="140" y1="193" x2="140" y2="133" stroke="currentColor" stroke-width="2.5" marker-end="url(#g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-1-REP-KIN-2D-BALCONY-8-6-1--rep-kin-balcony-arrow)"/>
+    <text x="148" y="140">u_y = 6 m/s</text>
+    <text x="470" y="60">+y upward; g = 10 m/s²</text>
+    <text x="470" y="82">Find the displacement and velocity</text>
+    <text x="470" y="104">1 s after release.</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-BALCONY-V1" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <line x1="140" y1="215" x2="140" y2="265" stroke="currentColor" stroke-width="2" marker-end="url(#g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-1-REP-KIN-2D-BALCONY-8-6-1--rep-kin-balcony-arrow)"/>
+    <text x="148" y="262">gravity only</text>
+    <text x="470" y="140" font-weight="600">Model gate</text>
+    <text x="470" y="162">after release only gravity acts;</text>
+    <text x="470" y="184">air resistance negligible:</text>
+    <text x="470" y="206">a = (0, −10) m/s²</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-BALCONY-V2" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="470" y="240" font-weight="600">Component relations</text>
+    <text x="470" y="262">v_x = 8, v_y = 6 − 10t</text>
+    <text x="470" y="284">Δx = 8t, Δy = 6t − 5t²</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-BALCONY-V3" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <path d="M140 200 L164 183.5 L188 170 L212 159.5 L236 152 L260 147.5 L284 146 L308 147.5 L332 152 L356 159.5 L380 170" fill="none" stroke="#1f6fb2" stroke-width="2" stroke-dasharray="6 4"/>
+    <circle cx="380" cy="170" r="7" fill="#1f6fb2" stroke="#1f6fb2" stroke-width="2"/>
+    <line x1="380" y1="170" x2="440" y2="200" stroke="#1f6fb2" stroke-width="2.5" marker-end="url(#g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-1-REP-KIN-2D-BALCONY-8-6-1--rep-kin-balcony-arrow-acc)"/>
+    <text x="160" y="320" fill="#1f6fb2">at t = 1 s: Δr = (8 i + 1 j) m</text>
+    <text x="160" y="342" fill="#1f6fb2">v = (8 i − 4 j) m/s</text>
+  </g>
+</svg>
+<div class="g9-stage-controls"><div class="g9-stage-chips" role="group" aria-label="Stages"><button type="button" class="g9-stage-chip" data-g9-stage-goto="0" data-g9-stage-desc="Show the release point and the launch components.">1: The throw</button><button type="button" class="g9-stage-chip" data-g9-stage-goto="1" data-g9-stage-desc="Decide the model from the post-release interactions.">2: Model gate</button><button type="button" class="g9-stage-chip" data-g9-stage-goto="2" data-g9-stage-desc="Write the component relations on one clock.">3: Component relations</button><button type="button" class="g9-stage-chip" data-g9-stage-goto="3" data-g9-stage-desc="Draw the path from the balcony for 1 s and read Δr and v.">4: At t = 1 s</button></div><p class="g9-stage-desc" data-g9-stage-desc-text></p><div class="g9-stage-stepper"><button type="button" data-g9-stage-step="prev">Previous stage</button><span data-g9-stage-label></span><button type="button" data-g9-stage-step="next">Next stage</button></div></div><figcaption data-g9-block="representation_bridge" data-g9-caption="purpose">Show the ball thrown from the balcony with u_x = 8 m/s and u_y = 6 m/s, with the model decided from what acts after release.</figcaption></figure></div></section><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><section class="g9-cu-support" data-g9-support-for="CU-PHY-KIN-PROJECTILE-MODEL-1"><h3>Decide from what acts after release whether the gravity-only model applies, and only then put a_x = 0 and a_y = −g into the component equations.</h3><div class="g9-component g9-c-trap-card" data-g9-component="TRAP_REPAIR" data-g9-level="REQUIRED" data-g9-presentation="TRAP_CARD" data-g9-component-items="2" data-g9-component-unit="CU-PHY-KIN-PROJECTILE-MODEL-1"><div class="g9-block" data-g9-block="wrong_path"><h4>A tempting wrong path</h4><ul><li>A projectile needs a horizontal force to keep moving horizontally.</li><li>A horizontal launch has no vertical velocity throughout the flight.</li></ul></div><div class="g9-block" data-g9-block="diagnose"><h4>Diagnose</h4><ul><li>If a_x=0 after release, can v_x still be nonzero?</li><li>One second after a horizontal launch, is v_y still zero under gravity?</li></ul></div><div class="g9-block" data-g9-block="repair"><h4>Repair</h4><ul><li>Yes. Zero horizontal acceleration means horizontal velocity stays constant, not that it becomes zero.</li><li>No. u_y=0 only at release; a_y=-g makes v_y=-gt afterward.</li></ul></div></div><div class="g9-component g9-c-triad" data-g9-component="QUICK_CHECK" data-g9-level="REQUIRED" data-g9-presentation="TRIAD" data-g9-component-items="2" data-g9-component-unit="CU-PHY-KIN-PROJECTILE-MODEL-1"><div class="g9-block" data-g9-block="independent_check"><h4>1-2-3 quick check</h4><ol class="g9-triad"><li data-g9-triad-role=""><span class="g9-triad-head">1 · Check</span><span class="g9-triad-text">Set g = 0: the equations must reduce to straight-line uniform motion with the launch velocity (u_x, u_y).</span></li><li data-g9-triad-role=""><span class="g9-triad-head">2 · Check</span><span class="g9-triad-text">With +y up, v_y must fall by g every second whatever the launch direction; a v_y that grows while the object rises means the sign of g is wrong.</span></li></ol></div></div></section></section></div></div><div class="g9-split"><div class="g9-col g9-col-primary"><section class="blueprint-slot slot-construction" data-blueprint-slot="construction" data-required="true"><section id="CU-PHY-KIN-PROJECTILE-MODEL-2" class="g9-cu" data-g9-cu="CU-PHY-KIN-PROJECTILE-MODEL-2"><div class="g9-component g9-c-unit-header" data-g9-component="UNIT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="UNIT_HEADER" data-g9-component-unit="CU-PHY-KIN-PROJECTILE-MODEL-2"><div class="g9-unit-head"><span class="g9-unit-no" aria-hidden="true">2</span><h3>Name the requested event as a component condition before solving for its time: v_y = 0 at the apex, Δy = 0 at a return to launch height.</h3><span class="g9-pill g9-pill-concept">Medium concept</span></div><nav class="g9-cu-nav" data-g9-unit-navigation aria-label="Concept Book section navigation"><span data-g9-route-position>Section 4 of 5</span><span class="g9-cu-nav-links"><a data-g9-prev-section href="#CU-PHY-KIN-PROJECTILE-MODEL-1" aria-label="Previous section: Decide from what acts after release whether the gravity-only model applies, and only then put a_x = 0 and a_y = −g into the component equations.">← Previous</a><a data-g9-next-section href="#CU-PHY-KIN-PROJECTILE-MODEL-3" aria-label="Next section: Write the landing event from the actual drop while keeping the actual u_y, then read every requested quantity at that one event time.">Next →</a></span></nav></div><div class="g9-component g9-c-step-cards" data-g9-component="CONSTRUCTION_STEPS" data-g9-level="REQUIRED" data-g9-presentation="STEP_CARDS" data-g9-component-items="3" data-g9-component-unit="CU-PHY-KIN-PROJECTILE-MODEL-2"><div class="g9-block" data-g9-block="construction"><ol><li data-g9-step="K2D3-3"><strong>Translate the requested event into the component condition that defines it before solving for time.</strong><br><em>Why valid:</em> Apex, same-height return, ground impact and a specified later instant are different events; each is identified by a different component condition.<br><em>Result:</em> event condition chosen before calculation</li><li data-g9-step="K2D3-4"><strong>For an apex event, set v_y=0 while keeping v_x=u_x and a_y=-g.</strong><br><em>Why valid:</em> At the highest point only the vertical velocity component is momentarily zero; gravity still accelerates downward and horizontal motion continues.<br><em>Result:</em> apex condition v_y=0 with nonzero horizontal velocity and nonzero downward acceleration</li><li data-g9-step="K2D3-5"><strong>For a return to the launch height, set Delta y=0 and treat any same-height flight-time/range shortcut as conditional on that equality.</strong><br><em>Why valid:</em> The shortcut follows from the vertical displacement returning to its initial value; it is not valid when the landing height differs.<br><em>Result:</em> same-height event condition and its validity boundary</li></ol></div></div><div class="g9-component g9-c-worked-card" data-g9-component="WORKED_EXAMPLE" data-g9-level="REQUIRED" data-g9-presentation="WORKED_CARD" data-g9-component-unit="CU-PHY-KIN-PROJECTILE-MODEL-2"><div class="g9-block" data-g9-block="worked_anchor"><h4>Watch one</h4><p>An ideal projectile is launched from level ground with u_x = 6 m/s and u_y = 15 m/s. Take +y upward and g = 10 m/s². Name the component condition for each event, then find the time and height of the apex, and the time and range when it lands back at launch height.</p><ol><li>Apex: the condition is v_y = 0, while v_x stays 6 m/s and a_y stays −10 m/s². 15 − 10t = 0 gives t = 1.5 s.</li><li>Apex height: Δy = 15 × 1.5 − 5 × 1.5² = 22.5 − 11.25 = 11.25 m.</li><li>Landing at launch height: the condition is Δy = 0. 15t − 5t² = 0 gives t = 0 (the launch) or t = 3 s, so the landing is at t = 3 s.</li><li>Range at the same t = 3 s: Δx = 6 × 3 = 18 m.</li></ol><div class="g9-block" data-g9-block="worked_result"><h4>Result</h4><p>Apex at t = 1.5 s, 11.25 m above launch, with velocity (6 i + 0 j) m/s; landing at t = 3 s, 18 m from launch.</p></div><div class="g9-block" data-g9-block="worked_check"><h4>Check</h4><p>The landing time is twice the apex time, 3 s = 2 × 1.5 s, and the apex height agrees with u_y²/(2g) = 225/20 = 11.25 m, found without any time.</p></div></div></div></section></section></div><div class="g9-col g9-col-support"><section class="blueprint-slot slot-representation" data-blueprint-slot="representation" data-required="true"><div class="g9-component g9-c-staged-visual" data-g9-component="STAGED_VISUAL" data-g9-level="REQUIRED" data-g9-presentation="STAGED_VISUAL" data-g9-component-items="4" data-g9-component-unit="CU-PHY-KIN-PROJECTILE-MODEL-2"><figure data-g9-figure data-g9-fig="CU-PHY-KIN-PROJECTILE-MODEL-2-REP-KIN-2D-LEVEL-APEX-RETURN" data-g9-stage="TEACHING" data-g9-representation="REP-KIN-2D-LEVEL-APEX-RETURN" data-g9-kind="GRAPH" data-reveal-stages="4" data-g9-stages-total="4" data-g9-stages="VIS-KIN-2D-LEVEL-V0 VIS-KIN-2D-LEVEL-V1 VIS-KIN-2D-LEVEL-V2 VIS-KIN-2D-LEVEL-V3" data-g9-stage-sequence="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 500" role="img" aria-labelledby="g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-2-REP-KIN-2D-LEVEL-APEX-RETURN-1--rep-kin-level-title g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-2-REP-KIN-2D-LEVEL-APEX-RETURN-1--rep-kin-level-desc">
+  <title id="g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-2-REP-KIN-2D-LEVEL-APEX-RETURN-1--rep-kin-level-title">Level-ground launch with u = (6, 15) m/s: apex where v_y = 0, landing where Δy = 0</title>
+  <desc id="g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-2-REP-KIN-2D-LEVEL-APEX-RETURN-1--rep-kin-level-desc">Stage 1: a projectile launched from level ground with components u_x = 6 m/s and u_y = 15 m/s follows an arch back to the ground; two events are asked for, the highest point and the return to launch height. Stage 2: with +y up and g = 10 m/s², each event is named as a component condition: at the apex v_y = 0 while v_x stays 6 m/s and a_y stays −10 m/s², drawn as arrows at the top; at the return to launch height Δy = 0. One clock runs from t = 0 with open markers for t_apex and t_land. Stage 3: the markers are solved: 15 − 10t = 0 gives t = 1.5 s; 15t − 5t² = 0 gives t = 0 or 3 s, so the landing is at 3 s. Stage 4: the apex is 11.25 m above launch with v = (6 i + 0 j) m/s, and the range at t = 3 s is 18 m; the landing time is twice the apex time, and u_y²/(2g) = 225/20 = 11.25 m.</desc>
+  <defs>
+    <marker id="g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-2-REP-KIN-2D-LEVEL-APEX-RETURN-1--rep-kin-level-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/></marker>
+    <marker id="g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-2-REP-KIN-2D-LEVEL-APEX-RETURN-1--rep-kin-level-arrow-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1f6fb2"/></marker>
+  </defs>
+  <g data-g9-stage-id="VIS-KIN-2D-LEVEL-V0" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="20" y="26" font-weight="600">Launch from level ground: two events</text>
+    <line x1="40" y1="300" x2="540" y2="300" stroke="currentColor" stroke-width="2"/>
+    <path d="M150 300 Q330 -150 510 300" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <circle cx="150" cy="300" r="7" fill="currentColor"/>
+    <line x1="150" y1="300" x2="174" y2="300" stroke="currentColor" stroke-width="2.5" marker-end="url(#g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-2-REP-KIN-2D-LEVEL-APEX-RETURN-1--rep-kin-level-arrow)"/>
+    <text x="156" y="322">u_x = 6 m/s</text>
+    <line x1="150" y1="300" x2="150" y2="240" stroke="currentColor" stroke-width="2.5" marker-end="url(#g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-2-REP-KIN-2D-LEVEL-APEX-RETURN-1--rep-kin-level-arrow)"/>
+    <text x="142" y="238" text-anchor="end">u_y = 15 m/s</text>
+    <text x="330" y="59" text-anchor="middle">highest point (apex)</text>
+    <text x="510" y="322" text-anchor="middle">back at launch height</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-LEVEL-V1" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="580" y="60">+y up, g = 10 m/s²</text>
+    <circle cx="330" cy="75" r="5" fill="currentColor"/>
+    <line x1="330" y1="75" x2="360" y2="75" stroke="currentColor" stroke-width="2.5" marker-end="url(#g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-2-REP-KIN-2D-LEVEL-APEX-RETURN-1--rep-kin-level-arrow)"/>
+    <text x="366" y="80">v_x = 6 m/s</text>
+    <line x1="330" y1="81" x2="330" y2="121" stroke="currentColor" stroke-width="2.5" marker-end="url(#g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-2-REP-KIN-2D-LEVEL-APEX-RETURN-1--rep-kin-level-arrow)"/>
+    <text x="330" y="141" text-anchor="middle">a_y = −10 m/s²</text>
+    <text x="580" y="100" font-weight="600">apex:</text>
+    <text x="580" y="122">v_y = 0, v_x stays 6 m/s</text>
+    <text x="580" y="160" font-weight="600">return to launch height:</text>
+    <text x="580" y="182">Δy = 0</text>
+    <text x="40" y="404" font-weight="600">one clock for both events</text>
+    <line x1="90" y1="440" x2="486" y2="440" stroke="currentColor" stroke-width="2" marker-end="url(#g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-2-REP-KIN-2D-LEVEL-APEX-RETURN-1--rep-kin-level-arrow)"/>
+    <text x="494" y="445">t</text>
+    <line x1="90" y1="432" x2="90" y2="448" stroke="currentColor" stroke-width="2"/>
+    <text x="90" y="466" text-anchor="middle">t = 0</text>
+    <circle cx="255" cy="440" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="255" y="426" text-anchor="middle">t_apex</text>
+    <circle cx="420" cy="440" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="420" y="426" text-anchor="middle">t_land</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-LEVEL-V2" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <circle cx="255" cy="440" r="7" fill="#1f6fb2"/>
+    <circle cx="420" cy="440" r="7" fill="#1f6fb2"/>
+    <text x="255" y="466" text-anchor="middle" fill="#1f6fb2">15 − 10t = 0: t = 1.5 s</text>
+    <text x="420" y="488" text-anchor="middle" fill="#1f6fb2">15t − 5t² = 0: t = 0 or 3 s</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-LEVEL-V3" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <circle cx="330" cy="75" r="7" fill="#1f6fb2"/>
+    <line x1="330" y1="151" x2="330" y2="300" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 4"/>
+    <text x="338" y="225.5" font-weight="600" fill="#1f6fb2">11.25 m</text>
+    <circle cx="510" cy="300" r="7" fill="#1f6fb2"/>
+    <path d="M150 332 V340 H510 V332" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text x="330" y="360" text-anchor="middle" font-weight="600" fill="#1f6fb2">range 18 m at t = 3 s</text>
+    <text x="580" y="222" fill="#1f6fb2">apex at 1.5 s: 11.25 m up,</text>
+    <text x="580" y="244" fill="#1f6fb2">v = (6 i + 0 j) m/s</text>
+    <text x="580" y="282">check: 3 s = 2 × 1.5 s</text>
+    <text x="580" y="304">u_y²/(2g) = 225/20 = 11.25 m</text>
+  </g>
+</svg>
+<div class="g9-stage-controls"><div class="g9-stage-chips" role="group" aria-label="Stages"><button type="button" class="g9-stage-chip" data-g9-stage-goto="0" data-g9-stage-desc="Show the launch and the two events asked for.">1: Launch and events</button><button type="button" class="g9-stage-chip" data-g9-stage-goto="1" data-g9-stage-desc="Name each event as a component condition on one timeline.">2: Event conditions</button><button type="button" class="g9-stage-chip" data-g9-stage-goto="2" data-g9-stage-desc="Solve each condition for its time.">3: Event times</button><button type="button" class="g9-stage-chip" data-g9-stage-goto="3" data-g9-stage-desc="Read the apex height and the range at the solved times.">4: Values at the events</button></div><p class="g9-stage-desc" data-g9-stage-desc-text></p><div class="g9-stage-stepper"><button type="button" data-g9-stage-step="prev">Previous stage</button><span data-g9-stage-label></span><button type="button" data-g9-stage-step="next">Next stage</button></div></div><figcaption data-g9-block="representation_bridge" data-g9-caption="purpose">Show the level-ground launch with u = (6, 15) m/s and name each requested event as a component condition before its time is solved: v_y = 0 at the apex, Δy = 0 at the return to launch height.</figcaption></figure></div></section><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><section class="g9-cu-support" data-g9-support-for="CU-PHY-KIN-PROJECTILE-MODEL-2"><h3>Name the requested event as a component condition before solving for its time: v_y = 0 at the apex, Δy = 0 at a return to launch height.</h3><div class="g9-component g9-c-trap-card" data-g9-component="TRAP_REPAIR" data-g9-level="REQUIRED" data-g9-presentation="TRAP_CARD" data-g9-component-items="2" data-g9-component-unit="CU-PHY-KIN-PROJECTILE-MODEL-2"><div class="g9-block" data-g9-block="wrong_path"><h4>A tempting wrong path</h4><ul><li>At the highest point the whole velocity and the acceleration are both zero.</li><li>At two points of the same height on an ideal trajectory, the velocity vectors are identical.</li></ul></div><div class="g9-block" data-g9-block="diagnose"><h4>Diagnose</h4><ul><li>At the apex of an oblique projectile, which of v_x, v_y and a_y is zero?</li><li>On ascent and descent at the same height, how do the horizontal and vertical velocity components compare?</li></ul></div><div class="g9-block" data-g9-block="repair"><h4>Repair</h4><ul><li>Only v_y is zero at that instant. v_x remains u_x and a_y remains -g.</li><li>v_x is the same, while v_y has equal magnitude and opposite sign; the speed matches but the velocity vector does not.</li></ul></div></div><div class="g9-component g9-c-triad" data-g9-component="QUICK_CHECK" data-g9-level="REQUIRED" data-g9-presentation="TRIAD" data-g9-component-items="2" data-g9-component-unit="CU-PHY-KIN-PROJECTILE-MODEL-2"><div class="g9-block" data-g9-block="independent_check"><h4>1-2-3 quick check</h4><ol class="g9-triad"><li data-g9-triad-role=""><span class="g9-triad-head">1 · Check</span><span class="g9-triad-text">For a return to launch height the flight time must be exactly twice the apex time, 2u_y/g against u_y/g, because the rise and the fall mirror each other.</span></li><li data-g9-triad-role=""><span class="g9-triad-head">2 · Check</span><span class="g9-triad-text">Set u_y = 0 in the apex condition: the apex must fall at t = 0, as it does for a launch that starts level.</span></li></ol></div></div></section></section></div></div><div class="g9-split"><div class="g9-col g9-col-primary"><section class="blueprint-slot slot-construction" data-blueprint-slot="construction" data-required="true"><section id="CU-PHY-KIN-PROJECTILE-MODEL-3" class="g9-cu" data-g9-cu="CU-PHY-KIN-PROJECTILE-MODEL-3"><div class="g9-component g9-c-unit-header" data-g9-component="UNIT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="UNIT_HEADER" data-g9-component-unit="CU-PHY-KIN-PROJECTILE-MODEL-3"><div class="g9-unit-head"><span class="g9-unit-no" aria-hidden="true">3</span><h3>Write the landing event from the actual drop while keeping the actual u_y, then read every requested quantity at that one event time.</h3><span class="g9-pill g9-pill-concept">Medium concept</span></div><nav class="g9-cu-nav" data-g9-unit-navigation aria-label="Concept Book section navigation"><span data-g9-route-position>Section 5 of 5</span><span class="g9-cu-nav-links"><a data-g9-prev-section href="#CU-PHY-KIN-PROJECTILE-MODEL-2" aria-label="Previous section: Name the requested event as a component condition before solving for its time: v_y = 0 at the apex, Δy = 0 at a return to launch height.">← Previous</a></span></nav></div><div class="g9-component g9-c-step-cards" data-g9-component="CONSTRUCTION_STEPS" data-g9-level="REQUIRED" data-g9-presentation="STEP_CARDS" data-g9-component-items="2" data-g9-component-unit="CU-PHY-KIN-PROJECTILE-MODEL-3"><div class="g9-block" data-g9-block="construction"><ol><li data-g9-step="K2D3-6"><strong>For any unequal-height landing, use the actual Delta y=y_f-y_i in the vertical position equation and retain the actual u_y; for a horizontal launch specifically, set u_y=0, then obtain the event time vertically and share it with x.</strong><br><em>Why valid:</em> Initial vertical velocity and landing displacement describe different facts. The landing event is fixed by the actual vertical geometry, while u_y=0 is only the horizontal-launch initial condition.<br><em>Result:</em> Delta y=y_f-y_i=u_y t_event-0.5g t_event^2; for horizontal launch u_y=0; reuse the solved t_event on x</li><li data-g9-step="K2D3-7"><strong>At the selected event time, reconstruct the requested velocity, speed, direction, displacement or range from simultaneous components and check qualitative limits.</strong><br><em>Why valid:</em> The reported projectile result is a consequence of one component model and one event, so its components must refer to the same instant and satisfy a_x=0, a_y=-g.<br><em>Result:</em> checked projectile consequence at one physical event</li></ol></div></div><div class="g9-component g9-c-worked-card" data-g9-component="WORKED_EXAMPLE" data-g9-level="REQUIRED" data-g9-presentation="WORKED_CARD" data-g9-component-unit="CU-PHY-KIN-PROJECTILE-MODEL-3"><div class="g9-block" data-g9-block="worked_anchor"><h4>Watch one</h4><p>A ball is thrown from the edge of a roof 25 m above level ground with u_x = 5 m/s and u_y = 20 m/s. Take +y upward and g = 10 m/s², and neglect air resistance. Find when it hits the ground, how far from the building it lands, and its impact velocity and speed.</p><ol><li>The landing event is Δy = −25 m, because the ground is below the launch point, and u_y = 20 m/s is kept: −25 = 20t − 5t².</li><li>Rearranged, 5t² − 20t − 25 = 0, so t² − 4t − 5 = 0 and (t − 5)(t + 1) = 0. The physical root is t = 5 s.</li><li>Reuse t = 5 s horizontally: Δx = 5 × 5 = 25 m.</li><li>At t = 5 s: v_x = 5 m/s and v_y = 20 − 10 × 5 = −30 m/s, so v = (5 i − 30 j) m/s and the speed is √(5² + 30²) = √925 ≈ 30.4 m/s.</li></ol><div class="g9-block" data-g9-block="worked_result"><h4>Result</h4><p>Impact at t = 5 s, 25 m from the building, with v = (5 i − 30 j) m/s and a speed of about 30.4 m/s.</p></div><div class="g9-block" data-g9-block="worked_check"><h4>Check</h4><p>Without time: v² = u² + 2gh = (5² + 20²) + 2 × 10 × 25 = 425 + 500 = 925 m²/s², the same speed squared as from the components.</p></div></div></div></section></section></div><div class="g9-col g9-col-support"><section class="blueprint-slot slot-representation" data-blueprint-slot="representation" data-required="true"><div class="g9-component g9-c-staged-visual" data-g9-component="STAGED_VISUAL" data-g9-level="REQUIRED" data-g9-presentation="STAGED_VISUAL" data-g9-component-items="4" data-g9-component-unit="CU-PHY-KIN-PROJECTILE-MODEL-3"><figure data-g9-figure data-g9-fig="CU-PHY-KIN-PROJECTILE-MODEL-3-REP-KIN-2D-ROOF-UNEQUAL-LANDING" data-g9-stage="TEACHING" data-g9-representation="REP-KIN-2D-ROOF-UNEQUAL-LANDING" data-g9-kind="GRAPH" data-reveal-stages="4" data-g9-stages-total="4" data-g9-stages="VIS-KIN-2D-ROOF-V0 VIS-KIN-2D-ROOF-V1 VIS-KIN-2D-ROOF-V2 VIS-KIN-2D-ROOF-V3" data-g9-stage-sequence="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520" role="img" aria-labelledby="g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-3-REP-KIN-2D-ROOF-UNEQUAL-LANDING-1--rep-kin-roof-title g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-3-REP-KIN-2D-ROOF-UNEQUAL-LANDING-1--rep-kin-roof-desc">
+  <title id="g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-3-REP-KIN-2D-ROOF-UNEQUAL-LANDING-1--rep-kin-roof-title">Roof launch 25 m up with u = (5, 20) m/s: landing where Δy = −25 m, keeping u_y</title>
+  <desc id="g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-3-REP-KIN-2D-ROOF-UNEQUAL-LANDING-1--rep-kin-roof-desc">Stage 1: a ball leaves the edge of a roof 25 m above level ground with components u_x = 5 m/s and u_y = 20 m/s upward; it rises, then falls past the roof level to the ground. Stage 2: with +y up, the origin at the launch point and g = 10 m/s², the landing event is Δy = −25 m because the ground is below the launch, and the actual u_y = 20 m/s is kept; a dashed line at launch height marks the point where Δy = 0, which is not the ground. Stage 3: −25 = 20t − 5t² factorises as (t − 5)(t + 1) = 0, so t = 5 s and the root −1 s is rejected. Stage 4: at the same t = 5 s the ball lands Δx = 5 × 5 = 25 m from the building with v = (5 i − 30 j) m/s, speed √925 ≈ 30.4 m/s; without time, v² = 425 + 500 = 925 agrees.</desc>
+  <defs>
+    <marker id="g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-3-REP-KIN-2D-ROOF-UNEQUAL-LANDING-1--rep-kin-roof-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/></marker>
+    <marker id="g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-3-REP-KIN-2D-ROOF-UNEQUAL-LANDING-1--rep-kin-roof-arrow-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1f6fb2"/></marker>
+  </defs>
+  <g data-g9-stage-id="VIS-KIN-2D-ROOF-V0" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="20" y="26" font-weight="600">Thrown from a roof 25 m above level ground</text>
+    <rect x="100" y="250" width="70" height="200" fill="none" stroke="currentColor" stroke-width="2"/>
+    <line x1="40" y1="450" x2="480" y2="450" stroke="currentColor" stroke-width="2"/>
+    <path d="M88 250 H80 V450 H88" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text x="74" y="355" text-anchor="end">25 m</text>
+    <path d="M170 250 Q270 -150 370 450" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <circle cx="170" cy="250" r="7" fill="currentColor"/>
+    <line x1="170" y1="250" x2="190" y2="250" stroke="currentColor" stroke-width="2.5" marker-end="url(#g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-3-REP-KIN-2D-ROOF-UNEQUAL-LANDING-1--rep-kin-roof-arrow)"/>
+    <text x="174" y="272">u_x = 5 m/s</text>
+    <line x1="170" y1="250" x2="170" y2="190" stroke="currentColor" stroke-width="2.5" marker-end="url(#g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-3-REP-KIN-2D-ROOF-UNEQUAL-LANDING-1--rep-kin-roof-arrow)"/>
+    <text x="164" y="200" text-anchor="end">u_y = 20 m/s</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-ROOF-V1" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <line x1="170" y1="250" x2="470" y2="250" stroke="currentColor" stroke-width="1" stroke-dasharray="3 4"/>
+    <circle cx="330" cy="250" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="342" y="272">Δy = 0 here:</text>
+    <text x="342" y="292">not the ground</text>
+    <text x="530" y="60">+y up, origin at launch, g = 10 m/s²</text>
+    <text x="530" y="100" font-weight="600">landing event:</text>
+    <text x="530" y="122">Δy = −25 m (ground below launch)</text>
+    <text x="530" y="144">keep the actual u_y = 20 m/s</text>
+    <text x="530" y="166">dotted line: launch height</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-ROOF-V2" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="530" y="206" fill="#1f6fb2">−25 = 20t − 5t²</text>
+    <text x="530" y="228" fill="#1f6fb2">(t − 5)(t + 1) = 0</text>
+    <text x="530" y="250" font-weight="600" fill="#1f6fb2">t = 5 s  (t = −1 s rejected)</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-ROOF-V3" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <circle cx="370" cy="450" r="7" fill="#1f6fb2"/>
+    <path d="M170 472 V480 H370 V472" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text x="270" y="500" text-anchor="middle" font-weight="600" fill="#1f6fb2">Δx = 5 × 5 = 25 m</text>
+    <line x1="400" y1="360" x2="415" y2="450" stroke="#1f6fb2" stroke-width="2.5" marker-end="url(#g9fig-CORE1A-CU-PHY-KIN-PROJECTILE-MODEL-3-REP-KIN-2D-ROOF-UNEQUAL-LANDING-1--rep-kin-roof-arrow-acc)"/>
+    <text x="424" y="400" fill="#1f6fb2">v = (5 i − 30 j) m/s</text>
+    <text x="530" y="290" font-weight="600">at the same t = 5 s:</text>
+    <text x="530" y="312">v_x = 5 m/s, v_y = 20 − 10 × 5 = −30 m/s</text>
+    <text x="530" y="334">speed = √925 ≈ 30.4 m/s</text>
+    <text x="530" y="370">check without t: v² = 425 + 500 = 925</text>
+  </g>
+</svg>
+<div class="g9-stage-controls"><div class="g9-stage-chips" role="group" aria-label="Stages"><button type="button" class="g9-stage-chip" data-g9-stage-goto="0" data-g9-stage-desc="Show the roof, the drop and the launch components.">1: The throw</button><button type="button" class="g9-stage-chip" data-g9-stage-goto="1" data-g9-stage-desc="Write the landing event from the actual drop and keep u_y.">2: Landing condition</button><button type="button" class="g9-stage-chip" data-g9-stage-goto="2" data-g9-stage-desc="Solve the vertical event for its physical root.">3: Landing time</button><button type="button" class="g9-stage-chip" data-g9-stage-goto="3" data-g9-stage-desc="Read distance and velocity at the same t = 5 s.">4: Values at landing</button></div><p class="g9-stage-desc" data-g9-stage-desc-text></p><div class="g9-stage-stepper"><button type="button" data-g9-stage-step="prev">Previous stage</button><span data-g9-stage-label></span><button type="button" data-g9-stage-step="next">Next stage</button></div></div><figcaption data-g9-block="representation_bridge" data-g9-caption="purpose">Show the roof launch 25 m above the ground with u = (5, 20) m/s: the landing event is written from the actual drop, Δy = −25 m, with the actual u_y kept, and every requested quantity is read at that one time.</figcaption></figure></div></section><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><section class="g9-cu-support" data-g9-support-for="CU-PHY-KIN-PROJECTILE-MODEL-3"><h3>Write the landing event from the actual drop while keeping the actual u_y, then read every requested quantity at that one event time.</h3><div class="g9-component g9-c-trap-card" data-g9-component="TRAP_REPAIR" data-g9-level="REQUIRED" data-g9-presentation="TRAP_CARD" data-g9-component-items="3" data-g9-component-unit="CU-PHY-KIN-PROJECTILE-MODEL-3"><div class="g9-block" data-g9-block="wrong_path"><h4>A tempting wrong path</h4><ul><li>A horizontal launch has no vertical velocity throughout the flight.</li><li>Same-height flight formulas may be used whenever the question is about a projectile range or flight time.</li><li>Horizontal speed determines how long a horizontally launched object takes to fall.</li></ul></div><div class="g9-block" data-g9-block="diagnose"><h4>Diagnose</h4><ul><li>One second after a horizontal launch, is v_y still zero under gravity?</li><li>A ball launched from a roof lands on the ground below. May the same-height time-of-flight shortcut be used without checking the vertical displacement?</li><li>If the horizontal launch speed doubles from the same height, does the ideal fall time change?</li></ul></div><div class="g9-block" data-g9-block="repair"><h4>Repair</h4><ul><li>No. u_y=0 only at release; a_y=-g makes v_y=-gt afterward.</li><li>No. Same-height shortcuts require Delta y=0 between launch and landing. For unequal heights, solve the vertical position condition.</li><li>No. The vertical position equation determines the fall time; horizontal speed changes the range, not the fall time.</li></ul></div></div><div class="g9-component g9-c-triad" data-g9-component="QUICK_CHECK" data-g9-level="REQUIRED" data-g9-presentation="TRIAD" data-g9-component-items="2" data-g9-component-unit="CU-PHY-KIN-PROJECTILE-MODEL-3"><div class="g9-block" data-g9-block="independent_check"><h4>1-2-3 quick check</h4><ol class="g9-triad"><li data-g9-triad-role=""><span class="g9-triad-head">1 · Check</span><span class="g9-triad-text">The impact speed from the components must match v² = u² + 2gh for a drop h, a route that uses no time at all.</span></li><li data-g9-triad-role=""><span class="g9-triad-head">2 · Check</span><span class="g9-triad-text">Let the drop shrink to zero: the landing time must reduce to the same-height value 2u_y/g.</span></li></ol></div></div></section></section></div></div><div class="g9-split g9-split-support-only"><div class="g9-col g9-col-support"><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><div class="g9-component g9-c-recall-card" data-g9-component="EXIT_RECALL" data-g9-level="REQUIRED" data-g9-presentation="RECALL_CARD"><div class="g9-block" data-g9-block="exit_task"><h4>Try it with less support</h4><p>A stone is launched horizontally from a cliff with speed u. With +y upward and air resistance neglected, write its component acceleration, velocity and displacement relations after release and explain why one common t is used.</p></div><div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response"><label>Your answer<textarea data-g9-attempt rows="4"></textarea></label><label class="g9-paper"><input data-g9-paper type="checkbox">I worked this on paper</label><button type="button" data-g9-commit>I have attempted this</button></div><details data-g9-reveal data-requires-attempt data-g9-payload-ref="CORE1A-MIC-PHY-KIN-PROJECTILE-MODEL-exit"><summary>Model answer</summary><div data-g9-payload-slot></div></details><template data-g9-payload="CORE1A-MIC-PHY-KIN-PROJECTILE-MODEL-exit"><div class="g9-block" data-g9-block="exit_answer"><p>a_x=0, a_y=-g; v_x=u, v_y=-gt; Delta x=ut, Delta y=-0.5gt², all at the same elapsed time t.</p><ol><li>After release only gravity acts in the ideal model.</li><li>Gravity has no horizontal component in the chosen frame.</li><li>Both component coordinates describe the same stone at the same instant.</li></ol></div></template></div><div class="g9-component g9-c-chips" data-g9-component="PRACTICE_LINKS" data-g9-level="OPTIONAL" data-g9-presentation="CHIPS"><div class="g9-block" data-g9-block="practice_navigation"><h4>Practice this concept in Core2</h4><ul><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-IITJEE-2011-P2-Q33" data-g9-concept-ref="MIC-PHY-KIN-PROJECTILE-MODEL" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-IITJEE-2011-P2-Q33">IIT-JEE · 2011 · Paper II · Q33</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEADV-2018-P2-Q08" data-g9-concept-ref="MIC-PHY-KIN-PROJECTILE-MODEL" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEADV-2018-P2-Q08">JEE (Advanced) · 2018 · Paper 2 · Q8</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEADV-2019-P2-Q09" data-g9-concept-ref="MIC-PHY-KIN-PROJECTILE-MODEL" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEADV-2019-P2-Q09">JEE (Advanced) · 2019 · Paper 2 · Q9</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEADV-2021-P1-Q05" data-g9-concept-ref="MIC-PHY-KIN-PROJECTILE-MODEL" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEADV-2021-P1-Q05">JEE (Advanced) · 2021 · Paper 1 · Q5</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEADV-2021-P1-Q06" data-g9-concept-ref="MIC-PHY-KIN-PROJECTILE-MODEL" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEADV-2021-P1-Q06">JEE (Advanced) · 2021 · Paper 1 · Q6</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEADV-2024-P2-Q09" data-g9-concept-ref="MIC-PHY-KIN-PROJECTILE-MODEL" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEADV-2024-P2-Q09">JEE (Advanced) · 2024 · Paper 2 · Q9</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-IITJEE-2012-P1-Q05" data-g9-concept-ref="MIC-PHY-KIN-PROJECTILE-MODEL" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-IITJEE-2012-P1-Q05">IIT-JEE · 2012 · Paper I · Q5</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEADV-2022-P1-Q08" data-g9-concept-ref="MIC-PHY-KIN-PROJECTILE-MODEL" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEADV-2022-P1-Q08">JEE (Advanced) · 2022 · Paper 1 · Q8</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEADV-2023-P1-Q01" data-g9-concept-ref="MIC-PHY-KIN-PROJECTILE-MODEL" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEADV-2023-P1-Q01">JEE (Advanced) · 2023 · Paper 1 · Q1</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-IITJEE-2011-P2-Q26" data-g9-concept-ref="MIC-PHY-KIN-PROJECTILE-MODEL" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-IITJEE-2011-P2-Q26">IIT-JEE · 2011 · Paper II · Q26</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEADV-2026-P1-Q06" data-g9-concept-ref="MIC-PHY-KIN-PROJECTILE-MODEL" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEADV-2026-P1-Q06">JEE (Advanced) · 2026 · Paper 1 · Q6</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEADV-2013-P1-Q07" data-g9-concept-ref="MIC-PHY-KIN-PROJECTILE-MODEL" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEADV-2013-P1-Q07">JEE (Advanced) · 2013 · Paper 1 · Q7</a></li><li><a data-g9-practice-link data-g9-question-ref="PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29" data-g9-concept-ref="MIC-PHY-KIN-PROJECTILE-MODEL" href="core2-motion-in-a-plane-tablet.html#PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29">JEE Main · 2026 · Session 2 · 04 Apr 2026 · Shift 2 · Q29</a></li></ul></div></div></section></div></div></article></main><footer data-g9-footer>Physics · Two-dimensional kinematics and projectile model</footer><script>
+(()=>{const q=(s,r=document)=>[...r.querySelectorAll(s)];
+const store={get:k=>{try{return localStorage.getItem('g9-'+k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem('g9-'+k,v);return true}catch(e){return false}},remove:k=>{try{localStorage.removeItem('g9-'+k);return true}catch(e){return false}}};
+const root=document.documentElement;const scope=root.dataset.g9Product&&root.dataset.g9RenderDigest?root.dataset.g9Product+':'+root.dataset.g9RenderDigest:'';
+const apply=()=>{root.dataset.theme=store.get('theme')||root.dataset.theme||'light';root.style.setProperty('--g9-zoom',store.get('zoom')||'1');};apply();
+q('[data-g9-theme]').forEach(b=>b.onclick=()=>{store.set('theme',b.dataset.g9Theme);apply()});
+q('[data-g9-zoom]').forEach(b=>b.onclick=()=>{let z=parseFloat(store.get('zoom')||'1');z=b.dataset.g9Zoom==='inc'?Math.min(1.6,z+0.1):b.dataset.g9Zoom==='dec'?Math.max(0.8,z-0.1):1;store.set('zoom',z.toFixed(1));apply()});
+q('[data-g9-font]').forEach(b=>b.onclick=()=>q('[data-g9-zoom="'+b.dataset.g9Font+'"]')[0]?.click());
+function initFigure(f){if(f.dataset.g9Init)return;f.dataset.g9Init='1';const ids=(f.dataset.g9Stages||'').split(' ').filter(Boolean);if(ids.length<2)return;let i=0;
+const chips=q('[data-g9-stage-goto]',f);const desc=q('[data-g9-stage-desc-text]',f)[0];
+const show=()=>{ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=n<=i?'':'none'));const l=q('[data-g9-stage-label]',f)[0];if(l)l.textContent='Stage '+(i+1)+' of '+ids.length;chips.forEach((c,n)=>c.setAttribute('aria-pressed',String(n===i)));if(desc)desc.textContent=(chips[i]&&chips[i].dataset.g9StageDesc)||''};show();chips.forEach((c,n)=>c.onclick=()=>{i=n;show()});
+q('[data-g9-stage-step]',f).forEach(b=>b.onclick=()=>{i=Math.max(0,Math.min(ids.length-1,i+(b.dataset.g9StageStep==='next'?1:-1)));show()})}
+function nextRung(l){const t=q('template[data-g9-rung-payload]',l)[0];if(!t)return false;const payload=t.content.cloneNode(true);q('[data-g9-rung-ghost]',l)[0]?.remove();q('figure[data-g9-figure]',payload).forEach(initFigure);q('[data-g9-ladder]',l)[0].append(payload);t.remove();const b=q('[data-g9-next-rung]',l)[0];if(b){if(!q('template[data-g9-rung-payload]',l).length)b.disabled=true;else b.textContent='Show next support'}return true}
+function materialise(a){q('details[data-g9-payload-ref]',a).forEach(d=>{const slot=q('[data-g9-payload-slot]',d)[0];if(!slot||slot.dataset.g9Filled)return;const t=q('template[data-g9-payload]',a).find(x=>x.dataset.g9Payload===d.dataset.g9PayloadRef);if(!t)return;slot.replaceChildren(t.content.cloneNode(true));slot.dataset.g9Filled='1';q('figure[data-g9-figure]',slot).forEach(initFigure)})}
+const number=t=>{const v=t.trim();if(!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?(?:\s*\/\s*[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?)?$/i.test(v))return false;const p=v.split('/').map(x=>Number(x.trim()));return p.every(Number.isFinite)&&(p.length===1||p[1]!==0)};
+function validAttempt(box){const type=box.dataset.g9ResponseType;if(type==='single_choice'||type==='multiple_choice'||type==='true_false')return q('[data-g9-choice]:checked',box).length>0;
+if(type==='numeric')return number(q('[data-g9-number]',box)[0]?.value||'');if(type==='short_text')return !!q('[data-g9-attempt]',box)[0]?.value.trim();
+if(type==='match'){const fields=q('[data-g9-match]',box);return fields.length>0&&fields.every(x=>x.value!=='')}
+if(q('[data-g9-paper]:checked',box).length)return true;if(type==='multipart'){const fields=q('[data-g9-part-input]',box);return fields.length>0&&fields.every(x=>x.value.trim()&&(!x.dataset.g9PartType||x.dataset.g9PartType!=='numeric'||number(x.value)))}
+return !!q('[data-g9-attempt]',box)[0]?.value.trim()}
+const stateKey=a=>scope&&a?.dataset.g9Unit?'state:'+scope+':'+a.dataset.g9Unit:null;const returnKey=concept=>scope&&concept?'return:'+scope+':'+concept:null;
+function readState(key){if(!key)return null;const raw=store.get(key);if(!raw)return null;try{const state=JSON.parse(raw);return state&&typeof state==='object'?state:null}catch(e){return null}}
+const attemptFields=a=>q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a);const rungCount=l=>{const list=q('[data-g9-ladder]',l)[0];return list?q('[data-g9-rung]',list).length:0};
+function saveCore2State(a){if(a.dataset.g9Role!=='CORE2')return;const key=stateKey(a);if(!key)return;const fields=attemptFields(a).map(el=>({value:el.value,checked:!!el.checked}));const ladders={};q('.g9-ladder[data-g9-ladder-ref]',a).forEach(l=>ladders[l.dataset.g9LadderRef]=rungCount(l));const reveals=q('details[data-g9-support-reveal]',a).map(d=>!!d.open);store.set(key,JSON.stringify({attempted:!!a.dataset.attempted,fields,ladders,reveals}))}
+function bindSupportRevealState(a){q('details[data-g9-support-reveal]',a).forEach(d=>{if(d.dataset.g9StateBound)return;d.dataset.g9StateBound='1';d.addEventListener('toggle',()=>saveCore2State(a))})}
+function restoreCore2State(a,lock){if(a.dataset.g9Role!=='CORE2')return;const state=readState(stateKey(a));if(!state)return;const fields=attemptFields(a);(state.fields||[]).forEach((saved,i)=>{const el=fields[i];if(!el||!saved||typeof saved!=='object')return;if(Object.prototype.hasOwnProperty.call(saved,'value'))el.value=saved.value??'';if(el.type==='checkbox'||el.type==='radio')el.checked=!!saved.checked});Object.entries(state.ladders||{}).forEach(([ref,count])=>{const l=q('.g9-ladder[data-g9-ladder-ref]',a).find(x=>x.dataset.g9LadderRef===ref);if(!l||!Number.isInteger(count)||count<0)return;while(rungCount(l)<count&&nextRung(l)){};});bindSupportRevealState(a);q('details[data-g9-support-reveal]',a).forEach((d,i)=>d.open=!!(state.reveals||[])[i]);if(state.attempted){a.dataset.attempted='1';materialise(a)}lock()}
+const articles=q('article[data-g9-unit],article[data-g9-diagnostic]');
+articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!a.dataset.attempted){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();restoreCore2State(a,lock);
+q('details[data-requires-attempt] summary',a).forEach(s=>s.addEventListener('click',e=>{if(!a.dataset.attempted){e.preventDefault();q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a)[0]?.focus()}}));
+q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-attempt-box]');if(!box||!validAttempt(box)){q('input,textarea,select',box||a)[0]?.focus();return}a.dataset.attempted='1';lock();materialise(a);saveCore2State(a)});
+a.addEventListener('click',e=>{const b=e.target.closest('[data-g9-next-rung]');if(b&&a.contains(b)){nextRung(b.closest('.g9-ladder'));bindSupportRevealState(a);saveCore2State(a)}});attemptFields(a).forEach(el=>{el.addEventListener('input',()=>saveCore2State(a));el.addEventListener('change',()=>saveCore2State(a))});
+q('[data-g9-concept-link]',a).forEach(link=>link.addEventListener('click',()=>{saveCore2State(a);const key=returnKey(link.dataset.g9ConceptRef);if(key)store.set(key,link.dataset.g9QuestionRef||a.dataset.g9Unit);refreshReturnLinks()}))});
+const practiceLinks=q('[data-g9-practice-link]');const practiceLabels=new Map(practiceLinks.map(link=>[link,link.textContent]));
+function refreshReturnLinks(){practiceLinks.forEach(link=>{const key=returnKey(link.dataset.g9ConceptRef);const active=!!key&&store.get(key)===link.dataset.g9QuestionRef;if(active){link.dataset.g9ReturnLink='';link.textContent='Return to question · '+practiceLabels.get(link)}else{delete link.dataset.g9ReturnLink;link.textContent=practiceLabels.get(link)}})}
+practiceLinks.forEach(link=>link.addEventListener('click',()=>{const key=returnKey(link.dataset.g9ConceptRef);if(key&&store.get(key)===link.dataset.g9QuestionRef){store.remove(key);refreshReturnLinks()}}));refreshReturnLinks();
+window.g9MaterialiseAll=()=>articles.forEach(a=>{a.dataset.attempted='1';q('details[data-requires-attempt]',a).forEach(d=>delete d.dataset.locked);materialise(a);q('.g9-ladder',a).forEach(l=>{while(nextRung(l)){};});q('details[data-g9-support-reveal]',a).forEach(d=>d.open=true)});
+q('figure[data-g9-figure]').forEach(initFigure);
+q('[data-g9-toggle]').forEach(b=>b.onclick=()=>{const t=document.getElementById(b.getAttribute('aria-controls'));if(!t)return;const open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!open));t.hidden=open});
+const input=q('[data-g9-search-input]')[0];if(input)input.oninput=()=>{const v=input.value.trim().toLowerCase();articles.forEach(a=>{a.hidden=!!v&&!(a.dataset.g9SearchText||'').toLowerCase().includes(v)})};
+q('[data-g9-action="search"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-search-panel]')[0];p.hidden=!p.hidden;if(!p.hidden)input.focus()});
+q('[data-g9-action="display"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-display-panel]')[0];p.hidden=!p.hidden});
+})();
+</script><script id="pr375-u4-remediation-script">
+(() => {
+  const humanize = (value) => String(value || '')
+    .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+    .replace(/[_-]+/g, ' ')
+    .replace(/\b(vec)([ab])\b/gi, 'vector $2')
+    .replace(/\bproj\b/gi, 'projectile')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const explicitNames = {
+    mass1: 'Mass m1 in kilograms', mass2: 'Mass m2 in kilograms',
+    vecA: 'Vector A', vecB: 'Vector B',
+    projU: 'Projectile launch speed', projAngle: 'Projectile launch angle',
+    'jump-select': 'Jump to question', search: 'Search questions',
+    searchInput: 'Search questions', questionSearch: 'Search questions'
+  };
+
+  const hasLabel = (el) => {
+    if (el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.title) return true;
+    if (el.id && document.querySelector(`label[for="${CSS.escape(el.id)}"]`)) return true;
+    return !!el.closest('label');
+  };
+
+  document.querySelectorAll('input, select, textarea').forEach((el, index) => {
+    if (hasLabel(el)) return;
+    let name = explicitNames[el.id] || el.getAttribute('placeholder') || el.getAttribute('name') || el.id;
+    if (!name) {
+      const nearby = el.parentElement?.textContent?.trim();
+      if (nearby && nearby.length <= 100) name = nearby;
+    }
+    name = humanize(name) || `${el.tagName.toLowerCase()} ${index + 1}`;
+    el.setAttribute('aria-label', name);
+  });
+
+  document.querySelectorAll('button').forEach(btn => {
+    if (btn.textContent.trim().toLowerCase() === 'clear') btn.classList.add('u4-clear-button');
+  });
+
+  const syncOptions = () => {
+    document.querySelectorAll('.opt-btn').forEach(btn => {
+      const correct = btn.classList.contains('selected-correct');
+      const incorrect = btn.classList.contains('selected-incorrect');
+      btn.setAttribute('aria-pressed', correct || incorrect ? 'true' : 'false');
+      const base = btn.getAttribute('data-u4-base-label') || btn.getAttribute('aria-label') || btn.textContent.trim();
+      if (!btn.hasAttribute('data-u4-base-label')) btn.setAttribute('data-u4-base-label', base);
+      btn.setAttribute('aria-label', `${base}${correct ? ' — Correct' : incorrect ? ' — Incorrect' : ''}`);
+    });
+  };
+  syncOptions();
+
+  const syncTabs = () => {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.setAttribute('role', 'tab');
+      const active = btn.classList.contains('active') || btn.classList.contains('tab-btn-active') || btn.getAttribute('aria-current') === 'page';
+      btn.setAttribute('aria-selected', active ? 'true' : 'false');
+      if (btn.parentElement && !btn.parentElement.hasAttribute('role')) btn.parentElement.setAttribute('role', 'tablist');
+    });
+  };
+  syncTabs();
+
+  const figureName = (el, fallback) => {
+    const scope = el.closest('figure, section, article, .card, .panel, .simulator, .canvas-container') || el.parentElement;
+    const caption = scope?.querySelector('figcaption, h1, h2, h3, h4, .title, [class*="title"]');
+    const txt = caption?.textContent?.replace(/\s+/g, ' ').trim();
+    return txt && txt.length <= 120 ? txt : fallback;
+  };
+
+  document.querySelectorAll('svg').forEach(svg => {
+    if (svg.hasAttribute('aria-label') || svg.hasAttribute('aria-labelledby') || svg.hasAttribute('aria-hidden') || svg.querySelector('title')) return;
+    const control = svg.closest('a, button');
+    if (control && control.textContent.trim()) {
+      svg.setAttribute('aria-hidden', 'true');
+      svg.setAttribute('focusable', 'false');
+    } else {
+      svg.setAttribute('role', 'img');
+      svg.setAttribute('aria-label', figureName(svg, 'Physics diagram'));
+    }
+  });
+
+  document.querySelectorAll('canvas').forEach(canvas => {
+    if (canvas.hasAttribute('aria-label') || canvas.hasAttribute('aria-labelledby') || canvas.hasAttribute('aria-hidden')) return;
+    canvas.setAttribute('role', 'img');
+    canvas.setAttribute('aria-label', figureName(canvas, 'Interactive physics simulation'));
+  });
+
+  if (!document.querySelector('main, [role="main"]')) {
+    const mainCandidate = document.querySelector('.app-container, .container, .page-shell, #app');
+    if (mainCandidate) mainCandidate.setAttribute('role', 'main');
+  }
+
+  const observer = new MutationObserver(() => { syncOptions(); syncTabs(); });
+  observer.observe(document.documentElement, { subtree: true, attributes: true, attributeFilter: ['class', 'aria-current'] });
+})();
+</script>
+<script id="pr375-u4-dynamic-remediation">
+(() => {
+  const textName = (el, fallback) => {
+    const scope = el.closest('figure, section, article, .panel, .card, .simulator, .canvas-wrap, .canvas-container') || el.parentElement;
+    const title = scope?.querySelector('figcaption, h1, h2, h3, h4, .title, [class*="title"]');
+    const text = title?.textContent?.replace(/\s+/g, ' ').trim();
+    return text && text.length <= 140 ? text : fallback;
+  };
+
+  const nameFigures = (root = document) => {
+    const nodes = [];
+    if (root.nodeType === 1 && root.matches?.('svg, canvas')) nodes.push(root);
+    root.querySelectorAll?.('svg, canvas').forEach(el => nodes.push(el));
+    nodes.forEach(el => {
+      if (el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.getAttribute('aria-hidden') || el.querySelector?.('title')) return;
+      const control = el.closest('a, button');
+      if (control && control.textContent.trim()) {
+        el.setAttribute('aria-hidden', 'true');
+        el.setAttribute('focusable', 'false');
+        return;
+      }
+      el.setAttribute('role', 'img');
+      el.setAttribute('aria-label', textName(el, el.tagName.toLowerCase() === 'canvas' ? 'Interactive physics simulation' : 'Physics diagram'));
+    });
+  };
+
+  const nameControls = (root = document) => {
+    const nodes = [];
+    if (root.nodeType === 1 && root.matches?.('input, select, textarea')) nodes.push(root);
+    root.querySelectorAll?.('input, select, textarea').forEach(el => nodes.push(el));
+    nodes.forEach((el, index) => {
+      const has = el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.title || el.closest('label') || (el.id && document.querySelector(`label[for="${CSS.escape(el.id)}"]`));
+      if (has) return;
+      const nearby = el.closest('.control-row, .form-group, .field, .panel, .card')?.querySelector('.control-label, label, h3, h4');
+      const raw = el.getAttribute('placeholder') || el.getAttribute('name') || el.id || nearby?.textContent || `${el.tagName.toLowerCase()} ${index + 1}`;
+      el.setAttribute('aria-label', String(raw).replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim());
+    });
+  };
+
+  const sync = root => { nameFigures(root); nameControls(root); };
+  sync(document);
+  new MutationObserver(records => {
+    for (const record of records) for (const node of record.addedNodes) if (node.nodeType === 1) sync(node);
+  }).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
+</body></html>

@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>GRADE 9 PHYSICS - Newton's Laws of Motion Master Suite | 12.7" Tablet Standalone Edition</title>
+  <meta name="description" content="Complete 12.7-inch tablet study suite for Newton's Laws of Motion: Inertia, Free Body Diagrams, F=ma, Action-Reaction, Friction, Atwood Pulley Systems, and 35+ Structured Challenges.">
+  <style>
+/* ==========================================================================
+   Physics: Newton's Laws of Motion 12.7" Tablet Standalone Stylesheet
+   WCAG 2.5.5 >= 48px touch targets, >= 120px textareas, no micro-fonts (<13.5px)
+   100% Offline Standalone · Dark/Light Mode · Responsive Stage/Support Grid
+   ========================================================================== */
+
+:root {
+  --tab12-container-max: 1400px;
+  --tab12-touch-min: 48px;
+  --tab12-base-font: 16px;
+  --tab12-radius-sm: 8px;
+  --tab12-radius-md: 12px;
+  --tab12-radius-lg: 16px;
+
+  --bg-app: #080d1a;
+  --bg-surface: #0f172a;
+  --bg-card: #152238;
+  --bg-card-subtle: #1a2942;
+  --border: #263859;
+  --border-light: #334b75;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.25);
+  --success: #34d399;
+  --warning: #f59e0b;
+  --danger: #f87171;
+  --purple: #c084fc;
+}
+
+[data-theme="light"] {
+  --bg-app: #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f8fafc;
+  --border: #cbd5e1;
+  --border-light: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --accent: #0284c7;
+  --accent-glow: rgba(2, 132, 199, 0.15);
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --purple: #7e22ce;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--tab12-base-font);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-app);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+button, .btn, .tab-btn, summary {
+  min-height: var(--tab12-touch-min);
+  min-width: var(--tab12-touch-min);
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--tab12-radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: all 0.18s ease;
+  border: 1px solid transparent;
+}
+
+button:focus-visible, .btn:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+textarea.tablet-safe-input {
+  min-height: 120px;
+  width: 100%;
+  padding: 14px;
+  font-family: monospace, inherit;
+  font-size: 14.5px;
+  line-height: 1.5;
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  resize: vertical;
+  display: block;
+}
+
+textarea.tablet-safe-input:focus {
+  border-color: var(--accent);
+  background-color: var(--bg-card);
+}
+
+header.app-header {
+  background-color: var(--bg-surface);
+  border-bottom: 1.5px solid var(--border);
+  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.header-inner {
+  max-width: var(--tab12-container-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header-brand h1 {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.subject-badge {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: rgba(56, 189, 248, 0.15);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  font-weight: 700;
+}
+
+.theme-toggle-btn {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+}
+
+nav.tab-nav {
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 24px 0 24px;
+  overflow-x: auto;
+}
+
+.tab-nav-inner {
+  max-width: var(--tab12-container-max);
+  margin: 0 auto;
+  display: flex;
+  gap: 8px;
+}
+
+.tab-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: var(--tab12-radius-sm) var(--tab12-radius-sm) 0 0;
+  padding: 12px 18px;
+  white-space: nowrap;
+}
+
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  background: var(--bg-app);
+}
+
+main.layout-container {
+  max-width: var(--tab12-container-max);
+  margin: 20px auto;
+  padding: 0 20px;
+  width: 100%;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 24px;
+}
+
+@media (max-width: 1040px) {
+  main.layout-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stage-area {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.content-card {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.content-card h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.content-card h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 18px 0 10px 0;
+  color: var(--accent);
+}
+
+.formula-box {
+  background: var(--bg-card-subtle);
+  border-left: 4px solid var(--accent);
+  padding: 14px 18px;
+  border-radius: 0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;
+  margin: 14px 0;
+  font-family: monospace;
+  font-size: 15px;
+  color: var(--text-primary);
+}
+
+.callout-box {
+  background: rgba(56, 189, 248, 0.08);
+  border: 1.5px solid var(--accent);
+  border-radius: var(--tab12-radius-sm);
+  padding: 16px 20px;
+  margin: 16px 0;
+}
+
+.q-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+.q-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.q-badge {
+  background: rgba(192, 132, 252, 0.15);
+  border: 1px solid var(--purple);
+  color: var(--purple);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tag-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.q-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.q-prompt {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+
+details.solution-detail {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--tab12-radius-sm);
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+details.solution-detail summary {
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.02);
+  color: var(--accent);
+  user-select: none;
+}
+
+.solution-content {
+  padding: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 14.5px;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.support-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.support-widget {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 20px;
+}
+
+.support-widget h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.calc-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.calc-input-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.calc-input-group input {
+  width: 100%;
+  min-height: 48px;
+  padding: 8px 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  color: var(--text-primary);
+  font-size: 14.5px;
+}
+
+.calc-result {
+  background: rgba(56, 189, 248, 0.1);
+  border: 1.5px solid var(--accent);
+  padding: 12px;
+  border-radius: var(--tab12-radius-sm);
+  font-weight: 700;
+  color: var(--accent);
+  text-align: center;
+  font-size: 15px;
+  margin-top: 12px;
+}
+  </style>
+<style id="pr375-u4-remediation">
+/* PR #375 U4 remediation: accessibility, reflow and alternate viewports. */
+*, *::before, *::after { box-sizing: border-box; }
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid #38bdf8 !important;
+  outline-offset: 2px !important;
+}
+img, svg, canvas { max-width: 100%; }
+input, select, textarea { max-width: 100%; }
+::placeholder { color: #94a3b8 !important; opacity: 1 !important; }
+[data-theme="light"] ::placeholder { color: #475569 !important; }
+.u4-clear-button { color: #f8fafc !important; }
+[data-theme="light"] .u4-clear-button { color: #0f172a !important; }
+
+/* Never communicate correctness by colour alone. */
+.opt-btn.selected-correct::after {
+  content: " ✓ Correct";
+  margin-inline-start: .4rem;
+  font-weight: 800;
+}
+.opt-btn.selected-incorrect::after {
+  content: " ✕ Incorrect";
+  margin-inline-start: .4rem;
+  font-weight: 800;
+}
+
+/* Contrast repairs for the learner-visible light theme. */
+[data-theme="light"] .step-content-calc {
+  color: #7c2d12 !important;
+  background: #fff7ed !important;
+  border: 1px solid #c2410c !important;
+}
+[data-theme="light"] .answer-banner,
+[data-theme="light"] .badge-success,
+[data-theme="light"] .saved-pill {
+  color: #065f46 !important;
+}
+[data-theme="light"] .badge-warning,
+[data-theme="light"] .hint-tag,
+[data-theme="light"] .diag-header-another {
+  color: #7c2d12 !important;
+}
+[data-theme="light"] .step-label,
+[data-theme="light"] details > summary {
+  color: #075985 !important;
+}
+[data-theme="light"] .formula-box,
+[data-theme="light"] .math-banner {
+  color: #422006 !important;
+  background: #fef3c7 !important;
+  border-color: #92400e !important;
+}
+[data-theme="light"] footer { color: #475569 !important; }
+
+/* Default dark-theme contrast repairs from U4. */
+html[data-theme="dark"] .step-label { color: #7dd3fc !important; }
+html[data-theme="dark"] details > summary { color: #7dd3fc !important; }
+.q-count, .open-btn { color: #93c5fd !important; }
+.tag-2d, .tag-1d, .tag-vec, .tag-ncert, .tag-sba, .tag-proj, .tag-cons { color: #ffffff !important; }
+footer { color: #94a3b8 !important; }
+
+/* The offline 1D master lost Tailwind preflight + custom theme utilities. */
+body.u4-tailwind-offline {
+  margin: 0 !important;
+  background: #090d16 !important;
+  color: #f1f5f9 !important;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+.u4-tailwind-offline.bg-background, .u4-tailwind-offline .bg-background { background-color: #090d16 !important; }
+.u4-tailwind-offline .bg-card { background-color: #111827 !important; }
+.u4-tailwind-offline .border-border { border-color: #334155 !important; }
+.u4-tailwind-offline .bg-slate-950\/90 { background-color: rgba(2, 6, 23, .94) !important; }
+.u4-tailwind-offline .bg-slate-900 { background-color: #0f172a !important; }
+.u4-tailwind-offline .bg-slate-800 { background-color: #1e293b !important; }
+.u4-tailwind-offline .max-w-7xl { max-width: 80rem !important; }
+.u4-tailwind-offline .overflow-x-auto { overflow-x: auto !important; }
+.u4-tailwind-offline .whitespace-nowrap { white-space: nowrap !important; }
+.u4-tailwind-offline .font-sans { font-family: ui-sans-serif, system-ui, sans-serif !important; }
+.u4-tailwind-offline .text-slate-500,
+.u4-tailwind-offline .text-slate-600 { color: #cbd5e1 !important; }
+.u4-tailwind-offline .text-slate-400 { color: #a8b5c7 !important; }
+.u4-tailwind-offline header { max-width: 100%; }
+
+/* Reflow at phone width and at a 200% zoom-equivalent viewport. */
+@media (max-width: 700px) {
+  header.sticky, .sticky-header, .top-nav.sticky { position: static !important; top: auto !important; }
+}
+@media (max-width: 480px) {
+  .header-actions,
+  .g9-nav-group,
+  .g9-header-actions,
+  .top-nav-header,
+  .course-badge-row,
+  .workspace-title-row {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-wrap: wrap !important;
+  }
+  .g9-block, nav, ol, ul, main, section, article, .app-container, .container {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  ol, ul { padding-inline-start: 1.5rem !important; }
+  #jump-select { width: 100% !important; max-width: 100% !important; }
+  .tab-btn { white-space: normal !important; min-width: 0 !important; flex: 1 1 140px !important; }
+  .tabs, .tab-strip, .tab-nav, .tab-bar, .g9-tabs, [class*="tabs-row"] {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .g9-nav-group > *, .header-actions > * { max-width: 100% !important; }
+  pre { white-space: pre-wrap !important; overflow-wrap: anywhere !important; max-width: 100% !important; }
+  table { display: block; max-width: 100% !important; overflow-x: auto !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (forced-colors: active) {
+  svg text { fill: CanvasText !important; stroke: transparent !important; }
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 3px solid Highlight !important;
+  }
+}
+</style>
+<style id="pr375-u4-residual-remediation">
+@media (max-width: 480px) {
+  /* Generated CORE1A section-route pills used 24rem + padding, producing ~467px boxes. */
+  [data-g9-section-route] a,
+  [data-g9-concept-route] a,
+  article[data-g9-role="CORE1A"] > .slot-identity [data-g9-section-route] a {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    line-height: 1.4 !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  /* Consolidated and interactive headers must reflow as complete units, not just their children. */
+  .header-inner,
+  header.g9-shell {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+  }
+  .header-inner > *,
+  header.g9-shell > .g9-nav-group {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .header-brand,
+  .header-brand h1,
+  .header-actions,
+  header.g9-shell .g9-nav-group,
+  header.g9-shell .g9-breadcrumb {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+  }
+  .header-brand h1 { align-items: flex-start !important; }
+  .header-actions { width: 100% !important; justify-content: flex-start !important; }
+  header.g9-shell { padding-block: 8px !important; }
+  header.g9-shell .g9-breadcrumb { flex: 1 1 100% !important; overflow-wrap: anywhere !important; }
+}
+</style>
+<style id="pr375-u1-remediation">
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%} body{overflow-wrap:anywhere} p,li{line-height:1.4}
+:where(p,li,label,button,input,select,textarea,summary,td,th,figcaption,.btn,.q-badge,.tag-pill,.hint-badge,.hint-tag,.subject-badge,.step-label,.diag-header,.formula-box,#saveStatus,.save-status,.tag,.q-count,.open-btn,.stat .label,section.section-header h2,.study-kicker,.brand-badge,.hero-pill,.badge,.core-tag,.telemetry-title,.control-label,.card-action,.breadcrumb){font-size:max(14px,1em)!important}
+:where(a[href="index.html"],header a,nav a,.breadcrumb a,a.g9-bridge-link,[data-g9-block="entry_assumptions"] a){min-height:48px!important;min-width:48px!important;display:inline-flex!important;align-items:center!important;justify-content:center;padding-block:10px!important;box-sizing:border-box!important}
+@media(min-width:1100px){article[data-g9-role="CORE1A"] .g9-split{grid-template-columns:minmax(0,1fr)!important}article[data-g9-role="CORE1A"] .g9-col-support{position:static!important;top:auto!important}}
+article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;line-height:1.35!important;min-height:48px!important}
+
+.badge,.study-kicker{font-size:14px!important}
+</style>
+<style id="u2-practice-hub-target">
+a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center}
+</style>
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <h1>
+          <span>⚙️</span> Newton's Laws of Motion Master Suite
+          <span class="subject-badge">Physics · 12.7" Tablet</span>
+        </h1>
+      </div>
+      <div class="header-actions" style="display:flex;align-items:center;gap:10px;">
+        <a href="index.html" class="nav-hub-btn" aria-label="Back to Practice Hub" title="Back to Practice Hub" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 16px;border-radius:8px;background:var(--bg-card,#1e293b);color:var(--text-primary,#f8fafc);border:1.5px solid var(--border,#334155);font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;white-space:nowrap;">← Practice Hub</a>
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">🌓 Mode</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tab-nav">
+    <div class="tab-nav-inner">
+      <button class="tab-btn active" onclick="switchTab('tab-first')">1. First Law &amp; Inertia</button>
+      <button class="tab-btn" onclick="switchTab('tab-fbd')">2. Free Body Diagrams</button>
+      <button class="tab-btn" onclick="switchTab('tab-second')">3. Second Law &amp; Momentum</button>
+      <button class="tab-btn" onclick="switchTab('tab-third')">4. Third Law &amp; Pulleys</button>
+      <button class="tab-btn" onclick="switchTab('tab-challenges')">5. Core 2 Challenges (20)</button>
+    </div>
+  </nav>
+
+  <main class="layout-container">
+    
+    <div class="stage-area">
+
+      <!-- Tab 1: First Law & Inertia -->
+      <div id="tab-first" class="tab-content active">
+        <div class="content-card">
+          <h2><span>⚖️</span> Newton's First Law: Motion is NOT Force</h2>
+          <p>
+            An object remains in a state of rest or uniform motion in a straight line unless acted upon by a non-zero net external resultant force.
+          </p>
+          <div class="callout-box">
+            <strong>The Core Mental Model:</strong>
+            <p>
+              Velocity does not require force to be maintained. A net force causes a CHANGE in velocity (acceleration $ec{a} = rac{dec{v}}{dt}$), NOT velocity itself!
+              If $ec{F}_{net} = 0$, then $ec{a} = 0 \implies ec{v} = 	ext{constant}$.
+            </p>
+          </div>
+          <h3>Inertia and Mass</h3>
+          <p>
+            Inertia is the inherent tendency of an object to resist changes in its state of motion. Mass is the direct quantitative measure of inertia: a massive object resists acceleration more stubbornly than a light one under the same applied force.
+          </p>
+          <div class="formula-box">
+            Equilibrium Condition: &nbsp; ∑ F_x = 0, &nbsp; ∑ F_y = 0, &nbsp; ∑ F_z = 0 &nbsp;⇒&nbsp; a = 0
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Free Body Diagrams -->
+      <div id="tab-fbd" class="tab-content">
+        <div class="content-card">
+          <h2><span>📐</span> Free Body Diagram (FBD) Discipline</h2>
+          <p>
+            An FBD represents an isolated body or system as a point particle with all external contact and field forces drawn acting away from it.
+          </p>
+          <div class="formula-box">
+            Forces Checklist:<br>
+            • Gravity (Weight): W = m · g (directed vertically downward)<br>
+            • Normal Force (N): Contact force perpendicular to the interface<br>
+            • Tension (T): Directed away from the body along the taut cord<br>
+            • Friction (f): Opposes relative sliding (f_s ≤ μ_s N, f_k = μ_k N)<br>
+            • External pushes/pulls (F_ext)
+          </div>
+          <div class="callout-box">
+            <strong>Golden Rule of FBD:</strong>
+            Never include forces that the body exerts on other bodies. Only include forces exerted BY the environment ON the chosen body!
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Second Law & Momentum -->
+      <div id="tab-second" class="tab-content">
+        <div class="content-card">
+          <h2><span>🚀</span> Newton's Second Law: Momentum &amp; Impulse</h2>
+          <p>
+            The rate of change of linear momentum of a body is directly proportional to the applied net force and occurs in the direction of the force:
+          </p>
+          <div class="formula-box">
+            Linear Momentum: &nbsp;&nbsp;&nbsp;&nbsp; p = m · v<br>
+            Second Law: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; F_net = dp / dt = m · (dv / dt) = m · a &nbsp; (for constant mass)<br>
+            Impulse-Momentum: &nbsp;&nbsp; J = ∫ F dt = F_avg · Δt = Δp = m (v_f - v_i)
+          </div>
+          <h3>Catching Time &amp; Impact Force</h3>
+          <p>
+            By pulling hands backward while catching a fast cricket ball, a player increases the impact time interval $\Delta t$. Because $\Delta p$ is fixed by the ball's incoming speed, increasing $\Delta t$ drastically reduces the average stopping force $ec{F}_{avg} = rac{\Delta ec{p}}{\Delta t}$, preventing hand injury.
+          </p>
+        </div>
+      </div>
+
+      <!-- Tab 4: Third Law & Pulleys -->
+      <div id="tab-third" class="tab-content">
+        <div class="content-card">
+          <h2><span>🔄</span> Newton's Third Law &amp; Connected Systems</h2>
+          <p>
+            To every action there is always an equal and opposite reaction: $ec{F}_{AB} = -ec{F}_{BA}$.
+            Action-reaction pairs NEVER act on the same body, and therefore NEVER cancel each other!
+          </p>
+          <div class="formula-box">
+            Ideal Atwood Machine (Masses m₂ > m₁ over frictionless pulley):<br>
+            &nbsp; Acceleration: &nbsp; a = (m₂ - m₁) / (m₁ + m₂) · g<br>
+            &nbsp; Tension: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; T = (2 m₁ m₂) / (m₁ + m₂) · g<br><br>
+            Two Blocks Connected on Smooth Surface (F pulls m₁ + m₂):<br>
+            &nbsp; a = F / (m₁ + m₂), &nbsp; Contact Force / Cord Tension = m₂ · a
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 5: Core 2 Challenges -->
+      <div id="tab-challenges" class="tab-content">
+        <div class="content-card">
+          <h2><span>🎯</span> Core 2 Structured NLM Challenges (20)</h2>
+          <p>
+            Test and consolidate your dynamics reasoning across 35+ verified problem instances from the revised core.
+          </p>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NLM Challenge</span>
+            <span class="tag-pill">Q01 · Page 2</span>
+          </div>
+          <div class="q-title">Q01 - Changing velocity means net force</div>
+          <p class="q-prompt">A trolley moves to the right and its speed increases steadily. What are the directions of its acceleration and net horizontal force?</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> The trolley is moving right and speeding up. What does that tell you about the direction of its acceleration?</div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Both acceleration and net horizontal force point to the right.<br>Speeding up while moving right means the velocity change is rightward, so acceleration is rightward. By ΣF = ma, the net force has the same direction as acceleration.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NLM Challenge</span>
+            <span class="tag-pill">Q02 · Page 3</span>
+          </div>
+          <div class="q-title">Q02 - Identify the Newton-III pair</div>
+          <p class="q-prompt">A student pushes a wall horizontally with 120 N. What force does the wall exert on the student?</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> The student and wall are one interaction pair. What does Newton III say about the two interaction forces?</div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              The wall exerts 120 N on the student in the opposite direction.<br>Newton's third-law forces are equal in magnitude, opposite in direction, and act on different bodies.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NLM Challenge</span>
+            <span class="tag-pill">Q03 · Page 4</span>
+          </div>
+          <div class="q-title">Q03 - Catching time and average force</div>
+          <p class="q-prompt">A 0.40 kg ball moving at 15 m/s is brought to rest in two catches. The momentum change is the same, but one catch takes longer. Which catch has the smaller average force, and why?</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> The initial and final momenta are the same in both catches. What quantity changes between the two cases?</div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              The longer-duration catch has the smaller average force magnitude because |F<sub>avg</sub>| = |Δp|/Δt. Both catches have the same momentum change, so increasing the stopping time reduces the average force.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NLM Challenge</span>
+            <span class="tag-pill">Q04 · Page 5</span>
+          </div>
+          <div class="q-title">Q04 - Inertia during sudden braking</div>
+          <p class="q-prompt">A standing passenger in a bus lurches forward when the bus brakes suddenly. Explain the effect using inertia.</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Immediately before braking, what horizontal velocity does the passenger’s upper body already have?</div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              The passenger's body tends to keep its previous forward velocity while the bus slows, so relative to the bus the passenger lurches forward. This is Newton's first law.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NLM Challenge</span>
+            <span class="tag-pill">Q05 · Page 6</span>
+          </div>
+          <div class="q-title">Q05 - Coin tossed in an accelerating train</div>
+          <p class="q-prompt">Inside a train accelerating forward, a passenger tosses a coin vertically. Neglect air resistance. Relative to the train, where does the coin tend to land?</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> While the coin is airborne, does it automatically share the train’s continuing forward acceleration?</div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              The coin tends to land behind the passenger. Once released, it keeps the horizontal velocity it had at release while the train continues to accelerate forward beneath it.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NLM Challenge</span>
+            <span class="tag-pill">Q06 · Page 7</span>
+          </div>
+          <div class="q-title">Q06 - Constant velocity on a frictionless table</div>
+          <p class="q-prompt">A puck slides at constant velocity on a perfectly frictionless horizontal table. What horizontal net force acts on it?</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> The puck’s velocity is constant. What is its acceleration?</div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              The horizontal net force is 0 N. Constant velocity means zero acceleration, so ΣF<sub>x</sub> = ma<sub>x</sub> = 0.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NLM Challenge</span>
+            <span class="tag-pill">Q07 · Page 8</span>
+          </div>
+          <div class="q-title">Q07 - Rocket propulsion and momentum</div>
+          <p class="q-prompt">A rocket ejects exhaust backward in deep space. Explain why the rocket accelerates forward.</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Which two parts exchange momentum during the short ejection event?</div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              The rocket gives the exhaust backward momentum; the exhaust gives the rocket an equal and opposite impulse, so the rocket gains forward momentum. The same interaction is described by Newton's third law.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NLM Challenge</span>
+            <span class="tag-pill">Q08 · Page 9</span>
+          </div>
+          <div class="q-title">Q08 - Water tanker braking and inertia</div>
+          <p class="q-prompt">A partly filled tanker brakes suddenly. Why does the water surge toward the front of the tank?</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Before braking, what velocity does the water already have relative to the road?</div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              The water tends to keep its previous forward velocity while the tanker slows, so it moves forward relative to the tank. This is inertia.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NLM Challenge</span>
+            <span class="tag-pill">Q09 · Page 10</span>
+          </div>
+          <div class="q-title">Q09 - Mass as a measure of inertia</div>
+          <p class="q-prompt">Three blocks have the same shape but masses 1 kg, 3 kg and 5 kg. Rank their translational inertia.</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> What property measures resistance to a change in velocity in translational motion?</div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              5 kg &gt; 3 kg &gt; 1 kg. Mass measures translational inertia, so the larger mass resists a change in velocity more strongly.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NLM Challenge</span>
+            <span class="tag-pill">Q10 · Page 11</span>
+          </div>
+          <div class="q-title">Q10 - Ambiguous rolling claim on a smooth train floor</div>
+          <p class="q-prompt">A source question places balls on a perfectly smooth (frictionless) train floor during braking and asks about rolling. Can the floor by itself change a ball's horizontal speed or spin?</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> If the floor is truly frictionless, what horizontal contact force and rolling torque can it exert on a ball?</div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              No. A perfectly frictionless floor supplies no horizontal contact force and no frictional torque, so it cannot by itself change the ball's horizontal momentum or spin. Relative motion in the braking train is not the same as friction-driven rolling.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NLM Challenge</span>
+            <span class="tag-pill">Q11 · Page 12</span>
+          </div>
+          <div class="q-title">Q11 - Light and heavy rifle recoil</div>
+          <p class="q-prompt">Two rifles fire bullets with the same forward momentum. One rifle has half the mass of the other. Compare the recoil momenta and recoil speeds of the rifles.</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> For rifle+bullet systems initially at rest, what must the rifle momentum do when the bullet gets forward momentum?</div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              The recoil momenta have the same magnitude and are opposite the bullet momentum. For the same recoil momentum, |v| = |p|/M, so the rifle with half the mass recoils at twice the speed.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NLM Challenge</span>
+            <span class="tag-pill">Q12 · Page 13</span>
+          </div>
+          <div class="q-title">Q12 - Horse and cart at constant speed</div>
+          <p class="q-prompt">A horse pulls a cart at constant speed on a level road. What is the cart's net horizontal force, and how must the total backward resistance compare with the horse's forward pull?</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> The cart moves at constant velocity. What does that say about its acceleration and net force?</div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              The net horizontal force is zero. Constant velocity means a = 0, so the total backward resistance equals the forward pull in magnitude.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NLM Challenge</span>
+            <span class="tag-pill">Q13 · Page 14</span>
+          </div>
+          <div class="q-title">Q13 - Why a falling ball alone does not conserve momentum</div>
+          <p class="q-prompt">A ball falls freely and its downward momentum increases. Is the momentum of the ball alone conserved? Explain.</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> What external force acts on the ball-only system during the fall?</div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              No. Gravity is an external force on the ball-only system, so the ball's momentum changes. Momentum conservation requires zero net external impulse on the chosen system.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NLM Challenge</span>
+            <span class="tag-pill">Q14 · Page 15</span>
+          </div>
+          <div class="q-title">Q14 - Friction from a velocity-time graph</div>
+          <p class="q-prompt">A 50 g slider slows uniformly from 80 m/s to rest in 8 s. If friction is the only horizontal force, find the friction force on the slider.</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> The graph is velocity versus time. What physical quantity is the slope?</div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              m = 0.050 kg and a = (0 − 80)/8 = −10 m/s². Therefore F = ma = −0.50 N: the friction force has magnitude 0.50 N and acts opposite the motion.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NLM Challenge</span>
+            <span class="tag-pill">Q15 · Page 16</span>
+          </div>
+          <div class="q-title">Q15 - Force-mass scaling</div>
+          <p class="q-prompt">An object accelerates at a under net force F and mass m. The force becomes F/2 while the mass becomes 2m. What is the new acceleration?</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Both numerator and denominator of a=F/m change. Which way does each change push the acceleration?</div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Initially a = F/m. The new acceleration is (F/2)/(2m) = F/(4m) = a/4.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NLM Challenge</span>
+            <span class="tag-pill">Q16 · Page 17</span>
+          </div>
+          <div class="q-title">Q16 - Skaters push apart</div>
+          <p class="q-prompt">Two skaters of masses 50 kg and 75 kg push apart from rest. The 50 kg skater moves left at 3 m/s. Find the velocity of the 75 kg skater.</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> For the two-skater system initially at rest, what is the total momentum before they push?</div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Initial total momentum is zero. Taking right as positive: 50(−3) + 75v = 0, so v = +2 m/s. The 75 kg skater moves right at 2 m/s.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NLM Challenge</span>
+            <span class="tag-pill">Q17 · Page 18</span>
+          </div>
+          <div class="q-title">Q17 - Sprinkler reaction</div>
+          <p class="q-prompt">A sprinkler ejects water tangentially backward from its nozzles. Why does the sprinkler rotate in the opposite direction?</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> What body exerts the force that accelerates the outgoing water?</div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              The sprinkler pushes the water backward/tangentially; the water exerts an equal and opposite force on the sprinkler, producing an opposite torque and rotation.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NLM Challenge</span>
+            <span class="tag-pill">Q18 · Page 19</span>
+          </div>
+          <div class="q-title">Q18 - Bullet stopping force and time</div>
+          <p class="q-prompt">A 0.020 kg bullet enters a block at 100 m/s and stops uniformly in 0.10 m. Find the average stopping force magnitude and stopping time.</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> Distance is given but acceleration is not. Which model must be used before Newton II?</div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Use v² − u² = 2as: 0 − 10000 = 2a(0.10), so a = −50000 m/s². The force magnitude is m|a| = 1000 N. From v = u + at, the stopping time is 0.0020 s.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NLM Challenge</span>
+            <span class="tag-pill">Q19 · Page 20</span>
+          </div>
+          <div class="q-title">Q19 - Combined masses under the same force</div>
+          <p class="q-prompt">A 5 N force gives mass m₁ acceleration 8 m/s² and mass m₂ acceleration 24 m/s². If the two masses are joined and the same 5 N net force acts on the combined system, find its acceleration.</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> The same force produces different accelerations. What does F=ma let you infer about each mass?</div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              m₁ = 5/8 kg and m₂ = 5/24 kg, so m₁ + m₂ = 5/6 kg. Therefore a = F/(m₁ + m₂) = 5/(5/6) = 6 m/s².
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NLM Challenge</span>
+            <span class="tag-pill">Q20 · Page 21</span>
+          </div>
+          <div class="q-title">Q20 - Momentum graphs and force as rate of change</div>
+          <p class="q-prompt">For p = mv, what are the slopes of a p-v graph at fixed mass and a p-m graph at fixed velocity? How is force related to a p-t graph?</p>
+          <div style="font-size: 13.5px; color: var(--accent); margin-bottom: 8px;">
+            💡 <strong>Hint:</strong> In p=mv, if m is held fixed and v varies, which quantity multiplies the horizontal-axis variable?</div>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Slope of p versus v = m; slope of p versus m = v; and the slope of a momentum-time graph is dp/dt = F<sub>net</sub>.
+            </div>
+          </details>
+        </div>
+    
+      </div>
+
+    </div>
+
+    <!-- Support Rail -->
+    <aside class="support-rail">
+      
+      <!-- Key Formulas -->
+      <div class="support-widget">
+        <h3><span>⚡</span> Dynamics Formulas</h3>
+        <div class="formula-box" style="font-size: 13.5px;">
+          F_net = m · a<br>
+          J = Δp = F_avg · Δt<br>
+          f_s,max = μ_s · N<br>
+          f_k = μ_k · N<br>
+          Atwood a = (m₂-m₁)/(m₁+m₂) g<br>
+          Atwood T = 2m₁m₂/(m₁+m₂) g
+        </div>
+      </div>
+
+      <!-- Interactive Atwood & Acceleration Solver -->
+      <div class="support-widget">
+        <h3><span>🧮</span> Atwood Machine Simulator</h3>
+        <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 10px;">
+          Simulate two masses over an ideal frictionless pulley:
+        </p>
+        <div class="calc-row">
+          <div class="calc-input-group">
+            <label>Mass m₁ (kg):</label>
+            <input type="number" id="mass1" value="2.0" step="0.5" oninput="solveAtwood()">
+          </div>
+          <div class="calc-input-group">
+            <label>Mass m₂ (kg):</label>
+            <input type="number" id="mass2" value="3.0" step="0.5" oninput="solveAtwood()">
+          </div>
+        </div>
+        <div class="calc-result" id="atwoodResult">
+          a = 1.96 m/s² | T = 23.54 N
+        </div>
+      </div>
+
+      <!-- Virtual Keyboard Safe Scratchpad -->
+      <div class="support-widget">
+        <h3><span>📝</span> Study Scratchpad</h3>
+        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 8px;">
+          Virtual keyboard safe (min-height: 120px) with auto-saving:
+        </p>
+        <textarea id="scratchpadNotes" class="tablet-safe-input" placeholder="Draft FBD coordinates, write ΣF = ma equations, or balance components..."></textarea>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+          <span id="saveStatus" style="font-size: 12.5px; color: var(--success);">✓ Auto-saved</span>
+          <button class="btn" style="min-height: 48px; padding: 6px 14px; font-size: 13px; background: var(--bg-surface); border: 1px solid var(--border);" onclick="clearNotes()">Clear</button>
+        </div>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+      if (activeBtn) activeBtn.classList.add('active');
+      const targetContent = document.getElementById(tabId);
+      if (targetContent) targetContent.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    const themeBtn = document.getElementById('themeToggle');
+    const htmlEl = document.documentElement;
+    const savedTheme = localStorage.getItem('tablet12_theme') || 'dark';
+    htmlEl.setAttribute('data-theme', savedTheme);
+    themeBtn.addEventListener('click', () => {
+      const current = htmlEl.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      htmlEl.setAttribute('data-theme', next);
+      localStorage.setItem('tablet12_theme', next);
+    });
+
+    const pad = document.getElementById('scratchpadNotes');
+    const status = document.getElementById('saveStatus');
+    pad.value = localStorage.getItem('nlm_tablet_notes') || '';
+    pad.addEventListener('input', () => {
+      localStorage.setItem('nlm_tablet_notes', pad.value);
+      status.textContent = '✓ Saved ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    });
+
+    function clearNotes() {
+      if (confirm('Clear scratchpad notes?')) {
+        pad.value = '';
+        localStorage.removeItem('nlm_tablet_notes');
+        status.textContent = 'Notes cleared';
+      }
+    }
+
+    function solveAtwood() {
+      const m1 = parseFloat(document.getElementById('mass1').value) || 1;
+      const m2 = parseFloat(document.getElementById('mass2').value) || 1;
+      const g = 9.80;
+      const a = Math.abs(m2 - m1) / (m1 + m2) * g;
+      const T = (2 * m1 * m2) / (m1 + m2) * g;
+      document.getElementById('atwoodResult').textContent = `a = ${a.toFixed(2)} m/s² | T = ${T.toFixed(2)} N`;
+    }
+    solveAtwood();
+  </script>
+<script id="pr375-u4-remediation-script">
+(() => {
+  const humanize = (value) => String(value || '')
+    .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+    .replace(/[_-]+/g, ' ')
+    .replace(/\b(vec)([ab])\b/gi, 'vector $2')
+    .replace(/\bproj\b/gi, 'projectile')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const explicitNames = {
+    mass1: 'Mass m1 in kilograms', mass2: 'Mass m2 in kilograms',
+    vecA: 'Vector A', vecB: 'Vector B',
+    projU: 'Projectile launch speed', projAngle: 'Projectile launch angle',
+    'jump-select': 'Jump to question', search: 'Search questions',
+    searchInput: 'Search questions', questionSearch: 'Search questions'
+  };
+
+  const hasLabel = (el) => {
+    if (el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.title) return true;
+    if (el.id && document.querySelector(`label[for="${CSS.escape(el.id)}"]`)) return true;
+    return !!el.closest('label');
+  };
+
+  document.querySelectorAll('input, select, textarea').forEach((el, index) => {
+    if (hasLabel(el)) return;
+    let name = explicitNames[el.id] || el.getAttribute('placeholder') || el.getAttribute('name') || el.id;
+    if (!name) {
+      const nearby = el.parentElement?.textContent?.trim();
+      if (nearby && nearby.length <= 100) name = nearby;
+    }
+    name = humanize(name) || `${el.tagName.toLowerCase()} ${index + 1}`;
+    el.setAttribute('aria-label', name);
+  });
+
+  document.querySelectorAll('button').forEach(btn => {
+    if (btn.textContent.trim().toLowerCase() === 'clear') btn.classList.add('u4-clear-button');
+  });
+
+  const syncOptions = () => {
+    document.querySelectorAll('.opt-btn').forEach(btn => {
+      const correct = btn.classList.contains('selected-correct');
+      const incorrect = btn.classList.contains('selected-incorrect');
+      btn.setAttribute('aria-pressed', correct || incorrect ? 'true' : 'false');
+      const base = btn.getAttribute('data-u4-base-label') || btn.getAttribute('aria-label') || btn.textContent.trim();
+      if (!btn.hasAttribute('data-u4-base-label')) btn.setAttribute('data-u4-base-label', base);
+      btn.setAttribute('aria-label', `${base}${correct ? ' — Correct' : incorrect ? ' — Incorrect' : ''}`);
+    });
+  };
+  syncOptions();
+
+  const syncTabs = () => {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.setAttribute('role', 'tab');
+      const active = btn.classList.contains('active') || btn.classList.contains('tab-btn-active') || btn.getAttribute('aria-current') === 'page';
+      btn.setAttribute('aria-selected', active ? 'true' : 'false');
+      if (btn.parentElement && !btn.parentElement.hasAttribute('role')) btn.parentElement.setAttribute('role', 'tablist');
+    });
+  };
+  syncTabs();
+
+  const figureName = (el, fallback) => {
+    const scope = el.closest('figure, section, article, .card, .panel, .simulator, .canvas-container') || el.parentElement;
+    const caption = scope?.querySelector('figcaption, h1, h2, h3, h4, .title, [class*="title"]');
+    const txt = caption?.textContent?.replace(/\s+/g, ' ').trim();
+    return txt && txt.length <= 120 ? txt : fallback;
+  };
+
+  document.querySelectorAll('svg').forEach(svg => {
+    if (svg.hasAttribute('aria-label') || svg.hasAttribute('aria-labelledby') || svg.hasAttribute('aria-hidden') || svg.querySelector('title')) return;
+    const control = svg.closest('a, button');
+    if (control && control.textContent.trim()) {
+      svg.setAttribute('aria-hidden', 'true');
+      svg.setAttribute('focusable', 'false');
+    } else {
+      svg.setAttribute('role', 'img');
+      svg.setAttribute('aria-label', figureName(svg, 'Physics diagram'));
+    }
+  });
+
+  document.querySelectorAll('canvas').forEach(canvas => {
+    if (canvas.hasAttribute('aria-label') || canvas.hasAttribute('aria-labelledby') || canvas.hasAttribute('aria-hidden')) return;
+    canvas.setAttribute('role', 'img');
+    canvas.setAttribute('aria-label', figureName(canvas, 'Interactive physics simulation'));
+  });
+
+  if (!document.querySelector('main, [role="main"]')) {
+    const mainCandidate = document.querySelector('.app-container, .container, .page-shell, #app');
+    if (mainCandidate) mainCandidate.setAttribute('role', 'main');
+  }
+
+  const observer = new MutationObserver(() => { syncOptions(); syncTabs(); });
+  observer.observe(document.documentElement, { subtree: true, attributes: true, attributeFilter: ['class', 'aria-current'] });
+})();
+</script>
+<script id="pr375-u4-dynamic-remediation">
+(() => {
+  const textName = (el, fallback) => {
+    const scope = el.closest('figure, section, article, .panel, .card, .simulator, .canvas-wrap, .canvas-container') || el.parentElement;
+    const title = scope?.querySelector('figcaption, h1, h2, h3, h4, .title, [class*="title"]');
+    const text = title?.textContent?.replace(/\s+/g, ' ').trim();
+    return text && text.length <= 140 ? text : fallback;
+  };
+
+  const nameFigures = (root = document) => {
+    const nodes = [];
+    if (root.nodeType === 1 && root.matches?.('svg, canvas')) nodes.push(root);
+    root.querySelectorAll?.('svg, canvas').forEach(el => nodes.push(el));
+    nodes.forEach(el => {
+      if (el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.getAttribute('aria-hidden') || el.querySelector?.('title')) return;
+      const control = el.closest('a, button');
+      if (control && control.textContent.trim()) {
+        el.setAttribute('aria-hidden', 'true');
+        el.setAttribute('focusable', 'false');
+        return;
+      }
+      el.setAttribute('role', 'img');
+      el.setAttribute('aria-label', textName(el, el.tagName.toLowerCase() === 'canvas' ? 'Interactive physics simulation' : 'Physics diagram'));
+    });
+  };
+
+  const nameControls = (root = document) => {
+    const nodes = [];
+    if (root.nodeType === 1 && root.matches?.('input, select, textarea')) nodes.push(root);
+    root.querySelectorAll?.('input, select, textarea').forEach(el => nodes.push(el));
+    nodes.forEach((el, index) => {
+      const has = el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.title || el.closest('label') || (el.id && document.querySelector(`label[for="${CSS.escape(el.id)}"]`));
+      if (has) return;
+      const nearby = el.closest('.control-row, .form-group, .field, .panel, .card')?.querySelector('.control-label, label, h3, h4');
+      const raw = el.getAttribute('placeholder') || el.getAttribute('name') || el.id || nearby?.textContent || `${el.tagName.toLowerCase()} ${index + 1}`;
+      el.setAttribute('aria-label', String(raw).replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim());
+    });
+  };
+
+  const sync = root => { nameFigures(root); nameControls(root); };
+  sync(document);
+  new MutationObserver(records => {
+    for (const record of records) for (const node of record.addedNodes) if (node.nodeType === 1) sync(node);
+  }).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-g9-shell>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>GRADE 9 PHYSICS - Motion in 2D NCERT Revised Edition | 12.7" Tablet Standalone Edition</title>
+  <meta name="description" content="Complete 12.7-inch tablet study suite for Motion in 2D NCERT Revised Core: Half-circle displacement, Average velocity in plane, Uniform circular motion, and 20 NCERT problem instances.">
+  <style>
+/* ==========================================================================
+   Physics: 2D Motion NCERT 12.7" Tablet Standalone Stylesheet
+   WCAG 2.5.5 >= 48px touch targets, >= 120px textareas, no micro-fonts (<13.5px)
+   100% Offline Standalone · Dark/Light Mode · Responsive Stage/Support Grid
+   ========================================================================== */
+
+:root {
+  --tab12-container-max: 1400px;
+  --tab12-touch-min: 48px;
+  --tab12-base-font: 16px;
+  --tab12-radius-sm: 8px;
+  --tab12-radius-md: 12px;
+  --tab12-radius-lg: 16px;
+
+  --bg-app: #080d1a;
+  --bg-surface: #0f172a;
+  --bg-card: #152238;
+  --bg-card-subtle: #1a2942;
+  --border: #263859;
+  --border-light: #334b75;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.25);
+  --success: #34d399;
+  --warning: #f59e0b;
+  --danger: #f87171;
+  --purple: #c084fc;
+}
+
+[data-theme="light"] {
+  --bg-app: #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f8fafc;
+  --border: #cbd5e1;
+  --border-light: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --accent: #0284c7;
+  --accent-glow: rgba(2, 132, 199, 0.15);
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --purple: #7e22ce;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--tab12-base-font);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-app);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+button, .btn, .tab-btn, summary {
+  min-height: var(--tab12-touch-min);
+  min-width: var(--tab12-touch-min);
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--tab12-radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: all 0.18s ease;
+  border: 1px solid transparent;
+}
+
+button:focus-visible, .btn:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+textarea.tablet-safe-input {
+  min-height: 120px;
+  width: 100%;
+  padding: 14px;
+  font-family: monospace, inherit;
+  font-size: 14.5px;
+  line-height: 1.5;
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-sm);
+  resize: vertical;
+  display: block;
+}
+
+textarea.tablet-safe-input:focus {
+  border-color: var(--accent);
+  background-color: var(--bg-card);
+}
+
+header.app-header {
+  background-color: var(--bg-surface);
+  border-bottom: 1.5px solid var(--border);
+  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.header-inner {
+  max-width: var(--tab12-container-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header-brand h1 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.subject-badge {
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: rgba(56, 189, 248, 0.15);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  font-weight: 700;
+}
+
+.theme-toggle-btn {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+}
+
+nav.tab-nav {
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 24px 0 24px;
+  overflow-x: auto;
+}
+
+.tab-nav-inner {
+  max-width: var(--tab12-container-max);
+  margin: 0 auto;
+  display: flex;
+  gap: 8px;
+}
+
+.tab-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: var(--tab12-radius-sm) var(--tab12-radius-sm) 0 0;
+  padding: 12px 18px;
+  white-space: nowrap;
+}
+
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  background: var(--bg-app);
+}
+
+main.layout-container {
+  max-width: var(--tab12-container-max);
+  margin: 20px auto;
+  padding: 0 20px;
+  width: 100%;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 24px;
+}
+
+@media (max-width: 1040px) {
+  main.layout-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stage-area {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.content-card {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.content-card h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.q-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+.q-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.q-badge {
+  background: rgba(192, 132, 252, 0.15);
+  border: 1px solid var(--purple);
+  color: var(--purple);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tag-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.q-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.q-prompt {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+
+details.solution-detail {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--tab12-radius-sm);
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+details.solution-detail summary {
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.02);
+  color: var(--accent);
+  user-select: none;
+}
+
+.solution-content {
+  padding: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 14.5px;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.support-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.support-widget {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--tab12-radius-md);
+  padding: 20px;
+}
+
+.support-widget h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.formula-box {
+  background: var(--bg-card-subtle);
+  border-left: 4px solid var(--accent);
+  padding: 14px 18px;
+  border-radius: 0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;
+  margin: 12px 0;
+  font-family: monospace;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+  </style>
+<style id="pr375-u4-remediation">
+/* PR #375 U4 remediation: accessibility, reflow and alternate viewports. */
+*, *::before, *::after { box-sizing: border-box; }
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid #38bdf8 !important;
+  outline-offset: 2px !important;
+}
+img, svg, canvas { max-width: 100%; }
+input, select, textarea { max-width: 100%; }
+::placeholder { color: #94a3b8 !important; opacity: 1 !important; }
+[data-theme="light"] ::placeholder { color: #475569 !important; }
+.u4-clear-button { color: #f8fafc !important; }
+[data-theme="light"] .u4-clear-button { color: #0f172a !important; }
+
+/* Never communicate correctness by colour alone. */
+.opt-btn.selected-correct::after {
+  content: " ✓ Correct";
+  margin-inline-start: .4rem;
+  font-weight: 800;
+}
+.opt-btn.selected-incorrect::after {
+  content: " ✕ Incorrect";
+  margin-inline-start: .4rem;
+  font-weight: 800;
+}
+
+/* Contrast repairs for the learner-visible light theme. */
+[data-theme="light"] .step-content-calc {
+  color: #7c2d12 !important;
+  background: #fff7ed !important;
+  border: 1px solid #c2410c !important;
+}
+[data-theme="light"] .answer-banner,
+[data-theme="light"] .badge-success,
+[data-theme="light"] .saved-pill {
+  color: #065f46 !important;
+}
+[data-theme="light"] .badge-warning,
+[data-theme="light"] .hint-tag,
+[data-theme="light"] .diag-header-another {
+  color: #7c2d12 !important;
+}
+[data-theme="light"] .step-label,
+[data-theme="light"] details > summary {
+  color: #075985 !important;
+}
+[data-theme="light"] .formula-box,
+[data-theme="light"] .math-banner {
+  color: #422006 !important;
+  background: #fef3c7 !important;
+  border-color: #92400e !important;
+}
+[data-theme="light"] footer { color: #475569 !important; }
+
+/* Default dark-theme contrast repairs from U4. */
+html[data-theme="dark"] .step-label { color: #7dd3fc !important; }
+html[data-theme="dark"] details > summary { color: #7dd3fc !important; }
+.q-count, .open-btn { color: #93c5fd !important; }
+.tag-2d, .tag-1d, .tag-vec, .tag-ncert, .tag-sba, .tag-proj, .tag-cons { color: #ffffff !important; }
+footer { color: #94a3b8 !important; }
+
+/* The offline 1D master lost Tailwind preflight + custom theme utilities. */
+body.u4-tailwind-offline {
+  margin: 0 !important;
+  background: #090d16 !important;
+  color: #f1f5f9 !important;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+.u4-tailwind-offline.bg-background, .u4-tailwind-offline .bg-background { background-color: #090d16 !important; }
+.u4-tailwind-offline .bg-card { background-color: #111827 !important; }
+.u4-tailwind-offline .border-border { border-color: #334155 !important; }
+.u4-tailwind-offline .bg-slate-950\/90 { background-color: rgba(2, 6, 23, .94) !important; }
+.u4-tailwind-offline .bg-slate-900 { background-color: #0f172a !important; }
+.u4-tailwind-offline .bg-slate-800 { background-color: #1e293b !important; }
+.u4-tailwind-offline .max-w-7xl { max-width: 80rem !important; }
+.u4-tailwind-offline .overflow-x-auto { overflow-x: auto !important; }
+.u4-tailwind-offline .whitespace-nowrap { white-space: nowrap !important; }
+.u4-tailwind-offline .font-sans { font-family: ui-sans-serif, system-ui, sans-serif !important; }
+.u4-tailwind-offline .text-slate-500,
+.u4-tailwind-offline .text-slate-600 { color: #cbd5e1 !important; }
+.u4-tailwind-offline .text-slate-400 { color: #a8b5c7 !important; }
+.u4-tailwind-offline header { max-width: 100%; }
+
+/* Reflow at phone width and at a 200% zoom-equivalent viewport. */
+@media (max-width: 700px) {
+  header.sticky, .sticky-header, .top-nav.sticky { position: static !important; top: auto !important; }
+}
+@media (max-width: 480px) {
+  .header-actions,
+  .g9-nav-group,
+  .g9-header-actions,
+  .top-nav-header,
+  .course-badge-row,
+  .workspace-title-row {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-wrap: wrap !important;
+  }
+  .g9-block, nav, ol, ul, main, section, article, .app-container, .container {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  ol, ul { padding-inline-start: 1.5rem !important; }
+  #jump-select { width: 100% !important; max-width: 100% !important; }
+  .tab-btn { white-space: normal !important; min-width: 0 !important; flex: 1 1 140px !important; }
+  .tabs, .tab-strip, .tab-nav, .tab-bar, .g9-tabs, [class*="tabs-row"] {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .g9-nav-group > *, .header-actions > * { max-width: 100% !important; }
+  pre { white-space: pre-wrap !important; overflow-wrap: anywhere !important; max-width: 100% !important; }
+  table { display: block; max-width: 100% !important; overflow-x: auto !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (forced-colors: active) {
+  svg text { fill: CanvasText !important; stroke: transparent !important; }
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 3px solid Highlight !important;
+  }
+}
+</style>
+<style id="pr375-u4-residual-remediation">
+@media (max-width: 480px) {
+  /* Generated CORE1A section-route pills used 24rem + padding, producing ~467px boxes. */
+  [data-g9-section-route] a,
+  [data-g9-concept-route] a,
+  article[data-g9-role="CORE1A"] > .slot-identity [data-g9-section-route] a {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    line-height: 1.4 !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  /* Consolidated and interactive headers must reflow as complete units, not just their children. */
+  .header-inner,
+  header.g9-shell {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+  }
+  .header-inner > *,
+  header.g9-shell > .g9-nav-group {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .header-brand,
+  .header-brand h1,
+  .header-actions,
+  header.g9-shell .g9-nav-group,
+  header.g9-shell .g9-breadcrumb {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+  }
+  .header-brand h1 { align-items: flex-start !important; }
+  .header-actions { width: 100% !important; justify-content: flex-start !important; }
+  header.g9-shell { padding-block: 8px !important; }
+  header.g9-shell .g9-breadcrumb { flex: 1 1 100% !important; overflow-wrap: anywhere !important; }
+}
+</style>
+<style id="pr375-u1-remediation">
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%} body{overflow-wrap:anywhere} p,li{line-height:1.4}
+:where(p,li,label,button,input,select,textarea,summary,td,th,figcaption,.btn,.q-badge,.tag-pill,.hint-badge,.hint-tag,.subject-badge,.step-label,.diag-header,.formula-box,#saveStatus,.save-status,.tag,.q-count,.open-btn,.stat .label,section.section-header h2,.study-kicker,.brand-badge,.hero-pill,.badge,.core-tag,.telemetry-title,.control-label,.card-action,.breadcrumb){font-size:max(14px,1em)!important}
+:where(a[href="index.html"],header a,nav a,.breadcrumb a,a.g9-bridge-link,[data-g9-block="entry_assumptions"] a){min-height:48px!important;min-width:48px!important;display:inline-flex!important;align-items:center!important;justify-content:center;padding-block:10px!important;box-sizing:border-box!important}
+@media(min-width:1100px){article[data-g9-role="CORE1A"] .g9-split{grid-template-columns:minmax(0,1fr)!important}article[data-g9-role="CORE1A"] .g9-col-support{position:static!important;top:auto!important}}
+article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;line-height:1.35!important;min-height:48px!important}
+
+.badge,.study-kicker{font-size:14px!important}
+</style>
+<style id="u2-practice-hub-target">
+a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center}
+</style>
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <h1>
+          <span>🌀</span> Motion in 2D · NCERT Revised Edition
+          <span class="subject-badge">Core 1 &amp; Core 2</span>
+        </h1>
+      </div>
+      <div class="header-actions" style="display:flex;align-items:center;gap:10px;">
+        <a href="index.html" class="nav-hub-btn" aria-label="Back to Practice Hub" title="Back to Practice Hub" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 16px;border-radius:8px;background:var(--bg-card,#1e293b);color:var(--text-primary,#f8fafc);border:1.5px solid var(--border,#334155);font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;white-space:nowrap;">← Practice Hub</a>
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">🌓 Mode</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tab-nav">
+    <div class="tab-nav-inner">
+      <button class="tab-btn active" onclick="switchTab('tab-core1')">Core 1 Concepts &amp; Theory</button>
+      <button class="tab-btn" onclick="switchTab('tab-core2')">Core 2 NCERT Problems (19)</button>
+    </div>
+  </nav>
+
+  <main class="layout-container">
+    
+    <div class="stage-area">
+
+      <!-- Core 1 Tab -->
+      <div id="tab-core1" class="tab-content active">
+        <div class="content-card">
+          <h2><span>🧭</span> Motion in 2D Foundations (Core 1)</h2>
+          <p>
+            Understanding displacement, velocity vectors, tangential acceleration, and centripetal force in planar motion.
+          </p>
+          <div class="formula-box">
+            Position Vector: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r⃗(t) = x(t) î + y(t) ĵ<br>
+            Displacement: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Δr⃗ = (x₂ - x₁) î + (y₂ - y₁) ĵ<br>
+            Average Velocity: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v⃗_avg = Δr⃗ / Δt<br>
+            Instantaneous Velocity: v⃗ = dr⃗/dt = (dx/dt) î + (dy/dt) ĵ
+          </div>
+        </div>
+
+        <div class="content-card">
+          <h2><span>⚡</span> 01 Curved path: distance is not displacement</h2>
+          <p>U8-Q1 + Sample-I-Q10<br><br>The path can bend; displacement still joins the two positions directly<br><br>displacement = diameter<br><br>end B start A<br><br>path follows half the circle; displacement joins start to end directly<br><br>WHAT IS HAPPENING? KEY IDEA<br><br>A particle can travel along a curved path while For half a circle of radius r, the start and end</p>
+        </div>
+    
+        <div class="content-card">
+          <h2><span>⚡</span> 01 Work the idea</h2>
+          <p>U8-Q1 + Sample-I-Q10<br><br>Worked example → guided try → faded try → anti-trigger → quick check<br><br>WORKED EXAMPLE<br><br>A runner moves from the rightmost point of a circular track to the leftmost point along the upper<br><br>semicircle. Distance = πr; displacement magnitude = 2r, directed across the diameter.<br><br>GUIDED TRY FADED TRY<br><br>1. Identify the state/event that decides the answer. Redraw the figure from memory. Label only the</p>
+        </div>
+    
+        <div class="content-card">
+          <h2><span>⚡</span> 02 Constant speed can still mean acceleration</h2>
+          <p>U8-Q6<br><br>Velocity changes whenever direction changes<br><br>v tangent<br><br>a inward<br><br>WHAT IS HAPPENING? KEY IDEA<br><br>On a merry-go-round, the rider can keep the Velocity is a vector. Constant magnitude with<br><br>same speed while the direction of motion changing direction means changing velocity, so</p>
+        </div>
+    
+        <div class="content-card">
+          <h2><span>⚡</span> 02 Work the idea</h2>
+          <p>U8-Q6<br><br>Worked example → guided try → faded try → anti-trigger → quick check<br><br>WORKED EXAMPLE<br><br>A rider moving at 10 m/s around a circle has constant speed, but not uniform velocity. The velocity<br><br>turns continuously, so the rider is accelerated.<br><br>GUIDED TRY FADED TRY<br><br>1. Identify the state/event that decides the answer. Redraw the figure from memory. Label only the</p>
+        </div>
+    
+        <div class="content-card">
+          <h2><span>⚡</span> 03 When are distance and displacement equal?</h2>
+          <p>U8-Q11<br><br>Equality requires the travelled path to match the straight separation<br><br>straight, no reversal<br><br>distance = |displacement|<br><br>curved path<br><br>distance > |displacement|<br><br>WHAT IS HAPPENING? KEY IDEA</p>
+        </div>
+    
+        <div class="content-card">
+          <h2><span>⚡</span> 03 Work the idea</h2>
+          <p>U8-Q11<br><br>Worked example → guided try → faded try → anti-trigger → quick check<br><br>WORKED EXAMPLE<br><br>A car travelling 80 m east along a straight road with no reversal has distance 80 m and displacement<br><br>magnitude 80 m. If it detours around a bend, the distance becomes larger.<br><br>GUIDED TRY FADED TRY<br><br>1. Identify the state/event that decides the answer. Redraw the figure from memory. Label only the</p>
+        </div>
+    
+        <div class="content-card">
+          <h2><span>⚡</span> 04 Release from circular motion: follow the tangent</h2>
+          <p>U10-Q4<br><br>The inward force turns the velocity; it is not the velocity direction<br><br>v tangent<br><br>string breaks here<br><br>release → tangent<br><br>WHAT IS HAPPENING? KEY IDEA<br><br>Before the string breaks, tension supplies the When the inward constraint disappears, the</p>
+        </div>
+    
+        <div class="content-card">
+          <h2><span>⚡</span> 04 Work the idea</h2>
+          <p>U10-Q4<br><br>Worked example → guided try → faded try → anti-trigger → quick check<br><br>WORKED EXAMPLE<br><br>At the rightmost point of a counter-clockwise circular path, the instantaneous velocity points upward.<br><br>If the string breaks there, the stone initially moves upward along the tangent.<br><br>GUIDED TRY FADED TRY<br><br>1. Identify the state/event that decides the answer. Redraw the figure from memory. Label only the</p>
+        </div>
+    
+        <div class="content-card">
+          <h2><span>⚡</span> 05 Gravity can be the centripetal force</h2>
+          <p>U10-Q16<br><br>Orbiting means continuous inward turning under gravity<br><br>v<br><br>gravity tangent state<br><br>inward turn<br><br>Sun<br><br>WHAT IS HAPPENING? KEY IDEA</p>
+        </div>
+    
+        <div class="content-card">
+          <h2><span>⚡</span> 05 Work the idea</h2>
+          <p>U10-Q16<br><br>Worked example → guided try → faded try → anti-trigger → quick check<br><br>WORKED EXAMPLE<br><br>2<br><br>For masses M and m separated by r, the gravitational force has magnitude F = GMm/r . That inward<br><br>force changes the direction of the planet’s velocity.<br><br>GUIDED TRY FADED TRY</p>
+        </div>
+    
+        <div class="content-card">
+          <h2><span>⚡</span> 06 Horizontal launch and drop share the same vertical motion</h2>
+          <p>U10-Q17<br><br>Horizontal motion does not delay gravitational fall in the ideal model<br><br>dropped thrown horizontally<br><br>same height + same initial vertical velocity + same g → same vertical timing<br><br>WHAT IS HAPPENING? KEY IDEA<br><br>Two stones start at the same height. One is Ignoring air resistance, both have initial vertical<br><br>dropped; the other is given only horizontal velocity zero and the same downward</p>
+        </div>
+    
+        <div class="content-card">
+          <h2><span>⚡</span> 06 Work the idea</h2>
+          <p>U10-Q17<br><br>Worked example → guided try → faded try → anti-trigger → quick check<br><br>WORKED EXAMPLE<br><br>2<br><br>From height h, both obey the same vertical relation y(t) = h - ½gt . Their horizontal coordinates differ,<br><br>but their landing time is the same.<br><br>GUIDED TRY FADED TRY</p>
+        </div>
+    
+        <div class="content-card">
+          <h2><span>⚡</span> 07 If gravity vanished: Moon follows the tangent</h2>
+          <p>U10-Q18<br><br>Without inward acceleration, instantaneous velocity persists<br><br>v<br><br>tangent state<br><br>straight continuation<br><br>Sun<br><br>gravity → 0</p>
+        </div>
+    
+        <div class="content-card">
+          <h2><span>⚡</span> 07 Work the idea</h2>
+          <p>U10-Q18<br><br>Worked example → guided try → faded try → anti-trigger → quick check<br><br>WORKED EXAMPLE<br><br>At a point where the Moon’s velocity points northeast, removing Earth’s gravity makes the Moon<br><br>initially continue northeast along the tangent line.<br><br>GUIDED TRY FADED TRY<br><br>1. Identify the state/event that decides the answer. Redraw the figure from memory. Label only the</p>
+        </div>
+    
+        <div class="content-card">
+          <h2><span>⚡</span> 08 Why Earth does not simply fall into the Sun</h2>
+          <p>U10-Q22<br><br>Tangential motion plus inward gravity produces an orbit<br><br>v<br><br>gravity tangent state<br><br>inward turn<br><br>Sun<br><br>WHAT IS HAPPENING? KEY IDEA</p>
+        </div>
+    
+        <div class="content-card">
+          <h2><span>⚡</span> 08 Work the idea</h2>
+          <p>U10-Q22<br><br>Worked example → guided try → faded try → anti-trigger → quick check<br><br>WORKED EXAMPLE<br><br>2<br><br>In an ideal circular model, inward acceleration has magnitude v /r. Gravity supplies that inward<br><br>acceleration, so the trajectory curves around the Sun.<br><br>GUIDED TRY FADED TRY</p>
+        </div>
+    
+        <div class="content-card">
+          <h2><span>⚡</span> 09 A tossed coin can reveal train acceleration</h2>
+          <p>U9-Q5 (transfer)<br><br>Compare the coin’s inertial horizontal motion with the train’s changing motion<br><br>train gains x<br><br>train accelerating →<br><br>coin keeps release horizontal velocity<br><br>train speeds ahead, so coin lands behind<br><br>WHAT IS HAPPENING? KEY IDEA</p>
+        </div>
+    
+        <div class="content-card">
+          <h2><span>⚡</span> 09 Work the idea</h2>
+          <p>U9-Q5 (transfer)<br><br>Worked example → guided try → faded try → anti-trigger → quick check<br><br>WORKED EXAMPLE<br><br>2<br><br>Over time t, a simple model gives x =v t while x =v t+½at . For a>0, the train moves farther<br><br>coin 0 train 0<br><br>forward.</p>
+        </div>
+    
+      </div>
+
+      <!-- Core 2 Tab -->
+      <div id="tab-core2" class="tab-content">
+        <div class="content-card">
+          <h2><span>🎯</span> 2D Motion NCERT Revised Core Instances (19)</h2>
+          <p>
+            Curated NCERT problems spanning curved path distance-displacement ratios, average speed vs average velocity, and circular trajectories.
+          </p>
+        </div>
+
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NCERT 2D</span>
+            <span class="tag-pill">Page 2</span>
+          </div>
+          <div class="q-title">M2D-NC-01 Half-circle displacement</div>
+          <p class="q-prompt">A particle travels from one end of a diameter to the opposite end along a semicircular path of radius r. What is the magnitude of its displacement?</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              The displacement magnitude is 2r, the straight-line diameter joining the endpoints. The semicircle arc length is distance travelled, not displacement.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NCERT 2D</span>
+            <span class="tag-pill">Page 3</span>
+          </div>
+          <div class="q-title">M2D-NC-02 Constant-speed merry-go-round</div>
+          <p class="q-prompt">A rider moves around a merry-go-round at constant speed. Is the rider's velocity constant? State the direction of the acceleration.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              No. The speed is constant but the velocity direction changes continuously. The acceleration is centripetal: it points toward the centre.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NCERT 2D</span>
+            <span class="tag-pill">Page 4</span>
+          </div>
+          <div class="q-title">M2D-NC-03 Distance versus displacement</div>
+          <p class="q-prompt">When can the distance travelled equal the magnitude of displacement?</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              When the motion is along a straight line in one direction without reversal; then the path length equals the start-to-finish separation.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NCERT 2D</span>
+            <span class="tag-pill">Page 5</span>
+          </div>
+          <div class="q-title">M2D-NC-04 String breaks in circular motion</div>
+          <p class="q-prompt">A stone moves in a horizontal circle on a string. If the string suddenly breaks, in what direction does the stone move immediately after release?</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              It moves along the tangent to the circle at the release point, in the direction of its instantaneous velocity.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NCERT 2D</span>
+            <span class="tag-pill">Page 6</span>
+          </div>
+          <div class="q-title">M2D-NC-05 What keeps a planet turning?</div>
+          <p class="q-prompt">What provides the centripetal force for a planet revolving around the Sun, and what is the direction of its acceleration?</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              The Sun's gravitational force provides the centripetal force. The planet's acceleration points toward the Sun.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NCERT 2D</span>
+            <span class="tag-pill">Page 7</span>
+          </div>
+          <div class="q-title">M2D-NC-06 Horizontal throw versus drop</div>
+          <p class="q-prompt">Two stones start simultaneously from the same height. One is dropped and the other is thrown horizontally. Neglect air resistance. Which reaches the ground first?</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              They reach the ground at the same time because their vertical motions start with the same vertical velocity (zero) and have the same acceleration g.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NCERT 2D</span>
+            <span class="tag-pill">Page 8</span>
+          </div>
+          <div class="q-title">M2D-NC-07 Moon if Earth gravity vanished</div>
+          <p class="q-prompt">Suppose Earth's gravitational pull on the Moon suddenly became zero and no other celestial body affected the Moon. What path would the Moon follow immediately afterward?</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              It would move in a straight line tangent to its former orbit with its instantaneous velocity.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NCERT 2D</span>
+            <span class="tag-pill">Page 9</span>
+          </div>
+          <div class="q-title">M2D-NC-08 Why Earth does not fall into the Sun</div>
+          <p class="q-prompt">The Sun attracts Earth gravitationally. Why does Earth not simply fall straight into the Sun?</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Earth has tangential velocity. Gravity continually bends that velocity toward the Sun, producing orbital motion rather than a straight radial fall.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NCERT 2D</span>
+            <span class="tag-pill">Page 10</span>
+          </div>
+          <div class="q-title">M2D-NC-09 Coin tossed inside a train</div>
+          <p class="q-prompt">A passenger tosses a coin vertically inside a moving train and the coin lands behind the passenger. What does that imply about the train's motion while the coin was airborne?</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              The train accelerated forward while the coin was airborne; after release, the coin did not share the train's continuing forward acceleration.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NCERT 2D</span>
+            <span class="tag-pill">Page 11</span>
+          </div>
+          <div class="q-title">Answer key</div>
+          <p class="q-prompt">Answer key — use only after attempting M2D-NC-01 through M2D-NC-09. Compare the physical model and direction reasoning before checking the final result.</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              Use the key as a diagnostic, not as a first step. If a result differs, return to the corresponding worked solution and locate the first modelling or vector-direction mismatch.
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NCERT 2D</span>
+            <span class="tag-pill">Page 12</span>
+          </div>
+          <div class="q-title">M2D-NC-01 Worked solution</div>
+          <p class="q-prompt">U8-Q1 / Sample-I-Q10 duplicate Half-circle displacement QUESTION A particle travels from one end of a diameter to the</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              positions give the same displacement. endpoints, not arc length.<br>WATCH OUT: Do not substitute the semicircle arc length πr for displacement.<br>REVIEW THIS IDEA: Core 1 - Curved path: distance is not displacement.<br>Motion in 2D - Revised Core (2) - NCERT subset 12
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NCERT 2D</span>
+            <span class="tag-pill">Page 13</span>
+          </div>
+          <div class="q-title">M2D-NC-02 Worked solution</div>
+          <p class="q-prompt">U8-Q6 Constant-speed merry-go-round QUESTION A rider moves around a merry-go-round at a constant</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              direction.<br>WATCH OUT: Constant speed is not the same as constant velocity.<br>REVIEW THIS IDEA: Core 1 - Constant speed can still mean acceleration.<br>Motion in 2D - Revised Core (2) - NCERT subset 13
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NCERT 2D</span>
+            <span class="tag-pill">Page 14</span>
+          </div>
+          <div class="q-title">M2D-NC-03 Worked solution</div>
+          <p class="q-prompt">U8-Q11 Distance versus displacement QUESTION Which motion can make the distance travelled equal to</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              without matching the final separation.<br>WATCH OUT: A “straight road” is not sufficient if the object reverses direction.<br>REVIEW THIS IDEA: Core 1 - When are distance and displacement equal?<br>Motion in 2D - Revised Core (2) - NCERT subset 14
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NCERT 2D</span>
+            <span class="tag-pill">Page 15</span>
+          </div>
+          <div class="q-title">M2D-NC-04 Worked solution</div>
+          <p class="q-prompt">U10-Q4 String breaks in circular motion QUESTION A stone is moving in a horizontal circle on a string. If</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              not radial.<br>WATCH OUT: Do not confuse the inward force direction with the velocity direction.<br>REVIEW THIS IDEA: Core 1 - Release from circular motion: follow the tangent.<br>Motion in 2D - Revised Core (2) - NCERT subset 15
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NCERT 2D</span>
+            <span class="tag-pill">Page 16</span>
+          </div>
+          <div class="q-title">M2D-NC-05 Worked solution</div>
+          <p class="q-prompt">U10-Q16 What keeps a planet turning? v QUESTION</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              quarter. as gravity does.<br>WATCH OUT: Do not add a separate centripetal force on top of gravity.<br>REVIEW THIS IDEA: Core 1 - Gravity can be the centripetal force.<br>Motion in 2D - Revised Core (2) - NCERT subset 16
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NCERT 2D</span>
+            <span class="tag-pill">Page 17</span>
+          </div>
+          <div class="q-title">M2D-NC-06 Worked solution</div>
+          <p class="q-prompt">U10-Q17 Horizontal throw versus drop QUESTION dropped thrown horizontally</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              WATCH OUT: Do not combine horizontal speed with vertical falling speed when deciding landing time.<br>REVIEW THIS IDEA: Core 1 - Horizontal launch and drop share the same vertical motion.<br>Motion in 2D - Revised Core (2) - NCERT subset 17
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NCERT 2D</span>
+            <span class="tag-pill">Page 18</span>
+          </div>
+          <div class="q-title">M2D-NC-07 Worked solution</div>
+          <p class="q-prompt">U10-Q18 Moon if Earth gravity vanished v QUESTION</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              No. Removing force changes acceleration, not the breaks: remove inward force, preserve tangent velocity.<br>already-existing velocity instantaneously.<br>WATCH OUT: Do not replace “no inward force” with a fictitious outward launch.<br>REVIEW THIS IDEA: Core 1 - If gravity vanished, the Moon would leave along the tangent.<br>Motion in 2D - Revised Core (2) - NCERT subset 18
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NCERT 2D</span>
+            <span class="tag-pill">Page 19</span>
+          </div>
+          <div class="q-title">M2D-NC-08 Worked solution</div>
+          <p class="q-prompt">U10-Q22 Why Earth does not fall into the Sun v QUESTION</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              motion would become much more directly inward. limiting case.<br>WATCH OUT: Avoid saying “gravity is cancelled”. The inward gravitational force is exactly what bends the orbit.<br>REVIEW THIS IDEA: Core 1 - Why Earth does not simply fall into the Sun.<br>Motion in 2D - Revised Core (2) - NCERT subset 19
+            </div>
+          </details>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-header">
+            <span class="q-badge">NCERT 2D</span>
+            <span class="tag-pill">Page 20</span>
+          </div>
+          <div class="q-title">M2D-NC-09 Worked solution</div>
+          <p class="q-prompt">U9-Q5 (transfer) Coin tossed inside a train QUESTION train gains x A passenger tosses a coin vertically inside a moving</p>
+          <details class="solution-detail">
+            <summary>👁️ Reveal Worked Derivation</summary>
+            <div class="solution-content">
+              instead.<br>WATCH OUT: Keep ground-frame motion separate from the passenger’s accelerating frame.<br>REVIEW THIS IDEA: Core 1 - A tossed coin can reveal train acceleration.<br>Motion in 2D - Revised Core (2) - NCERT subset 20
+            </div>
+          </details>
+        </div>
+    
+      </div>
+
+    </div>
+
+    <aside class="support-rail">
+      
+      <div class="support-widget">
+        <h3><span>⚡</span> 2D Kinematics Formulas</h3>
+        <div class="formula-box">
+          r⃗(t) = x(t) î + y(t) ĵ<br>
+          v⃗ = dr⃗/dt = v_x î + v_y ĵ<br>
+          a⃗ = dv⃗/dt = a_x î + a_y ĵ<br>
+          Circular: a_c = v² / R = ω² R<br>
+          Half-Circle: Disp = 2R, Dist = πR
+        </div>
+      </div>
+
+      <div class="support-widget">
+        <h3><span>📝</span> 2D Study Scratchpad</h3>
+        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 8px;">
+          Virtual keyboard safe (min-height: 120px) with auto-saving:
+        </p>
+        <textarea id="scratchpadNotes" class="tablet-safe-input" placeholder="Draft 2D position vectors, resolve vx and vy, or compute centripetal accelerations..."></textarea>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+          <span id="saveStatus" style="font-size: 12.5px; color: var(--success);">✓ Auto-saved</span>
+          <button class="btn" style="min-height: 48px; padding: 6px 14px; font-size: 13px; background: var(--bg-surface); border: 1px solid var(--border);" onclick="clearNotes()">Clear</button>
+        </div>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+      if (activeBtn) activeBtn.classList.add('active');
+      const targetContent = document.getElementById(tabId);
+      if (targetContent) targetContent.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    const themeBtn = document.getElementById('themeToggle');
+    const htmlEl = document.documentElement;
+    const savedTheme = localStorage.getItem('tablet12_theme') || 'dark';
+    htmlEl.setAttribute('data-theme', savedTheme);
+    themeBtn.addEventListener('click', () => {
+      const current = htmlEl.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      htmlEl.setAttribute('data-theme', next);
+      localStorage.setItem('tablet12_theme', next);
+    });
+
+    const pad = document.getElementById('scratchpadNotes');
+    const status = document.getElementById('saveStatus');
+    pad.value = localStorage.getItem('m2d_ncert_notes') || '';
+    pad.addEventListener('input', () => {
+      localStorage.setItem('m2d_ncert_notes', pad.value);
+      status.textContent = '✓ Saved ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    });
+
+    function clearNotes() {
+      if (confirm('Clear scratchpad notes?')) {
+        pad.value = '';
+        localStorage.removeItem('m2d_ncert_notes');
+        status.textContent = 'Notes cleared';
+      }
+    }
+  </script>
+<script id="pr375-u4-remediation-script">
+(() => {
+  const humanize = (value) => String(value || '')
+    .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+    .replace(/[_-]+/g, ' ')
+    .replace(/\b(vec)([ab])\b/gi, 'vector $2')
+    .replace(/\bproj\b/gi, 'projectile')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const explicitNames = {
+    mass1: 'Mass m1 in kilograms', mass2: 'Mass m2 in kilograms',
+    vecA: 'Vector A', vecB: 'Vector B',
+    projU: 'Projectile launch speed', projAngle: 'Projectile launch angle',
+    'jump-select': 'Jump to question', search: 'Search questions',
+    searchInput: 'Search questions', questionSearch: 'Search questions'
+  };
+
+  const hasLabel = (el) => {
+    if (el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.title) return true;
+    if (el.id && document.querySelector(`label[for="${CSS.escape(el.id)}"]`)) return true;
+    return !!el.closest('label');
+  };
+
+  document.querySelectorAll('input, select, textarea').forEach((el, index) => {
+    if (hasLabel(el)) return;
+    let name = explicitNames[el.id] || el.getAttribute('placeholder') || el.getAttribute('name') || el.id;
+    if (!name) {
+      const nearby = el.parentElement?.textContent?.trim();
+      if (nearby && nearby.length <= 100) name = nearby;
+    }
+    name = humanize(name) || `${el.tagName.toLowerCase()} ${index + 1}`;
+    el.setAttribute('aria-label', name);
+  });
+
+  document.querySelectorAll('button').forEach(btn => {
+    if (btn.textContent.trim().toLowerCase() === 'clear') btn.classList.add('u4-clear-button');
+  });
+
+  const syncOptions = () => {
+    document.querySelectorAll('.opt-btn').forEach(btn => {
+      const correct = btn.classList.contains('selected-correct');
+      const incorrect = btn.classList.contains('selected-incorrect');
+      btn.setAttribute('aria-pressed', correct || incorrect ? 'true' : 'false');
+      const base = btn.getAttribute('data-u4-base-label') || btn.getAttribute('aria-label') || btn.textContent.trim();
+      if (!btn.hasAttribute('data-u4-base-label')) btn.setAttribute('data-u4-base-label', base);
+      btn.setAttribute('aria-label', `${base}${correct ? ' — Correct' : incorrect ? ' — Incorrect' : ''}`);
+    });
+  };
+  syncOptions();
+
+  const syncTabs = () => {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.setAttribute('role', 'tab');
+      const active = btn.classList.contains('active') || btn.classList.contains('tab-btn-active') || btn.getAttribute('aria-current') === 'page';
+      btn.setAttribute('aria-selected', active ? 'true' : 'false');
+      if (btn.parentElement && !btn.parentElement.hasAttribute('role')) btn.parentElement.setAttribute('role', 'tablist');
+    });
+  };
+  syncTabs();
+
+  const figureName = (el, fallback) => {
+    const scope = el.closest('figure, section, article, .card, .panel, .simulator, .canvas-container') || el.parentElement;
+    const caption = scope?.querySelector('figcaption, h1, h2, h3, h4, .title, [class*="title"]');
+    const txt = caption?.textContent?.replace(/\s+/g, ' ').trim();
+    return txt && txt.length <= 120 ? txt : fallback;
+  };
+
+  document.querySelectorAll('svg').forEach(svg => {
+    if (svg.hasAttribute('aria-label') || svg.hasAttribute('aria-labelledby') || svg.hasAttribute('aria-hidden') || svg.querySelector('title')) return;
+    const control = svg.closest('a, button');
+    if (control && control.textContent.trim()) {
+      svg.setAttribute('aria-hidden', 'true');
+      svg.setAttribute('focusable', 'false');
+    } else {
+      svg.setAttribute('role', 'img');
+      svg.setAttribute('aria-label', figureName(svg, 'Physics diagram'));
+    }
+  });
+
+  document.querySelectorAll('canvas').forEach(canvas => {
+    if (canvas.hasAttribute('aria-label') || canvas.hasAttribute('aria-labelledby') || canvas.hasAttribute('aria-hidden')) return;
+    canvas.setAttribute('role', 'img');
+    canvas.setAttribute('aria-label', figureName(canvas, 'Interactive physics simulation'));
+  });
+
+  if (!document.querySelector('main, [role="main"]')) {
+    const mainCandidate = document.querySelector('.app-container, .container, .page-shell, #app');
+    if (mainCandidate) mainCandidate.setAttribute('role', 'main');
+  }
+
+  const observer = new MutationObserver(() => { syncOptions(); syncTabs(); });
+  observer.observe(document.documentElement, { subtree: true, attributes: true, attributeFilter: ['class', 'aria-current'] });
+})();
+</script>
+<script id="pr375-u4-dynamic-remediation">
+(() => {
+  const textName = (el, fallback) => {
+    const scope = el.closest('figure, section, article, .panel, .card, .simulator, .canvas-wrap, .canvas-container') || el.parentElement;
+    const title = scope?.querySelector('figcaption, h1, h2, h3, h4, .title, [class*="title"]');
+    const text = title?.textContent?.replace(/\s+/g, ' ').trim();
+    return text && text.length <= 140 ? text : fallback;
+  };
+
+  const nameFigures = (root = document) => {
+    const nodes = [];
+    if (root.nodeType === 1 && root.matches?.('svg, canvas')) nodes.push(root);
+    root.querySelectorAll?.('svg, canvas').forEach(el => nodes.push(el));
+    nodes.forEach(el => {
+      if (el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.getAttribute('aria-hidden') || el.querySelector?.('title')) return;
+      const control = el.closest('a, button');
+      if (control && control.textContent.trim()) {
+        el.setAttribute('aria-hidden', 'true');
+        el.setAttribute('focusable', 'false');
+        return;
+      }
+      el.setAttribute('role', 'img');
+      el.setAttribute('aria-label', textName(el, el.tagName.toLowerCase() === 'canvas' ? 'Interactive physics simulation' : 'Physics diagram'));
+    });
+  };
+
+  const nameControls = (root = document) => {
+    const nodes = [];
+    if (root.nodeType === 1 && root.matches?.('input, select, textarea')) nodes.push(root);
+    root.querySelectorAll?.('input, select, textarea').forEach(el => nodes.push(el));
+    nodes.forEach((el, index) => {
+      const has = el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.title || el.closest('label') || (el.id && document.querySelector(`label[for="${CSS.escape(el.id)}"]`));
+      if (has) return;
+      const nearby = el.closest('.control-row, .form-group, .field, .panel, .card')?.querySelector('.control-label, label, h3, h4');
+      const raw = el.getAttribute('placeholder') || el.getAttribute('name') || el.id || nearby?.textContent || `${el.tagName.toLowerCase()} ${index + 1}`;
+      el.setAttribute('aria-label', String(raw).replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim());
+    });
+  };
+
+  const sync = root => { nameFigures(root); nameControls(root); };
+  sync(document);
+  new MutationObserver(records => {
+    for (const record of records) for (const node of record.addedNodes) if (node.nodeType === 1) sync(node);
+  }).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
+</body>
+</html>
