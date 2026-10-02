@@ -305,15 +305,27 @@ class Ratchet(unittest.TestCase):
         self.assertEqual(sorted(found - known), [], "a new canonical finding: fix it, or (if it is old debt) rewrite the baseline with assurance_run.py --write-baseline")
         self.assertEqual(sorted(known - found), [], "the baseline lists a finding that is gone: tighten it with assurance_run.py --write-baseline")
 
-    def test_enforce_passes_at_the_baseline_and_fails_on_a_new_finding(self):
-        empty = REPO / "build" / "test-assurance" / "empty-baseline.json"
-        baseline.write([], empty)
-        self.addCleanup(lambda: empty.unlink(missing_ok=True))
+    def test_enforce_passes_at_the_committed_baseline(self):
         out = tempfile.mkdtemp()
         self.addCleanup(shutil.rmtree, out, True)
         argv = ["--packages", "Physics/library", "Mathematics/library", "--evidence-dir", f"build/test-assurance/{Path(out).name}"]
         self.assertEqual(assurance_run.main(argv + ["--enforce"]), 0, "main at its committed baseline")
-        self.assertEqual(assurance_run.main(argv + ["--enforce", "--baseline", empty.relative_to(REPO).as_posix()]), 1, "the Mathematics collisions are new against an empty baseline")
+
+    def test_enforce_fails_on_a_finding_that_is_not_in_the_baseline_and_passes_once_it_is(self):
+        work = REPO / "build" / "test-assurance" / "ratchet"
+        shutil.rmtree(work, ignore_errors=True)
+        work.mkdir(parents=True)
+        self.addCleanup(shutil.rmtree, work, True)
+        package = json.loads((REPO / LIB / TARGET).read_text(encoding="utf-8"))
+        package["capabilities"][0]["prerequisite_refs"] = ["CAP-DOES-NOT-EXIST"]
+        (work / "pkg.json").write_text(json.dumps(package), encoding="utf-8")
+        relative = lambda path: path.relative_to(REPO).as_posix()          # noqa: E731
+        empty, known = work / "empty.json", work / "known.json"
+        baseline.write([], empty)
+        argv = ["--packages", relative(work / "pkg.json"), "--evidence-dir", relative(work / "evidence")]
+        self.assertEqual(assurance_run.main(argv + ["--enforce", "--baseline", relative(empty)]), 1, "a finding the baseline does not hold is new")
+        self.assertEqual(assurance_run.main(argv + ["--write-baseline", "--baseline", relative(known)]), 0)
+        self.assertEqual(assurance_run.main(argv + ["--enforce", "--baseline", relative(known)]), 0, "the same finding, once recorded, is known")
 
 
 # -- the acceptance test -------------------------------------------------------------------------------------------------------------------------
