@@ -77,6 +77,33 @@ def _product_rules(policy: dict) -> list[str]:
     ]
 
 
+def _standalone_lines(shell: dict) -> list[str]:
+    """What a page that did not come through the renderer is held to: the shell's own policies, read from its bytes."""
+    sp = shell.get("standalone_policy")
+    if not sp:
+        return []
+    audit = sp["browser_audit"]
+    lines = ["## Pages that do not come through the renderer", "",
+             sp["purpose"], "",
+             f"Governed roots: {', '.join(f'`{r}/`' for r in sp['governed_roots'])}. A page there that is not listed in the ledger has no findings; an unknown page fails closed. "
+             f"Checker: `{sp['checker']}`; zoom is never limited below {sp['zoom_max_scale_min']}x.", "",
+             "| Rule | Held | Executes | What it asks |", "|---|---|---|---|"]
+    lines += [f"| `{r['id']}` | {'blocks' if r['severity'] == 'BLOCK' else 'said'} | `{r['executes']}` | {r['statement']} |" for r in sp["rules"]]
+    lines += ["", f"Ledger (`{sp['ledger']}`): {sp['ledger_rule']}", "",
+              f"Browser audit (`{audit['tool']} --profile {audit['profile']}`): measures {', '.join(audit['measures'])}. {audit['note']}", ""]
+    return lines
+
+
+def _admission_lines(policy: dict) -> list[str]:
+    """How a question record gets into a library, and how a digest is kept the same on every machine."""
+    adm, ev = policy["admission"], policy["evidence"]
+    return ["## Rules about a record and its evidence", "",
+            f"**Admission.** {adm['purpose']} Authority: {', '.join(f'`{a}`' for a in adm['authority'])}.", "",
+            *[f"- `{pt['id']}` ({'blocks' if pt['severity'] == 'BLOCK' else 'said'}): {pt['statement']}" for pt in adm["points"]],
+            f"- {adm['note']}", "",
+            f"**Evidence.** {ev['purpose']} Line endings: {ev['line_endings']} (`{ev['attributes_file']}`). {ev['note']}", ""]
+
+
 def render(registry: dict | None = None) -> str:
     registry = registry or blueprints.load_registry()
     policy = registry["component_policy"]
@@ -95,7 +122,9 @@ def render(registry: dict | None = None) -> str:
         f"Held to: {policy['held_to']}",
         "",
         *_shell_lines(registry["shell"]),
+        *_standalone_lines(registry["shell"]),
         *_product_rules(policy),
+        *_admission_lines(policy),
     ]
     for blueprint in registry["blueprints"]:
         if not blueprints.components(blueprint):

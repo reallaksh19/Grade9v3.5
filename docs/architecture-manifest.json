@@ -6,20 +6,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 432,
-  "relation_count": 463,
+  "component_count": 438,
+  "relation_count": 469,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 54,
-    "TEST": 210,
-    "TOOLING": 118,
+    "LIBRARY": 56,
+    "TEST": 212,
+    "TOOLING": 119,
     "WEB": 13,
-    "WEB_CONTRACT": 7,
+    "WEB_CONTRACT": 8,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:bf47399702e050dd0ca8a0f478fc16fc38a355808120570f79f2ef06b924e806",
+  "digest": "sha256:870898f451f5cf50ffd428b417e79eb14881f8bdeb3eaa518fa432685cb58a97",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -200,8 +200,8 @@
       "path": "Shared/library/intake.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 15381,
-      "sha256": "fef40b693b829abdf9785346ddeae0032c9d859fc36578ac86e2427c542af3a8"
+      "bytes": 15962,
+      "sha256": "0cce0fae2568e34235a8f2feada8507fa1492b9e22d29d4199c6d3ff257eb48f"
     },
     {
       "path": "Shared/library/learner-profile.schema.json",
@@ -274,6 +274,13 @@
       "sha256": "6ab684f6b97a127670f0d946b1f9444b066a79dd4541fd74b948ff4715732f70"
     },
     {
+      "path": "Shared/library/question_admission.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 11777,
+      "sha256": "f442091d7fd7182bd53ea00c6ca619fb55924302206ac03be34bc3636da618f2"
+    },
+    {
       "path": "Shared/library/release-receipt.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
@@ -321,6 +328,13 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 2822,
       "sha256": "e2e841576fde112d60477009a337b5392ed1ee9ac519f7073139cddf2200d5cd"
+    },
+    {
+      "path": "Shared/library/scope/deferred.v1.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 508,
+      "sha256": "327fde90e09120ce6667d9ea6b81c68698fbf80318c2e27fa92b50b9dfbd3180"
     },
     {
       "path": "Shared/library/source-acquisition.schema.json",
@@ -599,8 +613,8 @@
       "path": "Shared/tools/blueprint_spec.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 8755,
-      "sha256": "e4569f7d75cbfc94699bb99ef0a02dd7c66c0cf670540769f49ceb80549155b5"
+      "bytes": 10633,
+      "sha256": "39ea5ec74984f55172b738c811365698102d0f84d1855c8deedd6d21ab9468ae"
     },
     {
       "path": "Shared/tools/build_core_learning_data.py",
@@ -1261,6 +1275,13 @@
       "sha256": "80c6611233711872761a0858999fae72c043c323cce2ac1d0d82ac8a99ff9df2"
     },
     {
+      "path": "Shared/tools/standalone_conformance.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 18718,
+      "sha256": "a9c3928de9e4a7f4be3e51dee16954f1ef252d3862a41948e811850ae56a067c"
+    },
+    {
       "path": "Shared/tools/study_map.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -1411,15 +1432,22 @@
       "path": "Shared/web/interactive-page-blueprint.schema.json",
       "role": "WEB_CONTRACT",
       "role_description": "Subject-neutral interactive page blueprint contracts",
-      "bytes": 27421,
-      "sha256": "54247fb07d1bacd0eeda1204f07db938cc4c7c3905ccec71e00b096302cb05ac"
+      "bytes": 32943,
+      "sha256": "46e9de7bf255186173116751962ba85558f9755214e864acf096a914341edc05"
     },
     {
       "path": "Shared/web/interactive-page-blueprints.v1.json",
       "role": "WEB_CONTRACT",
       "role_description": "Subject-neutral interactive page blueprint contracts",
-      "bytes": 76968,
-      "sha256": "f2506d7462d086fd783061fb36226ec8ebeb2ade71e03a0b49f43141ffb3abc1"
+      "bytes": 84931,
+      "sha256": "866528b70fa68c83afaeb49c395032d802c1679fb00ab7ba39c561cd426ada1c"
+    },
+    {
+      "path": "Shared/web/standalone-ledger.v1.json",
+      "role": "WEB_CONTRACT",
+      "role_description": "Subject-neutral interactive page blueprint contracts",
+      "bytes": 1937,
+      "sha256": "13290b06b036c6d729fc8c2fe9ddc09f042563fe960cea4f91ceda33c4a3c16b"
     },
     {
       "path": "Shared/workbench/README.md",
@@ -2675,6 +2703,13 @@
       "sha256": "5218b9c7bbe96b2f0407bc7ad55fb28bcaf84aff878ad663199c6cd2ad3419a1"
     },
     {
+      "path": "tests/test_question_admission.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 11130,
+      "sha256": "5877fc9640f80abe7da58060412a9e83a06c177795495a170588e63a5b6f9501"
+    },
+    {
       "path": "tests/test_question_bank_determinism.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -2799,6 +2834,13 @@
       "role_description": "Executable checks",
       "bytes": 6355,
       "sha256": "dfd3a1a0516bf17fd89e059dae2454852d9ac85b9ae9c919ed00d294855137db"
+    },
+    {
+      "path": "tests/test_standalone_conformance.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 10524,
+      "sha256": "595a223bf715db7e22fd2a4ec2db7af269901bf7ce2e5db78370c4935a3f2820"
     },
     {
       "path": "tests/test_study_map.py",
@@ -3155,6 +3197,11 @@
     {
       "from": "Shared/library/intake.py",
       "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/intake.py",
+      "to": "Shared.library.question_admission",
       "kind": "IMPORTS"
     },
     {
@@ -4040,6 +4087,11 @@
     {
       "from": "Shared/tools/spec_delivery.py",
       "to": "Shared.tools.spec_conformance",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/standalone_conformance.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
@@ -5028,6 +5080,21 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "tests/test_question_admission.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_question_admission.py",
+      "to": "Shared.library.question_admission",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_question_admission.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "tests/test_question_bank_determinism.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
@@ -5189,6 +5256,11 @@
     },
     {
       "from": "tests/test_source_receipts.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_standalone_conformance.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
