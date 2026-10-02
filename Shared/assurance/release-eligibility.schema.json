@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema": { "const": "release-eligibility/v1" },
+    "product": { "type": "string" },
+    "canonical_snapshot_digest": { "type": "string" },
+    "projection_digests": {
+      "type": "object",
+      "properties": {
+        "web": { "type": "string", "pattern": "^sha256:" },
+        "standalone": { "type": "string", "pattern": "^sha256:" },
+        "pdf": { "type": "string", "pattern": "^sha256:" },
+        "search": { "type": "string", "pattern": "^sha256:" }
+      }
+    },
+    "assurance_bundle_digest": { "type": "string" },
+    "hard_integrity": { "type": "string", "enum": ["PASS", "FAIL"] },
+    "reviewable_findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "string" },
+          "severity": { "type": "string" },
+          "message": { "type": "string" }
+        },
+        "required": ["code", "severity", "message"]
+      }
+    },
+    "status": { "type": "string", "enum": ["ELIGIBLE", "INELIGIBLE", "INCOMPLETE"] },
+    "evaluated_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["schema", "product", "canonical_snapshot_digest", "assurance_bundle_digest", "hard_integrity", "reviewable_findings", "status", "evaluated_at"]
+}

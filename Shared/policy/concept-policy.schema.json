@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema": { "const": "concept-policy/v1" },
+    "concept_id": { "type": "string" },
+    "scope_class": { "type": "string", "enum": ["CORE", "PREREQUISITE", "QUESTION_DEMAND", "DECLARED_EXTENSION", "DEFER", "PROHIBITED"] },
+    "permitted_roles": { "type": "array", "items": { "type": "string" } },
+    "permitted_contexts": { "type": "array", "items": { "type": "string" } },
+    "extension_required": { "type": "boolean" },
+    "notes": { "type": "string" }
+  },
+  "required": ["schema", "concept_id", "scope_class", "extension_required"]
+}
