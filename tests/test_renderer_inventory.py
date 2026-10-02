@@ -217,6 +217,7 @@ class OutputRoleScope(unittest.TestCase):
                 for name, value in original.items():
                     setattr(build_products, name, value)
         self.assertEqual(receipt["pages"], ["core1.html", "index.html"])
+        self.assertEqual(receipt["output_roles"], ["CORE1"])
         self.assertEqual(receipt["gaps"], [])
         self.assertEqual(row["gaps"], 0)
         self.assertEqual(print_receipt["mode"], "LEARNER_PDF")
@@ -237,7 +238,7 @@ class OutputRoleScope(unittest.TestCase):
         self.assertEqual(report["verdict"], "FAIL")
         finding_rules = {finding["rule"] for finding in report["findings"]}
         self.assertIn("C1-REPRESENTATION", finding_rules)
-        self.assertIn("PRODUCT-ALL-ROLES", finding_rules)
+        self.assertNotIn("PRODUCT-ALL-ROLES", finding_rules)
 
     def test_legacy_renderer_still_emits_all_six_roles_when_scope_is_absent(self):
         manifest = json.loads(self.PILOT.read_text(encoding="utf-8"))

@@ -17,7 +17,7 @@ class QuestionBankPlatformRuntimeTest(unittest.TestCase):
     def test_detail_shards_cover_current_denominator_without_eager_global_payload(self):
         shards = self.platform["detail_shards"]
         self.assertEqual(len(shards), 2)
-        self.assertEqual(sum(row["question_count"] for row in shards), 77)
+        self.assertEqual(sum(row["question_count"] for row in shards), 81)
         self.assertEqual({row["subject_ref"] for row in shards}, {"SUBJECT-CHEMISTRY", "SUBJECT-PHYSICS"})
         workers = {row["worker_id"] for row in self.platform["receipt"]["workers"]}
         self.assertIn("details", workers)

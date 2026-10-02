@@ -1,0 +1,338 @@
+# Final friction validation head on current main
+name: friction-core-browser
+# Branch-scoped evidence runner for the friction Core1A/Core2 draft product.
+
+on:
+  push:
+    paths:
+      - ".github/workflows/friction-core-browser.yml"
+      - "products/physics/phy-nlm-friction.manifest.json"
+      - "Physics/library/phy-nlm-first-law.v1.json"
+      - "Physics/library/exam-bank/competitive-exam-question-bank.v2.json"
+      - "Shared/library/competitive-exam-bank.schema.json"
+      - "Physics/assets/representations/*.svg"
+      - "Shared/tools/render_core.py"
+      - "Shared/tools/build_products.py"
+      - "Shared/tools/product_coverage.py"
+      - "Shared/tools/toughest_concept.py"
+      - "Shared/tools/quality_gate.py"
+      - "tools/site-audit/core-page-audit.mjs"
+      - "public/css/tablet-12-7.css"
+  pull_request:
+    paths:
+      - ".github/workflows/friction-core-browser.yml"
+      - "products/physics/phy-nlm-friction.manifest.json"
+      - "Physics/library/phy-nlm-first-law.v1.json"
+      - "Physics/library/exam-bank/competitive-exam-question-bank.v2.json"
+      - "Shared/library/competitive-exam-bank.schema.json"
+      - "Physics/assets/representations/*.svg"
+      - "Shared/tools/render_core.py"
+      - "Shared/tools/build_products.py"
+      - "Shared/tools/product_coverage.py"
+      - "Shared/tools/toughest_concept.py"
+      - "Shared/tools/quality_gate.py"
+      - "tools/site-audit/core-page-audit.mjs"
+      - "public/css/tablet-12-7.css"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  friction-evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Checkout Blueprint 1.9.0 rules
+        uses: actions/checkout@v4
+        with:
+          ref: 9eaf57beb48c9bcf71011593fefd59516078a762
+          path: blueprint-1.9
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install validation dependencies
+        run: |
+          pip install --quiet jsonschema pypdf cffi
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Denominator coverage and toughest concept
+        run: |
+          set -o pipefail
+          python3 Shared/tools/product_coverage.py products/physics/phy-nlm-friction.manifest.json | tee /tmp/friction-coverage.txt
+          python3 Shared/tools/toughest_concept.py products/physics/phy-nlm-friction.manifest.json | tee /tmp/friction-toughest.txt
+
+      - name: Reference-depth blueprint report
+        run: |
+          set -o pipefail
+          python3 Shared/tools/render_core.py gaps \
+            --manifest products/physics/phy-nlm-friction.manifest.json \
+            --reference | tee /tmp/friction-reference.txt
+
+      - name: Strict Core1A and Core2 render
+        run: |
+          set -o pipefail
+          python3 Shared/tools/render_core.py gaps --manifest products/physics/phy-nlm-friction.manifest.json --reference | tee /tmp/friction-gaps.txt
+          rm -rf /tmp/friction-core-site
+          mkdir -p /tmp/friction-core-site/products/physics/phy-nlm-friction /tmp/friction-core-site/css
+          python3 Shared/tools/render_core.py build \
+            --manifest products/physics/phy-nlm-friction.manifest.json \
+            --out /tmp/friction-core-site/products/physics/phy-nlm-friction \
+            --mode PAGES \
+            --reference | tee /tmp/friction-render.txt
+          cp public/css/tablet-12-7.css /tmp/friction-core-site/css/tablet-12-7.css
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          receipt = json.loads(Path("/tmp/friction-core-site/products/physics/phy-nlm-friction/render-receipt.json").read_text())
+          if receipt["gaps"]:
+              raise SystemExit(f"strict render unexpectedly contains {len(receipt['gaps'])} gap(s)")
+          print("reference render gaps: 0")
+          PY
+
+      - name: Blueprint 1.9.0 compatibility
+        run: |
+          set -o pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          registry = json.loads(Path("blueprint-1.9/Shared/web/interactive-page-blueprints.v1.json").read_text())
+          if registry.get("registry_version") != "1.9.0":
+              raise SystemExit(f"expected Blueprint registry 1.9.0, got {registry.get('registry_version')}")
+          print("Blueprint registry:", registry["registry_version"])
+          PY
+
+          # Run the exact 1.9.0 admission gate against the friction package/bank in
+          # the rule branch's own environment, so scope and admission semantics are
+          # not reimplemented in this PR.
+          cp Physics/library/phy-nlm-first-law.v1.json blueprint-1.9/Physics/library/phy-nlm-first-law.v1.json
+          cp Physics/library/exam-bank/competitive-exam-question-bank.v2.json blueprint-1.9/Physics/library/exam-bank/competitive-exam-question-bank.v2.json
+          cp -R Physics/assets/representations/. blueprint-1.9/Physics/assets/representations/
+          (
+            cd blueprint-1.9
+            python3 -m unittest tests.test_question_admission
+          ) | tee /tmp/friction-blueprint19-admission.txt
+
+          # The friction product's selected source questions live in the exam bank,
+          # which the package-wide admission unittest does not enumerate. Run the
+          # exact 1.9.0 admission implementation over those 10 selected records too.
+          python3 - <<'PY' | tee -a /tmp/friction-blueprint19-admission.txt
+          import json
+          import sys
+          from pathlib import Path
+
+          sys.path.insert(0, str(Path("blueprint-1.9").resolve()))
+          from Shared.library.question_admission import findings
+
+          manifest = json.loads(Path("products/physics/phy-nlm-friction.manifest.json").read_text())
+          bank = json.loads(Path("Physics/library/exam-bank/competitive-exam-question-bank.v2.json").read_text())
+          selected = set(manifest["selection"]["core2"])
+          rows = [q for q in bank.get("questions", []) if q.get("id") in selected]
+          if {q.get("id") for q in rows} != selected:
+              missing = sorted(selected - {q.get("id") for q in rows})
+              raise SystemExit(f"selected friction records missing from bank: {missing}")
+          report = list(findings({"package_id": "phy-nlm-first-law", "questions": rows}))
+          for item in report:
+              print(f"{item['severity']} {item['point']}: {item['detail']}")
+          blockers = [item for item in report if item["severity"] == "BLOCK"]
+          if blockers:
+              raise SystemExit(f"Blueprint 1.9.0 admission blocked {len(blockers)} selected friction record(s)")
+          print(f"Blueprint 1.9.0 selected-bank admission: PASS ({len(rows)} records; {len(report)} advisory finding(s))")
+          PY
+
+      - name: Build through product pipeline
+        run: |
+          set -o pipefail
+          python3 Shared/tools/build_products.py build --only phy-nlm-friction | tee /tmp/friction-build-products.txt
+
+      - name: Print and verify each page PDF
+        run: |
+          node tools/print/print-product.mjs /tmp/friction-core-site/products/physics/phy-nlm-friction
+          python3 - <<'PY'
+          from pathlib import Path
+          from Shared.tools.render_core import pdf_publication_problems
+          folder = Path("/tmp/friction-core-site/products/physics/phy-nlm-friction")
+          problems = pdf_publication_problems(folder)
+          if problems:
+              print("\n".join(problems))
+              raise SystemExit("PDF publication verification failed")
+          print("PDF publication verification: PASS")
+          PY
+
+      - name: Blueprint 1.9.0 published-page conformance
+        run: |
+          set -o pipefail
+          mkdir -p /tmp/friction-core-site/question-bank
+          cp public/index.html /tmp/friction-core-site/index.html
+          cp public/question-bank/index.html /tmp/friction-core-site/question-bank/index.html
+          python3 blueprint-1.9/Shared/tools/standalone_conformance.py \
+            /tmp/friction-core-site/products/physics/phy-nlm-friction/core1a.html \
+            /tmp/friction-core-site/products/physics/phy-nlm-friction/core2.html \
+            --enforce | tee /tmp/friction-blueprint19-pages.txt
+
+      - name: Quality gate and no S0 or S1
+        run: |
+          set -o pipefail
+          python3 Shared/tools/quality_gate.py \
+            /tmp/friction-core-site/products/physics/phy-nlm-friction \
+            --subject Physics \
+            --product-id PRODUCT-PHY-NLM-FRICTION \
+            --report /tmp/friction-quality-gate.json | tee /tmp/friction-quality.txt
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path("/tmp/friction-quality-gate.json").read_text())
+          blockers = [f for f in report["findings"] if f["severity"] in {"S0", "S1"}]
+          if blockers:
+              print(json.dumps(blockers, indent=2))
+              raise SystemExit("quality gate contains S0/S1")
+          print(f"quality gate S0/S1: 0; verdict={report['verdict']}")
+          PY
+
+      - name: Tablet 12.7 rendered audit
+        run: |
+          set -o pipefail
+          node tools/site-audit/core-page-audit.mjs \
+            /tmp/friction-core-site/products/physics/phy-nlm-friction \
+            --profile tablet-12.7 \
+            --http-root /tmp/friction-core-site \
+            --enforce \
+            --json /tmp/friction-tablet-audit.json | tee /tmp/friction-tablet.txt
+
+      - name: Browser PDF controls and requested screenshots
+        run: |
+          python3 -m http.server 8766 --directory /tmp/friction-core-site >/tmp/friction-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          python3 - <<'PY'
+          import socket, time
+          for _ in range(60):
+              try:
+                  with socket.create_connection(("127.0.0.1", 8766), timeout=0.2):
+                      break
+              except OSError:
+                  time.sleep(0.1)
+          else:
+              raise SystemExit("local HTTP server did not start")
+          PY
+          node - <<'JS'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+          (async () => {
+            const browser = await chromium.launch({headless:true});
+            const context = await browser.newContext({viewport:{width:1366,height:854}});
+            const page = await context.newPage();
+            const base = 'http://127.0.0.1:8766/products/physics/phy-nlm-friction';
+
+            async function provePdf(file) {
+              await page.goto(base + '/' + file, {waitUntil:'networkidle'});
+              const link = page.locator('a[data-g9-action="pdf"]').first();
+              const href = await link.getAttribute('href');
+              const expected = file.replace(/\.html$/, '.pdf');
+              if (href !== expected) throw new Error(file + ': PDF href=' + href + ' expected=' + expected);
+              const response = await page.request.get(base + '/' + href);
+              if (!response.ok()) throw new Error(file + ': PDF request status=' + response.status());
+              await link.click({noWaitAfter:true});
+              return expected;
+            }
+
+            const pdf1 = await provePdf('core1a.html');
+            const pdf2 = await provePdf('core2.html');
+
+            await page.goto(base + '/core2.html#PYQ-PHY-JEEADV-2020-P1-Q13', {waitUntil:'networkidle'});
+            const hard = page.locator('article[data-g9-unit="PYQ-PHY-JEEADV-2020-P1-Q13"]');
+            if (await hard.count() !== 1) throw new Error('hardest Core2 article not found');
+            await hard.scrollIntoViewIfNeeded();
+            await page.screenshot({path:'/tmp/hardest-core2-1366x854.png', fullPage:false});
+
+            await page.goto(base + '/core1a.html#CU-PHY-NLM-FRICTION-QUANT-1', {waitUntil:'networkidle'});
+            const unit = page.locator('section[data-g9-cu="CU-PHY-NLM-FRICTION-QUANT-1"]');
+            if (await unit.count() !== 1) throw new Error('quantitative Core1A unit not found');
+            await unit.scrollIntoViewIfNeeded();
+            const bridge = unit.getByText('This unit builds toward', {exact:false});
+            if (await bridge.count() === 0) throw new Error('Core1A question bridge text not found');
+            await page.screenshot({path:'/tmp/core1a-friction-unit-1366x854.png', fullPage:false});
+
+            fs.writeFileSync('/tmp/friction-browser-proof.json', JSON.stringify({
+              viewport:{width:1366,height:854},
+              hardest:'PYQ-PHY-JEEADV-2020-P1-Q13',
+              core1a_unit:'CU-PHY-NLM-FRICTION-QUANT-1',
+              pdf_controls:{core1a:pdf1,core2:pdf2}
+            }, null, 2));
+            await browser.close();
+          })().catch(err => { console.error(err); process.exit(1); });
+          JS
+
+      - name: Published Physics Practice parity
+        run: |
+          set -o pipefail
+          published=public/standalone/practice/friction
+          generated=/tmp/friction-core-site/products/physics/phy-nlm-friction
+
+          cmp "$generated/index.html" "$published/index.html"
+          cmp "$generated/core1a.html" "$published/core1a.html"
+          cmp "$generated/core2.html" "$published/core2.html"
+          python3 - <<'PY'
+          from pathlib import Path
+          from Shared.tools.render_core import pdf_publication_problems
+          folder = Path("public/standalone/practice/friction")
+          problems = pdf_publication_problems(folder)
+          if problems:
+              print("\n".join(problems))
+              raise SystemExit("published friction PDF receipt verification failed")
+          print("published friction PDF receipt verification: PASS")
+          PY
+
+          cmp public/standalone/practice/friction/index.html docs/standalone/practice/friction/index.html
+          cmp public/standalone/practice/friction/core1a.html docs/standalone/practice/friction/core1a.html
+          cmp public/standalone/practice/friction/core2.html docs/standalone/practice/friction/core2.html
+          cmp public/standalone/practice/friction/core1a.pdf docs/standalone/practice/friction/core1a.pdf
+          cmp public/standalone/practice/friction/core2.pdf docs/standalone/practice/friction/core2.pdf
+
+          grep -q 'friction/core1a.html' public/standalone/practice/index.html
+          grep -q 'friction/core2.html' public/standalone/practice/index.html
+          grep -q 'standalone/practice/friction/core1a.html' public/data/site-search-resources.js
+          grep -q 'standalone/practice/friction/core2.html' public/data/site-search-resources.js
+          grep -q '>14 Modules<' public/physics/index.html
+          grep -q '>14 MODULES<' public/index.html
+          python3 Shared/tools/build_pages_site.py --check
+
+          python3 blueprint-1.9/Shared/tools/standalone_conformance.py \
+            public/standalone/practice/friction/core1a.html \
+            public/standalone/practice/friction/core2.html \
+            --enforce | tee /tmp/friction-blueprint19-published.txt
+
+      - name: Upload friction evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: friction-core1a-core2-evidence
+          path: |
+            /tmp/friction-coverage.txt
+            /tmp/friction-reference.txt
+            /tmp/friction-toughest.txt
+            /tmp/friction-render.txt
+            /tmp/friction-gaps.txt
+            /tmp/friction-build-products.txt
+            /tmp/friction-quality.txt
+            /tmp/friction-quality-gate.json
+            /tmp/friction-tablet.txt
+            /tmp/friction-tablet-audit.json
+            /tmp/friction-browser-proof.json
+            /tmp/friction-blueprint19-admission.txt
+            /tmp/friction-blueprint19-pages.txt
+            /tmp/friction-blueprint19-published.txt
+            /tmp/hardest-core2-1366x854.png
+            /tmp/core1a-friction-unit-1366x854.png
+            /tmp/friction-core-site/products/physics/phy-nlm-friction/*.html
+            /tmp/friction-core-site/products/physics/phy-nlm-friction/*.pdf
+            /tmp/friction-core-site/products/physics/phy-nlm-friction/print-receipt.json
+          if-no-files-found: warn

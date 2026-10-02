@@ -580,6 +580,7 @@ def observe_render_core(folder: Path, product_id: str | None = None, subject: st
             "subject": subject or "Physics", "observed_by": "render-core-html",
             "provenance": {"render_stamp": None if draft else stamp, "hand_authored": False},
             "escape_states": sorted(escape), "roles_rendered": sorted(set(roles)),
+            **({"roles_expected": list(meta["output_roles"])} if isinstance(meta.get("output_roles"), list) else {}),
             "atlas": None, "print": print_obs, "pages": pages}
 
 

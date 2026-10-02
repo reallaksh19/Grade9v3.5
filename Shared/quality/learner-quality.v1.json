@@ -367,7 +367,7 @@
     {
       "id": "PRODUCT-ALL-ROLES", "family": "INTEGRITY", "measure": "STATIC", "roles": ["*"], "severity": "S1",
       "check": {"op": "product_roles", "roles": ["CORE1", "CORE1A", "CORE1B", "CORE2", "CORE2A", "CORE2B"]},
-      "audit_refs": ["S5-NO-CORE2A-2B"], "grammar": null, "text": "A delivered product renders all six Core roles."
+      "audit_refs": ["S5-NO-CORE2A-2B"], "grammar": null, "text": "A delivered product renders every Core role declared by its manifest; legacy manifests with no output-role scope still render all six roles."
     },
     {
       "id": "PRODUCT-SHARED-ATLAS", "family": "INTEGRITY", "measure": "STATIC", "roles": ["*"], "severity": "S2",

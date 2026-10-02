@@ -9,14 +9,15 @@ from Shared.tools import build_question_bank_web
 ROOT = Path(__file__).resolve().parents[1]
 
 
+# Friction denominator regression is intentionally part of the canonical browser count.
 class QuestionBankWebTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.data = build_question_bank_web.build(ROOT)
 
     def test_canonical_counts_and_topics(self):
-        self.assertEqual(self.data["counts"]["questions"], 77)
-        self.assertEqual(self.data["counts"]["subjects"], {"Chemistry": 46, "Physics": 31})
+        self.assertEqual(self.data["counts"]["questions"], 81)
+        self.assertEqual(self.data["counts"]["subjects"], {"Chemistry": 46, "Physics": 35})
         self.assertEqual(len(self.data["counts"]["topics"]), 5)
 
     def test_selected_d3d4_view_is_exact_and_canonical(self):

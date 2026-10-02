@@ -6476,20 +6476,20 @@ window.GRADE9V3 = {
               "teaching_path": [
                 {
                   "id": "NLM5-1",
-                  "action": "Choose the body and mark the contact surface before deciding a friction direction.",
-                  "why_valid": "Friction belongs to a specific contact interaction, so its direction must be read from relative motion at that contact.",
+                  "action": "Choose the body or system and name the exact contact before deciding friction; for a contact between two bodies, keep the two friction forces as an equal-and-opposite third-law pair on different bodies.",
+                  "why_valid": "Friction belongs to one contact interaction. The force on A by B and the force on B by A are a third-law pair, so neither may be moved onto the other body's free-body diagram.",
                   "role": "DECLARE",
-                  "output": "chosen body; named contact; tangent direction available.",
+                  "output": "chosen body/system; named contact and partner; tangent direction; friction owner and receiver fixed.",
                   "inputs": [
                     "CAP-NLM-FBD-BODY-OWNERSHIP"
                   ]
                 },
                 {
                   "id": "NLM5-2",
-                  "action": "Imagine the relative sliding or tendency to slide if friction were absent, then point friction opposite that relative tendency.",
+                  "action": "Imagine the relative sliding, or tendency to slide, at that named contact if tangential friction were absent; point friction on the chosen body opposite that relative tendency.",
                   "why_valid": "Contact friction resists relative sliding between the surfaces.",
                   "role": "TRANSFORM",
-                  "output": "belt at 2 m/s, box at 0.5 m/s -> box slips left relative to the belt -> friction on the box points right",
+                  "output": "contact-specific slip tendency -> friction direction; direction need not oppose the body's velocity.",
                   "inputs": []
                 },
                 {
@@ -6628,10 +6628,10 @@ window.GRADE9V3 = {
               "teaching_path": [
                 {
                   "id": "NLM8-1",
-                  "action": "Build the chosen-body FBD and determine the normal reaction N from the force balance or acceleration perpendicular to the contact; do not assume N = mg.",
-                  "why_valid": "The normal reaction is the contact force needed by the actual perpendicular dynamics and can differ from mg when the surface is inclined or other forces have perpendicular components.",
+                  "action": "Build the chosen-body free-body diagram and solve the perpendicular dynamics for N before using any friction law: do not assume N = mg; N=mg only in the special level case with no other perpendicular force or acceleration; a downward added component raises N, an upward component lowers it, and if the required contact force would be negative the contact is lost so N=0 and friction=0.",
+                  "why_valid": "A unilateral contact can push but not pull. Its normal reaction is whatever the perpendicular Newton-II equation requires while contact persists; friction capacity is then tied to that actual N.",
                   "role": "DECLARE",
-                  "output": "perpendicular force equation -> actual N >= 0",
+                  "output": "perpendicular equation -> actual N≥0; level examples N=mg+F_down or N=mg-F_up; contact lost -> N=0 and f=0.",
                   "inputs": [
                     "CAP-NLM-FBD-BODY-OWNERSHIP",
                     "CAP-NLM-SECOND-LAW"
@@ -6639,28 +6639,28 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "NLM8-2",
-                  "action": "Assume no relative sliding provisionally and solve the tangential Newton-II equation for the static friction value f_required that would make that motion possible.",
-                  "why_valid": "Static friction takes the value required by the no-slip state, provided the contact can supply it.",
+                  "action": "Assume no relative sliding provisionally, choose a body or a whole connected system deliberately, and solve the tangential Newton-II equation for the friction demand at each rough contact.",
+                  "why_valid": "Static friction responds to the no-slip dynamics. A system boundary can remove internal contact pairs, but it cannot create friction capacity at a smooth contact or move a rough contact from one body to another.",
                   "role": "TRANSFORM",
-                  "output": "no-slip dynamics -> f_s = f_required",
+                  "output": "chosen boundary + no-slip dynamics -> signed f_required at each actual rough contact.",
                   "inputs": [
                     "CAP-NLM-SECOND-LAW"
                   ]
                 },
                 {
                   "id": "NLM8-3",
-                  "action": "Compare |f_required| with mu_s N.",
+                  "action": "Compare each |f_required| with μ_sN; on an incline this comparison can be turned into the angle condition for the onset of sliding rather than setting f=μ_sN from the start.",
                   "why_valid": "The static-contact model permits any required value only up to the limiting magnitude.",
                   "role": "VERIFY",
-                  "output": "|f_required| <= mu_s N -> static state feasible; |f_required| > mu_s N -> static state impossible",
+                  "output": "|f_required| <= mu_s N -> static feasible; equality only at impending slip; after sliding use the kinetic model. Equivalent symbolic form: |f_required|≤μ_sN.",
                   "inputs": []
                 },
                 {
                   "id": "NLM8-4",
-                  "action": "Use |f_s| = mu_s N only at impending slip; if relative sliding is already established, use |f_k| = mu_k N with direction opposing the relative sliding.",
-                  "why_valid": "The limiting equality and the sliding model describe different contact states and are not unconditional identities.",
+                  "action": "At the threshold use |f_s|=μ_sN; once relative sliding is established use |f_k|=μ_kN opposite the sliding, and if several contacts change state, update N and the friction model at each contact before continuing.",
+                  "why_valid": "Static-below-limit, impending-slip, kinetic-sliding and contact-lost are different contact states. A multi-contact process may switch which contact is static or sliding, so stale μN values cannot be carried across a transition.",
                   "role": "TRANSFORM",
-                  "output": "impending slip -> |f_s| = mu_s N; sliding -> |f_k| = mu_k N",
+                  "output": "state map: static below limit -> f_required; impending -> μ_sN; sliding -> μ_kN; contact lost -> N=f=0.",
                   "inputs": []
                 }
               ],
@@ -6679,6 +6679,11 @@ window.GRADE9V3 = {
                   "wrong_idea": "If both mu_s and mu_k are given, the coefficients themselves tell you which friction model to use.",
                   "diagnostic_prompt": "A problem gives both mu_s and mu_k but does not say whether the contact slips. Can you choose kinetic friction just because mu_k is supplied?",
                   "repair": "No. Determine the contact state first: test whether the no-slip friction demand fits within mu_s N. Use the kinetic model only after sliding is established."
+                },
+                {
+                  "wrong_idea": "Friction can keep acting after the surfaces lose contact, or a negative value of N can be used inside μN.",
+                  "diagnostic_prompt": "An upward pull becomes large enough that the floor would need a downward normal force to keep touching the block. What are N and friction after separation?",
+                  "repair": "A contact can push, not pull. Once the perpendicular equation would require N<0, contact is lost: set N=0 and therefore contact friction is zero."
                 }
               ],
               "exit_task": {
@@ -7294,12 +7299,6 @@ window.GRADE9V3 = {
               "answer": "During the steady carry the friction is zero; while the tray speeds up, static friction on the book points forward."
             },
             {
-              "id": "Q-PHY-NLM-1A-FRICTION-TEST-01",
-              "stem": "A 4 kg box rests on a rough horizontal floor with μ_s = 0.5 and μ_k = 0.4. Take g = 10 m/s². A horizontal pull of 15 N is applied, and in a second trial a pull of 25 N. For each trial decide whether the box stays at rest, and find the friction force and the acceleration.",
-              "origin": "AUTHORED",
-              "answer": "At 15 N the box stays at rest with 15 N of static friction. At 25 N it slides, kinetic friction is 16 N, and the acceleration is 2.25 m/s²."
-            },
-            {
               "id": "Q-PHY-NLM-1A-NET-ZERO-01",
               "stem": "An ice-hockey puck of mass 0.2 kg slides across smooth ice at 4 m/s after the stick loses contact. Friction and air resistance are negligible. What horizontal forces act on it, what is its velocity 3 s later, and would a puck at rest on the same ice start moving?",
               "origin": "AUTHORED",
@@ -7722,7 +7721,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 234,
+          "record_count": 233,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -7863,11 +7862,6 @@ window.GRADE9V3 = {
               },
               {
                 "kind": "FIGURE_AUTHORING",
-                "representation": "REP-NLM-BOX4-FRICTION-TEST",
-                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
-              },
-              {
-                "kind": "FIGURE_AUTHORING",
                 "representation": "REP-NLM-BOX5-PUSH-30N-PRESS-20N",
                 "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
               },
@@ -7939,6 +7933,11 @@ window.GRADE9V3 = {
               {
                 "kind": "FIGURE_AUTHORING",
                 "representation": "REP-NLM-FORCE-ON-UPPER-BLOCK",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-FRICTION-STATE-MAP",
                 "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
               },
               {
@@ -21050,9 +21049,9 @@ window.GRADE9V3 = {
                   {
                     "id": "NLM5-1",
                     "role": "DECLARE",
-                    "action": "Choose the body and mark the contact surface before deciding a friction direction.",
-                    "why_valid": "Friction belongs to a specific contact interaction, so its direction must be read from relative motion at that contact.",
-                    "output": "chosen body; named contact; tangent direction available.",
+                    "action": "Choose the body or system and name the exact contact before deciding friction; for a contact between two bodies, keep the two friction forces as an equal-and-opposite third-law pair on different bodies.",
+                    "why_valid": "Friction belongs to one contact interaction. The force on A by B and the force on B by A are a third-law pair, so neither may be moved onto the other body's free-body diagram.",
+                    "output": "chosen body/system; named contact and partner; tangent direction; friction owner and receiver fixed.",
                     "inputs": [
                       "CAP-NLM-FBD-BODY-OWNERSHIP"
                     ]
@@ -21060,9 +21059,9 @@ window.GRADE9V3 = {
                   {
                     "id": "NLM5-2",
                     "role": "TRANSFORM",
-                    "action": "Imagine the relative sliding or tendency to slide if friction were absent, then point friction opposite that relative tendency.",
+                    "action": "Imagine the relative sliding, or tendency to slide, at that named contact if tangential friction were absent; point friction on the chosen body opposite that relative tendency.",
                     "why_valid": "Contact friction resists relative sliding between the surfaces.",
-                    "output": "belt at 2 m/s, box at 0.5 m/s -> box slips left relative to the belt -> friction on the box points right",
+                    "output": "contact-specific slip tendency -> friction direction; direction need not oppose the body's velocity.",
                     "inputs": []
                   },
                   {
@@ -21502,6 +21501,11 @@ window.GRADE9V3 = {
                     "wrong_idea": "If both mu_s and mu_k are given, the coefficients themselves tell you which friction model to use.",
                     "diagnostic_prompt": "A problem gives both mu_s and mu_k but does not say whether the contact slips. Can you choose kinetic friction just because mu_k is supplied?",
                     "repair": "No. Determine the contact state first: test whether the no-slip friction demand fits within mu_s N. Use the kinetic model only after sliding is established."
+                  },
+                  {
+                    "wrong_idea": "Friction can keep acting after the surfaces lose contact, or a negative value of N can be used inside μN.",
+                    "diagnostic_prompt": "An upward pull becomes large enough that the floor would need a downward normal force to keep touching the block. What are N and friction after separation?",
+                    "repair": "A contact can push, not pull. Once the perpendicular equation would require N<0, contact is lost: set N=0 and therefore contact friction is zero."
                   }
                 ],
                 "exit_task": {
@@ -21588,9 +21592,9 @@ window.GRADE9V3 = {
                   {
                     "id": "NLM8-1",
                     "role": "DECLARE",
-                    "action": "Build the chosen-body FBD and determine the normal reaction N from the force balance or acceleration perpendicular to the contact; do not assume N = mg.",
-                    "why_valid": "The normal reaction is the contact force needed by the actual perpendicular dynamics and can differ from mg when the surface is inclined or other forces have perpendicular components.",
-                    "output": "perpendicular force equation -> actual N >= 0",
+                    "action": "Build the chosen-body free-body diagram and solve the perpendicular dynamics for N before using any friction law: do not assume N = mg; N=mg only in the special level case with no other perpendicular force or acceleration; a downward added component raises N, an upward component lowers it, and if the required contact force would be negative the contact is lost so N=0 and friction=0.",
+                    "why_valid": "A unilateral contact can push but not pull. Its normal reaction is whatever the perpendicular Newton-II equation requires while contact persists; friction capacity is then tied to that actual N.",
+                    "output": "perpendicular equation -> actual N≥0; level examples N=mg+F_down or N=mg-F_up; contact lost -> N=0 and f=0.",
                     "inputs": [
                       "CAP-NLM-FBD-BODY-OWNERSHIP",
                       "CAP-NLM-SECOND-LAW"
@@ -21599,9 +21603,9 @@ window.GRADE9V3 = {
                   {
                     "id": "NLM8-2",
                     "role": "TRANSFORM",
-                    "action": "Assume no relative sliding provisionally and solve the tangential Newton-II equation for the static friction value f_required that would make that motion possible.",
-                    "why_valid": "Static friction takes the value required by the no-slip state, provided the contact can supply it.",
-                    "output": "no-slip dynamics -> f_s = f_required",
+                    "action": "Assume no relative sliding provisionally, choose a body or a whole connected system deliberately, and solve the tangential Newton-II equation for the friction demand at each rough contact.",
+                    "why_valid": "Static friction responds to the no-slip dynamics. A system boundary can remove internal contact pairs, but it cannot create friction capacity at a smooth contact or move a rough contact from one body to another.",
+                    "output": "chosen boundary + no-slip dynamics -> signed f_required at each actual rough contact.",
                     "inputs": [
                       "CAP-NLM-SECOND-LAW"
                     ]
@@ -21609,17 +21613,17 @@ window.GRADE9V3 = {
                   {
                     "id": "NLM8-3",
                     "role": "VERIFY",
-                    "action": "Compare |f_required| with mu_s N.",
+                    "action": "Compare each |f_required| with μ_sN; on an incline this comparison can be turned into the angle condition for the onset of sliding rather than setting f=μ_sN from the start.",
                     "why_valid": "The static-contact model permits any required value only up to the limiting magnitude.",
-                    "output": "|f_required| <= mu_s N -> static state feasible; |f_required| > mu_s N -> static state impossible",
+                    "output": "|f_required| <= mu_s N -> static feasible; equality only at impending slip; after sliding use the kinetic model. Equivalent symbolic form: |f_required|≤μ_sN.",
                     "inputs": []
                   },
                   {
                     "id": "NLM8-4",
                     "role": "TRANSFORM",
-                    "action": "Use |f_s| = mu_s N only at impending slip; if relative sliding is already established, use |f_k| = mu_k N with direction opposing the relative sliding.",
-                    "why_valid": "The limiting equality and the sliding model describe different contact states and are not unconditional identities.",
-                    "output": "impending slip -> |f_s| = mu_s N; sliding -> |f_k| = mu_k N",
+                    "action": "At the threshold use |f_s|=μ_sN; once relative sliding is established use |f_k|=μ_kN opposite the sliding, and if several contacts change state, update N and the friction model at each contact before continuing.",
+                    "why_valid": "Static-below-limit, impending-slip, kinetic-sliding and contact-lost are different contact states. A multi-contact process may switch which contact is static or sliding, so stale μN values cannot be carried across a transition.",
+                    "output": "state map: static below limit -> f_required; impending -> μ_sN; sliding -> μ_kN; contact lost -> N=f=0.",
                     "inputs": []
                   }
                 ]

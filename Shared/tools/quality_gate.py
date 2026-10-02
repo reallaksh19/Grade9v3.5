@@ -56,15 +56,16 @@ def continuity(folder: Path) -> list[dict]:
     units = {name: set(re.findall(r'data-g9-unit="([^"]+)"', text)) for name, text in pages.items()}
     found = []
     a, b = units.get("core1a.html", set()), units.get("core1b.html", set())
-    if a != b:
+    receipt = folder / "render-receipt.json"
+    rec = json.loads(receipt.read_text(encoding="utf-8")) if receipt.is_file() else {}
+    expected_roles = set(rec.get("output_roles") or ("CORE1", "CORE1A", "CORE1B", "CORE2", "CORE2A", "CORE2B"))
+    if {"CORE1A", "CORE1B"} <= expected_roles and a != b:
         found.append({"code": "CONT_1A_1B_PARITY", "detail": f"only in Core1A: {sorted(a - b)[:3]}; only in Core1B: {sorted(b - a)[:3]}"})
     for name, text in pages.items():
         for href in re.findall(r'href="(core\w+\.html)#([^"]+)"', text):
             target, anchor = href
             if anchor not in units.get(target, set()):
                 found.append({"code": "CONT_LINK_UNRESOLVED", "detail": f"{name} links to {target}#{anchor}, which is not a rendered unit"})
-    receipt = folder / "render-receipt.json"
-    rec = json.loads(receipt.read_text(encoding="utf-8")) if receipt.is_file() else {}
     rendered_ids = set().union(*units.values()) if units else set()
     for row in rec.get("ledger", []):
         targets = [t for t in (row.get("teaching"), row.get("practice")) if t]

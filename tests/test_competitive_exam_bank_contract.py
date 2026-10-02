@@ -35,7 +35,7 @@ class CompetitiveExamBankContractTest(unittest.TestCase):
     def test_current_bank_closes_the_activity_contract(self):
         result = check()
         self.assertTrue(result["passed"], msg=json.dumps(result["findings"], indent=2))
-        self.assertEqual(result["questions_checked"], 77)
+        self.assertEqual(result["questions_checked"], 81)
         self.assertEqual(result["banks_checked"], 2)
 
     def test_source_unverified_cannot_be_promoted_to_canonical_bank(self):

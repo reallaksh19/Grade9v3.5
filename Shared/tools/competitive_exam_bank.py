@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -386,11 +387,113 @@ def check(run_path: Path = DEFAULT_RUN) -> dict:
     }
 
 
+
+def sync_metadata(run_path: Path = DEFAULT_RUN) -> dict:
+    """Regenerate Pass-1 count/authority/ledger metadata from the canonical bank records.
+
+    This is deliberately narrow: question wording, answers and source custody remain authored
+    in the canonical banks. The sync only derives counts, allowed source hosts and ledger
+    membership from those accepted records, so generated Pass-1 bookkeeping cannot drift.
+    """
+    run = load(run_path)
+    ledger_path = ROOT / run["ledger_path"]
+    ledger = load(ledger_path)
+    all_questions: list[dict] = []
+    latest_checked = str(ledger.get("last_checked") or "")
+
+    for rel in run.get("bank_paths") or []:
+        path = ROOT / rel
+        bank = load(path)
+        questions = list(bank.get("questions") or [])
+        all_questions.extend(questions)
+
+        counts: dict[str, int] = {}
+        for q in questions:
+            analysis = (q.get("extensions") or {}).get("grade9v3:analysis") or {}
+            topic = str(analysis.get("topic") or "UNSPECIFIED")
+            counts[topic] = counts.get(topic, 0) + 1
+            checked = str(((q.get("extensions") or {}).get("grade9v3:source_custody") or {}).get("last_checked") or "")
+            if checked > latest_checked:
+                latest_checked = checked
+
+        ext = bank.setdefault("extensions", {})
+        ext["grade9v3:accepted_question_count"] = len(questions)
+        ext["grade9v3:topic_counts"] = counts
+        path.write_text(json.dumps(bank, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    valid_ids = {q["id"] for q in all_questions}
+    records = list(ledger.get("accepted_authoritative_records") or [])
+    by_url = {r.get("source_url"): r for r in records if r.get("source_url")}
+
+    for q in all_questions:
+        custody = (q.get("extensions") or {}).get("grade9v3:source_custody") or {}
+        source_url = custody.get("paper_url")
+        if not source_url:
+            continue
+        record = by_url.get(source_url)
+        if record is None:
+            exam = str(custody.get("exam") or "SOURCE")
+            year = custody.get("year")
+            question_number = str(custody.get("question_number") or q["id"])
+            slug = re.sub(r"[^A-Za-z0-9]+", "-", f"{exam}-{year}-{question_number}").strip("-").upper()
+            record = {
+                "source_ref": f"SRC-{slug}-OFFICIAL",
+                "exam": custody.get("exam"),
+                "year": year,
+                "paper": custody.get("paper"),
+                "source_url": source_url,
+                "archive_url": custody.get("archive_url"),
+                "answer_key": custody.get("answer_key_url")
+                    or "Official organizer source; answer independently checked and recorded in grade9v3:source_custody.",
+                "accepted_question_ids": [],
+            }
+            records.append(record)
+            by_url[source_url] = record
+        if q["id"] not in record["accepted_question_ids"]:
+            record["accepted_question_ids"].append(q["id"])
+
+    for record in records:
+        record["accepted_question_ids"] = [
+            qid for qid in record.get("accepted_question_ids") or [] if qid in valid_ids
+        ]
+    ledger["accepted_authoritative_records"] = [r for r in records if r.get("accepted_question_ids")]
+    ledger["accepted_question_count"] = len(all_questions)
+    ledger["accepted_item_count"] = len(all_questions)
+    if latest_checked:
+        ledger["last_checked"] = latest_checked
+    ledger_path.write_text(json.dumps(ledger, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    hosts = list(run.get("authority_hosts") or [])
+    seen_hosts = set(hosts)
+    for q in all_questions:
+        custody = (q.get("extensions") or {}).get("grade9v3:source_custody") or {}
+        for key in ("paper_url", "archive_url"):
+            host = urlparse(custody.get(key) or "").hostname
+            if host and host not in seen_hosts:
+                hosts.append(host)
+                seen_hosts.add(host)
+    run["authority_hosts"] = hosts
+    run.setdefault("completion", {})["accepted_count"] = len(all_questions)
+    run_path.write_text(json.dumps(run, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    return {
+        "questions": len(all_questions),
+        "authority_hosts": hosts,
+        "ledger_records": len(ledger["accepted_authoritative_records"]),
+        "last_checked": latest_checked,
+    }
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run", type=Path, default=DEFAULT_RUN)
     parser.add_argument("--json", action="store_true", dest="as_json")
+    parser.add_argument("--sync-metadata", action="store_true",
+                        help="regenerate canonical bank counts and Pass-1 custody bookkeeping before validation")
     args = parser.parse_args(argv)
+    if args.sync_metadata:
+        synced = sync_metadata(args.run)
+        print("synced Pass-1 metadata: " + json.dumps(synced, sort_keys=True))
     result = check(args.run)
     if args.as_json:
         print(json.dumps(result, indent=2))

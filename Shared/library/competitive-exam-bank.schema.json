@@ -213,6 +213,13 @@
             "grade9v3:analysis": {
               "$ref": "#/$defs/analysis"
             },
+            "grade9v3:scope_route": {
+              "enum": [
+                "DECLARED_EXTENSION",
+                "QUESTION_DEMAND"
+              ],
+              "description": "Optional Blueprint scope route. QUESTION_DEMAND preserves a source question whose prerequisite machinery is outside Grade-9 teaching scope; DECLARED_EXTENSION marks an explicit extension."
+            },
             "grade9v3:math_spans": {
               "type": "array",
               "items": {
