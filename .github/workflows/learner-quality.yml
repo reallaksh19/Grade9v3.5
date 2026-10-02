@@ -71,6 +71,28 @@ jobs:
             /tmp/g9-core2-v2-site/products/physics/phy-kin-2d-motion \
             --profile tablet-12.7 \
             --json /tmp/core-page-audit.json
+      - name: Physics tablet standalone local HTTP audits
+        # Evidence-only reuse of the existing shared Chromium audit. No --enforce:
+        # measured findings remain review evidence and never become a publication gate.
+        # Run both the broad viewport set and the exact 12.7-inch target profile.
+        run: |
+          rm -rf /tmp/g9-physics-tablet-standalone
+          mkdir -p /tmp/g9-physics-tablet-standalone
+          cp standalone/core1a-motion-in-a-plane-tablet.html /tmp/g9-physics-tablet-standalone/
+          cp standalone/core1a-motion-1d-straight-line-tablet.html /tmp/g9-physics-tablet-standalone/
+          cp standalone/core1a-vector-add-sub-tablet.html /tmp/g9-physics-tablet-standalone/
+          cp standalone/core1a-physics-nlm-tablet.html /tmp/g9-physics-tablet-standalone/
+          cp standalone/core2-motion-in-a-plane-tablet.html /tmp/g9-physics-tablet-standalone/
+          node tools/site-audit/core-page-audit.mjs \
+            /tmp/g9-physics-tablet-standalone \
+            --profile core1a-spec \
+            --http-root /tmp/g9-physics-tablet-standalone \
+            --json /tmp/physics-tablet-standalone-audit.json
+          node tools/site-audit/core-page-audit.mjs \
+            /tmp/g9-physics-tablet-standalone \
+            --profile tablet-12.7 \
+            --http-root /tmp/g9-physics-tablet-standalone \
+            --json /tmp/physics-tablet-standalone-12-7-audit.json
       - name: Core2 v2 local HTTP interaction audit
         run: |
           python3 -m http.server 8765 --directory /tmp/g9-core2-v2-site >/tmp/g9-core2-v2-http.log 2>&1 &
@@ -92,3 +114,72 @@ jobs:
             --single-base http://127.0.0.1:8765/products/physics/phy-kin-2d-motion-single/ \
             --witness PYQ-PHY-IITJEE-2011-P2-Q33 \
             --audit-json /tmp/core-page-audit.json
+
+  blueprint-v2-render-snapshots:
+    # Regenerate review snapshots from the live merged blueprint-v2 authority on main.
+    # These are review artifacts only; they do not publish or accept products.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install renderer dependencies
+        run: pip install --quiet jsonschema pypdf
+      - name: Materialize current main authority
+        run: |
+          git fetch origin main --depth=1
+          rm -rf /tmp/g9-main
+          git worktree add --detach /tmp/g9-main origin/main
+      - name: Render blueprint-v2 Physics snapshots
+        working-directory: /tmp/g9-main
+        run: |
+          set -eux
+          rm -rf /tmp/g9-blueprint-v2
+          mkdir -p /tmp/g9-blueprint-v2/{motion2d,motion1d,vectors,nlm,export}
+          python3 Shared/tools/render_core.py build \
+            --manifest products/physics/phy-kin-2d-motion.manifest.json \
+            --out /tmp/g9-blueprint-v2/motion2d --mode PAGES --draft
+          python3 Shared/tools/render_core.py build \
+            --manifest products/physics/phy-kin-1d-motion.manifest.json \
+            --out /tmp/g9-blueprint-v2/motion1d --mode PAGES --draft
+          python3 Shared/tools/render_core.py build \
+            --manifest products/physics/phy-vec-add-sub.manifest.json \
+            --out /tmp/g9-blueprint-v2/vectors --mode PAGES --draft
+          python3 Shared/tools/render_core.py build \
+            --manifest products/physics/phy-nlm-first-law.manifest.json \
+            --out /tmp/g9-blueprint-v2/nlm --mode PAGES --draft
+          cp /tmp/g9-blueprint-v2/motion2d/core1a.html /tmp/g9-blueprint-v2/export/core1a-motion-in-a-plane-tablet.html
+          cp /tmp/g9-blueprint-v2/motion2d/core2.html /tmp/g9-blueprint-v2/export/core2-motion-in-a-plane-tablet.html
+          cp /tmp/g9-blueprint-v2/motion1d/core1a.html /tmp/g9-blueprint-v2/export/core1a-motion-1d-straight-line-tablet.html
+          cp /tmp/g9-blueprint-v2/vectors/core1a.html /tmp/g9-blueprint-v2/export/core1a-vector-add-sub-tablet.html
+          cp /tmp/g9-blueprint-v2/nlm/core1a.html /tmp/g9-blueprint-v2/export/core1a-physics-nlm-tablet.html
+          cp Shared/web/interactive-page-blueprints.v1.json /tmp/g9-blueprint-v2/export/blueprint-authority.json
+          printf '%s\n' "$(git rev-parse HEAD)" > /tmp/g9-blueprint-v2/export/main-authority-sha.txt
+      - name: Verify Motion2D Core2 denominator and order
+        working-directory: /tmp/g9-main
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, re
+          manifest = json.loads(Path('products/physics/phy-kin-2d-motion.manifest.json').read_text(encoding='utf-8'))
+          expected = manifest['selection']['core2']
+          text = Path('/tmp/g9-blueprint-v2/export/core2-motion-in-a-plane-tablet.html').read_text(encoding='utf-8')
+          actual = re.findall(r'<article\b[^>]*data-g9-unit="([^"]+)"[^>]*data-g9-kind="QUESTION"', text)
+          print(f'Core2 manifest tally: {len(actual)}/{len(expected)}')
+          if actual != expected:
+              missing = [x for x in expected if x not in actual]
+              unexpected = [x for x in actual if x not in expected]
+              raise SystemExit(f'Core2 manifest/order mismatch; missing={missing}; unexpected={unexpected}')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: physics-blueprint-v2-render-snapshots
+          path: /tmp/g9-blueprint-v2/export
+          if-no-files-found: error
+          retention-days: 7

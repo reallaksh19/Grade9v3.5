@@ -1,0 +1,872 @@
+<!doctype html>
+<html data-g9-authority-sha="0e08782fd55ded0a2968f09b40c52cb1d8453633" data-g9-snapshot="review" data-g9-draft="62" lang="en" data-theme="dark" data-g9-shell data-g9-role="CORE1A" data-g9-mode="PAGES" data-g9-product="PRODUCT-PHY-VEC-ADD-SUB" data-g9-render-digest="f17b1f4ba1c22dea"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0"><meta name="g9-render" content="render_core/2 f17b1f4ba1c22dea"><style data-g9-inlined-tablet-css>
+/* ==========================================================================
+   Grade9V3 · 12.7" Tablet Ergonomics, Touch Targets & Icon Design System
+   Target Viewport: 1366x854 to 1440x900 CSS px (Landscape), 900x1440 (Portrait)
+   WCAG 2.5.5 Enhanced / Android Material Large Tablet Compliance (>= 48x48 px)
+   ========================================================================== */
+
+:root {
+  --tab12-container-max: 1380px;
+  --tab12-touch-min: 48px;
+  --tab12-thumb-size: 30px;
+  --tab12-base-font: 16px;
+  --tab12-radius-sm: 8px;
+  --tab12-radius-md: 12px;
+  --tab12-radius-lg: 16px;
+}
+
+/* 12.7" Base Typography Elevation */
+@media (min-width: 900px) {
+  html {
+    font-size: var(--tab12-base-font);
+  }
+}
+
+/* Large Tablet Container Constraints */
+.container, main, .main-container {
+  max-width: var(--tab12-container-max);
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   1. STRICT 48px+ TOUCH TARGET ENFORCEMENT
+   ========================================================================== */
+
+/* Buttons, Action Links, and Tab Buttons */
+button,
+.btn,
+.g9-btn,
+.tab-btn,
+.rung-node,
+.subtopic-actions a,
+.jump-nav a,
+a.action-btn {
+  min-height: var(--tab12-touch-min);
+  min-width: var(--tab12-touch-min);
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--tab12-radius-sm);
+  padding: 10px 18px;
+}
+
+/* Accordion Summary & Disclosure Controls */
+details summary,
+summary.rung-summary,
+details.reveal-block summary,
+details.core-box summary {
+  min-height: 52px;
+  padding: 14px 20px;
+  cursor: pointer;
+  touch-action: manipulation;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Touch-Optimized Range Sliders */
+input[type="range"] {
+  height: var(--tab12-touch-min) !important;
+  touch-action: pan-y;
+  cursor: pointer;
+  margin: 4px 0;
+  accent-color: #38bdf8;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  width: var(--tab12-thumb-size);
+  height: var(--tab12-thumb-size);
+  border-radius: 50%;
+  background: #38bdf8;
+  cursor: pointer;
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  touch-action: none;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: var(--tab12-thumb-size);
+  height: var(--tab12-thumb-size);
+  border-radius: 50%;
+  background: #38bdf8;
+  cursor: pointer;
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Textareas for Virtual Tablet Keyboard Typing */
+textarea,
+textarea.attempt-input,
+.attempt-box textarea {
+  min-height: 120px;
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 14px 16px;
+  border-radius: var(--tab12-radius-sm);
+  box-sizing: border-box;
+  touch-action: manipulation;
+}
+
+/* Elimination of sub-13px micro fonts */
+small, .badge, .subtopic-desc, .node-id, .stat-label, .evidence-citation {
+  font-size: 13.5px !important;
+}
+
+/* Tailwind utility floor: arbitrary micro-font classes are common in legacy explorers.
+   Keep learner-visible text at or above 13px on the tablet target even when a
+   runtime utility stylesheet is injected after this file. */
+.text-xs,
+[class~="text-[9px]"],
+[class~="text-[10px]"],
+[class~="text-[11px]"],
+[class~="text-[12px]"],
+[class~="text-[12.5px]"] {
+  font-size: 13px !important;
+}
+
+/* ==========================================================================
+   2. ICONS-INSTEAD-OF-TABLES COMPONENT SYSTEM
+   ========================================================================== */
+
+/* Metric Tile Clusters (replaces tabular telemetry) */
+.metric-tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin: 14px 0;
+}
+
+.metric-tile {
+  background: var(--bg-card, #1f293b);
+  border: 1px solid var(--border, #2e3d56);
+  border-radius: var(--tab12-radius-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.metric-tile:hover {
+  border-color: var(--accent, #38bdf8);
+}
+
+.metric-tile-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted, #94a3b8);
+}
+
+.metric-tile-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.metric-tile-value {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--accent, #38bdf8);
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.metric-tile-sub {
+  font-size: 13.5px;
+  color: var(--text-muted, #94a3b8);
+}
+
+/* Tablet Card Deck (replaces table rows) */
+.tablet-card-deck {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.tablet-card-row {
+  background: var(--bg-card, #1f293b);
+  border: 1px solid var(--border, #2e3d56);
+  border-radius: var(--tab12-radius-md);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  min-height: 64px;
+}
+
+.tablet-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid var(--accent, #38bdf8);
+  color: var(--accent, #38bdf8);
+}
+
+/* Dual Comparison Cards (replaces side-by-side comparison tables) */
+.dual-frame-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 16px 0;
+}
+
+@media (min-width: 860px) {
+  .dual-frame-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.dual-frame-card {
+  background: var(--bg-card, #161b22);
+  border: 1.5px solid var(--border, #30363d);
+  border-radius: var(--tab12-radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dual-frame-card.active {
+  border-color: var(--accent, #58a6ff);
+  box-shadow: 0 0 16px rgba(88, 166, 255, 0.2);
+}
+
+.dual-frame-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text, #f0f6fc);
+}
+
+/* Visual Arithmetic Flow Pipeline (replaces numeric arrays and synthetic division tables) */
+.arithmetic-pipeline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 16px 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pipeline-step {
+  background: var(--bg-card, #1f293b);
+  border: 1px solid var(--border, #2e3d56);
+  border-radius: var(--tab12-radius-sm);
+  padding: 12px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 110px;
+  text-align: center;
+}
+
+.pipeline-step.highlight {
+  border-color: #34d399;
+  background: rgba(52, 211, 153, 0.1);
+}
+
+.pipeline-arrow {
+  font-size: 20px;
+  color: var(--text-muted, #94a3b8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+}
+
+/* Stage Layout on 12.7" Tablets */
+@media (min-width: 960px) {
+  .stage-grid-12-7 {
+    display: grid;
+    grid-template-columns: 1.85fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+}
+
+</style><title>Construction · Vector addition, subtraction and orientation</title><style>
+[hidden]{display:none!important}
+:root{--g9-zoom:1;--g9-content-max:1380px;--g9-touch-min:48px;--g9-space:clamp(16px,2vw,28px);--g9-type-body:17px;--bg:#f6f7fb;--fg:#172033;--card:#fff;--line:#d5dce6;--accent:#1f5fae;--muted:#52627a;
+--soft:#fbfdff;--pill-bg:#eef2ff;--pill-fg:#4338ca;--src-bg:#ecfdf5;--src-fg:#047857;--info-bg:#f8fbff;--info-line:#93c5fd;--info-fg:#455d72;--warn-bg:#fff7f8;--warn-line:#ffc9d3;--warn-fg:#8a2942;--ok-bg:#f0fdf7;--ok-line:#bbf7d0;--ok-fg:#14532d}
+:root[data-theme=dark]{--bg:#0f1520;--fg:#e8edf5;--card:#18212f;--line:#2c394d;--accent:#8ab4f8;--muted:#a3b1c6;
+--soft:#141c29;--pill-bg:#262f5a;--pill-fg:#c3c9ff;--src-bg:#12301f;--src-fg:#6ee7b7;--info-bg:#14263d;--info-line:#3b6db3;--info-fg:#b8c9de;--warn-bg:#2b1620;--warn-line:#6b3045;--warn-fg:#f3b6c4;--ok-bg:#10281d;--ok-line:#1f6b44;--ok-fg:#b7efcf}
+html{font-size:calc(var(--g9-type-body) * var(--g9-zoom))}body{margin:0;background:var(--bg);color:var(--fg);font:1rem/1.6 system-ui,sans-serif;overflow-wrap:break-word}
+header[data-g9-shell-header]{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px var(--g9-space);background:var(--card);border-bottom:1px solid var(--line)}
+a{color:var(--accent)}
+header a,header button,button,summary,nav a{min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);padding:10px 14px;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg);font:inherit;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;touch-action:manipulation}
+nav[data-g9-breadcrumb]{display:flex;gap:8px;flex-wrap:wrap;padding:8px var(--g9-space)}
+main{max-width:var(--g9-content-max);margin:0 auto;padding:var(--g9-space);box-sizing:border-box}
+main>*{min-width:0}article[data-g9-unit]{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:var(--g9-space);margin:18px 0;min-width:0}
+article[data-g9-unit]>*{min-width:0}
+article[id],section[id]{scroll-margin-top:96px}
+.g9-core1a-book{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(16px,2vw,24px);margin:0 0 18px;min-width:0}
+.g9-core1a-book>h2{margin:.15em 0 .6em}
+.g9-bucket-orientation-grid{display:block;min-width:0}.g9-bucket-orientation-grid>*{min-width:0}
+[data-g9-concept-route] ol,[data-g9-section-route] ol{padding-left:1.4rem;margin:.5rem 0;box-sizing:border-box;max-width:100%;min-width:0}
+[data-g9-concept-route] li,[data-g9-section-route] li{margin:.35rem 0;max-width:100%;min-width:0}
+[data-g9-concept-route] a,[data-g9-section-route] a{display:flex;width:100%;max-width:100%;min-width:0;justify-content:flex-start;text-align:left;white-space:normal;overflow-wrap:anywhere}
+.g9-cu{padding-top:8px;border-top:1px solid var(--line)}
+.g9-cu:first-child{border-top:0}
+.g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] ol{list-style:none;padding-left:0;counter-reset:g9-derive}
+.g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] li{counter-increment:g9-derive;margin:0 0 12px;padding:12px 14px;border-left:3px solid var(--accent);background:var(--bg)}
+.g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] li::before{content:"Step " counter(g9-derive);display:block;color:var(--muted);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.g9-cu-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:.35rem 0 .8rem}
+.g9-cu-nav-links{display:flex;gap:8px;flex-wrap:wrap}
+.g9-stage-controls{display:grid;gap:8px;max-width:100%}
+.g9-stage-chips{display:flex;flex-wrap:wrap;gap:8px}
+.g9-stage-chip{border-radius:999px;padding:6px 14px;font-size:.9rem}.g9-stage-chip[aria-pressed=true]{background:var(--accent);color:var(--card);border-color:var(--accent);font-weight:700}
+.g9-stage-desc{margin:0;color:var(--muted);font-size:.92rem;min-height:1.4em}
+.g9-stage-stepper{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.g9-stage-stepper>[data-g9-stage-label]{color:var(--muted);flex:0 1 auto}
+.g9-table-scroll{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.g9-table-scroll table{width:100%;min-width:680px;border-collapse:collapse}
+.g9-table-scroll th,.g9-table-scroll td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+.g9-table-scroll th{background:var(--bg)}
+.g9-table-scroll td>.g9-math,.g9-table-scroll td>.g9-expr{margin:.15rem 0}
+[data-g9-block=worked_anchor]{border-left:4px solid var(--accent);padding-left:14px}
+.g9-watch-steps>li{margin:.8rem 0}.g9-watch-steps p{margin:.2rem 0}
+[data-g9-block=wrong_path],[data-g9-block=repair]{border-left:3px solid var(--line);padding-left:12px}
+[data-g9-block=scope_boundary]{color:var(--muted);font-size:.92rem}
+[data-g9-block=scope_boundary] ul{margin:.35rem 0;padding-left:1.2rem}
+.g9-availability-note{color:var(--muted);font-size:.9rem}
+.g9-cu-support{padding:0 0 16px;margin:0 0 16px;border-bottom:1px solid var(--line)}
+.g9-cu-support:last-of-type{border-bottom:0}.g9-cu-support>h3{font-size:1rem;line-height:1.35;margin:.3rem 0 .7rem;color:var(--muted)}
+@media (min-width:1100px){.g9-bucket-orientation-grid{display:grid;grid-template-columns:.68fr .32fr;gap:20px}}
+textarea{width:100%;min-height:120px;font:inherit;border:1px solid var(--line);border-radius:10px;padding:14px 16px;box-sizing:border-box;background:var(--card);color:var(--fg)}
+details{border:1px solid var(--line);border-radius:10px;margin:12px 0;padding:0 12px}details[data-locked] summary{opacity:.55;cursor:not-allowed}
+figure{margin:14px 0;max-width:100%;overflow-x:auto}figure svg{width:100%;height:auto;max-width:720px}figcaption{color:var(--muted)}
+.g9-prov{color:var(--muted);font-size:.95rem}.g9-expr{font-family:ui-monospace,monospace;font-size:1.05rem}
+[data-g9-meta-strip]{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+[data-g9-meta-item]{display:inline-flex;flex-wrap:wrap;gap:4px;align-items:baseline;padding:5px 9px;border:1px solid var(--line);border-radius:999px;background:var(--bg);font-size:.9rem;max-width:100%;min-width:0;box-sizing:border-box}
+[data-g9-meta-item] strong{font-weight:700;flex:0 0 auto}
+[data-g9-meta-label]{min-width:0;overflow-wrap:anywhere}
+h4{margin:.8em 0 .3em}:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+footer{padding:24px 16px;color:var(--muted)}
+@media print{:root,:root[data-theme=dark]{--bg:#fff;--fg:#000;--card:#fff;--line:#bbb;--accent:#1f5fae;--muted:#333;--soft:#fff;--pill-bg:#eee;--pill-fg:#222;--src-bg:#eee;--src-fg:#222;--info-bg:#fff;--info-line:#888;--info-fg:#222;--warn-bg:#fff;--warn-line:#888;--warn-fg:#222;--ok-bg:#fff;--ok-line:#888;--ok-fg:#222}
+header[data-g9-shell-header],nav[data-g9-breadcrumb],.g9-attempt,button,[data-g9-display-panel],[data-g9-source-pdf]{display:none!important}
+.g9-attempt:has(.g9-answer-options){display:block!important}
+.g9-attempt>:not(.g9-answer-options),.g9-answer-option input{display:none!important}
+details[data-requires-attempt]:not([open]){display:none!important}
+details{border:none}article[data-g9-unit]{break-inside:auto;border:none}
+h1,h2,h3,h4{break-after:avoid-page}footer{padding:0;break-before:avoid-page}
+body{background:#fff;color:#000}}
+.g9-attempt input[type=text],.g9-attempt select,.g9-attempt textarea{min-height:48px;box-sizing:border-box}
+.g9-answer-option,.g9-paper,.g9-match{display:flex;align-items:center;gap:.5rem;min-height:48px}
+.g9-answer-option input,.g9-paper input{min-width:48px;min-height:48px}
+.g9-attempt fieldset{min-height:48px}
+.g9-math,pre,table{max-width:100%;overflow-x:auto}
+input,select{font-size:max(16px,1rem)}
+@media (max-width:899px){header[data-g9-shell-header]{position:relative}article[data-g9-unit]{padding:16px}nav[data-g9-breadcrumb]{font-size:.95rem}}
+
+.g9-split{display:block;min-width:0}.g9-col{min-width:0}
+.g9-component{min-width:0;margin:14px 0}.g9-component:first-child{margin-top:0}
+.g9-eyebrow{font-size:.85rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 6px}
+.g9-pill{display:inline-flex;align-items:center;font-size:.85rem;font-weight:800;line-height:1.2;padding:3px 10px;border-radius:999px;background:var(--pill-bg);color:var(--pill-fg);white-space:nowrap}
+.g9-pill-source{background:var(--src-bg);color:var(--src-fg)}
+article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-bottom:1px solid var(--line)}
+.g9-c-header h2,.g9-c-concept-header h2{font-size:1.2rem;line-height:1.3;margin:0;letter-spacing:-.01em}
+.g9-c-header .g9-prov{margin:2px 0 0}
+.g9-c-disclosure-grid{margin-top:0}
+.g9-c-unit-header{margin-top:0}
+.g9-why-toggle{margin-top:10px;gap:4px 10px;flex-wrap:wrap;max-width:100%;text-align:left;justify-content:flex-start;border:0;background:transparent;padding:6px 0;font-weight:700;color:var(--muted)}
+.g9-pill-band{background:#fff7ed;color:#9a3412}.g9-pill-band[data-g9-band=D1]{background:#ecfdf5;color:#047857}.g9-pill-band[data-g9-band=D2]{background:#eff6ff;color:#1d4ed8}.g9-pill-band[data-g9-band=D4]{background:#fdf2f8;color:#be185d}
+:root[data-theme=dark] .g9-pill-band{background:#3a2a14;color:#fdba74}:root[data-theme=dark] .g9-pill-band[data-g9-band=D1]{background:#12301f;color:#6ee7b7}:root[data-theme=dark] .g9-pill-band[data-g9-band=D2]{background:#172a4d;color:#9ec5ff}:root[data-theme=dark] .g9-pill-band[data-g9-band=D4]{background:#3a1830;color:#f9a8d4}
+.g9-why{margin-top:6px}.g9-why p{margin:.2rem 0 .6rem;color:var(--muted)}
+.g9-dgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.g9-dcell{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:.85rem;color:var(--muted)}.g9-dcell b{display:block;color:var(--fg);font-size:1rem}
+.g9-c-stem [data-g9-block=stem] p{margin:.1rem 0;font-size:1.12rem;line-height:1.58;font-weight:560;white-space:pre-line}
+.g9-c-callout-info{border-left:4px solid var(--info-line);background:var(--info-bg);padding:10px 14px;border-radius:0 12px 12px 0;color:var(--info-fg)}
+.g9-c-callout-warn{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:12px;padding:10px 14px;color:var(--warn-fg)}
+.g9-c-callout-info h4,.g9-c-callout-warn h4{margin:0 0 .2rem;font-size:1rem}.g9-c-callout-warn h4{color:var(--warn-fg)}
+.g9-c-callout-info ul{margin:.2rem 0;padding-left:1.2rem}.g9-c-callout-info p,.g9-c-callout-warn p{margin:.1rem 0}
+.g9-bridge-link{color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.g9-crux-tag{display:inline-block;margin:0 0 4px;padding:1px 10px;border-radius:999px;background:var(--pill-bg);color:var(--pill-fg);font-size:.85rem;font-weight:800}
+.g9-c-step-cards [data-g9-block=construction] ol>li[data-g9-crux-step]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.g9-lines{white-space:pre-line}
+.g9-cu-support>h3{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.g9-c-attempt .g9-attempt{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--soft)}
+.g9-answer-options{display:grid;gap:8px;counter-reset:g9opt}
+.g9-answer-option{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:6px 12px}
+.g9-answer-option::before{counter-increment:g9opt;content:"(" counter(g9opt,upper-alpha) ")";font-weight:850;color:var(--accent);order:1;min-width:2.2rem}
+.g9-answer-option input{order:0}.g9-answer-option>span{order:2}
+.g9-c-visual-card,.g9-c-staged-visual{border:1px solid var(--line);border-radius:16px;background:var(--soft);padding:10px 12px 12px}
+.g9-card-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:6px}.g9-card-head strong{font-size:.9rem}
+.g9-c-visual-card figure,.g9-c-staged-visual figure{margin:0}
+.g9-c-visual-card figure svg,.g9-c-staged-visual figure svg{display:block;width:100%;height:auto;max-width:100%}
+.g9-c-visual-card figure svg{max-height:min(48vh,440px)}.g9-c-staged-visual figure svg{max-height:min(42vh,360px)}
+.g9-c-ladder .g9-block>h4{margin:.9rem 0 .2rem;font-size:.85rem;color:var(--muted)}
+.g9-rung-map,.g9-c-ladder [data-g9-ladder]{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:8px}
+.g9-rung-map>li{border:1px dashed var(--line);border-radius:12px;padding:9px 13px;color:var(--muted)}
+.g9-c-ladder [data-g9-ladder]>li{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:10px 13px}
+.g9-rung-head{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-weight:800}
+.g9-rung-no{display:inline-grid;place-items:center;min-width:2.3em;height:2.1em;border-radius:8px;background:var(--pill-bg);color:var(--pill-fg);font-size:.85rem}
+.g9-c-ladder details[data-g9-support-reveal]{border:0;padding:0;margin:.5rem 0}
+.g9-c-ladder details[data-g9-support-reveal]>summary{width:100%;justify-content:space-between;font-weight:700}
+.g9-c-ladder [data-g9-support-prompt]{margin:.5rem 0}.g9-c-ladder .g9-ladder>button{margin-top:10px}
+.g9-pdf-link{gap:6px;font-weight:700}.g9-pdf-icon{flex:none;width:24px;height:24px}.g9-pdf-link span{white-space:nowrap}header .g9-pdf-link{color:var(--accent)}.g9-c-link-list .g9-source-pdf{border-radius:12px}
+.g9-c-link-list h4{margin:.9rem 0 .3rem;font-size:.85rem;color:var(--muted)}
+.g9-c-link-list ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:.2rem 0;padding:0}
+.g9-c-link-list li{margin:0}.g9-c-link-list a{display:inline-flex;align-items:center;min-height:48px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--fg);text-decoration:none}
+.g9-c-disclosure>details{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:0;overflow:hidden;margin:0}
+.g9-c-disclosure>details>summary{list-style:none;display:flex;width:100%;justify-content:space-between;border:0;border-radius:0;background:transparent;padding:13px 15px;font-weight:850;min-height:48px}
+.g9-c-disclosure>details>summary::-webkit-details-marker{display:none}
+.g9-c-disclosure>details>summary::after{content:"Show";font-size:.85rem;background:var(--pill-bg);color:var(--pill-fg);padding:4px 10px;border-radius:999px}
+.g9-c-disclosure>details[open]>summary::after{content:"Hide"}.g9-c-disclosure>details[data-locked]>summary::after{content:"After you attempt"}
+.g9-c-disclosure>details[open]>summary{border-bottom:1px solid var(--line);background:var(--card)}
+.g9-c-disclosure [data-g9-payload-slot]{padding:6px 16px 16px}
+.g9-solution-move{display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.g9-solution-move:last-child{border-bottom:0}
+.g9-step-no{font-weight:850;font-size:.9rem;color:var(--pill-fg);background:var(--pill-bg);border-radius:8px;padding:5px 6px;text-align:center;height:max-content}
+.g9-step-body [data-g9-block=solution_inputs]{display:flex;flex-wrap:wrap;gap:.4rem;align-items:baseline;color:var(--muted)}
+.g9-step-body [data-g9-block=solution_inputs] h4{margin:0}
+.g9-step-body [data-g9-block=solution_inputs] ul{display:flex;flex-wrap:wrap;gap:.4rem;list-style:none;margin:0;padding:0}
+.g9-step-body [data-g9-block=solution_inputs] li{border:1px solid var(--line);border-radius:999px;padding:1px 10px;font-size:.85rem}
+.g9-step-body p{margin:.25rem 0}.g9-step-body h4{margin:0;font-size:.85rem;color:var(--muted)}
+.g9-solution-move[data-g9-solution-crux=true]{background:var(--info-bg);border-radius:10px;padding-left:8px;padding-right:8px}
+.g9-c-step-list [data-g9-block=working] ol{list-style:none;padding:0;margin:0;counter-reset:g9s}
+.g9-c-step-list [data-g9-block=working] ol>li{counter-increment:g9s;display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.g9-c-step-list [data-g9-block=working] ol>li::before{content:counter(g9s);font-weight:850;font-size:.9rem;color:var(--pill-fg);background:var(--pill-bg);border-radius:8px;padding:5px 6px;text-align:center;height:max-content}
+.g9-c-answer-box{background:var(--ok-bg);border:1px solid var(--ok-line);border-radius:12px;padding:10px 14px;color:var(--ok-fg)}
+.g9-c-answer-box p{margin:.15rem 0}.g9-c-answer-box h4{margin:0 0 .2rem;font-size:.85rem}
+.g9-c-check-box{border-left:4px solid var(--ok-line);padding:4px 14px;color:var(--ok-fg)}.g9-c-check-box h4{margin:0;font-size:.85rem}.g9-c-check-box p{margin:.15rem 0}
+.g9-c-tile,.g9-c-recall-card{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:12px 16px}
+.g9-c-tile h4,.g9-c-recall-card h4{margin:0 0 .3rem}.g9-c-tile ul{margin:.2rem 0;padding-left:1.2rem}
+.g9-c-banner{border-left:5px solid var(--accent);background:var(--info-bg);padding:12px 16px;border-radius:0 14px 14px 0}.g9-c-banner h4{margin:0 0 .2rem;color:var(--accent)}.g9-c-banner p{margin:.1rem 0}
+.g9-unit-head{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.g9-unit-no{display:inline-grid;place-items:center;width:2.3em;height:2.3em;border-radius:50%;background:var(--accent);color:var(--card);font-weight:850}
+.g9-unit-head h3{margin:0;flex:1 1 12rem;font-size:1.12rem;line-height:1.35}.g9-pill-concept{background:var(--info-bg);color:var(--info-fg);border:1px solid var(--info-line)}
+.g9-c-step-cards [data-g9-block=construction] ol{list-style:none;margin:0;padding:0;counter-reset:g9c;display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+.g9-c-step-cards [data-g9-block=construction] ol>li{counter-increment:g9c;position:relative;border:1px solid var(--line);border-radius:14px;background:var(--card);padding:12px 14px 12px 54px;min-width:0;overflow-wrap:anywhere}
+.g9-c-step-cards [data-g9-block=construction] ol>li::before{content:counter(g9c);position:absolute;left:14px;top:12px;display:grid;place-items:center;width:1.9em;height:1.9em;border-radius:50%;background:var(--pill-bg);color:var(--pill-fg);font-weight:850;font-size:.9rem}
+.g9-c-step-cards li em{display:inline-block;min-width:5.6rem;color:var(--muted);font-style:normal;font-weight:700}
+.g9-c-step-cards li br{display:block;content:"";margin-top:.3rem}
+.g9-c-equation-card,.g9-c-worked-card{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:10px 14px}
+.g9-c-worked-card{border-left:4px solid var(--accent)}.g9-c-worked-card [data-g9-block=worked_anchor]{border-left:0;padding-left:0}
+.g9-c-trap-card{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:14px;padding:10px 14px;color:var(--warn-fg)}
+.g9-c-trap-card [data-g9-block]{border-left:0;padding-left:0}.g9-c-trap-card h4{margin:.5rem 0 .1rem;font-size:.85rem}
+.g9-c-trap-card ul{margin:.1rem 0;padding-left:1.2rem}
+.g9-c-triad{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:10px 14px}
+.g9-c-triad h4{margin:0 0 .4rem;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.g9-triad{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.g9-triad>li{display:grid;gap:2px;border-left:4px solid var(--line);padding:2px 0 2px 10px}
+.g9-triad>li[data-g9-triad-role=CHECK]{border-color:var(--info-line)}.g9-triad>li[data-g9-triad-role=APPLY]{border-color:var(--ok-line)}.g9-triad>li[data-g9-triad-role=CONNECT]{border-color:var(--pill-fg)}
+.g9-triad-head{font-size:.85rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.g9-c-chips ul,.g9-c-chips ol{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:.3rem 0;padding:0}
+.g9-c-chips li{margin:0}
+.g9-c-chips a{border:1px solid var(--line);border-radius:999px;background:var(--card);padding:6px 14px;min-height:48px;display:inline-flex;align-items:center;text-decoration:none;color:var(--fg)}
+/* 12.7-inch tablet: the identity block is a title row and a chip row, so the first screen shows the work and not the labels */
+article[data-g9-role=CORE2]>.slot-identity,article[data-g9-role=CORE1A]>.slot-identity{display:flex;flex-wrap:wrap;align-items:center;gap:4px 16px;padding:0 0 8px;margin-bottom:12px}
+article[data-g9-role=CORE2]>.slot-identity>.g9-component,article[data-g9-role=CORE1A]>.slot-identity>.g9-component{display:contents}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-block=source_identity]{order:1;flex:1 1 16rem;display:flex;align-items:baseline;flex-wrap:wrap;gap:0 14px;min-width:0}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-block=source_identity] h2,article[data-g9-role=CORE1A]>.slot-identity h2{margin:0}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-block=source_identity] .g9-prov{margin:0}
+article[data-g9-role=CORE2]>.slot-identity .g9-why-toggle{order:2;margin:0;padding:2px 0;min-height:var(--g9-touch-min)}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-meta-strip],article[data-g9-role=CORE1A]>.slot-identity [data-g9-meta-strip]{order:3;flex:1 0 100%;margin:0;gap:6px}
+article[data-g9-role=CORE2]>.slot-identity .g9-why{order:4;flex:1 0 100%}
+article[data-g9-role=CORE1A]>.slot-identity h2{order:1;flex:1 1 auto}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-block=section_route]{order:4;flex:1 0 100%;display:flex;align-items:center;gap:6px 12px;flex-wrap:wrap}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-block=section_route] h4{margin:0;white-space:nowrap}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] ol{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] li{margin:0}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] a{display:inline-block;width:auto;max-width:24rem;padding:4px 14px;border-radius:999px;line-height:38px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-meta-item],article[data-g9-role=CORE1A]>.slot-identity [data-g9-meta-item]{padding:2px 10px;line-height:1.35}
+@media (min-width:980px){article[data-g9-role="CORE2"] .g9-split{display:grid;grid-template-columns:minmax(0,42fr) minmax(0,58fr);gap:22px;align-items:start}article[data-g9-role="CORE2"] .g9-split-primary-only,article[data-g9-role="CORE2"] .g9-split-support-only{grid-template-columns:minmax(0,1fr)}}@media (max-width:979px){article[data-g9-role="CORE2"] .g9-split{display:flex;flex-direction:column}article[data-g9-role="CORE2"] .g9-split .g9-col,article[data-g9-role="CORE2"] .g9-split .blueprint-slot,article[data-g9-role="CORE2"] .g9-split .g9-cu,article[data-g9-role="CORE2"] .g9-split .g9-cu-support{display:contents}article[data-g9-role="CORE2"] [data-g9-component="IDENTITY"]{order:10}article[data-g9-role="CORE2"] [data-g9-component="SOURCE_PDF"]{order:15}article[data-g9-role="CORE2"] [data-g9-component="DIFFICULTY_WHY"]{order:20}article[data-g9-role="CORE2"] [data-g9-component="STEM"]{order:30}article[data-g9-role="CORE2"] [data-g9-component="CONDITIONS"]{order:50}article[data-g9-role="CORE2"] [data-g9-component="TRAP"]{order:60}article[data-g9-role="CORE2"] [data-g9-component="ATTEMPT"]{order:70}article[data-g9-role="CORE2"] [data-g9-component="REPRESENTATION"]{order:40}article[data-g9-role="CORE2"] [data-g9-component="HINT_LADDER"]{order:80}article[data-g9-role="CORE2"] [data-g9-component="CONCEPT_NAV"]{order:90}article[data-g9-role="CORE2"] [data-g9-component="SOLUTION"]{order:100}}@media print{article[data-g9-role="CORE2"] .g9-split{display:grid;grid-template-columns:minmax(0,42fr) minmax(0,58fr);gap:12px}}@media (min-width:1100px){article[data-g9-role="CORE1A"] .g9-split{display:grid;grid-template-columns:minmax(0,60fr) minmax(0,40fr);gap:22px;align-items:start}article[data-g9-role="CORE1A"] .g9-split-primary-only,article[data-g9-role="CORE1A"] .g9-split-support-only{grid-template-columns:minmax(0,1fr)}article[data-g9-role="CORE1A"] .g9-split:not(.g9-split-support-only)>.g9-col-support{position:sticky;top:80px;max-height:calc(100vh - 96px);overflow-y:auto;overscroll-behavior:contain}}@media (max-width:1099px){article[data-g9-role="CORE1A"] .g9-split{display:flex;flex-direction:column}article[data-g9-role="CORE1A"] .g9-split .g9-col,article[data-g9-role="CORE1A"] .g9-split .blueprint-slot,article[data-g9-role="CORE1A"] .g9-split .g9-cu,article[data-g9-role="CORE1A"] .g9-split .g9-cu-support{display:contents}article[data-g9-role="CORE1A"] [data-g9-component="CONCEPT_HEADER"]{order:10}article[data-g9-role="CORE1A"] [data-g9-component="SECTION_ROUTE"]{order:20}article[data-g9-role="CORE1A"] [data-g9-component="UNIT_HEADER"]{order:30}article[data-g9-role="CORE1A"] [data-g9-component="KEY_STEP"]{order:40}article[data-g9-role="CORE1A"] [data-g9-component="MODEL_CONTRACT"]{order:50}article[data-g9-role="CORE1A"] [data-g9-component="QUESTION_BRIDGE"]{order:60}article[data-g9-role="CORE1A"] [data-g9-component="CONSTRUCTION_STEPS"]{order:80}article[data-g9-role="CORE1A"] [data-g9-component="EQUATIONS"]{order:90}article[data-g9-role="CORE1A"] [data-g9-component="WORKED_EXAMPLE"]{order:100}article[data-g9-role="CORE1A"] [data-g9-component="STAGED_VISUAL"]{order:70}article[data-g9-role="CORE1A"] [data-g9-component="TRAP_REPAIR"]{order:110}article[data-g9-role="CORE1A"] [data-g9-component="QUICK_CHECK"]{order:120}article[data-g9-role="CORE1A"] [data-g9-component="EXIT_RECALL"]{order:130}article[data-g9-role="CORE1A"] [data-g9-component="PRACTICE_LINKS"]{order:140}}@media print{article[data-g9-role="CORE1A"] .g9-split{display:grid;grid-template-columns:minmax(0,60fr) minmax(0,40fr);gap:12px}}@media (min-width:1100px){article[data-g9-role="CORE1B"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:22px;align-items:start}article[data-g9-role="CORE1B"] .g9-split-primary-only,article[data-g9-role="CORE1B"] .g9-split-support-only{grid-template-columns:minmax(0,1fr)}}@media print{article[data-g9-role="CORE1B"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:12px}}@media (min-width:1100px){article[data-g9-role="CORE2A"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:22px;align-items:start}article[data-g9-role="CORE2A"] .g9-split-primary-only,article[data-g9-role="CORE2A"] .g9-split-support-only{grid-template-columns:minmax(0,1fr)}}@media print{article[data-g9-role="CORE2A"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:12px}}@media (min-width:1100px){article[data-g9-role="CORE2B"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:22px;align-items:start}article[data-g9-role="CORE2B"] .g9-split-primary-only,article[data-g9-role="CORE2B"] .g9-split-support-only{grid-template-columns:minmax(0,1fr)}}@media print{article[data-g9-role="CORE2B"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:12px}}</style><style id="pr375-u4-remediation">
+/* PR #375 U4 remediation: accessibility, reflow and alternate viewports. */
+*, *::before, *::after { box-sizing: border-box; }
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid #38bdf8 !important;
+  outline-offset: 2px !important;
+}
+img, svg, canvas { max-width: 100%; }
+input, select, textarea { max-width: 100%; }
+::placeholder { color: #94a3b8 !important; opacity: 1 !important; }
+[data-theme="light"] ::placeholder { color: #475569 !important; }
+.u4-clear-button { color: #f8fafc !important; }
+[data-theme="light"] .u4-clear-button { color: #0f172a !important; }
+
+/* Never communicate correctness by colour alone. */
+.opt-btn.selected-correct::after {
+  content: " ✓ Correct";
+  margin-inline-start: .4rem;
+  font-weight: 800;
+}
+.opt-btn.selected-incorrect::after {
+  content: " ✕ Incorrect";
+  margin-inline-start: .4rem;
+  font-weight: 800;
+}
+
+/* Contrast repairs for the learner-visible light theme. */
+[data-theme="light"] .step-content-calc {
+  color: #7c2d12 !important;
+  background: #fff7ed !important;
+  border: 1px solid #c2410c !important;
+}
+[data-theme="light"] .answer-banner,
+[data-theme="light"] .badge-success,
+[data-theme="light"] .saved-pill {
+  color: #065f46 !important;
+}
+[data-theme="light"] .badge-warning,
+[data-theme="light"] .hint-tag,
+[data-theme="light"] .diag-header-another {
+  color: #7c2d12 !important;
+}
+[data-theme="light"] .step-label,
+[data-theme="light"] details > summary {
+  color: #075985 !important;
+}
+[data-theme="light"] .formula-box,
+[data-theme="light"] .math-banner {
+  color: #422006 !important;
+  background: #fef3c7 !important;
+  border-color: #92400e !important;
+}
+[data-theme="light"] footer { color: #475569 !important; }
+
+/* Default dark-theme contrast repairs from U4. */
+html[data-theme="dark"] .step-label { color: #7dd3fc !important; }
+html[data-theme="dark"] details > summary { color: #7dd3fc !important; }
+.q-count, .open-btn { color: #93c5fd !important; }
+.tag-2d, .tag-1d, .tag-vec, .tag-ncert, .tag-sba, .tag-proj, .tag-cons { color: #ffffff !important; }
+footer { color: #94a3b8 !important; }
+
+/* The offline 1D master lost Tailwind preflight + custom theme utilities. */
+body.u4-tailwind-offline {
+  margin: 0 !important;
+  background: #090d16 !important;
+  color: #f1f5f9 !important;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+.u4-tailwind-offline.bg-background, .u4-tailwind-offline .bg-background { background-color: #090d16 !important; }
+.u4-tailwind-offline .bg-card { background-color: #111827 !important; }
+.u4-tailwind-offline .border-border { border-color: #334155 !important; }
+.u4-tailwind-offline .bg-slate-950\/90 { background-color: rgba(2, 6, 23, .94) !important; }
+.u4-tailwind-offline .bg-slate-900 { background-color: #0f172a !important; }
+.u4-tailwind-offline .bg-slate-800 { background-color: #1e293b !important; }
+.u4-tailwind-offline .max-w-7xl { max-width: 80rem !important; }
+.u4-tailwind-offline .overflow-x-auto { overflow-x: auto !important; }
+.u4-tailwind-offline .whitespace-nowrap { white-space: nowrap !important; }
+.u4-tailwind-offline .font-sans { font-family: ui-sans-serif, system-ui, sans-serif !important; }
+.u4-tailwind-offline .text-slate-500,
+.u4-tailwind-offline .text-slate-600 { color: #cbd5e1 !important; }
+.u4-tailwind-offline .text-slate-400 { color: #a8b5c7 !important; }
+.u4-tailwind-offline header { max-width: 100%; }
+
+/* Reflow at phone width and at a 200% zoom-equivalent viewport. */
+@media (max-width: 700px) {
+  header.sticky, .sticky-header, .top-nav.sticky { position: static !important; top: auto !important; }
+}
+@media (max-width: 480px) {
+  .header-actions,
+  .g9-nav-group,
+  .g9-header-actions,
+  .top-nav-header,
+  .course-badge-row,
+  .workspace-title-row {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-wrap: wrap !important;
+  }
+  .g9-block, nav, ol, ul, main, section, article, .app-container, .container {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  ol, ul { padding-inline-start: 1.5rem !important; }
+  #jump-select { width: 100% !important; max-width: 100% !important; }
+  .tab-btn { white-space: normal !important; min-width: 0 !important; flex: 1 1 140px !important; }
+  .tabs, .tab-strip, .tab-nav, .tab-bar, .g9-tabs, [class*="tabs-row"] {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .g9-nav-group > *, .header-actions > * { max-width: 100% !important; }
+  pre { white-space: pre-wrap !important; overflow-wrap: anywhere !important; max-width: 100% !important; }
+  table { display: block; max-width: 100% !important; overflow-x: auto !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (forced-colors: active) {
+  svg text { fill: CanvasText !important; stroke: transparent !important; }
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 3px solid Highlight !important;
+  }
+}
+</style>
+<style id="pr375-u4-residual-remediation">
+@media (max-width: 480px) {
+  /* Generated CORE1A section-route pills used 24rem + padding, producing ~467px boxes. */
+  [data-g9-section-route] a,
+  [data-g9-concept-route] a,
+  article[data-g9-role="CORE1A"] > .slot-identity [data-g9-section-route] a {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    line-height: 1.4 !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  /* Consolidated and interactive headers must reflow as complete units, not just their children. */
+  .header-inner,
+  header.g9-shell {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+  }
+  .header-inner > *,
+  header.g9-shell > .g9-nav-group {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .header-brand,
+  .header-brand h1,
+  .header-actions,
+  header.g9-shell .g9-nav-group,
+  header.g9-shell .g9-breadcrumb {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+  }
+  .header-brand h1 { align-items: flex-start !important; }
+  .header-actions { width: 100% !important; justify-content: flex-start !important; }
+  header.g9-shell { padding-block: 8px !important; }
+  header.g9-shell .g9-breadcrumb { flex: 1 1 100% !important; overflow-wrap: anywhere !important; }
+}
+</style>
+<style id="pr375-u1-remediation">
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%} body{overflow-wrap:anywhere} p,li{line-height:1.4}
+:where(p,li,label,button,input,select,textarea,summary,td,th,figcaption,.btn,.q-badge,.tag-pill,.hint-badge,.hint-tag,.subject-badge,.step-label,.diag-header,.formula-box,#saveStatus,.save-status,.tag,.q-count,.open-btn,.stat .label,section.section-header h2,.study-kicker,.brand-badge,.hero-pill,.badge,.core-tag,.telemetry-title,.control-label,.card-action,.breadcrumb){font-size:max(14px,1em)!important}
+:where(a[href="practice/index.html"],header a,nav a,.breadcrumb a,a.g9-bridge-link,[data-g9-block="entry_assumptions"] a){min-height:48px!important;min-width:48px!important;display:inline-flex!important;align-items:center!important;justify-content:center;padding-block:10px!important;box-sizing:border-box!important}
+@media(min-width:1100px){article[data-g9-role="CORE1A"] .g9-split{grid-template-columns:minmax(0,1fr)!important}article[data-g9-role="CORE1A"] .g9-col-support{position:static!important;top:auto!important}}
+article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;line-height:1.35!important;min-height:48px!important}
+
+.badge,.study-kicker{font-size:14px!important}
+</style>
+</head><body data-core="CORE1A" data-blueprint-ref="BP-CORE1A-CONSTRUCTION@1.4.0"><header data-g9-shell-header><a data-g9-home href="practice/index.html">Home</a><button type="button" onclick="history.back()">Back</button><button type="button" data-g9-action="search">Search</button><button type="button" data-g9-action="display">Display</button><div data-g9-search-panel hidden><input data-g9-search-input type="search" aria-label="Search this page"></div><div data-g9-display-panel hidden><button type="button" data-g9-font="dec">A−</button><button type="button" data-g9-font="reset">A</button><button type="button" data-g9-font="inc">A+</button><button type="button" data-g9-theme="light">Light</button><button type="button" data-g9-theme="dark">Dark</button><button type="button" data-g9-zoom="dec">Zoom −</button><button type="button" data-g9-zoom="reset">100%</button><button type="button" data-g9-zoom="inc">Zoom +</button></div></header><nav data-g9-breadcrumb aria-label="Breadcrumb"><a href="practice/index.html">Home</a><span aria-current="page">CORE1A</span></nav><noscript>Answers open after you attempt; this page needs JavaScript.</noscript><main><aside data-g9-snapshot-note class="g9-card" style="margin:0 0 14px"><strong>Review snapshot.</strong> Generated by render_core/2 from merged blueprint authority <code>main@0e08782fd55ded0a2968f09b40c52cb1d8453633</code>. Academic content is the governed manifest/package/bank projection; only standalone navigation, PDF-control removal and CSS inlining are adapted.</aside><h1>Vector addition, subtraction and orientation: Construction</h1><section class="g9-core1a-book" data-g9-bucket-orientation data-g9-bucket-ref="BUCKET-PHY-VEC-ADD-SUB"><p class="g9-prov">Concept Book</p><h2>Vector addition, subtraction and orientation</h2><div class="g9-bucket-orientation-grid"><div><div class="g9-block" data-g9-block="learning_promise"><h4>Learning promise</h4><p>Component-wise vector addition in declared axes, choosing an input component to satisfy a resultant-component constraint, qualitative operand-order orientation for vector subtraction, and resolving a magnitude-and-angle vector into signed perpendicular components, including correct binding to an initial-vector state when the context names one.</p></div><nav class="g9-block" data-g9-block="concept_route" data-g9-concept-route aria-label="Concept Book route"><h4>Concept route</h4><ol><li data-g9-concept-ref="MIC-PHY-VEC-RESULTANT-CONSTRAINT"><a href="#MIC-PHY-VEC-RESULTANT-CONSTRAINT">Impose a component constraint on a resultant</a><ol><li><a href="#CU-PHY-VEC-RESULTANT-CONSTRAINT-1">Construction 1</a></li></ol></li><li data-g9-concept-ref="MIC-PHY-VEC-COMPONENT-SUM"><a href="#MIC-PHY-VEC-COMPONENT-SUM">Add vectors by corresponding signed components</a><ol><li><a href="#CU-PHY-VEC-COMPONENT-SUM-1">Construction 1</a></li></ol></li><li data-g9-concept-ref="MIC-PHY-VEC-SUB-ORDER"><a href="#MIC-PHY-VEC-SUB-ORDER">Operand order reverses a subtraction result</a><ol><li><a href="#CU-PHY-VEC-SUB-ORDER-1">Construction 1</a></li></ol></li><li data-g9-concept-ref="MIC-PHY-VEC-ANGLE-DECOMPOSITION"><a href="#MIC-PHY-VEC-ANGLE-DECOMPOSITION">Resolve magnitude-and-angle vectors into signed perpendicular components</a></li></ol></nav></div><aside><div class="g9-block" data-g9-block="foundation_route"><h4>Foundation route</h4><ul><li data-g9-foundation-ref="BUCKET-VECTOR-REPRESENTATION" data-g9-availability="unlinked">Vector representation and subtraction <span class="g9-availability-note">— direct route unavailable in this product</span></li></ul></div><div class="g9-block" data-g9-block="model_contract"><h4>Model contract</h4><ul><li>Treat subtraction order as part of the requested directed result; swapping the order reverses orientation rather than merely changing notation.</li></ul></div><div class="g9-block" data-g9-block="scope_boundary"><h4>Outside this book</h4><ul><li>Inverse-trigonometric direction recovery when the angle itself is the unknown; this remains a separate learner action.</li><li>Dot-product calculations.</li><li>Cross-product magnitude and axial-orientation calculations.</li><li>Later-time evolution of resolved initial-velocity components; that belongs to Motion-in-2D / projectile capabilities, not vector decomposition.</li></ul></div></aside></div></section><article id="MIC-PHY-VEC-RESULTANT-CONSTRAINT" data-g9-unit="MIC-PHY-VEC-RESULTANT-CONSTRAINT" data-g9-kind="CONCEPT" data-g9-role="CORE1A" data-g9-search-text="Physics Vectors / Motion in a Plane Impose a component constraint on a resultant Medium concept Impose a component constraint on a resultant" class="g9-stage-support"><section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true"><div class="g9-component g9-c-concept-header" data-g9-component="CONCEPT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="CONCEPT_HEADER"><h2>Impose a component constraint on a resultant</h2><div data-g9-meta-strip data-g9-meta-role="CORE1A" data-g9-meta-record="MIC-PHY-VEC-RESULTANT-CONSTRAINT" data-g9-search-safe><span data-g9-meta-item data-g9-meta-kind="subject" data-g9-meta-ref="Physics" data-g9-meta-value="Physics"><strong>Subject:</strong> <span data-g9-meta-label>Physics</span></span><span data-g9-meta-item data-g9-meta-kind="topic" data-g9-meta-ref="BUCKET-PHY-VEC-ADD-SUB" data-g9-meta-value="Vectors / Motion in a Plane"><strong>Topic:</strong> <span data-g9-meta-label>Vectors / Motion in a Plane</span></span><span data-g9-meta-item data-g9-meta-kind="concept" data-g9-meta-ref="MIC-PHY-VEC-RESULTANT-CONSTRAINT" data-g9-meta-value="Impose a component constraint on a resultant"><strong>Concept:</strong> <span data-g9-meta-label>Impose a component constraint on a resultant</span></span><span data-g9-meta-item data-g9-meta-kind="concept-difficulty" data-g9-meta-ref="MIC-PHY-VEC-RESULTANT-CONSTRAINT" data-g9-meta-value="MEDIUM"><strong>Concept difficulty:</strong> <span data-g9-meta-label>Medium concept</span></span></div></div></section><div class="g9-split"><div class="g9-col g9-col-primary"><section class="blueprint-slot slot-construction" data-blueprint-slot="construction" data-required="true"><section id="CU-PHY-VEC-RESULTANT-CONSTRAINT-1" class="g9-cu" data-g9-cu="CU-PHY-VEC-RESULTANT-CONSTRAINT-1"><div class="g9-component g9-c-unit-header" data-g9-component="UNIT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="UNIT_HEADER" data-g9-component-unit="CU-PHY-VEC-RESULTANT-CONSTRAINT-1"><div class="g9-unit-head"><span class="g9-unit-no" aria-hidden="true">1</span><h3>Construction</h3><span class="g9-pill g9-pill-concept">Medium concept</span></div><nav class="g9-cu-nav" data-g9-unit-navigation aria-label="Concept Book section navigation"><span data-g9-route-position>Section 1 of 4</span><span class="g9-cu-nav-links"><a data-g9-next-section href="#CU-PHY-VEC-COMPONENT-SUM-1" aria-label="Next section: Construction 1">Next →</a></span></nav></div><div class="g9-component g9-c-banner" data-g9-component="KEY_STEP" data-g9-level="REQUIRED" data-g9-presentation="BANNER"><div class="g9-block" data-g9-block="inferential_jump"><h4>The key step</h4><p>A requested resultant direction can be translated into a component condition, such as zero along one axis, and that condition can be solved before any magnitude or travel-time calculation.</p></div></div><div class="g9-component g9-c-tile" data-g9-component="MODEL_CONTRACT" data-g9-level="EXPECTED" data-g9-presentation="TILE"><div class="g9-block" data-g9-block="entry_assumptions"><h4>You need</h4><ul><li>Can add vectors component by component in a common axis system.</li></ul><ul><li data-g9-prereq="MIC-PHY-VEC-COMPONENT-SUM" data-bridged="false">MIC-PHY-VEC-COMPONENT-SUM</li></ul></div></div><div class="g9-component g9-c-step-cards" data-g9-component="CONSTRUCTION_STEPS" data-g9-level="REQUIRED" data-g9-presentation="STEP_CARDS" data-g9-component-items="4" data-g9-component-unit="CU-PHY-VEC-RESULTANT-CONSTRAINT-1"><div class="g9-block" data-g9-block="construction"><ol><li data-g9-step="VC-1"><strong>Translate the requested resultant direction into a component condition on the declared axes.</strong><br><em>Why valid:</em> A resultant exactly perpendicular to one axis has zero component along that axis.<br><em>Result:</em> For a direct-across resultant, the along-stream resultant component is set to zero.</li><li data-g9-step="VC-2"><strong>Write the component-sum equation for that axis using all contributing vectors with their signs.</strong><br><em>Why valid:</em> The resultant component equals the sum of the input components on the same axis.<br><em>Result:</em> R_x=A_x+B_x, with the stated target substituted for R_x.</li><li data-g9-step="VC-3"><strong>Solve the signed input component required to satisfy the target.</strong><br><em>Why valid:</em> The constraint equation determines the compensating component directly.<br><em>Result:</em> If R_x=0, then the required compensating input is A_x=-B_x.</li><li data-g9-step="VC-4"><strong>Substitute the solved component back into the sum and confirm the constrained resultant component.</strong><br><em>Why valid:</em> Direct substitution checks both sign and axis choice without relying on the story wording.<br><em>Result:</em> The constrained component evaluates to the requested target.</li></ol></div></div></section></section></div><div class="g9-col g9-col-support"><section class="blueprint-slot slot-representation" data-blueprint-slot="representation" data-required="true"></section><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><section class="g9-cu-support" data-g9-support-for="CU-PHY-VEC-RESULTANT-CONSTRAINT-1"><h3>Construction 1</h3><div class="g9-component g9-c-trap-card" data-g9-component="TRAP_REPAIR" data-g9-level="REQUIRED" data-g9-presentation="TRAP_CARD" data-g9-component-items="2" data-g9-component-unit="CU-PHY-VEC-RESULTANT-CONSTRAINT-1"><div class="g9-block" data-g9-block="wrong_path"><h4>A tempting wrong path</h4><ul><li>To make a resultant point directly across, each contributing vector must itself point directly across.</li><li>A zero resultant component means all motion or all vector magnitude is zero.</li></ul></div><div class="g9-block" data-g9-block="diagnose"><h4>Diagnose</h4><ul><li>Can one vector have an along-stream component if another vector has an equal opposite along-stream component?</li><li>If the resultant x-component is zero but the y-component is positive, is the resultant the zero vector?</li></ul></div><div class="g9-block" data-g9-block="repair"><h4>Repair</h4><ul><li>Apply the condition to the resultant, not each input. Opposite signed components can cancel while the individual vectors remain angled.</li><li>A component constraint applies to one axis only. The resultant can still be nonzero on the perpendicular axis.</li></ul></div></div></section></section></div></div><div class="g9-split g9-split-support-only"><div class="g9-col g9-col-support"><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><div class="g9-component g9-c-recall-card" data-g9-component="EXIT_RECALL" data-g9-level="REQUIRED" data-g9-presentation="RECALL_CARD"><div class="g9-block" data-g9-block="exit_task"><h4>Try it with less support</h4><p>In one frame, a current contributes +3 along the x-axis. Choose the swimmer&#x27;s x-component so the combined velocity has x-component 0, and state the equation you used.</p></div><div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response"><label>Your answer<textarea data-g9-attempt rows="4"></textarea></label><label class="g9-paper"><input data-g9-paper type="checkbox">I worked this on paper</label><button type="button" data-g9-commit>I have attempted this</button></div><details data-g9-reveal data-requires-attempt data-g9-payload-ref="CORE1A-MIC-PHY-VEC-RESULTANT-CONSTRAINT-exit"><summary>Model answer</summary><div data-g9-payload-slot></div></details><template data-g9-payload="CORE1A-MIC-PHY-VEC-RESULTANT-CONSTRAINT-exit"><div class="g9-block" data-g9-block="exit_answer"><p>The swimmer must contribute -3 along x, because 0=(-3)+3.</p><ol><li>The target is a zero x-component for the resultant.</li><li>The resultant x-component is the signed sum of swimmer and current x-components.</li><li>Setting 0=v_swimmer,x+3 gives v_swimmer,x=-3.</li></ol></div></template></div></section></div></div></article><article id="MIC-PHY-VEC-COMPONENT-SUM" data-g9-unit="MIC-PHY-VEC-COMPONENT-SUM" data-g9-kind="CONCEPT" data-g9-role="CORE1A" data-g9-search-text="Physics Vectors / Motion in a Plane Add vectors by corresponding signed components Medium concept Add vectors by corresponding signed components" class="g9-stage-support"><section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true"><div class="g9-component g9-c-concept-header" data-g9-component="CONCEPT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="CONCEPT_HEADER"><h2>Add vectors by corresponding signed components</h2><div data-g9-meta-strip data-g9-meta-role="CORE1A" data-g9-meta-record="MIC-PHY-VEC-COMPONENT-SUM" data-g9-search-safe><span data-g9-meta-item data-g9-meta-kind="subject" data-g9-meta-ref="Physics" data-g9-meta-value="Physics"><strong>Subject:</strong> <span data-g9-meta-label>Physics</span></span><span data-g9-meta-item data-g9-meta-kind="topic" data-g9-meta-ref="BUCKET-PHY-VEC-ADD-SUB" data-g9-meta-value="Vectors / Motion in a Plane"><strong>Topic:</strong> <span data-g9-meta-label>Vectors / Motion in a Plane</span></span><span data-g9-meta-item data-g9-meta-kind="concept" data-g9-meta-ref="MIC-PHY-VEC-COMPONENT-SUM" data-g9-meta-value="Add vectors by corresponding signed components"><strong>Concept:</strong> <span data-g9-meta-label>Add vectors by corresponding signed components</span></span><span data-g9-meta-item data-g9-meta-kind="concept-difficulty" data-g9-meta-ref="MIC-PHY-VEC-COMPONENT-SUM" data-g9-meta-value="MEDIUM"><strong>Concept difficulty:</strong> <span data-g9-meta-label>Medium concept</span></span></div></div></section><div class="g9-split"><div class="g9-col g9-col-primary"><section class="blueprint-slot slot-construction" data-blueprint-slot="construction" data-required="true"><section id="CU-PHY-VEC-COMPONENT-SUM-1" class="g9-cu" data-g9-cu="CU-PHY-VEC-COMPONENT-SUM-1"><div class="g9-component g9-c-unit-header" data-g9-component="UNIT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="UNIT_HEADER" data-g9-component-unit="CU-PHY-VEC-COMPONENT-SUM-1"><div class="g9-unit-head"><span class="g9-unit-no" aria-hidden="true">1</span><h3>Construction</h3><span class="g9-pill g9-pill-concept">Medium concept</span></div><nav class="g9-cu-nav" data-g9-unit-navigation aria-label="Concept Book section navigation"><span data-g9-route-position>Section 2 of 4</span><span class="g9-cu-nav-links"><a data-g9-prev-section href="#CU-PHY-VEC-RESULTANT-CONSTRAINT-1" aria-label="Previous section: Construction 1">← Previous</a><a data-g9-next-section href="#CU-PHY-VEC-SUB-ORDER-1" aria-label="Next section: Construction 1">Next →</a></span></nav></div><div class="g9-component g9-c-banner" data-g9-component="KEY_STEP" data-g9-level="REQUIRED" data-g9-presentation="BANNER"><div class="g9-block" data-g9-block="inferential_jump"><h4>The key step</h4><p>Vector addition preserves direction information by combining each axis independently; magnitude-only addition is only valid in special collinear cases.</p></div></div><div class="g9-component g9-c-tile" data-g9-component="MODEL_CONTRACT" data-g9-level="EXPECTED" data-g9-presentation="TILE"><div class="g9-block" data-g9-block="entry_assumptions"><h4>You need</h4><ul><li>Can read signed vector components against declared axes.</li><li>Can distinguish a vector from its magnitude.</li></ul></div></div><div class="g9-component g9-c-step-cards" data-g9-component="CONSTRUCTION_STEPS" data-g9-level="REQUIRED" data-g9-presentation="STEP_CARDS" data-g9-component-items="3" data-g9-component-unit="CU-PHY-VEC-COMPONENT-SUM-1"><div class="g9-block" data-g9-block="construction"><ol><li data-g9-step="VA-1"><strong>Put both vectors in the same declared x-y axis system and write each as a signed component pair.</strong><br><em>Why valid:</em> Corresponding components can only be combined when they refer to the same axes and positive directions.<br><em>Result:</em> A=(A_x,A_y), B=(B_x,B_y) in one common axis system.</li><li data-g9-step="VA-2"><strong>Add corresponding signed components: x with x and y with y.</strong><br><em>Why valid:</em> Vector addition is component-wise in a common basis, so each axis contribution combines independently.<br><em>Result:</em> A+B=(A_x+B_x, A_y+B_y).</li><li data-g9-step="VA-3"><strong>Check the resultant direction from the component signs and compare with the rough tail-to-head geometry.</strong><br><em>Why valid:</em> The component pair and graphical resultant are two representations of the same vector and must agree in orientation.<br><em>Result:</em> A signed resultant pair whose quadrant/direction agrees with the arrow construction.</li></ol></div></div></section></section></div><div class="g9-col g9-col-support"><section class="blueprint-slot slot-representation" data-blueprint-slot="representation" data-required="true"></section><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><section class="g9-cu-support" data-g9-support-for="CU-PHY-VEC-COMPONENT-SUM-1"><h3>Construction 1</h3><div class="g9-component g9-c-trap-card" data-g9-component="TRAP_REPAIR" data-g9-level="REQUIRED" data-g9-presentation="TRAP_CARD" data-g9-component-items="2" data-g9-component-unit="CU-PHY-VEC-COMPONENT-SUM-1"><div class="g9-block" data-g9-block="wrong_path"><h4>A tempting wrong path</h4><ul><li>The magnitude of A+B is always |A|+|B|.</li><li>Any two component numbers can be added if they come from the two vectors.</li></ul></div><div class="g9-block" data-g9-block="diagnose"><h4>Diagnose</h4><ul><li>Two equal vectors point in opposite directions. Must their resultant magnitude equal the sum of their two magnitudes?</li><li>Should an x-component from A ever be added directly to a y-component from B when the axes are unchanged?</li></ul></div><div class="g9-block" data-g9-block="repair"><h4>Repair</h4><ul><li>Keep the directions by using signed components or a tail-to-head diagram. Opposite components cancel instead of adding as positive sizes.</li><li>Match axis with axis: x contributions combine only with x contributions, and y only with y.</li></ul></div></div></section></section></div></div><div class="g9-split g9-split-support-only"><div class="g9-col g9-col-support"><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><div class="g9-component g9-c-recall-card" data-g9-component="EXIT_RECALL" data-g9-level="REQUIRED" data-g9-presentation="RECALL_CARD"><div class="g9-block" data-g9-block="exit_task"><h4>Try it with less support</h4><p>In one east-positive, north-positive frame, A=(3,4) and B=(-5,2). State A+B as signed components and describe the resultant&#x27;s horizontal and vertical directions.</p></div><div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response"><label>Your answer<textarea data-g9-attempt rows="4"></textarea></label><label class="g9-paper"><input data-g9-paper type="checkbox">I worked this on paper</label><button type="button" data-g9-commit>I have attempted this</button></div><details data-g9-reveal data-requires-attempt data-g9-payload-ref="CORE1A-MIC-PHY-VEC-COMPONENT-SUM-exit"><summary>Model answer</summary><div data-g9-payload-slot></div></details><template data-g9-payload="CORE1A-MIC-PHY-VEC-COMPONENT-SUM-exit"><div class="g9-block" data-g9-block="exit_answer"><p>A+B=(-2,6): the resultant points westward and northward in the declared frame.</p><ol><li>Add horizontal components: 3+(-5)=-2.</li><li>Add vertical components: 4+2=6.</li><li>Negative x means west and positive y means north under the declared axes.</li></ol></div></template></div></section></div></div></article><article id="MIC-PHY-VEC-SUB-ORDER" data-g9-unit="MIC-PHY-VEC-SUB-ORDER" data-g9-kind="CONCEPT" data-g9-role="CORE1A" data-g9-search-text="Physics Vectors / Motion in a Plane Operand order reverses a subtraction result Medium concept Operand order reverses a subtraction result" class="g9-stage-support"><section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true"><div class="g9-component g9-c-concept-header" data-g9-component="CONCEPT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="CONCEPT_HEADER"><h2>Operand order reverses a subtraction result</h2><div data-g9-meta-strip data-g9-meta-role="CORE1A" data-g9-meta-record="MIC-PHY-VEC-SUB-ORDER" data-g9-search-safe><span data-g9-meta-item data-g9-meta-kind="subject" data-g9-meta-ref="Physics" data-g9-meta-value="Physics"><strong>Subject:</strong> <span data-g9-meta-label>Physics</span></span><span data-g9-meta-item data-g9-meta-kind="topic" data-g9-meta-ref="BUCKET-PHY-VEC-ADD-SUB" data-g9-meta-value="Vectors / Motion in a Plane"><strong>Topic:</strong> <span data-g9-meta-label>Vectors / Motion in a Plane</span></span><span data-g9-meta-item data-g9-meta-kind="concept" data-g9-meta-ref="MIC-PHY-VEC-SUB-ORDER" data-g9-meta-value="Operand order reverses a subtraction result"><strong>Concept:</strong> <span data-g9-meta-label>Operand order reverses a subtraction result</span></span><span data-g9-meta-item data-g9-meta-kind="concept-difficulty" data-g9-meta-ref="MIC-PHY-VEC-SUB-ORDER" data-g9-meta-value="MEDIUM"><strong>Concept difficulty:</strong> <span data-g9-meta-label>Medium concept</span></span></div></div></section><div class="g9-split"><div class="g9-col g9-col-primary"><section class="blueprint-slot slot-construction" data-blueprint-slot="construction" data-required="true"><section id="CU-PHY-VEC-SUB-ORDER-1" class="g9-cu" data-g9-cu="CU-PHY-VEC-SUB-ORDER-1"><div class="g9-component g9-c-unit-header" data-g9-component="UNIT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="UNIT_HEADER" data-g9-component-unit="CU-PHY-VEC-SUB-ORDER-1"><div class="g9-unit-head"><span class="g9-unit-no" aria-hidden="true">1</span><h3>Construction</h3><span class="g9-pill g9-pill-concept">Medium concept</span></div><nav class="g9-cu-nav" data-g9-unit-navigation aria-label="Concept Book section navigation"><span data-g9-route-position>Section 3 of 4</span><span class="g9-cu-nav-links"><a data-g9-prev-section href="#CU-PHY-VEC-COMPONENT-SUM-1" aria-label="Previous section: Construction 1">← Previous</a><a data-g9-next-section href="#MIC-PHY-VEC-ANGLE-DECOMPOSITION" aria-label="Next section: Resolve magnitude-and-angle vectors into signed perpendicular components">Next →</a></span></nav></div><div class="g9-component g9-c-banner" data-g9-component="KEY_STEP" data-g9-level="REQUIRED" data-g9-presentation="BANNER"><div class="g9-block" data-g9-block="inferential_jump"><h4>The key step</h4><p>Swapping which directed quantity comes first in a subtraction reverses the result&#x27;s direction while leaving its length unchanged.</p></div></div><div class="g9-component g9-c-tile" data-g9-component="MODEL_CONTRACT" data-g9-level="EXPECTED" data-g9-presentation="TILE"><div class="g9-block" data-g9-block="entry_assumptions"><h4>You need</h4><ul><li>Can construct one graphical subtraction by reversing the second arrow before tail-to-head addition.</li></ul><ul><li data-g9-prereq="CAP-GRAPHICAL-SUBTRACT" data-bridged="true">Subtraction as addition of the reversed vector (Physics)</li></ul></div></div><div class="g9-component g9-c-step-cards" data-g9-component="CONSTRUCTION_STEPS" data-g9-level="REQUIRED" data-g9-presentation="STEP_CARDS" data-g9-component-items="3" data-g9-component-unit="CU-PHY-VEC-SUB-ORDER-1"><div class="g9-block" data-g9-block="construction"><ol><li data-g9-step="VEC3-1"><strong>Write two ordered requests for the same pair: A minus B, then B minus A.</strong><br><em>Why valid:</em> Keeping the pair fixed isolates order as the only change.<br><em>Result:</em> case 1: A minus B.  case 2: B minus A.</li><li data-g9-step="VEC3-2"><strong>For A minus B, follow A and then the reversed B arrow using the already-learned subtraction construction.</strong><br><em>Why valid:</em> The prerequisite construction gives a directed result for the stated order without introducing a new rule.<br><em>Result:</em> A - B -&gt; one completed arrow from the common start to the construction endpoint.</li><li data-g9-step="VEC3-3"><strong>Repeat with the order swapped and place both completed arrows from the same start for comparison.</strong><br><em>Why valid:</em> Only the order changed, so direct superposition exposes what order does to orientation.<br><em>Result:</em> B minus A: same drawn length as the first result, pointing exactly the opposite way.</li></ol></div></div></section></section></div><div class="g9-col g9-col-support"><section class="blueprint-slot slot-representation" data-blueprint-slot="representation" data-required="true"></section><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><section class="g9-cu-support" data-g9-support-for="CU-PHY-VEC-SUB-ORDER-1"><h3>Construction 1</h3><div class="g9-component g9-c-trap-card" data-g9-component="TRAP_REPAIR" data-g9-level="REQUIRED" data-g9-presentation="TRAP_CARD" data-g9-component-items="1" data-g9-component-unit="CU-PHY-VEC-SUB-ORDER-1"><div class="g9-block" data-g9-block="wrong_path"><h4>A tempting wrong path</h4><ul><li>Vector subtraction is commutative in the same way as vector addition.</li></ul></div><div class="g9-block" data-g9-block="diagnose"><h4>Diagnose</h4><ul><li>If A minus B points east, must B minus A point east too?</li></ul></div><div class="g9-block" data-g9-block="repair"><h4>Repair</h4><ul><li>Keep the same two inputs, swap only their order, and compare the two completed arrows from one start; the second points opposite the first.</li></ul></div></div></section></section></div></div><div class="g9-split g9-split-support-only"><div class="g9-col g9-col-support"><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><div class="g9-component g9-c-recall-card" data-g9-component="EXIT_RECALL" data-g9-level="REQUIRED" data-g9-presentation="RECALL_CARD"><div class="g9-block" data-g9-block="exit_task"><h4>Try it with less support</h4><p>Two labelled arrows A and B are shown, and a completed construction for A minus B points southeast. Without recalculating its length, describe the direction of B minus A and explain the check you used.</p></div><div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response"><label>Your answer<textarea data-g9-attempt rows="4"></textarea></label><label class="g9-paper"><input data-g9-paper type="checkbox">I worked this on paper</label><button type="button" data-g9-commit>I have attempted this</button></div><details data-g9-reveal data-requires-attempt data-g9-payload-ref="CORE1A-MIC-PHY-VEC-SUB-ORDER-exit"><summary>Model answer</summary><div data-g9-payload-slot></div></details><template data-g9-payload="CORE1A-MIC-PHY-VEC-SUB-ORDER-exit"><div class="g9-block" data-g9-block="exit_answer"><p>B minus A points northwest: exactly opposite to the shown result, with the same length.</p><ol><li>The two requests use the same pair and differ only in order.</li><li>Swapping the order swaps which arrow is reversed in the known construction.</li><li>Placing both results from one start makes the second point opposite the first.</li></ol></div></template></div></section></div></div></article><article id="MIC-PHY-VEC-ANGLE-DECOMPOSITION" data-g9-unit="MIC-PHY-VEC-ANGLE-DECOMPOSITION" data-g9-kind="CONCEPT" data-g9-role="CORE1A" data-g9-search-text="Physics Vectors / Motion in a Plane Resolve magnitude-and-angle vectors into signed perpendicular components Medium concept Resolve magnitude-and-angle vectors into signed perpendicular components" class="g9-stage-support"><section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true"><div class="g9-component g9-c-concept-header" data-g9-component="CONCEPT_HEADER" data-g9-level="REQUIRED" data-g9-presentation="CONCEPT_HEADER"><h2>Resolve magnitude-and-angle vectors into signed perpendicular components</h2><div data-g9-meta-strip data-g9-meta-role="CORE1A" data-g9-meta-record="MIC-PHY-VEC-ANGLE-DECOMPOSITION" data-g9-search-safe><span data-g9-meta-item data-g9-meta-kind="subject" data-g9-meta-ref="Physics" data-g9-meta-value="Physics"><strong>Subject:</strong> <span data-g9-meta-label>Physics</span></span><span data-g9-meta-item data-g9-meta-kind="topic" data-g9-meta-ref="BUCKET-PHY-VEC-ADD-SUB" data-g9-meta-value="Vectors / Motion in a Plane"><strong>Topic:</strong> <span data-g9-meta-label>Vectors / Motion in a Plane</span></span><span data-g9-meta-item data-g9-meta-kind="concept" data-g9-meta-ref="MIC-PHY-VEC-ANGLE-DECOMPOSITION" data-g9-meta-value="Resolve magnitude-and-angle vectors into signed perpendicular components"><strong>Concept:</strong> <span data-g9-meta-label>Resolve magnitude-and-angle vectors into signed perpendicular components</span></span><span data-g9-meta-item data-g9-meta-kind="concept-difficulty" data-g9-meta-ref="MIC-PHY-VEC-ANGLE-DECOMPOSITION" data-g9-meta-value="MEDIUM"><strong>Concept difficulty:</strong> <span data-g9-meta-label>Medium concept</span></span></div></div></section><div class="g9-split"><div class="g9-col g9-col-primary"><section class="blueprint-slot slot-construction" data-blueprint-slot="construction" data-required="true"><div class="g9-component g9-c-banner" data-g9-component="KEY_STEP" data-g9-level="REQUIRED" data-g9-presentation="BANNER"><div class="g9-block" data-g9-block="inferential_jump"><h4>The key step</h4><p>A magnitude-and-angle description and a signed perpendicular-component pair can represent the same vector. Projection converts between those representations; it does not by itself describe how a vector such as velocity changes later in time.</p></div></div><div class="g9-component g9-c-tile" data-g9-component="MODEL_CONTRACT" data-g9-level="EXPECTED" data-g9-presentation="TILE"><div class="g9-block" data-g9-block="entry_assumptions"><h4>You need</h4><ul><li>Can read signed components against declared axes.</li><li>Basic sine/cosine right-triangle ratios are available through the declared Mathematics bridge.</li></ul><ul><li data-g9-prereq="CAP-VECTOR-SIGNED-COMPONENT" data-bridged="true">Choosing axes and keeping components signed (Physics)</li><li data-g9-prereq="CAP-TRIG-RATIO-BRIDGE" data-bridged="true">Use sine and cosine ratios in a right triangle to obtain perpendicular leg magnitudes from a hypotenuse magnitude and an acute reference angle. (Physics)</li></ul></div></div><section class="g9-cu g9-path-bridge" data-g9-derivation-bridge="true"><nav class="g9-cu-nav" data-g9-unit-navigation aria-label="Concept Book section navigation"><span data-g9-route-position>Section 4 of 4</span><span class="g9-cu-nav-links"><a data-g9-prev-section href="#CU-PHY-VEC-SUB-ORDER-1" aria-label="Previous section: Construction 1">← Previous</a></span></nav><div class="g9-block" data-g9-block="construction"><ol><li data-g9-step="VAD-1"><strong>Decide whether the vector still needs decomposition. If it is given by magnitude plus angle, declare the perpendicular axes and mark exactly which axis the angle is measured from; if signed components are already supplied, keep them rather than applying trigonometry again.</strong><br><em>Why valid:</em> Projection is a representation conversion, not a compulsory formula step. The angle reference and axis convention determine which projection geometry is relevant.<br><em>Result:</em> representation decision + declared axes + explicit angle reference</li><li data-g9-step="VAD-2"><strong>Identify which component direction is adjacent to the stated angle and which is opposite before writing sine or cosine.</strong><br><em>Why valid:</em> Cosine and sine attach to adjacent/opposite geometry; x and y receive those labels only after the reference axis is known.<br><em>Result:</em> adjacent component identified; opposite component identified</li><li data-g9-step="VAD-3"><strong>Compute the component magnitudes with V cos(theta) for the adjacent leg and V sin(theta) for the opposite leg.</strong><br><em>Why valid:</em> The original vector magnitude is the right-triangle hypotenuse and the perpendicular component magnitudes are its projections.<br><em>Result:</em> V_adj = V cos(theta); V_opp = V sin(theta)</li><li data-g9-step="VAD-4"><strong>Attach signs from the declared positive directions and label the pair with the vector role named by the problem; for an initial velocity this means u_x and u_y at the chosen initial instant.</strong><br><em>Why valid:</em> Projection gives component magnitudes, while the coordinate frame supplies signs and the problem context supplies the state label. The decomposition itself does not license any later-time evolution claim.<br><em>Result:</em> signed, role-bound component pair such as (V_x,V_y) or initial (u_x,u_y)</li><li data-g9-step="VAD-5"><strong>Reconstruct the original magnitude and check that the component signs/quadrant agree with the drawn vector.</strong><br><em>Why valid:</em> A correct decomposition is an equivalent representation of the same vector, so magnitude and orientation must be consistent.<br><em>Result:</em> component pair independently checked against original vector</li></ol></div><div class="g9-block" data-g9-block="equation_matrix"><h4>Equations and validity</h4><div class="g9-table-scroll" data-g9-equation-matrix><table><thead><tr><th scope="col">Equation</th><th scope="col">What it tells you</th><th scope="col">When you can use it</th></tr></thead><tbody><tr data-g9-relation-ref="REL-VEC-ANGLE-COMPONENTS"><td><p class="g9-expr">V_adj = V cos(theta); V_opp = V sin(theta)</p></td><td><p>For a vector of magnitude V forming an acute angle theta with one declared perpendicular axis, the adjacent and opposite component magnitudes are V cos(theta) and V sin(theta); signed x/y values and contextual labels then follow from the declared directions and vector role.</p></td><td><ul><li>The component axes are perpendicular.</li><li>The reference axis for theta is explicitly identified.</li><li>Signs are attached from the declared axis directions after the component magnitudes are found.</li></ul></td></tr></tbody></table></div></div></section></section></div><div class="g9-col g9-col-support"><section class="blueprint-slot slot-repair_closure" data-blueprint-slot="repair_closure" data-required="true"><section class="g9-cu-support" data-g9-support-for="MIC-PHY-VEC-ANGLE-DECOMPOSITION"><h3>Resolve magnitude-and-angle vectors into signed perpendicular components</h3><div class="g9-block" data-g9-block="wrong_path"><h4>A tempting wrong path</h4><ul><li>The x-component is always V cos(theta), regardless of which axis theta is measured from.</li><li>Sine and cosine automatically provide the component signs.</li><li>Whenever a vector question contains components, trigonometric decomposition must be performed.</li><li>After an initial velocity is resolved into u_x and u_y, vector decomposition proves that both components keep those same values later.</li></ul></div><div class="g9-block" data-g9-block="diagnose"><h4>Diagnose</h4><ul><li>If theta is measured from the +y axis instead of +x, which component is adjacent to theta?</li><li>A vector points left and upward. If its acute reference angle is used in a right triangle, must both resolved components be positive?</li><li>A velocity is already supplied as (-6 i + 8 j) m/s. Is another sine/cosine decomposition required before using those components?</li><li>Does writing u_y=u sin(theta) at launch prove that v_y remains u_y during later projectile motion?</li></ul></div><div class="g9-block" data-g9-block="repair"><h4>Repair</h4><ul><li>Name the angle reference first. Cosine goes with the adjacent component and sine with the opposite component; x/y labels follow only after the geometry is fixed.</li><li>Use trigonometry for component magnitudes, then use the declared axis directions to attach signs.</li><li>No. The vector is already in component form. Decomposition is needed when converting from a magnitude-angle description to components.</li><li>No. Decomposition describes the initial vector only. Later velocity components are determined by the motion model; vector decomposition does not supply that evolution.</li></ul></div></section><div class="g9-component g9-c-recall-card" data-g9-component="EXIT_RECALL" data-g9-level="REQUIRED" data-g9-presentation="RECALL_CARD"><div class="g9-block" data-g9-block="exit_task"><h4>Try it with less support</h4><p>A launch velocity of magnitude 20 m/s points 30 degrees above +x. Resolve only the initial velocity into signed components, label them correctly, and state what this calculation does not yet tell you about later motion.</p></div><div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response"><label>Your answer<textarea data-g9-attempt rows="4"></textarea></label><label class="g9-paper"><input data-g9-paper type="checkbox">I worked this on paper</label><button type="button" data-g9-commit>I have attempted this</button></div><details data-g9-reveal data-requires-attempt data-g9-payload-ref="CORE1A-MIC-PHY-VEC-ANGLE-DECOMPOSITION-exit"><summary>Model answer</summary><div data-g9-payload-slot></div></details><template data-g9-payload="CORE1A-MIC-PHY-VEC-ANGLE-DECOMPOSITION-exit"><div class="g9-block" data-g9-block="exit_answer"><p>u_x=20 cos(30°)=10√3 m/s and u_y=20 sin(30°)=10 m/s, both positive. These are the t=0 velocity components; decomposition alone does not determine their later values.</p><ol><li>The angle is measured from +x, so x is adjacent and y is opposite.</li><li>The vector points right and up, so both initial component signs are positive.</li><li>Label the pair u_x,u_y because the problem names an initial velocity.</li><li>Any later v_x,v_y requires a motion model in addition to this representation step.</li></ol></div></template></div></section></div></div></article></main><footer data-g9-footer>Physics · Vector addition, subtraction and orientation</footer><script>
+(()=>{const q=(s,r=document)=>[...r.querySelectorAll(s)];
+const store={get:k=>{try{return localStorage.getItem('g9-'+k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem('g9-'+k,v);return true}catch(e){return false}},remove:k=>{try{localStorage.removeItem('g9-'+k);return true}catch(e){return false}}};
+const root=document.documentElement;const scope=root.dataset.g9Product&&root.dataset.g9RenderDigest?root.dataset.g9Product+':'+root.dataset.g9RenderDigest:'';
+const apply=()=>{root.dataset.theme=store.get('theme')||root.dataset.theme||'light';root.style.setProperty('--g9-zoom',store.get('zoom')||'1');};apply();
+q('[data-g9-theme]').forEach(b=>b.onclick=()=>{store.set('theme',b.dataset.g9Theme);apply()});
+q('[data-g9-zoom]').forEach(b=>b.onclick=()=>{let z=parseFloat(store.get('zoom')||'1');z=b.dataset.g9Zoom==='inc'?Math.min(1.6,z+0.1):b.dataset.g9Zoom==='dec'?Math.max(0.8,z-0.1):1;store.set('zoom',z.toFixed(1));apply()});
+q('[data-g9-font]').forEach(b=>b.onclick=()=>q('[data-g9-zoom="'+b.dataset.g9Font+'"]')[0]?.click());
+function initFigure(f){if(f.dataset.g9Init)return;f.dataset.g9Init='1';const ids=(f.dataset.g9Stages||'').split(' ').filter(Boolean);if(ids.length<2)return;let i=0;
+const chips=q('[data-g9-stage-goto]',f);const desc=q('[data-g9-stage-desc-text]',f)[0];
+const show=()=>{ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=n<=i?'':'none'));const l=q('[data-g9-stage-label]',f)[0];if(l)l.textContent='Stage '+(i+1)+' of '+ids.length;chips.forEach((c,n)=>c.setAttribute('aria-pressed',String(n===i)));if(desc)desc.textContent=(chips[i]&&chips[i].dataset.g9StageDesc)||''};show();chips.forEach((c,n)=>c.onclick=()=>{i=n;show()});
+q('[data-g9-stage-step]',f).forEach(b=>b.onclick=()=>{i=Math.max(0,Math.min(ids.length-1,i+(b.dataset.g9StageStep==='next'?1:-1)));show()})}
+function nextRung(l){const t=q('template[data-g9-rung-payload]',l)[0];if(!t)return false;const payload=t.content.cloneNode(true);q('[data-g9-rung-ghost]',l)[0]?.remove();q('figure[data-g9-figure]',payload).forEach(initFigure);q('[data-g9-ladder]',l)[0].append(payload);t.remove();const b=q('[data-g9-next-rung]',l)[0];if(b){if(!q('template[data-g9-rung-payload]',l).length)b.disabled=true;else b.textContent='Show next support'}return true}
+function materialise(a){q('details[data-g9-payload-ref]',a).forEach(d=>{const slot=q('[data-g9-payload-slot]',d)[0];if(!slot||slot.dataset.g9Filled)return;const t=q('template[data-g9-payload]',a).find(x=>x.dataset.g9Payload===d.dataset.g9PayloadRef);if(!t)return;slot.replaceChildren(t.content.cloneNode(true));slot.dataset.g9Filled='1';q('figure[data-g9-figure]',slot).forEach(initFigure)})}
+const number=t=>{const v=t.trim();if(!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?(?:\s*\/\s*[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?)?$/i.test(v))return false;const p=v.split('/').map(x=>Number(x.trim()));return p.every(Number.isFinite)&&(p.length===1||p[1]!==0)};
+function validAttempt(box){const type=box.dataset.g9ResponseType;if(type==='single_choice'||type==='multiple_choice'||type==='true_false')return q('[data-g9-choice]:checked',box).length>0;
+if(type==='numeric')return number(q('[data-g9-number]',box)[0]?.value||'');if(type==='short_text')return !!q('[data-g9-attempt]',box)[0]?.value.trim();
+if(type==='match'){const fields=q('[data-g9-match]',box);return fields.length>0&&fields.every(x=>x.value!=='')}
+if(q('[data-g9-paper]:checked',box).length)return true;if(type==='multipart'){const fields=q('[data-g9-part-input]',box);return fields.length>0&&fields.every(x=>x.value.trim()&&(!x.dataset.g9PartType||x.dataset.g9PartType!=='numeric'||number(x.value)))}
+return !!q('[data-g9-attempt]',box)[0]?.value.trim()}
+const stateKey=a=>scope&&a?.dataset.g9Unit?'state:'+scope+':'+a.dataset.g9Unit:null;const returnKey=concept=>scope&&concept?'return:'+scope+':'+concept:null;
+function readState(key){if(!key)return null;const raw=store.get(key);if(!raw)return null;try{const state=JSON.parse(raw);return state&&typeof state==='object'?state:null}catch(e){return null}}
+const attemptFields=a=>q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a);const rungCount=l=>{const list=q('[data-g9-ladder]',l)[0];return list?q('[data-g9-rung]',list).length:0};
+function saveCore2State(a){if(a.dataset.g9Role!=='CORE2')return;const key=stateKey(a);if(!key)return;const fields=attemptFields(a).map(el=>({value:el.value,checked:!!el.checked}));const ladders={};q('.g9-ladder[data-g9-ladder-ref]',a).forEach(l=>ladders[l.dataset.g9LadderRef]=rungCount(l));const reveals=q('details[data-g9-support-reveal]',a).map(d=>!!d.open);store.set(key,JSON.stringify({attempted:!!a.dataset.attempted,fields,ladders,reveals}))}
+function bindSupportRevealState(a){q('details[data-g9-support-reveal]',a).forEach(d=>{if(d.dataset.g9StateBound)return;d.dataset.g9StateBound='1';d.addEventListener('toggle',()=>saveCore2State(a))})}
+function restoreCore2State(a,lock){if(a.dataset.g9Role!=='CORE2')return;const state=readState(stateKey(a));if(!state)return;const fields=attemptFields(a);(state.fields||[]).forEach((saved,i)=>{const el=fields[i];if(!el||!saved||typeof saved!=='object')return;if(Object.prototype.hasOwnProperty.call(saved,'value'))el.value=saved.value??'';if(el.type==='checkbox'||el.type==='radio')el.checked=!!saved.checked});Object.entries(state.ladders||{}).forEach(([ref,count])=>{const l=q('.g9-ladder[data-g9-ladder-ref]',a).find(x=>x.dataset.g9LadderRef===ref);if(!l||!Number.isInteger(count)||count<0)return;while(rungCount(l)<count&&nextRung(l)){};});bindSupportRevealState(a);q('details[data-g9-support-reveal]',a).forEach((d,i)=>d.open=!!(state.reveals||[])[i]);if(state.attempted){a.dataset.attempted='1';materialise(a)}lock()}
+const articles=q('article[data-g9-unit],article[data-g9-diagnostic]');
+articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!a.dataset.attempted){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();restoreCore2State(a,lock);
+q('details[data-requires-attempt] summary',a).forEach(s=>s.addEventListener('click',e=>{if(!a.dataset.attempted){e.preventDefault();q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a)[0]?.focus()}}));
+q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-attempt-box]');if(!box||!validAttempt(box)){q('input,textarea,select',box||a)[0]?.focus();return}a.dataset.attempted='1';lock();materialise(a);saveCore2State(a)});
+a.addEventListener('click',e=>{const b=e.target.closest('[data-g9-next-rung]');if(b&&a.contains(b)){nextRung(b.closest('.g9-ladder'));bindSupportRevealState(a);saveCore2State(a)}});attemptFields(a).forEach(el=>{el.addEventListener('input',()=>saveCore2State(a));el.addEventListener('change',()=>saveCore2State(a))});
+q('[data-g9-concept-link]',a).forEach(link=>link.addEventListener('click',()=>{saveCore2State(a);const key=returnKey(link.dataset.g9ConceptRef);if(key)store.set(key,link.dataset.g9QuestionRef||a.dataset.g9Unit);refreshReturnLinks()}))});
+const practiceLinks=q('[data-g9-practice-link]');const practiceLabels=new Map(practiceLinks.map(link=>[link,link.textContent]));
+function refreshReturnLinks(){practiceLinks.forEach(link=>{const key=returnKey(link.dataset.g9ConceptRef);const active=!!key&&store.get(key)===link.dataset.g9QuestionRef;if(active){link.dataset.g9ReturnLink='';link.textContent='Return to question · '+practiceLabels.get(link)}else{delete link.dataset.g9ReturnLink;link.textContent=practiceLabels.get(link)}})}
+practiceLinks.forEach(link=>link.addEventListener('click',()=>{const key=returnKey(link.dataset.g9ConceptRef);if(key&&store.get(key)===link.dataset.g9QuestionRef){store.remove(key);refreshReturnLinks()}}));refreshReturnLinks();
+window.g9MaterialiseAll=()=>articles.forEach(a=>{a.dataset.attempted='1';q('details[data-requires-attempt]',a).forEach(d=>delete d.dataset.locked);materialise(a);q('.g9-ladder',a).forEach(l=>{while(nextRung(l)){};});q('details[data-g9-support-reveal]',a).forEach(d=>d.open=true)});
+q('figure[data-g9-figure]').forEach(initFigure);
+q('[data-g9-toggle]').forEach(b=>b.onclick=()=>{const t=document.getElementById(b.getAttribute('aria-controls'));if(!t)return;const open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!open));t.hidden=open});
+const input=q('[data-g9-search-input]')[0];if(input)input.oninput=()=>{const v=input.value.trim().toLowerCase();articles.forEach(a=>{a.hidden=!!v&&!(a.dataset.g9SearchText||'').toLowerCase().includes(v)})};
+q('[data-g9-action="search"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-search-panel]')[0];p.hidden=!p.hidden;if(!p.hidden)input.focus()});
+q('[data-g9-action="display"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-display-panel]')[0];p.hidden=!p.hidden});
+})();
+</script><script id="pr375-u4-remediation-script">
+(() => {
+  const humanize = (value) => String(value || '')
+    .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+    .replace(/[_-]+/g, ' ')
+    .replace(/\b(vec)([ab])\b/gi, 'vector $2')
+    .replace(/\bproj\b/gi, 'projectile')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const explicitNames = {
+    mass1: 'Mass m1 in kilograms', mass2: 'Mass m2 in kilograms',
+    vecA: 'Vector A', vecB: 'Vector B',
+    projU: 'Projectile launch speed', projAngle: 'Projectile launch angle',
+    'jump-select': 'Jump to question', search: 'Search questions',
+    searchInput: 'Search questions', questionSearch: 'Search questions'
+  };
+
+  const hasLabel = (el) => {
+    if (el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.title) return true;
+    if (el.id && document.querySelector(`label[for="${CSS.escape(el.id)}"]`)) return true;
+    return !!el.closest('label');
+  };
+
+  document.querySelectorAll('input, select, textarea').forEach((el, index) => {
+    if (hasLabel(el)) return;
+    let name = explicitNames[el.id] || el.getAttribute('placeholder') || el.getAttribute('name') || el.id;
+    if (!name) {
+      const nearby = el.parentElement?.textContent?.trim();
+      if (nearby && nearby.length <= 100) name = nearby;
+    }
+    name = humanize(name) || `${el.tagName.toLowerCase()} ${index + 1}`;
+    el.setAttribute('aria-label', name);
+  });
+
+  document.querySelectorAll('button').forEach(btn => {
+    if (btn.textContent.trim().toLowerCase() === 'clear') btn.classList.add('u4-clear-button');
+  });
+
+  const syncOptions = () => {
+    document.querySelectorAll('.opt-btn').forEach(btn => {
+      const correct = btn.classList.contains('selected-correct');
+      const incorrect = btn.classList.contains('selected-incorrect');
+      btn.setAttribute('aria-pressed', correct || incorrect ? 'true' : 'false');
+      const base = btn.getAttribute('data-u4-base-label') || btn.getAttribute('aria-label') || btn.textContent.trim();
+      if (!btn.hasAttribute('data-u4-base-label')) btn.setAttribute('data-u4-base-label', base);
+      btn.setAttribute('aria-label', `${base}${correct ? ' — Correct' : incorrect ? ' — Incorrect' : ''}`);
+    });
+  };
+  syncOptions();
+
+  const syncTabs = () => {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.setAttribute('role', 'tab');
+      const active = btn.classList.contains('active') || btn.classList.contains('tab-btn-active') || btn.getAttribute('aria-current') === 'page';
+      btn.setAttribute('aria-selected', active ? 'true' : 'false');
+      if (btn.parentElement && !btn.parentElement.hasAttribute('role')) btn.parentElement.setAttribute('role', 'tablist');
+    });
+  };
+  syncTabs();
+
+  const figureName = (el, fallback) => {
+    const scope = el.closest('figure, section, article, .card, .panel, .simulator, .canvas-container') || el.parentElement;
+    const caption = scope?.querySelector('figcaption, h1, h2, h3, h4, .title, [class*="title"]');
+    const txt = caption?.textContent?.replace(/\s+/g, ' ').trim();
+    return txt && txt.length <= 120 ? txt : fallback;
+  };
+
+  document.querySelectorAll('svg').forEach(svg => {
+    if (svg.hasAttribute('aria-label') || svg.hasAttribute('aria-labelledby') || svg.hasAttribute('aria-hidden') || svg.querySelector('title')) return;
+    const control = svg.closest('a, button');
+    if (control && control.textContent.trim()) {
+      svg.setAttribute('aria-hidden', 'true');
+      svg.setAttribute('focusable', 'false');
+    } else {
+      svg.setAttribute('role', 'img');
+      svg.setAttribute('aria-label', figureName(svg, 'Physics diagram'));
+    }
+  });
+
+  document.querySelectorAll('canvas').forEach(canvas => {
+    if (canvas.hasAttribute('aria-label') || canvas.hasAttribute('aria-labelledby') || canvas.hasAttribute('aria-hidden')) return;
+    canvas.setAttribute('role', 'img');
+    canvas.setAttribute('aria-label', figureName(canvas, 'Interactive physics simulation'));
+  });
+
+  if (!document.querySelector('main, [role="main"]')) {
+    const mainCandidate = document.querySelector('.app-container, .container, .page-shell, #app');
+    if (mainCandidate) mainCandidate.setAttribute('role', 'main');
+  }
+
+  const observer = new MutationObserver(() => { syncOptions(); syncTabs(); });
+  observer.observe(document.documentElement, { subtree: true, attributes: true, attributeFilter: ['class', 'aria-current'] });
+})();
+</script>
+<script id="pr375-u4-dynamic-remediation">
+(() => {
+  const textName = (el, fallback) => {
+    const scope = el.closest('figure, section, article, .panel, .card, .simulator, .canvas-wrap, .canvas-container') || el.parentElement;
+    const title = scope?.querySelector('figcaption, h1, h2, h3, h4, .title, [class*="title"]');
+    const text = title?.textContent?.replace(/\s+/g, ' ').trim();
+    return text && text.length <= 140 ? text : fallback;
+  };
+
+  const nameFigures = (root = document) => {
+    const nodes = [];
+    if (root.nodeType === 1 && root.matches?.('svg, canvas')) nodes.push(root);
+    root.querySelectorAll?.('svg, canvas').forEach(el => nodes.push(el));
+    nodes.forEach(el => {
+      if (el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.getAttribute('aria-hidden') || el.querySelector?.('title')) return;
+      const control = el.closest('a, button');
+      if (control && control.textContent.trim()) {
+        el.setAttribute('aria-hidden', 'true');
+        el.setAttribute('focusable', 'false');
+        return;
+      }
+      el.setAttribute('role', 'img');
+      el.setAttribute('aria-label', textName(el, el.tagName.toLowerCase() === 'canvas' ? 'Interactive physics simulation' : 'Physics diagram'));
+    });
+  };
+
+  const nameControls = (root = document) => {
+    const nodes = [];
+    if (root.nodeType === 1 && root.matches?.('input, select, textarea')) nodes.push(root);
+    root.querySelectorAll?.('input, select, textarea').forEach(el => nodes.push(el));
+    nodes.forEach((el, index) => {
+      const has = el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || el.title || el.closest('label') || (el.id && document.querySelector(`label[for="${CSS.escape(el.id)}"]`));
+      if (has) return;
+      const nearby = el.closest('.control-row, .form-group, .field, .panel, .card')?.querySelector('.control-label, label, h3, h4');
+      const raw = el.getAttribute('placeholder') || el.getAttribute('name') || el.id || nearby?.textContent || `${el.tagName.toLowerCase()} ${index + 1}`;
+      el.setAttribute('aria-label', String(raw).replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim());
+    });
+  };
+
+  const sync = root => { nameFigures(root); nameControls(root); };
+  sync(document);
+  new MutationObserver(records => {
+    for (const record of records) for (const node of record.addedNodes) if (node.nodeType === 1) sync(node);
+  }).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
+</body></html>
