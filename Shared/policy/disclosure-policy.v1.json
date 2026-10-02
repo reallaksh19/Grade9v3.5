@@ -1,0 +1,19 @@
+{
+  "schema": "disclosure-policy/v1",
+  "policy_id": "standard-disclosure",
+  "version": "1.0.0",
+  "states": [
+    {"state": 0, "label": "STEM_VISIBLE", "reveals": ["stem", "conditions", "visible_figure"]},
+    {"state": 1, "label": "HINT_1", "reveals": ["hint_1"]},
+    {"state": 2, "label": "HINT_2", "reveals": ["hint_2"]},
+    {"state": 3, "label": "WORKED_SOLUTION", "reveals": ["worked_solution"]},
+    {"state": 4, "label": "FINAL_ANSWER", "reveals": ["explicit_final_answer"]}
+  ],
+  "invariants": [
+    "all_required_givens_available_by_state_0",
+    "state_0_must_not_reveal_final_answer",
+    "state_1_should_not_reveal_final_answer",
+    "hint_must_not_introduce_missing_required_given",
+    "solution_may_expose_derived_results"
+  ]
+}

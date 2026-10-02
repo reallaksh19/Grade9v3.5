@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema": { "const": "search-document/v1" },
+    "canonical_id": { "type": "string" },
+    "canonical_digest": { "type": "string", "pattern": "^sha256:" },
+    "type": { "type": "string", "enum": ["QUESTION", "CONCEPT", "TOPIC", "PRODUCT"] },
+    "subject": { "type": "string" },
+    "concept_refs": { "type": "array", "items": { "type": "string" } },
+    "title": { "type": "string" },
+    "search_text": { "type": "string" },
+    "aliases": { "type": "array", "items": { "type": "string" } },
+    "canonical_url": { "type": "string" },
+    "source_refs": { "type": "array", "items": { "type": "string" } },
+    "search_visibility": { "type": "string", "enum": ["INCLUDED", "EXCLUDED"], "default": "INCLUDED" }
+  },
+  "required": ["schema", "canonical_id", "canonical_digest", "type", "subject", "title", "search_text", "canonical_url"]
+}

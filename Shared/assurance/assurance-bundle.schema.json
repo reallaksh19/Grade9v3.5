@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema": { "const": "assurance-bundle/v1" },
+    "bundle_id": { "type": "string" },
+    "subject": {
+      "type": "object",
+      "properties": {
+        "kind": { "type": "string", "enum": ["PRODUCT", "CANONICAL_RECORD"] },
+        "id": { "type": "string" }
+      },
+      "required": ["kind", "id"]
+    },
+    "canonical_snapshot_digest": { "type": "string", "pattern": "^sha256:" },
+    "evidence_refs": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^AE-" }
+    },
+    "required_types": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "missing_types": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "bundle_digest": { "type": "string", "pattern": "^sha256:" },
+    "bundled_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["schema", "bundle_id", "subject", "canonical_snapshot_digest", "evidence_refs", "required_types", "missing_types", "bundle_digest", "bundled_at"]
+}

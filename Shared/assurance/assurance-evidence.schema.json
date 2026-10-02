@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema": { "const": "assurance-evidence/v1" },
+    "evidence_id": { "type": "string", "pattern": "^AE-" },
+    "subject": {
+      "type": "object",
+      "properties": {
+        "kind": { "type": "string", "enum": ["CANONICAL_RECORD", "PRODUCT", "PROJECTION", "SOURCE"] },
+        "id": { "type": "string" },
+        "digest": { "type": "string", "pattern": "^sha256:" }
+      },
+      "required": ["kind", "id"]
+    },
+    "assurance_type": {
+      "type": "string",
+      "enum": ["SOURCE_INTEGRITY", "SOURCE_FIDELITY", "STRUCTURAL_VALIDITY", "REFERENCE_INTEGRITY", "CORPUS_SPECIFICITY", "ANSWERABILITY", "SELF_CONTAINMENT", "INDEPENDENT_SOLUTION", "ANSWER_CORRECTNESS", "DIMENSIONAL_CORRECTNESS", "REASONING_VALIDITY", "SCOPE_CONFORMANCE", "DISCLOSURE_CONFORMANCE", "REPRESENTATION_CONSISTENCY", "PROJECTION_COMPLETENESS", "PROJECTION_INTEGRITY", "ACCESSIBILITY", "RESPONSIVE_LAYOUT", "NETWORK_POLICY", "LINK_INTEGRITY", "SEARCH_MEMBERSHIP", "SEARCH_RETRIEVABILITY", "DEPLOYMENT_INTEGRITY"]
+    },
+    "producer": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "configuration_digest": { "type": "string" }
+      },
+      "required": ["name", "version", "configuration_digest"]
+    },
+    "outcome": { "type": "string", "enum": ["PASS", "FAIL", "INCONCLUSIVE", "NOT_APPLICABLE", "NOT_RUN"] },
+    "severity": { "type": "string", "enum": ["S0", "S1", "S2", "S3"] },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "string" },
+          "severity": { "type": "string", "enum": ["S0", "S1", "S2", "S3"] },
+          "subject": { "type": "string" },
+          "location": { "type": "string" },
+          "evidence": { "type": "object" },
+          "message": { "type": "string" }
+        },
+        "required": ["code", "severity", "subject", "message"]
+      }
+    },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "dependencies": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^AE-" }
+    },
+    "produced_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["schema", "evidence_id", "subject", "assurance_type", "producer", "outcome", "findings", "produced_at"]
+}

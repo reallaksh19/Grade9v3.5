@@ -1,0 +1,21 @@
+{
+  "schema": "canonical-admission-policy/v1",
+  "policy_id": "canonical-admission-default",
+  "version": "1.0.0",
+  "required_pass": [
+    "SOURCE_INTEGRITY",
+    "STRUCTURAL_VALIDITY",
+    "REFERENCE_INTEGRITY",
+    "ANSWERABILITY",
+    "SELF_CONTAINMENT",
+    "SCOPE_CONFORMANCE"
+  ],
+  "required_pass_or_na": [
+    "ANSWER_CORRECTNESS",
+    "DIMENSIONAL_CORRECTNESS"
+  ],
+  "required_pass_or_reviewed": [
+    "REASONING_VALIDITY"
+  ],
+  "description": "Default canonical admission policy. All hard_integrity checks must PASS. Answer/dimensional correctness must PASS or NOT_APPLICABLE. Reasoning validity must PASS or have an explicit owner review waiver."
+}

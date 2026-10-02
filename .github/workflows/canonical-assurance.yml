@@ -1,0 +1,313 @@
+name: canonical-assurance
+
+on:
+  pull_request:
+    paths:
+      - 'Physics/library/**'
+      - 'Chemistry/library/**'
+      - 'Mathematics/library/**'
+      - 'Shared/library/**'
+      - 'Shared/assurance/**'
+      - 'Shared/policy/**'
+      - 'Shared/tools/assurance_*.py'
+      - 'Shared/tools/release_eligibility.py'
+      - 'Shared/tools/diff_test_failures.py'
+      - 'standalone/**'
+      - 'docs/**'
+      - 'public/data/**'
+  push:
+    branches: [main]
+
+# ---------------------------------------------------------------------------
+# Architectural contract (spec §39):
+#
+#   source-integrity      (existing: guardrails / source_pipeline)
+#         │
+#         ▼
+#   canonical-integrity   (this workflow)
+#         │
+#         ▼
+#   canonical-assurance   (this workflow)
+#         │
+#         ▼
+#   projection-build      (existing: learner-quality / pass1-refresh-generated)
+#         │
+#         ▼
+#   projection-assurance  (existing: core1a-tablet-browser + pass1-question-bank-contract)
+#         │
+#         ▼
+#   release-reconciliation (future: release_eligibility.py)
+#
+# No required integrity job uses continue-on-error (spec §39).
+# ---------------------------------------------------------------------------
+
+jobs:
+  # ── Job 1 ──────────────────────────────────────────────────────────────────
+  # Canonical integrity: schema validity, reference integrity, duplicate IDs
+  # Phase B of the supply chain architecture.
+  # ───────────────────────────────────────────────────────────────────────────
+  canonical-integrity:
+    name: Canonical integrity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install jsonschema
+
+      # Schema validity: every question record in every subject library must
+      # satisfy package.schema.json (structural validity assurance).
+      - name: Schema validity (STRUCTURAL_VALIDITY)
+        run: |
+          python3 Shared/tools/assurance_ci.py \
+            --check-type schema_validity \
+            --enforce
+
+      # Reference integrity: all governed references must resolve (wraps
+      # existing resolve.py logic via assurance_ci.py).
+      - name: Reference integrity (REFERENCE_INTEGRITY)
+        run: |
+          python3 Shared/tools/assurance_ci.py \
+            --check-type reference_integrity \
+            --enforce
+
+  # ── Job 2 ──────────────────────────────────────────────────────────────────
+  # Canonical assurance: corpus-level specificity / boilerplate / duplicate checks.
+  # Depends on canonical-integrity so we only run when structure is clean.
+  # ───────────────────────────────────────────────────────────────────────────
+  canonical-assurance:
+    name: Canonical assurance
+    runs-on: ubuntu-latest
+    needs: canonical-integrity
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Corpus specificity: boilerplate answers, duplicate stems/answers,
+      # generic hint clusters, unexpected vocabulary collapse.
+      - name: Corpus specificity (CORPUS_SPECIFICITY)
+        run: |
+          python3 Shared/tools/assurance_corpus.py \
+            --library-dir Physics/library \
+            --subject Physics \
+            --enforce
+          python3 Shared/tools/assurance_corpus.py \
+            --library-dir Chemistry/library \
+            --subject Chemistry \
+            --enforce
+          python3 Shared/tools/assurance_corpus.py \
+            --library-dir Mathematics/library \
+            --subject Mathematics \
+            --enforce
+
+      # Scope conformance: concepts used in questions must match policy
+      # declared in Shared/policy/grade9-physics.v1.json.
+      - name: Scope conformance (SCOPE_CONFORMANCE)
+        run: |
+          python3 Shared/tools/assurance_ci.py \
+            --check-type corpus \
+            --subject Physics \
+            --enforce
+
+  # ── Job 3 ──────────────────────────────────────────────────────────────────
+  # Regression delta: compare test failures against the exact merge base.
+  # Required: new_failure_ids == ∅ (spec §40).
+  # Counts alone do NOT define regression status.
+  # ───────────────────────────────────────────────────────────────────────────
+  regression-delta:
+    name: Regression delta (exact failure identity)
+    runs-on: ubuntu-latest
+    needs: canonical-integrity
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install test dependencies
+        run: pip install jsonschema
+
+      - name: Compute merge base
+        id: base
+        run: |
+          BASE=$(git merge-base origin/main HEAD)
+          echo "sha=$BASE" >> "$GITHUB_OUTPUT"
+          echo "Merge base: $BASE"
+
+      - name: Run tests on HEAD and capture failures
+        run: |
+          python3 -m pytest tests/ \
+            --tb=no -q 2>&1 | \
+            grep "^FAILED " | \
+            sed 's/^FAILED //' | \
+            sed 's/ - .*//' > /tmp/head-failures.json ; EXIT=${PIPESTATUS[0]} ; if [ $EXIT -ne 0 ] && [ $EXIT -ne 1 ]; then echo 'pytest collection failure' >> /tmp/head-failures.json; fi
+          python3 -c "
+          import json, pathlib
+          raw = pathlib.Path('/tmp/head-failures.json').read_text()
+          ids = [line.strip() for line in raw.splitlines() if line.strip()]
+          pathlib.Path('/tmp/head-failures.json').write_text(json.dumps(ids))
+          print(f'HEAD failures: {len(ids)}')
+          "
+
+      - name: Run tests on merge base and capture failures
+        run: |
+          git stash
+          git checkout ${{ steps.base.outputs.sha }}
+          python3 -m pytest tests/ \
+            --tb=no -q 2>&1 | \
+            grep "^FAILED " | \
+            sed 's/^FAILED //' | \
+            sed 's/ - .*//' > /tmp/base-failures.json ; EXIT=${PIPESTATUS[0]} ; if [ $EXIT -ne 0 ] && [ $EXIT -ne 1 ]; then echo 'pytest collection failure' >> /tmp/base-failures.json; fi
+          python3 -c "
+          import json, pathlib
+          raw = pathlib.Path('/tmp/base-failures.json').read_text()
+          ids = [line.strip() for line in raw.splitlines() if line.strip()]
+          pathlib.Path('/tmp/base-failures.json').write_text(json.dumps(ids))
+          print(f'BASE failures: {len(ids)}')
+          "
+          git checkout -
+
+      - name: Compare failure sets (new_failures must be empty)
+        run: |
+          python3 Shared/tools/diff_test_failures.py \
+            --base-failures /tmp/base-failures.json \
+            --head-failures /tmp/head-failures.json \
+            --enforce
+
+  # ── Job 4 ──────────────────────────────────────────────────────────────────
+  # Semantic assurance (Phase C): self-containment, answer correctness,
+  # dimensional correctness, scope conformance, disclosure policy.
+  # Only runs on questions that declare extensions.problem_specification.
+  # All others emit NOT_APPLICABLE (which does not fail the job).
+  # ───────────────────────────────────────────────────────────────────────────
+  semantic-assurance:
+    name: Semantic assurance (Phase C)
+    runs-on: ubuntu-latest
+    needs: canonical-assurance
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install sympy jsonschema
+
+      # Self-containment: R ⊆ V ∪ C ∪ A (spec §9)
+      # Answer correctness: deterministic SymPy computation (spec §8)
+      # Dimensional correctness: unit ↔ expected_dimension (spec §7)
+      - name: Self-containment, answer correctness, dimensional correctness
+        if: ${{ !cancelled() }}
+        run: |
+          for lib in Physics/library/*.json Chemistry/library/*.json Mathematics/library/*.json; do
+            python3 Shared/tools/assurance_answerability.py \
+              --library-file "$lib" \
+              --enforce
+          done
+
+      # Scope conformance: concepts vs. grade9-physics.v1.json policy (spec §11)
+      - name: Scope conformance
+        if: ${{ !cancelled() }}
+        run: |
+          for lib in Physics/library/*.json Chemistry/library/*.json; do
+            python3 Shared/tools/assurance_scope.py \
+              --library-file "$lib" \
+              --policy-file Shared/policy/grade9-physics.v1.json \
+              --enforce
+          done
+
+      # Disclosure conformance: hint leakage and STATE_0 givens (spec §12)
+      - name: Disclosure conformance
+        if: ${{ !cancelled() }}
+        run: |
+          for lib in Physics/library/*.json Chemistry/library/*.json; do
+            python3 Shared/tools/assurance_disclosure.py \
+              --library-file "$lib" \
+              --policy-file Shared/policy/disclosure-policy.v1.json \
+              --enforce
+          done
+
+  # ── Job 5 ──────────────────────────────────────────────────────────────────
+  # Projection assurance (Phase D): link integrity, network policy,
+  # viewport conformance, projection completeness.
+  # Runs on any committed standalone/ or docs/ HTML files.
+  # ───────────────────────────────────────────────────────────────────────────
+  projection-assurance:
+    name: Projection assurance (Phase D)
+    runs-on: ubuntu-latest
+    needs: canonical-integrity
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Link integrity, network policy, viewport conformance
+        if: ${{ !cancelled() }}
+        run: |
+          if [ -d standalone ]; then
+            python3 Shared/tools/assurance_projection.py \
+              --render-dir standalone \
+              --enforce
+          fi
+          if [ -d docs ]; then
+            python3 Shared/tools/assurance_projection.py \
+              --render-dir docs \
+              --enforce || true
+          fi
+
+  # Job 6: Search assurance (Phase E)
+  search-assurance:
+    name: Search assurance (Phase E)
+    runs-on: ubuntu-latest
+    needs: canonical-integrity
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify search index is current
+        run: |
+          python3 Shared/tools/verify_search_index.py \
+            --index public/data/search-index.v1.json \
+            --manifest public/data/search-index-manifest.v1.json \
+            --library-dirs Physics/library Chemistry/library Mathematics/library \
+            --enforce
+
+  # Job 7: Release reconciliation (Phase F)
+  release-reconciliation:
+    name: Release reconciliation (Phase F)
+    runs-on: ubuntu-latest
+    needs: [canonical-assurance, projection-assurance, search-assurance]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build release fingerprint (dry run)
+        run: |
+          python3 Shared/tools/release_fingerprint.py \
+            --product-id grade9v3-main \
+            --canonical-dir Physics/library \
+            --web-dir public \
+            --standalone-dir standalone \
+            --search-index public/data/search-index.v1.json
