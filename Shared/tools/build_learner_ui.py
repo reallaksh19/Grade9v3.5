@@ -23,7 +23,7 @@ REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
 
 MODERN_CSS = """/* Grade9V3.5 Modern Kid-Friendly Design System */
-:root {
+:root, [data-theme="light"] {
   --bg: #f8fafc;
   --bg-card: #ffffff;
   --bg-soft: #f1f5f9;
@@ -52,7 +52,30 @@ MODERN_CSS = """/* Grade9V3.5 Modern Kid-Friendly Design System */
   --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+[data-theme="dark"] {
+  --bg: #0d1117;
+  --bg-card: #161b22;
+  --bg-soft: #21262d;
+  --border: #30363d;
+  --border-focus: #58a6ff;
+  --text-main: #f0f6fc;
+  --text-muted: #8b949e;
+  --text-dim: #6e7681;
+  --accent-learn: #58a6ff;
+  --accent-learn-bg: rgba(56, 139, 253, 0.15);
+  --accent-practice: #2dd4bf;
+  --accent-practice-bg: rgba(45, 212, 191, 0.15);
+  --accent-explore: #fbbf24;
+  --accent-explore-bg: rgba(251, 191, 36, 0.15);
+  --accent-qb: #38bdf8;
+  --accent-qb-bg: rgba(56, 189, 248, 0.15);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body, h1, h2, h3, h4, p { margin: 0; }
 
 body {
   background-color: var(--bg);
@@ -79,52 +102,66 @@ a { color: inherit; text-decoration: none; }
 .g9-header-inner {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 12px 20px;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  flex-wrap: wrap;
 }
 .g9-brand {
   display: flex;
   align-items: center;
   gap: 10px;
   font-weight: 800;
-  font-size: 19px;
+  font-size: 18px;
   color: var(--text-main);
   letter-spacing: -0.02em;
 }
 .g9-brand-badge {
   background: var(--accent-learn);
   color: #fff;
-  padding: 3px 8px;
+  padding: 2px 7px;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
+}
+.g9-header-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.g9-header-nav a:hover,
+.g9-header-nav a.active {
+  color: var(--accent-learn);
 }
 .g9-header-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
-}
-.g9-search-trigger {
-  display: flex;
-  align-items: center;
   gap: 8px;
+}
+.g9-header-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   background: var(--bg-soft);
   border: 1px solid var(--border);
-  border-radius: var(--radius-pill);
-  padding: 8px 16px;
-  font-size: var(--font-floor);
-  color: var(--text-muted);
-  min-height: var(--touch-min);
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-.g9-search-trigger:hover {
-  background: #e2e8f0;
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  font-size: 13.5px;
+  font-weight: 600;
   color: var(--text-main);
+  cursor: pointer;
+  min-height: 38px;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+.g9-header-btn:hover {
+  background: var(--border);
 }
 
 /* Breadcrumbs */
@@ -379,7 +416,7 @@ def render_shell(title: str, content: str, breadcrumbs: list[tuple[str, str]] = 
 """
 
     return f"""<!doctype html>
-<html lang="en">
+<html lang="en" data-g9-shell>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -390,14 +427,26 @@ def render_shell(title: str, content: str, breadcrumbs: list[tuple[str, str]] = 
   <header class="g9-shell-header">
     <div class="g9-header-inner">
       <a class="g9-brand" href="{rel_root}index.html">
-        <span>⚡ Grade9V3.5</span>
+        <span class="logo-icon">⚡</span>
+        <span class="brand-title">Grade9V3.5</span>
         <span class="g9-brand-badge">Learner Platform</span>
       </a>
+      <nav class="g9-header-nav" aria-label="Portal Navigation">
+        <a href="{rel_root}index.html">Home</a>
+        <a href="{rel_root}physics/index.html">Physics</a>
+        <a href="{rel_root}chemistry/index.html">Chemistry</a>
+        <a href="{rel_root}mathematics/index.html">Mathematics</a>
+        <a href="{rel_root}question-bank/index.html">Question Bank</a>
+      </nav>
       <div class="g9-header-actions">
-        <a class="g9-search-trigger" href="{rel_root}question-bank/index.html">
-          <span>🔍</span>
-          <span>Search topics & questions</span>
-        </a>
+        <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search">
+          <span class="g9-btn-icon">🔍</span>
+          <span class="g9-btn-text">Search</span>
+        </button>
+        <button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings" aria-label="Display & Theme">
+          <span class="g9-btn-icon">🌙 / ☀️</span>
+          <span class="g9-btn-text">Display</span>
+        </button>
       </div>
     </div>
   </header>
@@ -408,7 +457,8 @@ def render_shell(title: str, content: str, breadcrumbs: list[tuple[str, str]] = 
   <footer class="g9-footer">
     <p>Grade9V3.5 Concept-Centred Learner Platform · Authentic Question Bank & Concepts</p>
   </footer>
-</body>
+<script src="{rel_root}js/display-controls.js"></script>
+<script src="{rel_root}js/site-header.js"></script></body>
 </html>
 """
 
@@ -464,8 +514,106 @@ def generate_home(registry: list[dict], rel_root: str = "") -> str:
     </div>
     <a class="g9-btn-qb-white" href="question-bank/index.html">Open Question Bank &rarr;</a>
   </div>
+
+  <div style="margin-top: 32px; padding: 16px; text-align: center; font-size: 13.5px; color: var(--muted, #64748b);">
+    <span>Authoring & Intake: <a href="raw-intake/index.html" style="color: inherit; text-decoration: underline;">Question Intake Workbench</a></span>
+  </div>
 """
     return render_shell("Home", content, rel_root=rel_root)
+
+
+SUBJECT_EXPLORERS = {
+    "Chemistry": [
+        {
+            "title": "Chemical Bonding & Molecular Structure",
+            "href": "bonding/explorers/chemical_bonding/index.html",
+            "desc": "Lewis formal charge diagrams, VSEPR 3D electron geometry, net dipole cancellation, and PCl5 axial vs equatorial geometry.",
+            "tag": "Interactive Suite"
+        },
+        {
+            "title": "Mole Concept & Stoichiometry",
+            "href": "some-basic-concepts/explorers/mole_concept/index.html",
+            "desc": "Mole scale, limiting reagent exhaustion, sequential and parallel reaction yield tracking, and eudiometry.",
+            "tag": "Interactive Suite"
+        },
+        {
+            "title": "Behaviour of Gases",
+            "href": "gases/explorers/behaviour_of_gases/index.html",
+            "desc": "Ideal/real gases, Maxwell speed distributions, excluded volume, compressibility factor Z, and critical state.",
+            "tag": "Interactive Suite"
+        }
+    ],
+    "Mathematics": [
+        {
+            "title": "Vector Algebra · 3D Master Suite",
+            "href": "vectors/explorers/vector_algebra/index.html",
+            "desc": "Rotatable 3D Euclidean vector engine, Gram-Schmidt orthogonal projection split, cross product, and triple products.",
+            "tag": "3D Visual Engine"
+        },
+        {
+            "title": "Linear Equations in One Unknown",
+            "href": "linear-equations/index.html",
+            "desc": "Reversible algebraic operations, non-zero divisor check (ME-1, ME-2, ME-3), and exact solution trees.",
+            "tag": "Interactive Atlas"
+        }
+    ],
+    "Physics": [
+        {
+            "title": "Motion in 1D Suite",
+            "href": "motion-1d/explorers/motion_in_1d/index.html",
+            "desc": "Kinematic equations, free fall under gravity, velocity-time graph area integrals, and turnaround points.",
+            "tag": "Interactive Rig"
+        },
+        {
+            "title": "Motion in a Plane Research Suite",
+            "href": "motion-2d/explorers/motion-in-a-plane/index.html",
+            "desc": "Cartesian projectile resolution, parabolic trajectory tracing, complementary angle invariance, and banked roads.",
+            "tag": "Interactive Rig"
+        },
+        {
+            "title": "2D Motion Master Suite",
+            "href": "motion-in-2d/explorers/motions_in_2d/index.html",
+            "desc": "Full 2D kinematic engine: rain-man relative velocity, river-boat crossing drift, and cliff-launch trajectories.",
+            "tag": "Master Suite"
+        },
+        {
+            "title": "Independent Components & Shared Clock",
+            "href": "motion-in-2d/explorers/independent_components_shared_clock/index.html",
+            "desc": "Direct visual proof of orthogonal independence in two-dimensional kinematics under uniform gravity.",
+            "tag": "Concept Rig"
+        },
+        {
+            "title": "Same Height Same Speed Symmetries",
+            "href": "motion-in-2d/explorers/same_height_same_speed/index.html",
+            "desc": "Horizontal symmetry and kinetic-potential energy conservation along parabolic flight trajectories.",
+            "tag": "Concept Rig"
+        },
+        {
+            "title": "The Apex Fallacy",
+            "href": "motion-in-2d/explorers/the_apex_fallacy/index.html",
+            "desc": "Non-zero acceleration at the apex: why net force is not zero when vertical velocity vanishes.",
+            "tag": "Concept Rig"
+        },
+        {
+            "title": "Atwood Machines & Pulley Constraints",
+            "href": "nlm/explorers/atwood-pulleys/index.html",
+            "desc": "Inextensible string kinematics, movable pulley mechanical advantage, and acceleration constraint equations.",
+            "tag": "Dynamics Rig"
+        },
+        {
+            "title": "Connected Blocks Dynamics",
+            "href": "nlm/explorers/connected-blocks/index.html",
+            "desc": "Multi-body contact forces, internal tension cancellation, and common acceleration systems.",
+            "tag": "Dynamics Rig"
+        },
+        {
+            "title": "Static-to-Kinetic Friction Threshold",
+            "href": "nlm/explorers/friction-threshold/index.html",
+            "desc": "Real-time physical simulation of self-adjusting static friction, impending slip threshold, and kinetic drop.",
+            "tag": "Physical Simulator"
+        }
+    ]
+}
 
 
 def generate_subject_hub(subject: str, registry: list[dict], bundles: list[dict], rel_root: str = "") -> str:
@@ -485,21 +633,15 @@ def generate_subject_hub(subject: str, registry: list[dict], bundles: list[dict]
             if b.get("interactive"):
                 topics[t]["has_interactive"] = True
 
-    # If physics, ensure 1D and 2D are present for discovery
-    if subject == "Physics":
-        if "phy.kin.1d" not in topics:
-            topics["phy.kin.1d"] = {"id": "phy.kin.1d", "title": "Motion in One Dimension", "concept_count": 1, "has_interactive": False}
-        if "phy.kin.2d" not in topics:
-            topics["phy.kin.2d"] = {"id": "phy.kin.2d", "title": "Motion in a Plane & Projectiles", "concept_count": 1, "has_interactive": False}
+    tag_classes = {"Physics": "g9-tag-physics", "Chemistry": "g9-tag-chemistry", "Mathematics": "g9-tag-math"}
+    tag_cls = tag_classes.get(subject, "g9-tag-physics")
 
     topic_cards = []
     for tid, tmeta in sorted(topics.items()):
-        badge = '<span class="g9-card-tag g9-tag-physics">Interactive Models</span>' if tmeta["has_interactive"] else '<span class="g9-card-tag g9-tag-physics">Core Study</span>'
+        badge = f'<span class="g9-card-tag {tag_cls}">Interactive Models</span>' if tmeta["has_interactive"] else f'<span class="g9-card-tag {tag_cls}">Core Study</span>'
         # Topic link
-        if "nlm" in tid:
-            topic_href = "../topics/nlm/index.html"
-        else:
-            topic_href = "../standalone/practice/index.html"
+        tid_short = tid.split(".")[-1]
+        topic_href = f"../topics/{tid_short}/index.html"
         topic_cards.append(f"""
     <a class="g9-card" href="{topic_href}">
       <div class="g9-card-header">
@@ -513,16 +655,44 @@ def generate_subject_hub(subject: str, registry: list[dict], bundles: list[dict]
       </div>
     </a>""")
 
+    exp_cards = []
+    for exp in SUBJECT_EXPLORERS.get(subject, []):
+        exp_cards.append(f"""
+    <a class="g9-card" href="{exp['href']}">
+      <div class="g9-card-header">
+        <span class="g9-card-tag {tag_cls}">{html.escape(exp['tag'])}</span>
+        <h3 class="g9-card-title">{html.escape(exp['title'])}</h3>
+        <p class="g9-card-desc">{html.escape(exp['desc'])}</p>
+      </div>
+      <div class="g9-card-action">
+        <span>⚡ Try visually</span>
+        <span>&rarr;</span>
+      </div>
+    </a>""")
+
+    sections_html = []
+    if topic_cards:
+        sections_html.append(f"""
+  <h2 style="font-size: 20px; font-weight: 700; margin: 24px 0 12px;">Core Topic Workspaces</h2>
+  <div class="g9-grid">
+    {''.join(topic_cards)}
+  </div>""")
+
+    if exp_cards:
+        sections_html.append(f"""
+  <h2 style="font-size: 20px; font-weight: 700; margin: 28px 0 12px;">Interactive Explorers & Visual Suites</h2>
+  <div class="g9-grid">
+    {''.join(exp_cards)}
+  </div>""")
+
     crumbs = [("Home", f"{rel_root}index.html"), (subject, "")]
     content = f"""
   <div class="g9-hero">
     <h1 class="g9-hero-title">{html.escape(subject)} Hub</h1>
-    <p class="g9-hero-subtitle">Select a topic to enter its dedicated concept workspace.</p>
+    <p class="g9-hero-subtitle">Select a topic or visual simulation model to explore.</p>
   </div>
 
-  <div class="g9-grid">
-    {''.join(topic_cards)}
-  </div>
+  {''.join(sections_html)}
 """
     return render_shell(f"{subject} Hub", content, breadcrumbs=crumbs, rel_root=rel_root)
 
@@ -626,7 +796,16 @@ def main():
     print("Wrote public/index.html")
 
     # 3. Generate Subject Hubs
-    for subj in ["Physics", "Chemistry", "Mathematics"]:
+    # 3. Generate Subject Hubs (dynamically discovered from registry)
+    discovered_subjects = sorted(list(set(
+        rec.get("classification", {}).get("subject_ref")
+        for rec in registry
+        if rec.get("audience") == "LEARNER" and rec.get("classification", {}).get("subject_ref") not in (None, "Common", "Internal")
+    )))
+    if not discovered_subjects:
+        discovered_subjects = ["Physics", "Chemistry", "Mathematics"]
+
+    for subj in discovered_subjects:
         hub_dir = repo / "public" / subj.lower()
         hub_dir.mkdir(parents=True, exist_ok=True)
         hub_html = generate_subject_hub(subj, registry, bundles, rel_root="../")
@@ -634,27 +813,45 @@ def main():
             f.write(hub_html)
         print(f"Wrote public/{subj.lower()}/index.html")
 
-    # 4. Generate Topic Workspace for NLM Friction
-    topic_dir = repo / "public" / "topics" / "nlm"
-    topic_dir.mkdir(parents=True, exist_ok=True)
-    topic_html = generate_topic_workspace("phy.nlm", "Newton's Laws of Motion", "Physics", bundles, rel_root="../../")
-    with open(topic_dir / "index.html", "w", encoding="utf-8") as f:
-        f.write(topic_html)
-    print("Wrote public/topics/nlm/index.html")
+    # 4. Generate Topic Workspaces dynamically from concept bundles
+    discovered_topics = {}
+    for b in bundles:
+        t = b.get("topic_ref")
+        if t:
+            if t not in discovered_topics:
+                discovered_topics[t] = {
+                    "subject": b.get("subject_ref", "Physics"),
+                    "title": "Newton's Laws of Motion" if "nlm" in t else t.replace(".", " ").title()
+                }
+    if not discovered_topics:
+        discovered_topics["phy.nlm"] = {"subject": "Physics", "title": "Newton's Laws of Motion"}
+
+    for tid, tinfo in discovered_topics.items():
+        slug = tid.split(".")[-1]
+        topic_dir = repo / "public" / "topics" / slug
+        topic_dir.mkdir(parents=True, exist_ok=True)
+        topic_html = generate_topic_workspace(tid, tinfo["title"], tinfo["subject"], bundles, rel_root="../../")
+        with open(topic_dir / "index.html", "w", encoding="utf-8") as f:
+            f.write(topic_html)
+        print(f"Wrote public/topics/{slug}/index.html")
 
     # Copy to docs/ for publication
-    for path in [
+    sync_targets = [
         ("public/css/modern-learner.css", "docs/css/modern-learner.css"),
-        ("public/index.html", "docs/index.html"),
-        ("public/physics/index.html", "docs/physics/index.html"),
-        ("public/chemistry/index.html", "docs/chemistry/index.html"),
-        ("public/mathematics/index.html", "docs/mathematics/index.html"),
-        ("public/topics/nlm/index.html", "docs/topics/nlm/index.html")
-    ]:
-        src = repo / path[0]
-        dst = repo / path[1]
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        dst.write_text(src.read_text(encoding="utf-8"), encoding="utf-8")
+        ("public/index.html", "docs/index.html")
+    ]
+    for subj in discovered_subjects:
+        sync_targets.append((f"public/{subj.lower()}/index.html", f"docs/{subj.lower()}/index.html"))
+    for tid in discovered_topics.keys():
+        slug = tid.split(".")[-1]
+        sync_targets.append((f"public/topics/{slug}/index.html", f"docs/topics/{slug}/index.html"))
+
+    for src_rel, dst_rel in sync_targets:
+        src = repo / src_rel
+        dst = repo / dst_rel
+        if src.exists():
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            dst.write_text(src.read_text(encoding="utf-8"), encoding="utf-8")
     print("Synchronized generated surfaces to docs/")
 
 

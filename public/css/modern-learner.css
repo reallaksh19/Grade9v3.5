@@ -1,5 +1,5 @@
 /* Grade9V3.5 Modern Kid-Friendly Design System */
-:root {
+:root, [data-theme="light"] {
   --bg: #f8fafc;
   --bg-card: #ffffff;
   --bg-soft: #f1f5f9;
@@ -28,7 +28,30 @@
   --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+[data-theme="dark"] {
+  --bg: #0d1117;
+  --bg-card: #161b22;
+  --bg-soft: #21262d;
+  --border: #30363d;
+  --border-focus: #58a6ff;
+  --text-main: #f0f6fc;
+  --text-muted: #8b949e;
+  --text-dim: #6e7681;
+  --accent-learn: #58a6ff;
+  --accent-learn-bg: rgba(56, 139, 253, 0.15);
+  --accent-practice: #2dd4bf;
+  --accent-practice-bg: rgba(45, 212, 191, 0.15);
+  --accent-explore: #fbbf24;
+  --accent-explore-bg: rgba(251, 191, 36, 0.15);
+  --accent-qb: #38bdf8;
+  --accent-qb-bg: rgba(56, 189, 248, 0.15);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body, h1, h2, h3, h4, p { margin: 0; }
 
 body {
   background-color: var(--bg);
@@ -55,52 +78,66 @@ a { color: inherit; text-decoration: none; }
 .g9-header-inner {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 12px 20px;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  flex-wrap: wrap;
 }
 .g9-brand {
   display: flex;
   align-items: center;
   gap: 10px;
   font-weight: 800;
-  font-size: 19px;
+  font-size: 18px;
   color: var(--text-main);
   letter-spacing: -0.02em;
 }
 .g9-brand-badge {
   background: var(--accent-learn);
   color: #fff;
-  padding: 3px 8px;
+  padding: 2px 7px;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
+}
+.g9-header-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.g9-header-nav a:hover,
+.g9-header-nav a.active {
+  color: var(--accent-learn);
 }
 .g9-header-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
-}
-.g9-search-trigger {
-  display: flex;
-  align-items: center;
   gap: 8px;
+}
+.g9-header-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   background: var(--bg-soft);
   border: 1px solid var(--border);
-  border-radius: var(--radius-pill);
-  padding: 8px 16px;
-  font-size: var(--font-floor);
-  color: var(--text-muted);
-  min-height: var(--touch-min);
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-.g9-search-trigger:hover {
-  background: #e2e8f0;
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  font-size: 13.5px;
+  font-weight: 600;
   color: var(--text-main);
+  cursor: pointer;
+  min-height: 38px;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+.g9-header-btn:hover {
+  background: var(--border);
 }
 
 /* Breadcrumbs */

@@ -74,6 +74,38 @@
   --text-xl: 1.25rem;    /* 20px - Page Title / Focus anchors */
 }
 
+/* Light Theme Variables */
+[data-theme="light"] {
+  --bg: #f8fafc;
+  --bg-panel: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  
+  --border: #e2e8f0;
+  --border-muted: #cbd5e1;
+  --border-hover: #94a3b8;
+  --border-accent: #3b82f6;
+
+  --text: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-dim: #94a3b8;
+  --accent: #2563eb;
+  --accent-glow: rgba(37, 99, 235, 0.15);
+
+  --chip-ok-bg: #ecfdf5;
+  --chip-ok-border: #a7f3d0;
+  --chip-ok-text: #065f46;
+
+  --chip-warn-bg: #fffbeb;
+  --chip-warn-border: #fde68a;
+  --chip-warn-text: #92400e;
+
+  --chip-hold-bg: #fef2f2;
+  --chip-hold-border: #fecaca;
+  --chip-hold-text: #991b1b;
+}
+
 /* ==========================================================================
    GLOBAL RENDERING & TYPOGRAPHIC SMOOTHING
    ========================================================================== */
@@ -116,7 +148,7 @@ code, pre, .font-mono {
 
 /* Navigation Bar */
 header.site-nav {
-  background: rgba(22, 27, 34, 0.92);
+  background: var(--bg-panel);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   padding: 14px 24px;

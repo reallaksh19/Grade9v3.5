@@ -10,9 +10,11 @@
 
   const STORAGE_KEY_FONT = 'grade9v3_font_scale';
   const STORAGE_KEY_SCALE = 'grade9v3_ui_scale';
+  const STORAGE_KEY_THEME = 'g9-theme';
 
   let fontScale = 1.0;
   let uiScale = 1.0;
+  let currentTheme = 'light';
 
   // Read saved preferences
   try {
@@ -26,11 +28,36 @@
       const parsed = parseFloat(savedScale);
       if (!isNaN(parsed) && parsed >= 0.7 && parsed <= 1.5) uiScale = parsed;
     }
+    const savedTheme = localStorage.getItem(STORAGE_KEY_THEME) || localStorage.getItem('grade9v3_theme');
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      currentTheme = savedTheme;
+    } else if (document.documentElement.dataset.theme) {
+      currentTheme = document.documentElement.dataset.theme;
+    }
   } catch (e) {
     console.warn('Grade9V3: localStorage unavailable for display preferences', e);
   }
 
+  function applyTheme(theme, save = true) {
+    currentTheme = theme === 'dark' ? 'dark' : 'light';
+    document.documentElement.dataset.theme = currentTheme;
+    if (save) {
+      try {
+        localStorage.setItem(STORAGE_KEY_THEME, currentTheme);
+        localStorage.setItem('grade9v3_theme', currentTheme);
+      } catch (e) {}
+    }
+    updateWidgetUI();
+  }
+
+  function toggleTheme() {
+    applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+  }
+
   function applyDisplaySettings() {
+    // 0. Apply Theme
+    document.documentElement.dataset.theme = currentTheme;
+
     // 1. Apply Font Scale
     document.documentElement.style.setProperty('--font-scale', fontScale.toString());
     document.documentElement.style.fontSize = (16 * fontScale) + 'px';
@@ -129,6 +156,13 @@
     if (fontLabel) fontLabel.textContent = fontPct;
     if (scaleSlider) scaleSlider.value = uiScale;
     if (scaleLabel) scaleLabel.textContent = scalePct;
+
+    const themeLabel = document.getElementById('g9-theme-val');
+    if (themeLabel) themeLabel.textContent = currentTheme === 'dark' ? 'Dark Mode' : 'Light Mode';
+    const lightBtn = document.getElementById('g9-theme-btn-light');
+    const darkBtn = document.getElementById('g9-theme-btn-dark');
+    if (lightBtn) lightBtn.style.borderColor = currentTheme === 'light' ? '#38bdf8' : '';
+    if (darkBtn) darkBtn.style.borderColor = currentTheme === 'dark' ? '#38bdf8' : '';
 
     // Update all inline badges
     document.querySelectorAll('.g9-inline-font-val').forEach(el => {
@@ -334,6 +368,18 @@
           </div>
         </div>
 
+        <!-- Color Theme -->
+        <div class="g9-control-row">
+          <div class="g9-control-label-wrap">
+            <span>🌓 Color Theme</span>
+            <span class="g9-val-badge" id="g9-theme-val">Light Mode</span>
+          </div>
+          <div class="g9-btn-pill-row">
+            <button type="button" class="g9-pill" id="g9-theme-btn-light" data-theme-val="light">☀️ Light</button>
+            <button type="button" class="g9-pill" id="g9-theme-btn-dark" data-theme-val="dark">🌙 Dark</button>
+          </div>
+        </div>
+
         <!-- Font Size Slider -->
         <div class="g9-control-row">
           <div class="g9-control-label-wrap">
@@ -392,7 +438,7 @@
     });
 
     document.addEventListener('click', (e) => {
-      if (!container.contains(e.target) && !e.target.closest('.g9-display-trigger-btn') && !e.target.closest('.display-controls-wrap')) {
+      if (!container.contains(e.target) && !e.target.closest('.g9-display-trigger-btn') && !e.target.closest('[data-g9-action="display"]') && !e.target.closest('.display-controls-wrap')) {
         popover.classList.remove('active');
       }
     });
@@ -409,10 +455,12 @@
       resetDisplay();
     });
 
-    // Preset pills
+    // Preset pills & theme buttons
     container.querySelectorAll('.g9-pill').forEach(pill => {
       pill.addEventListener('click', (e) => {
-        if (pill.dataset.font) {
+        if (pill.dataset.themeVal) {
+          applyTheme(pill.dataset.themeVal);
+        } else if (pill.dataset.font) {
           setFontScale(pill.dataset.font);
         } else if (pill.dataset.scale) {
           setUiScale(pill.dataset.scale);
@@ -434,6 +482,9 @@
     togglePopover,
     openPopover,
     closePopover,
+    applyTheme,
+    toggleTheme,
+    getTheme: () => currentTheme,
     getFontScale: () => fontScale,
     getUiScale: () => uiScale
   };

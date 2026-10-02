@@ -2241,7 +2241,8 @@ q('[data-g9-zoom]').forEach(b=>b.onclick=()=>{let z=parseFloat(store.get('zoom')
 q('[data-g9-font]').forEach(b=>b.onclick=()=>q('[data-g9-zoom="'+b.dataset.g9Font+'"]')[0]?.click());
 function initFigure(f){if(f.dataset.g9Init)return;f.dataset.g9Init='1';const ids=(f.dataset.g9Stages||'').split(' ').filter(Boolean);if(ids.length<2)return;let i=0;
 const chips=q('[data-g9-stage-goto]',f);const desc=q('[data-g9-stage-desc-text]',f)[0];
-const show=()=>{ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=n<=i?'':'none'));const l=q('[data-g9-stage-label]',f)[0];if(l)l.textContent='Stage '+(i+1)+' of '+ids.length;chips.forEach((c,n)=>c.setAttribute('aria-pressed',String(n===i)));if(desc)desc.textContent=(chips[i]&&chips[i].dataset.g9StageDesc)||''};show();chips.forEach((c,n)=>c.onclick=()=>{i=n;show()});
+const isSeq=f.dataset.g9StageSequence==='true'||ids.every(id=>{const g=q('[data-g9-stage-id="'+id+'"]',f)[0];return g&&g.querySelector('text[y="24"]');});
+const show=()=>{ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=(isSeq?n===i:n<=i)?'':'none'));const l=q('[data-g9-stage-label]',f)[0];if(l)l.textContent='Stage '+(i+1)+' of '+ids.length;chips.forEach((c,n)=>c.setAttribute('aria-pressed',String(n===i)));if(desc)desc.textContent=(chips[i]&&chips[i].dataset.g9StageDesc)||''};show();chips.forEach((c,n)=>c.onclick=()=>{i=n;show()});
 q('[data-g9-stage-step]',f).forEach(b=>b.onclick=()=>{i=Math.max(0,Math.min(ids.length-1,i+(b.dataset.g9StageStep==='next'?1:-1)));show()})}
 function nextRung(l){const t=q('template[data-g9-rung-payload]',l)[0];if(!t)return false;const payload=t.content.cloneNode(true);q('[data-g9-rung-ghost]',l)[0]?.remove();q('figure[data-g9-figure]',payload).forEach(initFigure);q('[data-g9-ladder]',l)[0].append(payload);t.remove();const b=q('[data-g9-next-rung]',l)[0];if(b){if(!q('template[data-g9-rung-payload]',l).length)b.disabled=true;else b.textContent='Show next support'}return true}
 function materialise(a){q('details[data-g9-payload-ref]',a).forEach(d=>{const slot=q('[data-g9-payload-slot]',d)[0];if(!slot||slot.dataset.g9Filled)return;const t=q('template[data-g9-payload]',a).find(x=>x.dataset.g9Payload===d.dataset.g9PayloadRef);if(!t)return;slot.replaceChildren(t.content.cloneNode(true));slot.dataset.g9Filled='1';q('figure[data-g9-figure]',slot).forEach(initFigure)})}
@@ -2298,20 +2299,28 @@ def pdf_control(href: str, accessible_name: str = PDF_ACCESSIBLE_NAME) -> str:
 
 
 def shell_header(home_href: str, question_bank_href: str, pdf_href: str | None = None, pdf_name: str = PDF_ACCESSIBLE_NAME) -> str:
-    """The shared tablet-shell header. Used by every rendered page and by the TEST area's own pages.
-
-    `pdf_href` is the PDF printed from this very page; a header made without one (a hub, an index) has no PDF icon."""
-    return (f'<header data-g9-shell-header><a data-g9-home href="{esc(home_href)}">Home</a>'
-            f'<button type="button" onclick="history.back()">Back</button>'
-            f'<a href="{esc(question_bank_href)}">Question bank</a>'
-            f'{pdf_control(pdf_href, pdf_name) if pdf_href else ""}'
-            f'<button type="button" data-g9-action="search">Search</button>'
-            f'<button type="button" data-g9-action="display">Display</button>'
+    """The shared tablet-shell header. Used by every rendered page."""
+    pdf_btn = f'<a class="g9-header-btn" href="{esc(pdf_href)}" title="{esc(pdf_name)}">PDF</a>' if pdf_href else ""
+    return (f'<header class="g9-shell-header"><div class="g9-header-inner">'
+            f'<a href="{esc(home_href)}" class="g9-brand"><span class="logo-icon">⚡</span><span class="brand-title">Grade9V3.5</span><span class="g9-brand-badge">Learner Platform</span></a>'
+            f'<nav class="g9-header-nav" aria-label="Portal Navigation">'
+            f'<a href="{esc(home_href)}">Home</a>'
+            f'<a href="../../../physics/index.html">Physics</a>'
+            f'<a href="../../../chemistry/index.html">Chemistry</a>'
+            f'<a href="../../../mathematics/index.html">Mathematics</a>'
+            f'<a href="{esc(question_bank_href)}">Question Bank</a>'
+            f'</nav>'
+            f'<div class="g9-header-actions">'
+            f'<button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search"><span class="g9-btn-icon">🔍</span><span class="g9-btn-text">Search</span></button>'
+            f'<button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings" aria-label="Display & Theme"><span class="g9-btn-icon">🌙 / ☀️</span><span class="g9-btn-text">Display</span></button>'
+            f'{pdf_btn}'
+            f'</div></div>'
             f'<div data-g9-search-panel hidden><input data-g9-search-input type="search" aria-label="Search this page"></div>'
-            f'<div data-g9-display-panel hidden><button type="button" data-g9-font="dec">A−</button><button type="button" data-g9-font="reset">A</button>'
+            f'<div data-g9-display-panel hidden><button type="button" data-g9-font="dec">A-</button><button type="button" data-g9-font="reset">A</button>'
             f'<button type="button" data-g9-font="inc">A+</button><button type="button" data-g9-theme="light">Light</button>'
-            f'<button type="button" data-g9-theme="dark">Dark</button><button type="button" data-g9-zoom="dec">Zoom −</button>'
-            f'<button type="button" data-g9-zoom="reset">100%</button><button type="button" data-g9-zoom="inc">Zoom +</button></div></header>')
+            f'<button type="button" data-g9-theme="dark">Dark</button><button type="button" data-g9-zoom="dec">Zoom -</button>'
+            f'<button type="button" data-g9-zoom="reset">100%</button><button type="button" data-g9-zoom="inc">Zoom +</button></div>'
+            f'</header>')
 
 
 def _pdf_target(ctx: Ctx, role: str, mode: str) -> tuple[str | None, str]:
@@ -2327,20 +2336,73 @@ def shell(ctx: Ctx, role: str, mode: str, pdf: bool = True) -> tuple[str, str]:
     m = ctx.manifest
     if mode == "EMBED":
         return "", ""
-    output_roles = product_manifest.selected_output_roles(m)
-    nav_links = "".join(
-        f'<a href="{"#g9-role-" + r if mode == "SINGLE_FILE" else ROLE_FILE[r]}"'
-        f'{" aria-current=page" if mode != "SINGLE_FILE" and r == role else ""}>{esc(r)}</a>'
-        for r in output_roles
-    )
+    
+    MODERN_ROLE = {"CORE1A": "Learn", "CORE2": "Practice"}
+    current_role = MODERN_ROLE.get(role, role)
+    
     home_href = _mode_href(m["home_href"], mode)
-    question_bank_href = _mode_href(m.get("question_bank_href", m["home_href"]), mode)
+    qb_href = _mode_href(m.get("question_bank_href", m["home_href"]), mode)
     pdf_href, pdf_name = _pdf_target(ctx, role, mode) if pdf else (None, PDF_ACCESSIBLE_NAME)
-    header = shell_header(home_href, question_bank_href, pdf_href, pdf_name)
-    product_href = f"#g9-role-{output_roles[0]}" if mode == "SINGLE_FILE" else "index.html"
-    crumbs = (f'<nav data-g9-breadcrumb aria-label="Breadcrumb"><a href="{esc(home_href)}">Home</a>'
-              f'<a href="{product_href}">{esc(m["title"])}</a>{nav_links}</nav>')
-    return header, crumbs
+    
+    header = shell_header(home_href, qb_href, pdf_href, pdf_name)
+    
+    # Breadcrumbs
+    subject = m.get("subject", "Physics")
+    subject_href = f"../../../{subject.lower()}/index.html"
+    
+
+    from Shared.tools.resolve_concept_bundle import resolve_bundle
+    cap_ref = None
+    try:
+        if ctx.selection_rows and "core2" in ctx.selection_rows and ctx.selection_rows["core2"]:
+            cap_ref = ctx.selection_rows["core2"][0].get("primary_capability_ref", "")
+        else:
+            cap_ref = "MIC-PHY-NLM-FRICTION" # fallback
+            
+        registry_path = REPO / "public" / "data" / "resource-registry.v1.json"
+        reg = load_json(registry_path) if registry_path.exists() else []
+        bundle = resolve_bundle(cap_ref, reg)
+        explore_btn = ""
+        if bundle.get("interactive"):
+            ep = bundle["interactive"][0].get("entrypoint", "")
+            explore_btn = f'<a class="g9-triad-btn g9-btn-explore" href="../../../{ep}">⚡ Try visually</a>'
+            
+        topic_id = bundle.get("topic_ref", "")
+        if topic_id:
+            topic_slug = topic_id.split(".")[-1]
+        else:
+            pid = m.get("product_id", "")
+            parts = pid.split("-")
+            topic_slug = parts[2].lower() if len(parts) >= 3 else "nlm"
+    except Exception:
+        explore_btn = ""
+        topic_slug = "nlm"
+        
+    topic_href = f"../../../topics/{topic_slug}/index.html"
+    
+    crumbs = (f'<nav class="g9-breadcrumb-bar"><div class="g9-breadcrumbs">'
+              f'<a href="{esc(home_href)}">Home</a> <span>/</span> '
+              f'<a href="{subject_href}">{esc(subject)}</a> <span>/</span> '
+              f'<a href="{topic_href}">Topic</a> <span>/</span> '
+              f'<a href="#">{esc(m.get("title", ""))}</a> <span>/</span> '
+              f'<span aria-current="page">{esc(current_role)}</span>'
+              f'</div></nav>')
+              
+    qb_url = f"../../../question-bank/index.html?capability={esc(cap_ref)}"
+    
+    c1a_active = ' active' if role == 'CORE1A' else ''
+    c2_active = ' active' if role == 'CORE2' else ''
+    
+    triad = (f'<div class="g9-concept-triad-bar"><div class="g9-triad-inner">'
+             f'<span class="g9-triad-concept-title">Concept: {esc(m.get("title", ""))}</span>'
+             f'<div class="g9-triad-actions">'
+             f'<a class="g9-triad-btn g9-btn-learn{c1a_active}" href="core1a.html">📖 Learn</a>'
+             f'<a class="g9-triad-btn g9-btn-practice{c2_active}" href="core2.html">✍️ Practice</a>'
+             f'{explore_btn}'
+             f'<a class="g9-triad-btn g9-btn-qb" href="{qb_url}">All questions in QB &rarr;</a>'
+             f'</div></div></div>')
+             
+    return header, crumbs + triad
 
 
 DIGEST_SLOT = "g9-digest-pending"
@@ -2381,7 +2443,7 @@ def _shared_head_assets(ctx: Ctx, mode: str) -> str:
     if mode == "SINGLE_FILE":
         return '<style data-g9-tablet-shell>' + TABLET_CSS.read_text(encoding="utf-8") + '</style>'
     root = _asset_root(ctx)
-    return f'<link rel="stylesheet" href="{esc(root)}css/tablet-12-7.css">'
+    return f'<link rel="stylesheet" href="{esc(root)}css/modern-learner.css"><link rel="stylesheet" href="{esc(root)}css/tablet-12-7.css">'
 
 
 def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
@@ -2411,7 +2473,7 @@ def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
             f'<main><h1>{esc(m["title"])}: {esc(ROLE_TITLE[role])}</h1>'
             f'{_core1a_bucket_orientation(ctx) if role == "CORE1A" else ""}{articles}</main>'
             f'<footer data-g9-footer>{esc(m["subject"])} · {esc(m["title"])}</footer>'
-            f"<script>{JS}</script></body></html>\n")
+            f"<script>{JS}</script><script src=\"{esc(_asset_root(ctx))}js/display-controls.js\"></script><script src=\"{esc(_asset_root(ctx))}js/site-header.js\"></script></body></html>\n")
 
 
 def index_page(ctx: Ctx, digest: str) -> str:

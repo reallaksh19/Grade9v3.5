@@ -16,6 +16,17 @@
   --qb-warning: #b45309; /* Warm Terracotta / Amber */
   --qb-radius-sm: 8px;
   --qb-radius-md: 12px;
+  --qb-active-text: #ffffff;
+}
+
+[data-theme="light"] {
+  --qb-panel: var(--bg-panel, #ffffff);
+  --qb-card: var(--bg-card, #ffffff);
+  --qb-border: var(--border, #e2e8f0);
+  --qb-text: var(--text, #0f172a);
+  --qb-muted: var(--text-muted, #64748b);
+  --qb-dim: var(--text-dim, #94a3b8);
+  --qb-active-text: #0f172a;
 }
 
 /* Shell Container with Generous Breathing Room */
@@ -222,7 +233,7 @@
 
 .qb-tab-btn.active {
   background: var(--qb-card);
-  color: #ffffff;
+  color: var(--qb-active-text, #ffffff);
   border-color: var(--qb-border);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }

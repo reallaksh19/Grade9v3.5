@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-g9-shell>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,14 +10,26 @@
   <header class="g9-shell-header">
     <div class="g9-header-inner">
       <a class="g9-brand" href="../index.html">
-        <span>⚡ Grade9V3.5</span>
+        <span class="logo-icon">⚡</span>
+        <span class="brand-title">Grade9V3.5</span>
         <span class="g9-brand-badge">Learner Platform</span>
       </a>
+      <nav class="g9-header-nav" aria-label="Portal Navigation">
+        <a href="../index.html">Home</a>
+        <a href="../physics/index.html">Physics</a>
+        <a href="../chemistry/index.html">Chemistry</a>
+        <a href="../mathematics/index.html">Mathematics</a>
+        <a href="../question-bank/index.html">Question Bank</a>
+      </nav>
       <div class="g9-header-actions">
-        <a class="g9-search-trigger" href="../question-bank/index.html">
-          <span>🔍</span>
-          <span>Search topics & questions</span>
-        </a>
+        <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search">
+          <span class="g9-btn-icon">🔍</span>
+          <span class="g9-btn-text">Search</span>
+        </button>
+        <button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings" aria-label="Display & Theme">
+          <span class="g9-btn-icon">🌙 / ☀️</span>
+          <span class="g9-btn-text">Display</span>
+        </button>
       </div>
     </div>
   </header>
@@ -32,16 +44,41 @@
     
   <div class="g9-hero">
     <h1 class="g9-hero-title">Mathematics Hub</h1>
-    <p class="g9-hero-subtitle">Select a topic to enter its dedicated concept workspace.</p>
+    <p class="g9-hero-subtitle">Select a topic or visual simulation model to explore.</p>
   </div>
 
+  
+  <h2 style="font-size: 20px; font-weight: 700; margin: 28px 0 12px;">Interactive Explorers & Visual Suites</h2>
   <div class="g9-grid">
     
+    <a class="g9-card" href="vectors/explorers/vector_algebra/index.html">
+      <div class="g9-card-header">
+        <span class="g9-card-tag g9-tag-math">3D Visual Engine</span>
+        <h3 class="g9-card-title">Vector Algebra · 3D Master Suite</h3>
+        <p class="g9-card-desc">Rotatable 3D Euclidean vector engine, Gram-Schmidt orthogonal projection split, cross product, and triple products.</p>
+      </div>
+      <div class="g9-card-action">
+        <span>⚡ Try visually</span>
+        <span>&rarr;</span>
+      </div>
+    </a>
+    <a class="g9-card" href="linear-equations/index.html">
+      <div class="g9-card-header">
+        <span class="g9-card-tag g9-tag-math">Interactive Atlas</span>
+        <h3 class="g9-card-title">Linear Equations in One Unknown</h3>
+        <p class="g9-card-desc">Reversible algebraic operations, non-zero divisor check (ME-1, ME-2, ME-3), and exact solution trees.</p>
+      </div>
+      <div class="g9-card-action">
+        <span>⚡ Try visually</span>
+        <span>&rarr;</span>
+      </div>
+    </a>
   </div>
 
   </main>
   <footer class="g9-footer">
     <p>Grade9V3.5 Concept-Centred Learner Platform · Authentic Question Bank & Concepts</p>
   </footer>
-</body>
+<script src="../js/display-controls.js"></script>
+<script src="../js/site-header.js"></script></body>
 </html>
