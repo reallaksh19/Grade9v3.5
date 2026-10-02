@@ -4,11 +4,29 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Chemical Bonding · Construction (Core 1A)</title>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
   <link rel="stylesheet" href="../../css/modern-learner.css">
   <style>
     :root {
       --g9-space: clamp(16px, 2vw, 28px);
       --accent: #4f46e5;
+    }
+    .g9-formula-block {
+      margin: 10px 0;
+      padding: 12px 18px;
+      background: var(--bg-soft, #f8fafc);
+      border: 1px solid var(--border, #e2e8f0);
+      border-radius: var(--radius-sm, 8px);
+      text-align: center;
+      font-size: 1.1rem;
+      overflow-x: auto;
+    }
+    [data-theme="dark"] .g9-formula-block {
+      background: #1e293b;
+      border-color: #334155;
     }
     main { max-width: 1240px; margin: 0 auto; padding: var(--g9-space); }
     .g9-core1a-book { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 24px; }
@@ -99,8 +117,8 @@
           <ol class="g9-step-list">
             <li class="g9-step-item">
               <strong>Calculate Steric Number (SN):</strong><br>
-              Count the valence electrons on the central atom and sum the number of bonded atoms (σ-bonds) plus lone pairs:
-              <code style="display:block; margin-top:4px; font-weight:700; color:var(--accent-learn);">SN = (Bond Pairs) + (Lone Pairs) = ½ [V + M - C + A]</code>
+              Count the valence electrons on the central atom and sum the number of bonded atoms (\(\sigma\)-bonds) plus lone pairs:
+              <div class="g9-formula-block">$$\text{SN} = (\text{Bond Pairs}) + (\text{Lone Pairs}) = \tfrac{1}{2} [V + M - C + A]$$</div>
               <em>Result:</em> Fixes the parent electron-domain geometry (Linear, Trigonal Planar, Tetrahedral, Trigonal Bipyramidal, Octahedral).
             </li>
             <li class="g9-step-item">
@@ -121,19 +139,19 @@
             </li>
             <li class="g9-step-item">
               <strong>Sum Vectorial Bond Dipoles & Net Dipole Moment:</strong><br>
-              A molecule has \(\mu_{net} = 0\) only if bond dipole vectors geometrically cancel:<br>
-              In \(XeF_4\), four equal Xe&ndash;F dipoles lie in the same plane at 90° pointing outward, completely canceling out (\(\sum \vec{\mu} = 0\)). In \(SF_4\), the see-saw geometry creates a persistent equatorial-axial vector sum (\(\mu_{net} \neq 0\)).
+              A molecule has \(\mu_{\text{net}} = 0\) only if bond dipole vectors geometrically cancel:<br>
+              In \(\text{XeF}_4\), four equal \(\text{Xe–F}\) dipoles lie in the same plane at 90° pointing outward, completely canceling out (\(\sum \vec{\mu} = \vec{0}\)). In \(\text{SF}_4\), the see-saw geometry creates a persistent equatorial-axial vector sum (\(\mu_{\text{net}} \neq 0\)).
             </li>
           </ol>
         </div>
 
         <div class="g9-card-panel g9-worked-card">
           <h4>Watch One · Authentic JEE Main Exemplar</h4>
-          <p><strong>Problem:</strong> Predict the molecular geometry and net dipole moment of \(XeF_4\) and \(SF_4\) respectively.</p>
+          <p><strong>Problem:</strong> Predict the molecular geometry and net dipole moment of \(\text{XeF}_4\) and \(\text{SF}_4\) respectively.</p>
           <ol>
-            <li><strong>For \(XeF_4\):</strong> Xe has 8 valence electrons. With 4 F atoms, it forms 4 \(\sigma\)-bonds and retains 2 lone pairs. Steric Number = 4 + 2 = 6 (Octahedral domain). The 2 lone pairs sit opposite each other (180°), leaving 4 F atoms in a single plane &rarr; <strong>Square Planar</strong>. Symmetrical dipole vectors cancel &rarr; \(\mu = 0\).</li>
-            <li><strong>For \(SF_4\):</strong> S has 6 valence electrons. With 4 F atoms, it forms 4 \(\sigma\)-bonds and retains 1 lone pair. Steric Number = 4 + 1 = 5 (Trigonal Bipyramidal domain). The 1 lone pair occupies an equatorial position &rarr; <strong>See-saw</strong> geometry. Dipoles do not cancel &rarr; \(\mu \neq 0\).</li>
-            <li><strong>Conclusion:</strong> \(XeF_4\) is square planar and nonpolar (\(\mu=0\)); \(SF_4\) is see-saw and polar (\(\mu \neq 0\)).</li>
+            <li><strong>For \(\text{XeF}_4\):</strong> Xe has 8 valence electrons. With 4 F atoms, it forms 4 \(\sigma\)-bonds and retains 2 lone pairs. Steric Number \(= 4 + 2 = 6\) (Octahedral domain). The 2 lone pairs sit opposite each other (180°), leaving 4 F atoms in a single plane &rarr; <strong>Square Planar</strong>. Symmetrical dipole vectors cancel &rarr; \(\mu = 0\).</li>
+            <li><strong>For \(\text{SF}_4\):</strong> S has 6 valence electrons. With 4 F atoms, it forms 4 \(\sigma\)-bonds and retains 1 lone pair. Steric Number \(= 4 + 1 = 5\) (Trigonal Bipyramidal domain). The 1 lone pair occupies an equatorial position &rarr; <strong>See-saw</strong> geometry. Dipoles do not cancel &rarr; \(\mu \neq 0\).</li>
+            <li><strong>Conclusion:</strong> \(\text{XeF}_4\) is square planar and nonpolar (\(\mu = 0\)); \(\text{SF}_4\) is see-saw and polar (\(\mu \neq 0\)).</li>
           </ol>
         </div>
       </div>
@@ -226,6 +244,25 @@
         'Stage 3: The 4 remaining fluorine atoms form a Square Planar molecule. Symmetrical dipoles cancel (μ = 0).'
       ];
       document.getElementById('vseprDesc').textContent = descs[stage - 1];
+    }
+  </script>
+  <script>
+    function renderAllMath() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "\\(", right: "\\)", display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", renderAllMath);
+    } else {
+      renderAllMath();
     }
   </script>
 </body>

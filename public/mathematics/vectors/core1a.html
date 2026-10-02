@@ -4,11 +4,29 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Vector Algebra · Construction (Core 1A)</title>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
   <link rel="stylesheet" href="../../css/modern-learner.css">
   <style>
     :root {
       --g9-space: clamp(16px, 2vw, 28px);
       --accent: #7c3aed;
+    }
+    .g9-formula-block {
+      margin: 10px 0;
+      padding: 12px 18px;
+      background: var(--bg-soft, #f8fafc);
+      border: 1px solid var(--border, #e2e8f0);
+      border-radius: var(--radius-sm, 8px);
+      text-align: center;
+      font-size: 1.1rem;
+      overflow-x: auto;
+    }
+    [data-theme="dark"] .g9-formula-block {
+      background: #1e293b;
+      border-color: #334155;
     }
     main { max-width: 1240px; margin: 0 auto; padding: var(--g9-space); }
     .g9-core1a-book { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 24px; }
@@ -100,28 +118,28 @@
             <li class="g9-step-item">
               <strong>Establish Reference Frame & Angle Orientation:</strong><br>
               Define the origin and orthogonal axes (\(x\) horizontal, \(y\) vertical). Identify the precise reference line for angle \(\theta\):
-              <code style="display:block; margin-top:4px; font-weight:700; color:#86198f;">Adjacent side = Hypotenuse &times; cos(&theta;); Opposite side = Hypotenuse &times; sin(&theta;)</code>
+              <div class="g9-formula-block">$$\text{Adjacent side} = \text{Hypotenuse} \times \cos\theta, \quad \text{Opposite side} = \text{Hypotenuse} \times \sin\theta$$</div>
               <em>Rule:</em> The component along the arm with which angle \(\theta\) is made takes the <strong>cosine</strong>; the perpendicular arm takes the <strong>sine</strong>.
             </li>
             <li class="g9-step-item">
               <strong>Assign Orthogonal Unit Vector Projections:</strong><br>
               Decompose the vector into signed rectangular components along unit vectors \(\hat{i}\) (along \(+x\)) and \(\hat{j}\) (along \(+y\)):
-              <code style="display:block; margin-top:4px; font-weight:700; color:#86198f;">\vec{A} = A_x \hat{i} + A_y \hat{j}</code>
+              <div class="g9-formula-block">$$\vec{A} = A_x \hat{i} + A_y \hat{j}$$</div>
             </li>
             <li class="g9-step-item g9-crux-step">
               <span class="g9-crux-badge">Crux Step · The Quadrant Trap</span><br>
               <strong>Verify Quadrant Sign Integrity:</strong><br>
               Never blindly assume components are positive. Match the algebraic sign of \(A_x\) and \(A_y\) to the spatial quadrant:<br>
-              &bull; <strong>Quadrant I:</strong> \(+x, +y\) (\(+\hat{i}, +\hat{j}\))<br>
-              &bull; <strong>Quadrant II:</strong> \(-x, +y\) (\(-\hat{i}, +\hat{j}\))<br>
-              &bull; <strong>Quadrant III:</strong> \(-x, -y\) (\(-\hat{i}, -\hat{j}\))<br>
-              &bull; <strong>Quadrant IV:</strong> \(+x, -y\) (\(+\hat{i}, -\hat{j}\))
+              &bull; <strong>Quadrant I:</strong> \((+x, +y) \implies (+\hat{i}, +\hat{j})\)<br>
+              &bull; <strong>Quadrant II:</strong> \((-x, +y) \implies (-\hat{i}, +\hat{j})\)<br>
+              &bull; <strong>Quadrant III:</strong> \((-x, -y) \implies (-\hat{i}, -\hat{j})\)<br>
+              &bull; <strong>Quadrant IV:</strong> \((+x, -y) \implies (+\hat{i}, -\hat{j})\)
             </li>
             <li class="g9-step-item">
               <strong>Recombine Multi-Vector Resultants:</strong><br>
               To add arbitrary vectors \(\vec{A} + \vec{B} + \vec{C}\), sum components independently:
-              <code style="display:block; margin-top:4px; font-weight:700; color:#86198f;">R_x = \sum A_x, \quad R_y = \sum A_y \implies |\vec{R}| = \sqrt{R_x^2 + R_y^2}</code>
-              Direction relative to \(+x\) is given by \(\alpha = \tan^{-1}(R_y / R_x)\).
+              <div class="g9-formula-block">$$R_x = \sum A_x, \quad R_y = \sum A_y \implies |\vec{R}| = \sqrt{R_x^2 + R_y^2}$$</div>
+              Direction relative to \(+x\) is given by \(\alpha = \tan^{-1}\left(\frac{R_y}{R_x}\right)\).
             </li>
           </ol>
         </div>
@@ -132,13 +150,15 @@
           <ol>
             <li><strong>Identify Orientation:</strong> The vector lies in Quadrant II. The angle \(\theta = 30^\circ\) is measured relative to the \(-x\) axis.</li>
             <li><strong>Calculate Magnitudes:</strong><br>
-              \(|F_x| = 20 \cos(30^\circ) = 20 \times \frac{\sqrt{3}}{2} = 10\sqrt{3}\text{ N} \approx 17.32\text{ N}\).<br>
-              \(|F_y| = 20 \sin(30^\circ) = 20 \times \frac{1}{2} = 10\text{ N}\).
+              <div class="g9-formula-block">$$|F_x| = 20 \cos(30^\circ) = 20 \times \frac{\sqrt{3}}{2} = 10\sqrt{3}\text{ N} \approx 17.32\text{ N}$$
+              $$|F_y| = 20 \sin(30^\circ) = 20 \times \frac{1}{2} = 10\text{ N}$$</div>
             </li>
-            <li><strong>Apply Quadrant Signs (Crux Step):</strong> Since it points along the negative \(x\)-direction and positive \(y\)-direction:
-              \(F_x = -10\sqrt{3}\), \(F_y = +10\).
+            <li><strong>Apply Quadrant Signs (Crux Step):</strong> Since it points along the negative \(x\)-direction and positive \(y\)-direction:<br>
+              \(F_x = -10\sqrt{3}\text{ N}, \quad F_y = +10\text{ N}\).
             </li>
-            <li><strong>Vector Notation:</strong> \(\vec{F} = -10\sqrt{3}\hat{i} + 10\hat{j}\text{ N}\).</li>
+            <li><strong>Vector Notation:</strong><br>
+              <div class="g9-formula-block">$$\vec{F} = -10\sqrt{3}\hat{i} + 10\hat{j}\text{ N}$$</div>
+            </li>
           </ol>
         </div>
       </div>
@@ -231,6 +251,25 @@
         'Stage 3: Resolved components A_x = |A|cosθ along +x and A_y = |A|sinθ along +y.'
       ];
       document.getElementById('vecDesc').textContent = descs[stage - 1];
+    }
+  </script>
+  <script>
+    function renderAllMath() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "\\(", right: "\\)", display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", renderAllMath);
+    } else {
+      renderAllMath();
     }
   </script>
 </body>
