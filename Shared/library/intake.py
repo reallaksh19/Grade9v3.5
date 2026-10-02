@@ -173,7 +173,7 @@ def check(package: dict) -> dict:
         qid = row.get("id", "<unidentified>")
         hints = row.get("hints") or []
         for position, hint in enumerate(hints):
-            if hint.get("reveals") == "ANSWER" and position != len(hints) - 1:
+            if isinstance(hint, dict) and hint.get("reveals") == "ANSWER" and position != len(hints) - 1:
                 fail("HINT_LADDER", f"{qid}: hint {position + 1} of {len(hints)} reveals the "
                                     "answer, so every hint after it has nothing left to offer")
         answer = row.get("answer") or {}

@@ -34,6 +34,7 @@ let state=stateFromUrl();
 let renderSeq=0;
 let failure=null;
 let studyTrigger=null;
+let pendingTopic=null;
 let settleFirstList;
 const firstList=new Promise(resolve=>{settleFirstList=resolve;});
 
@@ -86,26 +87,64 @@ function stateFromUrl(){
   return {view:p.get('view')||'',q:p.get('q')||p.get('search')||p.get('id')||'',subject:p.get('subject')||'',topic:p.get('topic')||'',subtopic:p.get('subtopic')||'',
     difficulty:p.get('difficulty')||'',exam:p.get('exam')||'',type:p.get('type')||'',mode:p.get('mode')||'browse',sort:p.get('sort')||'canonical'};
 }
+function stem(word){
+  if(word.endsWith('ies'))return word.slice(0,-3)+'y';
+  if(word.endsWith('s')&&!word.endsWith('ss'))return word.slice(0,-1);
+  return word;
+}
+function scoreCandidate(row,wantedTokens){
+  let score=row.question_count>0?100:0;
+  score+=Math.max(0,50-(row.label||'').length);
+  return score;
+}
 function refFor(rows,value){
   if(!value)return '';
-  const wanted=String(value).toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
-  const byId=rows.find(row=>row.id===value);
+  const raw=String(value).trim();
+  const byId=rows.find(row=>row.id===raw||row.id.toLowerCase()===raw.toLowerCase());
   if(byId)return byId.id;
-  const byExactLabel=rows.find(row=>String(row.label).toLowerCase()===wanted);
+
+  const wanted=raw.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+  if(!wanted)return raw;
+
+  const byExactLabel=rows.find(row=>String(row.label).toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()===wanted);
   if(byExactLabel)return byExactLabel.id;
-  const bySlug=rows.find(row=>{
-    const idNorm=row.id.toLowerCase().replace(/[^a-z0-9]+/g, ' ');
-    const lblNorm=String(row.label).toLowerCase().replace(/[^a-z0-9]+/g, ' ');
-    return idNorm.includes(wanted) || lblNorm.includes(wanted);
+
+  const wantedTokens=wanted.split(/\s+/).filter(Boolean).map(stem);
+  const candidates=[];
+
+  rows.forEach(r=>{
+    const idNorm=r.id.toLowerCase().replace(/[^a-z0-9]+/g, ' ');
+    const lblNorm=String(r.label||'').toLowerCase().replace(/[^a-z0-9]+/g, ' ');
+    const idTokens=idNorm.split(/\s+/).filter(Boolean).map(stem);
+    const lblTokens=lblNorm.split(/\s+/).filter(Boolean).map(stem);
+    const allTokens=new Set([...idTokens,...lblTokens]);
+
+    if(idNorm.includes(wanted)||lblNorm.includes(wanted)){
+      candidates.push({id:r.id,score:1000+scoreCandidate(r,wantedTokens)});
+    }else if(wantedTokens.length>0&&wantedTokens.every(t=>allTokens.has(t))){
+      candidates.push({id:r.id,score:500+scoreCandidate(r,wantedTokens)});
+    }
   });
-  return bySlug?bySlug.id:value;
+
+  if(candidates.length){
+    candidates.sort((a,b)=>b.score-a.score);
+    return candidates[0].id;
+  }
+  return value;
 }
 function normalizeState(){
   if(!catalog)return;
+  const rawTopic=state.topic;
   state={...state,subject:refFor(catalog.subjects,state.subject),topic:refFor(catalog.topics,state.topic),subtopic:refFor(catalog.subtopics,state.subtopic)};
   const sub=subtopicById.get(state.subtopic);
   if(sub&&!state.topic)state.topic=sub.topic_ref;
   if(state.topic&&!state.subject){const topic=topicById.get(state.topic);if(topic)state.subject=topic.subject_ref;}
+  if(state.topic&&!topicById.has(state.topic)){
+    pendingTopic={topic:rawTopic,subject:state.subject};
+    state.topic='';
+  }else{
+    pendingTopic=null;
+  }
 }
 function writeUrl(push){
   const p=new URLSearchParams();
@@ -560,7 +599,12 @@ function renderResults(){
 }
 function renderSearchNote(){
   if(failure)return;
-  if(state.q&&!ready.search)showStatus('Search is still loading; showing every question until it is ready.','info');
+  if(pendingTopic){
+    const sObj=subjectById.get(state.subject);
+    const scopeName=sObj?sObj.label+' ':'';
+    showStatus('Questions for "'+pendingTopic.topic+'" are currently being ingested into the Question Bank. Showing all '+scopeName+'questions in the meantime.','info');
+  }
+  else if(state.q&&!ready.search)showStatus('Search is still loading; showing every question until it is ready.','info');
   else if(warnings.length)showStatus('Some optional resources could not be loaded, so their links are not shown.','warning');
   else hideStatus();
 }

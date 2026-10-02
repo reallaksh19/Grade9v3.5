@@ -243,7 +243,7 @@ def build() -> dict:
     payload = {"generated_by": "Shared/tools/build_web_data.py", "subjects": {}}
     core_payload = build_core_learning_data.build()
     for subject in subjects():
-        packages = [load(p) for p in sorted((REPO / subject / "library").glob("*.json"))]
+        packages = [p for p in (load(path) for path in sorted((REPO / subject / "library").glob("*.json"))) if isinstance(p, dict) and "questions" in p]
         entry = {"contract": {}, "gates": gate_summary(subject), "buckets": [],
                  "matrices": [], "packages": [], "library_available": bool(packages)}
         contract = load(REPO / subject / "adapter" / "CoreContracts.json")
@@ -258,7 +258,7 @@ def build() -> dict:
             "curriculum": contract.get("curriculum", {}),
         }
         if packages:
-            entry["packages"] = [{"package_id": p["package_id"], "status": p["status"],
+            entry["packages"] = [{"package_id": p.get("package_id", p.get("id", "")), "status": p.get("status", "DRAFT"),
                                   "admitted": check(p)["admitted"]} for p in packages]
             records = build_index(packages)
             entry["matrices"] = matrix_summary(subject, records)

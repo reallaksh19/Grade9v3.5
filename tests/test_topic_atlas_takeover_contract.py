@@ -14,9 +14,9 @@ REPO = Path(__file__).resolve().parents[1]
 JS = REPO / "public/js/topic-atlas.js"
 AUTHORING_SCHEMA = REPO / "Shared/library/authoring-request.schema.json"
 ATLAS_PAGES = [
-    REPO / "public/physics/nlm/index.html",
-    REPO / "public/physics/motion-2d/index.html",
-    REPO / "public/mathematics/linear-equations/index.html",
+    REPO / "public/physics/nlm/atlas.html",
+    REPO / "public/physics/motion-2d/atlas.html",
+    REPO / "public/mathematics/linear-equations/atlas.html",
 ]
 
 
