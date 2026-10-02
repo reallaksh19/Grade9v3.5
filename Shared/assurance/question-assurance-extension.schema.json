@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/question-assurance-extension.schema.json",
+  "title": "Phase C Question Assurance Extensions",
+  "description": "Schema for the problem_specification, answer_contract, and computation_model extensions.",
+  "type": "object",
+  "properties": {
+    "problem_specification": {
+      "type": "object",
+      "properties": {
+        "requested_outputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {"type": "string"},
+              "quantity_kind": {"type": "string"}
+            },
+            "required": ["id", "quantity_kind"]
+          }
+        },
+        "visible_facts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "symbol": {"type": "string"},
+              "value": {},
+              "unit": {"type": "string"},
+              "expression": {"type": "string"}
+            },
+            "required": ["symbol"]
+          }
+        },
+        "declared_assumptions": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "permitted_constants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "symbol": {"type": "string"},
+              "value": {},
+              "unit": {"type": "string"}
+            },
+            "required": ["symbol", "value", "unit"]
+          }
+        },
+        "concept_refs": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      },
+      "required": ["requested_outputs", "visible_facts", "declared_assumptions", "permitted_constants"]
+    },
+    "answer_contract": {
+      "type": "object",
+      "properties": {
+        "answer_type": {
+          "type": "string",
+          "enum": ["NUMERIC", "QUANTITY", "SYMBOLIC_EXPRESSION", "EQUATION", "VECTOR", "OPTION", "TRUE_FALSE", "PROPOSITION", "COMPOUND"]
+        },
+        "requested_outputs": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "expected_dimension": {"type": "string"},
+        "equivalence_policy": {
+          "type": "string",
+          "enum": ["EXACT", "NUMERIC_UNIT_EQUIVALENCE", "SYMBOLIC_EQUIVALENCE", "OPTION_MATCH"]
+        },
+        "tolerance": {
+          "type": "object",
+          "properties": {
+            "relative": {"type": "number"},
+            "absolute": {"type": "number"}
+          }
+        }
+      },
+      "required": ["answer_type", "requested_outputs", "equivalence_policy"]
+    },
+    "computation_model": {
+      "type": "object",
+      "properties": {
+        "model_type": {"type": "string"},
+        "variables": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "value": {},
+              "unit": {"type": "string"}
+            },
+            "required": ["value"]
+          }
+        },
+        "equations": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "constraints": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "coordinate_system": {"type": "string"},
+        "requested_outputs": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      },
+      "required": ["model_type", "variables", "requested_outputs"]
+    }
+  }
+}

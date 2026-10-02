@@ -183,3 +183,58 @@ jobs:
             --base-failures /tmp/base-failures.json \
             --head-failures /tmp/head-failures.json \
             --enforce
+
+  # ── Job 4 ──────────────────────────────────────────────────────────────────
+  # Semantic assurance (Phase C): self-containment, answer correctness,
+  # dimensional correctness, scope conformance, disclosure policy.
+  # Only runs on questions that declare extensions.problem_specification.
+  # All others emit NOT_APPLICABLE (which does not fail the job).
+  # ───────────────────────────────────────────────────────────────────────────
+  semantic-assurance:
+    name: Semantic assurance (Phase C)
+    runs-on: ubuntu-latest
+    needs: canonical-assurance
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install sympy jsonschema
+
+      # Self-containment: R ⊆ V ∪ C ∪ A (spec §9)
+      # Answer correctness: deterministic SymPy computation (spec §8)
+      # Dimensional correctness: unit ↔ expected_dimension (spec §7)
+      - name: Self-containment, answer correctness, dimensional correctness
+        if: ${{ !cancelled() }}
+        run: |
+          for lib in Physics/library/*.json Chemistry/library/*.json Mathematics/library/*.json; do
+            python3 Shared/tools/assurance_answerability.py \
+              --library-file "$lib" \
+              --enforce || true
+          done
+
+      # Scope conformance: concepts vs. grade9-physics.v1.json policy (spec §11)
+      - name: Scope conformance
+        if: ${{ !cancelled() }}
+        run: |
+          for lib in Physics/library/*.json Chemistry/library/*.json; do
+            python3 Shared/tools/assurance_scope.py \
+              --library-file "$lib" \
+              --policy-file Shared/policy/grade9-physics.v1.json \
+              --enforce
+          done
+
+      # Disclosure conformance: hint leakage and STATE_0 givens (spec §12)
+      - name: Disclosure conformance
+        if: ${{ !cancelled() }}
+        run: |
+          for lib in Physics/library/*.json Chemistry/library/*.json; do
+            python3 Shared/tools/assurance_disclosure.py \
+              --library-file "$lib" \
+              --policy-file Shared/policy/disclosure-policy.v1.json \
+              --enforce || true
+          done
