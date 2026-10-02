@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema": { "const": "source-interpretation/v1" },
+    "interpretation_id": { "type": "string" },
+    "version": { "type": "string" },
+    "acquisition_ref": { "type": "string" },
+    "source_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "interpreter": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "configuration_digest": { "type": "string" }
+      },
+      "required": ["name", "version", "configuration_digest"]
+    },
+    "units": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "unit_id": { "type": "string" },
+          "locator": { "type": "object" },
+          "unit_type": { "type": "string", "enum": ["HEADING", "PARAGRAPH", "QUESTION", "OPTION", "ANSWER", "SOLUTION_STEP", "MATH", "TABLE", "FIGURE", "FIGURE_LABEL", "CAPTION", "METADATA"] },
+          "content": { "type": "string" },
+          "structured_content": { "type": "object" },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "warnings": { "type": "array", "items": { "type": "string" } },
+          "extracted_asset_refs": { "type": "array", "items": { "type": "string" } }
+        },
+        "required": ["unit_id", "locator", "unit_type", "content"]
+      }
+    },
+    "output_digest": { "type": "string", "pattern": "^sha256:" },
+    "interpreted_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["schema", "interpretation_id", "version", "acquisition_ref", "source_sha256", "interpreter", "units", "output_digest", "interpreted_at"]
+}

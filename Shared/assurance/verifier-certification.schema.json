@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema": { "const": "verifier-certification/v1" },
+    "verifier": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" }
+      },
+      "required": ["name", "version"]
+    },
+    "fixture_set_digest": { "type": "string", "pattern": "^sha256:" },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "precision": { "type": "number" },
+        "recall": { "type": "number" }
+      },
+      "required": ["precision", "recall"]
+    },
+    "known_limitations": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "certified": { "type": "boolean" },
+    "certified_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["schema", "verifier", "fixture_set_digest", "metrics", "certified", "certified_at"]
+}

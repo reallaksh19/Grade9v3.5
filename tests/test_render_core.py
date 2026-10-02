@@ -713,6 +713,30 @@ class Migration(unittest.TestCase):
         self.assertEqual(ledger["existing_counts"]["questions"], 4)
         self.assertEqual(migrate_math_linear.verify_ledger(package, ledger), [])
 
+    def test_an_amendment_moves_the_ledger_to_a_deliberate_change_and_keeps_the_old_digest(self):
+        import tempfile
+        from unittest import mock
+        record = "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q1"
+        with tempfile.TemporaryDirectory() as tmp:
+            target, ledger_path = Path(tmp) / "package.json", Path(tmp) / "ledger.json"
+            package = json.loads(migrate_math_linear.TARGET.read_text(encoding="utf-8"))
+            ledger = json.loads(migrate_math_linear.LEDGER.read_text(encoding="utf-8"))
+            ledger.pop("amendments", None)
+            next(q for q in package["questions"] if q["id"] == record)["answer"]["crux_move_ref"] = "A-NEW-REF"
+            target.write_text(json.dumps(package), encoding="utf-8")
+            ledger_path.write_text(json.dumps(ledger), encoding="utf-8")
+            with mock.patch.object(migrate_math_linear, "TARGET", target), mock.patch.object(migrate_math_linear, "LEDGER", ledger_path):
+                self.assertTrue(migrate_math_linear.verify_ledger(package, ledger), "the change is not in the ledger yet")
+                with self.assertRaises(ValueError):
+                    migrate_math_linear.amend([record], "short")
+                with self.assertRaises(ValueError):
+                    migrate_math_linear.amend(["Q-NOT-IN-THE-FOLD"], "a reason that is long enough to be one")
+                self.assertEqual(migrate_math_linear.amend([record], "a deliberate change, made with the Owner's approval"), [record])
+                amended = json.loads(ledger_path.read_text(encoding="utf-8"))
+                self.assertEqual(migrate_math_linear.verify_ledger(package, amended), [])
+                self.assertEqual([(a["record"], a["was_digest"]) for a in amended["amendments"]], [(record, ledger["records"]["questions"][record]["digest"])])
+                self.assertEqual(migrate_math_linear.amend([record], "a deliberate change, made with the Owner's approval"), [], "amending twice changes nothing")
+
     def test_historical_merge_preserves_family_and_question_records(self):
         staging = {"question_families": [{"id": "F", "extensions": {}}],
                    "questions": [{"id": "Q", "family_ref": "F", "extensions": {}}]}

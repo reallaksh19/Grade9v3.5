@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema": { "const": "search-index-manifest/v1" },
+    "index_version": { "type": "string" },
+    "canonical_snapshot_digest": { "type": "string" },
+    "generator": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" }
+      },
+      "required": ["name", "version"]
+    },
+    "record_count": { "type": "integer" },
+    "canonical_ids": { "type": "array", "items": { "type": "string" } },
+    "excluded_ids": { "type": "array", "items": { "type": "string" } },
+    "index_digest": { "type": "string", "pattern": "^sha256:" },
+    "generated_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["schema", "index_version", "canonical_snapshot_digest", "generator", "record_count", "canonical_ids", "excluded_ids", "index_digest", "generated_at"]
+}

@@ -1,0 +1,123 @@
+name: canonical-assurance
+
+# Two questions, answered differently on purpose.
+#
+#   CI asks: did this change make anything worse?   (a ratchet: a baseline of known findings, a ledger of known page counts, an exact-id test delta)
+#   Release asks: is the product good?              (absolute: release_eligibility.py; every required type PASS, nothing open)
+#
+# A finding that was already there does not fail CI, but it is still a FAIL in the evidence and the product with it is not eligible. Nothing here is
+# softened: no `|| true`, no continue-on-error on a gate, no path filter on a gate (a gate that does not run on a pull request is a gate that is not
+# required), and a suite that cannot run fails instead of reading as "no new failures". The one informational job says so in its name.
+#
+# The evidence is written to build/assurance/ (gitignored), never into standalone/, docs/ or public/: evidence about a tree must not change the tree.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  assurance:
+    name: Assurance (no worse than the baseline)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet jsonschema
+      # Every verifier over every package and the standalone pages. Fails on a canonical finding that is not in Shared/assurance/baseline.v1.json
+      # and on a page worse than Shared/web/standalone-ledger.v1.json. Both files are written by the tools (--write-baseline, --write-ledger), never by hand.
+      - name: Verifiers (canonical packages, standalone pages)
+        run: python3 Shared/tools/assurance_run.py --projection standalone=standalone --enforce
+      # The committed search index must be the index of the canonical library as it is now.
+      - name: Search index is current
+        run: >-
+          python3 Shared/tools/verify_search_index.py
+          --index public/data/search-index.v1.json
+          --manifest public/data/search-index-manifest.v1.json
+          --library-dirs Physics/library Chemistry/library Mathematics/library
+          --enforce
+      - name: Evidence for the record
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: assurance-evidence
+          path: build/assurance/evidence
+          if-no-files-found: warn
+
+  regression-delta:
+    name: Regression delta (exact test ids)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install test dependencies
+        run: |
+          pip install --quiet jsonschema pypdf
+          npm install -g playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Base commit
+        id: base
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE=$(git merge-base "origin/${{ github.base_ref }}" HEAD)
+          else
+            BASE="${{ github.event.before }}"
+          fi
+          if [ -z "$BASE" ] || [ "$BASE" = "0000000000000000000000000000000000000000" ]; then
+            echo "no base commit to compare with"; exit 1
+          fi
+          echo "sha=$BASE" >> "$GITHUB_OUTPUT"
+          echo "comparing $(git rev-parse HEAD) with $BASE"
+      - name: Failing test ids at HEAD
+        run: NODE_PATH="$(npm root -g)" python3 Shared/tools/run_test_ids.py --output "$RUNNER_TEMP/head.json"
+      # The same copy of the tool measures the base, so a base that predates the tool is measured the same way.
+      - name: Failing test ids at the base
+        run: |
+          git worktree add "$RUNNER_TEMP/base" "${{ steps.base.outputs.sha }}"
+          cd "$RUNNER_TEMP/base"
+          NODE_PATH="$(npm root -g)" python3 "$GITHUB_WORKSPACE/Shared/tools/run_test_ids.py" --output "$RUNNER_TEMP/base.json"
+      # new_failure_ids must be empty; a count does not decide, and a HEAD that ran nothing or does not load is a failure, not a pass.
+      - name: Compare
+        run: python3 Shared/tools/diff_test_failures.py --base "$RUNNER_TEMP/base.json" --head "$RUNNER_TEMP/head.json" --enforce
+
+  release-status:
+    # Informational. Whether a product is released is the Owner's decision, through accept_product.py, which refuses a product that is not eligible.
+    # This job shows where the product stands against the absolute bar, so that the distance to it is visible on every pull request.
+    name: Release status (informational, never gating)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet jsonschema
+      - name: Evidence, bundle, eligibility
+        run: |
+          python3 Shared/tools/assurance_run.py --projection standalone=standalone
+          python3 Shared/tools/verify_search_index.py \
+            --index public/data/search-index.v1.json --manifest public/data/search-index-manifest.v1.json \
+            --library-dirs Physics/library Chemistry/library Mathematics/library
+          python3 Shared/tools/assurance_product.py --product-id grade9v3-main \
+            --packages Physics/library Mathematics/library Chemistry/library --projection standalone=standalone \
+            --output build/assurance/grade9v3-main.bundle.json
+          python3 Shared/tools/release_eligibility.py --product-id grade9v3-main \
+            --bundle build/assurance/grade9v3-main.bundle.json --output build/assurance/grade9v3-main.eligibility.json
+      - name: Summary
+        if: ${{ !cancelled() }}
+        run: |
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          e = json.load(open("build/assurance/grade9v3-main.eligibility.json"))
+          print(f"### grade9v3-main: {e['status']}")
+          print(f"{len(e['missing'])} open need(s), {len(e['problems'])} problem(s), {len(e['reviewable_findings'])} reviewable finding(s)")
+          PY

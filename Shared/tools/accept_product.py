@@ -113,7 +113,7 @@ def mirror_pages(repo: Path) -> None:
 
 
 def accept(slug: str, note: str = "", accept_open: str = "", repo: Path = REPO,
-           confirm=input, approval_ref: str = "") -> dict:
+           confirm=input, approval_ref: str = "", assurance: dict | None = None) -> dict:
     manifests = list((repo / "products").glob(f"*/{slug}.manifest.json"))
     if len(manifests) != 1:
         raise ValueError(f"expected exactly one manifest for {slug}, got {len(manifests)}")
@@ -175,6 +175,10 @@ def accept(slug: str, note: str = "", accept_open: str = "", repo: Path = REPO,
         "standalone_sha256": _sha(standalone_bytes) if standalone_bytes is not None else None,
         "standalone_render_digest": standalone_render_digest,
     }
+    if assurance is not None:
+        # What the release decision rested on, so that an acceptance can be traced to it: the bundle it was recomputed from, and what the Owner's waivers covered.
+        accepted["assurance"] = {"status": assurance["status"], "bundle_digest": assurance["assurance_bundle_digest"],
+                                 "waived": sorted({w["type"] for w in assurance.get("waived", [])})}
     # Stage first, then replace the public directory. Check its bytes again before
     # recording publication. The learner PDFs go with the pages they were printed from, because the pages link them
     # (the shell's PRINT_PDF control); a key PDF holds the answers and is never copied.
@@ -223,6 +227,44 @@ def accept(slug: str, note: str = "", accept_open: str = "", repo: Path = REPO,
     return accepted
 
 
+def _release_decision(slug: str, bundle: str | None, repo: Path = REPO) -> tuple[bool, dict | None]:
+    """The assurance gate: (may the acceptance go on, the eligibility record it rests on).
+
+    With a bundle, its evidence is recomputed and the product must be ELIGIBLE. Without one, the release policy decides: acceptance_gate REQUIRED assures the product
+    as staged (Shared/assurance/product.py) and refuses unless it is ELIGIBLE, counting the Owner's recorded waivers (Shared/assurance/waivers); ADVISORY says so and
+    goes on. A waiver covers what is open or inconclusive, never what failed."""
+    from Shared.assurance import aggregate, product
+    from Shared.contracts import ContractError
+    from Shared.tools.release_eligibility import load_and_check
+    gate = next((p.get("acceptance_gate", "ADVISORY") for p in aggregate.load_policies(["learner-release-default"])), "ADVISORY")
+    try:
+        if bundle is not None:
+            decision = load_and_check(bundle, slug)
+        elif gate == "REQUIRED":
+            decision = product.assure_staged(slug, repo)
+        else:
+            print("Note: no assurance bundle was supplied (--eligibility); the release policy treats it as advisory for now.")
+            return True, None
+    except (ContractError, OSError, ValueError) as exc:
+        print(f"Release ineligible: {exc}", file=sys.stderr)
+        return False, None
+    print(f"Release eligibility: {decision['status']}")
+    waived: dict[str, int] = {}
+    for w in decision.get("waived", []):
+        waived[w["type"]] = waived.get(w["type"], 0) + 1
+    for t, n in sorted(waived.items()):
+        print(f"  waived   {t} ({n} need(s)): the Owner's recorded waiver, until a checker exists")
+    if decision["status"] != "ELIGIBLE":
+        for row in decision["missing"][:12]:
+            print(f"  open     {row['type']} {row['subject']} {row['reason']}", file=sys.stderr)
+        for row in decision["problems"]:
+            print(f"  problem  {row['code']}: {row['message']}", file=sys.stderr)
+        for row in decision["reviewable_findings"][:8]:
+            print(f"  [{row['severity']}] {row['code']} {row['subject']}: {row['message'][:100]}", file=sys.stderr)
+        return False, decision
+    return True, decision
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("slug")
@@ -230,9 +272,16 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--accept-open", default="")
     parser.add_argument("--approval-ref", default="",
                         help="where the Owner's approval was given (message or comment link, or a quotation)")
+    parser.add_argument("--eligibility", default=None, metavar="BUNDLE",
+                        help="the assurance bundle (assurance_product.py) whose evidence the release decision is recomputed from")
     args = parser.parse_args(argv)
+
+    allowed, assurance = _release_decision(args.slug, args.eligibility)
+    if not allowed:
+        return 1
+
     try:
-        decision = accept(args.slug, args.note, args.accept_open, approval_ref=args.approval_ref)
+        decision = accept(args.slug, args.note, args.accept_open, approval_ref=args.approval_ref, assurance=assurance)
     except (ValueError, OSError, RuntimeError, EOFError) as exc:
         print(str(exc), file=sys.stderr)
         return 1

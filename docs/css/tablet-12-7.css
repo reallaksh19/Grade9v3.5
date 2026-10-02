@@ -112,13 +112,13 @@ textarea.attempt-input,
   touch-action: manipulation;
 }
 
-/* Elimination of sub-13px micro fonts */
+/* Elimination of sub-14px micro fonts (the shell's learner text floor, minimum_learner_text_css_px) */
 small, .badge, .subtopic-desc, .node-id, .stat-label, .evidence-citation {
-  font-size: 13.5px !important;
+  font-size: 14px !important;
 }
 
 /* Tailwind utility floor: arbitrary micro-font classes are common in legacy explorers.
-   Keep learner-visible text at or above 13px on the tablet target even when a
+   Keep learner-visible text at or above 14px on the tablet target even when a
    runtime utility stylesheet is injected after this file. */
 .text-xs,
 [class~="text-[9px]"],
@@ -126,7 +126,7 @@ small, .badge, .subtopic-desc, .node-id, .stat-label, .evidence-citation {
 [class~="text-[11px]"],
 [class~="text-[12px]"],
 [class~="text-[12.5px]"] {
-  font-size: 13px !important;
+  font-size: 14px !important;
 }
 
 /* ==========================================================================
@@ -161,7 +161,7 @@ small, .badge, .subtopic-desc, .node-id, .stat-label, .evidence-citation {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13.5px;
+  font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -182,7 +182,7 @@ small, .badge, .subtopic-desc, .node-id, .stat-label, .evidence-citation {
 }
 
 .metric-tile-sub {
-  font-size: 13.5px;
+  font-size: 14px;
   color: var(--text-muted, #94a3b8);
 }
 
@@ -213,7 +213,7 @@ small, .badge, .subtopic-desc, .node-id, .stat-label, .evidence-citation {
   gap: 6px;
   padding: 6px 12px;
   border-radius: 999px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   background: rgba(56, 189, 248, 0.15);
   border: 1px solid var(--accent, #38bdf8);

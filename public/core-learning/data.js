@@ -4340,7 +4340,7 @@ window.GRADE9V3_CORE = {
               "output": "a linear equation in two variables"
             },
             {
-              "id": "Q1-DEC",
+              "id": "EX4-Q1-DEC",
               "kind": "DECIDE",
               "action": "Test whether solutions stop after one by generating two different pairs.",
               "why_valid": "If two different pairs work, 'unique' and 'no solution' are ruled out, and the free choice of x rules out 'two'.",
@@ -4348,7 +4348,7 @@ window.GRADE9V3_CORE = {
               "output": "(1, −1) and (6, 1)"
             },
             {
-              "id": "Q1-CHK",
+              "id": "EX4-Q1-CHK",
               "kind": "VERIFY",
               "action": "Substitute both pairs.",
               "why_valid": "Both must give 7.",
@@ -4356,7 +4356,7 @@ window.GRADE9V3_CORE = {
               "output": "7 and 7"
             }
           ],
-          "crux_move_ref": "Q1-DEC",
+          "crux_move_ref": "EX4-Q1-DEC",
           "hints": [],
           "scaffolds": [
             {
@@ -4369,13 +4369,13 @@ window.GRADE9V3_CORE = {
               "text": "Make a table: choose x = 1, then x = 6, and find y each time.",
               "support_kind": "REPRESENT",
               "reveals": "METHOD",
-              "supports_move_ref": "Q1-DEC"
+              "supports_move_ref": "EX4-Q1-DEC"
             },
             {
               "text": "Could you have chosen any other x? What does that say about the number of solutions?",
               "support_kind": "CONNECT",
               "reveals": "METHOD",
-              "supports_move_ref": "Q1-DEC"
+              "supports_move_ref": "EX4-Q1-DEC"
             }
           ],
           "transfer": null,

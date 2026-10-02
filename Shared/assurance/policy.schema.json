@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "assurance-policy/v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "type": "string",
+      "pattern": "^[a-z-]+-policy/v1$"
+    },
+    "policy_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string"
+    },
+    "subject_kind": {
+      "type": "string",
+      "enum": [
+        "CANONICAL_RECORD",
+        "PRODUCT",
+        "PROJECTION",
+        "SOURCE"
+      ]
+    },
+    "required_pass": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "required_pass_or_na": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "required_pass_or_reviewed": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "acceptance_gate": {
+      "enum": [
+        "ADVISORY",
+        "REQUIRED"
+      ]
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "policy_id",
+    "version",
+    "subject_kind",
+    "required_pass",
+    "required_pass_or_na"
+  ],
+  "description": "Which assurance types a subject of one kind needs, and how each is satisfied: required_pass only by PASS; required_pass_or_na by PASS or NOT_APPLICABLE; required_pass_or_reviewed by those or by an explicit, reasoned waiver. NOT_RUN, INCONCLUSIVE and FAIL satisfy none."
+}
