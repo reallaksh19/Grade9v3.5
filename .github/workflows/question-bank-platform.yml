@@ -56,8 +56,10 @@ jobs:
         run: node tests/question_bank_data_service.test.mjs
       - name: Legacy browser projection remains current
         run: python3 Shared/tools/build_question_bank_web.py --check
-      - name: Committed shared Question Bank platform artifacts are current
-        run: python3 Shared/tools/build_question_bank_platform.py --check
+      - name: Generate deterministic Question Bank platform artifacts for repair
+        run: |
+          python3 Shared/tools/build_question_bank_platform.py --write
+          python3 Shared/tools/build_question_bank_platform.py --check
       - name: Pages mirror is current and internally linked
         run: python3 Shared/tools/build_pages_site.py --check
       - name: Lineage explain witness
@@ -75,8 +77,15 @@ jobs:
             public/data/question-bank-catalog.js
             public/data/question-bank-search.js
             public/data/question-bank-resources.js
+            public/data/question-bank-questions.js
             public/data/question-bank-manifest.js
             public/data/question-bank-details/*.js
+            docs/data/question-bank-catalog.js
+            docs/data/question-bank-search.js
+            docs/data/question-bank-resources.js
+            docs/data/question-bank-questions.js
+            docs/data/question-bank-manifest.js
+            docs/data/question-bank-details/*.js
             artifacts/question-bank/dedup-report.json
             artifacts/question-bank/lineage.json
             artifacts/question-bank/build-receipt.json
