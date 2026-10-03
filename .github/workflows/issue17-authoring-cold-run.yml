@@ -10,6 +10,7 @@ on:
       - "Shared/tools/qrt_pipeline_precheck.py"
       - "Shared/tools/qrt_content_self_audit.py"
       - "Shared/tools/qrt_pipeline_gate.py"
+      - "Shared/tools/qrt_post_attempt_navigation.py"
       - "Shared/tools/render_core.py"
       - ".github/workflows/issue17-authoring-cold-run.yml"
   workflow_dispatch:
@@ -61,6 +62,8 @@ jobs:
           python evidence/authoring/issue17-surface-areas-volumes/build_qrt_run.py \
             --head "$GITHUB_SHA" \
             --output evidence/authoring/issue17-surface-areas-volumes/generated/qrt-pipeline-run.authoring.json
+          python evidence/authoring/issue17-surface-areas-volumes/sync_reachability.py \
+            evidence/authoring/issue17-surface-areas-volumes/generated/qrt-pipeline-run.authoring.json
 
       - name: Validate hardened run schema and pre-render guard
         run: |
@@ -102,6 +105,15 @@ jobs:
           test ! -f /tmp/issue17-sav/core1b.html
           test ! -f /tmp/issue17-sav/core2a.html
           test ! -f /tmp/issue17-sav/core2b.html
+
+      - name: Protect transitive Core1A navigation and exact owner conditions
+        run: |
+          python Shared/tools/qrt_post_attempt_navigation.py /tmp/issue17-sav/core2.html --write
+          if grep -Fq 'Use π = 22/7 wherever numerical approximation is required' /tmp/issue17-sav/core2.html; then
+            echo 'fabricated global pi condition remains in learner HTML' >&2
+            exit 1
+          fi
+          python Shared/tools/qrt_post_attempt_navigation.py /tmp/issue17-sav/core2.html
 
       - uses: actions/setup-node@v4
         with:
