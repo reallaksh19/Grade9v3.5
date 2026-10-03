@@ -1,32 +1,32 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 320" role="img" aria-labelledby="rep-mat-sav-toy-title rep-mat-sav-toy-desc">
   <title id="rep-mat-sav-toy-title">Composite solid toy surface area with hidden interface exclusion</title>
-  <desc id="rep-mat-sav-toy-desc">Stage 1: A composite toy consisting of a cone mounted on a hemisphere with common radius r = 3.5 cm and slant height l = 12.5 cm. Stage 2: Partition of exposed boundary into conical curved surface area πrl and hemispherical curved surface area 2πr², with the internal circular interface marked hidden and excluded. Stage 3: Algebraic summation yielding total surface area 137.5 + 77 = 214.5 cm².</desc>
+  <desc id="rep-mat-sav-toy-desc">Stage 1: A composite toy consisting of a cone mounted on a hemisphere with common radius shared radius = r and slant height slant length = l. Stage 2: Partition of exposed boundary into conical curved surface area πrl and hemispherical curved surface area 2πr², with the internal circular interface marked hidden and excluded. Stage 3: Algebraic summation yielding total surface area 137.5 + 77 = 214.5 cm².</desc>
   <g data-g9-stage-id="VIS-MAT-SAV-TOY-1" stroke="currentColor" fill="currentColor" font-family="system-ui,sans-serif" font-size="14">
     <text x="30" y="30" stroke="none" font-weight="bold">Stage 1: Composite Toy Geometry</text>
     <!-- Conical top -->
     <polygon points="140,50 80,150 200,150" fill="rgba(31,111,178,0.15)" stroke="currentColor" stroke-width="2"/>
-    <text x="175" y="95" stroke="none" fill="#1f6fb2" font-weight="600">l = 12.5 cm</text>
+    <text x="175" y="95" stroke="none" fill="#1f6fb2" font-weight="600">slant length = l</text>
     <!-- Joined interface -->
     <ellipse cx="140" cy="150" rx="60" ry="18" fill="rgba(217,56,30,0.15)" stroke="#d9381e" stroke-width="2" stroke-dasharray="4 3"/>
     <text x="140" y="155" text-anchor="middle" stroke="none" fill="#d9381e" font-size="11" font-weight="bold">HIDDEN INTERFACE (exclude)</text>
     <!-- Hemispherical bottom -->
     <path d="M 80 150 A 60 60 0 0 0 200 150" fill="rgba(46,139,87,0.15)" stroke="currentColor" stroke-width="2"/>
-    <text x="140" y="195" text-anchor="middle" stroke="none" fill="#2e8b57" font-weight="600">r = 3.5 cm</text>
+    <text x="140" y="195" text-anchor="middle" stroke="none" fill="#2e8b57" font-weight="600">shared radius = r</text>
   </g>
   <g data-g9-stage-id="VIS-MAT-SAV-TOY-2" stroke="currentColor" fill="none" font-family="system-ui,sans-serif" font-size="13">
     <text x="270" y="30" stroke="none" fill="currentColor" font-weight="bold">Stage 2: Exposed Boundary Decomposition</text>
     <!-- Conical part -->
     <rect x="270" y="60" width="250" height="65" rx="4" stroke-width="1.5" fill="rgba(31,111,178,0.08)"/>
-    <text x="395" y="85" text-anchor="middle" stroke="none" fill="#1f6fb2" font-weight="bold">Exposed Cone CSA = &pi;rl</text>
-    <text x="395" y="108" text-anchor="middle" stroke="none" fill="currentColor">= (22/7) &times; 3.5 &times; 12.5 = 137.5 cm&sup2;</text>
+    <text x="395" y="85" text-anchor="middle" stroke="none" fill="#1f6fb2" font-weight="bold">Outer surface of upper solid: EXPOSED</text>
+    <text x="395" y="108" text-anchor="middle" stroke="none" fill="currentColor"></text>
     <!-- Hemispherical part -->
     <rect x="270" y="135" width="250" height="65" rx="4" stroke-width="1.5" fill="rgba(46,139,87,0.08)"/>
-    <text x="395" y="160" text-anchor="middle" stroke="none" fill="#2e8b57" font-weight="bold">Exposed Hemisphere CSA = 2&pi;r&sup2;</text>
-    <text x="395" y="183" text-anchor="middle" stroke="none" fill="currentColor">= 2 &times; (22/7) &times; 3.5&sup2; = 77 cm&sup2;</text>
-    <text x="395" y="215" text-anchor="middle" stroke="none" fill="#d9381e" font-size="12">Do not add flat bases: interface is internal.</text>
+    <text x="395" y="160" text-anchor="middle" stroke="none" fill="#2e8b57" font-weight="bold">Outer surface of lower solid: EXPOSED</text>
+    <text x="395" y="183" text-anchor="middle" stroke="none" fill="currentColor"></text>
+    <text x="395" y="215" text-anchor="middle" stroke="none" fill="#d9381e" font-size="12">Joined contact face: INTERNAL — do not count it as exposed</text>
   </g>
   <g data-g9-stage-id="VIS-MAT-SAV-TOY-3" font-family="system-ui,sans-serif" font-size="14">
     <rect x="40" y="255" width="480" height="50" rx="6" fill="rgba(31,111,178,0.12)" stroke="#1f6fb2" stroke-width="1.5"/>
-    <text x="280" y="285" text-anchor="middle" fill="#1f6fb2" font-weight="bold">Total Surface Area TSA = &pi;rl + 2&pi;r&sup2; = 137.5 + 77 = 214.5 cm&sup2;</text>
+    <text x="280" y="285" text-anchor="middle" fill="#1f6fb2" font-weight="bold">Build the exposed-surface expression yourself from the inventory</text>
   </g>
 </svg>
