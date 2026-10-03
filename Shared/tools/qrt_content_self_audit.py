@@ -25,6 +25,12 @@ INTERACTIVE_NODE_KINDS = {"INTERACTIVE", "INTERACTIVE_HTML", "INTERACTIVE_PAGE",
 EXPLORER_BLUEPRINT_PREFIX = "BP-EXPLORER-GCDR@"
 CHROMIUM_TOOL = "tools/site-audit/interactive-page-audit.mjs"
 CHROMIUM_ENGINE = "playwright.chromium"
+EXPECTED_VIEWPORTS = {
+    "tablet-1366-landscape",
+    "tablet-1440-landscape",
+    "tablet-854-portrait",
+    "tablet-900-portrait",
+}
 
 HINT_CHECKS = (
     "academic_correctness",
@@ -208,11 +214,7 @@ def _is_interactive_artifact(artifact: dict[str, Any]) -> bool:
 
 
 def _validate_interactive_graph_registration(run: dict[str, Any], artifacts: dict[str, dict[str, Any]]) -> list[str]:
-    """An interactive resource linked from a question graph must be a registered artifact.
-
-    This prevents a linked explorer from evading Chromium simply by being omitted from
-    rendered_artifacts. Both pre- and post-attempt interactive nodes are inventory-checked.
-    """
+    """An interactive resource linked from a question graph must be a registered interactive artifact."""
     problems: list[str] = []
     for graph in run.get("pre_attempt_graphs") or []:
         if not isinstance(graph, dict):
@@ -229,8 +231,68 @@ def _validate_interactive_graph_registration(run: dict[str, Any], artifacts: dic
             artifact_ref = str(node.get("artifact_ref") or "")
             if not artifact_ref:
                 problems.append(f"INTERACTIVE_GRAPH_ARTIFACT_REF_MISSING: {qid}:{nid}")
-            elif artifact_ref not in artifacts:
+                continue
+            artifact = artifacts.get(artifact_ref)
+            if artifact is None:
                 problems.append(f"INTERACTIVE_GRAPH_ARTIFACT_UNKNOWN: {qid}:{nid}:{artifact_ref}")
+            elif not _is_interactive_artifact(artifact):
+                problems.append(f"INTERACTIVE_GRAPH_ARTIFACT_NOT_INTERACTIVE: {qid}:{nid}:{artifact_ref}")
+    return problems
+
+
+def _validate_report_facts(aid: str, report: dict[str, Any], artifact_digest: str, head: str) -> list[str]:
+    problems: list[str] = []
+    if report.get("schema") != "interactive-page-audit/v1":
+        problems.append(f"INTERACTIVE_CHROMIUM_REPORT_SCHEMA_INVALID: {aid}")
+    if report.get("tool") != CHROMIUM_TOOL:
+        problems.append(f"INTERACTIVE_CHROMIUM_REPORT_TOOL_INVALID: {aid}:{report.get('tool')}")
+    if report.get("engine") != CHROMIUM_ENGINE:
+        problems.append(f"INTERACTIVE_CHROMIUM_REPORT_ENGINE_INVALID: {aid}")
+    if report.get("profile") != "tablet-12.7":
+        problems.append(f"INTERACTIVE_CHROMIUM_REPORT_PROFILE_INVALID: {aid}:{report.get('profile')}")
+    if report.get("artifact_sha256") != artifact_digest:
+        problems.append(f"INTERACTIVE_CHROMIUM_REPORT_ARTIFACT_MISMATCH: {aid}")
+    if report.get("status") != "PASS":
+        problems.append(f"INTERACTIVE_CHROMIUM_REPORT_NOT_PASS: {aid}:{report.get('status')}")
+    if report.get("head_sha") not in {None, "", head}:
+        problems.append(f"INTERACTIVE_CHROMIUM_REPORT_HEAD_MISMATCH: {aid}")
+
+    for field in ("failures", "page_errors", "console_errors", "external_requests"):
+        value = report.get(field)
+        if not isinstance(value, list):
+            problems.append(f"INTERACTIVE_CHROMIUM_REPORT_FIELD_INVALID: {aid}:{field}")
+        elif value:
+            problems.append(f"INTERACTIVE_CHROMIUM_REPORT_FIELD_NOT_EMPTY: {aid}:{field}")
+
+    viewports = report.get("viewports")
+    if not isinstance(viewports, dict):
+        problems.append(f"INTERACTIVE_CHROMIUM_VIEWPORTS_INVALID: {aid}")
+        return problems
+    names = set(viewports)
+    if names != EXPECTED_VIEWPORTS:
+        problems.append(f"INTERACTIVE_CHROMIUM_VIEWPORT_SET_INVALID: {aid}:{sorted(names)}")
+    for name in EXPECTED_VIEWPORTS & names:
+        row = viewports.get(name)
+        if not isinstance(row, dict):
+            problems.append(f"INTERACTIVE_CHROMIUM_VIEWPORT_INVALID: {aid}:{name}")
+            continue
+        zero_fields = (
+            "smallTargets",
+            "horizontalOverflowPx",
+            "wideElements",
+            "focusFailures",
+            "focusVisibleFailures",
+            "inaccessibleSvgCount",
+        )
+        for field in zero_fields:
+            value = row.get(field)
+            if not isinstance(value, (int, float)) or value != 0:
+                problems.append(f"INTERACTIVE_CHROMIUM_VIEWPORT_FAILURE: {aid}:{name}:{field}={value}")
+        if row.get("mainCount") != 1:
+            problems.append(f"INTERACTIVE_CHROMIUM_MAIN_COUNT_INVALID: {aid}:{name}:{row.get('mainCount')}")
+        headings = row.get("headingCount")
+        if not isinstance(headings, (int, float)) or headings < 1:
+            problems.append(f"INTERACTIVE_CHROMIUM_HEADING_MISSING: {aid}:{name}")
     return problems
 
 
@@ -289,16 +351,7 @@ def validate_interactive_chromium(run: dict[str, Any]) -> list[str]:
         if report is None:
             problems.append(f"INTERACTIVE_CHROMIUM_REPORT_INVALID: {aid}:{error}")
             continue
-        if report.get("schema") != "interactive-page-audit/v1":
-            problems.append(f"INTERACTIVE_CHROMIUM_REPORT_SCHEMA_INVALID: {aid}")
-        if report.get("engine") != CHROMIUM_ENGINE:
-            problems.append(f"INTERACTIVE_CHROMIUM_REPORT_ENGINE_INVALID: {aid}")
-        if report.get("artifact_sha256") != artifact_digest:
-            problems.append(f"INTERACTIVE_CHROMIUM_REPORT_ARTIFACT_MISMATCH: {aid}")
-        if report.get("status") != "PASS":
-            problems.append(f"INTERACTIVE_CHROMIUM_REPORT_NOT_PASS: {aid}:{report.get('status')}")
-        if report.get("head_sha") not in {None, "", head}:
-            problems.append(f"INTERACTIVE_CHROMIUM_REPORT_HEAD_MISMATCH: {aid}")
+        problems.extend(_validate_report_facts(aid, report, artifact_digest, head))
 
     return problems
 
