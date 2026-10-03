@@ -11,6 +11,7 @@ on:
       - "Shared/tools/qrt_content_self_audit.py"
       - "Shared/tools/qrt_pipeline_gate.py"
       - "Shared/tools/qrt_post_attempt_navigation.py"
+      - "Shared/tools/qrt_post_attempt_misconception.py"
       - "Shared/tools/render_core.py"
       - ".github/workflows/issue17-authoring-cold-run.yml"
   workflow_dispatch:
@@ -57,11 +58,14 @@ jobs:
           PYTHONPATH=. python evidence/authoring/issue17-surface-areas-volumes/build_specimen.py
           python evidence/authoring/issue17-surface-areas-volumes/finalize_specimen.py
 
-      - name: Build hardened authoring run
+      - name: Build hardened authoring run from exact generated rows
         run: |
           python evidence/authoring/issue17-surface-areas-volumes/build_qrt_run.py \
             --head "$GITHUB_SHA" \
             --output evidence/authoring/issue17-surface-areas-volumes/generated/qrt-pipeline-run.authoring.json
+          python evidence/authoring/issue17-surface-areas-volumes/reconcile_generated_run.py \
+            evidence/authoring/issue17-surface-areas-volumes/generated/qrt-pipeline-run.authoring.json \
+            evidence/authoring/issue17-surface-areas-volumes/generated/owner.bank.json
           python evidence/authoring/issue17-surface-areas-volumes/sync_reachability.py \
             evidence/authoring/issue17-surface-areas-volumes/generated/qrt-pipeline-run.authoring.json
 
@@ -106,14 +110,21 @@ jobs:
           test ! -f /tmp/issue17-sav/core2a.html
           test ! -f /tmp/issue17-sav/core2b.html
 
-      - name: Protect transitive Core1A navigation and exact owner conditions
+      - name: Protect transitive support and project exact misconception repair
         run: |
           python Shared/tools/qrt_post_attempt_navigation.py /tmp/issue17-sav/core2.html --write
+          python Shared/tools/qrt_post_attempt_misconception.py \
+            /tmp/issue17-sav/core2.html \
+            evidence/authoring/issue17-surface-areas-volumes/qrt-review.v1.json \
+            --write
           if grep -Fq 'Use π = 22/7 wherever numerical approximation is required' /tmp/issue17-sav/core2.html; then
             echo 'fabricated global pi condition remains in learner HTML' >&2
             exit 1
           fi
           python Shared/tools/qrt_post_attempt_navigation.py /tmp/issue17-sav/core2.html
+          python Shared/tools/qrt_post_attempt_misconception.py \
+            /tmp/issue17-sav/core2.html \
+            evidence/authoring/issue17-surface-areas-volumes/qrt-review.v1.json
 
       - uses: actions/setup-node@v4
         with:
