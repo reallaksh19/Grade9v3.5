@@ -126,7 +126,7 @@ Required: a page without it is a gap, and the quality gate fails it.
 - The learner gets: Let the learner ask for help one rung at a time; every rung says what it is for and whose words it carries.
 - The reference page: selected_question_bank_TABLET_STUDY: 'Hint ladder · reveal only what you need', five rungs on a hard question (represent / first move, connect, crux, equation / formal model, assembly checkpoint) with SOURCE and EXPANSION pills
 - Record fields: `scaffolds`, `hints`, `hint_ladder`
-- To author it: Write scaffolds[], one rung per job, in the order a learner meets them: a D1 or D2 question needs 3 (REPRESENTATION, KEY_CONCEPT, CRUX), a D3 or D4 question 5 (then FORMAL_MODEL, which gives the relation to use, and CHECKPOINT, which gives an intermediate result to compare against). Each has text (the hint), prompt (a question that makes the learner do the step), support_kind (REPRESENT, CONNECT or EXECUTE), reveals (CONCEPT or METHOD; ANSWER is held back until the solution), learner_stage and supports_move_ref (the id of the move it prepares). A rung must teach something specific to this question and must not repeat another rung or state the answer. Delete the rungs the question's band does not need.
+- To author it: Author question-specific scaffolds for the semantic jobs the resolved QRT requires: clarify the learner-relative obstacle, connect to demonstrated knowledge, and open the route toward the crux while preserving the learner-owned move. Add further rungs only when they do useful work. The 3-rung D1/D2 and 5-rung D3/D4 values are reference depth, not semantic pass counts; never create filler merely to reach a number. Each rung keeps typed support_kind/reveals/learner_stage and a supports_move_ref, and pre-solution support must not reveal the answer.
 
 **SOLUTION** · slot `solution` · DISCLOSURE
 
@@ -174,10 +174,10 @@ Expected: an official page missing it carries an advisory naming the field to au
 
 **REPRESENTATION** · slot `representation` · VISUAL_CARD · at least 1 item(s)
 
-- The learner gets: Show the situation as a picture drawn only from what the question states; every question in the benchmark has one.
+- The learner gets: Show a question-aligned representation only when it materially helps the learner interpret, translate or reason about the question; otherwise preserve the explicit applicability waiver.
 - The reference page: selected_question_bank_TABLET_STUDY: the 'Representation' card with the question-aligned schematic
 - Record fields: `figure_refs`
-- To author it: Add a representation to the package with an authored SVG (role=img, aria-labelledby or aria-label, <title> and <desc>) drawn only from the question's own data (labels at least 14 units high in a viewBox no wider than 440 units, so they read on a tablet), then name its id in figure_refs. Every question gets one; a classification or a pure-number question can show the quantities as a labelled diagram. If a question truly has nothing to draw, say so in extensions['grade9v3:component_waivers'] with the reason.
+- To author it: Decide representation applicability from the question's semantic review. If useful, add an accessible authored SVG drawn only from the question data and name it in figure_refs. If a figure would be decorative or would leak protected work, waive REPRESENTATION with a written reason.
 
 **CHECK** · slot `solution`, inside SOLUTION · CHECK_BOX
 
@@ -207,7 +207,7 @@ Optional: shown when the record has it.
 
 Learner job: Reveal and explain the complete conceptual construction at intrinsic subtopic depth, then connect the concept to selected authentic questions that exercise its canonical capability.
 
-Theme: opens dark, and the learner can switch.
+Theme: opens light, and the learner can switch.
 
 Layout: from 1100 px wide, the primary column is 60% and the support column 40%; the support column stays in view while the primary column scrolls. Narrower, everything is one column, primary first.
 
@@ -255,13 +255,6 @@ Required: a page without it is a gap, and the quality gate fails it.
 - Record fields: `construction_units[].worked_anchor_ref`, `construction_units[].bank_anchor_ref`
 - To author it: worked_anchor_ref names a question of the package that exercises exactly this unit's move. For the unit that builds toward a question of the product's bank (an owner-supplied question), set bank_anchor_ref to that question's id instead: the page then walks through the Owner's own question with its verified route, and nothing is copied into the package.
 
-**STAGED_VISUAL** · slot `representation`, once per construction unit · STAGED_VISUAL · at least 2 item(s); the reference has D1 3, D2 3, D3 4, D4 4 by difficulty band
-
-- The learner gets: Show the idea as a picture that builds up stage by stage, with controls to step through it.
-- The reference page: core1a-motion-in-a-plane-tablet: the rail's staged visual with stage buttons
-- Record fields: `construction_units[].representation_ref`
-- To author it: representation_ref names a representation of the package with an authored SVG that has 2 or more groups marked data-g9-stage-id and reveal_stages naming them (3 stages is the reference, 4 for a unit that builds the crux of a D3 or D4 question). Draw each unit's own picture; do not reuse one figure on many units. Draw it in a viewBox no wider than 440 units with every label at least 14 units high, so the labels read on a tablet.
-
 **TRAP_REPAIR** · slot `repair_closure`, once per construction unit · TRAP_CARD · at least 1 item(s)
 
 - The learner gets: Show the mistake learners make here, how to notice it and how to repair it.
@@ -299,6 +292,13 @@ Expected: an official page missing it carries an advisory naming the field to au
 - The reference page: core1a-motion-in-a-plane-tablet: the equation card of every concept card (definition and validity scope)
 - Record fields: `construction_units[].relation_refs`, `relation_refs`
 - To author it: Each construction unit names the microtopic's relations it uses in construction_units[].relation_refs; each relation record needs its expression, meaning and conditions. A subject that declares no gates writes gate_relation_ref: null.
+
+**STAGED_VISUAL** · slot `representation`, once per construction unit · STAGED_VISUAL · at least 2 item(s); the reference has D1 3, D2 3, D3 4, D4 4 by difficulty band
+
+- The learner gets: When a spatial or mechanism representation materially helps the construction, show it as a picture that builds stage by stage. A construction with no useful visual is explicitly waived by the authored record; no decorative figure is invented.
+- The reference page: core1a-motion-in-a-plane-tablet: the rail's staged visual with stage buttons
+- Record fields: `construction_units[].representation_ref`
+- To author it: First decide whether a staged visual has a real semantic job for this construction. When it does, representation_ref names a package representation with an authored accessible SVG and at least 2 data-g9-stage-id groups; reveal_stages names the useful build-up. The reference depth is 3 stages (4 for a D3/D4 crux), not a semantic pass count. When a visual is genuinely not applicable, waive STAGED_VISUAL with a written reason instead of drawing decoration.
 
 ### Optional components
 
@@ -338,7 +338,7 @@ Optional: shown when the record has it.
 
 Learner job: Test the tempting model of the hardest concept of the question set against a model that cannot be argued with, rebuild the mathematics from what is visible, find where it stops being true, and then do a fresh task without the explorer.
 
-Theme: opens dark, and the learner can switch.
+Theme: opens light, and the learner can switch.
 
 Layout: from 1100 px wide, the primary column is 66% and the support column 34%; the support column stays in view while the primary column scrolls. Narrower, everything is one column, primary first.
 
