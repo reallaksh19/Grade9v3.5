@@ -261,6 +261,32 @@ def _candidate(text: str, *basis: str) -> dict[str, Any]:
     return {"text": text, "basis": [item for item in basis if item]}
 
 
+def _move_before(question: dict[str, Any], ref: str | None) -> dict[str, Any] | None:
+    if not ref:
+        return None
+    route = ((question.get("answer") or {}).get("reasoning_route") or [])
+    for index, move in enumerate(route):
+        if isinstance(move, dict) and move.get("id") == ref:
+            if index == 0:
+                return None
+            previous = route[index - 1]
+            return previous if isinstance(previous, dict) else None
+    return None
+
+
+def _capability_label(profile: dict[str, Any], capability_ref: str) -> str:
+    labels = profile.get("capability_labels") or {}
+    if isinstance(labels, dict):
+        value = labels.get(capability_ref)
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+    return capability_ref
+
+
+def _normalized_text(value: Any) -> str:
+    return " ".join(str(value or "").lower().split())
+
+
 def resolve_slots(question: dict[str, Any], profile: dict[str, Any], template: dict[str, Any]) -> dict[str, dict[str, Any]]:
     held = profile.get("held") or {}
     if not isinstance(held, dict):
@@ -275,49 +301,76 @@ def resolve_slots(question: dict[str, Any], profile: dict[str, Any], template: d
         demonstrated = next((ref for ref, state in held.items() if state == "DEMONSTRATED"), None)
 
     analysis = _analysis(question)
-    stable_crux = analysis.get("stable_crux_move")
     wrong_route = analysis.get("common_wrong_route")
     answer = question.get("answer") or {}
     crux_ref = answer.get("crux_move_ref")
-    crux_move = _reasoning_move(question, crux_ref)
-    protected_ref = ((question.get("transfer") or {}).get("protected_move_ref"))
-    protected_move = _reasoning_move(question, protected_ref)
+    protected_ref = ((question.get("transfer") or {}).get("protected_move_ref")) or analysis.get("protected_move_ref")
+    w_ref = protected_ref or crux_ref
+    protected_move = _reasoning_move(question, w_ref)
+    route_move = _move_before(question, w_ref)
 
-    x_text = stable_crux if isinstance(stable_crux, str) and stable_crux.strip() else template["slots"]["X"]
-    x_basis = ["extensions.grade9v3:analysis.stable_crux_move"] if x_text == stable_crux else ["template.slots.X"]
+    explicit_x = analysis.get("review_bottleneck")
+    if isinstance(explicit_x, str) and explicit_x.strip():
+        x_text = explicit_x.strip()
+        x_basis = ["extensions.grade9v3:analysis.review_bottleneck"]
+    else:
+        x_text = template["slots"]["X"]
+        x_basis = ["template.slots.X"]
     if uncertain:
-        x_text = f"{x_text} Learner uncertainty: {uncertain} is {held[uncertain]}."
+        x_text = f"{x_text} Learner uncertainty is evidenced on {_capability_label(profile, uncertain)}."
         x_basis.append(f"profile.held.{uncertain}")
 
-    if demonstrated:
-        y_text = demonstrated
-        y_basis = [f"profile.held.{demonstrated}"]
-    else:
-        y_text = "UNRESOLVED: no DEMONSTRATED bridge is available in the supplied profile"
-        y_basis = ["profile.held"]
+    bridge = analysis.get("demonstrated_bridge")
+    if isinstance(bridge, dict):
+        bridge_ref = bridge.get("capability_ref")
+        bridge_text = bridge.get("text")
+        if (
+            isinstance(bridge_ref, str)
+            and held.get(bridge_ref) == "DEMONSTRATED"
+            and isinstance(bridge_text, str)
+            and bridge_text.strip()
+        ):
+            y_text = bridge_text.strip()
+            y_basis = [f"profile.held.{bridge_ref}", "extensions.grade9v3:analysis.demonstrated_bridge"]
+        else:
+            bridge = None
+    if not isinstance(bridge, dict):
+        if demonstrated:
+            y_text = f"Demonstrated capability: {_capability_label(profile, demonstrated)}"
+            y_basis = [f"profile.held.{demonstrated}"]
+        else:
+            y_text = "UNRESOLVED: no DEMONSTRATED bridge is available in the supplied profile"
+            y_basis = ["profile.held"]
 
-    if crux_move and isinstance(crux_move.get("action"), str):
-        z_text = crux_move["action"]
-        z_basis = [f"answer.reasoning_route[{crux_ref}].action", "answer.crux_move_ref"]
-    elif isinstance(stable_crux, str) and stable_crux.strip():
-        z_text = stable_crux
-        z_basis = ["extensions.grade9v3:analysis.stable_crux_move"]
+    explicit_z = analysis.get("review_route_to_crux")
+    if isinstance(explicit_z, str) and explicit_z.strip():
+        z_text = explicit_z.strip()
+        z_basis = ["extensions.grade9v3:analysis.review_route_to_crux"]
+    elif route_move and isinstance(route_move.get("action"), str) and route_move["action"].strip():
+        z_text = route_move["action"].strip()
+        z_basis = [f"answer.reasoning_route[{route_move.get('id')}].action", f"route_before:{w_ref}"]
     else:
         z_text = template["slots"]["Z"]
         z_basis = ["template.slots.Z"]
 
-    if protected_move and isinstance(protected_move.get("action"), str):
-        w_text = protected_move["action"]
-        w_basis = [f"answer.reasoning_route[{protected_ref}].action", "transfer.protected_move_ref"]
-    elif crux_move and isinstance(crux_move.get("action"), str):
-        w_text = crux_move["action"]
-        w_basis = [f"answer.reasoning_route[{crux_ref}].action", "answer.crux_move_ref"]
-    elif isinstance(stable_crux, str) and stable_crux.strip():
-        w_text = stable_crux
-        w_basis = ["extensions.grade9v3:analysis.stable_crux_move"]
+    explicit_w = analysis.get("protected_work")
+    if isinstance(explicit_w, str) and explicit_w.strip():
+        w_text = explicit_w.strip()
+        w_basis = ["extensions.grade9v3:analysis.protected_work"]
+    elif protected_move and isinstance(protected_move.get("action"), str) and protected_move["action"].strip():
+        w_text = protected_move["action"].strip()
+        w_basis = [f"answer.reasoning_route[{w_ref}].action", "transfer.protected_move_ref" if protected_ref else "answer.crux_move_ref"]
     else:
         w_text = template["slots"]["W"].split(". Band protection:", 1)[0]
         w_basis = ["template.slots.W"]
+
+    if _normalized_text(z_text) == _normalized_text(w_text):
+        z_text = template["slots"]["Z"]
+        z_basis = ["template.slots.Z", "resolver:separate_route_from_protected_work"]
+
+    summary = answer.get("summary")
+    if isinstance(summary, str) and summary.strip() and _normalized_text(summary) in _normalized_text(x_text):
+        raise QRTContractError(f"X_REVEALS_ANSWER: {question.get('id', '<unknown>')}")
 
     wrong_text = wrong_route if isinstance(wrong_route, str) and wrong_route.strip() else template["slots"]["wrong_idea"]
     wrong_basis = ["extensions.grade9v3:analysis.common_wrong_route"] if wrong_text == wrong_route else ["template.slots.wrong_idea"]
