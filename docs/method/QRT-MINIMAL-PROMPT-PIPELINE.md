@@ -55,7 +55,7 @@ Core2 records                 ConceptEvidenceRecords
                       v
                HTML / PDF bytes
                       |
-                      +-- interactive HTML -> mandatory Chromium audit
+                      +-- governed explorer -> mandatory Chromium audit
                       v
           independent exact-render QRT
           H1-H3 S1-S3 P1-P3 M1-M3
@@ -197,13 +197,13 @@ A generic link to the top of Core1A is insufficient when a specific repair targe
 
 Every declared `BLUEPRINT_ID@VERSION` must exist in `Shared/web/interactive-page-blueprints.v1.json`. A page may conform to standalone shell rules without conforming to a Blueprint; do not invent a Blueprint name to make a page look governed.
 
-Interactive resources may use a separately governed standalone-resource contract until a real interactive Blueprint is admitted.
+Guided interactive explorers already have active repository authority: `BP-EXPLORER-GCDR@1.0.0`, authored through `Shared/tools/explorer_build.py` and validated numerically by `Shared/tools/explorer_model.py`. A QRT-linked explorer must use that active Blueprint when it claims explorer conformance. A hand-written interactive draft may still exist as a draft, but it must not claim `BP-EXPLORER-GCDR` conformance unless it satisfies that contract.
 
 ## Interactive pages: Chromium is mandatory
 
 A separate interactive/explorer page is not covered merely because Core1A/Core2 passed Chromium.
 
-Every rendered artifact with kind `INTERACTIVE_HTML` or `INTERACTIVE_PAGE` must be audited with:
+Every governed explorer (`BP-EXPLORER-GCDR@...`) and every rendered artifact declared as `EXPLORER`, `INTERACTIVE_HTML`, or `INTERACTIVE_PAGE` must be registered in the governed artifact inventory and audited with:
 
 ```bash
 node tools/site-audit/interactive-page-audit.mjs path/to/interactive.html \
@@ -213,6 +213,8 @@ node tools/site-audit/interactive-page-audit.mjs path/to/interactive.html \
 ```
 
 The audit launches **Playwright Chromium** across the four 12.7-inch target viewports and fails on browser/page errors, remote runtime requests, small touch targets, horizontal/wide-element overflow, keyboard-focus failures, invisible focus treatment, inaccessible SVGs or missing main/heading structure.
+
+A Core2/Core1A reachability-graph node that links an interactive resource must name its `artifact_ref`. That artifact must exist in the governed artifact inventory, so an explorer cannot evade Chromium by being omitted from the receipt list.
 
 The governed run stores a receipt containing:
 
@@ -227,6 +229,8 @@ The governed run stores a receipt containing:
 
 Changing the interactive HTML invalidates the receipt because the audit report itself records the HTML SHA-256.
 
+`explorer_model.py` and the Chromium audit prove different things: the explorer model checks the authored numerical/mechanism model; Chromium checks the actual interactive learner page. A governed explorer needs both.
+
 ## Evidence and validation
 
 Keep these verdicts separate:
@@ -237,7 +241,7 @@ Keep these verdicts separate:
 4. `browser` — rendered layout, touch, overflow, SVG labels, keyboard interaction;
 5. `print` — same-byte PDF/print receipt where applicable.
 
-Interactive Chromium receipts are additional exact-artifact evidence inside the browser layer; they cannot be replaced by a static check.
+Interactive Chromium receipts are additional exact-artifact evidence inside the browser layer; they cannot be replaced by a static check or by explorer-model arithmetic checks.
 
 Do not publish an aggregate self-certified `PASS`. Static conformance cannot prove browser behavior.
 
@@ -263,7 +267,7 @@ python Shared/tools/qrt_pipeline_gate.py path/to/qrt-pipeline-run.json
 
 It combines the custody/QRT/exact-render guard with item self-audit and interactive-Chromium enforcement.
 
-The gate fails closed on the audited failure modes, including fabricated learner provenance, normalized question text not present in the owner prompt, answer-bearing X, Y without a demonstrated bridge, Z/W collapse with scaffolding, transitive W leaks, invented Blueprint refs, missing item self-audits, missing per-check evidence, failed calculation checks, unbound render review, missing H1-M3 judgements, Core1A publication without canonical truth, broken bidirectional lineage, missing/stale interactive Chromium evidence and aggregate self-certification.
+The gate fails closed on the audited failure modes, including fabricated learner provenance, normalized question text not present in the owner prompt, answer-bearing X, Y without a demonstrated bridge, Z/W collapse with scaffolding, transitive W leaks, invented Blueprint refs, missing item self-audits, missing per-check evidence, failed calculation checks, unbound render review, missing H1-M3 judgements, Core1A publication without canonical truth, broken bidirectional lineage, unregistered interactive resources, missing/stale interactive Chromium evidence and aggregate self-certification.
 
 ## Acceptance replay
 
@@ -273,4 +277,4 @@ The next replay should additionally emit this hardened run contract so that:
 
 - the committed QRT record is bound to the exact rendered bytes;
 - each hint/solution/calculation carries self-audit evidence for every named criterion;
-- any future interactive explorer carries its own exact-byte Chromium receipt.
+- any future interactive explorer is registered under the existing explorer authority and carries its own exact-byte Chromium receipt.
