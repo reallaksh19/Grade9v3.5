@@ -90,6 +90,19 @@ jobs:
         run: |
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
+      - name: Preserve browser target diagnostics
+        run: |
+          node tools/site-audit/core-page-audit.mjs \
+            /tmp/issue10-sav \
+            --json /tmp/issue10-sav/pre-gate-audit.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path('/tmp/issue10-sav/pre-gate-audit.json').read_text())
+          for page in report.get('pages', []):
+              row=(page.get('viewports') or {}).get('android-landscape') or {}
+              print(page.get('page'), 'smallTargets=', row.get('smallTargets'), 'sample=', row.get('smallTargetSample'))
+          PY
       - name: Strict learner quality gate
         run: |
           python3 Shared/tools/quality_gate.py /tmp/issue10-sav \
