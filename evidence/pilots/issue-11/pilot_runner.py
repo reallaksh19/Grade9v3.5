@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse, copy, hashlib, json, os
+import argparse, copy, hashlib, json, os, subprocess
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[3]
@@ -28,6 +28,12 @@ def sha(path: Path):
 
 def repo_rel(path: Path):
     return str(path.resolve().relative_to(REPO.resolve()))
+
+def checked_out_commit() -> str:
+    return subprocess.run(
+        ["git", "-C", str(REPO), "rev-parse", "HEAD"],
+        check=True, capture_output=True, text=True
+    ).stdout.strip()
 
 def make_baseline(bank_out: Path, manifest_out: Path):
     bank = load(BANK)
@@ -81,7 +87,7 @@ def build_evidence(gate_before: Path, gate_after: Path, render_dir: Path):
                 "core2_html_sha256": sha(render_dir / "core2.html"),
                 "core1a_html_sha256": sha(render_dir / "core1a.html"),
                 "render_receipt_sha256": sha(render_dir / "render-receipt.json"),
-                "render_artifact_digest": receipt.get("artifact_digest"),
+                "render_artifact_digest": receipt.get("digest"),
                 "render_semantic_digest": receipt.get("semantic_digest"),
             },
             "sign_off": {
@@ -132,7 +138,8 @@ def build_evidence(gate_before: Path, gate_after: Path, render_dir: Path):
     })
     dump(OUT / "execution-record.json", {
         "schema": "issue11-execution-record/v1",
-        "source_commit_sha": os.environ.get("GITHUB_SHA"),
+        "source_commit_sha": checked_out_commit(),
+        "workflow_event_sha": os.environ.get("GITHUB_SHA"),
         "commands": [
             "python Shared/tools/question_review_matrix.py check",
             "python -m Shared.library.resolve --schema Mathematics/library/surface-areas-volumes.issue11.v1.json",
