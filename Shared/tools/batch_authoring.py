@@ -31,6 +31,7 @@ def compile_batch(
     bank: dict[str, Any],
     profile: dict[str, Any],
     subject: str,
+    product_id: str,
     authority_record: str,
 ) -> dict[str, Any]:
     if subject not in ("Physics", "Chemistry", "Mathematics"):
@@ -95,7 +96,7 @@ def compile_batch(
 
     return {
         "schema": "question-pedagogy-batch/v1",
-        "product_id": bank.get("product_id") or "PRODUCT-MAT-G9-SAV",
+        "product_id": product_id,
         "authority_record": authority_record,
         "profile_ref": str(profile.get("profile_id") or ""),
         "matrix_ref": qrt.MATRIX_PATH.relative_to(REPO).as_posix(),
@@ -109,6 +110,7 @@ def main(argv=None) -> int:
     parser.add_argument("--bank", type=Path, required=True)
     parser.add_argument("--profile", type=Path, required=True)
     parser.add_argument("--subject", required=True)
+    parser.add_argument("--product-id", required=True)
     parser.add_argument("--authority-record", required=True)
     parser.add_argument("--out", type=Path)
     args = parser.parse_args(argv)
@@ -116,6 +118,7 @@ def main(argv=None) -> int:
         load(args.bank),
         load(args.profile),
         args.subject,
+        args.product_id,
         args.authority_record,
     )
     payload = json.dumps(result, indent=2, ensure_ascii=False) + "\n"
