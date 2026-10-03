@@ -598,14 +598,14 @@
           "slot": "representation",
           "level": "EXPECTED",
           "presentation": "VISUAL_CARD",
-          "purpose": "Show the situation as a picture drawn only from what the question states; every question in the benchmark has one.",
+          "purpose": "Show a question-aligned representation only when it materially helps the learner interpret, translate or reason about the question; otherwise preserve the explicit applicability waiver.",
           "benchmark": "selected_question_bank_TABLET_STUDY: the 'Representation' card with the question-aligned schematic",
           "source": [
             "figure_refs"
           ],
           "min_items": 1,
           "authoring": {
-            "hint": "Add a representation to the package with an authored SVG (role=img, aria-labelledby or aria-label, <title> and <desc>) drawn only from the question's own data (labels at least 14 units high in a viewBox no wider than 440 units, so they read on a tablet), then name its id in figure_refs. Every question gets one; a classification or a pure-number question can show the quantities as a labelled diagram. If a question truly has nothing to draw, say so in extensions['grade9v3:component_waivers'] with the reason.",
+            "hint": "Decide representation applicability from the question's semantic review. If useful, add an accessible authored SVG drawn only from the question data and name it in figure_refs. If a figure would be decorative or would leak protected work, waive REPRESENTATION with a written reason.",
             "skeleton": {
               "figure_refs": []
             }
@@ -618,7 +618,7 @@
           "level": "REQUIRED",
           "presentation": "LADDER",
           "purpose": "Let the learner ask for help one rung at a time; every rung says what it is for and whose words it carries.",
-          "benchmark": "selected_question_bank_TABLET_STUDY: 'Hint ladder \u00b7 reveal only what you need', five rungs on a hard question (represent / first move, connect, crux, equation / formal model, assembly checkpoint) with SOURCE and EXPANSION pills",
+          "benchmark": "selected_question_bank_TABLET_STUDY: 'Hint ladder · reveal only what you need', five rungs on a hard question (represent / first move, connect, crux, equation / formal model, assembly checkpoint) with SOURCE and EXPANSION pills",
           "source": [
             "scaffolds",
             "hints",
@@ -626,7 +626,7 @@
           ],
           "min_items": 2,
           "authoring": {
-            "hint": "Write scaffolds[], one rung per job, in the order a learner meets them: a D1 or D2 question needs 3 (REPRESENTATION, KEY_CONCEPT, CRUX), a D3 or D4 question 5 (then FORMAL_MODEL, which gives the relation to use, and CHECKPOINT, which gives an intermediate result to compare against). Each has text (the hint), prompt (a question that makes the learner do the step), support_kind (REPRESENT, CONNECT or EXECUTE), reveals (CONCEPT or METHOD; ANSWER is held back until the solution), learner_stage and supports_move_ref (the id of the move it prepares). A rung must teach something specific to this question and must not repeat another rung or state the answer. Delete the rungs the question's band does not need.",
+            "hint": "Author question-specific scaffolds for the semantic jobs the resolved QRT requires: clarify the learner-relative obstacle, connect to demonstrated knowledge, and open the route toward the crux while preserving the learner-owned move. Add further rungs only when they do useful work. The 3-rung D1/D2 and 5-rung D3/D4 values are reference depth, not semantic pass counts; never create filler merely to reach a number. Each rung keeps typed support_kind/reveals/learner_stage and a supports_move_ref, and pre-solution support must not reveal the answer.",
             "skeleton": {
               "scaffolds": [
                 {
@@ -701,7 +701,7 @@
           "level": "REQUIRED",
           "presentation": "DISCLOSURE",
           "purpose": "Open the full working only after an attempt.",
-          "benchmark": "selected_question_bank_TABLET_STUDY: the 'Teacher solution \u00b7 complete derivation' disclosure",
+          "benchmark": "selected_question_bank_TABLET_STUDY: the 'Teacher solution · complete derivation' disclosure",
           "source": [
             "answer"
           ],
@@ -1058,9 +1058,9 @@
         {
           "id": "STAGED_VISUAL",
           "slot": "representation",
-          "level": "REQUIRED",
+          "level": "EXPECTED",
           "presentation": "STAGED_VISUAL",
-          "purpose": "Show the idea as a picture that builds up stage by stage, with controls to step through it.",
+          "purpose": "When a spatial or mechanism representation materially helps the construction, show it as a picture that builds stage by stage. A construction with no useful visual is explicitly waived by the authored record; no decorative figure is invented.",
           "benchmark": "core1a-motion-in-a-plane-tablet: the rail's staged visual with stage buttons",
           "repeat": "PER_CONSTRUCTION_UNIT",
           "source": [
@@ -1068,7 +1068,7 @@
           ],
           "min_items": 2,
           "authoring": {
-            "hint": "representation_ref names a representation of the package with an authored SVG that has 2 or more groups marked data-g9-stage-id and reveal_stages naming them (3 stages is the reference, 4 for a unit that builds the crux of a D3 or D4 question). Draw each unit's own picture; do not reuse one figure on many units. Draw it in a viewBox no wider than 440 units with every label at least 14 units high, so the labels read on a tablet."
+            "hint": "First decide whether a staged visual has a real semantic job for this construction. When it does, representation_ref names a package representation with an authored accessible SVG and at least 2 data-g9-stage-id groups; reveal_stages names the useful build-up. The reference depth is 3 stages (4 for a D3/D4 crux), not a semantic pass count. When a visual is genuinely not applicable, waive STAGED_VISUAL with a written reason instead of drawing decoration."
           },
           "duty": "STAGE_REPRESENTATION",
           "target_items": 3,
