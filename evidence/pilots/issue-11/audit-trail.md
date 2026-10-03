@@ -128,3 +128,63 @@ The exact generated-artifact commit SHA is recorded on Issue #11 after the CI jo
 - Any gate or browser-measurement limitation reported in `gate-after.json` remains open and must not be silently waived.
 
 - PR #9 contract tests at pilot runtime: pytest exit 1. Current observed failure is the PR #3 pilot fixture review-key ordering assertion; QRT matrix compile/check itself passed. This is preserved as an unresolved upstream finding, not suppressed as a pass.
+
+## 11. Pilot execution findings and remediation chronology
+
+### Package validation
+
+The first materialized Mathematics package did not pass the canonical package schema. Validation exposed 23 initial findings: one invalid convention shape, six empty relation derivations, and fifteen relation symbols without required unit/domain declarations; the next validation exposed two noncanonical resource-role labels. These were repaired in the governed records rather than waived. The final package and owner-supplied bank both pass their repository validators.
+
+### Strict render-depth findings
+
+The first strict reference render exposed 10 depth-gap instances:
+- six governing relations had no presentation MathML;
+- three SVGs contained clipped labels, with the composite representation used in both Core1A and Core2 and therefore producing four visual gap instances.
+
+The six relations were given explicit presentation MathML, and the clipped SVG labels were shortened/repositioned without changing their semantic jobs. The subsequent strict reference run reported **0 depth gaps**.
+
+### Subject-authority findings
+
+After depth remediation, the strict renderer still reports six `GATE_RELATION_BINDING_ABSENT` authority findings, one for each new candidate relation:
+- `REL-I11-SA-BOUNDARY`
+- `REL-I11-CONE-SLANT`
+- `REL-I11-COMPOSITE`
+- `REL-I11-CAPACITY`
+- `REL-I11-RECAST`
+- `REL-I11-CONE-CYL`
+
+No engineering-gate relation was invented to silence these findings. They remain explicit repository-integration limitations for independent review.
+
+### Real quality-gate delta
+
+The deliberately unsupported baseline render produced **45 findings** and a `FAIL` verdict. The governed final render closes all question-support findings and carries a valid governed-renderer stamp, but the real gate remains **FAIL with 4 blocking findings**:
+- Core1A: `PAGE-SHELL` / S1 — `shell_header` absent;
+- Core2: `PAGE-SHELL` / S1 — `shell_header` absent;
+- Core1A: `PAGE-TOUCH` / S2 — 6 small targets;
+- Core2: `PAGE-TOUCH` / S2 — 6 small targets.
+
+Inspection ties these four findings to the shared renderer/shell contract rather than to missing question support. The renderer emits `<header class="g9-shell-header">` while `quality_observe.shell_facts()` requires the `data-g9-shell-header` marker, and the modern shell stylesheet permits controls below the blueprint's 48 px minimum. No gate rule was weakened and no waiver was issued.
+
+### QRT contract regression record
+
+`question_review_matrix.py check` compiles the complete 28-cell matrix successfully. The combined PR #9 test invocation records one pre-existing fixture-order regression in `test_pr3_math_pilot_exercises_five_real_source_question_cells`: the PR #3 fixture's H/S/P/M key insertion order differs from the canonical `qrt.ASKS` order. The run records **1 failed, 34 passed, 31 subtests passed** and preserves the nonzero exit code. This failure is not caused by the Issue #11 question classifications or rendered artifacts.
+
+### Question Bank projection record
+
+Repository Question Bank platform tests themselves pass, but adding the new owner-supplied bank makes committed generated Question Bank projections stale. The platform check identifies catalog/search/questions/resources/manifest/detail and lineage/dedup/build-receipt outputs for regeneration. This is recorded as a repository publication-integration blocker rather than being conflated with academic/QRT correctness.
+
+### Evidence-provenance correction
+
+The first generated execution record used the workflow event SHA as `source_commit_sha`, even though the rerun explicitly checked out the current pilot branch. The pilot runner was corrected to record `git rev-parse HEAD` as the actual checked-out source commit and to retain the workflow event SHA separately. The render receipt's `digest` is also now bound into each question's exact-render evidence under `render_artifact_digest`.
+
+## 12. Current unresolved findings / waivers
+
+No waivers were issued. The remaining open items are:
+1. independent reviewer sign-off and release decision;
+2. six candidate Mathematics relations lacking engineering-gate bindings;
+3. the shared renderer/gate shell-marker and minimum-touch-target mismatch causing the four final real-gate findings;
+4. the missing canonical `Shared/quality/question-review.schema.json` proposed by Issue #6;
+5. the recorded PR #3 fixture-order regression in the PR #9 QRT tests;
+6. stale generated Question Bank platform projections after introducing this owner-supplied bank.
+
+The execution agent does not self-certify release. The governed learner HTML and machine evidence remain the pilot products, while the items above remain auditable blockers/limitations.
