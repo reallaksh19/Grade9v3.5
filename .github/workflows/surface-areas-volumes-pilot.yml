@@ -11,11 +11,13 @@ on:
       - "Shared/tools/render_core.py"
       - "Shared/tools/quality_gate.py"
       - "Shared/tools/question_content_audit.py"
+      - "Shared/tools/batch_authoring.py"
       - "Shared/tools/pre_attempt_leak_audit.py"
       - "Shared/tools/interactive_chromium_gate.py"
       - "tools/site-audit/core-page-audit.mjs"
       - "tools/site-audit/interactive-page-audit.mjs"
       - "tests/test_question_content_audit.py"
+      - "tests/test_batch_authoring.py"
       - "tests/test_pre_attempt_leak_audit.py"
       - "tests/test_interactive_chromium_gate.py"
   pull_request:
@@ -63,6 +65,17 @@ jobs:
       - name: Focused semantic and safety regressions
         run: |
           python3 -m unittest             tests.test_question_content_audit             tests.test_pre_attempt_leak_audit             tests.test_interactive_chromium_gate             tests.test_question_review_matrix             tests.test_surface_areas_volumes_pilot             tests.test_surface_areas_volumes_evidence
+
+      - name: Generate QRT pedagogy batch before rendering
+        run: |
+          mkdir -p /tmp/sav-evidence
+          python3 Shared/tools/batch_authoring.py \
+            --bank Mathematics/question-bank/surface-areas-and-volumes.owner-bank.v1.json \
+            --profile evidence/reviews/surface-areas-and-volumes/learner-profile.v1.json \
+            --subject Mathematics \
+            --product-id PRODUCT-MAT-G9-SAV \
+            --authority-record https://github.com/reallaksh19/Grade9v3.5/issues/13 \
+            --out /tmp/sav-evidence/question-pedagogy.generated.json
 
       - name: Generate deterministic question self-audit
         run: |
