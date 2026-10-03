@@ -20,7 +20,9 @@ jobs:
       - name: Install authoring dependencies
         run: pip install --quiet jsonschema pypdf
       - name: Materialize Issue 10 inputs
-        run: PYTHONPATH=. python3 evidence/authoring/issue10-surface-areas-volumes/build_specimen.py
+        run: |
+          PYTHONPATH=. python3 evidence/authoring/issue10-surface-areas-volumes/build_specimen.py
+          python3 evidence/authoring/issue10-surface-areas-volumes/finalize_specimen.py
       - name: Validate owner custody and reference-depth Core2 support
         run: |
           python3 Shared/tools/owner_bank.py check \
