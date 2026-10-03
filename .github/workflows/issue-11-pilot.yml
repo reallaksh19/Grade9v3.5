@@ -77,6 +77,17 @@ jobs:
 
       - name: Validate package and owner-supplied bank
         run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import jsonschema
+          schema=json.loads(Path("Shared/library/package.schema.json").read_text())
+          data=json.loads(Path("Mathematics/library/surface-areas-volumes.issue11.v1.json").read_text())
+          errors=sorted(jsonschema.Draft202012Validator(schema).iter_errors(data), key=lambda e: list(e.absolute_path))
+          for e in errors:
+              print("/".join(map(str,e.absolute_path)) + ": " + e.message)
+          print(f"PACKAGE_SCHEMA_ERROR_COUNT={len(errors)}")
+          PY
           python -m Shared.library.resolve --schema Mathematics/library/surface-areas-volumes.issue11.v1.json
           python Shared/tools/owner_bank.py check Mathematics/question-bank/owner-supplied/issue-11-surface-areas-volumes.json
 
