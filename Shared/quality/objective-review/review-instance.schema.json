@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:grade9v3:objective-review:review-instance:1.0.0",
+  "title": "One question × one learner qualitative review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "review_id", "question_ref", "template_ref", "learner", "slots", "review", "signoff"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "review_id": {"type": "string", "minLength": 1},
+    "question_ref": {"type": "string", "minLength": 1},
+    "template_ref": {"type": "string", "pattern": "^QRT-D[1-4]-(RCL|CON|REP|PRC|MOD|PRF|EVD)$"},
+    "learner": {
+      "type": "object", "additionalProperties": false,
+      "required": ["topic_difficulty", "purpose", "support_posture", "knowledge", "diagnostics"],
+      "properties": {
+        "topic_difficulty": {"enum": ["EASY", "MEDIUM", "HARD"]},
+        "purpose": {"enum": ["STARTER", "PRACTICE", "REVISION", "COMPETITION"]},
+        "support_posture": {"enum": ["SIMPLEST_FOUNDATION", "BRIDGE_FIRST", "STANDARD", "MINIMAL"]},
+        "knowledge": {
+          "type": "array", "minItems": 1,
+          "items": {"type": "object", "additionalProperties": false, "required": ["idea", "state"], "properties": {"idea": {"type": "string", "minLength": 1}, "state": {"enum": ["DEMONSTRATED", "UNCERTAIN", "MISSING"]}}}
+        },
+        "diagnostics": {
+          "type": "array", "minItems": 3,
+          "items": {"type": "object", "additionalProperties": false, "required": ["prompt", "target_idea", "interpretation"], "properties": {"prompt": {"type": "string", "minLength": 1}, "target_idea": {"type": "string", "minLength": 1}, "interpretation": {"type": "string", "minLength": 1}}}
+        }
+      }
+    },
+    "slots": {
+      "type": "object", "additionalProperties": false, "required": ["X", "Y", "Z", "W"],
+      "properties": {"X": {"type": "string", "minLength": 1}, "Y": {"type": "string", "minLength": 1}, "Z": {"type": "string", "minLength": 1}, "W": {"type": "string", "minLength": 1}}
+    },
+    "review": {
+      "type": "object", "additionalProperties": false,
+      "required": ["H1", "H2", "H3", "S1", "S2", "S3", "P1", "P2", "P3", "M1", "M2", "M3"],
+      "properties": {
+        "H1": {"$ref": "#/$defs/verdict"}, "H2": {"$ref": "#/$defs/verdict"}, "H3": {"$ref": "#/$defs/verdict"},
+        "S1": {"$ref": "#/$defs/verdict"}, "S2": {"$ref": "#/$defs/verdict"}, "S3": {"$ref": "#/$defs/verdict"},
+        "P1": {"$ref": "#/$defs/verdict"}, "P2": {"$ref": "#/$defs/verdict"}, "P3": {"$ref": "#/$defs/verdict"},
+        "M1": {"$ref": "#/$defs/verdict"}, "M2": {"$ref": "#/$defs/verdict"}, "M3": {"$ref": "#/$defs/verdict"}
+      }
+    },
+    "signoff": {
+      "type": "object", "additionalProperties": false, "required": ["rewrites_needed", "reviewer", "date"],
+      "properties": {"rewrites_needed": {"type": "string"}, "reviewer": {"type": "string", "minLength": 1}, "date": {"type": "string", "format": "date"}}
+    }
+  },
+  "$defs": {
+    "verdict": {
+      "type": "object", "additionalProperties": false,
+      "required": ["applicability", "objective", "evidence", "fix"],
+      "properties": {
+        "applicability": {"enum": ["APPLICABLE", "NOT_APPLICABLE"]},
+        "objective": {"type": "string", "minLength": 1},
+        "verdict": {"type": ["string", "null"], "enum": ["YES", "PARTLY", "NO", null]},
+        "evidence": {"type": "string"},
+        "fix": {"type": "string"},
+        "not_applicable_reason": {"type": "string"}
+      },
+      "allOf": [
+        {"if": {"properties": {"applicability": {"const": "APPLICABLE"}}, "required": ["applicability"]}, "then": {"required": ["verdict"], "properties": {"verdict": {"enum": ["YES", "PARTLY", "NO"]}}}},
+        {"if": {"properties": {"applicability": {"const": "NOT_APPLICABLE"}}, "required": ["applicability"]}, "then": {"required": ["not_applicable_reason"], "properties": {"verdict": {"type": "null"}, "not_applicable_reason": {"type": "string", "minLength": 1}}}}
+      ]
+    }
+  }
+}

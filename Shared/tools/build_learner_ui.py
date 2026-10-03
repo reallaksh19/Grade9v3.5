@@ -457,6 +457,106 @@ a { color: inherit; text-decoration: none; }
 }
 .g9-btn-atlas:hover { background: #e2e8f0; color: var(--accent-learn); }
 
+/* Continuum Bar & Segmented Action Pills */
+.g9-continuum-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+.g9-btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  min-height: 44px;
+  border-radius: var(--radius-pill);
+  font-size: 13.5px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.g9-btn-pill:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.g9-pill-1a {
+  background: var(--accent-learn-bg);
+  color: var(--accent-learn);
+  border-color: rgba(79, 70, 229, 0.3);
+}
+.g9-pill-1a:hover {
+  background: var(--accent-learn);
+  color: #ffffff;
+}
+
+.g9-pill-1b {
+  background: var(--accent-explore-bg);
+  color: var(--accent-explore);
+  border-color: rgba(217, 119, 6, 0.3);
+}
+.g9-pill-1b:hover {
+  background: #d97706;
+  color: #ffffff;
+}
+
+.g9-pill-2a {
+  background: #f0fdf4;
+  color: #15803d;
+  border-color: rgba(22, 163, 74, 0.3);
+}
+[data-theme="dark"] .g9-pill-2a {
+  background: rgba(34, 197, 94, 0.12);
+  color: #4ade80;
+  border-color: rgba(74, 222, 128, 0.3);
+}
+.g9-pill-2a:hover {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+.g9-pill-2b {
+  background: #faf5ff;
+  color: #7e22ce;
+  border-color: rgba(126, 34, 206, 0.3);
+}
+[data-theme="dark"] .g9-pill-2b {
+  background: rgba(168, 85, 247, 0.12);
+  color: #c084fc;
+  border-color: rgba(192, 132, 252, 0.3);
+}
+.g9-pill-2b:hover {
+  background: #7e22ce;
+  color: #ffffff;
+}
+
+.g9-pill-qb {
+  background: var(--accent-qb-bg);
+  color: var(--accent-qb);
+  border-color: rgba(2, 132, 199, 0.3);
+}
+.g9-pill-qb:hover {
+  background: var(--accent-qb);
+  color: #ffffff;
+}
+
+.g9-pill-atlas {
+  background: var(--bg-soft);
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+.g9-pill-atlas:hover {
+  background: var(--bg-card);
+  color: var(--text-main);
+  border-color: var(--border-focus);
+}
+
 /* Quick Access / QB Callout */
 .g9-qb-banner {
   background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
@@ -1229,37 +1329,59 @@ def generate_topic_workspace(topic_id: str, topic_title: str, subject: str, bund
         learn_items = b.get("learn", [])
         interactive_items = b.get("interactive", [])
 
-        # Pillar 1: ⚡ Try visually (Exactly ONE primary explorer launcher)
-        interactive_btn = ""
-        if interactive_items:
-            ep = f"{rel_root}{interactive_items[0]['entrypoint']}"
-            exp_title = interactive_items[0].get("title") or "Visual simulation"
-            interactive_btn = f'<a class="g9-btn-action g9-btn-explore" href="{html.escape(ep)}" target="_blank" rel="noopener" title="{html.escape(exp_title)}">⚡ Try visually</a>'
+        # Dynamic Continuum Bar
+        pills = []
+        topic_slug = topic_id.split(".")[-1]
 
-        # Pillar 2: 📖 Core Study (Exactly ONE unified study entrypoint)
-        core_study_btn = ""
-        if learn_items:
-            core1a_item = next((item for item in learn_items if item.get('entrypoint', '').endswith('core1a.html')), None)
-            target_item = core1a_item if core1a_item else learn_items[0]
-            ep = f"{rel_root}{target_item['entrypoint']}"
-            raw_t = target_item.get("title") or "Core Study"
-            clean_t = raw_t
-            for pfx in ["GRADE 9 PHYSICS - ", "GRADE 9 CHEMISTRY - ", "GRADE 9 MATHEMATICS - ", "CORE (1A) "]:
+        # 1A: Concept Construction & Derivations
+        c1a_items = b.get("core_1a") or learn_items
+        for item in c1a_items:
+            ep = f"{rel_root}{item['entrypoint']}"
+            t = item.get("title", "1A Derivation")
+            clean_t = t
+            for pfx in ["GRADE 9 PHYSICS - ", "GRADE 9 CHEMISTRY - ", "GRADE 9 MATHEMATICS - ", "CORE (1A) ", "Core 1A "]:
                 if clean_t.startswith(pfx):
                     clean_t = clean_t[len(pfx):].strip()
-            core_study_btn = f'<a class="g9-btn-action g9-btn-learn" href="{html.escape(ep)}" title="Core Study · {html.escape(clean_t)}">📖 Core Study</a>'
+            clean_t = clean_t.split("·")[-1].split("|")[0].replace("— Learn", "").strip() or "1A Construction"
+            if len(clean_t) > 30:
+                clean_t = clean_t[:28] + "…"
+            pills.append(f'<a class="g9-btn-pill g9-pill-1a" href="{html.escape(ep)}" title="1A Derivation · {html.escape(t)}"><span class="g9-pill-icon">📖</span><span class="g9-pill-text">{html.escape(clean_t)}</span></a>')
 
-        # Pillar 3: 🎯 Practice in Question Bank (Core 2)
-        topic_slug = topic_id.split(".")[-1]
-        practice_url = f"{rel_root}question-bank/index.html?subject={html.escape(subject)}&topic={html.escape(topic_slug)}&mode=study"
-        practice_btn = f'<a class="g9-btn-action g9-btn-qb g9-btn-practice" href="{practice_url}">🎯 Practice in Question Bank (Core 2) &rarr;</a>'
+        # 1B: Visualizers & Simulators
+        c1b_items = b.get("interactive") if "interactive" in b else b.get("core_1b", [])
+        if c1b_items is None:
+            c1b_items = []
+        for item in c1b_items:
+            ep = f"{rel_root}{item['entrypoint']}"
+            t = item.get("title", "1B Visualizer")
+            clean_t = t.split("·")[-1].replace("Visual Proof", "Proof").replace("Visualizer", "Sim").replace("Simulation", "Sim").replace("Explorer", "").strip() or "1B Visualizer"
+            if len(clean_t) > 30:
+                clean_t = clean_t[:28] + "…"
+            pills.append(f'<a class="g9-btn-pill g9-pill-1b" href="{html.escape(ep)}" target="_blank" rel="noopener" title="Try visually · 1B Visualizer · {html.escape(t)}"><span class="g9-pill-icon">⚡</span><span class="g9-pill-text">Try visually: {html.escape(clean_t)}</span></a>')
 
-        # Atlas Anchor: 🪜 View Rung Ladder
+        # 2A: NCERT Problem Helpers
+        c2a_items = b.get("core_2a", [])
+        for item in c2a_items:
+            ep = f"{rel_root}{item['entrypoint']}"
+            t = item.get("title", "2A NCERT Helper")
+            pills.append(f'<a class="g9-btn-pill g9-pill-2a" href="{html.escape(ep)}" title="2A NCERT · {html.escape(t)}"><span class="g9-pill-icon">📝</span><span class="g9-pill-text">2A NCERT Helper</span></a>')
+
+        # 2B: Competitive PYQ Challenge Suites
+        c2b_items = b.get("core_2b", [])
+        for item in c2b_items:
+            ep = f"{rel_root}{item['entrypoint']}"
+            t = item.get("title", "2B Competitive Suite")
+            pills.append(f'<a class="g9-btn-pill g9-pill-2b" href="{html.escape(ep)}" title="2B JEE PYQ · {html.escape(t)}"><span class="g9-pill-icon">🏆</span><span class="g9-pill-text">2B JEE Suite</span></a>')
+
+        # Core 2: Question Bank Direct Filter
+        practice_url = f"{rel_root}question-bank/index.html?topic={topic_slug}&capability={html.escape(c_ref)}&mode=study"
+        pills.append(f'<a class="g9-btn-pill g9-pill-qb" href="{practice_url}" title="Practice in Question Bank"><span class="g9-pill-icon">🎯</span><span class="g9-pill-text">Practice in Question Bank &rarr;</span></a>')
+
+        # Core 1: Rung Ladder
         atlas_url = f"{rel_root}atlas/index.html#{html.escape(topic_slug)}"
-        atlas_btn = f'<a class="g9-btn-action g9-btn-atlas" href="{atlas_url}" title="View Curriculum & Pedagogical Rungs">🪜 View Rung Ladder</a>'
+        pills.append(f'<a class="g9-btn-pill g9-pill-atlas" href="{atlas_url}" title="View Curriculum & Pedagogical Rungs"><span class="g9-pill-icon">🪜</span><span class="g9-pill-text">Rung Ladder</span></a>')
 
-        action_buttons = [interactive_btn, core_study_btn, practice_btn, atlas_btn]
-        action_row = "\n      ".join(btn for btn in action_buttons if btn)
+        action_row = f'<div class="g9-continuum-bar">\n        ' + "\n        ".join(pills) + "\n      </div>"
 
         display_title = c_title
         if c_title == "Math Euclid Geometry":

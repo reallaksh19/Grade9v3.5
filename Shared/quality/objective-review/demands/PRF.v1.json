@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "id": "PRF",
+  "name": "Proof / derivation / justification",
+  "objective": "Establish a claim through a justified logical chain in which each implication is warranted and the decisive step remains the learner's.",
+  "choose_when": "The task asks the learner to prove, derive, justify or establish a result rather than merely use it.",
+  "do_not_choose_when": "Do not use a routine computation merely because solution steps have reasons; PRF applies when justification or derivation is itself the assessed product.",
+  "slots": {
+    "X": "the exact claim, quantifier, condition or relation that must be established",
+    "Y": "a demonstrated definition, theorem, identity, axiom or previously established result",
+    "Z": "the first or central justified implication that opens the proof or derivation",
+    "W": "the decisive continuation, construction or closure that establishes the claim"
+  },
+  "hint_objectives": {
+    "REPRESENTATION": "Clarify exactly what must be established and under which assumptions; separate givens from the target.",
+    "KEY_CONCEPT": "Correlate the target with the relevant definition, theorem or identity Y and its conditions.",
+    "CRUX": "Give the first justified implication toward Z, not the whole chain or closure W."
+  },
+  "figure_policy": {"requirement": "CONDITIONAL", "job": "For geometric or physical derivations, show the construction or relation needed for the proof; for symbolic proofs, a structured equation or state sequence may replace SVG."},
+  "misconception_families": ["example treated as proof", "converse assumed", "division or cancellation without admissibility or domain check"],
+  "solution_architecture": ["state assumptions and target", "cite each definition or theorem when used", "derive implications with reasons", "close the target explicitly", "test scope outside assumptions"],
+  "validation_strategy_refs": ["COUNTEREXAMPLE_BOUNDARY", "REVERSE_CHAIN_CHECK"],
+  "core1a_extraction_signals": ["proof obligations", "required theorem or definition", "decisive implication", "scope or assumption boundary", "common invalid inference"],
+  "adjacent_demands": ["MOD", "PRC"]
+}

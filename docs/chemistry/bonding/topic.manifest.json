@@ -1,0 +1,66 @@
+{
+  "$schema": "grade9v3-topic-manifest/v1",
+  "id": "chem.bonding",
+  "subject": "Chemistry",
+  "topic_title": "Chemical Bonding & Molecular Structure",
+  "topic_slug": "bonding",
+  "description": "Lewis representations, VSEPR molecular geometry, dipole moments, and hybridisation.",
+  "rungs_atlas": {
+    "entrypoint": "chemistry/bonding/atlas.html",
+    "title": "Chemical Bonding · 5-Rung Pedagogical Ladder"
+  },
+  "subtopics": [
+    {
+      "id": "CAP-CHEM-BONDING",
+      "concept_ref": "MIC-CHEM-BONDING",
+      "title": "Chemical Bonding & Molecular Structure",
+      "description": "Predicting molecular geometry via VSEPR, electron pair repulsion, and polarity.",
+      "continuum": {
+        "core_1a_constructions": [
+          {
+            "id": "chem.bonding.core1a",
+            "title": "Chemical Bonding · VSEPR & Geometry — Learn",
+            "entrypoint": "chemistry/bonding/core1a.html",
+            "type": "CORE_1A",
+            "format": "TABLET_HTML"
+          },
+          {
+            "id": "chem.bonding.tablet",
+            "title": "Chemical Bonding & Molecular Structure | 12.7\" Tablet Standalone Edition",
+            "entrypoint": "standalone/practice/core1a-chemistry-chemical-bonding-tablet.html",
+            "type": "CORE_1A",
+            "format": "TABLET_HTML"
+          }
+        ],
+        "core_1b_visualizers": [
+          {
+            "id": "chem.bonding.explorer",
+            "title": "Chemical Bonding & Molecular Structure Explorer",
+            "entrypoint": "chemistry/bonding/explorers/chemical_bonding/index.html",
+            "type": "CORE_1B",
+            "format": "OPAQUE_APP",
+            "engine": "CANVAS_INTERACTIVE"
+          }
+        ],
+        "core_2a_ncert": [
+          {
+            "id": "chem.bonding.ncert-tablet",
+            "title": "Chemical Bonding Core (2) NCERT Question Helper | 12.7\" Tablet Standalone Edition",
+            "entrypoint": "standalone/practice/core2-chemistry-chemical-bonding-tablet.html",
+            "type": "CORE_2A",
+            "question_count": 10
+          }
+        ],
+        "core_2b_competitive": [
+          {
+            "id": "chem.bonding.master-suite",
+            "title": "IIT-JEE Chemistry · Chemical Bonding Master Suite",
+            "entrypoint": "standalone/practice/chemistry-chemical-bonding-master-suite.html",
+            "type": "CORE_2B",
+            "question_count": 5
+          }
+        ]
+      }
+    }
+  ]
+}

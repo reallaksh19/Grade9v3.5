@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "id": "MOD",
+  "name": "Modelling / reasoning / model selection",
+  "objective": "Choose the relevant system, assumptions, model or chain of relations and coordinate them to solve the stated situation.",
+  "choose_when": "The decisive difficulty is deciding what model, assumptions or relations govern, or how several valid relations must be coordinated.",
+  "do_not_choose_when": "Do not use when the model is already explicit and the work is mainly procedure, representation translation, formal proof, or evidence interpretation.",
+  "slots": {
+    "X": "the system boundary, changed condition, event condition or clue that controls model choice",
+    "Y": "a demonstrated model, invariant or familiar case related to X",
+    "Z": "the model-selection or coordination move that makes the route coherent",
+    "W": "the learner's decisive model or boundary choice, synthesis step and its application"
+  },
+  "hint_objectives": {
+    "REPRESENTATION": "Clarify the system, event, changed condition or assumption that controls the model choice.",
+    "KEY_CONCEPT": "Correlate X with a familiar model or invariant Y and state the relevant condition of validity.",
+    "CRUX": "Open the route to Z—what must be decided or coordinated—without making the protected model or synthesis move W."
+  },
+  "figure_policy": {"requirement": "CONDITIONAL", "job": "Show the system boundary, states, geometry, objects or changed condition when these determine the model; a safe pre-attempt representation must not reveal W."},
+  "misconception_families": ["formula matching by keywords", "wrong system or boundary", "standard shortcut used after its condition changed"],
+  "solution_architecture": ["define system and assumptions", "choose governing model or relations", "justify applicability", "coordinate dependencies", "execute and independently check"],
+  "validation_strategy_refs": ["LIMITING_CASE", "ALTERNATIVE_MODEL_CHECK", "ASSUMPTION_CHECK"],
+  "core1a_extraction_signals": ["model boundary", "governing assumptions", "stable crux or model choice", "transfer condition", "recurring wrong model"],
+  "adjacent_demands": ["CON", "PRC", "PRF", "EVD"]
+}

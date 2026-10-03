@@ -1,0 +1,63 @@
+<!doctype html>
+<html data-g9-draft="1" lang="en" data-g9-shell data-g9-role="CORE2B" data-g9-mode="PAGES"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="g9-render" content="render_core/2 99da438316791c21"><link rel="stylesheet" href="../../../css/tablet-12-7.css"><title>Transfer · Polynomials degree stress prototype</title><style>
+[hidden]{display:none!important}
+:root{--g9-zoom:1;--g9-content-max:1380px;--g9-touch-min:48px;--g9-space:clamp(16px,2vw,28px);--g9-type-body:17px;--bg:#f6f7fb;--fg:#172033;--card:#fff;--line:#d5dce6;--accent:#1f5fae;--muted:#52627a}
+:root[data-theme=dark]{--bg:#0f1520;--fg:#e8edf5;--card:#18212f;--line:#2c394d;--accent:#8ab4f8;--muted:#a3b1c6}
+html{font-size:calc(var(--g9-type-body) * var(--g9-zoom))}body{margin:0;background:var(--bg);color:var(--fg);font:1rem/1.6 system-ui,sans-serif;overflow-wrap:break-word}
+header[data-g9-shell-header]{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px var(--g9-space);background:var(--card);border-bottom:1px solid var(--line)}
+header a,header button,button,summary,nav a{min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);padding:10px 14px;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg);font:inherit;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;touch-action:manipulation}
+nav[data-g9-breadcrumb]{display:flex;gap:8px;flex-wrap:wrap;padding:8px var(--g9-space)}
+main{max-width:var(--g9-content-max);margin:0 auto;padding:var(--g9-space);box-sizing:border-box}
+main>*{min-width:0}article[data-g9-unit]{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:var(--g9-space);margin:18px 0;min-width:0}
+article[data-g9-unit]>*{min-width:0}
+@media (min-width:1100px){article[data-g9-unit].g9-stage-support{display:grid;grid-template-columns:.68fr .32fr;gap:20px}
+article.g9-stage-support>.slot-identity,article.g9-stage-support>.slot-attempt,article.g9-stage-support>.slot-construction,article.g9-stage-support>.slot-reconstruction,article.g9-stage-support>.slot-reasoning,article.g9-stage-support>.slot-post_attempt,article.g9-stage-support>.slot-solution{grid-column:1}
+article.g9-stage-support>.slot-support,article.g9-stage-support>.slot-repair_closure{grid-column:2}}
+textarea{width:100%;min-height:120px;font:inherit;border:1px solid var(--line);border-radius:10px;padding:14px 16px;box-sizing:border-box;background:var(--card);color:var(--fg)}
+details{border:1px solid var(--line);border-radius:10px;margin:12px 0;padding:0 12px}details[data-locked] summary{opacity:.55;cursor:not-allowed}
+figure{margin:14px 0;max-width:100%;overflow-x:auto}figure svg{width:100%;height:auto;max-width:720px}figcaption{color:var(--muted)}
+.g9-prov{color:var(--muted);font-size:.95rem}.g9-expr{font-family:ui-monospace,monospace;font-size:1.05rem}
+[data-g9-meta-strip]{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+[data-g9-meta-item]{display:inline-flex;gap:4px;align-items:baseline;padding:5px 9px;border:1px solid var(--line);border-radius:999px;background:var(--bg);font-size:.9rem}
+[data-g9-meta-item] strong{font-weight:700}
+h4{margin:.8em 0 .3em}:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+footer{padding:24px 16px;color:var(--muted)}
+@media print{header[data-g9-shell-header],nav[data-g9-breadcrumb],.g9-attempt,button,[data-g9-display-panel]{display:none!important}
+details{border:none}article[data-g9-unit]{break-inside:avoid-page;border:none}body{background:#fff;color:#000}}
+.g9-attempt input[type=text],.g9-attempt select,.g9-attempt textarea{min-height:48px;box-sizing:border-box}
+.g9-answer-option,.g9-paper,.g9-match{display:flex;align-items:center;gap:.5rem;min-height:48px}
+.g9-answer-option input,.g9-paper input{min-width:48px;min-height:48px}
+.g9-attempt fieldset{min-height:48px}
+.g9-math,pre,table{max-width:100%;overflow-x:auto}
+input,select{font-size:max(16px,1rem)}
+@media (max-width:899px){header[data-g9-shell-header]{position:relative}article[data-g9-unit]{padding:16px}nav[data-g9-breadcrumb]{font-size:.95rem}}
+</style></head><body data-core="CORE2B" data-blueprint-ref="BP-CORE2B-TRANSFER@1.0.0"><header data-g9-shell-header><a data-g9-home href="../../../index.html">Home</a><button type="button" onclick="history.back()">Back</button><a href="../../Mathematics/assets/ch2-polynomials-m1-m2-complete-bank.html">Question bank</a><button type="button" data-g9-action="search">Search</button><button type="button" data-g9-action="display">Display</button><div data-g9-search-panel hidden><input data-g9-search-input type="search" aria-label="Search this page"></div><div data-g9-display-panel hidden><button type="button" data-g9-font="dec">A−</button><button type="button" data-g9-font="reset">A</button><button type="button" data-g9-font="inc">A+</button><button type="button" data-g9-theme="light">Light</button><button type="button" data-g9-theme="dark">Dark</button><button type="button" data-g9-zoom="dec">Zoom −</button><button type="button" data-g9-zoom="reset">100%</button><button type="button" data-g9-zoom="inc">Zoom +</button></div></header><nav data-g9-breadcrumb aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="index.html">Polynomials degree stress prototype</a><a href="core1.html">CORE1</a><a href="core1a.html">CORE1A</a><a href="core1b.html">CORE1B</a><a href="core2.html">CORE2</a><a href="core2a.html">CORE2A</a><a href="core2b.html" aria-current=page>CORE2B</a></nav><noscript>Answers open after you attempt; this page needs JavaScript.</noscript><main><h1>Polynomials degree stress prototype: Transfer</h1></main><footer data-g9-footer>Mathematics · Polynomials degree stress prototype</footer><script>
+(()=>{const q=(s,r=document)=>[...r.querySelectorAll(s)];
+const store={get:k=>{try{return localStorage.getItem('g9-'+k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem('g9-'+k,v)}catch(e){}}};
+const root=document.documentElement;const apply=()=>{root.dataset.theme=store.get('theme')||root.dataset.theme||'light';root.style.setProperty('--g9-zoom',store.get('zoom')||'1');};apply();
+q('[data-g9-theme]').forEach(b=>b.onclick=()=>{store.set('theme',b.dataset.g9Theme);apply()});
+q('[data-g9-zoom]').forEach(b=>b.onclick=()=>{let z=parseFloat(store.get('zoom')||'1');z=b.dataset.g9Zoom==='inc'?Math.min(1.6,z+0.1):b.dataset.g9Zoom==='dec'?Math.max(0.8,z-0.1):1;store.set('zoom',z.toFixed(1));apply()});
+q('[data-g9-font]').forEach(b=>b.onclick=()=>q('[data-g9-zoom="'+b.dataset.g9Font+'"]')[0]?.click());
+function initFigure(f){if(f.dataset.g9Init)return;f.dataset.g9Init='1';const ids=(f.dataset.g9Stages||'').split(' ').filter(Boolean);if(ids.length<2)return;let i=0;
+const show=()=>{ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=n<=i?'':'none'));const l=q('[data-g9-stage-label]',f)[0];if(l)l.textContent='Stage '+(i+1)+' of '+ids.length};show();
+q('[data-g9-stage-step]',f).forEach(b=>b.onclick=()=>{i=Math.max(0,Math.min(ids.length-1,i+(b.dataset.g9StageStep==='next'?1:-1)));show()})}
+function nextRung(l){const t=q('template[data-g9-rung-payload]',l)[0];if(!t)return false;q('[data-g9-ladder]',l)[0].append(t.content.cloneNode(true));t.remove();const b=q('[data-g9-next-rung]',l)[0];if(b&&!q('template[data-g9-rung-payload]',l).length)b.disabled=true;return true}
+function materialise(a){q('details[data-g9-payload-ref]',a).forEach(d=>{const slot=q('[data-g9-payload-slot]',d)[0];if(!slot||slot.dataset.g9Filled)return;const t=q('template[data-g9-payload]',a).find(x=>x.dataset.g9Payload===d.dataset.g9PayloadRef);if(!t)return;slot.replaceChildren(t.content.cloneNode(true));slot.dataset.g9Filled='1';q('figure[data-g9-figure]',slot).forEach(initFigure)})}
+const number=t=>{const v=t.trim();if(!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?(?:\s*\/\s*[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?)?$/i.test(v))return false;const p=v.split('/').map(x=>Number(x.trim()));return p.every(Number.isFinite)&&(p.length===1||p[1]!==0)};
+function validAttempt(box){const type=box.dataset.g9ResponseType;if(type==='single_choice'||type==='multiple_choice'||type==='true_false')return q('[data-g9-choice]:checked',box).length>0;
+if(type==='numeric')return number(q('[data-g9-number]',box)[0]?.value||'');if(type==='short_text')return !!q('[data-g9-attempt]',box)[0]?.value.trim();
+if(type==='match'){const fields=q('[data-g9-match]',box);return fields.length>0&&fields.every(x=>x.value!=='')}
+if(q('[data-g9-paper]:checked',box).length)return true;if(type==='multipart'){const fields=q('[data-g9-part-input]',box);return fields.length>0&&fields.every(x=>x.value.trim()&&(!x.dataset.g9PartType||x.dataset.g9PartType!=='numeric'||number(x.value)))}
+return !!q('[data-g9-attempt]',box)[0]?.value.trim()}
+const articles=q('article[data-g9-unit],article[data-g9-diagnostic]');
+articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!a.dataset.attempted){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();
+q('details[data-requires-attempt] summary',a).forEach(s=>s.addEventListener('click',e=>{if(!a.dataset.attempted){e.preventDefault();q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a)[0]?.focus()}}));
+q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-attempt-box]');if(!box||!validAttempt(box)){q('input,textarea,select',box||a)[0]?.focus();return}a.dataset.attempted='1';lock();materialise(a)});
+q('[data-g9-next-rung]',a).forEach(b=>b.onclick=()=>nextRung(b.closest('.g9-ladder')))});
+window.g9MaterialiseAll=()=>articles.forEach(a=>{a.dataset.attempted='1';q('details[data-requires-attempt]',a).forEach(d=>delete d.dataset.locked);materialise(a);q('.g9-ladder',a).forEach(l=>{while(nextRung(l)){};})});
+q('figure[data-g9-figure]').forEach(initFigure);
+const input=q('[data-g9-search-input]')[0];if(input)input.oninput=()=>{const v=input.value.trim().toLowerCase();articles.forEach(a=>{a.hidden=!!v&&!(a.dataset.g9SearchText||'').toLowerCase().includes(v)})};
+q('[data-g9-action="search"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-search-panel]')[0];p.hidden=!p.hidden;if(!p.hidden)input.focus()});
+q('[data-g9-action="display"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-display-panel]')[0];p.hidden=!p.hidden});
+})();
+</script></body></html>

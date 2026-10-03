@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:grade9v3:objective-review:matrix-template-definition:1.0.0",
+  "title": "MatrixTemplateDefinition",
+  "description": "Resolved agent-ready policy for one Difficulty × Demand cell. Shared/tools/objective_review.py materializes this from the band, demand and matrix authorities.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["template_id", "difficulty_band", "demand_family", "name", "objective", "choose_when", "do_not_choose_when", "difficulty_character", "adjacent_cells", "slots", "attempt_first", "hint_objectives", "figure_policy", "helper_policy", "misconception_policy", "solution_architecture", "validation_strategy_refs", "core1a_extraction"],
+  "properties": {
+    "template_id": {"type": "string", "pattern": "^QRT-D[1-4]-(RCL|CON|REP|PRC|MOD|PRF|EVD)$"},
+    "difficulty_band": {"enum": ["D1", "D2", "D3", "D4"]},
+    "demand_family": {"enum": ["RCL", "CON", "REP", "PRC", "MOD", "PRF", "EVD"]},
+    "name": {"type": "string", "minLength": 1},
+    "objective": {"type": "string", "minLength": 1},
+    "choose_when": {"type": "string", "minLength": 1},
+    "do_not_choose_when": {"type": "string", "minLength": 1},
+    "difficulty_character": {"type": "string", "minLength": 1},
+    "adjacent_cells": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^QRT-D[1-4]-(RCL|CON|REP|PRC|MOD|PRF|EVD)$"}},
+    "slots": {"type": "object", "additionalProperties": false, "required": ["X", "Y", "Z", "W"], "properties": {"X": {"type": "string", "minLength": 1}, "Y": {"type": "string", "minLength": 1}, "Z": {"type": "string", "minLength": 1}, "W": {"type": "string", "minLength": 1}}},
+    "attempt_first": {"type": "object", "additionalProperties": false, "required": ["protected_slot", "rule", "band_posture"], "properties": {"protected_slot": {"const": "W"}, "rule": {"type": "string", "minLength": 1}, "band_posture": {"type": "string", "minLength": 1}}},
+    "hint_objectives": {"type": "object", "additionalProperties": false, "required": ["REPRESENTATION", "KEY_CONCEPT", "CRUX", "FORMAL_MODEL", "CHECKPOINT"], "properties": {"REPRESENTATION": {"$ref": "#/$defs/hint"}, "KEY_CONCEPT": {"$ref": "#/$defs/hint"}, "CRUX": {"$ref": "#/$defs/hint"}, "FORMAL_MODEL": {"$ref": "#/$defs/hint"}, "CHECKPOINT": {"$ref": "#/$defs/hint"}}},
+    "figure_policy": {"type": "object", "additionalProperties": false, "required": ["requirement", "job", "stage_objectives", "complete_stage_rule"], "properties": {"requirement": {"enum": ["REQUIRED", "CONDITIONAL", "OPTIONAL", "NOT_APPLICABLE"]}, "job": {"type": "string", "minLength": 1}, "stage_objectives": {"type": "object", "additionalProperties": false, "required": ["S1", "S2", "S3"], "properties": {"S1": {"type": "string", "minLength": 1}, "S2": {"type": "string", "minLength": 1}, "S3": {"type": "string", "minLength": 1}}}, "complete_stage_rule": {"type": "string", "minLength": 1}}},
+    "helper_policy": {"type": "object", "additionalProperties": false, "required": ["P1", "P2", "P3"], "properties": {"P1": {"type": "string", "minLength": 1}, "P2": {"type": "string", "minLength": 1}, "P3": {"type": "string", "minLength": 1}}},
+    "misconception_policy": {"type": "object", "additionalProperties": false, "required": ["M1", "M2", "M3", "families"], "properties": {"M1": {"type": "string", "minLength": 1}, "M2": {"type": "string", "minLength": 1}, "M3": {"type": "string", "minLength": 1}, "families": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}}},
+    "solution_architecture": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "validation_strategy_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "core1a_extraction": {"type": "object", "additionalProperties": false, "required": ["required_signals", "authority_rule", "lineage"], "properties": {"required_signals": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}, "authority_rule": {"type": "string", "minLength": 1}, "lineage": {"const": ["canonical_refs", "evidence_question_ids"]}}}
+  },
+  "$defs": {
+    "hint": {"type": "object", "additionalProperties": false, "required": ["review_id", "objective", "applicability"], "properties": {"review_id": {"type": ["string", "null"]}, "objective": {"type": "string", "minLength": 1}, "applicability": {"enum": ["APPLICABLE", "CONDITIONAL", "OPTIONAL", "NOT_APPLICABLE"]}}}
+  }
+}

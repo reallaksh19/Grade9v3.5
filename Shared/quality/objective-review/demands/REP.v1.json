@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "id": "REP",
+  "name": "Representation / translation",
+  "objective": "Preserve meaning while translating among words, diagram, graph, table, equation, symbolic form or geometric construction.",
+  "choose_when": "The question remains difficult mainly because information or structure must be read from one representation and expressed or used in another.",
+  "do_not_choose_when": "Do not use when the representation is incidental and the real difficulty is retrieval, procedure, model choice, proof or evidence judgement.",
+  "slots": {
+    "X": "the feature whose meaning is encoded differently across the source and target representations",
+    "Y": "a demonstrated invariant, correspondence or landmark shared by both representations",
+    "Z": "the mapping or construction that carries meaning from source to target",
+    "W": "the learner's completed translation, read-off, construction or interpretation"
+  },
+  "hint_objectives": {
+    "REPRESENTATION": "Clarify which feature in the source representation carries the needed meaning.",
+    "KEY_CONCEPT": "Correlate that feature with a known invariant, landmark, axis, symbol or correspondence Y.",
+    "CRUX": "Show the mapping rule or construction toward Z without completing the target representation W."
+  },
+  "figure_policy": {"requirement": "REQUIRED", "job": "The representation is part of the demand. Preserve the question's own data and make source-to-target correspondence visible without completing W."},
+  "misconception_families": ["axis or label meaning swapped", "symbolic unit confused with physical object", "shape copied without preserving invariant"],
+  "solution_architecture": ["identify source features", "state the invariant or correspondence", "map into the target representation", "complete the translation", "reverse-translate to check meaning"],
+  "validation_strategy_refs": ["REVERSE_TRANSLATION", "CORRESPONDENCE_CHECK"],
+  "core1a_extraction_signals": ["representation correspondence", "required landmarks/elements", "reverse-translation check", "common representation confusion"],
+  "adjacent_demands": ["CON", "PRC", "MOD"]
+}

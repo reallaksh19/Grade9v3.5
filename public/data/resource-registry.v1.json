@@ -1,41 +1,37 @@
 [
   {
     "artifact": {
-      "entrypoint": "chemistry/bonding/explorers/chemical_bonding/index.html",
+      "entrypoint": "chemistry/bonding/atlas.html",
       "generated": false
     },
     "audience": "LEARNER",
     "classification": {
-      "capability_refs": [
-        "MIC-CHEM-BONDING"
-      ],
+      "capability_refs": [],
       "subject_ref": "Chemistry",
       "topic_refs": [
         "chem.bonding"
       ]
     },
-    "id": "chem.bonding.chemical-bonding.explorer",
-    "learner_role": "EXPLORE",
+    "id": "chem.bonding.atlas",
+    "learner_role": "LEARN",
     "platform_capabilities": [
-      "interactive",
-      "simulation",
-      "visual-engine"
+      "pedagogical-rungs",
+      "topic-atlas"
     ],
-    "presentation": "COMPANION",
-    "resource_kind": "OPAQUE_APP",
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
     "schema": "grade9v3-resource/v1",
     "search": {
       "aliases": [
-        "chemical bonding",
-        "vsepr",
-        "lewis structures",
-        "dipole"
+        "bonding",
+        "atlas",
+        "rungs"
       ],
-      "title": "Chemical Bonding & Molecular Structure Explorer",
+      "title": "Chemical Bonding \u00b7 5-Rung Pedagogical Ladder",
       "visibility": "LEARNER"
     },
     "source": {
-      "authority_ref": null,
+      "authority_ref": "public/chemistry/bonding/topic.manifest.json",
       "generator_ref": null
     },
     "validation": {
@@ -48,7 +44,7 @@
   {
     "artifact": {
       "entrypoint": "chemistry/bonding/core1a.html",
-      "generated": true
+      "generated": false
     },
     "audience": "LEARNER",
     "classification": {
@@ -65,24 +61,253 @@
     "platform_capabilities": [
       "staged-representation",
       "worked-anchor",
-      "related-practice"
+      "concept-derivation"
     ],
     "presentation": "FULL_PAGE",
     "resource_kind": "STRUCTURED_PRODUCT",
     "schema": "grade9v3-resource/v1",
     "search": {
       "aliases": [
-        "chemical bonding",
-        "vsepr",
-        "molecular geometry",
-        "bonding core1a"
+        "bonding",
+        "derivation",
+        "construction",
+        "1a"
       ],
       "title": "Chemical Bonding \u00b7 VSEPR & Geometry \u2014 Learn",
       "visibility": "LEARNER"
     },
     "source": {
-      "authority_ref": "chemistry/bonding/core1a.html",
-      "generator_ref": "Shared/tools/build_learner_ui.py"
+      "authority_ref": "public/chemistry/bonding/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "chemistry/bonding/explorers/chemical_bonding/index.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-CHEM-BONDING"
+      ],
+      "subject_ref": "Chemistry",
+      "topic_refs": [
+        "chem.bonding"
+      ]
+    },
+    "id": "chem.bonding.explorer",
+    "learner_role": "EXPLORE",
+    "platform_capabilities": [
+      "interactive",
+      "simulation",
+      "visual-engine"
+    ],
+    "presentation": "COMPANION",
+    "resource_kind": "OPAQUE_APP",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "bonding",
+        "simulation",
+        "visualizer",
+        "1b"
+      ],
+      "title": "Chemical Bonding & Molecular Structure Explorer",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/chemistry/bonding/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "standalone/practice/chemistry-chemical-bonding-master-suite.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-CHEM-BONDING"
+      ],
+      "subject_ref": "Chemistry",
+      "topic_refs": [
+        "chem.bonding"
+      ]
+    },
+    "id": "chem.bonding.master-suite",
+    "learner_role": "PRACTICE",
+    "platform_capabilities": [
+      "multi-tier-problems",
+      "solution-reveals",
+      "past-papers",
+      "jee-pyq"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "bonding",
+        "jee",
+        "pyq",
+        "olympiad",
+        "2b"
+      ],
+      "title": "IIT-JEE Chemistry \u00b7 Chemical Bonding Master Suite",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/chemistry/bonding/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "standalone/practice/core2-chemistry-chemical-bonding-tablet.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-CHEM-BONDING"
+      ],
+      "subject_ref": "Chemistry",
+      "topic_refs": [
+        "chem.bonding"
+      ]
+    },
+    "id": "chem.bonding.ncert-tablet",
+    "learner_role": "PRACTICE",
+    "platform_capabilities": [
+      "multi-tier-problems",
+      "solution-reveals",
+      "ncert-helper"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "bonding",
+        "ncert",
+        "core2",
+        "practice",
+        "2a"
+      ],
+      "title": "Chemical Bonding Core (2) NCERT Question Helper | 12.7\" Tablet Standalone Edition",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/chemistry/bonding/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "standalone/practice/core1a-chemistry-chemical-bonding-tablet.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-CHEM-BONDING"
+      ],
+      "subject_ref": "Chemistry",
+      "topic_refs": [
+        "chem.bonding"
+      ]
+    },
+    "id": "chem.bonding.tablet",
+    "learner_role": "LEARN",
+    "platform_capabilities": [
+      "staged-representation",
+      "worked-anchor",
+      "concept-derivation"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "bonding",
+        "derivation",
+        "construction",
+        "1a"
+      ],
+      "title": "Chemical Bonding & Molecular Structure | 12.7\" Tablet Standalone Edition",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/chemistry/bonding/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "chemistry/gases/atlas.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [],
+      "subject_ref": "Chemistry",
+      "topic_refs": [
+        "chem.gases"
+      ]
+    },
+    "id": "chem.gases.atlas",
+    "learner_role": "LEARN",
+    "platform_capabilities": [
+      "pedagogical-rungs",
+      "topic-atlas"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "gases",
+        "atlas",
+        "rungs"
+      ],
+      "title": "Behaviour of Gases Topic Atlas & Pedagogical Rungs",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "chemistry/gases/atlas.html",
+      "generator_ref": null
     },
     "validation": {
       "academic_evidence_ref": null,
@@ -275,6 +500,48 @@
   },
   {
     "artifact": {
+      "entrypoint": "chemistry/redox/atlas.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [],
+      "subject_ref": "Chemistry",
+      "topic_refs": [
+        "chem.redox"
+      ]
+    },
+    "id": "chem.redox.atlas",
+    "learner_role": "LEARN",
+    "platform_capabilities": [
+      "pedagogical-rungs",
+      "topic-atlas"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "redox",
+        "atlas",
+        "rungs"
+      ],
+      "title": "Redox Reactions Topic Atlas & Pedagogical Rungs",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "chemistry/redox/atlas.html",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
       "entrypoint": "chemistry/redox/core1a.html",
       "generated": true
     },
@@ -321,6 +588,52 @@
   },
   {
     "artifact": {
+      "entrypoint": "chemistry/redox/explorers/redox_reactions/adaptive-hard-concept-proof.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-CHEM-REDOX"
+      ],
+      "subject_ref": "Chemistry",
+      "topic_refs": [
+        "chem.redox"
+      ]
+    },
+    "id": "chem.redox.redox-reactions-adaptive-hard-concept-proof.explorer",
+    "learner_role": "EXPLORE",
+    "platform_capabilities": [
+      "interactive",
+      "simulation",
+      "visual-engine"
+    ],
+    "presentation": "COMPANION",
+    "resource_kind": "OPAQUE_APP",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "redox",
+        "redox-reactions-adaptive-hard-concept-proof",
+        "simulation",
+        "visualizer"
+      ],
+      "title": "Redox Adaptive Visual Proof",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "chemistry/redox/explorers/redox_reactions/adaptive-hard-concept-proof.html",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
       "entrypoint": "chemistry/redox/explorers/redox_reactions/index.html",
       "generated": false
     },
@@ -355,6 +668,48 @@
     },
     "source": {
       "authority_ref": null,
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "chemistry/some-basic-concepts/atlas.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [],
+      "subject_ref": "Chemistry",
+      "topic_refs": [
+        "chem.some-basic-concepts"
+      ]
+    },
+    "id": "chem.some-basic-concepts.atlas",
+    "learner_role": "LEARN",
+    "platform_capabilities": [
+      "pedagogical-rungs",
+      "topic-atlas"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "some-basic-concepts",
+        "atlas",
+        "rungs"
+      ],
+      "title": "Mole Concept & Stoichiometry Topic Atlas & Pedagogical Rungs",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "chemistry/some-basic-concepts/atlas.html",
       "generator_ref": null
     },
     "validation": {
@@ -449,42 +804,315 @@
   },
   {
     "artifact": {
-      "entrypoint": "mathematics/coordinate-geometry/core1a.html",
-      "generated": true
+      "entrypoint": "mathematics/coordinate-geometry/atlas.html",
+      "generated": false
     },
     "audience": "LEARNER",
     "classification": {
-      "capability_refs": [
-        "MIC-MATH-COORDINATE-GEOMETRY"
-      ],
+      "capability_refs": [],
       "subject_ref": "Mathematics",
       "topic_refs": [
         "math.coordinate-geometry"
       ]
     },
-    "id": "math.coordinate-geometry.core1a",
+    "id": "math.coordinate-geometry.atlas",
     "learner_role": "LEARN",
     "platform_capabilities": [
-      "staged-representation",
-      "worked-anchor",
-      "related-practice"
+      "pedagogical-rungs",
+      "topic-atlas"
     ],
     "presentation": "FULL_PAGE",
     "resource_kind": "STRUCTURED_PRODUCT",
     "schema": "grade9v3-resource/v1",
     "search": {
       "aliases": [
-        "coordinate geometry",
-        "cartesian plane",
-        "quadrants",
-        "coordinates core1a"
+        "coordinate-geometry",
+        "atlas",
+        "rungs"
       ],
-      "title": "Coordinate Geometry: Cartesian Plane & Coordinates \u2014 Learn",
+      "title": "Coordinate Geometry \u00b7 Pedagogical Rung Ladder",
       "visibility": "LEARNER"
     },
     "source": {
-      "authority_ref": "mathematics/coordinate-geometry/core1a.html",
-      "generator_ref": "Shared/tools/build_learner_ui.py"
+      "authority_ref": "public/mathematics/coordinate-geometry/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "mathematics/assets/ch3-coordinate-geometry-m2-complete-bank.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-MAT-COORDINATE-GEOMETRY"
+      ],
+      "subject_ref": "Mathematics",
+      "topic_refs": [
+        "math.coordinate-geometry"
+      ]
+    },
+    "id": "math.coordinate-geometry.ch3-bank",
+    "learner_role": "PRACTICE",
+    "platform_capabilities": [
+      "multi-tier-problems",
+      "solution-reveals",
+      "ncert-helper"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "coordinate-geometry",
+        "ncert",
+        "core2",
+        "practice",
+        "2a"
+      ],
+      "title": "Chapter 3: Coordinate Geometry Complete Question Bank",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/mathematics/coordinate-geometry/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "mathematics/coordinate-geometry/core1a.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-MAT-COORDINATE-GEOMETRY"
+      ],
+      "subject_ref": "Mathematics",
+      "topic_refs": [
+        "math.coordinate-geometry"
+      ]
+    },
+    "id": "math.coordinate-geometry.construction.core1a",
+    "learner_role": "LEARN",
+    "platform_capabilities": [
+      "staged-representation",
+      "worked-anchor",
+      "concept-derivation"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "coordinate-geometry",
+        "derivation",
+        "construction",
+        "1a"
+      ],
+      "title": "Coordinate Geometry Foundation & Cartesian Axes",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/mathematics/coordinate-geometry/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "mathematics/coordinate-geometry/core2.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-MAT-COORDINATE-GEOMETRY"
+      ],
+      "subject_ref": "Mathematics",
+      "topic_refs": [
+        "math.coordinate-geometry"
+      ]
+    },
+    "id": "math.coordinate-geometry.core2-clinic",
+    "learner_role": "PRACTICE",
+    "platform_capabilities": [
+      "multi-tier-problems",
+      "solution-reveals",
+      "past-papers",
+      "jee-pyq"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "coordinate-geometry",
+        "jee",
+        "pyq",
+        "olympiad",
+        "2b"
+      ],
+      "title": "Coordinate Geometry Core 2 Clinic & Practice Tablet",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/mathematics/coordinate-geometry/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "mathematics/coordinate-geometry/core2b.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-MAT-COORDINATE-GEOMETRY"
+      ],
+      "subject_ref": "Mathematics",
+      "topic_refs": [
+        "math.coordinate-geometry"
+      ]
+    },
+    "id": "math.coordinate-geometry.core2b-transfer",
+    "learner_role": "PRACTICE",
+    "platform_capabilities": [
+      "multi-tier-problems",
+      "solution-reveals",
+      "past-papers",
+      "jee-pyq"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "coordinate-geometry",
+        "jee",
+        "pyq",
+        "olympiad",
+        "2b"
+      ],
+      "title": "Coordinate Geometry Advanced Transfer Tablet",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/mathematics/coordinate-geometry/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "standalone/coordinate-geometry-interactive-suite.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-MAT-COORDINATE-GEOMETRY"
+      ],
+      "subject_ref": "Mathematics",
+      "topic_refs": [
+        "math.coordinate-geometry"
+      ]
+    },
+    "id": "math.coordinate-geometry.explorer.suite",
+    "learner_role": "EXPLORE",
+    "platform_capabilities": [
+      "interactive",
+      "simulation",
+      "visual-engine"
+    ],
+    "presentation": "COMPANION",
+    "resource_kind": "OPAQUE_APP",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "coordinate-geometry",
+        "simulation",
+        "visualizer",
+        "1b"
+      ],
+      "title": "Coordinate Geometry Interactive Suite",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/mathematics/coordinate-geometry/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "mathematics/euclids-geometry/atlas.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [],
+      "subject_ref": "Mathematics",
+      "topic_refs": [
+        "math.euclids-geometry"
+      ]
+    },
+    "id": "math.euclids-geometry.atlas",
+    "learner_role": "LEARN",
+    "platform_capabilities": [
+      "pedagogical-rungs",
+      "topic-atlas"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "euclids-geometry",
+        "atlas",
+        "rungs"
+      ],
+      "title": "Euclid's Geometry Topic Atlas & Pedagogical Rungs",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "mathematics/euclids-geometry/atlas.html",
+      "generator_ref": null
     },
     "validation": {
       "academic_evidence_ref": null,
@@ -542,25 +1170,64 @@
   },
   {
     "artifact": {
-      "entrypoint": "mathematics/polynomials/core1a.html",
-      "generated": true
+      "entrypoint": "mathematics/linear-equations/atlas.html",
+      "generated": false
     },
     "audience": "LEARNER",
     "classification": {
-      "capability_refs": [
-        "MIC-MATH-POLYNOMIALS"
+      "capability_refs": [],
+      "subject_ref": "Mathematics",
+      "topic_refs": [
+        "math.linear-equations"
+      ]
+    },
+    "id": "math.linear-equations.atlas",
+    "learner_role": "LEARN",
+    "platform_capabilities": [
+      "pedagogical-rungs",
+      "topic-atlas"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "linear-equations",
+        "atlas",
+        "rungs"
       ],
+      "title": "Linear Equations Topic Atlas",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "mathematics/linear-equations/atlas.html",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "mathematics/polynomials/atlas.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [],
       "subject_ref": "Mathematics",
       "topic_refs": [
         "math.polynomials"
       ]
     },
-    "id": "math.polynomials.core1a",
+    "id": "math.polynomials.atlas",
     "learner_role": "LEARN",
     "platform_capabilities": [
-      "staged-representation",
-      "worked-anchor",
-      "related-practice"
+      "pedagogical-rungs",
+      "topic-atlas"
     ],
     "presentation": "FULL_PAGE",
     "resource_kind": "STRUCTURED_PRODUCT",
@@ -568,16 +1235,244 @@
     "search": {
       "aliases": [
         "polynomials",
-        "remainder theorem",
-        "factor theorem",
-        "polynomials core1a"
+        "atlas",
+        "rungs"
       ],
-      "title": "Polynomials: Degree, Remainder & Factor Theorems \u2014 Learn",
+      "title": "Polynomials \u00b7 Pedagogical Rung Ladder",
       "visibility": "LEARNER"
     },
     "source": {
-      "authority_ref": "mathematics/polynomials/core1a.html",
-      "generator_ref": "Shared/tools/build_learner_ui.py"
+      "authority_ref": "public/mathematics/polynomials/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "mathematics/assets/ch2-polynomials-m1-m2-complete-bank.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-MAT-POLYNOMIALS"
+      ],
+      "subject_ref": "Mathematics",
+      "topic_refs": [
+        "math.polynomials"
+      ]
+    },
+    "id": "math.polynomials.ch2-bank",
+    "learner_role": "PRACTICE",
+    "platform_capabilities": [
+      "multi-tier-problems",
+      "solution-reveals",
+      "ncert-helper"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "polynomials",
+        "ncert",
+        "core2",
+        "practice",
+        "2a"
+      ],
+      "title": "Chapter 2: Polynomials Complete Question Bank",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/mathematics/polynomials/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "mathematics/polynomials/core1a.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-MAT-POLYNOMIALS"
+      ],
+      "subject_ref": "Mathematics",
+      "topic_refs": [
+        "math.polynomials"
+      ]
+    },
+    "id": "math.polynomials.construction.core1a",
+    "learner_role": "LEARN",
+    "platform_capabilities": [
+      "staged-representation",
+      "worked-anchor",
+      "concept-derivation"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "polynomials",
+        "derivation",
+        "construction",
+        "1a"
+      ],
+      "title": "Polynomials Foundation & Factor Theorem",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/mathematics/polynomials/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "mathematics/polynomials/core2.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-MAT-POLYNOMIALS"
+      ],
+      "subject_ref": "Mathematics",
+      "topic_refs": [
+        "math.polynomials"
+      ]
+    },
+    "id": "math.polynomials.core2-browser",
+    "learner_role": "PRACTICE",
+    "platform_capabilities": [
+      "multi-tier-problems",
+      "solution-reveals",
+      "past-papers",
+      "jee-pyq"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "polynomials",
+        "jee",
+        "pyq",
+        "olympiad",
+        "2b"
+      ],
+      "title": "Polynomials Complete 172-Question Core 2 Browser",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/mathematics/polynomials/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "standalone/mathematics-polynomials-and-coordinates-suite.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-MAT-POLYNOMIALS"
+      ],
+      "subject_ref": "Mathematics",
+      "topic_refs": [
+        "math.polynomials"
+      ]
+    },
+    "id": "math.polynomials.explorer.suite",
+    "learner_role": "EXPLORE",
+    "platform_capabilities": [
+      "interactive",
+      "simulation",
+      "visual-engine"
+    ],
+    "presentation": "COMPANION",
+    "resource_kind": "OPAQUE_APP",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "polynomials",
+        "simulation",
+        "visualizer",
+        "1b"
+      ],
+      "title": "Polynomials & Coordinate Geometry Research Suite",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/mathematics/polynomials/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "mathematics/theory-of-equations/atlas.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [],
+      "subject_ref": "Mathematics",
+      "topic_refs": [
+        "math.theory-of-equations"
+      ]
+    },
+    "id": "math.theory-of-equations.atlas",
+    "learner_role": "LEARN",
+    "platform_capabilities": [
+      "pedagogical-rungs",
+      "topic-atlas"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "theory-of-equations",
+        "atlas",
+        "rungs"
+      ],
+      "title": "Theory of Equations Topic Atlas & Pedagogical Rungs",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "mathematics/theory-of-equations/atlas.html",
+      "generator_ref": null
     },
     "validation": {
       "academic_evidence_ref": null,
@@ -624,6 +1519,48 @@
     "source": {
       "authority_ref": "mathematics/theory-of-equations/core1a.html",
       "generator_ref": "Shared/tools/build_learner_ui.py"
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "mathematics/vectors/atlas.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [],
+      "subject_ref": "Mathematics",
+      "topic_refs": [
+        "math.vectors"
+      ]
+    },
+    "id": "math.vectors.atlas",
+    "learner_role": "LEARN",
+    "platform_capabilities": [
+      "pedagogical-rungs",
+      "topic-atlas"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "vectors",
+        "atlas",
+        "rungs"
+      ],
+      "title": "Vector Algebra Topic Atlas & Pedagogical Rungs",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "mathematics/vectors/atlas.html",
+      "generator_ref": null
     },
     "validation": {
       "academic_evidence_ref": null,
@@ -842,8 +1779,92 @@
   },
   {
     "artifact": {
+      "entrypoint": "physics/fluids/atlas.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.fluids"
+      ]
+    },
+    "id": "phy.fluids.atlas",
+    "learner_role": "LEARN",
+    "platform_capabilities": [
+      "pedagogical-rungs",
+      "topic-atlas"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "fluids",
+        "atlas",
+        "rungs"
+      ],
+      "title": "Thrust & Hydrostatic Pressure Topic Atlas & Pedagogical Rungs",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "physics/fluids/atlas.html",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "physics/motion-1d/atlas.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-1d"
+      ]
+    },
+    "id": "phy.motion-1d.atlas",
+    "learner_role": "LEARN",
+    "platform_capabilities": [
+      "pedagogical-rungs",
+      "topic-atlas"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-1d",
+        "atlas",
+        "rungs"
+      ],
+      "title": "Motion in 1D \u00b7 5-Rung Pedagogical Ladder",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/physics/motion-1d/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
       "entrypoint": "physics/motion-1d/core1a.html",
-      "generated": true
+      "generated": false
     },
     "audience": "LEARNER",
     "classification": {
@@ -855,29 +1876,121 @@
         "phy.motion-1d"
       ]
     },
-    "id": "phy.motion-1d.core1a",
+    "id": "phy.motion-1d.construction-straight-line",
     "learner_role": "LEARN",
     "platform_capabilities": [
       "staged-representation",
       "worked-anchor",
-      "related-practice"
+      "concept-derivation"
     ],
     "presentation": "FULL_PAGE",
     "resource_kind": "STRUCTURED_PRODUCT",
     "schema": "grade9v3-resource/v1",
     "search": {
       "aliases": [
-        "motion 1d",
-        "straight line",
-        "kinematics",
-        "1d core1a"
+        "motion-1d",
+        "derivation",
+        "construction",
+        "1a"
       ],
       "title": "Motion in a Straight Line \u00b7 Core 1A Learn",
       "visibility": "LEARNER"
     },
     "source": {
-      "authority_ref": "physics/motion-1d/core1a.html",
-      "generator_ref": "Shared/tools/build_learner_ui.py"
+      "authority_ref": "public/physics/motion-1d/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "standalone/practice/core1a-motion-1d-straight-line-tablet.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-PHY-KIN-1D-MOTION"
+      ],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-1d"
+      ]
+    },
+    "id": "phy.motion-1d.construction-tablet",
+    "learner_role": "LEARN",
+    "platform_capabilities": [
+      "staged-representation",
+      "worked-anchor",
+      "concept-derivation"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-1d",
+        "derivation",
+        "construction",
+        "1a"
+      ],
+      "title": "Motion in 1D Straight Line | 12.7\" Tablet Standalone Edition",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/physics/motion-1d/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "physics/motion-1d/explorers/circular-dynamics/index.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-PHY-KIN-1D-MOTION"
+      ],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-1d"
+      ]
+    },
+    "id": "phy.motion-1d.explorer-circular",
+    "learner_role": "EXPLORE",
+    "platform_capabilities": [
+      "interactive",
+      "simulation",
+      "visual-engine"
+    ],
+    "presentation": "COMPANION",
+    "resource_kind": "OPAQUE_APP",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-1d",
+        "simulation",
+        "visualizer",
+        "1b"
+      ],
+      "title": "Circular Dynamics & Turnaround Kinematics",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/physics/motion-1d/topic.manifest.json",
+      "generator_ref": null
     },
     "validation": {
       "academic_evidence_ref": null,
@@ -901,7 +2014,7 @@
         "phy.motion-1d"
       ]
     },
-    "id": "phy.motion-1d.motion-in-1d.explorer",
+    "id": "phy.motion-1d.explorer-suite",
     "learner_role": "EXPLORE",
     "platform_capabilities": [
       "interactive",
@@ -913,15 +2026,475 @@
     "schema": "grade9v3-resource/v1",
     "search": {
       "aliases": [
-        "motion 1d",
-        "kinematics 1d",
-        "free fall"
+        "motion-1d",
+        "simulation",
+        "visualizer",
+        "1b"
       ],
       "title": "Motion in 1D Interactive Suite",
       "visibility": "LEARNER"
     },
     "source": {
-      "authority_ref": null,
+      "authority_ref": "public/physics/motion-1d/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "standalone/practice/motion-in-1d-master-suite.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-PHY-KIN-1D-MOTION"
+      ],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-1d"
+      ]
+    },
+    "id": "phy.motion-1d.master-suite",
+    "learner_role": "PRACTICE",
+    "platform_capabilities": [
+      "multi-tier-problems",
+      "solution-reveals",
+      "past-papers",
+      "jee-pyq"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-1d",
+        "jee",
+        "pyq",
+        "olympiad",
+        "2b"
+      ],
+      "title": "Motion in 1D Master Suite",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/physics/motion-1d/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "standalone/practice/core2-motion-1d-straight-line-tablet.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-PHY-KIN-1D-MOTION"
+      ],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-1d"
+      ]
+    },
+    "id": "phy.motion-1d.ncert-tablet",
+    "learner_role": "PRACTICE",
+    "platform_capabilities": [
+      "multi-tier-problems",
+      "solution-reveals",
+      "ncert-helper"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-1d",
+        "ncert",
+        "core2",
+        "practice",
+        "2a"
+      ],
+      "title": "Motion in 1D Core 2 Practice Tablet",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/physics/motion-1d/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "physics/motion-2d/atlas.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-2d"
+      ]
+    },
+    "id": "phy.motion-2d.atlas",
+    "learner_role": "LEARN",
+    "platform_capabilities": [
+      "pedagogical-rungs",
+      "topic-atlas"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-2d",
+        "atlas",
+        "rungs"
+      ],
+      "title": "Motion in 2D \u00b7 5-Rung Pedagogical Ladder",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/physics/motion-2d/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "standalone/practice/core1a-sba-motion-in-a-plane-master-tablet.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-2d"
+      ]
+    },
+    "id": "phy.motion-2d.construction-plane-master",
+    "learner_role": "LEARN",
+    "platform_capabilities": [
+      "staged-representation",
+      "worked-anchor",
+      "concept-derivation"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-2d",
+        "derivation",
+        "construction",
+        "1a"
+      ],
+      "title": "Motion in a Plane Master Construction Tablet",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/physics/motion-2d/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "standalone/practice/core1a-sba-06-07-trajectory-and-height-tablet.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-2d"
+      ]
+    },
+    "id": "phy.motion-2d.construction-sba",
+    "learner_role": "LEARN",
+    "platform_capabilities": [
+      "staged-representation",
+      "worked-anchor",
+      "concept-derivation"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-2d",
+        "derivation",
+        "construction",
+        "1a"
+      ],
+      "title": "Trajectory & Maximum Height Analysis",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/physics/motion-2d/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "physics/motion-2d/core1a.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-2d"
+      ]
+    },
+    "id": "phy.motion-2d.construction-trajectory",
+    "learner_role": "LEARN",
+    "platform_capabilities": [
+      "staged-representation",
+      "worked-anchor",
+      "concept-derivation"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-2d",
+        "derivation",
+        "construction",
+        "1a"
+      ],
+      "title": "Cartesian Trajectory Derivation & Parabolic Path",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/physics/motion-2d/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "physics/motion-2d/explorers/event-clock/index.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-2d"
+      ]
+    },
+    "id": "phy.motion-2d.event-clock.explorer",
+    "learner_role": "EXPLORE",
+    "platform_capabilities": [
+      "interactive",
+      "simulation",
+      "visual-engine"
+    ],
+    "presentation": "COMPANION",
+    "resource_kind": "OPAQUE_APP",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-2d",
+        "event-clock",
+        "simulation",
+        "visualizer"
+      ],
+      "title": "The Event Clock",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "physics/motion-2d/explorers/event-clock/index.html",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "physics/motion-2d/explorers/apex-fallacy/index.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-2d"
+      ]
+    },
+    "id": "phy.motion-2d.explorer-apex",
+    "learner_role": "EXPLORE",
+    "platform_capabilities": [
+      "interactive",
+      "simulation",
+      "visual-engine"
+    ],
+    "presentation": "COMPANION",
+    "resource_kind": "OPAQUE_APP",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-2d",
+        "simulation",
+        "visualizer",
+        "1b"
+      ],
+      "title": "The Apex Fallacy Visual Proof",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/physics/motion-2d/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "physics/motion-2d/explorers/equal-height-state/index.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-2d"
+      ]
+    },
+    "id": "phy.motion-2d.explorer-equal-height",
+    "learner_role": "EXPLORE",
+    "platform_capabilities": [
+      "interactive",
+      "simulation",
+      "visual-engine"
+    ],
+    "presentation": "COMPANION",
+    "resource_kind": "OPAQUE_APP",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-2d",
+        "simulation",
+        "visualizer",
+        "1b"
+      ],
+      "title": "Equal Height Symmetries Simulation",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/physics/motion-2d/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "physics/motion-2d/explorers/landing-geometry/index.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-2d"
+      ]
+    },
+    "id": "phy.motion-2d.explorer-landing",
+    "learner_role": "EXPLORE",
+    "platform_capabilities": [
+      "interactive",
+      "simulation",
+      "visual-engine"
+    ],
+    "presentation": "COMPANION",
+    "resource_kind": "OPAQUE_APP",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-2d",
+        "simulation",
+        "visualizer",
+        "1b"
+      ],
+      "title": "Landing Geometry Visualizer",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/physics/motion-2d/topic.manifest.json",
       "generator_ref": null
     },
     "validation": {
@@ -946,7 +2519,7 @@
         "phy.motion-2d"
       ]
     },
-    "id": "phy.motion-2d.motion-in-a-plane.explorer",
+    "id": "phy.motion-2d.explorer-plane",
     "learner_role": "EXPLORE",
     "platform_capabilities": [
       "interactive",
@@ -958,15 +2531,342 @@
     "schema": "grade9v3-resource/v1",
     "search": {
       "aliases": [
-        "projectile motion",
-        "motion in a plane",
-        "trajectories"
+        "motion-2d",
+        "simulation",
+        "visualizer",
+        "1b"
       ],
       "title": "Motion in a Plane Research Suite",
       "visibility": "LEARNER"
     },
     "source": {
-      "authority_ref": null,
+      "authority_ref": "public/physics/motion-2d/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "standalone/practice/motion-in-2d-master-suite.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-2d"
+      ]
+    },
+    "id": "phy.motion-2d.master-suite",
+    "learner_role": "PRACTICE",
+    "platform_capabilities": [
+      "multi-tier-problems",
+      "solution-reveals",
+      "past-papers",
+      "jee-pyq"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-2d",
+        "jee",
+        "pyq",
+        "olympiad",
+        "2b"
+      ],
+      "title": "Motion in 2D Master Challenge Suite",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/physics/motion-2d/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "standalone/practice/core1a-physics-motion-2d-ncert-tablet.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-2d"
+      ]
+    },
+    "id": "phy.motion-2d.ncert-tablet",
+    "learner_role": "PRACTICE",
+    "platform_capabilities": [
+      "multi-tier-problems",
+      "solution-reveals",
+      "ncert-helper"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-2d",
+        "ncert",
+        "core2",
+        "practice",
+        "2a"
+      ],
+      "title": "Motion in 2D NCERT Revised Edition Tablet",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/physics/motion-2d/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "standalone/practice/core2-motion-in-a-plane-tablet.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-2d"
+      ]
+    },
+    "id": "phy.motion-2d.plane-tablet",
+    "learner_role": "PRACTICE",
+    "platform_capabilities": [
+      "multi-tier-problems",
+      "solution-reveals",
+      "ncert-helper"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-2d",
+        "ncert",
+        "core2",
+        "practice",
+        "2a"
+      ],
+      "title": "Motion in a Plane Practice Tablet",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "public/physics/motion-2d/topic.manifest.json",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "physics/motion-2d/explorers/projectile-model/index.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-2d"
+      ]
+    },
+    "id": "phy.motion-2d.projectile-model.explorer",
+    "learner_role": "EXPLORE",
+    "platform_capabilities": [
+      "interactive",
+      "simulation",
+      "visual-engine"
+    ],
+    "presentation": "COMPANION",
+    "resource_kind": "OPAQUE_APP",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-2d",
+        "projectile-model",
+        "simulation",
+        "visualizer"
+      ],
+      "title": "Is It Really a Projectile?",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "physics/motion-2d/explorers/projectile-model/index.html",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "physics/motion-2d/explorers/shared-clock/index.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-2d"
+      ]
+    },
+    "id": "phy.motion-2d.shared-clock.explorer",
+    "learner_role": "EXPLORE",
+    "platform_capabilities": [
+      "interactive",
+      "simulation",
+      "visual-engine"
+    ],
+    "presentation": "COMPANION",
+    "resource_kind": "OPAQUE_APP",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-2d",
+        "shared-clock",
+        "simulation",
+        "visualizer"
+      ],
+      "title": "Independent Components, One Shared Clock",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "physics/motion-2d/explorers/shared-clock/index.html",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "physics/motion-in-2d/explorers/independent_components_shared_clock/index.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-in-2d"
+      ]
+    },
+    "id": "phy.motion-in-2d.independent-components-shared-clock.explorer",
+    "learner_role": "EXPLORE",
+    "platform_capabilities": [
+      "interactive",
+      "simulation",
+      "visual-engine"
+    ],
+    "presentation": "COMPANION",
+    "resource_kind": "OPAQUE_APP",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-in-2d",
+        "independent-components-shared-clock",
+        "simulation",
+        "visualizer"
+      ],
+      "title": "Explorer #128",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "physics/motion-in-2d/explorers/independent_components_shared_clock/index.html",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "physics/motion-in-2d/explorers/is_it_really_a_projectile/index.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-in-2d"
+      ]
+    },
+    "id": "phy.motion-in-2d.is-it-really-a-projectile.explorer",
+    "learner_role": "EXPLORE",
+    "platform_capabilities": [
+      "interactive",
+      "simulation",
+      "visual-engine"
+    ],
+    "presentation": "COMPANION",
+    "resource_kind": "OPAQUE_APP",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-in-2d",
+        "is-it-really-a-projectile",
+        "simulation",
+        "visualizer"
+      ],
+      "title": "Explorer #130",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "physics/motion-in-2d/explorers/is_it_really_a_projectile/index.html",
       "generator_ref": null
     },
     "validation": {
@@ -1022,6 +2922,232 @@
     },
     "source": {
       "authority_ref": null,
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "physics/motion-in-2d/explorers/same_height_same_speed/index.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-in-2d"
+      ]
+    },
+    "id": "phy.motion-in-2d.same-height-same-speed.explorer",
+    "learner_role": "EXPLORE",
+    "platform_capabilities": [
+      "interactive",
+      "simulation",
+      "visual-engine"
+    ],
+    "presentation": "COMPANION",
+    "resource_kind": "OPAQUE_APP",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-in-2d",
+        "same-height-same-speed",
+        "simulation",
+        "visualizer"
+      ],
+      "title": "Explorer #132",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "physics/motion-in-2d/explorers/same_height_same_speed/index.html",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "physics/motion-in-2d/explorers/the_apex_fallacy/index.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-in-2d"
+      ]
+    },
+    "id": "phy.motion-in-2d.the-apex-fallacy.explorer",
+    "learner_role": "EXPLORE",
+    "platform_capabilities": [
+      "interactive",
+      "simulation",
+      "visual-engine"
+    ],
+    "presentation": "COMPANION",
+    "resource_kind": "OPAQUE_APP",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-in-2d",
+        "the-apex-fallacy",
+        "simulation",
+        "visualizer"
+      ],
+      "title": "Explorer #131",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "physics/motion-in-2d/explorers/the_apex_fallacy/index.html",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "physics/motion-in-2d/explorers/the_event_clock/index.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.motion-in-2d"
+      ]
+    },
+    "id": "phy.motion-in-2d.the-event-clock.explorer",
+    "learner_role": "EXPLORE",
+    "platform_capabilities": [
+      "interactive",
+      "simulation",
+      "visual-engine"
+    ],
+    "presentation": "COMPANION",
+    "resource_kind": "OPAQUE_APP",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "motion-in-2d",
+        "the-event-clock",
+        "simulation",
+        "visualizer"
+      ],
+      "title": "Explorer #129",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "physics/motion-in-2d/explorers/the_event_clock/index.html",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "physics/nlm/explorers/accelerated-frames/index.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [
+        "MIC-PHY-NLM-FIRST-LAW"
+      ],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.nlm"
+      ]
+    },
+    "id": "phy.nlm.accelerated-frames.explorer",
+    "learner_role": "EXPLORE",
+    "platform_capabilities": [
+      "interactive",
+      "simulation",
+      "visual-engine"
+    ],
+    "presentation": "COMPANION",
+    "resource_kind": "OPAQUE_APP",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "nlm",
+        "accelerated-frames",
+        "simulation",
+        "visualizer"
+      ],
+      "title": "Accelerated Frames, Elevators & Pseudo Force",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "physics/nlm/explorers/accelerated-frames/index.html",
+      "generator_ref": null
+    },
+    "validation": {
+      "academic_evidence_ref": null,
+      "browser_evidence_ref": null,
+      "publication_evidence_ref": null,
+      "structural_evidence_ref": null
+    }
+  },
+  {
+    "artifact": {
+      "entrypoint": "physics/nlm/atlas.html",
+      "generated": false
+    },
+    "audience": "LEARNER",
+    "classification": {
+      "capability_refs": [],
+      "subject_ref": "Physics",
+      "topic_refs": [
+        "phy.nlm"
+      ]
+    },
+    "id": "phy.nlm.atlas",
+    "learner_role": "LEARN",
+    "platform_capabilities": [
+      "pedagogical-rungs",
+      "topic-atlas"
+    ],
+    "presentation": "FULL_PAGE",
+    "resource_kind": "STRUCTURED_PRODUCT",
+    "schema": "grade9v3-resource/v1",
+    "search": {
+      "aliases": [
+        "nlm",
+        "atlas",
+        "rungs"
+      ],
+      "title": "NLM Topic Atlas",
+      "visibility": "LEARNER"
+    },
+    "source": {
+      "authority_ref": "physics/nlm/atlas.html",
       "generator_ref": null
     },
     "validation": {
@@ -1343,52 +3469,6 @@
   },
   {
     "artifact": {
-      "entrypoint": "standalone/practice/chemistry-chemical-bonding-master-suite.html",
-      "generated": true
-    },
-    "audience": "LEARNER",
-    "classification": {
-      "capability_refs": [
-        "MIC-CHEM-BONDING"
-      ],
-      "subject_ref": "Chemistry",
-      "topic_refs": [
-        "chem.bonding"
-      ]
-    },
-    "id": "product.chemistry-chemical-bonding-master-suite",
-    "learner_role": "PRACTICE",
-    "platform_capabilities": [],
-    "presentation": "FULL_PAGE",
-    "resource_kind": "STRUCTURED_PRODUCT",
-    "schema": "grade9v3-resource/v1",
-    "search": {
-      "aliases": [
-        "Lewis Dot Structures &middot; Formal Charge Accounting",
-        "3D VSEPR &middot; Repulsion Hierarchy &amp; Spatial Distortions",
-        "Vectorial Dipole Moments &middot; Reinforcing vs Opposing Dipoles",
-        "Hybridization &middot; Axial Bond Elongation in PCl\u2085",
-        "Molecular Orbital Theory (MOT) &middot; 2s-2p Mixing Crossover Rig",
-        "Hydrogen Bonding &middot; Intra vs Intermolecular Comparative Engine",
-        "3D Molecular Geometry &amp; Overlap Sandbox",
-        "IIT-JEE Diagnostic Question Hub &middot; Locally Audited Diagnostic Slice"
-      ],
-      "title": "IIT-JEE Chemistry",
-      "visibility": "LEARNER"
-    },
-    "source": {
-      "authority_ref": null,
-      "generator_ref": null
-    },
-    "validation": {
-      "academic_evidence_ref": null,
-      "browser_evidence_ref": null,
-      "publication_evidence_ref": null,
-      "structural_evidence_ref": null
-    }
-  },
-  {
-    "artifact": {
       "entrypoint": "standalone/practice/chemistry-mole-concept-master-suite.html",
       "generated": true
     },
@@ -1512,55 +3592,6 @@
         "\ud83c\udfaf High-Yield Diagnostic Problems"
       ],
       "title": "Behaviour of Gases Master Suite | 12.7\" Tablet Standalone Edition",
-      "visibility": "LEARNER"
-    },
-    "source": {
-      "authority_ref": null,
-      "generator_ref": null
-    },
-    "validation": {
-      "academic_evidence_ref": null,
-      "browser_evidence_ref": null,
-      "publication_evidence_ref": null,
-      "structural_evidence_ref": null
-    }
-  },
-  {
-    "artifact": {
-      "entrypoint": "standalone/practice/core1a-chemistry-chemical-bonding-tablet.html",
-      "generated": true
-    },
-    "audience": "LEARNER",
-    "classification": {
-      "capability_refs": [
-        "MIC-CHEM-BONDING"
-      ],
-      "subject_ref": "Chemistry",
-      "topic_refs": [
-        "chem.bonding"
-      ]
-    },
-    "id": "product.core1a-chemistry-chemical-bonding-tablet",
-    "learner_role": "LEARN",
-    "platform_capabilities": [],
-    "presentation": "FULL_PAGE",
-    "resource_kind": "STRUCTURED_PRODUCT",
-    "schema": "grade9v3-resource/v1",
-    "search": {
-      "aliases": [
-        "Lewis Octet Rule &amp; Formal Charge Calculation",
-        "VSEPR Theory &amp; Molecular Geometry",
-        "Hybridization &amp; Bent's Rule (PCl\u2085 Axial Elongation)",
-        "Dipole Moments &amp; Vectorial Symmetry",
-        "Molecular Orbital Theory (MOT) &amp; Magnetism",
-        "Hydrogen Bonding &amp; Anomalous Properties",
-        "\ud83c\udfaf ExamSIDE JEE Main Question Bank &amp; Step-by-Step Solutions",
-        "JEE Main 2026 (Online) 8th April Morning Shift",
-        "JEE Main 2025 (Online) 1st Feb Evening Shift",
-        "JEE Main 2024 (Online) 27th Jan Shift 1",
-        "JEE Main 2023 (Online) 11th April Shift 1"
-      ],
-      "title": "Chemical Bonding & Molecular Structure | 12.7\" Tablet Standalone Edition",
       "visibility": "LEARNER"
     },
     "source": {
@@ -1761,52 +3792,6 @@
   },
   {
     "artifact": {
-      "entrypoint": "standalone/practice/core1a-motion-1d-straight-line-tablet.html",
-      "generated": true
-    },
-    "audience": "LEARNER",
-    "classification": {
-      "capability_refs": [
-        "MIC-PHY-KIN-1D-MOTION"
-      ],
-      "subject_ref": "Physics",
-      "topic_refs": [
-        "phy.motion-1d"
-      ]
-    },
-    "id": "product.core1a-motion-1d-straight-line-tablet",
-    "learner_role": "LEARN",
-    "platform_capabilities": [],
-    "presentation": "FULL_PAGE",
-    "resource_kind": "STRUCTURED_PRODUCT",
-    "schema": "grade9v3-resource/v1",
-    "search": {
-      "aliases": [
-        "One-dimensional motion",
-        "Path travelled is not start-to-finish change",
-        "Zero velocity at an instant does not mean zero acceleration",
-        "Average speed and average velocity come from different totals",
-        "Derive the constant-acceleration equations from one velocity-time graph",
-        "Uniform circular motion keeps speed while velocity turns",
-        "Motion graphs turn coordinate change into rate",
-        "Circular dynamics: centripetal is a net-force role, not a new force"
-      ],
-      "title": "Construction",
-      "visibility": "LEARNER"
-    },
-    "source": {
-      "authority_ref": null,
-      "generator_ref": null
-    },
-    "validation": {
-      "academic_evidence_ref": null,
-      "browser_evidence_ref": null,
-      "publication_evidence_ref": null,
-      "structural_evidence_ref": null
-    }
-  },
-  {
-    "artifact": {
       "entrypoint": "standalone/practice/core1a-motion-in-a-plane-tablet.html",
       "generated": true
     },
@@ -1834,55 +3819,6 @@
         "Select the gravity-only projectile model before using projectile consequences"
       ],
       "title": "Construction",
-      "visibility": "LEARNER"
-    },
-    "source": {
-      "authority_ref": null,
-      "generator_ref": null
-    },
-    "validation": {
-      "academic_evidence_ref": null,
-      "browser_evidence_ref": null,
-      "publication_evidence_ref": null,
-      "structural_evidence_ref": null
-    }
-  },
-  {
-    "artifact": {
-      "entrypoint": "standalone/practice/core1a-physics-motion-2d-ncert-tablet.html",
-      "generated": true
-    },
-    "audience": "LEARNER",
-    "classification": {
-      "capability_refs": [
-        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
-      ],
-      "subject_ref": "Physics",
-      "topic_refs": [
-        "phy.motion-2d"
-      ]
-    },
-    "id": "product.core1a-physics-motion-2d-ncert-tablet",
-    "learner_role": "LEARN",
-    "platform_capabilities": [],
-    "presentation": "FULL_PAGE",
-    "resource_kind": "STRUCTURED_PRODUCT",
-    "schema": "grade9v3-resource/v1",
-    "search": {
-      "aliases": [
-        "\ud83e\udded Motion in 2D Foundations (Core 1)",
-        "01  Curved path: distance is not displacement",
-        "02  Constant speed can still mean acceleration",
-        "03  When are distance and displacement equal?",
-        "04  Release from circular motion: follow the tangent",
-        "05  Gravity can be the centripetal force",
-        "06  Horizontal launch and drop share the same vertical motion",
-        "07  If gravity vanished: Moon follows the tangent",
-        "08  Why Earth does not simply fall into the Sun",
-        "09  A tossed coin can reveal train acceleration",
-        "\ud83c\udfaf 2D Motion NCERT Revised Core Practice (9 Questions)"
-      ],
-      "title": "Motion in 2D NCERT Revised Edition",
       "visibility": "LEARNER"
     },
     "source": {
@@ -2050,100 +3986,6 @@
   },
   {
     "artifact": {
-      "entrypoint": "standalone/practice/core1a-sba-06-07-trajectory-and-height-tablet.html",
-      "generated": true
-    },
-    "audience": "LEARNER",
-    "classification": {
-      "capability_refs": [
-        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
-      ],
-      "subject_ref": "Physics",
-      "topic_refs": [
-        "phy.motion-2d"
-      ]
-    },
-    "id": "product.core1a-sba-06-07-trajectory-and-height-tablet",
-    "learner_role": "LEARN",
-    "platform_capabilities": [],
-    "presentation": "FULL_PAGE",
-    "resource_kind": "STRUCTURED_PRODUCT",
-    "schema": "grade9v3-resource/v1",
-    "search": {
-      "aliases": [
-        "Describe the Path Without Time",
-        "State Description vs Path Description",
-        "Derivation of the Trajectory Equation",
-        "Slope + Curvature &amp; Vector Notation",
-        "Wall Events &amp; The Factored Range Form",
-        "Q38 &amp; Q47 Question Families",
-        "Horizontal Launch and Launch from Height",
-        "Horizontal Launch Model &amp; The Vertical Clock",
-        "Impact State &amp; Displacement Vector",
-        "General Unequal-Height &amp; Signed Coordinates",
-        "Source Illustration 5 &amp; Tower Practice"
-      ],
-      "title": "CORE (1A) SBA-06 & SBA-07",
-      "visibility": "LEARNER"
-    },
-    "source": {
-      "authority_ref": null,
-      "generator_ref": null
-    },
-    "validation": {
-      "academic_evidence_ref": null,
-      "browser_evidence_ref": null,
-      "publication_evidence_ref": null,
-      "structural_evidence_ref": null
-    }
-  },
-  {
-    "artifact": {
-      "entrypoint": "standalone/practice/core1a-sba-motion-in-a-plane-master-tablet.html",
-      "generated": true
-    },
-    "audience": "LEARNER",
-    "classification": {
-      "capability_refs": [
-        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
-      ],
-      "subject_ref": "Physics",
-      "topic_refs": [
-        "phy.motion-2d"
-      ]
-    },
-    "id": "product.core1a-sba-motion-in-a-plane-master-tablet",
-    "learner_role": "LEARN",
-    "platform_capabilities": [],
-    "presentation": "FULL_PAGE",
-    "resource_kind": "STRUCTURED_PRODUCT",
-    "schema": "grade9v3-resource/v1",
-    "search": {
-      "aliases": [
-        "\ud83d\ude80 SBA-03: D1 \u2192 D2 Knowledge Bridge",
-        "\ud83c\udfaf SBA-04: Range Optimization &amp; Complementary Angles",
-        "\ud83e\udded SBA-05: Velocity Vector at Any Instant",
-        "\ud83d\udcc9 SBA-06: Describe Path Without Time (Trajectory Equation)",
-        "\ud83c\udfe2 SBA-07: Launch from Height &amp; Horizontal Projection",
-        "\u26f0\ufe0f SBA-21: Projectile Meets a Sloping Plane",
-        "\u23f1\ufe0f SBA-22: One Clock at a Special Event (Symmetry)"
-      ],
-      "title": "Motion in a Plane SBA Master Suite",
-      "visibility": "LEARNER"
-    },
-    "source": {
-      "authority_ref": null,
-      "generator_ref": null
-    },
-    "validation": {
-      "academic_evidence_ref": null,
-      "browser_evidence_ref": null,
-      "publication_evidence_ref": null,
-      "structural_evidence_ref": null
-    }
-  },
-  {
-    "artifact": {
       "entrypoint": "standalone/practice/core1a-vector-add-sub-tablet.html",
       "generated": true
     },
@@ -2244,52 +4086,6 @@
         "Behaviour of Gases: NCERT Question Helper &amp; Transfer"
       ],
       "title": "Behaviour of Gases Core (2) NCERT Question Helper | 12.7\" Tablet Standalone Edition",
-      "visibility": "LEARNER"
-    },
-    "source": {
-      "authority_ref": null,
-      "generator_ref": null
-    },
-    "validation": {
-      "academic_evidence_ref": null,
-      "browser_evidence_ref": null,
-      "publication_evidence_ref": null,
-      "structural_evidence_ref": null
-    }
-  },
-  {
-    "artifact": {
-      "entrypoint": "standalone/practice/core2-chemistry-chemical-bonding-tablet.html",
-      "generated": true
-    },
-    "audience": "LEARNER",
-    "classification": {
-      "capability_refs": [
-        "MIC-CHEM-BONDING"
-      ],
-      "subject_ref": "Chemistry",
-      "topic_refs": [
-        "chem.bonding"
-      ]
-    },
-    "id": "product.core2-chemistry-chemical-bonding-tablet",
-    "learner_role": "PRACTICE",
-    "platform_capabilities": [],
-    "presentation": "FULL_PAGE",
-    "resource_kind": "STRUCTURED_PRODUCT",
-    "schema": "grade9v3-resource/v1",
-    "search": {
-      "aliases": [
-        "\ud83d\udcda Chemical Bonding Core (2) NCERT Question Helper",
-        "\u26a1 PART 1: ELECTRONIC CONFIGURATION & VALENCE SHELL",
-        "\u26a1 PART 2: VALENCY, DUPLET & OCTET",
-        "\u26a1 PART 3: IONS & ELECTRON TRANSFER",
-        "\u26a1 PART 4: IONIC COMPOUNDS & FORMULA UNITS",
-        "\u26a1 PART 5: MOLECULAR COMPOUNDS & ATOMICITY",
-        "\u26a1 PART 6: FORMULA WRITING & NOTATION",
-        "\u26a1 PART 7: BONDING EVIDENCE & INTEGRATED REASONING"
-      ],
-      "title": "Chemical Bonding Core (2) NCERT Question Helper | 12.7\" Tablet Standalone Edition",
       "visibility": "LEARNER"
     },
     "source": {
@@ -2473,57 +4269,6 @@
   },
   {
     "artifact": {
-      "entrypoint": "standalone/practice/core2-motion-1d-straight-line-tablet.html",
-      "generated": true
-    },
-    "audience": "LEARNER",
-    "classification": {
-      "capability_refs": [
-        "MIC-PHY-KIN-1D-MOTION"
-      ],
-      "subject_ref": "Physics",
-      "topic_refs": [
-        "phy.motion-1d"
-      ]
-    },
-    "id": "product.core2-motion-1d-straight-line-tablet",
-    "learner_role": "PRACTICE",
-    "platform_capabilities": [],
-    "presentation": "FULL_PAGE",
-    "resource_kind": "STRUCTURED_PRODUCT",
-    "schema": "grade9v3-resource/v1",
-    "search": {
-      "aliases": [
-        "\ud83c\udfce\ufe0f Motion in 1D Foundations (Core 1)",
-        "MOTION 1D 01 - Distance and displacement",
-        "MOTION 1D 02 - Average speed and average velocity",
-        "MOTION 1D 03 - Equal-time and equal-distance weighting",
-        "MOTION 1D 04 - Velocity sign, acceleration sign and reversal",
-        "MOTION 1D 05 - Build the state before choosing an equation",
-        "MOTION 1D 06 - Rebuild the constant-acceleration equations",
-        "MOTION 1D 07 - Multiphase motion and delayed starts",
-        "MOTION 1D 08 - Vertical motion and free fall",
-        "MOTION 1D 09 - Position-time graphs",
-        "MOTION 1D 10 - Velocity-time and acceleration-time graphs",
-        "MOTION 1D 11 - Interval motion and graph consistency",
-        "Core 2 Kinematics Practice Challenges"
-      ],
-      "title": "Motion in 1D Core (2) Challenge Suite | 12.7\" Tablet Standalone Edition",
-      "visibility": "LEARNER"
-    },
-    "source": {
-      "authority_ref": null,
-      "generator_ref": null
-    },
-    "validation": {
-      "academic_evidence_ref": null,
-      "browser_evidence_ref": null,
-      "publication_evidence_ref": null,
-      "structural_evidence_ref": null
-    }
-  },
-  {
-    "artifact": {
       "entrypoint": "standalone/practice/core2-motion-consolidated-practice-tablet.html",
       "generated": true
     },
@@ -2548,100 +4293,6 @@
         "\ud83c\udfaf 1D &amp; 2D Motion Consolidated Practice Bank"
       ],
       "title": "Motion Consolidated Student Practice Edition | 12.7\" Tablet Standalone Edition",
-      "visibility": "LEARNER"
-    },
-    "source": {
-      "authority_ref": null,
-      "generator_ref": null
-    },
-    "validation": {
-      "academic_evidence_ref": null,
-      "browser_evidence_ref": null,
-      "publication_evidence_ref": null,
-      "structural_evidence_ref": null
-    }
-  },
-  {
-    "artifact": {
-      "entrypoint": "standalone/practice/core2-motion-in-a-plane-tablet.html",
-      "generated": true
-    },
-    "audience": "LEARNER",
-    "classification": {
-      "capability_refs": [
-        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
-      ],
-      "subject_ref": "Physics",
-      "topic_refs": [
-        "phy.motion-2d"
-      ]
-    },
-    "id": "product.core2-motion-in-a-plane-tablet",
-    "learner_role": "PRACTICE",
-    "platform_capabilities": [],
-    "presentation": "FULL_PAGE",
-    "resource_kind": "STRUCTURED_PRODUCT",
-    "schema": "grade9v3-resource/v1",
-    "search": {
-      "aliases": [
-        "Velocity geometry",
-        "Time of flight from height",
-        "Horizontal launch",
-        "Horizontal launch to a target",
-        "Wall-clearance event timing",
-        "Same-height range",
-        "Equal flight time",
-        "Horizontal launch geometry",
-        "Launch from a tower",
-        "Velocity components",
-        "Velocity direction",
-        "Maximum range and components",
-        "Perpendicular velocity",
-        "Minimum and maximum projectile speed",
-        "Moving launch source",
-        "Complementary angles from heights",
-        "Velocity direction at two times",
-        "Angle-ratio comparison",
-        "Complementary-angle range",
-        "Momentum change over full flight",
-        "Time of flight",
-        "Catch a projectile",
-        "Range-height relation",
-        "Range scaling with angle",
-        "Intermediate event timing",
-        "Apex speed and range",
-        "Catch a falling object",
-        "Downward projection",
-        "Staircase projectile",
-        "Horizontal-launch scaling",
-        "Opposite horizontal launches",
-        "Moving catcher and dropped packet",
-        "Displacement in horizontal launch",
-        "Moving-target intercept",
-        "Projectile coordinate at a wall",
-        "Momentum change",
-        "Speed at a given height",
-        "Reverse-engineering components",
-        "Horizontal launch velocity ratio",
-        "Apex horizontal speed",
-        "Angular momentum of a projectile",
-        "Angular momentum at the apex",
-        "Trajectory equation",
-        "Projectile with horizontal acceleration",
-        "Minimum speed through a point",
-        "Elastic rebound and maximum time",
-        "Tower-clearance launch",
-        "Complementary-angle height ratio",
-        "Accelerating reference frame",
-        "Range on an inclined plane",
-        "Inclined-plane geometry",
-        "Normal impact on an incline",
-        "Elastic rebound from an incline",
-        "Change in velocity to the apex",
-        "Average velocity to the apex",
-        "Master Quick Answer Key (Q01 to Q59)"
-      ],
-      "title": "CORE (2) v2",
       "visibility": "LEARNER"
     },
     "source": {
@@ -2731,99 +4382,6 @@
         "${esc(record.stem)}"
       ],
       "title": "Projectile Motion",
-      "visibility": "LEARNER"
-    },
-    "source": {
-      "authority_ref": null,
-      "generator_ref": null
-    },
-    "validation": {
-      "academic_evidence_ref": null,
-      "browser_evidence_ref": null,
-      "publication_evidence_ref": null,
-      "structural_evidence_ref": null
-    }
-  },
-  {
-    "artifact": {
-      "entrypoint": "standalone/practice/motion-in-1d-master-suite.html",
-      "generated": true
-    },
-    "audience": "LEARNER",
-    "classification": {
-      "capability_refs": [
-        "MIC-PHY-KIN-1D-MOTION"
-      ],
-      "subject_ref": "Physics",
-      "topic_refs": [
-        "phy.motion-1d"
-      ]
-    },
-    "id": "product.motion-in-1d-master-suite",
-    "learner_role": "PRACTICE",
-    "platform_capabilities": [],
-    "presentation": "FULL_PAGE",
-    "resource_kind": "STRUCTURED_PRODUCT",
-    "schema": "grade9v3-resource/v1",
-    "search": {
-      "aliases": [
-        "Displacement vs Distance \u00b7 Odometer & Turning Point Engine",
-        "Moving Platform Inheritance \u00b7 Rising Balloon &amp; Stone Ejection",
-        "Graph Transformations \u00b7 v-x to a-x Spatial Calculus Rig",
-        "Stroboscopic Spacing \u00b7 Galileo's Odd-Number Invariant",
-        "Multi-Phase Braking \u00b7 Paratrooper &amp; Piecewise Boundary Matcher",
-        "1D Relative Pursuit \u00b7 Collinear Chases &amp; Crash Invariant",
-        "1D Kinematic Master Sandbox \u00b7 Arbitrary Particle Rig"
-      ],
-      "title": "IIT-JEE Motion in One Dimension",
-      "visibility": "LEARNER"
-    },
-    "source": {
-      "authority_ref": null,
-      "generator_ref": null
-    },
-    "validation": {
-      "academic_evidence_ref": null,
-      "browser_evidence_ref": null,
-      "publication_evidence_ref": null,
-      "structural_evidence_ref": null
-    }
-  },
-  {
-    "artifact": {
-      "entrypoint": "standalone/practice/motion-in-2d-master-suite.html",
-      "generated": true
-    },
-    "audience": "LEARNER",
-    "classification": {
-      "capability_refs": [
-        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
-      ],
-      "subject_ref": "Physics",
-      "topic_refs": [
-        "phy.motion-2d"
-      ]
-    },
-    "id": "product.motion-in-2d-master-suite",
-    "learner_role": "PRACTICE",
-    "platform_capabilities": [],
-    "presentation": "FULL_PAGE",
-    "resource_kind": "STRUCTURED_PRODUCT",
-    "schema": "grade9v3-resource/v1",
-    "search": {
-      "aliases": [
-        "2D MASTER TRAJECTORY CANVAS",
-        "Independent Components, One Shared Clock",
-        "The Event Clock: Events Own the Time",
-        "Is It Really a Projectile? Contact Constraints vs Free Flight",
-        "The Apex Fallacy: v_y = 0 &ne; a = 0",
-        "Complementary Trajectories: \u03b8 &amp; 90\u00b0 &minus; \u03b8 Dual Dance",
-        "Elevated Landings &amp; Cliffs: Asymmetric Trajectories",
-        "SUB-APPARATUS 7A &middot; RAIN-MAN APPARENT VELOCITY &amp; SHELTER RIG",
-        "SUB-APPARATUS 7B &middot; RIVER-BOAT MECHANICS &amp; DRIFT PARALLELOGRAM",
-        "IIT-JEE &amp; PDF Master Question Bank\n              104 Questions"
-      ],
-      "title": "Motions in 2D",
       "visibility": "LEARNER"
     },
     "source": {

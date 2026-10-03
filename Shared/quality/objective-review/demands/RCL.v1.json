@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "id": "RCL",
+  "name": "Recall / retrieval",
+  "objective": "Retrieve the right fact, definition, property, law or canonical result from a meaningful cue and distinguish it from nearby alternatives.",
+  "choose_when": "After removing arithmetic and surface wording, the main difficulty is retrieving or recognizing the correct stored item.",
+  "do_not_choose_when": "Do not use when the learner must mainly explain why, translate a representation, execute a procedure, choose a model, prove a result, or interpret evidence.",
+  "slots": {
+    "X": "the category, cue or wording that determines what must be retrieved",
+    "Y": "an organizing structure, contrast, hierarchy or demonstrated idea that can cue retrieval",
+    "Z": "a retrieval route that narrows to the relevant family without stating the requested item",
+    "W": "the requested fact, definition, property, law or result the learner must retrieve or recognize independently"
+  },
+  "hint_objectives": {
+    "REPRESENTATION": "Clarify what category or property the question is cueing, without naming the requested item.",
+    "KEY_CONCEPT": "Connect that cue to an organizing structure, contrast or pattern the learner already knows; do not rely on an isolated mnemonic alone.",
+    "CRUX": "Provide a retrieval route to the right family and leave the requested item itself to the learner."
+  },
+  "figure_policy": {"requirement": "OPTIONAL", "job": "Use a figure or table only when the retrieval target belongs to a meaningful structure, classification or spatial relation; decorative imagery is not evidence."},
+  "misconception_families": ["near-neighbour substitution", "memorized wording detached from meaning", "category cue misread"],
+  "solution_architecture": ["state the target category", "retrieve the item", "distinguish the closest plausible alternative", "state the result in the question's wording"],
+  "validation_strategy_refs": ["CONTRAST_CASE", "REVERSE_RETRIEVAL"],
+  "core1a_extraction_signals": ["canonical definition/property", "organizing structure or contrast", "confusable neighbours", "diagnostic retrieval cue"],
+  "adjacent_demands": ["CON", "REP"]
+}

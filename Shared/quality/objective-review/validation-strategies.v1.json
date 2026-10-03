@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "strategies": [
+    {"id":"CONTRAST_CASE","objective":"Compare with a nearby case where the answer or category changes so the governing distinction is visible.","fits":["RCL","CON"]},
+    {"id":"REVERSE_RETRIEVAL","objective":"Given the retrieved item, reconstruct the cue or category it belongs to; this checks meaningful retrieval rather than isolated recall.","fits":["RCL"]},
+    {"id":"BOUNDARY_CASE","objective":"Test the explanation at a condition boundary or changed condition to expose the concept's validity range.","fits":["CON","MOD"]},
+    {"id":"REVERSE_TRANSLATION","objective":"Translate the result back to the source representation and verify that the original meaning is recovered.","fits":["REP"]},
+    {"id":"CORRESPONDENCE_CHECK","objective":"Check each target element against the source landmark, symbol or invariant it is meant to preserve.","fits":["REP"]},
+    {"id":"SUBSTITUTION_BACK","objective":"Substitute or apply the result back into the original relation or condition rather than repeating the forward procedure.","fits":["PRC"]},
+    {"id":"UNITS_DIMENSIONS","objective":"Check units, dimensions, sign or type constraints independently of the main calculation.","fits":["PRC","MOD"]},
+    {"id":"LIMITING_CASE","objective":"Test a meaningful limit or extreme case whose expected behaviour is known independently.","fits":["MOD","CON"]},
+    {"id":"ALTERNATIVE_MODEL_CHECK","objective":"Compare the chosen model with the closest plausible alternative and show which stated condition discriminates them.","fits":["MOD"]},
+    {"id":"ASSUMPTION_CHECK","objective":"Revisit each modelling assumption against the stem and identify whether the result depends on it.","fits":["MOD"]},
+    {"id":"COUNTEREXAMPLE_BOUNDARY","objective":"Test whether relaxing or reversing an assumption produces a counterexample, clarifying the proof's scope.","fits":["PRF"]},
+    {"id":"REVERSE_CHAIN_CHECK","objective":"Read the proof or derivation backwards to verify that the closure establishes the target and no implication was reversed.","fits":["PRF"]},
+    {"id":"ALTERNATIVE_EXPLANATION","objective":"Name a plausible alternative explanation and identify what additional control or evidence would distinguish it.","fits":["EVD"]},
+    {"id":"DATA_CONSISTENCY","objective":"Check whether independent rows, repeated observations, trend directions or conserved totals agree with the claimed inference.","fits":["EVD"]},
+    {"id":"UNCERTAINTY_CHECK","objective":"Compare the conclusion with measurement resolution or uncertainty and avoid claiming precision the evidence cannot support.","fits":["EVD"]}
+  ]
+}
