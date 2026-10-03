@@ -77,5 +77,163 @@ class QuestionReviewMatrixTests(unittest.TestCase):
         self.assertEqual(committed, qrt.generated_payload(self.matrix, self.vocab))
 
 
+    def synthetic_question(self, *, transfer=False):
+        question = {
+            "id": "Q-TEST-REP-D3",
+            "primary_capability_ref": "CAP-A",
+            "secondary_capability_refs": ["CAP-B"],
+            "difficulty": {
+                "band": "D3",
+                "score": 6,
+                "components": {
+                    "concept_model_selection": 1,
+                    "representation_translation": 2,
+                    "reasoning_chain_length": 2,
+                    "algebra_computational_load": 1,
+                    "trap_exception_sensitivity": 0,
+                },
+                "basis": "Representation plus a multi-step bridge.",
+            },
+            "extensions": {
+                "grade9v3:cognitive_demand": {
+                    "primary": "REPRESENT",
+                    "secondary": ["SYNTHESIZE"],
+                    "basis": "The decisive act is preserving meaning while changing representation.",
+                },
+                "grade9v3:analysis": {
+                    "stable_crux_move": "Preserve the signed invariant while translating the diagram into an equation.",
+                    "common_wrong_route": "Copy the visible shape and lose the sign convention.",
+                },
+            },
+            "answer": {
+                "reasoning_route": [
+                    {"id": "MOVE-1", "kind": "DECIDE", "action": "Choose the sign convention.", "why_valid": "It fixes the invariant.", "inputs": [], "output": "signed axes"},
+                    {"id": "MOVE-2", "kind": "REPRESENT", "action": "Translate each directed segment into a signed term.", "why_valid": "The representation preserves direction.", "inputs": ["signed axes"], "output": "equation"},
+                    {"id": "MOVE-3", "kind": "VERIFY", "action": "Translate back to the diagram.", "why_valid": "Round-trip translation tests invariance.", "inputs": ["equation"], "output": "checked diagram"},
+                ],
+                "crux_move_ref": "MOVE-2",
+            },
+        }
+        if transfer:
+            question["transfer"] = {
+                "dimension": "representation_translation",
+                "statement": "Choose the invariant under a changed representation.",
+                "builds_on": ["Q-OLD"],
+                "protected_move_ref": "MOVE-1",
+            }
+        return question
+
+    def synthetic_profile(self, percentage=50):
+        return {
+            "profile_id": "PROFILE-TEST",
+            "provenance": "SYNTHETIC_TEST",
+            "held": {"CAP-A": "UNCERTAIN", "CAP-B": "DEMONSTRATED"},
+            "knowledge_percentage": percentage,
+            "measured_fit_claim": False,
+        }
+
+    def test_resolver_selects_one_cell_and_fills_learner_relative_slots(self):
+        result = qrt.resolve_review(self.synthetic_question(), self.synthetic_profile(), self.matrix, self.vocab)
+        self.assertEqual(result["template_id"], "QRT-REPRESENT-D3")
+        self.assertEqual(result["classification"]["demand"]["primary"], "REPRESENT")
+        self.assertEqual(result["classification"]["band"], "D3")
+        self.assertIn("CAP-A is UNCERTAIN", result["slots"]["X"]["text"])
+        self.assertEqual(result["slots"]["Y"]["text"], "CAP-B")
+        self.assertEqual(result["slots"]["Z"]["text"], "Translate each directed segment into a signed term.")
+        self.assertEqual(result["slots"]["W"]["text"], "Translate each directed segment into a signed term.")
+        self.assertIn(result["slots"]["X"]["text"], result["review"]["H1"]["question"])
+        self.assertIn(result["slots"]["Y"]["text"], result["review"]["H2"]["question"])
+
+    def test_percentage_never_routes_or_changes_slots(self):
+        low = qrt.resolve_review(self.synthetic_question(), self.synthetic_profile(30), self.matrix, self.vocab)
+        high = qrt.resolve_review(self.synthetic_question(), self.synthetic_profile(80), self.matrix, self.vocab)
+        self.assertEqual(low["template_id"], high["template_id"])
+        self.assertEqual(low["slots"], high["slots"])
+
+    def test_core2b_transfer_uses_protected_move_as_w(self):
+        result = qrt.resolve_review(self.synthetic_question(transfer=True), self.synthetic_profile(), self.matrix, self.vocab)
+        self.assertEqual(result["slots"]["W"]["text"], "Choose the sign convention.")
+        self.assertIn("transfer.protected_move_ref", result["slots"]["W"]["basis"])
+
+    def test_resolver_refuses_missing_demand_or_band_instead_of_inferring(self):
+        question = self.synthetic_question()
+        del question["extensions"]["grade9v3:cognitive_demand"]
+        with self.assertRaisesRegex(qrt.QRTContractError, "COGNITIVE_DEMAND_MISSING"):
+            qrt.resolve_review(question, self.synthetic_profile(), self.matrix, self.vocab)
+
+        question = self.synthetic_question()
+        del question["difficulty"]
+        with self.assertRaisesRegex(qrt.QRTContractError, "QUESTION_DIFFICULTY"):
+            qrt.resolve_review(question, self.synthetic_profile(), self.matrix, self.vocab)
+
+    def test_resolution_carries_digest_bound_basis(self):
+        one = qrt.resolve_review(self.synthetic_question(), self.synthetic_profile(), self.matrix, self.vocab)
+        changed = self.synthetic_question()
+        changed["extensions"]["grade9v3:analysis"]["stable_crux_move"] += " Changed."
+        two = qrt.resolve_review(changed, self.synthetic_profile(), self.matrix, self.vocab)
+        self.assertNotEqual(one["basis_digests"]["question"], two["basis_digests"]["question"])
+        self.assertEqual(one["basis_digests"]["matrix"], two["basis_digests"]["matrix"])
+
+
+    def test_product_review_projection_emits_only_actionable_findings(self):
+        resolution = qrt.resolve_review(self.synthetic_question(), self.synthetic_profile(), self.matrix, self.vocab)
+        projected = qrt.project_product_review_findings(
+            resolution,
+            {
+                "H1": {"verdict": "YES", "evidence": ["useful line"]},
+                "H2": {"verdict": "NO", "evidence": ["no bridge"], "fix": "Connect X to CAP-B.", "page": "core2.html#Q-TEST-REP-D3"},
+                "S1": {"verdict": "PARTLY", "evidence": ["figure omits sign"], "severity": "S1", "fix": "Add signed axes.", "page": "core2.html#Q-TEST-REP-D3"},
+            },
+        )
+        self.assertEqual(projected["profile_ref"], "PROFILE-TEST")
+        self.assertEqual([f["asks"] for f in projected["findings"]], ["H2", "S1"])
+        self.assertEqual(projected["findings"][0]["severity"], "S2")
+        self.assertEqual(projected["findings"][1]["severity"], "S1")
+        self.assertEqual(projected["findings"][1]["kind"], "figure")
+        self.assertIn("H2 NO", projected["findings"][0]["learner_impact"])
+        self.assertIn("Connect X to CAP-B.", projected["findings"][0]["suggested_fix"])
+
+    def test_product_review_projection_refuses_unknown_verdicts_and_severities(self):
+        resolution = qrt.resolve_review(self.synthetic_question(), self.synthetic_profile(), self.matrix, self.vocab)
+        with self.assertRaisesRegex(qrt.QRTContractError, "VERDICT_INVALID"):
+            qrt.project_product_review_findings(resolution, {"H1": {"verdict": "MAYBE"}})
+        with self.assertRaisesRegex(qrt.QRTContractError, "SEVERITY_INVALID"):
+            qrt.project_product_review_findings(resolution, {"H1": {"verdict": "NO", "severity": "S9"}})
+
+    def test_product_review_schema_declares_qrt_traceability_without_new_authority(self):
+        schema = json.loads((REPO / "Shared" / "quality" / "product-review.schema.json").read_text(encoding="utf-8"))
+        self.assertIn("profile_ref", schema["properties"])
+        self.assertNotIn("profile_ref", schema["required"])
+        asks = schema["properties"]["findings"]["items"]["properties"]["asks"]["enum"]
+        self.assertEqual(tuple(asks), qrt.ASKS)
+
+
+    def test_all_subject_adapters_cover_the_same_seven_demands_and_use_controlled_vocabularies(self):
+        for subject in ("Physics", "Chemistry", "Mathematics"):
+            with self.subTest(subject):
+                adapter = qrt.load(REPO / subject / "adapter" / "DemandReview.json")
+                self.assertEqual(tuple(adapter["demands"]), qrt.DEMANDS)
+                self.assertEqual(qrt.validate_subject_adapter(adapter), [])
+
+    def test_same_base_cell_receives_subject_specific_guidance_without_changing_identity(self):
+        resolution = qrt.resolve_review(self.synthetic_question(), self.synthetic_profile(), self.matrix, self.vocab)
+        specialized = []
+        for subject in ("Physics", "Chemistry", "Mathematics"):
+            adapter = qrt.load(REPO / subject / "adapter" / "DemandReview.json")
+            specialized.append(qrt.specialize_resolution(resolution, adapter))
+        self.assertEqual({row["template_id"] for row in specialized}, {"QRT-REPRESENT-D3"})
+        self.assertEqual({row["subject"] for row in specialized}, {"Physics", "Chemistry", "Mathematics"})
+        focuses = {row["subject_adapter"]["guidance"]["review_focus"] for row in specialized}
+        self.assertEqual(len(focuses), 3)
+
+    def test_adapter_cannot_smuggle_unknown_representation_or_check_type(self):
+        adapter = qrt.load(REPO / "Physics" / "adapter" / "DemandReview.json")
+        bad = copy.deepcopy(adapter)
+        bad["demands"]["REPRESENT"]["representation_kinds"].append("NOT_A_PHYSICS_REPRESENTATION")
+        self.assertTrue(any("representation_kinds" in p for p in qrt.validate_subject_adapter(bad)))
+        bad = copy.deepcopy(adapter)
+        bad["demands"]["REPRESENT"]["check_types"].append("NOT_A_PHYSICS_CHECK")
+        self.assertTrue(any("check_types" in p for p in qrt.validate_subject_adapter(bad)))
+
 if __name__ == "__main__":
     unittest.main()

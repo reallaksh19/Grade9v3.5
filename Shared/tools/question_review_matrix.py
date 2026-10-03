@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+import hashlib
 import json
 from pathlib import Path
 from typing import Any
@@ -12,12 +13,15 @@ REPO = Path(__file__).resolve().parents[2]
 VOCAB_PATH = REPO / "Shared" / "vocabularies" / "cognitive-demand.v1.json"
 MATRIX_PATH = REPO / "Shared" / "quality" / "question-demand-matrix.v1.json"
 GENERATED_PATH = REPO / "Shared" / "quality" / "question-demand-templates.v1.json"
+ADAPTER_SCHEMA_PATH = REPO / "Shared" / "quality" / "demand-review-adapter.schema.json"
 
 DEMANDS = ("RETRIEVE", "EXPLAIN", "APPLY", "MODEL", "REPRESENT", "SYNTHESIZE", "JUSTIFY")
 BANDS = ("D1", "D2", "D3", "D4")
 ASKS = ("H1", "H2", "H3", "S1", "S2", "S3", "P1", "P2", "P3", "M1", "M2", "M3")
 TARGETS = ("X", "Y", "Z", "W", "wrong_idea", "replacement_rule", "visual_job", "check_job")
 FORBIDDEN_SCORE_KEYS = {"score", "scores", "points", "weight", "weights", "threshold", "thresholds"}
+VERDICTS = ("YES", "PARTLY", "NO")
+SEVERITIES = ("S0", "S1", "S2", "S3")
 
 
 class QRTContractError(ValueError):
@@ -206,6 +210,302 @@ def check_paths() -> list[str]:
     return problems
 
 
+
+def canonical_digest(value: Any) -> str:
+    material = json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+    return "sha256:" + hashlib.sha256(material).hexdigest()
+
+
+def _question_band(question: dict[str, Any]) -> str:
+    direct = question.get("difficulty")
+    analysis = ((question.get("extensions") or {}).get("grade9v3:analysis") or {})
+    difficulty = direct if isinstance(direct, dict) else analysis.get("difficulty")
+    band = difficulty.get("band") if isinstance(difficulty, dict) else None
+    if band not in BANDS:
+        raise QRTContractError(f"QUESTION_DIFFICULTY_MISSING_OR_INVALID: {question.get('id', '<unknown>')}")
+    return band
+
+
+def _question_demand(question: dict[str, Any]) -> dict[str, Any]:
+    extension = ((question.get("extensions") or {}).get("grade9v3:cognitive_demand"))
+    if not isinstance(extension, dict):
+        raise QRTContractError(f"COGNITIVE_DEMAND_MISSING: {question.get('id', '<unknown>')}")
+    primary = extension.get("primary")
+    if primary not in DEMANDS:
+        raise QRTContractError(f"COGNITIVE_DEMAND_INVALID: {primary!r}")
+    secondary = extension.get("secondary") or []
+    if not isinstance(secondary, list) or any(item not in DEMANDS or item == primary for item in secondary):
+        raise QRTContractError("COGNITIVE_DEMAND_SECONDARY_INVALID")
+    basis = extension.get("basis")
+    if not isinstance(basis, str) or not basis.strip():
+        raise QRTContractError("COGNITIVE_DEMAND_BASIS_MISSING")
+    return {"primary": primary, "secondary": secondary, "basis": basis}
+
+
+def _analysis(question: dict[str, Any]) -> dict[str, Any]:
+    value = ((question.get("extensions") or {}).get("grade9v3:analysis") or {})
+    return value if isinstance(value, dict) else {}
+
+
+def _reasoning_move(question: dict[str, Any], ref: str | None) -> dict[str, Any] | None:
+    if not ref:
+        return None
+    route = ((question.get("answer") or {}).get("reasoning_route") or [])
+    for move in route:
+        if isinstance(move, dict) and move.get("id") == ref:
+            return move
+    return None
+
+
+def _candidate(text: str, *basis: str) -> dict[str, Any]:
+    return {"text": text, "basis": [item for item in basis if item]}
+
+
+def resolve_slots(question: dict[str, Any], profile: dict[str, Any], template: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    held = profile.get("held") or {}
+    if not isinstance(held, dict):
+        raise QRTContractError("PROFILE_HELD_INVALID")
+    capabilities = [
+        ref for ref in [question.get("primary_capability_ref"), *(question.get("secondary_capability_refs") or [])]
+        if isinstance(ref, str) and ref
+    ]
+    uncertain = next((ref for ref in capabilities if held.get(ref) in ("UNCERTAIN", "MISSING")), None)
+    demonstrated = next((ref for ref in capabilities if held.get(ref) == "DEMONSTRATED"), None)
+    if demonstrated is None:
+        demonstrated = next((ref for ref, state in held.items() if state == "DEMONSTRATED"), None)
+
+    analysis = _analysis(question)
+    stable_crux = analysis.get("stable_crux_move")
+    wrong_route = analysis.get("common_wrong_route")
+    answer = question.get("answer") or {}
+    crux_ref = answer.get("crux_move_ref")
+    crux_move = _reasoning_move(question, crux_ref)
+    protected_ref = ((question.get("transfer") or {}).get("protected_move_ref"))
+    protected_move = _reasoning_move(question, protected_ref)
+
+    x_text = stable_crux if isinstance(stable_crux, str) and stable_crux.strip() else template["slots"]["X"]
+    x_basis = ["extensions.grade9v3:analysis.stable_crux_move"] if x_text == stable_crux else ["template.slots.X"]
+    if uncertain:
+        x_text = f"{x_text} Learner uncertainty: {uncertain} is {held[uncertain]}."
+        x_basis.append(f"profile.held.{uncertain}")
+
+    if demonstrated:
+        y_text = demonstrated
+        y_basis = [f"profile.held.{demonstrated}"]
+    else:
+        y_text = "UNRESOLVED: no DEMONSTRATED bridge is available in the supplied profile"
+        y_basis = ["profile.held"]
+
+    if crux_move and isinstance(crux_move.get("action"), str):
+        z_text = crux_move["action"]
+        z_basis = [f"answer.reasoning_route[{crux_ref}].action", "answer.crux_move_ref"]
+    elif isinstance(stable_crux, str) and stable_crux.strip():
+        z_text = stable_crux
+        z_basis = ["extensions.grade9v3:analysis.stable_crux_move"]
+    else:
+        z_text = template["slots"]["Z"]
+        z_basis = ["template.slots.Z"]
+
+    if protected_move and isinstance(protected_move.get("action"), str):
+        w_text = protected_move["action"]
+        w_basis = [f"answer.reasoning_route[{protected_ref}].action", "transfer.protected_move_ref"]
+    elif crux_move and isinstance(crux_move.get("action"), str):
+        w_text = crux_move["action"]
+        w_basis = [f"answer.reasoning_route[{crux_ref}].action", "answer.crux_move_ref"]
+    elif isinstance(stable_crux, str) and stable_crux.strip():
+        w_text = stable_crux
+        w_basis = ["extensions.grade9v3:analysis.stable_crux_move"]
+    else:
+        w_text = template["slots"]["W"].split(". Band protection:", 1)[0]
+        w_basis = ["template.slots.W"]
+
+    wrong_text = wrong_route if isinstance(wrong_route, str) and wrong_route.strip() else template["slots"]["wrong_idea"]
+    wrong_basis = ["extensions.grade9v3:analysis.common_wrong_route"] if wrong_text == wrong_route else ["template.slots.wrong_idea"]
+
+    return {
+        "X": _candidate(x_text, *x_basis),
+        "Y": _candidate(y_text, *y_basis),
+        "Z": _candidate(z_text, *z_basis),
+        "W": _candidate(w_text, *w_basis),
+        "wrong_idea": _candidate(wrong_text, *wrong_basis),
+        "replacement_rule": _candidate(template["slots"]["replacement_rule"], "template.slots.replacement_rule"),
+        "visual_job": _candidate(template["slots"]["visual_job"], "template.slots.visual_job"),
+        "check_job": _candidate(template["slots"]["check_job"], "template.slots.check_job"),
+    }
+
+
+def resolve_review(question: dict[str, Any], profile: dict[str, Any], matrix: dict[str, Any], vocab: dict[str, Any]) -> dict[str, Any]:
+    demand = _question_demand(question)
+    band = _question_band(question)
+    template = next(row for row in compile_templates(matrix, vocab)
+                    if row["demand"] == demand["primary"] and row["band"] == band)
+    slots = resolve_slots(question, profile, template)
+    values = {key: row["text"] for key, row in slots.items()}
+    values["band_protected_work"] = template["band_policy"]["protected_work"]
+    review = {
+        ask: {
+            "verb": row["verb"],
+            "objective": _fill(row["objective"], values),
+            "question": _fill(row["question"], values),
+        }
+        for ask, row in matrix["review_asks"].items()
+    }
+    return {
+        "schema": "question-review-resolution/v1",
+        "template_id": template["template_id"],
+        "question_ref": question.get("id"),
+        "profile_ref": profile.get("profile_id"),
+        "classification": {
+            "demand": demand,
+            "band": band,
+        },
+        "basis_digests": {
+            "question": canonical_digest(question),
+            "profile": canonical_digest(profile),
+            "matrix": canonical_digest(matrix),
+            "vocabulary": canonical_digest(vocab),
+        },
+        "slots": slots,
+        "review": review,
+    }
+
+
+
+
+def validate_subject_adapter(adapter: dict[str, Any]) -> list[str]:
+    problems: list[str] = []
+    if adapter.get("schema") != "demand-review-adapter/v1":
+        problems.append("adapter schema must be demand-review-adapter/v1")
+    subject = adapter.get("subject")
+    if subject not in ("Physics", "Chemistry", "Mathematics"):
+        problems.append(f"adapter subject invalid: {subject!r}")
+    demands = adapter.get("demands") or {}
+    if tuple(demands) != DEMANDS:
+        problems.append(f"adapter demands must be exactly {list(DEMANDS)} in order")
+    vocab_ref = adapter.get("vocabulary_ref")
+    vocab_path = REPO / str(vocab_ref or "")
+    try:
+        subject_vocab = load(vocab_path)
+    except (OSError, json.JSONDecodeError, QRTContractError) as exc:
+        problems.append(f"adapter vocabulary_ref cannot be loaded: {exc}")
+        return problems
+    if subject_vocab.get("subject") != subject:
+        problems.append("adapter subject does not match its QualityVocabulary subject")
+    known_reps = set(subject_vocab.get("representation_kinds") or [])
+    known_checks = set(subject_vocab.get("check_types") or [])
+    for demand in DEMANDS:
+        row = demands.get(demand)
+        if not isinstance(row, dict):
+            continue
+        if not isinstance(row.get("review_focus"), str) or not row["review_focus"].strip():
+            problems.append(f"{demand}.review_focus: non-empty text required")
+        reps = row.get("representation_kinds")
+        checks = row.get("check_types")
+        if not isinstance(reps, list) or any(item not in known_reps for item in reps):
+            problems.append(f"{demand}.representation_kinds contains values outside {vocab_ref}")
+        if not isinstance(checks, list) or any(item not in known_checks for item in checks):
+            problems.append(f"{demand}.check_types contains values outside {vocab_ref}")
+        misconceptions = row.get("misconception_patterns")
+        if not isinstance(misconceptions, list) or not misconceptions:
+            problems.append(f"{demand}.misconception_patterns: at least one pattern required")
+        else:
+            for index, item in enumerate(misconceptions):
+                if not isinstance(item, dict) or any(not isinstance(item.get(k), str) or not item[k].strip()
+                                                     for k in ("wrong_idea", "diagnostic_prompt", "repair")):
+                    problems.append(f"{demand}.misconception_patterns[{index}]: wrong_idea/diagnostic_prompt/repair required")
+    return problems
+
+
+def specialize_resolution(resolution: dict[str, Any], adapter: dict[str, Any]) -> dict[str, Any]:
+    problems = validate_subject_adapter(adapter)
+    if problems:
+        raise QRTContractError("; ".join(problems))
+    demand = ((resolution.get("classification") or {}).get("demand") or {}).get("primary")
+    if demand not in DEMANDS:
+        raise QRTContractError("RESOLUTION_DEMAND_INVALID")
+    out = copy.deepcopy(resolution)
+    out["subject"] = adapter["subject"]
+    out["subject_adapter"] = {
+        "schema": adapter["schema"],
+        "version": adapter["version"],
+        "subject": adapter["subject"],
+        "demand": demand,
+        "guidance": copy.deepcopy(adapter["demands"][demand]),
+        "basis_refs": copy.deepcopy(adapter.get("basis_refs") or []),
+        "adapter_digest": canonical_digest(adapter),
+    }
+    return out
+
+def project_product_review_findings(
+    resolution: dict[str, Any],
+    judgements: dict[str, Any],
+) -> dict[str, Any]:
+    """Project actionable QRT judgements into product-review/v2 finding-shaped rows.
+
+    YES judgements are not defects and therefore emit no finding. NO defaults to S2 and PARTLY to S3,
+    matching the quality-by-objective proposal; callers may explicitly change severity when the
+    actual learner impact warrants it (for example a spoiler may be S1).
+    """
+    review = resolution.get("review") or {}
+    findings: list[dict[str, Any]] = []
+    for ask in ASKS:
+        judgement = judgements.get(ask)
+        if judgement is None:
+            continue
+        if not isinstance(judgement, dict):
+            raise QRTContractError(f"JUDGEMENT_INVALID: {ask}")
+        verdict = judgement.get("verdict")
+        if verdict not in VERDICTS:
+            raise QRTContractError(f"VERDICT_INVALID: {ask}={verdict!r}")
+        if verdict == "YES":
+            continue
+        row = review.get(ask)
+        if not isinstance(row, dict):
+            raise QRTContractError(f"RESOLUTION_REVIEW_MISSING: {ask}")
+        severity = judgement.get("severity") or ("S2" if verdict == "NO" else "S3")
+        if severity not in SEVERITIES:
+            raise QRTContractError(f"SEVERITY_INVALID: {ask}={severity!r}")
+        evidence = judgement.get("evidence")
+        if isinstance(evidence, list):
+            evidence_text = "; ".join(str(item) for item in evidence if str(item).strip())
+        else:
+            evidence_text = str(evidence or "").strip()
+        fix = str(judgement.get("fix") or "").strip()
+        page = str(judgement.get("page") or "").strip()
+        findings.append({
+            "id": f"QRT-{resolution.get('question_ref')}-{ask}",
+            "severity": severity,
+            "kind": "figure" if ask.startswith("S") else "content",
+            "record": str(resolution.get("question_ref") or ""),
+            "page": page,
+            "learner_impact": f"{ask} {verdict}: {row['objective']}",
+            "detail": f"{row['question']}" + (f" Evidence: {evidence_text}" if evidence_text else ""),
+            "suggested_fix": fix,
+            "asks": ask,
+        })
+    return {
+        "profile_ref": resolution.get("profile_ref"),
+        "question_ref": resolution.get("question_ref"),
+        "template_id": resolution.get("template_id"),
+        "basis_digests": copy.deepcopy(resolution.get("basis_digests") or {}),
+        "findings": findings,
+    }
+
+def _select_question(source: dict[str, Any], question_id: str | None) -> dict[str, Any]:
+    if isinstance(source.get("stem"), str) and source.get("id"):
+        if question_id and source.get("id") != question_id:
+            raise QRTContractError(f"QUESTION_NOT_FOUND: {question_id}")
+        return source
+    questions = source.get("questions")
+    if not isinstance(questions, list):
+        raise QRTContractError("SOURCE_HAS_NO_QUESTIONS")
+    if not question_id:
+        raise QRTContractError("QUESTION_ID_REQUIRED_FOR_COLLECTION")
+    matches = [row for row in questions if isinstance(row, dict) and row.get("id") == question_id]
+    if len(matches) != 1:
+        raise QRTContractError(f"QUESTION_NOT_FOUND_OR_DUPLICATE: {question_id}")
+    return matches[0]
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="cmd", required=True)
@@ -213,11 +513,25 @@ def main(argv: list[str] | None = None) -> int:
     write_p = sub.add_parser("write", help="regenerate the committed 28-cell projection")
     write_p.add_argument("--check", action="store_true", help="write nothing; fail when the projection is stale")
     sub.add_parser("check", help="validate the source contract and committed projection")
+    resolve_p = sub.add_parser("resolve", help="resolve one question + learner profile to a concrete QRT worksheet")
+    resolve_p.add_argument("--source", type=Path, required=True, help="JSON question or package/bank containing questions[]")
+    resolve_p.add_argument("--question", help="question id when --source contains questions[]")
+    resolve_p.add_argument("--profile", type=Path, required=True, help="learner-profile JSON")
+    resolve_p.add_argument("--adapter", type=Path, help="optional subject DemandReview.json specialization")
     args = parser.parse_args(argv)
 
     matrix, vocab = load(MATRIX_PATH), load(VOCAB_PATH)
     payload = generated_payload(matrix, vocab)
 
+    if args.cmd == "resolve":
+        source = load(args.source)
+        profile = load(args.profile)
+        question = _select_question(source, args.question)
+        resolution = resolve_review(question, profile, matrix, vocab)
+        if args.adapter:
+            resolution = specialize_resolution(resolution, load(args.adapter))
+        print(dumps(resolution), end="")
+        return 0
     if args.cmd == "compile":
         print(dumps(payload), end="")
         return 0
