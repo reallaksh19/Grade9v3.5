@@ -112,7 +112,7 @@
           </p>
 
           <div class="g9-formula-block">
-            $$\\text{Solid (3D)} \\xrightarrow{\\text{boundary} \\text{Surface (2D)} \\xrightarrow{\\text{boundary} \\text{Line (1D)} \\xrightarrow{\\text{boundary} \\text{Point (0D)}$$
+            $$\text{Solid (3D)} \xrightarrow{\text{boundary}} \text{Surface (2D)} \xrightarrow{\text{boundary}} \text{Line (1D)} \xrightarrow{\text{boundary}} \text{Point (0D)}$$
           </div>
 
           <ul class="g9-step-list">
@@ -246,7 +246,7 @@
               <strong>Postulate 3:</strong> A circle can be described with any centre and any radius.
             </li>
             <li class="g9-step-item">
-              <strong>Postulate 4:</strong> All right angles are equal to one another ($90^\\circ = 90^\\circ$).
+              <strong>Postulate 4:</strong> All right angles are equal to one another ($90^\circ = 90^\circ$).
             </li>
             <li class="g9-step-item g9-crux-step">
               <span class="g9-crux-badge">The Crucial Fifth Postulate</span><br>
@@ -301,7 +301,7 @@
           </p>
 
           <div class="g9-formula-block">
-            $$\\text{For every line } l \\text{ and point } P \\notin l, \\; \\exists! \\text{ unique line } m \\text{ through } P \\text{ such that } m \\parallel l$$
+            $$\text{For every line } l \text{ and point } P \notin l, \; \exists! \text{ unique line } m \text{ through } P \text{ such that } m \parallel l$$
           </div>
 
           <div class="g9-worked-card">
@@ -309,7 +309,7 @@
             <p><strong>Theorem:</strong> Two distinct intersecting straight lines cannot be both parallel to the same line.</p>
             <ol>
               <li>Let line $l_1$ and line $l_2$ intersect at point $P$.</li>
-              <li>Assume for contradiction that both $l_1 \\parallel m$ and $l_2 \\parallel m$.</li>
+              <li>Assume for contradiction that both $l_1 \parallel m$ and $l_2 \parallel m$.</li>
               <li>This would mean that through point $P$, there exist <em>two distinct lines</em> parallel to line $m$.</li>
               <li>This directly contradicts Playfair's axiom (which guarantees uniqueness).</li>
               <li>Therefore, our assumption is false: two intersecting lines cannot both be parallel to the same line. Q.E.D.</li>
@@ -357,8 +357,8 @@
             <p><strong>Problem:</strong> Prove that every line segment has one and only one midpoint.</p>
             <ol>
               <li>Let line segment $AB$ have two midpoints $C$ and $D$.</li>
-              <li>Since $C$ is a midpoint, $AC = \\frac{1}{2} AB$.</li>
-              <li>Since $D$ is a midpoint, $AD = \\frac{1}{2} AB$.</li>
+              <li>Since $C$ is a midpoint, $AC = \frac{1}{2} AB$.</li>
+              <li>Since $D$ is a midpoint, $AD = \frac{1}{2} AB$.</li>
               <li>By Euclid's Axiom 1 (things equal to the same thing are equal to each other): $AC = AD$.</li>
               <li>Since $C$ and $D$ lie on the ray from $A$ along line segment $AB$, $AC = AD$ implies point $C$ coincides with point $D$ (Axiom 4).</li>
               <li>Hence, the midpoint is unique. Q.E.D.</li>
@@ -375,7 +375,7 @@
               <li>$AB = AC$ (radii of circle $C_1$).</li>
               <li>$AB = BC$ (radii of circle $C_2$).</li>
               <li>By Axiom 1: $AC = BC = AB$.</li>
-              <li>Therefore, $\\triangle ABC$ is an equilateral triangle. Q.E.D.</li>
+              <li>Therefore, $\triangle ABC$ is an equilateral triangle. Q.E.D.</li>
             </ol>
           </div>
         </div>
@@ -393,9 +393,9 @@
         renderMathInElement(document.body, {
           delimiters: [
             {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
             {left: "$", right: "$", display: false},
-            {left: "\\\\(", right: "\\\\)", display: false},
-            {left: "\\\\[", right: "\\\\]", display: true}
+            {left: "\\(", right: "\\)", display: false}
           ],
           throwOnError: false
         });

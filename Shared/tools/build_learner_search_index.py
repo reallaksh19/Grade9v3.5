@@ -71,6 +71,7 @@ def build_search_documents(repo_root: Path) -> tuple[list[dict], dict]:
         role = rec.get("learner_role", "RESOURCE")
         subj = classification.get("subject_ref", "Common")
         caps = classification.get("capability_refs", [])
+        topic_refs = classification.get("topic_refs", [])
         ep = rec.get("artifact", {}).get("entrypoint", "")
 
         docs.append({
@@ -78,7 +79,7 @@ def build_search_documents(repo_root: Path) -> tuple[list[dict], dict]:
             "type": f"{role}_RESOURCE",
             "subject": subj,
             "title": title,
-            "search_text": f"{title} {' '.join(aliases)} {' '.join(caps)} {subj}".lower(),
+            "search_text": f"{title} {' '.join(aliases)} {' '.join(topic_refs)} {' '.join(caps)} {subj}".lower(),
             "url": ep,
             "target": "_blank" if role == "EXPLORE" else "_self",
             "concept_refs": caps
@@ -89,9 +90,10 @@ def build_search_documents(repo_root: Path) -> tuple[list[dict], dict]:
         cref = b["concept_ref"]
         title = b.get("title", cref)
         subj = b.get("subject_ref", "Physics")
-        slug = b.get("topic_ref", "").split(".")[-1]
+        tref = b.get("topic_ref", "")
+        slug = tref.split(".")[-1]
         subj_slug = subj.lower()
-        if b.get("topic_ref") == "chem.mole":
+        if tref == "chem.mole":
             target_url = f"{subj_slug}/some-basic-concepts/index.html#{cref}"
         elif len(b.get("learn", [])) == 0 and len(b.get("interactive", [])) > 0:
             target_url = b["interactive"][0]["entrypoint"]
@@ -102,7 +104,7 @@ def build_search_documents(repo_root: Path) -> tuple[list[dict], dict]:
             "type": "CONCEPT",
             "subject": subj,
             "title": title,
-            "search_text": f"{title} {cref} {subj}".lower(),
+            "search_text": f"{title} {cref} {tref} {subj}".lower(),
             "url": target_url,
             "target": "_self",
             "concept_refs": [cref]

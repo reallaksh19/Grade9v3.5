@@ -10,6 +10,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "molecular",
       "structure",
       "mic-chem-bonding",
+      "chem.bonding",
       "chemistry"
     ]
   },
@@ -25,6 +26,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "molecular",
       "speeds",
       "mic-chem-gas-laws",
+      "chem.gases",
       "chemistry"
     ]
   },
@@ -38,6 +40,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "&",
       "stoichiometry",
       "mic-chem-mole-concept",
+      "chem.mole",
       "chemistry"
     ]
   },
@@ -52,6 +55,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "oxidation",
       "states",
       "mic-chem-redox",
+      "chem.redox",
       "chemistry"
     ]
   },
@@ -63,6 +67,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "coordinate",
       "geometry",
       "mic-math-coordinate-geometry",
+      "math.coordinate-geometry",
       "mathematics"
     ]
   },
@@ -75,6 +80,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "euclid",
       "geometry",
       "mic-math-euclid-geometry",
+      "math.euclids-geometry",
       "mathematics"
     ]
   },
@@ -88,6 +94,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "remainder",
       "theorem",
       "mic-math-polynomials",
+      "math.polynomials",
       "mathematics"
     ]
   },
@@ -101,6 +108,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "equations",
       "mic-math-theory-of-equations",
+      "math.theory-of-equations",
       "mathematics"
     ]
   },
@@ -115,6 +123,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "3d",
       "engine",
       "mic-math-vector-algebra",
+      "math.vectors",
       "mathematics"
     ]
   },
@@ -128,6 +137,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "hydrostatic",
       "pressure",
       "mic-phy-fluids-thrust-pressure",
+      "phy.fluids",
       "physics"
     ]
   },
@@ -142,6 +152,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "straight",
       "line",
       "mic-phy-kin-1d-motion",
+      "phy.motion-1d",
       "physics"
     ]
   },
@@ -157,6 +168,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "&",
       "projectiles",
       "mic-phy-kin-2d-independent-components",
+      "phy.motion-2d",
       "physics"
     ]
   },
@@ -170,6 +182,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "&",
       "inertia",
       "mic-phy-nlm-first-law",
+      "phy.nlm",
       "physics"
     ]
   },
@@ -183,6 +196,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "kinetic",
       "friction",
       "mic-phy-nlm-friction",
+      "phy.nlm",
       "physics"
     ]
   },
@@ -197,6 +211,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "connected",
       "bodies",
       "mic-phy-nlm-friction-quant",
+      "phy.nlm",
       "physics"
     ]
   },
@@ -210,6 +225,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "&",
       "resolution",
       "mic-phy-vec-addition",
+      "phy.vectors",
       "physics"
     ]
   },
@@ -16660,6 +16676,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "lewis",
       "structures",
       "dipole",
+      "chem.bonding",
       "mic-chem-bonding",
       "chemistry"
     ]
@@ -16684,6 +16701,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "geometry",
       "bonding",
       "core1a",
+      "chem.bonding",
       "mic-chem-bonding",
       "chemistry"
     ]
@@ -16704,6 +16722,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "maxwell",
       "speed",
       "distribution",
+      "chem.gases",
       "mic-chem-gas-laws",
       "chemistry"
     ]
@@ -16723,6 +16742,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "stoichiometry",
       "limiting",
       "reagent",
+      "chem.mole",
       "mic-chem-mole-concept",
       "chemistry"
     ]
@@ -16740,6 +16760,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "states",
       "electron",
       "transfer",
+      "chem.redox",
       "mic-chem-redox",
       "chemistry"
     ]
@@ -16794,6 +16815,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "product",
       "3d",
       "vectors",
+      "math.vectors",
       "mic-math-vector-algebra",
       "mathematics"
     ]
@@ -16828,6 +16850,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "1d",
       "free",
       "fall",
+      "phy.motion-1d",
       "mic-phy-kin-1d-motion",
       "physics"
     ]
@@ -16850,6 +16873,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "a",
       "plane",
       "trajectories",
+      "phy.motion-2d",
       "mic-phy-kin-2d-independent-components",
       "physics"
     ]
@@ -16869,6 +16893,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "motion",
       "river",
       "boat",
+      "phy.motion-2d",
       "mic-phy-kin-2d-independent-components",
       "physics"
     ]
@@ -16887,6 +16912,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "machine",
       "pulleys",
       "constraints",
+      "phy.nlm",
       "mic-phy-nlm-first-law",
       "physics"
     ]
@@ -16904,6 +16930,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "tension",
       "contact",
       "forces",
+      "phy.nlm",
       "mic-phy-nlm-first-law",
       "physics"
     ]
@@ -16919,6 +16946,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "friction",
       "friction",
       "learn",
+      "phy.nlm",
       "mic-phy-nlm-friction",
       "mic-phy-nlm-friction-quant",
       "physics"
@@ -16935,6 +16963,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "friction",
       "friction",
       "practice",
+      "phy.nlm",
       "mic-phy-nlm-friction",
       "mic-phy-nlm-friction-quant",
       "physics"
@@ -16955,6 +16984,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "simulation",
       "friction",
       "visualizer",
+      "phy.nlm",
       "mic-phy-nlm-friction",
       "physics"
     ]
@@ -16987,6 +17017,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "gases",
       "master",
       "suite",
+      "chem.gases",
       "mic-chem-gas-laws",
       "chemistry"
     ]
@@ -17005,6 +17036,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "&",
       "molecular",
       "structure",
+      "chem.bonding",
       "mic-chem-bonding",
       "chemistry"
     ]
@@ -17022,6 +17054,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "reactions",
       "master",
       "suite",
+      "chem.redox",
       "mic-chem-redox",
       "chemistry"
     ]
@@ -17041,6 +17074,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "&",
       "mole",
       "concept",
+      "chem.mole",
       "mic-chem-mole-concept",
       "chemistry"
     ]
@@ -17058,6 +17092,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "geometry",
       "master",
       "suite",
+      "math.euclids-geometry",
       "mic-math-euclid-geometry",
       "mathematics"
     ]
@@ -17076,6 +17111,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "equations",
       "master",
       "suite",
+      "math.theory-of-equations",
       "mic-math-theory-of-equations",
       "mathematics"
     ]
@@ -17086,6 +17122,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
     "kind": "learn",
     "keywords": [
       "construction",
+      "phy.motion-1d",
       "mic-phy-kin-1d-motion",
       "physics"
     ]
@@ -17098,6 +17135,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "grade",
       "9",
       "physics",
+      "phy.motion-2d",
       "mic-phy-kin-2d-independent-components",
       "physics"
     ]
@@ -17110,6 +17148,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "grade",
       "9",
       "physics",
+      "phy.nlm",
       "mic-phy-nlm-first-law",
       "physics"
     ]
@@ -17120,6 +17159,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
     "kind": "learn",
     "keywords": [
       "construction",
+      "phy.fluids",
       "mic-phy-fluids-thrust-pressure",
       "physics"
     ]
@@ -17132,6 +17172,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "grade",
       "9",
       "physics",
+      "phy.vectors",
       "mic-phy-vec-addition",
       "physics"
     ]
@@ -17146,6 +17187,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "sba-06",
       "&",
       "sba-07",
+      "phy.motion-2d",
       "mic-phy-kin-2d-independent-components",
       "physics"
     ]
@@ -17158,6 +17200,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "grade",
       "9",
       "physics",
+      "phy.motion-2d",
       "mic-phy-kin-2d-independent-components",
       "physics"
     ]
@@ -17198,6 +17241,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "ncert",
       "question",
       "helper",
+      "chem.gases",
       "mic-chem-gas-laws",
       "chemistry"
     ]
@@ -17218,6 +17262,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "ncert",
       "question",
       "helper",
+      "chem.bonding",
       "mic-chem-bonding",
       "chemistry"
     ]
@@ -17238,6 +17283,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "ncert",
       "question",
       "helper",
+      "chem.redox",
       "mic-chem-redox",
       "chemistry"
     ]
@@ -17261,6 +17307,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "(2)",
       "ncert",
       "helper",
+      "chem.mole",
       "mic-chem-mole-concept",
       "chemistry"
     ]
@@ -17283,6 +17330,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "helper",
       "&",
       "transfer",
+      "math.euclids-geometry",
       "mic-math-euclid-geometry",
       "mathematics"
     ]
@@ -17303,6 +17351,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "(2)",
       "challenge",
       "practice",
+      "math.theory-of-equations",
       "mic-math-theory-of-equations",
       "mathematics"
     ]
@@ -17323,6 +17372,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "(2)",
       "challenge",
       "suite",
+      "phy.motion-1d",
       "mic-phy-kin-1d-motion",
       "physics"
     ]
@@ -17341,6 +17391,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "student",
       "practice",
       "edition",
+      "phy.motion-2d",
       "mic-phy-kin-2d-independent-components",
       "physics"
     ]
@@ -17353,6 +17404,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "core",
       "(2)",
       "v2",
+      "phy.motion-2d",
       "mic-phy-kin-2d-independent-components",
       "physics"
     ]
@@ -17363,6 +17415,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
     "kind": "practice",
     "keywords": [
       "construction",
+      "phy.fluids",
       "mic-phy-fluids-thrust-pressure",
       "physics"
     ]
@@ -17374,6 +17427,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
     "keywords": [
       "projectile",
       "motion",
+      "phy.motion-2d",
       "mic-phy-kin-2d-independent-components",
       "physics"
     ]
@@ -17388,6 +17442,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "one",
       "dimension",
+      "phy.motion-1d",
       "mic-phy-kin-1d-motion",
       "physics"
     ]
@@ -17400,6 +17455,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "motions",
       "in",
       "2d",
+      "phy.motion-2d",
       "mic-phy-kin-2d-independent-components",
       "physics"
     ]
@@ -17413,6 +17469,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "a",
       "plane",
+      "phy.motion-2d",
       "mic-phy-kin-2d-independent-components",
       "physics"
     ]

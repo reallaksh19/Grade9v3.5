@@ -886,12 +886,6 @@ def generate_topic_workspace(topic_id: str, topic_title: str, subject: str, bund
             ep = f"{rel_root}{learn_items[0]['entrypoint']}"
             learn_btn = f'<a class="g9-btn-action g9-btn-learn" href="{html.escape(ep)}">📖 Learn (Core 1A)</a>'
 
-        practice_items = b.get("practice", [])
-        tablet_btn = ""
-        if practice_items:
-            ep = f"{rel_root}{practice_items[0]['entrypoint']}"
-            tablet_btn = f'<a class="g9-btn-action g9-btn-practice" href="{html.escape(ep)}">✍️ Practice Tablet (Core 2)</a>'
-
         interactive_btn = ""
         if interactive_items:
             ep = f"{rel_root}{interactive_items[0]['entrypoint']}"
@@ -899,9 +893,9 @@ def generate_topic_workspace(topic_id: str, topic_title: str, subject: str, bund
 
         topic_slug = topic_id.split(".")[-1]
         practice_url = f"{rel_root}question-bank/index.html?subject={html.escape(subject)}&topic={html.escape(topic_slug)}&mode=study"
-        practice_btn = f'<a class="g9-btn-action g9-btn-qb" href="{practice_url}">🎯 Practice in Question Bank &rarr;</a>'
+        practice_btn = f'<a class="g9-btn-action g9-btn-qb g9-btn-practice" href="{practice_url}">🎯 Practice in Question Bank (Core 2) &rarr;</a>'
 
-        action_buttons = [learn_btn, tablet_btn, interactive_btn, practice_btn]
+        action_buttons = [learn_btn, interactive_btn, practice_btn]
         action_row = "\n      ".join(btn for btn in action_buttons if btn)
 
         concept_sections.append(f"""
