@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "id": "EVD",
+  "name": "Evidence / data / experimental interpretation",
+  "objective": "Use observations, measurements, data or experimental design to support a warranted conclusion while respecting uncertainty and alternative explanations.",
+  "choose_when": "The main challenge is interpreting data or observations, designing a fair test, identifying variables or controls, or judging what evidence supports.",
+  "do_not_choose_when": "Do not use when a graph or table merely presents already-determined values and no evidential inference or experimental decision is required.",
+  "slots": {
+    "X": "the evidence feature, variable, control, uncertainty or comparison that determines what may be inferred",
+    "Y": "a demonstrated principle of fair comparison, measurement, trend interpretation or causal inference",
+    "Z": "the evidential inference or design move that connects the observations to a warranted claim",
+    "W": "the learner's conclusion, experimental choice or evaluation of what the evidence does and does not show"
+  },
+  "hint_objectives": {
+    "REPRESENTATION": "Clarify which observation, variable or comparison matters and what is actually measured rather than assumed.",
+    "KEY_CONCEPT": "Correlate X with a known fair-test, measurement or inference principle Y.",
+    "CRUX": "Open the warranted inference or design route Z while leaving the evidential conclusion or design decision W to the learner."
+  },
+  "figure_policy": {"requirement": "CONDITIONAL", "job": "Use the actual graph, table, apparatus or data view when it is part of the evidence. Preserve uncertainty, axes, units and controls; do not annotate the conclusion into the evidence."},
+  "misconception_families": ["trend overclaimed as causation", "control variable ignored", "precision or uncertainty treated as exact truth"],
+  "solution_architecture": ["identify variables and evidence", "separate observation from inference", "apply fair-test or measurement principle", "state warranted conclusion and limits", "check alternative explanation or consistency"],
+  "validation_strategy_refs": ["ALTERNATIVE_EXPLANATION", "DATA_CONSISTENCY", "UNCERTAINTY_CHECK"],
+  "core1a_extraction_signals": ["evidence feature", "control or measurement principle", "inference limit", "experimental misconception", "representation or data requirement"],
+  "adjacent_demands": ["CON", "REP", "MOD"]
+}
