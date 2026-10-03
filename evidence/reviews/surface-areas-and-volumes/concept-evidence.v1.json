@@ -1,0 +1,108 @@
+{
+  "schema": "concept-evidence-batch/v1",
+  "product_id": "PRODUCT-MAT-G9-SAV",
+  "authority_record": "https://github.com/reallaksh19/Grade9v3.5/issues/13",
+  "status": "CANDIDATE_REVIEW_EVIDENCE",
+  "clusters": [
+    {
+      "concept_evidence_id": "CE-SAV-DIRECT-MEASURE",
+      "question_refs": [
+        "Q1",
+        "Q2"
+      ],
+      "recurring_cruxes": [
+        "Distinguish the requested geometric measure from nearby formulas.",
+        "Interpret the stated dimension correctly before substitution."
+      ],
+      "misconceptions": [
+        "Using volume or lateral area when total/curved surface area is requested.",
+        "Using diameter as though it were radius."
+      ],
+      "representation_needs": [
+        "Minimal symbolic/shape orientation; no question-specific answer-bearing figure is required."
+      ],
+      "canonical_concept_refs": [
+        "MIC-MAT-SAV-CUBE-CUBOID",
+        "MIC-MAT-SAV-CYLINDER"
+      ],
+      "disposition": "USE_EXISTING_CANDIDATE_CONSTRUCTION"
+    },
+    {
+      "concept_evidence_id": "CE-SAV-SURFACE-INVENTORY",
+      "question_refs": [
+        "Q3",
+        "Q5",
+        "Q6",
+        "Q7"
+      ],
+      "recurring_cruxes": [
+        "Identify which physical boundaries are material, exposed, absent, or internal before choosing a formula.",
+        "Do not count an opening or a hidden joined interface as exposed surface."
+      ],
+      "misconceptions": [
+        "Blindly applying a closed-solid total-surface formula.",
+        "Counting a circular opening as a material disk.",
+        "Counting an internal contact face in the exterior surface."
+      ],
+      "representation_needs": [
+        "Boundary inventory using EXPOSED / OPEN / INTERNAL labels.",
+        "Generic diagrams must not contain the source question's final numerical area."
+      ],
+      "canonical_concept_refs": [
+        "MIC-MAT-SAV-OPEN-CONTAINER",
+        "MIC-MAT-SAV-SPHERE-HEMISPHERE",
+        "MIC-MAT-SAV-COMPOSITE-SOLIDS"
+      ],
+      "disposition": "CONSOLIDATE_CORE1A_CONSTRUCTION"
+    },
+    {
+      "concept_evidence_id": "CE-SAV-SLANT-HEIGHT",
+      "question_refs": [
+        "Q4",
+        "Q6"
+      ],
+      "recurring_cruxes": [
+        "Recognize that vertical height is not the slant generator used by cone curved-surface area.",
+        "Construct slant height from the axial right triangle before surface-area work."
+      ],
+      "misconceptions": [
+        "Substituting vertical height directly where slant height is required."
+      ],
+      "representation_needs": [
+        "Generic axial right triangle labelled r, h, l.",
+        "No source-question numerical hypotenuse in pre-attempt teaching."
+      ],
+      "canonical_concept_refs": [
+        "MIC-MAT-SAV-CONE-SLANT"
+      ],
+      "disposition": "USE_EXISTING_CANDIDATE_CONSTRUCTION"
+    },
+    {
+      "concept_evidence_id": "CE-SAV-VOLUME-STRUCTURE",
+      "question_refs": [
+        "Q8",
+        "Q9",
+        "Q10"
+      ],
+      "recurring_cruxes": [
+        "Preserve the correct invariant or grouped structure before numerical execution.",
+        "Separate geometric volume, capacity conversion, conservation, and proportional comparison."
+      ],
+      "misconceptions": [
+        "Using the wrong cubic-metre/litre factor.",
+        "Treating surface area as conserved during recasting.",
+        "Trying to solve unnecessary individual dimensions when a grouped volume factor is already known."
+      ],
+      "representation_needs": [
+        "Generic volume/conservation/proportion representations that do not reveal source-question numerical answers."
+      ],
+      "canonical_concept_refs": [
+        "MIC-MAT-SAV-CUBE-CUBOID",
+        "MIC-MAT-SAV-RECASTING-VOLUME",
+        "MIC-MAT-SAV-PROPORTIONAL-REASONING"
+      ],
+      "disposition": "CONSOLIDATE_CORE1A_CONSTRUCTION"
+    }
+  ],
+  "downstream_rule": "Core1A construction should be justified from recurring concept evidence plus canonical Mathematics truth. Question refs provide demand evidence; they are not worked-answer templates."
+}
