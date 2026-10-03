@@ -20,7 +20,9 @@ REPO = Path(__file__).resolve().parents[2]
 
 SELF_AUDIT_STATUSES = {"PASS", "FAIL"}
 CHECK_RESULTS = {"PASS", "FAIL", "NOT_APPLICABLE"}
-INTERACTIVE_KINDS = {"INTERACTIVE_HTML", "INTERACTIVE_PAGE"}
+INTERACTIVE_KINDS = {"INTERACTIVE_HTML", "INTERACTIVE_PAGE", "EXPLORER"}
+INTERACTIVE_NODE_KINDS = {"INTERACTIVE", "INTERACTIVE_HTML", "INTERACTIVE_PAGE", "EXPLORER"}
+EXPLORER_BLUEPRINT_PREFIX = "BP-EXPLORER-GCDR@"
 CHROMIUM_TOOL = "tools/site-audit/interactive-page-audit.mjs"
 CHROMIUM_ENGINE = "playwright.chromium"
 
@@ -199,8 +201,41 @@ def _load_receipt_report(report_path: Path) -> tuple[dict[str, Any] | None, str 
     return (value if isinstance(value, dict) else None), (None if isinstance(value, dict) else "report is not an object")
 
 
+def _is_interactive_artifact(artifact: dict[str, Any]) -> bool:
+    kind = str(artifact.get("kind") or "")
+    blueprint = str(artifact.get("blueprint_ref") or "")
+    return kind in INTERACTIVE_KINDS or blueprint.startswith(EXPLORER_BLUEPRINT_PREFIX)
+
+
+def _validate_interactive_graph_registration(run: dict[str, Any], artifacts: dict[str, dict[str, Any]]) -> list[str]:
+    """An interactive resource linked from a question graph must be a registered artifact.
+
+    This prevents a linked explorer from evading Chromium simply by being omitted from
+    rendered_artifacts. Both pre- and post-attempt interactive nodes are inventory-checked.
+    """
+    problems: list[str] = []
+    for graph in run.get("pre_attempt_graphs") or []:
+        if not isinstance(graph, dict):
+            continue
+        qid = str(graph.get("question_ref") or "<unknown>")
+        for node in graph.get("nodes") or []:
+            if not isinstance(node, dict):
+                continue
+            kind = str(node.get("resource_kind") or "")
+            blueprint = str(node.get("blueprint_ref") or "")
+            if kind not in INTERACTIVE_NODE_KINDS and not blueprint.startswith(EXPLORER_BLUEPRINT_PREFIX):
+                continue
+            nid = str(node.get("id") or "<unknown>")
+            artifact_ref = str(node.get("artifact_ref") or "")
+            if not artifact_ref:
+                problems.append(f"INTERACTIVE_GRAPH_ARTIFACT_REF_MISSING: {qid}:{nid}")
+            elif artifact_ref not in artifacts:
+                problems.append(f"INTERACTIVE_GRAPH_ARTIFACT_UNKNOWN: {qid}:{nid}:{artifact_ref}")
+    return problems
+
+
 def validate_interactive_chromium(run: dict[str, Any]) -> list[str]:
-    """Require an exact-byte Chromium receipt for every interactive HTML artifact."""
+    """Require an exact-byte Chromium receipt for every governed interactive artifact."""
     problems: list[str] = []
     head = str((run.get("run_identity") or {}).get("head_sha") or "")
     artifacts = {
@@ -208,6 +243,8 @@ def validate_interactive_chromium(run: dict[str, Any]) -> list[str]:
         for row in run.get("rendered_artifacts") or []
         if isinstance(row, dict) and row.get("id")
     }
+    problems.extend(_validate_interactive_graph_registration(run, artifacts))
+
     receipts = {
         str(row.get("artifact_ref")): row
         for row in ((run.get("validation") or {}).get("interactive_chromium_receipts") or [])
@@ -215,7 +252,7 @@ def validate_interactive_chromium(run: dict[str, Any]) -> list[str]:
     }
 
     for aid, artifact in artifacts.items():
-        if str(artifact.get("kind") or "") not in INTERACTIVE_KINDS:
+        if not _is_interactive_artifact(artifact):
             continue
         receipt = receipts.get(aid)
         if not receipt:
