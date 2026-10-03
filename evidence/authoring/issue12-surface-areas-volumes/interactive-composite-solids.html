@@ -1,0 +1,981 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-g9-shell data-g9-role="INTERACTIVE" data-g9-product="PRODUCT-MAT-SAV-PR8" data-g9-render-digest="sav-issue12-interactive">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5.0">
+<title>Interactive Explorer · Composite Solids &amp; Hidden Interfaces · Grade 9 Mathematics</title>
+<link rel="stylesheet" href="../../../css/modern-learner.css">
+<link rel="stylesheet" href="../../../css/tablet-12-7.css">
+<link rel="stylesheet" href="../../../vendor/katex/0.16.8/katex.min.css">
+<script src="../../../vendor/katex/0.16.8/katex.min.js"></script>
+<script src="../../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+<style>
+[hidden]{display:none!important}
+:root{
+  --g9-zoom:1;
+  --g9-content-max:1340px;
+  --g9-touch-min:48px;
+  --g9-space:clamp(16px,2vw,28px);
+  --g9-type-body:17px;
+  --bg:#f6f7fb;
+  --fg:#172033;
+  --card:#ffffff;
+  --line:#d5dce6;
+  --accent:#1f5fae;
+  --accent-hover:#174984;
+  --muted:#52627a;
+  --soft:#fbfdff;
+  --pill-bg:#eef2ff;
+  --pill-fg:#4338ca;
+  --src-bg:#ecfdf5;
+  --src-fg:#047857;
+  --info-bg:#f8fbff;
+  --info-line:#93c5fd;
+  --info-fg:#1e3a8a;
+  --warn-bg:#fff7f8;
+  --warn-line:#ffc9d3;
+  --warn-fg:#991b1b;
+  --ok-bg:#f0fdf7;
+  --ok-line:#bbf7d0;
+  --ok-fg:#166534;
+  --cone-color:#0284c7;
+  --cone-fill:rgba(2, 132, 199, 0.2);
+  --hemi-color:#d97706;
+  --hemi-fill:rgba(217, 119, 6, 0.2);
+  --joint-color:#dc2626;
+  --joint-fill:rgba(220, 38, 38, 0.25);
+}
+:root[data-theme=dark]{
+  --bg:#0f1520;
+  --fg:#e8edf5;
+  --card:#18212f;
+  --line:#2c394d;
+  --accent:#8ab4f8;
+  --accent-hover:#aecbfa;
+  --muted:#a3b1c6;
+  --soft:#141c29;
+  --pill-bg:#262f5a;
+  --pill-fg:#c3c9ff;
+  --src-bg:#12301f;
+  --src-fg:#6ee7b7;
+  --info-bg:#14263d;
+  --info-line:#3b6db3;
+  --info-fg:#bfdbfe;
+  --warn-bg:#2b1620;
+  --warn-line:#6b3045;
+  --warn-fg:#fca5a5;
+  --ok-bg:#10281d;
+  --ok-line:#1f6b44;
+  --ok-fg:#86efac;
+  --cone-color:#38bdf8;
+  --cone-fill:rgba(56, 189, 248, 0.25);
+  --hemi-color:#fbbf24;
+  --hemi-fill:rgba(251, 191, 36, 0.25);
+  --joint-color:#f87171;
+  --joint-fill:rgba(248, 113, 113, 0.35);
+}
+
+html{font-size:calc(var(--g9-type-body) * var(--g9-zoom))}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--fg);
+  font:1rem/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  overflow-wrap:break-word;
+}
+
+header[data-g9-shell-header]{
+  position:sticky;
+  top:0;
+  z-index:100;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px var(--g9-space);
+  background:var(--card);
+  border-bottom:1px solid var(--line);
+}
+.g9-header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.g9-brand{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-weight:800;
+  color:var(--fg);
+  text-decoration:none;
+  font-size:1.15rem;
+}
+.g9-header-nav{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.g9-header-actions{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+header a,header button,button,.btn{
+  min-height:var(--g9-touch-min);
+  min-width:var(--g9-touch-min);
+  padding:10px 16px;
+  box-sizing:border-box;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:var(--card);
+  color:var(--fg);
+  font:inherit;
+  font-size:14px;
+  font-weight:600;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  touch-action:manipulation;
+  transition:all 0.15s ease-in-out;
+}
+header a:hover,header button:hover,button:hover,.btn:hover{
+  border-color:var(--accent);
+}
+.btn-primary{
+  background:var(--accent);
+  color:#ffffff;
+  border-color:var(--accent);
+}
+.btn-primary:hover{
+  background:var(--accent-hover);
+}
+
+.g9-hero-bar{
+  background:var(--soft);
+  border-bottom:1px solid var(--line);
+  padding:16px var(--g9-space);
+}
+.g9-hero-inner{
+  max-width:var(--g9-content-max);
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.g9-hero-title{
+  margin:0;
+  font-size:1.4rem;
+  font-weight:800;
+  line-height:1.3;
+}
+.g9-hero-meta{
+  font-size:14px;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+main{
+  max-width:var(--g9-content-max);
+  margin:0 auto;
+  padding:var(--g9-space);
+  box-sizing:border-box;
+}
+
+/* Two-column responsive layout */
+.g9-workspace-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:24px;
+  margin-top:16px;
+}
+@media (min-width:1020px){
+  .g9-workspace-grid{
+    grid-template-columns:56fr 44fr;
+    align-items:start;
+  }
+}
+
+.g9-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:20px;
+  box-sizing:border-box;
+  margin-bottom:20px;
+}
+.g9-card-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid var(--line);
+  padding-bottom:12px;
+  margin-bottom:16px;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.g9-card-header h2,.g9-card-header h3{
+  margin:0;
+  font-size:1.15rem;
+  font-weight:750;
+}
+.g9-tag{
+  display:inline-flex;
+  align-items:center;
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:14px;
+  font-weight:700;
+}
+.g9-tag-tough{
+  background:#fff7ed;
+  color:#c2410c;
+  border:1px solid #fed7aa;
+}
+[data-theme=dark] .g9-tag-tough{
+  background:#431407;
+  color:#fdba74;
+  border-color:#7c2d12;
+}
+
+/* Visualizer viewport */
+.g9-visualizer-container{
+  position:relative;
+  background:var(--soft);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-height:420px;
+}
+.g9-svg-stage{
+  width:100%;
+  max-width:560px;
+  height:auto;
+  aspect-ratio:4/3;
+  display:block;
+}
+
+/* Slider Controls */
+.g9-controls-group{
+  display:grid;
+  gap:16px;
+  margin:16px 0;
+}
+.g9-slider-row{
+  display:grid;
+  grid-template-columns:130px 1fr 70px;
+  align-items:center;
+  gap:14px;
+}
+@media (max-width:540px){
+  .g9-slider-row{
+    grid-template-columns:1fr;
+    gap:6px;
+  }
+}
+.g9-slider-label{
+  font-size:14px;
+  font-weight:600;
+  color:var(--fg);
+}
+input[type=range]{
+  width:100%;
+  height:8px;
+  border-radius:4px;
+  background:var(--line);
+  outline:none;
+  cursor:pointer;
+  touch-action:manipulation;
+}
+.g9-slider-val{
+  font-size:14px;
+  font-weight:700;
+  font-family:monospace;
+  text-align:right;
+  background:var(--soft);
+  padding:6px 10px;
+  border:1px solid var(--line);
+  border-radius:8px;
+}
+
+/* Surface inventory cards */
+.g9-surface-list{
+  display:grid;
+  gap:12px;
+  margin:14px 0;
+}
+.g9-surface-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 14px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--soft);
+  cursor:pointer;
+  transition:border-color 0.15s, background 0.15s;
+  gap:10px;
+}
+.g9-surface-item:hover{
+  border-color:var(--accent);
+}
+.g9-surface-item.painted{
+  border-color:var(--ok-line);
+  background:var(--ok-bg);
+}
+.g9-surface-item.trap{
+  border-color:var(--warn-line);
+  background:var(--warn-bg);
+}
+.g9-surface-info{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+.g9-surface-name{
+  font-weight:700;
+  font-size:15px;
+}
+.g9-surface-status{
+  font-size:14px;
+  color:var(--muted);
+}
+.g9-surface-chip{
+  font-size:14px;
+  font-weight:700;
+  padding:4px 10px;
+  border-radius:999px;
+  white-space:nowrap;
+}
+.chip-exposed{background:var(--ok-bg);color:var(--ok-fg);border:1px solid var(--ok-line)}
+.chip-hidden{background:var(--warn-bg);color:var(--warn-fg);border:1px solid var(--warn-line)}
+
+/* Diagnostic banner */
+.g9-alert-banner{
+  background:var(--warn-bg);
+  border:2px solid var(--warn-line);
+  border-radius:12px;
+  padding:14px 18px;
+  margin:14px 0;
+  color:var(--warn-fg);
+  font-size:15px;
+  line-height:1.5;
+  animation:fadeSlide 0.25s ease-out;
+}
+@keyframes fadeSlide{
+  from{opacity:0;transform:translateY(-8px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* Math calculation board */
+.g9-math-board{
+  background:var(--soft);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:16px;
+  margin:14px 0;
+}
+.g9-math-step{
+  margin-bottom:12px;
+  padding-bottom:12px;
+  border-bottom:1px dashed var(--line);
+}
+.g9-math-step:last-child{
+  margin-bottom:0;
+  padding-bottom:0;
+  border-bottom:none;
+}
+.g9-step-title{
+  font-size:14px;
+  font-weight:750;
+  text-transform:uppercase;
+  letter-spacing:0.04em;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+.g9-step-content{
+  font-size:16px;
+}
+
+/* Contrast box */
+.g9-contrast-box{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:14px;
+}
+@media (max-width:600px){
+  .g9-contrast-box{grid-template-columns:1fr;}
+}
+.g9-contrast-card{
+  padding:14px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:var(--card);
+}
+.g9-contrast-card.correct{
+  border-color:var(--ok-line);
+  background:var(--ok-bg);
+  color:var(--ok-fg);
+}
+.g9-contrast-card.wrong{
+  border-color:var(--warn-line);
+  background:var(--warn-bg);
+  color:var(--warn-fg);
+}
+
+footer[data-g9-footer]{
+  max-width:var(--g9-content-max);
+  margin:40px auto 20px;
+  padding:20px var(--g9-space);
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  flex-wrap:wrap;
+  color:var(--muted);
+  font-size:14px;
+}
+</style>
+</head>
+<body>
+
+<!-- Shell Navigation -->
+<header data-g9-shell-header>
+  <div class="g9-header-inner">
+    <a href="index.html" class="g9-brand">
+      <span aria-hidden="true">📐</span>
+      <span>Grade 9 Mathematics · Mensuration</span>
+    </a>
+    <nav class="g9-header-nav" aria-label="Topic Suite">
+      <a href="index.html">Topic Gateway</a>
+      <a href="core1a.html#CU-1">Core 1A Book</a>
+      <a href="core2.html#Q6">Core 2 Practice (Q6)</a>
+    </nav>
+    <div class="g9-header-actions">
+      <button type="button" data-g9-theme="light" aria-label="Light mode">☀️</button>
+      <button type="button" data-g9-theme="dark" aria-label="Dark mode">🌙</button>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Context Bar -->
+<section class="g9-hero-bar">
+  <div class="g9-hero-inner">
+    <div>
+      <span class="g9-tag g9-tag-tough">Toughest Concept · Band D3 · Q6 Specimen</span>
+      <h1 class="g9-hero-title">Composite Solids: Exposed vs Hidden Surface Area</h1>
+      <div class="g9-hero-meta">
+        Exploded-view dynamic simulator demonstrating why internal mating surfaces contribute zero area to composite boundary.
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <button type="button" id="btn-reset-q6" class="btn">Reset to Q6 Specimen</button>
+      <button type="button" id="btn-toggle-explode" class="btn btn-primary">Toggle Exploded View</button>
+    </div>
+  </div>
+</section>
+
+<!-- Main Interactive Workspace -->
+<main>
+  <div class="g9-workspace-grid">
+    
+    <!-- Left Column: Visualizer & Live Geometry -->
+    <section>
+      <div class="g9-card">
+        <div class="g9-card-header">
+          <h2>Exploded-View 3D Spatial Canvas</h2>
+          <span id="assembly-badge" class="g9-tag chip-exposed">Assembled Solid</span>
+        </div>
+
+        <div class="g9-visualizer-container">
+          <svg id="solid-canvas" class="g9-svg-stage" viewBox="0 0 500 440" role="img" aria-label="3D visualizer showing cone mounted on hemisphere with vertical separation control">
+            <defs>
+              <!-- Gradients for 3D appearance -->
+              <linearGradient id="coneGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="var(--cone-color)" stop-opacity="0.3"/>
+                <stop offset="45%" stop-color="var(--cone-color)" stop-opacity="0.8"/>
+                <stop offset="85%" stop-color="var(--cone-color)" stop-opacity="0.5"/>
+                <stop offset="100%" stop-color="var(--cone-color)" stop-opacity="0.2"/>
+              </linearGradient>
+              <radialGradient id="hemiGrad" cx="40%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="var(--hemi-color)" stop-opacity="0.85"/>
+                <stop offset="60%" stop-color="var(--hemi-color)" stop-opacity="0.65"/>
+                <stop offset="100%" stop-color="var(--hemi-color)" stop-opacity="0.3"/>
+              </radialGradient>
+              <pattern id="hatchJoint" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="0" y2="8" stroke="var(--joint-color)" stroke-width="2.5" />
+              </pattern>
+            </defs>
+
+            <!-- Guide lines for separation axis -->
+            <g id="guide-lines" stroke="var(--muted)" stroke-dasharray="3,3" opacity="0.6">
+              <line x1="250" y1="30" x2="250" y2="390" />
+            </g>
+
+            <!-- CONE GROUP (moves vertically by -sep) -->
+            <g id="cone-group" transform="translate(0, 0)">
+              <!-- Cone Body -->
+              <path id="cone-mesh" d="M 250,50 L 160,200 A 90,26 0 0,0 340,200 Z" fill="url(#coneGrad)" stroke="var(--cone-color)" stroke-width="2.5" />
+              <!-- Cone Base Disk (Hidden Contact Face) -->
+              <ellipse id="cone-base-ellipse" cx="250" cy="200" rx="90" ry="26" fill="url(#hatchJoint)" stroke="var(--joint-color)" stroke-width="2" />
+              
+              <!-- Right triangle auxiliary overlay inside cone -->
+              <g id="pythag-triangle">
+                <!-- Vertical height line -->
+                <line id="line-h" x1="250" y1="50" x2="250" y2="200" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,4" />
+                <!-- Horizontal radius line -->
+                <line id="line-r" x1="250" y1="200" x2="340" y2="200" stroke="#10b981" stroke-width="2" stroke-dasharray="4,4" />
+                <!-- Slant height edge -->
+                <line id="line-l" x1="250" y1="50" x2="340" y2="200" stroke="var(--accent)" stroke-width="3" />
+                <!-- Labels -->
+                <text id="txt-h" x="242" y="130" text-anchor="end" font-size="14" font-weight="700" fill="#f59e0b">h = 12 cm</text>
+                <text id="txt-r" x="295" y="194" text-anchor="middle" font-size="14" font-weight="700" fill="#10b981">r = 3.5 cm</text>
+                <text id="txt-l" x="305" y="115" font-size="14" font-weight="800" fill="var(--accent)">l = 12.5 cm</text>
+                <!-- Right angle marker -->
+                <path d="M 250,188 L 262,188 L 262,200" fill="none" stroke="#f59e0b" stroke-width="1.5" />
+              </g>
+            </g>
+
+            <!-- SEPARATION GAP CALLOUT (visible when sep > 15) -->
+            <g id="joint-callout" transform="translate(250, 220)" opacity="0">
+              <rect x="-140" y="-18" width="280" height="36" rx="8" fill="var(--warn-bg)" stroke="var(--warn-line)" stroke-width="1.5" />
+              <text x="0" y="5" text-anchor="middle" font-size="14" font-weight="750" fill="var(--warn-fg)">
+                ⛔ HIDDEN INTERFACE (Area = 0 cm²)
+              </text>
+            </g>
+
+            <!-- HEMISPHERE GROUP (moves vertically by +sep*0.3) -->
+            <g id="hemi-group" transform="translate(0, 0)">
+              <!-- Hemisphere Flat Top Disk (Hidden Contact Face) -->
+              <ellipse id="hemi-base-ellipse" cx="250" cy="200" rx="90" ry="26" fill="url(#hatchJoint)" stroke="var(--joint-color)" stroke-width="2" />
+              <!-- Hemisphere Curved Dome -->
+              <path id="hemi-mesh" d="M 160,200 A 90,26 0 0,0 340,200 A 90,90 0 0,1 160,200 Z" fill="url(#hemiGrad)" stroke="var(--hemi-color)" stroke-width="2.5" />
+            </g>
+
+            <!-- Dimension callout tags -->
+            <text id="svg-exposed-cone-tag" x="80" y="120" font-size="14" font-weight="700" fill="var(--cone-color)">
+              Cone CSA: π · r · l
+            </text>
+            <path d="M 170,118 Q 195,120 215,130" fill="none" stroke="var(--cone-color)" stroke-width="1.5" />
+
+            <text id="svg-exposed-hemi-tag" x="70" y="290" font-size="14" font-weight="700" fill="var(--hemi-color)">
+              Hemisphere CSA: 2 · π · r²
+            </text>
+            <path d="M 185,285 Q 210,280 230,265" fill="none" stroke="var(--hemi-color)" stroke-width="1.5" />
+          </svg>
+        </div>
+
+        <!-- Dynamic Controls -->
+        <div class="g9-controls-group">
+          <!-- Separation Slider -->
+          <div class="g9-slider-row">
+            <label for="slider-sep" class="g9-slider-label">Assembly Gap (Δy):</label>
+            <input type="range" id="slider-sep" min="0" max="80" value="0" step="1">
+            <span id="val-sep" class="g9-slider-val">0 mm</span>
+          </div>
+
+          <!-- Radius Slider -->
+          <div class="g9-slider-row">
+            <label for="slider-r" class="g9-slider-label">Radius (r):</label>
+            <input type="range" id="slider-r" min="1.0" max="7.0" value="3.5" step="0.5">
+            <span id="val-r" class="g9-slider-val">3.5 cm</span>
+          </div>
+
+          <!-- Cone Height Slider -->
+          <div class="g9-slider-row">
+            <label for="slider-h" class="g9-slider-label">Height (h):</label>
+            <input type="range" id="slider-h" min="4.0" max="20.0" value="12.0" step="0.5">
+            <span id="val-h" class="g9-slider-val">12.0 cm</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Generalization Card -->
+      <div class="g9-card">
+        <div class="g9-card-header">
+          <h3>The Universal Double-Face Subtraction Law</h3>
+          <span class="g9-tag chip-exposed">Mathematical Invariant</span>
+        </div>
+        <p style="font-size:15px;line-height:1.6">
+          When any two solids $A$ and $B$ are glued together along a matching boundary of area $A_{\text{joint}}$, both solids lose their contact face from the outside world.
+        </p>
+        <div style="background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:12px;margin:10px 0;text-align:center;font-size:16px;font-weight:700">
+          $$\mathbf{\text{Composite Exposed Area} = \text{TSA}_A + \text{TSA}_B - 2 \cdot A_{\text{joint}}}$$
+        </div>
+        <p style="font-size:14px;color:var(--muted);margin:0">
+          For our toy: $(\pi r l + \pi r^2) + (3\pi r^2) - 2(\pi r^2) = \pi r l + 2\pi r^2$. Each joint eliminates <b>two</b> previously exposed circular faces!
+        </p>
+      </div>
+    </section>
+
+    <!-- Right Column: Surface Inventory, Misconception Diagnostics, Math Ledger -->
+    <section>
+      
+      <!-- Surface Inventory Checklist -->
+      <div class="g9-card">
+        <div class="g9-card-header">
+          <h2>Surface Inventory Checklist</h2>
+          <span class="g9-tag" style="background:var(--soft);border:1px solid var(--line);color:var(--muted)">Click to Inspect</span>
+        </div>
+        <p style="font-size:14px;color:var(--muted);margin-top:0">
+          Click on each physical face to test whether it contributes to the toy's exposed boundary:
+        </p>
+
+        <div class="g9-surface-list">
+          <!-- Cone curved surface -->
+          <div id="surf-cone-csa" class="g9-surface-item painted" role="button" tabindex="0">
+            <div class="g9-surface-info">
+              <span class="g9-surface-name">1. Cone Slant Surface ($\pi \cdot r \cdot l$)</span>
+              <span class="g9-surface-status">External boundary · Reachable by paint</span>
+            </div>
+            <span class="g9-surface-chip chip-exposed">EXPOSED (+137.5 cm²)</span>
+          </div>
+
+          <!-- Mating interface -->
+          <div id="surf-joint" class="g9-surface-item trap" role="button" tabindex="0">
+            <div class="g9-surface-info">
+              <span class="g9-surface-name">2. Circular Interface ($\pi \cdot r^2$)</span>
+              <span class="g9-surface-status">Enclosed inside composite joint</span>
+            </div>
+            <span class="g9-surface-chip chip-hidden">HIDDEN (0 cm²)</span>
+          </div>
+
+          <!-- Hemisphere curved surface -->
+          <div id="surf-hemi-csa" class="g9-surface-item painted" role="button" tabindex="0">
+            <div class="g9-surface-info">
+              <span class="g9-surface-name">3. Hemisphere Dome ($2 \cdot \pi \cdot r^2$)</span>
+              <span class="g9-surface-status">External boundary · Reachable by paint</span>
+            </div>
+            <span class="g9-surface-chip chip-exposed">EXPOSED (+77.0 cm²)</span>
+          </div>
+        </div>
+
+        <!-- Diagnostic alert message container -->
+        <div id="diagnostic-banner" class="g9-alert-banner" role="alert" hidden>
+          <strong>⚠️ Misconception Intercept ($M_1/M_2$):</strong><br>
+          <span id="diagnostic-text">In the assembled toy, this circular face is trapped inside the joint! No paint or air can touch it. In mensuration, internal faces never count toward surface area.</span>
+        </div>
+      </div>
+
+      <!-- Live Calculation Breakdown -->
+      <div class="g9-card">
+        <div class="g9-card-header">
+          <h2>Live Mathematical Synthesis</h2>
+          <span class="g9-tag chip-exposed">Step-by-Step Ledger</span>
+        </div>
+
+        <div class="g9-math-board">
+          <!-- Step 1: Auxiliary Bridge -->
+          <div class="g9-math-step">
+            <div class="g9-step-title">Step 1 · Auxiliary Pythagorean Bridge ($l$)</div>
+            <div id="calc-step-1" class="g9-step-content">
+              $$l = \sqrt{r^2 + h^2} = \sqrt{3.5^2 + 12^2} = \sqrt{156.25} = \mathbf{12.5\text{ cm}}$$
+            </div>
+          </div>
+
+          <!-- Step 2: Component Breakdown -->
+          <div class="g9-math-step">
+            <div class="g9-step-title">Step 2 · Exposed Components</div>
+            <div id="calc-step-2" class="g9-step-content">
+              $$\text{Cone CSA} = \pi r l = \frac{22}{7} \times 3.5 \times 12.5 = \mathbf{137.5\text{ cm}^2}$$
+              $$\text{Hemisphere CSA} = 2\pi r^2 = 2 \times \frac{22}{7} \times (3.5)^2 = \mathbf{77.0\text{ cm}^2}$$
+            </div>
+          </div>
+
+          <!-- Step 3: Synthesis -->
+          <div class="g9-math-step">
+            <div class="g9-step-title">Step 3 · Total Exposed Surface Area</div>
+            <div id="calc-step-3" class="g9-step-content" style="font-weight:700;color:var(--accent)">
+              $$\text{Exposed Area} = \pi r(l + 2r) = 137.5 + 77.0 = \mathbf{214.5\text{ cm}^2}$$
+            </div>
+          </div>
+        </div>
+
+        <!-- Traps & Contrasts -->
+        <h4 style="margin:16px 0 8px;font-size:14px;text-transform:uppercase;color:var(--muted)">Common Exam Traps vs Verified Truth</h4>
+        <div class="g9-contrast-box">
+          <div class="g9-contrast-card correct">
+            <div style="font-weight:800;font-size:14px;margin-bottom:4px">✅ VERIFIED (Exposed Only)</div>
+            <div style="font-size:1.15rem;font-weight:800">214.5 cm²</div>
+            <div style="font-size:14px;margin-top:4px">Curved cone + curved hemisphere. Interface excluded.</div>
+          </div>
+
+          <div class="g9-contrast-card wrong">
+            <div style="font-weight:800;font-size:14px;margin-bottom:4px">❌ ADDITIVE TRAP ($M_1$)</div>
+            <div style="font-size:1.15rem;font-weight:800">291.5 cm²</div>
+            <div style="font-size:14px;margin-top:4px">Naively added individual TSAs ($+2\pi r^2$ extra).</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+</main>
+
+<!-- Shell Footer -->
+<footer data-g9-footer>
+  <div>
+    <strong>Grade 9 Mathematics Interactive Explorer</strong> · Surface Areas and Volumes
+  </div>
+  <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+    <a href="core1a.html#CU-1">Core 1A Construction</a>
+    <a href="core2.html#Q6">Core 2 Question 6</a>
+    <a href="index.html">Gateway Hub</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+
+// Elements
+const sliderSep = document.getElementById('slider-sep');
+const sliderR = document.getElementById('slider-r');
+const sliderH = document.getElementById('slider-h');
+const valSep = document.getElementById('val-sep');
+const valR = document.getElementById('val-r');
+const valH = document.getElementById('val-h');
+
+const coneGroup = document.getElementById('cone-group');
+const hemiGroup = document.getElementById('hemi-group');
+const jointCallout = document.getElementById('joint-callout');
+const assemblyBadge = document.getElementById('assembly-badge');
+
+const coneMesh = document.getElementById('cone-mesh');
+const coneBase = document.getElementById('cone-base-ellipse');
+const hemiMesh = document.getElementById('hemi-mesh');
+const hemiBase = document.getElementById('hemi-base-ellipse');
+
+const txtH = document.getElementById('txt-h');
+const txtR = document.getElementById('txt-r');
+const txtL = document.getElementById('txt-l');
+const lineH = document.getElementById('line-h');
+const lineR = document.getElementById('line-r');
+const lineL = document.getElementById('line-l');
+
+const calcStep1 = document.getElementById('calc-step-1');
+const calcStep2 = document.getElementById('calc-step-2');
+const calcStep3 = document.getElementById('calc-step-3');
+
+const btnToggleExplode = document.getElementById('btn-toggle-explode');
+const btnResetQ6 = document.getElementById('btn-reset-q6');
+
+const surfConeCsa = document.getElementById('surf-cone-csa');
+const surfJoint = document.getElementById('surf-joint');
+const surfHemiCsa = document.getElementById('surf-hemi-csa');
+const diagBanner = document.getElementById('diagnostic-banner');
+const diagText = document.getElementById('diagnostic-text');
+
+// State
+let r = 3.5;
+let h = 12.0;
+let sep = 0;
+
+function round1(x) { return Math.round(x * 10) / 10; }
+function round2(x) { return Math.round(x * 100) / 100; }
+
+function updateVisuals() {
+  const l = Math.sqrt(r * r + h * h);
+  const PI = 22 / 7;
+
+  // Geometry dimensions in SVG scale
+  const scale = 22; // px per cm
+  const svgR = Math.min(Math.max(r * scale, 35), 145);
+  const svgH = Math.min(Math.max(h * (scale * 0.9), 60), 220);
+  const rx = svgR;
+  const ry = svgR * 0.28;
+
+  const cx = 250;
+  const baseCy = 210;
+  const apexY = baseCy - svgH;
+
+  // Update cone vertical shift (moves UP by sep)
+  coneGroup.setAttribute('transform', 'translate(0, ' + (-sep * 1.0) + ')');
+  // Update hemisphere vertical shift (moves DOWN by sep * 0.3)
+  hemiGroup.setAttribute('transform', 'translate(0, ' + (sep * 0.35) + ')');
+
+  // Update cone mesh
+  const coneD = 'M ' + cx + ',' + apexY + 
+                ' L ' + (cx - rx) + ',' + baseCy + 
+                ' A ' + rx + ',' + ry + ' 0 0,0 ' + (cx + rx) + ',' + baseCy + ' Z';
+  coneMesh.setAttribute('d', coneD);
+  coneBase.setAttribute('cx', cx);
+  coneBase.setAttribute('cy', baseCy);
+  coneBase.setAttribute('rx', rx);
+  coneBase.setAttribute('ry', ry);
+
+  // Update hemisphere mesh
+  const hemiD = 'M ' + (cx - rx) + ',' + baseCy + 
+                ' A ' + rx + ',' + ry + ' 0 0,0 ' + (cx + rx) + ',' + baseCy + 
+                ' A ' + rx + ',' + rx + ' 0 0,1 ' + (cx - rx) + ',' + baseCy + ' Z';
+  hemiMesh.setAttribute('d', hemiD);
+  hemiBase.setAttribute('cx', cx);
+  hemiBase.setAttribute('cy', baseCy);
+  hemiBase.setAttribute('rx', rx);
+  hemiBase.setAttribute('ry', ry);
+
+  // Update right triangle overlay
+  lineH.setAttribute('x1', cx);
+  lineH.setAttribute('y1', apexY);
+  lineH.setAttribute('x2', cx);
+  lineH.setAttribute('y2', baseCy);
+
+  lineR.setAttribute('x1', cx);
+  lineR.setAttribute('y1', baseCy);
+  lineR.setAttribute('x2', cx + rx);
+  lineR.setAttribute('y2', baseCy);
+
+  lineL.setAttribute('x1', cx);
+  lineL.setAttribute('y1', apexY);
+  lineL.setAttribute('x2', cx + rx);
+  lineL.setAttribute('y2', baseCy);
+
+  txtH.textContent = 'h = ' + h.toFixed(1) + ' cm';
+  txtH.setAttribute('x', cx - 8);
+  txtH.setAttribute('y', (apexY + baseCy) / 2);
+
+  txtR.textContent = 'r = ' + r.toFixed(1) + ' cm';
+  txtR.setAttribute('x', cx + rx / 2);
+  txtR.setAttribute('y', baseCy - 6);
+
+  txtL.textContent = 'l = ' + round2(l) + ' cm';
+  txtL.setAttribute('x', cx + rx / 2 + 16);
+  txtL.setAttribute('y', (apexY + baseCy) / 2);
+
+  // Update Callout visibility
+  if (sep > 18) {
+    jointCallout.setAttribute('opacity', '1');
+    jointCallout.setAttribute('transform', 'translate(' + cx + ', ' + (baseCy - (sep * 0.35)) + ')');
+    assemblyBadge.textContent = 'Exploded View (' + sep + ' mm Gap)';
+    assemblyBadge.className = 'g9-tag chip-hidden';
+    btnToggleExplode.textContent = 'Re-assemble Solid';
+  } else {
+    jointCallout.setAttribute('opacity', '0');
+    assemblyBadge.textContent = 'Assembled Solid';
+    assemblyBadge.className = 'g9-tag chip-exposed';
+    btnToggleExplode.textContent = 'Explode View';
+  }
+
+  // Update numerical calculations
+  const coneCsa = PI * r * l;
+  const hemiCsa = 2 * PI * r * r;
+  const totalExposed = coneCsa + hemiCsa;
+  const jointDisk = PI * r * r;
+
+  // Text values
+  valSep.textContent = sep + ' mm';
+  valR.textContent = r.toFixed(1) + ' cm';
+  valH.textContent = h.toFixed(1) + ' cm';
+
+  // Math step renderings
+  if (window.katex) {
+    try {
+      window.katex.render(
+        'l = \\sqrt{r^2 + h^2} = \\sqrt{' + r.toFixed(1) + '^2 + ' + h.toFixed(1) + '^2} = \\sqrt{' + round2(r*r + h*h) + '} = \\mathbf{' + round2(l) + '\\text{ cm}}',
+        calcStep1, { displayMode: true }
+      );
+      window.katex.render(
+        '\\text{Cone CSA} = \\pi r l \\approx \\frac{22}{7} \\times ' + r.toFixed(1) + ' \\times ' + round2(l) + ' = \\mathbf{' + round1(coneCsa) + '\\text{ cm}^2}\\\\' +
+        '\\text{Hemisphere CSA} = 2\\pi r^2 \\approx 2 \\times \\frac{22}{7} \\times ' + r.toFixed(1) + '^2 = \\mathbf{' + round1(hemiCsa) + '\\text{ cm}^2}',
+        calcStep2, { displayMode: true }
+      );
+      window.katex.render(
+        '\\text{Total Exposed Area} = \\pi r(l + 2r) = ' + round1(coneCsa) + ' + ' + round1(hemiCsa) + ' = \\mathbf{' + round1(totalExposed) + '\\text{ cm}^2}',
+        calcStep3, { displayMode: true }
+      );
+    } catch(e) {
+      // fallback
+    }
+  }
+}
+
+// Event Listeners
+sliderSep.addEventListener('input', function() {
+  sep = parseInt(this.value, 10);
+  updateVisuals();
+});
+
+sliderR.addEventListener('input', function() {
+  r = parseFloat(this.value);
+  updateVisuals();
+});
+
+sliderH.addEventListener('input', function() {
+  h = parseFloat(this.value);
+  updateVisuals();
+});
+
+btnToggleExplode.addEventListener('click', function() {
+  if (sep < 30) {
+    sep = 60;
+  } else {
+    sep = 0;
+  }
+  sliderSep.value = sep;
+  updateVisuals();
+});
+
+btnResetQ6.addEventListener('click', function() {
+  r = 3.5;
+  h = 12.0;
+  sep = 0;
+  sliderR.value = r;
+  sliderH.value = h;
+  sliderSep.value = sep;
+  diagBanner.hidden = true;
+  updateVisuals();
+});
+
+// Interactive surface diagnostic triggers
+surfJoint.addEventListener('click', function() {
+  diagBanner.hidden = false;
+  diagText.textContent = 'Notice: In the assembled toy, this circular face (area = ' + round1(22/7*r*r) + ' cm²) is trapped inside the joint! No paint or air can touch it. In mensuration, internal faces never count toward exposed surface area.';
+});
+
+surfConeCsa.addEventListener('click', function() {
+  diagBanner.hidden = false;
+  diagText.textContent = 'Correct! The conical curved wall forms the upper exterior boundary of the toy. Area = π·r·l = ' + round1(22/7*r*Math.sqrt(r*r+h*h)) + ' cm².';
+});
+
+surfHemiCsa.addEventListener('click', function() {
+  diagBanner.hidden = false;
+  diagText.textContent = 'Correct! The hemispherical dome forms the lower exterior boundary of the toy. Area = 2·π·r² = ' + round1(2*22/7*r*r) + ' cm².';
+});
+
+// Theme switcher
+document.querySelectorAll('[data-g9-theme]').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.documentElement.setAttribute('data-theme', this.dataset.g9Theme);
+  });
+});
+
+// Initial auto-render & math typesetting
+if (window.renderMathInElement) {
+  window.renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$', right: '$', display: false}
+    ]
+  });
+}
+updateVisuals();
+
+})();
+</script>
+</body>
+</html>
