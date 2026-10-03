@@ -144,8 +144,7 @@
       "conditions": [
         "The water bottle is modeled as a right circular cylinder.",
         "The given 14 cm is the diameter, not the radius.",
-        "Height h = 20 cm.",
-        "Take π = 22/7."
+        "Height h = 20 cm."
       ],
       "extensions": {
         "grade9v3:source_custody": {
@@ -198,9 +197,9 @@
           {
             "id": "Q2-C2",
             "move_ref": "Q2-M2",
-            "expression": "2 * (22/7) * 7 * 20",
-            "expected": 880,
-            "unit": "cm²",
+            "expression": "2 * 7 * 20",
+            "expected": 280,
+            "unit": "π·cm² coefficient",
             "protected_result": true,
             "method": "INDEPENDENT_REEVALUATION"
           }
@@ -234,7 +233,7 @@
       ],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "880 cm²",
+        "summary": "280π cm²",
         "reasoning_route": [
           {
             "id": "Q2-M1",
@@ -249,29 +248,28 @@
           {
             "id": "Q2-M2",
             "kind": "TRANSFORM",
-            "action": "Substitute r = 7 cm, h = 20 cm, π = 22/7: CSA = 2 × (22/7) × 7 × 20 = 44 × 20 = 880 cm².",
-            "why_valid": "The 7 in the denominator cancels the radius 7, leaving 2 × 22 × 20 = 880.",
+            "action": "Substitute r = 7 cm and h = 20 cm: CSA = 2π × 7 × 20 = 280π cm².",
+            "why_valid": "2 × 7 × 20 = 280, leaving π exact because the question supplies no numerical approximation for π.",
             "inputs": [
               "r = 7 cm",
-              "h = 20 cm",
-              "π = 22/7"
+              "h = 20 cm"
             ],
-            "output": "880 cm²"
+            "output": "280π cm²"
           },
           {
             "id": "Q2-M3",
             "kind": "VERIFY",
-            "action": "Check using base circumference × height: C = πd = (22/7) × 14 = 44 cm; 44 × 20 = 880 cm².",
+            "action": "Check using base circumference × height: C = πd = 14π cm; 14π × 20 = 280π cm².",
             "why_valid": "Unrolling the lateral cylinder face forms a rectangle of perimeter × height.",
             "inputs": [
               "d = 14 cm",
               "h = 20 cm"
             ],
-            "output": "880 cm² verified"
+            "output": "280π cm² verified"
           }
         ],
         "crux_move_ref": "Q2-M1",
-        "check": "Using πdh directly: (22/7) × 14 × 20 = 44 × 20 = 880 cm², confirming the calculation.",
+        "check": "Using πdh directly gives π × 14 × 20 = 280π cm².",
         "verification_status": "CHECKED_BY_AUTHOR"
       },
       "family_ref": "FAM-MATH-SAV"
@@ -287,8 +285,7 @@
       "conditions": [
         "The bucket is a cylinder open at the top.",
         "Metal sheet is required for the curved wall and one circular bottom base only.",
-        "Internal radius r = 7 cm and height h = 18 cm; thickness is negligible.",
-        "Take π = 22/7."
+        "Internal radius r = 7 cm and height h = 18 cm; thickness is negligible."
       ],
       "extensions": {
         "grade9v3:source_custody": {
@@ -316,8 +313,8 @@
             "basis": "Formulating the open container surface model (curved surface + 1 base) rather than applying closed cylinder total surface area."
           },
           "exam_source_badge": "Owner question",
-          "stable_crux_move": "Formulate metal area = curved surface + 1 base = 2πrh + πr² = πr(2h + r) and evaluate.",
-          "common_wrong_route": "Using the closed cylinder formula 2πrh + 2πr² = 1100 cm² by including a non-existent top lid.",
+          "stable_crux_move": "Formulate metal area = curved surface + one base = 2πrh + πr², then evaluate while keeping π exact.",
+          "common_wrong_route": "Using the closed-cylinder model 2πrh + 2πr² by including a non-existent top lid.",
           "expected_time_seconds": 120,
           "review_bottleneck": "Decide which boundary surfaces physically exist on an open-top bucket and must therefore be made from sheet metal.",
           "review_route_to_crux": "Identify the curved wall and one bottom base while marking the top as absent.",
@@ -332,27 +329,27 @@
           {
             "id": "Q3-C1",
             "move_ref": "Q3-M2",
-            "expression": "2 * (22/7) * 7 * 18",
-            "expected": 792,
-            "unit": "cm²",
+            "expression": "2 * 7 * 18",
+            "expected": 252,
+            "unit": "π·cm² coefficient",
             "protected_result": true,
             "method": "INDEPENDENT_REEVALUATION"
           },
           {
             "id": "Q3-C2",
             "move_ref": "Q3-M2",
-            "expression": "(22/7) * 7**2",
-            "expected": 154,
-            "unit": "cm²",
+            "expression": "7**2",
+            "expected": 49,
+            "unit": "π·cm² coefficient",
             "protected_result": true,
             "method": "INDEPENDENT_REEVALUATION"
           },
           {
             "id": "Q3-C3",
             "move_ref": "Q3-M2",
-            "expression": "792 + 154",
-            "expected": 946,
-            "unit": "cm²",
+            "expression": "252 + 49",
+            "expected": 301,
+            "unit": "π·cm² coefficient",
             "protected_result": true,
             "method": "INDEPENDENT_REEVALUATION"
           }
@@ -386,7 +383,7 @@
       ],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "946 cm²",
+        "summary": "301π cm²",
         "reasoning_route": [
           {
             "id": "Q3-M1",
@@ -403,29 +400,28 @@
           {
             "id": "Q3-M2",
             "kind": "TRANSFORM",
-            "action": "Substitute r = 7, h = 18, π = 22/7: (22/7) × 7 × (2(18) + 7) = 22 × 43 = 946 cm².",
-            "why_valid": "22 × 43 = 22 × 40 + 22 × 3 = 880 + 66 = 946.",
+            "action": "Substitute r = 7 cm and h = 18 cm: Area = 2π(7)(18) + π(7)² = 252π + 49π = 301π cm².",
+            "why_valid": "The curved-wall coefficient is 2 × 7 × 18 = 252 and the base coefficient is 7² = 49.",
             "inputs": [
               "r = 7 cm",
-              "h = 18 cm",
-              "π = 22/7"
+              "h = 18 cm"
             ],
-            "output": "946 cm²"
+            "output": "301π cm²"
           },
           {
             "id": "Q3-M3",
             "kind": "VERIFY",
-            "action": "Verify separately: CSA = 2×(22/7)×7×18 = 792 cm²; Base = (22/7)×49 = 154 cm²; 792 + 154 = 946 cm².",
-            "why_valid": "Sum of constituent parts equals factored expression, exactly 154 cm² less than closed cylinder (1100 cm²).",
+            "action": "Verify separately: curved wall = 252π cm² and bottom base = 49π cm²; their sum is 301π cm².",
+            "why_valid": "The open top contributes no material area; the two independently evaluated pieces reproduce the total.",
             "inputs": [
-              "CSA = 792 cm²",
-              "Base = 154 cm²"
+              "252π cm²",
+              "49π cm²"
             ],
-            "output": "946 cm² verified"
+            "output": "301π cm² verified"
           }
         ],
         "crux_move_ref": "Q3-M1",
-        "check": "Closed cylinder TSA would be 792 + 2(154) = 1100 cm². Subtracting the open top (154 cm²) gives 1100 - 154 = 946 cm².",
+        "check": "A closed cylinder would have area 350π cm². Removing one top disk of 49π cm² gives 301π cm².",
         "verification_status": "CHECKED_BY_AUTHOR"
       },
       "family_ref": "FAM-MATH-SAV"
@@ -442,8 +438,7 @@
         "The conical tent is a right circular cone.",
         "Radius r = 7 m and vertical height h = 24 m.",
         "Slant height l, radius r, and height h satisfy l² = r² + h².",
-        "The base of the tent is open ground (no canvas on floor).",
-        "Take π = 22/7."
+        "The base of the tent is open ground (no canvas on floor)."
       ],
       "extensions": {
         "grade9v3:source_custody": {
@@ -471,7 +466,7 @@
             "basis": "Requires chaining Pythagorean slant-height derivation with curved surface area under an open-base physical constraint."
           },
           "exam_source_badge": "Owner question",
-          "stable_crux_move": "Apply l = √(r² + h²) = √(49 + 576) = 25 m, then compute canvas area = πrl = 550 m².",
+          "stable_crux_move": "Apply l = √(r² + h²) to obtain the slant height, then compute the open-base canvas area πrl while keeping π exact.",
           "common_wrong_route": "Using vertical height 24 m directly instead of slant height l in πrl, or adding base area πr² to an open tent.",
           "expected_time_seconds": 150,
           "review_bottleneck": "Separate vertical height from slant height and notice that an open tent has no canvas base.",
@@ -496,9 +491,9 @@
           {
             "id": "Q4-C2",
             "move_ref": "Q4-M3",
-            "expression": "(22/7) * 7 * 25",
-            "expected": 550,
-            "unit": "m²",
+            "expression": "7 * 25",
+            "expected": 175,
+            "unit": "π·m² coefficient",
             "protected_result": true,
             "method": "INDEPENDENT_REEVALUATION"
           }
@@ -548,7 +543,7 @@
       ],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "1. Slant height = 25 m; 2. Canvas area = 550 m²",
+        "summary": "1. Slant height = 25 m; 2. Canvas area = 175π m²",
         "reasoning_route": [
           {
             "id": "Q4-M1",
@@ -575,14 +570,13 @@
           {
             "id": "Q4-M3",
             "kind": "TRANSFORM",
-            "action": "Compute canvas area: Area = (22/7) × 7 × 25 = 22 × 25 = 550 m².",
-            "why_valid": "7 cancels with 7; 22 × 25 = 550.",
+            "action": "Compute canvas area using the curved cone only: Area = π × 7 × 25 = 175π m².",
+            "why_valid": "The base is open, so canvas covers only the curved conical surface; 7 × 25 = 175.",
             "inputs": [
               "r = 7 m",
-              "l = 25 m",
-              "π = 22/7"
+              "l = 25 m"
             ],
-            "output": "550 m²"
+            "output": "175π m²"
           },
           {
             "id": "Q4-M4",
@@ -591,13 +585,13 @@
             "why_valid": "Hypotenuse must exceed both legs; 25² = 625 = 49 + 576.",
             "inputs": [
               "l = 25 m",
-              "Area = 550 m²"
+              "Area = 175π m²"
             ],
             "output": "Results verified"
           }
         ],
         "crux_move_ref": "Q4-M1",
-        "check": "Check hypotenuse: 25² - 24² = (25-24)(25+24) = 1 × 49 = 7² = r². Canvas = 22 × 25 = 550 m².",
+        "check": "The slant height satisfies 25² = 7² + 24², and the canvas area uses square metres with the open base excluded.",
         "verification_status": "CHECKED_BY_AUTHOR"
       },
       "family_ref": "FAM-MATH-SAV"
@@ -612,8 +606,7 @@
       ],
       "conditions": [
         "The vessel is a hemispherical bowl with internal radius r = 10.5 cm = 21/2 cm.",
-        "A bowl is an open hollow vessel with an open circular mouth.",
-        "Take π = 22/7."
+        "A bowl is an open hollow vessel with an open circular mouth."
       ],
       "extensions": {
         "grade9v3:source_custody": {
@@ -641,8 +634,8 @@
             "basis": "Curved surface area calculation with an explicit explanation distinguishing hollow hemisphere from solid hemisphere."
           },
           "exam_source_badge": "Owner question",
-          "stable_crux_move": "Calculate inner surface area = 2πr² = 693 cm² and explain that a bowl has an open mouth to hold items, not a solid base.",
-          "common_wrong_route": "Using total surface area of a solid hemisphere 3πr² = 1039.5 cm² by treating the open mouth as a solid physical face.",
+          "stable_crux_move": "Use the curved hemisphere relation 2πr² and explain that the circular mouth is an opening rather than a material disk.",
+          "common_wrong_route": "Using total surface area 3πr² for a solid hemisphere by treating the open mouth as a flat material face.",
           "expected_time_seconds": 120,
           "review_bottleneck": "Interpret 'inner surface' of a bowl as the curved hemispherical material surface while the circular mouth is an opening, not a material face.",
           "review_route_to_crux": "Distinguish curved hemispherical area from total area of a solid hemisphere.",
@@ -657,9 +650,9 @@
           {
             "id": "Q5-C1",
             "move_ref": "Q5-M2",
-            "expression": "2 * (22/7) * 10.5**2",
-            "expected": 693,
-            "unit": "cm²",
+            "expression": "2 * 10.5**2",
+            "expected": 220.5,
+            "unit": "π·cm² coefficient",
             "protected_result": true,
             "method": "INDEPENDENT_REEVALUATION"
           }
@@ -693,7 +686,7 @@
       ],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "Inner surface area = 693 cm². The circular base is not included because a bowl is an open hollow container designed to hold contents; its circular mouth is an opening, not a solid material surface.",
+        "summary": "Inner surface area = 220.5π cm². The circular mouth is not included because it is an opening, not a flat material face.",
         "reasoning_route": [
           {
             "id": "Q5-M1",
@@ -709,13 +702,12 @@
           {
             "id": "Q5-M2",
             "kind": "TRANSFORM",
-            "action": "Calculate 2 × (22/7) × (21/2)² = 2 × (22/7) × (21/2) × (21/2) = 11 × 3 × 21 = 693 cm².",
-            "why_valid": "7 divides 21 to give 3; 2 cancels with one 2; 22/2 = 11. 11 × 3 × 21 = 693.",
+            "action": "Calculate 2π(10.5)² = 220.5π cm².",
+            "why_valid": "10.5² = 110.25 and twice that coefficient is 220.5; π remains exact.",
             "inputs": [
-              "r = 21/2 cm",
-              "π = 22/7"
+              "r = 10.5 cm"
             ],
-            "output": "693 cm²"
+            "output": "220.5π cm²"
           },
           {
             "id": "Q5-M3",
@@ -729,7 +721,7 @@
           }
         ],
         "crux_move_ref": "Q5-M1",
-        "check": "A full sphere of radius 10.5 cm has surface area 4πr² = 4 × (22/7) × 110.25 = 1386 cm². The inner hemisphere is exactly half: 1386 / 2 = 693 cm².",
+        "check": "Doubling the curved hemispherical area gives 441π cm², the surface area of the corresponding full sphere.",
         "verification_status": "CHECKED_BY_AUTHOR"
       },
       "family_ref": "FAM-MATH-SAV"
@@ -747,8 +739,7 @@
         "The toy is a composite solid: a cone mounted on a hemisphere.",
         "Common radius r = 3.5 cm = 7/2 cm.",
         "Cone vertical height h = 12 cm.",
-        "The common circular interface where they join is hidden inside and not exposed.",
-        "Take π = 22/7."
+        "The common circular interface where they join is hidden inside and not exposed."
       ],
       "extensions": {
         "grade9v3:source_custody": {
@@ -776,7 +767,7 @@
             "basis": "Composite solid requiring slant height derivation, model formulation excluding the internal hidden interface, and multi-component algebraic summation."
           },
           "exam_source_badge": "Owner question",
-          "stable_crux_move": "Find slant height l = √(3.5² + 12²) = 12.5 cm, then evaluate exposed area = CSA(cone) + CSA(hemisphere) = πr(l + 2r) = 214.5 cm².",
+          "stable_crux_move": "Find the slant height, then construct exposed area from the cone and hemisphere curved surfaces only, excluding the internal circular join.",
           "common_wrong_route": "Adding the total surface area of cone (πrl + πr²) to total surface area of hemisphere (3πr²), erroneously counting the internal circular interface twice.",
           "expected_time_seconds": 180,
           "review_bottleneck": "Identify that the shared circular joining face becomes internal and must not be counted as exposed surface.",
@@ -803,27 +794,27 @@
           {
             "id": "Q6-C2",
             "move_ref": "Q6-M3",
-            "expression": "(22/7) * 3.5 * 12.5",
-            "expected": 137.5,
-            "unit": "cm²",
+            "expression": "3.5 * 12.5",
+            "expected": 43.75,
+            "unit": "π·cm² coefficient",
             "protected_result": true,
             "method": "INDEPENDENT_REEVALUATION"
           },
           {
             "id": "Q6-C3",
             "move_ref": "Q6-M3",
-            "expression": "2 * (22/7) * 3.5**2",
-            "expected": 77,
-            "unit": "cm²",
+            "expression": "2 * 3.5**2",
+            "expected": 24.5,
+            "unit": "π·cm² coefficient",
             "protected_result": true,
             "method": "INDEPENDENT_REEVALUATION"
           },
           {
             "id": "Q6-C4",
             "move_ref": "Q6-M3",
-            "expression": "137.5 + 77",
-            "expected": 214.5,
-            "unit": "cm²",
+            "expression": "43.75 + 24.5",
+            "expected": 68.25,
+            "unit": "π·cm² coefficient",
             "protected_result": true,
             "method": "INDEPENDENT_REEVALUATION"
           }
@@ -873,7 +864,7 @@
       ],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "214.5 cm²",
+        "summary": "68.25π cm²",
         "reasoning_route": [
           {
             "id": "Q6-M1",
@@ -901,29 +892,29 @@
           {
             "id": "Q6-M3",
             "kind": "TRANSFORM",
-            "action": "Substitute r = 3.5 cm, l = 12.5 cm, π = 22/7: (22/7) × 3.5 × (12.5 + 7) = 11 × 19.5 = 214.5 cm².",
-            "why_valid": "(22/7) × 3.5 = 11; 12.5 + 7 = 19.5; 11 × 19.5 = 214.5.",
+            "action": "Keep π exact and evaluate the coefficients: cone CSA = π(3.5)(12.5) = 43.75π cm² and hemisphere CSA = 2π(3.5)² = 24.5π cm²; total = 68.25π cm².",
+            "why_valid": "The two counted pieces are the disjoint exposed curved surfaces; their coefficients add to 68.25.",
             "inputs": [
-              "r = 3.5",
-              "l = 12.5",
-              "2r = 7"
+              "r = 3.5 cm",
+              "l = 12.5 cm"
             ],
-            "output": "214.5 cm²"
+            "output": "68.25π cm²"
           },
           {
             "id": "Q6-M4",
             "kind": "VERIFY",
-            "action": "Verify component breakdown: CSA(cone) = (22/7)×3.5×12.5 = 137.5 cm²; CSA(hemi) = 2×(22/7)×12.25 = 77.0 cm²; 137.5 + 77.0 = 214.5 cm².",
-            "why_valid": "Independent evaluation of each component verifies the factored calculation.",
+            "action": "Verify the boundary inventory: only the cone's curved surface and hemisphere's curved surface are exposed; the joined circular interface is internal.",
+            "why_valid": "A surface reachable only after separating the solids is not part of the assembled toy's exposed boundary.",
             "inputs": [
-              "137.5 cm²",
-              "77.0 cm²"
+              "cone curved surface",
+              "hemisphere curved surface",
+              "hidden circular join"
             ],
-            "output": "214.5 cm² verified"
+            "output": "Boundary inventory verified"
           }
         ],
         "crux_move_ref": "Q6-M2",
-        "check": "Cone CSA = 11 × 12.5 = 137.5 cm². Hemisphere CSA = 2 × 11 × 3.5 = 77 cm². Total exposed area = 137.5 + 77 = 214.5 cm².",
+        "check": "Coefficient check: 3.5×12.5 = 43.75 and 2×3.5² = 24.5; 43.75 + 24.5 = 68.25.",
         "verification_status": "CHECKED_BY_AUTHOR"
       },
       "family_ref": "FAM-MATH-SAV"
@@ -939,8 +930,7 @@
       "conditions": [
         "Cylindrical vessel of radius r = 7 cm and height h = 25 cm is open at top.",
         "Only outer curved surface and outside circular base are painted; inside is unpainted.",
-        "Before calculating, state exactly which surfaces are included.",
-        "Take π = 22/7."
+        "Before calculating, state exactly which surfaces are included."
       ],
       "extensions": {
         "grade9v3:source_custody": {
@@ -968,7 +958,7 @@
             "basis": "Explicit justification of included boundary surfaces before formula substitution."
           },
           "exam_source_badge": "Owner question",
-          "stable_crux_move": "State included surfaces: outer curved surface (2πrh) + outside circular base (πr²); then evaluate 22 × 57 = 1254 cm².",
+          "stable_crux_move": "State the painted surface inventory first, then evaluate 2πrh + πr² while keeping π exact.",
           "common_wrong_route": "Including both bases (closed cylinder) or painting both inside and outside without adhering to the prompt specification.",
           "expected_time_seconds": 120,
           "review_bottleneck": "Translate the painting instructions into an exact inventory of included and excluded surfaces before using any formula.",
@@ -984,27 +974,27 @@
           {
             "id": "Q7-C1",
             "move_ref": "Q7-M2",
-            "expression": "2 * (22/7) * 7 * 25",
-            "expected": 1100,
-            "unit": "cm²",
+            "expression": "2 * 7 * 25",
+            "expected": 350,
+            "unit": "π·cm² coefficient",
             "protected_result": true,
             "method": "INDEPENDENT_REEVALUATION"
           },
           {
             "id": "Q7-C2",
             "move_ref": "Q7-M2",
-            "expression": "(22/7) * 7**2",
-            "expected": 154,
-            "unit": "cm²",
+            "expression": "7**2",
+            "expected": 49,
+            "unit": "π·cm² coefficient",
             "protected_result": true,
             "method": "INDEPENDENT_REEVALUATION"
           },
           {
             "id": "Q7-C3",
             "move_ref": "Q7-M2",
-            "expression": "1100 + 154",
-            "expected": 1254,
-            "unit": "cm²",
+            "expression": "350 + 49",
+            "expected": 399,
+            "unit": "π·cm² coefficient",
             "protected_result": true,
             "method": "INDEPENDENT_REEVALUATION"
           }
@@ -1038,7 +1028,7 @@
       ],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "Surfaces included: 1. Entire outer curved surface (2πrh); 2. Outside circular base (πr²). (Top opening and all interior surfaces excluded). Total painted area = 1254 cm².",
+        "summary": "Surfaces included: outer curved surface and outside circular base only. Painted area = 399π cm².",
         "reasoning_route": [
           {
             "id": "Q7-M1",
@@ -1053,29 +1043,28 @@
           {
             "id": "Q7-M2",
             "kind": "TRANSFORM",
-            "action": "Substitute r = 7 cm, h = 25 cm, π = 22/7: (22/7) × 7 × (2(25) + 7) = 22 × 57 = 1254 cm².",
-            "why_valid": "22 × 57 = 22 × 50 + 22 × 7 = 1100 + 154 = 1254 cm².",
+            "action": "Substitute r = 7 cm and h = 25 cm: Area = 2π(7)(25) + π(7)² = 350π + 49π = 399π cm².",
+            "why_valid": "The curved-wall coefficient is 350 and the one painted base contributes 49; the top and all interior surfaces are excluded.",
             "inputs": [
               "r = 7 cm",
-              "h = 25 cm",
-              "π = 22/7"
+              "h = 25 cm"
             ],
-            "output": "1254 cm²"
+            "output": "399π cm²"
           },
           {
             "id": "Q7-M3",
             "kind": "VERIFY",
-            "action": "Verify by separate parts: outer CSA = 2 × (22/7) × 7 × 25 = 1100 cm²; base = (22/7) × 49 = 154 cm²; Total = 1100 + 154 = 1254 cm².",
-            "why_valid": "Sum of separate component evaluations confirms the factored result.",
+            "action": "Verify by separate parts: outer curved area = 350π cm² and outside base area = 49π cm²; total = 399π cm².",
+            "why_valid": "Independent evaluation of the two stated painted pieces reproduces the total.",
             "inputs": [
-              "1100 cm²",
-              "154 cm²"
+              "350π cm²",
+              "49π cm²"
             ],
-            "output": "1254 cm² verified"
+            "output": "399π cm² verified"
           }
         ],
         "crux_move_ref": "Q7-M1",
-        "check": "Outer CSA = 44 × 25 = 1100 cm². Circular base = 154 cm². Total = 1100 + 154 = 1254 cm².",
+        "check": "Surface inventory check: one curved exterior plus one exterior base is included; the open top and all interior surfaces are absent from the sum.",
         "verification_status": "CHECKED_BY_AUTHOR"
       },
       "family_ref": "FAM-MATH-SAV"
