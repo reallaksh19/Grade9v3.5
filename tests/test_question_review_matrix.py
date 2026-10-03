@@ -304,5 +304,40 @@ class QuestionReviewMatrixTests(unittest.TestCase):
         self.assertEqual(len(delta["persisting_findings"]), 1)
         self.assertNotIn("score", json.dumps(delta).lower())
 
+
+    def test_pr3_math_pilot_exercises_five_real_source_question_cells(self):
+        pilot = json.loads((REPO / "tests" / "fixtures" / "quality" / "qrt-pr3-math-pilot.v1.json").read_text(encoding="utf-8"))
+        self.assertEqual(pilot["status"], "PILOT_ONLY_NOT_CANONICAL")
+        self.assertEqual(pilot["source"]["pull_request"], 3)
+        self.assertEqual(pilot["source"]["observed_blueprint_ref"], "BP-CORE2-SOURCE-QUESTION@1.0.0")
+        self.assertEqual(pilot["source"]["active_blueprint_ref"], "BP-CORE2-SOURCE-QUESTION@1.5.0")
+        resolved_ids = set()
+        for item in pilot["items"]:
+            question = item["normalized_pilot_question"]
+            difficulty = question["difficulty"]
+            self.assertEqual(difficulty["score"], sum(difficulty["components"].values()))
+            self.assertEqual(set(difficulty["components"]), {
+                "concept_model_selection", "representation_translation", "reasoning_chain_length",
+                "algebra_computational_load", "trap_exception_sensitivity",
+            })
+            result = qrt.resolve_review(question, pilot["learner_profile"], self.matrix, self.vocab)
+            self.assertEqual(result["template_id"], item["expected_template_id"])
+            resolved_ids.add(result["template_id"])
+            self.assertTrue(item["render_observation"]["question_anchor_present"])
+            self.assertEqual(tuple(item["review"]), qrt.ASKS)
+            for ask in ("S1", "S2", "S3"):
+                self.assertTrue(item["review"][ask]["correctly_not_applicable"])
+                self.assertTrue(item["review"][ask]["not_applicable_reason"])
+        self.assertEqual(resolved_ids, {
+            "QRT-RETRIEVE-D1", "QRT-APPLY-D2", "QRT-MODEL-D2",
+            "QRT-SYNTHESIZE-D3", "QRT-JUSTIFY-D3",
+        })
+
+    def test_pr3_pilot_records_render_normalization_blockers_instead_of_claiming_acceptance(self):
+        pilot = json.loads((REPO / "tests" / "fixtures" / "quality" / "qrt-pr3-math-pilot.v1.json").read_text(encoding="utf-8"))
+        self.assertNotEqual(pilot["source"]["observed_blueprint_ref"], pilot["source"]["active_blueprint_ref"])
+        self.assertIn("no data-blueprint-ref", pilot["blocked_companion_path"]["reason"])
+        self.assertIn("not acceptance evidence", pilot["source"]["note"])
+
 if __name__ == "__main__":
     unittest.main()
