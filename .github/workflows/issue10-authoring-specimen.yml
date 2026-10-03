@@ -36,14 +36,18 @@ jobs:
             git push origin HEAD:feat/minimal-prompt-authoring-intake
           fi
       - name: Focused authoring and Blueprint regressions
+        shell: bash
         run: |
-          python3 Shared/tools/blueprint_spec.py --check
-          python3 Shared/tools/quality_contract.py --check
-          python3 -m unittest \
-            tests.test_authoring_applicability \
-            tests.test_blueprint_components \
-            tests.test_authoring_intake \
-            tests.test_question_review_matrix
+          set -o pipefail
+          {
+            python3 Shared/tools/blueprint_spec.py --check
+            python3 Shared/tools/quality_contract.py --check
+            python3 -m unittest \
+              tests.test_authoring_applicability \
+              tests.test_blueprint_components \
+              tests.test_authoring_intake \
+              tests.test_question_review_matrix
+          } 2>&1 | tee /tmp/issue10-focused-tests.log
       - name: Materialize Issue 10 inputs
         run: |
           PYTHONPATH=. python3 evidence/authoring/issue10-surface-areas-volumes/build_specimen.py
@@ -107,6 +111,7 @@ jobs:
           name: issue10-surface-areas-volumes-cold-run
           path: |
             /tmp/issue10-sav
+            /tmp/issue10-focused-tests.log
             evidence/authoring/issue10-surface-areas-volumes/generated
           if-no-files-found: error
           retention-days: 14
