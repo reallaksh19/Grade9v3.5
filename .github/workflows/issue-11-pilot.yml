@@ -44,7 +44,7 @@ jobs:
       - name: Validate PR 9 QRT contracts
         run: |
           python Shared/tools/question_review_matrix.py check
-          pytest -q tests/test_qrt_short_prompt.py tests/test_question_review_matrix.py
+          PYTHONPATH=. pytest -q tests/test_qrt_short_prompt.py tests/test_question_review_matrix.py
 
       - name: Validate package and owner-supplied bank
         run: |
