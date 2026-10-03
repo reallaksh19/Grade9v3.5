@@ -369,6 +369,30 @@ class Renderer(unittest.TestCase):
         self.assertIn("Why valid: The stated conditions match the model.", html)
         self.assertIn("Result: One valid model.", html)
 
+    def test_core1a_owner_bank_anchor_does_not_replay_answer_or_crux_before_core2_attempt(self):
+        question = {
+            "id": "Q-OWNER",
+            "stem": "An owner question whose answer must remain protected.",
+            "extensions": {"grade9v3:source_custody": {"authority_class": "OWNER_SUPPLIED_RAW_INPUT"}},
+            "answer": {
+                "summary": "SECRET ANSWER",
+                "check": "SECRET CHECK",
+                "reasoning_route": [{
+                    "id": "MOVE-SECRET",
+                    "action": "SECRET CRUX ACTION",
+                    "why_valid": "SECRET WHY",
+                    "output": "SECRET OUTPUT",
+                }],
+            },
+        }
+        html = render_core._core1a_worked_anchor(question, owner=True)
+        self.assertIn(question["stem"], html)
+        self.assertIn("Protected practice", html)
+        self.assertNotIn("SECRET ANSWER", html)
+        self.assertNotIn("SECRET CHECK", html)
+        self.assertNotIn("SECRET CRUX ACTION", html)
+        self.assertNotIn("SECRET OUTPUT", html)
+
     def test_core1a_repair_and_check_content_occupies_the_blueprint_support_lane(self):
         repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
         ctx = render_core.context(repo_manifest)

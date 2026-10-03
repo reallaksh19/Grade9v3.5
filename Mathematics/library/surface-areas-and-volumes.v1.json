@@ -523,13 +523,13 @@
         },
         {
           "id": "MIC-MAT-SAV-OPEN-CONTAINER-S2",
-          "action": "Calculate curved surface area 2πrh and add exactly one circular base area πr².",
-          "why_valid": "An open container has a bottom base but no top cover.",
+          "action": "Build a surface inventory: curved wall, bottom face, and top opening. Mark only material faces as countable.",
+          "why_valid": "An opening is not a material surface; inventorying boundaries before formulas prevents adding a non-existent lid.",
           "inputs": [
             "r",
             "h"
           ],
-          "output": "Total sheet area",
+          "output": "A countable-surface inventory with no numerical result",
           "role": "TRANSFORM"
         },
         {
@@ -585,7 +585,7 @@
       "construction_units": [
         {
           "id": "CU-MAT-SAV-OPEN-CONTAINER",
-          "decision": "Recognize that an open cylinder consists of the curved wall (2πrh) and one base (πr²), never two bases.",
+          "decision": "Inventory which boundaries are material surfaces and which are openings before forming any area expression.",
           "step_refs": [
             "MIC-MAT-SAV-OPEN-CONTAINER-S1",
             "MIC-MAT-SAV-OPEN-CONTAINER-S2",
@@ -768,7 +768,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "title": "Spheres and Hemispheres: Capacity and Volume",
+      "title": "Hemispheres: Curved Inner Surface versus Circular Opening",
       "bucket_id": "BUCKET-SURFACE-AREAS-VOLUMES",
       "primary_capability_ref": "CAP-MAT-SAV-SPHERE-HEMISPHERE",
       "intrinsic_badge": "MEDIUM",
@@ -781,33 +781,33 @@
       "teaching_path": [
         {
           "id": "MIC-MAT-SAV-SPHERE-HEMISPHERE-S1",
-          "action": "Identify solid type as a hemisphere and extract radius r.",
-          "why_valid": "Capacity corresponds to the internal volume of the bowl.",
+          "action": "Identify the bowl's material inner boundary and distinguish it from the circular mouth.",
+          "why_valid": "The circular mouth is an opening; the inner material is the curved half-sphere surface.",
           "inputs": [
             "Radius r"
           ],
-          "output": "Internal radius",
+          "output": "Curved material surface identified; mouth excluded",
           "role": "DECLARE"
         },
         {
           "id": "MIC-MAT-SAV-SPHERE-HEMISPHERE-S2",
-          "action": "Evaluate V = (2/3) × π × r³, simplifying common factors.",
-          "why_valid": "Hemisphere volume is exactly half of sphere volume (4/3)πr³.",
+          "action": "Relate the curved area of a hemisphere to half of a sphere's surface area.",
+          "why_valid": "A sphere has surface area 4πr², so the curved half-sphere boundary is half of that area; no flat circular face is added for an open bowl.",
           "inputs": [
             "r",
             "π"
           ],
-          "output": "Volume in cm³",
+          "output": "A curved-surface relation, with the opening still excluded",
           "role": "TRANSFORM"
         },
         {
           "id": "MIC-MAT-SAV-SPHERE-HEMISPHERE-S3",
-          "action": "Verify by doubling: 2 × V must equal full sphere volume (4/3)πr³.",
-          "why_valid": "Full sphere volume check confirms correct rational factor.",
+          "action": "Check the model by asking whether any physical flat disk exists across the mouth of the bowl.",
+          "why_valid": "If there is no material disk, total-solid-hemisphere area is the wrong model.",
           "inputs": [
             "Volume"
           ],
-          "output": "Verified capacity",
+          "output": "Boundary model verified",
           "role": "VERIFY"
         }
       ],
@@ -851,7 +851,7 @@
       "construction_units": [
         {
           "id": "CU-MAT-SAV-SPHERE-HEMISPHERE",
-          "decision": "Evaluate hemisphere internal capacity using V = (2/3)πr³, ensuring r is cubed and volume is halved relative to full sphere.",
+          "decision": "Treat the bowl's circular mouth as an opening and build the inner-area model only from the curved hemispherical material surface.",
           "step_refs": [
             "MIC-MAT-SAV-SPHERE-HEMISPHERE-S1",
             "MIC-MAT-SAV-SPHERE-HEMISPHERE-S2",
@@ -930,23 +930,23 @@
         },
         {
           "id": "MIC-MAT-SAV-COMPOSITE-SOLIDS-S2",
-          "action": "Calculate curved surface area for each exposed component and sum them: TSA = πrl + 2πr².",
-          "why_valid": "Total surface area is the sum of disjoint exterior exposed faces.",
+          "action": "Label every contact face INTERNAL and every reachable outer face EXPOSED before selecting any surface-area formulas.",
+          "why_valid": "A joined interface lies inside the composite object and cannot contribute to exposed boundary area.",
           "inputs": [
             "r",
             "l"
           ],
-          "output": "Total exposed surface area",
+          "output": "An exposed-versus-internal surface inventory",
           "role": "TRANSFORM"
         },
         {
           "id": "MIC-MAT-SAV-COMPOSITE-SOLIDS-S3",
-          "action": "Check that total area is strictly less than the sum of individual closed TSAs by 2πr².",
-          "why_valid": "Two flat circular faces were enclosed inside the joint, eliminating 2πr² of surface.",
+          "action": "Check the inventory by imagining painting the outside without separating the joined solids.",
+          "why_valid": "A paint test catches hidden faces that were accidentally counted as exposed.",
           "inputs": [
             "TSA"
           ],
-          "output": "Verified composite area",
+          "output": "A verified boundary inventory",
           "role": "VERIFY"
         }
       ],
@@ -992,7 +992,7 @@
       "construction_units": [
         {
           "id": "CU-MAT-SAV-COMPOSITE-SOLIDS",
-          "decision": "Identify the exposed boundary faces of joined solids (CSA cone + CSA hemisphere), strictly excluding the joined circular interface.",
+          "decision": "Distinguish exposed outer surfaces from the internal joining interface before constructing the question-specific area sum.",
           "step_refs": [
             "MIC-MAT-SAV-COMPOSITE-SOLIDS-S1",
             "MIC-MAT-SAV-COMPOSITE-SOLIDS-S2",
@@ -1743,7 +1743,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "GEOMETRIC_FIGURE",
-      "purpose": "Isometric cube showing edge length a = 7 cm and decomposition into six square faces of area 49 cm² each.",
+      "purpose": "Generic cube showing one edge a and six congruent square faces.",
       "required_elements": [
         "Regular hexahedron cube",
         "Six congruent square faces"
@@ -1770,14 +1770,14 @@
       ],
       "correspondence": [
         {
-          "element": "Regular hexahedron cube",
-          "symbol": "a",
-          "in_words": "edge length 7 cm"
+          "element": "One square face",
+          "symbol": "a²",
+          "in_words": "area of one face"
         },
         {
           "element": "Six congruent square faces",
-          "symbol": "6*a^2",
-          "in_words": "total surface area 294 cm²"
+          "symbol": "6a²",
+          "in_words": "total area relation before any question-specific substitution"
         }
       ],
       "reveal_stages": [
@@ -1820,7 +1820,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "GEOMETRIC_FIGURE",
-      "purpose": "Cylinder showing base diameter 14 cm converted to radius 7 cm and height 20 cm.",
+      "purpose": "Generic cylinder showing the distinction between diameter d, radius r, height h, and an unrolled lateral face.",
       "required_elements": [
         "Base diameter converted to radius",
         "Unrolled lateral rectangular face"
@@ -1847,14 +1847,14 @@
       ],
       "correspondence": [
         {
-          "element": "Base diameter converted to radius",
+          "element": "Diameter-radius relation",
           "symbol": "r = d/2",
-          "in_words": "radius r = 7 cm"
+          "in_words": "radius is half the diameter"
         },
         {
-          "element": "Unrolled lateral rectangular face",
-          "symbol": "2πrh",
-          "in_words": "curved surface area 880 cm²"
+          "element": "Unrolled lateral face",
+          "symbol": "circumference × height",
+          "in_words": "curved surface becomes a rectangle when unrolled"
         }
       ],
       "reveal_stages": [
@@ -1897,7 +1897,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "GEOMETRIC_FIGURE",
-      "purpose": "Decompose open cylinder into curved wall and circular base, excluding open top.",
+      "purpose": "Generic open cylinder used to inventory material boundaries without forming the question-specific final area sum.",
       "required_elements": [
         "Unrolled curved wall rectangle",
         "Bottom circular base"
@@ -1924,14 +1924,19 @@
       ],
       "correspondence": [
         {
-          "element": "Unrolled curved wall rectangle",
-          "symbol": "2πrh",
-          "in_words": "curved wall surface area 792 cm²"
+          "element": "Curved wall",
+          "symbol": "EXPOSED",
+          "in_words": "material boundary"
         },
         {
-          "element": "Bottom circular base",
-          "symbol": "πr²",
-          "in_words": "bottom circular base area 154 cm²"
+          "element": "Bottom base",
+          "symbol": "EXPOSED",
+          "in_words": "material boundary"
+        },
+        {
+          "element": "Top",
+          "symbol": "OPEN",
+          "in_words": "no material face"
         }
       ],
       "reveal_stages": [
@@ -1974,7 +1979,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "GEOMETRIC_FIGURE",
-      "purpose": "Vertical cone showing right triangle formed by vertical height h, radius r, and slant height hypotenuse l.",
+      "purpose": "Generic cone showing radius r, vertical height h, and slant height l as a right triangle.",
       "required_elements": [
         "Vertical right-angled triangle",
         "Conical curved surface"
@@ -2001,14 +2006,14 @@
       ],
       "correspondence": [
         {
-          "element": "Vertical right-angled triangle",
-          "symbol": "l = √(r² + h²)",
-          "in_words": "slant height hypotenuse 25 m"
+          "element": "Right-triangle section",
+          "symbol": "l² = r² + h²",
+          "in_words": "slant height is the hypotenuse"
         },
         {
-          "element": "Conical curved surface",
+          "element": "Curved cone boundary",
           "symbol": "πrl",
-          "in_words": "canvas curved surface area 550 m²"
+          "in_words": "curved-surface relation before question-specific substitution"
         }
       ],
       "reveal_stages": [
@@ -2051,10 +2056,10 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "GEOMETRIC_FIGURE",
-      "purpose": "Hemispherical bowl of radius 3.5 cm showing half-sphere volume relation (2/3)πr³.",
+      "purpose": "Generic open hemispherical bowl showing the curved inner material surface and the circular mouth as an opening.",
       "required_elements": [
-        "Hemispherical bowl boundary",
-        "Enclosed internal capacity"
+        "Curved hemispherical inner surface",
+        "Circular mouth marked OPEN"
       ],
       "relation_refs": [
         "REL-MAT-SAV-HEMISPHERE"
@@ -2078,41 +2083,33 @@
       ],
       "correspondence": [
         {
-          "element": "Hemispherical bowl boundary",
-          "symbol": "r = 3.5 cm",
-          "in_words": "internal radius"
+          "element": "Curved hemispherical inner surface",
+          "symbol": "half of 4πr²",
+          "in_words": "curved material boundary"
         },
         {
-          "element": "Enclosed internal capacity",
-          "symbol": "(2/3)πr³",
-          "in_words": "internal liquid capacity 89.83 cm³"
+          "element": "Circular mouth",
+          "symbol": "OPEN",
+          "in_words": "not a flat material face"
         }
       ],
       "reveal_stages": [
         {
           "id": "VIS-MAT-SAV-HEMI-1",
-          "label": "Hemispherical Bowl",
-          "purpose": "Establish situation: Hemispherical Bowl",
+          "label": "Open Hemispherical Bowl",
+          "purpose": "Identify the physical inner boundary.",
           "visible_elements": [
-            "Hemispherical bowl boundary"
+            "Curved hemispherical inner surface",
+            "Circular mouth marked OPEN"
           ]
         },
         {
           "id": "VIS-MAT-SAV-HEMI-2",
-          "label": "Half-Sphere Volume Relation",
-          "purpose": "Decompose components: Half-Sphere Volume Relation",
+          "label": "Curved Surface versus Opening",
+          "purpose": "Distinguish the curved material from the absent flat disk.",
           "visible_elements": [
-            "Hemispherical bowl boundary",
-            "Enclosed internal capacity"
-          ]
-        },
-        {
-          "id": "VIS-MAT-SAV-HEMI-3",
-          "label": "Capacity Evaluation",
-          "purpose": "Complete evaluation: Capacity Evaluation",
-          "visible_elements": [
-            "Hemispherical bowl boundary",
-            "Enclosed internal capacity"
+            "Curved hemispherical inner surface",
+            "Circular mouth marked OPEN"
           ]
         }
       ],
@@ -2128,7 +2125,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "GEOMETRIC_FIGURE",
-      "purpose": "Cone mounted on hemisphere showing exposed external surfaces and hidden internal circular joint.",
+      "purpose": "Generic joined solids diagram for classifying outer surfaces versus an internal contact interface.",
       "required_elements": [
         "Exposed conical and hemispherical outer surfaces",
         "Internal joined circular interface"
@@ -2155,14 +2152,14 @@
       ],
       "correspondence": [
         {
-          "element": "Exposed conical and hemispherical outer surfaces",
-          "symbol": "πrl + 2πr²",
-          "in_words": "total exposed surface area 214.5 cm²"
+          "element": "Outer component surfaces",
+          "symbol": "EXPOSED",
+          "in_words": "reachable outer boundary"
         },
         {
-          "element": "Internal joined circular interface",
-          "symbol": "hidden",
-          "in_words": "excluded internal junction"
+          "element": "Joined contact face",
+          "symbol": "INTERNAL",
+          "in_words": "hidden interface excluded from exposed-area inventory"
         }
       ],
       "reveal_stages": [
@@ -2205,7 +2202,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "GEOMETRIC_FIGURE",
-      "purpose": "Large solid sphere melting into 27 small spheres with volume conserved and surface area tripled.",
+      "purpose": "Generic before/after recasting diagram showing volume conservation without revealing a question-specific count.",
       "required_elements": [
         "Original solid sphere",
         "Array of 27 small solid spheres"
@@ -2232,14 +2229,14 @@
       ],
       "correspondence": [
         {
-          "element": "Original solid sphere",
+          "element": "Original solid",
           "symbol": "V_initial",
-          "in_words": "initial volume (4/3)πR³"
+          "in_words": "initial material volume"
         },
         {
-          "element": "Array of 27 small solid spheres",
-          "symbol": "n * V_final",
-          "in_words": "sum of volumes of 27 small spheres"
+          "element": "Recast solids",
+          "symbol": "ΣV_recast = V_initial",
+          "in_words": "combined material volume is conserved"
         }
       ],
       "reveal_stages": [
@@ -2282,7 +2279,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "GEOMETRIC_FIGURE",
-      "purpose": "Comparison of cone and cylinder of equal base and height establishing the 1 to 3 volume invariant.",
+      "purpose": "Generic cone and cylinder with equal base and height used to compare their volume formulas symbolically.",
       "required_elements": [
         "Cylinder of base radius r and height h",
         "Cone of equal base radius and height"
@@ -2309,14 +2306,14 @@
       ],
       "correspondence": [
         {
-          "element": "Cylinder of base radius r and height h",
+          "element": "Cylinder",
           "symbol": "πr²h",
-          "in_words": "cylinder volume"
+          "in_words": "reference volume expression"
         },
         {
-          "element": "Cone of equal base radius and height",
+          "element": "Cone",
           "symbol": "(1/3)πr²h",
-          "in_words": "cone volume equals one third cylinder volume"
+          "in_words": "same grouped dimensions with the cone factor"
         }
       ],
       "reveal_stages": [

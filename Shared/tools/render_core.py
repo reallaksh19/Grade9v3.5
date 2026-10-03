@@ -1111,11 +1111,29 @@ def core1(ctx: Ctx, m: dict) -> str:
 
 
 def _core1a_worked_anchor(question: dict, ctx: Ctx | None = None, owner: bool = False) -> str:
-    """Render WATCH ONE from governed answer structure without inventing missing explanation.
+    """Render a governed worked anchor without creating a pre-attempt answer side-channel.
 
-    `owner` is a question of the product's bank worked through as the unit's example: it is shown as its owner wrote it,
-    under its own identity and custody line."""
+    Canonical worked examples may show their structured reasoning. An owner-bank question that is
+    simultaneously assigned to Core2 is different: Core2 owns the attempt boundary, so Core1A may
+    name/show that practice item but must not replay its answer, reasoning route, result or check.
+    """
     answer = question.get("answer") or {}
+    stem = question.get("stem")
+    head = (f'<p class="g9-prov" data-g9-anchor-source>{esc(_identity(question))} · {esc(_custody(question))}</p>'
+            if owner else "")
+    stem_html = (f'<p class="g9-lines">{question_text(ctx, question, "stem", stem, "CORE1A")}</p>'
+                 if ctx and stem else para(stem))
+    if owner:
+        return (
+            head + stem_html
+            + block(
+                "protected_practice",
+                para("Use the construction above, then return to Core2 and complete this owner-supplied question independently. "
+                     "Its worked route and result stay behind the Core2 attempt boundary."),
+                title="Protected practice",
+            )
+        )
+
     route = answer.get("reasoning_route") or []
     if route:
         steps = "".join(
@@ -1128,27 +1146,23 @@ def _core1a_worked_anchor(question: dict, ctx: Ctx | None = None, owner: bool = 
         working = f'<ol class="g9-watch-steps">{steps}</ol>'
     else:
         working = items(answer.get("reasoning"), True)
-    stem = question.get("stem")
-    head = (f'<p class="g9-prov" data-g9-anchor-source>{esc(_identity(question))} · {esc(_custody(question))}</p>'
-            if owner else "")
     return (
-        head
-        + (f'<p class="g9-lines">{question_text(ctx, question, "stem", stem, "CORE1A")}</p>' if ctx and stem else para(stem))
-        + working
+        head + stem_html + working
         + block("worked_result", para(answer.get("summary")), title="Result")
         + block("worked_check", para(answer.get("check")), title="Check")
     )
 
 
 def _core1a_question_bridge(ctx: Ctx, unit: dict, questions: list[dict], toughest: dict | None) -> str:
-    """Say which source question a unit builds toward, and the move learners most often miss in it."""
+    """Name the practice question and its bottleneck without leaking its protected move or answer."""
     if not questions:
         return ""
     selected = "CORE2" in product_manifest.selected_output_roles(ctx.manifest)
     rows = []
     for question in questions:
-        difficulty = (((question.get("extensions") or {}).get(toughest_concept.ANALYSIS_KEY) or {}).get("difficulty") or {})
-        move = toughest_concept.crux_move(question) or {}
+        analysis = ((question.get("extensions") or {}).get(toughest_concept.ANALYSIS_KEY) or {})
+        difficulty = analysis.get("difficulty") or {}
+        bottleneck = analysis.get("review_bottleneck")
         hardest = bool(toughest and toughest["question_ref"] == question["id"])
         link = (f' <a class="g9-bridge-link" data-g9-practice-link data-g9-question-ref="{esc(question["id"])}" href="core2.html#{esc(question["id"])}">'
                 f'Try it in Core2</a>') if selected else ""
@@ -1156,7 +1170,8 @@ def _core1a_question_bridge(ctx: Ctx, unit: dict, questions: list[dict], toughes
             f'<li data-g9-bridge-question="{esc(question["id"])}"><strong>{esc(toughest_concept.label_of(question))}</strong>'
             f'{" · " + esc(difficulty["band"]) if difficulty.get("band") else ""}'
             f'{" · the hardest question in this set" if hardest else ""}'
-            f'{"<br>The move learners miss: " + esc(move["action"]) if move.get("action") else ""}{link}</li>')
+            f'{"<br>What it turns on: " + esc(bottleneck) if isinstance(bottleneck, str) and bottleneck else ""}{link}</li>'
+        )
     return block("question_bridge", "<ul>" + "".join(rows) + "</ul>", title="This unit builds toward")
 
 
