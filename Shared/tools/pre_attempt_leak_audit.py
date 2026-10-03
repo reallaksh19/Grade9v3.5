@@ -51,6 +51,22 @@ def audit(bank: dict[str, Any], package: dict[str, Any], repo_root: Path) -> dic
             })
 
         analysis = (question.get("extensions") or {}).get("grade9v3:analysis") or {}
+        for index, condition in enumerate(question.get("conditions") or []):
+            resources.append({
+                "kind": "CORE2_CONDITION",
+                "ref": f"{qid}.conditions[{index}]",
+                "text": str(condition),
+            })
+        resources.append({
+            "kind": "CORE2_DIFFICULTY_WHY",
+            "ref": f"{qid}.extensions.grade9v3:analysis.difficulty.basis",
+            "text": str((analysis.get("difficulty") or {}).get("basis") or ""),
+        })
+        resources.append({
+            "kind": "CORE2_TRAP",
+            "ref": f"{qid}.extensions.grade9v3:analysis.common_wrong_route",
+            "text": str(analysis.get("common_wrong_route") or ""),
+        })
         resources.append({
             "kind": "CORE2_BOTTLENECK",
             "ref": f"{qid}.extensions.grade9v3:analysis.review_bottleneck",
