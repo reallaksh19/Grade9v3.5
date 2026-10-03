@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-g9-shell data-g9-role="CORE1A" data-g9-product="PRODUCT-PHY-KIN-2D-MOTION">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Motion in a Plane (2D) · Core Study (Core 1A) · Grade9V3.5</title>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="../../css/modern-learner.css">
+  <style>
+    :root {
+      --g9-space: clamp(16px, 2vw, 28px);
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.2);
+    }
+    main { max-width: 1240px; margin: 0 auto; padding: var(--g9-space); }
+    .g9-core1a-book { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+    .g9-core1a-book h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; color: var(--text-main); }
+    .g9-split { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+    @media (max-width: 960px) { .g9-split { grid-template-columns: 1fr; } }
+    .g9-card-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 22px; margin-bottom: 20px; }
+    
+    .g9-grounding-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+    @media (max-width: 640px) { .g9-grounding-grid { grid-template-columns: 1fr; } }
+    .g9-grounding-cell { padding: 14px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--bg-soft); }
+    .g9-grounding-cell h4 { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+    .g9-grounding-happening { border-left: 4px solid #38bdf8; }
+    .g9-grounding-happening h4 { color: #38bdf8; }
+    .g9-grounding-keyidea { border-left: 4px solid #10b981; }
+    .g9-grounding-keyidea h4 { color: #10b981; }
+
+    .g9-step-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: cstep; }
+    .g9-step-item { counter-increment: cstep; position: relative; padding: 14px 16px 14px 50px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); }
+    .g9-step-item::before { content: counter(cstep); position: absolute; left: 14px; top: 14px; width: 26px; height: 26px; border-radius: 50%; background: rgba(56, 189, 248, 0.15); color: #38bdf8; font-weight: 800; display: grid; place-items: center; font-size: 14px; border: 1px solid rgba(56, 189, 248, 0.3); }
+    
+    .g9-worked-card { border-left: 4px solid #38bdf8; background: var(--bg-soft); padding: 18px 20px; border-radius: 0 var(--radius-md) var(--radius-md) 0; margin: 16px 0; }
+    .g9-worked-card h4 { margin-bottom: 8px; font-size: 15px; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.04em; }
+    .g9-trap-card { border-left: 4px solid #ef4444; background: rgba(239, 68, 68, 0.08); padding: 14px 18px; border-radius: 0 var(--radius-md) var(--radius-md) 0; margin: 14px 0; }
+    .g9-trap-card h5 { color: #ef4444; font-size: 14px; font-weight: 800; text-transform: uppercase; margin-bottom: 4px; }
+
+    .g9-visual-container { position: sticky; top: 80px; }
+    .g9-svg-wrap { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px; margin-bottom: 18px; text-align: center; }
+    .g9-svg-wrap svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+    .g9-svg-caption { font-size: 14px; color: var(--text-muted); margin-top: 10px; font-style: italic; }
+
+    .g9-formula-box {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px 18px;
+      margin: 14px 0;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .g9-disclosure { border: 1px solid var(--border); border-radius: var(--radius-sm); margin: 10px 0; overflow: hidden; }
+    .g9-disclosure summary { padding: 12px 16px; background: var(--bg-soft); cursor: pointer; font-weight: 700; color: var(--text-main); user-select: none; }
+    .g9-disclosure summary:hover { color: #38bdf8; }
+    .g9-disclosure-body { padding: 14px 16px; background: var(--bg-card); font-size: 14.5px; line-height: 1.6; border-top: 1px solid var(--border); }
+    
+    .g9-actions-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <header class="g9-shell-header">
+    <div class="g9-header-inner">
+      <a href="../../index.html" class="g9-brand">
+        <span class="logo-icon">⚡</span>
+        <span class="brand-title">Grade9V3.5</span>
+        <span class="g9-brand-badge">Learner Platform</span>
+      </a>
+      <nav class="g9-header-nav" aria-label="Portal Navigation">
+        <a href="../../index.html">Home</a>
+        <a href="../../physics/index.html" class="active">Physics</a>
+        <a href="../../chemistry/index.html">Chemistry</a>
+        <a href="../../mathematics/index.html">Mathematics</a>
+        <a href="../../question-bank/index.html">Question Bank</a>
+        <a href="../../atlas/index.html">Atlas &amp; Rungs</a>
+      </nav>
+      <div class="g9-header-actions">
+        <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search">
+          <span class="g9-btn-icon">🔍</span>
+          <span class="g9-btn-text">Search</span>
+        </button>
+        <button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings" aria-label="Display & Theme">
+          <span class="g9-btn-icon">🌙 / ☀️</span>
+          <span class="g9-btn-text">Display</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="g9-breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="g9-breadcrumbs">
+      <a href="../../index.html">Home</a>
+      <span>/</span>
+      <a href="../index.html">Physics</a>
+      <span>/</span>
+      <a href="index.html">Motion in a Plane (2D)</a>
+      <span>/</span>
+      <span>Core 1A: Core Study</span>
+    </div>
+  </nav>
+
+  <main>
+    <section class="g9-core1a-book">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:12px;">
+        <span class="g9-card-tag g9-tag-physics">Core 1A · Core Study Against Topic</span>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a href="../../standalone/practice/core1a-physics-motion-2d-ncert-tablet.html" class="g9-btn-action g9-btn-learn" style="padding:6px 14px; font-size: 14px;" title="NCERT Foundation Tablet">📖 NCERT Foundation Tablet &rarr;</a>
+          <a href="../../standalone/practice/core1a-sba-motion-in-a-plane-master-tablet.html" class="g9-btn-action g9-btn-learn" style="padding:6px 14px; font-size: 14px;" title="SBA Master Suite Tablet">📱 SBA Master Suite Tablet &rarr;</a>
+          <a href="../../standalone/practice/core2-motion-in-a-plane-tablet.html" class="g9-btn-action g9-btn-practice" style="padding:6px 14px; font-size: 14px;" title="Core 2 Challenge Suite">🎯 Core 2 Challenge Tablet &rarr;</a>
+        </div>
+      </div>
+      <h1>Motion in a Plane: Projectiles &amp; Orthogonal Components</h1>
+      <p style="color: var(--text-muted); font-size: 15px; margin-bottom: 20px;">
+        Master two-dimensional kinematics through orthogonal decomposition: independent horizontal uniform motion (\(a_x = 0\)) and vertical free-fall acceleration (\(a_y = -g\)) linked by a shared clock (\(t\)).
+      </p>
+
+      <div class="g9-split">
+        <!-- Left: Explanations, Procedures, Worked Examples -->
+        <div class="g9-content-col">
+          
+          <!-- UNIT 1: Orthogonal Independence -->
+          <article class="g9-card-panel" id="unit-01">
+            <h2 style="font-size: 20px; font-weight: 800; color: var(--text-main); margin-bottom: 8px;">
+              Unit 1 · Orthogonal Independence &amp; Shared Clock
+            </h2>
+            <div class="g9-grounding-grid">
+              <div class="g9-grounding-cell g9-grounding-happening">
+                <h4>What is Happening?</h4>
+                <p style="font-size: 14px; line-height: 1.5; color: var(--text-secondary);">
+                  A projectile is launched with velocity \(u\) at an angle \(\theta\). The horizontal and vertical motions unfold simultaneously without cross-talk or force interference.
+                </p>
+              </div>
+              <div class="g9-grounding-cell g9-grounding-keyidea">
+                <h4>Key Idea</h4>
+                <p style="font-size: 14px; line-height: 1.5; color: var(--text-secondary);">
+                  Time \(t\) is the master scalar parameter binding the two independent 1D motions: \(x(t) = (u\cos\theta)t\) and \(y(t) = (u\sin\theta)t - \frac{1}{2}gt^2\).
+                </p>
+              </div>
+            </div>
+
+            <div class="g9-formula-box">
+              <div><strong>Horizontal Axis:</strong> &nbsp; \(u_x = u\cos\theta, \quad a_x = 0, \quad v_x(t) = u\cos\theta, \quad x(t) = u_x t\)</div>
+              <div><strong>Vertical Axis:</strong> &nbsp; \(u_y = u\sin\theta, \quad a_y = -g, \quad v_y(t) = u\sin\theta - gt, \quad y(t) = u_y t - \frac{1}{2}gt^2\)</div>
+              <div><strong>Trajectory Equation:</strong> &nbsp; \(y = x\tan\theta - \frac{gx^2}{2u^2\cos^2\theta} \quad (\text{Cartesian Parabola})\)</div>
+            </div>
+
+            <h3 style="font-size: 16px; font-weight: 700; margin: 14px 0 8px;">The 4 Essential Ground-to-Ground Formulas</h3>
+            <ol class="g9-step-list">
+              <li class="g9-step-item">
+                <strong>Time of Flight (\(T\)):</strong> Set \(y = 0 \implies t(u\sin\theta - \frac{1}{2}gt) = 0 \implies T = \frac{2u\sin\theta}{g}\).
+              </li>
+              <li class="g9-step-item">
+                <strong>Maximum Height (\(H_{\max}\)):</strong> At the apex, vertical velocity vanishes (\(v_y = 0\)): \(0 = u_y^2 - 2gH \implies H = \frac{u^2\sin^2\theta}{2g}\).
+              </li>
+              <li class="g9-step-item">
+                <strong>Horizontal Range (\(R\)):</strong> Substitute \(t = T\) into horizontal motion: \(R = u_x T = \frac{u^2\sin 2\theta}{g}\).
+              </li>
+              <li class="g9-step-item">
+                <strong>Complementary Angle Symmetries:</strong> Angles \(\theta\) and \((90^\circ - \theta)\) yield identical horizontal ranges: \(R(\theta) = R(90^\circ - \theta)\).
+              </li>
+            </ol>
+
+            <div class="g9-trap-card">
+              <h5>⚠️ Critical Trap: The Apex Velocity Fallacy</h5>
+              <p style="font-size: 14px; margin: 0; color: var(--text-main);">
+                Never state that velocity is zero at the highest point! At the apex, only vertical velocity vanishes (\(v_y = 0\)). The horizontal velocity persists: \(\vec{v}_{\text{apex}} = (u\cos\theta)\hat{i} \ne 0\). The acceleration at apex is still \(-g\hat{j}\), NOT zero.
+              </p>
+            </div>
+          </article>
+
+          <!-- UNIT 2: Asymmetric Clifftop & Elevated Launch -->
+          <article class="g9-card-panel" id="unit-02">
+            <h2 style="font-size: 20px; font-weight: 800; color: var(--text-main); margin-bottom: 8px;">
+              Unit 2 · Asymmetric Flight &amp; Elevated Clifftop Launches
+            </h2>
+            <p style="font-size: 14.5px; line-height: 1.6; color: var(--text-secondary);">
+              When launched from height \(h\) above ground (\(y(0) = h\)), landing occurs when \(y(t) = 0 \implies h + u_y t - \frac{1}{2}gt^2 = 0\). Time of flight is solved via the quadratic formula:
+            </p>
+            <div class="g9-formula-box">
+              \[t_{\text{land}} = \frac{u\sin\theta + \sqrt{u^2\sin^2\theta + 2gh}}{g}\]
+            </div>
+
+            <div class="g9-worked-card">
+              <h4>Worked Problem: Horizontal Cliff Launch</h4>
+              <p style="font-size: 14px; line-height: 1.6; margin-bottom: 8px;">
+                A ball is rolled horizontally off a clifftop of height \(h = 45\,\text{m}\) with speed \(u = 20\,\text{m/s}\). Take \(g = 10\,\text{m/s}^2\).
+              </p>
+              <ol style="margin-left: 20px; font-size: 14px; line-height: 1.6;">
+                <li><strong>Vertical Time:</strong> \(u_y = 0 \implies h = \frac{1}{2}gt^2 \implies 45 = 5t^2 \implies t = 3\,\text{s}\).</li>
+                <li><strong>Horizontal Drift (Range):</strong> \(x = u_x t = 20 \times 3 = 60\,\text{m}\).</li>
+                <li><strong>Impact Velocity:</strong> \(v_x = 20\,\text{m/s}\), \(v_y = -gt = -30\,\text{m/s}\). Net speed \(v = \sqrt{20^2 + (-30)^2} = \sqrt{1300} \approx 36.06\,\text{m/s}\).</li>
+                <li><strong>Impact Angle:</strong> \(\tan\phi = \frac{|v_y|}{v_x} = \frac{30}{20} = 1.5 \implies \phi \approx 56.3^\circ\) below horizontal.</li>
+              </ol>
+            </div>
+          </article>
+        </div>
+
+        <!-- Right: Interactive Telemetry & Visual Bridge -->
+        <div class="g9-sidebar-col">
+          <div class="g9-visual-container">
+            <div class="g9-svg-wrap">
+              <svg viewBox="0 0 460 280" role="img" aria-label="Parabolic Projectile Trajectory with Vector Components">
+                <defs>
+                  <marker id="v-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M0 0 L10 5 L0 10 Z" fill="#38bdf8"/>
+                  </marker>
+                  <marker id="g-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M0 0 L10 5 L0 10 Z" fill="#ef4444"/>
+                  </marker>
+                </defs>
+                <!-- Axes -->
+                <line x1="40" y1="240" x2="420" y2="240" stroke="#475569" stroke-width="2"/>
+                <line x1="40" y1="240" x2="40" y2="30" stroke="#475569" stroke-width="2"/>
+                <text x="425" y="245" fill="#94a3b8" font-size="13" font-weight="700">x</text>
+                <text x="35" y="22" fill="#94a3b8" font-size="13" font-weight="700">y</text>
+                
+                <!-- Parabolic Path -->
+                <path d="M 40 240 Q 230 40 400 240" fill="none" stroke="#38bdf8" stroke-width="3" stroke-dasharray="none"/>
+                
+                <!-- Launch Vector u -->
+                <line x1="40" y1="240" x2="110" y2="150" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#v-arr)"/>
+                <text x="115" y="145" fill="#38bdf8" font-size="14" font-weight="800">u</text>
+                <!-- Components -->
+                <line x1="40" y1="240" x2="110" y2="240" stroke="#10b981" stroke-width="2" stroke-dasharray="3,3"/>
+                <text x="70" y="258" fill="#10b981" font-size="12" font-weight="700">u cosθ</text>
+                <line x1="40" y1="240" x2="40" y2="150" stroke="#fbbf24" stroke-width="2" stroke-dasharray="3,3"/>
+                <text x="8" y="195" fill="#fbbf24" font-size="12" font-weight="700">u sinθ</text>
+
+                <!-- Apex Point -->
+                <circle cx="220" cy="140" r="5" fill="#38bdf8"/>
+                <line x1="220" y1="140" x2="270" y2="140" stroke="#38bdf8" stroke-width="2" marker-end="url(#v-arr)"/>
+                <text x="275" y="145" fill="#38bdf8" font-size="12" font-weight="700">v_x = u cosθ</text>
+                <!-- Gravity at apex -->
+                <line x1="220" y1="140" x2="220" y2="190" stroke="#ef4444" stroke-width="2" marker-end="url(#g-arr)"/>
+                <text x="228" y="180" fill="#ef4444" font-size="12" font-weight="700">g (down)</text>
+
+                <!-- Apex Height Marker -->
+                <line x1="40" y1="140" x2="220" y2="140" stroke="#64748b" stroke-width="1" stroke-dasharray="4,4"/>
+                <text x="46" y="132" fill="#94a3b8" font-size="12">H_max</text>
+
+                <!-- Landing Point -->
+                <circle cx="400" cy="240" r="5" fill="#38bdf8"/>
+                <text x="390" y="260" fill="#94a3b8" font-size="12" font-weight="700">Range R</text>
+              </svg>
+              <div class="g9-svg-caption">Figure: Cartesian resolution into independent orthogonal kinematic channels.</div>
+            </div>
+
+            <div class="g9-card-panel" style="padding: 16px;">
+              <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 10px;">Interactive Simulation Engines</h4>
+              <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 14px;">
+                Explore trajectory telemetry, live velocity vector decomposition, and landing calculations:
+              </p>
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <a href="explorers/motion-in-a-plane/index.html" target="_blank" rel="noopener" class="g9-btn-action g9-btn-explore" style="font-size:14px; justify-content:center;">
+                  ⚡ Parabolic Trajectory Simulator &rarr;
+                </a>
+                <a href="../motion-in-2d/explorers/motions_in_2d/index.html" target="_blank" rel="noopener" class="g9-btn-action g9-btn-explore" style="font-size:14px; justify-content:center;">
+                  ⚡ Asymmetric Cliff Launch Rig &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="g9-actions-bar">
+        <a class="g9-btn-action g9-btn-learn" href="../../standalone/practice/core1a-physics-motion-2d-ncert-tablet.html">
+          <span>📖 Open NCERT Foundation Tablet (Revised Edition) &rarr;</span>
+        </a>
+        <a class="g9-btn-action g9-btn-learn" href="../../standalone/practice/core1a-sba-motion-in-a-plane-master-tablet.html">
+          <span>📱 Open SBA Master Suite Tablet &rarr;</span>
+        </a>
+        <a class="g9-btn-action g9-btn-practice" href="../../standalone/practice/core2-motion-in-a-plane-tablet.html">
+          <span>🎯 Launch Core 2 Challenge Tablet &rarr;</span>
+        </a>
+        <a class="g9-btn-action g9-btn-qb g9-btn-practice" href="../../question-bank/index.html?subject=Physics&topic=motion-2d&mode=study">
+          <span>📚 Practice 2D Motion in Question Bank &rarr;</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="g9-footer">
+    <p>Grade9V3.5 Concept-Centred Learner Platform · Authentic Question Bank &amp; Concepts</p>
+  </footer>
+
+  <script src="../../js/display-controls.js"></script>
+  <script src="../../js/site-header.js" data-site-root="../../"></script>
+  <script>
+    if (window.renderMathInElement) {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "$", right: "$", display: false},
+          {left: "\\(", right: "\\)", display: false},
+          {left: "\\[", right: "\\]", display: true}
+        ],
+        throwOnError: false
+      });
+    }
+  </script>
+</body>
+</html>

@@ -254,14 +254,24 @@ def _parse_html_title(path: Path) -> str:
     title = m.group(1).strip()
     for entity, char in [("&amp;", "&"), ("&middot;", "\u00b7"), ("&lt;", "<"), ("&gt;", ">"), ("&quot;", '"')]:
         title = title.replace(entity, char)
-    for sep in [" | ", " \u00b7 ", " \u2014 ", " - "]:
+
+    # If title has a generic prefix like "GRADE 9 PHYSICS - ...", extract descriptive part
+    for sep in [" - ", " \u2014 ", " \u00b7 ", " | "]:
         if sep in title:
-            title = title.split(sep)[0].strip()
-            break
+            parts = title.split(sep)
+            first_norm = parts[0].strip().lower()
+            if first_norm.startswith(("grade 9", "grade9", "g9")):
+                title = sep.join(parts[1:]).strip()
+                break
+            else:
+                title = parts[0].strip()
+                break
     return title or path.stem
 
 
 def _subject_from_name(name: str, title: str, subjects: dict[str, str]) -> str:
+    if "vector-algebra-3d" in name.lower() or "vector-algebra-3d" in title.lower():
+        return "Mathematics"
     for s_slug, s_name in subjects.items():
         if s_slug in name.lower() or s_name.lower() in title.lower():
             return s_name
@@ -278,6 +288,8 @@ def _subject_from_name(name: str, title: str, subjects: dict[str, str]) -> str:
 
 
 def _topic_refs_from_name(name: str) -> list[str]:
+    if "vector-algebra-3d" in name:
+        return ["math.vectors"]
     if "nlm" in name or "friction" in name:
         return ["phy.nlm"]
     if "vector" in name:
@@ -310,6 +322,8 @@ def _topic_refs_from_name(name: str) -> list[str]:
 
 
 def _capability_refs_from_name(name: str) -> list[str]:
+    if "vector-algebra-3d" in name:
+        return ["MIC-MATH-VECTOR-ALGEBRA"]
     if "friction" in name:
         return ["MIC-PHY-NLM-FRICTION"]
     if "nlm" in name:
@@ -374,6 +388,17 @@ def discover_standalone_practice(repo_root: Path, subjects: dict[str, str], exis
         topic_refs = _topic_refs_from_name(name)
         capability_refs = _capability_refs_from_name(name)
 
+        # Scrape sub-unit headings (h2 tags) for rich deep search indexing
+        aliases = []
+        try:
+            content_text = html_path.read_text(encoding="utf-8", errors="ignore")
+            for h2 in re.findall(r'<h2[^>]*>(.*?)</h2>', content_text, re.I | re.S):
+                clean_h2 = re.sub(r'<[^>]+>', '', h2).strip()
+                if clean_h2 and len(clean_h2) > 3 and clean_h2 not in aliases:
+                    aliases.append(clean_h2)
+        except Exception:
+            pass
+
         records.append({
             "schema": "grade9v3-resource/v1",
             "id": resource_id,
@@ -393,7 +418,7 @@ def discover_standalone_practice(repo_root: Path, subjects: dict[str, str], exis
             "platform_capabilities": [],
             "search": {
                 "title": title,
-                "aliases": [],
+                "aliases": aliases,
                 "visibility": "LEARNER"
             },
             "source": {
@@ -429,7 +454,7 @@ def discover_opaque_explorers(repo_root: Path, subjects: dict[str, str]) -> list
         {"id": "phy.nlm.connected-blocks.explorer", "rel_path": "physics/nlm/explorers/connected-blocks/index.html", "subject": "Physics", "topics": ["phy.nlm"], "caps": ["MIC-PHY-NLM-FIRST-LAW"], "title": "Connected Blocks Dynamics", "aliases": ["connected blocks", "tension", "contact forces"]},
         {"id": "phy.motion-1d.motion-in-1d.explorer", "rel_path": "physics/motion-1d/explorers/motion_in_1d/index.html", "subject": "Physics", "topics": ["phy.motion-1d"], "caps": ["MIC-PHY-KIN-1D-MOTION"], "title": "Motion in 1D Interactive Suite", "aliases": ["motion 1d", "kinematics 1d", "free fall"]},
         {"id": "phy.motion-2d.motion-in-a-plane.explorer", "rel_path": "physics/motion-2d/explorers/motion-in-a-plane/index.html", "subject": "Physics", "topics": ["phy.motion-2d"], "caps": ["MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"], "title": "Motion in a Plane Research Suite", "aliases": ["projectile motion", "motion in a plane", "trajectories"]},
-        {"id": "phy.motion-in-2d.motions-in-2d.explorer", "rel_path": "physics/motion-in-2d/explorers/motions_in_2d/index.html", "subject": "Physics", "topics": ["phy.motion-2d"], "caps": ["MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"], "title": "2D Motion Master Suite", "aliases": ["2d kinematics", "relative motion", "river boat"]},
+        {"id": "phy.motion-in-2d.motions-in-2d.explorer", "rel_path": "physics/motion-in-2d/explorers/motions_in_2d/index.html", "subject": "Physics", "topics": ["phy.motion-2d"], "caps": ["MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"], "title": "2D Motion Master Suite", "aliases": ["2d kinematics", "relative motion", "river boat", "complementary trajectories", "complementary symmetries", "invariants", "apex kinematics", "curvature", "cliff rig", "event clocks", "fbd rig", "trajectory", "trajectories"]},
         {"id": "chem.bonding.chemical-bonding.explorer", "rel_path": "chemistry/bonding/explorers/chemical_bonding/index.html", "subject": "Chemistry", "topics": ["chem.bonding"], "caps": ["MIC-CHEM-BONDING"], "title": "Chemical Bonding & Molecular Structure Explorer", "aliases": ["chemical bonding", "vsepr", "lewis structures", "dipole"]},
         {"id": "chem.mole.mole-concept.explorer", "rel_path": "chemistry/some-basic-concepts/explorers/mole_concept/index.html", "subject": "Chemistry", "topics": ["chem.mole"], "caps": ["MIC-CHEM-MOLE-CONCEPT"], "title": "Mole Concept & Stoichiometry Explorer", "aliases": ["mole concept", "stoichiometry", "limiting reagent"]},
         {"id": "chem.gases.behaviour-of-gases.explorer", "rel_path": "chemistry/gases/explorers/behaviour_of_gases/index.html", "subject": "Chemistry", "topics": ["chem.gases"], "caps": ["MIC-CHEM-GAS-LAWS"], "title": "Behaviour of Gases Explorer", "aliases": ["gas laws", "ideal gas", "maxwell speed distribution"]},
@@ -591,41 +616,135 @@ def discover_owner_lab_surfaces(repo_root: Path) -> list[dict]:
 
 def discover_core1a_books(repo_root: Path) -> list[dict]:
     books = []
-    chem_c1a = repo_root / "public" / "chemistry" / "bonding" / "core1a.html"
-    if chem_c1a.exists():
-        books.append({
-            "schema": "grade9v3-resource/v1",
+    specs = [
+        {
             "id": "chem.bonding.core1a",
-            "resource_kind": "STRUCTURED_PRODUCT",
-            "learner_role": "LEARN",
-            "audience": "LEARNER",
-            "presentation": "FULL_PAGE",
-            "classification": {
-                "subject_ref": "Chemistry",
-                "topic_refs": ["chem.bonding"],
-                "capability_refs": ["MIC-CHEM-BONDING"]
-            },
-            "artifact": {
-                "entrypoint": "chemistry/bonding/core1a.html",
-                "generated": True
-            },
-            "platform_capabilities": ["staged-representation", "worked-anchor", "related-practice"],
-            "search": {
-                "title": "Chemical Bonding · VSEPR & Geometry — Learn",
-                "aliases": ["chemical bonding", "vsepr", "molecular geometry", "bonding core1a"],
-                "visibility": "LEARNER"
-            },
-            "source": {
-                "authority_ref": "chemistry/bonding/core1a.html",
-                "generator_ref": "Shared/tools/build_learner_ui.py"
-            },
-            "validation": {
-                "academic_evidence_ref": None,
-                "structural_evidence_ref": None,
-                "browser_evidence_ref": None,
-                "publication_evidence_ref": None
-            }
-        })
+            "subject": "Chemistry",
+            "topic": "chem.bonding",
+            "caps": ["MIC-CHEM-BONDING"],
+            "ep": "chemistry/bonding/core1a.html",
+            "title": "Chemical Bonding · VSEPR & Geometry — Learn",
+            "aliases": ["chemical bonding", "vsepr", "molecular geometry", "bonding core1a"]
+        },
+        {
+            "id": "chem.gases.core1a",
+            "subject": "Chemistry",
+            "topic": "chem.gases",
+            "caps": ["MIC-CHEM-GAS-LAWS"],
+            "ep": "chemistry/gases/core1a.html",
+            "title": "Behaviour of Gases & Molecular Speeds · Core 1A Learn",
+            "aliases": ["gases", "gas laws", "maxwell speeds", "gases core1a"]
+        },
+        {
+            "id": "chem.redox.core1a",
+            "subject": "Chemistry",
+            "topic": "chem.redox",
+            "caps": ["MIC-CHEM-REDOX"],
+            "ep": "chemistry/redox/core1a.html",
+            "title": "Redox Reactions & Oxidation Numbers · Core 1A Learn",
+            "aliases": ["redox", "oxidation numbers", "electron transfer", "redox core1a"]
+        },
+        {
+            "id": "chem.mole.core1a",
+            "subject": "Chemistry",
+            "topic": "chem.mole",
+            "caps": ["MIC-CHEM-MOLE-CONCEPT"],
+            "ep": "chemistry/some-basic-concepts/core1a.html",
+            "title": "Mole Concept & Stoichiometry · Core 1A Learn",
+            "aliases": ["mole concept", "stoichiometry", "limiting reagent", "mole core1a"]
+        },
+        {
+            "id": "math.coordinate-geometry.core1a",
+            "subject": "Mathematics",
+            "topic": "math.coordinate-geometry",
+            "caps": ["MIC-MATH-COORDINATE-GEOMETRY"],
+            "ep": "mathematics/coordinate-geometry/core1a.html",
+            "title": "Coordinate Geometry: Cartesian Plane & Coordinates — Learn",
+            "aliases": ["coordinate geometry", "cartesian plane", "quadrants", "coordinates core1a"]
+        },
+        {
+            "id": "math.euclids-geometry.core1a",
+            "subject": "Mathematics",
+            "topic": "math.euclids-geometry",
+            "caps": ["MIC-MATH-EUCLID-GEOMETRY"],
+            "ep": "mathematics/euclids-geometry/core1a.html",
+            "title": "Euclid's Geometry: Axioms, Postulates & Proofs — Learn",
+            "aliases": ["euclid", "axioms", "postulates", "visual boundary ladder", "euclid core1a"]
+        },
+        {
+            "id": "math.polynomials.core1a",
+            "subject": "Mathematics",
+            "topic": "math.polynomials",
+            "caps": ["MIC-MATH-POLYNOMIALS"],
+            "ep": "mathematics/polynomials/core1a.html",
+            "title": "Polynomials: Degree, Remainder & Factor Theorems — Learn",
+            "aliases": ["polynomials", "remainder theorem", "factor theorem", "polynomials core1a"]
+        },
+        {
+            "id": "math.theory-of-equations.core1a",
+            "subject": "Mathematics",
+            "topic": "math.theory-of-equations",
+            "caps": ["MIC-MATH-THEORY-OF-EQUATIONS"],
+            "ep": "mathematics/theory-of-equations/core1a.html",
+            "title": "Math Theory Of Equations · Core 1A Learn",
+            "aliases": ["theory of equations", "roots", "vieta", "equations core1a"]
+        },
+        {
+            "id": "phy.motion-1d.core1a",
+            "subject": "Physics",
+            "topic": "phy.motion-1d",
+            "caps": ["MIC-PHY-KIN-1D-MOTION"],
+            "ep": "physics/motion-1d/core1a.html",
+            "title": "Motion in a Straight Line · Core 1A Learn",
+            "aliases": ["motion 1d", "straight line", "kinematics", "1d core1a"]
+        },
+        {
+            "id": "math.vectors.core1a",
+            "subject": "Mathematics",
+            "topic": "math.vectors",
+            "caps": ["MIC-MATH-VECTOR-ALGEBRA"],
+            "ep": "mathematics/vectors/core1a.html",
+            "title": "Vector Algebra 3D · Core 1A Learn",
+            "aliases": ["vector algebra", "3d vectors", "dot product", "cross product"]
+        }
+    ]
+
+    for s in specs:
+        target = repo_root / "public" / s["ep"]
+        if target.exists():
+            books.append({
+                "schema": "grade9v3-resource/v1",
+                "id": s["id"],
+                "resource_kind": "STRUCTURED_PRODUCT",
+                "learner_role": "LEARN",
+                "audience": "LEARNER",
+                "presentation": "FULL_PAGE",
+                "classification": {
+                    "subject_ref": s["subject"],
+                    "topic_refs": [s["topic"]],
+                    "capability_refs": s["caps"]
+                },
+                "artifact": {
+                    "entrypoint": s["ep"],
+                    "generated": True
+                },
+                "platform_capabilities": ["staged-representation", "worked-anchor", "related-practice"],
+                "search": {
+                    "title": s["title"],
+                    "aliases": s["aliases"],
+                    "visibility": "LEARNER"
+                },
+                "source": {
+                    "authority_ref": s["ep"],
+                    "generator_ref": "Shared/tools/build_learner_ui.py"
+                },
+                "validation": {
+                    "academic_evidence_ref": None,
+                    "structural_evidence_ref": None,
+                    "browser_evidence_ref": None,
+                    "publication_evidence_ref": None
+                }
+            })
     return books
 
 

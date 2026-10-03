@@ -134,6 +134,67 @@ class TestLearnerUiAndSearch(unittest.TestCase):
         self.assertNotIn('href="gases/index.html"', hub_html)
         self.assertNotIn('href="redox/index.html"', hub_html)
 
+    def test_all_portal_practice_links_resolve_deterministically(self):
+        """Every practice link generated across topic workspaces must resolve via keyword-synonyms."""
+        import re
+        from urllib.parse import urlparse, parse_qs
+
+        with open(REPO / "public" / "data" / "keyword-synonyms.v1.json", "r", encoding="utf-8") as f:
+            syn_db = json.load(f)
+        slug_to_syn = {s["slug"]: s for s in syn_db.get("synonyms", [])}
+
+        topics_dir = REPO / "public" / "topics"
+        self.assertTrue(topics_dir.exists(), "public/topics directory must exist")
+
+        links_checked = 0
+        for html_file in topics_dir.glob("*/index.html"):
+            content = html_file.read_text(encoding="utf-8")
+            matches = re.findall(r'href="([^"]*question-bank/index\.html[^"]*)"', content)
+            for m in matches:
+                parsed = urlparse(m)
+                qs = parse_qs(parsed.query)
+                topic_param = qs.get("topic", [None])[0]
+                subject_param = qs.get("subject", [None])[0]
+                if topic_param:
+                    self.assertIn(
+                        topic_param,
+                        slug_to_syn,
+                        f"Practice link in {html_file.name} has unregistered slug '{topic_param}'",
+                    )
+                    syn_entry = slug_to_syn[topic_param]
+                    self.assertTrue(
+                        syn_entry.get("status") in {"active", "pending_ingestion"},
+                        f"Synonym entry for '{topic_param}' has invalid status",
+                    )
+                    links_checked += 1
+
+        self.assertGreater(links_checked, 5, "Expected multiple practice links to be validated")
+
+    def test_synonym_thesaurus_expands_queries_in_search_index(self):
+        """Global Search Index must discover entities via scientific aliases and acronyms."""
+        docs, stats = build_search_documents(REPO)
+
+        def search(term):
+            t_norm = term.lower()
+            return [d for d in docs if t_norm in d["search_text"]]
+
+        # 1. 'oxidation' discovers Redox questions
+        ox_hits = search("oxidation")
+        self.assertTrue(any(d["type"] == "QUESTION" and "redox" in d["search_text"] for d in ox_hits), "Expected oxidation to match redox questions")
+
+        # 2. 'kinematics' discovers Motion questions and tablets
+        kin_hits = search("kinematics")
+        self.assertTrue(any(d["type"] == "QUESTION" for d in kin_hits), "Expected kinematics to match motion questions")
+        self.assertTrue(any(d["category"] == "tablet" for d in kin_hits), "Expected kinematics to match motion tablets")
+
+        # 3. 'ktg' discovers Behaviour of Gases
+        ktg_hits = search("ktg")
+        self.assertTrue(any("gases" in d["search_text"] for d in ktg_hits), "Expected ktg to match gases")
+
+        # 4. 'fbd' discovers Newton's Laws
+        fbd_hits = search("fbd")
+        self.assertTrue(any("newton" in d["search_text"] or "nlm" in d["search_text"] for d in fbd_hits), "Expected fbd to match NLM")
+
 
 if __name__ == "__main__":
     unittest.main()

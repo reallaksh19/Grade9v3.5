@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en" data-g9-shell>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Curriculum Atlas &amp; Pedagogical Rungs · Grade9V3.5</title>
+  <link rel="stylesheet" href="../css/modern-learner.css">
+  <style>
+    .atlas-section { margin-top: 36px; }
+    .atlas-section-title { font-size: 22px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; color: var(--text-main, #0f172a); }
+    .rung-ladder-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-top: 16px;
+      background: var(--bg-card, #ffffff);
+      border: 1px solid var(--border, #e2e8f0);
+      border-radius: var(--radius-md, 14px);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.05));
+      font-family: var(--font-family, system-ui, sans-serif);
+    }
+    .rung-ladder-table th, .rung-ladder-table td {
+      padding: 14px 18px;
+      text-align: left;
+      border-bottom: 1px solid var(--border, #e2e8f0);
+      font-size: 14px;
+      color: var(--text-main, #0f172a);
+      line-height: 1.55;
+    }
+    .rung-ladder-table th {
+      background: var(--bg-soft, #f1f5f9);
+      font-weight: 700;
+      color: var(--accent-qb, #0284c7);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .rung-ladder-table tr:last-child td {
+      border-bottom: none;
+    }
+    .rung-badge { display: inline-block; padding: 4px 10px; border-radius: var(--radius-pill, 9999px); font-weight: 700; font-size: 12px; white-space: nowrap; }
+    .rung-h0 { background: rgba(2, 132, 199, 0.12); color: #0284c7; border: 1px solid rgba(2, 132, 199, 0.3); }
+    .rung-h1 { background: rgba(147, 51, 234, 0.12); color: #7e22ce; border: 1px solid rgba(147, 51, 234, 0.3); }
+    .rung-h2 { background: rgba(16, 185, 129, 0.12); color: #059669; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .rung-h3 { background: rgba(245, 158, 11, 0.12); color: #b45309; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .rung-r5 { background: rgba(239, 68, 68, 0.12); color: #dc2626; border: 1px solid rgba(239, 68, 68, 0.3); }
+    
+    [data-theme="dark"] .rung-ladder-table { background: var(--bg-card, #161b22); border-color: var(--border, #30363d); }
+    [data-theme="dark"] .rung-ladder-table th, [data-theme="dark"] .rung-ladder-table td { border-color: var(--border, #30363d); color: var(--text-main, #f0f6fc); }
+    [data-theme="dark"] .rung-ladder-table th { background: var(--bg-soft, #21262d); color: var(--accent-qb, #38bdf8); }
+    [data-theme="dark"] .rung-h0 { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border-color: rgba(56, 189, 248, 0.4); }
+    [data-theme="dark"] .rung-h1 { background: rgba(192, 132, 252, 0.2); color: #c084fc; border-color: rgba(192, 132, 252, 0.4); }
+    [data-theme="dark"] .rung-h2 { background: rgba(74, 222, 128, 0.2); color: #4ade80; border-color: rgba(74, 222, 128, 0.4); }
+    [data-theme="dark"] .rung-h3 { background: rgba(251, 191, 36, 0.2); color: #fbbf24; border-color: rgba(251, 191, 36, 0.4); }
+    [data-theme="dark"] .rung-r5 { background: rgba(248, 113, 113, 0.2); color: #f87171; border-color: rgba(248, 113, 113, 0.4); }
+
+    .g9-card-actions-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header class="g9-shell-header">
+    <div class="g9-header-inner">
+      <a class="g9-brand" href="../index.html">
+        <span class="logo-icon">⚡</span>
+        <span class="brand-title">Grade9V3.5</span>
+        <span class="g9-brand-badge">Learner Platform</span>
+      </a>
+      <nav class="g9-header-nav" aria-label="Portal Navigation">
+        <a href="../index.html">Home</a>
+        <a href="../physics/index.html">Physics</a>
+        <a href="../chemistry/index.html">Chemistry</a>
+        <a href="../mathematics/index.html">Mathematics</a>
+        <a href="../question-bank/index.html">Question Bank</a>
+        <a href="index.html" class="active" style="color: var(--accent-qb, #0284c7); font-weight: 700;">Atlas &amp; Rungs</a>
+      </nav>
+      <div class="g9-header-actions">
+        <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search">
+          <span class="g9-btn-icon">🔍</span>
+          <span class="g9-btn-text">Search</span>
+        </button>
+        <button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings" aria-label="Display & Theme">
+          <span class="g9-btn-icon">🌙 / ☀️</span>
+          <span class="g9-btn-text">Display</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="g9-breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="g9-breadcrumbs">
+      <a href="../index.html">Home</a> <span>/</span> <span>Curriculum Atlas &amp; Rungs</span>
+    </div>
+  </nav>
+
+  <main class="g9-container">
+    <div class="g9-hero">
+      <h1 class="g9-hero-title">Curriculum Atlas &amp; Pedagogical Rungs</h1>
+      <p class="g9-hero-subtitle">Comprehensive capability matrix, progressive hint ladders, and difficulty scaffolding across every subject and subtopic.</p>
+    </div>
+
+    <!-- The 5-Rung Pedagogical Ladder -->
+    <div class="atlas-section">
+      <h2 class="atlas-section-title">🪜 The 5-Rung Pedagogical Scaffolding Ladder</h2>
+      <p style="color: var(--text-muted, #64748b); font-size: 15px; line-height: 1.6;">Every authentic question in the Question Bank is backed by an authored scaffolding ladder. When students encounter obstacles, they reveal only the precise rung needed to unblock their reasoning.</p>
+      
+      <table class="rung-ladder-table">
+        <thead>
+          <tr>
+            <th style="width: 240px;">Rung Stage</th>
+            <th style="width: 260px;">Pedagogical Role</th>
+            <th>Learner Support Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rung-badge rung-h0">R0 / H0 · Foundation (Represent)</span></td>
+            <td><strong>Visual &amp; Coordinate Model</strong></td>
+            <td>Establishes reference frame, sign conventions, state vectors, and Free Body Diagrams.</td>
+          </tr>
+          <tr>
+            <td><span class="rung-badge rung-h1">R1 / H1 · Connect (Laws)</span></td>
+            <td><strong>Law &amp; Constraint Binding</strong></td>
+            <td>Connects physical laws (e.g. Newton's 2nd Law, Conservation of Energy, Stoichiometric Ratios).</td>
+          </tr>
+          <tr>
+            <td><span class="rung-badge rung-h2">R2 / H2 · Transform (Calculate)</span></td>
+            <td><strong>Algebraic Transformation</strong></td>
+            <td>Executes the algebraic manipulation, trigonometric substitutions, and numerical arithmetic.</td>
+          </tr>
+          <tr>
+            <td><span class="rung-badge rung-h3">R3 / H3 · Check (Verify)</span></td>
+            <td><strong>Independent Verification</strong></td>
+            <td>Dimensional analysis, extreme limit checks (e.g. m1 &gt;&gt; m2, &theta; = 0&deg;), and symmetry checks.</td>
+          </tr>
+          <tr>
+            <td><span class="rung-badge rung-r5">R5 · Mastery (Crux)</span></td>
+            <td><strong>Competitive Mastery</strong></td>
+            <td>Resolves advanced multivariable optimization, non-inertial frames, and Olympiad twists.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Physics Topic Atlases & Capability Maps -->
+    <div class="atlas-section">
+      <h2 class="atlas-section-title">🔬 Physics Topic Atlases &amp; Capability Maps</h2>
+      <div class="g9-grid">
+        <div class="g9-card">
+          <div class="g9-card-header">
+            <span class="g9-card-tag g9-tag-physics">Dedicated Atlas</span>
+            <h3 class="g9-card-title">Motion in a Plane (2D) Topic Atlas</h3>
+            <p class="g9-card-desc">Plane motion, independent components, shared clock, projectile range, and apex invariants.</p>
+          </div>
+          <div class="g9-card-actions-row">
+            <a class="g9-btn-action g9-btn-explore" href="../physics/motion-2d/atlas.html" title="Explore Motion in 2D Topic Atlas">🪜 Explore Topic Atlas &rarr;</a>
+            <a class="g9-btn-action g9-btn-learn" href="../physics/motion-2d/core1a.html" title="Core Study · Motion in 2D">📖 Core Study</a>
+            <a class="g9-btn-action g9-btn-qb g9-btn-practice" href="../question-bank/index.html?subject=Physics&amp;topic=motion-2d&amp;mode=study">🎯 Practice in Question Bank (Core 2) &rarr;</a>
+          </div>
+        </div>
+
+        <div class="g9-card">
+          <div class="g9-card-header">
+            <span class="g9-card-tag g9-tag-physics">Dedicated Atlas</span>
+            <h3 class="g9-card-title">Newton's Laws of Motion Topic Atlas</h3>
+            <p class="g9-card-desc">Friction threshold, Atwood machine constraints, block contact forces, and 1st Law inertia.</p>
+          </div>
+          <div class="g9-card-actions-row">
+            <a class="g9-btn-action g9-btn-explore" href="../physics/nlm/atlas.html" title="Explore NLM Topic Atlas">🪜 Explore Topic Atlas &rarr;</a>
+            <a class="g9-btn-action g9-btn-learn" href="../standalone/practice/core1a-physics-nlm-tablet.html" title="Core Study · Newton's Laws of Motion">📖 Core Study</a>
+            <a class="g9-btn-action g9-btn-qb g9-btn-practice" href="../question-bank/index.html?subject=Physics&amp;topic=nlm&amp;mode=study">🎯 Practice in Question Bank (Core 2) &rarr;</a>
+          </div>
+        </div>
+
+        <div class="g9-card" id="motion-1d">
+          <div class="g9-card-header">
+            <span class="g9-card-tag g9-tag-physics">Topic Atlas &amp; Rungs</span>
+            <h3 class="g9-card-title">Motion in 1D Atlas</h3>
+            <p class="g9-card-desc">Uniform acceleration, displacement-time relations, and free-fall kinematic rungs.</p>
+          </div>
+          <div class="g9-card-actions-row">
+            <a class="g9-btn-action g9-btn-explore" href="../physics/motion-1d/atlas.html" title="Explore Motion in 1D Topic Atlas">🪜 Explore Topic Atlas &rarr;</a>
+            <a class="g9-btn-action g9-btn-learn" href="../physics/motion-1d/core1a.html" title="Core Study · Motion in 1D">📖 Core Study</a>
+            <a class="g9-btn-action g9-btn-qb g9-btn-practice" href="../question-bank/index.html?subject=Physics&amp;topic=motion-1d&amp;mode=study">🎯 Practice in Question Bank (Core 2) &rarr;</a>
+          </div>
+        </div>
+
+        <div class="g9-card">
+          <div class="g9-card-header">
+            <span class="g9-card-tag g9-tag-physics">Topic Atlas &amp; Rungs</span>
+            <h3 class="g9-card-title">Thrust &amp; Hydrostatic Pressure Atlas</h3>
+            <p class="g9-card-desc">Hydrostatic pressure, Pascal's principle, buoyant force, and Archimedes principle.</p>
+          </div>
+          <div class="g9-card-actions-row">
+            <a class="g9-btn-action g9-btn-explore" href="../physics/fluids/atlas.html" title="Explore Fluids Topic Atlas">🪜 Explore Topic Atlas &rarr;</a>
+            <a class="g9-btn-action g9-btn-learn" href="../standalone/practice/core1a-physics-thrust-pressure-tablet.html" title="Core Study · Thrust &amp; Pressure">📖 Core Study</a>
+            <a class="g9-btn-action g9-btn-qb g9-btn-practice" href="../question-bank/index.html?subject=Physics&amp;topic=fluids&amp;mode=study">🎯 Practice in Question Bank (Core 2) &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chemistry Capability Mapping & Atlases -->
+    <div class="atlas-section">
+      <h2 class="atlas-section-title">⚗️ Chemistry Capability Mapping &amp; Topic Atlases</h2>
+      <div class="g9-grid">
+        <div class="g9-card">
+          <div class="g9-card-header">
+            <span class="g9-card-tag g9-tag-chemistry">Topic Atlas &amp; Rungs</span>
+            <h3 class="g9-card-title">Chemical Bonding &amp; Molecular Structure</h3>
+            <p class="g9-card-desc">Lewis formal charges, VSEPR 3D geometry, dipole moment cancellation, and hybridization.</p>
+          </div>
+          <div class="g9-card-actions-row">
+            <a class="g9-btn-action g9-btn-explore" href="../chemistry/bonding/atlas.html" title="Explore Chemical Bonding Topic Atlas">🪜 Explore Topic Atlas &rarr;</a>
+            <a class="g9-btn-action g9-btn-learn" href="../chemistry/bonding/core1a.html" title="Core Study · Chemical Bonding">📖 Core Study</a>
+            <a class="g9-btn-action g9-btn-qb g9-btn-practice" href="../question-bank/index.html?subject=Chemistry&amp;topic=bonding&amp;mode=study">🎯 Practice in Question Bank (Core 2) &rarr;</a>
+          </div>
+        </div>
+
+        <div class="g9-card">
+          <div class="g9-card-header">
+            <span class="g9-card-tag g9-tag-chemistry">Topic Atlas &amp; Rungs</span>
+            <h3 class="g9-card-title">Mole Concept &amp; Stoichiometry</h3>
+            <p class="g9-card-desc">Molar mass, limiting reagents, parallel yield tracking, solution molarity, and eudiometry.</p>
+          </div>
+          <div class="g9-card-actions-row">
+            <a class="g9-btn-action g9-btn-explore" href="../chemistry/some-basic-concepts/atlas.html" title="Explore Mole Concept Topic Atlas">🪜 Explore Topic Atlas &rarr;</a>
+            <a class="g9-btn-action g9-btn-learn" href="../chemistry/some-basic-concepts/core1a.html" title="Core Study · Mole Concept &amp; Stoichiometry">📖 Core Study</a>
+            <a class="g9-btn-action g9-btn-qb g9-btn-practice" href="../question-bank/index.html?subject=Chemistry&amp;topic=some-basic-concepts&amp;mode=study">🎯 Practice in Question Bank (Core 2) &rarr;</a>
+          </div>
+        </div>
+
+        <div class="g9-card">
+          <div class="g9-card-header">
+            <span class="g9-card-tag g9-tag-chemistry">Topic Atlas &amp; Rungs</span>
+            <h3 class="g9-card-title">Behaviour of Gases</h3>
+            <p class="g9-card-desc">Maxwell speed distribution, ideal vs real gases, compressibility factor Z, and critical state.</p>
+          </div>
+          <div class="g9-card-actions-row">
+            <a class="g9-btn-action g9-btn-explore" href="../chemistry/gases/atlas.html" title="Explore Behaviour of Gases Topic Atlas">🪜 Explore Topic Atlas &rarr;</a>
+            <a class="g9-btn-action g9-btn-learn" href="../chemistry/gases/core1a.html" title="Core Study · Behaviour of Gases">📖 Core Study</a>
+            <a class="g9-btn-action g9-btn-qb g9-btn-practice" href="../question-bank/index.html?subject=Chemistry&amp;topic=gases&amp;mode=study">🎯 Practice in Question Bank (Core 2) &rarr;</a>
+          </div>
+        </div>
+
+        <div class="g9-card">
+          <div class="g9-card-header">
+            <span class="g9-card-tag g9-tag-chemistry">Topic Atlas &amp; Rungs</span>
+            <h3 class="g9-card-title">Redox Reactions</h3>
+            <p class="g9-card-desc">Oxidation states, electron transfer tracking, and half-reaction ion-electron balancing.</p>
+          </div>
+          <div class="g9-card-actions-row">
+            <a class="g9-btn-action g9-btn-explore" href="../chemistry/redox/atlas.html" title="Explore Redox Reactions Topic Atlas">🪜 Explore Topic Atlas &rarr;</a>
+            <a class="g9-btn-action g9-btn-learn" href="../chemistry/redox/core1a.html" title="Core Study · Redox Reactions">📖 Core Study</a>
+            <a class="g9-btn-action g9-btn-qb g9-btn-practice" href="../question-bank/index.html?subject=Chemistry&amp;topic=redox&amp;mode=study">🎯 Practice in Question Bank (Core 2) &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mathematics Topic Atlases & Workspaces -->
+    <div class="atlas-section">
+      <h2 class="atlas-section-title">📐 Mathematics Topic Atlases &amp; Workspaces</h2>
+      <div class="g9-grid">
+        <div class="g9-card">
+          <div class="g9-card-header">
+            <span class="g9-card-tag g9-tag-math">Dedicated Atlas</span>
+            <h3 class="g9-card-title">Linear Equations Topic Atlas</h3>
+            <p class="g9-card-desc">Algebraic balance, elimination, substitution, and matrix representation rungs.</p>
+          </div>
+          <div class="g9-card-actions-row">
+            <a class="g9-btn-action g9-btn-explore" href="../mathematics/linear-equations/atlas.html" title="Explore Linear Equations Topic Atlas">🪜 Explore Topic Atlas &rarr;</a>
+            <a class="g9-btn-action g9-btn-learn" href="../mathematics/linear-equations/atlas.html#rungs" title="Core Study · Linear Equations">📖 Core Study</a>
+            <a class="g9-btn-action g9-btn-qb g9-btn-practice" href="../question-bank/index.html?subject=Mathematics&amp;topic=linear-equations&amp;mode=study">🎯 Practice in Question Bank (Core 2) &rarr;</a>
+          </div>
+        </div>
+
+        <div class="g9-card">
+          <div class="g9-card-header">
+            <span class="g9-card-tag g9-tag-math">Topic Atlas &amp; Rungs</span>
+            <h3 class="g9-card-title">Euclid's Geometry Atlas</h3>
+            <p class="g9-card-desc">Visual boundary progression (Solid &rarr; Surface &rarr; Line &rarr; Point) and axiomatic proofs.</p>
+          </div>
+          <div class="g9-card-actions-row">
+            <a class="g9-btn-action g9-btn-explore" href="../mathematics/euclids-geometry/atlas.html" title="Explore Euclid's Geometry Topic Atlas">🪜 Explore Topic Atlas &rarr;</a>
+            <a class="g9-btn-action g9-btn-learn" href="../mathematics/euclids-geometry/core1a.html" title="Core Study · Euclid's Geometry">📖 Core Study</a>
+            <a class="g9-btn-action g9-btn-qb g9-btn-practice" href="../question-bank/index.html?subject=Mathematics&amp;topic=euclids-geometry&amp;mode=study">🎯 Practice in Question Bank (Core 2) &rarr;</a>
+          </div>
+        </div>
+
+        <div class="g9-card">
+          <div class="g9-card-header">
+            <span class="g9-card-tag g9-tag-math">Topic Atlas &amp; Rungs</span>
+            <h3 class="g9-card-title">Polynomials &amp; Remainder Theorem Atlas</h3>
+            <p class="g9-card-desc">Factor theorem, polynomial roots, Vieta's formulas, and remainder evaluations.</p>
+          </div>
+          <div class="g9-card-actions-row">
+            <a class="g9-btn-action g9-btn-explore" href="../mathematics/polynomials/atlas.html" title="Explore Polynomials Topic Atlas">🪜 Explore Topic Atlas &rarr;</a>
+            <a class="g9-btn-action g9-btn-learn" href="../mathematics/polynomials/core1a.html" title="Core Study · Polynomials">📖 Core Study</a>
+            <a class="g9-btn-action g9-btn-qb g9-btn-practice" href="../question-bank/index.html?subject=Mathematics&amp;topic=polynomials&amp;mode=study">🎯 Practice in Question Bank (Core 2) &rarr;</a>
+          </div>
+        </div>
+
+        <div class="g9-card">
+          <div class="g9-card-header">
+            <span class="g9-card-tag g9-tag-math">Topic Atlas &amp; Rungs</span>
+            <h3 class="g9-card-title">Coordinate Geometry Atlas</h3>
+            <p class="g9-card-desc">Cartesian plane, quadrant rules, distance formula, and collinearity verification.</p>
+          </div>
+          <div class="g9-card-actions-row">
+            <a class="g9-btn-action g9-btn-explore" href="../mathematics/coordinate-geometry/atlas.html" title="Explore Coordinate Geometry Topic Atlas">🪜 Explore Topic Atlas &rarr;</a>
+            <a class="g9-btn-action g9-btn-learn" href="../mathematics/coordinate-geometry/core1a.html" title="Core Study · Coordinate Geometry">📖 Core Study</a>
+            <a class="g9-btn-action g9-btn-qb g9-btn-practice" href="../question-bank/index.html?subject=Mathematics&amp;topic=coordinate-geometry&amp;mode=study">🎯 Practice in Question Bank (Core 2) &rarr;</a>
+          </div>
+        </div>
+
+        <div class="g9-card">
+          <div class="g9-card-header">
+            <span class="g9-card-tag g9-tag-math">Topic Atlas &amp; Rungs</span>
+            <h3 class="g9-card-title">Theory of Equations Atlas</h3>
+            <p class="g9-card-desc">Quadratic discriminant analysis, nature of roots, common roots, and location of roots.</p>
+          </div>
+          <div class="g9-card-actions-row">
+            <a class="g9-btn-action g9-btn-explore" href="../mathematics/theory-of-equations/atlas.html" title="Explore Theory of Equations Topic Atlas">🪜 Explore Topic Atlas &rarr;</a>
+            <a class="g9-btn-action g9-btn-learn" href="../mathematics/theory-of-equations/core1a.html" title="Core Study · Theory of Equations">📖 Core Study</a>
+            <a class="g9-btn-action g9-btn-qb g9-btn-practice" href="../question-bank/index.html?subject=Mathematics&amp;topic=theory-of-equations&amp;mode=study">🎯 Practice in Question Bank (Core 2) &rarr;</a>
+          </div>
+        </div>
+
+        <div class="g9-card">
+          <div class="g9-card-header">
+            <span class="g9-card-tag g9-tag-math">Topic Atlas &amp; Rungs</span>
+            <h3 class="g9-card-title">Vector Algebra Atlas</h3>
+            <p class="g9-card-desc">Vector components, dot product, cross product, orthogonal projection, and 3D geometry.</p>
+          </div>
+          <div class="g9-card-actions-row">
+            <a class="g9-btn-action g9-btn-explore" href="../mathematics/vectors/atlas.html" title="Explore Vector Algebra Topic Atlas">🪜 Explore Topic Atlas &rarr;</a>
+            <a class="g9-btn-action g9-btn-learn" href="../mathematics/vectors/core1a.html" title="Core Study · Vector Algebra">📖 Core Study</a>
+            <a class="g9-btn-action g9-btn-qb g9-btn-practice" href="../question-bank/index.html?subject=Mathematics&amp;topic=vectors&amp;mode=study">🎯 Practice in Question Bank (Core 2) &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="g9-footer">
+    <p>Grade9V3.5 Concept-Centred Learner Platform · Authentic Question Bank &amp; Concepts</p>
+  </footer>
+  <script src="../js/display-controls.js"></script>
+  <script src="../js/site-header.js" data-site-root="../"></script>
+</body>
+</html>

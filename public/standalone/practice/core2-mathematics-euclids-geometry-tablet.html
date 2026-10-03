@@ -338,8 +338,142 @@ body{overflow-wrap:anywhere}
 :where(a[href="index.html"],header a,nav a,.breadcrumb a,a.g9-bridge-link,[data-g9-block="entry_assumptions"] a){min-height:48px!important;min-width:48px!important;display:inline-flex!important;align-items:center!important;justify-content:center;padding-block:10px!important;box-sizing:border-box!important}
 .subject-badge,.q-badge,.tag-pill{font-size:14px!important}
 </style>
+<style id="tablet-standard-header-css">
+/* Standard App Header & Navigation Styles */
+header.app-header {
+  background-color: var(--bg-surface, #0f172a);
+  border-bottom: 1.5px solid var(--border, #263859);
+  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+[data-theme="light"] header.app-header {
+  background-color: #ffffff;
+  border-bottom-color: #cbd5e1;
+}
+
+.header-inner {
+  max-width: var(--tab12-container-max, 1400px);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.header-brand h1 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary, #f8fafc);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+[data-theme="light"] .header-brand h1 {
+  color: #0f172a;
+}
+
+.subject-badge {
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: rgba(56, 189, 248, 0.15);
+  color: var(--accent, #38bdf8);
+  border: 1px solid var(--accent, #38bdf8);
+  font-weight: 700;
+}
+
+.nav-hub-btn {
+  background-color: var(--bg-card, #152238);
+  color: var(--text-primary, #f8fafc);
+  border: 1.5px solid var(--border, #263859);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+[data-theme="light"] .nav-hub-btn {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+.nav-hub-btn:hover {
+  border-color: var(--accent, #38bdf8);
+  background-color: var(--bg-card-subtle, #1a2942);
+}
+
+[data-theme="light"] .nav-hub-btn:hover {
+  background-color: #e2e8f0;
+}
+
+.theme-toggle-btn {
+  background-color: var(--bg-card, #152238);
+  color: var(--text-primary, #f8fafc);
+  border: 1.5px solid var(--border, #263859);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+[data-theme="light"] .theme-toggle-btn {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+</style>
 </head>
 <body>
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <h1>
+          <span>📐</span> Euclid's Geometry Core 2 Challenge Suite
+          <span class="subject-badge">Mathematics · Core 2</span>
+        </h1>
+      </div>
+      <div class="header-actions" style="display:flex;align-items:center;gap:10px;">
+                <a href="https://drive.google.com/file/d/1eBfxf8dU0WvBIujgnIIKGbMzf9P3Oa3f/view" target="_blank" rel="noopener" class="nav-hub-btn g9-drive-btn" style="display:inline-flex;align-items:center;gap:6px;" title="Open Source PDF in Google Drive: Euclids_Geometry_Core2_Final_CrossCore_v1.pdf (501 KB)" aria-label="Open Source PDF in Google Drive">
+          <svg width="15" height="15" viewBox="0 0 87.3 78" aria-hidden="true">
+            <path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8H0c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/>
+            <path d="M43.65 25 29.9 1.2c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44C.4 49.9 0 51.45 0 53h27.5z" fill="#00ac47"/>
+            <path d="M73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5H59.8l5.85 10.15z" fill="#ea4335"/>
+            <path d="M43.65 25 57.4 1.2C56.05.4 54.5 0 52.9 0H34.4c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/>
+            <path d="M59.8 53H27.5L13.75 76.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/>
+            <path d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3L43.65 25 59.8 53h27.5c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/>
+          </svg>
+          <span>Source PDF</span>
+        </a>
+<button type="button" onclick="if(document.referrer &amp;&amp; document.referrer.indexOf(window.location.host) !== -1){history.back();}else{location.href='../../mathematics/euclids-geometry/index.html';}" class="nav-hub-btn" aria-label="Previous Page" title="Back to Previous Page">← Previous Page</button>
+        <a href="../../mathematics/euclids-geometry/index.html" class="nav-hub-btn" aria-label="Back to Topic Workspace" title="Back to Euclid Workspace">Euclid Workspace</a>
+        <a href="../../index.html" class="nav-hub-btn" aria-label="Portal Home" title="Portal Home">⚡ Home</a>
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">🌓 Mode</button>
+      </div>
+    </div>
+  </header>
   <header class="top-bar">
     <div class="brand-group">
       <span class="brand-icon">📐</span>
@@ -354,15 +488,7 @@ body{overflow-wrap:anywhere}
     </div>
   </header>
 
-  <nav class="tab-nav">
-    <div class="tab-nav-inner">
-      <button class="tab-btn active" onclick="switchTab('all')">All Exercises (48)</button>
-      <button class="tab-btn" onclick="switchTab('ex-51')">Ex 5.1 · Dimensions &amp; Axioms</button>
-      <button class="tab-btn" onclick="switchTab('ex-52')">Ex 5.2 · True/False Justification</button>
-      <button class="tab-btn" onclick="switchTab('ex-53')">Ex 5.3 · Deductive Proofs</button>
-      <button class="tab-btn" onclick="switchTab('ex-54')">Ex 5.4 · Fifth Postulate &amp; Equivalence</button>
-    </div>
-  </nav>
+  
 
   <main class="layout-container">
     
@@ -560,5 +686,21 @@ body{overflow-wrap:anywhere}
       renderAllMath();
     }
   </script>
+
+<script>
+  (function() {
+    const themeBtn = document.getElementById('themeToggle');
+    if (!themeBtn) return;
+    const htmlEl = document.documentElement;
+    const savedTheme = localStorage.getItem('tablet12_theme') || 'dark';
+    htmlEl.setAttribute('data-theme', savedTheme);
+    themeBtn.addEventListener('click', function() {
+      const current = htmlEl.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      htmlEl.setAttribute('data-theme', next);
+      localStorage.setItem('tablet12_theme', next);
+    });
+  })();
+</script>
 </body>
 </html>

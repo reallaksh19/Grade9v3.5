@@ -1,1526 +1,3151 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-  <!-- KaTeX Typography (Khan Academy Standard) -->
-  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
-  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
-  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>GRADE 9 CHEMISTRY - Behaviour of Gases Master Suite | 12.7" Tablet Standalone Edition</title>
-  <meta name="description" content="Complete 12.7-inch tablet study suite for Behaviour of Gases & States of Matter. Covers Particle Model, Gas Laws, PV=nRT, Evaporation, Phase Transitions, Van der Waals Real Gases, and 27 NCERT Question Helper instances.">
-  <style>
-/* ==========================================================================
-   Chemistry: Behaviour of Gases 12.7" Tablet Standalone Stylesheet
-   WCAG 2.5.5 >= 48px touch targets, >= 120px textareas, no micro-fonts (<13.5px)
-   100% Offline Standalone · Dark/Light Mode · Responsive Stage/Support Grid
-   ========================================================================== */
-
-:root {
-  --tab12-container-max: 1400px;
-  --tab12-touch-min: 48px;
-  --tab12-base-font: 16px;
-  --tab12-radius-sm: 8px;
-  --tab12-radius-md: 12px;
-  --tab12-radius-lg: 16px;
-
-  /* Dark Theme Palette (Default) */
-  --bg-app: #080d1a;
-  --bg-surface: #0f172a;
-  --bg-card: #152238;
-  --bg-card-subtle: #1a2942;
-  --border: #263859;
-  --border-light: #334b75;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --accent: #38bdf8;
-  --accent-glow: rgba(56, 189, 248, 0.25);
-  --success: #34d399;
-  --warning: #f59e0b;
-  --danger: #f87171;
-  --purple: #c084fc;
-}
-
-[data-theme="light"] {
-  --bg-app: #f1f5f9;
-  --bg-surface: #ffffff;
-  --bg-card: #ffffff;
-  --bg-card-subtle: #f8fafc;
-  --border: #cbd5e1;
-  --border-light: #e2e8f0;
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #64748b;
-  --accent: #0284c7;
-  --accent-glow: rgba(2, 132, 199, 0.15);
-  --success: #059669;
-  --warning: #d97706;
-  --danger: #dc2626;
-  --purple: #7e22ce;
-}
-
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  font-size: var(--tab12-base-font);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  color: var(--text-primary);
-  background-color: var(--bg-app);
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  line-height: 1.6;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Strict 48px+ Touch Target Rule */
-button, 
-.btn, 
-.tab-btn, 
-.pill-btn,
-summary {
-  min-height: var(--tab12-touch-min);
-  min-width: var(--tab12-touch-min);
-  padding: 10px 18px;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: var(--tab12-radius-sm);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  touch-action: manipulation;
-  transition: all 0.18s ease;
-  border: 1px solid transparent;
-}
-
-button:focus-visible, 
-.btn:focus-visible, 
-input:focus-visible, 
-textarea:focus-visible, 
-summary:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 2px;
-}
-
-/* Virtual Tablet Keyboard Safe Textareas */
-textarea.tablet-safe-input {
-  min-height: 120px;
-  width: 100%;
-  padding: 14px;
-  font-family: monospace, inherit;
-  font-size: 14.5px;
-  line-height: 1.5;
-  background-color: var(--bg-surface);
-  color: var(--text-primary);
-  border: 1.5px solid var(--border);
-  border-radius: var(--tab12-radius-sm);
-  resize: vertical;
-  display: block;
-}
-
-textarea.tablet-safe-input:focus {
-  border-color: var(--accent);
-  background-color: var(--bg-card);
-}
-
-/* App Header */
-header.app-header {
-  background-color: var(--bg-surface);
-  border-bottom: 1.5px solid var(--border);
-  padding: 14px 24px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-.header-inner {
-  max-width: var(--tab12-container-max);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.header-brand h1 {
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.subject-badge {
-  font-size:14px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background-color: rgba(56, 189, 248, 0.15);
-  color: var(--accent);
-  border: 1px solid var(--accent);
-  font-weight: 700;
-}
-
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.theme-toggle-btn {
-  background-color: var(--bg-card);
-  color: var(--text-primary);
-  border: 1.5px solid var(--border);
-}
-
-.theme-toggle-btn:hover {
-  background-color: var(--bg-card-subtle);
-  border-color: var(--accent);
-}
-
-/* Nav Tabs */
-nav.tab-nav {
-  background-color: var(--bg-surface);
-  border-bottom: 1px solid var(--border);
-  padding: 8px 24px 0 24px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.tab-nav-inner {
-  max-width: var(--tab12-container-max);
-  margin: 0 auto;
-  display: flex;
-  gap: 8px;
-}
-
-.tab-btn {
-  background: transparent;
-  color: var(--text-secondary);
-  border: none;
-  border-bottom: 3px solid transparent;
-  border-radius: var(--tab12-radius-sm) var(--tab12-radius-sm) 0 0;
-  padding: 12px 20px;
-  white-space: nowrap;
-}
-
-.tab-btn:hover {
-  color: var(--text-primary);
-  background: rgba(255,255,255,0.03);
-}
-
-.tab-btn.active {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
-  background: var(--bg-app);
-}
-
-/* Main Container Grid: Stage & Support */
-main.layout-container {
-  max-width: var(--tab12-container-max);
-  margin: 20px auto;
-  padding: 0 20px;
-  width: 100%;
-  flex: 1;
-  display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 24px;
-}
-
-@media (max-width: 1040px) {
-  main.layout-container {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Stage Area */
-.stage-area {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.tab-content {
-  display: none;
-}
-
-.tab-content.active {
-  display: block;
-}
-
-/* Cards & Content Elements */
-.content-card {
-  background-color: var(--bg-card);
-  border: 1.5px solid var(--border);
-  border-radius: var(--tab12-radius-md);
-  padding: 24px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.content-card h2 {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 12px;
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.content-card h3 {
-  font-size: 17px;
-  font-weight: 600;
-  margin: 18px 0 10px 0;
-  color: var(--accent);
-}
-
-.content-card p {
-  color: var(--text-secondary);
-  font-size: 15px;
-  margin-bottom: 12px;
-}
-
-.formula-box {
-  background: var(--bg-card-subtle);
-  border-left: 4px solid var(--accent);
-  padding: 14px 18px;
-  border-radius: 0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;
-  margin: 14px 0;
-  font-family: monospace;
-  font-size: 15.5px;
-  color: var(--text-primary);
-}
-
-.callout-box {
-  background: rgba(56, 189, 248, 0.08);
-  border: 1.5px solid var(--accent);
-  border-radius: var(--tab12-radius-sm);
-  padding: 16px 20px;
-  margin: 16px 0;
-}
-
-.callout-box.warning {
-  background: rgba(245, 158, 11, 0.08);
-  border-color: var(--warning);
-}
-
-.callout-box.success {
-  background: rgba(52, 211, 153, 0.08);
-  border-color: var(--success);
-}
-
-.tag-pill {
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: 999px;
-  font-size:14px;
-  font-weight: 600;
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
-  color: var(--text-secondary);
-  margin-right: 6px;
-  margin-bottom: 6px;
-}
-
-/* Question Cards */
-.q-card {
-  background: var(--bg-card);
-  border: 1.5px solid var(--border);
-  border-radius: var(--tab12-radius-md);
-  padding: 20px;
-  margin-bottom: 18px;
-}
-
-.q-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.q-badge {
-  background: rgba(192, 132, 252, 0.15);
-  border: 1px solid var(--purple);
-  color: var(--purple);
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size:14px;
-  font-weight: 700;
-}
-
-.q-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.q-prompt {
-  font-size: 15px;
-  color: var(--text-secondary);
-  margin-bottom: 14px;
-}
-
-details.solution-detail {
-  background: var(--bg-card-subtle);
-  border: 1px solid var(--border-light);
-  border-radius: var(--tab12-radius-sm);
-  overflow: hidden;
-  margin-top: 12px;
-}
-
-details.solution-detail summary {
-  padding: 12px 16px;
-  background: rgba(255,255,255,0.02);
-  color: var(--accent);
-  user-select: none;
-}
-
-.solution-content {
-  padding: 16px;
-  border-top: 1px solid var(--border);
-  font-size: 14.5px;
-  color: var(--text-primary);
-  line-height: 1.6;
-}
-
-/* Support Rail */
-.support-rail {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.support-widget {
-  background-color: var(--bg-card);
-  border: 1.5px solid var(--border);
-  border-radius: var(--tab12-radius-md);
-  padding: 20px;
-}
-
-.support-widget h3 {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-/* Interactive Calculator */
-.calc-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.calc-input-group label {
-  display: block;
-  font-size:14px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  margin-bottom: 4px;
-}
-
-.calc-input-group input, 
-.calc-input-group select {
-  width: 100%;
-  min-height: 42px;
-  padding: 8px 12px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: var(--tab12-radius-sm);
-  color: var(--text-primary);
-  font-size: 14.5px;
-}
-
-.calc-result {
-  background: rgba(56, 189, 248, 0.1);
-  border: 1.5px solid var(--accent);
-  padding: 12px;
-  border-radius: var(--tab12-radius-sm);
-  font-weight: 700;
-  color: var(--accent);
-  text-align: center;
-  font-size: 16px;
-  margin-top: 12px;
-}
-
-/* Responsive Table */
-.data-table-wrap {
-  overflow-x: auto;
-  margin: 16px 0;
-  border: 1px solid var(--border);
-  border-radius: var(--tab12-radius-sm);
-}
-
-table.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-  font-size: 14.5px;
-}
-
-table.data-table th {
-  background: var(--bg-card-subtle);
-  padding: 12px 16px;
-  border-bottom: 1.5px solid var(--border);
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-table.data-table td {
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--border);
-  color: var(--text-secondary);
-}
-
-table.data-table tr:last-child td {
-  border-bottom: none;
-}
-
-table.data-table tr:hover td {
-  background: rgba(255,255,255,0.02);
-}
-  </style>
-<style id="tablet-font-floor-remediation">
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{overflow-wrap:anywhere}
-:where(p,li,label,button,input,select,textarea,summary,td,th,figcaption,.btn,.q-badge,.tag-pill,.hint-badge,.hint-tag,.subject-badge,.step-label,.diag-header,.formula-box,#saveStatus,.save-status,.tag,.q-count,.open-btn,.stat .label,section.section-header h2,.study-kicker,.brand-badge,.hero-pill,.badge,.core-tag,.telemetry-title,.control-label,.card-action,.breadcrumb,div,span,h4,h5,h6,text){font-size:max(14px,1em)!important}
-:where(a[href="index.html"],header a,nav a,.breadcrumb a,a.g9-bridge-link,[data-g9-block="entry_assumptions"] a){min-height:48px!important;min-width:48px!important;display:inline-flex!important;align-items:center!important;justify-content:center;padding-block:10px!important;box-sizing:border-box!important}
-.subject-badge,.q-badge,.tag-pill{font-size:14px!important}
-</style>
-</head>
-<body>
-
-  <!-- App Header -->
-  <header class="app-header">
-    <div class="header-inner">
-      <div class="header-brand">
-        <h1>
-          <span>💨</span> Behaviour of Gases &amp; States of Matter
-          <span class="subject-badge">Chemistry · 12.7" Tablet</span>
-        </h1>
-      </div>
-      <div class="header-actions">
-        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">
-          🌓 Mode
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Navigation Tabs -->
-  <nav class="tab-nav">
-    <div class="tab-nav-inner">
-      <button class="tab-btn active" onclick="switchTab('tab-particle')">1. Particle Model</button>
-      <button class="tab-btn" onclick="switchTab('tab-laws')">2. Gas Laws &amp; PV=nRT</button>
-      <button class="tab-btn" onclick="switchTab('tab-phase')">3. Evaporation &amp; Phase Changes</button>
-      <button class="tab-btn" onclick="switchTab('tab-real')">4. Real Gases &amp; Van der Waals</button>
-      <button class="tab-btn" onclick="switchTab('tab-ncert')">5. NCERT Question Helper (27)</button>
-      <button class="tab-btn" onclick="switchTab('tab-practice')">6. Practice Diagnostic</button>
-    </div>
-  </nav>
-
-  <!-- Layout Container -->
-  <main class="layout-container">
-    
-    <!-- Stage Area -->
-    <div class="stage-area">
-
-      <!-- Tab 1: Particle Model & Kinetic Theory -->
-      <div id="tab-particle" class="tab-content active">
-        <div class="content-card">
-          <h2><span>🔬</span> The Kinetic Particle Model of Matter</h2>
-          <p>
-            All matter consists of minute particles (atoms or molecules) in ceaseless, rapid random motion.
-            The macroscopic properties of gases—pressure, temperature, diffusion, compressibility, and fluid flow—arise directly from the micro-dynamics of these particles.
-          </p>
-          
-          <div class="callout-box">
-            <strong>Key Postulates of Kinetic Molecular Theory (KMT):</strong>
-            <ul style="margin-left: 20px; margin-top: 8px; color: var(--text-secondary);">
-              <li>Gas molecules are point masses whose actual volume is negligible compared to the total volume occupied ($V_{	ext{particles}} \ll V_{	ext{gas}}$).</li>
-              <li>There are no intermolecular forces of attraction or repulsion between ideal gas molecules.</li>
-              <li>Molecules undergo continuous, random straight-line motion until colliding elastically with one another or the container walls.</li>
-              <li>Pressure exerted by a gas is the net momentum transferred per second per unit area of container wall: $P = \frac{1}{3}\frac{m N \overline{v^2}}{V}$.</li>
-              <li>Average kinetic energy of particles is directly proportional to absolute thermodynamic temperature $T$: $\overline{KE} = \frac{3}{2} k_B T = \frac{3}{2} \frac{R}{N_A} T$.</li>
-            </ul>
-          </div>
-
-          <h3>States of Matter Microscopic Comparison</h3>
-          <div class="data-table-wrap">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Property</th>
-                  <th>Solid</th>
-                  <th>Liquid</th>
-                  <th>Gas</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Particle Spacing</strong></td>
-                  <td>Extremely tight, ordered lattice</td>
-                  <td>Close, loosely clustered</td>
-                  <td>Very large (~10× molecular diameter)</td>
-                </tr>
-                <tr>
-                  <td><strong>Intermolecular Forces</strong></td>
-                  <td>Extremely strong (fixed positions)</td>
-                  <td>Intermediate (can slip past)</td>
-                  <td>Negligibly weak (free trajectories)</td>
-                </tr>
-                <tr>
-                  <td><strong>Kinetic Energy</strong></td>
-                  <td>Vibrational only around fixed sites</td>
-                  <td>Vibrational + Rotational + Local Translational</td>
-                  <td>High Translational Kinetic Energy</td>
-                </tr>
-                <tr>
-                  <td><strong>Compressibility</strong></td>
-                  <td>Negligible ($dV/dP \approx 0$)</td>
-                  <td>Very low</td>
-                  <td>Extremely high (large empty space)</td>
-                </tr>
-                <tr>
-                  <td><strong>Fluidity &amp; Shape</strong></td>
-                  <td>Rigid, definite shape &amp; volume</td>
-                  <td>Fluid, adopts vessel shape, definite volume</td>
-                  <td>Fluid, expands to fill entire container volume</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <h3>Molecular Speed Distributions ($v_{	ext{mp}}, v_{	ext{avg}}, v_{	ext{rms}}$)</h3>
-          <p>
-            At any given temperature $T$, molecules exhibit a Maxwell-Boltzmann velocity distribution. Three characteristic speeds describe this population:
-          </p>
-          <div class="formula-box">
-            Most Probable Speed: &nbsp; v_mp = √(2 R T / M) ≈ 1.414 √(RT/M)<br>
-            Average Speed: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v_avg = √(8 R T / π M) ≈ 1.596 √(RT/M)<br>
-            Root Mean Square: &nbsp;&nbsp;&nbsp; v_rms = √(3 R T / M) ≈ 1.732 √(RT/M)<br>
-            Ratio: v_mp : v_avg : v_rms = 1 : 1.128 : 1.225
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab 2: Gas Laws & Equations -->
-      <div id="tab-laws" class="tab-content">
-        <div class="content-card">
-          <h2><span>⚖️</span> Fundamental Gas Laws &amp; The Ideal Gas Equation</h2>
-          <p>
-            Four macroscopic variables completely specify the physical state of a fixed sample of gas: Pressure ($P$), Volume ($V$), Temperature ($T$), and Amount of substance ($n$).
-          </p>
-
-          <h3>1. Boyle's Law (Isothermal: $T = 	ext{const}, n = 	ext{const}$)</h3>
-          <p>
-            At constant temperature, the volume of a given mass of gas is inversely proportional to its pressure.
-          </p>
-          <div class="formula-box">
-            P ∝ 1/V &nbsp;⇒&nbsp; P · V = 	ext{constant} &nbsp;⇒&nbsp; P₁ V₁ = P₂ V₂
-          </div>
-
-          <h3>2. Charles's Law (Isobaric: $P = 	ext{const}, n = 	ext{const}$)</h3>
-          <p>
-            At constant pressure, the volume of a given mass of gas is directly proportional to its absolute temperature in Kelvin.
-          </p>
-          <div class="formula-box">
-            V ∝ T &nbsp;⇒&nbsp; V / T = 	ext{constant} &nbsp;⇒&nbsp; V₁ / T₁ = V₂ / T₂
-          </div>
-
-          <h3>3. Gay-Lussac's Law (Isochoric: $V = 	ext{const}, n = 	ext{const}$)</h3>
-          <p>
-            At constant volume, the pressure of a given mass of gas is directly proportional to its absolute temperature.
-          </p>
-          <div class="formula-box">
-            P ∝ T &nbsp;⇒&nbsp; P / T = 	ext{constant} &nbsp;⇒&nbsp; P₁ / T₁ = P₂ / T₂
-          </div>
-
-          <h3>4. Avogadro's Hypothesis ($P, T = 	ext{const}$)</h3>
-          <p>
-            Equal volumes of all gases under identical conditions of temperature and pressure contain an equal number of molecules ($V \propto n$).
-          </p>
-
-          <h3>5. The Ideal Gas Equation</h3>
-          <p>
-            Combining all four laws produces the universal equation of state for an ideal gas:
-          </p>
-          <div class="formula-box">
-            P · V = n · R · T = (m / M) · R · T<br>
-            Density Form: &nbsp; P · M = d · R · T &nbsp;⇒&nbsp; d = (P · M) / (R · T)
-          </div>
-          <div class="callout-box">
-            <strong>Universal Gas Constant ($R$):</strong>
-            <ul style="margin-left: 20px; margin-top: 6px;">
-              <li>$R = 8.314 	ext{ J}\cdot	ext{K}^{-1}\cdot	ext{mol}^{-1} = 8.314 	ext{ Pa}\cdot	ext{m}^3\cdot	ext{K}^{-1}\cdot	ext{mol}^{-1}$</li>
-              <li>$R = 0.0821 	ext{ L}\cdot	ext{atm}\cdot	ext{K}^{-1}\cdot	ext{mol}^{-1}$</li>
-              <li>$R = 0.08314 	ext{ L}\cdot	ext{bar}\cdot	ext{K}^{-1}\cdot	ext{mol}^{-1}$</li>
-              <li>$R \approx 2 	ext{ cal}\cdot	ext{K}^{-1}\cdot	ext{mol}^{-1}$</li>
-            </ul>
-          </div>
-
-          <h3>6. Dalton's Law of Partial Pressures</h3>
-          <p>
-            In a non-reacting mixture of gases, the total pressure is the sum of partial pressures exerted by individual gases:
-          </p>
-          <div class="formula-box">
-            P_total = P₁ + P₂ + P₃ + ... + Pₙ = ∑ Pᵢ<br>
-            Partial Pressure: &nbsp; Pᵢ = xᵢ · P_total &nbsp; (where xᵢ = nᵢ / n_total is the mole fraction)
-          </div>
-
-          <h3>7. Graham's Law of Diffusion / Effusion</h3>
-          <p>
-            Under identical temperature and pressure, the rate of effusion or diffusion ($r$) of a gas is inversely proportional to the square root of its molar mass or density:
-          </p>
-          <div class="formula-box">
-            r₁ / r₂ = √(M₂ / M₁) = √(d₂ / d₁) = (V₁ / t₁) / (V₂ / t₂)
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab 3: Evaporation & Phase Changes -->
-      <div id="tab-phase" class="tab-content">
-        <div class="content-card">
-          <h2><span>🌊</span> Evaporation, Boiling, and Latent Heat</h2>
-          <p>
-            Phase transitions involve reorganizing molecular spacing and breaking intermolecular attractions without altering the chemical identity of the substance.
-          </p>
-
-          <div class="callout-box success">
-            <strong>Evaporation vs. Boiling Critical Distinction:</strong>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px;">
-              <div>
-                <strong style="color: var(--accent);">Evaporation</strong>
-                <ul style="margin-left: 18px; margin-top: 4px; font-size: 14.5px;">
-                  <li>Surface phenomenon occurring at ANY temperature below boiling.</li>
-                  <li>Molecules with kinetic energy exceeding surface attraction escape.</li>
-                  <li>Causes cooling of remaining liquid ($\overline{KE}$ drops).</li>
-                  <li>Silent, gradual, non-turbulent.</li>
-                </ul>
-              </div>
-              <div>
-                <strong style="color: var(--accent);">Boiling</strong>
-                <ul style="margin-left: 18px; margin-top: 4px; font-size: 14.5px;">
-                  <li>Bulk phenomenon occurring at a FIXED temperature (boiling point).</li>
-                  <li>Vapour pressure of liquid equals external atmospheric pressure ($P_{	ext{vap}} = P_{	ext{ext}}$).</li>
-                  <li>Bubbles form inside the entire liquid volume.</li>
-                  <li>Temperature remains strictly constant during boiling.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <h3>Four Factors Controlling Rate of Evaporation</h3>
-          <div class="data-table-wrap">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Factor</th>
-                  <th>Direction</th>
-                  <th>Microscopic Mechanism</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>1. Exposed Surface Area</strong></td>
-                  <td>Area ↑ &nbsp;⇒&nbsp; Rate ↑</td>
-                  <td>More surface molecules are simultaneously exposed to escape the liquid barrier into the air.</td>
-                </tr>
-                <tr>
-                  <td><strong>2. Temperature</strong></td>
-                  <td>Temp ↑ &nbsp;⇒&nbsp; Rate ↑</td>
-                  <td>A higher fraction of molecules possess kinetic energy exceeding the activation energy for escape.</td>
-                </tr>
-                <tr>
-                  <td><strong>3. Humidity (Atmospheric Moisture)</strong></td>
-                  <td>Humidity ↑ &nbsp;⇒&nbsp; Rate ↓</td>
-                  <td>Air is already saturated with water vapour; the rate of condensation back into liquid approaches the rate of evaporation.</td>
-                </tr>
-                <tr>
-                  <td><strong>4. Wind Speed</strong></td>
-                  <td>Wind ↑ &nbsp;⇒&nbsp; Rate ↑</td>
-                  <td>Moving air sweeps away water vapour molecules adjacent to the surface, preventing localized saturation.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <h3>Latent Heat &amp; Heating Curve Analysis</h3>
-          <p>
-            During a phase change, thermal energy supplied goes entirely into breaking intermolecular binding forces rather than raising the average kinetic energy of the particles. Hence, temperature remains strictly constant.
-          </p>
-          <div class="formula-box">
-            Latent Heat of Fusion (L_f for Ice at 0°C): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.34 × 10⁵ J/kg (≈ 80 cal/g)<br>
-            Latent Heat of Vaporization (L_v for Water at 100°C): 2.26 × 10⁶ J/kg (≈ 540 cal/g)
-          </div>
-          <div class="callout-box warning">
-            <strong>Why Steam at 100°C Burns Far More Severely Than Boiling Water at 100°C:</strong>
-            <p style="margin-top: 4px; font-size: 14.5px;">
-              Both steam and boiling water are at 100°C ($373	ext{ K}$). However, 1 kg of steam contains an extra $2.26 	imes 10^6	ext{ J}$ of stored latent heat of vaporization. Upon contacting skin, steam first condenses into water at 100°C, releasing this colossal latent heat directly onto tissues, before cooling further as liquid water!
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab 4: Real Gases & Van der Waals -->
-      <div id="tab-real" class="tab-content">
-        <div class="content-card">
-          <h2><span>⚡</span> Real Gases, Deviations, &amp; The Van der Waals Equation</h2>
-          <p>
-            Real gases deviate from ideal behavior because gas molecules possess finite molecular volume and exert intermolecular attractive forces (Van der Waals forces).
-          </p>
-
-          <div class="formula-box">
-            Van der Waals Equation (for n moles):<br>
-            &nbsp; (P + a n² / V²) · (V - n b) = n R T<br><br>
-            For 1 mole (molar volume V_m):<br>
-            &nbsp; (P + a / V_m²) · (V_m - b) = R T
-          </div>
-
-          <h3>Significance of Van der Waals Constants '$a$' and '$b$'</h3>
-          <div class="data-table-wrap">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Constant</th>
-                  <th>Physical Meaning</th>
-                  <th>Units</th>
-                  <th>Effect on Liquefaction</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>a</strong> (Pressure correction)</td>
-                  <td>Magnitude of intermolecular attractive forces between gas molecules.</td>
-                  <td>$	ext{atm}\cdot	ext{L}^2\cdot	ext{mol}^{-2}$ &nbsp;or&nbsp; $	ext{Pa}\cdot	ext{m}^6\cdot	ext{mol}^{-2}$</td>
-                  <td>Higher '$a$' indicates stronger intermolecular attraction $
-ightarrow$ gas liquefies much more easily ($	ext{NH}_3 > 	ext{CO}_2 > 	ext{O}_2 > 	ext{H}_2$).</td>
-                </tr>
-                <tr>
-                  <td><strong>b</strong> (Volume correction / Co-volume)</td>
-                  <td>Effective incompressible volume excluded by molecules: $b = 4 	imes N_A 	imes v_{	ext{molecule}}$.</td>
-                  <td>$	ext{L}\cdot	ext{mol}^{-1}$ &nbsp;or&nbsp; $	ext{m}^3\cdot	ext{mol}^{-1}$</td>
-                  <td>Higher '$b$' indicates larger molecular size.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <h3>Compressibility Factor ($Z$)</h3>
-          <div class="formula-box">
-            Z = (P · V_m) / (R · T) = V_real / V_ideal<br><br>
-            • Ideal Gas: Z = 1 at all T and P.<br>
-            • Low Pressure (P → 0): Attractive forces dominate ⇒ Z = 1 - a / (R T V_m) < 1.<br>
-            • High Pressure: Repulsive / excluded volume forces dominate ⇒ Z = 1 + P b / (R T) > 1.<br>
-            • Hydrogen & Helium (H₂, He): Negligible attraction ($a \approx 0$) ⇒ Z = 1 + P b / (RT) > 1 at all ordinary pressures!
-          </div>
-
-          <h3>Critical State &amp; Liquefaction Constants</h3>
-          <div class="formula-box">
-            Critical Temperature: &nbsp; T_c = 8 a / (27 R b) &nbsp; (Highest temp at which gas can be liquefied by pressure alone)<br>
-            Critical Pressure: &nbsp;&nbsp;&nbsp; P_c = a / (27 b²)<br>
-            Critical Volume: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; V_c = 3 b<br>
-            Critical Compressibility: Z_c = (P_c V_c) / (R T_c) = 3 / 8 = 0.375
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab 5: NCERT Question Helper (27 Items) -->
-      <div id="tab-ncert" class="tab-content">
-        <div class="content-card">
-          <h2><span>📖</span> NCERT Question Helper &amp; Transfer Bank (27 Problems)</h2>
-          <p>
-            Complete NCERT exercise and exemplar items with visual thinking aids, reasoning routes, and verified worked solutions.
-          </p>
-        </div>
-
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 1: GAS PARTICLE MODEL</span>
-            <span class="tag-pill">Q01</span>
-          </div>
-          <div class="q-title">Question 1 - Unit 1 Q1: What rises when temperature rises? Try it on paper before using the helper.</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              01. Unit 1 Q1 - What rises when temperature rises?
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 1: GAS PARTICLE MODEL</span>
-            <span class="tag-pill">Q02</span>
-          </div>
-          <div class="q-title">Question 2 - Unit 1 Q3: Why gases and liquids are fluids Try it on paper before using the helper.</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              02. Unit 1 Q2 - Conditions for liquefying a gas<br>1 Heating increases particle kinetic energy. 1 Lowering temperature reduces particle kinetic energy.<br>2 Faster random motion increases diffusion. 2 Increasing pressure forces particles closer together.<br>3 More energetic surface particles escape more readily, so evaporation increases. 3 With particles slower and closer, attractive forces can pull them into the liquid<br>state.<br>4 A gas tends to occupy more space on heating, so expansion increases.<br>Answer: Low temperature and high pressure.<br>Answer: Diffusion, evaporation and expansion of gases increase with temperature.<br>NCERT source - Unit 1 Q2<br>NCERT source - Unit 1 Q1<br>Core (2) | solutions 37
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 1: GAS PARTICLE MODEL</span>
-            <span class="tag-pill">Q03</span>
-          </div>
-          <div class="q-title">Question 3 - Unit 1 Q5: Strength of attraction across states Try it on paper before using the helper.</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              03. Unit 1 Q3 - Why gases and liquids are fluids
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 2: TEMPERATURE, PRESSURE & VOLUME</span>
-            <span class="tag-pill">Q04</span>
-          </div>
-          <div class="q-title">Question 1 - Unit 1 Q2: Conditions for liquefying a gas Try it on paper before using the helper.</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              04. Unit 1 Q4 - Why an earthen pot cools water<br>1 Liquids and gases do not have a rigid particle arrangement. 1 Water seeps to the outer surface through fine pores.<br>2 Their particles can move past one another. 2 Some surface molecules evaporate.<br>3 Therefore they can flow and take the shape of the container. 3 Evaporation requires energy, taken from the water/pot/surroundings.<br>Answer: Gases and liquids behave as fluids. 4 The remaining water loses energy and becomes cooler.<br>NCERT source - Unit 1 Q3 Answer: Evaporation through the pores causes cooling.<br>NCERT source - Unit 1 Q4<br>Core (2) | solutions 38
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 2: TEMPERATURE, PRESSURE & VOLUME</span>
-            <span class="tag-pill">Q05</span>
-          </div>
-          <div class="q-title">Question 2 - Unit 1 Q6: Celsius to kelvin Try it on paper before using the helper.</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              05. Unit 1 Q5 - Strength of attraction across states
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 2: TEMPERATURE, PRESSURE & VOLUME</span>
-            <span class="tag-pill">Q06</span>
-          </div>
-          <div class="q-title">Question 3 - Unit 1 Q8: Boiling points on kelvin scale Try it on paper before using the helper.</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              06. Unit 1 Q6 - Celsius to kelvin<br>1 Gas particles have the weakest effective attraction in this comparison. 1 Use the conversion K = °C + 273.<br>2 Liquid particles are closer and attract more strongly. 2 25°C -> 298 K.<br>3 Solid particles are held most strongly in fixed positions. 3 38°C -> 311 K.<br>Answer: Oxygen < water < sugar. 4 66°C -> 339 K.<br>NCERT source - Unit 1 Q5 Answer: 298 K, 311 K and 339 K.<br>NCERT source - Unit 1 Q6<br>Core (2) | solutions 39
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 2: TEMPERATURE, PRESSURE & VOLUME</span>
-            <span class="tag-pill">Q07</span>
-          </div>
-          <div class="q-title">Question 4 - Unit 1 Q10: When gas particles get farther apart Try it on paper before using the helper.</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              07. Unit 1 Q7 - Naming state changes
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 2: TEMPERATURE, PRESSURE & VOLUME</span>
-            <span class="tag-pill">Q08</span>
-          </div>
-          <div class="q-title">Question 5 - Sample I Q1: Sample-paper kelvin conversion Try it on paper before using the helper.</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              08. Unit 1 Q8 - Boiling points on kelvin scale<br>1 Identify the starting state and final state. 1 35 + 273 = 308 K.<br>2 Check whether the liquid state is skipped. 2 56 + 273 = 329 K.<br>3 NCERT uses sublimation terminology for the direct solid-vapour transition in 3 118 + 273 = 391 K.<br>this item.<br>Answer: 308 K, 329 K and 391 K.<br>Answer: NCERT marks the vapour-to-solid direct change statement as correct and<br>uses “sublimation” terminology. NCERT source - Unit 1 Q8<br>NCERT source - Unit 1 Q7<br>Core (2) | solutions 40
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 2: TEMPERATURE, PRESSURE & VOLUME</span>
-            <span class="tag-pill">Q09</span>
-          </div>
-          <div class="q-title">Question 6 - Sample II Q1: Sample-paper gas liquefaction Try it on paper before using the helper.</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              09. Unit 1 Q9 - A condition that increases evaporation
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 3: EVAPORATION & COOLING</span>
-            <span class="tag-pill">Q10</span>
-          </div>
-          <div class="q-title">Question 1 - Unit 1 Q4: Why an earthen pot cools water Try it on paper before using the helper.</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              10. Unit 1 Q10 - When gas particles get farther apart<br>1 Higher temperature raises average particle kinetic energy. 1 If some gas leaks out, fewer molecules remain in the same container.<br>2 More surface particles can overcome attraction and escape into the gas phase. 2 If container volume increases, the same gas spreads through a larger volume.<br>3 Therefore evaporation becomes faster. 3 Both changes increase average separation.<br>Answer: Increasing the temperature of water increases evaporation. Answer: Gas leakage and increasing the container volume.<br>NCERT source - Unit 1 Q9 NCERT source - Unit 1 Q10<br>Core (2) | solutions 41
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 3: EVAPORATION & COOLING</span>
-            <span class="tag-pill">Q11</span>
-          </div>
-          <div class="q-title">Question 2 - Unit 1 Q9: A condition that increases evaporation Try it on paper before using the helper.</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              11. Unit 1 Q12 - Heating an ice-water mixture: graph reasoning
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 3: EVAPORATION & COOLING</span>
-            <span class="tag-pill">Q12</span>
-          </div>
-          <div class="q-title">Question 3 - Unit 1 Q21: Which vessel evaporates fastest? Try it on paper before using the helper.</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              12. Unit 1 Q13 - Gas-state and evaporation vocabulary<br>1 Ice and water coexist at 0°C. 1 Evaporation causes cooling.<br>2 Heat supplied during melting is used for the phase change, so temperature 2 Attraction is stronger in solids than gases.<br>stays constant.<br>3 Liquids are less ordered than solids; gases have no ordered arrangement.<br>3 After all ice melts, further heating raises the water temperature.<br>4 NCERT uses sublimation for direct solid-gas change.<br>Answer: The correct source option is (d): temperature stays at 0°C during melting,<br>then rises. 5 Liquid-to-gas below boiling point is evaporation.<br>NCERT source - Unit 1 Q12 Answer: Cooling; stronger; liquid/gaseous; sublimation/liquid; evaporation.<br>NCERT source - Unit 1 Q13<br>Core (2) | solutions 42
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 3: EVAPORATION & COOLING</span>
-            <span class="tag-pill">Q13</span>
-          </div>
-          <div class="q-title">Question 4 - Unit 1 Q24: Why cotton feels better in summer Try it on paper before using the helper.</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              13. Unit 1 Q14 - SI units for gas-relevant quantities
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 3: EVAPORATION & COOLING</span>
-            <span class="tag-pill">Q14</span>
-          </div>
-          <div class="q-title">Question 5 - Unit 1 Q25: How to dry a wet shirt faster Try it on paper before using the helper.</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              14. Unit 1 Q15 - Pairing non-SI and SI units<br>1 Pressure is measured in pascal. 1 Identify the measured quantity for each non-SI unit.<br>2 Temperature is measured in kelvin. 2 Pair it with the SI unit of the same quantity.<br>3 Density is kg per cubic metre. Answer: °C-K; cm-m; g cm^-3-kg m^-3; bar-Pa; mg-kg.<br>4 Mass is kilogram. NCERT source - Unit 1 Q15<br>5 Volume is cubic metre.<br>Answer: Pressure-pascal; temperature-kelvin; density-kg m^-3; mass-kilogram;<br>volume-cubic metre.<br>NCERT source - Unit 1 Q14<br>Core (2) | solutions 43
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 3: EVAPORATION & COOLING</span>
-            <span class="tag-pill">Q15</span>
-          </div>
-          <div class="q-title">Question 6 - Unit 1 Q26: Evaporation cooling, humidity and sponge</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              15. Unit 1 Q18 - Why ice cools but steam burns
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 4: BOILING, STEAM & LATENT HEAT</span>
-            <span class="tag-pill">Q16</span>
-          </div>
-          <div class="q-title">Question 1 - Unit 1 Q12: Heating an ice-water mixture: graph</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              16. Unit 1 Q19 - Steam vs boiling water at the same<br>temperature<br>1 Ice is at lower energy and draws heat from the body as it warms/melts.<br>1 At normal pressure water boils at about 100°C.<br>2 Steam carries high energy.<br>2 Steam formed at the boiling point can also be about 100°C.<br>3 When steam condenses on skin it releases latent heat in addition to cooling,<br>transferring much more energy. 3 The phase change required latent heat, so steam has more energy than the<br>same mass of liquid water at that temperature.<br>Answer: Ice absorbs heat; steam releases a large amount of energy on<br>condensation and can cause severe burns. 4 When steam condenses, that energy is released.<br>NCERT source - Unit 1 Q18 Answer: Steam and boiling water can both be at 100°C; steam causes stronger<br>heating because it carries latent heat and releases it on condensation.<br>NCERT source - Unit 1 Q19<br>Core (2) | solutions 44
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 4: BOILING, STEAM & LATENT HEAT</span>
-            <span class="tag-pill">Q17</span>
-          </div>
-          <div class="q-title">Question 2 - Unit 1 Q18: Why ice cools but steam burns Try it on paper before using the helper.</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              17. Unit 1 Q21 - Which vessel evaporates fastest?
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 4: BOILING, STEAM & LATENT HEAT</span>
-            <span class="tag-pill">Q18</span>
-          </div>
-          <div class="q-title">Question 3 - Unit 1 Q19: Steam vs boiling water at the same</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              18. Unit 1 Q22 - Direct vapour-solid change and latent heat<br>1 A larger exposed surface lets more molecules escape at once. 1 Trace the direct gas/solid transition for part (a).<br>2 Moving air removes water vapour from above the surface. 2 For part (b), state the amount (1 kg), the transition (solid to liquid), and the<br>condition (at melting point, atmospheric pressure).<br>3 Vessel C combines both effects, so evaporation is fastest.<br>Answer: NCERT uses “sublimation” for the direct vapour-to-solid change; latent<br>Answer: Vessel C, because it has large exposed surface area and moving air from heat of fusion is the heat needed to melt 1 kg of solid at its melting point at<br>the fan. atmospheric pressure without a temperature rise.<br>NCERT source - Unit 1 Q21 NCERT source - Unit 1 Q22<br>Core (2) | solutions 45
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 4: BOILING, STEAM & LATENT HEAT</span>
-            <span class="tag-pill">Q19</span>
-          </div>
-          <div class="q-title">Question 4 - Unit 1 Q27: Why temperature stays constant while</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              19. Unit 1 Q23 - Separating naphthalene and ammonium
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 4: BOILING, STEAM & LATENT HEAT</span>
-            <span class="tag-pill">Q20</span>
-          </div>
-          <div class="q-title">Question 5 - Sample I Q17: Sample-paper phase-change graph Try it on paper before using the helper.</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              20. Unit 1 Q24 - Why cotton feels better in summer<br>chloride<br>1 Cotton absorbs sweat better than nylon.<br>1 Add water and stir the mixture.<br>2 The absorbed water spreads over the fibres and evaporates.<br>2 Ammonium chloride dissolves while naphthalene remains insoluble.<br>3 Evaporation takes heat from the body/surroundings, producing cooling.<br>3 Filter: naphthalene stays as residue; ammonium chloride solution passes as<br>Answer: The person wearing cotton is more comfortable because cotton absorbs<br>filtrate.<br>sweat and supports evaporative cooling.<br>4 Evaporate water from the filtrate to recover ammonium chloride.<br>NCERT source - Unit 1 Q24<br>Answer: Add water, dissolve ammonium chloride, filter off naphthalene, then<br>evaporate the filtrate to recover ammonium chloride.<br>NCERT source - Unit 1 Q23<br>Core (2) | solutions 46
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 5: SUBLIMATION & CHANGE OF STATE</span>
-            <span class="tag-pill">Q21</span>
-          </div>
-          <div class="q-title">Question 1 - Unit 1 Q7: Naming state changes Try it on paper before using the helper.</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              21. Unit 1 Q25 - How to dry a wet shirt faster
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 5: SUBLIMATION & CHANGE OF STATE</span>
-            <span class="tag-pill">Q22</span>
-          </div>
-          <div class="q-title">Question 2 - Unit 1 Q13: Gas-state and evaporation vocabulary Try it on paper before using the helper.</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              22. Unit 1 Q26 - Evaporation cooling, humidity and sponge<br>compression<br>1 Spread the shirt to increase exposed surface area.<br>1 Evaporation: higher-energy surface molecules escape and energy is taken<br>2 Place it in warmth/sunlight to raise temperature. from surroundings, so cooling occurs.<br>3 Use moving air/fan to remove moist air from the surface. 2 Humidity: air already rich in water vapour accepts additional vapour less<br>readily, so evaporation slows.<br>4 If possible, use a less humid environment.<br>3 Sponge: its solid framework has pores containing air; pressing expels/<br>Answer: Spread the shirt, warm it/sun-dry it, and increase airflow; dry air also compresses that trapped air, making the sponge appear compressible.<br>helps.<br>Answer: All three statements are explained respectively by energy removal during<br>NCERT source - Unit 1 Q25 evaporation, reduced evaporation in humid air, and compression/escape of trapped<br>air in sponge pores.<br>NCERT source - Unit 1 Q26<br>Core (2) | solutions 47
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 5: SUBLIMATION & CHANGE OF STATE</span>
-            <span class="tag-pill">Q23</span>
-          </div>
-          <div class="q-title">Question 3 - Unit 1 Q22: Direct vapour-solid change and latent heat Try it on paper before using the helper.</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              23. Unit 1 Q27 - Why temperature stays constant while boiling
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 5: SUBLIMATION & CHANGE OF STATE</span>
-            <span class="tag-pill">Q24</span>
-          </div>
-          <div class="q-title">Question 4 - Unit 1 Q23: Separating naphthalene and ammonium</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              24. Sample I Q1 - Sample-paper kelvin conversion<br>1 Before boiling, added heat increases particle kinetic energy and temperature. 1 Apply K = °C + 273 to each temperature.<br>2 At the boiling point, added energy is used to separate particles and form 2 The resulting sequence is 298 K, 311 K, 339 K.<br>vapour.<br>Answer: 298 K, 311 K and 339 K.<br>3 Because that energy goes into the phase change rather than increasing<br>average kinetic energy, temperature stays constant until boiling is complete. NCERT source - Sample I Q1<br>Answer: The supplied heat is used as latent heat to overcome attractions and<br>change state, so temperature remains constant until the phase change is complete.<br>NCERT source - Unit 1 Q27<br>Core (2) | solutions 48
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 5: SUBLIMATION & CHANGE OF STATE</span>
-            <span class="tag-pill">Q25</span>
-          </div>
-          <div class="q-title">Question 5 - Sample I Q2: Sample-paper direct state change Try it on paper before using the helper.</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              25. Sample I Q2 - Sample-paper direct state change
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 6: MEASUREMENT & INTEGRATED REASONING</span>
-            <span class="tag-pill">Q26</span>
-          </div>
-          <div class="q-title">Question 1 - Unit 1 Q14: SI units for gas-relevant quantities Try it on paper before using the helper.</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              26. Sample I Q17 - Sample-paper phase-change graph<br>1 Identify the direction: vapour to solid. 1 Ice-water equilibrium begins at 0°C.<br>2 The liquid state is skipped. 2 Heating first melts ice at constant temperature.<br>3 That is the direct solid-vapour transition terminology used by the source. 3 After all ice melts, liquid-water temperature increases.<br>Answer: The source marks the direct vapour-to-solid statement as correct and Answer: The correct graph is the one that stays at 0°C during melting and then<br>labels it sublimation. rises.<br>NCERT source - Sample I Q2 NCERT source - Sample I Q17<br>Core (2) | solutions 49
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">PART 6: MEASUREMENT & INTEGRATED REASONING</span>
-            <span class="tag-pill">Q27</span>
-          </div>
-          <div class="q-title">Question 2 - Unit 1 Q15: Pairing non-SI and SI units Try it on paper before using the helper.</div>
-          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
-            <div class="solution-content">
-              27. Sample II Q1 - Sample-paper gas liquefaction<br>1 Lower temperature slows the particles.<br>2 Higher pressure pushes particles closer.<br>3 Together they favour conversion of gas to liquid.<br>Answer: Low temperature and high pressure.<br>NCERT source - Sample II Q1<br>Core (2) | solutions 50
-            </div>
-          </details>
-        </div>
-    
-      </div>
-
-      <!-- Tab 6: Practice Diagnostic -->
-      <div id="tab-practice" class="tab-content">
-        <div class="content-card">
-          <h2><span>🎯</span> High-Yield Diagnostic Problems</h2>
-          <p>
-            Test your conceptual grasp on core exam topics. Select an answer to verify your reasoning immediately.
-          </p>
-        </div>
-
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">JEE Main / NEET Focus</span>
-            <span class="tag-pill">Diagnostic 01</span>
-          </div>
-          <div class="q-title">Van der Waals Compressibility at Moderate Pressure</div>
-          <p class="q-prompt">
-            For one mole of a real gas at moderate pressure, the compressibility factor Z is accurately approximated by which expression?
-          </p>
-          <div style="display: flex; flex-direction: column; gap: 8px; margin: 12px 0;">
-            <button class="btn" style="justify-content: flex-start; text-align: left; background: var(--bg-surface); border: 1px solid var(--border);" onclick="checkOpt(this, true, 'Correct! At low to moderate pressure, V_m >> b, so (V_m - b) ≈ V_m. Then (P + a/V_m²)V_m = RT ⇒ PV_m + a/V_m = RT ⇒ Z = 1 - a/(RTV_m).')">
-              A. Z = 1 - a / (R T V_m)
-            </button>
-            <button class="btn" style="justify-content: flex-start; text-align: left; background: var(--bg-surface); border: 1px solid var(--border);" onclick="checkOpt(this, false, 'Incorrect. Z = 1 + Pb/(RT) applies at high pressure where volume exclusion dominates.')">
-              B. Z = 1 + P b / (R T)
-            </button>
-            <button class="btn" style="justify-content: flex-start; text-align: left; background: var(--bg-surface); border: 1px solid var(--border);" onclick="checkOpt(this, false, 'Incorrect. Attractive forces reduce the pressure, making Z < 1, so the term is subtracted.')">
-              C. Z = 1 + a / (R T V_m)
-            </button>
-            <button class="btn" style="justify-content: flex-start; text-align: left; background: var(--bg-surface); border: 1px solid var(--border);" onclick="checkOpt(this, false, 'Incorrect. Excluded volume b always increases Z, never decreases it.')">
-              D. Z = 1 - P b / (R T)
-            </button>
-          </div>
-          <div class="opt-feedback" style="display: none; padding: 12px; border-radius: 8px; margin-top: 10px;"></div>
-        </div>
-
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">NCERT Transfer</span>
-            <span class="tag-pill">Diagnostic 02</span>
-          </div>
-          <div class="q-title">Diffusion Rate and Temperature</div>
-          <p class="q-prompt">
-            Why does the aroma of hot sizzling food reach several metres away in seconds, while that of cold food requires getting close?
-          </p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Conceptual Derivation</summary>
-            <div class="solution-content">
-              <strong>Step 1:</strong> Particles of food aroma disperse into atmospheric air via diffusion.<br>
-              <strong>Step 2:</strong> Rate of diffusion depends on molecular speed: r ∝ v_rms = √(3RT/M).<br>
-              <strong>Step 3:</strong> At high temperature (hot food), kinetic energy is elevated, increasing root-mean-square velocity and vapor pressure.<br>
-              <strong>Step 4:</strong> Hot aromatic vapor molecules diffuse into air exponentially faster than cold food volatiles.
-            </div>
-          </details>
-        </div>
-
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Ideal Gas Calculations</span>
-            <span class="tag-pill">Diagnostic 03</span>
-          </div>
-          <div class="q-title">Molar Mass from Density (Dumas Method)</div>
-          <p class="q-prompt">
-            An unknown gas has a density of 1.96 g/L at 273.15 K and 1.00 atm pressure. Calculate its molar mass and identify the probable gas.
-          </p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Mathematical Solution</summary>
-            <div class="solution-content">
-              <strong>Formula:</strong> P · M = d · R · T &nbsp;⇒&nbsp; M = (d · R · T) / P<br>
-              <strong>Substitution:</strong> M = (1.96 g/L × 0.0821 L·atm·K⁻¹·mol⁻¹ × 273.15 K) / 1.00 atm<br>
-              <strong>Calculation:</strong> M = 1.96 × 22.414 = 43.93 ≈ 44.0 g/mol.<br>
-              <strong>Identity:</strong> Carbon Dioxide (CO₂, M = 12 + 32 = 44 g/mol) or Propane (C₃H₈, M = 36 + 8 = 44 g/mol).
-            </div>
-          </details>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Support Rail -->
-    <aside class="support-rail">
-      
-      <!-- Quick Formula Card -->
-      <div class="support-widget">
-        <h3><span>⚡</span> Key Gas Formulas</h3>
-        <div class="formula-box" style="font-size: 14px; margin: 0 0 10px 0;">
-          P V = n R T<br>
-          P₁ V₁ / T₁ = P₂ V₂ / T₂<br>
-          d = P M / (R T)<br>
-          r₁ / r₂ = √(M₂ / M₁)<br>
-          P_tot = ∑ Pᵢ = ∑ xᵢ P_tot<br>
-          (P + an²/V²)(V - nb) = nRT
-        </div>
-      </div>
-
-      <!-- Interactive Ideal Gas Calculator -->
-      <div class="support-widget">
-        <h3><span>🧮</span> Ideal Gas Law Calculator</h3>
-        <p style="font-size:14px; color: var(--text-secondary); margin-bottom: 12px;">
-          Compute Pressure, Volume, Moles, or Temperature dynamically:
-        </p>
-        <div class="calc-row">
-          <div class="calc-input-group">
-            <label>Solve For:</label>
-            <select id="calcTarget" onchange="runGasCalc()">
-              <option value="P">Pressure (P)</option>
-              <option value="V">Volume (V)</option>
-              <option value="n">Moles (n)</option>
-              <option value="T">Temperature (T)</option>
-            </select>
-          </div>
-          <div class="calc-input-group">
-            <label>R Constant:</label>
-            <input type="text" value="0.0821 L·atm/mol·K" disabled>
-          </div>
-        </div>
-        <div class="calc-row">
-          <div class="calc-input-group" id="groupP">
-            <label>Pressure (atm):</label>
-            <input type="number" id="inputP" value="1.0" step="0.1" oninput="runGasCalc()">
-          </div>
-          <div class="calc-input-group" id="groupV">
-            <label>Volume (L):</label>
-            <input type="number" id="inputV" value="22.4" step="0.1" oninput="runGasCalc()">
-          </div>
-        </div>
-        <div class="calc-row">
-          <div class="calc-input-group" id="groupN">
-            <label>Moles (n):</label>
-            <input type="number" id="inputN" value="1.0" step="0.05" oninput="runGasCalc()">
-          </div>
-          <div class="calc-input-group" id="groupT">
-            <label>Temp (K):</label>
-            <input type="number" id="inputT" value="273.15" step="1" oninput="runGasCalc()">
-          </div>
-        </div>
-        <div class="calc-result" id="calcOutput">
-          P = 1.00 atm
-        </div>
-      </div>
-
-      <!-- Virtual Keyboard Safe Scratchpad -->
-      <div class="support-widget">
-        <h3><span>📝</span> Tablet Study Scratchpad</h3>
-        <p style="font-size:14px; color: var(--text-secondary); margin-bottom: 8px;">
-          Auto-saves to tablet local storage. Virtual keyboard safe (min-height: 120px):
-        </p>
-        <textarea id="scratchpadNotes" class="tablet-safe-input" placeholder="Jot down formulas, unit notes, or calculation steps..."></textarea>
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
-          <span id="saveStatus" style="font-size:14px; color: var(--success);">✓ Auto-saved locally</span>
-          <button class="btn" style="min-height: 40px; padding: 6px 14px; font-size:14px; background: var(--bg-surface); border: 1px solid var(--border);" onclick="clearScratchpad()">Clear</button>
-        </div>
-      </div>
-
-    </aside>
-
-  </main>
-
-  <script>
-    // Tab switching
-    function switchTab(tabId) {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
-      if (activeBtn) activeBtn.classList.add('active');
-      const targetContent = document.getElementById(tabId);
-      if (targetContent) targetContent.classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Theme toggle with localStorage
-    const themeBtn = document.getElementById('themeToggle');
-    const htmlEl = document.documentElement;
-    const savedTheme = localStorage.getItem('tablet12_theme') || 'dark';
-    htmlEl.setAttribute('data-theme', savedTheme);
-    themeBtn.addEventListener('click', () => {
-      const current = htmlEl.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      htmlEl.setAttribute('data-theme', next);
-      localStorage.setItem('tablet12_theme', next);
-    });
-
-    // Scratchpad auto-save
-    const pad = document.getElementById('scratchpadNotes');
-    const status = document.getElementById('saveStatus');
-    pad.value = localStorage.getItem('gases_tablet_notes') || '';
-    pad.addEventListener('input', () => {
-      localStorage.setItem('gases_tablet_notes', pad.value);
-      status.textContent = '✓ Saved ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    });
-
-    function clearScratchpad() {
-      if (confirm('Clear scratchpad notes?')) {
-        pad.value = '';
-        localStorage.removeItem('gases_tablet_notes');
-        status.textContent = 'Notes cleared';
-      }
-    }
-
-    // Gas Calculator
-    function runGasCalc() {
-      const target = document.getElementById('calcTarget').value;
-      const P = parseFloat(document.getElementById('inputP').value) || 1.0;
-      const V = parseFloat(document.getElementById('inputV').value) || 22.4;
-      const n = parseFloat(document.getElementById('inputN').value) || 1.0;
-      const T = parseFloat(document.getElementById('inputT').value) || 273.15;
-      const R = 0.0821;
-      const out = document.getElementById('calcOutput');
-
-      // Adjust input visibility
-      document.getElementById('groupP').style.display = target === 'P' ? 'none' : 'block';
-      document.getElementById('groupV').style.display = target === 'V' ? 'none' : 'block';
-      document.getElementById('groupN').style.display = target === 'n' ? 'none' : 'block';
-      document.getElementById('groupT').style.display = target === 'T' ? 'none' : 'block';
-
-      if (target === 'P') {
-        const res = (n * R * T) / V;
-        out.textContent = `P = ${res.toFixed(3)} atm (${(res * 101.325).toFixed(1)} kPa)`;
-      } else if (target === 'V') {
-        const res = (n * R * T) / P;
-        out.textContent = `V = ${res.toFixed(3)} L (${(res * 1000).toFixed(0)} mL)`;
-      } else if (target === 'n') {
-        const res = (P * V) / (R * T);
-        out.textContent = `n = ${res.toFixed(4)} moles`;
-      } else if (target === 'T') {
-        const res = (P * V) / (n * R);
-        out.textContent = `T = ${res.toFixed(2)} K (${(res - 273.15).toFixed(1)} °C)`;
-      }
-    }
-    runGasCalc();
-
-    // Option checking for diagnostics
-    function checkOpt(btn, isCorrect, msg) {
-      const parent = btn.parentElement;
-      const fback = parent.nextElementSibling;
-      fback.style.display = 'block';
-      fback.style.backgroundColor = isCorrect ? 'rgba(52, 211, 153, 0.15)' : 'rgba(248, 113, 113, 0.15)';
-      fback.style.border = '1px solid ' + (isCorrect ? 'var(--success)' : 'var(--danger)');
-      fback.style.color = isCorrect ? 'var(--success)' : 'var(--danger)';
-      fback.textContent = (isCorrect ? '✓ ' : '✗ ') + msg;
-    }
-  </script>
-  <script>
-    function renderAllMath() {
-      if (window.renderMathInElement) {
-        renderMathInElement(document.body, {
-          delimiters: [
-            {left: "$$", right: "$$", display: true},
-            {left: "$", right: "$", display: false},
-            {left: "\\(", right: "\\)", display: false},
-            {left: "\\[", right: "\\]", display: true}
-          ],
-          throwOnError: false
-        });
-      }
-    }
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", renderAllMath);
-    } else {
-      renderAllMath();
-    }
-  </script>
-</body>
-</html>
+<!DOCTYPE html>
+
+<html lang="en" data-theme="dark">
+
+<head>
+
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>GRADE 9 CHEMISTRY - Behaviour of Gases Master Suite | 12.7" Tablet Standalone Edition</title>
+
+  <meta name="description" content="Complete 12.7-inch tablet study suite for Behaviour of Gases & States of Matter. Covers Particle Model, Gas Laws, PV=nRT, Evaporation, Phase Transitions, Van der Waals Real Gases, and 27 NCERT Question Helper instances.">
+
+  <style>
+
+/* ==========================================================================
+
+   Chemistry: Behaviour of Gases 12.7" Tablet Standalone Stylesheet
+
+   WCAG 2.5.5 >= 48px touch targets, >= 120px textareas, no micro-fonts (<13.5px)
+
+   100% Offline Standalone · Dark/Light Mode · Responsive Stage/Support Grid
+
+   ========================================================================== */
+
+
+
+:root {
+
+  --tab12-container-max: 1400px;
+
+  --tab12-touch-min: 48px;
+
+  --tab12-base-font: 16px;
+
+  --tab12-radius-sm: 8px;
+
+  --tab12-radius-md: 12px;
+
+  --tab12-radius-lg: 16px;
+
+
+
+  /* Dark Theme Palette (Default) */
+
+  --bg-app: #080d1a;
+
+  --bg-surface: #0f172a;
+
+  --bg-card: #152238;
+
+  --bg-card-subtle: #1a2942;
+
+  --border: #263859;
+
+  --border-light: #334b75;
+
+  --text-primary: #f8fafc;
+
+  --text-secondary: #94a3b8;
+
+  --text-muted: #64748b;
+
+  --accent: #38bdf8;
+
+  --accent-glow: rgba(56, 189, 248, 0.25);
+
+  --success: #34d399;
+
+  --warning: #f59e0b;
+
+  --danger: #f87171;
+
+  --purple: #c084fc;
+
+}
+
+
+
+[data-theme="light"] {
+
+  --bg-app: #f1f5f9;
+
+  --bg-surface: #ffffff;
+
+  --bg-card: #ffffff;
+
+  --bg-card-subtle: #f8fafc;
+
+  --border: #cbd5e1;
+
+  --border-light: #e2e8f0;
+
+  --text-primary: #0f172a;
+
+  --text-secondary: #475569;
+
+  --text-muted: #64748b;
+
+  --accent: #0284c7;
+
+  --accent-glow: rgba(2, 132, 199, 0.15);
+
+  --success: #059669;
+
+  --warning: #d97706;
+
+  --danger: #dc2626;
+
+  --purple: #7e22ce;
+
+}
+
+
+
+*, *::before, *::after {
+
+  box-sizing: border-box;
+
+  margin: 0;
+
+  padding: 0;
+
+}
+
+
+
+html {
+
+  font-size: var(--tab12-base-font);
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  color: var(--text-primary);
+
+  background-color: var(--bg-app);
+
+  scroll-behavior: smooth;
+
+  -webkit-text-size-adjust: 100%;
+
+}
+
+
+
+body {
+
+  line-height: 1.6;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+}
+
+
+
+/* Strict 48px+ Touch Target Rule */
+
+button, 
+
+.btn, 
+
+.tab-btn, 
+
+.pill-btn,
+
+summary {
+
+  min-height: var(--tab12-touch-min);
+
+  min-width: var(--tab12-touch-min);
+
+  padding: 10px 18px;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  border-radius: var(--tab12-radius-sm);
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  cursor: pointer;
+
+  touch-action: manipulation;
+
+  transition: all 0.18s ease;
+
+  border: 1px solid transparent;
+
+}
+
+
+
+button:focus-visible, 
+
+.btn:focus-visible, 
+
+input:focus-visible, 
+
+textarea:focus-visible, 
+
+summary:focus-visible {
+
+  outline: 3px solid var(--accent);
+
+  outline-offset: 2px;
+
+}
+
+
+
+/* Virtual Tablet Keyboard Safe Textareas */
+
+textarea.tablet-safe-input {
+
+  min-height: 120px;
+
+  width: 100%;
+
+  padding: 14px;
+
+  font-family: monospace, inherit;
+
+  font-size: 14.5px;
+
+  line-height: 1.5;
+
+  background-color: var(--bg-surface);
+
+  color: var(--text-primary);
+
+  border: 1.5px solid var(--border);
+
+  border-radius: var(--tab12-radius-sm);
+
+  resize: vertical;
+
+  display: block;
+
+}
+
+
+
+textarea.tablet-safe-input:focus {
+
+  border-color: var(--accent);
+
+  background-color: var(--bg-card);
+
+}
+
+
+
+/* App Header */
+
+header.app-header {
+
+  background-color: var(--bg-surface);
+
+  border-bottom: 1.5px solid var(--border);
+
+  padding: 14px 24px;
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 100;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+}
+
+
+
+.header-inner {
+
+  max-width: var(--tab12-container-max);
+
+  margin: 0 auto;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 16px;
+
+}
+
+
+
+.header-brand h1 {
+
+  font-size: 20px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.02em;
+
+  color: var(--text-primary);
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+}
+
+
+
+.subject-badge {
+
+  font-size:14px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.06em;
+
+  padding: 4px 10px;
+
+  border-radius: 999px;
+
+  background-color: rgba(56, 189, 248, 0.15);
+
+  color: var(--accent);
+
+  border: 1px solid var(--accent);
+
+  font-weight: 700;
+
+}
+
+
+
+.header-actions {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+}
+
+
+
+.theme-toggle-btn {
+
+  background-color: var(--bg-card);
+
+  color: var(--text-primary);
+
+  border: 1.5px solid var(--border);
+
+}
+
+
+
+.theme-toggle-btn:hover {
+
+  background-color: var(--bg-card-subtle);
+
+  border-color: var(--accent);
+
+}
+
+
+
+/* Nav Tabs */
+
+nav.tab-nav {
+
+  background-color: var(--bg-surface);
+
+  border-bottom: 1px solid var(--border);
+
+  padding: 8px 24px 0 24px;
+
+  overflow-x: auto;
+
+  -webkit-overflow-scrolling: touch;
+
+}
+
+
+
+.tab-nav-inner {
+
+  max-width: var(--tab12-container-max);
+
+  margin: 0 auto;
+
+  display: flex;
+
+  gap: 8px;
+
+}
+
+
+
+.tab-btn {
+
+  background: transparent;
+
+  color: var(--text-secondary);
+
+  border: none;
+
+  border-bottom: 3px solid transparent;
+
+  border-radius: var(--tab12-radius-sm) var(--tab12-radius-sm) 0 0;
+
+  padding: 12px 20px;
+
+  white-space: nowrap;
+
+}
+
+
+
+.tab-btn:hover {
+
+  color: var(--text-primary);
+
+  background: rgba(255,255,255,0.03);
+
+}
+
+
+
+.tab-btn.active {
+
+  color: var(--accent);
+
+  border-bottom-color: var(--accent);
+
+  background: var(--bg-app);
+
+}
+
+
+
+/* Main Container Grid: Stage & Support */
+
+main.layout-container {
+
+  max-width: var(--tab12-container-max);
+
+  margin: 20px auto;
+
+  padding: 0 20px;
+
+  width: 100%;
+
+  flex: 1;
+
+  display: grid;
+
+  grid-template-columns: 1fr 380px;
+
+  gap: 24px;
+
+}
+
+
+
+@media (max-width: 1040px) {
+
+  main.layout-container {
+
+    grid-template-columns: 1fr;
+
+  }
+
+}
+
+
+
+/* Stage Area */
+
+.stage-area {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+
+}
+
+
+
+.tab-content {
+
+  display: none;
+
+}
+
+
+
+.tab-content.active {
+
+  display: block;
+
+}
+
+
+
+/* Cards & Content Elements */
+
+.content-card {
+
+  background-color: var(--bg-card);
+
+  border: 1.5px solid var(--border);
+
+  border-radius: var(--tab12-radius-md);
+
+  padding: 24px;
+
+  margin-bottom: 20px;
+
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+}
+
+
+
+.content-card h2 {
+
+  font-size: 20px;
+
+  font-weight: 700;
+
+  margin-bottom: 12px;
+
+  color: var(--text-primary);
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+}
+
+
+
+.content-card h3 {
+
+  font-size: 17px;
+
+  font-weight: 600;
+
+  margin: 18px 0 10px 0;
+
+  color: var(--accent);
+
+}
+
+
+
+.content-card p {
+
+  color: var(--text-secondary);
+
+  font-size: 15px;
+
+  margin-bottom: 12px;
+
+}
+
+
+
+.formula-box {
+
+  background: var(--bg-card-subtle);
+
+  border-left: 4px solid var(--accent);
+
+  padding: 14px 18px;
+
+  border-radius: 0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;
+
+  margin: 14px 0;
+
+  font-family: monospace;
+
+  font-size: 15.5px;
+
+  color: var(--text-primary);
+
+}
+
+
+
+.callout-box {
+
+  background: rgba(56, 189, 248, 0.08);
+
+  border: 1.5px solid var(--accent);
+
+  border-radius: var(--tab12-radius-sm);
+
+  padding: 16px 20px;
+
+  margin: 16px 0;
+
+}
+
+
+
+.callout-box.warning {
+
+  background: rgba(245, 158, 11, 0.08);
+
+  border-color: var(--warning);
+
+}
+
+
+
+.callout-box.success {
+
+  background: rgba(52, 211, 153, 0.08);
+
+  border-color: var(--success);
+
+}
+
+
+
+.tag-pill {
+
+  display: inline-block;
+
+  padding: 3px 10px;
+
+  border-radius: 999px;
+
+  font-size:14px;
+
+  font-weight: 600;
+
+  background: var(--bg-surface);
+
+  border: 1px solid var(--border);
+
+  color: var(--text-secondary);
+
+  margin-right: 6px;
+
+  margin-bottom: 6px;
+
+}
+
+
+
+/* Question Cards */
+
+.q-card {
+
+  background: var(--bg-card);
+
+  border: 1.5px solid var(--border);
+
+  border-radius: var(--tab12-radius-md);
+
+  padding: 20px;
+
+  margin-bottom: 18px;
+
+}
+
+
+
+.q-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-bottom: 12px;
+
+}
+
+
+
+.q-badge {
+
+  background: rgba(192, 132, 252, 0.15);
+
+  border: 1px solid var(--purple);
+
+  color: var(--purple);
+
+  padding: 4px 10px;
+
+  border-radius: 999px;
+
+  font-size:14px;
+
+  font-weight: 700;
+
+}
+
+
+
+.q-title {
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  color: var(--text-primary);
+
+}
+
+
+
+.q-prompt {
+
+  font-size: 15px;
+
+  color: var(--text-secondary);
+
+  margin-bottom: 14px;
+
+}
+
+
+
+details.solution-detail {
+
+  background: var(--bg-card-subtle);
+
+  border: 1px solid var(--border-light);
+
+  border-radius: var(--tab12-radius-sm);
+
+  overflow: hidden;
+
+  margin-top: 12px;
+
+}
+
+
+
+details.solution-detail summary {
+
+  padding: 12px 16px;
+
+  background: rgba(255,255,255,0.02);
+
+  color: var(--accent);
+
+  user-select: none;
+
+}
+
+
+
+.solution-content {
+
+  padding: 16px;
+
+  border-top: 1px solid var(--border);
+
+  font-size: 14.5px;
+
+  color: var(--text-primary);
+
+  line-height: 1.6;
+
+}
+
+
+
+/* Support Rail */
+
+.support-rail {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+
+}
+
+
+
+.support-widget {
+
+  background-color: var(--bg-card);
+
+  border: 1.5px solid var(--border);
+
+  border-radius: var(--tab12-radius-md);
+
+  padding: 20px;
+
+}
+
+
+
+.support-widget h3 {
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  color: var(--text-primary);
+
+  margin-bottom: 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+}
+
+
+
+/* Interactive Calculator */
+
+.calc-row {
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 10px;
+
+  margin-bottom: 10px;
+
+}
+
+
+
+.calc-input-group label {
+
+  display: block;
+
+  font-size:14px;
+
+  font-weight: 600;
+
+  color: var(--text-secondary);
+
+  margin-bottom: 4px;
+
+}
+
+
+
+.calc-input-group input, 
+
+.calc-input-group select {
+
+  width: 100%;
+
+  min-height: 42px;
+
+  padding: 8px 12px;
+
+  background: var(--bg-surface);
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--tab12-radius-sm);
+
+  color: var(--text-primary);
+
+  font-size: 14.5px;
+
+}
+
+
+
+.calc-result {
+
+  background: rgba(56, 189, 248, 0.1);
+
+  border: 1.5px solid var(--accent);
+
+  padding: 12px;
+
+  border-radius: var(--tab12-radius-sm);
+
+  font-weight: 700;
+
+  color: var(--accent);
+
+  text-align: center;
+
+  font-size: 16px;
+
+  margin-top: 12px;
+
+}
+
+
+
+/* Responsive Table */
+
+.data-table-wrap {
+
+  overflow-x: auto;
+
+  margin: 16px 0;
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--tab12-radius-sm);
+
+}
+
+
+
+table.data-table {
+
+  width: 100%;
+
+  border-collapse: collapse;
+
+  text-align: left;
+
+  font-size: 14.5px;
+
+}
+
+
+
+table.data-table th {
+
+  background: var(--bg-card-subtle);
+
+  padding: 12px 16px;
+
+  border-bottom: 1.5px solid var(--border);
+
+  font-weight: 700;
+
+  color: var(--text-primary);
+
+}
+
+
+
+table.data-table td {
+
+  padding: 12px 16px;
+
+  border-bottom: 1px solid var(--border);
+
+  color: var(--text-secondary);
+
+}
+
+
+
+table.data-table tr:last-child td {
+
+  border-bottom: none;
+
+}
+
+
+
+table.data-table tr:hover td {
+
+  background: rgba(255,255,255,0.02);
+
+}
+
+  </style>
+
+<style id="tablet-font-floor-remediation">
+
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+
+body{overflow-wrap:anywhere}
+
+:where(p,li,label,button,input,select,textarea,summary,td,th,figcaption,.btn,.q-badge,.tag-pill,.hint-badge,.hint-tag,.subject-badge,.step-label,.diag-header,.formula-box,#saveStatus,.save-status,.tag,.q-count,.open-btn,.stat .label,section.section-header h2,.study-kicker,.brand-badge,.hero-pill,.badge,.core-tag,.telemetry-title,.control-label,.card-action,.breadcrumb,div,span,h4,h5,h6,text){font-size:max(14px,1em)!important}
+
+:where(a[href="index.html"],header a,nav a,.breadcrumb a,a.g9-bridge-link,[data-g9-block="entry_assumptions"] a){min-height:48px!important;min-width:48px!important;display:inline-flex!important;align-items:center!important;justify-content:center;padding-block:10px!important;box-sizing:border-box!important}
+
+.subject-badge,.q-badge,.tag-pill{font-size:14px!important}
+
+</style>
+
+<style id="tablet-standard-header-css">
+/* Standard App Header & Navigation Styles */
+header.app-header {
+  background-color: var(--bg-surface, #0f172a);
+  border-bottom: 1.5px solid var(--border, #263859);
+  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+[data-theme="light"] header.app-header {
+  background-color: #ffffff;
+  border-bottom-color: #cbd5e1;
+}
+
+.header-inner {
+  max-width: var(--tab12-container-max, 1400px);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.header-brand h1 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary, #f8fafc);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+[data-theme="light"] .header-brand h1 {
+  color: #0f172a;
+}
+
+.subject-badge {
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: rgba(56, 189, 248, 0.15);
+  color: var(--accent, #38bdf8);
+  border: 1px solid var(--accent, #38bdf8);
+  font-weight: 700;
+}
+
+.nav-hub-btn {
+  background-color: var(--bg-card, #152238);
+  color: var(--text-primary, #f8fafc);
+  border: 1.5px solid var(--border, #263859);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+[data-theme="light"] .nav-hub-btn {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+.nav-hub-btn:hover {
+  border-color: var(--accent, #38bdf8);
+  background-color: var(--bg-card-subtle, #1a2942);
+}
+
+[data-theme="light"] .nav-hub-btn:hover {
+  background-color: #e2e8f0;
+}
+
+.theme-toggle-btn {
+  background-color: var(--bg-card, #152238);
+  color: var(--text-primary, #f8fafc);
+  border: 1.5px solid var(--border, #263859);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+[data-theme="light"] .theme-toggle-btn {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+</style>
+</head>
+
+<body>
+
+
+
+  <!-- App Header -->
+
+    <header class="app-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <h1>
+          <span>💨</span> Behaviour of Gases · 12.7" Tablet Suite
+          <span class="subject-badge">Chemistry · Core 1</span>
+        </h1>
+      </div>
+      <div class="header-actions" style="display:flex;align-items:center;gap:10px;">
+        <a href="https://drive.google.com/file/d/1ZigrQD5EhUoUszUjjj7TEude9qtgJhbT/view" target="_blank" rel="noopener" class="nav-hub-btn g9-drive-btn" style="display:inline-flex;align-items:center;gap:6px;" title="Open Source PDF in Google Drive: chemistry_core1_behaviour_of_gases_answercheck_rebuild.pdf" aria-label="Open Source PDF in Google Drive">
+          <svg width="15" height="15" viewBox="0 0 87.3 78" aria-hidden="true">
+            <path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8H0c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/>
+            <path d="M43.65 25 29.9 1.2c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44C.4 49.9 0 51.45 0 53h27.5z" fill="#00ac47"/>
+            <path d="M73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5H59.8l5.85 10.15z" fill="#ea4335"/>
+            <path d="M43.65 25 57.4 1.2C56.05.4 54.5 0 52.9 0H34.4c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/>
+            <path d="M59.8 53H27.5L13.75 76.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/>
+            <path d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3L43.65 25 59.8 53h27.5c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/>
+          </svg>
+          <span>Source PDF</span>
+        </a>
+        <button type="button" onclick="if(document.referrer &amp;&amp; document.referrer.indexOf(window.location.host) !== -1){history.back();}else{location.href='../../chemistry/gases/index.html';}" class="nav-hub-btn" aria-label="Previous Page" title="Back to Previous Page">← Previous Page</button>
+        <a href="../../chemistry/gases/index.html" class="nav-hub-btn" aria-label="Back to Topic Workspace" title="Back to Gases Workspace">Gases Workspace</a>
+        <a href="../../index.html" class="nav-hub-btn" aria-label="Portal Home" title="Portal Home">⚡ Home</a>
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">🌓 Mode</button>
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- Navigation Tabs -->
+
+  
+
+
+
+  <!-- Layout Container -->
+
+  <main class="layout-container">
+
+    
+
+    <!-- Stage Area -->
+
+    <div class="stage-area">
+
+
+
+      <!-- Tab 1: Particle Model & Kinetic Theory -->
+
+      <div id="tab-particle" class="tab-content active">
+
+        <div class="content-card">
+
+          <h2><span>🔬</span> The Kinetic Particle Model of Matter</h2>
+
+          <p>
+
+            All matter consists of minute particles (atoms or molecules) in ceaseless, rapid random motion.
+
+            The macroscopic properties of gases—pressure, temperature, diffusion, compressibility, and fluid flow—arise directly from the micro-dynamics of these particles.
+
+          </p>
+
+          
+
+          <div class="callout-box">
+
+            <strong>Key Postulates of Kinetic Molecular Theory (KMT):</strong>
+
+            <ul style="margin-left: 20px; margin-top: 8px; color: var(--text-secondary);">
+
+              <li>Gas molecules are point masses whose actual volume is negligible compared to the total volume occupied ($V_{	ext{particles}} \ll V_{	ext{gas}}$).</li>
+
+              <li>There are no intermolecular forces of attraction or repulsion between ideal gas molecules.</li>
+
+              <li>Molecules undergo continuous, random straight-line motion until colliding elastically with one another or the container walls.</li>
+
+              <li>Pressure exerted by a gas is the net momentum transferred per second per unit area of container wall: $P = \frac{1}{3}\frac{m N \overline{v^2}}{V}$.</li>
+
+              <li>Average kinetic energy of particles is directly proportional to absolute thermodynamic temperature $T$: $\overline{KE} = \frac{3}{2} k_B T = \frac{3}{2} \frac{R}{N_A} T$.</li>
+
+            </ul>
+
+          </div>
+
+
+
+          <h3>States of Matter Microscopic Comparison</h3>
+
+          <div class="data-table-wrap">
+
+            <table class="data-table">
+
+              <thead>
+
+                <tr>
+
+                  <th>Property</th>
+
+                  <th>Solid</th>
+
+                  <th>Liquid</th>
+
+                  <th>Gas</th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                <tr>
+
+                  <td><strong>Particle Spacing</strong></td>
+
+                  <td>Extremely tight, ordered lattice</td>
+
+                  <td>Close, loosely clustered</td>
+
+                  <td>Very large (~10× molecular diameter)</td>
+
+                </tr>
+
+                <tr>
+
+                  <td><strong>Intermolecular Forces</strong></td>
+
+                  <td>Extremely strong (fixed positions)</td>
+
+                  <td>Intermediate (can slip past)</td>
+
+                  <td>Negligibly weak (free trajectories)</td>
+
+                </tr>
+
+                <tr>
+
+                  <td><strong>Kinetic Energy</strong></td>
+
+                  <td>Vibrational only around fixed sites</td>
+
+                  <td>Vibrational + Rotational + Local Translational</td>
+
+                  <td>High Translational Kinetic Energy</td>
+
+                </tr>
+
+                <tr>
+
+                  <td><strong>Compressibility</strong></td>
+
+                  <td>Negligible ($dV/dP \approx 0$)</td>
+
+                  <td>Very low</td>
+
+                  <td>Extremely high (large empty space)</td>
+
+                </tr>
+
+                <tr>
+
+                  <td><strong>Fluidity &amp; Shape</strong></td>
+
+                  <td>Rigid, definite shape &amp; volume</td>
+
+                  <td>Fluid, adopts vessel shape, definite volume</td>
+
+                  <td>Fluid, expands to fill entire container volume</td>
+
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+
+
+          <h3>Molecular Speed Distributions ($v_{	ext{mp}}, v_{	ext{avg}}, v_{	ext{rms}}$)</h3>
+
+          <p>
+
+            At any given temperature $T$, molecules exhibit a Maxwell-Boltzmann velocity distribution. Three characteristic speeds describe this population:
+
+          </p>
+
+          <div class="formula-box">
+
+            Most Probable Speed: &nbsp; v_mp = √(2 R T / M) ≈ 1.414 √(RT/M)<br>
+
+            Average Speed: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v_avg = √(8 R T / π M) ≈ 1.596 √(RT/M)<br>
+
+            Root Mean Square: &nbsp;&nbsp;&nbsp; v_rms = √(3 R T / M) ≈ 1.732 √(RT/M)<br>
+
+            Ratio: v_mp : v_avg : v_rms = 1 : 1.128 : 1.225
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Tab 2: Gas Laws & Equations -->
+
+      <div id="tab-laws" class="tab-content">
+
+        <div class="content-card">
+
+          <h2><span>⚖️</span> Fundamental Gas Laws &amp; The Ideal Gas Equation</h2>
+
+          <p>
+
+            Four macroscopic variables completely specify the physical state of a fixed sample of gas: Pressure ($P$), Volume ($V$), Temperature ($T$), and Amount of substance ($n$).
+
+          </p>
+
+
+
+          <h3>1. Boyle's Law (Isothermal: $T = 	ext{const}, n = 	ext{const}$)</h3>
+
+          <p>
+
+            At constant temperature, the volume of a given mass of gas is inversely proportional to its pressure.
+
+          </p>
+
+          <div class="formula-box">
+
+            P ∝ 1/V &nbsp;⇒&nbsp; P · V = 	ext{constant} &nbsp;⇒&nbsp; P₁ V₁ = P₂ V₂
+
+          </div>
+
+
+
+          <h3>2. Charles's Law (Isobaric: $P = 	ext{const}, n = 	ext{const}$)</h3>
+
+          <p>
+
+            At constant pressure, the volume of a given mass of gas is directly proportional to its absolute temperature in Kelvin.
+
+          </p>
+
+          <div class="formula-box">
+
+            V ∝ T &nbsp;⇒&nbsp; V / T = 	ext{constant} &nbsp;⇒&nbsp; V₁ / T₁ = V₂ / T₂
+
+          </div>
+
+
+
+          <h3>3. Gay-Lussac's Law (Isochoric: $V = 	ext{const}, n = 	ext{const}$)</h3>
+
+          <p>
+
+            At constant volume, the pressure of a given mass of gas is directly proportional to its absolute temperature.
+
+          </p>
+
+          <div class="formula-box">
+
+            P ∝ T &nbsp;⇒&nbsp; P / T = 	ext{constant} &nbsp;⇒&nbsp; P₁ / T₁ = P₂ / T₂
+
+          </div>
+
+
+
+          <h3>4. Avogadro's Hypothesis ($P, T = 	ext{const}$)</h3>
+
+          <p>
+
+            Equal volumes of all gases under identical conditions of temperature and pressure contain an equal number of molecules ($V \propto n$).
+
+          </p>
+
+
+
+          <h3>5. The Ideal Gas Equation</h3>
+
+          <p>
+
+            Combining all four laws produces the universal equation of state for an ideal gas:
+
+          </p>
+
+          <div class="formula-box">
+
+            P · V = n · R · T = (m / M) · R · T<br>
+
+            Density Form: &nbsp; P · M = d · R · T &nbsp;⇒&nbsp; d = (P · M) / (R · T)
+
+          </div>
+
+          <div class="callout-box">
+
+            <strong>Universal Gas Constant ($R$):</strong>
+
+            <ul style="margin-left: 20px; margin-top: 6px;">
+
+              <li>$R = 8.314 	ext{ J}\cdot	ext{K}^{-1}\cdot	ext{mol}^{-1} = 8.314 	ext{ Pa}\cdot	ext{m}^3\cdot	ext{K}^{-1}\cdot	ext{mol}^{-1}$</li>
+
+              <li>$R = 0.0821 	ext{ L}\cdot	ext{atm}\cdot	ext{K}^{-1}\cdot	ext{mol}^{-1}$</li>
+
+              <li>$R = 0.08314 	ext{ L}\cdot	ext{bar}\cdot	ext{K}^{-1}\cdot	ext{mol}^{-1}$</li>
+
+              <li>$R \approx 2 	ext{ cal}\cdot	ext{K}^{-1}\cdot	ext{mol}^{-1}$</li>
+
+            </ul>
+
+          </div>
+
+
+
+          <h3>6. Dalton's Law of Partial Pressures</h3>
+
+          <p>
+
+            In a non-reacting mixture of gases, the total pressure is the sum of partial pressures exerted by individual gases:
+
+          </p>
+
+          <div class="formula-box">
+
+            P_total = P₁ + P₂ + P₃ + ... + Pₙ = ∑ Pᵢ<br>
+
+            Partial Pressure: &nbsp; Pᵢ = xᵢ · P_total &nbsp; (where xᵢ = nᵢ / n_total is the mole fraction)
+
+          </div>
+
+
+
+          <h3>7. Graham's Law of Diffusion / Effusion</h3>
+
+          <p>
+
+            Under identical temperature and pressure, the rate of effusion or diffusion ($r$) of a gas is inversely proportional to the square root of its molar mass or density:
+
+          </p>
+
+          <div class="formula-box">
+
+            r₁ / r₂ = √(M₂ / M₁) = √(d₂ / d₁) = (V₁ / t₁) / (V₂ / t₂)
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Tab 3: Evaporation & Phase Changes -->
+
+      <div id="tab-phase" class="tab-content">
+
+        <div class="content-card">
+
+          <h2><span>🌊</span> Evaporation, Boiling, and Latent Heat</h2>
+
+          <p>
+
+            Phase transitions involve reorganizing molecular spacing and breaking intermolecular attractions without altering the chemical identity of the substance.
+
+          </p>
+
+
+
+          <div class="callout-box success">
+
+            <strong>Evaporation vs. Boiling Critical Distinction:</strong>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px;">
+
+              <div>
+
+                <strong style="color: var(--accent);">Evaporation</strong>
+
+                <ul style="margin-left: 18px; margin-top: 4px; font-size: 14.5px;">
+
+                  <li>Surface phenomenon occurring at ANY temperature below boiling.</li>
+
+                  <li>Molecules with kinetic energy exceeding surface attraction escape.</li>
+
+                  <li>Causes cooling of remaining liquid ($\overline{KE}$ drops).</li>
+
+                  <li>Silent, gradual, non-turbulent.</li>
+
+                </ul>
+
+              </div>
+
+              <div>
+
+                <strong style="color: var(--accent);">Boiling</strong>
+
+                <ul style="margin-left: 18px; margin-top: 4px; font-size: 14.5px;">
+
+                  <li>Bulk phenomenon occurring at a FIXED temperature (boiling point).</li>
+
+                  <li>Vapour pressure of liquid equals external atmospheric pressure ($P_{	ext{vap}} = P_{	ext{ext}}$).</li>
+
+                  <li>Bubbles form inside the entire liquid volume.</li>
+
+                  <li>Temperature remains strictly constant during boiling.</li>
+
+                </ul>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <h3>Four Factors Controlling Rate of Evaporation</h3>
+
+          <div class="data-table-wrap">
+
+            <table class="data-table">
+
+              <thead>
+
+                <tr>
+
+                  <th>Factor</th>
+
+                  <th>Direction</th>
+
+                  <th>Microscopic Mechanism</th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                <tr>
+
+                  <td><strong>1. Exposed Surface Area</strong></td>
+
+                  <td>Area ↑ &nbsp;⇒&nbsp; Rate ↑</td>
+
+                  <td>More surface molecules are simultaneously exposed to escape the liquid barrier into the air.</td>
+
+                </tr>
+
+                <tr>
+
+                  <td><strong>2. Temperature</strong></td>
+
+                  <td>Temp ↑ &nbsp;⇒&nbsp; Rate ↑</td>
+
+                  <td>A higher fraction of molecules possess kinetic energy exceeding the activation energy for escape.</td>
+
+                </tr>
+
+                <tr>
+
+                  <td><strong>3. Humidity (Atmospheric Moisture)</strong></td>
+
+                  <td>Humidity ↑ &nbsp;⇒&nbsp; Rate ↓</td>
+
+                  <td>Air is already saturated with water vapour; the rate of condensation back into liquid approaches the rate of evaporation.</td>
+
+                </tr>
+
+                <tr>
+
+                  <td><strong>4. Wind Speed</strong></td>
+
+                  <td>Wind ↑ &nbsp;⇒&nbsp; Rate ↑</td>
+
+                  <td>Moving air sweeps away water vapour molecules adjacent to the surface, preventing localized saturation.</td>
+
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+
+
+          <h3>Latent Heat &amp; Heating Curve Analysis</h3>
+
+          <p>
+
+            During a phase change, thermal energy supplied goes entirely into breaking intermolecular binding forces rather than raising the average kinetic energy of the particles. Hence, temperature remains strictly constant.
+
+          </p>
+
+          <div class="formula-box">
+
+            Latent Heat of Fusion (L_f for Ice at 0°C): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.34 × 10⁵ J/kg (≈ 80 cal/g)<br>
+
+            Latent Heat of Vaporization (L_v for Water at 100°C): 2.26 × 10⁶ J/kg (≈ 540 cal/g)
+
+          </div>
+
+          <div class="callout-box warning">
+
+            <strong>Why Steam at 100°C Burns Far More Severely Than Boiling Water at 100°C:</strong>
+
+            <p style="margin-top: 4px; font-size: 14.5px;">
+
+              Both steam and boiling water are at 100°C ($373	ext{ K}$). However, 1 kg of steam contains an extra $2.26 	imes 10^6	ext{ J}$ of stored latent heat of vaporization. Upon contacting skin, steam first condenses into water at 100°C, releasing this colossal latent heat directly onto tissues, before cooling further as liquid water!
+
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Tab 4: Real Gases & Van der Waals -->
+
+      <div id="tab-real" class="tab-content">
+
+        <div class="content-card">
+
+          <h2><span>⚡</span> Real Gases, Deviations, &amp; The Van der Waals Equation</h2>
+
+          <p>
+
+            Real gases deviate from ideal behavior because gas molecules possess finite molecular volume and exert intermolecular attractive forces (Van der Waals forces).
+
+          </p>
+
+
+
+          <div class="formula-box">
+
+            Van der Waals Equation (for n moles):<br>
+
+            &nbsp; (P + a n² / V²) · (V - n b) = n R T<br><br>
+
+            For 1 mole (molar volume V_m):<br>
+
+            &nbsp; (P + a / V_m²) · (V_m - b) = R T
+
+          </div>
+
+
+
+          <h3>Significance of Van der Waals Constants '$a$' and '$b$'</h3>
+
+          <div class="data-table-wrap">
+
+            <table class="data-table">
+
+              <thead>
+
+                <tr>
+
+                  <th>Constant</th>
+
+                  <th>Physical Meaning</th>
+
+                  <th>Units</th>
+
+                  <th>Effect on Liquefaction</th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                <tr>
+
+                  <td><strong>a</strong> (Pressure correction)</td>
+
+                  <td>Magnitude of intermolecular attractive forces between gas molecules.</td>
+
+                  <td>$	ext{atm}\cdot	ext{L}^2\cdot	ext{mol}^{-2}$ &nbsp;or&nbsp; $	ext{Pa}\cdot	ext{m}^6\cdot	ext{mol}^{-2}$</td>
+
+                  <td>Higher '$a$' indicates stronger intermolecular attraction $
+
+ightarrow$ gas liquefies much more easily ($	ext{NH}_3 > 	ext{CO}_2 > 	ext{O}_2 > 	ext{H}_2$).</td>
+
+                </tr>
+
+                <tr>
+
+                  <td><strong>b</strong> (Volume correction / Co-volume)</td>
+
+                  <td>Effective incompressible volume excluded by molecules: $b = 4 	imes N_A 	imes v_{	ext{molecule}}$.</td>
+
+                  <td>$	ext{L}\cdot	ext{mol}^{-1}$ &nbsp;or&nbsp; $	ext{m}^3\cdot	ext{mol}^{-1}$</td>
+
+                  <td>Higher '$b$' indicates larger molecular size.</td>
+
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+
+
+          <h3>Compressibility Factor ($Z$)</h3>
+
+          <div class="formula-box">
+
+            Z = (P · V_m) / (R · T) = V_real / V_ideal<br><br>
+
+            • Ideal Gas: Z = 1 at all T and P.<br>
+
+            • Low Pressure (P → 0): Attractive forces dominate ⇒ Z = 1 - a / (R T V_m) < 1.<br>
+
+            • High Pressure: Repulsive / excluded volume forces dominate ⇒ Z = 1 + P b / (R T) > 1.<br>
+
+            • Hydrogen & Helium (H₂, He): Negligible attraction ($a \approx 0$) ⇒ Z = 1 + P b / (RT) > 1 at all ordinary pressures!
+
+          </div>
+
+
+
+          <h3>Critical State &amp; Liquefaction Constants</h3>
+
+          <div class="formula-box">
+
+            Critical Temperature: &nbsp; T_c = 8 a / (27 R b) &nbsp; (Highest temp at which gas can be liquefied by pressure alone)<br>
+
+            Critical Pressure: &nbsp;&nbsp;&nbsp; P_c = a / (27 b²)<br>
+
+            Critical Volume: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; V_c = 3 b<br>
+
+            Critical Compressibility: Z_c = (P_c V_c) / (R T_c) = 3 / 8 = 0.375
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Tab 5: NCERT Question Helper (27 Items) -->
+
+      <div id="tab-ncert" class="tab-content">
+
+        <div class="content-card">
+
+          <h2><span>📖</span> NCERT Question Helper &amp; Transfer Bank (27 Problems)</h2>
+
+          <p>
+
+            Complete NCERT exercise and exemplar items with visual thinking aids, reasoning routes, and verified worked solutions.
+
+          </p>
+
+        </div>
+
+
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 1: GAS PARTICLE MODEL</span>
+
+            <span class="tag-pill">Q01</span>
+
+          </div>
+
+          <div class="q-title">Question 1 - Unit 1 Q1: What rises when temperature rises? Try it on paper before using the helper.</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              01. Unit 1 Q1 - What rises when temperature rises?
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 1: GAS PARTICLE MODEL</span>
+
+            <span class="tag-pill">Q02</span>
+
+          </div>
+
+          <div class="q-title">Question 2 - Unit 1 Q3: Why gases and liquids are fluids Try it on paper before using the helper.</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              02. Unit 1 Q2 - Conditions for liquefying a gas<br>1 Heating increases particle kinetic energy. 1 Lowering temperature reduces particle kinetic energy.<br>2 Faster random motion increases diffusion. 2 Increasing pressure forces particles closer together.<br>3 More energetic surface particles escape more readily, so evaporation increases. 3 With particles slower and closer, attractive forces can pull them into the liquid<br>state.<br>4 A gas tends to occupy more space on heating, so expansion increases.<br>Answer: Low temperature and high pressure.<br>Answer: Diffusion, evaporation and expansion of gases increase with temperature.<br>NCERT source - Unit 1 Q2<br>NCERT source - Unit 1 Q1<br>Core (2) | solutions 37
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 1: GAS PARTICLE MODEL</span>
+
+            <span class="tag-pill">Q03</span>
+
+          </div>
+
+          <div class="q-title">Question 3 - Unit 1 Q5: Strength of attraction across states Try it on paper before using the helper.</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              03. Unit 1 Q3 - Why gases and liquids are fluids
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 2: TEMPERATURE, PRESSURE & VOLUME</span>
+
+            <span class="tag-pill">Q04</span>
+
+          </div>
+
+          <div class="q-title">Question 1 - Unit 1 Q2: Conditions for liquefying a gas Try it on paper before using the helper.</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              04. Unit 1 Q4 - Why an earthen pot cools water<br>1 Liquids and gases do not have a rigid particle arrangement. 1 Water seeps to the outer surface through fine pores.<br>2 Their particles can move past one another. 2 Some surface molecules evaporate.<br>3 Therefore they can flow and take the shape of the container. 3 Evaporation requires energy, taken from the water/pot/surroundings.<br>Answer: Gases and liquids behave as fluids. 4 The remaining water loses energy and becomes cooler.<br>NCERT source - Unit 1 Q3 Answer: Evaporation through the pores causes cooling.<br>NCERT source - Unit 1 Q4<br>Core (2) | solutions 38
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 2: TEMPERATURE, PRESSURE & VOLUME</span>
+
+            <span class="tag-pill">Q05</span>
+
+          </div>
+
+          <div class="q-title">Question 2 - Unit 1 Q6: Celsius to kelvin Try it on paper before using the helper.</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              05. Unit 1 Q5 - Strength of attraction across states
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 2: TEMPERATURE, PRESSURE & VOLUME</span>
+
+            <span class="tag-pill">Q06</span>
+
+          </div>
+
+          <div class="q-title">Question 3 - Unit 1 Q8: Boiling points on kelvin scale Try it on paper before using the helper.</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              06. Unit 1 Q6 - Celsius to kelvin<br>1 Gas particles have the weakest effective attraction in this comparison. 1 Use the conversion K = °C + 273.<br>2 Liquid particles are closer and attract more strongly. 2 25°C -> 298 K.<br>3 Solid particles are held most strongly in fixed positions. 3 38°C -> 311 K.<br>Answer: Oxygen < water < sugar. 4 66°C -> 339 K.<br>NCERT source - Unit 1 Q5 Answer: 298 K, 311 K and 339 K.<br>NCERT source - Unit 1 Q6<br>Core (2) | solutions 39
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 2: TEMPERATURE, PRESSURE & VOLUME</span>
+
+            <span class="tag-pill">Q07</span>
+
+          </div>
+
+          <div class="q-title">Question 4 - Unit 1 Q10: When gas particles get farther apart Try it on paper before using the helper.</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              07. Unit 1 Q7 - Naming state changes
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 2: TEMPERATURE, PRESSURE & VOLUME</span>
+
+            <span class="tag-pill">Q08</span>
+
+          </div>
+
+          <div class="q-title">Question 5 - Sample I Q1: Sample-paper kelvin conversion Try it on paper before using the helper.</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              08. Unit 1 Q8 - Boiling points on kelvin scale<br>1 Identify the starting state and final state. 1 35 + 273 = 308 K.<br>2 Check whether the liquid state is skipped. 2 56 + 273 = 329 K.<br>3 NCERT uses sublimation terminology for the direct solid-vapour transition in 3 118 + 273 = 391 K.<br>this item.<br>Answer: 308 K, 329 K and 391 K.<br>Answer: NCERT marks the vapour-to-solid direct change statement as correct and<br>uses “sublimation” terminology. NCERT source - Unit 1 Q8<br>NCERT source - Unit 1 Q7<br>Core (2) | solutions 40
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 2: TEMPERATURE, PRESSURE & VOLUME</span>
+
+            <span class="tag-pill">Q09</span>
+
+          </div>
+
+          <div class="q-title">Question 6 - Sample II Q1: Sample-paper gas liquefaction Try it on paper before using the helper.</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              09. Unit 1 Q9 - A condition that increases evaporation
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 3: EVAPORATION & COOLING</span>
+
+            <span class="tag-pill">Q10</span>
+
+          </div>
+
+          <div class="q-title">Question 1 - Unit 1 Q4: Why an earthen pot cools water Try it on paper before using the helper.</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              10. Unit 1 Q10 - When gas particles get farther apart<br>1 Higher temperature raises average particle kinetic energy. 1 If some gas leaks out, fewer molecules remain in the same container.<br>2 More surface particles can overcome attraction and escape into the gas phase. 2 If container volume increases, the same gas spreads through a larger volume.<br>3 Therefore evaporation becomes faster. 3 Both changes increase average separation.<br>Answer: Increasing the temperature of water increases evaporation. Answer: Gas leakage and increasing the container volume.<br>NCERT source - Unit 1 Q9 NCERT source - Unit 1 Q10<br>Core (2) | solutions 41
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 3: EVAPORATION & COOLING</span>
+
+            <span class="tag-pill">Q11</span>
+
+          </div>
+
+          <div class="q-title">Question 2 - Unit 1 Q9: A condition that increases evaporation Try it on paper before using the helper.</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              11. Unit 1 Q12 - Heating an ice-water mixture: graph reasoning
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 3: EVAPORATION & COOLING</span>
+
+            <span class="tag-pill">Q12</span>
+
+          </div>
+
+          <div class="q-title">Question 3 - Unit 1 Q21: Which vessel evaporates fastest? Try it on paper before using the helper.</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              12. Unit 1 Q13 - Gas-state and evaporation vocabulary<br>1 Ice and water coexist at 0°C. 1 Evaporation causes cooling.<br>2 Heat supplied during melting is used for the phase change, so temperature 2 Attraction is stronger in solids than gases.<br>stays constant.<br>3 Liquids are less ordered than solids; gases have no ordered arrangement.<br>3 After all ice melts, further heating raises the water temperature.<br>4 NCERT uses sublimation for direct solid-gas change.<br>Answer: The correct source option is (d): temperature stays at 0°C during melting,<br>then rises. 5 Liquid-to-gas below boiling point is evaporation.<br>NCERT source - Unit 1 Q12 Answer: Cooling; stronger; liquid/gaseous; sublimation/liquid; evaporation.<br>NCERT source - Unit 1 Q13<br>Core (2) | solutions 42
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 3: EVAPORATION & COOLING</span>
+
+            <span class="tag-pill">Q13</span>
+
+          </div>
+
+          <div class="q-title">Question 4 - Unit 1 Q24: Why cotton feels better in summer Try it on paper before using the helper.</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              13. Unit 1 Q14 - SI units for gas-relevant quantities
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 3: EVAPORATION & COOLING</span>
+
+            <span class="tag-pill">Q14</span>
+
+          </div>
+
+          <div class="q-title">Question 5 - Unit 1 Q25: How to dry a wet shirt faster Try it on paper before using the helper.</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              14. Unit 1 Q15 - Pairing non-SI and SI units<br>1 Pressure is measured in pascal. 1 Identify the measured quantity for each non-SI unit.<br>2 Temperature is measured in kelvin. 2 Pair it with the SI unit of the same quantity.<br>3 Density is kg per cubic metre. Answer: °C-K; cm-m; g cm^-3-kg m^-3; bar-Pa; mg-kg.<br>4 Mass is kilogram. NCERT source - Unit 1 Q15<br>5 Volume is cubic metre.<br>Answer: Pressure-pascal; temperature-kelvin; density-kg m^-3; mass-kilogram;<br>volume-cubic metre.<br>NCERT source - Unit 1 Q14<br>Core (2) | solutions 43
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 3: EVAPORATION & COOLING</span>
+
+            <span class="tag-pill">Q15</span>
+
+          </div>
+
+          <div class="q-title">Question 6 - Unit 1 Q26: Evaporation cooling, humidity and sponge</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              15. Unit 1 Q18 - Why ice cools but steam burns
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 4: BOILING, STEAM & LATENT HEAT</span>
+
+            <span class="tag-pill">Q16</span>
+
+          </div>
+
+          <div class="q-title">Question 1 - Unit 1 Q12: Heating an ice-water mixture: graph</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              16. Unit 1 Q19 - Steam vs boiling water at the same<br>temperature<br>1 Ice is at lower energy and draws heat from the body as it warms/melts.<br>1 At normal pressure water boils at about 100°C.<br>2 Steam carries high energy.<br>2 Steam formed at the boiling point can also be about 100°C.<br>3 When steam condenses on skin it releases latent heat in addition to cooling,<br>transferring much more energy. 3 The phase change required latent heat, so steam has more energy than the<br>same mass of liquid water at that temperature.<br>Answer: Ice absorbs heat; steam releases a large amount of energy on<br>condensation and can cause severe burns. 4 When steam condenses, that energy is released.<br>NCERT source - Unit 1 Q18 Answer: Steam and boiling water can both be at 100°C; steam causes stronger<br>heating because it carries latent heat and releases it on condensation.<br>NCERT source - Unit 1 Q19<br>Core (2) | solutions 44
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 4: BOILING, STEAM & LATENT HEAT</span>
+
+            <span class="tag-pill">Q17</span>
+
+          </div>
+
+          <div class="q-title">Question 2 - Unit 1 Q18: Why ice cools but steam burns Try it on paper before using the helper.</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              17. Unit 1 Q21 - Which vessel evaporates fastest?
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 4: BOILING, STEAM & LATENT HEAT</span>
+
+            <span class="tag-pill">Q18</span>
+
+          </div>
+
+          <div class="q-title">Question 3 - Unit 1 Q19: Steam vs boiling water at the same</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              18. Unit 1 Q22 - Direct vapour-solid change and latent heat<br>1 A larger exposed surface lets more molecules escape at once. 1 Trace the direct gas/solid transition for part (a).<br>2 Moving air removes water vapour from above the surface. 2 For part (b), state the amount (1 kg), the transition (solid to liquid), and the<br>condition (at melting point, atmospheric pressure).<br>3 Vessel C combines both effects, so evaporation is fastest.<br>Answer: NCERT uses “sublimation” for the direct vapour-to-solid change; latent<br>Answer: Vessel C, because it has large exposed surface area and moving air from heat of fusion is the heat needed to melt 1 kg of solid at its melting point at<br>the fan. atmospheric pressure without a temperature rise.<br>NCERT source - Unit 1 Q21 NCERT source - Unit 1 Q22<br>Core (2) | solutions 45
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 4: BOILING, STEAM & LATENT HEAT</span>
+
+            <span class="tag-pill">Q19</span>
+
+          </div>
+
+          <div class="q-title">Question 4 - Unit 1 Q27: Why temperature stays constant while</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              19. Unit 1 Q23 - Separating naphthalene and ammonium
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 4: BOILING, STEAM & LATENT HEAT</span>
+
+            <span class="tag-pill">Q20</span>
+
+          </div>
+
+          <div class="q-title">Question 5 - Sample I Q17: Sample-paper phase-change graph Try it on paper before using the helper.</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              20. Unit 1 Q24 - Why cotton feels better in summer<br>chloride<br>1 Cotton absorbs sweat better than nylon.<br>1 Add water and stir the mixture.<br>2 The absorbed water spreads over the fibres and evaporates.<br>2 Ammonium chloride dissolves while naphthalene remains insoluble.<br>3 Evaporation takes heat from the body/surroundings, producing cooling.<br>3 Filter: naphthalene stays as residue; ammonium chloride solution passes as<br>Answer: The person wearing cotton is more comfortable because cotton absorbs<br>filtrate.<br>sweat and supports evaporative cooling.<br>4 Evaporate water from the filtrate to recover ammonium chloride.<br>NCERT source - Unit 1 Q24<br>Answer: Add water, dissolve ammonium chloride, filter off naphthalene, then<br>evaporate the filtrate to recover ammonium chloride.<br>NCERT source - Unit 1 Q23<br>Core (2) | solutions 46
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 5: SUBLIMATION & CHANGE OF STATE</span>
+
+            <span class="tag-pill">Q21</span>
+
+          </div>
+
+          <div class="q-title">Question 1 - Unit 1 Q7: Naming state changes Try it on paper before using the helper.</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              21. Unit 1 Q25 - How to dry a wet shirt faster
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 5: SUBLIMATION & CHANGE OF STATE</span>
+
+            <span class="tag-pill">Q22</span>
+
+          </div>
+
+          <div class="q-title">Question 2 - Unit 1 Q13: Gas-state and evaporation vocabulary Try it on paper before using the helper.</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              22. Unit 1 Q26 - Evaporation cooling, humidity and sponge<br>compression<br>1 Spread the shirt to increase exposed surface area.<br>1 Evaporation: higher-energy surface molecules escape and energy is taken<br>2 Place it in warmth/sunlight to raise temperature. from surroundings, so cooling occurs.<br>3 Use moving air/fan to remove moist air from the surface. 2 Humidity: air already rich in water vapour accepts additional vapour less<br>readily, so evaporation slows.<br>4 If possible, use a less humid environment.<br>3 Sponge: its solid framework has pores containing air; pressing expels/<br>Answer: Spread the shirt, warm it/sun-dry it, and increase airflow; dry air also compresses that trapped air, making the sponge appear compressible.<br>helps.<br>Answer: All three statements are explained respectively by energy removal during<br>NCERT source - Unit 1 Q25 evaporation, reduced evaporation in humid air, and compression/escape of trapped<br>air in sponge pores.<br>NCERT source - Unit 1 Q26<br>Core (2) | solutions 47
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 5: SUBLIMATION & CHANGE OF STATE</span>
+
+            <span class="tag-pill">Q23</span>
+
+          </div>
+
+          <div class="q-title">Question 3 - Unit 1 Q22: Direct vapour-solid change and latent heat Try it on paper before using the helper.</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              23. Unit 1 Q27 - Why temperature stays constant while boiling
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 5: SUBLIMATION & CHANGE OF STATE</span>
+
+            <span class="tag-pill">Q24</span>
+
+          </div>
+
+          <div class="q-title">Question 4 - Unit 1 Q23: Separating naphthalene and ammonium</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              24. Sample I Q1 - Sample-paper kelvin conversion<br>1 Before boiling, added heat increases particle kinetic energy and temperature. 1 Apply K = °C + 273 to each temperature.<br>2 At the boiling point, added energy is used to separate particles and form 2 The resulting sequence is 298 K, 311 K, 339 K.<br>vapour.<br>Answer: 298 K, 311 K and 339 K.<br>3 Because that energy goes into the phase change rather than increasing<br>average kinetic energy, temperature stays constant until boiling is complete. NCERT source - Sample I Q1<br>Answer: The supplied heat is used as latent heat to overcome attractions and<br>change state, so temperature remains constant until the phase change is complete.<br>NCERT source - Unit 1 Q27<br>Core (2) | solutions 48
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 5: SUBLIMATION & CHANGE OF STATE</span>
+
+            <span class="tag-pill">Q25</span>
+
+          </div>
+
+          <div class="q-title">Question 5 - Sample I Q2: Sample-paper direct state change Try it on paper before using the helper.</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              25. Sample I Q2 - Sample-paper direct state change
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 6: MEASUREMENT & INTEGRATED REASONING</span>
+
+            <span class="tag-pill">Q26</span>
+
+          </div>
+
+          <div class="q-title">Question 1 - Unit 1 Q14: SI units for gas-relevant quantities Try it on paper before using the helper.</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              26. Sample I Q17 - Sample-paper phase-change graph<br>1 Identify the direction: vapour to solid. 1 Ice-water equilibrium begins at 0°C.<br>2 The liquid state is skipped. 2 Heating first melts ice at constant temperature.<br>3 That is the direct solid-vapour transition terminology used by the source. 3 After all ice melts, liquid-water temperature increases.<br>Answer: The source marks the direct vapour-to-solid statement as correct and Answer: The correct graph is the one that stays at 0°C during melting and then<br>labels it sublimation. rises.<br>NCERT source - Sample I Q2 NCERT source - Sample I Q17<br>Core (2) | solutions 49
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">PART 6: MEASUREMENT & INTEGRATED REASONING</span>
+
+            <span class="tag-pill">Q27</span>
+
+          </div>
+
+          <div class="q-title">Question 2 - Unit 1 Q15: Pairing non-SI and SI units Try it on paper before using the helper.</div>
+
+          <p class="q-prompt">Analyze the physical scenario using particle dynamics and state transitions.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Solution &amp; Answer Check</summary>
+
+            <div class="solution-content">
+
+              27. Sample II Q1 - Sample-paper gas liquefaction<br>1 Lower temperature slows the particles.<br>2 Higher pressure pushes particles closer.<br>3 Together they favour conversion of gas to liquid.<br>Answer: Low temperature and high pressure.<br>NCERT source - Sample II Q1<br>Core (2) | solutions 50
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+      </div>
+
+
+
+      <!-- Tab 6: Practice Diagnostic -->
+
+      <div id="tab-practice" class="tab-content">
+
+        <div class="content-card">
+
+          <h2><span>🎯</span> High-Yield Diagnostic Problems</h2>
+
+          <p>
+
+            Test your conceptual grasp on core exam topics. Select an answer to verify your reasoning immediately.
+
+          </p>
+
+        </div>
+
+
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">JEE Main / NEET Focus</span>
+
+            <span class="tag-pill">Diagnostic 01</span>
+
+          </div>
+
+          <div class="q-title">Van der Waals Compressibility at Moderate Pressure</div>
+
+          <p class="q-prompt">
+
+            For one mole of a real gas at moderate pressure, the compressibility factor Z is accurately approximated by which expression?
+
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 8px; margin: 12px 0;">
+
+            <button class="btn" style="justify-content: flex-start; text-align: left; background: var(--bg-surface); border: 1px solid var(--border);" onclick="checkOpt(this, true, 'Correct! At low to moderate pressure, V_m >> b, so (V_m - b) ≈ V_m. Then (P + a/V_m²)V_m = RT ⇒ PV_m + a/V_m = RT ⇒ Z = 1 - a/(RTV_m).')">
+
+              A. Z = 1 - a / (R T V_m)
+
+            </button>
+
+            <button class="btn" style="justify-content: flex-start; text-align: left; background: var(--bg-surface); border: 1px solid var(--border);" onclick="checkOpt(this, false, 'Incorrect. Z = 1 + Pb/(RT) applies at high pressure where volume exclusion dominates.')">
+
+              B. Z = 1 + P b / (R T)
+
+            </button>
+
+            <button class="btn" style="justify-content: flex-start; text-align: left; background: var(--bg-surface); border: 1px solid var(--border);" onclick="checkOpt(this, false, 'Incorrect. Attractive forces reduce the pressure, making Z < 1, so the term is subtracted.')">
+
+              C. Z = 1 + a / (R T V_m)
+
+            </button>
+
+            <button class="btn" style="justify-content: flex-start; text-align: left; background: var(--bg-surface); border: 1px solid var(--border);" onclick="checkOpt(this, false, 'Incorrect. Excluded volume b always increases Z, never decreases it.')">
+
+              D. Z = 1 - P b / (R T)
+
+            </button>
+
+          </div>
+
+          <div class="opt-feedback" style="display: none; padding: 12px; border-radius: 8px; margin-top: 10px;"></div>
+
+        </div>
+
+
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">NCERT Transfer</span>
+
+            <span class="tag-pill">Diagnostic 02</span>
+
+          </div>
+
+          <div class="q-title">Diffusion Rate and Temperature</div>
+
+          <p class="q-prompt">
+
+            Why does the aroma of hot sizzling food reach several metres away in seconds, while that of cold food requires getting close?
+
+          </p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Conceptual Derivation</summary>
+
+            <div class="solution-content">
+
+              <strong>Step 1:</strong> Particles of food aroma disperse into atmospheric air via diffusion.<br>
+
+              <strong>Step 2:</strong> Rate of diffusion depends on molecular speed: r ∝ v_rms = √(3RT/M).<br>
+
+              <strong>Step 3:</strong> At high temperature (hot food), kinetic energy is elevated, increasing root-mean-square velocity and vapor pressure.<br>
+
+              <strong>Step 4:</strong> Hot aromatic vapor molecules diffuse into air exponentially faster than cold food volatiles.
+
+            </div>
+
+          </details>
+
+        </div>
+
+
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Ideal Gas Calculations</span>
+
+            <span class="tag-pill">Diagnostic 03</span>
+
+          </div>
+
+          <div class="q-title">Molar Mass from Density (Dumas Method)</div>
+
+          <p class="q-prompt">
+
+            An unknown gas has a density of 1.96 g/L at 273.15 K and 1.00 atm pressure. Calculate its molar mass and identify the probable gas.
+
+          </p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Mathematical Solution</summary>
+
+            <div class="solution-content">
+
+              <strong>Formula:</strong> P · M = d · R · T &nbsp;⇒&nbsp; M = (d · R · T) / P<br>
+
+              <strong>Substitution:</strong> M = (1.96 g/L × 0.0821 L·atm·K⁻¹·mol⁻¹ × 273.15 K) / 1.00 atm<br>
+
+              <strong>Calculation:</strong> M = 1.96 × 22.414 = 43.93 ≈ 44.0 g/mol.<br>
+
+              <strong>Identity:</strong> Carbon Dioxide (CO₂, M = 12 + 32 = 44 g/mol) or Propane (C₃H₈, M = 36 + 8 = 44 g/mol).
+
+            </div>
+
+          </details>
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+
+
+    <!-- Support Rail -->
+
+    <aside class="support-rail">
+      <div class="support-widget" style="margin-bottom:16px;">
+        <h3><span>📑</span> Study Modules</h3>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <button class="tab-btn active btn" onclick="switchTab('tab-particle')" style="min-height:36px; padding:6px 12px; font-size:14px; text-align:left; border:1px solid var(--border); border-radius:6px; background:var(--bg-surface); color:var(--text-primary); cursor:pointer; width:100%; display:flex; align-items:center;">1. Particle Model</button>
+          <button class="tab-btn btn" onclick="switchTab('tab-laws')" style="min-height:36px; padding:6px 12px; font-size:14px; text-align:left; border:1px solid var(--border); border-radius:6px; background:var(--bg-surface); color:var(--text-primary); cursor:pointer; width:100%; display:flex; align-items:center;">2. Gas Laws &amp; PV=nRT</button>
+          <button class="tab-btn btn" onclick="switchTab('tab-phase')" style="min-height:36px; padding:6px 12px; font-size:14px; text-align:left; border:1px solid var(--border); border-radius:6px; background:var(--bg-surface); color:var(--text-primary); cursor:pointer; width:100%; display:flex; align-items:center;">3. Evaporation &amp; Phase Changes</button>
+          <button class="tab-btn btn" onclick="switchTab('tab-real')" style="min-height:36px; padding:6px 12px; font-size:14px; text-align:left; border:1px solid var(--border); border-radius:6px; background:var(--bg-surface); color:var(--text-primary); cursor:pointer; width:100%; display:flex; align-items:center;">4. Real Gases &amp; Van der Waals</button>
+          <button class="tab-btn btn" onclick="switchTab('tab-ncert')" style="min-height:36px; padding:6px 12px; font-size:14px; text-align:left; border:1px solid var(--border); border-radius:6px; background:var(--bg-surface); color:var(--text-primary); cursor:pointer; width:100%; display:flex; align-items:center;">5. NCERT Question Helper (27)</button>
+          <button class="tab-btn btn" onclick="switchTab('tab-practice')" style="min-height:36px; padding:6px 12px; font-size:14px; text-align:left; border:1px solid var(--border); border-radius:6px; background:var(--bg-surface); color:var(--text-primary); cursor:pointer; width:100%; display:flex; align-items:center;">6. Practice Diagnostic</button>
+        </div>
+      </div>
+
+
+      
+
+      <!-- Quick Formula Card -->
+
+      <div class="support-widget">
+
+        <h3><span>⚡</span> Key Gas Formulas</h3>
+
+        <div class="formula-box" style="font-size: 14px; margin: 0 0 10px 0;">
+
+          P V = n R T<br>
+
+          P₁ V₁ / T₁ = P₂ V₂ / T₂<br>
+
+          d = P M / (R T)<br>
+
+          r₁ / r₂ = √(M₂ / M₁)<br>
+
+          P_tot = ∑ Pᵢ = ∑ xᵢ P_tot<br>
+
+          (P + an²/V²)(V - nb) = nRT
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Interactive Ideal Gas Calculator -->
+
+      <div class="support-widget">
+
+        <h3><span>🧮</span> Ideal Gas Law Calculator</h3>
+
+        <p style="font-size:14px; color: var(--text-secondary); margin-bottom: 12px;">
+
+          Compute Pressure, Volume, Moles, or Temperature dynamically:
+
+        </p>
+
+        <div class="calc-row">
+
+          <div class="calc-input-group">
+
+            <label>Solve For:</label>
+
+            <select id="calcTarget" onchange="runGasCalc()">
+
+              <option value="P">Pressure (P)</option>
+
+              <option value="V">Volume (V)</option>
+
+              <option value="n">Moles (n)</option>
+
+              <option value="T">Temperature (T)</option>
+
+            </select>
+
+          </div>
+
+          <div class="calc-input-group">
+
+            <label>R Constant:</label>
+
+            <input type="text" value="0.0821 L·atm/mol·K" disabled>
+
+          </div>
+
+        </div>
+
+        <div class="calc-row">
+
+          <div class="calc-input-group" id="groupP">
+
+            <label>Pressure (atm):</label>
+
+            <input type="number" id="inputP" value="1.0" step="0.1" oninput="runGasCalc()">
+
+          </div>
+
+          <div class="calc-input-group" id="groupV">
+
+            <label>Volume (L):</label>
+
+            <input type="number" id="inputV" value="22.4" step="0.1" oninput="runGasCalc()">
+
+          </div>
+
+        </div>
+
+        <div class="calc-row">
+
+          <div class="calc-input-group" id="groupN">
+
+            <label>Moles (n):</label>
+
+            <input type="number" id="inputN" value="1.0" step="0.05" oninput="runGasCalc()">
+
+          </div>
+
+          <div class="calc-input-group" id="groupT">
+
+            <label>Temp (K):</label>
+
+            <input type="number" id="inputT" value="273.15" step="1" oninput="runGasCalc()">
+
+          </div>
+
+        </div>
+
+        <div class="calc-result" id="calcOutput">
+
+          P = 1.00 atm
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Virtual Keyboard Safe Scratchpad -->
+
+      <div class="support-widget">
+
+        <h3><span>📝</span> Tablet Study Scratchpad</h3>
+
+        <p style="font-size:14px; color: var(--text-secondary); margin-bottom: 8px;">
+
+          Auto-saves to tablet local storage. Virtual keyboard safe (min-height: 120px):
+
+        </p>
+
+        <textarea id="scratchpadNotes" class="tablet-safe-input" placeholder="Jot down formulas, unit notes, or calculation steps..."></textarea>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+
+          <span id="saveStatus" style="font-size:14px; color: var(--success);">✓ Auto-saved locally</span>
+
+          <button class="btn" style="min-height: 40px; padding: 6px 14px; font-size:14px; background: var(--bg-surface); border: 1px solid var(--border);" onclick="clearScratchpad()">Clear</button>
+
+        </div>
+
+      </div>
+
+
+
+    </aside>
+
+
+
+  </main>
+
+
+
+  <script>
+
+    // Tab switching
+
+    function switchTab(tabId) {
+
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const targetContent = document.getElementById(tabId);
+
+      if (targetContent) targetContent.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    }
+
+
+
+    // Theme toggle with localStorage
+
+    const themeBtn = document.getElementById('themeToggle');
+
+    const htmlEl = document.documentElement;
+
+    const savedTheme = localStorage.getItem('tablet12_theme') || 'dark';
+
+    htmlEl.setAttribute('data-theme', savedTheme);
+
+    themeBtn.addEventListener('click', () => {
+
+      const current = htmlEl.getAttribute('data-theme');
+
+      const next = current === 'dark' ? 'light' : 'dark';
+
+      htmlEl.setAttribute('data-theme', next);
+
+      localStorage.setItem('tablet12_theme', next);
+
+    });
+
+
+
+    // Scratchpad auto-save
+
+    const pad = document.getElementById('scratchpadNotes');
+
+    const status = document.getElementById('saveStatus');
+
+    pad.value = localStorage.getItem('gases_tablet_notes') || '';
+
+    pad.addEventListener('input', () => {
+
+      localStorage.setItem('gases_tablet_notes', pad.value);
+
+      status.textContent = '✓ Saved ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+    });
+
+
+
+    function clearScratchpad() {
+
+      if (confirm('Clear scratchpad notes?')) {
+
+        pad.value = '';
+
+        localStorage.removeItem('gases_tablet_notes');
+
+        status.textContent = 'Notes cleared';
+
+      }
+
+    }
+
+
+
+    // Gas Calculator
+
+    function runGasCalc() {
+
+      const target = document.getElementById('calcTarget').value;
+
+      const P = parseFloat(document.getElementById('inputP').value) || 1.0;
+
+      const V = parseFloat(document.getElementById('inputV').value) || 22.4;
+
+      const n = parseFloat(document.getElementById('inputN').value) || 1.0;
+
+      const T = parseFloat(document.getElementById('inputT').value) || 273.15;
+
+      const R = 0.0821;
+
+      const out = document.getElementById('calcOutput');
+
+
+
+      // Adjust input visibility
+
+      document.getElementById('groupP').style.display = target === 'P' ? 'none' : 'block';
+
+      document.getElementById('groupV').style.display = target === 'V' ? 'none' : 'block';
+
+      document.getElementById('groupN').style.display = target === 'n' ? 'none' : 'block';
+
+      document.getElementById('groupT').style.display = target === 'T' ? 'none' : 'block';
+
+
+
+      if (target === 'P') {
+
+        const res = (n * R * T) / V;
+
+        out.textContent = `P = ${res.toFixed(3)} atm (${(res * 101.325).toFixed(1)} kPa)`;
+
+      } else if (target === 'V') {
+
+        const res = (n * R * T) / P;
+
+        out.textContent = `V = ${res.toFixed(3)} L (${(res * 1000).toFixed(0)} mL)`;
+
+      } else if (target === 'n') {
+
+        const res = (P * V) / (R * T);
+
+        out.textContent = `n = ${res.toFixed(4)} moles`;
+
+      } else if (target === 'T') {
+
+        const res = (P * V) / (n * R);
+
+        out.textContent = `T = ${res.toFixed(2)} K (${(res - 273.15).toFixed(1)} °C)`;
+
+      }
+
+    }
+
+    runGasCalc();
+
+
+
+    // Option checking for diagnostics
+
+    function checkOpt(btn, isCorrect, msg) {
+
+      const parent = btn.parentElement;
+
+      const fback = parent.nextElementSibling;
+
+      fback.style.display = 'block';
+
+      fback.style.backgroundColor = isCorrect ? 'rgba(52, 211, 153, 0.15)' : 'rgba(248, 113, 113, 0.15)';
+
+      fback.style.border = '1px solid ' + (isCorrect ? 'var(--success)' : 'var(--danger)');
+
+      fback.style.color = isCorrect ? 'var(--success)' : 'var(--danger)';
+
+      fback.textContent = (isCorrect ? '✓ ' : '✗ ') + msg;
+
+    }
+
+  </script>
+
+  <script>
+
+    function renderAllMath() {
+
+      if (window.renderMathInElement) {
+
+        renderMathInElement(document.body, {
+
+          delimiters: [
+
+            {left: "$$", right: "$$", display: true},
+
+            {left: "$", right: "$", display: false},
+
+            {left: "\\(", right: "\\)", display: false},
+
+            {left: "\\[", right: "\\]", display: true}
+
+          ],
+
+          throwOnError: false
+
+        });
+
+      }
+
+    }
+
+    if (document.readyState === "loading") {
+
+      document.addEventListener("DOMContentLoaded", renderAllMath);
+
+    } else {
+
+      renderAllMath();
+
+    }
+
+  </script>
+
+</body>
+
+</html>
+

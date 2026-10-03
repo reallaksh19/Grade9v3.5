@@ -9,9 +9,33 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "&",
       "molecular",
       "structure",
+      "bonding",
+      "chemical",
+      "bonding",
+      "molecular",
+      "structure",
+      "chemical",
+      "bonding",
+      "and",
+      "molecular",
+      "structure",
+      "vsepr",
+      "lewis",
+      "structure",
+      "lewis",
+      "dot",
+      "hybridization",
+      "dipole",
+      "moment",
+      "covalent",
+      "ionic",
+      "bond",
+      "hydrogen",
+      "bond",
       "mic-chem-bonding",
       "chem.bonding",
-      "chemistry"
+      "chemistry",
+      "concept"
     ]
   },
   {
@@ -25,9 +49,43 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "&",
       "molecular",
       "speeds",
+      "gases",
+      "behaviour",
+      "of",
+      "gases",
+      "behavior",
+      "of",
+      "gases",
+      "gaseous",
+      "state",
+      "gas",
+      "laws",
+      "ideal",
+      "gas",
+      "boyle",
+      "boyle's",
+      "law",
+      "charles",
+      "charles'",
+      "law",
+      "kinetic",
+      "theory",
+      "kinetic",
+      "theory",
+      "of",
+      "gases",
+      "ktg",
+      "van",
+      "der",
+      "waals",
+      "compressibility",
+      "factor",
+      "real",
+      "gases",
       "mic-chem-gas-laws",
       "chem.gases",
-      "chemistry"
+      "chemistry",
+      "concept"
     ]
   },
   {
@@ -39,9 +97,30 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "concept",
       "&",
       "stoichiometry",
+      "mole",
+      "mole",
+      "concept",
+      "stoichiometry",
+      "molar",
+      "mass",
+      "avogadro",
+      "limiting",
+      "reagent",
+      "empirical",
+      "formula",
+      "molecular",
+      "formula",
+      "some",
+      "basic",
+      "concepts",
+      "of",
+      "chemistry",
+      "concentration",
+      "molarity",
       "mic-chem-mole-concept",
       "chem.mole",
-      "chemistry"
+      "chemistry",
+      "concept"
     ]
   },
   {
@@ -54,21 +133,56 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "&",
       "oxidation",
       "states",
+      "redox",
+      "redox",
+      "reactions",
+      "oxidation",
+      "reduction",
+      "oxidation",
+      "state",
+      "oxidation",
+      "states",
+      "oxidation",
+      "number",
+      "half",
+      "reaction",
+      "half-reaction",
+      "disproportionation",
+      "electron",
+      "transfer",
+      "oxidizing",
+      "agent",
+      "reducing",
+      "agent",
       "mic-chem-redox",
       "chem.redox",
-      "chemistry"
+      "chemistry",
+      "concept"
     ]
   },
   {
-    "title": "Coordinate Geometry",
+    "title": "Math Coordinate Geometry",
     "path": "mathematics/coordinate-geometry/index.html#MIC-MATH-COORDINATE-GEOMETRY",
     "kind": "concept",
     "keywords": [
+      "math",
       "coordinate",
       "geometry",
+      "coordinate",
+      "geometry",
+      "cartesian",
+      "plane",
+      "cartesian",
+      "distance",
+      "formula",
+      "section",
+      "formula",
+      "collinear",
+      "points",
       "mic-math-coordinate-geometry",
       "math.coordinate-geometry",
-      "mathematics"
+      "mathematics",
+      "concept"
     ]
   },
   {
@@ -79,23 +193,43 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "math",
       "euclid",
       "geometry",
+      "euclids-geometry",
+      "euclid",
+      "euclid's",
+      "geometry",
+      "euclidean",
+      "geometry",
+      "axioms",
+      "postulates",
+      "deductive",
+      "proofs",
       "mic-math-euclid-geometry",
       "math.euclids-geometry",
-      "mathematics"
+      "mathematics",
+      "concept"
     ]
   },
   {
-    "title": "Polynomials & Remainder Theorem",
+    "title": "Math Polynomials",
     "path": "mathematics/polynomials/index.html#MIC-MATH-POLYNOMIALS",
     "kind": "concept",
     "keywords": [
+      "math",
       "polynomials",
-      "&",
+      "polynomial",
+      "polynomials",
       "remainder",
       "theorem",
+      "factor",
+      "theorem",
+      "zeroes",
+      "of",
+      "polynomial",
+      "factorization",
       "mic-math-polynomials",
       "math.polynomials",
-      "mathematics"
+      "mathematics",
+      "concept"
     ]
   },
   {
@@ -107,14 +241,31 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "theory",
       "of",
       "equations",
+      "theory-of-equations",
+      "theory",
+      "of",
+      "equations",
+      "polynomial",
+      "roots",
+      "vieta",
+      "vieta's",
+      "relations",
+      "vieta",
+      "formulas",
+      "quadratic",
+      "roots",
+      "roots",
+      "of",
+      "equations",
       "mic-math-theory-of-equations",
       "math.theory-of-equations",
-      "mathematics"
+      "mathematics",
+      "concept"
     ]
   },
   {
     "title": "Vector Algebra \u00b7 3D Engine",
-    "path": "mathematics/vectors/explorers/vector_algebra/index.html",
+    "path": "mathematics/vectors/index.html#MIC-MATH-VECTOR-ALGEBRA",
     "kind": "concept",
     "keywords": [
       "vector",
@@ -122,9 +273,23 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "\u00b7",
       "3d",
       "engine",
+      "vectors",
+      "vector",
+      "resolution",
+      "of",
+      "vectors",
+      "vector",
+      "components",
+      "unit",
+      "vector",
+      "dot",
+      "product",
+      "cross",
+      "product",
       "mic-math-vector-algebra",
       "math.vectors",
-      "mathematics"
+      "mathematics",
+      "concept"
     ]
   },
   {
@@ -136,9 +301,29 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "&",
       "hydrostatic",
       "pressure",
+      "fluids",
+      "fluid",
+      "mechanics",
+      "thrust",
+      "and",
+      "pressure",
+      "thrust",
+      "pressure",
+      "buoyancy",
+      "buoyant",
+      "force",
+      "archimedes",
+      "archimedes",
+      "principle",
+      "pascal",
+      "pascal's",
+      "law",
+      "hydrostatic",
+      "pressure",
       "mic-phy-fluids-thrust-pressure",
       "phy.fluids",
-      "physics"
+      "physics",
+      "concept"
     ]
   },
   {
@@ -151,9 +336,34 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "a",
       "straight",
       "line",
+      "motion-1d",
+      "motion",
+      "in",
+      "1d",
+      "motion",
+      "in",
+      "a",
+      "straight",
+      "line",
+      "kinematics",
+      "rectilinear",
+      "motion",
+      "straight",
+      "line",
+      "acceleration",
+      "velocity",
+      "displacement",
+      "position",
+      "time",
+      "velocity",
+      "time",
+      "equations",
+      "of",
+      "motion",
       "mic-phy-kin-1d-motion",
       "phy.motion-1d",
-      "physics"
+      "physics",
+      "concept"
     ]
   },
   {
@@ -167,9 +377,32 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "plane",
       "&",
       "projectiles",
+      "motion-2d",
+      "motion",
+      "in",
+      "2d",
+      "motion",
+      "in",
+      "a",
+      "plane",
+      "projectile",
+      "projectile",
+      "motion",
+      "trajectory",
+      "horizontal",
+      "projectile",
+      "circular",
+      "motion",
+      "relative",
+      "velocity",
+      "range",
+      "time",
+      "of",
+      "flight",
       "mic-phy-kin-2d-independent-components",
       "phy.motion-2d",
-      "physics"
+      "physics",
+      "concept"
     ]
   },
   {
@@ -181,9 +414,39 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "law",
       "&",
       "inertia",
+      "nlm",
+      "newton's",
+      "laws",
+      "newton",
+      "laws",
+      "newton's",
+      "laws",
+      "of",
+      "motion",
+      "laws",
+      "of",
+      "motion",
+      "friction",
+      "static",
+      "friction",
+      "kinetic",
+      "friction",
+      "free",
+      "body",
+      "diagram",
+      "fbd",
+      "inertia",
+      "momentum",
+      "impulse",
+      "pseudo",
+      "force",
+      "tension",
+      "normal",
+      "force",
       "mic-phy-nlm-first-law",
       "phy.nlm",
-      "physics"
+      "physics",
+      "concept"
     ]
   },
   {
@@ -195,9 +458,39 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "&",
       "kinetic",
       "friction",
+      "nlm",
+      "newton's",
+      "laws",
+      "newton",
+      "laws",
+      "newton's",
+      "laws",
+      "of",
+      "motion",
+      "laws",
+      "of",
+      "motion",
+      "friction",
+      "static",
+      "friction",
+      "kinetic",
+      "friction",
+      "free",
+      "body",
+      "diagram",
+      "fbd",
+      "inertia",
+      "momentum",
+      "impulse",
+      "pseudo",
+      "force",
+      "tension",
+      "normal",
+      "force",
       "mic-phy-nlm-friction",
       "phy.nlm",
-      "physics"
+      "physics",
+      "concept"
     ]
   },
   {
@@ -210,9 +503,39 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "&",
       "connected",
       "bodies",
+      "nlm",
+      "newton's",
+      "laws",
+      "newton",
+      "laws",
+      "newton's",
+      "laws",
+      "of",
+      "motion",
+      "laws",
+      "of",
+      "motion",
+      "friction",
+      "static",
+      "friction",
+      "kinetic",
+      "friction",
+      "free",
+      "body",
+      "diagram",
+      "fbd",
+      "inertia",
+      "momentum",
+      "impulse",
+      "pseudo",
+      "force",
+      "tension",
+      "normal",
+      "force",
       "mic-phy-nlm-friction-quant",
       "phy.nlm",
-      "physics"
+      "physics",
+      "concept"
     ]
   },
   {
@@ -224,13 +547,27 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "addition",
       "&",
       "resolution",
+      "vectors",
+      "vector",
+      "resolution",
+      "of",
+      "vectors",
+      "vector",
+      "components",
+      "unit",
+      "vector",
+      "dot",
+      "product",
+      "cross",
+      "product",
       "mic-phy-vec-addition",
       "phy.vectors",
-      "physics"
+      "physics",
+      "concept"
     ]
   },
   {
-    "title": "The velocity-time graph of a particle moving along a straight line is shown. In ",
+    "title": "The velocity-time graph of a particle moving along a straight line is shown. In the time i",
     "path": "question-bank/index.html?q=1D-Q01#1D-Q01",
     "kind": "question",
     "keywords": [
@@ -249,6 +586,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       "shown.",
       "in",
+      "the",
+      "time",
+      "i",
       "the",
       "velocity-time",
       "graph",
@@ -280,14 +620,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "+20",
       "m/s",
       "in",
-      "10",
-      "s,",
-      "stays",
-      "constant"
+      "10"
     ]
   },
   {
-    "title": "A particle moves along the x-axis with position x(t) = 6t - t\u00b2 (in meters). What",
+    "title": "A particle moves along the x-axis with position x(t) = 6t - t\u00b2 (in meters). What is the to",
     "path": "question-bank/index.html?q=1D-Q02#1D-Q02",
     "kind": "question",
     "keywords": [
@@ -308,6 +645,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "(in",
       "meters).",
       "what",
+      "is",
+      "the",
+      "to",
       "a",
       "particle",
       "moves",
@@ -337,14 +677,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "=",
       "0",
       "and",
-      "t",
-      "=",
-      "5",
-      "s?"
+      "t"
     ]
   },
   {
-    "title": "The position of a particle is given by x(t) = 4t\u00b3 - 18t\u00b2 + 24t + 2 (in meters). ",
+    "title": "The position of a particle is given by x(t) = 4t\u00b3 - 18t\u00b2 + 24t + 2 (in meters). Find the a",
     "path": "question-bank/index.html?q=1D-Q03#1D-Q03",
     "kind": "question",
     "keywords": [
@@ -368,6 +705,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "2",
       "(in",
       "meters).",
+      "find",
+      "the",
+      "a",
       "the",
       "position",
       "of",
@@ -394,14 +734,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "particle",
       "at",
-      "the",
-      "instant",
-      "when",
-      "its"
+      "the"
     ]
   },
   {
-    "title": "A body travels the first half of a total distance D with speed v\u2081 = 30 km/h and ",
+    "title": "A body travels the first half of a total distance D with speed v\u2081 = 30 km/h and the remain",
     "path": "question-bank/index.html?q=1D-Q04#1D-Q04",
     "kind": "question",
     "keywords": [
@@ -424,6 +761,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "30",
       "km/h",
       "and",
+      "the",
+      "remain",
       "a",
       "body",
       "travels",
@@ -452,13 +791,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "60",
       "km/h.",
       "its",
-      "average",
-      "speed",
-      "over"
+      "average"
     ]
   },
   {
-    "title": "A particle moves in a straight line such that its displacement x at time t is re",
+    "title": "A particle moves in a straight line such that its displacement x at time t is related by t",
     "path": "question-bank/index.html?q=1D-Q05#1D-Q05",
     "kind": "question",
     "keywords": [
@@ -479,7 +816,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "time",
       "t",
       "is",
-      "re",
+      "related",
+      "by",
+      "t",
       "a",
       "particle",
       "moves",
@@ -509,13 +848,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "\u03b1",
       "and",
       "\u03b2",
-      "are",
-      "positive",
-      "constants."
+      "are"
     ]
   },
   {
-    "title": "The velocity-displacement (v-x) graph of a particle moving in a straight line is",
+    "title": "The velocity-displacement (v-x) graph of a particle moving in a straight line is a straigh",
     "path": "question-bank/index.html?q=1D-Q06#1D-Q06",
     "kind": "question",
     "keywords": [
@@ -533,6 +870,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "straight",
       "line",
       "is",
+      "a",
+      "straigh",
       "the",
       "velocity-displacement",
       "(v-x)",
@@ -566,13 +905,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "corresponding",
       "acceleration-displacement",
-      "(a-x)",
-      "graph",
-      "is:"
+      "(a-x)"
     ]
   },
   {
-    "title": "The v\u00b2 versus x graph of a particle moving in a straight line is a straight line",
+    "title": "The v\u00b2 versus x graph of a particle moving in a straight line is a straight line passing t",
     "path": "question-bank/index.html?q=1D-Q07#1D-Q07",
     "kind": "question",
     "keywords": [
@@ -594,6 +931,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "a",
       "straight",
       "line",
+      "passing",
+      "t",
       "the",
       "v\u00b2",
       "versus",
@@ -623,13 +962,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       "in",
       "m/s",
-      "and",
-      "x",
-      "is"
+      "and"
     ]
   },
   {
-    "title": "The acceleration-time (a-t) graph of a particle starting from rest at t = 0 is a",
+    "title": "The acceleration-time (a-t) graph of a particle starting from rest at t = 0 is a triangle ",
     "path": "question-bank/index.html?q=1D-Q08#1D-Q08",
     "kind": "question",
     "keywords": [
@@ -650,6 +987,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "0",
       "is",
       "a",
+      "triangle",
       "the",
       "acceleration-time",
       "(a-t)",
@@ -681,12 +1019,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "and",
       "peak",
       "acceleration",
-      "a_max",
-      "="
+      "a_max"
     ]
   },
   {
-    "title": "A particle moves such that its acceleration a versus displacement x is given by ",
+    "title": "A particle moves such that its acceleration a versus displacement x is given by a(x) = 3x\u00b2",
     "path": "question-bank/index.html?q=1D-Q09#1D-Q09",
     "kind": "question",
     "keywords": [
@@ -705,6 +1042,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       "given",
       "by",
+      "a(x)",
+      "=",
+      "3x\u00b2",
       "a",
       "particle",
       "moves",
@@ -736,14 +1076,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "with",
       "initial",
       "velocity",
-      "v",
-      "=",
-      "2",
-      "m/s,"
+      "v"
     ]
   },
   {
-    "title": "A gas balloon is going up with a constant velocity of 10 m/s. When this balloon ",
+    "title": "A gas balloon is going up with a constant velocity of 10 m/s. When this balloon reached a ",
     "path": "question-bank/index.html?q=1D-Q10#1D-Q10",
     "kind": "question",
     "keywords": [
@@ -764,6 +1101,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "when",
       "this",
       "balloon",
+      "reached",
+      "a",
       "a",
       "gas",
       "balloon",
@@ -794,13 +1133,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       "dropped",
       "from",
-      "it",
-      "while",
-      "the"
+      "it"
     ]
   },
   {
-    "title": "Water drops fall from a tap on the floor 5 m below at regular time intervals. Th",
+    "title": "Water drops fall from a tap on the floor 5 m below at regular time intervals. The first dr",
     "path": "question-bank/index.html?q=1D-Q11#1D-Q11",
     "kind": "question",
     "keywords": [
@@ -821,7 +1158,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "regular",
       "time",
       "intervals.",
-      "th",
+      "the",
+      "first",
+      "dr",
       "water",
       "drops",
       "fall",
@@ -851,13 +1190,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "sixth",
       "drop",
-      "begins",
-      "to",
-      "fall."
+      "begins"
     ]
   },
   {
-    "title": "A paratrooper after bailing out falls 50 m without friction. When the parachute ",
+    "title": "A paratrooper after bailing out falls 50 m without friction. When the parachute opens, he ",
     "path": "question-bank/index.html?q=1D-Q12#1D-Q12",
     "kind": "question",
     "keywords": [
@@ -875,6 +1212,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "when",
       "the",
       "parachute",
+      "opens,",
+      "he",
       "a",
       "paratrooper",
       "after",
@@ -908,13 +1247,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "at",
       "what",
       "height",
-      "did",
-      "he",
-      "bail"
+      "did"
     ]
   },
   {
-    "title": "A ball is thrown vertically upwards from the top of a tower of height h with vel",
+    "title": "A ball is thrown vertically upwards from the top of a tower of height h with velocity u. I",
     "path": "question-bank/index.html?q=1D-Q13#1D-Q13",
     "kind": "question",
     "keywords": [
@@ -935,7 +1272,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "height",
       "h",
       "with",
-      "vel",
+      "velocity",
+      "u.",
+      "i",
       "a",
       "ball",
       "is",
@@ -965,13 +1304,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "it",
       "is",
       "thrown",
-      "vertically",
-      "downwards",
-      "from"
+      "vertically"
     ]
   },
   {
-    "title": "The deceleration experienced by a moving motor boat after its engine is cut off ",
+    "title": "The deceleration experienced by a moving motor boat after its engine is cut off is given b",
     "path": "question-bank/index.html?q=1D-Q14#1D-Q14",
     "kind": "question",
     "keywords": [
@@ -990,6 +1327,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       "cut",
       "off",
+      "is",
+      "given",
+      "b",
       "the",
       "deceleration",
       "experienced",
@@ -1021,14 +1361,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "v\u2080",
       "is",
       "the",
-      "speed",
-      "when",
-      "the",
-      "engine"
+      "speed"
     ]
   },
   {
-    "title": "A particle moves in a resistive medium with acceleration a = -\u03b2 v, where \u03b2 is a ",
+    "title": "A particle moves in a resistive medium with acceleration a = -\u03b2 v, where \u03b2 is a constant a",
     "path": "question-bank/index.html?q=1D-Q15#1D-Q15",
     "kind": "question",
     "keywords": [
@@ -1049,6 +1386,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "where",
       "\u03b2",
       "is",
+      "a",
+      "constant",
       "a",
       "a",
       "particle",
@@ -1079,13 +1418,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "velocity",
       "is",
       "v\u2080",
-      "at",
-      "x",
-      "="
+      "at"
     ]
   },
   {
-    "title": "Two cars A and B travel in the same direction along a straight highway. Car A mo",
+    "title": "Two cars A and B travel in the same direction along a straight highway. Car A moves at con",
     "path": "question-bank/index.html?q=1D-Q16#1D-Q16",
     "kind": "question",
     "keywords": [
@@ -1106,7 +1443,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "highway.",
       "car",
       "a",
-      "mo",
+      "moves",
+      "at",
+      "con",
       "two",
       "cars",
       "a",
@@ -1136,13 +1475,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       "initially",
       "100",
-      "m",
-      "ahead",
-      "of"
+      "m"
     ]
   },
   {
-    "title": "Two trains A and B, each of length 150 m, are moving in opposite directions on p",
+    "title": "Two trains A and B, each of length 150 m, are moving in opposite directions on parallel tr",
     "path": "question-bank/index.html?q=1D-Q17#1D-Q17",
     "kind": "question",
     "keywords": [
@@ -1163,7 +1500,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "opposite",
       "directions",
       "on",
-      "p",
+      "parallel",
+      "tr",
       "two",
       "trains",
       "a",
@@ -1194,12 +1532,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "time",
       "of",
       "complete",
-      "crossing",
-      "is:"
+      "crossing"
     ]
   },
   {
-    "title": "Two trains travelling on the same track are approaching each other with speeds o",
+    "title": "Two trains travelling on the same track are approaching each other with speeds of 40 m/s a",
     "path": "question-bank/index.html?q=1D-Q18#1D-Q18",
     "kind": "question",
     "keywords": [
@@ -1217,7 +1554,10 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "other",
       "with",
       "speeds",
-      "o",
+      "of",
+      "40",
+      "m/s",
+      "a",
       "two",
       "trains",
       "travelling",
@@ -1249,14 +1589,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "simultaneously",
       "apply",
       "brakes",
-      "which",
-      "produce",
-      "equal",
-      "decelerations"
+      "which"
     ]
   },
   {
-    "title": "According to Molecular Orbital Theory (MOT), which of the following oxygen speci",
+    "title": "According to Molecular Orbital Theory (MOT), which of the following oxygen species is diam",
     "path": "question-bank/index.html?q=BOND-Q01#BOND-Q01",
     "kind": "question",
     "keywords": [
@@ -1272,7 +1609,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "following",
       "oxygen",
-      "speci",
+      "species",
+      "is",
+      "diam",
       "according",
       "to",
       "molecular",
@@ -1296,7 +1635,18 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "chemical",
       "bonding",
       "cap-chem-bonding",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2026",
+      "(online)",
+      "8th",
+      "april",
+      "morning",
+      "shift",
+      "2026",
+      "diagnostic",
+      "hub"
     ]
   },
   {
@@ -1332,11 +1682,32 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "chemical",
       "bonding",
       "cap-chem-bonding",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2025",
+      "(online)",
+      "24th",
+      "january",
+      "morning",
+      "shift",
+      "2025",
+      "diagnostic",
+      "hub",
+      "qbond-q02",
+      "medium",
+      "jee",
+      "iit",
+      "iit-jee",
+      "pyq",
+      "competitive",
+      "bonding",
+      "chemical",
+      "bonding"
     ]
   },
   {
-    "title": "Although Nitrogen and Fluorine are both highly electronegative, the dipole momen",
+    "title": "Although Nitrogen and Fluorine are both highly electronegative, the dipole moment of NH\u2083 (",
     "path": "question-bank/index.html?q=BOND-Q03#BOND-Q03",
     "kind": "question",
     "keywords": [
@@ -1351,7 +1722,10 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "electronegative,",
       "the",
       "dipole",
-      "momen",
+      "moment",
+      "of",
+      "nh\u2083",
+      "(",
       "although",
       "nitrogen",
       "and",
@@ -1383,11 +1757,14 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "chemical",
       "bonding",
       "cap-chem-bonding",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2024"
     ]
   },
   {
-    "title": "In gaseous phosphorus pentachloride (PCl\u2085), the axial P-Cl bonds are longer and ",
+    "title": "In gaseous phosphorus pentachloride (PCl\u2085), the axial P-Cl bonds are longer and weaker tha",
     "path": "question-bank/index.html?q=BOND-Q04#BOND-Q04",
     "kind": "question",
     "keywords": [
@@ -1404,6 +1781,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "are",
       "longer",
       "and",
+      "weaker",
+      "tha",
       "in",
       "gaseous",
       "phosphorus",
@@ -1426,11 +1805,23 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "chemical",
       "bonding",
       "cap-chem-bonding",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2026",
+      "(online)",
+      "5th",
+      "april",
+      "morning",
+      "shift",
+      "2026",
+      "diagnostic",
+      "hub",
+      "qbond-q04"
     ]
   },
   {
-    "title": "ortho-Nitrophenol is steam volatile and has a lower boiling point than para-nitr",
+    "title": "ortho-Nitrophenol is steam volatile and has a lower boiling point than para-nitrophenol be",
     "path": "question-bank/index.html?q=BOND-Q05#BOND-Q05",
     "kind": "question",
     "keywords": [
@@ -1446,7 +1837,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "boiling",
       "point",
       "than",
-      "para-nitr",
+      "para-nitrophenol",
+      "be",
       "ortho-nitrophenol",
       "is",
       "steam",
@@ -1463,11 +1855,30 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "chemical",
       "bonding",
       "cap-chem-bonding",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2025",
+      "(online)",
+      "30th",
+      "january",
+      "morning",
+      "shift",
+      "2025",
+      "diagnostic",
+      "hub",
+      "qbond-q05",
+      "medium",
+      "jee",
+      "iit",
+      "iit-jee",
+      "pyq",
+      "competitive",
+      "bonding"
     ]
   },
   {
-    "title": "According to Molecular Orbital Theory (MOT), which of the following homonuclear ",
+    "title": "According to Molecular Orbital Theory (MOT), which of the following homonuclear diatomic s",
     "path": "question-bank/index.html?q=BOND-Q06#BOND-Q06",
     "kind": "question",
     "keywords": [
@@ -1483,6 +1894,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "following",
       "homonuclear",
+      "diatomic",
+      "s",
       "according",
       "to",
       "molecular",
@@ -1517,11 +1930,12 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "chemical",
       "bonding",
       "cap-chem-bonding",
-      "chemistry"
+      "chemistry",
+      "jee"
     ]
   },
   {
-    "title": "Both ammonia (NH\u2083) and nitrogen trifluoride (NF\u2083) have trigonal pyramidal geomet",
+    "title": "Both ammonia (NH\u2083) and nitrogen trifluoride (NF\u2083) have trigonal pyramidal geometries with ",
     "path": "question-bank/index.html?q=BOND-Q07#BOND-Q07",
     "kind": "question",
     "keywords": [
@@ -1536,7 +1950,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "have",
       "trigonal",
       "pyramidal",
-      "geomet",
+      "geometries",
+      "with",
       "both",
       "ammonia",
       "(nh\u2083)",
@@ -1573,12 +1988,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "d)",
       "because:",
       "chemical",
-      "bonding",
-      "cap-chem-bonding"
+      "bonding"
     ]
   },
   {
-    "title": "In the resonance contributor of the ozone molecule (O\u2083: O_a - O_b = O_c), the fo",
+    "title": "In the resonance contributor of the ozone molecule (O\u2083: O_a - O_b = O_c), the formal charg",
     "path": "question-bank/index.html?q=BOND-Q08#BOND-Q08",
     "kind": "question",
     "keywords": [
@@ -1598,7 +2012,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "=",
       "o_c),",
       "the",
-      "fo",
+      "formal",
+      "charg",
       "in",
       "the",
       "resonance",
@@ -1630,12 +2045,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "double-bonded",
       "terminal",
-      "oxygen",
-      "(o_c)"
+      "oxygen"
     ]
   },
   {
-    "title": "The total number of lone pairs on the central atom of XeF\u2084, SF\u2084, and ClF\u2083 respec",
+    "title": "The total number of lone pairs on the central atom of XeF\u2084, SF\u2084, and ClF\u2083 respectively are",
     "path": "question-bank/index.html?q=BOND-Q09#BOND-Q09",
     "kind": "question",
     "keywords": [
@@ -1655,7 +2069,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "sf\u2084,",
       "and",
       "clf\u2083",
-      "respec",
+      "respectively",
+      "are",
       "the",
       "total",
       "number",
@@ -1676,11 +2091,22 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "chemical",
       "bonding",
       "cap-chem-bonding",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2024",
+      "(online)",
+      "31st",
+      "january",
+      "evening",
+      "shift",
+      "2024",
+      "diagnostic",
+      "hub"
     ]
   },
   {
-    "title": "The formal charge on each oxygen atom in the resonance hybrid of the carbonate i",
+    "title": "The formal charge on each oxygen atom in the resonance hybrid of the carbonate ion (CO\u2083\u00b2\u207b)",
     "path": "question-bank/index.html?q=BOND-Q10#BOND-Q10",
     "kind": "question",
     "keywords": [
@@ -1699,7 +2125,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "the",
       "carbonate",
-      "i",
+      "ion",
+      "(co\u2083\u00b2\u207b)",
       "the",
       "formal",
       "charge",
@@ -1720,11 +2147,23 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "chemical",
       "bonding",
       "cap-chem-bonding",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2024",
+      "(online)",
+      "29th",
+      "january",
+      "morning",
+      "shift",
+      "2024",
+      "diagnostic",
+      "hub",
+      "qbond-q10"
     ]
   },
   {
-    "title": "According to Molecular Orbital Theory (MOT), in which of the following diatomic ",
+    "title": "According to Molecular Orbital Theory (MOT), in which of the following diatomic species do",
     "path": "question-bank/index.html?q=BOND-Q11#BOND-Q11",
     "kind": "question",
     "keywords": [
@@ -1741,6 +2180,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "following",
       "diatomic",
+      "species",
+      "do",
       "according",
       "to",
       "molecular",
@@ -1770,11 +2211,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "chemical",
       "bonding",
       "cap-chem-bonding",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2023",
+      "(online)",
+      "6th"
     ]
   },
   {
-    "title": "In gaseous PCl\u2085, the axial P-Cl bonds are longer (240 pm) than the equatorial P-",
+    "title": "In gaseous PCl\u2085, the axial P-Cl bonds are longer (240 pm) than the equatorial P-Cl bonds (",
     "path": "question-bank/index.html?q=BOND-Q12#BOND-Q12",
     "kind": "question",
     "keywords": [
@@ -1793,7 +2239,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "than",
       "the",
       "equatorial",
-      "p-",
+      "p-cl",
+      "bonds",
+      "(",
       "in",
       "gaseous",
       "pcl\u2085,",
@@ -1816,11 +2264,20 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "chemical",
       "bonding",
       "cap-chem-bonding",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2023",
+      "(online)",
+      "11th",
+      "april",
+      "evening",
+      "shift",
+      "2023"
     ]
   },
   {
-    "title": "Among the following molecules, which one has a non-zero permanent dipole moment ",
+    "title": "Among the following molecules, which one has a non-zero permanent dipole moment (\u03bc \u2260 0)?",
     "path": "question-bank/index.html?q=BOND-Q13#BOND-Q13",
     "kind": "question",
     "keywords": [
@@ -1837,6 +2294,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "permanent",
       "dipole",
       "moment",
+      "(\u03bc",
+      "\u2260",
+      "0)?",
       "among",
       "the",
       "following",
@@ -1855,7 +2315,22 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "chemical",
       "bonding",
       "cap-chem-bonding",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2022",
+      "(online)",
+      "28th",
+      "july",
+      "morning",
+      "shift",
+      "2022",
+      "diagnostic",
+      "hub",
+      "qbond-q13",
+      "medium",
+      "jee",
+      "iit"
     ]
   },
   {
@@ -1893,7 +2368,26 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "chemical",
       "bonding",
       "cap-chem-bonding",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2022",
+      "(online)",
+      "25th",
+      "june",
+      "evening",
+      "shift",
+      "2022",
+      "diagnostic",
+      "hub",
+      "qbond-q14",
+      "medium",
+      "jee",
+      "iit",
+      "iit-jee",
+      "pyq",
+      "competitive",
+      "bonding"
     ]
   },
   {
@@ -1929,7 +2423,28 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "chemical",
       "bonding",
       "cap-chem-bonding",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2021",
+      "(online)",
+      "25th",
+      "february",
+      "morning",
+      "shift",
+      "2021",
+      "diagnostic",
+      "hub",
+      "qbond-q15",
+      "medium",
+      "jee",
+      "iit",
+      "iit-jee",
+      "pyq",
+      "competitive",
+      "bonding",
+      "chemical",
+      "bonding"
     ]
   },
   {
@@ -1961,11 +2476,36 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "chemical",
       "bonding",
       "cap-chem-bonding",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2021",
+      "(online)",
+      "20th",
+      "july",
+      "evening",
+      "shift",
+      "2021",
+      "diagnostic",
+      "hub",
+      "qbond-q16",
+      "medium",
+      "jee",
+      "iit",
+      "iit-jee",
+      "pyq",
+      "competitive",
+      "bonding",
+      "chemical",
+      "bonding",
+      "molecular",
+      "structure",
+      "chemical",
+      "bonding"
     ]
   },
   {
-    "title": "The correct order of boiling points for the Group 16 hydrides (chalcogen hydride",
+    "title": "The correct order of boiling points for the Group 16 hydrides (chalcogen hydrides) is:",
     "path": "question-bank/index.html?q=BOND-Q17#BOND-Q17",
     "kind": "question",
     "keywords": [
@@ -1982,7 +2522,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "16",
       "hydrides",
       "(chalcogen",
-      "hydride",
+      "hydrides)",
+      "is:",
       "the",
       "correct",
       "order",
@@ -2000,7 +2541,24 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "chemical",
       "bonding",
       "cap-chem-bonding",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2020",
+      "(online)",
+      "5th",
+      "september",
+      "morning",
+      "shift",
+      "2020",
+      "diagnostic",
+      "hub",
+      "qbond-q17",
+      "medium",
+      "jee",
+      "iit",
+      "iit-jee",
+      "pyq"
     ]
   },
   {
@@ -2036,11 +2594,32 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "chemical",
       "bonding",
       "cap-chem-bonding",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2020",
+      "(online)",
+      "7th",
+      "january",
+      "morning",
+      "shift",
+      "2020",
+      "diagnostic",
+      "hub",
+      "qbond-q18",
+      "medium",
+      "jee",
+      "iit",
+      "iit-jee",
+      "pyq",
+      "competitive",
+      "bonding",
+      "chemical",
+      "bonding"
     ]
   },
   {
-    "title": "The bond order and magnetic behavior of the carbon monoxide cation (CO\u207a) accordi",
+    "title": "The bond order and magnetic behavior of the carbon monoxide cation (CO\u207a) according to MOT ",
     "path": "question-bank/index.html?q=BOND-Q19#BOND-Q19",
     "kind": "question",
     "keywords": [
@@ -2057,7 +2636,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "monoxide",
       "cation",
       "(co\u207a)",
-      "accordi",
+      "according",
+      "to",
+      "mot",
       "the",
       "bond",
       "order",
@@ -2077,7 +2658,21 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "chemical",
       "bonding",
       "cap-chem-bonding",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2019",
+      "(online)",
+      "10th",
+      "april",
+      "morning",
+      "shift",
+      "2019",
+      "diagnostic",
+      "hub",
+      "qbond-q19",
+      "medium",
+      "jee"
     ]
   },
   {
@@ -2107,11 +2702,38 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "chemical",
       "bonding",
       "cap-chem-bonding",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2018",
+      "(offline)",
+      "8th",
+      "april",
+      "shift",
+      "2018",
+      "diagnostic",
+      "hub",
+      "qbond-q20",
+      "medium",
+      "jee",
+      "iit",
+      "iit-jee",
+      "pyq",
+      "competitive",
+      "bonding",
+      "chemical",
+      "bonding",
+      "molecular",
+      "structure",
+      "chemical",
+      "bonding",
+      "and",
+      "molecular",
+      "structure"
     ]
   },
   {
-    "title": "56 g of N\u2082 gas and 10 g of H\u2082 gas are mixed to produce NH\u2083 gas via the Haber pro",
+    "title": "56 g of N\u2082 gas and 10 g of H\u2082 gas are mixed to produce NH\u2083 gas via the Haber process: N\u2082(g",
     "path": "question-bank/index.html?q=CHEM02-Q01#CHEM02-Q01",
     "kind": "question",
     "keywords": [
@@ -2136,7 +2758,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "via",
       "the",
       "haber",
-      "pro",
+      "process:",
+      "n\u2082(g",
       "56",
       "g",
       "of",
@@ -2163,12 +2786,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "3h\u2082(g)",
       "\u2192",
       "2nh\u2083(g).",
-      "if",
-      "the"
+      "if"
     ]
   },
   {
-    "title": "Which of the following sets of concentration terms is completely independent of ",
+    "title": "Which of the following sets of concentration terms is completely independent of temperatur",
     "path": "question-bank/index.html?q=CHEM02-Q02#CHEM02-Q02",
     "kind": "question",
     "keywords": [
@@ -2185,6 +2807,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "completely",
       "independent",
       "of",
+      "temperatur",
       "which",
       "of",
       "the",
@@ -2202,11 +2825,29 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "mole",
       "concept",
       "cap-chem-mole",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2025",
+      "(online)",
+      "28th",
+      "january",
+      "morning",
+      "shift",
+      "2025",
+      "diagnostic",
+      "hub",
+      "qchem02-q02",
+      "medium",
+      "jee",
+      "iit",
+      "iit-jee",
+      "pyq",
+      "competitive"
     ]
   },
   {
-    "title": "Consider the two-step synthesis: A + 2B \u2192 C (yield = 80%), followed by C + D \u2192 E",
+    "title": "Consider the two-step synthesis: A + 2B \u2192 C (yield = 80%), followed by C + D \u2192 E (yield = ",
     "path": "question-bank/index.html?q=CHEM02-Q03#CHEM02-Q03",
     "kind": "question",
     "keywords": [
@@ -2230,6 +2871,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "d",
       "\u2192",
       "e",
+      "(yield",
+      "=",
       "consider",
       "the",
       "two-step",
@@ -2257,13 +2900,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "5.0",
       "moles",
       "of",
-      "a",
-      "and",
-      "excess"
+      "a"
     ]
   },
   {
-    "title": "10 mL of a gaseous hydrocarbon C_x H_y is exploded with 80 mL of O\u2082 in an eudiom",
+    "title": "10 mL of a gaseous hydrocarbon C_x H_y is exploded with 80 mL of O\u2082 in an eudiometer tube.",
     "path": "question-bank/index.html?q=CHEM02-Q04#CHEM02-Q04",
     "kind": "question",
     "keywords": [
@@ -2285,7 +2926,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "o\u2082",
       "in",
       "an",
-      "eudiom",
+      "eudiometer",
+      "tube.",
       "10",
       "ml",
       "of",
@@ -2315,12 +2957,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "gas",
       "volume",
       "is",
-      "65",
-      "ml."
+      "65"
     ]
   },
   {
-    "title": "An organic compound contains 40.0% Carbon, 6.7% Hydrogen, and 53.3% Oxygen by ma",
+    "title": "An organic compound contains 40.0% Carbon, 6.7% Hydrogen, and 53.3% Oxygen by mass. If its",
     "path": "question-bank/index.html?q=CHEM02-Q05#CHEM02-Q05",
     "kind": "question",
     "keywords": [
@@ -2337,7 +2978,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "53.3%",
       "oxygen",
       "by",
-      "ma",
+      "mass.",
+      "if",
+      "its",
       "an",
       "organic",
       "compound",
@@ -2364,11 +3007,18 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "mole",
       "concept",
       "cap-chem-mole",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2025",
+      "(online)",
+      "30th",
+      "january",
+      "evening"
     ]
   },
   {
-    "title": "The molality of a 10% (w/w) aqueous solution of glucose (C\u2086H\u2081\u2082O\u2086, Molar mass = 1",
+    "title": "The molality of a 10% (w/w) aqueous solution of glucose (C\u2086H\u2081\u2082O\u2086, Molar mass = 180 g/mol) ",
     "path": "question-bank/index.html?q=CHEM02-Q06#CHEM02-Q06",
     "kind": "question",
     "keywords": [
@@ -2387,7 +3037,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "molar",
       "mass",
       "=",
-      "1",
+      "180",
+      "g/mol)",
       "the",
       "molality",
       "of",
@@ -2408,11 +3059,23 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "mole",
       "concept",
       "cap-chem-mole",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2024",
+      "(online)",
+      "27th",
+      "january",
+      "morning",
+      "shift",
+      "2024",
+      "diagnostic",
+      "hub",
+      "qchem02-q06"
     ]
   },
   {
-    "title": "The total number of atoms present in 4.4 g of CO\u2082 gas at STP is (N_A = 6.022 \u00d7 1",
+    "title": "The total number of atoms present in 4.4 g of CO\u2082 gas at STP is (N_A = 6.022 \u00d7 10\u00b2\u00b3 mol\u207b\u00b9)",
     "path": "question-bank/index.html?q=CHEM02-Q07#CHEM02-Q07",
     "kind": "question",
     "keywords": [
@@ -2436,7 +3099,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "=",
       "6.022",
       "\u00d7",
-      "1",
+      "10\u00b2\u00b3",
+      "mol\u207b\u00b9)",
       "the",
       "total",
       "number",
@@ -2461,11 +3125,14 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "mole",
       "concept",
       "cap-chem-mole",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2026"
     ]
   },
   {
-    "title": "When 50 mL of 0.5 M BaCl\u2082 solution is mixed with 50 mL of 0.2 M Na\u2082SO\u2084 solution,",
+    "title": "When 50 mL of 0.5 M BaCl\u2082 solution is mixed with 50 mL of 0.2 M Na\u2082SO\u2084 solution, the mass ",
     "path": "question-bank/index.html?q=CHEM02-Q08#CHEM02-Q08",
     "kind": "question",
     "keywords": [
@@ -2488,6 +3155,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "m",
       "na\u2082so\u2084",
       "solution,",
+      "the",
+      "mass",
       "when",
       "50",
       "ml",
@@ -2516,13 +3185,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "mass",
       "of",
       "baso\u2084",
-      "=",
-      "233.3",
-      "g/mol):"
+      "="
     ]
   },
   {
-    "title": "Two identical bodies, projected with the same speed at two different angles cove",
+    "title": "Two identical bodies, projected with the same speed at two different angles cover the same",
     "path": "question-bank/index.html?q=EXAM-01#EXAM-01",
     "kind": "question",
     "keywords": [
@@ -2539,7 +3206,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "two",
       "different",
       "angles",
-      "cove",
+      "cover",
+      "the",
+      "same",
       "two",
       "identical",
       "bodies,",
@@ -2573,13 +3242,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "and",
       "10",
       "s",
-      ",",
-      "respectively,",
-      "then"
+      ","
     ]
   },
   {
-    "title": "At t=0 , a body of mass 100 g starts moving under the influence of a force (5i\u02c6+",
+    "title": "At t=0 , a body of mass 100 g starts moving under the influence of a force (5i\u02c6+10j\u02c6)N\u22c5 Af",
     "path": "question-bank/index.html?q=EXAM-02#EXAM-02",
     "kind": "question",
     "keywords": [
@@ -2601,7 +3268,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "a",
       "force",
-      "(5i\u02c6+",
+      "(5i\u02c6+10j\u02c6)n\u22c5",
+      "af",
       "at",
       "t=0",
       ",",
@@ -2631,12 +3299,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "ratio",
       "x:y",
-      "is",
-      "____"
+      "is"
     ]
   },
   {
-    "title": "If x and y coordinates of a projectile as a function of time (t) are given as 24",
+    "title": "If x and y coordinates of a projectile as a function of time (t) are given as 24t and 43.6",
     "path": "question-bank/index.html?q=EXAM-03#EXAM-03",
     "kind": "question",
     "keywords": [
@@ -2658,7 +3325,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "are",
       "given",
       "as",
-      "24",
+      "24t",
+      "and",
+      "43.6",
       "if",
       "x",
       "and",
@@ -2687,13 +3356,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "(in",
       "degrees)",
       "made",
-      "by",
-      "the",
-      "projectile"
+      "by"
     ]
   },
   {
-    "title": "The two projectiles are projected with the same initial velocities at the 15\u2218 an",
+    "title": "The two projectiles are projected with the same initial velocities at the 15\u2218 and 30\u2218 with",
     "path": "question-bank/index.html?q=EXAM-04#EXAM-04",
     "kind": "question",
     "keywords": [
@@ -2711,7 +3378,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "at",
       "the",
       "15\u2218",
-      "an",
+      "and",
+      "30\u2218",
+      "with",
       "the",
       "two",
       "projectiles",
@@ -2744,13 +3413,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "value",
       "of",
       "x",
-      "is",
-      "motion",
-      "in"
+      "is"
     ]
   },
   {
-    "title": "A boy throws a ball into air at 45\u2218 from the horizontal to land it on a roof of ",
+    "title": "A boy throws a ball into air at 45\u2218 from the horizontal to land it on a roof of a building",
     "path": "question-bank/index.html?q=EXAM-05#EXAM-05",
     "kind": "question",
     "keywords": [
@@ -2774,6 +3441,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "a",
       "roof",
       "of",
+      "a",
+      "building",
       "a",
       "boy",
       "throws",
@@ -2801,13 +3470,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       ".",
       "if",
       "the",
-      "ball",
-      "attains",
-      "maximum"
+      "ball"
     ]
   },
   {
-    "title": "A projectile is thrown upward at an angle 60\u2218 with the horizontal. The speed of ",
+    "title": "A projectile is thrown upward at an angle 60\u2218 with the horizontal. The speed of the projec",
     "path": "question-bank/index.html?q=EXAM-06#EXAM-06",
     "kind": "question",
     "keywords": [
@@ -2827,6 +3494,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "speed",
       "of",
+      "the",
+      "projec",
       "a",
       "projectile",
       "is",
@@ -2858,13 +3527,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "horizontal.",
       "the",
       "initial",
-      "speed",
-      "of",
-      "the"
+      "speed"
     ]
   },
   {
-    "title": "A river of width 200 m is flowing from west to east with a speed of 18 km/h. A b",
+    "title": "A river of width 200 m is flowing from west to east with a speed of 18 km/h. A boat, movin",
     "path": "question-bank/index.html?q=EXAM-07#EXAM-07",
     "kind": "question",
     "keywords": [
@@ -2888,7 +3555,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "18",
       "km/h.",
       "a",
-      "b",
+      "boat,",
+      "movin",
       "a",
       "river",
       "of",
@@ -2916,12 +3584,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "36",
       "km/h",
       "in",
-      "still",
-      "water,"
+      "still"
     ]
   },
   {
-    "title": "Two balls with same mass and initial velocity, are projected at different angles",
+    "title": "Two balls with same mass and initial velocity, are projected at different angles in such a",
     "path": "question-bank/index.html?q=EXAM-08#EXAM-08",
     "kind": "question",
     "keywords": [
@@ -2939,6 +3606,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "at",
       "different",
       "angles",
+      "in",
+      "such",
+      "a",
       "two",
       "balls",
       "with",
@@ -2971,14 +3641,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "that",
       "of",
       "the",
-      "second",
-      "ball.",
-      "t1",
-      "and"
+      "second"
     ]
   },
   {
-    "title": "A helicopter flying horizontally with a speed of 360 km/h at an altitude of 2 km",
+    "title": "A helicopter flying horizontally with a speed of 360 km/h at an altitude of 2 km, drops an",
     "path": "question-bank/index.html?q=EXAM-09#EXAM-09",
     "kind": "question",
     "keywords": [
@@ -2998,7 +3665,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "altitude",
       "of",
       "2",
-      "km",
+      "km,",
+      "drops",
+      "an",
       "a",
       "helicopter",
       "flying",
@@ -3029,13 +3698,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "at",
       "a",
       "point",
-      "o,",
-      "20",
-      "s"
+      "o,"
     ]
   },
   {
-    "title": "Two projectiles are fired from ground with same initial speeds from same point a",
+    "title": "Two projectiles are fired from ground with same initial speeds from same point at angles (",
     "path": "question-bank/index.html?q=EXAM-10#EXAM-10",
     "kind": "question",
     "keywords": [
@@ -3053,7 +3720,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "from",
       "same",
       "point",
-      "a",
+      "at",
+      "angles",
+      "(",
       "two",
       "projectiles",
       "are",
@@ -3086,13 +3755,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       "motion",
       "in",
-      "2d",
-      "cap-phy-motion-2d",
-      "physics"
+      "2d"
     ]
   },
   {
-    "title": "A particle is projected with velocity u so that its horizontal range is three ti",
+    "title": "A particle is projected with velocity u so that its horizontal range is three times the ma",
     "path": "question-bank/index.html?q=EXAM-11#EXAM-11",
     "kind": "question",
     "keywords": [
@@ -3111,7 +3778,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "range",
       "is",
       "three",
-      "ti",
+      "times",
+      "the",
+      "ma",
       "a",
       "particle",
       "is",
@@ -3143,13 +3812,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "given",
       "as",
       "nu225g",
-      ",",
-      "where",
-      "value"
+      ","
     ]
   },
   {
-    "title": "The angle of projection of a particle is measured from the vertical axis as \u03c6 an",
+    "title": "The angle of projection of a particle is measured from the vertical axis as \u03c6 and the maxi",
     "path": "question-bank/index.html?q=EXAM-12#EXAM-12",
     "kind": "question",
     "keywords": [
@@ -3169,7 +3836,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "axis",
       "as",
       "\u03c6",
-      "an",
+      "and",
+      "the",
+      "maxi",
       "the",
       "angle",
       "of",
@@ -3200,13 +3869,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "hm",
       "as",
       "function",
-      "of",
-      "\u03c6",
-      "can"
+      "of"
     ]
   },
   {
-    "title": "A river is flowing from west to east direction with speed of 9kmh\u22121 . If a boat ",
+    "title": "A river is flowing from west to east direction with speed of 9kmh\u22121 . If a boat capable of",
     "path": "question-bank/index.html?q=EXAM-13#EXAM-13",
     "kind": "question",
     "keywords": [
@@ -3228,6 +3895,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "if",
       "a",
       "boat",
+      "capable",
+      "of",
       "a",
       "river",
       "is",
@@ -3257,13 +3926,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "still",
       "water,",
-      "crosses",
-      "the",
-      "river"
+      "crosses"
     ]
   },
   {
-    "title": "Two projectiles are fired with same initial speed from same point on ground at a",
+    "title": "Two projectiles are fired with same initial speed from same point on ground at angles of (",
     "path": "question-bank/index.html?q=EXAM-14#EXAM-14",
     "kind": "question",
     "keywords": [
@@ -3282,7 +3949,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "on",
       "ground",
       "at",
-      "a",
+      "angles",
+      "of",
+      "(",
       "two",
       "projectiles",
       "are",
@@ -3314,13 +3983,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "their",
       "maximum",
       "heights",
-      "attained",
-      "is",
-      ":"
+      "attained"
     ]
   },
   {
-    "title": "The position vector of a moving body at any instant of time is given as r\u2192=(5t2i",
+    "title": "The position vector of a moving body at any instant of time is given as r\u2192=(5t2i\u02c6\u22125tj\u02c6)m .",
     "path": "question-bank/index.html?q=EXAM-15#EXAM-15",
     "kind": "question",
     "keywords": [
@@ -3340,7 +4007,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       "given",
       "as",
-      "r\u2192=(5t2i",
+      "r\u2192=(5t2i\u02c6\u22125tj\u02c6)m",
+      ".",
       "the",
       "position",
       "vector",
@@ -3371,11 +4039,12 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "2d",
       "cap-phy-motion-2d",
-      "physics"
+      "physics",
+      "examside"
     ]
   },
   {
-    "title": "An object of mass ' m ' is projected from origin in a vertical xy plane at an an",
+    "title": "An object of mass ' m ' is projected from origin in a vertical xy plane at an angle 45\u2218 wi",
     "path": "question-bank/index.html?q=EXAM-16#EXAM-16",
     "kind": "question",
     "keywords": [
@@ -3398,7 +4067,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "plane",
       "at",
       "an",
-      "an",
+      "angle",
+      "45\u2218",
+      "wi",
       "an",
       "object",
       "of",
@@ -3426,13 +4097,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "with",
       "an",
       "initial",
-      "velocity",
-      "v0",
-      "."
+      "velocity"
     ]
   },
   {
-    "title": "A ball of mass 100 g is projected with velocity 20m/s at 60\u2218 with horizontal. Th",
+    "title": "A ball of mass 100 g is projected with velocity 20m/s at 60\u2218 with horizontal. The decrease",
     "path": "question-bank/index.html?q=EXAM-17#EXAM-17",
     "kind": "question",
     "keywords": [
@@ -3452,7 +4121,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "60\u2218",
       "with",
       "horizontal.",
-      "th",
+      "the",
+      "decrease",
       "a",
       "ball",
       "of",
@@ -3484,12 +4154,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "projection",
       "to",
-      "highest",
-      "point"
+      "highest"
     ]
   },
   {
-    "title": "The angle of projection for a projectile to have same horizontal range and maxim",
+    "title": "The angle of projection for a projectile to have same horizontal range and maximum height ",
     "path": "question-bank/index.html?q=EXAM-18#EXAM-18",
     "kind": "question",
     "keywords": [
@@ -3507,7 +4176,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "horizontal",
       "range",
       "and",
-      "maxim",
+      "maximum",
+      "height",
       "the",
       "angle",
       "of",
@@ -3529,11 +4199,23 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "2d",
       "cap-phy-motion-2d",
-      "physics"
+      "physics",
+      "examside",
+      "jee",
+      "main",
+      "jee",
+      "main",
+      "2024",
+      "(online)",
+      "8th",
+      "april",
+      "evening",
+      "shift",
+      "diagnostic"
     ]
   },
   {
-    "title": "The co-ordinates of a particle moving in x - y plane are given by : x=2+4t,y=3t+",
+    "title": "The co-ordinates of a particle moving in x - y plane are given by : x=2+4t,y=3t+8t2 . The ",
     "path": "question-bank/index.html?q=EXAM-19#EXAM-19",
     "kind": "question",
     "keywords": [
@@ -3553,7 +4235,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "given",
       "by",
       ":",
-      "x=2+4t,y=3t+",
+      "x=2+4t,y=3t+8t2",
+      ".",
+      "the",
       "the",
       "co-ordinates",
       "of",
@@ -3582,11 +4266,13 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "2d",
       "cap-phy-motion-2d",
-      "physics"
+      "physics",
+      "examside",
+      "jee"
     ]
   },
   {
-    "title": "Projectiles A and B are thrown at angles of 45\u2218 and 60\u2218 with vertical respective",
+    "title": "Projectiles A and B are thrown at angles of 45\u2218 and 60\u2218 with vertical respectively from to",
     "path": "question-bank/index.html?q=EXAM-20#EXAM-20",
     "kind": "question",
     "keywords": [
@@ -3605,7 +4291,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "60\u2218",
       "with",
       "vertical",
-      "respective",
+      "respectively",
+      "from",
+      "to",
       "projectiles",
       "a",
       "and",
@@ -3637,13 +4325,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "flight",
       "are",
       "same,",
-      "the",
-      "ratio",
-      "of"
+      "the"
     ]
   },
   {
-    "title": "Position of an ant ( S in metres) moving in Y - Z plane is given by S=2t2j\u02c6+5k\u02c6 ",
+    "title": "Position of an ant ( S in metres) moving in Y - Z plane is given by S=2t2j\u02c6+5k\u02c6 (where t i",
     "path": "question-bank/index.html?q=EXAM-21#EXAM-21",
     "kind": "question",
     "keywords": [
@@ -3666,6 +4352,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "given",
       "by",
       "s=2t2j\u02c6+5k\u02c6",
+      "(where",
+      "t",
+      "i",
       "position",
       "of",
       "an",
@@ -3693,14 +4382,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "magnitude",
       "and",
       "direction",
-      "of",
-      "velocity",
-      "of",
-      "the"
+      "of"
     ]
   },
   {
-    "title": "A projectile is projected at 30\u2218 from horizontal with initial velocity 40ms\u22121 . ",
+    "title": "A projectile is projected at 30\u2218 from horizontal with initial velocity 40ms\u22121 . The veloci",
     "path": "question-bank/index.html?q=EXAM-22#EXAM-22",
     "kind": "question",
     "keywords": [
@@ -3718,6 +4404,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "velocity",
       "40ms\u22121",
       ".",
+      "the",
+      "veloci",
       "a",
       "projectile",
       "is",
@@ -3755,7 +4443,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
     ]
   },
   {
-    "title": "Two projectiles are projected at 30\u2218 and 60\u2218 with the horizontal with the same s",
+    "title": "Two projectiles are projected at 30\u2218 and 60\u2218 with the horizontal with the same speed. The ",
     "path": "question-bank/index.html?q=EXAM-23#EXAM-23",
     "kind": "question",
     "keywords": [
@@ -3774,7 +4462,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "with",
       "the",
       "same",
-      "s",
+      "speed.",
+      "the",
       "two",
       "projectiles",
       "are",
@@ -3811,7 +4500,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
     ]
   },
   {
-    "title": "The range of the projectile projected at an angle of 15 \u2218 with horizontal is 50 ",
+    "title": "The range of the projectile projected at an angle of 15 \u2218 with horizontal is 50 m. If the ",
     "path": "question-bank/index.html?q=EXAM-24#EXAM-24",
     "kind": "question",
     "keywords": [
@@ -3832,6 +4521,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "horizontal",
       "is",
       "50",
+      "m.",
+      "if",
+      "the",
       "the",
       "range",
       "of",
@@ -3861,14 +4553,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "an",
       "angle",
       "of",
-      "45",
-      "\u2218",
-      "with",
-      "horizontal,"
+      "45"
     ]
   },
   {
-    "title": "The trajectory of projectile, projected from the ground is given by y=x\u2212x220 . W",
+    "title": "The trajectory of projectile, projected from the ground is given by y=x\u2212x220 . Where x and",
     "path": "question-bank/index.html?q=EXAM-25#EXAM-25",
     "kind": "question",
     "keywords": [
@@ -3886,7 +4575,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "by",
       "y=x\u2212x220",
       ".",
-      "w",
+      "where",
+      "x",
+      "and",
       "the",
       "trajectory",
       "of",
@@ -3919,13 +4610,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "be.",
       "motion",
       "in",
-      "2d",
-      "cap-phy-motion-2d",
-      "physics"
+      "2d"
     ]
   },
   {
-    "title": "Two projectiles A and B are thrown with initial velocities of 40m/s and 60m/s at",
+    "title": "Two projectiles A and B are thrown with initial velocities of 40m/s and 60m/s at angles 30",
     "path": "question-bank/index.html?q=EXAM-26#EXAM-26",
     "kind": "question",
     "keywords": [
@@ -3945,6 +4634,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "and",
       "60m/s",
       "at",
+      "angles",
+      "30",
       "two",
       "projectiles",
       "a",
@@ -3976,13 +4667,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "respectively",
       "is",
       "(g=10m/s2)",
-      "motion",
-      "in",
-      "2d"
+      "motion"
     ]
   },
   {
-    "title": "Given below are two statements : one is labelled as Assertion A and the other is",
+    "title": "Given below are two statements : one is labelled as Assertion A and the other is labelled ",
     "path": "question-bank/index.html?q=EXAM-27#EXAM-27",
     "kind": "question",
     "keywords": [
@@ -4003,6 +4692,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "other",
       "is",
+      "labelled",
       "given",
       "below",
       "are",
@@ -4034,12 +4724,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "at",
       "an",
       "angle",
-      "45\u2218",
-      ","
+      "45\u2218"
     ]
   },
   {
-    "title": "A child stands on the edge of the cliff 10m above the ground and throws a stone ",
+    "title": "A child stands on the edge of the cliff 10m above the ground and throws a stone horizontal",
     "path": "question-bank/index.html?q=EXAM-28#EXAM-28",
     "kind": "question",
     "keywords": [
@@ -4061,6 +4750,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "throws",
       "a",
       "stone",
+      "horizontal",
       "a",
       "child",
       "stands",
@@ -4091,12 +4781,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "air",
       "resistance,",
       "the",
-      "speed",
-      "with"
+      "speed"
     ]
   },
   {
-    "title": "The initial speed of a projectile fired from ground is u . At the highest point ",
+    "title": "The initial speed of a projectile fired from ground is u . At the highest point during its",
     "path": "question-bank/index.html?q=EXAM-29#EXAM-29",
     "kind": "question",
     "keywords": [
@@ -4117,6 +4806,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "highest",
       "point",
+      "during",
+      "its",
       "the",
       "initial",
       "speed",
@@ -4147,13 +4838,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "time",
       "of",
       "flight",
-      "of",
-      "the",
-      "projectile"
+      "of"
     ]
   },
   {
-    "title": "Two objects are projected with same velocity 'u' however at different angles \u03b1 a",
+    "title": "Two objects are projected with same velocity 'u' however at different angles \u03b1 and \u03b2 with ",
     "path": "question-bank/index.html?q=EXAM-30#EXAM-30",
     "kind": "question",
     "keywords": [
@@ -4171,7 +4860,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "different",
       "angles",
       "\u03b1",
-      "a",
+      "and",
+      "\u03b2",
+      "with",
       "two",
       "objects",
       "are",
@@ -4204,13 +4895,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "object",
       "to",
       "the",
-      "2nd",
-      "object",
-      "will"
+      "2nd"
     ]
   },
   {
-    "title": "The maximum vertical height to which a man can throw a ball is 136 m. The maximu",
+    "title": "The maximum vertical height to which a man can throw a ball is 136 m. The maximum horizont",
     "path": "question-bank/index.html?q=EXAM-31#EXAM-31",
     "kind": "question",
     "keywords": [
@@ -4231,7 +4920,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "136",
       "m.",
       "the",
-      "maximu",
+      "maximum",
+      "horizont",
       "the",
       "maximum",
       "vertical",
@@ -4262,12 +4952,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       ":",
       "motion",
-      "in",
-      "2d"
+      "in"
     ]
   },
   {
-    "title": "At time t=0 a particle starts travelling from a height 7z\u02c6cm in a plane keeping ",
+    "title": "At time t=0 a particle starts travelling from a height 7z\u02c6cm in a plane keeping z coordina",
     "path": "question-bank/index.html?q=EXAM-32#EXAM-32",
     "kind": "question",
     "keywords": [
@@ -4287,6 +4976,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "a",
       "plane",
       "keeping",
+      "z",
+      "coordina",
       "at",
       "time",
       "t=0",
@@ -4318,13 +5009,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "and",
       "y\u02c6",
       "directions",
-      "are",
-      "defined",
-      "as"
+      "are"
     ]
   },
   {
-    "title": "Two projectiles are thrown with same initial velocity making an angle of 45\u2218 and",
+    "title": "Two projectiles are thrown with same initial velocity making an angle of 45\u2218 and 30\u2218 with ",
     "path": "question-bank/index.html?q=EXAM-33#EXAM-33",
     "kind": "question",
     "keywords": [
@@ -4343,6 +5032,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "45\u2218",
       "and",
+      "30\u2218",
+      "with",
       "two",
       "projectiles",
       "are",
@@ -4379,7 +5070,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
     ]
   },
   {
-    "title": "Two projectiles thrown at 30\u2218 and 45\u2218 with the horizontal respectively, reach th",
+    "title": "Two projectiles thrown at 30\u2218 and 45\u2218 with the horizontal respectively, reach the maximum ",
     "path": "question-bank/index.html?q=EXAM-34#EXAM-34",
     "kind": "question",
     "keywords": [
@@ -4396,7 +5087,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "horizontal",
       "respectively,",
       "reach",
-      "th",
+      "the",
+      "maximum",
       "two",
       "projectiles",
       "thrown",
@@ -4427,11 +5119,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "2d",
       "cap-phy-motion-2d",
-      "physics"
+      "physics",
+      "examside",
+      "jee",
+      "main",
+      "jee"
     ]
   },
   {
-    "title": "A ball is projected from the ground with a speed 15 ms \u2212 1 at an angle \u03b8 with ho",
+    "title": "A ball is projected from the ground with a speed 15 ms \u2212 1 at an angle \u03b8 with horizontal s",
     "path": "question-bank/index.html?q=EXAM-35#EXAM-35",
     "kind": "question",
     "keywords": [
@@ -4455,7 +5151,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "angle",
       "\u03b8",
       "with",
-      "ho",
+      "horizontal",
+      "s",
       "a",
       "ball",
       "is",
@@ -4483,12 +5180,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "and",
       "maximum",
       "height",
-      "are",
-      "equal,"
+      "are"
     ]
   },
   {
-    "title": "At t = 0, truck, starting from rest, moves in the positive x-direction at unifor",
+    "title": "At t = 0, truck, starting from rest, moves in the positive x-direction at uniform accelera",
     "path": "question-bank/index.html?q=EXAM-36#EXAM-36",
     "kind": "question",
     "keywords": [
@@ -4507,7 +5203,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "positive",
       "x-direction",
       "at",
-      "unifor",
+      "uniform",
+      "accelera",
       "at",
       "t",
       "=",
@@ -4540,12 +5237,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       "released",
       "from",
-      "the",
-      "top"
+      "the"
     ]
   },
   {
-    "title": "Two projectiles P 1 and P 2 thrown with speed in the ratio sqrt3 : sqrt2 , attai",
+    "title": "Two projectiles P 1 and P 2 thrown with speed in the ratio sqrt3 : sqrt2 , attain the same",
     "path": "question-bank/index.html?q=EXAM-37#EXAM-37",
     "kind": "question",
     "keywords": [
@@ -4567,7 +5263,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       ":",
       "sqrt2",
       ",",
-      "attai",
+      "attain",
+      "the",
+      "same",
       "two",
       "projectiles",
       "p",
@@ -4596,13 +5294,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "p",
       "2",
       "is",
-      "thrown",
-      "at",
-      "an"
+      "thrown"
     ]
   },
   {
-    "title": "A person can throw a ball upto a maximum range of 100 m. How high above the grou",
+    "title": "A person can throw a ball upto a maximum range of 100 m. How high above the ground he can ",
     "path": "question-bank/index.html?q=EXAM-38#EXAM-38",
     "kind": "question",
     "keywords": [
@@ -4624,7 +5320,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "high",
       "above",
       "the",
-      "grou",
+      "ground",
+      "he",
+      "can",
       "a",
       "person",
       "can",
@@ -4657,7 +5355,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
     ]
   },
   {
-    "title": "A projectile is launched at an angle ' \u03b1 ' with the horizontal with a velocity 2",
+    "title": "A projectile is launched at an angle ' \u03b1 ' with the horizontal with a velocity 20 ms \u2212 1 .",
     "path": "question-bank/index.html?q=EXAM-39#EXAM-39",
     "kind": "question",
     "keywords": [
@@ -4678,7 +5376,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "with",
       "a",
       "velocity",
-      "2",
+      "20",
+      "ms",
+      "\u2212",
+      "1",
+      ".",
       "a",
       "projectile",
       "is",
@@ -4706,15 +5408,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "its",
       "inclination",
       "with",
-      "horizontal",
-      "is",
-      "'",
-      "\u03b2",
-      "'."
+      "horizontal"
     ]
   },
   {
-    "title": "A girl standing on road holds her umbrella at 45 \u2218 with the vertical to keep the",
+    "title": "A girl standing on road holds her umbrella at 45 \u2218 with the vertical to keep the rain away",
     "path": "question-bank/index.html?q=EXAM-40#EXAM-40",
     "kind": "question",
     "keywords": [
@@ -4736,6 +5434,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "to",
       "keep",
       "the",
+      "rain",
+      "away",
       "a",
       "girl",
       "standing",
@@ -4765,13 +5465,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "a",
       "speed",
       "of",
-      "15",
-      "sqrt2",
-      "kmh"
+      "15"
     ]
   },
   {
-    "title": "Given below are two statements. One is labelled as Assertion A and the other is ",
+    "title": "Given below are two statements. One is labelled as Assertion A and the other is labelled a",
     "path": "question-bank/index.html?q=EXAM-41#EXAM-41",
     "kind": "question",
     "keywords": [
@@ -4791,6 +5489,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "other",
       "is",
+      "labelled",
+      "a",
       "given",
       "below",
       "are",
@@ -4822,13 +5522,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "thrown",
       "with",
       "same",
-      "velocity",
-      "'u'",
-      "at"
+      "velocity"
     ]
   },
   {
-    "title": "A projectile is projected with velocity of 25 m/s at an angle \u03b8 with the horizon",
+    "title": "A projectile is projected with velocity of 25 m/s at an angle \u03b8 with the horizontal. After",
     "path": "question-bank/index.html?q=EXAM-42#EXAM-42",
     "kind": "question",
     "keywords": [
@@ -4848,7 +5546,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "\u03b8",
       "with",
       "the",
-      "horizon",
+      "horizontal.",
+      "after",
       "a",
       "projectile",
       "is",
@@ -4880,12 +5579,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "horizontal",
       "range",
       "of",
-      "the",
-      "projectile,"
+      "the"
     ]
   },
   {
-    "title": "The ranges and heights for two projectiles projected with the same initial veloc",
+    "title": "The ranges and heights for two projectiles projected with the same initial velocity at ang",
     "path": "question-bank/index.html?q=EXAM-43#EXAM-43",
     "kind": "question",
     "keywords": [
@@ -4902,7 +5600,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "same",
       "initial",
-      "veloc",
+      "velocity",
+      "at",
+      "ang",
       "the",
       "ranges",
       "and",
@@ -4936,13 +5636,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "h",
       "1",
       ",",
-      "h",
-      "2",
-      "respectively."
+      "h"
     ]
   },
   {
-    "title": "A helicopter is flying horizontally with a speed 'v' at an altitude 'h' has to d",
+    "title": "A helicopter is flying horizontally with a speed 'v' at an altitude 'h' has to drop a food",
     "path": "question-bank/index.html?q=EXAM-44#EXAM-44",
     "kind": "question",
     "keywords": [
@@ -4962,7 +5660,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "'h'",
       "has",
       "to",
-      "d",
+      "drop",
+      "a",
+      "food",
       "a",
       "helicopter",
       "is",
@@ -4993,13 +5693,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "distance",
       "of",
-      "helicopter",
-      "from",
-      "the"
+      "helicopter"
     ]
   },
   {
-    "title": "A player kicks a football with an initial speed of 25 ms \u2212 1 at an angle of 45 \u2218",
+    "title": "A player kicks a football with an initial speed of 25 ms \u2212 1 at an angle of 45 \u2218 from the ",
     "path": "question-bank/index.html?q=EXAM-45#EXAM-45",
     "kind": "question",
     "keywords": [
@@ -5024,6 +5722,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "45",
       "\u2218",
+      "from",
+      "the",
       "a",
       "player",
       "kicks",
@@ -5050,13 +5750,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "what",
       "are",
       "the",
-      "maximum",
-      "height",
-      "and"
+      "maximum"
     ]
   },
   {
-    "title": "A bomb is dropped by fighter plane flying horizontally. To an observer sitting i",
+    "title": "A bomb is dropped by fighter plane flying horizontally. To an observer sitting in the plan",
     "path": "question-bank/index.html?q=EXAM-46#EXAM-46",
     "kind": "question",
     "keywords": [
@@ -5074,7 +5772,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "an",
       "observer",
       "sitting",
-      "i",
+      "in",
+      "the",
+      "plan",
       "a",
       "bomb",
       "is",
@@ -5103,11 +5803,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "2d",
       "cap-phy-motion-2d",
-      "physics"
+      "physics",
+      "examside",
+      "jee",
+      "main",
+      "jee"
     ]
   },
   {
-    "title": "A butterfly is flying with a velocity 4sqrt2 m/s in North-East direction. Wind i",
+    "title": "A butterfly is flying with a velocity 4sqrt2 m/s in North-East direction. Wind is slowly b",
     "path": "question-bank/index.html?q=EXAM-47#EXAM-47",
     "kind": "question",
     "keywords": [
@@ -5125,7 +5829,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "north-east",
       "direction.",
       "wind",
-      "i",
+      "is",
+      "slowly",
+      "b",
       "a",
       "butterfly",
       "is",
@@ -5158,13 +5864,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "3",
       "seconds",
-      "is",
-      ":",
-      "motion"
+      "is"
     ]
   },
   {
-    "title": "A mosquito is moving with a velocity v\u2192=0.5t2i\u02c6+3tj\u02c6+9k\u02c6 m/s and accelerating in",
+    "title": "A mosquito is moving with a velocity v\u2192=0.5t2i\u02c6+3tj\u02c6+9k\u02c6 m/s and accelerating in uniform c",
     "path": "question-bank/index.html?q=EXAM-48#EXAM-48",
     "kind": "question",
     "keywords": [
@@ -5181,6 +5885,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "and",
       "accelerating",
       "in",
+      "uniform",
+      "c",
       "a",
       "mosquito",
       "is",
@@ -5209,11 +5915,17 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "2d",
       "cap-phy-motion-2d",
-      "physics"
+      "physics",
+      "examside",
+      "jee",
+      "main",
+      "jee",
+      "main",
+      "2021"
     ]
   },
   {
-    "title": "The trajectory of a projectile in a vertical plane is y = \u03b1 x \u2212 \u03b2 x 2 , where \u03b1 ",
+    "title": "The trajectory of a projectile in a vertical plane is y = \u03b1 x \u2212 \u03b2 x 2 , where \u03b1 and \u03b2 are ",
     "path": "question-bank/index.html?q=EXAM-49#EXAM-49",
     "kind": "question",
     "keywords": [
@@ -5239,6 +5951,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       ",",
       "where",
       "\u03b1",
+      "and",
+      "\u03b2",
+      "are",
       "the",
       "trajectory",
       "of",
@@ -5263,14 +5978,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "and",
       "\u03b2",
       "are",
-      "constants",
-      "and",
-      "x",
-      "&"
+      "constants"
     ]
   },
   {
-    "title": "When a car is at rest, its driver sees rain drops falling on it vertically. When",
+    "title": "When a car is at rest, its driver sees rain drops falling on it vertically. When driving t",
     "path": "question-bank/index.html?q=EXAM-50#EXAM-50",
     "kind": "question",
     "keywords": [
@@ -5291,6 +6003,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "it",
       "vertically.",
       "when",
+      "driving",
+      "t",
       "when",
       "a",
       "car",
@@ -5321,13 +6035,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "are",
       "coming",
       "at",
-      "an",
-      "angle",
-      "60\u00b0"
+      "an"
     ]
   },
   {
-    "title": "A balloon is moving up in air vertically above a point A on the ground. When it ",
+    "title": "A balloon is moving up in air vertically above a point A on the ground. When it is at a he",
     "path": "question-bank/index.html?q=EXAM-51#EXAM-51",
     "kind": "question",
     "keywords": [
@@ -5349,6 +6061,10 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "ground.",
       "when",
       "it",
+      "is",
+      "at",
+      "a",
+      "he",
       "a",
       "balloon",
       "is",
@@ -5376,15 +6092,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "a",
       "girl",
       "standing",
-      "at",
-      "a",
-      "distanced",
-      "(point",
-      "b)"
+      "at"
     ]
   },
   {
-    "title": "Starting from the origin at time t = 0, with initial velocity 5 j\u02c6 ms -1 , a par",
+    "title": "Starting from the origin at time t = 0, with initial velocity 5 j\u02c6 ms -1 , a particle move",
     "path": "question-bank/index.html?q=EXAM-52#EXAM-52",
     "kind": "question",
     "keywords": [
@@ -5407,7 +6119,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "-1",
       ",",
       "a",
-      "par",
+      "particle",
+      "move",
       "starting",
       "from",
       "the",
@@ -5436,12 +6149,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "a",
       "constant",
       "acceleration",
-      "of",
-      "(10i\u02c6+4j\u02c6)"
+      "of"
     ]
   },
   {
-    "title": "A particle starts from the origin at t = 0 with an initial velocity of 3.0 i\u02c6 m/",
+    "title": "A particle starts from the origin at t = 0 with an initial velocity of 3.0 i\u02c6 m/s and move",
     "path": "question-bank/index.html?q=EXAM-53#EXAM-53",
     "kind": "question",
     "keywords": [
@@ -5463,7 +6175,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "3.0",
       "i\u02c6",
-      "m/",
+      "m/s",
+      "and",
+      "move",
       "a",
       "particle",
       "starts",
@@ -5492,13 +6206,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "a",
       "constant",
       "acceleration",
-      "(6i\u02c6+4j\u02c6)",
-      "m/s",
-      "2"
+      "(6i\u02c6+4j\u02c6)"
     ]
   },
   {
-    "title": "A particle moves such that its position vector r\u2192(t)=cos\u2061\u03c9ti\u02c6+sin\u2061\u03c9tj\u02c6 where \u03c9 i",
+    "title": "A particle moves such that its position vector r\u2192(t)=cos\u2061\u03c9ti\u02c6+sin\u2061\u03c9tj\u02c6 where \u03c9 is a consta",
     "path": "question-bank/index.html?q=EXAM-54#EXAM-54",
     "kind": "question",
     "keywords": [
@@ -5514,7 +6226,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "r\u2192(t)=cos\u2061\u03c9ti\u02c6+sin\u2061\u03c9tj\u02c6",
       "where",
       "\u03c9",
-      "i",
+      "is",
+      "a",
+      "consta",
       "a",
       "particle",
       "moves",
@@ -5549,13 +6263,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "acceleration",
       "a\u2192(t)",
       "of",
-      "the",
-      "particle",
-      ":"
+      "the"
     ]
   },
   {
-    "title": "Two particles are projected from the same point with the same speed u such that ",
+    "title": "Two particles are projected from the same point with the same speed u such that they have ",
     "path": "question-bank/index.html?q=EXAM-55#EXAM-55",
     "kind": "question",
     "keywords": [
@@ -5575,6 +6287,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "u",
       "such",
       "that",
+      "they",
+      "have",
       "two",
       "particles",
       "are",
@@ -5606,13 +6320,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "h",
       "2",
       ".",
-      "which",
-      "of",
-      "the"
+      "which"
     ]
   },
   {
-    "title": "The trajectory of a projectile near the surface of the earth is given as y = 2x ",
+    "title": "The trajectory of a projectile near the surface of the earth is given as y = 2x \u2013 9x 2 . I",
     "path": "question-bank/index.html?q=EXAM-56#EXAM-56",
     "kind": "question",
     "keywords": [
@@ -5634,6 +6346,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "y",
       "=",
       "2x",
+      "\u2013",
+      "9x",
+      "2",
+      ".",
+      "i",
       "the",
       "trajectory",
       "of",
@@ -5660,16 +6377,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "were",
       "launched",
       "at",
-      "an",
-      "angle",
-      "\u03b8",
-      "0",
-      "with",
-      "speed"
+      "an"
     ]
   },
   {
-    "title": "A shell is fired from a fixed artillery gun with an initial speed u such that it",
+    "title": "A shell is fired from a fixed artillery gun with an initial speed u such that it hits the ",
     "path": "question-bank/index.html?q=EXAM-57#EXAM-57",
     "kind": "question",
     "keywords": [
@@ -5691,6 +6403,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "such",
       "that",
       "it",
+      "hits",
+      "the",
       "a",
       "shell",
       "is",
@@ -5720,13 +6434,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "r",
       "from",
       "it.",
-      "if",
-      "t",
-      "1"
+      "if"
     ]
   },
   {
-    "title": "A plane is inclined at an angle \u03b1 = 30\u00b0 with respect to the horizontal. A partic",
+    "title": "A plane is inclined at an angle \u03b1 = 30\u00b0 with respect to the horizontal. A particle is proj",
     "path": "question-bank/index.html?q=EXAM-58#EXAM-58",
     "kind": "question",
     "keywords": [
@@ -5747,7 +6459,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "horizontal.",
       "a",
-      "partic",
+      "particle",
+      "is",
+      "proj",
       "a",
       "plane",
       "is",
@@ -5777,13 +6491,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "\u20131",
       ",",
       "from",
-      "the",
-      "base",
-      "of"
+      "the"
     ]
   },
   {
-    "title": "The stream of a river is flowing with a speed of 2km/h. A swimmer can swim at a ",
+    "title": "The stream of a river is flowing with a speed of 2km/h. A swimmer can swim at a speed of 4",
     "path": "question-bank/index.html?q=EXAM-59#EXAM-59",
     "kind": "question",
     "keywords": [
@@ -5806,6 +6518,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "swim",
       "at",
       "a",
+      "speed",
+      "of",
+      "4",
       "the",
       "stream",
       "of",
@@ -5833,14 +6548,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "direction",
       "of",
-      "the",
-      "swimmer",
-      "with",
-      "respect"
+      "the"
     ]
   },
   {
-    "title": "Ship A is sailing towards north-east with velocity v\u2192=30i\u2227+50j\u2227 km/hr where i\u2227 p",
+    "title": "Ship A is sailing towards north-east with velocity v\u2192=30i\u2227+50j\u2227 km/hr where i\u2227 points east",
     "path": "question-bank/index.html?q=EXAM-60#EXAM-60",
     "kind": "question",
     "keywords": [
@@ -5857,7 +6569,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "km/hr",
       "where",
       "i\u2227",
-      "p",
+      "points",
+      "east",
       "ship",
       "a",
       "is",
@@ -5892,12 +6605,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "north",
       "of",
       "ship",
-      "a",
-      "and"
+      "a"
     ]
   },
   {
-    "title": "A person standing on an open ground hears the sound of a jet aeroplane, coming f",
+    "title": "A person standing on an open ground hears the sound of a jet aeroplane, coming from north ",
     "path": "question-bank/index.html?q=EXAM-61#EXAM-61",
     "kind": "question",
     "keywords": [
@@ -5917,7 +6629,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "jet",
       "aeroplane,",
       "coming",
-      "f",
+      "from",
+      "north",
       "a",
       "person",
       "standing",
@@ -5949,12 +6662,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "aeroplane",
       "right",
-      "vertically",
-      "above"
+      "vertically"
     ]
   },
   {
-    "title": "Two guns A and B can fire bullets at speeds 1 km/s and 2 km/s respectively. From",
+    "title": "Two guns A and B can fire bullets at speeds 1 km/s and 2 km/s respectively. From a point o",
     "path": "question-bank/index.html?q=EXAM-62#EXAM-62",
     "kind": "question",
     "keywords": [
@@ -5976,6 +6688,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "km/s",
       "respectively.",
       "from",
+      "a",
+      "point",
+      "o",
       "two",
       "guns",
       "a",
@@ -6004,14 +6719,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "fired",
       "in",
       "all",
-      "possible",
-      "directions.",
-      "the",
-      "ratio"
+      "possible"
     ]
   },
   {
-    "title": "The position co-ordinates of a particle moving in a 3-D coordinate system is giv",
+    "title": "The position co-ordinates of a particle moving in a 3-D coordinate system is given by x = ",
     "path": "question-bank/index.html?q=EXAM-63#EXAM-63",
     "kind": "question",
     "keywords": [
@@ -6029,7 +6741,10 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "coordinate",
       "system",
       "is",
-      "giv",
+      "given",
+      "by",
+      "x",
+      "=",
       "the",
       "position",
       "co-ordinates",
@@ -6061,14 +6776,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "z",
       "=",
       "a",
-      "\u03c9",
-      "t",
-      "the",
-      "speed"
+      "\u03c9"
     ]
   },
   {
-    "title": "A particle is moving with a velocity v\u2192=K(yi\u02c6+xj\u02c6), where K is a constant. The g",
+    "title": "A particle is moving with a velocity v\u2192=K(yi\u02c6+xj\u02c6), where K is a constant. The general equ",
     "path": "question-bank/index.html?q=EXAM-64#EXAM-64",
     "kind": "question",
     "keywords": [
@@ -6087,7 +6799,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "a",
       "constant.",
       "the",
-      "g",
+      "general",
+      "equ",
       "a",
       "particle",
       "is",
@@ -6113,11 +6826,18 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "2d",
       "cap-phy-motion-2d",
-      "physics"
+      "physics",
+      "examside",
+      "jee",
+      "main",
+      "jee",
+      "main",
+      "2019",
+      "(online)"
     ]
   },
   {
-    "title": "A man in a car at location Q on a straight highway is moving with speed \u03c5 . He d",
+    "title": "A man in a car at location Q on a straight highway is moving with speed \u03c5 . He decides to ",
     "path": "question-bank/index.html?q=EXAM-65#EXAM-65",
     "kind": "question",
     "keywords": [
@@ -6141,7 +6861,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "\u03c5",
       ".",
       "he",
-      "d",
+      "decides",
+      "to",
       "a",
       "man",
       "in",
@@ -6169,12 +6890,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "p",
       "in",
       "a",
-      "field",
-      "at"
+      "field"
     ]
   },
   {
-    "title": "A projectile is given an initial velocity of (i\u02c6+2j\u02c6) m/s, where i\u02c6 is along the",
+    "title": "A projectile is given an initial velocity of (i\u02c6+2j\u02c6) m/s, where i\u02c6 is along the ground an",
     "path": "question-bank/index.html?q=EXAM-66#EXAM-66",
     "kind": "question",
     "keywords": [
@@ -6194,6 +6914,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       "along",
       "the",
+      "ground",
+      "an",
       "a",
       "projectile",
       "is",
@@ -6225,13 +6947,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       ",",
       "the",
       "equation",
-      "of",
-      "its",
-      "trajectory"
+      "of"
     ]
   },
   {
-    "title": "A boy can throw a stone up to a maximum height of 10 m. The maximum horizontal d",
+    "title": "A boy can throw a stone up to a maximum height of 10 m. The maximum horizontal distance th",
     "path": "question-bank/index.html?q=EXAM-67#EXAM-67",
     "kind": "question",
     "keywords": [
@@ -6253,7 +6973,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "maximum",
       "horizontal",
-      "d",
+      "distance",
+      "th",
       "a",
       "boy",
       "can",
@@ -6283,12 +7004,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "up",
       "to",
       "will",
-      "be",
-      "motion"
+      "be"
     ]
   },
   {
-    "title": "A water fountain on the ground sprinkles water all around it. If the speed of wa",
+    "title": "A water fountain on the ground sprinkles water all around it. If the speed of water coming",
     "path": "question-bank/index.html?q=EXAM-68#EXAM-68",
     "kind": "question",
     "keywords": [
@@ -6308,7 +7028,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "speed",
       "of",
-      "wa",
+      "water",
+      "coming",
       "a",
       "water",
       "fountain",
@@ -6340,12 +7061,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "fountain",
       "that",
       "gets",
-      "wet",
-      "is"
+      "wet"
     ]
   },
   {
-    "title": "A particle is moving with velocity v\u2192=k(yi\u02c6+xj\u02c6) , where K is a constant. The ge",
+    "title": "A particle is moving with velocity v\u2192=k(yi\u02c6+xj\u02c6) , where K is a constant. The general equa",
     "path": "question-bank/index.html?q=EXAM-69#EXAM-69",
     "kind": "question",
     "keywords": [
@@ -6364,7 +7084,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "a",
       "constant.",
       "the",
-      "ge",
+      "general",
+      "equa",
       "a",
       "particle",
       "is",
@@ -6389,11 +7110,19 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "2d",
       "cap-phy-motion-2d",
-      "physics"
+      "physics",
+      "examside",
+      "jee",
+      "main",
+      "aieee",
+      "2010",
+      "diagnostic",
+      "hub",
+      "qexam-69"
     ]
   },
   {
-    "title": "A particle has an initial velocity 3i\u02c6+4j\u02c6 and an acceleration of 0.4i\u02c6+0.3j\u02c6 . ",
+    "title": "A particle has an initial velocity 3i\u02c6+4j\u02c6 and an acceleration of 0.4i\u02c6+0.3j\u02c6 . Its speed ",
     "path": "question-bank/index.html?q=EXAM-70#EXAM-70",
     "kind": "question",
     "keywords": [
@@ -6411,6 +7140,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "0.4i\u02c6+0.3j\u02c6",
       ".",
+      "its",
+      "speed",
       "a",
       "particle",
       "has",
@@ -6434,11 +7165,21 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "2d",
       "cap-phy-motion-2d",
-      "physics"
+      "physics",
+      "examside",
+      "jee",
+      "main",
+      "aieee",
+      "2009",
+      "diagnostic",
+      "hub",
+      "qexam-70",
+      "medium",
+      "jee"
     ]
   },
   {
-    "title": "A particle is moving eastwards with a velocity of 5 m/s. In 10 seconds the veloc",
+    "title": "A particle is moving eastwards with a velocity of 5 m/s. In 10 seconds the velocity change",
     "path": "question-bank/index.html?q=EXAM-71#EXAM-71",
     "kind": "question",
     "keywords": [
@@ -6458,7 +7199,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "10",
       "seconds",
       "the",
-      "veloc",
+      "velocity",
+      "change",
       "a",
       "particle",
       "is",
@@ -6490,12 +7232,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "motion",
       "in",
       "2d",
-      "cap-phy-motion-2d",
-      "physics"
+      "cap-phy-motion-2d"
     ]
   },
   {
-    "title": "A projectile can have the same range 'R' for two angles of projection. If T 1 an",
+    "title": "A projectile can have the same range 'R' for two angles of projection. If T 1 and T 2 be t",
     "path": "question-bank/index.html?q=EXAM-72#EXAM-72",
     "kind": "question",
     "keywords": [
@@ -6516,7 +7257,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "if",
       "t",
       "1",
-      "an",
+      "and",
+      "t",
+      "2",
+      "be",
+      "t",
       "a",
       "projectile",
       "can",
@@ -6544,15 +7289,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "the",
       "two",
-      "cases,",
-      "then",
-      "the",
-      "product",
-      "of"
+      "cases,"
     ]
   },
   {
-    "title": "A ball is thrown from a point with a speed \u03bd 0 at an angle of projection \u03b8. From",
+    "title": "A ball is thrown from a point with a speed \u03bd 0 at an angle of projection \u03b8. From the same ",
     "path": "question-bank/index.html?q=EXAM-73#EXAM-73",
     "kind": "question",
     "keywords": [
@@ -6576,6 +7317,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "projection",
       "\u03b8.",
       "from",
+      "the",
+      "same",
       "a",
       "ball",
       "is",
@@ -6603,13 +7346,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "same",
       "instant",
-      "person",
-      "starts",
-      "running"
+      "person"
     ]
   },
   {
-    "title": "A boy playing on the roof of a 10 m high building throws a ball with a speed of ",
+    "title": "A boy playing on the roof of a 10 m high building throws a ball with a speed of 10 m/s at ",
     "path": "question-bank/index.html?q=EXAM-74#EXAM-74",
     "kind": "question",
     "keywords": [
@@ -6633,6 +7374,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "a",
       "speed",
       "of",
+      "10",
+      "m/s",
+      "at",
       "a",
       "boy",
       "playing",
@@ -6659,14 +7403,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "angle",
       "of",
       "30\u2218",
-      "with",
-      "the",
-      "horizontal.",
-      "how"
+      "with"
     ]
   },
   {
-    "title": "The maximum speed of a boat in still water is 27 km/h. Now this boat is moving d",
+    "title": "The maximum speed of a boat in still water is 27 km/h. Now this boat is moving downstream ",
     "path": "question-bank/index.html?q=EXAM-75#EXAM-75",
     "kind": "question",
     "keywords": [
@@ -6688,7 +7429,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "boat",
       "is",
       "moving",
-      "d",
+      "downstream",
       "the",
       "maximum",
       "speed",
@@ -6723,7 +7464,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
     ]
   },
   {
-    "title": "A particle is projected at an angle of 30\u2218 from horizontal at a speed of 60m/s .",
+    "title": "A particle is projected at an angle of 30\u2218 from horizontal at a speed of 60m/s . The heigh",
     "path": "question-bank/index.html?q=EXAM-76#EXAM-76",
     "kind": "question",
     "keywords": [
@@ -6745,6 +7486,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "60m/s",
       ".",
+      "the",
+      "heigh",
       "a",
       "particle",
       "is",
@@ -6774,13 +7517,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "second",
       "is",
       "h0",
-      "and",
-      "height",
-      "traversed"
+      "and"
     ]
   },
   {
-    "title": "A body of mass M thrown horizontally with velocity v from the top of the tower o",
+    "title": "A body of mass M thrown horizontally with velocity v from the top of the tower of height H",
     "path": "question-bank/index.html?q=EXAM-77#EXAM-77",
     "kind": "question",
     "keywords": [
@@ -6801,7 +7542,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "the",
       "tower",
-      "o",
+      "of",
+      "height",
+      "h",
       "a",
       "body",
       "of",
@@ -6831,13 +7574,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "100m",
       "from",
       "the",
-      "foot",
-      "of",
-      "the"
+      "foot"
     ]
   },
   {
-    "title": "The maximum height reached by a projectile is 64m . If the initial velocity is h",
+    "title": "The maximum height reached by a projectile is 64m . If the initial velocity is halved, the",
     "path": "question-bank/index.html?q=EXAM-78#EXAM-78",
     "kind": "question",
     "keywords": [
@@ -6857,7 +7598,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "initial",
       "velocity",
       "is",
-      "h",
+      "halved,",
+      "the",
       "the",
       "maximum",
       "height",
@@ -6893,7 +7635,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
     ]
   },
   {
-    "title": "A ball rolls off the top of a stairway with horizontal velocity u . The steps ar",
+    "title": "A ball rolls off the top of a stairway with horizontal velocity u . The steps are 0.1m hig",
     "path": "question-bank/index.html?q=EXAM-79#EXAM-79",
     "kind": "question",
     "keywords": [
@@ -6914,7 +7656,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       ".",
       "the",
       "steps",
-      "ar",
+      "are",
+      "0.1m",
+      "hig",
       "a",
       "ball",
       "rolls",
@@ -6944,13 +7688,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "with",
       "which",
       "that",
-      "ball",
-      "just",
-      "hits"
+      "ball"
     ]
   },
   {
-    "title": "A particle starts from origin at t=0 with a velocity 5i\u02c6m/s and moves in x\u2212y pla",
+    "title": "A particle starts from origin at t=0 with a velocity 5i\u02c6m/s and moves in x\u2212y plane under a",
     "path": "question-bank/index.html?q=EXAM-80#EXAM-80",
     "kind": "question",
     "keywords": [
@@ -6970,7 +7712,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "moves",
       "in",
       "x\u2212y",
-      "pla",
+      "plane",
+      "under",
+      "a",
       "a",
       "particle",
       "starts",
@@ -7001,13 +7745,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "(3i\u02c6+2j\u02c6)m/s2",
       ".",
       "if",
-      "the",
-      "x",
-      "-coordinate"
+      "the"
     ]
   },
   {
-    "title": "A projectile fired at 30\u2218 to the ground is observed to be at same height at time",
+    "title": "A projectile fired at 30\u2218 to the ground is observed to be at same height at time 3s and 5s",
     "path": "question-bank/index.html?q=EXAM-81#EXAM-81",
     "kind": "question",
     "keywords": [
@@ -7029,6 +7771,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "height",
       "at",
       "time",
+      "3s",
+      "and",
+      "5s",
       "a",
       "projectile",
       "fired",
@@ -7057,14 +7802,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "speed",
       "of",
-      "projection",
-      "of",
-      "the",
-      "projectile"
+      "projection"
     ]
   },
   {
-    "title": "Two bodies are projected from ground with same speeds 40ms\u22121 at two different an",
+    "title": "Two bodies are projected from ground with same speeds 40ms\u22121 at two different angles with ",
     "path": "question-bank/index.html?q=EXAM-82#EXAM-82",
     "kind": "question",
     "keywords": [
@@ -7082,7 +7824,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "at",
       "two",
       "different",
-      "an",
+      "angles",
+      "with",
       "two",
       "bodies",
       "are",
@@ -7116,12 +7859,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "body",
       "was",
       "projected",
-      "at",
-      "an"
+      "at"
     ]
   },
   {
-    "title": "The speed of a swimmer is 4kmh\u22121 in still water. If the swimmer makes his stroke",
+    "title": "The speed of a swimmer is 4kmh\u22121 in still water. If the swimmer makes his strokes normal t",
     "path": "question-bank/index.html?q=EXAM-83#EXAM-83",
     "kind": "question",
     "keywords": [
@@ -7141,7 +7883,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "swimmer",
       "makes",
       "his",
-      "stroke",
+      "strokes",
+      "normal",
+      "t",
       "the",
       "speed",
       "of",
@@ -7172,13 +7916,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "reaches",
       "a",
       "point",
-      "750m",
-      "down",
-      "the"
+      "750m"
     ]
   },
   {
-    "title": "An object is projected in the air with initial velocity u at an angle \u03b8 . The pr",
+    "title": "An object is projected in the air with initial velocity u at an angle \u03b8 . The projectile m",
     "path": "question-bank/index.html?q=EXAM-84#EXAM-84",
     "kind": "question",
     "keywords": [
@@ -7200,7 +7942,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "\u03b8",
       ".",
       "the",
-      "pr",
+      "projectile",
+      "m",
       "an",
       "object",
       "is",
@@ -7230,12 +7973,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       "maximum.",
       "another",
-      "object",
-      "is"
+      "object"
     ]
   },
   {
-    "title": "A ball of mass m is thrown vertically upward. Another ball of mass 2m is thrown ",
+    "title": "A ball of mass m is thrown vertically upward. Another ball of mass 2m is thrown at an angl",
     "path": "question-bank/index.html?q=EXAM-85#EXAM-85",
     "kind": "question",
     "keywords": [
@@ -7256,6 +7998,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "2m",
       "is",
       "thrown",
+      "at",
+      "an",
+      "angl",
       "a",
       "ball",
       "of",
@@ -7285,14 +8030,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "stay",
       "in",
       "air",
-      "for",
-      "the",
-      "same",
-      "period"
+      "for"
     ]
   },
   {
-    "title": "If the initial velocity in horizontal direction of a projectile is unit vector i",
+    "title": "If the initial velocity in horizontal direction of a projectile is unit vector i\u02c6 and the ",
     "path": "question-bank/index.html?q=EXAM-86#EXAM-86",
     "kind": "question",
     "keywords": [
@@ -7310,7 +8052,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       "unit",
       "vector",
-      "i",
+      "i\u02c6",
+      "and",
+      "the",
       "if",
       "the",
       "initial",
@@ -7343,13 +8087,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "velocity",
       "is",
       "______________",
-      "j\u02c6",
-      ".",
-      "("
+      "j\u02c6"
     ]
   },
   {
-    "title": "A fighter jet is flying horizontally at a certain altitude with a speed of 200 m",
+    "title": "A fighter jet is flying horizontally at a certain altitude with a speed of 200 ms \u2212 1 . Wh",
     "path": "question-bank/index.html?q=EXAM-87#EXAM-87",
     "kind": "question",
     "keywords": [
@@ -7369,7 +8111,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "speed",
       "of",
       "200",
-      "m",
+      "ms",
+      "\u2212",
+      "1",
+      ".",
+      "wh",
       "a",
       "fighter",
       "jet",
@@ -7398,15 +8144,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "anti-aircraft",
       "gun,",
       "a",
-      "bullet",
-      "is",
-      "fired",
-      "from",
-      "the"
+      "bullet"
     ]
   },
   {
-    "title": "A body is projected from the ground at an angle of 45 \u2218 with the horizontal. Its",
+    "title": "A body is projected from the ground at an angle of 45 \u2218 with the horizontal. Its velocity ",
     "path": "question-bank/index.html?q=EXAM-88#EXAM-88",
     "kind": "question",
     "keywords": [
@@ -7428,6 +8170,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "horizontal.",
       "its",
+      "velocity",
       "a",
       "body",
       "is",
@@ -7458,12 +8201,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "maximum",
       "height",
       "reached",
-      "by",
-      "the"
+      "by"
     ]
   },
   {
-    "title": "A swimmer wants to cross a river from point A to point B. Line AB makes an angle",
+    "title": "A swimmer wants to cross a river from point A to point B. Line AB makes an angle of 30 \u2218 w",
     "path": "question-bank/index.html?q=EXAM-89#EXAM-89",
     "kind": "question",
     "keywords": [
@@ -7486,6 +8228,10 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "makes",
       "an",
       "angle",
+      "of",
+      "30",
+      "\u2218",
+      "w",
       "a",
       "swimmer",
       "wants",
@@ -7512,15 +8258,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "flow",
       "of",
       "river.",
-      "magnitude",
-      "of",
-      "velocity",
-      "of",
-      "the"
+      "magnitude"
     ]
   },
   {
-    "title": "A person is swimming with a speed of 10 m/s at an angle of 120 \u2218 with the flow a",
+    "title": "A person is swimming with a speed of 10 m/s at an angle of 120 \u2218 with the flow and reaches",
     "path": "question-bank/index.html?q=EXAM-90#EXAM-90",
     "kind": "question",
     "keywords": [
@@ -7544,7 +8286,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "with",
       "the",
       "flow",
-      "a",
+      "and",
+      "reaches",
       "a",
       "person",
       "is",
@@ -7572,12 +8315,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "directly",
       "opposite",
       "on",
-      "the",
-      "other"
+      "the"
     ]
   },
   {
-    "title": "A swimmer can swim with velocity of 12 km/h in still water. Water flowing in a r",
+    "title": "A swimmer can swim with velocity of 12 km/h in still water. Water flowing in a river has v",
     "path": "question-bank/index.html?q=EXAM-91#EXAM-91",
     "kind": "question",
     "keywords": [
@@ -7598,7 +8340,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "flowing",
       "in",
       "a",
-      "r",
+      "river",
+      "has",
+      "v",
       "a",
       "swimmer",
       "can",
@@ -7628,13 +8372,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "direction",
       "of",
-      "flow",
-      "of",
-      "river"
+      "flow"
     ]
   },
   {
-    "title": "A gun mounted on the ground fires bullets in all directions with same speed. The",
+    "title": "A gun mounted on the ground fires bullets in all directions with same speed. The farthest ",
     "path": "question-bank/index.html?q=EXAM-92#EXAM-92",
     "kind": "question",
     "keywords": [
@@ -7654,6 +8396,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "same",
       "speed.",
       "the",
+      "farthest",
       "a",
       "gun",
       "mounted",
@@ -7686,12 +8429,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "from",
       "the",
       "gun",
-      "is",
-      "____"
+      "is"
     ]
   },
   {
-    "title": "A particle is moving along the x-axis with its coordinate with the time t given ",
+    "title": "A particle is moving along the x-axis with its coordinate with the time t given by x(t) = ",
     "path": "question-bank/index.html?q=EXAM-93#EXAM-93",
     "kind": "question",
     "keywords": [
@@ -7711,6 +8453,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "time",
       "t",
       "given",
+      "by",
+      "x(t)",
+      "=",
       "a",
       "particle",
       "is",
@@ -7741,14 +8486,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "along",
       "the",
       "y-axis",
-      "with",
-      "its",
-      "coordinate",
-      "as"
+      "with"
     ]
   },
   {
-    "title": "For one mole of a van der Waals gas at low pressure, the compressibility factor ",
+    "title": "For one mole of a van der Waals gas at low pressure, the compressibility factor Z is expre",
     "path": "question-bank/index.html?q=GAS-Q01#GAS-Q01",
     "kind": "question",
     "keywords": [
@@ -7768,6 +8510,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "compressibility",
       "factor",
+      "z",
+      "is",
+      "expre",
       "for",
       "one",
       "mole",
@@ -7791,11 +8536,18 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "gases",
       "cap-chem-gases",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2026",
+      "(online)",
+      "4th",
+      "april",
+      "morning"
     ]
   },
   {
-    "title": "The van der Waals constant 'a' for four gases are: Gas W = 4.17, Gas X = 0.244, ",
+    "title": "The van der Waals constant 'a' for four gases are: Gas W = 4.17, Gas X = 0.244, Gas Y = 1.",
     "path": "question-bank/index.html?q=GAS-Q02#GAS-Q02",
     "kind": "question",
     "keywords": [
@@ -7818,6 +8570,10 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "x",
       "=",
       "0.244,",
+      "gas",
+      "y",
+      "=",
+      "1.",
       "the",
       "van",
       "der",
@@ -7844,15 +8600,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "gas",
       "z",
       "=",
-      "2.25",
-      "(in",
-      "atm",
-      "l\u00b2",
-      "mol\u207b\u00b2)."
+      "2.25"
     ]
   },
   {
-    "title": "The ratio of the most probable speed (v_mp), average speed (v_avg), and root mea",
+    "title": "The ratio of the most probable speed (v_mp), average speed (v_avg), and root mean square s",
     "path": "question-bank/index.html?q=GAS-Q03#GAS-Q03",
     "kind": "question",
     "keywords": [
@@ -7870,7 +8622,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "(v_avg),",
       "and",
       "root",
-      "mea",
+      "mean",
+      "square",
+      "s",
       "the",
       "ratio",
       "of",
@@ -7899,11 +8653,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "gases",
       "cap-chem-gases",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2024",
+      "(online)"
     ]
   },
   {
-    "title": "The effective excluded volume 'b' for 1 mole of a gas having spherical molecules",
+    "title": "The effective excluded volume 'b' for 1 mole of a gas having spherical molecules of radius",
     "path": "question-bank/index.html?q=GAS-Q04#GAS-Q04",
     "kind": "question",
     "keywords": [
@@ -7922,6 +8680,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "having",
       "spherical",
       "molecules",
+      "of",
+      "radius",
       "the",
       "effective",
       "excluded",
@@ -7946,11 +8706,19 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "gases",
       "cap-chem-gases",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2025",
+      "(online)",
+      "27th",
+      "january",
+      "morning",
+      "shift"
     ]
   },
   {
-    "title": "Under identical conditions of temperature and pressure, 50 mL of gas A effuses t",
+    "title": "Under identical conditions of temperature and pressure, 50 mL of gas A effuses through a p",
     "path": "question-bank/index.html?q=GAS-Q05#GAS-Q05",
     "kind": "question",
     "keywords": [
@@ -7968,7 +8736,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "gas",
       "a",
       "effuses",
-      "t",
+      "through",
+      "a",
+      "p",
       "under",
       "identical",
       "conditions",
@@ -8001,13 +8771,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "molar",
       "mass",
       "of",
-      "gas",
-      "a",
-      "is:"
+      "gas"
     ]
   },
   {
-    "title": "At the Boyle temperature (T_B), a real gas behaves like an ideal gas over an app",
+    "title": "At the Boyle temperature (T_B), a real gas behaves like an ideal gas over an appreciable r",
     "path": "question-bank/index.html?q=GAS-Q06#GAS-Q06",
     "kind": "question",
     "keywords": [
@@ -8027,7 +8795,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "gas",
       "over",
       "an",
-      "app",
+      "appreciable",
+      "r",
       "at",
       "the",
       "boyle",
@@ -8059,12 +8828,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "van",
       "der",
       "waals",
-      "constants",
-      "is:"
+      "constants"
     ]
   },
   {
-    "title": "The critical constants of a van der Waals gas are P_c = a / (27 b\u00b2), V_c = 3 b, ",
+    "title": "The critical constants of a van der Waals gas are P_c = a / (27 b\u00b2), V_c = 3 b, and T_c = ",
     "path": "question-bank/index.html?q=GAS-Q07#GAS-Q07",
     "kind": "question",
     "keywords": [
@@ -8089,6 +8857,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "=",
       "3",
       "b,",
+      "and",
+      "t_c",
+      "=",
       "the",
       "critical",
       "constants",
@@ -8114,14 +8885,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "=",
       "8",
       "a",
-      "/",
-      "(27",
-      "r",
-      "b)."
+      "/"
     ]
   },
   {
-    "title": "At very high pressure, the van der Waals equation for 1 mole of a real gas simpl",
+    "title": "At very high pressure, the van der Waals equation for 1 mole of a real gas simplifies to w",
     "path": "question-bank/index.html?q=GAS-Q08#GAS-Q08",
     "kind": "question",
     "keywords": [
@@ -8142,7 +8910,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "a",
       "real",
       "gas",
-      "simpl",
+      "simplifies",
+      "to",
+      "w",
       "at",
       "very",
       "high",
@@ -8172,13 +8942,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "factor",
       "z?",
       "behaviour",
-      "of",
-      "gases",
-      "cap-chem-gases"
+      "of"
     ]
   },
   {
-    "title": "The ratio of the most probable speed (v_mp), average speed (v_avg), and root-mea",
+    "title": "The ratio of the most probable speed (v_mp), average speed (v_avg), and root-mean-square s",
     "path": "question-bank/index.html?q=GAS-Q09#GAS-Q09",
     "kind": "question",
     "keywords": [
@@ -8195,7 +8963,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "speed",
       "(v_avg),",
       "and",
-      "root-mea",
+      "root-mean-square",
+      "s",
       "the",
       "ratio",
       "of",
@@ -8223,11 +8992,18 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "gases",
       "cap-chem-gases",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2024",
+      "(online)",
+      "27th",
+      "january",
+      "morning"
     ]
   },
   {
-    "title": "At very high pressures, the van der Waals equation for 1 mole of a real gas redu",
+    "title": "At very high pressures, the van der Waals equation for 1 mole of a real gas reduces to the",
     "path": "question-bank/index.html?q=GAS-Q10#GAS-Q10",
     "kind": "question",
     "keywords": [
@@ -8248,7 +9024,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "a",
       "real",
       "gas",
-      "redu",
+      "reduces",
+      "to",
+      "the",
       "at",
       "very",
       "high",
@@ -8274,11 +9052,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "gases",
       "cap-chem-gases",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2024",
+      "(online)"
     ]
   },
   {
-    "title": "A gas is collected over water at 27\u00b0C and a total pressure of 750 mm Hg. If the ",
+    "title": "A gas is collected over water at 27\u00b0C and a total pressure of 750 mm Hg. If the aqueous te",
     "path": "question-bank/index.html?q=GAS-Q11#GAS-Q11",
     "kind": "question",
     "keywords": [
@@ -8301,6 +9083,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "hg.",
       "if",
       "the",
+      "aqueous",
+      "te",
       "a",
       "gas",
       "is",
@@ -8329,13 +9113,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "24",
       "mm",
       "hg,",
-      "the",
-      "actual",
-      "pressure"
+      "the"
     ]
   },
   {
-    "title": "Under identical conditions of temperature and pressure, 50 mL of gas X effuses t",
+    "title": "Under identical conditions of temperature and pressure, 50 mL of gas X effuses through a p",
     "path": "question-bank/index.html?q=GAS-Q12#GAS-Q12",
     "kind": "question",
     "keywords": [
@@ -8353,7 +9135,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "gas",
       "x",
       "effuses",
-      "t",
+      "through",
+      "a",
+      "p",
       "under",
       "identical",
       "conditions",
@@ -8386,13 +9170,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "10",
       "minutes.",
       "the",
-      "molar",
-      "mass",
-      "of"
+      "molar"
     ]
   },
   {
-    "title": "The excluded volume (van der Waals constant b) for a gas composed of spherical m",
+    "title": "The excluded volume (van der Waals constant b) for a gas composed of spherical molecules o",
     "path": "question-bank/index.html?q=GAS-Q13#GAS-Q13",
     "kind": "question",
     "keywords": [
@@ -8411,7 +9193,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "composed",
       "of",
       "spherical",
-      "m",
+      "molecules",
+      "o",
       "the",
       "excluded",
       "volume",
@@ -8443,11 +9226,12 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "gases",
       "cap-chem-gases",
-      "chemistry"
+      "chemistry",
+      "jee"
     ]
   },
   {
-    "title": "For which of the following gases is the compressibility factor Z strictly greate",
+    "title": "For which of the following gases is the compressibility factor Z strictly greater than 1 (",
     "path": "question-bank/index.html?q=GAS-Q14#GAS-Q14",
     "kind": "question",
     "keywords": [
@@ -8464,7 +9248,10 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "factor",
       "z",
       "strictly",
-      "greate",
+      "greater",
+      "than",
+      "1",
+      "(",
       "for",
       "which",
       "of",
@@ -8493,11 +9280,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "gases",
       "cap-chem-gases",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2022",
+      "(online)"
     ]
   },
   {
-    "title": "The Boyle temperature (T_B) of a van der Waals gas is defined as the temperature",
+    "title": "The Boyle temperature (T_B) of a van der Waals gas is defined as the temperature at which ",
     "path": "question-bank/index.html?q=GAS-Q15#GAS-Q15",
     "kind": "question",
     "keywords": [
@@ -8517,6 +9308,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "as",
       "the",
       "temperature",
+      "at",
+      "which",
       "the",
       "boyle",
       "temperature",
@@ -8552,7 +9345,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
     ]
   },
   {
-    "title": "The value of the critical compressibility factor (Z_c = P_c V_c / R T_c) for any",
+    "title": "The value of the critical compressibility factor (Z_c = P_c V_c / R T_c) for any gas obeyi",
     "path": "question-bank/index.html?q=GAS-Q16#GAS-Q16",
     "kind": "question",
     "keywords": [
@@ -8573,6 +9366,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "t_c)",
       "for",
       "any",
+      "gas",
+      "obeyi",
       "the",
       "value",
       "of",
@@ -8603,13 +9398,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "equal",
       "to:",
       "behaviour",
-      "of",
-      "gases",
-      "cap-chem-gases"
+      "of"
     ]
   },
   {
-    "title": "Two flasks A and B of equal volume contain 1.0 g of H\u2082 and 1.0 g of O\u2082 respectiv",
+    "title": "Two flasks A and B of equal volume contain 1.0 g of H\u2082 and 1.0 g of O\u2082 respectively at the",
     "path": "question-bank/index.html?q=GAS-Q17#GAS-Q17",
     "kind": "question",
     "keywords": [
@@ -8632,7 +9425,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "g",
       "of",
       "o\u2082",
-      "respectiv",
+      "respectively",
+      "at",
+      "the",
       "two",
       "flasks",
       "a",
@@ -8660,13 +9455,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "which",
       "of",
       "the",
-      "following",
-      "statements",
-      "regarding"
+      "following"
     ]
   },
   {
-    "title": "Under what condition can a gas be liquefied purely by applying mechanical pressu",
+    "title": "Under what condition can a gas be liquefied purely by applying mechanical pressure without",
     "path": "question-bank/index.html?q=GAS-Q18#GAS-Q18",
     "kind": "question",
     "keywords": [
@@ -8683,7 +9476,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "by",
       "applying",
       "mechanical",
-      "pressu",
+      "pressure",
+      "without",
       "under",
       "what",
       "condition",
@@ -8703,7 +9497,22 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "gases",
       "cap-chem-gases",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2020",
+      "(online)",
+      "2nd",
+      "september",
+      "morning",
+      "shift",
+      "2020",
+      "diagnostic",
+      "hub",
+      "qgas-q18",
+      "medium",
+      "jee",
+      "iit"
     ]
   },
   {
@@ -8744,11 +9553,27 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "gases",
       "cap-chem-gases",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2019",
+      "(online)",
+      "9th",
+      "april",
+      "evening",
+      "shift",
+      "2019",
+      "diagnostic",
+      "hub",
+      "qgas-q19",
+      "medium",
+      "jee",
+      "iit",
+      "iit-jee"
     ]
   },
   {
-    "title": "At what absolute temperature will the root mean square speed (v_rms) of SO\u2082 mole",
+    "title": "At what absolute temperature will the root mean square speed (v_rms) of SO\u2082 molecules be e",
     "path": "question-bank/index.html?q=GAS-Q20#GAS-Q20",
     "kind": "question",
     "keywords": [
@@ -8766,7 +9591,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "(v_rms)",
       "of",
       "so\u2082",
-      "mole",
+      "molecules",
+      "be",
+      "e",
       "at",
       "what",
       "absolute",
@@ -8799,13 +9626,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "64",
       "g/mol,",
       "o\u2082",
-      "=",
-      "32",
-      "g/mol)"
+      "="
     ]
   },
   {
-    "title": "A particle travels from one end of a diameter to the opposite end along a semici",
+    "title": "A particle travels from one end of a diameter to the opposite end along a semicircular pat",
     "path": "question-bank/index.html?q=M2D-NC-01#M2D-NC-01",
     "kind": "question",
     "keywords": [
@@ -8825,7 +9650,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "end",
       "along",
       "a",
-      "semici",
+      "semicircular",
+      "pat",
       "a",
       "particle",
       "travels",
@@ -8861,7 +9687,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
     ]
   },
   {
-    "title": "A rider moves around a merry-go-round at constant speed. Is the rider's velocity",
+    "title": "A rider moves around a merry-go-round at constant speed. Is the rider's velocity constant?",
     "path": "question-bank/index.html?q=M2D-NC-02#M2D-NC-02",
     "kind": "question",
     "keywords": [
@@ -8879,6 +9705,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "rider's",
       "velocity",
+      "constant?",
       "a",
       "rider",
       "moves",
@@ -8903,7 +9730,17 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "2d",
       "cap-motion-2d",
-      "physics"
+      "physics",
+      "ncert",
+      "2024",
+      "ncert",
+      "textbook",
+      "qm2d-nc-02",
+      "d1",
+      "easy",
+      "foundation",
+      "ncert",
+      "cbse"
     ]
   },
   {
@@ -8936,11 +9773,35 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "2d",
       "cap-motion-2d",
-      "physics"
+      "physics",
+      "ncert",
+      "2024",
+      "ncert",
+      "textbook",
+      "qm2d-nc-03",
+      "d1",
+      "easy",
+      "foundation",
+      "ncert",
+      "cbse",
+      "textbook",
+      "exemplar",
+      "motion-2d",
+      "motion",
+      "in",
+      "2d",
+      "motion",
+      "in",
+      "a",
+      "plane",
+      "projectile",
+      "projectile",
+      "motion",
+      "trajectory"
     ]
   },
   {
-    "title": "A stone moves in a horizontal circle on a string. If the string suddenly breaks,",
+    "title": "A stone moves in a horizontal circle on a string. If the string suddenly breaks, in what d",
     "path": "question-bank/index.html?q=M2D-NC-04#M2D-NC-04",
     "kind": "question",
     "keywords": [
@@ -8960,6 +9821,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "string",
       "suddenly",
       "breaks,",
+      "in",
+      "what",
+      "d",
       "a",
       "stone",
       "moves",
@@ -8989,11 +9853,12 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "2d",
       "cap-motion-2d",
-      "physics"
+      "physics",
+      "ncert"
     ]
   },
   {
-    "title": "What provides the centripetal force for a planet revolving around the Sun, and w",
+    "title": "What provides the centripetal force for a planet revolving around the Sun, and what is the",
     "path": "question-bank/index.html?q=M2D-NC-05#M2D-NC-05",
     "kind": "question",
     "keywords": [
@@ -9011,7 +9876,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "sun,",
       "and",
-      "w",
+      "what",
+      "is",
+      "the",
       "what",
       "provides",
       "the",
@@ -9036,11 +9903,19 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "2d",
       "cap-motion-2d",
-      "physics"
+      "physics",
+      "ncert",
+      "2024",
+      "ncert",
+      "textbook",
+      "qm2d-nc-05",
+      "d1",
+      "easy",
+      "foundation"
     ]
   },
   {
-    "title": "Two stones start simultaneously from the same height. One is dropped and the oth",
+    "title": "Two stones start simultaneously from the same height. One is dropped and the other is thro",
     "path": "question-bank/index.html?q=M2D-NC-06#M2D-NC-06",
     "kind": "question",
     "keywords": [
@@ -9058,7 +9933,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "dropped",
       "and",
       "the",
-      "oth",
+      "other",
+      "is",
+      "thro",
       "two",
       "stones",
       "start",
@@ -9088,11 +9965,14 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "2d",
       "cap-motion-2d",
-      "physics"
+      "physics",
+      "ncert",
+      "2024",
+      "ncert"
     ]
   },
   {
-    "title": "Suppose Earth's gravitational pull on the Moon suddenly became zero and no other",
+    "title": "Suppose Earth's gravitational pull on the Moon suddenly became zero and no other celestial",
     "path": "question-bank/index.html?q=M2D-NC-07#M2D-NC-07",
     "kind": "question",
     "keywords": [
@@ -9110,6 +9990,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "and",
       "no",
       "other",
+      "celestial",
       "suppose",
       "earth's",
       "gravitational",
@@ -9140,11 +10021,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "2d",
       "cap-motion-2d",
-      "physics"
+      "physics",
+      "ncert",
+      "2024",
+      "ncert",
+      "textbook"
     ]
   },
   {
-    "title": "The Sun attracts Earth gravitationally. Why does Earth not simply fall straight ",
+    "title": "The Sun attracts Earth gravitationally. Why does Earth not simply fall straight into the S",
     "path": "question-bank/index.html?q=M2D-NC-08#M2D-NC-08",
     "kind": "question",
     "keywords": [
@@ -9161,6 +10046,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "simply",
       "fall",
       "straight",
+      "into",
+      "the",
+      "s",
       "the",
       "sun",
       "attracts",
@@ -9180,11 +10068,25 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "2d",
       "cap-motion-2d",
-      "physics"
+      "physics",
+      "ncert",
+      "2024",
+      "ncert",
+      "textbook",
+      "qm2d-nc-08",
+      "d2",
+      "medium",
+      "standard",
+      "ncert",
+      "cbse",
+      "textbook",
+      "exemplar",
+      "motion-2d",
+      "motion"
     ]
   },
   {
-    "title": "A passenger tosses a coin vertically inside a moving train and the coin lands be",
+    "title": "A passenger tosses a coin vertically inside a moving train and the coin lands behind the p",
     "path": "question-bank/index.html?q=M2D-NC-09#M2D-NC-09",
     "kind": "question",
     "keywords": [
@@ -9203,7 +10105,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "coin",
       "lands",
-      "be",
+      "behind",
+      "the",
+      "p",
       "a",
       "passenger",
       "tosses",
@@ -9235,13 +10139,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "was",
       "airborne?",
       "motion",
-      "in",
-      "2d",
-      "cap-motion-2d"
+      "in"
     ]
   },
   {
-    "title": "Which of the following concentration units changes when the temperature of the s",
+    "title": "Which of the following concentration units changes when the temperature of the solution is",
     "path": "question-bank/index.html?q=MOLE-Q09#MOLE-Q09",
     "kind": "question",
     "keywords": [
@@ -9258,7 +10160,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "temperature",
       "of",
       "the",
-      "s",
+      "solution",
+      "is",
       "which",
       "of",
       "the",
@@ -9277,11 +10180,27 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "mole",
       "concept",
       "cap-chem-mole",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2024",
+      "(online)",
+      "1st",
+      "february",
+      "morning",
+      "shift",
+      "2024",
+      "diagnostic",
+      "hub",
+      "qmole-q09",
+      "medium",
+      "jee",
+      "iit",
+      "iit-jee"
     ]
   },
   {
-    "title": "10 mL of a gaseous hydrocarbon (C_x H_y) requires 65 mL of O\u2082 for complete combu",
+    "title": "10 mL of a gaseous hydrocarbon (C_x H_y) requires 65 mL of O\u2082 for complete combustion and ",
     "path": "question-bank/index.html?q=MOLE-Q10#MOLE-Q10",
     "kind": "question",
     "keywords": [
@@ -9301,7 +10220,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "o\u2082",
       "for",
       "complete",
-      "combu",
+      "combustion",
+      "and",
       "10",
       "ml",
       "of",
@@ -9333,12 +10253,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "and",
       "pressure.",
       "the",
-      "molecular",
-      "formula"
+      "molecular"
     ]
   },
   {
-    "title": "The number of moles of electrons in 1.0 kg of electrons is approximately: (Mass ",
+    "title": "The number of moles of electrons in 1.0 kg of electrons is approximately: (Mass of electro",
     "path": "question-bank/index.html?q=MOLE-Q11#MOLE-Q11",
     "kind": "question",
     "keywords": [
@@ -9357,6 +10276,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       "approximately:",
       "(mass",
+      "of",
+      "electro",
       "the",
       "number",
       "of",
@@ -9388,11 +10309,12 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "mole",
       "concept",
       "cap-chem-mole",
-      "chemistry"
+      "chemistry",
+      "jee"
     ]
   },
   {
-    "title": "56.0 g of nitrogen gas (N\u2082) and 10.0 g of hydrogen gas (H\u2082) are mixed and allowe",
+    "title": "56.0 g of nitrogen gas (N\u2082) and 10.0 g of hydrogen gas (H\u2082) are mixed and allowed to react",
     "path": "question-bank/index.html?q=MOLE-Q12#MOLE-Q12",
     "kind": "question",
     "keywords": [
@@ -9413,7 +10335,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "are",
       "mixed",
       "and",
-      "allowe",
+      "allowed",
+      "to",
+      "react",
       "56.0",
       "g",
       "of",
@@ -9443,13 +10367,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "nh\u2083",
       "produced",
-      "is:",
-      "(molar",
-      "masses:"
+      "is:"
     ]
   },
   {
-    "title": "The mole fraction of a solute in an aqueous solution is 0.05. The molality of th",
+    "title": "The mole fraction of a solute in an aqueous solution is 0.05. The molality of the solution",
     "path": "question-bank/index.html?q=MOLE-Q13#MOLE-Q13",
     "kind": "question",
     "keywords": [
@@ -9469,7 +10391,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "molality",
       "of",
-      "th",
+      "the",
+      "solution",
       "the",
       "mole",
       "fraction",
@@ -9499,11 +10422,13 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "mole",
       "concept",
       "cap-chem-mole",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main"
     ]
   },
   {
-    "title": "A synthesis involves two sequential steps: A \u2192 B with 80% yield, followed by B \u2192",
+    "title": "A synthesis involves two sequential steps: A \u2192 B with 80% yield, followed by B \u2192 C with 50",
     "path": "question-bank/index.html?q=MOLE-Q14#MOLE-Q14",
     "kind": "question",
     "keywords": [
@@ -9524,6 +10449,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "by",
       "b",
       "\u2192",
+      "c",
+      "with",
+      "50",
       "a",
       "synthesis",
       "involves",
@@ -9553,14 +10481,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "initially",
       "taken,",
       "how",
-      "many",
-      "moles",
-      "of",
-      "c"
+      "many"
     ]
   },
   {
-    "title": "An organic compound contains 40.0% Carbon, 6.7% Hydrogen, and 53.3% Oxygen by ma",
+    "title": "An organic compound contains 40.0% Carbon, 6.7% Hydrogen, and 53.3% Oxygen by mass. If its",
     "path": "question-bank/index.html?q=MOLE-Q15#MOLE-Q15",
     "kind": "question",
     "keywords": [
@@ -9577,7 +10502,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "53.3%",
       "oxygen",
       "by",
-      "ma",
+      "mass.",
+      "if",
+      "its",
       "an",
       "organic",
       "compound",
@@ -9604,11 +10531,18 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "mole",
       "concept",
       "cap-chem-mole",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2021",
+      "(online)",
+      "26th",
+      "february",
+      "morning"
     ]
   },
   {
-    "title": "100 mL of 0.2 M H\u2082SO\u2084 is mixed with 200 mL of 0.1 M HCl. What is the resulting c",
+    "title": "100 mL of 0.2 M H\u2082SO\u2084 is mixed with 200 mL of 0.1 M HCl. What is the resulting concentrati",
     "path": "question-bank/index.html?q=MOLE-Q16#MOLE-Q16",
     "kind": "question",
     "keywords": [
@@ -9632,7 +10566,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       "the",
       "resulting",
-      "c",
+      "concentrati",
       "100",
       "ml",
       "of",
@@ -9665,7 +10599,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
     ]
   },
   {
-    "title": "The strength of an aqueous KOH solution is 30% by mass (% w/w). If its density i",
+    "title": "The strength of an aqueous KOH solution is 30% by mass (% w/w). If its density is 1.29 g/m",
     "path": "question-bank/index.html?q=MOLE-Q17#MOLE-Q17",
     "kind": "question",
     "keywords": [
@@ -9686,7 +10620,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "if",
       "its",
       "density",
-      "i",
+      "is",
+      "1.29",
+      "g/m",
       "the",
       "strength",
       "of",
@@ -9716,13 +10652,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "=",
       "56.1",
       "g/mol)",
-      "mole",
-      "concept",
-      "cap-chem-mole"
+      "mole"
     ]
   },
   {
-    "title": "A 20.0 g sample of limestone (impure CaCO\u2083) on thermal decomposition yields 4.4 ",
+    "title": "A 20.0 g sample of limestone (impure CaCO\u2083) on thermal decomposition yields 4.4 g of carbo",
     "path": "question-bank/index.html?q=MOLE-Q18#MOLE-Q18",
     "kind": "question",
     "keywords": [
@@ -9740,6 +10674,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "decomposition",
       "yields",
       "4.4",
+      "g",
+      "of",
+      "carbo",
       "a",
       "20.0",
       "g",
@@ -9772,14 +10709,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "caco\u2083",
       "=",
       "100",
-      "g/mol,",
-      "co\u2082",
-      "=",
-      "44"
+      "g/mol,"
     ]
   },
   {
-    "title": "A mixture of 20 mL of CO and 20 mL of O\u2082 is sparked in an eudiometer. After comp",
+    "title": "A mixture of 20 mL of CO and 20 mL of O\u2082 is sparked in an eudiometer. After complete react",
     "path": "question-bank/index.html?q=MOLE-Q19#MOLE-Q19",
     "kind": "question",
     "keywords": [
@@ -9802,7 +10736,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "an",
       "eudiometer.",
       "after",
-      "comp",
+      "complete",
+      "react",
       "a",
       "mixture",
       "of",
@@ -9831,8 +10766,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "temperature,",
       "the",
       "total",
-      "volume",
-      "of"
+      "volume"
     ]
   },
   {
@@ -9866,11 +10800,34 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "mole",
       "concept",
       "cap-chem-mole",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2018",
+      "(offline)",
+      "8th",
+      "april",
+      "shift",
+      "2018",
+      "diagnostic",
+      "hub",
+      "qmole-q20",
+      "medium",
+      "jee",
+      "iit",
+      "iit-jee",
+      "pyq",
+      "competitive",
+      "mole",
+      "mole",
+      "concept",
+      "stoichiometry",
+      "molar",
+      "mass"
     ]
   },
   {
-    "title": "A body is projected with a velocity of 12 m/s at an angle of 45\u00b0 with the horizo",
+    "title": "A body is projected with a velocity of 12 m/s at an angle of 45\u00b0 with the horizontal. Find",
     "path": "question-bank/index.html?q=PDF-01#PDF-01",
     "kind": "question",
     "keywords": [
@@ -9892,7 +10849,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "45\u00b0",
       "with",
       "the",
-      "horizo",
+      "horizontal.",
+      "find",
       "a",
       "body",
       "is",
@@ -9922,12 +10880,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "m/s\u00b2)",
       "motion",
       "in",
-      "2d",
-      "cap-phy-motion-2d"
+      "2d"
     ]
   },
   {
-    "title": "At what angle of projection with the horizontal will the horizontal range of a p",
+    "title": "At what angle of projection with the horizontal will the horizontal range of a projectile ",
     "path": "question-bank/index.html?q=PDF-02#PDF-02",
     "kind": "question",
     "keywords": [
@@ -9946,7 +10903,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "range",
       "of",
       "a",
-      "p",
+      "projectile",
       "at",
       "what",
       "angle",
@@ -9972,11 +10929,19 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "2d",
       "cap-phy-motion-2d",
-      "physics"
+      "physics",
+      "scanned",
+      "pdf",
+      "page",
+      "4",
+      "pdf",
+      "page",
+      "4",
+      "diagnostic"
     ]
   },
   {
-    "title": "A shore defense gun fires at a pirate ship anchored at R = 560 m with muzzle spe",
+    "title": "A shore defense gun fires at a pirate ship anchored at R = 560 m with muzzle speed v\u2080 = 82",
     "path": "question-bank/index.html?q=PDF-03#PDF-03",
     "kind": "question",
     "keywords": [
@@ -9998,7 +10963,10 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "m",
       "with",
       "muzzle",
-      "spe",
+      "speed",
+      "v\u2080",
+      "=",
+      "82",
       "a",
       "shore",
       "defense",
@@ -10026,14 +10994,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "two",
       "projection",
-      "angles",
-      "to",
-      "hit",
-      "the"
+      "angles"
     ]
   },
   {
-    "title": "An outfielder tracks a fly ball hit with u = 40 m/s at \u03b8 = 35\u00b0. The line-of-sigh",
+    "title": "An outfielder tracks a fly ball hit with u = 40 m/s at \u03b8 = 35\u00b0. The line-of-sight elevatio",
     "path": "question-bank/index.html?q=PDF-04#PDF-04",
     "kind": "question",
     "keywords": [
@@ -10055,7 +11020,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "=",
       "35\u00b0.",
       "the",
-      "line-of-sigh",
+      "line-of-sight",
+      "elevatio",
       "an",
       "outfielder",
       "tracks",
@@ -10085,12 +11051,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "y(t)",
       "/",
       "(d",
-      "-",
-      "x(t))."
+      "-"
     ]
   },
   {
-    "title": "A stone is thrown horizontally from a cliff h = 490 m high with speed u = 98 m/s",
+    "title": "A stone is thrown horizontally from a cliff h = 490 m high with speed u = 98 m/s. Find: (a",
     "path": "question-bank/index.html?q=PDF-05#PDF-05",
     "kind": "question",
     "keywords": [
@@ -10113,7 +11078,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "u",
       "=",
       "98",
-      "m/s",
+      "m/s.",
+      "find:",
+      "(a",
       "a",
       "stone",
       "is",
@@ -10141,13 +11108,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "ground,",
       "(b)",
       "horizontal",
-      "distance",
-      "from",
-      "cliff"
+      "distance"
     ]
   },
   {
-    "title": "Car A moves east at 1 m/s, Car B moves west at 2 m/s along a straight road. Find",
+    "title": "Car A moves east at 1 m/s, Car B moves west at 2 m/s along a straight road. Find the relat",
     "path": "question-bank/index.html?q=PDF-09#PDF-09",
     "kind": "question",
     "keywords": [
@@ -10171,6 +11136,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "straight",
       "road.",
       "find",
+      "the",
+      "relat",
       "car",
       "a",
       "moves",
@@ -10198,13 +11165,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "b",
       "with",
       "respect",
-      "to",
-      "car",
-      "a."
+      "to"
     ]
   },
   {
-    "title": "Rain falls vertically at 15 m/s. A cyclist moves horizontally at 5\u221a3 m/s. In whi",
+    "title": "Rain falls vertically at 15 m/s. A cyclist moves horizontally at 5\u221a3 m/s. In which directi",
     "path": "question-bank/index.html?q=PDF-10#PDF-10",
     "kind": "question",
     "keywords": [
@@ -10223,7 +11188,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "5\u221a3",
       "m/s.",
       "in",
-      "whi",
+      "which",
+      "directi",
       "rain",
       "falls",
       "vertically",
@@ -10253,11 +11219,14 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "2d",
       "cap-phy-motion-2d",
-      "physics"
+      "physics",
+      "scanned",
+      "pdf",
+      "page"
     ]
   },
   {
-    "title": "A car travels East at 80 km/h. To a passenger in the car, a train appears to mov",
+    "title": "A car travels East at 80 km/h. To a passenger in the car, a train appears to move due Nort",
     "path": "question-bank/index.html?q=PDF-11#PDF-11",
     "kind": "question",
     "keywords": [
@@ -10279,7 +11248,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "train",
       "appears",
       "to",
-      "mov",
+      "move",
+      "due",
+      "nort",
       "a",
       "car",
       "travels",
@@ -10308,13 +11279,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "actual",
       "velocity",
       "of",
-      "the",
-      "train.",
-      "motion"
+      "the"
     ]
   },
   {
-    "title": "An airplane wishes to fly towards 45\u00b0 North of East. Wind blows from West at 40 ",
+    "title": "An airplane wishes to fly towards 45\u00b0 North of East. Wind blows from West at 40 km/h. Airs",
     "path": "question-bank/index.html?q=PDF-12#PDF-12",
     "kind": "question",
     "keywords": [
@@ -10335,6 +11304,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "west",
       "at",
       "40",
+      "km/h.",
+      "airs",
       "an",
       "airplane",
       "wishes",
@@ -10365,13 +11336,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "rule.",
       "motion",
       "in",
-      "2d",
-      "cap-phy-motion-2d",
-      "physics"
+      "2d"
     ]
   },
   {
-    "title": "A river flows East at 2 m/s. A boat motors upstream (West) at 5 m/s in water. A ",
+    "title": "A river flows East at 2 m/s. A boat motors upstream (West) at 5 m/s in water. A person wal",
     "path": "question-bank/index.html?q=PDF-13#PDF-13",
     "kind": "question",
     "keywords": [
@@ -10394,6 +11363,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "water.",
       "a",
+      "person",
+      "wal",
       "a",
       "river",
       "flows",
@@ -10422,13 +11393,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "3",
       "m/s",
       "on",
-      "the",
-      "boat.",
-      "find"
+      "the"
     ]
   },
   {
-    "title": "A man walking at 3 km/h observes rain falling vertically. At 6 km/h, rain appear",
+    "title": "A man walking at 3 km/h observes rain falling vertically. At 6 km/h, rain appears at 45\u00b0 t",
     "path": "question-bank/index.html?q=PDF-14#PDF-14",
     "kind": "question",
     "keywords": [
@@ -10447,7 +11416,10 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "6",
       "km/h,",
       "rain",
-      "appear",
+      "appears",
+      "at",
+      "45\u00b0",
+      "t",
       "a",
       "man",
       "walking",
@@ -10482,7 +11454,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
     ]
   },
   {
-    "title": "A 500 mL portion of 4.0 M aqueous NaCl is completely electrolysed. Determine the",
+    "title": "A 500 mL portion of 4.0 M aqueous NaCl is completely electrolysed. Determine the amount of",
     "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2007-P1-Q39#PYQ-CHEM-IITJEE-2007-P1-Q39",
     "kind": "question",
     "keywords": [
@@ -10501,6 +11473,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "electrolysed.",
       "determine",
       "the",
+      "amount",
+      "of",
       "a",
       "500",
       "ml",
@@ -10531,11 +11505,13 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "/",
       "stoichiometry",
       "cap-chem-mole-concentration-to-amount",
-      "chemistry"
+      "chemistry",
+      "iit-jee",
+      "2007"
     ]
   },
   {
-    "title": "In the same complete electrolysis of 500 mL of 4.0 M NaCl, mercury is used as th",
+    "title": "In the same complete electrolysis of 500 mL of 4.0 M NaCl, mercury is used as the cathode.",
     "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2007-P1-Q40#PYQ-CHEM-IITJEE-2007-P1-Q40",
     "kind": "question",
     "keywords": [
@@ -10556,7 +11532,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       "used",
       "as",
-      "th",
+      "the",
+      "cathode.",
       "in",
       "the",
       "same",
@@ -10587,12 +11564,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "intended",
       "by",
       "the",
-      "source",
-      "item."
+      "source"
     ]
   },
   {
-    "title": "For complete electrolysis of 500 mL of 4.0 M NaCl, calculate the total charge re",
+    "title": "For complete electrolysis of 500 mL of 4.0 M NaCl, calculate the total charge required. Us",
     "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2007-P1-Q41#PYQ-CHEM-IITJEE-2007-P1-Q41",
     "kind": "question",
     "keywords": [
@@ -10611,7 +11587,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "total",
       "charge",
-      "re",
+      "required.",
+      "us",
       "for",
       "complete",
       "electrolysis",
@@ -10642,11 +11619,13 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "/",
       "stoichiometry",
       "cap-chem-stoich-mole-ratio",
-      "chemistry"
+      "chemistry",
+      "iit-jee",
+      "2007"
     ]
   },
   {
-    "title": "White phosphorus reacts with aqueous sodium hydroxide, producing phosphine and a",
+    "title": "White phosphorus reacts with aqueous sodium hydroxide, producing phosphine and a phosphoru",
     "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2008-P1-Q66#PYQ-CHEM-IITJEE-2008-P1-Q66",
     "kind": "question",
     "keywords": [
@@ -10662,6 +11641,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "phosphine",
       "and",
       "a",
+      "phosphoru",
       "white",
       "phosphorus",
       "reacts",
@@ -10682,11 +11662,27 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox-disproportionation",
-      "chemistry"
+      "chemistry",
+      "iit-jee",
+      "2008",
+      "paper",
+      "i",
+      "q66",
+      "d1",
+      "easy",
+      "foundation",
+      "jee",
+      "iit",
+      "iit-jee",
+      "pyq",
+      "competitive",
+      "redox",
+      "redox",
+      "reactions"
     ]
   },
   {
-    "title": "During electrolysis of dilute aqueous NaCl, a current of 10 mA is passed. Calcul",
+    "title": "During electrolysis of dilute aqueous NaCl, a current of 10 mA is passed. Calculate the ti",
     "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2008-P2-Q51#PYQ-CHEM-IITJEE-2008-P2-Q51",
     "kind": "question",
     "keywords": [
@@ -10704,7 +11700,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "ma",
       "is",
       "passed.",
-      "calcul",
+      "calculate",
+      "the",
+      "ti",
       "during",
       "electrolysis",
       "of",
@@ -10737,13 +11735,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "basic",
       "concepts",
       "of",
-      "chemistry",
-      "/",
-      "mole"
+      "chemistry"
     ]
   },
   {
-    "title": "Iron consists of isotopes 54Fe, 56Fe and 57Fe with abundances 5%, 90% and 5%, re",
+    "title": "Iron consists of isotopes 54Fe, 56Fe and 57Fe with abundances 5%, 90% and 5%, respectively",
     "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2009-P1-Q01#PYQ-CHEM-IITJEE-2009-P1-Q01",
     "kind": "question",
     "keywords": [
@@ -10762,7 +11758,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "90%",
       "and",
       "5%,",
-      "re",
+      "respectively",
       "iron",
       "consists",
       "of",
@@ -10800,7 +11796,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
     ]
   },
   {
-    "title": "At 298 K the Henry-law constant for nitrogen in water is 1.0\u00d710^5 atm. Air has n",
+    "title": "At 298 K the Henry-law constant for nitrogen in water is 1.0\u00d710^5 atm. Air has nitrogen mo",
     "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2009-P1-Q04#PYQ-CHEM-IITJEE-2009-P1-Q04",
     "kind": "question",
     "keywords": [
@@ -10820,7 +11816,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "atm.",
       "air",
       "has",
-      "n",
+      "nitrogen",
+      "mo",
       "at",
       "298",
       "k",
@@ -10852,12 +11849,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "nitrogen",
       "dissolved",
       "in",
-      "10",
-      "mol"
+      "10"
     ]
   },
   {
-    "title": "The standard reduction potential for nitrate reduction in aqueous solution is +0",
+    "title": "The standard reduction potential for nitrate reduction in aqueous solution is +0.96 V. Giv",
     "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2009-P2-Q05#PYQ-CHEM-IITJEE-2009-P2-Q05",
     "kind": "question",
     "keywords": [
@@ -10873,7 +11869,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "aqueous",
       "solution",
       "is",
-      "+0",
+      "+0.96",
+      "v.",
+      "giv",
       "the",
       "standard",
       "reduction",
@@ -10908,13 +11906,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "metals",
       "that",
       "can",
-      "be",
-      "oxidized",
-      "by"
+      "be"
     ]
   },
   {
-    "title": "What is the oxidation number of manganese in the product formed by alkaline oxid",
+    "title": "What is the oxidation number of manganese in the product formed by alkaline oxidative fusi",
     "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2009-P2-Q16#PYQ-CHEM-IITJEE-2009-P2-Q16",
     "kind": "question",
     "keywords": [
@@ -10932,7 +11928,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "formed",
       "by",
       "alkaline",
-      "oxid",
+      "oxidative",
+      "fusi",
       "what",
       "is",
       "the",
@@ -10953,11 +11950,24 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox-oxidation-state",
-      "chemistry"
+      "chemistry",
+      "iit-jee",
+      "2009",
+      "paper",
+      "ii",
+      "q16",
+      "d1",
+      "easy",
+      "foundation",
+      "jee",
+      "iit",
+      "iit-jee",
+      "pyq",
+      "competitive"
     ]
   },
   {
-    "title": "In the self-reduction stage of copper extraction from chalcopyrite, which listed",
+    "title": "In the self-reduction stage of copper extraction from chalcopyrite, which listed species a",
     "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2010-P1-Q16#PYQ-CHEM-IITJEE-2010-P1-Q16",
     "kind": "question",
     "keywords": [
@@ -10973,6 +11983,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "chalcopyrite,",
       "which",
       "listed",
+      "species",
+      "a",
       "in",
       "the",
       "self-reduction",
@@ -10993,11 +12005,26 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox-oxidation-state",
-      "chemistry"
+      "chemistry",
+      "iit-jee",
+      "2010",
+      "paper",
+      "i",
+      "q16",
+      "d1",
+      "easy",
+      "foundation",
+      "jee",
+      "iit",
+      "iit-jee",
+      "pyq",
+      "competitive",
+      "redox",
+      "redox"
     ]
   },
   {
-    "title": "In sodium tetrathionate, Na2S4O6, there are two chemically distinct kinds of sul",
+    "title": "In sodium tetrathionate, Na2S4O6, there are two chemically distinct kinds of sulfur atoms.",
     "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2011-P1-Q17#PYQ-CHEM-IITJEE-2011-P1-Q17",
     "kind": "question",
     "keywords": [
@@ -11013,7 +12040,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "distinct",
       "kinds",
       "of",
-      "sul",
+      "sulfur",
+      "atoms.",
       "in",
       "sodium",
       "tetrathionate,",
@@ -11037,11 +12065,23 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox-oxidation-state",
-      "chemistry"
+      "chemistry",
+      "iit-jee",
+      "2011",
+      "paper",
+      "i",
+      "q17",
+      "d2",
+      "medium",
+      "standard",
+      "jee",
+      "iit",
+      "iit-jee",
+      "pyq"
     ]
   },
   {
-    "title": "Bromine reacts with aqueous sodium carbonate to form sodium bromide, sodium brom",
+    "title": "Bromine reacts with aqueous sodium carbonate to form sodium bromide, sodium bromate and ca",
     "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2011-P1-Q18#PYQ-CHEM-IITJEE-2011-P1-Q18",
     "kind": "question",
     "keywords": [
@@ -11057,7 +12097,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "sodium",
       "bromide,",
       "sodium",
-      "brom",
+      "bromate",
+      "and",
+      "ca",
       "bromine",
       "reacts",
       "with",
@@ -11091,7 +12133,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox-balance-electron",
-      "chemistry"
+      "chemistry",
+      "iit-jee"
     ]
   },
   {
@@ -11125,11 +12168,34 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox-oxidation-state",
-      "chemistry"
+      "chemistry",
+      "iit-jee",
+      "2011",
+      "paper",
+      "ii",
+      "q1",
+      "d1",
+      "easy",
+      "foundation",
+      "jee",
+      "iit",
+      "iit-jee",
+      "pyq",
+      "competitive",
+      "redox",
+      "redox",
+      "reactions",
+      "oxidation",
+      "reduction",
+      "oxidation",
+      "state",
+      "oxidation",
+      "states",
+      "oxidation"
     ]
   },
   {
-    "title": "A 30 mL sample of 0.010 M [Cr(H2O)5Cl]Cl2 is treated with 0.100 M AgNO3 to preci",
+    "title": "A 30 mL sample of 0.010 M [Cr(H2O)5Cl]Cl2 is treated with 0.100 M AgNO3 to precipitate the",
     "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2011-P2-Q14#PYQ-CHEM-IITJEE-2011-P2-Q14",
     "kind": "question",
     "keywords": [
@@ -11149,7 +12215,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "m",
       "agno3",
       "to",
-      "preci",
+      "precipitate",
+      "the",
       "a",
       "30",
       "ml",
@@ -11181,12 +12248,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "basic",
       "concepts",
       "of",
-      "chemistry",
-      "/"
+      "chemistry"
     ]
   },
   {
-    "title": "In the cyanide extraction of silver from argentite, identify the oxidizing agent",
+    "title": "In the cyanide extraction of silver from argentite, identify the oxidizing agent used duri",
     "path": "question-bank/index.html?q=PYQ-CHEM-IITJEE-2012-P2-Q22#PYQ-CHEM-IITJEE-2012-P2-Q22",
     "kind": "question",
     "keywords": [
@@ -11203,6 +12269,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "oxidizing",
       "agent",
+      "used",
+      "duri",
       "in",
       "the",
       "cyanide",
@@ -11233,11 +12301,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox-oxidation-state",
-      "chemistry"
+      "chemistry",
+      "iit-jee",
+      "2012",
+      "paper",
+      "ii"
     ]
   },
   {
-    "title": "Balance the acidic reaction in which iodide and chlorate react in sulfuric-acid ",
+    "title": "Balance the acidic reaction in which iodide and chlorate react in sulfuric-acid medium to ",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2014-P1-Q29#PYQ-CHEM-JEEADV-2014-P1-Q29",
     "kind": "question",
     "keywords": [
@@ -11254,6 +12326,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "react",
       "in",
       "sulfuric-acid",
+      "medium",
+      "to",
       "balance",
       "the",
       "acidic",
@@ -11286,11 +12360,13 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox-balance-electron",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "(advanced)"
     ]
   },
   {
-    "title": "A compound H2X of molar mass 80 g/mol forms a 3.2 M solution in a solvent of den",
+    "title": "A compound H2X of molar mass 80 g/mol forms a 3.2 M solution in a solvent of density 0.4 g",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2014-P1-Q39#PYQ-CHEM-JEEADV-2014-P1-Q39",
     "kind": "question",
     "keywords": [
@@ -11312,7 +12388,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "a",
       "solvent",
       "of",
-      "den",
+      "density",
+      "0.4",
+      "g",
       "a",
       "compound",
       "h2x",
@@ -11341,13 +12419,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "change,",
       "determine",
       "the",
-      "solution",
-      "molality.",
-      "some"
+      "solution"
     ]
   },
   {
-    "title": "A reaction X->Y releases 193 kJ per mole under standard conditions. Assume all o",
+    "title": "A reaction X->Y releases 193 kJ per mole under standard conditions. Assume all of this ene",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2015-P1-Q27#PYQ-CHEM-JEEADV-2015-P1-Q27",
     "kind": "question",
     "keywords": [
@@ -11365,7 +12441,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "conditions.",
       "assume",
       "all",
-      "o",
+      "of",
+      "this",
+      "ene",
       "a",
       "reaction",
       "x->y",
@@ -11398,13 +12476,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "standard",
       "potential",
       "magnitude",
-      "is",
-      "0.25",
-      "v."
+      "is"
     ]
   },
   {
-    "title": "Three moles of diborane, B2H6, react completely with methanol. How many moles of",
+    "title": "Three moles of diborane, B2H6, react completely with methanol. How many moles of the boron",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2015-P2-Q25#PYQ-CHEM-JEEADV-2015-P2-Q25",
     "kind": "question",
     "keywords": [
@@ -11422,6 +12498,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "many",
       "moles",
       "of",
+      "the",
+      "boron",
       "three",
       "moles",
       "of",
@@ -11451,11 +12529,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "/",
       "stoichiometry",
       "cap-chem-stoich-mole-ratio",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "(advanced)",
+      "2015",
+      "paper"
     ]
   },
   {
-    "title": "In dilute sulfuric acid, diaquodioxalatoferrate(II) is oxidized by permanganate.",
+    "title": "In dilute sulfuric acid, diaquodioxalatoferrate(II) is oxidized by permanganate. Find the ",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2015-P2-Q28#PYQ-CHEM-JEEADV-2015-P2-Q28",
     "kind": "question",
     "keywords": [
@@ -11469,6 +12551,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "oxidized",
       "by",
       "permanganate.",
+      "find",
+      "the",
       "in",
       "dilute",
       "sulfuric",
@@ -11502,11 +12586,15 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox-balance-electron",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "(advanced)",
+      "2015",
+      "paper"
     ]
   },
   {
-    "title": "A solution has solute mole fraction 0.1. At 298 K its molarity equals its molali",
+    "title": "A solution has solute mole fraction 0.1. At 298 K its molarity equals its molality, and it",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2016-P1-Q32#PYQ-CHEM-JEEADV-2016-P1-Q32",
     "kind": "question",
     "keywords": [
@@ -11525,7 +12613,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "molarity",
       "equals",
       "its",
-      "molali",
+      "molality,",
+      "and",
+      "it",
       "a",
       "solution",
       "has",
@@ -11557,13 +12647,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "mass",
       "to",
       "solvent",
-      "molar",
-      "mass.",
-      "some"
+      "molar"
     ]
   },
   {
-    "title": "In neutral or faintly alkaline solution, 8 mol permanganate ions quantitatively ",
+    "title": "In neutral or faintly alkaline solution, 8 mol permanganate ions quantitatively oxidize th",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2016-P1-Q34#PYQ-CHEM-JEEADV-2016-P1-Q34",
     "kind": "question",
     "keywords": [
@@ -11579,6 +12667,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "permanganate",
       "ions",
       "quantitatively",
+      "oxidize",
+      "th",
       "in",
       "neutral",
       "or",
@@ -11608,11 +12698,17 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox-balance-electron",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "(advanced)",
+      "2016",
+      "paper",
+      "1",
+      "q34"
     ]
   },
   {
-    "title": "A pure crystalline substance has an FCC structure with cell edge 400 pm and dens",
+    "title": "A pure crystalline substance has an FCC structure with cell edge 400 pm and density 8 g cm",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2017-P1-Q26#PYQ-CHEM-JEEADV-2017-P1-Q26",
     "kind": "question",
     "keywords": [
@@ -11631,7 +12727,10 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "400",
       "pm",
       "and",
-      "dens",
+      "density",
+      "8",
+      "g",
+      "cm",
       "a",
       "pure",
       "crystalline",
@@ -11662,14 +12761,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "find",
       "n.",
       "some",
-      "basic",
-      "concepts",
-      "of",
-      "chemistry"
+      "basic"
     ]
   },
   {
-    "title": "Ammonia generated by reacting 1584 g ammonium sulfate with calcium hydroxide is ",
+    "title": "Ammonia generated by reacting 1584 g ammonium sulfate with calcium hydroxide is completely",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2018-P1-Q08#PYQ-CHEM-JEEADV-2018-P1-Q08",
     "kind": "question",
     "keywords": [
@@ -11686,6 +12782,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "calcium",
       "hydroxide",
       "is",
+      "completely",
       "ammonia",
       "generated",
       "by",
@@ -11721,12 +12818,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "combined",
       "mass",
-      "of",
-      "gypsum"
+      "of"
     ]
   },
   {
-    "title": "Galena is partially oxidized in air and then heated without further air so that ",
+    "title": "Galena is partially oxidized in air and then heated without further air so that self-reduc",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2018-P2-Q08#PYQ-CHEM-JEEADV-2018-P2-Q08",
     "kind": "question",
     "keywords": [
@@ -11745,6 +12841,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "air",
       "so",
       "that",
+      "self-reduc",
       "galena",
       "is",
       "partially",
@@ -11775,11 +12872,14 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-stoich-mole-ratio",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "(advanced)",
+      "2018"
     ]
   },
   {
-    "title": "An unknown amount of MnCl2 is converted completely to permanganate. After acidif",
+    "title": "An unknown amount of MnCl2 is converted completely to permanganate. After acidification, 2",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2018-P2-Q09#PYQ-CHEM-JEEADV-2018-P2-Q09",
     "kind": "question",
     "keywords": [
@@ -11795,7 +12895,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "to",
       "permanganate.",
       "after",
-      "acidif",
+      "acidification,",
+      "2",
       "an",
       "unknown",
       "amount",
@@ -11829,11 +12930,13 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox-balance-electron",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "(advanced)"
     ]
   },
   {
-    "title": "One mole of rhombic sulfur is completely oxidized by concentrated nitric acid to",
+    "title": "One mole of rhombic sulfur is completely oxidized by concentrated nitric acid to sulfur's ",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2019-P2-Q09#PYQ-CHEM-JEEADV-2019-P2-Q09",
     "kind": "question",
     "keywords": [
@@ -11851,6 +12954,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "nitric",
       "acid",
       "to",
+      "sulfur's",
       "one",
       "mole",
       "of",
@@ -11877,11 +12981,19 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox-balance-electron",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "(advanced)",
+      "2019",
+      "paper",
+      "2",
+      "q9",
+      "d3",
+      "hard"
     ]
   },
   {
-    "title": "In weakly basic solution, permanganate oxidizes iodide to iodine while manganese",
+    "title": "In weakly basic solution, permanganate oxidizes iodide to iodine while manganese is reduce",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2020-P2-Q03#PYQ-CHEM-JEEADV-2020-P2-Q03",
     "kind": "question",
     "keywords": [
@@ -11897,6 +13009,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "iodine",
       "while",
       "manganese",
+      "is",
+      "reduce",
       "in",
       "weakly",
       "basic",
@@ -11927,11 +13041,16 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox-balance-electron",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "(advanced)",
+      "2020",
+      "paper",
+      "2"
     ]
   },
   {
-    "title": "A 5.6 g iron sample is converted to Fe2+ solution and diluted to 250 mL. A 25 mL",
+    "title": "A 5.6 g iron sample is converted to Fe2+ solution and diluted to 250 mL. A 25 mL aliquot r",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2021-P2-Q11#PYQ-CHEM-JEEADV-2021-P2-Q11",
     "kind": "question",
     "keywords": [
@@ -11954,6 +13073,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "a",
       "25",
       "ml",
+      "aliquot",
+      "r",
       "a",
       "5.6",
       "g",
@@ -11982,13 +13103,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "permanganate",
       "in",
       "acidic",
-      "medium.",
-      "if",
-      "the"
+      "medium."
     ]
   },
   {
-    "title": "Using the same iron-sample titration data as the preceding item, determine the m",
+    "title": "Using the same iron-sample titration data as the preceding item, determine the mass percen",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2021-P2-Q12#PYQ-CHEM-JEEADV-2021-P2-Q12",
     "kind": "question",
     "keywords": [
@@ -12005,7 +13124,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "item,",
       "determine",
       "the",
-      "m",
+      "mass",
+      "percen",
       "using",
       "the",
       "same",
@@ -12031,11 +13151,20 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-stoich-mass-mole",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "(advanced)",
+      "2021",
+      "paper",
+      "2",
+      "q12",
+      "d2",
+      "medium",
+      "standard"
     ]
   },
   {
-    "title": "A 3.74 g sample of Cu(NO3)2 is treated with excess iodide, and the iodine produc",
+    "title": "A 3.74 g sample of Cu(NO3)2 is treated with excess iodide, and the iodine produced is then",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2022-P1-Q04#PYQ-CHEM-JEEADV-2022-P1-Q04",
     "kind": "question",
     "keywords": [
@@ -12054,7 +13183,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "and",
       "the",
       "iodine",
-      "produc",
+      "produced",
+      "is",
+      "then",
       "a",
       "3.74",
       "g",
@@ -12086,13 +13217,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "sulfur",
       "formed.",
       "redox",
-      "reactions",
-      "cap-chem-stoich-mole-ratio",
-      "chemistry"
+      "reactions"
     ]
   },
   {
-    "title": "Stoichiometric hydrolysis of 516 g dimethyldichlorosilane gives a tetrameric cyc",
+    "title": "Stoichiometric hydrolysis of 516 g dimethyldichlorosilane gives a tetrameric cyclic siloxa",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2023-P1-Q08#PYQ-CHEM-JEEADV-2023-P1-Q08",
     "kind": "question",
     "keywords": [
@@ -12106,7 +13235,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "gives",
       "a",
       "tetrameric",
-      "cyc",
+      "cyclic",
+      "siloxa",
       "stoichiometric",
       "hydrolysis",
       "of",
@@ -12144,12 +13274,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "mole",
       "concept",
       "/",
-      "stoichiometry",
-      "cap-chem-stoich-mass-mole"
+      "stoichiometry"
     ]
   },
   {
-    "title": "Five moles of H2S react completely with acidified aqueous potassium permanganate",
+    "title": "Five moles of H2S react completely with acidified aqueous potassium permanganate. If x is ",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2023-P2-Q08#PYQ-CHEM-JEEADV-2023-P2-Q08",
     "kind": "question",
     "keywords": [
@@ -12164,7 +13293,10 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "acidified",
       "aqueous",
       "potassium",
-      "permanganate",
+      "permanganate.",
+      "if",
+      "x",
+      "is",
       "five",
       "moles",
       "of",
@@ -12197,11 +13329,13 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox-balance-electron",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "(advanced)"
     ]
   },
   {
-    "title": "Across the source list F2O, H2S4O6, H2S5O6, C3O2 and Br3O8, count the atoms whos",
+    "title": "Across the source list F2O, H2S4O6, H2S5O6, C3O2 and Br3O8, count the atoms whose oxidatio",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2023-P2-Q10#PYQ-CHEM-JEEADV-2023-P2-Q10",
     "kind": "question",
     "keywords": [
@@ -12219,7 +13353,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "count",
       "the",
       "atoms",
-      "whos",
+      "whose",
+      "oxidatio",
       "across",
       "the",
       "source",
@@ -12242,11 +13377,22 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox-oxidation-state",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "(advanced)",
+      "2023",
+      "paper",
+      "2",
+      "q10",
+      "d2",
+      "medium",
+      "standard",
+      "jee",
+      "iit"
     ]
   },
   {
-    "title": "A metal-deficient oxide has composition M_xY2O4. Metal M occurs as M2+ and M3+, ",
+    "title": "A metal-deficient oxide has composition M_xY2O4. Metal M occurs as M2+ and M3+, metal Y is",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2024-P2-Q02#PYQ-CHEM-JEEADV-2024-P2-Q02",
     "kind": "question",
     "keywords": [
@@ -12264,6 +13410,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "m2+",
       "and",
       "m3+,",
+      "metal",
+      "y",
+      "is",
       "a",
       "metal-deficient",
       "oxide",
@@ -12295,11 +13444,12 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox-oxidation-state",
-      "chemistry"
+      "chemistry",
+      "jee"
     ]
   },
   {
-    "title": "In an acidic electrochemical cell, dichromate is reduced to Cr3+. What current i",
+    "title": "In an acidic electrochemical cell, dichromate is reduced to Cr3+. What current in amperes ",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2025-P1-Q08#PYQ-CHEM-JEEADV-2025-P1-Q08",
     "kind": "question",
     "keywords": [
@@ -12316,7 +13466,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "cr3+.",
       "what",
       "current",
-      "i",
+      "in",
+      "amperes",
       "in",
       "an",
       "acidic",
@@ -12351,12 +13502,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "mol^-1.",
       "redox",
       "reactions",
-      "cap-chem-redox-balance-electron",
-      "chemistry"
+      "cap-chem-redox-balance-electron"
     ]
   },
   {
-    "title": "The Nylon-6,6 monomer X that gives a positive carbylamine test is analyzed by th",
+    "title": "The Nylon-6,6 monomer X that gives a positive carbylamine test is analyzed by the Dumas me",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2025-P1-Q12#PYQ-CHEM-JEEADV-2025-P1-Q12",
     "kind": "question",
     "keywords": [
@@ -12374,7 +13524,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       "analyzed",
       "by",
-      "th",
+      "the",
+      "dumas",
+      "me",
       "the",
       "nylon-6,6",
       "monomer",
@@ -12407,13 +13559,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "use",
       "atomic",
       "mass",
-      "n=14.",
-      "some",
-      "basic"
+      "n=14."
     ]
   },
   {
-    "title": "A linear octasaccharide has molar mass 1024 g/mol. Complete hydrolysis yields ri",
+    "title": "A linear octasaccharide has molar mass 1024 g/mol. Complete hydrolysis yields ribose (150)",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2025-P2-Q16#PYQ-CHEM-JEEADV-2025-P2-Q16",
     "kind": "question",
     "keywords": [
@@ -12429,7 +13579,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "complete",
       "hydrolysis",
       "yields",
-      "ri",
+      "ribose",
+      "(150)",
       "a",
       "linear",
       "octasaccharide",
@@ -12465,12 +13616,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "number",
       "of",
       "ribose",
-      "units",
-      "in"
+      "units"
     ]
   },
   {
-    "title": "Two equal-volume cylinders at the same temperature contain He-Ar mixtures. Cylin",
+    "title": "Two equal-volume cylinders at the same temperature contain He-Ar mixtures. Cylinder 1 has ",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEADV-2026-P1-Q09#PYQ-CHEM-JEEADV-2026-P1-Q09",
     "kind": "question",
     "keywords": [
@@ -12485,7 +13635,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "contain",
       "he-ar",
       "mixtures.",
-      "cylin",
+      "cylinder",
+      "1",
+      "has",
       "two",
       "equal-volume",
       "cylinders",
@@ -12521,13 +13673,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "molar",
       "mass",
       "of",
-      "ar",
-      "is",
-      "ten"
+      "ar"
     ]
   },
   {
-    "title": "Let |x| be the difference between the oxidation states of Mn in its highest fluo",
+    "title": "Let |x| be the difference between the oxidation states of Mn in its highest fluoride and i",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEMAIN-2026-04APR-S2-Q62#PYQ-CHEM-JEEMAIN-2026-04APR-S2-Q62",
     "kind": "question",
     "keywords": [
@@ -12546,7 +13696,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "its",
       "highest",
-      "fluo",
+      "fluoride",
+      "and",
+      "i",
       "let",
       "|x|",
       "be",
@@ -12578,13 +13730,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "sc3+,",
       "b:",
       "zn2+,",
-      "c:",
-      "v2+,",
-      "d:"
+      "c:"
     ]
   },
   {
-    "title": "Which of these samples contain the same total number of atoms? A: 2 g O2; B: 4 g",
+    "title": "Which of these samples contain the same total number of atoms? A: 2 g O2; B: 4 g SO2; C: 1",
     "path": "question-bank/index.html?q=PYQ-CHEM-JEEMAIN-2026-06APR-S2-Q51#PYQ-CHEM-JEEMAIN-2026-06APR-S2-Q51",
     "kind": "question",
     "keywords": [
@@ -12607,6 +13757,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "b:",
       "4",
       "g",
+      "so2;",
+      "c:",
+      "1",
       "which",
       "of",
       "these",
@@ -12634,14 +13787,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "stp;",
       "d:",
       "0.05",
-      "l",
-      "he",
-      "at",
-      "stp;"
+      "l"
     ]
   },
   {
-    "title": "Dilute sulfuric acid is electrolysed using inert platinum electrodes. Identify t",
+    "title": "Dilute sulfuric acid is electrolysed using inert platinum electrodes. Identify the gas evo",
     "path": "question-bank/index.html?q=PYQ-CHEM-NEET-2020-E1-Q099#PYQ-CHEM-NEET-2020-E1-Q099",
     "kind": "question",
     "keywords": [
@@ -12656,7 +13806,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "platinum",
       "electrodes.",
       "identify",
-      "t",
+      "the",
+      "gas",
+      "evo",
       "dilute",
       "sulfuric",
       "acid",
@@ -12676,11 +13828,27 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox-balance-electron",
-      "chemistry"
+      "chemistry",
+      "neet",
+      "(ug)",
+      "2020",
+      "english",
+      "set",
+      "e1",
+      "q99",
+      "d1",
+      "easy",
+      "foundation",
+      "redox",
+      "redox",
+      "reactions",
+      "oxidation",
+      "reduction",
+      "oxidation"
     ]
   },
   {
-    "title": "How many Faradays are needed to produce 20 g of calcium from molten CaCl2? Use m",
+    "title": "How many Faradays are needed to produce 20 g of calcium from molten CaCl2? Use molar mass ",
     "path": "question-bank/index.html?q=PYQ-CHEM-NEET-2020-E1-Q106#PYQ-CHEM-NEET-2020-E1-Q106",
     "kind": "question",
     "keywords": [
@@ -12700,7 +13868,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "molten",
       "cacl2?",
       "use",
-      "m",
+      "molar",
+      "mass",
       "how",
       "many",
       "faradays",
@@ -12731,11 +13900,12 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "/",
       "stoichiometry",
       "cap-chem-stoich-mole-ratio",
-      "chemistry"
+      "chemistry",
+      "neet"
     ]
   },
   {
-    "title": "A gas mixture contains 7 g N2 and 8 g Ar at total pressure 27 bar. Using N=14 an",
+    "title": "A gas mixture contains 7 g N2 and 8 g Ar at total pressure 27 bar. Using N=14 and Ar=40, f",
     "path": "question-bank/index.html?q=PYQ-CHEM-NEET-2020-E1-Q110#PYQ-CHEM-NEET-2020-E1-Q110",
     "kind": "question",
     "keywords": [
@@ -12758,7 +13928,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "bar.",
       "using",
       "n=14",
-      "an",
+      "and",
+      "ar=40,",
+      "f",
       "a",
       "gas",
       "mixture",
@@ -12786,13 +13958,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "n2.",
       "some",
-      "basic",
-      "concepts",
-      "of"
+      "basic"
     ]
   },
   {
-    "title": "Which 1 g sample contains the greatest number of atoms: Ag (108), Mg (24), O2 (O",
+    "title": "Which 1 g sample contains the greatest number of atoms: Ag (108), Mg (24), O2 (O=16), or L",
     "path": "question-bank/index.html?q=PYQ-CHEM-NEET-2020-E1-Q123#PYQ-CHEM-NEET-2020-E1-Q123",
     "kind": "question",
     "keywords": [
@@ -12812,7 +13982,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "mg",
       "(24),",
       "o2",
-      "(o",
+      "(o=16),",
+      "or",
+      "l",
       "which",
       "1",
       "g",
@@ -12847,7 +14019,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
     ]
   },
   {
-    "title": "For the conversion CH4 + 4Cl2 -> CCl4 + 4HCl, identify the change in oxidation n",
+    "title": "For the conversion CH4 + 4Cl2 -> CCl4 + 4HCl, identify the change in oxidation number of c",
     "path": "question-bank/index.html?q=PYQ-CHEM-NEET-2020-E1-Q125#PYQ-CHEM-NEET-2020-E1-Q125",
     "kind": "question",
     "keywords": [
@@ -12867,7 +14039,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "change",
       "in",
       "oxidation",
-      "n",
+      "number",
+      "of",
+      "c",
       "for",
       "the",
       "conversion",
@@ -12889,11 +14063,20 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox-oxidation-state",
-      "chemistry"
+      "chemistry",
+      "neet",
+      "(ug)",
+      "2020",
+      "english",
+      "set",
+      "e1",
+      "q125",
+      "d1",
+      "easy"
     ]
   },
   {
-    "title": "Two equal masses m lie on a smooth horizontal surface and are joined by a light ",
+    "title": "Two equal masses m lie on a smooth horizontal surface and are joined by a light string of ",
     "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2007-P1-Q03#PYQ-PHY-IITJEE-2007-P1-Q03",
     "kind": "question",
     "keywords": [
@@ -12914,6 +14097,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "by",
       "a",
       "light",
+      "string",
+      "of",
       "two",
       "equal",
       "masses",
@@ -12944,13 +14129,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "string",
       "is",
       "pulled",
-      "vertically",
-      "upward",
-      "by"
+      "vertically"
     ]
   },
   {
-    "title": "A block moving on a rough horizontal surface stops after losing its kinetic ener",
+    "title": "A block moving on a rough horizontal surface stops after losing its kinetic energy to fric",
     "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2007-P1-Q10#PYQ-PHY-IITJEE-2007-P1-Q10",
     "kind": "question",
     "keywords": [
@@ -12968,7 +14151,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "losing",
       "its",
       "kinetic",
-      "ener",
+      "energy",
+      "to",
+      "fric",
       "a",
       "block",
       "moving",
@@ -13001,13 +14186,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "projected",
       "up",
       "the",
-      "incline",
-      "with",
-      "the"
+      "incline"
     ]
   },
   {
-    "title": "A train observer sees nearby stationary ground objects sweep backward while very",
+    "title": "A train observer sees nearby stationary ground objects sweep backward while very distant o",
     "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2008-P2-Q32#PYQ-PHY-IITJEE-2008-P2-Q32",
     "kind": "question",
     "keywords": [
@@ -13024,6 +14207,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "backward",
       "while",
       "very",
+      "distant",
+      "o",
       "a",
       "train",
       "observer",
@@ -13058,13 +14243,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "is",
       "v1",
       "and",
-      "object",
-      "velocity",
-      "is"
+      "object"
     ]
   },
   {
-    "title": "Judge the pair of statements: (1) pulling a heavy body across level ground is ea",
+    "title": "Judge the pair of statements: (1) pulling a heavy body across level ground is easier than ",
     "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2008-P2-Q33#PYQ-PHY-IITJEE-2008-P2-Q33",
     "kind": "question",
     "keywords": [
@@ -13083,7 +14266,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "level",
       "ground",
       "is",
-      "ea",
+      "easier",
+      "than",
       "judge",
       "the",
       "pair",
@@ -13116,12 +14300,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "nature",
       "of",
-      "the",
-      "surfaces"
+      "the"
     ]
   },
   {
-    "title": "In an inertial frame, the resultant of all external forces on a system of partic",
+    "title": "In an inertial frame, the resultant of all external forces on a system of particles is zer",
     "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2009-P1-Q49#PYQ-PHY-IITJEE-2009-P1-Q49",
     "kind": "question",
     "keywords": [
@@ -13140,7 +14323,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "a",
       "system",
       "of",
-      "partic",
+      "particles",
+      "is",
+      "zer",
       "in",
       "an",
       "inertial",
@@ -13172,13 +14357,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "of",
       "motion",
       "/",
-      "nlm",
-      "cap-nlm-forces-sum-zero",
-      "physics"
+      "nlm"
     ]
   },
   {
-    "title": "A bead can slide without friction on a wire shaped as the parabola y=kx^2, with ",
+    "title": "A bead can slide without friction on a wire shaped as the parabola y=kx^2, with y vertical",
     "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2009-P2-Q40#PYQ-PHY-IITJEE-2009-P2-Q40",
     "kind": "question",
     "keywords": [
@@ -13198,6 +14381,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "parabola",
       "y=kx^2,",
       "with",
+      "y",
+      "vertical",
       "a",
       "bead",
       "can",
@@ -13229,13 +14414,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "distance",
       "from",
       "the",
-      "y-axis",
-      "of",
-      "the"
+      "y-axis"
     ]
   },
   {
-    "title": "A light inextensible string passes over a smooth fixed pulley and connects masse",
+    "title": "A light inextensible string passes over a smooth fixed pulley and connects masses 0.36 kg ",
     "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2009-P2-Q55#PYQ-PHY-IITJEE-2009-P2-Q55",
     "kind": "question",
     "keywords": [
@@ -13252,7 +14435,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "pulley",
       "and",
       "connects",
-      "masse",
+      "masses",
+      "0.36",
+      "kg",
       "a",
       "light",
       "inextensible",
@@ -13286,13 +14471,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "joules",
       "done",
-      "by",
-      "the",
-      "string"
+      "by"
     ]
   },
   {
-    "title": "A block is on a plane inclined at 45 degrees. The coefficient of friction is mu.",
+    "title": "A block is on a plane inclined at 45 degrees. The coefficient of friction is mu. The force",
     "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2011-P1-Q41#PYQ-PHY-IITJEE-2011-P1-Q41",
     "kind": "question",
     "keywords": [
@@ -13313,6 +14496,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "friction",
       "is",
       "mu.",
+      "the",
+      "force",
       "a",
       "block",
       "is",
@@ -13343,13 +14528,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "times",
       "the",
       "force",
-      "needed",
-      "to",
-      "just"
+      "needed"
     ]
   },
   {
-    "title": "A 0.2 kg ball rests on top of a 5 m vertical post. A 0.01 kg bullet moving horiz",
+    "title": "A 0.2 kg ball rests on top of a 5 m vertical post. A 0.01 kg bullet moving horizontally wi",
     "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2011-P2-Q26#PYQ-PHY-IITJEE-2011-P2-Q26",
     "kind": "question",
     "keywords": [
@@ -13372,7 +14555,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "kg",
       "bullet",
       "moving",
-      "horiz",
+      "horizontally",
+      "wi",
       "a",
       "0.2",
       "kg",
@@ -13401,12 +14585,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "centrally.",
       "after",
       "the",
-      "collision",
-      "the"
+      "collision"
     ]
   },
   {
-    "title": "Inside a train accelerating uniformly along a straight track, a boy throws a bal",
+    "title": "Inside a train accelerating uniformly along a straight track, a boy throws a ball forward ",
     "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2011-P2-Q33#PYQ-PHY-IITJEE-2011-P2-Q33",
     "kind": "question",
     "keywords": [
@@ -13424,7 +14607,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "boy",
       "throws",
       "a",
-      "bal",
+      "ball",
+      "forward",
       "inside",
       "a",
       "train",
@@ -13458,12 +14642,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "it",
       "again",
       "at",
-      "the",
-      "launch"
+      "the"
     ]
   },
   {
-    "title": "A 0.18 kg block on a rough horizontal surface is attached to a spring of force c",
+    "title": "A 0.18 kg block on a rough horizontal surface is attached to a spring of force constant 2 ",
     "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2011-P2-Q34#PYQ-PHY-IITJEE-2011-P2-Q34",
     "kind": "question",
     "keywords": [
@@ -13484,7 +14667,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "spring",
       "of",
       "force",
-      "c",
+      "constant",
+      "2",
       "a",
       "0.18",
       "kg",
@@ -13515,12 +14699,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "given",
       "a",
       "horizontal",
-      "impulse",
-      "and"
+      "impulse"
     ]
   },
   {
-    "title": "A block on a frictionless horizontal surface is attached to a spring of natural ",
+    "title": "A block on a frictionless horizontal surface is attached to a spring of natural length 4.9",
     "path": "question-bank/index.html?q=PYQ-PHY-IITJEE-2012-P1-Q05#PYQ-PHY-IITJEE-2012-P1-Q05",
     "kind": "question",
     "keywords": [
@@ -13539,6 +14722,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "spring",
       "of",
       "natural",
+      "length",
+      "4.9",
       "a",
       "block",
       "on",
@@ -13571,13 +14756,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "0.2",
       "m",
       "and",
-      "released,",
-      "executing",
-      "shm"
+      "released,"
     ]
   },
   {
-    "title": "A 5 kg block is to be dragged along a rough horizontal surface with coefficients",
+    "title": "A 5 kg block is to be dragged along a rough horizontal surface with coefficients \u03bc_s=0.5 a",
     "path": "question-bank/index.html?q=PYQ-PHY-INJSO-2011-Q22#PYQ-PHY-INJSO-2011-Q22",
     "kind": "question",
     "keywords": [
@@ -13597,6 +14780,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "surface",
       "with",
       "coefficients",
+      "\u03bc_s=0.5",
+      "a",
       "a",
       "5",
       "kg",
@@ -13628,13 +14813,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "block's",
       "acceleration",
-      "and",
-      "the",
-      "friction"
+      "and"
     ]
   },
   {
-    "title": "Two solid cubical boxes P (4.0 kg) and Q (8.0 kg) stay in contact while a horizo",
+    "title": "Two solid cubical boxes P (4.0 kg) and Q (8.0 kg) stay in contact while a horizontal force",
     "path": "question-bank/index.html?q=PYQ-PHY-INJSO-2016-Q32A#PYQ-PHY-INJSO-2016-Q32A",
     "kind": "question",
     "keywords": [
@@ -13655,7 +14838,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "contact",
       "while",
       "a",
-      "horizo",
+      "horizontal",
+      "force",
       "two",
       "solid",
       "cubical",
@@ -13686,12 +14870,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "table",
       "at",
       "constant",
-      "speed.",
-      "their"
+      "speed."
     ]
   },
   {
-    "title": "A 100 kg block is on a level rough surface. One person pushing with force F cann",
+    "title": "A 100 kg block is on a level rough surface. One person pushing with force F cannot start i",
     "path": "question-bank/index.html?q=PYQ-PHY-INJSO-2018-Q12#PYQ-PHY-INJSO-2018-Q12",
     "kind": "question",
     "keywords": [
@@ -13712,7 +14895,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "with",
       "force",
       "f",
-      "cann",
+      "cannot",
+      "start",
+      "i",
       "a",
       "100",
       "kg",
@@ -13742,13 +14927,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "same",
       "force",
       "f,",
-      "it",
-      "moves",
-      "with"
+      "it"
     ]
   },
   {
-    "title": "A rider is cycling on a level road, applies a brake, and the cycle slows. Select",
+    "title": "A rider is cycling on a level road, applies a brake, and the cycle slows. Select the corre",
     "path": "question-bank/index.html?q=PYQ-PHY-INJSO-2023-Q24#PYQ-PHY-INJSO-2023-Q24",
     "kind": "question",
     "keywords": [
@@ -13769,6 +14952,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "cycle",
       "slows.",
       "select",
+      "the",
+      "corre",
       "a",
       "rider",
       "is",
@@ -13799,13 +14984,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "cycle's",
       "speed",
-      "when",
-      "only",
-      "the"
+      "when"
     ]
   },
   {
-    "title": "A particle of mass m is projected from the ground with speed u0 at angle alpha. ",
+    "title": "A particle of mass m is projected from the ground with speed u0 at angle alpha. At the hig",
     "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2013-P1-Q07#PYQ-PHY-JEEADV-2013-P1-Q07",
     "kind": "question",
     "keywords": [
@@ -13826,6 +15009,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "at",
       "angle",
       "alpha.",
+      "at",
+      "the",
+      "hig",
       "a",
       "particle",
       "of",
@@ -13855,14 +15041,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "completely",
       "inelastic",
       "collision",
-      "with",
-      "an",
-      "identical",
-      "particle"
+      "with"
     ]
   },
   {
-    "title": "A uniform ladder of mass m leans against a vertical wall, making angle theta wit",
+    "title": "A uniform ladder of mass m leans against a vertical wall, making angle theta with the hori",
     "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2014-P1-Q08#PYQ-PHY-JEEADV-2014-P1-Q08",
     "kind": "question",
     "keywords": [
@@ -13881,7 +15064,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "making",
       "angle",
       "theta",
-      "wit",
+      "with",
+      "the",
+      "hori",
       "a",
       "uniform",
       "ladder",
@@ -13913,13 +15098,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "and",
       "floor",
       "friction",
-      "coefficients",
-      "be",
-      "mu1"
+      "coefficients"
     ]
   },
   {
-    "title": "Airplanes A and B fly at constant velocities in the same vertical plane, at 30 d",
+    "title": "Airplanes A and B fly at constant velocities in the same vertical plane, at 30 degrees and",
     "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2014-P1-Q11#PYQ-PHY-JEEADV-2014-P1-Q11",
     "kind": "question",
     "keywords": [
@@ -13939,7 +15122,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "plane,",
       "at",
       "30",
-      "d",
+      "degrees",
+      "and",
       "airplanes",
       "a",
       "and",
@@ -13971,12 +15155,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "t=0,",
       "b",
       "is",
-      "500",
-      "m"
+      "500"
     ]
   },
   {
-    "title": "A rocket accelerates at 2 m/s^2 along +x in gravity-free space. Its internal cha",
+    "title": "A rocket accelerates at 2 m/s^2 along +x in gravity-free space. Its internal chamber is 4 ",
     "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2014-P1-Q18#PYQ-PHY-JEEADV-2014-P1-Q18",
     "kind": "question",
     "keywords": [
@@ -13994,7 +15177,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "space.",
       "its",
       "internal",
-      "cha",
+      "chamber",
+      "is",
+      "4",
       "a",
       "rocket",
       "accelerates",
@@ -14027,13 +15212,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "end",
       "at",
       "+0.3",
-      "m/s",
-      "relative",
-      "to"
+      "m/s"
     ]
   },
   {
-    "title": "Two touching blocks m1=1 kg and m2=2 kg rest on an incline of angle theta, with ",
+    "title": "Two touching blocks m1=1 kg and m2=2 kg rest on an incline of angle theta, with m1 placed ",
     "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2014-P2-Q19#PYQ-PHY-JEEADV-2014-P2-Q19",
     "kind": "question",
     "keywords": [
@@ -14054,6 +15237,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "angle",
       "theta,",
       "with",
+      "m1",
+      "placed",
       "two",
       "touching",
       "blocks",
@@ -14084,13 +15269,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "on",
       "m2.",
       "the",
-      "plane",
-      "is",
-      "smooth"
+      "plane"
     ]
   },
   {
-    "title": "A ball is launched from level ground at 45 degrees and reaches a maximum height ",
+    "title": "A ball is launched from level ground at 45 degrees and reaches a maximum height of 120 m. ",
     "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2018-P2-Q08#PYQ-PHY-JEEADV-2018-P2-Q08",
     "kind": "question",
     "keywords": [
@@ -14110,6 +15293,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "a",
       "maximum",
       "height",
+      "of",
+      "120",
+      "m.",
       "a",
       "ball",
       "is",
@@ -14140,14 +15326,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "half",
       "its",
       "kinetic",
-      "energy.",
-      "immediately",
-      "after",
-      "the"
+      "energy."
     ]
   },
   {
-    "title": "A projectile is launched from the ground at speed u0 and angle theta. After each",
+    "title": "A projectile is launched from the ground at speed u0 and angle theta. After each landing i",
     "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2019-P2-Q09#PYQ-PHY-JEEADV-2019-P2-Q09",
     "kind": "question",
     "keywords": [
@@ -14167,6 +15350,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "theta.",
       "after",
       "each",
+      "landing",
+      "i",
       "a",
       "projectile",
       "is",
@@ -14198,13 +15383,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "constant",
       "factor",
       "alpha:",
-      "u0/alpha,",
-      "u0/alpha^2,",
-      "and"
+      "u0/alpha,"
     ]
   },
   {
-    "title": "A uniform metre scale is supported horizontally on two index fingers initially a",
+    "title": "A uniform metre scale is supported horizontally on two index fingers initially at 0.00 cm ",
     "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2020-P1-Q13#PYQ-PHY-JEEADV-2020-P1-Q13",
     "kind": "question",
     "keywords": [
@@ -14221,7 +15404,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "index",
       "fingers",
       "initially",
-      "a",
+      "at",
+      "0.00",
+      "cm",
       "a",
       "uniform",
       "metre",
@@ -14255,13 +15440,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "because",
       "static",
       "and",
-      "kinetic",
-      "friction",
-      "differ."
+      "kinetic"
     ]
   },
   {
-    "title": "A projectile is launched from ground at 5sqrt(2) m/s, at 45 degrees from the ver",
+    "title": "A projectile is launched from ground at 5sqrt(2) m/s, at 45 degrees from the vertical. At ",
     "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2021-P1-Q05#PYQ-PHY-JEEADV-2021-P1-Q05",
     "kind": "question",
     "keywords": [
@@ -14280,7 +15463,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "degrees",
       "from",
       "the",
-      "ver",
+      "vertical.",
+      "at",
       "a",
       "projectile",
       "is",
@@ -14313,12 +15497,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "to",
       "the",
       "ground",
-      "0.5",
-      "s"
+      "0.5"
     ]
   },
   {
-    "title": "Use the same projectile-splitting setup as Q5: launch speed 5sqrt(2) m/s at 45 d",
+    "title": "Use the same projectile-splitting setup as Q5: launch speed 5sqrt(2) m/s at 45 degrees fro",
     "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2021-P1-Q06#PYQ-PHY-JEEADV-2021-P1-Q06",
     "kind": "question",
     "keywords": [
@@ -14336,7 +15519,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "m/s",
       "at",
       "45",
-      "d",
+      "degrees",
+      "fro",
       "use",
       "the",
       "same",
@@ -14370,12 +15554,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "ground",
       "0.5",
       "s",
-      "later.",
-      "find"
+      "later."
     ]
   },
   {
-    "title": "A projectile has ordinary range d when launched at speed v and angle theta under",
+    "title": "A projectile has ordinary range d when launched at speed v and angle theta under gravity g",
     "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2022-P1-Q08#PYQ-PHY-JEEADV-2022-P1-Q08",
     "kind": "question",
     "keywords": [
@@ -14395,6 +15578,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "angle",
       "theta",
       "under",
+      "gravity",
+      "g",
       "a",
       "projectile",
       "has",
@@ -14426,13 +15611,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "downward",
       "acceleration",
       "is",
-      "g/0.81.",
-      "if",
-      "its"
+      "g/0.81."
     ]
   },
   {
-    "title": "A ball slides without friction from a height h above a terrace whose top is 3h a",
+    "title": "A ball slides without friction from a height h above a terrace whose top is 3h above the g",
     "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2023-P1-Q01#PYQ-PHY-JEEADV-2023-P1-Q01",
     "kind": "question",
     "keywords": [
@@ -14453,7 +15636,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "top",
       "is",
       "3h",
-      "a",
+      "above",
+      "the",
+      "g",
       "a",
       "ball",
       "slides",
@@ -14483,13 +15668,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "with",
       "coefficient",
       "of",
-      "restitution",
-      "1/sqrt(3).",
-      "determine"
+      "restitution"
     ]
   },
   {
-    "title": "A ball is thrown from (0,0) with fixed speed v0 at angle theta0. Simultaneously,",
+    "title": "A ball is thrown from (0,0) with fixed speed v0 at angle theta0. Simultaneously, a stone i",
     "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2024-P2-Q09#PYQ-PHY-JEEADV-2024-P2-Q09",
     "kind": "question",
     "keywords": [
@@ -14508,6 +15691,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "angle",
       "theta0.",
       "simultaneously,",
+      "a",
+      "stone",
+      "i",
       "a",
       "ball",
       "is",
@@ -14539,14 +15725,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "suitable",
       "speed.",
       "for",
-      "(theta0,theta1)=(45\u00b0,45\u00b0)",
-      "the",
-      "hit",
-      "occurs"
+      "(theta0,theta1)=(45\u00b0,45\u00b0)"
     ]
   },
   {
-    "title": "A 0.2 kg projectile is launched at 270 m/s at 60 degrees in a medium with linear",
+    "title": "A 0.2 kg projectile is launched at 270 m/s at 60 degrees in a medium with linear drag F=-c",
     "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2025-P2-Q15#PYQ-PHY-JEEADV-2025-P2-Q15",
     "kind": "question",
     "keywords": [
@@ -14568,6 +15751,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "medium",
       "with",
       "linear",
+      "drag",
+      "f=-c",
       "a",
       "0.2",
       "kg",
@@ -14597,13 +15782,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "vertical",
       "wall",
       "after",
-      "2",
-      "s.",
-      "taking"
+      "2"
     ]
   },
   {
-    "title": "A projectile launched from O with speed v at angle theta passes through P, which",
+    "title": "A projectile launched from O with speed v at angle theta passes through P, which is 5 m ho",
     "path": "question-bank/index.html?q=PYQ-PHY-JEEADV-2026-P1-Q06#PYQ-PHY-JEEADV-2026-P1-Q06",
     "kind": "question",
     "keywords": [
@@ -14623,6 +15806,10 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "through",
       "p,",
       "which",
+      "is",
+      "5",
+      "m",
+      "ho",
       "a",
       "projectile",
       "launched",
@@ -14652,15 +15839,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "which",
       "source",
       "statements",
-      "are",
-      "correct",
-      "about",
-      "the",
-      "required"
+      "are"
     ]
   },
   {
-    "title": "Cars A and B move in the same direction at 100 km/h and 80 km/h, with A ahead. A",
+    "title": "Cars A and B move in the same direction at 100 km/h and 80 km/h, with A ahead. A passenger",
     "path": "question-bank/index.html?q=PYQ-PHY-JEEMAIN-2026-04APR-S2-Q27#PYQ-PHY-JEEMAIN-2026-04APR-S2-Q27",
     "kind": "question",
     "keywords": [
@@ -14684,6 +15867,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "a",
       "ahead.",
       "a",
+      "passenger",
       "cars",
       "a",
       "and",
@@ -14712,12 +15896,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "forward",
       "so",
       "that",
-      "it",
-      "reaches"
+      "it"
     ]
   },
   {
-    "title": "A projectile has coordinates x=24t and y=43.6t-4.9t^2, with x and y in metres an",
+    "title": "A projectile has coordinates x=24t and y=43.6t-4.9t^2, with x and y in metres and t in sec",
     "path": "question-bank/index.html?q=PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29#PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29",
     "kind": "question",
     "keywords": [
@@ -14735,7 +15918,10 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "y",
       "in",
       "metres",
-      "an",
+      "and",
+      "t",
+      "in",
+      "sec",
       "a",
       "projectile",
       "has",
@@ -14767,14 +15953,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "t=2",
       "s?",
       "motion",
-      "in",
-      "2d",
-      "/",
-      "motion"
+      "in"
     ]
   },
   {
-    "title": "A block takes time t to slide from rest down a 45\u00b0 inclined plane. When the same",
+    "title": "A block takes time t to slide from rest down a 45\u00b0 inclined plane. When the same plane is ",
     "path": "question-bank/index.html?q=PYQ-PHY-JEEMAIN-2026-06APR-S2-Q46#PYQ-PHY-JEEMAIN-2026-06APR-S2-Q46",
     "kind": "question",
     "keywords": [
@@ -14796,6 +15979,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "when",
       "the",
       "same",
+      "plane",
+      "is",
       "a",
       "block",
       "takes",
@@ -14825,13 +16010,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "original",
       "coefficient",
-      "of",
-      "friction",
-      "is"
+      "of"
     ]
   },
   {
-    "title": "Two masses, 4 kg and 6 kg, are connected by a massless string over a frictionles",
+    "title": "Two masses, 4 kg and 6 kg, are connected by a massless string over a frictionless pulley. ",
     "path": "question-bank/index.html?q=PYQ-PHY-NEET-2020-E1-Q160#PYQ-PHY-NEET-2020-E1-Q160",
     "kind": "question",
     "keywords": [
@@ -14851,7 +16034,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "string",
       "over",
       "a",
-      "frictionles",
+      "frictionless",
+      "pulley.",
       "two",
       "masses,",
       "4",
@@ -14883,8 +16067,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "newton's",
       "laws",
       "of",
-      "motion",
-      "/"
+      "motion"
     ]
   },
   {
@@ -14927,7 +16110,21 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "one",
       "variable",
       "cap-mat-leq-01-substitution-check",
-      "mathematics"
+      "mathematics",
+      "ncert",
+      "exemplar",
+      "2024",
+      "class",
+      "8/9",
+      "mathematics",
+      "qq17",
+      "d2",
+      "medium",
+      "standard",
+      "ncert",
+      "cbse",
+      "textbook",
+      "exemplar"
     ]
   },
   {
@@ -14960,7 +16157,31 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "one",
       "variable",
       "cap-mat-leq-01-substitution-check",
-      "mathematics"
+      "mathematics",
+      "ncert",
+      "exemplar",
+      "2024",
+      "class",
+      "8/9",
+      "mathematics",
+      "qq20",
+      "d2",
+      "medium",
+      "standard",
+      "ncert",
+      "cbse",
+      "textbook",
+      "exemplar",
+      "linear",
+      "equations",
+      "linear",
+      "equations",
+      "in",
+      "one",
+      "variable",
+      "linear",
+      "equation",
+      "substitution"
     ]
   },
   {
@@ -15011,11 +16232,17 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "one",
       "variable",
       "cap-mat-leq-01-substitution-check",
+      "mathematics",
+      "ncert",
+      "exemplar",
+      "2024",
+      "class",
+      "8/9",
       "mathematics"
     ]
   },
   {
-    "title": "If we multiply or divide both sides of a linear equation with a non-zero number,",
+    "title": "If we multiply or divide both sides of a linear equation with a non-zero number, then the ",
     "path": "question-bank/index.html?q=Q-MAT-LEQ-02-EXEMPLAR9-4-1-Q16#Q-MAT-LEQ-02-EXEMPLAR9-4-1-Q16",
     "kind": "question",
     "keywords": [
@@ -15035,6 +16262,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "a",
       "non-zero",
       "number,",
+      "then",
+      "the",
       "if",
       "we",
       "multiply",
@@ -15064,7 +16293,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "one",
       "variable",
       "cap-mat-leq-02-same-operation-both-sides",
-      "mathematics"
+      "mathematics",
+      "ncert",
+      "exemplar"
     ]
   },
   {
@@ -15105,7 +16336,23 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "one",
       "variable",
       "cap-mat-leq-02-same-operation-both-sides",
-      "mathematics"
+      "mathematics",
+      "ncert",
+      "textbook",
+      "2024",
+      "class",
+      "8/9",
+      "mathematics",
+      "qq1",
+      "d2",
+      "medium",
+      "standard",
+      "ncert",
+      "cbse",
+      "textbook",
+      "exemplar",
+      "linear",
+      "equations"
     ]
   },
   {
@@ -15150,7 +16397,19 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "one",
       "variable",
       "cap-mat-leq-02-same-operation-both-sides",
-      "mathematics"
+      "mathematics",
+      "ncert",
+      "textbook",
+      "2024",
+      "class",
+      "8/9",
+      "mathematics",
+      "qq2",
+      "d2",
+      "medium",
+      "standard",
+      "ncert",
+      "cbse"
     ]
   },
   {
@@ -15195,7 +16454,19 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "one",
       "variable",
       "cap-mat-leq-02-same-operation-both-sides",
-      "mathematics"
+      "mathematics",
+      "ncert",
+      "textbook",
+      "2024",
+      "class",
+      "8/9",
+      "mathematics",
+      "qq3",
+      "d2",
+      "medium",
+      "standard",
+      "ncert",
+      "cbse"
     ]
   },
   {
@@ -15240,7 +16511,19 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "one",
       "variable",
       "cap-mat-leq-02-same-operation-both-sides",
-      "mathematics"
+      "mathematics",
+      "ncert",
+      "textbook",
+      "2024",
+      "class",
+      "8/9",
+      "mathematics",
+      "qq5",
+      "d2",
+      "medium",
+      "standard",
+      "ncert",
+      "cbse"
     ]
   },
   {
@@ -15285,7 +16568,19 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "one",
       "variable",
       "cap-mat-leq-03-reduce-to-simpler-form",
-      "mathematics"
+      "mathematics",
+      "ncert",
+      "exemplar",
+      "2024",
+      "class",
+      "8/9",
+      "mathematics",
+      "qq58",
+      "d2",
+      "medium",
+      "standard",
+      "ncert",
+      "cbse"
     ]
   },
   {
@@ -15326,7 +16621,23 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "one",
       "variable",
       "cap-mat-leq-03-reduce-to-simpler-form",
-      "mathematics"
+      "mathematics",
+      "ncert",
+      "exemplar",
+      "2024",
+      "class",
+      "8/9",
+      "mathematics",
+      "qq61",
+      "d2",
+      "medium",
+      "standard",
+      "ncert",
+      "cbse",
+      "textbook",
+      "exemplar",
+      "linear",
+      "equations"
     ]
   },
   {
@@ -15369,7 +16680,21 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "one",
       "variable",
       "cap-mat-leq-03-reduce-to-simpler-form",
-      "mathematics"
+      "mathematics",
+      "ncert",
+      "textbook",
+      "2024",
+      "class",
+      "8/9",
+      "mathematics",
+      "qq10",
+      "d2",
+      "medium",
+      "standard",
+      "ncert",
+      "cbse",
+      "textbook",
+      "exemplar"
     ]
   },
   {
@@ -15412,11 +16737,25 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "one",
       "variable",
       "cap-mat-leq-03-reduce-to-simpler-form",
-      "mathematics"
+      "mathematics",
+      "ncert",
+      "textbook",
+      "2024",
+      "class",
+      "8/9",
+      "mathematics",
+      "qq7",
+      "d2",
+      "medium",
+      "standard",
+      "ncert",
+      "cbse",
+      "textbook",
+      "exemplar"
     ]
   },
   {
-    "title": "Simplify and solve the following linear equation: 3(5z \u2013 7) \u2013 2(9z \u2013 11) = 4(8z ",
+    "title": "Simplify and solve the following linear equation: 3(5z \u2013 7) \u2013 2(9z \u2013 11) = 4(8z \u2013 13) \u2013 17",
     "path": "question-bank/index.html?q=Q-MAT-LEQ-03-NCERT8-EX2-2-Q9#Q-MAT-LEQ-03-NCERT8-EX2-2-Q9",
     "kind": "question",
     "keywords": [
@@ -15437,6 +16776,10 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "11)",
       "=",
       "4(8z",
+      "\u2013",
+      "13)",
+      "\u2013",
+      "17",
       "simplify",
       "and",
       "solve",
@@ -15463,7 +16806,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "one",
       "variable",
       "cap-mat-leq-03-reduce-to-simpler-form",
-      "mathematics"
+      "mathematics",
+      "ncert",
+      "textbook"
     ]
   },
   {
@@ -15496,7 +16841,31 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "one",
       "variable",
       "cap-mat-leq-04-two-variable-solutions",
-      "mathematics"
+      "mathematics",
+      "ncert",
+      "exemplar",
+      "2024",
+      "class",
+      "8/9",
+      "mathematics",
+      "qq1",
+      "d1",
+      "easy",
+      "foundation",
+      "ncert",
+      "cbse",
+      "textbook",
+      "exemplar",
+      "linear",
+      "equations",
+      "linear",
+      "equations",
+      "in",
+      "one",
+      "variable",
+      "linear",
+      "equation",
+      "substitution"
     ]
   },
   {
@@ -15537,11 +16906,27 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "one",
       "variable",
       "cap-mat-leq-04-two-variable-solutions",
-      "mathematics"
+      "mathematics",
+      "ncert",
+      "exemplar",
+      "2024",
+      "class",
+      "8/9",
+      "mathematics",
+      "qq11",
+      "d1",
+      "easy",
+      "foundation",
+      "ncert",
+      "cbse",
+      "textbook",
+      "exemplar",
+      "linear",
+      "equations"
     ]
   },
   {
-    "title": "If (2, 0) is a solution of the linear equation 2x + 3y = k, then the value of k ",
+    "title": "If (2, 0) is a solution of the linear equation 2x + 3y = k, then the value of k is",
     "path": "question-bank/index.html?q=Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q3#Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q3",
     "kind": "question",
     "keywords": [
@@ -15566,6 +16951,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "value",
       "of",
       "k",
+      "is",
       "if",
       "(2,",
       "0)",
@@ -15597,7 +16983,7 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
     ]
   },
   {
-    "title": "Write whether the following statement is True or False? Justify your answer: The",
+    "title": "Write whether the following statement is True or False? Justify your answer: The point (0,",
     "path": "question-bank/index.html?q=Q-MAT-LEQ-04-EXEMPLAR9-4-2-Q1#Q-MAT-LEQ-04-EXEMPLAR9-4-2-Q1",
     "kind": "question",
     "keywords": [
@@ -15615,6 +17001,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "your",
       "answer:",
       "the",
+      "point",
+      "(0,",
       "write",
       "whether",
       "the",
@@ -15648,13 +17036,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "equations",
       "in",
       "one",
-      "variable",
-      "cap-mat-leq-04-two-variable-solutions",
-      "mathematics"
+      "variable"
     ]
   },
   {
-    "title": "How many solution(s) of the equation 2x + 1 = x \u2013 3 are there on the : (i) Numbe",
+    "title": "How many solution(s) of the equation 2x + 1 = x \u2013 3 are there on the : (i) Number line (ii",
     "path": "question-bank/index.html?q=Q-MAT-LEQ-04-EXEMPLAR9-4-3-Q7#Q-MAT-LEQ-04-EXEMPLAR9-4-3-Q7",
     "kind": "question",
     "keywords": [
@@ -15678,7 +17064,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       ":",
       "(i)",
-      "numbe",
+      "number",
+      "line",
+      "(ii",
       "how",
       "many",
       "solution(s)",
@@ -15705,13 +17093,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "plane",
       "linear",
       "equations",
-      "in",
-      "one",
-      "variable"
+      "in"
     ]
   },
   {
-    "title": "The oxidation state of Chromium in chromium pentoxide (CrO\u2085, blue butterfly pero",
+    "title": "The oxidation state of Chromium in chromium pentoxide (CrO\u2085, blue butterfly peroxo compoun",
     "path": "question-bank/index.html?q=REDOX-Q01#REDOX-Q01",
     "kind": "question",
     "keywords": [
@@ -15727,7 +17113,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "(cro\u2085,",
       "blue",
       "butterfly",
-      "pero",
+      "peroxo",
+      "compoun",
       "the",
       "oxidation",
       "state",
@@ -15745,11 +17132,29 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2026",
+      "(online)",
+      "6th",
+      "april",
+      "evening",
+      "shift",
+      "2026",
+      "diagnostic",
+      "hub",
+      "qredox-q01",
+      "medium",
+      "jee",
+      "iit",
+      "iit-jee",
+      "pyq",
+      "competitive"
     ]
   },
   {
-    "title": "The n-factor (valency factor) of potassium permanganate (KMnO\u2084) when it acts as ",
+    "title": "The n-factor (valency factor) of potassium permanganate (KMnO\u2084) when it acts as an oxidizi",
     "path": "question-bank/index.html?q=REDOX-Q02#REDOX-Q02",
     "kind": "question",
     "keywords": [
@@ -15766,6 +17171,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "it",
       "acts",
       "as",
+      "an",
+      "oxidizi",
       "the",
       "n-factor",
       "(valency",
@@ -15794,11 +17201,17 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2025",
+      "(online)",
+      "29th",
+      "january"
     ]
   },
   {
-    "title": "In the disproportionation reaction of white phosphorus in basic solution: P\u2084 + 3",
+    "title": "In the disproportionation reaction of white phosphorus in basic solution: P\u2084 + 3OH\u207b + 3H\u2082O",
     "path": "question-bank/index.html?q=REDOX-Q03#REDOX-Q03",
     "kind": "question",
     "keywords": [
@@ -15815,7 +17228,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "solution:",
       "p\u2084",
       "+",
-      "3",
+      "3oh\u207b",
+      "+",
+      "3h\u2082o",
       "in",
       "the",
       "disproportionation",
@@ -15847,11 +17262,13 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main"
     ]
   },
   {
-    "title": "In the tetrathionate ion (S\u2084O\u2086\u00b2\u207b), the oxidation states of the four sulfur atoms",
+    "title": "In the tetrathionate ion (S\u2084O\u2086\u00b2\u207b), the oxidation states of the four sulfur atoms are respe",
     "path": "question-bank/index.html?q=REDOX-Q04#REDOX-Q04",
     "kind": "question",
     "keywords": [
@@ -15869,6 +17286,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "four",
       "sulfur",
       "atoms",
+      "are",
+      "respe",
       "in",
       "the",
       "tetrathionate",
@@ -15887,11 +17306,26 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2025",
+      "(online)",
+      "28th",
+      "january",
+      "evening",
+      "shift",
+      "2025",
+      "diagnostic",
+      "hub",
+      "qredox-q04",
+      "medium",
+      "jee",
+      "iit"
     ]
   },
   {
-    "title": "How many moles of acidified K\u2082Cr\u2082O\u2087 are required to completely oxidize 1 mole of",
+    "title": "How many moles of acidified K\u2082Cr\u2082O\u2087 are required to completely oxidize 1 mole of ferrous o",
     "path": "question-bank/index.html?q=REDOX-Q05#REDOX-Q05",
     "kind": "question",
     "keywords": [
@@ -15910,6 +17344,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "1",
       "mole",
       "of",
+      "ferrous",
+      "o",
       "how",
       "many",
       "moles",
@@ -15930,11 +17366,23 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2026",
+      "(online)",
+      "7th",
+      "april",
+      "morning",
+      "shift",
+      "2026",
+      "diagnostic",
+      "hub",
+      "qredox-q05"
     ]
   },
   {
-    "title": "In magnetic iron oxide (Fe\u2083O\u2084, magnetite), the oxidation state of iron is best d",
+    "title": "In magnetic iron oxide (Fe\u2083O\u2084, magnetite), the oxidation state of iron is best described a",
     "path": "question-bank/index.html?q=REDOX-Q06#REDOX-Q06",
     "kind": "question",
     "keywords": [
@@ -15952,7 +17400,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "iron",
       "is",
       "best",
-      "d",
+      "described",
+      "a",
       "in",
       "magnetic",
       "iron",
@@ -15971,11 +17420,26 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2024",
+      "(online)",
+      "29th",
+      "january",
+      "evening",
+      "shift",
+      "2024",
+      "diagnostic",
+      "hub",
+      "qredox-q06",
+      "medium",
+      "jee",
+      "iit"
     ]
   },
   {
-    "title": "When potassium permanganate (KMnO\u2084, molar mass M) acts as an oxidizing agent in ",
+    "title": "When potassium permanganate (KMnO\u2084, molar mass M) acts as an oxidizing agent in neutral or",
     "path": "question-bank/index.html?q=REDOX-Q07#REDOX-Q07",
     "kind": "question",
     "keywords": [
@@ -15993,6 +17457,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "oxidizing",
       "agent",
       "in",
+      "neutral",
+      "or",
       "when",
       "potassium",
       "permanganate",
@@ -16026,13 +17492,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "(mno\u2082).",
       "the",
       "equivalent",
-      "mass",
-      "of",
-      "kmno\u2084"
+      "mass"
     ]
   },
   {
-    "title": "For the standard galvanic cell Zn(s) | Zn\u00b2\u207a(aq, 1M) || Cu\u00b2\u207a(aq, 1M) | Cu(s), giv",
+    "title": "For the standard galvanic cell Zn(s) | Zn\u00b2\u207a(aq, 1M) || Cu\u00b2\u207a(aq, 1M) | Cu(s), given standar",
     "path": "question-bank/index.html?q=REDOX-Q08#REDOX-Q08",
     "kind": "question",
     "keywords": [
@@ -16051,7 +17515,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "1m)",
       "|",
       "cu(s),",
-      "giv",
+      "given",
+      "standar",
       "for",
       "the",
       "standard",
@@ -16084,12 +17549,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "gibbs",
       "free",
       "energy",
-      "change",
-      "\u03b4g\u00b0"
+      "change"
     ]
   },
   {
-    "title": "The oxidation states of sulfur in Caro's acid (H\u2082SO\u2085) and Marshall's acid (H\u2082S\u2082O",
+    "title": "The oxidation states of sulfur in Caro's acid (H\u2082SO\u2085) and Marshall's acid (H\u2082S\u2082O\u2088) respect",
     "path": "question-bank/index.html?q=REDOX-Q09#REDOX-Q09",
     "kind": "question",
     "keywords": [
@@ -16106,7 +17570,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "and",
       "marshall's",
       "acid",
-      "(h\u2082s\u2082o",
+      "(h\u2082s\u2082o\u2088)",
+      "respect",
       "the",
       "oxidation",
       "states",
@@ -16125,11 +17590,27 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2024",
+      "(online)",
+      "1st",
+      "february",
+      "morning",
+      "shift",
+      "2024",
+      "diagnostic",
+      "hub",
+      "qredox-q09",
+      "medium",
+      "jee",
+      "iit",
+      "iit-jee"
     ]
   },
   {
-    "title": "In the brown ring complex [Fe(H\u2082O)\u2085(NO)]SO\u2084 formed during the nitrate ring test,",
+    "title": "In the brown ring complex [Fe(H\u2082O)\u2085(NO)]SO\u2084 formed during the nitrate ring test, the oxida",
     "path": "question-bank/index.html?q=REDOX-Q10#REDOX-Q10",
     "kind": "question",
     "keywords": [
@@ -16146,6 +17627,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "nitrate",
       "ring",
       "test,",
+      "the",
+      "oxida",
       "in",
       "the",
       "brown",
@@ -16172,11 +17655,19 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2024",
+      "(online)",
+      "29th",
+      "january",
+      "evening",
+      "shift"
     ]
   },
   {
-    "title": "When ferrous oxalate (FeC\u2082O\u2084) is oxidized completely by acidic KMnO\u2084 to Fe\u00b3\u207a and",
+    "title": "When ferrous oxalate (FeC\u2082O\u2084) is oxidized completely by acidic KMnO\u2084 to Fe\u00b3\u207a and CO\u2082, the ",
     "path": "question-bank/index.html?q=REDOX-Q11#REDOX-Q11",
     "kind": "question",
     "keywords": [
@@ -16194,6 +17685,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "to",
       "fe\u00b3\u207a",
       "and",
+      "co\u2082,",
+      "the",
       "when",
       "ferrous",
       "oxalate",
@@ -16216,11 +17709,22 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2023",
+      "(online)",
+      "13th",
+      "april",
+      "morning",
+      "shift",
+      "2023",
+      "diagnostic",
+      "hub"
     ]
   },
   {
-    "title": "Bleaching powder (CaOCl\u2082) contains two chlorine atoms. Their individual oxidatio",
+    "title": "Bleaching powder (CaOCl\u2082) contains two chlorine atoms. Their individual oxidation states a",
     "path": "question-bank/index.html?q=REDOX-Q12#REDOX-Q12",
     "kind": "question",
     "keywords": [
@@ -16234,7 +17738,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "atoms.",
       "their",
       "individual",
-      "oxidatio",
+      "oxidation",
+      "states",
+      "a",
       "bleaching",
       "powder",
       "(caocl\u2082)",
@@ -16250,11 +17756,32 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2023",
+      "(online)",
+      "25th",
+      "january",
+      "morning",
+      "shift",
+      "2023",
+      "diagnostic",
+      "hub",
+      "qredox-q12",
+      "medium",
+      "jee",
+      "iit",
+      "iit-jee",
+      "pyq",
+      "competitive",
+      "redox",
+      "redox",
+      "reactions"
     ]
   },
   {
-    "title": "The equivalent weight of potassium permanganate (KMnO\u2084, molecular mass M) in aci",
+    "title": "The equivalent weight of potassium permanganate (KMnO\u2084, molecular mass M) in acidic, neutr",
     "path": "question-bank/index.html?q=REDOX-Q13#REDOX-Q13",
     "kind": "question",
     "keywords": [
@@ -16270,7 +17797,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "mass",
       "m)",
       "in",
-      "aci",
+      "acidic,",
+      "neutr",
       "the",
       "equivalent",
       "weight",
@@ -16294,11 +17822,23 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2022",
+      "(online)",
+      "27th",
+      "july",
+      "evening",
+      "shift",
+      "2022",
+      "diagnostic",
+      "hub",
+      "qredox-q13"
     ]
   },
   {
-    "title": "In the disproportionation reaction of white phosphorus with alkali: P\u2084 + 3 OH\u207b +",
+    "title": "In the disproportionation reaction of white phosphorus with alkali: P\u2084 + 3 OH\u207b + 3 H\u2082O \u2192 P",
     "path": "question-bank/index.html?q=REDOX-Q14#REDOX-Q14",
     "kind": "question",
     "keywords": [
@@ -16317,6 +17857,10 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "3",
       "oh\u207b",
       "+",
+      "3",
+      "h\u2082o",
+      "\u2192",
+      "p",
       "in",
       "the",
       "disproportionation",
@@ -16346,11 +17890,12 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox",
-      "chemistry"
+      "chemistry",
+      "jee"
     ]
   },
   {
-    "title": "When iodide (I\u207b) is oxidized by permanganate (MnO\u2084\u207b) in faint alkaline medium, i",
+    "title": "When iodide (I\u207b) is oxidized by permanganate (MnO\u2084\u207b) in faint alkaline medium, it forms io",
     "path": "question-bank/index.html?q=REDOX-Q15#REDOX-Q15",
     "kind": "question",
     "keywords": [
@@ -16367,7 +17912,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "faint",
       "alkaline",
       "medium,",
-      "i",
+      "it",
+      "forms",
+      "io",
       "when",
       "iodide",
       "(i\u207b)",
@@ -16401,13 +17948,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "equation",
       "is:",
       "redox",
-      "reactions",
-      "cap-chem-redox",
-      "chemistry"
+      "reactions"
     ]
   },
   {
-    "title": "Given standard reduction potentials: E\u00b0(Zn\u00b2\u207a/Zn) = -0.76 V and E\u00b0(Fe\u00b2\u207a/Fe) = -0.",
+    "title": "Given standard reduction potentials: E\u00b0(Zn\u00b2\u207a/Zn) = -0.76 V and E\u00b0(Fe\u00b2\u207a/Fe) = -0.44 V. The ",
     "path": "question-bank/index.html?q=REDOX-Q16#REDOX-Q16",
     "kind": "question",
     "keywords": [
@@ -16423,7 +17968,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "and",
       "e\u00b0(fe\u00b2\u207a/fe)",
       "=",
-      "-0.",
+      "-0.44",
+      "v.",
+      "the",
       "given",
       "standard",
       "reduction",
@@ -16458,13 +18005,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "the",
       "forward",
       "reaction",
-      "are:",
-      "redox",
-      "reactions"
+      "are:"
     ]
   },
   {
-    "title": "The individual oxidation states of the two nitrogen atoms in ammonium nitrate (N",
+    "title": "The individual oxidation states of the two nitrogen atoms in ammonium nitrate (NH\u2084NO\u2083) are",
     "path": "question-bank/index.html?q=REDOX-Q17#REDOX-Q17",
     "kind": "question",
     "keywords": [
@@ -16481,7 +18026,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "ammonium",
       "nitrate",
-      "(n",
+      "(nh\u2084no\u2083)",
+      "are",
       "the",
       "individual",
       "oxidation",
@@ -16499,11 +18045,28 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2020",
+      "(online)",
+      "6th",
+      "september",
+      "evening",
+      "shift",
+      "2020",
+      "diagnostic",
+      "hub",
+      "qredox-q17",
+      "medium",
+      "jee",
+      "iit",
+      "iit-jee",
+      "pyq"
     ]
   },
   {
-    "title": "The volume of 0.1 M Na\u2082S\u2082O\u2083 (hypo) required to titrate the iodine liberated by a",
+    "title": "The volume of 0.1 M Na\u2082S\u2082O\u2083 (hypo) required to titrate the iodine liberated by adding exce",
     "path": "question-bank/index.html?q=REDOX-Q18#REDOX-Q18",
     "kind": "question",
     "keywords": [
@@ -16522,7 +18085,8 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "iodine",
       "liberated",
       "by",
-      "a",
+      "adding",
+      "exce",
       "the",
       "volume",
       "of",
@@ -16554,11 +18118,12 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox",
-      "chemistry"
+      "chemistry",
+      "jee"
     ]
   },
   {
-    "title": "For the Daniell cell Zn(s) | Zn\u00b2\u207a(aq) || Cu\u00b2\u207a(aq) | Cu(s), if the concentration ",
+    "title": "For the Daniell cell Zn(s) | Zn\u00b2\u207a(aq) || Cu\u00b2\u207a(aq) | Cu(s), if the concentration of Zn\u00b2\u207a is",
     "path": "question-bank/index.html?q=REDOX-Q19#REDOX-Q19",
     "kind": "question",
     "keywords": [
@@ -16577,6 +18142,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "if",
       "the",
       "concentration",
+      "of",
+      "zn\u00b2\u207a",
+      "is",
       "for",
       "the",
       "daniell",
@@ -16608,14 +18176,11 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "298",
       "k,",
       "the",
-      "cell",
-      "potential",
-      "e_cell",
-      "will:"
+      "cell"
     ]
   },
   {
-    "title": "Red lead (minium, Pb\u2083O\u2084) is a mixed oxide. The individual oxidation states of le",
+    "title": "Red lead (minium, Pb\u2083O\u2084) is a mixed oxide. The individual oxidation states of lead and the",
     "path": "question-bank/index.html?q=REDOX-Q20#REDOX-Q20",
     "kind": "question",
     "keywords": [
@@ -16633,7 +18198,9 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "oxidation",
       "states",
       "of",
-      "le",
+      "lead",
+      "and",
+      "the",
       "red",
       "lead",
       "(minium,",
@@ -16656,7 +18223,17 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "redox",
       "reactions",
       "cap-chem-redox",
-      "chemistry"
+      "chemistry",
+      "jee",
+      "main",
+      "2018",
+      "(offline)",
+      "8th",
+      "april",
+      "shift",
+      "2018",
+      "diagnostic",
+      "hub"
     ]
   },
   {
@@ -16676,9 +18253,34 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "lewis",
       "structures",
       "dipole",
+      "bonding",
+      "chemical",
+      "bonding",
+      "molecular",
+      "structure",
+      "chemical",
+      "bonding",
+      "and",
+      "molecular",
+      "structure",
+      "vsepr",
+      "lewis",
+      "structure",
+      "lewis",
+      "dot",
+      "hybridization",
+      "dipole",
+      "moment",
+      "covalent",
+      "ionic",
+      "bond",
+      "hydrogen",
+      "bond",
       "chem.bonding",
       "mic-chem-bonding",
-      "chemistry"
+      "chemistry",
+      "explorer",
+      "explorer"
     ]
   },
   {
@@ -16701,9 +18303,36 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "geometry",
       "bonding",
       "core1a",
+      "bonding",
+      "chemical",
+      "bonding",
+      "molecular",
+      "structure",
+      "chemical",
+      "bonding",
+      "and",
+      "molecular",
+      "structure",
+      "vsepr",
+      "lewis",
+      "structure",
+      "lewis",
+      "dot",
+      "hybridization",
+      "dipole",
+      "moment",
+      "covalent",
+      "ionic",
+      "bond",
+      "hydrogen",
+      "bond",
       "chem.bonding",
       "mic-chem-bonding",
-      "chemistry"
+      "chemistry",
+      "core",
+      "1a",
+      "foundation",
+      "core_1a"
     ]
   },
   {
@@ -16722,9 +18351,150 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "maxwell",
       "speed",
       "distribution",
+      "gases",
+      "behaviour",
+      "of",
+      "gases",
+      "behavior",
+      "of",
+      "gases",
+      "gaseous",
+      "state",
+      "gas",
+      "laws",
+      "ideal",
+      "gas",
+      "boyle",
+      "boyle's",
+      "law",
+      "charles",
+      "charles'",
+      "law",
+      "kinetic",
+      "theory",
+      "kinetic",
+      "theory",
+      "of",
+      "gases",
+      "ktg",
+      "van",
+      "der",
+      "waals",
+      "compressibility",
+      "factor",
+      "real",
+      "gases",
       "chem.gases",
       "mic-chem-gas-laws",
-      "chemistry"
+      "chemistry",
+      "explorer",
+      "explorer"
+    ]
+  },
+  {
+    "title": "Behaviour of Gases & Molecular Speeds \u00b7 Core 1A Learn",
+    "path": "chemistry/gases/core1a.html",
+    "kind": "learn",
+    "keywords": [
+      "behaviour",
+      "of",
+      "gases",
+      "&",
+      "molecular",
+      "speeds",
+      "\u00b7",
+      "core",
+      "1a",
+      "learn",
+      "gases",
+      "gas",
+      "laws",
+      "maxwell",
+      "speeds",
+      "gases",
+      "core1a",
+      "gases",
+      "behaviour",
+      "of",
+      "gases",
+      "behavior",
+      "of",
+      "gases",
+      "gaseous",
+      "state",
+      "gas",
+      "laws",
+      "ideal",
+      "gas",
+      "boyle",
+      "boyle's",
+      "law",
+      "charles",
+      "charles'",
+      "law",
+      "kinetic",
+      "theory",
+      "kinetic",
+      "theory",
+      "of",
+      "gases",
+      "ktg",
+      "van",
+      "der",
+      "waals",
+      "compressibility",
+      "factor",
+      "real",
+      "gases"
+    ]
+  },
+  {
+    "title": "Mole Concept & Stoichiometry \u00b7 Core 1A Learn",
+    "path": "chemistry/some-basic-concepts/core1a.html",
+    "kind": "learn",
+    "keywords": [
+      "mole",
+      "concept",
+      "&",
+      "stoichiometry",
+      "\u00b7",
+      "core",
+      "1a",
+      "learn",
+      "mole",
+      "concept",
+      "stoichiometry",
+      "limiting",
+      "reagent",
+      "mole",
+      "core1a",
+      "mole",
+      "mole",
+      "concept",
+      "stoichiometry",
+      "molar",
+      "mass",
+      "avogadro",
+      "limiting",
+      "reagent",
+      "empirical",
+      "formula",
+      "molecular",
+      "formula",
+      "some",
+      "basic",
+      "concepts",
+      "of",
+      "chemistry",
+      "concentration",
+      "molarity",
+      "chem.mole",
+      "mic-chem-mole-concept",
+      "chemistry",
+      "core",
+      "1a",
+      "foundation",
+      "core_1a"
     ]
   },
   {
@@ -16742,9 +18512,82 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "stoichiometry",
       "limiting",
       "reagent",
+      "mole",
+      "mole",
+      "concept",
+      "stoichiometry",
+      "molar",
+      "mass",
+      "avogadro",
+      "limiting",
+      "reagent",
+      "empirical",
+      "formula",
+      "molecular",
+      "formula",
+      "some",
+      "basic",
+      "concepts",
+      "of",
+      "chemistry",
+      "concentration",
+      "molarity",
       "chem.mole",
       "mic-chem-mole-concept",
-      "chemistry"
+      "chemistry",
+      "explorer",
+      "explorer"
+    ]
+  },
+  {
+    "title": "Redox Reactions & Oxidation Numbers \u00b7 Core 1A Learn",
+    "path": "chemistry/redox/core1a.html",
+    "kind": "learn",
+    "keywords": [
+      "redox",
+      "reactions",
+      "&",
+      "oxidation",
+      "numbers",
+      "\u00b7",
+      "core",
+      "1a",
+      "learn",
+      "redox",
+      "oxidation",
+      "numbers",
+      "electron",
+      "transfer",
+      "redox",
+      "core1a",
+      "redox",
+      "redox",
+      "reactions",
+      "oxidation",
+      "reduction",
+      "oxidation",
+      "state",
+      "oxidation",
+      "states",
+      "oxidation",
+      "number",
+      "half",
+      "reaction",
+      "half-reaction",
+      "disproportionation",
+      "electron",
+      "transfer",
+      "oxidizing",
+      "agent",
+      "reducing",
+      "agent",
+      "chem.redox",
+      "mic-chem-redox",
+      "chemistry",
+      "core",
+      "1a",
+      "foundation",
+      "core_1a"
     ]
   },
   {
@@ -16760,9 +18603,32 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "states",
       "electron",
       "transfer",
+      "redox",
+      "redox",
+      "reactions",
+      "oxidation",
+      "reduction",
+      "oxidation",
+      "state",
+      "oxidation",
+      "states",
+      "oxidation",
+      "number",
+      "half",
+      "reaction",
+      "half-reaction",
+      "disproportionation",
+      "electron",
+      "transfer",
+      "oxidizing",
+      "agent",
+      "reducing",
+      "agent",
       "chem.redox",
       "mic-chem-redox",
-      "chemistry"
+      "chemistry",
+      "explorer",
+      "explorer"
     ]
   },
   {
@@ -16776,7 +18642,10 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "chemistry",
       "chemistry",
       "hub",
-      "chemistry"
+      "chemistry",
+      "core",
+      "study",
+      "learn"
     ]
   },
   {
@@ -16793,7 +18662,215 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "papers",
       "problems",
       "pyq",
-      "common"
+      "common",
+      "question_bank",
+      "question_bank"
+    ]
+  },
+  {
+    "title": "Coordinate Geometry: Cartesian Plane & Coordinates \u2014 Learn",
+    "path": "mathematics/coordinate-geometry/core1a.html",
+    "kind": "learn",
+    "keywords": [
+      "coordinate",
+      "geometry:",
+      "cartesian",
+      "plane",
+      "&",
+      "coordinates",
+      "\u2014",
+      "learn",
+      "coordinate",
+      "geometry",
+      "cartesian",
+      "plane",
+      "quadrants",
+      "coordinates",
+      "core1a",
+      "coordinate",
+      "geometry",
+      "cartesian",
+      "plane",
+      "cartesian",
+      "distance",
+      "formula",
+      "section",
+      "formula",
+      "collinear",
+      "points",
+      "math.coordinate-geometry",
+      "mic-math-coordinate-geometry",
+      "mathematics",
+      "core",
+      "1a",
+      "foundation",
+      "core_1a"
+    ]
+  },
+  {
+    "title": "Euclid's Geometry: Axioms, Postulates & Proofs \u2014 Learn",
+    "path": "mathematics/euclids-geometry/core1a.html",
+    "kind": "learn",
+    "keywords": [
+      "euclid's",
+      "geometry:",
+      "axioms,",
+      "postulates",
+      "&",
+      "proofs",
+      "\u2014",
+      "learn",
+      "euclid",
+      "axioms",
+      "postulates",
+      "visual",
+      "boundary",
+      "ladder",
+      "euclid",
+      "core1a",
+      "euclids-geometry",
+      "euclid",
+      "euclid's",
+      "geometry",
+      "euclidean",
+      "geometry",
+      "axioms",
+      "postulates",
+      "deductive",
+      "proofs",
+      "math.euclids-geometry",
+      "mic-math-euclid-geometry",
+      "mathematics",
+      "core",
+      "1a",
+      "foundation",
+      "core_1a"
+    ]
+  },
+  {
+    "title": "Polynomials: Degree, Remainder & Factor Theorems \u2014 Learn",
+    "path": "mathematics/polynomials/core1a.html",
+    "kind": "learn",
+    "keywords": [
+      "polynomials:",
+      "degree,",
+      "remainder",
+      "&",
+      "factor",
+      "theorems",
+      "\u2014",
+      "learn",
+      "polynomials",
+      "remainder",
+      "theorem",
+      "factor",
+      "theorem",
+      "polynomials",
+      "core1a",
+      "polynomial",
+      "polynomials",
+      "remainder",
+      "theorem",
+      "factor",
+      "theorem",
+      "zeroes",
+      "of",
+      "polynomial",
+      "factorization",
+      "math.polynomials",
+      "mic-math-polynomials",
+      "mathematics",
+      "core",
+      "1a",
+      "foundation",
+      "core_1a"
+    ]
+  },
+  {
+    "title": "Math Theory Of Equations \u00b7 Core 1A Learn",
+    "path": "mathematics/theory-of-equations/core1a.html",
+    "kind": "learn",
+    "keywords": [
+      "math",
+      "theory",
+      "of",
+      "equations",
+      "\u00b7",
+      "core",
+      "1a",
+      "learn",
+      "theory",
+      "of",
+      "equations",
+      "roots",
+      "vieta",
+      "equations",
+      "core1a",
+      "theory-of-equations",
+      "theory",
+      "of",
+      "equations",
+      "polynomial",
+      "roots",
+      "vieta",
+      "vieta's",
+      "relations",
+      "vieta",
+      "formulas",
+      "quadratic",
+      "roots",
+      "roots",
+      "of",
+      "equations",
+      "math.theory-of-equations",
+      "mic-math-theory-of-equations",
+      "mathematics",
+      "core",
+      "1a",
+      "foundation",
+      "core_1a"
+    ]
+  },
+  {
+    "title": "Vector Algebra 3D \u00b7 Core 1A Learn",
+    "path": "mathematics/vectors/core1a.html",
+    "kind": "learn",
+    "keywords": [
+      "vector",
+      "algebra",
+      "3d",
+      "\u00b7",
+      "core",
+      "1a",
+      "learn",
+      "vector",
+      "algebra",
+      "3d",
+      "vectors",
+      "dot",
+      "product",
+      "cross",
+      "product",
+      "vectors",
+      "vector",
+      "resolution",
+      "of",
+      "vectors",
+      "vector",
+      "components",
+      "unit",
+      "vector",
+      "dot",
+      "product",
+      "cross",
+      "product",
+      "math.vectors",
+      "mic-math-vector-algebra",
+      "mathematics",
+      "core",
+      "1a",
+      "foundation",
+      "core_1a"
     ]
   },
   {
@@ -16815,9 +18892,25 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "product",
       "3d",
       "vectors",
+      "vectors",
+      "vector",
+      "resolution",
+      "of",
+      "vectors",
+      "vector",
+      "components",
+      "unit",
+      "vector",
+      "dot",
+      "product",
+      "cross",
+      "product",
       "math.vectors",
       "mic-math-vector-algebra",
-      "mathematics"
+      "mathematics",
+      "master",
+      "suite",
+      "suite"
     ]
   },
   {
@@ -16831,7 +18924,64 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "mathematics",
       "mathematics",
       "hub",
-      "mathematics"
+      "mathematics",
+      "core",
+      "study",
+      "learn"
+    ]
+  },
+  {
+    "title": "Motion in a Straight Line \u00b7 Core 1A Learn",
+    "path": "physics/motion-1d/core1a.html",
+    "kind": "learn",
+    "keywords": [
+      "motion",
+      "in",
+      "a",
+      "straight",
+      "line",
+      "\u00b7",
+      "core",
+      "1a",
+      "learn",
+      "motion",
+      "1d",
+      "straight",
+      "line",
+      "kinematics",
+      "1d",
+      "core1a",
+      "motion-1d",
+      "motion",
+      "in",
+      "1d",
+      "motion",
+      "in",
+      "a",
+      "straight",
+      "line",
+      "kinematics",
+      "rectilinear",
+      "motion",
+      "straight",
+      "line",
+      "acceleration",
+      "velocity",
+      "displacement",
+      "position",
+      "time",
+      "velocity",
+      "time",
+      "equations",
+      "of",
+      "motion",
+      "phy.motion-1d",
+      "mic-phy-kin-1d-motion",
+      "physics",
+      "core",
+      "1a",
+      "foundation",
+      "core_1a"
     ]
   },
   {
@@ -16850,9 +19000,35 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "1d",
       "free",
       "fall",
+      "motion-1d",
+      "motion",
+      "in",
+      "1d",
+      "motion",
+      "in",
+      "a",
+      "straight",
+      "line",
+      "kinematics",
+      "rectilinear",
+      "motion",
+      "straight",
+      "line",
+      "acceleration",
+      "velocity",
+      "displacement",
+      "position",
+      "time",
+      "velocity",
+      "time",
+      "equations",
+      "of",
+      "motion",
       "phy.motion-1d",
       "mic-phy-kin-1d-motion",
-      "physics"
+      "physics",
+      "explorer",
+      "explorer"
     ]
   },
   {
@@ -16873,9 +19049,33 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "a",
       "plane",
       "trajectories",
+      "motion-2d",
+      "motion",
+      "in",
+      "2d",
+      "motion",
+      "in",
+      "a",
+      "plane",
+      "projectile",
+      "projectile",
+      "motion",
+      "trajectory",
+      "horizontal",
+      "projectile",
+      "circular",
+      "motion",
+      "relative",
+      "velocity",
+      "range",
+      "time",
+      "of",
+      "flight",
       "phy.motion-2d",
       "mic-phy-kin-2d-independent-components",
-      "physics"
+      "physics",
+      "explorer",
+      "explorer"
     ]
   },
   {
@@ -16893,9 +19093,46 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "motion",
       "river",
       "boat",
+      "complementary",
+      "trajectories",
+      "complementary",
+      "symmetries",
+      "invariants",
+      "apex",
+      "kinematics",
+      "curvature",
+      "cliff",
+      "rig",
+      "event",
+      "clocks",
+      "fbd",
+      "rig",
+      "trajectory",
+      "trajectories",
+      "motion-2d",
+      "motion",
+      "in",
+      "2d",
+      "motion",
+      "in",
+      "a",
+      "plane",
+      "projectile",
+      "projectile",
+      "motion",
+      "trajectory",
+      "horizontal",
+      "projectile",
+      "circular",
+      "motion",
+      "relative",
+      "velocity",
+      "range",
+      "time",
+      "of",
+      "flight",
       "phy.motion-2d",
-      "mic-phy-kin-2d-independent-components",
-      "physics"
+      "mic-phy-kin-2d-independent-components"
     ]
   },
   {
@@ -16912,9 +19149,40 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "machine",
       "pulleys",
       "constraints",
+      "nlm",
+      "newton's",
+      "laws",
+      "newton",
+      "laws",
+      "newton's",
+      "laws",
+      "of",
+      "motion",
+      "laws",
+      "of",
+      "motion",
+      "friction",
+      "static",
+      "friction",
+      "kinetic",
+      "friction",
+      "free",
+      "body",
+      "diagram",
+      "fbd",
+      "inertia",
+      "momentum",
+      "impulse",
+      "pseudo",
+      "force",
+      "tension",
+      "normal",
+      "force",
       "phy.nlm",
       "mic-phy-nlm-first-law",
-      "physics"
+      "physics",
+      "explorer",
+      "explorer"
     ]
   },
   {
@@ -16930,9 +19198,40 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "tension",
       "contact",
       "forces",
+      "nlm",
+      "newton's",
+      "laws",
+      "newton",
+      "laws",
+      "newton's",
+      "laws",
+      "of",
+      "motion",
+      "laws",
+      "of",
+      "motion",
+      "friction",
+      "static",
+      "friction",
+      "kinetic",
+      "friction",
+      "free",
+      "body",
+      "diagram",
+      "fbd",
+      "inertia",
+      "momentum",
+      "impulse",
+      "pseudo",
+      "force",
+      "tension",
+      "normal",
+      "force",
       "phy.nlm",
       "mic-phy-nlm-first-law",
-      "physics"
+      "physics",
+      "explorer",
+      "explorer"
     ]
   },
   {
@@ -16946,10 +19245,43 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "friction",
       "friction",
       "learn",
+      "nlm",
+      "newton's",
+      "laws",
+      "newton",
+      "laws",
+      "newton's",
+      "laws",
+      "of",
+      "motion",
+      "laws",
+      "of",
+      "motion",
+      "friction",
+      "static",
+      "friction",
+      "kinetic",
+      "friction",
+      "free",
+      "body",
+      "diagram",
+      "fbd",
+      "inertia",
+      "momentum",
+      "impulse",
+      "pseudo",
+      "force",
+      "tension",
+      "normal",
+      "force",
       "phy.nlm",
       "mic-phy-nlm-friction",
       "mic-phy-nlm-friction-quant",
-      "physics"
+      "physics",
+      "core",
+      "1a",
+      "foundation",
+      "core_1a"
     ]
   },
   {
@@ -16963,10 +19295,43 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "friction",
       "friction",
       "practice",
+      "nlm",
+      "newton's",
+      "laws",
+      "newton",
+      "laws",
+      "newton's",
+      "laws",
+      "of",
+      "motion",
+      "laws",
+      "of",
+      "motion",
+      "friction",
+      "static",
+      "friction",
+      "kinetic",
+      "friction",
+      "free",
+      "body",
+      "diagram",
+      "fbd",
+      "inertia",
+      "momentum",
+      "impulse",
+      "pseudo",
+      "force",
+      "tension",
+      "normal",
+      "force",
       "phy.nlm",
       "mic-phy-nlm-friction",
       "mic-phy-nlm-friction-quant",
-      "physics"
+      "physics",
+      "core",
+      "2",
+      "challenge",
+      "core_2"
     ]
   },
   {
@@ -16984,9 +19349,40 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "simulation",
       "friction",
       "visualizer",
+      "nlm",
+      "newton's",
+      "laws",
+      "newton",
+      "laws",
+      "newton's",
+      "laws",
+      "of",
+      "motion",
+      "laws",
+      "of",
+      "motion",
+      "friction",
+      "static",
+      "friction",
+      "kinetic",
+      "friction",
+      "free",
+      "body",
+      "diagram",
+      "fbd",
+      "inertia",
+      "momentum",
+      "impulse",
+      "pseudo",
+      "force",
+      "tension",
+      "normal",
+      "force",
       "phy.nlm",
       "mic-phy-nlm-friction",
-      "physics"
+      "physics",
+      "explorer",
+      "explorer"
     ]
   },
   {
@@ -17000,120 +19396,580 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "physics",
       "physics",
       "hub",
-      "physics"
+      "physics",
+      "core",
+      "study",
+      "learn"
     ]
   },
   {
-    "title": "GRADE 9 CHEMISTRY - Behaviour of Gases Master Suite",
+    "title": "IIT-JEE Chemistry",
+    "path": "standalone/practice/chemistry-behaviour-of-gases-master-suite.html",
+    "kind": "practice",
+    "keywords": [
+      "iit-jee",
+      "chemistry",
+      "ideal",
+      "gas",
+      "engine",
+      "&middot;",
+      "piston-cylinder",
+      "&amp;",
+      "kinetic",
+      "momentum",
+      "maxwell-boltzmann",
+      "distribution",
+      "&middot;",
+      "speed",
+      "ratios",
+      "&amp;",
+      "area",
+      "conservation",
+      "real",
+      "particle",
+      "halos",
+      "&middot;",
+      "attraction",
+      "sheath",
+      "'a'",
+      "vs",
+      "excluded",
+      "core",
+      "'b'",
+      "compressibility",
+      "factor",
+      "z",
+      "vs",
+      "p",
+      "&middot;",
+      "the",
+      "dip",
+      "&amp;",
+      "rise",
+      "inversion",
+      "andrews",
+      "isotherms",
+      "&middot;",
+      "liquid-vapor",
+      "boundary",
+      "&amp;",
+      "critical",
+      "point",
+      "graham's",
+      "law"
+    ]
+  },
+  {
+    "title": "IIT-JEE Chemistry",
+    "path": "standalone/practice/chemistry-chemical-bonding-master-suite.html",
+    "kind": "practice",
+    "keywords": [
+      "iit-jee",
+      "chemistry",
+      "lewis",
+      "dot",
+      "structures",
+      "&middot;",
+      "formal",
+      "charge",
+      "accounting",
+      "3d",
+      "vsepr",
+      "&middot;",
+      "repulsion",
+      "hierarchy",
+      "&amp;",
+      "spatial",
+      "distortions",
+      "vectorial",
+      "dipole",
+      "moments",
+      "&middot;",
+      "reinforcing",
+      "vs",
+      "opposing",
+      "dipoles",
+      "hybridization",
+      "&middot;",
+      "axial",
+      "bond",
+      "elongation",
+      "in",
+      "pcl\u2085",
+      "molecular",
+      "orbital",
+      "theory",
+      "(mot)",
+      "&middot;",
+      "2s-2p",
+      "mixing",
+      "crossover",
+      "rig",
+      "hydrogen",
+      "bonding",
+      "&middot;",
+      "intra",
+      "vs",
+      "intermolecular",
+      "comparative",
+      "engine",
+      "3d"
+    ]
+  },
+  {
+    "title": "IIT-JEE Chemistry",
+    "path": "standalone/practice/chemistry-mole-concept-master-suite.html",
+    "kind": "practice",
+    "keywords": [
+      "iit-jee",
+      "chemistry",
+      "the",
+      "mole",
+      "scale",
+      "&middot;",
+      "mass",
+      "to",
+      "particle",
+      "transformation",
+      "engine",
+      "limiting",
+      "reagent",
+      "&middot;",
+      "lock-and-key",
+      "reaction",
+      "assembly",
+      "sequential",
+      "reactions",
+      "&middot;",
+      "multi-step",
+      "yield",
+      "multiplication",
+      "engine",
+      "concentration",
+      "invariants",
+      "&middot;",
+      "thermal",
+      "expansion",
+      "vs",
+      "mass",
+      "preservation",
+      "eudiometry",
+      "tube",
+      "&middot;",
+      "gas",
+      "combustion",
+      "&amp;",
+      "alkaline",
+      "absorption",
+      "empirical",
+      "&amp;",
+      "molecular",
+      "formula",
+      "&middot;",
+      "integer",
+      "ratio",
+      "deconstruction",
+      "universal",
+      "stoichiometry"
+    ]
+  },
+  {
+    "title": "Redox Reactions Master Suite \u00b7 Standalone",
+    "path": "standalone/practice/chemistry-redox-reactions-master-suite.html",
+    "kind": "practice",
+    "keywords": [
+      "redox",
+      "reactions",
+      "master",
+      "suite",
+      "\u00b7",
+      "standalone",
+      "redox",
+      "learning",
+      "map",
+      "\u2192",
+      "examside",
+      "jee",
+      "main",
+      "pyqs",
+      "redox",
+      "foundations",
+      "\u00b7",
+      "see",
+      "the",
+      "electrons",
+      "before",
+      "using",
+      "the",
+      "rules",
+      "oxidation-state",
+      "bookkeeping",
+      "&middot;",
+      "structure-aware",
+      "exceptions",
+      "electron",
+      "exchange",
+      "conveyor",
+      "&middot;",
+      "coupled",
+      "oxidation-reduction",
+      "halves",
+      "ion-electron",
+      "balancing",
+      "rig",
+      "&middot;",
+      "medium",
+      "dependent",
+      "charge",
+      "ledger",
+      "the",
+      "n-factor",
+      "matrix",
+      "&middot;",
+      "ph",
+      "dependence"
+    ]
+  },
+  {
+    "title": "Behaviour of Gases Master Suite | 12.7\" Tablet Standalone Edition",
     "path": "standalone/practice/core1a-chemistry-behaviour-of-gases-tablet.html",
     "kind": "learn",
     "keywords": [
-      "grade",
-      "9",
-      "chemistry",
-      "-",
       "behaviour",
       "of",
       "gases",
       "master",
       "suite",
-      "chem.gases",
-      "mic-chem-gas-laws",
-      "chemistry"
+      "|",
+      "12.7\"",
+      "tablet",
+      "standalone",
+      "edition",
+      "\ud83d\udd2c",
+      "the",
+      "kinetic",
+      "particle",
+      "model",
+      "of",
+      "matter",
+      "\u2696\ufe0f",
+      "fundamental",
+      "gas",
+      "laws",
+      "&amp;",
+      "the",
+      "ideal",
+      "gas",
+      "equation",
+      "\ud83c\udf0a",
+      "evaporation,",
+      "boiling,",
+      "and",
+      "latent",
+      "heat",
+      "\u26a1",
+      "real",
+      "gases,",
+      "deviations,",
+      "&amp;",
+      "the",
+      "van",
+      "der",
+      "waals",
+      "equation",
+      "\ud83d\udcd6",
+      "ncert",
+      "question",
+      "helper",
+      "&amp;",
+      "transfer",
+      "bank",
+      "(27"
     ]
   },
   {
-    "title": "GRADE 9 CHEMISTRY - Chemical Bonding & Molecular Structure",
+    "title": "Chemical Bonding & Molecular Structure | 12.7\" Tablet Standalone Edition",
     "path": "standalone/practice/core1a-chemistry-chemical-bonding-tablet.html",
     "kind": "learn",
     "keywords": [
-      "grade",
-      "9",
-      "chemistry",
-      "-",
       "chemical",
       "bonding",
       "&",
       "molecular",
       "structure",
-      "chem.bonding",
-      "mic-chem-bonding",
-      "chemistry"
+      "|",
+      "12.7\"",
+      "tablet",
+      "standalone",
+      "edition",
+      "lewis",
+      "octet",
+      "rule",
+      "&amp;",
+      "formal",
+      "charge",
+      "calculation",
+      "vsepr",
+      "theory",
+      "&amp;",
+      "molecular",
+      "geometry",
+      "hybridization",
+      "&amp;",
+      "bent's",
+      "rule",
+      "(pcl\u2085",
+      "axial",
+      "elongation)",
+      "dipole",
+      "moments",
+      "&amp;",
+      "vectorial",
+      "symmetry",
+      "molecular",
+      "orbital",
+      "theory",
+      "(mot)",
+      "&amp;",
+      "magnetism",
+      "hydrogen",
+      "bonding",
+      "&amp;",
+      "anomalous",
+      "properties",
+      "\ud83c\udfaf",
+      "examside",
+      "jee",
+      "main",
+      "question"
     ]
   },
   {
-    "title": "GRADE 9 CHEMISTRY - Redox Reactions Master Suite",
+    "title": "Redox Reactions Master Suite | 12.7\" Tablet Standalone Edition",
     "path": "standalone/practice/core1a-chemistry-redox-reactions-tablet.html",
     "kind": "learn",
     "keywords": [
-      "grade",
-      "9",
-      "chemistry",
-      "-",
       "redox",
       "reactions",
       "master",
       "suite",
-      "chem.redox",
-      "mic-chem-redox",
-      "chemistry"
+      "|",
+      "12.7\"",
+      "tablet",
+      "standalone",
+      "edition",
+      "oxidation",
+      "number",
+      "\u2014",
+      "definition",
+      "&amp;",
+      "priority",
+      "rules",
+      "oxidation",
+      "&amp;",
+      "reduction",
+      "\u2014",
+      "dual",
+      "language",
+      "equivalence",
+      "oxidising",
+      "&amp;",
+      "reducing",
+      "agents",
+      "\u2014",
+      "the",
+      "naming",
+      "inversion",
+      "redox",
+      "vs",
+      "non-redox",
+      "\u2014",
+      "verification",
+      "from",
+      "oxidation",
+      "numbers",
+      "reaction",
+      "types:",
+      "displacement,",
+      "disproportionation",
+      "&amp;",
+      "comproportionation",
+      "half-reaction",
+      "balancing",
+      "\u2014",
+      "acidic",
+      "&amp;"
     ]
   },
   {
-    "title": "GRADE 9 CHEMISTRY - Some Basic Concepts & Mole Concept",
+    "title": "Some Basic Concepts & Mole Concept | 12.7\" Tablet Standalone Edition",
     "path": "standalone/practice/core1a-chemistry-some-basic-concepts-tablet.html",
     "kind": "learn",
     "keywords": [
-      "grade",
-      "9",
-      "chemistry",
-      "-",
       "some",
       "basic",
       "concepts",
       "&",
       "mole",
       "concept",
-      "chem.mole",
-      "mic-chem-mole-concept",
-      "chemistry"
+      "|",
+      "12.7\"",
+      "tablet",
+      "standalone",
+      "edition",
+      "laws",
+      "of",
+      "chemical",
+      "combination",
+      "&amp;",
+      "dalton's",
+      "theory",
+      "the",
+      "mole",
+      "concept",
+      "&amp;",
+      "avogadro's",
+      "number",
+      "empirical",
+      "and",
+      "molecular",
+      "formula",
+      "derivation",
+      "stoichiometry",
+      "&amp;",
+      "limiting",
+      "reagent",
+      "analysis",
+      "concentration",
+      "of",
+      "solutions:",
+      "molarity,",
+      "molality",
+      "&amp;",
+      "mole",
+      "fraction",
+      "\ud83d\udcd8",
+      "ncert",
+      "question",
+      "helper",
+      "&amp;",
+      "transfer",
+      "bank",
+      "(core"
     ]
   },
   {
-    "title": "GRADE 9 MATHEMATICS - Euclid's Geometry Master Suite",
+    "title": "Euclid's Geometry Master Suite | 12.7\" Tablet Standalone Edition",
     "path": "standalone/practice/core1a-mathematics-euclids-geometry-tablet.html",
     "kind": "learn",
     "keywords": [
-      "grade",
-      "9",
-      "mathematics",
-      "-",
       "euclid's",
       "geometry",
       "master",
       "suite",
-      "math.euclids-geometry",
-      "mic-math-euclid-geometry",
-      "mathematics"
+      "|",
+      "12.7\"",
+      "tablet",
+      "standalone",
+      "edition",
+      "\ud83e\uddca",
+      "the",
+      "dimension",
+      "hierarchy",
+      "(3d",
+      "\u2192",
+      "2d",
+      "\u2192",
+      "1d",
+      "\u2192",
+      "0d)",
+      "\u2696\ufe0f",
+      "euclid's",
+      "seven",
+      "common",
+      "notions",
+      "(axioms)",
+      "\ud83d\udcd0",
+      "euclid's",
+      "five",
+      "geometric",
+      "postulates",
+      "\u2728",
+      "the",
+      "fifth",
+      "postulate",
+      "&amp;",
+      "equivalent",
+      "playfair's",
+      "axiom",
+      "\ud83d\udcdd",
+      "core",
+      "2",
+      "exercises",
+      "&amp;",
+      "rigorous",
+      "proofs",
+      "({len(q_cards)})",
+      "euclids-geometry",
+      "euclid",
+      "euclid's"
     ]
   },
   {
-    "title": "GRADE 9 MATHEMATICS - Theory of Equations Master Suite",
+    "title": "Theory of Equations Master Suite | 12.7\" Tablet Standalone Edition",
     "path": "standalone/practice/core1a-mathematics-theory-of-equations-tablet.html",
     "kind": "learn",
     "keywords": [
-      "grade",
-      "9",
-      "mathematics",
-      "-",
       "theory",
       "of",
       "equations",
       "master",
       "suite",
-      "math.theory-of-equations",
-      "mic-math-theory-of-equations",
-      "mathematics"
+      "|",
+      "12.7\"",
+      "tablet",
+      "standalone",
+      "edition",
+      "\ud83d\udd17",
+      "the",
+      "fundamental",
+      "triad:",
+      "roots",
+      "\u2194",
+      "factors",
+      "\u2194",
+      "coefficients",
+      "\u2696\ufe0f",
+      "vieta's",
+      "formulas",
+      "for",
+      "cubic",
+      "and",
+      "quartic",
+      "equations",
+      "\ud83c\udfd7\ufe0f",
+      "constructing",
+      "equations",
+      "from",
+      "roots",
+      "\u2728",
+      "symmetric",
+      "functions",
+      "of",
+      "roots",
+      "\ud83c\udfaf",
+      "practice",
+      "&amp;",
+      "jee",
+      "challenges",
+      "({len(q_cards)})",
+      "theory-of-equations",
+      "theory",
+      "of",
+      "equations",
+      "polynomial",
+      "roots",
+      "vieta"
     ]
   },
   {
@@ -17122,59 +19978,340 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
     "kind": "learn",
     "keywords": [
       "construction",
-      "phy.motion-1d",
-      "mic-phy-kin-1d-motion",
-      "physics"
-    ]
-  },
-  {
-    "title": "GRADE 9 PHYSICS",
-    "path": "standalone/practice/core1a-physics-motion-2d-ncert-tablet.html",
-    "kind": "learn",
-    "keywords": [
-      "grade",
-      "9",
-      "physics",
-      "phy.motion-2d",
-      "mic-phy-kin-2d-independent-components",
-      "physics"
-    ]
-  },
-  {
-    "title": "GRADE 9 PHYSICS",
-    "path": "standalone/practice/core1a-physics-nlm-tablet.html",
-    "kind": "learn",
-    "keywords": [
-      "grade",
-      "9",
-      "physics",
-      "phy.nlm",
-      "mic-phy-nlm-first-law",
-      "physics"
+      "one-dimensional",
+      "motion",
+      "path",
+      "travelled",
+      "is",
+      "not",
+      "start-to-finish",
+      "change",
+      "zero",
+      "velocity",
+      "at",
+      "an",
+      "instant",
+      "does",
+      "not",
+      "mean",
+      "zero",
+      "acceleration",
+      "average",
+      "speed",
+      "and",
+      "average",
+      "velocity",
+      "come",
+      "from",
+      "different",
+      "totals",
+      "derive",
+      "the",
+      "constant-acceleration",
+      "equations",
+      "from",
+      "one",
+      "velocity-time",
+      "graph",
+      "uniform",
+      "circular",
+      "motion",
+      "keeps",
+      "speed",
+      "while",
+      "velocity",
+      "turns",
+      "motion",
+      "graphs",
+      "turn",
+      "coordinate",
+      "change",
+      "into"
     ]
   },
   {
     "title": "Construction",
+    "path": "standalone/practice/core1a-motion-in-a-plane-tablet.html",
+    "kind": "learn",
+    "keywords": [
+      "construction",
+      "two-dimensional",
+      "kinematics",
+      "and",
+      "projectile",
+      "model",
+      "split",
+      "one",
+      "plane-motion",
+      "event",
+      "into",
+      "independent",
+      "x/y",
+      "components",
+      "with",
+      "one",
+      "clock",
+      "apply",
+      "constant-acceleration",
+      "kinematics",
+      "component",
+      "by",
+      "component",
+      "select",
+      "the",
+      "gravity-only",
+      "projectile",
+      "model",
+      "before",
+      "using",
+      "projectile",
+      "consequences",
+      "motion-2d",
+      "motion",
+      "in",
+      "2d",
+      "motion",
+      "in",
+      "a",
+      "plane",
+      "projectile",
+      "projectile",
+      "motion",
+      "trajectory",
+      "horizontal",
+      "projectile",
+      "circular",
+      "motion",
+      "relative",
+      "velocity"
+    ]
+  },
+  {
+    "title": "Motion in 2D NCERT Revised Edition",
+    "path": "standalone/practice/core1a-physics-motion-2d-ncert-tablet.html",
+    "kind": "learn",
+    "keywords": [
+      "motion",
+      "in",
+      "2d",
+      "ncert",
+      "revised",
+      "edition",
+      "\ud83e\udded",
+      "motion",
+      "in",
+      "2d",
+      "foundations",
+      "(core",
+      "1)",
+      "01",
+      "curved",
+      "path:",
+      "distance",
+      "is",
+      "not",
+      "displacement",
+      "02",
+      "constant",
+      "speed",
+      "can",
+      "still",
+      "mean",
+      "acceleration",
+      "03",
+      "when",
+      "are",
+      "distance",
+      "and",
+      "displacement",
+      "equal?",
+      "04",
+      "release",
+      "from",
+      "circular",
+      "motion:",
+      "follow",
+      "the",
+      "tangent",
+      "05",
+      "gravity",
+      "can",
+      "be",
+      "the",
+      "centripetal",
+      "force",
+      "06"
+    ]
+  },
+  {
+    "title": "Newton's Laws of Motion Master Suite",
+    "path": "standalone/practice/core1a-physics-nlm-tablet.html",
+    "kind": "learn",
+    "keywords": [
+      "newton's",
+      "laws",
+      "of",
+      "motion",
+      "master",
+      "suite",
+      "\u2696\ufe0f",
+      "newton's",
+      "laws",
+      "of",
+      "motion",
+      "foundations",
+      "(core",
+      "1)",
+      "nlm",
+      "01",
+      "-",
+      "motion",
+      "is",
+      "not",
+      "force",
+      "nlm",
+      "02",
+      "-",
+      "choose",
+      "the",
+      "body",
+      "before",
+      "drawing",
+      "forces",
+      "nlm",
+      "03",
+      "-",
+      "net",
+      "force",
+      "is",
+      "a",
+      "vector",
+      "sum",
+      "nlm",
+      "04",
+      "-",
+      "newton",
+      "ii",
+      "and",
+      "scaling",
+      "nlm",
+      "05",
+      "-",
+      "stopping"
+    ]
+  },
+  {
+    "title": "Construction \u00b7 Thrust and Pressure",
     "path": "standalone/practice/core1a-physics-thrust-pressure-tablet.html",
     "kind": "learn",
     "keywords": [
       "construction",
-      "phy.fluids",
-      "mic-phy-fluids-thrust-pressure",
-      "physics"
+      "\u00b7",
+      "thrust",
+      "and",
+      "pressure",
+      "thrust",
+      "and",
+      "pressure",
+      "thrust",
+      "belongs",
+      "to",
+      "a",
+      "chosen",
+      "interface,",
+      "not",
+      "to",
+      "an",
+      "isolated",
+      "force",
+      "arrow",
+      "n",
+      "=",
+      "mg",
+      "is",
+      "a",
+      "result",
+      "with",
+      "conditions,",
+      "not",
+      "the",
+      "definition",
+      "of",
+      "thrust",
+      "average",
+      "pressure",
+      "depends",
+      "on",
+      "total",
+      "normal",
+      "thrust",
+      "and",
+      "actual",
+      "loaded",
+      "area",
+      "similar",
+      "objects",
+      "make",
+      "weight",
+      "and",
+      "contact"
     ]
   },
   {
-    "title": "GRADE 9 PHYSICS",
+    "title": "Vector Algebra & Resolution Master Suite",
     "path": "standalone/practice/core1a-physics-vectors-tablet.html",
     "kind": "learn",
     "keywords": [
-      "grade",
-      "9",
-      "physics",
-      "phy.vectors",
-      "mic-phy-vec-addition",
-      "physics"
+      "vector",
+      "algebra",
+      "&",
+      "resolution",
+      "master",
+      "suite",
+      "\ud83e\udded",
+      "vector",
+      "reasoning",
+      "foundations",
+      "(core",
+      "1)",
+      "vectors",
+      "01",
+      "-",
+      "scalars,",
+      "vectors",
+      "and",
+      "sign",
+      "vectors",
+      "02",
+      "-",
+      "draw,",
+      "compare",
+      "and",
+      "reverse",
+      "vectors",
+      "vectors",
+      "03",
+      "-",
+      "components,",
+      "quadrants",
+      "and",
+      "angle",
+      "reference",
+      "vectors",
+      "04",
+      "-",
+      "add",
+      "vectors",
+      "and",
+      "find",
+      "a",
+      "resultant",
+      "vectors",
+      "05",
+      "-",
+      "subtract",
+      "vectors",
+      "and"
     ]
   },
   {
@@ -17187,52 +20324,195 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "sba-06",
       "&",
       "sba-07",
-      "phy.motion-2d",
-      "mic-phy-kin-2d-independent-components",
-      "physics"
+      "describe",
+      "the",
+      "path",
+      "without",
+      "time",
+      "state",
+      "description",
+      "vs",
+      "path",
+      "description",
+      "derivation",
+      "of",
+      "the",
+      "trajectory",
+      "equation",
+      "slope",
+      "+",
+      "curvature",
+      "&amp;",
+      "vector",
+      "notation",
+      "wall",
+      "events",
+      "&amp;",
+      "the",
+      "factored",
+      "range",
+      "form",
+      "q38",
+      "&amp;",
+      "q47",
+      "question",
+      "families",
+      "horizontal",
+      "launch",
+      "and",
+      "launch",
+      "from",
+      "height",
+      "horizontal",
+      "launch",
+      "model",
+      "&amp;",
+      "the",
+      "vertical"
     ]
   },
   {
-    "title": "GRADE 9 PHYSICS",
+    "title": "Motion in a Plane SBA Master Suite",
     "path": "standalone/practice/core1a-sba-motion-in-a-plane-master-tablet.html",
     "kind": "learn",
     "keywords": [
-      "grade",
-      "9",
-      "physics",
-      "phy.motion-2d",
-      "mic-phy-kin-2d-independent-components",
-      "physics"
+      "motion",
+      "in",
+      "a",
+      "plane",
+      "sba",
+      "master",
+      "suite",
+      "\ud83d\ude80",
+      "sba-03:",
+      "d1",
+      "\u2192",
+      "d2",
+      "knowledge",
+      "bridge",
+      "\ud83c\udfaf",
+      "sba-04:",
+      "range",
+      "optimization",
+      "&amp;",
+      "complementary",
+      "angles",
+      "\ud83e\udded",
+      "sba-05:",
+      "velocity",
+      "vector",
+      "at",
+      "any",
+      "instant",
+      "\ud83d\udcc9",
+      "sba-06:",
+      "describe",
+      "path",
+      "without",
+      "time",
+      "(trajectory",
+      "equation)",
+      "\ud83c\udfe2",
+      "sba-07:",
+      "launch",
+      "from",
+      "height",
+      "&amp;",
+      "horizontal",
+      "projection",
+      "\u26f0\ufe0f",
+      "sba-21:",
+      "projectile",
+      "meets",
+      "a",
+      "sloping"
     ]
   },
   {
-    "title": "GRADE9V3 CANONICAL QUESTION BANK \u00b7 Expanded Reference v2 & Selected D3/D4",
+    "title": "Construction",
+    "path": "standalone/practice/core1a-vector-add-sub-tablet.html",
+    "kind": "learn",
+    "keywords": [
+      "construction",
+      "vector",
+      "addition,",
+      "subtraction",
+      "and",
+      "orientation",
+      "impose",
+      "a",
+      "component",
+      "constraint",
+      "on",
+      "a",
+      "resultant",
+      "add",
+      "vectors",
+      "by",
+      "corresponding",
+      "signed",
+      "components",
+      "operand",
+      "order",
+      "reverses",
+      "a",
+      "subtraction",
+      "result",
+      "resolve",
+      "magnitude-and-angle",
+      "vectors",
+      "into",
+      "signed",
+      "perpendicular",
+      "components",
+      "vectors",
+      "vector",
+      "resolution",
+      "of",
+      "vectors",
+      "vector",
+      "components",
+      "unit",
+      "vector",
+      "dot",
+      "product",
+      "cross",
+      "product",
+      "phy.vectors",
+      "mic-phy-vec-addition",
+      "physics",
+      "core",
+      "1a"
+    ]
+  },
+  {
+    "title": "Expanded Reference v2 & Selected D3/D4 | 12.7\" Tablet Standalone Edition",
     "path": "standalone/practice/core2-canonical-question-bank-tablet.html",
     "kind": "practice",
     "keywords": [
-      "grade9v3",
-      "canonical",
-      "question",
-      "bank",
-      "\u00b7",
       "expanded",
       "reference",
       "v2",
       "&",
       "selected",
       "d3/d4",
-      "common"
+      "|",
+      "12.7\"",
+      "tablet",
+      "standalone",
+      "edition",
+      "common",
+      "core",
+      "2",
+      "challenge",
+      "core_2"
     ]
   },
   {
-    "title": "GRADE 9 CHEMISTRY - Behaviour of Gases Core (2) NCERT Question Helper",
+    "title": "Behaviour of Gases Core (2) NCERT Question Helper | 12.7\" Tablet Standalone Edition",
     "path": "standalone/practice/core2-chemistry-behaviour-of-gases-tablet.html",
     "kind": "practice",
     "keywords": [
-      "grade",
-      "9",
-      "chemistry",
-      "-",
       "behaviour",
       "of",
       "gases",
@@ -17241,20 +20521,55 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "ncert",
       "question",
       "helper",
-      "chem.gases",
-      "mic-chem-gas-laws",
-      "chemistry"
+      "|",
+      "12.7\"",
+      "tablet",
+      "standalone",
+      "edition",
+      "behaviour",
+      "of",
+      "gases:",
+      "ncert",
+      "question",
+      "helper",
+      "&amp;",
+      "transfer",
+      "gases",
+      "behaviour",
+      "of",
+      "gases",
+      "behavior",
+      "of",
+      "gases",
+      "gaseous",
+      "state",
+      "gas",
+      "laws",
+      "ideal",
+      "gas",
+      "boyle",
+      "boyle's",
+      "law",
+      "charles",
+      "charles'",
+      "law",
+      "kinetic",
+      "theory",
+      "kinetic",
+      "theory",
+      "of",
+      "gases",
+      "ktg",
+      "van",
+      "der",
+      "waals"
     ]
   },
   {
-    "title": "GRADE 9 CHEMISTRY - Chemical Bonding Core (2) NCERT Question Helper",
+    "title": "Chemical Bonding Core (2) NCERT Question Helper | 12.7\" Tablet Standalone Edition",
     "path": "standalone/practice/core2-chemistry-chemical-bonding-tablet.html",
     "kind": "practice",
     "keywords": [
-      "grade",
-      "9",
-      "chemistry",
-      "-",
       "chemical",
       "bonding",
       "core",
@@ -17262,20 +20577,56 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "ncert",
       "question",
       "helper",
-      "chem.bonding",
-      "mic-chem-bonding",
-      "chemistry"
+      "|",
+      "12.7\"",
+      "tablet",
+      "standalone",
+      "edition",
+      "\ud83d\udcda",
+      "chemical",
+      "bonding",
+      "core",
+      "(2)",
+      "ncert",
+      "question",
+      "helper",
+      "\u26a1",
+      "part",
+      "1:",
+      "electronic",
+      "configuration",
+      "&",
+      "valence",
+      "shell",
+      "\u26a1",
+      "part",
+      "2:",
+      "valency,",
+      "duplet",
+      "&",
+      "octet",
+      "\u26a1",
+      "part",
+      "3:",
+      "ions",
+      "&",
+      "electron",
+      "transfer",
+      "\u26a1",
+      "part",
+      "4:",
+      "ionic",
+      "compounds",
+      "&",
+      "formula",
+      "units"
     ]
   },
   {
-    "title": "GRADE 9 CHEMISTRY - Redox Reactions Core (2) NCERT Question Helper",
+    "title": "Redox Reactions Core (2) NCERT Question Helper | 12.7\" Tablet Standalone Edition",
     "path": "standalone/practice/core2-chemistry-redox-reactions-tablet.html",
     "kind": "practice",
     "keywords": [
-      "grade",
-      "9",
-      "chemistry",
-      "-",
       "redox",
       "reactions",
       "core",
@@ -17283,20 +20634,56 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "ncert",
       "question",
       "helper",
-      "chem.redox",
-      "mic-chem-redox",
-      "chemistry"
+      "|",
+      "12.7\"",
+      "tablet",
+      "standalone",
+      "edition",
+      "\ud83d\udcda",
+      "redox",
+      "reactions",
+      "core",
+      "(2)",
+      "question",
+      "helper",
+      "\u26a1",
+      "part",
+      "1:",
+      "chemical",
+      "change,",
+      "oxidation",
+      "&",
+      "corrosion",
+      "\u26a1",
+      "part",
+      "2:",
+      "oxidation",
+      "&",
+      "reduction",
+      "tracking",
+      "\u26a1",
+      "part",
+      "3:",
+      "reducing",
+      "/",
+      "oxidising",
+      "agents",
+      "\u26a1",
+      "part",
+      "4:",
+      "displacement",
+      "&",
+      "competitive",
+      "redox",
+      "\u26a1",
+      "part"
     ]
   },
   {
-    "title": "GRADE 9 CHEMISTRY - Some Basic Concepts & Mole Concept Core (2) NCERT Helper",
+    "title": "Some Basic Concepts & Mole Concept Core (2) NCERT Helper | 12.7\" Tablet Standalone Edition",
     "path": "standalone/practice/core2-chemistry-some-basic-concepts-tablet.html",
     "kind": "practice",
     "keywords": [
-      "grade",
-      "9",
-      "chemistry",
-      "-",
       "some",
       "basic",
       "concepts",
@@ -17307,20 +20694,53 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "(2)",
       "ncert",
       "helper",
-      "chem.mole",
-      "mic-chem-mole-concept",
-      "chemistry"
+      "|",
+      "12.7\"",
+      "tablet",
+      "standalone",
+      "edition",
+      "\ud83d\udcda",
+      "ncert",
+      "question",
+      "helper",
+      "&amp;",
+      "transfer",
+      "bank",
+      "\u26a1",
+      "part",
+      "1:",
+      "measurement",
+      "&",
+      "unit",
+      "discipline",
+      "\u26a1",
+      "part",
+      "2:",
+      "matter,",
+      "compounds",
+      "&",
+      "chemical",
+      "laws",
+      "\u26a1",
+      "part",
+      "3:",
+      "chemical",
+      "language",
+      "&",
+      "formulas",
+      "\u26a1",
+      "part",
+      "4:",
+      "relative",
+      "mass",
+      "&"
     ]
   },
   {
-    "title": "GRADE 9 MATHEMATICS - Euclid's Geometry Core (2) NCERT Question Helper & Transfer",
+    "title": "Euclid's Geometry Core (2) NCERT Question Helper & Transfer | 12.7\" Tablet Standalone Edition",
     "path": "standalone/practice/core2-mathematics-euclids-geometry-tablet.html",
     "kind": "practice",
     "keywords": [
-      "grade",
-      "9",
-      "mathematics",
-      "-",
       "euclid's",
       "geometry",
       "core",
@@ -17330,20 +20750,45 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "helper",
       "&",
       "transfer",
+      "|",
+      "12.7\"",
+      "tablet",
+      "standalone",
+      "edition",
+      "introduction",
+      "to",
+      "euclid's",
+      "geometry:",
+      "source",
+      "transfer",
+      "+",
+      "core",
+      "1",
+      "recovery",
+      "euclids-geometry",
+      "euclid",
+      "euclid's",
+      "geometry",
+      "euclidean",
+      "geometry",
+      "axioms",
+      "postulates",
+      "deductive",
+      "proofs",
       "math.euclids-geometry",
       "mic-math-euclid-geometry",
-      "mathematics"
+      "mathematics",
+      "core",
+      "2",
+      "challenge",
+      "core_2"
     ]
   },
   {
-    "title": "GRADE 9 MATHEMATICS - Theory of Equations Core (2) Challenge Practice",
+    "title": "Theory of Equations Core (2) Challenge Practice | 12.7\" Tablet Standalone Edition",
     "path": "standalone/practice/core2-mathematics-theory-of-equations-tablet.html",
     "kind": "practice",
     "keywords": [
-      "grade",
-      "9",
-      "mathematics",
-      "-",
       "theory",
       "of",
       "equations",
@@ -17351,20 +20796,49 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "(2)",
       "challenge",
       "practice",
+      "|",
+      "12.7\"",
+      "tablet",
+      "standalone",
+      "edition",
+      "theory",
+      "of",
+      "equations:",
+      "source",
+      "practice",
+      "+",
+      "worked",
+      "mathematics",
+      "theory-of-equations",
+      "theory",
+      "of",
+      "equations",
+      "polynomial",
+      "roots",
+      "vieta",
+      "vieta's",
+      "relations",
+      "vieta",
+      "formulas",
+      "quadratic",
+      "roots",
+      "roots",
+      "of",
+      "equations",
       "math.theory-of-equations",
       "mic-math-theory-of-equations",
-      "mathematics"
+      "mathematics",
+      "core",
+      "2",
+      "challenge",
+      "core_2"
     ]
   },
   {
-    "title": "GRADE 9 PHYSICS - Motion in 1D Core (2) Challenge Suite",
+    "title": "Motion in 1D Core (2) Challenge Suite | 12.7\" Tablet Standalone Edition",
     "path": "standalone/practice/core2-motion-1d-straight-line-tablet.html",
     "kind": "practice",
     "keywords": [
-      "grade",
-      "9",
-      "physics",
-      "-",
       "motion",
       "in",
       "1d",
@@ -17372,28 +20846,103 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "(2)",
       "challenge",
       "suite",
-      "phy.motion-1d",
-      "mic-phy-kin-1d-motion",
-      "physics"
+      "|",
+      "12.7\"",
+      "tablet",
+      "standalone",
+      "edition",
+      "\ud83c\udfce\ufe0f",
+      "motion",
+      "in",
+      "1d",
+      "foundations",
+      "(core",
+      "1)",
+      "motion",
+      "1d",
+      "01",
+      "-",
+      "distance",
+      "and",
+      "displacement",
+      "motion",
+      "1d",
+      "02",
+      "-",
+      "average",
+      "speed",
+      "and",
+      "average",
+      "velocity",
+      "motion",
+      "1d",
+      "03",
+      "-",
+      "equal-time",
+      "and",
+      "equal-distance",
+      "weighting",
+      "motion",
+      "1d",
+      "04",
+      "-",
+      "velocity",
+      "sign,",
+      "acceleration"
     ]
   },
   {
-    "title": "GRADE 9 PHYSICS - Motion Consolidated Student Practice Edition",
+    "title": "Motion Consolidated Student Practice Edition | 12.7\" Tablet Standalone Edition",
     "path": "standalone/practice/core2-motion-consolidated-practice-tablet.html",
     "kind": "practice",
     "keywords": [
-      "grade",
-      "9",
-      "physics",
-      "-",
       "motion",
       "consolidated",
       "student",
       "practice",
       "edition",
+      "|",
+      "12.7\"",
+      "tablet",
+      "standalone",
+      "edition",
+      "\ud83c\udfaf",
+      "1d",
+      "&amp;",
+      "2d",
+      "motion",
+      "consolidated",
+      "practice",
+      "bank",
+      "motion-2d",
+      "motion",
+      "in",
+      "2d",
+      "motion",
+      "in",
+      "a",
+      "plane",
+      "projectile",
+      "projectile",
+      "motion",
+      "trajectory",
+      "horizontal",
+      "projectile",
+      "circular",
+      "motion",
+      "relative",
+      "velocity",
+      "range",
+      "time",
+      "of",
+      "flight",
       "phy.motion-2d",
       "mic-phy-kin-2d-independent-components",
-      "physics"
+      "physics",
+      "core",
+      "2",
+      "challenge",
+      "core_2"
     ]
   },
   {
@@ -17404,20 +20953,110 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "core",
       "(2)",
       "v2",
-      "phy.motion-2d",
-      "mic-phy-kin-2d-independent-components",
-      "physics"
+      "velocity",
+      "geometry",
+      "time",
+      "of",
+      "flight",
+      "from",
+      "height",
+      "horizontal",
+      "launch",
+      "horizontal",
+      "launch",
+      "to",
+      "a",
+      "target",
+      "wall-clearance",
+      "event",
+      "timing",
+      "same-height",
+      "range",
+      "equal",
+      "flight",
+      "time",
+      "horizontal",
+      "launch",
+      "geometry",
+      "launch",
+      "from",
+      "a",
+      "tower",
+      "velocity",
+      "components",
+      "velocity",
+      "direction",
+      "maximum",
+      "range",
+      "and",
+      "components",
+      "perpendicular",
+      "velocity",
+      "minimum",
+      "and",
+      "maximum",
+      "projectile",
+      "speed",
+      "moving",
+      "launch",
+      "source"
     ]
   },
   {
-    "title": "Construction",
+    "title": "Construction \u00b7 Thrust and Pressure",
     "path": "standalone/practice/core2-physics-thrust-pressure-tablet.html",
     "kind": "practice",
     "keywords": [
       "construction",
-      "phy.fluids",
-      "mic-phy-fluids-thrust-pressure",
-      "physics"
+      "\u00b7",
+      "thrust",
+      "and",
+      "pressure",
+      "thrust",
+      "and",
+      "pressure",
+      "thrust",
+      "belongs",
+      "to",
+      "a",
+      "chosen",
+      "interface,",
+      "not",
+      "to",
+      "an",
+      "isolated",
+      "force",
+      "arrow",
+      "n",
+      "=",
+      "mg",
+      "is",
+      "a",
+      "result",
+      "with",
+      "conditions,",
+      "not",
+      "the",
+      "definition",
+      "of",
+      "thrust",
+      "average",
+      "pressure",
+      "depends",
+      "on",
+      "total",
+      "normal",
+      "thrust",
+      "and",
+      "actual",
+      "loaded",
+      "area",
+      "similar",
+      "objects",
+      "make",
+      "weight",
+      "and",
+      "contact"
     ]
   },
   {
@@ -17427,9 +21066,36 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
     "keywords": [
       "projectile",
       "motion",
+      "${esc(record.stem)}",
+      "motion-2d",
+      "motion",
+      "in",
+      "2d",
+      "motion",
+      "in",
+      "a",
+      "plane",
+      "projectile",
+      "projectile",
+      "motion",
+      "trajectory",
+      "horizontal",
+      "projectile",
+      "circular",
+      "motion",
+      "relative",
+      "velocity",
+      "range",
+      "time",
+      "of",
+      "flight",
       "phy.motion-2d",
       "mic-phy-kin-2d-independent-components",
-      "physics"
+      "physics",
+      "core",
+      "2",
+      "challenge",
+      "core_2"
     ]
   },
   {
@@ -17442,9 +21108,51 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "one",
       "dimension",
-      "phy.motion-1d",
-      "mic-phy-kin-1d-motion",
-      "physics"
+      "displacement",
+      "vs",
+      "distance",
+      "\u00b7",
+      "odometer",
+      "&",
+      "turning",
+      "point",
+      "engine",
+      "moving",
+      "platform",
+      "inheritance",
+      "\u00b7",
+      "rising",
+      "balloon",
+      "&amp;",
+      "stone",
+      "ejection",
+      "graph",
+      "transformations",
+      "\u00b7",
+      "v-x",
+      "to",
+      "a-x",
+      "spatial",
+      "calculus",
+      "rig",
+      "stroboscopic",
+      "spacing",
+      "\u00b7",
+      "galileo's",
+      "odd-number",
+      "invariant",
+      "multi-phase",
+      "braking",
+      "\u00b7",
+      "paratrooper",
+      "&amp;",
+      "piecewise",
+      "boundary",
+      "matcher",
+      "1d",
+      "relative",
+      "pursuit",
+      "\u00b7"
     ]
   },
   {
@@ -17455,9 +21163,53 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "motions",
       "in",
       "2d",
-      "phy.motion-2d",
-      "mic-phy-kin-2d-independent-components",
-      "physics"
+      "2d",
+      "master",
+      "trajectory",
+      "canvas",
+      "independent",
+      "components,",
+      "one",
+      "shared",
+      "clock",
+      "the",
+      "event",
+      "clock:",
+      "events",
+      "own",
+      "the",
+      "time",
+      "is",
+      "it",
+      "really",
+      "a",
+      "projectile?",
+      "contact",
+      "constraints",
+      "vs",
+      "free",
+      "flight",
+      "the",
+      "apex",
+      "fallacy:",
+      "v_y",
+      "=",
+      "0",
+      "&ne;",
+      "a",
+      "=",
+      "0",
+      "complementary",
+      "trajectories:",
+      "\u03b8",
+      "&amp;",
+      "90\u00b0",
+      "&minus;",
+      "\u03b8",
+      "dual",
+      "dance",
+      "elevated",
+      "landings"
     ]
   },
   {
@@ -17469,9 +21221,859 @@ window.GRADE9_SITE_SEARCH_RESOURCES = [
       "in",
       "a",
       "plane",
-      "phy.motion-2d",
-      "mic-phy-kin-2d-independent-components",
-      "physics"
+      "governing",
+      "idea",
+      "&",
+      "orthogonal",
+      "independence",
+      "scanned",
+      "illustration",
+      "1",
+      "walkthrough",
+      "curved",
+      "road",
+      "banking",
+      "dynamics",
+      "(figure",
+      "4.57)",
+      "active",
+      "recall",
+      "task:",
+      "the",
+      "independent",
+      "velocity",
+      "principle",
+      "practice",
+      "problem",
+      "with",
+      "progressive",
+      "hint",
+      "ladder",
+      "motion-2d",
+      "motion",
+      "in",
+      "2d",
+      "motion",
+      "in",
+      "a",
+      "plane",
+      "projectile",
+      "projectile",
+      "motion",
+      "trajectory",
+      "horizontal",
+      "projectile",
+      "circular",
+      "motion",
+      "relative",
+      "velocity"
+    ]
+  },
+  {
+    "title": "IIT-JEE Vector Algebra",
+    "path": "standalone/practice/vector-algebra-3d-master-suite.html",
+    "kind": "practice",
+    "keywords": [
+      "iit-jee",
+      "vector",
+      "algebra",
+      "3d",
+      "vector",
+      "basis",
+      "\u00b7",
+      "free",
+      "vectors",
+      "&amp;",
+      "direction",
+      "cosines",
+      "dot",
+      "product",
+      "&amp;",
+      "gram-schmidt",
+      "decomposition",
+      "cross",
+      "product",
+      "\u00b7",
+      "normal",
+      "vector",
+      "&amp;",
+      "geometric",
+      "areas",
+      "triple",
+      "products",
+      "\u00b7",
+      "parallelepiped",
+      "volume",
+      "&amp;",
+      "coplanarity",
+      "collapse",
+      "vector",
+      "triple",
+      "product",
+      "\u00b7",
+      "the",
+      "bac-cab",
+      "non-associativity",
+      "rig",
+      "vector",
+      "equations",
+      "deconstruction",
+      "\u00b7",
+      "r",
+      "\u00d7",
+      "a",
+      "=",
+      "b"
+    ]
+  },
+  {
+    "title": "Apply constant-acceleration kinematics component by component",
+    "path": "question-bank/index.html?subtopic=CAP-KIN-2D-CONSTANT-ACCELERATION",
+    "kind": "subtopic",
+    "keywords": [
+      "subtopic",
+      "capability",
+      "apply",
+      "constant-acceleration",
+      "kinematics",
+      "component",
+      "by",
+      "component",
+      "physics",
+      "cap-kin-2d-constant-acceleration"
+    ]
+  },
+  {
+    "title": "Split one plane-motion event into independent x/y components with one clock",
+    "path": "question-bank/index.html?subtopic=CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+    "kind": "subtopic",
+    "keywords": [
+      "subtopic",
+      "capability",
+      "split",
+      "one",
+      "plane-motion",
+      "event",
+      "into",
+      "independent",
+      "x/y",
+      "components",
+      "with",
+      "one",
+      "clock",
+      "physics",
+      "cap-kin-2d-independent-components"
+    ]
+  },
+  {
+    "title": "Select the gravity-only projectile model before using projectile consequences",
+    "path": "question-bank/index.html?subtopic=CAP-KIN-PROJECTILE-MODEL",
+    "kind": "subtopic",
+    "keywords": [
+      "subtopic",
+      "capability",
+      "select",
+      "the",
+      "gravity-only",
+      "projectile",
+      "model",
+      "before",
+      "using",
+      "projectile",
+      "consequences",
+      "physics",
+      "cap-kin-projectile-model"
+    ]
+  },
+  {
+    "title": "A linear equation in one variable is true only for its solutions: test a value by evaluating the LHS and the RHS",
+    "path": "question-bank/index.html?subtopic=CAP-MAT-LEQ-01-SUBSTITUTION-CHECK",
+    "kind": "subtopic",
+    "keywords": [
+      "subtopic",
+      "capability",
+      "a",
+      "linear",
+      "equation",
+      "in",
+      "one",
+      "variable",
+      "is",
+      "true",
+      "only",
+      "for",
+      "its",
+      "solutions:",
+      "test",
+      "a",
+      "value",
+      "by",
+      "evaluating",
+      "the",
+      "lhs",
+      "and",
+      "the",
+      "rhs",
+      "mathematics",
+      "cap-mat-leq-01-substitution-check"
+    ]
+  },
+  {
+    "title": "Solving an equation with the variable on both sides: the same operation on both sides, and transposing a variable term like a number",
+    "path": "question-bank/index.html?subtopic=CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES",
+    "kind": "subtopic",
+    "keywords": [
+      "subtopic",
+      "capability",
+      "solving",
+      "an",
+      "equation",
+      "with",
+      "the",
+      "variable",
+      "on",
+      "both",
+      "sides:",
+      "the",
+      "same",
+      "operation",
+      "on",
+      "both",
+      "sides,",
+      "and",
+      "transposing",
+      "a",
+      "variable",
+      "term",
+      "like",
+      "a",
+      "number",
+      "mathematics",
+      "cap-mat-leq-02-same-operation-both-sides"
+    ]
+  },
+  {
+    "title": "Reducing an equation to simpler form: opening brackets, combining like terms and clearing denominators before solving",
+    "path": "question-bank/index.html?subtopic=CAP-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+    "kind": "subtopic",
+    "keywords": [
+      "subtopic",
+      "capability",
+      "reducing",
+      "an",
+      "equation",
+      "to",
+      "simpler",
+      "form:",
+      "opening",
+      "brackets,",
+      "combining",
+      "like",
+      "terms",
+      "and",
+      "clearing",
+      "denominators",
+      "before",
+      "solving",
+      "mathematics",
+      "cap-mat-leq-03-reduce-to-simpler-form"
+    ]
+  },
+  {
+    "title": "Linear equations in two variables: the form ax + by + c = 0, infinitely many solution pairs, and the straight-line graph",
+    "path": "question-bank/index.html?subtopic=CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS",
+    "kind": "subtopic",
+    "keywords": [
+      "subtopic",
+      "capability",
+      "linear",
+      "equations",
+      "in",
+      "two",
+      "variables:",
+      "the",
+      "form",
+      "ax",
+      "+",
+      "by",
+      "+",
+      "c",
+      "=",
+      "0,",
+      "infinitely",
+      "many",
+      "solution",
+      "pairs,",
+      "and",
+      "the",
+      "straight-line",
+      "graph",
+      "mathematics",
+      "cap-mat-leq-04-two-variable-solutions"
+    ]
+  },
+  {
+    "title": "Connected bodies and a justified common acceleration",
+    "path": "question-bank/index.html?subtopic=CAP-NLM-CONNECTED-COMMON-ACCEL",
+    "kind": "subtopic",
+    "keywords": [
+      "subtopic",
+      "capability",
+      "connected",
+      "bodies",
+      "and",
+      "a",
+      "justified",
+      "common",
+      "acceleration",
+      "physics",
+      "cap-nlm-connected-common-accel"
+    ]
+  },
+  {
+    "title": "A free-body diagram belongs to one chosen body",
+    "path": "question-bank/index.html?subtopic=CAP-NLM-FBD-BODY-OWNERSHIP",
+    "kind": "subtopic",
+    "keywords": [
+      "subtopic",
+      "capability",
+      "a",
+      "free-body",
+      "diagram",
+      "belongs",
+      "to",
+      "one",
+      "chosen",
+      "body",
+      "physics",
+      "cap-nlm-fbd-body-ownership"
+    ]
+  },
+  {
+    "title": "Nonzero forces can cancel",
+    "path": "question-bank/index.html?subtopic=CAP-NLM-FORCES-SUM-ZERO",
+    "kind": "subtopic",
+    "keywords": [
+      "subtopic",
+      "capability",
+      "nonzero",
+      "forces",
+      "can",
+      "cancel",
+      "physics",
+      "cap-nlm-forces-sum-zero"
+    ]
+  },
+  {
+    "title": "An accelerating observer needs a declared pseudo-force convention",
+    "path": "question-bank/index.html?subtopic=CAP-NLM-FRAME-CHOICE",
+    "kind": "subtopic",
+    "keywords": [
+      "subtopic",
+      "capability",
+      "an",
+      "accelerating",
+      "observer",
+      "needs",
+      "a",
+      "declared",
+      "pseudo-force",
+      "convention",
+      "physics",
+      "cap-nlm-frame-choice"
+    ]
+  },
+  {
+    "title": "Friction opposes relative sliding at a contact",
+    "path": "question-bank/index.html?subtopic=CAP-NLM-FRICTION",
+    "kind": "subtopic",
+    "keywords": [
+      "subtopic",
+      "capability",
+      "friction",
+      "opposes",
+      "relative",
+      "sliding",
+      "at",
+      "a",
+      "contact",
+      "physics",
+      "cap-nlm-friction"
+    ]
+  },
+  {
+    "title": "Quantitative static and kinetic friction conditions",
+    "path": "question-bank/index.html?subtopic=CAP-NLM-FRICTION-QUANT",
+    "kind": "subtopic",
+    "keywords": [
+      "subtopic",
+      "capability",
+      "quantitative",
+      "static",
+      "and",
+      "kinetic",
+      "friction",
+      "conditions",
+      "physics",
+      "cap-nlm-friction-quant"
+    ]
+  },
+  {
+    "title": "Ideal-string tension belongs to each body-specific FBD",
+    "path": "question-bank/index.html?subtopic=CAP-NLM-IDEAL-STRING-TENSION",
+    "kind": "subtopic",
+    "keywords": [
+      "subtopic",
+      "capability",
+      "ideal-string",
+      "tension",
+      "belongs",
+      "to",
+      "each",
+      "body-specific",
+      "fbd",
+      "physics",
+      "cap-nlm-ideal-string-tension"
+    ]
+  },
+  {
+    "title": "Net force, not any one force, sets acceleration",
+    "path": "question-bank/index.html?subtopic=CAP-NLM-SECOND-LAW",
+    "kind": "subtopic",
+    "keywords": [
+      "subtopic",
+      "capability",
+      "net",
+      "force,",
+      "not",
+      "any",
+      "one",
+      "force,",
+      "sets",
+      "acceleration",
+      "physics",
+      "cap-nlm-second-law"
+    ]
+  },
+  {
+    "title": "Third-law partner forces act on different bodies",
+    "path": "question-bank/index.html?subtopic=CAP-NLM-THIRD-LAW",
+    "kind": "subtopic",
+    "keywords": [
+      "subtopic",
+      "capability",
+      "third-law",
+      "partner",
+      "forces",
+      "act",
+      "on",
+      "different",
+      "bodies",
+      "physics",
+      "cap-nlm-third-law"
+    ]
+  },
+  {
+    "title": "From relative position to relative velocity",
+    "path": "question-bank/index.html?subtopic=CAP-RELATIVE-V",
+    "kind": "subtopic",
+    "keywords": [
+      "subtopic",
+      "capability",
+      "from",
+      "relative",
+      "position",
+      "to",
+      "relative",
+      "velocity",
+      "physics",
+      "cap-relative-v"
+    ]
+  },
+  {
+    "title": "Position measured from the other object",
+    "path": "question-bank/index.html?subtopic=CAP-SAME-TIME",
+    "kind": "subtopic",
+    "keywords": [
+      "subtopic",
+      "capability",
+      "position",
+      "measured",
+      "from",
+      "the",
+      "other",
+      "object",
+      "physics",
+      "cap-same-time"
+    ]
+  },
+  {
+    "title": "Behaviour of Gases",
+    "path": "question-bank/index.html?topic=TOPIC-CHEMISTRY-BEHAVIOUR-OF-GASES",
+    "kind": "topic",
+    "keywords": [
+      "topic",
+      "behaviour",
+      "of",
+      "gases",
+      "gases",
+      "behaviour",
+      "of",
+      "gases",
+      "behavior",
+      "of",
+      "gases",
+      "gaseous",
+      "state",
+      "gas",
+      "laws",
+      "ideal",
+      "gas",
+      "boyle",
+      "boyle's",
+      "law",
+      "charles",
+      "charles'",
+      "law",
+      "kinetic",
+      "theory",
+      "kinetic",
+      "theory",
+      "of",
+      "gases",
+      "ktg",
+      "van",
+      "der",
+      "waals",
+      "compressibility",
+      "factor",
+      "real",
+      "gases",
+      "chemistry",
+      "topic-chemistry-behaviour-of-gases"
+    ]
+  },
+  {
+    "title": "Chemical Bonding",
+    "path": "question-bank/index.html?topic=TOPIC-CHEMISTRY-CHEMICAL-BONDING",
+    "kind": "topic",
+    "keywords": [
+      "topic",
+      "chemical",
+      "bonding",
+      "bonding",
+      "chemical",
+      "bonding",
+      "molecular",
+      "structure",
+      "chemical",
+      "bonding",
+      "and",
+      "molecular",
+      "structure",
+      "vsepr",
+      "lewis",
+      "structure",
+      "lewis",
+      "dot",
+      "hybridization",
+      "dipole",
+      "moment",
+      "covalent",
+      "ionic",
+      "bond",
+      "hydrogen",
+      "bond",
+      "chemistry",
+      "topic-chemistry-chemical-bonding"
+    ]
+  },
+  {
+    "title": "Mole Concept",
+    "path": "question-bank/index.html?topic=TOPIC-CHEMISTRY-MOLE-CONCEPT",
+    "kind": "topic",
+    "keywords": [
+      "topic",
+      "mole",
+      "concept",
+      "mole",
+      "mole",
+      "concept",
+      "stoichiometry",
+      "molar",
+      "mass",
+      "avogadro",
+      "limiting",
+      "reagent",
+      "empirical",
+      "formula",
+      "molecular",
+      "formula",
+      "some",
+      "basic",
+      "concepts",
+      "of",
+      "chemistry",
+      "concentration",
+      "molarity",
+      "chemistry",
+      "topic-chemistry-mole-concept"
+    ]
+  },
+  {
+    "title": "Redox Reactions",
+    "path": "question-bank/index.html?topic=TOPIC-CHEMISTRY-REDOX-REACTIONS",
+    "kind": "topic",
+    "keywords": [
+      "topic",
+      "redox",
+      "reactions",
+      "redox",
+      "redox",
+      "reactions",
+      "oxidation",
+      "reduction",
+      "oxidation",
+      "state",
+      "oxidation",
+      "states",
+      "oxidation",
+      "number",
+      "half",
+      "reaction",
+      "half-reaction",
+      "disproportionation",
+      "electron",
+      "transfer",
+      "oxidizing",
+      "agent",
+      "reducing",
+      "agent",
+      "chemistry",
+      "topic-chemistry-redox-reactions"
+    ]
+  },
+  {
+    "title": "Some Basic Concepts of Chemistry / Mole Concept / Stoichiometry",
+    "path": "question-bank/index.html?topic=TOPIC-CHEMISTRY-SOME-BASIC-CONCEPTS-OF-CHEMISTRY-MOLE-CONCEPT-STOICHIOMETRY",
+    "kind": "topic",
+    "keywords": [
+      "topic",
+      "some",
+      "basic",
+      "concepts",
+      "of",
+      "chemistry",
+      "/",
+      "mole",
+      "concept",
+      "/",
+      "stoichiometry",
+      "mole",
+      "mole",
+      "concept",
+      "stoichiometry",
+      "molar",
+      "mass",
+      "avogadro",
+      "limiting",
+      "reagent",
+      "empirical",
+      "formula",
+      "molecular",
+      "formula",
+      "some",
+      "basic",
+      "concepts",
+      "of",
+      "chemistry",
+      "concentration",
+      "molarity",
+      "chemistry",
+      "topic-chemistry-some-basic-concepts-of-chemistry-mole-concept-stoichiometry"
+    ]
+  },
+  {
+    "title": "Linear Equations in One Variable",
+    "path": "question-bank/index.html?topic=TOPIC-MATHEMATICS-LINEAR-EQUATIONS",
+    "kind": "topic",
+    "keywords": [
+      "topic",
+      "linear",
+      "equations",
+      "in",
+      "one",
+      "variable",
+      "linear",
+      "equations",
+      "linear",
+      "equations",
+      "in",
+      "one",
+      "variable",
+      "linear",
+      "equation",
+      "substitution",
+      "check",
+      "transposing",
+      "terms",
+      "mathematics",
+      "topic-mathematics-linear-equations"
+    ]
+  },
+  {
+    "title": "Motion in 1D",
+    "path": "question-bank/index.html?topic=TOPIC-PHYSICS-MOTION-IN-1D",
+    "kind": "topic",
+    "keywords": [
+      "topic",
+      "motion",
+      "in",
+      "1d",
+      "motion-1d",
+      "motion",
+      "in",
+      "1d",
+      "motion",
+      "in",
+      "a",
+      "straight",
+      "line",
+      "kinematics",
+      "rectilinear",
+      "motion",
+      "straight",
+      "line",
+      "acceleration",
+      "velocity",
+      "displacement",
+      "position",
+      "time",
+      "velocity",
+      "time",
+      "equations",
+      "of",
+      "motion",
+      "physics",
+      "topic-physics-motion-in-1d"
+    ]
+  },
+  {
+    "title": "Motion in 1D \u2014 relative motion only",
+    "path": "question-bank/index.html?topic=TOPIC-PHYSICS-MOTION-IN-1D-RELATIVE-MOTION-ONLY",
+    "kind": "topic",
+    "keywords": [
+      "topic",
+      "motion",
+      "in",
+      "1d",
+      "\u2014",
+      "relative",
+      "motion",
+      "only",
+      "physics",
+      "topic-physics-motion-in-1d-relative-motion-only"
+    ]
+  },
+  {
+    "title": "Motion in 2D",
+    "path": "question-bank/index.html?topic=TOPIC-PHYSICS-MOTION-IN-2D",
+    "kind": "topic",
+    "keywords": [
+      "topic",
+      "motion",
+      "in",
+      "2d",
+      "motion-2d",
+      "motion",
+      "in",
+      "2d",
+      "motion",
+      "in",
+      "a",
+      "plane",
+      "projectile",
+      "projectile",
+      "motion",
+      "trajectory",
+      "horizontal",
+      "projectile",
+      "circular",
+      "motion",
+      "relative",
+      "velocity",
+      "range",
+      "time",
+      "of",
+      "flight",
+      "physics",
+      "topic-physics-motion-in-2d"
+    ]
+  },
+  {
+    "title": "Motion in 2D / Motion in a Plane \u2014 linear/projectile only",
+    "path": "question-bank/index.html?topic=TOPIC-PHYSICS-MOTION-IN-2D-MOTION-IN-A-PLANE-LINEAR-PROJECTILE-ONLY",
+    "kind": "topic",
+    "keywords": [
+      "topic",
+      "motion",
+      "in",
+      "2d",
+      "/",
+      "motion",
+      "in",
+      "a",
+      "plane",
+      "\u2014",
+      "linear/projectile",
+      "only",
+      "physics",
+      "topic-physics-motion-in-2d-motion-in-a-plane-linear-projectile-only"
+    ]
+  },
+  {
+    "title": "Newton's Laws of Motion / NLM",
+    "path": "question-bank/index.html?topic=TOPIC-PHYSICS-NEWTON-S-LAWS-OF-MOTION-NLM",
+    "kind": "topic",
+    "keywords": [
+      "topic",
+      "newton's",
+      "laws",
+      "of",
+      "motion",
+      "/",
+      "nlm",
+      "nlm",
+      "newton's",
+      "laws",
+      "newton",
+      "laws",
+      "newton's",
+      "laws",
+      "of",
+      "motion",
+      "laws",
+      "of",
+      "motion",
+      "friction",
+      "static",
+      "friction",
+      "kinetic",
+      "friction",
+      "free",
+      "body",
+      "diagram",
+      "fbd",
+      "inertia",
+      "momentum",
+      "impulse",
+      "pseudo",
+      "force",
+      "tension",
+      "normal",
+      "force",
+      "physics",
+      "topic-physics-newton-s-laws-of-motion-nlm"
     ]
   }
 ];

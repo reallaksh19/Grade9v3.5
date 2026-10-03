@@ -167,6 +167,97 @@ a { color: inherit; text-decoration: none; }
 .g9-header-btn:hover {
   background: var(--border);
 }
+.g9-header-btn.g9-drive-btn {
+  color: var(--text-main);
+  text-decoration: none;
+}
+.g9-header-btn.g9-drive-btn:hover {
+  border-color: #4285f4;
+  background: rgba(66, 133, 244, 0.1);
+  color: #4285f4;
+}
+
+/* Header Dropdown (for Drive PDFs) */
+.g9-header-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.g9-header-dropdown summary {
+  list-style: none;
+}
+.g9-header-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+.g9-header-dropdown[open] .g9-btn-caret {
+  transform: rotate(180deg);
+}
+.g9-btn-caret {
+  font-size: 11px;
+  transition: transform 0.15s ease;
+  margin-left: 2px;
+}
+.g9-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 320px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-hover);
+  padding: 8px 0;
+  z-index: 1000;
+  animation: g9DropIn 0.15s ease-out;
+}
+@keyframes g9DropIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.g9-dropdown-header {
+  padding: 6px 16px 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border);
+}
+.g9-dropdown-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 16px;
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 13.5px;
+  transition: background 0.12s ease;
+}
+.g9-dropdown-item:hover {
+  background: var(--bg-soft);
+  color: var(--accent-learn);
+}
+.g9-dropdown-item .g9-item-icon {
+  font-size: 16px;
+  line-height: 1.3;
+  flex-shrink: 0;
+}
+.g9-dropdown-item strong {
+  display: block;
+  font-weight: 700;
+  font-size: 13.5px;
+}
+.g9-dropdown-item small {
+  display: block;
+  color: var(--text-muted);
+  font-size: 11.5px;
+  word-break: break-all;
+  margin-top: 2px;
+}
+.g9-dropdown-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 6px 0;
+}
 
 /* Breadcrumbs */
 .g9-breadcrumb-bar {
@@ -354,11 +445,17 @@ a { color: inherit; text-decoration: none; }
 .g9-btn-explore:hover { background: #fef3c7; }
 .g9-btn-qb {
   background: var(--bg-soft);
-  color: var(--text-muted);
+  color: var(--text-main);
   border-color: var(--border);
-  margin-left: auto;
 }
 .g9-btn-qb:hover { background: #e2e8f0; color: var(--text-main); }
+.g9-btn-atlas {
+  background: var(--bg-soft);
+  color: var(--text-muted);
+  border-color: var(--border);
+  font-weight: 600;
+}
+.g9-btn-atlas:hover { background: #e2e8f0; color: var(--accent-learn); }
 
 /* Quick Access / QB Callout */
 .g9-qb-banner {
@@ -543,7 +640,7 @@ a { color: inherit; text-decoration: none; }
 """
 
 
-def render_shell(title: str, content: str, breadcrumbs: list[tuple[str, str]] = None, rel_root: str = "") -> str:
+def render_shell(title: str, content: str, breadcrumbs: list[tuple[str, str]] = None, rel_root: str = "", extra_header_actions: str = "") -> str:
     crumbs_html = ""
     if breadcrumbs:
         items = []
@@ -584,8 +681,10 @@ def render_shell(title: str, content: str, breadcrumbs: list[tuple[str, str]] = 
         <a href="{rel_root}chemistry/index.html">Chemistry</a>
         <a href="{rel_root}mathematics/index.html">Mathematics</a>
         <a href="{rel_root}question-bank/index.html">Question Bank</a>
+        <a href="{rel_root}atlas/index.html">Atlas &amp; Rungs</a>
       </nav>
       <div class="g9-header-actions">
+        {extra_header_actions}
         <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search">
           <span class="g9-btn-icon">🔍</span>
           <span class="g9-btn-text">Search</span>
@@ -770,6 +869,250 @@ SUBJECT_EXPLORERS = {
 }
 
 
+TOPIC_DRIVE_PDFS = {
+    "chem.gases": [
+        {
+            "title": "Core 1 Study Guide",
+            "name": "chemistry_core1_behaviour_of_gases_answercheck_rebuild.pdf",
+            "size": "104 KB",
+            "id": "1ZigrQD5EhUoUszUjjj7TEude9qtgJhbT",
+        },
+        {
+            "title": "Core 2 Problem Suite",
+            "name": "chemistry_core2_behaviour_of_gases_answercheck_rebuild.pdf",
+            "size": "1.1 MB",
+            "id": "1qITaK4d98QpVFfdL-oFwxUTdnJW1a6_k",
+        }
+    ],
+    "chem.bonding": [
+        {
+            "title": "Core 2 Problem Suite",
+            "name": "chemistry_core2_chemical_bonding.pdf",
+            "size": "1.6 MB",
+            "id": "1eLXnAeefMFyc5KL4KD18swsUNYEX3SU5",
+        }
+    ],
+    "chem.mole": [
+        {
+            "title": "Core 1 Study Guide",
+            "name": "chemistry_core1_some_basic_concepts_answercheck_rebuild.pdf",
+            "size": "305 KB",
+            "id": "1IHeHI7iTlggO3WYzsAYSo6wzvlmpyW6T",
+        },
+        {
+            "title": "Core 2 Problem Suite",
+            "name": "chemistry_core2_some_basic_concepts_answercheck_rebuild.pdf",
+            "size": "3.0 MB",
+            "id": "1ZqgdPSsx4ZEOerqmw9Dl6nKuwzHF9hqG",
+        }
+    ],
+    "chem.redox": [
+        {
+            "title": "Core 1 Study Guide",
+            "name": "chemistry_core1_redox_reactions.pdf",
+            "size": "135 KB",
+            "id": "1ApxwaUKm8fxFh2CHOk_1Bw2kuP7xoxnz",
+        },
+        {
+            "title": "Core 2 Problem Suite",
+            "name": "chemistry_core2_redox_reactions.pdf",
+            "size": "579 KB",
+            "id": "18Mu0ejUU1486V3Gs0A2aRnipg8JY0Coc",
+        }
+    ],
+    "phy.motion-1d": [
+        {
+            "title": "Core 1 Study Guide",
+            "name": "physics-motion-1d-revised-core1.pdf",
+            "size": "110 KB",
+            "id": "19VYLi4F_aZwMQ70YVG_z-mEcvkzZ_hfx",
+        },
+        {
+            "title": "Core 2 Problem Suite (14 Qs)",
+            "name": "physics-motion-1d-revised-core2.pdf",
+            "size": "140 KB",
+            "id": "1bmpHmcoLEc5Nmoyv9PiSodlRNHolR5-L",
+        },
+        {
+            "title": "Consolidated Practice Sets",
+            "name": "Motion_Grade9_Student_Core_FINAL_Consolidated.pdf",
+            "size": "1.2 MB",
+            "id": "1ZdXT1d8aA-vYRz0uQo_OWe-nk71AzLqn",
+        },
+        {
+            "title": "Difficulty Level Sets",
+            "name": "Motion_Combined_Concept_Difficulty_v6.pdf",
+            "size": "461 KB",
+            "id": "1aEfYToYSvB8Z1dj-v0AAUqebfigWgoYi",
+        }
+    ],
+    "phy.motion-2d": [
+        {
+            "title": "Core 1A Full Combined Study",
+            "name": "core1A-motion-in-a-plane-full-combined-fixed.pdf",
+            "size": "548 KB",
+            "id": "10o2pEXQNApxzn9s-jrR8VNMAUdFCCOHO",
+        },
+        {
+            "title": "Core 2 Comprehensive Practice (v2)",
+            "name": "Emailing physics-motion-2d-revised-core2-v2.pdf",
+            "size": "8.6 MB",
+            "id": "1EoG0kYYuSG67HrihvP3M_HK05qD7enIb",
+        },
+        {
+            "title": "NCERT Core 1 Study",
+            "name": "physics-motion-2d-ncert-revised-core1.pdf",
+            "size": "95 KB",
+            "id": "1i_9Mkv5REW-HUF_xcWMPV783v4h9D78A",
+        },
+        {
+            "title": "NCERT Core 2 Practice",
+            "name": "physics-motion-2d-ncert-revised-core2.pdf",
+            "size": "107 KB",
+            "id": "126MoBNOZUiZ_lNZuFwOwv3hK4RMVCPYa",
+        },
+        {
+            "title": "SBA-06 Trajectory Equations",
+            "name": "M2D-SBA-06-professional-textbook-lossless-v1-1.pdf",
+            "size": "131 KB",
+            "id": "1U68frEgpQ76szu0omNjJEQ75hk0RGqVW",
+        },
+        {
+            "title": "SBA-07 Maximum Height",
+            "name": "M2D-SBA-07-professional-textbook-lossless-v1-1.pdf",
+            "size": "141 KB",
+            "id": "1KoGR37aNjyHTpwRwuWMrEf0SktsxAdjk",
+        },
+        {
+            "title": "SBA Master Invariants",
+            "name": "DOC-20260913-WA0016.pdf",
+            "size": "108 KB",
+            "id": "1QkmPTvky4B3l8j4DsKQMpyIPWtKPDc6y",
+        }
+    ],
+    "phy.nlm": [
+        {
+            "title": "Core 1 Study Guide",
+            "name": "physics-nlm-revised-core1.pdf",
+            "size": "103 KB",
+            "id": "1jz2v_6oxak0LSWj2o-hYINIHoJOXl0zD",
+        },
+        {
+            "title": "Core 2 Problem Suite",
+            "name": "physics-nlm-revised-core2.pdf",
+            "size": "172 KB",
+            "id": "1gKA0mLn6lhtRcQQ3dFFcUM-BcWatEl64",
+        }
+    ],
+    "phy.vectors": [
+        {
+            "title": "Core 1 Study Guide",
+            "name": "Emailing physics-vectors-revised-core1.pdf",
+            "size": "108 KB",
+            "id": "1vUxetmEcwVQoZNtozh8rR7bgX4fIFNuc",
+        },
+        {
+            "title": "Core 2 Problem Suite",
+            "name": "physics-vectors-revised-core2.pdf",
+            "size": "137 KB",
+            "id": "1LMnplYRFOmAzZ8bxkOwblqRw29EbrLLk",
+        }
+    ],
+    "math.euclids-geometry": [
+        {
+            "title": "Core 1 Study Guide",
+            "name": "Euclids_Geometry_Core1_Final_CrossCore_v2.pdf",
+            "size": "465 KB",
+            "id": "1QNx6-AvyfdbHfXCePYXgdwnwPeD2lnHu",
+        },
+        {
+            "title": "Core 2 Practice (49 Tasks)",
+            "name": "Euclids_Geometry_Core2_Final_CrossCore_v1.pdf",
+            "size": "501 KB",
+            "id": "1eBfxf8dU0WvBIujgnIIKGbMzf9P3Oa3f",
+        }
+    ],
+    "math.theory-of-equations": [
+        {
+            "title": "Core 1 Study Guide",
+            "name": "Theory_of_Equations_Core1_Textbook_Rebuild (1).pdf",
+            "size": "84 KB",
+            "id": "1DQwtYf5Y8dCb_CkclAvC8hpDV_dNUWWP",
+        },
+        {
+            "title": "Core 2 Practice Suite",
+            "name": "Theory_of_Equations_Core2_Textbook_Rebuild (1).pdf",
+            "size": "77 KB",
+            "id": "1Yt3oBNqNP2zB9oRHXktFcYbZ71pkF-XS",
+        },
+        {
+            "title": "Challenge Problems (WA0023)",
+            "name": "DOC-20260913-WA0023.pdf",
+            "size": "151 KB",
+            "id": "1NeKPK4I84MiHGSunp4vytzQJlLRoO-ld",
+        }
+    ]
+}
+
+DRIVE_SVG_ICON = """<svg class="g9-btn-icon" width="16" height="16" viewBox="0 0 87.3 78" aria-hidden="true" style="vertical-align: middle;">
+  <path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8H0c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/>
+  <path d="M43.65 25 29.9 1.2c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44C.4 49.9 0 51.45 0 53h27.5z" fill="#00ac47"/>
+  <path d="M73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5H59.8l5.85 10.15z" fill="#ea4335"/>
+  <path d="M43.65 25 57.4 1.2C56.05.4 54.5 0 52.9 0H34.4c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/>
+  <path d="M59.8 53H27.5L13.75 76.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/>
+  <path d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3L43.65 25 59.8 53h27.5c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/>
+</svg>"""
+
+
+def render_drive_header_action(pdfs: list[dict]) -> str:
+    if not pdfs:
+        return ""
+    if len(pdfs) == 1:
+        pdf = pdfs[0]
+        url = f"https://drive.google.com/file/d/{pdf['id']}/view"
+        title = html.escape(f"Open Source PDF in Google Drive: {pdf['name']}")
+        return f"""
+        <a href="{url}" target="_blank" rel="noopener" class="g9-header-btn g9-drive-btn" title="{title}" aria-label="Open Source PDF in Google Drive">
+          {DRIVE_SVG_ICON}
+          <span class="g9-btn-text">Source PDF</span>
+        </a>"""
+
+    items_html = []
+    for pdf in pdfs:
+        url = f"https://drive.google.com/file/d/{pdf['id']}/view"
+        items_html.append(f"""
+      <a href="{url}" target="_blank" rel="noopener" class="g9-dropdown-item">
+        <span class="g9-item-icon">📄</span>
+        <div class="g9-item-info">
+          <strong>{html.escape(pdf['title'])}</strong>
+          <small>{html.escape(pdf['name'])} ({html.escape(pdf.get('size', ''))})</small>
+        </div>
+      </a>""")
+
+    items_html.append(f"""
+      <div class="g9-dropdown-divider"></div>
+      <a href="https://drive.google.com/drive/folders/1ipfk8TDM7ACDqbPdjRc3ZIE6UTFQMvyw" target="_blank" rel="noopener" class="g9-dropdown-item">
+        <span class="g9-item-icon">📁</span>
+        <div class="g9-item-info">
+          <strong>Grade 9 Drive Repository</strong>
+          <small>Open Full Google Drive Folder</small>
+        </div>
+      </a>""")
+
+    return f"""
+        <details class="g9-header-dropdown">
+          <summary class="g9-header-btn g9-drive-btn" aria-label="Google Drive Source PDFs" title="Access Original Source PDFs in Google Drive">
+            {DRIVE_SVG_ICON}
+            <span class="g9-btn-text">Source PDFs</span>
+            <span class="g9-btn-caret" aria-hidden="true">▾</span>
+          </summary>
+          <div class="g9-dropdown-menu">
+            <div class="g9-dropdown-header">Google Drive Source PDFs</div>
+            {''.join(items_html)}
+          </div>
+        </details>"""
+
+
 TOPIC_TITLES = {
     "phy.nlm": "Newton's Laws of Motion",
     "phy.motion-1d": "Motion in One Dimension",
@@ -815,12 +1158,14 @@ def generate_subject_hub(subject: str, registry: list[dict], bundles: list[dict]
             topic_href = "some-basic-concepts/index.html"
         else:
             topic_href = f"{tid_short}/index.html"
+        n_concepts = tmeta['concept_count']
+        concept_label = "1 core concept" if n_concepts == 1 else f"{n_concepts} core concepts"
         topic_cards.append(f"""
     <a class="g9-card" href="{topic_href}">
       <div class="g9-card-header">
         {badge}
         <h3 class="g9-card-title">{html.escape(tmeta['title'])}</h3>
-        <p class="g9-card-desc">{tmeta['concept_count']} core concept(s) with dedicated Learn derivations and Question Bank practice.</p>
+        <p class="g9-card-desc">{concept_label} with dedicated Learn derivations and Question Bank practice.</p>
       </div>
       <div class="g9-card-action">
         <span>Open Topic Workspace</span>
@@ -884,21 +1229,36 @@ def generate_topic_workspace(topic_id: str, topic_title: str, subject: str, bund
         learn_items = b.get("learn", [])
         interactive_items = b.get("interactive", [])
 
-        learn_btn = ""
-        if learn_items:
-            ep = f"{rel_root}{learn_items[0]['entrypoint']}"
-            learn_btn = f'<a class="g9-btn-action g9-btn-learn" href="{html.escape(ep)}">📖 Learn (Core 1A)</a>'
-
+        # Pillar 1: ⚡ Try visually (Exactly ONE primary explorer launcher)
         interactive_btn = ""
         if interactive_items:
             ep = f"{rel_root}{interactive_items[0]['entrypoint']}"
-            interactive_btn = f'<a class="g9-btn-action g9-btn-explore" href="{html.escape(ep)}" target="_blank" rel="noopener">⚡ Try visually</a>'
+            exp_title = interactive_items[0].get("title") or "Visual simulation"
+            interactive_btn = f'<a class="g9-btn-action g9-btn-explore" href="{html.escape(ep)}" target="_blank" rel="noopener" title="{html.escape(exp_title)}">⚡ Try visually</a>'
 
+        # Pillar 2: 📖 Core Study (Exactly ONE unified study entrypoint)
+        core_study_btn = ""
+        if learn_items:
+            core1a_item = next((item for item in learn_items if item.get('entrypoint', '').endswith('core1a.html')), None)
+            target_item = core1a_item if core1a_item else learn_items[0]
+            ep = f"{rel_root}{target_item['entrypoint']}"
+            raw_t = target_item.get("title") or "Core Study"
+            clean_t = raw_t
+            for pfx in ["GRADE 9 PHYSICS - ", "GRADE 9 CHEMISTRY - ", "GRADE 9 MATHEMATICS - ", "CORE (1A) "]:
+                if clean_t.startswith(pfx):
+                    clean_t = clean_t[len(pfx):].strip()
+            core_study_btn = f'<a class="g9-btn-action g9-btn-learn" href="{html.escape(ep)}" title="Core Study · {html.escape(clean_t)}">📖 Core Study</a>'
+
+        # Pillar 3: 🎯 Practice in Question Bank (Core 2)
         topic_slug = topic_id.split(".")[-1]
         practice_url = f"{rel_root}question-bank/index.html?subject={html.escape(subject)}&topic={html.escape(topic_slug)}&mode=study"
         practice_btn = f'<a class="g9-btn-action g9-btn-qb g9-btn-practice" href="{practice_url}">🎯 Practice in Question Bank (Core 2) &rarr;</a>'
 
-        action_buttons = [learn_btn, interactive_btn, practice_btn]
+        # Atlas Anchor: 🪜 View Rung Ladder
+        atlas_url = f"{rel_root}atlas/index.html#{html.escape(topic_slug)}"
+        atlas_btn = f'<a class="g9-btn-action g9-btn-atlas" href="{atlas_url}" title="View Curriculum & Pedagogical Rungs">🪜 View Rung Ladder</a>'
+
+        action_buttons = [interactive_btn, core_study_btn, practice_btn, atlas_btn]
         action_row = "\n      ".join(btn for btn in action_buttons if btn)
 
         display_title = c_title
@@ -934,7 +1294,8 @@ def generate_topic_workspace(topic_id: str, topic_title: str, subject: str, bund
     {''.join(concept_sections)}
   </div>
 """
-    return render_shell(f"{topic_title} Workspace", content, breadcrumbs=crumbs, rel_root=rel_root)
+    topic_drive_action = render_drive_header_action(TOPIC_DRIVE_PDFS.get(topic_id, []))
+    return render_shell(f"{topic_title} Workspace", content, breadcrumbs=crumbs, rel_root=rel_root, extra_header_actions=topic_drive_action)
 
 
 def main():

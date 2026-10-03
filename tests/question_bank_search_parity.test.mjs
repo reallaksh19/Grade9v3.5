@@ -5,7 +5,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
 
-const repo = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+import { fileURLToPath } from 'node:url';
+
+const repo = path.resolve(fileURLToPath(new URL('..', import.meta.url)));
 globalThis.window = globalThis;
 globalThis.document = { currentScript: null };
 for (const name of ['question-bank-data.js', 'question-bank-manifest.js', 'question-bank-catalog.js', 'question-bank-questions.js', 'question-bank-search.js', 'question-bank-resources.js']) {

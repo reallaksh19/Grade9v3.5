@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="../vendor/katex/0.16.8/katex.min.css">
   <script src="../vendor/katex/0.16.8/katex.min.js"></script>
   <script src="../vendor/katex/0.16.8/contrib/auto-render.min.js" onload="window.__katexLoaded=true; if(window.renderAllMath) window.renderAllMath();"></script>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Question Bank · Grade9V3.5</title><link rel="stylesheet" href="../css/modern-learner.css"><link rel="stylesheet" href="../css/site.css"><link rel="stylesheet" href="../css/question-bank.css">  <link rel="stylesheet" href="../css/tablet-12-7.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Question Bank · Grade9V3.5</title><link rel="stylesheet" href="../css/modern-learner.css"><link rel="stylesheet" href="../css/site.css"><link rel="stylesheet" href="../css/question-bank.css?v=3.5.2">  <link rel="stylesheet" href="../css/tablet-12-7.css">
 </head>
 <body>
 <header class="g9-shell-header">
@@ -21,6 +21,7 @@
       <a href="../chemistry/index.html">Chemistry</a>
       <a href="../mathematics/index.html">Mathematics</a>
       <a href="index.html" class="active">Question Bank</a>
+      <a href="../atlas/index.html">Atlas &amp; Rungs</a>
     </nav>
     <div class="g9-header-actions">
       <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search">
@@ -41,11 +42,20 @@
 <div class="qb-nav-workspace"><nav class="qb-subject-tabs" id="qbSubjectTabs" role="tablist" aria-label="Question Bank Subjects"></nav><div class="qb-topic-strip" id="qbTopicStrip" role="toolbar" aria-label="Subject Topics"></div><div class="qb-topic-strip qb-subtopic-strip" id="qbSubtopicStrip" role="toolbar" aria-label="Topic Subtopics" hidden></div></div>
 <div id="qbTopicBanner"></div>
 <form class="qb-filter-panel" id="qbFilters" role="search">
-<label class="qb-search-field"><span>Search questions</span><input id="qbSearch" name="q" type="search" placeholder="Stem, canonical ID, exam, capability, crux…" autocomplete="off"></label>
-<label><span>Subject</span><select id="qbSubject"><option value="">All subjects</option></select></label><label><span>Topic</span><select id="qbTopic"><option value="">All topics</option></select></label><label><span>Difficulty</span><select id="qbDifficulty"><option value="">All difficulty</option></select></label><label><span>Exam</span><select id="qbExam"><option value="">All exams</option></select></label><label><span>Question type</span><select id="qbType"><option value="">All types</option></select></label><label><span>Mode</span><select id="qbMode"><option value="browse">Browse</option><option value="study">Study</option></select></label><label><span>Sort</span><select id="qbSort"><option value="canonical">Canonical order</option><option value="difficulty">Difficulty</option><option value="year-desc">Newest first</option><option value="year-asc">Oldest first</option></select></label><button type="button" class="btn outline qb-clear" id="qbClear">Clear filters</button>
+<div class="qb-search-field"><input id="qbSearch" name="q" type="search" placeholder="Search questions, concepts, exams, crux, or keywords…" autocomplete="off" aria-label="Search questions"></div>
+<div class="qb-filter-controls">
+<select id="qbDifficulty" aria-label="Difficulty"><option value="">All difficulty</option></select>
+<select id="qbExam" aria-label="Exam"><option value="">All exams</option></select>
+<select id="qbSort" aria-label="Sort order"><option value="canonical">Canonical order</option><option value="difficulty">Difficulty</option><option value="year-desc">Newest first</option><option value="year-asc">Oldest first</option></select>
+<button type="button" class="btn outline qb-clear" id="qbClear" title="Clear search and filters">✕ Clear</button>
+</div>
+<select id="qbSubject" hidden aria-hidden="true"><option value="">All subjects</option></select>
+<select id="qbTopic" hidden aria-hidden="true"><option value="">All topics</option></select>
+<select id="qbType" hidden aria-hidden="true"><option value="">All types</option></select>
+<select id="qbMode" hidden aria-hidden="true"><option value="browse">Browse</option><option value="study">Study</option></select>
 </form><div class="qb-active-filters" id="qbActiveFilters" aria-label="Active filters"></div><div class="qb-study-toolbar" id="qbStudyToolbar"><button type="button" id="qbOpenSupport">Open support</button><button type="button" id="qbCloseSupport">Close support</button><button type="button" id="qbOpenSolutions">Open solutions</button><button type="button" id="qbCloseSolutions">Close solutions</button><button type="button" id="qbTop">↑ Top</button></div><div id="qbResults" class="qb-results"></div><button type="button" class="btn outline qb-load-more" id="qbLoadMore" hidden>Load more</button></section>
 </main>
 <dialog id="qbStudyDialog" class="qb-study-dialog" aria-modal="true" aria-labelledby="qbDialogTitle"><div class="qb-dialog-shell"><div class="qb-dialog-top"><div id="qbDialogTitle" class="qb-dialog-title">Study Workspace</div><button type="button" class="qb-dialog-close" id="qbDialogClose" aria-label="Close study popup">✕</button></div><div id="qbDialogBody" class="qb-dialog-body"></div></div></dialog>
 <footer>Grade9V3 Question Bank · generated from canonical repository records · static, offline-safe, GitHub Pages compatible</footer>
-<script src="../data/question-bank-manifest.js"></script><script src="../js/question-bank-data-service.js" data-site-root="../"></script><script src="../js/display-controls.js"></script><script src="../js/site-header.js" data-site-root="../" data-site-parent="../index.html"></script><script src="../js/question-bank.js"></script>
+<script src="../data/keyword-synonyms.js?v=3.5.2"></script><script src="../data/question-bank-manifest.js?v=3.5.2"></script><script src="../js/question-bank-data-service.js?v=3.5.2" data-site-root="../"></script><script src="../js/display-controls.js?v=3.5.2"></script><script src="../js/site-header.js?v=3.5.2" data-site-root="../" data-site-parent="../index.html"></script><script src="../js/question-bank.js?v=3.5.2"></script>
 </body></html>

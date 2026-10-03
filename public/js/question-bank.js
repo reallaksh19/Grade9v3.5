@@ -87,7 +87,7 @@ function stateFromUrl(){
   let view=p.get('view')||'';
   const tag=(p.get('tag')||'').toLowerCase();
   if(!view && (tag==='core2' || tag==='core-2')) view='core2-motion-1d';
-  return {view:view,q:p.get('q')||p.get('search')||p.get('id')||'',subject:p.get('subject')||'',topic:p.get('topic')||'',subtopic:p.get('subtopic')||'',
+  return {view:view,q:p.get('q')||p.get('search')||p.get('id')||'',subject:p.get('subject')||'',topic:p.get('topic')||'',subtopic:p.get('subtopic')||p.get('capability')||'',
     difficulty:p.get('difficulty')||'',exam:p.get('exam')||'',type:p.get('type')||'',mode:p.get('mode')||'browse',sort:p.get('sort')||'canonical'};
 }
 function stem(word){
@@ -100,45 +100,72 @@ function scoreCandidate(row,wantedTokens){
   score+=Math.max(0,50-(row.label||'').length);
   return score;
 }
-function refFor(rows,value){
+function getSynonymEntries(){
+  const db=window.GRADE9_KEYWORD_SYNONYMS;
+  return (db&&Array.isArray(db.synonyms))?db.synonyms:[];
+}
+function resolveSynonym(query){
+  if(!query)return null;
+  const q=String(query).toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+  if(!q)return null;
+  const entries=getSynonymEntries();
+  return entries.find(s=>s.slug===q||(s.aliases||[]).some(a=>a.toLowerCase()===q)||(s.canonical_term||'').toLowerCase()===q)||null;
+}
+function refFor(rows,value,subjectScope){
   if(!value)return '';
   const raw=String(value).trim();
-  const byId=rows.find(row=>row.id===raw||row.id.toLowerCase()===raw.toLowerCase());
+  const rawNorm=raw.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+  const candidates=(subjectScope&&rows.some(r=>r.subject_ref===subjectScope))?rows.filter(r=>r.subject_ref===subjectScope):rows;
+
+  const byId=candidates.find(row=>row.id===raw||row.id.toLowerCase()===raw.toLowerCase()||(row.label_source_ref&&row.label_source_ref.toLowerCase()===raw.toLowerCase()));
   if(byId)return byId.id;
 
-  const wanted=raw.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
-  if(!wanted)return raw;
+  const syns=getSynonymEntries();
+  const matchedSyns=syns.filter(s=>s.slug===rawNorm||(s.aliases||[]).some(a=>a.toLowerCase()===rawNorm));
+  for(const syn of matchedSyns){
+    if(syn.entity_refs){
+      const targetRef=syn.entity_refs.topic_ref||syn.entity_refs.subject_ref;
+      if(targetRef){
+        const found=candidates.find(r=>r.id===targetRef);
+        if(found)return found.id;
+      }
+    }
+  }
 
-  const byExactLabel=rows.find(row=>String(row.label).toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()===wanted);
+  const byExactLabel=candidates.find(row=>String(row.label).toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()===rawNorm);
   if(byExactLabel)return byExactLabel.id;
 
-  const wantedTokens=wanted.split(/\s+/).filter(Boolean).map(stem);
-  const candidates=[];
+  const wantedTokens=rawNorm.split(/\s+/).filter(Boolean).map(stem);
+  const candidatesScored=[];
 
-  rows.forEach(r=>{
+  candidates.forEach(r=>{
     const idNorm=r.id.toLowerCase().replace(/[^a-z0-9]+/g, ' ');
     const lblNorm=String(r.label||'').toLowerCase().replace(/[^a-z0-9]+/g, ' ');
     const idTokens=idNorm.split(/\s+/).filter(Boolean).map(stem);
     const lblTokens=lblNorm.split(/\s+/).filter(Boolean).map(stem);
     const allTokens=new Set([...idTokens,...lblTokens]);
 
-    if(idNorm.includes(wanted)||lblNorm.includes(wanted)){
-      candidates.push({id:r.id,score:1000+scoreCandidate(r,wantedTokens)});
+    if(idNorm.includes(rawNorm)||lblNorm.includes(rawNorm)){
+      candidatesScored.push({id:r.id,score:1000+scoreCandidate(r,wantedTokens)});
     }else if(wantedTokens.length>0&&wantedTokens.every(t=>allTokens.has(t))){
-      candidates.push({id:r.id,score:500+scoreCandidate(r,wantedTokens)});
+      candidatesScored.push({id:r.id,score:500+scoreCandidate(r,wantedTokens)});
     }
   });
 
-  if(candidates.length){
-    candidates.sort((a,b)=>b.score-a.score);
-    return candidates[0].id;
+  if(candidatesScored.length){
+    candidatesScored.sort((a,b)=>b.score-a.score);
+    return candidatesScored[0].id;
+  }
+  if(!subjectScope && candidates!==rows){
+    return refFor(rows,value);
   }
   return value;
 }
 function normalizeState(){
   if(!catalog)return;
   const rawTopic=state.topic;
-  state={...state,subject:refFor(catalog.subjects,state.subject),topic:refFor(catalog.topics,state.topic),subtopic:refFor(catalog.subtopics,state.subtopic)};
+  const resolvedSubj=refFor(catalog.subjects,state.subject);
+  state={...state,subject:resolvedSubj,topic:refFor(catalog.topics,state.topic,resolvedSubj),subtopic:refFor(catalog.subtopics,state.subtopic,resolvedSubj)};
   const sub=subtopicById.get(state.subtopic);
   if(sub&&!state.topic)state.topic=sub.topic_ref;
   if(state.topic&&!state.subject){const topic=topicById.get(state.topic);if(topic)state.subject=topic.subject_ref;}
@@ -171,28 +198,92 @@ function setState(patch,opts){
 
 // ---- data selection ----
 function norm(value){return String(value||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();}
+function isJee(q){
+  if(!q)return false;
+  if(q.origin==='DIAGNOSTIC_HUB')return true;
+  const ex=String(q.exam||'').toLowerCase();
+  return ex.includes('jee')||ex.includes('iit');
+}
+function isNcert(q){
+  if(!q)return false;
+  const ex=String(q.exam||'').toLowerCase();
+  if(ex.includes('ncert'))return true;
+  return (q.tags||[]).some(t=>String(t).toLowerCase().includes('ncert'));
+}
+function isCore2(q){
+  if(!q)return false;
+  if(q.id && q.id.startsWith('1D-Q')) return true;
+  return (q.tags||[]).some(t=>{
+    const lt=String(t).toLowerCase();
+    return lt==='core2' || lt==='core-2' || lt==='core 2';
+  });
+}
+
+let cachedQ='',cachedBase=null;
+function getSearchBase(query){
+  const q=String(query||'').trim();
+  if(!q)return summaries;
+  if(q===cachedQ&&cachedBase)return cachedBase;
+
+  const exactId=q.toLowerCase();
+  const byId=summaries.find(s=>s.id.toLowerCase()===exactId);
+  if(byId){
+    cachedQ=q;
+    cachedBase=[byId];
+    return cachedBase;
+  }
+
+  if(!ready.search){
+    return summaries;
+  }
+
+  const matchedIds=new Set(Data.search(q,{kind:'question'}).map(d=>d.id));
+
+  const syn=resolveSynonym(q);
+  if(syn){
+    if(syn.canonical_term&&syn.canonical_term.toLowerCase()!==q.toLowerCase()){
+      Data.search(syn.canonical_term,{kind:'question'}).forEach(d=>matchedIds.add(d.id));
+    }
+    if(syn.entity_refs&&syn.entity_refs.topic_ref){
+      summaries.filter(s=>s.topic_ref===syn.entity_refs.topic_ref).forEach(s=>matchedIds.add(s.id));
+    }
+    if(syn.entity_refs&&syn.entity_refs.exam_family){
+      const ef=syn.entity_refs.exam_family.toLowerCase();
+      if(ef==='ncert')summaries.filter(isNcert).forEach(s=>matchedIds.add(s.id));
+      else if(ef==='iit-jee')summaries.filter(isJee).forEach(s=>matchedIds.add(s.id));
+      else if(ef==='core 2'||ef==='core2')summaries.filter(isCore2).forEach(s=>matchedIds.add(s.id));
+    }
+  }
+
+  cachedQ=q;
+  cachedBase=summaries.filter(s=>matchedIds.has(s.id));
+  return cachedBase;
+}
+
 function filtered(){
   const view=state.view?viewById.get(state.view):null;
   const inView=view?new Set(view.resolved_question_refs):null;
-  let matching=null;
-  if(state.q){
-    const exactId=state.q.trim().toLowerCase();
-    const byId=summaries.find(s=>s.id.toLowerCase()===exactId);
-    if(byId){
-      matching=new Set([byId.id]);
-    }else if(ready.search){
-      matching=new Set(Data.search(state.q,{kind:'question'}).map(doc=>doc.id));
-    }
-  }
+  const searchBase=getSearchBase(state.q);
+  const searchSet=state.q?new Set(searchBase.map(q=>q.id)):null;
+
   const list=summaries.filter(q=>{
     if(inView&&!inView.has(q.id))return false;
     if(state.subject&&q.subject_ref!==state.subject)return false;
     if(state.topic&&q.topic_ref!==state.topic)return false;
     if(state.subtopic&&!(q.subtopic_refs||[]).includes(state.subtopic))return false;
     if(state.difficulty&&q.difficulty.band!==state.difficulty)return false;
-    if(state.exam&&q.exam!==state.exam)return false;
+    if(state.exam){
+      const exTarget = state.exam.toLowerCase();
+      if(exTarget==='iit-jee'||exTarget==='iit-jee diagnostic'){
+        if(!isJee(q))return false;
+      } else if(exTarget==='ncert'){
+        if(!isNcert(q))return false;
+      } else if(q.exam!==state.exam){
+        return false;
+      }
+    }
     if(state.type&&q.question_type!==state.type)return false;
-    if(matching&&!matching.has(q.id))return false;
+    if(searchSet&&!searchSet.has(q.id))return false;
     return true;
   });
   if(state.sort==='difficulty')list.sort((a,b)=>a.difficulty.score-b.difficulty.score||a.order-b.order);
@@ -226,17 +317,7 @@ function accentFor(id){
   return 'hsl('+(hash%360)+' 62% 52%)';
 }
 function stat(label,value){const d=el('div','qb-stat');d.append(el('b','',String(value)),el('span','',label));return d;}
-const CANONICAL_SUBJECT_ORDER = ['Physics', 'Chemistry', 'Mathematics'];
-const SUBJECT_ICONS = { 'Physics': '🔬', 'Chemistry': '⚗️', 'Mathematics': '📐' };
-
-function sortSubjects(subjects){
-  return [...subjects].sort((a, b) => {
-    const ai = CANONICAL_SUBJECT_ORDER.indexOf(a.label || a.id || a);
-    const bi = CANONICAL_SUBJECT_ORDER.indexOf(b.label || b.id || b);
-    return (ai !== -1 ? ai : 999) - (bi !== -1 ? bi : 999);
-  });
-}
-
+const ICONS = ['🔬', '⚗️', '📐', '🧬', '🪐'];
 function browsable(rows){return rows.filter(row=>row.question_count>0);}
 
 function renderStats(){
@@ -253,7 +334,7 @@ function renderCollections(){
   all.type='button';
   all.append(el('h3','','Canonical Competitive Bank'),el('p','',catalog.counts.questions+' canonical learner-usable records generated from repository subject banks'));
   const meta=el('div','qb-card-meta');
-  sortSubjects(browsable(catalog.subjects)).forEach(s=>meta.append(el('span','',s.label+' · '+s.question_count)));
+  browsable(catalog.subjects).forEach(s=>meta.append(el('span','',s.label+' · '+s.question_count)));
   all.append(meta);
   all.addEventListener('click',()=>setState({view:'',subject:'',topic:'',subtopic:'',difficulty:'',exam:'',type:'',q:'',mode:'browse'}));
   els.collections.append(all);
@@ -268,7 +349,7 @@ function renderCollections(){
     els.collections.append(button);
   });
   els.subjects.replaceChildren();
-  sortSubjects(browsable(catalog.subjects)).forEach(s=>{
+  browsable(catalog.subjects).forEach(s=>{
     const button=el('button','qb-subject-card');
     button.type='button';
     button.append(el('h3','',s.label),el('p','',s.question_count+' canonical questions'));
@@ -278,22 +359,26 @@ function renderCollections(){
 }
 function renderTabs(){
   els.subjectTabs.replaceChildren();
-  const ncertCount = summaries.filter(q => q.exam === 'NCERT' || (q.tags || []).includes('NCERT')).length;
-  const core2Count = summaries.filter(q => (q.id && q.id.startsWith('1D-Q')) || (q.tags || []).includes('core2') || (q.tags || []).includes('CORE2')).length;
+  const searchBase = getSearchBase(state.q);
+  const ncertCount = searchBase.filter(isNcert).length;
+  const core2Count = searchBase.filter(isCore2).length;
+  const jeeCount = searchBase.filter(isJee).length;
+  const allCount = searchBase.length;
   const tabs=[
-    {id:'',label:'All Questions',count:catalog.counts.questions,icon:'⚡'},
-    ...sortSubjects(browsable(catalog.subjects)).map(s=>({
+    {id:'',label:'All Questions',count:allCount,icon:'⚡'},
+    ...browsable(catalog.subjects).map((s, idx)=>({
       id:s.id,
       label:s.label,
-      count:s.question_count,
-      icon:s.icon || SUBJECT_ICONS[s.label] || SUBJECT_ICONS[s.id] || '📚'
+      count:searchBase.filter(q=>q.subject_ref===s.id).length,
+      icon:s.icon || ICONS[idx % ICONS.length] || '📚'
     })),
-    {id:'core2',label:'Core 2 Challenges',count:core2Count || 18,icon:'🎯'},
-    {id:'iit-jee',label:'IIT-JEE PYQs',count:215,icon:'🏆'},
+    {id:'core2',label:'Core 2 Challenges',count:core2Count,icon:'🎯'},
+    {id:'iit-jee',label:'IIT-JEE PYQs',count:jeeCount,icon:'🏆'},
     {id:'ncert',label:'NCERT',count:ncertCount,icon:'📖'}
   ];
   tabs.forEach(tab=>{
-    const button=el('button','qb-tab-btn');
+    const isEmpty = tab.count === 0 && Boolean(state.q);
+    const button=el('button','qb-tab-btn' + (isEmpty ? ' qb-pill-empty' : ''));
     button.type='button';
     button.setAttribute('role','tab');
     button.dataset.subjectRef=tab.id;
@@ -307,8 +392,8 @@ function renderTabs(){
       el('span','qb-tab-badge',String(tab.count))
     );
     const selected = tab.id === 'core2' ? (state.view === 'core2-motion-1d') :
-                     tab.id === 'iit-jee' ? (state.exam === 'IIT-JEE Diagnostic' || state.exam === 'IIT-JEE') :
-                     tab.id === 'ncert' ? (state.exam === 'NCERT') :
+                     tab.id === 'iit-jee' ? (state.exam === 'IIT-JEE' || state.exam === 'iit-jee' || state.exam === 'IIT-JEE Diagnostic') :
+                     tab.id === 'ncert' ? (state.exam === 'NCERT' || state.exam === 'ncert') :
                      (state.subject === tab.id && !state.exam && !state.view);
     button.setAttribute('aria-selected',String(selected));
     button.tabIndex=selected?0:-1;
@@ -317,7 +402,7 @@ function renderTabs(){
       if(tab.id === 'core2'){
         setState({view:'core2-motion-1d',subject:'',topic:'',subtopic:'',exam:''});
       } else if(tab.id === 'iit-jee'){
-        setState({view:'',subject:'',topic:'',subtopic:'',exam:'IIT-JEE Diagnostic'});
+        setState({view:'',subject:'',topic:'',subtopic:'',exam:'IIT-JEE'});
       } else if(tab.id === 'ncert'){
         setState({view:'',subject:'',topic:'',subtopic:'',exam:'NCERT'});
       } else {
@@ -341,9 +426,13 @@ function renderTopicStrip(){
   els.topicStrip.replaceChildren();
   els.topicStrip.hidden=!state.subject;
   if(!state.subject)return;
+  const searchBase = getSearchBase(state.q);
   const topics=browsable(catalog.topics).filter(t=>t.subject_ref===state.subject);
+  const inSubjectCount = searchBase.filter(q=>q.subject_ref===state.subject).length;
+
   const pill=(id,label,count)=>{
-    const button=el('button','qb-topic-pill'+(state.topic===id?' active':''));
+    const isEmpty = count === 0 && Boolean(state.q);
+    const button=el('button','qb-topic-pill'+(state.topic===id?' active':'')+(isEmpty?' qb-pill-empty':''));
     button.type='button';
     button.setAttribute('aria-pressed',String(state.topic===id));
     button.append(el('span','',label));
@@ -351,24 +440,28 @@ function renderTopicStrip(){
     button.addEventListener('click',()=>setState({view:'',topic:id,subtopic:''}));
     return button;
   };
-  const subject=subjectById.get(state.subject);
-  els.topicStrip.append(pill('','All topics',subject?subject.question_count:undefined));
-  topics.forEach(t=>els.topicStrip.append(pill(t.id,t.label,t.question_count)));
+  els.topicStrip.append(pill('','All topics',inSubjectCount));
+  topics.forEach(t=>{
+    const tCount = searchBase.filter(q=>q.topic_ref===t.id).length;
+    els.topicStrip.append(pill(t.id,t.label,tCount));
+  });
 }
 // A topic shows its subtopics only when every one has a canonical title (catalog label_source). An untitled
 // subtopic is named work in the build, never a raw identifier put in front of a learner.
 function titledSubtopics(topicId){
   const rows=catalog.subtopics.filter(row=>row.topic_ref===topicId);
-  return rows.length&&rows.every(row=>row.label_source==='CANONICAL_TITLE')?rows:[];
+  return rows.filter(row=>row.label && row.label_source==='CANONICAL_TITLE');
 }
 function renderSubtopicStrip(){
   els.subtopicStrip.replaceChildren();
   const rows=state.topic?titledSubtopics(state.topic):[];
   els.subtopicStrip.hidden=!rows.length;
   if(!rows.length)return;
-  const inTopic=summaries.filter(q=>q.topic_ref===state.topic);
+  const searchBase = getSearchBase(state.q);
+  const inTopic=searchBase.filter(q=>q.topic_ref===state.topic);
   const pill=(id,label,count)=>{
-    const button=el('button','qb-topic-pill'+(state.subtopic===id?' active':''));
+    const isEmpty = count === 0 && Boolean(state.q);
+    const button=el('button','qb-topic-pill'+(state.subtopic===id?' active':'')+(isEmpty?' qb-pill-empty':''));
     button.type='button';
     button.setAttribute('aria-pressed',String(state.subtopic===id));
     button.append(el('span','',label),el('span','pill-count','('+count+')'));
@@ -376,7 +469,10 @@ function renderSubtopicStrip(){
     return button;
   };
   els.subtopicStrip.append(pill('','All subtopics',inTopic.length));
-  rows.forEach(row=>els.subtopicStrip.append(pill(row.id,row.label,inTopic.filter(q=>(q.subtopic_refs||[]).includes(row.id)).length)));
+  rows.forEach(row=>{
+    const subCount = inTopic.filter(q=>(q.subtopic_refs||[]).includes(row.id)).length;
+    els.subtopicStrip.append(pill(row.id,row.label,subCount));
+  });
 }
 function renderBanner(){
   els.topicBanner.replaceChildren();
@@ -387,18 +483,22 @@ function renderBanner(){
   const info=el('div','qb-topic-banner-info');
   info.append(el('div','qb-topic-banner-title',topic.label),el('div','qb-topic-banner-sub',topic.question_count+' canonical questions in this topic'));
   banner.append(info);
+  const actions=el('div','qb-topic-banner-actions');
   const linked=resources.filter(r=>r.topic_ref===state.topic);
-  if(linked.length){
-    const actions=el('div','qb-topic-banner-actions');
-    linked.forEach(r=>{
-      const link=el('a','qb-topic-action-link',r.title);
-      link.href='../'+r.path;
-      link.dataset.kind=r.kind;
-      link.title=KIND_LABELS[r.kind]||words(r.kind);
-      actions.append(link);
-    });
-    banner.append(actions);
-  }
+  linked.forEach(r=>{
+    const link=el('a','qb-topic-action-link',r.title);
+    link.href='../'+r.path;
+    link.dataset.kind=r.kind;
+    link.title=KIND_LABELS[r.kind]||words(r.kind);
+    actions.append(link);
+  });
+  const clearBtn=el('button','qb-topic-action-link qb-broaden-link','🔍 Browse All (Clear Filter)');
+  clearBtn.type='button';
+  clearBtn.title='Clear topic filter to browse entire Question Bank';
+  clearBtn.style.cursor='pointer';
+  clearBtn.onclick=()=>setState({subject:'',topic:'',subtopic:'',q:''});
+  actions.append(clearBtn);
+  banner.append(actions);
   els.topicBanner.append(banner);
 }
 function fillSelect(select,rows){
@@ -407,11 +507,15 @@ function fillSelect(select,rows){
   rows.forEach(([value,label])=>{const option=document.createElement('option');option.value=value;option.textContent=label;select.append(option);});
 }
 function renderFilterOptions(){
-  fillSelect(els.subject,sortSubjects(browsable(catalog.subjects)).map(s=>[s.id,s.label]));
+  fillSelect(els.subject,browsable(catalog.subjects).map(s=>[s.id,s.label]));
   fillSelect(els.topic,browsable(catalog.topics).map(t=>[t.id,t.label]));
   const unique=key=>[...new Set(summaries.map(q=>key==='band'?q.difficulty.band:q[key]))].sort((a,b)=>String(a).localeCompare(String(b)));
   fillSelect(els.difficulty,unique('band').map(v=>[v,v]));
-  fillSelect(els.exam,unique('exam').map(v=>[v,v]));
+  fillSelect(els.exam,[
+    ['IIT-JEE', '🏆 All IIT-JEE / JEE Main & Advanced'],
+    ['NCERT', '📖 All NCERT (Textbook & Exemplar)'],
+    ...unique('exam').map(v=>[v,v])
+  ]);
   fillSelect(els.type,unique('question_type').map(v=>[v,words(v)]));
   syncControls();
 }
@@ -428,9 +532,10 @@ function renderActive(){
   els.active.replaceChildren();
   if(state.view){const v=viewById.get(state.view);if(v)els.active.append(chip(v.short_title||v.title,'view'));}
   const subject=subjectById.get(state.subject),topic=topicById.get(state.topic),subtopic=subtopicById.get(state.subtopic);
+  const examChip = (state.exam === 'iit-jee' || state.exam === 'IIT-JEE' || state.exam === 'IIT-JEE Diagnostic') ? 'IIT-JEE PYQs' : state.exam;
   [['q',state.q&&'Search: '+state.q],['subject',subject?subject.label:state.subject],['topic',topic?topic.label:state.topic],
     ['subtopic',subtopic?(subtopic.label_source==='CANONICAL_TITLE'?subtopic.label:'Subtopic'):state.subtopic],
-    ['difficulty',state.difficulty],['exam',state.exam],['type',state.type&&words(state.type)]]
+    ['difficulty',state.difficulty],['exam',examChip],['type',state.type&&words(state.type)]]
     .forEach(([key,label])=>{if(state[key])els.active.append(chip(label,key));});
 }
 
@@ -469,12 +574,27 @@ function qHeader(q){
     badges.append(el('span', 'qb-badge qb-badge-easy', 'FOUNDATION 🌱'));
   }
 
-  if (q.exam === 'NCERT' || (q.tags || []).includes('NCERT')) badges.append(el('span', 'qb-badge ncert', 'NCERT'));
-  if (q.id && (q.id.startsWith('1D-Q') || (q.tags || []).includes('core2') || (q.tags || []).includes('CORE2'))) {
+  if (isNcert(q)) {
+    const ncertLabel = q.exam && q.exam.includes('Exemplar') ? 'NCERT Exemplar' : (q.exam && q.exam.includes('Textbook') ? 'NCERT Textbook' : 'NCERT');
+    badges.append(el('span', 'qb-badge ncert', ncertLabel));
+  }
+  if (isJee(q)) {
+    const jeeLabel = q.exam && q.exam.includes('Advanced') ? 'IIT-JEE Adv' : (q.exam && q.exam.includes('Main') ? 'JEE Main' : 'IIT-JEE PYQ');
+    badges.append(el('span', 'qb-badge jee', jeeLabel));
+  }
+  if (isCore2(q)) {
     badges.append(el('span', 'qb-badge core2', 'Core 2 Practice'));
   }
-  if (q.primary_capability_ref) badges.append(el('span', 'qb-badge', q.primary_capability_ref));
-  (q.secondary_capability_refs || []).forEach(ref => badges.append(el('span', 'qb-badge', ref)));
+  if (q.primary_capability_ref) {
+    const sub = subtopicById.get(q.primary_capability_ref);
+    const subLabel = (sub && sub.label_source === 'CANONICAL_TITLE') ? sub.label : q.primary_capability_ref;
+    badges.append(el('span', 'qb-badge subtopic-badge', subLabel));
+  }
+  (q.secondary_capability_refs || []).forEach(ref => {
+    const sub = subtopicById.get(ref);
+    const subLabel = (sub && sub.label_source === 'CANONICAL_TITLE') ? sub.label : ref;
+    badges.append(el('span', 'qb-badge subtopic-badge', subLabel));
+  });
   if (q.common_wrong_route) badges.append(el('span', 'qb-badge trap', 'TRAP: ' + q.common_wrong_route));
   header.append(badges);
   return header;
@@ -611,8 +731,91 @@ function closeStudyModal(){if(els.dialog.open)els.dialog.close();}
 function clearHash(){if(location.hash)history.replaceState(null,'',location.pathname+location.search);}
 
 // ---- results ----
+let pendingAutoOpen = null;
+
+function renderResultCount(listLength, totalQuestions){
+  if(!els.resultCount)return;
+  els.resultCount.replaceChildren();
+
+  let scopeLabel = '';
+  let scopeTotal = totalQuestions;
+  if(state.topic){
+    const t=topicById.get(state.topic);
+    if(t){scopeLabel = t.label; scopeTotal = t.question_count;}
+  } else if(state.subject){
+    const s=subjectById.get(state.subject);
+    if(s){scopeLabel = s.label; scopeTotal = s.question_count;}
+  } else if(state.exam){
+    const exLabel = (state.exam==='iit-jee'||state.exam==='IIT-JEE'||state.exam==='IIT-JEE Diagnostic')?'IIT-JEE PYQs':state.exam;
+    scopeLabel = exLabel;
+    scopeTotal = summaries.filter(q=>isJee(q)).length;
+  }
+
+  const syn = resolveSynonym(state.q);
+  const synHint = (syn && syn.canonical_term && syn.canonical_term.toLowerCase() !== (state.q||'').toLowerCase())
+    ? ' (matched synonym \u201c' + syn.canonical_term + '\u201d)'
+    : '';
+
+  if(state.q){
+    if(scopeLabel){
+      els.resultCount.append(
+        document.createTextNode('Showing '),
+        el('strong','qb-count-num',String(listLength)),
+        document.createTextNode(' of ' + scopeTotal + ' in ' + scopeLabel + ' matching \u201c' + state.q + '\u201d' + synHint)
+      );
+    } else {
+      els.resultCount.append(
+        document.createTextNode('Showing '),
+        el('strong','qb-count-num',String(listLength)),
+        document.createTextNode(' of ' + totalQuestions + ' questions matching \u201c' + state.q + '\u201d' + synHint)
+      );
+    }
+    return;
+  }
+
+  const scopeParts=[];
+  if(state.view){
+    const v=viewById.get(state.view);
+    if(v)scopeParts.push(v.short_title||v.title);
+  }
+  if(state.subject){
+    const s=subjectById.get(state.subject);
+    if(s)scopeParts.push(s.label);
+  }
+  if(state.topic){
+    const t=topicById.get(state.topic);
+    if(t)scopeParts.push(t.label);
+  }
+  if(state.subtopic){
+    const sub=subtopicById.get(state.subtopic);
+    if(sub&&sub.label_source==='CANONICAL_TITLE')scopeParts.push(sub.label);
+  }
+  if(state.exam){
+    const exLabel=(state.exam==='iit-jee'||state.exam==='IIT-JEE'||state.exam==='IIT-JEE Diagnostic')?'IIT-JEE PYQs':state.exam;
+    scopeParts.push(exLabel);
+  }
+  if(state.difficulty)scopeParts.push(state.difficulty);
+  if(state.type)scopeParts.push(words(state.type));
+
+  if(scopeParts.length){
+    els.resultCount.append(
+      document.createTextNode('Showing '),
+      el('strong','qb-count-num',String(listLength)),
+      document.createTextNode(' of '+totalQuestions+' questions in '+scopeParts.join(' · '))
+    );
+    return;
+  }
+  els.resultCount.append(
+    document.createTextNode('Showing all '),
+    el('strong','qb-count-num',String(totalQuestions)),
+    document.createTextNode(' canonical questions')
+  );
+}
+
 function inlineStudy(list){
   const seq=renderSeq;
+  const toOpen = pendingAutoOpen;
+  pendingAutoOpen = null;
   list.forEach(q=>{
     const holder=el('article','qb-question');
     holder.id=q.id;
@@ -623,6 +826,9 @@ function inlineStudy(list){
       const card=studyCard({...q,...detail},false);
       holder.replaceWith(card);
       renderDeclaredMath(card,{...q,...detail});
+      if(toOpen){
+        card.querySelectorAll(toOpen).forEach(d => { d.open = true; });
+      }
     }).catch(error=>{
       if(seq!==renderSeq||!holder.isConnected)return;
       holder.replaceChildren(qHeader(q),el('p','qb-empty',describe(error)));
@@ -632,7 +838,8 @@ function inlineStudy(list){
 function renderResults(){
   renderSeq+=1;
   const list=filtered();
-  els.resultCount.textContent=list.length+' of '+catalog.counts.questions+' questions';
+  const totalQuestions = summaries.length || (catalog.counts && catalog.counts.questions) || 0;
+  renderResultCount(list.length, totalQuestions);
   els.results.replaceChildren();
   const shown=list.slice(0,limit);
   if(state.mode==='study')inlineStudy(shown);
@@ -640,9 +847,58 @@ function renderResults(){
     shown.forEach(q=>els.results.append(compactCard(q)));
     shown.forEach(q=>renderDeclaredMath(document.getElementById(q.id),q));
   }
-  if(!shown.length)els.results.append(el('div','qb-empty','No canonical questions match the current view and filters.'));
+  if(!shown.length){
+    const emptyBox = el('div','qb-empty');
+    if(state.q && state.topic){
+      const searchBase = getSearchBase(state.q);
+      const otherMatching = searchBase.filter(q=>q.topic_ref!==state.topic);
+      if(otherMatching.length){
+        const altTopic = topicById.get(otherMatching[0].topic_ref);
+        const heading = el('h3', 'qb-empty-title', '0 questions found in the active topic for \u201c' + state.q + '\u201d');
+        const desc = el('p', 'qb-empty-desc', 'Found ' + otherMatching.length + ' matching questions in other topics.');
+        const actions = el('div', 'qb-empty-actions');
+        actions.style.marginTop = '14px';
+        actions.style.display = 'flex';
+        actions.style.flexWrap = 'wrap';
+        actions.style.gap = '10px';
+        actions.style.justifyContent = 'center';
+
+        if(altTopic){
+          const altCount = otherMatching.filter(q=>q.topic_ref===altTopic.id).length;
+          const switchBtn = el('button', 'btn primary qb-topic-suggest-btn', 'Switch to ' + altTopic.label + ' (' + altCount + ')');
+          switchBtn.type = 'button';
+          switchBtn.onclick = () => setState({topic: otherMatching[0].topic_ref});
+          actions.append(switchBtn);
+        }
+        const sObj = subjectById.get(state.subject);
+        const clearTopicBtn = el('button', 'btn outline qb-topic-clear-btn', 'View all ' + otherMatching.length + ' matches in ' + (sObj ? sObj.label : 'corpus'));
+        clearTopicBtn.type = 'button';
+        clearTopicBtn.onclick = () => setState({topic: ''});
+        actions.append(clearTopicBtn);
+
+        emptyBox.append(heading, desc, actions);
+      } else {
+        emptyBox.textContent = 'No canonical questions match the current view and filters.';
+      }
+    } else {
+      emptyBox.textContent = 'No canonical questions match the current view and filters.';
+    }
+    els.results.append(emptyBox);
+  }
   els.loadMore.hidden=list.length<=limit;
-  els.studyToolbar.hidden=state.mode!=='study';
+
+  if (list.length === 0) {
+    els.studyToolbar.hidden = true;
+  } else {
+    els.studyToolbar.hidden = false;
+    const hasSupport = shown.some(q => q.has_support || (q.source_hints && q.source_hints.length > 0) || (q.scaffolds && q.scaffolds.length > 0));
+    const hasSolutions = shown.some(q => q.has_solution || (q.answer && (q.answer.summary || (q.answer.reasoning && q.answer.reasoning.length > 0))));
+    els.openSupport.hidden = !hasSupport;
+    els.closeSupport.hidden = !hasSupport;
+    els.openSolutions.hidden = !hasSolutions;
+    els.closeSolutions.hidden = !hasSolutions;
+    els.top.hidden = false;
+  }
 }
 function renderSearchNote(){
   if(failure)return;
@@ -723,17 +979,43 @@ function handleHash(){
 // ---- controls ----
 function bind(select,key){select.addEventListener('change',()=>setState(key==='subject'?{[key]:select.value,topic:'',subtopic:''}:key==='topic'?{[key]:select.value,subtopic:''}:{[key]:select.value}));}
 ['subject','topic','difficulty','exam','type','mode','sort'].forEach(key=>bind(els[key],key));
+const filterForm=$('qbFilters');
+if(filterForm)filterForm.addEventListener('submit',e=>{e.preventDefault();setState({q:els.search.value});});
 let timer=null;
 els.search.addEventListener('input',()=>{clearTimeout(timer);timer=setTimeout(()=>setState({q:els.search.value},{push:false}),120);});
 els.clear.addEventListener('click',()=>setState({view:'',q:'',subject:'',topic:'',subtopic:'',difficulty:'',exam:'',type:'',mode:'browse',sort:'canonical'}));
 els.browseAll.addEventListener('click',()=>setState({view:'',q:'',subject:'',topic:'',subtopic:'',difficulty:'',exam:'',type:'',mode:'browse'}));
 els.loadMore.addEventListener('click',()=>{limit+=PAGE;render();});
 function toggle(selector,open){document.querySelectorAll(selector).forEach(node=>{node.open=open;});}
-els.openSupport.addEventListener('click',()=>toggle('.qb-support',true));
-els.closeSupport.addEventListener('click',()=>toggle('.qb-support',false));
-els.openSolutions.addEventListener('click',()=>toggle('.qb-solution',true));
-els.closeSolutions.addEventListener('click',()=>toggle('.qb-solution',false));
-els.top.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+els.openSupport.addEventListener('click',()=>{
+  if(state.mode!=='study'){
+    pendingAutoOpen='.qb-support';
+    setState({mode:'study'});
+  }else{
+    toggle('.qb-support',true);
+  }
+});
+els.closeSupport.addEventListener('click',()=>{
+  pendingAutoOpen=null;
+  toggle('.qb-support',false);
+});
+els.openSolutions.addEventListener('click',()=>{
+  if(state.mode!=='study'){
+    pendingAutoOpen='.qb-solution';
+    setState({mode:'study'});
+  }else{
+    toggle('.qb-solution',true);
+  }
+});
+els.closeSolutions.addEventListener('click',()=>{
+  pendingAutoOpen=null;
+  toggle('.qb-solution',false);
+});
+els.top.addEventListener('click',()=>{
+  const target=$('browseTitle')||els.results;
+  if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
+  else scrollTo({top:0,behavior:'smooth'});
+});
 els.dialogClose.addEventListener('click',closeStudyModal);
 els.dialog.addEventListener('click',event=>{if(event.target===els.dialog)closeStudyModal();});
 els.dialog.addEventListener('close',()=>{

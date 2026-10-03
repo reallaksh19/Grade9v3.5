@@ -108,11 +108,16 @@
   hint.className = 'g9-search-hint';
   hint.textContent = 'Tip: press Ctrl/⌘ K from anywhere to search.';
 
+  const tabsContainer = document.createElement('div');
+  tabsContainer.className = 'g9-search-tabs';
+  tabsContainer.setAttribute('role', 'tablist');
+  tabsContainer.hidden = true;
+
   const results = document.createElement('div');
   results.className = 'g9-search-results';
   results.setAttribute('aria-live', 'polite');
 
-  wrap.append(top, input, hint, results);
+  wrap.append(top, input, hint, tabsContainer, results);
   dialog.appendChild(wrap);
 
   if (document.body) {
@@ -207,31 +212,93 @@
     return String(v || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
   }
 
-  function resultLink(titleText, subtitle, href, kind) {
+  function getCategory(item) {
+    if (item.category) return item.category;
+    const t = String(item.type || '').toUpperCase();
+    if (t === 'QUESTION') return 'question';
+    if (t === 'TOPIC' || t === 'SUBTOPIC' || t === 'CONCEPT') return 'curriculum';
+    if (t.includes('CORE_1A') || t.includes('CORE_2') || item.sub_type === 'CORE_1A' || item.sub_type === 'CORE_2' || (item.url && item.url.includes('12-7-tablet'))) return 'tablet';
+    return 'tablet';
+  }
+
+  function getReadableKind(type) {
+    const t = String(type || '').toUpperCase();
+    if (t === 'EXPLORE_RESOURCE') return 'EXPLORER';
+    if (t === 'LEARN_RESOURCE') return 'CORE STUDY';
+    if (t === 'PRACTICE_RESOURCE') return 'PRACTICE';
+    if (t === 'CONCEPT') return 'CONCEPT';
+    if (t === 'QUESTION') return 'QUESTION';
+    if (t === 'TOPIC') return 'TOPIC';
+    if (t === 'SUBTOPIC') return 'SUBTOPIC';
+    if (t === 'HINT' || t === 'RUNG') return 'HINT';
+    return t || 'PAGE';
+  }
+
+  function scoreItem(item, tokens, term) {
+    let score = 1000;
+    const titleNorm = normalize(item.title);
+    const idNorm = normalize(item.id);
+    const textNorm = normalize(item.search_text);
+
+    if (idNorm === term || item.id === term || item.id === 'Q-' + term || idNorm === 'q ' + term) score += 25000;
+    else if (idNorm.includes(term)) score += 5000;
+
+    if (titleNorm === term) score += 15000;
+    else if (titleNorm.startsWith(term)) score += 6000;
+    else if (tokens.every(tok => titleNorm.includes(tok))) score += 3000;
+    else if (tokens.some(tok => titleNorm.includes(tok))) score += 1000;
+
+    if (tokens.every(tok => textNorm.includes(tok))) score += 500;
+    if (textNorm.includes(term)) score += 300;
+
+    return score;
+  }
+
+  function resultLink(item, href) {
     const a = document.createElement('a');
     a.className = 'g9-search-result';
     a.href = href;
+    if (item.target === '_blank') {
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+    }
 
     const main = document.createElement('span');
     main.className = 'g9-search-result-main';
-    main.textContent = titleText;
+    main.textContent = item.title || item.id;
 
     const sub = document.createElement('span');
-    sub.className = 'g9-search-result-sub';
-    sub.textContent = subtitle;
+    if (item.breadcrumb) {
+      sub.className = 'g9-search-breadcrumb';
+      sub.textContent = item.breadcrumb;
+    } else {
+      sub.className = 'g9-search-result-sub';
+      sub.textContent = item.search_text ? item.search_text.slice(0, 110) + '…' : (item.id || '');
+    }
 
     const badge = document.createElement('span');
     badge.className = 'g9-search-result-kind';
-    badge.textContent = kind || 'ITEM';
+    const rawBadge = item.badge || getReadableKind(item.type);
+    badge.textContent = rawBadge;
+
+    const bNorm = rawBadge.toLowerCase();
+    if (bNorm.includes('core 1a')) badge.classList.add('g9-badge-core1a');
+    else if (bNorm.includes('core 2')) badge.classList.add('g9-badge-core2');
+    else if (bNorm.includes('ncert')) badge.classList.add('g9-badge-ncert');
+    else if (bNorm.includes('jee') || bNorm.includes('iit')) badge.classList.add('g9-badge-jee');
+    else if (item.type === 'TOPIC' || item.type === 'SUBTOPIC') badge.classList.add('g9-badge-topic');
 
     a.append(main, sub, badge);
     return a;
   }
 
+  let activeCategory = 'all';
+
   async function renderSearch() {
     const term = normalize(input.value);
     results.replaceChildren();
     if (!term) {
+      tabsContainer.hidden = true;
       const p = document.createElement('p');
       p.className = 'g9-search-empty';
       p.textContent = 'Type to search the portal, concepts, and canonical Question Bank.';
@@ -244,16 +311,27 @@
 
     const matched = (Array.isArray(data) ? data : []).filter(item => {
       const hay = normalize([item.title, item.id, item.search_text, item.type].join(' '));
-      return tokens.every(t => hay.includes(t));
-    }).slice(0, 10);
+      return tokens.every(t => {
+        if (hay.includes(t)) return true;
+        if (t.length >= 4) {
+          const stem = t.slice(0, 4);
+          if (hay.includes(stem)) return true;
+        }
+        return false;
+      });
+    });
 
     if (matched.length === 0) {
+      tabsContainer.hidden = true;
       const p = document.createElement('p');
       p.className = 'g9-search-empty';
       p.textContent = 'No matching results found.';
       results.appendChild(p);
       return;
     }
+
+    // Sort by relevance score
+    matched.sort((a, b) => scoreItem(b, tokens, term) - scoreItem(a, tokens, term));
 
     let effectiveRoot = (script && script.dataset.siteRoot);
     if (!effectiveRoot && script && script.src) {
@@ -267,14 +345,108 @@
     }
     effectiveRoot = effectiveRoot || '';
 
-    matched.forEach(item => {
+    // Calculate dynamic counts
+    const countAll = matched.length;
+    const countQuestions = matched.filter(m => getCategory(m) === 'question').length;
+    const countTablets = matched.filter(m => getCategory(m) === 'tablet').length;
+    const countCurriculum = matched.filter(m => getCategory(m) === 'curriculum').length;
+
+    // Reset tab if current active has 0 results
+    if (activeCategory === 'question' && countQuestions === 0) activeCategory = 'all';
+    if (activeCategory === 'tablet' && countTablets === 0) activeCategory = 'all';
+    if (activeCategory === 'curriculum' && countCurriculum === 0) activeCategory = 'all';
+
+    // Render tabs
+    tabsContainer.hidden = false;
+    tabsContainer.replaceChildren();
+    const tabDefs = [
+      { id: 'all', label: 'All', count: countAll },
+      { id: 'question', label: 'Questions', count: countQuestions },
+      { id: 'tablet', label: 'Core 1A & 2 Tablets', count: countTablets },
+      { id: 'curriculum', label: 'Topics & Concepts', count: countCurriculum },
+    ];
+    tabDefs.forEach(def => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'g9-search-tab' + (activeCategory === def.id ? ' active' : '');
+      btn.setAttribute('role', 'tab');
+      btn.setAttribute('aria-selected', String(activeCategory === def.id));
+
+      const lbl = document.createElement('span');
+      lbl.textContent = def.label;
+
+      const badgeCount = document.createElement('span');
+      badgeCount.className = 'g9-search-tab-count';
+      badgeCount.textContent = String(def.count);
+
+      btn.append(lbl, badgeCount);
+      btn.addEventListener('click', () => {
+        activeCategory = def.id;
+        renderSearch();
+      });
+      tabsContainer.appendChild(btn);
+    });
+
+    const createBridge = () => {
+      const bridge = document.createElement('a');
+      bridge.className = 'g9-search-qb-bridge';
+      bridge.href = effectiveRoot + 'question-bank/index.html?q=' + encodeURIComponent(input.value.trim());
+      const leftText = document.createElement('span');
+      leftText.textContent = `View all ${countQuestions} questions in Question Bank`;
+      const rightArrow = document.createElement('span');
+      rightArrow.textContent = '›';
+      bridge.append(leftText, rightArrow);
+      return bridge;
+    };
+
+    const renderCard = item => {
       let itemUrl = item.url || '';
       if (!itemUrl.startsWith('http') && !itemUrl.startsWith('/')) {
         itemUrl = effectiveRoot + itemUrl;
       }
-      const sub = item.search_text ? item.search_text.slice(0, 120) + '…' : (item.id || '');
-      results.appendChild(resultLink(item.title || item.id, sub, itemUrl, item.type));
-    });
+      return resultLink(item, itemUrl);
+    };
+
+    if (activeCategory === 'all') {
+      const tablets = matched.filter(m => getCategory(m) === 'tablet');
+      const curriculum = matched.filter(m => getCategory(m) === 'curriculum');
+      const questions = matched.filter(m => getCategory(m) === 'question');
+
+      if (tablets.length) {
+        const secHdr = document.createElement('div');
+        secHdr.className = 'g9-search-section-header';
+        secHdr.textContent = `📑 Core 1A & 2 Tablets (${tablets.length})`;
+        results.appendChild(secHdr);
+        tablets.slice(0, 6).forEach(item => results.appendChild(renderCard(item)));
+      }
+
+      if (curriculum.length) {
+        const secHdr = document.createElement('div');
+        secHdr.className = 'g9-search-section-header';
+        secHdr.textContent = `📚 Topics & Concepts (${curriculum.length})`;
+        results.appendChild(secHdr);
+        curriculum.slice(0, 4).forEach(item => results.appendChild(renderCard(item)));
+      }
+
+      if (questions.length) {
+        const secHdr = document.createElement('div');
+        secHdr.className = 'g9-search-section-header';
+        secHdr.textContent = `🎯 Questions in Question Bank (${questions.length})`;
+        results.appendChild(secHdr);
+        results.appendChild(createBridge());
+        questions.slice(0, 8).forEach(item => results.appendChild(renderCard(item)));
+      }
+    } else if (activeCategory === 'question') {
+      if (countQuestions > 0) results.appendChild(createBridge());
+      const questions = matched.filter(m => getCategory(m) === 'question');
+      questions.slice(0, 20).forEach(item => results.appendChild(renderCard(item)));
+    } else if (activeCategory === 'tablet') {
+      const tablets = matched.filter(m => getCategory(m) === 'tablet');
+      tablets.slice(0, 20).forEach(item => results.appendChild(renderCard(item)));
+    } else if (activeCategory === 'curriculum') {
+      const curriculum = matched.filter(m => getCategory(m) === 'curriculum');
+      curriculum.slice(0, 20).forEach(item => results.appendChild(renderCard(item)));
+    }
   }
 
   let searchTimer = null;
@@ -329,6 +501,12 @@
     });
   }
 
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.g9-header-dropdown')) {
+      document.querySelectorAll('.g9-header-dropdown[open]').forEach(d => d.removeAttribute('open'));
+    }
+  });
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', bindTriggers);
   } else {
@@ -340,8 +518,9 @@
       e.preventDefault();
       openSearch();
     }
-    if (e.key === 'Escape' && dialog.open) {
-      dialog.close();
+    if (e.key === 'Escape') {
+      if (dialog.open) dialog.close();
+      document.querySelectorAll('.g9-header-dropdown[open]').forEach(d => d.removeAttribute('open'));
     }
   });
 

@@ -571,6 +571,7 @@ def load_subtopic_titles(repo: Path) -> dict[str, dict]:
             ref, title = microtopic.get("primary_capability_ref"), microtopic.get("title")
             if isinstance(ref, str) and ref and isinstance(title, str) and title.strip():
                 owners[ref].append({"title": title.strip(), "source_ref": str(microtopic.get("id") or "")})
+    
     return {
         ref: {"title": rows[0]["title"], "source_ref": rows[0]["source_ref"]}
         for ref, rows in sorted(owners.items()) if len(rows) == 1
@@ -616,6 +617,10 @@ def summarize_question(question: Mapping[str, object]) -> dict:
         row["math_spans"] = spans
     row["has_visual"] = bool(enriched.get("visual_ref"))
     row["option_count"] = len(enriched.get("options") or [])
+    row["has_support"] = bool(enriched.get("source_hints") or enriched.get("scaffolds"))
+    row["support_count"] = len(enriched.get("source_hints") or []) + len(enriched.get("scaffolds") or [])
+    ans = enriched.get("answer") or {}
+    row["has_solution"] = bool(ans.get("summary") or ans.get("reasoning")) if isinstance(ans, Mapping) else False
     return row
 
 
@@ -706,15 +711,48 @@ def _search_text(parts: Iterable[object]) -> str:
     return " ".join(part for part in (normalize_content(value) for value in parts) if part)
 
 
-def build_search_index(questions: Sequence[Mapping[str, object]], resources: Sequence[Mapping[str, object]] = ()) -> dict:
+def _difficulty_descriptors(band: object) -> str:
+    mapping = {
+        "d1": "d1 easy",
+        "d2": "d2 medium",
+        "d3": "d3 hard",
+        "d4": "d4 olympiad",
+    }
+    return mapping.get(str(band or "").strip().lower(), "")
+
+
+def _question_aliases(question: Mapping[str, object]) -> str:
+    aliases = []
+    exam_str = str(question.get("exam") or "").lower()
+    qid = str(question.get("id") or "").lower()
+    tags = [str(t).lower() for t in question.get("tags") or []]
+    if "ncert" in exam_str or "ncert" in qid or any("ncert" in t for t in tags):
+        aliases.extend(["ncert", "cbse"])
+    if "jee" in exam_str or "iit" in exam_str or "jee" in qid or any("jee" in t for t in tags):
+        aliases.extend(["jee", "iit", "pyq"])
+    if "core" in qid or "core2" in qid or any("core2" in t for t in tags):
+        aliases.append("core2")
+    return " ".join(aliases)
+
+
+def build_search_index(questions: Sequence[Mapping[str, object]], resources: Sequence[Mapping[str, object]] = (),
+                       subtopic_titles: Mapping[str, Mapping[str, str]] | None = None) -> dict:
     documents: list[dict] = []
     for raw in questions:
         question = enrich_question_refs(raw)
+        sub_titles = [
+            (subtopic_titles or {}).get(ref, {}).get("title", "")
+            for ref in question.get("subtopic_refs", []) or []
+        ]
+        diff_band = (question.get("difficulty") or {}).get("band") if isinstance(question.get("difficulty"), Mapping) else question.get("difficulty")
         parts: list[object] = [
             question.get("id"), question.get("subject"), question.get("topic"), question.get("exam"),
             question.get("year"), question.get("paper"), question.get("question_type"), question.get("stem"),
             question.get("primary_capability_ref"), question.get("family_ref"), question.get("stable_crux_move"),
             " ".join(question.get("secondary_capability_refs", []) or []),
+            " ".join(t for t in sub_titles if t),
+            _difficulty_descriptors(diff_band),
+            _question_aliases(question),
         ]
         documents.append({
             "id": question["id"],
@@ -971,8 +1009,8 @@ def platform_nodes(questions: Sequence[Mapping[str, object]], scoped_resources: 
         Node("catalog", (), lambda done: with_views,
              lambda value: build_catalog(value["questions"], value["resources"], value["views"], value["subtopic_titles"])),
         Node("summaries", (), lambda done: questions, build_question_summaries),
-        Node("search", (), lambda done: shared,
-             lambda value: build_search_index(value["questions"], value["resources"])),
+        Node("search", (), lambda done: with_views,
+             lambda value: build_search_index(value["questions"], value["resources"], value.get("subtopic_titles"))),
         Node("dedup", (), lambda done: questions, build_dedup_report),
         Node("lineage", ("search",), lambda done: {"search": done["search"].output, "build_id": build_id},
              lambda value: build_lineage(questions, value["search"], value["build_id"]), receipted=False),

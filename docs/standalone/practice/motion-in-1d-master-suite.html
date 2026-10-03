@@ -1609,14 +1609,136 @@ article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-sp
 <style id="u2-practice-hub-target">
 a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center}
 </style>
+<style id="tablet-standard-header-css">
+/* Standard App Header & Navigation Styles */
+header.app-header {
+  background-color: var(--bg-surface, #0f172a);
+  border-bottom: 1.5px solid var(--border, #263859);
+  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+[data-theme="light"] header.app-header {
+  background-color: #ffffff;
+  border-bottom-color: #cbd5e1;
+}
+
+.header-inner {
+  max-width: var(--tab12-container-max, 1400px);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.header-brand h1 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary, #f8fafc);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+[data-theme="light"] .header-brand h1 {
+  color: #0f172a;
+}
+
+.subject-badge {
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: rgba(56, 189, 248, 0.15);
+  color: var(--accent, #38bdf8);
+  border: 1px solid var(--accent, #38bdf8);
+  font-weight: 700;
+}
+
+.nav-hub-btn {
+  background-color: var(--bg-card, #152238);
+  color: var(--text-primary, #f8fafc);
+  border: 1.5px solid var(--border, #263859);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+[data-theme="light"] .nav-hub-btn {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+.nav-hub-btn:hover {
+  border-color: var(--accent, #38bdf8);
+  background-color: var(--bg-card-subtle, #1a2942);
+}
+
+[data-theme="light"] .nav-hub-btn:hover {
+  background-color: #e2e8f0;
+}
+
+.theme-toggle-btn {
+  background-color: var(--bg-card, #152238);
+  color: var(--text-primary, #f8fafc);
+  border: 1.5px solid var(--border, #263859);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+[data-theme="light"] .theme-toggle-btn {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+</style>
 </head>
 <body class="u4-tailwind-offline bg-background text-slate-100 min-h-screen flex flex-col font-sans selection:bg-sky-500/30">
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <h1>
+          <span>🏎️</span> Motion in One Dimension Master Suite
+          <span class="subject-badge">Physics · Master Suite</span>
+        </h1>
+      </div>
+      <div class="header-actions" style="display:flex;align-items:center;gap:10px;">
+        <button type="button" onclick="if(document.referrer &amp;&amp; document.referrer.indexOf(window.location.host) !== -1){history.back();}else{location.href='../../physics/motion-1d/index.html';}" class="nav-hub-btn" aria-label="Previous Page" title="Back to Previous Page">← Previous Page</button>
+        <a href="../../physics/motion-1d/index.html" class="nav-hub-btn" aria-label="Back to Topic Workspace" title="Back to Motion 1D Workspace">Motion 1D Workspace</a>
+        <a href="../../index.html" class="nav-hub-btn" aria-label="Portal Home" title="Portal Home">⚡ Home</a>
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">🌓 Mode</button>
+      </div>
+    </div>
+  </header>
 
   <!-- TOP APP BAR -->
   <header class="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-border px-4 py-3">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-3">
       <div class="flex items-center gap-3">
-        <a href="index.html" class="p-2 rounded-lg bg-slate-900 border border-border hover:border-sky-500/50 text-slate-300 hover:text-white transition flex items-center gap-1.5" aria-label="Back to Practice Hub" title="Back to Practice Hub" style="min-height:48px;min-width:48px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;">← Practice Hub</a>
         <div>
           <div class="flex items-center gap-2">
             <span class="px-2 py-0.5 text-[13px] font-extrabold uppercase tracking-wider rounded bg-sky-500/20 text-sky-400 border border-sky-500/30">
@@ -4469,5 +4591,21 @@ a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizi
       window.renderAllMath();
     }
   </script>
+
+<script>
+  (function() {
+    const themeBtn = document.getElementById('themeToggle');
+    if (!themeBtn) return;
+    const htmlEl = document.documentElement;
+    const savedTheme = localStorage.getItem('tablet12_theme') || 'dark';
+    htmlEl.setAttribute('data-theme', savedTheme);
+    themeBtn.addEventListener('click', function() {
+      const current = htmlEl.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      htmlEl.setAttribute('data-theme', next);
+      localStorage.setItem('tablet12_theme', next);
+    });
+  })();
+</script>
 </body>
 </html>

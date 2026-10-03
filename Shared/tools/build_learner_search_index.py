@@ -39,6 +39,16 @@ def build_search_documents(repo_root: Path) -> tuple[list[dict], dict]:
             bundles = json.load(f)
 
     qb_data_file = repo_root / "public" / "data" / "question-bank-data.js"
+    synonyms_file = repo_root / "public" / "data" / "keyword-synonyms.v1.json"
+    synonyms = []
+    if synonyms_file.exists():
+        try:
+            with open(synonyms_file, "r", encoding="utf-8") as f:
+                syn_data = json.load(f)
+                synonyms = syn_data.get("synonyms", [])
+        except Exception as e:
+            print("Failed loading keyword-synonyms.v1.json:", e)
+
     loaded_questions = []
     if qb_data_file.exists():
         try:
@@ -74,12 +84,49 @@ def build_search_documents(repo_root: Path) -> tuple[list[dict], dict]:
         topic_refs = classification.get("topic_refs", [])
         ep = rec.get("artifact", {}).get("entrypoint", "")
 
+        is_core1a = "core1a" in rid.lower() or "core1a" in ep.lower() or "core 1a" in title.lower()
+        is_core2 = "core2" in rid.lower() or "core2" in ep.lower() or "core 2" in title.lower()
+        is_suite = "master-suite" in ep.lower() or "master suite" in title.lower()
+        is_explorer = role == "EXPLORE" or "explorer" in ep.lower()
+
+        if is_core1a:
+            badge = "CORE 1A FOUNDATION"
+            sub_type = "CORE_1A"
+        elif is_core2:
+            badge = "CORE 2 CHALLENGE"
+            sub_type = "CORE_2"
+        elif is_suite:
+            badge = "MASTER SUITE"
+            sub_type = "SUITE"
+        elif is_explorer:
+            badge = "EXPLORER"
+            sub_type = "EXPLORER"
+        else:
+            badge = "PRACTICE" if role == "PRACTICE" else ("CORE STUDY" if role == "LEARN" else role)
+            sub_type = role
+
+        topic_clean = topic_refs[0].split(".")[-1].replace("-", " ").title() if topic_refs else ""
+        breadcrumb = f"{subj} · {topic_clean} · {badge}".replace(" ·  ·", " ·").strip(" ·")
+
+        # Inject thesaurus synonyms matching resource
+        res_syns = []
+        for syn in synonyms:
+            slug = syn.get("slug", "")
+            if slug and any(slug in tr.lower() for tr in topic_refs):
+                res_syns.extend(syn.get("aliases", []))
+            elif syn.get("entity_refs", {}).get("concept_ref") in caps:
+                res_syns.extend(syn.get("aliases", []))
+
         docs.append({
             "id": f"RES-{rid}",
             "type": f"{role}_RESOURCE",
+            "category": "tablet" if sub_type in ("CORE_1A", "CORE_2", "SUITE", "EXPLORER", "LEARN", "PRACTICE") or "12-7-tablet" in ep else "page",
+            "sub_type": sub_type,
+            "badge": badge,
+            "breadcrumb": breadcrumb,
             "subject": subj,
             "title": title,
-            "search_text": f"{title} {' '.join(aliases)} {' '.join(topic_refs)} {' '.join(caps)} {subj}".lower(),
+            "search_text": f"{title} {' '.join(aliases)} {' '.join(res_syns)} {' '.join(topic_refs)} {' '.join(caps)} {subj} {badge} {sub_type}".lower(),
             "url": ep,
             "target": "_blank" if role == "EXPLORE" else "_self",
             "concept_refs": caps
@@ -99,12 +146,24 @@ def build_search_documents(repo_root: Path) -> tuple[list[dict], dict]:
             target_url = b["interactive"][0]["entrypoint"]
         else:
             target_url = f"{subj_slug}/{slug}/index.html#{cref}"
+
+        con_syns = []
+        for syn in synonyms:
+            s_slug = syn.get("slug", "")
+            if s_slug and s_slug in tref.lower():
+                con_syns.extend(syn.get("aliases", []))
+            elif syn.get("entity_refs", {}).get("concept_ref") == cref:
+                con_syns.extend(syn.get("aliases", []))
+
         docs.append({
             "id": f"CON-{cref}",
             "type": "CONCEPT",
+            "category": "curriculum",
+            "badge": "CONCEPT",
+            "breadcrumb": f"{subj} · {slug.replace('-', ' ').title()} · Concept",
             "subject": subj,
             "title": title,
-            "search_text": f"{title} {cref} {tref} {subj}".lower(),
+            "search_text": f"{title} {' '.join(con_syns)} {cref} {tref} {subj} concept".lower(),
             "url": target_url,
             "target": "_self",
             "concept_refs": [cref]
@@ -116,7 +175,7 @@ def build_search_documents(repo_root: Path) -> tuple[list[dict], dict]:
         if not qid:
             continue
         stem = q.get("stem", "")
-        title = stem[:80] or f"Question {qid}"
+        title = stem[:90] or f"Question {qid}"
         ans = q.get("answer", {})
         ans_summary = ans.get("summary", "") if isinstance(ans, dict) else str(ans)
         ans_reasoning = " ".join(ans.get("reasoning", [])) if isinstance(ans, dict) else ""
@@ -127,10 +186,49 @@ def build_search_documents(repo_root: Path) -> tuple[list[dict], dict]:
         subj = q.get("subject", "Physics")
         cap = q.get("primary_capability_ref", "")
 
-        search_vector = f"{qid} {title} {stem} {options_text} {topic} {cap} {subj}".lower()
+        exam = q.get("exam", "")
+        year = str(q.get("year") or "")
+        paper = q.get("paper", "")
+        qnum = str(q.get("question_number") or qid)
+        diff_info = q.get("difficulty") or {}
+        diff_band = diff_info.get("band", "") if isinstance(diff_info, dict) else str(diff_info)
+        tags = [str(t).lower() for t in q.get("tags") or []]
+
+        aliases = []
+        exam_l = exam.lower()
+        qid_l = qid.lower()
+        if "ncert" in exam_l or "ncert" in qid_l or any("ncert" in t for t in tags):
+            aliases.extend(["ncert", "cbse", "textbook", "exemplar"])
+        if "jee" in exam_l or "iit" in exam_l or "jee" in qid_l or any("jee" in t for t in tags):
+            aliases.extend(["jee", "iit", "iit-jee", "pyq", "competitive"])
+        if qid_l.startswith("1d-q") or "core" in qid_l or "core2" in qid_l or any("core2" in t for t in tags):
+            aliases.extend(["core2", "core 2", "challenge"])
+
+        # Inject thesaurus synonyms matching question topic, exam, or capability
+        for syn in synonyms:
+            erefs = syn.get("entity_refs", {})
+            slug_spaced = syn.get("slug", "").replace("-", " ")
+            canon = syn.get("canonical_term", "").lower()
+            topic_l = topic.lower()
+            if (slug_spaced and slug_spaced in topic_l) or (canon and (canon in topic_l or topic_l in canon)):
+                aliases.extend(syn.get("aliases", []))
+            elif erefs.get("exam_family") and erefs.get("exam_family").lower() in exam_l:
+                aliases.extend(syn.get("aliases", []))
+            elif erefs.get("concept_ref") and erefs.get("concept_ref") == cap:
+                aliases.extend(syn.get("aliases", []))
+
+        diff_words = {"d1": "d1 easy foundation", "d2": "d2 medium standard", "d3": "d3 hard advanced", "d4": "d4 olympiad"}.get(diff_band.lower(), diff_band)
+        search_vector = f"{qid} {title} {stem} {options_text} {topic} {cap} {subj} {exam} {year} {paper} Q{qnum} {diff_words} {' '.join(aliases)}".lower()
+
+        exam_tag = f"NCERT · {diff_band}".strip(" ·") if "ncert" in aliases else (f"JEE · {diff_band}".strip(" ·") if "jee" in aliases else (f"{exam} · {diff_band}".strip(" ·") or "QUESTION"))
+        breadcrumb = f"{subj} · {topic} · {exam} {year} · Q{qnum}".replace("  ", " ").strip(" ·")
+
         docs.append({
             "id": f"Q-{qid}",
             "type": "QUESTION",
+            "category": "question",
+            "badge": exam_tag,
+            "breadcrumb": breadcrumb,
             "subject": subj,
             "title": title,
             "search_text": search_vector,
@@ -138,6 +236,61 @@ def build_search_documents(repo_root: Path) -> tuple[list[dict], dict]:
             "target": "_self",
             "concept_refs": [cap] if cap else []
         })
+
+    # 4. Curriculum Nodes (Topics and Subtopics from catalog)
+    cat_file = repo_root / "public" / "data" / "question-bank-catalog.js"
+    if cat_file.exists():
+        try:
+            raw_cat = cat_file.read_text(encoding="utf-8")
+            prefix_cat = "window.GRADE9_QUESTION_BANK_CATALOG="
+            if raw_cat.startswith(prefix_cat):
+                cat_obj = json.loads(raw_cat[len(prefix_cat):].rstrip(";\n "))
+                for top in cat_obj.get("topics", []):
+                    tid = top.get("id")
+                    if not tid or top.get("question_count", 0) == 0:
+                        continue
+                    t_label = top.get("label", tid)
+                    t_subj = top.get("subject_ref", "").replace("SUBJECT-", "").title()
+                    top_syns = []
+                    for syn in synonyms:
+                        if syn.get("entity_refs", {}).get("topic_ref") == tid or syn.get("slug", "") in t_label.lower():
+                            top_syns.extend(syn.get("aliases", []))
+                    docs.append({
+                        "id": f"TOPIC-{tid}",
+                        "type": "TOPIC",
+                        "category": "curriculum",
+                        "subject": t_subj,
+                        "title": t_label,
+                        "search_text": f"topic {t_label} {' '.join(top_syns)} {t_subj} {tid}".lower(),
+                        "url": f"question-bank/index.html?topic={tid}",
+                        "target": "_self",
+                        "badge": "TOPIC",
+                        "breadcrumb": f"{t_subj} · Curriculum Topic · {top.get('question_count', 0)} Questions",
+                        "concept_refs": []
+                    })
+                for sub in cat_obj.get("subtopics", []):
+                    sid = sub.get("id")
+                    if not sid or sub.get("question_count", 0) == 0:
+                        continue
+                    if sub.get("label_source") != "CANONICAL_TITLE":
+                        continue
+                    s_label = sub.get("label", sid)
+                    s_subj = sub.get("subject_ref", "").replace("SUBJECT-", "").title()
+                    docs.append({
+                        "id": f"SUBTOPIC-{sid}",
+                        "type": "SUBTOPIC",
+                        "category": "curriculum",
+                        "subject": s_subj,
+                        "title": s_label,
+                        "search_text": f"subtopic capability {s_label} {s_subj} {sid}".lower(),
+                        "url": f"question-bank/index.html?subtopic={sid}",
+                        "target": "_self",
+                        "badge": "SUBTOPIC",
+                        "breadcrumb": f"{s_subj} · Subtopic Capability · {sub.get('question_count', 0)} Questions",
+                        "concept_refs": [sid]
+                    })
+        except Exception as e:
+            print("Failed indexing curriculum catalog nodes:", e)
 
     # Build stats
     stats = {

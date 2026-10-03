@@ -1,1362 +1,2828 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-  <!-- KaTeX Typography (Khan Academy Standard) -->
-  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
-  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
-  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>GRADE 9 MATHEMATICS - Theory of Equations Master Suite | 12.7" Tablet Standalone Edition</title>
-  <meta name="description" content="Complete 12.7-inch tablet study suite for Theory of Equations: Vieta's Relations, Roots to Factors, Symmetric Functions, Cubic and Quartic Equations, and 30+ Structured Challenges.">
-  <style>
-/* ==========================================================================
-   Mathematics: Theory of Equations 12.7" Tablet Standalone Stylesheet
-   WCAG 2.5.5 >= 48px touch targets, >= 120px textareas, no micro-fonts (<13.5px)
-   100% Offline Standalone · Dark/Light Mode · Responsive Stage/Support Grid
-   ========================================================================== */
-
-:root {
-  --tab12-container-max: 1400px;
-  --tab12-touch-min: 48px;
-  --tab12-base-font: 16px;
-  --tab12-radius-sm: 8px;
-  --tab12-radius-md: 12px;
-  --tab12-radius-lg: 16px;
-
-  --bg-app: #080d1a;
-  --bg-surface: #0f172a;
-  --bg-card: #152238;
-  --bg-card-subtle: #1a2942;
-  --border: #263859;
-  --border-light: #334b75;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --accent: #38bdf8;
-  --accent-glow: rgba(56, 189, 248, 0.25);
-  --success: #34d399;
-  --warning: #f59e0b;
-  --danger: #f87171;
-  --purple: #c084fc;
-}
-
-[data-theme="light"] {
-  --bg-app: #f1f5f9;
-  --bg-surface: #ffffff;
-  --bg-card: #ffffff;
-  --bg-card-subtle: #f8fafc;
-  --border: #cbd5e1;
-  --border-light: #e2e8f0;
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #64748b;
-  --accent: #0284c7;
-  --accent-glow: rgba(2, 132, 199, 0.15);
-  --success: #059669;
-  --warning: #d97706;
-  --danger: #dc2626;
-  --purple: #7e22ce;
-}
-
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  font-size: var(--tab12-base-font);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  color: var(--text-primary);
-  background-color: var(--bg-app);
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  line-height: 1.6;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-button, .btn, .tab-btn, summary {
-  min-height: var(--tab12-touch-min);
-  min-width: var(--tab12-touch-min);
-  padding: 10px 18px;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: var(--tab12-radius-sm);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  touch-action: manipulation;
-  transition: all 0.18s ease;
-  border: 1px solid transparent;
-}
-
-button:focus-visible, .btn:focus-visible, summary:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 2px;
-}
-
-textarea.tablet-safe-input {
-  min-height: 120px;
-  width: 100%;
-  padding: 14px;
-  font-family: monospace, inherit;
-  font-size: 14.5px;
-  line-height: 1.5;
-  background-color: var(--bg-surface);
-  color: var(--text-primary);
-  border: 1.5px solid var(--border);
-  border-radius: var(--tab12-radius-sm);
-  resize: vertical;
-  display: block;
-}
-
-textarea.tablet-safe-input:focus {
-  border-color: var(--accent);
-  background-color: var(--bg-card);
-}
-
-header.app-header {
-  background-color: var(--bg-surface);
-  border-bottom: 1.5px solid var(--border);
-  padding: 14px 24px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-.header-inner {
-  max-width: var(--tab12-container-max);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.header-brand h1 {
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.subject-badge {
-  font-size:14px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background-color: rgba(56, 189, 248, 0.15);
-  color: var(--accent);
-  border: 1px solid var(--accent);
-  font-weight: 700;
-}
-
-.theme-toggle-btn {
-  background-color: var(--bg-card);
-  color: var(--text-primary);
-  border: 1.5px solid var(--border);
-}
-
-nav.tab-nav {
-  background-color: var(--bg-surface);
-  border-bottom: 1px solid var(--border);
-  padding: 8px 24px 0 24px;
-  overflow-x: auto;
-}
-
-.tab-nav-inner {
-  max-width: var(--tab12-container-max);
-  margin: 0 auto;
-  display: flex;
-  gap: 8px;
-}
-
-.tab-btn {
-  background: transparent;
-  color: var(--text-secondary);
-  border: none;
-  border-bottom: 3px solid transparent;
-  border-radius: var(--tab12-radius-sm) var(--tab12-radius-sm) 0 0;
-  padding: 12px 18px;
-  white-space: nowrap;
-}
-
-.tab-btn.active {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
-  background: var(--bg-app);
-}
-
-main.layout-container {
-  max-width: var(--tab12-container-max);
-  margin: 20px auto;
-  padding: 0 20px;
-  width: 100%;
-  flex: 1;
-  display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 24px;
-}
-
-@media (max-width: 1040px) {
-  main.layout-container {
-    grid-template-columns: 1fr;
-  }
-}
-
-.stage-area {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.tab-content {
-  display: none;
-}
-
-.tab-content.active {
-  display: block;
-}
-
-.content-card {
-  background-color: var(--bg-card);
-  border: 1.5px solid var(--border);
-  border-radius: var(--tab12-radius-md);
-  padding: 24px;
-  margin-bottom: 20px;
-}
-
-.content-card h2 {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 12px;
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.content-card h3 {
-  font-size: 17px;
-  font-weight: 600;
-  margin: 18px 0 10px 0;
-  color: var(--accent);
-}
-
-.formula-box {
-  background: var(--bg-card-subtle);
-  border-left: 4px solid var(--accent);
-  padding: 14px 18px;
-  border-radius: 0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;
-  margin: 14px 0;
-  font-family: monospace;
-  font-size: 15px;
-  color: var(--text-primary);
-}
-
-.callout-box {
-  background: rgba(56, 189, 248, 0.08);
-  border: 1.5px solid var(--accent);
-  border-radius: var(--tab12-radius-sm);
-  padding: 16px 20px;
-  margin: 16px 0;
-}
-
-.q-card {
-  background: var(--bg-card);
-  border: 1.5px solid var(--border);
-  border-radius: var(--tab12-radius-md);
-  padding: 20px;
-  margin-bottom: 18px;
-}
-
-.q-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 10px;
-}
-
-.q-badge {
-  background: rgba(192, 132, 252, 0.15);
-  border: 1px solid var(--purple);
-  color: var(--purple);
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size:14px;
-  font-weight: 700;
-}
-
-.tag-pill {
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: 999px;
-  font-size:14px;
-  font-weight: 600;
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
-  color: var(--text-secondary);
-}
-
-.q-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 8px;
-}
-
-.q-prompt {
-  font-size: 15px;
-  color: var(--text-secondary);
-  margin-bottom: 14px;
-}
-
-details.solution-detail {
-  background: var(--bg-card-subtle);
-  border: 1px solid var(--border-light);
-  border-radius: var(--tab12-radius-sm);
-  overflow: hidden;
-  margin-top: 12px;
-}
-
-details.solution-detail summary {
-  padding: 12px 16px;
-  background: rgba(255,255,255,0.02);
-  color: var(--accent);
-  user-select: none;
-}
-
-.solution-content {
-  padding: 16px;
-  border-top: 1px solid var(--border);
-  font-size: 14.5px;
-  color: var(--text-primary);
-  line-height: 1.6;
-}
-
-.support-rail {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.support-widget {
-  background-color: var(--bg-card);
-  border: 1.5px solid var(--border);
-  border-radius: var(--tab12-radius-md);
-  padding: 20px;
-}
-
-.support-widget h3 {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.calc-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.calc-input-group label {
-  display: block;
-  font-size:14px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  margin-bottom: 4px;
-}
-
-.calc-input-group input {
-  width: 100%;
-  min-height: 42px;
-  padding: 8px 12px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: var(--tab12-radius-sm);
-  color: var(--text-primary);
-  font-size: 14.5px;
-}
-
-.calc-result {
-  background: rgba(56, 189, 248, 0.1);
-  border: 1.5px solid var(--accent);
-  padding: 12px;
-  border-radius: var(--tab12-radius-sm);
-  font-weight: 700;
-  color: var(--accent);
-  text-align: center;
-  font-size: 14.5px;
-  margin-top: 12px;
-}
-  </style>
-<style id="tablet-font-floor-remediation">
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{overflow-wrap:anywhere}
-:where(p,li,label,button,input,select,textarea,summary,td,th,figcaption,.btn,.q-badge,.tag-pill,.hint-badge,.hint-tag,.subject-badge,.step-label,.diag-header,.formula-box,#saveStatus,.save-status,.tag,.q-count,.open-btn,.stat .label,section.section-header h2,.study-kicker,.brand-badge,.hero-pill,.badge,.core-tag,.telemetry-title,.control-label,.card-action,.breadcrumb,div,span,h4,h5,h6,text){font-size:max(14px,1em)!important}
-:where(a[href="index.html"],header a,nav a,.breadcrumb a,a.g9-bridge-link,[data-g9-block="entry_assumptions"] a){min-height:48px!important;min-width:48px!important;display:inline-flex!important;align-items:center!important;justify-content:center;padding-block:10px!important;box-sizing:border-box!important}
-.subject-badge,.q-badge,.tag-pill{font-size:14px!important}
-</style>
-</head>
-<body>
-
-  <header class="app-header">
-    <div class="header-inner">
-      <div class="header-brand">
-        <h1>
-          <span>🧮</span> Theory of Equations &amp; Polynomials
-          <span class="subject-badge">Mathematics · 12.7" Tablet</span>
-        </h1>
-      </div>
-      <div class="header-actions">
-        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">🌓 Mode</button>
-      </div>
-    </div>
-  </header>
-
-  <nav class="tab-nav">
-    <div class="tab-nav-inner">
-      <button class="tab-btn active" onclick="switchTab('tab-map')">1. Roots ↔ Factors ↔ Coefficients</button>
-      <button class="tab-btn" onclick="switchTab('tab-vieta')">2. Vieta's Relations (Cubic &amp; Quartic)</button>
-      <button class="tab-btn" onclick="switchTab('tab-construct')">3. Constructing Equations</button>
-      <button class="tab-btn" onclick="switchTab('tab-symmetric')">4. Symmetric Functions</button>
-      <button class="tab-btn" onclick="switchTab('tab-challenges')">5. Practice &amp; Challenges ({len(q_cards)})</button>
-    </div>
-  </nav>
-
-  <main class="layout-container">
-    
-    <div class="stage-area">
-
-      <!-- Tab 1: Roots Factors Coefficients -->
-      <div id="tab-map" class="tab-content active">
-        <div class="content-card">
-          <h2><span>🔗</span> The Fundamental Triad: Roots ↔ Factors ↔ Coefficients</h2>
-          <p>
-            By the Factor Theorem, if $x = \alpha$ is a root of polynomial equation $P(x) = 0$, then $(x - \alpha)$ is an exact linear factor of $P(x)$.
-          </p>
-          <div class="formula-box">
-            Monic Polynomial of Degree n with roots α₁, α₂, ..., αₙ:<br>
-            P(x) = (x - α₁) (x - α₂) ··· (x - αₙ) = 0<br><br>
-            Expanding this product yields the polynomial in standard form:<br>
-            P(x) = xⁿ - S₁ xⁿ⁻¹ + S₂ xⁿ⁻² - S₃ xⁿ⁻³ + ··· + (-1)ⁿ Sₙ = 0<br>
-            where Sₖ is the k-th elementary symmetric sum of the roots.
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab 2: Vieta's Relations -->
-      <div id="tab-vieta" class="tab-content">
-        <div class="content-card">
-          <h2><span>⚖️</span> Vieta's Formulas for Cubic and Quartic Equations</h2>
-          <p>
-            For a general cubic equation $a x^3 + b x^2 + c x + d = 0$ ($a 
-eq 0$) with roots $\alpha, \beta, \gamma$:
-          </p>
-          <div class="formula-box">
-            Sum of roots taken 1 at a time (S₁):<br>
-            &nbsp; α + β + γ = - b / a<br><br>
-            Sum of products taken 2 at a time (S₂):<br>
-            &nbsp; αβ + βγ + γα = c / a<br><br>
-            Product of all 3 roots (S₃):<br>
-            &nbsp; α · β · γ = - d / a
-          </div>
-
-          <h3>Quartic Equation ($a x^4 + b x^3 + c x^2 + d x + e = 0$)</h3>
-          <div class="formula-box">
-            S₁ = ∑ α = - b / a<br>
-            S₂ = ∑ αβ = c / a<br>
-            S₃ = ∑ αβγ = - d / a<br>
-            S₄ = αβγδ = e / a
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab 3: Constructing Equations -->
-      <div id="tab-construct" class="tab-content">
-        <div class="content-card">
-          <h2><span>🏗️</span> Constructing Equations from Roots</h2>
-          <p>
-            To construct a polynomial equation whose roots are given:
-          </p>
-          <div class="formula-box">
-            Given roots: r₁, r₂, r₃<br>
-            Step 1: Compute S₁ = r₁ + r₂ + r₃<br>
-            Step 2: Compute S₂ = r₁ r₂ + r₂ r₃ + r₃ r₁<br>
-            Step 3: Compute S₃ = r₁ r₂ r₃<br>
-            Step 4: Equation is x³ - S₁ x² + S₂ x - S₃ = 0 (multiply through to clear fractions).
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab 4: Symmetric Functions -->
-      <div id="tab-symmetric" class="tab-content">
-        <div class="content-card">
-          <h2><span>✨</span> Symmetric Functions of Roots</h2>
-          <p>
-            A function $f(\alpha, \beta, \gamma)$ is symmetric if exchanging any two roots leaves the function completely unchanged.
-          </p>
-          <div class="formula-box">
-            Common Symmetric Expansions:<br>
-            • α² + β² + γ² = (α + β + γ)² - 2 (αβ + βγ + γα) = S₁² - 2 S₂<br>
-            • 1/α + 1/β + 1/γ = (αβ + βγ + γα) / (αβγ) = S₂ / S₃<br>
-            • α³ + β³ + γ³ = S₁³ - 3 S₁ S₂ + 3 S₃
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab 5: Challenges -->
-      <div id="tab-challenges" class="tab-content">
-        <div class="content-card">
-          <h2><span>🎯</span> Practice &amp; JEE Challenges ({len(q_cards)})</h2>
-          <p>
-            Worked problem instances and competition challenges from Core 2 and Core 2A.
-          </p>
-        </div>
-
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2)</span>
-            <span class="tag-pill">Problem 01</span>
-          </div>
-          <div class="q-title">Q9 - Find an equation whose roots are 0 , 1 ,−3, 5</div>
-          <p class="q-prompt">2 2 Starthere Eachroot𝑟 contributesafactor𝑥−𝑟. Beforeexpanding,writethefourfactorsandcheckthesignofthenegative root.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Apply Vieta's formulas relating coefficients and symmetric root sums.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2)</span>
-            <span class="tag-pill">Problem 02</span>
-          </div>
-          <div class="q-title">Q9 - Worked solution</div>
-          <p class="q-prompt">Writethefactors,multiply,thencleardenominators</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              ( ) ( ) ( ) ( )<br>3 5 3 5<br>𝑃(𝑥) = (𝑥−0)(𝑥−1) 𝑥+ 𝑥− = 𝑥(𝑥−1) 𝑥+ 𝑥− .<br>2 2 2 2<br>𝑥(𝑥−1) = 𝑥2−𝑥,<br>( ) ( )<br>3 5 15<br>𝑥+ 𝑥− = 𝑥2−𝑥− .
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2)</span>
-            <span class="tag-pill">Problem 03</span>
-          </div>
-          <div class="q-title">Q10 - 1 , 1 ,𝛼 are roots of 𝑥3 − 6 𝑥2 + 9 𝑥 − 4 = 0. Find 𝛼.</div>
-          <p class="q-prompt">Starthere Thecoefficientof𝑥2 givesthetotalrootsum. Foramoniccubic, 𝛼+ 𝛽+𝛾 = −𝐵. Here 𝐵 = −6,sothetotalsumis6.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Apply Vieta's formulas relating coefficients and symmetric root sums.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2)</span>
-            <span class="tag-pill">Problem 04</span>
-          </div>
-          <div class="q-title">Q10 - Worked solution</div>
-          <p class="q-prompt">Usetherootsum,thenverifybytherootproduct For 𝑥3−6𝑥2+9𝑥−4 = 0, −6</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Apply Vieta's formulas relating coefficients and symmetric root sums.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2)</span>
-            <span class="tag-pill">Problem 05</span>
-          </div>
-          <div class="q-title">Q11 - 1 ,− 2 , 3 are roots of 𝑥3 − 2 𝑥2 + 𝑎𝑥 + 6 = 0. Find 𝑎.</div>
-          <p class="q-prompt">Starthere Theunknown𝑎 isthecoefficientof𝑥. Inamoniccubic,thatcoefficientequals 𝛼𝛽+ 𝛽𝛾+𝛾𝛼. Sousetherootsdirectlyinsteadofexpandingthewholeproduct.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Apply Vieta's formulas relating coefficients and symmetric root sums.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2)</span>
-            <span class="tag-pill">Problem 06</span>
-          </div>
-          <div class="q-title">Q11 - Worked solution</div>
-          <p class="q-prompt">Computethepairwiserootsum For 𝑥3−2𝑥2+𝑎𝑥+6 = 0, thecoefficientof𝑥 is</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Apply Vieta's formulas relating coefficients and symmetric root sums.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2)</span>
-            <span class="tag-pill">Problem 07</span>
-          </div>
-          <div class="q-title">Q12 - Product of roots of 4 𝑥3 + 16 𝑥2 − 9 𝑥 − 𝑎 = 0 is 9. Find 𝑎.</div>
-          <p class="q-prompt">Starthere Avoid the notation trap: the parameter 𝑎 is not the leading coefficient. Rename the polynomial coefficients 𝐴,𝐵,𝐶,𝐷. 𝐴 = 4, 𝐷 = −𝑎.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Apply Vieta's formulas relating coefficients and symmetric root sums.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2)</span>
-            <span class="tag-pill">Problem 08</span>
-          </div>
-          <div class="q-title">Q12 - Worked solution</div>
-          <p class="q-prompt">Usetheconstant-term/productrelation Given 4𝑥3+16𝑥2−9𝑥−𝑎 = 0, wehave</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Apply Vieta's formulas relating coefficients and symmetric root sums.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2)</span>
-            <span class="tag-pill">Problem 09</span>
-          </div>
-          <div class="q-title">Q13 - 𝛼, 𝛽,𝛾 are roots of 𝑥3 − 2 𝑥2 − 5 𝑥 + 6 = 0, and 𝛼 + 𝛽 = 1. Find 𝛼, 𝛽.</div>
-          <p class="q-prompt">Starthere First use the total root sum to find 𝛾. Then use the product to find 𝛼𝛽. Once the sum and product of 𝛼,𝛽 are known,buildaquadraticwhoserootsare𝛼,𝛽. totalrootsum</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Apply Vieta's formulas relating coefficients and symmetric root sums.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2)</span>
-            <span class="tag-pill">Problem 10</span>
-          </div>
-          <div class="q-title">Q13 - Worked solution</div>
-          <p class="q-prompt">Recoverthethirdroot,thensolveanauxiliaryquadratic For 𝑥3−2𝑥2−5𝑥+6 = 0, Vietagives</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Apply Vieta's formulas relating coefficients and symmetric root sums.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2)</span>
-            <span class="tag-pill">Problem 11</span>
-          </div>
-          <div class="q-title">Q14 - Roots of 𝑥3 − 2 𝑥2 + 3 𝑥 − 4 = 0. Find 𝛼2𝛽2 + 𝛽2𝛾2 + 𝛾2𝛼2.</div>
-          <p class="q-prompt">Starthere Usethesquareofthepairwise-rootsum: (𝛼𝛽+ 𝛽𝛾+𝛾𝛼)2 = 𝛼2𝛽2+ 𝛽2𝛾2+𝛾2𝛼2+2𝛼𝛽𝛾(𝛼+ 𝛽+𝛾). Sotherequestedexpressionis</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Apply Vieta's formulas relating coefficients and symmetric root sums.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2)</span>
-            <span class="tag-pill">Problem 12</span>
-          </div>
-          <div class="q-title">Q14 - Worked solution</div>
-          <p class="q-prompt">ConvertthesymmetricexpressionintoVietadata For 𝑥3−2𝑥2+3𝑥−4 = 0, 𝑒 = 𝛼+ 𝛽+𝛾 = 2,</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Apply Vieta's formulas relating coefficients and symmetric root sums.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 13</span>
-          </div>
-          <div class="q-title">THEORY OF EQUATIONS - CHALLENGE PRACTICE</div>
-          <p class="q-prompt">CORE (2A) Every question carries its own source note. Try first; reveal help only when needed. HOW THIS BOOK WORKS ONE IDEA - THEN HARDER USES</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 14</span>
-          </div>
-          <div class="q-title">YOUR CHALLENGE MAP</div>
-          <p class="q-prompt">5 BIG IDEAS The whole chapter is grouped by the mathematical idea you need to recognize. Roots → factors → equation 1</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 15</span>
-          </div>
-          <div class="q-title">Q9 - 1. Roots → factors → equation</div>
-          <p class="q-prompt">Core (2) anchor Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              on Theory of Equations - Deep Study Guide, Sections 1-2.<br>YOUR WORKSPACE<br>Write each root as a factor:<br>Pair the factors:<br>Expand:<br>Clear fractions and check a<br>root:<br>BEFORE YOU TURN THE PAGE
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 16</span>
-          </div>
-          <div class="q-title">Q9 - OPEN HELP ONLY AS NEEDED</div>
-          <p class="q-prompt">SOURCE CORE (2) Stop revealing as soon as you can continue on your own. SMALL CLUE Each root r gives the factor x - r. Watch the sign of -3/2.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 17</span>
-          </div>
-          <div class="q-title">C9-A - 1. Roots → factors → equation</div>
-          <p class="q-prompt">Think harder - JEE-style Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 18</span>
-          </div>
-          <div class="q-title">C9-A - OPEN HELP ONLY AS NEEDED</div>
-          <p class="q-prompt">FRESH CHALLENGE Stop revealing as soon as you can continue on your own. SMALL CLUE For root 1/2, the factor 2x-1 is convenient if you want integer coefficients.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 19</span>
-          </div>
-          <div class="q-title">C9-B - 1. Roots → factors → equation</div>
-          <p class="q-prompt">Stretch - olympiad-style Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 20</span>
-          </div>
-          <div class="q-title">C9-B - OPEN HELP ONLY AS NEEDED</div>
-          <p class="q-prompt">FRESH CHALLENGE Stop revealing as soon as you can continue on your own. SMALL CLUE A pair with sum 3 and product 1 has quadratic x²-3x+1.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 21</span>
-          </div>
-          <div class="q-title">Q10 - 2. Read roots from coefficients</div>
-          <p class="q-prompt">Core (2) anchor Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Builds on Theory of Equations - Deep Study Guide, Section 3.<br>YOUR WORKSPACE<br>Total root sum:<br>Use 1+1+α:<br>Answer:<br>Product check:<br>BEFORE YOU TURN THE PAGE<br>Ask yourself: What object is the question really asking about - factors, a root sum, a root product, a pair of roots, a
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 22</span>
-          </div>
-          <div class="q-title">Q10 - OPEN HELP ONLY AS NEEDED</div>
-          <p class="q-prompt">SOURCE CORE (2) Stop revealing as soon as you can continue on your own. SMALL CLUE The x² coefficient gives the total root sum.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 23</span>
-          </div>
-          <div class="q-title">Q11 - 2. Read roots from coefficients</div>
-          <p class="q-prompt">Core (2) anchor Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Builds on Theory of Equations - Deep Study Guide, Sections 3-4.<br>YOUR WORKSPACE<br>Which root-combination<br>matches x coefficient?<br>Substitute roots:<br>Answer:<br>Check another Vieta relation:<br>BEFORE YOU TURN THE PAGE
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 24</span>
-          </div>
-          <div class="q-title">Q11 - OPEN HELP ONLY AS NEEDED</div>
-          <p class="q-prompt">SOURCE CORE (2) Stop revealing as soon as you can continue on your own. SMALL CLUE The coefficient of x in a monic cubic is αβ+βγ+γα.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 25</span>
-          </div>
-          <div class="q-title">Q12 - 2. Read roots from coefficients</div>
-          <p class="q-prompt">Core (2) anchor Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Builds on Theory of Equations - Deep Study Guide, Section 4.<br>YOUR WORKSPACE<br>Leading coefficient A:<br>Constant term D:<br>Product formula:<br>Solve for a:<br>BEFORE YOU TURN THE PAGE<br>Ask yourself: What object is the question really asking about - factors, a root sum, a root product, a pair of roots, a
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 26</span>
-          </div>
-          <div class="q-title">Q12 - OPEN HELP ONLY AS NEEDED</div>
-          <p class="q-prompt">SOURCE CORE (2) Stop revealing as soon as you can continue on your own. SMALL CLUE Do not confuse the parameter a with the leading coefficient. Call the coefficients A,B,C,D.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 27</span>
-          </div>
-          <div class="q-title">C12-A - 2. Read roots from coefficients</div>
-          <p class="q-prompt">Think harder - IOQM-style Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 28</span>
-          </div>
-          <div class="q-title">C12-A - OPEN HELP ONLY AS NEEDED</div>
-          <p class="q-prompt">FRESH CHALLENGE Stop revealing as soon as you can continue on your own. SMALL CLUE The product of the three positive integer roots is 6.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 29</span>
-          </div>
-          <div class="q-title">C12-B - 2. Read roots from coefficients</div>
-          <p class="q-prompt">Stretch - JEE-style Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 30</span>
-          </div>
-          <div class="q-title">C12-B - OPEN HELP ONLY AS NEEDED</div>
-          <p class="q-prompt">FRESH CHALLENGE Stop revealing as soon as you can continue on your own. SMALL CLUE If γ=α+β, then the total sum α+β+γ is twice γ.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 31</span>
-          </div>
-          <div class="q-title">Q13 - 3. Recover two hidden roots</div>
-          <p class="q-prompt">Core (2) anchor Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Builds on Theory of Equations - Deep Study Guide, Section 5.<br>YOUR WORKSPACE<br>Total root sum:<br>Third root γ:<br>Pair product αβ:<br>Pair quadratic:<br>BEFORE YOU TURN THE PAGE<br>Ask yourself: What object is the question really asking about - factors, a root sum, a root product, a pair of roots, a
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 32</span>
-          </div>
-          <div class="q-title">Q13 - OPEN HELP ONLY AS NEEDED</div>
-          <p class="q-prompt">SOURCE CORE (2) Stop revealing as soon as you can continue on your own. SMALL CLUE Separate information about all three roots from information about the pair.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 33</span>
-          </div>
-          <div class="q-title">C13-A - 3. Recover two hidden roots</div>
-          <p class="q-prompt">Same idea, different goal - JEE-style Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 34</span>
-          </div>
-          <div class="q-title">C13-A - OPEN HELP ONLY AS NEEDED</div>
-          <p class="q-prompt">FRESH CHALLENGE Stop revealing as soon as you can continue on your own. SMALL CLUE The total root sum is 7, so the third root is easy to find.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 35</span>
-          </div>
-          <div class="q-title">C13-B - 3. Recover two hidden roots</div>
-          <p class="q-prompt">Hidden information - olympiad-style Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 36</span>
-          </div>
-          <div class="q-title">C13-B - OPEN HELP ONLY AS NEEDED</div>
-          <p class="q-prompt">FRESH CHALLENGE Stop revealing as soon as you can continue on your own. SMALL CLUE Rewrite 1/α+1/β as (α+β)/(αβ)=s/p.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 37</span>
-          </div>
-          <div class="q-title">Q14 - 4. Symmetric expressions without solving</div>
-          <p class="q-prompt">Core (2) anchor roots Try the question before opening the clues on the next page. TRY IT FIRST</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Builds on Theory of Equations - Deep Study Guide, Section 6. Source note preserved: the supplied working had a sign typo<br>before squaring e₂; the correct e₂ is +3.<br>YOUR WORKSPACE<br>e₁:<br>e₂:<br>e₃:<br>Use e₂²-2e₁e₃:<br>BEFORE YOU TURN THE PAGE
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 38</span>
-          </div>
-          <div class="q-title">Q14 - OPEN HELP ONLY AS NEEDED</div>
-          <p class="q-prompt">SOURCE CORE (2) Stop revealing as soon as you can continue on your own. SMALL CLUE The target is symmetric, so try to rewrite it using e₁,e₂,e₃.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 39</span>
-          </div>
-          <div class="q-title">C14-A - 4. Symmetric expressions without</div>
-          <p class="q-prompt">Think harder - JEE-style solving roots Try the question before opening the clues on the next page. TRY IT FIRST</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 40</span>
-          </div>
-          <div class="q-title">C14-A - OPEN HELP ONLY AS NEEDED</div>
-          <p class="q-prompt">FRESH CHALLENGE Stop revealing as soon as you can continue on your own. SMALL CLUE Use (α+β+γ)², not the individual roots.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 41</span>
-          </div>
-          <div class="q-title">C14-B - 4. Symmetric expressions without</div>
-          <p class="q-prompt">Stretch - olympiad-style solving roots Try the question before opening the clues on the next page. TRY IT FIRST</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 42</span>
-          </div>
-          <div class="q-title">C14-B - OPEN HELP ONLY AS NEEDED</div>
-          <p class="q-prompt">FRESH CHALLENGE Stop revealing as soon as you can continue on your own. SMALL CLUE Expand all three squared differences before substituting numbers.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 43</span>
-          </div>
-          <div class="q-title">CN-A - 5. Newton sums for high powers</div>
-          <p class="q-prompt">Think harder - JEE-style Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 44</span>
-          </div>
-          <div class="q-title">CN-A - OPEN HELP ONLY AS NEEDED</div>
-          <p class="q-prompt">FRESH CHALLENGE Stop revealing as soon as you can continue on your own. SMALL CLUE Use the lower sums first: S₁=-1, S₂=7, S₃=-7, S₄=23.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 45</span>
-          </div>
-          <div class="q-title">CN-B - 5. Newton sums for high powers</div>
-          <p class="q-prompt">Reverse thinking - olympiad-style Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-        <div class="q-card">
-          <div class="q-header">
-            <span class="q-badge">Core (2A) JEE Challenge</span>
-            <span class="tag-pill">Problem 46</span>
-          </div>
-          <div class="q-title">CN-B - OPEN HELP ONLY AS NEEDED</div>
-          <p class="q-prompt">FRESH CHALLENGE Stop revealing as soon as you can continue on your own. SMALL CLUE Newton sums can be read backwards as well as forwards.</p>
-          <details class="solution-detail">
-            <summary>👁️ Reveal Worked Derivation</summary>
-            <div class="solution-content">
-              Express target symmetric function in elementary symmetric polynomials.
-            </div>
-          </details>
-        </div>
-    
-      </div>
-
-    </div>
-
-    <!-- Support Rail -->
-    <aside class="support-rail">
-      
-      <div class="support-widget">
-        <h3><span>⚡</span> Vieta's Quick Card</h3>
-        <div class="formula-box" style="font-size:14px;">
-          x³ - S₁ x² + S₂ x - S₃ = 0<br>
-          S₁ = -b/a = ∑ α<br>
-          S₂ = c/a = ∑ αβ<br>
-          S₃ = -d/a = αβγ<br>
-          ∑ α² = S₁² - 2S₂
-        </div>
-      </div>
-
-      <!-- Interactive Cubic Vieta Calculator -->
-      <div class="support-widget">
-        <h3><span>🧮</span> Cubic Vieta Calculator</h3>
-        <p style="font-size:14px; color: var(--text-secondary); margin-bottom: 10px;">
-          Enter 3 roots to construct monic cubic polynomial:
-        </p>
-        <div class="calc-row">
-          <div class="calc-input-group">
-            <label>Root α:</label>
-            <input type="number" id="rootA" value="1.0" step="1" oninput="solveCubicVieta()">
-          </div>
-          <div class="calc-input-group">
-            <label>Root β:</label>
-            <input type="number" id="rootB" value="2.0" step="1" oninput="solveCubicVieta()">
-          </div>
-        </div>
-        <div class="calc-row">
-          <div class="calc-input-group" style="grid-column: span 2;">
-            <label>Root γ:</label>
-            <input type="number" id="rootC" value="3.0" step="1" oninput="solveCubicVieta()">
-          </div>
-        </div>
-        <div class="calc-result" id="cubicResult">
-          x³ - 6x² + 11x - 6 = 0
-        </div>
-      </div>
-
-      <!-- Virtual Keyboard Safe Scratchpad -->
-      <div class="support-widget">
-        <h3><span>📝</span> Algebra Scratchpad</h3>
-        <p style="font-size:14px; color: var(--text-secondary); margin-bottom: 8px;">
-          Virtual keyboard safe (min-height: 120px) with auto-saving:
-        </p>
-        <textarea id="scratchpadNotes" class="tablet-safe-input" placeholder="Draft polynomial expansions, compute symmetric sums, or synthetic divisions..."></textarea>
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
-          <span id="saveStatus" style="font-size:14px; color: var(--success);">✓ Auto-saved</span>
-          <button class="btn" style="min-height: 40px; padding: 6px 14px; font-size:14px; background: var(--bg-surface); border: 1px solid var(--border);" onclick="clearNotes()">Clear</button>
-        </div>
-      </div>
-
-    </aside>
-
-  </main>
-
-  <script>
-    function switchTab(tabId) {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
-      if (activeBtn) activeBtn.classList.add('active');
-      const targetContent = document.getElementById(tabId);
-      if (targetContent) targetContent.classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    const themeBtn = document.getElementById('themeToggle');
-    const htmlEl = document.documentElement;
-    const savedTheme = localStorage.getItem('tablet12_theme') || 'dark';
-    htmlEl.setAttribute('data-theme', savedTheme);
-    themeBtn.addEventListener('click', () => {
-      const current = htmlEl.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      htmlEl.setAttribute('data-theme', next);
-      localStorage.setItem('tablet12_theme', next);
-    });
-
-    const pad = document.getElementById('scratchpadNotes');
-    const status = document.getElementById('saveStatus');
-    pad.value = localStorage.getItem('equations_tablet_notes') || '';
-    pad.addEventListener('input', () => {
-      localStorage.setItem('equations_tablet_notes', pad.value);
-      status.textContent = '✓ Saved ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    });
-
-    function clearNotes() {
-      if (confirm('Clear scratchpad notes?')) {
-        pad.value = '';
-        localStorage.removeItem('equations_tablet_notes');
-        status.textContent = 'Notes cleared';
-      }
-    }
-
-    function solveCubicVieta() {
-      const a = parseFloat(document.getElementById('rootA').value) || 0;
-      const b = parseFloat(document.getElementById('rootB').value) || 0;
-      const c = parseFloat(document.getElementById('rootC').value) || 0;
-      const s1 = a + b + c;
-      const s2 = a * b + b * c + c * a;
-      const s3 = a * b * c;
-      
-      const sign1 = s1 >= 0 ? `- ${s1}` : `+ ${Math.abs(s1)}`;
-      const sign2 = s2 >= 0 ? `+ ${s2}` : `- ${Math.abs(s2)}`;
-      const sign3 = s3 >= 0 ? `- ${s3}` : `+ ${Math.abs(s3)}`;
-      
-      document.getElementById('cubicResult').textContent = `x³ ${sign1}x² ${sign2}x ${sign3} = 0`;
-    }
-    solveCubicVieta();
-  </script>
-  <script>
-    function renderAllMath() {
-      if (window.renderMathInElement) {
-        renderMathInElement(document.body, {
-          delimiters: [
-            {left: "$$", right: "$$", display: true},
-            {left: "$", right: "$", display: false},
-            {left: "\\(", right: "\\)", display: false},
-            {left: "\\[", right: "\\]", display: true}
-          ],
-          throwOnError: false
-        });
-      }
-    }
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", renderAllMath);
-    } else {
-      renderAllMath();
-    }
-  </script>
-</body>
-</html>
+<!DOCTYPE html>
+
+<html lang="en" data-theme="dark">
+
+<head>
+
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>GRADE 9 MATHEMATICS - Theory of Equations Master Suite | 12.7" Tablet Standalone Edition</title>
+
+  <meta name="description" content="Complete 12.7-inch tablet study suite for Theory of Equations: Vieta's Relations, Roots to Factors, Symmetric Functions, Cubic and Quartic Equations, and 30+ Structured Challenges.">
+
+  <style>
+
+/* ==========================================================================
+
+   Mathematics: Theory of Equations 12.7" Tablet Standalone Stylesheet
+
+   WCAG 2.5.5 >= 48px touch targets, >= 120px textareas, no micro-fonts (<13.5px)
+
+   100% Offline Standalone · Dark/Light Mode · Responsive Stage/Support Grid
+
+   ========================================================================== */
+
+
+
+:root {
+
+  --tab12-container-max: 1400px;
+
+  --tab12-touch-min: 48px;
+
+  --tab12-base-font: 16px;
+
+  --tab12-radius-sm: 8px;
+
+  --tab12-radius-md: 12px;
+
+  --tab12-radius-lg: 16px;
+
+
+
+  --bg-app: #080d1a;
+
+  --bg-surface: #0f172a;
+
+  --bg-card: #152238;
+
+  --bg-card-subtle: #1a2942;
+
+  --border: #263859;
+
+  --border-light: #334b75;
+
+  --text-primary: #f8fafc;
+
+  --text-secondary: #94a3b8;
+
+  --text-muted: #64748b;
+
+  --accent: #38bdf8;
+
+  --accent-glow: rgba(56, 189, 248, 0.25);
+
+  --success: #34d399;
+
+  --warning: #f59e0b;
+
+  --danger: #f87171;
+
+  --purple: #c084fc;
+
+}
+
+
+
+[data-theme="light"] {
+
+  --bg-app: #f1f5f9;
+
+  --bg-surface: #ffffff;
+
+  --bg-card: #ffffff;
+
+  --bg-card-subtle: #f8fafc;
+
+  --border: #cbd5e1;
+
+  --border-light: #e2e8f0;
+
+  --text-primary: #0f172a;
+
+  --text-secondary: #475569;
+
+  --text-muted: #64748b;
+
+  --accent: #0284c7;
+
+  --accent-glow: rgba(2, 132, 199, 0.15);
+
+  --success: #059669;
+
+  --warning: #d97706;
+
+  --danger: #dc2626;
+
+  --purple: #7e22ce;
+
+}
+
+
+
+*, *::before, *::after {
+
+  box-sizing: border-box;
+
+  margin: 0;
+
+  padding: 0;
+
+}
+
+
+
+html {
+
+  font-size: var(--tab12-base-font);
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  color: var(--text-primary);
+
+  background-color: var(--bg-app);
+
+  scroll-behavior: smooth;
+
+  -webkit-text-size-adjust: 100%;
+
+}
+
+
+
+body {
+
+  line-height: 1.6;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+}
+
+
+
+button, .btn, .tab-btn, summary {
+
+  min-height: var(--tab12-touch-min);
+
+  min-width: var(--tab12-touch-min);
+
+  padding: 10px 18px;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  border-radius: var(--tab12-radius-sm);
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  cursor: pointer;
+
+  touch-action: manipulation;
+
+  transition: all 0.18s ease;
+
+  border: 1px solid transparent;
+
+}
+
+
+
+button:focus-visible, .btn:focus-visible, summary:focus-visible {
+
+  outline: 3px solid var(--accent);
+
+  outline-offset: 2px;
+
+}
+
+
+
+textarea.tablet-safe-input {
+
+  min-height: 120px;
+
+  width: 100%;
+
+  padding: 14px;
+
+  font-family: monospace, inherit;
+
+  font-size: 14.5px;
+
+  line-height: 1.5;
+
+  background-color: var(--bg-surface);
+
+  color: var(--text-primary);
+
+  border: 1.5px solid var(--border);
+
+  border-radius: var(--tab12-radius-sm);
+
+  resize: vertical;
+
+  display: block;
+
+}
+
+
+
+textarea.tablet-safe-input:focus {
+
+  border-color: var(--accent);
+
+  background-color: var(--bg-card);
+
+}
+
+
+
+header.app-header {
+
+  background-color: var(--bg-surface);
+
+  border-bottom: 1.5px solid var(--border);
+
+  padding: 14px 24px;
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 100;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+}
+
+
+
+.header-inner {
+
+  max-width: var(--tab12-container-max);
+
+  margin: 0 auto;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 16px;
+
+}
+
+
+
+.header-brand h1 {
+
+  font-size: 20px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.02em;
+
+  color: var(--text-primary);
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+}
+
+
+
+.subject-badge {
+
+  font-size:14px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.06em;
+
+  padding: 4px 10px;
+
+  border-radius: 999px;
+
+  background-color: rgba(56, 189, 248, 0.15);
+
+  color: var(--accent);
+
+  border: 1px solid var(--accent);
+
+  font-weight: 700;
+
+}
+
+
+
+.theme-toggle-btn {
+
+  background-color: var(--bg-card);
+
+  color: var(--text-primary);
+
+  border: 1.5px solid var(--border);
+
+}
+
+
+
+nav.tab-nav {
+
+  background-color: var(--bg-surface);
+
+  border-bottom: 1px solid var(--border);
+
+  padding: 8px 24px 0 24px;
+
+  overflow-x: auto;
+
+}
+
+
+
+.tab-nav-inner {
+
+  max-width: var(--tab12-container-max);
+
+  margin: 0 auto;
+
+  display: flex;
+
+  gap: 8px;
+
+}
+
+
+
+.tab-btn {
+
+  background: transparent;
+
+  color: var(--text-secondary);
+
+  border: none;
+
+  border-bottom: 3px solid transparent;
+
+  border-radius: var(--tab12-radius-sm) var(--tab12-radius-sm) 0 0;
+
+  padding: 12px 18px;
+
+  white-space: nowrap;
+
+}
+
+
+
+.tab-btn.active {
+
+  color: var(--accent);
+
+  border-bottom-color: var(--accent);
+
+  background: var(--bg-app);
+
+}
+
+
+
+main.layout-container {
+
+  max-width: var(--tab12-container-max);
+
+  margin: 20px auto;
+
+  padding: 0 20px;
+
+  width: 100%;
+
+  flex: 1;
+
+  display: grid;
+
+  grid-template-columns: 1fr 380px;
+
+  gap: 24px;
+
+}
+
+
+
+@media (max-width: 1040px) {
+
+  main.layout-container {
+
+    grid-template-columns: 1fr;
+
+  }
+
+}
+
+
+
+.stage-area {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+
+}
+
+
+
+.tab-content {
+
+  display: none;
+
+}
+
+
+
+.tab-content.active {
+
+  display: block;
+
+}
+
+
+
+.content-card {
+
+  background-color: var(--bg-card);
+
+  border: 1.5px solid var(--border);
+
+  border-radius: var(--tab12-radius-md);
+
+  padding: 24px;
+
+  margin-bottom: 20px;
+
+}
+
+
+
+.content-card h2 {
+
+  font-size: 20px;
+
+  font-weight: 700;
+
+  margin-bottom: 12px;
+
+  color: var(--text-primary);
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+}
+
+
+
+.content-card h3 {
+
+  font-size: 17px;
+
+  font-weight: 600;
+
+  margin: 18px 0 10px 0;
+
+  color: var(--accent);
+
+}
+
+
+
+.formula-box {
+
+  background: var(--bg-card-subtle);
+
+  border-left: 4px solid var(--accent);
+
+  padding: 14px 18px;
+
+  border-radius: 0 var(--tab12-radius-sm) var(--tab12-radius-sm) 0;
+
+  margin: 14px 0;
+
+  font-family: monospace;
+
+  font-size: 15px;
+
+  color: var(--text-primary);
+
+}
+
+
+
+.callout-box {
+
+  background: rgba(56, 189, 248, 0.08);
+
+  border: 1.5px solid var(--accent);
+
+  border-radius: var(--tab12-radius-sm);
+
+  padding: 16px 20px;
+
+  margin: 16px 0;
+
+}
+
+
+
+.q-card {
+
+  background: var(--bg-card);
+
+  border: 1.5px solid var(--border);
+
+  border-radius: var(--tab12-radius-md);
+
+  padding: 20px;
+
+  margin-bottom: 18px;
+
+}
+
+
+
+.q-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-bottom: 10px;
+
+}
+
+
+
+.q-badge {
+
+  background: rgba(192, 132, 252, 0.15);
+
+  border: 1px solid var(--purple);
+
+  color: var(--purple);
+
+  padding: 4px 10px;
+
+  border-radius: 999px;
+
+  font-size:14px;
+
+  font-weight: 700;
+
+}
+
+
+
+.tag-pill {
+
+  display: inline-block;
+
+  padding: 3px 10px;
+
+  border-radius: 999px;
+
+  font-size:14px;
+
+  font-weight: 600;
+
+  background: var(--bg-surface);
+
+  border: 1px solid var(--border);
+
+  color: var(--text-secondary);
+
+}
+
+
+
+.q-title {
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  color: var(--text-primary);
+
+  margin-bottom: 8px;
+
+}
+
+
+
+.q-prompt {
+
+  font-size: 15px;
+
+  color: var(--text-secondary);
+
+  margin-bottom: 14px;
+
+}
+
+
+
+details.solution-detail {
+
+  background: var(--bg-card-subtle);
+
+  border: 1px solid var(--border-light);
+
+  border-radius: var(--tab12-radius-sm);
+
+  overflow: hidden;
+
+  margin-top: 12px;
+
+}
+
+
+
+details.solution-detail summary {
+
+  padding: 12px 16px;
+
+  background: rgba(255,255,255,0.02);
+
+  color: var(--accent);
+
+  user-select: none;
+
+}
+
+
+
+.solution-content {
+
+  padding: 16px;
+
+  border-top: 1px solid var(--border);
+
+  font-size: 14.5px;
+
+  color: var(--text-primary);
+
+  line-height: 1.6;
+
+}
+
+
+
+.support-rail {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+
+}
+
+
+
+.support-widget {
+
+  background-color: var(--bg-card);
+
+  border: 1.5px solid var(--border);
+
+  border-radius: var(--tab12-radius-md);
+
+  padding: 20px;
+
+}
+
+
+
+.support-widget h3 {
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  color: var(--text-primary);
+
+  margin-bottom: 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+}
+
+
+
+.calc-row {
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 10px;
+
+  margin-bottom: 10px;
+
+}
+
+
+
+.calc-input-group label {
+
+  display: block;
+
+  font-size:14px;
+
+  font-weight: 600;
+
+  color: var(--text-secondary);
+
+  margin-bottom: 4px;
+
+}
+
+
+
+.calc-input-group input {
+
+  width: 100%;
+
+  min-height: 42px;
+
+  padding: 8px 12px;
+
+  background: var(--bg-surface);
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--tab12-radius-sm);
+
+  color: var(--text-primary);
+
+  font-size: 14.5px;
+
+}
+
+
+
+.calc-result {
+
+  background: rgba(56, 189, 248, 0.1);
+
+  border: 1.5px solid var(--accent);
+
+  padding: 12px;
+
+  border-radius: var(--tab12-radius-sm);
+
+  font-weight: 700;
+
+  color: var(--accent);
+
+  text-align: center;
+
+  font-size: 14.5px;
+
+  margin-top: 12px;
+
+}
+
+  </style>
+
+<style id="tablet-font-floor-remediation">
+
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+
+body{overflow-wrap:anywhere}
+
+:where(p,li,label,button,input,select,textarea,summary,td,th,figcaption,.btn,.q-badge,.tag-pill,.hint-badge,.hint-tag,.subject-badge,.step-label,.diag-header,.formula-box,#saveStatus,.save-status,.tag,.q-count,.open-btn,.stat .label,section.section-header h2,.study-kicker,.brand-badge,.hero-pill,.badge,.core-tag,.telemetry-title,.control-label,.card-action,.breadcrumb,div,span,h4,h5,h6,text){font-size:max(14px,1em)!important}
+
+:where(a[href="index.html"],header a,nav a,.breadcrumb a,a.g9-bridge-link,[data-g9-block="entry_assumptions"] a){min-height:48px!important;min-width:48px!important;display:inline-flex!important;align-items:center!important;justify-content:center;padding-block:10px!important;box-sizing:border-box!important}
+
+.subject-badge,.q-badge,.tag-pill{font-size:14px!important}
+
+</style>
+
+<style id="tablet-standard-header-css">
+/* Standard App Header & Navigation Styles */
+header.app-header {
+  background-color: var(--bg-surface, #0f172a);
+  border-bottom: 1.5px solid var(--border, #263859);
+  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+[data-theme="light"] header.app-header {
+  background-color: #ffffff;
+  border-bottom-color: #cbd5e1;
+}
+
+.header-inner {
+  max-width: var(--tab12-container-max, 1400px);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.header-brand h1 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary, #f8fafc);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+[data-theme="light"] .header-brand h1 {
+  color: #0f172a;
+}
+
+.subject-badge {
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: rgba(56, 189, 248, 0.15);
+  color: var(--accent, #38bdf8);
+  border: 1px solid var(--accent, #38bdf8);
+  font-weight: 700;
+}
+
+.nav-hub-btn {
+  background-color: var(--bg-card, #152238);
+  color: var(--text-primary, #f8fafc);
+  border: 1.5px solid var(--border, #263859);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+[data-theme="light"] .nav-hub-btn {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+.nav-hub-btn:hover {
+  border-color: var(--accent, #38bdf8);
+  background-color: var(--bg-card-subtle, #1a2942);
+}
+
+[data-theme="light"] .nav-hub-btn:hover {
+  background-color: #e2e8f0;
+}
+
+.theme-toggle-btn {
+  background-color: var(--bg-card, #152238);
+  color: var(--text-primary, #f8fafc);
+  border: 1.5px solid var(--border, #263859);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+[data-theme="light"] .theme-toggle-btn {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+</style>
+</head>
+
+<body>
+
+
+
+    <header class="app-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <h1>
+          <span>🔢</span> Theory of Equations · 12.7" Tablet Suite
+          <span class="subject-badge">Mathematics · Core 1</span>
+        </h1>
+      </div>
+      <div class="header-actions" style="display:flex;align-items:center;gap:10px;">
+                <a href="https://drive.google.com/file/d/1DQwtYf5Y8dCb_CkclAvC8hpDV_dNUWWP/view" target="_blank" rel="noopener" class="nav-hub-btn g9-drive-btn" style="display:inline-flex;align-items:center;gap:6px;" title="Open Source PDF in Google Drive: Theory_of_Equations_Core1_Textbook_Rebuild (1).pdf (84 KB)" aria-label="Open Source PDF in Google Drive">
+          <svg width="15" height="15" viewBox="0 0 87.3 78" aria-hidden="true">
+            <path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8H0c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/>
+            <path d="M43.65 25 29.9 1.2c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44C.4 49.9 0 51.45 0 53h27.5z" fill="#00ac47"/>
+            <path d="M73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5H59.8l5.85 10.15z" fill="#ea4335"/>
+            <path d="M43.65 25 57.4 1.2C56.05.4 54.5 0 52.9 0H34.4c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/>
+            <path d="M59.8 53H27.5L13.75 76.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/>
+            <path d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3L43.65 25 59.8 53h27.5c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/>
+          </svg>
+          <span>Source PDF</span>
+        </a>
+<button type="button" onclick="if(document.referrer &amp;&amp; document.referrer.indexOf(window.location.host) !== -1){history.back();}else{location.href='../../mathematics/theory-of-equations/index.html';}" class="nav-hub-btn" aria-label="Previous Page" title="Back to Previous Page">← Previous Page</button>
+        <a href="../../mathematics/theory-of-equations/index.html" class="nav-hub-btn" aria-label="Back to Topic Workspace" title="Back to Equations Workspace">Equations Workspace</a>
+        <a href="../../index.html" class="nav-hub-btn" aria-label="Portal Home" title="Portal Home">⚡ Home</a>
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">🌓 Mode</button>
+      </div>
+    </div>
+  </header>
+
+
+
+  
+
+
+
+  <main class="layout-container">
+
+    
+
+    <div class="stage-area">
+
+
+
+      <!-- Tab 1: Roots Factors Coefficients -->
+
+      <div id="tab-map" class="tab-content active">
+
+        <div class="content-card">
+
+          <h2><span>🔗</span> The Fundamental Triad: Roots ↔ Factors ↔ Coefficients</h2>
+
+          <p>
+
+            By the Factor Theorem, if $x = \alpha$ is a root of polynomial equation $P(x) = 0$, then $(x - \alpha)$ is an exact linear factor of $P(x)$.
+
+          </p>
+
+          <div class="formula-box">
+
+            Monic Polynomial of Degree n with roots α₁, α₂, ..., αₙ:<br>
+
+            P(x) = (x - α₁) (x - α₂) ··· (x - αₙ) = 0<br><br>
+
+            Expanding this product yields the polynomial in standard form:<br>
+
+            P(x) = xⁿ - S₁ xⁿ⁻¹ + S₂ xⁿ⁻² - S₃ xⁿ⁻³ + ··· + (-1)ⁿ Sₙ = 0<br>
+
+            where Sₖ is the k-th elementary symmetric sum of the roots.
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Tab 2: Vieta's Relations -->
+
+      <div id="tab-vieta" class="tab-content">
+
+        <div class="content-card">
+
+          <h2><span>⚖️</span> Vieta's Formulas for Cubic and Quartic Equations</h2>
+
+          <p>
+
+            For a general cubic equation $a x^3 + b x^2 + c x + d = 0$ ($a 
+
+eq 0$) with roots $\alpha, \beta, \gamma$:
+
+          </p>
+
+          <div class="formula-box">
+
+            Sum of roots taken 1 at a time (S₁):<br>
+
+            &nbsp; α + β + γ = - b / a<br><br>
+
+            Sum of products taken 2 at a time (S₂):<br>
+
+            &nbsp; αβ + βγ + γα = c / a<br><br>
+
+            Product of all 3 roots (S₃):<br>
+
+            &nbsp; α · β · γ = - d / a
+
+          </div>
+
+
+
+          <h3>Quartic Equation ($a x^4 + b x^3 + c x^2 + d x + e = 0$)</h3>
+
+          <div class="formula-box">
+
+            S₁ = ∑ α = - b / a<br>
+
+            S₂ = ∑ αβ = c / a<br>
+
+            S₃ = ∑ αβγ = - d / a<br>
+
+            S₄ = αβγδ = e / a
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Tab 3: Constructing Equations -->
+
+      <div id="tab-construct" class="tab-content">
+
+        <div class="content-card">
+
+          <h2><span>🏗️</span> Constructing Equations from Roots</h2>
+
+          <p>
+
+            To construct a polynomial equation whose roots are given:
+
+          </p>
+
+          <div class="formula-box">
+
+            Given roots: r₁, r₂, r₃<br>
+
+            Step 1: Compute S₁ = r₁ + r₂ + r₃<br>
+
+            Step 2: Compute S₂ = r₁ r₂ + r₂ r₃ + r₃ r₁<br>
+
+            Step 3: Compute S₃ = r₁ r₂ r₃<br>
+
+            Step 4: Equation is x³ - S₁ x² + S₂ x - S₃ = 0 (multiply through to clear fractions).
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Tab 4: Symmetric Functions -->
+
+      <div id="tab-symmetric" class="tab-content">
+
+        <div class="content-card">
+
+          <h2><span>✨</span> Symmetric Functions of Roots</h2>
+
+          <p>
+
+            A function $f(\alpha, \beta, \gamma)$ is symmetric if exchanging any two roots leaves the function completely unchanged.
+
+          </p>
+
+          <div class="formula-box">
+
+            Common Symmetric Expansions:<br>
+
+            • α² + β² + γ² = (α + β + γ)² - 2 (αβ + βγ + γα) = S₁² - 2 S₂<br>
+
+            • 1/α + 1/β + 1/γ = (αβ + βγ + γα) / (αβγ) = S₂ / S₃<br>
+
+            • α³ + β³ + γ³ = S₁³ - 3 S₁ S₂ + 3 S₃
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Tab 5: Challenges -->
+
+      <div id="tab-challenges" class="tab-content">
+
+        <div class="content-card">
+
+          <h2><span>🎯</span> Practice &amp; JEE Challenges ({len(q_cards)})</h2>
+
+          <p>
+
+            Worked problem instances and competition challenges from Core 2 and Core 2A.
+
+          </p>
+
+        </div>
+
+
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2)</span>
+
+            <span class="tag-pill">Problem 01</span>
+
+          </div>
+
+          <div class="q-title">Q9 - Find an equation whose roots are 0 , 1 ,−3, 5</div>
+
+          <p class="q-prompt">2 2 Starthere Eachroot𝑟 contributesafactor𝑥−𝑟. Beforeexpanding,writethefourfactorsandcheckthesignofthenegative root.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Apply Vieta's formulas relating coefficients and symmetric root sums.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2)</span>
+
+            <span class="tag-pill">Problem 02</span>
+
+          </div>
+
+          <div class="q-title">Q9 - Worked solution</div>
+
+          <p class="q-prompt">Writethefactors,multiply,thencleardenominators</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              ( ) ( ) ( ) ( )<br>3 5 3 5<br>𝑃(𝑥) = (𝑥−0)(𝑥−1) 𝑥+ 𝑥− = 𝑥(𝑥−1) 𝑥+ 𝑥− .<br>2 2 2 2<br>𝑥(𝑥−1) = 𝑥2−𝑥,<br>( ) ( )<br>3 5 15<br>𝑥+ 𝑥− = 𝑥2−𝑥− .
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2)</span>
+
+            <span class="tag-pill">Problem 03</span>
+
+          </div>
+
+          <div class="q-title">Q10 - 1 , 1 ,𝛼 are roots of 𝑥3 − 6 𝑥2 + 9 𝑥 − 4 = 0. Find 𝛼.</div>
+
+          <p class="q-prompt">Starthere Thecoefficientof𝑥2 givesthetotalrootsum. Foramoniccubic, 𝛼+ 𝛽+𝛾 = −𝐵. Here 𝐵 = −6,sothetotalsumis6.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Apply Vieta's formulas relating coefficients and symmetric root sums.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2)</span>
+
+            <span class="tag-pill">Problem 04</span>
+
+          </div>
+
+          <div class="q-title">Q10 - Worked solution</div>
+
+          <p class="q-prompt">Usetherootsum,thenverifybytherootproduct For 𝑥3−6𝑥2+9𝑥−4 = 0, −6</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Apply Vieta's formulas relating coefficients and symmetric root sums.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2)</span>
+
+            <span class="tag-pill">Problem 05</span>
+
+          </div>
+
+          <div class="q-title">Q11 - 1 ,− 2 , 3 are roots of 𝑥3 − 2 𝑥2 + 𝑎𝑥 + 6 = 0. Find 𝑎.</div>
+
+          <p class="q-prompt">Starthere Theunknown𝑎 isthecoefficientof𝑥. Inamoniccubic,thatcoefficientequals 𝛼𝛽+ 𝛽𝛾+𝛾𝛼. Sousetherootsdirectlyinsteadofexpandingthewholeproduct.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Apply Vieta's formulas relating coefficients and symmetric root sums.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2)</span>
+
+            <span class="tag-pill">Problem 06</span>
+
+          </div>
+
+          <div class="q-title">Q11 - Worked solution</div>
+
+          <p class="q-prompt">Computethepairwiserootsum For 𝑥3−2𝑥2+𝑎𝑥+6 = 0, thecoefficientof𝑥 is</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Apply Vieta's formulas relating coefficients and symmetric root sums.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2)</span>
+
+            <span class="tag-pill">Problem 07</span>
+
+          </div>
+
+          <div class="q-title">Q12 - Product of roots of 4 𝑥3 + 16 𝑥2 − 9 𝑥 − 𝑎 = 0 is 9. Find 𝑎.</div>
+
+          <p class="q-prompt">Starthere Avoid the notation trap: the parameter 𝑎 is not the leading coefficient. Rename the polynomial coefficients 𝐴,𝐵,𝐶,𝐷. 𝐴 = 4, 𝐷 = −𝑎.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Apply Vieta's formulas relating coefficients and symmetric root sums.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2)</span>
+
+            <span class="tag-pill">Problem 08</span>
+
+          </div>
+
+          <div class="q-title">Q12 - Worked solution</div>
+
+          <p class="q-prompt">Usetheconstant-term/productrelation Given 4𝑥3+16𝑥2−9𝑥−𝑎 = 0, wehave</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Apply Vieta's formulas relating coefficients and symmetric root sums.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2)</span>
+
+            <span class="tag-pill">Problem 09</span>
+
+          </div>
+
+          <div class="q-title">Q13 - 𝛼, 𝛽,𝛾 are roots of 𝑥3 − 2 𝑥2 − 5 𝑥 + 6 = 0, and 𝛼 + 𝛽 = 1. Find 𝛼, 𝛽.</div>
+
+          <p class="q-prompt">Starthere First use the total root sum to find 𝛾. Then use the product to find 𝛼𝛽. Once the sum and product of 𝛼,𝛽 are known,buildaquadraticwhoserootsare𝛼,𝛽. totalrootsum</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Apply Vieta's formulas relating coefficients and symmetric root sums.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2)</span>
+
+            <span class="tag-pill">Problem 10</span>
+
+          </div>
+
+          <div class="q-title">Q13 - Worked solution</div>
+
+          <p class="q-prompt">Recoverthethirdroot,thensolveanauxiliaryquadratic For 𝑥3−2𝑥2−5𝑥+6 = 0, Vietagives</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Apply Vieta's formulas relating coefficients and symmetric root sums.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2)</span>
+
+            <span class="tag-pill">Problem 11</span>
+
+          </div>
+
+          <div class="q-title">Q14 - Roots of 𝑥3 − 2 𝑥2 + 3 𝑥 − 4 = 0. Find 𝛼2𝛽2 + 𝛽2𝛾2 + 𝛾2𝛼2.</div>
+
+          <p class="q-prompt">Starthere Usethesquareofthepairwise-rootsum: (𝛼𝛽+ 𝛽𝛾+𝛾𝛼)2 = 𝛼2𝛽2+ 𝛽2𝛾2+𝛾2𝛼2+2𝛼𝛽𝛾(𝛼+ 𝛽+𝛾). Sotherequestedexpressionis</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Apply Vieta's formulas relating coefficients and symmetric root sums.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2)</span>
+
+            <span class="tag-pill">Problem 12</span>
+
+          </div>
+
+          <div class="q-title">Q14 - Worked solution</div>
+
+          <p class="q-prompt">ConvertthesymmetricexpressionintoVietadata For 𝑥3−2𝑥2+3𝑥−4 = 0, 𝑒 = 𝛼+ 𝛽+𝛾 = 2,</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Apply Vieta's formulas relating coefficients and symmetric root sums.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 13</span>
+
+          </div>
+
+          <div class="q-title">THEORY OF EQUATIONS - CHALLENGE PRACTICE</div>
+
+          <p class="q-prompt">CORE (2A) Every question carries its own source note. Try first; reveal help only when needed. HOW THIS BOOK WORKS ONE IDEA - THEN HARDER USES</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 14</span>
+
+          </div>
+
+          <div class="q-title">YOUR CHALLENGE MAP</div>
+
+          <p class="q-prompt">5 BIG IDEAS The whole chapter is grouped by the mathematical idea you need to recognize. Roots → factors → equation 1</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 15</span>
+
+          </div>
+
+          <div class="q-title">Q9 - 1. Roots → factors → equation</div>
+
+          <p class="q-prompt">Core (2) anchor Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              on Theory of Equations - Deep Study Guide, Sections 1-2.<br>YOUR WORKSPACE<br>Write each root as a factor:<br>Pair the factors:<br>Expand:<br>Clear fractions and check a<br>root:<br>BEFORE YOU TURN THE PAGE
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 16</span>
+
+          </div>
+
+          <div class="q-title">Q9 - OPEN HELP ONLY AS NEEDED</div>
+
+          <p class="q-prompt">SOURCE CORE (2) Stop revealing as soon as you can continue on your own. SMALL CLUE Each root r gives the factor x - r. Watch the sign of -3/2.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 17</span>
+
+          </div>
+
+          <div class="q-title">C9-A - 1. Roots → factors → equation</div>
+
+          <p class="q-prompt">Think harder - JEE-style Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 18</span>
+
+          </div>
+
+          <div class="q-title">C9-A - OPEN HELP ONLY AS NEEDED</div>
+
+          <p class="q-prompt">FRESH CHALLENGE Stop revealing as soon as you can continue on your own. SMALL CLUE For root 1/2, the factor 2x-1 is convenient if you want integer coefficients.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 19</span>
+
+          </div>
+
+          <div class="q-title">C9-B - 1. Roots → factors → equation</div>
+
+          <p class="q-prompt">Stretch - olympiad-style Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 20</span>
+
+          </div>
+
+          <div class="q-title">C9-B - OPEN HELP ONLY AS NEEDED</div>
+
+          <p class="q-prompt">FRESH CHALLENGE Stop revealing as soon as you can continue on your own. SMALL CLUE A pair with sum 3 and product 1 has quadratic x²-3x+1.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 21</span>
+
+          </div>
+
+          <div class="q-title">Q10 - 2. Read roots from coefficients</div>
+
+          <p class="q-prompt">Core (2) anchor Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Builds on Theory of Equations - Deep Study Guide, Section 3.<br>YOUR WORKSPACE<br>Total root sum:<br>Use 1+1+α:<br>Answer:<br>Product check:<br>BEFORE YOU TURN THE PAGE<br>Ask yourself: What object is the question really asking about - factors, a root sum, a root product, a pair of roots, a
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 22</span>
+
+          </div>
+
+          <div class="q-title">Q10 - OPEN HELP ONLY AS NEEDED</div>
+
+          <p class="q-prompt">SOURCE CORE (2) Stop revealing as soon as you can continue on your own. SMALL CLUE The x² coefficient gives the total root sum.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 23</span>
+
+          </div>
+
+          <div class="q-title">Q11 - 2. Read roots from coefficients</div>
+
+          <p class="q-prompt">Core (2) anchor Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Builds on Theory of Equations - Deep Study Guide, Sections 3-4.<br>YOUR WORKSPACE<br>Which root-combination<br>matches x coefficient?<br>Substitute roots:<br>Answer:<br>Check another Vieta relation:<br>BEFORE YOU TURN THE PAGE
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 24</span>
+
+          </div>
+
+          <div class="q-title">Q11 - OPEN HELP ONLY AS NEEDED</div>
+
+          <p class="q-prompt">SOURCE CORE (2) Stop revealing as soon as you can continue on your own. SMALL CLUE The coefficient of x in a monic cubic is αβ+βγ+γα.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 25</span>
+
+          </div>
+
+          <div class="q-title">Q12 - 2. Read roots from coefficients</div>
+
+          <p class="q-prompt">Core (2) anchor Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Builds on Theory of Equations - Deep Study Guide, Section 4.<br>YOUR WORKSPACE<br>Leading coefficient A:<br>Constant term D:<br>Product formula:<br>Solve for a:<br>BEFORE YOU TURN THE PAGE<br>Ask yourself: What object is the question really asking about - factors, a root sum, a root product, a pair of roots, a
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 26</span>
+
+          </div>
+
+          <div class="q-title">Q12 - OPEN HELP ONLY AS NEEDED</div>
+
+          <p class="q-prompt">SOURCE CORE (2) Stop revealing as soon as you can continue on your own. SMALL CLUE Do not confuse the parameter a with the leading coefficient. Call the coefficients A,B,C,D.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 27</span>
+
+          </div>
+
+          <div class="q-title">C12-A - 2. Read roots from coefficients</div>
+
+          <p class="q-prompt">Think harder - IOQM-style Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 28</span>
+
+          </div>
+
+          <div class="q-title">C12-A - OPEN HELP ONLY AS NEEDED</div>
+
+          <p class="q-prompt">FRESH CHALLENGE Stop revealing as soon as you can continue on your own. SMALL CLUE The product of the three positive integer roots is 6.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 29</span>
+
+          </div>
+
+          <div class="q-title">C12-B - 2. Read roots from coefficients</div>
+
+          <p class="q-prompt">Stretch - JEE-style Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 30</span>
+
+          </div>
+
+          <div class="q-title">C12-B - OPEN HELP ONLY AS NEEDED</div>
+
+          <p class="q-prompt">FRESH CHALLENGE Stop revealing as soon as you can continue on your own. SMALL CLUE If γ=α+β, then the total sum α+β+γ is twice γ.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 31</span>
+
+          </div>
+
+          <div class="q-title">Q13 - 3. Recover two hidden roots</div>
+
+          <p class="q-prompt">Core (2) anchor Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Builds on Theory of Equations - Deep Study Guide, Section 5.<br>YOUR WORKSPACE<br>Total root sum:<br>Third root γ:<br>Pair product αβ:<br>Pair quadratic:<br>BEFORE YOU TURN THE PAGE<br>Ask yourself: What object is the question really asking about - factors, a root sum, a root product, a pair of roots, a
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 32</span>
+
+          </div>
+
+          <div class="q-title">Q13 - OPEN HELP ONLY AS NEEDED</div>
+
+          <p class="q-prompt">SOURCE CORE (2) Stop revealing as soon as you can continue on your own. SMALL CLUE Separate information about all three roots from information about the pair.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 33</span>
+
+          </div>
+
+          <div class="q-title">C13-A - 3. Recover two hidden roots</div>
+
+          <p class="q-prompt">Same idea, different goal - JEE-style Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 34</span>
+
+          </div>
+
+          <div class="q-title">C13-A - OPEN HELP ONLY AS NEEDED</div>
+
+          <p class="q-prompt">FRESH CHALLENGE Stop revealing as soon as you can continue on your own. SMALL CLUE The total root sum is 7, so the third root is easy to find.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 35</span>
+
+          </div>
+
+          <div class="q-title">C13-B - 3. Recover two hidden roots</div>
+
+          <p class="q-prompt">Hidden information - olympiad-style Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 36</span>
+
+          </div>
+
+          <div class="q-title">C13-B - OPEN HELP ONLY AS NEEDED</div>
+
+          <p class="q-prompt">FRESH CHALLENGE Stop revealing as soon as you can continue on your own. SMALL CLUE Rewrite 1/α+1/β as (α+β)/(αβ)=s/p.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 37</span>
+
+          </div>
+
+          <div class="q-title">Q14 - 4. Symmetric expressions without solving</div>
+
+          <p class="q-prompt">Core (2) anchor roots Try the question before opening the clues on the next page. TRY IT FIRST</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Builds on Theory of Equations - Deep Study Guide, Section 6. Source note preserved: the supplied working had a sign typo<br>before squaring e₂; the correct e₂ is +3.<br>YOUR WORKSPACE<br>e₁:<br>e₂:<br>e₃:<br>Use e₂²-2e₁e₃:<br>BEFORE YOU TURN THE PAGE
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 38</span>
+
+          </div>
+
+          <div class="q-title">Q14 - OPEN HELP ONLY AS NEEDED</div>
+
+          <p class="q-prompt">SOURCE CORE (2) Stop revealing as soon as you can continue on your own. SMALL CLUE The target is symmetric, so try to rewrite it using e₁,e₂,e₃.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 39</span>
+
+          </div>
+
+          <div class="q-title">C14-A - 4. Symmetric expressions without</div>
+
+          <p class="q-prompt">Think harder - JEE-style solving roots Try the question before opening the clues on the next page. TRY IT FIRST</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 40</span>
+
+          </div>
+
+          <div class="q-title">C14-A - OPEN HELP ONLY AS NEEDED</div>
+
+          <p class="q-prompt">FRESH CHALLENGE Stop revealing as soon as you can continue on your own. SMALL CLUE Use (α+β+γ)², not the individual roots.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 41</span>
+
+          </div>
+
+          <div class="q-title">C14-B - 4. Symmetric expressions without</div>
+
+          <p class="q-prompt">Stretch - olympiad-style solving roots Try the question before opening the clues on the next page. TRY IT FIRST</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 42</span>
+
+          </div>
+
+          <div class="q-title">C14-B - OPEN HELP ONLY AS NEEDED</div>
+
+          <p class="q-prompt">FRESH CHALLENGE Stop revealing as soon as you can continue on your own. SMALL CLUE Expand all three squared differences before substituting numbers.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 43</span>
+
+          </div>
+
+          <div class="q-title">CN-A - 5. Newton sums for high powers</div>
+
+          <p class="q-prompt">Think harder - JEE-style Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 44</span>
+
+          </div>
+
+          <div class="q-title">CN-A - OPEN HELP ONLY AS NEEDED</div>
+
+          <p class="q-prompt">FRESH CHALLENGE Stop revealing as soon as you can continue on your own. SMALL CLUE Use the lower sums first: S₁=-1, S₂=7, S₃=-7, S₄=23.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 45</span>
+
+          </div>
+
+          <div class="q-title">CN-B - 5. Newton sums for high powers</div>
+
+          <p class="q-prompt">Reverse thinking - olympiad-style Try the question before opening the clues on the next page. TRY IT FIRST QUESTION</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+        <div class="q-card">
+
+          <div class="q-header">
+
+            <span class="q-badge">Core (2A) JEE Challenge</span>
+
+            <span class="tag-pill">Problem 46</span>
+
+          </div>
+
+          <div class="q-title">CN-B - OPEN HELP ONLY AS NEEDED</div>
+
+          <p class="q-prompt">FRESH CHALLENGE Stop revealing as soon as you can continue on your own. SMALL CLUE Newton sums can be read backwards as well as forwards.</p>
+
+          <details class="solution-detail">
+
+            <summary>👁️ Reveal Worked Derivation</summary>
+
+            <div class="solution-content">
+
+              Express target symmetric function in elementary symmetric polynomials.
+
+            </div>
+
+          </details>
+
+        </div>
+
+    
+
+      </div>
+
+
+
+    </div>
+
+
+
+    <!-- Support Rail -->
+
+    <aside class="support-rail">
+      <div class="support-widget" style="margin-bottom:16px;">
+        <h3><span>📑</span> Study Modules</h3>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <button class="tab-btn active btn" onclick="switchTab('tab-map')" style="min-height:36px; padding:6px 12px; font-size:14px; text-align:left; border:1px solid var(--border); border-radius:6px; background:var(--bg-surface); color:var(--text-primary); cursor:pointer; width:100%; display:flex; align-items:center;">1. Roots ↔ Factors ↔ Coefficients</button>
+          <button class="tab-btn btn" onclick="switchTab('tab-vieta')" style="min-height:36px; padding:6px 12px; font-size:14px; text-align:left; border:1px solid var(--border); border-radius:6px; background:var(--bg-surface); color:var(--text-primary); cursor:pointer; width:100%; display:flex; align-items:center;">2. Vieta's Relations (Cubic &amp; Quartic)</button>
+          <button class="tab-btn btn" onclick="switchTab('tab-construct')" style="min-height:36px; padding:6px 12px; font-size:14px; text-align:left; border:1px solid var(--border); border-radius:6px; background:var(--bg-surface); color:var(--text-primary); cursor:pointer; width:100%; display:flex; align-items:center;">3. Constructing Equations</button>
+          <button class="tab-btn btn" onclick="switchTab('tab-symmetric')" style="min-height:36px; padding:6px 12px; font-size:14px; text-align:left; border:1px solid var(--border); border-radius:6px; background:var(--bg-surface); color:var(--text-primary); cursor:pointer; width:100%; display:flex; align-items:center;">4. Symmetric Functions</button>
+          <button class="tab-btn btn" onclick="switchTab('tab-challenges')" style="min-height:36px; padding:6px 12px; font-size:14px; text-align:left; border:1px solid var(--border); border-radius:6px; background:var(--bg-surface); color:var(--text-primary); cursor:pointer; width:100%; display:flex; align-items:center;">5. Practice &amp; Challenges ({len(q_cards)})</button>
+        </div>
+      </div>
+
+
+      
+
+      <div class="support-widget">
+
+        <h3><span>⚡</span> Vieta's Quick Card</h3>
+
+        <div class="formula-box" style="font-size:14px;">
+
+          x³ - S₁ x² + S₂ x - S₃ = 0<br>
+
+          S₁ = -b/a = ∑ α<br>
+
+          S₂ = c/a = ∑ αβ<br>
+
+          S₃ = -d/a = αβγ<br>
+
+          ∑ α² = S₁² - 2S₂
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Interactive Cubic Vieta Calculator -->
+
+      <div class="support-widget">
+
+        <h3><span>🧮</span> Cubic Vieta Calculator</h3>
+
+        <p style="font-size:14px; color: var(--text-secondary); margin-bottom: 10px;">
+
+          Enter 3 roots to construct monic cubic polynomial:
+
+        </p>
+
+        <div class="calc-row">
+
+          <div class="calc-input-group">
+
+            <label>Root α:</label>
+
+            <input type="number" id="rootA" value="1.0" step="1" oninput="solveCubicVieta()">
+
+          </div>
+
+          <div class="calc-input-group">
+
+            <label>Root β:</label>
+
+            <input type="number" id="rootB" value="2.0" step="1" oninput="solveCubicVieta()">
+
+          </div>
+
+        </div>
+
+        <div class="calc-row">
+
+          <div class="calc-input-group" style="grid-column: span 2;">
+
+            <label>Root γ:</label>
+
+            <input type="number" id="rootC" value="3.0" step="1" oninput="solveCubicVieta()">
+
+          </div>
+
+        </div>
+
+        <div class="calc-result" id="cubicResult">
+
+          x³ - 6x² + 11x - 6 = 0
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Virtual Keyboard Safe Scratchpad -->
+
+      <div class="support-widget">
+
+        <h3><span>📝</span> Algebra Scratchpad</h3>
+
+        <p style="font-size:14px; color: var(--text-secondary); margin-bottom: 8px;">
+
+          Virtual keyboard safe (min-height: 120px) with auto-saving:
+
+        </p>
+
+        <textarea id="scratchpadNotes" class="tablet-safe-input" placeholder="Draft polynomial expansions, compute symmetric sums, or synthetic divisions..."></textarea>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+
+          <span id="saveStatus" style="font-size:14px; color: var(--success);">✓ Auto-saved</span>
+
+          <button class="btn" style="min-height: 40px; padding: 6px 14px; font-size:14px; background: var(--bg-surface); border: 1px solid var(--border);" onclick="clearNotes()">Clear</button>
+
+        </div>
+
+      </div>
+
+
+
+    </aside>
+
+
+
+  </main>
+
+
+
+  <script>
+
+    function switchTab(tabId) {
+
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const targetContent = document.getElementById(tabId);
+
+      if (targetContent) targetContent.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    }
+
+
+
+    const themeBtn = document.getElementById('themeToggle');
+
+    const htmlEl = document.documentElement;
+
+    const savedTheme = localStorage.getItem('tablet12_theme') || 'dark';
+
+    htmlEl.setAttribute('data-theme', savedTheme);
+
+    themeBtn.addEventListener('click', () => {
+
+      const current = htmlEl.getAttribute('data-theme');
+
+      const next = current === 'dark' ? 'light' : 'dark';
+
+      htmlEl.setAttribute('data-theme', next);
+
+      localStorage.setItem('tablet12_theme', next);
+
+    });
+
+
+
+    const pad = document.getElementById('scratchpadNotes');
+
+    const status = document.getElementById('saveStatus');
+
+    pad.value = localStorage.getItem('equations_tablet_notes') || '';
+
+    pad.addEventListener('input', () => {
+
+      localStorage.setItem('equations_tablet_notes', pad.value);
+
+      status.textContent = '✓ Saved ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+    });
+
+
+
+    function clearNotes() {
+
+      if (confirm('Clear scratchpad notes?')) {
+
+        pad.value = '';
+
+        localStorage.removeItem('equations_tablet_notes');
+
+        status.textContent = 'Notes cleared';
+
+      }
+
+    }
+
+
+
+    function solveCubicVieta() {
+
+      const a = parseFloat(document.getElementById('rootA').value) || 0;
+
+      const b = parseFloat(document.getElementById('rootB').value) || 0;
+
+      const c = parseFloat(document.getElementById('rootC').value) || 0;
+
+      const s1 = a + b + c;
+
+      const s2 = a * b + b * c + c * a;
+
+      const s3 = a * b * c;
+
+      
+
+      const sign1 = s1 >= 0 ? `- ${s1}` : `+ ${Math.abs(s1)}`;
+
+      const sign2 = s2 >= 0 ? `+ ${s2}` : `- ${Math.abs(s2)}`;
+
+      const sign3 = s3 >= 0 ? `- ${s3}` : `+ ${Math.abs(s3)}`;
+
+      
+
+      document.getElementById('cubicResult').textContent = `x³ ${sign1}x² ${sign2}x ${sign3} = 0`;
+
+    }
+
+    solveCubicVieta();
+
+  </script>
+
+  <script>
+
+    function renderAllMath() {
+
+      if (window.renderMathInElement) {
+
+        renderMathInElement(document.body, {
+
+          delimiters: [
+
+            {left: "$$", right: "$$", display: true},
+
+            {left: "$", right: "$", display: false},
+
+            {left: "\\(", right: "\\)", display: false},
+
+            {left: "\\[", right: "\\]", display: true}
+
+          ],
+
+          throwOnError: false
+
+        });
+
+      }
+
+    }
+
+    if (document.readyState === "loading") {
+
+      document.addEventListener("DOMContentLoaded", renderAllMath);
+
+    } else {
+
+      renderAllMath();
+
+    }
+
+  </script>
+
+</body>
+
+</html>
+

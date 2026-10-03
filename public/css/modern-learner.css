@@ -143,6 +143,97 @@ a { color: inherit; text-decoration: none; }
 .g9-header-btn:hover {
   background: var(--border);
 }
+.g9-header-btn.g9-drive-btn {
+  color: var(--text-main);
+  text-decoration: none;
+}
+.g9-header-btn.g9-drive-btn:hover {
+  border-color: #4285f4;
+  background: rgba(66, 133, 244, 0.1);
+  color: #4285f4;
+}
+
+/* Header Dropdown (for Drive PDFs) */
+.g9-header-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.g9-header-dropdown summary {
+  list-style: none;
+}
+.g9-header-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+.g9-header-dropdown[open] .g9-btn-caret {
+  transform: rotate(180deg);
+}
+.g9-btn-caret {
+  font-size: 11px;
+  transition: transform 0.15s ease;
+  margin-left: 2px;
+}
+.g9-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 320px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-hover);
+  padding: 8px 0;
+  z-index: 1000;
+  animation: g9DropIn 0.15s ease-out;
+}
+@keyframes g9DropIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.g9-dropdown-header {
+  padding: 6px 16px 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border);
+}
+.g9-dropdown-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 16px;
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 13.5px;
+  transition: background 0.12s ease;
+}
+.g9-dropdown-item:hover {
+  background: var(--bg-soft);
+  color: var(--accent-learn);
+}
+.g9-dropdown-item .g9-item-icon {
+  font-size: 16px;
+  line-height: 1.3;
+  flex-shrink: 0;
+}
+.g9-dropdown-item strong {
+  display: block;
+  font-weight: 700;
+  font-size: 13.5px;
+}
+.g9-dropdown-item small {
+  display: block;
+  color: var(--text-muted);
+  font-size: 11.5px;
+  word-break: break-all;
+  margin-top: 2px;
+}
+.g9-dropdown-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 6px 0;
+}
 
 /* Breadcrumbs */
 .g9-breadcrumb-bar {
@@ -330,11 +421,17 @@ a { color: inherit; text-decoration: none; }
 .g9-btn-explore:hover { background: #fef3c7; }
 .g9-btn-qb {
   background: var(--bg-soft);
-  color: var(--text-muted);
+  color: var(--text-main);
   border-color: var(--border);
-  margin-left: auto;
 }
 .g9-btn-qb:hover { background: #e2e8f0; color: var(--text-main); }
+.g9-btn-atlas {
+  background: var(--bg-soft);
+  color: var(--text-muted);
+  border-color: var(--border);
+  font-weight: 600;
+}
+.g9-btn-atlas:hover { background: #e2e8f0; color: var(--accent-learn); }
 
 /* Quick Access / QB Callout */
 .g9-qb-banner {

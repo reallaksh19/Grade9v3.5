@@ -1006,119 +1006,144 @@ article[data-g9-role="CORE1A"]>.slot-identity [data-g9-section-route] a{white-sp
 <style id="u2-practice-hub-target">
 a[href="index.html"]{min-height:48px!important;min-width:48px!important;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center}
 </style>
+<style id="tablet-standard-header-css">
+/* Standard App Header & Navigation Styles */
+header.app-header {
+  background-color: var(--bg-surface, #0f172a);
+  border-bottom: 1.5px solid var(--border, #263859);
+  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+[data-theme="light"] header.app-header {
+  background-color: #ffffff;
+  border-bottom-color: #cbd5e1;
+}
+
+.header-inner {
+  max-width: var(--tab12-container-max, 1400px);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.header-brand h1 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary, #f8fafc);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+[data-theme="light"] .header-brand h1 {
+  color: #0f172a;
+}
+
+.subject-badge {
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: rgba(56, 189, 248, 0.15);
+  color: var(--accent, #38bdf8);
+  border: 1px solid var(--accent, #38bdf8);
+  font-weight: 700;
+}
+
+.nav-hub-btn {
+  background-color: var(--bg-card, #152238);
+  color: var(--text-primary, #f8fafc);
+  border: 1.5px solid var(--border, #263859);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+[data-theme="light"] .nav-hub-btn {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+.nav-hub-btn:hover {
+  border-color: var(--accent, #38bdf8);
+  background-color: var(--bg-card-subtle, #1a2942);
+}
+
+[data-theme="light"] .nav-hub-btn:hover {
+  background-color: #e2e8f0;
+}
+
+.theme-toggle-btn {
+  background-color: var(--bg-card, #152238);
+  color: var(--text-primary, #f8fafc);
+  border: 1.5px solid var(--border, #263859);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+[data-theme="light"] .theme-toggle-btn {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+</style>
 </head>
 <body>
   <div class="app-container">
     <!-- Top Navigation Header -->
-    <header class="top-nav">
-      <div class="top-nav-header">
-        <div class="course-info">
-          <div class="course-badge-row">
-            <span class="badge badge-primary">CORE (2) v2</span>
-            <span class="badge badge-secondary">GRADE 9 PHYSICS</span>
-            <span class="badge badge-success">59 CHALLENGES COMPLETE</span>
-            <span class="badge badge-warning">122 PAGES BENCHMARK</span>
-            <span class="badge badge-secondary">TABLET READY</span>
-          </div>
-          <h1 class="course-title">Motion in a Plane: 59 Practice Challenges &amp; Worked Reasoning Ladders</h1>
-          <p class="course-subtitle">Prompt / Reveal progressive hint ladders, 5-step reasoning solutions (Understand → Represent → Connect → Calculate → Interpret), and quick answer checks.</p>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;">
-          <a href="index.html" class="nav-hub-btn" aria-label="Back to Practice Hub" title="Back to Practice Hub" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 16px;border-radius:8px;background:var(--bg-card,#1e293b);color:var(--text-primary,#f8fafc);border:1.5px solid var(--border,#334155);font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;white-space:nowrap;">← Practice Hub</a>
-          <button id="themeToggle" class="theme-toggle-btn">☀️ Light Mode</button>
-        </div>
+      <header class="app-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <h1>
+          <span>🎯</span> Motion in a Plane Core 2 Challenge Suite
+          <span class="subject-badge">Physics · Core 2</span>
+        </h1>
       </div>
-
-      <!-- Live Search Bar -->
-      <div class="search-bar-row">
-        <div class="search-input-wrapper">
-          <span class="search-icon">🔍</span>
-          <input type="text" id="search-input" class="search-input" placeholder="Search 59 questions, topics, formulas, or solutions (e.g. wall, height, launch, stair, apex)...">
-        </div>
-        <button id="clear-search-btn" class="btn clear-search-btn">Reset</button>
+      <div class="header-actions" style="display:flex;align-items:center;gap:10px;">
+                <a href="https://drive.google.com/file/d/1EoG0kYYuSG67HrihvP3M_HK05qD7enIb/view" target="_blank" rel="noopener" class="nav-hub-btn g9-drive-btn" style="display:inline-flex;align-items:center;gap:6px;" title="Open Source PDF in Google Drive: Emailing physics-motion-2d-revised-core2-v2.pdf (8.6 MB)" aria-label="Open Source PDF in Google Drive">
+          <svg width="15" height="15" viewBox="0 0 87.3 78" aria-hidden="true">
+            <path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8H0c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/>
+            <path d="M43.65 25 29.9 1.2c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44C.4 49.9 0 51.45 0 53h27.5z" fill="#00ac47"/>
+            <path d="M73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5H59.8l5.85 10.15z" fill="#ea4335"/>
+            <path d="M43.65 25 57.4 1.2C56.05.4 54.5 0 52.9 0H34.4c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/>
+            <path d="M59.8 53H27.5L13.75 76.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/>
+            <path d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3L43.65 25 59.8 53h27.5c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/>
+          </svg>
+          <span>Source PDF</span>
+        </a>
+<button type="button" onclick="if(document.referrer &amp;&amp; document.referrer.indexOf(window.location.host) !== -1){history.back();}else{location.href='../../physics/motion-2d/index.html';}" class="nav-hub-btn" aria-label="Previous Page" title="Back to Previous Page">← Previous Page</button>
+        <a href="../../physics/motion-2d/index.html" class="nav-hub-btn" aria-label="Back to Topic Workspace" title="Back to Motion 2D Workspace">Motion 2D Workspace</a>
+        <a href="../../index.html" class="nav-hub-btn" aria-label="Portal Home" title="Portal Home">⚡ Home</a>
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">🌓 Mode</button>
       </div>
-
-      <!-- Topic Filter Tabs -->
-      <div class="tabs-scroll-row">
-        <button class="tab-btn active" data-topic="all">All 59 Challenges</button>
-        <button class="tab-btn" data-topic="vel_comp">Velocity &amp; Components (7)</button>
-        <button class="tab-btn" data-topic="range_flight">Same-Height Range (16)</button>
-        <button class="tab-btn" data-topic="horizontal">Horizontal Launch (6)</button>
-        <button class="tab-btn" data-topic="timed_events">Timed Events &amp; Walls (7)</button>
-        <button class="tab-btn" data-topic="trajectory">Trajectory Geometry (5)</button>
-        <button class="tab-btn" data-topic="relative">Relative &amp; Moving Targets (4)</button>
-        <button class="tab-btn" data-topic="momentum_energy">Momentum &amp; Energy (14)</button>
-        <button class="tab-btn" data-topic="matrix">📋 Answer Key Matrix (59)</button>
-      </div>
-
-      <!-- Fast Jump Dropdown -->
-      <div class="jump-row">
-        <span class="jump-label">Fast Jump to Question:</span>
-        <select id="jump-select" class="jump-select">
-          <option value="">Select a Challenge (Q01 to Q59)...</option>
-          <option value="q01">Q01 - Velocity geometry</option>
-<option value="q02">Q02 - Time of flight from height</option>
-<option value="q03">Q03 - Horizontal launch</option>
-<option value="q04">Q04 - Horizontal launch to a target</option>
-<option value="q05">Q05 - Wall-clearance event timing</option>
-<option value="q06">Q06 - Same-height range</option>
-<option value="q07">Q07 - Equal flight time</option>
-<option value="q08">Q08 - Horizontal launch geometry</option>
-<option value="q09">Q09 - Launch from a tower</option>
-<option value="q10">Q10 - Velocity components</option>
-<option value="q11">Q11 - Velocity direction</option>
-<option value="q12">Q12 - Maximum range and components</option>
-<option value="q13">Q13 - Perpendicular velocity</option>
-<option value="q14">Q14 - Minimum and maximum projectile speed</option>
-<option value="q15">Q15 - Moving launch source</option>
-<option value="q16">Q16 - Complementary angles from heights</option>
-<option value="q17">Q17 - Velocity direction at two times</option>
-<option value="q18">Q18 - Angle-ratio comparison</option>
-<option value="q19">Q19 - Angle-ratio comparison</option>
-<option value="q20">Q20 - Complementary-angle range</option>
-<option value="q21">Q21 - Momentum change over full flight</option>
-<option value="q22">Q22 - Time of flight</option>
-<option value="q23">Q23 - Catch a projectile</option>
-<option value="q24">Q24 - Range-height relation</option>
-<option value="q25">Q25 - Range scaling with angle</option>
-<option value="q26">Q26 - Intermediate event timing</option>
-<option value="q27">Q27 - Apex speed and range</option>
-<option value="q28">Q28 - Catch a falling object</option>
-<option value="q29">Q29 - Horizontal launch</option>
-<option value="q30">Q30 - Downward projection</option>
-<option value="q31">Q31 - Staircase projectile</option>
-<option value="q32">Q32 - Staircase projectile</option>
-<option value="q33">Q33 - Horizontal-launch scaling</option>
-<option value="q34">Q34 - Opposite horizontal launches</option>
-<option value="q35">Q35 - Moving catcher and dropped packet</option>
-<option value="q36">Q36 - Displacement in horizontal launch</option>
-<option value="q37">Q37 - Moving-target intercept</option>
-<option value="q38">Q38 - Projectile coordinate at a wall</option>
-<option value="q39">Q39 - Momentum change</option>
-<option value="q40">Q40 - Speed at a given height</option>
-<option value="q41">Q41 - Reverse-engineering components</option>
-<option value="q42">Q42 - Horizontal launch velocity ratio</option>
-<option value="q43">Q43 - Apex horizontal speed</option>
-<option value="q44">Q44 - Range-height relation</option>
-<option value="q45">Q45 - Angular momentum of a projectile</option>
-<option value="q46">Q46 - Angular momentum at the apex</option>
-<option value="q47">Q47 - Trajectory equation</option>
-<option value="q48">Q48 - Projectile with horizontal acceleration</option>
-<option value="q49">Q49 - Minimum speed through a point</option>
-<option value="q50">Q50 - Elastic rebound and maximum time</option>
-<option value="q51">Q51 - Tower-clearance launch</option>
-<option value="q52">Q52 - Complementary-angle height ratio</option>
-<option value="q53">Q53 - Accelerating reference frame</option>
-<option value="q54">Q54 - Range on an inclined plane</option>
-<option value="q55">Q55 - Inclined-plane geometry</option>
-<option value="q56">Q56 - Normal impact on an incline</option>
-<option value="q57">Q57 - Elastic rebound from an incline</option>
-<option value="q58">Q58 - Change in velocity to the apex</option>
-<option value="q59">Q59 - Average velocity to the apex</option>
-
-        </select>
-      </div>
-    </header>
+    </div>
+  </header>
 
     <!-- Main Content Area -->
     <main id="main-content">
@@ -11884,6 +11909,22 @@ function initWorkspaceAttempts() {
     for (const record of records) for (const node of record.addedNodes) if (node.nodeType === 1) sync(node);
   }).observe(document.documentElement, { childList: true, subtree: true });
 })();
+</script>
+
+<script>
+  (function() {
+    const themeBtn = document.getElementById('themeToggle');
+    if (!themeBtn) return;
+    const htmlEl = document.documentElement;
+    const savedTheme = localStorage.getItem('tablet12_theme') || 'dark';
+    htmlEl.setAttribute('data-theme', savedTheme);
+    themeBtn.addEventListener('click', function() {
+      const current = htmlEl.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      htmlEl.setAttribute('data-theme', next);
+      localStorage.setItem('tablet12_theme', next);
+    });
+  })();
 </script>
 </body>
 </html>
