@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "id": "PRC",
+  "name": "Procedure / computation",
+  "objective": "Execute a valid algorithm, symbolic manipulation or numerical procedure accurately while preserving conditions and meaning.",
+  "choose_when": "Once the method is recognized, the main demand is carrying out a sequence of allowed operations or calculations.",
+  "do_not_choose_when": "Do not use when choosing the method/model is itself the main challenge, when proof is the target, or when evidence interpretation dominates.",
+  "slots": {
+    "X": "the procedural precondition, operation choice or execution point most likely to cause an error",
+    "Y": "a demonstrated algorithmic step, identity, rule or local invariant",
+    "Z": "the next valid operation or subgoal that puts the procedure on track",
+    "W": "the learner's remaining manipulation, computation and final result"
+  },
+  "hint_objectives": {
+    "REPRESENTATION": "Clarify the procedural target and the condition under which the intended operation is legal.",
+    "KEY_CONCEPT": "Correlate X with a known rule or algorithm Y and identify why it applies here.",
+    "CRUX": "Give the next valid operation or subgoal Z, not the completed computation W."
+  },
+  "figure_policy": {"requirement": "CONDITIONAL", "job": "Use a diagram or table when it carries givens, bookkeeping, geometry or state; do not manufacture a picture for purely symbolic arithmetic."},
+  "misconception_families": ["illegal algebraic operation", "sign or unit bookkeeping error", "algorithm applied outside its conditions"],
+  "solution_architecture": ["state the procedure and preconditions", "execute with intermediate states", "preserve units/domain/sign conventions", "obtain the result", "verify independently"],
+  "validation_strategy_refs": ["SUBSTITUTION_BACK", "UNITS_DIMENSIONS"],
+  "core1a_extraction_signals": ["procedural preconditions", "critical operation", "error-prone bookkeeping rule", "independent verification route"],
+  "adjacent_demands": ["REP", "MOD"]
+}
