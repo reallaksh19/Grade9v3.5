@@ -15,6 +15,25 @@ def checks(names):
     }
 
 
+def passing_viewports():
+    return {
+        name: {
+            "controls": 3,
+            "smallTargets": 0,
+            "smallTargetSample": [],
+            "horizontalOverflowPx": 0,
+            "wideElements": 0,
+            "focusFailures": 0,
+            "focusVisibleFailures": 0,
+            "svgCount": 1,
+            "inaccessibleSvgCount": 0,
+            "mainCount": 1,
+            "headingCount": 2,
+        }
+        for name in audit.EXPECTED_VIEWPORTS
+    }
+
+
 class QRTContentSelfAuditTests(unittest.TestCase):
     def base_run(self):
         return {
@@ -148,6 +167,27 @@ class QRTContentSelfAuditTests(unittest.TestCase):
             audit.validate_interactive_chromium(run),
         )
 
+    def test_linked_interactive_node_cannot_point_to_noninteractive_artifact(self):
+        run = self.base_run()
+        run["rendered_artifacts"] = [{"id": "CORE2", "kind": "CORE2_HTML", "sha256": "sha256:" + "1" * 64}]
+        run["pre_attempt_graphs"] = [
+            {
+                "question_ref": "Q1",
+                "nodes": [
+                    {
+                        "id": "EXPLORER-LINK",
+                        "phase": "POST_ATTEMPT",
+                        "resource_kind": "EXPLORER",
+                        "artifact_ref": "CORE2",
+                    }
+                ],
+            }
+        ]
+        self.assertIn(
+            "INTERACTIVE_GRAPH_ARTIFACT_NOT_INTERACTIVE: Q1:EXPLORER-LINK:CORE2",
+            audit.validate_interactive_chromium(run),
+        )
+
     def test_chromium_receipt_is_bound_to_exact_artifact_and_report_bytes(self):
         run = self.base_run()
         original_repo = audit.REPO
@@ -165,7 +205,7 @@ class QRTContentSelfAuditTests(unittest.TestCase):
                     "head_sha": "a" * 40,
                     "artifact_sha256": artifact_digest,
                     "status": "PASS",
-                    "viewports": {},
+                    "viewports": passing_viewports(),
                     "page_errors": [],
                     "console_errors": [],
                     "external_requests": [],
@@ -205,6 +245,24 @@ class QRTContentSelfAuditTests(unittest.TestCase):
                 self.assertIn("INTERACTIVE_CHROMIUM_ARTIFACT_DIGEST_MISMATCH: EXPLORER", problems)
         finally:
             audit.REPO = original_repo
+
+    def test_report_cannot_claim_pass_with_hidden_browser_failure(self):
+        report = {
+            "schema": "interactive-page-audit/v1",
+            "tool": audit.CHROMIUM_TOOL,
+            "engine": audit.CHROMIUM_ENGINE,
+            "profile": "tablet-12.7",
+            "head_sha": "a" * 40,
+            "artifact_sha256": "sha256:" + "1" * 64,
+            "status": "PASS",
+            "viewports": passing_viewports(),
+            "page_errors": ["boom"],
+            "console_errors": [],
+            "external_requests": [],
+            "failures": [],
+        }
+        problems = audit._validate_report_facts("EXPLORER", report, "sha256:" + "1" * 64, "a" * 40)
+        self.assertIn("INTERACTIVE_CHROMIUM_REPORT_FIELD_NOT_EMPTY: EXPLORER:page_errors", problems)
 
 
 if __name__ == "__main__":
