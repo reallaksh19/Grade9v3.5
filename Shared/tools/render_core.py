@@ -2006,8 +2006,9 @@ header a,header button,button,summary,nav a{min-height:var(--g9-touch-min);min-w
 nav[data-g9-breadcrumb]{display:flex;gap:8px;flex-wrap:wrap;padding:8px var(--g9-space)}
 .g9-breadcrumb-bar{display:none!important}
 .g9-triad-context{font-size:.78rem;opacity:.7;margin-bottom:4px;display:block}
-.g9-triad-context a{color:inherit;text-decoration:none}
+.g9-triad-context a{color:inherit;text-decoration:none;min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);padding:0 8px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;touch-action:manipulation}
 .g9-triad-context a:hover{text-decoration:underline}
+.g9-triad-actions a{min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);padding:10px 14px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;touch-action:manipulation}
 main{max-width:var(--g9-content-max);margin:0 auto;padding:var(--g9-space);box-sizing:border-box}
 main>*{min-width:0}article[data-g9-unit]{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:var(--g9-space);margin:18px 0;min-width:0}
 article[data-g9-unit]>*{min-width:0}
