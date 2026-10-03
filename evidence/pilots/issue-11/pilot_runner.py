@@ -26,6 +26,9 @@ def dump(path: Path, value):
 def sha(path: Path):
     return "sha256:" + hashlib.sha256(path.read_bytes()).hexdigest()
 
+def repo_rel(path: Path):
+    return str(path.resolve().relative_to(REPO.resolve()))
+
 def make_baseline(bank_out: Path, manifest_out: Path):
     bank = load(BANK)
     for q in bank["questions"]:
@@ -146,11 +149,11 @@ def build_evidence(gate_before: Path, gate_after: Path, render_dir: Path):
             "owner_bank": {"path": str(BANK.relative_to(REPO)), "sha256": sha(BANK)},
             "manifest": {"path": str(MANIFEST.relative_to(REPO)), "sha256": sha(MANIFEST)},
             "profile": {"path": str(PROFILE.relative_to(REPO)), "sha256": sha(PROFILE)},
-            "core2_html": {"path": str((render_dir / "core2.html").relative_to(REPO)), "sha256": sha(render_dir / "core2.html")},
-            "core1a_html": {"path": str((render_dir / "core1a.html").relative_to(REPO)), "sha256": sha(render_dir / "core1a.html")},
-            "render_receipt": {"path": str((render_dir / "render-receipt.json").relative_to(REPO)), "sha256": sha(render_dir / "render-receipt.json")},
-            "gate_before": {"path": str(gate_before.relative_to(REPO)), "sha256": sha(gate_before)},
-            "gate_after": {"path": str(gate_after.relative_to(REPO)), "sha256": sha(gate_after)}
+            "core2_html": {"path": repo_rel(render_dir / "core2.html"), "sha256": sha(render_dir / "core2.html")},
+            "core1a_html": {"path": repo_rel(render_dir / "core1a.html"), "sha256": sha(render_dir / "core1a.html")},
+            "render_receipt": {"path": repo_rel(render_dir / "render-receipt.json"), "sha256": sha(render_dir / "render-receipt.json")},
+            "gate_before": {"path": repo_rel(gate_before), "sha256": sha(gate_before)},
+            "gate_after": {"path": repo_rel(gate_after), "sha256": sha(gate_after)}
         },
         "quality": {
             "gate_before_verdict": before.get("verdict"),
