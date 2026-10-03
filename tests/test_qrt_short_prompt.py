@@ -114,5 +114,21 @@ class QRTShortPromptTests(unittest.TestCase):
         self.assertTrue(self.workflow["clarification_policy"]["default_generic_requires_explicit_owner_choice"])
 
 
+
+    def test_surface_areas_and_volumes_short_prompt_fixture_requires_owner_clarification(self):
+        raw = json.loads(
+            (REPO / "tests" / "fixtures" / "quality" / "qrt-short-prompt-surface-areas-volumes.v1.json")
+            .read_text(encoding="utf-8")
+        )
+        result = sp.plan(raw, self.workflow)
+        self.assertEqual(result["state"], "OWNER_INPUT_REQUIRED")
+        self.assertEqual(len(result["request"]["questions"]), 10)
+        self.assertEqual(result["request"]["topic"], "Surface Areas and Volumes")
+        self.assertEqual(
+            [row["id"] for row in result["owner_questions"]],
+            ["LEARNER_PROFILE", "QUESTION_PROVENANCE", "PRODUCT_INTENT"],
+        )
+        self.assertEqual(result["requested_outputs"], ["LEARNER_HTML", "QRT_EVIDENCE"])
+
 if __name__ == "__main__":
     unittest.main()
