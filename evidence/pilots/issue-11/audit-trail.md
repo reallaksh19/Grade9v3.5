@@ -188,3 +188,5 @@ No waivers were issued. The remaining open items are:
 6. stale generated Question Bank platform projections after introducing this owner-supplied bank.
 
 The execution agent does not self-certify release. The governed learner HTML and machine evidence remain the pilot products, while the items above remain auditable blockers/limitations.
+
+- PR #9 contract tests at pilot runtime: pytest exit 1. Current observed failure is the PR #3 pilot fixture review-key ordering assertion; QRT matrix compile/check itself passed. This is preserved as an unresolved upstream finding, not suppressed as a pass.
