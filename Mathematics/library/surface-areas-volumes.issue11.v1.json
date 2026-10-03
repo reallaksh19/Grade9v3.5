@@ -84,8 +84,8 @@
       "primary_representation_ref": "REP-I11-SA-BOUNDARY",
       "conventions": [
         {
-          "name": "pi",
-          "statement": "Exact answers are kept in terms of π; where useful, π = 22/7 is also reported because the supplied dimensions make that conventional evaluation exact."
+          "id": "CONV-I11-PI-EXACT",
+          "statement": "Keep π exact in the mathematical answer; where a conventional school evaluation is useful, report the π = 22/7 value separately rather than silently replacing π."
         }
       ]
     }
@@ -1289,22 +1289,44 @@
       "symbols": [
         {
           "symbol": "a",
-          "meaning": "cube edge"
+          "meaning": "cube edge",
+          "unit_or_domain": "length"
         },
         {
           "symbol": "r",
-          "meaning": "radius"
+          "meaning": "radius",
+          "unit_or_domain": "length"
         },
         {
           "symbol": "h",
-          "meaning": "height"
+          "meaning": "height",
+          "unit_or_domain": "length"
         }
       ],
       "conditions": [
         "Count each included external/material surface exactly once.",
         "Openings and hidden joining faces contribute no exposed sheet or painted area."
       ],
-      "derivation": [],
+      "derivation": [
+        {
+          "id": "REL-I11-SA-D1",
+          "role": "DECLARE",
+          "action": "List the material or exposed surface pieces named by the situation before choosing formulas.",
+          "why_valid": "Surface area is an additive measure over non-overlapping included boundary pieces; openings and hidden joins are not included boundary pieces.",
+          "inputs": [],
+          "output": "A surface inventory with each included piece counted once."
+        },
+        {
+          "id": "REL-I11-SA-D2",
+          "role": "TRANSFORM",
+          "action": "Replace each included piece by its standard area expression and add the terms.",
+          "why_valid": "Each term measures exactly one region from the verified inventory, so their sum measures the requested boundary.",
+          "inputs": [
+            "verified surface inventory"
+          ],
+          "output": "An area expression containing exactly the included surfaces."
+        }
+      ],
       "limits": [
         "Do not add a circular face that the object does not physically have or that is hidden at a join."
       ],
@@ -1327,22 +1349,48 @@
       "symbols": [
         {
           "symbol": "l",
-          "meaning": "slant height"
+          "meaning": "slant height",
+          "unit_or_domain": "length"
         },
         {
           "symbol": "r",
-          "meaning": "radius"
+          "meaning": "radius",
+          "unit_or_domain": "length"
         },
         {
           "symbol": "h",
-          "meaning": "vertical height"
+          "meaning": "vertical height",
+          "unit_or_domain": "length"
         }
       ],
       "conditions": [
         "The cone is right circular.",
         "Use πrl for curved area; add a base only when a material base is included."
       ],
-      "derivation": [],
+      "derivation": [
+        {
+          "id": "REL-I11-CONE-D1",
+          "role": "TRANSFORM",
+          "action": "Use the axial right triangle to write l² = r² + h².",
+          "why_valid": "In a right circular cone, the radius is perpendicular to the vertical height and the slant height is the hypotenuse.",
+          "inputs": [
+            "radius r",
+            "vertical height h"
+          ],
+          "output": "l² = r² + h²"
+        },
+        {
+          "id": "REL-I11-CONE-D2",
+          "role": "TRANSFORM",
+          "action": "Use the positive slant height in the curved-surface relation πrl.",
+          "why_valid": "The lateral surface is generated along the slant length; physical lengths are positive.",
+          "inputs": [
+            "slant height l",
+            "radius r"
+          ],
+          "output": "curved area = πrl"
+        }
+      ],
       "limits": [
         "Vertical height h is not interchangeable with slant height l."
       ],
@@ -1365,14 +1413,34 @@
       "symbols": [
         {
           "symbol": "A",
-          "meaning": "area"
+          "meaning": "area",
+          "unit_or_domain": "area"
         }
       ],
       "conditions": [
         "The joining face is fully covered by the other component.",
         "Only surfaces visible from outside are counted."
       ],
-      "derivation": [],
+      "derivation": [
+        {
+          "id": "REL-I11-COMP-D1",
+          "role": "DECLARE",
+          "action": "Classify each component face as exposed or internal after assembly.",
+          "why_valid": "A contact face covered by another solid is not part of the external boundary.",
+          "inputs": [],
+          "output": "A list of visible external component surfaces."
+        },
+        {
+          "id": "REL-I11-COMP-D2",
+          "role": "TRANSFORM",
+          "action": "Add the areas of the visible external component surfaces only.",
+          "why_valid": "The visible component surfaces are non-overlapping pieces of the assembled solid's external boundary.",
+          "inputs": [
+            "visible external component surfaces"
+          ],
+          "output": "exposed area = sum of visible external component surfaces"
+        }
+      ],
       "limits": [
         "Do not count a hidden interface as exposed area."
       ],
@@ -1395,21 +1463,58 @@
       "symbols": [
         {
           "symbol": "l",
-          "meaning": "length"
+          "meaning": "length",
+          "unit_or_domain": "length"
         },
         {
           "symbol": "w",
-          "meaning": "width"
+          "meaning": "width",
+          "unit_or_domain": "length"
         },
         {
           "symbol": "h",
-          "meaning": "depth"
+          "meaning": "depth",
+          "unit_or_domain": "length"
         }
       ],
       "conditions": [
         "Dimensions are in compatible units before multiplication."
       ],
-      "derivation": [],
+      "derivation": [
+        {
+          "id": "REL-I11-CAP-D1",
+          "role": "TRANSFORM",
+          "action": "Multiply compatible length, width and depth to obtain total tank volume.",
+          "why_valid": "A rectangular prism has volume lwh.",
+          "inputs": [
+            "length l",
+            "width w",
+            "depth h"
+          ],
+          "output": "V = lwh"
+        },
+        {
+          "id": "REL-I11-CAP-D2",
+          "role": "TRANSFORM",
+          "action": "Multiply total volume by the stated fill fraction.",
+          "why_valid": "A percentage fill denotes that fraction of the total capacity.",
+          "inputs": [
+            "total volume V",
+            "fill fraction"
+          ],
+          "output": "filled volume = fraction × V"
+        },
+        {
+          "id": "REL-I11-CAP-D3",
+          "role": "TRANSFORM",
+          "action": "Convert cubic metres to litres using 1 m³ = 1000 L.",
+          "why_valid": "The litre is defined so that 1000 litres occupy one cubic metre.",
+          "inputs": [
+            "filled volume in m³"
+          ],
+          "output": "filled capacity in litres"
+        }
+      ],
       "limits": [
         "Cubic-unit conversions scale by the cube of the linear conversion."
       ],
@@ -1432,22 +1537,47 @@
       "symbols": [
         {
           "symbol": "R",
-          "meaning": "original sphere radius"
+          "meaning": "original sphere radius",
+          "unit_or_domain": "length"
         },
         {
           "symbol": "r",
-          "meaning": "small sphere radius"
+          "meaning": "small sphere radius",
+          "unit_or_domain": "length"
         },
         {
           "symbol": "n",
-          "meaning": "number of small spheres"
+          "meaning": "number of small spheres",
+          "unit_or_domain": "non-negative integer"
         }
       ],
       "conditions": [
         "No metal is lost.",
         "All smaller spheres have the same radius."
       ],
-      "derivation": [],
+      "derivation": [
+        {
+          "id": "REL-I11-REC-D1",
+          "role": "DECLARE",
+          "action": "Set the original material volume equal to the total volume of all recast spheres.",
+          "why_valid": "No metal is lost, so material volume is conserved during melting and recasting.",
+          "inputs": [
+            "one original sphere",
+            "n identical smaller spheres"
+          ],
+          "output": "(4/3)πR³ = n(4/3)πr³"
+        },
+        {
+          "id": "REL-I11-REC-D2",
+          "role": "TRANSFORM",
+          "action": "Cancel the common nonzero factor (4/3)π and solve for n.",
+          "why_valid": "Both sides contain the same nonzero multiplicative factor.",
+          "inputs": [
+            "(4/3)πR³ = n(4/3)πr³"
+          ],
+          "output": "n = (R/r)³"
+        }
+      ],
       "limits": [
         "Surface area is not a conserved material quantity during recasting."
       ],
@@ -1470,17 +1600,42 @@
       "symbols": [
         {
           "symbol": "r",
-          "meaning": "common radius"
+          "meaning": "common radius",
+          "unit_or_domain": "length"
         },
         {
           "symbol": "h",
-          "meaning": "common height"
+          "meaning": "common height",
+          "unit_or_domain": "length"
         }
       ],
       "conditions": [
         "Cone and cylinder have the same base radius and the same height."
       ],
-      "derivation": [],
+      "derivation": [
+        {
+          "id": "REL-I11-RAT-D1",
+          "role": "DECLARE",
+          "action": "Write the cylinder and cone volume formulas using the same r and h.",
+          "why_valid": "The question states that the two solids have the same base radius and the same height.",
+          "inputs": [
+            "common radius r",
+            "common height h"
+          ],
+          "output": "V_cylinder = πr²h and V_cone = (1/3)πr²h"
+        },
+        {
+          "id": "REL-I11-RAT-D2",
+          "role": "TRANSFORM",
+          "action": "Factor the common πr²h to compare the two volumes directly.",
+          "why_valid": "Equal nonzero shared factors cancel in a ratio, leaving only the coefficient 1/3.",
+          "inputs": [
+            "V_cylinder = πr²h",
+            "V_cone = (1/3)πr²h"
+          ],
+          "output": "V_cone = (1/3)V_cylinder"
+        }
+      ],
       "limits": [
         "The one-third relation does not apply when the compared solids have different base areas or heights."
       ],
