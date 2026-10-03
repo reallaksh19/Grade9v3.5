@@ -73,7 +73,7 @@ jobs:
           Draft202012Validator(schema).validate(run)
           print('qrt-pipeline-run schema: PASS')
           PY
-          python Shared/tools/qrt_pipeline_precheck.py \
+          PYTHONPATH=. python Shared/tools/qrt_pipeline_precheck.py \
             evidence/authoring/issue17-surface-areas-volumes/generated/qrt-pipeline-run.authoring.json
 
       - name: Validate owner custody and package schema
