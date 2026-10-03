@@ -6,6 +6,7 @@ on:
       - feat/minimal-prompt-authoring-intake
     paths:
       - evidence/authoring/issue10-surface-areas-volumes/**
+      - Shared/tools/render_core.py
       - tests/test_authoring_applicability.py
       - .github/workflows/issue10-authoring-specimen.yml
   workflow_dispatch:
@@ -25,14 +26,15 @@ jobs:
           python-version: "3.11"
       - name: Install authoring dependencies
         run: pip install --quiet jsonschema pypdf
-      - name: Apply PR8 U4 applicability reconciliation
+      - name: Apply PR8 authority reconciliations
         run: |
           python3 evidence/authoring/issue10-surface-areas-volumes/apply_u4_reconciliation.py
+          python3 evidence/authoring/issue10-surface-areas-volumes/apply_shell_compatibility.py
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if ! git diff --quiet -- Shared/web/interactive-page-blueprints.v1.json Shared/quality/learner-quality.v1.json Shared/tools/quality_contract.py docs/specs/PAGE-BLUEPRINT-COMPONENTS.md; then
-            git add Shared/web/interactive-page-blueprints.v1.json Shared/quality/learner-quality.v1.json Shared/tools/quality_contract.py docs/specs/PAGE-BLUEPRINT-COMPONENTS.md
-            git commit -m "feat(authoring): reconcile QRT applicability with Blueprint 1.9"
+          if ! git diff --quiet -- Shared/web/interactive-page-blueprints.v1.json Shared/quality/learner-quality.v1.json Shared/tools/quality_contract.py docs/specs/PAGE-BLUEPRINT-COMPONENTS.md Shared/tools/render_core.py; then
+            git add Shared/web/interactive-page-blueprints.v1.json Shared/quality/learner-quality.v1.json Shared/tools/quality_contract.py docs/specs/PAGE-BLUEPRINT-COMPONENTS.md Shared/tools/render_core.py
+            git commit -m "fix(renderer): restore governed tablet shell markers"
             git push origin HEAD:feat/minimal-prompt-authoring-intake
           fi
       - name: Focused authoring and Blueprint regressions
