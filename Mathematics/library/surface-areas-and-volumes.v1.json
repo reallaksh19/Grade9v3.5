@@ -1,0 +1,2400 @@
+{
+  "schema_version": "0.2.0",
+  "package_id": "LIB-MAT-SURFACE-AREAS-AND-VOLUMES",
+  "title": "Surface Areas and Volumes",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Mathematics",
+  "scope_summary": "CBSE Grade 9 Mathematics Mensuration: Surface areas and volumes of cubes, cuboids, cylinders, cones, spheres, hemispheres, composite solids, and recasting transformations.",
+  "curriculum_mappings": [
+    {
+      "board": "CBSE",
+      "grade": 9,
+      "academic_year": "2026-27",
+      "track": "STANDARD",
+      "scope_class": "OWNER_EXTENSION",
+      "source_ref": "SRC-MATH-OWNER-PILOT",
+      "locator": "Surface Areas and Volumes chapter; owner pilot exercise",
+      "mapping_status": "CANDIDATE"
+    }
+  ],
+  "resources": [
+    {
+      "id": "SRC-MATH-OWNER-PILOT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Grade 9 Mathematics Surface Areas and Volumes Owner Pilot",
+      "origin": "AUTHORED",
+      "locator": "Mathematics/library/surface-areas-and-volumes.v1.json",
+      "edition": "0.1.0",
+      "section": "Core mensuration principles, boundary definitions, and volume conservation",
+      "last_checked": "2026-10-03",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created project draft; owner-supplied question custody",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "STANDARD"
+      ],
+      "selection_reason": "Governed candidate teaching package for Grade 9 Mathematics Mensuration.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-SURFACE-AREAS-VOLUMES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Surface Areas and Volumes",
+      "topic": "Surface Areas and Volumes",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Formulas are frequently misapplied by confusing open vs closed boundaries and composite solid hidden interfaces.",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "OWNER_EXTENSION",
+          "source_ref": "SRC-MATH-OWNER-PILOT",
+          "locator": "Chapter 11 Surface Areas and Volumes",
+          "mapping_status": "CANDIDATE"
+        }
+      ],
+      "prerequisite_refs": []
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-MAT-SAV-CUBE-CUBOID",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Calculate surface area and volume of cubes and cuboids with metric unit conversion.",
+      "success_criterion": "Apply TSA = 6 a² for cubes and V = l × w × h for cuboids, converting units (1 m³ = 1000 L).",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MAT-SAV-CYLINDER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Compute curved and total surface area of cylinders, distinguishing diameter from radius.",
+      "success_criterion": "Convert diameter to radius (r = d/2) before applying CSA = 2πrh.",
+      "prerequisite_refs": [
+        "CAP-MAT-SAV-CUBE-CUBOID"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MAT-SAV-OPEN-CONTAINER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Formulate boundary surface models for open and hollow vessels.",
+      "success_criterion": "Include only physical boundary faces (e.g. 2πrh + πr² for open bucket), excluding openings and unpainted faces.",
+      "prerequisite_refs": [
+        "CAP-MAT-SAV-CYLINDER"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MAT-SAV-CONE-SLANT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Derive cone slant height using Pythagoras and compute conical surface area.",
+      "success_criterion": "Apply l = √(r² + h²) to find slant height and calculate curved area πrl.",
+      "prerequisite_refs": [
+        "CAP-MAT-SAV-CYLINDER"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MAT-SAV-SPHERE-HEMISPHERE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Calculate surface area and volume of spheres and hemispheres, distinguishing open from solid.",
+      "success_criterion": "Select 2πr² for open hollow hemisphere inner surface vs 3πr² for solid hemisphere.",
+      "prerequisite_refs": [
+        "CAP-MAT-SAV-CYLINDER"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MAT-SAV-COMPOSITE-SOLIDS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Determine exposed boundary surface area of composite solids.",
+      "success_criterion": "Sum only exposed curved faces, excluding internal hidden contact interfaces.",
+      "prerequisite_refs": [
+        "CAP-MAT-SAV-CONE-SLANT",
+        "CAP-MAT-SAV-SPHERE-HEMISPHERE"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MAT-SAV-RECASTING-VOLUME",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Apply conservation of volume during recasting and explain non-conservation of surface area.",
+      "success_criterion": "Equate volumes V_initial = n × V_final, and explain why subdivision increases exposed surface area.",
+      "prerequisite_refs": [
+        "CAP-MAT-SAV-SPHERE-HEMISPHERE"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MAT-SAV-PROPORTIONAL-REASONING",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Relate geometric volumes using dimensional scaling and ratio invariants.",
+      "success_criterion": "Recognize structural grouping (V_cone = 1/3 V_cylinder) without calculating underdetermined individual dimensions.",
+      "prerequisite_refs": [
+        "CAP-MAT-SAV-CYLINDER",
+        "CAP-MAT-SAV-CONE-SLANT"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-MAT-SAV-CUBE-CUBOID",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Cubes and Cuboids: Surface Area and Volume Measures",
+      "bucket_id": "BUCKET-SURFACE-AREAS-VOLUMES",
+      "primary_capability_ref": "CAP-MAT-SAV-CUBE-CUBOID",
+      "intrinsic_badge": "EASY",
+      "badge_reason": "Direct formula evaluation with unit conversions between m³ and litres.",
+      "entry_assumptions": [
+        "Can calculate 2D areas of rectangles (l × w) and circles (πr²).",
+        "Can evaluate algebraic formulas using rational numbers with π = 22/7."
+      ],
+      "inferential_jump": "Identify whether total surface area (6 faces) or internal capacity (volume) is requested, and convert volume units (1 m³ = 1000 litres).",
+      "teaching_path": [
+        {
+          "id": "MIC-MAT-SAV-CUBE-CUBOID-S1",
+          "action": "Identify 3D solid type and required measure (surface area vs capacity).",
+          "why_valid": "Boundary area requires face summation; capacity requires volume.",
+          "inputs": [
+            "Dimensions"
+          ],
+          "output": "Measure type and parameters",
+          "role": "DECLARE"
+        },
+        {
+          "id": "MIC-MAT-SAV-CUBE-CUBOID-S2",
+          "action": "Apply TSA = 6a² or V = l × b × h, converting units to litres where required.",
+          "why_valid": "Capacity in litres is volume in m³ multiplied by 1000.",
+          "inputs": [
+            "Parameters"
+          ],
+          "output": "Evaluated numerical result",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "MIC-MAT-SAV-CUBE-CUBOID-S3",
+          "action": "Verify dimensional consistency: area is length², volume is length³.",
+          "why_valid": "Physical units verify algebraic scaling.",
+          "inputs": [
+            "Result"
+          ],
+          "output": "Verified measure",
+          "role": "VERIFY"
+        }
+      ],
+      "relation_refs": [
+        "REL-MAT-SAV-CUBE"
+      ],
+      "representation_refs": [
+        "REP-MAT-SAV-CUBE"
+      ],
+      "question_family_refs": [
+        "FAM-MATH-SAV"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Confusing volume (a³) with total surface area (6a²).",
+          "diagnostic_prompt": "If edge is 7 cm, is 343 the surface area or the volume?",
+          "repair": "Volume is 7³ = 343 cm³; total surface area is 6 × 7² = 294 cm²."
+        }
+      ],
+      "research_contribution": "Author-created structured pedagogical framing for Cubes and Cuboids: Surface Area and Volume Measures; independent review pending.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "exit_task": {
+        "prompt": "Find the total surface area of a cube of edge 5 cm, and state its volume in cm³.",
+        "source_ref": "SRC-MATH-OWNER-PILOT",
+        "oracle": {
+          "no_numeric_claim": "Checks simultaneous calculation of surface area and volume for a regular cube."
+        },
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "TSA = 150 cm², Volume = 125 cm³.",
+          "reasoning": [
+            "TSA = 6 × 5² = 6 × 25 = 150 cm².",
+            "Volume = 5³ = 125 cm³."
+          ],
+          "check": "150 / 6 = 25 = 5² confirms surface area; 125^(1/3) = 5 confirms volume.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-MAT-SAV-CUBE-CUBOID",
+          "decision": "Identify whether total surface area (6 faces) or internal capacity (volume) is requested, and convert volume units (1 m³ = 1000 litres).",
+          "step_refs": [
+            "MIC-MAT-SAV-CUBE-CUBOID-S1",
+            "MIC-MAT-SAV-CUBE-CUBOID-S2",
+            "MIC-MAT-SAV-CUBE-CUBOID-S3"
+          ],
+          "crux_question_refs": [
+            "Q1",
+            "Q8"
+          ],
+          "crux_step_ref": "MIC-MAT-SAV-CUBE-CUBOID-S2",
+          "bank_anchor_ref": "Q1",
+          "representation_ref": "REP-MAT-SAV-CUBE",
+          "reveal_stage_refs": [
+            "VIS-MAT-SAV-CUBE-1",
+            "VIS-MAT-SAV-CUBE-2"
+          ],
+          "relation_refs": [
+            "REL-MAT-SAV-CUBE"
+          ],
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "Check units (cm² or m²) and physical dimensional consistency.",
+              "check_type": "UNITS"
+            },
+            {
+              "statement": "Substitute computed parameters back into governing relation to confirm arithmetic identity.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            },
+            {
+              "statement": "Confirm physical boundary conditions and domain constraints.",
+              "check_type": "DOMAIN_CHECK"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MIC-MAT-SAV-CYLINDER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Cylinders: Diameter Trap and Curved Surface Area",
+      "bucket_id": "BUCKET-SURFACE-AREAS-VOLUMES",
+      "primary_capability_ref": "CAP-MAT-SAV-CYLINDER",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Commonly fails when students substitute diameter directly instead of radius.",
+      "entry_assumptions": [
+        "Can calculate 2D areas of rectangles (l × w) and circles (πr²).",
+        "Can evaluate algebraic formulas using rational numbers with π = 22/7."
+      ],
+      "inferential_jump": "Halve diameter to find radius r = d/2 before evaluating curved surface area 2πrh.",
+      "teaching_path": [
+        {
+          "id": "MIC-MAT-SAV-CYLINDER-S1",
+          "action": "Extract diameter from problem statement and halve it to obtain base radius r = d/2.",
+          "why_valid": "Curved surface area formula 2πrh strictly requires radius, not diameter.",
+          "inputs": [
+            "Given diameter d"
+          ],
+          "output": "Radius r = d/2",
+          "role": "DECLARE"
+        },
+        {
+          "id": "MIC-MAT-SAV-CYLINDER-S2",
+          "action": "Substitute radius r and height h into CSA = 2πrh.",
+          "why_valid": "Formula represents circumference (2πr) swept along height h.",
+          "inputs": [
+            "r",
+            "h",
+            "π"
+          ],
+          "output": "Curved surface area",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "MIC-MAT-SAV-CYLINDER-S3",
+          "action": "Check result using alternate form CSA = πdh directly.",
+          "why_valid": "πdh avoids division and multiplication by 2, verifying the calculation.",
+          "inputs": [
+            "d",
+            "h"
+          ],
+          "output": "Verified CSA",
+          "role": "VERIFY"
+        }
+      ],
+      "relation_refs": [
+        "REL-MAT-SAV-CYLINDER"
+      ],
+      "representation_refs": [
+        "REP-MAT-SAV-CYLINDER"
+      ],
+      "question_family_refs": [
+        "FAM-MATH-SAV"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Using diameter directly in 2πrh.",
+          "diagnostic_prompt": "If diameter is 14 cm, what value should be plugged into 2πrh for r?",
+          "repair": "Radius is half diameter: r = 14 / 2 = 7 cm. Using 14 doubles the actual area."
+        }
+      ],
+      "research_contribution": "Author-created structured pedagogical framing for Cylinders: Diameter Trap and Curved Surface Area; independent review pending.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "exit_task": {
+        "prompt": "A cylinder has diameter 28 cm and height 10 cm. Find its curved surface area using π = 22/7.",
+        "source_ref": "SRC-MATH-OWNER-PILOT",
+        "oracle": {
+          "no_numeric_claim": "Evaluates diameter conversion and curved surface area computation."
+        },
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "880 cm².",
+          "reasoning": [
+            "Radius r = 28 / 2 = 14 cm.",
+            "CSA = 2 × (22/7) × 14 × 10 = 2 × 22 × 2 × 10 = 880 cm²."
+          ],
+          "check": "Using πdh: (22/7) × 28 × 10 = 22 × 4 × 10 = 880 cm².",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-MAT-SAV-CYLINDER",
+          "decision": "Halve diameter to find radius r = d/2 before evaluating curved surface area 2πrh.",
+          "step_refs": [
+            "MIC-MAT-SAV-CYLINDER-S1",
+            "MIC-MAT-SAV-CYLINDER-S2",
+            "MIC-MAT-SAV-CYLINDER-S3"
+          ],
+          "crux_question_refs": [
+            "Q2"
+          ],
+          "crux_step_ref": "MIC-MAT-SAV-CYLINDER-S2",
+          "bank_anchor_ref": "Q2",
+          "representation_ref": "REP-MAT-SAV-CYLINDER",
+          "reveal_stage_refs": [
+            "VIS-MAT-SAV-CYL-B-1",
+            "VIS-MAT-SAV-CYL-B-2"
+          ],
+          "relation_refs": [
+            "REL-MAT-SAV-CYLINDER"
+          ],
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "Check units (cm² or m²) and physical dimensional consistency.",
+              "check_type": "UNITS"
+            },
+            {
+              "statement": "Substitute computed parameters back into governing relation to confirm arithmetic identity.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            },
+            {
+              "statement": "Confirm physical boundary conditions and domain constraints.",
+              "check_type": "DOMAIN_CHECK"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MIC-MAT-SAV-OPEN-CONTAINER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Open Cylindrical Containers: Exposed Boundary Selection",
+      "bucket_id": "BUCKET-SURFACE-AREAS-VOLUMES",
+      "primary_capability_ref": "CAP-MAT-SAV-OPEN-CONTAINER",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Requires excluding the open top face from total surface area calculations.",
+      "entry_assumptions": [
+        "Can calculate 2D areas of rectangles (l × w) and circles (πr²).",
+        "Can evaluate algebraic formulas using rational numbers with π = 22/7."
+      ],
+      "inferential_jump": "Recognize that an open cylinder consists of the curved wall (2πrh) and one base (πr²), never two bases.",
+      "teaching_path": [
+        {
+          "id": "MIC-MAT-SAV-OPEN-CONTAINER-S1",
+          "action": "Inspect physical container boundary and identify which faces require material.",
+          "why_valid": "Only exposed boundaries separate the interior from the outside; open faces require no sheet.",
+          "inputs": [
+            "Container description"
+          ],
+          "output": "Exposed boundary faces",
+          "role": "DECLARE"
+        },
+        {
+          "id": "MIC-MAT-SAV-OPEN-CONTAINER-S2",
+          "action": "Calculate curved surface area 2πrh and add exactly one circular base area πr².",
+          "why_valid": "An open container has a bottom base but no top cover.",
+          "inputs": [
+            "r",
+            "h"
+          ],
+          "output": "Total sheet area",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "MIC-MAT-SAV-OPEN-CONTAINER-S3",
+          "action": "Verify that total area is strictly less than closed cylinder TSA by πr².",
+          "why_valid": "Subtracting top circular face confirms consistency with standard closed solid.",
+          "inputs": [
+            "Total area"
+          ],
+          "output": "Verified open area",
+          "role": "VERIFY"
+        }
+      ],
+      "relation_refs": [
+        "REL-MAT-SAV-OPEN-CONTAINER"
+      ],
+      "representation_refs": [
+        "REP-MAT-SAV-OPEN-CONTAINER"
+      ],
+      "question_family_refs": [
+        "FAM-MATH-SAV"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Using closed cylinder TSA formula 2πr(h + r) for an open container.",
+          "diagnostic_prompt": "Does an open cylindrical bucket have a metal lid on top?",
+          "repair": "No, an open bucket has no top cover. Add only 1 circular base: 2πrh + πr²."
+        }
+      ],
+      "research_contribution": "Author-created structured pedagogical framing for Open Cylindrical Containers: Exposed Boundary Selection; independent review pending.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "exit_task": {
+        "prompt": "An open cylindrical can has radius 3.5 cm and height 10 cm. Find the area of tin sheet required to make it (use π = 22/7).",
+        "source_ref": "SRC-MATH-OWNER-PILOT",
+        "oracle": {
+          "no_numeric_claim": "Verifies boundary area calculation for an open cylinder."
+        },
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "258.5 cm².",
+          "reasoning": [
+            "Curved surface area = 2 × (22/7) × 3.5 × 10 = 2 × 22 × 0.5 × 10 = 220 cm².",
+            "Bottom base area = (22/7) × 3.5² = (22/7) × 12.25 = 38.5 cm².",
+            "Total sheet area = 220 + 38.5 = 258.5 cm²."
+          ],
+          "check": "Closed cylinder would be 220 + 77 = 297 cm²; 297 - 38.5 = 258.5 cm² confirms open boundary.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-MAT-SAV-OPEN-CONTAINER",
+          "decision": "Recognize that an open cylinder consists of the curved wall (2πrh) and one base (πr²), never two bases.",
+          "step_refs": [
+            "MIC-MAT-SAV-OPEN-CONTAINER-S1",
+            "MIC-MAT-SAV-OPEN-CONTAINER-S2",
+            "MIC-MAT-SAV-OPEN-CONTAINER-S3"
+          ],
+          "crux_question_refs": [
+            "Q3",
+            "Q7"
+          ],
+          "crux_step_ref": "MIC-MAT-SAV-OPEN-CONTAINER-S2",
+          "bank_anchor_ref": "Q3",
+          "representation_ref": "REP-MAT-SAV-OPEN-CONTAINER",
+          "reveal_stage_refs": [
+            "VIS-MAT-SAV-CYL-1",
+            "VIS-MAT-SAV-CYL-2"
+          ],
+          "relation_refs": [
+            "REL-MAT-SAV-OPEN-CONTAINER"
+          ],
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "Check units (cm² or m²) and physical dimensional consistency.",
+              "check_type": "UNITS"
+            },
+            {
+              "statement": "Substitute computed parameters back into governing relation to confirm arithmetic identity.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            },
+            {
+              "statement": "Confirm physical boundary conditions and domain constraints.",
+              "check_type": "DOMAIN_CHECK"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MIC-MAT-SAV-CONE-SLANT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Cones: Slant Height Derivation and Curved Surface Area",
+      "bucket_id": "BUCKET-SURFACE-AREAS-VOLUMES",
+      "primary_capability_ref": "CAP-MAT-SAV-CONE-SLANT",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Requires calculating slant height via Pythagoras before evaluating curved surface area.",
+      "entry_assumptions": [
+        "Can calculate 2D areas of rectangles (l × w) and circles (πr²).",
+        "Can evaluate algebraic formulas using rational numbers with π = 22/7."
+      ],
+      "inferential_jump": "Derive slant height l = √(r² + h²) from the vertical right triangle before calculating curved surface area πrl.",
+      "teaching_path": [
+        {
+          "id": "MIC-MAT-SAV-CONE-SLANT-S1",
+          "action": "Identify radius r and vertical height h from problem statement.",
+          "why_valid": "Vertical axis, radius, and slant generator form a right-angled triangle.",
+          "inputs": [
+            "r",
+            "h"
+          ],
+          "output": "Right triangle legs",
+          "role": "DECLARE"
+        },
+        {
+          "id": "MIC-MAT-SAV-CONE-SLANT-S2",
+          "action": "Compute slant height l = √(r² + h²), then evaluate CSA = πrl.",
+          "why_valid": "Curved surface area formula requires generator slant length l, not vertical height h.",
+          "inputs": [
+            "r",
+            "l"
+          ],
+          "output": "Curved surface area",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "MIC-MAT-SAV-CONE-SLANT-S3",
+          "action": "Confirm slant height l > h and l > r; verify canvas area exceeds horizontal footprint πr².",
+          "why_valid": "Hypotenuse must exceed legs; sloping canopy area must exceed flat base.",
+          "inputs": [
+            "l",
+            "CSA"
+          ],
+          "output": "Verified cone parameters",
+          "role": "VERIFY"
+        }
+      ],
+      "relation_refs": [
+        "REL-MAT-SAV-CONE"
+      ],
+      "representation_refs": [
+        "REP-MAT-SAV-CONE-SLANT"
+      ],
+      "question_family_refs": [
+        "FAM-MATH-SAV"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Using vertical height h directly in place of slant height l in πrl.",
+          "diagnostic_prompt": "In a conical tent, is the sloping canvas along the vertical pole or along the slanted side?",
+          "repair": "Canvas lies along the sloping generator of length l = √(r² + h²). Using vertical height h underestimates the required canvas."
+        }
+      ],
+      "research_contribution": "Author-created structured pedagogical framing for Cones: Slant Height Derivation and Curved Surface Area; independent review pending.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "exit_task": {
+        "prompt": "Find the curved surface area of a cone of base radius 6 m and vertical height 8 m (take π = 3.14).",
+        "source_ref": "SRC-MATH-OWNER-PILOT",
+        "oracle": {
+          "no_numeric_claim": "Verifies Pythagorean slant height derivation and cone curved surface evaluation."
+        },
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "188.4 m².",
+          "reasoning": [
+            "Slant height l = √(6² + 8²) = √(36 + 64) = √100 = 10 m.",
+            "CSA = πrl = 3.14 × 6 × 10 = 188.4 m²."
+          ],
+          "check": "Base area is 3.14 × 36 = 113.04 m²; CSA = 188.4 > 113.04 as required for a sloped surface.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-MAT-SAV-CONE-SLANT",
+          "decision": "Derive slant height l = √(r² + h²) from the vertical right triangle before calculating curved surface area πrl.",
+          "step_refs": [
+            "MIC-MAT-SAV-CONE-SLANT-S1",
+            "MIC-MAT-SAV-CONE-SLANT-S2",
+            "MIC-MAT-SAV-CONE-SLANT-S3"
+          ],
+          "crux_question_refs": [
+            "Q4"
+          ],
+          "crux_step_ref": "MIC-MAT-SAV-CONE-SLANT-S2",
+          "bank_anchor_ref": "Q4",
+          "representation_ref": "REP-MAT-SAV-CONE-SLANT",
+          "reveal_stage_refs": [
+            "VIS-MAT-SAV-CONE-1",
+            "VIS-MAT-SAV-CONE-2"
+          ],
+          "relation_refs": [
+            "REL-MAT-SAV-CONE"
+          ],
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "Check units (cm² or m²) and physical dimensional consistency.",
+              "check_type": "UNITS"
+            },
+            {
+              "statement": "Substitute computed parameters back into governing relation to confirm arithmetic identity.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            },
+            {
+              "statement": "Confirm physical boundary conditions and domain constraints.",
+              "check_type": "DOMAIN_CHECK"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MIC-MAT-SAV-SPHERE-HEMISPHERE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Spheres and Hemispheres: Capacity and Volume",
+      "bucket_id": "BUCKET-SURFACE-AREAS-VOLUMES",
+      "primary_capability_ref": "CAP-MAT-SAV-SPHERE-HEMISPHERE",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Requires selecting hemisphere volume formula (2/3)πr³ and cubing the radius.",
+      "entry_assumptions": [
+        "Can calculate 2D areas of rectangles (l × w) and circles (πr²).",
+        "Can evaluate algebraic formulas using rational numbers with π = 22/7."
+      ],
+      "inferential_jump": "Evaluate hemisphere internal capacity using V = (2/3)πr³, ensuring r is cubed and volume is halved relative to full sphere.",
+      "teaching_path": [
+        {
+          "id": "MIC-MAT-SAV-SPHERE-HEMISPHERE-S1",
+          "action": "Identify solid type as a hemisphere and extract radius r.",
+          "why_valid": "Capacity corresponds to the internal volume of the bowl.",
+          "inputs": [
+            "Radius r"
+          ],
+          "output": "Internal radius",
+          "role": "DECLARE"
+        },
+        {
+          "id": "MIC-MAT-SAV-SPHERE-HEMISPHERE-S2",
+          "action": "Evaluate V = (2/3) × π × r³, simplifying common factors.",
+          "why_valid": "Hemisphere volume is exactly half of sphere volume (4/3)πr³.",
+          "inputs": [
+            "r",
+            "π"
+          ],
+          "output": "Volume in cm³",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "MIC-MAT-SAV-SPHERE-HEMISPHERE-S3",
+          "action": "Verify by doubling: 2 × V must equal full sphere volume (4/3)πr³.",
+          "why_valid": "Full sphere volume check confirms correct rational factor.",
+          "inputs": [
+            "Volume"
+          ],
+          "output": "Verified capacity",
+          "role": "VERIFY"
+        }
+      ],
+      "relation_refs": [
+        "REL-MAT-SAV-HEMISPHERE"
+      ],
+      "representation_refs": [
+        "REP-MAT-SAV-HEMISPHERE"
+      ],
+      "question_family_refs": [
+        "FAM-MATH-SAV"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Using full sphere volume formula (4/3)πr³ or surface area formula 2πr² for capacity.",
+          "diagnostic_prompt": "How much liquid does a hemisphere hold compared to a full sphere of the same radius?",
+          "repair": "A hemisphere holds exactly half of a full sphere: (1/2) × (4/3)πr³ = (2/3)πr³."
+        }
+      ],
+      "research_contribution": "Author-created structured pedagogical framing for Spheres and Hemispheres: Capacity and Volume; independent review pending.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "exit_task": {
+        "prompt": "Find the capacity of a hemispherical bowl of radius 7 cm in cm³ (use π = 22/7).",
+        "source_ref": "SRC-MATH-OWNER-PILOT",
+        "oracle": {
+          "no_numeric_claim": "Verifies hemisphere volume evaluation."
+        },
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "718.67 cm³ (or 2156/3 cm³).",
+          "reasoning": [
+            "V = (2/3) × (22/7) × 7³ = (2/3) × (22/7) × 343 = (2/3) × 22 × 49 = 2156 / 3 ≈ 718.67 cm³."
+          ],
+          "check": "3 × 718.67 = 2156 confirms the numerator 2 × 22 × 49 = 2156.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-MAT-SAV-SPHERE-HEMISPHERE",
+          "decision": "Evaluate hemisphere internal capacity using V = (2/3)πr³, ensuring r is cubed and volume is halved relative to full sphere.",
+          "step_refs": [
+            "MIC-MAT-SAV-SPHERE-HEMISPHERE-S1",
+            "MIC-MAT-SAV-SPHERE-HEMISPHERE-S2",
+            "MIC-MAT-SAV-SPHERE-HEMISPHERE-S3"
+          ],
+          "crux_question_refs": [
+            "Q5"
+          ],
+          "crux_step_ref": "MIC-MAT-SAV-SPHERE-HEMISPHERE-S2",
+          "bank_anchor_ref": "Q5",
+          "representation_ref": "REP-MAT-SAV-HEMISPHERE",
+          "reveal_stage_refs": [
+            "VIS-MAT-SAV-HEMI-1",
+            "VIS-MAT-SAV-HEMI-2"
+          ],
+          "relation_refs": [
+            "REL-MAT-SAV-HEMISPHERE"
+          ],
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "Check units (cm² or m²) and physical dimensional consistency.",
+              "check_type": "UNITS"
+            },
+            {
+              "statement": "Substitute computed parameters back into governing relation to confirm arithmetic identity.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            },
+            {
+              "statement": "Confirm physical boundary conditions and domain constraints.",
+              "check_type": "DOMAIN_CHECK"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MIC-MAT-SAV-COMPOSITE-SOLIDS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Composite Solids: Hidden Boundary Exclusion",
+      "bucket_id": "BUCKET-SURFACE-AREAS-VOLUMES",
+      "primary_capability_ref": "CAP-MAT-SAV-COMPOSITE-SOLIDS",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Requires excluding joined interior interfaces and summing only exposed boundary surfaces.",
+      "entry_assumptions": [
+        "Can calculate 2D areas of rectangles (l × w) and circles (πr²).",
+        "Can evaluate algebraic formulas using rational numbers with π = 22/7."
+      ],
+      "inferential_jump": "Identify the exposed boundary faces of joined solids (CSA cone + CSA hemisphere), strictly excluding the joined circular interface.",
+      "teaching_path": [
+        {
+          "id": "MIC-MAT-SAV-COMPOSITE-SOLIDS-S1",
+          "action": "Inspect composite solid and identify where component solids join.",
+          "why_valid": "When solids are glued together, their touching faces become internal and cannot be touched.",
+          "inputs": [
+            "Solid geometry"
+          ],
+          "output": "Exposed outer boundary",
+          "role": "DECLARE"
+        },
+        {
+          "id": "MIC-MAT-SAV-COMPOSITE-SOLIDS-S2",
+          "action": "Calculate curved surface area for each exposed component and sum them: TSA = πrl + 2πr².",
+          "why_valid": "Total surface area is the sum of disjoint exterior exposed faces.",
+          "inputs": [
+            "r",
+            "l"
+          ],
+          "output": "Total exposed surface area",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "MIC-MAT-SAV-COMPOSITE-SOLIDS-S3",
+          "action": "Check that total area is strictly less than the sum of individual closed TSAs by 2πr².",
+          "why_valid": "Two flat circular faces were enclosed inside the joint, eliminating 2πr² of surface.",
+          "inputs": [
+            "TSA"
+          ],
+          "output": "Verified composite area",
+          "role": "VERIFY"
+        }
+      ],
+      "relation_refs": [
+        "REL-MAT-SAV-COMPOSITE-TOY"
+      ],
+      "representation_refs": [
+        "REP-MAT-SAV-COMPOSITE-SOLIDS"
+      ],
+      "question_family_refs": [
+        "FAM-MATH-SAV"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Adding the total surface area of the cone to the total surface area of the hemisphere.",
+          "diagnostic_prompt": "Can you paint the circular base where the cone meets the hemisphere in the toy?",
+          "repair": "No, that circular face is inside the toy. Only external surfaces are painted: CSA(cone) + CSA(hemisphere)."
+        }
+      ],
+      "research_contribution": "Author-created structured pedagogical framing for Composite Solids: Hidden Boundary Exclusion; independent review pending.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "exit_task": {
+        "prompt": "A solid toy is formed by a cone of radius 3 cm and slant height 5 cm mounted on a hemisphere of radius 3 cm. Find its total surface area in terms of π.",
+        "source_ref": "SRC-MATH-OWNER-PILOT",
+        "oracle": {
+          "no_numeric_claim": "Verifies boundary exclusion in composite solid surface area."
+        },
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "33π cm².",
+          "reasoning": [
+            "Exposed conical surface = πrl = π × 3 × 5 = 15π cm².",
+            "Exposed hemispherical surface = 2πr² = 2π × 3² = 18π cm².",
+            "Total surface area = 15π + 18π = 33π cm²."
+          ],
+          "check": "Closed cone TSA = 15π + 9π = 24π; closed hemisphere TSA = 18π + 9π = 27π; sum = 51π. Subtracting 2 joined faces: 51π - 18π = 33π cm².",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-MAT-SAV-COMPOSITE-SOLIDS",
+          "decision": "Identify the exposed boundary faces of joined solids (CSA cone + CSA hemisphere), strictly excluding the joined circular interface.",
+          "step_refs": [
+            "MIC-MAT-SAV-COMPOSITE-SOLIDS-S1",
+            "MIC-MAT-SAV-COMPOSITE-SOLIDS-S2",
+            "MIC-MAT-SAV-COMPOSITE-SOLIDS-S3"
+          ],
+          "crux_question_refs": [
+            "Q6"
+          ],
+          "crux_step_ref": "MIC-MAT-SAV-COMPOSITE-SOLIDS-S2",
+          "bank_anchor_ref": "Q6",
+          "representation_ref": "REP-MAT-SAV-COMPOSITE-SOLIDS",
+          "reveal_stage_refs": [
+            "VIS-MAT-SAV-TOY-1",
+            "VIS-MAT-SAV-TOY-2"
+          ],
+          "relation_refs": [
+            "REL-MAT-SAV-COMPOSITE-TOY"
+          ],
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "Check units (cm² or m²) and physical dimensional consistency.",
+              "check_type": "UNITS"
+            },
+            {
+              "statement": "Substitute computed parameters back into governing relation to confirm arithmetic identity.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            },
+            {
+              "statement": "Confirm physical boundary conditions and domain constraints.",
+              "check_type": "DOMAIN_CHECK"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MIC-MAT-SAV-RECASTING-VOLUME",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Recasting Solids: Volume Invariance and Surface Area Expansion",
+      "bucket_id": "BUCKET-SURFACE-AREAS-VOLUMES",
+      "primary_capability_ref": "CAP-MAT-SAV-RECASTING-VOLUME",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Requires recognizing that volume is conserved under recasting while surface area increases upon subdivision.",
+      "entry_assumptions": [
+        "Can calculate 2D areas of rectangles (l × w) and circles (πr²).",
+        "Can evaluate algebraic formulas using rational numbers with π = 22/7."
+      ],
+      "inferential_jump": "Equate initial material volume to total recast volume (V_initial = n * V_final) and recognize that dividing matter increases surface area.",
+      "teaching_path": [
+        {
+          "id": "MIC-MAT-SAV-RECASTING-VOLUME-S1",
+          "action": "State conservation of material volume under melting and casting without loss.",
+          "why_valid": "Mass and extensive volume are invariant during phase change.",
+          "inputs": [
+            "Initial solid"
+          ],
+          "output": "Volume invariance condition",
+          "role": "DECLARE"
+        },
+        {
+          "id": "MIC-MAT-SAV-RECASTING-VOLUME-S2",
+          "action": "Equate volumes V_initial = n × V_final to solve for count n = (R/r)³.",
+          "why_valid": "Ratio of total volume to single unit volume gives the integer count of recast solids.",
+          "inputs": [
+            "R",
+            "r"
+          ],
+          "output": "Number of recast objects n",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "MIC-MAT-SAV-RECASTING-VOLUME-S3",
+          "action": "Compute total surface area of all n recast objects and compare with original surface area.",
+          "why_valid": "Dividing a solid exposes internal material as new external boundaries, increasing surface area by factor R/r.",
+          "inputs": [
+            "n",
+            "r"
+          ],
+          "output": "Verified count and surface area scaling",
+          "role": "VERIFY"
+        }
+      ],
+      "relation_refs": [
+        "REL-MAT-SAV-RECASTING"
+      ],
+      "representation_refs": [
+        "REP-MAT-SAV-RECASTING-VOLUME"
+      ],
+      "question_family_refs": [
+        "FAM-MATH-SAV"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Assuming that total surface area is conserved when a solid is melted into smaller pieces.",
+          "diagnostic_prompt": "If you cut an apple into 8 slices, do the slices have more skin/cut area to paint than the whole apple?",
+          "repair": "Cutting or recasting exposes internal material as new surface area. Volume is conserved, but surface area increases by the linear scaling ratio R/r."
+        }
+      ],
+      "research_contribution": "Author-created structured pedagogical framing for Recasting Solids: Volume Invariance and Surface Area Expansion; independent review pending.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "exit_task": {
+        "prompt": "A solid metal sphere of radius 4 cm is melted and recast into small spheres of radius 2 cm. Find the number of small spheres and the ratio of total final surface area to initial surface area.",
+        "source_ref": "SRC-MATH-OWNER-PILOT",
+        "oracle": {
+          "no_numeric_claim": "Verifies volume conservation and surface area expansion under recasting."
+        },
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "8 small spheres; total surface area doubles (ratio 2:1).",
+          "reasoning": [
+            "By volume conservation: n = (R/r)³ = (4/2)³ = 2³ = 8 spheres.",
+            "Original surface area = 4π × 4² = 64π cm².",
+            "Total final surface area = 8 × (4π × 2²) = 8 × 16π = 128π cm².",
+            "Ratio = 128π / 64π = 2 (matching R/r = 4/2 = 2)."
+          ],
+          "check": "8 × (4/3)π(2³) = 8 × (32/3)π = 256/3 π cm³ = (4/3)π(4³) confirms exact volume conservation.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-MAT-SAV-RECASTING-VOLUME",
+          "decision": "Equate initial material volume to total recast volume (V_initial = n * V_final) and recognize that dividing matter increases surface area.",
+          "step_refs": [
+            "MIC-MAT-SAV-RECASTING-VOLUME-S1",
+            "MIC-MAT-SAV-RECASTING-VOLUME-S2",
+            "MIC-MAT-SAV-RECASTING-VOLUME-S3"
+          ],
+          "crux_question_refs": [
+            "Q9"
+          ],
+          "crux_step_ref": "MIC-MAT-SAV-RECASTING-VOLUME-S2",
+          "bank_anchor_ref": "Q9",
+          "representation_ref": "REP-MAT-SAV-RECASTING-VOLUME",
+          "reveal_stage_refs": [
+            "VIS-MAT-SAV-REC-1",
+            "VIS-MAT-SAV-REC-2"
+          ],
+          "relation_refs": [
+            "REL-MAT-SAV-RECASTING"
+          ],
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "Check units (cm² or m²) and physical dimensional consistency.",
+              "check_type": "UNITS"
+            },
+            {
+              "statement": "Substitute computed parameters back into governing relation to confirm arithmetic identity.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            },
+            {
+              "statement": "Confirm physical boundary conditions and domain constraints.",
+              "check_type": "DOMAIN_CHECK"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MIC-MAT-SAV-PROPORTIONAL-REASONING",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Dimensional Invariants: Cone and Cylinder Volume Ratio",
+      "bucket_id": "BUCKET-SURFACE-AREAS-VOLUMES",
+      "primary_capability_ref": "CAP-MAT-SAV-PROPORTIONAL-REASONING",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Requires applying the 1:3 ratio between cone and cylinder of equal base and height.",
+      "entry_assumptions": [
+        "Can calculate 2D areas of rectangles (l × w) and circles (πr²).",
+        "Can evaluate algebraic formulas using rational numbers with π = 22/7."
+      ],
+      "inferential_jump": "Apply the geometric invariant that a cone occupies exactly one-third the volume of a cylinder with identical base radius and height.",
+      "teaching_path": [
+        {
+          "id": "MIC-MAT-SAV-PROPORTIONAL-REASONING-S1",
+          "action": "Identify equal geometric parameters (identical base radius r and vertical height h).",
+          "why_valid": "The two solids share base area A = πr² and height h.",
+          "inputs": [
+            "r",
+            "h"
+          ],
+          "output": "Shared geometric parameters",
+          "role": "DECLARE"
+        },
+        {
+          "id": "MIC-MAT-SAV-PROPORTIONAL-REASONING-S2",
+          "action": "Express cone volume (1/3)πr²h as (1/3) of cylinder volume πr²h.",
+          "why_valid": "Volume of a pyramid/cone is 1/3 the volume of a prism/cylinder of equal base and altitude.",
+          "inputs": [
+            "V_cylinder"
+          ],
+          "output": "V_cone = (1/3) V_cylinder",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "MIC-MAT-SAV-PROPORTIONAL-REASONING-S3",
+          "action": "Verify by multiplying by 3: 3 × V_cone = V_cylinder.",
+          "why_valid": "Inverse multiplication confirms the rational proportional relation.",
+          "inputs": [
+            "V_cone"
+          ],
+          "output": "Verified proportional invariant",
+          "role": "VERIFY"
+        }
+      ],
+      "relation_refs": [
+        "REL-MAT-SAV-PROPORTIONAL-INVARIANT"
+      ],
+      "representation_refs": [
+        "REP-MAT-SAV-PROPORTIONAL-REASONING"
+      ],
+      "question_family_refs": [
+        "FAM-MATH-SAV"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Believing a cone has half the volume of a cylinder of equal base and height.",
+          "diagnostic_prompt": "Does it take 2 or 3 conical water cups to fill a cylindrical glass of the same radius and height?",
+          "repair": "It takes exactly 3 conical cups. The factor is 1/3, not 1/2."
+        }
+      ],
+      "research_contribution": "Author-created structured pedagogical framing for Dimensional Invariants: Cone and Cylinder Volume Ratio; independent review pending.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "exit_task": {
+        "prompt": "A cone and a cylinder have equal base radius and equal height. If the cylinder volume is 90 cm³, find the volume of the cone.",
+        "source_ref": "SRC-MATH-OWNER-PILOT",
+        "oracle": {
+          "no_numeric_claim": "Verifies 1:3 proportional volume invariant between cone and cylinder."
+        },
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "30 cm³.",
+          "reasoning": [
+            "V_cone = (1/3) × V_cylinder.",
+            "V_cone = (1/3) × 90 = 30 cm³."
+          ],
+          "check": "3 × 30 = 90 cm³ confirms the invariant.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-MAT-SAV-PROPORTIONAL-REASONING",
+          "decision": "Apply the geometric invariant that a cone occupies exactly one-third the volume of a cylinder with identical base radius and height.",
+          "step_refs": [
+            "MIC-MAT-SAV-PROPORTIONAL-REASONING-S1",
+            "MIC-MAT-SAV-PROPORTIONAL-REASONING-S2",
+            "MIC-MAT-SAV-PROPORTIONAL-REASONING-S3"
+          ],
+          "crux_question_refs": [
+            "Q10"
+          ],
+          "crux_step_ref": "MIC-MAT-SAV-PROPORTIONAL-REASONING-S2",
+          "bank_anchor_ref": "Q10",
+          "representation_ref": "REP-MAT-SAV-PROPORTIONAL-REASONING",
+          "reveal_stage_refs": [
+            "VIS-MAT-SAV-PROP-1",
+            "VIS-MAT-SAV-PROP-2"
+          ],
+          "relation_refs": [
+            "REL-MAT-SAV-PROPORTIONAL-INVARIANT"
+          ],
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "Check units (cm² or m²) and physical dimensional consistency.",
+              "check_type": "UNITS"
+            },
+            {
+              "statement": "Substitute computed parameters back into governing relation to confirm arithmetic identity.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            },
+            {
+              "statement": "Confirm physical boundary conditions and domain constraints.",
+              "check_type": "DOMAIN_CHECK"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "id": "REL-MAT-SAV-CUBE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "TSA = 6*a^2, V = a^3",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>TSA</mtext><mo>=</mo><mn>6</mn><msup><mi>a</mi><mn>2</mn></msup></mrow></math>",
+      "meaning": "The total surface area of a cube is the sum of its 6 congruent square faces, and volume is the cube of the edge length.",
+      "symbols": [
+        {
+          "symbol": "a",
+          "meaning": "Edge length of the cube",
+          "unit_or_domain": "length in cm or m"
+        },
+        {
+          "symbol": "TSA",
+          "meaning": "Total surface area",
+          "unit_or_domain": "area in cm² or m²"
+        },
+        {
+          "symbol": "V",
+          "meaning": "Volume",
+          "unit_or_domain": "volume in cm³ or m³"
+        }
+      ],
+      "conditions": [
+        "a > 0",
+        "Face angles are exactly 90 degrees."
+      ],
+      "derivation": [
+        {
+          "id": "DR-CUBE-1",
+          "action": "Calculate area of one square face: A = a * a = a².",
+          "why_valid": "Definition of square area.",
+          "inputs": [
+            "edge a"
+          ],
+          "output": "a²",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "DR-CUBE-2",
+          "action": "Multiply by 6 disjoint congruent faces: TSA = 6 * a².",
+          "why_valid": "Additivity of surface areas of non-overlapping faces.",
+          "inputs": [
+            "a²",
+            "6 faces"
+          ],
+          "output": "6a²",
+          "role": "TRANSFORM"
+        }
+      ],
+      "limits": [
+        "Applies only to regular hexahedra (cubes)."
+      ],
+      "checks": [
+        "Dimensional check: [TSA] = L², [V] = L³."
+      ],
+      "gate_relation_ref": null
+    },
+    {
+      "id": "REL-MAT-SAV-CYLINDER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "CSA = 2*pi*r*h, TSA = 2*pi*r*(h + r), V = pi*r^2*h",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>CSA</mtext><mo>=</mo><mn>2</mn><mi>π</mi><mi>r</mi><mi>h</mi></mrow></math>",
+      "meaning": "Curved surface area equals base circumference times height; total surface area includes both circular end caps.",
+      "symbols": [
+        {
+          "symbol": "r",
+          "meaning": "Radius of circular base (r = d/2)",
+          "unit_or_domain": "length in cm"
+        },
+        {
+          "symbol": "h",
+          "meaning": "Vertical height",
+          "unit_or_domain": "length in cm"
+        },
+        {
+          "symbol": "CSA",
+          "meaning": "Curved surface area",
+          "unit_or_domain": "area in cm²"
+        }
+      ],
+      "conditions": [
+        "r > 0, h > 0",
+        "Right circular cylinder."
+      ],
+      "derivation": [
+        {
+          "id": "DR-CYL-1",
+          "action": "Unroll lateral curved face into a rectangle with width 2πr and height h.",
+          "why_valid": "Boundary unrolling preserves metric distance along generators.",
+          "inputs": [
+            "r",
+            "h"
+          ],
+          "output": "2πrh",
+          "role": "TRANSFORM"
+        }
+      ],
+      "limits": [
+        "Valid for right circular cylinders."
+      ],
+      "checks": [
+        "If h = 0, CSA = 0."
+      ],
+      "gate_relation_ref": null
+    },
+    {
+      "id": "REL-MAT-SAV-OPEN-CONTAINER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "A_open = 2*pi*r*h + pi*r^2",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>A</mi><mtext>open</mtext></msub><mo>=</mo><mn>2</mn><mi>π</mi><mi>r</mi><mi>h</mi><mo>+</mo><mi>π</mi><msup><mi>r</mi><mn>2</mn></msup></mrow></math>",
+      "meaning": "Surface area of a cylindrical container open at the top consists of the curved wall and exactly one circular bottom base.",
+      "symbols": [
+        {
+          "symbol": "r",
+          "meaning": "Radius of cylinder base",
+          "unit_or_domain": "length in cm"
+        },
+        {
+          "symbol": "h",
+          "meaning": "Height of container",
+          "unit_or_domain": "length in cm"
+        },
+        {
+          "symbol": "A_open",
+          "meaning": "Total exposed surface area",
+          "unit_or_domain": "area in cm²"
+        }
+      ],
+      "conditions": [
+        "Container is open at top; thickness is negligible."
+      ],
+      "derivation": [
+        {
+          "id": "DR-OPEN-1",
+          "action": "Identify exposed boundary components: curved wall (2πrh) and one base (πr²).",
+          "why_valid": "Top is open, so its area is excluded from the boundary.",
+          "inputs": [
+            "curved wall",
+            "bottom base"
+          ],
+          "output": "2πrh + πr²",
+          "role": "TRANSFORM"
+        }
+      ],
+      "limits": [
+        "Excludes top cap."
+      ],
+      "checks": [
+        "A_open is strictly less than closed cylinder TSA = 2πrh + 2πr² by exactly πr²."
+      ],
+      "gate_relation_ref": null
+    },
+    {
+      "id": "REL-MAT-SAV-CONE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "l = sqrt(r^2 + h^2), CSA = pi*r*l",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>CSA</mtext><mo>=</mo><mi>π</mi><mi>r</mi><mi>l</mi></mrow></math>",
+      "meaning": "Slant height is the hypotenuse of the vertical right triangle; curved surface area equals π times base radius times slant height.",
+      "symbols": [
+        {
+          "symbol": "r",
+          "meaning": "Base radius",
+          "unit_or_domain": "length in m"
+        },
+        {
+          "symbol": "h",
+          "meaning": "Vertical height",
+          "unit_or_domain": "length in m"
+        },
+        {
+          "symbol": "l",
+          "meaning": "Slant height",
+          "unit_or_domain": "length in m"
+        },
+        {
+          "symbol": "CSA",
+          "meaning": "Curved surface area",
+          "unit_or_domain": "area in m²"
+        }
+      ],
+      "conditions": [
+        "Right circular cone."
+      ],
+      "derivation": [
+        {
+          "id": "DR-CONE-1",
+          "action": "Apply Pythagoras' theorem: l² = r² + h².",
+          "why_valid": "Radius and vertical axis are perpendicular in a right circular cone.",
+          "inputs": [
+            "r",
+            "h"
+          ],
+          "output": "l = √(r² + h²)",
+          "role": "TRANSFORM"
+        }
+      ],
+      "limits": [
+        "l must be strictly greater than both r and h."
+      ],
+      "checks": [
+        "If h = 0, l = r and CSA = πr² (flat disk limit)."
+      ],
+      "gate_relation_ref": null
+    },
+    {
+      "id": "REL-MAT-SAV-HEMISPHERE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "V = (2/3)*pi*r^3, CSA = 2*pi*r^2",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>V</mi><mo>=</mo><mfrac><mn>2</mn><mn>3</mn></mfrac><mi>π</mi><msup><mi>r</mi><mn>3</mn></msup></mrow></math>",
+      "meaning": "A hemisphere holds half the volume of a sphere of identical radius.",
+      "symbols": [
+        {
+          "symbol": "r",
+          "meaning": "Internal radius",
+          "unit_or_domain": "length in cm"
+        },
+        {
+          "symbol": "V",
+          "meaning": "Capacity/volume",
+          "unit_or_domain": "volume in cm³"
+        }
+      ],
+      "conditions": [
+        "r > 0"
+      ],
+      "derivation": [
+        {
+          "id": "DR-HEMI-1",
+          "action": "Halve sphere volume: (1/2) * (4/3)πr³ = (2/3)πr³.",
+          "why_valid": "A hemisphere is exactly half a sphere by plane reflection symmetry.",
+          "inputs": [
+            "sphere volume formula"
+          ],
+          "output": "(2/3)πr³",
+          "role": "TRANSFORM"
+        }
+      ],
+      "limits": [
+        "Valid for spherical geometries."
+      ],
+      "checks": [
+        "Volume of 2 identical hemispheres equals 1 sphere."
+      ],
+      "gate_relation_ref": null
+    },
+    {
+      "id": "REL-MAT-SAV-COMPOSITE-TOY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "TSA = pi*r*l + 2*pi*r^2",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>TSA</mtext><mo>=</mo><mi>π</mi><mi>r</mi><mi>l</mi><mo>+</mo><mn>2</mn><mi>π</mi><msup><mi>r</mi><mn>2</mn></msup></mrow></math>",
+      "meaning": "Exposed boundary area of a cone mounted on a hemisphere consists of the cone curved face plus the hemisphere curved face, excluding the internal circular joint.",
+      "symbols": [
+        {
+          "symbol": "r",
+          "meaning": "Common radius of cone and hemisphere",
+          "unit_or_domain": "length in cm"
+        },
+        {
+          "symbol": "l",
+          "meaning": "Slant height of cone",
+          "unit_or_domain": "length in cm"
+        },
+        {
+          "symbol": "TSA",
+          "meaning": "Total exposed surface area",
+          "unit_or_domain": "area in cm²"
+        }
+      ],
+      "conditions": [
+        "Cone and hemisphere share identical base radius.",
+        "Joint circular face is inside the solid."
+      ],
+      "derivation": [
+        {
+          "id": "DR-TOY-1",
+          "action": "Sum exposed faces: CSA(cone) + CSA(hemisphere).",
+          "why_valid": "Total exposed surface area is the sum of disjoint exterior boundary faces.",
+          "inputs": [
+            "cone CSA",
+            "hemisphere CSA"
+          ],
+          "output": "πrl + 2πr²",
+          "role": "TRANSFORM"
+        }
+      ],
+      "limits": [
+        "Circular interface is inside the solid and must not be counted."
+      ],
+      "checks": [
+        "TSA is strictly less than TSA(cone) + TSA(hemisphere) by exactly 2πr²."
+      ],
+      "gate_relation_ref": null
+    },
+    {
+      "id": "REL-MAT-SAV-RECASTING",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "V_initial = n * V_final, n = (R / r)^3",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>V</mi><mtext>initial</mtext></msub><mo>=</mo><mi>n</mi><msub><mi>V</mi><mtext>final</mtext></msub></mrow></math>",
+      "meaning": "Material volume is conserved under recasting without loss; the number of small similar objects scales as the cube of the linear dimension ratio.",
+      "symbols": [
+        {
+          "symbol": "R",
+          "meaning": "Radius of initial sphere",
+          "unit_or_domain": "length in cm"
+        },
+        {
+          "symbol": "r",
+          "meaning": "Radius of each small sphere",
+          "unit_or_domain": "length in cm"
+        },
+        {
+          "symbol": "n",
+          "meaning": "Number of small spheres",
+          "unit_or_domain": "dimensionless integer"
+        }
+      ],
+      "conditions": [
+        "No material is lost during melting or casting."
+      ],
+      "derivation": [
+        {
+          "id": "DR-REC-1",
+          "action": "Equate volumes: (4/3)πR³ = n * (4/3)πr³.",
+          "why_valid": "Conservation of mass and extensive volume.",
+          "inputs": [
+            "R",
+            "r"
+          ],
+          "output": "n = (R/r)³",
+          "role": "TRANSFORM"
+        }
+      ],
+      "limits": [
+        "Assumes 100% material recovery."
+      ],
+      "checks": [
+        "Total volume of n small spheres equals original sphere volume."
+      ],
+      "gate_relation_ref": null
+    },
+    {
+      "id": "REL-MAT-SAV-PROPORTIONAL-INVARIANT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "V_cone = (1/3) * V_cylinder",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>V</mi><mtext>cone</mtext></msub><mo>=</mo><mfrac><mn>1</mn><mn>3</mn></mfrac><msub><mi>V</mi><mtext>cylinder</mtext></msub></mrow></math>",
+      "meaning": "A cone occupies exactly one-third the volume of a cylinder with the same base radius and vertical height.",
+      "symbols": [
+        {
+          "symbol": "V_cone",
+          "meaning": "Volume of cone",
+          "unit_or_domain": "volume in cm³"
+        },
+        {
+          "symbol": "V_cylinder",
+          "meaning": "Volume of cylinder",
+          "unit_or_domain": "volume in cm³"
+        }
+      ],
+      "conditions": [
+        "Equal base radius r and equal vertical height h."
+      ],
+      "derivation": [
+        {
+          "id": "DR-PROP-1",
+          "action": "Divide (1/3)πr²h by πr²h.",
+          "why_valid": "Volume formula for pyramids and cones relative to prisms and cylinders.",
+          "inputs": [
+            "V_cone formula",
+            "V_cylinder formula"
+          ],
+          "output": "1/3",
+          "role": "TRANSFORM"
+        }
+      ],
+      "limits": [
+        "Applies only when base and altitude are strictly identical."
+      ],
+      "checks": [
+        "3 * V_cone = V_cylinder."
+      ],
+      "gate_relation_ref": null
+    }
+  ],
+  "representations": [
+    {
+      "id": "REP-MAT-SAV-CUBE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GEOMETRIC_FIGURE",
+      "purpose": "Isometric cube showing edge length a = 7 cm and decomposition into six square faces of area 49 cm² each.",
+      "required_elements": [
+        "Regular hexahedron cube",
+        "Six congruent square faces"
+      ],
+      "relation_refs": [
+        "REL-MAT-SAV-CUBE"
+      ],
+      "read_order": [
+        "Identify solid geometry and parameters.",
+        "Inspect component boundary decomposition.",
+        "Evaluate total measure from components."
+      ],
+      "instance_constraints": [
+        "Geometric dimensions and boundary conditions must be explicitly labelled."
+      ],
+      "accessibility": [
+        "State all dimensional values, formulas, and results explicitly in text and captions."
+      ],
+      "misleading_alternatives": [
+        "Confusing open vs closed surfaces or volume with surface area."
+      ],
+      "rendered_asset_refs": [
+        "Mathematics/assets/representations/REP-MAT-SAV-CUBE.svg"
+      ],
+      "correspondence": [
+        {
+          "element": "Regular hexahedron cube",
+          "symbol": "a",
+          "in_words": "edge length 7 cm"
+        },
+        {
+          "element": "Six congruent square faces",
+          "symbol": "6*a^2",
+          "in_words": "total surface area 294 cm²"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "VIS-MAT-SAV-CUBE-1",
+          "label": "Hexahedron Geometry",
+          "purpose": "Establish situation: Hexahedron Geometry",
+          "visible_elements": [
+            "Regular hexahedron cube"
+          ]
+        },
+        {
+          "id": "VIS-MAT-SAV-CUBE-2",
+          "label": "Six Square Faces",
+          "purpose": "Decompose components: Six Square Faces",
+          "visible_elements": [
+            "Regular hexahedron cube",
+            "Six congruent square faces"
+          ]
+        },
+        {
+          "id": "VIS-MAT-SAV-CUBE-3",
+          "label": "Total Surface Area",
+          "purpose": "Complete evaluation: Total Surface Area",
+          "visible_elements": [
+            "Regular hexahedron cube",
+            "Six congruent square faces"
+          ]
+        }
+      ],
+      "scene_instances": []
+    },
+    {
+      "id": "REP-MAT-SAV-CYLINDER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GEOMETRIC_FIGURE",
+      "purpose": "Cylinder showing base diameter 14 cm converted to radius 7 cm and height 20 cm.",
+      "required_elements": [
+        "Base diameter converted to radius",
+        "Unrolled lateral rectangular face"
+      ],
+      "relation_refs": [
+        "REL-MAT-SAV-CYLINDER"
+      ],
+      "read_order": [
+        "Identify solid geometry and parameters.",
+        "Inspect component boundary decomposition.",
+        "Evaluate total measure from components."
+      ],
+      "instance_constraints": [
+        "Geometric dimensions and boundary conditions must be explicitly labelled."
+      ],
+      "accessibility": [
+        "State all dimensional values, formulas, and results explicitly in text and captions."
+      ],
+      "misleading_alternatives": [
+        "Confusing open vs closed surfaces or volume with surface area."
+      ],
+      "rendered_asset_refs": [
+        "Mathematics/assets/representations/REP-MAT-SAV-CYLINDER.svg"
+      ],
+      "correspondence": [
+        {
+          "element": "Base diameter converted to radius",
+          "symbol": "r = d/2",
+          "in_words": "radius r = 7 cm"
+        },
+        {
+          "element": "Unrolled lateral rectangular face",
+          "symbol": "2πrh",
+          "in_words": "curved surface area 880 cm²"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "VIS-MAT-SAV-CYL-B-1",
+          "label": "Diameter to Radius Conversion",
+          "purpose": "Establish situation: Diameter to Radius Conversion",
+          "visible_elements": [
+            "Base diameter converted to radius"
+          ]
+        },
+        {
+          "id": "VIS-MAT-SAV-CYL-B-2",
+          "label": "Unrolled Lateral Surface",
+          "purpose": "Decompose components: Unrolled Lateral Surface",
+          "visible_elements": [
+            "Base diameter converted to radius",
+            "Unrolled lateral rectangular face"
+          ]
+        },
+        {
+          "id": "VIS-MAT-SAV-CYL-B-3",
+          "label": "Curved Surface Area Evaluation",
+          "purpose": "Complete evaluation: Curved Surface Area Evaluation",
+          "visible_elements": [
+            "Base diameter converted to radius",
+            "Unrolled lateral rectangular face"
+          ]
+        }
+      ],
+      "scene_instances": []
+    },
+    {
+      "id": "REP-MAT-SAV-OPEN-CONTAINER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GEOMETRIC_FIGURE",
+      "purpose": "Decompose open cylinder into curved wall and circular base, excluding open top.",
+      "required_elements": [
+        "Unrolled curved wall rectangle",
+        "Bottom circular base"
+      ],
+      "relation_refs": [
+        "REL-MAT-SAV-OPEN-CONTAINER"
+      ],
+      "read_order": [
+        "Identify solid geometry and parameters.",
+        "Inspect component boundary decomposition.",
+        "Evaluate total measure from components."
+      ],
+      "instance_constraints": [
+        "Geometric dimensions and boundary conditions must be explicitly labelled."
+      ],
+      "accessibility": [
+        "State all dimensional values, formulas, and results explicitly in text and captions."
+      ],
+      "misleading_alternatives": [
+        "Confusing open vs closed surfaces or volume with surface area."
+      ],
+      "rendered_asset_refs": [
+        "Mathematics/assets/representations/REP-MAT-SAV-OPEN-CONTAINER.svg"
+      ],
+      "correspondence": [
+        {
+          "element": "Unrolled curved wall rectangle",
+          "symbol": "2πrh",
+          "in_words": "curved wall surface area 792 cm²"
+        },
+        {
+          "element": "Bottom circular base",
+          "symbol": "πr²",
+          "in_words": "bottom circular base area 154 cm²"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "VIS-MAT-SAV-CYL-1",
+          "label": "Boundary & Dimensions",
+          "purpose": "Establish situation: Boundary & Dimensions",
+          "visible_elements": [
+            "Unrolled curved wall rectangle"
+          ]
+        },
+        {
+          "id": "VIS-MAT-SAV-CYL-2",
+          "label": "Exposed Component Decomposition",
+          "purpose": "Decompose components: Exposed Component Decomposition",
+          "visible_elements": [
+            "Unrolled curved wall rectangle",
+            "Bottom circular base"
+          ]
+        },
+        {
+          "id": "VIS-MAT-SAV-CYL-3",
+          "label": "Total Surface Evaluation",
+          "purpose": "Complete evaluation: Total Surface Evaluation",
+          "visible_elements": [
+            "Unrolled curved wall rectangle",
+            "Bottom circular base"
+          ]
+        }
+      ],
+      "scene_instances": []
+    },
+    {
+      "id": "REP-MAT-SAV-CONE-SLANT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GEOMETRIC_FIGURE",
+      "purpose": "Vertical cone showing right triangle formed by vertical height h, radius r, and slant height hypotenuse l.",
+      "required_elements": [
+        "Vertical right-angled triangle",
+        "Conical curved surface"
+      ],
+      "relation_refs": [
+        "REL-MAT-SAV-CONE"
+      ],
+      "read_order": [
+        "Identify solid geometry and parameters.",
+        "Inspect component boundary decomposition.",
+        "Evaluate total measure from components."
+      ],
+      "instance_constraints": [
+        "Geometric dimensions and boundary conditions must be explicitly labelled."
+      ],
+      "accessibility": [
+        "State all dimensional values, formulas, and results explicitly in text and captions."
+      ],
+      "misleading_alternatives": [
+        "Confusing open vs closed surfaces or volume with surface area."
+      ],
+      "rendered_asset_refs": [
+        "Mathematics/assets/representations/REP-MAT-SAV-CONE-SLANT.svg"
+      ],
+      "correspondence": [
+        {
+          "element": "Vertical right-angled triangle",
+          "symbol": "l = √(r² + h²)",
+          "in_words": "slant height hypotenuse 25 m"
+        },
+        {
+          "element": "Conical curved surface",
+          "symbol": "πrl",
+          "in_words": "canvas curved surface area 550 m²"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "VIS-MAT-SAV-CONE-1",
+          "label": "Vertical Cone & Base",
+          "purpose": "Establish situation: Vertical Cone & Base",
+          "visible_elements": [
+            "Vertical right-angled triangle"
+          ]
+        },
+        {
+          "id": "VIS-MAT-SAV-CONE-2",
+          "label": "Pythagoras Slant Height",
+          "purpose": "Decompose components: Pythagoras Slant Height",
+          "visible_elements": [
+            "Vertical right-angled triangle",
+            "Conical curved surface"
+          ]
+        },
+        {
+          "id": "VIS-MAT-SAV-CONE-3",
+          "label": "Curved Surface Evaluation",
+          "purpose": "Complete evaluation: Curved Surface Evaluation",
+          "visible_elements": [
+            "Vertical right-angled triangle",
+            "Conical curved surface"
+          ]
+        }
+      ],
+      "scene_instances": []
+    },
+    {
+      "id": "REP-MAT-SAV-HEMISPHERE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GEOMETRIC_FIGURE",
+      "purpose": "Hemispherical bowl of radius 3.5 cm showing half-sphere volume relation (2/3)πr³.",
+      "required_elements": [
+        "Hemispherical bowl boundary",
+        "Enclosed internal capacity"
+      ],
+      "relation_refs": [
+        "REL-MAT-SAV-HEMISPHERE"
+      ],
+      "read_order": [
+        "Identify solid geometry and parameters.",
+        "Inspect component boundary decomposition.",
+        "Evaluate total measure from components."
+      ],
+      "instance_constraints": [
+        "Geometric dimensions and boundary conditions must be explicitly labelled."
+      ],
+      "accessibility": [
+        "State all dimensional values, formulas, and results explicitly in text and captions."
+      ],
+      "misleading_alternatives": [
+        "Confusing open vs closed surfaces or volume with surface area."
+      ],
+      "rendered_asset_refs": [
+        "Mathematics/assets/representations/REP-MAT-SAV-HEMISPHERE.svg"
+      ],
+      "correspondence": [
+        {
+          "element": "Hemispherical bowl boundary",
+          "symbol": "r = 3.5 cm",
+          "in_words": "internal radius"
+        },
+        {
+          "element": "Enclosed internal capacity",
+          "symbol": "(2/3)πr³",
+          "in_words": "internal liquid capacity 89.83 cm³"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "VIS-MAT-SAV-HEMI-1",
+          "label": "Hemispherical Bowl",
+          "purpose": "Establish situation: Hemispherical Bowl",
+          "visible_elements": [
+            "Hemispherical bowl boundary"
+          ]
+        },
+        {
+          "id": "VIS-MAT-SAV-HEMI-2",
+          "label": "Half-Sphere Volume Relation",
+          "purpose": "Decompose components: Half-Sphere Volume Relation",
+          "visible_elements": [
+            "Hemispherical bowl boundary",
+            "Enclosed internal capacity"
+          ]
+        },
+        {
+          "id": "VIS-MAT-SAV-HEMI-3",
+          "label": "Capacity Evaluation",
+          "purpose": "Complete evaluation: Capacity Evaluation",
+          "visible_elements": [
+            "Hemispherical bowl boundary",
+            "Enclosed internal capacity"
+          ]
+        }
+      ],
+      "scene_instances": []
+    },
+    {
+      "id": "REP-MAT-SAV-COMPOSITE-SOLIDS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GEOMETRIC_FIGURE",
+      "purpose": "Cone mounted on hemisphere showing exposed external surfaces and hidden internal circular joint.",
+      "required_elements": [
+        "Exposed conical and hemispherical outer surfaces",
+        "Internal joined circular interface"
+      ],
+      "relation_refs": [
+        "REL-MAT-SAV-COMPOSITE-TOY"
+      ],
+      "read_order": [
+        "Identify solid geometry and parameters.",
+        "Inspect component boundary decomposition.",
+        "Evaluate total measure from components."
+      ],
+      "instance_constraints": [
+        "Geometric dimensions and boundary conditions must be explicitly labelled."
+      ],
+      "accessibility": [
+        "State all dimensional values, formulas, and results explicitly in text and captions."
+      ],
+      "misleading_alternatives": [
+        "Confusing open vs closed surfaces or volume with surface area."
+      ],
+      "rendered_asset_refs": [
+        "Mathematics/assets/representations/REP-MAT-SAV-COMPOSITE-SOLIDS.svg"
+      ],
+      "correspondence": [
+        {
+          "element": "Exposed conical and hemispherical outer surfaces",
+          "symbol": "πrl + 2πr²",
+          "in_words": "total exposed surface area 214.5 cm²"
+        },
+        {
+          "element": "Internal joined circular interface",
+          "symbol": "hidden",
+          "in_words": "excluded internal junction"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "VIS-MAT-SAV-TOY-1",
+          "label": "Composite Toy Geometry",
+          "purpose": "Establish situation: Composite Toy Geometry",
+          "visible_elements": [
+            "Exposed conical and hemispherical outer surfaces"
+          ]
+        },
+        {
+          "id": "VIS-MAT-SAV-TOY-2",
+          "label": "Exposed Boundary Decomposition",
+          "purpose": "Decompose components: Exposed Boundary Decomposition",
+          "visible_elements": [
+            "Exposed conical and hemispherical outer surfaces",
+            "Internal joined circular interface"
+          ]
+        },
+        {
+          "id": "VIS-MAT-SAV-TOY-3",
+          "label": "Total Surface Area Evaluation",
+          "purpose": "Complete evaluation: Total Surface Area Evaluation",
+          "visible_elements": [
+            "Exposed conical and hemispherical outer surfaces",
+            "Internal joined circular interface"
+          ]
+        }
+      ],
+      "scene_instances": []
+    },
+    {
+      "id": "REP-MAT-SAV-RECASTING-VOLUME",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GEOMETRIC_FIGURE",
+      "purpose": "Large solid sphere melting into 27 small spheres with volume conserved and surface area tripled.",
+      "required_elements": [
+        "Original solid sphere",
+        "Array of 27 small solid spheres"
+      ],
+      "relation_refs": [
+        "REL-MAT-SAV-RECASTING"
+      ],
+      "read_order": [
+        "Identify solid geometry and parameters.",
+        "Inspect component boundary decomposition.",
+        "Evaluate total measure from components."
+      ],
+      "instance_constraints": [
+        "Geometric dimensions and boundary conditions must be explicitly labelled."
+      ],
+      "accessibility": [
+        "State all dimensional values, formulas, and results explicitly in text and captions."
+      ],
+      "misleading_alternatives": [
+        "Confusing open vs closed surfaces or volume with surface area."
+      ],
+      "rendered_asset_refs": [
+        "Mathematics/assets/representations/REP-MAT-SAV-RECASTING-VOLUME.svg"
+      ],
+      "correspondence": [
+        {
+          "element": "Original solid sphere",
+          "symbol": "V_initial",
+          "in_words": "initial volume (4/3)πR³"
+        },
+        {
+          "element": "Array of 27 small solid spheres",
+          "symbol": "n * V_final",
+          "in_words": "sum of volumes of 27 small spheres"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "VIS-MAT-SAV-REC-1",
+          "label": "Initial Solid Sphere",
+          "purpose": "Establish situation: Initial Solid Sphere",
+          "visible_elements": [
+            "Original solid sphere"
+          ]
+        },
+        {
+          "id": "VIS-MAT-SAV-REC-2",
+          "label": "Volume Conservation (Melting)",
+          "purpose": "Decompose components: Volume Conservation (Melting)",
+          "visible_elements": [
+            "Original solid sphere",
+            "Array of 27 small solid spheres"
+          ]
+        },
+        {
+          "id": "VIS-MAT-SAV-REC-3",
+          "label": "Recast Spheres & Area Scaling",
+          "purpose": "Complete evaluation: Recast Spheres & Area Scaling",
+          "visible_elements": [
+            "Original solid sphere",
+            "Array of 27 small solid spheres"
+          ]
+        }
+      ],
+      "scene_instances": []
+    },
+    {
+      "id": "REP-MAT-SAV-PROPORTIONAL-REASONING",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GEOMETRIC_FIGURE",
+      "purpose": "Comparison of cone and cylinder of equal base and height establishing the 1 to 3 volume invariant.",
+      "required_elements": [
+        "Cylinder of base radius r and height h",
+        "Cone of equal base radius and height"
+      ],
+      "relation_refs": [
+        "REL-MAT-SAV-PROPORTIONAL-INVARIANT"
+      ],
+      "read_order": [
+        "Identify solid geometry and parameters.",
+        "Inspect component boundary decomposition.",
+        "Evaluate total measure from components."
+      ],
+      "instance_constraints": [
+        "Geometric dimensions and boundary conditions must be explicitly labelled."
+      ],
+      "accessibility": [
+        "State all dimensional values, formulas, and results explicitly in text and captions."
+      ],
+      "misleading_alternatives": [
+        "Confusing open vs closed surfaces or volume with surface area."
+      ],
+      "rendered_asset_refs": [
+        "Mathematics/assets/representations/REP-MAT-SAV-PROPORTIONAL-REASONING.svg"
+      ],
+      "correspondence": [
+        {
+          "element": "Cylinder of base radius r and height h",
+          "symbol": "πr²h",
+          "in_words": "cylinder volume"
+        },
+        {
+          "element": "Cone of equal base radius and height",
+          "symbol": "(1/3)πr²h",
+          "in_words": "cone volume equals one third cylinder volume"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "VIS-MAT-SAV-PROP-1",
+          "label": "Shared Base and Altitude",
+          "purpose": "Establish situation: Shared Base and Altitude",
+          "visible_elements": [
+            "Cylinder of base radius r and height h"
+          ]
+        },
+        {
+          "id": "VIS-MAT-SAV-PROP-2",
+          "label": "1 to 3 Volume Ratio",
+          "purpose": "Decompose components: 1 to 3 Volume Ratio",
+          "visible_elements": [
+            "Cylinder of base radius r and height h",
+            "Cone of equal base radius and height"
+          ]
+        },
+        {
+          "id": "VIS-MAT-SAV-PROP-3",
+          "label": "Volume Ratio Invariant",
+          "purpose": "Complete evaluation: Volume Ratio Invariant",
+          "visible_elements": [
+            "Cylinder of base radius r and height h",
+            "Cone of equal base radius and height"
+          ]
+        }
+      ],
+      "scene_instances": []
+    }
+  ],
+  "question_families": [
+    {
+      "id": "FAM-MATH-SAV",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-OWNER-PILOT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Surface Areas and Volumes Practice Family",
+      "capability_refs": [
+        "CAP-MAT-SAV-CUBE-CUBOID",
+        "CAP-MAT-SAV-CYLINDER",
+        "CAP-MAT-SAV-OPEN-CONTAINER",
+        "CAP-MAT-SAV-CONE-SLANT",
+        "CAP-MAT-SAV-SPHERE-HEMISPHERE",
+        "CAP-MAT-SAV-COMPOSITE-SOLIDS",
+        "CAP-MAT-SAV-RECASTING-VOLUME",
+        "CAP-MAT-SAV-PROPORTIONAL-REASONING"
+      ],
+      "solution_structure": [
+        "Identify solid geometry and boundary partition.",
+        "Select appropriate dimensional formula.",
+        "Substitute and evaluate result.",
+        "Verify physical plausibility and independent check."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Distinguishing curved vs total surface and open vs closed boundaries.",
+        "representation_translation": "Translating prose descriptions into boundary components.",
+        "reasoning_steps": "1 to 3 steps depending on composite and recasting constraints.",
+        "novelty": "Composite solids with hidden interfaces and recasting scaling."
+      },
+      "safe_variations": [
+        "Change dimensions while preserving geometric type."
+      ],
+      "transfer_boundaries": [
+        "Cross-solid composite combinations and recasting volume conservation."
+      ],
+      "common_wrong_routes": [
+        "Blindly summing closed TSAs or assuming surface area is conserved upon melting."
+      ],
+      "item_refs": []
+    }
+  ],
+  "questions": [],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {
+    "mathematics:domain_regime": "RATIONAL_EXACT",
+    "library:local_question_banks": []
+  },
+  "data": []
+}
