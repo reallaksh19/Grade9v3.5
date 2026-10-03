@@ -4,9 +4,60 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chapter 2: Polynomials — Complete Question Bank (m1.pdf & m2.pdf)</title>
-      <!-- Local KaTeX Typography (Offline Guaranteed) -->
+      <!-- Local KaTeX Typography with Multi-Path Offline & CDN Fallbacks -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
   <link rel="stylesheet" href="../../public/vendor/katex/0.16.8/katex.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
   <script src="../../public/vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <script src="../../public/vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Grade9V3.5 Design System Integration -->
+  <link rel="stylesheet" href="../../css/modern-learner.css">
+  <link rel="stylesheet" href="../../css/site.css">
+  <link rel="stylesheet" href="../../css/tablet-12-7.css">
+
+  <script>
+    function renderAllMath() {
+      if (window.renderMathInElement) {
+        try {
+          window.renderMathInElement(document.body, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '\[', right: '\]', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\(', right: '\)', display: false }
+            ],
+            throwOnError: false
+          });
+        } catch (e) {
+          console.warn('KaTeX render warning:', e);
+        }
+      } else if (!window.__katexLoading) {
+        window.__katexLoading = true;
+        const s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js';
+        s.onload = () => {
+          const a = document.createElement('script');
+          a.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js';
+          a.onload = () => renderAllMath();
+          document.head.appendChild(a);
+        };
+        document.head.appendChild(s);
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', renderAllMath);
+    } else {
+      renderAllMath();
+    }
+    window.addEventListener('load', renderAllMath);
+    setTimeout(renderAllMath, 200);
+    setTimeout(renderAllMath, 800);
+  </script>
   <script src="../../public/vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
   <script>
     function renderAllMath() {
@@ -539,64 +590,178 @@
       border-color: #2563eb;
     }
 
+  
+    /* Standardized Grade9 Nav Badge & Sticky Positioning */
+    .nav-container {
+      position: sticky;
+      top: 56px;
+      z-index: 90;
+      background: var(--bg-card, #ffffff);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border, #e2e8f0);
+      padding: 8px 16px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      -webkit-overflow-scrolling: touch;
+    }
+    .nav-badge {
+      background: rgba(0, 0, 0, 0.08);
+      padding: 1px 7px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      margin-left: 5px;
+      font-weight: 700;
+    }
+    .nav-link.active .nav-badge, .nav-link:hover .nav-badge {
+      background: rgba(37, 99, 235, 0.18);
+      color: var(--primary);
+    }
+    .nav-link-key {
+      background: #ecfdf5 !important;
+      color: #065f46 !important;
+      border-color: #a7f3d0 !important;
+    }
+    .nav-link-key:hover {
+      background: #d1fae5 !important;
+      color: #047857 !important;
+      border-color: #6ee7b7 !important;
+    }
+    .g9-continuum-substrip {
+      background: var(--bg-card, #ffffff);
+      border-bottom: 1px solid var(--border, #e2e8f0);
+    }
+    .g9-substrip-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 8px 16px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      align-items: center;
+      -webkit-overflow-scrolling: touch;
+    }
+    .g9-substrip-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      background: var(--bg-soft, #f1f5f9);
+      color: var(--text-muted, #64748b);
+      border: 1px solid var(--border, #e2e8f0);
+      transition: all 0.15s ease;
+      min-height: 32px;
+    }
+    .g9-substrip-pill:hover {
+      background: var(--bg, #f8fafc);
+      color: var(--text-main, #0f172a);
+      border-color: var(--border-focus, #4f46e5);
+    }
+    .g9-substrip-pill.active {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+    }
+    .g9-substrip-pill.highlight {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border-color: #bfdbfe;
+      font-weight: 700;
+    }
+    .g9-substrip-pill.highlight:hover { background: #dbeafe; }
+
   </style>
   
   
 
 </head>
 <body>
-  <!-- Top Navigation Bar -->
-  <nav class="top-nav" aria-label="Portal Navigation" style="background:#0f172a; color:white; padding:10px 20px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:100; box-shadow:0 2px 8px rgba(0,0,0,0.15); flex-wrap:wrap; gap:8px;">
-    <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
-      <a href="../../docs/index.html" class="nav-btn-dash" style="color:#cbd5e1; border:1px solid #334155; padding:5px 12px; border-radius:6px; text-decoration:none; font-size:0.88rem; font-weight:600;">← Learning Portal</a>
-      <a href="../../docs/mathematics/index.html" class="nav-btn-dash" style="color:#cbd5e1; border:1px solid #334155; padding:5px 12px; border-radius:6px; text-decoration:none; font-size:0.88rem; font-weight:600;">📐 Mathematics Hub</a>
-      <a href="../../docs/question-bank/index.html" class="nav-btn-dash" style="color:#cbd5e1; border:1px solid #334155; padding:5px 12px; border-radius:6px; text-decoration:none; font-size:0.88rem; font-weight:600;">📚 Question Bank</a>
-      <span style="font-weight: 800; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
-        <span>📐 Polynomials</span>
-        <span style="background: #2563eb; color: white; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; font-weight: 800;">Complete Master Bank</span>
-      </span>
+  <!-- Top Shell Navigation Bar -->
+  <header class="g9-shell-header">
+    <div class="g9-header-inner">
+      <a class="g9-brand" href="../../index.html">
+        <span class="logo-icon">⚡</span>
+        <span class="brand-title">Grade9V3.5</span>
+        <span class="g9-brand-badge">Learner Platform</span>
+      </a>
+      <nav class="g9-header-nav" aria-label="Portal Navigation">
+        <a href="../../index.html">Home</a>
+        <a href="../../physics/index.html">Physics</a>
+        <a href="../../chemistry/index.html">Chemistry</a>
+        <a href="../index.html" class="active">Mathematics</a>
+        <a href="../../question-bank/index.html">Question Bank</a>
+        <a href="../../atlas/index.html">Atlas &amp; Rungs</a>
+      </nav>
+      <div class="g9-header-actions">
+        <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search">
+          <span class="g9-btn-icon">🔍</span>
+          <span class="g9-btn-text">Search</span>
+        </button>
+        <button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings" aria-label="Display & Theme">
+          <span class="g9-btn-icon">🌙 / ☀️</span>
+          <span class="g9-btn-text">Display</span>
+        </button>
+      </div>
     </div>
-    <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-      <a href="ch3-coordinate-geometry-m2-complete-bank.html" style="color:#cbd5e1; border:1px solid #334155; padding:5px 12px; border-radius:6px; text-decoration:none; font-size:0.88rem; font-weight:600;">Ch 3 Coordinate Geometry Bank</a>
-      <a href="../../products/mathematics/polynomials/rendered/index.html" style="color:#cbd5e1; border:1px solid #334155; padding:5px 12px; border-radius:6px; text-decoration:none; font-size:0.88rem; font-weight:600;">Dashboard</a>
-      <a href="../../products/mathematics/polynomials/rendered/core2.html" style="background:#2563eb; color:white; padding:5px 12px; border-radius:6px; text-decoration:none; font-size:0.88rem; font-weight:700;">🎯 Core 2 Clinic (12 Qs)</a>
-      <span style="background:#1e293b; color:#94a3b8; padding:5px 10px; border-radius:6px; font-size:0.85rem;">📖 173 Questions Active</span>
+  </header>
+
+  <nav class="g9-breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="g9-breadcrumbs">
+      <a href="../../index.html">Home</a> <span>/</span> <a href="../index.html">Mathematics</a> <span>/</span> <a href="../polynomials/index.html">Polynomials</a> <span>/</span> <span>Complete Master Bank</span>
     </div>
   </nav>
 
+  <div class="g9-continuum-substrip" role="navigation" aria-label="Polynomials Learning Continuum">
+    <div class="g9-substrip-inner">
+      <a href="../polynomials/index.html" class="g9-substrip-pill">← Topic Dashboard</a>
+      <a href="../polynomials/core1.html" class="g9-substrip-pill">Core 1: Foundations</a>
+      <a href="../polynomials/core1a.html" class="g9-substrip-pill">Core 1A: Construction</a>
+      <a href="../polynomials/core1b.html" class="g9-substrip-pill">Core 1B: Reconstruction</a>
+      <a href="../polynomials/core2.html" class="g9-substrip-pill">🎯 Core 2: Source Bank (172 Qs)</a>
+      <a href="../polynomials/core2a.html" class="g9-substrip-pill">Core 2A: Speed Drill</a>
+      <a href="../polynomials/core2b.html" class="g9-substrip-pill">Core 2B: Achievers</a>
+      <a href="ch3-coordinate-geometry-m2-complete-bank.html" class="g9-substrip-pill highlight">📍 Ch 3 Coordinate Geometry Bank</a>
+    </div>
+  </div>
 
 <header class="hero">
   <h1>Chapter 2: Polynomials — Master Question Bank</h1>
-  <p>Faithfully converted from <strong>m1.pdf</strong> (Book Pages 2.1–2.21) & <strong>m2.pdf</strong> (Book Pages 2.22–2.32, First 11 Pages)</p>
+  <p>Faithfully converted from <strong>m1.pdf</strong> (Book Pages 2.1–2.21) &amp; <strong>m2.pdf</strong> (Book Pages 2.22–2.32, First 11 Pages)</p>
   <div class="badge-bar">
     <span class="hero-badge">📚 172+ Total Items</span>
     <span class="hero-badge">📄 m2.pdf: 11 Pages (130+ Questions)</span>
-    <span class="hero-badge">📖 m1.pdf: Theory & Checkpoints (35+ Questions)</span>
+    <span class="hero-badge">📖 m1.pdf: Theory &amp; Checkpoints (35+ Questions)</span>
     <span class="hero-badge">✅ Complete Official Answer Keys</span>
-    <span class="hero-badge">⚡ MathJax 3 LaTeX</span>
+    <span class="hero-badge">⚡ KaTeX Math Typography</span>
   </div>
 </header>
 
-<div class="nav-container">
-  <a href="#overview" class="nav-link">Overview & TOC</a>
-  <a href="#m2-fib" class="nav-link">m2: Fill in Blanks (6)</a>
-  <a href="#m2-tf" class="nav-link">m2: True/False (5)</a>
-  <a href="#m2-sc" class="nav-link">m2: Single Choice (25)</a>
-  <a href="#m2-mc" class="nav-link">m2: Multiple Choice (10)</a>
-  <a href="#m2-match" class="nav-link">m2: Match Columns (5)</a>
-  <a href="#m2-ar" class="nav-link">m2: Assertion/Reason (3)</a>
-  <a href="#m2-comp" class="nav-link">m2: Comprehension (3)</a>
-  <a href="#m2-num" class="nav-link">m2: Numerical (15)</a>
-  <a href="#m2-hots" class="nav-link">m2: HOTS (20)</a>
-  <a href="#m2-vsa" class="nav-link">m2: VSA (10)</a>
-  <a href="#m2-sa" class="nav-link">m2: SA (12)</a>
-  <a href="#m2-la" class="nav-link">m2: LA (8)</a>
-  <a href="#m2-archive" class="nav-link">m2: Archive Corner (25)</a>
-  <a href="#m1-cp1" class="nav-link">m1: Check Point 1 (5)</a>
-  <a href="#m1-cp2" class="nav-link">m1: Check Point 2 (5)</a>
-  <a href="#m1-cp3" class="nav-link">m1: Check Point 3 (5)</a>
-  <a href="#m1-ex" class="nav-link">m1: Exemplification (10)</a>
-  <a href="#answer-key" class="nav-link">Master Answer Key</a>
+<div class="nav-container" aria-label="Question Bank Section Navigation">
+  <a href="#overview" class="nav-link active">Overview &amp; TOC</a>
+  <a href="#m2-fib" class="nav-link">Fill in Blanks <span class="nav-badge">6</span></a>
+  <a href="#m2-tf" class="nav-link">True / False <span class="nav-badge">5</span></a>
+  <a href="#m2-sc" class="nav-link">Single Choice <span class="nav-badge">25</span></a>
+  <a href="#m2-mc" class="nav-link">Multiple Choice <span class="nav-badge">10</span></a>
+  <a href="#m2-match" class="nav-link">Match Columns <span class="nav-badge">5</span></a>
+  <a href="#m2-ar" class="nav-link">Assertion &amp; Reason <span class="nav-badge">3</span></a>
+  <a href="#m2-comp" class="nav-link">Comprehension <span class="nav-badge">3</span></a>
+  <a href="#m2-num" class="nav-link">Numerical <span class="nav-badge">15</span></a>
+  <a href="#m2-hots" class="nav-link">HOTS Challenge <span class="nav-badge">20</span></a>
+  <a href="#m2-vsa" class="nav-link">Very Short Answer <span class="nav-badge">10</span></a>
+  <a href="#m2-sa" class="nav-link">Short Answer <span class="nav-badge">12</span></a>
+  <a href="#m2-la" class="nav-link">Long Answer <span class="nav-badge">8</span></a>
+  <a href="#m2-archive" class="nav-link">Archive Corner <span class="nav-badge">25</span></a>
+  <a href="#m1-cp1" class="nav-link">Check Point 1 <span class="nav-badge">5</span></a>
+  <a href="#m1-cp2" class="nav-link">Check Point 2 <span class="nav-badge">5</span></a>
+  <a href="#m1-cp3" class="nav-link">Check Point 3 <span class="nav-badge">5</span></a>
+  <a href="#m1-ex" class="nav-link">Exemplification <span class="nav-badge">10</span></a>
+  <a href="#answer-key" class="nav-link nav-link-key">Master Answer Key</a>
 </div>
 
 <div class="main-wrap">
@@ -3456,5 +3621,8 @@
       }
     });
   </script>
+
+  <script src="../../js/display-controls.js"></script>
+  <script src="../../js/site-header.js" data-site-root="../../" data-site-parent="../index.html"></script>
 </body>
 </html>

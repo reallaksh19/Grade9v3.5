@@ -5,9 +5,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chapter 3: Coordinate Geometry — Complete Question Bank (m2.pdf Pages 17–23)</title>
   
-    <!-- Local KaTeX Typography (Offline Guaranteed) -->
+    <!-- Local KaTeX Typography with Multi-Path Offline & CDN Fallbacks -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
   <link rel="stylesheet" href="../../public/vendor/katex/0.16.8/katex.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
   <script src="../../public/vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <script src="../../public/vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Grade9V3.5 Design System Integration -->
+  <link rel="stylesheet" href="../../css/modern-learner.css">
+  <link rel="stylesheet" href="../../css/site.css">
+  <link rel="stylesheet" href="../../css/tablet-12-7.css">
+
+  <script>
+    function renderAllMath() {
+      if (window.renderMathInElement) {
+        try {
+          window.renderMathInElement(document.body, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '\[', right: '\]', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\(', right: '\)', display: false }
+            ],
+            throwOnError: false
+          });
+        } catch (e) {
+          console.warn('KaTeX render warning:', e);
+        }
+      } else if (!window.__katexLoading) {
+        window.__katexLoading = true;
+        const s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js';
+        s.onload = () => {
+          const a = document.createElement('script');
+          a.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js';
+          a.onload = () => renderAllMath();
+          document.head.appendChild(a);
+        };
+        document.head.appendChild(s);
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', renderAllMath);
+    } else {
+      renderAllMath();
+    }
+    window.addEventListener('load', renderAllMath);
+    setTimeout(renderAllMath, 200);
+    setTimeout(renderAllMath, 800);
+  </script>
   <script src="../../public/vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
   <script>
     function renderAllMath() {
@@ -335,28 +386,115 @@
       border-color: #2563eb;
     }
 
+  
+    /* Standardized Grade9 Filter Pill Badges & Sticky Positioning */
+    .pill-badge {
+      background: rgba(0, 0, 0, 0.08);
+      padding: 1px 7px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      margin-left: 5px;
+      font-weight: 700;
+    }
+    .pill.active .pill-badge {
+      background: rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+    }
+    .g9-continuum-substrip {
+      background: var(--bg-card, #ffffff);
+      border-bottom: 1px solid var(--border, #e2e8f0);
+    }
+    .g9-substrip-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 8px 16px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      align-items: center;
+      -webkit-overflow-scrolling: touch;
+    }
+    .g9-substrip-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      background: var(--bg-soft, #f1f5f9);
+      color: var(--text-muted, #64748b);
+      border: 1px solid var(--border, #e2e8f0);
+      transition: all 0.15s ease;
+      min-height: 32px;
+    }
+    .g9-substrip-pill:hover {
+      background: var(--bg, #f8fafc);
+      color: var(--text-main, #0f172a);
+      border-color: var(--border-focus, #4f46e5);
+    }
+    .g9-substrip-pill.active {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #0284c7;
+    }
+    .g9-substrip-pill.highlight {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border-color: #bfdbfe;
+      font-weight: 700;
+    }
+    .g9-substrip-pill.highlight:hover { background: #dbeafe; }
+
   </style>
 </head>
 <body>
-  <nav class="top-nav" aria-label="Portal Navigation" style="background:#0f172a; color:white; padding:10px 20px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:100; box-shadow:0 2px 8px rgba(0,0,0,0.15); flex-wrap:wrap; gap:8px;">
-    <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
-      <a href="../../docs/index.html" class="nav-btn-dash">← Learning Portal</a>
-      <a href="../../docs/mathematics/index.html" class="nav-btn-dash">📐 Mathematics Hub</a>
-      <a href="../../docs/question-bank/index.html" class="nav-btn-dash">📚 Question Bank</a>
-      <span style="font-weight: 800; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
-        <span>📍 Coordinate Geometry</span>
-        <span style="background: #0284c7; color: white; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; font-weight: 800;">Complete Master Bank</span>
-      </span>
+  <header class="g9-shell-header">
+    <div class="g9-header-inner">
+      <a class="g9-brand" href="../../index.html">
+        <span class="logo-icon">⚡</span>
+        <span class="brand-title">Grade9V3.5</span>
+        <span class="g9-brand-badge">Learner Platform</span>
+      </a>
+      <nav class="g9-header-nav" aria-label="Portal Navigation">
+        <a href="../../index.html">Home</a>
+        <a href="../../physics/index.html">Physics</a>
+        <a href="../../chemistry/index.html">Chemistry</a>
+        <a href="../index.html" class="active">Mathematics</a>
+        <a href="../../question-bank/index.html">Question Bank</a>
+        <a href="../../atlas/index.html">Atlas &amp; Rungs</a>
+      </nav>
+      <div class="g9-header-actions">
+        <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search">
+          <span class="g9-btn-icon">🔍</span>
+          <span class="g9-btn-text">Search</span>
+        </button>
+        <button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings" aria-label="Display & Theme">
+          <span class="g9-btn-icon">🌙 / ☀️</span>
+          <span class="g9-btn-text">Display</span>
+        </button>
+      </div>
     </div>
-    <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-      <a href="ch2-polynomials-m1-m2-complete-bank.html" class="nav-btn-dash">Ch 2 Polynomials Bank</a>
-      <a href="../../products/mathematics/coordinate-geometry/rendered/index.html" class="nav-btn-dash">Dashboard</a>
-      <a href="../../products/mathematics/coordinate-geometry/rendered/core2.html" class="nav-btn-core2">🎯 Core 2 Clinic (12 Qs)</a>
-      <a href="../../products/mathematics/coordinate-geometry/rendered/core2b.html" class="nav-btn-core2">🏆 Core 2B Achievers</a>
-      <a href="../../public/mathematics/coordinate-geometry/explorers/transformation-invariants/index.html" class="nav-btn-core2" style="background:#4338ca; color:white; border-color:#6366f1;">🔬 Interactive Explorer Lab</a>
-      <a href="../../standalone/coordinate-geometry-interactive-suite.html" class="nav-btn-core2" style="background:#059669; color:white; border-color:#10b981;">📍 Standalone Suite</a>
+  </header>
+
+  <nav class="g9-breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="g9-breadcrumbs">
+      <a href="../../index.html">Home</a> <span>/</span> <a href="../index.html">Mathematics</a> <span>/</span> <a href="../coordinate-geometry/index.html">Coordinate Geometry</a> <span>/</span> <span>Complete Master Bank</span>
     </div>
   </nav>
+
+  <div class="g9-continuum-substrip" role="navigation" aria-label="Coordinate Geometry Learning Continuum">
+    <div class="g9-substrip-inner">
+      <a href="../coordinate-geometry/index.html" class="g9-substrip-pill">← Topic Dashboard</a>
+      <a href="../coordinate-geometry/core2.html" class="g9-substrip-pill">🎯 Core 2: Clinic (12 Qs)</a>
+      <a href="../coordinate-geometry/core2b.html" class="g9-substrip-pill">🏆 Core 2B: Achievers</a>
+      <a href="../coordinate-geometry/explorers/transformation-invariants/index.html" class="g9-substrip-pill">🔬 Interactive Explorer Lab</a>
+      <a href="../../standalone/coordinate-geometry-interactive-suite.html" class="g9-substrip-pill">📍 Standalone Suite</a>
+      <a href="ch2-polynomials-m1-m2-complete-bank.html" class="g9-substrip-pill highlight">📐 Ch 2 Polynomials Bank</a>
+    </div>
+  </div>
 
   <header class="hero">
     <h1>Chapter 3: Coordinate Geometry</h1>
@@ -376,21 +514,21 @@
         <button class="btn-toggle" id="btnToggleAll">Hide All Answers</button>
       </div>
       <div class="filter-pills" id="filterPills">
-        <button class="pill active" data-filter="all">All (82)</button>
-        <button class="pill" data-filter="LP-H1">★ LP-H1 Axis Distance (20)</button>
-        <button class="pill" data-filter="LP-H2">LP-H2 Polygon Vertices (6)</button>
-        <button class="pill" data-filter="LP-M1">LP-M1 Axes & Conditions (28)</button>
-        <button class="pill" data-filter="LP-L1">LP-L1 Quadrant Conventions (28)</button>
-        <button class="pill" data-filter="SINGLE_CORRECT">Single Choice (18)</button>
-        <button class="pill" data-filter="MULTIPLE_CORRECT">Multiple Choice (9)</button>
-        <button class="pill" data-filter="SHORT">Short Answer (22)</button>
-        <button class="pill" data-filter="LONG">Long Answer (5)</button>
-        <button class="pill" data-filter="NUMERIC">Numerical (8)</button>
-        <button class="pill" data-filter="FILL_BLANK">Fill in Blanks (5)</button>
-        <button class="pill" data-filter="TRUE_FALSE">True/False (4)</button>
-        <button class="pill" data-filter="MATCH">Match (3)</button>
-        <button class="pill" data-filter="ASSERTION_REASON">Assertion/Reason (2)</button>
-        <button class="pill" data-filter="HOTS">HOTS (3)</button>
+        <button class="pill active" data-filter="all">All <span class="pill-badge">82</span></button>
+        <button class="pill" data-filter="LP-H1">★ Axis Distance <span class="pill-badge">20</span></button>
+        <button class="pill" data-filter="LP-H2">Polygon Vertices <span class="pill-badge">6</span></button>
+        <button class="pill" data-filter="LP-M1">Axes &amp; Conditions <span class="pill-badge">28</span></button>
+        <button class="pill" data-filter="LP-L1">Quadrant Conventions <span class="pill-badge">28</span></button>
+        <button class="pill" data-filter="SINGLE_CORRECT">Single Choice <span class="pill-badge">18</span></button>
+        <button class="pill" data-filter="MULTIPLE_CORRECT">Multiple Choice <span class="pill-badge">9</span></button>
+        <button class="pill" data-filter="SHORT">Short Answer <span class="pill-badge">22</span></button>
+        <button class="pill" data-filter="LONG">Long Answer <span class="pill-badge">5</span></button>
+        <button class="pill" data-filter="NUMERIC">Numerical <span class="pill-badge">8</span></button>
+        <button class="pill" data-filter="FILL_BLANK">Fill in Blanks <span class="pill-badge">5</span></button>
+        <button class="pill" data-filter="TRUE_FALSE">True / False <span class="pill-badge">4</span></button>
+        <button class="pill" data-filter="MATCH">Match Columns <span class="pill-badge">3</span></button>
+        <button class="pill" data-filter="ASSERTION_REASON">Assertion &amp; Reason <span class="pill-badge">2</span></button>
+        <button class="pill" data-filter="HOTS">HOTS Challenge <span class="pill-badge">3</span></button>
       </div>
     </div>
 
@@ -3213,5 +3351,8 @@ $A(1, 1), B(1, 0), C(0, 1), D(0, 0), E(0, -1), F(-1, 0), G(0, 5), H(-7, 0), I(3,
       }
     });
   </script>
+
+  <script src="../../js/display-controls.js"></script>
+  <script src="../../js/site-header.js" data-site-root="../../" data-site-parent="../index.html"></script>
 </body>
 </html>
