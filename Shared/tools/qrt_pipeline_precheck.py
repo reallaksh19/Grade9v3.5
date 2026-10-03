@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Fail early on custody/QRT/Blueprint/Core1A-boundary defects before HTML authoring."""
+"""Fail early on custody/QRT/Blueprint/Core1A and item-self-audit defects before HTML rendering."""
 from __future__ import annotations
 
 import argparse
 import json
 from pathlib import Path
 
+from Shared.tools import qrt_content_self_audit as content_audit
 from Shared.tools import qrt_pipeline_guard as guard
 
 
@@ -20,6 +21,7 @@ def precheck(run: dict) -> list[str]:
     problems.extend(guard.validate_owner_truth(run))
     problems.extend(guard.validate_basis_digests(run))
     problems.extend(guard.validate_slots(run))
+    problems.extend(content_audit.validate_content_self_audits(run))
     problems.extend(guard.validate_pre_attempt_graphs(run))
     problems.extend(guard.validate_blueprints(run, registry))
     problems.extend(guard.validate_core1a_boundary(run))
@@ -42,7 +44,7 @@ def main(argv: list[str] | None = None) -> int:
     if problems:
         print("\n".join(problems))
         return 1
-    print("ok: qrt minimal-prompt pre-render check")
+    print("ok: qrt minimal-prompt pre-render check with item self-audit")
     return 0
 
 
