@@ -1,0 +1,104 @@
+{
+  "$schema": "grade9v3-topic-manifest/v1",
+  "id": "phy.motion-2d",
+  "subject": "Physics",
+  "topic_title": "Motion in a Plane (2D)",
+  "topic_slug": "motion-2d",
+  "description": "Two-dimensional kinematics, orthogonal resolution, parabolic trajectories, and relative velocity.",
+  "rungs_atlas": {
+    "entrypoint": "physics/motion-2d/atlas.html",
+    "title": "Motion in 2D · 5-Rung Pedagogical Ladder"
+  },
+  "subtopics": [
+    {
+      "id": "CAP-PHY-MOTION-2D",
+      "concept_ref": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+      "title": "Motion in a Plane & Projectile Kinematics",
+      "description": "Splitting motion into independent horizontal and vertical components with a shared master clock.",
+      "continuum": {
+        "core_1a_constructions": [
+          {
+            "id": "phy.motion-2d.construction-trajectory",
+            "title": "Cartesian Trajectory Derivation & Parabolic Path",
+            "entrypoint": "physics/motion-2d/core1a.html",
+            "type": "CORE_1A",
+            "format": "TABLET_HTML"
+          },
+          {
+            "id": "phy.motion-2d.construction-sba",
+            "title": "Trajectory & Maximum Height Analysis",
+            "entrypoint": "standalone/practice/core1a-sba-06-07-trajectory-and-height-tablet.html",
+            "type": "CORE_1A",
+            "format": "TABLET_HTML"
+          },
+          {
+            "id": "phy.motion-2d.construction-plane-master",
+            "title": "Motion in a Plane Master Construction Tablet",
+            "entrypoint": "standalone/practice/core1a-sba-motion-in-a-plane-master-tablet.html",
+            "type": "CORE_1A",
+            "format": "TABLET_HTML"
+          }
+        ],
+        "core_1b_visualizers": [
+          {
+            "id": "phy.motion-2d.explorer-plane",
+            "title": "Motion in a Plane Research Suite",
+            "entrypoint": "physics/motion-2d/explorers/motion-in-a-plane/index.html",
+            "type": "CORE_1B",
+            "format": "OPAQUE_APP",
+            "engine": "CANVAS_INTERACTIVE"
+          },
+          {
+            "id": "phy.motion-2d.explorer-apex",
+            "title": "The Apex Fallacy Visual Proof",
+            "entrypoint": "physics/motion-2d/explorers/apex-fallacy/index.html",
+            "type": "CORE_1B",
+            "format": "OPAQUE_APP",
+            "engine": "CANVAS_INTERACTIVE"
+          },
+          {
+            "id": "phy.motion-2d.explorer-equal-height",
+            "title": "Equal Height Symmetries Simulation",
+            "entrypoint": "physics/motion-2d/explorers/equal-height-state/index.html",
+            "type": "CORE_1B",
+            "format": "OPAQUE_APP",
+            "engine": "CANVAS_INTERACTIVE"
+          },
+          {
+            "id": "phy.motion-2d.explorer-landing",
+            "title": "Landing Geometry Visualizer",
+            "entrypoint": "physics/motion-2d/explorers/landing-geometry/index.html",
+            "type": "CORE_1B",
+            "format": "OPAQUE_APP",
+            "engine": "CANVAS_INTERACTIVE"
+          }
+        ],
+        "core_2a_ncert": [
+          {
+            "id": "phy.motion-2d.ncert-tablet",
+            "title": "Motion in 2D NCERT Revised Edition Tablet",
+            "entrypoint": "standalone/practice/core1a-physics-motion-2d-ncert-tablet.html",
+            "type": "CORE_2A",
+            "question_count": 10
+          },
+          {
+            "id": "phy.motion-2d.plane-tablet",
+            "title": "Motion in a Plane Practice Tablet",
+            "entrypoint": "standalone/practice/core2-motion-in-a-plane-tablet.html",
+            "type": "CORE_2A",
+            "question_count": 10
+          }
+        ],
+        "core_2b_competitive": [
+          {
+            "id": "phy.motion-2d.master-suite",
+            "title": "Motion in 2D Master Challenge Suite",
+            "entrypoint": "standalone/practice/motion-in-2d-master-suite.html",
+            "type": "CORE_2B",
+            "question_count": 15
+          }
+        ]
+      }
+    }
+  ]
+}
