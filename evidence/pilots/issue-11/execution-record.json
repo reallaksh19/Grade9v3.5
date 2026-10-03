@@ -1,0 +1,61 @@
+{
+  "schema": "issue11-execution-record/v1",
+  "source_commit_sha": "e214d98dacfa7514e0a93b4e8660fac7c7199be0",
+  "commands": [
+    "python Shared/tools/question_review_matrix.py check",
+    "python -m Shared.library.resolve --schema Mathematics/library/surface-areas-volumes.issue11.v1.json",
+    "python Shared/tools/owner_bank.py check Mathematics/question-bank/owner-supplied/issue-11-surface-areas-volumes.json",
+    "pytest -q tests/test_qrt_short_prompt.py tests/test_question_review_matrix.py",
+    "python Shared/tools/render_core.py build --manifest /tmp/issue11-baseline-manifest.json --out /tmp/issue11-before --draft --reference",
+    "python Shared/tools/quality_gate.py /tmp/issue11-before --subject Mathematics --product-id PILOT-I11-SA-VOLUMES --report evidence/pilots/issue-11/gate-before.json",
+    "python Shared/tools/render_core.py build --manifest products/mathematics/surface-areas-volumes.issue11.manifest.json --out evidence/pilots/issue-11/render --reference",
+    "python Shared/tools/quality_gate.py evidence/pilots/issue-11/render --subject Mathematics --product-id PILOT-I11-SA-VOLUMES --report evidence/pilots/issue-11/gate-after.json",
+    "python evidence/pilots/issue-11/pilot_runner.py evidence ..."
+  ],
+  "files": {
+    "package": {
+      "path": "Mathematics/library/surface-areas-volumes.issue11.v1.json",
+      "sha256": "sha256:d0997aaebe81a3f3148c25e051ecfdedce49dd4422e1759210de8a797ca69d69"
+    },
+    "owner_bank": {
+      "path": "Mathematics/question-bank/owner-supplied/issue-11-surface-areas-volumes.json",
+      "sha256": "sha256:a94d95a091fa777693a143a110f5982d8a3c6844f762be522128483a1eb2010d"
+    },
+    "manifest": {
+      "path": "products/mathematics/surface-areas-volumes.issue11.manifest.json",
+      "sha256": "sha256:ab21ae8cb8db2073de2234e13d086df1a44199362381544bd2db5c30f149f89b"
+    },
+    "profile": {
+      "path": "evidence/pilots/issue-11/learner-profile.json",
+      "sha256": "sha256:83ba9cffaafdc0f17d4fa932c3a3359ba67e08e52eac6e59a397aff4076b058b"
+    },
+    "core2_html": {
+      "path": "evidence/pilots/issue-11/render/core2.html",
+      "sha256": "sha256:459da162938cdbbb7e4570cb7bf2e1e5da8f31b4059eb4893430d1b86e341bb5"
+    },
+    "core1a_html": {
+      "path": "evidence/pilots/issue-11/render/core1a.html",
+      "sha256": "sha256:7fd31483881319e8871f0961273a5a63cfb96ef7485de2deca084489b22f96e1"
+    },
+    "render_receipt": {
+      "path": "evidence/pilots/issue-11/render/render-receipt.json",
+      "sha256": "sha256:af493382436127c7e6c343930152000bba9f78c00e76062864c09ee313cc5a8a"
+    },
+    "gate_before": {
+      "path": "evidence/pilots/issue-11/gate-before.json",
+      "sha256": "sha256:0c7d64d5d3bc9e150b76b53c8e57e35e8755e2215a78a98f4e64b8cc0d5f1bd1"
+    },
+    "gate_after": {
+      "path": "evidence/pilots/issue-11/gate-after.json",
+      "sha256": "sha256:e3ed882e70a3addee740795e891ee55a2f31a45fe63ab70081eec343caa2ded5"
+    }
+  },
+  "quality": {
+    "gate_before_verdict": "FAIL",
+    "gate_after_verdict": "FAIL",
+    "rendered_measured_before": true,
+    "rendered_measured_after": true,
+    "qrt_actionable_findings": 0
+  },
+  "release_certification": false
+}

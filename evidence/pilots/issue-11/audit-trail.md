@@ -126,3 +126,5 @@ The exact generated-artifact commit SHA is recorded on Issue #11 after the CI jo
 - Independent reviewer sign-off is not performed by the execution agent.
 - The absence of the proposed canonical question-review schema remains an implementation gap in PR #9.
 - Any gate or browser-measurement limitation reported in `gate-after.json` remains open and must not be silently waived.
+
+- PR #9 contract tests at pilot runtime: pytest exit 1. Current observed failure is the PR #3 pilot fixture review-key ordering assertion; QRT matrix compile/check itself passed. This is preserved as an unresolved upstream finding, not suppressed as a pass.

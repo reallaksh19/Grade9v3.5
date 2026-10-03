@@ -1,0 +1,3093 @@
+{
+  "schema": "issue11-qrt-review-evidence/v1",
+  "issue": 11,
+  "subject": "Mathematics",
+  "grade": 9,
+  "topic": "Surface Areas and Volumes",
+  "blueprints": {
+    "CORE2": "BP-CORE2-SOURCE-QUESTION@1.5.0",
+    "CORE1A": "BP-CORE1A-CONSTRUCTION@1.4.0"
+  },
+  "profile_ref": "PROFILE-I11-OWNER-DEMONSTRATED-PREREQS",
+  "profile_digest": "sha256:2e25b4c3219d1a695e4216434bdd64e2a945fca9e5382a2b3def7bc1b071cc4e",
+  "matrix_digest": "sha256:ba995226e80089846a082dacb192d4c7a5169e25463c5c18477ef82bee2fdf25",
+  "adapter_digest": "sha256:86f998ff8d4f8b7fcd20790ae04ac98262b461b2962c9819321e225a4ca3ce61",
+  "render": {
+    "receipt": "evidence/pilots/issue-11/render/render-receipt.json",
+    "core2": "evidence/pilots/issue-11/render/core2.html",
+    "core1a": "evidence/pilots/issue-11/render/core1a.html",
+    "core2_sha256": "sha256:459da162938cdbbb7e4570cb7bf2e1e5da8f31b4059eb4893430d1b86e341bb5",
+    "core1a_sha256": "sha256:7fd31483881319e8871f0961273a5a63cfb96ef7485de2deca084489b22f96e1"
+  },
+  "reviews": [
+    {
+      "question_ref": "OWN-ISSUE11-01",
+      "original_identifier": "Q1",
+      "template_id": "QRT-APPLY-D1",
+      "classification": {
+        "demand": {
+          "primary": "APPLY",
+          "secondary": [],
+          "basis": "Primary APPLY: Recognize that total surface area of a cube counts all six congruent square faces."
+        },
+        "band": "D1"
+      },
+      "basis_digests": {
+        "question": "sha256:a131de12f0640de7209e9f0e6445b7dd5f70137c0a58049b496345deb009628c",
+        "profile": "sha256:2e25b4c3219d1a695e4216434bdd64e2a945fca9e5382a2b3def7bc1b071cc4e",
+        "matrix": "sha256:ba995226e80089846a082dacb192d4c7a5169e25463c5c18477ef82bee2fdf25",
+        "vocabulary": "sha256:6e12f62485d2ec71a483ddee5046a21841cc581e1220204b98ae86ffb3c43e22"
+      },
+      "subject_adapter": {
+        "schema": "demand-review-adapter/v1",
+        "version": "1.0.0",
+        "subject": "Mathematics",
+        "demand": "APPLY",
+        "guidance": {
+          "review_focus": "Procedural fluency includes preserving equivalence/domain while carrying out a known algorithm.",
+          "representation_kinds": [
+            "NUMBER_LINE",
+            "ALGEBRA_TILES",
+            "COORDINATE_GRAPH"
+          ],
+          "check_types": [
+            "SUBSTITUTION_BACK_CHECK",
+            "INVERSE_OPERATION",
+            "DOMAIN_CHECK"
+          ],
+          "misconception_patterns": [
+            {
+              "wrong_idea": "A familiar algorithm is executed with an invalid cancellation, sign change, or domain expansion.",
+              "diagnostic_prompt": "Ask whether the current transformation is reversible and what values are excluded.",
+              "repair": "State the domain/equivalence condition, execute the procedure, then substitute back or reverse the operation."
+            }
+          ]
+        },
+        "basis_refs": [
+          "Mathematics/adapter/QualityVocabulary.json",
+          "Mathematics/adapter/CoreContracts.json"
+        ],
+        "adapter_digest": "sha256:86f998ff8d4f8b7fcd20790ae04ac98262b461b2962c9819321e225a4ca3ce61"
+      },
+      "slots": {
+        "X": {
+          "text": "Recognize that total surface area of a cube counts all six congruent square faces.",
+          "basis": [
+            "extensions.grade9v3:analysis.stable_crux_move"
+          ]
+        },
+        "Y": {
+          "text": "CAP-MATH-AREA-BASICS",
+          "basis": [
+            "profile.held.CAP-MATH-AREA-BASICS"
+          ]
+        },
+        "Z": {
+          "text": "Count all six congruent square faces because total surface area includes every outer face.",
+          "basis": [
+            "answer.reasoning_route[OWN-ISSUE11-01-M1].action",
+            "answer.crux_move_ref"
+          ]
+        },
+        "W": {
+          "text": "Count all six congruent square faces because total surface area includes every outer face.",
+          "basis": [
+            "answer.reasoning_route[OWN-ISSUE11-01-M1].action",
+            "answer.crux_move_ref"
+          ]
+        },
+        "wrong_idea": {
+          "text": "Using the area of one square face, or multiplying by four because only the side faces are pictured.",
+          "basis": [
+            "extensions.grade9v3:analysis.common_wrong_route"
+          ]
+        },
+        "replacement_rule": {
+          "text": "verify applicability, map each given to the procedure, then execute",
+          "basis": [
+            "template.slots.replacement_rule"
+          ]
+        },
+        "visual_job": {
+          "text": "align givens with procedure variables or steps without carrying out the protected computation",
+          "basis": [
+            "template.slots.visual_job"
+          ]
+        },
+        "check_job": {
+          "text": "verify by units, substitution-back, a special value, inverse operation, or an alternate computation",
+          "basis": [
+            "template.slots.check_job"
+          ]
+        }
+      },
+      "review_objectives": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify Recognize that total surface area of a cube counts all six congruent square faces.?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate Recognize that total surface area of a cube counts all six congruent square faces. with CAP-MATH-AREA-BASICS, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to Count all six congruent square faces because total surface area includes every outer face. while leaving Count all six congruent square faces because total surface area includes every outer face. to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see Recognize that total surface area of a cube counts all six congruent square faces., without disclosing Count all six congruent square faces because total surface area includes every outer face.?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show CAP-MATH-AREA-BASICS in this question's context? Visual job: align givens with procedure variables or steps without carrying out the protected computation."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward Count all six congruent square faces because total surface area includes every outer face. while leaving Count all six congruent square faces because total surface area includes every outer face. to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave Count all six congruent square faces because total surface area includes every outer face. to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from Recognize that total surface area of a cube counts all six congruent square faces. to CAP-MATH-AREA-BASICS is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check verify by units, substitution-back, a special value, inverse operation, or an alternate computation?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: Using the area of one square face, or multiplying by four because only the side faces are pictured.?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'Using the area of one square face, or multiplying by four because only the side faces are pictured.' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'Using the area of one square face, or multiplying by four because only the side faces are pictured.' fails and establish this replacement rule: verify applicability, map each given to the procedure, then execute?"
+        }
+      },
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[0].scaffolds[0]",
+            "core2.html#OWN-ISSUE11-01"
+          ],
+          "explanation": "The first authored rung asks the learner to identify the decisive feature before calculating, without supplying the final result.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[0].scaffolds[1]",
+            "profile.held",
+            "core2.html#OWN-ISSUE11-01"
+          ],
+          "explanation": "The second rung explicitly bridges the question to a prerequisite idea the owner marked DEMONSTRATED.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[0].scaffolds[2]",
+            "bank.questions[0].answer.crux_move_ref"
+          ],
+          "explanation": "The third rung opens the route to the crux but leaves the decisive numerical/model execution to the learner.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-Q1-CUBE:VIS-I11-Q1-1",
+            "bank.questions[0].figure_refs"
+          ],
+          "explanation": "The pre-attempt stage shows only the stated situation/givens and does not expose the answer or completed route.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-Q1-CUBE:VIS-I11-Q1-2",
+            "bank.questions[0].scaffolds[1].visual_stage_ref"
+          ],
+          "explanation": "The second visual stage makes the demonstrated bridge visible in this question's context.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-Q1-CUBE:VIS-I11-Q1-3",
+            "bank.questions[0].scaffolds[2].visual_stage_ref"
+          ],
+          "explanation": "The third visual stage advances toward the crux while withholding final evaluation/answer.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[0].scaffolds",
+            "core2.html#OWN-ISSUE11-01"
+          ],
+          "explanation": "Every pre-solution scaffold is typed CONCEPT or METHOD; no scaffold has reveals=ANSWER.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": [
+            "question.primary_capability_ref=CAP-I11-SURFACE-SELECTION",
+            "microtopic=MIC-I11-SURFACE-BOUNDARY",
+            "core1a.html#MIC-I11-SURFACE-BOUNDARY"
+          ],
+          "explanation": "Canonical capability ownership derives the Core2-to-Core1A concept link to the microtopic that teaches the bridge.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[0].answer.reasoning_route",
+            "bank.questions[0].answer.check"
+          ],
+          "explanation": "Each solution move states why it is valid and the answer includes an independent check distinct from the main route.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[0].extensions.grade9v3:analysis.common_wrong_route",
+            "core2.html#OWN-ISSUE11-01"
+          ],
+          "explanation": "The likely conceptual wrong route is named before the attempt without disclosing the correct result.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": [
+            "package.microtopics[MIC-I11-SURFACE-BOUNDARY].misconceptions[0].diagnostic_prompt",
+            "core1a.html#MIC-I11-SURFACE-BOUNDARY"
+          ],
+          "explanation": "The diagnostic asks about the governing distinction/invariant, so it separates the misconception from a mere arithmetic slip.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": [
+            "package.microtopics[MIC-I11-SURFACE-BOUNDARY].misconceptions[0].repair",
+            "core1a.html#MIC-I11-SURFACE-BOUNDARY"
+          ],
+          "explanation": "The repair explains why the wrong idea fails and supplies the replacement boundary/invariant rule.",
+          "fix": null,
+          "correctly_not_applicable": false
+        }
+      },
+      "exact_render_evidence": {
+        "core2_question_marker_present": true,
+        "core1a_concept_marker_present": true,
+        "core2_html_sha256": "sha256:459da162938cdbbb7e4570cb7bf2e1e5da8f31b4059eb4893430d1b86e341bb5",
+        "core1a_html_sha256": "sha256:7fd31483881319e8871f0961273a5a63cfb96ef7485de2deca084489b22f96e1",
+        "render_receipt_sha256": "sha256:af493382436127c7e6c343930152000bba9f78c00e76062864c09ee313cc5a8a",
+        "render_artifact_digest": null,
+        "render_semantic_digest": "70ef1c9004ab00be"
+      },
+      "sign_off": {
+        "author": "Issue #11 execution agent",
+        "semantic_reviewer": "Issue #11 execution agent self-review",
+        "reviewer_distinct_from_author": false,
+        "release_certified": false,
+        "independent_review_required": true,
+        "date": "2026-10-03"
+      }
+    },
+    {
+      "question_ref": "OWN-ISSUE11-02",
+      "original_identifier": "Q2",
+      "template_id": "QRT-APPLY-D2",
+      "classification": {
+        "demand": {
+          "primary": "APPLY",
+          "secondary": [
+            "REPRESENT"
+          ],
+          "basis": "Primary APPLY: Convert the stated diameter to the radius required by the cylinder curved-surface formula before substituting."
+        },
+        "band": "D2"
+      },
+      "basis_digests": {
+        "question": "sha256:e2e6e271958f77047a246adce852c4f6c09295b8bb2e02cba4a3df6a41d43423",
+        "profile": "sha256:2e25b4c3219d1a695e4216434bdd64e2a945fca9e5382a2b3def7bc1b071cc4e",
+        "matrix": "sha256:ba995226e80089846a082dacb192d4c7a5169e25463c5c18477ef82bee2fdf25",
+        "vocabulary": "sha256:6e12f62485d2ec71a483ddee5046a21841cc581e1220204b98ae86ffb3c43e22"
+      },
+      "subject_adapter": {
+        "schema": "demand-review-adapter/v1",
+        "version": "1.0.0",
+        "subject": "Mathematics",
+        "demand": "APPLY",
+        "guidance": {
+          "review_focus": "Procedural fluency includes preserving equivalence/domain while carrying out a known algorithm.",
+          "representation_kinds": [
+            "NUMBER_LINE",
+            "ALGEBRA_TILES",
+            "COORDINATE_GRAPH"
+          ],
+          "check_types": [
+            "SUBSTITUTION_BACK_CHECK",
+            "INVERSE_OPERATION",
+            "DOMAIN_CHECK"
+          ],
+          "misconception_patterns": [
+            {
+              "wrong_idea": "A familiar algorithm is executed with an invalid cancellation, sign change, or domain expansion.",
+              "diagnostic_prompt": "Ask whether the current transformation is reversible and what values are excluded.",
+              "repair": "State the domain/equivalence condition, execute the procedure, then substitute back or reverse the operation."
+            }
+          ]
+        },
+        "basis_refs": [
+          "Mathematics/adapter/QualityVocabulary.json",
+          "Mathematics/adapter/CoreContracts.json"
+        ],
+        "adapter_digest": "sha256:86f998ff8d4f8b7fcd20790ae04ac98262b461b2962c9819321e225a4ca3ce61"
+      },
+      "slots": {
+        "X": {
+          "text": "Convert the stated diameter to the radius required by the cylinder curved-surface formula before substituting.",
+          "basis": [
+            "extensions.grade9v3:analysis.stable_crux_move"
+          ]
+        },
+        "Y": {
+          "text": "CAP-MATH-RADIUS-DIAMETER",
+          "basis": [
+            "profile.held.CAP-MATH-RADIUS-DIAMETER"
+          ]
+        },
+        "Z": {
+          "text": "Convert the 14 cm diameter to radius 7 cm.",
+          "basis": [
+            "answer.reasoning_route[OWN-ISSUE11-02-M1].action",
+            "answer.crux_move_ref"
+          ]
+        },
+        "W": {
+          "text": "Convert the 14 cm diameter to radius 7 cm.",
+          "basis": [
+            "answer.reasoning_route[OWN-ISSUE11-02-M1].action",
+            "answer.crux_move_ref"
+          ]
+        },
+        "wrong_idea": {
+          "text": "Substituting 14 cm as the radius because the formula is recalled before the diameter-to-radius mapping is checked.",
+          "basis": [
+            "extensions.grade9v3:analysis.common_wrong_route"
+          ]
+        },
+        "replacement_rule": {
+          "text": "verify applicability, map each given to the procedure, then execute",
+          "basis": [
+            "template.slots.replacement_rule"
+          ]
+        },
+        "visual_job": {
+          "text": "align givens with procedure variables or steps without carrying out the protected computation",
+          "basis": [
+            "template.slots.visual_job"
+          ]
+        },
+        "check_job": {
+          "text": "verify by units, substitution-back, a special value, inverse operation, or an alternate computation",
+          "basis": [
+            "template.slots.check_job"
+          ]
+        }
+      },
+      "review_objectives": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify Convert the stated diameter to the radius required by the cylinder curved-surface formula before substituting.?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate Convert the stated diameter to the radius required by the cylinder curved-surface formula before substituting. with CAP-MATH-RADIUS-DIAMETER, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to Convert the 14 cm diameter to radius 7 cm. while leaving Convert the 14 cm diameter to radius 7 cm. to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see Convert the stated diameter to the radius required by the cylinder curved-surface formula before substituting., without disclosing Convert the 14 cm diameter to radius 7 cm.?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show CAP-MATH-RADIUS-DIAMETER in this question's context? Visual job: align givens with procedure variables or steps without carrying out the protected computation."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward Convert the 14 cm diameter to radius 7 cm. while leaving Convert the 14 cm diameter to radius 7 cm. to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave Convert the 14 cm diameter to radius 7 cm. to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from Convert the stated diameter to the radius required by the cylinder curved-surface formula before substituting. to CAP-MATH-RADIUS-DIAMETER is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check verify by units, substitution-back, a special value, inverse operation, or an alternate computation?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: Substituting 14 cm as the radius because the formula is recalled before the diameter-to-radius mapping is checked.?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'Substituting 14 cm as the radius because the formula is recalled before the diameter-to-radius mapping is checked.' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'Substituting 14 cm as the radius because the formula is recalled before the diameter-to-radius mapping is checked.' fails and establish this replacement rule: verify applicability, map each given to the procedure, then execute?"
+        }
+      },
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[1].scaffolds[0]",
+            "core2.html#OWN-ISSUE11-02"
+          ],
+          "explanation": "The first authored rung asks the learner to identify the decisive feature before calculating, without supplying the final result.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[1].scaffolds[1]",
+            "profile.held",
+            "core2.html#OWN-ISSUE11-02"
+          ],
+          "explanation": "The second rung explicitly bridges the question to a prerequisite idea the owner marked DEMONSTRATED.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[1].scaffolds[2]",
+            "bank.questions[1].answer.crux_move_ref"
+          ],
+          "explanation": "The third rung opens the route to the crux but leaves the decisive numerical/model execution to the learner.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-Q2-DIAMETER:VIS-I11-Q2-1",
+            "bank.questions[1].figure_refs"
+          ],
+          "explanation": "The pre-attempt stage shows only the stated situation/givens and does not expose the answer or completed route.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-Q2-DIAMETER:VIS-I11-Q2-2",
+            "bank.questions[1].scaffolds[1].visual_stage_ref"
+          ],
+          "explanation": "The second visual stage makes the demonstrated bridge visible in this question's context.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-Q2-DIAMETER:VIS-I11-Q2-3",
+            "bank.questions[1].scaffolds[2].visual_stage_ref"
+          ],
+          "explanation": "The third visual stage advances toward the crux while withholding final evaluation/answer.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[1].scaffolds",
+            "core2.html#OWN-ISSUE11-02"
+          ],
+          "explanation": "Every pre-solution scaffold is typed CONCEPT or METHOD; no scaffold has reveals=ANSWER.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": [
+            "question.primary_capability_ref=CAP-I11-SURFACE-SELECTION",
+            "microtopic=MIC-I11-SURFACE-BOUNDARY",
+            "core1a.html#MIC-I11-SURFACE-BOUNDARY"
+          ],
+          "explanation": "Canonical capability ownership derives the Core2-to-Core1A concept link to the microtopic that teaches the bridge.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[1].answer.reasoning_route",
+            "bank.questions[1].answer.check"
+          ],
+          "explanation": "Each solution move states why it is valid and the answer includes an independent check distinct from the main route.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[1].extensions.grade9v3:analysis.common_wrong_route",
+            "core2.html#OWN-ISSUE11-02"
+          ],
+          "explanation": "The likely conceptual wrong route is named before the attempt without disclosing the correct result.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": [
+            "package.microtopics[MIC-I11-SURFACE-BOUNDARY].misconceptions[0].diagnostic_prompt",
+            "core1a.html#MIC-I11-SURFACE-BOUNDARY"
+          ],
+          "explanation": "The diagnostic asks about the governing distinction/invariant, so it separates the misconception from a mere arithmetic slip.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": [
+            "package.microtopics[MIC-I11-SURFACE-BOUNDARY].misconceptions[0].repair",
+            "core1a.html#MIC-I11-SURFACE-BOUNDARY"
+          ],
+          "explanation": "The repair explains why the wrong idea fails and supplies the replacement boundary/invariant rule.",
+          "fix": null,
+          "correctly_not_applicable": false
+        }
+      },
+      "exact_render_evidence": {
+        "core2_question_marker_present": true,
+        "core1a_concept_marker_present": true,
+        "core2_html_sha256": "sha256:459da162938cdbbb7e4570cb7bf2e1e5da8f31b4059eb4893430d1b86e341bb5",
+        "core1a_html_sha256": "sha256:7fd31483881319e8871f0961273a5a63cfb96ef7485de2deca084489b22f96e1",
+        "render_receipt_sha256": "sha256:af493382436127c7e6c343930152000bba9f78c00e76062864c09ee313cc5a8a",
+        "render_artifact_digest": null,
+        "render_semantic_digest": "70ef1c9004ab00be"
+      },
+      "sign_off": {
+        "author": "Issue #11 execution agent",
+        "semantic_reviewer": "Issue #11 execution agent self-review",
+        "reviewer_distinct_from_author": false,
+        "release_certified": false,
+        "independent_review_required": true,
+        "date": "2026-10-03"
+      }
+    },
+    {
+      "question_ref": "OWN-ISSUE11-03",
+      "original_identifier": "Q3",
+      "template_id": "QRT-MODEL-D2",
+      "classification": {
+        "demand": {
+          "primary": "MODEL",
+          "secondary": [
+            "APPLY"
+          ],
+          "basis": "Primary MODEL: Model an open cylindrical bucket as one curved surface plus one circular base, with no top circle."
+        },
+        "band": "D2"
+      },
+      "basis_digests": {
+        "question": "sha256:383c2daa6f186ce5502139dcf769e92d919884944d030e704091a26fc6dd4b7b",
+        "profile": "sha256:2e25b4c3219d1a695e4216434bdd64e2a945fca9e5382a2b3def7bc1b071cc4e",
+        "matrix": "sha256:ba995226e80089846a082dacb192d4c7a5169e25463c5c18477ef82bee2fdf25",
+        "vocabulary": "sha256:6e12f62485d2ec71a483ddee5046a21841cc581e1220204b98ae86ffb3c43e22"
+      },
+      "subject_adapter": {
+        "schema": "demand-review-adapter/v1",
+        "version": "1.0.0",
+        "subject": "Mathematics",
+        "demand": "MODEL",
+        "guidance": {
+          "review_focus": "Protect variable/relationship/strategy formulation from context; a correct calculation cannot repair a wrong model.",
+          "representation_kinds": [
+            "BAR_MODEL",
+            "TABLE_OF_VALUES",
+            "COORDINATE_GRAPH"
+          ],
+          "check_types": [
+            "ALTERNATE_METHOD",
+            "ESTIMATION"
+          ],
+          "misconception_patterns": [
+            {
+              "wrong_idea": "Numbers are inserted into a familiar formula before the relationships/unknowns in the situation are defined.",
+              "diagnostic_prompt": "Ask what each variable means and which sentence gives the relation between them.",
+              "repair": "Define quantities/constraints first, formulate the mathematical relation, then test it against the context or an estimate."
+            }
+          ]
+        },
+        "basis_refs": [
+          "Mathematics/adapter/QualityVocabulary.json",
+          "Mathematics/adapter/CoreContracts.json"
+        ],
+        "adapter_digest": "sha256:86f998ff8d4f8b7fcd20790ae04ac98262b461b2962c9819321e225a4ca3ce61"
+      },
+      "slots": {
+        "X": {
+          "text": "Model an open cylindrical bucket as one curved surface plus one circular base, with no top circle.",
+          "basis": [
+            "extensions.grade9v3:analysis.stable_crux_move"
+          ]
+        },
+        "Y": {
+          "text": "CAP-MATH-CIRCLE-AREA",
+          "basis": [
+            "profile.held.CAP-MATH-CIRCLE-AREA"
+          ]
+        },
+        "Z": {
+          "text": "Include the curved wall and one circular base; exclude the open top.",
+          "basis": [
+            "answer.reasoning_route[OWN-ISSUE11-03-M1].action",
+            "answer.crux_move_ref"
+          ]
+        },
+        "W": {
+          "text": "Include the curved wall and one circular base; exclude the open top.",
+          "basis": [
+            "answer.reasoning_route[OWN-ISSUE11-03-M1].action",
+            "answer.crux_move_ref"
+          ]
+        },
+        "wrong_idea": {
+          "text": "Using total surface area of a closed cylinder and counting two circular bases.",
+          "basis": [
+            "extensions.grade9v3:analysis.common_wrong_route"
+          ]
+        },
+        "replacement_rule": {
+          "text": "compare candidate models against the stated conditions and choose the one whose assumptions fit",
+          "basis": [
+            "template.slots.replacement_rule"
+          ]
+        },
+        "visual_job": {
+          "text": "surface features that discriminate between candidate models without naming the winning model",
+          "basis": [
+            "template.slots.visual_job"
+          ]
+        },
+        "check_job": {
+          "text": "test the chosen model against its assumptions, dimensions, limiting cases, or a plausible alternative model",
+          "basis": [
+            "template.slots.check_job"
+          ]
+        }
+      },
+      "review_objectives": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify Model an open cylindrical bucket as one curved surface plus one circular base, with no top circle.?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate Model an open cylindrical bucket as one curved surface plus one circular base, with no top circle. with CAP-MATH-CIRCLE-AREA, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to Include the curved wall and one circular base; exclude the open top. while leaving Include the curved wall and one circular base; exclude the open top. to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see Model an open cylindrical bucket as one curved surface plus one circular base, with no top circle., without disclosing Include the curved wall and one circular base; exclude the open top.?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show CAP-MATH-CIRCLE-AREA in this question's context? Visual job: surface features that discriminate between candidate models without naming the winning model."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward Include the curved wall and one circular base; exclude the open top. while leaving Include the curved wall and one circular base; exclude the open top. to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave Include the curved wall and one circular base; exclude the open top. to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from Model an open cylindrical bucket as one curved surface plus one circular base, with no top circle. to CAP-MATH-CIRCLE-AREA is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check test the chosen model against its assumptions, dimensions, limiting cases, or a plausible alternative model?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: Using total surface area of a closed cylinder and counting two circular bases.?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'Using total surface area of a closed cylinder and counting two circular bases.' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'Using total surface area of a closed cylinder and counting two circular bases.' fails and establish this replacement rule: compare candidate models against the stated conditions and choose the one whose assumptions fit?"
+        }
+      },
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[2].scaffolds[0]",
+            "core2.html#OWN-ISSUE11-03"
+          ],
+          "explanation": "The first authored rung asks the learner to identify the decisive feature before calculating, without supplying the final result.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[2].scaffolds[1]",
+            "profile.held",
+            "core2.html#OWN-ISSUE11-03"
+          ],
+          "explanation": "The second rung explicitly bridges the question to a prerequisite idea the owner marked DEMONSTRATED.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[2].scaffolds[2]",
+            "bank.questions[2].answer.crux_move_ref"
+          ],
+          "explanation": "The third rung opens the route to the crux but leaves the decisive numerical/model execution to the learner.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-Q3-OPEN:VIS-I11-Q3-1",
+            "bank.questions[2].figure_refs"
+          ],
+          "explanation": "The pre-attempt stage shows only the stated situation/givens and does not expose the answer or completed route.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-Q3-OPEN:VIS-I11-Q3-2",
+            "bank.questions[2].scaffolds[1].visual_stage_ref"
+          ],
+          "explanation": "The second visual stage makes the demonstrated bridge visible in this question's context.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-Q3-OPEN:VIS-I11-Q3-3",
+            "bank.questions[2].scaffolds[2].visual_stage_ref"
+          ],
+          "explanation": "The third visual stage advances toward the crux while withholding final evaluation/answer.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[2].scaffolds",
+            "core2.html#OWN-ISSUE11-03"
+          ],
+          "explanation": "Every pre-solution scaffold is typed CONCEPT or METHOD; no scaffold has reveals=ANSWER.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": [
+            "question.primary_capability_ref=CAP-I11-SURFACE-SELECTION",
+            "microtopic=MIC-I11-SURFACE-BOUNDARY",
+            "core1a.html#MIC-I11-SURFACE-BOUNDARY"
+          ],
+          "explanation": "Canonical capability ownership derives the Core2-to-Core1A concept link to the microtopic that teaches the bridge.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[2].answer.reasoning_route",
+            "bank.questions[2].answer.check"
+          ],
+          "explanation": "Each solution move states why it is valid and the answer includes an independent check distinct from the main route.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[2].extensions.grade9v3:analysis.common_wrong_route",
+            "core2.html#OWN-ISSUE11-03"
+          ],
+          "explanation": "The likely conceptual wrong route is named before the attempt without disclosing the correct result.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": [
+            "package.microtopics[MIC-I11-SURFACE-BOUNDARY].misconceptions[0].diagnostic_prompt",
+            "core1a.html#MIC-I11-SURFACE-BOUNDARY"
+          ],
+          "explanation": "The diagnostic asks about the governing distinction/invariant, so it separates the misconception from a mere arithmetic slip.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": [
+            "package.microtopics[MIC-I11-SURFACE-BOUNDARY].misconceptions[0].repair",
+            "core1a.html#MIC-I11-SURFACE-BOUNDARY"
+          ],
+          "explanation": "The repair explains why the wrong idea fails and supplies the replacement boundary/invariant rule.",
+          "fix": null,
+          "correctly_not_applicable": false
+        }
+      },
+      "exact_render_evidence": {
+        "core2_question_marker_present": true,
+        "core1a_concept_marker_present": true,
+        "core2_html_sha256": "sha256:459da162938cdbbb7e4570cb7bf2e1e5da8f31b4059eb4893430d1b86e341bb5",
+        "core1a_html_sha256": "sha256:7fd31483881319e8871f0961273a5a63cfb96ef7485de2deca084489b22f96e1",
+        "render_receipt_sha256": "sha256:af493382436127c7e6c343930152000bba9f78c00e76062864c09ee313cc5a8a",
+        "render_artifact_digest": null,
+        "render_semantic_digest": "70ef1c9004ab00be"
+      },
+      "sign_off": {
+        "author": "Issue #11 execution agent",
+        "semantic_reviewer": "Issue #11 execution agent self-review",
+        "reviewer_distinct_from_author": false,
+        "release_certified": false,
+        "independent_review_required": true,
+        "date": "2026-10-03"
+      }
+    },
+    {
+      "question_ref": "OWN-ISSUE11-04",
+      "original_identifier": "Q4",
+      "template_id": "QRT-SYNTHESIZE-D3",
+      "classification": {
+        "demand": {
+          "primary": "SYNTHESIZE",
+          "secondary": [
+            "APPLY"
+          ],
+          "basis": "Primary SYNTHESIZE: Use the radius and vertical height as perpendicular legs to obtain slant height before computing the open cone's curved canvas area."
+        },
+        "band": "D3"
+      },
+      "basis_digests": {
+        "question": "sha256:ca86c8f62273377999ccb04c48123d59fd4ae448da56ba4aa9b3425119c24367",
+        "profile": "sha256:2e25b4c3219d1a695e4216434bdd64e2a945fca9e5382a2b3def7bc1b071cc4e",
+        "matrix": "sha256:ba995226e80089846a082dacb192d4c7a5169e25463c5c18477ef82bee2fdf25",
+        "vocabulary": "sha256:6e12f62485d2ec71a483ddee5046a21841cc581e1220204b98ae86ffb3c43e22"
+      },
+      "subject_adapter": {
+        "schema": "demand-review-adapter/v1",
+        "version": "1.0.0",
+        "subject": "Mathematics",
+        "demand": "SYNTHESIZE",
+        "guidance": {
+          "review_focus": "Non-routine work should expose dependencies and useful subgoals without giving away the strategic bridge.",
+          "representation_kinds": [
+            "GEOMETRIC_FIGURE",
+            "AREA_MODEL",
+            "TREE_DIAGRAM"
+          ],
+          "check_types": [
+            "ALTERNATE_METHOD",
+            "SPECIAL_CASE",
+            "ESTIMATION"
+          ],
+          "misconception_patterns": [
+            {
+              "wrong_idea": "Known results are tried independently without selecting a subgoal that links them to the target.",
+              "diagnostic_prompt": "Ask which intermediate statement would connect a known fact to the goal.",
+              "repair": "Choose a dependency-respecting subgoal, combine the relevant results, and verify by a second route or special case."
+            }
+          ]
+        },
+        "basis_refs": [
+          "Mathematics/adapter/QualityVocabulary.json",
+          "Mathematics/adapter/CoreContracts.json"
+        ],
+        "adapter_digest": "sha256:86f998ff8d4f8b7fcd20790ae04ac98262b461b2962c9819321e225a4ca3ce61"
+      },
+      "slots": {
+        "X": {
+          "text": "Use the radius and vertical height as perpendicular legs to obtain slant height before computing the open cone's curved canvas area.",
+          "basis": [
+            "extensions.grade9v3:analysis.stable_crux_move"
+          ]
+        },
+        "Y": {
+          "text": "CAP-MATH-PYTHAGORAS",
+          "basis": [
+            "profile.held.CAP-MATH-PYTHAGORAS"
+          ]
+        },
+        "Z": {
+          "text": "Compute l = √(7² + 24²) = 25 m.",
+          "basis": [
+            "answer.reasoning_route[OWN-ISSUE11-04-M2].action",
+            "answer.crux_move_ref"
+          ]
+        },
+        "W": {
+          "text": "Compute l = √(7² + 24²) = 25 m.",
+          "basis": [
+            "answer.reasoning_route[OWN-ISSUE11-04-M2].action",
+            "answer.crux_move_ref"
+          ]
+        },
+        "wrong_idea": {
+          "text": "Using the vertical height 24 m in πrl, or adding the circular base even though the tent is open.",
+          "basis": [
+            "extensions.grade9v3:analysis.common_wrong_route"
+          ]
+        },
+        "replacement_rule": {
+          "text": "identify dependencies, establish the bridge quantity or condition, then propagate it through the chain",
+          "basis": [
+            "template.slots.replacement_rule"
+          ]
+        },
+        "visual_job": {
+          "text": "make dependencies, shared conditions, or state transitions visible without completing the route",
+          "basis": [
+            "template.slots.visual_job"
+          ]
+        },
+        "check_job": {
+          "text": "verify through an independent invariant, alternate route, limiting case, or consistency relation",
+          "basis": [
+            "template.slots.check_job"
+          ]
+        }
+      },
+      "review_objectives": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify Use the radius and vertical height as perpendicular legs to obtain slant height before computing the open cone's curved canvas area.?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate Use the radius and vertical height as perpendicular legs to obtain slant height before computing the open cone's curved canvas area. with CAP-MATH-PYTHAGORAS, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to Compute l = √(7² + 24²) = 25 m. while leaving Compute l = √(7² + 24²) = 25 m. to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see Use the radius and vertical height as perpendicular legs to obtain slant height before computing the open cone's curved canvas area., without disclosing Compute l = √(7² + 24²) = 25 m.?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show CAP-MATH-PYTHAGORAS in this question's context? Visual job: make dependencies, shared conditions, or state transitions visible without completing the route."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward Compute l = √(7² + 24²) = 25 m. while leaving Compute l = √(7² + 24²) = 25 m. to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave Compute l = √(7² + 24²) = 25 m. to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from Use the radius and vertical height as perpendicular legs to obtain slant height before computing the open cone's curved canvas area. to CAP-MATH-PYTHAGORAS is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check verify through an independent invariant, alternate route, limiting case, or consistency relation?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: Using the vertical height 24 m in πrl, or adding the circular base even though the tent is open.?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'Using the vertical height 24 m in πrl, or adding the circular base even though the tent is open.' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'Using the vertical height 24 m in πrl, or adding the circular base even though the tent is open.' fails and establish this replacement rule: identify dependencies, establish the bridge quantity or condition, then propagate it through the chain?"
+        }
+      },
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[3].scaffolds[0]",
+            "core2.html#OWN-ISSUE11-04"
+          ],
+          "explanation": "The first authored rung asks the learner to identify the decisive feature before calculating, without supplying the final result.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[3].scaffolds[1]",
+            "profile.held",
+            "core2.html#OWN-ISSUE11-04"
+          ],
+          "explanation": "The second rung explicitly bridges the question to a prerequisite idea the owner marked DEMONSTRATED.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[3].scaffolds[2]",
+            "bank.questions[3].answer.crux_move_ref"
+          ],
+          "explanation": "The third rung opens the route to the crux but leaves the decisive numerical/model execution to the learner.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-CONE-SLANT:VIS-I11-CONE-1",
+            "bank.questions[3].figure_refs"
+          ],
+          "explanation": "The pre-attempt stage shows only the stated situation/givens and does not expose the answer or completed route.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-CONE-SLANT:VIS-I11-CONE-2",
+            "bank.questions[3].scaffolds[1].visual_stage_ref"
+          ],
+          "explanation": "The second visual stage makes the demonstrated bridge visible in this question's context.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-CONE-SLANT:VIS-I11-CONE-3",
+            "bank.questions[3].scaffolds[2].visual_stage_ref"
+          ],
+          "explanation": "The third visual stage advances toward the crux while withholding final evaluation/answer.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[3].scaffolds",
+            "core2.html#OWN-ISSUE11-04"
+          ],
+          "explanation": "Every pre-solution scaffold is typed CONCEPT or METHOD; no scaffold has reveals=ANSWER.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": [
+            "question.primary_capability_ref=CAP-I11-CONE-SLANT-SURFACE",
+            "microtopic=MIC-I11-CONE-SLANT",
+            "core1a.html#MIC-I11-CONE-SLANT"
+          ],
+          "explanation": "Canonical capability ownership derives the Core2-to-Core1A concept link to the microtopic that teaches the bridge.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[3].answer.reasoning_route",
+            "bank.questions[3].answer.check"
+          ],
+          "explanation": "Each solution move states why it is valid and the answer includes an independent check distinct from the main route.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[3].extensions.grade9v3:analysis.common_wrong_route",
+            "core2.html#OWN-ISSUE11-04"
+          ],
+          "explanation": "The likely conceptual wrong route is named before the attempt without disclosing the correct result.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": [
+            "package.microtopics[MIC-I11-CONE-SLANT].misconceptions[0].diagnostic_prompt",
+            "core1a.html#MIC-I11-CONE-SLANT"
+          ],
+          "explanation": "The diagnostic asks about the governing distinction/invariant, so it separates the misconception from a mere arithmetic slip.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": [
+            "package.microtopics[MIC-I11-CONE-SLANT].misconceptions[0].repair",
+            "core1a.html#MIC-I11-CONE-SLANT"
+          ],
+          "explanation": "The repair explains why the wrong idea fails and supplies the replacement boundary/invariant rule.",
+          "fix": null,
+          "correctly_not_applicable": false
+        }
+      },
+      "exact_render_evidence": {
+        "core2_question_marker_present": true,
+        "core1a_concept_marker_present": true,
+        "core2_html_sha256": "sha256:459da162938cdbbb7e4570cb7bf2e1e5da8f31b4059eb4893430d1b86e341bb5",
+        "core1a_html_sha256": "sha256:7fd31483881319e8871f0961273a5a63cfb96ef7485de2deca084489b22f96e1",
+        "render_receipt_sha256": "sha256:af493382436127c7e6c343930152000bba9f78c00e76062864c09ee313cc5a8a",
+        "render_artifact_digest": null,
+        "render_semantic_digest": "70ef1c9004ab00be"
+      },
+      "sign_off": {
+        "author": "Issue #11 execution agent",
+        "semantic_reviewer": "Issue #11 execution agent self-review",
+        "reviewer_distinct_from_author": false,
+        "release_certified": false,
+        "independent_review_required": true,
+        "date": "2026-10-03"
+      }
+    },
+    {
+      "question_ref": "OWN-ISSUE11-05",
+      "original_identifier": "Q5",
+      "template_id": "QRT-EXPLAIN-D2",
+      "classification": {
+        "demand": {
+          "primary": "EXPLAIN",
+          "secondary": [
+            "APPLY"
+          ],
+          "basis": "Primary EXPLAIN: Interpret 'inner surface of a hemispherical bowl' as the curved hemispherical surface only; the open circular mouth is not a material base."
+        },
+        "band": "D2"
+      },
+      "basis_digests": {
+        "question": "sha256:3d432d6abe2c41022599aac92f9712bf33041f61131e3bd4c13d5fabb05a0247",
+        "profile": "sha256:2e25b4c3219d1a695e4216434bdd64e2a945fca9e5382a2b3def7bc1b071cc4e",
+        "matrix": "sha256:ba995226e80089846a082dacb192d4c7a5169e25463c5c18477ef82bee2fdf25",
+        "vocabulary": "sha256:6e12f62485d2ec71a483ddee5046a21841cc581e1220204b98ae86ffb3c43e22"
+      },
+      "subject_adapter": {
+        "schema": "demand-review-adapter/v1",
+        "version": "1.0.0",
+        "subject": "Mathematics",
+        "demand": "EXPLAIN",
+        "guidance": {
+          "review_focus": "Require why an equivalence, pattern or construction works; symbolic manipulation alone is not an explanation.",
+          "representation_kinds": [
+            "AREA_MODEL",
+            "COORDINATE_GRAPH",
+            "GEOMETRIC_FIGURE"
+          ],
+          "check_types": [
+            "SPECIAL_CASE",
+            "ALTERNATE_METHOD"
+          ],
+          "misconception_patterns": [
+            {
+              "wrong_idea": "The learner repeats an algebraic rule or observed pattern without giving the invariant or reason.",
+              "diagnostic_prompt": "Ask what stays unchanged across the transformation and why.",
+              "repair": "Name the invariant/property, connect it to each step, and test the explanation on a contrasting case."
+            }
+          ]
+        },
+        "basis_refs": [
+          "Mathematics/adapter/QualityVocabulary.json",
+          "Mathematics/adapter/CoreContracts.json"
+        ],
+        "adapter_digest": "sha256:86f998ff8d4f8b7fcd20790ae04ac98262b461b2962c9819321e225a4ca3ce61"
+      },
+      "slots": {
+        "X": {
+          "text": "Interpret 'inner surface of a hemispherical bowl' as the curved hemispherical surface only; the open circular mouth is not a material base.",
+          "basis": [
+            "extensions.grade9v3:analysis.stable_crux_move"
+          ]
+        },
+        "Y": {
+          "text": "CAP-MATH-CIRCLE-AREA",
+          "basis": [
+            "profile.held.CAP-MATH-CIRCLE-AREA"
+          ]
+        },
+        "Z": {
+          "text": "Treat the bowl's inner surface as the curved hemisphere only, with no flat circular base.",
+          "basis": [
+            "answer.reasoning_route[OWN-ISSUE11-05-M1].action",
+            "answer.crux_move_ref"
+          ]
+        },
+        "W": {
+          "text": "Treat the bowl's inner surface as the curved hemisphere only, with no flat circular base.",
+          "basis": [
+            "answer.reasoning_route[OWN-ISSUE11-05-M1].action",
+            "answer.crux_move_ref"
+          ]
+        },
+        "wrong_idea": {
+          "text": "Using total surface area 3πr² by automatically adding a circular base to every hemisphere.",
+          "basis": [
+            "extensions.grade9v3:analysis.common_wrong_route"
+          ]
+        },
+        "replacement_rule": {
+          "text": "name the mechanism or principle and connect it to the outcome through warranted links",
+          "basis": [
+            "template.slots.replacement_rule"
+          ]
+        },
+        "visual_job": {
+          "text": "show causal states, dependencies, or before/after relations without writing the conclusion",
+          "basis": [
+            "template.slots.visual_job"
+          ]
+        },
+        "check_job": {
+          "text": "test the explanation against a changed condition, counterexample, or predicted consequence",
+          "basis": [
+            "template.slots.check_job"
+          ]
+        }
+      },
+      "review_objectives": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify Interpret 'inner surface of a hemispherical bowl' as the curved hemispherical surface only; the open circular mouth is not a material base.?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate Interpret 'inner surface of a hemispherical bowl' as the curved hemispherical surface only; the open circular mouth is not a material base. with CAP-MATH-CIRCLE-AREA, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to Treat the bowl's inner surface as the curved hemisphere only, with no flat circular base. while leaving Treat the bowl's inner surface as the curved hemisphere only, with no flat circular base. to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see Interpret 'inner surface of a hemispherical bowl' as the curved hemispherical surface only; the open circular mouth is not a material base., without disclosing Treat the bowl's inner surface as the curved hemisphere only, with no flat circular base.?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show CAP-MATH-CIRCLE-AREA in this question's context? Visual job: show causal states, dependencies, or before/after relations without writing the conclusion."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward Treat the bowl's inner surface as the curved hemisphere only, with no flat circular base. while leaving Treat the bowl's inner surface as the curved hemisphere only, with no flat circular base. to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave Treat the bowl's inner surface as the curved hemisphere only, with no flat circular base. to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from Interpret 'inner surface of a hemispherical bowl' as the curved hemispherical surface only; the open circular mouth is not a material base. to CAP-MATH-CIRCLE-AREA is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check test the explanation against a changed condition, counterexample, or predicted consequence?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: Using total surface area 3πr² by automatically adding a circular base to every hemisphere.?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'Using total surface area 3πr² by automatically adding a circular base to every hemisphere.' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'Using total surface area 3πr² by automatically adding a circular base to every hemisphere.' fails and establish this replacement rule: name the mechanism or principle and connect it to the outcome through warranted links?"
+        }
+      },
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[4].scaffolds[0]",
+            "core2.html#OWN-ISSUE11-05"
+          ],
+          "explanation": "The first authored rung asks the learner to identify the decisive feature before calculating, without supplying the final result.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[4].scaffolds[1]",
+            "profile.held",
+            "core2.html#OWN-ISSUE11-05"
+          ],
+          "explanation": "The second rung explicitly bridges the question to a prerequisite idea the owner marked DEMONSTRATED.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[4].scaffolds[2]",
+            "bank.questions[4].answer.crux_move_ref"
+          ],
+          "explanation": "The third rung opens the route to the crux but leaves the decisive numerical/model execution to the learner.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-HEMISPHERE:VIS-I11-HEMI-1",
+            "bank.questions[4].figure_refs"
+          ],
+          "explanation": "The pre-attempt stage shows only the stated situation/givens and does not expose the answer or completed route.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-HEMISPHERE:VIS-I11-HEMI-2",
+            "bank.questions[4].scaffolds[1].visual_stage_ref"
+          ],
+          "explanation": "The second visual stage makes the demonstrated bridge visible in this question's context.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-HEMISPHERE:VIS-I11-HEMI-3",
+            "bank.questions[4].scaffolds[2].visual_stage_ref"
+          ],
+          "explanation": "The third visual stage advances toward the crux while withholding final evaluation/answer.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[4].scaffolds",
+            "core2.html#OWN-ISSUE11-05"
+          ],
+          "explanation": "Every pre-solution scaffold is typed CONCEPT or METHOD; no scaffold has reveals=ANSWER.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": [
+            "question.primary_capability_ref=CAP-I11-SURFACE-SELECTION",
+            "microtopic=MIC-I11-SURFACE-BOUNDARY",
+            "core1a.html#MIC-I11-SURFACE-BOUNDARY"
+          ],
+          "explanation": "Canonical capability ownership derives the Core2-to-Core1A concept link to the microtopic that teaches the bridge.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[4].answer.reasoning_route",
+            "bank.questions[4].answer.check"
+          ],
+          "explanation": "Each solution move states why it is valid and the answer includes an independent check distinct from the main route.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[4].extensions.grade9v3:analysis.common_wrong_route",
+            "core2.html#OWN-ISSUE11-05"
+          ],
+          "explanation": "The likely conceptual wrong route is named before the attempt without disclosing the correct result.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": [
+            "package.microtopics[MIC-I11-SURFACE-BOUNDARY].misconceptions[0].diagnostic_prompt",
+            "core1a.html#MIC-I11-SURFACE-BOUNDARY"
+          ],
+          "explanation": "The diagnostic asks about the governing distinction/invariant, so it separates the misconception from a mere arithmetic slip.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": [
+            "package.microtopics[MIC-I11-SURFACE-BOUNDARY].misconceptions[0].repair",
+            "core1a.html#MIC-I11-SURFACE-BOUNDARY"
+          ],
+          "explanation": "The repair explains why the wrong idea fails and supplies the replacement boundary/invariant rule.",
+          "fix": null,
+          "correctly_not_applicable": false
+        }
+      },
+      "exact_render_evidence": {
+        "core2_question_marker_present": true,
+        "core1a_concept_marker_present": true,
+        "core2_html_sha256": "sha256:459da162938cdbbb7e4570cb7bf2e1e5da8f31b4059eb4893430d1b86e341bb5",
+        "core1a_html_sha256": "sha256:7fd31483881319e8871f0961273a5a63cfb96ef7485de2deca084489b22f96e1",
+        "render_receipt_sha256": "sha256:af493382436127c7e6c343930152000bba9f78c00e76062864c09ee313cc5a8a",
+        "render_artifact_digest": null,
+        "render_semantic_digest": "70ef1c9004ab00be"
+      },
+      "sign_off": {
+        "author": "Issue #11 execution agent",
+        "semantic_reviewer": "Issue #11 execution agent self-review",
+        "reviewer_distinct_from_author": false,
+        "release_certified": false,
+        "independent_review_required": true,
+        "date": "2026-10-03"
+      }
+    },
+    {
+      "question_ref": "OWN-ISSUE11-06",
+      "original_identifier": "Q6",
+      "template_id": "QRT-SYNTHESIZE-D3",
+      "classification": {
+        "demand": {
+          "primary": "SYNTHESIZE",
+          "secondary": [
+            "MODEL",
+            "APPLY"
+          ],
+          "basis": "Primary SYNTHESIZE: Identify the hidden circular join and sum only the cone's curved surface and hemisphere's curved surface after finding the cone slant height."
+        },
+        "band": "D3"
+      },
+      "basis_digests": {
+        "question": "sha256:4751cd3425cc4df9b4e7ed811df933a1b924009e47fee6b20540fbe6f49f941a",
+        "profile": "sha256:2e25b4c3219d1a695e4216434bdd64e2a945fca9e5382a2b3def7bc1b071cc4e",
+        "matrix": "sha256:ba995226e80089846a082dacb192d4c7a5169e25463c5c18477ef82bee2fdf25",
+        "vocabulary": "sha256:6e12f62485d2ec71a483ddee5046a21841cc581e1220204b98ae86ffb3c43e22"
+      },
+      "subject_adapter": {
+        "schema": "demand-review-adapter/v1",
+        "version": "1.0.0",
+        "subject": "Mathematics",
+        "demand": "SYNTHESIZE",
+        "guidance": {
+          "review_focus": "Non-routine work should expose dependencies and useful subgoals without giving away the strategic bridge.",
+          "representation_kinds": [
+            "GEOMETRIC_FIGURE",
+            "AREA_MODEL",
+            "TREE_DIAGRAM"
+          ],
+          "check_types": [
+            "ALTERNATE_METHOD",
+            "SPECIAL_CASE",
+            "ESTIMATION"
+          ],
+          "misconception_patterns": [
+            {
+              "wrong_idea": "Known results are tried independently without selecting a subgoal that links them to the target.",
+              "diagnostic_prompt": "Ask which intermediate statement would connect a known fact to the goal.",
+              "repair": "Choose a dependency-respecting subgoal, combine the relevant results, and verify by a second route or special case."
+            }
+          ]
+        },
+        "basis_refs": [
+          "Mathematics/adapter/QualityVocabulary.json",
+          "Mathematics/adapter/CoreContracts.json"
+        ],
+        "adapter_digest": "sha256:86f998ff8d4f8b7fcd20790ae04ac98262b461b2962c9819321e225a4ca3ce61"
+      },
+      "slots": {
+        "X": {
+          "text": "Identify the hidden circular join and sum only the cone's curved surface and hemisphere's curved surface after finding the cone slant height.",
+          "basis": [
+            "extensions.grade9v3:analysis.stable_crux_move"
+          ]
+        },
+        "Y": {
+          "text": "CAP-MATH-PYTHAGORAS",
+          "basis": [
+            "profile.held.CAP-MATH-PYTHAGORAS"
+          ]
+        },
+        "Z": {
+          "text": "Include cone curved area and hemisphere curved area, but omit the common circular join.",
+          "basis": [
+            "answer.reasoning_route[OWN-ISSUE11-06-M2].action",
+            "answer.crux_move_ref"
+          ]
+        },
+        "W": {
+          "text": "Include cone curved area and hemisphere curved area, but omit the common circular join.",
+          "basis": [
+            "answer.reasoning_route[OWN-ISSUE11-06-M2].action",
+            "answer.crux_move_ref"
+          ]
+        },
+        "wrong_idea": {
+          "text": "Adding the circular joining face once or twice, or using the cone's vertical height as its slant height.",
+          "basis": [
+            "extensions.grade9v3:analysis.common_wrong_route"
+          ]
+        },
+        "replacement_rule": {
+          "text": "identify dependencies, establish the bridge quantity or condition, then propagate it through the chain",
+          "basis": [
+            "template.slots.replacement_rule"
+          ]
+        },
+        "visual_job": {
+          "text": "make dependencies, shared conditions, or state transitions visible without completing the route",
+          "basis": [
+            "template.slots.visual_job"
+          ]
+        },
+        "check_job": {
+          "text": "verify through an independent invariant, alternate route, limiting case, or consistency relation",
+          "basis": [
+            "template.slots.check_job"
+          ]
+        }
+      },
+      "review_objectives": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify Identify the hidden circular join and sum only the cone's curved surface and hemisphere's curved surface after finding the cone slant height.?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate Identify the hidden circular join and sum only the cone's curved surface and hemisphere's curved surface after finding the cone slant height. with CAP-MATH-PYTHAGORAS, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to Include cone curved area and hemisphere curved area, but omit the common circular join. while leaving Include cone curved area and hemisphere curved area, but omit the common circular join. to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see Identify the hidden circular join and sum only the cone's curved surface and hemisphere's curved surface after finding the cone slant height., without disclosing Include cone curved area and hemisphere curved area, but omit the common circular join.?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show CAP-MATH-PYTHAGORAS in this question's context? Visual job: make dependencies, shared conditions, or state transitions visible without completing the route."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward Include cone curved area and hemisphere curved area, but omit the common circular join. while leaving Include cone curved area and hemisphere curved area, but omit the common circular join. to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave Include cone curved area and hemisphere curved area, but omit the common circular join. to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from Identify the hidden circular join and sum only the cone's curved surface and hemisphere's curved surface after finding the cone slant height. to CAP-MATH-PYTHAGORAS is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check verify through an independent invariant, alternate route, limiting case, or consistency relation?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: Adding the circular joining face once or twice, or using the cone's vertical height as its slant height.?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'Adding the circular joining face once or twice, or using the cone's vertical height as its slant height.' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'Adding the circular joining face once or twice, or using the cone's vertical height as its slant height.' fails and establish this replacement rule: identify dependencies, establish the bridge quantity or condition, then propagate it through the chain?"
+        }
+      },
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[5].scaffolds[0]",
+            "core2.html#OWN-ISSUE11-06"
+          ],
+          "explanation": "The first authored rung asks the learner to identify the decisive feature before calculating, without supplying the final result.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[5].scaffolds[1]",
+            "profile.held",
+            "core2.html#OWN-ISSUE11-06"
+          ],
+          "explanation": "The second rung explicitly bridges the question to a prerequisite idea the owner marked DEMONSTRATED.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[5].scaffolds[2]",
+            "bank.questions[5].answer.crux_move_ref"
+          ],
+          "explanation": "The third rung opens the route to the crux but leaves the decisive numerical/model execution to the learner.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-COMPOSITE:VIS-I11-COMP-1",
+            "bank.questions[5].figure_refs"
+          ],
+          "explanation": "The pre-attempt stage shows only the stated situation/givens and does not expose the answer or completed route.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-COMPOSITE:VIS-I11-COMP-2",
+            "bank.questions[5].scaffolds[1].visual_stage_ref"
+          ],
+          "explanation": "The second visual stage makes the demonstrated bridge visible in this question's context.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-COMPOSITE:VIS-I11-COMP-3",
+            "bank.questions[5].scaffolds[2].visual_stage_ref"
+          ],
+          "explanation": "The third visual stage advances toward the crux while withholding final evaluation/answer.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[5].scaffolds",
+            "core2.html#OWN-ISSUE11-06"
+          ],
+          "explanation": "Every pre-solution scaffold is typed CONCEPT or METHOD; no scaffold has reveals=ANSWER.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": [
+            "question.primary_capability_ref=CAP-I11-COMPOSITE-EXPOSED",
+            "microtopic=MIC-I11-COMPOSITE",
+            "core1a.html#MIC-I11-COMPOSITE"
+          ],
+          "explanation": "Canonical capability ownership derives the Core2-to-Core1A concept link to the microtopic that teaches the bridge.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[5].answer.reasoning_route",
+            "bank.questions[5].answer.check"
+          ],
+          "explanation": "Each solution move states why it is valid and the answer includes an independent check distinct from the main route.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[5].extensions.grade9v3:analysis.common_wrong_route",
+            "core2.html#OWN-ISSUE11-06"
+          ],
+          "explanation": "The likely conceptual wrong route is named before the attempt without disclosing the correct result.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": [
+            "package.microtopics[MIC-I11-COMPOSITE].misconceptions[0].diagnostic_prompt",
+            "core1a.html#MIC-I11-COMPOSITE"
+          ],
+          "explanation": "The diagnostic asks about the governing distinction/invariant, so it separates the misconception from a mere arithmetic slip.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": [
+            "package.microtopics[MIC-I11-COMPOSITE].misconceptions[0].repair",
+            "core1a.html#MIC-I11-COMPOSITE"
+          ],
+          "explanation": "The repair explains why the wrong idea fails and supplies the replacement boundary/invariant rule.",
+          "fix": null,
+          "correctly_not_applicable": false
+        }
+      },
+      "exact_render_evidence": {
+        "core2_question_marker_present": true,
+        "core1a_concept_marker_present": true,
+        "core2_html_sha256": "sha256:459da162938cdbbb7e4570cb7bf2e1e5da8f31b4059eb4893430d1b86e341bb5",
+        "core1a_html_sha256": "sha256:7fd31483881319e8871f0961273a5a63cfb96ef7485de2deca084489b22f96e1",
+        "render_receipt_sha256": "sha256:af493382436127c7e6c343930152000bba9f78c00e76062864c09ee313cc5a8a",
+        "render_artifact_digest": null,
+        "render_semantic_digest": "70ef1c9004ab00be"
+      },
+      "sign_off": {
+        "author": "Issue #11 execution agent",
+        "semantic_reviewer": "Issue #11 execution agent self-review",
+        "reviewer_distinct_from_author": false,
+        "release_certified": false,
+        "independent_review_required": true,
+        "date": "2026-10-03"
+      }
+    },
+    {
+      "question_ref": "OWN-ISSUE11-07",
+      "original_identifier": "Q7",
+      "template_id": "QRT-MODEL-D2",
+      "classification": {
+        "demand": {
+          "primary": "MODEL",
+          "secondary": [
+            "APPLY"
+          ],
+          "basis": "Primary MODEL: Translate the painting instructions into exactly two included surfaces: the outer curved wall and the outside of the bottom base."
+        },
+        "band": "D2"
+      },
+      "basis_digests": {
+        "question": "sha256:095ede3b388229f9051cb58a2b1c2457b74a65511062eadacfd7c1c431ade5d7",
+        "profile": "sha256:2e25b4c3219d1a695e4216434bdd64e2a945fca9e5382a2b3def7bc1b071cc4e",
+        "matrix": "sha256:ba995226e80089846a082dacb192d4c7a5169e25463c5c18477ef82bee2fdf25",
+        "vocabulary": "sha256:6e12f62485d2ec71a483ddee5046a21841cc581e1220204b98ae86ffb3c43e22"
+      },
+      "subject_adapter": {
+        "schema": "demand-review-adapter/v1",
+        "version": "1.0.0",
+        "subject": "Mathematics",
+        "demand": "MODEL",
+        "guidance": {
+          "review_focus": "Protect variable/relationship/strategy formulation from context; a correct calculation cannot repair a wrong model.",
+          "representation_kinds": [
+            "BAR_MODEL",
+            "TABLE_OF_VALUES",
+            "COORDINATE_GRAPH"
+          ],
+          "check_types": [
+            "ALTERNATE_METHOD",
+            "ESTIMATION"
+          ],
+          "misconception_patterns": [
+            {
+              "wrong_idea": "Numbers are inserted into a familiar formula before the relationships/unknowns in the situation are defined.",
+              "diagnostic_prompt": "Ask what each variable means and which sentence gives the relation between them.",
+              "repair": "Define quantities/constraints first, formulate the mathematical relation, then test it against the context or an estimate."
+            }
+          ]
+        },
+        "basis_refs": [
+          "Mathematics/adapter/QualityVocabulary.json",
+          "Mathematics/adapter/CoreContracts.json"
+        ],
+        "adapter_digest": "sha256:86f998ff8d4f8b7fcd20790ae04ac98262b461b2962c9819321e225a4ca3ce61"
+      },
+      "slots": {
+        "X": {
+          "text": "Translate the painting instructions into exactly two included surfaces: the outer curved wall and the outside of the bottom base.",
+          "basis": [
+            "extensions.grade9v3:analysis.stable_crux_move"
+          ]
+        },
+        "Y": {
+          "text": "CAP-MATH-CIRCLE-AREA",
+          "basis": [
+            "profile.held.CAP-MATH-CIRCLE-AREA"
+          ]
+        },
+        "Z": {
+          "text": "Include exactly the entire outer curved wall and the outside of the bottom circular base.",
+          "basis": [
+            "answer.reasoning_route[OWN-ISSUE11-07-M1].action",
+            "answer.crux_move_ref"
+          ]
+        },
+        "W": {
+          "text": "Include exactly the entire outer curved wall and the outside of the bottom circular base.",
+          "basis": [
+            "answer.reasoning_route[OWN-ISSUE11-07-M1].action",
+            "answer.crux_move_ref"
+          ]
+        },
+        "wrong_idea": {
+          "text": "Painting the inside or an open top circle, or omitting the outside bottom base.",
+          "basis": [
+            "extensions.grade9v3:analysis.common_wrong_route"
+          ]
+        },
+        "replacement_rule": {
+          "text": "compare candidate models against the stated conditions and choose the one whose assumptions fit",
+          "basis": [
+            "template.slots.replacement_rule"
+          ]
+        },
+        "visual_job": {
+          "text": "surface features that discriminate between candidate models without naming the winning model",
+          "basis": [
+            "template.slots.visual_job"
+          ]
+        },
+        "check_job": {
+          "text": "test the chosen model against its assumptions, dimensions, limiting cases, or a plausible alternative model",
+          "basis": [
+            "template.slots.check_job"
+          ]
+        }
+      },
+      "review_objectives": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify Translate the painting instructions into exactly two included surfaces: the outer curved wall and the outside of the bottom base.?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate Translate the painting instructions into exactly two included surfaces: the outer curved wall and the outside of the bottom base. with CAP-MATH-CIRCLE-AREA, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to Include exactly the entire outer curved wall and the outside of the bottom circular base. while leaving Include exactly the entire outer curved wall and the outside of the bottom circular base. to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see Translate the painting instructions into exactly two included surfaces: the outer curved wall and the outside of the bottom base., without disclosing Include exactly the entire outer curved wall and the outside of the bottom circular base.?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show CAP-MATH-CIRCLE-AREA in this question's context? Visual job: surface features that discriminate between candidate models without naming the winning model."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward Include exactly the entire outer curved wall and the outside of the bottom circular base. while leaving Include exactly the entire outer curved wall and the outside of the bottom circular base. to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave Include exactly the entire outer curved wall and the outside of the bottom circular base. to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from Translate the painting instructions into exactly two included surfaces: the outer curved wall and the outside of the bottom base. to CAP-MATH-CIRCLE-AREA is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check test the chosen model against its assumptions, dimensions, limiting cases, or a plausible alternative model?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: Painting the inside or an open top circle, or omitting the outside bottom base.?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'Painting the inside or an open top circle, or omitting the outside bottom base.' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'Painting the inside or an open top circle, or omitting the outside bottom base.' fails and establish this replacement rule: compare candidate models against the stated conditions and choose the one whose assumptions fit?"
+        }
+      },
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[6].scaffolds[0]",
+            "core2.html#OWN-ISSUE11-07"
+          ],
+          "explanation": "The first authored rung asks the learner to identify the decisive feature before calculating, without supplying the final result.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[6].scaffolds[1]",
+            "profile.held",
+            "core2.html#OWN-ISSUE11-07"
+          ],
+          "explanation": "The second rung explicitly bridges the question to a prerequisite idea the owner marked DEMONSTRATED.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[6].scaffolds[2]",
+            "bank.questions[6].answer.crux_move_ref"
+          ],
+          "explanation": "The third rung opens the route to the crux but leaves the decisive numerical/model execution to the learner.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-Q7-PAINT:VIS-I11-Q7-1",
+            "bank.questions[6].figure_refs"
+          ],
+          "explanation": "The pre-attempt stage shows only the stated situation/givens and does not expose the answer or completed route.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-Q7-PAINT:VIS-I11-Q7-2",
+            "bank.questions[6].scaffolds[1].visual_stage_ref"
+          ],
+          "explanation": "The second visual stage makes the demonstrated bridge visible in this question's context.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-Q7-PAINT:VIS-I11-Q7-3",
+            "bank.questions[6].scaffolds[2].visual_stage_ref"
+          ],
+          "explanation": "The third visual stage advances toward the crux while withholding final evaluation/answer.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[6].scaffolds",
+            "core2.html#OWN-ISSUE11-07"
+          ],
+          "explanation": "Every pre-solution scaffold is typed CONCEPT or METHOD; no scaffold has reveals=ANSWER.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": [
+            "question.primary_capability_ref=CAP-I11-SURFACE-SELECTION",
+            "microtopic=MIC-I11-SURFACE-BOUNDARY",
+            "core1a.html#MIC-I11-SURFACE-BOUNDARY"
+          ],
+          "explanation": "Canonical capability ownership derives the Core2-to-Core1A concept link to the microtopic that teaches the bridge.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[6].answer.reasoning_route",
+            "bank.questions[6].answer.check"
+          ],
+          "explanation": "Each solution move states why it is valid and the answer includes an independent check distinct from the main route.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[6].extensions.grade9v3:analysis.common_wrong_route",
+            "core2.html#OWN-ISSUE11-07"
+          ],
+          "explanation": "The likely conceptual wrong route is named before the attempt without disclosing the correct result.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": [
+            "package.microtopics[MIC-I11-SURFACE-BOUNDARY].misconceptions[0].diagnostic_prompt",
+            "core1a.html#MIC-I11-SURFACE-BOUNDARY"
+          ],
+          "explanation": "The diagnostic asks about the governing distinction/invariant, so it separates the misconception from a mere arithmetic slip.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": [
+            "package.microtopics[MIC-I11-SURFACE-BOUNDARY].misconceptions[0].repair",
+            "core1a.html#MIC-I11-SURFACE-BOUNDARY"
+          ],
+          "explanation": "The repair explains why the wrong idea fails and supplies the replacement boundary/invariant rule.",
+          "fix": null,
+          "correctly_not_applicable": false
+        }
+      },
+      "exact_render_evidence": {
+        "core2_question_marker_present": true,
+        "core1a_concept_marker_present": true,
+        "core2_html_sha256": "sha256:459da162938cdbbb7e4570cb7bf2e1e5da8f31b4059eb4893430d1b86e341bb5",
+        "core1a_html_sha256": "sha256:7fd31483881319e8871f0961273a5a63cfb96ef7485de2deca084489b22f96e1",
+        "render_receipt_sha256": "sha256:af493382436127c7e6c343930152000bba9f78c00e76062864c09ee313cc5a8a",
+        "render_artifact_digest": null,
+        "render_semantic_digest": "70ef1c9004ab00be"
+      },
+      "sign_off": {
+        "author": "Issue #11 execution agent",
+        "semantic_reviewer": "Issue #11 execution agent self-review",
+        "reviewer_distinct_from_author": false,
+        "release_certified": false,
+        "independent_review_required": true,
+        "date": "2026-10-03"
+      }
+    },
+    {
+      "question_ref": "OWN-ISSUE11-08",
+      "original_identifier": "Q8",
+      "template_id": "QRT-APPLY-D2",
+      "classification": {
+        "demand": {
+          "primary": "APPLY",
+          "secondary": [
+            "REPRESENT"
+          ],
+          "basis": "Primary APPLY: Keep the volume unit coherent while taking 75% of the tank volume and converting cubic metres to litres."
+        },
+        "band": "D2"
+      },
+      "basis_digests": {
+        "question": "sha256:f40e78a1a35cbd6f48b40bc833facfa9bd26ab6ebe63fcdd761f2854cfd83cfe",
+        "profile": "sha256:2e25b4c3219d1a695e4216434bdd64e2a945fca9e5382a2b3def7bc1b071cc4e",
+        "matrix": "sha256:ba995226e80089846a082dacb192d4c7a5169e25463c5c18477ef82bee2fdf25",
+        "vocabulary": "sha256:6e12f62485d2ec71a483ddee5046a21841cc581e1220204b98ae86ffb3c43e22"
+      },
+      "subject_adapter": {
+        "schema": "demand-review-adapter/v1",
+        "version": "1.0.0",
+        "subject": "Mathematics",
+        "demand": "APPLY",
+        "guidance": {
+          "review_focus": "Procedural fluency includes preserving equivalence/domain while carrying out a known algorithm.",
+          "representation_kinds": [
+            "NUMBER_LINE",
+            "ALGEBRA_TILES",
+            "COORDINATE_GRAPH"
+          ],
+          "check_types": [
+            "SUBSTITUTION_BACK_CHECK",
+            "INVERSE_OPERATION",
+            "DOMAIN_CHECK"
+          ],
+          "misconception_patterns": [
+            {
+              "wrong_idea": "A familiar algorithm is executed with an invalid cancellation, sign change, or domain expansion.",
+              "diagnostic_prompt": "Ask whether the current transformation is reversible and what values are excluded.",
+              "repair": "State the domain/equivalence condition, execute the procedure, then substitute back or reverse the operation."
+            }
+          ]
+        },
+        "basis_refs": [
+          "Mathematics/adapter/QualityVocabulary.json",
+          "Mathematics/adapter/CoreContracts.json"
+        ],
+        "adapter_digest": "sha256:86f998ff8d4f8b7fcd20790ae04ac98262b461b2962c9819321e225a4ca3ce61"
+      },
+      "slots": {
+        "X": {
+          "text": "Keep the volume unit coherent while taking 75% of the tank volume and converting cubic metres to litres.",
+          "basis": [
+            "extensions.grade9v3:analysis.stable_crux_move"
+          ]
+        },
+        "Y": {
+          "text": "CAP-MATH-RECT-PRISM-VOLUME",
+          "basis": [
+            "profile.held.CAP-MATH-RECT-PRISM-VOLUME"
+          ]
+        },
+        "Z": {
+          "text": "Take 75% to get 2.7 m³, then use 1 m³ = 1000 L.",
+          "basis": [
+            "answer.reasoning_route[OWN-ISSUE11-08-M2].action",
+            "answer.crux_move_ref"
+          ]
+        },
+        "W": {
+          "text": "Take 75% to get 2.7 m³, then use 1 m³ = 1000 L.",
+          "basis": [
+            "answer.reasoning_route[OWN-ISSUE11-08-M2].action",
+            "answer.crux_move_ref"
+          ]
+        },
+        "wrong_idea": {
+          "text": "Multiplying by 75 instead of 0.75, or treating 1 m³ as 100 L rather than 1000 L.",
+          "basis": [
+            "extensions.grade9v3:analysis.common_wrong_route"
+          ]
+        },
+        "replacement_rule": {
+          "text": "verify applicability, map each given to the procedure, then execute",
+          "basis": [
+            "template.slots.replacement_rule"
+          ]
+        },
+        "visual_job": {
+          "text": "align givens with procedure variables or steps without carrying out the protected computation",
+          "basis": [
+            "template.slots.visual_job"
+          ]
+        },
+        "check_job": {
+          "text": "verify by units, substitution-back, a special value, inverse operation, or an alternate computation",
+          "basis": [
+            "template.slots.check_job"
+          ]
+        }
+      },
+      "review_objectives": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify Keep the volume unit coherent while taking 75% of the tank volume and converting cubic metres to litres.?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate Keep the volume unit coherent while taking 75% of the tank volume and converting cubic metres to litres. with CAP-MATH-RECT-PRISM-VOLUME, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to Take 75% to get 2.7 m³, then use 1 m³ = 1000 L. while leaving Take 75% to get 2.7 m³, then use 1 m³ = 1000 L. to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see Keep the volume unit coherent while taking 75% of the tank volume and converting cubic metres to litres., without disclosing Take 75% to get 2.7 m³, then use 1 m³ = 1000 L.?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show CAP-MATH-RECT-PRISM-VOLUME in this question's context? Visual job: align givens with procedure variables or steps without carrying out the protected computation."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward Take 75% to get 2.7 m³, then use 1 m³ = 1000 L. while leaving Take 75% to get 2.7 m³, then use 1 m³ = 1000 L. to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave Take 75% to get 2.7 m³, then use 1 m³ = 1000 L. to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from Keep the volume unit coherent while taking 75% of the tank volume and converting cubic metres to litres. to CAP-MATH-RECT-PRISM-VOLUME is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check verify by units, substitution-back, a special value, inverse operation, or an alternate computation?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: Multiplying by 75 instead of 0.75, or treating 1 m³ as 100 L rather than 1000 L.?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'Multiplying by 75 instead of 0.75, or treating 1 m³ as 100 L rather than 1000 L.' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'Multiplying by 75 instead of 0.75, or treating 1 m³ as 100 L rather than 1000 L.' fails and establish this replacement rule: verify applicability, map each given to the procedure, then execute?"
+        }
+      },
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[7].scaffolds[0]",
+            "core2.html#OWN-ISSUE11-08"
+          ],
+          "explanation": "The first authored rung asks the learner to identify the decisive feature before calculating, without supplying the final result.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[7].scaffolds[1]",
+            "profile.held",
+            "core2.html#OWN-ISSUE11-08"
+          ],
+          "explanation": "The second rung explicitly bridges the question to a prerequisite idea the owner marked DEMONSTRATED.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[7].scaffolds[2]",
+            "bank.questions[7].answer.crux_move_ref"
+          ],
+          "explanation": "The third rung opens the route to the crux but leaves the decisive numerical/model execution to the learner.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-CAPACITY:VIS-I11-CAP-1",
+            "bank.questions[7].figure_refs"
+          ],
+          "explanation": "The pre-attempt stage shows only the stated situation/givens and does not expose the answer or completed route.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-CAPACITY:VIS-I11-CAP-2",
+            "bank.questions[7].scaffolds[1].visual_stage_ref"
+          ],
+          "explanation": "The second visual stage makes the demonstrated bridge visible in this question's context.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-CAPACITY:VIS-I11-CAP-3",
+            "bank.questions[7].scaffolds[2].visual_stage_ref"
+          ],
+          "explanation": "The third visual stage advances toward the crux while withholding final evaluation/answer.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[7].scaffolds",
+            "core2.html#OWN-ISSUE11-08"
+          ],
+          "explanation": "Every pre-solution scaffold is typed CONCEPT or METHOD; no scaffold has reveals=ANSWER.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": [
+            "question.primary_capability_ref=CAP-I11-CAPACITY-CONVERSION",
+            "microtopic=MIC-I11-CAPACITY",
+            "core1a.html#MIC-I11-CAPACITY"
+          ],
+          "explanation": "Canonical capability ownership derives the Core2-to-Core1A concept link to the microtopic that teaches the bridge.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[7].answer.reasoning_route",
+            "bank.questions[7].answer.check"
+          ],
+          "explanation": "Each solution move states why it is valid and the answer includes an independent check distinct from the main route.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[7].extensions.grade9v3:analysis.common_wrong_route",
+            "core2.html#OWN-ISSUE11-08"
+          ],
+          "explanation": "The likely conceptual wrong route is named before the attempt without disclosing the correct result.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": [
+            "package.microtopics[MIC-I11-CAPACITY].misconceptions[0].diagnostic_prompt",
+            "core1a.html#MIC-I11-CAPACITY"
+          ],
+          "explanation": "The diagnostic asks about the governing distinction/invariant, so it separates the misconception from a mere arithmetic slip.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": [
+            "package.microtopics[MIC-I11-CAPACITY].misconceptions[0].repair",
+            "core1a.html#MIC-I11-CAPACITY"
+          ],
+          "explanation": "The repair explains why the wrong idea fails and supplies the replacement boundary/invariant rule.",
+          "fix": null,
+          "correctly_not_applicable": false
+        }
+      },
+      "exact_render_evidence": {
+        "core2_question_marker_present": true,
+        "core1a_concept_marker_present": true,
+        "core2_html_sha256": "sha256:459da162938cdbbb7e4570cb7bf2e1e5da8f31b4059eb4893430d1b86e341bb5",
+        "core1a_html_sha256": "sha256:7fd31483881319e8871f0961273a5a63cfb96ef7485de2deca084489b22f96e1",
+        "render_receipt_sha256": "sha256:af493382436127c7e6c343930152000bba9f78c00e76062864c09ee313cc5a8a",
+        "render_artifact_digest": null,
+        "render_semantic_digest": "70ef1c9004ab00be"
+      },
+      "sign_off": {
+        "author": "Issue #11 execution agent",
+        "semantic_reviewer": "Issue #11 execution agent self-review",
+        "reviewer_distinct_from_author": false,
+        "release_certified": false,
+        "independent_review_required": true,
+        "date": "2026-10-03"
+      }
+    },
+    {
+      "question_ref": "OWN-ISSUE11-09",
+      "original_identifier": "Q9",
+      "template_id": "QRT-SYNTHESIZE-D3",
+      "classification": {
+        "demand": {
+          "primary": "SYNTHESIZE",
+          "secondary": [
+            "EXPLAIN"
+          ],
+          "basis": "Primary SYNTHESIZE: Choose volume, not surface area, as the conserved quantity in recasting and use the cube of the radius ratio."
+        },
+        "band": "D3"
+      },
+      "basis_digests": {
+        "question": "sha256:de6d0c5a90492a1dc9e3b24eb17029035d6d54a1e5759f2d23676ee3aac394ae",
+        "profile": "sha256:2e25b4c3219d1a695e4216434bdd64e2a945fca9e5382a2b3def7bc1b071cc4e",
+        "matrix": "sha256:ba995226e80089846a082dacb192d4c7a5169e25463c5c18477ef82bee2fdf25",
+        "vocabulary": "sha256:6e12f62485d2ec71a483ddee5046a21841cc581e1220204b98ae86ffb3c43e22"
+      },
+      "subject_adapter": {
+        "schema": "demand-review-adapter/v1",
+        "version": "1.0.0",
+        "subject": "Mathematics",
+        "demand": "SYNTHESIZE",
+        "guidance": {
+          "review_focus": "Non-routine work should expose dependencies and useful subgoals without giving away the strategic bridge.",
+          "representation_kinds": [
+            "GEOMETRIC_FIGURE",
+            "AREA_MODEL",
+            "TREE_DIAGRAM"
+          ],
+          "check_types": [
+            "ALTERNATE_METHOD",
+            "SPECIAL_CASE",
+            "ESTIMATION"
+          ],
+          "misconception_patterns": [
+            {
+              "wrong_idea": "Known results are tried independently without selecting a subgoal that links them to the target.",
+              "diagnostic_prompt": "Ask which intermediate statement would connect a known fact to the goal.",
+              "repair": "Choose a dependency-respecting subgoal, combine the relevant results, and verify by a second route or special case."
+            }
+          ]
+        },
+        "basis_refs": [
+          "Mathematics/adapter/QualityVocabulary.json",
+          "Mathematics/adapter/CoreContracts.json"
+        ],
+        "adapter_digest": "sha256:86f998ff8d4f8b7fcd20790ae04ac98262b461b2962c9819321e225a4ca3ce61"
+      },
+      "slots": {
+        "X": {
+          "text": "Choose volume, not surface area, as the conserved quantity in recasting and use the cube of the radius ratio.",
+          "basis": [
+            "extensions.grade9v3:analysis.stable_crux_move"
+          ]
+        },
+        "Y": {
+          "text": "CAP-MATH-SPHERE-VOLUME",
+          "basis": [
+            "profile.held.CAP-MATH-SPHERE-VOLUME"
+          ]
+        },
+        "Z": {
+          "text": "Use conservation of volume, not surface area, because the same metal is melted and recast with no loss.",
+          "basis": [
+            "answer.reasoning_route[OWN-ISSUE11-09-M1].action",
+            "answer.crux_move_ref"
+          ]
+        },
+        "W": {
+          "text": "Use conservation of volume, not surface area, because the same metal is melted and recast with no loss.",
+          "basis": [
+            "answer.reasoning_route[OWN-ISSUE11-09-M1].action",
+            "answer.crux_move_ref"
+          ]
+        },
+        "wrong_idea": {
+          "text": "Equating surface areas because the objects are all spheres, or using the linear radius ratio 6:2 instead of the volume ratio.",
+          "basis": [
+            "extensions.grade9v3:analysis.common_wrong_route"
+          ]
+        },
+        "replacement_rule": {
+          "text": "identify dependencies, establish the bridge quantity or condition, then propagate it through the chain",
+          "basis": [
+            "template.slots.replacement_rule"
+          ]
+        },
+        "visual_job": {
+          "text": "make dependencies, shared conditions, or state transitions visible without completing the route",
+          "basis": [
+            "template.slots.visual_job"
+          ]
+        },
+        "check_job": {
+          "text": "verify through an independent invariant, alternate route, limiting case, or consistency relation",
+          "basis": [
+            "template.slots.check_job"
+          ]
+        }
+      },
+      "review_objectives": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify Choose volume, not surface area, as the conserved quantity in recasting and use the cube of the radius ratio.?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate Choose volume, not surface area, as the conserved quantity in recasting and use the cube of the radius ratio. with CAP-MATH-SPHERE-VOLUME, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to Use conservation of volume, not surface area, because the same metal is melted and recast with no loss. while leaving Use conservation of volume, not surface area, because the same metal is melted and recast with no loss. to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see Choose volume, not surface area, as the conserved quantity in recasting and use the cube of the radius ratio., without disclosing Use conservation of volume, not surface area, because the same metal is melted and recast with no loss.?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show CAP-MATH-SPHERE-VOLUME in this question's context? Visual job: make dependencies, shared conditions, or state transitions visible without completing the route."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward Use conservation of volume, not surface area, because the same metal is melted and recast with no loss. while leaving Use conservation of volume, not surface area, because the same metal is melted and recast with no loss. to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave Use conservation of volume, not surface area, because the same metal is melted and recast with no loss. to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from Choose volume, not surface area, as the conserved quantity in recasting and use the cube of the radius ratio. to CAP-MATH-SPHERE-VOLUME is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check verify through an independent invariant, alternate route, limiting case, or consistency relation?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: Equating surface areas because the objects are all spheres, or using the linear radius ratio 6:2 instead of the volume ratio.?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'Equating surface areas because the objects are all spheres, or using the linear radius ratio 6:2 instead of the volume ratio.' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'Equating surface areas because the objects are all spheres, or using the linear radius ratio 6:2 instead of the volume ratio.' fails and establish this replacement rule: identify dependencies, establish the bridge quantity or condition, then propagate it through the chain?"
+        }
+      },
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[8].scaffolds[0]",
+            "core2.html#OWN-ISSUE11-09"
+          ],
+          "explanation": "The first authored rung asks the learner to identify the decisive feature before calculating, without supplying the final result.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[8].scaffolds[1]",
+            "profile.held",
+            "core2.html#OWN-ISSUE11-09"
+          ],
+          "explanation": "The second rung explicitly bridges the question to a prerequisite idea the owner marked DEMONSTRATED.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[8].scaffolds[2]",
+            "bank.questions[8].answer.crux_move_ref"
+          ],
+          "explanation": "The third rung opens the route to the crux but leaves the decisive numerical/model execution to the learner.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-RECAST:VIS-I11-REC-1",
+            "bank.questions[8].figure_refs"
+          ],
+          "explanation": "The pre-attempt stage shows only the stated situation/givens and does not expose the answer or completed route.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-RECAST:VIS-I11-REC-2",
+            "bank.questions[8].scaffolds[1].visual_stage_ref"
+          ],
+          "explanation": "The second visual stage makes the demonstrated bridge visible in this question's context.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-RECAST:VIS-I11-REC-3",
+            "bank.questions[8].scaffolds[2].visual_stage_ref"
+          ],
+          "explanation": "The third visual stage advances toward the crux while withholding final evaluation/answer.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[8].scaffolds",
+            "core2.html#OWN-ISSUE11-09"
+          ],
+          "explanation": "Every pre-solution scaffold is typed CONCEPT or METHOD; no scaffold has reveals=ANSWER.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": [
+            "question.primary_capability_ref=CAP-I11-RECAST-CONSERVATION",
+            "microtopic=MIC-I11-RECAST",
+            "core1a.html#MIC-I11-RECAST"
+          ],
+          "explanation": "Canonical capability ownership derives the Core2-to-Core1A concept link to the microtopic that teaches the bridge.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[8].answer.reasoning_route",
+            "bank.questions[8].answer.check"
+          ],
+          "explanation": "Each solution move states why it is valid and the answer includes an independent check distinct from the main route.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[8].extensions.grade9v3:analysis.common_wrong_route",
+            "core2.html#OWN-ISSUE11-09"
+          ],
+          "explanation": "The likely conceptual wrong route is named before the attempt without disclosing the correct result.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": [
+            "package.microtopics[MIC-I11-RECAST].misconceptions[0].diagnostic_prompt",
+            "core1a.html#MIC-I11-RECAST"
+          ],
+          "explanation": "The diagnostic asks about the governing distinction/invariant, so it separates the misconception from a mere arithmetic slip.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": [
+            "package.microtopics[MIC-I11-RECAST].misconceptions[0].repair",
+            "core1a.html#MIC-I11-RECAST"
+          ],
+          "explanation": "The repair explains why the wrong idea fails and supplies the replacement boundary/invariant rule.",
+          "fix": null,
+          "correctly_not_applicable": false
+        }
+      },
+      "exact_render_evidence": {
+        "core2_question_marker_present": true,
+        "core1a_concept_marker_present": true,
+        "core2_html_sha256": "sha256:459da162938cdbbb7e4570cb7bf2e1e5da8f31b4059eb4893430d1b86e341bb5",
+        "core1a_html_sha256": "sha256:7fd31483881319e8871f0961273a5a63cfb96ef7485de2deca084489b22f96e1",
+        "render_receipt_sha256": "sha256:af493382436127c7e6c343930152000bba9f78c00e76062864c09ee313cc5a8a",
+        "render_artifact_digest": null,
+        "render_semantic_digest": "70ef1c9004ab00be"
+      },
+      "sign_off": {
+        "author": "Issue #11 execution agent",
+        "semantic_reviewer": "Issue #11 execution agent self-review",
+        "reviewer_distinct_from_author": false,
+        "release_certified": false,
+        "independent_review_required": true,
+        "date": "2026-10-03"
+      }
+    },
+    {
+      "question_ref": "OWN-ISSUE11-10",
+      "original_identifier": "Q10",
+      "template_id": "QRT-EXPLAIN-D2",
+      "classification": {
+        "demand": {
+          "primary": "EXPLAIN",
+          "secondary": [
+            "APPLY"
+          ],
+          "basis": "Primary EXPLAIN: Use the shared factor πr²h to see that a cone with the same radius and height has one-third the cylinder's volume."
+        },
+        "band": "D2"
+      },
+      "basis_digests": {
+        "question": "sha256:84648cc4e6594ad8ca941ec82f9ad3bd6c9577be6aea5563396bd13938f269cc",
+        "profile": "sha256:2e25b4c3219d1a695e4216434bdd64e2a945fca9e5382a2b3def7bc1b071cc4e",
+        "matrix": "sha256:ba995226e80089846a082dacb192d4c7a5169e25463c5c18477ef82bee2fdf25",
+        "vocabulary": "sha256:6e12f62485d2ec71a483ddee5046a21841cc581e1220204b98ae86ffb3c43e22"
+      },
+      "subject_adapter": {
+        "schema": "demand-review-adapter/v1",
+        "version": "1.0.0",
+        "subject": "Mathematics",
+        "demand": "EXPLAIN",
+        "guidance": {
+          "review_focus": "Require why an equivalence, pattern or construction works; symbolic manipulation alone is not an explanation.",
+          "representation_kinds": [
+            "AREA_MODEL",
+            "COORDINATE_GRAPH",
+            "GEOMETRIC_FIGURE"
+          ],
+          "check_types": [
+            "SPECIAL_CASE",
+            "ALTERNATE_METHOD"
+          ],
+          "misconception_patterns": [
+            {
+              "wrong_idea": "The learner repeats an algebraic rule or observed pattern without giving the invariant or reason.",
+              "diagnostic_prompt": "Ask what stays unchanged across the transformation and why.",
+              "repair": "Name the invariant/property, connect it to each step, and test the explanation on a contrasting case."
+            }
+          ]
+        },
+        "basis_refs": [
+          "Mathematics/adapter/QualityVocabulary.json",
+          "Mathematics/adapter/CoreContracts.json"
+        ],
+        "adapter_digest": "sha256:86f998ff8d4f8b7fcd20790ae04ac98262b461b2962c9819321e225a4ca3ce61"
+      },
+      "slots": {
+        "X": {
+          "text": "Use the shared factor πr²h to see that a cone with the same radius and height has one-third the cylinder's volume.",
+          "basis": [
+            "extensions.grade9v3:analysis.stable_crux_move"
+          ]
+        },
+        "Y": {
+          "text": "CAP-MATH-MULTIPLICATIVE-RATIO",
+          "basis": [
+            "profile.held.CAP-MATH-MULTIPLICATIVE-RATIO"
+          ]
+        },
+        "Z": {
+          "text": "Take one-third of 924 cm³.",
+          "basis": [
+            "answer.reasoning_route[OWN-ISSUE11-10-M2].action",
+            "answer.crux_move_ref"
+          ]
+        },
+        "W": {
+          "text": "Take one-third of 924 cm³.",
+          "basis": [
+            "answer.reasoning_route[OWN-ISSUE11-10-M2].action",
+            "answer.crux_move_ref"
+          ]
+        },
+        "wrong_idea": {
+          "text": "Trying to solve separately for radius and height from a single cylinder-volume value.",
+          "basis": [
+            "extensions.grade9v3:analysis.common_wrong_route"
+          ]
+        },
+        "replacement_rule": {
+          "text": "name the mechanism or principle and connect it to the outcome through warranted links",
+          "basis": [
+            "template.slots.replacement_rule"
+          ]
+        },
+        "visual_job": {
+          "text": "show causal states, dependencies, or before/after relations without writing the conclusion",
+          "basis": [
+            "template.slots.visual_job"
+          ]
+        },
+        "check_job": {
+          "text": "test the explanation against a changed condition, counterexample, or predicted consequence",
+          "basis": [
+            "template.slots.check_job"
+          ]
+        }
+      },
+      "review_objectives": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify Use the shared factor πr²h to see that a cone with the same radius and height has one-third the cylinder's volume.?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate Use the shared factor πr²h to see that a cone with the same radius and height has one-third the cylinder's volume. with CAP-MATH-MULTIPLICATIVE-RATIO, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to Take one-third of 924 cm³. while leaving Take one-third of 924 cm³. to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see Use the shared factor πr²h to see that a cone with the same radius and height has one-third the cylinder's volume., without disclosing Take one-third of 924 cm³.?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show CAP-MATH-MULTIPLICATIVE-RATIO in this question's context? Visual job: show causal states, dependencies, or before/after relations without writing the conclusion."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward Take one-third of 924 cm³. while leaving Take one-third of 924 cm³. to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave Take one-third of 924 cm³. to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from Use the shared factor πr²h to see that a cone with the same radius and height has one-third the cylinder's volume. to CAP-MATH-MULTIPLICATIVE-RATIO is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check test the explanation against a changed condition, counterexample, or predicted consequence?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: Trying to solve separately for radius and height from a single cylinder-volume value.?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'Trying to solve separately for radius and height from a single cylinder-volume value.' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'Trying to solve separately for radius and height from a single cylinder-volume value.' fails and establish this replacement rule: name the mechanism or principle and connect it to the outcome through warranted links?"
+        }
+      },
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[9].scaffolds[0]",
+            "core2.html#OWN-ISSUE11-10"
+          ],
+          "explanation": "The first authored rung asks the learner to identify the decisive feature before calculating, without supplying the final result.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[9].scaffolds[1]",
+            "profile.held",
+            "core2.html#OWN-ISSUE11-10"
+          ],
+          "explanation": "The second rung explicitly bridges the question to a prerequisite idea the owner marked DEMONSTRATED.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[9].scaffolds[2]",
+            "bank.questions[9].answer.crux_move_ref"
+          ],
+          "explanation": "The third rung opens the route to the crux but leaves the decisive numerical/model execution to the learner.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-RATIO:VIS-I11-RAT-1",
+            "bank.questions[9].figure_refs"
+          ],
+          "explanation": "The pre-attempt stage shows only the stated situation/givens and does not expose the answer or completed route.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-RATIO:VIS-I11-RAT-2",
+            "bank.questions[9].scaffolds[1].visual_stage_ref"
+          ],
+          "explanation": "The second visual stage makes the demonstrated bridge visible in this question's context.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": [
+            "REP-I11-RATIO:VIS-I11-RAT-3",
+            "bank.questions[9].scaffolds[2].visual_stage_ref"
+          ],
+          "explanation": "The third visual stage advances toward the crux while withholding final evaluation/answer.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[9].scaffolds",
+            "core2.html#OWN-ISSUE11-10"
+          ],
+          "explanation": "Every pre-solution scaffold is typed CONCEPT or METHOD; no scaffold has reveals=ANSWER.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": [
+            "question.primary_capability_ref=CAP-I11-CONE-CYLINDER-RATIO",
+            "microtopic=MIC-I11-RATIO",
+            "core1a.html#MIC-I11-RATIO"
+          ],
+          "explanation": "Canonical capability ownership derives the Core2-to-Core1A concept link to the microtopic that teaches the bridge.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[9].answer.reasoning_route",
+            "bank.questions[9].answer.check"
+          ],
+          "explanation": "Each solution move states why it is valid and the answer includes an independent check distinct from the main route.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": [
+            "bank.questions[9].extensions.grade9v3:analysis.common_wrong_route",
+            "core2.html#OWN-ISSUE11-10"
+          ],
+          "explanation": "The likely conceptual wrong route is named before the attempt without disclosing the correct result.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": [
+            "package.microtopics[MIC-I11-RATIO].misconceptions[0].diagnostic_prompt",
+            "core1a.html#MIC-I11-RATIO"
+          ],
+          "explanation": "The diagnostic asks about the governing distinction/invariant, so it separates the misconception from a mere arithmetic slip.",
+          "fix": null,
+          "correctly_not_applicable": false
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": [
+            "package.microtopics[MIC-I11-RATIO].misconceptions[0].repair",
+            "core1a.html#MIC-I11-RATIO"
+          ],
+          "explanation": "The repair explains why the wrong idea fails and supplies the replacement boundary/invariant rule.",
+          "fix": null,
+          "correctly_not_applicable": false
+        }
+      },
+      "exact_render_evidence": {
+        "core2_question_marker_present": true,
+        "core1a_concept_marker_present": true,
+        "core2_html_sha256": "sha256:459da162938cdbbb7e4570cb7bf2e1e5da8f31b4059eb4893430d1b86e341bb5",
+        "core1a_html_sha256": "sha256:7fd31483881319e8871f0961273a5a63cfb96ef7485de2deca084489b22f96e1",
+        "render_receipt_sha256": "sha256:af493382436127c7e6c343930152000bba9f78c00e76062864c09ee313cc5a8a",
+        "render_artifact_digest": null,
+        "render_semantic_digest": "70ef1c9004ab00be"
+      },
+      "sign_off": {
+        "author": "Issue #11 execution agent",
+        "semantic_reviewer": "Issue #11 execution agent self-review",
+        "reviewer_distinct_from_author": false,
+        "release_certified": false,
+        "independent_review_required": true,
+        "date": "2026-10-03"
+      }
+    }
+  ],
+  "gate_delta_ref": "evidence/pilots/issue-11/gate-delta.json",
+  "release_certification": false,
+  "independent_review_required": true,
+  "schema_limitation": "PR #9 does not contain the proposed Shared/quality/question-review.schema.json; this evidence therefore wraps the tool's question-review-resolution/v1 output plus explicit H1-M3 judgements."
+}
