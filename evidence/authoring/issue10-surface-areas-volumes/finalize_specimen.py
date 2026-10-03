@@ -3,7 +3,7 @@
 
 The cold-run keeps the owner stems immutable. This finalizer only projects
 agent-owned audit evidence into generated metadata and normalizes authored
-teaching-step semantics into the canonical package vocabulary.
+teaching/derivation step semantics into the canonical package vocabulary.
 """
 from __future__ import annotations
 
@@ -41,6 +41,9 @@ role_map = {
 for microtopic in package.get("microtopics", []):
     for teaching_step in microtopic.get("teaching_path", []):
         teaching_step["role"] = role_map.get(teaching_step.get("role"), teaching_step.get("role"))
+for relation in package.get("relations", []):
+    for derivation_step in relation.get("derivation", []):
+        derivation_step["role"] = role_map.get(derivation_step.get("role"), derivation_step.get("role"))
 
 package_path.write_text(json.dumps(package, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-print("normalized package teaching-step roles")
+print("normalized package teaching/derivation-step roles")
