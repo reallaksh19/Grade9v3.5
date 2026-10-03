@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:grade9v3:objective-review:question-pedagogy:1.0.0",
+  "title": "QuestionPedagogyRecord",
+  "description": "Semantic analysis sidecar for one canonical question. It does not replace source custody, answer authority, or the existing five-axis difficulty record.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "question_id", "difficulty_band", "primary_demand", "secondary_demands", "matrix_template_ref", "slots", "hint_bindings", "figure", "pre_attempt", "concept_navigation", "misconceptions", "validation_strategy_refs", "core1a_extraction"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "question_id": {"type": "string", "minLength": 1},
+    "difficulty_band": {"enum": ["D1", "D2", "D3", "D4"]},
+    "primary_demand": {"enum": ["RCL", "CON", "REP", "PRC", "MOD", "PRF", "EVD"]},
+    "secondary_demands": {"type": "array", "uniqueItems": true, "items": {"enum": ["RCL", "CON", "REP", "PRC", "MOD", "PRF", "EVD"]}},
+    "matrix_template_ref": {"type": "string", "pattern": "^QRT-D[1-4]-(RCL|CON|REP|PRC|MOD|PRF|EVD)$"},
+    "slots": {
+      "type": "object", "additionalProperties": false, "required": ["X", "Y", "Z", "W"],
+      "properties": {
+        "X": {"type": "string", "minLength": 1},
+        "Y": {"type": "string", "minLength": 1},
+        "Z": {"type": "string", "minLength": 1},
+        "W": {
+          "type": "object", "additionalProperties": false, "required": ["description"],
+          "properties": {"description": {"type": "string", "minLength": 1}, "protected_move_ref": {"type": ["string", "null"]}}
+        }
+      }
+    },
+    "hint_bindings": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["stage", "objective_ref"],
+        "properties": {
+          "stage": {"enum": ["REPRESENTATION", "KEY_CONCEPT", "CRUX", "FORMAL_MODEL", "CHECKPOINT"]},
+          "objective_ref": {"type": "string", "pattern": "^QRT-D[1-4]-(RCL|CON|REP|PRC|MOD|PRF|EVD)#(REPRESENTATION|KEY_CONCEPT|CRUX|FORMAL_MODEL|CHECKPOINT)$"},
+          "supports_move_ref": {"type": ["string", "null"]},
+          "notes": {"type": "string"}
+        }
+      }
+    },
+    "figure": {
+      "type": "object", "additionalProperties": false, "required": ["applicability", "reason", "reveals_move_refs"],
+      "properties": {
+        "applicability": {"enum": ["REQUIRED", "CONDITIONAL", "OPTIONAL", "NOT_APPLICABLE"]},
+        "reason": {"type": "string", "minLength": 1},
+        "representation_ref": {"type": ["string", "null"]},
+        "reveals_move_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "pre_attempt": {
+      "type": "object", "additionalProperties": false, "required": ["move_refs_revealed"],
+      "properties": {"move_refs_revealed": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}, "notes": {"type": "string"}}
+    },
+    "concept_navigation": {
+      "type": "object", "additionalProperties": false, "required": ["core1a_refs"],
+      "properties": {"core1a_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}}
+    },
+    "misconceptions": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["wrong_idea", "diagnostic_prompt", "repair"],
+        "properties": {"wrong_idea": {"type": "string", "minLength": 1}, "diagnostic_prompt": {"type": "string", "minLength": 1}, "repair": {"type": "string", "minLength": 1}}
+      }
+    },
+    "validation_strategy_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "core1a_extraction": {
+      "type": "object", "additionalProperties": false,
+      "required": ["canonical_refs", "evidence_question_ids", "prerequisite_refs", "inferential_leaps", "misconception_ids", "representation_refs", "model_boundaries", "transfer_conditions"],
+      "properties": {
+        "canonical_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "evidence_question_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "prerequisite_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "target_concept_ref": {"type": ["string", "null"]},
+        "inferential_leaps": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "misconception_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "representation_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "model_boundaries": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "transfer_conditions": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    }
+  }
+}
