@@ -491,6 +491,92 @@ def project_product_review_findings(
         "findings": findings,
     }
 
+
+def _require_quality_gate_report(report: dict[str, Any], label: str) -> None:
+    if report.get("schema") != "gate-report/v1" or report.get("tool") != "quality_gate/1":
+        raise QRTContractError(f"{label}: expected tool-written gate-report/v1 from quality_gate/1")
+    if not isinstance(report.get("findings"), list) or not isinstance(report.get("continuity"), list):
+        raise QRTContractError(f"{label}: malformed gate report")
+
+
+def _finding_identity(row: dict[str, Any]) -> tuple[str, str, str]:
+    return (
+        str(row.get("rule") or ""),
+        str(row.get("where") or ""),
+        str(row.get("detail") or ""),
+    )
+
+
+def _continuity_identity(row: dict[str, Any]) -> tuple[str, str]:
+    return (str(row.get("code") or ""), str(row.get("detail") or ""))
+
+
+def compare_quality_gate_reports(before: dict[str, Any], after: dict[str, Any]) -> dict[str, Any]:
+    """Compare two real quality_gate/1 reports without re-evaluating any gate rule."""
+    _require_quality_gate_report(before, "before")
+    _require_quality_gate_report(after, "after")
+    if before.get("product_id") != after.get("product_id"):
+        raise QRTContractError("GATE_DELTA_PRODUCT_MISMATCH")
+    if before.get("subject") != after.get("subject"):
+        raise QRTContractError("GATE_DELTA_SUBJECT_MISMATCH")
+
+    before_findings = {_finding_identity(row): row for row in before["findings"] if isinstance(row, dict)}
+    after_findings = {_finding_identity(row): row for row in after["findings"] if isinstance(row, dict)}
+    before_cont = {_continuity_identity(row): row for row in before["continuity"] if isinstance(row, dict)}
+    after_cont = {_continuity_identity(row): row for row in after["continuity"] if isinstance(row, dict)}
+
+    before_pages = {
+        str(row.get("page")): str(row.get("sha256"))
+        for row in before.get("pages") or []
+        if isinstance(row, dict) and row.get("page") and row.get("sha256")
+    }
+    after_pages = {
+        str(row.get("page")): str(row.get("sha256"))
+        for row in after.get("pages") or []
+        if isinstance(row, dict) and row.get("page") and row.get("sha256")
+    }
+    changed_pages = [
+        {
+            "page": page,
+            "before_sha256": before_pages.get(page),
+            "after_sha256": after_pages.get(page),
+            "status": (
+                "ADDED" if page not in before_pages
+                else "REMOVED" if page not in after_pages
+                else "CHANGED"
+            ),
+        }
+        for page in sorted(set(before_pages) | set(after_pages))
+        if before_pages.get(page) != after_pages.get(page)
+    ]
+
+    return {
+        "schema": "qrt-gate-delta/v1",
+        "product_id": after.get("product_id"),
+        "subject": after.get("subject"),
+        "basis_digests": {
+            "before_report": canonical_digest(before),
+            "after_report": canonical_digest(after),
+        },
+        "before": {
+            "verdict": before.get("verdict"),
+            "render_stamp": before.get("render_stamp"),
+            "rendered_measured": before.get("rendered_measured"),
+        },
+        "after": {
+            "verdict": after.get("verdict"),
+            "render_stamp": after.get("render_stamp"),
+            "rendered_measured": after.get("rendered_measured"),
+        },
+        "new_findings": [after_findings[key] for key in sorted(after_findings.keys() - before_findings.keys())],
+        "closed_findings": [before_findings[key] for key in sorted(before_findings.keys() - after_findings.keys())],
+        "persisting_findings": [after_findings[key] for key in sorted(after_findings.keys() & before_findings.keys())],
+        "new_continuity": [after_cont[key] for key in sorted(after_cont.keys() - before_cont.keys())],
+        "closed_continuity": [before_cont[key] for key in sorted(before_cont.keys() - after_cont.keys())],
+        "persisting_continuity": [after_cont[key] for key in sorted(after_cont.keys() & before_cont.keys())],
+        "changed_pages": changed_pages,
+    }
+
 def _select_question(source: dict[str, Any], question_id: str | None) -> dict[str, Any]:
     if isinstance(source.get("stem"), str) and source.get("id"):
         if question_id and source.get("id") != question_id:
@@ -517,12 +603,20 @@ def main(argv: list[str] | None = None) -> int:
     resolve_p.add_argument("--source", type=Path, required=True, help="JSON question or package/bank containing questions[]")
     resolve_p.add_argument("--question", help="question id when --source contains questions[]")
     resolve_p.add_argument("--profile", type=Path, required=True, help="learner-profile JSON")
+    delta_p = sub.add_parser("gate-delta", help="compare before/after tool-written quality_gate/1 reports")
+    delta_p.add_argument("--before", type=Path, required=True)
+    delta_p.add_argument("--after", type=Path, required=True)
     resolve_p.add_argument("--adapter", type=Path, help="optional subject DemandReview.json specialization")
     args = parser.parse_args(argv)
 
     matrix, vocab = load(MATRIX_PATH), load(VOCAB_PATH)
     payload = generated_payload(matrix, vocab)
 
+    if args.cmd == "gate-delta":
+        before = load(args.before)
+        after = load(args.after)
+        print(dumps(compare_quality_gate_reports(before, after)), end="")
+        return 0
     if args.cmd == "resolve":
         source = load(args.source)
         profile = load(args.profile)

@@ -235,5 +235,74 @@ class QuestionReviewMatrixTests(unittest.TestCase):
         bad["demands"]["REPRESENT"]["check_types"].append("NOT_A_PHYSICS_CHECK")
         self.assertTrue(any("check_types" in p for p in qrt.validate_subject_adapter(bad)))
 
+
+    def gate_report(self, *, findings=None, continuity=None, pages=None, verdict="FAIL", stamp="render-a"):
+        return {
+            "schema": "gate-report/v1",
+            "tool": "quality_gate/1",
+            "contract_version": "1.0.0",
+            "product_id": "PRODUCT-TEST",
+            "subject": "Mathematics",
+            "render_stamp": stamp,
+            "pages": pages or [{"page": "core2.html", "sha256": "a" * 64}],
+            "rules_evaluated": ["RULE-1"],
+            "rendered_measured": True,
+            "not_measured": [],
+            "findings": findings or [],
+            "continuity": continuity or [],
+            "verdict": verdict,
+            "fail_reasons": [] if verdict == "PASS" else ["BLOCKING_FINDINGS"],
+        }
+
+    def test_gate_delta_uses_tool_written_reports_and_reports_new_closed_and_persisting(self):
+        before = self.gate_report(
+            findings=[
+                {"rule": "A", "severity": "S1", "where": "core2", "detail": "spoiler"},
+                {"rule": "B", "severity": "S2", "where": "core2", "detail": "missing check"},
+            ],
+            continuity=[{"code": "CONT_LINK_UNRESOLVED", "detail": "old broken link"}],
+            pages=[{"page": "core2.html", "sha256": "a" * 64}],
+        )
+        after = self.gate_report(
+            findings=[
+                {"rule": "B", "severity": "S2", "where": "core2", "detail": "missing check"},
+                {"rule": "C", "severity": "S3", "where": "core1a", "detail": "advisory"},
+            ],
+            continuity=[{"code": "CONT_INPUT_NOT_RENDERED", "detail": "new mapping gap"}],
+            pages=[
+                {"page": "core2.html", "sha256": "b" * 64},
+                {"page": "core1a.html", "sha256": "c" * 64},
+            ],
+        )
+        delta = qrt.compare_quality_gate_reports(before, after)
+        self.assertEqual([f["rule"] for f in delta["new_findings"]], ["C"])
+        self.assertEqual([f["rule"] for f in delta["closed_findings"]], ["A"])
+        self.assertEqual([f["rule"] for f in delta["persisting_findings"]], ["B"])
+        self.assertEqual(delta["new_continuity"][0]["code"], "CONT_INPUT_NOT_RENDERED")
+        self.assertEqual(delta["closed_continuity"][0]["code"], "CONT_LINK_UNRESOLVED")
+        self.assertEqual(
+            [(p["page"], p["status"]) for p in delta["changed_pages"]],
+            [("core1a.html", "ADDED"), ("core2.html", "CHANGED")],
+        )
+        self.assertNotEqual(delta["basis_digests"]["before_report"], delta["basis_digests"]["after_report"])
+
+    def test_gate_delta_refuses_non_gate_reports_and_cross_product_comparisons(self):
+        with self.assertRaisesRegex(qrt.QRTContractError, "expected tool-written"):
+            qrt.compare_quality_gate_reports({"schema": "made-up"}, self.gate_report())
+        before = self.gate_report()
+        after = self.gate_report()
+        after["product_id"] = "OTHER"
+        with self.assertRaisesRegex(qrt.QRTContractError, "PRODUCT_MISMATCH"):
+            qrt.compare_quality_gate_reports(before, after)
+
+    def test_gate_delta_does_not_reimplement_or_score_gate_rules(self):
+        before = self.gate_report(findings=[{"rule": "A", "severity": "S0", "where": "x", "detail": "falsehood"}])
+        after = self.gate_report(findings=[{"rule": "A", "severity": "S0", "where": "x", "detail": "falsehood"}])
+        delta = qrt.compare_quality_gate_reports(before, after)
+        self.assertEqual(delta["new_findings"], [])
+        self.assertEqual(delta["closed_findings"], [])
+        self.assertEqual(len(delta["persisting_findings"]), 1)
+        self.assertNotIn("score", json.dumps(delta).lower())
+
 if __name__ == "__main__":
     unittest.main()
