@@ -789,46 +789,84 @@
             "SYNTHESIZE"
           ],
           "basis": "Formulating the exposed boundary model for a composite solid: Exposed Area = CSA(cone) + CSA(hemisphere) = πrl + 2πr²."
-        }
+        },
+        "grade9v3:calculation_audit": [
+          {
+            "id": "Q6-C1",
+            "move_ref": "Q6-M1",
+            "expression": "(3.5**2 + 12**2)**0.5",
+            "expected": 12.5,
+            "unit": "cm",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          },
+          {
+            "id": "Q6-C2",
+            "move_ref": "Q6-M3",
+            "expression": "(22/7) * 3.5 * 12.5",
+            "expected": 137.5,
+            "unit": "cm²",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          },
+          {
+            "id": "Q6-C3",
+            "move_ref": "Q6-M3",
+            "expression": "2 * (22/7) * 3.5**2",
+            "expected": 77,
+            "unit": "cm²",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          },
+          {
+            "id": "Q6-C4",
+            "move_ref": "Q6-M3",
+            "expression": "137.5 + 77",
+            "expected": 214.5,
+            "unit": "cm²",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          }
+        ]
       },
       "scaffolds": [
         {
-          "prompt": "What does the toy look like and what surfaces are on the outside?",
-          "text": "The toy consists of a conical top and a hemispherical bottom. Only the curved surface of the cone and the curved surface of the hemisphere can be touched from the outside.",
+          "prompt": "Which surfaces of the joined cone-and-hemisphere toy can actually be touched from outside?",
+          "text": "The common circular contact face is inside the joined toy. Separate EXPOSED outer surfaces from the INTERNAL interface first.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
           "supports_move_ref": "Q6-M2"
         },
         {
-          "prompt": "Find the slant height l of the conical portion.",
-          "text": "In the cone: l = √(r² + h²) = √(3.5² + 12²) = √(12.25 + 144) = √156.25 = 12.5 cm.",
-          "support_kind": "EXECUTE",
-          "reveals": "METHOD",
+          "prompt": "What additional cone length may be needed before any curved-area calculation?",
+          "text": "A cone's curved surface uses slant length, which comes from the right triangle formed by radius and vertical height.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
           "supports_move_ref": "Q6-M1"
         },
         {
-          "prompt": "Why is the circular interface excluded from the exposed area?",
-          "text": "The circular base of the cone and the flat top of the hemisphere are glued together inside the toy. They are hidden, not exposed.",
+          "prompt": "Create an inventory containing only the two curved outer surfaces and mark the circular join INTERNAL.",
+          "text": "Do not combine those pieces into the final question-specific expression yet.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "Q6-M2"
+        },
+        {
+          "prompt": "Which standard curved-surface relations correspond to the cone and to the hemisphere?",
+          "text": "Use the standard curved-surface relation for each component, but keep the numerical substitution for your own attempt.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "FORMAL_MODEL",
           "supports_move_ref": "Q6-M2"
         },
         {
-          "prompt": "Combine the exposed areas: CSA(cone) + CSA(hemisphere).",
-          "text": "Total exposed area = πrl + 2πr² = πr(l + 2r) = (22/7) × 3.5 × (12.5 + 2×3.5) = 11 × (12.5 + 7) = 11 × 19.5 = 214.5 cm².",
-          "support_kind": "EXECUTE",
-          "reveals": "METHOD",
-          "learner_stage": "CRUX",
-          "supports_move_ref": "Q6-M3"
-        },
-        {
-          "prompt": "Verify the two separate curved surfaces sum to 214.5 cm².",
-          "text": "CSA(cone) = 137.5 cm² and CSA(hemisphere) = 77 cm²; 137.5 + 77 = 214.5 cm².",
-          "support_kind": "CONNECT",
-          "reveals": "METHOD",
+          "prompt": "How can you check whether you accidentally counted the hidden join?",
+          "text": "Imagine painting the assembled toy without separating it: an internal contact face cannot receive paint.",
+          "support_kind": "CHECK",
+          "reveals": "CONCEPT",
           "learner_stage": "CHECKPOINT",
           "supports_move_ref": "Q6-M4"
         }
@@ -941,32 +979,61 @@
           "primary": "JUSTIFY",
           "secondary": [],
           "basis": "Explicitly stating warrants and boundary surfaces included and excluded before performing numerical computation."
-        }
+        },
+        "grade9v3:calculation_audit": [
+          {
+            "id": "Q7-C1",
+            "move_ref": "Q7-M2",
+            "expression": "2 * (22/7) * 7 * 25",
+            "expected": 1100,
+            "unit": "cm²",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          },
+          {
+            "id": "Q7-C2",
+            "move_ref": "Q7-M2",
+            "expression": "(22/7) * 7**2",
+            "expected": 154,
+            "unit": "cm²",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          },
+          {
+            "id": "Q7-C3",
+            "move_ref": "Q7-M2",
+            "expression": "1100 + 154",
+            "expected": 1254,
+            "unit": "cm²",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          }
+        ]
       },
       "scaffolds": [
         {
-          "prompt": "Which surfaces are to be painted according to the problem statement?",
-          "text": "The prompt specifies: (1) Outer curved surface and (2) Outside circular base. All interior surfaces and the open top opening are excluded.",
+          "prompt": "Before calculating, translate the painting instructions into included and excluded surfaces.",
+          "text": "Include the outer curved wall and the outside bottom base. Exclude the open top and all interior surfaces.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
           "supports_move_ref": "Q7-M1"
         },
         {
-          "prompt": "What formula gives the sum of these two surfaces?",
-          "text": "Painted Area = Outer CSA + Outside Base Area = 2πrh + πr² = πr(2h + r).",
+          "prompt": "Why is it unsafe to start from the total surface area of a closed cylinder?",
+          "text": "A closed-cylinder formula includes faces that the physical painting instruction explicitly excludes.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
           "supports_move_ref": "Q7-M1"
         },
         {
-          "prompt": "Substitute r = 7 cm, h = 25 cm, and π = 22/7.",
-          "text": "Area = (22/7) × 7 × (2×25 + 7) = 22 × (50 + 7) = 22 × 57 = 1254 cm².",
-          "support_kind": "EXECUTE",
-          "reveals": "METHOD",
+          "prompt": "Write an area sum for exactly the two included surfaces, then stop before evaluating it.",
+          "text": "Carry out the substitution and arithmetic yourself.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
           "learner_stage": "CRUX",
-          "supports_move_ref": "Q7-M2"
+          "supports_move_ref": "Q7-M1"
         }
       ],
       "answer": {
@@ -1062,32 +1129,61 @@
             "APPLY"
           ],
           "basis": "Translating between cubic metres (geometric volume) and litres (liquid capacity) alongside fractional scaling."
-        }
+        },
+        "grade9v3:calculation_audit": [
+          {
+            "id": "Q8-C1",
+            "move_ref": "Q8-M1",
+            "expression": "2 * 1.5 * 1.2",
+            "expected": 3.6,
+            "unit": "m³",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          },
+          {
+            "id": "Q8-C2",
+            "move_ref": "Q8-M2",
+            "expression": "0.75 * 3.6",
+            "expected": 2.7,
+            "unit": "m³",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          },
+          {
+            "id": "Q8-C3",
+            "move_ref": "Q8-M3",
+            "expression": "2.7 * 1000",
+            "expected": 2700,
+            "unit": "L",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          }
+        ]
       },
       "scaffolds": [
         {
-          "prompt": "What is the formula for the total capacity of a rectangular tank?",
-          "text": "Volume of cuboid = length × width × depth = 2 m × 1.5 m × 1.2 m = 3.6 m³.",
+          "prompt": "What three operations are needed, and in what order?",
+          "text": "First find the tank's geometric volume, then apply the stated fill fraction, then convert cubic metres to litres.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
           "supports_move_ref": "Q8-M1"
         },
         {
-          "prompt": "How much water is in the tank if it is 75% full?",
-          "text": "Water volume = 75% of 3.6 m³ = 0.75 × 3.6 = (3/4) × 3.6 = 2.7 m³.",
-          "support_kind": "EXECUTE",
-          "reveals": "METHOD",
+          "prompt": "What metric fact connects cubic metres and litres?",
+          "text": "One cubic metre is one thousand litres. Keep this conversion separate from the percentage step.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "Q8-M2"
+          "supports_move_ref": "Q8-M3"
         },
         {
-          "prompt": "What is the exact conversion relation between cubic metres and litres?",
-          "text": "Since 1 m = 10 dm, 1 m³ = (10 dm)³ = 1000 dm³ = 1000 litres. Therefore, 2.7 m³ = 2.7 × 1000 = 2700 litres.",
+          "prompt": "Set up the cuboid-volume product and the 75% operation, then write the final conversion factor without evaluating the chain.",
+          "text": "Complete the arithmetic and state the litres yourself.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "CRUX",
-          "supports_move_ref": "Q8-M3"
+          "supports_move_ref": "Q8-M2"
         }
       ],
       "answer": {
@@ -1187,46 +1283,84 @@
             "EXPLAIN"
           ],
           "basis": "Warranting the cubic ratio for number of recast solids and explaining why surface area increases due to newly created boundary faces."
-        }
+        },
+        "grade9v3:calculation_audit": [
+          {
+            "id": "Q9-C1",
+            "move_ref": "Q9-M2",
+            "expression": "(6 / 2)**3",
+            "expected": 27,
+            "unit": "spheres",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          },
+          {
+            "id": "Q9-C2",
+            "move_ref": "Q9-M3",
+            "expression": "4 * 6**2",
+            "expected": 144,
+            "unit": "π·cm² coefficient",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          },
+          {
+            "id": "Q9-C3",
+            "move_ref": "Q9-M3",
+            "expression": "27 * 4 * 2**2",
+            "expected": 432,
+            "unit": "π·cm² coefficient",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          },
+          {
+            "id": "Q9-C4",
+            "move_ref": "Q9-M3",
+            "expression": "432 / 144",
+            "expected": 3,
+            "unit": "ratio",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          }
+        ]
       },
       "scaffolds": [
         {
-          "prompt": "What physical quantity is conserved when solid metal is melted without loss?",
-          "text": "Volume is conserved: Total volume before melting = Total volume of all recast spheres together: V_large = n × V_small.",
+          "prompt": "Which quantity is conserved when metal is melted and recast without loss?",
+          "text": "The amount of material is represented here by equal total volume before and after recasting; surface area is not the conserved quantity.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
           "supports_move_ref": "Q9-M1"
         },
         {
-          "prompt": "What is the formula for the volume of a sphere of radius r?",
-          "text": "V = (4/3)πr³. Therefore, (4/3)πR³ = n × (4/3)πr³.",
+          "prompt": "What volume relation compares the original sphere with all of the smaller spheres together?",
+          "text": "Set original sphere volume equal to the number of small spheres times one small-sphere volume.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
           "supports_move_ref": "Q9-M1"
         },
         {
-          "prompt": "How does the ratio of radii determine the number of spheres?",
-          "text": "Dividing both sides by (4/3)π gives n = R³ / r³ = (R/r)³ = (6/2)³ = 3³.",
+          "prompt": "Cancel the common sphere-volume factors so the unknown count is expressed using only the radius ratio, but do not evaluate that ratio.",
+          "text": "This routes to the count while leaving the decisive numerical evaluation to you.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
-          "learner_stage": "FORMAL_MODEL",
-          "supports_move_ref": "Q9-M2"
-        },
-        {
-          "prompt": "Evaluate 3³ to find the number of spheres.",
-          "text": "3³ = 3 × 3 × 3 = 27 small spheres.",
-          "support_kind": "EXECUTE",
-          "reveals": "METHOD",
           "learner_stage": "CRUX",
           "supports_move_ref": "Q9-M2"
         },
         {
-          "prompt": "Why does total surface area change even though volume is conserved?",
-          "text": "Volume scales as r³ while surface area scales as r². Subdividing one solid into 27 smaller ones exposes previously internal metal, increasing total surface area by a factor of 3 (from 144π to 432π cm²).",
+          "prompt": "Why can surface area change while volume stays fixed?",
+          "text": "Subdividing a solid creates additional external boundary even though no material is lost.",
           "support_kind": "CONNECT",
-          "reveals": "METHOD",
+          "reveals": "CONCEPT",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "Q9-M4"
+        },
+        {
+          "prompt": "What independent check can confirm the count after you obtain it?",
+          "text": "Multiply one small-sphere volume by your count and verify that it matches the original sphere's volume.",
+          "support_kind": "CHECK",
+          "reveals": "CONCEPT",
           "learner_stage": "CHECKPOINT",
           "supports_move_ref": "Q9-M3"
         }
@@ -1338,32 +1472,52 @@
             "JUSTIFY"
           ],
           "basis": "Explaining that the combined product πr²h is an invariant group, making separate determination of r and h both unnecessary and indeterminate."
-        }
+        },
+        "grade9v3:calculation_audit": [
+          {
+            "id": "Q10-C1",
+            "move_ref": "Q10-M2",
+            "expression": "924 / 3",
+            "expected": 308,
+            "unit": "cm³",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          },
+          {
+            "id": "Q10-C2",
+            "move_ref": "Q10-M3",
+            "expression": "3 * 308",
+            "expected": 924,
+            "unit": "cm³",
+            "protected_result": false,
+            "method": "INDEPENDENT_REEVALUATION"
+          }
+        ]
       },
       "scaffolds": [
         {
-          "prompt": "How are the volume formulas of a cylinder and a cone related when they have the same base radius and height?",
-          "text": "V_cylinder = πr²h and V_cone = (1/3)πr²h. When r and h are the same, V_cone = (1/3) × V_cylinder.",
+          "prompt": "What geometric quantities are shared by the cone and cylinder?",
+          "text": "They have the same base radius and the same height, so the factor involving those two dimensions is common to both formulas.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
           "supports_move_ref": "Q10-M1"
         },
         {
-          "prompt": "Calculate the volume of the cone using V_cylinder = 924 cm³.",
-          "text": "V_cone = (1/3) × 924 = 308 cm³.",
-          "support_kind": "EXECUTE",
-          "reveals": "METHOD",
+          "prompt": "Compare the two volume formulas symbolically before using the given cylinder volume.",
+          "text": "The cone formula is a fixed fraction of the cylinder formula when radius and height are the same.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "Q10-M2"
+          "supports_move_ref": "Q10-M1"
         },
         {
-          "prompt": "Why is it unnecessary (and impossible) to calculate r and h separately?",
-          "text": "Both formulas depend only on the grouped product πr²h. Since πr²h = 924 is already known, separate values of r and h are not needed. Furthermore, one equation πr²h = 924 has infinitely many possible (r, h) pairs, all yielding the same 308 cm³.",
+          "prompt": "Use the symbolic ratio directly on the given cylinder volume; do not try to solve separate values of radius and height.",
+          "text": "Carry out the final division and explain why the shared grouped factor makes separate dimensions unnecessary.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "CRUX",
-          "supports_move_ref": "Q10-M3"
+          "supports_move_ref": "Q10-M1"
         }
       ],
       "answer": {
