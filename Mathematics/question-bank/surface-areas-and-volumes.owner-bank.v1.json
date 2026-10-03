@@ -55,32 +55,43 @@
           "primary": "APPLY",
           "secondary": [],
           "basis": "Routine execution of known total surface area formula on a standard regular solid."
-        }
+        },
+        "grade9v3:calculation_audit": [
+          {
+            "id": "Q1-C1",
+            "move_ref": "Q1-M2",
+            "expression": "6 * 7**2",
+            "expected": 294,
+            "unit": "cm²",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          }
+        ]
       },
       "scaffolds": [
         {
-          "prompt": "How many faces does a cube have and what is the area of each face?",
-          "text": "A cube has 6 congruent square faces. For edge length a = 7 cm, the area of one face is a² = 7² = 49 cm².",
+          "prompt": "What measure is the question asking for: boundary area, lateral area, or volume?",
+          "text": "It asks for the area of all outer faces of the cube. Keep area and volume separate.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
           "supports_move_ref": "Q1-M1"
         },
         {
-          "prompt": "What formula gives the total surface area of all six faces together?",
-          "text": "Total surface area is the sum of all 6 faces: TSA = 6 × a².",
+          "prompt": "What fact about a cube lets you build total surface area from one face?",
+          "text": "All six faces are congruent squares, so total surface area is built from six equal face areas.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
           "supports_move_ref": "Q1-M1"
         },
         {
-          "prompt": "Calculate the total area by multiplying 6 by 49.",
-          "text": "Multiply: 6 × 49 = 294 cm².",
-          "support_kind": "EXECUTE",
-          "reveals": "METHOD",
+          "prompt": "Write the total-surface relation in terms of the edge length, then stop before evaluating it.",
+          "text": "Use the six-face relation symbolically. Carry out the substitution and arithmetic yourself.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
           "learner_stage": "CRUX",
-          "supports_move_ref": "Q1-M2"
+          "supports_move_ref": "Q1-M1"
         }
       ],
       "answer": {
@@ -173,32 +184,52 @@
           "primary": "APPLY",
           "secondary": [],
           "basis": "Executing the curved surface area procedure under the condition that diameter must be converted to radius."
-        }
+        },
+        "grade9v3:calculation_audit": [
+          {
+            "id": "Q2-C1",
+            "move_ref": "Q2-M1",
+            "expression": "14 / 2",
+            "expected": 7,
+            "unit": "cm",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          },
+          {
+            "id": "Q2-C2",
+            "move_ref": "Q2-M2",
+            "expression": "2 * (22/7) * 7 * 20",
+            "expected": 880,
+            "unit": "cm²",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          }
+        ]
       },
       "scaffolds": [
         {
-          "prompt": "What geometric parameter of the base is given, and what parameter does the formula require?",
-          "text": "The problem states diameter = 14 cm. The standard curved surface area formula requires radius r = d / 2 = 7 cm.",
+          "prompt": "Which given length is a diameter, and which length does the usual curved-surface formula use?",
+          "text": "The 14 cm measurement is a diameter. Keep diameter and radius distinct before choosing a formula.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
           "supports_move_ref": "Q2-M1"
         },
         {
-          "prompt": "What is the formula for the curved surface area of a cylinder?",
-          "text": "Curved surface area = 2πrh (which also equals πdh, base perimeter times height).",
+          "prompt": "How are diameter and radius related?",
+          "text": "Radius is half the diameter; this converts the given measurement into the parameter used by the standard curved-surface relation.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
           "supports_move_ref": "Q2-M1"
         },
         {
-          "prompt": "Evaluate 2 × (22/7) × 7 × 20.",
-          "text": "Cancel 7 with 7: 2 × 22 × 20 = 44 × 20 = 880 cm².",
-          "support_kind": "EXECUTE",
-          "reveals": "METHOD",
+          "prompt": "Set up the diameter-to-radius conversion and choose a curved-surface relation. Stop before the final multiplication.",
+          "text": "Use the converted radius with the given height, then evaluate the area yourself.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
           "learner_stage": "CRUX",
-          "supports_move_ref": "Q2-M2"
+          "supports_move_ref": "Q2-M1"
         }
       ],
       "answer": {
@@ -296,32 +327,61 @@
           "primary": "MODEL",
           "secondary": [],
           "basis": "Formulating the mathematical boundary model for an open container: curved surface plus exactly one base."
-        }
+        },
+        "grade9v3:calculation_audit": [
+          {
+            "id": "Q3-C1",
+            "move_ref": "Q3-M2",
+            "expression": "2 * (22/7) * 7 * 18",
+            "expected": 792,
+            "unit": "cm²",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          },
+          {
+            "id": "Q3-C2",
+            "move_ref": "Q3-M2",
+            "expression": "(22/7) * 7**2",
+            "expected": 154,
+            "unit": "cm²",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          },
+          {
+            "id": "Q3-C3",
+            "move_ref": "Q3-M2",
+            "expression": "792 + 154",
+            "expected": 946,
+            "unit": "cm²",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          }
+        ]
       },
       "scaffolds": [
         {
-          "prompt": "How many circular bases does an open bucket have?",
-          "text": "An open bucket has only ONE circular base (the bottom). The top is open so water can enter, so do not include two bases.",
+          "prompt": "What physical surfaces exist on a bucket that is open at the top?",
+          "text": "Treat the top as an opening, not as a sheet-metal face. Inventory the curved wall and the physical bottom.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
           "supports_move_ref": "Q3-M1"
         },
         {
-          "prompt": "What formula represents the area of the curved wall plus one base?",
-          "text": "Area = Curved Surface Area + Base Area = 2πrh + πr² = πr(2h + r).",
+          "prompt": "What rule should you use before writing any surface-area formula?",
+          "text": "Count only material boundaries that actually exist in the object. Open or absent faces contribute no area.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
           "supports_move_ref": "Q3-M1"
         },
         {
-          "prompt": "Substitute r = 7 cm, h = 18 cm, and π = 22/7 into πr(2h + r).",
-          "text": "Area = (22/7) × 7 × (2×18 + 7) = 22 × (36 + 7) = 22 × 43 = 946 cm².",
-          "support_kind": "EXECUTE",
-          "reveals": "METHOD",
+          "prompt": "Mark the curved wall and one bottom base as the countable pieces, then stop.",
+          "text": "Build and evaluate the question-specific area sum from that inventory yourself.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
           "learner_stage": "CRUX",
-          "supports_move_ref": "Q3-M2"
+          "supports_move_ref": "Q3-M1"
         }
       ],
       "answer": {
@@ -422,46 +482,66 @@
           "primary": "SYNTHESIZE",
           "secondary": [],
           "basis": "Coordinating Pythagorean geometry for intermediate parameter l with curved surface calculation on an open boundary."
-        }
+        },
+        "grade9v3:calculation_audit": [
+          {
+            "id": "Q4-C1",
+            "move_ref": "Q4-M1",
+            "expression": "(7**2 + 24**2)**0.5",
+            "expected": 25,
+            "unit": "m",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          },
+          {
+            "id": "Q4-C2",
+            "move_ref": "Q4-M3",
+            "expression": "(22/7) * 7 * 25",
+            "expected": 550,
+            "unit": "m²",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          }
+        ]
       },
       "scaffolds": [
         {
-          "prompt": "What right triangle exists inside a cone relating radius, vertical height, and slant height?",
-          "text": "The axis of the cone, base radius, and slant height form a right-angled triangle with hypotenuse l: l² = r² + h².",
+          "prompt": "Which length is vertical and which different length runs along the sloping canvas?",
+          "text": "The vertical height and slant height are different. A central cross-section makes a right triangle with radius, height, and slant length.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
           "supports_move_ref": "Q4-M1"
         },
         {
-          "prompt": "Calculate the numerical value of slant height l.",
-          "text": "l = √(7² + 24²) = √(49 + 576) = √625 = 25 m.",
-          "support_kind": "EXECUTE",
-          "reveals": "METHOD",
+          "prompt": "Which relationship connects radius, vertical height, and slant height?",
+          "text": "Use the Pythagorean relationship on the right-triangle cross-section before considering canvas area.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
           "supports_move_ref": "Q4-M1"
         },
         {
-          "prompt": "Does the open floor of a tent use canvas?",
-          "text": "No. The base is open ground, so canvas is required only for the curved conical surface area CSA = πrl.",
+          "prompt": "Set up the slant-height calculation using the two perpendicular lengths, but do not evaluate it yet.",
+          "text": "This gets you to the needed slant length while leaving the numerical work to you.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "Q4-M1"
+        },
+        {
+          "prompt": "Once the slant length is known, which part of the cone is made of canvas?",
+          "text": "Because the base is open, only the curved conical surface is included.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "FORMAL_MODEL",
           "supports_move_ref": "Q4-M2"
         },
         {
-          "prompt": "Evaluate canvas area = πrl with r = 7 m and l = 25 m.",
-          "text": "Canvas area = (22/7) × 7 × 25 = 22 × 25 = 550 m².",
-          "support_kind": "EXECUTE",
-          "reveals": "METHOD",
-          "learner_stage": "CRUX",
-          "supports_move_ref": "Q4-M3"
-        },
-        {
-          "prompt": "Verify the intermediate steps before finalizing.",
-          "text": "Check: 7-24-25 is a standard Pythagorean triple; 22 × 25 = 550 m².",
-          "support_kind": "CONNECT",
-          "reveals": "METHOD",
+          "prompt": "What two checks should your final pair of answers satisfy?",
+          "text": "The slant height must exceed the vertical height, and the canvas area must use square metres.",
+          "support_kind": "CHECK",
+          "reveals": "CONCEPT",
           "learner_stage": "CHECKPOINT",
           "supports_move_ref": "Q4-M4"
         }
@@ -572,32 +652,43 @@
           "primary": "EXPLAIN",
           "secondary": [],
           "basis": "Demands explicit justification of why the circular base is excluded for an open bowl alongside curved surface evaluation."
-        }
+        },
+        "grade9v3:calculation_audit": [
+          {
+            "id": "Q5-C1",
+            "move_ref": "Q5-M2",
+            "expression": "2 * (22/7) * 10.5**2",
+            "expected": 693,
+            "unit": "cm²",
+            "protected_result": true,
+            "method": "INDEPENDENT_REEVALUATION"
+          }
+        ]
       },
       "scaffolds": [
         {
-          "prompt": "What fraction of a complete sphere's surface is the inner surface of a hemisphere?",
-          "text": "A complete sphere has surface area 4πr². A hemisphere has curved surface area exactly half of that: 2πr².",
+          "prompt": "What does 'inner surface' mean for a bowl with an open circular mouth?",
+          "text": "The material surface is the curved inside of the hemisphere. The circular mouth is an opening, not a flat material disk.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
           "supports_move_ref": "Q5-M1"
         },
         {
-          "prompt": "Calculate 2πr² using r = 10.5 cm = 21/2 cm.",
-          "text": "Inner area = 2 × (22/7) × (21/2) × (21/2) = 11 × 3 × 21 = 33 × 21 = 693 cm².",
-          "support_kind": "EXECUTE",
-          "reveals": "METHOD",
+          "prompt": "How is a hemisphere's curved surface related to a full sphere's surface?",
+          "text": "The curved hemispherical surface is one half of the sphere's surface; no flat circular face is added for an open bowl.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "Q5-M2"
+          "supports_move_ref": "Q5-M1"
         },
         {
-          "prompt": "Why is the circular base not included in the calculation?",
-          "text": "A bowl is open at the top to hold liquid or food; the circular base is an open aperture, not solid material. Adding πr² would seal the bowl shut.",
+          "prompt": "Start from the full-sphere surface relation and take the appropriate half, then stop before substituting the radius.",
+          "text": "Evaluate the curved area and write the explanation for excluding the opening yourself.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "CRUX",
-          "supports_move_ref": "Q5-M3"
+          "supports_move_ref": "Q5-M1"
         }
       ],
       "answer": {
