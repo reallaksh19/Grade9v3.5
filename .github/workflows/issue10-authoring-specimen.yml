@@ -1,0 +1,81 @@
+name: issue10-authoring-cold-run
+
+on:
+  push:
+    branches:
+      - feat/minimal-prompt-authoring-intake
+    paths:
+      - evidence/authoring/issue10-surface-areas-volumes/**
+      - .github/workflows/issue10-authoring-specimen.yml
+  workflow_dispatch:
+
+jobs:
+  render-specimen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install dependencies
+        run: |
+          pip install --quiet jsonschema pypdf
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Materialize Issue 10 inputs
+        run: python3 evidence/authoring/issue10-surface-areas-volumes/build_specimen.py
+      - name: Validate owner custody and reference-depth Core2 support
+        run: |
+          python3 Shared/tools/owner_bank.py check \
+            evidence/authoring/issue10-surface-areas-volumes/generated/owner.bank.json
+      - name: Validate package schema
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+          schema=json.loads(Path('Shared/library/package.schema.json').read_text(encoding='utf-8'))
+          package=json.loads(Path('evidence/authoring/issue10-surface-areas-volumes/generated/package.v1.json').read_text(encoding='utf-8'))
+          Draft202012Validator(schema).validate(package)
+          print('package schema: PASS')
+          PY
+      - name: Render governed Core1A and Core2
+        run: |
+          rm -rf /tmp/issue10-sav
+          python3 Shared/tools/render_core.py build \
+            --manifest evidence/authoring/issue10-surface-areas-volumes/generated/product.manifest.json \
+            --out /tmp/issue10-sav \
+            --mode PAGES \
+            --draft
+          test -f /tmp/issue10-sav/core1a.html
+          test -f /tmp/issue10-sav/core2.html
+      - name: Capture quality-gate evidence
+        continue-on-error: true
+        run: |
+          python3 Shared/tools/quality_gate.py /tmp/issue10-sav \
+            --subject Mathematics \
+            --product-id EVIDENCE-MAT-ISSUE10-SAV \
+            --report /tmp/issue10-sav/quality-gate.json
+      - name: Tablet browser audit
+        continue-on-error: true
+        run: |
+          node tools/site-audit/core-page-audit.mjs \
+            /tmp/issue10-sav \
+            --profile tablet-12.7 \
+            --http-root /tmp/issue10-sav \
+            --json /tmp/issue10-sav/tablet-audit.json
+      - name: Record exact head
+        if: always()
+        run: git rev-parse HEAD > /tmp/issue10-sav/exact-head.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: issue10-surface-areas-volumes-cold-run
+          path: |
+            /tmp/issue10-sav
+            evidence/authoring/issue10-surface-areas-volumes/generated
+          if-no-files-found: error
+          retention-days: 14
