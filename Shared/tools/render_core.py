@@ -2305,8 +2305,8 @@ def pdf_control(href: str, accessible_name: str = PDF_ACCESSIBLE_NAME) -> str:
 
 def shell_header(home_href: str, question_bank_href: str, pdf_href: str | None = None, pdf_name: str = PDF_ACCESSIBLE_NAME) -> str:
     """The shared tablet-shell header. Used by every rendered page."""
-    pdf_btn = f'<a class="g9-header-btn" href="{esc(pdf_href)}" title="{esc(pdf_name)}">PDF</a>' if pdf_href else ""
-    return (f'<header class="g9-shell-header"><div class="g9-header-inner">'
+    pdf_btn = f'<a class="g9-header-btn" data-g9-action="pdf" href="{esc(pdf_href)}" title="{esc(pdf_name)}">PDF</a>' if pdf_href else ""
+    return (f'<header class="g9-shell-header" data-g9-shell-header><div class="g9-header-inner">'
             f'<a href="{esc(home_href)}" class="g9-brand"><span class="logo-icon">⚡</span><span class="brand-title">Grade9V3.5</span><span class="g9-brand-badge">Learner Platform</span></a>'
             f'<nav class="g9-header-nav" aria-label="Portal Navigation">'
             f'<a href="{esc(home_href)}">Home</a>'
