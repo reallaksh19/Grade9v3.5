@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:grade9v3:objective-review:matrix:1.0.0",
+  "title": "Difficulty × Demand matrix",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "matrix_id", "bands", "demands", "cells"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "matrix_id": {"const": "QUESTION-DEMAND-MATRIX-V1"},
+    "bands": {"const": ["D1", "D2", "D3", "D4"]},
+    "demands": {"const": ["RCL", "CON", "REP", "PRC", "MOD", "PRF", "EVD"]},
+    "cells": {
+      "type": "array",
+      "minItems": 28,
+      "maxItems": 28,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["template_id", "difficulty_band", "demand_family"],
+        "properties": {
+          "template_id": {"type": "string", "pattern": "^QRT-D[1-4]-(RCL|CON|REP|PRC|MOD|PRF|EVD)$"},
+          "difficulty_band": {"enum": ["D1", "D2", "D3", "D4"]},
+          "demand_family": {"enum": ["RCL", "CON", "REP", "PRC", "MOD", "PRF", "EVD"]}
+        }
+      }
+    }
+  },
+  "description": "Schema validates shape; Shared/tools/objective_review.py additionally enforces unique and complete 4×7 coverage and template-id consistency."
+}
