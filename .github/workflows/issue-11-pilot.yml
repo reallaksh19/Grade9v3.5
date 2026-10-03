@@ -112,17 +112,5 @@ jobs:
           FINAL_SHA="$(git rev-parse HEAD)"
           BEFORE="$(python -c 'import json; print(json.load(open("evidence/pilots/issue-11/gate-before.json"))["verdict"])')"
           AFTER="$(python -c 'import json; print(json.load(open("evidence/pilots/issue-11/gate-after.json"))["verdict"])')"
-          gh issue comment 11 --repo reallaksh19/Grade9v3.5 --body "## Pilot execution artifact commit
-
-Final generated-artifact commit: `$FINAL_SHA`
-
-Governed learner HTML:
-- `evidence/pilots/issue-11/render/core2.html`
-- `evidence/pilots/issue-11/render/core1a.html`
-
-Machine QRT evidence:
-- `evidence/pilots/issue-11/qrt-review-evidence.json`
-
-Real gate verdicts: baseline **$BEFORE** → final **$AFTER**.
-
-This is an execution record, not release self-certification. Independent final review remains required."
+          printf '## Pilot execution artifact commit\n\nFinal generated-artifact commit: \`%s\`\n\nGoverned learner HTML:\n- \`evidence/pilots/issue-11/render/core2.html\`\n- \`evidence/pilots/issue-11/render/core1a.html\`\n\nMachine QRT evidence:\n- \`evidence/pilots/issue-11/qrt-review-evidence.json\`\n\nReal gate verdicts: baseline **%s** → final **%s**.\n\nThis is an execution record, not release self-certification. Independent final review remains required.\n' "$FINAL_SHA" "$BEFORE" "$AFTER" > /tmp/issue11-comment.md
+          gh issue comment 11 --repo reallaksh19/Grade9v3.5 --body-file /tmp/issue11-comment.md
