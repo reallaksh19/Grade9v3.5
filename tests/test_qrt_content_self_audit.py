@@ -8,6 +8,13 @@ from pathlib import Path
 from Shared.tools import qrt_content_self_audit as audit
 
 
+def checks(names):
+    return {
+        name: {"result": "PASS", "evidence": f"Evidence for {name}."}
+        for name in names
+    }
+
+
 class QRTContentSelfAuditTests(unittest.TestCase):
     def base_run(self):
         return {
@@ -23,9 +30,9 @@ class QRTContentSelfAuditTests(unittest.TestCase):
                             "calculation_refs": [],
                             "self_audit": {
                                 "status": "PASS",
-                                "evidence": ["Does not reveal the final expression."],
+                                "summary_evidence": ["Does not reveal the final expression."],
                                 "basis_refs": ["Q1.W", "QRT-APPLY-D1.H1"],
-                                "checks": {name: "PASS" for name in audit.HINT_CHECKS},
+                                "checks": checks(audit.HINT_CHECKS),
                             },
                         }
                     ],
@@ -39,9 +46,9 @@ class QRTContentSelfAuditTests(unittest.TestCase):
                             "calculation_refs": ["C1"],
                             "self_audit": {
                                 "status": "PASS",
-                                "evidence": ["Square area is 7×7."],
+                                "summary_evidence": ["The move is anchored to the cube dimensions."],
                                 "basis_refs": ["Q1.stem", "Q1.C1"],
-                                "checks": {name: "PASS" for name in audit.SOLUTION_CHECKS},
+                                "checks": checks(audit.SOLUTION_CHECKS),
                             },
                         }
                     ],
@@ -52,9 +59,9 @@ class QRTContentSelfAuditTests(unittest.TestCase):
                             "result": "49 cm2",
                             "self_audit": {
                                 "status": "PASS",
-                                "evidence": ["Independent multiplication check: 7×7=49."],
+                                "summary_evidence": ["Independent multiplication check: 7×7=49."],
                                 "basis_refs": ["Q1.stem"],
-                                "checks": {name: "PASS" for name in audit.CALCULATION_CHECKS},
+                                "checks": checks(audit.CALCULATION_CHECKS),
                             },
                         }
                     ],
@@ -72,6 +79,14 @@ class QRTContentSelfAuditTests(unittest.TestCase):
             audit.validate_content_self_audits(run),
         )
 
+    def test_every_named_check_requires_its_own_evidence(self):
+        run = self.base_run()
+        run["questions"][0]["hints"][0]["self_audit"]["checks"]["w_protection"]["evidence"] = ""
+        self.assertIn(
+            "SELF_AUDIT_CHECK_EVIDENCE_MISSING: Q1:HINT:H1:w_protection",
+            audit.validate_content_self_audits(run),
+        )
+
     def test_solution_calculation_reference_must_resolve(self):
         run = self.base_run()
         run["questions"][0]["solution_steps"][0]["calculation_refs"] = ["NOPE"]
@@ -82,7 +97,7 @@ class QRTContentSelfAuditTests(unittest.TestCase):
 
     def test_failed_calculation_check_blocks(self):
         run = self.base_run()
-        run["questions"][0]["calculations"][0]["self_audit"]["checks"]["units_dimensions"] = "FAIL"
+        run["questions"][0]["calculations"][0]["self_audit"]["checks"]["units_dimensions"]["result"] = "FAIL"
         self.assertIn(
             "SELF_AUDIT_CHECK_FAILED: Q1:CALCULATION:C1:units_dimensions",
             audit.validate_content_self_audits(run),
