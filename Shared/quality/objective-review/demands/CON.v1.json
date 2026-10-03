@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "id": "CON",
+  "name": "Conceptual / causal understanding",
+  "objective": "Explain, predict or distinguish using the governing concept and its causal or logical mechanism rather than formula substitution alone.",
+  "choose_when": "The decisive demand is explaining why, predicting a qualitative change, or distinguishing concepts by mechanism or condition.",
+  "do_not_choose_when": "Do not use when the task is mainly retrieval, translation, routine execution, model selection, formal proof, or experimental evidence judgement.",
+  "slots": {
+    "X": "the condition, mechanism or conceptual distinction likely to be misread",
+    "Y": "a demonstrated principle, causal relation or familiar case that anchors the explanation",
+    "Z": "the causal or logical bridge from Y to the case described by X",
+    "W": "the learner's prediction, explanation or conceptual conclusion"
+  },
+  "hint_objectives": {
+    "REPRESENTATION": "Clarify the changed condition, relevant mechanism or conceptual distinction in X.",
+    "KEY_CONCEPT": "Correlate X with a governing principle or familiar causal case Y.",
+    "CRUX": "Open the causal or logical route to Z while leaving the prediction or explanation W to the learner."
+  },
+  "figure_policy": {"requirement": "CONDITIONAL", "job": "When the mechanism is spatial, temporal or state-based, show the relevant states and changed condition; otherwise a causal table or symbolic state may be better."},
+  "misconception_families": ["surface-feature reasoning", "correlation mistaken for cause", "condition of validity ignored"],
+  "solution_architecture": ["name the governing concept", "identify the relevant condition", "explain the mechanism", "apply it to the case", "check a contrasting or boundary case"],
+  "validation_strategy_refs": ["CONTRAST_CASE", "BOUNDARY_CASE"],
+  "core1a_extraction_signals": ["governing mechanism", "conditions of validity", "canonical contrasting case", "recurring conceptual wrong idea"],
+  "adjacent_demands": ["RCL", "MOD", "EVD"]
+}
