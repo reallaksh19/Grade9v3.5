@@ -1,0 +1,1229 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-g9-shell data-g9-role="CORE1A" data-g9-mode="PAGES" data-g9-topic="golden-core1a-specimen">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0">
+  <title>Cognitive Demand Calibration Specimen: Multi-Demand Conceptual Construction Calibration · Construction (Core 1A) · Grade9V3.5</title>
+
+  <!-- Local KaTeX Typography (Offline Guaranteed & Multi-CDN Fallback) -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <link rel="stylesheet" href="../../public/vendor/katex/0.16.8/katex.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../public/vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <script src="../../public/vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Grade9V3.5 Design System & 12.7" Tablet Ergonomics -->
+  <link rel="stylesheet" href="../../css/modern-learner.css">
+  <link rel="stylesheet" href="../../css/site.css">
+  <link rel="stylesheet" href="../../css/tablet-12-7.css">
+
+  <script>
+    function renderAllMath(target) {
+      const el = target || document.body;
+      if (window.renderMathInElement) {
+        try {
+          window.renderMathInElement(el, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '\\[', right: '\\]', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\\(', right: '\\)', display: false }
+            ],
+            throwOnError: false
+          });
+        } catch (e) {
+          console.warn('KaTeX render error:', e);
+        }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => renderAllMath());
+    window.addEventListener('load', () => renderAllMath());
+  </script>
+
+  <style>
+    [hidden] { display: none !important; }
+    
+    /* 12.7" Tablet 60fr / 40fr Split Architecture */
+    @media (min-width: 1100px) {
+      article[data-g9-role="CORE1A"] .g9-split {
+        display: grid;
+        grid-template-columns: minmax(0, 60fr) minmax(0, 40fr);
+        gap: 24px;
+        align-items: start;
+      }
+      article[data-g9-role="CORE1A"] .g9-split > .g9-col-support {
+        position: sticky;
+        top: 80px;
+        max-height: calc(100vh - 96px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+      }
+    }
+    @media (max-width: 1099px) {
+      article[data-g9-role="CORE1A"] .g9-split {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+
+    /* Continuum Substrip Scrollbar Polish */
+    .g9-continuum-substrip {
+      background: var(--card, #ffffff);
+      border-bottom: 1px solid var(--line, #e2e8f0);
+      position: sticky;
+      top: 56px;
+      z-index: 95;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .g9-substrip-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 8px 16px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      align-items: center;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .g9-substrip-inner::-webkit-scrollbar { display: none; }
+
+    .g9-substrip-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      background: var(--bg, #f1f5f9);
+      color: var(--muted, #64748b);
+      border: 1px solid var(--line, #e2e8f0);
+      min-height: 36px;
+      transition: all 0.15s ease;
+    }
+    .g9-substrip-pill:hover {
+      background: var(--card, #ffffff);
+      color: var(--fg, #0f172a);
+      border-color: var(--accent, #2563eb);
+    }
+    .g9-substrip-pill.active {
+      background: var(--accent, #2563eb);
+      color: #ffffff;
+      border-color: var(--accent, #2563eb);
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+    }
+
+    /* Step Cards Styling */
+    .g9-c-step-cards ol {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      counter-reset: g9c;
+      display: grid;
+      gap: 12px;
+    }
+    .g9-c-step-cards ol > li {
+      counter-increment: g9c;
+      position: relative;
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 14px;
+      background: var(--card, #ffffff);
+      padding: 14px 16px 14px 54px;
+    }
+    .g9-c-step-cards ol > li::before {
+      content: counter(g9c);
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      display: grid;
+      place-items: center;
+      width: 2em;
+      height: 2em;
+      border-radius: 50%;
+      background: #e0e7ff;
+      color: #3730a3;
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+    .g9-c-step-cards li em {
+      display: inline-block;
+      min-width: 6rem;
+      color: var(--muted, #64748b);
+      font-style: normal;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* Staged SVG Container */
+    .g9-c-staged-visual {
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 16px;
+      background: var(--soft, #f8fafc);
+      padding: 16px;
+    }
+    .g9-stage-stepper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .g9-stage-stepper button {
+      min-height: 40px;
+      padding: 6px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--line, #cbd5e1);
+      background: var(--card, #ffffff);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .g9-stage-stepper button:hover {
+      background: #eff6ff;
+      border-color: #3b82f6;
+    }
+
+    /* 1-2-3 Triad */
+    .g9-triad {
+      list-style: none;
+      margin: 8px 0 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+    .g9-triad > li {
+      display: grid;
+      gap: 2px;
+      border-left: 4px solid var(--line, #cbd5e1);
+      padding: 6px 12px;
+      background: var(--card, #ffffff);
+      border-radius: 0 8px 8px 0;
+    }
+    .g9-triad > li[data-g9-triad-role="CHECK"] { border-color: #0284c7; }
+    .g9-triad > li[data-g9-triad-role="APPLY"] { border-color: #16a34a; }
+    .g9-triad > li[data-g9-triad-role="CONNECT"] { border-color: #7c3aed; }
+    .g9-triad-head { font-size: 0.82rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted, #64748b); }
+
+    /* Trap & Repair */
+    .g9-c-trap-card {
+      background: #fff1f2;
+      border: 1px solid #fecdd3;
+      border-radius: 14px;
+      padding: 14px 16px;
+      color: #9f1239;
+    }
+    .g9-c-trap-card h4 { margin: 0 0 6px; font-size: 0.92rem; font-weight: 800; color: #be123c; }
+
+    /* Worked Example */
+    .g9-c-worked-card {
+      border: 1px solid var(--line, #e2e8f0);
+      border-left: 4px solid #2563eb;
+      border-radius: 14px;
+      background: var(--soft, #f8fafc);
+      padding: 16px;
+      margin-top: 14px;
+    }
+
+    /* Metadata Strip */
+    [data-g9-meta-strip] {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 10px 0;
+    }
+    [data-g9-meta-item] {
+      display: inline-flex;
+      gap: 4px;
+      align-items: baseline;
+      padding: 3px 10px;
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 999px;
+      background: var(--bg, #f8fafc);
+      font-size: 0.8rem;
+    }
+    [data-g9-meta-item] strong { font-weight: 700; color: var(--muted, #64748b); }
+
+    /* Cognitive Demand & Review Template Badges */
+    .g9-pill-demand {
+      background: #fdf2f8;
+      color: #9d174d;
+      border: 1px solid #fbcfe8;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 1px 8px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+    }
+    .g9-pill-review-template {
+      background: #f0fdf4;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+      font-weight: 700;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.76rem;
+      display: inline-flex;
+      align-items: center;
+      padding: 1px 8px;
+      border-radius: 999px;
+    }
+    .g9-pill-concept-diff {
+      background: #eff6ff;
+      color: #1e40af;
+      border: 1px solid #bfdbfe;
+      font-weight: 700;
+      padding: 1px 8px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+    }
+    .g9-demand-scaffold-summary {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--muted, #64748b);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .g9-demand-scaffold-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .g9-scaffold-cell {
+      background: var(--card, #ffffff);
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 0.82rem;
+    }
+    .g9-scaffold-cell strong {
+      display: block;
+      color: var(--muted, #64748b);
+      font-size: 0.74rem;
+      margin-bottom: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    /* Model Contract & Entry Assumptions Tile */
+    .g9-c-tile {
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 12px;
+      background: var(--soft, #f8fafc);
+      padding: 12px 16px;
+      margin: 12px 0;
+    }
+    .g9-c-tile h4 { margin: 0 0 6px; font-size: 0.88rem; font-weight: 800; color: #475569; }
+    .g9-c-tile ul { margin: 0; padding-left: 18px; }
+
+    /* Exit Recall & Attempt Box */
+    .g9-c-recall-card {
+      border: 1.5px solid var(--line, #cbd5e1);
+      border-radius: 14px;
+      background: var(--soft, #f8fafc);
+      padding: 16px;
+      margin-top: 16px;
+    }
+    .g9-attempt {
+      background: var(--card, #ffffff);
+      border: 1px solid var(--line, #cbd5e1);
+      border-radius: 10px;
+      padding: 14px;
+      margin: 10px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .g9-attempt textarea {
+      width: 100%;
+      border: 1.5px solid var(--line, #cbd5e1);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.95rem;
+      box-sizing: border-box;
+      background: #ffffff;
+    }
+    .g9-attempt button[data-g9-commit] {
+      align-self: flex-start;
+      min-height: 38px;
+      padding: 8px 18px;
+      border-radius: 8px;
+      background: #2563eb;
+      color: #ffffff;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(37,99,235,0.2);
+    }
+    .g9-paper {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--muted, #64748b);
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body data-core="CORE1A" data-blueprint-ref="BP-CORE1A-CONSTRUCTION@1.4.0">
+  <!-- 1. Standardized Portal Header -->
+  <header class="g9-shell-header">
+    <div class="g9-header-inner">
+      <a class="g9-brand" href="../../index.html">
+        <span class="logo-icon">⚡</span>
+        <span class="brand-title">Grade9V3.5</span>
+        <span class="g9-brand-badge">Learner Platform</span>
+      </a>
+      <nav class="g9-header-nav" aria-label="Portal Navigation">
+        <a href="../../index.html">Home</a>
+        <a href="../../physics/index.html" class="active">Physics</a>
+        <a href="../../chemistry/index.html" class="">Chemistry</a>
+        <a href="../../mathematics/index.html" class="">Mathematics</a>
+        <a href="../../question-bank/index.html">Question Bank</a>
+        <a href="../../atlas/index.html">Atlas &amp; Rungs</a>
+      </nav>
+      <div class="g9-header-actions">
+        <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)">
+          <span class="g9-btn-icon">🔍</span>
+          <span class="g9-btn-text">Search</span>
+        </button>
+        <button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings">
+          <span class="g9-btn-icon">🌙 / ☀️</span>
+          <span class="g9-btn-text">Display</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. Breadcrumb Navigation -->
+  <nav class="g9-breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="g9-breadcrumbs">
+      <a href="../../index.html">Home</a> <span>/</span>
+      <a href="../index.html">Physics</a> <span>/</span>
+      <a href="index.html">Cognitive Demand Calibration Specimen</a> <span>/</span>
+      <span class="current">Core 1A: Construction</span>
+    </div>
+  </nav>
+
+  <!-- 3. Learning Continuum Substrip -->
+  <div class="g9-continuum-substrip" role="navigation" aria-label="Cognitive Demand Calibration Specimen Continuum">
+    <div class="g9-substrip-inner">
+      <a href="index.html" class="g9-substrip-pill">← Topic Dashboard</a>
+      <a href="core1.html" class="g9-substrip-pill">Core 1: Foundations</a>
+      <a href="core1a.html" class="g9-substrip-pill active">Core 1A: Construction</a>
+      <a href="core1b.html" class="g9-substrip-pill">Core 1B: Reconstruction</a>
+      <a href="core2.html" class="g9-substrip-pill">Core 2: Question Bank</a>
+      <a href="core2a.html" class="g9-substrip-pill">Core 2A: Methods</a>
+      <a href="core2b.html" class="g9-substrip-pill">Core 2B: Challenge</a>
+      
+    </div>
+  </div>
+
+  <!-- 4. Main Learning Construction Container -->
+  <main class="g9-main-container">
+
+    <!-- Section 0: Declared Conventions First -->
+    <section class="g9-core1a-book" data-g9-block="conventions">
+      <h2>Declared Conventions &amp; Reference Rules</h2>
+      <p class="g9-prov">Established invariants required before any quantity or identity is evaluated:</p>
+      <ul>
+        
+        <li><strong>Cartesian Reference Frame:</strong> Displacements along the surface are chosen positive in the direction of motion; upward perpendicular is positive normal.</li>
+        
+        <li><strong>Sign and Invariant Energy Conventions:</strong> Potential energy is referenced to zero at the lowest point of interest ($U(0) = 0$). Work done by dissipative forces is zero in frictionless models.</li>
+        
+      </ul>
+    </section>
+
+    <!-- SECTION LOOP: Construction Units (Repeat for each microtopic) -->
+    
+    <article id="CU-PHY-INCLINE-ENERGY-01" class="g9-cu" data-g9-role="CORE1A" data-g9-unit="CU-PHY-INCLINE-ENERGY-01" data-g9-demand="MULTISTEP_REASONING" data-g9-review-template="CRT-PHY-CONSTRUCTION" data-g9-concept-difficulty="HARD">
+      
+      <!-- Unit Header -->
+      <section class="blueprint-slot slot-identity">
+        <div class="g9-unit-head">
+          <span class="g9-unit-no">1</span>
+          <h3>Mechanical Energy Conservation on a Frictionless Incline</h3>
+          <span class="g9-pill g9-pill-band" data-g9-band="D4">D4 · High-Transfer Principle</span>
+        </div>
+        <div data-g9-meta-strip data-g9-meta-role="CORE1A">
+          <span data-g9-meta-item><strong>Subject:</strong> Physics</span>
+          <span data-g9-meta-item><strong>Topic:</strong> Cognitive Demand Calibration Specimen</span>
+          <span data-g9-meta-item><strong>Concept difficulty:</strong> <span class="g9-pill g9-pill-concept-diff" data-g9-difficulty="HARD">Hard concept</span></span>
+          <span data-g9-meta-item><strong>Cognitive demand:</strong> <span class="g9-pill g9-pill-demand" data-g9-demand="MULTISTEP_REASONING">⛓️ Model & multi-step chain</span></span>
+          
+          <span data-g9-meta-item><strong>Review rubric:</strong> <span class="g9-pill g9-pill-review-template">CRT-PHY-CONSTRUCTION</span></span>
+          
+        </div>
+        <p class="g9-prov">Inferential Leap: <em>Proving that normal contact force does strictly zero work, so that mechanical energy depends solely on vertical altitude change $h = s \sin\theta$ independent of path length or mass.</em></p>
+        
+        <div class="g9-component g9-c-demand-scaffold" data-g9-component="DEMAND_SCAFFOLDING" style="margin: 8px 0 14px;">
+          <details style="background: var(--bg, #f8fafc); border: 1px solid var(--line, #cbd5e1); border-radius: 8px; padding: 6px 12px;">
+            <summary class="g9-demand-scaffold-summary">
+              <span>Demand Scaffolding ($X, Y, Z, W$) · Cognitive Architecture ▾</span>
+            </summary>
+            <div class="g9-demand-scaffold-grid">
+              <div class="g9-scaffold-cell"><strong>Target Concept ($X$)</strong><span>Conservation of mechanical energy on an inclined plane</span></div>
+              <div class="g9-scaffold-cell"><strong>Entry Foundation ($Y$)</strong><span>1D work-energy theorem, vector resolution of gravity, and normal force orthogonality</span></div>
+              <div class="g9-scaffold-cell"><strong>Inferential Leap ($Z$)</strong><span>Decoupling ramp distance $s$ into vertical drop $h = s \sin\theta$ where non-conservative work $W_{\text{nc}} = 0$</span></div>
+              <div class="g9-scaffold-cell"><strong>Exit Verification ($W$)</strong><span>Observable exit task: derive the limiting case as $\theta \to 90^\circ$ and verify $v = \sqrt{2gh}$</span></div>
+            </div>
+          </details>
+        </div>
+        
+      </section>
+
+      <!-- 60fr / 40fr Split Architecture -->
+      <div class="g9-split">
+        
+        <!-- Left 60%: Step Cards, Worked Example, Equations -->
+        <div class="g9-col g9-col-primary">
+          
+          <!-- Entry Assumptions / Model Contract -->
+          
+          <div class="g9-component g9-c-tile" data-g9-component="MODEL_CONTRACT">
+            <h4 class="g9-eyebrow">Entry Assumptions &amp; Prerequisites</h4>
+            <ul>
+              
+              <li>Can apply the one-dimensional work-energy theorem $\Delta K = W_{\text{net}}$.</li>
+              
+              <li>Can resolve force vectors into orthogonal Cartesian components.</li>
+              
+              <li>Understands that work is the scalar product of force and displacement ($W = \vec{F} \cdot \Delta \vec{s}$).</li>
+              
+            </ul>
+          </div>
+          
+
+          <!-- Construction Steps (Action, Why Valid, Output) -->
+          <section class="g9-component g9-c-step-cards" data-g9-component="CONSTRUCTION_STEPS">
+            <h4 class="g9-eyebrow">Logical Construction Steps</h4>
+            <div data-g9-block="construction">
+              <ol>
+                
+                <li data-g9-crux-step="false">
+                  <em>Action</em> Analyze the work done by the normal contact force $\vec{N}$.<br>
+                  <em>Why Valid</em> The normal force is perpendicular to the surface of the incline at all points, so $\vec{N} \cdot \Delta \vec{s} = N \Delta s \cos(90^\circ) = 0$.<br>
+                  <em>State Output</em> <strong>$W_N = 0\text{ J}$ (Normal force performs zero work)</strong>
+                </li>
+                
+                <li data-g9-crux-step="true">
+                  <em>Action</em> Resolve the gravitational force along the incline and compute work over distance $s$.<br>
+                  <em>Why Valid</em> Component of gravity along the incline is $F_{\parallel} = mg \sin\theta$. Work done is $W_g = (mg \sin\theta)s = mg(s \sin\theta) = mgh$.<br>
+                  <em>State Output</em> <strong>$W_{\text{net}} = W_g = mgh$</strong>
+                </li>
+                
+                <li data-g9-crux-step="false">
+                  <em>Action</em> Equate network done to change in kinetic energy ($u = 0$).<br>
+                  <em>Why Valid</em> By the Work-Energy Theorem, $\Delta K = \frac{1}{2}mv^2 - 0 = W_{\text{net}} = mgh$. Mass cancels from both sides.<br>
+                  <em>State Output</em> <strong>$\frac{1}{2}mv^2 = mgh \implies v = \sqrt{2gh} = \sqrt{2gs \sin\theta}$</strong>
+                </li>
+                
+              </ol>
+            </div>
+          </section>
+
+          <!-- Equation & Meaning Card -->
+          <section class="g9-component g9-c-equation-card" data-g9-component="EQUATIONS">
+            <h4 class="g9-eyebrow">Governing Relations &amp; Domain of Validity</h4>
+            <div class="g9-formula-box">
+              <p>$$\mathbf{ \frac{1}{2}mv^2 = mgh = mg s \sin\theta \iff v = \sqrt{2gs \sin\theta} }$$</p>
+              <p class="g9-eq-note"><strong>Valid when:</strong> Valid for smooth surfaces where frictional dissipation is negligible ($\mu = 0$) under uniform gravity $g$.</p>
+            </div>
+          </section>
+
+          <!-- Authentic Worked Anchor Example -->
+          <section class="g9-component g9-c-worked-card" data-g9-component="WORKED_EXAMPLE">
+            <h4 class="g9-eyebrow">Authentic Worked Anchor</h4>
+            <div data-g9-block="worked_anchor">
+              <p><strong>Problem:</strong> A 2.0 kg block is released from rest at the top of a smooth 30° incline of length 10 m. Calculate its speed at the base ($g = 9.8\text{ m/s}^2$).</p>
+              <div class="g9-c-step-list">
+                <div data-g9-block="working">
+                  <ol>
+                    
+                    <li>Identify the given parameters: $m = 2.0\text{ kg}, s = 10\text{ m}, \theta = 30^\circ, g = 9.8\text{ m/s}^2$.</li>
+                    
+                    <li>Compute vertical displacement: $h = s \sin(30^\circ) = 10 \times 0.5 = 5.0\text{ m}$.</li>
+                    
+                    <li>Apply energy conservation: $v = \sqrt{2gh} = \sqrt{2 \times 9.8 \times 5.0} = \sqrt{98}$.</li>
+                    
+                    <li>Evaluate: $v \approx 9.90\text{ m/s}$.</li>
+                    
+                  </ol>
+                </div>
+              </div>
+              <div class="g9-c-answer-box">
+                <h4>Verified Conclusion</h4>
+                <p>The block reaches the bottom with speed $v = \sqrt{98} \approx 9.90\text{ m/s}$, entirely independent of its 2.0 kg mass.</p>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Right 40% (Sticky): Progressive Staged SVG, Trap/Repair & Triad -->
+        <div class="g9-col g9-col-support">
+          
+          <!-- Progressive Staged SVG Visual -->
+          <section class="g9-component g9-c-staged-visual" data-g9-component="STAGED_VISUAL">
+            <div class="g9-card-head">
+              <strong>Progressive Representation</strong>
+              <span class="g9-pill">Interactive Staging</span>
+            </div>
+            
+            <figure data-g9-figure data-g9-stages="s1 s2 s3">
+              <svg viewBox="0 0 460 200" width="100%" height="auto"><g data-g9-stage-id="s1"><polygon points="40,170 380,170 380,50" fill="#f8fafc" stroke="#334155" stroke-width="2"/><rect x="200" y="80" width="36" height="26" rx="4" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="1.5" transform="rotate(21.8 200 80)"/><text x="80" y="160" font-size="14" font-weight="bold" fill="#2563eb">θ</text><text x="160" y="75" font-size="13" fill="#1e40af">s (ramp length)</text></g><g data-g9-stage-id="s2"><line x1="395" y1="50" x2="395" y2="170" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,4"/><text x="405" y="115" font-size="13" font-weight="bold" fill="#dc2626">h = s sin θ</text><text x="210" y="50" font-size="13" fill="#16a34a">W_N = 0 (N ⊥ ds)</text></g><g data-g9-stage-id="s3"><rect x="40" y="15" width="380" height="30" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/><text x="230" y="35" text-anchor="middle" font-size="14" font-weight="bold" fill="#15803d">ΔK = mgh ⟹ v = √(2g s sin θ)</text></g></svg>
+              <div class="g9-stage-stepper">
+                <button type="button" data-g9-stage-step="prev">← Prev</button>
+                <span data-g9-stage-label>Stage 1 of 3</span>
+                <button type="button" data-g9-stage-step="next">Next →</button>
+              </div>
+              <figcaption>Mechanical Incline Progression: Force Decomposition $\to$ Height Projection $\to$ Velocity Derivation.</figcaption>
+            </figure>
+          </section>
+
+          <!-- Common Trap & Pedagogical Repair -->
+          <section class="g9-component g9-c-trap-card" data-g9-component="TRAP_REPAIR">
+            <div data-g9-block="wrong_path">
+              <h4>⚠️ Plausible Wrong Path (Misconception)</h4>
+              <p>Assuming that the longer the incline, the more energy is lost or the slower the block travels, or multiplying gravity by $s$ directly ($mgs$) without the $\sin\theta$ factor.</p>
+            </div>
+            <div data-g9-block="repair">
+              <h4>🔧 Diagnostic &amp; Repair</h4>
+              <p><em>Diagnostic prompt:</em> If an incline has length 20 m but the same vertical height $h = 5\text{ m}$, does the block reach the bottom with a different speed?</p>
+              <p><em>Corrective move:</em> No. In the absence of friction, $v = \sqrt{2gh}$ depends purely on the vertical altitude drop $h$, not on the slope length $s$. The longer incline simply reduces acceleration while increasing travel time, yielding the exact same final speed.</p>
+            </div>
+          </section>
+
+          <!-- 1-2-3 Triad Quick Check -->
+          <section class="g9-component g9-c-triad" data-g9-component="QUICK_CHECK">
+            <h4>1-2-3 Triad Quick Check</h4>
+            <ul class="g9-triad">
+              <li data-g9-triad-role="CHECK">
+                <span class="g9-triad-head">1. Check (Recall)</span>
+                <p>Why does the normal contact force do zero mechanical work on a sliding object?</p>
+              </li>
+              <li data-g9-triad-role="APPLY">
+                <span class="g9-triad-head">2. Apply (Minimal Case)</span>
+                <p>A frictionless ramp has height $h = 20\text{ m}$. What is the speed of an object sliding from rest at the bottom ($g = 9.8\text{ m/s}^2$)?</p>
+              </li>
+              <li data-g9-triad-role="CONNECT">
+                <span class="g9-triad-head">3. Connect (Transfer)</span>
+                <p>How does this energy conservation principle extend to curved ramps and roller-coasters where the angle $\theta$ changes continuously?</p>
+              </li>
+            </ul>
+          </section>
+
+          <!-- Observable Exit Task: Try it with less support -->
+          
+          <section class="blueprint-slot slot-exit-recall" style="margin-top: 18px;">
+            <div class="g9-component g9-c-recall-card" data-g9-component="EXIT_RECALL">
+              <div class="g9-block" data-g9-block="exit_task">
+                <h4 style="margin: 0 0 6px; font-size: 0.95rem; font-weight: 800; color: #1e40af;">Try it with less support · Observable Exit Criterion</h4>
+                <p style="font-size: 1rem; line-height: 1.5; margin: 6px 0 10px;">Evaluate the limiting behavior of the derived speed formula $v = \sqrt{2gs \sin\theta}$ as the angle $\theta \to 90^\circ$. What physical scenario does this represent, and does it agree with 1D vertical kinematics?</p>
+              </div>
+              <div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response">
+                <label style="display: flex; flex-direction: column; gap: 4px; font-weight: 700; font-size: 0.88rem;">
+                  Your independent reasoning:
+                  <textarea data-g9-attempt rows="3" placeholder="Work out the steps or explain your deduction..."></textarea>
+                </label>
+                <label class="g9-paper">
+                  <input data-g9-paper type="checkbox"> I worked this out on paper
+                </label>
+                <button type="button" data-g9-commit>I have attempted this</button>
+              </div>
+              <details data-g9-reveal data-requires-attempt data-g9-payload-ref="CU-PHY-INCLINE-ENERGY-01-exit" style="margin-top: 8px;">
+                <summary style="font-size: 0.9rem; font-weight: 800; cursor: pointer; color: #2563eb;">Model Answer &amp; Self-Check ▾</summary>
+                <div data-g9-payload-slot></div>
+              </details>
+              <template data-g9-payload="CU-PHY-INCLINE-ENERGY-01-exit">
+                <div class="g9-block" data-g9-block="exit_answer" style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 10px; padding: 12px 14px; margin-top: 8px; color: #166534;">
+                  <p style="font-weight: 700; margin: 0 0 6px;">When $\theta \to 90^\circ$, $\sin(90^\circ) = 1$ and the incline length $s$ equals the vertical height $h$. The formula becomes $v = \sqrt{2gh}$, which identically reproduces the 1D free-fall velocity from rest.</p>
+                  <div class="g9-c-check-box" style="border-left: 4px solid #16a34a; padding-left: 10px; margin-top: 6px; color: #15803d; font-size: 0.88rem;">
+                    <p><strong>Independent Verification:</strong> Independent 1D kinematic check: $v^2 = u^2 + 2g(\Delta y)$ with $u = 0$ gives $v = \sqrt{2gh}$. The limiting case matches 1D physics identically.</p>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </section>
+          
+
+          <!-- Core 2 Practice Navigation Links -->
+          
+          <div class="g9-component g9-c-chips" data-g9-component="PRACTICE_LINKS" style="margin-top: 14px;">
+            <div class="g9-block" data-g9-block="practice_navigation">
+              <h4 style="margin: 0 0 6px; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; color: var(--muted, #64748b);">Practice this concept in Core 2</h4>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                
+                <a href="golden-core2-demand-specimen.html#Q-PHY-INCLINE-01" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px; background: var(--bg, #f1f5f9); border: 1px solid var(--line, #cbd5e1); text-decoration: none; font-size: 0.85rem; font-weight: 600; color: #2563eb;">
+                  🎯 Incline Multi-Step Derivation · Core 2 Specimen →
+                </a>
+                
+              </div>
+            </div>
+          </div>
+          
+
+        </div>
+
+      </div>
+
+    </article>
+    
+    <article id="CU-PHY-NLM-UNITS-01" class="g9-cu" data-g9-role="CORE1A" data-g9-unit="CU-PHY-NLM-UNITS-01" data-g9-demand="CONCEPTUAL_EXPLANATION" data-g9-review-template="CRT-PHY-CONSTRUCTION" data-g9-concept-difficulty="EASY">
+      
+      <!-- Unit Header -->
+      <section class="blueprint-slot slot-identity">
+        <div class="g9-unit-head">
+          <span class="g9-unit-no">2</span>
+          <h3>Dimensional Synthesis of the Newton from Fundamental SI Base Units</h3>
+          <span class="g9-pill g9-pill-band" data-g9-band="D1">D1 · Foundational Definition</span>
+        </div>
+        <div data-g9-meta-strip data-g9-meta-role="CORE1A">
+          <span data-g9-meta-item><strong>Subject:</strong> Physics</span>
+          <span data-g9-meta-item><strong>Topic:</strong> Cognitive Demand Calibration Specimen</span>
+          <span data-g9-meta-item><strong>Concept difficulty:</strong> <span class="g9-pill g9-pill-concept-diff" data-g9-difficulty="EASY">Easy concept</span></span>
+          <span data-g9-meta-item><strong>Cognitive demand:</strong> <span class="g9-pill g9-pill-demand" data-g9-demand="CONCEPTUAL_EXPLANATION">💡 Conceptual explanation</span></span>
+          
+          <span data-g9-meta-item><strong>Review rubric:</strong> <span class="g9-pill g9-pill-review-template">CRT-PHY-CONSTRUCTION</span></span>
+          
+        </div>
+        <p class="g9-prov">Inferential Leap: <em>Understanding that derived SI units are not arbitrary names, but are structurally bound definitions dictated by governing physical laws.</em></p>
+        
+        <div class="g9-component g9-c-demand-scaffold" data-g9-component="DEMAND_SCAFFOLDING" style="margin: 8px 0 14px;">
+          <details style="background: var(--bg, #f8fafc); border: 1px solid var(--line, #cbd5e1); border-radius: 8px; padding: 6px 12px;">
+            <summary class="g9-demand-scaffold-summary">
+              <span>Demand Scaffolding ($X, Y, Z, W$) · Cognitive Architecture ▾</span>
+            </summary>
+            <div class="g9-demand-scaffold-grid">
+              <div class="g9-scaffold-cell"><strong>Target Concept ($X$)</strong><span>Derived unit Newton (N) in terms of fundamental dimensions</span></div>
+              <div class="g9-scaffold-cell"><strong>Entry Foundation ($Y$)</strong><span>Base SI units of mass (kg), length (m), and time (s)</span></div>
+              <div class="g9-scaffold-cell"><strong>Inferential Leap ($Z$)</strong><span>Dynamic definition from Newton's second law: $1\text{ N} \equiv 1\text{ kg} \cdot 1\text{ m/s}^2$</span></div>
+              <div class="g9-scaffold-cell"><strong>Exit Verification ($W$)</strong><span>Observable exit task: derive the base unit expression of momentum $p = mv$ and show $[F \times t] = [p]$</span></div>
+            </div>
+          </details>
+        </div>
+        
+      </section>
+
+      <!-- 60fr / 40fr Split Architecture -->
+      <div class="g9-split">
+        
+        <!-- Left 60%: Step Cards, Worked Example, Equations -->
+        <div class="g9-col g9-col-primary">
+          
+          <!-- Entry Assumptions / Model Contract -->
+          
+          <div class="g9-component g9-c-tile" data-g9-component="MODEL_CONTRACT">
+            <h4 class="g9-eyebrow">Entry Assumptions &amp; Prerequisites</h4>
+            <ul>
+              
+              <li>Familiarity with the 7 fundamental SI base quantities (specifically mass, length, time).</li>
+              
+              <li>Understanding Newton's second law in algebraic form: $F = ma$.</li>
+              
+            </ul>
+          </div>
+          
+
+          <!-- Construction Steps (Action, Why Valid, Output) -->
+          <section class="g9-component g9-c-step-cards" data-g9-component="CONSTRUCTION_STEPS">
+            <h4 class="g9-eyebrow">Logical Construction Steps</h4>
+            <div data-g9-block="construction">
+              <ol>
+                
+                <li data-g9-crux-step="false">
+                  <em>Action</em> Identify the base SI quantities that form Newton's second law.<br>
+                  <em>Why Valid</em> Mass is measured in kilograms ($\text{kg}$), and acceleration is change in velocity per unit time ($\text{m/s}^2$).<br>
+                  <em>State Output</em> <strong>$[m] = \text{kg},\quad [a] = \text{m}\cdot\text{s}^{-2}$</strong>
+                </li>
+                
+                <li data-g9-crux-step="true">
+                  <em>Action</em> Multiply base dimensions according to the product relation $F = ma$.<br>
+                  <em>Why Valid</em> Dimensional consistency requires $[F] = [m][a] = \text{kg} \times (\text{m/s}^2)$.<br>
+                  <em>State Output</em> <strong>$[F] = \text{kg}\cdot\text{m}\cdot\text{s}^{-2}$</strong>
+                </li>
+                
+                <li data-g9-crux-step="false">
+                  <em>Action</em> Bind the derived unit name (Newton) to this composite base product.<br>
+                  <em>Why Valid</em> By international convention, 1 Newton is defined as the force giving 1 kg mass an acceleration of $1\text{ m/s}^2$.<br>
+                  <em>State Output</em> <strong>$1\text{ N} \equiv 1\text{ kg}\cdot\text{m}/\text{s}^2$</strong>
+                </li>
+                
+              </ol>
+            </div>
+          </section>
+
+          <!-- Equation & Meaning Card -->
+          <section class="g9-component g9-c-equation-card" data-g9-component="EQUATIONS">
+            <h4 class="g9-eyebrow">Governing Relations &amp; Domain of Validity</h4>
+            <div class="g9-formula-box">
+              <p>$$\mathbf{ 1\text{ N} = 1\text{ kg} \cdot 1\text{ m/s}^2 = 1\text{ kg}\cdot\text{m}\cdot\text{s}^{-2} }$$</p>
+              <p class="g9-eq-note"><strong>Valid when:</strong> Universal definition in the International System of Units (SI).</p>
+            </div>
+          </section>
+
+          <!-- Authentic Worked Anchor Example -->
+          <section class="g9-component g9-c-worked-card" data-g9-component="WORKED_EXAMPLE">
+            <h4 class="g9-eyebrow">Authentic Worked Anchor</h4>
+            <div data-g9-block="worked_anchor">
+              <p><strong>Problem:</strong> Express a force of $25\text{ N}$ acting on a $5.0\text{ kg}$ body in fundamental base units and compute the resulting acceleration.</p>
+              <div class="g9-c-step-list">
+                <div data-g9-block="working">
+                  <ol>
+                    
+                    <li>Express force in base units: $25\text{ N} = 25\text{ kg}\cdot\text{m}/\text{s}^2$.</li>
+                    
+                    <li>Apply $a = F/m$: $a = \frac{25\text{ kg}\cdot\text{m}/\text{s}^2}{5.0\text{ kg}}$.</li>
+                    
+                    <li>Cancel kilograms: $a = 5.0\text{ m/s}^2$.</li>
+                    
+                  </ol>
+                </div>
+              </div>
+              <div class="g9-c-answer-box">
+                <h4>Verified Conclusion</h4>
+                <p>The resulting acceleration is $5.0\text{ m/s}^2$, demonstrating dimensional cancellation.</p>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Right 40% (Sticky): Progressive Staged SVG, Trap/Repair & Triad -->
+        <div class="g9-col g9-col-support">
+          
+          <!-- Progressive Staged SVG Visual -->
+          <section class="g9-component g9-c-staged-visual" data-g9-component="STAGED_VISUAL">
+            <div class="g9-card-head">
+              <strong>Progressive Representation</strong>
+              <span class="g9-pill">Interactive Staging</span>
+            </div>
+            
+            <figure data-g9-figure data-g9-stages="s1 s2 s3">
+              <svg viewBox="0 0 440 140" width="100%" height="auto"><g data-g9-stage-id="s1"><rect x="20" y="20" width="180" height="40" rx="6" fill="#e0e7ff" stroke="#4338ca"/><text x="110" y="45" text-anchor="middle" font-size="14" font-weight="bold" fill="#312e81">Mass: kg</text><rect x="240" y="20" width="180" height="40" rx="6" fill="#e0e7ff" stroke="#4338ca"/><text x="330" y="45" text-anchor="middle" font-size="14" font-weight="bold" fill="#312e81">Acceleration: m/s²</text></g><g data-g9-stage-id="s2"><line x1="220" y1="65" x2="220" y2="85" stroke="#2563eb" stroke-width="2"/><text x="235" y="78" font-size="14" font-weight="bold" fill="#2563eb">F = m · a</text></g><g data-g9-stage-id="s3"><rect x="60" y="90" width="320" height="40" rx="8" fill="#fdf2f8" stroke="#db2777" stroke-width="2"/><text x="220" y="115" text-anchor="middle" font-size="15" font-weight="bold" fill="#9d174d">1 Newton (N) = 1 kg·m/s²</text></g></svg>
+              <div class="g9-stage-stepper">
+                <button type="button" data-g9-stage-step="prev">← Prev</button>
+                <span data-g9-stage-label>Stage 1 of 3</span>
+                <button type="button" data-g9-stage-step="next">Next →</button>
+              </div>
+              <figcaption>Dimensional Synthesis: Base Quantities $\to$ Product Formulation $\to$ Derived Unit Binding.</figcaption>
+            </figure>
+          </section>
+
+          <!-- Common Trap & Pedagogical Repair -->
+          <section class="g9-component g9-c-trap-card" data-g9-component="TRAP_REPAIR">
+            <div data-g9-block="wrong_path">
+              <h4>⚠️ Plausible Wrong Path (Misconception)</h4>
+              <p>Confusing force with energy (writing $\text{kg}\cdot\text{m}^2/\text{s}^2$) or dividing by time instead of time squared.</p>
+            </div>
+            <div data-g9-block="repair">
+              <h4>🔧 Diagnostic &amp; Repair</h4>
+              <p><em>Diagnostic prompt:</em> What is the difference between the base unit of force ($	ext{N}$) and the base unit of energy ($	ext{J}$)?</p>
+              <p><em>Corrective move:</em> Energy is work ($F \times d$), which multiplies force by an extra meter: $1\text{ J} = 1\text{ N}\cdot\text{m} = 1\text{ kg}\cdot\text{m}^2/\text{s}^2$. Force has length to power 1, whereas energy has length to power 2.</p>
+            </div>
+          </section>
+
+          <!-- 1-2-3 Triad Quick Check -->
+          <section class="g9-component g9-c-triad" data-g9-component="QUICK_CHECK">
+            <h4>1-2-3 Triad Quick Check</h4>
+            <ul class="g9-triad">
+              <li data-g9-triad-role="CHECK">
+                <span class="g9-triad-head">1. Check (Recall)</span>
+                <p>What are the three fundamental SI base units that compose one Newton?</p>
+              </li>
+              <li data-g9-triad-role="APPLY">
+                <span class="g9-triad-head">2. Apply (Minimal Case)</span>
+                <p>If an object has mass $0.5\text{ kg}$ and acceleration $4\text{ m/s}^2$, what net force in Newtons acts on it?</p>
+              </li>
+              <li data-g9-triad-role="CONNECT">
+                <span class="g9-triad-head">3. Connect (Transfer)</span>
+                <p>How is impulse defined as $J = F \Delta t$, and what are its base SI units?</p>
+              </li>
+            </ul>
+          </section>
+
+          <!-- Observable Exit Task: Try it with less support -->
+          
+          <section class="blueprint-slot slot-exit-recall" style="margin-top: 18px;">
+            <div class="g9-component g9-c-recall-card" data-g9-component="EXIT_RECALL">
+              <div class="g9-block" data-g9-block="exit_task">
+                <h4 style="margin: 0 0 6px; font-size: 0.95rem; font-weight: 800; color: #1e40af;">Try it with less support · Observable Exit Criterion</h4>
+                <p style="font-size: 1rem; line-height: 1.5; margin: 6px 0 10px;">Determine the SI base unit composition of linear momentum $p = mv$. Then, prove that impulse $F \Delta t$ has identical SI base units.</p>
+              </div>
+              <div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response">
+                <label style="display: flex; flex-direction: column; gap: 4px; font-weight: 700; font-size: 0.88rem;">
+                  Your independent reasoning:
+                  <textarea data-g9-attempt rows="3" placeholder="Work out the steps or explain your deduction..."></textarea>
+                </label>
+                <label class="g9-paper">
+                  <input data-g9-paper type="checkbox"> I worked this out on paper
+                </label>
+                <button type="button" data-g9-commit>I have attempted this</button>
+              </div>
+              <details data-g9-reveal data-requires-attempt data-g9-payload-ref="CU-PHY-NLM-UNITS-01-exit" style="margin-top: 8px;">
+                <summary style="font-size: 0.9rem; font-weight: 800; cursor: pointer; color: #2563eb;">Model Answer &amp; Self-Check ▾</summary>
+                <div data-g9-payload-slot></div>
+              </details>
+              <template data-g9-payload="CU-PHY-NLM-UNITS-01-exit">
+                <div class="g9-block" data-g9-block="exit_answer" style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 10px; padding: 12px 14px; margin-top: 8px; color: #166534;">
+                  <p style="font-weight: 700; margin: 0 0 6px;">Momentum $p = mv$ has base units $\text{kg} \times \text{m/s} = \text{kg}\cdot\text{m}/\text{s}$. Impulse is force $\times$ time: $[F \Delta t] = (\text{kg}\cdot\text{m}/\text{s}^2) \times \text{s} = \text{kg}\cdot\text{m}/\text{s}$. The base units are identical.</p>
+                  <div class="g9-c-check-box" style="border-left: 4px solid #16a34a; padding-left: 10px; margin-top: 6px; color: #15803d; font-size: 0.88rem;">
+                    <p><strong>Independent Verification:</strong> Impulse-Momentum Theorem check: $\Delta p = F \Delta t$. Both sides share dimensional formula $[M][L][T]^{-1}$. Verified.</p>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </section>
+          
+
+          <!-- Core 2 Practice Navigation Links -->
+          
+          <div class="g9-component g9-c-chips" data-g9-component="PRACTICE_LINKS" style="margin-top: 14px;">
+            <div class="g9-block" data-g9-block="practice_navigation">
+              <h4 style="margin: 0 0 6px; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; color: var(--muted, #64748b);">Practice this concept in Core 2</h4>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                
+                <a href="golden-core2-demand-specimen.html#Q-PHY-UNIT-FORCE-01" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px; background: var(--bg, #f1f5f9); border: 1px solid var(--line, #cbd5e1); text-decoration: none; font-size: 0.85rem; font-weight: 600; color: #2563eb;">
+                  🎯 Laws of Motion Unit Recall · Core 2 Specimen →
+                </a>
+                
+              </div>
+            </div>
+          </div>
+          
+
+        </div>
+
+      </div>
+
+    </article>
+    
+    <article id="CU-MAT-POLY-FACTOR-01" class="g9-cu" data-g9-role="CORE1A" data-g9-unit="CU-MAT-POLY-FACTOR-01" data-g9-demand="PROOF_DERIVATION" data-g9-review-template="CRT-MAT-CONSTRUCTION" data-g9-concept-difficulty="MEDIUM">
+      
+      <!-- Unit Header -->
+      <section class="blueprint-slot slot-identity">
+        <div class="g9-unit-head">
+          <span class="g9-unit-no">3</span>
+          <h3>The Factor Theorem and Remainder Vanishing from First Principles</h3>
+          <span class="g9-pill g9-pill-band" data-g9-band="D2">D2 · Algebraic Foundation</span>
+        </div>
+        <div data-g9-meta-strip data-g9-meta-role="CORE1A">
+          <span data-g9-meta-item><strong>Subject:</strong> Physics</span>
+          <span data-g9-meta-item><strong>Topic:</strong> Cognitive Demand Calibration Specimen</span>
+          <span data-g9-meta-item><strong>Concept difficulty:</strong> <span class="g9-pill g9-pill-concept-diff" data-g9-difficulty="MEDIUM">Medium concept</span></span>
+          <span data-g9-meta-item><strong>Cognitive demand:</strong> <span class="g9-pill g9-pill-demand" data-g9-demand="PROOF_DERIVATION">📐 Proof & formal derivation</span></span>
+          
+          <span data-g9-meta-item><strong>Review rubric:</strong> <span class="g9-pill g9-pill-review-template">CRT-MAT-CONSTRUCTION</span></span>
+          
+        </div>
+        <p class="g9-prov">Inferential Leap: <em>Connecting polynomial remainder evaluation $p(a) = 0$ directly to exact algebraic divisibility $(x - a) \mid p(x)$.</em></p>
+        
+        <div class="g9-component g9-c-demand-scaffold" data-g9-component="DEMAND_SCAFFOLDING" style="margin: 8px 0 14px;">
+          <details style="background: var(--bg, #f8fafc); border: 1px solid var(--line, #cbd5e1); border-radius: 8px; padding: 6px 12px;">
+            <summary class="g9-demand-scaffold-summary">
+              <span>Demand Scaffolding ($X, Y, Z, W$) · Cognitive Architecture ▾</span>
+            </summary>
+            <div class="g9-demand-scaffold-grid">
+              <div class="g9-scaffold-cell"><strong>Target Concept ($X$)</strong><span>Factor Theorem: $(x - a) \mid p(x) \iff p(a) = 0$</span></div>
+              <div class="g9-scaffold-cell"><strong>Entry Foundation ($Y$)</strong><span>Division Algorithm for polynomials: $p(x) = (x - a)q(x) + r$</span></div>
+              <div class="g9-scaffold-cell"><strong>Inferential Leap ($Z$)</strong><span>Annihilation of quotient via $x = a$, giving remainder $r = p(a)$</span></div>
+              <div class="g9-scaffold-cell"><strong>Exit Verification ($W$)</strong><span>Verifying factor status of $(x - a)$ by evaluating $p(a)$</span></div>
+            </div>
+          </details>
+        </div>
+        
+      </section>
+
+      <!-- 60fr / 40fr Split Architecture -->
+      <div class="g9-split">
+        
+        <!-- Left 60%: Step Cards, Worked Example, Equations -->
+        <div class="g9-col g9-col-primary">
+          
+          <!-- Entry Assumptions / Model Contract -->
+          
+          <div class="g9-component g9-c-tile" data-g9-component="MODEL_CONTRACT">
+            <h4 class="g9-eyebrow">Entry Assumptions &amp; Prerequisites</h4>
+            <ul>
+              
+              <li>Polynomial Division Algorithm: Dividend = Divisor $\times$ Quotient + Remainder.</li>
+              
+              <li>Remainder degree property: $\deg(r) < \deg(\text{divisor})$. For a linear divisor, $\deg(r) < 1 \implies r$ is a constant.</li>
+              
+            </ul>
+          </div>
+          
+
+          <!-- Construction Steps (Action, Why Valid, Output) -->
+          <section class="g9-component g9-c-step-cards" data-g9-component="CONSTRUCTION_STEPS">
+            <h4 class="g9-eyebrow">Logical Construction Steps</h4>
+            <div data-g9-block="construction">
+              <ol>
+                
+                <li data-g9-crux-step="false">
+                  <em>Action</em> Set up the polynomial division equation for $p(x)$ divided by linear factor $(x - a)$.<br>
+                  <em>Why Valid</em> Polynomial division algorithm guarantees unique quotient $q(x)$ and constant remainder $r$.<br>
+                  <em>State Output</em> <strong>$p(x) = (x - a)q(x) + r$</strong>
+                </li>
+                
+                <li data-g9-crux-step="true">
+                  <em>Action</em> Substitute $x = a$ into the identity.<br>
+                  <em>Why Valid</em> Setting $x = a$ annihilates the divisor: $(a - a)q(a) = 0 \cdot q(a) = 0$, leaving $p(a) = r$.<br>
+                  <em>State Output</em> <strong>$p(a) = 0 + r \implies r = p(a)$ (Remainder Theorem)</strong>
+                </li>
+                
+                <li data-g9-crux-step="false">
+                  <em>Action</em> Establish the exact divisibility criterion ($r = 0$).<br>
+                  <em>Why Valid</em> $(x - a)$ is a factor of $p(x)$ if and only if the remainder $r = 0$, which occurs if and only if $p(a) = 0$.<br>
+                  <em>State Output</em> <strong>$(x - a) \mid p(x) \iff p(a) = 0$ (Factor Theorem)</strong>
+                </li>
+                
+              </ol>
+            </div>
+          </section>
+
+          <!-- Equation & Meaning Card -->
+          <section class="g9-component g9-c-equation-card" data-g9-component="EQUATIONS">
+            <h4 class="g9-eyebrow">Governing Relations &amp; Domain of Validity</h4>
+            <div class="g9-formula-box">
+              <p>$$\mathbf{ p(x) = (x - a)q(x) \iff p(a) = 0 }$$</p>
+              <p class="g9-eq-note"><strong>Valid when:</strong> Valid for any polynomial $p(x)$ with coefficients over a field and linear divisor $(x - a)$.</p>
+            </div>
+          </section>
+
+          <!-- Authentic Worked Anchor Example -->
+          <section class="g9-component g9-c-worked-card" data-g9-component="WORKED_EXAMPLE">
+            <h4 class="g9-eyebrow">Authentic Worked Anchor</h4>
+            <div data-g9-block="worked_anchor">
+              <p><strong>Problem:</strong> Determine whether $(x + 2)$ is a factor of $p(x) = x^3 + 3x^2 + 5x + 6$.</p>
+              <div class="g9-c-step-list">
+                <div data-g9-block="working">
+                  <ol>
+                    
+                    <li>Set the divisor to zero: $x + 2 = 0 \implies x = -2$.</li>
+                    
+                    <li>Compute $p(-2) = (-2)^3 + 3(-2)^2 + 5(-2) + 6$.</li>
+                    
+                    <li>Evaluate powers and products: $-8 + 12 - 10 + 6 = 0$.</li>
+                    
+                    <li>Since $p(-2) = 0$, by the Factor Theorem $(x + 2)$ is an exact factor of $p(x)$.</li>
+                    
+                  </ol>
+                </div>
+              </div>
+              <div class="g9-c-answer-box">
+                <h4>Verified Conclusion</h4>
+                <p>$(x + 2)$ divides $x^3 + 3x^2 + 5x + 6$ with zero remainder.</p>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Right 40% (Sticky): Progressive Staged SVG, Trap/Repair & Triad -->
+        <div class="g9-col g9-col-support">
+          
+          <!-- Progressive Staged SVG Visual -->
+          <section class="g9-component g9-c-staged-visual" data-g9-component="STAGED_VISUAL">
+            <div class="g9-card-head">
+              <strong>Progressive Representation</strong>
+              <span class="g9-pill">Interactive Staging</span>
+            </div>
+            
+            <figure data-g9-figure data-g9-stages="s1 s2 s3">
+              <svg viewBox="0 0 440 160" width="100%" height="auto"><g data-g9-stage-id="s1"><rect x="20" y="15" width="400" height="36" rx="6" fill="#eff6ff" stroke="#3b82f6"/><text x="220" y="38" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e40af">p(x) = (x - a)q(x) + r</text></g><g data-g9-stage-id="s2"><rect x="20" y="60" width="400" height="36" rx="6" fill="#fef3c7" stroke="#f59e0b"/><text x="220" y="83" text-anchor="middle" font-size="14" font-weight="bold" fill="#92400e">x = a ⟹ p(a) = 0·q(a) + r = r</text></g><g data-g9-stage-id="s3"><rect x="20" y="105" width="400" height="40" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/><text x="220" y="130" text-anchor="middle" font-size="14" font-weight="bold" fill="#166534">r = 0 ⟺ p(a) = 0 ⟹ (x - a) is a factor</text></g></svg>
+              <div class="g9-stage-stepper">
+                <button type="button" data-g9-stage-step="prev">← Prev</button>
+                <span data-g9-stage-label>Stage 1 of 3</span>
+                <button type="button" data-g9-stage-step="next">Next →</button>
+              </div>
+              <figcaption>Factor Theorem Logic: Divisor Setup $\to$ Root Nullification $\to$ Factorization Criterion.</figcaption>
+            </figure>
+          </section>
+
+          <!-- Common Trap & Pedagogical Repair -->
+          <section class="g9-component g9-c-trap-card" data-g9-component="TRAP_REPAIR">
+            <div data-g9-block="wrong_path">
+              <h4>⚠️ Plausible Wrong Path (Misconception)</h4>
+              <p>Evaluating $p(a)$ when the divisor is $(x + a)$ instead of using the root $x = -a$.</p>
+            </div>
+            <div data-g9-block="repair">
+              <h4>🔧 Diagnostic &amp; Repair</h4>
+              <p><em>Diagnostic prompt:</em> If $(x + 4)$ divides $p(x)$, what value must evaluate to zero?</p>
+              <p><em>Corrective move:</em> Find the zero of the factor: $x + 4 = 0 \implies x = -4$. Hence $p(-4) = 0$, not $p(4) = 0$.</p>
+            </div>
+          </section>
+
+          <!-- 1-2-3 Triad Quick Check -->
+          <section class="g9-component g9-c-triad" data-g9-component="QUICK_CHECK">
+            <h4>1-2-3 Triad Quick Check</h4>
+            <ul class="g9-triad">
+              <li data-g9-triad-role="CHECK">
+                <span class="g9-triad-head">1. Check (Recall)</span>
+                <p>What is the remainder when $p(x)$ is divided by $(x - c)$?</p>
+              </li>
+              <li data-g9-triad-role="APPLY">
+                <span class="g9-triad-head">2. Apply (Minimal Case)</span>
+                <p>Find $k$ such that $(x - 1)$ is a factor of $x^3 - 3x^2 + kx - 4$.</p>
+              </li>
+              <li data-g9-triad-role="CONNECT">
+                <span class="g9-triad-head">3. Connect (Transfer)</span>
+                <p>How does the Factor Theorem allow decomposing degree $n$ polynomials into products of linear and irreducible quadratic factors?</p>
+              </li>
+            </ul>
+          </section>
+
+          <!-- Observable Exit Task: Try it with less support -->
+          
+          <section class="blueprint-slot slot-exit-recall" style="margin-top: 18px;">
+            <div class="g9-component g9-c-recall-card" data-g9-component="EXIT_RECALL">
+              <div class="g9-block" data-g9-block="exit_task">
+                <h4 style="margin: 0 0 6px; font-size: 0.95rem; font-weight: 800; color: #1e40af;">Try it with less support · Observable Exit Criterion</h4>
+                <p style="font-size: 1rem; line-height: 1.5; margin: 6px 0 10px;">Using the Factor Theorem, prove that $(x - 2)$ is a factor of $p(x) = x^3 - 8$. Verify your result by factoring $x^3 - 8$ directly using an algebraic identity.</p>
+              </div>
+              <div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response">
+                <label style="display: flex; flex-direction: column; gap: 4px; font-weight: 700; font-size: 0.88rem;">
+                  Your independent reasoning:
+                  <textarea data-g9-attempt rows="3" placeholder="Work out the steps or explain your deduction..."></textarea>
+                </label>
+                <label class="g9-paper">
+                  <input data-g9-paper type="checkbox"> I worked this out on paper
+                </label>
+                <button type="button" data-g9-commit>I have attempted this</button>
+              </div>
+              <details data-g9-reveal data-requires-attempt data-g9-payload-ref="CU-MAT-POLY-FACTOR-01-exit" style="margin-top: 8px;">
+                <summary style="font-size: 0.9rem; font-weight: 800; cursor: pointer; color: #2563eb;">Model Answer &amp; Self-Check ▾</summary>
+                <div data-g9-payload-slot></div>
+              </details>
+              <template data-g9-payload="CU-MAT-POLY-FACTOR-01-exit">
+                <div class="g9-block" data-g9-block="exit_answer" style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 10px; padding: 12px 14px; margin-top: 8px; color: #166534;">
+                  <p style="font-weight: 700; margin: 0 0 6px;">Evaluate $p(2) = 2^3 - 8 = 8 - 8 = 0$. Since $p(2) = 0$, by the Factor Theorem $(x - 2)$ is a factor of $x^3 - 8$.</p>
+                  <div class="g9-c-check-box" style="border-left: 4px solid #16a34a; padding-left: 10px; margin-top: 6px; color: #15803d; font-size: 0.88rem;">
+                    <p><strong>Independent Verification:</strong> Algebraic identity check: $x^3 - 2^3 = (x - 2)(x^2 + 2x + 4)$. Divisibility is verified algebraically.</p>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </section>
+          
+
+          <!-- Core 2 Practice Navigation Links -->
+          
+          <div class="g9-component g9-c-chips" data-g9-component="PRACTICE_LINKS" style="margin-top: 14px;">
+            <div class="g9-block" data-g9-block="practice_navigation">
+              <h4 style="margin: 0 0 6px; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; color: var(--muted, #64748b);">Practice this concept in Core 2</h4>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                
+                <a href="golden-core2-demand-specimen.html#Q-MAT-POLY-PROOF-01" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px; background: var(--bg, #f1f5f9); border: 1px solid var(--line, #cbd5e1); text-decoration: none; font-size: 0.85rem; font-weight: 600; color: #2563eb;">
+                  🎯 Polynomial Proof Practice · Core 2 Specimen →
+                </a>
+                
+              </div>
+            </div>
+          </div>
+          
+
+        </div>
+
+      </div>
+
+    </article>
+    
+
+  </main>
+
+  <footer data-g9-footer style="text-align:center; padding:32px 16px; color:var(--muted, #64748b); font-size:0.88rem;">
+    Grade9V3.5 Learning Continuum · Cognitive Demand Calibration Specimen Core 1A · Offline Guaranteed &amp; 12.7" Tablet Optimized
+  </footer>
+
+  <!-- Built-in Progressive Staging & Attempt Gate Engine -->
+  <script>
+  (()=>{
+    const q=(s,r=document)=>[...r.querySelectorAll(s)];
+
+    // 1. Progressive Staging Controller
+    function initFigure(f){
+      if(f.dataset.g9Init) return;
+      f.dataset.g9Init='1';
+      const ids=(f.dataset.g9Stages||'').split(' ').filter(Boolean);
+      if(ids.length<2) return;
+      let i=0;
+      const show=()=>{
+        ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=n<=i?'':'none'));
+        const l=q('[data-g9-stage-label]',f)[0];
+        if(l) l.textContent='Stage '+(i+1)+' of '+ids.length;
+      };
+      show();
+      q('[data-g9-stage-step]',f).forEach(b=>b.onclick=()=>{
+        i=Math.max(0,Math.min(ids.length-1,i+(b.dataset.g9StageStep==='next'?1:-1)));
+        show();
+      });
+    }
+    q('figure[data-g9-figure]').forEach(initFigure);
+
+    // 2. Attempt Commitment Gate for Exit Tasks
+    function validAttempt(box) {
+      if (box.querySelector('[data-g9-paper]:checked')) return true;
+      const txt = box.querySelector('[data-g9-attempt]');
+      return txt ? !!txt.value.trim() : true;
+    }
+
+    q('article[data-g9-unit]').forEach(article => {
+      const details = q('details[data-requires-attempt]', article)[0];
+      const commitBtn = q('[data-g9-commit]', article)[0];
+      const box = q('[data-g9-attempt-box]', article)[0];
+
+      if (details) {
+        details.querySelector('summary').addEventListener('click', e => {
+          if (!article.dataset.attempted) {
+            e.preventDefault();
+            alert('Please submit your attempt commitment first before viewing the model answer.');
+          }
+        });
+      }
+
+      if (commitBtn && box) {
+        commitBtn.onclick = () => {
+          if (!validAttempt(box)) {
+            alert('Please enter your reasoning or check "I worked this out on paper".');
+            return;
+          }
+          article.dataset.attempted = '1';
+          commitBtn.textContent = '✓ Attempt Recorded';
+          commitBtn.style.background = '#16a34a';
+
+          if (details) {
+            const slot = q('[data-g9-payload-slot]', details)[0];
+            const ref = details.dataset.g9PayloadRef;
+            const tpl = q(`template[data-g9-payload="${ref}"]`, article)[0];
+            if (slot && tpl && !slot.hasChildNodes()) {
+              slot.appendChild(tpl.content.cloneNode(true));
+              details.open = true;
+              if (window.renderAllMath) window.renderAllMath(slot);
+            }
+          }
+        };
+      }
+    });
+  })();
+  </script>
+
+  <script src="../../js/display-controls.js"></script>
+  <script src="../../js/site-header.js" data-site-root="../../" data-site-parent="../index.html"></script>
+</body>
+</html>

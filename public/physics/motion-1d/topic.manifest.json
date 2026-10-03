@@ -1,0 +1,74 @@
+{
+  "$schema": "grade9v3-topic-manifest/v1",
+  "id": "phy.motion-1d",
+  "subject": "Physics",
+  "topic_title": "Motion in One Dimension",
+  "topic_slug": "motion-1d",
+  "description": "Kinematics in a straight line, displacement, velocity-time integration, and constant acceleration.",
+  "rungs_atlas": {
+    "entrypoint": "physics/motion-1d/atlas.html",
+    "title": "Motion in 1D · 5-Rung Pedagogical Ladder"
+  },
+  "subtopics": [
+    {
+      "id": "CAP-PHY-MOTION-1D",
+      "concept_ref": "MIC-PHY-KIN-1D-MOTION",
+      "title": "Uniform & Accelerated Motion in 1D",
+      "description": "Formulating kinematics equations, interpreting position-time slopes, and integrating velocity graphs.",
+      "continuum": {
+        "core_1a_constructions": [
+          {
+            "id": "phy.motion-1d.construction-straight-line",
+            "title": "Motion in a Straight Line · Core 1A Learn",
+            "entrypoint": "physics/motion-1d/core1a.html",
+            "type": "CORE_1A",
+            "format": "TABLET_HTML"
+          },
+          {
+            "id": "phy.motion-1d.construction-tablet",
+            "title": "Motion in 1D Straight Line | 12.7\" Tablet Standalone Edition",
+            "entrypoint": "standalone/practice/core1a-motion-1d-straight-line-tablet.html",
+            "type": "CORE_1A",
+            "format": "TABLET_HTML"
+          }
+        ],
+        "core_1b_visualizers": [
+          {
+            "id": "phy.motion-1d.explorer-suite",
+            "title": "Motion in 1D Interactive Suite",
+            "entrypoint": "physics/motion-1d/explorers/motion_in_1d/index.html",
+            "type": "CORE_1B",
+            "format": "OPAQUE_APP",
+            "engine": "CANVAS_INTERACTIVE"
+          },
+          {
+            "id": "phy.motion-1d.explorer-circular",
+            "title": "Circular Dynamics & Turnaround Kinematics",
+            "entrypoint": "physics/motion-1d/explorers/circular-dynamics/index.html",
+            "type": "CORE_1B",
+            "format": "OPAQUE_APP",
+            "engine": "CANVAS_INTERACTIVE"
+          }
+        ],
+        "core_2a_ncert": [
+          {
+            "id": "phy.motion-1d.ncert-tablet",
+            "title": "Motion in 1D Core 2 Practice Tablet",
+            "entrypoint": "standalone/practice/core2-motion-1d-straight-line-tablet.html",
+            "type": "CORE_2A",
+            "question_count": 18
+          }
+        ],
+        "core_2b_competitive": [
+          {
+            "id": "phy.motion-1d.master-suite",
+            "title": "Motion in 1D Master Suite",
+            "entrypoint": "standalone/practice/motion-in-1d-master-suite.html",
+            "type": "CORE_2B",
+            "question_count": 10
+          }
+        ]
+      }
+    }
+  ]
+}

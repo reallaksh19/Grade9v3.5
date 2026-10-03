@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-g9-shell data-g9-role="CORE2" data-g9-mode="PAGES" data-g9-topic="{{TOPIC_ID}}" data-blueprint-ref="BP-CORE2-SOURCE-QUESTION@1.5.0">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0">
+  <title>{{TOPIC_TITLE}}: Source Questions · Core 2 Practice · Grade9V3.5</title>
+
+  <!-- Local KaTeX Typography (Offline Guaranteed & Multi-CDN Fallback) -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <link rel="stylesheet" href="../../public/vendor/katex/0.16.8/katex.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../public/vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <script src="../../public/vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Grade9V3.5 Design System & 12.7" Tablet Ergonomics -->
+  <link rel="stylesheet" href="../../css/modern-learner.css">
+  <link rel="stylesheet" href="../../css/site.css">
+  <link rel="stylesheet" href="../../css/tablet-12-7.css">
+
+  <script>
+    function renderAllMath(target) {
+      const el = target || document.body;
+      if (window.renderMathInElement) {
+        try {
+          window.renderMathInElement(el, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '\\[', right: '\\]', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\\(', right: '\\)', display: false }
+            ],
+            throwOnError: false
+          });
+        } catch (e) {
+          console.warn('KaTeX render error:', e);
+        }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => renderAllMath());
+    window.addEventListener('load', () => renderAllMath());
+  </script>
+
+  <style>
+    [hidden] { display: none !important; }
+
+    /* Core 2 Split Grid Architecture (42fr / 58fr) */
+    @media (min-width: 980px) {
+      article[data-g9-role="CORE2"] .g9-split {
+        display: grid;
+        grid-template-columns: minmax(0, 42fr) minmax(0, 58fr);
+        gap: 24px;
+        align-items: start;
+      }
+      article[data-g9-role="CORE2"] .g9-split > .g9-col-support {
+        position: sticky;
+        top: 80px;
+        max-height: calc(100vh - 96px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+      }
+    }
+    @media (max-width: 979px) {
+      article[data-g9-role="CORE2"] .g9-split {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+
+    /* Continuum Substrip Scrollbar Polish */
+    .g9-continuum-substrip {
+      background: var(--card, #ffffff);
+      border-bottom: 1px solid var(--line, #e2e8f0);
+      position: sticky;
+      top: 56px;
+      z-index: 95;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .g9-substrip-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 8px 16px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      align-items: center;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .g9-substrip-inner::-webkit-scrollbar { display: none; }
+
+    .g9-substrip-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      background: var(--bg, #f1f5f9);
+      color: var(--muted, #64748b);
+      border: 1px solid var(--line, #e2e8f0);
+      min-height: 36px;
+      transition: all 0.15s ease;
+    }
+    .g9-substrip-pill:hover {
+      background: var(--card, #ffffff);
+      color: var(--fg, #0f172a);
+      border-color: var(--accent, #2563eb);
+    }
+    .g9-substrip-pill.active {
+      background: var(--accent, #2563eb);
+      color: #ffffff;
+      border-color: var(--accent, #2563eb);
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+    }
+
+    /* Question Article & Header */
+    article[data-g9-unit] {
+      background: var(--card, #ffffff);
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .g9-c-header .g9-block[data-g9-block="source_identity"] h2 {
+      margin: 0 0 4px;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--fg, #0f172a);
+    }
+    [data-g9-meta-strip] {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 10px 0;
+    }
+    [data-g9-meta-item] {
+      display: inline-flex;
+      gap: 4px;
+      align-items: baseline;
+      padding: 3px 10px;
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 999px;
+      background: var(--bg, #f8fafc);
+      font-size: 0.8rem;
+    }
+    [data-g9-meta-item] strong { font-weight: 700; color: var(--muted, #64748b); }
+
+    /* Cognitive Demand & Review Template Badges */
+    .g9-pill-demand {
+      background: #fdf2f8;
+      color: #9d174d;
+      border: 1px solid #fbcfe8;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 1px 8px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+    }
+    .g9-pill-review-template {
+      background: #f0fdf4;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+      font-weight: 700;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.76rem;
+      display: inline-flex;
+      align-items: center;
+      padding: 1px 8px;
+      border-radius: 999px;
+    }
+    .g9-demand-scaffold-summary {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--muted, #64748b);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .g9-demand-scaffold-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .g9-scaffold-cell {
+      background: var(--card, #ffffff);
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 0.82rem;
+    }
+    .g9-scaffold-cell strong {
+      display: block;
+      color: var(--muted, #64748b);
+      font-size: 0.74rem;
+      margin-bottom: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    /* Difficulty & 5-Axis Disclosure Grid */
+    .g9-why-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line, #cbd5e1);
+      background: var(--bg, #f8fafc);
+      border-radius: 999px;
+      padding: 4px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      min-height: 36px;
+      margin: 6px 0;
+    }
+    .g9-dgrid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      margin: 8px 0 14px;
+    }
+    .g9-dcell {
+      background: var(--bg, #f8fafc);
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 0.8rem;
+      color: var(--muted, #64748b);
+    }
+    .g9-dcell b { display: block; color: var(--fg, #0f172a); font-size: 0.95rem; margin-top: 2px; }
+
+    /* Callouts */
+    .g9-c-callout-info {
+      border-left: 4px solid #38bdf8;
+      background: #f0f9ff;
+      border-radius: 0 10px 10px 0;
+      padding: 10px 14px;
+      margin: 12px 0;
+      color: #0369a1;
+    }
+    .g9-c-callout-info h4 { margin: 0 0 4px; font-size: 0.88rem; font-weight: 800; color: #0284c7; }
+    .g9-c-callout-info ul { margin: 0; padding-left: 18px; }
+
+    .g9-c-callout-warn {
+      border: 1px solid #fecdd3;
+      border-left: 4px solid #e11d48;
+      background: #fff1f2;
+      border-radius: 0 10px 10px 0;
+      padding: 10px 14px;
+      margin: 12px 0;
+      color: #9f1239;
+    }
+    .g9-c-callout-warn h4 { margin: 0 0 4px; font-size: 0.88rem; font-weight: 800; color: #be123c; }
+
+    /* Attempt Box */
+    .g9-attempt {
+      background: var(--bg, #f8fafc);
+      border: 1.5px solid var(--line, #cbd5e1);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .g9-attempt textarea, .g9-attempt input[type="text"] {
+      width: 100%;
+      border: 1.5px solid var(--line, #cbd5e1);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 1rem;
+      background: var(--card, #ffffff);
+      color: var(--fg, #0f172a);
+      box-sizing: border-box;
+    }
+    .g9-attempt textarea:focus, .g9-attempt input[type="text"]:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+    .g9-attempt button[data-g9-commit] {
+      align-self: flex-start;
+      min-height: 44px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      background: #2563eb;
+      color: #ffffff;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
+      transition: all 0.15s ease;
+    }
+    .g9-attempt button[data-g9-commit]:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+    .g9-paper {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--muted, #64748b);
+      cursor: pointer;
+    }
+
+    /* Hint Ladder & Ghost Rungs */
+    .g9-c-ladder {
+      background: var(--card, #ffffff);
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .g9-ladder ol { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+    .g9-rung-map { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 8px; }
+    .g9-rung-map > li {
+      border: 1.5px dashed var(--line, #cbd5e1);
+      border-radius: 10px;
+      padding: 10px 14px;
+      color: var(--muted, #64748b);
+      background: var(--bg, #f8fafc);
+    }
+    .g9-rung-head { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .g9-rung-no {
+      display: inline-grid;
+      place-items: center;
+      min-width: 2.2em;
+      height: 2em;
+      border-radius: 6px;
+      background: #e0e7ff;
+      color: #3730a3;
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+    .g9-ladder button[data-g9-next-rung] {
+      margin-top: 12px;
+      min-height: 40px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--line, #cbd5e1);
+      background: var(--bg, #f8fafc);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .g9-ladder button[data-g9-next-rung]:hover {
+      background: #eff6ff;
+      border-color: #3b82f6;
+    }
+
+    /* Solution moves */
+    .g9-solution-move {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr);
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line, #e2e8f0);
+    }
+    .g9-solution-move:last-child { border-bottom: none; }
+    .g9-solution-move[data-g9-solution-crux="true"] {
+      background: #eff6ff;
+      border-radius: 10px;
+      padding: 12px;
+      border-bottom: none;
+    }
+    .g9-step-no {
+      font-weight: 850;
+      font-size: 0.95rem;
+      color: #3730a3;
+      background: #e0e7ff;
+      border-radius: 8px;
+      padding: 6px;
+      text-align: center;
+      height: max-content;
+    }
+    .g9-step-body h4 { margin: 0 0 4px; font-size: 0.95rem; font-weight: 800; color: var(--fg, #0f172a); }
+    .g9-c-answer-box {
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      border-radius: 12px;
+      padding: 14px 18px;
+      color: #166534;
+      margin: 14px 0 8px;
+    }
+    .g9-c-check-box {
+      border-left: 4px solid #16a34a;
+      padding: 4px 12px;
+      color: #15803d;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body data-core="CORE2" data-blueprint-ref="BP-CORE2-SOURCE-QUESTION@1.5.0">
+  <!-- 1. Standardized Portal Header -->
+  <header class="g9-shell-header">
+    <div class="g9-header-inner">
+      <a class="g9-brand" href="../../index.html">
+        <span class="logo-icon">⚡</span>
+        <span class="brand-title">Grade9V3.5</span>
+        <span class="g9-brand-badge">Learner Platform</span>
+      </a>
+      <nav class="g9-header-nav" aria-label="Portal Navigation">
+        <a href="../../index.html">Home</a>
+        <a href="../../physics/index.html" class="{{ACTIVE_PHYSICS}}">Physics</a>
+        <a href="../../chemistry/index.html" class="{{ACTIVE_CHEMISTRY}}">Chemistry</a>
+        <a href="../../mathematics/index.html" class="{{ACTIVE_MATHEMATICS}}">Mathematics</a>
+        <a href="../../question-bank/index.html">Question Bank</a>
+        <a href="../../atlas/index.html">Atlas &amp; Rungs</a>
+      </nav>
+      <div class="g9-header-actions">
+        <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)">
+          <span class="g9-btn-icon">🔍</span>
+          <span class="g9-btn-text">Search</span>
+        </button>
+        <button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings">
+          <span class="g9-btn-icon">🌙 / ☀️</span>
+          <span class="g9-btn-text">Display</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. Breadcrumb Navigation -->
+  <nav class="g9-breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="g9-breadcrumbs">
+      <a href="../../index.html">Home</a> <span>/</span>
+      <a href="../index.html">{{SUBJECT_NAME}}</a> <span>/</span>
+      <a href="index.html">{{TOPIC_TITLE}}</a> <span>/</span>
+      <span class="current">Core 2: Source Question Practice</span>
+    </div>
+  </nav>
+
+  <!-- 3. Learning Continuum Substrip -->
+  <div class="g9-continuum-substrip" role="navigation" aria-label="{{TOPIC_TITLE}} Continuum">
+    <div class="g9-substrip-inner">
+      <a href="index.html" class="g9-substrip-pill">← Topic Dashboard</a>
+      <a href="core1.html" class="g9-substrip-pill">Core 1: Foundations</a>
+      <a href="core1a.html" class="g9-substrip-pill">Core 1A: Construction</a>
+      <a href="core1b.html" class="g9-substrip-pill">Core 1B: Reconstruction</a>
+      <a href="core2.html" class="g9-substrip-pill active">Core 2: Question Bank</a>
+      <a href="core2a.html" class="g9-substrip-pill">Core 2A: Methods</a>
+      <a href="core2b.html" class="g9-substrip-pill">Core 2B: Challenge</a>
+      {{#IF_SIMULATION}}
+      <a href="{{SIMULATION_URL}}" class="g9-substrip-pill highlight">⚡ Interactive Simulation</a>
+      {{/IF_SIMULATION}}
+    </div>
+  </div>
+
+  <!-- 4. Main Practice Container -->
+  <main class="g9-main-container">
+    <header class="g9-c-title-banner" style="margin-bottom: 24px;">
+      <h1>{{TOPIC_TITLE}}: Source Question Custody &amp; Guided Practice</h1>
+      <p class="g9-prov">Verified exam items preserved verbatim with attempt-first gating and progressive hint ladders.</p>
+    </header>
+
+    <!-- QUESTION LOOP: Repeat for each source question -->
+    <!-- {{BEGIN_QUESTION}} -->
+    <article id="{{QUESTION_ID}}" data-g9-unit="{{QUESTION_ID}}" data-g9-kind="QUESTION" data-g9-role="CORE2" data-g9-demand="{{COGNITIVE_DEMAND_KEY}}" data-g9-review-template="{{REVIEW_TEMPLATE_REF}}" class="g9-stage-support">
+      
+      <!-- Slot 1: IDENTITY & PROVENANCE -->
+      <section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true">
+        <div class="g9-component g9-c-header" data-g9-component="IDENTITY">
+          <div class="g9-block" data-g9-block="source_identity">
+            <h2>{{SOURCE_TITLE}}</h2>
+            <p class="g9-prov">{{PROVENANCE_DESCRIPTION}}</p>
+          </div>
+          
+          <div data-g9-meta-strip data-g9-meta-role="CORE2">
+            <span data-g9-meta-item><strong>Subject:</strong> {{SUBJECT_NAME}}</span>
+            <span data-g9-meta-item><strong>Topic:</strong> {{TOPIC_TITLE}}</span>
+            <span data-g9-meta-item><strong>Concept:</strong> {{CONCEPT_NAME}}</span>
+            <span data-g9-meta-item><strong>Cognitive demand:</strong> <span class="g9-pill g9-pill-demand" data-g9-demand="{{COGNITIVE_DEMAND_KEY}}">{{COGNITIVE_DEMAND_ICON}} {{COGNITIVE_DEMAND_LABEL}}</span></span>
+            <span data-g9-meta-item><strong>Question difficulty:</strong> {{DIFFICULTY_BAND}}</span>
+            <span data-g9-meta-item><strong>Question type:</strong> {{QUESTION_TYPE_LABEL}}</span>
+            <span data-g9-meta-item><strong>Source:</strong> {{SOURCE_CITATION}}</span>
+            {{#IF_REVIEW_TEMPLATE}}
+            <span data-g9-meta-item><strong>Review rubric:</strong> <span class="g9-pill g9-pill-review-template">{{REVIEW_TEMPLATE_REF}}</span></span>
+            {{/IF_REVIEW_TEMPLATE}}
+            {{#IF_PDF_LINK}}
+            <a class="g9-pdf-link" href="{{PDF_URL}}" target="_blank" rel="noopener noreferrer">📄 Source Paper (PDF)</a>
+            {{/IF_PDF_LINK}}
+          </div>
+        </div>
+
+        <!-- Slot 2: DIFFICULTY_WHY (5-Axis Disclosure Grid & Demand Scaffolding) -->
+        <div class="g9-component g9-c-disclosure-grid" data-g9-component="DIFFICULTY_WHY">
+          <button type="button" class="g9-why-toggle" data-g9-toggle aria-expanded="false" aria-controls="why-{{QUESTION_ID}}">
+            <span class="g9-pill g9-pill-band">{{DIFFICULTY_BAND}} · {{DIFFICULTY_SCORE}}/10 · ~{{EXPECTED_MINUTES}} min</span>
+            <span>Why this difficulty? ▾</span>
+          </button>
+          <div id="why-{{QUESTION_ID}}" class="g9-why" hidden>
+            <p>{{DIFFICULTY_RATIONALE}}</p>
+            <div class="g9-dgrid">
+              <div class="g9-dcell"><span>Choosing model</span><b>{{SCORE_MODEL}}/2</b></div>
+              <div class="g9-dcell"><span>Representation</span><b>{{SCORE_REP}}/2</b></div>
+              <div class="g9-dcell"><span>Reasoning chain</span><b>{{SCORE_CHAIN}}/2</b></div>
+              <div class="g9-dcell"><span>Algebra &amp; math</span><b>{{SCORE_MATH}}/2</b></div>
+              <div class="g9-dcell"><span>Traps &amp; exceptions</span><b>{{SCORE_TRAPS}}/2</b></div>
+            </div>
+            {{#IF_DEMAND_SCAFFOLDING}}
+            <div class="g9-component g9-c-demand-scaffold" data-g9-component="DEMAND_SCAFFOLDING" style="margin-top: 10px;">
+              <details style="background: var(--bg, #f8fafc); border: 1px solid var(--line, #cbd5e1); border-radius: 8px; padding: 6px 12px;">
+                <summary class="g9-demand-scaffold-summary">
+                  <span>Demand Scaffolding ($X, Y, Z, W$) · Cognitive Architecture ▾</span>
+                </summary>
+                <div class="g9-demand-scaffold-grid">
+                  <div class="g9-scaffold-cell"><strong>Target Concept ($X$)</strong><span>{{SCAFFOLD_X}}</span></div>
+                  <div class="g9-scaffold-cell"><strong>Related Idea ($Y$)</strong><span>{{SCAFFOLD_Y}}</span></div>
+                  <div class="g9-scaffold-cell"><strong>Crux Retrieval ($Z$)</strong><span>{{SCAFFOLD_Z}}</span></div>
+                  <div class="g9-scaffold-cell"><strong>Student Step ($W$)</strong><span>{{SCAFFOLD_W}}</span></div>
+                </div>
+              </details>
+            </div>
+            {{/IF_DEMAND_SCAFFOLDING}}
+          </div>
+        </div>
+      </section>
+
+      <!-- 42fr / 58fr Split Screen -->
+      <div class="g9-split">
+        
+        <!-- Left Column (42%): Stem, Conditions, Trap & Attempt -->
+        <div class="g9-col g9-col-primary">
+          <section class="blueprint-slot slot-attempt" data-blueprint-slot="attempt" data-required="true">
+            
+            <!-- Slot 3: STEM -->
+            <div class="g9-component g9-c-stem" data-g9-component="STEM">
+              <div class="g9-eyebrow" style="color:#2563eb; font-weight:800;">Attempt First</div>
+              <div class="g9-block" data-g9-block="stem" style="font-size:1.05rem; line-height:1.6; margin:8px 0 14px;">
+                <p>{{QUESTION_STEM}}</p>
+              </div>
+            </div>
+
+            <!-- Slot 4: CONDITIONS -->
+            {{#IF_CONDITIONS}}
+            <div class="g9-component g9-c-callout-info" data-g9-component="CONDITIONS">
+              <h4>Conditions &amp; Stated Givens</h4>
+              <ul>
+                <!-- {{BEGIN_CONDITIONS}} -->
+                <li>{{CONDITION_ITEM}}</li>
+                <!-- {{END_CONDITIONS}} -->
+              </ul>
+            </div>
+            {{/IF_CONDITIONS}}
+
+            <!-- Slot 5: TRAP (Common Wrong Route) -->
+            <div class="g9-component g9-c-callout-warn" data-g9-component="TRAP">
+              <h4>⚠️ Common Wrong Route</h4>
+              <p>{{COMMON_WRONG_ROUTE}}</p>
+            </div>
+
+            <!-- Slot 6: ATTEMPT BOX -->
+            <div class="g9-component g9-c-attempt" data-g9-component="ATTEMPT">
+              <div class="g9-attempt" data-g9-attempt-box data-g9-response-type="{{RESPONSE_TYPE}}">
+                {{ATTEMPT_CONTROLS_HTML}}
+                <label class="g9-paper">
+                  <input data-g9-paper type="checkbox"> I worked this out on paper
+                </label>
+                <button type="button" data-g9-commit>I have attempted this</button>
+              </div>
+            </div>
+
+          </section>
+        </div>
+
+        <!-- Right Column (58%): Representation, Hint Ladder & Concept Link -->
+        <div class="g9-col g9-col-support">
+          
+          <!-- Slot 7: REPRESENTATION (SVG Figure) -->
+          {{#IF_SVG_FIGURE}}
+          <section class="blueprint-slot slot-representation" data-blueprint-slot="representation">
+            <div class="g9-component g9-c-visual-card" data-g9-component="REPRESENTATION">
+              <div class="g9-card-head">
+                <strong>Question Representation</strong>
+                <span class="g9-pill">Schematic</span>
+              </div>
+              <figure data-g9-figure style="margin:8px 0;">
+                {{SVG_FIGURE_BODY}}
+                <figcaption style="font-size:0.85rem; color:var(--muted); margin-top:4px;">{{SVG_FIGURE_CAPTION}}</figcaption>
+              </figure>
+            </div>
+          </section>
+          {{/IF_SVG_FIGURE}}
+
+          <!-- Slot 8: HINT LADDER -->
+          <section class="blueprint-slot slot-support" data-blueprint-slot="support">
+            <div class="g9-component g9-c-ladder" data-g9-component="HINT_LADDER">
+              <div class="g9-eyebrow" style="font-size:0.85rem; font-weight:800; text-transform:uppercase; color:var(--muted);">
+                Hint Ladder · Reveal only what you need
+              </div>
+              
+              <div class="g9-ladder" data-g9-ladder-ref="{{QUESTION_ID}}-ladder">
+                <ol data-g9-ladder></ol>
+                <ol class="g9-rung-map" aria-label="Rungs to unlock">
+                  <!-- {{BEGIN_GHOST_RUNGS}} -->
+                  <li data-g9-rung-ghost>
+                    <div class="g9-rung-head">
+                      <span class="g9-rung-no">{{RUNG_NO}}</span>
+                      <span>{{RUNG_LABEL}}</span>
+                      <span class="g9-pill" style="font-size:0.75rem; background:#f1f5f9;">Guided</span>
+                    </div>
+                  </li>
+                  <!-- {{END_GHOST_RUNGS}} -->
+                </ol>
+
+                <!-- Template payloads for progressive unlock -->
+                <!-- {{BEGIN_RUNG_PAYLOADS}} -->
+                <template data-g9-rung-payload="{{QUESTION_ID}}-rung-{{RUNG_INDEX}}">
+                  <li data-g9-rung="{{RUNG_INDEX}}" style="border-left:4px solid #2563eb; background:#f8fafc; border-radius:0 10px 10px 0; padding:12px 14px; margin-bottom:8px;">
+                    <div class="g9-rung-head">
+                      <span class="g9-rung-no">{{RUNG_NO}}</span>
+                      <strong>{{RUNG_LABEL}}</strong>
+                    </div>
+                    <p style="margin:6px 0; font-size:0.95rem;">{{RUNG_PROMPT}}</p>
+                    <details data-g9-support-reveal style="margin-top:6px;">
+                      <summary style="font-size:0.85rem; font-weight:700; color:#2563eb; cursor:pointer;">Reveal hint</summary>
+                      <p style="margin-top:4px; font-size:0.9rem; color:#1e293b;">{{RUNG_HINT_TEXT}}</p>
+                    </details>
+                  </li>
+                </template>
+                <!-- {{END_RUNG_PAYLOADS}} -->
+
+                <button type="button" data-g9-next-rung>Show guided support</button>
+              </div>
+            </div>
+
+            <!-- Slot 9: CONCEPT_NAV (Cross-link to Core 1A) -->
+            <div class="g9-component g9-c-link-list" data-g9-component="CONCEPT_NAV" style="margin-top:14px;">
+              <p style="font-size:0.85rem; font-weight:700; color:var(--muted); margin-bottom:6px;">Need to rebuild this concept?</p>
+              <a href="{{CORE1A_ANCHOR_URL}}" style="display:inline-flex; align-items:center; gap:6px; font-weight:700; color:#2563eb; text-decoration:none;">
+                📖 Review in Core 1A: {{CONCEPT_NAME}} →
+              </a>
+            </div>
+          </section>
+
+        </div>
+
+      </div>
+
+      <!-- Slot 10 & 11: SOLUTION & REASONING ROUTE -->
+      <section class="blueprint-slot slot-solution" data-blueprint-slot="solution" data-required="true" style="margin-top:20px;">
+        <div class="g9-component g9-c-disclosure" data-g9-component="SOLUTION">
+          <details data-g9-reveal data-requires-attempt data-g9-payload-ref="{{QUESTION_ID}}-solution">
+            <summary style="font-size:1.05rem; font-weight:800; cursor:pointer; padding:12px 0;">Teacher Solution · Complete Derivation</summary>
+            <div data-g9-payload-slot></div>
+          </details>
+
+          <template data-g9-payload="{{QUESTION_ID}}-solution">
+            <div class="g9-component g9-c-step-list" data-g9-component="SOLUTION_STEPS">
+              <div class="g9-block" data-g9-block="structured_working">
+                <h4 style="margin:12px 0 8px;">Reasoning Route</h4>
+                
+                <!-- {{BEGIN_SOLUTION_MOVES}} -->
+                <section class="g9-solution-move" data-g9-solution-crux="{{IS_CRUX_MOVE}}">
+                  <div class="g9-step-no">{{MOVE_NUMBER}}</div>
+                  <div class="g9-step-body">
+                    <h4>{{MOVE_STAGE_LABEL}} {{#IF_CRUX}}<span style="color:#dc2626; font-size:0.8rem; font-weight:800; text-transform:uppercase;">[Key Move]</span>{{/IF_CRUX}}</h4>
+                    <p><strong>Action:</strong> {{MOVE_ACTION}}</p>
+                    {{#IF_USES}}
+                    <p style="font-size:0.85rem; color:var(--muted);"><strong>Uses:</strong> {{MOVE_USES}}</p>
+                    {{/IF_USES}}
+                    <p><em>Why valid:</em> {{MOVE_WHY_VALID}}</p>
+                    <p><strong>Result:</strong> {{MOVE_RESULT}}</p>
+                  </div>
+                </section>
+                <!-- {{END_SOLUTION_MOVES}} -->
+
+              </div>
+            </div>
+
+            <!-- Slot 12: ANSWER BOX -->
+            <div class="g9-component g9-c-answer-box" data-g9-component="ANSWER">
+              <h4 style="margin:0 0 4px; font-size:0.95rem;">Verified Result</h4>
+              <p style="font-size:1.05rem; font-weight:700; margin:0;">{{ANSWER_SUMMARY}}</p>
+            </div>
+
+            <!-- Slot 13: INDEPENDENT CHECK -->
+            <div class="g9-component g9-c-check-box" data-g9-component="CHECK">
+              <p><strong>Independent Sanity Check:</strong> {{INDEPENDENT_CHECK}}</p>
+            </div>
+          </template>
+        </div>
+      </section>
+
+    </article>
+    <!-- {{END_QUESTION}} -->
+
+  </main>
+
+  <footer data-g9-footer style="text-align:center; padding:32px 16px; color:var(--muted, #64748b); font-size:0.88rem;">
+    Grade9V3.5 Learning Continuum · {{TOPIC_TITLE}} Core 2 · Offline Guaranteed &amp; 12.7" Tablet Optimized
+  </footer>
+
+  <!-- Built-in Attempt Gate & Hint Ladder Unlocking Engine -->
+  <script>
+  (()=>{
+    const q=(s,r=document)=>[...r.querySelectorAll(s)];
+
+    // 1. Difficulty Accordion Toggle
+    q('[data-g9-toggle]').forEach(btn => {
+      btn.onclick = () => {
+        const id = btn.getAttribute('aria-controls');
+        const target = document.getElementById(id);
+        if (target) {
+          const isHidden = target.hidden;
+          target.hidden = !isHidden;
+          btn.setAttribute('aria-expanded', String(isHidden));
+        }
+      };
+    });
+
+    // 2. Hint Ladder Progressive Reveal
+    q('.g9-ladder').forEach(ladder => {
+      let currentRung = 0;
+      const ref = ladder.dataset.g9LadderRef.replace('-ladder', '');
+      const list = q('[data-g9-ladder]', ladder)[0];
+      const ghostMap = q('.g9-rung-map', ladder)[0];
+      const nextBtn = q('[data-g9-next-rung]', ladder)[0];
+
+      if (nextBtn) {
+        nextBtn.onclick = () => {
+          currentRung++;
+          const tpl = q(`template[data-g9-rung-payload="${ref}-rung-${currentRung}"]`, ladder)[0];
+          if (tpl) {
+            const clone = tpl.content.cloneNode(true);
+            list.appendChild(clone);
+            const ghosts = q('[data-g9-rung-ghost]', ghostMap);
+            if (ghosts.length > 0) ghosts[0].remove();
+            if (window.renderAllMath) window.renderAllMath(list);
+          }
+          const nextTpl = q(`template[data-g9-rung-payload="${ref}-rung-${currentRung + 1}"]`, ladder)[0];
+          if (!nextTpl) nextBtn.hidden = true;
+        };
+      }
+    });
+
+    // 3. Attempt Commitment & Solution Unlock Gate
+    function validAttempt(box) {
+      const type = box.dataset.g9ResponseType;
+      if (box.querySelector('[data-g9-paper]:checked')) return true;
+      if (type === 'single_choice' || type === 'multiple_choice') {
+        return !!box.querySelector('input[data-g9-choice]:checked');
+      }
+      const txt = box.querySelector('[data-g9-attempt]');
+      return txt ? !!txt.value.trim() : true;
+    }
+
+    q('article[data-g9-unit]').forEach(article => {
+      const details = q('details[data-requires-attempt]', article)[0];
+      const commitBtn = q('[data-g9-commit]', article)[0];
+      const box = q('[data-g9-attempt-box]', article)[0];
+
+      if (details) {
+        details.querySelector('summary').addEventListener('click', e => {
+          if (!article.dataset.attempted) {
+            e.preventDefault();
+            alert('Please submit your attempt commitment first before viewing the solution.');
+          }
+        });
+      }
+
+      if (commitBtn && box) {
+        commitBtn.onclick = () => {
+          if (!validAttempt(box)) {
+            alert('Please enter an answer or check "I worked this out on paper".');
+            return;
+          }
+          article.dataset.attempted = '1';
+          commitBtn.textContent = '✓ Attempt Recorded';
+          commitBtn.style.background = '#16a34a';
+
+          if (details) {
+            const slot = q('[data-g9-payload-slot]', details)[0];
+            const ref = details.dataset.g9PayloadRef;
+            const tpl = q(`template[data-g9-payload="${ref}"]`, article)[0];
+            if (slot && tpl && !slot.hasChildNodes()) {
+              slot.appendChild(tpl.content.cloneNode(true));
+              details.open = true;
+              if (window.renderAllMath) window.renderAllMath(slot);
+            }
+          }
+        };
+      }
+    });
+  })();
+  </script>
+
+  <script src="../../js/display-controls.js"></script>
+  <script src="../../js/site-header.js" data-site-root="../../" data-site-parent="../index.html"></script>
+</body>
+</html>

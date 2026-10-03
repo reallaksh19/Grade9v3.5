@@ -62,10 +62,9 @@ def validate_relationship_integrity(registry: list[dict]) -> list[str]:
         classification = rec.get("classification", {})
         caps = classification.get("capability_refs", [])
 
-        # Learner resource without classification
+        # Subject home, QB, and topic atlases don't strictly require microtopics, but subtopic resources do
         if audience == "LEARNER" and role in ("LEARN", "PRACTICE", "EXPLORE") and not caps:
-            # Subject home and QB don't strictly require microtopics, but topic/concept resources do
-            if "home" not in rid and "question-bank" not in rid:
+            if "home" not in rid and "question-bank" not in rid and "atlas" not in rid:
                 diagnostics.append(f"LEARNER_RESOURCE_WITHOUT_CLASSIFICATION: Resource {rid} has empty capability_refs")
 
         # Learner app without learning refs
@@ -122,6 +121,18 @@ def resolve_bundle(concept_ref: str, registry: list[dict]) -> dict:
 
     title = CONCEPT_TITLES.get(concept_ref, concept_ref.replace("MIC-", "").replace("-", " ").title())
 
+    core_1a_items = [item for item in learn_items]
+    core_1b_items = [item for item in interactive_items]
+    core_2a_items = []
+    core_2b_items = []
+    for item in practice_items:
+        rid_lower = item["resource_ref"].lower()
+        title_lower = item.get("title", "").lower()
+        if "ncert" in rid_lower or "ncert" in title_lower or "core2-" in rid_lower or "core2a" in rid_lower:
+            core_2a_items.append(item)
+        else:
+            core_2b_items.append(item)
+
     bundle = {
         "schema": "concept-bundle/v1",
         "concept_ref": concept_ref,
@@ -131,6 +142,10 @@ def resolve_bundle(concept_ref: str, registry: list[dict]) -> dict:
         "learn": learn_items,
         "practice": practice_items,
         "interactive": interactive_items,
+        "core_1a": core_1a_items,
+        "core_1b": core_1b_items,
+        "core_2a": core_2a_items,
+        "core_2b": core_2b_items,
         "question_bank": {
             "filter": {
                 "capability_ref": concept_ref

@@ -1,0 +1,253 @@
+{
+  "topic_id": "golden-demand-calibration",
+  "topic_title": "Cognitive Demand Calibration Specimen",
+  "subject_name": "Physics",
+  "questions": [
+    {
+      "id": "Q-PHY-INCLINE-01",
+      "source_title": "JEE Advanced · Mechanics & Energy Conservation",
+      "provenance_description": "Verified past-exam adaptation with multi-step reasoning",
+      "concept_name": "Conservation of Mechanical Energy & Kinematics",
+      "difficulty_band": "D4",
+      "difficulty_score": 8,
+      "expected_minutes": 7,
+      "question_type_label": "Multi-Step Kinematics & Energy Derivation",
+      "cognitive_demand": "MULTISTEP_REASONING",
+      "review_template_ref": "QRT-PHY-MULTISTEP",
+      "demand_scaffolding": {
+        "x": "Frictionless inclined plane model with uniform gravity $g$",
+        "y": "Conservation of mechanical energy ($E_i = E_f$)",
+        "z": "Geometric relation linking vertical height to ramp distance: $h = s \\sin\\theta$",
+        "w": "Isolating velocity $v = \\sqrt{2gs \\sin\\theta}$ and evaluating numerical result"
+      },
+      "source_citation": "JEE Advanced Mechanics Archives · Adapted Exemplar",
+      "difficulty_rationale": "Requires combining coordinate geometry on an inclined plane with gravitational potential energy conversion and kinematic speed derivation.",
+      "difficulty_grid": {
+        "model": 2,
+        "representation": 2,
+        "chain": 2,
+        "math": 1,
+        "traps": 1
+      },
+      "stem": "A block of mass $m$ slides from rest down a smooth, frictionless inclined plane of angle $\\theta$ over a distance $s$ along the incline. Derive the general expression for its final speed $v$ at the bottom, and calculate $v$ when $s = 10\\text{ m}$, $\\theta = 30^\\circ$, and $g = 9.8\\text{ m/s}^2$.",
+      "conditions": [
+        "Incline angle $\\theta = 30^\\circ$.",
+        "Frictionless surface (coefficient of friction $\\mu = 0$).",
+        "Initial state: released from rest ($u = 0\\text{ m/s}$).",
+        "Acceleration due to gravity $g = 9.8\\text{ m/s}^2$."
+      ],
+      "common_wrong_route": "Confusing ramp length $s$ with vertical height $h$ (forgetting the factor $\\sin\\theta$), or incorrectly assuming normal force performs work.",
+      "response_type": "free_response",
+      "svg_caption": "Mechanical System: Frictionless ramp inclined at angle $\\theta$ with block $m$, normal force $N$, and weight $mg$.",
+      "svg_body": "<svg viewBox=\"0 0 460 220\" width=\"100%\" height=\"auto\"><polygon points=\"40,180 380,180 380,60\" fill=\"#f1f5f9\" stroke=\"#334155\" stroke-width=\"2.5\"/><line x1=\"20\" y1=\"180\" x2=\"440\" y2=\"180\" stroke=\"#64748b\" stroke-width=\"1.5\"/><rect x=\"220\" y=\"90\" width=\"40\" height=\"30\" rx=\"4\" fill=\"#3b82f6\" stroke=\"#1d4ed8\" stroke-width=\"2\" transform=\"rotate(21.8 220 90)\"/><path d=\"M 90,180 A 50,50 0 0,0 86,162\" fill=\"none\" stroke=\"#2563eb\" stroke-width=\"2\"/><text x=\"100\" y=\"172\" font-size=\"14\" font-weight=\"bold\" fill=\"#2563eb\">θ = 30°</text><line x1=\"395\" y1=\"60\" x2=\"395\" y2=\"180\" stroke=\"#dc2626\" stroke-width=\"1.5\" stroke-dasharray=\"4,4\"/><text x=\"405\" y=\"125\" font-size=\"13\" font-weight=\"bold\" fill=\"#dc2626\">h = s sin θ</text><text x=\"180\" y=\"85\" font-size=\"13\" font-weight=\"bold\" fill=\"#1e40af\">s = 10 m</text></svg>",
+      "hint_ladder": [
+        {
+          "label": "Coordinate Model & Height",
+          "prompt": "How does the vertical displacement $h$ relate to the length $s$ traversed along the incline plane?",
+          "hint": "In right triangle geometry, $\\sin\\theta = \\frac{h}{s} \\implies h = s \\sin\\theta$."
+        },
+        {
+          "label": "Conservation Law",
+          "prompt": "Does the normal force perform any work on the sliding block? What does this imply for total mechanical energy?",
+          "hint": "The normal force is perpendicular to displacement ($\\vec{N} \\cdot \\vec{ds} = 0$), so no work is done. Total mechanical energy is conserved: $\\Delta K + \\Delta U = 0$."
+        },
+        {
+          "label": "Equate and Solve",
+          "prompt": "Equate the gravitational potential energy lost to the kinetic energy gained, and solve for $v$.",
+          "hint": "$\\frac{1}{2}mv^2 = mgh = mg(s \\sin\\theta) \\implies v = \\sqrt{2gs \\sin\\theta}$. Substituting givens: $v = \\sqrt{2(9.8)(10)\\sin 30^\\circ} = \\sqrt{98} \\approx 9.90\\text{ m/s}$."
+        }
+      ],
+      "core1a_anchor_url": "core1a.html#U-PHY-ENERGY-CONSERVATION",
+      "solution_moves": [
+        {
+          "stage_label": "Geometric Projection",
+          "is_crux": false,
+          "action": "Determine the vertical height drop $h$ corresponding to distance $s$ along the inclined plane.",
+          "uses": "Trigonometric definition $\\sin\\theta = h/s$",
+          "why_valid": "The incline surface forms the hypotenuse of the right-angled vertical triangle.",
+          "result": "$h = s \\sin\\theta = 10 \\sin(30^\\circ) = 5.0\\text{ m}$."
+        },
+        {
+          "stage_label": "Apply Energy Conservation",
+          "is_crux": true,
+          "action": "Equate gravitational potential energy converted into kinetic energy at the bottom.",
+          "uses": "Work-Energy Theorem & Mechanical Energy Conservation: $E_i = E_f$",
+          "why_valid": "Friction is absent and the normal contact force is orthogonal to motion, so non-conservative work $W_{\\text{nc}} = 0$.",
+          "result": "$mgh = \\frac{1}{2}mv^2 \\implies v = \\sqrt{2gh} = \\sqrt{2gs \\sin\\theta}$."
+        },
+        {
+          "stage_label": "Numerical Evaluation",
+          "is_crux": false,
+          "action": "Substitute given values $g = 9.8\\text{ m/s}^2, s = 10\\text{ m}, \\theta = 30^\\circ$ into the velocity equation.",
+          "uses": "Arithmetic square root evaluation",
+          "why_valid": "Evaluation of derived algebraic expression.",
+          "result": "$v = \\sqrt{2 \\times 9.8 \\times 5.0} = \\sqrt{98} \\approx 9.90\\text{ m/s}$."
+        }
+      ],
+      "answer_summary": "Derived Expression: $v = \\sqrt{2gs \\sin\\theta}$. Numerical Value: $v = \\sqrt{98} \\approx 9.90\\text{ m/s}$.",
+      "independent_check": "Independent kinematic check using $v^2 = u^2 + 2as$: Acceleration along incline is $a = g \\sin\\theta$. With $u = 0$, $v^2 = 2(g \\sin\\theta)s \\implies v = \\sqrt{2gs \\sin\\theta}$. Both independent derivations yield $\\sqrt{98} \\approx 9.90\\text{ m/s}$."
+    },
+    {
+      "id": "Q-PHY-UNIT-FORCE-01",
+      "source_title": "NCERT Exemplar · Physics · Laws of Motion",
+      "provenance_description": "Official NCERT Exemplar recall question, preserved verbatim",
+      "concept_name": "Newton's Second Law & SI Derived Units",
+      "difficulty_band": "D1",
+      "difficulty_score": 1,
+      "expected_minutes": 1,
+      "question_type_label": "Factual Recall of SI Units",
+      "cognitive_demand": "MEMORY_RECALL",
+      "review_template_ref": "QRT-PHY-MEMORY",
+      "demand_scaffolding": {
+        "x": "SI unit of force: the Newton ($\\text{N}$)",
+        "y": "Fundamental SI base units for mass ($\\text{kg}$), length ($\\text{m}$), and time ($\\text{s}$)",
+        "z": "Governing physical law: Newton's second law relation $F = ma$",
+        "w": "Stating $1\\text{ N} = 1\\text{ kg}\\cdot\\text{m}/\\text{s}^2$ in base SI units"
+      },
+      "source_citation": "NCERT Class 9 Science Exemplar · Chapter 9 (Force and Laws of Motion) · Section 9.1",
+      "difficulty_rationale": "Direct factual recall of the fundamental base unit composition of the derived unit Newton via $F = ma$.",
+      "difficulty_grid": {
+        "model": 0,
+        "representation": 0,
+        "chain": 0,
+        "math": 1,
+        "traps": 0
+      },
+      "stem": "State the SI unit of force in terms of fundamental SI base units (kilogram, meter, and second).",
+      "conditions": [
+        "Express in SI base units only.",
+        "Governed by Newton's second law: $F = ma$."
+      ],
+      "common_wrong_route": "Confusing force with energy (writing $\\text{kg}\\cdot\\text{m}^2/\\text{s}^2$) or confusing acceleration with velocity (writing $\\text{kg}\\cdot\\text{m}/\\text{s}$).",
+      "response_type": "short_text",
+      "hint_ladder": [
+        {
+          "label": "Category of Unit",
+          "prompt": "Which fundamental physical law defines force in terms of mass and acceleration?",
+          "hint": "Newton's second law defines force as $F = ma$."
+        },
+        {
+          "label": "Base Component Units",
+          "prompt": "What are the standard SI base units for mass $m$ and acceleration $a$?",
+          "hint": "Mass has base unit kilogram ($\\text{kg}$), and acceleration has base unit meter per second squared ($\\text{m/s}^2$)."
+        },
+        {
+          "label": "Synthesis",
+          "prompt": "Combine these base units using the relation $F = ma$.",
+          "hint": "One Newton ($\\text{N}$) equals $1\\text{ kg} \\times 1\\text{ m/s}^2 = 1\\text{ kg}\\cdot\\text{m}/\\text{s}^2$."
+        }
+      ],
+      "core1a_anchor_url": "core1a.html#U-PHY-NLM-SECOND-LAW",
+      "solution_moves": [
+        {
+          "stage_label": "Recall Governing Formula",
+          "is_crux": false,
+          "action": "State Newton's second law formula relating force, mass, and acceleration.",
+          "uses": "Definition of force: $F = ma$",
+          "why_valid": "Constitutional definition of force in classical Newtonian mechanics.",
+          "result": "$F = ma$."
+        },
+        {
+          "stage_label": "Substitute Base Units",
+          "is_crux": true,
+          "action": "Replace mass and acceleration with their fundamental SI base dimensions.",
+          "uses": "$[m] = \\text{kg}$ and $[a] = \\text{m/s}^2$",
+          "why_valid": "Direct dimensional substitution into the product relation.",
+          "result": "$[F] = [m][a] = \\text{kg} \\times \\text{m/s}^2 = \\text{kg}\\cdot\\text{m}/\\text{s}^2$."
+        },
+        {
+          "stage_label": "Conclude Equivalence",
+          "is_crux": false,
+          "action": "Equate the named derived unit (Newton) to the fundamental base unit combination.",
+          "uses": "Definition of $1\\text{ N}$",
+          "why_valid": "SI unit convention definition.",
+          "result": "$1\\text{ N} = 1\\text{ kg}\\cdot\\text{m}\\cdot\\text{s}^{-2}$."
+        }
+      ],
+      "answer_summary": "$1\\text{ N} = 1\\text{ kg}\\cdot\\text{m}/\\text{s}^2 = 1\\text{ kg}\\cdot\\text{m}\\cdot\\text{s}^{-2}$.",
+      "independent_check": "Dimensional consistency check: $[\\text{Force}] = [M][L][T]^{-2} \\implies \\text{kg}\\cdot\\text{m}/\\text{s}^2$. Verified."
+    },
+    {
+      "id": "Q-MAT-POLY-PROOF-01",
+      "source_title": "Textbook Polynomials · Algebraic Proof",
+      "provenance_description": "Verified official algebra textbook problem, preserved verbatim",
+      "concept_name": "Algebraic Identities & Binomial Expansions",
+      "difficulty_band": "D2",
+      "difficulty_score": 4,
+      "expected_minutes": 3,
+      "question_type_label": "Algebraic Proof",
+      "cognitive_demand": "PROOF_DERIVATION",
+      "review_template_ref": "QRT-MAT-PROOF",
+      "demand_scaffolding": {
+        "x": "Binomial cube identity $(p - q)^3 = p^3 - q^3 - 3pq(p - q)$",
+        "y": "Linear relation $p - q = 9$",
+        "z": "Factored identity expansion $p^3 - q^3 - 3pq(p - q)$",
+        "w": "Substitute $(p - q) = 9$ and evaluate $9^3 = 729$ to establish equivalence"
+      },
+      "source_citation": "Standard Mathematics Textbook · Chapter 2 (Polynomials) · Check Point 2 · Q10",
+      "difficulty_rationale": "Requires recognizing the factored cube of a binomial difference $(p - q)^3$ and substituting the linear condition into the identity.",
+      "difficulty_grid": {
+        "model": 1,
+        "representation": 1,
+        "chain": 1,
+        "math": 1,
+        "traps": 0
+      },
+      "stem": "Given that $p - q = 9$, prove rigorously that $p^3 - q^3 - 27pq = 729$.",
+      "conditions": [
+        "Variables $p$ and $q$ are real numbers.",
+        "Linear constraint: $p - q = 9$."
+      ],
+      "common_wrong_route": "Attempting to substitute $p = q + 9$ into $p^3 - q^3$ and expanding by brute force, which leads to arithmetic confusion and sign errors.",
+      "response_type": "free_response",
+      "svg_caption": "Identity Structure: Binomial expansion $(p - q)^3 = p^3 - q^3 - 3pq(p - q)$.",
+      "svg_body": "<svg viewBox=\"0 0 440 130\" width=\"100%\" height=\"auto\"><rect x=\"20\" y=\"15\" width=\"400\" height=\"95\" rx=\"10\" fill=\"#f0fdf4\" stroke=\"#16a34a\" stroke-width=\"1.5\"/><text x=\"220\" y=\"50\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"bold\" fill=\"#166534\">(p - q)³ = p³ - q³ - 3pq(p - q)</text><text x=\"220\" y=\"85\" text-anchor=\"middle\" font-size=\"14\" fill=\"#15803d\">Substitute (p - q) = 9 ⟹ 9³ = 729 = p³ - q³ - 27pq</text></svg>",
+      "hint_ladder": [
+        {
+          "label": "Select Identity",
+          "prompt": "Which algebraic identity connects the difference $(p - q)$, the difference of cubes $(p^3 - q^3)$, and the product $pq$?",
+          "hint": "Recall the cubic binomial identity: $(p - q)^3 = p^3 - q^3 - 3pq(p - q)$."
+        },
+        {
+          "label": "Substitute Given Difference",
+          "prompt": "Substitute the given condition $p - q = 9$ into this identity.",
+          "hint": "Replace each occurrence of $(p - q)$ with $9$: $(9)^3 = p^3 - q^3 - 3pq(9)$."
+        },
+        {
+          "label": "Evaluate and Rearrange",
+          "prompt": "Compute $9^3$ and simplify $3 \\times 9 \\times pq$.",
+          "hint": "$9^3 = 729$, and $3pq(9) = 27pq$. Therefore $729 = p^3 - q^3 - 27pq$, proving the identity."
+        }
+      ],
+      "core1a_anchor_url": "core1a.html#U-POLY-IDENTITIES",
+      "solution_moves": [
+        {
+          "stage_label": "State Binomial Identity",
+          "is_crux": false,
+          "action": "Write the identity for the cube of a difference.",
+          "uses": "Binomial Identity $(a - b)^3 = a^3 - b^3 - 3ab(a - b)$",
+          "why_valid": "Universal algebraic identity valid for all real numbers $p$ and $q$.",
+          "result": "$(p - q)^3 = p^3 - q^3 - 3pq(p - q)$."
+        },
+        {
+          "stage_label": "Substitute Known Constraint",
+          "is_crux": true,
+          "action": "Substitute $p - q = 9$ into both the left-hand side and the product term on the right.",
+          "uses": "Given relation $p - q = 9$",
+          "why_valid": "Direct substitution of known equality into identity.",
+          "result": "$(9)^3 = p^3 - q^3 - 3pq(9)$."
+        },
+        {
+          "stage_label": "Arithmetic Simplification",
+          "is_crux": false,
+          "action": "Evaluate $9^3 = 729$ and multiply $3 \\times 9 = 27$ to establish the target expression.",
+          "uses": "Arithmetic $9^3 = 729$ and $3 \\times 9 = 27$",
+          "why_valid": "Simplification of real arithmetic operations.",
+          "result": "$729 = p^3 - q^3 - 27pq \\implies p^3 - q^3 - 27pq = 729$. (Q.E.D.)"
+        }
+      ],
+      "answer_summary": "Identity Established: $(p - q)^3 = 9^3 = 729 \\implies p^3 - q^3 - 27pq = 729$. (Q.E.D.)",
+      "independent_check": "Numerical verification with arbitrary values satisfying $p - q = 9$: Let $p = 10, q = 1$. Then $p^3 - q^3 - 27pq = 1000 - 1 - 27(10)(1) = 999 - 270 = 729$. The identity is fully verified."
+    }
+  ]
+}

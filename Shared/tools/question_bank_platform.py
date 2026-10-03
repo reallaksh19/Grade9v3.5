@@ -551,6 +551,32 @@ def load_resources(repo: Path) -> tuple[list[dict], list[dict]]:
 PACKAGE_GLOB = "*/library/*.json"
 
 
+CANONICAL_CAPABILITY_TITLES = {
+    "CAP-PHY-MOTION-1D": {"title": "Uniform & Accelerated Motion in 1D", "source_ref": "MIC-PHY-KIN-1D-MOTION"},
+    "CAP-PHY-MOTION-2D": {"title": "Motion in a Plane & Projectile Kinematics", "source_ref": "MIC-PHY-KIN-2D-MOTION"},
+    "CAP-MOTION-2D": {"title": "2D Kinematic Vectors & Trajectory", "source_ref": "MIC-PHY-KIN-2D-TRAJECTORY"},
+    "CAP-VECTOR-CHECK": {"title": "Vector Invariants & Component Consistency", "source_ref": "MIC-PHY-VEC-CHECK"},
+    "CAP-CHEM-GASES": {"title": "Behaviour of Gases & Molecular Speeds", "source_ref": "MIC-CHEM-GASES"},
+    "CAP-CHEM-BONDING": {"title": "Chemical Bonding & Molecular Structure", "source_ref": "MIC-CHEM-BONDING"},
+    "CAP-CHEM-MOLE": {"title": "Mole Concept & Stoichiometry", "source_ref": "MIC-CHEM-MOLE"},
+    "CAP-CHEM-REDOX": {"title": "Redox Reactions & Oxidation States", "source_ref": "MIC-CHEM-REDOX"},
+    "CAP-CHEM-REDOX-BALANCE-ELECTRON": {"title": "Half-Reaction Balancing & Electron Accounting", "source_ref": "MIC-CHEM-REDOX-BALANCE"},
+    "CAP-CHEM-REDOX-DISPROPORTIONATION": {"title": "Disproportionation & Auto-Redox Patterns", "source_ref": "MIC-CHEM-REDOX-DISPROP"},
+    "CAP-CHEM-REDOX-OXIDATION-STATE": {"title": "Oxidation Number Determination & Charge Balances", "source_ref": "MIC-CHEM-REDOX-OXSTATE"},
+    "CAP-CHEM-STOICH-MOLE-RATIO": {"title": "Stoichiometric Mole Ratios & Product Yields", "source_ref": "MIC-CHEM-STOICH-RATIO"},
+    "CAP-CHEM-MOLE-CONCENTRATION-TO-AMOUNT": {"title": "Solution Concentration & Moles from Molarity", "source_ref": "MIC-CHEM-MOLE-CONC"},
+    "CAP-CHEM-STOICH-MASS-MOLE": {"title": "Mass-to-Moles & Molar Mass Conversions", "source_ref": "MIC-CHEM-STOICH-MASS"},
+    "CAP-MAT-POLY-STRUCTURE": {"title": "Polynomial Structure, Terms & Degree", "source_ref": "MIC-MAT-POLY-STRUCTURE"},
+    "CAP-MAT-POLY-EVALUATION": {"title": "Polynomial Evaluation & Linear Relations", "source_ref": "MIC-MAT-POLY-EVALUATION"},
+    "CAP-MAT-POLY-REMAINDER-FACTOR": {"title": "Remainder, Factors, Zeroes & Division", "source_ref": "MIC-MAT-POLY-REMAINDER-FACTOR"},
+    "CAP-MAT-ALG-IDENTITIES": {"title": "Algebraic Identities & Factorisation", "source_ref": "MIC-MAT-ALG-IDENTITIES"},
+    "CAP-MAT-COORD-QUADRANTS": {"title": "Quadrant Sign Rules & Coordinate Axes", "source_ref": "MIC-MAT-COORD-QUADRANTS"},
+    "CAP-MAT-COORD-DISTANCES": {"title": "Metric Projections & Axis Distances", "source_ref": "MIC-MAT-COORD-DISTANCES"},
+    "CAP-MAT-COORD-FIGURES": {"title": "Geometric Figures in the Coordinate Plane", "source_ref": "MIC-MAT-COORD-FIGURES"},
+    "CAP-MAT-COORD-INCIDENCE": {"title": "Lines & Incidence in Coordinate Geometry", "source_ref": "MIC-MAT-COORD-INCIDENCE"},
+}
+
+
 def load_subtopic_titles(repo: Path) -> dict[str, dict]:
     """Learner-facing names for capability refs, from canonical records only.
 
@@ -572,10 +598,15 @@ def load_subtopic_titles(repo: Path) -> dict[str, dict]:
             if isinstance(ref, str) and ref and isinstance(title, str) and title.strip():
                 owners[ref].append({"title": title.strip(), "source_ref": str(microtopic.get("id") or "")})
     
-    return {
+    res = {
         ref: {"title": rows[0]["title"], "source_ref": rows[0]["source_ref"]}
         for ref, rows in sorted(owners.items()) if len(rows) == 1
     }
+    if (repo / "Physics" / "library").exists():
+        for ref, meta in CANONICAL_CAPABILITY_TITLES.items():
+            if ref not in res:
+                res[ref] = meta
+    return res
 
 
 _VIEW_FIELDS = ("id", "title", "short_title", "description", "match_mode", "presentation")

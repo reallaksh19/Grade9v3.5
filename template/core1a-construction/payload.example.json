@@ -1,0 +1,89 @@
+{
+  "topic_id": "polynomials",
+  "topic_title": "Polynomials",
+  "subject_name": "Mathematics",
+  "core1a_subtitle": "Factor Theorem & Algebraic Identities Construction",
+  "conventions": [
+    {
+      "name": "Standard Polynomial Form",
+      "rule": "Polynomials are expressed in descending powers of the variable: $p(x) = a_n x^n + \\dots + a_1 x + a_0$ with real coefficients."
+    },
+    {
+      "name": "Degree Zero and Constant Polynomials",
+      "rule": "Non-zero constant polynomials have degree 0. The zero polynomial $p(x) = 0$ has undefined degree."
+    }
+  ],
+  "units": [
+    {
+      "unit_id": "U-POLY-FACTOR-THEOREM",
+      "unit_number": "1",
+      "unit_title": "The Factor Theorem from First Principles",
+      "difficulty_band": "D2",
+      "badge_label": "Core Identity",
+      "concept_difficulty": "MEDIUM",
+      "cognitive_demand": "PROOF_DERIVATION",
+      "review_template_ref": "CRT-MAT-CONSTRUCTION",
+      "demand_scaffolding": {
+        "x": "Factor Theorem: $(x - a) \\mid p(x) \\iff p(a) = 0$",
+        "y": "Division Algorithm for polynomials: $p(x) = (x - a)q(x) + r$",
+        "z": "Annihilation of quotient via $x = a$, giving remainder $r = p(a)$",
+        "w": "Verifying factor status of $(x - a)$ by evaluating $p(a)$"
+      },
+      "entry_assumptions": [
+        "Can perform algebraic substitution into a polynomial $p(x)$.",
+        "Understands that remainder degree is strictly less than divisor degree (degree $< 1 \\implies$ constant)."
+      ],
+      "inferential_jump": "Connecting polynomial division remainder $p(a) = 0$ directly to linear divisibility $(x - a) \\mid p(x)$.",
+      "steps": [
+        {
+          "is_crux_step": false,
+          "action": "Express polynomial division of $p(x)$ by linear divisor $(x - a)$.",
+          "why_valid": "Division Algorithm for polynomials: $p(x) = (x - a)q(x) + r$, where degree of remainder $r < 1$ (hence $r$ is constant).",
+          "state_output": "$p(x) = (x - a)q(x) + r$"
+        },
+        {
+          "is_crux_step": true,
+          "action": "Evaluate $p(x)$ at $x = a$.",
+          "why_valid": "Substituting $x = a$ annihilates the divisor term: $(a - a)q(a) = 0 \\cdot q(a) = 0$.",
+          "state_output": "$p(a) = 0 + r = r$"
+        },
+        {
+          "is_crux_step": false,
+          "action": "Apply the condition for exact divisibility ($r = 0$).",
+          "why_valid": "A divisor divides a dividend with zero remainder if and only if $r = 0$, giving $p(a) = 0$.",
+          "state_output": "$p(x) = (x - a)q(x) \\iff p(a) = 0$"
+        }
+      ],
+      "governing_equation": "p(x) = (x - a)q(x) \\iff p(a) = 0",
+      "equation_conditions": "Valid for any polynomial $p(x)$ over a field with linear binomial divisor $(x - a)$.",
+      "worked_problem_stem": "Determine whether $(x + 2)$ is a factor of $p(x) = x^3 + 3x^2 + 5x + 6$.",
+      "worked_steps": [
+        "Identify the zero of the linear divisor $x + 2 = 0 \\implies x = -2$.",
+        "Compute $p(-2) = (-2)^3 + 3(-2)^2 + 5(-2) + 6$.",
+        "Evaluate: $-8 + 12 - 10 + 6 = 0$.",
+        "Since $p(-2) = 0$, by the Factor Theorem $(x + 2)$ is a factor."
+      ],
+      "worked_conclusion": "$(x + 2)$ divides $x^3 + 3x^2 + 5x + 6$ with zero remainder.",
+      "stage_ids": "s1 s2 s3",
+      "svg_caption": "Stage progression: Divisor nullification $\\to$ Remainder vanishing $\\to$ Complete Factorization.",
+      "svg_body": "<svg viewBox=\"0 0 440 180\" width=\"100%\" height=\"auto\"><g data-g9-stage-id=\"s1\"><rect x=\"20\" y=\"20\" width=\"400\" height=\"40\" rx=\"8\" fill=\"#e0e7ff\" stroke=\"#6366f1\"/><text x=\"220\" y=\"45\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#312e81\">p(x) = (x - a)q(x) + r</text></g><g data-g9-stage-id=\"s2\"><rect x=\"20\" y=\"70\" width=\"400\" height=\"40\" rx=\"8\" fill=\"#fef3c7\" stroke=\"#f59e0b\"/><text x=\"220\" y=\"95\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#78350f\">x = a ⟹ p(a) = (0)·q(a) + r = r</text></g><g data-g9-stage-id=\"s3\"><rect x=\"20\" y=\"120\" width=\"400\" height=\"40\" rx=\"8\" fill=\"#dcfce7\" stroke=\"#22c55e\"/><text x=\"220\" y=\"145\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#14532d\">r = 0 ⟺ p(a) = 0 ⟹ (x - a) is a factor</text></g></svg>",
+      "trap_wrong_idea": "Assuming $(x + a)$ is a factor implies $p(a) = 0$ (forgetting the sign change of the root).",
+      "trap_diagnostic": "If $(x + 3)$ divides $p(x)$, what value must evaluate to zero?",
+      "trap_repair_explanation": "Set the divisor to zero: $x + 3 = 0 \\implies x = -3$. Therefore, $p(-3) = 0$, not $p(3) = 0$.",
+      "triad_check": "What is the degree of remainder when dividing by $(x - 5)$?",
+      "triad_apply": "If $p(x) = 2x^2 - kx + 4$ has factor $(x - 2)$, calculate $k$.",
+      "triad_connect": "Once a linear factor $(x - a)$ is found, synthetic division yields a quotient of degree $n-1$, unlocking complete factorization.",
+      "exit_task": {
+        "prompt": "Using the Factor Theorem, determine whether $(x - 1)$ is a factor of $p(x) = x^4 - 2x^3 + 2x^2 - x$. Provide an independent check.",
+        "answer": "Evaluate $p(1) = 1^4 - 2(1)^3 + 2(1)^2 - 1 = 1 - 2 + 2 - 1 = 0$. Since $p(1) = 0$, by the Factor Theorem $(x - 1)$ is a factor of $p(x)$.",
+        "check": "Independent factor check: $p(x) = x(x^3 - 2x^2 + 2x - 1) = x[(x - 1)(x^2 - x + 1)]$, verifying $(x - 1)$ is an exact factor."
+      },
+      "core2_practice_links": [
+        {
+          "label": "Check Point 2 · Q10",
+          "url": "core2.html#Q-MAT-POLY-M1-P44-CHECK-POINT-2-10"
+        }
+      ]
+    }
+  ]
+}

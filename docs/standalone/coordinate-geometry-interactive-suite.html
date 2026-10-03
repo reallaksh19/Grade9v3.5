@@ -1,0 +1,1171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coordinate Geometry · Transformation Invariants & HOTS Interactive Laboratory</title>
+  
+  <!-- KaTeX Typography (Local Vendor with CDN Fallback) -->
+  <link rel="stylesheet" href="../public/vendor/katex/0.16.8/katex.min.css">
+  <script src="../public/vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../public/vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-panel: #161b22;
+      --bg-card: #21262d;
+      --bg-card-hover: #292f38;
+      --border: #444c56;
+      --border-muted: #30363d;
+      --border-accent: #388bfd;
+      --text: #f0f6fc;
+      --text-muted: #919bb0;
+      --accent: #58a6ff;
+      --accent-glow: rgba(56, 139, 253, 0.25);
+      --success: #3fb950;
+      --warning: #d29922;
+      --danger: #ff7b72;
+      --purple: #bc8cff;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.5;
+      padding-bottom: 60px;
+    }
+
+    /* Sticky Shell Header */
+    header.g9-shell {
+      background: var(--bg-panel);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header-title {
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge.hots { background: rgba(188, 140, 255, 0.15); border: 1px solid var(--purple); color: var(--purple); }
+    .badge.olympiad { background: rgba(210, 153, 34, 0.15); border: 1px solid var(--warning); color: var(--warning); }
+    .badge.app { background: rgba(56, 139, 253, 0.15); border: 1px solid var(--accent); color: var(--accent); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .nav-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      min-height: 40px;
+    }
+    .nav-btn:hover { background: var(--bg-card-hover); border-color: var(--accent); }
+    .nav-btn.primary { background: var(--border-accent); color: white; border-color: var(--border-accent); }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px 20px;
+    }
+
+    /* Tabs Bar */
+    .tab-bar {
+      display: flex;
+      gap: 8px;
+      border-bottom: 2px solid var(--border-muted);
+      margin-bottom: 20px;
+      overflow-x: auto;
+    }
+    .tab-btn {
+      padding: 10px 18px;
+      min-height: 44px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 6px 6px 0 0;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .tab-btn.active {
+      color: var(--accent);
+      background: var(--bg-panel);
+      border-bottom: 3px solid var(--accent);
+    }
+    .tab-btn:hover:not(.active) { color: var(--text); }
+
+    /* Preset Toolbar */
+    .toolbar-strip {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 18px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .preset-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .preset-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text-muted);
+      margin-right: 6px;
+    }
+    .btn-preset {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      min-height: 38px;
+    }
+    .btn-preset:hover, .btn-preset.active {
+      background: rgba(56, 139, 253, 0.15);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Laboratory Grid Layout (Tablet-12.7 Dual Pane) */
+    .lab-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    @media (min-width: 1040px) {
+      .lab-grid {
+        grid-template-columns: 1.6fr 1fr;
+        align-items: start;
+      }
+    }
+
+    /* Left: Visual Stage */
+    .stage-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .stage-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .stage-title { font-size: 15px; font-weight: 700; color: var(--text); }
+    .stage-subtitle { font-size: 12px; color: var(--text-muted); }
+
+    .canvas-container {
+      background: #06090e;
+      border: 1px solid var(--border-muted);
+      border-radius: 8px;
+      position: relative;
+      width: 100%;
+      height: 480px;
+      overflow: hidden;
+      touch-action: none;
+      user-select: none;
+    }
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Right: Telemetry & Invariants */
+    .telemetry-col {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .telemetry-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .telemetry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+    }
+    .telemetry-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-muted);
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .telemetry-lbl { font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--text-muted); }
+    .telemetry-val { font-family: var(--font-mono); font-size: 15px; font-weight: 700; color: var(--text); }
+    .telemetry-val.highlight { color: var(--accent); }
+    .telemetry-val.purple { color: var(--purple); }
+    .telemetry-val.green { color: var(--success); }
+
+    .classification-banner {
+      background: rgba(88, 166, 255, 0.1);
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .shape-name { font-size: 18px; font-weight: 800; color: var(--accent); }
+
+    .proof-banner {
+      background: var(--bg-card);
+      border-left: 4px solid var(--purple);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .proof-banner strong { color: var(--purple); }
+
+    /* Controls Row */
+    .controls-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .control-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .control-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .control-label span.val { color: var(--accent); font-family: var(--font-mono); font-weight: 700; }
+    input[type="range"] {
+      width: 100%;
+      height: 38px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    /* Tab Panes */
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky G9 Shell Navigation -->
+  <header class="g9-shell">
+    <div class="header-left">
+      <div class="header-title">
+        <span>📐 Coordinate Geometry</span>
+        <span class="badge app">Explorer Lab</span>
+        <span class="badge hots">HOTS</span>
+        <span class="badge olympiad">PR #353</span>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <a href="../products/mathematics/coordinate-geometry/rendered/index.html" class="nav-btn">🏠 Home Dashboard</a>
+      <a href="../products/mathematics/coordinate-geometry/rendered/core2.html" class="nav-btn">📝 Core 2 Practice</a>
+      <a href="../products/mathematics/coordinate-geometry/rendered/core2b.html" class="nav-btn">🏆 Core 2B Achievers</a>
+      <a href="../Mathematics/assets/ch3-coordinate-geometry-m2-complete-bank.html" class="nav-btn primary">📖 82 Question Bank</a>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Investigation Tab Bar -->
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="reflection" onclick="switchTab('reflection', this)">1. Geometric Reflection & Symmetric Area Lab</button>
+      <button class="tab-btn" data-tab="collinear" onclick="switchTab('collinear', this)">2. Parametric Collinearity & Diophantine Lattice</button>
+      <button class="tab-btn" data-tab="equilateral" onclick="switchTab('equilateral', this)">3. Equilateral & Polygon Height Synthesis</button>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- TAB 1: GEOMETRIC REFLECTION & AREA LAB (CHALLENGE 2)           -->
+    <!-- ============================================================== -->
+    <div id="pane-reflection" class="tab-pane active">
+      
+      <!-- Presets Strip -->
+      <div class="toolbar-strip">
+        <div class="preset-group">
+          <span class="preset-label">HOTS Presets:</span>
+          <button class="btn-preset active" onclick="loadReflectionPreset('kite', this)">Challenge 2: IMO Kite (A(1,2), B(4,2), C(3,5), y=2)</button>
+          <button class="btn-preset" onclick="loadReflectionPreset('rhombus', this)">Equilateral Base: Rhombus (C on Bisector)</button>
+          <button class="btn-preset" onclick="loadReflectionPreset('square', this)">Square Singularity (d1 = d2)</button>
+          <button class="btn-preset" onclick="loadReflectionPreset('arbitrary', this)">Axis Reflection (y = 0)</button>
+        </div>
+        <button class="nav-btn" onclick="resetReflection()">↺ Reset Coordinates</button>
+      </div>
+
+      <div class="lab-grid">
+        <!-- Interactive Canvas Stage -->
+        <div class="stage-card">
+          <div class="stage-header">
+            <div>
+              <div class="stage-title">Interactive Cartesian Reflection Stage</div>
+              <div class="stage-subtitle">Drag vertices <strong>A, B, C</strong> or slide the <strong>Mirror Line</strong>. Watch orthogonal diagonals enforce composite area.</div>
+            </div>
+            <span class="badge hots" id="gridReadout">Grid: 1 unit = 36px</span>
+          </div>
+
+          <div class="canvas-container" id="canvasWrap">
+            <canvas id="reflCanvas"></canvas>
+          </div>
+
+          <div class="controls-grid">
+            <div class="control-item">
+              <div class="control-label">
+                <span>Horizontal Mirror Line \( (y = k) \)</span>
+                <span class="val" id="mirrorVal">y = 2.0</span>
+              </div>
+              <input type="range" id="mirrorSlider" min="-4" max="4" step="0.5" value="2">
+            </div>
+          </div>
+        </div>
+
+        <!-- Analytical Telemetry & Invariants -->
+        <div class="telemetry-col">
+          
+          <div class="classification-banner">
+            <div>
+              <div style="font-size:11px; text-transform:uppercase; font-weight:700; color:var(--text-muted);">Geometric Classification</div>
+              <div class="shape-name" id="shapeClass">KITE</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:11px; text-transform:uppercase; font-weight:700; color:var(--text-muted);">Composite Area</div>
+              <div class="shape-name" style="color:var(--success);" id="areaVal">9.00 sq units</div>
+            </div>
+          </div>
+
+          <!-- Coordinate Matrix -->
+          <div class="telemetry-card">
+            <div class="card-title">Live Vertices & Reflection</div>
+            <div class="telemetry-grid">
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Vertex A</span>
+                <span class="telemetry-val" id="coordA">(1, 2)</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Vertex B</span>
+                <span class="telemetry-val" id="coordB">(4, 2)</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Vertex C</span>
+                <span class="telemetry-val highlight" id="coordC">(3, 5)</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Reflected C'</span>
+                <span class="telemetry-val purple" id="coordCPrime">(3, -1)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Diagonals & Metric Invariants -->
+          <div class="telemetry-card">
+            <div class="card-title">Orthogonal Diagonals & Metrics</div>
+            <div class="telemetry-grid">
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Diagonal d1 (AB)</span>
+                <span class="telemetry-val" id="lenD1">3.00</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Diagonal d2 (CC')</span>
+                <span class="telemetry-val" id="lenD2">6.00</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Adjacent Side AC</span>
+                <span class="telemetry-val" id="sideAC">√13 ≈ 3.61</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Adjacent Side BC</span>
+                <span class="telemetry-val" id="sideBC">√10 ≈ 3.16</span>
+              </div>
+            </div>
+            <div class="telemetry-grid" style="margin-top:4px;">
+              <div class="telemetry-item" style="grid-column: span 2;">
+                <span class="telemetry-lbl">Orthogonality Check</span>
+                <span class="telemetry-val green" id="orthoStatus">d1 ⟂ d2 (Right Angle At Intersection)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mathematical Rigor Proof Walkthrough -->
+          <div class="proof-banner" id="proofWalkthrough">
+            <strong>Olympiad Deduction Rule:</strong><br>
+            Because reflection across a base line containing \( AB \) preserves lengths and chirality is reversed, \( AC = AC' \) and \( BC = BC' \).<br>
+            • If \( AC \neq BC \), the figure is strictly a <strong>Kite</strong>.<br>
+            • If \( C \) lies on the perpendicular bisector of \( AB \), then \( AC = BC \) and the figure becomes a <strong>Rhombus</strong>.<br>
+            • If additionally \( d_1 = d_2 \), it becomes a <strong>Square</strong>.<br>
+            The total area is rigorously given by:
+            \[
+            \text{Area}(ACBC') = \frac{1}{2} \cdot d_1 \cdot d_2 = \frac{1}{2} \cdot |x_B - x_A| \cdot 2|y_C - k| = |x_B - x_A| \cdot |y_C - k|
+            \]
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- TAB 2: PARAMETRIC COLLINEARITY & DIOPHANTINE (CHALLENGE 4)     -->
+    <!-- ============================================================== -->
+    <div id="pane-collinear" class="tab-pane">
+      <div class="toolbar-strip">
+        <div class="preset-group">
+          <span class="preset-label">Collinearity Presets:</span>
+          <button class="btn-preset active" onclick="loadCollinearPreset(2, 2, this)">Unique Integer Solution: (2, 2)</button>
+          <button class="btn-preset" onclick="loadCollinearPreset(3, 1.5, this)">Fractional Pair: (3, 3/2)</button>
+          <button class="btn-preset" onclick="loadCollinearPreset(4, 1.333, this)">Fractional Pair: (4, 4/3)</button>
+          <button class="btn-preset" onclick="loadCollinearPreset(-1, 0.5, this)">Negative Root: (-1, 1/2)</button>
+        </div>
+      </div>
+
+      <div class="lab-grid">
+        <div class="stage-card">
+          <div class="stage-header">
+            <div>
+              <div class="stage-title">Parametric Collinearity Laboratory</div>
+              <div class="stage-subtitle">Points \( P(a, 0) \), \( Q(0, b) \), and fixed \( R(1, 1) \). Adjust \( a \) to see the constrained locus of \( b \).</div>
+            </div>
+            <span class="badge olympiad">Diophantine Equation</span>
+          </div>
+
+          <div class="canvas-container">
+            <canvas id="collinearCanvas"></canvas>
+          </div>
+
+          <div class="controls-grid">
+            <div class="control-item">
+              <div class="control-label">
+                <span>Abscissa Parameter \( a \) (X-Intercept)</span>
+                <span class="val" id="paramAVal">a = 2.0</span>
+              </div>
+              <input type="range" id="paramASlider" min="1.1" max="6" step="0.1" value="2">
+            </div>
+          </div>
+        </div>
+
+        <div class="telemetry-col">
+          <div class="classification-banner">
+            <div>
+              <div style="font-size:11px; text-transform:uppercase; font-weight:700; color:var(--text-muted);">Intercept Parameter \( b \)</div>
+              <div class="shape-name" id="paramBVal">b = 2.00</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:11px; text-transform:uppercase; font-weight:700; color:var(--text-muted);">Diophantine Invariant</div>
+              <div class="shape-name" style="color:var(--success);">1/a + 1/b = 1</div>
+            </div>
+          </div>
+
+          <div class="telemetry-card">
+            <div class="card-title">Slope Balance Verification</div>
+            <div class="telemetry-grid">
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Slope PQ</span>
+                <span class="telemetry-val highlight" id="slopePQ">-1.00</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Slope PR</span>
+                <span class="telemetry-val green" id="slopePR">-1.00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="proof-banner">
+            <strong>Diophantine Factorization Proof:</strong><br>
+            Equating slopes yields the classic intercept relation:
+            \[
+            -\frac{b}{a} = \frac{1}{1 - a} \implies ab - a - b = 0 \iff (a - 1)(b - 1) = 1
+            \]
+            When constrained to <strong>positive integers</strong> \( a, b \in \mathbb{Z}^+ \):
+            \[
+            a - 1 = 1 \implies a = 2, \quad b - 1 = 1 \implies b = 2.
+            \]
+            Hence \( (2, 2) \) is the <strong>unique positive integer pair</strong>!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- TAB 3: EQUILATERAL & SQUARE SYNTHESIS (CHALLENGE 3)           -->
+    <!-- ============================================================== -->
+    <div id="pane-equilateral" class="tab-pane">
+      <div class="lab-grid">
+        <div class="stage-card">
+          <div class="stage-header">
+            <div>
+              <div class="stage-title">Equilateral Triangle & Square Center Geometry</div>
+              <div class="stage-subtitle">Base \( OA = 2a \). Upper equilateral vertex \( B(a, a\sqrt{3}) \), lower square center \( M(a, -a) \).</div>
+            </div>
+            <span class="badge hots">Pythagorean Altitude</span>
+          </div>
+
+          <div class="canvas-container">
+            <canvas id="eqCanvas"></canvas>
+          </div>
+
+          <div class="controls-grid">
+            <div class="control-item">
+              <div class="control-label">
+                <span>Scale Parameter \( a \)</span>
+                <span class="val" id="scaleAVal">a = 2.0</span>
+              </div>
+              <input type="range" id="scaleASlider" min="1" max="4" step="0.5" value="2">
+            </div>
+          </div>
+        </div>
+
+        <div class="telemetry-col">
+          <div class="classification-banner">
+            <div>
+              <div style="font-size:11px; text-transform:uppercase; font-weight:700; color:var(--text-muted);">Exact Vertical Distance BM</div>
+              <div class="shape-name" style="color:var(--success);" id="exactBM">a(√3 + 1) ≈ 5.46</div>
+            </div>
+          </div>
+
+          <div class="telemetry-card">
+            <div class="card-title">Computed Analytical Coordinates</div>
+            <div class="telemetry-grid">
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Base End A</span>
+                <span class="telemetry-val" id="eqCoordA">(4, 0)</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Vertex B</span>
+                <span class="telemetry-val highlight" id="eqCoordB">(2, 3.46)</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Square Center M</span>
+                <span class="telemetry-val purple" id="eqCoordM">(2, -2.0)</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-lbl">Collinear X-Axis?</span>
+                <span class="telemetry-val green">Yes: x = a = 2</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="proof-banner">
+            <strong>Olympiad Coordinate Invariant:</strong><br>
+            Because \( \triangle OAB \) is equilateral on \( [0, 2a] \), its apex \( B \) must lie on the perpendicular bisector \( x = a \).<br>
+            By Pythagoras: \( h = \sqrt{(2a)^2 - a^2} = a\sqrt{3} \implies B(a, a\sqrt{3}) \).<br>
+            The lower square has side \( 2a \) extending from \( y = 0 \) to \( y = -2a \), so its center is \( M(a, -a) \).<br>
+            Since both points share \( x = a \), their distance is purely along the vertical line:
+            \[
+            BM = y_B - y_M = a\sqrt{3} - (-a) = a(\sqrt{3} + 1).
+            \]
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // KaTeX Auto-Rendering Helper
+    function renderAllMath() {
+      if (window.renderMathInElement) {
+        try {
+          window.renderMathInElement(document.body, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '\\[', right: '\\]', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\\(', right: '\\)', display: false }
+            ],
+            throwOnError: false
+          });
+        } catch (err) {
+          console.warn('KaTeX render error:', err);
+        }
+      }
+    }
+
+    // Tab switching
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+      if (btn) {
+        btn.classList.add('active');
+      } else {
+        const targetBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+        if (targetBtn) targetBtn.classList.add('active');
+      }
+      const pane = document.getElementById('pane-' + tabId);
+      if (pane) pane.classList.add('active');
+      
+      setTimeout(() => {
+        renderAllMath();
+        if (tabId === 'reflection') drawReflection();
+        if (tabId === 'collinear') drawCollinear();
+        if (tabId === 'equilateral') drawEquilateral();
+      }, 30);
+    }
+
+    // ==============================================================
+    // TAB 1: REFLECTION ENGINE
+    // ==============================================================
+    const reflCanvas = document.getElementById('reflCanvas');
+    const reflCtx = reflCanvas.getContext('2d');
+    let kMirror = 2.0;
+    let ptA = { x: 1, y: 2 };
+    let ptB = { x: 4, y: 2 };
+    let ptC = { x: 3, y: 5 };
+    let dragTarget = null;
+
+    const mirrorSlider = document.getElementById('mirrorSlider');
+    mirrorSlider.addEventListener('input', (e) => {
+      kMirror = parseFloat(e.target.value);
+      document.getElementById('mirrorVal').textContent = `y = ${kMirror.toFixed(1)}`;
+      ptA.y = kMirror;
+      ptB.y = kMirror;
+      drawReflection();
+    });
+
+    function loadReflectionPreset(preset, btn) {
+      document.querySelectorAll('.btn-preset').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      if (preset === 'kite') {
+        kMirror = 2; ptA = {x: 1, y: 2}; ptB = {x: 4, y: 2}; ptC = {x: 3, y: 5};
+      } else if (preset === 'rhombus') {
+        kMirror = 2; ptA = {x: 1, y: 2}; ptB = {x: 4, y: 2}; ptC = {x: 2.5, y: 5};
+      } else if (preset === 'square') {
+        kMirror = 2; ptA = {x: 1, y: 2}; ptB = {x: 4, y: 2}; ptC = {x: 2.5, y: 3.5};
+      } else if (preset === 'arbitrary') {
+        kMirror = 0; ptA = {x: -2, y: 0}; ptB = {x: 3, y: 0}; ptC = {x: 1, y: 4};
+      }
+      mirrorSlider.value = kMirror;
+      document.getElementById('mirrorVal').textContent = `y = ${kMirror.toFixed(1)}`;
+      drawReflection();
+    }
+
+    function resetReflection() {
+      kMirror = 2; ptA = {x: 1, y: 2}; ptB = {x: 4, y: 2}; ptC = {x: 3, y: 5};
+      mirrorSlider.value = 2;
+      document.getElementById('mirrorVal').textContent = `y = 2.0`;
+      drawReflection();
+    }
+
+    function setupCanvasSize(canvas) {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      const ctx = canvas.getContext('2d');
+      ctx.resetTransform();
+      ctx.scale(dpr, dpr);
+      return { width: rect.width, height: rect.height };
+    }
+
+    function drawReflection() {
+      const { width, height } = setupCanvasSize(reflCanvas);
+      const ctx = reflCtx;
+      const originX = width / 2;
+      const originY = height / 2;
+      const scale = 36; // 36 px per unit
+
+      const toScreenX = (x) => originX + x * scale;
+      const toScreenY = (y) => originY - y * scale;
+
+      // Clear
+      ctx.fillStyle = '#06090e';
+      ctx.fillRect(0, 0, width, height);
+
+      // Grid
+      ctx.strokeStyle = '#161e2e';
+      ctx.lineWidth = 1;
+      for (let x = -15; x <= 15; x++) {
+        ctx.beginPath();
+        ctx.moveTo(toScreenX(x), 0);
+        ctx.lineTo(toScreenX(x), height);
+        ctx.stroke();
+      }
+      for (let y = -15; y <= 15; y++) {
+        ctx.beginPath();
+        ctx.moveTo(0, toScreenY(y));
+        ctx.lineTo(width, toScreenY(y));
+        ctx.stroke();
+      }
+
+      // Main Axes
+      ctx.strokeStyle = '#30363d';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0, originY); ctx.lineTo(width, originY);
+      ctx.moveTo(originX, 0); ctx.lineTo(originX, height);
+      ctx.stroke();
+
+      // Axis labels
+      ctx.fillStyle = '#6e7681';
+      ctx.font = '11px monospace';
+      ctx.fillText('X', width - 15, originY - 6);
+      ctx.fillText('Y', originX + 8, 15);
+      ctx.fillText('(0,0)', originX + 6, originY + 14);
+
+      // Mirror Line y = k
+      const mirrorYScreen = toScreenY(kMirror);
+      ctx.strokeStyle = '#d29922';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([6, 6]);
+      ctx.beginPath();
+      ctx.moveTo(0, mirrorYScreen);
+      ctx.lineTo(width, mirrorYScreen);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#d29922';
+      ctx.font = 'bold 12px monospace';
+      ctx.fillText(`Mirror Line: y = ${kMirror.toFixed(1)}`, 16, mirrorYScreen - 8);
+
+      // Compute C' (reflection across y = k)
+      const ptCPrime = { x: ptC.x, y: 2 * kMirror - ptC.y };
+
+      // Polygon ACBC'
+      const polyPts = [ptA, ptC, ptB, ptCPrime];
+      ctx.fillStyle = 'rgba(88, 166, 255, 0.12)';
+      ctx.strokeStyle = '#58a6ff';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      polyPts.forEach((p, idx) => {
+        const sx = toScreenX(p.x);
+        const sy = toScreenY(p.y);
+        if (idx === 0) ctx.moveTo(sx, sy);
+        else ctx.lineTo(sx, sy);
+      });
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      // Diagonals AB & CC'
+      ctx.strokeStyle = '#d29922';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(toScreenX(ptA.x), toScreenY(ptA.y));
+      ctx.lineTo(toScreenX(ptB.x), toScreenY(ptB.y));
+      ctx.stroke();
+
+      ctx.strokeStyle = '#bc8cff';
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(toScreenX(ptC.x), toScreenY(ptC.y));
+      ctx.lineTo(toScreenX(ptCPrime.x), toScreenY(ptCPrime.y));
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Draw Right Angle Box at Intersection
+      const interX = ptC.x;
+      const interY = kMirror;
+      const bSize = 10;
+      ctx.strokeStyle = '#3fb950';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(toScreenX(interX), toScreenY(interY) - (ptC.y > kMirror ? bSize : 0), bSize, bSize);
+
+      // Draw Points
+      function drawHandle(p, label, color) {
+        const sx = toScreenX(p.x);
+        const sy = toScreenY(p.y);
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(sx, sy, 7, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        ctx.fillStyle = '#f0f6fc';
+        ctx.font = 'bold 12px sans-serif';
+        ctx.fillText(`${label}(${p.x.toFixed(1)}, ${p.y.toFixed(1)})`, sx + 10, sy - 8);
+      }
+
+      drawHandle(ptA, 'A', '#388bfd');
+      drawHandle(ptB, 'B', '#388bfd');
+      drawHandle(ptC, 'C', '#58a6ff');
+      drawHandle(ptCPrime, "C'", '#bc8cff');
+
+      // Update Telemetry
+      document.getElementById('coordA').textContent = `(${ptA.x.toFixed(1)}, ${ptA.y.toFixed(1)})`;
+      document.getElementById('coordB').textContent = `(${ptB.x.toFixed(1)}, ${ptB.y.toFixed(1)})`;
+      document.getElementById('coordC').textContent = `(${ptC.x.toFixed(1)}, ${ptC.y.toFixed(1)})`;
+      document.getElementById('coordCPrime').textContent = `(${ptCPrime.x.toFixed(1)}, ${ptCPrime.y.toFixed(1)})`;
+
+      const d1 = Math.abs(ptB.x - ptA.x);
+      const d2 = Math.abs(ptC.y - ptCPrime.y);
+      const area = 0.5 * d1 * d2;
+
+      document.getElementById('lenD1').textContent = d1.toFixed(2);
+      document.getElementById('lenD2').textContent = d2.toFixed(2);
+      document.getElementById('areaVal').textContent = `${area.toFixed(2)} sq units`;
+
+      const distAC = Math.hypot(ptC.x - ptA.x, ptC.y - ptA.y);
+      const distBC = Math.hypot(ptC.x - ptB.x, ptC.y - ptB.y);
+      document.getElementById('sideAC').textContent = distAC.toFixed(2);
+      document.getElementById('sideBC').textContent = distBC.toFixed(2);
+
+      // Classification
+      const shapeClass = document.getElementById('shapeClass');
+      const isBisector = Math.abs(ptC.x - (ptA.x + ptB.x) / 2) < 0.05;
+      const isSquare = isBisector && Math.abs(d1 - d2) < 0.05;
+
+      if (d1 === 0 || d2 === 0) {
+        shapeClass.textContent = 'DEGENERATE (LINE)';
+        shapeClass.style.color = '#ff7b72';
+      } else if (isSquare) {
+        shapeClass.textContent = 'SQUARE (d1 = d2 & AC = BC)';
+        shapeClass.style.color = '#3fb950';
+      } else if (isBisector) {
+        shapeClass.textContent = 'RHOMBUS (AC = BC)';
+        shapeClass.style.color = '#bc8cff';
+      } else {
+        shapeClass.textContent = 'KITE (AC ≠ BC)';
+        shapeClass.style.color = '#58a6ff';
+      }
+    }
+
+    // Pointer Interaction on Stage
+    reflCanvas.addEventListener('pointerdown', (e) => {
+      const rect = reflCanvas.getBoundingClientRect();
+      const sx = e.clientX - rect.left;
+      const sy = e.clientY - rect.top;
+      const originX = rect.width / 2;
+      const originY = rect.height / 2;
+      const scale = 36;
+      const wx = (sx - originX) / scale;
+      const wy = -(sy - originY) / scale;
+
+      if (Math.hypot(wx - ptC.x, wy - ptC.y) < 0.6) dragTarget = 'C';
+      else if (Math.hypot(wx - ptA.x, wy - ptA.y) < 0.6) dragTarget = 'A';
+      else if (Math.hypot(wx - ptB.x, wy - ptB.y) < 0.6) dragTarget = 'B';
+    });
+
+    window.addEventListener('pointermove', (e) => {
+      if (!dragTarget) return;
+      const rect = reflCanvas.getBoundingClientRect();
+      const originX = rect.width / 2;
+      const originY = rect.height / 2;
+      const scale = 36;
+      let wx = (e.clientX - rect.left - originX) / scale;
+      let wy = -(e.clientY - rect.top - originY) / scale;
+
+      // Snap to 0.5
+      wx = Math.round(wx * 2) / 2;
+      wy = Math.round(wy * 2) / 2;
+
+      if (dragTarget === 'C') {
+        ptC.x = Math.max(-6, Math.min(6, wx));
+        ptC.y = Math.max(-6, Math.min(6, wy));
+      } else if (dragTarget === 'A') {
+        ptA.x = Math.max(-6, Math.min(ptB.x - 1, wx));
+      } else if (dragTarget === 'B') {
+        ptB.x = Math.max(ptA.x + 1, Math.min(6, wx));
+      }
+      drawReflection();
+    });
+
+    window.addEventListener('pointerup', () => { dragTarget = null; });
+
+    // ==============================================================
+    // TAB 2: COLLINEARITY ENGINE
+    // ==============================================================
+    const colCanvas = document.getElementById('collinearCanvas');
+    const colCtx = colCanvas.getContext('2d');
+    let colA = 2.0;
+
+    const paramASlider = document.getElementById('paramASlider');
+    paramASlider.addEventListener('input', (e) => {
+      colA = parseFloat(e.target.value);
+      drawCollinear();
+    });
+
+    function loadCollinearPreset(a, b, btn) {
+      document.querySelectorAll('#pane-collinear .btn-preset').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      colA = a;
+      paramASlider.value = a;
+      drawCollinear();
+    }
+
+    function drawCollinear() {
+      const { width, height } = setupCanvasSize(colCanvas);
+      const ctx = colCtx;
+      const originX = width / 2 - 40;
+      const originY = height / 2 + 40;
+      const scale = 40;
+
+      const toScreenX = (x) => originX + x * scale;
+      const toScreenY = (y) => originY - y * scale;
+
+      // Clear & Grid
+      ctx.fillStyle = '#06090e';
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.strokeStyle = '#161e2e';
+      ctx.lineWidth = 1;
+      for (let x = -8; x <= 10; x++) {
+        ctx.beginPath();
+        ctx.moveTo(toScreenX(x), 0); ctx.lineTo(toScreenX(x), height);
+        ctx.stroke();
+      }
+      for (let y = -6; y <= 10; y++) {
+        ctx.beginPath();
+        ctx.moveTo(0, toScreenY(y)); ctx.lineTo(width, toScreenY(y));
+        ctx.stroke();
+      }
+
+      // Axes
+      ctx.strokeStyle = '#30363d';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0, originY); ctx.lineTo(width, originY);
+      ctx.moveTo(originX, 0); ctx.lineTo(originX, height);
+      ctx.stroke();
+
+      // Compute b from 1/a + 1/b = 1 => b = a / (a - 1)
+      const b = colA !== 1 ? colA / (colA - 1) : 999;
+
+      document.getElementById('paramAVal').textContent = `a = ${colA.toFixed(1)}`;
+      document.getElementById('paramBVal').textContent = `b = ${b.toFixed(2)}`;
+
+      // Draw Collinear Line through P(a, 0) and Q(0, b)
+      ctx.strokeStyle = '#388bfd';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(toScreenX(-2), toScreenY(b - (-2 * b / colA)));
+      ctx.lineTo(toScreenX(colA + 2), toScreenY(b - ((colA + 2) * b / colA)));
+      ctx.stroke();
+
+      // Points P(a, 0), Q(0, b), R(1, 1)
+      function drawColPt(x, y, label, color) {
+        const sx = toScreenX(x);
+        const sy = toScreenY(y);
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(sx, sy, 7, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        ctx.fillStyle = '#f0f6fc';
+        ctx.font = 'bold 12px sans-serif';
+        ctx.fillText(`${label}(${x.toFixed(1)}, ${y.toFixed(1)})`, sx + 10, sy - 8);
+      }
+
+      drawColPt(colA, 0, 'P', '#58a6ff');
+      drawColPt(0, b, 'Q', '#bc8cff');
+      drawColPt(1, 1, 'R (Fixed)', '#3fb950');
+
+      // Slopes
+      const slope = -b / colA;
+      document.getElementById('slopePQ').textContent = slope.toFixed(2);
+      document.getElementById('slopePR').textContent = slope.toFixed(2);
+    }
+
+    // ==============================================================
+    // TAB 3: EQUILATERAL SYNTHESIS ENGINE
+    // ==============================================================
+    const eqCanvas = document.getElementById('eqCanvas');
+    const eqCtx = eqCanvas.getContext('2d');
+    let scaleA = 2.0;
+
+    const scaleASlider = document.getElementById('scaleASlider');
+    scaleASlider.addEventListener('input', (e) => {
+      scaleA = parseFloat(e.target.value);
+      drawEquilateral();
+    });
+
+    function drawEquilateral() {
+      const { width, height } = setupCanvasSize(eqCanvas);
+      const ctx = eqCtx;
+      const originX = width / 2 - 80;
+      const originY = height / 2;
+      const scale = 36;
+
+      const toScreenX = (x) => originX + x * scale;
+      const toScreenY = (y) => originY - y * scale;
+
+      ctx.fillStyle = '#06090e';
+      ctx.fillRect(0, 0, width, height);
+
+      // Axes
+      ctx.strokeStyle = '#30363d';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0, originY); ctx.lineTo(width, originY);
+      ctx.moveTo(originX, 0); ctx.lineTo(originX, height);
+      ctx.stroke();
+
+      const a = scaleA;
+      const ptO = { x: 0, y: 0 };
+      const ptA = { x: 2 * a, y: 0 };
+      const ptB = { x: a, y: a * Math.sqrt(3) };
+      const ptM = { x: a, y: -a };
+
+      // Equilateral Triangle OAB
+      ctx.fillStyle = 'rgba(56, 139, 253, 0.15)';
+      ctx.strokeStyle = '#388bfd';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(toScreenX(0), toScreenY(0));
+      ctx.lineTo(toScreenX(ptA.x), toScreenY(ptA.y));
+      ctx.lineTo(toScreenX(ptB.x), toScreenY(ptB.y));
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      // Lower Square OACD
+      ctx.fillStyle = 'rgba(188, 140, 255, 0.1)';
+      ctx.strokeStyle = '#bc8cff';
+      ctx.strokeRect(toScreenX(0), toScreenY(0), 2 * a * scale, 2 * a * scale);
+      ctx.fillRect(toScreenX(0), toScreenY(0), 2 * a * scale, 2 * a * scale);
+
+      // Distance Line BM (strictly vertical)
+      ctx.strokeStyle = '#ff7b72';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(toScreenX(ptB.x), toScreenY(ptB.y));
+      ctx.lineTo(toScreenX(ptM.x), toScreenY(ptM.y));
+      ctx.stroke();
+
+      // Points
+      function drawDot(p, label, color) {
+        const sx = toScreenX(p.x);
+        const sy = toScreenY(p.y);
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(sx, sy, 6, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#fff';
+        ctx.stroke();
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 12px sans-serif';
+        ctx.fillText(`${label}(${p.x.toFixed(1)}, ${p.y.toFixed(1)})`, sx + 8, sy - 6);
+      }
+
+      drawDot(ptO, 'O', '#8b949e');
+      drawDot(ptA, 'A', '#8b949e');
+      drawDot(ptB, 'B', '#58a6ff');
+      drawDot(ptM, 'M', '#bc8cff');
+
+      document.getElementById('scaleAVal').textContent = `a = ${a.toFixed(1)}`;
+      document.getElementById('eqCoordA').textContent = `(${ptA.x.toFixed(1)}, 0)`;
+      document.getElementById('eqCoordB').textContent = `(${ptB.x.toFixed(1)}, ${ptB.y.toFixed(2)})`;
+      document.getElementById('eqCoordM').textContent = `(${ptM.x.toFixed(1)}, ${ptM.y.toFixed(1)})`;
+      const bm = a * (Math.sqrt(3) + 1);
+      document.getElementById('exactBM').textContent = `a(√3 + 1) ≈ ${bm.toFixed(2)} units`;
+    }
+
+    // Window Resize & Init
+    window.addEventListener('resize', () => {
+      drawReflection();
+      drawCollinear();
+      drawEquilateral();
+    });
+
+    // Initialize math & diagrams
+    document.addEventListener('DOMContentLoaded', () => {
+      renderAllMath();
+      let pollCount = 0;
+      const poll = setInterval(() => {
+        pollCount++;
+        if (window.renderMathInElement) {
+          clearInterval(poll);
+          renderAllMath();
+        } else if (pollCount > 25) {
+          clearInterval(poll);
+        }
+      }, 80);
+    });
+    window.addEventListener('load', () => {
+      renderAllMath();
+      drawReflection();
+    });
+
+    // Initial trigger
+    setTimeout(() => {
+      renderAllMath();
+      drawReflection();
+    }, 50);
+  </script>
+</body>
+</html>

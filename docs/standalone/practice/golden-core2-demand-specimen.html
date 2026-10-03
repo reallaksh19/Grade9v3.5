@@ -1,0 +1,1462 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-g9-shell data-g9-role="CORE2" data-g9-mode="PAGES" data-g9-topic="golden-demand-calibration" data-blueprint-ref="BP-CORE2-SOURCE-QUESTION@1.5.0">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0">
+  <title>Cognitive Demand Calibration Specimen: Source Questions · Core 2 Practice · Grade9V3.5</title>
+
+  <!-- Local KaTeX Typography (Offline Guaranteed & Multi-CDN Fallback) -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <link rel="stylesheet" href="../../public/vendor/katex/0.16.8/katex.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../public/vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <script src="../../public/vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Grade9V3.5 Design System & 12.7" Tablet Ergonomics -->
+  <link rel="stylesheet" href="../../css/modern-learner.css">
+  <link rel="stylesheet" href="../../css/site.css">
+  <link rel="stylesheet" href="../../css/tablet-12-7.css">
+
+  <script>
+    function renderAllMath(target) {
+      const el = target || document.body;
+      if (window.renderMathInElement) {
+        try {
+          window.renderMathInElement(el, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '\\[', right: '\\]', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\\(', right: '\\)', display: false }
+            ],
+            throwOnError: false
+          });
+        } catch (e) {
+          console.warn('KaTeX render error:', e);
+        }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => renderAllMath());
+    window.addEventListener('load', () => renderAllMath());
+  </script>
+
+  <style>
+    [hidden] { display: none !important; }
+
+    /* Core 2 Split Grid Architecture (42fr / 58fr) */
+    @media (min-width: 980px) {
+      article[data-g9-role="CORE2"] .g9-split {
+        display: grid;
+        grid-template-columns: minmax(0, 42fr) minmax(0, 58fr);
+        gap: 24px;
+        align-items: start;
+      }
+      article[data-g9-role="CORE2"] .g9-split > .g9-col-support {
+        position: sticky;
+        top: 80px;
+        max-height: calc(100vh - 96px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+      }
+    }
+    @media (max-width: 979px) {
+      article[data-g9-role="CORE2"] .g9-split {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+
+    /* Continuum Substrip Scrollbar Polish */
+    .g9-continuum-substrip {
+      background: var(--card, #ffffff);
+      border-bottom: 1px solid var(--line, #e2e8f0);
+      position: sticky;
+      top: 56px;
+      z-index: 95;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .g9-substrip-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 8px 16px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      align-items: center;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .g9-substrip-inner::-webkit-scrollbar { display: none; }
+
+    .g9-substrip-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      background: var(--bg, #f1f5f9);
+      color: var(--muted, #64748b);
+      border: 1px solid var(--line, #e2e8f0);
+      min-height: 36px;
+      transition: all 0.15s ease;
+    }
+    .g9-substrip-pill:hover {
+      background: var(--card, #ffffff);
+      color: var(--fg, #0f172a);
+      border-color: var(--accent, #2563eb);
+    }
+    .g9-substrip-pill.active {
+      background: var(--accent, #2563eb);
+      color: #ffffff;
+      border-color: var(--accent, #2563eb);
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+    }
+
+    /* Question Article & Header */
+    article[data-g9-unit] {
+      background: var(--card, #ffffff);
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .g9-c-header .g9-block[data-g9-block="source_identity"] h2 {
+      margin: 0 0 4px;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--fg, #0f172a);
+    }
+    [data-g9-meta-strip] {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 10px 0;
+    }
+    [data-g9-meta-item] {
+      display: inline-flex;
+      gap: 4px;
+      align-items: baseline;
+      padding: 3px 10px;
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 999px;
+      background: var(--bg, #f8fafc);
+      font-size: 0.8rem;
+    }
+    [data-g9-meta-item] strong { font-weight: 700; color: var(--muted, #64748b); }
+
+    /* Cognitive Demand & Review Template Badges */
+    .g9-pill-demand {
+      background: #fdf2f8;
+      color: #9d174d;
+      border: 1px solid #fbcfe8;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 1px 8px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+    }
+    .g9-pill-review-template {
+      background: #f0fdf4;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+      font-weight: 700;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.76rem;
+      display: inline-flex;
+      align-items: center;
+      padding: 1px 8px;
+      border-radius: 999px;
+    }
+    .g9-demand-scaffold-summary {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--muted, #64748b);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .g9-demand-scaffold-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .g9-scaffold-cell {
+      background: var(--card, #ffffff);
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 0.82rem;
+    }
+    .g9-scaffold-cell strong {
+      display: block;
+      color: var(--muted, #64748b);
+      font-size: 0.74rem;
+      margin-bottom: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    /* Difficulty & 5-Axis Disclosure Grid */
+    .g9-why-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line, #cbd5e1);
+      background: var(--bg, #f8fafc);
+      border-radius: 999px;
+      padding: 4px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      min-height: 36px;
+      margin: 6px 0;
+    }
+    .g9-dgrid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      margin: 8px 0 14px;
+    }
+    .g9-dcell {
+      background: var(--bg, #f8fafc);
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 0.8rem;
+      color: var(--muted, #64748b);
+    }
+    .g9-dcell b { display: block; color: var(--fg, #0f172a); font-size: 0.95rem; margin-top: 2px; }
+
+    /* Callouts */
+    .g9-c-callout-info {
+      border-left: 4px solid #38bdf8;
+      background: #f0f9ff;
+      border-radius: 0 10px 10px 0;
+      padding: 10px 14px;
+      margin: 12px 0;
+      color: #0369a1;
+    }
+    .g9-c-callout-info h4 { margin: 0 0 4px; font-size: 0.88rem; font-weight: 800; color: #0284c7; }
+    .g9-c-callout-info ul { margin: 0; padding-left: 18px; }
+
+    .g9-c-callout-warn {
+      border: 1px solid #fecdd3;
+      border-left: 4px solid #e11d48;
+      background: #fff1f2;
+      border-radius: 0 10px 10px 0;
+      padding: 10px 14px;
+      margin: 12px 0;
+      color: #9f1239;
+    }
+    .g9-c-callout-warn h4 { margin: 0 0 4px; font-size: 0.88rem; font-weight: 800; color: #be123c; }
+
+    /* Attempt Box */
+    .g9-attempt {
+      background: var(--bg, #f8fafc);
+      border: 1.5px solid var(--line, #cbd5e1);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .g9-attempt textarea, .g9-attempt input[type="text"] {
+      width: 100%;
+      border: 1.5px solid var(--line, #cbd5e1);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 1rem;
+      background: var(--card, #ffffff);
+      color: var(--fg, #0f172a);
+      box-sizing: border-box;
+    }
+    .g9-attempt textarea:focus, .g9-attempt input[type="text"]:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+    .g9-attempt button[data-g9-commit] {
+      align-self: flex-start;
+      min-height: 44px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      background: #2563eb;
+      color: #ffffff;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
+      transition: all 0.15s ease;
+    }
+    .g9-attempt button[data-g9-commit]:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+    .g9-paper {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--muted, #64748b);
+      cursor: pointer;
+    }
+
+    /* Hint Ladder & Ghost Rungs */
+    .g9-c-ladder {
+      background: var(--card, #ffffff);
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .g9-ladder ol { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+    .g9-rung-map { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 8px; }
+    .g9-rung-map > li {
+      border: 1.5px dashed var(--line, #cbd5e1);
+      border-radius: 10px;
+      padding: 10px 14px;
+      color: var(--muted, #64748b);
+      background: var(--bg, #f8fafc);
+    }
+    .g9-rung-head { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .g9-rung-no {
+      display: inline-grid;
+      place-items: center;
+      min-width: 2.2em;
+      height: 2em;
+      border-radius: 6px;
+      background: #e0e7ff;
+      color: #3730a3;
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+    .g9-ladder button[data-g9-next-rung] {
+      margin-top: 12px;
+      min-height: 40px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--line, #cbd5e1);
+      background: var(--bg, #f8fafc);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .g9-ladder button[data-g9-next-rung]:hover {
+      background: #eff6ff;
+      border-color: #3b82f6;
+    }
+
+    /* Solution moves */
+    .g9-solution-move {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr);
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line, #e2e8f0);
+    }
+    .g9-solution-move:last-child { border-bottom: none; }
+    .g9-solution-move[data-g9-solution-crux="true"] {
+      background: #eff6ff;
+      border-radius: 10px;
+      padding: 12px;
+      border-bottom: none;
+    }
+    .g9-step-no {
+      font-weight: 850;
+      font-size: 0.95rem;
+      color: #3730a3;
+      background: #e0e7ff;
+      border-radius: 8px;
+      padding: 6px;
+      text-align: center;
+      height: max-content;
+    }
+    .g9-step-body h4 { margin: 0 0 4px; font-size: 0.95rem; font-weight: 800; color: var(--fg, #0f172a); }
+    .g9-c-answer-box {
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      border-radius: 12px;
+      padding: 14px 18px;
+      color: #166534;
+      margin: 14px 0 8px;
+    }
+    .g9-c-check-box {
+      border-left: 4px solid #16a34a;
+      padding: 4px 12px;
+      color: #15803d;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body data-core="CORE2" data-blueprint-ref="BP-CORE2-SOURCE-QUESTION@1.5.0">
+  <!-- 1. Standardized Portal Header -->
+  <header class="g9-shell-header">
+    <div class="g9-header-inner">
+      <a class="g9-brand" href="../../index.html">
+        <span class="logo-icon">⚡</span>
+        <span class="brand-title">Grade9V3.5</span>
+        <span class="g9-brand-badge">Learner Platform</span>
+      </a>
+      <nav class="g9-header-nav" aria-label="Portal Navigation">
+        <a href="../../index.html">Home</a>
+        <a href="../../physics/index.html" class="active">Physics</a>
+        <a href="../../chemistry/index.html" class="">Chemistry</a>
+        <a href="../../mathematics/index.html" class="">Mathematics</a>
+        <a href="../../question-bank/index.html">Question Bank</a>
+        <a href="../../atlas/index.html">Atlas &amp; Rungs</a>
+      </nav>
+      <div class="g9-header-actions">
+        <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)">
+          <span class="g9-btn-icon">🔍</span>
+          <span class="g9-btn-text">Search</span>
+        </button>
+        <button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings">
+          <span class="g9-btn-icon">🌙 / ☀️</span>
+          <span class="g9-btn-text">Display</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. Breadcrumb Navigation -->
+  <nav class="g9-breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="g9-breadcrumbs">
+      <a href="../../index.html">Home</a> <span>/</span>
+      <a href="../index.html">Physics</a> <span>/</span>
+      <a href="index.html">Cognitive Demand Calibration Specimen</a> <span>/</span>
+      <span class="current">Core 2: Source Question Practice</span>
+    </div>
+  </nav>
+
+  <!-- 3. Learning Continuum Substrip -->
+  <div class="g9-continuum-substrip" role="navigation" aria-label="Cognitive Demand Calibration Specimen Continuum">
+    <div class="g9-substrip-inner">
+      <a href="index.html" class="g9-substrip-pill">← Topic Dashboard</a>
+      <a href="core1.html" class="g9-substrip-pill">Core 1: Foundations</a>
+      <a href="core1a.html" class="g9-substrip-pill">Core 1A: Construction</a>
+      <a href="core1b.html" class="g9-substrip-pill">Core 1B: Reconstruction</a>
+      <a href="core2.html" class="g9-substrip-pill active">Core 2: Question Bank</a>
+      <a href="core2a.html" class="g9-substrip-pill">Core 2A: Methods</a>
+      <a href="core2b.html" class="g9-substrip-pill">Core 2B: Challenge</a>
+      
+    </div>
+  </div>
+
+  <!-- 4. Main Practice Container -->
+  <main class="g9-main-container">
+    <header class="g9-c-title-banner" style="margin-bottom: 24px;">
+      <h1>Cognitive Demand Calibration Specimen: Source Question Custody &amp; Guided Practice</h1>
+      <p class="g9-prov">Verified exam items preserved verbatim with attempt-first gating and progressive hint ladders.</p>
+    </header>
+
+    <!-- QUESTION LOOP: Repeat for each source question -->
+    
+    <article id="Q-PHY-INCLINE-01" data-g9-unit="Q-PHY-INCLINE-01" data-g9-kind="QUESTION" data-g9-role="CORE2" data-g9-demand="MULTISTEP_REASONING" data-g9-review-template="QRT-PHY-MULTISTEP" class="g9-stage-support">
+      
+      <!-- Slot 1: IDENTITY & PROVENANCE -->
+      <section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true">
+        <div class="g9-component g9-c-header" data-g9-component="IDENTITY">
+          <div class="g9-block" data-g9-block="source_identity">
+            <h2>JEE Advanced · Mechanics & Energy Conservation</h2>
+            <p class="g9-prov">Verified past-exam adaptation with multi-step reasoning</p>
+          </div>
+          
+          <div data-g9-meta-strip data-g9-meta-role="CORE2">
+            <span data-g9-meta-item><strong>Subject:</strong> Physics</span>
+            <span data-g9-meta-item><strong>Topic:</strong> Cognitive Demand Calibration Specimen</span>
+            <span data-g9-meta-item><strong>Concept:</strong> Conservation of Mechanical Energy & Kinematics</span>
+            <span data-g9-meta-item><strong>Cognitive demand:</strong> <span class="g9-pill g9-pill-demand" data-g9-demand="MULTISTEP_REASONING">⛓️ Model & multi-step chain</span></span>
+            <span data-g9-meta-item><strong>Question difficulty:</strong> D4</span>
+            <span data-g9-meta-item><strong>Question type:</strong> Multi-Step Kinematics & Energy Derivation</span>
+            <span data-g9-meta-item><strong>Source:</strong> JEE Advanced Mechanics Archives · Adapted Exemplar</span>
+            
+            <span data-g9-meta-item><strong>Review rubric:</strong> <span class="g9-pill g9-pill-review-template">QRT-PHY-MULTISTEP</span></span>
+            
+            
+          </div>
+        </div>
+
+        <!-- Slot 2: DIFFICULTY_WHY (5-Axis Disclosure Grid & Demand Scaffolding) -->
+        <div class="g9-component g9-c-disclosure-grid" data-g9-component="DIFFICULTY_WHY">
+          <button type="button" class="g9-why-toggle" data-g9-toggle aria-expanded="false" aria-controls="why-Q-PHY-INCLINE-01">
+            <span class="g9-pill g9-pill-band">D4 · 8/10 · ~7 min</span>
+            <span>Why this difficulty? ▾</span>
+          </button>
+          <div id="why-Q-PHY-INCLINE-01" class="g9-why" hidden>
+            <p>Requires combining coordinate geometry on an inclined plane with gravitational potential energy conversion and kinematic speed derivation.</p>
+            <div class="g9-dgrid">
+              <div class="g9-dcell"><span>Choosing model</span><b>2/2</b></div>
+              <div class="g9-dcell"><span>Representation</span><b>2/2</b></div>
+              <div class="g9-dcell"><span>Reasoning chain</span><b>2/2</b></div>
+              <div class="g9-dcell"><span>Algebra &amp; math</span><b>1/2</b></div>
+              <div class="g9-dcell"><span>Traps &amp; exceptions</span><b>1/2</b></div>
+            </div>
+            
+            <div class="g9-component g9-c-demand-scaffold" data-g9-component="DEMAND_SCAFFOLDING" style="margin-top: 10px;">
+              <details style="background: var(--bg, #f8fafc); border: 1px solid var(--line, #cbd5e1); border-radius: 8px; padding: 6px 12px;">
+                <summary class="g9-demand-scaffold-summary">
+                  <span>Demand Scaffolding ($X, Y, Z, W$) · Cognitive Architecture ▾</span>
+                </summary>
+                <div class="g9-demand-scaffold-grid">
+                  <div class="g9-scaffold-cell"><strong>Target Concept ($X$)</strong><span>Frictionless inclined plane model with uniform gravity $g$</span></div>
+                  <div class="g9-scaffold-cell"><strong>Related Idea ($Y$)</strong><span>Conservation of mechanical energy ($E_i = E_f$)</span></div>
+                  <div class="g9-scaffold-cell"><strong>Crux Retrieval ($Z$)</strong><span>Geometric relation linking vertical height to ramp distance: $h = s \sin\theta$</span></div>
+                  <div class="g9-scaffold-cell"><strong>Student Step ($W$)</strong><span>Isolating velocity $v = \sqrt{2gs \sin\theta}$ and evaluating numerical result</span></div>
+                </div>
+              </details>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+
+      <!-- 42fr / 58fr Split Screen -->
+      <div class="g9-split">
+        
+        <!-- Left Column (42%): Stem, Conditions, Trap & Attempt -->
+        <div class="g9-col g9-col-primary">
+          <section class="blueprint-slot slot-attempt" data-blueprint-slot="attempt" data-required="true">
+            
+            <!-- Slot 3: STEM -->
+            <div class="g9-component g9-c-stem" data-g9-component="STEM">
+              <div class="g9-eyebrow" style="color:#2563eb; font-weight:800;">Attempt First</div>
+              <div class="g9-block" data-g9-block="stem" style="font-size:1.05rem; line-height:1.6; margin:8px 0 14px;">
+                <p>A block of mass $m$ slides from rest down a smooth, frictionless inclined plane of angle $\theta$ over a distance $s$ along the incline. Derive the general expression for its final speed $v$ at the bottom, and calculate $v$ when $s = 10\text{ m}$, $\theta = 30^\circ$, and $g = 9.8\text{ m/s}^2$.</p>
+              </div>
+            </div>
+
+            <!-- Slot 4: CONDITIONS -->
+            
+            <div class="g9-component g9-c-callout-info" data-g9-component="CONDITIONS">
+              <h4>Conditions &amp; Stated Givens</h4>
+              <ul>
+                
+                <li>Incline angle $\theta = 30^\circ$.</li>
+                
+                <li>Frictionless surface (coefficient of friction $\mu = 0$).</li>
+                
+                <li>Initial state: released from rest ($u = 0\text{ m/s}$).</li>
+                
+                <li>Acceleration due to gravity $g = 9.8\text{ m/s}^2$.</li>
+                
+              </ul>
+            </div>
+            
+
+            <!-- Slot 5: TRAP (Common Wrong Route) -->
+            <div class="g9-component g9-c-callout-warn" data-g9-component="TRAP">
+              <h4>⚠️ Common Wrong Route</h4>
+              <p>Confusing ramp length $s$ with vertical height $h$ (forgetting the factor $\sin\theta$), or incorrectly assuming normal force performs work.</p>
+            </div>
+
+            <!-- Slot 6: ATTEMPT BOX -->
+            <div class="g9-component g9-c-attempt" data-g9-component="ATTEMPT">
+              <div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response">
+                <label style="font-weight:700; font-size:0.9rem;">Your working steps / explanation:<textarea data-g9-attempt rows="4" placeholder="Enter your working or justification..."></textarea></label>
+                <label class="g9-paper">
+                  <input data-g9-paper type="checkbox"> I worked this out on paper
+                </label>
+                <button type="button" data-g9-commit>I have attempted this</button>
+              </div>
+            </div>
+
+          </section>
+        </div>
+
+        <!-- Right Column (58%): Representation, Hint Ladder & Concept Link -->
+        <div class="g9-col g9-col-support">
+          
+          <!-- Slot 7: REPRESENTATION (SVG Figure) -->
+          
+          <section class="blueprint-slot slot-representation" data-blueprint-slot="representation">
+            <div class="g9-component g9-c-visual-card" data-g9-component="REPRESENTATION">
+              <div class="g9-card-head">
+                <strong>Question Representation</strong>
+                <span class="g9-pill">Schematic</span>
+              </div>
+              <figure data-g9-figure style="margin:8px 0;">
+                <svg viewBox="0 0 460 220" width="100%" height="auto"><polygon points="40,180 380,180 380,60" fill="#f1f5f9" stroke="#334155" stroke-width="2.5"/><line x1="20" y1="180" x2="440" y2="180" stroke="#64748b" stroke-width="1.5"/><rect x="220" y="90" width="40" height="30" rx="4" fill="#3b82f6" stroke="#1d4ed8" stroke-width="2" transform="rotate(21.8 220 90)"/><path d="M 90,180 A 50,50 0 0,0 86,162" fill="none" stroke="#2563eb" stroke-width="2"/><text x="100" y="172" font-size="14" font-weight="bold" fill="#2563eb">θ = 30°</text><line x1="395" y1="60" x2="395" y2="180" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4,4"/><text x="405" y="125" font-size="13" font-weight="bold" fill="#dc2626">h = s sin θ</text><text x="180" y="85" font-size="13" font-weight="bold" fill="#1e40af">s = 10 m</text></svg>
+                <figcaption style="font-size:0.85rem; color:var(--muted); margin-top:4px;">Mechanical System: Frictionless ramp inclined at angle $\theta$ with block $m$, normal force $N$, and weight $mg$.</figcaption>
+              </figure>
+            </div>
+          </section>
+          
+
+          <!-- Slot 8: HINT LADDER -->
+          <section class="blueprint-slot slot-support" data-blueprint-slot="support">
+            <div class="g9-component g9-c-ladder" data-g9-component="HINT_LADDER">
+              <div class="g9-eyebrow" style="font-size:0.85rem; font-weight:800; text-transform:uppercase; color:var(--muted);">
+                Hint Ladder · Reveal only what you need
+              </div>
+              
+              <div class="g9-ladder" data-g9-ladder-ref="Q-PHY-INCLINE-01-ladder">
+                <ol data-g9-ladder></ol>
+                <ol class="g9-rung-map" aria-label="Rungs to unlock">
+                  
+                  <li data-g9-rung-ghost>
+                    <div class="g9-rung-head">
+                      <span class="g9-rung-no">H0</span>
+                      <span>Coordinate Model & Height</span>
+                      <span class="g9-pill" style="font-size:0.75rem; background:#f1f5f9;">Guided</span>
+                    </div>
+                  </li>
+                  
+                  <li data-g9-rung-ghost>
+                    <div class="g9-rung-head">
+                      <span class="g9-rung-no">H1</span>
+                      <span>Conservation Law</span>
+                      <span class="g9-pill" style="font-size:0.75rem; background:#f1f5f9;">Guided</span>
+                    </div>
+                  </li>
+                  
+                  <li data-g9-rung-ghost>
+                    <div class="g9-rung-head">
+                      <span class="g9-rung-no">H2</span>
+                      <span>Equate and Solve</span>
+                      <span class="g9-pill" style="font-size:0.75rem; background:#f1f5f9;">Guided</span>
+                    </div>
+                  </li>
+                  
+                </ol>
+
+                <!-- Template payloads for progressive unlock -->
+                
+                <template data-g9-rung-payload="Q-PHY-INCLINE-01-rung-1">
+                  <li data-g9-rung="1" style="border-left:4px solid #2563eb; background:#f8fafc; border-radius:0 10px 10px 0; padding:12px 14px; margin-bottom:8px;">
+                    <div class="g9-rung-head">
+                      <span class="g9-rung-no">H0</span>
+                      <strong>Coordinate Model & Height</strong>
+                    </div>
+                    <p style="margin:6px 0; font-size:0.95rem;">How does the vertical displacement $h$ relate to the length $s$ traversed along the incline plane?</p>
+                    <details data-g9-support-reveal style="margin-top:6px;">
+                      <summary style="font-size:0.85rem; font-weight:700; color:#2563eb; cursor:pointer;">Reveal hint</summary>
+                      <p style="margin-top:4px; font-size:0.9rem; color:#1e293b;">In right triangle geometry, $\sin\theta = \frac{h}{s} \implies h = s \sin\theta$.</p>
+                    </details>
+                  </li>
+                </template>
+                
+                <template data-g9-rung-payload="Q-PHY-INCLINE-01-rung-2">
+                  <li data-g9-rung="2" style="border-left:4px solid #2563eb; background:#f8fafc; border-radius:0 10px 10px 0; padding:12px 14px; margin-bottom:8px;">
+                    <div class="g9-rung-head">
+                      <span class="g9-rung-no">H1</span>
+                      <strong>Conservation Law</strong>
+                    </div>
+                    <p style="margin:6px 0; font-size:0.95rem;">Does the normal force perform any work on the sliding block? What does this imply for total mechanical energy?</p>
+                    <details data-g9-support-reveal style="margin-top:6px;">
+                      <summary style="font-size:0.85rem; font-weight:700; color:#2563eb; cursor:pointer;">Reveal hint</summary>
+                      <p style="margin-top:4px; font-size:0.9rem; color:#1e293b;">The normal force is perpendicular to displacement ($\vec{N} \cdot \vec{ds} = 0$), so no work is done. Total mechanical energy is conserved: $\Delta K + \Delta U = 0$.</p>
+                    </details>
+                  </li>
+                </template>
+                
+                <template data-g9-rung-payload="Q-PHY-INCLINE-01-rung-3">
+                  <li data-g9-rung="3" style="border-left:4px solid #2563eb; background:#f8fafc; border-radius:0 10px 10px 0; padding:12px 14px; margin-bottom:8px;">
+                    <div class="g9-rung-head">
+                      <span class="g9-rung-no">H2</span>
+                      <strong>Equate and Solve</strong>
+                    </div>
+                    <p style="margin:6px 0; font-size:0.95rem;">Equate the gravitational potential energy lost to the kinetic energy gained, and solve for $v$.</p>
+                    <details data-g9-support-reveal style="margin-top:6px;">
+                      <summary style="font-size:0.85rem; font-weight:700; color:#2563eb; cursor:pointer;">Reveal hint</summary>
+                      <p style="margin-top:4px; font-size:0.9rem; color:#1e293b;">$\frac{1}{2}mv^2 = mgh = mg(s \sin\theta) \implies v = \sqrt{2gs \sin\theta}$. Substituting givens: $v = \sqrt{2(9.8)(10)\sin 30^\circ} = \sqrt{98} \approx 9.90\text{ m/s}$.</p>
+                    </details>
+                  </li>
+                </template>
+                
+
+                <button type="button" data-g9-next-rung>Show guided support</button>
+              </div>
+            </div>
+
+            <!-- Slot 9: CONCEPT_NAV (Cross-link to Core 1A) -->
+            <div class="g9-component g9-c-link-list" data-g9-component="CONCEPT_NAV" style="margin-top:14px;">
+              <p style="font-size:0.85rem; font-weight:700; color:var(--muted); margin-bottom:6px;">Need to rebuild this concept?</p>
+              <a href="core1a.html#U-PHY-ENERGY-CONSERVATION" style="display:inline-flex; align-items:center; gap:6px; font-weight:700; color:#2563eb; text-decoration:none;">
+                📖 Review in Core 1A: Conservation of Mechanical Energy & Kinematics →
+              </a>
+            </div>
+          </section>
+
+        </div>
+
+      </div>
+
+      <!-- Slot 10 & 11: SOLUTION & REASONING ROUTE -->
+      <section class="blueprint-slot slot-solution" data-blueprint-slot="solution" data-required="true" style="margin-top:20px;">
+        <div class="g9-component g9-c-disclosure" data-g9-component="SOLUTION">
+          <details data-g9-reveal data-requires-attempt data-g9-payload-ref="Q-PHY-INCLINE-01-solution">
+            <summary style="font-size:1.05rem; font-weight:800; cursor:pointer; padding:12px 0;">Teacher Solution · Complete Derivation</summary>
+            <div data-g9-payload-slot></div>
+          </details>
+
+          <template data-g9-payload="Q-PHY-INCLINE-01-solution">
+            <div class="g9-component g9-c-step-list" data-g9-component="SOLUTION_STEPS">
+              <div class="g9-block" data-g9-block="structured_working">
+                <h4 style="margin:12px 0 8px;">Reasoning Route</h4>
+                
+                
+                <section class="g9-solution-move" data-g9-solution-crux="false">
+                  <div class="g9-step-no">1</div>
+                  <div class="g9-step-body">
+                    <h4>Geometric Projection </h4>
+                    <p><strong>Action:</strong> Determine the vertical height drop $h$ corresponding to distance $s$ along the inclined plane.</p>
+                    
+                    <p style="font-size:0.85rem; color:var(--muted);"><strong>Uses:</strong> Trigonometric definition $\sin\theta = h/s$</p>
+                    
+                    <p><em>Why valid:</em> The incline surface forms the hypotenuse of the right-angled vertical triangle.</p>
+                    <p><strong>Result:</strong> $h = s \sin\theta = 10 \sin(30^\circ) = 5.0\text{ m}$.</p>
+                  </div>
+                </section>
+                
+                <section class="g9-solution-move" data-g9-solution-crux="true">
+                  <div class="g9-step-no">2</div>
+                  <div class="g9-step-body">
+                    <h4>Apply Energy Conservation <span style="color:#dc2626; font-size:0.8rem; font-weight:800; text-transform:uppercase;">[Key Move]</span></h4>
+                    <p><strong>Action:</strong> Equate gravitational potential energy converted into kinetic energy at the bottom.</p>
+                    
+                    <p style="font-size:0.85rem; color:var(--muted);"><strong>Uses:</strong> Work-Energy Theorem & Mechanical Energy Conservation: $E_i = E_f$</p>
+                    
+                    <p><em>Why valid:</em> Friction is absent and the normal contact force is orthogonal to motion, so non-conservative work $W_{\text{nc}} = 0$.</p>
+                    <p><strong>Result:</strong> $mgh = \frac{1}{2}mv^2 \implies v = \sqrt{2gh} = \sqrt{2gs \sin\theta}$.</p>
+                  </div>
+                </section>
+                
+                <section class="g9-solution-move" data-g9-solution-crux="false">
+                  <div class="g9-step-no">3</div>
+                  <div class="g9-step-body">
+                    <h4>Numerical Evaluation </h4>
+                    <p><strong>Action:</strong> Substitute given values $g = 9.8\text{ m/s}^2, s = 10\text{ m}, \theta = 30^\circ$ into the velocity equation.</p>
+                    
+                    <p style="font-size:0.85rem; color:var(--muted);"><strong>Uses:</strong> Arithmetic square root evaluation</p>
+                    
+                    <p><em>Why valid:</em> Evaluation of derived algebraic expression.</p>
+                    <p><strong>Result:</strong> $v = \sqrt{2 \times 9.8 \times 5.0} = \sqrt{98} \approx 9.90\text{ m/s}$.</p>
+                  </div>
+                </section>
+                
+
+              </div>
+            </div>
+
+            <!-- Slot 12: ANSWER BOX -->
+            <div class="g9-component g9-c-answer-box" data-g9-component="ANSWER">
+              <h4 style="margin:0 0 4px; font-size:0.95rem;">Verified Result</h4>
+              <p style="font-size:1.05rem; font-weight:700; margin:0;">Derived Expression: $v = \sqrt{2gs \sin\theta}$. Numerical Value: $v = \sqrt{98} \approx 9.90\text{ m/s}$.</p>
+            </div>
+
+            <!-- Slot 13: INDEPENDENT CHECK -->
+            <div class="g9-component g9-c-check-box" data-g9-component="CHECK">
+              <p><strong>Independent Sanity Check:</strong> Independent kinematic check using $v^2 = u^2 + 2as$: Acceleration along incline is $a = g \sin\theta$. With $u = 0$, $v^2 = 2(g \sin\theta)s \implies v = \sqrt{2gs \sin\theta}$. Both independent derivations yield $\sqrt{98} \approx 9.90\text{ m/s}$.</p>
+            </div>
+          </template>
+        </div>
+      </section>
+
+    </article>
+    
+    <article id="Q-PHY-UNIT-FORCE-01" data-g9-unit="Q-PHY-UNIT-FORCE-01" data-g9-kind="QUESTION" data-g9-role="CORE2" data-g9-demand="MEMORY_RECALL" data-g9-review-template="QRT-PHY-MEMORY" class="g9-stage-support">
+      
+      <!-- Slot 1: IDENTITY & PROVENANCE -->
+      <section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true">
+        <div class="g9-component g9-c-header" data-g9-component="IDENTITY">
+          <div class="g9-block" data-g9-block="source_identity">
+            <h2>NCERT Exemplar · Physics · Laws of Motion</h2>
+            <p class="g9-prov">Official NCERT Exemplar recall question, preserved verbatim</p>
+          </div>
+          
+          <div data-g9-meta-strip data-g9-meta-role="CORE2">
+            <span data-g9-meta-item><strong>Subject:</strong> Physics</span>
+            <span data-g9-meta-item><strong>Topic:</strong> Cognitive Demand Calibration Specimen</span>
+            <span data-g9-meta-item><strong>Concept:</strong> Newton's Second Law & SI Derived Units</span>
+            <span data-g9-meta-item><strong>Cognitive demand:</strong> <span class="g9-pill g9-pill-demand" data-g9-demand="MEMORY_RECALL">🧠 Factual recall</span></span>
+            <span data-g9-meta-item><strong>Question difficulty:</strong> D1</span>
+            <span data-g9-meta-item><strong>Question type:</strong> Factual Recall of SI Units</span>
+            <span data-g9-meta-item><strong>Source:</strong> NCERT Class 9 Science Exemplar · Chapter 9 (Force and Laws of Motion) · Section 9.1</span>
+            
+            <span data-g9-meta-item><strong>Review rubric:</strong> <span class="g9-pill g9-pill-review-template">QRT-PHY-MEMORY</span></span>
+            
+            
+          </div>
+        </div>
+
+        <!-- Slot 2: DIFFICULTY_WHY (5-Axis Disclosure Grid & Demand Scaffolding) -->
+        <div class="g9-component g9-c-disclosure-grid" data-g9-component="DIFFICULTY_WHY">
+          <button type="button" class="g9-why-toggle" data-g9-toggle aria-expanded="false" aria-controls="why-Q-PHY-UNIT-FORCE-01">
+            <span class="g9-pill g9-pill-band">D1 · 1/10 · ~1 min</span>
+            <span>Why this difficulty? ▾</span>
+          </button>
+          <div id="why-Q-PHY-UNIT-FORCE-01" class="g9-why" hidden>
+            <p>Direct factual recall of the fundamental base unit composition of the derived unit Newton via $F = ma$.</p>
+            <div class="g9-dgrid">
+              <div class="g9-dcell"><span>Choosing model</span><b>0/2</b></div>
+              <div class="g9-dcell"><span>Representation</span><b>0/2</b></div>
+              <div class="g9-dcell"><span>Reasoning chain</span><b>0/2</b></div>
+              <div class="g9-dcell"><span>Algebra &amp; math</span><b>1/2</b></div>
+              <div class="g9-dcell"><span>Traps &amp; exceptions</span><b>0/2</b></div>
+            </div>
+            
+            <div class="g9-component g9-c-demand-scaffold" data-g9-component="DEMAND_SCAFFOLDING" style="margin-top: 10px;">
+              <details style="background: var(--bg, #f8fafc); border: 1px solid var(--line, #cbd5e1); border-radius: 8px; padding: 6px 12px;">
+                <summary class="g9-demand-scaffold-summary">
+                  <span>Demand Scaffolding ($X, Y, Z, W$) · Cognitive Architecture ▾</span>
+                </summary>
+                <div class="g9-demand-scaffold-grid">
+                  <div class="g9-scaffold-cell"><strong>Target Concept ($X$)</strong><span>SI unit of force: the Newton ($\text{N}$)</span></div>
+                  <div class="g9-scaffold-cell"><strong>Related Idea ($Y$)</strong><span>Fundamental SI base units for mass ($\text{kg}$), length ($\text{m}$), and time ($\text{s}$)</span></div>
+                  <div class="g9-scaffold-cell"><strong>Crux Retrieval ($Z$)</strong><span>Governing physical law: Newton's second law relation $F = ma$</span></div>
+                  <div class="g9-scaffold-cell"><strong>Student Step ($W$)</strong><span>Stating $1\text{ N} = 1\text{ kg}\cdot\text{m}/\text{s}^2$ in base SI units</span></div>
+                </div>
+              </details>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+
+      <!-- 42fr / 58fr Split Screen -->
+      <div class="g9-split">
+        
+        <!-- Left Column (42%): Stem, Conditions, Trap & Attempt -->
+        <div class="g9-col g9-col-primary">
+          <section class="blueprint-slot slot-attempt" data-blueprint-slot="attempt" data-required="true">
+            
+            <!-- Slot 3: STEM -->
+            <div class="g9-component g9-c-stem" data-g9-component="STEM">
+              <div class="g9-eyebrow" style="color:#2563eb; font-weight:800;">Attempt First</div>
+              <div class="g9-block" data-g9-block="stem" style="font-size:1.05rem; line-height:1.6; margin:8px 0 14px;">
+                <p>State the SI unit of force in terms of fundamental SI base units (kilogram, meter, and second).</p>
+              </div>
+            </div>
+
+            <!-- Slot 4: CONDITIONS -->
+            
+            <div class="g9-component g9-c-callout-info" data-g9-component="CONDITIONS">
+              <h4>Conditions &amp; Stated Givens</h4>
+              <ul>
+                
+                <li>Express in SI base units only.</li>
+                
+                <li>Governed by Newton's second law: $F = ma$.</li>
+                
+              </ul>
+            </div>
+            
+
+            <!-- Slot 5: TRAP (Common Wrong Route) -->
+            <div class="g9-component g9-c-callout-warn" data-g9-component="TRAP">
+              <h4>⚠️ Common Wrong Route</h4>
+              <p>Confusing force with energy (writing $\text{kg}\cdot\text{m}^2/\text{s}^2$) or confusing acceleration with velocity (writing $\text{kg}\cdot\text{m}/\text{s}$).</p>
+            </div>
+
+            <!-- Slot 6: ATTEMPT BOX -->
+            <div class="g9-component g9-c-attempt" data-g9-component="ATTEMPT">
+              <div class="g9-attempt" data-g9-attempt-box data-g9-response-type="short_text">
+                <label style="display:flex; flex-direction:column; gap:6px; font-weight:700; font-size:0.9rem;">Your Answer:<input data-g9-attempt type="text" placeholder="Type your answer here..."></label>
+                <label class="g9-paper">
+                  <input data-g9-paper type="checkbox"> I worked this out on paper
+                </label>
+                <button type="button" data-g9-commit>I have attempted this</button>
+              </div>
+            </div>
+
+          </section>
+        </div>
+
+        <!-- Right Column (58%): Representation, Hint Ladder & Concept Link -->
+        <div class="g9-col g9-col-support">
+          
+          <!-- Slot 7: REPRESENTATION (SVG Figure) -->
+          
+
+          <!-- Slot 8: HINT LADDER -->
+          <section class="blueprint-slot slot-support" data-blueprint-slot="support">
+            <div class="g9-component g9-c-ladder" data-g9-component="HINT_LADDER">
+              <div class="g9-eyebrow" style="font-size:0.85rem; font-weight:800; text-transform:uppercase; color:var(--muted);">
+                Hint Ladder · Reveal only what you need
+              </div>
+              
+              <div class="g9-ladder" data-g9-ladder-ref="Q-PHY-UNIT-FORCE-01-ladder">
+                <ol data-g9-ladder></ol>
+                <ol class="g9-rung-map" aria-label="Rungs to unlock">
+                  
+                  <li data-g9-rung-ghost>
+                    <div class="g9-rung-head">
+                      <span class="g9-rung-no">H0</span>
+                      <span>Category of Unit</span>
+                      <span class="g9-pill" style="font-size:0.75rem; background:#f1f5f9;">Guided</span>
+                    </div>
+                  </li>
+                  
+                  <li data-g9-rung-ghost>
+                    <div class="g9-rung-head">
+                      <span class="g9-rung-no">H1</span>
+                      <span>Base Component Units</span>
+                      <span class="g9-pill" style="font-size:0.75rem; background:#f1f5f9;">Guided</span>
+                    </div>
+                  </li>
+                  
+                  <li data-g9-rung-ghost>
+                    <div class="g9-rung-head">
+                      <span class="g9-rung-no">H2</span>
+                      <span>Synthesis</span>
+                      <span class="g9-pill" style="font-size:0.75rem; background:#f1f5f9;">Guided</span>
+                    </div>
+                  </li>
+                  
+                </ol>
+
+                <!-- Template payloads for progressive unlock -->
+                
+                <template data-g9-rung-payload="Q-PHY-UNIT-FORCE-01-rung-1">
+                  <li data-g9-rung="1" style="border-left:4px solid #2563eb; background:#f8fafc; border-radius:0 10px 10px 0; padding:12px 14px; margin-bottom:8px;">
+                    <div class="g9-rung-head">
+                      <span class="g9-rung-no">H0</span>
+                      <strong>Category of Unit</strong>
+                    </div>
+                    <p style="margin:6px 0; font-size:0.95rem;">Which fundamental physical law defines force in terms of mass and acceleration?</p>
+                    <details data-g9-support-reveal style="margin-top:6px;">
+                      <summary style="font-size:0.85rem; font-weight:700; color:#2563eb; cursor:pointer;">Reveal hint</summary>
+                      <p style="margin-top:4px; font-size:0.9rem; color:#1e293b;">Newton's second law defines force as $F = ma$.</p>
+                    </details>
+                  </li>
+                </template>
+                
+                <template data-g9-rung-payload="Q-PHY-UNIT-FORCE-01-rung-2">
+                  <li data-g9-rung="2" style="border-left:4px solid #2563eb; background:#f8fafc; border-radius:0 10px 10px 0; padding:12px 14px; margin-bottom:8px;">
+                    <div class="g9-rung-head">
+                      <span class="g9-rung-no">H1</span>
+                      <strong>Base Component Units</strong>
+                    </div>
+                    <p style="margin:6px 0; font-size:0.95rem;">What are the standard SI base units for mass $m$ and acceleration $a$?</p>
+                    <details data-g9-support-reveal style="margin-top:6px;">
+                      <summary style="font-size:0.85rem; font-weight:700; color:#2563eb; cursor:pointer;">Reveal hint</summary>
+                      <p style="margin-top:4px; font-size:0.9rem; color:#1e293b;">Mass has base unit kilogram ($\text{kg}$), and acceleration has base unit meter per second squared ($\text{m/s}^2$).</p>
+                    </details>
+                  </li>
+                </template>
+                
+                <template data-g9-rung-payload="Q-PHY-UNIT-FORCE-01-rung-3">
+                  <li data-g9-rung="3" style="border-left:4px solid #2563eb; background:#f8fafc; border-radius:0 10px 10px 0; padding:12px 14px; margin-bottom:8px;">
+                    <div class="g9-rung-head">
+                      <span class="g9-rung-no">H2</span>
+                      <strong>Synthesis</strong>
+                    </div>
+                    <p style="margin:6px 0; font-size:0.95rem;">Combine these base units using the relation $F = ma$.</p>
+                    <details data-g9-support-reveal style="margin-top:6px;">
+                      <summary style="font-size:0.85rem; font-weight:700; color:#2563eb; cursor:pointer;">Reveal hint</summary>
+                      <p style="margin-top:4px; font-size:0.9rem; color:#1e293b;">One Newton ($\text{N}$) equals $1\text{ kg} \times 1\text{ m/s}^2 = 1\text{ kg}\cdot\text{m}/\text{s}^2$.</p>
+                    </details>
+                  </li>
+                </template>
+                
+
+                <button type="button" data-g9-next-rung>Show guided support</button>
+              </div>
+            </div>
+
+            <!-- Slot 9: CONCEPT_NAV (Cross-link to Core 1A) -->
+            <div class="g9-component g9-c-link-list" data-g9-component="CONCEPT_NAV" style="margin-top:14px;">
+              <p style="font-size:0.85rem; font-weight:700; color:var(--muted); margin-bottom:6px;">Need to rebuild this concept?</p>
+              <a href="core1a.html#U-PHY-NLM-SECOND-LAW" style="display:inline-flex; align-items:center; gap:6px; font-weight:700; color:#2563eb; text-decoration:none;">
+                📖 Review in Core 1A: Newton's Second Law & SI Derived Units →
+              </a>
+            </div>
+          </section>
+
+        </div>
+
+      </div>
+
+      <!-- Slot 10 & 11: SOLUTION & REASONING ROUTE -->
+      <section class="blueprint-slot slot-solution" data-blueprint-slot="solution" data-required="true" style="margin-top:20px;">
+        <div class="g9-component g9-c-disclosure" data-g9-component="SOLUTION">
+          <details data-g9-reveal data-requires-attempt data-g9-payload-ref="Q-PHY-UNIT-FORCE-01-solution">
+            <summary style="font-size:1.05rem; font-weight:800; cursor:pointer; padding:12px 0;">Teacher Solution · Complete Derivation</summary>
+            <div data-g9-payload-slot></div>
+          </details>
+
+          <template data-g9-payload="Q-PHY-UNIT-FORCE-01-solution">
+            <div class="g9-component g9-c-step-list" data-g9-component="SOLUTION_STEPS">
+              <div class="g9-block" data-g9-block="structured_working">
+                <h4 style="margin:12px 0 8px;">Reasoning Route</h4>
+                
+                
+                <section class="g9-solution-move" data-g9-solution-crux="false">
+                  <div class="g9-step-no">1</div>
+                  <div class="g9-step-body">
+                    <h4>Recall Governing Formula </h4>
+                    <p><strong>Action:</strong> State Newton's second law formula relating force, mass, and acceleration.</p>
+                    
+                    <p style="font-size:0.85rem; color:var(--muted);"><strong>Uses:</strong> Definition of force: $F = ma$</p>
+                    
+                    <p><em>Why valid:</em> Constitutional definition of force in classical Newtonian mechanics.</p>
+                    <p><strong>Result:</strong> $F = ma$.</p>
+                  </div>
+                </section>
+                
+                <section class="g9-solution-move" data-g9-solution-crux="true">
+                  <div class="g9-step-no">2</div>
+                  <div class="g9-step-body">
+                    <h4>Substitute Base Units <span style="color:#dc2626; font-size:0.8rem; font-weight:800; text-transform:uppercase;">[Key Move]</span></h4>
+                    <p><strong>Action:</strong> Replace mass and acceleration with their fundamental SI base dimensions.</p>
+                    
+                    <p style="font-size:0.85rem; color:var(--muted);"><strong>Uses:</strong> $[m] = \text{kg}$ and $[a] = \text{m/s}^2$</p>
+                    
+                    <p><em>Why valid:</em> Direct dimensional substitution into the product relation.</p>
+                    <p><strong>Result:</strong> $[F] = [m][a] = \text{kg} \times \text{m/s}^2 = \text{kg}\cdot\text{m}/\text{s}^2$.</p>
+                  </div>
+                </section>
+                
+                <section class="g9-solution-move" data-g9-solution-crux="false">
+                  <div class="g9-step-no">3</div>
+                  <div class="g9-step-body">
+                    <h4>Conclude Equivalence </h4>
+                    <p><strong>Action:</strong> Equate the named derived unit (Newton) to the fundamental base unit combination.</p>
+                    
+                    <p style="font-size:0.85rem; color:var(--muted);"><strong>Uses:</strong> Definition of $1\text{ N}$</p>
+                    
+                    <p><em>Why valid:</em> SI unit convention definition.</p>
+                    <p><strong>Result:</strong> $1\text{ N} = 1\text{ kg}\cdot\text{m}\cdot\text{s}^{-2}$.</p>
+                  </div>
+                </section>
+                
+
+              </div>
+            </div>
+
+            <!-- Slot 12: ANSWER BOX -->
+            <div class="g9-component g9-c-answer-box" data-g9-component="ANSWER">
+              <h4 style="margin:0 0 4px; font-size:0.95rem;">Verified Result</h4>
+              <p style="font-size:1.05rem; font-weight:700; margin:0;">$1\text{ N} = 1\text{ kg}\cdot\text{m}/\text{s}^2 = 1\text{ kg}\cdot\text{m}\cdot\text{s}^{-2}$.</p>
+            </div>
+
+            <!-- Slot 13: INDEPENDENT CHECK -->
+            <div class="g9-component g9-c-check-box" data-g9-component="CHECK">
+              <p><strong>Independent Sanity Check:</strong> Dimensional consistency check: $[\text{Force}] = [M][L][T]^{-2} \implies \text{kg}\cdot\text{m}/\text{s}^2$. Verified.</p>
+            </div>
+          </template>
+        </div>
+      </section>
+
+    </article>
+    
+    <article id="Q-MAT-POLY-PROOF-01" data-g9-unit="Q-MAT-POLY-PROOF-01" data-g9-kind="QUESTION" data-g9-role="CORE2" data-g9-demand="PROOF_DERIVATION" data-g9-review-template="QRT-MAT-PROOF" class="g9-stage-support">
+      
+      <!-- Slot 1: IDENTITY & PROVENANCE -->
+      <section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true">
+        <div class="g9-component g9-c-header" data-g9-component="IDENTITY">
+          <div class="g9-block" data-g9-block="source_identity">
+            <h2>Textbook Polynomials · Algebraic Proof</h2>
+            <p class="g9-prov">Verified official algebra textbook problem, preserved verbatim</p>
+          </div>
+          
+          <div data-g9-meta-strip data-g9-meta-role="CORE2">
+            <span data-g9-meta-item><strong>Subject:</strong> Physics</span>
+            <span data-g9-meta-item><strong>Topic:</strong> Cognitive Demand Calibration Specimen</span>
+            <span data-g9-meta-item><strong>Concept:</strong> Algebraic Identities & Binomial Expansions</span>
+            <span data-g9-meta-item><strong>Cognitive demand:</strong> <span class="g9-pill g9-pill-demand" data-g9-demand="PROOF_DERIVATION">📐 Proof & formal derivation</span></span>
+            <span data-g9-meta-item><strong>Question difficulty:</strong> D2</span>
+            <span data-g9-meta-item><strong>Question type:</strong> Algebraic Proof</span>
+            <span data-g9-meta-item><strong>Source:</strong> Standard Mathematics Textbook · Chapter 2 (Polynomials) · Check Point 2 · Q10</span>
+            
+            <span data-g9-meta-item><strong>Review rubric:</strong> <span class="g9-pill g9-pill-review-template">QRT-MAT-PROOF</span></span>
+            
+            
+          </div>
+        </div>
+
+        <!-- Slot 2: DIFFICULTY_WHY (5-Axis Disclosure Grid & Demand Scaffolding) -->
+        <div class="g9-component g9-c-disclosure-grid" data-g9-component="DIFFICULTY_WHY">
+          <button type="button" class="g9-why-toggle" data-g9-toggle aria-expanded="false" aria-controls="why-Q-MAT-POLY-PROOF-01">
+            <span class="g9-pill g9-pill-band">D2 · 4/10 · ~3 min</span>
+            <span>Why this difficulty? ▾</span>
+          </button>
+          <div id="why-Q-MAT-POLY-PROOF-01" class="g9-why" hidden>
+            <p>Requires recognizing the factored cube of a binomial difference $(p - q)^3$ and substituting the linear condition into the identity.</p>
+            <div class="g9-dgrid">
+              <div class="g9-dcell"><span>Choosing model</span><b>1/2</b></div>
+              <div class="g9-dcell"><span>Representation</span><b>1/2</b></div>
+              <div class="g9-dcell"><span>Reasoning chain</span><b>1/2</b></div>
+              <div class="g9-dcell"><span>Algebra &amp; math</span><b>1/2</b></div>
+              <div class="g9-dcell"><span>Traps &amp; exceptions</span><b>0/2</b></div>
+            </div>
+            
+            <div class="g9-component g9-c-demand-scaffold" data-g9-component="DEMAND_SCAFFOLDING" style="margin-top: 10px;">
+              <details style="background: var(--bg, #f8fafc); border: 1px solid var(--line, #cbd5e1); border-radius: 8px; padding: 6px 12px;">
+                <summary class="g9-demand-scaffold-summary">
+                  <span>Demand Scaffolding ($X, Y, Z, W$) · Cognitive Architecture ▾</span>
+                </summary>
+                <div class="g9-demand-scaffold-grid">
+                  <div class="g9-scaffold-cell"><strong>Target Concept ($X$)</strong><span>Binomial cube identity $(p - q)^3 = p^3 - q^3 - 3pq(p - q)$</span></div>
+                  <div class="g9-scaffold-cell"><strong>Related Idea ($Y$)</strong><span>Linear relation $p - q = 9$</span></div>
+                  <div class="g9-scaffold-cell"><strong>Crux Retrieval ($Z$)</strong><span>Factored identity expansion $p^3 - q^3 - 3pq(p - q)$</span></div>
+                  <div class="g9-scaffold-cell"><strong>Student Step ($W$)</strong><span>Substitute $(p - q) = 9$ and evaluate $9^3 = 729$ to establish equivalence</span></div>
+                </div>
+              </details>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+
+      <!-- 42fr / 58fr Split Screen -->
+      <div class="g9-split">
+        
+        <!-- Left Column (42%): Stem, Conditions, Trap & Attempt -->
+        <div class="g9-col g9-col-primary">
+          <section class="blueprint-slot slot-attempt" data-blueprint-slot="attempt" data-required="true">
+            
+            <!-- Slot 3: STEM -->
+            <div class="g9-component g9-c-stem" data-g9-component="STEM">
+              <div class="g9-eyebrow" style="color:#2563eb; font-weight:800;">Attempt First</div>
+              <div class="g9-block" data-g9-block="stem" style="font-size:1.05rem; line-height:1.6; margin:8px 0 14px;">
+                <p>Given that $p - q = 9$, prove rigorously that $p^3 - q^3 - 27pq = 729$.</p>
+              </div>
+            </div>
+
+            <!-- Slot 4: CONDITIONS -->
+            
+            <div class="g9-component g9-c-callout-info" data-g9-component="CONDITIONS">
+              <h4>Conditions &amp; Stated Givens</h4>
+              <ul>
+                
+                <li>Variables $p$ and $q$ are real numbers.</li>
+                
+                <li>Linear constraint: $p - q = 9$.</li>
+                
+              </ul>
+            </div>
+            
+
+            <!-- Slot 5: TRAP (Common Wrong Route) -->
+            <div class="g9-component g9-c-callout-warn" data-g9-component="TRAP">
+              <h4>⚠️ Common Wrong Route</h4>
+              <p>Attempting to substitute $p = q + 9$ into $p^3 - q^3$ and expanding by brute force, which leads to arithmetic confusion and sign errors.</p>
+            </div>
+
+            <!-- Slot 6: ATTEMPT BOX -->
+            <div class="g9-component g9-c-attempt" data-g9-component="ATTEMPT">
+              <div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response">
+                <label style="font-weight:700; font-size:0.9rem;">Your working steps / explanation:<textarea data-g9-attempt rows="4" placeholder="Enter your working or justification..."></textarea></label>
+                <label class="g9-paper">
+                  <input data-g9-paper type="checkbox"> I worked this out on paper
+                </label>
+                <button type="button" data-g9-commit>I have attempted this</button>
+              </div>
+            </div>
+
+          </section>
+        </div>
+
+        <!-- Right Column (58%): Representation, Hint Ladder & Concept Link -->
+        <div class="g9-col g9-col-support">
+          
+          <!-- Slot 7: REPRESENTATION (SVG Figure) -->
+          
+          <section class="blueprint-slot slot-representation" data-blueprint-slot="representation">
+            <div class="g9-component g9-c-visual-card" data-g9-component="REPRESENTATION">
+              <div class="g9-card-head">
+                <strong>Question Representation</strong>
+                <span class="g9-pill">Schematic</span>
+              </div>
+              <figure data-g9-figure style="margin:8px 0;">
+                <svg viewBox="0 0 440 130" width="100%" height="auto"><rect x="20" y="15" width="400" height="95" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/><text x="220" y="50" text-anchor="middle" font-size="15" font-weight="bold" fill="#166534">(p - q)³ = p³ - q³ - 3pq(p - q)</text><text x="220" y="85" text-anchor="middle" font-size="14" fill="#15803d">Substitute (p - q) = 9 ⟹ 9³ = 729 = p³ - q³ - 27pq</text></svg>
+                <figcaption style="font-size:0.85rem; color:var(--muted); margin-top:4px;">Identity Structure: Binomial expansion $(p - q)^3 = p^3 - q^3 - 3pq(p - q)$.</figcaption>
+              </figure>
+            </div>
+          </section>
+          
+
+          <!-- Slot 8: HINT LADDER -->
+          <section class="blueprint-slot slot-support" data-blueprint-slot="support">
+            <div class="g9-component g9-c-ladder" data-g9-component="HINT_LADDER">
+              <div class="g9-eyebrow" style="font-size:0.85rem; font-weight:800; text-transform:uppercase; color:var(--muted);">
+                Hint Ladder · Reveal only what you need
+              </div>
+              
+              <div class="g9-ladder" data-g9-ladder-ref="Q-MAT-POLY-PROOF-01-ladder">
+                <ol data-g9-ladder></ol>
+                <ol class="g9-rung-map" aria-label="Rungs to unlock">
+                  
+                  <li data-g9-rung-ghost>
+                    <div class="g9-rung-head">
+                      <span class="g9-rung-no">H0</span>
+                      <span>Select Identity</span>
+                      <span class="g9-pill" style="font-size:0.75rem; background:#f1f5f9;">Guided</span>
+                    </div>
+                  </li>
+                  
+                  <li data-g9-rung-ghost>
+                    <div class="g9-rung-head">
+                      <span class="g9-rung-no">H1</span>
+                      <span>Substitute Given Difference</span>
+                      <span class="g9-pill" style="font-size:0.75rem; background:#f1f5f9;">Guided</span>
+                    </div>
+                  </li>
+                  
+                  <li data-g9-rung-ghost>
+                    <div class="g9-rung-head">
+                      <span class="g9-rung-no">H2</span>
+                      <span>Evaluate and Rearrange</span>
+                      <span class="g9-pill" style="font-size:0.75rem; background:#f1f5f9;">Guided</span>
+                    </div>
+                  </li>
+                  
+                </ol>
+
+                <!-- Template payloads for progressive unlock -->
+                
+                <template data-g9-rung-payload="Q-MAT-POLY-PROOF-01-rung-1">
+                  <li data-g9-rung="1" style="border-left:4px solid #2563eb; background:#f8fafc; border-radius:0 10px 10px 0; padding:12px 14px; margin-bottom:8px;">
+                    <div class="g9-rung-head">
+                      <span class="g9-rung-no">H0</span>
+                      <strong>Select Identity</strong>
+                    </div>
+                    <p style="margin:6px 0; font-size:0.95rem;">Which algebraic identity connects the difference $(p - q)$, the difference of cubes $(p^3 - q^3)$, and the product $pq$?</p>
+                    <details data-g9-support-reveal style="margin-top:6px;">
+                      <summary style="font-size:0.85rem; font-weight:700; color:#2563eb; cursor:pointer;">Reveal hint</summary>
+                      <p style="margin-top:4px; font-size:0.9rem; color:#1e293b;">Recall the cubic binomial identity: $(p - q)^3 = p^3 - q^3 - 3pq(p - q)$.</p>
+                    </details>
+                  </li>
+                </template>
+                
+                <template data-g9-rung-payload="Q-MAT-POLY-PROOF-01-rung-2">
+                  <li data-g9-rung="2" style="border-left:4px solid #2563eb; background:#f8fafc; border-radius:0 10px 10px 0; padding:12px 14px; margin-bottom:8px;">
+                    <div class="g9-rung-head">
+                      <span class="g9-rung-no">H1</span>
+                      <strong>Substitute Given Difference</strong>
+                    </div>
+                    <p style="margin:6px 0; font-size:0.95rem;">Substitute the given condition $p - q = 9$ into this identity.</p>
+                    <details data-g9-support-reveal style="margin-top:6px;">
+                      <summary style="font-size:0.85rem; font-weight:700; color:#2563eb; cursor:pointer;">Reveal hint</summary>
+                      <p style="margin-top:4px; font-size:0.9rem; color:#1e293b;">Replace each occurrence of $(p - q)$ with $9$: $(9)^3 = p^3 - q^3 - 3pq(9)$.</p>
+                    </details>
+                  </li>
+                </template>
+                
+                <template data-g9-rung-payload="Q-MAT-POLY-PROOF-01-rung-3">
+                  <li data-g9-rung="3" style="border-left:4px solid #2563eb; background:#f8fafc; border-radius:0 10px 10px 0; padding:12px 14px; margin-bottom:8px;">
+                    <div class="g9-rung-head">
+                      <span class="g9-rung-no">H2</span>
+                      <strong>Evaluate and Rearrange</strong>
+                    </div>
+                    <p style="margin:6px 0; font-size:0.95rem;">Compute $9^3$ and simplify $3 \times 9 \times pq$.</p>
+                    <details data-g9-support-reveal style="margin-top:6px;">
+                      <summary style="font-size:0.85rem; font-weight:700; color:#2563eb; cursor:pointer;">Reveal hint</summary>
+                      <p style="margin-top:4px; font-size:0.9rem; color:#1e293b;">$9^3 = 729$, and $3pq(9) = 27pq$. Therefore $729 = p^3 - q^3 - 27pq$, proving the identity.</p>
+                    </details>
+                  </li>
+                </template>
+                
+
+                <button type="button" data-g9-next-rung>Show guided support</button>
+              </div>
+            </div>
+
+            <!-- Slot 9: CONCEPT_NAV (Cross-link to Core 1A) -->
+            <div class="g9-component g9-c-link-list" data-g9-component="CONCEPT_NAV" style="margin-top:14px;">
+              <p style="font-size:0.85rem; font-weight:700; color:var(--muted); margin-bottom:6px;">Need to rebuild this concept?</p>
+              <a href="core1a.html#U-POLY-IDENTITIES" style="display:inline-flex; align-items:center; gap:6px; font-weight:700; color:#2563eb; text-decoration:none;">
+                📖 Review in Core 1A: Algebraic Identities & Binomial Expansions →
+              </a>
+            </div>
+          </section>
+
+        </div>
+
+      </div>
+
+      <!-- Slot 10 & 11: SOLUTION & REASONING ROUTE -->
+      <section class="blueprint-slot slot-solution" data-blueprint-slot="solution" data-required="true" style="margin-top:20px;">
+        <div class="g9-component g9-c-disclosure" data-g9-component="SOLUTION">
+          <details data-g9-reveal data-requires-attempt data-g9-payload-ref="Q-MAT-POLY-PROOF-01-solution">
+            <summary style="font-size:1.05rem; font-weight:800; cursor:pointer; padding:12px 0;">Teacher Solution · Complete Derivation</summary>
+            <div data-g9-payload-slot></div>
+          </details>
+
+          <template data-g9-payload="Q-MAT-POLY-PROOF-01-solution">
+            <div class="g9-component g9-c-step-list" data-g9-component="SOLUTION_STEPS">
+              <div class="g9-block" data-g9-block="structured_working">
+                <h4 style="margin:12px 0 8px;">Reasoning Route</h4>
+                
+                
+                <section class="g9-solution-move" data-g9-solution-crux="false">
+                  <div class="g9-step-no">1</div>
+                  <div class="g9-step-body">
+                    <h4>State Binomial Identity </h4>
+                    <p><strong>Action:</strong> Write the identity for the cube of a difference.</p>
+                    
+                    <p style="font-size:0.85rem; color:var(--muted);"><strong>Uses:</strong> Binomial Identity $(a - b)^3 = a^3 - b^3 - 3ab(a - b)$</p>
+                    
+                    <p><em>Why valid:</em> Universal algebraic identity valid for all real numbers $p$ and $q$.</p>
+                    <p><strong>Result:</strong> $(p - q)^3 = p^3 - q^3 - 3pq(p - q)$.</p>
+                  </div>
+                </section>
+                
+                <section class="g9-solution-move" data-g9-solution-crux="true">
+                  <div class="g9-step-no">2</div>
+                  <div class="g9-step-body">
+                    <h4>Substitute Known Constraint <span style="color:#dc2626; font-size:0.8rem; font-weight:800; text-transform:uppercase;">[Key Move]</span></h4>
+                    <p><strong>Action:</strong> Substitute $p - q = 9$ into both the left-hand side and the product term on the right.</p>
+                    
+                    <p style="font-size:0.85rem; color:var(--muted);"><strong>Uses:</strong> Given relation $p - q = 9$</p>
+                    
+                    <p><em>Why valid:</em> Direct substitution of known equality into identity.</p>
+                    <p><strong>Result:</strong> $(9)^3 = p^3 - q^3 - 3pq(9)$.</p>
+                  </div>
+                </section>
+                
+                <section class="g9-solution-move" data-g9-solution-crux="false">
+                  <div class="g9-step-no">3</div>
+                  <div class="g9-step-body">
+                    <h4>Arithmetic Simplification </h4>
+                    <p><strong>Action:</strong> Evaluate $9^3 = 729$ and multiply $3 \times 9 = 27$ to establish the target expression.</p>
+                    
+                    <p style="font-size:0.85rem; color:var(--muted);"><strong>Uses:</strong> Arithmetic $9^3 = 729$ and $3 \times 9 = 27$</p>
+                    
+                    <p><em>Why valid:</em> Simplification of real arithmetic operations.</p>
+                    <p><strong>Result:</strong> $729 = p^3 - q^3 - 27pq \implies p^3 - q^3 - 27pq = 729$. (Q.E.D.)</p>
+                  </div>
+                </section>
+                
+
+              </div>
+            </div>
+
+            <!-- Slot 12: ANSWER BOX -->
+            <div class="g9-component g9-c-answer-box" data-g9-component="ANSWER">
+              <h4 style="margin:0 0 4px; font-size:0.95rem;">Verified Result</h4>
+              <p style="font-size:1.05rem; font-weight:700; margin:0;">Identity Established: $(p - q)^3 = 9^3 = 729 \implies p^3 - q^3 - 27pq = 729$. (Q.E.D.)</p>
+            </div>
+
+            <!-- Slot 13: INDEPENDENT CHECK -->
+            <div class="g9-component g9-c-check-box" data-g9-component="CHECK">
+              <p><strong>Independent Sanity Check:</strong> Numerical verification with arbitrary values satisfying $p - q = 9$: Let $p = 10, q = 1$. Then $p^3 - q^3 - 27pq = 1000 - 1 - 27(10)(1) = 999 - 270 = 729$. The identity is fully verified.</p>
+            </div>
+          </template>
+        </div>
+      </section>
+
+    </article>
+    
+
+  </main>
+
+  <footer data-g9-footer style="text-align:center; padding:32px 16px; color:var(--muted, #64748b); font-size:0.88rem;">
+    Grade9V3.5 Learning Continuum · Cognitive Demand Calibration Specimen Core 2 · Offline Guaranteed &amp; 12.7" Tablet Optimized
+  </footer>
+
+  <!-- Built-in Attempt Gate & Hint Ladder Unlocking Engine -->
+  <script>
+  (()=>{
+    const q=(s,r=document)=>[...r.querySelectorAll(s)];
+
+    // 1. Difficulty Accordion Toggle
+    q('[data-g9-toggle]').forEach(btn => {
+      btn.onclick = () => {
+        const id = btn.getAttribute('aria-controls');
+        const target = document.getElementById(id);
+        if (target) {
+          const isHidden = target.hidden;
+          target.hidden = !isHidden;
+          btn.setAttribute('aria-expanded', String(isHidden));
+        }
+      };
+    });
+
+    // 2. Hint Ladder Progressive Reveal
+    q('.g9-ladder').forEach(ladder => {
+      let currentRung = 0;
+      const ref = ladder.dataset.g9LadderRef.replace('-ladder', '');
+      const list = q('[data-g9-ladder]', ladder)[0];
+      const ghostMap = q('.g9-rung-map', ladder)[0];
+      const nextBtn = q('[data-g9-next-rung]', ladder)[0];
+
+      if (nextBtn) {
+        nextBtn.onclick = () => {
+          currentRung++;
+          const tpl = q(`template[data-g9-rung-payload="${ref}-rung-${currentRung}"]`, ladder)[0];
+          if (tpl) {
+            const clone = tpl.content.cloneNode(true);
+            list.appendChild(clone);
+            const ghosts = q('[data-g9-rung-ghost]', ghostMap);
+            if (ghosts.length > 0) ghosts[0].remove();
+            if (window.renderAllMath) window.renderAllMath(list);
+          }
+          const nextTpl = q(`template[data-g9-rung-payload="${ref}-rung-${currentRung + 1}"]`, ladder)[0];
+          if (!nextTpl) nextBtn.hidden = true;
+        };
+      }
+    });
+
+    // 3. Attempt Commitment & Solution Unlock Gate
+    function validAttempt(box) {
+      const type = box.dataset.g9ResponseType;
+      if (box.querySelector('[data-g9-paper]:checked')) return true;
+      if (type === 'single_choice' || type === 'multiple_choice') {
+        return !!box.querySelector('input[data-g9-choice]:checked');
+      }
+      const txt = box.querySelector('[data-g9-attempt]');
+      return txt ? !!txt.value.trim() : true;
+    }
+
+    q('article[data-g9-unit]').forEach(article => {
+      const details = q('details[data-requires-attempt]', article)[0];
+      const commitBtn = q('[data-g9-commit]', article)[0];
+      const box = q('[data-g9-attempt-box]', article)[0];
+
+      if (details) {
+        details.querySelector('summary').addEventListener('click', e => {
+          if (!article.dataset.attempted) {
+            e.preventDefault();
+            alert('Please submit your attempt commitment first before viewing the solution.');
+          }
+        });
+      }
+
+      if (commitBtn && box) {
+        commitBtn.onclick = () => {
+          if (!validAttempt(box)) {
+            alert('Please enter an answer or check "I worked this out on paper".');
+            return;
+          }
+          article.dataset.attempted = '1';
+          commitBtn.textContent = '✓ Attempt Recorded';
+          commitBtn.style.background = '#16a34a';
+
+          if (details) {
+            const slot = q('[data-g9-payload-slot]', details)[0];
+            const ref = details.dataset.g9PayloadRef;
+            const tpl = q(`template[data-g9-payload="${ref}"]`, article)[0];
+            if (slot && tpl && !slot.hasChildNodes()) {
+              slot.appendChild(tpl.content.cloneNode(true));
+              details.open = true;
+              if (window.renderAllMath) window.renderAllMath(slot);
+            }
+          }
+        };
+      }
+    });
+  })();
+  </script>
+
+  <script src="../../js/display-controls.js"></script>
+  <script src="../../js/site-header.js" data-site-root="../../" data-site-parent="../index.html"></script>
+</body>
+</html>

@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coordinate Geometry — Core 2B: Achievers Section & Olympiad Transfer</title>
+  <!-- Local KaTeX Typography with Multi-Path Offline & CDN Fallbacks -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <link rel="stylesheet" href="../../public/vendor/katex/0.16.8/katex.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../public/vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <script src="../../public/vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Grade9V3.5 Design System Integration -->
+  <link rel="stylesheet" href="../../css/modern-learner.css">
+  <link rel="stylesheet" href="../../css/site.css">
+  <link rel="stylesheet" href="../../css/tablet-12-7.css">
+
+  <script>
+    function renderAllMath() {
+      if (window.renderMathInElement) {
+        try {
+          window.renderMathInElement(document.body, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '\[', right: '\]', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\(', right: '\)', display: false }
+            ],
+            throwOnError: false
+          });
+        } catch (e) {
+          console.warn('KaTeX render warning:', e);
+        }
+      } else if (!window.__katexLoading) {
+        window.__katexLoading = true;
+        const s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js';
+        s.onload = () => {
+          const a = document.createElement('script');
+          a.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js';
+          a.onload = () => renderAllMath();
+          document.head.appendChild(a);
+        };
+        document.head.appendChild(s);
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', renderAllMath);
+    } else {
+      renderAllMath();
+    }
+    window.addEventListener('load', renderAllMath);
+    setTimeout(renderAllMath, 200);
+    setTimeout(renderAllMath, 800);
+  </script>
+  <script src="../../../../public/vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <script>
+    function renderAllMath() {
+      if (window.renderMathInElement) {
+        try {
+          window.renderMathInElement(document.body, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '\\[', right: '\\]', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\\(', right: '\\)', display: false }
+            ],
+            throwOnError: false
+          });
+        } catch (e) {
+          console.warn(e);
+        }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', renderAllMath);
+    window.addEventListener('load', renderAllMath);
+  </script>
+  <style>
+    :root {
+      --primary: #0f172a;
+      --accent: #d97706;
+      --accent-light: #fef3c7;
+      --accent-border: #fde68a;
+      --secondary: #4338ca;
+      --blue: #0284c7;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --correct: #065f46;
+      --correct-bg: #ecfdf5;
+      --incorrect: #991b1b;
+      --incorrect-bg: #fef2f2;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 96px;
+    }
+    .top-nav {
+      background: #0f172a;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .top-nav a {
+      text-decoration: none;
+      font-size: 0.88rem;
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-weight: 600;
+      transition: all 0.15s ease;
+    }
+    .nav-btn-dash { color: #cbd5e1; border: 1px solid #334155; }
+    .nav-btn-core2 { color: #93c5fd; border: 1px solid #334155; }
+    .nav-btn-bank { background: #0284c7; color: white; }
+    .nav-btn-bank:hover { background: #0369a1; }
+    header.hero {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #b45309 100%);
+      color: white;
+      padding: 48px 20px 40px;
+      text-align: center;
+      border-bottom: 3px solid #f59e0b;
+    }
+    header.hero h1 { font-size: 2.3rem; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.01em; }
+    header.hero p { font-size: 1.1rem; opacity: 0.95; max-width: 840px; margin: 0 auto 16px; }
+    .badge-bar { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
+    .hero-badge {
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+    .container { max-width: 1280px; margin: 0 auto; padding: 40px 24px; }
+    .achievers-banner {
+      background: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%);
+      border: 2px solid #fcd34d;
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 36px;
+      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.08);
+    }
+    .achievers-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #92400e;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .achievers-desc { font-size: 0.95rem; color: #78350f; margin-bottom: 14px; line-height: 1.6; }
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .principle-item {
+      background: white;
+      border: 1px solid #fef3c7;
+      border-left: 4px solid #d97706;
+      border-radius: 8px;
+      padding: 12px 16px;
+    }
+    .principle-item strong { display: block; font-size: 0.92rem; color: #92400e; margin-bottom: 4px; }
+    .principle-item span { font-size: 0.85rem; color: #475569; }
+
+    .challenge-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 32px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      position: relative;
+    }
+    .challenge-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .challenge-number {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #1e1b4b;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .rubric-tag {
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fde68a;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+    .olympiad-badge {
+      background: #f3e8ff;
+      color: #6b21a8;
+      border: 1px solid #e9d5ff;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    
+    @media (min-width: 1024px) {
+      .challenge-body {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        align-items: start;
+      }
+    }
+    .challenge-stem {
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+    .fig-box {
+      background: #fdfdfd;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 16px;
+      margin: 18px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .fig-box svg { max-width: 100%; height: auto; }
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .opt-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      background: #ffffff;
+      transition: all 0.15s ease;
+    }
+    .opt-card:hover {
+      background: #f8fafc;
+      border-color: #f59e0b;
+    }
+    .opt-card input { margin-top: 4px; }
+    .btn-submit {
+      background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+      color: white;
+      border: none;
+      padding: 11px 24px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(217, 119, 6, 0.25);
+      transition: all 0.15s ease;
+    }
+    .btn-submit:hover { opacity: 0.92; }
+    .solution-panel {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      display: none;
+      line-height: 1.6;
+    }
+    .solution-panel.correct {
+      background: var(--correct-bg);
+      border: 1px solid #86efac;
+      color: var(--correct);
+      display: block;
+    }
+    .solution-panel.incorrect {
+      background: var(--incorrect-bg);
+      border: 1px solid #fca5a5;
+      color: var(--incorrect);
+      display: block;
+    }
+    .proof-walkthrough {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      font-size: 0.92rem;
+      color: #1e293b;
+    }
+    .transfer-insight {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-top: 12px;
+      font-size: 0.88rem;
+      color: #1e40af;
+    }
+  
+    /* Standardized Grade9 Continuum Substrip */
+    .g9-continuum-substrip {
+      background: var(--bg-card, #ffffff);
+      border-bottom: 1px solid var(--border, #e2e8f0);
+    }
+    .g9-substrip-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 8px 16px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      align-items: center;
+      -webkit-overflow-scrolling: touch;
+    }
+    .g9-substrip-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      background: var(--bg-soft, #f1f5f9);
+      color: var(--text-muted, #64748b);
+      border: 1px solid var(--border, #e2e8f0);
+      transition: all 0.15s ease;
+      min-height: 32px;
+    }
+    .g9-substrip-pill:hover {
+      background: var(--bg, #f8fafc);
+      color: var(--text-main, #0f172a);
+      border-color: var(--border-focus, #4f46e5);
+    }
+    .g9-substrip-pill.active {
+      background: #d97706;
+      color: #ffffff;
+      border-color: #d97706;
+    }
+    .g9-substrip-pill.highlight {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border-color: #bfdbfe;
+      font-weight: 700;
+    }
+    .g9-substrip-pill.highlight:hover { background: #dbeafe; }
+
+  </style>
+</head>
+<body>
+
+  <header class="g9-shell-header">
+    <div class="g9-header-inner">
+      <a class="g9-brand" href="../../index.html">
+        <span class="logo-icon">⚡</span>
+        <span class="brand-title">Grade9V3.5</span>
+        <span class="g9-brand-badge">Learner Platform</span>
+      </a>
+      <nav class="g9-header-nav" aria-label="Portal Navigation">
+        <a href="../../index.html">Home</a>
+        <a href="../../physics/index.html">Physics</a>
+        <a href="../../chemistry/index.html">Chemistry</a>
+        <a href="../index.html" class="active">Mathematics</a>
+        <a href="../../question-bank/index.html">Question Bank</a>
+        <a href="../../atlas/index.html">Atlas &amp; Rungs</a>
+      </nav>
+      <div class="g9-header-actions">
+        <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search">
+          <span class="g9-btn-icon">🔍</span>
+          <span class="g9-btn-text">Search</span>
+        </button>
+        <button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings" aria-label="Display & Theme">
+          <span class="g9-btn-icon">🌙 / ☀️</span>
+          <span class="g9-btn-text">Display</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="g9-breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="g9-breadcrumbs">
+      <a href="../../index.html">Home</a> <span>/</span> <a href="../index.html">Mathematics</a> <span>/</span> <a href="index.html">Coordinate Geometry</a> <span>/</span> <span>Core 2B Achievers</span>
+    </div>
+  </nav>
+
+  <div class="g9-continuum-substrip" role="navigation" aria-label="Coordinate Geometry Learning Continuum">
+    <div class="g9-substrip-inner">
+      <a href="index.html" class="g9-substrip-pill">← Topic Dashboard</a>
+      <a href="core2.html" class="g9-substrip-pill">🎯 Core 2: Clinic</a>
+      <a href="core2b.html" class="g9-substrip-pill active" aria-current="page">🏆 Core 2B Achievers</a>
+      <a href="explorers/transformation-invariants/index.html" class="g9-substrip-pill">🔬 Interactive Explorer Lab</a>
+      <a href="../../standalone/coordinate-geometry-interactive-suite.html" class="g9-substrip-pill">📍 Standalone Suite</a>
+      <a href="../assets/ch3-coordinate-geometry-m2-complete-bank.html" class="g9-substrip-pill highlight">📖 All 82 Bank Items</a>
+    </div>
+  </div>
+
+  <header class="hero">
+    <h1>Core 2B — Achievers Section</h1>
+    <p>Olympiad (SOF IMO), ExamSIDE & Advanced Foundation Transfer: Multi-Concept Coordinate Deduction</p>
+    <div class="badge-bar">
+      <span class="hero-badge">HOTS · 3 Marks Each</span>
+      <span class="hero-badge">Changed-Demand Transfer</span>
+      <span class="hero-badge">SOF IMO Pattern</span>
+      <span class="hero-badge">PR #353 Certified</span>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="achievers-banner">
+      <div class="achievers-title">
+        <span>⭐ The Achievers Section Standard (3-Mark HOTS)</span>
+      </div>
+      <div class="achievers-desc">
+        In Olympiad competitions like the <strong>International Mathematics Olympiad (IMO)</strong> and <strong>ExamSIDE Foundation</strong>, coordinate geometry questions never test isolated formulas. Instead, they require <strong>changed-demand transfer</strong>—applying coordinate invariants to solve multi-step geometric, algebraic, and transformational challenges:
+      </div>
+      <div class="principles-grid">
+        <div class="principle-item">
+          <strong>1. Multi-Statement Truth Vectors</strong>
+          <span>Evaluating composite T/F statements across reflections, arbitrary lines \( x = k \), and area invariants.</span>
+        </div>
+        <div class="principle-item">
+          <strong>2. Coordinate Reflections (Mirror Images)</strong>
+          <span>Reflecting geometric figures across axis lines and computing the area of resulting symmetric diamonds.</span>
+        </div>
+        <div class="principle-item">
+          <strong>3. Equilateral & Special Shape Synthesis</strong>
+          <span>Constructing non-trivial equilateral polygons using Pythagorean distance relations on the axes.</span>
+        </div>
+        <div class="principle-item">
+          <strong>4. Parametric Collinearity & Integer Loci</strong>
+          <span>Solving for unknown variables \( a, b, k \) constrained to linear proportionality and integer domains.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHALLENGE 1: IMO Signature Multi-Statement Matrix -->
+    <div class="challenge-card" id="card_1">
+      <div class="challenge-header">
+        <div class="challenge-number">
+          <span>Challenge 1</span>
+          <span class="olympiad-badge">IMO Achievers Signature</span>
+        </div>
+        <span class="rubric-tag">3 MARKS · HOTS</span>
+      </div>
+      <div class="challenge-body">
+        <div class="challenge-left">
+          <div class="challenge-stem">
+            State <strong>'T' for True</strong> and <strong>'F' for False</strong> for the following four statements:
+            <ol style="margin-left: 20px; margin-top: 8px; line-height: 1.8;">
+              <li>If point \( P(a, b) \) lies strictly in Quadrant III, then its reflection across the y-axis followed by reflection across the x-axis lies strictly in Quadrant I.</li>
+              <li>The perpendicular distance of any point \( P(x, y) \) from the vertical line \( x = k \) is given by \( |x - k| \).</li>
+              <li>If opposite vertices of a square have coordinates \( (a, b) \) and \( (c, d) \), then the area of the square is given by \( \frac{1}{2}\left[(a - c)^2 + (b - d)^2\right] \).</li>
+              <li>If the three distinct points \( (k, 2 - 2k) \), \( (1 - k, 2k) \), and \( (-4 - k, 6 - 2k) \) are collinear, then the unique value of \( k \) is \( -1 \).</li>
+            </ol>
+          </div>
+          <div class="options-grid">
+            <label class="opt-card"><input type="radio" name="c1" value="A"><span><strong>(A)</strong> T, T, T, F</span></label>
+            <label class="opt-card"><input type="radio" name="c1" value="B"><span><strong>(B)</strong> T, T, T, T</span></label>
+            <label class="opt-card"><input type="radio" name="c1" value="C"><span><strong>(C)</strong> F, T, T, T</span></label>
+            <label class="opt-card"><input type="radio" name="c1" value="D"><span><strong>(D)</strong> T, F, T, F</span></label>
+          </div>
+          <button class="btn-submit" onclick="checkChallenge(1, 'B', 'Option (B): T, T, T, T')">Submit Olympiad Verification</button>
+          
+          <div class="solution-panel" id="sol_1">
+            <div id="sol_title_1" style="font-weight: 800; font-size: 1rem;"></div>
+            <div class="proof-walkthrough">
+              <strong>Step-by-Step Proof of All 4 Statements:</strong>
+              <ul style="margin-left: 20px; line-height: 1.7;">
+                <li><strong>Statement 1 is TRUE:</strong> In Quadrant III, \( a < 0 \) and \( b < 0 \). Reflecting across the y-axis negates the x-coordinate: \( (-a, b) \). Then reflecting across the x-axis negates the y-coordinate: \( (-a, -b) \). Since \( -a > 0 \) and \( -b > 0 \), \( (-a, -b) \) lies in <strong>Quadrant I</strong>.</li>
+                <li><strong>Statement 2 is TRUE:</strong> The line \( x = k \) is vertical. The shortest distance from \( P(x, y) \) to the vertical line is horizontal, which is exactly the difference between their abscissae: \( |x - k| \).</li>
+                <li><strong>Statement 3 is TRUE:</strong> The segment joining opposite vertices is a diagonal \( d \). By distance formula, \( d^2 = (a - c)^2 + (b - d)^2 \). For any square of side \( s \), \( d = s\sqrt{2} \implies s^2 = \frac{1}{2}d^2 \). Thus, \( \text{Area} = \frac{1}{2}\left[(a - c)^2 + (b - d)^2\right] \).</li>
+                <li><strong>Statement 4 is TRUE:</strong> Equating step slopes:
+                  \[
+                  m_1 = \frac{2k - (2 - 2k)}{(1 - k) - k} = \frac{4k - 2}{1 - 2k} = \frac{-2(1 - 2k)}{1 - 2k} = -2
+                  \]
+                  Slope between second and third points:
+                  \[
+                  m_2 = \frac{(6 - 2k) - 2k}{(-4 - k) - (1 - k)} = \frac{6 - 4k}{-5}
+                  \]
+                  Equating slopes: \( \frac{6 - 4k}{-5} = -2 \implies 6 - 4k = 10 \implies -4k = 4 \implies k = -1 \).
+                </li>
+              </ul>
+            </div>
+            <div class="transfer-insight">
+              💡 <strong>Transfer Insight:</strong> Notice how Statement 4 yields a constant slope \( -2 \) independent of \( k \) for the first pair of points! This algebraic cancellation is a classic Olympiad trap designed to reward careful factoring over brute-force expansion.
+            </div>
+          </div>
+        </div>
+        <div class="challenge-right">
+          <div class="fig-box">
+            <svg width="420" height="220" viewBox="-210 -110 420 220">
+              <line x1="-200" y1="0" x2="200" y2="0" stroke="#94a3b8" stroke-width="1.5"/>
+              <line x1="0" y1="-100" x2="0" y2="100" stroke="#94a3b8" stroke-width="1.5"/>
+              <line x1="70" y1="-100" x2="70" y2="100" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,4"/>
+              <text x="75" y="-85" font-size="11" font-weight="700" fill="#d97706">Line x = k</text>
+              <circle cx="140" cy="-40" r="4" fill="#0284c7"/>
+              <text x="145" y="-45" font-size="11" font-weight="700" fill="#0284c7">P(x, y)</text>
+              <line x1="70" y1="-40" x2="140" y2="-40" stroke="#0284c7" stroke-width="2"/>
+              <text x="105" y="-46" font-size="10" font-weight="700" fill="#0284c7" text-anchor="middle">|x - k|</text>
+              <circle cx="-120" cy="60" r="4" fill="#7c3aed"/>
+              <text x="-120" y="76" font-size="11" font-weight="700" fill="#7c3aed">P(a, b) ∈ Q3</text>
+              <path d="M -120 60 Q 0 0 120 -60" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="3,3"/>
+              <circle cx="120" cy="-60" r="4" fill="#7c3aed"/>
+              <text x="125" y="-65" font-size="11" font-weight="700" fill="#7c3aed">P'(-a, -b) ∈ Q1</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHALLENGE 2: Reflection & Symmetric Area -->
+    <div class="challenge-card" id="card_2">
+      <div class="challenge-header">
+        <div class="challenge-number">
+          <span>Challenge 2</span>
+          <span class="olympiad-badge">Geometric Reflection & Area</span>
+        </div>
+        <span class="rubric-tag">3 MARKS · HOTS</span>
+      </div>
+      <div class="challenge-body">
+        <div class="challenge-left">
+          <div class="challenge-stem">
+            A triangle on the Cartesian plane has vertices \( A(1, 2) \), \( B(4, 2) \), and \( C(3, 5) \).
+            <ol style="margin-left: 20px; margin-top: 6px;">
+              <li>The triangle is reflected across its horizontal base line \( y = 2 \) to produce triangle \( ABC' \). Find the coordinates of \( C' \).</li>
+              <li>What is the precise geometric classification and total area of the combined quadrilateral \( ACBC' \)?</li>
+            </ol>
+          </div>
+          <div class="options-grid">
+            <label class="opt-card"><input type="radio" name="c2" value="A"><span><strong>(A)</strong> \( C'(3, -1) \); Rhombus; Area = 18 sq. units</span></label>
+            <label class="opt-card"><input type="radio" name="c2" value="B"><span><strong>(B)</strong> \( C'(3, 0) \); Kite; Area = 9 sq. units</span></label>
+            <label class="opt-card"><input type="radio" name="c2" value="C"><span><strong>(C)</strong> \( C'(3, -1) \); Kite; Area = 9 sq. units</span></label>
+            <label class="opt-card"><input type="radio" name="c2" value="D"><span><strong>(D)</strong> \( C'(3, -1) \); Parallelogram; Area = 12 sq. units</span></label>
+          </div>
+          <button class="btn-submit" onclick="checkChallenge(2, 'C', 'Option (C): C\'(3, -1); Kite; Area = 9 sq. units')">Submit Olympiad Verification</button>
+          
+          <div class="solution-panel" id="sol_2">
+            <div id="sol_title_2" style="font-weight: 800; font-size: 1rem;"></div>
+            <div class="proof-walkthrough">
+              <strong>Mathematical Derivation:</strong>
+              <ol style="margin-left: 20px; line-height: 1.7;">
+                <li><strong>Reflection across \( y = 2 \):</strong> The x-coordinate remains unchanged (\( x = 3 \)). The distance of \( C \) from \( y = 2 \) is \( 5 - 2 = 3 \) units upward. The mirror image must lie 3 units downward: \( y' = 2 - 3 = -1 \). Thus, \( C'(3, -1) \).</li>
+                <li><strong>Quadrilateral Shape:</strong> 
+                  Adjacent sides \( AC = AC' = \sqrt{(3-1)^2 + (5-2)^2} = \sqrt{4 + 9} = \sqrt{13} \).<br>
+                  Adjacent sides \( BC = BC' = \sqrt{(4-3)^2 + (2-5)^2} = \sqrt{1 + 9} = \sqrt{10} \).<br>
+                  Since two distinct pairs of adjacent sides are equal (\( \sqrt{13} \neq \sqrt{10} \)), \( ACBC' \) is strictly a <strong>Kite</strong> (not a rhombus).
+                </li>
+                <li><strong>Area Calculation via Orthogonal Diagonals:</strong>
+                  Horizontal diagonal \( AB = 4 - 1 = 3 \).<br>
+                  Vertical diagonal \( CC' = 5 - (-1) = 6 \).<br>
+                  Since the diagonals intersect orthogonally at \( (3, 2) \):
+                  \[
+                  \text{Area} = \frac{1}{2} \times d_1 \times d_2 = \frac{1}{2} \times 3 \times 6 = 9\text{ sq. units}.
+                  \]
+                </li>
+              </ol>
+            </div>
+            <div class="transfer-insight">
+              💡 <strong>Transfer Insight:</strong> In any reflection across a line containing one of the diagonals ($AB$), the line of reflection acts as an axis of symmetry, guaranteeing orthogonal diagonals ($AB \perp CC'$). The area is always half the product of the diagonals.
+            </div>
+          </div>
+        </div>
+        
+        <div class="challenge-right">
+           <div class="fig-box">
+            <svg width="340" height="240" viewBox="-40 -30 340 240">
+              <line x1="-30" y1="90" x2="310" y2="90" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,4"/>
+              <text x="240" y="82" font-size="11" font-weight="700" fill="#d97706">Mirror Line y = 2</text>
+              <polygon points="40,90 190,0 260,90 190,180" fill="#fef3c7" stroke="#b45309" stroke-width="2.5"/>
+              <line x1="40" y1="90" x2="260" y2="90" stroke="#b45309" stroke-width="1.5"/>
+              <line x1="190" y1="0" x2="190" y2="180" stroke="#b45309" stroke-width="1.5" stroke-dasharray="3,3"/>
+              <circle cx="40" cy="90" r="4" fill="#1e1b4b"/><text x="10" y="86" font-size="11" font-weight="700">A(1, 2)</text>
+              <circle cx="260" cy="90" r="4" fill="#1e1b4b"/><text x="268" y="86" font-size="11" font-weight="700">B(4, 2)</text>
+              <circle cx="190" cy="0" r="4" fill="#1e1b4b"/><text x="180" y="-8" font-size="11" font-weight="700">C(3, 5)</text>
+              <circle cx="190" cy="180" r="4" fill="#1e1b4b"/><text x="180" y="200" font-size="11" font-weight="700">C'(3, -1)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHALLENGE 3: Equilateral Triangle Construction & Center Distance -->
+    <div class="challenge-card" id="card_3">
+      <div class="challenge-header">
+        <div class="challenge-number">
+          <span>Challenge 3</span>
+          <span class="olympiad-badge">ExamSIDE / PRMO Foundation</span>
+        </div>
+        <span class="rubric-tag">3 MARKS · HOTS</span>
+      </div>
+      <div class="challenge-body">
+        <div class="challenge-left">
+          <div class="challenge-stem">
+            Two vertices of an equilateral triangle are \( O(0, 0) \) and \( A(2a, 0) \), where \( a > 0 \).
+            An equilateral triangle \( \triangle OAB \) is formed in the upper half-plane (\( y > 0 \)), and a square \( OACD \) is constructed on side \( OA \) in the lower half-plane (\( y \le 0 \)).<br>
+            Find the exact distance between vertex \( B \) and the center \( M \) of the square.
+          </div>
+          <div class="options-grid">
+            <label class="opt-card"><input type="radio" name="c3" value="A"><span><strong>(A)</strong> \( a(\sqrt{3} + 1) \)</span></label>
+            <label class="opt-card"><input type="radio" name="c3" value="B"><span><strong>(B)</strong> \( a(\sqrt{3} - 1) \)</span></label>
+            <label class="opt-card"><input type="radio" name="c3" value="C"><span><strong>(C)</strong> \( 2a\sqrt{2} \)</span></label>
+            <label class="opt-card"><input type="radio" name="c3" value="D"><span><strong>(D)</strong> \( a\sqrt{5} \)</span></label>
+          </div>
+          <button class="btn-submit" onclick="checkChallenge(3, 'A', 'Option (A): a(√3 + 1)')">Submit Olympiad Verification</button>
+          
+          <div class="solution-panel" id="sol_3">
+            <div id="sol_title_3" style="font-weight: 800; font-size: 1rem;"></div>
+            <div class="proof-walkthrough">
+              <strong>Geometric Coordinate Deduction:</strong>
+              <ol style="margin-left: 20px; line-height: 1.7;">
+                <li><strong>Coordinates of Vertex B:</strong>
+                  In equilateral \( \triangle OAB \), side length is \( 2a \). The altitude from \( B \) bisects base \( OA \) at \( x = a \).<br>
+                  By Pythagorean theorem:
+                  \[
+                  h = \sqrt{(2a)^2 - a^2} = \sqrt{4a^2 - a^2} = a\sqrt{3}
+                  \]
+                  Since \( B \) is in the upper half-plane (\( y > 0 \)), \( B = (a, a\sqrt{3}) \).
+                </li>
+                <li><strong>Coordinates of Center M:</strong>
+                  The square has side \( 2a \) extending downward along \( x \in [0, 2a] \) and \( y \in [0, -2a] \).<br>
+                  Its center \( M \) is the midpoint of diagonals:
+                  \[
+                  x_M = \frac{0 + 2a}{2} = a, \quad y_M = \frac{0 + (-2a)}{2} = -a \implies M(a, -a).
+                  \]
+                </li>
+                <li><strong>Distance \( BM \):</strong>
+                  Both points share identical abscissa \( x = a \). Hence, the distance is strictly vertical:
+                  \[
+                  BM = y_B - y_M = a\sqrt{3} - (-a) = a(\sqrt{3} + 1).
+                  \]
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        
+        <div class="challenge-right">
+          <div class="fig-box">
+            <svg width="340" height="260" viewBox="-40 -110 340 260">
+              <line x1="-30" y1="0" x2="280" y2="0" stroke="#94a3b8" stroke-width="1.5"/>
+              <line x1="0" y1="-100" x2="0" y2="150" stroke="#94a3b8" stroke-width="1.5"/>
+              <polygon points="0,0 200,0 100,-86.6" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/>
+              <text x="105" y="-95" font-size="11" font-weight="700" fill="#1e40af">B(a, a√3)</text>
+              <polygon points="0,0 200,0 200,100 0,100" fill="#f8fafc" stroke="#475569" stroke-width="2"/>
+              <circle cx="100" cy="50" r="4" fill="#dc2626"/>
+              <text x="110" y="55" font-size="11" font-weight="700" fill="#dc2626">M(a, -a)</text>
+              <line x1="100" y1="-86.6" x2="100" y2="50" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,4"/>
+              <text x="-15" y="-6" font-size="11" font-weight="700">O(0, 0)</text>
+              <text x="205" y="-6" font-size="11" font-weight="700">A(2a, 0)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHALLENGE 4: Parametric Collinearity & Positive Integer Solutions -->
+    <div class="challenge-card" id="card_4">
+      <div class="challenge-header">
+        <div class="challenge-number">
+          <span>Challenge 4</span>
+          <span class="olympiad-badge">Algebraic Invariant / Diophantine</span>
+        </div>
+        <span class="rubric-tag">3 MARKS · HOTS</span>
+      </div>
+      <div class="challenge-body">
+        <div class="challenge-left">
+          <div class="challenge-stem">
+            Three points on the Cartesian plane are given as \( P(a, 0) \), \( Q(0, b) \), and \( R(1, 1) \), where \( a, b \neq 0 \).
+            <ol style="margin-left: 20px; margin-top: 6px;">
+              <li>Find the governing relation between \( a \) and \( b \) such that \( P, Q, R \) are strictly collinear.</li>
+              <li>If \( a \) and \( b \) are constrained to be <strong>positive integers</strong>, find the total number of ordered pairs \( (a, b) \) that satisfy this condition.</li>
+            </ol>
+          </div>
+          <div class="options-grid">
+            <label class="opt-card"><input type="radio" name="c4" value="A"><span><strong>(A)</strong> \( \frac{1}{a} + \frac{1}{b} = 1 \); Exactly 1 pair: \( (2, 2) \)</span></label>
+            <label class="opt-card"><input type="radio" name="c4" value="B"><span><strong>(B)</strong> \( a + b = 1 \); Infinitely many pairs</span></label>
+            <label class="opt-card"><input type="radio" name="c4" value="C"><span><strong>(C)</strong> \( \frac{1}{a} + \frac{1}{b} = 1 \); 2 pairs: \( (1, 2) \) and \( (2, 1) \)</span></label>
+            <label class="opt-card"><input type="radio" name="c4" value="D"><span><strong>(D)</strong> \( ab = 1 \); Exactly 1 pair: \( (1, 1) \)</span></label>
+          </div>
+          <button class="btn-submit" onclick="checkChallenge(4, 'A', 'Option (A): 1/a + 1/b = 1; Exactly 1 pair: (2, 2)')">Submit Olympiad Verification</button>
+          
+          <div class="solution-panel" id="sol_4">
+            <div id="sol_title_4" style="font-weight: 800; font-size: 1rem;"></div>
+            <div class="proof-walkthrough">
+              <strong>Collinearity & Number-Theoretic Deduction:</strong>
+              <ol style="margin-left: 20px; line-height: 1.7;">
+                <li><strong>Collinearity Condition via Slopes:</strong>
+                  Slope \( PQ = \frac{b - 0}{0 - a} = -\frac{b}{a} \).<br>
+                  Slope \( PR = \frac{1 - 0}{1 - a} = \frac{1}{1 - a} \).<br>
+                  Equating slopes:
+                  \[
+                  -\frac{b}{a} = \frac{1}{1 - a} \implies -b(1 - a) = a \implies -b + ab = a \implies ab = a + b.
+                  \]
+                  Dividing both sides by \( ab \):
+                  \[
+                  \frac{1}{a} + \frac{1}{b} = 1.
+                  \]
+                </li>
+                <li><strong>Positive Integer Solutions:</strong>
+                  Rearranging \( ab - a - b = 0 \):
+                  \[
+                  ab - a - b + 1 = 1 \implies (a - 1)(b - 1) = 1.
+                  \]
+                  Since \( a, b \) are positive integers, \( a - 1 \) and \( b - 1 \) must be positive integer divisors of 1:
+                  \[
+                  a - 1 = 1 \implies a = 2, \quad b - 1 = 1 \implies b = 2.
+                  \]
+                  Thus, there is <strong>exactly 1 pair</strong>: \( (2, 2) \).
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        
+        <div class="challenge-right">
+          <div class="fig-box">
+            <svg width="340" height="220" viewBox="-40 -20 340 220">
+              <line x1="-30" y1="160" x2="280" y2="160" stroke="#94a3b8" stroke-width="1.5"/>
+              <line x1="40" y1="-10" x2="40" y2="180" stroke="#94a3b8" stroke-width="1.5"/>
+              <line x1="20" y1="20" x2="220" y2="180" stroke="#2563eb" stroke-width="2.5"/>
+              <circle cx="200" cy="160" r="4" fill="#1e1b4b"/><text x="195" y="180" font-size="11" font-weight="700">P(a, 0)</text>
+              <circle cx="40" cy="35" r="4" fill="#1e1b4b"/><text x="-15" y="40" font-size="11" font-weight="700">Q(0, b)</text>
+              <circle cx="120" cy="98" r="4" fill="#dc2626"/><text x="130" y="98" font-size="11" font-weight="700" fill="#dc2626">R(1, 1)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function checkChallenge(id, key, summary) {
+      const checked = document.querySelector(`input[name="c${id}"]:checked`);
+      if (!checked) {
+        alert("Please select your answer first.");
+        return;
+      }
+      const userAns = checked.value;
+      const sol = document.getElementById(`sol_${id}`);
+      const solTitle = document.getElementById(`sol_title_${id}`);
+
+      sol.className = "solution-panel";
+      if (userAns === key) {
+        sol.classList.add("correct");
+        solTitle.innerHTML = `✅ Excellent! Correct: <strong>${summary}</strong> (+3 Marks)`;
+      } else {
+        sol.classList.add("incorrect");
+        solTitle.innerHTML = `❌ Misconception Detected. Correct Solution: <strong>${summary}</strong>`;
+      }
+    }
+  </script>
+
+  <script src="../../js/display-controls.js"></script>
+  <script src="../../js/site-header.js" data-site-root="../../" data-site-parent="../index.html"></script>
+</body>
+</html>

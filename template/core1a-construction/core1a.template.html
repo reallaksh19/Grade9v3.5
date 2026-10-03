@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-g9-shell data-g9-role="CORE1A" data-g9-mode="PAGES" data-g9-topic="{{TOPIC_ID}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0">
+  <title>{{TOPIC_TITLE}}: {{CORE1A_SUBTITLE}} · Construction (Core 1A) · Grade9V3.5</title>
+
+  <!-- Local KaTeX Typography (Offline Guaranteed & Multi-CDN Fallback) -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <link rel="stylesheet" href="../../public/vendor/katex/0.16.8/katex.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../public/vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <script src="../../public/vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Grade9V3.5 Design System & 12.7" Tablet Ergonomics -->
+  <link rel="stylesheet" href="../../css/modern-learner.css">
+  <link rel="stylesheet" href="../../css/site.css">
+  <link rel="stylesheet" href="../../css/tablet-12-7.css">
+
+  <script>
+    function renderAllMath(target) {
+      const el = target || document.body;
+      if (window.renderMathInElement) {
+        try {
+          window.renderMathInElement(el, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '\\[', right: '\\]', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\\(', right: '\\)', display: false }
+            ],
+            throwOnError: false
+          });
+        } catch (e) {
+          console.warn('KaTeX render error:', e);
+        }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => renderAllMath());
+    window.addEventListener('load', () => renderAllMath());
+  </script>
+
+  <style>
+    [hidden] { display: none !important; }
+    
+    /* 12.7" Tablet 60fr / 40fr Split Architecture */
+    @media (min-width: 1100px) {
+      article[data-g9-role="CORE1A"] .g9-split {
+        display: grid;
+        grid-template-columns: minmax(0, 60fr) minmax(0, 40fr);
+        gap: 24px;
+        align-items: start;
+      }
+      article[data-g9-role="CORE1A"] .g9-split > .g9-col-support {
+        position: sticky;
+        top: 80px;
+        max-height: calc(100vh - 96px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+      }
+    }
+    @media (max-width: 1099px) {
+      article[data-g9-role="CORE1A"] .g9-split {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+
+    /* Continuum Substrip Scrollbar Polish */
+    .g9-continuum-substrip {
+      background: var(--card, #ffffff);
+      border-bottom: 1px solid var(--line, #e2e8f0);
+      position: sticky;
+      top: 56px;
+      z-index: 95;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .g9-substrip-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 8px 16px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      align-items: center;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .g9-substrip-inner::-webkit-scrollbar { display: none; }
+
+    .g9-substrip-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      background: var(--bg, #f1f5f9);
+      color: var(--muted, #64748b);
+      border: 1px solid var(--line, #e2e8f0);
+      min-height: 36px;
+      transition: all 0.15s ease;
+    }
+    .g9-substrip-pill:hover {
+      background: var(--card, #ffffff);
+      color: var(--fg, #0f172a);
+      border-color: var(--accent, #2563eb);
+    }
+    .g9-substrip-pill.active {
+      background: var(--accent, #2563eb);
+      color: #ffffff;
+      border-color: var(--accent, #2563eb);
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+    }
+
+    /* Step Cards Styling */
+    .g9-c-step-cards ol {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      counter-reset: g9c;
+      display: grid;
+      gap: 12px;
+    }
+    .g9-c-step-cards ol > li {
+      counter-increment: g9c;
+      position: relative;
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 14px;
+      background: var(--card, #ffffff);
+      padding: 14px 16px 14px 54px;
+    }
+    .g9-c-step-cards ol > li::before {
+      content: counter(g9c);
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      display: grid;
+      place-items: center;
+      width: 2em;
+      height: 2em;
+      border-radius: 50%;
+      background: #e0e7ff;
+      color: #3730a3;
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+    .g9-c-step-cards li em {
+      display: inline-block;
+      min-width: 6rem;
+      color: var(--muted, #64748b);
+      font-style: normal;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* Staged SVG Container */
+    .g9-c-staged-visual {
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 16px;
+      background: var(--soft, #f8fafc);
+      padding: 16px;
+    }
+    .g9-stage-stepper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .g9-stage-stepper button {
+      min-height: 40px;
+      padding: 6px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--line, #cbd5e1);
+      background: var(--card, #ffffff);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .g9-stage-stepper button:hover {
+      background: #eff6ff;
+      border-color: #3b82f6;
+    }
+
+    /* 1-2-3 Triad */
+    .g9-triad {
+      list-style: none;
+      margin: 8px 0 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+    .g9-triad > li {
+      display: grid;
+      gap: 2px;
+      border-left: 4px solid var(--line, #cbd5e1);
+      padding: 6px 12px;
+      background: var(--card, #ffffff);
+      border-radius: 0 8px 8px 0;
+    }
+    .g9-triad > li[data-g9-triad-role="CHECK"] { border-color: #0284c7; }
+    .g9-triad > li[data-g9-triad-role="APPLY"] { border-color: #16a34a; }
+    .g9-triad > li[data-g9-triad-role="CONNECT"] { border-color: #7c3aed; }
+    .g9-triad-head { font-size: 0.82rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted, #64748b); }
+
+    /* Trap & Repair */
+    .g9-c-trap-card {
+      background: #fff1f2;
+      border: 1px solid #fecdd3;
+      border-radius: 14px;
+      padding: 14px 16px;
+      color: #9f1239;
+    }
+    .g9-c-trap-card h4 { margin: 0 0 6px; font-size: 0.92rem; font-weight: 800; color: #be123c; }
+
+    /* Worked Example */
+    .g9-c-worked-card {
+      border: 1px solid var(--line, #e2e8f0);
+      border-left: 4px solid #2563eb;
+      border-radius: 14px;
+      background: var(--soft, #f8fafc);
+      padding: 16px;
+      margin-top: 14px;
+    }
+
+    /* Metadata Strip */
+    [data-g9-meta-strip] {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 10px 0;
+    }
+    [data-g9-meta-item] {
+      display: inline-flex;
+      gap: 4px;
+      align-items: baseline;
+      padding: 3px 10px;
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 999px;
+      background: var(--bg, #f8fafc);
+      font-size: 0.8rem;
+    }
+    [data-g9-meta-item] strong { font-weight: 700; color: var(--muted, #64748b); }
+
+    /* Cognitive Demand & Review Template Badges */
+    .g9-pill-demand {
+      background: #fdf2f8;
+      color: #9d174d;
+      border: 1px solid #fbcfe8;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 1px 8px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+    }
+    .g9-pill-review-template {
+      background: #f0fdf4;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+      font-weight: 700;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.76rem;
+      display: inline-flex;
+      align-items: center;
+      padding: 1px 8px;
+      border-radius: 999px;
+    }
+    .g9-pill-concept-diff {
+      background: #eff6ff;
+      color: #1e40af;
+      border: 1px solid #bfdbfe;
+      font-weight: 700;
+      padding: 1px 8px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+    }
+    .g9-demand-scaffold-summary {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--muted, #64748b);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .g9-demand-scaffold-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .g9-scaffold-cell {
+      background: var(--card, #ffffff);
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 0.82rem;
+    }
+    .g9-scaffold-cell strong {
+      display: block;
+      color: var(--muted, #64748b);
+      font-size: 0.74rem;
+      margin-bottom: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    /* Model Contract & Entry Assumptions Tile */
+    .g9-c-tile {
+      border: 1px solid var(--line, #e2e8f0);
+      border-radius: 12px;
+      background: var(--soft, #f8fafc);
+      padding: 12px 16px;
+      margin: 12px 0;
+    }
+    .g9-c-tile h4 { margin: 0 0 6px; font-size: 0.88rem; font-weight: 800; color: #475569; }
+    .g9-c-tile ul { margin: 0; padding-left: 18px; }
+
+    /* Exit Recall & Attempt Box */
+    .g9-c-recall-card {
+      border: 1.5px solid var(--line, #cbd5e1);
+      border-radius: 14px;
+      background: var(--soft, #f8fafc);
+      padding: 16px;
+      margin-top: 16px;
+    }
+    .g9-attempt {
+      background: var(--card, #ffffff);
+      border: 1px solid var(--line, #cbd5e1);
+      border-radius: 10px;
+      padding: 14px;
+      margin: 10px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .g9-attempt textarea {
+      width: 100%;
+      border: 1.5px solid var(--line, #cbd5e1);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.95rem;
+      box-sizing: border-box;
+      background: #ffffff;
+    }
+    .g9-attempt button[data-g9-commit] {
+      align-self: flex-start;
+      min-height: 38px;
+      padding: 8px 18px;
+      border-radius: 8px;
+      background: #2563eb;
+      color: #ffffff;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(37,99,235,0.2);
+    }
+    .g9-paper {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--muted, #64748b);
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body data-core="CORE1A" data-blueprint-ref="BP-CORE1A-CONSTRUCTION@1.4.0">
+  <!-- 1. Standardized Portal Header -->
+  <header class="g9-shell-header">
+    <div class="g9-header-inner">
+      <a class="g9-brand" href="../../index.html">
+        <span class="logo-icon">⚡</span>
+        <span class="brand-title">Grade9V3.5</span>
+        <span class="g9-brand-badge">Learner Platform</span>
+      </a>
+      <nav class="g9-header-nav" aria-label="Portal Navigation">
+        <a href="../../index.html">Home</a>
+        <a href="../../physics/index.html" class="{{ACTIVE_PHYSICS}}">Physics</a>
+        <a href="../../chemistry/index.html" class="{{ACTIVE_CHEMISTRY}}">Chemistry</a>
+        <a href="../../mathematics/index.html" class="{{ACTIVE_MATHEMATICS}}">Mathematics</a>
+        <a href="../../question-bank/index.html">Question Bank</a>
+        <a href="../../atlas/index.html">Atlas &amp; Rungs</a>
+      </nav>
+      <div class="g9-header-actions">
+        <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)">
+          <span class="g9-btn-icon">🔍</span>
+          <span class="g9-btn-text">Search</span>
+        </button>
+        <button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings">
+          <span class="g9-btn-icon">🌙 / ☀️</span>
+          <span class="g9-btn-text">Display</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. Breadcrumb Navigation -->
+  <nav class="g9-breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="g9-breadcrumbs">
+      <a href="../../index.html">Home</a> <span>/</span>
+      <a href="../index.html">{{SUBJECT_NAME}}</a> <span>/</span>
+      <a href="index.html">{{TOPIC_TITLE}}</a> <span>/</span>
+      <span class="current">Core 1A: Construction</span>
+    </div>
+  </nav>
+
+  <!-- 3. Learning Continuum Substrip -->
+  <div class="g9-continuum-substrip" role="navigation" aria-label="{{TOPIC_TITLE}} Continuum">
+    <div class="g9-substrip-inner">
+      <a href="index.html" class="g9-substrip-pill">← Topic Dashboard</a>
+      <a href="core1.html" class="g9-substrip-pill">Core 1: Foundations</a>
+      <a href="core1a.html" class="g9-substrip-pill active">Core 1A: Construction</a>
+      <a href="core1b.html" class="g9-substrip-pill">Core 1B: Reconstruction</a>
+      <a href="core2.html" class="g9-substrip-pill">Core 2: Question Bank</a>
+      <a href="core2a.html" class="g9-substrip-pill">Core 2A: Methods</a>
+      <a href="core2b.html" class="g9-substrip-pill">Core 2B: Challenge</a>
+      {{#IF_SIMULATION}}
+      <a href="{{SIMULATION_URL}}" class="g9-substrip-pill highlight">⚡ Interactive Simulation</a>
+      {{/IF_SIMULATION}}
+    </div>
+  </div>
+
+  <!-- 4. Main Learning Construction Container -->
+  <main class="g9-main-container">
+
+    <!-- Section 0: Declared Conventions First -->
+    <section class="g9-core1a-book" data-g9-block="conventions">
+      <h2>Declared Conventions &amp; Reference Rules</h2>
+      <p class="g9-prov">Established invariants required before any quantity or identity is evaluated:</p>
+      <ul>
+        <!-- {{BEGIN_CONVENTIONS}} -->
+        <li><strong>{{CONVENTION_NAME}}:</strong> {{CONVENTION_RULE}}</li>
+        <!-- {{END_CONVENTIONS}} -->
+      </ul>
+    </section>
+
+    <!-- SECTION LOOP: Construction Units (Repeat for each microtopic) -->
+    <!-- {{BEGIN_CONSTRUCTION_UNIT}} -->
+    <article id="{{UNIT_ID}}" class="g9-cu" data-g9-role="CORE1A" data-g9-unit="{{UNIT_ID}}" data-g9-demand="{{COGNITIVE_DEMAND_KEY}}" data-g9-review-template="{{REVIEW_TEMPLATE_REF}}" data-g9-concept-difficulty="{{CONCEPT_DIFFICULTY}}">
+      
+      <!-- Unit Header -->
+      <section class="blueprint-slot slot-identity">
+        <div class="g9-unit-head">
+          <span class="g9-unit-no">{{UNIT_NUMBER}}</span>
+          <h3>{{UNIT_TITLE}}</h3>
+          <span class="g9-pill g9-pill-band" data-g9-band="{{DIFFICULTY_BAND}}">{{DIFFICULTY_BAND}} · {{BADGE_LABEL}}</span>
+        </div>
+        <div data-g9-meta-strip data-g9-meta-role="CORE1A">
+          <span data-g9-meta-item><strong>Subject:</strong> {{SUBJECT_NAME}}</span>
+          <span data-g9-meta-item><strong>Topic:</strong> {{TOPIC_TITLE}}</span>
+          <span data-g9-meta-item><strong>Concept difficulty:</strong> <span class="g9-pill g9-pill-concept-diff" data-g9-difficulty="{{CONCEPT_DIFFICULTY}}">{{CONCEPT_DIFFICULTY_LABEL}}</span></span>
+          <span data-g9-meta-item><strong>Cognitive demand:</strong> <span class="g9-pill g9-pill-demand" data-g9-demand="{{COGNITIVE_DEMAND_KEY}}">{{COGNITIVE_DEMAND_ICON}} {{COGNITIVE_DEMAND_LABEL}}</span></span>
+          {{#IF_REVIEW_TEMPLATE}}
+          <span data-g9-meta-item><strong>Review rubric:</strong> <span class="g9-pill g9-pill-review-template">{{REVIEW_TEMPLATE_REF}}</span></span>
+          {{/IF_REVIEW_TEMPLATE}}
+        </div>
+        <p class="g9-prov">Inferential Leap: <em>{{INFERENTIAL_JUMP}}</em></p>
+        {{#IF_DEMAND_SCAFFOLDING}}
+        <div class="g9-component g9-c-demand-scaffold" data-g9-component="DEMAND_SCAFFOLDING" style="margin: 8px 0 14px;">
+          <details style="background: var(--bg, #f8fafc); border: 1px solid var(--line, #cbd5e1); border-radius: 8px; padding: 6px 12px;">
+            <summary class="g9-demand-scaffold-summary">
+              <span>Demand Scaffolding ($X, Y, Z, W$) · Cognitive Architecture ▾</span>
+            </summary>
+            <div class="g9-demand-scaffold-grid">
+              <div class="g9-scaffold-cell"><strong>Target Concept ($X$)</strong><span>{{SCAFFOLD_X}}</span></div>
+              <div class="g9-scaffold-cell"><strong>Entry Foundation ($Y$)</strong><span>{{SCAFFOLD_Y}}</span></div>
+              <div class="g9-scaffold-cell"><strong>Inferential Leap ($Z$)</strong><span>{{SCAFFOLD_Z}}</span></div>
+              <div class="g9-scaffold-cell"><strong>Exit Verification ($W$)</strong><span>{{SCAFFOLD_W}}</span></div>
+            </div>
+          </details>
+        </div>
+        {{/IF_DEMAND_SCAFFOLDING}}
+      </section>
+
+      <!-- 60fr / 40fr Split Architecture -->
+      <div class="g9-split">
+        
+        <!-- Left 60%: Step Cards, Worked Example, Equations -->
+        <div class="g9-col g9-col-primary">
+          
+          <!-- Entry Assumptions / Model Contract -->
+          {{#IF_ENTRY_ASSUMPTIONS}}
+          <div class="g9-component g9-c-tile" data-g9-component="MODEL_CONTRACT">
+            <h4 class="g9-eyebrow">Entry Assumptions &amp; Prerequisites</h4>
+            <ul>
+              <!-- {{BEGIN_ENTRY_ASSUMPTIONS}} -->
+              <li>{{ASSUMPTION_ITEM}}</li>
+              <!-- {{END_ENTRY_ASSUMPTIONS}} -->
+            </ul>
+          </div>
+          {{/IF_ENTRY_ASSUMPTIONS}}
+
+          <!-- Construction Steps (Action, Why Valid, Output) -->
+          <section class="g9-component g9-c-step-cards" data-g9-component="CONSTRUCTION_STEPS">
+            <h4 class="g9-eyebrow">Logical Construction Steps</h4>
+            <div data-g9-block="construction">
+              <ol>
+                <!-- {{BEGIN_STEP}} -->
+                <li data-g9-crux-step="{{IS_CRUX_STEP}}">
+                  <em>Action</em> {{STEP_ACTION}}<br>
+                  <em>Why Valid</em> {{STEP_WHY_VALID}}<br>
+                  <em>State Output</em> <strong>{{STEP_STATE_OUTPUT}}</strong>
+                </li>
+                <!-- {{END_STEP}} -->
+              </ol>
+            </div>
+          </section>
+
+          <!-- Equation & Meaning Card -->
+          <section class="g9-component g9-c-equation-card" data-g9-component="EQUATIONS">
+            <h4 class="g9-eyebrow">Governing Relations &amp; Domain of Validity</h4>
+            <div class="g9-formula-box">
+              <p>$$\mathbf{ {{GOVERNING_EQUATION}} }$$</p>
+              <p class="g9-eq-note"><strong>Valid when:</strong> {{EQUATION_CONDITIONS}}</p>
+            </div>
+          </section>
+
+          <!-- Authentic Worked Anchor Example -->
+          <section class="g9-component g9-c-worked-card" data-g9-component="WORKED_EXAMPLE">
+            <h4 class="g9-eyebrow">Authentic Worked Anchor</h4>
+            <div data-g9-block="worked_anchor">
+              <p><strong>Problem:</strong> {{WORKED_PROBLEM_STEM}}</p>
+              <div class="g9-c-step-list">
+                <div data-g9-block="working">
+                  <ol>
+                    <!-- {{BEGIN_WORKED_STEP}} -->
+                    <li>{{WORKED_STEP_TEXT}}</li>
+                    <!-- {{END_WORKED_STEP}} -->
+                  </ol>
+                </div>
+              </div>
+              <div class="g9-c-answer-box">
+                <h4>Verified Conclusion</h4>
+                <p>{{WORKED_CONCLUSION}}</p>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Right 40% (Sticky): Progressive Staged SVG, Trap/Repair & Triad -->
+        <div class="g9-col g9-col-support">
+          
+          <!-- Progressive Staged SVG Visual -->
+          <section class="g9-component g9-c-staged-visual" data-g9-component="STAGED_VISUAL">
+            <div class="g9-card-head">
+              <strong>Progressive Representation</strong>
+              <span class="g9-pill">Interactive Staging</span>
+            </div>
+            
+            <figure data-g9-figure data-g9-stages="{{STAGE_IDS}}">
+              {{SVG_BODY}}
+              <div class="g9-stage-stepper">
+                <button type="button" data-g9-stage-step="prev">← Prev</button>
+                <span data-g9-stage-label>Stage 1 of 3</span>
+                <button type="button" data-g9-stage-step="next">Next →</button>
+              </div>
+              <figcaption>{{SVG_CAPTION}}</figcaption>
+            </figure>
+          </section>
+
+          <!-- Common Trap & Pedagogical Repair -->
+          <section class="g9-component g9-c-trap-card" data-g9-component="TRAP_REPAIR">
+            <div data-g9-block="wrong_path">
+              <h4>⚠️ Plausible Wrong Path (Misconception)</h4>
+              <p>{{TRAP_WRONG_IDEA}}</p>
+            </div>
+            <div data-g9-block="repair">
+              <h4>🔧 Diagnostic &amp; Repair</h4>
+              <p><em>Diagnostic prompt:</em> {{TRAP_DIAGNOSTIC}}</p>
+              <p><em>Corrective move:</em> {{TRAP_REPAIR_EXPLANATION}}</p>
+            </div>
+          </section>
+
+          <!-- 1-2-3 Triad Quick Check -->
+          <section class="g9-component g9-c-triad" data-g9-component="QUICK_CHECK">
+            <h4>1-2-3 Triad Quick Check</h4>
+            <ul class="g9-triad">
+              <li data-g9-triad-role="CHECK">
+                <span class="g9-triad-head">1. Check (Recall)</span>
+                <p>{{TRIAD_CHECK_QUESTION}}</p>
+              </li>
+              <li data-g9-triad-role="APPLY">
+                <span class="g9-triad-head">2. Apply (Minimal Case)</span>
+                <p>{{TRIAD_APPLY_PROBLEM}}</p>
+              </li>
+              <li data-g9-triad-role="CONNECT">
+                <span class="g9-triad-head">3. Connect (Transfer)</span>
+                <p>{{TRIAD_CONNECT_FORWARD}}</p>
+              </li>
+            </ul>
+          </section>
+
+          <!-- Observable Exit Task: Try it with less support -->
+          {{#IF_EXIT_TASK}}
+          <section class="blueprint-slot slot-exit-recall" style="margin-top: 18px;">
+            <div class="g9-component g9-c-recall-card" data-g9-component="EXIT_RECALL">
+              <div class="g9-block" data-g9-block="exit_task">
+                <h4 style="margin: 0 0 6px; font-size: 0.95rem; font-weight: 800; color: #1e40af;">Try it with less support · Observable Exit Criterion</h4>
+                <p style="font-size: 1rem; line-height: 1.5; margin: 6px 0 10px;">{{EXIT_TASK_PROMPT}}</p>
+              </div>
+              <div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response">
+                <label style="display: flex; flex-direction: column; gap: 4px; font-weight: 700; font-size: 0.88rem;">
+                  Your independent reasoning:
+                  <textarea data-g9-attempt rows="3" placeholder="Work out the steps or explain your deduction..."></textarea>
+                </label>
+                <label class="g9-paper">
+                  <input data-g9-paper type="checkbox"> I worked this out on paper
+                </label>
+                <button type="button" data-g9-commit>I have attempted this</button>
+              </div>
+              <details data-g9-reveal data-requires-attempt data-g9-payload-ref="{{UNIT_ID}}-exit" style="margin-top: 8px;">
+                <summary style="font-size: 0.9rem; font-weight: 800; cursor: pointer; color: #2563eb;">Model Answer &amp; Self-Check ▾</summary>
+                <div data-g9-payload-slot></div>
+              </details>
+              <template data-g9-payload="{{UNIT_ID}}-exit">
+                <div class="g9-block" data-g9-block="exit_answer" style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 10px; padding: 12px 14px; margin-top: 8px; color: #166534;">
+                  <p style="font-weight: 700; margin: 0 0 6px;">{{EXIT_TASK_ANSWER}}</p>
+                  <div class="g9-c-check-box" style="border-left: 4px solid #16a34a; padding-left: 10px; margin-top: 6px; color: #15803d; font-size: 0.88rem;">
+                    <p><strong>Independent Verification:</strong> {{EXIT_TASK_CHECK}}</p>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </section>
+          {{/IF_EXIT_TASK}}
+
+          <!-- Core 2 Practice Navigation Links -->
+          {{#IF_CORE2_PRACTICE_LINKS}}
+          <div class="g9-component g9-c-chips" data-g9-component="PRACTICE_LINKS" style="margin-top: 14px;">
+            <div class="g9-block" data-g9-block="practice_navigation">
+              <h4 style="margin: 0 0 6px; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; color: var(--muted, #64748b);">Practice this concept in Core 2</h4>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                <!-- {{BEGIN_CORE2_PRACTICE_LINKS}} -->
+                <a href="{{PRACTICE_LINK_URL}}" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px; background: var(--bg, #f1f5f9); border: 1px solid var(--line, #cbd5e1); text-decoration: none; font-size: 0.85rem; font-weight: 600; color: #2563eb;">
+                  🎯 {{PRACTICE_LINK_LABEL}} →
+                </a>
+                <!-- {{END_CORE2_PRACTICE_LINKS}} -->
+              </div>
+            </div>
+          </div>
+          {{/IF_CORE2_PRACTICE_LINKS}}
+
+        </div>
+
+      </div>
+
+    </article>
+    <!-- {{END_CONSTRUCTION_UNIT}} -->
+
+  </main>
+
+  <footer data-g9-footer style="text-align:center; padding:32px 16px; color:var(--muted, #64748b); font-size:0.88rem;">
+    Grade9V3.5 Learning Continuum · {{TOPIC_TITLE}} Core 1A · Offline Guaranteed &amp; 12.7" Tablet Optimized
+  </footer>
+
+  <!-- Built-in Progressive Staging & Attempt Gate Engine -->
+  <script>
+  (()=>{
+    const q=(s,r=document)=>[...r.querySelectorAll(s)];
+
+    // 1. Progressive Staging Controller
+    function initFigure(f){
+      if(f.dataset.g9Init) return;
+      f.dataset.g9Init='1';
+      const ids=(f.dataset.g9Stages||'').split(' ').filter(Boolean);
+      if(ids.length<2) return;
+      let i=0;
+      const show=()=>{
+        ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=n<=i?'':'none'));
+        const l=q('[data-g9-stage-label]',f)[0];
+        if(l) l.textContent='Stage '+(i+1)+' of '+ids.length;
+      };
+      show();
+      q('[data-g9-stage-step]',f).forEach(b=>b.onclick=()=>{
+        i=Math.max(0,Math.min(ids.length-1,i+(b.dataset.g9StageStep==='next'?1:-1)));
+        show();
+      });
+    }
+    q('figure[data-g9-figure]').forEach(initFigure);
+
+    // 2. Attempt Commitment Gate for Exit Tasks
+    function validAttempt(box) {
+      if (box.querySelector('[data-g9-paper]:checked')) return true;
+      const txt = box.querySelector('[data-g9-attempt]');
+      return txt ? !!txt.value.trim() : true;
+    }
+
+    q('article[data-g9-unit]').forEach(article => {
+      const details = q('details[data-requires-attempt]', article)[0];
+      const commitBtn = q('[data-g9-commit]', article)[0];
+      const box = q('[data-g9-attempt-box]', article)[0];
+
+      if (details) {
+        details.querySelector('summary').addEventListener('click', e => {
+          if (!article.dataset.attempted) {
+            e.preventDefault();
+            alert('Please submit your attempt commitment first before viewing the model answer.');
+          }
+        });
+      }
+
+      if (commitBtn && box) {
+        commitBtn.onclick = () => {
+          if (!validAttempt(box)) {
+            alert('Please enter your reasoning or check "I worked this out on paper".');
+            return;
+          }
+          article.dataset.attempted = '1';
+          commitBtn.textContent = '✓ Attempt Recorded';
+          commitBtn.style.background = '#16a34a';
+
+          if (details) {
+            const slot = q('[data-g9-payload-slot]', details)[0];
+            const ref = details.dataset.g9PayloadRef;
+            const tpl = q(`template[data-g9-payload="${ref}"]`, article)[0];
+            if (slot && tpl && !slot.hasChildNodes()) {
+              slot.appendChild(tpl.content.cloneNode(true));
+              details.open = true;
+              if (window.renderAllMath) window.renderAllMath(slot);
+            }
+          }
+        };
+      }
+    });
+  })();
+  </script>
+
+  <script src="../../js/display-controls.js"></script>
+  <script src="../../js/site-header.js" data-site-root="../../" data-site-parent="../index.html"></script>
+</body>
+</html>
