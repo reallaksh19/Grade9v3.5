@@ -4,6 +4,9 @@
 This layer is deliberately separate from independent post-render QRT review:
 - author self-audit: every hint, solution move and calculation carries evidence;
 - independent review: H1-H3/S1-S3/P1-P3/M1-M3 judges the rendered learner artifact.
+
+Every named author check carries its own result and evidence. A single generic
+"checked" sentence cannot satisfy several different quality claims.
 """
 from __future__ import annotations
 
@@ -75,8 +78,8 @@ def _validate_audit(qid: str, kind: str, item_id: str, audit: Any, required_chec
     status = audit.get("status")
     if status not in SELF_AUDIT_STATUSES:
         problems.append(f"SELF_AUDIT_STATUS_INVALID: {prefix}:{status}")
-    if not _evidence_present(audit.get("evidence")):
-        problems.append(f"SELF_AUDIT_EVIDENCE_MISSING: {prefix}")
+    if not _evidence_present(audit.get("summary_evidence")):
+        problems.append(f"SELF_AUDIT_SUMMARY_EVIDENCE_MISSING: {prefix}")
     if not _evidence_present(audit.get("basis_refs")):
         problems.append(f"SELF_AUDIT_BASIS_REFS_MISSING: {prefix}")
 
@@ -86,10 +89,19 @@ def _validate_audit(qid: str, kind: str, item_id: str, audit: Any, required_chec
         return problems
 
     for check in required_checks:
-        result = checks.get(check)
-        if result not in CHECK_RESULTS:
+        row = checks.get(check)
+        if not isinstance(row, dict):
             problems.append(f"SELF_AUDIT_CHECK_MISSING_OR_INVALID: {prefix}:{check}")
-        elif result == "FAIL":
+            continue
+        result = row.get("result")
+        if result not in CHECK_RESULTS:
+            problems.append(f"SELF_AUDIT_CHECK_RESULT_INVALID: {prefix}:{check}:{result}")
+            continue
+        if not _evidence_present(row.get("evidence")):
+            problems.append(f"SELF_AUDIT_CHECK_EVIDENCE_MISSING: {prefix}:{check}")
+        if result == "NOT_APPLICABLE" and not str(row.get("reason") or "").strip():
+            problems.append(f"SELF_AUDIT_CHECK_NA_REASON_MISSING: {prefix}:{check}")
+        if result == "FAIL":
             problems.append(f"SELF_AUDIT_CHECK_FAILED: {prefix}:{check}")
 
     if status == "FAIL":
