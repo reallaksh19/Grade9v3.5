@@ -2320,20 +2320,20 @@ def pdf_control(href: str, accessible_name: str = PDF_ACCESSIBLE_NAME) -> str:
 
 def shell_header(home_href: str, question_bank_href: str, pdf_href: str | None = None, pdf_name: str = PDF_ACCESSIBLE_NAME) -> str:
     """The shared tablet-shell header. Used by every rendered page."""
-    pdf_btn = f'<a class="g9-header-btn" data-g9-action="pdf" href="{esc(pdf_href)}" title="{esc(pdf_name)}">PDF</a>' if pdf_href else ""
-    return (f'<header data-g9-shell-header><div class="g9-header-inner">'
-            f'<a href="{esc(home_href)}" data-g9-home class="g9-brand"><span class="logo-icon">⚡</span><span class="brand-title">Grade9V3.5</span><span class="g9-brand-badge">Learner Platform</span></a>'
+    pdf_btn = f'<a class="g9-header-btn" href="{esc(pdf_href)}" title="{esc(pdf_name)}">PDF</a>' if pdf_href else ""
+    return (f'<header class="g9-shell-header"><div class="g9-header-inner">'
+            f'<a href="{esc(home_href)}" class="g9-brand"><span class="logo-icon">⚡</span><span class="brand-title">Grade9V3.5</span><span class="g9-brand-badge">Learner Platform</span></a>'
             f'<nav class="g9-header-nav" aria-label="Portal Navigation">'
-            f'<a href="{esc(home_href)}" data-g9-home>Home</a>'
+            f'<a href="{esc(home_href)}">Home</a>'
             f'<a href="../../../physics/index.html">Physics</a>'
             f'<a href="../../../chemistry/index.html">Chemistry</a>'
             f'<a href="../../../mathematics/index.html">Mathematics</a>'
-            f'<a href="{esc(question_bank_href)}">Question bank</a>'
+            f'<a href="{esc(question_bank_href)}">Question Bank</a>'
             f'</nav>'
             f'<div class="g9-header-actions">'
-            f'{pdf_btn}'
             f'<button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search"><span class="g9-btn-icon">🔍</span><span class="g9-btn-text">Search</span></button>'
             f'<button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings" aria-label="Display & Theme"><span class="g9-btn-icon">🌙 / ☀️</span><span class="g9-btn-text">Display</span></button>'
+            f'{pdf_btn}'
             f'</div></div>'
             f'<div data-g9-search-panel hidden><input data-g9-search-input type="search" aria-label="Search this page"></div>'
             f'<div data-g9-display-panel hidden><button type="button" data-g9-font="dec">A-</button><button type="button" data-g9-font="reset">A</button>'
