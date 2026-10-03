@@ -67,6 +67,7 @@ class QRTContentSelfAuditTests(unittest.TestCase):
                     ],
                 }
             ],
+            "pre_attempt_graphs": [],
             "rendered_artifacts": [],
             "validation": {"interactive_chromium_receipts": []},
         }
@@ -113,6 +114,40 @@ class QRTContentSelfAuditTests(unittest.TestCase):
             audit.validate_interactive_chromium(run),
         )
 
+    def test_active_explorer_blueprint_requires_chromium_even_without_kind(self):
+        run = self.base_run()
+        run["rendered_artifacts"] = [
+            {
+                "id": "EXPLORER",
+                "blueprint_ref": "BP-EXPLORER-GCDR@1.0.0",
+                "sha256": "sha256:" + "1" * 64,
+            }
+        ]
+        self.assertIn(
+            "INTERACTIVE_CHROMIUM_RECEIPT_MISSING: EXPLORER",
+            audit.validate_interactive_chromium(run),
+        )
+
+    def test_linked_interactive_node_must_register_artifact(self):
+        run = self.base_run()
+        run["pre_attempt_graphs"] = [
+            {
+                "question_ref": "Q1",
+                "nodes": [
+                    {
+                        "id": "EXPLORER-LINK",
+                        "phase": "POST_ATTEMPT",
+                        "resource_kind": "EXPLORER",
+                        "blueprint_ref": "BP-EXPLORER-GCDR@1.0.0",
+                    }
+                ],
+            }
+        ]
+        self.assertIn(
+            "INTERACTIVE_GRAPH_ARTIFACT_REF_MISSING: Q1:EXPLORER-LINK",
+            audit.validate_interactive_chromium(run),
+        )
+
     def test_chromium_receipt_is_bound_to_exact_artifact_and_report_bytes(self):
         run = self.base_run()
         original_repo = audit.REPO
@@ -144,6 +179,7 @@ class QRTContentSelfAuditTests(unittest.TestCase):
                     {
                         "id": "EXPLORER",
                         "kind": "INTERACTIVE_HTML",
+                        "blueprint_ref": "BP-EXPLORER-GCDR@1.0.0",
                         "path": "interactive.html",
                         "sha256": artifact_digest,
                     }
