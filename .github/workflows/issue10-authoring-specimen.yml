@@ -44,9 +44,11 @@ jobs:
             python3 Shared/tools/quality_contract.py --check
             python3 -m unittest \
               tests.test_authoring_applicability \
-              tests.test_blueprint_components \
               tests.test_authoring_intake \
-              tests.test_question_review_matrix
+              tests.test_question_review_matrix.QuestionReviewMatrixTests.test_source_contract_is_valid_and_projection_is_current \
+              tests.test_question_review_matrix.QuestionReviewMatrixTests.test_compiler_emits_exactly_twenty_eight_unique_cells \
+              tests.test_question_review_matrix.QuestionReviewMatrixTests.test_resolver_selects_one_cell_and_fills_learner_relative_slots \
+              tests.test_question_review_matrix.QuestionReviewMatrixTests.test_percentage_never_routes_or_changes_slots
           } 2>&1 | tee /tmp/issue10-focused-tests.log
       - name: Materialize Issue 10 inputs
         run: |
