@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""Repair the generated Core-page shell marker drift exposed by Issue #10.
+"""Repair generated Core-page shell/touch drift exposed by Issue #10.
 
-The shared inline Core CSS and quality observer both key the tablet shell on
-``header[data-g9-shell-header]``.  The current ``shell_header`` emitter retained
-only the newer CSS class, so its own 48 px target rules did not apply and the
-quality observer could not see the shell.  Keep the class and restore the
-semantic data marker; also restore the historical PDF action marker while this
-header is being reconciled.
+The quality observer and inline Core CSS key the tablet shell on
+``header[data-g9-shell-header]``. The renderer had retained only the newer CSS
+class, so restore the semantic marker and the historical PDF action marker.
+
+The cold-run also exposed six shared concept-triad links whose rendered hit
+boxes were only line-height tall: three breadcrumb links and the Learn / Practice /
+Question Bank links. Give those generated links the same 48 px minimum touch
+geometry as the rest of the governed shell without changing academic content.
 """
 from pathlib import Path
 
@@ -28,5 +30,20 @@ if old_pdf in text:
 elif new_pdf not in text:
     raise SystemExit("PDF header action emitter shape changed; reconcile manually")
 
+old_touch = ".g9-triad-context a{color:inherit;text-decoration:none}\n.g9-triad-context a:hover{text-decoration:underline}"
+new_touch = (
+    ".g9-triad-context a{color:inherit;text-decoration:none;min-height:var(--g9-touch-min);"
+    "min-width:var(--g9-touch-min);padding:0 8px;box-sizing:border-box;display:inline-flex;"
+    "align-items:center;justify-content:center;touch-action:manipulation}\n"
+    ".g9-triad-context a:hover{text-decoration:underline}\n"
+    ".g9-triad-actions a{min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);"
+    "padding:10px 14px;box-sizing:border-box;display:inline-flex;align-items:center;"
+    "justify-content:center;touch-action:manipulation}"
+)
+if old_touch in text:
+    text = text.replace(old_touch, new_touch, 1)
+elif new_touch not in text:
+    raise SystemExit("concept-triad CSS shape changed; reconcile manually")
+
 PATH.write_text(text, encoding="utf-8")
-print("reconciled generated Core shell marker and PDF action marker")
+print("reconciled generated Core shell markers and concept-triad touch geometry")
