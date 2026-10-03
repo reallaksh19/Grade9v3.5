@@ -94,3 +94,48 @@ Material repair commit: `8351da85518cbac9a4a357ecfb1804a88292eb7c`.
 
 No entry in this file is release approval. Final acceptance remains a separate human/reviewer action.
 
+
+
+## Additional self-audit and interactive-browser requirements
+
+### R9 — hint / solution / calculation self-audit
+
+Owner requirement added during repair: every question must carry inspectable self-check evidence for its hints, solution route and calculations.
+
+Implementation:
+- `Shared/tools/question_content_audit.py` independently audits all question scaffolds, reasoning moves and arithmetic evidence.
+- Each question now carries `extensions["grade9v3:calculation_audit"]` entries with a calculation ID, owning reasoning move, safe arithmetic expression, expected result, unit, and whether that result is protected pre-attempt work.
+- Hint audit checks non-empty content, valid stage, valid target move, absence of protected calculated results, and absence of the complete answer summary.
+- Solution audit checks a structured reasoning route, unique move IDs, a resolving crux reference, answer summary, independent check, and verification-status declaration.
+- Calculation audit re-evaluates every declared expression independently and binds it to its reasoning move.
+- A local PASS from this tool is explicitly **not** QRT semantic acceptance, Chromium evidence, or release approval.
+
+Question-bank repair commits:
+- `523ace6e4b3390624abb8a966bde872dd7dc7b55` — Q1–Q5 protected hint ladders + calculation evidence.
+- `51cd975655a5a9fd17acc01ae4017b7eb39827c8` — Q6–Q10 protected hint ladders + calculation evidence.
+- `0facd8fa5400a753b982e800ab2038e5ddf64a75` — deterministic content-audit implementation.
+- `44e0a2fe52e03a51afb05b1fd385bde52a359bae` — audit evidence schema.
+- `d83abd19e8bcb7479a62f8c4da2508eb3e4bb525` — regressions including a deliberate answer-leaking hint that must fail.
+
+### R10 — Chromium is mandatory for interactive pages
+
+Owner requirement added during repair: an interactive page is not considered reviewed unless Chromium evidence exists for the exact HTML bytes.
+
+Implementation:
+- `tools/site-audit/interactive-page-audit.mjs` launches Playwright Chromium and measures both tablet landscape and portrait.
+- It records runtime smoke, page errors, console errors, external network requests, horizontal overflow, 48px touch targets, accessibility baseline, and keyboard focus.
+- Receipt schema: `interactive-chromium-audit/v1`.
+- `Shared/tools/interactive_chromium_gate.py` fails closed unless:
+  - the receipt engine is exactly `chromium`;
+  - receipt status is `PASS`;
+  - all mandatory browser checks are `PASS`;
+  - receipt `html_sha256` matches the current HTML bytes.
+- Missing browser capability is therefore `NOT_RUN` / blocking for an interactive artifact, never an inferred PASS.
+
+Implementation commits:
+- `70fe4b28e648b1f77066ec1eb59e419d4588dea7` — Chromium audit runner.
+- `c28a18d133b9d8871c2510133b5399fc033ca77d` — exact-digest Chromium gate.
+- `0eec8a408c853d7502df2f8670680845e0440d9e` — receipt schema.
+- `87fc63af62ea940148fac2611061677e80728064` — fail-closed receipt tests.
+
+The Issue #13 prompt does not itself require an interactive page. If one is later included, it cannot appear in the final deliverable/audit as reviewed without this Chromium receipt.
