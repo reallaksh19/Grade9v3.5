@@ -1,0 +1,89 @@
+{
+  "topic_id": "polynomials",
+  "topic_title": "Polynomials",
+  "subject_name": "Mathematics",
+  "questions": [
+    {
+      "id": "Q-MAT-POLY-M1-P44-CHECK-POINT-2-10",
+      "source_title": "Check Point 2 · Question 10",
+      "provenance_description": "Official textbook item, preserved verbatim",
+      "concept_name": "Algebraic Identities & Expansions",
+      "difficulty_band": "D2",
+      "difficulty_score": 4,
+      "expected_minutes": 3,
+      "question_type_label": "Algebraic Proof",
+      "cognitive_demand": "PROOF_DERIVATION",
+      "review_template_ref": "QRT-MAT-PROOF",
+      "demand_scaffolding": {
+        "x": "Binomial cube identity $(p - q)^3$",
+        "y": "Linear relation $p - q = 9$",
+        "z": "Factor expansion $p^3 - q^3 - 3pq(p - q)$",
+        "w": "Substitute $(p - q) = 9$ and evaluate $9^3 = 729$ to isolate $p^3 - q^3 - 27pq$"
+      },
+      "source_citation": "m1.pdf · Chapter 2 (Polynomials) · Page 44",
+      "difficulty_rationale": "Requires recognizing the binomial cube identity $(p - q)^3$ and substituting the linear relation into the expanded terms.",
+      "difficulty_grid": {
+        "model": 1,
+        "representation": 1,
+        "chain": 1,
+        "math": 1,
+        "traps": 0
+      },
+      "stem": "If $p - q = 9$, prove that $p^3 - q^3 - 27pq = 729$.",
+      "conditions": [
+        "Variables $p$ and $q$ are real numbers.",
+        "Linear relation given: $p - q = 9$."
+      ],
+      "common_wrong_route": "Attempting to substitute $p = q + 9$ directly into $p^3 - q^3$ and expanding by brute force, which leads to heavy algebra and sign errors.",
+      "response_type": "free_response",
+      "svg_caption": "Identity Structure: Direct binomial cube expansion $(p - q)^3$.",
+      "svg_body": "<svg viewBox=\"0 0 440 140\" width=\"100%\" height=\"auto\"><rect x=\"20\" y=\"20\" width=\"400\" height=\"100\" rx=\"12\" fill=\"#eff6ff\" stroke=\"#3b82f6\" stroke-width=\"1.5\"/><text x=\"220\" y=\"55\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"bold\" fill=\"#1e40af\">(p - q)³ = p³ - q³ - 3pq(p - q)</text><text x=\"220\" y=\"95\" text-anchor=\"middle\" font-size=\"14\" fill=\"#1d4ed8\">Substitute (p - q) = 9 ⟹ 9³ = 729</text></svg>",
+      "hint_ladder": [
+        {
+          "label": "Identity Identification",
+          "prompt": "Which standard algebraic identity relates $(p - q)$, $(p^3 - q^3)$, and the product $pq$?",
+          "hint": "Recall the binomial expansion: $(p - q)^3 = p^3 - q^3 - 3pq(p - q)$."
+        },
+        {
+          "label": "Substitution",
+          "prompt": "What do you obtain when you substitute the known value $p - q = 9$ into this identity?",
+          "hint": "Replace $(p - q)$ with $9$ on both the left-hand side and inside the $-3pq(p - q)$ term: $9^3 = p^3 - q^3 - 3pq(9)$."
+        },
+        {
+          "label": "Algebraic Isolation",
+          "prompt": "Calculate $9^3$ and rearrange the equation to match the target expression.",
+          "hint": "$9^3 = 729$. Therefore, $729 = p^3 - q^3 - 27pq$, which establishes the required proof."
+        }
+      ],
+      "core1a_anchor_url": "core1a.html#U-POLY-IDENTITIES",
+      "solution_moves": [
+        {
+          "stage_label": "Select Identity",
+          "is_crux": false,
+          "action": "State the standard algebraic identity for the cube of a binomial difference.",
+          "uses": "Binomial Identity $(a - b)^3 = a^3 - b^3 - 3ab(a - b)$",
+          "why_valid": "Holds identically for all real values of $p$ and $q$.",
+          "result": "$(p - q)^3 = p^3 - q^3 - 3pq(p - q)$."
+        },
+        {
+          "stage_label": "Substitute Given Value",
+          "is_crux": true,
+          "action": "Substitute the given condition $p - q = 9$ into both sides of the identity.",
+          "uses": "Given relation $p - q = 9$",
+          "why_valid": "Direct equality substitution into the algebraic identity.",
+          "result": "$(9)^3 = p^3 - q^3 - 3pq(9)$."
+        },
+        {
+          "stage_label": "Evaluate and Conclude",
+          "is_crux": false,
+          "action": "Evaluate the arithmetic cube $9^3 = 729$ and multiply the middle product term.",
+          "uses": "Arithmetic computation $9^3 = 729$ and $3 \\times 9 = 27$",
+          "why_valid": "Simplification of real number arithmetic.",
+          "result": "$729 = p^3 - q^3 - 27pq \\implies p^3 - q^3 - 27pq = 729$. (Q.E.D.)"
+        }
+      ],
+      "answer_summary": "Proof Complete: $(p - q)^3 = 9^3 = 729 \\implies p^3 - q^3 - 27pq = 729$.",
+      "independent_check": "Test with numerical values: let $p = 10, q = 1$ (so $p - q = 9$). Then $p^3 - q^3 - 27pq = 1000 - 1 - 27(10) = 999 - 270 = 729$. Identity is verified."
+    }
+  ]
+}

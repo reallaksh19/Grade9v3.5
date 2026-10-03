@@ -1,0 +1,231 @@
+{
+  "topic_id": "golden-core1a-specimen",
+  "topic_title": "Cognitive Demand Calibration Specimen",
+  "subject_name": "Physics",
+  "core1a_subtitle": "Multi-Demand Conceptual Construction Calibration",
+  "conventions": [
+    {
+      "name": "Cartesian Reference Frame",
+      "rule": "Displacements along the surface are chosen positive in the direction of motion; upward perpendicular is positive normal."
+    },
+    {
+      "name": "Sign and Invariant Energy Conventions",
+      "rule": "Potential energy is referenced to zero at the lowest point of interest ($U(0) = 0$). Work done by dissipative forces is zero in frictionless models."
+    }
+  ],
+  "units": [
+    {
+      "unit_id": "CU-PHY-INCLINE-ENERGY-01",
+      "unit_number": "1",
+      "unit_title": "Mechanical Energy Conservation on a Frictionless Incline",
+      "difficulty_band": "D4",
+      "badge_label": "High-Transfer Principle",
+      "concept_difficulty": "HARD",
+      "cognitive_demand": "MULTISTEP_REASONING",
+      "review_template_ref": "CRT-PHY-CONSTRUCTION",
+      "demand_scaffolding": {
+        "x": "Conservation of mechanical energy on an inclined plane",
+        "y": "1D work-energy theorem, vector resolution of gravity, and normal force orthogonality",
+        "z": "Decoupling ramp distance $s$ into vertical drop $h = s \\sin\\theta$ where non-conservative work $W_{\\text{nc}} = 0$",
+        "w": "Observable exit task: derive the limiting case as $\\theta \\to 90^\\circ$ and verify $v = \\sqrt{2gh}$"
+      },
+      "entry_assumptions": [
+        "Can apply the one-dimensional work-energy theorem $\\Delta K = W_{\\text{net}}$.",
+        "Can resolve force vectors into orthogonal Cartesian components.",
+        "Understands that work is the scalar product of force and displacement ($W = \\vec{F} \\cdot \\Delta \\vec{s}$)."
+      ],
+      "inferential_jump": "Proving that normal contact force does strictly zero work, so that mechanical energy depends solely on vertical altitude change $h = s \\sin\\theta$ independent of path length or mass.",
+      "steps": [
+        {
+          "is_crux_step": false,
+          "action": "Analyze the work done by the normal contact force $\\vec{N}$.",
+          "why_valid": "The normal force is perpendicular to the surface of the incline at all points, so $\\vec{N} \\cdot \\Delta \\vec{s} = N \\Delta s \\cos(90^\\circ) = 0$.",
+          "state_output": "$W_N = 0\\text{ J}$ (Normal force performs zero work)"
+        },
+        {
+          "is_crux_step": true,
+          "action": "Resolve the gravitational force along the incline and compute work over distance $s$.",
+          "why_valid": "Component of gravity along the incline is $F_{\\parallel} = mg \\sin\\theta$. Work done is $W_g = (mg \\sin\\theta)s = mg(s \\sin\\theta) = mgh$.",
+          "state_output": "$W_{\\text{net}} = W_g = mgh$"
+        },
+        {
+          "is_crux_step": false,
+          "action": "Equate network done to change in kinetic energy ($u = 0$).",
+          "why_valid": "By the Work-Energy Theorem, $\\Delta K = \\frac{1}{2}mv^2 - 0 = W_{\\text{net}} = mgh$. Mass cancels from both sides.",
+          "state_output": "$\\frac{1}{2}mv^2 = mgh \\implies v = \\sqrt{2gh} = \\sqrt{2gs \\sin\\theta}$"
+        }
+      ],
+      "governing_equation": "\\frac{1}{2}mv^2 = mgh = mg s \\sin\\theta \\iff v = \\sqrt{2gs \\sin\\theta}",
+      "equation_conditions": "Valid for smooth surfaces where frictional dissipation is negligible ($\\mu = 0$) under uniform gravity $g$.",
+      "worked_problem_stem": "A 2.0 kg block is released from rest at the top of a smooth 30° incline of length 10 m. Calculate its speed at the base ($g = 9.8\\text{ m/s}^2$).",
+      "worked_steps": [
+        "Identify the given parameters: $m = 2.0\\text{ kg}, s = 10\\text{ m}, \\theta = 30^\\circ, g = 9.8\\text{ m/s}^2$.",
+        "Compute vertical displacement: $h = s \\sin(30^\\circ) = 10 \\times 0.5 = 5.0\\text{ m}$.",
+        "Apply energy conservation: $v = \\sqrt{2gh} = \\sqrt{2 \\times 9.8 \\times 5.0} = \\sqrt{98}$.",
+        "Evaluate: $v \\approx 9.90\\text{ m/s}$."
+      ],
+      "worked_conclusion": "The block reaches the bottom with speed $v = \\sqrt{98} \\approx 9.90\\text{ m/s}$, entirely independent of its 2.0 kg mass.",
+      "stage_ids": "s1 s2 s3",
+      "svg_caption": "Mechanical Incline Progression: Force Decomposition $\\to$ Height Projection $\\to$ Velocity Derivation.",
+      "svg_body": "<svg viewBox=\"0 0 460 200\" width=\"100%\" height=\"auto\"><g data-g9-stage-id=\"s1\"><polygon points=\"40,170 380,170 380,50\" fill=\"#f8fafc\" stroke=\"#334155\" stroke-width=\"2\"/><rect x=\"200\" y=\"80\" width=\"36\" height=\"26\" rx=\"4\" fill=\"#bfdbfe\" stroke=\"#1d4ed8\" stroke-width=\"1.5\" transform=\"rotate(21.8 200 80)\"/><text x=\"80\" y=\"160\" font-size=\"14\" font-weight=\"bold\" fill=\"#2563eb\">θ</text><text x=\"160\" y=\"75\" font-size=\"13\" fill=\"#1e40af\">s (ramp length)</text></g><g data-g9-stage-id=\"s2\"><line x1=\"395\" y1=\"50\" x2=\"395\" y2=\"170\" stroke=\"#dc2626\" stroke-width=\"2\" stroke-dasharray=\"4,4\"/><text x=\"405\" y=\"115\" font-size=\"13\" font-weight=\"bold\" fill=\"#dc2626\">h = s sin θ</text><text x=\"210\" y=\"50\" font-size=\"13\" fill=\"#16a34a\">W_N = 0 (N ⊥ ds)</text></g><g data-g9-stage-id=\"s3\"><rect x=\"40\" y=\"15\" width=\"380\" height=\"30\" rx=\"6\" fill=\"#dcfce7\" stroke=\"#16a34a\" stroke-width=\"1.5\"/><text x=\"230\" y=\"35\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#15803d\">ΔK = mgh ⟹ v = √(2g s sin θ)</text></g></svg>",
+      "trap_wrong_idea": "Assuming that the longer the incline, the more energy is lost or the slower the block travels, or multiplying gravity by $s$ directly ($mgs$) without the $\\sin\\theta$ factor.",
+      "trap_diagnostic": "If an incline has length 20 m but the same vertical height $h = 5\\text{ m}$, does the block reach the bottom with a different speed?",
+      "trap_repair_explanation": "No. In the absence of friction, $v = \\sqrt{2gh}$ depends purely on the vertical altitude drop $h$, not on the slope length $s$. The longer incline simply reduces acceleration while increasing travel time, yielding the exact same final speed.",
+      "triad_check": "Why does the normal contact force do zero mechanical work on a sliding object?",
+      "triad_apply": "A frictionless ramp has height $h = 20\\text{ m}$. What is the speed of an object sliding from rest at the bottom ($g = 9.8\\text{ m/s}^2$)?",
+      "triad_connect": "How does this energy conservation principle extend to curved ramps and roller-coasters where the angle $\\theta$ changes continuously?",
+      "exit_task": {
+        "prompt": "Evaluate the limiting behavior of the derived speed formula $v = \\sqrt{2gs \\sin\\theta}$ as the angle $\\theta \\to 90^\\circ$. What physical scenario does this represent, and does it agree with 1D vertical kinematics?",
+        "answer": "When $\\theta \\to 90^\\circ$, $\\sin(90^\\circ) = 1$ and the incline length $s$ equals the vertical height $h$. The formula becomes $v = \\sqrt{2gh}$, which identically reproduces the 1D free-fall velocity from rest.",
+        "check": "Independent 1D kinematic check: $v^2 = u^2 + 2g(\\Delta y)$ with $u = 0$ gives $v = \\sqrt{2gh}$. The limiting case matches 1D physics identically."
+      },
+      "core2_practice_links": [
+        {
+          "label": "Incline Multi-Step Derivation · Core 2 Specimen",
+          "url": "golden-core2-demand-specimen.html#Q-PHY-INCLINE-01"
+        }
+      ]
+    },
+    {
+      "unit_id": "CU-PHY-NLM-UNITS-01",
+      "unit_number": "2",
+      "unit_title": "Dimensional Synthesis of the Newton from Fundamental SI Base Units",
+      "difficulty_band": "D1",
+      "badge_label": "Foundational Definition",
+      "concept_difficulty": "EASY",
+      "cognitive_demand": "CONCEPTUAL_EXPLANATION",
+      "review_template_ref": "CRT-PHY-CONSTRUCTION",
+      "demand_scaffolding": {
+        "x": "Derived unit Newton (N) in terms of fundamental dimensions",
+        "y": "Base SI units of mass (kg), length (m), and time (s)",
+        "z": "Dynamic definition from Newton's second law: $1\\text{ N} \\equiv 1\\text{ kg} \\cdot 1\\text{ m/s}^2$",
+        "w": "Observable exit task: derive the base unit expression of momentum $p = mv$ and show $[F \\times t] = [p]$"
+      },
+      "entry_assumptions": [
+        "Familiarity with the 7 fundamental SI base quantities (specifically mass, length, time).",
+        "Understanding Newton's second law in algebraic form: $F = ma$."
+      ],
+      "inferential_jump": "Understanding that derived SI units are not arbitrary names, but are structurally bound definitions dictated by governing physical laws.",
+      "steps": [
+        {
+          "is_crux_step": false,
+          "action": "Identify the base SI quantities that form Newton's second law.",
+          "why_valid": "Mass is measured in kilograms ($\\text{kg}$), and acceleration is change in velocity per unit time ($\\text{m/s}^2$).",
+          "state_output": "$[m] = \\text{kg},\\quad [a] = \\text{m}\\cdot\\text{s}^{-2}$"
+        },
+        {
+          "is_crux_step": true,
+          "action": "Multiply base dimensions according to the product relation $F = ma$.",
+          "why_valid": "Dimensional consistency requires $[F] = [m][a] = \\text{kg} \\times (\\text{m/s}^2)$.",
+          "state_output": "$[F] = \\text{kg}\\cdot\\text{m}\\cdot\\text{s}^{-2}$"
+        },
+        {
+          "is_crux_step": false,
+          "action": "Bind the derived unit name (Newton) to this composite base product.",
+          "why_valid": "By international convention, 1 Newton is defined as the force giving 1 kg mass an acceleration of $1\\text{ m/s}^2$.",
+          "state_output": "$1\\text{ N} \\equiv 1\\text{ kg}\\cdot\\text{m}/\\text{s}^2$"
+        }
+      ],
+      "governing_equation": "1\\text{ N} = 1\\text{ kg} \\cdot 1\\text{ m/s}^2 = 1\\text{ kg}\\cdot\\text{m}\\cdot\\text{s}^{-2}",
+      "equation_conditions": "Universal definition in the International System of Units (SI).",
+      "worked_problem_stem": "Express a force of $25\\text{ N}$ acting on a $5.0\\text{ kg}$ body in fundamental base units and compute the resulting acceleration.",
+      "worked_steps": [
+        "Express force in base units: $25\\text{ N} = 25\\text{ kg}\\cdot\\text{m}/\\text{s}^2$.",
+        "Apply $a = F/m$: $a = \\frac{25\\text{ kg}\\cdot\\text{m}/\\text{s}^2}{5.0\\text{ kg}}$.",
+        "Cancel kilograms: $a = 5.0\\text{ m/s}^2$."
+      ],
+      "worked_conclusion": "The resulting acceleration is $5.0\\text{ m/s}^2$, demonstrating dimensional cancellation.",
+      "stage_ids": "s1 s2 s3",
+      "svg_caption": "Dimensional Synthesis: Base Quantities $\\to$ Product Formulation $\\to$ Derived Unit Binding.",
+      "svg_body": "<svg viewBox=\"0 0 440 140\" width=\"100%\" height=\"auto\"><g data-g9-stage-id=\"s1\"><rect x=\"20\" y=\"20\" width=\"180\" height=\"40\" rx=\"6\" fill=\"#e0e7ff\" stroke=\"#4338ca\"/><text x=\"110\" y=\"45\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#312e81\">Mass: kg</text><rect x=\"240\" y=\"20\" width=\"180\" height=\"40\" rx=\"6\" fill=\"#e0e7ff\" stroke=\"#4338ca\"/><text x=\"330\" y=\"45\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#312e81\">Acceleration: m/s²</text></g><g data-g9-stage-id=\"s2\"><line x1=\"220\" y1=\"65\" x2=\"220\" y2=\"85\" stroke=\"#2563eb\" stroke-width=\"2\"/><text x=\"235\" y=\"78\" font-size=\"14\" font-weight=\"bold\" fill=\"#2563eb\">F = m · a</text></g><g data-g9-stage-id=\"s3\"><rect x=\"60\" y=\"90\" width=\"320\" height=\"40\" rx=\"8\" fill=\"#fdf2f8\" stroke=\"#db2777\" stroke-width=\"2\"/><text x=\"220\" y=\"115\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"bold\" fill=\"#9d174d\">1 Newton (N) = 1 kg·m/s²</text></g></svg>",
+      "trap_wrong_idea": "Confusing force with energy (writing $\\text{kg}\\cdot\\text{m}^2/\\text{s}^2$) or dividing by time instead of time squared.",
+      "trap_diagnostic": "What is the difference between the base unit of force ($\text{N}$) and the base unit of energy ($\text{J}$)?",
+      "trap_repair_explanation": "Energy is work ($F \\times d$), which multiplies force by an extra meter: $1\\text{ J} = 1\\text{ N}\\cdot\\text{m} = 1\\text{ kg}\\cdot\\text{m}^2/\\text{s}^2$. Force has length to power 1, whereas energy has length to power 2.",
+      "triad_check": "What are the three fundamental SI base units that compose one Newton?",
+      "triad_apply": "If an object has mass $0.5\\text{ kg}$ and acceleration $4\\text{ m/s}^2$, what net force in Newtons acts on it?",
+      "triad_connect": "How is impulse defined as $J = F \\Delta t$, and what are its base SI units?",
+      "exit_task": {
+        "prompt": "Determine the SI base unit composition of linear momentum $p = mv$. Then, prove that impulse $F \\Delta t$ has identical SI base units.",
+        "answer": "Momentum $p = mv$ has base units $\\text{kg} \\times \\text{m/s} = \\text{kg}\\cdot\\text{m}/\\text{s}$. Impulse is force $\\times$ time: $[F \\Delta t] = (\\text{kg}\\cdot\\text{m}/\\text{s}^2) \\times \\text{s} = \\text{kg}\\cdot\\text{m}/\\text{s}$. The base units are identical.",
+        "check": "Impulse-Momentum Theorem check: $\\Delta p = F \\Delta t$. Both sides share dimensional formula $[M][L][T]^{-1}$. Verified."
+      },
+      "core2_practice_links": [
+        {
+          "label": "Laws of Motion Unit Recall · Core 2 Specimen",
+          "url": "golden-core2-demand-specimen.html#Q-PHY-UNIT-FORCE-01"
+        }
+      ]
+    },
+    {
+      "unit_id": "CU-MAT-POLY-FACTOR-01",
+      "unit_number": "3",
+      "unit_title": "The Factor Theorem and Remainder Vanishing from First Principles",
+      "difficulty_band": "D2",
+      "badge_label": "Algebraic Foundation",
+      "concept_difficulty": "MEDIUM",
+      "cognitive_demand": "PROOF_DERIVATION",
+      "review_template_ref": "CRT-MAT-CONSTRUCTION",
+      "demand_scaffolding": {
+        "x": "Factor Theorem: $(x - a) \\mid p(x) \\iff p(a) = 0$",
+        "y": "Division Algorithm for polynomials: $p(x) = (x - a)q(x) + r$",
+        "z": "Annihilation of quotient via $x = a$, giving remainder $r = p(a)$",
+        "w": "Verifying factor status of $(x - a)$ by evaluating $p(a)$"
+      },
+      "entry_assumptions": [
+        "Polynomial Division Algorithm: Dividend = Divisor $\\times$ Quotient + Remainder.",
+        "Remainder degree property: $\\deg(r) < \\deg(\\text{divisor})$. For a linear divisor, $\\deg(r) < 1 \\implies r$ is a constant."
+      ],
+      "inferential_jump": "Connecting polynomial remainder evaluation $p(a) = 0$ directly to exact algebraic divisibility $(x - a) \\mid p(x)$.",
+      "steps": [
+        {
+          "is_crux_step": false,
+          "action": "Set up the polynomial division equation for $p(x)$ divided by linear factor $(x - a)$.",
+          "why_valid": "Polynomial division algorithm guarantees unique quotient $q(x)$ and constant remainder $r$.",
+          "state_output": "$p(x) = (x - a)q(x) + r$"
+        },
+        {
+          "is_crux_step": true,
+          "action": "Substitute $x = a$ into the identity.",
+          "why_valid": "Setting $x = a$ annihilates the divisor: $(a - a)q(a) = 0 \\cdot q(a) = 0$, leaving $p(a) = r$.",
+          "state_output": "$p(a) = 0 + r \\implies r = p(a)$ (Remainder Theorem)"
+        },
+        {
+          "is_crux_step": false,
+          "action": "Establish the exact divisibility criterion ($r = 0$).",
+          "why_valid": "$(x - a)$ is a factor of $p(x)$ if and only if the remainder $r = 0$, which occurs if and only if $p(a) = 0$.",
+          "state_output": "$(x - a) \\mid p(x) \\iff p(a) = 0$ (Factor Theorem)"
+        }
+      ],
+      "governing_equation": "p(x) = (x - a)q(x) \\iff p(a) = 0",
+      "equation_conditions": "Valid for any polynomial $p(x)$ with coefficients over a field and linear divisor $(x - a)$.",
+      "worked_problem_stem": "Determine whether $(x + 2)$ is a factor of $p(x) = x^3 + 3x^2 + 5x + 6$.",
+      "worked_steps": [
+        "Set the divisor to zero: $x + 2 = 0 \\implies x = -2$.",
+        "Compute $p(-2) = (-2)^3 + 3(-2)^2 + 5(-2) + 6$.",
+        "Evaluate powers and products: $-8 + 12 - 10 + 6 = 0$.",
+        "Since $p(-2) = 0$, by the Factor Theorem $(x + 2)$ is an exact factor of $p(x)$."
+      ],
+      "worked_conclusion": "$(x + 2)$ divides $x^3 + 3x^2 + 5x + 6$ with zero remainder.",
+      "stage_ids": "s1 s2 s3",
+      "svg_caption": "Factor Theorem Logic: Divisor Setup $\\to$ Root Nullification $\\to$ Factorization Criterion.",
+      "svg_body": "<svg viewBox=\"0 0 440 160\" width=\"100%\" height=\"auto\"><g data-g9-stage-id=\"s1\"><rect x=\"20\" y=\"15\" width=\"400\" height=\"36\" rx=\"6\" fill=\"#eff6ff\" stroke=\"#3b82f6\"/><text x=\"220\" y=\"38\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#1e40af\">p(x) = (x - a)q(x) + r</text></g><g data-g9-stage-id=\"s2\"><rect x=\"20\" y=\"60\" width=\"400\" height=\"36\" rx=\"6\" fill=\"#fef3c7\" stroke=\"#f59e0b\"/><text x=\"220\" y=\"83\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#92400e\">x = a ⟹ p(a) = 0·q(a) + r = r</text></g><g data-g9-stage-id=\"s3\"><rect x=\"20\" y=\"105\" width=\"400\" height=\"40\" rx=\"8\" fill=\"#dcfce7\" stroke=\"#16a34a\" stroke-width=\"2\"/><text x=\"220\" y=\"130\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#166534\">r = 0 ⟺ p(a) = 0 ⟹ (x - a) is a factor</text></g></svg>",
+      "trap_wrong_idea": "Evaluating $p(a)$ when the divisor is $(x + a)$ instead of using the root $x = -a$.",
+      "trap_diagnostic": "If $(x + 4)$ divides $p(x)$, what value must evaluate to zero?",
+      "trap_repair_explanation": "Find the zero of the factor: $x + 4 = 0 \\implies x = -4$. Hence $p(-4) = 0$, not $p(4) = 0$.",
+      "triad_check": "What is the remainder when $p(x)$ is divided by $(x - c)$?",
+      "triad_apply": "Find $k$ such that $(x - 1)$ is a factor of $x^3 - 3x^2 + kx - 4$.",
+      "triad_connect": "How does the Factor Theorem allow decomposing degree $n$ polynomials into products of linear and irreducible quadratic factors?",
+      "exit_task": {
+        "prompt": "Using the Factor Theorem, prove that $(x - 2)$ is a factor of $p(x) = x^3 - 8$. Verify your result by factoring $x^3 - 8$ directly using an algebraic identity.",
+        "answer": "Evaluate $p(2) = 2^3 - 8 = 8 - 8 = 0$. Since $p(2) = 0$, by the Factor Theorem $(x - 2)$ is a factor of $x^3 - 8$.",
+        "check": "Algebraic identity check: $x^3 - 2^3 = (x - 2)(x^2 + 2x + 4)$. Divisibility is verified algebraically."
+      },
+      "core2_practice_links": [
+        {
+          "label": "Polynomial Proof Practice · Core 2 Specimen",
+          "url": "golden-core2-demand-specimen.html#Q-MAT-POLY-PROOF-01"
+        }
+      ]
+    }
+  ]
+}
