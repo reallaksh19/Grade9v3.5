@@ -30,7 +30,9 @@ class PreAttemptLeakAuditTests(unittest.TestCase):
         bank, package = self.records()
         changed = copy.deepcopy(package)
         rep = next(row for row in changed["representations"] if row["id"] == "REP-MAT-SAV-COMPOSITE-SOLIDS")
-        rep["purpose"] += " Final answer 214.5 cm²."
+        q6_source = next(row for row in bank["questions"] if row["id"] == "Q6")
+        encoded_answer = q6_source["answer"]["summary"].replace("π", "&pi;").replace("²", "&sup2;")
+        rep["purpose"] += f" Final answer {encoded_answer}."
         report = audit.audit(bank, changed, REPO)
         q6 = next(row for row in report["items"] if row["question_ref"] == "Q6")
         self.assertEqual(q6["verdict"], "FAIL")

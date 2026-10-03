@@ -3,9 +3,17 @@
 from __future__ import annotations
 
 import argparse
+import html
 import json
+import unicodedata
 from pathlib import Path
 from typing import Any
+
+
+def _normalize_for_match(value: Any) -> str:
+    text = html.unescape(str(value))
+    text = unicodedata.normalize("NFKC", text)
+    return " ".join(text.split()).casefold()
 
 
 def _protected_tokens(question: dict[str, Any]) -> list[str]:
@@ -122,8 +130,10 @@ def audit(bank: dict[str, Any], package: dict[str, Any], repo_root: Path) -> dic
                     "resource_ref": resource["ref"],
                 })
                 continue
+            normalized_resource = _normalize_for_match(resource["text"])
             for token in tokens:
-                if token and token in resource["text"]:
+                normalized_token = _normalize_for_match(token)
+                if normalized_token and normalized_token in normalized_resource:
                     findings.append({
                         "code": "PROTECTED_RESULT_REACHABLE",
                         "resource_kind": resource["kind"],

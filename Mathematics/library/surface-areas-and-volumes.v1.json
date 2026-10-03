@@ -772,12 +772,12 @@
       "bucket_id": "BUCKET-SURFACE-AREAS-VOLUMES",
       "primary_capability_ref": "CAP-MAT-SAV-SPHERE-HEMISPHERE",
       "intrinsic_badge": "MEDIUM",
-      "badge_reason": "Requires selecting hemisphere volume formula (2/3)πr³ and cubing the radius.",
+      "badge_reason": "Requires distinguishing the curved inner hemispherical material from the circular mouth opening and selecting the curved-surface model without adding a flat disk.",
       "entry_assumptions": [
         "Can calculate 2D areas of rectangles (l × w) and circles (πr²).",
         "Can evaluate algebraic formulas using rational numbers with π = 22/7."
       ],
-      "inferential_jump": "Evaluate hemisphere internal capacity using V = (2/3)πr³, ensuring r is cubed and volume is halved relative to full sphere.",
+      "inferential_jump": "Recognize that the bowl's circular mouth is an opening, so its inner material surface is only the curved hemisphere; model that boundary as half of a sphere's surface area, 2πr².",
       "teaching_path": [
         {
           "id": "MIC-MAT-SAV-SPHERE-HEMISPHERE-S1",
@@ -805,7 +805,7 @@
           "action": "Check the model by asking whether any physical flat disk exists across the mouth of the bowl.",
           "why_valid": "If there is no material disk, total-solid-hemisphere area is the wrong model.",
           "inputs": [
-            "Volume"
+            "Boundary inventory"
           ],
           "output": "Boundary model verified",
           "role": "VERIFY"
@@ -822,27 +822,29 @@
       ],
       "misconceptions": [
         {
-          "wrong_idea": "Using full sphere volume formula (4/3)πr³ or surface area formula 2πr² for capacity.",
-          "diagnostic_prompt": "How much liquid does a hemisphere hold compared to a full sphere of the same radius?",
-          "repair": "A hemisphere holds exactly half of a full sphere: (1/2) × (4/3)πr³ = (2/3)πr³."
+          "wrong_idea": "Adding a flat circular face across the bowl's mouth, or treating the task as a volume/capacity problem.",
+          "diagnostic_prompt": "Does the circular mouth contain any material surface that should be counted in the bowl's inner area?",
+          "repair": "No. The mouth is an opening. Count only the curved hemispherical inner surface, which is half of 4πr² = 2πr²."
         }
       ],
-      "research_contribution": "Author-created structured pedagogical framing for Spheres and Hemispheres: Capacity and Volume; independent review pending.",
+      "research_contribution": "Author-created structured pedagogical framing for Hemispheres: Curved Inner Surface versus Circular Opening; independent review pending.",
       "prerequisite_refs": [],
       "lineage": [],
       "exit_task": {
-        "prompt": "Find the capacity of a hemispherical bowl of radius 7 cm in cm³ (use π = 22/7).",
+        "prompt": "An open hemispherical bowl has radius 5 cm. Find the area of its inner material surface and state whether the circular mouth is included.",
         "source_ref": "SRC-MATH-OWNER-PILOT",
         "oracle": {
-          "no_numeric_claim": "Verifies hemisphere volume evaluation."
+          "no_numeric_claim": "Checks curved-boundary selection and exclusion of the open circular mouth."
         },
         "answer": {
           "kind": "MODEL_RESPONSE",
-          "summary": "718.67 cm³ (or 2156/3 cm³).",
+          "summary": "50π cm²; the circular mouth is excluded because it is an opening.",
           "reasoning": [
-            "V = (2/3) × (22/7) × 7³ = (2/3) × (22/7) × 343 = (2/3) × 22 × 49 = 2156 / 3 ≈ 718.67 cm³."
+            "The inner material boundary is the curved hemispherical surface only.",
+            "Half of a sphere's surface area is (1/2) × 4πr² = 2πr².",
+            "With r = 5 cm, the inner area is 2π × 5² = 50π cm²."
           ],
-          "check": "3 × 718.67 = 2156 confirms the numerator 2 × 22 × 49 = 2156.",
+          "check": "Two identical curved hemispherical surfaces give 100π cm², equal to the surface area 4π × 5² of the corresponding sphere.",
           "acceptable_alternatives": [],
           "subpart_answers": [],
           "verification_status": "CHECKED_BY_AUTHOR"
@@ -1538,9 +1540,9 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "expression": "V = (2/3)*pi*r^3, CSA = 2*pi*r^2",
-      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>V</mi><mo>=</mo><mfrac><mn>2</mn><mn>3</mn></mfrac><mi>π</mi><msup><mi>r</mi><mn>3</mn></msup></mrow></math>",
-      "meaning": "A hemisphere holds half the volume of a sphere of identical radius.",
+      "expression": "A_inner = 2*pi*r^2",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>A</mi><mtext>inner</mtext></msub><mo>=</mo><mn>2</mn><mi>π</mi><msup><mi>r</mi><mn>2</mn></msup></mrow></math>",
+      "meaning": "For an open hemispherical bowl, the inner material boundary is the curved half-sphere surface; the circular mouth is not included.",
       "symbols": [
         {
           "symbol": "r",
@@ -1548,31 +1550,33 @@
           "unit_or_domain": "length in cm"
         },
         {
-          "symbol": "V",
-          "meaning": "Capacity/volume",
-          "unit_or_domain": "volume in cm³"
+          "symbol": "A_inner",
+          "meaning": "Curved inner material surface area",
+          "unit_or_domain": "area in cm²"
         }
       ],
       "conditions": [
-        "r > 0"
+        "r > 0",
+        "The circular mouth is open and has no flat material disk."
       ],
       "derivation": [
         {
           "id": "DR-HEMI-1",
-          "action": "Halve sphere volume: (1/2) * (4/3)πr³ = (2/3)πr³.",
-          "why_valid": "A hemisphere is exactly half a sphere by plane reflection symmetry.",
+          "action": "Take half of the surface area of a sphere: (1/2) × 4πr² = 2πr².",
+          "why_valid": "A plane through the sphere's center divides the curved spherical boundary into two congruent hemispherical curved surfaces.",
           "inputs": [
-            "sphere volume formula"
+            "sphere surface-area relation 4πr²"
           ],
-          "output": "(2/3)πr³",
+          "output": "2πr²",
           "role": "TRANSFORM"
         }
       ],
       "limits": [
-        "Valid for spherical geometries."
+        "Applies to the curved inner surface of an open hemispherical bowl; add a circular disk only if a physical flat face exists."
       ],
       "checks": [
-        "Volume of 2 identical hemispheres equals 1 sphere."
+        "Two identical curved hemispherical surfaces combine to the sphere surface area 4πr².",
+        "The model excludes the circular mouth because it is an opening."
       ],
       "gate_relation_ref": null
     },
