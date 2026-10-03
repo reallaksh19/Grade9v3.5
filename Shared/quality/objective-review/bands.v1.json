@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0.0",
+  "difficulty_authority": {
+    "source": "existing repository question difficulty analysis",
+    "components": [
+      "concept_model_selection",
+      "representation_translation",
+      "reasoning_chain_length",
+      "algebra_computational_load",
+      "trap_exception_sensitivity"
+    ],
+    "component_range": "0..2",
+    "separation": "Question D1..D4 is independent from Core1A concept difficulty EASY|MEDIUM|HARD and from learner knowledge."
+  },
+  "bands": {
+    "D1": {
+      "label": "Direct / familiar",
+      "difficulty_character": "The surface form is familiar and the decisive move is local. The learner should still perform the requested retrieval, execution or judgement rather than being handed it.",
+      "W_band_semantics": "the direct final retrieval, execution, judgement or conclusion after the relevant cue has been recognized",
+      "support_posture": "Orient only enough to identify the target and applicable idea; do not convert a direct item into a worked example.",
+      "FORMAL_MODEL": "OPTIONAL",
+      "CHECKPOINT": "OPTIONAL"
+    },
+    "D2": {
+      "label": "Connected application",
+      "difficulty_character": "The learner must connect a familiar idea to a condition, representation or procedure that is not completely explicit.",
+      "W_band_semantics": "the connecting application step that turns a known idea into the answer for this instance",
+      "support_posture": "Bridge the non-obvious connection, then leave the application step to the learner.",
+      "FORMAL_MODEL": "CONDITIONAL",
+      "CHECKPOINT": "OPTIONAL"
+    },
+    "D3": {
+      "label": "Integrated reasoning",
+      "difficulty_character": "Several dependencies must be coordinated and one middle move is easy to miss even when the ingredients are known.",
+      "W_band_semantics": "the decisive coordinating or intermediate move that makes the remaining chain possible",
+      "support_posture": "Clarify the structure and dependencies, expose the route to the crux, and leave the crux execution or conclusion to the learner.",
+      "FORMAL_MODEL": "CONDITIONAL",
+      "CHECKPOINT": "CONDITIONAL"
+    },
+    "D4": {
+      "label": "Transfer / exception-sensitive",
+      "difficulty_character": "The framing is unfamiliar, a standard shortcut may fail, or the learner must choose a model/boundary under novelty or exception sensitivity.",
+      "W_band_semantics": "the transfer insight, model/boundary choice, exception handling or decisive synthesis that differentiates this item from a routine analogue",
+      "support_posture": "Make the invariant and changed condition visible without naming the protected transfer decision or resolving the exception for the learner.",
+      "FORMAL_MODEL": "CONDITIONAL",
+      "CHECKPOINT": "CONDITIONAL"
+    }
+  }
+}
