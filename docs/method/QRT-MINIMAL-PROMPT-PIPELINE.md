@@ -36,7 +36,7 @@ X / demonstrated Y / Z / protected W
         v
 ITEM SELF-AUDIT BEFORE RENDER
 every hint / solution move / calculation
-has checks + evidence + basis refs
+has per-check result + evidence + basis refs
         |
         +-----------------------------+
         |                             |
@@ -89,9 +89,21 @@ Before rendering, every authored hint, every solution move and every calculation
 This is not a generic `PASS` field. Each item records:
 
 - `status`;
-- evidence;
+- summary evidence;
 - basis refs;
 - named checks appropriate to the item.
+
+Each named check is itself an evidence-bearing record:
+
+```json
+{
+  "result": "PASS | FAIL | NOT_APPLICABLE",
+  "evidence": "specific evidence for this criterion",
+  "reason": "required when NOT_APPLICABLE"
+}
+```
+
+One generic sentence cannot satisfy several different checks. A failed criterion blocks the item; a `NOT_APPLICABLE` criterion requires a reason.
 
 ### Hint checks
 
@@ -137,6 +149,8 @@ Run before render:
 ```bash
 python Shared/tools/qrt_content_self_audit.py path/to/qrt-pipeline-run.json --phase authoring
 ```
+
+`qrt_pipeline_precheck.py` also executes this item-level audit, so it cannot be bypassed by using the normal pre-render path.
 
 ## Authoring is not review
 
@@ -234,7 +248,7 @@ A governed run records:
 - actual owner events;
 - matrix/adapter/profile/Blueprint-registry digests;
 - artifact paths + SHA-256;
-- item-level self-audits for every hint/solution/calculation;
+- item-level self-audits for every hint/solution/calculation, including per-check evidence;
 - review artifact SHA-256;
 - interactive Chromium receipts where applicable;
 - separate validation-layer evidence refs.
@@ -249,7 +263,7 @@ python Shared/tools/qrt_pipeline_gate.py path/to/qrt-pipeline-run.json
 
 It combines the custody/QRT/exact-render guard with item self-audit and interactive-Chromium enforcement.
 
-The gate fails closed on the audited failure modes, including fabricated learner provenance, normalized question text not present in the owner prompt, answer-bearing X, Y without a demonstrated bridge, Z/W collapse with scaffolding, transitive W leaks, invented Blueprint refs, missing item self-audits, failed calculation checks, unbound render review, missing H1-M3 judgements, Core1A publication without canonical truth, broken bidirectional lineage, missing/stale interactive Chromium evidence and aggregate self-certification.
+The gate fails closed on the audited failure modes, including fabricated learner provenance, normalized question text not present in the owner prompt, answer-bearing X, Y without a demonstrated bridge, Z/W collapse with scaffolding, transitive W leaks, invented Blueprint refs, missing item self-audits, missing per-check evidence, failed calculation checks, unbound render review, missing H1-M3 judgements, Core1A publication without canonical truth, broken bidirectional lineage, missing/stale interactive Chromium evidence and aggregate self-certification.
 
 ## Acceptance replay
 
@@ -258,5 +272,5 @@ Issue #10 at exact head `32f31cbecea0e3ffd8bb8a8bb466a41a7ebe424c` demonstrated 
 The next replay should additionally emit this hardened run contract so that:
 
 - the committed QRT record is bound to the exact rendered bytes;
-- each hint/solution/calculation carries self-audit evidence;
+- each hint/solution/calculation carries self-audit evidence for every named criterion;
 - any future interactive explorer carries its own exact-byte Chromium receipt.
