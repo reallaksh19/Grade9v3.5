@@ -106,6 +106,9 @@ jobs:
 
       - name: Build governed final Core2 and Core1A
         run: |
+          python Shared/tools/render_core.py gaps \
+            --manifest products/mathematics/surface-areas-volumes.issue11.manifest.json \
+            --reference || true
           rm -rf evidence/pilots/issue-11/render
           python Shared/tools/render_core.py build \
             --manifest products/mathematics/surface-areas-volumes.issue11.manifest.json \
