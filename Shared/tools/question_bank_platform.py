@@ -566,6 +566,14 @@ CANONICAL_CAPABILITY_TITLES = {
     "CAP-CHEM-STOICH-MOLE-RATIO": {"title": "Stoichiometric Mole Ratios & Product Yields", "source_ref": "MIC-CHEM-STOICH-RATIO"},
     "CAP-CHEM-MOLE-CONCENTRATION-TO-AMOUNT": {"title": "Solution Concentration & Moles from Molarity", "source_ref": "MIC-CHEM-MOLE-CONC"},
     "CAP-CHEM-STOICH-MASS-MOLE": {"title": "Mass-to-Moles & Molar Mass Conversions", "source_ref": "MIC-CHEM-STOICH-MASS"},
+    "CAP-MAT-POLY-STRUCTURE": {"title": "Polynomial Structure, Terms & Degree", "source_ref": "MIC-MAT-POLY-STRUCTURE"},
+    "CAP-MAT-POLY-EVALUATION": {"title": "Polynomial Evaluation & Linear Relations", "source_ref": "MIC-MAT-POLY-EVALUATION"},
+    "CAP-MAT-POLY-REMAINDER-FACTOR": {"title": "Remainder, Factors, Zeroes & Division", "source_ref": "MIC-MAT-POLY-REMAINDER-FACTOR"},
+    "CAP-MAT-ALG-IDENTITIES": {"title": "Algebraic Identities & Factorisation", "source_ref": "MIC-MAT-ALG-IDENTITIES"},
+    "CAP-MAT-COORD-QUADRANTS": {"title": "Quadrant Sign Rules & Coordinate Axes", "source_ref": "MIC-MAT-COORD-QUADRANTS"},
+    "CAP-MAT-COORD-DISTANCES": {"title": "Metric Projections & Axis Distances", "source_ref": "MIC-MAT-COORD-DISTANCES"},
+    "CAP-MAT-COORD-FIGURES": {"title": "Geometric Figures in the Coordinate Plane", "source_ref": "MIC-MAT-COORD-FIGURES"},
+    "CAP-MAT-COORD-INCIDENCE": {"title": "Lines & Incidence in Coordinate Geometry", "source_ref": "MIC-MAT-COORD-INCIDENCE"},
 }
 
 
