@@ -34,6 +34,18 @@ In accordance with `docs/method/QRT-SHORT-PROMPT.md` and `Shared/workflows/qrt-s
 - **Owner Resolution**: `PRESERVE_OWNER_QUESTIONS`.
 - **Routing Decision**: Routed to Core 2 (`BP-CORE2-SOURCE-QUESTION@1.5.0`) to safeguard source wording and pre-attempt boundaries. In addition, companion Core 1A (`BP-CORE1A-CONSTRUCTION@1.4.0`) was generated to deliver the prerequisite teaching reference depth, concept links, and geometric representations mandated by Blueprint 1.9.
 
+### Clarification 4 / Owner Requirement: `INTERACTIVE_PAGE_FOR_TOUGHEST_TOPIC`
+- **Owner Directive**: *"Plan for a interactive page for the tough topic in topic list"*
+- **Deterministic Selection (`Shared/tools/toughest_concept.py`)**:
+  - The repository's canonical rule for selecting the toughest concept in a question set:
+    $$\text{conceptual difficulty } (\text{concept\_model\_selection} + \text{trap\_exception\_sensitivity}) \to \text{total score} \to \text{representation\_translation} \to \text{reasoning\_chain\_length} \to \text{bank order}$$
+  - Selected Microtopic: **`MIC-MAT-SAV-COMPOSITE-SOLIDS`** (*Composite Solids: Hidden Boundary Exclusion*)
+  - Associated Question: **`Q6`** (*Toy made by mounting cone on hemisphere, $r=3.5\text{ cm}, h=12\text{ cm}$; find total exposed surface area*)
+  - Difficulty Vector: `(concept=2, trap=1, length=2, algebra=1, translation=1)` $\to$ Conceptual Load: **3/4**, Band: **D3**, Total Score: **7/10**.
+  - Crux Move: `Q6-M2` (`DECIDE`): Formulate exposed boundary $\text{Exposed Area} = \pi r l + 2\pi r^2$, strictly excluding the internal joined circular interface.
+  - Common Misconception: Naively adding closed cone TSA ($\pi r l + \pi r^2$) to closed hemisphere TSA ($3\pi r^2$), erroneously counting the internal joint face twice ($+2\pi r^2$).
+  - Runner-Up: `MIC-MAT-SAV-RECASTING-VOLUME` (`Q9`, D3, Score 6/10, Conceptual Load 3/4).
+
 ---
 
 ## 2. Agent-Derived Decisions and Rationales
@@ -111,6 +123,42 @@ To ensure reference-depth visual teaching, 8 clean, proportional SVG illustratio
 6. `REP-MAT-SAV-COMPOSITE-SOLIDS.svg`: Composite toy with mounted cone on hemisphere, highlighting hidden joint.
 7. `REP-MAT-SAV-RECASTING-VOLUME.svg`: Recasting transformation from large sphere ($R=6\text{ cm}$) to 27 small spheres ($r=2\text{ cm}$).
 8. `REP-MAT-SAV-PROPORTIONAL-REASONING.svg`: Shared base and height cylinder and inscribed cone demonstrating $1/3$ volume invariant.
+
+### 2.5 Interactive Page Plan for Toughest Concept (`BP-INTERACTIVE@1` / `LPAP.INTERACTIVE@1`)
+Pursuant to the Owner Requirement, an interactive page plan is established for `MIC-MAT-SAV-COMPOSITE-SOLIDS` (the highest conceptual-difficulty topic in the chapter):
+
+#### 2.5.1 Page Specification & Governed Role
+- **Target File**: `publication/mathematics/surface-areas-and-volumes/interactive-composite-solids.html`
+- **Blueprint Reference**: `BP-INTERACTIVE@1` (evaluated under `LPAP.INTERACTIVE@1` Deep Interactive Profile).
+- **Core Cognitive Loop**:
+  $$\text{Learner Action} \longrightarrow \text{Executable Model State Change} \longrightarrow \text{Dynamic Visual/Semantic Consequence} \longrightarrow \text{Target Epistemic Inference}$$
+- **Specific Learning Advantage over Static Media**:
+  While a static figure can only present the joined solid with a dashed internal circle, an interactive manipulable model enables the learner to physically dissect and join the solids. Watching the flat circular base transition from an exposed boundary into a sealed internal interface provides undeniable visual and causal proof of why component TSAs must not be added.
+
+#### 2.5.2 Key Interactive Components & Features
+1. **Interactive Dissection & Assembly Slider (The "Joint Dissector")**:
+   - *Control*: Continuous slider controlling separation gap $d \in [0, 100]\text{ px}$.
+   - *Model Behavior*:
+     - When $d > 0$ (separated solids): Both circular faces are exposed to the ambient environment. The base of the cone ($\pi r^2$) and the top circle of the hemisphere ($\pi r^2$) illuminate in bright amber. The live area ledger records:
+       $$\text{Total Area} = \text{Cone CSA} + \text{Cone Base} + \text{Hemisphere CSA} + \text{Hemisphere Base} = \pi r l + \pi r^2 + 2\pi r^2 + \pi r^2 = \pi r l + 4\pi r^2$$
+     - When $d = 0$ (contact event): The two circular faces snap together into physical contact. The contact area turns dashed gray with an "Interior Boundary Sealed" badge. The area ledger dynamically updates with a strike-through:
+       $$\text{Exposed Surface Area} = \text{CSA}(\text{cone}) + \text{CSA}(\text{hemisphere}) + \cancel{2\pi r^2} = \pi r l + 2\pi r^2$$
+2. **Dynamic Parametric Controls (Radius $r$ & Height $h$)**:
+   - *Controls*: Sliders for base radius $r \in [1.0, 10.0]\text{ cm}$ (step $0.5$) and vertical height $h \in [2.0, 24.0]\text{ cm}$ (step $0.5$).
+   - *Live Feedback*: Interactive generator right-triangle display showing $r$ and $h$ dynamically solving for hypotenuse $l = \sqrt{r^2 + h^2}$.
+   - *Benchmark Preset*: "Load Q6 Benchmark Values ($r = 3.5\text{ cm}, h = 12\text{ cm} \implies l = 12.5\text{ cm}, \text{Exposed Area} = 214.5\text{ cm}^2$)".
+3. **Misconception Comparison Overlay (M1–M3 Repair)**:
+   - *Control*: Toggle switch "Compare with Naive TSA Addition".
+   - *Feedback*: Renders a ghosted red volume overlay highlighting the phantom $+2\pi r^2$ ($77\text{ cm}^2$ for Q6) error volume. An explanation panel states: *"Surface area measures only the external boundary exposed to touch or paint. Glued surfaces are internal and have zero exposure."*
+4. **Interactive Exit Challenge Probe**:
+   - *Control*: Virtual paint brush.
+   - *Task*: "Click on every surface of the assembled toy that receives paint."
+   - *Validation*: Clicking the conical mantle or hemispherical dome applies paint. Clicking the internal joint boundary triggers an instant diagnostic prompt: *"This interface is sealed inside the toy and cannot be reached by paint!"*
+
+#### 2.5.3 Technical & Architectural Safeguards
+- Single self-contained HTML/JS bundle with inline vector SVG (zero external CDN or script dependencies).
+- Conforms to repository design tokens, Dark/Light mode theme switching, and responsive touch minimums ($44\text{ px}$).
+- Integrated into the product via shell header navigation (`<header data-g9-shell-header>`) and reciprocal action links in Core 2 (`Q6`) and Core 1A (`MIC-MAT-SAV-COMPOSITE-SOLIDS`).
 
 ---
 

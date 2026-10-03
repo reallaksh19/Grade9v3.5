@@ -43,6 +43,71 @@
     "support_posture": "STANDARD",
     "measured_fit_claim": false
   },
+  "owner_requirements": [
+    {
+      "id": "OWNER-REQ-SAV-INTERACTIVE-TOUGHEST-TOPIC",
+      "prompt": "Plan for a interactive page for the tough topic in topic list",
+      "status": "PLANNED",
+      "toughest_concept_resolution": {
+        "algorithm": "Shared/tools/toughest_concept.py",
+        "rule": "the question whose difficulty is most conceptual (concept_model_selection + trap_exception_sensitivity), then higher total score, then representation_translation, then reasoning_chain_length, then the first in the bank",
+        "selected_microtopic": "MIC-MAT-SAV-COMPOSITE-SOLIDS",
+        "selected_question": "Q6",
+        "title": "Composite Solids: Hidden Boundary Exclusion",
+        "band": "D3",
+        "score": 7,
+        "conceptual_load": 3,
+        "runner_up": {
+          "question_ref": "Q9",
+          "microtopic": "MIC-MAT-SAV-RECASTING-VOLUME",
+          "band": "D3",
+          "score": 6,
+          "conceptual_load": 3
+        }
+      },
+      "interactive_page_plan": {
+        "page_name": "interactive-composite-solids.html",
+        "staged_path": "publication/mathematics/surface-areas-and-volumes/interactive-composite-solids.html",
+        "blueprint_ref": "BP-INTERACTIVE@1",
+        "audit_profile": "LPAP.INTERACTIVE@1",
+        "cognitive_loop": "learner action -> model state change -> visible consequence -> intended inference",
+        "learning_advantage": "Physically separating and joining composite solids makes the boundary contact event and face elimination visually and algebraically intuitive, directly extinguishing the common misconception of summing closed TSAs.",
+        "interactive_components": [
+          {
+            "name": "Assembly/Disassembly Slider",
+            "control": "Range slider for separation distance d (0 to 100 px)",
+            "dynamic_visual": "Separated (d > 0): 2 independent solids with amber exposed base circles (πr² on cone, πr² on hemisphere). Joined (d = 0): bases snap together, turning dashed gray interior interfaces.",
+            "live_ledger": "Live algebraic area ledger strikes through internal bases: Exposed Area = πrl + 2πr² + [cancelled 2πr²]."
+          },
+          {
+            "name": "Geometry & Slant Height Generator",
+            "control": "Dual sliders for base radius r (1.0 to 10.0 cm) and cone height h (2.0 to 24.0 cm)",
+            "dynamic_visual": "Live generator right triangle with legs r and h dynamically computing hypotenuse l = sqrt(r² + h²); live recalculation of cone CSA (πrl) and hemisphere CSA (2πr²).",
+            "presets": [
+              "Q6 Benchmark: r=3.5 cm, h=12 cm -> l=12.5 cm, Area=214.5 cm²"
+            ]
+          },
+          {
+            "name": "Misconception Diagnostic Overlay (M1-M3)",
+            "control": "Toggle button: 'Compare with Naive TSA Addition'",
+            "dynamic_visual": "Highlights the trapped phantom 77 cm² internal interface in pulsing red with concrete explanation of why interior surfaces cannot be painted.",
+            "replacement_rule": "Identify exposed exterior boundaries only; never add component TSAs across sealed interfaces."
+          },
+          {
+            "name": "Interactive Paint Challenge (Exit Task)",
+            "control": "Interactive brush tool to click and paint exposed faces",
+            "behavior": "Clicking cone mantle or hemisphere dome paints the surface; clicking interior interface triggers diagnostic repair alert."
+          }
+        ],
+        "implementation_constraints": [
+          "Zero external runtime dependencies (vanilla JS + scalable inline SVG)",
+          "Responsive across touch and desktop viewports (360px to 1440px)",
+          "Standard Grade9v3 shell header (<header data-g9-shell-header>) and dark/light theme tokens",
+          "Full ARIA accessibility attributes on all sliders and interactive controls"
+        ]
+      }
+    }
+  ],
   "matrix_summary": {
     "cells_exercised": [
       "QRT-APPLY-D1",
