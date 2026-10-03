@@ -35,6 +35,24 @@ jobs:
           echo "9fb3c171398b70f741561841a029a79eb270611692cc85f5fb67003299eaddf4  /tmp/issue11-source-packet.tar.gz" | sha256sum --check
           tar -xzf /tmp/issue11-source-packet.tar.gz -C .
 
+      - name: Preserve materialized draft sources for schema debugging
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            Mathematics/library/surface-areas-volumes.issue11.v1.json \
+            Mathematics/question-bank/owner-supplied/issue-11-surface-areas-volumes.json \
+            Mathematics/assets/representations/issue11-*.svg \
+            products/mathematics/surface-areas-volumes.issue11.manifest.json \
+            evidence/pilots/issue-11/learner-profile.json \
+            evidence/pilots/issue-11/qrt-judgements.json \
+            evidence/pilots/issue-11/pilot_runner.py \
+            evidence/pilots/issue-11/audit-trail.md
+          if ! git diff --cached --quiet; then
+            git commit -m "pilot(issue-11): materialize draft governed sources"
+            git push origin HEAD:pilot/issue-11-surface-areas-volumes
+          fi
+
       - name: Install validation and browser dependencies
         run: |
           python -m pip install --quiet jsonschema pytest
