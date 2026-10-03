@@ -1,0 +1,160 @@
+from __future__ import annotations
+
+import json
+import tempfile
+import unittest
+from pathlib import Path
+
+from Shared.tools import qrt_content_self_audit as audit
+
+
+class QRTContentSelfAuditTests(unittest.TestCase):
+    def base_run(self):
+        return {
+            "run_identity": {"head_sha": "a" * 40},
+            "questions": [
+                {
+                    "id": "Q1",
+                    "hints": [
+                        {
+                            "id": "H1",
+                            "text": "Count the physical faces first.",
+                            "calculation_bearing": False,
+                            "calculation_refs": [],
+                            "self_audit": {
+                                "status": "PASS",
+                                "evidence": ["Does not reveal the final expression."],
+                                "basis_refs": ["Q1.W", "QRT-APPLY-D1.H1"],
+                                "checks": {name: "PASS" for name in audit.HINT_CHECKS},
+                            },
+                        }
+                    ],
+                    "solution_steps": [
+                        {
+                            "id": "SOLUTION-1",
+                            "action": "Find one face area.",
+                            "why_valid_here": "Each face is a square of side 7 cm.",
+                            "result": "49 cm2 per face.",
+                            "calculation_bearing": True,
+                            "calculation_refs": ["C1"],
+                            "self_audit": {
+                                "status": "PASS",
+                                "evidence": ["Square area is 7×7."],
+                                "basis_refs": ["Q1.stem", "Q1.C1"],
+                                "checks": {name: "PASS" for name in audit.SOLUTION_CHECKS},
+                            },
+                        }
+                    ],
+                    "calculations": [
+                        {
+                            "id": "C1",
+                            "expression": "7 × 7",
+                            "result": "49 cm2",
+                            "self_audit": {
+                                "status": "PASS",
+                                "evidence": ["Independent multiplication check: 7×7=49."],
+                                "basis_refs": ["Q1.stem"],
+                                "checks": {name: "PASS" for name in audit.CALCULATION_CHECKS},
+                            },
+                        }
+                    ],
+                }
+            ],
+            "rendered_artifacts": [],
+            "validation": {"interactive_chromium_receipts": []},
+        }
+
+    def test_every_hint_requires_self_audit(self):
+        run = self.base_run()
+        del run["questions"][0]["hints"][0]["self_audit"]
+        self.assertIn(
+            "SELF_AUDIT_MISSING: Q1:HINT:H1",
+            audit.validate_content_self_audits(run),
+        )
+
+    def test_solution_calculation_reference_must_resolve(self):
+        run = self.base_run()
+        run["questions"][0]["solution_steps"][0]["calculation_refs"] = ["NOPE"]
+        self.assertIn(
+            "CALCULATION_REF_UNKNOWN: Q1:SOLUTION:SOLUTION-1:NOPE",
+            audit.validate_content_self_audits(run),
+        )
+
+    def test_failed_calculation_check_blocks(self):
+        run = self.base_run()
+        run["questions"][0]["calculations"][0]["self_audit"]["checks"]["units_dimensions"] = "FAIL"
+        self.assertIn(
+            "SELF_AUDIT_CHECK_FAILED: Q1:CALCULATION:C1:units_dimensions",
+            audit.validate_content_self_audits(run),
+        )
+
+    def test_interactive_page_requires_chromium_receipt(self):
+        run = self.base_run()
+        run["rendered_artifacts"] = [
+            {"id": "EXPLORER", "kind": "INTERACTIVE_HTML", "sha256": "sha256:" + "1" * 64}
+        ]
+        self.assertIn(
+            "INTERACTIVE_CHROMIUM_RECEIPT_MISSING: EXPLORER",
+            audit.validate_interactive_chromium(run),
+        )
+
+    def test_chromium_receipt_is_bound_to_exact_artifact_and_report_bytes(self):
+        run = self.base_run()
+        original_repo = audit.REPO
+        try:
+            with tempfile.TemporaryDirectory() as tmp:
+                audit.REPO = Path(tmp)
+                page = audit.REPO / "interactive.html"
+                page.write_text("<main><h1>Explorer</h1></main>", encoding="utf-8")
+                artifact_digest = audit.sha256_file(page)
+                report = {
+                    "schema": "interactive-page-audit/v1",
+                    "tool": audit.CHROMIUM_TOOL,
+                    "engine": audit.CHROMIUM_ENGINE,
+                    "profile": "tablet-12.7",
+                    "head_sha": "a" * 40,
+                    "artifact_sha256": artifact_digest,
+                    "status": "PASS",
+                    "viewports": {},
+                    "page_errors": [],
+                    "console_errors": [],
+                    "external_requests": [],
+                    "failures": [],
+                }
+                report_path = audit.REPO / "interactive-audit.json"
+                report_path.write_text(json.dumps(report), encoding="utf-8")
+                report_digest = audit.sha256_file(report_path)
+
+                run["rendered_artifacts"] = [
+                    {
+                        "id": "EXPLORER",
+                        "kind": "INTERACTIVE_HTML",
+                        "path": "interactive.html",
+                        "sha256": artifact_digest,
+                    }
+                ]
+                run["validation"]["interactive_chromium_receipts"] = [
+                    {
+                        "artifact_ref": "EXPLORER",
+                        "artifact_sha256": artifact_digest,
+                        "head_sha": "a" * 40,
+                        "tool": audit.CHROMIUM_TOOL,
+                        "engine": audit.CHROMIUM_ENGINE,
+                        "profile": "tablet-12.7",
+                        "status": "PASS",
+                        "report_path": "interactive-audit.json",
+                        "report_sha256": report_digest,
+                    }
+                ]
+                self.assertEqual(audit.validate_interactive_chromium(run), [])
+
+                page.write_text("<main><h1>Changed explorer</h1></main>", encoding="utf-8")
+                run["rendered_artifacts"][0]["sha256"] = audit.sha256_file(page)
+                problems = audit.validate_interactive_chromium(run)
+                self.assertIn("INTERACTIVE_CHROMIUM_ARTIFACT_DIGEST_MISMATCH: EXPLORER", problems)
+        finally:
+            audit.REPO = original_repo
+
+
+if __name__ == "__main__":
+    unittest.main()

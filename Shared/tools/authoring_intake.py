@@ -144,7 +144,6 @@ def clarification_plan(intake: dict[str, Any], capability_scan: dict[str, Any] |
                 "items": missing,
             })
 
-    # These are explicitly agent-owned and are emitted as work, never questions to the owner.
     agent_actions.extend([
         {"id": "VERIFY_ACADEMICS", "instruction": "Solve and independently verify each supplied question and preserve owner-supplied source custody without inventing provenance."},
         {"id": "CLASSIFY_DIFFICULTY", "instruction": "Author the five-component difficulty evidence and resolve D1-D4."},
@@ -169,7 +168,11 @@ def clarification_plan(intake: dict[str, Any], capability_scan: dict[str, Any] |
         "question_count": len(intake["questions"]),
         "owner_questions": owner_questions,
         "agent_actions": agent_actions,
-        "source_default": "OWNER_SUPPLIED",
+        "source_default": {
+            "status": "OWNER_SUPPLIED",
+            "provenance_kind": "AGENT_CUSTODY_INTERPRETATION",
+            "basis": "The question text is present in the owner's prompt. This is a custody interpretation, not an owner clarification reply and not an external-source claim.",
+        },
         "do_not_ask_owner_for": [
             "D1-D4",
             "cognitive demand",
@@ -196,6 +199,7 @@ def materialize_profile(intake: dict[str, Any], capability_scan: dict[str, Any])
     profile: dict[str, Any] = {
         "profile_id": profile_id,
         "provenance": "OWNER_ESTIMATE",
+        "provenance_note": "Materialized from learner facts present in the intake. The governed run audit must bind those facts to actual owner events before learner-specific claims are accepted.",
         "held": selected,
         "knowledge_percentage": None,
         "measured_fit_claim": False,
@@ -208,7 +212,7 @@ def materialize_profile(intake: dict[str, Any], capability_scan: dict[str, Any])
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
-    check = sub.add_parser("check", help="validate the policy file and basic invariants")
+    sub.add_parser("check", help="validate the policy file and basic invariants")
     plan = sub.add_parser("plan", help="produce missing-input clarification / agent work plan")
     plan.add_argument("--intake", type=Path, required=True)
     plan.add_argument("--capabilities", type=Path)
