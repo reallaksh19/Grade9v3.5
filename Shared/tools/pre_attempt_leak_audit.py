@@ -6,6 +6,7 @@ import argparse
 import html
 import json
 import unicodedata
+import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Any
 
@@ -14,6 +15,27 @@ def _normalize_for_match(value: Any) -> str:
     text = html.unescape(str(value))
     text = unicodedata.normalize("NFKC", text)
     return " ".join(text.split()).casefold()
+
+
+def _read_asset_text(path: Path) -> str:
+    raw = path.read_text(encoding="utf-8")
+    if path.suffix.lower() != ".svg":
+        return raw
+    try:
+        root = ET.fromstring(raw)
+    except ET.ParseError:
+        return raw
+    visible: list[str] = []
+    for element in root.iter():
+        tag = element.tag.rsplit("}", 1)[-1]
+        if tag in {"title", "desc", "text"}:
+            value = " ".join("".join(element.itertext()).split())
+            if value:
+                visible.append(value)
+        aria_label = element.attrib.get("aria-label")
+        if aria_label:
+            visible.append(aria_label)
+    return "\n".join(visible)
 
 
 def _protected_tokens(question: dict[str, Any]) -> list[str]:
@@ -113,7 +135,7 @@ def audit(bank: dict[str, Any], package: dict[str, Any], repo_root: Path) -> dic
                     })
                     for asset_ref in rep.get("rendered_asset_refs") or []:
                         asset = repo_root / asset_ref
-                        text = asset.read_text(encoding="utf-8") if asset.is_file() else ""
+                        text = _read_asset_text(asset) if asset.is_file() else ""
                         resources.append({
                             "kind": "CORE1A_ASSET",
                             "ref": asset_ref,
