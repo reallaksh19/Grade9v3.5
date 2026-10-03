@@ -1,0 +1,128 @@
+name: Issue 11 Surface Areas and Volumes pilot
+
+on:
+  push:
+    branches:
+      - pilot/issue-11-surface-areas-volumes
+    paths:
+      - ".github/workflows/issue-11-pilot.yml"
+      - "evidence/pilots/issue-11/source-packet.b64.*"
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: pilot/issue-11-surface-areas-volumes
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Materialize audited pilot source packet
+        run: |
+          cat evidence/pilots/issue-11/source-packet.b64.* | base64 --decode > /tmp/issue11-source-packet.tar.gz
+          echo "9fb3c171398b70f741561841a029a79eb270611692cc85f5fb67003299eaddf4  /tmp/issue11-source-packet.tar.gz" | sha256sum --check
+          tar -xzf /tmp/issue11-source-packet.tar.gz -C .
+
+      - name: Install validation and browser dependencies
+        run: |
+          python -m pip install --quiet jsonschema pytest
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+
+      - name: Validate PR 9 QRT contracts
+        run: |
+          python Shared/tools/question_review_matrix.py check
+          pytest -q tests/test_qrt_short_prompt.py tests/test_question_review_matrix.py
+
+      - name: Validate package and owner-supplied bank
+        run: |
+          python -m Shared.library.resolve --schema Mathematics/library/surface-areas-volumes.issue11.v1.json
+          python Shared/tools/owner_bank.py check Mathematics/question-bank/owner-supplied/issue-11-surface-areas-volumes.json
+
+      - name: Build pre-QRT-support baseline and run real gate
+        run: |
+          python evidence/pilots/issue-11/pilot_runner.py baseline \
+            --bank-out /tmp/issue11-baseline-bank.json \
+            --manifest-out /tmp/issue11-baseline-manifest.json
+          rm -rf /tmp/issue11-before
+          python Shared/tools/render_core.py build \
+            --manifest /tmp/issue11-baseline-manifest.json \
+            --out /tmp/issue11-before --draft --reference
+          python Shared/tools/quality_gate.py /tmp/issue11-before \
+            --subject Mathematics --product-id PILOT-I11-SA-VOLUMES \
+            --report evidence/pilots/issue-11/gate-before.json
+
+      - name: Build governed final Core2 and Core1A
+        run: |
+          rm -rf evidence/pilots/issue-11/render
+          python Shared/tools/render_core.py build \
+            --manifest products/mathematics/surface-areas-volumes.issue11.manifest.json \
+            --out evidence/pilots/issue-11/render --reference
+
+      - name: Run real final gate and produce QRT evidence
+        run: |
+          python Shared/tools/quality_gate.py evidence/pilots/issue-11/render \
+            --subject Mathematics --product-id PILOT-I11-SA-VOLUMES \
+            --report evidence/pilots/issue-11/gate-after.json
+          python evidence/pilots/issue-11/pilot_runner.py evidence \
+            --gate-before evidence/pilots/issue-11/gate-before.json \
+            --gate-after evidence/pilots/issue-11/gate-after.json \
+            --render-dir evidence/pilots/issue-11/render
+
+      - name: Commit governed pilot outputs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            Mathematics/library/surface-areas-volumes.issue11.v1.json \
+            Mathematics/question-bank/owner-supplied/issue-11-surface-areas-volumes.json \
+            Mathematics/assets/representations/issue11-*.svg \
+            products/mathematics/surface-areas-volumes.issue11.manifest.json \
+            evidence/pilots/issue-11/learner-profile.json \
+            evidence/pilots/issue-11/qrt-judgements.json \
+            evidence/pilots/issue-11/pilot_runner.py \
+            evidence/pilots/issue-11/audit-trail.md \
+            evidence/pilots/issue-11/render \
+            evidence/pilots/issue-11/gate-before.json \
+            evidence/pilots/issue-11/gate-after.json \
+            evidence/pilots/issue-11/gate-delta.json \
+            evidence/pilots/issue-11/qrt-review-evidence.json \
+            evidence/pilots/issue-11/product-review-qrt-findings.json \
+            evidence/pilots/issue-11/execution-record.json
+          if git diff --cached --quiet; then
+            echo "No generated changes."
+          else
+            git commit -m "pilot(issue-11): record governed QRT render evidence"
+            git push origin HEAD:pilot/issue-11-surface-areas-volumes
+          fi
+          FINAL_SHA="$(git rev-parse HEAD)"
+          BEFORE="$(python -c 'import json; print(json.load(open("evidence/pilots/issue-11/gate-before.json"))["verdict"])')"
+          AFTER="$(python -c 'import json; print(json.load(open("evidence/pilots/issue-11/gate-after.json"))["verdict"])')"
+          gh issue comment 11 --repo reallaksh19/Grade9v3.5 --body "## Pilot execution artifact commit
+
+Final generated-artifact commit: `$FINAL_SHA`
+
+Governed learner HTML:
+- `evidence/pilots/issue-11/render/core2.html`
+- `evidence/pilots/issue-11/render/core1a.html`
+
+Machine QRT evidence:
+- `evidence/pilots/issue-11/qrt-review-evidence.json`
+
+Real gate verdicts: baseline **$BEFORE** → final **$AFTER**.
+
+This is an execution record, not release self-certification. Independent final review remains required."
