@@ -84,25 +84,32 @@ def build_search_documents(repo_root: Path) -> tuple[list[dict], dict]:
         topic_refs = classification.get("topic_refs", [])
         ep = rec.get("artifact", {}).get("entrypoint", "")
 
-        is_core1a = "core1a" in rid.lower() or "core1a" in ep.lower() or "core 1a" in title.lower()
-        is_core2 = "core2" in rid.lower() or "core2" in ep.lower() or "core 2" in title.lower()
-        is_suite = "master-suite" in ep.lower() or "master suite" in title.lower()
-        is_explorer = role == "EXPLORE" or "explorer" in ep.lower()
+        is_atlas = "atlas" in rid.lower() or "atlas" in ep.lower()
+        is_core1a = "core1a" in rid.lower() or "core1a" in ep.lower() or "core 1a" in title.lower() or "construction" in rid.lower() or "construction" in ep.lower()
+        is_explorer = role == "EXPLORE" or "explorer" in ep.lower() or "1b" in rid.lower()
+        is_core2a = "ncert" in rid.lower() or "ncert" in ep.lower() or "core2-" in rid.lower() or "core2a" in rid.lower()
+        is_core2b = "master-suite" in ep.lower() or "master suite" in title.lower() or "2b" in rid.lower() or "pyq" in rid.lower() or "iitjee" in rid.lower()
 
-        if is_core1a:
-            badge = "CORE 1A FOUNDATION"
+        if is_atlas:
+            badge = "1 ATLAS & RUNGS"
+            sub_type = "CORE_1"
+        elif is_core1a:
+            badge = "1A CONSTRUCTION"
             sub_type = "CORE_1A"
-        elif is_core2:
-            badge = "CORE 2 CHALLENGE"
-            sub_type = "CORE_2"
-        elif is_suite:
-            badge = "MASTER SUITE"
-            sub_type = "SUITE"
         elif is_explorer:
-            badge = "EXPLORER"
-            sub_type = "EXPLORER"
+            badge = "1B VISUALIZER"
+            sub_type = "CORE_1B"
+        elif is_core2a:
+            badge = "2A NCERT HELPER"
+            sub_type = "CORE_2A"
+        elif is_core2b:
+            badge = "2B JEE PYQ"
+            sub_type = "CORE_2B"
+        elif role == "PRACTICE":
+            badge = "CORE 2 PRACTICE"
+            sub_type = "CORE_2"
         else:
-            badge = "PRACTICE" if role == "PRACTICE" else ("CORE STUDY" if role == "LEARN" else role)
+            badge = "CORE STUDY" if role == "LEARN" else role
             sub_type = role
 
         topic_clean = topic_refs[0].split(".")[-1].replace("-", " ").title() if topic_refs else ""

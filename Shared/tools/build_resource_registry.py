@@ -748,18 +748,294 @@ def discover_core1a_books(repo_root: Path) -> list[dict]:
     return books
 
 
+def discover_topic_manifests(repo_root: Path) -> list[dict]:
+    """Ingest continuum modules (1, 1A, 1B, 2A, 2B) from declarative topic.manifest.json files."""
+    records = []
+    manifest_paths = sorted(list((repo_root / "public").glob("*/*/topic.manifest.json")) + list(repo_root.glob("*/*/topic.manifest.json")))
+    seen_manifests = set()
+
+    for mp in manifest_paths:
+        norm_key = str(mp.resolve())
+        if norm_key in seen_manifests:
+            continue
+        seen_manifests.add(norm_key)
+
+        try:
+            doc = json.loads(mp.read_text(encoding="utf-8"))
+        except Exception as e:
+            print(f"Warning: could not parse manifest {mp}: {e}")
+            continue
+
+        subj = doc.get("subject", "Common")
+        topic_id = doc.get("id", "")
+        topic_slug = doc.get("topic_slug", topic_id.split(".")[-1])
+
+        # Core 1: Topic Atlas & Rungs
+        rungs = doc.get("rungs_atlas")
+        if rungs:
+            ep = rungs.get("entrypoint", "")
+            if (repo_root / "public" / ep).exists() or (repo_root / ep).exists():
+                records.append({
+                    "schema": "grade9v3-resource/v1",
+                    "id": f"{topic_id}.atlas",
+                    "resource_kind": "STRUCTURED_PRODUCT",
+                    "learner_role": "LEARN",
+                    "audience": "LEARNER",
+                    "presentation": "FULL_PAGE",
+                    "classification": {
+                        "subject_ref": subj,
+                        "topic_refs": [topic_id],
+                        "capability_refs": []
+                    },
+                    "artifact": {"entrypoint": ep, "generated": False},
+                    "platform_capabilities": ["pedagogical-rungs", "topic-atlas"],
+                    "search": {
+                        "title": rungs.get("title", f"{doc.get('topic_title', topic_slug)} · Topic Atlas"),
+                        "aliases": [topic_slug, "atlas", "rungs"],
+                        "visibility": "LEARNER"
+                    },
+                    "source": {"authority_ref": str(mp.relative_to(repo_root)).replace("\\", "/"), "generator_ref": None},
+                    "validation": {"academic_evidence_ref": None, "structural_evidence_ref": None, "browser_evidence_ref": None, "publication_evidence_ref": None}
+                })
+
+        # Subtopic Continuum Modules
+        for sub in doc.get("subtopics", []):
+            sub_id = sub.get("id", "")
+            concept_ref = sub.get("concept_ref", sub_id)
+            continuum = sub.get("continuum", {})
+
+            # Core 1A: Concept Constructions
+            for mod in continuum.get("core_1a_constructions", []):
+                ep = mod.get("entrypoint", "")
+                records.append({
+                    "schema": "grade9v3-resource/v1",
+                    "id": mod.get("id", f"{topic_id}.{mod.get('type', '1a').lower()}"),
+                    "resource_kind": "STRUCTURED_PRODUCT",
+                    "learner_role": "LEARN",
+                    "audience": "LEARNER",
+                    "presentation": "FULL_PAGE",
+                    "classification": {
+                        "subject_ref": subj,
+                        "topic_refs": [topic_id],
+                        "capability_refs": [concept_ref] if concept_ref else []
+                    },
+                    "artifact": {"entrypoint": ep, "generated": False},
+                    "platform_capabilities": ["staged-representation", "worked-anchor", "concept-derivation"],
+                    "search": {
+                        "title": mod.get("title", f"{sub.get('title', topic_slug)} · Core 1A Construction"),
+                        "aliases": [topic_slug, "derivation", "construction", "1a"],
+                        "visibility": "LEARNER"
+                    },
+                    "source": {"authority_ref": str(mp.relative_to(repo_root)).replace("\\", "/"), "generator_ref": None},
+                    "validation": {"academic_evidence_ref": None, "structural_evidence_ref": None, "browser_evidence_ref": None, "publication_evidence_ref": None}
+                })
+
+            # Core 1B: Visualizers & Simulators
+            for mod in continuum.get("core_1b_visualizers", []):
+                ep = mod.get("entrypoint", "")
+                records.append({
+                    "schema": "grade9v3-resource/v1",
+                    "id": mod.get("id", f"{topic_id}.{mod.get('type', '1b').lower()}"),
+                    "resource_kind": "OPAQUE_APP",
+                    "learner_role": "EXPLORE",
+                    "audience": "LEARNER",
+                    "presentation": "COMPANION",
+                    "classification": {
+                        "subject_ref": subj,
+                        "topic_refs": [topic_id],
+                        "capability_refs": [concept_ref] if concept_ref else []
+                    },
+                    "artifact": {"entrypoint": ep, "generated": False},
+                    "platform_capabilities": ["interactive", "simulation", "visual-engine"],
+                    "search": {
+                        "title": mod.get("title", f"{sub.get('title', topic_slug)} · Visual Simulation"),
+                        "aliases": [topic_slug, "simulation", "visualizer", "1b"],
+                        "visibility": "LEARNER"
+                    },
+                    "source": {"authority_ref": str(mp.relative_to(repo_root)).replace("\\", "/"), "generator_ref": None},
+                    "validation": {"academic_evidence_ref": None, "structural_evidence_ref": None, "browser_evidence_ref": None, "publication_evidence_ref": None}
+                })
+
+            # Core 2A: NCERT Problem Helpers
+            for mod in continuum.get("core_2a_ncert", []):
+                ep = mod.get("entrypoint", "")
+                records.append({
+                    "schema": "grade9v3-resource/v1",
+                    "id": mod.get("id", f"{topic_id}.{mod.get('type', '2a').lower()}"),
+                    "resource_kind": "STRUCTURED_PRODUCT",
+                    "learner_role": "PRACTICE",
+                    "audience": "LEARNER",
+                    "presentation": "FULL_PAGE",
+                    "classification": {
+                        "subject_ref": subj,
+                        "topic_refs": [topic_id],
+                        "capability_refs": [concept_ref] if concept_ref else []
+                    },
+                    "artifact": {"entrypoint": ep, "generated": False},
+                    "platform_capabilities": ["multi-tier-problems", "solution-reveals", "ncert-helper"],
+                    "search": {
+                        "title": mod.get("title", f"{sub.get('title', topic_slug)} · Core 2A NCERT Helper"),
+                        "aliases": [topic_slug, "ncert", "core2", "practice", "2a"],
+                        "visibility": "LEARNER"
+                    },
+                    "source": {"authority_ref": str(mp.relative_to(repo_root)).replace("\\", "/"), "generator_ref": None},
+                    "validation": {"academic_evidence_ref": None, "structural_evidence_ref": None, "browser_evidence_ref": None, "publication_evidence_ref": None}
+                })
+
+            # Core 2B: Competitive PYQ Suites
+            for mod in continuum.get("core_2b_competitive", []):
+                ep = mod.get("entrypoint", "")
+                records.append({
+                    "schema": "grade9v3-resource/v1",
+                    "id": mod.get("id", f"{topic_id}.{mod.get('type', '2b').lower()}"),
+                    "resource_kind": "STRUCTURED_PRODUCT",
+                    "learner_role": "PRACTICE",
+                    "audience": "LEARNER",
+                    "presentation": "FULL_PAGE",
+                    "classification": {
+                        "subject_ref": subj,
+                        "topic_refs": [topic_id],
+                        "capability_refs": [concept_ref] if concept_ref else []
+                    },
+                    "artifact": {"entrypoint": ep, "generated": False},
+                    "platform_capabilities": ["multi-tier-problems", "solution-reveals", "past-papers", "jee-pyq"],
+                    "search": {
+                        "title": mod.get("title", f"{sub.get('title', topic_slug)} · Core 2B Competitive Suite"),
+                        "aliases": [topic_slug, "jee", "pyq", "olympiad", "2b"],
+                        "visibility": "LEARNER"
+                    },
+                    "source": {"authority_ref": str(mp.relative_to(repo_root)).replace("\\", "/"), "generator_ref": None},
+                    "validation": {"academic_evidence_ref": None, "structural_evidence_ref": None, "browser_evidence_ref": None, "publication_evidence_ref": None}
+                })
+
+    return records
+
+
+def discover_all_atlases(repo_root: Path, subjects: dict[str, str], registered_eps: set[str], registered_ids: set[str]) -> list[dict]:
+    records = []
+    for atlas_path in sorted((repo_root / "public").glob("*/*/atlas.html")):
+        ep = str(atlas_path.relative_to(repo_root / "public")).replace("\\", "/")
+        if ep in registered_eps:
+            continue
+        parts = ep.split("/")
+        subj_folder = parts[0]
+        topic_folder = parts[1]
+        subj = subjects.get(subj_folder, subj_folder.capitalize())
+        prefix = _subj_prefix(subj_folder)
+        topic_ref = f"{prefix}.{topic_folder}"
+        res_id = f"{topic_ref}.atlas"
+        if res_id in registered_ids:
+            continue
+        title = _parse_html_title(atlas_path) or f"{topic_folder.replace('-', ' ').title()} · Topic Atlas"
+        records.append({
+            "schema": "grade9v3-resource/v1",
+            "id": res_id,
+            "resource_kind": "STRUCTURED_PRODUCT",
+            "learner_role": "LEARN",
+            "audience": "LEARNER",
+            "presentation": "FULL_PAGE",
+            "classification": {
+                "subject_ref": subj,
+                "topic_refs": [topic_ref],
+                "capability_refs": []
+            },
+            "artifact": {"entrypoint": ep, "generated": False},
+            "platform_capabilities": ["pedagogical-rungs", "topic-atlas"],
+            "search": {
+                "title": title,
+                "aliases": [topic_folder, "atlas", "rungs"],
+                "visibility": "LEARNER"
+            },
+            "source": {"authority_ref": ep, "generator_ref": None},
+            "validation": {"academic_evidence_ref": None, "structural_evidence_ref": None, "browser_evidence_ref": None, "publication_evidence_ref": None}
+        })
+    return records
+
+
+def discover_all_explorers(repo_root: Path, subjects: dict[str, str], registered_eps: set[str], registered_ids: set[str]) -> list[dict]:
+    records = []
+    for exp_path in sorted((repo_root / "public").glob("*/*/explorers/**/*.html")):
+        ep = str(exp_path.relative_to(repo_root / "public")).replace("\\", "/")
+        if ep in registered_eps:
+            continue
+        parts = ep.split("/")
+        subj_folder = parts[0]
+        topic_folder = parts[1]
+        exp_folder = parts[3].replace("_", "-")
+        exp_name = exp_folder if exp_path.name == "index.html" else f"{exp_folder}-{exp_path.stem.replace('_', '-')}"
+        subj = subjects.get(subj_folder, subj_folder.capitalize())
+        prefix = _subj_prefix(subj_folder)
+        topic_ref = f"{prefix}.{topic_folder}"
+        res_id = f"{topic_ref}.{exp_name}.explorer"
+        if res_id in registered_ids:
+            continue
+        caps = _capability_refs_from_name(f"{topic_folder}-{exp_folder}")
+        title = _parse_html_title(exp_path)
+        records.append({
+            "schema": "grade9v3-resource/v1",
+            "id": res_id,
+            "resource_kind": "OPAQUE_APP",
+            "learner_role": "EXPLORE",
+            "audience": "LEARNER",
+            "presentation": "COMPANION",
+            "classification": {
+                "subject_ref": subj,
+                "topic_refs": [topic_ref],
+                "capability_refs": caps
+            },
+            "artifact": {"entrypoint": ep, "generated": False},
+            "platform_capabilities": ["interactive", "simulation", "visual-engine"],
+            "search": {
+                "title": title,
+                "aliases": [topic_folder, exp_name, "simulation", "visualizer"],
+                "visibility": "LEARNER"
+            },
+            "source": {"authority_ref": ep, "generator_ref": None},
+            "validation": {"academic_evidence_ref": None, "structural_evidence_ref": None, "browser_evidence_ref": None, "publication_evidence_ref": None}
+        })
+    return records
+
+
 def build_registry(repo_root: Path) -> list[dict]:
     subjects = discover_subjects(repo_root)
     records: list[dict] = []
     records.extend(discover_subject_homes(repo_root, subjects))
     records.extend(discover_question_bank(repo_root))
     records.extend(discover_product_manifests(repo_root))
-    records.extend(discover_core1a_books(repo_root))
-    records.extend(discover_opaque_explorers(repo_root, subjects))
-    records.extend(discover_owner_lab_surfaces(repo_root))
 
-    existing_entrypoints = {r["artifact"]["entrypoint"] for r in records}
-    records.extend(discover_standalone_practice(repo_root, subjects, existing_entrypoints))
+    # Priority 1: Declarative Topic Manifests
+    manifest_records = discover_topic_manifests(repo_root)
+    records.extend(manifest_records)
+    registered_eps = {r["artifact"]["entrypoint"] for r in records}
+    registered_ids = {r["id"] for r in records}
+
+    # Priority 2: Fallback heuristic discovery for unmanifested resources
+    core1a_books = [r for r in discover_core1a_books(repo_root) if r["artifact"]["entrypoint"] not in registered_eps and r["id"] not in registered_ids]
+    records.extend(core1a_books)
+    registered_eps.update(r["artifact"]["entrypoint"] for r in core1a_books)
+    registered_ids.update(r["id"] for r in core1a_books)
+
+    explorers = [r for r in discover_opaque_explorers(repo_root, subjects) if r["artifact"]["entrypoint"] not in registered_eps and r["id"] not in registered_ids]
+    records.extend(explorers)
+    registered_eps.update(r["artifact"]["entrypoint"] for r in explorers)
+    registered_ids.update(r["id"] for r in explorers)
+
+    # Dynamic fallback: all topic atlases and explorers
+    atlases = discover_all_atlases(repo_root, subjects, registered_eps, registered_ids)
+    records.extend(atlases)
+    registered_eps.update(r["artifact"]["entrypoint"] for r in atlases)
+    registered_ids.update(r["id"] for r in atlases)
+
+    more_explorers = discover_all_explorers(repo_root, subjects, registered_eps, registered_ids)
+    records.extend(more_explorers)
+    registered_eps.update(r["artifact"]["entrypoint"] for r in more_explorers)
+    registered_ids.update(r["id"] for r in more_explorers)
+
+    records.extend(discover_owner_lab_surfaces(repo_root))
+    registered_eps.update(r["artifact"]["entrypoint"] for r in records)
+
+    standalone_practice = [r for r in discover_standalone_practice(repo_root, subjects, registered_eps) if r["id"] not in registered_ids]
+    records.extend(standalone_practice)
 
     seen_ids = set()
     for rec in records:
