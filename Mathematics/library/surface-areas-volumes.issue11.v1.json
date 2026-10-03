@@ -1,0 +1,2392 @@
+{
+  "schema_version": "0.2.0",
+  "package_id": "LIB-MATH-I11-SURFACE-AREAS-VOLUMES",
+  "title": "Surface Areas and Volumes — Issue #11 Pilot",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Mathematics",
+  "scope_summary": "Candidate Grade 9 teaching construction for the owner-supplied Surface Areas and Volumes Q1-Q10 pilot.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-I11-AUTHOR",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Issue #11 owner-supplied Surface Areas and Volumes pilot",
+      "origin": "LOCAL",
+      "locator": "https://github.com/reallaksh19/Grade9v3.5/issues/11",
+      "edition": "Owner prompt captured 2026-10-03",
+      "section": "Q1-Q10",
+      "last_checked": "2026-10-03",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Owner-supplied task text used for repository pilot; no external exam identity asserted.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "OWNER_INPUT",
+        "AUTHORING_BASIS"
+      ],
+      "supports_claims": [
+        "The pilot question set and its wording are owner-supplied; the teaching construction is authored for this run."
+      ],
+      "entry_capabilities": [
+        "CAP-MATH-AREA-BASICS",
+        "CAP-MATH-RADIUS-DIAMETER",
+        "CAP-MATH-CIRCLE-AREA",
+        "CAP-MATH-PYTHAGORAS",
+        "CAP-MATH-RECT-PRISM-VOLUME",
+        "CAP-MATH-PERCENT",
+        "CAP-MATH-M3-LITRES",
+        "CAP-MATH-SPHERE-VOLUME",
+        "CAP-MATH-RATIO",
+        "CAP-MATH-MULTIPLICATIVE-RATIO"
+      ],
+      "depth": [
+        "Grade 9 surface area, volume, capacity, and recasting reasoning exercised by Q1-Q10."
+      ],
+      "selection_reason": "Direct authority for the pilot question set and task constraints.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-I11-SA-VOLUMES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Surface Areas and Volumes",
+      "topic": "Surface Areas and Volumes",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The topic combines formula use with boundary selection, hidden surfaces, unit conversion, and conservation reasoning.",
+      "depth_overlay": "EXAM",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [
+        "CAP-MATH-AREA-BASICS",
+        "CAP-MATH-RADIUS-DIAMETER",
+        "CAP-MATH-CIRCLE-AREA",
+        "CAP-MATH-PYTHAGORAS",
+        "CAP-MATH-RECT-PRISM-VOLUME",
+        "CAP-MATH-PERCENT",
+        "CAP-MATH-M3-LITRES",
+        "CAP-MATH-SPHERE-VOLUME",
+        "CAP-MATH-RATIO",
+        "CAP-MATH-MULTIPLICATIVE-RATIO"
+      ],
+      "primary_representation_ref": "REP-I11-SA-BOUNDARY",
+      "conventions": [
+        {
+          "name": "pi",
+          "statement": "Exact answers are kept in terms of π; where useful, π = 22/7 is also reported because the supplied dimensions make that conventional evaluation exact."
+        }
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-I11-SURFACE-SELECTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Select and compute the surface area terms that correspond to the material or exposed boundary described.",
+      "success_criterion": "The learner inventories included surfaces, selects the matching area relations, and excludes openings or hidden joins.",
+      "prerequisite_refs": [
+        "CAP-MATH-AREA-BASICS",
+        "CAP-MATH-RADIUS-DIAMETER",
+        "CAP-MATH-CIRCLE-AREA"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-I11-CONE-SLANT-SURFACE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Derive cone slant height from radius and vertical height and use it in curved surface area.",
+      "success_criterion": "The learner applies Pythagoras in an axial cross-section and uses πrl only when the base is open.",
+      "prerequisite_refs": [
+        "CAP-MATH-PYTHAGORAS",
+        "CAP-MATH-CIRCLE-AREA"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-I11-COMPOSITE-EXPOSED",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Compute exposed surface area of a composite solid with hidden interfaces.",
+      "success_criterion": "The learner identifies hidden joining faces and sums only external surfaces after deriving needed dimensions.",
+      "prerequisite_refs": [
+        "CAP-MATH-PYTHAGORAS",
+        "CAP-MATH-CIRCLE-AREA"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-I11-CAPACITY-CONVERSION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Compute a tank's filled capacity and convert cubic metres to litres.",
+      "success_criterion": "The learner computes volume, applies a fill fraction, and performs the m³-to-litre conversion with units preserved.",
+      "prerequisite_refs": [
+        "CAP-MATH-RECT-PRISM-VOLUME",
+        "CAP-MATH-PERCENT",
+        "CAP-MATH-M3-LITRES"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-I11-RECAST-CONSERVATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Use conservation of volume to solve recasting problems and distinguish it from surface area.",
+      "success_criterion": "The learner equates material volumes, solves the count, and explains why exposed surface area may change.",
+      "prerequisite_refs": [
+        "CAP-MATH-SPHERE-VOLUME",
+        "CAP-MATH-RATIO"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-I11-CONE-CYLINDER-RATIO",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Use the cone-to-cylinder volume ratio for equal radius and height without solving dimensions.",
+      "success_criterion": "The learner factors the shared πr²h and uses V_cone = V_cylinder/3.",
+      "prerequisite_refs": [
+        "CAP-MATH-MULTIPLICATIVE-RATIO"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-AREA-BASICS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Compute areas of squares and rectangles from dimensions.",
+      "success_criterion": "Correctly applies basic area formulas with squared units.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-RADIUS-DIAMETER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Relate a circle's radius and diameter.",
+      "success_criterion": "Uses d=2r and r=d/2 correctly.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-CIRCLE-AREA",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Use circle area and circumference formulas.",
+      "success_criterion": "Uses πr² and 2πr with the stated radius.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-PYTHAGORAS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Use the Pythagorean theorem in a right triangle.",
+      "success_criterion": "Finds a missing side from two perpendicular sides.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-RECT-PRISM-VOLUME",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Compute rectangular-prism volume.",
+      "success_criterion": "Uses lwh with coherent cubic units.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-PERCENT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Interpret a percentage as a multiplicative fraction.",
+      "success_criterion": "Converts 75% to 0.75 and applies it to a quantity.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-M3-LITRES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Convert cubic metres to litres.",
+      "success_criterion": "Uses 1 m³ = 1000 L.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-SPHERE-VOLUME",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Use the sphere volume formula.",
+      "success_criterion": "Uses (4/3)πr³ and understands cubic scaling.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-RATIO",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Simplify multiplicative ratios.",
+      "success_criterion": "Cancels common nonzero factors and uses powers in ratios.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-MULTIPLICATIVE-RATIO",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Use a fixed multiplicative relationship between quantities.",
+      "success_criterion": "Finds one quantity from another using a stated constant ratio.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-I11-SURFACE-BOUNDARY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Choose the surface before choosing the formula",
+      "bucket_id": "BUCKET-I11-SA-VOLUMES",
+      "primary_capability_ref": "CAP-I11-SURFACE-SELECTION",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Most calculations are routine; the conceptual risk is counting a surface that is open, hidden, or described by diameter rather than radius.",
+      "entry_assumptions": [
+        "Can compute square and circle areas.",
+        "Can distinguish radius from diameter.",
+        "Can substitute into a known formula with units."
+      ],
+      "inferential_jump": "Surface-area formulas are not selected by the solid's name alone: first inventory the actual material or exposed boundary, then assign one area term to each included piece.",
+      "teaching_path": [
+        {
+          "id": "I11-SA-S1",
+          "role": "DECLARE",
+          "action": "Inventory every physical boundary piece before writing an area formula.",
+          "why_valid": "Openings and internal joins are not material/exposed surfaces, so boundary selection must precede arithmetic.",
+          "inputs": [],
+          "output": "A named list of included and excluded surfaces."
+        },
+        {
+          "id": "I11-SA-S2",
+          "role": "TRANSFORM",
+          "action": "Match each included piece to its familiar area relation.",
+          "why_valid": "A surface sum is valid only when each term represents one distinct included region.",
+          "inputs": [
+            "surface inventory"
+          ],
+          "output": "One formula term per included surface."
+        },
+        {
+          "id": "I11-SA-S3",
+          "role": "VERIFY",
+          "action": "Re-read the wording and check that the formula has exactly the same number and type of surface terms.",
+          "why_valid": "This catches closed-vs-open and curved-vs-total errors independently of arithmetic.",
+          "inputs": [
+            "surface inventory",
+            "area expression"
+          ],
+          "output": "A boundary-verified area model ready for evaluation."
+        }
+      ],
+      "relation_refs": [
+        "REL-I11-SA-BOUNDARY"
+      ],
+      "representation_refs": [
+        "REP-I11-SA-BOUNDARY"
+      ],
+      "question_family_refs": [
+        "FAM-I11-SA-DIRECT",
+        "FAM-I11-SA-BOUNDARY"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "The solid's standard total-surface-area formula should always be used unchanged.",
+          "diagnostic_prompt": "If the top is open or a joining face is hidden, which physical surface would that extra formula term represent?",
+          "repair": "Trace the actual boundary first; add only terms that correspond to present or exposed material."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A cylinder has radius 4 cm and height 9 cm and is open at the top. Which area terms describe the material surface?",
+        "source_ref": "SRC-I11-AUTHOR",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "2πrh + πr²; the curved wall and one base are present.",
+          "reasoning": [
+            "2πrh + πr²; the curved wall and one base are present."
+          ],
+          "check": "Check the response against the concept relation and boundary condition.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Fresh recall task authored from the construction rule; not a source question."
+        }
+      },
+      "research_contribution": "Candidate Core1A construction derived from the reviewed cruxes of Issue #11 owner questions; independent academic review still required.",
+      "prerequisite_refs": [
+        "CAP-MATH-AREA-BASICS",
+        "CAP-MATH-RADIUS-DIAMETER",
+        "CAP-MATH-CIRCLE-AREA"
+      ],
+      "lineage": [],
+      "construction_units": [
+        {
+          "id": "CU-I11-SURFACE-BOUNDARY",
+          "decision": "Surface-area formulas are not selected by the solid's name alone",
+          "step_refs": [
+            "I11-SA-S1",
+            "I11-SA-S2",
+            "I11-SA-S3"
+          ],
+          "representation_ref": "REP-I11-SA-BOUNDARY",
+          "reveal_stage_refs": [
+            "VIS-I11-SA-1",
+            "VIS-I11-SA-2",
+            "VIS-I11-SA-3"
+          ],
+          "bank_anchor_ref": "OWN-ISSUE11-03",
+          "crux_question_refs": [
+            "OWN-ISSUE11-01",
+            "OWN-ISSUE11-02",
+            "OWN-ISSUE11-03",
+            "OWN-ISSUE11-05",
+            "OWN-ISSUE11-07"
+          ],
+          "crux_step_ref": "I11-SA-S2",
+          "misconception_indexes": [
+            0
+          ],
+          "relation_refs": [
+            "REL-I11-SA-BOUNDARY"
+          ],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "Say aloud which surfaces are included before looking at any formula.",
+              "check_type": "SPECIAL_CASE"
+            },
+            {
+              "role": "APPLY",
+              "statement": "For an open cylinder, write the area expression without substituting numbers.",
+              "check_type": "ALTERNATE_METHOD"
+            },
+            {
+              "role": "CONNECT",
+              "statement": "Use the same boundary-first rule for paint, metal sheet, canvas, or exposed-area questions.",
+              "check_type": "SPECIAL_CASE"
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "What comes before a surface-area formula?",
+        "result": "Inventory the actual included surfaces.",
+        "representation_ref": "REP-I11-SA-BOUNDARY"
+      }
+    },
+    {
+      "id": "MIC-I11-CONE-SLANT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Build slant height before cone canvas area",
+      "bucket_id": "BUCKET-I11-SA-VOLUMES",
+      "primary_capability_ref": "CAP-I11-CONE-SLANT-SURFACE",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The learner must coordinate an axial right triangle with cone curved area and respect the open-base condition.",
+      "entry_assumptions": [
+        "Can use the Pythagorean theorem.",
+        "Can identify radius and vertical height in a right cone.",
+        "Can use curved cone area πrl once l is known."
+      ],
+      "inferential_jump": "The cone's vertical height is not the length that appears in πrl; a right-triangle cross-section must first construct the slant height.",
+      "teaching_path": [
+        {
+          "id": "I11-CONE-S1",
+          "role": "DECLARE",
+          "action": "Take an axial cross-section and name r, h and the sloping side l.",
+          "why_valid": "The centre-to-rim radius is perpendicular to the vertical axis in a right cone.",
+          "inputs": [],
+          "output": "A right triangle with legs r and h and hypotenuse l."
+        },
+        {
+          "id": "I11-CONE-S2",
+          "role": "TRANSFORM",
+          "action": "Write l² = r² + h².",
+          "why_valid": "Pythagoras applies to the axial right triangle.",
+          "inputs": [
+            "r",
+            "h"
+          ],
+          "output": "A relation that determines l."
+        },
+        {
+          "id": "I11-CONE-S3",
+          "role": "TRANSFORM",
+          "action": "Evaluate the slant height from the given r and h.",
+          "why_valid": "The positive square root is the physical length.",
+          "inputs": [
+            "l² = r² + h²"
+          ],
+          "output": "The cone's slant height."
+        },
+        {
+          "id": "I11-CONE-S4",
+          "role": "VERIFY",
+          "action": "Use l, not h, in πrl and omit πr² when the base is open.",
+          "why_valid": "Curved canvas follows the sloping surface; an open base contributes no canvas.",
+          "inputs": [
+            "l",
+            "open-base condition"
+          ],
+          "output": "A boundary-correct cone canvas model."
+        }
+      ],
+      "relation_refs": [
+        "REL-I11-CONE-SLANT"
+      ],
+      "representation_refs": [
+        "REP-I11-CONE-SLANT"
+      ],
+      "question_family_refs": [
+        "FAM-I11-CONE-SLANT"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Vertical height h can be substituted for slant height l in πrl.",
+          "diagnostic_prompt": "In an axial cross-section, which segment lies along the canvas: the vertical axis or the sloping side?",
+          "repair": "Construct l with Pythagoras first, then use l in the lateral-area relation."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A right cone has r=5 cm and h=12 cm. What slant height must be used in πrl?",
+        "source_ref": "SRC-I11-AUTHOR",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "13 cm, from √(5²+12²).",
+          "reasoning": [
+            "13 cm, from √(5²+12²)."
+          ],
+          "check": "Check the response against the concept relation and boundary condition.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Fresh recall task authored from the construction rule; not a source question."
+        }
+      },
+      "research_contribution": "Candidate Core1A construction derived from the reviewed cruxes of Issue #11 owner questions; independent academic review still required.",
+      "prerequisite_refs": [
+        "CAP-MATH-PYTHAGORAS",
+        "CAP-MATH-CIRCLE-AREA"
+      ],
+      "lineage": [],
+      "construction_units": [
+        {
+          "id": "CU-I11-CONE-SLANT",
+          "decision": "The cone's vertical height is not the length that appears in πrl; a right-triangle cross-section must first construct the slant height.",
+          "step_refs": [
+            "I11-CONE-S1",
+            "I11-CONE-S2",
+            "I11-CONE-S3",
+            "I11-CONE-S4"
+          ],
+          "representation_ref": "REP-I11-CONE-SLANT",
+          "reveal_stage_refs": [
+            "VIS-I11-CONE-1",
+            "VIS-I11-CONE-2",
+            "VIS-I11-CONE-3",
+            "VIS-I11-CONE-4"
+          ],
+          "bank_anchor_ref": "OWN-ISSUE11-04",
+          "crux_question_refs": [
+            "OWN-ISSUE11-04"
+          ],
+          "crux_step_ref": "I11-CONE-S4",
+          "misconception_indexes": [
+            0
+          ],
+          "relation_refs": [
+            "REL-I11-CONE-SLANT"
+          ],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "Verify that a positive-radius cone has slant height greater than vertical height.",
+              "check_type": "SPECIAL_CASE"
+            },
+            {
+              "role": "APPLY",
+              "statement": "For r=3 and h=4, find l before writing the curved-area expression.",
+              "check_type": "ALTERNATE_METHOD"
+            },
+            {
+              "role": "CONNECT",
+              "statement": "Use the same slant-height bridge whenever a cone problem supplies r and h but asks for lateral area.",
+              "check_type": "SPECIAL_CASE"
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "Which height belongs in cone curved area?",
+        "result": "The slant height l, constructed from r and vertical h when necessary.",
+        "representation_ref": "REP-I11-CONE-SLANT"
+      }
+    },
+    {
+      "id": "MIC-I11-COMPOSITE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Expose the outside; hide the join",
+      "bucket_id": "BUCKET-I11-SA-VOLUMES",
+      "primary_capability_ref": "CAP-I11-COMPOSITE-EXPOSED",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "The learner must derive a missing slant height and coordinate two component surfaces while suppressing the shared internal interface.",
+      "entry_assumptions": [
+        "Can find cone slant height with Pythagoras.",
+        "Can use cone and hemisphere curved-area formulas.",
+        "Can distinguish external from internal surfaces."
+      ],
+      "inferential_jump": "Joining two solids changes the boundary: the coincident contact faces stop being exposed, so component total areas cannot simply be added.",
+      "teaching_path": [
+        {
+          "id": "I11-COMP-S1",
+          "role": "DECLARE",
+          "action": "Mark the common circular contact face as internal.",
+          "why_valid": "A point on the join cannot be reached from outside the assembled toy without passing through material.",
+          "inputs": [],
+          "output": "The join is excluded from exposed area."
+        },
+        {
+          "id": "I11-COMP-S2",
+          "role": "TRANSFORM",
+          "action": "Construct the cone's slant height from its radius and vertical height.",
+          "why_valid": "The cone lateral area depends on slant height, not vertical height.",
+          "inputs": [
+            "r",
+            "h"
+          ],
+          "output": "A usable l for the cone."
+        },
+        {
+          "id": "I11-COMP-S3",
+          "role": "TRANSFORM",
+          "action": "Write one term for each exposed curved component: πrl and 2πr².",
+          "why_valid": "The external boundary consists of the cone lateral surface and hemisphere curved surface.",
+          "inputs": [
+            "l",
+            "r",
+            "hidden join"
+          ],
+          "output": "An exposed-area sum with no interface term."
+        },
+        {
+          "id": "I11-COMP-S4",
+          "role": "VERIFY",
+          "action": "Trace the assembled outside and match it term-for-term to the area expression.",
+          "why_valid": "Boundary tracing independently detects a hidden-face double count.",
+          "inputs": [
+            "area expression"
+          ],
+          "output": "A verified exposed-surface model."
+        }
+      ],
+      "relation_refs": [
+        "REL-I11-COMPOSITE",
+        "REL-I11-CONE-SLANT",
+        "REL-I11-SA-BOUNDARY"
+      ],
+      "representation_refs": [
+        "REP-I11-COMPOSITE"
+      ],
+      "question_family_refs": [
+        "FAM-I11-COMPOSITE-EXPOSED"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Add the full surface areas of both component solids, including the circular face where they touch.",
+          "diagnostic_prompt": "Can the joining circle be touched from outside the assembled toy without separating the solids?",
+          "repair": "Remove every coincident interface from the exposed boundary; count only surfaces visible from outside."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A cone is fixed to a circular face of another solid. What happens to that common circle in exposed surface area?",
+        "source_ref": "SRC-I11-AUTHOR",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "It is omitted because it becomes an internal interface.",
+          "reasoning": [
+            "It is omitted because it becomes an internal interface."
+          ],
+          "check": "Check the response against the concept relation and boundary condition.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Fresh recall task authored from the construction rule; not a source question."
+        }
+      },
+      "research_contribution": "Candidate Core1A construction derived from the reviewed cruxes of Issue #11 owner questions; independent academic review still required.",
+      "prerequisite_refs": [
+        "CAP-MATH-PYTHAGORAS",
+        "CAP-MATH-CIRCLE-AREA"
+      ],
+      "lineage": [],
+      "construction_units": [
+        {
+          "id": "CU-I11-COMPOSITE",
+          "decision": "Joining two solids changes the boundary",
+          "step_refs": [
+            "I11-COMP-S1",
+            "I11-COMP-S2",
+            "I11-COMP-S3",
+            "I11-COMP-S4"
+          ],
+          "representation_ref": "REP-I11-COMPOSITE",
+          "reveal_stage_refs": [
+            "VIS-I11-COMP-1",
+            "VIS-I11-COMP-2",
+            "VIS-I11-COMP-3",
+            "VIS-I11-COMP-4"
+          ],
+          "bank_anchor_ref": "OWN-ISSUE11-06",
+          "crux_question_refs": [
+            "OWN-ISSUE11-06"
+          ],
+          "crux_step_ref": "I11-COMP-S4",
+          "misconception_indexes": [
+            0
+          ],
+          "relation_refs": [
+            "REL-I11-COMPOSITE",
+            "REL-I11-CONE-SLANT",
+            "REL-I11-SA-BOUNDARY"
+          ],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "Point to each term in the exposed-area sum on the outside of the assembled solid.",
+              "check_type": "ALTERNATE_METHOD"
+            },
+            {
+              "role": "APPLY",
+              "statement": "If two cylinders are glued base-to-base, identify which circular faces disappear from exposed area.",
+              "check_type": "SPECIAL_CASE"
+            },
+            {
+              "role": "CONNECT",
+              "statement": "Use the same hidden-interface rule for composite solids built from any joined shapes.",
+              "check_type": "SPECIAL_CASE"
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "What changes when solids are joined?",
+        "result": "The common contact faces cease to be exposed.",
+        "representation_ref": "REP-I11-COMPOSITE"
+      }
+    },
+    {
+      "id": "MIC-I11-CAPACITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Keep volume, percentage and capacity units in sequence",
+      "bucket_id": "BUCKET-I11-SA-VOLUMES",
+      "primary_capability_ref": "CAP-I11-CAPACITY-CONVERSION",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The routine volume calculation must be coordinated with a percentage and a cubic-unit conversion.",
+      "entry_assumptions": [
+        "Can calculate rectangular-prism volume.",
+        "Can apply a percentage as a fraction.",
+        "Knows or can use 1 m³ = 1000 L."
+      ],
+      "inferential_jump": "A capacity problem is safest as a unit-preserving chain: full volume in m³ → filled fraction in m³ → litres.",
+      "teaching_path": [
+        {
+          "id": "I11-CAP-S1",
+          "role": "TRANSFORM",
+          "action": "Compute full tank volume in cubic metres.",
+          "why_valid": "All three dimensions are in metres, so lwh yields m³.",
+          "inputs": [
+            "l",
+            "w",
+            "h"
+          ],
+          "output": "Full capacity in m³."
+        },
+        {
+          "id": "I11-CAP-S2",
+          "role": "TRANSFORM",
+          "action": "Apply the fill fraction to the full volume.",
+          "why_valid": "A 75% fill contains 0.75 of total volume.",
+          "inputs": [
+            "full volume",
+            "fill fraction"
+          ],
+          "output": "Filled volume in m³."
+        },
+        {
+          "id": "I11-CAP-S3",
+          "role": "VERIFY",
+          "action": "Convert m³ to litres and reverse-check the conversion.",
+          "why_valid": "1 m³ = 1000 L, so dividing the litre result by 1000 must recover the filled m³.",
+          "inputs": [
+            "filled m³"
+          ],
+          "output": "Capacity stated and checked in litres."
+        }
+      ],
+      "relation_refs": [
+        "REL-I11-CAPACITY"
+      ],
+      "representation_refs": [
+        "REP-I11-CAPACITY"
+      ],
+      "question_family_refs": [
+        "FAM-I11-CAPACITY"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Treat 75% as multiplication by 75 or convert 1 m³ to 100 L.",
+          "diagnostic_prompt": "What decimal represents 75%, and how many 1-litre cubes fit in a 1 m × 1 m × 1 m cube?",
+          "repair": "Use 0.75 as the fill factor and 1000 L per m³; keep units written at each step."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A 4 m³ tank is 25% full. How many litres does it contain?",
+        "source_ref": "SRC-I11-AUTHOR",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "1000 L.",
+          "reasoning": [
+            "1000 L."
+          ],
+          "check": "Check the response against the concept relation and boundary condition.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Fresh recall task authored from the construction rule; not a source question."
+        }
+      },
+      "research_contribution": "Candidate Core1A construction derived from the reviewed cruxes of Issue #11 owner questions; independent academic review still required.",
+      "prerequisite_refs": [
+        "CAP-MATH-RECT-PRISM-VOLUME",
+        "CAP-MATH-PERCENT",
+        "CAP-MATH-M3-LITRES"
+      ],
+      "lineage": [],
+      "construction_units": [
+        {
+          "id": "CU-I11-CAPACITY",
+          "decision": "A capacity problem is safest as a unit-preserving chain",
+          "step_refs": [
+            "I11-CAP-S1",
+            "I11-CAP-S2",
+            "I11-CAP-S3"
+          ],
+          "representation_ref": "REP-I11-CAPACITY",
+          "reveal_stage_refs": [
+            "VIS-I11-CAP-1",
+            "VIS-I11-CAP-2",
+            "VIS-I11-CAP-3"
+          ],
+          "bank_anchor_ref": "OWN-ISSUE11-08",
+          "crux_question_refs": [
+            "OWN-ISSUE11-08"
+          ],
+          "crux_step_ref": "I11-CAP-S2",
+          "misconception_indexes": [
+            0
+          ],
+          "relation_refs": [
+            "REL-I11-CAPACITY"
+          ],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "State the unit after l×w×h before applying any conversion.",
+              "check_type": "UNITS"
+            },
+            {
+              "role": "APPLY",
+              "statement": "Convert 0.5 m³ to litres and back.",
+              "check_type": "INVERSE_OPERATION"
+            },
+            {
+              "role": "CONNECT",
+              "statement": "Use the same chain for partially filled tanks, pools and containers.",
+              "check_type": "UNITS"
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "What is the safe unit route?",
+        "result": "m³ full volume → filled m³ → litres.",
+        "representation_ref": "REP-I11-CAPACITY"
+      }
+    },
+    {
+      "id": "MIC-I11-RECAST",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Conserve material volume, not exposed surface",
+      "bucket_id": "BUCKET-I11-SA-VOLUMES",
+      "primary_capability_ref": "CAP-I11-RECAST-CONSERVATION",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "The problem requires choosing the invariant, using cubic scaling, and separately explaining why surface area changes.",
+      "entry_assumptions": [
+        "Can use sphere volume and surface-area formulas.",
+        "Can simplify a ratio of powers.",
+        "Understands that no-loss recasting preserves amount of material."
+      ],
+      "inferential_jump": "The conservation equation is about material volume; surface area is a boundary measure and can change dramatically when one object becomes many.",
+      "teaching_path": [
+        {
+          "id": "I11-REC-S1",
+          "role": "DECLARE",
+          "action": "Choose volume as the conserved quantity under no-loss recasting.",
+          "why_valid": "Melting and reshaping do not create or remove material, so occupied volume is preserved.",
+          "inputs": [],
+          "output": "V_before = V_after."
+        },
+        {
+          "id": "I11-REC-S2",
+          "role": "TRANSFORM",
+          "action": "Write V_large = nV_small and cancel the common sphere-volume constant.",
+          "why_valid": "Both sides contain the factor 4π/3.",
+          "inputs": [
+            "sphere volume formula"
+          ],
+          "output": "n = R³/r³."
+        },
+        {
+          "id": "I11-REC-S3",
+          "role": "TRANSFORM",
+          "action": "Evaluate the cubic radius ratio to get the number of spheres.",
+          "why_valid": "Volume scales with the cube of every linear scale factor.",
+          "inputs": [
+            "R/r"
+          ],
+          "output": "A recast count n."
+        },
+        {
+          "id": "I11-REC-S4",
+          "role": "VERIFY",
+          "action": "Compare total surface area separately and then recheck total volume.",
+          "why_valid": "Surface area is not the conserved equation; a separate calculation exposes the change while the volume balance must remain exact.",
+          "inputs": [
+            "n",
+            "surface area formula"
+          ],
+          "output": "Volume conserved; surface area free to change."
+        }
+      ],
+      "relation_refs": [
+        "REL-I11-RECAST"
+      ],
+      "representation_refs": [
+        "REP-I11-RECAST"
+      ],
+      "question_family_refs": [
+        "FAM-I11-RECAST"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Surface area should be conserved because the same metal is used.",
+          "diagnostic_prompt": "If one cube is cut into eight smaller cubes, does the material amount change? Does the total area of all exposed faces change?",
+          "repair": "Conserve volume for no-loss recasting; treat total surface area as a separate boundary quantity that generally changes."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A sphere is recast into spheres with half its radius. How many are formed if no material is lost?",
+        "source_ref": "SRC-I11-AUTHOR",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "8, because volume scales with r³.",
+          "reasoning": [
+            "8, because volume scales with r³."
+          ],
+          "check": "Check the response against the concept relation and boundary condition.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Fresh recall task authored from the construction rule; not a source question."
+        }
+      },
+      "research_contribution": "Candidate Core1A construction derived from the reviewed cruxes of Issue #11 owner questions; independent academic review still required.",
+      "prerequisite_refs": [
+        "CAP-MATH-SPHERE-VOLUME",
+        "CAP-MATH-RATIO"
+      ],
+      "lineage": [],
+      "construction_units": [
+        {
+          "id": "CU-I11-RECAST",
+          "decision": "The conservation equation is about material volume; surface area is a boundary measure and can change dramatically when one object becomes many.",
+          "step_refs": [
+            "I11-REC-S1",
+            "I11-REC-S2",
+            "I11-REC-S3",
+            "I11-REC-S4"
+          ],
+          "representation_ref": "REP-I11-RECAST",
+          "reveal_stage_refs": [
+            "VIS-I11-REC-1",
+            "VIS-I11-REC-2",
+            "VIS-I11-REC-3",
+            "VIS-I11-REC-4"
+          ],
+          "bank_anchor_ref": "OWN-ISSUE11-09",
+          "crux_question_refs": [
+            "OWN-ISSUE11-09"
+          ],
+          "crux_step_ref": "I11-REC-S4",
+          "misconception_indexes": [
+            0
+          ],
+          "relation_refs": [
+            "REL-I11-RECAST"
+          ],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "Substitute the sphere count back into nV_small = V_large.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            },
+            {
+              "role": "APPLY",
+              "statement": "If every small radius is half the original, predict the number from cubic scaling.",
+              "check_type": "SPECIAL_CASE"
+            },
+            {
+              "role": "CONNECT",
+              "statement": "Use volume conservation for melting/recasting regardless of the new solid's shape.",
+              "check_type": "ALTERNATE_METHOD"
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "What is conserved in recasting?",
+        "result": "Material volume, not exposed surface area.",
+        "representation_ref": "REP-I11-RECAST"
+      }
+    },
+    {
+      "id": "MIC-I11-RATIO",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Cancel shared dimensions before solving for them",
+      "bucket_id": "BUCKET-I11-SA-VOLUMES",
+      "primary_capability_ref": "CAP-I11-CONE-CYLINDER-RATIO",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The calculation is short, but the learner must recognize a shared multiplicative factor instead of trying to solve underdetermined dimensions.",
+      "entry_assumptions": [
+        "Knows cone and cylinder volume formulas.",
+        "Can compare expressions with a common nonzero factor.",
+        "Can use a one-third multiplicative relation."
+      ],
+      "inferential_jump": "When two formulas share the same πr²h, the unknown dimensions do not need to be recovered; compare the coefficients directly.",
+      "teaching_path": [
+        {
+          "id": "I11-RAT-S1",
+          "role": "DECLARE",
+          "action": "Write both volume formulas using the same symbols r and h.",
+          "why_valid": "The problem states the radius and height are shared.",
+          "inputs": [],
+          "output": "Two expressions with common factor πr²h."
+        },
+        {
+          "id": "I11-RAT-S2",
+          "role": "TRANSFORM",
+          "action": "Factor out the common πr²h and compare coefficients 1 and 1/3.",
+          "why_valid": "Equal nonzero common factors do not affect the ratio.",
+          "inputs": [
+            "V_cyl",
+            "V_cone"
+          ],
+          "output": "V_cone = V_cyl/3."
+        },
+        {
+          "id": "I11-RAT-S3",
+          "role": "VERIFY",
+          "action": "Use the known cylinder volume directly and reverse-check by multiplying the cone result by 3.",
+          "why_valid": "The fixed ratio is sufficient; separate r and h values are unnecessary.",
+          "inputs": [
+            "V_cyl"
+          ],
+          "output": "A checked cone volume."
+        }
+      ],
+      "relation_refs": [
+        "REL-I11-CONE-CYL"
+      ],
+      "representation_refs": [
+        "REP-I11-RATIO"
+      ],
+      "question_family_refs": [
+        "FAM-I11-VOLUME-RATIO"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "A numerical radius and height must be found before any cone volume can be calculated.",
+          "diagnostic_prompt": "How many equations are available for r and h separately, and what common factor appears in both volume formulas?",
+          "repair": "Compare the formulas first; the shared πr²h cancels from the ratio, so no separate dimensions are needed."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A cone and cylinder share radius and height. If the cylinder volume is 150 cm³, what is the cone volume?",
+        "source_ref": "SRC-I11-AUTHOR",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "50 cm³.",
+          "reasoning": [
+            "50 cm³."
+          ],
+          "check": "Check the response against the concept relation and boundary condition.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Fresh recall task authored from the construction rule; not a source question."
+        }
+      },
+      "research_contribution": "Candidate Core1A construction derived from the reviewed cruxes of Issue #11 owner questions; independent academic review still required.",
+      "prerequisite_refs": [
+        "CAP-MATH-MULTIPLICATIVE-RATIO"
+      ],
+      "lineage": [],
+      "construction_units": [
+        {
+          "id": "CU-I11-RATIO",
+          "decision": "When two formulas share the same πr²h, the unknown dimensions do not need to be recovered; compare the coefficients directly.",
+          "step_refs": [
+            "I11-RAT-S1",
+            "I11-RAT-S2",
+            "I11-RAT-S3"
+          ],
+          "representation_ref": "REP-I11-RATIO",
+          "reveal_stage_refs": [
+            "VIS-I11-RAT-1",
+            "VIS-I11-RAT-2",
+            "VIS-I11-RAT-3"
+          ],
+          "bank_anchor_ref": "OWN-ISSUE11-10",
+          "crux_question_refs": [
+            "OWN-ISSUE11-10"
+          ],
+          "crux_step_ref": "I11-RAT-S2",
+          "misconception_indexes": [
+            0
+          ],
+          "relation_refs": [
+            "REL-I11-CONE-CYL"
+          ],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "Explain in one sentence why πr²h is identical for both solids.",
+              "check_type": "SPECIAL_CASE"
+            },
+            {
+              "role": "APPLY",
+              "statement": "If a matching cylinder has volume 300 cm³, state the cone volume without finding r or h.",
+              "check_type": "ALTERNATE_METHOD"
+            },
+            {
+              "role": "CONNECT",
+              "statement": "Look for shared multiplicative factors before solving unnecessary intermediate variables in other formula comparisons.",
+              "check_type": "ALTERNATE_METHOD"
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "What can be cancelled before solving dimensions?",
+        "result": "The shared factor πr²h.",
+        "representation_ref": "REP-I11-RATIO"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "REL-I11-SA-BOUNDARY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "cube TSA = 6a²; cylinder curved = 2πrh; circle = πr²; hemisphere curved = 2πr²",
+      "meaning": "Surface area is the sum of the areas of the material or exposed pieces that the situation includes.",
+      "symbols": [
+        {
+          "symbol": "a",
+          "meaning": "cube edge"
+        },
+        {
+          "symbol": "r",
+          "meaning": "radius"
+        },
+        {
+          "symbol": "h",
+          "meaning": "height"
+        }
+      ],
+      "conditions": [
+        "Count each included external/material surface exactly once.",
+        "Openings and hidden joining faces contribute no exposed sheet or painted area."
+      ],
+      "derivation": [],
+      "limits": [
+        "Do not add a circular face that the object does not physically have or that is hidden at a join."
+      ],
+      "checks": [
+        "Re-list the included surfaces and match one formula term to each."
+      ],
+      "gate_relation_ref": null
+    },
+    {
+      "id": "REL-I11-CONE-SLANT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "l² = r² + h²; cone curved area = πrl",
+      "meaning": "In an axial cone cross-section, radius and vertical height are perpendicular and determine the slant height used by lateral area.",
+      "symbols": [
+        {
+          "symbol": "l",
+          "meaning": "slant height"
+        },
+        {
+          "symbol": "r",
+          "meaning": "radius"
+        },
+        {
+          "symbol": "h",
+          "meaning": "vertical height"
+        }
+      ],
+      "conditions": [
+        "The cone is right circular.",
+        "Use πrl for curved area; add a base only when a material base is included."
+      ],
+      "derivation": [],
+      "limits": [
+        "Vertical height h is not interchangeable with slant height l."
+      ],
+      "checks": [
+        "Verify l²=r²+h² and that l>h for positive r."
+      ],
+      "gate_relation_ref": null
+    },
+    {
+      "id": "REL-I11-COMPOSITE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "exposed area = sum of visible external component surfaces",
+      "meaning": "When solids are joined, coincident contact faces become internal and are omitted from exposed surface area.",
+      "symbols": [
+        {
+          "symbol": "A",
+          "meaning": "area"
+        }
+      ],
+      "conditions": [
+        "The joining face is fully covered by the other component.",
+        "Only surfaces visible from outside are counted."
+      ],
+      "derivation": [],
+      "limits": [
+        "Do not count a hidden interface as exposed area."
+      ],
+      "checks": [
+        "Trace the outside boundary continuously and ensure each visible patch is counted once."
+      ],
+      "gate_relation_ref": null
+    },
+    {
+      "id": "REL-I11-CAPACITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "V = lwh; filled volume = fraction × V; 1 m³ = 1000 L",
+      "meaning": "Tank capacity is volume; a fill percentage scales that volume before or after an equivalent unit conversion.",
+      "symbols": [
+        {
+          "symbol": "l",
+          "meaning": "length"
+        },
+        {
+          "symbol": "w",
+          "meaning": "width"
+        },
+        {
+          "symbol": "h",
+          "meaning": "depth"
+        }
+      ],
+      "conditions": [
+        "Dimensions are in compatible units before multiplication."
+      ],
+      "derivation": [],
+      "limits": [
+        "Cubic-unit conversions scale by the cube of the linear conversion."
+      ],
+      "checks": [
+        "Convert litres back to cubic metres and compare the fill fraction."
+      ],
+      "gate_relation_ref": null
+    },
+    {
+      "id": "REL-I11-RECAST",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "V_before = V_after; for spheres n = (R/r)³",
+      "meaning": "With no material loss, recasting conserves volume; sphere volume scales with the cube of radius.",
+      "symbols": [
+        {
+          "symbol": "R",
+          "meaning": "original sphere radius"
+        },
+        {
+          "symbol": "r",
+          "meaning": "small sphere radius"
+        },
+        {
+          "symbol": "n",
+          "meaning": "number of small spheres"
+        }
+      ],
+      "conditions": [
+        "No metal is lost.",
+        "All smaller spheres have the same radius."
+      ],
+      "derivation": [],
+      "limits": [
+        "Surface area is not a conserved material quantity during recasting."
+      ],
+      "checks": [
+        "Substitute n into n(4/3)πr³ and recover (4/3)πR³."
+      ],
+      "gate_relation_ref": null
+    },
+    {
+      "id": "REL-I11-CONE-CYL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "V_cylinder = πr²h; V_cone = (1/3)πr²h = (1/3)V_cylinder",
+      "meaning": "For the same base radius and height, cone and cylinder volumes differ only by the factor 1/3.",
+      "symbols": [
+        {
+          "symbol": "r",
+          "meaning": "common radius"
+        },
+        {
+          "symbol": "h",
+          "meaning": "common height"
+        }
+      ],
+      "conditions": [
+        "Cone and cylinder have the same base radius and the same height."
+      ],
+      "derivation": [],
+      "limits": [
+        "The one-third relation does not apply when the compared solids have different base areas or heights."
+      ],
+      "checks": [
+        "Multiply the cone volume by 3 and recover the cylinder volume."
+      ],
+      "gate_relation_ref": null
+    }
+  ],
+  "representations": [
+    {
+      "id": "REP-I11-SA-BOUNDARY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GEOMETRIC_FIGURE",
+      "purpose": "Teach the boundary-first rule: identify material/exposed surfaces before choosing area terms.",
+      "required_elements": [
+        "Given quantities or conditions",
+        "The geometric/relational structure needed for the staged teaching job"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "VIS-I11-SA-1",
+        "VIS-I11-SA-2",
+        "VIS-I11-SA-3"
+      ],
+      "instance_constraints": [
+        "Pre-attempt projection must show only the first stage.",
+        "Later stages must not alter the stated givens."
+      ],
+      "accessibility": [
+        "SVG has an accessible name, title, description, and text labels at least 18 viewBox units high."
+      ],
+      "misleading_alternatives": [
+        "Do not imply a closed surface where the prompt states an opening or hidden join."
+      ],
+      "rendered_asset_refs": [
+        "Mathematics/assets/representations/issue11-surface-boundary.svg"
+      ],
+      "scene_instances": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-I11-SA-1",
+          "label": "Trace the boundary",
+          "purpose": "Make the physical boundary legible without selecting formulas.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-SA-2",
+          "label": "Separate surface types",
+          "purpose": "Connect surface types to familiar area relations.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-SA-3",
+          "label": "Match words to terms",
+          "purpose": "Show how inclusion/exclusion words control the sum.",
+          "visible_elements": []
+        }
+      ]
+    },
+    {
+      "id": "REP-I11-Q1-CUBE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GEOMETRIC_FIGURE",
+      "purpose": "Clarify the six congruent faces of a cube without doing the arithmetic.",
+      "required_elements": [
+        "Given quantities or conditions",
+        "The geometric/relational structure needed for the staged teaching job"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "VIS-I11-Q1-1",
+        "VIS-I11-Q1-2",
+        "VIS-I11-Q1-3"
+      ],
+      "instance_constraints": [
+        "Pre-attempt projection must show only the first stage.",
+        "Later stages must not alter the stated givens."
+      ],
+      "accessibility": [
+        "SVG has an accessible name, title, description, and text labels at least 18 viewBox units high."
+      ],
+      "misleading_alternatives": [
+        "Do not imply a closed surface where the prompt states an opening or hidden join."
+      ],
+      "rendered_asset_refs": [
+        "Mathematics/assets/representations/issue11-q1-cube.svg"
+      ],
+      "scene_instances": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-I11-Q1-1",
+          "label": "Given cube",
+          "purpose": "Show only the given cube and 7 cm edge.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-Q1-2",
+          "label": "One face",
+          "purpose": "Connect edge length to one square face.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-Q1-3",
+          "label": "All faces",
+          "purpose": "Expose the six-face inventory without evaluating it.",
+          "visible_elements": []
+        }
+      ]
+    },
+    {
+      "id": "REP-I11-Q2-DIAMETER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GEOMETRIC_FIGURE",
+      "purpose": "Clarify diameter versus radius before curved-surface substitution.",
+      "required_elements": [
+        "Given quantities or conditions",
+        "The geometric/relational structure needed for the staged teaching job"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "VIS-I11-Q2-1",
+        "VIS-I11-Q2-2",
+        "VIS-I11-Q2-3"
+      ],
+      "instance_constraints": [
+        "Pre-attempt projection must show only the first stage.",
+        "Later stages must not alter the stated givens."
+      ],
+      "accessibility": [
+        "SVG has an accessible name, title, description, and text labels at least 18 viewBox units high."
+      ],
+      "misleading_alternatives": [
+        "Do not imply a closed surface where the prompt states an opening or hidden join."
+      ],
+      "rendered_asset_refs": [
+        "Mathematics/assets/representations/issue11-q2-diameter.svg"
+      ],
+      "scene_instances": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-I11-Q2-1",
+          "label": "Given dimensions",
+          "purpose": "Show only diameter and height as given.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-Q2-2",
+          "label": "Radius relation",
+          "purpose": "Connect diameter to radius.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-Q2-3",
+          "label": "Curved wall",
+          "purpose": "Connect the radius to the lateral-area model.",
+          "visible_elements": []
+        }
+      ]
+    },
+    {
+      "id": "REP-I11-Q3-OPEN",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GEOMETRIC_FIGURE",
+      "purpose": "Clarify which surfaces of the open bucket require metal sheet.",
+      "required_elements": [
+        "Given quantities or conditions",
+        "The geometric/relational structure needed for the staged teaching job"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "VIS-I11-Q3-1",
+        "VIS-I11-Q3-2",
+        "VIS-I11-Q3-3"
+      ],
+      "instance_constraints": [
+        "Pre-attempt projection must show only the first stage.",
+        "Later stages must not alter the stated givens."
+      ],
+      "accessibility": [
+        "SVG has an accessible name, title, description, and text labels at least 18 viewBox units high."
+      ],
+      "misleading_alternatives": [
+        "Do not imply a closed surface where the prompt states an opening or hidden join."
+      ],
+      "rendered_asset_refs": [
+        "Mathematics/assets/representations/issue11-q3-open-bucket.svg"
+      ],
+      "scene_instances": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-I11-Q3-1",
+          "label": "Open bucket",
+          "purpose": "Show the open bucket and given dimensions.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-Q3-2",
+          "label": "Material pieces",
+          "purpose": "Separate curved wall and one base as material.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-Q3-3",
+          "label": "Area model",
+          "purpose": "Map those pieces to area terms without evaluating.",
+          "visible_elements": []
+        }
+      ]
+    },
+    {
+      "id": "REP-I11-CONE-SLANT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GEOMETRIC_FIGURE",
+      "purpose": "Build the right-triangle bridge from vertical height to cone slant height and open-base canvas area.",
+      "required_elements": [
+        "Given quantities or conditions",
+        "The geometric/relational structure needed for the staged teaching job"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "VIS-I11-CONE-1",
+        "VIS-I11-CONE-2",
+        "VIS-I11-CONE-3",
+        "VIS-I11-CONE-4"
+      ],
+      "instance_constraints": [
+        "Pre-attempt projection must show only the first stage.",
+        "Later stages must not alter the stated givens."
+      ],
+      "accessibility": [
+        "SVG has an accessible name, title, description, and text labels at least 18 viewBox units high."
+      ],
+      "misleading_alternatives": [
+        "Do not imply a closed surface where the prompt states an opening or hidden join."
+      ],
+      "rendered_asset_refs": [
+        "Mathematics/assets/representations/issue11-cone-slant.svg"
+      ],
+      "scene_instances": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-I11-CONE-1",
+          "label": "Given cone",
+          "purpose": "Show the given radius and height.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-CONE-2",
+          "label": "Right triangle",
+          "purpose": "Make the axial right triangle explicit.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-CONE-3",
+          "label": "Pythagoras bridge",
+          "purpose": "Connect to Pythagoras without evaluating.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-CONE-4",
+          "label": "Canvas relation",
+          "purpose": "Connect derived slant height to open-base curved area.",
+          "visible_elements": []
+        }
+      ]
+    },
+    {
+      "id": "REP-I11-HEMISPHERE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GEOMETRIC_FIGURE",
+      "purpose": "Distinguish the curved inner hemisphere from the open circular mouth.",
+      "required_elements": [
+        "Given quantities or conditions",
+        "The geometric/relational structure needed for the staged teaching job"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "VIS-I11-HEMI-1",
+        "VIS-I11-HEMI-2",
+        "VIS-I11-HEMI-3"
+      ],
+      "instance_constraints": [
+        "Pre-attempt projection must show only the first stage.",
+        "Later stages must not alter the stated givens."
+      ],
+      "accessibility": [
+        "SVG has an accessible name, title, description, and text labels at least 18 viewBox units high."
+      ],
+      "misleading_alternatives": [
+        "Do not imply a closed surface where the prompt states an opening or hidden join."
+      ],
+      "rendered_asset_refs": [
+        "Mathematics/assets/representations/issue11-hemisphere-bowl.svg"
+      ],
+      "scene_instances": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-I11-HEMI-1",
+          "label": "Open bowl",
+          "purpose": "Show the bowl and open rim.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-HEMI-2",
+          "label": "Curved material",
+          "purpose": "Identify the material inner surface.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-HEMI-3",
+          "label": "Curved-area relation",
+          "purpose": "Connect the material boundary to 2πr².",
+          "visible_elements": []
+        }
+      ]
+    },
+    {
+      "id": "REP-I11-COMPOSITE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GEOMETRIC_FIGURE",
+      "purpose": "Make the hidden circular join and the two exposed curved surfaces explicit.",
+      "required_elements": [
+        "Given quantities or conditions",
+        "The geometric/relational structure needed for the staged teaching job"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "VIS-I11-COMP-1",
+        "VIS-I11-COMP-2",
+        "VIS-I11-COMP-3",
+        "VIS-I11-COMP-4"
+      ],
+      "instance_constraints": [
+        "Pre-attempt projection must show only the first stage.",
+        "Later stages must not alter the stated givens."
+      ],
+      "accessibility": [
+        "SVG has an accessible name, title, description, and text labels at least 18 viewBox units high."
+      ],
+      "misleading_alternatives": [
+        "Do not imply a closed surface where the prompt states an opening or hidden join."
+      ],
+      "rendered_asset_refs": [
+        "Mathematics/assets/representations/issue11-composite.svg"
+      ],
+      "scene_instances": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-I11-COMP-1",
+          "label": "Composite solid",
+          "purpose": "Show only the composite givens.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-COMP-2",
+          "label": "Hidden join",
+          "purpose": "Mark the internal contact interface.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-COMP-3",
+          "label": "Exposed pieces",
+          "purpose": "Identify the two exposed curved surfaces.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-COMP-4",
+          "label": "Area assembly",
+          "purpose": "Assemble their formulas without final evaluation.",
+          "visible_elements": []
+        }
+      ]
+    },
+    {
+      "id": "REP-I11-Q7-PAINT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GEOMETRIC_FIGURE",
+      "purpose": "Clarify exactly which outside surfaces of the open vessel are painted.",
+      "required_elements": [
+        "Given quantities or conditions",
+        "The geometric/relational structure needed for the staged teaching job"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "VIS-I11-Q7-1",
+        "VIS-I11-Q7-2",
+        "VIS-I11-Q7-3"
+      ],
+      "instance_constraints": [
+        "Pre-attempt projection must show only the first stage.",
+        "Later stages must not alter the stated givens."
+      ],
+      "accessibility": [
+        "SVG has an accessible name, title, description, and text labels at least 18 viewBox units high."
+      ],
+      "misleading_alternatives": [
+        "Do not imply a closed surface where the prompt states an opening or hidden join."
+      ],
+      "rendered_asset_refs": [
+        "Mathematics/assets/representations/issue11-q7-painted-vessel.svg"
+      ],
+      "scene_instances": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-I11-Q7-1",
+          "label": "Given vessel",
+          "purpose": "Show the open vessel and dimensions.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-Q7-2",
+          "label": "Painted regions",
+          "purpose": "Mark only outer wall and outside bottom.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-Q7-3",
+          "label": "Area model",
+          "purpose": "Map painted regions to two area terms.",
+          "visible_elements": []
+        }
+      ]
+    },
+    {
+      "id": "REP-I11-CAPACITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "BAR_MODEL",
+      "purpose": "Sequence total tank volume, 75% fill, and cubic-metre-to-litre conversion.",
+      "required_elements": [
+        "Given quantities or conditions",
+        "The geometric/relational structure needed for the staged teaching job"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "VIS-I11-CAP-1",
+        "VIS-I11-CAP-2",
+        "VIS-I11-CAP-3"
+      ],
+      "instance_constraints": [
+        "Pre-attempt projection must show only the first stage.",
+        "Later stages must not alter the stated givens."
+      ],
+      "accessibility": [
+        "SVG has an accessible name, title, description, and text labels at least 18 viewBox units high."
+      ],
+      "misleading_alternatives": [
+        "Do not imply a closed surface where the prompt states an opening or hidden join."
+      ],
+      "rendered_asset_refs": [
+        "Mathematics/assets/representations/issue11-capacity.svg"
+      ],
+      "scene_instances": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-I11-CAP-1",
+          "label": "Tank dimensions",
+          "purpose": "Show the tank dimensions and 75% statement.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-CAP-2",
+          "label": "Volume then fraction",
+          "purpose": "Sequence full volume to filled volume.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-CAP-3",
+          "label": "Unit bridge",
+          "purpose": "Connect cubic metres to litres.",
+          "visible_elements": []
+        }
+      ]
+    },
+    {
+      "id": "REP-I11-RECAST",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GEOMETRIC_FIGURE",
+      "purpose": "Distinguish conserved material volume from non-conserved exposed surface during sphere recasting.",
+      "required_elements": [
+        "Given quantities or conditions",
+        "The geometric/relational structure needed for the staged teaching job"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "VIS-I11-REC-1",
+        "VIS-I11-REC-2",
+        "VIS-I11-REC-3",
+        "VIS-I11-REC-4"
+      ],
+      "instance_constraints": [
+        "Pre-attempt projection must show only the first stage.",
+        "Later stages must not alter the stated givens."
+      ],
+      "accessibility": [
+        "SVG has an accessible name, title, description, and text labels at least 18 viewBox units high."
+      ],
+      "misleading_alternatives": [
+        "Do not imply a closed surface where the prompt states an opening or hidden join."
+      ],
+      "rendered_asset_refs": [
+        "Mathematics/assets/representations/issue11-recast.svg"
+      ],
+      "scene_instances": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-I11-REC-1",
+          "label": "Before and after",
+          "purpose": "Show the stated before/after sphere sizes and no-loss condition.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-REC-2",
+          "label": "Conserved quantity",
+          "purpose": "Identify volume as the invariant.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-REC-3",
+          "label": "Count equation",
+          "purpose": "Link one large volume to n small volumes.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-REC-4",
+          "label": "Surface comparison",
+          "purpose": "Compare surface areas as a separate quantity.",
+          "visible_elements": []
+        }
+      ]
+    },
+    {
+      "id": "REP-I11-RATIO",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "AREA_MODEL",
+      "purpose": "Expose the common πr²h factor behind the cone-cylinder one-third volume relation.",
+      "required_elements": [
+        "Given quantities or conditions",
+        "The geometric/relational structure needed for the staged teaching job"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "VIS-I11-RAT-1",
+        "VIS-I11-RAT-2",
+        "VIS-I11-RAT-3"
+      ],
+      "instance_constraints": [
+        "Pre-attempt projection must show only the first stage.",
+        "Later stages must not alter the stated givens."
+      ],
+      "accessibility": [
+        "SVG has an accessible name, title, description, and text labels at least 18 viewBox units high."
+      ],
+      "misleading_alternatives": [
+        "Do not imply a closed surface where the prompt states an opening or hidden join."
+      ],
+      "rendered_asset_refs": [
+        "Mathematics/assets/representations/issue11-ratio.svg"
+      ],
+      "scene_instances": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-I11-RAT-1",
+          "label": "Same radius and height",
+          "purpose": "Show the equal-radius/equal-height condition and cylinder volume.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-RAT-2",
+          "label": "Shared factor",
+          "purpose": "Write the two formulas with a common factor.",
+          "visible_elements": []
+        },
+        {
+          "id": "VIS-I11-RAT-3",
+          "label": "Fixed ratio",
+          "purpose": "Show the symbolic 1:3 ratio without doing the arithmetic.",
+          "visible_elements": []
+        }
+      ]
+    }
+  ],
+  "question_families": [
+    {
+      "id": "FAM-I11-SA-DIRECT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Direct surface-area application",
+      "capability_refs": [
+        "CAP-I11-SURFACE-SELECTION"
+      ],
+      "solution_structure": [
+        "Identify the requested surface type.",
+        "Map stated dimensions to the correct formula variables.",
+        "Evaluate and check units."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Formula selection is mostly familiar; traps come from total-vs-curved wording or diameter-vs-radius mapping.",
+        "representation_translation": "Translate words about surfaces or shared dimensions into the corresponding mathematical structure.",
+        "reasoning_steps": "Follow only dependencies required by the family invariant.",
+        "novelty": "Context and dimensions may change while the governing boundary/invariant stays fixed."
+      },
+      "safe_variations": [
+        "Change dimensions while preserving the same boundary/invariant conditions."
+      ],
+      "transfer_boundaries": [
+        "Changing which surfaces are open/hidden or which quantity is conserved may require a different family."
+      ],
+      "common_wrong_routes": [
+        "Apply a familiar formula before checking the boundary, invariant or variable mapping."
+      ],
+      "item_refs": []
+    },
+    {
+      "id": "FAM-I11-SA-BOUNDARY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Open or selected-surface area",
+      "capability_refs": [
+        "CAP-I11-SURFACE-SELECTION"
+      ],
+      "solution_structure": [
+        "Inventory material/exposed surfaces.",
+        "Assign one area term to each included piece.",
+        "Sum and boundary-check."
+      ],
+      "demand_dimensions": {
+        "model_choice": "The model choice is deciding which surfaces exist or are included.",
+        "representation_translation": "Translate words about surfaces or shared dimensions into the corresponding mathematical structure.",
+        "reasoning_steps": "Follow only dependencies required by the family invariant.",
+        "novelty": "Context and dimensions may change while the governing boundary/invariant stays fixed."
+      },
+      "safe_variations": [
+        "Change dimensions while preserving the same boundary/invariant conditions."
+      ],
+      "transfer_boundaries": [
+        "Changing which surfaces are open/hidden or which quantity is conserved may require a different family."
+      ],
+      "common_wrong_routes": [
+        "Apply a familiar formula before checking the boundary, invariant or variable mapping."
+      ],
+      "item_refs": []
+    },
+    {
+      "id": "FAM-I11-CONE-SLANT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Cone slant-height then curved area",
+      "capability_refs": [
+        "CAP-I11-CONE-SLANT-SURFACE"
+      ],
+      "solution_structure": [
+        "Construct axial right triangle.",
+        "Find slant height.",
+        "Apply open/closed surface condition."
+      ],
+      "demand_dimensions": {
+        "model_choice": "The dependency is slant height before lateral area.",
+        "representation_translation": "Translate words about surfaces or shared dimensions into the corresponding mathematical structure.",
+        "reasoning_steps": "Follow only dependencies required by the family invariant.",
+        "novelty": "Context and dimensions may change while the governing boundary/invariant stays fixed."
+      },
+      "safe_variations": [
+        "Change dimensions while preserving the same boundary/invariant conditions."
+      ],
+      "transfer_boundaries": [
+        "Changing which surfaces are open/hidden or which quantity is conserved may require a different family."
+      ],
+      "common_wrong_routes": [
+        "Apply a familiar formula before checking the boundary, invariant or variable mapping."
+      ],
+      "item_refs": []
+    },
+    {
+      "id": "FAM-I11-COMPOSITE-EXPOSED",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Composite exposed-surface area",
+      "capability_refs": [
+        "CAP-I11-COMPOSITE-EXPOSED"
+      ],
+      "solution_structure": [
+        "Find any missing component dimensions.",
+        "Remove hidden interfaces.",
+        "Sum exposed component surfaces."
+      ],
+      "demand_dimensions": {
+        "model_choice": "The model must suppress coincident internal faces.",
+        "representation_translation": "Translate words about surfaces or shared dimensions into the corresponding mathematical structure.",
+        "reasoning_steps": "Follow only dependencies required by the family invariant.",
+        "novelty": "Context and dimensions may change while the governing boundary/invariant stays fixed."
+      },
+      "safe_variations": [
+        "Change dimensions while preserving the same boundary/invariant conditions."
+      ],
+      "transfer_boundaries": [
+        "Changing which surfaces are open/hidden or which quantity is conserved may require a different family."
+      ],
+      "common_wrong_routes": [
+        "Apply a familiar formula before checking the boundary, invariant or variable mapping."
+      ],
+      "item_refs": []
+    },
+    {
+      "id": "FAM-I11-CAPACITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Capacity with percentage and unit conversion",
+      "capability_refs": [
+        "CAP-I11-CAPACITY-CONVERSION"
+      ],
+      "solution_structure": [
+        "Compute full volume.",
+        "Apply fill fraction.",
+        "Convert cubic units and verify."
+      ],
+      "demand_dimensions": {
+        "model_choice": "The chain preserves units across percentage and capacity conversion.",
+        "representation_translation": "Translate words about surfaces or shared dimensions into the corresponding mathematical structure.",
+        "reasoning_steps": "Follow only dependencies required by the family invariant.",
+        "novelty": "Context and dimensions may change while the governing boundary/invariant stays fixed."
+      },
+      "safe_variations": [
+        "Change dimensions while preserving the same boundary/invariant conditions."
+      ],
+      "transfer_boundaries": [
+        "Changing which surfaces are open/hidden or which quantity is conserved may require a different family."
+      ],
+      "common_wrong_routes": [
+        "Apply a familiar formula before checking the boundary, invariant or variable mapping."
+      ],
+      "item_refs": []
+    },
+    {
+      "id": "FAM-I11-RECAST",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Recasting by volume conservation",
+      "capability_refs": [
+        "CAP-I11-RECAST-CONSERVATION"
+      ],
+      "solution_structure": [
+        "Choose volume as invariant.",
+        "Equate total volumes.",
+        "Solve count and separately analyze surface area."
+      ],
+      "demand_dimensions": {
+        "model_choice": "The invariant is volume; surface area is a non-conserved comparison.",
+        "representation_translation": "Translate words about surfaces or shared dimensions into the corresponding mathematical structure.",
+        "reasoning_steps": "Follow only dependencies required by the family invariant.",
+        "novelty": "Context and dimensions may change while the governing boundary/invariant stays fixed."
+      },
+      "safe_variations": [
+        "Change dimensions while preserving the same boundary/invariant conditions."
+      ],
+      "transfer_boundaries": [
+        "Changing which surfaces are open/hidden or which quantity is conserved may require a different family."
+      ],
+      "common_wrong_routes": [
+        "Apply a familiar formula before checking the boundary, invariant or variable mapping."
+      ],
+      "item_refs": []
+    },
+    {
+      "id": "FAM-I11-VOLUME-RATIO",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-I11-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Cone-cylinder shared-dimension ratio",
+      "capability_refs": [
+        "CAP-I11-CONE-CYLINDER-RATIO"
+      ],
+      "solution_structure": [
+        "Write both formulas with shared variables.",
+        "Cancel the common factor.",
+        "Use the coefficient ratio directly."
+      ],
+      "demand_dimensions": {
+        "model_choice": "The shortcut is structural rather than numerical.",
+        "representation_translation": "Translate words about surfaces or shared dimensions into the corresponding mathematical structure.",
+        "reasoning_steps": "Follow only dependencies required by the family invariant.",
+        "novelty": "Context and dimensions may change while the governing boundary/invariant stays fixed."
+      },
+      "safe_variations": [
+        "Change dimensions while preserving the same boundary/invariant conditions."
+      ],
+      "transfer_boundaries": [
+        "Changing which surfaces are open/hidden or which quantity is conserved may require a different family."
+      ],
+      "common_wrong_routes": [
+        "Apply a familiar formula before checking the boundary, invariant or variable mapping."
+      ],
+      "item_refs": []
+    }
+  ],
+  "questions": [],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {
+    "grade9v3:pilot": {
+      "issue": 11,
+      "authority": "OWNER_SUPPLIED",
+      "release_certification": false
+    }
+  },
+  "data": []
+}

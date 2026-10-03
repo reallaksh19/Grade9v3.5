@@ -1,0 +1,2025 @@
+{
+  "schema_version": "grade9v3-owner-supplied-bank-v1",
+  "bank_id": "issue-11-surface-areas-volumes",
+  "intake_digest": "sha256:22cc203cdfec25d973a0de872bc4c2ffc4ae99a4105c9595ae9c2195f36d0122",
+  "questions": [
+    {
+      "id": "OWN-ISSUE11-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "OWNER-ISSUE11"
+      ],
+      "evidence_refs": [],
+      "origin": "ORIGINAL",
+      "origin_ref": "OWNER-ISSUE11",
+      "original_identifier": "Q1",
+      "stem": "A wooden cube has edge length 7 cm.\n\nFind its total surface area.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The cube has edge length 7 cm."
+      ],
+      "figure_refs": [
+        "REP-I11-Q1-CUBE"
+      ],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "294 cm².",
+        "reasoning": [
+          "Count all six congruent square faces because total surface area includes every outer face. 6 square faces, each of area 7² cm²",
+          "Compute 6 × 7². 294 cm²",
+          "Check the face count and the squared unit. 6 × 49 cm² = 294 cm²"
+        ],
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE11-01-M1",
+            "kind": "DECIDE",
+            "action": "Count all six congruent square faces because total surface area includes every outer face.",
+            "why_valid": "A cube has six square faces, all with side length 7 cm.",
+            "inputs": [
+              "edge length 7 cm"
+            ],
+            "output": "6 square faces, each of area 7² cm²"
+          },
+          {
+            "id": "OWN-ISSUE11-01-M2",
+            "kind": "TRANSFORM",
+            "action": "Compute 6 × 7².",
+            "why_valid": "Each face has area a² and there are six faces.",
+            "inputs": [
+              "6 faces; 7 cm edge"
+            ],
+            "output": "294 cm²"
+          },
+          {
+            "id": "OWN-ISSUE11-01-M3",
+            "kind": "VERIFY",
+            "action": "Check the face count and the squared unit.",
+            "why_valid": "Surface area must count each external face once and use square units.",
+            "inputs": [
+              "294 cm²"
+            ],
+            "output": "6 × 49 cm² = 294 cm²"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE11-01-M1",
+        "check": "Six faces at 49 cm² each give 6 × 49 = 294 cm²; the unit is square centimetres.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-I11-SURFACE-SELECTION",
+      "secondary_capability_refs": [
+        "CAP-MATH-AREA-BASICS"
+      ],
+      "family_ref": "FAM-I11-SA-DIRECT",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2",
+          "role": "SOURCE_QUESTION",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Sketch or mentally list the congruent outer faces; do not calculate their combined area yet.",
+          "prompt": "Which surfaces does the word “total” require you to count before you calculate?",
+          "learner_stage": "REPRESENTATION",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "OWN-ISSUE11-01-M1"
+        },
+        {
+          "text": "Use the demonstrated square-area idea as the bridge from edge length to one face.",
+          "prompt": "What area rule do you already know for one square face?",
+          "learner_stage": "KEY_CONCEPT",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "OWN-ISSUE11-01-M2",
+          "visual_ref": "REP-I11-Q1-CUBE",
+          "visual_stage_ref": "VIS-I11-Q1-2"
+        },
+        {
+          "text": "Group the six equal faces first; leave the multiplication and final value to your own working.",
+          "prompt": "How can you organize the faces so none is missed or double-counted?",
+          "learner_stage": "CRUX",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "OWN-ISSUE11-01-M1",
+          "visual_ref": "REP-I11-Q1-CUBE",
+          "visual_stage_ref": "VIS-I11-Q1-3"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "REPRESENT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-01-M1",
+          "from": "scaffolds[0]"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-01-M2",
+          "from": "scaffolds[1]"
+        },
+        {
+          "order": 3,
+          "purpose": "CONNECT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-01-M1",
+          "from": "scaffolds[2]"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-I11-Q1-CUBE",
+        "safe_ref": "REP-I11-Q1-CUBE",
+        "bound_ref": "REP-I11-Q1-CUBE",
+        "stage_refs": [
+          "VIS-I11-Q1-1"
+        ]
+      },
+      "independent_check": {
+        "statement": "Six faces at 49 cm² each give 6 × 49 = 294 cm²; the unit is square centimetres."
+      },
+      "failure_signal": "Using the area of one square face, or multiplying by four because only the side faces are pictured.",
+      "learner_question_type": "constructed_response",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q1",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:8a6cf6586f0b655ae33a4f164794ff8af102537d9f6b1d4d735825af90b732a1"
+        },
+        "grade9v3:provenance_class": "OWNER_SUPPLIED",
+        "grade9v3:math_spans": [],
+        "grade9v3:cognitive_demand": {
+          "primary": "APPLY",
+          "secondary": [],
+          "basis": "Primary APPLY: Recognize that total surface area of a cube counts all six congruent square faces."
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D1",
+            "score": 1,
+            "components": {
+              "concept_model_selection": 0,
+              "representation_translation": 0,
+              "reasoning_chain_length": 0,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 0
+            },
+            "basis": "D1 because the task's main demand is apply with 1/10 across model choice, representation, chain length, computation and trap sensitivity."
+          },
+          "expected_time_seconds": 75,
+          "common_wrong_route": "Using the area of one square face, or multiplying by four because only the side faces are pictured.",
+          "stable_crux_move": "Recognize that total surface area of a cube counts all six congruent square faces.",
+          "concept_bucket": "BUCKET-I11-SA-VOLUMES"
+        }
+      }
+    },
+    {
+      "id": "OWN-ISSUE11-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "OWNER-ISSUE11"
+      ],
+      "evidence_refs": [],
+      "origin": "ORIGINAL",
+      "origin_ref": "OWNER-ISSUE11",
+      "original_identifier": "Q2",
+      "stem": "A cylindrical water bottle has diameter 14 cm and height 20 cm.\n\nFind its curved surface area.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The cylinder has diameter 14 cm.",
+        "The cylinder has height 20 cm."
+      ],
+      "figure_refs": [
+        "REP-I11-Q2-DIAMETER"
+      ],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "280π cm², which is 880 cm² if π = 22/7.",
+        "reasoning": [
+          "Convert the 14 cm diameter to radius 7 cm. radius 7 cm",
+          "Use curved surface area 2πrh = 2π(7)(20). 280π cm²",
+          "Check that using the diameter directly would double the result. 280π cm² = 880 cm² if π = 22/7"
+        ],
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE11-02-M1",
+            "kind": "REPRESENT",
+            "action": "Convert the 14 cm diameter to radius 7 cm.",
+            "why_valid": "The radius is half the diameter, and the curved-surface formula uses r.",
+            "inputs": [
+              "diameter 14 cm"
+            ],
+            "output": "radius 7 cm"
+          },
+          {
+            "id": "OWN-ISSUE11-02-M2",
+            "kind": "TRANSFORM",
+            "action": "Use curved surface area 2πrh = 2π(7)(20).",
+            "why_valid": "The lateral area of a cylinder is circumference 2πr times height h.",
+            "inputs": [
+              "r = 7 cm; h = 20 cm"
+            ],
+            "output": "280π cm²"
+          },
+          {
+            "id": "OWN-ISSUE11-02-M3",
+            "kind": "VERIFY",
+            "action": "Check that using the diameter directly would double the result.",
+            "why_valid": "Replacing r=7 by 14 doubles 2πrh, so the diameter trap is detectable.",
+            "inputs": [
+              "280π cm²"
+            ],
+            "output": "280π cm² = 880 cm² if π = 22/7"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE11-02-M1",
+        "check": "The radius is 7 cm, so 2πrh = 2π(7)(20) = 280π cm²; using diameter directly would double the result.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-I11-SURFACE-SELECTION",
+      "secondary_capability_refs": [
+        "CAP-MATH-RADIUS-DIAMETER"
+      ],
+      "family_ref": "FAM-I11-SA-DIRECT",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2",
+          "role": "SOURCE_QUESTION",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Mark the diameter across the circle and identify the corresponding radius without substituting a value yet.",
+          "prompt": "The bottle gives a diameter. Which length does the curved-surface relation use?",
+          "learner_stage": "REPRESENTATION",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "OWN-ISSUE11-02-M1"
+        },
+        {
+          "text": "Use r = d/2 as the bridge from the stated measurement to the formula variable.",
+          "prompt": "What demonstrated relation connects diameter and radius?",
+          "learner_stage": "KEY_CONCEPT",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "OWN-ISSUE11-02-M2",
+          "visual_ref": "REP-I11-Q2-DIAMETER",
+          "visual_stage_ref": "VIS-I11-Q2-2"
+        },
+        {
+          "text": "Carry the diameter-to-radius mapping into the formula yourself; do not use 14 as r.",
+          "prompt": "What must be converted before the cylinder relation can be instantiated?",
+          "learner_stage": "CRUX",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "OWN-ISSUE11-02-M1",
+          "visual_ref": "REP-I11-Q2-DIAMETER",
+          "visual_stage_ref": "VIS-I11-Q2-3"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "REPRESENT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-02-M1",
+          "from": "scaffolds[0]"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-02-M2",
+          "from": "scaffolds[1]"
+        },
+        {
+          "order": 3,
+          "purpose": "CONNECT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-02-M1",
+          "from": "scaffolds[2]"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-I11-Q2-DIAMETER",
+        "safe_ref": "REP-I11-Q2-DIAMETER",
+        "bound_ref": "REP-I11-Q2-DIAMETER",
+        "stage_refs": [
+          "VIS-I11-Q2-1"
+        ]
+      },
+      "independent_check": {
+        "statement": "The radius is 7 cm, so 2πrh = 2π(7)(20) = 280π cm²; using diameter directly would double the result."
+      },
+      "failure_signal": "Substituting 14 cm as the radius because the formula is recalled before the diameter-to-radius mapping is checked.",
+      "learner_question_type": "constructed_response",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q2",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:5bd78ea1e43374b6bc08a3ed300a5b0717fb5ab3fc29641bb9428f9836b3e6c0"
+        },
+        "grade9v3:provenance_class": "OWNER_SUPPLIED",
+        "grade9v3:math_spans": [],
+        "grade9v3:cognitive_demand": {
+          "primary": "APPLY",
+          "secondary": [
+            "REPRESENT"
+          ],
+          "basis": "Primary APPLY: Convert the stated diameter to the radius required by the cylinder curved-surface formula before substituting."
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "D2 because the task's main demand is apply with 5/10 across model choice, representation, chain length, computation and trap sensitivity."
+          },
+          "expected_time_seconds": 120,
+          "common_wrong_route": "Substituting 14 cm as the radius because the formula is recalled before the diameter-to-radius mapping is checked.",
+          "stable_crux_move": "Convert the stated diameter to the radius required by the cylinder curved-surface formula before substituting.",
+          "concept_bucket": "BUCKET-I11-SA-VOLUMES"
+        }
+      }
+    },
+    {
+      "id": "OWN-ISSUE11-03",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "OWNER-ISSUE11"
+      ],
+      "evidence_refs": [],
+      "origin": "ORIGINAL",
+      "origin_ref": "OWNER-ISSUE11",
+      "original_identifier": "Q3",
+      "stem": "A cylindrical bucket is open at the top.\n\nIts internal radius is 7 cm and its height is 18 cm.\n\nFind the area of metal sheet required to make the bucket, ignoring the thickness of the sheet.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The bucket is open at the top.",
+        "The internal radius is 7 cm.",
+        "The height is 18 cm.",
+        "Ignore the thickness of the sheet."
+      ],
+      "figure_refs": [
+        "REP-I11-Q3-OPEN"
+      ],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "301π cm², which is 946 cm² if π = 22/7.",
+        "reasoning": [
+          "Include the curved wall and one circular base; exclude the open top. included surfaces: curved wall + bottom circle",
+          "Add 2πrh + πr² = 2π(7)(18) + π(7²). 301π cm²",
+          "Recount the boundary: one lateral surface, one base, zero top. 301π cm² = 946 cm² if π = 22/7"
+        ],
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE11-03-M1",
+            "kind": "DECIDE",
+            "action": "Include the curved wall and one circular base; exclude the open top.",
+            "why_valid": "Metal sheet is needed only where material exists; the top opening has no circular sheet.",
+            "inputs": [
+              "open top; r=7 cm; h=18 cm"
+            ],
+            "output": "included surfaces: curved wall + bottom circle"
+          },
+          {
+            "id": "OWN-ISSUE11-03-M2",
+            "kind": "TRANSFORM",
+            "action": "Add 2πrh + πr² = 2π(7)(18) + π(7²).",
+            "why_valid": "Areas of distinct sheet pieces add without overlap.",
+            "inputs": [
+              "r=7 cm; h=18 cm"
+            ],
+            "output": "301π cm²"
+          },
+          {
+            "id": "OWN-ISSUE11-03-M3",
+            "kind": "VERIFY",
+            "action": "Recount the boundary: one lateral surface, one base, zero top.",
+            "why_valid": "The physical boundary description independently verifies the formula terms.",
+            "inputs": [
+              "301π cm²"
+            ],
+            "output": "301π cm² = 946 cm² if π = 22/7"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE11-03-M1",
+        "check": "The included pieces are 2πrh + πr² = 252π + 49π = 301π cm²; there is exactly one base because the top is open.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-I11-SURFACE-SELECTION",
+      "secondary_capability_refs": [
+        "CAP-MATH-CIRCLE-AREA"
+      ],
+      "family_ref": "FAM-I11-SA-BOUNDARY",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2",
+          "role": "SOURCE_QUESTION",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Trace the bucket boundary and distinguish the open top from the metal wall and bottom.",
+          "prompt": "Before using any formula, which physical pieces of sheet actually exist?",
+          "learner_stage": "REPRESENTATION",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "OWN-ISSUE11-03-M1"
+        },
+        {
+          "text": "Connect the boundary inventory to lateral-cylinder area and circle area.",
+          "prompt": "What familiar areas describe a cylinder's curved wall and one circular base?",
+          "learner_stage": "KEY_CONCEPT",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "OWN-ISSUE11-03-M2",
+          "visual_ref": "REP-I11-Q3-OPEN",
+          "visual_stage_ref": "VIS-I11-Q3-2"
+        },
+        {
+          "text": "Create the two-term area expression from your surface list; leave the numerical evaluation to your working.",
+          "prompt": "How can you write one sum whose terms match only the included surfaces?",
+          "learner_stage": "CRUX",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "OWN-ISSUE11-03-M1",
+          "visual_ref": "REP-I11-Q3-OPEN",
+          "visual_stage_ref": "VIS-I11-Q3-3"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "REPRESENT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-03-M1",
+          "from": "scaffolds[0]"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-03-M2",
+          "from": "scaffolds[1]"
+        },
+        {
+          "order": 3,
+          "purpose": "CONNECT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-03-M1",
+          "from": "scaffolds[2]"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-I11-Q3-OPEN",
+        "safe_ref": "REP-I11-Q3-OPEN",
+        "bound_ref": "REP-I11-Q3-OPEN",
+        "stage_refs": [
+          "VIS-I11-Q3-1"
+        ]
+      },
+      "independent_check": {
+        "statement": "The included pieces are 2πrh + πr² = 252π + 49π = 301π cm²; there is exactly one base because the top is open."
+      },
+      "failure_signal": "Using total surface area of a closed cylinder and counting two circular bases.",
+      "learner_question_type": "constructed_response",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q3",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:4523d76fb9f40a27921d3ad752340493f5a601d57a2a466f709c57b4f780ad44"
+        },
+        "grade9v3:provenance_class": "OWNER_SUPPLIED",
+        "grade9v3:math_spans": [],
+        "grade9v3:cognitive_demand": {
+          "primary": "MODEL",
+          "secondary": [
+            "APPLY"
+          ],
+          "basis": "Primary MODEL: Model an open cylindrical bucket as one curved surface plus one circular base, with no top circle."
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "D2 because the task's main demand is model with 5/10 across model choice, representation, chain length, computation and trap sensitivity."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "Using total surface area of a closed cylinder and counting two circular bases.",
+          "stable_crux_move": "Model an open cylindrical bucket as one curved surface plus one circular base, with no top circle.",
+          "concept_bucket": "BUCKET-I11-SA-VOLUMES"
+        }
+      }
+    },
+    {
+      "id": "OWN-ISSUE11-04",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "OWNER-ISSUE11"
+      ],
+      "evidence_refs": [],
+      "origin": "ORIGINAL",
+      "origin_ref": "OWNER-ISSUE11",
+      "original_identifier": "Q4",
+      "stem": "A conical tent has radius 7 m and vertical height 24 m.\n\nFind:\n\n1. its slant height;\n2. the area of canvas required to make the tent.\n\nThe base of the tent is open.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The cone has radius 7 m.",
+        "The vertical height is 24 m.",
+        "The base of the tent is open."
+      ],
+      "figure_refs": [
+        "REP-I11-CONE-SLANT"
+      ],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Slant height = 25 m; canvas area = 175π m², which is 550 m² if π = 22/7.",
+        "reasoning": [
+          "Form the right triangle with radius 7 m, vertical height 24 m, and slant height l. l² = 7² + 24²",
+          "Compute l = √(7² + 24²) = 25 m. l = 25 m",
+          "Use only curved cone area πrl for the canvas. canvas area = 175π m²",
+          "Check both the 7-24-25 triangle and the open-base boundary. 175π m² = 550 m² if π = 22/7"
+        ],
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE11-04-M1",
+            "kind": "REPRESENT",
+            "action": "Form the right triangle with radius 7 m, vertical height 24 m, and slant height l.",
+            "why_valid": "A cross-section through the cone axis gives a right triangle from centre, rim and apex.",
+            "inputs": [
+              "r=7 m; h=24 m"
+            ],
+            "output": "l² = 7² + 24²"
+          },
+          {
+            "id": "OWN-ISSUE11-04-M2",
+            "kind": "TRANSFORM",
+            "action": "Compute l = √(7² + 24²) = 25 m.",
+            "why_valid": "Pythagoras applies to the right-triangle cross-section.",
+            "inputs": [
+              "l² = 625"
+            ],
+            "output": "l = 25 m"
+          },
+          {
+            "id": "OWN-ISSUE11-04-M3",
+            "kind": "CONNECT",
+            "action": "Use only curved cone area πrl for the canvas.",
+            "why_valid": "The tent base is open, so the circular base is not canvas.",
+            "inputs": [
+              "r=7 m; l=25 m; base open"
+            ],
+            "output": "canvas area = 175π m²"
+          },
+          {
+            "id": "OWN-ISSUE11-04-M4",
+            "kind": "VERIFY",
+            "action": "Check both the 7-24-25 triangle and the open-base boundary.",
+            "why_valid": "25² = 7² + 24², and the area expression has no πr² base term.",
+            "inputs": [
+              "l=25 m; area 175π m²"
+            ],
+            "output": "175π m² = 550 m² if π = 22/7"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE11-04-M2",
+        "check": "7² + 24² = 625 = 25², and the open tent uses πrl = π(7)(25) with no πr² base term.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-I11-CONE-SLANT-SURFACE",
+      "secondary_capability_refs": [
+        "CAP-MATH-PYTHAGORAS"
+      ],
+      "family_ref": "FAM-I11-CONE-SLANT",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2",
+          "role": "SOURCE_QUESTION",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Use an axial cross-section to expose the radius, vertical height and sloping side.",
+          "prompt": "Which length needed for the canvas formula is not given directly?",
+          "learner_stage": "REPRESENTATION",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "OWN-ISSUE11-04-M1"
+        },
+        {
+          "text": "Recognize the right triangle and bridge to Pythagoras without evaluating the square root yet.",
+          "prompt": "What demonstrated theorem connects perpendicular legs to the sloping side?",
+          "learner_stage": "KEY_CONCEPT",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "OWN-ISSUE11-04-M2",
+          "visual_ref": "REP-I11-CONE-SLANT",
+          "visual_stage_ref": "VIS-I11-CONE-2"
+        },
+        {
+          "text": "Find the slant height first; keep the final canvas computation for your own working.",
+          "prompt": "Which intermediate length must be established before the canvas area can be found?",
+          "learner_stage": "CRUX",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "OWN-ISSUE11-04-M2",
+          "visual_ref": "REP-I11-CONE-SLANT",
+          "visual_stage_ref": "VIS-I11-CONE-3"
+        },
+        {
+          "text": "Use the curved-area relation πrl; the base condition determines whether any πr² term belongs.",
+          "prompt": "Once the slant height is known, which cone surface-area relation matches an open tent?",
+          "learner_stage": "FORMAL_MODEL",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "OWN-ISSUE11-04-M2",
+          "visual_ref": "REP-I11-CONE-SLANT",
+          "visual_stage_ref": "VIS-I11-CONE-4"
+        },
+        {
+          "text": "Check the 7–24–25 right triangle and verify that an open-base canvas expression has no base term.",
+          "prompt": "Before the final answer, what two checks can you make?",
+          "learner_stage": "CHECKPOINT",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "OWN-ISSUE11-04-M4"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "REPRESENT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-04-M1",
+          "from": "scaffolds[0]"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-04-M2",
+          "from": "scaffolds[1]"
+        },
+        {
+          "order": 3,
+          "purpose": "CONNECT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-04-M2",
+          "from": "scaffolds[2]"
+        },
+        {
+          "order": 4,
+          "purpose": "CONNECT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-04-M2",
+          "from": "scaffolds[3]"
+        },
+        {
+          "order": 5,
+          "purpose": "CHECK",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-04-M4",
+          "from": "scaffolds[4]"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-I11-CONE-SLANT",
+        "safe_ref": "REP-I11-CONE-SLANT",
+        "bound_ref": "REP-I11-CONE-SLANT",
+        "stage_refs": [
+          "VIS-I11-CONE-1"
+        ]
+      },
+      "independent_check": {
+        "statement": "7² + 24² = 625 = 25², and the open tent uses πrl = π(7)(25) with no πr² base term."
+      },
+      "failure_signal": "Using the vertical height 24 m in πrl, or adding the circular base even though the tent is open.",
+      "learner_question_type": "constructed_response",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q4",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:59213478051f5414885e2e7b5896cd90dc0e72cb0fbe49fa9410a0a9c66e1749"
+        },
+        "grade9v3:provenance_class": "OWNER_SUPPLIED",
+        "grade9v3:math_spans": [],
+        "grade9v3:cognitive_demand": {
+          "primary": "SYNTHESIZE",
+          "secondary": [
+            "APPLY"
+          ],
+          "basis": "Primary SYNTHESIZE: Use the radius and vertical height as perpendicular legs to obtain slant height before computing the open cone's curved canvas area."
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "D3 because the task's main demand is synthesize with 6/10 across model choice, representation, chain length, computation and trap sensitivity."
+          },
+          "expected_time_seconds": 210,
+          "common_wrong_route": "Using the vertical height 24 m in πrl, or adding the circular base even though the tent is open.",
+          "stable_crux_move": "Use the radius and vertical height as perpendicular legs to obtain slant height before computing the open cone's curved canvas area.",
+          "concept_bucket": "BUCKET-I11-SA-VOLUMES"
+        }
+      }
+    },
+    {
+      "id": "OWN-ISSUE11-05",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "OWNER-ISSUE11"
+      ],
+      "evidence_refs": [],
+      "origin": "ORIGINAL",
+      "origin_ref": "OWNER-ISSUE11",
+      "original_identifier": "Q5",
+      "stem": "A hemispherical bowl has radius 10.5 cm.\n\nFind the area of its inner surface.\n\nExplain why the circular base is not included in your calculation.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The hemispherical bowl has radius 10.5 cm.",
+        "The requested area is the bowl's inner surface."
+      ],
+      "figure_refs": [
+        "REP-I11-HEMISPHERE"
+      ],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "220.5π cm², which is 693 cm² if π = 22/7; the circular base is not included because the bowl is open there.",
+        "reasoning": [
+          "Treat the bowl's inner surface as the curved hemisphere only, with no flat circular base. included surface: curved hemisphere",
+          "Use 2πr² = 2π(10.5)². 220.5π cm²",
+          "Explain the omitted base by matching the formula to the physical bowl boundary. 220.5π cm² = 693 cm² if π = 22/7"
+        ],
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE11-05-M1",
+            "kind": "DECIDE",
+            "action": "Treat the bowl's inner surface as the curved hemisphere only, with no flat circular base.",
+            "why_valid": "The circular mouth is an opening, not a material inner surface.",
+            "inputs": [
+              "hemisphere radius 10.5 cm; bowl open at mouth"
+            ],
+            "output": "included surface: curved hemisphere"
+          },
+          {
+            "id": "OWN-ISSUE11-05-M2",
+            "kind": "TRANSFORM",
+            "action": "Use 2πr² = 2π(10.5)².",
+            "why_valid": "Curved surface area of a hemisphere is half the sphere area 4πr².",
+            "inputs": [
+              "r = 10.5 cm"
+            ],
+            "output": "220.5π cm²"
+          },
+          {
+            "id": "OWN-ISSUE11-05-M3",
+            "kind": "VERIFY",
+            "action": "Explain the omitted base by matching the formula to the physical bowl boundary.",
+            "why_valid": "Adding πr² would model a closed disk across the opening, which is absent.",
+            "inputs": [
+              "220.5π cm²"
+            ],
+            "output": "220.5π cm² = 693 cm² if π = 22/7"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE11-05-M1",
+        "check": "The curved area is 2πr² = 2π(10.5)² = 220.5π cm²; adding πr² would describe a closed flat base that the bowl does not have.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-I11-SURFACE-SELECTION",
+      "secondary_capability_refs": [
+        "CAP-MATH-CIRCLE-AREA"
+      ],
+      "family_ref": "FAM-I11-SA-BOUNDARY",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2",
+          "role": "SOURCE_QUESTION",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Separate the curved material from the opening before selecting an area formula.",
+          "prompt": "Does the bowl contain a flat disk across its circular mouth?",
+          "learner_stage": "REPRESENTATION",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "OWN-ISSUE11-05-M1"
+        },
+        {
+          "text": "Bridge from sphere area to hemisphere curved area: half of 4πr².",
+          "prompt": "What demonstrated hemisphere relation gives curved area only?",
+          "learner_stage": "KEY_CONCEPT",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "OWN-ISSUE11-05-M2",
+          "visual_ref": "REP-I11-HEMISPHERE",
+          "visual_stage_ref": "VIS-I11-HEMI-2"
+        },
+        {
+          "text": "Tie every term in your formula to material that is physically present on the inner surface.",
+          "prompt": "How can your explanation justify excluding the circular base?",
+          "learner_stage": "CRUX",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "OWN-ISSUE11-05-M1",
+          "visual_ref": "REP-I11-HEMISPHERE",
+          "visual_stage_ref": "VIS-I11-HEMI-3"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "REPRESENT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-05-M1",
+          "from": "scaffolds[0]"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-05-M2",
+          "from": "scaffolds[1]"
+        },
+        {
+          "order": 3,
+          "purpose": "CONNECT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-05-M1",
+          "from": "scaffolds[2]"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-I11-HEMISPHERE",
+        "safe_ref": "REP-I11-HEMISPHERE",
+        "bound_ref": "REP-I11-HEMISPHERE",
+        "stage_refs": [
+          "VIS-I11-HEMI-1"
+        ]
+      },
+      "independent_check": {
+        "statement": "The curved area is 2πr² = 2π(10.5)² = 220.5π cm²; adding πr² would describe a closed flat base that the bowl does not have."
+      },
+      "failure_signal": "Using total surface area 3πr² by automatically adding a circular base to every hemisphere.",
+      "learner_question_type": "constructed_response",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q5",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:56f8ac2d2b07da9200f19cd7d75ff1a1330854221b6c8de2fe3707655f8e7110"
+        },
+        "grade9v3:provenance_class": "OWNER_SUPPLIED",
+        "grade9v3:math_spans": [],
+        "grade9v3:cognitive_demand": {
+          "primary": "EXPLAIN",
+          "secondary": [
+            "APPLY"
+          ],
+          "basis": "Primary EXPLAIN: Interpret 'inner surface of a hemispherical bowl' as the curved hemispherical surface only; the open circular mouth is not a material base."
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "D2 because the task's main demand is explain with 5/10 across model choice, representation, chain length, computation and trap sensitivity."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "Using total surface area 3πr² by automatically adding a circular base to every hemisphere.",
+          "stable_crux_move": "Interpret 'inner surface of a hemispherical bowl' as the curved hemispherical surface only; the open circular mouth is not a material base.",
+          "concept_bucket": "BUCKET-I11-SA-VOLUMES"
+        }
+      }
+    },
+    {
+      "id": "OWN-ISSUE11-06",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "OWNER-ISSUE11"
+      ],
+      "evidence_refs": [],
+      "origin": "ORIGINAL",
+      "origin_ref": "OWNER-ISSUE11",
+      "original_identifier": "Q6",
+      "stem": "A toy is made by mounting a cone on a hemisphere.\n\nThe cone and hemisphere have the same radius, 3.5 cm.\n\nThe vertical height of the cone is 12 cm.\n\nFind the total **exposed** surface area of the toy.\n\nThe circular face where the cone and hemisphere join is not exposed.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The cone and hemisphere have the same radius, 3.5 cm.",
+        "The cone's vertical height is 12 cm.",
+        "The circular joining face is not exposed."
+      ],
+      "figure_refs": [
+        "REP-I11-COMPOSITE"
+      ],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "68.25π cm², which is 214.5 cm² if π = 22/7.",
+        "reasoning": [
+          "Find the cone slant height l = √(12² + 3.5²) = 12.5 cm. l=12.5 cm",
+          "Include cone curved area and hemisphere curved area, but omit the common circular join. exposed pieces: cone lateral + hemisphere curved",
+          "Add πrl + 2πr² = π(3.5)(12.5) + 2π(3.5)². 68.25π cm²",
+          "Check that no πr² join term appears and that the slant height exceeds the vertical height. 68.25π cm² = 214.5 cm² if π = 22/7"
+        ],
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE11-06-M1",
+            "kind": "TRANSFORM",
+            "action": "Find the cone slant height l = √(12² + 3.5²) = 12.5 cm.",
+            "why_valid": "Radius and vertical height form perpendicular legs in the axial cross-section.",
+            "inputs": [
+              "r=3.5 cm; h=12 cm"
+            ],
+            "output": "l=12.5 cm"
+          },
+          {
+            "id": "OWN-ISSUE11-06-M2",
+            "kind": "DECIDE",
+            "action": "Include cone curved area and hemisphere curved area, but omit the common circular join.",
+            "why_valid": "The join lies inside the composite toy and is not exposed to the outside.",
+            "inputs": [
+              "same radius 3.5 cm; hidden join"
+            ],
+            "output": "exposed pieces: cone lateral + hemisphere curved"
+          },
+          {
+            "id": "OWN-ISSUE11-06-M3",
+            "kind": "TRANSFORM",
+            "action": "Add πrl + 2πr² = π(3.5)(12.5) + 2π(3.5)².",
+            "why_valid": "The two exposed curved surfaces are disjoint and their areas add.",
+            "inputs": [
+              "r=3.5 cm; l=12.5 cm"
+            ],
+            "output": "68.25π cm²"
+          },
+          {
+            "id": "OWN-ISSUE11-06-M4",
+            "kind": "VERIFY",
+            "action": "Check that no πr² join term appears and that the slant height exceeds the vertical height.",
+            "why_valid": "A hidden interface contributes no exposed area, and l=12.5 cm > 12 cm is geometrically consistent.",
+            "inputs": [
+              "68.25π cm²"
+            ],
+            "output": "68.25π cm² = 214.5 cm² if π = 22/7"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE11-06-M2",
+        "check": "The slant height is √(12² + 3.5²) = 12.5 cm; exposed area is π(3.5)(12.5) + 2π(3.5)² = 68.25π cm², with the common circle hidden.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-I11-COMPOSITE-EXPOSED",
+      "secondary_capability_refs": [
+        "CAP-MATH-PYTHAGORAS",
+        "CAP-MATH-CIRCLE-AREA"
+      ],
+      "family_ref": "FAM-I11-COMPOSITE-EXPOSED",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2",
+          "role": "SOURCE_QUESTION",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Separate external curved surfaces from the hidden circular interface.",
+          "prompt": "Which surfaces are visible from outside the assembled toy, and which contact face disappears inside?",
+          "learner_stage": "REPRESENTATION",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "OWN-ISSUE11-06-M1"
+        },
+        {
+          "text": "Use radius and vertical height as perpendicular legs before computing any surface area.",
+          "prompt": "What demonstrated right-triangle idea gives the cone's slant height?",
+          "learner_stage": "KEY_CONCEPT",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "OWN-ISSUE11-06-M2",
+          "visual_ref": "REP-I11-COMPOSITE",
+          "visual_stage_ref": "VIS-I11-COMP-2"
+        },
+        {
+          "text": "Establish the cone's slant height, then assemble only the two exposed curved areas; leave the final total to your working.",
+          "prompt": "What is the dependency between the slant-height step and the exposed-area sum?",
+          "learner_stage": "CRUX",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "OWN-ISSUE11-06-M2",
+          "visual_ref": "REP-I11-COMPOSITE",
+          "visual_stage_ref": "VIS-I11-COMP-3"
+        },
+        {
+          "text": "Use πrl for the cone and 2πr² for the hemisphere; do not add the common joining disk.",
+          "prompt": "Which formulas represent those two exposed curved surfaces?",
+          "learner_stage": "FORMAL_MODEL",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "OWN-ISSUE11-06-M2",
+          "visual_ref": "REP-I11-COMPOSITE",
+          "visual_stage_ref": "VIS-I11-COMP-4"
+        },
+        {
+          "text": "Your assembled expression should contain no standalone πr² term for the join, and the slant height should exceed 12 cm.",
+          "prompt": "What checkpoint detects a hidden-face error?",
+          "learner_stage": "CHECKPOINT",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "OWN-ISSUE11-06-M4"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "REPRESENT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-06-M1",
+          "from": "scaffolds[0]"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-06-M2",
+          "from": "scaffolds[1]"
+        },
+        {
+          "order": 3,
+          "purpose": "CONNECT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-06-M2",
+          "from": "scaffolds[2]"
+        },
+        {
+          "order": 4,
+          "purpose": "CONNECT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-06-M2",
+          "from": "scaffolds[3]"
+        },
+        {
+          "order": 5,
+          "purpose": "CHECK",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-06-M4",
+          "from": "scaffolds[4]"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-I11-COMPOSITE",
+        "safe_ref": "REP-I11-COMPOSITE",
+        "bound_ref": "REP-I11-COMPOSITE",
+        "stage_refs": [
+          "VIS-I11-COMP-1"
+        ]
+      },
+      "independent_check": {
+        "statement": "The slant height is √(12² + 3.5²) = 12.5 cm; exposed area is π(3.5)(12.5) + 2π(3.5)² = 68.25π cm², with the common circle hidden."
+      },
+      "failure_signal": "Adding the circular joining face once or twice, or using the cone's vertical height as its slant height.",
+      "learner_question_type": "constructed_response",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q6",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:90844a90a81c1808752f7fb4a4566119cd40202c671242f492dcf0a0f8bc41f1"
+        },
+        "grade9v3:provenance_class": "OWNER_SUPPLIED",
+        "grade9v3:math_spans": [],
+        "grade9v3:cognitive_demand": {
+          "primary": "SYNTHESIZE",
+          "secondary": [
+            "MODEL",
+            "APPLY"
+          ],
+          "basis": "Primary SYNTHESIZE: Identify the hidden circular join and sum only the cone's curved surface and hemisphere's curved surface after finding the cone slant height."
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 7,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "D3 because the task's main demand is synthesize with 7/10 across model choice, representation, chain length, computation and trap sensitivity."
+          },
+          "expected_time_seconds": 270,
+          "common_wrong_route": "Adding the circular joining face once or twice, or using the cone's vertical height as its slant height.",
+          "stable_crux_move": "Identify the hidden circular join and sum only the cone's curved surface and hemisphere's curved surface after finding the cone slant height.",
+          "concept_bucket": "BUCKET-I11-SA-VOLUMES"
+        }
+      }
+    },
+    {
+      "id": "OWN-ISSUE11-07",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "OWNER-ISSUE11"
+      ],
+      "evidence_refs": [],
+      "origin": "ORIGINAL",
+      "origin_ref": "OWNER-ISSUE11",
+      "original_identifier": "Q7",
+      "stem": "A cylindrical vessel of radius 7 cm and height 25 cm is open at the top.\n\nIt is to be painted:\n\n- on its entire outer curved surface; and\n- on the outside of its circular base.\n\nThe inside is not painted.\n\nFind the area to be painted.\n\nBefore calculating, state exactly which surfaces are included.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The vessel has radius 7 cm and height 25 cm.",
+        "It is open at the top.",
+        "Paint the entire outer curved surface and the outside of the circular base only.",
+        "The inside is not painted."
+      ],
+      "figure_refs": [
+        "REP-I11-Q7-PAINT"
+      ],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "399π cm², which is 1254 cm² if π = 22/7.",
+        "reasoning": [
+          "Include exactly the entire outer curved wall and the outside of the bottom circular base. included surfaces: outer curved wall + outside base",
+          "Add 2πrh + πr² = 2π(7)(25) + π(7²). 399π cm²",
+          "Check the list before the arithmetic: no inside and no top circle. 399π cm² = 1254 cm² if π = 22/7"
+        ],
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE11-07-M1",
+            "kind": "DECIDE",
+            "action": "Include exactly the entire outer curved wall and the outside of the bottom circular base.",
+            "why_valid": "The prompt explicitly excludes the inside and the vessel is open at the top.",
+            "inputs": [
+              "r=7 cm; h=25 cm; painting instructions"
+            ],
+            "output": "included surfaces: outer curved wall + outside base"
+          },
+          {
+            "id": "OWN-ISSUE11-07-M2",
+            "kind": "TRANSFORM",
+            "action": "Add 2πrh + πr² = 2π(7)(25) + π(7²).",
+            "why_valid": "Those are exactly the two painted regions and do not overlap.",
+            "inputs": [
+              "r=7 cm; h=25 cm"
+            ],
+            "output": "399π cm²"
+          },
+          {
+            "id": "OWN-ISSUE11-07-M3",
+            "kind": "VERIFY",
+            "action": "Check the list before the arithmetic: no inside and no top circle.",
+            "why_valid": "The verbal surface inventory independently verifies the two terms in the expression.",
+            "inputs": [
+              "399π cm²"
+            ],
+            "output": "399π cm² = 1254 cm² if π = 22/7"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE11-07-M1",
+        "check": "Included area is 2πrh + πr² = 350π + 49π = 399π cm²; no inner surface or top circle is included.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-I11-SURFACE-SELECTION",
+      "secondary_capability_refs": [
+        "CAP-MATH-CIRCLE-AREA"
+      ],
+      "family_ref": "FAM-I11-SA-BOUNDARY",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2",
+          "role": "SOURCE_QUESTION",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Separate outer wall, outside bottom, inside surfaces and open top; only the stated painted regions belong.",
+          "prompt": "List the painted regions in words before writing an equation.",
+          "learner_stage": "REPRESENTATION",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "OWN-ISSUE11-07-M1"
+        },
+        {
+          "text": "Bridge your surface list to 2πrh and πr².",
+          "prompt": "What familiar relations give the area of the curved wall and one circle?",
+          "learner_stage": "KEY_CONCEPT",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "OWN-ISSUE11-07-M2",
+          "visual_ref": "REP-I11-Q7-PAINT",
+          "visual_stage_ref": "VIS-I11-Q7-2"
+        },
+        {
+          "text": "Write one term per painted region and leave the arithmetic to your own working.",
+          "prompt": "How can you make the formula mirror the two-item painted-surface list?",
+          "learner_stage": "CRUX",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "OWN-ISSUE11-07-M1",
+          "visual_ref": "REP-I11-Q7-PAINT",
+          "visual_stage_ref": "VIS-I11-Q7-3"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "REPRESENT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-07-M1",
+          "from": "scaffolds[0]"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-07-M2",
+          "from": "scaffolds[1]"
+        },
+        {
+          "order": 3,
+          "purpose": "CONNECT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-07-M1",
+          "from": "scaffolds[2]"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-I11-Q7-PAINT",
+        "safe_ref": "REP-I11-Q7-PAINT",
+        "bound_ref": "REP-I11-Q7-PAINT",
+        "stage_refs": [
+          "VIS-I11-Q7-1"
+        ]
+      },
+      "independent_check": {
+        "statement": "Included area is 2πrh + πr² = 350π + 49π = 399π cm²; no inner surface or top circle is included."
+      },
+      "failure_signal": "Painting the inside or an open top circle, or omitting the outside bottom base.",
+      "learner_question_type": "constructed_response",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q7",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:69b99335fa92037a81d113bccbfbe2b249856ab929dd1ae399eeadab3846733d"
+        },
+        "grade9v3:provenance_class": "OWNER_SUPPLIED",
+        "grade9v3:math_spans": [],
+        "grade9v3:cognitive_demand": {
+          "primary": "MODEL",
+          "secondary": [
+            "APPLY"
+          ],
+          "basis": "Primary MODEL: Translate the painting instructions into exactly two included surfaces: the outer curved wall and the outside of the bottom base."
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "D2 because the task's main demand is model with 5/10 across model choice, representation, chain length, computation and trap sensitivity."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "Painting the inside or an open top circle, or omitting the outside bottom base.",
+          "stable_crux_move": "Translate the painting instructions into exactly two included surfaces: the outer curved wall and the outside of the bottom base.",
+          "concept_bucket": "BUCKET-I11-SA-VOLUMES"
+        }
+      }
+    },
+    {
+      "id": "OWN-ISSUE11-08",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "OWNER-ISSUE11"
+      ],
+      "evidence_refs": [],
+      "origin": "ORIGINAL",
+      "origin_ref": "OWNER-ISSUE11",
+      "original_identifier": "Q8",
+      "stem": "A rectangular water tank is 2 m long, 1.5 m wide and 1.2 m deep.\n\nIt is filled to 75% of its total capacity.\n\nHow many litres of water are in the tank?\n\nShow the unit conversion clearly.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The tank dimensions are 2 m by 1.5 m by 1.2 m.",
+        "The tank is filled to 75% of total capacity."
+      ],
+      "figure_refs": [
+        "REP-I11-CAPACITY"
+      ],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "2700 litres.",
+        "reasoning": [
+          "Compute the tank's full volume: 2 × 1.5 × 1.2 = 3.6 m³. 3.6 m³",
+          "Take 75% to get 2.7 m³, then use 1 m³ = 1000 L. 2700 L",
+          "Convert back: 2700 L = 2.7 m³, which is three-quarters of 3.6 m³. 2.7 / 3.6 = 0.75"
+        ],
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE11-08-M1",
+            "kind": "TRANSFORM",
+            "action": "Compute the tank's full volume: 2 × 1.5 × 1.2 = 3.6 m³.",
+            "why_valid": "A rectangular tank's capacity is length × width × depth.",
+            "inputs": [
+              "2 m; 1.5 m; 1.2 m"
+            ],
+            "output": "3.6 m³"
+          },
+          {
+            "id": "OWN-ISSUE11-08-M2",
+            "kind": "CONNECT",
+            "action": "Take 75% to get 2.7 m³, then use 1 m³ = 1000 L.",
+            "why_valid": "The fill fraction scales volume, and cubic-metre-to-litre conversion is multiplicative.",
+            "inputs": [
+              "3.6 m³; 75%; 1000 L per m³"
+            ],
+            "output": "2700 L"
+          },
+          {
+            "id": "OWN-ISSUE11-08-M3",
+            "kind": "VERIFY",
+            "action": "Convert back: 2700 L = 2.7 m³, which is three-quarters of 3.6 m³.",
+            "why_valid": "The reverse conversion and fraction check test both transformations independently.",
+            "inputs": [
+              "2700 L"
+            ],
+            "output": "2.7 / 3.6 = 0.75"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE11-08-M2",
+        "check": "The tank volume is 3.6 m³; 75% is 2.7 m³, and 2.7 × 1000 = 2700 L.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-I11-CAPACITY-CONVERSION",
+      "secondary_capability_refs": [
+        "CAP-MATH-RECT-PRISM-VOLUME",
+        "CAP-MATH-PERCENT",
+        "CAP-MATH-M3-LITRES"
+      ],
+      "family_ref": "FAM-I11-CAPACITY",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2",
+          "role": "SOURCE_QUESTION",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Keep the calculation in cubic metres while establishing the tank's full capacity.",
+          "prompt": "Which quantity should be found first: full tank volume, filled volume, or litres?",
+          "learner_stage": "REPRESENTATION",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "OWN-ISSUE11-08-M1"
+        },
+        {
+          "text": "Use 75% = 0.75 and 1 m³ = 1000 L as separate bridges.",
+          "prompt": "What demonstrated facts connect 75% and cubic metres to the requested unit?",
+          "learner_stage": "KEY_CONCEPT",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "OWN-ISSUE11-08-M2",
+          "visual_ref": "REP-I11-CAPACITY",
+          "visual_stage_ref": "VIS-I11-CAP-2"
+        },
+        {
+          "text": "Work from full m³ to filled m³ to litres; leave the final multiplication to your own working.",
+          "prompt": "In what order can you apply the fill fraction and the unit conversion without mixing units?",
+          "learner_stage": "CRUX",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "OWN-ISSUE11-08-M2",
+          "visual_ref": "REP-I11-CAPACITY",
+          "visual_stage_ref": "VIS-I11-CAP-3"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "REPRESENT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-08-M1",
+          "from": "scaffolds[0]"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-08-M2",
+          "from": "scaffolds[1]"
+        },
+        {
+          "order": 3,
+          "purpose": "CONNECT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-08-M2",
+          "from": "scaffolds[2]"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-I11-CAPACITY",
+        "safe_ref": "REP-I11-CAPACITY",
+        "bound_ref": "REP-I11-CAPACITY",
+        "stage_refs": [
+          "VIS-I11-CAP-1"
+        ]
+      },
+      "independent_check": {
+        "statement": "The tank volume is 3.6 m³; 75% is 2.7 m³, and 2.7 × 1000 = 2700 L."
+      },
+      "failure_signal": "Multiplying by 75 instead of 0.75, or treating 1 m³ as 100 L rather than 1000 L.",
+      "learner_question_type": "constructed_response",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q8",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:892d3cdb5b8496d0cf0cbd1bb0bf027caf53e3f496d6ee89a3c4a952c084e297"
+        },
+        "grade9v3:provenance_class": "OWNER_SUPPLIED",
+        "grade9v3:math_spans": [],
+        "grade9v3:cognitive_demand": {
+          "primary": "APPLY",
+          "secondary": [
+            "REPRESENT"
+          ],
+          "basis": "Primary APPLY: Keep the volume unit coherent while taking 75% of the tank volume and converting cubic metres to litres."
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "D2 because the task's main demand is apply with 5/10 across model choice, representation, chain length, computation and trap sensitivity."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "Multiplying by 75 instead of 0.75, or treating 1 m³ as 100 L rather than 1000 L.",
+          "stable_crux_move": "Keep the volume unit coherent while taking 75% of the tank volume and converting cubic metres to litres.",
+          "concept_bucket": "BUCKET-I11-SA-VOLUMES"
+        }
+      }
+    },
+    {
+      "id": "OWN-ISSUE11-09",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "OWNER-ISSUE11"
+      ],
+      "evidence_refs": [],
+      "origin": "ORIGINAL",
+      "origin_ref": "OWNER-ISSUE11",
+      "original_identifier": "Q9",
+      "stem": "A solid metallic sphere of radius 6 cm is melted and recast into identical solid spheres of radius 2 cm.\n\nAssume that no metal is lost.\n\nHow many smaller spheres are formed?\n\nExplain why surface area is not conserved in this process.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The original sphere has radius 6 cm.",
+        "Each smaller sphere has radius 2 cm.",
+        "No metal is lost."
+      ],
+      "figure_refs": [
+        "REP-I11-RECAST"
+      ],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "27 smaller spheres; surface area is not conserved because recasting preserves material volume, while creating more pieces changes the total exposed surface.",
+        "reasoning": [
+          "Use conservation of volume, not surface area, because the same metal is melted and recast with no loss. V_large = n V_small",
+          "Cancel the common 4π/3 factor to get n = (6/2)³ = 27. n = 27",
+          "Compare surface areas to explain why surface area is not conserved. new total surface 432π cm² versus original 144π cm²",
+          "Substitute n=27 into the volume equation. 27 × (4/3)π(2³) = (4/3)π(6³)"
+        ],
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE11-09-M1",
+            "kind": "DECIDE",
+            "action": "Use conservation of volume, not surface area, because the same metal is melted and recast with no loss.",
+            "why_valid": "Recasting changes shape and exposed boundary but not the amount of material.",
+            "inputs": [
+              "one sphere r=6 cm; small spheres r=2 cm; no loss"
+            ],
+            "output": "V_large = n V_small"
+          },
+          {
+            "id": "OWN-ISSUE11-09-M2",
+            "kind": "TRANSFORM",
+            "action": "Cancel the common 4π/3 factor to get n = (6/2)³ = 27.",
+            "why_valid": "Sphere volume is proportional to the cube of radius.",
+            "inputs": [
+              "R=6 cm; r=2 cm"
+            ],
+            "output": "n = 27"
+          },
+          {
+            "id": "OWN-ISSUE11-09-M3",
+            "kind": "CONNECT",
+            "action": "Compare surface areas to explain why surface area is not conserved.",
+            "why_valid": "Surface area measures exposed boundary, and splitting one object into many adds boundary.",
+            "inputs": [
+              "27 spheres of r=2 cm"
+            ],
+            "output": "new total surface 432π cm² versus original 144π cm²"
+          },
+          {
+            "id": "OWN-ISSUE11-09-M4",
+            "kind": "VERIFY",
+            "action": "Substitute n=27 into the volume equation.",
+            "why_valid": "A valid recast count must reproduce the original material volume exactly.",
+            "inputs": [
+              "n=27"
+            ],
+            "output": "27 × (4/3)π(2³) = (4/3)π(6³)"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE11-09-M1",
+        "check": "27 × (4/3)π(2³) = (4/3)π(6³), while total new surface area is 27 × 4π(2²) = 432π cm² versus 144π cm² originally.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-I11-RECAST-CONSERVATION",
+      "secondary_capability_refs": [
+        "CAP-MATH-SPHERE-VOLUME",
+        "CAP-MATH-RATIO"
+      ],
+      "family_ref": "FAM-I11-RECAST",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2",
+          "role": "SOURCE_QUESTION",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Distinguish material amount from exposed boundary before writing an equation.",
+          "prompt": "What physical quantity must remain unchanged when the same metal is melted and recast with no loss?",
+          "learner_stage": "REPRESENTATION",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "OWN-ISSUE11-09-M1"
+        },
+        {
+          "text": "Use V = (4/3)πr³ and notice which common factors will cancel.",
+          "prompt": "What demonstrated sphere relation makes the radius-to-volume scaling visible?",
+          "learner_stage": "KEY_CONCEPT",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "OWN-ISSUE11-09-M2",
+          "visual_ref": "REP-I11-RECAST",
+          "visual_stage_ref": "VIS-I11-REC-2"
+        },
+        {
+          "text": "Write V_large = nV_small and solve the ratio yourself; do not use surface area for this conservation step.",
+          "prompt": "How can one large-sphere volume be linked to the combined small-sphere volumes?",
+          "learner_stage": "CRUX",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "OWN-ISSUE11-09-M1",
+          "visual_ref": "REP-I11-RECAST",
+          "visual_stage_ref": "VIS-I11-REC-3"
+        },
+        {
+          "text": "Compare 4πR² with n·4πr²; this is a separate boundary calculation, not a conservation equation.",
+          "prompt": "After the count is found, which relation tests the claim about surface area?",
+          "learner_stage": "FORMAL_MODEL",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "OWN-ISSUE11-09-M1",
+          "visual_ref": "REP-I11-RECAST",
+          "visual_stage_ref": "VIS-I11-REC-4"
+        },
+        {
+          "text": "Substituting the count into nV_small must reproduce V_large exactly.",
+          "prompt": "What independent checkpoint should the count satisfy?",
+          "learner_stage": "CHECKPOINT",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "OWN-ISSUE11-09-M4"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "REPRESENT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-09-M1",
+          "from": "scaffolds[0]"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-09-M2",
+          "from": "scaffolds[1]"
+        },
+        {
+          "order": 3,
+          "purpose": "CONNECT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-09-M1",
+          "from": "scaffolds[2]"
+        },
+        {
+          "order": 4,
+          "purpose": "CONNECT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-09-M1",
+          "from": "scaffolds[3]"
+        },
+        {
+          "order": 5,
+          "purpose": "CHECK",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-09-M4",
+          "from": "scaffolds[4]"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-I11-RECAST",
+        "safe_ref": "REP-I11-RECAST",
+        "bound_ref": "REP-I11-RECAST",
+        "stage_refs": [
+          "VIS-I11-REC-1"
+        ]
+      },
+      "independent_check": {
+        "statement": "27 × (4/3)π(2³) = (4/3)π(6³), while total new surface area is 27 × 4π(2²) = 432π cm² versus 144π cm² originally."
+      },
+      "failure_signal": "Equating surface areas because the objects are all spheres, or using the linear radius ratio 6:2 instead of the volume ratio.",
+      "learner_question_type": "constructed_response",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q9",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:f980a5fed2b1f6051fd5410ed79e72af92a750d2a8133db2e8a22cdb115a52f1"
+        },
+        "grade9v3:provenance_class": "OWNER_SUPPLIED",
+        "grade9v3:math_spans": [],
+        "grade9v3:cognitive_demand": {
+          "primary": "SYNTHESIZE",
+          "secondary": [
+            "EXPLAIN"
+          ],
+          "basis": "Primary SYNTHESIZE: Choose volume, not surface area, as the conserved quantity in recasting and use the cube of the radius ratio."
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 7,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 0,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "D3 because the task's main demand is synthesize with 7/10 across model choice, representation, chain length, computation and trap sensitivity."
+          },
+          "expected_time_seconds": 240,
+          "common_wrong_route": "Equating surface areas because the objects are all spheres, or using the linear radius ratio 6:2 instead of the volume ratio.",
+          "stable_crux_move": "Choose volume, not surface area, as the conserved quantity in recasting and use the cube of the radius ratio.",
+          "concept_bucket": "BUCKET-I11-SA-VOLUMES"
+        }
+      }
+    },
+    {
+      "id": "OWN-ISSUE11-10",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "OWNER-ISSUE11"
+      ],
+      "evidence_refs": [],
+      "origin": "ORIGINAL",
+      "origin_ref": "OWNER-ISSUE11",
+      "original_identifier": "Q10",
+      "stem": "A cone and a cylinder have the same base radius and the same height.\n\nThe volume of the cylinder is 924 cm³.\n\nFind the volume of the cone.\n\nThen explain why the radius and height do **not** need to be calculated separately.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The cone and cylinder have the same base radius and the same height.",
+        "The cylinder volume is 924 cm³."
+      ],
+      "figure_refs": [
+        "REP-I11-RATIO"
+      ],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "308 cm³; the radius and height are unnecessary because the cone and cylinder share the same πr²h factor.",
+        "reasoning": [
+          "Write the two volume relations with the shared radius and height: V_cyl = πr²h and V_cone = (1/3)πr²h. V_cone = (1/3)V_cyl",
+          "Take one-third of 924 cm³. V_cone = 308 cm³",
+          "Multiply the cone volume by 3 and recover the cylinder volume. 3 × 308 = 924 cm³"
+        ],
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE11-10-M1",
+            "kind": "REPRESENT",
+            "action": "Write the two volume relations with the shared radius and height: V_cyl = πr²h and V_cone = (1/3)πr²h.",
+            "why_valid": "The cone and cylinder have the same base radius and height, so πr²h is the same factor in both.",
+            "inputs": [
+              "same r and h; V_cyl=924 cm³"
+            ],
+            "output": "V_cone = (1/3)V_cyl"
+          },
+          {
+            "id": "OWN-ISSUE11-10-M2",
+            "kind": "CONNECT",
+            "action": "Take one-third of 924 cm³.",
+            "why_valid": "The common πr²h factor cancels the need to determine r and h separately.",
+            "inputs": [
+              "V_cyl=924 cm³"
+            ],
+            "output": "V_cone = 308 cm³"
+          },
+          {
+            "id": "OWN-ISSUE11-10-M3",
+            "kind": "VERIFY",
+            "action": "Multiply the cone volume by 3 and recover the cylinder volume.",
+            "why_valid": "The fixed 1:3 volume ratio is an independent check under the same-radius, same-height condition.",
+            "inputs": [
+              "308 cm³"
+            ],
+            "output": "3 × 308 = 924 cm³"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE11-10-M2",
+        "check": "3 × 308 = 924, exactly the cylinder volume, matching V_cone = (1/3)V_cylinder for equal radius and height.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-I11-CONE-CYLINDER-RATIO",
+      "secondary_capability_refs": [
+        "CAP-MATH-MULTIPLICATIVE-RATIO"
+      ],
+      "family_ref": "FAM-I11-VOLUME-RATIO",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2",
+          "role": "SOURCE_QUESTION",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Write both formulas symbolically before trying to recover any dimensions.",
+          "prompt": "What expressions do the cone and cylinder volumes share because radius and height are the same?",
+          "learner_stage": "REPRESENTATION",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "OWN-ISSUE11-10-M1"
+        },
+        {
+          "text": "Compare the coefficients of the common πr²h factor.",
+          "prompt": "What demonstrated multiplicative relation links a cone to a cylinder with the same base and height?",
+          "learner_stage": "KEY_CONCEPT",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "OWN-ISSUE11-10-M2",
+          "visual_ref": "REP-I11-RATIO",
+          "visual_stage_ref": "VIS-I11-RAT-2"
+        },
+        {
+          "text": "Apply the fixed one-third relation to 924 and leave the arithmetic to your own working.",
+          "prompt": "How can you use the known cylinder volume directly?",
+          "learner_stage": "CRUX",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "OWN-ISSUE11-10-M2",
+          "visual_ref": "REP-I11-RATIO",
+          "visual_stage_ref": "VIS-I11-RAT-3"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "REPRESENT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-10-M1",
+          "from": "scaffolds[0]"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-10-M2",
+          "from": "scaffolds[1]"
+        },
+        {
+          "order": 3,
+          "purpose": "CONNECT",
+          "provenance": "AUTHORED_SCAFFOLD",
+          "supports_move_ref": "OWN-ISSUE11-10-M2",
+          "from": "scaffolds[2]"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-I11-RATIO",
+        "safe_ref": "REP-I11-RATIO",
+        "bound_ref": "REP-I11-RATIO",
+        "stage_refs": [
+          "VIS-I11-RAT-1"
+        ]
+      },
+      "independent_check": {
+        "statement": "3 × 308 = 924, exactly the cylinder volume, matching V_cone = (1/3)V_cylinder for equal radius and height."
+      },
+      "failure_signal": "Trying to solve separately for radius and height from a single cylinder-volume value.",
+      "learner_question_type": "constructed_response",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q10",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:6eb6b8308e2b27f72375517136dd642d0c8c47c66dd4a640359b176e9bdf4592"
+        },
+        "grade9v3:provenance_class": "OWNER_SUPPLIED",
+        "grade9v3:math_spans": [],
+        "grade9v3:cognitive_demand": {
+          "primary": "EXPLAIN",
+          "secondary": [
+            "APPLY"
+          ],
+          "basis": "Primary EXPLAIN: Use the shared factor πr²h to see that a cone with the same radius and height has one-third the cylinder's volume."
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 3,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "D2 because the task's main demand is explain with 3/10 across model choice, representation, chain length, computation and trap sensitivity."
+          },
+          "expected_time_seconds": 120,
+          "common_wrong_route": "Trying to solve separately for radius and height from a single cylinder-volume value.",
+          "stable_crux_move": "Use the shared factor πr²h to see that a cone with the same radius and height has one-third the cylinder's volume.",
+          "concept_bucket": "BUCKET-I11-SA-VOLUMES"
+        }
+      }
+    }
+  ]
+}
