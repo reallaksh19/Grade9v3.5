@@ -21,6 +21,7 @@ replacements = [
     ('"purpose": "REVISION"', '"purpose": "COMPETITION"'),
     ('"depth": ["REVISION"]', '"depth": ["COMPETITION"]'),
     ("revision learner", "competition learner"),
+    ('row["conditions"] = ["Use π = 22/7 wherever numerical approximation is required unless the question states otherwise."]', 'row["conditions"] = []'),
     ("880 cm²", "280π cm²"),
     ("Evaluate with r=7 cm, h=18 cm and π=22/7.", "Evaluate with r=7 cm and h=18 cm; keep π exact unless an approximation is explicitly chosen."),
     ("946 cm²", "301π cm²"),
