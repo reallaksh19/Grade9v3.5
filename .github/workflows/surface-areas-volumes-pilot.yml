@@ -69,7 +69,7 @@ jobs:
       - name: Generate QRT pedagogy batch before rendering
         run: |
           mkdir -p /tmp/sav-evidence
-          python3 Shared/tools/batch_authoring.py \
+          python3 -m Shared.tools.batch_authoring \
             --bank Mathematics/question-bank/surface-areas-and-volumes.owner-bank.v1.json \
             --profile evidence/reviews/surface-areas-and-volumes/learner-profile.v1.json \
             --subject Mathematics \
