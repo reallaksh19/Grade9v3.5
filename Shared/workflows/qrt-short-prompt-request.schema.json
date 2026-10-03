@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/qrt-short-prompt-request.schema.json",
+  "title": "QRT short-prompt normalized request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "subject",
+    "grade",
+    "topic",
+    "questions"
+  ],
+  "properties": {
+    "schema": {
+      "const": "qrt-short-prompt-request/v1"
+    },
+    "subject": {
+      "enum": [
+        "Physics",
+        "Chemistry",
+        "Mathematics"
+      ]
+    },
+    "grade": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12
+        },
+        {
+          "type": "string",
+          "minLength": 1
+        }
+      ]
+    },
+    "topic": {
+      "type": "string",
+      "minLength": 1
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "text"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "text": {
+            "type": "string",
+            "minLength": 6
+          }
+        }
+      }
+    },
+    "requested_outputs": {
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 1,
+      "items": {
+        "enum": [
+          "LEARNER_HTML",
+          "QRT_EVIDENCE"
+        ]
+      }
+    },
+    "learner_input": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode",
+            "ideas"
+          ],
+          "properties": {
+            "mode": {
+              "const": "PROFILE"
+            },
+            "ideas": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "idea",
+                  "status"
+                ],
+                "properties": {
+                  "idea": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "status": {
+                    "enum": [
+                      "DEMONSTRATED",
+                      "UNCERTAIN",
+                      "MISSING"
+                    ]
+                  }
+                }
+              }
+            },
+            "notes": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode"
+          ],
+          "properties": {
+            "mode": {
+              "const": "USE_DEFAULT_GENERIC"
+            }
+          }
+        }
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "OWNER_SUPPLIED",
+            "AUTHORED_PRACTICE",
+            "EXTERNAL_SOURCE",
+            "ADAPTED"
+          ]
+        },
+        "source_note": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "product_intent": {
+      "enum": [
+        "PRESERVE_OWNER_QUESTIONS",
+        "AUTHORED_PRACTICE"
+      ]
+    }
+  }
+}
