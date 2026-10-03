@@ -1,0 +1,543 @@
+{
+  "schema": "question-pedagogy-batch/v1",
+  "product_id": "PRODUCT-MAT-G9-SAV",
+  "authority_record": "https://github.com/reallaksh19/Grade9v3.5/issues/13",
+  "profile_ref": "PROFILE-MAT-SAV-PENDING-OWNER",
+  "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+  "status": "PENDING_OWNER_PROFILE",
+  "items": [
+    {
+      "question_ref": "Q1",
+      "template_id": "QRT-APPLY-D1",
+      "classification": {
+        "primary_demand": "APPLY",
+        "band": "D1",
+        "basis": "Routine execution of known total surface area formula on a standard regular solid."
+      },
+      "slots": {
+        "X": {
+          "text": "Distinguish the requested total surface area from other cube measures such as lateral area or volume.",
+          "basis": [
+            "extensions.grade9v3:analysis.review_bottleneck"
+          ],
+          "state": "RESOLVED"
+        },
+        "Y": {
+          "text": "Pending owner learner-knowledge clarification on Issue #13.",
+          "basis": [
+            "https://github.com/reallaksh19/Grade9v3.5/issues/13#issuecomment-5972208592"
+          ],
+          "state": "UNRESOLVED_OWNER_INPUT"
+        },
+        "Z": {
+          "text": "Represent the cube as six congruent square faces and identify total surface area as six face areas.",
+          "basis": [
+            "extensions.grade9v3:analysis.review_route_to_crux"
+          ],
+          "state": "RESOLVED"
+        },
+        "W": {
+          "text": "Evaluate the total surface area for edge 7 cm and state the result with square units.",
+          "basis": [
+            "extensions.grade9v3:analysis.protected_work"
+          ],
+          "state": "RESOLVED"
+        }
+      },
+      "authoring": {
+        "hint_objectives": [
+          "H1: clarify X without giving the route or answer.",
+          "H2: connect X to an actually DEMONSTRATED learner bridge Y; keep pending until Y is evidenced.",
+          "H3: open the way to Z while leaving W to the learner."
+        ],
+        "figure_policy": "Use a representation only when it performs a cognitive job. Any pre-attempt figure must avoid the numerical answer and protected W; otherwise mark the visual correctly not applicable.",
+        "misconception_model": "Confusing total surface area (6 a²) with volume (a³ = 343 cm³) or lateral surface area (4 a² = 196 cm²).",
+        "solution_architecture": [
+          "Q1-M1",
+          "Q1-M2",
+          "Q1-M3"
+        ]
+      }
+    },
+    {
+      "question_ref": "Q2",
+      "template_id": "QRT-APPLY-D2",
+      "classification": {
+        "primary_demand": "APPLY",
+        "band": "D2",
+        "basis": "Executing the curved surface area procedure under the condition that diameter must be converted to radius."
+      },
+      "slots": {
+        "X": {
+          "text": "Notice that 14 cm is a diameter while the standard curved-surface formula is usually written using radius.",
+          "basis": [
+            "extensions.grade9v3:analysis.review_bottleneck"
+          ],
+          "state": "RESOLVED"
+        },
+        "Y": {
+          "text": "Pending owner learner-knowledge clarification on Issue #13.",
+          "basis": [
+            "https://github.com/reallaksh19/Grade9v3.5/issues/13#issuecomment-5972208592"
+          ],
+          "state": "UNRESOLVED_OWNER_INPUT"
+        },
+        "Z": {
+          "text": "Convert the given diameter into the radius needed by the cylinder model.",
+          "basis": [
+            "extensions.grade9v3:analysis.review_route_to_crux"
+          ],
+          "state": "RESOLVED"
+        },
+        "W": {
+          "text": "Choose a valid curved-surface relation, substitute the dimensions, and evaluate the area.",
+          "basis": [
+            "extensions.grade9v3:analysis.protected_work"
+          ],
+          "state": "RESOLVED"
+        }
+      },
+      "authoring": {
+        "hint_objectives": [
+          "H1: clarify X without giving the route or answer.",
+          "H2: connect X to an actually DEMONSTRATED learner bridge Y; keep pending until Y is evidenced.",
+          "H3: open the way to Z while leaving W to the learner."
+        ],
+        "figure_policy": "Use a representation only when it performs a cognitive job. Any pre-attempt figure must avoid the numerical answer and protected W; otherwise mark the visual correctly not applicable.",
+        "misconception_model": "Using diameter 14 cm directly as radius in 2πrh, resulting in 1760 cm² (double the correct value).",
+        "solution_architecture": [
+          "Q2-M1",
+          "Q2-M2",
+          "Q2-M3"
+        ]
+      }
+    },
+    {
+      "question_ref": "Q3",
+      "template_id": "QRT-MODEL-D2",
+      "classification": {
+        "primary_demand": "MODEL",
+        "band": "D2",
+        "basis": "Formulating the mathematical boundary model for an open container: curved surface plus exactly one base."
+      },
+      "slots": {
+        "X": {
+          "text": "Decide which boundary surfaces physically exist on an open-top bucket and must therefore be made from sheet metal.",
+          "basis": [
+            "extensions.grade9v3:analysis.review_bottleneck"
+          ],
+          "state": "RESOLVED"
+        },
+        "Y": {
+          "text": "Pending owner learner-knowledge clarification on Issue #13.",
+          "basis": [
+            "https://github.com/reallaksh19/Grade9v3.5/issues/13#issuecomment-5972208592"
+          ],
+          "state": "UNRESOLVED_OWNER_INPUT"
+        },
+        "Z": {
+          "text": "Identify the curved wall and one bottom base while marking the top as absent.",
+          "basis": [
+            "extensions.grade9v3:analysis.review_route_to_crux"
+          ],
+          "state": "RESOLVED"
+        },
+        "W": {
+          "text": "Construct the required surface-area sum from those exposed pieces and evaluate it.",
+          "basis": [
+            "extensions.grade9v3:analysis.protected_work"
+          ],
+          "state": "RESOLVED"
+        }
+      },
+      "authoring": {
+        "hint_objectives": [
+          "H1: clarify X without giving the route or answer.",
+          "H2: connect X to an actually DEMONSTRATED learner bridge Y; keep pending until Y is evidenced.",
+          "H3: open the way to Z while leaving W to the learner."
+        ],
+        "figure_policy": "Use a representation only when it performs a cognitive job. Any pre-attempt figure must avoid the numerical answer and protected W; otherwise mark the visual correctly not applicable.",
+        "misconception_model": "Using the closed cylinder formula 2πrh + 2πr² = 1100 cm² by including a non-existent top lid.",
+        "solution_architecture": [
+          "Q3-M1",
+          "Q3-M2",
+          "Q3-M3"
+        ]
+      }
+    },
+    {
+      "question_ref": "Q4",
+      "template_id": "QRT-SYNTHESIZE-D3",
+      "classification": {
+        "primary_demand": "SYNTHESIZE",
+        "band": "D3",
+        "basis": "Coordinating Pythagorean geometry for intermediate parameter l with curved surface calculation on an open boundary."
+      },
+      "slots": {
+        "X": {
+          "text": "Separate vertical height from slant height and notice that an open tent has no canvas base.",
+          "basis": [
+            "extensions.grade9v3:analysis.review_bottleneck"
+          ],
+          "state": "RESOLVED"
+        },
+        "Y": {
+          "text": "Pending owner learner-knowledge clarification on Issue #13.",
+          "basis": [
+            "https://github.com/reallaksh19/Grade9v3.5/issues/13#issuecomment-5972208592"
+          ],
+          "state": "UNRESOLVED_OWNER_INPUT"
+        },
+        "Z": {
+          "text": "Use the right-triangle relation among radius, vertical height, and slant height before selecting the curved conical surface.",
+          "basis": [
+            "extensions.grade9v3:analysis.review_route_to_crux"
+          ],
+          "state": "RESOLVED"
+        },
+        "W": {
+          "text": "Calculate the slant height and then evaluate the canvas area without adding a base.",
+          "basis": [
+            "extensions.grade9v3:analysis.protected_work"
+          ],
+          "state": "RESOLVED"
+        }
+      },
+      "authoring": {
+        "hint_objectives": [
+          "H1: clarify X without giving the route or answer.",
+          "H2: connect X to an actually DEMONSTRATED learner bridge Y; keep pending until Y is evidenced.",
+          "H3: open the way to Z while leaving W to the learner."
+        ],
+        "figure_policy": "Use a representation only when it performs a cognitive job. Any pre-attempt figure must avoid the numerical answer and protected W; otherwise mark the visual correctly not applicable.",
+        "misconception_model": "Using vertical height 24 m directly instead of slant height l in πrl, or adding base area πr² to an open tent.",
+        "solution_architecture": [
+          "Q4-M1",
+          "Q4-M2",
+          "Q4-M3",
+          "Q4-M4"
+        ]
+      }
+    },
+    {
+      "question_ref": "Q5",
+      "template_id": "QRT-EXPLAIN-D2",
+      "classification": {
+        "primary_demand": "EXPLAIN",
+        "band": "D2",
+        "basis": "Demands explicit justification of why the circular base is excluded for an open bowl alongside curved surface evaluation."
+      },
+      "slots": {
+        "X": {
+          "text": "Interpret 'inner surface' of a bowl as the curved hemispherical material surface while the circular mouth is an opening, not a material face.",
+          "basis": [
+            "extensions.grade9v3:analysis.review_bottleneck"
+          ],
+          "state": "RESOLVED"
+        },
+        "Y": {
+          "text": "Pending owner learner-knowledge clarification on Issue #13.",
+          "basis": [
+            "https://github.com/reallaksh19/Grade9v3.5/issues/13#issuecomment-5972208592"
+          ],
+          "state": "UNRESOLVED_OWNER_INPUT"
+        },
+        "Z": {
+          "text": "Distinguish curved hemispherical area from total area of a solid hemisphere.",
+          "basis": [
+            "extensions.grade9v3:analysis.review_route_to_crux"
+          ],
+          "state": "RESOLVED"
+        },
+        "W": {
+          "text": "Choose and evaluate the correct inner curved-surface formula and justify excluding the circular opening.",
+          "basis": [
+            "extensions.grade9v3:analysis.protected_work"
+          ],
+          "state": "RESOLVED"
+        }
+      },
+      "authoring": {
+        "hint_objectives": [
+          "H1: clarify X without giving the route or answer.",
+          "H2: connect X to an actually DEMONSTRATED learner bridge Y; keep pending until Y is evidenced.",
+          "H3: open the way to Z while leaving W to the learner."
+        ],
+        "figure_policy": "Use a representation only when it performs a cognitive job. Any pre-attempt figure must avoid the numerical answer and protected W; otherwise mark the visual correctly not applicable.",
+        "misconception_model": "Using total surface area of a solid hemisphere 3πr² = 1039.5 cm² by treating the open mouth as a solid physical face.",
+        "solution_architecture": [
+          "Q5-M1",
+          "Q5-M2",
+          "Q5-M3"
+        ]
+      }
+    },
+    {
+      "question_ref": "Q6",
+      "template_id": "QRT-MODEL-D3",
+      "classification": {
+        "primary_demand": "MODEL",
+        "band": "D3",
+        "basis": "Formulating the exposed boundary model for a composite solid: Exposed Area = CSA(cone) + CSA(hemisphere) = πrl + 2πr²."
+      },
+      "slots": {
+        "X": {
+          "text": "Identify that the shared circular joining face becomes internal and must not be counted as exposed surface.",
+          "basis": [
+            "extensions.grade9v3:analysis.review_bottleneck"
+          ],
+          "state": "RESOLVED"
+        },
+        "Y": {
+          "text": "Pending owner learner-knowledge clarification on Issue #13.",
+          "basis": [
+            "https://github.com/reallaksh19/Grade9v3.5/issues/13#issuecomment-5972208592"
+          ],
+          "state": "UNRESOLVED_OWNER_INPUT"
+        },
+        "Z": {
+          "text": "Separate the external curved surfaces from the hidden interface and obtain any needed slant height.",
+          "basis": [
+            "extensions.grade9v3:analysis.review_route_to_crux"
+          ],
+          "state": "RESOLVED"
+        },
+        "W": {
+          "text": "Construct the exposed-surface expression from the correct pieces and evaluate it.",
+          "basis": [
+            "extensions.grade9v3:analysis.protected_work"
+          ],
+          "state": "RESOLVED"
+        }
+      },
+      "authoring": {
+        "hint_objectives": [
+          "H1: clarify X without giving the route or answer.",
+          "H2: connect X to an actually DEMONSTRATED learner bridge Y; keep pending until Y is evidenced.",
+          "H3: open the way to Z while leaving W to the learner."
+        ],
+        "figure_policy": "Use a representation only when it performs a cognitive job. Any pre-attempt figure must avoid the numerical answer and protected W; otherwise mark the visual correctly not applicable.",
+        "misconception_model": "Adding the total surface area of cone (πrl + πr²) to total surface area of hemisphere (3πr²), erroneously counting the internal circular interface twice.",
+        "solution_architecture": [
+          "Q6-M1",
+          "Q6-M2",
+          "Q6-M3",
+          "Q6-M4"
+        ]
+      }
+    },
+    {
+      "question_ref": "Q7",
+      "template_id": "QRT-JUSTIFY-D2",
+      "classification": {
+        "primary_demand": "JUSTIFY",
+        "band": "D2",
+        "basis": "Explicitly stating warrants and boundary surfaces included and excluded before performing numerical computation."
+      },
+      "slots": {
+        "X": {
+          "text": "Translate the painting instructions into an exact inventory of included and excluded surfaces before using any formula.",
+          "basis": [
+            "extensions.grade9v3:analysis.review_bottleneck"
+          ],
+          "state": "RESOLVED"
+        },
+        "Y": {
+          "text": "Pending owner learner-knowledge clarification on Issue #13.",
+          "basis": [
+            "https://github.com/reallaksh19/Grade9v3.5/issues/13#issuecomment-5972208592"
+          ],
+          "state": "UNRESOLVED_OWNER_INPUT"
+        },
+        "Z": {
+          "text": "Mark the outer curved wall and outside bottom base as included, with the top opening and all interior surfaces excluded.",
+          "basis": [
+            "extensions.grade9v3:analysis.review_route_to_crux"
+          ],
+          "state": "RESOLVED"
+        },
+        "W": {
+          "text": "State the included surfaces, construct their area sum, and evaluate the painted area.",
+          "basis": [
+            "extensions.grade9v3:analysis.protected_work"
+          ],
+          "state": "RESOLVED"
+        }
+      },
+      "authoring": {
+        "hint_objectives": [
+          "H1: clarify X without giving the route or answer.",
+          "H2: connect X to an actually DEMONSTRATED learner bridge Y; keep pending until Y is evidenced.",
+          "H3: open the way to Z while leaving W to the learner."
+        ],
+        "figure_policy": "Use a representation only when it performs a cognitive job. Any pre-attempt figure must avoid the numerical answer and protected W; otherwise mark the visual correctly not applicable.",
+        "misconception_model": "Including both bases (closed cylinder) or painting both inside and outside without adhering to the prompt specification.",
+        "solution_architecture": [
+          "Q7-M1",
+          "Q7-M2",
+          "Q7-M3"
+        ]
+      }
+    },
+    {
+      "question_ref": "Q8",
+      "template_id": "QRT-REPRESENT-D2",
+      "classification": {
+        "primary_demand": "REPRESENT",
+        "band": "D2",
+        "basis": "Translating between cubic metres (geometric volume) and litres (liquid capacity) alongside fractional scaling."
+      },
+      "slots": {
+        "X": {
+          "text": "Keep the three operations distinct: find tank volume, take the stated fill fraction, then translate cubic metres into litres.",
+          "basis": [
+            "extensions.grade9v3:analysis.review_bottleneck"
+          ],
+          "state": "RESOLVED"
+        },
+        "Y": {
+          "text": "Pending owner learner-knowledge clarification on Issue #13.",
+          "basis": [
+            "https://github.com/reallaksh19/Grade9v3.5/issues/13#issuecomment-5972208592"
+          ],
+          "state": "UNRESOLVED_OWNER_INPUT"
+        },
+        "Z": {
+          "text": "Set up the cuboid volume and the metric capacity conversion without carrying out the final numerical chain.",
+          "basis": [
+            "extensions.grade9v3:analysis.review_route_to_crux"
+          ],
+          "state": "RESOLVED"
+        },
+        "W": {
+          "text": "Carry out the fill-fraction and unit conversion correctly and state the water volume in litres.",
+          "basis": [
+            "extensions.grade9v3:analysis.protected_work"
+          ],
+          "state": "RESOLVED"
+        }
+      },
+      "authoring": {
+        "hint_objectives": [
+          "H1: clarify X without giving the route or answer.",
+          "H2: connect X to an actually DEMONSTRATED learner bridge Y; keep pending until Y is evidenced.",
+          "H3: open the way to Z while leaving W to the learner."
+        ],
+        "figure_policy": "Use a representation only when it performs a cognitive job. Any pre-attempt figure must avoid the numerical answer and protected W; otherwise mark the visual correctly not applicable.",
+        "misconception_model": "Using incorrect conversion factors such as 1 m³ = 100 L, or calculating total capacity without applying the 75% factor.",
+        "solution_architecture": [
+          "Q8-M1",
+          "Q8-M2",
+          "Q8-M3"
+        ]
+      }
+    },
+    {
+      "question_ref": "Q9",
+      "template_id": "QRT-JUSTIFY-D3",
+      "classification": {
+        "primary_demand": "JUSTIFY",
+        "band": "D3",
+        "basis": "Warranting the cubic ratio for number of recast solids and explaining why surface area increases due to newly created boundary faces."
+      },
+      "slots": {
+        "X": {
+          "text": "Separate the conserved quantity (volume of metal) from the non-conserved boundary quantity (surface area).",
+          "basis": [
+            "extensions.grade9v3:analysis.review_bottleneck"
+          ],
+          "state": "RESOLVED"
+        },
+        "Y": {
+          "text": "Pending owner learner-knowledge clarification on Issue #13.",
+          "basis": [
+            "https://github.com/reallaksh19/Grade9v3.5/issues/13#issuecomment-5972208592"
+          ],
+          "state": "UNRESOLVED_OWNER_INPUT"
+        },
+        "Z": {
+          "text": "Set the original sphere volume equal to the combined volume of the smaller spheres and keep the surface-area question conceptually separate.",
+          "basis": [
+            "extensions.grade9v3:analysis.review_route_to_crux"
+          ],
+          "state": "RESOLVED"
+        },
+        "W": {
+          "text": "Derive the number of smaller spheres and explain why subdivision creates additional exposed boundary area.",
+          "basis": [
+            "extensions.grade9v3:analysis.protected_work"
+          ],
+          "state": "RESOLVED"
+        }
+      },
+      "authoring": {
+        "hint_objectives": [
+          "H1: clarify X without giving the route or answer.",
+          "H2: connect X to an actually DEMONSTRATED learner bridge Y; keep pending until Y is evidenced.",
+          "H3: open the way to Z while leaving W to the learner."
+        ],
+        "figure_policy": "Use a representation only when it performs a cognitive job. Any pre-attempt figure must avoid the numerical answer and protected W; otherwise mark the visual correctly not applicable.",
+        "misconception_model": "Using linear ratio n = 6/2 = 3 or area ratio n = (6/2)² = 9 instead of volume ratio, or claiming surface area is conserved because mass is conserved.",
+        "solution_architecture": [
+          "Q9-M1",
+          "Q9-M2",
+          "Q9-M3",
+          "Q9-M4"
+        ]
+      }
+    },
+    {
+      "question_ref": "Q10",
+      "template_id": "QRT-EXPLAIN-D2",
+      "classification": {
+        "primary_demand": "EXPLAIN",
+        "band": "D2",
+        "basis": "Explaining that the combined product πr²h is an invariant group, making separate determination of r and h both unnecessary and indeterminate."
+      },
+      "slots": {
+        "X": {
+          "text": "Recognize that equal radius and height make the grouped factor πr²h common to both volume formulas, so separate dimensions are unnecessary.",
+          "basis": [
+            "extensions.grade9v3:analysis.review_bottleneck"
+          ],
+          "state": "RESOLVED"
+        },
+        "Y": {
+          "text": "Pending owner learner-knowledge clarification on Issue #13.",
+          "basis": [
+            "https://github.com/reallaksh19/Grade9v3.5/issues/13#issuecomment-5972208592"
+          ],
+          "state": "UNRESOLVED_OWNER_INPUT"
+        },
+        "Z": {
+          "text": "Compare the cone and cylinder volume formulas symbolically to establish their fixed ratio.",
+          "basis": [
+            "extensions.grade9v3:analysis.review_route_to_crux"
+          ],
+          "state": "RESOLVED"
+        },
+        "W": {
+          "text": "Apply that ratio to the given cylinder volume and explain why solving separately for radius and height is unnecessary.",
+          "basis": [
+            "extensions.grade9v3:analysis.protected_work"
+          ],
+          "state": "RESOLVED"
+        }
+      },
+      "authoring": {
+        "hint_objectives": [
+          "H1: clarify X without giving the route or answer.",
+          "H2: connect X to an actually DEMONSTRATED learner bridge Y; keep pending until Y is evidenced.",
+          "H3: open the way to Z while leaving W to the learner."
+        ],
+        "figure_policy": "Use a representation only when it performs a cognitive job. Any pre-attempt figure must avoid the numerical answer and protected W; otherwise mark the visual correctly not applicable.",
+        "misconception_model": "Attempting to invent or solve for separate numerical values of r and h (which is indeterminate from one equation), or multiplying by 3 instead of dividing by 3.",
+        "solution_architecture": [
+          "Q10-M1",
+          "Q10-M2",
+          "Q10-M3"
+        ]
+      }
+    }
+  ]
+}

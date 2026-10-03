@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/question-pedagogy.schema.json",
+  "title": "Question pedagogy authoring batch",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "product_id",
+    "authority_record",
+    "profile_ref",
+    "matrix_ref",
+    "status",
+    "items"
+  ],
+  "properties": {
+    "schema": {
+      "const": "question-pedagogy-batch/v1"
+    },
+    "product_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authority_record": {
+      "type": "string",
+      "minLength": 1
+    },
+    "profile_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "matrix_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "PENDING_OWNER_PROFILE",
+        "READY_FOR_RENDER",
+        "SUPERSEDED"
+      ]
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/item"
+      }
+    }
+  },
+  "$defs": {
+    "slot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "text",
+        "basis",
+        "state"
+      ],
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "basis": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "state": {
+          "enum": [
+            "RESOLVED",
+            "UNRESOLVED_OWNER_INPUT"
+          ]
+        }
+      }
+    },
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "question_ref",
+        "template_id",
+        "classification",
+        "slots",
+        "authoring"
+      ],
+      "properties": {
+        "question_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template_id": {
+          "type": "string",
+          "pattern": "^QRT-(RETRIEVE|EXPLAIN|APPLY|MODEL|REPRESENT|SYNTHESIZE|JUSTIFY)-D[1-4]$"
+        },
+        "classification": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "primary_demand",
+            "band",
+            "basis"
+          ],
+          "properties": {
+            "primary_demand": {
+              "enum": [
+                "RETRIEVE",
+                "EXPLAIN",
+                "APPLY",
+                "MODEL",
+                "REPRESENT",
+                "SYNTHESIZE",
+                "JUSTIFY"
+              ]
+            },
+            "band": {
+              "enum": [
+                "D1",
+                "D2",
+                "D3",
+                "D4"
+              ]
+            },
+            "basis": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "slots": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "X",
+            "Y",
+            "Z",
+            "W"
+          ],
+          "properties": {
+            "X": {
+              "$ref": "#/$defs/slot"
+            },
+            "Y": {
+              "$ref": "#/$defs/slot"
+            },
+            "Z": {
+              "$ref": "#/$defs/slot"
+            },
+            "W": {
+              "$ref": "#/$defs/slot"
+            }
+          }
+        },
+        "authoring": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "hint_objectives",
+            "figure_policy",
+            "misconception_model",
+            "solution_architecture"
+          ],
+          "properties": {
+            "hint_objectives": {
+              "type": "array",
+              "minItems": 3,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "figure_policy": {
+              "type": "string",
+              "minLength": 1
+            },
+            "misconception_model": {
+              "type": "string",
+              "minLength": 1
+            },
+            "solution_architecture": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
