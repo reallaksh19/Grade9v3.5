@@ -1,0 +1,3797 @@
+<!DOCTYPE html>
+<html lang="en" class="dark" data-g9-shell>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IIT-JEE Chemistry · Chemical Bonding &amp; Molecular Structure 3D Master Suite · Standalone</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="../../vendor/tailwind/3.4.17/tailwind-play.js"></script>
+  
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="../../vendor/katex/0.16.8/katex.min.css">
+  <script defer src="../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script defer src="../../vendor/katex/0.16.8/contrib/auto-render.min.js"></script>
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
+  if (window.renderMathInElement) {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: "$$", right: "$$", display: true},
+        {left: "\\[", right: "\\]", display: true},
+        {left: "\\(", right: "\\)", display: false}
+      ],
+      throwOnError: false
+    });
+  }
+});
+</script>
+
+
+  <!-- Question Bank -->
+  <script>
+/* Embedded diagnostic bank for SINGLE_FILE_ONLINE delivery. */
+/**
+ * Chemical Bonding and Molecular Structure
+ * Master Question Registry & Step-by-Step Solutions Database
+ * Curated from ExamSIDE IIT-JEE Main Questions (2013-2026)
+ */
+window.JEE_QUESTIONS_DATA = [
+  {
+    "id": "BOND-Q01",
+    "num": "JEE Main 2026",
+    "source": "JEE Main 2026 (Online) 8th April Morning Shift",
+    "subtab": 5,
+    "subtabName": "Molecular Orbital Theory (MOT)",
+    "year": "2026",
+    "q": "According to Molecular Orbital Theory (MOT), which of the following oxygen species is diamagnetic and has the shortest bond length?",
+    "options": [
+      {
+        "key": "A",
+        "text": "O₂²⁺"
+      },
+      {
+        "key": "B",
+        "text": "O₂"
+      },
+      {
+        "key": "C",
+        "text": "O₂⁻"
+      },
+      {
+        "key": "D",
+        "text": "O₂²⁻"
+      }
+    ],
+    "correct": "A",
+    "formula": "Bond Order BO = ½ (N_b - N_a). Bond Length ∝ 1 / (Bond Order). Species is diamagnetic if all electrons are paired.",
+    "steps": [
+      "Step 1: Write electronic configuration of neutral O₂ (16 electrons, > 14 e⁻, NO 2s-2p mixing):",
+      "        σ₁ₛ² σ*₁ₛ² σ₂ₛ² σ*₂ₛ² σ₂ₚ_z² (π₂ₚ_x² = π₂ₚ_y²) (π*₂ₚ_x¹ = π*₂ₚ_y¹).",
+      "        For neutral O₂: N_b = 10, N_a = 6 ⇒ BO = ½ (10 - 6) = 2.0. Paramagnetic (2 unpaired electrons).",
+      "Step 2: For O₂²⁺ (14 electrons, like N₂):",
+      "        Remove 2 electrons from the antibonding π* orbitals: N_b = 10, N_a = 4.",
+      "        BO = ½ (10 - 4) = 3.0. All electrons are paired ⇒ Diamagnetic!",
+      "Step 3: For O₂⁻ (17 electrons): BO = ½ (10 - 7) = 1.5. Paramagnetic (1 unpaired electron).",
+      "Step 4: For O₂²⁻ (18 electrons, peroxide): BO = ½ (10 - 8) = 1.0. Diamagnetic.",
+      "Step 5: Comparing Bond Orders: O₂²⁺ (3.0) > O₂ (2.0) > O₂⁻ (1.5) > O₂²⁻ (1.0).",
+      "Step 6: Since Bond Length ∝ 1 / (Bond Order), O₂²⁺ has the highest bond order (3.0) and therefore the SHORTEST bond length, while being completely diamagnetic."
+    ],
+    "ans": "O₂²⁺ (Option A)",
+    "trap": "Both O₂²⁺ and O₂²⁻ are diamagnetic! But O₂²⁻ has a single bond (BO = 1.0, longest bond length), whereas O₂²⁺ has a triple bond (BO = 3.0, shortest bond length).",
+    "distractorTraps": {
+      "B": "O₂ is paramagnetic with 2 unpaired electrons (famous experiment with liquid O₂ sticking to magnets).",
+      "C": "O₂⁻ (superoxide) is paramagnetic with 1 unpaired electron.",
+      "D": "O₂²⁻ is diamagnetic, but has the LONGEST bond length (BO = 1.0 vs 3.0)."
+    },
+    "targetTab": "tab-mot",
+    "simParams": {
+      "electrons": 14
+    },
+    "simSummary": [
+      "O₂²⁺ (14 electrons)",
+      "Bond Order = 3.0 (Triple Bond)",
+      "Shortest Bond Length",
+      "Diamagnetic (0 Unpaired)"
+    ],
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "answerAudit": "PASS",
+    "answerAuditNote": "Locally reviewed/recomputed on 2026-09-20; source-item provenance/key has not been independently verified.",
+    "simBindingRefs": [
+      "simParams.electrons"
+    ],
+    "simFidelity": "CONSTRAINT_FAITHFUL",
+    "simFidelityNote": "The simulator binds electrons only. Remaining question details stay in the worked solution; this is not an exact full-state replay.",
+    "sourceAuditNote": "Attributed source item/key has not yet been independently matched against the cited ExamSIDE record.",
+    "teacherCheck": "Independent check: recompute the governing relation and verify that the stem constraints select O₂²⁺ (Option A).",
+    "takeaway": "Transfer rule: start from Bond Order BO = ½ (N_b - N_a); enforce every structural, stoichiometric, charge or state constraint before comparing answer choices.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "BOND-Q02",
+    "num": "JEE Main 2025",
+    "source": "JEE Main 2025 (Online) 24th January Morning Shift",
+    "subtab": 2,
+    "subtabName": "3D VSEPR & Bent's Rule",
+    "year": "2025",
+    "q": "The geometry and net dipole moment of XeF₄ and SF₄ respectively are:",
+    "options": [
+      {
+        "key": "A",
+        "text": "XeF₄: Square planar, μ = 0; SF₄: See-saw, μ ≠ 0"
+      },
+      {
+        "key": "B",
+        "text": "XeF₄: Tetrahedral, μ = 0; SF₄: Square planar, μ = 0"
+      },
+      {
+        "key": "C",
+        "text": "XeF₄: See-saw, μ ≠ 0; SF₄: Square planar, μ = 0"
+      },
+      {
+        "key": "D",
+        "text": "XeF₄: Square planar, μ ≠ 0; SF₄: See-saw, μ = 0"
+      }
+    ],
+    "correct": "A",
+    "formula": "Steric Number = Bond Pairs + Lone Pairs. XeF₄ = 4 + 2 = 6 (sp³d²). SF₄ = 4 + 1 = 5 (sp³d)",
+    "steps": [
+      "Step 1: Calculate Steric Number for XeF₄: Xe has 8 valence electrons. 4 bond pairs to F + 2 lone pairs = 6 electron domains ⇒ Octahedral electronic geometry.",
+      "Step 2: VSEPR minimization puts the 2 lone pairs opposite to each other (axial positions, 180° apart) to minimize 90° lp-bp repulsions.",
+      "Step 3: The 4 fluorine atoms lie in a single plane at 90° angles ⇒ Square Planar molecular geometry.",
+      "Step 4: Vectorial Dipole Sum for XeF₄: The four Xe-F bond dipoles cancel out in pairs in the plane, and the two axial lone pair moments cancel each other ⇒ Net Dipole Moment μ = 0.",
+      "Step 5: Calculate Steric Number for SF₄: S has 6 valence electrons. 4 bond pairs to F + 1 lone pair = 5 electron domains ⇒ Trigonal Bipyramidal electronic geometry.",
+      "Step 6: Bent's Rule / VSEPR: Lone pair occupies an equatorial position (experiencing only two 90° repulsions instead of three) ⇒ See-saw molecular geometry.",
+      "Step 7: In See-saw SF₄, the axial F-S-F bond angle is ~173° (bent by lone pair) and equatorial F-S-F angle is ~102°. The dipoles do NOT cancel ⇒ Net Dipole Moment μ ≠ 0."
+    ],
+    "ans": "XeF₄: Square planar, μ = 0; SF₄: See-saw, μ ≠ 0 (Option A)",
+    "trap": "Do not treat XeF₄ as tetrahedral! The two lone pairs force it into an octahedral family with square planar geometry.",
+    "distractorTraps": {
+      "B": "Assumed 4 substituents always mean tetrahedral.",
+      "C": "Swapped geometries of XeF₄ and SF₄.",
+      "D": "Inverted dipole moments."
+    },
+    "targetTab": "tab-vsepr",
+    "simParams": {
+      "molecule": "XeF4"
+    },
+    "simSummary": [
+      "XeF₄: Steric 6 (sp³d²), 2 Axial Lone Pairs, Square Planar, μ = 0",
+      "SF₄: Steric 5 (sp³d), 1 Equatorial Lone Pair, See-saw, μ ≠ 0"
+    ],
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "answerAudit": "PASS",
+    "answerAuditNote": "Locally reviewed/recomputed on 2026-09-20; source-item provenance/key has not been independently verified.",
+    "simBindingRefs": [
+      "simParams.molecule"
+    ],
+    "simFidelity": "CONSTRAINT_FAITHFUL",
+    "simFidelityNote": "The simulator binds molecule only. Remaining question details stay in the worked solution; this is not an exact full-state replay.",
+    "sourceAuditNote": "Attributed source item/key has not yet been independently matched against the cited ExamSIDE record.",
+    "teacherCheck": "Independent check: recompute the governing relation and verify that the stem constraints select XeF₄: Square planar, μ = 0; SF₄: See-saw, μ ≠ 0 (Option A).",
+    "takeaway": "Transfer rule: start from Steric Number = Bond Pairs + Lone Pairs; enforce every structural, stoichiometric, charge or state constraint before comparing answer choices.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "BOND-Q03",
+    "num": "JEE Main 2024",
+    "source": "JEE Main 2024 (Online) 27th January Evening Shift",
+    "subtab": 3,
+    "subtabName": "Vectorial Dipole Moments",
+    "year": "2024",
+    "q": "Although Nitrogen and Fluorine are both highly electronegative, the dipole moment of NH₃ (1.47 D) is significantly greater than that of NF₃ (0.24 D). The correct explanation is:",
+    "options": [
+      {
+        "key": "A",
+        "text": "In NH₃, the orbital dipole of the lone pair reinforces the resultant N-H bond dipoles, whereas in NF₃ it opposes the N-F bond dipoles."
+      },
+      {
+        "key": "B",
+        "text": "The N-H bond is more polar than the N-F bond."
+      },
+      {
+        "key": "C",
+        "text": "NF₃ is planar while NH₃ is pyramidal."
+      },
+      {
+        "key": "D",
+        "text": "NH₃ has atomic number smaller than NF₃."
+      }
+    ],
+    "correct": "A",
+    "formula": "μ_net = Σ μ_bond + μ_lonepair (Vector sum in 3D)",
+    "steps": [
+      "Step 1: Both NH₃ and NF₃ have trigonal pyramidal geometries (Steric number 4, 3 bond pairs + 1 lone pair, sp³ hybridization).",
+      "Step 2: In NH₃, Nitrogen is more electronegative than Hydrogen (EN: N = 3.04, H = 2.20). Therefore, the three N-H bond dipoles point UPWARD toward Nitrogen.",
+      "Step 3: The lone pair dipole also points UPWARD away from the Nitrogen nucleus. Thus, all four vector dipoles reinforce in the same direction ⇒ High dipole moment (μ = 1.47 D).",
+      "Step 4: In NF₃, Fluorine is more electronegative than Nitrogen (EN: F = 3.98, N = 3.04). Therefore, the three N-F bond dipoles point DOWNWARD toward the Fluorines.",
+      "Step 5: The lone pair dipole points UPWARD, directly OPPOSING the downward resultant of the three N-F bonds ⇒ Drastic cancellation ⇒ Small net dipole moment (μ = 0.24 D)."
+    ],
+    "ans": "In NH₃, lone pair reinforces N-H bonds; in NF₃, lone pair opposes N-F bonds (Option A)",
+    "trap": "Do not argue that N-F bond is less polar; F is the most electronegative element! The cancellation is purely VECTORIAL in 3D.",
+    "distractorTraps": {
+      "B": "False: N-F electronegativity difference (0.94) is greater than N-H (0.84).",
+      "C": "Both molecules are pyramidal; neither is planar.",
+      "D": "Atomic number does not determine dipole moment."
+    },
+    "targetTab": "tab-dipole",
+    "simParams": {},
+    "simSummary": [
+      "NH₃: 3 N-H (↑) + Lone Pair (↑) = Reinforcing (μ = 1.47 D)",
+      "NF₃: 3 N-F (↓) + Lone Pair (↑) = Opposing (μ = 0.24 D)"
+    ],
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "answerAudit": "PASS",
+    "answerAuditNote": "Locally reviewed/recomputed on 2026-09-20; source-item provenance/key has not been independently verified.",
+    "simBindingRefs": [],
+    "simFidelity": "CONCEPT_ONLY",
+    "simFidelityNote": "The simulator opens the relevant mechanism only; no question-specific state is injected.",
+    "sourceAuditNote": "Attributed source item/key has not yet been independently matched against the cited ExamSIDE record.",
+    "teacherCheck": "Independent check: recompute the governing relation and verify that the stem constraints select In NH₃, lone pair reinforces N-H bonds; in NF₃, lone pair opposes N-F bonds (Option A).",
+    "takeaway": "Transfer rule: start from μ_net = Σ μ_bond + μ_lonepair (Vector sum in 3D); enforce every structural, stoichiometric, charge or state constraint before comparing answer choices.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "BOND-Q04",
+    "num": "JEE Main 2026",
+    "source": "JEE Main 2026 (Online) 5th April Morning Shift",
+    "subtab": 4,
+    "subtabName": "Hybridization & Axial Elongation",
+    "year": "2026",
+    "q": "In gaseous phosphorus pentachloride (PCl₅), the axial P-Cl bonds are longer and weaker than the equatorial P-Cl bonds because:",
+    "options": [
+      {
+        "key": "A",
+        "text": "Axial bond pairs experience three 90° repulsions from equatorial bond pairs, whereas equatorial pairs experience only two 90° repulsions."
+      },
+      {
+        "key": "B",
+        "text": "Axial bonds are formed by pure p-orbitals while equatorial bonds are sp²."
+      },
+      {
+        "key": "C",
+        "text": "Chlorine atoms in axial positions are more electronegative."
+      },
+      {
+        "key": "D",
+        "text": "PCl₅ is unstable and immediately dissociates."
+      }
+    ],
+    "correct": "A",
+    "formula": "In sp³d trigonal bipyramidal: Axial pairs suffer 3 × 90° bp-bp repulsions; Equatorial pairs suffer 2 × 90° bp-bp repulsions.",
+    "steps": [
+      "Step 1: PCl₅ has sp³d hybridization (Steric number = 5, trigonal bipyramidal geometry).",
+      "Step 2: An axial P-Cl bond lies at 90° to all three equatorial P-Cl bonds. Hence, each axial bond pair suffers THREE 90° electron-pair repulsions.",
+      "Step 3: An equatorial P-Cl bond lies at 120° to the other two equatorial bonds and 90° to the two axial bonds. Hence, each equatorial bond pair suffers only TWO 90° repulsions (120° repulsions are negligible).",
+      "Step 4: Due to greater repulsive force (3 vs 2), the axial bond pairs are pushed further away from the central Phosphorus nucleus to minimize repulsion.",
+      "Step 5: Consequently, axial bonds are longer (240 pm) and weaker than equatorial bonds (202 pm), explaining why PCl₅ easily dissociates into PCl₃ + Cl₂ upon heating!"
+    ],
+    "ans": "Axial bond pairs suffer three 90° repulsions vs two for equatorial pairs (Option A)",
+    "trap": "All 5 attached atoms are identical chlorine atoms! The bond asymmetry arises purely from the non-equivalent 3D spatial geometry.",
+    "distractorTraps": {
+      "B": "sp³d is often conceptualized as sp² + pd_z², but the physical cause of elongation is 90° repulsion balance.",
+      "C": "All five chlorines have identical electronegativity.",
+      "D": "PCl₅ exists stably in the gas phase at moderate temperatures."
+    },
+    "targetTab": "tab-hybridization",
+    "simParams": {},
+    "simSummary": [
+      "PCl₅ (sp³d Trigonal Bipyramidal)",
+      "3 Equatorial P-Cl: 202 pm (Shorter, Stronger)",
+      "2 Axial P-Cl: 240 pm (Longer, Weaker)",
+      "Dissociation: PCl₅ → PCl₃ + Cl₂"
+    ],
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "answerAudit": "PASS",
+    "answerAuditNote": "Locally reviewed/recomputed on 2026-09-20; source-item provenance/key has not been independently verified.",
+    "simBindingRefs": [],
+    "simFidelity": "CONCEPT_ONLY",
+    "simFidelityNote": "The simulator opens the relevant mechanism only; no question-specific state is injected.",
+    "sourceAuditNote": "Attributed source item/key has not yet been independently matched against the cited ExamSIDE record.",
+    "teacherCheck": "Independent check: recompute the governing relation and verify that the stem constraints select Axial bond pairs suffer three 90° repulsions vs two for equatorial pairs (Option A).",
+    "takeaway": "Transfer rule: start from In sp³d trigonal bipyramidal: Axial pairs suffer 3 × 90° bp-bp repulsions; Equatorial pairs suffer 2 × 90° bp-bp repulsions; enforce every structural, stoichiometric, charge or state constraint before comparing answer choices.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "BOND-Q05",
+    "num": "JEE Main 2025",
+    "source": "JEE Main 2025 (Online) 30th January Morning Shift",
+    "subtab": 6,
+    "subtabName": "Hydrogen Bonding & Physical Properties",
+    "year": "2025",
+    "q": "ortho-Nitrophenol is steam volatile and has a lower boiling point than para-nitrophenol because:",
+    "options": [
+      {
+        "key": "A",
+        "text": "o-Nitrophenol exhibits intramolecular H-bonding (chelation), while p-nitrophenol exhibits intermolecular H-bonding."
+      },
+      {
+        "key": "B",
+        "text": "o-Nitrophenol has a higher molecular weight."
+      },
+      {
+        "key": "C",
+        "text": "p-Nitrophenol has intramolecular H-bonding."
+      },
+      {
+        "key": "D",
+        "text": "o-Nitrophenol is non-polar."
+      }
+    ],
+    "correct": "A",
+    "formula": "Intramolecular H-bonding prevents association with neighboring molecules; Intermolecular H-bonding causes molecular association.",
+    "steps": [
+      "Step 1: In ortho-nitrophenol, the -OH and -NO₂ groups are adjacent (1,2-positions on benzene ring).",
+      "Step 2: The phenolic hydrogen forms a 6-membered planar ring with the oxygen of the adjacent nitro group: INTRAMOLECULAR Hydrogen Bonding (chelation).",
+      "Step 3: This internal bonding prevents the molecule from associating with neighboring molecules, keeping it as discrete, non-associated units with low boiling point and high steam volatility.",
+      "Step 4: In para-nitrophenol, the -OH and -NO₂ groups are far apart (1,4-positions). Intramolecular H-bonding is geometrically impossible!",
+      "Step 5: Instead, p-nitrophenol forms strong INTERMOLECULAR Hydrogen Bonds between adjacent molecules, creating extensive molecular associations that require much higher thermal energy to vaporize."
+    ],
+    "ans": "o-Nitrophenol exhibits intramolecular H-bonding; p-nitrophenol exhibits intermolecular H-bonding (Option A)",
+    "trap": "Do not swap the two! ortho = internal chelation (steam volatile); para = intermolecular association (high boiling point).",
+    "distractorTraps": {
+      "B": "Both are constitutional isomers with identical molecular weight (139.11 g/mol).",
+      "C": "Inverted the positions: para groups are too far apart for internal bonding.",
+      "D": "Both isomers have polar bonds."
+    },
+    "targetTab": "tab-hbonding",
+    "simParams": {},
+    "simSummary": [
+      "o-Nitrophenol: Intramolecular H-Bond (Cheled 6-Ring) → Steam Volatile",
+      "p-Nitrophenol: Intermolecular H-Bond (Linear Chains) → High BP"
+    ],
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "answerAudit": "PASS",
+    "answerAuditNote": "Locally reviewed/recomputed on 2026-09-20; source-item provenance/key has not been independently verified.",
+    "simBindingRefs": [],
+    "simFidelity": "CONCEPT_ONLY",
+    "simFidelityNote": "The simulator opens the relevant mechanism only; no question-specific state is injected.",
+    "sourceAuditNote": "Attributed source item/key has not yet been independently matched against the cited ExamSIDE record.",
+    "teacherCheck": "Independent check: recompute the governing relation and verify that the stem constraints select o-Nitrophenol exhibits intramolecular H-bonding; p-nitrophenol exhibits intermolecular H-bonding (Option A).",
+    "takeaway": "Transfer rule: start from Intramolecular H-bonding prevents association with neighboring molecules; Intermolecular H-bonding causes molecular association; enforce every structural, stoichiometric, charge or state constraint before comparing answer choices.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "BOND-Q06",
+    "num": "JEE Main 2024",
+    "source": "JEE Main 2024 (Online) 27th January Morning Shift",
+    "subtab": 5,
+    "subtabName": "Molecular Orbital Theory (MOT)",
+    "year": "2024",
+    "q": "According to Molecular Orbital Theory (MOT), which of the following homonuclear diatomic species is paramagnetic with two unpaired electrons in degenerate π orbitals despite having an even total number of electrons?",
+    "options": [
+      {
+        "key": "A",
+        "text": "B₂ and O₂"
+      },
+      {
+        "key": "B",
+        "text": "C₂ and N₂"
+      },
+      {
+        "key": "C",
+        "text": "Li₂ and Be₂"
+      },
+      {
+        "key": "D",
+        "text": "N₂ and O₂²⁻"
+      }
+    ],
+    "correct": "A",
+    "formula": "B₂ (10e⁻): π_2p_x¹ = π_2p_y¹ (2 unpaired e⁻). O₂ (16e⁻): π*_2p_x¹ = π*_2p_y¹ (2 unpaired e⁻)",
+    "steps": [
+      "Step 1: Write MOT configuration for B₂ (10 electrons, ≤ 14e⁻ regime with 2s-2p mixing crossover): σ_1s² σ*_1s² σ_2s² σ*_2s² (π_2p_x¹ = π_2p_y¹). The last two electrons singly occupy the degenerate bonding π_2p orbitals with parallel spins ⇒ Paramagnetic (2 unpaired electrons).",
+      "Step 2: Write MOT configuration for C₂ (12 electrons): σ_1s² σ*_1s² σ_2s² σ*_2s² (π_2p_x² = π_2p_y²). All electrons are paired ⇒ Diamagnetic.",
+      "Step 3: Write MOT configuration for O₂ (16 electrons, > 14e⁻ regime without crossover): σ_1s² σ*_1s² σ_2s² σ*_2s² σ_2p_z² (π_2p_x² = π_2p_y²) (π*_2p_x¹ = π*_2p_y¹). The last two electrons singly occupy the degenerate antibonding π* orbitals ⇒ Paramagnetic (2 unpaired electrons).",
+      "Step 4: Therefore, both B₂ and O₂ have two unpaired electrons in degenerate π orbitals and are paramagnetic."
+    ],
+    "ans": "B₂ and O₂ (Option A)",
+    "trap": "Lewis electron-dot structures erroneously predict both B₂ and O₂ to have only paired electrons (diamagnetic). MOT's successful prediction of paramagnetism was historical proof of molecular orbital theory!",
+    "distractorTraps": {
+      "B": "C₂ and N₂ have all paired electrons and are diamagnetic.",
+      "C": "Li₂ is diamagnetic; Be₂ has bond order 0 and does not exist.",
+      "D": "N₂ and O₂²⁻ have all paired electrons."
+    },
+    "targetTab": "tab-mot",
+    "simParams": {
+      "electrons": 16
+    },
+    "simSummary": [
+      "B₂ (10 e⁻): π_2p_x¹ = π_2p_y¹ (2 unpaired e⁻, Paramagnetic)",
+      "O₂ (16 e⁻): π*_2p_x¹ = π*_2p_y¹ (2 unpaired e⁻, Paramagnetic)"
+    ],
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "answerAudit": "PASS",
+    "answerAuditNote": "Locally reviewed/recomputed on 2026-09-20; source-item provenance/key has not been independently verified.",
+    "simBindingRefs": [
+      "simParams.electrons"
+    ],
+    "simFidelity": "CONSTRAINT_FAITHFUL",
+    "simFidelityNote": "The simulator binds electrons only. Remaining question details stay in the worked solution; this is not an exact full-state replay.",
+    "sourceAuditNote": "Attributed source item/key has not yet been independently matched against the cited ExamSIDE record.",
+    "teacherCheck": "Independent check: recompute the governing relation and verify that the stem constraints select B₂ and O₂ (Option A).",
+    "takeaway": "Transfer rule: start from B₂ (10e⁻): π_2p_x¹ = π_2p_y¹ (2 unpaired e⁻); enforce every structural, stoichiometric, charge or state constraint before comparing answer choices.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "BOND-Q07",
+    "num": "JEE Main 2023",
+    "source": "JEE Main 2023 (Online) 25th January Evening Shift",
+    "subtab": 3,
+    "subtabName": "Vectorial Dipole Moments",
+    "year": "2023",
+    "q": "Both ammonia (NH₃) and nitrogen trifluoride (NF₃) have trigonal pyramidal geometries with one lone pair on nitrogen. However, the dipole moment of NH₃ (1.47 D) is substantially greater than that of NF₃ (0.24 D) because:",
+    "options": [
+      {
+        "key": "A",
+        "text": "In NH₃, the lone-pair orbital dipole and N-H bond dipoles reinforce each other; in NF₃, the lone-pair dipole opposes the N-F bond dipoles."
+      },
+      {
+        "key": "B",
+        "text": "Nitrogen is more electronegative than fluorine."
+      },
+      {
+        "key": "C",
+        "text": "NF₃ is a planar molecule while NH₃ is pyramidal."
+      },
+      {
+        "key": "D",
+        "text": "The N-H bond length is greater than the N-F bond length."
+      }
+    ],
+    "correct": "A",
+    "formula": "μ_net = μ_lone-pair + ∑ μ_bond (Vector addition)",
+    "steps": [
+      "Step 1: Both NH₃ and NF₃ have sp³ hybridized nitrogen with 3 bond pairs and 1 lone pair (trigonal pyramidal geometry).",
+      "Step 2: In NH₃, EN(N) = 3.0 > EN(H) = 2.1. The three N-H bond dipoles point toward nitrogen (upward toward the apex), in the same direction as the upward orbital dipole of the lone pair. The vectors reinforce constructively ⇒ μ_net = 1.47 D.",
+      "Step 3: In NF₃, EN(F) = 4.0 > EN(N) = 3.0. The three N-F bond dipoles point downward away from nitrogen toward fluorine, OPPOSING the upward lone-pair dipole. The vectors cancel destructively ⇒ μ_net = 0.24 D.",
+      "Step 4: Vectorial cancellation explains why NF₃ has a remarkably small dipole moment despite having highly polar N-F bonds."
+    ],
+    "ans": "In NH₃, lone pair and bond dipoles reinforce; in NF₃, they oppose (Option A)",
+    "trap": "Never judge net dipole by bond polarity alone! Fluorine is far more electronegative than hydrogen, but vectorial direction causes nearly complete cancellation in NF₃.",
+    "distractorTraps": {
+      "B": "Factually incorrect: EN(F) = 4.0 is much higher than EN(N) = 3.0.",
+      "C": "Both molecules are trigonal pyramidal.",
+      "D": "Bond length difference does not account for vector opposition."
+    },
+    "targetTab": "tab-dipole",
+    "simParams": {
+      "molecule": "NH3_vs_NF3"
+    },
+    "simSummary": [
+      "NH₃: N-H dipoles add to lone pair vector (μ = 1.47 D)",
+      "NF₃: N-F dipoles oppose lone pair vector (μ = 0.24 D)"
+    ],
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "answerAudit": "PASS",
+    "answerAuditNote": "Locally reviewed/recomputed on 2026-09-20; source-item provenance/key has not been independently verified.",
+    "simBindingRefs": [
+      "simParams.molecule"
+    ],
+    "simFidelity": "CONSTRAINT_FAITHFUL",
+    "simFidelityNote": "The simulator binds molecule only. Remaining question details stay in the worked solution; this is not an exact full-state replay.",
+    "sourceAuditNote": "Attributed source item/key has not yet been independently matched against the cited ExamSIDE record.",
+    "teacherCheck": "Independent check: recompute the governing relation and verify that the stem constraints select In NH₃, lone pair and bond dipoles reinforce; in NF₃, they oppose (Option A).",
+    "takeaway": "Transfer rule: start from μ_net = μ_lone-pair + ∑ μ_bond (Vector addition); enforce every structural, stoichiometric, charge or state constraint before comparing answer choices.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "BOND-Q08",
+    "num": "JEE Main 2025",
+    "source": "JEE Main 2025 (Online) 29th January Evening Shift",
+    "subtab": 1,
+    "subtabName": "Lewis Structures & Formal Charge",
+    "year": "2025",
+    "q": "In the resonance contributor of the ozone molecule (O₃: O_a - O_b = O_c), the formal charges on the single-bonded terminal oxygen (O_a), the central oxygen (O_b), and the double-bonded terminal oxygen (O_c) are respectively:",
+    "options": [
+      {
+        "key": "A",
+        "text": "-1, +1, 0"
+      },
+      {
+        "key": "B",
+        "text": "0, +1, -1"
+      },
+      {
+        "key": "C",
+        "text": "+1, -1, 0"
+      },
+      {
+        "key": "D",
+        "text": "0, 0, 0"
+      }
+    ],
+    "correct": "A",
+    "formula": "Formal Charge = Valence e⁻ - Non-bonding e⁻ - ½(Bonding e⁻)",
+    "steps": [
+      "Step 1: Apply the universal formal charge formula: FC = V - L - ½ B.",
+      "Step 2: For central oxygen O_b: V = 6, 1 lone pair (L = 2), 1 single bond + 1 double bond (B = 6). FC(O_b) = 6 - 2 - ½(6) = 6 - 2 - 3 = +1.",
+      "Step 3: For terminal single-bonded oxygen O_a: V = 6, 3 lone pairs (L = 6), 1 single bond (B = 2). FC(O_a) = 6 - 6 - ½(2) = 6 - 6 - 1 = -1.",
+      "Step 4: For terminal double-bonded oxygen O_c: V = 6, 2 lone pairs (L = 4), 1 double bond (B = 4). FC(O_c) = 6 - 4 - ½(4) = 6 - 4 - 2 = 0.",
+      "Step 5: Check sum of formal charges: (-1) + (+1) + 0 = 0 (neutral molecule). Hence the charges are -1, +1, 0."
+    ],
+    "ans": "-1, +1, 0 (Option A)",
+    "trap": "Always count individual non-bonding electrons L, not electron pairs! In O_a, 3 lone pairs = 6 non-bonding electrons.",
+    "distractorTraps": {
+      "B": "Inverted the terminal oxygen positions.",
+      "C": "Assigned positive charge to the terminal oxygen.",
+      "D": "Assumed all atoms in a neutral molecule have zero formal charge."
+    },
+    "targetTab": "tab-lewis",
+    "simParams": {
+      "molecule": "O3"
+    },
+    "simSummary": [
+      "O₃ Lewis Structure",
+      "Central O: FC = 6 - 2 - 3 = +1",
+      "Single-bonded O: FC = 6 - 6 - 1 = -1",
+      "Double-bonded O: FC = 6 - 4 - 2 = 0"
+    ],
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "answerAudit": "PASS",
+    "answerAuditNote": "Locally reviewed/recomputed on 2026-09-20; source-item provenance/key has not been independently verified.",
+    "simBindingRefs": [
+      "simParams.molecule"
+    ],
+    "simFidelity": "CONSTRAINT_FAITHFUL",
+    "simFidelityNote": "The simulator binds molecule only. Remaining question details stay in the worked solution; this is not an exact full-state replay.",
+    "sourceAuditNote": "Attributed source item/key has not yet been independently matched against the cited ExamSIDE record.",
+    "teacherCheck": "Independent check: recompute the governing relation and verify that the stem constraints select -1, +1, 0 (Option A).",
+    "takeaway": "Transfer rule: start from Formal Charge = Valence e⁻ - Non-bonding e⁻ - ½(Bonding e⁻); enforce every structural, stoichiometric, charge or state constraint before comparing answer choices.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "BOND-Q09",
+    "num": "JEE Main 2024",
+    "source": "JEE Main 2024 (Online) 31st January Evening Shift",
+    "subtab": 2,
+    "subtabName": "3D VSEPR & Bent's Rule",
+    "year": "2024",
+    "q": "The total number of lone pairs on the central atom of XeF₄, SF₄, and ClF₃ respectively are:",
+    "options": [
+      {
+        "key": "A",
+        "text": "2, 1, 2"
+      },
+      {
+        "key": "B",
+        "text": "1, 2, 2"
+      },
+      {
+        "key": "C",
+        "text": "2, 2, 1"
+      },
+      {
+        "key": "D",
+        "text": "0, 1, 2"
+      }
+    ],
+    "correct": "A",
+    "formula": "Lone pairs LP = ½ [V - B], where V = valence e⁻ of central atom, B = bonded monovalent atoms",
+    "steps": [
+      "Step 1: For XeF₄: Xe has 8 valence electrons. Steric Number = 4 σ-bonds + ½(8 - 4) = 4 + 2 = 6 (sp³d²). Central atom has 2 lone pairs.",
+      "Step 2: For SF₄: S has 6 valence electrons. Steric Number = 4 σ-bonds + ½(6 - 4) = 4 + 1 = 5 (sp³d). Central atom has 1 lone pair (see-saw).",
+      "Step 3: For ClF₃: Cl has 7 valence electrons. Steric Number = 3 σ-bonds + ½(7 - 3) = 3 + 2 = 5 (sp³d). Central atom has 2 lone pairs (T-shaped).",
+      "Step 4: Compiling lone pairs on central atoms: XeF₄ = 2, SF₄ = 1, ClF₃ = 2."
+    ],
+    "ans": "2, 1, 2 (Option A)",
+    "trap": "Do not count lone pairs on fluorine atoms! The question specifically demands lone pairs ON THE CENTRAL ATOM.",
+    "distractorTraps": {
+      "B": "Swapped lone pairs of XeF₄ and SF₄.",
+      "C": "Assumed SF₄ has 2 lone pairs like XeF₄.",
+      "D": "Assumed XeF₄ is tetrahedral with 0 lone pairs."
+    },
+    "targetTab": "tab-vsepr",
+    "simParams": {
+      "molecule": "XeF4"
+    },
+    "simSummary": [
+      "XeF₄: 2 LP (Square Planar)",
+      "SF₄: 1 LP (See-saw)",
+      "ClF₃: 2 LP (T-shaped)"
+    ],
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "answerAudit": "PASS",
+    "answerAuditNote": "Locally reviewed/recomputed on 2026-09-20; source-item provenance/key has not been independently verified.",
+    "simBindingRefs": [
+      "simParams.molecule"
+    ],
+    "simFidelity": "CONSTRAINT_FAITHFUL",
+    "simFidelityNote": "The simulator binds molecule only. Remaining question details stay in the worked solution; this is not an exact full-state replay.",
+    "sourceAuditNote": "Attributed source item/key has not yet been independently matched against the cited ExamSIDE record.",
+    "teacherCheck": "Independent check: recompute the governing relation and verify that the stem constraints select 2, 1, 2 (Option A).",
+    "takeaway": "Transfer rule: start from Lone pairs LP = ½ [V - B], where V = valence e⁻ of central atom, B = bonded monovalent atoms; enforce every structural, stoichiometric, charge or state constraint before comparing answer choices.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "BOND-Q10",
+    "num": "JEE Main 2024",
+    "source": "JEE Main 2024 (Online) 29th January Morning Shift",
+    "subtab": 1,
+    "subtabName": "Lewis Structure & Formal Charge",
+    "year": "2024",
+    "q": "The formal charge on each oxygen atom in the resonance hybrid of the carbonate ion (CO₃²⁻) is:",
+    "options": [
+      {
+        "key": "A",
+        "text": "-2 / 3"
+      },
+      {
+        "key": "B",
+        "text": "-1 / 3"
+      },
+      {
+        "key": "C",
+        "text": "-1"
+      },
+      {
+        "key": "D",
+        "text": "-2"
+      }
+    ],
+    "correct": "A",
+    "formula": "Average Formal Charge = (Total ionic charge) / (Number of equivalent resonating oxygen atoms)",
+    "steps": [
+      "Step 1: Write the canonical Lewis resonance forms of CO₃²⁻. Carbon forms 1 C=O double bond and 2 C-O⁻ single bonds.",
+      "Step 2: Total formal charge on the oxygen atoms is -2 (since central carbon has FC = 4 - 0 - ½(8) = 0).",
+      "Step 3: All 3 oxygen atoms participate equally in resonance delocalization across 3 equivalent canonical forms.",
+      "Step 4: Average formal charge per oxygen atom: FC_avg = -2 / 3 ≈ -0.67.",
+      "Step 5: The C-O bond order in the hybrid is 4/3 = 1.33 (4 bonding pairs shared over 3 C-O linkages)."
+    ],
+    "ans": "-2 / 3 (Option A)",
+    "trap": "Do not report the charge of a single localized canonical form (-1 on single-bonded oxygen, 0 on double-bonded); the real molecule is the delocalized resonance hybrid (-2/3 on all oxygens)!",
+    "distractorTraps": {
+      "B": "Divided -1 by 3 instead of total charge -2.",
+      "C": "Reported the charge in a localized single-bonded canonical Lewis structure.",
+      "D": "Reported the total charge of the polyatomic ion."
+    },
+    "targetTab": "tab-lewis",
+    "simParams": {
+      "molecule": "CO3"
+    },
+    "simSummary": [
+      "CO₃²⁻ Hybrid: 3 equivalent O atoms",
+      "Average FC = -2/3",
+      "Bond Order = 4/3 = 1.33"
+    ],
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "answerAudit": "PASS",
+    "answerAuditNote": "Locally reviewed/recomputed on 2026-09-20; source-item provenance/key has not been independently verified.",
+    "simBindingRefs": [
+      "simParams.molecule"
+    ],
+    "simFidelity": "CONSTRAINT_FAITHFUL",
+    "simFidelityNote": "The simulator binds molecule only. Remaining question details stay in the worked solution; this is not an exact full-state replay.",
+    "sourceAuditNote": "Attributed source item/key has not yet been independently matched against the cited ExamSIDE record.",
+    "teacherCheck": "Independent check: recompute the governing relation and verify that the stem constraints select -2 / 3 (Option A).",
+    "takeaway": "Transfer rule: start from Average Formal Charge = (Total ionic charge) / (Number of equivalent resonating oxygen atoms); enforce every structural, stoichiometric, charge or state constraint before comparing answer choices.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "BOND-Q11",
+    "num": "JEE Main 2023",
+    "source": "JEE Main 2023 (Online) 6th April Morning Shift",
+    "subtab": 5,
+    "subtabName": "Molecular Orbital Theory (MOT)",
+    "year": "2023",
+    "q": "According to Molecular Orbital Theory (MOT), in which of the following diatomic species does the double bond consist of ONLY π bonds with NO σ bond?",
+    "options": [
+      {
+        "key": "A",
+        "text": "C₂"
+      },
+      {
+        "key": "B",
+        "text": "O₂"
+      },
+      {
+        "key": "C",
+        "text": "N₂"
+      },
+      {
+        "key": "D",
+        "text": "B₂"
+      }
+    ],
+    "correct": "A",
+    "formula": "Electronic configuration of C₂ (12 e⁻): σ₁ₛ² σ*₁ₛ² σ₂ₛ² σ*₂ₛ² (π₂ₚ_x² = π₂ₚ_y²)",
+    "steps": [
+      "Step 1: Carbon has Z = 6 ≤ 7, so 2s-2p mixing occurs, pushing σ₂ₚ_z above the degenerate π₂ₚ orbitals.",
+      "Step 2: Neutral C₂ has 12 electrons. Fill molecular orbitals:",
+      "        σ₁ₛ² σ*₁ₛ² σ₂ₛ² σ*₂ₛ² (π₂ₚ_x² = π₂ₚ_y²).",
+      "Step 3: The 4 bonding electrons responsible for the double bond (BO = (8 - 4)/2 = 2) reside strictly in the degenerate π₂ₚ_x and π₂ₚ_y orbitals.",
+      "Step 4: The σ₂ₚ_z orbital is completely empty! Hence the double bond in C₂ consists exclusively of two π bonds and zero σ bonds."
+    ],
+    "ans": "C₂ (Option A)",
+    "trap": "Valence Bond Theory dogma states that a double bond is always 1σ + 1π. C₂ is the famous MOT proof that a double bond can consist solely of two π bonds!",
+    "distractorTraps": {
+      "B": "O₂ has 1 σ and 1 π bond (BO = 2 with 2 unpaired electrons in π*).",
+      "C": "N₂ has a triple bond (1 σ + 2 π).",
+      "D": "B₂ has a single bond (BO = 1) consisting of two half π bonds."
+    },
+    "targetTab": "tab-mot",
+    "simParams": {
+      "electrons": 12
+    },
+    "simSummary": [
+      "C₂ (12 e⁻): π₂ₚ_x² = π₂ₚ_y²",
+      "BO = 2.0 (Double π bond)",
+      "Zero σ bonds",
+      "Diamagnetic"
+    ],
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "answerAudit": "PASS",
+    "answerAuditNote": "Locally reviewed/recomputed on 2026-09-20; source-item provenance/key has not been independently verified.",
+    "simBindingRefs": [
+      "simParams.electrons"
+    ],
+    "simFidelity": "CONSTRAINT_FAITHFUL",
+    "simFidelityNote": "The simulator binds electrons only. Remaining question details stay in the worked solution; this is not an exact full-state replay.",
+    "sourceAuditNote": "Attributed source item/key has not yet been independently matched against the cited ExamSIDE record.",
+    "teacherCheck": "Independent check: recompute the governing relation and verify that the stem constraints select C₂ (Option A).",
+    "takeaway": "Transfer rule: start from Electronic configuration of C₂ (12 e⁻): σ₁ₛ² σ*₁ₛ² σ₂ₛ² σ*₂ₛ² (π₂ₚ_x² = π₂ₚ_y²); enforce every structural, stoichiometric, charge or state constraint before comparing answer choices.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "BOND-Q12",
+    "num": "JEE Main 2023",
+    "source": "JEE Main 2023 (Online) 11th April Evening Shift",
+    "subtab": 4,
+    "subtabName": "Hybridization & PCl₅ Axial Elongation",
+    "year": "2023",
+    "q": "In gaseous PCl₅, the axial P-Cl bonds are longer (240 pm) than the equatorial P-Cl bonds (202 pm) because:",
+    "options": [
+      {
+        "key": "A",
+        "text": "Axial bond pairs experience three 90° repulsions, whereas equatorial pairs experience only two 90° repulsions"
+      },
+      {
+        "key": "B",
+        "text": "Axial bonds are formed by sp² hybrid orbitals and equatorial bonds by pd hybrid orbitals"
+      },
+      {
+        "key": "C",
+        "text": "Chlorine atoms at axial positions have greater electronegativity"
+      },
+      {
+        "key": "D",
+        "text": "Equatorial bonds have greater d-character than axial bonds"
+      }
+    ],
+    "correct": "A",
+    "formula": "sp³d = sp² (equatorial, 120°) + pd (axial, 180°). Repulsions at 90°: Axial = 3, Equatorial = 2.",
+    "steps": [
+      "Step 1: Trigonal bipyramidal geometry (sp³d) has two geometrically distinct sets of bonds: 3 equatorial and 2 axial.",
+      "Step 2: An equatorial bond makes two 90° angles (with the two axial bonds) and two 120° angles (with equatorial bonds).",
+      "Step 3: An axial bond makes three 90° angles (with all three equatorial bonds).",
+      "Step 4: Since electron-pair repulsion is extremely sensitive to angle (90° repulsions are far stronger than 120°), the three 90° repulsions push the axial chlorines further away from phosphorus.",
+      "Step 5: Therefore, axial bonds lengthen to 240 pm and are significantly weaker, explaining why PCl₅ dissociates upon mild heating: PCl₅ → PCl₃ + Cl₂."
+    ],
+    "ans": "Axial bond pairs experience three 90° repulsions, whereas equatorial pairs experience only two 90° repulsions (Option A)",
+    "trap": "Notice the orbital composition: axial bonds are formed from p_z + d_z² (zero s-character, longer), while equatorial bonds are formed from sp² (33% s-character, shorter).",
+    "distractorTraps": {
+      "B": "Inverted orbital allocation: equatorial is sp² and axial is pd, not vice-versa.",
+      "C": "All chlorine atoms have identical electronegativity.",
+      "D": "Axial bonds use the d_z² orbital, so axial has more d-character."
+    },
+    "targetTab": "tab-hybridization",
+    "simParams": {
+      "mode": "ground"
+    },
+    "simSummary": [
+      "Axial: 240 pm (Three 90° repulsions)",
+      "Equatorial: 202 pm (Two 90° repulsions)",
+      "Cleavage: PCl₅ → PCl₃ + Cl₂"
+    ],
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "answerAudit": "PASS",
+    "answerAuditNote": "Locally reviewed/recomputed on 2026-09-20; source-item provenance/key has not been independently verified.",
+    "simBindingRefs": [
+      "simParams.mode"
+    ],
+    "simFidelity": "CONSTRAINT_FAITHFUL",
+    "simFidelityNote": "The simulator binds mode only. Remaining question details stay in the worked solution; this is not an exact full-state replay.",
+    "sourceAuditNote": "Attributed source item/key has not yet been independently matched against the cited ExamSIDE record.",
+    "teacherCheck": "Independent check: recompute the governing relation and verify that the stem constraints select Axial bond pairs experience three 90° repulsions, whereas equatorial pairs experience only two 90° repulsions (Option A).",
+    "takeaway": "Transfer rule: start from sp³d = sp² (equatorial, 120°) + pd (axial, 180°); enforce every structural, stoichiometric, charge or state constraint before comparing answer choices.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "BOND-Q13",
+    "num": "JEE Main 2022",
+    "source": "JEE Main 2022 (Online) 28th July Morning Shift",
+    "subtab": 3,
+    "subtabName": "Vectorial Dipole Sum",
+    "year": "2022",
+    "q": "Among the following molecules, which one has a non-zero permanent dipole moment (μ ≠ 0)?",
+    "options": [
+      {
+        "key": "A",
+        "text": "NF₃"
+      },
+      {
+        "key": "B",
+        "text": "BF₃"
+      },
+      {
+        "key": "C",
+        "text": "BeF₂"
+      },
+      {
+        "key": "D",
+        "text": "CO₂"
+      }
+    ],
+    "correct": "A",
+    "formula": "μ_net = ∑ μ_bond + μ_lp ≠ 0 for pyramidal geometry",
+    "steps": [
+      "Step 1: Check BF₃: Trigonal planar (sp²), 120° bond angles. The three equal B-F bond dipoles cancel completely by symmetry ⇒ μ = 0.",
+      "Step 2: Check BeF₂: Linear (sp), 180° bond angle. The two equal Be-F bond dipoles point in opposite directions ⇒ μ = 0.",
+      "Step 3: Check CO₂: Linear (sp), 180° bond angle. The two C=O bond dipoles cancel ⇒ μ = 0.",
+      "Step 4: Check NF₃: Trigonal pyramidal (sp³) with 1 lone pair on N. The geometry is non-planar and asymmetric, so vector sum of bond dipoles and lone pair dipole does not cancel ⇒ μ = 0.24 D ≠ 0."
+    ],
+    "ans": "NF₃ (Option A)",
+    "trap": "Although NF₃ has a very small dipole moment (0.24 D) because N-F dipoles oppose the lone pair, it is strictly NON-ZERO because geometry is trigonal pyramidal!",
+    "distractorTraps": {
+      "B": "BF₃ is perfectly planar with 120° symmetry, so μ = 0.",
+      "C": "BeF₂ is linear and symmetrical, μ = 0.",
+      "D": "CO₂ is linear and symmetrical, μ = 0."
+    },
+    "targetTab": "tab-dipole",
+    "simParams": {
+      "dipolePair": "NH3_NF3"
+    },
+    "simSummary": [
+      "NF₃: Pyramidal, μ = 0.24 D (≠ 0)",
+      "BF₃: Planar, μ = 0",
+      "CO₂, BeF₂: Linear, μ = 0"
+    ],
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "answerAudit": "PASS",
+    "answerAuditNote": "Locally reviewed/recomputed on 2026-09-20; source-item provenance/key has not been independently verified.",
+    "simBindingRefs": [
+      "simParams.dipolePair"
+    ],
+    "simFidelity": "CONSTRAINT_FAITHFUL",
+    "simFidelityNote": "The simulator binds dipolePair only. Remaining question details stay in the worked solution; this is not an exact full-state replay.",
+    "sourceAuditNote": "Attributed source item/key has not yet been independently matched against the cited ExamSIDE record.",
+    "teacherCheck": "Independent check: recompute the governing relation and verify that the stem constraints select NF₃ (Option A).",
+    "takeaway": "Transfer rule: start from μ_net = ∑ μ_bond + μ_lp ≠ 0 for pyramidal geometry; enforce every structural, stoichiometric, charge or state constraint before comparing answer choices.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "BOND-Q14",
+    "num": "JEE Main 2022",
+    "source": "JEE Main 2022 (Online) 25th June Evening Shift",
+    "subtab": 2,
+    "subtabName": "3D VSEPR & Bent's Rule",
+    "year": "2022",
+    "q": "The hybridization of the central atom and the molecular shape of BrF₅ are:",
+    "options": [
+      {
+        "key": "A",
+        "text": "sp³d² and Square Pyramidal"
+      },
+      {
+        "key": "B",
+        "text": "sp³d and Trigonal Bipyramidal"
+      },
+      {
+        "key": "C",
+        "text": "sp³d² and Octahedral"
+      },
+      {
+        "key": "D",
+        "text": "sp³d and See-saw"
+      }
+    ],
+    "correct": "A",
+    "formula": "Steric Number = Bond Pairs + Lone Pairs = 5 + 1 = 6 (sp³d²). Molecular geometry = Square Pyramidal.",
+    "steps": [
+      "Step 1: Bromine has 7 valence electrons in its outer shell.",
+      "Step 2: 5 valence electrons form 5 single σ-bonds with 5 fluorine atoms.",
+      "Step 3: Remaining 2 electrons form 1 lone pair on Br.",
+      "Step 4: Steric Number = 5 bond pairs + 1 lone pair = 6 ⇒ sp³d² hybridization.",
+      "Step 5: Electron geometry is Octahedral. Because 1 position is occupied by a lone pair, the molecular shape is Square Pyramidal."
+    ],
+    "ans": "sp³d² and Square Pyramidal (Option A)",
+    "trap": "Do not confuse ELECTRON GEOMETRY (octahedral) with MOLECULAR SHAPE (square pyramidal, which considers only atomic nuclei)!",
+    "distractorTraps": {
+      "B": "Assumed 5 bonds implies steric number 5 (sp³d), forgetting the lone pair.",
+      "C": "Reported electron pair geometry (Octahedral) instead of molecular shape.",
+      "D": "Confused with SF₄ (4 bonds + 1 lone pair = see-saw)."
+    },
+    "targetTab": "tab-vsepr",
+    "simParams": {
+      "molecule": "XeF4"
+    },
+    "simSummary": [
+      "BrF₅: 5 BP + 1 LP = 6 domains",
+      "Hybridization = sp³d²",
+      "Shape = Square Pyramidal"
+    ],
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "answerAudit": "PASS",
+    "answerAuditNote": "Locally reviewed/recomputed on 2026-09-20; source-item provenance/key has not been independently verified.",
+    "simBindingRefs": [
+      "simParams.molecule"
+    ],
+    "simFidelity": "CONSTRAINT_FAITHFUL",
+    "simFidelityNote": "The simulator binds molecule only. Remaining question details stay in the worked solution; this is not an exact full-state replay.",
+    "sourceAuditNote": "Attributed source item/key has not yet been independently matched against the cited ExamSIDE record.",
+    "teacherCheck": "Independent check: recompute the governing relation and verify that the stem constraints select sp³d² and Square Pyramidal (Option A).",
+    "takeaway": "Transfer rule: start from Steric Number = Bond Pairs + Lone Pairs = 5 + 1 = 6 (sp³d²); enforce every structural, stoichiometric, charge or state constraint before comparing answer choices.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "BOND-Q15",
+    "num": "JEE Main 2021",
+    "source": "JEE Main 2021 (Online) 25th February Morning Shift",
+    "subtab": 6,
+    "subtabName": "Hydrogen Bonding & Boiling Points",
+    "year": "2021",
+    "q": "The correct order of bond dissociation enthalpy of halogen molecules (X₂) is:",
+    "options": [
+      {
+        "key": "A",
+        "text": "Cl₂ > Br₂ > F₂ > I₂"
+      },
+      {
+        "key": "B",
+        "text": "F₂ > Cl₂ > Br₂ > I₂"
+      },
+      {
+        "key": "C",
+        "text": "Cl₂ > F₂ > Br₂ > I₂"
+      },
+      {
+        "key": "D",
+        "text": "I₂ > Br₂ > Cl₂ > F₂"
+      }
+    ],
+    "correct": "A",
+    "formula": "Bond Dissociation Enthalpies: Cl₂ (242.6) > Br₂ (192.8) > F₂ (158.8) > I₂ (151.1 kJ/mol)",
+    "steps": [
+      "Step 1: In general, bond dissociation energy decreases down the group as bond length increases: Cl₂ > Br₂ > I₂.",
+      "Step 2: Fluorine (F₂) has an exceptionally small internuclear distance (142 pm).",
+      "Step 3: The non-bonding lone pairs in the compact 2p orbitals experience severe interelectronic repulsion across the single F-F bond.",
+      "Step 4: This intense lone pair-lone pair repulsion significantly weakens the F-F bond (158.8 kJ/mol), dropping its dissociation energy below Cl₂ and Br₂!",
+      "Step 5: The verified experimental order is: Cl₂ > Br₂ > F₂ > I₂."
+    ],
+    "ans": "Cl₂ > Br₂ > F₂ > I₂ (Option A)",
+    "trap": "The Halogen Anomaly: students assume F₂ has the highest bond energy because it has the shortest bond length. Intense 2p lone pair repulsion makes it 3rd, not 1st!",
+    "distractorTraps": {
+      "B": "Standard periodic trend fallacy (assuming shortest bond F-F is strongest).",
+      "C": "Placed F₂ second instead of third.",
+      "D": "Inverted the entire periodic order."
+    },
+    "targetTab": "tab-hbonding",
+    "simParams": {
+      "pair": "ortho_para"
+    },
+    "simSummary": [
+      "Cl₂ (242.6 kJ/mol) > Br₂ (192.8) > F₂ (158.8) > I₂ (151.1)",
+      "F₂ weakened by 2p lone-pair repulsions"
+    ],
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "answerAudit": "PASS",
+    "answerAuditNote": "Locally reviewed/recomputed on 2026-09-20; source-item provenance/key has not been independently verified.",
+    "simBindingRefs": [
+      "simParams.pair"
+    ],
+    "simFidelity": "CONSTRAINT_FAITHFUL",
+    "simFidelityNote": "The simulator binds pair only. Remaining question details stay in the worked solution; this is not an exact full-state replay.",
+    "sourceAuditNote": "Attributed source item/key has not yet been independently matched against the cited ExamSIDE record.",
+    "teacherCheck": "Independent check: recompute the governing relation and verify that the stem constraints select Cl₂ > Br₂ > F₂ > I₂ (Option A).",
+    "takeaway": "Transfer rule: start from Bond Dissociation Enthalpies: Cl₂ (242; enforce every structural, stoichiometric, charge or state constraint before comparing answer choices.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "BOND-Q16",
+    "num": "JEE Main 2021",
+    "source": "JEE Main 2021 (Online) 20th July Evening Shift",
+    "subtab": 2,
+    "subtabName": "3D VSEPR & Bent's Rule",
+    "year": "2021",
+    "q": "The hybridization and geometry of the triiodide ion (I₃⁻) are:",
+    "options": [
+      {
+        "key": "A",
+        "text": "sp³d and Linear"
+      },
+      {
+        "key": "B",
+        "text": "sp³ and Bent"
+      },
+      {
+        "key": "C",
+        "text": "sp³d² and Linear"
+      },
+      {
+        "key": "D",
+        "text": "sp and Linear"
+      }
+    ],
+    "correct": "A",
+    "formula": "Steric Number = 2 σ-bonds + 3 lone pairs = 5 (sp³d). Equatorial lone pairs minimize 90° repulsion ⇒ Linear shape.",
+    "steps": [
+      "Step 1: Central iodine atom has 7 valence electrons + 1 extra electron (negative charge) = 8 electrons.",
+      "Step 2: 2 electrons are shared with two terminal iodine atoms to form 2 σ-bonds.",
+      "Step 3: Remaining 6 electrons form 3 lone pairs on the central iodine.",
+      "Step 4: Steric Number = 2 bond pairs + 3 lone pairs = 5 ⇒ sp³d hybridization (Trigonal Bipyramidal electron geometry).",
+      "Step 5: According to Bent's Rule / VSEPR, the 3 bulky lone pairs occupy the equatorial positions (120° apart) to minimize 90° repulsions.",
+      "Step 6: The two axial I-I bonds form a straight line with bond angle 180° ⇒ Molecular shape is Linear."
+    ],
+    "ans": "sp³d and Linear (Option A)",
+    "trap": "Do not assume a linear molecule must be sp hybridized! I₃⁻ and XeF₂ are linear with sp³d hybridization because 3 lone pairs occupy equatorial sites.",
+    "distractorTraps": {
+      "B": "Assumed I₃⁻ is bent like ICl₂⁺ or water.",
+      "C": "Calculated steric number 6.",
+      "D": "Assumed linear geometry implies sp hybridization (BeCl₂ fallacy)."
+    },
+    "targetTab": "tab-vsepr",
+    "simParams": {
+      "molecule": "XeF4"
+    },
+    "simSummary": [
+      "I₃⁻: 2 BP + 3 LP = 5 (sp³d)",
+      "3 LP equatorial at 120°",
+      "Linear shape, 180° angle"
+    ],
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "answerAudit": "PASS",
+    "answerAuditNote": "Locally reviewed/recomputed on 2026-09-20; source-item provenance/key has not been independently verified.",
+    "simBindingRefs": [
+      "simParams.molecule"
+    ],
+    "simFidelity": "CONSTRAINT_FAITHFUL",
+    "simFidelityNote": "The simulator binds molecule only. Remaining question details stay in the worked solution; this is not an exact full-state replay.",
+    "sourceAuditNote": "Attributed source item/key has not yet been independently matched against the cited ExamSIDE record.",
+    "teacherCheck": "Independent check: recompute the governing relation and verify that the stem constraints select sp³d and Linear (Option A).",
+    "takeaway": "Transfer rule: start from Steric Number = 2 σ-bonds + 3 lone pairs = 5 (sp³d); enforce every structural, stoichiometric, charge or state constraint before comparing answer choices.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "BOND-Q17",
+    "num": "JEE Main 2020",
+    "source": "JEE Main 2020 (Online) 5th September Morning Shift",
+    "subtab": 6,
+    "subtabName": "Hydrogen Bonding & Boiling Points",
+    "year": "2020",
+    "q": "The correct order of boiling points for the Group 16 hydrides (chalcogen hydrides) is:",
+    "options": [
+      {
+        "key": "A",
+        "text": "H₂O > H₂Te > H₂Se > H₂S"
+      },
+      {
+        "key": "B",
+        "text": "H₂O > H₂S > H₂Se > H₂Te"
+      },
+      {
+        "key": "C",
+        "text": "H₂Te > H₂Se > H₂S > H₂O"
+      },
+      {
+        "key": "D",
+        "text": "H₂S > H₂Se > H₂Te > H₂O"
+      }
+    ],
+    "correct": "A",
+    "formula": "H₂O (373 K) >> H₂Te (269 K) > H₂Se (232 K) > H₂S (213 K)",
+    "steps": [
+      "Step 1: From H₂S to H₂Te, molecular mass increases ⇒ van der Waals dispersion forces increase ⇒ boiling point increases: H₂Te > H₂Se > H₂S.",
+      "Step 2: However, oxygen is highly electronegative with a small atomic radius.",
+      "Step 3: H₂O forms an extensive 3D network of strong intermolecular hydrogen bonds (4 H-bonds per H₂O molecule in tetrahedral geometry).",
+      "Step 4: This massive hydrogen bonding energy pushes the boiling point of H₂O to 373 K (100°C), far above all other hydrides.",
+      "Step 5: Overall order: H₂O (100°C) > H₂Te (-4°C) > H₂Se (-41°C) > H₂S (-60°C)."
+    ],
+    "ans": "H₂O > H₂Te > H₂Se > H₂S (Option A)",
+    "trap": "Notice H₂S has the LOWEST boiling point of all, not the second highest! Do not assume monotonic decrease from H₂O.",
+    "distractorTraps": {
+      "B": "Assumed boiling point decreases monotonically down the group.",
+      "C": "Ignored hydrogen bonding and ranked strictly by molar mass.",
+      "D": "Inverted the order of the heavier hydrides."
+    },
+    "targetTab": "tab-hbonding",
+    "simParams": {
+      "pair": "ethanol_ether"
+    },
+    "simSummary": [
+      "H₂O: 373 K (Strong H-bonds)",
+      "H₂Te: 269 K, H₂Se: 232 K, H₂S: 213 K",
+      "H₂S has the lowest boiling point"
+    ],
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "answerAudit": "PASS",
+    "answerAuditNote": "Locally reviewed/recomputed on 2026-09-20; source-item provenance/key has not been independently verified.",
+    "simBindingRefs": [
+      "simParams.pair"
+    ],
+    "simFidelity": "CONSTRAINT_FAITHFUL",
+    "simFidelityNote": "The simulator binds pair only. Remaining question details stay in the worked solution; this is not an exact full-state replay.",
+    "sourceAuditNote": "Attributed source item/key has not yet been independently matched against the cited ExamSIDE record.",
+    "teacherCheck": "Independent check: recompute the governing relation and verify that the stem constraints select H₂O > H₂Te > H₂Se > H₂S (Option A).",
+    "takeaway": "Transfer rule: start from H₂O (373 K) >> H₂Te (269 K) > H₂Se (232 K) > H₂S (213 K); enforce every structural, stoichiometric, charge or state constraint before comparing answer choices.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "BOND-Q18",
+    "num": "JEE Main 2020",
+    "source": "JEE Main 2020 (Online) 7th January Morning Shift",
+    "subtab": 4,
+    "subtabName": "Hybridization & PCl₅ Axial Elongation",
+    "year": "2020",
+    "q": "In the solid state, PCl₅ exists as an ionic compound composed of:",
+    "options": [
+      {
+        "key": "A",
+        "text": "[PCl₄]⁺ (tetrahedral) and [PCl₆]⁻ (octahedral)"
+      },
+      {
+        "key": "B",
+        "text": "[PCl₂]⁺ (linear) and [PCl₆]⁻ (octahedral)"
+      },
+      {
+        "key": "C",
+        "text": "[PCl₄]⁺ (square planar) and [PCl₆]⁻ (octahedral)"
+      },
+      {
+        "key": "D",
+        "text": "Discrete trigonal bipyramidal PCl₅ molecules held by van der Waals forces"
+      }
+    ],
+    "correct": "A",
+    "formula": "2 PCl₅(s) → [PCl₄]⁺ [PCl₆]⁻. [PCl₄]⁺ is sp³ (tetrahedral); [PCl₆]⁻ is sp³d² (octahedral).",
+    "steps": [
+      "Step 1: In the gas and liquid phases, PCl₅ exists as discrete trigonal bipyramidal molecules with sp³d hybridization.",
+      "Step 2: In the solid state, to minimize steric repulsions and achieve electrostatic lattice stabilization, it auto-ionizes:",
+      "        2 PCl₅(s) ⇌ [PCl₄]⁺ + [PCl₆]⁻.",
+      "Step 3: Cation [PCl₄]⁺: P has 5 - 1 = 4 valence electrons forming 4 σ-bonds ⇒ sp³ hybridization, Tetrahedral geometry.",
+      "Step 4: Anion [PCl₆]⁻: P has 5 + 1 = 6 valence electrons forming 6 σ-bonds ⇒ sp³d² hybridization, Octahedral geometry.",
+      "Step 5: Contrast with solid PBr₅, which exists as [PBr₄]⁺ Br⁻ due to the large steric bulk of bromine preventing [PBr₆]⁻ formation!"
+    ],
+    "ans": "[PCl₄]⁺ (tetrahedral) and [PCl₆]⁻ (octahedral) (Option A)",
+    "trap": "Notice the phase state! In gas phase PCl₅ is molecular TBP (sp³d), but in SOLID STATE it is ionic [PCl₄]⁺ [PCl₆]⁻!",
+    "distractorTraps": {
+      "B": "Incorrect formula for cation [PCl₂]⁺.",
+      "C": "[PCl₄]⁺ is tetrahedral (sp³), not square planar (dsp²).",
+      "D": "Discrete TBP molecules exist only in GAS or liquid phase, not solid state."
+    },
+    "targetTab": "tab-hybridization",
+    "simParams": {
+      "mode": "thermal"
+    },
+    "simSummary": [
+      "Solid PCl₅: [PCl₄]⁺ [PCl₆]⁻",
+      "[PCl₄]⁺: sp³ Tetrahedral",
+      "[PCl₆]⁻: sp³d² Octahedral"
+    ],
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "answerAudit": "PASS",
+    "answerAuditNote": "Locally reviewed/recomputed on 2026-09-20; source-item provenance/key has not been independently verified.",
+    "simBindingRefs": [
+      "simParams.mode"
+    ],
+    "simFidelity": "CONSTRAINT_FAITHFUL",
+    "simFidelityNote": "The simulator binds mode only. Remaining question details stay in the worked solution; this is not an exact full-state replay.",
+    "sourceAuditNote": "Attributed source item/key has not yet been independently matched against the cited ExamSIDE record.",
+    "teacherCheck": "Independent check: recompute the governing relation and verify that the stem constraints select [PCl₄]⁺ (tetrahedral) and [PCl₆]⁻ (octahedral) (Option A).",
+    "takeaway": "Transfer rule: start from 2 PCl₅(s) → [PCl₄]⁺ [PCl₆]⁻; enforce every structural, stoichiometric, charge or state constraint before comparing answer choices.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "BOND-Q19",
+    "num": "JEE Main 2019",
+    "source": "JEE Main 2019 (Online) 10th April Morning Shift",
+    "subtab": 5,
+    "subtabName": "Molecular Orbital Theory (MOT)",
+    "year": "2019",
+    "q": "The bond order and magnetic behavior of the carbon monoxide cation (CO⁺) according to MOT are:",
+    "options": [
+      {
+        "key": "A",
+        "text": "Bond Order = 3.5 and Paramagnetic"
+      },
+      {
+        "key": "B",
+        "text": "Bond Order = 2.5 and Paramagnetic"
+      },
+      {
+        "key": "C",
+        "text": "Bond Order = 3.0 and Diamagnetic"
+      },
+      {
+        "key": "D",
+        "text": "Bond Order = 2.5 and Diamagnetic"
+      }
+    ],
+    "correct": "B",
+    "formula": "Standard classroom MO count for CO gives BO = 3. Ionization to CO⁺ removes one electron from the highest occupied valence MO; in the usual bond-order counting used for JEE-level MO diagrams, BO decreases by ½ to 2.5. An odd electron remains, so CO⁺ is paramagnetic.",
+    "steps": [
+      "Step 1: Neutral CO has 14 electrons and is treated as isoelectronic with N₂ in the standard introductory MO scheme, with bond order 3.",
+      "Step 2: Forming CO⁺ removes one electron from the highest occupied valence molecular orbital.",
+      "Step 3: In the standard JEE-level bond-order count, removal of one bonding electron decreases bond order by 0.5: BO = 3.0 - 0.5 = 2.5.",
+      "Step 4: CO⁺ has an odd total electron count, so one electron is unpaired and the species is paramagnetic.",
+      "Step 5: Therefore the locally audited answer is Bond Order = 2.5 and Paramagnetic."
+    ],
+    "ans": "Bond Order = 2.5 and Paramagnetic (Option B)",
+    "trap": "Do not use the obsolete shortcut that labels the CO HOMO as simply antibonding and raises the bond order to 3.5 on ionization. For the standard classroom MO answer used here, CO⁺ is assigned bond order 2.5 and is paramagnetic.",
+    "distractorTraps": {
+      "A": "Uses the obsolete 3.5 shortcut by treating ionization as removal of a purely antibonding electron.",
+      "C": "Keeps the neutral-CO bond order and also misses the odd-electron paramagnetism.",
+      "D": "Gets the 2.5 bond order but incorrectly calls the odd-electron cation diamagnetic."
+    },
+    "targetTab": "tab-mot",
+    "simParams": {
+      "electrons": 13
+    },
+    "simSummary": [
+      "CO⁺ · 13 electrons",
+      "Locally audited BO = 2.5",
+      "Paramagnetic · one unpaired electron"
+    ],
+    "sourceAudit": "SOURCE_UNVERIFIED",
+    "answerAudit": "PASS",
+    "answerAuditNote": "Locally corrected under the standard classroom MO treatment: removing one electron from the highest occupied CO valence MO gives the commonly used bond-order result 2.5; the odd-electron cation is paramagnetic.",
+    "simBindingRefs": [
+      "simParams.electrons"
+    ],
+    "simFidelity": "CONSTRAINT_FAITHFUL",
+    "simFidelityNote": "The simulator binds electrons only. Remaining question details stay in the worked solution; this is not an exact full-state replay.",
+    "sourceAuditNote": "The current ExamSIDE listing for JEE Main 2019 Online 10 April Morning does not contain this CO+ bond-order question; the attribution is therefore not accepted as verified.",
+    "teacherCheck": "Independent check: recompute the governing relation and verify that the stem constraints select Bond Order = 2.5 and Paramagnetic (Option B).",
+    "takeaway": "Transfer rule: start from Standard classroom MO count for CO gives BO = 3; enforce every structural, stoichiometric, charge or state constraint before comparing answer choices.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "BOND-Q20",
+    "num": "JEE Main 2018",
+    "source": "JEE Main 2018 (Offline) 8th April Shift",
+    "subtab": 6,
+    "subtabName": "Hydrogen Bonding & Boiling Points",
+    "year": "2018",
+    "q": "Ortho-nitrophenol is more volatile in steam than para-nitrophenol because:",
+    "options": [
+      {
+        "key": "A",
+        "text": "Ortho-nitrophenol exhibits intramolecular hydrogen bonding (chelation), whereas para-nitrophenol forms intermolecular hydrogen bonds"
+      },
+      {
+        "key": "B",
+        "text": "Para-nitrophenol has a lower molecular mass than ortho-nitrophenol"
+      },
+      {
+        "key": "C",
+        "text": "Ortho-nitrophenol forms stronger intermolecular hydrogen bonds than water"
+      },
+      {
+        "key": "D",
+        "text": "Para-nitrophenol undergoes sublimation at room temperature"
+      }
+    ],
+    "correct": "A",
+    "formula": "Intramolecular H-bonding ⇒ Chelate ring ⇒ Discrete molecules ⇒ Lower BP, Steam Volatile. Intermolecular H-bonding ⇒ Association ⇒ Higher BP.",
+    "steps": [
+      "Step 1: In ortho-nitrophenol, the -OH and -NO₂ groups are on adjacent carbon atoms.",
+      "Step 2: The hydrogen of -OH forms an intramolecular H-bond with the oxygen of -NO₂, closing a planar 6-membered chelate ring.",
+      "Step 3: This intramolecular chelation shields the polar groups, preventing association with neighboring molecules ⇒ Low boiling point (216°C), steam-volatile.",
+      "Step 4: In para-nitrophenol, the -OH and -NO₂ groups are far apart (at positions 1 and 4), precluding intramolecular bonding.",
+      "Step 5: It forms extensive intermolecular H-bonding networks linking molecules into polymers ⇒ High boiling point (279°C), non-volatile in steam."
+    ],
+    "ans": "Ortho-nitrophenol exhibits intramolecular hydrogen bonding (chelation), whereas para-nitrophenol forms intermolecular hydrogen bonds (Option A)",
+    "trap": "Remember: INTRAmolecular H-bonding LOWERS boiling point (makes steam-volatile); INTERmolecular H-bonding RAISES boiling point!",
+    "distractorTraps": {
+      "B": "They are structural isomers and have identical molecular mass (139.11 g/mol).",
+      "C": "Ortho-nitrophenol does not form stronger intermolecular bonds with water.",
+      "D": "Para-nitrophenol does not sublime at room temperature."
+    },
+    "targetTab": "tab-hbonding",
+    "simParams": {
+      "pair": "ortho_para"
+    },
+    "simSummary": [
+      "o-nitrophenol: Intramolecular chelation (BP 216°C, Steam volatile)",
+      "p-nitrophenol: Intermolecular association (BP 279°C)"
+    ],
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "answerAudit": "PASS",
+    "answerAuditNote": "Locally reviewed/recomputed on 2026-09-20; source-item provenance/key has not been independently verified.",
+    "simBindingRefs": [
+      "simParams.pair"
+    ],
+    "simFidelity": "CONSTRAINT_FAITHFUL",
+    "simFidelityNote": "The simulator binds pair only. Remaining question details stay in the worked solution; this is not an exact full-state replay.",
+    "sourceAuditNote": "Attributed source item/key has not yet been independently matched against the cited ExamSIDE record.",
+    "teacherCheck": "Independent check: recompute the governing relation and verify that the stem constraints select Ortho-nitrophenol exhibits intramolecular hydrogen bonding (chelation), whereas para-nitrophenol forms intermolecular hydrogen bonds (Option A).",
+    "takeaway": "Transfer rule: start from Intramolecular H-bonding ⇒ Chelate ring ⇒ Discrete molecules ⇒ Lower BP, Steam Volatile; enforce every structural, stoichiometric, charge or state constraint before comparing answer choices.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  }
+];
+</script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            background: '#070b14',
+            card: '#0f172a',
+            border: '#1e293b',
+            primary: '#8b5cf6',
+            accent: '#f59e0b'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Strict Canvas Immunitization & Layout Stability */
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+    canvas {
+      contain: paint;
+      width: 100% !important;
+      max-width: 100% !important;
+      display: block;
+      cursor: grab;
+      box-sizing: border-box;
+    }
+    canvas:active {
+      cursor: grabbing;
+    }
+    .canvas-container {
+      position: relative;
+      min-width: 0 !important;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+      border-radius: 0.75rem;
+      box-sizing: border-box;
+    }
+    /* Scrollbar Concealment for Navigation Tabs */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none !important;
+      scrollbar-width: none !important;
+    }
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    .slider-highlight {
+      animation: pulse-border 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse-border {
+      0%, 100% { outline: 2px solid rgba(139, 92, 246, 0.2); }
+      50% { outline: 2px solid rgba(139, 92, 246, 0.9); }
+    }
+    .tab-btn-active {
+      background: rgba(139, 92, 246, 0.15);
+      color: #a78bfa;
+      border-bottom: 2px solid #8b5cf6;
+      font-weight: 700;
+    }
+    .tab-btn-inactive {
+      color: #94a3b8;
+      border-bottom: 2px solid transparent;
+    }
+    .tab-btn-inactive:hover {
+      color: #f1f5f9;
+      background: rgba(255, 255, 255, 0.03);
+    }
+  
+  /* 12.7" Tablet Touch & Ergonomics Rules */
+  button, .btn, .g9-btn, .tab-btn { min-height: 48px !important; min-width: 48px !important; font-size: 15px; }
+  input[type="range"] { height: 48px !important; }
+  input[type="range"]::-webkit-slider-thumb { width: 30px !important; height: 30px !important; border-radius: 50% !important; }
+  input[type="range"]::-moz-range-thumb { width: 30px !important; height: 30px !important; border-radius: 50% !important; }
+  details summary { min-height: 52px !important; font-size: 15px !important; }
+
+</style>
+<style id="pr375-u1-hub-remediation">
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%} body{overflow-wrap:anywhere}
+:where(p,li,label,button,input,select,textarea,summary,td,th,figcaption,.btn,.tag,.text-xs,.text-sm,.text-\[10px\],.text-\[11px\],.text-\[12px\],.text-\[13px\]){font-size:max(14px,1em)!important}
+:where(a,button,summary,[role="button"],input[type="button"],input[type="submit"]){min-height:48px!important;min-width:48px!important}
+</style>
+
+</head>
+<body class="bg-background text-slate-100 min-h-screen flex flex-col font-sans selection:bg-purple-500/30 selection:text-purple-200">
+  <div class="px-3 py-1.5 text-center text-[13px] font-mono bg-amber-950/50 border-b border-amber-500/30 text-amber-200">STANDALONE · SINGLE_FILE_ONLINE · question bank embedded · Tailwind/KaTeX remain CDN dependencies</div>
+
+  <!-- HEADER -->
+  <header class="border-b border-border bg-slate-950/80 backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row md:items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <a href="../../index.html" class="text-[13px] px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition flex items-center gap-1">
+          <span>&larr;</span> <span>Chemistry Hub</span>
+        </a>
+        <span class="text-slate-600">|</span>
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🧬</span>
+          <div>
+            <h1 class="text-sm md:text-base font-extrabold text-white tracking-tight flex items-center gap-2">
+              <span>Chemical Bonding &amp; Molecular Structure</span>
+              <span class="text-[13px] px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono font-bold border border-purple-500/30">3D MASTER SUITE</span>
+            </h1>
+            <p class="text-[13px] text-slate-400">3D VSEPR Repulsions &middot; Vectorial Dipoles &middot; MOT 2s-2p Mixing</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Telemetry Badges -->
+      <div class="flex items-center gap-2 text-[13px] font-mono">
+        <span class="px-2.5 py-1 rounded bg-slate-900 border border-border text-purple-400 font-bold">BO = &frac12;(N_b - N_a)</span>
+        <span class="px-2.5 py-1 rounded bg-slate-900 border border-border text-sky-400 font-bold">&mu;_net = &Sigma; &mu;_i</span>
+      </div>
+    </div>
+
+    <!-- 8 MASTER TABS -->
+    <div class="max-w-7xl mx-auto px-4 flex items-center gap-1 overflow-x-auto text-[13px] font-medium border-t border-slate-900/60 pt-1 no-scrollbar">
+      <button onclick="switchTab('tab-lewis')" id="btn-tab-lewis" class="tab-btn-active px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        1. Lewis &amp; Formal Charge
+      </button>
+      <button onclick="switchTab('tab-vsepr')" id="btn-tab-vsepr" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        2. 3D VSEPR &amp; Bent's Rule
+      </button>
+      <button onclick="switchTab('tab-dipole')" id="btn-tab-dipole" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        3. Vectorial Dipole Sum
+      </button>
+      <button onclick="switchTab('tab-hybridization')" id="btn-tab-hybridization" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        4. Hybridization &amp; PCl₅
+      </button>
+      <button onclick="switchTab('tab-mot')" id="btn-tab-mot" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        5. MOT Energy Ladder
+      </button>
+      <button onclick="switchTab('tab-hbonding')" id="btn-tab-hbonding" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        6. H-Bonding &amp; Boiling
+      </button>
+      <button onclick="switchTab('tab-sandbox')" id="btn-tab-sandbox" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap flex items-center gap-1.5 text-amber-300/80">
+        <span class="px-1 py-0.2 rounded bg-amber-500/20 text-[13px] font-bold text-amber-400">Draft</span>
+        <span>7. 3D Sandbox</span>
+      </button>
+      <button onclick="switchTab('tab-quiz')" id="btn-tab-quiz" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap flex items-center gap-1.5 text-purple-300">
+        <span>⭐ 8. IIT-JEE Question Hub</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN VIEWPORT -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 space-y-6">
+
+    <!-- FLOATING TOAST -->
+    <div id="simToast" class="hidden fixed bottom-6 right-6 z-50 max-w-md bg-slate-900/95 border border-purple-500/60 rounded-xl p-4 shadow-2xl backdrop-blur-md flex items-start gap-3 transition-all duration-300 transform translate-y-4">
+      <div class="text-2xl">🚀</div>
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center justify-between gap-2">
+          <span class="text-[13px] font-bold uppercase text-purple-400 font-mono" id="simToastTitle">Active Problem Loaded</span>
+          <button onclick="closeSimToast()" class="text-slate-400 hover:text-white text-[13px]">&times;</button>
+        </div>
+        <p class="text-[13px] text-slate-300 mt-1" id="simToastDesc">Parameters injected from ExamSIDE question.</p>
+        <div class="mt-2 text-[13px] font-mono text-purple-300 bg-black/40 px-2 py-1 rounded" id="simToastParams"></div>
+      </div>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- ================================================================= -->
+    <!-- TAB 1: LEWIS & FORMAL CHARGE                                      -->
+    <!-- ================================================================= -->
+    <section id="tab-lewis" class="space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-purple-400"></span>
+              <h2 class="font-bold text-base text-white">Lewis Dot Structures &middot; Formal Charge Accounting</h2>
+            </div>
+            <p class="text-[13px] text-slate-400 mt-1">Calculates formal charge = V - L - &frac12;B across polyatomic resonance systems.</p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-1.5 text-[13px]">
+            <button onclick="setLewisMolecule('O3')" id="btnLewisO3" class="px-2.5 py-1 rounded bg-purple-600/30 border border-purple-500/50 text-purple-300 font-mono font-semibold">O₃ (Ozone)</button>
+            <button onclick="setLewisMolecule('CO3')" id="btnLewisCO3" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">CO₃²⁻ (Carbonate)</button>
+            <button onclick="setLewisMolecule('NO3')" id="btnLewisNO3" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">NO₃⁻ (Nitrate)</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[13px] font-mono text-slate-400">
+                <span>RESONANCE STRUCTURES &amp; ELECTRON PAIRS</span>
+                <span id="lewisLiveTitle" class="text-purple-400 font-bold">O₃ Ozone: Canonical Forms &amp; Hybrid</span>
+              </div>
+              <canvas id="canvasLewis" height="320"></canvas>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">Formal Charge Ledger</h3>
+              <div class="space-y-2 text-[13px] font-mono" id="lewisMetricsLedger">
+                <!-- Dynamically populated by setLewisMolecule() -->
+              </div>
+            </div>
+
+            <div class="p-3 bg-purple-500/10 border border-purple-500/30 rounded-xl text-[13px] space-y-1.5">
+              <span class="text-purple-400 font-bold font-mono">FORMAL CHARGE FORMULA:</span>
+              <p class="text-slate-300 leading-relaxed text-[13px]">
+                <strong>FC = Valence e⁻ - Non-bonding e⁻ - &frac12;(Bonding e⁻)</strong><br>
+                Resonance minimizes overall formal charge separation while fulfilling the octet rule.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 2: 3D VSEPR & BENT'S RULE                                     -->
+    <!-- ================================================================= -->
+    <section id="tab-vsepr" class="space-y-6 hidden">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-purple-400"></span>
+              <h2 class="font-bold text-base text-white">3D VSEPR &middot; Repulsion Hierarchy &amp; Spatial Distortions</h2>
+            </div>
+            <p class="text-[13px] text-slate-400 mt-1">
+              Grounded on <span class="text-purple-300 font-semibold">JEE Main 2025</span>: Drag 3D orbit controls to inspect XeF₄ (Square Planar, &mu;=0) vs SF₄ (See-saw, &mu;&ne;0).
+            </p>
+          </div>
+
+          <!-- Molecule Toggle Buttons -->
+          <div class="flex items-center gap-2 text-[13px]">
+            <button onclick="setVseprMolecule('XeF4')" id="btnVseprXeF4" class="px-2.5 py-1 rounded bg-purple-600/30 border border-purple-500/50 text-purple-300 font-mono font-semibold">XeF₄ (Square Planar)</button>
+            <button onclick="setVseprMolecule('SF4')" id="btnVseprSF4" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">SF₄ (See-saw)</button>
+            <button onclick="setVseprMolecule('ClF3')" id="btnVseprClF3" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">ClF₃ (T-Shaped)</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[13px] font-mono text-slate-400">
+                <span>3D ORBIT VIEW (DRAG TO ROTATE MOLECULE)</span>
+                <span id="vseprLiveShape" class="text-purple-400 font-bold">Square Planar (μ = 0)</span>
+              </div>
+              <canvas id="canvasVsepr3D" height="320"></canvas>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">Geometric Parameters</h3>
+              <div class="space-y-2 text-[13px] font-mono" id="vseprMetrics">
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Steric Number:</span><span class="text-sky-400 font-bold">6 (sp³d²)</span></div>
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Bond Pairs:</span><span class="text-emerald-400 font-bold">4 Xe-F</span></div>
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Lone Pairs:</span><span class="text-amber-400 font-bold">2 (Axial, 180°)</span></div>
+                <div class="flex justify-between bg-purple-500/10 p-2.5 rounded border border-purple-500/30 font-bold"><span class="text-purple-300">Net Dipole:</span><span class="text-purple-400">μ = 0 (Non-polar)</span></div>
+              </div>
+            </div>
+
+            <div class="p-3 bg-purple-500/10 border border-purple-500/30 rounded-xl text-[13px] space-y-1.5">
+              <span class="text-purple-400 font-bold font-mono">⚠️ BENT'S RULE &amp; LONE PAIRS:</span>
+              <p class="text-slate-300 leading-relaxed text-[13px]">
+                In trigonal bipyramidal systems (sp³d), lone pairs always occupy <strong>equatorial positions</strong> to avoid harsh 90&deg; repulsions, producing See-saw and T-shaped geometries!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 3: VECTORIAL DIPOLE ENGINE                                    -->
+    <!-- ================================================================= -->
+    <section id="tab-dipole" class="space-y-6 hidden">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-sky-400"></span>
+              <h2 class="font-bold text-base text-white">Vectorial Dipole Moments &middot; Reinforcing vs Opposing Dipoles</h2>
+            </div>
+            <p class="text-[13px] text-slate-400 mt-1">
+              Grounded on <span class="text-sky-300 font-semibold">JEE Main 2024</span>: Compares NH₃ (&mu;=1.47 D) with NF₃ (&mu;=0.24 D) via 3D vector addition.
+            </p>
+          </div>
+
+          <!-- Molecule Comparison Selector -->
+          <div class="flex flex-wrap items-center gap-1.5 text-[13px]">
+            <button onclick="setDipolePair('NH3_NF3')" id="btnDipoleNH3" class="px-2.5 py-1 rounded bg-sky-600/30 border border-sky-500/50 text-sky-300 font-mono font-semibold">NH₃ vs NF₃</button>
+            <button onclick="setDipolePair('CO2_H2O')" id="btnDipoleCO2" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">CO₂ vs H₂O</button>
+            <button onclick="setDipolePair('CCl4_CHCl3')" id="btnDipoleCCl4" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">CCl₄ vs CHCl₃</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[13px] font-mono text-slate-400">
+                <span>3D ORBIT VIEW (DRAG TO ROTATE DUAL MOLECULES CONCURRENTLY)</span>
+                <span id="dipoleLiveStatus" class="text-sky-400 font-bold">NH₃ (1.47 D) vs NF₃ (0.24 D)</span>
+              </div>
+              <canvas id="canvasDipole" height="340"></canvas>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">Vectorial Comparison Ledger</h3>
+              <div class="space-y-2.5 text-[13px] font-mono" id="dipoleMetricsLedger">
+                <!-- Dynamically populated by setDipolePair() -->
+              </div>
+            </div>
+
+            <div class="p-3 bg-sky-500/10 border border-sky-500/30 rounded-xl text-[13px] space-y-1.5">
+              <span class="text-sky-400 font-bold font-mono">⚠️ JEE EXAMINER FALLACY:</span>
+              <p class="text-slate-300 leading-relaxed text-[13px]" id="dipoleTrapText">
+                Students assume NF₃ has a higher dipole moment because Fluorine is the most electronegative element (EN = 4.0 vs H = 2.1). In reality, in NF₃ the 3 N-F bond dipoles point <em>away</em> from apex, directly opposing the lone pair dipole (&mu;=0.24 D)!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 4: HYBRIDIZATION & AXIAL ELONGATION IN PCl5                   -->
+    <!-- ================================================================= -->
+    <section id="tab-hybridization" class="space-y-6 hidden">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-teal-400"></span>
+              <h2 class="font-bold text-base text-white">Hybridization &middot; Axial Bond Elongation in PCl₅</h2>
+            </div>
+            <p class="text-[13px] text-slate-400 mt-1">
+              Grounded on <span class="text-teal-300 font-semibold">JEE Main 2026</span>: Shows why the 2 axial P-Cl bonds (240 pm) suffer three 90&deg; repulsions and are longer/weaker than equatorial bonds (202 pm).
+            </p>
+          </div>
+
+          <div class="flex items-center gap-2 text-[13px]">
+            <button onclick="setPCl5Mode('3D')" id="btnPCl5Mode3D" class="px-2.5 py-1 rounded bg-teal-600/30 border border-teal-500/50 text-teal-300 font-mono font-semibold">3D Trigonal Bipyramidal</button>
+            <button onclick="setPCl5Mode('cleavage')" id="btnPCl5ModeCleave" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">Thermal Cleavage (Δ)</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[13px] font-mono text-slate-400">
+                <span>3D ORBIT VIEW (DRAG TO ROTATE PCl₅ SPATIALLY)</span>
+                <span id="pcl5LiveBadge" class="text-teal-400 font-bold">PCl₅: sp³d (3 Equat @ 202pm, 2 Axial @ 240pm)</span>
+              </div>
+              <canvas id="canvasPCl5" height="340"></canvas>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">Bond Metric Asymmetry</h3>
+              <div class="space-y-2 text-[13px] font-mono">
+                <div class="p-2.5 bg-emerald-500/10 rounded border border-emerald-500/30">
+                  <div class="text-emerald-300 font-bold">3 &times; Equatorial P-Cl Bonds</div>
+                  <div class="text-slate-300 text-[13px] mt-1">Bond length: <strong>202 pm</strong>. Suffer only two 90&deg; and two 120&deg; repulsions. Shorter &amp; stronger.</div>
+                </div>
+                <div class="p-2.5 bg-amber-500/10 rounded border border-amber-500/30">
+                  <div class="text-amber-300 font-bold">2 &times; Axial P-Cl Bonds</div>
+                  <div class="text-slate-300 text-[13px] mt-1">Bond length: <strong>240 pm</strong>. Suffer three 90&deg; bond pair repulsions from equatorial plane. Longer &amp; weaker!</div>
+                </div>
+                <div class="p-2.5 bg-purple-500/10 rounded border border-purple-500/30">
+                  <div class="text-purple-300 font-bold">Thermal Reaction:</div>
+                  <div class="text-purple-200 text-[13px] mt-1">PCl₅(g) &xrarr; PCl₃(g) + Cl₂(g) &uarr; (Axial bonds break first on mild heating!)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 5: MOLECULAR ORBITAL THEORY (MOT) ENERGY LADDER               -->
+    <!-- ================================================================= -->
+    <section id="tab-mot" class="space-y-6 hidden">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              <h2 class="font-bold text-base text-white">Molecular Orbital Theory (MOT) &middot; 2s-2p Mixing Crossover Rig</h2>
+            </div>
+            <p class="text-[13px] text-slate-400 mt-1">
+              Grounded on <span class="text-emerald-300 font-semibold">JEE Main 2026</span>: Explore the abrupt energy inversion of &sigma;₂ₚ_z and &pi;₂ₚ across N₂ (&le;14 e⁻) and O₂ (&gt;14 e⁻).
+            </p>
+          </div>
+
+          <!-- 2s-2p mixing toggle -->
+          <div class="flex items-center bg-slate-900 rounded-lg p-1 border border-border text-[13px]">
+            <button onclick="setMotMixing(true)" id="btnMotMixingTrue" class="px-2.5 py-1 rounded font-semibold text-white bg-purple-600/40 border border-purple-500/50">N₂ System (&le; 14 e⁻ with Mixing)</button>
+            <button onclick="setMotMixing(false)" id="btnMotMixingFalse" class="px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white">O₂ System (&gt; 14 e⁻ No Mixing)</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[13px] font-mono text-slate-400">
+                <span>MOLECULAR ORBITAL ENERGY LADDER</span>
+                <span id="motLiveStatus" class="text-emerald-400 font-bold">O₂²⁺: Bond Order = 3.0 (Diamagnetic)</span>
+              </div>
+              <canvas id="canvasMot" height="340"></canvas>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">MOT Electronic Telemetry</h3>
+              <div class="space-y-2 text-[13px] font-mono">
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border">
+                  <span class="text-slate-400">Total Valence Electrons:</span>
+                  <span id="telMotElectrons" class="text-sky-400 font-bold">14 e⁻</span>
+                </div>
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border">
+                  <span class="text-slate-400">Bonding Electrons (N_b):</span>
+                  <span id="telMotNb" class="text-emerald-400 font-bold">10</span>
+                </div>
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border">
+                  <span class="text-slate-400">Antibonding (N_a):</span>
+                  <span id="telMotNa" class="text-red-400 font-bold">4</span>
+                </div>
+                <div class="flex justify-between bg-purple-500/10 p-2.5 rounded border border-purple-500/30">
+                  <span class="text-purple-300 font-bold">Bond Order:</span>
+                  <span id="telMotBO" class="text-purple-400 font-bold text-sm">3.0</span>
+                </div>
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border">
+                  <span class="text-slate-400">Magnetic Nature:</span>
+                  <span id="telMotMagnetic" class="text-emerald-400 font-bold">Diamagnetic (0 Unpaired)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Electron Count Slider -->
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <div class="flex justify-between text-[13px]">
+                <span class="text-slate-300">Total Electron Count:</span>
+                <span id="valMotECount" class="font-mono text-purple-400 font-bold">14 e⁻</span>
+              </div>
+              <input type="range" id="sliderMotElectrons" min="8" max="20" step="1" value="14" oninput="updateMot()" class="w-full accent-purple-400 cursor-pointer">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 6: HYDROGEN BONDING & BOILING POINTS                          -->
+    <!-- ================================================================= -->
+    <section id="tab-hbonding" class="space-y-6 hidden">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+              <h2 class="font-bold text-base text-white">Hydrogen Bonding &middot; Intra vs Intermolecular Comparative Engine</h2>
+            </div>
+            <p class="text-[13px] text-slate-400 mt-1">
+              Grounded on <span class="text-amber-300 font-semibold">JEE Main 2025</span>: Shows why ortho-nitrophenol (internal chelated ring) is steam volatile with a low boiling point compared to para-nitrophenol.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-2 text-[13px]">
+            <button onclick="setHbondPair('nitrophenol')" id="btnHbondNitro" class="px-2.5 py-1 rounded bg-amber-600/30 border border-amber-500/50 text-amber-300 font-mono font-semibold">o- vs p-Nitrophenol</button>
+            <button onclick="setHbondPair('alcohols')" id="btnHbondAlcohol" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">Ethanol vs Ether</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[13px] font-mono text-slate-400">
+                <span>MOLECULAR GRAPH &amp; HYDROGEN BOND COMPARISON</span>
+                <span id="hbondLiveBadge" class="text-amber-400 font-bold">o-Nitrophenol (Chelation) vs p-Nitrophenol (Intermolecular Chain)</span>
+              </div>
+              <canvas id="canvasHbond" height="320"></canvas>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">Physical Property Invariants</h3>
+              <div class="space-y-2 text-[13px] font-mono" id="hbondMetricsLedger">
+                <!-- Dynamically populated by setHbondPair() -->
+              </div>
+            </div>
+
+            <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl text-[13px] space-y-1.5">
+              <span class="text-amber-400 font-bold font-mono">⚠️ STEAM VOLATILITY TRAP:</span>
+              <p class="text-slate-300 leading-relaxed text-[13px]">
+                Intramolecular H-bonding prevents the molecule from bonding with external water or adjacent molecules, making <em>o</em>-nitrophenol steam-volatile (separable by steam distillation!).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 7: MASTER SANDBOX [DRAFT]                                     -->
+    <!-- ================================================================= -->
+    <section id="tab-sandbox" class="space-y-6 hidden">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono text-[13px] font-bold border border-amber-500/30">DRAFT SANDBOX</span>
+              <h2 class="font-bold text-base text-white">3D Molecular Geometry &amp; Overlap Sandbox</h2>
+            </div>
+            <p class="text-[13px] text-slate-400 mt-1">Explore ideal VSEPR polyhedra, steric numbers, and orbital orientations in 3D.</p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-1.5 text-[13px]">
+            <button onclick="setSandboxGeom('linear')" id="btnSbLinear" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">Linear (BeCl₂)</button>
+            <button onclick="setSandboxGeom('trigonal')" id="btnSbTrig" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">Trigonal (BF₃)</button>
+            <button onclick="setSandboxGeom('tetrahedral')" id="btnSbTetra" class="px-2 py-1 rounded bg-purple-600/30 border border-purple-500/50 text-purple-300 font-mono font-semibold">Tetrahedral (CH₄)</button>
+            <button onclick="setSandboxGeom('octahedral')" id="btnSbOcta" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">Octahedral (SF₆)</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[13px] font-mono text-slate-400">
+                <span>3D ORBIT VIEW (DRAG TO ROTATE MOLECULE SPATIALLY)</span>
+                <span id="sbLiveBadge" class="text-amber-400 font-bold">Tetrahedral: sp³ (109.5°)</span>
+              </div>
+              <canvas id="canvasSandbox" height="340"></canvas>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-[13px] font-bold tracking-wider uppercase text-slate-400">Geometry Telemetry</h3>
+              <div class="space-y-2 text-[13px] font-mono" id="sbMetricsLedger">
+                <!-- Dynamically populated by setSandboxGeom() -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 8: IIT-JEE DIAGNOSTIC HUB                                     -->
+    <!-- ================================================================= -->
+    <section id="tab-quiz" class="space-y-6 hidden">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-lg">⭐</span>
+              <h2 class="font-bold text-base text-white">IIT-JEE Diagnostic Question Hub &middot; Locally Audited Diagnostic Slice</h2>
+            </div>
+            <p class="text-[13px] text-slate-400 mt-1">
+              Source labels are attributed to <a href="https://questions.examside.com/past-years/jee/jee-main/chemistry/chemical-bonding-and-molecular-structure" target="_blank" class="text-purple-400 underline hover:text-purple-300">ExamSIDE Chemical Bonding &amp; Molecular Structure</a>.
+            </p>
+          </div>
+
+          <div class="w-full md:w-72">
+            <input type="text" id="qSearchInput" oninput="filterQuestions()" placeholder="Search by topic, formula, year..." class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-border text-[13px] text-slate-200 placeholder-slate-500 focus:outline-none focus:border-purple-500">
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-1.5 text-[13px]">
+          <button onclick="filterSubTab('all')" id="btnQFilterAll" class="px-3 py-1.5 rounded-lg bg-purple-500/20 text-purple-300 border border-purple-500/40 font-semibold">All Questions</button>
+          <button onclick="filterSubTab(2)" id="btnQFilter2" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">2. 3D VSEPR</button>
+          <button onclick="filterSubTab(3)" id="btnQFilter3" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">3. Dipoles</button>
+          <button onclick="filterSubTab(4)" id="btnQFilter4" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">4. Hybridization</button>
+          <button onclick="filterSubTab(5)" id="btnQFilter5" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">5. MOT Ladder</button>
+          <button onclick="filterSubTab(6)" id="btnQFilter6" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">6. H-Bonding</button>
+        </div>
+
+        <div id="questionsContainer" class="space-y-4 pt-2"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // =========================================================================
+    // LIFECYCLE & 3D CANVAS ENGINE
+    // =========================================================================
+    let currentTab = 'tab-lewis';
+    let currentSubTabFilter = 'all';
+
+    // 3D Orbit parameters per canvas
+    let orbitVsepr = { rotX: 0.3, rotY: 0.4, isDragging: false, lastMouseX: 0, lastMouseY: 0 };
+    let orbitDipole = { rotX: 0.25, rotY: 0.35, isDragging: false, lastMouseX: 0, lastMouseY: 0 };
+    let orbitPCl5 = { rotX: 0.25, rotY: 0.5, isDragging: false, lastMouseX: 0, lastMouseY: 0 };
+    let orbitSandbox = { rotX: 0.3, rotY: 0.4, isDragging: false, lastMouseX: 0, lastMouseY: 0 };
+    let orbit = orbitVsepr; // backwards compatibility
+
+    function stopAllSimulations() {}
+
+    function switchTab(tabId) {
+      stopAllSimulations();
+      currentTab = tabId;
+      const tabs = ['tab-lewis', 'tab-vsepr', 'tab-dipole', 'tab-hybridization', 'tab-mot', 'tab-hbonding', 'tab-sandbox', 'tab-quiz'];
+      
+      tabs.forEach(t => {
+        const el = document.getElementById(t);
+        const btn = document.getElementById(`btn-${t}`);
+        if (el) el.classList.toggle('hidden', t !== tabId);
+        if (btn) {
+          btn.className = (t === tabId) ? 'tab-btn-active px-3 py-2 rounded-t-lg transition whitespace-nowrap' : 'tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap';
+        }
+      });
+
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          if (tabId === 'tab-lewis') drawLewis();
+          else if (tabId === 'tab-vsepr') drawVsepr3D();
+          else if (tabId === 'tab-dipole') drawDipole();
+          else if (tabId === 'tab-hybridization') drawPCl5();
+          else if (tabId === 'tab-mot') drawMot();
+          else if (tabId === 'tab-hbonding') drawHbond();
+          else if (tabId === 'tab-sandbox') drawSandbox();
+        }, 50);
+      });
+    }
+
+    // Bulletproof High-DPI canvas setup that NEVER triggers container feedback expansion
+    function setupCanvas(canvas) {
+      if (!canvas) return { ctx: null, width: 0, height: 0 };
+      const parent = canvas.parentElement;
+      if (!parent) return { ctx: null, width: 0, height: 0 };
+
+      if (!canvas.dataset.logicalHeight) {
+        canvas.dataset.logicalHeight = canvas.getAttribute('height') || '280';
+      }
+      const logicalHeight = Math.max(120, parseInt(canvas.dataset.logicalHeight, 10) || 280);
+
+      const style = window.getComputedStyle(parent);
+      const horizontalPadding = (parseFloat(style.paddingLeft) || 0) + (parseFloat(style.paddingRight) || 0);
+      const measured = Math.floor(parent.clientWidth - horizontalPadding);
+      const width = measured > 50 ? measured : (parseInt(canvas.dataset.logicalWidth || '0', 10) || 600);
+      if (width < 50) return { ctx: null, width: 0, height: 0 };
+      canvas.dataset.logicalWidth = String(width);
+
+      const dpr = Math.min(2, Math.max(1, window.devicePixelRatio || 1));
+      canvas.style.width = '100%';
+      canvas.style.height = logicalHeight + 'px';
+      canvas.style.boxSizing = 'border-box';
+
+      const targetW = Math.round(width * dpr);
+      const targetH = Math.round(logicalHeight * dpr);
+      if (canvas.width !== targetW || canvas.height !== targetH) {
+        canvas.width = targetW;
+        canvas.height = targetH;
+      }
+
+      const ctx = canvas.getContext('2d');
+      if (ctx) ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      return { ctx, width, height: logicalHeight };
+    }
+    function setupOrbit(canvas, redrawFn, orbitObj) {
+      if (!canvas || canvas.dataset.orbitBound === 'true') return;
+      canvas.dataset.orbitBound = 'true';
+      canvas.style.touchAction = 'none';
+      const o = orbitObj || orbit;
+      let pointerId = null;
+      let lastX = 0;
+      let lastY = 0;
+
+      canvas.addEventListener('pointerdown', e => {
+        pointerId = e.pointerId;
+        lastX = e.clientX;
+        lastY = e.clientY;
+        canvas.setPointerCapture?.(pointerId);
+      });
+      canvas.addEventListener('pointermove', e => {
+        if (pointerId !== e.pointerId) return;
+        const dx = e.clientX - lastX;
+        const dy = e.clientY - lastY;
+        o.rotY += dx * 0.01;
+        o.rotX += dy * 0.01;
+        lastX = e.clientX;
+        lastY = e.clientY;
+        redrawFn();
+      });
+      const finish = e => {
+        if (pointerId !== null && (e.pointerId === undefined || e.pointerId === pointerId)) {
+          try { canvas.releasePointerCapture?.(pointerId); } catch (_) {}
+          pointerId = null;
+        }
+      };
+      canvas.addEventListener('pointerup', finish);
+      canvas.addEventListener('pointercancel', finish);
+      canvas.addEventListener('lostpointercapture', finish);
+    }
+    function project3D(x, y, z, cx, cy, scale, orbitObj) {
+      const o = orbitObj || orbit;
+      // Rotate around X
+      const cosX = Math.cos(o.rotX), sinX = Math.sin(o.rotX);
+      const y1 = y * cosX - z * sinX;
+      const z1 = y * sinX + z * cosX;
+
+      // Rotate around Y
+      const cosY = Math.cos(o.rotY), sinY = Math.sin(o.rotY);
+      const x2 = x * cosY + z1 * sinY;
+      const z2 = -x * sinY + z1 * cosY;
+
+      // Perspective projection
+      const fov = 400;
+      const p = fov / (fov + z2);
+      return { px: cx + x2 * scale * p, py: cy - y1 * scale * p, p };
+    }
+
+    function showToast(q) {
+      const toast = document.getElementById('simToast');
+      document.getElementById('simToastTitle').textContent = `Loaded ${q.id} (${q.year})`;
+      document.getElementById('simToastDesc').textContent = q.q.slice(0, 100) + '...';
+      document.getElementById('simToastParams').textContent = `${q.simFidelity}: ${q.simFidelityNote} | ${(q.simSummary || []).join(' | ')}`;
+      toast.classList.remove('hidden');
+      toast.classList.remove('translate-y-4');
+      setTimeout(() => closeSimToast(), 6000);
+    }
+
+    function closeSimToast() {
+      const toast = document.getElementById('simToast');
+      toast.classList.add('translate-y-4');
+      setTimeout(() => toast.classList.add('hidden'), 300);
+    }
+
+    function setSliderWithEvent(id, val) {
+      const el = document.getElementById(id);
+      if (el && val !== undefined) {
+        el.value = val;
+        el.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+    }
+
+    function loadQuestionIntoSimulator(qId) {
+      const questions = window.JEE_QUESTIONS_DATA || [];
+      const q = questions.find(item => item.id === qId);
+      if (!q) return;
+
+      const fidelity = q.simFidelity || 'CONCEPT_ONLY';
+      if (fidelity === 'UNAVAILABLE') {
+        showToast(q);
+        return;
+      }
+
+      const targetTab = q.targetTab || 'tab-vsepr';
+      switchTab(targetTab);
+      if (fidelity === 'CONCEPT_ONLY') {
+        setTimeout(() => showToast(q), 70);
+        window.scrollTo({ top: 120, behavior: 'smooth' });
+        return;
+      }
+
+      const p = q.simParams || {};
+      const bound = key => (q.simBindingRefs || []).includes(`simParams.${key}`);
+      setTimeout(() => {
+        if (targetTab === 'tab-vsepr' && bound('molecule') && p.molecule) setVseprMolecule(p.molecule);
+        else if (targetTab === 'tab-dipole') {
+          if (bound('dipolePair') && p.dipolePair) setDipolePair(p.dipolePair);
+          else if (bound('molecule') && p.molecule && (p.molecule.includes('NF3') || p.molecule.includes('NH3'))) setDipolePair('NH3_NF3');
+          else if (bound('molecule') && p.molecule && (p.molecule.includes('CO2') || p.molecule.includes('H2O'))) setDipolePair('CO2_H2O');
+          else if (bound('molecule') && p.molecule && (p.molecule.includes('CCl4') || p.molecule.includes('CHCl3'))) setDipolePair('CCl4_CHCl3');
+        } else if (targetTab === 'tab-lewis' && bound('molecule') && p.molecule) {
+          setLewisMolecule(p.molecule);
+        } else if (targetTab === 'tab-hybridization' && bound('mode') && p.mode) {
+          setPCl5Mode(p.mode);
+        } else if (targetTab === 'tab-hbonding' && bound('pair') && p.pair) {
+          setHbondPair(p.pair);
+        } else if (targetTab === 'tab-mot' && bound('electrons') && p.electrons !== undefined) {
+          setSliderWithEvent('sliderMotElectrons', p.electrons);
+        }
+        showToast(q);
+      }, 70);
+
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+    function setVseprMolecule(mol) {
+      currentVsepr = mol;
+      ['XeF4', 'SF4', 'ClF3'].forEach(m => {
+        const btn = document.getElementById(`btnVsepr${m}`);
+        if (btn) {
+          btn.className = (m === mol) ? 'px-2.5 py-1 rounded bg-purple-600/30 border border-purple-500/50 text-purple-300 font-mono font-semibold' : 'px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold';
+        }
+      });
+
+      const metrics = document.getElementById('vseprMetrics');
+      const shapeBadge = document.getElementById('vseprLiveShape');
+
+      if (mol === 'XeF4') {
+        shapeBadge.textContent = 'XeF₄: Square Planar (μ = 0)';
+        metrics.innerHTML = `
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Steric Number:</span><span class="text-sky-400 font-bold">6 (sp³d²)</span></div>
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Bond Pairs:</span><span class="text-emerald-400 font-bold">4 Xe-F</span></div>
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Lone Pairs:</span><span class="text-amber-400 font-bold">2 (Axial, 180°)</span></div>
+          <div class="flex justify-between bg-purple-500/10 p-2.5 rounded border border-purple-500/30 font-bold"><span class="text-purple-300">Net Dipole:</span><span class="text-purple-400">μ = 0 (Non-polar)</span></div>
+        `;
+      } else if (mol === 'SF4') {
+        shapeBadge.textContent = 'SF₄: See-saw (μ ≠ 0)';
+        metrics.innerHTML = `
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Steric Number:</span><span class="text-sky-400 font-bold">5 (sp³d)</span></div>
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Bond Pairs:</span><span class="text-emerald-400 font-bold">4 S-F</span></div>
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Lone Pairs:</span><span class="text-amber-400 font-bold">1 (Equatorial)</span></div>
+          <div class="flex justify-between bg-purple-500/10 p-2.5 rounded border border-purple-500/30 font-bold"><span class="text-purple-300">Net Dipole:</span><span class="text-purple-400">μ ≠ 0 (Polar)</span></div>
+        `;
+      } else if (mol === 'ClF3') {
+        shapeBadge.textContent = 'ClF₃: T-Shaped (μ ≠ 0)';
+        metrics.innerHTML = `
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Steric Number:</span><span class="text-sky-400 font-bold">5 (sp³d)</span></div>
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Bond Pairs:</span><span class="text-emerald-400 font-bold">3 Cl-F</span></div>
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Lone Pairs:</span><span class="text-amber-400 font-bold">2 (Equatorial)</span></div>
+          <div class="flex justify-between bg-purple-500/10 p-2.5 rounded border border-purple-500/30 font-bold"><span class="text-purple-300">Net Dipole:</span><span class="text-purple-400">μ ≠ 0 (Polar)</span></div>
+        `;
+      }
+
+      drawVsepr3D();
+    }
+
+    function drawVsepr3D() {
+      const canvas = document.getElementById('canvasVsepr3D');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+      if (!ctx || w < 50) return;
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      const cx = w * 0.5;
+      const cy = h * 0.5;
+      const scale = 50;
+
+      // Central atom
+      const cProj = project3D(0, 0, 0, cx, cy, scale);
+
+      // Define atoms based on molecule
+      let atoms = [];
+      let lonePairs = [];
+
+      if (currentVsepr === 'XeF4') {
+        // 4 Equatorial fluorines in X-Z plane
+        atoms = [
+          { x: 2, y: 0, z: 0, label: 'F' },
+          { x: -2, y: 0, z: 0, label: 'F' },
+          { x: 0, y: 0, z: 2, label: 'F' },
+          { x: 0, y: 0, z: -2, label: 'F' }
+        ];
+        // 2 Axial lone pairs along Y
+        lonePairs = [
+          { x: 0, y: 1.8, z: 0 },
+          { x: 0, y: -1.8, z: 0 }
+        ];
+      } else if (currentVsepr === 'SF4') {
+        // 2 Axial fluorines along Y
+        atoms = [
+          { x: 0, y: 2, z: 0, label: 'F_ax' },
+          { x: 0, y: -2, z: 0, label: 'F_ax' },
+          { x: 1.7, y: 0, z: 0.8, label: 'F_eq' },
+          { x: -1.7, y: 0, z: 0.8, label: 'F_eq' }
+        ];
+        lonePairs = [{ x: 0, y: 0, z: -1.8 }];
+      } else if (currentVsepr === 'ClF3') {
+        atoms = [
+          { x: 0, y: 2, z: 0, label: 'F_ax' },
+          { x: 0, y: -2, z: 0, label: 'F_ax' },
+          { x: 2, y: 0, z: 0, label: 'F_eq' }
+        ];
+        lonePairs = [
+          { x: -1.5, y: 0, z: 1.2 },
+          { x: -1.5, y: 0, z: -1.2 }
+        ];
+      }
+
+      // Draw bonds
+      atoms.forEach(a => {
+        const p = project3D(a.x, a.y, a.z, cx, cy, scale);
+        ctx.strokeStyle = '#64748b';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(cProj.px, cProj.py);
+        ctx.lineTo(p.px, p.py);
+        ctx.stroke();
+
+        // Atom sphere
+        ctx.fillStyle = '#38bdf8';
+        ctx.beginPath();
+        ctx.arc(p.px, p.py, 12, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 13px monospace';
+        ctx.fillText(a.label, p.px - 6, p.py + 3);
+      });
+
+      // Draw Lone Pair Lobes
+      lonePairs.forEach(lp => {
+        const p = project3D(lp.x, lp.y, lp.z, cx, cy, scale);
+        ctx.strokeStyle = '#f59e0b';
+        ctx.setLineDash([3, 3]);
+        ctx.beginPath();
+        ctx.moveTo(cProj.px, cProj.py);
+        ctx.lineTo(p.px, p.py);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.fillStyle = 'rgba(245, 158, 11, 0.4)';
+        ctx.beginPath();
+        ctx.arc(p.px, p.py, 14, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#f59e0b';
+        ctx.font = '13px monospace';
+        ctx.fillText(': lp', p.px - 8, p.py + 3);
+      });
+
+      // Central Atom Sphere
+      ctx.fillStyle = '#8b5cf6';
+      ctx.beginPath();
+      ctx.arc(cProj.px, cProj.py, 16, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 13px monospace';
+      ctx.fillText(currentVsepr.slice(0, 2), cProj.px - 8, cProj.py + 4);
+    }
+
+    // =========================================================================
+    // TAB 5: MOT ENERGY LADDER
+    // =========================================================================
+    let isMotMixing = false;
+
+    function setMotMixing(mixing) {
+      isMotMixing = mixing;
+      const bT = document.getElementById('btnMotMixingTrue');
+      const bF = document.getElementById('btnMotMixingFalse');
+      if (mixing) {
+        bT.className = 'px-2.5 py-1 rounded font-semibold text-white bg-purple-600/40 border border-purple-500/50';
+        bF.className = 'px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white';
+      } else {
+        bF.className = 'px-2.5 py-1 rounded font-semibold text-white bg-purple-600/40 border border-purple-500/50';
+        bT.className = 'px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white';
+      }
+      updateMot();
+    }
+
+    function updateMot() {
+      const eCount = parseInt(document.getElementById('sliderMotElectrons').value);
+      document.getElementById('valMotECount').textContent = eCount + ' e⁻';
+      document.getElementById('telMotElectrons').textContent = eCount + ' e⁻';
+
+      // Molecular Orbitals capacities:
+      // σ1s(2), σ*1s(2), σ2s(2), σ*2s(2) = 8 electrons
+      // Remaining for 2p: eCount - 8
+      const rem = Math.max(0, eCount - 8);
+
+      let nb = 4; // σ1s, σ2s
+      let na = 4; // σ*1s, σ*2s
+
+      if (isMotMixing) {
+        // Mixing order: π2px=π2py (4), σ2pz (2), π*2px=π*2py (4), σ*2pz (2)
+        const b_pi = Math.min(4, rem);
+        const b_sigma = Math.min(2, Math.max(0, rem - 4));
+        const a_pi = Math.min(4, Math.max(0, rem - 6));
+        const a_sigma = Math.min(2, Math.max(0, rem - 10));
+        nb += b_pi + b_sigma;
+        na += a_pi + a_sigma;
+      } else {
+        // Normal order (>14 e): σ2pz (2), π2px=π2py (4), π*2px=π*2py (4), σ*2pz (2)
+        const b_sigma = Math.min(2, rem);
+        const b_pi = Math.min(4, Math.max(0, rem - 2));
+        const a_pi = Math.min(4, Math.max(0, rem - 6));
+        const a_sigma = Math.min(2, Math.max(0, rem - 10));
+        nb += b_sigma + b_pi;
+        na += a_pi + a_sigma;
+      }
+
+      const bo = (nb - na) * 0.5;
+      document.getElementById('telMotNb').textContent = nb;
+      document.getElementById('telMotNa').textContent = na;
+      document.getElementById('telMotBO').textContent = bo.toFixed(1);
+
+      const isParamagnetic = (eCount === 9 || eCount === 10 || eCount === 11 || eCount === 13 || eCount === 15 || eCount === 16 || eCount === 17);
+      document.getElementById('telMotMagnetic').textContent = isParamagnetic ? 'Paramagnetic (Unpaired e⁻)' : 'Diamagnetic (All Paired)';
+      document.getElementById('telMotMagnetic').className = isParamagnetic ? 'text-amber-400 font-bold' : 'text-emerald-400 font-bold';
+
+      drawMot();
+    }
+
+    function drawMot() {
+      const canvas = document.getElementById('canvasMot');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+      if (!ctx || w < 50) return;
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      const eCount = parseInt(document.getElementById('sliderMotElectrons').value);
+      const rem = Math.max(0, eCount - 8);
+
+      const midX = w * 0.5;
+
+      // Draw Energy Ladder for 2p orbitals
+      // Levels: σ*2pz, π*2px/y, (order depends on mixing), σ2pz, π2px/y
+      const levels = isMotMixing ? [
+        { label: 'σ*2p_z', y: 40, cap: 2, e: Math.min(2, Math.max(0, rem - 10)) },
+        { label: 'π*2p_x   π*2p_y', y: 90, cap: 4, e: Math.min(4, Math.max(0, rem - 6)) },
+        { label: 'σ2p_z', y: 150, cap: 2, e: Math.min(2, Math.max(0, rem - 4)) },
+        { label: 'π2p_x   π2p_y', y: 200, cap: 4, e: Math.min(4, rem) }
+      ] : [
+        { label: 'σ*2p_z', y: 40, cap: 2, e: Math.min(2, Math.max(0, rem - 10)) },
+        { label: 'π*2p_x   π*2p_y', y: 90, cap: 4, e: Math.min(4, Math.max(0, rem - 6)) },
+        { label: 'π2p_x   π2p_y', y: 150, cap: 4, e: Math.min(4, Math.max(0, rem - 2)) },
+        { label: 'σ2p_z', y: 200, cap: 2, e: Math.min(2, rem) }
+      ];
+
+      levels.forEach(lv => {
+        ctx.strokeStyle = '#64748b';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(midX - 70, lv.y);
+        ctx.lineTo(midX + 70, lv.y);
+        ctx.stroke();
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '13px monospace';
+        ctx.fillText(lv.label, midX - 140, lv.y + 4);
+
+        // Draw electron arrows
+        for (let i = 0; i < lv.e; i++) {
+          const ex = midX - 40 + i * 25;
+          ctx.fillStyle = (i % 2 === 0) ? '#38bdf8' : '#ef4444';
+          ctx.fillText((i % 2 === 0) ? '↑' : '↓', ex, lv.y - 6);
+        }
+      });
+
+      ctx.fillStyle = '#a855f7';
+      ctx.font = '13px monospace';
+      ctx.fillText(isMotMixing ? '2s-2p Mixing Active (π < σ)' : 'No 2s-2p Mixing (σ < π)', midX - 100, h - 20);
+    }
+
+    // =========================================================================
+    // TAB 1: LEWIS & FORMAL CHARGE RIG
+    // =========================================================================
+    let currentLewisMol = 'O3';
+
+    function setLewisMolecule(mol) {
+      currentLewisMol = mol;
+      ['O3', 'CO3', 'NO3'].forEach(m => {
+        const b = document.getElementById(`btnLewis${m}`);
+        if (b) {
+          b.className = (m === mol) ? 'px-2.5 py-1 rounded bg-purple-600/30 border border-purple-500/50 text-purple-300 font-mono font-semibold' : 'px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold';
+        }
+      });
+
+      const title = document.getElementById('lewisLiveTitle');
+      const ledger = document.getElementById('lewisMetricsLedger');
+
+      if (mol === 'O3') {
+        title.textContent = 'O₃ Ozone: Canonical Resonance Forms & Hybrid';
+        ledger.innerHTML = `
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Central Oxygen (O₂):</span><span class="text-purple-400 font-bold">FC = 6 - 2 - 3 = +1</span></div>
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Double-Bonded (O₁):</span><span class="text-emerald-400 font-bold">FC = 6 - 4 - 2 = 0</span></div>
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Single-Bonded (O₃):</span><span class="text-red-400 font-bold">FC = 6 - 6 - 1 = -1</span></div>
+          <div class="flex justify-between bg-purple-500/10 p-2.5 rounded border border-purple-500/30 font-bold"><span class="text-purple-300">Resonance Hybrid:</span><span class="text-purple-400">Terminal Oxygens = -0.5 each</span></div>
+        `;
+      } else if (mol === 'CO3') {
+        title.textContent = 'CO₃²⁻ Carbonate: 3 Equivalent Resonance Forms';
+        ledger.innerHTML = `
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Central Carbon:</span><span class="text-emerald-400 font-bold">FC = 4 - 0 - 4 = 0</span></div>
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>1 &times; C=O Oxygen:</span><span class="text-emerald-400 font-bold">FC = 6 - 4 - 2 = 0</span></div>
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>2 &times; C-O⁻ Oxygens:</span><span class="text-red-400 font-bold">FC = 6 - 6 - 1 = -1</span></div>
+          <div class="flex justify-between bg-purple-500/10 p-2.5 rounded border border-purple-500/30 font-bold"><span class="text-purple-300">Average Bond Order:</span><span class="text-purple-400">4/3 = 1.33 (-0.67 on each O)</span></div>
+        `;
+      } else if (mol === 'NO3') {
+        title.textContent = 'NO₃⁻ Nitrate: 3 Canonical Resonance Structures';
+        ledger.innerHTML = `
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Central Nitrogen:</span><span class="text-purple-400 font-bold">FC = 5 - 0 - 4 = +1</span></div>
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>1 &times; N=O Oxygen:</span><span class="text-emerald-400 font-bold">FC = 6 - 4 - 2 = 0</span></div>
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>2 &times; N-O⁻ Oxygens:</span><span class="text-red-400 font-bold">FC = 6 - 6 - 1 = -1</span></div>
+          <div class="flex justify-between bg-purple-500/10 p-2.5 rounded border border-purple-500/30 font-bold"><span class="text-purple-300">Net Ionic Charge:</span><span class="text-purple-400">+1 + 0 + 2(-1) = -1</span></div>
+        `;
+      }
+      drawLewis();
+    }
+
+    function drawLewis() {
+      const canvas = document.getElementById('canvasLewis');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+      if (!ctx || w < 50) return;
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      if (currentLewisMol === 'O3') {
+        // Draw Structure I (Left), Structure II (Middle), Hybrid (Right)
+        const secW = w / 3;
+
+        // Structure 1: O=O+-O-
+        drawOzoneStructure(ctx, secW * 0.5, h * 0.45, true, false, 'Canonical I');
+        // Resonance arrow <-->
+        ctx.fillStyle = '#a855f7';
+        ctx.font = 'bold 16px monospace';
+        ctx.fillText('⟷', secW - 12, h * 0.45);
+
+        // Structure 2: O--O+=O
+        drawOzoneStructure(ctx, secW * 1.5, h * 0.45, false, true, 'Canonical II');
+        ctx.fillText('⟷', secW * 2 - 12, h * 0.45);
+
+        // Resonance Hybrid: O...O+...O
+        drawOzoneHybrid(ctx, secW * 2.5, h * 0.45, 'Resonance Hybrid');
+      } else if (currentLewisMol === 'CO3') {
+        drawCarbonateHybrid(ctx, w * 0.5, h * 0.5);
+      } else {
+        drawNitrateHybrid(ctx, w * 0.5, h * 0.5);
+      }
+    }
+
+    function drawOzoneStructure(ctx, cx, cy, isLeftDouble, isRightDouble, title) {
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = 'bold 13px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText(title, cx, cy - 65);
+
+      const d = 50;
+      const o1 = { x: cx - d * 0.85, y: cy + d * 0.5 };
+      const o2 = { x: cx, y: cy - 20 };
+      const o3 = { x: cx + d * 0.85, y: cy + d * 0.5 };
+
+      // Bonds
+      ctx.strokeStyle = '#64748b';
+      ctx.lineWidth = 2.5;
+
+      // Left Bond
+      if (isLeftDouble) {
+        ctx.beginPath(); ctx.moveTo(o1.x - 3, o1.y - 3); ctx.lineTo(o2.x - 3, o2.y - 3); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(o1.x + 3, o1.y + 3); ctx.lineTo(o2.x + 3, o2.y + 3); ctx.stroke();
+      } else {
+        ctx.beginPath(); ctx.moveTo(o1.x, o1.y); ctx.lineTo(o2.x, o2.y); ctx.stroke();
+      }
+
+      // Right Bond
+      if (isRightDouble) {
+        ctx.beginPath(); ctx.moveTo(o3.x - 3, o3.y - 3); ctx.lineTo(o2.x - 3, o2.y - 3); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(o3.x + 3, o3.y + 3); ctx.lineTo(o2.x + 3, o2.y + 3); ctx.stroke();
+      } else {
+        ctx.beginPath(); ctx.moveTo(o3.x, o3.y); ctx.lineTo(o2.x, o2.y); ctx.stroke();
+      }
+
+      // Atoms & Formal Charges
+      const atoms = [
+        { ...o1, label: 'O', fc: isLeftDouble ? '0' : '-1', color: isLeftDouble ? '#38bdf8' : '#ef4444' },
+        { ...o2, label: 'O', fc: '+1', color: '#a855f7' },
+        { ...o3, label: 'O', fc: isRightDouble ? '0' : '-1', color: isRightDouble ? '#38bdf8' : '#ef4444' }
+      ];
+
+      atoms.forEach(a => {
+        ctx.fillStyle = '#0f172a';
+        ctx.beginPath(); ctx.arc(a.x, a.y, 14, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2; ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 13px monospace';
+        ctx.fillText(a.label, a.x, a.y + 4);
+
+        // FC Badge
+        ctx.fillStyle = a.color;
+        ctx.font = 'bold 13px monospace';
+        ctx.fillText(`[${a.fc}]`, a.x, a.y + 24);
+      });
+      ctx.textAlign = 'left';
+    }
+
+    function drawOzoneHybrid(ctx, cx, cy, title) {
+      ctx.fillStyle = '#a855f7';
+      ctx.font = 'bold 13px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText(title, cx, cy - 65);
+
+      const d = 52;
+      const o1 = { x: cx - d * 0.85, y: cy + d * 0.5 };
+      const o2 = { x: cx, y: cy - 20 };
+      const o3 = { x: cx + d * 0.85, y: cy + d * 0.5 };
+
+      // Solid single bonds
+      ctx.strokeStyle = '#64748b'; ctx.lineWidth = 2.5;
+      ctx.beginPath(); ctx.moveTo(o1.x, o1.y); ctx.lineTo(o2.x, o2.y); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(o3.x, o3.y); ctx.lineTo(o2.x, o2.y); ctx.stroke();
+
+      // Dashed partial double bonds
+      ctx.strokeStyle = '#c084fc'; ctx.setLineDash([4, 4]); ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(o1.x + 5, o1.y - 5); ctx.lineTo(o2.x - 5, o2.y + 7); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(o3.x - 5, o3.y - 5); ctx.lineTo(o2.x + 5, o2.y + 7); ctx.stroke();
+      ctx.setLineDash([]);
+
+      const atoms = [
+        { ...o1, label: 'O', fc: '-½', color: '#f59e0b' },
+        { ...o2, label: 'O', fc: '+1', color: '#a855f7' },
+        { ...o3, label: 'O', fc: '-½', color: '#f59e0b' }
+      ];
+
+      atoms.forEach(a => {
+        ctx.fillStyle = '#0f172a';
+        ctx.beginPath(); ctx.arc(a.x, a.y, 14, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = '#c084fc'; ctx.lineWidth = 2; ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 13px monospace';
+        ctx.fillText(a.label, a.x, a.y + 4);
+
+        ctx.fillStyle = a.color;
+        ctx.font = 'bold 13px monospace';
+        ctx.fillText(`[${a.fc}]`, a.x, a.y + 24);
+      });
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = '13px monospace';
+      ctx.fillText('Equal Bond Lengths: 128 pm', cx, cy + 55);
+      ctx.textAlign = 'left';
+    }
+
+    function drawCarbonateHybrid(ctx, cx, cy) {
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = 'bold 13px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('CO₃²⁻ Carbonate Ion: Delocalized π-Electron Resonance', cx, cy - 80);
+
+      const r = 60;
+      const c = { x: cx, y: cy };
+      const oxygens = [
+        { x: cx, y: cy - r, angle: -Math.PI / 2 },
+        { x: cx + r * Math.cos(Math.PI / 6), y: cy + r * Math.sin(Math.PI / 6), angle: Math.PI / 6 },
+        { x: cx - r * Math.cos(Math.PI / 6), y: cy + r * Math.sin(Math.PI / 6), angle: 5 * Math.PI / 6 }
+      ];
+
+      oxygens.forEach(o => {
+        ctx.strokeStyle = '#64748b'; ctx.lineWidth = 2.5;
+        ctx.beginPath(); ctx.moveTo(c.x, c.y); ctx.lineTo(o.x, o.y); ctx.stroke();
+
+        ctx.strokeStyle = '#38bdf8'; ctx.setLineDash([3, 3]); ctx.lineWidth = 2;
+        const perpX = -Math.sin(o.angle) * 6;
+        const perpY = Math.cos(o.angle) * 6;
+        ctx.beginPath(); ctx.moveTo(c.x + perpX, c.y + perpY); ctx.lineTo(o.x + perpX, o.y + perpY); ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.fillStyle = '#0f172a';
+        ctx.beginPath(); ctx.arc(o.x, o.y, 14, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2; ctx.stroke();
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('O', o.x, o.y + 4);
+        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 13px monospace'; ctx.fillText('[-⅔]', o.x + (o.x > cx ? 16 : (o.x < cx ? -16 : 0)), o.y + (o.y < cy ? -14 : 16));
+      });
+
+      // Central Carbon
+      ctx.fillStyle = '#38bdf8';
+      ctx.beginPath(); ctx.arc(c.x, c.y, 16, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#0f172a'; ctx.font = 'bold 13px monospace'; ctx.fillText('C', c.x, c.y + 4);
+      ctx.fillStyle = '#a855f7'; ctx.font = '13px monospace'; ctx.fillText('All 3 C-O Bonds Identical (BO = 1.33)', cx, cy + 95);
+      ctx.textAlign = 'left';
+    }
+
+    function drawNitrateHybrid(ctx, cx, cy) {
+      ctx.fillStyle = '#a855f7';
+      ctx.font = 'bold 13px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('NO₃⁻ Nitrate Ion: Symmetrical Planar Hybrid', cx, cy - 80);
+
+      const r = 60;
+      const c = { x: cx, y: cy };
+      const oxygens = [
+        { x: cx, y: cy - r, angle: -Math.PI / 2 },
+        { x: cx + r * Math.cos(Math.PI / 6), y: cy + r * Math.sin(Math.PI / 6), angle: Math.PI / 6 },
+        { x: cx - r * Math.cos(Math.PI / 6), y: cy + r * Math.sin(Math.PI / 6), angle: 5 * Math.PI / 6 }
+      ];
+
+      oxygens.forEach(o => {
+        ctx.strokeStyle = '#64748b'; ctx.lineWidth = 2.5;
+        ctx.beginPath(); ctx.moveTo(c.x, c.y); ctx.lineTo(o.x, o.y); ctx.stroke();
+        ctx.strokeStyle = '#c084fc'; ctx.setLineDash([3, 3]); ctx.lineWidth = 2;
+        const perpX = -Math.sin(o.angle) * 6;
+        const perpY = Math.cos(o.angle) * 6;
+        ctx.beginPath(); ctx.moveTo(c.x + perpX, c.y + perpY); ctx.lineTo(o.x + perpX, o.y + perpY); ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.fillStyle = '#0f172a';
+        ctx.beginPath(); ctx.arc(o.x, o.y, 14, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = '#c084fc'; ctx.lineWidth = 2; ctx.stroke();
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('O', o.x, o.y + 4);
+        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 13px monospace'; ctx.fillText('[-⅔]', o.x + (o.x > cx ? 16 : (o.x < cx ? -16 : 0)), o.y + (o.y < cy ? -14 : 16));
+      });
+
+      // Central Nitrogen
+      ctx.fillStyle = '#8b5cf6';
+      ctx.beginPath(); ctx.arc(c.x, c.y, 16, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('N', c.x, c.y + 4);
+      ctx.fillStyle = '#c084fc'; ctx.font = 'bold 13px monospace'; ctx.fillText('[+1]', c.x + 18, c.y - 8);
+      ctx.fillStyle = '#38bdf8'; ctx.font = '13px monospace'; ctx.fillText('Net Charge = +1 + 3(-⅔) = -1', cx, cy + 95);
+      ctx.textAlign = 'left';
+    }
+
+    // =========================================================================
+    // TAB 3: VECTORIAL DIPOLE ENGINE (AUTHENTIC 3D DUAL-MOLECULE RIG)
+    // =========================================================================
+    let currentDipolePair = 'NH3_NF3';
+
+    function setDipolePair(pair) {
+      currentDipolePair = pair;
+      ['NH3', 'CO2', 'CCl4'].forEach(p => {
+        const b = document.getElementById(`btnDipole${p}`);
+        if (b) {
+          const isMatch = (p === 'NH3' && pair === 'NH3_NF3') || (p === 'CO2' && pair === 'CO2_H2O') || (p === 'CCl4' && pair === 'CCl4_CHCl3');
+          b.className = isMatch ? 'px-2.5 py-1 rounded bg-sky-600/30 border border-sky-500/50 text-sky-300 font-mono font-semibold' : 'px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold';
+        }
+      });
+
+      const status = document.getElementById('dipoleLiveStatus');
+      const ledger = document.getElementById('dipoleMetricsLedger');
+      const trap = document.getElementById('dipoleTrapText');
+
+      if (pair === 'NH3_NF3') {
+        status.textContent = 'NH₃ (μ = 1.47 D, Reinforcing) vs NF₃ (μ = 0.24 D, Opposing)';
+        ledger.innerHTML = `
+          <div class="p-2.5 bg-emerald-500/10 rounded border border-emerald-500/30">
+            <div class="text-emerald-300 font-bold flex justify-between"><span>NH₃ (Ammonia):</span><span>μ = 1.47 D</span></div>
+            <div class="text-slate-300 text-[13px] mt-1">3 N-H bonds pull UP towards N (ΔEN = 0.84). Lone pair also pulls UP. <strong>Result: Strongly Reinforcing!</strong></div>
+          </div>
+          <div class="p-2.5 bg-amber-500/10 rounded border border-amber-500/30">
+            <div class="text-amber-300 font-bold flex justify-between"><span>NF₃ (Nitrogen Fluoride):</span><span>μ = 0.24 D</span></div>
+            <div class="text-slate-300 text-[13px] mt-1">3 N-F bonds pull DOWN towards F (ΔEN = 0.94). Lone pair pulls UP. <strong>Result: Vectorial Cancellation!</strong></div>
+          </div>
+        `;
+        trap.textContent = 'Fluorine has the highest electronegativity in the periodic table (4.0 vs H=2.1), leading students to pick NF₃ > NH₃. But vectorial addition proves NH₃ has 6× greater dipole moment because dipoles reinforce!';
+      } else if (pair === 'CO2_H2O') {
+        status.textContent = 'CO₂ (μ = 0 D, Linear Cancel) vs H₂O (μ = 1.85 D, Bent Reinforcing)';
+        ledger.innerHTML = `
+          <div class="p-2.5 bg-emerald-500/10 rounded border border-emerald-500/30">
+            <div class="text-emerald-300 font-bold flex justify-between"><span>H₂O (Water, Bent 104.5°):</span><span>μ = 1.85 D</span></div>
+            <div class="text-slate-300 text-[13px] mt-1">2 O-H bond dipoles add vectorially towards O + 2 lone pairs add UP. Strongly polar liquid!</div>
+          </div>
+          <div class="p-2.5 bg-slate-800 rounded border border-border">
+            <div class="text-slate-300 font-bold flex justify-between"><span>CO₂ (Linear 180°):</span><span>μ = 0.00 D</span></div>
+            <div class="text-slate-400 text-[13px] mt-1">Two identical C=O bond dipoles point 180° apart: μ_net = μ₁ - μ₂ = 0. Non-polar gas!</div>
+          </div>
+        `;
+        trap.textContent = 'Individual bond polarity ≠ molecular polarity! Even with polar C=O bonds (ΔEN=1.0), linear symmetry enforces exact vectorial cancellation.';
+      } else {
+        status.textContent = 'CCl₄ (μ = 0 D, Tetrahedral Symmetry) vs CHCl₃ (μ = 1.04 D, Polar Net)';
+        ledger.innerHTML = `
+          <div class="p-2.5 bg-slate-800 rounded border border-border">
+            <div class="text-slate-300 font-bold flex justify-between"><span>CCl₄ (Tetrachloromethane):</span><span>μ = 0.00 D</span></div>
+            <div class="text-slate-400 text-[13px] mt-1">4 identical C-Cl bond dipoles in regular tetrahedron (109.5°) sum vectorially to exactly 0.</div>
+          </div>
+          <div class="p-2.5 bg-sky-500/10 rounded border border-sky-500/30">
+            <div class="text-sky-300 font-bold flex justify-between"><span>CHCl₃ (Chloroform):</span><span>μ = 1.04 D</span></div>
+            <div class="text-slate-300 text-[13px] mt-1">1 C-H bond pushes down, 3 C-Cl bonds pull down. Resultant net dipole along C-H axis!</div>
+          </div>
+        `;
+        trap.textContent = 'Symmetry determines polarity: replacing even one Cl in CCl₄ with H shatters tetrahedral dipole cancellation, creating a strong dipole moment!';
+      }
+      drawDipole();
+    }
+
+    function drawDipoleVector(ctx, fromP, toP, color, label) {
+      ctx.strokeStyle = color;
+      ctx.fillStyle = color;
+      ctx.lineWidth = 2.5;
+
+      const dx = toP.px - fromP.px;
+      const dy = toP.py - fromP.py;
+      const len = Math.hypot(dx, dy);
+      if (len < 5) return;
+
+      const ux = dx / len, uy = dy / len;
+
+      ctx.beginPath();
+      ctx.moveTo(fromP.px, fromP.py);
+      ctx.lineTo(toP.px, toP.py);
+      ctx.stroke();
+
+      // Crossbar on positive tail (+ of dipole)
+      const perpX = -uy * 5;
+      const perpY = ux * 5;
+      const tailX = fromP.px + ux * 8;
+      const tailY = fromP.py + uy * 8;
+      ctx.beginPath();
+      ctx.moveTo(tailX - perpX, tailY - perpY);
+      ctx.lineTo(tailX + perpX, tailY + perpY);
+      ctx.stroke();
+
+      // Arrowhead at negative head (->)
+      const headAngle = Math.atan2(dy, dx);
+      ctx.beginPath();
+      ctx.moveTo(toP.px, toP.py);
+      ctx.lineTo(toP.px - 9 * Math.cos(headAngle - 0.4), toP.py - 9 * Math.sin(headAngle - 0.4));
+      ctx.lineTo(toP.px - 9 * Math.cos(headAngle + 0.4), toP.py - 9 * Math.sin(headAngle + 0.4));
+      ctx.closePath();
+      ctx.fill();
+
+      if (label) {
+        ctx.fillStyle = color;
+        ctx.font = 'bold 13px monospace';
+        ctx.fillText(label, toP.px + ux * 8, toP.py + uy * 8);
+      }
+    }
+
+    function drawResultantVector(ctx, startX, startY, length, angle, color, label) {
+      const endX = startX + length * Math.cos(angle);
+      const endY = startY + length * Math.sin(angle);
+
+      ctx.strokeStyle = color;
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 10;
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(startX, startY);
+      ctx.lineTo(endX, endY);
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      // Cross on tail
+      const ux = Math.cos(angle), uy = Math.sin(angle);
+      const perpX = -uy * 6, perpY = ux * 6;
+      ctx.beginPath();
+      ctx.moveTo(startX + ux * 8 - perpX, startY + uy * 8 - perpY);
+      ctx.lineTo(startX + ux * 8 + perpX, startY + uy * 8 + perpY);
+      ctx.stroke();
+
+      // Arrowhead
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.moveTo(endX, endY);
+      ctx.lineTo(endX - 12 * Math.cos(angle - 0.45), endY - 12 * Math.sin(angle - 0.45));
+      ctx.lineTo(endX - 12 * Math.cos(angle + 0.45), endY - 12 * Math.sin(angle + 0.45));
+      ctx.closePath();
+      ctx.fill();
+
+      if (label) {
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 13px monospace';
+        ctx.fillText(label, endX + (ux >= 0 ? 8 : -110), endY + (uy >= 0 ? 14 : -10));
+      }
+    }
+
+    function drawDipole() {
+      const canvas = document.getElementById('canvasDipole');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+      if (!ctx || w < 50) return;
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      const midX = w * 0.5;
+      const cy = h * 0.52;
+      const scale = Math.min(midX * 0.42, 60);
+
+      // Midline divider
+      ctx.strokeStyle = '#1e293b';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(midX, 20);
+      ctx.lineTo(midX, h - 20);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      if (currentDipolePair === 'NH3_NF3') {
+        // ================= LEFT: NH3 (REINFORCING) =================
+        const cx1 = midX * 0.5;
+        ctx.fillStyle = '#10b981';
+        ctx.font = 'bold 13px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('NH₃: Pyramidal (μ = 1.47 D)', cx1, 35);
+        ctx.fillStyle = '#64748b';
+        ctx.font = '13px monospace';
+        ctx.fillText('3 N-H Dipoles (↑) + Lone Pair (↑) REINFORCE', cx1, 52);
+
+        // Project Nitrogen Apex
+        const nProj1 = project3D(0, 0.65, 0, cx1, cy, scale, orbitDipole);
+        // Base 3 Hydrogens
+        const hAtoms = [
+          project3D(1.3 * Math.cos(0), -0.45, 1.3 * Math.sin(0), cx1, cy, scale, orbitDipole),
+          project3D(1.3 * Math.cos(2 * Math.PI / 3), -0.45, 1.3 * Math.sin(2 * Math.PI / 3), cx1, cy, scale, orbitDipole),
+          project3D(1.3 * Math.cos(4 * Math.PI / 3), -0.45, 1.3 * Math.sin(4 * Math.PI / 3), cx1, cy, scale, orbitDipole)
+        ];
+
+        // Draw N-H Bonds & Dipoles (H -> N, UPWARDS towards N)
+        hAtoms.forEach(hP => {
+          ctx.strokeStyle = '#475569'; ctx.lineWidth = 3;
+          ctx.beginPath(); ctx.moveTo(hP.px, hP.py); ctx.lineTo(nProj1.px, nProj1.py); ctx.stroke();
+          drawDipoleVector(ctx, hP, nProj1, '#10b981');
+        });
+
+        // Lone Pair on N (Pointing UP)
+        const lpProj1 = project3D(0, 1.4, 0, cx1, cy, scale, orbitDipole);
+        ctx.strokeStyle = '#f59e0b'; ctx.setLineDash([3, 3]); ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.moveTo(nProj1.px, nProj1.py); ctx.lineTo(lpProj1.px, lpProj1.py); ctx.stroke();
+        ctx.setLineDash([]);
+        // Lone pair lobe
+        ctx.fillStyle = 'rgba(245, 158, 11, 0.25)';
+        ctx.beginPath(); ctx.arc(lpProj1.px, lpProj1.py, 12, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 13px monospace'; ctx.fillText(': lp', lpProj1.px, lpProj1.py + 3);
+        drawDipoleVector(ctx, nProj1, lpProj1, '#f59e0b');
+
+        // Draw Hydrogens
+        hAtoms.forEach(hP => {
+          ctx.fillStyle = '#f8fafc'; ctx.beginPath(); ctx.arc(hP.px, hP.py, 8, 0, Math.PI * 2); ctx.fill();
+          ctx.fillStyle = '#0f172a'; ctx.font = 'bold 13px monospace'; ctx.fillText('H', hP.px, hP.py + 3);
+        });
+        // Draw Central Nitrogen
+        ctx.fillStyle = '#3b82f6'; ctx.beginPath(); ctx.arc(nProj1.px, nProj1.py, 15, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('N', nProj1.px, nProj1.py + 4);
+
+        // Net Dipole Resultant Vector (Large, pointing UP)
+        drawResultantVector(ctx, cx1, cy + 20, 60, -Math.PI / 2, '#10b981', 'μ_net = 1.47 D ↑');
+
+        // ================= RIGHT: NF3 (OPPOSING) =================
+        const cx2 = midX + midX * 0.5;
+        ctx.fillStyle = '#f59e0b';
+        ctx.font = 'bold 13px monospace';
+        ctx.fillText('NF₃: Pyramidal (μ = 0.24 D)', cx2, 35);
+        ctx.fillStyle = '#64748b';
+        ctx.font = '13px monospace';
+        ctx.fillText('3 N-F Dipoles (↓) OPPOSE Lone Pair (↑)', cx2, 52);
+
+        // Project Nitrogen Apex
+        const nProj2 = project3D(0, 0.65, 0, cx2, cy, scale, orbitDipole);
+        // Base 3 Fluorines
+        const fAtoms = [
+          project3D(1.3 * Math.cos(0), -0.45, 1.3 * Math.sin(0), cx2, cy, scale, orbitDipole),
+          project3D(1.3 * Math.cos(2 * Math.PI / 3), -0.45, 1.3 * Math.sin(2 * Math.PI / 3), cx2, cy, scale, orbitDipole),
+          project3D(1.3 * Math.cos(4 * Math.PI / 3), -0.45, 1.3 * Math.sin(4 * Math.PI / 3), cx2, cy, scale, orbitDipole)
+        ];
+
+        // Draw N-F Bonds & Dipoles (N -> F, DOWNWARDS away from apex!)
+        fAtoms.forEach(fP => {
+          ctx.strokeStyle = '#475569'; ctx.lineWidth = 3;
+          ctx.beginPath(); ctx.moveTo(nProj2.px, nProj2.py); ctx.lineTo(fP.px, fP.py); ctx.stroke();
+          drawDipoleVector(ctx, nProj2, fP, '#f43f5e');
+        });
+
+        // Lone Pair on N (Pointing UP)
+        const lpProj2 = project3D(0, 1.4, 0, cx2, cy, scale, orbitDipole);
+        ctx.strokeStyle = '#f59e0b'; ctx.setLineDash([3, 3]); ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.moveTo(nProj2.px, nProj2.py); ctx.lineTo(lpProj2.px, lpProj2.py); ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = 'rgba(245, 158, 11, 0.25)';
+        ctx.beginPath(); ctx.arc(lpProj2.px, lpProj2.py, 12, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 13px monospace'; ctx.fillText(': lp', lpProj2.px, lpProj2.py + 3);
+        drawDipoleVector(ctx, nProj2, lpProj2, '#f59e0b');
+
+        // Draw Fluorines
+        fAtoms.forEach(fP => {
+          ctx.fillStyle = '#f97316'; ctx.beginPath(); ctx.arc(fP.px, fP.py, 11, 0, Math.PI * 2); ctx.fill();
+          ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('F', fP.px, fP.py + 3);
+        });
+        // Draw Central Nitrogen
+        ctx.fillStyle = '#3b82f6'; ctx.beginPath(); ctx.arc(nProj2.px, nProj2.py, 15, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('N', nProj2.px, nProj2.py + 4);
+
+        // Net Dipole Resultant Vector (Tiny, pointing DOWN)
+        drawResultantVector(ctx, cx2, cy - 10, 18, Math.PI / 2, '#f43f5e', 'μ_net = 0.24 D ↓');
+
+      } else if (currentDipolePair === 'CO2_H2O') {
+        // ================= LEFT: H2O (BENT) =================
+        const cx1 = midX * 0.5;
+        ctx.fillStyle = '#38bdf8'; ctx.font = 'bold 13px monospace'; ctx.textAlign = 'center';
+        ctx.fillText('H₂O: Bent 104.5° (μ = 1.85 D)', cx1, 35);
+        ctx.fillStyle = '#64748b'; ctx.font = '13px monospace';
+        ctx.fillText('2 O-H Dipoles (↑) + 2 Lone Pairs (↑) Reinforce', cx1, 52);
+
+        const oP = project3D(0, 0.4, 0, cx1, cy, scale, orbitDipole);
+        const h1 = project3D(-1.2, -0.4, 0, cx1, cy, scale, orbitDipole);
+        const h2 = project3D(1.2, -0.4, 0, cx1, cy, scale, orbitDipole);
+
+        [h1, h2].forEach(hp => {
+          ctx.strokeStyle = '#475569'; ctx.lineWidth = 3;
+          ctx.beginPath(); ctx.moveTo(hp.px, hp.py); ctx.lineTo(oP.px, oP.py); ctx.stroke();
+          drawDipoleVector(ctx, hp, oP, '#38bdf8');
+          ctx.fillStyle = '#f8fafc'; ctx.beginPath(); ctx.arc(hp.px, hp.py, 8, 0, Math.PI * 2); ctx.fill();
+          ctx.fillStyle = '#0f172a'; ctx.font = 'bold 13px monospace'; ctx.fillText('H', hp.px, hp.py + 3);
+        });
+
+        ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(oP.px, oP.py, 15, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('O', oP.px, oP.py + 4);
+        drawResultantVector(ctx, cx1, cy + 20, 65, -Math.PI / 2, '#38bdf8', 'μ_net = 1.85 D ↑');
+
+        // ================= RIGHT: CO2 (LINEAR) =================
+        const cx2 = midX + midX * 0.5;
+        ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 13px monospace';
+        ctx.fillText('CO₂: Linear 180° (μ = 0 D)', cx2, 35);
+        ctx.fillStyle = '#64748b'; ctx.font = '13px monospace';
+        ctx.fillText('Two Identical C=O Dipoles Exactly Cancel (180°)', cx2, 52);
+
+        const cP = project3D(0, 0, 0, cx2, cy, scale, orbitDipole);
+        const oL = project3D(-1.5, 0, 0, cx2, cy, scale, orbitDipole);
+        const oR = project3D(1.5, 0, 0, cx2, cy, scale, orbitDipole);
+
+        ctx.strokeStyle = '#475569'; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.moveTo(oL.px, oL.py); ctx.lineTo(oR.px, oR.py); ctx.stroke();
+        drawDipoleVector(ctx, cP, oL, '#94a3b8');
+        drawDipoleVector(ctx, cP, oR, '#94a3b8');
+
+        [oL, oR].forEach(op => {
+          ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(op.px, op.py, 12, 0, Math.PI * 2); ctx.fill();
+          ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('O', op.px, op.py + 3);
+        });
+        ctx.fillStyle = '#64748b'; ctx.beginPath(); ctx.arc(cP.px, cP.py, 13, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('C', cP.px, cP.py + 3);
+
+        ctx.fillStyle = '#10b981'; ctx.font = 'bold 13px monospace';
+        ctx.fillText('μ_net = 0.00 D (Non-Polar)', cx2, cy + 60);
+      } else {
+        // ================= CCl4 vs CHCl3 =================
+        const cx1 = midX * 0.5;
+        ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 13px monospace'; ctx.textAlign = 'center';
+        ctx.fillText('CCl₄: Tetrahedral (μ = 0 D)', cx1, 35);
+        ctx.fillStyle = '#64748b'; ctx.font = '13px monospace';
+        ctx.fillText('Symmetric Vectorial Sum = 0', cx1, 52);
+
+        const cP1 = project3D(0, 0, 0, cx1, cy, scale, orbitDipole);
+        const clTetra = [
+          project3D(1.2, 1.2, 1.2, cx1, cy, scale, orbitDipole),
+          project3D(-1.2, -1.2, 1.2, cx1, cy, scale, orbitDipole),
+          project3D(-1.2, 1.2, -1.2, cx1, cy, scale, orbitDipole),
+          project3D(1.2, -1.2, -1.2, cx1, cy, scale, orbitDipole)
+        ];
+        clTetra.forEach(cl => {
+          ctx.strokeStyle = '#475569'; ctx.lineWidth = 2.5;
+          ctx.beginPath(); ctx.moveTo(cP1.px, cP1.py); ctx.lineTo(cl.px, cl.py); ctx.stroke();
+          drawDipoleVector(ctx, cP1, cl, '#94a3b8');
+          ctx.fillStyle = '#10b981'; ctx.beginPath(); ctx.arc(cl.px, cl.py, 9, 0, Math.PI * 2); ctx.fill();
+          ctx.fillStyle = '#0f172a'; ctx.font = 'bold 13px monospace'; ctx.fillText('Cl', cl.px, cl.py + 3);
+        });
+        ctx.fillStyle = '#64748b'; ctx.beginPath(); ctx.arc(cP1.px, cP1.py, 13, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('C', cP1.px, cP1.py + 3);
+        ctx.fillStyle = '#10b981'; ctx.font = 'bold 13px monospace';
+        ctx.fillText('μ_net = 0.00 D', cx1, cy + 60);
+
+        // RIGHT: CHCl3
+        const cx2 = midX + midX * 0.5;
+        ctx.fillStyle = '#38bdf8'; ctx.font = 'bold 13px monospace';
+        ctx.fillText('CHCl₃: Polar (μ = 1.04 D)', cx2, 35);
+        ctx.fillStyle = '#64748b'; ctx.font = '13px monospace';
+        ctx.fillText('3 C-Cl Pull Down + 1 C-H Push Down', cx2, 52);
+
+        const cP2 = project3D(0, 0, 0, cx2, cy, scale, orbitDipole);
+        const hTop = project3D(0, 1.4, 0, cx2, cy, scale, orbitDipole);
+        const clBottom = [
+          project3D(1.2 * Math.cos(0), -0.8, 1.2 * Math.sin(0), cx2, cy, scale, orbitDipole),
+          project3D(1.2 * Math.cos(2 * Math.PI / 3), -0.8, 1.2 * Math.sin(2 * Math.PI / 3), cx2, cy, scale, orbitDipole),
+          project3D(1.2 * Math.cos(4 * Math.PI / 3), -0.8, 1.2 * Math.sin(4 * Math.PI / 3), cx2, cy, scale, orbitDipole)
+        ];
+
+        ctx.strokeStyle = '#475569'; ctx.lineWidth = 2.5;
+        ctx.beginPath(); ctx.moveTo(cP2.px, cP2.py); ctx.lineTo(hTop.px, hTop.py); ctx.stroke();
+        drawDipoleVector(ctx, hTop, cP2, '#38bdf8');
+        ctx.fillStyle = '#f8fafc'; ctx.beginPath(); ctx.arc(hTop.px, hTop.py, 8, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#0f172a'; ctx.font = 'bold 13px monospace'; ctx.fillText('H', hTop.px, hTop.py + 3);
+
+        clBottom.forEach(cl => {
+          ctx.strokeStyle = '#475569'; ctx.lineWidth = 2.5;
+          ctx.beginPath(); ctx.moveTo(cP2.px, cP2.py); ctx.lineTo(cl.px, cl.py); ctx.stroke();
+          drawDipoleVector(ctx, cP2, cl, '#f43f5e');
+          ctx.fillStyle = '#10b981'; ctx.beginPath(); ctx.arc(cl.px, cl.py, 9, 0, Math.PI * 2); ctx.fill();
+          ctx.fillStyle = '#0f172a'; ctx.font = 'bold 13px monospace'; ctx.fillText('Cl', cl.px, cl.py + 3);
+        });
+        ctx.fillStyle = '#64748b'; ctx.beginPath(); ctx.arc(cP2.px, cP2.py, 13, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('C', cP2.px, cP2.py + 3);
+
+        drawResultantVector(ctx, cx2, cy - 10, 45, Math.PI / 2, '#38bdf8', 'μ_net = 1.04 D ↓');
+      }
+      ctx.textAlign = 'left';
+    }
+
+    // =========================================================================
+    // TAB 4: HYBRIDIZATION & AXIAL ELONGATION IN PCl5 (3D ENGINE)
+    // =========================================================================
+    let currentPCl5Mode = '3D';
+
+    function setPCl5Mode(mode) {
+      currentPCl5Mode = mode;
+      const b3D = document.getElementById('btnPCl5Mode3D');
+      const bCl = document.getElementById('btnPCl5ModeCleave');
+      if (b3D && bCl) {
+        b3D.className = (mode === '3D') ? 'px-2.5 py-1 rounded bg-teal-600/30 border border-teal-500/50 text-teal-300 font-mono font-semibold' : 'px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold';
+        bCl.className = (mode === 'cleavage') ? 'px-2.5 py-1 rounded bg-amber-600/30 border border-amber-500/50 text-amber-300 font-mono font-semibold' : 'px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold';
+      }
+      drawPCl5();
+    }
+
+    function drawPCl5() {
+      const canvas = document.getElementById('canvasPCl5');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+      if (!ctx || w < 50) return;
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      const cx = w * 0.5;
+      const cy = h * 0.52;
+      const scale = Math.min(w * 0.35, 65);
+
+      // Central Phosphorus
+      const pProj = project3D(0, 0, 0, cx, cy, scale, orbitPCl5);
+
+      // 3 Equatorial Chlorines (XY plane, 120 deg apart, 202 pm)
+      const rEq = 1.45;
+      const eqCl = [
+        { ...project3D(rEq * Math.cos(0), rEq * Math.sin(0), 0, cx, cy, scale, orbitPCl5), label: 'Cl(eq) 202pm' },
+        { ...project3D(rEq * Math.cos(2 * Math.PI / 3), rEq * Math.sin(2 * Math.PI / 3), 0, cx, cy, scale, orbitPCl5), label: 'Cl(eq) 202pm' },
+        { ...project3D(rEq * Math.cos(4 * Math.PI / 3), rEq * Math.sin(4 * Math.PI / 3), 0, cx, cy, scale, orbitPCl5), label: 'Cl(eq) 202pm' }
+      ];
+
+      // 2 Axial Chlorines (Z axis, +z and -z, elongated 240 pm!)
+      const rAx = 2.1;
+      const axCl = [
+        { ...project3D(0, 0, rAx, cx, cy, scale, orbitPCl5), label: 'Cl(ax) 240pm (Elongated)' },
+        { ...project3D(0, 0, -rAx, cx, cy, scale, orbitPCl5), label: 'Cl(ax) 240pm (Elongated)' }
+      ];
+
+      // Draw Equatorial Plane disc guide
+      ctx.strokeStyle = 'rgba(20, 184, 166, 0.2)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(eqCl[0].px, eqCl[0].py);
+      ctx.lineTo(eqCl[1].px, eqCl[1].py);
+      ctx.lineTo(eqCl[2].px, eqCl[2].py);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(20, 184, 166, 0.06)';
+      ctx.fill();
+      ctx.stroke();
+
+      // Draw Equatorial Bonds (Cyan, shorter, stronger)
+      eqCl.forEach(cl => {
+        ctx.strokeStyle = '#14b8a6';
+        ctx.lineWidth = 3.5;
+        ctx.beginPath();
+        ctx.moveTo(pProj.px, pProj.py);
+        ctx.lineTo(cl.px, cl.py);
+        ctx.stroke();
+
+        ctx.fillStyle = '#0d9488';
+        ctx.beginPath();
+        ctx.arc(cl.px, cl.py, 12, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 13px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Cl', cl.px, cl.py + 3);
+      });
+
+      // Draw Axial Bonds (Amber/Orange, longer, weaker)
+      axCl.forEach(cl => {
+        if (currentPCl5Mode === 'cleavage') {
+          // Cleaved dashed bonds
+          ctx.strokeStyle = '#ef4444';
+          ctx.lineWidth = 2;
+          ctx.setLineDash([4, 4]);
+        } else {
+          ctx.strokeStyle = '#f59e0b';
+          ctx.lineWidth = 2.5;
+        }
+        ctx.beginPath();
+        ctx.moveTo(pProj.px, pProj.py);
+        ctx.lineTo(cl.px, cl.py);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.fillStyle = (currentPCl5Mode === 'cleavage') ? '#ef4444' : '#f59e0b';
+        ctx.beginPath();
+        ctx.arc(cl.px, cl.py, 13, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#0f172a';
+        ctx.font = 'bold 13px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Cl', cl.px, cl.py + 3);
+      });
+
+      // Draw Central Phosphorus
+      ctx.fillStyle = '#8b5cf6';
+      ctx.beginPath();
+      ctx.arc(pProj.px, pProj.py, 17, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 13px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('P', pProj.px, pProj.py + 4);
+      ctx.textAlign = 'left';
+
+      // Legends & Thermal notice
+      ctx.fillStyle = '#14b8a6';
+      ctx.font = 'bold 13px monospace';
+      ctx.fillText('■ Equatorial: 202 pm (120° angles, 2×90° repulsions)', 20, 30);
+      ctx.fillStyle = '#f59e0b';
+      ctx.fillText('■ Axial: 240 pm (Three 90° repulsions from equatorial atoms)', 20, 50);
+
+      if (currentPCl5Mode === 'cleavage') {
+        ctx.fillStyle = '#ef4444';
+        ctx.font = 'bold 13px monospace';
+        ctx.fillText('🔥 PCl₅(g) —Δ→ PCl₃(g) + Cl₂(g) [2 Elongated Axial Bonds Cleave First!]', 20, h - 20);
+      }
+    }
+
+    // =========================================================================
+    // TAB 6: HYDROGEN BONDING & CHELATION RIG
+    // =========================================================================
+    let currentHbondPair = 'nitrophenol';
+
+    function setHbondPair(pair) {
+      currentHbondPair = pair;
+      const bN = document.getElementById('btnHbondNitro');
+      const bA = document.getElementById('btnHbondAlcohol');
+      if (bN && bA) {
+        bN.className = (pair === 'nitrophenol') ? 'px-2.5 py-1 rounded bg-amber-600/30 border border-amber-500/50 text-amber-300 font-mono font-semibold' : 'px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold';
+        bA.className = (pair === 'alcohols') ? 'px-2.5 py-1 rounded bg-amber-600/30 border border-amber-500/50 text-amber-300 font-mono font-semibold' : 'px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold';
+      }
+
+      const badge = document.getElementById('hbondLiveBadge');
+      const ledger = document.getElementById('hbondMetricsLedger');
+
+      if (pair === 'nitrophenol') {
+        badge.textContent = 'o-Nitrophenol (Intramolecular Chelation) vs p-Nitrophenol (Intermolecular Chain)';
+        ledger.innerHTML = `
+          <div class="p-2.5 bg-amber-500/10 rounded border border-amber-500/30">
+            <div class="text-amber-300 font-bold flex justify-between"><span>o-Nitrophenol:</span><span>BP = 216°C</span></div>
+            <div class="text-slate-300 text-[13px] mt-1">Forms internal 6-membered chelated ring between -OH and -NO₂. <strong>Steam Volatile &amp; Lower BP!</strong></div>
+          </div>
+          <div class="p-2.5 bg-sky-500/10 rounded border border-sky-500/30">
+            <div class="text-sky-300 font-bold flex justify-between"><span>p-Nitrophenol:</span><span>BP = 279°C (+63°C!)</span></div>
+            <div class="text-slate-300 text-[13px] mt-1">Intermolecular H-bonds link adjacent molecules into polymeric association. <strong>Non-volatile &amp; Higher BP!</strong></div>
+          </div>
+        `;
+      } else {
+        badge.textContent = 'Ethanol (C₂H₅OH, Intermolecular H-Bond) vs Dimethyl Ether (CH₃OCH₃, No H-Bond)';
+        ledger.innerHTML = `
+          <div class="p-2.5 bg-emerald-500/10 rounded border border-emerald-500/30">
+            <div class="text-emerald-300 font-bold flex justify-between"><span>Ethanol (C₂H₅OH):</span><span>BP = +78.4°C</span></div>
+            <div class="text-slate-300 text-[13px] mt-1">Contains active -O-H group capable of strong intermolecular H-bonding. Liquid at room temp.</div>
+          </div>
+          <div class="p-2.5 bg-slate-800 rounded border border-border">
+            <div class="text-slate-300 font-bold flex justify-between"><span>Dimethyl Ether:</span><span>BP = -24°C (Gas)</span></div>
+            <div class="text-slate-400 text-[13px] mt-1">Isomer with same mass (46 g/mol) but lacks H attached to O. Weak dipole only; boiling point is 102°C lower!</div>
+          </div>
+        `;
+      }
+      drawHbond();
+    }
+
+    function drawHbond() {
+      const canvas = document.getElementById('canvasHbond');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+      if (!ctx || w < 50) return;
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      const midX = w * 0.5;
+      const cy = h * 0.5;
+
+      // Divider
+      ctx.strokeStyle = '#1e293b';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath(); ctx.moveTo(midX, 20); ctx.lineTo(midX, h - 20); ctx.stroke();
+      ctx.setLineDash([]);
+
+      if (currentHbondPair === 'nitrophenol') {
+        // LEFT: o-Nitrophenol
+        const cx1 = midX * 0.5;
+        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 13px monospace'; ctx.textAlign = 'center';
+        ctx.fillText('o-Nitrophenol (Chelated)', cx1, 35);
+        ctx.fillStyle = '#94a3b8'; ctx.font = '13px monospace';
+        ctx.fillText('Intramolecular 6-Membered Ring (BP: 216°C)', cx1, 52);
+
+        drawBenzeneRing(ctx, cx1 - 25, cy + 10, 32);
+
+        // OH group at C1
+        const ohX = cx1 + 15, ohY = cy - 25;
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('O—H', ohX, ohY);
+
+        // NO2 group at C2
+        const noX = cx1 + 20, noY = cy + 30;
+        ctx.fillStyle = '#38bdf8'; ctx.fillText('N', noX, noY);
+        ctx.fillText('O', noX + 25, noY - 10);
+        ctx.fillText('O⁻', noX + 25, noY + 15);
+
+        // CHELATION H-BOND (Intramolecular dash)
+        ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 3; ctx.setLineDash([4, 4]);
+        ctx.beginPath(); ctx.moveTo(ohX + 18, ohY - 4); ctx.lineTo(noX + 22, noY - 14); ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 13px monospace'; ctx.fillText('Chelation H-Bond', cx1 + 45, cy - 2);
+
+        ctx.fillStyle = '#10b981'; ctx.font = 'bold 13px monospace';
+        ctx.fillText('Steam Volatile: Separable by steam distillation!', cx1, h - 20);
+
+        // RIGHT: p-Nitrophenol
+        const cx2 = midX + midX * 0.5;
+        ctx.fillStyle = '#38bdf8'; ctx.font = 'bold 13px monospace';
+        ctx.fillText('p-Nitrophenol (Associated)', cx2, 35);
+        ctx.fillStyle = '#94a3b8'; ctx.font = '13px monospace';
+        ctx.fillText('Intermolecular Polymeric Network (BP: 279°C)', cx2, 52);
+
+        // Molecule 1
+        drawBenzeneRing(ctx, cx2 - 50, cy, 26);
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('H—O', cx2 - 90, cy);
+        ctx.fillStyle = '#38bdf8'; ctx.fillText('NO₂', cx2 - 15, cy);
+
+        // Molecule 2
+        drawBenzeneRing(ctx, cx2 + 55, cy, 26);
+        ctx.fillStyle = '#ffffff'; ctx.fillText('H—O', cx2 + 15, cy);
+        ctx.fillStyle = '#38bdf8'; ctx.fillText('NO₂', cx2 + 90, cy);
+
+        // Intermolecular H-Bond between Mol1 NO2 and Mol2 HO
+        ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 3; ctx.setLineDash([4, 4]);
+        ctx.beginPath(); ctx.moveTo(cx2 - 5, cy - 2); ctx.lineTo(cx2 + 15, cy - 2); ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = '#38bdf8'; ctx.font = 'bold 13px monospace'; ctx.fillText('Intermolecular H-Bond', cx2 + 5, cy - 18);
+
+        ctx.fillStyle = '#ef4444'; ctx.font = 'bold 13px monospace';
+        ctx.fillText('High BP (+63°C higher) & High Water Solubility', cx2, h - 20);
+      } else {
+        // Ethanol vs Ether
+        const cx1 = midX * 0.5;
+        ctx.fillStyle = '#10b981'; ctx.font = 'bold 13px monospace'; ctx.textAlign = 'center';
+        ctx.fillText('Ethanol (C₂H₅—O—H)', cx1, 35);
+        ctx.fillStyle = '#94a3b8'; ctx.font = '13px monospace';
+        ctx.fillText('Intermolecular H-Bonds (BP: +78.4°C, Liquid)', cx1, 52);
+
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace';
+        ctx.fillText('C₂H₅—O—H ···· O(C₂H₅)—H ···· O(C₂H₅)—H', cx1, cy);
+        ctx.fillStyle = '#10b981'; ctx.font = 'bold 13px monospace';
+        ctx.fillText('Extensive H-bonding network requires large heat to boil', cx1, h - 25);
+
+        const cx2 = midX + midX * 0.5;
+        ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 13px monospace';
+        ctx.fillText('Dimethyl Ether (CH₃—O—CH₃)', cx2, 35);
+        ctx.fillStyle = '#64748b'; ctx.font = '13px monospace';
+        ctx.fillText('No H on Electronegative Atom (BP: -24°C, Gas)', cx2, 52);
+
+        ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 13px monospace';
+        ctx.fillText('H₃C—O—CH₃      H₃C—O—CH₃', cx2, cy);
+        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 13px monospace';
+        ctx.fillText('(Only weak dipole-dipole forces; No H-Bonding!)', cx2, cy + 25);
+        ctx.fillStyle = '#ef4444'; ctx.font = 'bold 13px monospace';
+        ctx.fillText('Boiling point difference = 102.4°C!', cx2, h - 25);
+      }
+      ctx.textAlign = 'left';
+    }
+
+    function drawBenzeneRing(ctx, cx, cy, r) {
+      ctx.strokeStyle = '#64748b'; ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      for (let i = 0; i < 6; i++) {
+        const ang = (i * Math.PI) / 3;
+        const x = cx + r * Math.cos(ang);
+        const y = cy + r * Math.sin(ang);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.stroke();
+
+      // Inner aromatic ring
+      ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 1.5; ctx.setLineDash([3, 3]);
+      ctx.beginPath(); ctx.arc(cx, cy, r * 0.55, 0, Math.PI * 2); ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    // =========================================================================
+    // TAB 7: MASTER 3D MOLECULAR SANDBOX
+    // =========================================================================
+    let currentSbGeom = 'tetrahedral';
+
+    function setSandboxGeom(geom) {
+      currentSbGeom = geom;
+      ['Linear', 'Trig', 'Tetra', 'Octa'].forEach(g => {
+        const b = document.getElementById(`btnSb${g}`);
+        if (b) {
+          const isMatch = (g === 'Linear' && geom === 'linear') || (g === 'Trig' && geom === 'trigonal') || (g === 'Tetra' && geom === 'tetrahedral') || (g === 'Octa' && geom === 'octahedral');
+          b.className = isMatch ? 'px-2 py-1 rounded bg-purple-600/30 border border-purple-500/50 text-purple-300 font-mono font-semibold' : 'px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold';
+        }
+      });
+
+      const badge = document.getElementById('sbLiveBadge');
+      const ledger = document.getElementById('sbMetricsLedger');
+
+      if (geom === 'linear') {
+        badge.textContent = 'Linear: sp (180°) · BeCl₂ / CO₂';
+        ledger.innerHTML = `
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Steric Number:</span><span class="text-sky-400 font-bold">2 (sp)</span></div>
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Bond Angle:</span><span class="text-emerald-400 font-bold">180°</span></div>
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Net Dipole:</span><span class="text-purple-400 font-bold">μ = 0 (Symmetric)</span></div>
+        `;
+      } else if (geom === 'trigonal') {
+        badge.textContent = 'Trigonal Planar: sp² (120°) · BF₃ / SO₃';
+        ledger.innerHTML = `
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Steric Number:</span><span class="text-sky-400 font-bold">3 (sp²)</span></div>
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Bond Angle:</span><span class="text-emerald-400 font-bold">120°</span></div>
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Net Dipole:</span><span class="text-purple-400 font-bold">μ = 0 (Planar Cancel)</span></div>
+        `;
+      } else if (geom === 'tetrahedral') {
+        badge.textContent = 'Tetrahedral: sp³ (109.5°) · CH₄ / CCl₄';
+        ledger.innerHTML = `
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Steric Number:</span><span class="text-sky-400 font-bold">4 (sp³)</span></div>
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Bond Angle:</span><span class="text-emerald-400 font-bold">109°28' (109.5°)</span></div>
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Net Dipole:</span><span class="text-purple-400 font-bold">μ = 0 (Tetrahedral Cancel)</span></div>
+        `;
+      } else {
+        badge.textContent = 'Octahedral: sp³d² (90°) · SF₆';
+        ledger.innerHTML = `
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Steric Number:</span><span class="text-sky-400 font-bold">6 (sp³d²)</span></div>
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Bond Angles:</span><span class="text-emerald-400 font-bold">90° and 180°</span></div>
+          <div class="flex justify-between bg-black/30 p-2 rounded border border-border"><span>Net Dipole:</span><span class="text-purple-400 font-bold">μ = 0 (Highly Symmetric)</span></div>
+        `;
+      }
+      drawSandbox();
+    }
+
+    function drawSandbox() {
+      const canvas = document.getElementById('canvasSandbox');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+      if (!ctx || w < 50) return;
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      const cx = w * 0.5;
+      const cy = h * 0.52;
+      const scale = Math.min(w * 0.35, 65);
+
+      const cP = project3D(0, 0, 0, cx, cy, scale, orbitSandbox);
+
+      let ligands = [];
+      if (currentSbGeom === 'linear') {
+        ligands = [
+          { ...project3D(-1.8, 0, 0, cx, cy, scale, orbitSandbox), label: 'Cl' },
+          { ...project3D(1.8, 0, 0, cx, cy, scale, orbitSandbox), label: 'Cl' }
+        ];
+      } else if (currentSbGeom === 'trigonal') {
+        const r = 1.6;
+        ligands = [
+          { ...project3D(r * Math.cos(0), r * Math.sin(0), 0, cx, cy, scale, orbitSandbox), label: 'F' },
+          { ...project3D(r * Math.cos(2 * Math.PI / 3), r * Math.sin(2 * Math.PI / 3), 0, cx, cy, scale, orbitSandbox), label: 'F' },
+          { ...project3D(r * Math.cos(4 * Math.PI / 3), r * Math.sin(4 * Math.PI / 3), 0, cx, cy, scale, orbitSandbox), label: 'F' }
+        ];
+      } else if (currentSbGeom === 'tetrahedral') {
+        ligands = [
+          { ...project3D(1.1, 1.1, 1.1, cx, cy, scale, orbitSandbox), label: 'H' },
+          { ...project3D(-1.1, -1.1, 1.1, cx, cy, scale, orbitSandbox), label: 'H' },
+          { ...project3D(-1.1, 1.1, -1.1, cx, cy, scale, orbitSandbox), label: 'H' },
+          { ...project3D(1.1, -1.1, -1.1, cx, cy, scale, orbitSandbox), label: 'H' }
+        ];
+      } else if (currentSbGeom === 'octahedral') {
+        const d = 1.6;
+        ligands = [
+          { ...project3D(d, 0, 0, cx, cy, scale, orbitSandbox), label: 'F' },
+          { ...project3D(-d, 0, 0, cx, cy, scale, orbitSandbox), label: 'F' },
+          { ...project3D(0, d, 0, cx, cy, scale, orbitSandbox), label: 'F' },
+          { ...project3D(0, -d, 0, cx, cy, scale, orbitSandbox), label: 'F' },
+          { ...project3D(0, 0, d, cx, cy, scale, orbitSandbox), label: 'F' },
+          { ...project3D(0, 0, -d, cx, cy, scale, orbitSandbox), label: 'F' }
+        ];
+      }
+
+      // Draw Bonds
+      ligands.forEach(lig => {
+        ctx.strokeStyle = '#64748b'; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.moveTo(cP.px, cP.py); ctx.lineTo(lig.px, lig.py); ctx.stroke();
+
+        ctx.fillStyle = '#38bdf8';
+        ctx.beginPath(); ctx.arc(lig.px, lig.py, 12, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#0f172a'; ctx.font = 'bold 13px monospace';
+        ctx.textAlign = 'center'; ctx.fillText(lig.label, lig.px, lig.py + 3);
+      });
+
+      // Central Atom
+      ctx.fillStyle = '#8b5cf6';
+      ctx.beginPath(); ctx.arc(cP.px, cP.py, 16, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace';
+      ctx.textAlign = 'center'; ctx.fillText('M', cP.px, cP.py + 4);
+      ctx.textAlign = 'left';
+    }
+
+    // =========================================================================
+    // TAB 8: IIT-JEE QUESTION HUB
+    // =========================================================================
+    function filterSubTab(st) {
+      currentSubTabFilter = st;
+      const filters = ['all', 2, 3, 4, 5, 6];
+      filters.forEach(f => {
+        const btn = document.getElementById(f === 'all' ? 'btnQFilterAll' : `btnQFilter${f}`);
+        if (btn) {
+          btn.className = (f === st) ? 'px-3 py-1.5 rounded-lg bg-purple-500/20 text-purple-300 border border-purple-500/40 font-semibold' : 'px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold';
+        }
+      });
+      renderQuestions();
+    }
+
+    function filterQuestions() {
+      renderQuestions();
+    }
+
+    function validateQuestionBank() {
+      const bank = window.JEE_QUESTIONS_DATA || [];
+      const errors = [];
+      const seen = new Set();
+      const required = ['id','q','options','formula','steps','ans','trap','teacherCheck','takeaway','helperTags','answerAudit','answerAuditNote','sourceAudit','sourceAuditNote','simFidelity','simFidelityNote','targetTab','simBindingRefs'];
+      bank.forEach(q => {
+        required.forEach(key => {
+          if (q[key] === undefined || q[key] === null || q[key] === '') errors.push(`${q.id || '<missing>'}: missing ${key}`);
+        });
+        if (seen.has(q.id)) errors.push(`${q.id}: duplicate id`);
+        seen.add(q.id);
+        if (!document.getElementById(q.targetTab)) errors.push(`${q.id}: target tab ${q.targetTab} does not exist`);
+        if (q.answerAudit === 'PASS' && !(q.options || []).some(o => o.key === q.correct)) errors.push(`${q.id}: PASS answer key not present in options`);
+        if (['EXACT','CONSTRAINT_FAITHFUL'].includes(q.simFidelity) && !(q.simBindingRefs || []).length) errors.push(`${q.id}: mapped simulator state has no binding refs`);
+        if (['CONCEPT_ONLY','UNAVAILABLE'].includes(q.simFidelity) && (q.simBindingRefs || []).length) errors.push(`${q.id}: concept/unavailable mapping must not inject bindings`);
+      });
+      if (errors.length) {
+        const banner = document.createElement('div');
+        banner.id = 'questionBankIntegrityError';
+        banner.className = 'fixed left-3 right-3 bottom-3 z-[100] p-3 rounded-xl bg-red-950 border border-red-500 text-red-100 text-[13px] shadow-2xl';
+        banner.textContent = `Question-bank integrity failure (${errors.length}): ${errors.slice(0,4).join(' | ')}`;
+        document.body.appendChild(banner);
+      }
+      return errors;
+    }
+
+    function auditBadge(q) {
+      const answer = q.answerAudit === 'PASS'
+        ? '<span class="px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 text-[13px] font-mono">ANSWER PASS</span>'
+        : `<span class="px-2 py-0.5 rounded bg-amber-500/15 border border-amber-500/40 text-amber-300 text-[13px] font-mono">ANSWER ${q.answerAudit || 'PENDING'}</span>`;
+      const sourceState = q.sourceAudit === 'SOURCE_UNVERIFIED' ? 'SOURCE UNVERIFIED' : 'SOURCE PENDING';
+      const sourceClass = q.sourceAudit === 'SOURCE_UNVERIFIED'
+        ? 'bg-red-500/10 border-red-500/40 text-red-300'
+        : 'bg-slate-800 border-slate-600 text-slate-300';
+      const source = `<span class="px-2 py-0.5 rounded border text-[13px] font-mono ${sourceClass}" title="${q.sourceAuditNote || ''}">${sourceState}</span>`;
+      const fidelity = `<span class="px-2 py-0.5 rounded bg-sky-500/10 border border-sky-500/30 text-sky-300 text-[13px] font-mono">${q.simFidelity}</span>`;
+      return answer + source + fidelity;
+    }
+
+    function renderQuestions() {
+      const container = document.getElementById('questionsContainer');
+      if (!container || !window.JEE_QUESTIONS_DATA) return;
+
+      const query = (document.getElementById('qSearchInput').value || '').toLowerCase();
+      let list = window.JEE_QUESTIONS_DATA;
+
+      if (currentSubTabFilter !== 'all') {
+        list = list.filter(q => q.subtab === currentSubTabFilter);
+      }
+
+      if (query.trim()) {
+        list = list.filter(q => 
+          q.q.toLowerCase().includes(query) || 
+          q.source.toLowerCase().includes(query) || 
+          q.subtabName.toLowerCase().includes(query) ||
+          q.formula.toLowerCase().includes(query)
+        );
+      }
+
+      if (list.length === 0) {
+        container.innerHTML = `<div class="p-8 text-center text-slate-400">No questions found matching the filter.</div>`;
+        return;
+      }
+
+      container.innerHTML = list.map(q => {
+        return `
+          <div class="bg-slate-900/90 border border-border rounded-xl p-5 space-y-4 hover:border-slate-700 transition" id="qcard-${q.id}">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border/50 pb-3">
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono font-bold text-[13px] border border-purple-500/30">
+                  ${q.id}
+                </span>
+                <span class="text-[13px] font-semibold text-slate-300">${q.source}</span>
+                <span class="flex flex-wrap gap-1">${auditBadge(q)}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-[13px] px-2 py-0.5 rounded bg-slate-800 text-slate-400 font-mono">
+                  ${q.subtabName}
+                </span>
+                <button onclick="loadQuestionIntoSimulator('${q.id}')" class="touch-target px-3 py-1 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/50 text-purple-300 rounded-lg text-[13px] font-bold transition flex items-center gap-1.5 shadow-sm">
+                  <span>🚀</span>
+                  <span>${q.simFidelity === 'CONCEPT_ONLY' ? 'Open Concept Simulator' : 'Load Bound Constraints'}</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="text-sm text-slate-200 leading-relaxed font-sans">
+              ${q.q}
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              ${(q.options || []).map(opt => `
+                <button onclick="checkQuestionOption('${q.id}', '${opt.key}')" id="btnOpt-${q.id}-${opt.key}" class="text-left p-3 rounded-xl bg-slate-950/60 border border-border hover:border-slate-600 text-[13px] text-slate-300 transition flex items-start gap-2.5">
+                  <span class="w-5 h-5 rounded-full bg-slate-800 border border-border flex items-center justify-center font-bold text-[13px] flex-shrink-0">
+                    ${opt.key}
+                  </span>
+                  <span>${opt.text}</span>
+                </button>
+              `).join('')}
+            </div>
+
+            <div id="feedback-${q.id}" class="hidden p-3 rounded-xl text-[13px]"></div>
+
+            <div class="pt-3 border-t border-slate-800">
+              <button onclick="toggleSolution('${q.id}')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl bg-emerald-950/30 border border-emerald-500/30 hover:bg-emerald-950/50 transition text-left text-[13px] font-semibold text-emerald-300">
+                <div class="flex items-center gap-2">
+                  <span>🏫</span>
+                  <span>Teacher Chalkboard &amp; Step-by-Step Derivation</span>
+                </div>
+                <span id="solIcon-${q.id}" class="text-[13px] text-emerald-400 font-mono">▶ View Chalkboard</span>
+              </button>
+              
+              <div id="solContent-${q.id}" class="hidden mt-3 p-4 rounded-xl border border-emerald-500/40 bg-[#12221a] text-slate-100 shadow-2xl font-sans space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-emerald-500/30 pb-2.5 text-[13px] font-mono text-emerald-300">
+                  <span class="flex items-center gap-1.5 font-bold"><span>📋</span> TEACHER CHALKBOARD &middot; PEDAGOGICAL RESOLUTION</span>
+                  <span class="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">${q.formula}</span>
+                </div>
+
+                <div class="space-y-1">
+                  <div class="text-[13px] font-bold text-amber-300 font-mono uppercase tracking-wider">Step 1 &middot; 3D Molecular Model &amp; Electronic Configuration</div>
+                  <div class="text-[13px] text-slate-200 bg-black/40 p-2.5 rounded-lg border border-emerald-500/20 font-mono">
+                    ${q.steps && q.steps[0] ? q.steps[0] : 'Determine electronic configuration, steric number, and spatial geometry.'}
+                  </div>
+                </div>
+
+                <div class="space-y-1">
+                  <div class="text-[13px] font-bold text-sky-300 font-mono uppercase tracking-wider">Step 2 &middot; Quantum / Symmetry Resolution</div>
+                  <div class="text-[13px] text-slate-200 bg-black/40 p-2.5 rounded-lg border border-emerald-500/20 space-y-1.5 font-mono">
+                    ${(q.steps || []).slice(1).map((st, i) => `<div class="flex items-start gap-2"><span class="text-sky-400 text-[13px]">${i + 2}.</span><span>${st}</span></div>`).join('')}
+                  </div>
+                </div>
+
+                <div class="p-3 bg-red-950/50 border border-red-500/50 rounded-lg text-[13px] space-y-1">
+                  <div class="flex items-center gap-1.5 text-red-400 font-bold font-mono">
+                    <span>⚠️</span>
+                    <span>EXAMINER TRAP &amp; FALLACY CRITIQUE (RED PEN):</span>
+                  </div>
+                  <div class="text-red-200 leading-relaxed font-sans">
+                    ${q.trap}
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                  <div class="p-3 bg-sky-950/40 border border-sky-500/35 rounded-lg text-[13px] space-y-1">
+                    <div class="text-sky-300 font-bold font-mono">INDEPENDENT CHECK</div>
+                    <div class="text-slate-200 leading-relaxed">${q.teacherCheck}</div>
+                  </div>
+                  <div class="p-3 bg-violet-950/40 border border-violet-500/35 rounded-lg text-[13px] space-y-1">
+                    <div class="text-violet-300 font-bold font-mono">TRANSFER TAKEAWAY</div>
+                    <div class="text-slate-200 leading-relaxed">${q.takeaway}</div>
+                  </div>
+                </div>
+
+                <div class="p-3 bg-slate-950/50 border border-slate-700 rounded-lg text-[13px] space-y-1.5 font-mono">
+                  <div><span class="text-slate-400">SOURCE AUDIT:</span> <span class="${q.sourceAudit === 'SOURCE_UNVERIFIED' ? 'text-red-300' : 'text-slate-200'}">${q.sourceAudit}</span></div>
+                  <div class="text-slate-400">${q.sourceAuditNote}</div>
+                  <div><span class="text-slate-400">SIMULATOR FIDELITY:</span> <span class="text-sky-300">${q.simFidelity}</span></div>
+                  <div class="text-slate-400">${q.simFidelityNote}</div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-emerald-500/30 text-[13px]">
+                  <span class="font-mono text-slate-400">${q.sourceAudit === 'SOURCE_UNVERIFIED' ? 'Local audited key' : 'Attributed exam key'}: <strong class="text-white">${q.correct ? `Option (${q.correct})` : 'WITHHELD'}</strong></span>
+                  <span class="font-mono font-bold ${q.answerAudit === 'PASS' ? 'text-emerald-400 bg-emerald-500/20 border-emerald-500/40' : 'text-amber-300 bg-amber-500/10 border-amber-500/40'} px-2.5 py-1 rounded border">Answer Audit ${q.answerAudit}: ${q.ans}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function checkQuestionOption(qId, selectedKey) {
+      const q = (window.JEE_QUESTIONS_DATA || []).find(item => item.id === qId);
+      if (!q) return;
+
+      const fb = document.getElementById(`feedback-${qId}`);
+      if (q.answerAudit !== 'PASS' || !q.correct) {
+        if (fb) {
+          fb.classList.remove('hidden');
+          fb.className = 'p-3.5 rounded-xl text-[13px] bg-amber-950/60 border border-amber-500/60 text-amber-100 space-y-1.5';
+          fb.innerHTML = `<div><strong>⚠️ Withheld from scoring · Answer audit ${q.answerAudit || 'PENDING'}.</strong></div><div>${q.answerAuditNote || 'This item requires review.'}</div><div class="font-mono text-amber-300">${q.ans || ''}</div>`;
+        }
+        return;
+      }
+
+      const isCorrect = (selectedKey === q.correct);
+      (q.options || []).forEach(opt => {
+        const btn = document.getElementById(`btnOpt-${qId}-${opt.key}`);
+        if (!btn) return;
+        if (opt.key === q.correct) {
+          btn.className = 'text-left p-3 rounded-xl bg-emerald-950/60 border border-emerald-500/90 text-[13px] text-emerald-200 transition flex items-start gap-2.5 shadow-md shadow-emerald-950/50';
+        } else if (opt.key === selectedKey && !isCorrect) {
+          btn.className = 'text-left p-3 rounded-xl bg-red-950/60 border border-red-500/90 text-[13px] text-red-200 transition flex items-start gap-2.5 shadow-md shadow-red-950/50';
+        } else {
+          btn.className = 'text-left p-3 rounded-xl bg-slate-950/40 border border-border/40 text-[13px] text-slate-500 transition flex items-start gap-2.5';
+        }
+      });
+
+      if (fb) {
+        fb.classList.remove('hidden');
+        if (isCorrect) {
+          fb.className = 'p-3.5 rounded-xl text-[13px] bg-emerald-950/60 border border-emerald-500/60 text-emerald-200 space-y-1';
+          fb.innerHTML = `<div><strong>✅ Correct Option (${q.correct}).</strong></div><div class="text-[13px] text-emerald-300 font-mono">${q.ans}</div>`;
+        } else {
+          fb.className = 'p-3.5 rounded-xl text-[13px] bg-red-950/60 border border-red-500/60 text-red-200 space-y-1.5';
+          fb.innerHTML = `<div><strong>❌ Option (${selectedKey}) is incorrect.</strong> The locally audited answer is <strong>Option (${q.correct})</strong>.</div><div class="text-amber-300 font-semibold">⚠️ Trap Insight: ${q.trap}</div>`;
+        }
+      }
+    }
+    function toggleSolution(qId) {
+      const el = document.getElementById(`solContent-${qId}`);
+      const icon = document.getElementById(`solIcon-${qId}`);
+      if (el) {
+        const isHidden = el.classList.contains('hidden');
+        el.classList.toggle('hidden', !isHidden);
+        if (icon) icon.textContent = isHidden ? '▼ Close Chalkboard' : '▶ View Chalkboard';
+      }
+    }
+
+    window.addEventListener('load', () => {
+      validateQuestionBank();
+      renderQuestions();
+      setupOrbit(document.getElementById('canvasVsepr3D'), drawVsepr3D, orbitVsepr);
+      setupOrbit(document.getElementById('canvasDipole'), drawDipole, orbitDipole);
+      setupOrbit(document.getElementById('canvasPCl5'), drawPCl5, orbitPCl5);
+      setupOrbit(document.getElementById('canvasSandbox'), drawSandbox, orbitSandbox);
+      setVseprMolecule('XeF4');
+      setLewisMolecule('O3');
+      setDipolePair('NH3_NF3');
+      setPCl5Mode('3D');
+      setHbondPair('nitrophenol');
+      setSandboxGeom('tetrahedral');
+      updateMot();
+      switchTab('tab-vsepr');
+    });
+
+    window.addEventListener('resize', () => {
+      if (currentTab === 'tab-lewis') drawLewis();
+      else if (currentTab === 'tab-vsepr') drawVsepr3D();
+      else if (currentTab === 'tab-dipole') drawDipole();
+      else if (currentTab === 'tab-hybridization') drawPCl5();
+      else if (currentTab === 'tab-mot') drawMot();
+      else if (currentTab === 'tab-hbonding') drawHbond();
+      else if (currentTab === 'tab-sandbox') drawSandbox();
+    });
+  </script>
+</body>
+</html>

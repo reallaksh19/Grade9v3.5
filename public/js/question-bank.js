@@ -226,6 +226,17 @@ function accentFor(id){
   return 'hsl('+(hash%360)+' 62% 52%)';
 }
 function stat(label,value){const d=el('div','qb-stat');d.append(el('b','',String(value)),el('span','',label));return d;}
+const CANONICAL_SUBJECT_ORDER = ['Physics', 'Chemistry', 'Mathematics'];
+const SUBJECT_ICONS = { 'Physics': '🔬', 'Chemistry': '⚗️', 'Mathematics': '📐' };
+
+function sortSubjects(subjects){
+  return [...subjects].sort((a, b) => {
+    const ai = CANONICAL_SUBJECT_ORDER.indexOf(a.label || a.id || a);
+    const bi = CANONICAL_SUBJECT_ORDER.indexOf(b.label || b.id || b);
+    return (ai !== -1 ? ai : 999) - (bi !== -1 ? bi : 999);
+  });
+}
+
 function browsable(rows){return rows.filter(row=>row.question_count>0);}
 
 function renderStats(){
@@ -242,7 +253,7 @@ function renderCollections(){
   all.type='button';
   all.append(el('h3','','Canonical Competitive Bank'),el('p','',catalog.counts.questions+' canonical learner-usable records generated from repository subject banks'));
   const meta=el('div','qb-card-meta');
-  browsable(catalog.subjects).forEach(s=>meta.append(el('span','',s.label+' · '+s.question_count)));
+  sortSubjects(browsable(catalog.subjects)).forEach(s=>meta.append(el('span','',s.label+' · '+s.question_count)));
   all.append(meta);
   all.addEventListener('click',()=>setState({view:'',subject:'',topic:'',subtopic:'',difficulty:'',exam:'',type:'',q:'',mode:'browse'}));
   els.collections.append(all);
@@ -257,7 +268,7 @@ function renderCollections(){
     els.collections.append(button);
   });
   els.subjects.replaceChildren();
-  browsable(catalog.subjects).forEach(s=>{
+  sortSubjects(browsable(catalog.subjects)).forEach(s=>{
     const button=el('button','qb-subject-card');
     button.type='button';
     button.append(el('h3','',s.label),el('p','',s.question_count+' canonical questions'));
@@ -267,16 +278,15 @@ function renderCollections(){
 }
 function renderTabs(){
   els.subjectTabs.replaceChildren();
-  const ICONS = ['⚗️', '📐', '🔬', '🧬', '🪐'];
   const ncertCount = summaries.filter(q => q.exam === 'NCERT' || (q.tags || []).includes('NCERT')).length;
   const core2Count = summaries.filter(q => (q.id && q.id.startsWith('1D-Q')) || (q.tags || []).includes('core2') || (q.tags || []).includes('CORE2')).length;
   const tabs=[
     {id:'',label:'All Questions',count:catalog.counts.questions,icon:'⚡'},
-    ...browsable(catalog.subjects).map((s, idx)=>({
+    ...sortSubjects(browsable(catalog.subjects)).map(s=>({
       id:s.id,
       label:s.label,
       count:s.question_count,
-      icon:s.icon || ICONS[idx % ICONS.length] || '📚'
+      icon:s.icon || SUBJECT_ICONS[s.label] || SUBJECT_ICONS[s.id] || '📚'
     })),
     {id:'core2',label:'Core 2 Challenges',count:core2Count || 18,icon:'🎯'},
     {id:'iit-jee',label:'IIT-JEE PYQs',count:215,icon:'🏆'},
@@ -397,7 +407,7 @@ function fillSelect(select,rows){
   rows.forEach(([value,label])=>{const option=document.createElement('option');option.value=value;option.textContent=label;select.append(option);});
 }
 function renderFilterOptions(){
-  fillSelect(els.subject,browsable(catalog.subjects).map(s=>[s.id,s.label]));
+  fillSelect(els.subject,sortSubjects(browsable(catalog.subjects)).map(s=>[s.id,s.label]));
   fillSelect(els.topic,browsable(catalog.topics).map(t=>[t.id,t.label]));
   const unique=key=>[...new Set(summaries.map(q=>key==='band'?q.difficulty.band:q[key]))].sort((a,b)=>String(a).localeCompare(String(b)));
   fillSelect(els.difficulty,unique('band').map(v=>[v,v]));

@@ -629,7 +629,8 @@ def generate_home(registry: list[dict], rel_root: str = "") -> str:
     subject_cards = []
     tag_classes = {"Physics": "g9-tag-physics", "Chemistry": "g9-tag-chemistry", "Mathematics": "g9-tag-math"}
 
-    for subj, meta in sorted(subjects_map.items()):
+    CANONICAL_SUBJECT_ORDER = ["Physics", "Chemistry", "Mathematics"]
+    for subj, meta in sorted(subjects_map.items(), key=lambda item: (CANONICAL_SUBJECT_ORDER.index(item[0]) if item[0] in CANONICAL_SUBJECT_ORDER else 999, item[0])):
         tag_cls = tag_classes.get(subj, "g9-tag-physics")
         subject_cards.append(f"""
     <a class="g9-card" href="{meta['folder']}/index.html">
@@ -781,6 +782,8 @@ TOPIC_TITLES = {
     "chem.redox": "Redox Reactions",
     "math.polynomials": "Polynomials & Remainder Theorem",
     "math.coordinate-geometry": "Coordinate Geometry",
+    "math.euclids-geometry": "Euclid's Geometry",
+    "math.theory-of-equations": "Theory of Equations",
 }
 
 
@@ -898,11 +901,17 @@ def generate_topic_workspace(topic_id: str, topic_title: str, subject: str, bund
         action_buttons = [learn_btn, interactive_btn, practice_btn]
         action_row = "\n      ".join(btn for btn in action_buttons if btn)
 
+        display_title = c_title
+        if c_title == "Math Euclid Geometry":
+            display_title = "Axioms, Postulates & Deductive Proofs"
+        elif c_title == "Math Theory Of Equations":
+            display_title = "Polynomial Roots & Vieta's Relations"
+
         concept_sections.append(f"""
   <div class="g9-concept-card" id="{html.escape(c_ref)}">
     <div class="g9-concept-header">
-      <span class="g9-concept-badge">{html.escape(c_title)}</span>
-      <h2 class="g9-concept-title">{html.escape(c_title)}</h2>
+      <span class="g9-concept-badge">Core Concept</span>
+      <h2 class="g9-concept-title">{html.escape(display_title)}</h2>
       <p class="g9-concept-desc">Organised learning path connecting mathematical construction, authentic past-paper practice, and visual simulation.</p>
     </div>
     <div class="g9-action-row">
@@ -958,11 +967,15 @@ def main():
 
     # 3. Generate Subject Hubs
     # 3. Generate Subject Hubs (dynamically discovered from registry)
-    discovered_subjects = sorted(list(set(
-        rec.get("classification", {}).get("subject_ref")
-        for rec in registry
-        if rec.get("audience") == "LEARNER" and rec.get("classification", {}).get("subject_ref") not in (None, "Common", "Internal")
-    )))
+    CANONICAL_SUBJECT_ORDER = ["Physics", "Chemistry", "Mathematics"]
+    discovered_subjects = sorted(
+        list(set(
+            rec.get("classification", {}).get("subject_ref")
+            for rec in registry
+            if rec.get("audience") == "LEARNER" and rec.get("classification", {}).get("subject_ref") not in (None, "Common", "Internal")
+        )),
+        key=lambda s: (CANONICAL_SUBJECT_ORDER.index(s) if s in CANONICAL_SUBJECT_ORDER else 999, s)
+    )
     if not discovered_subjects:
         discovered_subjects = ["Physics", "Chemistry", "Mathematics"]
 
