@@ -1,11 +1,17 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import tempfile
 import unittest
 from pathlib import Path
 
 from Shared.tools import interactive_chromium_gate as gate
+
+
+REPO = Path(__file__).resolve().parents[1]
+PILOT_PUBLICATION = REPO / "publication" / "mathematics" / "surface-areas-and-volumes"
+PILOT_RECEIPTS = REPO / "evidence" / "reviews" / "surface-areas-and-volumes"
 
 
 class InteractiveChromiumGateTests(unittest.TestCase):
@@ -61,6 +67,15 @@ class InteractiveChromiumGateTests(unittest.TestCase):
             errors = gate.validate(html, receipt)
             self.assertIn("CHROMIUM_AUDIT_NOT_PASS", errors)
             self.assertIn("CHECK_NOT_PASS:touch_targets", errors)
+
+    def test_surface_areas_volumes_interactive_artifact_requires_chromium_receipt(self):
+        if not PILOT_PUBLICATION.is_dir():
+            return
+        for html in sorted(PILOT_PUBLICATION.glob("interactive*.html")):
+            receipt = PILOT_RECEIPTS / (html.stem + ".chromium.json")
+            self.assertTrue(receipt.is_file(), f"missing Chromium receipt for {html}")
+            errors = gate.validate(html, json.loads(receipt.read_text(encoding="utf-8")))
+            self.assertEqual(errors, [], f"{html}: {errors}")
 
 
 if __name__ == "__main__":
