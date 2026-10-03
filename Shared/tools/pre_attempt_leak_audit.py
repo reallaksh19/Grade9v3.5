@@ -22,7 +22,7 @@ def _read_asset_text(path: Path) -> str:
     if path.suffix.lower() != ".svg":
         return raw
     try:
-        root = ET.fromstring(raw)
+        root = ET.fromstring(html.unescape(raw))
     except ET.ParseError:
         return raw
     visible: list[str] = []
