@@ -1,0 +1,86 @@
+{
+  "schema": "qrt-short-prompt-workflow/v1",
+  "version": "1.0.0",
+  "purpose": "Turn a short owner prompt containing subject/grade/topic/questions into a governed QRT authoring work order without asking the owner for fields the system is designed to derive.",
+  "clarification_policy": {
+    "ask_owner_only_when": "The missing value cannot be established from repository/source evidence and materially changes provenance, personalization, or product role.",
+    "no_silent_personalization_default": true,
+    "default_generic_requires_explicit_owner_choice": true,
+    "owner_questions": [
+      {
+        "id": "LEARNER_PROFILE",
+        "when": "learner_input is absent",
+        "prompt": "What does the learner already know for this topic? Give idea-level DEMONSTRATED / UNCERTAIN / MISSING states, or explicitly choose USE_DEFAULT_GENERIC.",
+        "why": "Learner-specific X/Y support cannot honestly claim a demonstrated bridge without learner evidence."
+      },
+      {
+        "id": "QUESTION_PROVENANCE",
+        "when": "provenance is absent",
+        "prompt": "Are these questions OWNER_SUPPLIED, AUTHORED_PRACTICE, copied from an EXTERNAL_SOURCE, or ADAPTED from a source?",
+        "why": "Core role and source-custody claims depend on provenance."
+      },
+      {
+        "id": "SOURCE_DETAILS",
+        "when": "provenance.kind is EXTERNAL_SOURCE or ADAPTED and provenance.source_note is absent",
+        "prompt": "What is the source/locator? If unknown, answer UNKNOWN and the agent must research source custody.",
+        "why": "The system must not invent exam/textbook identity or source custody."
+      },
+      {
+        "id": "PRODUCT_INTENT",
+        "when": "product_intent is absent",
+        "prompt": "Should these be preserved as owner/source questions (PRESERVE_OWNER_QUESTIONS) or treated as authored practice (AUTHORED_PRACTICE)?",
+        "why": "PRESERVE_OWNER_QUESTIONS routes to Core2; AUTHORED_PRACTICE routes to Core2A."
+      }
+    ]
+  },
+  "never_ask_owner_for": [
+    "difficulty band or five difficulty components",
+    "primary or secondary cognitive demand",
+    "QRT template id",
+    "X, Y, Z, or W",
+    "capability/family mapping",
+    "reasoning route or crux move",
+    "hint/figure/misconception design",
+    "render path implementation details"
+  ],
+  "role_routing": [
+    {
+      "product_intent": "PRESERVE_OWNER_QUESTIONS",
+      "role": "CORE2",
+      "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0",
+      "rule": "Preserve supplied wording/custody. OWNER_SUPPLIED carries no invented exam identity; external/adapted material requires custody research before source claims."
+    },
+    {
+      "product_intent": "AUTHORED_PRACTICE",
+      "role": "CORE2A",
+      "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.1.0",
+      "rule": "Treat the learner questions/support as AUTHORED_PRACTICE inside taught canonical capability."
+    }
+  ],
+  "agent_duties": [
+    "RESEARCH_OR_MAP_CANONICAL_TOPIC",
+    "MAP_OR_AUTHOR_CAPABILITIES",
+    "MAP_LEARNER_IDEAS_TO_CAPABILITIES",
+    "SOLVE_AND_VERIFY_EACH_QUESTION",
+    "CLASSIFY_FIVE_COMPONENT_DIFFICULTY",
+    "CLASSIFY_COGNITIVE_DEMAND_WITH_BASIS",
+    "RESOLVE_QRT_CELL_AND_XYZW",
+    "APPLY_SUBJECT_DEMAND_REVIEW_ADAPTER",
+    "AUTHOR_OR_REPAIR_SUPPORT_WITHOUT_REVEALING_W",
+    "BUILD_GOVERNED_QUESTION_RECORDS_AND_MANIFEST",
+    "RENDER_WITH_RENDER_CORE",
+    "RUN_EXISTING_REAL_GATES",
+    "REVIEW_EXACT_RENDER_WITH_QRT",
+    "PROJECT_ACTIONABLE_QRT_FINDINGS_TO_PRODUCT_REVIEW",
+    "EMIT_LEARNER_HTML_AND_QRT_EVIDENCE"
+  ],
+  "output_contract": {
+    "primary": "LEARNER_HTML",
+    "required": [
+      "LEARNER_HTML",
+      "QRT_EVIDENCE"
+    ],
+    "html_rule": "Use governed Core2/Core2A rendering. Do not substitute a hand-built unrelated HTML page when render_core can render the role.",
+    "evidence_rule": "Bind QRT evidence to question/profile/matrix/adapter/render digests where available."
+  }
+}
