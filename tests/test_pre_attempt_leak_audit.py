@@ -46,5 +46,20 @@ class PreAttemptLeakAuditTests(unittest.TestCase):
         self.assertTrue(any(f["code"] == "PREATTEMPT_RESOURCE_MISSING" for f in q6["findings"]))
 
 
+    def test_answer_leaking_condition_is_caught(self):
+        bank, package = self.records()
+        changed = copy.deepcopy(bank)
+        q5 = next(row for row in changed["questions"] if row["id"] == "Q5")
+        q5["conditions"].append("The inner surface area is 220.5π cm².")
+        report = audit.audit(changed, package, REPO)
+        item = next(row for row in report["items"] if row["question_ref"] == "Q5")
+        self.assertEqual(item["verdict"], "FAIL")
+        self.assertTrue(any(
+            finding["resource_kind"] == "CORE2_CONDITION"
+            and finding["code"] == "PROTECTED_RESULT_REACHABLE"
+            for finding in item["findings"]
+        ))
+
+
 if __name__ == "__main__":
     unittest.main()
