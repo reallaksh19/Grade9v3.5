@@ -5,13 +5,13 @@
   "subject": "Mathematics",
   "title": "Grade 9 Mathematics Surface Areas and Volumes Owner-Supplied Pilot Bank",
   "custody_class": "OWNER_SUPPLIED_RAW_INPUT",
-  "wording_custody": "VERBATIM",
+  "wording_custody": "VERBATIM_ISSUE_13",
   "authority_record": "https://github.com/reallaksh19/Grade9v3.5/issues/13",
   "questions": [
     {
       "id": "Q1",
       "original_identifier": "Q1",
-      "stem": "A wooden cube has edge length 7 cm. Find its total surface area.",
+      "stem": "A wooden cube has edge length 7 cm.\n\nFind its total surface area.",
       "primary_capability_ref": "CAP-MAT-SAV-CUBE-CUBOID",
       "conditions": [
         "The solid is a regular hexahedron (cube) of edge length a = 7 cm.",
@@ -23,7 +23,7 @@
           "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
           "intake_ref": "Q1",
           "wording_custody": "VERBATIM",
-          "text_sha256": "sha256:3c359478d4e8f2cafbfdd05c47c919cd06695be4a89552de12552ea041a2507a"
+          "text_sha256": "sha256:8a6cf6586f0b655ae33a4f164794ff8af102537d9f6b1d4d735825af90b732a1"
         },
         "grade9v3:provenance_class": "OWNER_SUPPLIED",
         "grade9v3:component_waivers": {
@@ -46,7 +46,10 @@
           "exam_source_badge": "Owner question",
           "stable_crux_move": "Substitute a = 7 cm into TSA = 6 a² to obtain 6 × 49 = 294 cm².",
           "common_wrong_route": "Confusing total surface area (6 a²) with volume (a³ = 343 cm³) or lateral surface area (4 a² = 196 cm²).",
-          "expected_time_seconds": 60
+          "expected_time_seconds": 60,
+          "review_bottleneck": "Distinguish the requested total surface area from other cube measures such as lateral area or volume.",
+          "review_route_to_crux": "Represent the cube as six congruent square faces and identify total surface area as six face areas.",
+          "protected_work": "Evaluate the total surface area for edge 7 cm and state the result with square units."
         },
         "grade9v3:cognitive_demand": {
           "primary": "APPLY",
@@ -125,7 +128,7 @@
     {
       "id": "Q2",
       "original_identifier": "Q2",
-      "stem": "A cylindrical water bottle has diameter 14 cm and height 20 cm. Find its curved surface area.",
+      "stem": "A cylindrical water bottle has diameter 14 cm and height 20 cm.\n\nFind its curved surface area.",
       "primary_capability_ref": "CAP-MAT-SAV-CYLINDER",
       "conditions": [
         "The water bottle is modeled as a right circular cylinder.",
@@ -138,7 +141,7 @@
           "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
           "intake_ref": "Q2",
           "wording_custody": "VERBATIM",
-          "text_sha256": "sha256:c4e2a0c74ebb21b71ecd0f2a8060140409e91df05e694b5c5809503c9d8d93e0"
+          "text_sha256": "sha256:5bd78ea1e43374b6bc08a3ed300a5b0717fb5ab3fc29641bb9428f9836b3e6c0"
         },
         "grade9v3:provenance_class": "OWNER_SUPPLIED",
         "grade9v3:component_waivers": {
@@ -161,7 +164,10 @@
           "exam_source_badge": "Owner question",
           "stable_crux_move": "Halve the diameter to find radius r = 7 cm before applying CSA = 2πrh (or compute CSA = πdh).",
           "common_wrong_route": "Using diameter 14 cm directly as radius in 2πrh, resulting in 1760 cm² (double the correct value).",
-          "expected_time_seconds": 90
+          "expected_time_seconds": 90,
+          "review_bottleneck": "Notice that 14 cm is a diameter while the standard curved-surface formula is usually written using radius.",
+          "review_route_to_crux": "Convert the given diameter into the radius needed by the cylinder model.",
+          "protected_work": "Choose a valid curved-surface relation, substitute the dimensions, and evaluate the area."
         },
         "grade9v3:cognitive_demand": {
           "primary": "APPLY",
@@ -242,7 +248,7 @@
     {
       "id": "Q3",
       "original_identifier": "Q3",
-      "stem": "A cylindrical bucket is open at the top. Its internal radius is 7 cm and its height is 18 cm. Find the area of metal sheet required to make the bucket, ignoring the thickness of the sheet.",
+      "stem": "A cylindrical bucket is open at the top.\n\nIts internal radius is 7 cm and its height is 18 cm.\n\nFind the area of metal sheet required to make the bucket, ignoring the thickness of the sheet.",
       "primary_capability_ref": "CAP-MAT-SAV-OPEN-CONTAINER",
       "secondary_capability_refs": [
         "CAP-MAT-SAV-CYLINDER"
@@ -258,7 +264,7 @@
           "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
           "intake_ref": "Q3",
           "wording_custody": "VERBATIM",
-          "text_sha256": "sha256:f308bc1fa1685b9fbf1bbf0ce866a9dc4fb3fae06b1236922fe862ab7bbfa248"
+          "text_sha256": "sha256:4523d76fb9f40a27921d3ad752340493f5a601d57a2a466f709c57b4f780ad44"
         },
         "grade9v3:provenance_class": "OWNER_SUPPLIED",
         "grade9v3:component_waivers": {
@@ -281,7 +287,10 @@
           "exam_source_badge": "Owner question",
           "stable_crux_move": "Formulate metal area = curved surface + 1 base = 2πrh + πr² = πr(2h + r) and evaluate.",
           "common_wrong_route": "Using the closed cylinder formula 2πrh + 2πr² = 1100 cm² by including a non-existent top lid.",
-          "expected_time_seconds": 120
+          "expected_time_seconds": 120,
+          "review_bottleneck": "Decide which boundary surfaces physically exist on an open-top bucket and must therefore be made from sheet metal.",
+          "review_route_to_crux": "Identify the curved wall and one bottom base while marking the top as absent.",
+          "protected_work": "Construct the required surface-area sum from those exposed pieces and evaluate it."
         },
         "grade9v3:cognitive_demand": {
           "primary": "MODEL",
@@ -364,7 +373,7 @@
     {
       "id": "Q4",
       "original_identifier": "Q4",
-      "stem": "A conical tent has radius 7 m and vertical height 24 m. Find its slant height and the area of canvas required to make the tent. The base is open.",
+      "stem": "A conical tent has radius 7 m and vertical height 24 m.\n\nFind:\n\n1. its slant height;\n2. the area of canvas required to make the tent.\n\nThe base of the tent is open.",
       "primary_capability_ref": "CAP-MAT-SAV-CONE-SLANT",
       "secondary_capability_refs": [
         "CAP-MAT-SAV-OPEN-CONTAINER"
@@ -381,7 +390,7 @@
           "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
           "intake_ref": "Q4",
           "wording_custody": "VERBATIM",
-          "text_sha256": "sha256:12a515d795847c413f077ba90ac121fe5276ea557aca54f65c9769a08f3e8d3f"
+          "text_sha256": "sha256:59213478051f5414885e2e7b5896cd90dc0e72cb0fbe49fa9410a0a9c66e1749"
         },
         "grade9v3:provenance_class": "OWNER_SUPPLIED",
         "grade9v3:component_waivers": {
@@ -404,7 +413,10 @@
           "exam_source_badge": "Owner question",
           "stable_crux_move": "Apply l = √(r² + h²) = √(49 + 576) = 25 m, then compute canvas area = πrl = 550 m².",
           "common_wrong_route": "Using vertical height 24 m directly instead of slant height l in πrl, or adding base area πr² to an open tent.",
-          "expected_time_seconds": 150
+          "expected_time_seconds": 150,
+          "review_bottleneck": "Separate vertical height from slant height and notice that an open tent has no canvas base.",
+          "review_route_to_crux": "Use the right-triangle relation among radius, vertical height, and slant height before selecting the curved conical surface.",
+          "protected_work": "Calculate the slant height and then evaluate the canvas area without adding a base."
         },
         "grade9v3:cognitive_demand": {
           "primary": "SYNTHESIZE",
@@ -513,7 +525,7 @@
     {
       "id": "Q5",
       "original_identifier": "Q5",
-      "stem": "A hemispherical bowl has radius 10.5 cm. Find the area of its inner surface and explain why the circular base is not included.",
+      "stem": "A hemispherical bowl has radius 10.5 cm.\n\nFind the area of its inner surface.\n\nExplain why the circular base is not included in your calculation.",
       "primary_capability_ref": "CAP-MAT-SAV-SPHERE-HEMISPHERE",
       "secondary_capability_refs": [
         "CAP-MAT-SAV-OPEN-CONTAINER"
@@ -528,7 +540,7 @@
           "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
           "intake_ref": "Q5",
           "wording_custody": "VERBATIM",
-          "text_sha256": "sha256:80361927fddd38f7eb751bcd7b0b7ca18a958a255946c04023aa0de53f3fb29b"
+          "text_sha256": "sha256:56f8ac2d2b07da9200f19cd7d75ff1a1330854221b6c8de2fe3707655f8e7110"
         },
         "grade9v3:provenance_class": "OWNER_SUPPLIED",
         "grade9v3:component_waivers": {
@@ -551,7 +563,10 @@
           "exam_source_badge": "Owner question",
           "stable_crux_move": "Calculate inner surface area = 2πr² = 693 cm² and explain that a bowl has an open mouth to hold items, not a solid base.",
           "common_wrong_route": "Using total surface area of a solid hemisphere 3πr² = 1039.5 cm² by treating the open mouth as a solid physical face.",
-          "expected_time_seconds": 120
+          "expected_time_seconds": 120,
+          "review_bottleneck": "Interpret 'inner surface' of a bowl as the curved hemispherical material surface while the circular mouth is an opening, not a material face.",
+          "review_route_to_crux": "Distinguish curved hemispherical area from total area of a solid hemisphere.",
+          "protected_work": "Choose and evaluate the correct inner curved-surface formula and justify excluding the circular opening."
         },
         "grade9v3:cognitive_demand": {
           "primary": "EXPLAIN",
@@ -631,7 +646,7 @@
     {
       "id": "Q6",
       "original_identifier": "Q6",
-      "stem": "A toy is made by mounting a cone on a hemisphere. Both have radius 3.5 cm and the cone has vertical height 12 cm. Find the total exposed surface area; the circular joining face is hidden.",
+      "stem": "A toy is made by mounting a cone on a hemisphere.\n\nThe cone and hemisphere have the same radius, 3.5 cm.\n\nThe vertical height of the cone is 12 cm.\n\nFind the total **exposed** surface area of the toy.\n\nThe circular face where the cone and hemisphere join is not exposed.",
       "primary_capability_ref": "CAP-MAT-SAV-COMPOSITE-SOLIDS",
       "secondary_capability_refs": [
         "CAP-MAT-SAV-CONE-SLANT",
@@ -649,7 +664,7 @@
           "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
           "intake_ref": "Q6",
           "wording_custody": "VERBATIM",
-          "text_sha256": "sha256:08e10067120421a35ac121059b15404291edffdd49c78bd1587fdfec4ecac87e"
+          "text_sha256": "sha256:90844a90a81c1808752f7fb4a4566119cd40202c671242f492dcf0a0f8bc41f1"
         },
         "grade9v3:provenance_class": "OWNER_SUPPLIED",
         "grade9v3:component_waivers": {
@@ -672,7 +687,10 @@
           "exam_source_badge": "Owner question",
           "stable_crux_move": "Find slant height l = √(3.5² + 12²) = 12.5 cm, then evaluate exposed area = CSA(cone) + CSA(hemisphere) = πr(l + 2r) = 214.5 cm².",
           "common_wrong_route": "Adding the total surface area of cone (πrl + πr²) to total surface area of hemisphere (3πr²), erroneously counting the internal circular interface twice.",
-          "expected_time_seconds": 180
+          "expected_time_seconds": 180,
+          "review_bottleneck": "Identify that the shared circular joining face becomes internal and must not be counted as exposed surface.",
+          "review_route_to_crux": "Separate the external curved surfaces from the hidden interface and obtain any needed slant height.",
+          "protected_work": "Construct the exposed-surface expression from the correct pieces and evaluate it."
         },
         "grade9v3:cognitive_demand": {
           "primary": "MODEL",
@@ -784,7 +802,7 @@
     {
       "id": "Q7",
       "original_identifier": "Q7",
-      "stem": "A cylindrical vessel of radius 7 cm and height 25 cm is open at the top. Paint the outer curved surface and outside circular base only. Find the painted area and state which surfaces are included.",
+      "stem": "A cylindrical vessel of radius 7 cm and height 25 cm is open at the top.\n\nIt is to be painted:\n\n- on its entire outer curved surface; and\n- on the outside of its circular base.\n\nThe inside is not painted.\n\nFind the area to be painted.\n\nBefore calculating, state exactly which surfaces are included.",
       "primary_capability_ref": "CAP-MAT-SAV-OPEN-CONTAINER",
       "secondary_capability_refs": [
         "CAP-MAT-SAV-CYLINDER"
@@ -800,7 +818,7 @@
           "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
           "intake_ref": "Q7",
           "wording_custody": "VERBATIM",
-          "text_sha256": "sha256:39252c17a655c44827f2ddd9af7fad71455d6634370afcf92fea628fe8198ac4"
+          "text_sha256": "sha256:69b99335fa92037a81d113bccbfbe2b249856ab929dd1ae399eeadab3846733d"
         },
         "grade9v3:provenance_class": "OWNER_SUPPLIED",
         "grade9v3:component_waivers": {
@@ -823,7 +841,10 @@
           "exam_source_badge": "Owner question",
           "stable_crux_move": "State included surfaces: outer curved surface (2πrh) + outside circular base (πr²); then evaluate 22 × 57 = 1254 cm².",
           "common_wrong_route": "Including both bases (closed cylinder) or painting both inside and outside without adhering to the prompt specification.",
-          "expected_time_seconds": 120
+          "expected_time_seconds": 120,
+          "review_bottleneck": "Translate the painting instructions into an exact inventory of included and excluded surfaces before using any formula.",
+          "review_route_to_crux": "Mark the outer curved wall and outside bottom base as included, with the top opening and all interior surfaces excluded.",
+          "protected_work": "State the included surfaces, construct their area sum, and evaluate the painted area."
         },
         "grade9v3:cognitive_demand": {
           "primary": "JUSTIFY",
@@ -904,7 +925,7 @@
     {
       "id": "Q8",
       "original_identifier": "Q8",
-      "stem": "A rectangular water tank is 2 m long, 1.5 m wide and 1.2 m deep. It is filled to 75 percent of capacity. How many litres of water does it contain? Show the unit conversion.",
+      "stem": "A rectangular water tank is 2 m long, 1.5 m wide and 1.2 m deep.\n\nIt is filled to 75% of its total capacity.\n\nHow many litres of water are in the tank?\n\nShow the unit conversion clearly.",
       "primary_capability_ref": "CAP-MAT-SAV-CUBE-CUBOID",
       "conditions": [
         "Rectangular tank (cuboid) of length l = 2 m, width w = 1.5 m, depth h = 1.2 m.",
@@ -916,7 +937,7 @@
           "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
           "intake_ref": "Q8",
           "wording_custody": "VERBATIM",
-          "text_sha256": "sha256:31b6009d3fe1db532e6a29632bf6f4d60d274c99a70b1744f32ae96af43c4d9e"
+          "text_sha256": "sha256:892d3cdb5b8496d0cf0cbd1bb0bf027caf53e3f496d6ee89a3c4a952c084e297"
         },
         "grade9v3:provenance_class": "OWNER_SUPPLIED",
         "grade9v3:component_waivers": {
@@ -939,7 +960,10 @@
           "exam_source_badge": "Owner question",
           "stable_crux_move": "Compute total volume V = 2 × 1.5 × 1.2 = 3.6 m³, multiply by 75% to get 2.7 m³, and convert using 1 m³ = 1000 L to get 2700 litres.",
           "common_wrong_route": "Using incorrect conversion factors such as 1 m³ = 100 L, or calculating total capacity without applying the 75% factor.",
-          "expected_time_seconds": 120
+          "expected_time_seconds": 120,
+          "review_bottleneck": "Keep the three operations distinct: find tank volume, take the stated fill fraction, then translate cubic metres into litres.",
+          "review_route_to_crux": "Set up the cuboid volume and the metric capacity conversion without carrying out the final numerical chain.",
+          "protected_work": "Carry out the fill-fraction and unit conversion correctly and state the water volume in litres."
         },
         "grade9v3:cognitive_demand": {
           "primary": "REPRESENT",
@@ -1023,7 +1047,7 @@
     {
       "id": "Q9",
       "original_identifier": "Q9",
-      "stem": "A solid metallic sphere of radius 6 cm is melted and recast into identical solid spheres of radius 2 cm with no loss. How many small spheres are formed? Explain why surface area is not conserved.",
+      "stem": "A solid metallic sphere of radius 6 cm is melted and recast into identical solid spheres of radius 2 cm.\n\nAssume that no metal is lost.\n\nHow many smaller spheres are formed?\n\nExplain why surface area is not conserved in this process.",
       "primary_capability_ref": "CAP-MAT-SAV-RECASTING-VOLUME",
       "secondary_capability_refs": [
         "CAP-MAT-SAV-SPHERE-HEMISPHERE"
@@ -1038,7 +1062,7 @@
           "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
           "intake_ref": "Q9",
           "wording_custody": "VERBATIM",
-          "text_sha256": "sha256:82ee07acceffe26ce2e3729ea1c78f8dc7bf393f00edac0dcd0183dbc9fa3869"
+          "text_sha256": "sha256:f980a5fed2b1f6051fd5410ed79e72af92a750d2a8133db2e8a22cdb115a52f1"
         },
         "grade9v3:provenance_class": "OWNER_SUPPLIED",
         "grade9v3:component_waivers": {
@@ -1061,7 +1085,10 @@
           "exam_source_badge": "Owner question",
           "stable_crux_move": "Apply n = (R/r)³ = (6/2)³ = 27; explain that subdividing matter creates newly exposed boundary area so surface area increases by factor R/r = 3.",
           "common_wrong_route": "Using linear ratio n = 6/2 = 3 or area ratio n = (6/2)² = 9 instead of volume ratio, or claiming surface area is conserved because mass is conserved.",
-          "expected_time_seconds": 180
+          "expected_time_seconds": 180,
+          "review_bottleneck": "Separate the conserved quantity (volume of metal) from the non-conserved boundary quantity (surface area).",
+          "review_route_to_crux": "Set the original sphere volume equal to the combined volume of the smaller spheres and keep the surface-area question conceptually separate.",
+          "protected_work": "Derive the number of smaller spheres and explain why subdivision creates additional exposed boundary area."
         },
         "grade9v3:cognitive_demand": {
           "primary": "JUSTIFY",
@@ -1170,7 +1197,7 @@
     {
       "id": "Q10",
       "original_identifier": "Q10",
-      "stem": "A cone and a cylinder have the same base radius and height. The cylinder volume is 924 cubic centimetres. Find the cone volume and explain why radius and height need not be calculated separately.",
+      "stem": "A cone and a cylinder have the same base radius and the same height.\n\nThe volume of the cylinder is 924 cm³.\n\nFind the volume of the cone.\n\nThen explain why the radius and height do **not** need to be calculated separately.",
       "primary_capability_ref": "CAP-MAT-SAV-PROPORTIONAL-REASONING",
       "secondary_capability_refs": [
         "CAP-MAT-SAV-CONE-SLANT",
@@ -1186,7 +1213,7 @@
           "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
           "intake_ref": "Q10",
           "wording_custody": "VERBATIM",
-          "text_sha256": "sha256:47a5b95219502d4ed7c5b950ee588abcedf8e89e6695bf37255708e539d7ef10"
+          "text_sha256": "sha256:6eb6b8308e2b27f72375517136dd642d0c8c47c66dd4a640359b176e9bdf4592"
         },
         "grade9v3:provenance_class": "OWNER_SUPPLIED",
         "grade9v3:component_waivers": {
@@ -1209,7 +1236,10 @@
           "exam_source_badge": "Owner question",
           "stable_crux_move": "Apply V_cone = (1/3) V_cylinder = 924 / 3 = 308 cm³; explain that the product group πr²h is known as a single entity.",
           "common_wrong_route": "Attempting to invent or solve for separate numerical values of r and h (which is indeterminate from one equation), or multiplying by 3 instead of dividing by 3.",
-          "expected_time_seconds": 90
+          "expected_time_seconds": 90,
+          "review_bottleneck": "Recognize that equal radius and height make the grouped factor πr²h common to both volume formulas, so separate dimensions are unnecessary.",
+          "review_route_to_crux": "Compare the cone and cylinder volume formulas symbolically to establish their fixed ratio.",
+          "protected_work": "Apply that ratio to the given cylinder volume and explain why solving separately for radius and height is unnecessary."
         },
         "grade9v3:cognitive_demand": {
           "primary": "EXPLAIN",
