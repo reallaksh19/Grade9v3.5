@@ -677,6 +677,19 @@
           ],
           "output": "Verified cone parameters",
           "role": "VERIFY"
+        },
+        {
+          "id": "MIC-MAT-SAV-CONE-SLANT-S4",
+          "action": "Run a geometric and dimensional sanity check: l must be the hypotenuse and the final relation must have area units.",
+          "why_valid": "The slant generator is longer than either right-triangle leg, and multiplying two lengths in πrl must produce square units.",
+          "inputs": [
+            "r",
+            "h",
+            "l",
+            "CSA"
+          ],
+          "output": "Checked slant-height and area model",
+          "role": "VERIFY"
         }
       ],
       "relation_refs": [
@@ -724,7 +737,8 @@
           "step_refs": [
             "MIC-MAT-SAV-CONE-SLANT-S1",
             "MIC-MAT-SAV-CONE-SLANT-S2",
-            "MIC-MAT-SAV-CONE-SLANT-S3"
+            "MIC-MAT-SAV-CONE-SLANT-S3",
+            "MIC-MAT-SAV-CONE-SLANT-S4"
           ],
           "crux_question_refs": [
             "Q4"
@@ -734,7 +748,8 @@
           "representation_ref": "REP-MAT-SAV-CONE-SLANT",
           "reveal_stage_refs": [
             "VIS-MAT-SAV-CONE-1",
-            "VIS-MAT-SAV-CONE-2"
+            "VIS-MAT-SAV-CONE-2",
+            "VIS-MAT-SAV-CONE-4"
           ],
           "relation_refs": [
             "REL-MAT-SAV-CONE"
@@ -950,6 +965,17 @@
           ],
           "output": "A verified boundary inventory",
           "role": "VERIFY"
+        },
+        {
+          "id": "MIC-MAT-SAV-COMPOSITE-SOLIDS-S4",
+          "action": "Run a paint test on the finished solid and confirm that the joined circular interface never enters the exposed-area sum.",
+          "why_valid": "Only boundary that remains reachable from outside can be painted; a contact face between joined solids is internal.",
+          "inputs": [
+            "Exposed-versus-internal inventory",
+            "Surface-area expression"
+          ],
+          "output": "Checked exposed-boundary model",
+          "role": "VERIFY"
         }
       ],
       "relation_refs": [
@@ -998,7 +1024,8 @@
           "step_refs": [
             "MIC-MAT-SAV-COMPOSITE-SOLIDS-S1",
             "MIC-MAT-SAV-COMPOSITE-SOLIDS-S2",
-            "MIC-MAT-SAV-COMPOSITE-SOLIDS-S3"
+            "MIC-MAT-SAV-COMPOSITE-SOLIDS-S3",
+            "MIC-MAT-SAV-COMPOSITE-SOLIDS-S4"
           ],
           "crux_question_refs": [
             "Q6"
@@ -1008,7 +1035,8 @@
           "representation_ref": "REP-MAT-SAV-COMPOSITE-SOLIDS",
           "reveal_stage_refs": [
             "VIS-MAT-SAV-TOY-1",
-            "VIS-MAT-SAV-TOY-2"
+            "VIS-MAT-SAV-TOY-2",
+            "VIS-MAT-SAV-TOY-4"
           ],
           "relation_refs": [
             "REL-MAT-SAV-COMPOSITE-TOY"
@@ -1084,6 +1112,19 @@
           ],
           "output": "Verified count and surface area scaling",
           "role": "VERIFY"
+        },
+        {
+          "id": "MIC-MAT-SAV-RECASTING-VOLUME-S4",
+          "action": "Back-check that total recast volume equals initial volume, then compare boundary area separately rather than assuming area conservation.",
+          "why_valid": "Recasting without loss conserves material volume, while subdivision can create additional external boundary.",
+          "inputs": [
+            "n",
+            "R",
+            "r",
+            "Total recast surface area"
+          ],
+          "output": "Checked conservation and surface-area scaling",
+          "role": "VERIFY"
         }
       ],
       "relation_refs": [
@@ -1133,7 +1174,8 @@
           "step_refs": [
             "MIC-MAT-SAV-RECASTING-VOLUME-S1",
             "MIC-MAT-SAV-RECASTING-VOLUME-S2",
-            "MIC-MAT-SAV-RECASTING-VOLUME-S3"
+            "MIC-MAT-SAV-RECASTING-VOLUME-S3",
+            "MIC-MAT-SAV-RECASTING-VOLUME-S4"
           ],
           "crux_question_refs": [
             "Q9"
@@ -1143,7 +1185,8 @@
           "representation_ref": "REP-MAT-SAV-RECASTING-VOLUME",
           "reveal_stage_refs": [
             "VIS-MAT-SAV-REC-1",
-            "VIS-MAT-SAV-REC-2"
+            "VIS-MAT-SAV-REC-2",
+            "VIS-MAT-SAV-REC-4"
           ],
           "relation_refs": [
             "REL-MAT-SAV-RECASTING"
@@ -2046,6 +2089,15 @@
             "Vertical right-angled triangle",
             "Conical curved surface"
           ]
+        },
+        {
+          "id": "VIS-MAT-SAV-CONE-4",
+          "label": "Geometry and Units Check",
+          "purpose": "Verify that slant height is the hypotenuse and the curved-surface relation has area units.",
+          "visible_elements": [
+            "Vertical right-angled triangle",
+            "Conical curved surface"
+          ]
         }
       ],
       "scene_instances": []
@@ -2192,6 +2244,15 @@
             "Exposed conical and hemispherical outer surfaces",
             "Internal joined circular interface"
           ]
+        },
+        {
+          "id": "VIS-MAT-SAV-TOY-4",
+          "label": "Paint-Test Check",
+          "purpose": "Verify that the joined circular interface remains internal and excluded from exposed area.",
+          "visible_elements": [
+            "Exposed conical and hemispherical outer surfaces",
+            "Internal joined circular interface"
+          ]
         }
       ],
       "scene_instances": []
@@ -2209,7 +2270,7 @@
       "purpose": "Generic before/after recasting diagram showing volume conservation without revealing a question-specific count.",
       "required_elements": [
         "Original solid sphere",
-        "Array of 27 small solid spheres"
+        "Array of recast small spheres"
       ],
       "relation_refs": [
         "REL-MAT-SAV-RECASTING"
@@ -2258,7 +2319,7 @@
           "purpose": "Decompose components: Volume Conservation (Melting)",
           "visible_elements": [
             "Original solid sphere",
-            "Array of 27 small solid spheres"
+            "Array of recast small spheres"
           ]
         },
         {
@@ -2267,7 +2328,16 @@
           "purpose": "Complete evaluation: Recast Spheres & Area Scaling",
           "visible_elements": [
             "Original solid sphere",
-            "Array of 27 small solid spheres"
+            "Array of recast small spheres"
+          ]
+        },
+        {
+          "id": "VIS-MAT-SAV-REC-4",
+          "label": "Conservation and Scaling Check",
+          "purpose": "Verify volume conservation separately from the change in total external surface area.",
+          "visible_elements": [
+            "Original solid sphere",
+            "Recast small spheres"
           ]
         }
       ],

@@ -1,27 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 320" role="img" aria-labelledby="rep-mat-sav-rec-title rep-mat-sav-rec-desc">
+<svg font-size="17" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 320" role="img" aria-labelledby="rep-mat-sav-rec-title rep-mat-sav-rec-desc">
   <title id="rep-mat-sav-rec-title">Conservation of volume during solid sphere recasting</title>
-  <desc id="rep-mat-sav-rec-desc">Stage 1: An original solid sphere with symbolic radius R. Stage 2: Recasting preserves total volume, so V_initial = n × V_small. Stage 3: Represent the smaller spheres symbolically and note that total surface area can change after subdivision; no question-specific count or area is evaluated.</desc>
-  <g data-g9-stage-id="VIS-MAT-SAV-REC-1" stroke="currentColor" fill="currentColor" font-family="system-ui,sans-serif" font-size="14">
+  <desc id="rep-mat-sav-rec-desc">Stage 1: An original solid sphere with symbolic radius R. Stage 2: Recasting preserves total volume, so V_initial = n × V_small. Stage 3: Represent the smaller spheres symbolically and note that total surface area can change after subdivision. Stage 4: Back-check conserved volume separately from area scaling; no question-specific count or area is evaluated.</desc>
+  <g data-g9-stage-id="VIS-MAT-SAV-REC-1" stroke="currentColor" fill="currentColor" font-family="system-ui,sans-serif" font-size="17">
     <text x="30" y="30" stroke="none" font-weight="bold">Stage 1: Initial Solid Metallic Sphere</text>
     <circle cx="120" cy="140" r="70" fill="rgba(31,111,178,0.15)" stroke="currentColor" stroke-width="2"/>
     <ellipse cx="120" cy="140" rx="70" ry="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3"/>
     <line x1="120" y1="140" x2="190" y2="140" stroke="currentColor" stroke-width="2"/>
     <circle cx="120" cy="140" r="3" fill="currentColor"/>
     <text x="155" y="132" text-anchor="middle" stroke="none" font-weight="600">original radius = R</text>
-    <text x="120" y="235" text-anchor="middle" stroke="none">original material volume = V_initial</text>
-    <text x="120" y="255" text-anchor="middle" stroke="none" fill="#1f6fb2">original boundary area is not conserved</text>
+    <text x="120" y="235" text-anchor="middle" stroke="none">volume = V_initial</text>
+    <text x="120" y="255" text-anchor="middle" stroke="none" fill="#1f6fb2">boundary area can change</text>
   </g>
-  <g data-g9-stage-id="VIS-MAT-SAV-REC-2" stroke="currentColor" fill="none" font-family="system-ui,sans-serif" font-size="13">
-    <text x="250" y="30" stroke="none" fill="currentColor" font-weight="bold">Stage 2: Volume Invariance (Melting)</text>
+  <g data-g9-stage-id="VIS-MAT-SAV-REC-2" stroke="currentColor" fill="none" font-family="system-ui,sans-serif" font-size="17">
+    <text x="405" y="30" text-anchor="middle" stroke="none" fill="currentColor" font-weight="bold">Stage 2: Volume conserved</text>
     <path d="M 215 140 L 265 140" stroke="#d9381e" stroke-width="3"/>
     <polygon points="265,135 275,140 265,145" fill="#d9381e" stroke="none"/>
     <text x="245" y="125" text-anchor="middle" stroke="none" fill="#d9381e" font-weight="bold">Melting &amp; Recasting</text>
     <rect x="200" y="160" width="95" height="50" rx="4" fill="rgba(217,56,30,0.08)" stroke="#d9381e" stroke-width="1"/>
-    <text x="247" y="180" text-anchor="middle" stroke="none" fill="#d9381e" font-size="11">V_initial = n &times; V_small</text>
-    <text x="247" y="198" text-anchor="middle" stroke="none" fill="#d9381e" font-size="11">V_initial = n &times; V_small</text>
+    <text x="247" y="180" text-anchor="middle" stroke="none" fill="#d9381e" font-size="17">V_initial = n &times; V_small</text>
+    <text x="247" y="198" text-anchor="middle" stroke="none" fill="#d9381e" font-size="17">keep n symbolic</text>
   </g>
-  <g data-g9-stage-id="VIS-MAT-SAV-REC-3" font-family="system-ui,sans-serif" font-size="13">
-    <text x="320" y="30" fill="currentColor" font-weight="bold">Stage 3: Recast Smaller Spheres</text>
+  <g data-g9-stage-id="VIS-MAT-SAV-REC-3" font-family="system-ui,sans-serif" font-size="17">
+    <text x="425" y="30" text-anchor="middle" fill="currentColor" font-weight="bold">Stage 3: Recast spheres</text>
     <!-- Group of 3x3 small spheres visualization -->
     <g fill="rgba(46,139,87,0.2)" stroke="currentColor" stroke-width="1.5">
       <circle cx="340" cy="80" r="18"/>
@@ -34,10 +34,14 @@
       <circle cx="390" cy="180" r="18"/>
       <circle cx="440" cy="180" r="18"/>
     </g>
-    <text x="490" y="135" fill="currentColor" font-weight="bold">number of spheres = n</text>
+    <text x="490" y="135" text-anchor="end" fill="currentColor" font-weight="bold">count = n</text>
     <rect x="310" y="220" width="230" height="70" rx="5" fill="rgba(46,139,87,0.12)" stroke="#2e8b57" stroke-width="1.5"/>
-    <text x="425" y="242" text-anchor="middle" fill="#2e8b57" font-weight="bold">derive n from volume conservation</text>
-    <text x="425" y="262" text-anchor="middle" fill="currentColor">combined recast volume = original volume</text>
-    <text x="425" y="280" text-anchor="middle" fill="#d9381e" font-weight="bold">total surface area may change after subdivision</text>
+    <text x="425" y="242" text-anchor="middle" fill="#2e8b57" font-weight="bold">derive n from volume</text>
+    <text x="425" y="262" text-anchor="middle" fill="currentColor">recast volume = initial</text>
+    <text x="425" y="280" text-anchor="middle" fill="#d9381e" font-weight="bold">area may increase</text>
+  </g>
+  <g data-g9-stage-id="VIS-MAT-SAV-REC-4" font-family="system-ui,sans-serif" font-size="17">
+    <rect x="40" y="255" width="480" height="50" rx="6" fill="rgba(46,139,87,0.10)" stroke="#2e8b57" stroke-width="1.5"/>
+    <text x="280" y="285" text-anchor="middle" fill="#2e8b57" font-weight="bold">Check: volume conserved; area may change</text>
   </g>
 </svg>

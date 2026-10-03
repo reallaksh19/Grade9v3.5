@@ -1,32 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 320" role="img" aria-labelledby="rep-mat-sav-toy-title rep-mat-sav-toy-desc">
+<svg font-size="17" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 320" role="img" aria-labelledby="rep-mat-sav-toy-title rep-mat-sav-toy-desc">
   <title id="rep-mat-sav-toy-title">Composite solid toy surface area with hidden interface exclusion</title>
-  <desc id="rep-mat-sav-toy-desc">Stage 1: A cone joined to a hemisphere with shared radius r and slant length l. Stage 2: Partition the exposed boundary into conical curved area πrl and hemispherical curved area 2πr² while excluding the internal circular contact face. Stage 3: Combine exposed terms symbolically without evaluating a question-specific result.</desc>
-  <g data-g9-stage-id="VIS-MAT-SAV-TOY-1" stroke="currentColor" fill="currentColor" font-family="system-ui,sans-serif" font-size="14">
+  <desc id="rep-mat-sav-toy-desc">Stage 1: A cone joined to a hemisphere with shared radius r and slant length l. Stage 2: Partition the exposed boundary into conical curved area πrl and hemispherical curved area 2πr² while excluding the internal circular contact face. Stage 3: Combine exposed terms symbolically. Stage 4: Use a paint test to verify the internal join stays excluded, without evaluating a question-specific result.</desc>
+  <g data-g9-stage-id="VIS-MAT-SAV-TOY-1" stroke="currentColor" fill="currentColor" font-family="system-ui,sans-serif" font-size="17">
     <text x="30" y="30" stroke="none" font-weight="bold">Stage 1: Composite Toy Geometry</text>
     <!-- Conical top -->
     <polygon points="140,50 80,150 200,150" fill="rgba(31,111,178,0.15)" stroke="currentColor" stroke-width="2"/>
     <text x="175" y="95" stroke="none" fill="#1f6fb2" font-weight="600">slant length = l</text>
     <!-- Joined interface -->
     <ellipse cx="140" cy="150" rx="60" ry="18" fill="rgba(217,56,30,0.15)" stroke="#d9381e" stroke-width="2" stroke-dasharray="4 3"/>
-    <text x="140" y="155" text-anchor="middle" stroke="none" fill="#d9381e" font-size="11" font-weight="bold">HIDDEN INTERFACE (exclude)</text>
+    <text x="140" y="155" text-anchor="middle" stroke="none" fill="#d9381e" font-size="17" font-weight="bold">INTERNAL JOIN</text>
     <!-- Hemispherical bottom -->
     <path d="M 80 150 A 60 60 0 0 0 200 150" fill="rgba(46,139,87,0.15)" stroke="currentColor" stroke-width="2"/>
     <text x="140" y="195" text-anchor="middle" stroke="none" fill="#2e8b57" font-weight="600">shared radius = r</text>
   </g>
-  <g data-g9-stage-id="VIS-MAT-SAV-TOY-2" stroke="currentColor" fill="none" font-family="system-ui,sans-serif" font-size="13">
-    <text x="270" y="30" stroke="none" fill="currentColor" font-weight="bold">Stage 2: Exposed Boundary Decomposition</text>
+  <g data-g9-stage-id="VIS-MAT-SAV-TOY-2" stroke="currentColor" fill="none" font-family="system-ui,sans-serif" font-size="17">
+    <text x="395" y="30" text-anchor="middle" stroke="none" fill="currentColor" font-weight="bold">Stage 2: Exposed vs internal</text>
     <!-- Conical part -->
     <rect x="270" y="60" width="250" height="65" rx="4" stroke-width="1.5" fill="rgba(31,111,178,0.08)"/>
-    <text x="395" y="85" text-anchor="middle" stroke="none" fill="#1f6fb2" font-weight="bold">Outer surface of upper solid: EXPOSED</text>
+    <text x="395" y="85" text-anchor="middle" stroke="none" fill="#1f6fb2" font-weight="bold">Upper curved surface: EXPOSED</text>
     <text x="395" y="108" text-anchor="middle" stroke="none" fill="currentColor"></text>
     <!-- Hemispherical part -->
     <rect x="270" y="135" width="250" height="65" rx="4" stroke-width="1.5" fill="rgba(46,139,87,0.08)"/>
-    <text x="395" y="160" text-anchor="middle" stroke="none" fill="#2e8b57" font-weight="bold">Outer surface of lower solid: EXPOSED</text>
+    <text x="395" y="160" text-anchor="middle" stroke="none" fill="#2e8b57" font-weight="bold">Lower curved surface: EXPOSED</text>
     <text x="395" y="183" text-anchor="middle" stroke="none" fill="currentColor"></text>
-    <text x="395" y="215" text-anchor="middle" stroke="none" fill="#d9381e" font-size="12">Joined contact face: INTERNAL — do not count it as exposed</text>
+    <text x="395" y="215" text-anchor="middle" stroke="none" fill="#d9381e" font-size="17">Join face: INTERNAL — exclude</text>
   </g>
-  <g data-g9-stage-id="VIS-MAT-SAV-TOY-3" font-family="system-ui,sans-serif" font-size="14">
+  <g data-g9-stage-id="VIS-MAT-SAV-TOY-3" font-family="system-ui,sans-serif" font-size="17">
     <rect x="40" y="255" width="480" height="50" rx="6" fill="rgba(31,111,178,0.12)" stroke="#1f6fb2" stroke-width="1.5"/>
-    <text x="280" y="285" text-anchor="middle" fill="#1f6fb2" font-weight="bold">Build the exposed-surface expression yourself from the inventory</text>
+    <text x="280" y="285" text-anchor="middle" fill="#1f6fb2" font-weight="bold">Build area from exposed surfaces only</text>
+  </g>
+  <g data-g9-stage-id="VIS-MAT-SAV-TOY-4" font-family="system-ui,sans-serif" font-size="17">
+    <rect x="40" y="255" width="480" height="50" rx="6" fill="rgba(46,139,87,0.10)" stroke="#2e8b57" stroke-width="1.5"/>
+    <text x="280" y="285" text-anchor="middle" fill="#2e8b57" font-weight="bold">Paint check: internal join stays unpainted</text>
   </g>
 </svg>
