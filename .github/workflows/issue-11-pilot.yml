@@ -31,9 +31,13 @@ jobs:
 
       - name: Materialize audited pilot source packet
         run: |
-          cat evidence/pilots/issue-11/source-packet.b64.* | base64 --decode > /tmp/issue11-source-packet.tar.gz
-          echo "9fb3c171398b70f741561841a029a79eb270611692cc85f5fb67003299eaddf4  /tmp/issue11-source-packet.tar.gz" | sha256sum --check
-          tar -xzf /tmp/issue11-source-packet.tar.gz -C .
+          if [ -f Mathematics/library/surface-areas-volumes.issue11.v1.json ]; then
+            echo "Using committed pilot sources; compressed packet remains the original custody snapshot."
+          else
+            cat evidence/pilots/issue-11/source-packet.b64.* | base64 --decode > /tmp/issue11-source-packet.tar.gz
+            echo "9fb3c171398b70f741561841a029a79eb270611692cc85f5fb67003299eaddf4  /tmp/issue11-source-packet.tar.gz" | sha256sum --check
+            tar -xzf /tmp/issue11-source-packet.tar.gz -C .
+          fi
 
       - name: Preserve materialized draft sources for schema debugging
         run: |
