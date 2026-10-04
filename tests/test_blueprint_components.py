@@ -388,10 +388,16 @@ class PrintPdf(unittest.TestCase):
         self.assertEqual(self.link(self.pages["index.html"]), "")
 
     def test_the_icon_sits_in_the_fixed_header_among_the_other_controls(self):
-        header = re.search(r"<header data-g9-shell-header>.*?</header>", self.pages["core2.html"]).group(0)
+        header = re.search(r"<header\\b[^>]*data-g9-shell-header[^>]*>.*?</header>", self.pages["core2.html"]).group(0)
         self.assertIn('data-g9-action="pdf"', header)
         self.assertLess(header.index("Question bank"), header.index('data-g9-action="pdf"'))
         self.assertLess(header.index('data-g9-action="pdf"'), header.index('data-g9-action="search"'))
+
+    def test_shell_header_exposes_governed_marker_and_triad_links_are_navigation(self):
+        html = self.pages["core2.html"]
+        self.assertIn('data-g9-shell-header', html)
+        self.assertIn('<nav class="g9-triad-context" aria-label="Breadcrumb">', html)
+        self.assertIn('<nav class="g9-triad-actions" aria-label="Concept actions">', html)
 
     def test_the_icon_is_a_touch_target_and_is_not_printed(self):
         css = render_core.CSS + render_core.COMPONENT_CSS

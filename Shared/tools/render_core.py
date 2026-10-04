@@ -2321,7 +2321,7 @@ def pdf_control(href: str, accessible_name: str = PDF_ACCESSIBLE_NAME) -> str:
 def shell_header(home_href: str, question_bank_href: str, pdf_href: str | None = None, pdf_name: str = PDF_ACCESSIBLE_NAME) -> str:
     """The shared tablet-shell header. Used by every rendered page."""
     pdf_btn = f'<a class="g9-header-btn" href="{esc(pdf_href)}" title="{esc(pdf_name)}">PDF</a>' if pdf_href else ""
-    return (f'<header class="g9-shell-header"><div class="g9-header-inner">'
+    return (f'<header data-g9-shell-header class="g9-shell-header"><div class="g9-header-inner">'
             f'<a href="{esc(home_href)}" class="g9-brand"><span class="logo-icon">⚡</span><span class="brand-title">Grade9V3.5</span><span class="g9-brand-badge">Learner Platform</span></a>'
             f'<nav class="g9-header-nav" aria-label="Portal Navigation">'
             f'<a href="{esc(home_href)}">Home</a>'
@@ -2400,12 +2400,12 @@ def shell(ctx: Ctx, role: str, mode: str, pdf: bool = True) -> tuple[str, str]:
         
     topic_href = f"../../../topics/{topic_slug}/index.html"
     
-    triad_context = (f'<div class="g9-triad-context" aria-label="breadcrumb">'
+    triad_context = (f'<nav class="g9-triad-context" aria-label="Breadcrumb">'
                      f'<a href="{esc(home_href)}">Home</a>'
                      f' / <a href="{subject_href}">{esc(subject)}</a>'
                      f' / <a href="{topic_href}">{esc(m.get("title", ""))}</a>'
                      f' / <span aria-current="page">{esc(current_role)}</span>'
-                     f'</div>')
+                     f'</nav>')
 
     qb_url = f"../../../question-bank/index.html?capability={esc(cap_ref)}"
 
@@ -2415,12 +2415,12 @@ def shell(ctx: Ctx, role: str, mode: str, pdf: bool = True) -> tuple[str, str]:
     triad = (f'<div class="g9-concept-triad-bar"><div class="g9-triad-inner">'
              f'{triad_context}'
              f'<span class="g9-triad-concept-title">Concept: {esc(m.get("title", ""))}</span>'
-             f'<div class="g9-triad-actions">'
+             f'<nav class="g9-triad-actions" aria-label="Concept actions">'
              f'<a class="g9-triad-btn g9-btn-learn{c1a_active}" href="core1a.html">📖 Learn</a>'
              f'<a class="g9-triad-btn g9-btn-practice{c2_active}" href="core2.html">✍️ Practice</a>'
              f'{explore_btn}'
              f'<a class="g9-triad-btn g9-btn-qb" href="{qb_url}">All questions in QB &rarr;</a>'
-             f'</div></div></div>')
+             f'</nav></div></div>')
 
     return header, triad
 
