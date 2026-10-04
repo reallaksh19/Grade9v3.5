@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/interactive-chromium-audit.schema.json",
+  "title": "Interactive Chromium audit receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "engine", "html_path", "html_sha256", "audited_at", "viewports", "checks", "status", "note"],
+  "properties": {
+    "schema": {"const": "interactive-chromium-audit/v1"},
+    "engine": {"const": "chromium"},
+    "html_path": {"type": "string", "minLength": 1},
+    "html_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "audited_at": {"type": "string", "minLength": 1},
+    "viewports": {"type": "array", "minItems": 2},
+    "checks": {
+      "type": "object",
+      "required": ["runtime_smoke", "page_errors", "console_errors", "external_requests", "horizontal_overflow", "touch_targets", "accessibility_baseline", "keyboard_focus"]
+    },
+    "status": {"enum": ["PASS", "FAIL"]},
+    "note": {"type": "string", "minLength": 1}
+  }
+}

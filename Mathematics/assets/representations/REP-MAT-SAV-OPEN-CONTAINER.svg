@@ -1,0 +1,36 @@
+<svg font-size="17" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 320" role="img" aria-labelledby="rep-mat-sav-cyl-title rep-mat-sav-cyl-desc">
+  <title id="rep-mat-sav-cyl-title">Open cylindrical container surface area decomposition</title>
+  <desc id="rep-mat-sav-cyl-desc">Stage 1: An open cylindrical container showing radius r and height h with the top explicitly absent. Stage 2: Decompose the material boundary into the curved wall and bottom circular base. Stage 3: Build the symbolic area inventory without substituting question-specific dimensions or answers.</desc>
+  <g data-g9-stage-id="VIS-MAT-SAV-CYL-1" stroke="currentColor" fill="currentColor" font-family="system-ui,sans-serif" font-size="17">
+    <text x="30" y="30" stroke="none" font-weight="bold">Stage 1: Boundary &amp; Dimensions</text>
+    <ellipse cx="140" cy="80" rx="60" ry="20" fill="none" stroke="currentColor" stroke-width="2"/>
+    <line x1="80" y1="80" x2="80" y2="220" stroke="currentColor" stroke-width="2"/>
+    <line x1="200" y1="80" x2="200" y2="220" stroke="currentColor" stroke-width="2"/>
+    <path d="M 80 220 A 60 20 0 0 0 200 220" fill="none" stroke="currentColor" stroke-width="2"/>
+    <path d="M 80 220 A 60 20 0 0 1 200 220" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <line x1="80" y1="80" x2="200" y2="80" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <circle cx="140" cy="80" r="3" fill="currentColor"/>
+    <text x="140" y="72" text-anchor="middle" stroke="none">radius = r</text>
+    <line x1="215" y1="80" x2="215" y2="220" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M 211 84 L 215 80 L 219 84 M 211 216 L 215 220 L 219 216" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text x="225" y="155" stroke="none">height = h</text>
+    <text x="140" y="115" text-anchor="middle" stroke="none" fill="#d9381e" font-weight="bold">TOP IS OPEN (no metal)</text>
+  </g>
+  <g data-g9-stage-id="VIS-MAT-SAV-CYL-2" stroke="currentColor" fill="none" font-family="system-ui,sans-serif" font-size="17">
+    <text x="405" y="30" text-anchor="middle" stroke="none" fill="currentColor" font-weight="bold">Stage 2: Wall + bottom base</text>
+    <!-- Unrolled curved wall -->
+    <rect x="290" y="60" width="230" height="90" rx="3" stroke-width="2" fill="rgba(31,111,178,0.08)"/>
+    <text x="405" y="95" text-anchor="middle" stroke="none" fill="currentColor" font-weight="600">Curved Wall (Unrolled Rectangle)</text>
+    <text x="405" y="120" text-anchor="middle" stroke="none" fill="currentColor">CURVED WALL = material surface</text>
+    <text x="405" y="140" text-anchor="middle" stroke="none" fill="#1f6fb2" font-weight="bold"></text>
+    <!-- Circular base -->
+    <ellipse cx="405" cy="205" rx="55" ry="25" stroke-width="2" fill="rgba(46,139,87,0.1)"/>
+    <text x="405" y="200" text-anchor="middle" stroke="none" fill="currentColor" font-weight="600">Bottom Circular Base</text>
+    <text x="405" y="218" text-anchor="middle" stroke="none" fill="currentColor">BOTTOM BASE = material surface</text>
+    <text x="405" y="235" text-anchor="middle" stroke="none" fill="#2e8b57" font-weight="bold"></text>
+  </g>
+  <g data-g9-stage-id="VIS-MAT-SAV-CYL-3" font-family="system-ui,sans-serif" font-size="17">
+    <rect x="40" y="255" width="480" height="50" rx="6" fill="rgba(31,111,178,0.12)" stroke="#1f6fb2" stroke-width="1.5"/>
+    <text x="280" y="285" text-anchor="middle" fill="#1f6fb2" font-weight="bold">Count wall + bottom base; top is open</text>
+  </g>
+</svg>

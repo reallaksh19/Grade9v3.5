@@ -1111,11 +1111,29 @@ def core1(ctx: Ctx, m: dict) -> str:
 
 
 def _core1a_worked_anchor(question: dict, ctx: Ctx | None = None, owner: bool = False) -> str:
-    """Render WATCH ONE from governed answer structure without inventing missing explanation.
+    """Render a governed worked anchor without creating a pre-attempt answer side-channel.
 
-    `owner` is a question of the product's bank worked through as the unit's example: it is shown as its owner wrote it,
-    under its own identity and custody line."""
+    Canonical worked examples may show their structured reasoning. An owner-bank question that is
+    simultaneously assigned to Core2 is different: Core2 owns the attempt boundary, so Core1A may
+    name/show that practice item but must not replay its answer, reasoning route, result or check.
+    """
     answer = question.get("answer") or {}
+    stem = question.get("stem")
+    head = (f'<p class="g9-prov" data-g9-anchor-source>{esc(_identity(question))} · {esc(_custody(question))}</p>'
+            if owner else "")
+    stem_html = (f'<p class="g9-lines">{question_text(ctx, question, "stem", stem, "CORE1A")}</p>'
+                 if ctx and stem else para(stem))
+    if owner:
+        return (
+            head + stem_html
+            + block(
+                "protected_practice",
+                para("Use the construction above, then return to Core2 and complete this owner-supplied question independently. "
+                     "Its worked route and result stay behind the Core2 attempt boundary."),
+                title="Protected practice",
+            )
+        )
+
     route = answer.get("reasoning_route") or []
     if route:
         steps = "".join(
@@ -1128,27 +1146,23 @@ def _core1a_worked_anchor(question: dict, ctx: Ctx | None = None, owner: bool = 
         working = f'<ol class="g9-watch-steps">{steps}</ol>'
     else:
         working = items(answer.get("reasoning"), True)
-    stem = question.get("stem")
-    head = (f'<p class="g9-prov" data-g9-anchor-source>{esc(_identity(question))} · {esc(_custody(question))}</p>'
-            if owner else "")
     return (
-        head
-        + (f'<p class="g9-lines">{question_text(ctx, question, "stem", stem, "CORE1A")}</p>' if ctx and stem else para(stem))
-        + working
+        head + stem_html + working
         + block("worked_result", para(answer.get("summary")), title="Result")
         + block("worked_check", para(answer.get("check")), title="Check")
     )
 
 
 def _core1a_question_bridge(ctx: Ctx, unit: dict, questions: list[dict], toughest: dict | None) -> str:
-    """Say which source question a unit builds toward, and the move learners most often miss in it."""
+    """Name the practice question and its bottleneck without leaking its protected move or answer."""
     if not questions:
         return ""
     selected = "CORE2" in product_manifest.selected_output_roles(ctx.manifest)
     rows = []
     for question in questions:
-        difficulty = (((question.get("extensions") or {}).get(toughest_concept.ANALYSIS_KEY) or {}).get("difficulty") or {})
-        move = toughest_concept.crux_move(question) or {}
+        analysis = ((question.get("extensions") or {}).get(toughest_concept.ANALYSIS_KEY) or {})
+        difficulty = analysis.get("difficulty") or {}
+        bottleneck = analysis.get("review_bottleneck")
         hardest = bool(toughest and toughest["question_ref"] == question["id"])
         link = (f' <a class="g9-bridge-link" data-g9-practice-link data-g9-question-ref="{esc(question["id"])}" href="core2.html#{esc(question["id"])}">'
                 f'Try it in Core2</a>') if selected else ""
@@ -1156,7 +1170,8 @@ def _core1a_question_bridge(ctx: Ctx, unit: dict, questions: list[dict], toughes
             f'<li data-g9-bridge-question="{esc(question["id"])}"><strong>{esc(toughest_concept.label_of(question))}</strong>'
             f'{" · " + esc(difficulty["band"]) if difficulty.get("band") else ""}'
             f'{" · the hardest question in this set" if hardest else ""}'
-            f'{"<br>The move learners miss: " + esc(move["action"]) if move.get("action") else ""}{link}</li>')
+            f'{"<br>What it turns on: " + esc(bottleneck) if isinstance(bottleneck, str) and bottleneck else ""}{link}</li>'
+        )
     return block("question_bridge", "<ul>" + "".join(rows) + "</ul>", title="This unit builds toward")
 
 
@@ -2306,7 +2321,7 @@ def pdf_control(href: str, accessible_name: str = PDF_ACCESSIBLE_NAME) -> str:
 def shell_header(home_href: str, question_bank_href: str, pdf_href: str | None = None, pdf_name: str = PDF_ACCESSIBLE_NAME) -> str:
     """The shared tablet-shell header. Used by every rendered page."""
     pdf_btn = f'<a class="g9-header-btn" href="{esc(pdf_href)}" title="{esc(pdf_name)}">PDF</a>' if pdf_href else ""
-    return (f'<header class="g9-shell-header"><div class="g9-header-inner">'
+    return (f'<header data-g9-shell-header class="g9-shell-header"><div class="g9-header-inner">'
             f'<a href="{esc(home_href)}" class="g9-brand"><span class="logo-icon">⚡</span><span class="brand-title">Grade9V3.5</span><span class="g9-brand-badge">Learner Platform</span></a>'
             f'<nav class="g9-header-nav" aria-label="Portal Navigation">'
             f'<a href="{esc(home_href)}">Home</a>'
@@ -2385,12 +2400,12 @@ def shell(ctx: Ctx, role: str, mode: str, pdf: bool = True) -> tuple[str, str]:
         
     topic_href = f"../../../topics/{topic_slug}/index.html"
     
-    triad_context = (f'<div class="g9-triad-context" aria-label="breadcrumb">'
+    triad_context = (f'<nav class="g9-triad-context" aria-label="Breadcrumb">'
                      f'<a href="{esc(home_href)}">Home</a>'
                      f' / <a href="{subject_href}">{esc(subject)}</a>'
                      f' / <a href="{topic_href}">{esc(m.get("title", ""))}</a>'
                      f' / <span aria-current="page">{esc(current_role)}</span>'
-                     f'</div>')
+                     f'</nav>')
 
     qb_url = f"../../../question-bank/index.html?capability={esc(cap_ref)}"
 
@@ -2400,12 +2415,12 @@ def shell(ctx: Ctx, role: str, mode: str, pdf: bool = True) -> tuple[str, str]:
     triad = (f'<div class="g9-concept-triad-bar"><div class="g9-triad-inner">'
              f'{triad_context}'
              f'<span class="g9-triad-concept-title">Concept: {esc(m.get("title", ""))}</span>'
-             f'<div class="g9-triad-actions">'
+             f'<nav class="g9-triad-actions" aria-label="Concept actions">'
              f'<a class="g9-triad-btn g9-btn-learn{c1a_active}" href="core1a.html">📖 Learn</a>'
              f'<a class="g9-triad-btn g9-btn-practice{c2_active}" href="core2.html">✍️ Practice</a>'
              f'{explore_btn}'
              f'<a class="g9-triad-btn g9-btn-qb" href="{qb_url}">All questions in QB &rarr;</a>'
-             f'</div></div></div>')
+             f'</nav></div></div>')
 
     return header, triad
 

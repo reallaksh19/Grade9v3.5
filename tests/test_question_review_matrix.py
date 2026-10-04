@@ -128,6 +128,7 @@ class QuestionReviewMatrixTests(unittest.TestCase):
             "profile_id": "PROFILE-TEST",
             "provenance": "SYNTHETIC_TEST",
             "held": {"CAP-A": "UNCERTAIN", "CAP-B": "DEMONSTRATED"},
+            "capability_labels": {"CAP-A": "signed representation mapping", "CAP-B": "signed direction convention"},
             "knowledge_percentage": percentage,
             "measured_fit_claim": False,
         }
@@ -137,12 +138,47 @@ class QuestionReviewMatrixTests(unittest.TestCase):
         self.assertEqual(result["template_id"], "QRT-REPRESENT-D3")
         self.assertEqual(result["classification"]["demand"]["primary"], "REPRESENT")
         self.assertEqual(result["classification"]["band"], "D3")
-        self.assertIn("CAP-A is UNCERTAIN", result["slots"]["X"]["text"])
-        self.assertEqual(result["slots"]["Y"]["text"], "CAP-B")
-        self.assertEqual(result["slots"]["Z"]["text"], "Translate each directed segment into a signed term.")
+        self.assertIn("signed representation mapping", result["slots"]["X"]["text"])
+        self.assertEqual(result["slots"]["Y"]["text"], "Demonstrated capability: signed direction convention")
+        self.assertEqual(result["slots"]["Z"]["text"], "Choose the sign convention.")
         self.assertEqual(result["slots"]["W"]["text"], "Translate each directed segment into a signed term.")
+        self.assertNotEqual(result["slots"]["Z"]["text"], result["slots"]["W"]["text"])
         self.assertIn(result["slots"]["X"]["text"], result["review"]["H1"]["question"])
         self.assertIn(result["slots"]["Y"]["text"], result["review"]["H2"]["question"])
+
+    def test_resolver_never_uses_answer_bearing_stable_crux_as_x(self):
+        question = self.synthetic_question()
+        question["extensions"]["grade9v3:analysis"]["stable_crux_move"] = "Compute the final answer 42."
+        question["answer"]["summary"] = "42"
+        result = qrt.resolve_review(question, self.synthetic_profile(), self.matrix, self.vocab)
+        self.assertNotIn("42", result["slots"]["X"]["text"])
+        self.assertIn("template.slots.X", result["slots"]["X"]["basis"])
+
+    def test_explicit_review_bottleneck_route_and_protected_work_are_separate(self):
+        question = self.synthetic_question()
+        analysis = question["extensions"]["grade9v3:analysis"]
+        analysis["review_bottleneck"] = "Decide which sign must remain invariant across the translation."
+        analysis["review_route_to_crux"] = "Mark the positive direction before translating any segment."
+        analysis["protected_work"] = "Translate the final directed segment and decide its sign independently."
+        analysis["demonstrated_bridge"] = {
+            "capability_ref": "CAP-B",
+            "text": "A directed segment changes sign when its orientation reverses."
+        }
+        result = qrt.resolve_review(question, self.synthetic_profile(), self.matrix, self.vocab)
+        self.assertEqual(result["slots"]["X"]["text"].split(" Learner uncertainty", 1)[0], analysis["review_bottleneck"])
+        self.assertEqual(result["slots"]["Y"]["text"], analysis["demonstrated_bridge"]["text"])
+        self.assertEqual(result["slots"]["Z"]["text"], analysis["review_route_to_crux"])
+        self.assertEqual(result["slots"]["W"]["text"], analysis["protected_work"])
+        self.assertNotEqual(result["slots"]["Z"]["text"], result["slots"]["W"]["text"])
+
+    def test_demonstrated_bridge_text_is_rejected_without_demonstrated_evidence(self):
+        question = self.synthetic_question()
+        question["extensions"]["grade9v3:analysis"]["demonstrated_bridge"] = {
+            "capability_ref": "CAP-A",
+            "text": "This should not be trusted because CAP-A is UNCERTAIN."
+        }
+        result = qrt.resolve_review(question, self.synthetic_profile(), self.matrix, self.vocab)
+        self.assertNotIn("should not be trusted", result["slots"]["Y"]["text"])
 
     def test_percentage_never_routes_or_changes_slots(self):
         low = qrt.resolve_review(self.synthetic_question(), self.synthetic_profile(30), self.matrix, self.vocab)

@@ -1,0 +1,181 @@
+name: surface-areas-volumes-pilot
+
+on:
+  push:
+    paths:
+      - ".github/workflows/surface-areas-volumes-pilot.yml"
+      - "products/mathematics/surface-areas-and-volumes.manifest.json"
+      - "Mathematics/library/surface-areas-and-volumes.v1.json"
+      - "Mathematics/question-bank/surface-areas-and-volumes.owner-bank.v1.json"
+      - "Mathematics/assets/representations/REP-MAT-SAV-*.svg"
+      - "Shared/tools/render_core.py"
+      - "Shared/tools/quality_gate.py"
+      - "Shared/tools/question_content_audit.py"
+      - "Shared/tools/batch_authoring.py"
+      - "Shared/tools/pre_attempt_leak_audit.py"
+      - "Shared/tools/interactive_chromium_gate.py"
+      - "tools/site-audit/core-page-audit.mjs"
+      - "tools/site-audit/interactive-page-audit.mjs"
+      - "tests/test_question_content_audit.py"
+      - "tests/test_batch_authoring.py"
+      - "tests/test_pre_attempt_leak_audit.py"
+      - "tests/test_interactive_chromium_gate.py"
+  pull_request:
+    paths:
+      - ".github/workflows/surface-areas-volumes-pilot.yml"
+      - "products/mathematics/surface-areas-and-volumes.manifest.json"
+      - "Mathematics/library/surface-areas-and-volumes.v1.json"
+      - "Mathematics/question-bank/surface-areas-and-volumes.owner-bank.v1.json"
+      - "Mathematics/assets/representations/REP-MAT-SAV-*.svg"
+      - "Shared/tools/render_core.py"
+      - "Shared/tools/quality_gate.py"
+      - "Shared/tools/question_content_audit.py"
+      - "Shared/tools/pre_attempt_leak_audit.py"
+      - "Shared/tools/interactive_chromium_gate.py"
+      - "tools/site-audit/core-page-audit.mjs"
+      - "tools/site-audit/interactive-page-audit.mjs"
+      - "tests/test_question_content_audit.py"
+      - "tests/test_pre_attempt_leak_audit.py"
+      - "tests/test_interactive_chromium_gate.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-review-evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install validation dependencies
+        run: |
+          pip install --quiet jsonschema pypdf cffi
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Focused semantic and safety regressions
+        run: |
+          python3 -m unittest             tests.test_question_content_audit             tests.test_pre_attempt_leak_audit             tests.test_interactive_chromium_gate             tests.test_question_review_matrix             tests.test_surface_areas_volumes_pilot             tests.test_surface_areas_volumes_evidence
+
+      - name: Generate QRT pedagogy batch before rendering
+        run: |
+          mkdir -p /tmp/sav-evidence
+          python3 -m Shared.tools.batch_authoring \
+            --bank Mathematics/question-bank/surface-areas-and-volumes.owner-bank.v1.json \
+            --profile evidence/reviews/surface-areas-and-volumes/learner-profile.v1.json \
+            --subject Mathematics \
+            --product-id PRODUCT-MAT-G9-SAV \
+            --authority-record https://github.com/reallaksh19/Grade9v3.5/issues/13 \
+            --out /tmp/sav-evidence/question-pedagogy.generated.json
+
+      - name: Generate deterministic question self-audit
+        run: |
+          mkdir -p /tmp/sav-evidence
+          python3 Shared/tools/question_content_audit.py             --bank Mathematics/question-bank/surface-areas-and-volumes.owner-bank.v1.json             --out /tmp/sav-evidence/content-self-audit.json
+
+      - name: Generate transitive pre-attempt leak audit
+        run: |
+          python3 Shared/tools/pre_attempt_leak_audit.py             --bank Mathematics/question-bank/surface-areas-and-volumes.owner-bank.v1.json             --package Mathematics/library/surface-areas-and-volumes.v1.json             --repo-root .             --out /tmp/sav-evidence/pre-attempt-leak-audit.json
+
+      - name: Reference-depth gaps
+        run: |
+          python3 Shared/tools/render_core.py gaps             --manifest products/mathematics/surface-areas-and-volumes.manifest.json             --reference | tee /tmp/sav-evidence/render-gaps.txt
+
+      - name: Render governed Core2 and Core1A
+        run: |
+          rm -rf /tmp/sav-site
+          mkdir -p /tmp/sav-site/products/mathematics/surface-areas-and-volumes /tmp/sav-site/css /tmp/sav-site/question-bank
+          python3 Shared/tools/render_core.py build             --manifest products/mathematics/surface-areas-and-volumes.manifest.json             --out /tmp/sav-site/products/mathematics/surface-areas-and-volumes             --mode PAGES             --reference | tee /tmp/sav-evidence/render.txt
+          cp public/css/tablet-12-7.css /tmp/sav-site/css/tablet-12-7.css
+          cp public/index.html /tmp/sav-site/index.html
+          cp public/question-bank/index.html /tmp/sav-site/question-bank/index.html
+
+      - name: Real quality gate
+        run: |
+          set +e
+          python3 Shared/tools/quality_gate.py             /tmp/sav-site/products/mathematics/surface-areas-and-volumes             --subject Mathematics             --product-id PRODUCT-MAT-G9-SAV             --report /tmp/sav-evidence/quality-gate.json             > /tmp/sav-evidence/quality-gate.txt 2>&1
+          code=$?
+          echo "$code" > /tmp/sav-evidence/quality-gate.exit
+          cat /tmp/sav-evidence/quality-gate.txt
+          exit 0
+
+      - name: Chromium tablet audit
+        run: |
+          set +e
+          node tools/site-audit/core-page-audit.mjs             /tmp/sav-site/products/mathematics/surface-areas-and-volumes             --profile tablet-12.7             --http-root /tmp/sav-site             --enforce             --json /tmp/sav-evidence/tablet-audit.json             > /tmp/sav-evidence/tablet-audit.txt 2>&1
+          code=$?
+          echo "$code" > /tmp/sav-evidence/tablet-audit.exit
+          cat /tmp/sav-evidence/tablet-audit.txt
+          exit 0
+
+      - name: Audit any interactive pages with Chromium
+        run: |
+          set -e
+          found=0
+          for page in /tmp/sav-site/products/mathematics/surface-areas-and-volumes/interactive*.html; do
+            [ -e "$page" ] || continue
+            found=1
+            stem=$(basename "$page" .html)
+            node tools/site-audit/interactive-page-audit.mjs "$page"               --json "/tmp/sav-evidence/$stem.chromium.json" --enforce
+            python3 Shared/tools/interactive_chromium_gate.py               --html "$page"               --receipt "/tmp/sav-evidence/$stem.chromium.json"
+          done
+          echo "$found" > /tmp/sav-evidence/interactive-pages-found.txt
+
+      - name: Record exact artifact hashes
+        run: |
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          root = Path("/tmp/sav-site/products/mathematics/surface-areas-and-volumes")
+          rows = {}
+          for name in ("core2.html", "core1a.html", "render-receipt.json"):
+              path = root / name
+              if path.is_file():
+                  rows[name] = "sha256:" + hashlib.sha256(path.read_bytes()).hexdigest()
+          Path("/tmp/sav-evidence/artifact-hashes.json").write_text(
+              json.dumps({"schema":"sav-pilot-artifact-hashes/v1","files":rows}, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Enforce rendered evidence
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          failures = []
+          for label in ("quality-gate", "tablet-audit"):
+              code = int(Path(f"/tmp/sav-evidence/{label}.exit").read_text().strip())
+              if code:
+                  failures.append(f"{label} exit={code}")
+          quality = json.loads(Path("/tmp/sav-evidence/quality-gate.json").read_text())
+          if quality.get("verdict") != "PASS":
+              failures.append("quality-gate verdict=" + str(quality.get("verdict")))
+          for name in ("core2.html", "core1a.html", "render-receipt.json"):
+              if not (Path("/tmp/sav-site/products/mathematics/surface-areas-and-volumes") / name).is_file():
+                  failures.append("missing " + name)
+          if failures:
+              print("\n".join(failures))
+              raise SystemExit("pilot rendered evidence is not clean")
+          print("pilot rendered evidence: PASS")
+          PY
+
+      - name: Upload Surface Areas and Volumes evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surface-areas-volumes-pilot-evidence
+          path: |
+            /tmp/sav-evidence/*
+            /tmp/sav-site/products/mathematics/surface-areas-and-volumes/*.html
+            /tmp/sav-site/products/mathematics/surface-areas-and-volumes/render-receipt.json
+          if-no-files-found: warn

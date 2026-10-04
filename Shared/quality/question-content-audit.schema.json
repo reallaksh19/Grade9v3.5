@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/question-content-audit.schema.json",
+  "title": "Question content self-audit evidence",
+  "type": "object",
+  "required": ["schema", "bank_ref", "bank_digest", "scope", "items", "status", "note"],
+  "properties": {
+    "schema": {"const": "question-content-audit/v1"},
+    "bank_ref": {"type": "string", "minLength": 1},
+    "bank_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "scope": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"enum": ["HINT_SAFETY", "SOLUTION_STRUCTURE", "INDEPENDENT_CALCULATION"]}
+    },
+    "items": {"type": "array", "minItems": 1},
+    "status": {"enum": ["PASS", "FAIL"]},
+    "note": {"type": "string", "minLength": 1}
+  }
+}
