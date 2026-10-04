@@ -1,0 +1,110 @@
+name: issue33-agent-a-cold-run
+
+on:
+  push:
+    branches:
+      - candidate/issue33-agent-a-v2
+    paths:
+      - "evidence/benchmark/ISS33/build_specimen.py"
+      - "evidence/benchmark/ISS33/qrt-review.v1.json"
+      - "evidence/benchmark/ISS33/assets/**"
+      - ".github/workflows/issue33-agent-a-cold-run.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cold-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install authoring dependencies
+        run: pip install --quiet jsonschema pypdf
+      - name: Focused contract checks
+        run: |
+          python Shared/tools/authoring_intake.py check
+          python Shared/tools/blueprint_spec.py --check
+          python Shared/tools/quality_contract.py --check
+          python -m unittest             tests.test_question_review_matrix.QuestionReviewMatrixTests.test_source_contract_is_valid_and_projection_is_current             tests.test_question_review_matrix.QuestionReviewMatrixTests.test_compiler_emits_exactly_twenty_eight_unique_cells
+      - name: Materialise candidate package
+        run: PYTHONPATH=. python evidence/benchmark/ISS33/build_specimen.py
+      - name: Validate custody and package schema
+        run: |
+          python Shared/tools/owner_bank.py check evidence/benchmark/ISS33/generated/owner.bank.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+          schema=json.loads(Path('Shared/library/package.schema.json').read_text())
+          package=json.loads(Path('evidence/benchmark/ISS33/generated/package.v1.json').read_text())
+          Draft202012Validator(schema).validate(package)
+          print('package schema: PASS')
+          PY
+      - name: Governed render
+        run: |
+          rm -rf /tmp/iss33
+          python Shared/tools/render_core.py build             --manifest evidence/benchmark/ISS33/generated/product.manifest.json             --out /tmp/iss33 --mode PAGES
+          test -f /tmp/iss33/core1a.html
+          test -f /tmp/iss33/core2.html
+          test ! -f /tmp/iss33/core1b.html
+          mkdir -p evidence/benchmark/ISS33/rendered
+          cp /tmp/iss33/core1a.html evidence/benchmark/ISS33/rendered/core1a.html
+          cp /tmp/iss33/core2.html evidence/benchmark/ISS33/rendered/core2.html
+          cp /tmp/iss33/render-receipt.json evidence/benchmark/ISS33/rendered/render-receipt.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install pinned browser dependency
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Run strict learner and tablet audits without losing failing evidence
+        shell: bash
+        run: |
+          set +e
+          python Shared/tools/quality_gate.py /tmp/iss33             --subject Chemistry --product-id EVIDENCE-CHEM-ISS33-HYB-A             --report /tmp/iss33/quality-gate.json --strict
+          q=$?
+          node tools/site-audit/core-page-audit.mjs /tmp/iss33             --profile tablet-12.7 --http-root /tmp/iss33             --json /tmp/iss33/tablet-audit.json --enforce
+          b=$?
+          printf '{"quality_gate_exit":%s,"browser_audit_exit":%s}\n' "$q" "$b" > /tmp/iss33/iss33-check-exits.json
+          cp /tmp/iss33/quality-gate.json evidence/benchmark/ISS33/rendered/quality-gate.json || true
+          cp /tmp/iss33/tablet-audit.json evidence/benchmark/ISS33/rendered/tablet-audit.json || true
+          cp /tmp/iss33/iss33-check-exits.json evidence/benchmark/ISS33/rendered/iss33-check-exits.json
+          exit 0
+      - name: Record exact tested head
+        run: |
+          git rev-parse HEAD > evidence/benchmark/ISS33/rendered/tested-head.txt
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          p=Path('evidence/benchmark/ISS33/rendered')
+          out={}
+          for name in ('core1a.html','core2.html'):
+              out[name]='sha256:'+hashlib.sha256((p/name).read_bytes()).hexdigest()
+          (p/'render-digests.json').write_text(json.dumps(out,indent=2)+'\n')
+          PY
+      - name: Commit generated records and exact rendered evidence
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add evidence/benchmark/ISS33/generated evidence/benchmark/ISS33/rendered
+          if ! git diff --cached --quiet; then
+            git commit -m "test(iss33): preserve agent-a governed render evidence"
+            git push origin HEAD:candidate/issue33-agent-a-v2
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: issue33-agent-a-cold-run
+          path: |
+            /tmp/iss33
+            evidence/benchmark/ISS33/generated
+            evidence/benchmark/ISS33/rendered
+          if-no-files-found: warn
+          retention-days: 14

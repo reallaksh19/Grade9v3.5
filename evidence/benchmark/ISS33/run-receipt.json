@@ -1,0 +1,96 @@
+{
+  "schema": "issue33-run-receipt/v1",
+  "issue": 33,
+  "agent": "independent-agent-a",
+  "round": "v2-first-blind",
+  "state": "FROZEN_FIRST_BLIND_CANDIDATE",
+  "branch": "candidate/issue33-agent-a-v2",
+  "source_commit": "e01c6365acfd6aec84c0a6e94f11b683bd961f6e",
+  "artifact_commit": "0af8b1fb4a99e3e75f6b008545e1eb6c4f9f82b5",
+  "render_digest": "11078d7676fe225e",
+  "inputs": {
+    "whole_issue_body_sha256": "sha256:a89df1e2d7f5c7a5ca41b51f670b80f15c326b2ba88f62f870d147f82d6763c8",
+    "abc_core_prompt_sha256": "sha256:6ba9ba40ea30b486792892de7091f51271f3855c0b39d22da5f7e83f20c52469",
+    "preset": "SIMULATED_OWNER_PRESET",
+    "source_status": "OWNER_SUPPLIED coordinator/AI-drafted; not official exam/PYQ"
+  },
+  "authorities": {
+    "blueprint_registry": "1.9.0",
+    "core1a_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
+    "core2_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0",
+    "renderer": "render_core/2",
+    "matrix": "question-demand-matrix/v1@1.0.0",
+    "templates": "question-demand-templates/v1@1.0.0",
+    "chemistry_adapter": "demand-review-adapter/v1@1.0.0"
+  },
+  "environment": {
+    "sandbox_repo": "NOT_SUPPLIED",
+    "local_network": "UNAVAILABLE",
+    "planned_runner": "GitHub Actions ubuntu-latest / Python 3.12 / Node 22 / Playwright 1.56.1 Chromium",
+    "actual_runner": "GitHub Actions ubuntu-latest / Python 3.12 / Node 22 / Playwright 1.56.1 Chromium"
+  },
+  "commands_results": [
+    {
+      "command": "GitHub connector: create isolated branch from pinned seed",
+      "result": "PASS"
+    },
+    {
+      "command": "GitHub connector: post IMPLEMENTATION_PLAN",
+      "result": "PASS",
+      "comment_id": 5977788909
+    },
+    {
+      "command": "container git remote access",
+      "result": "NOT_RUN/UNAVAILABLE due network isolation"
+    },
+    {
+      "command": "PYTHONPATH=. python evidence/benchmark/ISS33/build_specimen.py",
+      "result": "PASS"
+    },
+    {
+      "command": "owner_bank.py check + package.schema validation",
+      "result": "PASS"
+    },
+    {
+      "command": "render_core.py build --mode PAGES",
+      "result": "PASS",
+      "renderer": "render_core/2"
+    },
+    {
+      "command": "quality_gate.py --strict",
+      "result": "PASS",
+      "exit_code": 0
+    },
+    {
+      "command": "core-page-audit.mjs --profile tablet-12.7 --enforce",
+      "result": "PASS",
+      "exit_code": 0
+    }
+  ],
+  "outputs": {
+    "owner_prompt": "evidence/benchmark/ISS33/owner-core-prompt.md",
+    "qrt": "evidence/benchmark/ISS33/qrt-review.v1.json",
+    "ledger": "evidence/benchmark/ISS33/question-ledger.json",
+    "source_cards": "evidence/benchmark/ISS33/source-cards.json",
+    "rendered_core1a": "evidence/benchmark/ISS33/rendered/core1a.html",
+    "rendered_core2": "evidence/benchmark/ISS33/rendered/core2.html",
+    "core1a_sha256": "sha256:8ac3ca400fe9facb661826c3a27892ab9f02b7b03d1adaaf4ed437a51c906f9e",
+    "core2_sha256": "sha256:1ff7dd5c5c8665863787670fc211dd2d330fc2976f81f3bfe5b641e788d49d55",
+    "semantic_review": "evidence/benchmark/ISS33/semantic-review.json",
+    "builder_proposal": "evidence/benchmark/ISS33/builder-proposal.md"
+  },
+  "limitations": [
+    "External sandbox repository not supplied; no sandbox-copy/cold-start claim.",
+    "Learner profile is simulated owner preset, not measured mastery.",
+    "Core2 OWNER_SUPPLIED learner label cannot additionally disclose coordinator/AI-drafted authorship at the pinned contract version.",
+    "Exact concept navigation lands at the relevant microtopic rather than the unique construction/repair anchor.",
+    "No learner-outcome evidence; producing-agent review is not release/golden certification."
+  ],
+  "handoff": {
+    "pull_request": 46,
+    "base": "feat/issue29-integrated-core-templates",
+    "head": "candidate/issue33-agent-a-v2",
+    "draft": true,
+    "partner_issue_inspected": false
+  }
+}
