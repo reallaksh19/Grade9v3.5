@@ -1,0 +1,169 @@
+name: issue35-hybridisation-candidate
+
+on:
+  push:
+    branches:
+      - candidate/iss35-d3-hybridisation-agent-a-r1
+    paths:
+      - "evidence/benchmark/ISS35/owner-core-prompt.md"
+      - "evidence/benchmark/ISS35/question-ledger.json"
+      - "evidence/benchmark/ISS35/source-cards.json"
+      - "evidence/benchmark/ISS35/build_specimen.py"
+      - "evidence/benchmark/ISS35/assets/**"
+      - ".github/workflows/issue35-hybridisation-candidate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cold-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install validation dependencies
+        run: pip install --quiet jsonschema
+
+      - name: Controlled-seed and prompt preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor e01c6365acfd6aec84c0a6e94f11b683bd961f6e HEAD
+          test "$(git diff --name-only e01c6365acfd6aec84c0a6e94f11b683bd961f6e..HEAD -- Shared | wc -l)" -eq 0
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          p=Path('evidence/benchmark/ISS35/owner-core-prompt.md').read_bytes()
+          got=hashlib.sha256(p).hexdigest()
+          want='cc448399f7c44781f8e3ca659aaa96da8b9fde5edc7a66625b45729f728a29d5'
+          assert got==want, (got,want)
+          print('core prompt sha256:',got)
+          PY
+          python Shared/tools/blueprint_spec.py --check
+          python Shared/tools/quality_contract.py --check
+
+      - name: Materialise candidate records
+        run: PYTHONPATH=. python evidence/benchmark/ISS35/build_specimen.py
+
+      - name: Validate custody and package schema
+        run: |
+          python Shared/tools/owner_bank.py check evidence/benchmark/ISS35/generated/owner.bank.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+          schema=json.loads(Path('Shared/library/package.schema.json').read_text(encoding='utf-8'))
+          package=json.loads(Path('evidence/benchmark/ISS35/generated/package.v1.json').read_text(encoding='utf-8'))
+          Draft202012Validator(schema).validate(package)
+          print('package schema: PASS')
+          qrt=json.loads(Path('evidence/benchmark/ISS35/generated/qrt-review.v1.json').read_text(encoding='utf-8'))
+          assert len(qrt['items'])==10
+          assert qrt['hardest_target']['question_id']=='Q2'
+          print('QRT ledger materialisation: PASS')
+          PY
+
+      - name: Governed render of requested roles
+        run: |
+          rm -rf /tmp/iss35-hyb
+          python Shared/tools/render_core.py build \
+            --manifest evidence/benchmark/ISS35/generated/product.manifest.json \
+            --out /tmp/iss35-hyb \
+            --mode PAGES
+          test -f /tmp/iss35-hyb/core1a.html
+          test -f /tmp/iss35-hyb/core2.html
+          test ! -f /tmp/iss35-hyb/core1b.html
+          test ! -f /tmp/iss35-hyb/core2a.html
+          test ! -f /tmp/iss35-hyb/core2b.html
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install pinned browser dependency
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Strict learner-quality gate
+        run: |
+          python Shared/tools/quality_gate.py /tmp/iss35-hyb \
+            --subject Chemistry \
+            --product-id EVIDENCE-CHEM-ISS35-HYB-A \
+            --report /tmp/iss35-hyb/quality-gate.json \
+            --strict
+
+      - name: Tablet 12.7 exact-render browser audit
+        run: |
+          node tools/site-audit/core-page-audit.mjs \
+            /tmp/iss35-hyb \
+            --profile tablet-12.7 \
+            --http-root /tmp/iss35-hyb \
+            --json /tmp/iss35-hyb/tablet-audit.json
+
+      - name: Preserve exact render and run receipt
+        if: always()
+        shell: bash
+        run: |
+          set -u
+          mkdir -p evidence/benchmark/ISS35/rendered evidence/benchmark/ISS35/reports
+          if test -f /tmp/iss35-hyb/core1a.html; then cp /tmp/iss35-hyb/core1a.html evidence/benchmark/ISS35/rendered/core1a.html; fi
+          if test -f /tmp/iss35-hyb/core2.html; then cp /tmp/iss35-hyb/core2.html evidence/benchmark/ISS35/rendered/core2.html; fi
+          if test -f /tmp/iss35-hyb/quality-gate.json; then cp /tmp/iss35-hyb/quality-gate.json evidence/benchmark/ISS35/reports/quality-gate.json; fi
+          if test -f /tmp/iss35-hyb/tablet-audit.json; then cp /tmp/iss35-hyb/tablet-audit.json evidence/benchmark/ISS35/reports/tablet-audit.json; fi
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,os,subprocess
+          root=Path('evidence/benchmark/ISS35')
+          def digest(path):
+              p=Path(path)
+              return hashlib.sha256(p.read_bytes()).hexdigest() if p.exists() else None
+          receipt={
+            'schema':'issue35-run-receipt/v1','issue':35,'agent':'A','round':1,
+            'baseline_source_commit':'e01c6365acfd6aec84c0a6e94f11b683bd961f6e',
+            'tested_head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+            'workflow_run_id':os.getenv('GITHUB_RUN_ID'),'workflow_attempt':os.getenv('GITHUB_RUN_ATTEMPT'),
+            'blueprint_registry':'1.9.0','core1a_blueprint':'BP-CORE1A-CONSTRUCTION@1.4.0','core2_blueprint':'BP-CORE2-SOURCE-QUESTION@1.5.0',
+            'renderer':'Shared/tools/render_core.py','matrix':'Shared/quality/question-demand-matrix.v1.json@1.0.0',
+            'core_prompt_sha256':digest(root/'owner-core-prompt.md'),'question_ledger_sha256':digest(root/'question-ledger.json'),
+            'package_sha256':digest(root/'generated/package.v1.json'),'bank_sha256':digest(root/'generated/owner.bank.json'),'qrt_sha256':digest(root/'generated/qrt-review.v1.json'),
+            'core1a_sha256':digest(root/'rendered/core1a.html'),'core2_sha256':digest(root/'rendered/core2.html'),
+            'quality_gate_sha256':digest(root/'reports/quality-gate.json'),'tablet_audit_sha256':digest(root/'reports/tablet-audit.json'),
+            'environment':{'github_runner':os.getenv('RUNNER_OS'),'python':'3.12','node':'22','playwright':'1.56.1'},
+            'commands':['python Shared/tools/blueprint_spec.py --check','python Shared/tools/quality_contract.py --check','PYTHONPATH=. python evidence/benchmark/ISS35/build_specimen.py','python Shared/tools/owner_bank.py check evidence/benchmark/ISS35/generated/owner.bank.json','python Shared/tools/render_core.py build --manifest evidence/benchmark/ISS35/generated/product.manifest.json --out /tmp/iss35-hyb --mode PAGES','python Shared/tools/quality_gate.py /tmp/iss35-hyb --subject Chemistry --product-id EVIDENCE-CHEM-ISS35-HYB-A --strict','node tools/site-audit/core-page-audit.mjs /tmp/iss35-hyb --profile tablet-12.7 --http-root /tmp/iss35-hyb'],
+            'independence':'Issue #36 was not inspected before this run.'
+          }
+          (root/'run-receipt.json').write_text(json.dumps(receipt,indent=2)+'\n',encoding='utf-8')
+          PY
+
+      - name: Commit preserved evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add evidence/benchmark/ISS35/generated evidence/benchmark/ISS35/rendered evidence/benchmark/ISS35/reports evidence/benchmark/ISS35/run-receipt.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m "test(issue35): preserve governed candidate render evidence"
+            git push origin HEAD:candidate/iss35-d3-hybridisation-agent-a-r1
+          else
+            echo "no generated evidence delta"
+          fi
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: issue35-hybridisation-agent-a-r1
+          path: |
+            /tmp/iss35-hyb
+            evidence/benchmark/ISS35/generated
+            evidence/benchmark/ISS35/rendered
+            evidence/benchmark/ISS35/reports
+            evidence/benchmark/ISS35/run-receipt.json
+          if-no-files-found: warn
+          retention-days: 14
