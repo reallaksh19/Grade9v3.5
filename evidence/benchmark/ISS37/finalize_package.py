@@ -29,6 +29,11 @@ role_map = {
 for microtopic in doc.get("microtopics", []):
     for teaching_step in microtopic.get("teaching_path", []):
         teaching_step["role"] = role_map.get(teaching_step.get("role"), teaching_step.get("role"))
+    # The exit answer asserts no computed total-energy value; canonical oracle
+    # vocabulary names that situation no_numeric_claim.
+    oracle = microtopic.get("exit_task", {}).get("oracle")
+    if isinstance(oracle, dict) and "no_numeric_energy_claim" in oracle:
+        microtopic["exit_task"]["oracle"] = {"no_numeric_claim": oracle["no_numeric_energy_claim"]}
 
 doc.setdefault("extensions", {}).setdefault("grade9v3:authoring_specimen", {})["product_intent"] = "COMPETITION"
 path.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
