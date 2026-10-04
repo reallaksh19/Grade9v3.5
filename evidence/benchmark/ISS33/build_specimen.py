@@ -38,6 +38,7 @@ MIC_SHAPE="MIC-CHEM-HYB-DOMAIN-VS-MOLECULAR-SHAPE"
 REP_DOMAIN="REP-CHEM-HYB-DOMAIN-SHAPE"
 REP_SP2="REP-CHEM-HYB-SP2-ORBITAL-INVENTORY"
 REP_LINEAR="REP-CHEM-HYB-LINEAR-P-INVENTORY"
+REP_SHAPE="REP-CHEM-HYB-DOMAIN-VS-SHAPE"
 FAM_DOMAIN="FAM-CHEM-HYB-DOMAIN-MODEL"
 FAM_ORBITAL="FAM-CHEM-HYB-ORBITAL-OVERLAP"
 FAM_SHAPE="FAM-CHEM-HYB-GEOMETRY-SHAPE"
@@ -51,7 +52,7 @@ FAMILY={
 "Q6":FAM_DOMAIN,"Q7":FAM_ORBITAL,"Q8":FAM_SHAPE,"Q9":FAM_ORBITAL,"Q10":FAM_SHAPE}
 FIGURE={
 "Q1":REP_DOMAIN,"Q2":REP_SP2,"Q3":REP_SP2,"Q4":REP_LINEAR,"Q5":REP_DOMAIN,
-"Q7":REP_LINEAR,"Q8":REP_DOMAIN,"Q9":REP_SP2,"Q10":REP_DOMAIN}
+"Q7":REP_LINEAR,"Q8":REP_SHAPE,"Q9":REP_SP2,"Q10":REP_SHAPE}
 
 def base(record_id, source=True):
     return {"id":record_id,"version":"0.1.0","status":"CANDIDATE",
@@ -68,7 +69,7 @@ def misconception(wrong, diagnostic, repair):
     return {"wrong_idea":wrong,"diagnostic_prompt":diagnostic,"repair":repair}
 
 def representation(record_id, purpose, asset, stages, correspondence):
-    return {**base(record_id,False),"kind":"ORBITAL_GEOMETRY_SCHEMATIC","purpose":purpose,
+    return {**base(record_id,False),"kind":"ORBITAL_DIAGRAM","purpose":purpose,
       "required_elements":[s[1] for s in stages],"relation_refs":[],
       "read_order":[s[2] for s in stages],
       "instance_constraints":["Stages teach representation rules without naming the supplied question's final answer."],
@@ -132,7 +133,15 @@ representations=[
    ("HYB-LINEAR-3","Second p direction","Add a second independent p direction."),
    ("HYB-LINEAR-4","Separate ledgers","Keep domain count distinct from sigma/pi decomposition.")],
   [{"element":"horizontal axis","symbol":"sigma axis","in_words":"two opposite local directions"},
-   {"element":"two p sets","symbol":"pA,pB","in_words":"two independent directions perpendicular to the axis"}])
+   {"element":"two p sets","symbol":"pA,pB","in_words":"two independent directions perpendicular to the axis"}]),
+ representation(REP_SHAPE,
+  "Project the same four-domain scaffold to different bonded-atom shapes as lone-pair occupancy changes.",
+  "evidence/benchmark/ISS33/assets/domain-vs-shape.svg",
+  [("HYB-SHAPE-1","Occupancy cases","Compare 4 bonds, 3+1 and 2+2."),
+   ("HYB-SHAPE-2","All-domain geometry","Keep all four electron-domain positions."),
+   ("HYB-SHAPE-3","Atom-only shape","Project only bonded-atom positions.")],
+  [{"element":"four-domain scaffold","symbol":"4 regions","in_words":"the same electron-domain geometry"},
+   {"element":"paired dots","symbol":"LP","in_words":"lone-pair occupied positions omitted from molecular shape"}])
 ]
 
 families=[
@@ -228,7 +237,7 @@ microtopics=[
   "The same all-domain geometry can project to different atom-only shapes when lone-pair occupancy changes.",
   ["Can count central domains.","Knows the four-domain tetrahedral rule."],
   "Electron-domain geometry names all local regions; molecular shape names bonded-atom positions, so lone pairs can change the latter without changing the former.",
-  [REP_DOMAIN],FAM_SHAPE,
+  [REP_SHAPE],FAM_SHAPE,
   "Tetrahedral electron-domain geometry means the bonded atoms must form a tetrahedron.","Which domain positions contain atoms and which contain lone pairs?",
   "Keep the tetrahedral all-domain scaffold, then derive molecular shape from only the bonded-atom positions.",
   [step("SHP-T1","DECLARE","Name electron-domain geometry and molecular shape as different projections.","One includes all regions; the other records atom positions.","two geometry meanings"),
@@ -239,8 +248,8 @@ microtopics=[
   ["Lone-pair occupancy does not remove a domain.","It does remove that position from the atom-only shape."],
   "Count total domains and bonded atoms separately.",
   "Q8/Q10 and the BF3/NH3 comparison show why geometry vocabulary must be kept explicit.",
-  "CU-HYB-DOMAIN-VS-SHAPE","Project an all-domain geometry to the bonded-atom molecular shape","Q10",["Q1","Q8","Q10"],REP_DOMAIN,
-  ["HYB-DOMAIN-1","HYB-DOMAIN-2","HYB-DOMAIN-3"])
+  "CU-HYB-DOMAIN-VS-SHAPE","Project an all-domain geometry to the bonded-atom molecular shape","Q10",["Q1","Q8","Q10"],REP_SHAPE,
+  ["HYB-SHAPE-1","HYB-SHAPE-2","HYB-SHAPE-3"])
 ]
 
 purpose_delivery={"COMPETITION":{"section_title":"Competition transfer","support_policy":"NO_MID_TASK_BRIDGING","items":[
