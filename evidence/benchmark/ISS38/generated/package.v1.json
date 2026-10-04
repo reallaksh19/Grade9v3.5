@@ -1,0 +1,1203 @@
+{
+  "schema_version": "0.2.0",
+  "package_id": "EVIDENCE-LIB-CHE-ISSUE38-HYB",
+  "title": "Chemical Bonding & Hybridisation — D4 Issue #38 Candidate Specimen",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Chemistry",
+  "scope_summary": "Grade 11 Chemistry chemical bonding and hybridisation benchmark specimen covering ten owner-supplied questions with advanced amide, radical, allene and delocalisation models.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-OWNER-ISSUE38-HYB",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Issue #38 owner-supplied Grade 11 Chemical Bonding and Hybridisation benchmark questions",
+      "origin": "AUTHORED",
+      "locator": "https://github.com/reallaksh19/Grade9v3.5/issues/38",
+      "edition": "Owner benchmark prompt captured 2026-10-04",
+      "section": "A — Question set Q1–Q10",
+      "last_checked": "2026-10-04",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Owner-supplied benchmark input; coordinator-drafted under owner pilot; no official exam identity claimed.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "QUESTION_BANK",
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "COMPETITION"
+      ],
+      "selection_reason": "Verbatim benchmark custody for Issue #38 questions.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-CHE-11-HYB",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE38-HYB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Chemical Bonding and Hybridisation",
+      "topic": "Chemical Bonding and Molecular Structure",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Evaluating delocalisation, orbital alignment, and hybridisation model boundaries requires coordinating 3D geometry with electronic wavefunctions rather than formula recall.",
+      "depth_overlay": "ADVANCED",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [],
+      "primary_representation_ref": "REP-CHE-FORMAMIDE-TWIST"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-CHE-HYB-TORSION-ALIGNMENT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE38-HYB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Evaluate orbital overlap variation under dihedral twist and distinguish alignment from electron count or total energy",
+      "success_criterion": "Relate dihedral twist angle to overlap integral, show orthogonality at 90 degrees, and separate model assumptions from measured facts",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHE-HYB-DELOC-BOUNDARIES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE38-HYB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Reconcile sigma framework hybridisation with adjacent pi delocalisation and identify model limits",
+      "success_criterion": "Choose sp2 plus unhybridised p orbital for conjugated heteroatoms and state the limits of localized hybrid descriptions",
+      "prerequisite_refs": [
+        "CAP-CHE-HYB-TORSION-ALIGNMENT"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHE-HYB-LOCAL-VS-CONJUGATED",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE38-HYB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Apply and bound local domain counting, checking for continuous unhybridised p-orbital pathways",
+      "success_criterion": "Distinguish direct conjugation from insulated saturated spacers, recognizing orthogonal pi systems in cumulated systems",
+      "prerequisite_refs": [
+        "CAP-CHE-HYB-DELOC-BOUNDARIES"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-CHE-HYB-TORSION-ALIGNMENT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE38-HYB"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:component_waivers": {
+          "EQUATIONS": "Orbital alignment is a 3D symmetry and geometric overlap concept; its decisive bridge is the staged visual representation and orthogonality test, not symbolic algebra cards."
+        }
+      },
+      "title": "Conformational torsion and p-orbital alignment",
+      "bucket_id": "BUCKET-CHE-11-HYB",
+      "primary_capability_ref": "CAP-CHE-HYB-TORSION-ALIGNMENT",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Learners must track 3D orbital vectors under dihedral rotation and distinguish symmetry overlap from electron count.",
+      "entry_assumptions": [
+        "Understands sigma and pi bonding as head-on and lateral orbital overlaps.",
+        "Can recognize parallel versus perpendicular geometric vectors in 3D."
+      ],
+      "inferential_jump": "Delocalisation requires continuous, parallel alignment of unhybridised p orbitals; twisting the molecular framework breaks orbital overlap by symmetry orthogonality, converting a delocalised pi system into localized fragments without changing formal electron count.",
+      "teaching_path": [
+        {
+          "id": "TORS-T1",
+          "role": "DECLARE",
+          "action": "Inspect the planar ground state and identify parallel p-orbital alignment across adjacent atoms.",
+          "why_valid": "Maximum lateral overlap occurs when p-orbital axes are strictly parallel (theta = 0°).",
+          "inputs": [],
+          "output": "parallel p-orbital baseline"
+        },
+        {
+          "id": "TORS-T2",
+          "role": "TRANSFORM",
+          "action": "Apply a dihedral twist about the connecting sigma bond and evaluate the overlap integral.",
+          "why_valid": "Overlap scales with the cosine of the twist angle theta, diminishing as rotation progresses.",
+          "inputs": [],
+          "output": "cos(theta) overlap relation"
+        },
+        {
+          "id": "TORS-T3",
+          "role": "TRANSFORM",
+          "action": "Demonstrate complete orthogonality at 90 degrees: overlap vanishes while formal electron count and atom connectivity remain unchanged.",
+          "why_valid": "A p orbital perpendicular to an adjacent pi system lies entirely in its nodal plane, yielding zero net overlap integral.",
+          "inputs": [],
+          "output": "orthogonal decoupled state"
+        },
+        {
+          "id": "TORS-T4",
+          "role": "TRANSFORM",
+          "action": "Distinguish qualitative model assumptions from measured physical observables.",
+          "why_valid": "Rotational barrier and bond lengths are measurable physical quantities; hybrid orbitals and single-parameter overlap terms are localized model approximations.",
+          "inputs": [],
+          "output": "epistemological model boundaries"
+        }
+      ],
+      "relation_refs": [
+        "REL-CHE-PI-OVERLAP-COS",
+        "REL-CHE-CONJUGATION-CONTINUITY"
+      ],
+      "representation_refs": [
+        "REP-CHE-FORMAMIDE-TWIST"
+      ],
+      "question_family_refs": [
+        "FAM-CHE-HYBRIDISATION-MODELS"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "The hybridisation label changes, so donation disappears (confusing naming with physical causation).",
+          "diagnostic_prompt": "Does swapping a human hybridisation label physically cause electrons to stop overlapping, or does geometric orientation determine overlap?",
+          "repair": "Physical geometric alignment and overlap integral determine delocalisation; hybridisation labels describe rather than cause bonding behavior."
+        },
+        {
+          "wrong_idea": "Twisting a bond alters the formal electron count or breaks the sigma framework.",
+          "diagnostic_prompt": "When the amino group twists by 90 degrees, do any sigma bonds break or do valence electrons disappear?",
+          "repair": "Torsion rotates orbital vectors in space; atom connectivity and formal electron counts remain strictly invariant."
+        }
+      ],
+      "exit_task": {
+        "prompt": "An allyl cation, [CH2=CH–CH2]+, is twisted by 90 degrees about one of its C–C bonds. What happens to the overlap between the twisted CH2 p orbital and the adjacent pi system, and how does the formal electron count change? Explain before calculating.",
+        "source_ref": "SRC-OWNER-ISSUE38-HYB",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Orbital overlap between the twisted CH2 group and the adjacent pi bond drops to zero due to symmetry orthogonality; the formal electron count (2 pi electrons in the remaining double bond, vacant p orbital on the twisted carbon) remains strictly invariant.",
+          "reasoning": [
+            "Rotation by 90 degrees places the terminal p orbital in the nodal plane of the adjacent pi system, extinguishing lateral overlap.",
+            "Total valence electrons and sigma bond connectivity are unchanged by conformational rotation."
+          ],
+          "check": "Verify symmetry: the twisted p orbital is perpendicular to the adjacent p orbitals, giving zero net overlap integral.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The task assesses qualitative understanding of orbital alignment and orthogonality."
+        }
+      },
+      "research_contribution": "Issue #38 benchmark questions cluster Q1, Q2, Q3, and Q9 around conformational torsion, orbital overlap, and the boundaries of hybridisation models.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "When an amide bond twists toward 90 degrees, does resonance donation increase, decrease, or remain constant?",
+          "defensible_answer": "Resonance donation decreases and vanishes at 90 degrees due to the loss of parallel p-orbital overlap."
+        },
+        "attempt": {
+          "produces": "An orbital alignment explanation and orthogonality proof.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Identifies that lateral p overlap requires parallel alignment and vanishes at 90 degrees.",
+              "evidence_of": "Models orbital overlap geometrically."
+            },
+            {
+              "criterion": "Preserves electron count and connectivity invariants.",
+              "evidence_of": "Distinguishes conformation from chemical transformation."
+            }
+          ],
+          "accepted": [
+            "Overlap scales as cos(theta) and vanishes at 90° because the p orbitals become mutually perpendicular; electron count is unchanged."
+          ],
+          "rejected": [
+            "Donation disappears because the hybridisation label changed.",
+            "Electrons disappear upon twisting."
+          ],
+          "task": {
+            "prompt": "Explain why twisting planar formamide by 90 degrees eliminates lone-pair donation without changing formal electron count.",
+            "givens": [
+              "Formamide is planar at equilibrium.",
+              "Twisting angle theta = 90 degrees about C–N."
+            ],
+            "representation_ref": "REP-CHE-FORMAMIDE-TWIST"
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What is the angle between the nitrogen p-orbital and the carbonyl pi orbital at 90 degrees twist?",
+              "why_this_ask": "Establishes mutual orthogonality."
+            },
+            {
+              "ask": "What is the overlap integral of two mutually perpendicular p orbitals sharing a common axis?",
+              "why_this_ask": "Proves overlap is identically zero by symmetry."
+            }
+          ],
+          "differs_from_teaching_path": "Learners investigate geometric symmetry directly rather than memorizing resonance rules."
+        },
+        "boundary_test": {
+          "prompt": "If the amide is locked into a rigid bicyclic bridgehead where nitrogen is twisted 90 degrees (anti-Bredt amide), would you expect normal amide properties?",
+          "answer": "No; with zero orbital overlap, the nitrogen behaves like a normal basic amine and the carbonyl behaves like a reactive ketone.",
+          "confirms": "Demonstrates that physical orbital overlap governs chemical reactivity, not the presence of N and C=O atoms in the formula."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-CHE-FORMAMIDE-TORSION",
+          "decision": "Relate dihedral twist angle to orbital overlap loss, demonstrate zero overlap at 90 degrees, and separate model assumptions from physical facts",
+          "step_refs": [
+            "TORS-T1",
+            "TORS-T2",
+            "TORS-T3",
+            "TORS-T4"
+          ],
+          "representation_ref": "REP-CHE-FORMAMIDE-TWIST",
+          "reveal_stage_refs": [
+            "HYB-TWIST-1",
+            "HYB-TWIST-2",
+            "HYB-TWIST-3",
+            "HYB-TWIST-4"
+          ],
+          "crux_question_refs": [
+            "OWN-ISSUE38-HYB-03",
+            "OWN-ISSUE38-HYB-02",
+            "OWN-ISSUE38-HYB-09"
+          ],
+          "crux_step_ref": "TORS-T3",
+          "bank_anchor_ref": "OWN-ISSUE38-HYB-03",
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [
+            {
+              "statement": "CHECK: Show why S(90°) = 0 by p-orbital symmetry without calculating.",
+              "role": "CHECK"
+            },
+            {
+              "statement": "APPLY: Predict the overlap of an allyl cation twisted by 90°.",
+              "role": "APPLY"
+            },
+            {
+              "statement": "CONNECT: Relate orbital orthogonality to the lack of delocalisation in anti-Bredt amides.",
+              "role": "CONNECT"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MIC-CHE-HYB-DELOC-BOUNDARIES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE38-HYB"
+      ],
+      "extensions": {},
+      "title": "Delocalisation-sensitive hybridisation boundaries",
+      "bucket_id": "BUCKET-CHE-11-HYB",
+      "primary_capability_ref": "CAP-CHE-HYB-DELOC-BOUNDARIES",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Requires reconciling local electron-domain counting with adjacent pi conjugation driving rehybridisation.",
+      "entry_assumptions": [
+        "Can determine local Lewis structures and count electron domains.",
+        "Understands resonance stabilization in introductory conjugated systems."
+      ],
+      "inferential_jump": "When an unshared electron pair can participate in resonance delocalisation with an adjacent pi system, the atom rehybridises (typically to sp2) to place the pair in an unhybridised p orbital, overriding naive 4-domain sp3 predictions.",
+      "teaching_path": [
+        {
+          "id": "DELOC-T1",
+          "role": "DECLARE",
+          "action": "Count local sigma bonds and lone pairs to establish baseline domain count.",
+          "why_valid": "Steric number provides an initial geometry estimate for isolated atoms.",
+          "inputs": [],
+          "output": "baseline domain count"
+        },
+        {
+          "id": "DELOC-T2",
+          "role": "TRANSFORM",
+          "action": "Check for adjacent pi bonds, vacant p orbitals, or radical centers capable of resonance delocalisation.",
+          "why_valid": "Resonance delocalisation requires contiguous atoms with available p orbitals.",
+          "inputs": [],
+          "output": "conjugation check"
+        },
+        {
+          "id": "DELOC-T3",
+          "role": "TRANSFORM",
+          "action": "Select rehybridised sp2 framework if resonance stabilization energy exceeds the rehybridisation promotion energy.",
+          "why_valid": "Minimizing total molecular electronic energy determines equilibrium geometry.",
+          "inputs": [],
+          "output": "rehybridised orbital model"
+        }
+      ],
+      "relation_refs": [
+        "REL-CHE-HYBRID-ORBITAL-MIXING",
+        "REL-CHE-CONJUGATION-CONTINUITY"
+      ],
+      "representation_refs": [
+        "REP-CHE-FORMAMIDE-TWIST",
+        "REP-CHE-RADICAL-SOMO"
+      ],
+      "question_family_refs": [
+        "FAM-CHE-HYBRIDISATION-MODELS"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Four electron domains always forces sp3 hybridization and pyramidal shape.",
+          "diagnostic_prompt": "If an atom has 4 domains but is adjacent to a C=O pi bond, can delocalisation change its preferred hybridisation?",
+          "repair": "Delocalisation stabilization can favor rehybridisation to sp2 with a lone pair in an unhybridised p orbital."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Explain why the nitrogen in aniline (C6H5–NH2) is nearly planar rather than strongly pyramidal as in ammonia.",
+        "source_ref": "SRC-OWNER-ISSUE38-HYB",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The nitrogen lone pair delocalises into the aromatic pi system of the benzene ring, which requires an aligned p-like orbital on nitrogen; this resonance stabilization favors an approximately planar sp2-like geometry over a localized pyramidal sp3 state.",
+          "reasoning": [
+            "The benzene ring has a continuous cyclic pi system of parallel p orbitals.",
+            "Rehybridising toward sp2 allows the nitrogen lone pair to achieve parallel overlap with the ring pi system."
+          ],
+          "check": "Verify that resonance contributors place negative formal charge on the ortho and para positions of the ring.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Qualitative conceptual explanation."
+        }
+      },
+      "research_contribution": "Addresses Q1, Q5, Q7, and Q8.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Will formamide nitrogen be pyramidal like ammonia or planar like an sp2 carbon?",
+          "defensible_answer": "Planar, because lone pair delocalisation into the carbonyl pi system provides significant resonance stabilization."
+        },
+        "attempt": {
+          "produces": "Reconciled hybridisation model.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Explains why sp2 is preferred over sp3",
+              "evidence_of": "Understands electronic stabilization"
+            }
+          ],
+          "accepted": [
+            "sp2 framework with lone pair in pz"
+          ],
+          "rejected": [
+            "strictly sp3 because steric number is 4"
+          ],
+          "task": {
+            "prompt": "Reconcile formamide nitrogen 4 domains with planarity.",
+            "givens": [
+              "Planar amide geometry"
+            ],
+            "representation_ref": "REP-CHE-FORMAMIDE-TWIST"
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What orbital is needed for pi overlap?",
+              "why_this_ask": "Identifies unhybridised p orbital"
+            }
+          ],
+          "differs_from_teaching_path": "Starts from experimental planarity."
+        },
+        "boundary_test": {
+          "prompt": "What if nitrogen is methylated?",
+          "answer": "Planarity and restricted rotation are preserved.",
+          "confirms": "Resonance driving force is intrinsic."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-CHE-DELOC-BOUNDARIES",
+          "decision": "Reconcile local domain counting with adjacent pi conjugation driving rehybridisation",
+          "step_refs": [
+            "DELOC-T1",
+            "DELOC-T2",
+            "DELOC-T3"
+          ],
+          "representation_ref": "REP-CHE-FORMAMIDE-TWIST",
+          "reveal_stage_refs": [
+            "HYB-TWIST-1",
+            "HYB-TWIST-2"
+          ],
+          "crux_question_refs": [
+            "OWN-ISSUE38-HYB-01",
+            "OWN-ISSUE38-HYB-05",
+            "OWN-ISSUE38-HYB-08"
+          ],
+          "crux_step_ref": "DELOC-T3",
+          "bank_anchor_ref": "OWN-ISSUE38-HYB-01",
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "CHECK: Explain why 4 electron domains does not dictate sp3 hybridisation when adjacent pi bonds are present.",
+              "role": "CHECK"
+            },
+            {
+              "statement": "APPLY: Predict whether aniline nitrogen is planar or pyramidal.",
+              "role": "APPLY"
+            },
+            {
+              "statement": "CONNECT: Relate nitrogen lone pair delocalisation to decreased basicity.",
+              "role": "CONNECT"
+            }
+          ]
+        }
+      ],
+      "evidence_refs": []
+    },
+    {
+      "id": "MIC-CHE-HYB-LOCAL-VS-CONJUGATED",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE38-HYB"
+      ],
+      "extensions": {},
+      "title": "Local domain counting versus conjugated networks",
+      "bucket_id": "BUCKET-CHE-11-HYB",
+      "primary_capability_ref": "CAP-CHE-HYB-LOCAL-VS-CONJUGATED",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Distinguishes through-bond continuous conjugation from isolated saturated spacers and orthogonal pi networks.",
+      "entry_assumptions": [
+        "Understands orbital hybridisation in alkanes and alkenes."
+      ],
+      "inferential_jump": "Pi delocalisation strictly requires contiguous atoms with unhybridised p orbitals; a saturated sp3 atom with four sigma bonds interrupts the pi highway, enforcing localized domain behavior.",
+      "teaching_path": [
+        {
+          "id": "LOCAL-T1",
+          "role": "DECLARE",
+          "action": "Trace the bonding sequence across adjacent atoms.",
+          "why_valid": "Continuous orbital overlap requires an unbroken chain of adjacent p-bearing centers.",
+          "inputs": [],
+          "output": "atom connectivity path"
+        },
+        {
+          "id": "LOCAL-T2",
+          "role": "TRANSFORM",
+          "action": "Identify any intervening saturated sp3 atoms lacking unhybridised p orbitals.",
+          "why_valid": "A saturated node has all valence orbitals engaged in sigma bonds, blocking lateral pi overlap.",
+          "inputs": [],
+          "output": "pathway continuity status"
+        },
+        {
+          "id": "LOCAL-T3",
+          "role": "TRANSFORM",
+          "action": "Apply localized counting where pathways are broken, and conjugated models where pathways are continuous.",
+          "why_valid": "Assigns appropriate physical models based on orbital connectivity.",
+          "inputs": [],
+          "output": "classified molecular sites"
+        }
+      ],
+      "relation_refs": [
+        "REL-CHE-CONJUGATION-CONTINUITY"
+      ],
+      "representation_refs": [
+        "REP-CHE-CONJUGATION-PATHWAY",
+        "REP-CHE-ALLENE-ORTHOGONAL"
+      ],
+      "question_family_refs": [
+        "FAM-CHE-HYBRIDISATION-MODELS"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Spatial proximity in a folded chain allows pi conjugation across saturated spacers.",
+          "diagnostic_prompt": "Can a lone pair conjugate through a saturated -CH2- carbon if the chain folds?",
+          "repair": "Conjugation requires continuous through-bond alignment of unhybridised p orbitals; through-space proximity does not form a pi bond."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Compare the nitrogen in benzylamine (C6H5–CH2–NH2) with aniline (C6H5–NH2). Which one is more basic, and why?",
+        "source_ref": "SRC-OWNER-ISSUE38-HYB",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Benzylamine is much more basic (similar to aliphatic amines) because the intervening saturated –CH2– carbon has four sigma bonds and no unhybridised p orbital, insulating the nitrogen lone pair from the aromatic pi system; in aniline, the nitrogen is directly bonded to the ring and its lone pair is delocalised.",
+          "reasoning": [
+            "The –CH2– group in benzylamine acts as an electronic insulator.",
+            "Delocalisation in aniline lowers the electron density on nitrogen, greatly reducing basicity."
+          ],
+          "check": "pKa of benzylammonium is ~9.3, whereas anilinium is ~4.6.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Qualitative comparison of basicity and orbital pathways."
+        }
+      },
+      "research_contribution": "Addresses Q4, Q6, and Q10.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Does an intervening -CH2- group permit resonance delocalisation?",
+          "defensible_answer": "No, saturated sp3 carbons block through-bond pi delocalisation."
+        },
+        "attempt": {
+          "produces": "Insulation classification.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Identifies saturated spacer blocking conjugation",
+              "evidence_of": "Applies pathway continuity"
+            }
+          ],
+          "accepted": [
+            "CH2 is sp3 and has no p orbital for conjugation"
+          ],
+          "rejected": [
+            "both have carbonyls so both delocalise"
+          ],
+          "task": {
+            "prompt": "Compare Site A and Site B in Q4.",
+            "givens": [
+              "Site A amide, Site B separated amine"
+            ],
+            "representation_ref": "REP-CHE-CONJUGATION-PATHWAY"
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Does -CH2- have an unhybridised p orbital?",
+              "why_this_ask": "Identifies lack of pi channel"
+            }
+          ],
+          "differs_from_teaching_path": "Contrasts two specific sites."
+        },
+        "boundary_test": {
+          "prompt": "What if the CH2 is converted to CH=CH?",
+          "answer": "Conjugation is restored (vinylogous amide).",
+          "confirms": "Unbroken p pathway required."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-CHE-LOCAL-VS-CONJUGATED",
+          "decision": "Distinguish continuous through-bond pi pathways from insulated saturated spacers",
+          "step_refs": [
+            "LOCAL-T1",
+            "LOCAL-T2",
+            "LOCAL-T3"
+          ],
+          "representation_ref": "REP-CHE-CONJUGATION-PATHWAY",
+          "reveal_stage_refs": [
+            "CONT-1",
+            "CONT-2",
+            "CONT-3"
+          ],
+          "crux_question_refs": [
+            "OWN-ISSUE38-HYB-04",
+            "OWN-ISSUE38-HYB-06",
+            "OWN-ISSUE38-HYB-10"
+          ],
+          "crux_step_ref": "LOCAL-T2",
+          "bank_anchor_ref": "OWN-ISSUE38-HYB-04",
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "CHECK: Identify why a saturated -CH2- carbon blocks through-bond pi delocalisation.",
+              "role": "CHECK"
+            },
+            {
+              "statement": "APPLY: Compare the basicity of benzylamine versus aniline.",
+              "role": "APPLY"
+            },
+            {
+              "statement": "CONNECT: Explain why allene terminal CH2 planes are perpendicular using central sp orthogonal p orbitals.",
+              "role": "CONNECT"
+            }
+          ]
+        }
+      ],
+      "evidence_refs": []
+    }
+  ],
+  "representations": [
+    {
+      "id": "REP-CHE-FORMAMIDE-TWIST",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE38-HYB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "CONCEPT_FIGURE",
+      "purpose": "Staged orbital model of planar formamide parallel p-orbital alignment, continuous 3-center pi delocalisation, 90-degree twist around C–N, and resulting orbital orthogonality with zero overlap.",
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS38/assets/formamide-orbital-twist.svg"
+      ],
+      "reveal_stages": [
+        {
+          "id": "HYB-TWIST-1",
+          "label": "Planar ground state",
+          "purpose": "Shows parallel pz orbital alignment across O, C, and N in the planar sigma framework.",
+          "visible_elements": [
+            "Planar ground state",
+            "Shows parallel pz orbital alignment across O, C, and N in the planar sigma framework."
+          ]
+        },
+        {
+          "id": "HYB-TWIST-2",
+          "label": "3-Center pi delocalisation",
+          "purpose": "Illustrates continuous pi electron cloud giving partial double bond character.",
+          "visible_elements": [
+            "3-Center pi delocalisation",
+            "Illustrates continuous pi electron cloud giving partial double bond character."
+          ]
+        },
+        {
+          "id": "HYB-TWIST-3",
+          "label": "90-degree dihedral twist",
+          "purpose": "Rotates nitrogen p orbital into the orthogonal xy plane.",
+          "visible_elements": [
+            "90-degree dihedral twist",
+            "Rotates nitrogen p orbital into the orthogonal xy plane."
+          ]
+        },
+        {
+          "id": "HYB-TWIST-4",
+          "label": "Orthogonality & zero overlap",
+          "purpose": "Demonstrates zero net overlap integral while connectivity and electron counts remain invariant.",
+          "visible_elements": [
+            "Orthogonality & zero overlap",
+            "Demonstrates zero net overlap integral while connectivity and electron counts remain invariant."
+          ]
+        }
+      ],
+      "required_elements": [
+        "planar sigma framework",
+        "aligned pz orbitals",
+        "twisted orthogonal py orbital",
+        "zero overlap boundary"
+      ],
+      "read_order": [
+        "planar framework",
+        "parallel pz lobes",
+        "90-degree twist",
+        "orthogonal nodal plane"
+      ],
+      "instance_constraints": [
+        "Pre-attempt stages orient without solving the final mathematical relation or question text."
+      ],
+      "accessibility": [
+        "Role img with accessible label, title, and description.",
+        "High contrast dashed lines and distinct colored fills."
+      ],
+      "misleading_alternatives": [
+        "Assuming bond rotation breaks sigma connectivity or destroys valence electrons."
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "relation_refs": [
+        "REL-CHE-PI-OVERLAP-COS",
+        "REL-CHE-HYBRID-ORBITAL-MIXING",
+        "REL-CHE-CONJUGATION-CONTINUITY"
+      ]
+    },
+    {
+      "id": "REP-CHE-RADICAL-SOMO",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE38-HYB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "CONCEPT_FIGURE",
+      "purpose": "Staged orbital model of neutral methyl radical CH3 dot, showing the trigonal planar sp2 sigma framework and the perpendicular unhybridised pz orbital holding one unpaired electron (SOMO).",
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS38/assets/methyl-radical-orbital.svg"
+      ],
+      "reveal_stages": [
+        {
+          "id": "RAD-1",
+          "label": "Planar sp2 framework",
+          "purpose": "Shows three C–H sigma bonds at 120° in the xy plane.",
+          "visible_elements": [
+            "Planar sp2 framework",
+            "Shows three C–H sigma bonds at 120° in the xy plane."
+          ]
+        },
+        {
+          "id": "RAD-2",
+          "label": "Unhybridised pz orbital",
+          "purpose": "Shows dumbbell-shaped pz orbital perpendicular to the molecular plane.",
+          "visible_elements": [
+            "Unhybridised pz orbital",
+            "Shows dumbbell-shaped pz orbital perpendicular to the molecular plane."
+          ]
+        },
+        {
+          "id": "RAD-3",
+          "label": "SOMO occupancy",
+          "purpose": "Shows single unpaired electron in the pz orbital, distinct from empty carbocation.",
+          "visible_elements": [
+            "SOMO occupancy",
+            "Shows single unpaired electron in the pz orbital, distinct from empty carbocation."
+          ]
+        }
+      ],
+      "required_elements": [
+        "carbon center",
+        "three coplanar C-H bonds",
+        "perpendicular pz lobes",
+        "single unpaired electron dot"
+      ],
+      "read_order": [
+        "planar sigma bonds",
+        "perpendicular pz orbital",
+        "unpaired electron"
+      ],
+      "instance_constraints": [
+        "Pre-attempt stages orient without answering the universal rule refutation."
+      ],
+      "accessibility": [
+        "Accessible label and descriptions.",
+        "Clearly visible orange dot for the unpaired electron."
+      ],
+      "misleading_alternatives": [
+        "Leaving the p orbital empty like a carbocation."
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "relation_refs": [
+        "REL-CHE-PI-OVERLAP-COS",
+        "REL-CHE-HYBRID-ORBITAL-MIXING",
+        "REL-CHE-CONJUGATION-CONTINUITY"
+      ]
+    },
+    {
+      "id": "REP-CHE-CONJUGATION-PATHWAY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE38-HYB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "CONCEPT_FIGURE",
+      "purpose": "Comparison of Site A direct amide where continuous pz orbitals enable delocalisation with Site B separated amine where intervening sp3 CH2 group blocks conjugation.",
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS38/assets/conjugation-continuity-check.svg"
+      ],
+      "reveal_stages": [
+        {
+          "id": "CONT-1",
+          "label": "Site A: Continuous pi highway",
+          "purpose": "Shows adjacent sp2 centers with aligned pz orbitals in formamide.",
+          "visible_elements": [
+            "Site A: Continuous pi highway",
+            "Shows adjacent sp2 centers with aligned pz orbitals in formamide."
+          ]
+        },
+        {
+          "id": "CONT-2",
+          "label": "Site B: Saturated spacer node",
+          "purpose": "Shows intervening sp3 CH2 carbon lacking unhybridised p orbitals.",
+          "visible_elements": [
+            "Site B: Saturated spacer node",
+            "Shows intervening sp3 CH2 carbon lacking unhybridised p orbitals."
+          ]
+        },
+        {
+          "id": "CONT-3",
+          "label": "Conjugation barrier",
+          "purpose": "Illustrates that spatial folding cannot restore through-bond conjugation across an sp3 spacer.",
+          "visible_elements": [
+            "Conjugation barrier",
+            "Illustrates that spatial folding cannot restore through-bond conjugation across an sp3 spacer."
+          ]
+        }
+      ],
+      "required_elements": [
+        "Site A contiguous p orbitals",
+        "Site B saturated CH2 spacer",
+        "localized vs delocalised electron labels"
+      ],
+      "read_order": [
+        "Site A continuous alignment",
+        "Site B interrupted node",
+        "localized lone pair outcome"
+      ],
+      "instance_constraints": [
+        "Orients pathway continuity without solving the full decision procedure."
+      ],
+      "accessibility": [
+        "Distinct color coding for saturated versus conjugated nodes.",
+        "Accessible name and description."
+      ],
+      "misleading_alternatives": [
+        "Treating spatial coiling as equivalent to chemical conjugation."
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "relation_refs": [
+        "REL-CHE-PI-OVERLAP-COS",
+        "REL-CHE-HYBRID-ORBITAL-MIXING",
+        "REL-CHE-CONJUGATION-CONTINUITY"
+      ]
+    },
+    {
+      "id": "REP-CHE-ALLENE-ORTHOGONAL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE38-HYB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "CONCEPT_FIGURE",
+      "purpose": "Staged orbital model showing the central sp carbon of allene having two orthogonal p orbitals forming independent pi bonds with terminal sp2 carbons, resulting in mutually perpendicular terminal CH2 planes.",
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS38/assets/allene-orthogonal-p.svg"
+      ],
+      "reveal_stages": [
+        {
+          "id": "HYB-ALLENE-1",
+          "label": "Linear sigma framework",
+          "purpose": "Shows linear C–C–C axis with sp2–sp–sp2 hybridization.",
+          "visible_elements": [
+            "Linear sigma framework",
+            "Shows linear C–C–C axis with sp2–sp–sp2 hybridization."
+          ]
+        },
+        {
+          "id": "HYB-ALLENE-2",
+          "label": "First pi bond (vertical)",
+          "purpose": "Shows py overlap between C1 and central C2.",
+          "visible_elements": [
+            "First pi bond (vertical)",
+            "Shows py overlap between C1 and central C2."
+          ]
+        },
+        {
+          "id": "HYB-ALLENE-3",
+          "label": "Second pi bond (horizontal)",
+          "purpose": "Shows pz overlap between central C2 and C3 in orthogonal plane.",
+          "visible_elements": [
+            "Second pi bond (horizontal)",
+            "Shows pz overlap between central C2 and C3 in orthogonal plane."
+          ]
+        },
+        {
+          "id": "HYB-ALLENE-4",
+          "label": "Perpendicular terminal planes",
+          "purpose": "Shows terminal CH2 groups fixed in mutually perpendicular 90-degree planes.",
+          "visible_elements": [
+            "Perpendicular terminal planes",
+            "Shows terminal CH2 groups fixed in mutually perpendicular 90-degree planes."
+          ]
+        }
+      ],
+      "required_elements": [
+        "linear CCC axis",
+        "two orthogonal central p orbitals",
+        "perpendicular terminal planes"
+      ],
+      "read_order": [
+        "sigma backbone",
+        "first pi bond",
+        "orthogonal second pi bond",
+        "perpendicular geometry"
+      ],
+      "instance_constraints": [
+        "Orients stereochemical geometry without completing the full four-case audit."
+      ],
+      "accessibility": [
+        "Accessible labels, text descriptions, and high contrast styling."
+      ],
+      "misleading_alternatives": [
+        "Assuming allene is planar like butadiene."
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "relation_refs": [
+        "REL-CHE-PI-OVERLAP-COS",
+        "REL-CHE-HYBRID-ORBITAL-MIXING",
+        "REL-CHE-CONJUGATION-CONTINUITY"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "id": "REL-CHE-PI-OVERLAP-COS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE38-HYB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "S(\\theta) = S_0 \\cos\\theta",
+      "meaning": "Lateral orbital overlap between two unhybridised p orbitals depends on the cosine of their dihedral alignment angle theta.",
+      "symbols": [
+        {
+          "symbol": "S",
+          "meaning": "lateral pi overlap integral",
+          "unit_or_domain": "dimensionless"
+        },
+        {
+          "symbol": "S_0",
+          "meaning": "maximum overlap integral at parallel coplanar alignment",
+          "unit_or_domain": "dimensionless"
+        },
+        {
+          "symbol": "\\theta",
+          "meaning": "dihedral twist angle about internuclear axis",
+          "unit_or_domain": "degrees or radians"
+        }
+      ],
+      "conditions": [
+        "Applies to lateral overlap between two p orbitals rotated about their connecting sigma internuclear axis.",
+        "At theta = 90°, S = 0 by symmetry orthogonality."
+      ],
+      "derivation": [
+        {
+          "id": "DERIV-COS-1",
+          "role": "DECLARE",
+          "action": "Define p-orbital wavefunctions with orientation vectors in cylindrical/spherical coordinates.",
+          "why_valid": "Directional p orbitals transform as Cartesian vector components.",
+          "inputs": [],
+          "output": "p-orbital basis"
+        },
+        {
+          "id": "DERIV-COS-2",
+          "role": "TRANSFORM",
+          "action": "Apply rotation operator around the internuclear z-axis by angle theta.",
+          "why_valid": "Rotation projects the p-orbital into parallel and perpendicular components.",
+          "inputs": [],
+          "output": "projected orbital components"
+        },
+        {
+          "id": "DERIV-COS-3",
+          "role": "VERIFY",
+          "action": "Integrate product over all space: perpendicular term integrates to zero, leaving cos(theta) scaling.",
+          "why_valid": "Symmetry orthogonality extinguishes the out-of-plane component.",
+          "inputs": [],
+          "output": "cos(theta) overlap scaling"
+        }
+      ],
+      "limits": [
+        "Model assumes rigid nuclear framework and isolated two-orbital interaction.",
+        "Total molecular energy does not scale as cos(theta) due to sigma strain and perturbation quadratic energy scaling."
+      ],
+      "checks": [
+        "Verify boundary conditions: S(0°) = S_0; S(90°) = 0; S(180°) = -S_0."
+      ],
+      "gate_relation_ref": "REL-CHE-PI-OVERLAP-COS"
+    },
+    {
+      "id": "REL-CHE-HYBRID-ORBITAL-MIXING",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE38-HYB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "n \\text{ atomic orbitals} \\to n \\text{ hybrid/molecular orbitals}",
+      "meaning": "Linear combination of atomic orbitals preserves basis dimensionality: combining s and two p orbitals produces three sp2 hybrids and leaves one unhybridised p orbital.",
+      "symbols": [
+        {
+          "symbol": "n",
+          "meaning": "number of atomic basis orbitals combined",
+          "unit_or_domain": "integer count"
+        }
+      ],
+      "conditions": [
+        "Conservation of orbital dimensionality under unitary transformations.",
+        "Valence bond hybridisation creates directed equivalent orbitals for sigma bonding while leaving remaining p orbitals for pi delocalisation."
+      ],
+      "derivation": [
+        {
+          "id": "DERIV-MIX-1",
+          "role": "DECLARE",
+          "action": "Set up orthonormal basis of one 2s and three 2p orbitals (n=4).",
+          "why_valid": "Valence shell has 4 independent spatial wavefunctions.",
+          "inputs": [],
+          "output": "4-orbital basis"
+        },
+        {
+          "id": "DERIV-MIX-2",
+          "role": "TRANSFORM",
+          "action": "Construct unitary transformation mixing 2s with 2px and 2py.",
+          "why_valid": "Unitary mixing preserves total number of orthogonal states.",
+          "inputs": [],
+          "output": "three sp2 hybrids + one unhybridised pz"
+        },
+        {
+          "id": "DERIV-MIX-3",
+          "role": "VERIFY",
+          "action": "Verify normalization and mutual orthogonality of all 4 resulting orbitals.",
+          "why_valid": "Ensures mathematical completeness and probability conservation.",
+          "inputs": [],
+          "output": "verified orthonormal hybrid set"
+        }
+      ],
+      "limits": [
+        "Hybrid orbitals are mathematical basis choices, not independent physical observables.",
+        "Real molecules can exhibit fractional hybridization (e.g. sp^2.2)."
+      ],
+      "checks": [
+        "Sum of s and p fractional characters equals 1.0 for each hybrid and sums to the basis orbital count."
+      ],
+      "gate_relation_ref": "REL-CHE-HYBRID-ORBITAL-MIXING"
+    },
+    {
+      "id": "REL-CHE-CONJUGATION-CONTINUITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE38-HYB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "\\langle p_i | p_{i+1} \\rangle \\neq 0 \\quad \\forall i \\in \\text{pathway}",
+      "meaning": "Continuous pi delocalisation requires non-zero pairwise overlap along every adjacent step of the pathway; an intervening saturated sp3 atom lacks unhybridised p orbitals and interrupts the conjugation highway.",
+      "symbols": [
+        {
+          "symbol": "p_i",
+          "meaning": "unhybridised p orbital at atom i",
+          "unit_or_domain": "wavefunction"
+        }
+      ],
+      "conditions": [
+        "All atoms in the conjugated network must have unhybridised p orbitals.",
+        "Adjacent p orbitals must have coplanar symmetry alignment."
+      ],
+      "derivation": [
+        {
+          "id": "DERIV-CONT-1",
+          "role": "DECLARE",
+          "action": "Define molecular orbital as linear combination of p orbitals across all contiguous atoms.",
+          "why_valid": "Hückel and MO theory construct delocalised wavefunctions from adjacent p overlaps.",
+          "inputs": [],
+          "output": "LCAO-MO basis"
+        },
+        {
+          "id": "DERIV-CONT-2",
+          "role": "TRANSFORM",
+          "action": "Evaluate resonance integral beta between adjacent atoms i and i+1.",
+          "why_valid": "Resonance integral beta is proportional to overlap integral <p_i | p_{i+1}>.",
+          "inputs": [],
+          "output": "resonance integrals"
+        },
+        {
+          "id": "DERIV-CONT-3",
+          "role": "VERIFY",
+          "action": "If any node has all valence orbitals in sigma bonds, beta vanishes, decoupling the secular determinant into isolated blocks.",
+          "why_valid": "Zero overlap at an intervening node blocks through-bond electron delocalisation.",
+          "inputs": [],
+          "output": "segmented conjugation blocks"
+        }
+      ],
+      "limits": [
+        "Through-space (homoconjugation) interactions are negligible compared to direct through-bond conjugation in standard aliphatic spacers."
+      ],
+      "checks": [
+        "Verify that converting intervening -CH2- to -CH=CH- restores non-zero resonance integral across the chain."
+      ],
+      "gate_relation_ref": "REL-CHE-CONJUGATION-CONTINUITY"
+    }
+  ],
+  "question_families": [
+    {
+      "id": "FAM-CHE-HYBRIDISATION-MODELS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE38-HYB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Chemical Bonding, Orbital Alignment and Hybridisation Models",
+      "capability_refs": [
+        "CAP-CHE-HYB-TORSION-ALIGNMENT",
+        "CAP-CHE-HYB-DELOC-BOUNDARIES",
+        "CAP-CHE-HYB-LOCAL-VS-CONJUGATED"
+      ],
+      "solution_structure": [
+        "Determine local Lewis electron domains.",
+        "Inspect adjacent atoms for unhybridised p orbitals or pi systems.",
+        "Evaluate geometric and conformational feasibility of orbital overlap.",
+        "Assign appropriate hybridisation and delocalisation models with model boundaries."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Choose between localized sp3, planar sp2 with unhybridised p, or orthogonal pi models.",
+        "representation_translation": "Translate verbal formulas and conformations into 3D orbital alignments and nodal planes.",
+        "reasoning_steps": "Local count, adjacency check, overlap symmetry evaluation, energy and model boundary check.",
+        "novelty": "Amide delocalisation, 90-degree torsional decoupling, methyl radical SOMO, and allene orthogonal pi bonds."
+      },
+      "safe_variations": [
+        "Change substituents while preserving the same orbital alignment and conjugation conditions."
+      ],
+      "transfer_boundaries": [
+        "Do not equate spatial proximity with through-bond conjugation.",
+        "Do not treat hybridisation as a physical cause of bond angles or reactivity."
+      ],
+      "common_wrong_routes": [
+        "Apply four domains therefore sp3 automatically without checking adjacent pi systems.",
+        "Assume twisting breaks formal electron counts or chemical connectivity."
+      ],
+      "item_refs": [
+        "OWN-ISSUE38-HYB-01",
+        "OWN-ISSUE38-HYB-02",
+        "OWN-ISSUE38-HYB-03",
+        "OWN-ISSUE38-HYB-04",
+        "OWN-ISSUE38-HYB-05",
+        "OWN-ISSUE38-HYB-06",
+        "OWN-ISSUE38-HYB-07",
+        "OWN-ISSUE38-HYB-08",
+        "OWN-ISSUE38-HYB-09",
+        "OWN-ISSUE38-HYB-10"
+      ]
+    }
+  ],
+  "questions": [],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "data": [],
+  "application_contexts": [],
+  "extensions": {}
+}

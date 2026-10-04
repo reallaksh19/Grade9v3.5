@@ -1,0 +1,1367 @@
+{
+  "schema_version": "grade9v3-owner-supplied-bank-v1",
+  "bank_id": "issue38-hyb",
+  "intake_digest": "issue38-owner-prompt-2026-10-04",
+  "questions": [
+    {
+      "id": "OWN-ISSUE38-HYB-01",
+      "original_identifier": "Q1",
+      "stem": "In formamide, H–C(=O)–NH2, a local Lewis count gives nitrogen three sigma bonds and a lone pair. You are also given that the approximately planar amide arrangement permits nitrogen-lone-pair donation into the adjacent carbonyl pi system, which requires a suitably aligned p-like orbital. Choose a model that accounts for both the sigma framework and delocalisation. Resolve the apparent conflict with an automatic 'four domains therefore sp3' label and state the limits of your chosen hybridisation description.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Choose an approximately planar sp2 hybridised nitrogen framework for the three sigma bonds, with the nitrogen lone pair residing in the remaining unhybridised p orbital aligned parallel to the carbonyl pi system. The automatic 'four domains therefore sp3' label assumes localized, independent electron pairs minimizing electrostatic repulsion in isolation; it fails here because delocalisation of the nitrogen lone pair into the adjacent carbonyl pi* orbital provides substantial resonance stabilization that overcomes the modest promotion/rehybridisation energy from sp3 to sp2. Limits: Hybridisation is a mathematical construct of localized one-electron wavefunctions, not a physical observable; in real amides the nitrogen can be slightly non-planar (shallow double-well inversion potential), and hybridisation cannot describe the delocalised pi molecular orbital itself without resonance or MO theory.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE38-HYB-01-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Count local electron domains on nitrogen: 3 sigma bonds + 1 lone pair = 4 domains.",
+            "why_valid": "This establishes the introductory localized baseline.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "4 domains"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-01-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Evaluate the adjacent carbonyl pi system and the geometric requirement for orbital overlap.",
+            "why_valid": "Donation into the carbonyl pi system requires an unhybridised p-like orbital on nitrogen parallel to the carbonyl C=O pi orbital.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "parallel p-orbital needed"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-01-MOVE-3",
+            "kind": "REPRESENT",
+            "action": "Formulate the sp2 + unhybridised p model: three coplanar sp2 hybrids form sigma bonds to C and 2 H; the lone pair occupies the perpendicular pz orbital.",
+            "why_valid": "This orbital arrangement satisfies both the sigma framework geometry and continuous pi delocalisation.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "sp2 + pz model"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-01-MOVE-4",
+            "kind": "TRANSFORM",
+            "action": "Resolve the conflict with the 4-domain heuristic and state model limits.",
+            "why_valid": "The 4-domain rule minimizes local repulsion for localized pairs; resonance stabilization provides an energetic payoff that compensates for rehybridisation. Hybridisation remains an idealized localized model, not a physical observable.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "reconciled model with limits"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE38-HYB-01-MOVE-3",
+        "check": "Three sp2 hybrids form three sigma bonds in a plane (120°); one p orbital remains perpendicular holding 2 electrons. 3 x sp2 + 1 x p = 4 valence orbitals; electron count is strictly conserved.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHE-HYB-DELOC-BOUNDARIES",
+      "family_ref": "FAM-CHE-HYBRIDISATION-MODELS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q1",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:d44703bfca8465f1d0144848011fc482da2f051713ebd198f9ceeddcbc8c4a64"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Five-component difficulty: 8/10 resolves to D4."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "automatic application of four domains therefore sp3 without checking adjacent pi systems",
+          "cognitive_demand": {
+            "primary": "MODEL",
+            "secondary": [
+              "EXPLAIN",
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "Recognize that resonance delocalisation energy drives rehybridisation to an sp2 framework with an aligned unhybridised p orbital."
+        }
+      },
+      "conditions": [
+        "Delocalisation requires continuous, coplanar p-orbital alignment.",
+        "Hybridisation is an idealized localized bonding model, not an autonomous physical observable."
+      ],
+      "figure_refs": [
+        "REP-CHE-FORMAMIDE-TWIST"
+      ],
+      "scaffolds": [
+        {
+          "text": "Clarify the governing concept: identify whether unhybridised p-orbitals and continuous pi overlap exist.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-01-MOVE-1"
+        },
+        {
+          "text": "Construct the 3D orbital framework showing parallel alignment or intervening saturated nodes.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE38-HYB-01-MOVE-2"
+        },
+        {
+          "text": "Map the molecular structure into the orbital model and determine baseline electron domains.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE38-HYB-01-MOVE-2"
+        },
+        {
+          "text": "Resolve the central crux: evaluate how dihedral twist, conjugation continuity, or resonance stabilization governs the outcome.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISSUE38-HYB-01-MOVE-3"
+        },
+        {
+          "text": "Synthesize the qualified conclusion, separating model assumptions from measured physical observables.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE38-HYB-01-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE38-HYB-02",
+      "original_identifier": "Q2",
+      "stem": "For the formamide situation supplied in Q1, construct one qualitative representation connecting the Lewis lone pair on nitrogen, the nitrogen orbital used for donation and the carbonyl pi system. Then construct the corresponding approximately 90-degree-twisted arrangement about the C–N bond. Preserve atom connectivity and distinguish changes in orbital alignment from changes in formal electron count. Do not claim these sketches alone measure the donation strength.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "In the planar representation, the O–C(H)–N(H2) sigma framework lies in the xy plane; the carbonyl C and O each contribute a pz orbital, and nitrogen provides a parallel pz orbital containing the 2 lone-pair electrons, forming a continuous 3-center 4-electron pi system. In the 90-degree-twisted arrangement about the C–N bond, the nitrogen atom and its substituents rotate by 90 degrees, causing the lone-pair orbital to lie in the xy plane (now a py orbital). Atom connectivity (H–C(=O)–NH2) and formal electron count (4 valence electrons: 2 in C=O pi, 2 in N lone pair) are strictly unchanged. What changes is orbital alignment: the overlap integral between p(N,y) and p(C,z) vanishes by symmetry orthogonality. Qualitative drawings show zero overlap by symmetry, but cannot alone quantify resonance stabilization energy without spectroscopic or computational input.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE38-HYB-02-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Sketch the planar formamide ground state: O, C, N sigma framework in xy plane, with parallel pz orbitals on O, C, and N forming a 3-center 4-electron pi network.",
+            "why_valid": "This qualitative sketch shows the maximum parallel orbital alignment required for donation.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "planar 3-center pi model"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-02-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Rotate the amino group by 90 degrees about the C–N bond axis.",
+            "why_valid": "Dihedral rotation changes the orientation of the nitrogen p orbital from pz to py while preserving all chemical bonds and atom connectivity.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "90-degree rotated amino group"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-02-MOVE-3",
+            "kind": "DECIDE",
+            "action": "Analyze orbital overlap and invariant quantities in the twisted state.",
+            "why_valid": "The nitrogen py orbital is perpendicular to the carbonyl pz orbital, giving zero net overlap integral by symmetry orthogonality. Formal electron counts and connectivity remain invariant.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "orthogonal alignment with zero overlap"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-02-MOVE-4",
+            "kind": "TRANSFORM",
+            "action": "Explicitly delimit the qualitative representation: sketches illustrate symmetry orthogonality, not quantitative barrier energies.",
+            "why_valid": "Sketches show geometric nodal properties but lack quantitative Hamiltonian matrix elements.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "delimited representation"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE38-HYB-02-MOVE-3",
+        "check": "Planar overlap proportional to cos(0°)=1; twisted overlap proportional to cos(90°)=0. Total valence electrons remain 24 in both conformations.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHE-HYB-TORSION-ALIGNMENT",
+      "family_ref": "FAM-CHE-HYBRIDISATION-MODELS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q2",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:e77d068ee216f7ce6c6df8fd652b3bfb50acc34be6cf3ebf753aaf4714e6ffdf"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Five-component difficulty: 8/10 resolves to D4."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "twisting the C-N bond alters the formal electron count or breaks sigma atom connectivity",
+          "cognitive_demand": {
+            "primary": "REPRESENT",
+            "secondary": [
+              "MODEL",
+              "APPLY"
+            ]
+          },
+          "stable_crux_move": "Distinguish rotation of orbital alignment (yielding zero overlap by orthogonality) from any change in atom connectivity or formal electron count."
+        }
+      },
+      "conditions": [
+        "Delocalisation requires continuous, coplanar p-orbital alignment.",
+        "Hybridisation is an idealized localized bonding model, not an autonomous physical observable."
+      ],
+      "figure_refs": [
+        "REP-CHE-FORMAMIDE-TWIST"
+      ],
+      "scaffolds": [
+        {
+          "text": "Clarify the governing concept: identify whether unhybridised p-orbitals and continuous pi overlap exist.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-02-MOVE-1"
+        },
+        {
+          "text": "Construct the 3D orbital framework showing parallel alignment or intervening saturated nodes.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE38-HYB-02-MOVE-2"
+        },
+        {
+          "text": "Map the molecular structure into the orbital model and determine baseline electron domains.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE38-HYB-02-MOVE-2"
+        },
+        {
+          "text": "Resolve the central crux: evaluate how dihedral twist, conjugation continuity, or resonance stabilization governs the outcome.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISSUE38-HYB-02-MOVE-3"
+        },
+        {
+          "text": "Synthesize the qualified conclusion, separating model assumptions from measured physical observables.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE38-HYB-02-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE38-HYB-03",
+      "original_identifier": "Q3",
+      "stem": "The benchmark supplies a qualitative model result: with atom connectivity fixed, twisting a planar amide arrangement toward 90 degrees reduces the nitrogen-to-carbonyl orbital alignment and the delocalisation contribution. Explain that result through orbital overlap. Assess whether 'the hybridisation label changes, so donation disappears' is a sufficient explanation, and identify which parts of your account are model assumptions rather than measured facts.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Orbital overlap S = <p_N | p_C> requires spatial proximity and parallel symmetry alignment; as the C–N dihedral angle twists toward 90 degrees, the cosine projection of the two p orbital vectors decreases, extinguishing constructive overlap at 90 degrees where the orbitals become mutually orthogonal (<p_y | p_z> = 0). Stating 'the hybridisation label changes, so donation disappears' is an invalid causal explanation: hybridisation labels are human descriptive conventions, not physical forces; physical overlap and electron delocalisation govern orbital mixing and energy, not nomenclature. Model assumptions include treating bonding as localized hybrid orbitals (sp2 vs sp3), isolating the pi system from the sigma core, and assuming overlap scales purely as cos(theta). Measured physical facts are the planar equilibrium geometry (diffraction), the 70–90 kJ/mol rotational barrier (dynamic NMR), and infrared carbonyl stretching frequencies.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE38-HYB-03-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Explain delocalisation reduction through orbital overlap: overlap depends on the cosine of the dihedral angle between p-orbital axes.",
+            "why_valid": "Pi overlap integral is proportional to cos(theta), vanishing at 90 degrees where p orbitals become mutually perpendicular.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "overlap vanishes at 90°"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-03-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Critique the claim 'the hybridisation label changes, so donation disappears'.",
+            "why_valid": "This confuses cause and effect: hybridisation is an explanatory human label; physical loss of geometric overlap and electronic stabilization is the cause of diminished donation.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "refuted nominal causation"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-03-MOVE-3",
+            "kind": "DECIDE",
+            "action": "Separate model assumptions from measured physical facts.",
+            "why_valid": "Model assumptions: localized hybrid orbitals (sp2/sp3), strict separation of sigma and pi electrons, cos(theta) overlap model. Measured facts: planar geometry from diffraction, 75-85 kJ/mol barrier from dynamic NMR.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "model vs physical facts classified"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-03-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Verify consistency against benchmark givens, orbital symmetry and electron count invariants.",
+            "why_valid": "Cross-checking with physical observables and conservation laws validates the conclusion.",
+            "inputs": [
+              "prior move"
+            ],
+            "output": "verified model consistency"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE38-HYB-03-MOVE-3",
+        "check": "At theta = 0°, parallel lobes overlap constructively; at theta = 90°, the nodal plane of one p orbital bisects the other, giving exactly zero net overlap integral.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHE-HYB-TORSION-ALIGNMENT",
+      "family_ref": "FAM-CHE-HYBRIDISATION-MODELS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q3",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:2ea9cdfb2b9e677a9d002da309d5d5b5bf609116ba8769085d39046b9830957c"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Five-component difficulty: 8/10 resolves to D4."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "the hybridisation label changes, so donation disappears (confusing human naming with physical causation)",
+          "cognitive_demand": {
+            "primary": "EXPLAIN",
+            "secondary": [
+              "JUSTIFY",
+              "MODEL"
+            ]
+          },
+          "stable_crux_move": "Formulate orbital overlap loss through geometric orthogonality and refute nominal causal attribution to label changes."
+        }
+      },
+      "conditions": [
+        "Delocalisation requires continuous, coplanar p-orbital alignment.",
+        "Hybridisation is an idealized localized bonding model, not an autonomous physical observable."
+      ],
+      "figure_refs": [
+        "REP-CHE-FORMAMIDE-TWIST"
+      ],
+      "scaffolds": [
+        {
+          "text": "Clarify the governing concept: identify whether unhybridised p-orbitals and continuous pi overlap exist.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-03-MOVE-1"
+        },
+        {
+          "text": "Construct the 3D orbital framework showing parallel alignment or intervening saturated nodes.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE38-HYB-03-MOVE-2"
+        },
+        {
+          "text": "Map the molecular structure into the orbital model and determine baseline electron domains.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE38-HYB-03-MOVE-2"
+        },
+        {
+          "text": "Resolve the central crux: evaluate how dihedral twist, conjugation continuity, or resonance stabilization governs the outcome.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISSUE38-HYB-03-MOVE-3"
+        },
+        {
+          "text": "Synthesize the qualified conclusion, separating model assumptions from measured physical observables.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE38-HYB-03-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE38-HYB-04",
+      "original_identifier": "Q4",
+      "stem": "Compare two nitrogen sites: A is the amide nitrogen in H–C(=O)–NH2; B is the amine nitrogen in H–C(=O)–CH2–NH2. In the simplified introductory model, the intervening saturated CH2 group has no continuous aligned p-orbital pathway. Develop a decision procedure combining local sigma/lone-pair counting, adjacency, orbital alignment and the model's validity conditions. Apply it to A and B, then state a counterfactual structural change that would require you to reassess your procedure. Do not equate spatial proximity with conjugation.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Decision procedure: (1) Count local sigma bonds and lone pairs to determine default steric number. (2) Inspect immediate adjacent atoms for unhybridized p orbitals or pi systems. (3) Check for a continuous pathway of contiguous atoms with accessible p orbitals; if interrupted by a saturated sp3 atom with four sigma bonds, delocalisation is blocked. (4) If adjacent p orbitals exist, evaluate geometric/conformational feasibility of parallel alignment; if coplanar alignment is possible, assign planar sp2 hybridisation with lone pair in p. Application: Site A is directly adjacent to C=O with coplanar alignment -> delocalised, sp2-like. Site B has an intervening saturated –CH2– group with no unhybridised p orbital -> conjugation blocked, standard local counting holds: 3 sigma + 1 lone pair = 4 domains -> localized, pyramidal sp3. Counterfactual: Introducing unsaturation at the spacer (e.g. converting –CH2– to –CH=CH–, an enamide/vinylogous amide) or deprotonating to form an enolate carbanion establishes a continuous unhybridised p-orbital track, requiring procedure reassessment. Note: folding the molecule so B is spatially close to C=O does not constitute through-bond conjugation.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE38-HYB-04-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Formulate a systematic decision procedure: (1) Local Lewis count, (2) Check adjacent atoms for pi/p systems, (3) Verify continuous contiguous p-orbital pathway, (4) Evaluate conformational alignment feasibility.",
+            "why_valid": "This procedure integrates local domain heuristics with electronic delocalisation conditions.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "decision procedure formulated"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-04-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Apply procedure to Site A (formamide): N is adjacent to sp2 carbonyl carbon with aligned p orbital; continuous pathway exists -> delocalised, planar sp2.",
+            "why_valid": "Direct adjacency and planar alignment permit strong pi donation.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Site A classified as delocalised sp2"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-04-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Apply procedure to Site B: intervening CH2 is sp3 saturated with no unhybridised p orbital; pathway is broken -> localized, pyramidal sp3.",
+            "why_valid": "The saturated node insulates the amine lone pair from through-bond conjugation.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Site B classified as localized sp3"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-04-MOVE-4",
+            "kind": "DECIDE",
+            "action": "Propose counterfactual: unsaturating the intervening spacer (–CH=CH–) restores a continuous pi highway; emphasize that spatial proximity in a coiled conformation is not conjugation.",
+            "why_valid": "Unsaturation provides unhybridised p orbitals across all contiguous nodes.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "counterfactual established"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE38-HYB-04-MOVE-3",
+        "check": "In Site B, carbon has 4 sigma bonds (sp3) and 0 unhybridised p orbitals; overlap integral between nitrogen and carbonyl is zero through the saturated carbon.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHE-HYB-LOCAL-VS-CONJUGATED",
+      "family_ref": "FAM-CHE-HYBRIDISATION-MODELS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q4",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:a5bd1762999003bff70b76b12d5f49f846d627ef8f1c2fd9a16e5fdeb4f7bc52"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Five-component difficulty: 8/10 resolves to D4."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "spatial proximity in a folded conformation allows conjugation across a saturated CH2 spacer",
+          "cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": [
+              "APPLY",
+              "MODEL"
+            ]
+          },
+          "stable_crux_move": "Require a continuous through-bond pathway of adjacent unhybridised p orbitals and separate spatial proximity from conjugation."
+        }
+      },
+      "conditions": [
+        "Delocalisation requires continuous, coplanar p-orbital alignment.",
+        "Hybridisation is an idealized localized bonding model, not an autonomous physical observable."
+      ],
+      "figure_refs": [
+        "REP-CHE-CONJUGATION-PATHWAY"
+      ],
+      "scaffolds": [
+        {
+          "text": "Clarify the governing concept: identify whether unhybridised p-orbitals and continuous pi overlap exist.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-04-MOVE-1"
+        },
+        {
+          "text": "Construct the 3D orbital framework showing parallel alignment or intervening saturated nodes.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE38-HYB-04-MOVE-2"
+        },
+        {
+          "text": "Map the molecular structure into the orbital model and determine baseline electron domains.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE38-HYB-04-MOVE-2"
+        },
+        {
+          "text": "Resolve the central crux: evaluate how dihedral twist, conjugation continuity, or resonance stabilization governs the outcome.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISSUE38-HYB-04-MOVE-3"
+        },
+        {
+          "text": "Synthesize the qualified conclusion, separating model assumptions from measured physical observables.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE38-HYB-04-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE38-HYB-05",
+      "original_identifier": "Q5",
+      "stem": "A student claims: 'Hybridisation uniquely determines bond angles and any deviation proves the hybridisation label wrong.' The benchmark supplies approximate observations: CH4 tetrahedral about 109.5 degrees; NH3 pyramidal about 107 degrees; H2O bent about 104.5 degrees; all three commonly use an introductory sp3 description at the central atom. It also supplies approximately planar amide nitrogen with lone-pair delocalisation. Construct and test a qualified replacement claim using these observations, local domain counting, lone-pair effects and the amide boundary case. State what further evidence would be needed before treating a qualitative orbital picture as a unique physical account.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Replacement claim: 'Hybridisation is an idealized mathematical construct representing local directional bonding; bond angles are determined by physical balances of electrostatic and Pauli repulsions (lone pair vs bond pair repulsions), substituent electronegativities (Bent's rule: more s-character in orbitals directed toward electropositive substituents), steric hindrance, and resonance delocalisation. In CH4 (109.5°), NH3 (107°), and H2O (104.5°), all share a nominal sp3 descriptor, but lone pair repulsions compress the bond angles (or equivalently, non-integer fractional hybridization sp^3.4 occurs). In formamide, resonance stabilization with the carbonyl pi system overcomes lone-pair repulsion, flattening the nitrogen toward 120° (sp2). Deviations from ideal angles reflect physical forces and fractional mixing, not falsification of hybridisation's utility as an introductory model.' Further evidence needed: Photoelectron spectroscopy (PES) to observe canonical molecular orbital ionization energies, high-resolution X-ray electron density difference maps, and ab initio quantum mechanical wavefunctions (NBO analysis) demonstrating that localized hybrid orbitals are unitary transformations of delocalised MOs rather than unique physical observables.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE38-HYB-05-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Audit the student's premise against benchmark data: CH4 (109.5°), NH3 (107°), H2O (104.5°) all use sp3 labels yet have distinct bond angles.",
+            "why_valid": "This empirical evidence disproves the claim that hybridisation uniquely determines bond angles.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "student claim refuted"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-05-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Construct qualified replacement claim: hybridisation is an idealized qualitative description; physical bond angles result from lone-pair repulsions, Bent's rule, steric effects, and resonance delocalisation.",
+            "why_valid": "Angle deviations indicate fractional hybridization (non-integer mixing) and competing forces, not failure of the model.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "qualified replacement claim"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-05-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Test replacement claim against the amide boundary case: formamide nitrogen flattens to ~120 degrees because pi resonance stabilization overrides lone-pair repulsions.",
+            "why_valid": "The amide case demonstrates that external conjugation can induce rehybridisation.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "amide boundary validated"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-05-MOVE-4",
+            "kind": "DECIDE",
+            "action": "State required physical evidence: PES (ionization energies of canonical MOs), electron density mapping, and quantum wavefunctions.",
+            "why_valid": "These measurements demonstrate that hybrid orbitals are mathematical basis choices rather than independent physical observables.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "epistemological criteria specified"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE38-HYB-05-MOVE-3",
+        "check": "Bent's rule and VSEPR account for angle compression under constant domain count (4); amide resonance accounts for geometric flattening (3 domains in plane).",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHE-HYB-DELOC-BOUNDARIES",
+      "family_ref": "FAM-CHE-HYBRIDISATION-MODELS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q5",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:7fa193cc29562ab720488b660310f07f11d3639ebe7970a967d0b56b063e46f8"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Five-component difficulty: 8/10 resolves to D4."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "hybridisation is an immutable physical cause that strictly enforces rigid geometric angles",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": [
+              "MODEL",
+              "EXPLAIN"
+            ]
+          },
+          "stable_crux_move": "Use empirical angle series (109.5° -> 107° -> 104.5° -> 120°) to refute angle determinism and establish that hybridisation is a descriptive model rather than a unique physical observable."
+        }
+      },
+      "conditions": [
+        "Delocalisation requires continuous, coplanar p-orbital alignment.",
+        "Hybridisation is an idealized localized bonding model, not an autonomous physical observable."
+      ],
+      "figure_refs": [
+        "REP-CHE-FORMAMIDE-TWIST"
+      ],
+      "scaffolds": [
+        {
+          "text": "Clarify the governing concept: identify whether unhybridised p-orbitals and continuous pi overlap exist.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-05-MOVE-1"
+        },
+        {
+          "text": "Construct the 3D orbital framework showing parallel alignment or intervening saturated nodes.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE38-HYB-05-MOVE-2"
+        },
+        {
+          "text": "Map the molecular structure into the orbital model and determine baseline electron domains.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE38-HYB-05-MOVE-2"
+        },
+        {
+          "text": "Resolve the central crux: evaluate how dihedral twist, conjugation continuity, or resonance stabilization governs the outcome.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISSUE38-HYB-05-MOVE-3"
+        },
+        {
+          "text": "Synthesize the qualified conclusion, separating model assumptions from measured physical observables.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE38-HYB-05-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE38-HYB-06",
+      "original_identifier": "Q6",
+      "stem": "Consider the two nitrogen sites A and B in Q4. State the conditions under which the local four-domain counting rule is a useful introductory classification, and the evidence that would make its automatic use inadequate. Distinguish recalling a rule from deciding whether its conditions hold.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The local 4-domain counting rule (steric number = sigma bonds + lone pairs = 4 -> sp3, tetrahedral/pyramidal geometry) is a valid, useful heuristic when: (1) the central atom is fully saturated, (2) the lone pair is localized and has no adjacent unhybridised p orbitals, pi systems, or empty low-lying orbitals, and (3) there is no energetic driving force (e.g. resonance stabilization) to compensate for the rehybridisation energy to sp2. Evidence making automatic use inadequate includes: geometric evidence (bond angles near 120°, near-planar arrangement around N), physical/spectroscopic evidence (elevated rotational barrier about the adjacent bond, shortened C–N bond length), and chemical evidence (greatly diminished basicity/nucleophilicity). Rule recall is mechanically executing 3 + 1 = 4 -> sp3 without reflection. Deciding applicability requires inspecting the chemical environment (checking adjacency, continuous orbital path, and resonance payoff) to verify that the boundary conditions of the heuristic are satisfied.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE38-HYB-06-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Define the conditions under which local 4-domain counting is useful: saturated centers with strictly localized lone pairs and no adjacent conjugated pi or vacant p orbitals.",
+            "why_valid": "Under these conditions, electrostatic domain repulsion accurately predicts tetrahedral/pyramidal geometry.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "heuristic validity conditions established"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-06-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Identify empirical evidence signaling that automatic use is inadequate: planar geometry (~120° angles), restricted bond rotation, shortened bond lengths, and suppressed basicity.",
+            "why_valid": "These observations indicate resonance delocalisation and non-sp3 electronic structure.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "discriminating empirical evidence identified"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-06-MOVE-3",
+            "kind": "DECIDE",
+            "action": "Distinguish rule recall from condition checking: recall calculates steric number mechanically; condition checking evaluates the electronic environment and conjugation potential.",
+            "why_valid": "Scientific application requires verifying assumptions prior to rule execution.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "distinction established"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-06-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Verify consistency against benchmark givens, orbital symmetry and electron count invariants.",
+            "why_valid": "Cross-checking with physical observables and conservation laws validates the conclusion.",
+            "inputs": [
+              "prior move"
+            ],
+            "output": "verified model consistency"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE38-HYB-06-MOVE-3",
+        "check": "Site B satisfies 4-domain conditions (isolated, pyramidal, basic). Site A violates them (conjugated, planar, high rotational barrier, non-basic).",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHE-HYB-LOCAL-VS-CONJUGATED",
+      "family_ref": "FAM-CHE-HYBRIDISATION-MODELS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q6",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:07e8eeccb58cc7be624d67404fff3a1e4eb1d94528f0bad6f34bd6e09f4641ab"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 0,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Five-component difficulty: 6/10 resolves to D3."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "recalling the formula steric number = 4 is sufficient without checking whether adjacent pi pathways exist",
+          "cognitive_demand": {
+            "primary": "EXPLAIN",
+            "secondary": [
+              "RETRIEVE",
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "Contrast unconditioned rule recall with active boundary evaluation (checking for adjacent pi conjugation and planar geometry)."
+        }
+      },
+      "conditions": [
+        "Delocalisation requires continuous, coplanar p-orbital alignment.",
+        "Hybridisation is an idealized localized bonding model, not an autonomous physical observable."
+      ],
+      "figure_refs": [
+        "REP-CHE-CONJUGATION-PATHWAY"
+      ],
+      "scaffolds": [
+        {
+          "text": "Clarify the governing concept: identify whether unhybridised p-orbitals and continuous pi overlap exist.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-06-MOVE-1"
+        },
+        {
+          "text": "Construct the 3D orbital framework showing parallel alignment or intervening saturated nodes.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE38-HYB-06-MOVE-2"
+        },
+        {
+          "text": "Map the molecular structure into the orbital model and determine baseline electron domains.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE38-HYB-06-MOVE-2"
+        },
+        {
+          "text": "Resolve the central crux: evaluate how dihedral twist, conjugation continuity, or resonance stabilization governs the outcome.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISSUE38-HYB-06-MOVE-3"
+        },
+        {
+          "text": "Synthesize the qualified conclusion, separating model assumptions from measured physical observables.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE38-HYB-06-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE38-HYB-07",
+      "original_identifier": "Q7",
+      "stem": "A neutral methyl radical, CH3·, is supplied as approximately planar, with the unpaired electron in a p-like orbital perpendicular to the three C–H sigma directions. Translate that supplied model into an orbital sketch and assess whether 'three sigma bonds always leave an empty p orbital' follows. Keep the given model distinct from a universal claim.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The orbital representation shows a central carbon atom with three planar C–H sigma bonds separated by 120° (formed by carbon sp2 hybrid orbitals overlapping with hydrogen 1s orbitals in the xy plane), and an unhybridised 2pz orbital oriented along the z-axis containing a single electron (singly occupied molecular orbital, SOMO). The claim 'three sigma bonds always leave an empty p orbital' does NOT follow and is a false universal generalization. Three sigma bonds consume 6 valence electrons; the occupancy of the non-bonding p orbital depends on total valence electron count and formal charge: it is empty (0e-) in carbocations (CH3+) and neutral group 13 species (BH3), singly occupied (1e-) in neutral radicals (CH3·), and doubly occupied (2e-) in planarised carbanions or amide nitrogens. The given radical model is a specific 7-valence-electron species, not an empty-orbital universal rule.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE38-HYB-07-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Construct orbital sketch of CH3·: planar sp2 carbon with 3 coplanar C–H sigma bonds at 120°, and a perpendicular pz orbital holding one unpaired electron.",
+            "why_valid": "This translates the given planar radical model into explicit orbital geometry.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "planar sp2 radical sketch"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-07-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Evaluate the claim 'three sigma bonds always leave an empty p orbital'.",
+            "why_valid": "Three sigma bonds account for 6 bonding electrons; the occupancy of the unhybridised orbital depends on the total valence electrons of the atom.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "claim evaluated"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-07-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Contrast methyl radical (1e- in pz, SOMO) with methyl carbocation (0e- in pz, LUMO), carbanions (2e- in p), and BH3 (0e- in p).",
+            "why_valid": "This provides concrete counterexamples disproving the universal claim while keeping the given radical model distinct.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "universal claim disproved"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-07-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Verify consistency against benchmark givens, orbital symmetry and electron count invariants.",
+            "why_valid": "Cross-checking with physical observables and conservation laws validates the conclusion.",
+            "inputs": [
+              "prior move"
+            ],
+            "output": "verified model consistency"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE38-HYB-07-MOVE-3",
+        "check": "Valence electron count for CH3·: 4 (C) + 3 x 1 (H) = 7 electrons. Three sigma bonds consume 3 x 2 = 6 electrons; exactly 7 - 6 = 1 electron remains in the unhybridised pz orbital.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHE-HYB-DELOC-BOUNDARIES",
+      "family_ref": "FAM-CHE-HYBRIDISATION-MODELS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q7",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:c695e46f711c83181466ec9d16ed4c02218a3622f31d825ec44fed2cf2e99f1f"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 2,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Five-component difficulty: 6/10 resolves to D3."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "three sigma bonds always leave an empty p orbital (confusing methyl radical with methyl carbocation)",
+          "cognitive_demand": {
+            "primary": "REPRESENT",
+            "secondary": [
+              "JUSTIFY",
+              "MODEL"
+            ]
+          },
+          "stable_crux_move": "Distinguish radical SOMO (1e- in p) from carbocation LUMO (0e- in p), demonstrating that bonding framework does not dictate orbital occupancy."
+        }
+      },
+      "conditions": [
+        "Delocalisation requires continuous, coplanar p-orbital alignment.",
+        "Hybridisation is an idealized localized bonding model, not an autonomous physical observable."
+      ],
+      "figure_refs": [
+        "REP-CHE-RADICAL-SOMO"
+      ],
+      "scaffolds": [
+        {
+          "text": "Clarify the governing concept: identify whether unhybridised p-orbitals and continuous pi overlap exist.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-07-MOVE-1"
+        },
+        {
+          "text": "Construct the 3D orbital framework showing parallel alignment or intervening saturated nodes.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE38-HYB-07-MOVE-2"
+        },
+        {
+          "text": "Map the molecular structure into the orbital model and determine baseline electron domains.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE38-HYB-07-MOVE-2"
+        },
+        {
+          "text": "Resolve the central crux: evaluate how dihedral twist, conjugation continuity, or resonance stabilization governs the outcome.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISSUE38-HYB-07-MOVE-3"
+        },
+        {
+          "text": "Synthesize the qualified conclusion, separating model assumptions from measured physical observables.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE38-HYB-07-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE38-HYB-08",
+      "original_identifier": "Q8",
+      "stem": "Two qualitative descriptions of formamide are proposed: a completely localised pyramidal nitrogen lone pair, and an approximately planar nitrogen arrangement with possible lone-pair donation into the carbonyl pi system. Propose observations that could discriminate between them, explain the warranted inferences, and identify at least one inference that geometry alone cannot establish.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Discriminating observations and warranted inferences: (1) Dynamic 1H-NMR spectroscopy: At room temperature, formamide shows two distinct signals for the two N–H protons (cis and trans to oxygen) which coalesce only upon heating above 100°C, warranting an inference of restricted rotation with a high activation barrier (~75–85 kJ/mol), directly supporting partial double bond character from delocalisation (inconsistent with a freely rotating localised single bond). (2) X-ray/microwave diffraction: The C–N bond length is 1.35 Å (significantly shorter than a standard amine C–N single bond of 1.47 Å), the C=O bond is lengthened (1.24 Å vs 1.21 Å in ketones), and the sum of bond angles around N is ~358–360° (planar), warranting an inference of planar sp2 nitrogen. (3) Basicity: Nitrogen is non-basic (pKaH < 0), with protonation occurring at oxygen. Inference geometry alone cannot establish: Static geometry (planarity and bond lengths) cannot alone establish the dynamic energy barrier to rotation, the quantum mechanical electronic origin of stabilization (whether planarity is driven purely by pi resonance vs sigma electrostatic polarization), or the degree of charge transfer in the ground state without spectroscopic, thermodynamic, and electron-density measurements.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE38-HYB-08-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Propose discriminating observations: dynamic NMR rotational barrier, X-ray/microwave bond lengths and planarity, and chemical basicity.",
+            "why_valid": "These measurements directly test the differential predictions of the localized vs delocalised models.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "discriminating observations proposed"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-08-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Explain warranted inferences: distinct NMR signals and 80 kJ/mol barrier infer partial double bond character; 1.35 Å C–N length and 360° angle sum infer planar sp2 nitrogen; O-protonation infers delocalised electron density.",
+            "why_valid": "Each experimental observation provides a grounded warrant supporting the planar delocalised description.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "warranted inferences established"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-08-MOVE-3",
+            "kind": "DECIDE",
+            "action": "Identify inferences geometry alone cannot establish: static bond angles and lengths cannot quantify the dynamic activation barrier to rotation or prove the electronic mechanism of stabilization.",
+            "why_valid": "Static diffraction data shows nuclear positions, not potential energy surfaces or electronic wavefunctions.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "limits of geometric inference delimited"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-08-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Verify consistency against benchmark givens, orbital symmetry and electron count invariants.",
+            "why_valid": "Cross-checking with physical observables and conservation laws validates the conclusion.",
+            "inputs": [
+              "prior move"
+            ],
+            "output": "verified model consistency"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE38-HYB-08-MOVE-3",
+        "check": "Localised model predicts: free rotation (<10 kJ/mol barrier), pyramidal N (angle sum ~325°), C–N = 1.47 Å, basic N. Observed: 80 kJ/mol barrier, planar N (360°), C–N = 1.35 Å, non-basic N.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHE-HYB-DELOC-BOUNDARIES",
+      "family_ref": "FAM-CHE-HYBRIDISATION-MODELS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q8",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:706e95213624157e3574a604f282e592cdef37d9c006c6c4a3874aad31959949"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Five-component difficulty: 8/10 resolves to D4."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "static crystallographic planarity alone quantitatively proves resonance stabilization energy and dynamic barrier",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": [
+              "MODEL",
+              "EXPLAIN"
+            ]
+          },
+          "stable_crux_move": "Pair structural/spectroscopic evidence with warranted inferences and identify the epistemological limit of static geometric data."
+        }
+      },
+      "conditions": [
+        "Delocalisation requires continuous, coplanar p-orbital alignment.",
+        "Hybridisation is an idealized localized bonding model, not an autonomous physical observable."
+      ],
+      "figure_refs": [
+        "REP-CHE-FORMAMIDE-TWIST"
+      ],
+      "scaffolds": [
+        {
+          "text": "Clarify the governing concept: identify whether unhybridised p-orbitals and continuous pi overlap exist.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-08-MOVE-1"
+        },
+        {
+          "text": "Construct the 3D orbital framework showing parallel alignment or intervening saturated nodes.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE38-HYB-08-MOVE-2"
+        },
+        {
+          "text": "Map the molecular structure into the orbital model and determine baseline electron domains.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE38-HYB-08-MOVE-2"
+        },
+        {
+          "text": "Resolve the central crux: evaluate how dihedral twist, conjugation continuity, or resonance stabilization governs the outcome.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISSUE38-HYB-08-MOVE-3"
+        },
+        {
+          "text": "Synthesize the qualified conclusion, separating model assumptions from measured physical observables.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE38-HYB-08-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE38-HYB-09",
+      "original_identifier": "Q9",
+      "stem": "The benchmark supplies a simplified torsional model in which the relevant p-orbital overlap factor varies as cos(theta), where theta is the angle between their alignment directions. Compare theta = 0, 60 and 90 degrees, then assess the claim that the molecule's total energy must therefore vary as cos(theta). Separate execution of the given model from a justified claim about the physical system.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Execution of the given model: (1) At theta = 0° (planar): overlap factor is cos(0°) = 1.0 (maximum parallel alignment, 100% of nominal overlap). (2) At theta = 60°: overlap factor is cos(60°) = 0.5 (50% reduction in orbital overlap). (3) At theta = 90° (perpendicular): overlap factor is cos(90°) = 0.0 (complete orthogonality, zero overlap). Assessment of physical claim: The claim that total molecular energy varies as cos(theta) is unjustified and physically incorrect. First, in quantum mechanical perturbation theory and Hückel molecular orbital theory, pi resonance stabilization energy is proportional to the square of the interaction Hamiltonian / overlap integral (Delta E_pi proportional to S^2 proportional to cos^2(theta)), not cos(theta). Second, total molecular energy E_total(theta) is a sum of multiple independent physical potentials: pi electronic stabilization, sigma framework torsional strain (Pitzer potential from bond-eclipsing interactions), steric van der Waals repulsions between rotating substituents, and nuclear-nuclear electrostatic terms. A single orbital overlap parameter cannot be equated with the full molecular potential energy surface.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE38-HYB-09-MOVE-1",
+            "kind": "TRANSFORM",
+            "action": "Calculate overlap factors using the supplied model: theta=0° gives cos(0°)=1.0; theta=60° gives cos(60°)=0.5; theta=90° gives cos(90°)=0.0.",
+            "why_valid": "This strictly executes the benchmark's simplified cosine overlap relation.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "overlap factors evaluated"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-09-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Evaluate the claim that total molecular energy varies as cos(theta).",
+            "why_valid": "In perturbation and MO theory, pi stabilization energy scales quadratically with overlap (Delta E proportional to S^2 proportional to cos^2 theta), not linearly with cos(theta).",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "quantum scaling evaluated"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-09-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Deconstruct total molecular energy into its physical components: pi electronic energy + sigma torsional strain (Pitzer barrier) + steric van der Waals clashes + electrostatic terms.",
+            "why_valid": "A single orbital overlap factor accounts only for pi interaction, whereas total energy reflects the entire multidimensional potential energy surface.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "energy claim disproved with physical model"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-09-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Verify consistency against benchmark givens, orbital symmetry and electron count invariants.",
+            "why_valid": "Cross-checking with physical observables and conservation laws validates the conclusion.",
+            "inputs": [
+              "prior move"
+            ],
+            "output": "verified model consistency"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE38-HYB-09-MOVE-3",
+        "check": "cos(0°)=1.0, cos(60°)=0.5, cos(90°)=0.0. Physical rotational potential is symmetric under reflection: E(theta) = E(-theta), which aligns with even powers (cos^2 theta) rather than asymmetric cos(theta).",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHE-HYB-TORSION-ALIGNMENT",
+      "family_ref": "FAM-CHE-HYBRIDISATION-MODELS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q9",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:7ef3b550ea1f2fbcb45cde77a92ed08db1dfbd1d8c631676914cca9190c9a52f"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Five-component difficulty: 8/10 resolves to D4."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "a single orbital overlap parameter directly dictates the total multi-dimensional potential energy surface of a molecule",
+          "cognitive_demand": {
+            "primary": "APPLY",
+            "secondary": [
+              "JUSTIFY",
+              "MODEL"
+            ]
+          },
+          "stable_crux_move": "Evaluate cosine values correctly (1.0, 0.5, 0.0) and separate the overlap term from the multidimensional physical potential energy surface (cos^2(theta) scaling + sigma/steric strain)."
+        }
+      },
+      "conditions": [
+        "Delocalisation requires continuous, coplanar p-orbital alignment.",
+        "Hybridisation is an idealized localized bonding model, not an autonomous physical observable."
+      ],
+      "figure_refs": [
+        "REP-CHE-FORMAMIDE-TWIST"
+      ],
+      "scaffolds": [
+        {
+          "text": "Clarify the governing concept: identify whether unhybridised p-orbitals and continuous pi overlap exist.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-09-MOVE-1"
+        },
+        {
+          "text": "Construct the 3D orbital framework showing parallel alignment or intervening saturated nodes.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE38-HYB-09-MOVE-2"
+        },
+        {
+          "text": "Map the molecular structure into the orbital model and determine baseline electron domains.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE38-HYB-09-MOVE-2"
+        },
+        {
+          "text": "Resolve the central crux: evaluate how dihedral twist, conjugation continuity, or resonance stabilization governs the outcome.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISSUE38-HYB-09-MOVE-3"
+        },
+        {
+          "text": "Synthesize the qualified conclusion, separating model assumptions from measured physical observables.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE38-HYB-09-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE38-HYB-10",
+      "original_identifier": "Q10",
+      "stem": "A proposed teaching rule says, 'Count sigma bonds and lone pairs, assign a hybridisation label, and the label explains every shape and reactivity difference.' Audit this rule against NH3, allene, formamide and the separated amine site H–C(=O)–CH2–NH2. Produce a qualified decision framework, identify where local counting is useful, and state what evidence or model is needed beyond it.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Audit against four cases: (1) NH3: 3 sigma + 1 lone pair = 4 domains -> sp3. Useful for predicting general pyramidal geometry, but fails to explain why the bond angle is 107° rather than 109.5° (requires VSEPR lone-pair repulsion or Bent's rule) and cannot explain the 24 GHz pyramidal inversion frequency. (2) Allene (H2C=C=CH2): Central carbon has 2 sigma bonds -> sp linear; terminal carbons have 3 domains -> sp2. The rule assigns labels but completely fails to explain why the two terminal CH2 groups are mutually perpendicular (90° dihedral): that requires understanding that the central sp carbon possesses two orthogonal unhybridised p orbitals, each forming an independent pi bond with one terminal carbon. (3) Formamide (H–C(=O)–NH2): Local counting gives 4 domains -> predicts pyramidal sp3 amine; completely fails because adjacent pi conjugation drives planar sp2 rehybridisation with restricted rotation. (4) Separated amine (H–C(=O)–CH2–NH2): Local counting gives 4 domains -> sp3, which correctly predicts pyramidal geometry because the intervening saturated –CH2– group insulates the lone pair from conjugation. Qualified decision framework: (A) Perform local electron domain count as an initial baseline geometry estimate. (B) Check for adjacent pi systems, empty orbitals, or multiple orthogonal pi bonds. (C) Evaluate conformational/geometric capability for orbital overlap (coplanarity vs orthogonality). (D) If continuous overlap exists, allow rehybridisation (sp2 or sp) to maximize pi delocalisation. (E) Adjust bond angles using VSEPR repulsions, Bent's rule, and steric interactions. (F) Recognize that hybridisation is a localized bonding model, not an autonomous physical cause of reactivity.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE38-HYB-10-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Audit proposed rule against NH3 (predicts pyramidal, misses 107° angle compression and inversion) and allene (assigns sp/sp2 labels but misses orthogonal pi bonds causing 90° terminal planes).",
+            "why_valid": "These cases demonstrate that hybridisation labels alone cannot explain bond angle distortions or orthogonal stereochemistry.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "NH3 and allene audited"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-10-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Audit proposed rule against formamide (rule fails: predicts sp3, observed is planar sp2) and separated amine (rule succeeds because intervening CH2 insulates lone pair).",
+            "why_valid": "These cases highlight the necessity of checking adjacent conjugated pi pathways.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "formamide and separated amine audited"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-10-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Synthesize a qualified decision framework: Step 1 Local domain count; Step 2 Conjugation & orthogonal pi check; Step 3 Geometric alignment feasibility; Step 4 Rehybridisation check; Step 5 VSEPR/Bent angle refinement.",
+            "why_valid": "The framework preserves the utility of local counting while rigorously incorporating delocalisation and stereoelectronic boundaries.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "decision framework synthesized"
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-10-MOVE-4",
+            "kind": "TRANSFORM",
+            "action": "Conclude model boundary: hybridisation rationalizes localized sigma directional bonding; it does not replace molecular orbital theory or physical force laws.",
+            "why_valid": "Delimits hybridisation as an explanatory tool rather than an omnipotent physical cause.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "model boundary defined"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE38-HYB-10-MOVE-3",
+        "check": "The framework correctly routes all four cases: NH3 (local + VSEPR), allene (orthogonal pi geometry), formamide (rehybridised conjugated exception), and separated amine (insulated local domain).",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHE-HYB-LOCAL-VS-CONJUGATED",
+      "family_ref": "FAM-CHE-HYBRIDISATION-MODELS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q10",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:dfef0e64ec86b772252e01b766d2c1c19c91c72393833c9f5448bb551dc4149b"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Five-component difficulty: 8/10 resolves to D4."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "local domain counting explains every molecular shape and reactivity difference without needing advanced electronic models",
+          "cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": [
+              "JUSTIFY",
+              "MODEL"
+            ]
+          },
+          "stable_crux_move": "Audit four structurally contrasting test cases, identify failure modes, and establish a qualified multi-level decision framework."
+        }
+      },
+      "conditions": [
+        "Delocalisation requires continuous, coplanar p-orbital alignment.",
+        "Hybridisation is an idealized localized bonding model, not an autonomous physical observable."
+      ],
+      "figure_refs": [
+        "REP-CHE-ALLENE-ORTHOGONAL"
+      ],
+      "scaffolds": [
+        {
+          "text": "Clarify the governing concept: identify whether unhybridised p-orbitals and continuous pi overlap exist.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-10-MOVE-1"
+        },
+        {
+          "text": "Construct the 3D orbital framework showing parallel alignment or intervening saturated nodes.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE38-HYB-10-MOVE-2"
+        },
+        {
+          "text": "Map the molecular structure into the orbital model and determine baseline electron domains.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE38-HYB-10-MOVE-2"
+        },
+        {
+          "text": "Resolve the central crux: evaluate how dihedral twist, conjugation continuity, or resonance stabilization governs the outcome.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISSUE38-HYB-10-MOVE-3"
+        },
+        {
+          "text": "Synthesize the qualified conclusion, separating model assumptions from measured physical observables.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE38-HYB-10-MOVE-4"
+        }
+      ]
+    }
+  ]
+}
