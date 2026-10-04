@@ -185,6 +185,23 @@ for (const file of files) {
         landmarks: { main: document.querySelectorAll('main').length, nav: document.querySelectorAll('nav').length, header: document.querySelectorAll('header').length, footer: document.querySelectorAll('footer').length },
         svg: figs.length,
         svgAccessible: figs.filter(s => s.querySelector('title') || s.getAttribute('aria-label') || s.getAttribute('aria-labelledby')).length,
+        progressiveLearning: (() => {
+          const secondary = [...document.querySelectorAll('details.g9-secondary-disclosure')].filter(visible);
+          const worked = [...document.querySelectorAll('details[data-g9-worked-predict]')].filter(visible);
+          const keySteps = [...document.querySelectorAll('[data-g9-component="KEY_STEP"]')].filter(visible);
+          const exitTasks = [...document.querySelectorAll('[data-g9-component="EXIT_RECALL"]')].filter(visible);
+          const core2Hints = [...document.querySelectorAll('details[data-g9-secondary="core2-hints"]')].filter(visible);
+          return {
+            secondaryDisclosures: secondary.length,
+            secondaryOpenByDefault: secondary.filter(el => el.open).length,
+            workedPredictSteps: worked.length,
+            workedPredictOpenByDefault: worked.filter(el => el.open).length,
+            keyStepInsideDisclosure: keySteps.filter(el => !!el.closest('details')).length,
+            exitRecallCount: exitTasks.length,
+            core2HintDisclosures: core2Hints.length,
+            core2HintOpenByDefault: core2Hints.filter(el => el.open).length,
+          };
+        })(),
         stagedSvg: (() => {
           const staged = [...document.querySelectorAll('figure[data-g9-stage-mode]')].filter(visible);
           const violations = [];
@@ -553,6 +570,11 @@ if (enforce && profile === 'core1a-spec') {
       }
       if (row.svg !== row.svgAccessible) failures.push(`${vp.name}: accessible SVG ${row.svgAccessible}/${row.svg}`);
       if (row.stagedSvg?.violations?.length) failures.push(`${vp.name}: staged SVG progression: ${row.stagedSvg.violations.join(' | ')}`);
+      if (row.progressiveLearning.secondaryOpenByDefault !== 0) failures.push(`${vp.name}: secondary Core1A disclosures open by default=${row.progressiveLearning.secondaryOpenByDefault}`);
+      if (row.progressiveLearning.workedPredictSteps < 1) failures.push(`${vp.name}: no predict-before-reveal worked steps`);
+      if (row.progressiveLearning.workedPredictOpenByDefault !== 0) failures.push(`${vp.name}: worked-example steps open by default=${row.progressiveLearning.workedPredictOpenByDefault}`);
+      if (row.progressiveLearning.keyStepInsideDisclosure !== 0) failures.push(`${vp.name}: key step is hidden inside a disclosure`);
+      if (row.progressiveLearning.exitRecallCount < 1) failures.push(`${vp.name}: no less-supported independent close`);
       if (row.anchorSafety.riskyAnchors !== 0) failures.push(`${vp.name}: ${row.anchorSafety.riskyAnchors} sticky-obscured anchor(s)`);
       if (row.focusProbe.focusFailures !== 0 || row.focusProbe.visibleFocus !== row.focusProbe.candidates) {
         failures.push(`${vp.name}: focus ${row.focusProbe.visibleFocus}/${row.focusProbe.candidates}, failures=${row.focusProbe.focusFailures}`);
@@ -608,6 +630,16 @@ if (enforce && profile === 'tablet-12.7') {
       if (row.horizontalOverflowPx !== 0) failures.push(`${file} ${vp.name}: page overflow ${row.horizontalOverflowPx}px`);
       if (row.smallTargets !== 0) failures.push(`${file} ${vp.name}: ${row.smallTargets} controls below 48px`);
       if (row.stagedSvg?.violations?.length) failures.push(`${file} ${vp.name}: staged SVG progression: ${row.stagedSvg.violations.join(' | ')}`);
+      if (file === 'core1a.html') {
+        if (row.progressiveLearning.secondaryOpenByDefault !== 0) failures.push(`${file} ${vp.name}: secondary disclosures open by default=${row.progressiveLearning.secondaryOpenByDefault}`);
+        if (row.progressiveLearning.workedPredictSteps < 1) failures.push(`${file} ${vp.name}: no predict-before-reveal worked steps`);
+        if (row.progressiveLearning.workedPredictOpenByDefault !== 0) failures.push(`${file} ${vp.name}: worked-example steps open by default=${row.progressiveLearning.workedPredictOpenByDefault}`);
+        if (row.progressiveLearning.keyStepInsideDisclosure !== 0) failures.push(`${file} ${vp.name}: key step is hidden inside a disclosure`);
+        if (row.progressiveLearning.exitRecallCount < 1) failures.push(`${file} ${vp.name}: no independent less-supported close`);
+      }
+      if (file === 'core2.html' && row.progressiveLearning.core2HintDisclosures > 0 && row.progressiveLearning.core2HintOpenByDefault !== 0) {
+        failures.push(`${file} ${vp.name}: guided support is not collapsed by default`);
+      }
       if (!row.tablet) continue;
       const bp = blueprints.blueprints.find(b => `${b.id}@${b.version}` === row.blueprint);
       const promise = bp.responsive_policy.tablet_12_7;
