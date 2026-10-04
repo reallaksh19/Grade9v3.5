@@ -71,6 +71,14 @@ jobs:
           print('package schema: PASS')
           PY
 
+      - name: Report governed render gaps
+        shell: bash
+        run: |
+          set -o pipefail
+          python Shared/tools/render_core.py gaps \
+            --manifest evidence/benchmark/ISS37/generated/product.manifest.json \
+            2>&1 | tee /tmp/issue37-render-gaps.log || true
+
       - name: Governed render of requested roles
         run: |
           rm -rf /tmp/iss37-a
@@ -142,6 +150,7 @@ jobs:
           path: |
             /tmp/iss37-a
             /tmp/issue37-focused-tests.log
+            /tmp/issue37-render-gaps.log
             evidence/benchmark/ISS37/generated
             evidence/benchmark/ISS37/rendered
           if-no-files-found: warn
