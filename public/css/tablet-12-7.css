@@ -304,3 +304,20 @@ small, .badge, .subtopic-desc, .node-id, .stat-label, .evidence-citation {
     align-items: start;
   }
 }
+
+/* ==========================================================================
+   3. QRT LEARNER-VALUE PRESENTATION
+   --------------------------------------------------------------------------
+   Keep machine/audit semantics in the DOM, but do not make the learner read
+   implementation IDs or an error suggestion before attempting the question.
+   Post-attempt misconception diagnosis/repair remains available in the solution.
+   ========================================================================== */
+
+.g9-rung-no,
+.g9-pill-guided {
+  display: none !important;
+}
+
+.g9-component[data-g9-component="TRAP"] {
+  display: none !important;
+}
