@@ -1,9 +1,9 @@
 {
   "schema": "iss31-run-receipt/v1",
   "issue": 31,
-  "round": 2,
+  "round": 3,
   "candidate": "independent-agent-a",
-  "status": "CANDIDATE_PARTIAL_CONTINUATION",
+  "status": "CANDIDATE_RENDERED_VALIDATED",
   "branch": "agent/iss31-hybridisation-candidate-a-20261004",
   "pinned_source_commit": "e01c6365acfd6aec84c0a6e94f11b683bd961f6e",
   "input_hashes": {
@@ -79,12 +79,13 @@
   "environment": {
     "github_connector": "AVAILABLE",
     "web_research": "AVAILABLE",
-    "executable_repository_sandbox": "NOT_AVAILABLE_IN_CHAT",
-    "chromium": "NOT_RUN",
-    "production_renderer_execution": "NOT_RUN",
+    "executable_repository_sandbox": "GITHUB_ACTIONS_CHECKOUT",
+    "chromium": "PASS_GITHUB_ACTIONS",
+    "production_renderer_execution": "PASS_GITHUB_ACTIONS",
     "local_shell": "AVAILABLE_WITHOUT_REPOSITORY_CHECKOUT",
     "outbound_git": "FAILED_DNS_GITHUB",
-    "github_actions_observed": true
+    "github_actions_observed": true,
+    "github_actions_runtime": "USED_SUCCESSFULLY"
   },
   "production_boundary": {
     "owner_bank_authoring": "Original TEST-only restriction is preserved as a seed finding and repaired by f1621cd167a569f85ea42909ad97db1060028db5.",
@@ -119,11 +120,29 @@
       "CORE2",
       "CORE1A"
     ],
-    "generated": false,
-    "render_digest": null,
-    "html_paths": [],
-    "status": "NOT_RUN",
-    "reason": "Authoring path is repaired, but this chat still lacks an executable repository checkout in which to materialize/validate the Chemistry package, owner bank and manifest and run render_core/browser checks."
+    "generated": true,
+    "renderer": "render_core/2",
+    "render_digest": "b7e0eed726cf0caa",
+    "semantic_digest": "5754d048b745feab",
+    "held_to": "FLOOR",
+    "draft": false,
+    "gaps": [],
+    "html_paths": [
+      "evidence/benchmark/ISS31/rendered/core1a.html",
+      "evidence/benchmark/ISS31/rendered/core2.html"
+    ],
+    "artifacts": {
+      "core1a.html": {
+        "bytes": 174556,
+        "sha256": "42f8b0801ba2c7a78fb40e84129cc350db611f3a86292b1baf0211f6e883bf02"
+      },
+      "core2.html": {
+        "bytes": 226103,
+        "sha256": "01bdf42d39a70ef53a9ed3d7ff301eeff098585c4da9502f4f6c2fad4078d523"
+      }
+    },
+    "generated_commit": "c3eef85875c7499466a3aeb3903167f60a86482f",
+    "cold_run_id": 37194109839
   },
   "independence": {
     "paired_issue": 32,
@@ -162,5 +181,27 @@
     "guardrails": "IN_PROGRESS_AT_CHECKPOINT",
     "regression_delta": "IN_PROGRESS_AT_CHECKPOINT",
     "targeted_new_regression_seen_in_sampled_logs": false
+  },
+  "validation": {
+    "owner_custody": "PASS",
+    "package_schema_and_references": "PASS",
+    "strict_quality_gate": {
+      "status": "PASS",
+      "findings": 0,
+      "contract_version": "1.8.1"
+    },
+    "tablet_browser": {
+      "status": "PASS",
+      "core1a_errors": [],
+      "core2_errors": [],
+      "protected_search_matches": 0,
+      "external_requests": 0
+    }
+  },
+  "builder": {
+    "inspected_actual_render": true,
+    "hardest_question": "Q5",
+    "decision": "NO_BUILDER_CODE_CHANGE",
+    "reason": "Existing reusable staged visual, attempt-first control, predict/reveal worked route and gated support express the model-scope decision and passed strict quality/browser gates."
   }
 }

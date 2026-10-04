@@ -1,70 +1,58 @@
 # ISS31 work report — independent candidate A
 
-- Issue: #31 — D1 hybridisation, Q1–Q10.
-- Work intent: benchmark candidate implementation/review.
+- Issue: #31 — hybridisation, Q1–Q10.
 - Branch: `agent/iss31-hybridisation-candidate-a-20261004`.
 - Pinned source/template seed: `e01c6365acfd6aec84c0a6e94f11b683bd961f6e`.
-- Protocol: V3_1 ACTIVE.
-- Production renderer authority: `Shared/tools/render_core.py`.
-- Independence: issue #32 not inspected.
-- Owner clarification: initial NONE; round-2 execution clarification accepted from issue comment `5978104772`.
-- Publication authority: NOT GRANTED; candidate only.
+- First independent freeze: `27dd6611b6bf9c824f8e066386a41af22a6ea88c`.
+- Owner execution clarification: issue comment `5978104772`.
+- Production renderer: `Shared/tools/render_core.py` / `render_core/2`.
+- Validated generated-artifact commit: `c3eef85875c7499466a3aeb3903167f60a86482f`.
+- Paired issue #32/output: not inspected.
+- Publication/golden authority: not granted.
 
 ## U1–U8 status
 
 | Unit | Status | Evidence |
 |---|---|---|
-| U1 Intake/baseline | PASS | `owner-core-prompt.md`, input hashes, source snapshot, audit log. |
-| U2 Academic/task analysis | PASS | `question-ledger.json`, `source-cards.json`. |
-| U3 Hardest-target brief | PASS | Q5 · MODEL · D2; learner-relative model-scope target in ledger/QRT. |
-| U4 Canonical academic records | PARTIAL | Durable candidate IDs, solutions and QRT evidence complete; owner-bank destination path is repaired, but Chemistry package/bank/manifest are not materialized without an executable checkout. |
-| U5 Render/integration | NOT_RUN | Round 2 repaired the TEST-only CLI restriction; this chat still has no executable repository checkout for package/bank materialization, validators, renderer or browser audit. |
-| U6 Semantic/interaction audit | PARTIAL | H1–M3 semantic authoring review complete; exact-render leakage/browser evidence NOT_RUN. |
-| U7 Builder proposal | NOT_RUN | No actual render to inspect; no speculative builder change proposed. |
-| U8 Independent handoff | READY_TO_FREEZE | Evidence branch is ready for a draft candidate PR and issue checkpoint; no paired comparison performed. |
+| U1 Intake/baseline | PASS | Verbatim prompt/intake hashes and chronological audit. |
+| U2 Academic/task analysis | PASS | Ten-question ledger + source cards. |
+| U3 Hardest-target brief | PASS | Q5 · MODEL · D2. |
+| U4 Canonical academic records | PASS | Chemistry owner bank, package and manifest materialized through the governed path and validated. |
+| U5 Render/integration | PASS | Strict zero-gap Core1A/Core2 render; exact HTML preserved. |
+| U6 Semantic/interaction audit | PASS | Quality gate PASS; Chromium tablet audit has no page errors; protected-search/external-request checks clean. |
+| U7 Builder proposal | PASS | Actual Q5 render inspected; no builder code change recommended. |
+| U8 Independent handoff | PASS / CANDIDATE | Exact bytes/digests committed; no paired comparison, merge, release or golden promotion. |
 
-## Key academic decisions
+## Academic decisions retained
 
-1. Treat electron-domain counting as local to the chosen central atom; multiple bonds are one VSEPR region/direction.
-2. Keep electron-domain geometry distinct from molecular geometry when lone pairs are present.
-3. Treat wedge/dash as a 3D representation translation, not decorative notation.
-4. Select models by explanatory job: VSEPR for overall electron-domain arrangement; orbital-overlap/hybrid descriptions for orbital-level bonding detail.
-5. Preserve the introductory hybridisation model boundary rather than presenting it as a complete quantum description.
-6. Use internuclear-axis orientation as the defining sigma/pi classification criterion.
+1. Electron-domain counting is local to the selected central atom; a multiple bond is one VSEPR region/direction.
+2. Electron-domain geometry is distinct from molecular geometry when lone pairs are present.
+3. Wedge/dash notation is a 3D representation translation, not decoration.
+4. VSEPR is selected for overall electron-domain arrangement; orbital-overlap descriptions answer orbital-level bonding detail.
+5. The introductory hybridisation model is presented with its scope boundary rather than as a complete quantum description.
+6. Sigma/pi classification is anchored to orientation/symmetry relative to the internuclear axis.
 
-## Hardest target
+## Rendered product
 
-Q5: the learner must choose VSEPR because the requested output is only overall 3D electron-domain arrangement, then state what the model predicts and what detailed orbital-overlap information it does not determine. The authored interaction specification compares two explanatory lenses on the same NH3 anchor.
+The manifest selects seven canonical concept owners and all ten owner-supplied questions, with output roles exactly `CORE1A` and `CORE2`.
 
-## Declared weaknesses / limits
+- Core1A: SHA-256 `42f8b0801ba2c7a78fb40e84129cc350db611f3a86292b1baf0211f6e883bf02`
+- Core2: SHA-256 `01bdf42d39a70ef53a9ed3d7ff301eeff098585c4da9502f4f6c2fad4078d523`
+- render digest: `b7e0eed726cf0caa`
+- semantic digest: `5754d048b745feab`
+- quality gate: PASS, zero findings
+- browser audit: no errors for either page
 
-- Primary learner-facing HTML is not produced.
-- No render digest exists.
-- No schema execution, renderer gaps/build, PDF, browser, touch, focus, overflow or protected-source inspection ran.
-- No page-derived builder proposal exists.
-- Chemistry lacks a package for this slice at the pinned seed.
-- The governed owner-bank authoring CLI was TEST-only at the pinned seed; round 2 repaired that inconsistency in `f1621cd…` without changing provenance. The actual Chemistry owner bank is still not materialized because the execution workspace remains unavailable.
-- No measured learner fit or learning-effectiveness claim is made.
+## Q5 and builder decision
 
-## Step-back
+The actual Q5 flow uses an attempt-first Core2 question, a staged model-scope representation, gated support and a Core1A predict-before-reveal construction. The three-stage visual moves from the requested explanatory target to the VSEPR lens and then the orbital-overlap lens. This is meaningful learner interaction using existing reusable components.
 
-1. **SBC-1 Learner:** academic support now distinguishes the exact conceptual decisions for all ten items; actual learner page NOT_RUN.
-2. **SBC-2 No new gate:** no new completion quota or refusal rule added.
-3. **SBC-3 Thinking:** difficulty/demand/QRT were derived independently; D1 cohort mismatches were retained.
-4. **SBC-4 One of everything:** no second renderer, bank authority, or HTML path invented.
-5. **SBC-5 Construction:** the owner-bank path mismatch is preserved as a finding and repaired in the existing CLI; no alternate schema/renderer or exam-bank workaround was introduced.
-6. **SBC-6 Coherence:** evidence is pinned to the issue hashes and template seed; no older page is presented as this candidate.
-7. **SBC-7 Honest state:** semantic work PASS/PARTIAL; render/browser/build checks NOT_RUN.
-8. **SBC-8 Convergence/cost:** evidence is committed and ready for independent review; spend not measured.
-9. **SBC-9 Reusable:** QRT and ledger formats expose the decisions another subject/runtime author must implement without oral context.
+No new builder module is recommended. A bespoke sorter would duplicate an already-working explanatory-scope interaction without evidence of a learner/product defect.
 
-Acted on: preserved actual D2 classifications, stopped short of an unauthorised owner-bank path, and recorded exact NOT_RUN consequences.
+## Historical friction retained
 
+The benchmark still records both original blockers:
+- the pinned owner-bank CLI was TEST-only; repaired by `f1621cd…`;
+- the chat-local environment had no executable checkout; resolved operationally via the repository's GitHub Actions runtime.
 
-## Round 2 continuation
-
-Owner comment `5978104772` confirmed the initial diagnosis and authorised a minimal path repair. The original frozen first submission remains `27dd6611b6bf9c824f8e066386a41af22a6ea88c`.
-
-Repair commit `f1621cd167a569f85ea42909ad97db1060028db5` changes only the existing owner-bank path handling, its regressions and documentation. It keeps the TEST path and adds a canonical subject lane at `<Subject>/library/owner-bank/`; it does not alter custody, stem hashes or exam-bank policy.
-
-A second, independent blocker remains: this chat has no checked-out repository runtime. The local shell cannot resolve GitHub and the connector is not an arbitrary Python/browser execution environment. Consequently canonical Chemistry package/bank/manifest materialization and the governed HTML/browser run remain NOT_RUN.
+Those findings are not erased by the successful final render.
