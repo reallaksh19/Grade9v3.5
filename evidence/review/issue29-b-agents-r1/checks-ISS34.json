@@ -1,0 +1,310 @@
+{
+  "issue": 34,
+  "observation": "LOCAL_EXECUTION + ARTIFACT_INSPECTION",
+  "oracle": "INDEPENDENT_REPRODUCTION + IMPLEMENTATION_COUPLED",
+  "core_prompt_expected_sha256": "6ba9ba40ea30b486792892de7091f51271f3855c0b39d22da5f7e83f20c52469",
+  "core_prompt_committed_sha256": "6ba9ba40ea30b486792892de7091f51271f3855c0b39d22da5f7e83f20c52469",
+  "core_prompt_exact_match": true,
+  "question_count": 10,
+  "stems": [
+    {
+      "qid": "ISS34-Q1",
+      "label": "Q1",
+      "exact_intake_match": true,
+      "expected_sha256": "a76785a01d019bf1250903fe97eba66ca664441a2cdbedcd0a3a5bb4bbfbfa92",
+      "actual_sha256": "a76785a01d019bf1250903fe97eba66ca664441a2cdbedcd0a3a5bb4bbfbfa92"
+    },
+    {
+      "qid": "ISS34-Q2",
+      "label": "Q2",
+      "exact_intake_match": true,
+      "expected_sha256": "d822c3acd002a3ad51075eea4ccacb3615781113b828cef38ffd6be35545d64d",
+      "actual_sha256": "d822c3acd002a3ad51075eea4ccacb3615781113b828cef38ffd6be35545d64d"
+    },
+    {
+      "qid": "ISS34-Q3",
+      "label": "Q3",
+      "exact_intake_match": true,
+      "expected_sha256": "fb036d1a9c5af186367db09ca5c459487cbfbab47bb6e643de2f7e5e40a224f5",
+      "actual_sha256": "fb036d1a9c5af186367db09ca5c459487cbfbab47bb6e643de2f7e5e40a224f5"
+    },
+    {
+      "qid": "ISS34-Q4",
+      "label": "Q4",
+      "exact_intake_match": true,
+      "expected_sha256": "cdbbf23c1c396766ba4d8fbd98aa45d2578559881b1593fd983f1f03c830ce80",
+      "actual_sha256": "cdbbf23c1c396766ba4d8fbd98aa45d2578559881b1593fd983f1f03c830ce80"
+    },
+    {
+      "qid": "ISS34-Q5",
+      "label": "Q5",
+      "exact_intake_match": true,
+      "expected_sha256": "f2e20af62103acfafec848c6b00dbce9a816c60de829c8852175810cd4bfb39b",
+      "actual_sha256": "f2e20af62103acfafec848c6b00dbce9a816c60de829c8852175810cd4bfb39b"
+    },
+    {
+      "qid": "ISS34-Q6",
+      "label": "Q6",
+      "exact_intake_match": true,
+      "expected_sha256": "bab033ed2d36ad4e946c8ac500169f4be039c80d13446e2c67490b6aa812269f",
+      "actual_sha256": "bab033ed2d36ad4e946c8ac500169f4be039c80d13446e2c67490b6aa812269f"
+    },
+    {
+      "qid": "ISS34-Q7",
+      "label": "Q7",
+      "exact_intake_match": true,
+      "expected_sha256": "b46aaef9d5c9a20b520fd924c3180c4b0fbc005bf68e01fab86f087c278fc2ce",
+      "actual_sha256": "b46aaef9d5c9a20b520fd924c3180c4b0fbc005bf68e01fab86f087c278fc2ce"
+    },
+    {
+      "qid": "ISS34-Q8",
+      "label": "Q8",
+      "exact_intake_match": true,
+      "expected_sha256": "3ab7d806371d7c999400460cd7879583e40303ee4bde67be919405d56191fce8",
+      "actual_sha256": "3ab7d806371d7c999400460cd7879583e40303ee4bde67be919405d56191fce8"
+    },
+    {
+      "qid": "ISS34-Q9",
+      "label": "Q9",
+      "exact_intake_match": true,
+      "expected_sha256": "aaeea9734d4f95422f5e9d3170b47a4474701f812b5813a1747fdb3203a8d747",
+      "actual_sha256": "aaeea9734d4f95422f5e9d3170b47a4474701f812b5813a1747fdb3203a8d747"
+    },
+    {
+      "qid": "ISS34-Q10",
+      "label": "Q10",
+      "exact_intake_match": true,
+      "expected_sha256": "0b05336ad3ddf7cb4231669076eb29479894d558bbd8b3af40fa545514c7e305",
+      "actual_sha256": "0b05336ad3ddf7cb4231669076eb29479894d558bbd8b3af40fa545514c7e305"
+    }
+  ],
+  "schema": {
+    "status": "PASS",
+    "errors": []
+  },
+  "receipt": {
+    "renderer": "render_core/2",
+    "digest": "07750fac48a7e37c",
+    "semantic_digest": "2b7c1650cef14ac1",
+    "manifest": "evidence/benchmark/ISS34/manifest.json",
+    "mode": "PAGES",
+    "held_to": "FLOOR",
+    "draft": false,
+    "gaps": [],
+    "pages": [
+      "core1a.html",
+      "core2.html",
+      "index.html"
+    ],
+    "output_roles": [
+      "CORE1A",
+      "CORE2"
+    ],
+    "ledger": [],
+    "diagnostic_min": 0
+  },
+  "limitations": [
+    "Official jsonschema 4.17.3 with explicit URN-local resolver; full CLI checked separately.",
+    "API reproduction is not evidence that the agent actually executed its claimed commands.",
+    "Browser not executed by this script."
+  ],
+  "owner_bank_incomplete_problems": [],
+  "owner_bank_complete_problems": [
+    "bank: questions[0] ISS34-Q1: CONDITIONS is absent: supply it, or waive it in extensions['grade9v3:component_waivers'] with the reason. List each stated condition (a constraint or assumption the question gives) as one entry of conditions[]. Never list a method or a result there.",
+    "bank: questions[1] ISS34-Q2: CONDITIONS is absent: supply it, or waive it in extensions['grade9v3:component_waivers'] with the reason.",
+    "bank: questions[1] ISS34-Q2: REPRESENTATION is absent: supply it, or waive it in extensions['grade9v3:component_waivers'] with the reason. Decide representation applicability from the question's semantic review. If useful, add an accessible authored SVG drawn only from the question data and name it in figure_refs. If a figure would be decorative or would leak protected work, waive REPRESENTATION with a written reason.",
+    "bank: questions[2] ISS34-Q3: CONDITIONS is absent: supply it, or waive it in extensions['grade9v3:component_waivers'] with the reason.",
+    "bank: questions[3] ISS34-Q4: CONDITIONS is absent: supply it, or waive it in extensions['grade9v3:component_waivers'] with the reason.",
+    "bank: questions[4] ISS34-Q5: CONDITIONS is absent: supply it, or waive it in extensions['grade9v3:component_waivers'] with the reason.",
+    "bank: questions[4] ISS34-Q5: REPRESENTATION is absent: supply it, or waive it in extensions['grade9v3:component_waivers'] with the reason.",
+    "bank: questions[5] ISS34-Q6: CONDITIONS is absent: supply it, or waive it in extensions['grade9v3:component_waivers'] with the reason.",
+    "bank: questions[5] ISS34-Q6: REPRESENTATION is absent: supply it, or waive it in extensions['grade9v3:component_waivers'] with the reason.",
+    "bank: questions[6] ISS34-Q7: CONDITIONS is absent: supply it, or waive it in extensions['grade9v3:component_waivers'] with the reason.",
+    "bank: questions[6] ISS34-Q7: REPRESENTATION is absent: supply it, or waive it in extensions['grade9v3:component_waivers'] with the reason.",
+    "bank: questions[7] ISS34-Q8: CONDITIONS is absent: supply it, or waive it in extensions['grade9v3:component_waivers'] with the reason.",
+    "bank: questions[8] ISS34-Q9: CONDITIONS is absent: supply it, or waive it in extensions['grade9v3:component_waivers'] with the reason.",
+    "bank: questions[8] ISS34-Q9: REPRESENTATION is absent: supply it, or waive it in extensions['grade9v3:component_waivers'] with the reason.",
+    "bank: questions[9] ISS34-Q10: CONDITIONS is absent: supply it, or waive it in extensions['grade9v3:component_waivers'] with the reason."
+  ],
+  "selection": {
+    "status": "PASS",
+    "counts": {
+      "microtopics": 2,
+      "core2": 10,
+      "core2a": 0,
+      "core2b": 0
+    }
+  },
+  "production_API_reproduction": {
+    "status": "PASS",
+    "digest": "07750fac48a7e37c",
+    "receipt_digest_match": true,
+    "files": [
+      {
+        "name": "core1a.html",
+        "byte_equal": true,
+        "committed_sha256": "31aeff2e34dc3813f9f0f25bb88ebdb1856b391c749dead9ebc3743292447dc4",
+        "reproduced_sha256": "31aeff2e34dc3813f9f0f25bb88ebdb1856b391c749dead9ebc3743292447dc4",
+        "committed_size": 91201,
+        "reproduced_size": 91201
+      },
+      {
+        "name": "core2.html",
+        "byte_equal": true,
+        "committed_sha256": "5111fc3ba73b1580583eab175a92694dadc65872c66eec39cb26ba4c36d94230",
+        "reproduced_sha256": "5111fc3ba73b1580583eab175a92694dadc65872c66eec39cb26ba4c36d94230",
+        "committed_size": 243079,
+        "reproduced_size": 243079
+      },
+      {
+        "name": "index.html",
+        "byte_equal": true,
+        "committed_sha256": "b825f914dce83e843e9dafaaf6068b9dbb40f90caad45bfd14f86cf8e3937418",
+        "reproduced_sha256": "b825f914dce83e843e9dafaaf6068b9dbb40f90caad45bfd14f86cf8e3937418",
+        "committed_size": 20834,
+        "reproduced_size": 20834
+      }
+    ],
+    "actual_gaps": [],
+    "actual_advisories": [
+      {
+        "component": "EQUATIONS",
+        "record": "CU-CHEM-G11-DOMAINS-SHAPE",
+        "detail": "EQUATIONS is absent",
+        "core": "CORE1A",
+        "product": "CHE-11-HYBRIDISATION-D2-ISS34"
+      },
+      {
+        "component": "QUICK_CHECK",
+        "record": "CU-CHEM-G11-DOMAINS-SHAPE",
+        "detail": "QUICK_CHECK has 1 of the 3 checks the reference page has",
+        "core": "CORE1A",
+        "product": "CHE-11-HYBRIDISATION-D2-ISS34"
+      },
+      {
+        "component": "EQUATIONS",
+        "record": "CU-CHEM-G11-CO2-SYNTHESIS",
+        "detail": "EQUATIONS is absent",
+        "core": "CORE1A",
+        "product": "CHE-11-HYBRIDISATION-D2-ISS34"
+      },
+      {
+        "component": "QUICK_CHECK",
+        "record": "CU-CHEM-G11-CO2-SYNTHESIS",
+        "detail": "QUICK_CHECK has 1 of the 3 checks the reference page has",
+        "core": "CORE1A",
+        "product": "CHE-11-HYBRIDISATION-D2-ISS34"
+      },
+      {
+        "component": "CONDITIONS",
+        "record": "ISS34-Q1",
+        "detail": "CONDITIONS is absent",
+        "core": "CORE2",
+        "product": "CHE-11-HYBRIDISATION-D2-ISS34"
+      },
+      {
+        "component": "CONDITIONS",
+        "record": "ISS34-Q2",
+        "detail": "CONDITIONS is absent",
+        "core": "CORE2",
+        "product": "CHE-11-HYBRIDISATION-D2-ISS34"
+      },
+      {
+        "component": "REPRESENTATION",
+        "record": "ISS34-Q2",
+        "detail": "REPRESENTATION is absent",
+        "core": "CORE2",
+        "product": "CHE-11-HYBRIDISATION-D2-ISS34"
+      },
+      {
+        "component": "CONDITIONS",
+        "record": "ISS34-Q3",
+        "detail": "CONDITIONS is absent",
+        "core": "CORE2",
+        "product": "CHE-11-HYBRIDISATION-D2-ISS34"
+      },
+      {
+        "component": "CONDITIONS",
+        "record": "ISS34-Q4",
+        "detail": "CONDITIONS is absent",
+        "core": "CORE2",
+        "product": "CHE-11-HYBRIDISATION-D2-ISS34"
+      },
+      {
+        "component": "CONDITIONS",
+        "record": "ISS34-Q5",
+        "detail": "CONDITIONS is absent",
+        "core": "CORE2",
+        "product": "CHE-11-HYBRIDISATION-D2-ISS34"
+      },
+      {
+        "component": "REPRESENTATION",
+        "record": "ISS34-Q5",
+        "detail": "REPRESENTATION is absent",
+        "core": "CORE2",
+        "product": "CHE-11-HYBRIDISATION-D2-ISS34"
+      },
+      {
+        "component": "CONDITIONS",
+        "record": "ISS34-Q6",
+        "detail": "CONDITIONS is absent",
+        "core": "CORE2",
+        "product": "CHE-11-HYBRIDISATION-D2-ISS34"
+      },
+      {
+        "component": "REPRESENTATION",
+        "record": "ISS34-Q6",
+        "detail": "REPRESENTATION is absent",
+        "core": "CORE2",
+        "product": "CHE-11-HYBRIDISATION-D2-ISS34"
+      },
+      {
+        "component": "CONDITIONS",
+        "record": "ISS34-Q7",
+        "detail": "CONDITIONS is absent",
+        "core": "CORE2",
+        "product": "CHE-11-HYBRIDISATION-D2-ISS34"
+      },
+      {
+        "component": "REPRESENTATION",
+        "record": "ISS34-Q7",
+        "detail": "REPRESENTATION is absent",
+        "core": "CORE2",
+        "product": "CHE-11-HYBRIDISATION-D2-ISS34"
+      },
+      {
+        "component": "CONDITIONS",
+        "record": "ISS34-Q8",
+        "detail": "CONDITIONS is absent",
+        "core": "CORE2",
+        "product": "CHE-11-HYBRIDISATION-D2-ISS34"
+      },
+      {
+        "component": "CONDITIONS",
+        "record": "ISS34-Q9",
+        "detail": "CONDITIONS is absent",
+        "core": "CORE2",
+        "product": "CHE-11-HYBRIDISATION-D2-ISS34"
+      },
+      {
+        "component": "REPRESENTATION",
+        "record": "ISS34-Q9",
+        "detail": "REPRESENTATION is absent",
+        "core": "CORE2",
+        "product": "CHE-11-HYBRIDISATION-D2-ISS34"
+      },
+      {
+        "component": "CONDITIONS",
+        "record": "ISS34-Q10",
+        "detail": "CONDITIONS is absent",
+        "core": "CORE2",
+        "product": "CHE-11-HYBRIDISATION-D2-ISS34"
+      }
+    ]
+  },
+  "stored_html_sizes": {
+    "index.html": 20834,
+    "core2.html": 243079,
+    "core1a.html": 91201
+  }
+}

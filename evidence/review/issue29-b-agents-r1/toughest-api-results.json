@@ -1,0 +1,179 @@
+[
+  {
+    "issue": 32,
+    "brief": {
+      "rule": "the question whose difficulty is most conceptual (concept_model_selection + trap_exception_sensitivity), then the higher total score, then representation_translation, then reasoning_chain_length, then the first in the bank",
+      "question_ref": "OWN-ISSUE32-HYBRID-05",
+      "label": "Q5",
+      "stem": "A model is needed only to describe the overall three-dimensional arrangement of electron domains in NH3; it need not describe the detailed orbital overlap. Choose between VSEPR and a hybrid-orbital overlap diagram, and identify what your chosen model predicts and what it leaves unresolved.",
+      "band": "D3",
+      "score": 6,
+      "conceptual": 3,
+      "components": {
+        "concept_model_selection": 2,
+        "trap_exception_sensitivity": 1,
+        "representation_translation": 1,
+        "reasoning_chain_length": 2,
+        "algebra_computational_load": 0
+      },
+      "capability_ref": "CAP-CHE-BOND-3D-REPRESENTATION-MODELS",
+      "microtopic_ref": "MIC-CHE-BOND-3D-REPRESENTATION-MODELS",
+      "microtopic_title": "3D Stereochemical representation and qualitative models",
+      "relation_refs": [
+        "REL-CHE-STERIC-NUMBER",
+        "REL-CHE-HYBRID-ORBITAL-CONSERVATION"
+      ],
+      "crux_move": {
+        "id": "OWN-ISSUE32-HYBRID-05-MOVE-2",
+        "kind": "CONNECT",
+        "action": "Identify what chosen model predicts",
+        "why_valid": "VSEPR predicts tetrahedral electron domain geometry, trigonal pyramidal shape, and ~107\u00b0 angle compression via electrostatic repulsion.",
+        "output": "geometric predictions"
+      },
+      "wrong_route": "Believing VSEPR explains quantum bond formation, or that hybridisation is needed merely to find shape.",
+      "related_question_refs": [
+        "OWN-ISSUE32-HYBRID-04",
+        "OWN-ISSUE32-HYBRID-07"
+      ],
+      "runner_up": {
+        "question_ref": "OWN-ISSUE32-HYBRID-09",
+        "label": "Q9",
+        "conceptual": 2,
+        "score": 4
+      }
+    }
+  },
+  {
+    "issue": 34,
+    "brief": {
+      "rule": "the question whose difficulty is most conceptual (concept_model_selection + trap_exception_sensitivity), then the higher total score, then representation_translation, then reasoning_chain_length, then the first in the bank",
+      "question_ref": "ISS34-Q4",
+      "label": "Q4",
+      "stem": "For CO2, connect the central-carbon Lewis domain count to its hybrid-orbital model, the number of remaining carbon p orbitals and the sigma/pi composition of its two C=O bonds. Explain how these pieces fit one consistent linear arrangement.",
+      "band": "D2",
+      "score": 4,
+      "conceptual": 2,
+      "components": {
+        "concept_model_selection": 1,
+        "representation_translation": 1,
+        "reasoning_chain_length": 1,
+        "algebra_computational_load": 0,
+        "trap_exception_sensitivity": 1
+      },
+      "capability_ref": "CAP-CHEM-G11-CO2-ORTHOGONAL-PI",
+      "microtopic_ref": "MIC-CHEM-G11-HYBRID-MULTIPLE-BONDS",
+      "microtopic_title": "Multiple Bonds, Unhybridised Orbitals, and Spatial Coordination",
+      "relation_refs": [],
+      "crux_move": {
+        "id": "m4",
+        "kind": "VERIFY",
+        "action": "Form two mutually perpendicular pi bonds with the two oxygen atoms.",
+        "why_valid": "2py overlaps with one O(2py), and 2pz overlaps with the other O(2pz).",
+        "output": "Result for m4"
+      },
+      "wrong_route": "Assuming carbon forms two double bonds in the same plane or requires sp3 to form 4 bonds.",
+      "related_question_refs": [
+        "ISS34-Q2",
+        "ISS34-Q7",
+        "ISS34-Q9",
+        "ISS34-Q3"
+      ],
+      "runner_up": {
+        "question_ref": "ISS34-Q1",
+        "label": "Q1",
+        "conceptual": 2,
+        "score": 3
+      }
+    }
+  },
+  {
+    "issue": 36,
+    "brief": {
+      "rule": "the question whose difficulty is most conceptual (concept_model_selection + trap_exception_sensitivity), then the higher total score, then representation_translation, then reasoning_chain_length, then the first in the bank",
+      "question_ref": "OWN-ISS36-D3-HYB-05",
+      "label": "Q5",
+      "stem": "For the benchmark, use these supplied simplified observations, not an exam-source claim: CO2 is linear with two equivalent C\u2013O bonds; NO3\u2212 is planar with three equivalent N\u2013O bonds; NH3 is pyramidal with three equivalent N\u2013H bonds. Assess the claim 'Equivalent bonds imply sp2 at the central atom.' Use counterexamples and valid warrants, and distinguish equivalence, electron-domain count and hybridisation as a model description.",
+      "band": "D3",
+      "score": 6,
+      "conceptual": 4,
+      "components": {
+        "concept_model_selection": 2,
+        "representation_translation": 1,
+        "reasoning_chain_length": 1,
+        "algebra_computational_load": 0,
+        "trap_exception_sensitivity": 2
+      },
+      "capability_ref": "CAP-CHEM-BOND-HYBRID-EPISTEMICS",
+      "microtopic_ref": "MIC-CHEM-G11-HYBRID-EPISTEMICS-CONJUGATION",
+      "microtopic_title": "Local hybridisation models, rotational overlap symmetry, and conjugated pathways",
+      "relation_refs": [
+        "REL-CHEM-STERIC-HYBRID-MAP"
+      ],
+      "crux_move": {
+        "id": "OWN-ISS36-D3-HYB-05-MOVE-2",
+        "kind": "REPRESENT",
+        "action": "Map electron domains and unhybridised p-orbitals to their spatial orientations for Q5.",
+        "why_valid": "Spatial orbital overlap requires explicit accounting of nodal planes and angular orientation.",
+        "output": "spatial orbital configuration"
+      },
+      "wrong_route": "Having equivalent bonds means the central atom must be sp2 hybridised because sp2 has equal 120\u00b0 hybrid orbitals.",
+      "related_question_refs": [
+        "OWN-ISS36-D3-HYB-08",
+        "OWN-ISS36-D3-HYB-10",
+        "OWN-ISS36-D3-HYB-09",
+        "OWN-ISS36-D3-HYB-06"
+      ],
+      "runner_up": {
+        "question_ref": "OWN-ISS36-D3-HYB-04",
+        "label": "Q4",
+        "conceptual": 3,
+        "score": 7
+      }
+    }
+  },
+  {
+    "issue": 38,
+    "brief": {
+      "rule": "the question whose difficulty is most conceptual (concept_model_selection + trap_exception_sensitivity), then the higher total score, then representation_translation, then reasoning_chain_length, then the first in the bank",
+      "question_ref": "OWN-ISSUE38-HYB-01",
+      "label": "Q1",
+      "stem": "In formamide, H\u2013C(=O)\u2013NH2, a local Lewis count gives nitrogen three sigma bonds and a lone pair. You are also given that the approximately planar amide arrangement permits nitrogen-lone-pair donation into the adjacent carbonyl pi system, which requires a suitably aligned p-like orbital. Choose a model that accounts for both the sigma framework and delocalisation. Resolve the apparent conflict with an automatic 'four domains therefore sp3' label and state the limits of your chosen hybridisation description.",
+      "band": "D4",
+      "score": 8,
+      "conceptual": 4,
+      "components": {
+        "concept_model_selection": 2,
+        "representation_translation": 1,
+        "reasoning_chain_length": 2,
+        "algebra_computational_load": 1,
+        "trap_exception_sensitivity": 2
+      },
+      "capability_ref": "CAP-CHE-HYB-DELOC-BOUNDARIES",
+      "microtopic_ref": "MIC-CHE-HYB-DELOC-BOUNDARIES",
+      "microtopic_title": "Delocalisation-sensitive hybridisation boundaries",
+      "relation_refs": [
+        "REL-CHE-HYBRID-ORBITAL-MIXING",
+        "REL-CHE-CONJUGATION-CONTINUITY"
+      ],
+      "crux_move": {
+        "id": "OWN-ISSUE38-HYB-01-MOVE-3",
+        "kind": "REPRESENT",
+        "action": "Formulate the sp2 + unhybridised p model: three coplanar sp2 hybrids form sigma bonds to C and 2 H; the lone pair occupies the perpendicular pz orbital.",
+        "why_valid": "This orbital arrangement satisfies both the sigma framework geometry and continuous pi delocalisation.",
+        "output": "sp2 + pz model"
+      },
+      "wrong_route": "automatic application of four domains therefore sp3 without checking adjacent pi systems",
+      "related_question_refs": [
+        "OWN-ISSUE38-HYB-05",
+        "OWN-ISSUE38-HYB-08",
+        "OWN-ISSUE38-HYB-07"
+      ],
+      "runner_up": {
+        "question_ref": "OWN-ISSUE38-HYB-02",
+        "label": "Q2",
+        "conceptual": 4,
+        "score": 8
+      }
+    }
+  }
+]

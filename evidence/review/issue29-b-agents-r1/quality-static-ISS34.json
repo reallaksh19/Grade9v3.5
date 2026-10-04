@@ -1,0 +1,248 @@
+{
+  "schema": "gate-report/v1",
+  "tool": "quality_gate/1",
+  "contract_version": "1.8.1",
+  "product_id": "AUDIT-ISS34",
+  "subject": "Chemistry",
+  "render_stamp": "render_core/2 07750fac48a7e37c",
+  "pages": [
+    {
+      "page": "core1a.html",
+      "sha256": "31aeff2e34dc3813f9f0f25bb88ebdb1856b391c749dead9ebc3743292447dc4"
+    },
+    {
+      "page": "core2.html",
+      "sha256": "5111fc3ba73b1580583eab175a92694dadc65872c66eec39cb26ba4c36d94230"
+    }
+  ],
+  "rules_evaluated": [
+    "C1-RELATION",
+    "C1-REPRESENTATION",
+    "C1A-BLOCKS",
+    "C1A-REPRESENTATION-BRIDGE",
+    "C1A-STAGED-REPRESENTATION",
+    "C1A-ANCHOR-PER-DECISION",
+    "C1A-PREREQUISITES-BRIDGED",
+    "C1B-BLOCKS",
+    "C1B-REPRESENTATION",
+    "C1B-REVEAL-GATED",
+    "C2-BLOCKS",
+    "C2-ATTEMPT",
+    "C2-ANSWER-ON-REVEAL",
+    "C2-SUPPORT-PROVENANCE",
+    "C2A-BLOCKS",
+    "C2A-ATTEMPT-FIRST",
+    "C2A-TRAP",
+    "C2A-REPRESENTATION",
+    "C2A-LADDER",
+    "C2A-SPECIFIC-SUPPORT",
+    "C2A-PROVENANCE",
+    "C2A-FAMILY-CLOSURE",
+    "C2A-REVEAL-GATED",
+    "C2B-SAFE-REPRESENTATION",
+    "C2B-LINEAGE",
+    "C2B-SAFE-SUPPORT-SPECIFIC",
+    "C2B-REVEAL-GATED",
+    "C1-FAMILY-METADATA",
+    "C2-METADATA",
+    "C2A-METADATA",
+    "C2B-METADATA",
+    "ALL-NO-PLACEHOLDER",
+    "ALL-PRE-ATTEMPT-FIGURE-PARTIAL",
+    "ALL-PRE-ATTEMPT-MARKUP-WITHHELD",
+    "ALL-FIGURE-SPECIFIC",
+    "ALL-FIGURES-TITLED",
+    "ALL-FIGURE-KIND-KNOWN",
+    "ALL-CHECK-TYPES-KNOWN",
+    "BP-COMPONENTS-REQUIRED",
+    "BP-COMPONENTS-EXPECTED",
+    "BP-COMPONENTS-DEPTH",
+    "PAGE-HOME-LINK",
+    "PAGE-SHELL",
+    "PAGE-SLOTS",
+    "PAGE-PRINT-CSS",
+    "PAGE-TOUCH",
+    "PAGE-STAGE-SUPPORT",
+    "PAGE-METADATA-PRESENCE",
+    "PAGE-SAFE-SEARCH-CORPUS",
+    "PAGE-PROTECTED-SEARCH",
+    "PAGE-GATED-INITIAL",
+    "PRODUCT-NO-ESCAPE-STATE",
+    "PRODUCT-RENDERED-FROM-RECORDS",
+    "PRODUCT-ALL-ROLES",
+    "PRODUCT-SHARED-ATLAS",
+    "PRODUCT-PRINT-FROM-PAGE"
+  ],
+  "rendered_measured": false,
+  "not_measured": [
+    "PAGE-GATED-INITIAL",
+    "PAGE-METADATA-PRESENCE",
+    "PAGE-PROTECTED-SEARCH",
+    "PAGE-SAFE-SEARCH-CORPUS",
+    "PAGE-STAGE-SUPPORT",
+    "PAGE-TOUCH"
+  ],
+  "findings": [
+    {
+      "rule": "ALL-FIGURE-KIND-KNOWN",
+      "severity": "S3",
+      "where": "core1a.html#MIC-CHEM-G11-HYBRID-DOMAINS",
+      "detail": "figure kind not in Chemistry vocabulary: DIAGRAM"
+    },
+    {
+      "rule": "ALL-FIGURE-KIND-KNOWN",
+      "severity": "S3",
+      "where": "core1a.html#MIC-CHEM-G11-HYBRID-MULTIPLE-BONDS",
+      "detail": "figure kind not in Chemistry vocabulary: DIAGRAM"
+    },
+    {
+      "rule": "ALL-FIGURE-KIND-KNOWN",
+      "severity": "S3",
+      "where": "core2.html#ISS34-Q1",
+      "detail": "figure kind not in Chemistry vocabulary: DIAGRAM"
+    },
+    {
+      "rule": "ALL-FIGURE-KIND-KNOWN",
+      "severity": "S3",
+      "where": "core2.html#ISS34-Q3",
+      "detail": "figure kind not in Chemistry vocabulary: DIAGRAM"
+    },
+    {
+      "rule": "ALL-FIGURE-KIND-KNOWN",
+      "severity": "S3",
+      "where": "core2.html#ISS34-Q4",
+      "detail": "figure kind not in Chemistry vocabulary: DIAGRAM"
+    },
+    {
+      "rule": "ALL-FIGURE-KIND-KNOWN",
+      "severity": "S3",
+      "where": "core2.html#ISS34-Q8",
+      "detail": "figure kind not in Chemistry vocabulary: DIAGRAM"
+    },
+    {
+      "rule": "ALL-FIGURE-KIND-KNOWN",
+      "severity": "S3",
+      "where": "core2.html#ISS34-Q10",
+      "detail": "figure kind not in Chemistry vocabulary: DIAGRAM"
+    },
+    {
+      "rule": "BP-COMPONENTS-EXPECTED",
+      "severity": "S3",
+      "where": "core1a.html",
+      "detail": "MIC-CHEM-G11-HYBRID-DOMAINS / CU-CHEM-G11-DOMAINS-SHAPE: EQUATIONS is absent"
+    },
+    {
+      "rule": "BP-COMPONENTS-EXPECTED",
+      "severity": "S3",
+      "where": "core1a.html",
+      "detail": "MIC-CHEM-G11-HYBRID-MULTIPLE-BONDS / CU-CHEM-G11-CO2-SYNTHESIS: EQUATIONS is absent"
+    },
+    {
+      "rule": "BP-COMPONENTS-EXPECTED",
+      "severity": "S3",
+      "where": "core2.html",
+      "detail": "ISS34-Q1: CONDITIONS is absent"
+    },
+    {
+      "rule": "BP-COMPONENTS-EXPECTED",
+      "severity": "S3",
+      "where": "core2.html",
+      "detail": "ISS34-Q2: CONDITIONS is absent"
+    },
+    {
+      "rule": "BP-COMPONENTS-EXPECTED",
+      "severity": "S3",
+      "where": "core2.html",
+      "detail": "ISS34-Q2: REPRESENTATION is absent"
+    },
+    {
+      "rule": "BP-COMPONENTS-EXPECTED",
+      "severity": "S3",
+      "where": "core2.html",
+      "detail": "ISS34-Q3: CONDITIONS is absent"
+    },
+    {
+      "rule": "BP-COMPONENTS-EXPECTED",
+      "severity": "S3",
+      "where": "core2.html",
+      "detail": "ISS34-Q4: CONDITIONS is absent"
+    },
+    {
+      "rule": "BP-COMPONENTS-EXPECTED",
+      "severity": "S3",
+      "where": "core2.html",
+      "detail": "ISS34-Q5: CONDITIONS is absent"
+    },
+    {
+      "rule": "BP-COMPONENTS-EXPECTED",
+      "severity": "S3",
+      "where": "core2.html",
+      "detail": "ISS34-Q5: REPRESENTATION is absent"
+    },
+    {
+      "rule": "BP-COMPONENTS-EXPECTED",
+      "severity": "S3",
+      "where": "core2.html",
+      "detail": "ISS34-Q6: CONDITIONS is absent"
+    },
+    {
+      "rule": "BP-COMPONENTS-EXPECTED",
+      "severity": "S3",
+      "where": "core2.html",
+      "detail": "ISS34-Q6: REPRESENTATION is absent"
+    },
+    {
+      "rule": "BP-COMPONENTS-EXPECTED",
+      "severity": "S3",
+      "where": "core2.html",
+      "detail": "ISS34-Q7: CONDITIONS is absent"
+    },
+    {
+      "rule": "BP-COMPONENTS-EXPECTED",
+      "severity": "S3",
+      "where": "core2.html",
+      "detail": "ISS34-Q7: REPRESENTATION is absent"
+    },
+    {
+      "rule": "BP-COMPONENTS-EXPECTED",
+      "severity": "S3",
+      "where": "core2.html",
+      "detail": "ISS34-Q8: CONDITIONS is absent"
+    },
+    {
+      "rule": "BP-COMPONENTS-EXPECTED",
+      "severity": "S3",
+      "where": "core2.html",
+      "detail": "ISS34-Q9: CONDITIONS is absent"
+    },
+    {
+      "rule": "BP-COMPONENTS-EXPECTED",
+      "severity": "S3",
+      "where": "core2.html",
+      "detail": "ISS34-Q9: REPRESENTATION is absent"
+    },
+    {
+      "rule": "BP-COMPONENTS-EXPECTED",
+      "severity": "S3",
+      "where": "core2.html",
+      "detail": "ISS34-Q10: CONDITIONS is absent"
+    },
+    {
+      "rule": "BP-COMPONENTS-DEPTH",
+      "severity": "S3",
+      "where": "core1a.html",
+      "detail": "MIC-CHEM-G11-HYBRID-DOMAINS / CU-CHEM-G11-DOMAINS-SHAPE: QUICK_CHECK has 1 of the 3 the reference page has"
+    },
+    {
+      "rule": "BP-COMPONENTS-DEPTH",
+      "severity": "S3",
+      "where": "core1a.html",
+      "detail": "MIC-CHEM-G11-HYBRID-MULTIPLE-BONDS / CU-CHEM-G11-CO2-SYNTHESIS: QUICK_CHECK has 1 of the 3 the reference page has"
+    }
+  ],
+  "continuity": [],
+  "verdict": "FAIL",
+  "fail_reasons": [
+    "RENDERED_RULES_NOT_MEASURED"
+  ]
+}

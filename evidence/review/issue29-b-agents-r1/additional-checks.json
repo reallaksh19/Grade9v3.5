@@ -1,0 +1,1421 @@
+{
+  "status": "OBSERVED",
+  "observation": "LOCAL_EXECUTION + ARTIFACT_INSPECTION",
+  "oracle": "INDEPENDENT_DOMAIN_REASONING",
+  "formamide": {
+    "formula": "CH3NO",
+    "valence_electrons": 18,
+    "total_electrons": 24,
+    "pi_subsystem_electrons_in_supplied_model": 4
+  },
+  "carbonate_pi": {
+    "orbitals": 4,
+    "electrons": 6,
+    "warrant": "One C=O pi pair plus one perpendicular p lone pair on each singly bonded O in a contributor: six electrons in the four-p-orbital space."
+  },
+  "cosine": [
+    {
+      "angle_degrees": 0,
+      "cos_positive": 1.0,
+      "cos_negative": 1.0
+    },
+    {
+      "angle_degrees": 30,
+      "cos_positive": 0.8660254037844387,
+      "cos_negative": 0.8660254037844387
+    },
+    {
+      "angle_degrees": 60,
+      "cos_positive": 0.5000000000000001,
+      "cos_negative": 0.5000000000000001
+    },
+    {
+      "angle_degrees": 90,
+      "cos_positive": 6.123233995736766e-17,
+      "cos_negative": 6.123233995736766e-17
+    }
+  ],
+  "issue36_builder": {
+    "declared_formula": "abs(cos(theta))",
+    "formula_at_0": 1.0,
+    "proposal_at_0": 0,
+    "formula_at_90": 6.123233995736766e-17,
+    "proposal_at_90": 1,
+    "status": "CONTRADICTION",
+    "correction": "Define terminal-plane dihedral separately from p-axis misalignment. For the stated terminal-plane endpoints use a shifted cosine/sine model; do not silently change the meaning of theta."
+  },
+  "huckel_counterexample": {
+    "assumptions": "Two degenerate orthonormal orbitals; diagonal energy epsilon; coupling t0*cos(theta); two electrons in lower MO; neglect other interactions.",
+    "eigenvalues": "epsilon +/- abs(t0*cos(theta))",
+    "bonding_stabilisation": "2*abs(t0*cos(theta)), not a universal cos^2 law",
+    "purpose": "Disproves the candidate's universal H\u00fcckel-square claim; not a formamide energy prediction."
+  },
+  "browser": {
+    "status": "NOT_RUN",
+    "reason": "No Chromium/Firefox executable or Playwright browser cache in audit runtime; SVG rasterization and HTML inspection do not replace browser QA."
+  },
+  "candidates": [
+    {
+      "issue": 32,
+      "normalised_unique_hint_ladders": 10,
+      "question_count": 10,
+      "assets": [
+        {
+          "asset": "electron-domains-hcho.svg",
+          "xml_valid": true,
+          "sha256": "24eac6abf2be5f61661a5133fc0d27bddd7c5493837f3e7f4279083db38f8df4",
+          "stages": [
+            {
+              "stage": "DOM-STAGE-1",
+              "children": [
+                "rect",
+                "text",
+                "text",
+                "circle",
+                "text",
+                "line",
+                "circle",
+                "text",
+                "line",
+                "circle",
+                "text",
+                "line",
+                "line",
+                "circle",
+                "text",
+                "circle",
+                "circle",
+                "circle",
+                "circle",
+                "text",
+                "text"
+              ]
+            },
+            {
+              "stage": "DOM-STAGE-2",
+              "children": [
+                "rect",
+                "text",
+                "text",
+                "ellipse",
+                "text",
+                "ellipse",
+                "text",
+                "ellipse",
+                "text",
+                "circle",
+                "text",
+                "text",
+                "text"
+              ]
+            },
+            {
+              "stage": "DOM-STAGE-3",
+              "children": [
+                "rect",
+                "text",
+                "text",
+                "line",
+                "line",
+                "line",
+                "circle",
+                "text",
+                "text",
+                "rect",
+                "text",
+                "text",
+                "text",
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "asset": "hybrid-tetrahedral-3d.svg",
+          "xml_valid": true,
+          "sha256": "88244b732bd8e1e93b0504c398c8a7ecc7e547121227844338059dabf720aca3",
+          "stages": [
+            {
+              "stage": "TET-STAGE-1",
+              "children": [
+                "rect",
+                "text",
+                "text",
+                "circle",
+                "text",
+                "line",
+                "circle",
+                "text",
+                "line",
+                "circle",
+                "text",
+                "line",
+                "circle",
+                "text",
+                "line",
+                "circle",
+                "text",
+                "path",
+                "text",
+                "text"
+              ]
+            },
+            {
+              "stage": "TET-STAGE-2",
+              "children": [
+                "rect",
+                "text",
+                "text",
+                "path",
+                "line",
+                "circle",
+                "text",
+                "text"
+              ]
+            },
+            {
+              "stage": "TET-STAGE-3",
+              "children": [
+                "rect",
+                "text",
+                "text",
+                "circle",
+                "text",
+                "line",
+                "circle",
+                "text",
+                "line",
+                "circle",
+                "text",
+                "polygon",
+                "circle",
+                "text",
+                "line",
+                "circle",
+                "text",
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "asset": "sigma-pi-overlap.svg",
+          "xml_valid": true,
+          "sha256": "8413f125fef34fe078ec88096bc7bc16fc361c839f953eecff13823d5ac8e422",
+          "stages": [
+            {
+              "stage": "SIGMA-PI-1",
+              "children": [
+                "rect",
+                "text",
+                "text",
+                "line",
+                "circle",
+                "text",
+                "circle",
+                "text",
+                "text"
+              ]
+            },
+            {
+              "stage": "SIGMA-PI-2",
+              "children": [
+                "rect",
+                "text",
+                "text",
+                "line",
+                "ellipse",
+                "circle",
+                "ellipse",
+                "circle",
+                "ellipse",
+                "text",
+                "text",
+                "text"
+              ]
+            },
+            {
+              "stage": "SIGMA-PI-3",
+              "children": [
+                "rect",
+                "text",
+                "text",
+                "line",
+                "text",
+                "ellipse",
+                "ellipse",
+                "circle",
+                "ellipse",
+                "ellipse",
+                "circle",
+                "ellipse",
+                "ellipse",
+                "text",
+                "text"
+              ]
+            }
+          ]
+        }
+      ],
+      "closed_core2_disclosures": [
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        }
+      ],
+      "qrt_review_template_refs": [
+        {
+          "qid": "Q1",
+          "template_id": "QRT-RETRIEVE-D1",
+          "canonical": true
+        },
+        {
+          "qid": "Q2",
+          "template_id": "QRT-EXPLAIN-D2",
+          "canonical": true
+        },
+        {
+          "qid": "Q3",
+          "template_id": "QRT-APPLY-D1",
+          "canonical": true
+        },
+        {
+          "qid": "Q4",
+          "template_id": "QRT-REPRESENT-D2",
+          "canonical": true
+        },
+        {
+          "qid": "Q5",
+          "template_id": "QRT-JUSTIFY-D3",
+          "canonical": true
+        },
+        {
+          "qid": "Q6",
+          "template_id": "QRT-EXPLAIN-D2",
+          "canonical": true
+        },
+        {
+          "qid": "Q7",
+          "template_id": "QRT-REPRESENT-D2",
+          "canonical": true
+        },
+        {
+          "qid": "Q8",
+          "template_id": "QRT-APPLY-D2",
+          "canonical": true
+        },
+        {
+          "qid": "Q9",
+          "template_id": "QRT-EXPLAIN-D2",
+          "canonical": true
+        },
+        {
+          "qid": "Q10",
+          "template_id": "QRT-SYNTHESIZE-D2",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "issue": 34,
+      "normalised_unique_hint_ladders": 10,
+      "question_count": 10,
+      "assets": [
+        {
+          "asset": "co2-linear-orthogonal-pi.svg",
+          "xml_valid": true,
+          "sha256": "e0aa00558a708ca0e500893e40109badbcd4dd689abf1df70e6752885c574047",
+          "stages": [
+            {
+              "stage": "stage-domains",
+              "children": [
+                "rect",
+                "text",
+                "text",
+                "text"
+              ]
+            },
+            {
+              "stage": "stage-sigma",
+              "children": [
+                "circle",
+                "text",
+                "circle",
+                "text",
+                "circle",
+                "text",
+                "path",
+                "path",
+                "ellipse",
+                "ellipse",
+                "text",
+                "text",
+                "text"
+              ]
+            },
+            {
+              "stage": "stage-p-orbitals",
+              "children": [
+                "path",
+                "path",
+                "text",
+                "path",
+                "path",
+                "text"
+              ]
+            },
+            {
+              "stage": "stage-pi-overlap",
+              "children": [
+                "path",
+                "path",
+                "path",
+                "path",
+                "text",
+                "path",
+                "path",
+                "path",
+                "path",
+                "text",
+                "rect",
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "asset": "ethene-orbital-overlap.svg",
+          "xml_valid": true,
+          "sha256": "69fd28b3c7a6add21d3d0fffd7f5d0056b69e6ac383558c9f75bc4f383c2c546",
+          "stages": [
+            {
+              "stage": "stage-sigma",
+              "children": [
+                "polygon",
+                "text",
+                "circle",
+                "text",
+                "circle",
+                "text",
+                "circle",
+                "text",
+                "circle",
+                "text",
+                "circle",
+                "text",
+                "circle",
+                "text",
+                "ellipse",
+                "text",
+                "line",
+                "line",
+                "line",
+                "line",
+                "text"
+              ]
+            },
+            {
+              "stage": "stage-pi",
+              "children": [
+                "path",
+                "text",
+                "path",
+                "text",
+                "path",
+                "text",
+                "path",
+                "text",
+                "path",
+                "path",
+                "text",
+                "text",
+                "text",
+                "line"
+              ]
+            }
+          ]
+        },
+        {
+          "asset": "tetrahedral-lone-pairs.svg",
+          "xml_valid": true,
+          "sha256": "8eaa367ee16e892a4124acdfd61a6e5e81a4998e68ff2250113f2e5ca76a4767",
+          "stages": [
+            {
+              "stage": "stage-ch4",
+              "children": [
+                "rect",
+                "text",
+                "circle",
+                "text",
+                "line",
+                "circle",
+                "text",
+                "line",
+                "circle",
+                "text",
+                "line",
+                "circle",
+                "text",
+                "polygon",
+                "circle",
+                "text",
+                "text",
+                "text",
+                "text"
+              ]
+            },
+            {
+              "stage": "stage-nh3",
+              "children": [
+                "rect",
+                "text",
+                "circle",
+                "text",
+                "ellipse",
+                "circle",
+                "circle",
+                "text",
+                "line",
+                "circle",
+                "text",
+                "line",
+                "circle",
+                "text",
+                "polygon",
+                "circle",
+                "text",
+                "text",
+                "text",
+                "text"
+              ]
+            },
+            {
+              "stage": "stage-h2o",
+              "children": [
+                "rect",
+                "text",
+                "circle",
+                "text",
+                "ellipse",
+                "circle",
+                "circle",
+                "ellipse",
+                "circle",
+                "circle",
+                "text",
+                "line",
+                "circle",
+                "text",
+                "line",
+                "circle",
+                "text",
+                "text",
+                "text",
+                "text"
+              ]
+            }
+          ]
+        }
+      ],
+      "closed_core2_disclosures": [
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        }
+      ],
+      "qrt_review_template_refs": [
+        {
+          "qid": "ISS34-Q1",
+          "template_id": "TMPL-CHEM-G11-EXPLAIN-D2",
+          "canonical": false
+        },
+        {
+          "qid": "ISS34-Q2",
+          "template_id": "TMPL-CHEM-G11-APPLY-D2",
+          "canonical": false
+        },
+        {
+          "qid": "ISS34-Q3",
+          "template_id": "TMPL-CHEM-G11-REPRESENT-D2",
+          "canonical": false
+        },
+        {
+          "qid": "ISS34-Q4",
+          "template_id": "TMPL-CHEM-G11-SYNTHESIZE-D2",
+          "canonical": false
+        },
+        {
+          "qid": "ISS34-Q5",
+          "template_id": "TMPL-CHEM-G11-JUSTIFY-D2",
+          "canonical": false
+        },
+        {
+          "qid": "ISS34-Q6",
+          "template_id": "TMPL-CHEM-G11-EXPLAIN-D2",
+          "canonical": false
+        },
+        {
+          "qid": "ISS34-Q7",
+          "template_id": "TMPL-CHEM-G11-APPLY-D2",
+          "canonical": false
+        },
+        {
+          "qid": "ISS34-Q8",
+          "template_id": "TMPL-CHEM-G11-EXPLAIN-D2",
+          "canonical": false
+        },
+        {
+          "qid": "ISS34-Q9",
+          "template_id": "TMPL-CHEM-G11-REPRESENT-D2",
+          "canonical": false
+        },
+        {
+          "qid": "ISS34-Q10",
+          "template_id": "TMPL-CHEM-G11-JUSTIFY-D2",
+          "canonical": false
+        }
+      ]
+    },
+    {
+      "issue": 36,
+      "normalised_unique_hint_ladders": 1,
+      "question_count": 10,
+      "assets": [
+        {
+          "asset": "allene-orthogonal-pi.svg",
+          "xml_valid": true,
+          "sha256": "30b95d8031e681c1d02ff81c721f951f34dc10dc916cb7236bea207b2a6ec323",
+          "stages": [
+            {
+              "stage": "ALLENE-STAGE-1",
+              "children": [
+                "text",
+                "line",
+                "line",
+                "line",
+                "line",
+                "circle",
+                "text",
+                "circle",
+                "text",
+                "polygon",
+                "text",
+                "polygon",
+                "line",
+                "circle",
+                "text",
+                "circle",
+                "text",
+                "polygon",
+                "text",
+                "circle",
+                "text",
+                "text",
+                "circle",
+                "text",
+                "text",
+                "circle",
+                "text",
+                "text"
+              ]
+            },
+            {
+              "stage": "ALLENE-STAGE-2",
+              "children": [
+                "text",
+                "ellipse",
+                "ellipse",
+                "text",
+                "text",
+                "ellipse",
+                "ellipse",
+                "text",
+                "text",
+                "path",
+                "text"
+              ]
+            },
+            {
+              "stage": "ALLENE-STAGE-3",
+              "children": [
+                "text",
+                "ellipse",
+                "ellipse",
+                "text",
+                "path",
+                "path",
+                "text",
+                "ellipse",
+                "ellipse",
+                "text",
+                "path",
+                "path",
+                "text",
+                "rect",
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "asset": "conjugation-pathway.svg",
+          "xml_valid": true,
+          "sha256": "5ee8b70761de6229632b2680bceb2a7b502a459265597ab9bb1fc1d1d7f2eeb2",
+          "stages": [
+            {
+              "stage": "CONJ-STAGE-1",
+              "children": [
+                "text",
+                "line",
+                "line",
+                "line",
+                "ellipse",
+                "ellipse",
+                "circle",
+                "text",
+                "text",
+                "ellipse",
+                "ellipse",
+                "circle",
+                "text",
+                "text",
+                "ellipse",
+                "ellipse",
+                "circle",
+                "text",
+                "text",
+                "ellipse",
+                "ellipse",
+                "circle",
+                "text",
+                "text",
+                "path",
+                "path",
+                "text",
+                "text"
+              ]
+            },
+            {
+              "stage": "CONJ-STAGE-2",
+              "children": [
+                "text",
+                "line",
+                "line",
+                "line",
+                "line",
+                "ellipse",
+                "circle",
+                "text",
+                "ellipse",
+                "circle",
+                "text",
+                "path",
+                "text",
+                "rect",
+                "circle",
+                "text",
+                "text",
+                "text",
+                "line",
+                "line",
+                "line",
+                "line",
+                "ellipse",
+                "circle",
+                "text",
+                "ellipse",
+                "circle",
+                "text",
+                "path",
+                "text",
+                "text",
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "asset": "nitrate-delocalised-pi.svg",
+          "xml_valid": true,
+          "sha256": "67e9d5e102f606b8ff5fff3178b18ff861a5540f25af38ec6e585574a50cb17f",
+          "stages": [
+            {
+              "stage": "NO3-STAGE-1",
+              "children": [
+                "text",
+                "line",
+                "line",
+                "line",
+                "circle",
+                "text",
+                "text",
+                "circle",
+                "text",
+                "circle",
+                "text",
+                "circle",
+                "text",
+                "text",
+                "text",
+                "text"
+              ]
+            },
+            {
+              "stage": "NO3-STAGE-2",
+              "children": [
+                "text",
+                "ellipse",
+                "ellipse",
+                "ellipse",
+                "ellipse",
+                "ellipse",
+                "ellipse",
+                "ellipse",
+                "ellipse",
+                "text",
+                "text"
+              ]
+            },
+            {
+              "stage": "NO3-STAGE-3",
+              "children": [
+                "text",
+                "polygon",
+                "polygon",
+                "rect",
+                "text",
+                "text"
+              ]
+            }
+          ]
+        }
+      ],
+      "closed_core2_disclosures": [
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        }
+      ],
+      "qrt_review_template_refs": [
+        {
+          "qid": "ISS36-R1-D3-Q01",
+          "template_id": "QRT-EXPLAIN-D2",
+          "canonical": true
+        },
+        {
+          "qid": "ISS36-R1-D3-Q02",
+          "template_id": "QRT-REPRESENT-D3",
+          "canonical": true
+        },
+        {
+          "qid": "ISS36-R1-D3-Q03",
+          "template_id": "QRT-MODEL-D3",
+          "canonical": true
+        },
+        {
+          "qid": "ISS36-R1-D3-Q04",
+          "template_id": "QRT-SYNTHESIZE-D3",
+          "canonical": true
+        },
+        {
+          "qid": "ISS36-R1-D3-Q05",
+          "template_id": "QRT-JUSTIFY-D3",
+          "canonical": true
+        },
+        {
+          "qid": "ISS36-R1-D3-Q06",
+          "template_id": "QRT-APPLY-D2",
+          "canonical": true
+        },
+        {
+          "qid": "ISS36-R1-D3-Q07",
+          "template_id": "QRT-REPRESENT-D3",
+          "canonical": true
+        },
+        {
+          "qid": "ISS36-R1-D3-Q08",
+          "template_id": "QRT-EXPLAIN-D3",
+          "canonical": true
+        },
+        {
+          "qid": "ISS36-R1-D3-Q09",
+          "template_id": "QRT-MODEL-D3",
+          "canonical": true
+        },
+        {
+          "qid": "ISS36-R1-D3-Q10",
+          "template_id": "QRT-JUSTIFY-D3",
+          "canonical": true
+        }
+      ]
+    },
+    {
+      "issue": 38,
+      "normalised_unique_hint_ladders": 1,
+      "question_count": 10,
+      "assets": [
+        {
+          "asset": "allene-orthogonal-p.svg",
+          "xml_valid": true,
+          "sha256": "b386b87b044e659a579dc81ac14cf566ed514bc869cb02c4849a9806ba83ea6b",
+          "stages": [
+            {
+              "stage": "HYB-ALLENE-1",
+              "children": [
+                "text",
+                "line",
+                "circle",
+                "circle",
+                "circle",
+                "text",
+                "text",
+                "text",
+                "text",
+                "text",
+                "text"
+              ]
+            },
+            {
+              "stage": "HYB-ALLENE-2",
+              "children": [
+                "text",
+                "ellipse",
+                "ellipse",
+                "text"
+              ]
+            },
+            {
+              "stage": "HYB-ALLENE-3",
+              "children": [
+                "text",
+                "ellipse",
+                "ellipse",
+                "text"
+              ]
+            },
+            {
+              "stage": "HYB-ALLENE-4",
+              "children": [
+                "text",
+                "rect",
+                "polygon",
+                "text",
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "asset": "conjugation-continuity-check.svg",
+          "xml_valid": true,
+          "sha256": "a741e80f1b8573d557bbc0fb1f49e7b8b61dadeef08242ba247f7032efc11cef",
+          "stages": [
+            {
+              "stage": "CONT-1",
+              "children": [
+                "text",
+                "line",
+                "line",
+                "circle",
+                "circle",
+                "circle",
+                "text",
+                "text",
+                "text",
+                "ellipse",
+                "ellipse",
+                "ellipse",
+                "text"
+              ]
+            },
+            {
+              "stage": "CONT-2",
+              "children": [
+                "text",
+                "line",
+                "line",
+                "line",
+                "circle",
+                "circle",
+                "circle",
+                "circle",
+                "text",
+                "text",
+                "text",
+                "text",
+                "ellipse",
+                "ellipse",
+                "text"
+              ]
+            },
+            {
+              "stage": "CONT-3",
+              "children": [
+                "text",
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "asset": "formamide-orbital-twist.svg",
+          "xml_valid": true,
+          "sha256": "7678db45a23324d4268ac600bf1c619f19c960c9e2b9a8d638021768d2260c10",
+          "stages": [
+            {
+              "stage": "HYB-TWIST-1",
+              "children": [
+                "text",
+                "line",
+                "line",
+                "circle",
+                "circle",
+                "circle",
+                "text",
+                "text",
+                "text",
+                "ellipse",
+                "ellipse",
+                "ellipse",
+                "ellipse",
+                "ellipse",
+                "ellipse",
+                "text",
+                "text",
+                "text"
+              ]
+            },
+            {
+              "stage": "HYB-TWIST-2",
+              "children": [
+                "text",
+                "path",
+                "path",
+                "text"
+              ]
+            },
+            {
+              "stage": "HYB-TWIST-3",
+              "children": [
+                "text",
+                "text"
+              ]
+            },
+            {
+              "stage": "HYB-TWIST-4",
+              "children": [
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "asset": "methyl-radical-orbital.svg",
+          "xml_valid": true,
+          "sha256": "726169bb5afbe07abd6ebc7e74b090d17d91835c3de91b1123278074dc619ac6",
+          "stages": [
+            {
+              "stage": "RAD-1",
+              "children": [
+                "text",
+                "circle",
+                "text",
+                "line",
+                "line",
+                "line",
+                "circle",
+                "circle",
+                "circle",
+                "text",
+                "text",
+                "text",
+                "text",
+                "text",
+                "text"
+              ]
+            },
+            {
+              "stage": "RAD-2",
+              "children": [
+                "text",
+                "ellipse",
+                "ellipse",
+                "text",
+                "text"
+              ]
+            },
+            {
+              "stage": "RAD-3",
+              "children": [
+                "text",
+                "circle"
+              ]
+            }
+          ]
+        }
+      ],
+      "closed_core2_disclosures": [
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-wrong-route",
+          "starts_closed": true
+        },
+        {
+          "kind": "core2-hints",
+          "starts_closed": true
+        }
+      ],
+      "qrt_review_template_refs": [
+        {
+          "qid": "OWN-ISSUE38-HYB-01",
+          "template_id": null,
+          "canonical": false
+        },
+        {
+          "qid": "OWN-ISSUE38-HYB-02",
+          "template_id": null,
+          "canonical": false
+        },
+        {
+          "qid": "OWN-ISSUE38-HYB-03",
+          "template_id": null,
+          "canonical": false
+        },
+        {
+          "qid": "OWN-ISSUE38-HYB-04",
+          "template_id": null,
+          "canonical": false
+        },
+        {
+          "qid": "OWN-ISSUE38-HYB-05",
+          "template_id": null,
+          "canonical": false
+        },
+        {
+          "qid": "OWN-ISSUE38-HYB-06",
+          "template_id": null,
+          "canonical": false
+        },
+        {
+          "qid": "OWN-ISSUE38-HYB-07",
+          "template_id": null,
+          "canonical": false
+        },
+        {
+          "qid": "OWN-ISSUE38-HYB-08",
+          "template_id": null,
+          "canonical": false
+        },
+        {
+          "qid": "OWN-ISSUE38-HYB-09",
+          "template_id": null,
+          "canonical": false
+        },
+        {
+          "qid": "OWN-ISSUE38-HYB-10",
+          "template_id": null,
+          "canonical": false
+        }
+      ]
+    }
+  ]
+}
