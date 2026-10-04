@@ -4,7 +4,7 @@
 **Implementation base:** PR #9  
 **Execution PR:** PR #15, branch `feat/issue-13-surface-areas-and-volumes-pilot`  
 **Product ID:** `PRODUCT-MAT-G9-SAV`  
-**Status:** `PILOT_REPAIR_IN_PROGRESS` — not accepted, not released, not self-certified.  
+**Status:** `PILOT_REPAIR_VERIFIED_AWAITING_OWNER_PROFILE_AND_HUMAN_ACCEPTANCE` — targeted repair work is verified, but the product is not accepted, released, or self-certified.  
 **Protocol:** `reallaksh19/Common@149770a21ca073df49717a96e2106c967adddc2d:skills/engineering-pr-delivery-v3.2`
 
 ## Chronological authority and clarification record
@@ -76,19 +76,40 @@ Each pilot question now carries explicit `review_bottleneck`, `review_route_to_c
 
 Material repair commit: `8351da85518cbac9a4a357ecfb1804a88292eb7c`.
 
-## Pending repair units
+## Completed repair units
 
-- R4 Core1A safety/content: remove same-number answer leakage and correct Q5 hemisphere teaching.
-- R5 Evidence truth: rebuild authoring evidence separately from post-render review evidence; remove false PASS/accept claims.
-- R6 Artifact traceability: regenerate governed Core2/Core1A HTML and bind hashes to review.
-- R7 Scope cleanup: revert unrelated PR #3 fixture churn and isolate any renderer change.
-- R8 Verification: focused tests, real gate, browser/render evidence where supported.
+- **R4 Core1A safety/content — complete.** Pre-attempt Core1A representations are generic rather than question-answer worked diagrams. Q5 now consistently teaches the curved inner hemispherical material surface versus the open circular mouth; its badge reason, inferential jump, relation, misconception, exit task, teaching-step inputs, representation title/description, and construction path no longer model hemisphere capacity/volume.
+- **R5 Evidence truth — complete for the targeted repair.** The learner profile remains `UNKNOWN` rather than fabricated as 100% demonstrated. Generated pedagogy therefore reports `PENDING_OWNER_PROFILE`; no personalised Y/support-fit PASS is claimed.
+- **R6 Artifact traceability — complete for CI evidence.** The governed render is generated in CI and exact hashes are recorded for `core2.html`, `core1a.html`, and `render-receipt.json`.
+- **R7 Scope/determinism cleanup — complete.** The PR #3 QRT fixture is restored to canonical ask order, derived Question Bank/Pages artifacts were regenerated deterministically, and the temporary repair workflow was returned to its normal check-only behavior.
+- **R8 Verification — complete for the targeted repair.** Focused semantic/safety regressions, transitive pre-attempt leak audit, reference-depth render, measured quality gate, tablet Chromium audit, and final evidence enforcement all pass.
+- **R11 Transitive pre-attempt leak protection — complete.** The auditor follows reachable Core2 scaffolds/conditions/analysis plus linked Core1A unit decisions, teaching steps, representation records, and user-visible SVG text. SVG HTML entities are decoded before parsing; raw SVG coordinate metadata is not treated as learner-visible text. The real ten-question package passes with zero leak findings.
+- **R12 Rendered shell integration — complete.** Governed pages expose the `data-g9-shell-header` marker and concept breadcrumb/action groups are navigation landmarks inheriting the 48px touch-target contract.
 
-## Current blockers
+## Final verification evidence
 
-1. **Learner knowledge:** owner response pending; personalised Y/support fit cannot be final.
-2. **Rendered acceptance evidence:** previous gate report was static-only and returned `FAIL / RENDERED_RULES_NOT_MEASURED`; it is not acceptance evidence.
-3. **Publication artifacts:** previous PR description referred to local publication files not committed in PR #15. Final traceability must point to durable repo-backed artifacts and current commit hashes.
+Verified workflow: `surface-areas-volumes-pilot` run **37168541548** on head `669d4b63be5e3a0a032e9e62b28821eaca07088a`.
+
+- Focused semantic and safety regressions: **47 tests, 47 passing**.
+- Question content self-audit: **PASS**.
+- Transitive pre-attempt leak audit: **PASS**, 10 questions, **0 findings**.
+- Reference-depth render: **0 depth gaps**. The renderer separately reports 8 `GATE_RELATION_BINDING_ABSENT` subject-authority findings; this audit does not claim engineering-gate binding for those eight mathematical relations.
+- Measured quality gate: **PASS; 0 findings**.
+- Tablet Chromium enforcement: **PASS**; `core1a.html` and `core2.html` both have **0** targets below 48px and no horizontal overflow in the enforced tablet viewports.
+- Interactive-page count: **0**. No interactive artifact is claimed as part of the current pilot evidence.
+- Final rendered-evidence enforcement: **PASS**.
+- CI evidence artifact digest: `sha256:f646819201b27e9f431ec9293db0d82cbaa12d89f2cb0ea94ff6c714aa0e3473`.
+- Governed artifact hashes:
+  - `core2.html`: `sha256:0c8c1fa5fb34b5ee0ba5fe5f282bcc5b839bd1fc443e9bc37629325a3a54e736`
+  - `core1a.html`: `sha256:f9622e96cf85dd3637f9627b4a834c453fe40e431c498077af041e26cf197401`
+  - `render-receipt.json`: `sha256:98cb6d03eb4fdaef222f90792f199cec98db9c522ca17df52b61409c101ad616`
+- Render stamp: `render_core/2 277bb3878e080331`.
+
+## Remaining limitations / blockers to product acceptance
+
+1. **Learner knowledge remains unresolved:** the owner has not supplied demonstrated learner capability evidence. The generated pedagogy batch correctly remains `PENDING_OWNER_PROFILE`; learner-specific Y and personalised support-fit claims are not final.
+2. **Human acceptance remains required:** a green repair workflow is evidence, not release approval or owner acceptance.
+3. **Relation engineering-gate binding is not claimed:** the reference renderer reports eight subject-authority findings for mathematical relations that state subject truth without an engineering gate behind them. They are disclosed here rather than converted into a false PASS claim.
 
 ## Non-self-certification
 
@@ -139,3 +160,15 @@ Implementation commits:
 - `87fc63af62ea940148fac2611061677e80728064` — fail-closed receipt tests.
 
 The Issue #13 prompt does not itself require an interactive page. If one is later included, it cannot appear in the final deliverable/audit as reviewed without this Chromium receipt.
+
+
+### R13 — final targeted repair status
+
+At the verified head above, the four repair targets that motivated this repair cycle are now in these states:
+
+- **X/Y/Z/W semantics:** implemented and regression-covered. X is the review bottleneck, Y requires demonstrated learner evidence, Z is the route to the crux / preceding move, W is explicit protected work; Z/W collapse and answer-bearing X are rejected.
+- **Audit truth:** repaired. Owner input is separated from agent inference; Issue #13 remains the custody authority; the fabricated 100% learner profile and fabricated interactive owner directive are withdrawn.
+- **Transitive leak protection:** implemented, CI-wired, regression-covered, and passing on the real Surface Areas & Volumes package.
+- **Q5/Core1A mapping:** repaired end-to-end to curved inner surface versus open mouth; the prior hemisphere volume/capacity contamination has been removed from canonical teaching metadata and the SVG representation.
+
+Therefore the **targeted repair set is complete**, subject to the unresolved learner-profile input and separate human acceptance described above.
