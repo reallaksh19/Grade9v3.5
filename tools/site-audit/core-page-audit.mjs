@@ -191,6 +191,7 @@ for (const file of files) {
           const keySteps = [...document.querySelectorAll('[data-g9-component="KEY_STEP"]')].filter(visible);
           const exitTasks = [...document.querySelectorAll('[data-g9-component="EXIT_RECALL"]')].filter(visible);
           const core2Hints = [...document.querySelectorAll('details[data-g9-secondary="core2-hints"]')].filter(visible);
+          const core2WrongRoutes = [...document.querySelectorAll('details[data-g9-secondary="core2-wrong-route"]')].filter(visible);
           return {
             secondaryDisclosures: secondary.length,
             secondaryOpenByDefault: secondary.filter(el => el.open).length,
@@ -200,6 +201,8 @@ for (const file of files) {
             exitRecallCount: exitTasks.length,
             core2HintDisclosures: core2Hints.length,
             core2HintOpenByDefault: core2Hints.filter(el => el.open).length,
+            core2WrongRouteDisclosures: core2WrongRoutes.length,
+            core2WrongRouteOpenByDefault: core2WrongRoutes.filter(el => el.open).length,
           };
         })(),
         stagedSvg: (() => {
@@ -639,6 +642,9 @@ if (enforce && profile === 'tablet-12.7') {
       }
       if (file === 'core2.html' && row.progressiveLearning.core2HintDisclosures > 0 && row.progressiveLearning.core2HintOpenByDefault !== 0) {
         failures.push(`${file} ${vp.name}: guided support is not collapsed by default`);
+      }
+      if (file === 'core2.html' && row.progressiveLearning.core2WrongRouteDisclosures > 0 && row.progressiveLearning.core2WrongRouteOpenByDefault !== 0) {
+        failures.push(`${file} ${vp.name}: common wrong-route warning is not collapsed by default`);
       }
       if (!row.tablet) continue;
       const bp = blueprints.blueprints.find(b => `${b.id}@${b.version}` === row.blueprint);
