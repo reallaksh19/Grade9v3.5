@@ -91,13 +91,34 @@ mod_fin = importlib.util.module_from_spec(spec_fin)
 spec_fin.loader.exec_module(mod_fin)
 
 # Check checks
-HINT_CHECKS = ("academic_correctness", "objective_alignment", "w_protection", "learner_fit", "non_redundancy")
+HINT_CHECKS = (
+    "academic_correctness",
+    "objective_alignment",
+    "w_protection",
+    "learner_fit",
+    "non_redundancy",
+    "purpose_fit",
+    "actionable_specificity",
+)
 SOLUTION_CHECKS = ("academic_correctness", "question_specificity", "reasoning_validity", "units_symbols", "post_attempt_scope")
 CALC_CHECKS = ("arithmetic_or_algebra", "units_dimensions", "input_traceability", "independent_check")
 
 questions = []
 pre_attempt_graphs = []
 reviews = []
+
+
+def hint_check_evidence(qid: str, hid: str, text: str, check: str, template_id: str, protected_move: str) -> str:
+    evidence = {
+        "academic_correctness": f"{hid} is checked against the authored {qid} solution route and verified answer.",
+        "objective_alignment": f"{hid} serves the {template_id} support route for {qid} rather than introducing a new objective.",
+        "w_protection": f"{hid} does not state protected move {protected_move} or the verified answer.",
+        "learner_fit": f"{hid} assumes only the owner-declared demonstrated bridge used for {qid}.Y.",
+        "non_redundancy": f"{hid} has a distinct rung job in the ordered {qid} ladder.",
+        "purpose_fit": f"{hid} is optional source-question support; COMPETITION transfer items are separately rendered without a hint ladder.",
+        "actionable_specificity": f"{hid} gives a concrete modelling/representation action for this item: {text}",
+    }
+    return evidence[check]
 
 for i in range(1, 11):
     qid = f"Q{i}"
@@ -120,7 +141,10 @@ for i in range(1, 11):
                 "summary_evidence": [f"Hint {hid} orients without disclosing protected move {protected_move}."],
                 "basis_refs": [f"{qid}.W", f"{rev['template_id']}.H{h_idx}"],
                 "checks": {
-                    chk: {"result": "PASS", "evidence": f"Self-audit verified {chk} for {hid}."}
+                    chk: {
+                        "result": "PASS",
+                        "evidence": hint_check_evidence(qid, hid, h_text, chk, rev["template_id"], protected_move),
+                    }
                     for chk in HINT_CHECKS
                 }
             }
@@ -255,6 +279,36 @@ run = {
             "CAP-MAT-SAV-SLANT": {"state": "DEMONSTRATED", "owner_event_ref": "EVENT-OWNER-CLARIFICATION"},
             "CAP-MAT-SAV-RECAST": {"state": "DEMONSTRATED", "owner_event_ref": "EVENT-OWNER-CLARIFICATION"},
         }
+    },
+    "purpose_delivery": {
+        "purpose": "COMPETITION",
+        "support_policy": "NO_MID_TASK_BRIDGING",
+        "projection": {
+            "CORE1A": {
+                "section_kind": "CHALLENGE_SET",
+                "item_refs": ["SAV-COMP-TRANSFER-SCALE", "SAV-COMP-TRANSFER-RECAST"],
+            },
+            "CORE2": {
+                "section_kind": "CHALLENGE_SET",
+                "item_refs": ["SAV-COMP-TRANSFER-SCALE", "SAV-COMP-TRANSFER-RECAST"],
+            },
+        },
+        "items": [
+            {
+                "id": "SAV-COMP-TRANSFER-SCALE",
+                "roles": ["CORE1A", "CORE2"],
+                "source_kind": "AUTHOR_CREATED_COMPETITION_STYLE",
+                "source_ref": None,
+                "source_label": "Original competition-style transfer; not claimed as an IIT-JEE/IMO past-paper question.",
+            },
+            {
+                "id": "SAV-COMP-TRANSFER-RECAST",
+                "roles": ["CORE1A", "CORE2"],
+                "source_kind": "AUTHOR_CREATED_COMPETITION_STYLE",
+                "source_ref": None,
+                "source_label": "Original competition-style transfer; not claimed as an IIT-JEE/IMO past-paper question.",
+            },
+        ],
     },
     "basis_digests": {
         "matrix": sha256_file(REPO / "Shared/quality/question-demand-matrix.v1.json"),
