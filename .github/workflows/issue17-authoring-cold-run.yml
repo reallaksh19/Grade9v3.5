@@ -170,6 +170,28 @@ jobs:
             echo "rendered bytes already current"
           fi
 
+      - name: Exact-render QRT review and governed completion gate
+        run: |
+          TESTED_HEAD="$(git rev-parse HEAD)"
+          python evidence/authoring/issue17-surface-areas-volumes/build_final_run.py \
+            --authoring-run evidence/authoring/issue17-surface-areas-volumes/generated/qrt-pipeline-run.authoring.json \
+            --head "$TESTED_HEAD" \
+            --workflow-run "$GITHUB_RUN_ID" \
+            --quality-report /tmp/issue17-sav/quality-gate.json \
+            --browser-report /tmp/issue17-sav/tablet-audit.json \
+            --output /tmp/issue17-sav/qrt-pipeline-run.final.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+          schema=json.loads(Path('Shared/quality/qrt-pipeline-run.schema.json').read_text(encoding='utf-8'))
+          run=json.loads(Path('/tmp/issue17-sav/qrt-pipeline-run.final.json').read_text(encoding='utf-8'))
+          Draft202012Validator(schema).validate(run)
+          print('final qrt-pipeline-run schema: PASS')
+          PY
+          PYTHONPATH=. python Shared/tools/qrt_pipeline_gate.py \
+            /tmp/issue17-sav/qrt-pipeline-run.final.json
+
       - name: Record exact tested head
         if: always()
         run: |
