@@ -1206,7 +1206,18 @@ def _core1a_worked_anchor(question: dict, ctx: Ctx | None = None, owner: bool = 
         working = ('<p class="g9-worked-instruction">Before opening each step, say what you would do next.</p>'
                    f'<ol class="g9-watch-steps">{steps}</ol>')
     else:
-        working = items(answer.get("reasoning"), True)
+        legacy = [str(step) for step in answer.get("reasoning") or [] if str(step).strip()]
+        if legacy:
+            steps = "".join(
+                f'<li data-g9-watch-step><details class="g9-worked-step" data-g9-worked-predict>'
+                f'<summary>Predict step {index}, then reveal</summary>'
+                f'<div class="g9-worked-step-body">{para(step)}</div></details></li>'
+                for index, step in enumerate(legacy, 1)
+            )
+            working = ('<p class="g9-worked-instruction">Before opening each step, say what you would do next.</p>'
+                       f'<ol class="g9-watch-steps">{steps}</ol>')
+        else:
+            working = ""
     stem = question.get("stem")
     head = (f'<p class="g9-prov" data-g9-anchor-source>{esc(_identity(question))} · {esc(_custody(question))}</p>'
             if owner else "")
@@ -1877,8 +1888,12 @@ def core2(ctx: Ctx, q: dict) -> str:
             "STEM": part("STEM", '<div class="g9-eyebrow">Attempt first</div>'
                          + block("stem", '<p>' + question_text(ctx, q, "stem", q["stem"]) + '</p>')),
             "CONDITIONS": part("CONDITIONS", block("conditions", f'<ul>{conditions}</ul>' if conditions else "", title="Conditions")),
-            "TRAP": part("TRAP", block("common_wrong_route", '<p>' + question_text(ctx, q, "common_wrong_route", wrong_route) + '</p>'
-                                       if isinstance(wrong_route, str) and wrong_route.strip() else "", title="Common wrong route")),
+            "TRAP": part("TRAP", secondary_disclosure(
+                "Common wrong route · open if you want a warning",
+                block("common_wrong_route", '<p>' + question_text(ctx, q, "common_wrong_route", wrong_route) + '</p>'
+                      if isinstance(wrong_route, str) and wrong_route.strip() else "", title="Common wrong route"),
+                "core2-wrong-route",
+            )),
             "ATTEMPT": part("ATTEMPT", attempt_box("Your answer", response_for(q), q.get("options"), rid,
                                                    option_html=options if options else None)),
         }, "attempt"),
@@ -2189,7 +2204,8 @@ COMPONENT_CSS = """
 .g9-purpose-extension h3{margin:.1rem 0 .35rem}.g9-purpose-source{margin:.15rem 0 .7rem;color:var(--muted);font-size:.9rem}
 .g9-purpose-prompt p{font-size:1.05rem;line-height:1.55;white-space:pre-line}
 .g9-secondary-disclosure{border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}
-.g9-secondary-disclosure>summary{min-height:var(--g9-touch-min);display:flex;align-items:center;padding:10px 12px;font-weight:800;cursor:pointer}
+.g9-secondary-disclosure{min-width:0;max-width:100%}
+.g9-secondary-disclosure>summary{min-height:var(--g9-touch-min);min-width:0;display:flex;align-items:center;flex-wrap:wrap;overflow-wrap:anywhere;padding:10px 12px;font-weight:800;cursor:pointer}
 .g9-secondary-disclosure>summary::after{content:"+";margin-left:auto;font-size:1.2em}.g9-secondary-disclosure[open]>summary::after{content:"−"}
 .g9-secondary-body{padding:0 12px 12px}
 .g9-worked-instruction{margin:.35rem 0 .6rem;color:var(--muted);font-weight:650}
