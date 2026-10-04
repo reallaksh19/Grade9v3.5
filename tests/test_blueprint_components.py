@@ -240,6 +240,41 @@ class Core1aBenchmark(unittest.TestCase):
         self.assertIn(".g9-triad{", render_core.COMPONENT_CSS)
         self.assertTrue(re.search(r'<ol class="g9-triad">', self.html), "the unit's checks are a triad even where a package declares no job")
 
+    def test_staged_figures_reveal_cumulatively_unless_the_author_explicitly_requests_replacement(self):
+        self.assertIn('data-g9-stage-mode="cumulative"', self.html)
+        self.assertNotIn("g9StageSequence", render_core.JS)
+        self.assertIn("stageMode=f.dataset.g9StageMode||'cumulative'", render_core.JS)
+        self.assertIn("cumulative?n<=i:n===i", render_core.JS)
+
+        asset = REPO / "tests/fixtures/_stage-mode.svg"
+        asset.write_text(
+            '<svg viewBox="0 0 200 100" role="img" aria-label="stages">'
+            '<title>stages</title><desc>two stages</desc>'
+            '<g data-g9-stage-id="A"><path d="M10 90 L100 10"/></g>'
+            '<g data-g9-stage-id="B"><text x="100" y="50">label</text></g></svg>',
+            encoding="utf-8",
+        )
+        self.addCleanup(lambda: asset.unlink(missing_ok=True))
+        rep = {
+            "id": "REP-STAGE",
+            "kind": "GEOMETRIC_CONSTRUCTION",
+            "purpose": "test",
+            "rendered_asset_refs": ["tests/fixtures/_stage-mode.svg"],
+            "reveal_stages": [
+                {"id": "A", "label": "Geometry", "purpose": "show structure"},
+                {"id": "B", "label": "Label", "purpose": "annotate structure"},
+            ],
+            "extensions": {"grade9v3:stage_mode": "REPLACE"},
+        }
+        ctx = render_core.Ctx(
+            manifest={"product_id": "P"},
+            packages=[{"representations": [rep]}],
+            bank=[],
+            blueprints={},
+        )
+        html = render_core.figure(ctx, "REP-STAGE", "TEACHING", "CORE1A", "CU")
+        self.assertIn('data-g9-stage-mode="replace"', html)
+
     def test_each_equation_card_belongs_to_a_construction_unit_and_every_stage_has_a_named_button(self):
         units = set(re.findall(r'data-g9-component="CONSTRUCTION_STEPS"[^>]*data-g9-component-unit="([^"]+)"', self.html))
         cards = re.findall(r'data-g9-component="EQUATIONS"[^>]*data-g9-component-unit="([^"]+)"', self.html)
