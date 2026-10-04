@@ -1,0 +1,282 @@
+{
+  "schema": "grade9v3.5/benchmark-question-ledger/v1",
+  "issue": 37,
+  "agent": "A",
+  "round": 1,
+  "core_prompt_sha256": "52306a397ecc6f327a8aba16b73479547c9e78d75139bdf14839c00038eedde7",
+  "learner_preset": {
+    "kind": "SIMULATED_OWNER_PRESET",
+    "demonstrated": [
+      "simple local hybridisation",
+      "sigma/pi overlap",
+      "electron-domain versus molecular geometry",
+      "introductory meaning of resonance contributors"
+    ],
+    "uncertain": [
+      "delocalisation-sensitive model boundaries",
+      "orbital alignment under structural changes",
+      "what conclusions geometry or simplified model data warrant"
+    ],
+    "measurement_warning": "No mastery percentages or independently measured learner outcomes are inferred."
+  },
+  "hardest_target": {
+    "question_id": "ISS37-D4-R1-Q09",
+    "subconcept": "Execute a supplied orbital-overlap model without extrapolating its functional form to total molecular energy.",
+    "primary_demand": "critique",
+    "secondary_demand": "interpret",
+    "band": "D4",
+    "X": "If the overlap factor is cos(theta), total molecular energy must also be cos(theta).",
+    "Y": "Separate a model variable from a system quantity and identify the extra relation/evidence needed to connect them.",
+    "Z": "Angle-slider interaction: predict cos(theta) at 0, 60, 90 degrees; then judge competing total-energy claims while a second case keeps theta fixed but changes a non-overlap energy contribution.",
+    "W": "cos(theta) is warranted only for the supplied overlap factor; values 1, 1/2 and 0 follow at 0, 60 and 90 degrees, but no total-energy dependence follows without an additional energetic model/evidence.",
+    "protected_pre_attempt": true
+  },
+  "questions": [
+    {
+      "id": "ISS37-D4-R1-Q01",
+      "label": "Q1",
+      "sha256": "d44703bfca8465f1d0144848011fc482da2f051713ebd198f9ceeddcbc8c4a64",
+      "primary_demand": "justify",
+      "secondary_demand": "critique",
+      "band": "D4",
+      "difficulty_components": [
+        "model choice",
+        "conflict resolution",
+        "limitation statement",
+        "delocalisation-sensitive orbital alignment",
+        "epistemic boundary"
+      ],
+      "capability": "Choose a local orbital model for amide nitrogen that coordinates sigma framework with p-like lone-pair donation, and state the model's limits.",
+      "solution_summary": "Use an approximately sp2/trigonal-planar sigma-framework description with a p-like lone-pair donor orbital aligned to the carbonyl pi system; reject automatic four-domains-therefore-sp3 as sufficient. Treat sp2 as a compact model label, not the cause of delocalisation or a unique measured orbital decomposition.",
+      "X": "Four Lewis domains force an exact sp3 description even when the supplied delocalisation model needs a p-like donor orbital.",
+      "Y": "Local electron-domain counting is conditional; delocalisation-sensitive orbital alignment can make an automatic local label inadequate.",
+      "Z": "Compare a four-domain local-count card with an alignment card and require the learner to state which evidence each can and cannot explain.",
+      "W": "The useful model is approximately sp2-like at N with a p-like lone pair aligned to the carbonyl pi system, but the label is descriptive and non-unique.",
+      "qrt_review": "EXACT_RENDER_REVIEWED_WITH_LIMITATIONS",
+      "qrt_review_ref": "evidence/benchmark/ISS37/exact-render-review.json#reviews/ISS37-D4-R1-Q01"
+    },
+    {
+      "id": "ISS37-D4-R1-Q02",
+      "label": "Q2",
+      "sha256": "e77d068ee216f7ce6c6df8fd652b3bfb50acc34be6cf3ebf753aaf4714e6ffdf",
+      "primary_demand": "interpret",
+      "secondary_demand": "transfer",
+      "band": "D4",
+      "difficulty_components": [
+        "representation construction",
+        "structural transformation",
+        "invariant formal count",
+        "orbital alignment",
+        "model/measurement separation"
+      ],
+      "capability": "Represent planar versus approximately 90-degree-twisted formamide while keeping connectivity and formal electron count invariant.",
+      "solution_summary": "Draw the same atoms/connectivity and Lewis lone pair in both cases. In the planar model the N donor p-like orbital can align with the carbonyl p system; after ~90-degree C-N torsion the relevant orbital directions are orthogonal/poorly aligned. The sketches are qualitative and do not measure donation strength.",
+      "X": "Twisting changes the Lewis electron count or connectivity, or the drawing itself measures donation strength.",
+      "Y": "Separate invariant bookkeeping from changed three-dimensional orbital orientation.",
+      "Z": "Linked before/after orbital sketch with a fixed connectivity/electron-count strip and a rotatable donor-orbital overlay.",
+      "W": "Rotation changes alignment while formal electron count and atom connectivity remain the same; qualitative sketches do not quantify donation.",
+      "qrt_review": "EXACT_RENDER_REVIEWED_WITH_LIMITATIONS",
+      "qrt_review_ref": "evidence/benchmark/ISS37/exact-render-review.json#reviews/ISS37-D4-R1-Q02"
+    },
+    {
+      "id": "ISS37-D4-R1-Q03",
+      "label": "Q3",
+      "sha256": "2ea9cdfb2b9e677a9d002da309d5d5b5bf609116ba8769085d39046b9830957c",
+      "primary_demand": "critique",
+      "secondary_demand": "justify",
+      "band": "D4",
+      "difficulty_components": [
+        "causal explanation",
+        "shortcut critique",
+        "structural transformation",
+        "assumption/evidence separation",
+        "model boundary"
+      ],
+      "capability": "Explain the supplied twisting result through overlap and distinguish model assumptions from measured facts.",
+      "solution_summary": "Twisting reduces compatible N-to-carbonyl orbital overlap in the supplied model, so a delocalisation contribution tied to that interaction is reduced. 'The hybridisation label changes' is not a sufficient cause; exact donation and energetics require a specified model or measurement.",
+      "X": "Hybridisation label change itself causes donation to disappear.",
+      "Y": "Use orbital geometry/interaction as the model mechanism and keep exact energetic claims evidence-bound.",
+      "Z": "Cause-sort interaction: label, geometry, overlap, donation and measurement cards must be placed in warranted causal/evidential order.",
+      "W": "Reduced aligned overlap supports reduced delocalisation in the supplied model; the label is shorthand, and exact energetic magnitude is not established by the prompt.",
+      "qrt_review": "EXACT_RENDER_REVIEWED_WITH_LIMITATIONS",
+      "qrt_review_ref": "evidence/benchmark/ISS37/exact-render-review.json#reviews/ISS37-D4-R1-Q03"
+    },
+    {
+      "id": "ISS37-D4-R1-Q04",
+      "label": "Q4",
+      "sha256": "a5bd1762999003bff70b76b12d5f49f846d627ef8f1c2fd9a16e5fdeb4f7bc52",
+      "primary_demand": "transfer",
+      "secondary_demand": "justify",
+      "band": "D4",
+      "difficulty_components": [
+        "decision procedure",
+        "site comparison",
+        "connectivity reasoning",
+        "counterfactual transfer",
+        "validity conditions"
+      ],
+      "capability": "Decide whether lone-pair conjugation is plausible by combining local count, adjacency, continuous orbital pathway, alignment and model validity.",
+      "solution_summary": "Site A has the supplied amide donor/adjacent carbonyl pathway; site B is interrupted by saturated CH2 in the simplified model. Spatial proximity alone is insufficient. A structural change that creates an unsaturated/appropriately aligned continuous orbital path requires reassessment.",
+      "X": "Any nearby lone pair and carbonyl are conjugated.",
+      "Y": "Conjugation requires a structurally continuous compatible orbital pathway, not closeness alone.",
+      "Z": "Pathway checker: learner traces local count -> adjacency -> continuous p path -> alignment -> model-validity checkpoints for A, B and a counterfactual.",
+      "W": "A passes the supplied pathway test; B fails at the saturated CH2 interruption; changing the bridge/connectivity can invalidate the original decision.",
+      "qrt_review": "EXACT_RENDER_REVIEWED_WITH_LIMITATIONS",
+      "qrt_review_ref": "evidence/benchmark/ISS37/exact-render-review.json#reviews/ISS37-D4-R1-Q04"
+    },
+    {
+      "id": "ISS37-D4-R1-Q05",
+      "label": "Q5",
+      "sha256": "7fa193cc29562ab720488b660310f07f11d3639ebe7970a967d0b56b063e46f8",
+      "primary_demand": "critique",
+      "secondary_demand": "justify",
+      "band": "D4",
+      "difficulty_components": [
+        "claim revision",
+        "multi-case testing",
+        "lone-pair effects",
+        "amide boundary",
+        "evidence standard"
+      ],
+      "capability": "Replace an over-strong hybridisation/bond-angle claim with a qualified model claim and identify evidence needed for stronger physical conclusions.",
+      "solution_summary": "Hybridisation/domain labels are first-order local models, not unique angle predictors. CH4, NH3 and H2O can share introductory four-domain/sp3-type language while lone-pair occupancy changes molecular geometry and angles. Amide N shows an additional delocalisation-sensitive boundary. Geometry constrains models but does not uniquely prove an orbital decomposition.",
+      "X": "One hybridisation label uniquely fixes one bond angle, so any deviation disproves the label.",
+      "Y": "Separate electron-domain classification from exact geometry and from unique electronic-structure claims.",
+      "Z": "Claim stress-test matrix across CH4/NH3/H2O/formamide with columns for what the local model predicts and what it does not.",
+      "W": "The label is a useful first-order descriptor whose quantitative/unique explanatory scope is limited; stronger claims need additional structural, spectroscopic or computational evidence.",
+      "qrt_review": "EXACT_RENDER_REVIEWED_WITH_LIMITATIONS",
+      "qrt_review_ref": "evidence/benchmark/ISS37/exact-render-review.json#reviews/ISS37-D4-R1-Q05"
+    },
+    {
+      "id": "ISS37-D4-R1-Q06",
+      "label": "Q6",
+      "sha256": "07e8eeccb58cc7be624d67404fff3a1e4eb1d94528f0bad6f34bd6e09f4641ab",
+      "primary_demand": "critique",
+      "secondary_demand": "classify",
+      "band": "D3",
+      "difficulty_components": [
+        "rule recall",
+        "applicability test",
+        "evidence discrimination",
+        "site comparison",
+        "model boundary"
+      ],
+      "capability": "Distinguish knowing the four-domain rule from deciding when its localised assumptions are adequate.",
+      "solution_summary": "Use four-domain counting for a first local classification when bonding is sufficiently localised and no supplied evidence requires a conjugation-sensitive model. Automatic use becomes inadequate when resonance-sensitive planarity, aligned donor/acceptor orbitals, radical/SOMO character or structural change matters.",
+      "X": "A memorised counting rule is automatically applicable whenever four domains are drawn.",
+      "Y": "Applicability conditions are a separate reasoning step from recall.",
+      "Z": "Rule-or-evidence gate: choose whether to stop at local counting or escalate to orbital-pathway analysis.",
+      "W": "Local counting is conditional; Site A needs the delocalisation-sensitive model, while Site B can be treated more locally under the supplied simplified assumptions.",
+      "qrt_review": "EXACT_RENDER_REVIEWED_WITH_LIMITATIONS",
+      "qrt_review_ref": "evidence/benchmark/ISS37/exact-render-review.json#reviews/ISS37-D4-R1-Q06"
+    },
+    {
+      "id": "ISS37-D4-R1-Q07",
+      "label": "Q7",
+      "sha256": "c695e46f711c83181466ec9d16ed4c02218a3622f31d825ec44fed2cf2e99f1f",
+      "primary_demand": "interpret",
+      "secondary_demand": "critique",
+      "band": "D3",
+      "difficulty_components": [
+        "given-model translation",
+        "orbital occupancy",
+        "universalisation check",
+        "radical extension",
+        "evidence boundary"
+      ],
+      "capability": "Translate the supplied planar methyl-radical model without turning it into a universal three-sigma-bond rule.",
+      "solution_summary": "Represent three coplanar C-H sigma directions and a singly occupied p-like orbital perpendicular to the plane. The proposed universal statement fails because the orbital is not empty and the supplied CH3 radical model does not prove a theorem about every three-coordinate center.",
+      "X": "Three sigma bonds always leave an empty p orbital.",
+      "Y": "Track occupancy explicitly and distinguish one supplied case from a universal rule.",
+      "Z": "Orbital occupancy sketch: empty, singly occupied and doubly occupied p-like options; learner selects the one warranted by CH3· and labels the scope.",
+      "W": "The p-like orbital is singly occupied in the supplied model; no universal empty-p conclusion follows.",
+      "qrt_review": "EXACT_RENDER_REVIEWED_WITH_LIMITATIONS",
+      "qrt_review_ref": "evidence/benchmark/ISS37/exact-render-review.json#reviews/ISS37-D4-R1-Q07"
+    },
+    {
+      "id": "ISS37-D4-R1-Q08",
+      "label": "Q8",
+      "sha256": "706e95213624157e3574a604f282e592cdef37d9c006c6c4a3874aad31959949",
+      "primary_demand": "justify",
+      "secondary_demand": "critique",
+      "band": "D4",
+      "difficulty_components": [
+        "evidence design",
+        "model discrimination",
+        "warranted inference",
+        "geometry limitation",
+        "electronic-structure boundary"
+      ],
+      "capability": "Propose observations that discriminate localised versus delocalised amide descriptions while separating consistency from unique proof.",
+      "solution_summary": "Useful evidence includes planarity/pyramidality, C-N structural/rotational behavior, spectroscopy and defined electronic-structure calculations. Planarity can support consistency with conjugation but cannot by itself quantify donation or uniquely establish one electronic partition/model.",
+      "X": "If nitrogen is planar, resonance magnitude and the unique orbital description have been proved.",
+      "Y": "Evidence can discriminate predictions while remaining non-unique with respect to causal/electronic models.",
+      "Z": "Evidence-to-claim matching: drag geometry, rotation, spectroscopy and calculation onto claims they warrant; reject overclaims.",
+      "W": "Geometry is useful discriminating evidence but alone cannot quantify donation or prove a unique electronic-structure account.",
+      "qrt_review": "EXACT_RENDER_REVIEWED_WITH_LIMITATIONS",
+      "qrt_review_ref": "evidence/benchmark/ISS37/exact-render-review.json#reviews/ISS37-D4-R1-Q08"
+    },
+    {
+      "id": "ISS37-D4-R1-Q09",
+      "label": "Q9",
+      "sha256": "7ef3b550ea1f2fbcb45cde77a92ed08db1dfbd1d8c631676914cca9190c9a52f",
+      "primary_demand": "critique",
+      "secondary_demand": "interpret",
+      "band": "D4",
+      "difficulty_components": [
+        "model execution",
+        "trigonometric comparison",
+        "functional-form transfer",
+        "total-energy inference",
+        "model/physical-system boundary"
+      ],
+      "capability": "Execute the supplied cos(theta) overlap model and reject an unsupported transfer of that functional form to total molecular energy.",
+      "solution_summary": "cos(0)=1, cos(60)=1/2, cos(90)=0 for the supplied overlap factor. This does not imply total molecular energy varies as cos(theta): total energy has other contributions and any energetic dependence on overlap requires its own explicit relation/model/evidence.",
+      "X": "The overlap factor and total molecular energy must have the same cos(theta) functional dependence.",
+      "Y": "Keep the scope of a supplied mathematical relation attached to its defined quantity.",
+      "Z": "Angle slider with live overlap gauge plus claim-choice panel; a second fixed-theta case varies a non-overlap energy contribution to expose underdetermination.",
+      "W": "Only the overlap-factor values 1, 1/2 and 0 are warranted; the total-energy law is unspecified.",
+      "qrt_review": "EXACT_RENDER_REVIEWED_WITH_LIMITATIONS",
+      "qrt_review_ref": "evidence/benchmark/ISS37/exact-render-review.json#reviews/ISS37-D4-R1-Q09"
+    },
+    {
+      "id": "ISS37-D4-R1-Q10",
+      "label": "Q10",
+      "sha256": "dfef0e64ec86b772252e01b766d2c1c19c91c72393833c9f5448bb551dc4149b",
+      "primary_demand": "transfer",
+      "secondary_demand": "critique",
+      "band": "D4",
+      "difficulty_components": [
+        "rule audit",
+        "cross-case synthesis",
+        "framework construction",
+        "boundary recognition",
+        "evidence escalation"
+      ],
+      "capability": "Build a qualified decision framework for when local hybridisation counting is useful and when extra orbital/evidence models are needed.",
+      "solution_summary": "Use local sigma/lone-pair inventory first, then test connectivity/adjacency, compatible p/SOMO/donor-acceptor pathways, and model sufficiency before using a hybridisation label at the warranted descriptive level. NH3 exposes lone-pair geometry effects; allene requires orthogonal p systems; formamide is delocalisation-sensitive; the separated amine lacks the supplied continuous path.",
+      "X": "One count-and-label rule explains every shape and reactivity difference.",
+      "Y": "Turn the shortcut into a staged model-selection framework with escalation criteria.",
+      "Z": "Four-case decision tree learner must traverse, with an evidence-escalation branch for claims beyond the local model.",
+      "W": "Local counting is useful but conditional; stronger electronic/reactivity claims require an appropriate orbital model and/or independent evidence.",
+      "qrt_review": "EXACT_RENDER_REVIEWED_WITH_LIMITATIONS",
+      "qrt_review_ref": "evidence/benchmark/ISS37/exact-render-review.json#reviews/ISS37-D4-R1-Q10"
+    }
+  ],
+  "findings": [
+    {
+      "id": "DEV-ISS37-001",
+      "kind": "INTAKE_CORRECTION",
+      "status": "RESOLVED_BEFORE_ACADEMIC_FILE_COMMIT",
+      "detail": "A stale pre-v2 question set was initially used for one issue-comment draft. Live Issue #37 was re-read; comment 5977895785 was replaced in place with v2 analysis before this ledger was committed. No stale academic records existed on the candidate branch."
+    },
+    {
+      "id": "CUSTODY-ISS37-001",
+      "kind": "CONTRACT_DISCREPANCY",
+      "status": "OPEN_FOR_TRACEABILITY",
+      "detail": "Issue requires the supplied benchmark questions preserved in Core2 while the generic Core2 role normally reserves Core2 for teacher-original/approved source custody. The candidate will preserve wording and coordinator/AI authorship and record the discrepancy rather than invent exam provenance."
+    }
+  ],
+  "exact_render_review_ref": "evidence/benchmark/ISS37/exact-render-review.json",
+  "builder_proposal_ref": "evidence/benchmark/ISS37/exact-render-review.json#builder_proposal"
+}
