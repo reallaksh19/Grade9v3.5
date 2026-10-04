@@ -1,0 +1,133 @@
+{
+  "schema": "iss31-run-receipt/v1",
+  "issue": 31,
+  "round": 1,
+  "candidate": "independent-agent-a",
+  "status": "CANDIDATE_PARTIAL",
+  "branch": "agent/iss31-hybridisation-candidate-a-20261004",
+  "pinned_source_commit": "e01c6365acfd6aec84c0a6e94f11b683bd961f6e",
+  "input_hashes": {
+    "whole_issue_body_sha256": "fb3e45cdbe8dfb55d0c82146f917dfbc0220bd97beb1689a5d9073f1c1c88037",
+    "abc_core_prompt_sha256": "cd87b3e209617c6170a8d7916a2f66c42706e13de3280bb68d46aaca542233a9"
+  },
+  "authorities": {
+    "protocol": {
+      "path": "relay/PROTOCOL_SELECTION.yaml",
+      "selection": "V3_1 ACTIVE"
+    },
+    "renderer": {
+      "path": "Shared/tools/render_core.py",
+      "version": "render_core/2",
+      "git_blob_sha": "14e83ec1fb7e61550d73e29fa1c833c2f018eaf7"
+    },
+    "web_blueprints": {
+      "path": "Shared/web/interactive-page-blueprints.v1.json",
+      "registry_version": "1.9.0",
+      "git_blob_sha": "11c3947bdea24f67a76517f47872fcf18849d732"
+    },
+    "web_blueprint_schema": {
+      "path": "Shared/web/interactive-page-blueprint.schema.json",
+      "git_blob_sha": "a306b926a6ea39db6090b0121b6c612246f3aa9b"
+    },
+    "web_blueprint_contract": {
+      "path": "Shared/tools/web_blueprint_contract.py",
+      "git_blob_sha": "96b15ae6fb68ff71a56d3696e1f53edef6a3fc25"
+    },
+    "qrt_matrix": {
+      "path": "Shared/quality/question-demand-matrix.v1.json",
+      "version": "1.0.0",
+      "git_blob_sha": "3779a53ae7d20efbb4644bc3f9243909e93dc145"
+    },
+    "qrt_templates": {
+      "path": "Shared/quality/question-demand-templates.v1.json",
+      "version": "1.0.0",
+      "git_blob_sha": "e2409aef11ae7d98444593bfbe1a38eb00c97cef"
+    },
+    "demand_vocabulary": {
+      "path": "Shared/vocabularies/cognitive-demand.v1.json",
+      "version": "1.0.0",
+      "git_blob_sha": "37ebe1ffa6edf5a9651bef49f424db4788cc9e6d"
+    },
+    "chemistry_adapter": {
+      "path": "Chemistry/adapter/CoreContracts.json",
+      "contract_version": "2.0.0",
+      "git_blob_sha": "7b19e1900b78c87fb8ccf806adf0c8fea4af053d"
+    },
+    "package_schema": {
+      "path": "Shared/library/package.schema.json",
+      "git_blob_sha": "4aa588ef3ce00254d0202bba2bf23f7aae5e8c84"
+    }
+  },
+  "committed_evidence": {
+    "owner-core-prompt.md": {
+      "git_blob_sha": "b0281cc3fa3135dbd60eefc1327645d8929f9a12",
+      "commit": "9f33c00ff947c28a84a134ce98aeee242988a1ab"
+    },
+    "source-cards.json": {
+      "git_blob_sha": "a0817a99d08afcb079bebd34e9e642ef53da18e6",
+      "commit": "68e473af515ced53ef71227d00e8f07e380d28c6"
+    },
+    "question-ledger.json": {
+      "git_blob_sha": "6575e4168137e16f93c813bd432e24a8b75de88e",
+      "commit": "26ab99b2e52526711440921ff348d22d2177b02c"
+    },
+    "qrt-review.json": {
+      "git_blob_sha": "4839f51ab49abdea09912dfa5ff2f09e9239474f",
+      "commit": "63c62dcf06cd96cde7c521f6c445e0e230e8e9ad"
+    }
+  },
+  "environment": {
+    "github_connector": "AVAILABLE",
+    "web_research": "AVAILABLE",
+    "executable_repository_sandbox": "NOT_SUPPLIED",
+    "chromium": "NOT_RUN",
+    "production_renderer_execution": "NOT_RUN"
+  },
+  "production_boundary": {
+    "owner_bank_authoring": "Shared/tools/owner_bank.py currently documents/enforces TEST/question-bank creation only.",
+    "chemistry_package_at_seed": "No Chemistry subject package for this hybridisation slice; Chemistry/library contains the exam-bank surface.",
+    "decision": "Do not invent a new production custody path in a benchmark run."
+  },
+  "academic_summary": {
+    "questions": 10,
+    "cohort_label": "D1",
+    "actual_difficulty_counts": {
+      "D1": 5,
+      "D2": 5,
+      "D3": 0,
+      "D4": 0
+    },
+    "cohort_mismatch_questions": [
+      "Q2",
+      "Q4",
+      "Q5",
+      "Q7",
+      "Q8"
+    ],
+    "covered_primary_qrt_cells": 7,
+    "hardest_target": {
+      "question": "Q5",
+      "band": "D2",
+      "demand": "MODEL"
+    }
+  },
+  "render": {
+    "requested_roles": [
+      "CORE2",
+      "CORE1A"
+    ],
+    "generated": false,
+    "render_digest": null,
+    "html_paths": [],
+    "status": "NOT_RUN",
+    "reason": "Governed non-TEST owner-bank production path not established at pinned seed and executable repository runtime was not supplied."
+  },
+  "independence": {
+    "paired_issue": 32,
+    "paired_issue_inspected": false,
+    "paired_output_inspected": false,
+    "self_promotion_to_golden": false,
+    "merge_or_publish": false
+  },
+  "exact_frozen_head": "RECORDED_EXTERNALLY_IN_FINAL_ISSUE_CHECKPOINT_AFTER_ALL_RECEIPT_FILES_ARE_COMMITTED"
+}
