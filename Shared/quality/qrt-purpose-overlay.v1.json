@@ -1,0 +1,92 @@
+{
+  "schema": "qrt-purpose-overlay/v1",
+  "version": "1.0.0",
+  "principles": {
+    "purpose_does_not_change_question_difficulty": true,
+    "purpose_does_not_change_base_qrt_cell": true,
+    "purpose_changes_post_core_transfer": true,
+    "official_exam_claims_require_verified_provenance": true,
+    "extension_support_is_attempt_gated": true
+  },
+  "purposes": {
+    "STARTER": {
+      "extension_requirement": "OPTIONAL",
+      "support_posture": "SIMPLEST_FOUNDATION"
+    },
+    "PRACTICE": {
+      "extension_requirement": "OPTIONAL",
+      "support_posture": "STANDARD"
+    },
+    "REVISION": {
+      "extension_requirement": "REQUIRED",
+      "extension_kind": "NEXT_LEVEL_CHALLENGE",
+      "learner_title": "Next-level challenge",
+      "support_posture": "BRIDGE_FIRST",
+      "allowed_provenance": [
+        "AUTHORED_REVISION_CHALLENGE",
+        "VERIFIED_SOURCE",
+        "ADAPTED_VERIFIED_SOURCE"
+      ],
+      "requirements": [
+        "fresh_question",
+        "same_canonical_concept_or_family",
+        "meaningful_transfer_increase",
+        "attempt_gate",
+        "independent_protected_move"
+      ]
+    },
+    "COMPETITION": {
+      "extension_requirement": "REQUIRED",
+      "extension_kind": "COMPETITIVE_EXTENSION",
+      "learner_title": "Competitive extension",
+      "support_posture": "MINIMAL",
+      "allowed_provenance": [
+        "AUTHORED_COMPETITION_STYLE",
+        "VERIFIED_COMPETITION_SOURCE",
+        "ADAPTED_VERIFIED_COMPETITION_SOURCE"
+      ],
+      "requirements": [
+        "fresh_high_transfer_question",
+        "same_canonical_concept_or_crux",
+        "competitive_reasoning_not_routine_length",
+        "attempt_gate",
+        "independent_protected_move"
+      ],
+      "official_claim": {
+        "allowed_exam_systems": [
+          "JEE_MAIN",
+          "JEE_ADVANCED",
+          "IOQM",
+          "RMO",
+          "INMO",
+          "IMO",
+          "OTHER_VERIFIED_OLYMPIAD"
+        ],
+        "required_fields": [
+          "exam_system",
+          "exam_name",
+          "year",
+          "question_ref",
+          "source_ref",
+          "verification_status",
+          "adaptation_status"
+        ],
+        "verification_status": "VERIFIED"
+      }
+    }
+  },
+  "transfer_dimensions": [
+    "model_choice",
+    "novelty",
+    "reasoning_steps",
+    "representation_translation"
+  ],
+  "learner_value_policy": {
+    "solution_crux_label": "Key move",
+    "forbidden_solution_crux_label": "The step the hard question turns on",
+    "hide_machine_hint_ids_by_default": true,
+    "hide_guided_badge_by_default": true,
+    "wrong_route_default_disclosure": "POST_ATTEMPT_OR_STUCK",
+    "reasoning_route_semantics": "KEEP_ACTION_WHY_RESULT_BUT_PREFER_COMPACT_LEARNER_PRESENTATION"
+  }
+}
