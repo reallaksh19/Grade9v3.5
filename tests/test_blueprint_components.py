@@ -240,6 +240,59 @@ class Core1aBenchmark(unittest.TestCase):
         self.assertIn(".g9-triad{", render_core.COMPONENT_CSS)
         self.assertTrue(re.search(r'<ol class="g9-triad">', self.html), "the unit's checks are a triad even where a package declares no job")
 
+    def test_revision_and_competition_project_distinct_authored_transfer_sections(self):
+        revision_package = {
+            "extensions": {
+                "grade9v3:purpose_delivery": {
+                    "REVISION": {
+                        "section_title": "Next-level revision",
+                        "support_policy": "REDUCED_SUPPORT",
+                        "items": [{
+                            "id": "REV-1",
+                            "roles": ["CORE1A", "CORE2"],
+                            "concept_refs": ["MIC-X"],
+                            "question_refs": ["Q-X"],
+                            "title": "One step harder",
+                            "prompt": "Apply the same idea with one added modelling decision.",
+                            "source_kind": "AUTHOR_CREATED_REVISION_TRANSFER",
+                            "source_label": "Original next-level revision transfer.",
+                            "answer": {"summary": "Model answer", "reasoning": ["Check the added decision."]},
+                        }],
+                    }
+                }
+            }
+        }
+        competition_package = {
+            "extensions": {
+                "grade9v3:purpose_delivery": {
+                    "COMPETITION": {
+                        "section_title": "Competition transfer",
+                        "support_policy": "NO_MID_TASK_BRIDGING",
+                        "items": [{
+                            "id": "COMP-1",
+                            "roles": ["CORE1A", "CORE2"],
+                            "concept_refs": ["MIC-X"],
+                            "question_refs": ["Q-X"],
+                            "title": "Mixed transfer",
+                            "prompt": "Solve the mixed transfer without a labelled route.",
+                            "source_kind": "AUTHOR_CREATED_COMPETITION_STYLE",
+                            "source_label": "Original competition-style transfer; not a past-paper claim.",
+                            "answer": {"summary": "Model answer", "reasoning": ["Identify the hidden structure."]},
+                        }],
+                    }
+                }
+            }
+        }
+        revision = render_core.Ctx(manifest={"product_id": "P", "purpose": "REVISION"}, packages=[revision_package], bank=[], blueprints={})
+        competition = render_core.Ctx(manifest={"product_id": "P", "purpose": "COMPETITION"}, packages=[competition_package], bank=[], blueprints={})
+        rev_html = render_core._purpose_extension(revision, "CORE1A", "MIC-X")
+        comp_html = render_core._purpose_extension(competition, "CORE1A", "MIC-X")
+        self.assertIn('data-g9-purpose-delivery="REVISION"', rev_html)
+        self.assertIn("Next-level revision", rev_html)
+        self.assertIn('data-g9-purpose-delivery="COMPETITION"', comp_html)
+        self.assertIn("Competition transfer", comp_html)
+        self.assertNotEqual(rev_html, comp_html)
+
     def test_staged_figures_reveal_cumulatively_unless_the_author_explicitly_requests_replacement(self):
         self.assertIn('data-g9-stage-mode="cumulative"', self.html)
         self.assertNotIn("g9StageSequence", render_core.JS)
