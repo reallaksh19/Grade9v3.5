@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "grade9v3/qrt-pipeline-run/v1",
+  "title": "QRT minimal-prompt governed run",
+  "type": "object",
+  "$defs": {
+    "auditCheck": {
+      "type": "object",
+      "required": ["result", "evidence"],
+      "properties": {
+        "result": {"enum": ["PASS", "FAIL", "NOT_APPLICABLE"]},
+        "evidence": {
+          "oneOf": [
+            {"type": "string", "minLength": 1},
+            {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+          ]
+        },
+        "reason": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "selfAudit": {
+      "type": "object",
+      "required": ["status", "summary_evidence", "basis_refs", "checks"],
+      "properties": {
+        "status": {"enum": ["PASS", "FAIL"]},
+        "summary_evidence": {
+          "oneOf": [
+            {"type": "string", "minLength": 1},
+            {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+          ]
+        },
+        "basis_refs": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "checks": {"type": "object", "minProperties": 1, "additionalProperties": {"$ref": "#/$defs/auditCheck"}}
+      },
+      "additionalProperties": true
+    },
+    "hint": {
+      "type": "object",
+      "required": ["id", "text", "calculation_bearing", "calculation_refs", "self_audit"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "text": {"type": "string", "minLength": 1},
+        "calculation_bearing": {"type": "boolean"},
+        "calculation_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "self_audit": {"$ref": "#/$defs/selfAudit"}
+      },
+      "additionalProperties": true
+    },
+    "solutionStep": {
+      "type": "object",
+      "required": ["id", "action", "why_valid_here", "result", "calculation_bearing", "calculation_refs", "self_audit"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "action": {"type": "string", "minLength": 1},
+        "why_valid_here": {"type": "string", "minLength": 1},
+        "result": {"type": "string", "minLength": 1},
+        "calculation_bearing": {"type": "boolean"},
+        "calculation_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "self_audit": {"$ref": "#/$defs/selfAudit"}
+      },
+      "additionalProperties": true
+    },
+    "calculation": {
+      "type": "object",
+      "required": ["id", "expression", "result", "self_audit"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "expression": {"type": "string", "minLength": 1},
+        "result": {"type": "string", "minLength": 1},
+        "self_audit": {"$ref": "#/$defs/selfAudit"}
+      },
+      "additionalProperties": true
+    },
+    "interactiveChromiumReceipt": {
+      "type": "object",
+      "required": ["artifact_ref", "artifact_sha256", "head_sha", "tool", "engine", "profile", "status", "report_path", "report_sha256"],
+      "properties": {
+        "artifact_ref": {"type": "string", "minLength": 1},
+        "artifact_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "head_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "tool": {"const": "tools/site-audit/interactive-page-audit.mjs"},
+        "engine": {"const": "playwright.chromium"},
+        "profile": {"const": "tablet-12.7"},
+        "status": {"const": "PASS"},
+        "report_path": {"type": "string", "minLength": 1},
+        "report_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "schema",
+    "run_identity",
+    "owner_prompt",
+    "owner_events",
+    "learner_profile",
+    "questions",
+    "pre_attempt_graphs",
+    "concept_evidence",
+    "rendered_artifacts",
+    "reviews",
+    "validation"
+  ],
+  "properties": {
+    "schema": {"const": "qrt-pipeline-run/v1"},
+    "run_identity": {
+      "type": "object",
+      "required": ["repository", "branch", "head_sha"],
+      "properties": {
+        "repository": {"type": "string", "minLength": 1},
+        "branch": {"type": "string", "minLength": 1},
+        "head_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"}
+      },
+      "additionalProperties": true
+    },
+    "owner_prompt": {
+      "type": "object",
+      "required": ["text", "sha256", "source_ref"],
+      "properties": {
+        "text": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "source_ref": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": true
+    },
+    "owner_events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "source_ref", "text"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "kind": {"enum": ["PROMPT", "CLARIFICATION_REPLY", "SPECIAL_DIRECTIVE"]},
+          "source_ref": {"type": "string", "minLength": 1},
+          "text": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": true
+      }
+    },
+    "learner_profile": {
+      "type": "object",
+      "required": ["profile_id", "purpose", "purpose_owner_event_ref", "held"],
+      "properties": {
+        "profile_id": {"type": "string", "minLength": 1},
+        "purpose": {"enum": ["STARTER", "PRACTICE", "REVISION", "COMPETITION"]},
+        "purpose_owner_event_ref": {"type": "string", "minLength": 1},
+        "held": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["state", "owner_event_ref"],
+            "properties": {
+              "state": {"enum": ["DEMONSTRATED", "UNCERTAIN", "MISSING"]},
+              "owner_event_ref": {"type": "string", "minLength": 1}
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "verbatim_text",
+          "owner_prompt_sha256",
+          "verified_answer",
+          "slots",
+          "blueprint_ref",
+          "hints",
+          "solution_steps",
+          "calculations"
+        ],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "verbatim_text": {"type": "string", "minLength": 1},
+          "owner_prompt_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+          "verified_answer": {"type": "string", "minLength": 1},
+          "blueprint_ref": {"type": "string", "minLength": 3},
+          "slots": {
+            "type": "object",
+            "required": ["X", "Y", "Z", "W"],
+            "properties": {
+              "X": {"type": "object", "required": ["text", "basis"], "properties": {"text": {"type": "string", "minLength": 1}, "basis": {"type": "array", "items": {"type": "string"}}}},
+              "Y": {"type": "object", "required": ["text", "capability_ref"], "properties": {"text": {"type": "string", "minLength": 1}, "capability_ref": {"type": "string", "minLength": 1}}},
+              "Z": {"type": "object", "required": ["text"], "properties": {"text": {"type": "string", "minLength": 1}}},
+              "W": {"type": "object", "required": ["text", "protected_move_ref"], "properties": {"text": {"type": "string", "minLength": 1}, "protected_move_ref": {"type": "string", "minLength": 1}}}
+            },
+            "additionalProperties": true
+          },
+          "hints": {"type": "array", "items": {"$ref": "#/$defs/hint"}},
+          "solution_steps": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/solutionStep"}},
+          "calculations": {"type": "array", "items": {"$ref": "#/$defs/calculation"}}
+        },
+        "additionalProperties": true
+      }
+    },
+    "pre_attempt_graphs": {"type": "array"},
+    "concept_evidence": {"type": "array"},
+    "rendered_artifacts": {"type": "array", "items": {"type": "object"}},
+    "reviews": {"type": "array"},
+    "validation": {
+      "type": "object",
+      "properties": {
+        "interactive_chromium_receipts": {"type": "array", "items": {"$ref": "#/$defs/interactiveChromiumReceipt"}}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
