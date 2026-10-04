@@ -368,6 +368,14 @@ def para(text) -> str:
     return f"<p>{esc(text)}</p>" if text else ""
 
 
+def secondary_disclosure(summary: str, body: str, kind: str) -> str:
+    """Progressive disclosure for useful-but-secondary learner material; closed by default."""
+    if not body:
+        return ""
+    return (f'<details class="g9-secondary-disclosure" data-g9-secondary="{esc(kind)}">'
+            f'<summary>{esc(summary)}</summary><div class="g9-secondary-body">{body}</div></details>')
+
+
 @lru_cache(maxsize=1024)
 def _typed_math(tex: str, display: bool) -> str:
     """Use the pinned local KaTeX compiler to emit native, offline MathML.
@@ -1188,12 +1196,15 @@ def _core1a_worked_anchor(question: dict, ctx: Ctx | None = None, owner: bool = 
     if route:
         steps = "".join(
             f'<li data-g9-watch-step data-g9-move-ref="{esc(row.get("id", index))}">'
-            f'<strong>{esc(row.get("action", ""))}</strong>'
+            f'<details class="g9-worked-step" data-g9-worked-predict>'
+            f'<summary>Predict step {index}, then reveal</summary>'
+            f'<div class="g9-worked-step-body"><strong>{esc(row.get("action", ""))}</strong>'
             f'{para("Why valid: " + row["why_valid"]) if row.get("why_valid") else ""}'
-            f'{para("Result: " + row["output"]) if row.get("output") else ""}</li>'
+            f'{para("Result: " + row["output"]) if row.get("output") else ""}</div></details></li>'
             for index, row in enumerate(route, 1)
         )
-        working = f'<ol class="g9-watch-steps">{steps}</ol>'
+        working = ('<p class="g9-worked-instruction">Before opening each step, say what you would do next.</p>'
+                   f'<ol class="g9-watch-steps">{steps}</ol>')
     else:
         working = items(answer.get("reasoning"), True)
     stem = question.get("stem")
@@ -1203,8 +1214,12 @@ def _core1a_worked_anchor(question: dict, ctx: Ctx | None = None, owner: bool = 
         head
         + (f'<p class="g9-lines">{question_text(ctx, question, "stem", stem, "CORE1A")}</p>' if ctx and stem else para(stem))
         + working
-        + block("worked_result", para(answer.get("summary")), title="Result")
-        + block("worked_check", para(answer.get("check")), title="Check")
+        + secondary_disclosure(
+            "Result and independent check",
+            block("worked_result", para(answer.get("summary")), title="Result")
+            + block("worked_check", para(answer.get("check")), title="Check"),
+            "worked-result",
+        )
     )
 
 
@@ -1333,8 +1348,11 @@ def core1a(ctx: Ctx, m: dict) -> str:
         """What opens the construction, once per concept: the key step, then what the learner must already hold."""
         return {
             "KEY_STEP": part("KEY_STEP", block("inferential_jump", para(m["inferential_jump"]), title="The key step")),
-            "MODEL_CONTRACT": part("MODEL_CONTRACT", block("entry_assumptions", items(m.get("entry_assumptions")) + _prereqs(ctx, m),
-                                                           title="You need")),
+            "MODEL_CONTRACT": part("MODEL_CONTRACT", secondary_disclosure(
+                "What you need before this",
+                block("entry_assumptions", items(m.get("entry_assumptions")) + _prereqs(ctx, m), title="Prerequisites"),
+                "core1a-prerequisites",
+            )),
         }
     closure = component_body(ctx, "CORE1A", {
         "EXIT_RECALL": part("EXIT_RECALL", (
@@ -1429,12 +1447,20 @@ def core1a(ctx: Ctx, m: dict) -> str:
         card_parts = {
             "UNIT_HEADER": unit_part("UNIT_HEADER", unit_head),
             **(opening() if n == 0 else {}),
-            "QUESTION_BRIDGE": unit_part("QUESTION_BRIDGE", _core1a_question_bridge(ctx, u, crux_questions, ctx.toughest())),
+            "QUESTION_BRIDGE": unit_part("QUESTION_BRIDGE", secondary_disclosure(
+                "Why this section matters for the question set",
+                _core1a_question_bridge(ctx, u, crux_questions, ctx.toughest()),
+                "core1a-question-bridge",
+            )),
             "CONSTRUCTION_STEPS": unit_part("CONSTRUCTION_STEPS",
                                             block("construction", f"<ol>{step_html}</ol>" if step_html else ""),
                                             items=len(step_items), band=unit_band),
-            "EQUATIONS": unit_part("EQUATIONS", block("equation_matrix", relation_matrix, title="Equations and validity")),
-            "WORKED_EXAMPLE": unit_part("WORKED_EXAMPLE", block("worked_anchor", anchor_html, title="Watch one")),
+            "EQUATIONS": unit_part("EQUATIONS", secondary_disclosure(
+                "Formula reference · meaning and conditions",
+                block("equation_matrix", relation_matrix, title="Equations and validity"),
+                "core1a-equations",
+            )),
+            "WORKED_EXAMPLE": unit_part("WORKED_EXAMPLE", block("worked_anchor", anchor_html, title="Watch one · predict before reveal")),
         }
         card = component_body(ctx, "CORE1A", card_parts, "construction")
         construction = f'<section id="{esc(u["id"])}" class="g9-cu" data-g9-cu="{esc(u["id"])}">{card}</section>'
@@ -1446,7 +1472,11 @@ def core1a(ctx: Ctx, m: dict) -> str:
             f'<section class="g9-cu-support" data-g9-support-for="{esc(u["id"])}">'
             f"<h3>{esc(support_label)}</h3>"
             + component_body(ctx, "CORE1A", {
-                "TRAP_REPAIR": unit_part("TRAP_REPAIR", trap, items=len(wrong)),
+                "TRAP_REPAIR": unit_part("TRAP_REPAIR", secondary_disclosure(
+                    "Mistake clinic · diagnose and repair",
+                    trap,
+                    "core1a-trap-repair",
+                ), items=len(wrong)),
                 "QUICK_CHECK": unit_part("QUICK_CHECK", _quick_check(check_rows), items=len(checks)),
             }, "repair_closure")
             + "</section>"
@@ -1720,7 +1750,11 @@ def _core2_support(ctx: Ctx, q: dict) -> str:
              + block("authored_core2_support",
                      _core2_support_ladder(ctx, q, authored_rows, core2_v2.AUTHORED_CORE2_SUPPORT),
                      title="Guided support"))
-    return ('<div class="g9-eyebrow">Hint ladder · reveal only what you need</div>' + lanes) if lanes else ""
+    return (secondary_disclosure(
+        "Need a hint? · guided support",
+        '<div class="g9-eyebrow">Hint ladder · reveal only what you need</div>' + lanes,
+        "core2-hints",
+    ) if lanes else "")
 
 
 def _core2_solution_moves(answer: dict) -> int:
@@ -2154,6 +2188,15 @@ COMPONENT_CSS = """
 .g9-purpose-extension{margin:18px 0;padding:16px;border:2px solid var(--accent);border-radius:16px;background:var(--soft)}
 .g9-purpose-extension h3{margin:.1rem 0 .35rem}.g9-purpose-source{margin:.15rem 0 .7rem;color:var(--muted);font-size:.9rem}
 .g9-purpose-prompt p{font-size:1.05rem;line-height:1.55;white-space:pre-line}
+.g9-secondary-disclosure{border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}
+.g9-secondary-disclosure>summary{min-height:var(--g9-touch-min);display:flex;align-items:center;padding:10px 12px;font-weight:800;cursor:pointer}
+.g9-secondary-disclosure>summary::after{content:"+";margin-left:auto;font-size:1.2em}.g9-secondary-disclosure[open]>summary::after{content:"−"}
+.g9-secondary-body{padding:0 12px 12px}
+.g9-worked-instruction{margin:.35rem 0 .6rem;color:var(--muted);font-weight:650}
+.g9-watch-steps{padding-left:1.35rem}.g9-watch-steps>li{margin:.65rem 0}
+.g9-worked-step{border:1px solid var(--line);border-radius:10px;background:var(--card);overflow:hidden}
+.g9-worked-step>summary{min-height:var(--g9-touch-min);display:flex;align-items:center;padding:9px 11px;font-weight:750;cursor:pointer}
+.g9-worked-step-body{padding:0 11px 11px}.g9-worked-step-body p{margin:.3rem 0}
 article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-bottom:1px solid var(--line)}
 .g9-c-header h2,.g9-c-concept-header h2{font-size:1.2rem;line-height:1.3;margin:0;letter-spacing:-.01em}
 .g9-c-header .g9-prov{margin:2px 0 0}
