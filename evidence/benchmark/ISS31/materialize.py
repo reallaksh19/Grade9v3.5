@@ -548,7 +548,38 @@ def build_package(asset_refs: dict[str, str], bank_ids: dict[str, str]) -> dict:
     ]
 
     questions = LEDGER["questions"]
-    micros = [microtopic(q, bank_ids[q["original_identifier"]]) for q in questions]
+    # Canonical library ownership is one microtopic per primary capability. The benchmark
+    # ledger deliberately keeps finer question-level microtopic labels as review evidence,
+    # but repeating a primary capability across library microtopics makes concept ownership
+    # ambiguous to the renderer.
+    representatives = []
+    seen_caps = set()
+    for q in questions:
+        if q["primary_capability_ref"] not in seen_caps:
+            representatives.append(q)
+            seen_caps.add(q["primary_capability_ref"])
+    micros = [microtopic(q, bank_ids[q["original_identifier"]]) for q in representatives]
+
+    # VSEPR is a secondary capability in the benchmark questions, so give it one explicit
+    # canonical owner without changing any question's primary capability.
+    q4 = next(q for q in questions if q["original_identifier"] == "Q4")
+    vsepr = json.loads(json.dumps(microtopic(q4, bank_ids["Q4"])))
+    def rename_nested(value):
+        if isinstance(value, str):
+            return value.replace("HYB-T4", "HYB-TV").replace("CU-Q4-ISS31", "CU-VSEPR-ISS31")
+        if isinstance(value, list):
+            return [rename_nested(x) for x in value]
+        if isinstance(value, dict):
+            return {k: rename_nested(v) for k, v in value.items()}
+        return value
+    vsepr = rename_nested(vsepr)
+    vsepr["id"] = "MIC-CHEM-G11-VSEPR-GEOMETRY"
+    vsepr["title"] = "VSEPR electron-domain versus molecular geometry"
+    vsepr["primary_capability_ref"] = "CAP-CHEM-G11-VSEPR-GEOMETRY"
+    vsepr["inferential_jump"] = "Use the electron-domain arrangement to predict geometry, then omit lone-pair positions only when naming atom-only molecular geometry."
+    vsepr["badge_reason"] = "The learner must keep electron-domain geometry and molecular geometry as related but non-identical outputs."
+    micros.append(vsepr)
+
     bucket = {
         **base(BUCKET, [SRC_VSEPR, SRC_SIGPI]),
         "title": "Hybridisation, electron domains and bonding models", "topic": "Chemical Bonding",
@@ -560,7 +591,7 @@ def build_package(asset_refs: dict[str, str], bank_ids: dict[str, str]) -> dict:
     route = {
         **base("ROUTE-CHEM-G11-HYBRIDISATION-CORE1A", [SRC_VSEPR, SRC_SIGPI]),
         "title": "Construct hybridisation from electron-domain decisions", "cores": ["CORE1A"],
-        "microtopic_refs": [q["microtopic_ref"] for q in questions],
+        "microtopic_refs": [m["id"] for m in micros],
         "entry_needs": ["Learner can identify atoms, bond order, shared pairs and lone pairs in a supplied simple Lewis structure."],
         "learner_actions": [
             "Count domains locally around the selected central atom.",
