@@ -7,7 +7,7 @@
     "whole_issue_body_sha256": "sha256:a89df1e2d7f5c7a5ca41b51f670b80f15c326b2ba88f62f870d147f82d6763c8",
     "abc_core_prompt_sha256": "sha256:6ba9ba40ea30b486792892de7091f51271f3855c0b39d22da5f7e83f20c52469"
   },
-  "review_state": "PRE_RENDER_AUTHORED; H/S/P/M exact-render adjudication pending",
+  "review_state": "EXACT_RENDER_REVIEWED_WITH_SYSTEMATIC_PARTLY_FINDINGS",
   "questions": [
     {
       "id": "OWN-ISS33-D2-V2-Q01",
@@ -41,20 +41,36 @@
       "W": "Explain why the lone-pair domain changes the model/shape conclusion even though both centres have three sigma bonds.",
       "verified_answer": "BF3 is treated by the introductory localized model as three electron domains at B: sp2 with trigonal-planar bonded-atom arrangement. NH3 has four electron domains at N because its lone pair is an additional domain: sp3, tetrahedral electron-domain geometry and trigonal-pyramidal molecular shape. Therefore three sigma bonds alone are insufficient.",
       "review": {
-        "H1": "PENDING_EXACT_RENDER",
-        "H2": "PENDING_EXACT_RENDER",
-        "H3": "PENDING_EXACT_RENDER",
-        "S1": "PENDING_EXACT_RENDER",
-        "S2": "PENDING_EXACT_RENDER",
-        "S3": "PENDING_EXACT_RENDER",
-        "P1": "PENDING_EXACT_RENDER",
-        "P2": "PENDING_EXACT_RENDER",
-        "P3": "PENDING_EXACT_RENDER",
-        "M1": "AUTHORED",
-        "M2": "AUTHORED",
-        "M3": "AUTHORED"
+        "H1": "YES",
+        "H2": "YES",
+        "H3": "YES",
+        "S1": "YES",
+        "S2": "YES",
+        "S3": "YES",
+        "P1": "YES",
+        "P2": "PARTLY",
+        "P3": "YES",
+        "M1": "YES",
+        "M2": "PARTLY",
+        "M3": "PARTLY"
       },
-      "findings": []
+      "findings": [
+        {
+          "ask": "P2",
+          "finding": "Concept navigation reaches the correct microtopic but not the unique mapped construction/repair anchor.",
+          "fix": "Prefer unique construction-unit anchor; retain microtopic fallback if ambiguous."
+        },
+        {
+          "ask": "M2",
+          "finding": "Common wrong route is shown, but no item-specific diagnostic is elicited to distinguish misconception from slip.",
+          "fix": "Offer an authored diagnostic probe on demand; do not infer mastery automatically."
+        },
+        {
+          "ask": "M3",
+          "finding": "Replacement rule exists in Core1A, but repair is not item-specific/directly anchored from Core2.",
+          "fix": "Route repair to the exact authored construction/repair anchor after a diagnostic or help request."
+        }
+      ]
     },
     {
       "id": "OWN-ISS33-D2-V2-Q02",
@@ -88,20 +104,36 @@
       "W": "Keep the one-domain C=O direction distinct from its one-sigma-plus-one-pi bond composition without double-counting.",
       "verified_answer": "Carbon in H2C=O has three electron domains and is described as sp2 in the introductory localized model. The C=O double bond contains one sigma and one pi component. Three sp2 hybrids support the sigma framework; one unhybridised carbon 2p orbital remains for the pi overlap. The C=O multiple bond is one electron domain even though it contains two shared electron pairs.",
       "review": {
-        "H1": "PENDING_EXACT_RENDER",
-        "H2": "PENDING_EXACT_RENDER",
-        "H3": "PENDING_EXACT_RENDER",
-        "S1": "PENDING_EXACT_RENDER",
-        "S2": "PENDING_EXACT_RENDER",
-        "S3": "PENDING_EXACT_RENDER",
-        "P1": "PENDING_EXACT_RENDER",
-        "P2": "PENDING_EXACT_RENDER",
-        "P3": "PENDING_EXACT_RENDER",
-        "M1": "AUTHORED",
-        "M2": "AUTHORED",
-        "M3": "AUTHORED"
+        "H1": "YES",
+        "H2": "YES",
+        "H3": "YES",
+        "S1": "YES",
+        "S2": "YES",
+        "S3": "YES",
+        "P1": "YES",
+        "P2": "PARTLY",
+        "P3": "YES",
+        "M1": "YES",
+        "M2": "PARTLY",
+        "M3": "PARTLY"
       },
-      "findings": []
+      "findings": [
+        {
+          "ask": "P2",
+          "finding": "Concept navigation reaches the correct microtopic but not the unique mapped construction/repair anchor.",
+          "fix": "Prefer unique construction-unit anchor; retain microtopic fallback if ambiguous."
+        },
+        {
+          "ask": "M2",
+          "finding": "Common wrong route is shown, but no item-specific diagnostic is elicited to distinguish misconception from slip.",
+          "fix": "Offer an authored diagnostic probe on demand; do not infer mastery automatically."
+        },
+        {
+          "ask": "M3",
+          "finding": "Replacement rule exists in Core1A, but repair is not item-specific/directly anchored from Core2.",
+          "fix": "Route repair to the exact authored construction/repair anchor after a diagnostic or help request."
+        }
+      ]
     },
     {
       "id": "OWN-ISS33-D2-V2-Q03",
@@ -135,20 +167,36 @@
       "W": "Complete the plane-versus-perpendicular correspondence and show the p–p side-on overlap without using the same orbital for both sigma and pi jobs.",
       "verified_answer": "Each ethene carbon is described as sp2. Three sp2 hybrid directions at each carbon lie in the molecular plane and form the sigma framework (C–H and the C–C sigma bond). One unhybridised p orbital remains on each carbon perpendicular to that plane; the two parallel p orbitals overlap side-on above and below the plane to form the pi component.",
       "review": {
-        "H1": "PENDING_EXACT_RENDER",
-        "H2": "PENDING_EXACT_RENDER",
-        "H3": "PENDING_EXACT_RENDER",
-        "S1": "PENDING_EXACT_RENDER",
-        "S2": "PENDING_EXACT_RENDER",
-        "S3": "PENDING_EXACT_RENDER",
-        "P1": "PENDING_EXACT_RENDER",
-        "P2": "PENDING_EXACT_RENDER",
-        "P3": "PENDING_EXACT_RENDER",
-        "M1": "AUTHORED",
-        "M2": "AUTHORED",
-        "M3": "AUTHORED"
+        "H1": "YES",
+        "H2": "YES",
+        "H3": "YES",
+        "S1": "YES",
+        "S2": "YES",
+        "S3": "YES",
+        "P1": "YES",
+        "P2": "PARTLY",
+        "P3": "YES",
+        "M1": "YES",
+        "M2": "PARTLY",
+        "M3": "PARTLY"
       },
-      "findings": []
+      "findings": [
+        {
+          "ask": "P2",
+          "finding": "Concept navigation reaches the correct microtopic but not the unique mapped construction/repair anchor.",
+          "fix": "Prefer unique construction-unit anchor; retain microtopic fallback if ambiguous."
+        },
+        {
+          "ask": "M2",
+          "finding": "Common wrong route is shown, but no item-specific diagnostic is elicited to distinguish misconception from slip.",
+          "fix": "Offer an authored diagnostic probe on demand; do not infer mastery automatically."
+        },
+        {
+          "ask": "M3",
+          "finding": "Replacement rule exists in Core1A, but repair is not item-specific/directly anchored from Core2.",
+          "fix": "Route repair to the exact authored construction/repair anchor after a diagnostic or help request."
+        }
+      ]
     },
     {
       "id": "OWN-ISS33-D2-V2-Q04",
@@ -182,20 +230,36 @@
       "W": "Make the ordering/bridge that reconciles two electron domains with two sigma plus two pi components without treating each pi component as a new domain.",
       "verified_answer": "Central carbon in CO2 has two electron domains, so the introductory localized model uses sp hybridisation: two sp hybrids point 180° apart for the two sigma bonds. Two unhybridised carbon p orbitals remain, mutually perpendicular and both perpendicular to the molecular axis. Each C=O contains one sigma and one pi component, so the two double bonds give two sigma and two pi components while the nuclei remain linear.",
       "review": {
-        "H1": "PENDING_EXACT_RENDER",
-        "H2": "PENDING_EXACT_RENDER",
-        "H3": "PENDING_EXACT_RENDER",
-        "S1": "PENDING_EXACT_RENDER",
-        "S2": "PENDING_EXACT_RENDER",
-        "S3": "PENDING_EXACT_RENDER",
-        "P1": "PENDING_EXACT_RENDER",
-        "P2": "PENDING_EXACT_RENDER",
-        "P3": "PENDING_EXACT_RENDER",
-        "M1": "AUTHORED",
-        "M2": "AUTHORED",
-        "M3": "AUTHORED"
+        "H1": "YES",
+        "H2": "YES",
+        "H3": "YES",
+        "S1": "YES",
+        "S2": "YES",
+        "S3": "YES",
+        "P1": "YES",
+        "P2": "PARTLY",
+        "P3": "YES",
+        "M1": "YES",
+        "M2": "PARTLY",
+        "M3": "PARTLY"
       },
-      "findings": []
+      "findings": [
+        {
+          "ask": "P2",
+          "finding": "Concept navigation reaches the correct microtopic but not the unique mapped construction/repair anchor.",
+          "fix": "Prefer unique construction-unit anchor; retain microtopic fallback if ambiguous."
+        },
+        {
+          "ask": "M2",
+          "finding": "Common wrong route is shown, but no item-specific diagnostic is elicited to distinguish misconception from slip.",
+          "fix": "Offer an authored diagnostic probe on demand; do not infer mastery automatically."
+        },
+        {
+          "ask": "M3",
+          "finding": "Replacement rule exists in Core1A, but repair is not item-specific/directly anchored from Core2.",
+          "fix": "Route repair to the exact authored construction/repair anchor after a diagnostic or help request."
+        }
+      ]
     },
     {
       "id": "OWN-ISS33-D2-V2-Q05",
@@ -228,20 +292,36 @@
       "W": "Reject the claim with the decisive lone-pair/domain warrant and state a bounded, defensible introductory rule.",
       "verified_answer": "The observations do not support the claim. BF3 and NH3 each have three central sigma bonds, but NH3 also has a lone-pair domain. The decisive introductory warrant is total local electron-domain count, not sigma-bond count alone: for common small main-group localized examples, 2/3/4 domains are described as sp/sp2/sp3. BF3 is therefore the three-domain case, whereas NH3 is the four-domain case. Observed shape can motivate or test such a model, but shape alone is not direct proof that particular atomic orbitals literally hybridised.",
       "review": {
-        "H1": "PENDING_EXACT_RENDER",
-        "H2": "PENDING_EXACT_RENDER",
-        "H3": "PENDING_EXACT_RENDER",
-        "S1": "PENDING_EXACT_RENDER",
-        "S2": "PENDING_EXACT_RENDER",
-        "S3": "PENDING_EXACT_RENDER",
-        "P1": "PENDING_EXACT_RENDER",
-        "P2": "PENDING_EXACT_RENDER",
-        "P3": "PENDING_EXACT_RENDER",
-        "M1": "AUTHORED",
-        "M2": "AUTHORED",
-        "M3": "AUTHORED"
+        "H1": "YES",
+        "H2": "YES",
+        "H3": "YES",
+        "S1": "YES",
+        "S2": "YES",
+        "S3": "YES",
+        "P1": "YES",
+        "P2": "PARTLY",
+        "P3": "YES",
+        "M1": "YES",
+        "M2": "PARTLY",
+        "M3": "PARTLY"
       },
-      "findings": []
+      "findings": [
+        {
+          "ask": "P2",
+          "finding": "Concept navigation reaches the correct microtopic but not the unique mapped construction/repair anchor.",
+          "fix": "Prefer unique construction-unit anchor; retain microtopic fallback if ambiguous."
+        },
+        {
+          "ask": "M2",
+          "finding": "Common wrong route is shown, but no item-specific diagnostic is elicited to distinguish misconception from slip.",
+          "fix": "Offer an authored diagnostic probe on demand; do not infer mastery automatically."
+        },
+        {
+          "ask": "M3",
+          "finding": "Replacement rule exists in Core1A, but repair is not item-specific/directly anchored from Core2.",
+          "fix": "Route repair to the exact authored construction/repair anchor after a diagnostic or help request."
+        }
+      ]
     },
     {
       "id": "OWN-ISS33-D2-V2-Q06",
@@ -274,20 +354,36 @@
       "W": "Explain why the introductory local hybridisation/domain geometry stays the same without claiming C–F and C–H bonds are otherwise identical.",
       "verified_answer": "Carbon in CH3F has four local electron domains (four sigma bonds) and is described as sp3 in the introductory model, with approximately tetrahedral domain directions. Replacing one H by F changes the identity and therefore properties such as polarity and typically bond length/strength, but it does not change the number of directions/domains around carbon.",
       "review": {
-        "H1": "PENDING_EXACT_RENDER",
-        "H2": "PENDING_EXACT_RENDER",
-        "H3": "PENDING_EXACT_RENDER",
+        "H1": "YES",
+        "H2": "YES",
+        "H3": "YES",
         "S1": "NOT_APPLICABLE",
         "S2": "NOT_APPLICABLE",
         "S3": "NOT_APPLICABLE",
-        "P1": "PENDING_EXACT_RENDER",
-        "P2": "PENDING_EXACT_RENDER",
-        "P3": "PENDING_EXACT_RENDER",
-        "M1": "AUTHORED",
-        "M2": "AUTHORED",
-        "M3": "AUTHORED"
+        "P1": "YES",
+        "P2": "PARTLY",
+        "P3": "YES",
+        "M1": "YES",
+        "M2": "PARTLY",
+        "M3": "PARTLY"
       },
-      "findings": []
+      "findings": [
+        {
+          "ask": "P2",
+          "finding": "Concept navigation reaches the correct microtopic but not the unique mapped construction/repair anchor.",
+          "fix": "Prefer unique construction-unit anchor; retain microtopic fallback if ambiguous."
+        },
+        {
+          "ask": "M2",
+          "finding": "Common wrong route is shown, but no item-specific diagnostic is elicited to distinguish misconception from slip.",
+          "fix": "Offer an authored diagnostic probe on demand; do not infer mastery automatically."
+        },
+        {
+          "ask": "M3",
+          "finding": "Replacement rule exists in Core1A, but repair is not item-specific/directly anchored from Core2.",
+          "fix": "Route repair to the exact authored construction/repair anchor after a diagnostic or help request."
+        }
+      ]
     },
     {
       "id": "OWN-ISS33-D2-V2-Q07",
@@ -321,20 +417,36 @@
       "W": "Explain compatibility without counting the two pi components as extra electron-domain directions.",
       "verified_answer": "In HCN, carbon has two domains (H–C and C≡N) and nitrogen has two local domains (the C≡N direction and its lone pair), so both are described as sp in the introductory localized model. The C≡N triple bond contains one sigma and two pi components. Each atom uses sp hybrids for the axial sigma/lone-pair framework and retains two unhybridised p orbitals for the two mutually perpendicular pi overlaps.",
       "review": {
-        "H1": "PENDING_EXACT_RENDER",
-        "H2": "PENDING_EXACT_RENDER",
-        "H3": "PENDING_EXACT_RENDER",
-        "S1": "PENDING_EXACT_RENDER",
-        "S2": "PENDING_EXACT_RENDER",
-        "S3": "PENDING_EXACT_RENDER",
-        "P1": "PENDING_EXACT_RENDER",
-        "P2": "PENDING_EXACT_RENDER",
-        "P3": "PENDING_EXACT_RENDER",
-        "M1": "AUTHORED",
-        "M2": "AUTHORED",
-        "M3": "AUTHORED"
+        "H1": "YES",
+        "H2": "YES",
+        "H3": "YES",
+        "S1": "YES",
+        "S2": "YES",
+        "S3": "YES",
+        "P1": "YES",
+        "P2": "PARTLY",
+        "P3": "YES",
+        "M1": "YES",
+        "M2": "PARTLY",
+        "M3": "PARTLY"
       },
-      "findings": []
+      "findings": [
+        {
+          "ask": "P2",
+          "finding": "Concept navigation reaches the correct microtopic but not the unique mapped construction/repair anchor.",
+          "fix": "Prefer unique construction-unit anchor; retain microtopic fallback if ambiguous."
+        },
+        {
+          "ask": "M2",
+          "finding": "Common wrong route is shown, but no item-specific diagnostic is elicited to distinguish misconception from slip.",
+          "fix": "Offer an authored diagnostic probe on demand; do not infer mastery automatically."
+        },
+        {
+          "ask": "M3",
+          "finding": "Replacement rule exists in Core1A, but repair is not item-specific/directly anchored from Core2.",
+          "fix": "Route repair to the exact authored construction/repair anchor after a diagnostic or help request."
+        }
+      ]
     },
     {
       "id": "OWN-ISS33-D2-V2-Q08",
@@ -368,20 +480,36 @@
       "W": "Explain same sp3 domain model but tetrahedral carbon atom arrangement versus trigonal-pyramidal nitrogen atom arrangement.",
       "verified_answer": "Both centres are described as sp3 in the introductory model because each has four electron domains. Carbon has four bonding domains and its bonded atoms occupy a tetrahedral arrangement. Nitrogen has three bonding domains plus one lone pair, so its electron-domain geometry is tetrahedral but its bonded atoms form a trigonal-pyramidal molecular shape. The same hybridisation label therefore does not require the same atom-only shape.",
       "review": {
-        "H1": "PENDING_EXACT_RENDER",
-        "H2": "PENDING_EXACT_RENDER",
-        "H3": "PENDING_EXACT_RENDER",
-        "S1": "PENDING_EXACT_RENDER",
-        "S2": "PENDING_EXACT_RENDER",
-        "S3": "PENDING_EXACT_RENDER",
-        "P1": "PENDING_EXACT_RENDER",
-        "P2": "PENDING_EXACT_RENDER",
-        "P3": "PENDING_EXACT_RENDER",
-        "M1": "AUTHORED",
-        "M2": "AUTHORED",
-        "M3": "AUTHORED"
+        "H1": "YES",
+        "H2": "YES",
+        "H3": "YES",
+        "S1": "YES",
+        "S2": "YES",
+        "S3": "YES",
+        "P1": "YES",
+        "P2": "PARTLY",
+        "P3": "YES",
+        "M1": "YES",
+        "M2": "PARTLY",
+        "M3": "PARTLY"
       },
-      "findings": []
+      "findings": [
+        {
+          "ask": "P2",
+          "finding": "Concept navigation reaches the correct microtopic but not the unique mapped construction/repair anchor.",
+          "fix": "Prefer unique construction-unit anchor; retain microtopic fallback if ambiguous."
+        },
+        {
+          "ask": "M2",
+          "finding": "Common wrong route is shown, but no item-specific diagnostic is elicited to distinguish misconception from slip.",
+          "fix": "Offer an authored diagnostic probe on demand; do not infer mastery automatically."
+        },
+        {
+          "ask": "M3",
+          "finding": "Replacement rule exists in Core1A, but repair is not item-specific/directly anchored from Core2.",
+          "fix": "Route repair to the exact authored construction/repair anchor after a diagnostic or help request."
+        }
+      ]
     },
     {
       "id": "OWN-ISS33-D2-V2-Q09",
@@ -415,20 +543,36 @@
       "W": "Complete a one-to-one orbital-job inventory showing 3 sp2 sigma orbitals + 1 p pi orbital and no duplicate assignment.",
       "verified_answer": "Three sigma-bond directions and no lone pair give three local electron domains, so the introductory local model is sp2. Three sp2 hybrid orbitals provide the three coplanar sigma directions. The one remaining unhybridised p orbital is perpendicular to that plane and supplies the atomic orbital for the pi component. It is not a fourth electron-domain direction and is not one of the three sigma hybrids.",
       "review": {
-        "H1": "PENDING_EXACT_RENDER",
-        "H2": "PENDING_EXACT_RENDER",
-        "H3": "PENDING_EXACT_RENDER",
-        "S1": "PENDING_EXACT_RENDER",
-        "S2": "PENDING_EXACT_RENDER",
-        "S3": "PENDING_EXACT_RENDER",
-        "P1": "PENDING_EXACT_RENDER",
-        "P2": "PENDING_EXACT_RENDER",
-        "P3": "PENDING_EXACT_RENDER",
-        "M1": "AUTHORED",
-        "M2": "AUTHORED",
-        "M3": "AUTHORED"
+        "H1": "YES",
+        "H2": "YES",
+        "H3": "YES",
+        "S1": "YES",
+        "S2": "YES",
+        "S3": "YES",
+        "P1": "YES",
+        "P2": "PARTLY",
+        "P3": "YES",
+        "M1": "YES",
+        "M2": "PARTLY",
+        "M3": "PARTLY"
       },
-      "findings": []
+      "findings": [
+        {
+          "ask": "P2",
+          "finding": "Concept navigation reaches the correct microtopic but not the unique mapped construction/repair anchor.",
+          "fix": "Prefer unique construction-unit anchor; retain microtopic fallback if ambiguous."
+        },
+        {
+          "ask": "M2",
+          "finding": "Common wrong route is shown, but no item-specific diagnostic is elicited to distinguish misconception from slip.",
+          "fix": "Offer an authored diagnostic probe on demand; do not infer mastery automatically."
+        },
+        {
+          "ask": "M3",
+          "finding": "Replacement rule exists in Core1A, but repair is not item-specific/directly anchored from Core2.",
+          "fix": "Route repair to the exact authored construction/repair anchor after a diagnostic or help request."
+        }
+      ]
     },
     {
       "id": "OWN-ISS33-D2-V2-Q10",
@@ -462,20 +606,43 @@
       "W": "Reject the universal statement with NH3/H2O counterexamples and state the correct electron-domain-versus-molecular-shape warrant.",
       "verified_answer": "The statement is false. CH4, NH3 and H2O each have four central electron domains and therefore tetrahedral electron-domain geometry in VSEPR. CH4 has 0 lone pairs, so four bonded atoms form a tetrahedral molecular shape; NH3 has 1 lone pair, so three bonded atoms form a trigonal-pyramidal shape; H2O has 2 lone pairs, so two bonded atoms form a bent shape. Electron-domain geometry includes lone pairs; molecular shape names the atom positions.",
       "review": {
-        "H1": "PENDING_EXACT_RENDER",
-        "H2": "PENDING_EXACT_RENDER",
-        "H3": "PENDING_EXACT_RENDER",
-        "S1": "PENDING_EXACT_RENDER",
-        "S2": "PENDING_EXACT_RENDER",
-        "S3": "PENDING_EXACT_RENDER",
-        "P1": "PENDING_EXACT_RENDER",
-        "P2": "PENDING_EXACT_RENDER",
-        "P3": "PENDING_EXACT_RENDER",
-        "M1": "AUTHORED",
-        "M2": "AUTHORED",
-        "M3": "AUTHORED"
+        "H1": "YES",
+        "H2": "YES",
+        "H3": "YES",
+        "S1": "YES",
+        "S2": "YES",
+        "S3": "YES",
+        "P1": "YES",
+        "P2": "PARTLY",
+        "P3": "YES",
+        "M1": "YES",
+        "M2": "PARTLY",
+        "M3": "PARTLY"
       },
-      "findings": []
+      "findings": [
+        {
+          "ask": "P2",
+          "finding": "Concept navigation reaches the correct microtopic but not the unique mapped construction/repair anchor.",
+          "fix": "Prefer unique construction-unit anchor; retain microtopic fallback if ambiguous."
+        },
+        {
+          "ask": "M2",
+          "finding": "Common wrong route is shown, but no item-specific diagnostic is elicited to distinguish misconception from slip.",
+          "fix": "Offer an authored diagnostic probe on demand; do not infer mastery automatically."
+        },
+        {
+          "ask": "M3",
+          "finding": "Replacement rule exists in Core1A, but repair is not item-specific/directly anchored from Core2.",
+          "fix": "Route repair to the exact authored construction/repair anchor after a diagnostic or help request."
+        }
+      ]
     }
-  ]
+  ],
+  "exact_render": {
+    "artifact_commit": "0af8b1fb4a99e3e75f6b008545e1eb6c4f9f82b5",
+    "core1a_sha256": "sha256:8ac3ca400fe9facb661826c3a27892ab9f02b7b03d1adaaf4ed437a51c906f9e",
+    "core2_sha256": "sha256:1ff7dd5c5c8665863787670fc211dd2d330fc2976f81f3bfe5b641e788d49d55",
+    "quality_gate": "PASS",
+    "tablet_browser_audit": "PASS"
+  }
 }
