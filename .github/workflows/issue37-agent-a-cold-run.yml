@@ -52,6 +52,7 @@ jobs:
           PYTHONPATH=. python evidence/benchmark/ISS37/build_specimen.py
           PYTHONPATH=. python evidence/benchmark/ISS37/finalize_records.py
           PYTHONPATH=. python evidence/benchmark/ISS37/finalize_package.py
+          PYTHONPATH=. python evidence/benchmark/ISS37/finalize_manifest.py
 
       - name: Verify verbatim intake and schemas
         run: |
@@ -67,8 +68,11 @@ jobs:
           schema=json.loads(Path('Shared/library/package.schema.json').read_text(encoding='utf-8'))
           package=json.loads(Path('evidence/benchmark/ISS37/generated/package.v1.json').read_text(encoding='utf-8'))
           Draft202012Validator(schema).validate(package)
+          manifest=json.loads(Path('evidence/benchmark/ISS37/generated/product.manifest.json').read_text(encoding='utf-8'))
+          assert manifest.get('output_roles') == ['CORE1A', 'CORE2'], manifest.get('output_roles')
           print('verbatim core hash: PASS')
           print('package schema: PASS')
+          print('requested output role scope: PASS')
           PY
 
       - name: Report governed render gaps
