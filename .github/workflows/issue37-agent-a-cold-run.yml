@@ -121,22 +121,69 @@ jobs:
             --http-root /tmp/iss37-a \
             --json /tmp/iss37-a/tablet-audit.json
 
+      - name: Reconcile exact-render QRT evidence
+        run: |
+          python - <<'PY'
+          import json, re
+          from pathlib import Path
+
+          root = Path('evidence/benchmark/ISS37')
+          spec = json.loads((root / 'exact-render-review.json').read_text(encoding='utf-8'))
+          expected_digest = spec['authority']['render_digest']
+          for filename in ('core1a.html', 'core2.html'):
+              text = (Path('/tmp/iss37-a') / filename).read_text(encoding='utf-8')
+              match = re.search(r'data-g9-render-digest="([^"]+)"', text)
+              assert match and match.group(1) == expected_digest, (filename, match.group(1) if match else None, expected_digest)
+
+          ledger_path = root / 'question-ledger.json'
+          ledger = json.loads(ledger_path.read_text(encoding='utf-8'))
+          reviews = spec['reviews']
+          seen = set()
+          for question in ledger['questions']:
+              qid = question['id']
+              assert qid in reviews, qid
+              question['qrt_review'] = 'EXACT_RENDER_REVIEWED_WITH_LIMITATIONS'
+              question['qrt_review_ref'] = f'evidence/benchmark/ISS37/exact-render-review.json#reviews/{qid}'
+              seen.add(qid)
+          assert seen == set(reviews), (sorted(seen), sorted(reviews))
+          ledger['exact_render_review_ref'] = 'evidence/benchmark/ISS37/exact-render-review.json'
+          ledger['builder_proposal_ref'] = 'evidence/benchmark/ISS37/exact-render-review.json#builder_proposal'
+          ledger_path.write_text(json.dumps(ledger, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+
+          audit_path = root / 'chronological-audit.jsonl'
+          existing_lines = [line for line in audit_path.read_text(encoding='utf-8').splitlines() if line.strip()]
+          existing = [json.loads(line) for line in existing_lines]
+          existing_seq = {row['seq'] for row in existing}
+          for row in spec['chronology_append']:
+              if row['seq'] not in existing_seq:
+                  existing.append(row)
+                  existing_seq.add(row['seq'])
+          existing.sort(key=lambda row: row['seq'])
+          audit_path.write_text('\n'.join(json.dumps(row, ensure_ascii=False, separators=(',', ':')) for row in existing) + '\n', encoding='utf-8')
+          print('exact-render QRT evidence: RECONCILED')
+          print('chronological audit: RECONCILED')
+          PY
+
       - name: Preserve sole-renderer HTML
         run: |
           mkdir -p evidence/benchmark/ISS37/rendered
           cp /tmp/iss37-a/core1a.html evidence/benchmark/ISS37/rendered/core1a.html
           cp /tmp/iss37-a/core2.html evidence/benchmark/ISS37/rendered/core2.html
 
-      - name: Commit exact rendered bytes when changed
+      - name: Commit exact render and reconciled evidence when changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add evidence/benchmark/ISS37/rendered/core1a.html evidence/benchmark/ISS37/rendered/core2.html
+          git add \
+            evidence/benchmark/ISS37/rendered/core1a.html \
+            evidence/benchmark/ISS37/rendered/core2.html \
+            evidence/benchmark/ISS37/question-ledger.json \
+            evidence/benchmark/ISS37/chronological-audit.jsonl
           if ! git diff --cached --quiet; then
-            git commit -m "test(iss37): preserve governed candidate render"
+            git commit -m "test(iss37): preserve render and reconcile review evidence"
             git push origin HEAD:feat/iss37-d4-hybridisation-agent-a-r1
           else
-            echo "rendered bytes already current"
+            echo "rendered bytes and review evidence already current"
           fi
 
       - name: Record exact tested head and digests
@@ -157,5 +204,8 @@ jobs:
             /tmp/issue37-render-gaps.log
             evidence/benchmark/ISS37/generated
             evidence/benchmark/ISS37/rendered
+            evidence/benchmark/ISS37/exact-render-review.json
+            evidence/benchmark/ISS37/question-ledger.json
+            evidence/benchmark/ISS37/chronological-audit.jsonl
           if-no-files-found: warn
           retention-days: 14
