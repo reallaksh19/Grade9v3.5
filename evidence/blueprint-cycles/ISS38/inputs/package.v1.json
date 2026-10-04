@@ -186,16 +186,19 @@
         "grade9v3:lesson_anchors": {
           "CU-CHE-FORMAMIDE-TORSION": {
             "id": "ANCHOR-CU-CHE-FORMAMIDE-TORSION",
-            "stem": "Count valence and total electrons for CH3NO before and after torsion. Identify which geometric relation changes.",
+            "stem": "If two sketches have the same label but different donor alignment, must their donation be identical? If the label changes alone, has a mechanism been supplied?",
             "answer": {
-              "summary": "18 valence, 24 total in both; relative donor direction changes. Repeated electron-loss-by-rotation reasoning differs from a corrected addition slip.",
+              "summary": "Neither follows. Persistent label-only explanations expose causal substitution.",
               "reasoning": [
-                "Torsion changes relative orientation, not the number of atoms or formal electrons.",
-                "18 valence, 24 total in both; relative donor direction changes. Repeated electron-loss-by-rotation reasoning differs from a corrected addition slip.",
-                "Formamide CH3NO has 18 valence electrons and 24 total electrons. The supplied three-centre donor/carbonyl pi model has four electrons. A 90-degree twist changes alignment, not these inventories."
+                "Relative donor/acceptor alignment is a model variable; donation magnitude needs additional physics.",
+                "Neither follows. Persistent label-only explanations expose causal substitution.",
+                "Twisting reduces relevant alignment and the supplied delocalisation contribution. A changing hybrid label alone explains neither mechanism nor a quantitative barrier; total torsional energy has additional contributions."
               ],
-              "check": "Independent element sums: valence 4+3+5+6=18; total 6+3+7+8=24. Both sketches must preserve them."
-            }
+              "check": "Counterfactual: remove the word hybridisation while retaining changed orientation; the mechanistic statement survives."
+            },
+            "target_question_ref": "OWN-ISSUE38-HYB-03",
+            "target_crux_move_ref": "OWN-ISSUE38-HYB-03-REPAIR-MOVE-3",
+            "construction_ref": "CU-CHE-FORMAMIDE-TORSION"
           }
         }
       },
@@ -485,7 +488,10 @@
                 "Approximately planar amide N can use an introductory sp2-like sigma framework plus an aligned p-like lone-pair donor. Four Lewis entries do not override the supplied delocalised-model conditions; the basis is not unique observed reality."
               ],
               "check": "Remove the hybridisation label: the alignment-plus-acceptor explanation must still describe the supplied donation condition."
-            }
+            },
+            "target_question_ref": "OWN-ISSUE38-HYB-01",
+            "target_crux_move_ref": "OWN-ISSUE38-HYB-01-REPAIR-MOVE-3",
+            "construction_ref": "CU-CHE-DELOC-BOUNDARIES"
           }
         }
       },
@@ -746,7 +752,10 @@
                 "Amide A has the supplied direct donor/carbonyl path. Saturated-spacer amine B lacks that ordinary contiguous path. Spatial proximity alone is insufficient, and absence of this path is not an absolute zero-interaction theorem."
               ],
               "check": "Changed case: replace a saturated interruption by a suitably aligned unsaturated bridge; reassess connectivity and orbital availability rather than reusing the answer."
-            }
+            },
+            "target_question_ref": "OWN-ISSUE38-HYB-04",
+            "target_crux_move_ref": "OWN-ISSUE38-HYB-04-REPAIR-MOVE-3",
+            "construction_ref": "CU-CHE-LOCAL-VS-CONJUGATED"
           }
         }
       },

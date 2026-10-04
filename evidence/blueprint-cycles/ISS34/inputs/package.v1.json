@@ -505,16 +505,19 @@
         "grade9v3:lesson_anchors": {
           "CU-CHEM-G11-DOMAINS-SHAPE": {
             "id": "ANCHOR-CU-CHEM-G11-DOMAINS-SHAPE",
-            "stem": "Count local domains and bonded nuclei separately in BF3, NH3 and H2O.",
+            "stem": "For four-domain inventories with 4,3,2 bonded atoms, give the atom-only shape and explain omitted slots.",
             "answer": {
-              "summary": "Totals 3,4,4; bonded nuclei 3,3,2. A repeated bonds-only rule differs from an isolated missing lone pair.",
+              "summary": "Tetrahedral, pyramidal, bent; omitted slots are lone pairs. Repeating tetrahedral for all atom-only shapes exposes the conflation.",
               "reasoning": [
-                "A central lone pair adds a domain even though it adds no bonded nucleus.",
-                "Totals 3,4,4; bonded nuclei 3,3,2. A repeated bonds-only rule differs from an isolated missing lone pair.",
-                "BF3 has three B domains; NH3 has three bonds plus one N lone pair. Introductory sp2/planar versus sp3-like domain/pyramidal shape follows the local model."
+                "A lone-pair domain has no bonded nucleus to include in molecular-shape naming.",
+                "Tetrahedral, pyramidal, bent; omitted slots are lone pairs. Repeating tetrahedral for all atom-only shapes exposes the conflation.",
+                "CH4, NH3, H2O have four introductory domains but tetrahedral, pyramidal and bent nuclear shapes respectively."
               ],
-              "check": "Changed check: H2O and NH3 have different numbers of bonds but the same four-domain total."
-            }
+              "check": "Changed check: a four-bond/no-lone-pair centre cannot be assigned the same atom-only shape as a two-bond/two-lone-pair centre."
+            },
+            "target_question_ref": "ISS34-Q10",
+            "target_crux_move_ref": "m1",
+            "construction_ref": "CU-CHEM-G11-DOMAINS-SHAPE"
           }
         },
         "grade9v3:component_waivers": {
@@ -842,16 +845,19 @@
         "grade9v3:lesson_anchors": {
           "CU-CHEM-G11-CO2-SYNTHESIS": {
             "id": "ANCHOR-CU-CHEM-G11-CO2-SYNTHESIS",
-            "stem": "Inventory sp2 carbon and sp carbon; can a p orbital used in a hybrid also be counted as a separate residual p?",
+            "stem": "Give carbon orbital inventory for CO2 and HCN. Does a localized drawing uniquely measure the oxygen orbital basis?",
             "answer": {
-              "summary": "No double use. Totals remain four in both cases. Repeated totals above four indicate double counting.",
+              "summary": "Both carbon inventories close at four. No unique O basis follows from the drawing alone. Repeated uniqueness claims expose model/observation conflation.",
               "reasoning": [
-                "Three sigma directions do not consume the remaining perpendicular p orbital.",
-                "No double use. Totals remain four in both cases. Repeated totals above four indicate double counting.",
-                "HCHO carbon has three-domain sp2 accounting, three sp2 sigma directions and one unhybridised p orbital; C=O has one sigma plus one pi."
+                "sp accounting leaves two mutually perpendicular p directions.",
+                "Both carbon inventories close at four. No unique O basis follows from the drawing alone. Repeated uniqueness claims expose model/observation conflation.",
+                "CO2 carbon: two domains/sp, two sigma components and two pi components. A localized VB drawing is useful accounting, not a unique experimentally compulsory terminal-O orbital-plane picture."
               ],
-              "check": "Changed check: for an sp carbon, two hybrids plus two residual p orbitals still total four basis functions."
-            }
+              "check": "Changed check: HCN carbon also has two sigma directions and two residual p directions although its neighbours differ."
+            },
+            "target_question_ref": "ISS34-Q4",
+            "target_crux_move_ref": "m4",
+            "construction_ref": "CU-CHEM-G11-CO2-SYNTHESIS"
           }
         },
         "grade9v3:component_waivers": {

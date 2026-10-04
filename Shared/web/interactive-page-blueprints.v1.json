@@ -1007,7 +1007,7 @@
             "answer.crux_move_ref"
           ],
           "authoring": {
-            "hint": "Write crux_question_refs on a construction unit: the ids of the bank questions whose crux the unit builds, and crux_step_ref: the one of its step_refs that builds the move those questions turn on (the page marks that step). The toughest question of the set (the deploy names it) must be named by a unit of the concept it belongs to; that unit's steps must lead to the move the question turns on, and its worked example is that question (bank_anchor_ref). A unit that only shares the question's topic does not build its crux, and a step that mentions the idea in passing is not the step that builds it: draw the whole idea (for a sum of two vectors, every angle and not only the right angle)."
+            "hint": "Name actual crux_question_refs and crux_step_ref. The hardest-target unit must teach that precise bridge through its worked instance; a distinct lesson anchor must explicitly bind the target question, its actual crux move and this construction unit. A shared topic alone is insufficient."
           },
           "compact_order": 60
         },
@@ -1059,16 +1059,17 @@
           "slot": "construction",
           "level": "REQUIRED",
           "presentation": "PREDICT_REVEAL_WORKED_CARD",
-          "purpose": "Walk one authentic question through the construction while asking the learner to predict each next step before revealing it.",
+          "purpose": "Predict through a distinct teaching instance that explicitly builds the target assessment crux.",
           "benchmark": "core1a-motion-in-a-plane-tablet: the worked card",
           "repeat": "PER_CONSTRUCTION_UNIT",
           "source": [
             "construction_units[].worked_anchor_ref",
-            "construction_units[].bank_anchor_ref"
+            "construction_units[].bank_anchor_ref",
+            "extensions.grade9v3:lesson_anchors"
           ],
           "duty": "AUTHOR_WORKED_ANCHOR",
           "authoring": {
-            "hint": "worked_anchor_ref names a question of the package that exercises exactly this unit's move. For the unit that builds toward a question of the product's bank (an owner-supplied question), set bank_anchor_ref to that question's id instead: the page then walks through the Owner's own question with its verified route, and nothing is copied into the package."
+            "hint": "Use the microtopic extension grade9v3:lesson_anchors keyed by construction unit. Name target_question_ref, target_crux_move_ref and construction_ref, with a new stem, reasoned answer and independent check. The target must resolve to this product bank; a hardest-target unit must bind that precise question. Preserve the legacy worked/bank-anchor path where no extension is authored."
           },
           "compact_order": 100
         },
@@ -1182,6 +1183,22 @@
             "concept_bundle"
           ],
           "compact_order": 150
+        },
+        {
+          "id": "MODEL_SCOPE_PROBE",
+          "slot": "representation",
+          "level": "OPTIONAL",
+          "presentation": "CHECK_BOX",
+          "repeat": "PER_CONSTRUCTION_UNIT",
+          "source": [
+            "extensions.grade9v3:question_repairs"
+          ],
+          "purpose": "When explicitly authored, make bounded parameter/countermodel construction visible beside the staged visual; keep diagnostic help separately closed.",
+          "benchmark": "Issue #37 Q9 and #38 Q2/Q9 correction cycle: absent continuous model-boundary construction.",
+          "authoring": {
+            "hint": "Opt in with a question/crux/construction-bound MODEL_SCOPE_PROBE repair record. Declare axis, independent variables, toy versus physical outputs and a static fallback. Do not infer applicability from the demand label."
+          },
+          "compact_order": 80
         }
       ],
       "presentation_policy": {

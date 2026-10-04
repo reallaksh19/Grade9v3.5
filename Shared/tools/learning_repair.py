@@ -12,16 +12,36 @@ def problems(record, unit_ids):
     if not isinstance(repair, dict):
         return ['learning repair is absent']
     found = [f'{name} is absent' for name in FIELDS if not isinstance(repair.get(name), str) or not repair[name].strip()]
-    if repair.get('construction_ref') not in unit_ids:
+    if not isinstance(repair.get('construction_ref'),str) or repair['construction_ref'] not in unit_ids:
         found.append('construction_ref does not resolve to a construction unit')
     if not repair.get('question_ref') == record.get('id'):
         found.append('question_ref does not name the reviewed question')
     answer=record.get('answer') or {}
     moves={m.get('id') for m in answer.get('reasoning_route') or []}
-    if repair.get('crux_move_ref') != answer.get('crux_move_ref') or repair.get('crux_move_ref') not in moves:
+    if not isinstance(repair.get('crux_move_ref'),str) or repair.get('crux_move_ref') != answer.get('crux_move_ref') or repair.get('crux_move_ref') not in moves:
         found.append('crux_move_ref does not resolve to this question crux')
     if repair.get('interaction') not in (None,'MODEL_SCOPE_PROBE'):
         found.append('interaction is not supported')
+    return found
+
+def anchor_problems(anchor, bank_by_id, unit_id, expected_ref=None):
+    """A novel example replaces a bank example only with an explicit crux binding."""
+    if not isinstance(anchor,dict):return ['lesson anchor must be an object']
+    found=[]
+    ref=anchor.get('target_question_ref');question=bank_by_id.get(ref) if isinstance(ref,str) else None
+    if question is None:found.append('target_question_ref does not resolve to this product bank')
+    if expected_ref is not None and ref!=expected_ref:found.append('lesson anchor does not teach the selected hardest question')
+    if anchor.get('construction_ref')!=unit_id:found.append('lesson anchor construction_ref does not name this unit')
+    answer=anchor.get('answer') if isinstance(anchor.get('answer'),dict) else {}
+    if not isinstance(anchor.get('answer'),dict):found.append('lesson anchor answer must be an object')
+    for name,value in [('id',anchor.get('id')),('stem',anchor.get('stem')),('answer.summary',answer.get('summary')),('answer.check',answer.get('check'))]:
+        if not isinstance(value,str) or not value.strip():found.append(name+' is absent')
+    if question:
+        route=question.get('answer') or {}
+        moves={move.get('id') for move in route.get('reasoning_route') or []}
+        if not isinstance(anchor.get('target_crux_move_ref'),str) or anchor.get('target_crux_move_ref')!=route.get('crux_move_ref') or anchor.get('target_crux_move_ref') not in moves:
+            found.append('lesson anchor crux does not resolve to the target question')
+        if anchor.get('stem')==question.get('stem'):found.append('lesson anchor repeats the protected source stem')
     return found
 
 def card(repair, question_id, role='CORE2'):
@@ -132,5 +152,8 @@ article[id],section[id]{scroll-margin-top:var(--g9-header-offset,160px)}
 .g9-repair-probe textarea{min-height:88px;font:inherit;margin:8px 0}
 .g9-repair-probe button,.g9-repair-probe a{min-height:48px;display:inline-flex;align-items:center}
 .g9-repair-probe [hidden]{display:none!important}
+[data-g9-alignment-probe] input{display:block;min-height:48px;width:100%;box-sizing:border-box}
+[data-g9-alignment-probe] label{display:block}
+[data-g9-alignment-probe] svg{max-width:100%;height:auto}
 section[id]:focus{outline:3px solid var(--accent);outline-offset:3px}
 '''

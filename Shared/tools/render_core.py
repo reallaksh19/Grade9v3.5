@@ -1414,8 +1414,11 @@ def core1a(ctx: Ctx, m: dict) -> str:
         )
         novel_anchor = ((m.get("extensions") or {}).get("grade9v3:lesson_anchors") or {}).get(u["id"])
         bank_ref = u.get("bank_anchor_ref")
-        if novel_anchor:
-            anchor_html = _core1a_worked_anchor(novel_anchor)
+        if novel_anchor is not None:
+            errors = learning_repair.anchor_problems(novel_anchor, bank_by_id, u['id'])
+            for error in errors:
+                ctx.gap('AUTHOR_WORKED_ANCHOR', u['id'], error, 'CORE1A', component='WORKED_EXAMPLE')
+            anchor_html = _core1a_worked_anchor(novel_anchor) if not errors else ''
         elif bank_ref:
             anchor_q = bank_by_id.get(bank_ref)
             if not anchor_q:
@@ -1457,6 +1460,18 @@ def core1a(ctx: Ctx, m: dict) -> str:
             return component(ctx, "CORE1A", cid, body, u["id"], items=items, unit=u["id"], band=band, waivers=waivers)
 
         figure_html = figure(ctx, u.get("representation_ref"), "TEACHING", "CORE1A", u["id"])
+        probes = [r for r in (m.get('extensions') or {}).get('grade9v3:question_repairs', [])
+                  if r.get('construction_ref') == u['id'] and r.get('interaction') == 'MODEL_SCOPE_PROBE']
+        primary_probe = ''
+        if probes:
+            row = next((r for r in probes if novel_anchor and r['question_ref'] == novel_anchor.get('target_question_ref')), probes[0])
+            question = bank_by_id.get(row.get('question_ref'))
+            valid = question and row == (question.get('extensions') or {}).get(learning_repair.KEY) and not learning_repair.problems(question, {u['id']})
+            if valid:
+                primary_probe = learning_repair.alignment_probe('construction-' + u['id'])
+            else:
+                ctx.gap('AUTHOR_LEARNING_REPAIR', u['id'], 'construction probe does not bind this question and crux', 'CORE1A')
+
         # The unit card holds the unit's own components in blueprint order; the key step precedes the first card.
         card_parts = {
             "UNIT_HEADER": unit_part("UNIT_HEADER", unit_head),
@@ -1500,6 +1515,7 @@ def core1a(ctx: Ctx, m: dict) -> str:
             "construction": construction,
             "representation": component_body(ctx, "CORE1A", {
                 "STAGED_VISUAL": unit_part("STAGED_VISUAL", figure_html, items=_stages_of(figure_html), band=unit_band),
+                "MODEL_SCOPE_PROBE": unit_part("MODEL_SCOPE_PROBE", primary_probe),
             }, "representation"),
             "repair_closure": support,
         })
@@ -1529,7 +1545,10 @@ def _toughest_unit_gaps(ctx: Ctx, m: dict, units: list[dict], toughest: dict) ->
                 + f"and set that unit's bank_anchor_ref to {ref}", "CORE1A", component="QUESTION_BRIDGE")
         return
     for u in builders:
-        if u.get("bank_anchor_ref") != ref and not ((m.get("extensions") or {}).get("grade9v3:lesson_anchors") or {}).get(u["id"]):
+        novel = ((m.get("extensions") or {}).get("grade9v3:lesson_anchors") or {}).get(u["id"])
+        bank_by_id = {q['id']: q for q in ctx.bank if isinstance(q, dict) and q.get('id')}
+        valid = not learning_repair.anchor_problems(novel, bank_by_id, u['id'], ref) if novel is not None else u.get('bank_anchor_ref') == ref
+        if not valid:
             ctx.gap("AUTHOR_TOUGHEST_CONCEPT", u["id"],
                     f"{why}; this unit builds toward it but its worked example is not {label}: set bank_anchor_ref to {ref} so the "
                     "unit walks through the question itself", "CORE1A", component="WORKED_EXAMPLE")

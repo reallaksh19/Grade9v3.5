@@ -191,7 +191,10 @@
                 "HCHO carbon has three bonded-atom directions. C=O contributes one local domain, although its double bond contains one sigma and one pi component. Pi density is not confined to the internuclear axis."
               ],
               "check": "Changed check: a triple bond to N in HCN still supplies one C-to-N direction; carbon also has the H direction."
-            }
+            },
+            "target_question_ref": "OWN-ISSUE32-HYBRID-02",
+            "target_crux_move_ref": "OWN-ISSUE32-HYBRID-02-MOVE-2",
+            "construction_ref": "CU-CHE-DOMAIN-COUNTING"
           }
         }
       },
@@ -461,16 +464,19 @@
         "grade9v3:lesson_anchors": {
           "CU-CHE-HYBRID-CONSERVATION": {
             "id": "ANCHOR-CU-CHE-HYBRID-CONSERVATION",
-            "stem": "An sp2 set is proposed to contain two hybrids. How many input and output orbitals should it have? Then apply your method to an sp set.",
+            "stem": "Compare proposed totals sp=1, sp2=2, sp3=3 against basis-function conservation. Give the corrected sequence.",
             "answer": {
-              "summary": "Three for sp2, two for sp. Repeating the superscript-as-total rule in both cases suggests a held counting rule; correct changed cases after an isolated slip suggest an execution error.",
+              "summary": "The corrected sequence is 2,3,4. Repeating the shifted sequence suggests the superscript-as-total rule.",
               "reasoning": [
-                "A change of orbital basis preserves the number of independent orbitals.",
-                "Three for sp2, two for sp. Repeating the superscript-as-total rule in both cases suggests a held counting rule; correct changed cases after an isolated slip suggest an execution error.",
-                "For second-period atoms, one 2s plus three 2p orbitals gives four sp3 hybrids. The superscript counts p inputs, not total outputs."
+                "One s plus n p inputs gives n+1 hybrid outputs.",
+                "The corrected sequence is 2,3,4. Repeating the shifted sequence suggests the superscript-as-total rule.",
+                "BF3: three domains and three sp2 hybrids. CH4: four domains and four sp3 hybrids. For these centres use valence 2s/2p language rather than ambiguous 1s + 2p shorthand."
               ],
-              "check": "Changed check: an sp set has two hybrids because one s plus one p supplies two basis functions; use this conservation rule on the requested set."
-            }
+              "check": "Changed check: sp uses two inputs and two hybrid outputs, providing a third case for the conservation rule."
+            },
+            "target_question_ref": "OWN-ISSUE32-HYBRID-10",
+            "target_crux_move_ref": "OWN-ISSUE32-HYBRID-10-MOVE-2",
+            "construction_ref": "CU-CHE-HYBRID-CONSERVATION"
           }
         }
       },
@@ -733,16 +739,19 @@
         "grade9v3:lesson_anchors": {
           "CU-CHE-3D-REPRESENTATION": {
             "id": "ANCHOR-CU-CHE-3D-REPRESENTATION",
-            "stem": "Draw NH3 and a tetrahedral four-bond NH4+ comparison. Mark which slot differs and recount the H atoms in each.",
+            "stem": "Task A asks for atom/domain arrangement; task B asks which orbitals overlap along the bond axis. State what information each model must supply.",
             "answer": {
-              "summary": "NH3 has three H plus a lone pair; NH4+ has four H and no N lone pair in the local Lewis model. A recurring fourth H/fifth domain exposes representation substitution.",
+              "summary": "A needs a geometry model; B needs an orbital account. Choosing the same familiar model without checking output in both cases suggests scope confusion.",
               "reasoning": [
-                "Wedges and dashes encode depth; electron-domain geometry includes lone pairs, molecular shape uses nuclei.",
-                "NH3 has three H plus a lone pair; NH4+ has four H and no N lone pair in the local Lewis model. A recurring fourth H/fifth domain exposes representation substitution.",
-                "NH3 has N at the centre, exactly three N-H directions and one distinguishable lone-pair domain. Tetrahedral domain arrangement and trigonal-pyramidal molecular shape describe different inventories."
+                "A model has a defined prediction scope and unresolved questions.",
+                "A needs a geometry model; B needs an orbital account. Choosing the same familiar model without checking output in both cases suggests scope confusion.",
+                "VSEPR fits qualitative electron-domain arrangement. An orbital-overlap model addresses orbital participation. VSEPR does not itself calculate an exact experimental angle or full electronic structure."
               ],
-              "check": "Count all four slots in the sketch; replacing the lone-pair slot by an N-H bond changes the inventory to an NH4+ teaching comparison, not NH3."
-            }
+              "check": "Changed task: detailed axial versus side-on overlap now requires an overlap description; a geometry-only account is insufficient."
+            },
+            "target_question_ref": "OWN-ISSUE32-HYBRID-05",
+            "target_crux_move_ref": "OWN-ISSUE32-HYBRID-05-MOVE-2",
+            "construction_ref": "CU-CHE-3D-REPRESENTATION"
           }
         }
       },

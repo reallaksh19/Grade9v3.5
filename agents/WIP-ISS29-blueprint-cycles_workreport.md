@@ -1,12 +1,12 @@
 # Issue 29 — cumulative blueprint correction work report
 
-REPORT_BASIS_HEAD: 1b48d531c32c884e1df07d8a50d0135a2592ab8a
+REPORT_BASIS_HEAD: 8c7f284e0b6e5ae3999f048afb962fef5d8c8fe8
 PR: #48, draft, based on feat/issue29-integrated-core-templates.
 Owner scope: D1 B→blueprint→A, repeat D2–D4, final all-band regression. No A/B ranking, agent assignment, original-candidate edits, merge or deployment.
 
 ## Handover in 60 seconds
 
-The executable workspace recovered on 2026-10-04 after the documentation-only checkpoint. The actual revised production files and all eight corrected input/render packs survived. The first recovery commit adds the six production files; the following evidence commit must add the eight packs and portable checks before this PR is considered artifact-complete.
+The executable workspace recovered on 2026-10-04. Actual production changes were published in commit 021aec952bb73f313e71f6d887ebb0dfe4a893f9. This evidence commit adds all eight corrected input/asset/HTML packs and portable checks. Read evidence/blueprint-cycles/REPORT.md and README.md. All eight corrected outputs replay byte-for-byte, artifact checks pass, and exact logs record 59 existing plus six focused tests passing. Static gate verdicts remain FAIL / RENDERED_RULES_NOT_MEASURED with zero content/continuity findings. Browser NOT_RUN; golden false.
 
 Proposed registry 1.10.0 / Core1A 1.5.0 / Core2 1.6.0 is a correction candidate, not a released blueprint or golden fixture. Core2 retains its existing reader. Core1A gains distinct teaching anchors and question-specific clinics; the complete planned teaching revamp is not claimed finished.
 
@@ -23,7 +23,7 @@ Proposed registry 1.10.0 / Core1A 1.5.0 / Core2 1.6.0 is a correction candidate,
 
 All eight corrected canonical banks preserve their original stems/custody and currently pass schema/reference/FLOOR artifact checks. New exact page hashes are in cycle receipts. Original A37 materializers reproduce both original learner HTML Git blobs exactly. Existing seed test files have now been verified byte-for-byte; an initial extra final newline was corrected in the isolated test checkout before re-execution.
 
-59 existing tests and five focused tests pass. Browser NOT_RUN. SVG raster preview tooling failed because render delegates/libraries were absent. Full 960 facet adjudication, independent difficulty/hardest-target calibration, remaining source/ancillary-content review and publication/PDF checks remain pending. Eight of the 28 matrix cells lack question specimens. No golden promotion.
+59 existing tests and six focused tests pass. Browser NOT_RUN. SVG raster preview tooling failed because render delegates/libraries were absent. Full 960 facet adjudication, independent difficulty/hardest-target calibration, remaining source/ancillary-content review and publication/PDF checks remain pending. Eight of the 28 matrix cells lack question specimens. No golden promotion.
 
 ## Coordination and invariants
 
@@ -31,6 +31,10 @@ Original PR heads #39/#40/#41/#42/#43/#44/#46/#47 rechecked unchanged before rec
 
 ## Exact next action
 
-Publish eight corrected inputs/assets/HTML/receipts and portable replay, artifact and static-gate checks; run them from a checkout layout. Record actual static FAIL verdicts separately from zero content findings. Verify remote Git blobs and live PR state, update PR description and #29. Then continue browser and independent academic/semantic admission gates.
+Verify the published Git tree against the local byte manifest, reconcile PR metadata/#29 and inherited CI. Then obtain real candidate-targeted browser and SVG review, independent full academic/semantic/source/difficulty review, the eight missing QRT specimens and owner golden admission. Repeat the complete all-band cycle on those measured artifacts. No additional agents are assigned.
 
 Appendix A qualification: NOT_REQUIRED for this standard academic web change; no engineering-critical takeover.
+
+Final all-band amendment: distinct lesson anchors now bind the actual target question, its real crux move and construction unit, and cannot bypass the hardest-target gate. The authored D4 model probe is visible on Core1A construction as an optional governed component; Core2 diagnostic feedback remains attempt-gated. A dedicated regression rejects a foreign target despite a matching legacy bank_anchor_ref.
+
+Four recoverable band evidence commits preceded the final all-band amendment. Validation is tied to exact local production/artifact byte hashes in ARTIFACT-MANIFEST.json, not a claim that the earlier basis commit contained the final files.

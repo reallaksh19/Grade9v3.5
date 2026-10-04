@@ -181,7 +181,10 @@
                 "NH3 falsifies three-sigma-implies-sp2: its local lone pair makes four domains. Geometry constrains a model but does not uniquely prove a hybrid basis."
               ],
               "check": "Changed check: BF3 and NH3 share three bonds but differ in local lone pairs; the proposed rule predicts the same result incorrectly."
-            }
+            },
+            "target_question_ref": "OWN-ISS33-D2-V2-Q05",
+            "target_crux_move_ref": "OWN-ISS33-D2-V2-Q05-MOVE-2",
+            "construction_ref": "CU-HYB-DOMAIN-FIRST"
           }
         }
       },
@@ -463,16 +466,19 @@
         "grade9v3:lesson_anchors": {
           "CU-HYB-ORBITAL-INVENTORY": {
             "id": "ANCHOR-CU-HYB-ORBITAL-INVENTORY",
-            "stem": "Inventory sp2 carbon and sp carbon; can a p orbital used in a hybrid also be counted as a separate residual p?",
+            "stem": "Build an allocation ledger for sp, sp2, sp3 and flag any duplicate-use entry.",
             "answer": {
-              "summary": "No double use. Totals remain four in both cases. Repeated totals above four indicate double counting.",
+              "summary": "All totals four; residual p counts 2,1,0. Recurrent five-orbital totals indicate double counting.",
               "reasoning": [
-                "Three sigma directions do not consume the remaining perpendicular p orbital.",
-                "No double use. Totals remain four in both cases. Repeated totals above four indicate double counting.",
-                "HCHO carbon has three-domain sp2 accounting, three sp2 sigma directions and one unhybridised p orbital; C=O has one sigma plus one pi."
+                "For second-period carbon, one 2s and three 2p functions form a four-dimensional valence basis.",
+                "All totals four; residual p counts 2,1,0. Recurrent five-orbital totals indicate double counting.",
+                "sp2 accounting is three hybrid orbitals plus one residual p. A p function already mixed into a hybrid is not simultaneously counted as an additional residual orbital."
               ],
-              "check": "Changed check: for an sp carbon, two hybrids plus two residual p orbitals still total four basis functions."
-            }
+              "check": "Changed check: sp accounting gives two hybrids plus two residual p; sp3 gives four hybrids plus zero residual p."
+            },
+            "target_question_ref": "OWN-ISS33-D2-V2-Q09",
+            "target_crux_move_ref": "OWN-ISS33-D2-V2-Q09-MOVE-2",
+            "construction_ref": "CU-HYB-ORBITAL-INVENTORY"
           }
         }
       },
@@ -747,16 +753,19 @@
         "grade9v3:lesson_anchors": {
           "CU-HYB-DOMAIN-VS-SHAPE": {
             "id": "ANCHOR-CU-HYB-DOMAIN-VS-SHAPE",
-            "stem": "Count local domains and bonded nuclei separately in BF3, NH3 and H2O.",
+            "stem": "For four-domain inventories with 4,3,2 bonded atoms, give the atom-only shape and explain omitted slots.",
             "answer": {
-              "summary": "Totals 3,4,4; bonded nuclei 3,3,2. A repeated bonds-only rule differs from an isolated missing lone pair.",
+              "summary": "Tetrahedral, pyramidal, bent; omitted slots are lone pairs. Repeating tetrahedral for all atom-only shapes exposes the conflation.",
               "reasoning": [
-                "A central lone pair adds a domain even though it adds no bonded nucleus.",
-                "Totals 3,4,4; bonded nuclei 3,3,2. A repeated bonds-only rule differs from an isolated missing lone pair.",
-                "BF3 has three B domains; NH3 has three bonds plus one N lone pair. Introductory sp2/planar versus sp3-like domain/pyramidal shape follows the local model."
+                "A lone-pair domain has no bonded nucleus to include in molecular-shape naming.",
+                "Tetrahedral, pyramidal, bent; omitted slots are lone pairs. Repeating tetrahedral for all atom-only shapes exposes the conflation.",
+                "CH4, NH3, H2O have four introductory domains but tetrahedral, pyramidal and bent nuclear shapes respectively."
               ],
-              "check": "Changed check: H2O and NH3 have different numbers of bonds but the same four-domain total."
-            }
+              "check": "Changed check: a four-bond/no-lone-pair centre cannot be assigned the same atom-only shape as a two-bond/two-lone-pair centre."
+            },
+            "target_question_ref": "OWN-ISS33-D2-V2-Q10",
+            "target_crux_move_ref": "OWN-ISS33-D2-V2-Q10-MOVE-2",
+            "construction_ref": "CU-HYB-DOMAIN-VS-SHAPE"
           }
         }
       },

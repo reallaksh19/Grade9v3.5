@@ -13,7 +13,7 @@ A is a second application of the rules, not the opposing contestant. A correctio
 
 Keep the agreed scope: Core1A teaching revamp; Core2 structural value additions inside the existing attempt-first reader. Keep the owner's minimal prompt A/B/C. The coordinator's audit trail is a separate section following issue #11. Do not supply execution agents with invented demand classifications.
 
-**Publication checkpoint:** the local coordinator pass authored corrections and rendered all eight review copies. Before their upload, the executable workspace disconnected; the exec service reported `409 Conflict, environment_offline: Environment is not connected`. This checkpoint preserves the blueprint and frozen source references. The revised renderer, registry, packages, SVGs, HTML and local measurement files are **not contained in this documentation checkpoint**. Results below are recorded observations from the preceding local execution, not substitute executable evidence. Recovery and artifact publication remain required. No golden fixture is certified.
+**Implementation publication:** the interrupted workspace recovered. PR #48 now contains the actual Blueprint 1.10 renderer/registry changes, eight corrected canonical input/asset/HTML packs and portable replay/checks. See the [current execution report](../../evidence/blueprint-cycles/REPORT.md), [replay evidence](../../evidence/blueprint-cycles/replay-results.json) and [static verdicts](../../evidence/blueprint-cycles/static-quality-results.json). All eight renders replay byte-for-byte; 65 tests pass. Static quality remains FAIL / RENDERED_RULES_NOT_MEASURED, browser NOT_RUN, full semantic certification open, golden false. The earlier environment-offline documentation checkpoint is preserved in Git history.
 
 ## Frozen authority
 
@@ -123,7 +123,7 @@ The local opt-in MODEL_SCOPE_PROBE uses an end-on C–N-axis view, a fixed carbo
 
 ## Appendix A — accumulated Blueprint 1.10 specification
 
-These are the proposed requirements derived from the cycles. Version targets for the local prototype were registry 1.10.0, Core1A 1.5.0 and Core2 1.6.0. **Those version changes are not yet committed in this checkpoint.**
+These are the proposed requirements derived from the cycles. Version targets for the local prototype were registry 1.10.0, Core1A 1.5.0 and Core2 1.6.0. **Those version changes are committed as a correction candidate in PR #48; release and golden admission remain pending.**
 
 | ID | Requirement | Evidence needed to close it |
 |---|---|---|
@@ -195,13 +195,13 @@ It found and corrected two cross-band production gaps: continuity checks rejecte
 
 Reported local execution before disconnection:
 - 59 existing Core2/projection/quality unit tests passed.
-- 5 targeted repair/probe tests passed, including question/crux validation and a Node DOM harness. The harness is **not a browser audit**.
+- 6 targeted repair/probe tests passed, including question/crux validation and a Node DOM harness. The harness is **not a browser audit**.
 - All eight artifact-integrity passes succeeded.
 - All eight static quality reports had zero content/continuity findings but verdict **FAIL**, reason **RENDERED_RULES_NOT_MEASURED**. Exit 0 did not override that verdict.
 - Revised-page browser status: **NOT_RUN**.
 - Full 960 question-facet semantic decisions: **not independently adjudicated**.
 - PDFs and publication links: **not built/verified for these review copies**.
-- Recorded local result files and test sources await durable upload; do not treat the numbers alone as acceptance evidence.
+- Actual result files, test logs, portable replay and exact source verification are now committed in the correction pack; interpret each within its stated scope.
 
 Observed canonical primary cells cover 20 of 28. Uncovered:
 QRT-RETRIEVE-D2, QRT-RETRIEVE-D3, QRT-RETRIEVE-D4,
@@ -209,20 +209,21 @@ QRT-APPLY-D3, QRT-MODEL-D1, QRT-REPRESENT-D1,
 QRT-SYNTHESIZE-D1, QRT-JUSTIFY-D1.
 These are gaps in this sample, not permission to misclassify questions. Difficulty estimates and hardest-target overrides still need independent calibration. Secondary demand information must be retained during normalization; it is not interchangeable with primary-cell coverage.
 
-## Appendix D — recovery and promotion work
+## Appendix D — remaining admission work
 
-Recover the local `cycle-work` files and publish a new correction branch based on the pinned seed. Preserve all original candidate branches. Commit the actual renderer/module/registry changes, corrected canonical inputs/assets, generated review HTML, hashes, receipts, repair ledgers, final checks and a portable replay procedure. Do not recreate files from memory and attach old test results to them.
+The actual recovered code and correction artifacts are published in PR #48. Original candidate branches remain frozen. The pack includes canonical inputs/assets, generated HTML, hashes, receipts, repair ledgers, static reports, test logs and a portable replay. No files were reconstructed from chat memory and attached to old test results.
 
-Then:
-1. Preserve canonical secondary demands and verify the exact seed test/source SHAs.
-2. Confirm #37's source materializers reproduce both original HTML blobs exactly; its original generated inputs were not committed.
-3. Inspect new SVG layout and execute candidate-targeted browser checks, including deep-link focus, actual rotation, keyboard/touch, disclosure and protected-work states.
-4. Independently adjudicate all twelve facets, answer/warrant/check, exit tasks and source claims on the newly hashed pages.
-5. Fill the eight uncovered cells with separately authored/validated specimens; prove optional module generality with a mathematics specimen.
-6. Run the complete accumulated blueprint through D1, D2, D3 and D4 again. Record regressions and amendments until all admission gates pass.
-7. Seek owner golden admission only against concrete pinned evidence.
+Completed during recovery: canonical secondary demand preservation; exact seed test-source verification; both original #37 HTML blob matches; all-eight replay and artifact checks; 65 tests executed again; primary source identity rechecks.
 
-The same correction cycle continues; neither an authored ledger nor a documentation checkpoint closes these gates.
+Still required:
+1. Inspect new SVG layout and execute candidate-targeted browser checks, including deep-link focus, actual rotation, keyboard/touch, disclosure and protected-work states. Raster preview delegates and browser executables were unavailable in this runtime.
+2. Independently adjudicate all twelve facets, answer/warrant/check, exit tasks and source claims on the newly hashed pages.
+3. Recalibrate difficulty/hardest-target choices; do not force cohort labels onto items.
+4. Fill the eight uncovered cells with separately authored/validated specimens; prove optional module generality with a mathematics specimen.
+5. Run the complete accumulated blueprint through D1, D2, D3 and D4 again on measured pages. Feed regressions back until admission gates pass.
+6. Obtain owner golden admission against concrete pinned evidence, including publication/PDF closure.
+
+Neither a schema pass nor an authored twelve-facet ledger closes these learning gates.
 
 ## Appendix E — claim-bounded source register
 
@@ -235,3 +236,6 @@ Use primary-source identities; keep the first audit's incorrect/unretrieved iden
 - [ACS DOI 10.1021/ja9639426](https://doi.org/10.1021/ja9639426): indexed abstract consulted for amide-barrier scope; full text not retrieved in this pass. Do not manufacture quotations or precise experimental claims from that access.
 
 The toy comparator is an authored counterexample with declared assumptions. It is not experimental chemistry or a literature-derived quantitative energy model.
+
+
+Final all-band amendment: distinct lesson anchors now bind the actual target question, its real crux move and construction unit, and cannot bypass the hardest-target gate. The authored D4 model probe is visible on Core1A construction as an optional governed component; Core2 diagnostic feedback remains attempt-gated. A dedicated regression rejects a foreign target despite a matching legacy bank_anchor_ref.
