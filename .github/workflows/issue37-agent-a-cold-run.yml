@@ -51,6 +51,7 @@ jobs:
         run: |
           PYTHONPATH=. python evidence/benchmark/ISS37/build_specimen.py
           PYTHONPATH=. python evidence/benchmark/ISS37/finalize_records.py
+          PYTHONPATH=. python evidence/benchmark/ISS37/finalize_package.py
 
       - name: Verify verbatim intake and schemas
         run: |
