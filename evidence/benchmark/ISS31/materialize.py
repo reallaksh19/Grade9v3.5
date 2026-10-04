@@ -62,7 +62,9 @@ REL_SIGPI = "REL-CHEM-HYB-SIGMA-PI"
 
 REP_DOMAIN = "REP-CHEM-HYB-DOMAIN-COUNT"
 REP_HYBRID = "REP-CHEM-HYB-HYBRID-SETS"
-REP_TETRA = "REP-CHEM-HYB-TETRAHEDRAL"
+REP_TETRA_CH4 = "REP-CHEM-HYB-CH4-TETRAHEDRAL"
+REP_TETRA_NH3 = "REP-CHEM-HYB-NH3-DOMAINS"
+REP_VSEPR = "REP-CHEM-HYB-VSEPR-GEOMETRY"
 REP_MODEL = "REP-CHEM-HYB-MODEL-SCOPE"
 REP_SIGPI = "REP-CHEM-HYB-SIGMA-PI"
 REP_WEDGE = "REP-CHEM-HYB-WEDGE-DASH"
@@ -75,8 +77,8 @@ FAM_SIGPI = "FAM-CHEM-HYB-SIGMA-PI"
 Q_META = {
     "Q1": (REL_HYBRID, REP_HYBRID, FAM_DOMAIN, "Hybrid set size from four directions"),
     "Q2": (REL_DOMAIN, REP_DOMAIN, FAM_DOMAIN, "Multiple bond as one electron domain"),
-    "Q3": (REL_HYBRID, REP_TETRA, FAM_DOMAIN, "Four domains to sp3 and tetrahedral geometry"),
-    "Q4": (REL_3D, REP_TETRA, FAM_3D, "NH3: four domains in three dimensions"),
+    "Q3": (REL_HYBRID, REP_TETRA_CH4, FAM_DOMAIN, "Four domains to sp3 and tetrahedral geometry"),
+    "Q4": (REL_3D, REP_TETRA_NH3, FAM_3D, "NH3: four domains in three dimensions"),
     "Q5": (REL_MODEL, REP_MODEL, FAM_MODEL, "Choose the model that answers the question"),
     "Q6": (REL_SIGPI, REP_SIGPI, FAM_SIGPI, "Sigma versus pi overlap geometry"),
     "Q7": (REL_3D, REP_WEDGE, FAM_3D, "Wedge/dash methane as a 3D tetrahedron"),
@@ -260,7 +262,9 @@ def microtopic(q: dict, bank_id: str) -> dict:
     stage_ids = {
         REP_DOMAIN: ["DOM-1", "DOM-2", "DOM-3"],
         REP_HYBRID: ["HYB-1", "HYB-2", "HYB-3"],
-        REP_TETRA: ["TET-1", "TET-2", "TET-3"],
+        REP_TETRA_CH4: ["CH4-1", "CH4-2", "CH4-3"],
+        REP_TETRA_NH3: ["NH3-1", "NH3-2", "NH3-3"],
+        REP_VSEPR: ["VG-1", "VG-2", "VG-3"],
         REP_MODEL: ["MOD-1", "MOD-2", "MOD-3"],
         REP_SIGPI: ["SIG-1", "SIG-2", "SIG-3"],
         REP_WEDGE: ["WD-1", "WD-2", "WD-3"],
@@ -368,51 +372,58 @@ def write_assets() -> dict[str, str]:
         "issue31-domain-count.svg": svg(
             "Electron-domain counting",
             "A central atom with three distinct neighbour directions; a double bond remains one direction.",
-            '<circle cx="270" cy="200" r="34" fill="none" stroke="currentColor" stroke-width="3"/><text x="255" y="207" font-size="24">C</text>'
-            '<line x1="304" y1="200" x2="430" y2="200" stroke="currentColor" stroke-width="3"/><line x1="307" y1="210" x2="430" y2="210" stroke="currentColor" stroke-width="3"/>'
-            '<line x1="245" y1="175" x2="170" y2="95" stroke="currentColor" stroke-width="3"/><line x1="245" y1="225" x2="170" y2="305" stroke="currentColor" stroke-width="3"/>'
-            '<text x="445" y="208" font-size="22">O — one domain</text><text x="88" y="87" font-size="22">H</text><text x="88" y="325" font-size="22">H</text>'
-            '<text x="210" y="365" font-size="20">Count directions/regions, not bond lines.</text>'
+            '<g data-g9-stage-id="DOM-1"><circle cx="270" cy="200" r="34" fill="none" stroke="currentColor" stroke-width="3"/><text x="255" y="207" font-size="24">C</text><text x="210" y="55" font-size="22">Choose the counting centre</text></g>'
+            '<g data-g9-stage-id="DOM-2"><line x1="304" y1="200" x2="430" y2="200" stroke="currentColor" stroke-width="3"/><line x1="307" y1="210" x2="430" y2="210" stroke="currentColor" stroke-width="3"/><line x1="245" y1="175" x2="170" y2="95" stroke="currentColor" stroke-width="3"/><line x1="245" y1="225" x2="170" y2="305" stroke="currentColor" stroke-width="3"/><text x="445" y="208" font-size="22">O — one direction</text><text x="130" y="90" font-size="22">H</text><text x="130" y="325" font-size="22">H</text></g>'
+            '<g data-g9-stage-id="DOM-3"><text x="170" y="365" font-size="20">Count local directions/regions, not bond lines or neighbour lone pairs.</text></g>'
         ),
         "issue31-hybrid-sets.svg": svg(
             "Hybrid set size",
             "Three directions map to sp2 and four directions map to sp3; hybrid set size equals direction count.",
-            '<text x="70" y="70" font-size="28">3 domains → sp² → 3 hybrid directions</text>'
-            '<circle cx="210" cy="205" r="25" fill="none" stroke="currentColor" stroke-width="3"/><line x1="210" y1="180" x2="210" y2="105" stroke="currentColor" stroke-width="3"/><line x1="190" y1="220" x2="120" y2="270" stroke="currentColor" stroke-width="3"/><line x1="230" y1="220" x2="300" y2="270" stroke="currentColor" stroke-width="3"/>'
-            '<text x="390" y="70" font-size="28">4 domains → sp³ → 4 hybrid directions</text>'
-            '<circle cx="535" cy="205" r="25" fill="none" stroke="currentColor" stroke-width="3"/><line x1="535" y1="180" x2="535" y2="105" stroke="currentColor" stroke-width="3"/><line x1="510" y1="210" x2="430" y2="245" stroke="currentColor" stroke-width="3"/><line x1="560" y1="210" x2="640" y2="245" stroke="currentColor" stroke-width="3"/><line x1="535" y1="230" x2="535" y2="325" stroke="currentColor" stroke-width="3"/>'
+            '<g data-g9-stage-id="HYB-1"><text x="155" y="55" font-size="26">Start with direction count</text><text x="110" y="105" font-size="24">3 directions</text><text x="500" y="105" font-size="24">4 directions</text></g>'
+            '<g data-g9-stage-id="HYB-2"><circle cx="210" cy="205" r="25" fill="none" stroke="currentColor" stroke-width="3"/><line x1="210" y1="180" x2="210" y2="120" stroke="currentColor" stroke-width="3"/><line x1="190" y1="220" x2="120" y2="270" stroke="currentColor" stroke-width="3"/><line x1="230" y1="220" x2="300" y2="270" stroke="currentColor" stroke-width="3"/><text x="160" y="325" font-size="26">sp²</text><circle cx="535" cy="205" r="25" fill="none" stroke="currentColor" stroke-width="3"/><line x1="535" y1="180" x2="535" y2="120" stroke="currentColor" stroke-width="3"/><line x1="510" y1="210" x2="430" y2="245" stroke="currentColor" stroke-width="3"/><line x1="560" y1="210" x2="640" y2="245" stroke="currentColor" stroke-width="3"/><line x1="535" y1="230" x2="535" y2="315" stroke="currentColor" stroke-width="3"/><text x="500" y="350" font-size="26">sp³</text></g>'
+            '<g data-g9-stage-id="HYB-3"><text x="115" y="385" font-size="20">sp² = 3 hybrids; sp³ = 4 hybrids. Set size equals the modelled directions.</text></g>'
         ),
-        "issue31-tetrahedral.svg": svg(
-            "Four tetrahedral electron domains",
-            "Nitrogen at the centre with three N-H directions and one lone-pair direction.",
-            '<text x="350" y="210" font-size="28">N</text><line x1="365" y1="185" x2="365" y2="80" stroke="currentColor" stroke-width="4"/><text x="350" y="60" font-size="22">lone pair</text>'
-            '<line x1="345" y1="210" x2="210" y2="275" stroke="currentColor" stroke-width="4"/><text x="180" y="300" font-size="22">H</text>'
-            '<polygon points="385,210 535,150 505,195" fill="none" stroke="currentColor" stroke-width="4"/><text x="550" y="150" font-size="22">H</text>'
-            '<line x1="380" y1="225" x2="505" y2="310" stroke="currentColor" stroke-width="3" stroke-dasharray="9 7"/><text x="520" y="330" font-size="22">H</text>'
-            '<text x="160" y="365" font-size="20">Electron-domain geometry: tetrahedral · atom-only NH₃ shape: trigonal pyramidal</text>'
+        "issue31-ch4-tetrahedral.svg": svg(
+            "Methane four-domain mapping",
+            "Four bonding domains around carbon build a tetrahedral electron-domain arrangement.",
+            '<g data-g9-stage-id="CH4-1"><text x="315" y="205" font-size="30">C</text><text x="220" y="55" font-size="22">4 C–H bonding domains</text></g>'
+            '<g data-g9-stage-id="CH4-2"><line x1="330" y1="180" x2="330" y2="90" stroke="currentColor" stroke-width="4"/><line x1="310" y1="210" x2="190" y2="285" stroke="currentColor" stroke-width="4"/><polygon points="350,205 525,145 490,195" fill="none" stroke="currentColor" stroke-width="4"/><line x1="350" y1="225" x2="485" y2="320" stroke="currentColor" stroke-width="3" stroke-dasharray="9 7"/><text x="315" y="75" font-size="22">H</text><text x="160" y="310" font-size="22">H</text><text x="540" y="145" font-size="22">H</text><text x="500" y="340" font-size="22">H</text></g>'
+            '<g data-g9-stage-id="CH4-3"><text x="170" y="380" font-size="21">4 domains → sp³ model → tetrahedral electron-domain geometry (~109.5° ideal).</text></g>'
+        ),
+        "issue31-nh3-domains.svg": svg(
+            "Ammonia four electron domains",
+            "Nitrogen with three bonding domains and one lone-pair domain arranged tetrahedrally.",
+            '<g data-g9-stage-id="NH3-1"><text x="345" y="210" font-size="30">N</text><text x="205" y="55" font-size="22">3 N–H domains + 1 lone-pair domain</text></g>'
+            '<g data-g9-stage-id="NH3-2"><line x1="365" y1="185" x2="365" y2="80" stroke="currentColor" stroke-width="4"/><text x="325" y="65" font-size="21">lone pair</text><line x1="345" y1="210" x2="210" y2="275" stroke="currentColor" stroke-width="4"/><polygon points="385,210 535,150 505,195" fill="none" stroke="currentColor" stroke-width="4"/><line x1="380" y1="225" x2="505" y2="310" stroke="currentColor" stroke-width="3" stroke-dasharray="9 7"/><text x="180" y="300" font-size="22">H</text><text x="550" y="150" font-size="22">H</text><text x="520" y="330" font-size="22">H</text></g>'
+            '<g data-g9-stage-id="NH3-3"><text x="125" y="380" font-size="20">Electron-domain geometry: tetrahedral. Atom-only NH₃ molecular geometry: trigonal pyramidal.</text></g>'
+        ),
+        "issue31-vsepr-geometry.svg": svg(
+            "VSEPR geometry naming",
+            "The same NH3 domain inventory is used to distinguish electron-domain geometry from molecular geometry.",
+            '<g data-g9-stage-id="VG-1"><text x="80" y="80" font-size="26">Count all four electron domains around N</text><text x="310" y="155" font-size="28">NH₃ + lone pair</text></g>'
+            '<g data-g9-stage-id="VG-2"><text x="80" y="235" font-size="24">Electron-domain geometry</text><text x="470" y="235" font-size="24">tetrahedral</text></g>'
+            '<g data-g9-stage-id="VG-3"><text x="80" y="315" font-size="24">Molecular geometry (atoms only)</text><text x="470" y="315" font-size="24">trigonal pyramidal</text><text x="135" y="370" font-size="19">Lone-pair direction counts for EDG but is omitted from the atom-only molecular shape name.</text></g>'
         ),
         "issue31-model-scope.svg": svg(
             "Which model answers this question?",
             "A two-lens comparison between VSEPR and orbital-overlap descriptions for ammonia.",
-            '<line x1="380" y1="55" x2="380" y2="350" stroke="currentColor" stroke-width="2"/>'
-            '<text x="90" y="85" font-size="30">VSEPR lens</text><text x="60" y="135" font-size="20">Predicts overall electron-domain arrangement</text><text x="60" y="175" font-size="20">4 domains → tetrahedral domain geometry</text><text x="60" y="215" font-size="20">NH₃ atoms → trigonal pyramidal</text>'
-            '<text x="455" y="85" font-size="30">Orbital-overlap lens</text><text x="420" y="135" font-size="20">Describes orbital composition and overlap</text><text x="420" y="175" font-size="20">Useful for directional bonding detail</text><text x="420" y="215" font-size="20">More detail than Q5 requests</text>'
-            '<text x="190" y="325" font-size="22">Choose by explanatory job, not by chapter keyword.</text>'
+            '<g data-g9-stage-id="MOD-1"><text x="130" y="70" font-size="25">Q5 asks for overall 3D electron-domain arrangement</text></g>'
+            '<g data-g9-stage-id="MOD-2"><line x1="380" y1="95" x2="380" y2="335" stroke="currentColor" stroke-width="2"/><text x="90" y="130" font-size="30">VSEPR lens</text><text x="60" y="180" font-size="20">4 domains → tetrahedral domain geometry</text><text x="60" y="220" font-size="20">NH₃ atoms → trigonal pyramidal</text></g>'
+            '<g data-g9-stage-id="MOD-3"><text x="455" y="130" font-size="30">Orbital-overlap lens</text><text x="420" y="180" font-size="20">Orbital composition and overlap detail</text><text x="420" y="220" font-size="20">Useful, but more detail than Q5 requests</text><text x="180" y="365" font-size="22">Choose by explanatory job, not chapter keyword.</text></g>'
         ),
         "issue31-sigma-pi.svg": svg(
             "Sigma and pi overlap",
             "End-on overlap lies along the internuclear axis; side-on overlap lies on opposite sides of the axis.",
-            '<line x1="70" y1="125" x2="330" y2="125" stroke="currentColor" stroke-width="2" stroke-dasharray="6 6"/><ellipse cx="160" cy="125" rx="70" ry="35" fill="none" stroke="currentColor" stroke-width="3"/><ellipse cx="240" cy="125" rx="70" ry="35" fill="none" stroke="currentColor" stroke-width="3"/><text x="125" y="205" font-size="24">σ: end-on, along axis</text>'
-            '<line x1="430" y1="200" x2="700" y2="200" stroke="currentColor" stroke-width="2" stroke-dasharray="6 6"/><ellipse cx="510" cy="140" rx="35" ry="65" fill="none" stroke="currentColor" stroke-width="3"/><ellipse cx="620" cy="140" rx="35" ry="65" fill="none" stroke="currentColor" stroke-width="3"/><ellipse cx="510" cy="260" rx="35" ry="65" fill="none" stroke="currentColor" stroke-width="3"/><ellipse cx="620" cy="260" rx="35" ry="65" fill="none" stroke="currentColor" stroke-width="3"/><text x="455" y="365" font-size="24">π: side-on, node through axis</text>'
+            '<g data-g9-stage-id="SIG-1"><line x1="70" y1="200" x2="700" y2="200" stroke="currentColor" stroke-width="2" stroke-dasharray="6 6"/><text x="260" y="185" font-size="20">internuclear axis</text></g>'
+            '<g data-g9-stage-id="SIG-2"><ellipse cx="160" cy="120" rx="70" ry="35" fill="none" stroke="currentColor" stroke-width="3"/><ellipse cx="240" cy="120" rx="70" ry="35" fill="none" stroke="currentColor" stroke-width="3"/><text x="105" y="75" font-size="24">σ: end-on along axis</text></g>'
+            '<g data-g9-stage-id="SIG-3"><ellipse cx="510" cy="120" rx="35" ry="65" fill="none" stroke="currentColor" stroke-width="3"/><ellipse cx="620" cy="120" rx="35" ry="65" fill="none" stroke="currentColor" stroke-width="3"/><ellipse cx="510" cy="280" rx="35" ry="65" fill="none" stroke="currentColor" stroke-width="3"/><ellipse cx="620" cy="280" rx="35" ry="65" fill="none" stroke="currentColor" stroke-width="3"/><text x="455" y="380" font-size="22">π: side-on; nodal plane contains axis</text></g>'
         ),
         "issue31-wedge-dash.svg": svg(
             "Methane wedge and dash",
             "Carbon with two bonds in plane, one solid wedge toward the viewer and one dashed bond behind the plane.",
-            '<text x="365" y="210" font-size="30">C</text><line x1="360" y1="195" x2="250" y2="120" stroke="currentColor" stroke-width="3"/><text x="220" y="110" font-size="24">H</text>'
-            '<line x1="390" y1="195" x2="500" y2="120" stroke="currentColor" stroke-width="3"/><text x="515" y="110" font-size="24">H</text>'
-            '<polygon points="355,220 235,315 325,245" fill="none" stroke="currentColor" stroke-width="4"/><text x="195" y="340" font-size="24">H toward</text>'
-            '<line x1="400" y1="225" x2="520" y2="315" stroke="currentColor" stroke-width="4" stroke-dasharray="10 8"/><text x="530" y="340" font-size="24">H behind</text>'
-            '<text x="210" y="385" font-size="20">Depth encoding: non-coplanar tetrahedral directions (~109.5° ideal).</text>'
+            '<g data-g9-stage-id="WD-1"><text x="365" y="210" font-size="30">C</text><line x1="360" y1="195" x2="250" y2="120" stroke="currentColor" stroke-width="3"/><text x="220" y="110" font-size="24">H</text><line x1="390" y1="195" x2="500" y2="120" stroke="currentColor" stroke-width="3"/><text x="515" y="110" font-size="24">H</text></g>'
+            '<g data-g9-stage-id="WD-2"><polygon points="355,220 235,315 325,245" fill="none" stroke="currentColor" stroke-width="4"/><text x="195" y="340" font-size="24">H toward</text><line x1="400" y1="225" x2="520" y2="315" stroke="currentColor" stroke-width="4" stroke-dasharray="10 8"/><text x="530" y="340" font-size="24">H behind</text></g>'
+            '<g data-g9-stage-id="WD-3"><text x="180" y="385" font-size="20">Wedge/dash encodes non-coplanar tetrahedral depth (~109.5° ideal), not a flat 90° cross.</text></g>'
         ),
     }
     for name, content in assets.items():
@@ -504,7 +515,8 @@ def build_package(asset_refs: dict[str, str], bank_ids: dict[str, str]) -> dict:
 
     assets = {
         REP_DOMAIN: asset_refs["issue31-domain-count.svg"], REP_HYBRID: asset_refs["issue31-hybrid-sets.svg"],
-        REP_TETRA: asset_refs["issue31-tetrahedral.svg"], REP_MODEL: asset_refs["issue31-model-scope.svg"],
+        REP_TETRA_CH4: asset_refs["issue31-ch4-tetrahedral.svg"], REP_TETRA_NH3: asset_refs["issue31-nh3-domains.svg"],
+        REP_VSEPR: asset_refs["issue31-vsepr-geometry.svg"], REP_MODEL: asset_refs["issue31-model-scope.svg"],
         REP_SIGPI: asset_refs["issue31-sigma-pi.svg"], REP_WEDGE: asset_refs["issue31-wedge-dash.svg"],
     }
     representations = [
@@ -514,9 +526,15 @@ def build_package(asset_refs: dict[str, str], bank_ids: dict[str, str]) -> dict:
         representation(REP_HYBRID, "ORBITAL_DIAGRAM", "Show the introductory mapping from 3/4 electron-domain directions to sp2/sp3 hybrid set size.", assets[REP_HYBRID], [REL_HYBRID],
                        [("HYB-1", "Domain count", "Start from the number of directions."), ("HYB-2", "Hybrid label", "Map 3 to sp2 and 4 to sp3."), ("HYB-3", "Set size", "Verify the number of hybrids equals the number of directions.")],
                        [{"element": "three-direction set", "symbol": "sp2", "in_words": "one s plus two p orbitals gives three hybrids"}, {"element": "four-direction set", "symbol": "sp3", "in_words": "one s plus three p orbitals gives four hybrids"}], SRC_VSEPR),
-        representation(REP_TETRA, "ORBITAL_DIAGRAM", "Translate four NH3 electron domains into tetrahedral directions while distinguishing the lone-pair direction from atom positions.", assets[REP_TETRA], [REL_3D],
-                       [("TET-1", "Four domains", "Inventory three N-H bonds plus one N lone pair."), ("TET-2", "Tetrahedral directions", "Move the four domains out of a flat Lewis plane."), ("TET-3", "Two geometry names", "Separate electron-domain geometry from molecular geometry.")],
+        representation(REP_TETRA_CH4, "ORBITAL_DIAGRAM", "Build methane's four bonding domains into an sp3 tetrahedral arrangement.", assets[REP_TETRA_CH4], [REL_HYBRID, REL_3D],
+                       [("CH4-1", "Four bonding domains", "Count the four C-H regions around carbon."), ("CH4-2", "Tetrahedral directions", "Move the four directions out of a flat drawing."), ("CH4-3", "sp3 check", "Connect four directions to the introductory sp3 set and tetrahedral geometry.")],
+                       [{"element": "four C-H directions", "symbol": "4 domains", "in_words": "four bonding regions around carbon"}, {"element": "tetrahedral depth", "symbol": "sp3", "in_words": "four non-coplanar hybrid directions"}], SRC_VSEPR),
+        representation(REP_TETRA_NH3, "ORBITAL_DIAGRAM", "Translate NH3's three bonding domains and one lone-pair domain into tetrahedral directions.", assets[REP_TETRA_NH3], [REL_3D],
+                       [("NH3-1", "Four domains", "Inventory three N-H bonds plus one N lone pair."), ("NH3-2", "Tetrahedral directions", "Move the four domains out of a flat Lewis plane."), ("NH3-3", "Two geometry names", "Separate electron-domain geometry from molecular geometry.")],
                        [{"element": "three N-H directions", "symbol": "bonding domains", "in_words": "three atom directions"}, {"element": "lone-pair direction", "symbol": "nonbonding domain", "in_words": "counts in electron-domain geometry but not in the atom-only molecular-geometry name"}], SRC_VSEPR),
+        representation(REP_VSEPR, "DATA_TABLE", "Distinguish the electron-domain geometry and atom-only molecular geometry predicted by VSEPR for NH3.", assets[REP_VSEPR], [REL_3D],
+                       [("VG-1", "Domain inventory", "Count all four electron domains around nitrogen."), ("VG-2", "Electron-domain geometry", "Name the tetrahedral arrangement of all four domains."), ("VG-3", "Molecular geometry", "Omit the lone-pair position only when naming the atom-only shape.")],
+                       [{"element": "electron-domain row", "symbol": "EDG", "in_words": "tetrahedral because all four domains count"}, {"element": "molecular-geometry row", "symbol": "MG", "in_words": "trigonal pyramidal because only atom positions are named"}], SRC_VSEPR),
         representation(REP_MODEL, "DATA_TABLE", "Compare what VSEPR and orbital-overlap descriptions predict for the same NH3 anchor.", assets[REP_MODEL], [REL_MODEL],
                        [("MOD-1", "Requested output", "Identify that Q5 asks for overall 3D electron-domain arrangement."), ("MOD-2", "VSEPR lens", "See the prediction that directly answers that request."), ("MOD-3", "Overlap lens", "Mark orbital-level details that are outside the requested output.")],
                        [{"element": "VSEPR column", "symbol": "overall arrangement", "in_words": "electron-domain and molecular geometry"}, {"element": "orbital-overlap column", "symbol": "bonding detail", "in_words": "orbital composition and overlap"}], SRC_VSEPR),
@@ -576,6 +594,11 @@ def build_package(asset_refs: dict[str, str], bank_ids: dict[str, str]) -> dict:
     vsepr["id"] = "MIC-CHEM-G11-VSEPR-GEOMETRY"
     vsepr["title"] = "VSEPR electron-domain versus molecular geometry"
     vsepr["primary_capability_ref"] = "CAP-CHEM-G11-VSEPR-GEOMETRY"
+    vsepr["representation_refs"] = [REP_VSEPR]
+    vsepr["elicitation"]["attempt"]["task"]["representation_ref"] = REP_VSEPR
+    vsepr["construction_units"][0]["representation_ref"] = REP_VSEPR
+    vsepr["construction_units"][0]["reveal_stage_refs"] = ["VG-1", "VG-2", "VG-3"]
+    vsepr["compact_anchor"]["representation_ref"] = REP_VSEPR
     vsepr["inferential_jump"] = "Use the electron-domain arrangement to predict geometry, then omit lone-pair positions only when naming atom-only molecular geometry."
     vsepr["badge_reason"] = "The learner must keep electron-domain geometry and molecular geometry as related but non-identical outputs."
     micros.append(vsepr)
@@ -635,8 +658,8 @@ def fill_bank() -> dict[str, str]:
         bank_ids[qid] = row["id"]
         _, rep_ref, family_ref, _ = Q_META[qid]
         move1, move2, move3 = [f"{row['id']}-MOVE-{n}" for n in (1, 2, 3)]
-        first_stage = {REP_DOMAIN:"DOM-1",REP_HYBRID:"HYB-1",REP_TETRA:"TET-1",REP_MODEL:"MOD-1",REP_SIGPI:"SIG-1",REP_WEDGE:"WD-1"}[rep_ref]
-        second_stage = {REP_DOMAIN:"DOM-2",REP_HYBRID:"HYB-2",REP_TETRA:"TET-2",REP_MODEL:"MOD-2",REP_SIGPI:"SIG-2",REP_WEDGE:"WD-2"}[rep_ref]
+        first_stage = {REP_DOMAIN:"DOM-1",REP_HYBRID:"HYB-1",REP_TETRA_CH4:"CH4-1",REP_TETRA_NH3:"NH3-1",REP_VSEPR:"VG-1",REP_MODEL:"MOD-1",REP_SIGPI:"SIG-1",REP_WEDGE:"WD-1"}[rep_ref]
+        second_stage = {REP_DOMAIN:"DOM-2",REP_HYBRID:"HYB-2",REP_TETRA_CH4:"CH4-2",REP_TETRA_NH3:"NH3-2",REP_VSEPR:"VG-2",REP_MODEL:"MOD-2",REP_SIGPI:"SIG-2",REP_WEDGE:"WD-2"}[rep_ref]
         row["answer"] = {
             "kind": "EXACT", "summary": q["answer"]["summary"], "reasoning": list(q["answer"]["reasoning"]),
             "reasoning_route": [
