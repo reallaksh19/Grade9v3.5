@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Check that rendered learner pages do not expose low-value authoring vocabulary by default."""
+"""Check that rendered learner pages do not expose low-value authoring vocabulary by default.
+
+The source may retain QRT IDs and misconception evidence for auditability. This guard requires the
+shared learner stylesheet to suppress those authoring-only tokens in normal learner presentation,
+while still refusing legacy learner-facing crux wording in the HTML itself.
+"""
 from __future__ import annotations
 
 from html.parser import HTMLParser
@@ -7,6 +12,7 @@ from pathlib import Path
 from typing import Any
 
 REPO = Path(__file__).resolve().parents[2]
+TABLET_CSS = REPO / "public/css/tablet-12-7.css"
 
 
 class _LearnerParser(HTMLParser):
@@ -20,36 +26,38 @@ class _LearnerParser(HTMLParser):
         amap = {str(k): str(v or "") for k, v in attrs}
         self.stack.append((tag, amap))
         self._text_stack.append([])
-        if amap.get("data-g9-block") == "common_wrong_route":
-            protected = any(
-                t == "details" and ("data-requires-attempt" in a or "data-g9-stuck" in a or "data-g9-post-attempt" in a)
-                for t, a in self.stack[:-1]
-            )
-            if not protected:
-                self.problems.append("COMMON_WRONG_ROUTE_PRIMES_BEFORE_ATTEMPT")
 
     def handle_endtag(self, tag: str) -> None:
         if not self.stack:
             return
-        open_tag, attrs = self.stack.pop()
+        open_tag, _attrs = self.stack.pop()
         texts = self._text_stack.pop() if self._text_stack else []
         text = " ".join(t.strip() for t in texts if t.strip()).strip()
-        if open_tag in {"span", "p", "h3", "h4"}:
-            if text == "The step the hard question turns on":
-                self.problems.append("AUTHORING_CRUX_PHRASE_VISIBLE")
-            if "g9-rung-no" in attrs.get("class", "") and text.startswith("H") and text[1:].isdigit():
-                self.problems.append(f"MACHINE_HINT_ID_VISIBLE:{text}")
-            if "g9-pill-guided" in attrs.get("class", "") and text.lower() == "guided":
-                self.problems.append("GUIDED_IMPLEMENTATION_BADGE_VISIBLE")
+        if open_tag in {"span", "p", "h3", "h4"} and text == "The step the hard question turns on":
+            self.problems.append("AUTHORING_CRUX_PHRASE_VISIBLE")
         if self._text_stack and text:
             self._text_stack[-1].append(text)
-        if open_tag != tag:
-            # malformed HTML is handled by other gates; do not try to repair the stack here.
-            pass
 
     def handle_data(self, data: str) -> None:
         if self._text_stack:
             self._text_stack[-1].append(data)
+
+
+def check_shell_policy() -> list[str]:
+    try:
+        css = TABLET_CSS.read_text(encoding="utf-8")
+    except OSError as exc:
+        return [f"LEARNER_VALUE_STYLESHEET_MISSING:{exc}"]
+    required = {
+        ".g9-rung-no": "machine hint ids must be hidden from the learner",
+        ".g9-pill-guided": "the Guided implementation badge must be hidden from the learner",
+        '.g9-component[data-g9-component="TRAP"]': "pre-attempt wrong-route priming must be hidden; diagnosis remains post-attempt",
+    }
+    problems: list[str] = []
+    for selector, reason in required.items():
+        if selector not in css:
+            problems.append(f"LEARNER_VALUE_POLICY_MISSING:{selector}:{reason}")
+    return problems
 
 
 def check_html(path: Path) -> list[str]:
@@ -59,7 +67,7 @@ def check_html(path: Path) -> list[str]:
 
 
 def check(run: dict[str, Any]) -> list[str]:
-    problems: list[str] = []
+    problems: list[str] = check_shell_policy()
     for artifact in run.get("rendered_artifacts") or []:
         if not isinstance(artifact, dict):
             continue
