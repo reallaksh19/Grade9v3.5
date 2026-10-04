@@ -18,6 +18,12 @@ for bucket in doc.get("buckets", []):
     if bucket.get("id") == "BUCKET-CHEM-HYBRID-MODEL-BOUNDARIES":
         bucket["depth_overlay"] = "ADVANCED"
 
+# Chemistry's learner-quality vocabulary names this authored torsion/orbital
+# representation ORBITAL_DIAGRAM. GEOMETRIC_CONSTRUCTION is Mathematics-only.
+for representation in doc.get("representations", []):
+    if representation.get("id") == "REP-CHEM-ISS37-TORSION-OVERLAP":
+        representation["kind"] = "ORBITAL_DIAGRAM"
+
 # Canonical package teaching paths use the state-transition vocabulary
 # DECLARE | TRANSFORM | VERIFY. Preserve the richer authoring intent in each
 # action/why_valid string, but normalize the role field consumed by the schema.
