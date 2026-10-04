@@ -1,6 +1,6 @@
 # ISS33 work report — independent agent A, v2
 
-Status: **CANDIDATE / ready for frozen handoff**  
+Status: **FROZEN FIRST BLIND CANDIDATE — draft PR #46**  
 Branch: `candidate/issue33-agent-a-v2`  
 Pinned source snapshot: `e01c6365acfd6aec84c0a6e94f11b683bd961f6e`  
 Candidate artifact commit: `0af8b1fb4a99e3e75f6b008545e1eb6c4f9f82b5`  
@@ -22,7 +22,7 @@ The governed render exists and both automated gates pass. The hardest learner-re
 | U5 Rendered deliverables | DONE | rendered/core1a.html; rendered/core2.html; render-digests.json |
 | U6 Semantic/interaction audit | DONE_WITH_FINDINGS | semantic-review.json; quality-gate.json; tablet-audit.json |
 | U7 Builder proposal | DONE_PROPOSAL_ONLY | builder-proposal.md |
-| U8 Independent handoff | READY | candidate-review.md; draft PR to be frozen; partner output still unseen |
+| U8 Independent handoff | DONE | draft PR #46; candidate-review.md; partner output still unseen |
 
 ## Current findings
 1. `P2 PARTLY`: help reaches the right microtopic but not the exact construction/repair anchor.
@@ -35,4 +35,4 @@ The governed render exists and both automated gates pass. The hardest learner-re
 No separate sandbox repository was supplied, so no sandbox-copy claim is made. Learner state is simulated, not measured. The producing agent cannot self-certify release or golden promotion.
 
 ## Exact next step
-Open/freeze the candidate PR against the pinned seed branch, record the PR/head in `candidate-review.md`, post the final handoff checkpoint, and stop before inspecting Issue #34.
+Post the frozen-handoff checkpoint with the final branch head, then stop. Any paired comparison must be a later, explicitly separate review phase.
