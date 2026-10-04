@@ -106,6 +106,13 @@ class Realisation(unittest.TestCase):
         self.assertNotIn(" open", disclosure.group(0))
         self.assertIn("Need a hint? · guided support", article)
 
+    def test_wrong_route_warning_is_collapsed_by_default(self):
+        article = re.search(r"<article .*?</article>", self.html["CORE2"], re.S).group(0)
+        disclosure = re.search(r'<details class="g9-secondary-disclosure" data-g9-secondary="core2-wrong-route"[^>]*>', article)
+        self.assertIsNotNone(disclosure)
+        self.assertNotIn(" open", disclosure.group(0))
+        self.assertIn("Common wrong route · open if you want a warning", article)
+
 
 class Reporting(unittest.TestCase):
     def test_a_required_component_that_is_absent_or_below_its_floor_is_a_gap_that_names_it(self):
