@@ -99,6 +99,13 @@ class Realisation(unittest.TestCase):
         shown = re.search(r"<ol data-g9-ladder>(.*?)</ol>", article, re.S).group(1)
         self.assertEqual(shown, "", "no rung's words are in the page before the learner asks for it")
 
+    def test_guided_support_is_collapsed_by_default(self):
+        article = re.search(r"<article .*?</article>", self.html["CORE2"], re.S).group(0)
+        disclosure = re.search(r'<details class="g9-secondary-disclosure" data-g9-secondary="core2-hints"[^>]*>', article)
+        self.assertIsNotNone(disclosure)
+        self.assertNotIn(" open", disclosure.group(0))
+        self.assertIn("Need a hint? · guided support", article)
+
 
 class Reporting(unittest.TestCase):
     def test_a_required_component_that_is_absent_or_below_its_floor_is_a_gap_that_names_it(self):
@@ -231,6 +238,24 @@ class Core1aBenchmark(unittest.TestCase):
         self.assertIn('data-g9-theme="light"', self.html)
         self.assertIn('data-g9-theme="dark"', self.html)
 
+    def test_secondary_reference_is_collapsed_but_the_crux_and_practice_path_stay_visible(self):
+        for kind in ("core1a-prerequisites", "core1a-question-bridge", "core1a-equations", "core1a-trap-repair"):
+            matches = re.findall(rf'<details class="g9-secondary-disclosure" data-g9-secondary="{kind}"[^>]*>', self.html)
+            self.assertTrue(matches, kind)
+            self.assertTrue(all(" open" not in tag for tag in matches), kind)
+        self.assertIn('data-g9-component="KEY_STEP"', self.html)
+        self.assertIn('data-g9-component="CONSTRUCTION_STEPS"', self.html)
+        self.assertIn('data-g9-component="QUICK_CHECK"', self.html)
+        self.assertIn("Now you do one", self.html)
+
+    def test_worked_examples_require_prediction_before_each_step_is_revealed(self):
+        self.assertIn("Before opening each step, say what you would do next.", self.html)
+        worked = re.findall(r'<details class="g9-worked-step" data-g9-worked-predict[^>]*>', self.html)
+        self.assertTrue(worked)
+        self.assertTrue(all(" open" not in tag for tag in worked))
+        self.assertRegex(self.html, r"Predict step 1, then reveal")
+        self.assertIn('data-g9-secondary="worked-result"', self.html)
+
     def test_the_independent_checks_are_a_numbered_triad_that_names_each_items_job(self):
         triad = render_core._quick_check([{"statement": "Substitute back", "role": "CHECK"},
                                           {"statement": "Use it on new numbers", "role": "APPLY"},
@@ -344,6 +369,10 @@ class Core1aBenchmark(unittest.TestCase):
         self.assertEqual((by_id["CONSTRUCTION_STEPS"]["target_items"], by_id["STAGED_VISUAL"]["target_items"]), (3, 3))
         self.assertEqual(by_id["QUICK_CHECK"]["presentation"], "TRIAD")
         self.assertEqual(by_id["EQUATIONS"]["level"], "EXPECTED")
+        self.assertTrue(self.blueprint["interaction_policy"]["progressive_support"])
+        self.assertEqual(self.blueprint["interaction_policy"]["secondary_reference_default"], "COLLAPSED")
+        self.assertEqual(self.blueprint["interaction_policy"]["worked_example_step_policy"], "PREDICT_THEN_REVEAL")
+        self.assertEqual(by_id["WORKED_EXAMPLE"]["presentation"], "PREDICT_REVEAL_WORKED_CARD")
 
 
 class Tablet(unittest.TestCase):
