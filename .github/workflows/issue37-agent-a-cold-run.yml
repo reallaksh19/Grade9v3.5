@@ -96,14 +96,6 @@ jobs:
           test ! -f /tmp/iss37-a/core2a.html
           test ! -f /tmp/iss37-a/core2b.html
 
-      - name: Strict learner quality gate
-        run: |
-          python Shared/tools/quality_gate.py /tmp/iss37-a \
-            --subject Chemistry \
-            --product-id EVIDENCE-CHEM-ISS37-HYBRID-A-R1 \
-            --report /tmp/iss37-a/quality-gate.json \
-            --strict
-
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
@@ -112,6 +104,14 @@ jobs:
         run: |
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
+
+      - name: Strict learner quality gate
+        run: |
+          python Shared/tools/quality_gate.py /tmp/iss37-a \
+            --subject Chemistry \
+            --product-id EVIDENCE-CHEM-ISS37-HYBRID-A-R1 \
+            --report /tmp/iss37-a/quality-gate.json \
+            --strict
 
       - name: Tablet 12.7 browser audit
         run: |
