@@ -1,0 +1,145 @@
+name: issue37-agent-a-cold-run
+
+on:
+  push:
+    branches:
+      - feat/iss37-d4-hybridisation-agent-a-r1
+    paths:
+      - "evidence/benchmark/ISS37/**"
+      - "Shared/tools/render_core.py"
+      - "Shared/library/package.schema.json"
+      - "Shared/web/interactive-page-blueprints.v1.json"
+      - ".github/workflows/issue37-agent-a-cold-run.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cold-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install validation dependencies
+        run: pip install --quiet jsonschema
+
+      - name: Verify pinned authoring authorities
+        shell: bash
+        run: |
+          set -o pipefail
+          {
+            python Shared/tools/authoring_intake.py check
+            python Shared/tools/blueprint_spec.py --check
+            python Shared/tools/quality_contract.py --check
+            python -m unittest \
+              tests.test_authoring_intake \
+              tests.test_authoring_applicability \
+              tests.test_question_review_matrix.QuestionReviewMatrixTests.test_source_contract_is_valid_and_projection_is_current \
+              tests.test_question_review_matrix.QuestionReviewMatrixTests.test_compiler_emits_exactly_twenty_eight_unique_cells \
+              tests.test_question_review_matrix.QuestionReviewMatrixTests.test_resolver_selects_one_cell_and_fills_learner_relative_slots \
+              tests.test_question_review_matrix.QuestionReviewMatrixTests.test_percentage_never_routes_or_changes_slots
+          } 2>&1 | tee /tmp/issue37-focused-tests.log
+
+      - name: Materialize Issue 37 candidate inputs
+        run: PYTHONPATH=. python evidence/benchmark/ISS37/build_specimen.py
+
+      - name: Verify verbatim intake and schemas
+        run: |
+          python Shared/tools/owner_bank.py check evidence/benchmark/ISS37/generated/owner.bank.json
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+          core=Path('evidence/benchmark/ISS37/owner-core-prompt.md').read_bytes()
+          expected='52306a397ecc6f327a8aba16b73479547c9e78d75139bdf14839c00038eedde7'
+          actual=hashlib.sha256(core).hexdigest()
+          assert actual == expected, (actual, expected)
+          schema=json.loads(Path('Shared/library/package.schema.json').read_text(encoding='utf-8'))
+          package=json.loads(Path('evidence/benchmark/ISS37/generated/package.v1.json').read_text(encoding='utf-8'))
+          Draft202012Validator(schema).validate(package)
+          print('verbatim core hash: PASS')
+          print('package schema: PASS')
+          PY
+
+      - name: Governed render of requested roles
+        run: |
+          rm -rf /tmp/iss37-a
+          python Shared/tools/render_core.py build \
+            --manifest evidence/benchmark/ISS37/generated/product.manifest.json \
+            --out /tmp/iss37-a \
+            --mode PAGES
+          test -f /tmp/iss37-a/core1a.html
+          test -f /tmp/iss37-a/core2.html
+          test ! -f /tmp/iss37-a/core1b.html
+          test ! -f /tmp/iss37-a/core2a.html
+          test ! -f /tmp/iss37-a/core2b.html
+
+      - name: Strict learner quality gate
+        run: |
+          python Shared/tools/quality_gate.py /tmp/iss37-a \
+            --subject Chemistry \
+            --product-id EVIDENCE-CHEM-ISS37-HYBRID-A-R1 \
+            --report /tmp/iss37-a/quality-gate.json \
+            --strict
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install pinned browser audit dependency
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Tablet 12.7 browser audit
+        run: |
+          node tools/site-audit/core-page-audit.mjs \
+            /tmp/iss37-a \
+            --profile tablet-12.7 \
+            --http-root /tmp/iss37-a \
+            --json /tmp/iss37-a/tablet-audit.json
+
+      - name: Preserve sole-renderer HTML
+        run: |
+          mkdir -p evidence/benchmark/ISS37/rendered
+          cp /tmp/iss37-a/core1a.html evidence/benchmark/ISS37/rendered/core1a.html
+          cp /tmp/iss37-a/core2.html evidence/benchmark/ISS37/rendered/core2.html
+
+      - name: Commit exact rendered bytes when changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add evidence/benchmark/ISS37/rendered/core1a.html evidence/benchmark/ISS37/rendered/core2.html
+          if ! git diff --cached --quiet; then
+            git commit -m "test(iss37): preserve governed candidate render"
+            git push origin HEAD:feat/iss37-d4-hybridisation-agent-a-r1
+          else
+            echo "rendered bytes already current"
+          fi
+
+      - name: Record exact tested head and digests
+        if: always()
+        run: |
+          mkdir -p /tmp/iss37-a
+          git rev-parse HEAD > /tmp/iss37-a/exact-head.txt
+          if test -f evidence/benchmark/ISS37/rendered/core1a.html; then sha256sum evidence/benchmark/ISS37/rendered/core1a.html > /tmp/iss37-a/core1a.sha256; fi
+          if test -f evidence/benchmark/ISS37/rendered/core2.html; then sha256sum evidence/benchmark/ISS37/rendered/core2.html > /tmp/iss37-a/core2.sha256; fi
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: issue37-agent-a-cold-run
+          path: |
+            /tmp/iss37-a
+            /tmp/issue37-focused-tests.log
+            evidence/benchmark/ISS37/generated
+            evidence/benchmark/ISS37/rendered
+          if-no-files-found: warn
+          retention-days: 14
