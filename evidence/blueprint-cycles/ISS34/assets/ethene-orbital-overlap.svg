@@ -1,0 +1,81 @@
+<svg aria-labelledby="title-ethene-overlap desc-ethene-overlap" class="question-svg" role="img" viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg">
+<style>
+  .label { font-size: 15px; fill: #18324a; font-family: system-ui, sans-serif; font-weight: 700; }
+  .caption { font-size: 13px; fill: #475569; font-family: system-ui, sans-serif; }
+  .atom { font-size: 16px; font-weight: 700; font-family: system-ui, sans-serif; }
+  .plane-label { font-size: 12px; fill: #64748b; font-family: system-ui, sans-serif; font-style: italic; }
+</style>
+<title id="title-ethene-overlap">Ethene (H2C=CH2) Qualitative Orbital Overlap Diagram</title>
+<desc id="desc-ethene-overlap">Qualitative orbital-overlap diagram of ethene showing the planar C-C and C-H sigma framework formed by sp2 hybrids and 1s orbitals in the molecular plane, accompanied by two unhybridised parallel 2p orbitals perpendicular to the plane overlapping side-on to form the pi bond.</desc>
+
+<rect fill="#f8fafc" height="318" rx="12" stroke="#cbd5e1" stroke-width="2" width="638" x="1" y="1"/>
+
+<!-- STAGE 1: Molecular plane & Sigma framework (sp2-sp2 and sp2-1s) -->
+<g data-g9-stage-id="stage-sigma">
+  <!-- Perspective Molecular Plane (xy) -->
+  <polygon points="100,160 220,110 540,110 420,160" fill="#e2e8f0" fill-opacity="0.5" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 2"/>
+  <text class="plane-label" x="120" y="152">Molecular Plane (xy)</text>
+
+  <!-- Carbon nuclei -->
+  <circle cx="270" cy="135" fill="#334155" r="14"/>
+  <text class="atom" fill="#ffffff" text-anchor="middle" x="270" y="140">C₁</text>
+
+  <circle cx="370" cy="135" fill="#334155" r="14"/>
+  <text class="atom" fill="#ffffff" text-anchor="middle" x="370" y="140">C₂</text>
+
+  <!-- Hydrogen nuclei -->
+  <circle cx="170" cy="115" fill="#93c5fd" r="10" stroke="#3b82f6" stroke-width="1.5"/>
+  <text class="atom" fill="#1e3a8a" font-size="12px" text-anchor="middle" x="170" y="119">H</text>
+
+  <circle cx="210" cy="155" fill="#93c5fd" r="10" stroke="#3b82f6" stroke-width="1.5"/>
+  <text class="atom" fill="#1e3a8a" font-size="12px" text-anchor="middle" x="210" y="159">H</text>
+
+  <circle cx="470" cy="115" fill="#93c5fd" r="10" stroke="#3b82f6" stroke-width="1.5"/>
+  <text class="atom" fill="#1e3a8a" font-size="12px" text-anchor="middle" x="470" y="119">H</text>
+
+  <circle cx="430" cy="155" fill="#93c5fd" r="10" stroke="#3b82f6" stroke-width="1.5"/>
+  <text class="atom" fill="#1e3a8a" font-size="12px" text-anchor="middle" x="430" y="159">H</text>
+
+  <!-- C-C sigma bond (end-on sp2-sp2 overlap) -->
+  <ellipse cx="320" cy="135" rx="36" ry="12" fill="#3b82f6" fill-opacity="0.35" stroke="#2563eb" stroke-width="1.5"/>
+  <text class="caption" fill="#1d4ed8" font-weight="700" text-anchor="middle" x="320" y="140">C-C σ</text>
+
+  <!-- C-H sigma bonds -->
+  <line x1="256" y1="130" x2="180" y2="117" stroke="#60a5fa" stroke-width="3"/>
+  <line x1="258" y1="139" x2="218" y2="153" stroke="#60a5fa" stroke-width="3"/>
+  <line x1="384" y1="130" x2="460" y2="117" stroke="#60a5fa" stroke-width="3"/>
+  <line x1="382" y1="139" x2="422" y2="153" stroke="#60a5fa" stroke-width="3"/>
+
+  <text class="caption" text-anchor="middle" x="320" y="190">In-plane σ-framework: 5 σ bonds (1 C-C, 4 C-H) lie in the molecular plane</text>
+</g>
+
+<!-- STAGE 2: Unhybridised 2pz orbitals and lateral pi overlap -->
+<g data-g9-stage-id="stage-pi">
+  <!-- C1 2pz orbital (perpendicular to plane along z) -->
+  <!-- Upper lobe (positive phase) -->
+  <path d="M 270 135 C 255 105, 255 60, 270 30 C 285 60, 285 105, 270 135 Z" fill="#ec4899" fill-opacity="0.5" stroke="#db2777" stroke-width="1.5"/>
+  <text class="atom" fill="#be185d" font-size="12px" text-anchor="middle" x="270" y="70">+</text>
+  <!-- Lower lobe (negative phase) -->
+  <path d="M 270 135 C 255 165, 255 210, 270 240 C 285 210, 285 165, 270 135 Z" fill="#f472b6" fill-opacity="0.35" stroke="#db2777" stroke-width="1.5"/>
+  <text class="atom" fill="#be185d" font-size="12px" text-anchor="middle" x="270" y="200">−</text>
+
+  <!-- C2 2pz orbital (perpendicular to plane along z) -->
+  <!-- Upper lobe (positive phase) -->
+  <path d="M 370 135 C 355 105, 355 60, 370 30 C 385 60, 385 105, 370 135 Z" fill="#ec4899" fill-opacity="0.5" stroke="#db2777" stroke-width="1.5"/>
+  <text class="atom" fill="#be185d" font-size="12px" text-anchor="middle" x="370" y="70">+</text>
+  <!-- Lower lobe (negative phase) -->
+  <path d="M 370 135 C 355 165, 355 210, 370 240 C 385 210, 385 165, 370 135 Z" fill="#f472b6" fill-opacity="0.35" stroke="#db2777" stroke-width="1.5"/>
+  <text class="atom" fill="#be185d" font-size="12px" text-anchor="middle" x="370" y="200">−</text>
+
+  <!-- Lateral side-on overlap connections -->
+  <path d="M 270 40 Q 320 20, 370 40" fill="none" stroke="#be185d" stroke-dasharray="4 3" stroke-width="2.5"/>
+  <path d="M 270 230 Q 320 250, 370 230" fill="none" stroke="#be185d" stroke-dasharray="4 3" stroke-width="2.5"/>
+
+  <text class="caption" fill="#9d174d" font-weight="700" text-anchor="middle" x="320" y="25">Lateral π-overlap (above plane)</text>
+  <text class="caption" fill="#9d174d" font-weight="700" text-anchor="middle" x="320" y="270">Lateral π-overlap (below plane)</text>
+
+  <!-- Nodal plane indicator -->
+  <text class="plane-label" fill="#475569" text-anchor="end" x="620" y="140">Nodal plane coincides with molecular plane</text>
+  <line x1="535" y1="135" x2="620" y2="135" stroke="#94a3b8" stroke-dasharray="2 2" stroke-width="1"/>
+</g>
+</svg>
