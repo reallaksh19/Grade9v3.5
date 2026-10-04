@@ -311,10 +311,16 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
             svg = svg[:head.start()] + clean + svg[head.end():]
         name = "; ".join(labels[s] for s in shown if labels.get(s)) or rep.get("purpose", "")
         svg = re.sub(r"<svg\b", f'<svg role="img" aria-label="{esc(name)}"', svg, count=1)
-    sequence_attr = ' data-g9-stage-sequence="true"' if len(stage_ids) > 1 else ""
+    stage_mode = str((rep.get("extensions") or {}).get("grade9v3:stage_mode") or "CUMULATIVE").upper()
+    if stage_mode not in {"CUMULATIVE", "REPLACE"}:
+        ctx.gap("AUTHOR_STAGE_MODE", rep_id,
+                f"unsupported grade9v3:stage_mode {stage_mode!r}; use CUMULATIVE or REPLACE",
+                role, component="STAGED_VISUAL" if role == "CORE1A" else "REPRESENTATION")
+        stage_mode = "CUMULATIVE"
+    mode_attr = f' data-g9-stage-mode="{stage_mode.lower()}"' if len(stage_ids) > 1 else ""
     return (f'<figure data-g9-figure data-g9-fig="{esc(record)}-{esc(rep_id)}" data-g9-stage="{stage}" '
             f'data-g9-representation="{esc(rep_id)}" data-g9-kind="{esc(kind)}" data-reveal-stages="{max(len(shown), 1)}" '
-            f'data-g9-stages-total="{max(len(stage_ids), 1)}" data-g9-stages="{esc(" ".join(shown))}"{sequence_attr}>'
+            f'data-g9-stages-total="{max(len(stage_ids), 1)}" data-g9-stages="{esc(" ".join(shown))}"{mode_attr}>'
             f'{svg}{controls}{caption}</figure>')
 
 
@@ -360,6 +366,14 @@ def block(name: str, body: str, tag: str = "div", title: str | None = None) -> s
 
 def para(text) -> str:
     return f"<p>{esc(text)}</p>" if text else ""
+
+
+def secondary_disclosure(summary: str, body: str, kind: str) -> str:
+    """Progressive disclosure for useful-but-secondary learner material; closed by default."""
+    if not body:
+        return ""
+    return (f'<details class="g9-secondary-disclosure" data-g9-secondary="{esc(kind)}">'
+            f'<summary>{esc(summary)}</summary><div class="g9-secondary-body">{body}</div></details>')
 
 
 @lru_cache(maxsize=1024)
@@ -768,6 +782,68 @@ def _coverage_findings(ctx: Ctx, roles: list[str]) -> None:
             ctx.advise(policy["component"], finding["record"], finding["detail"], finding["core"])
 
 
+PURPOSE_DELIVERY_KEY = "grade9v3:purpose_delivery"
+
+
+def _purpose_delivery_spec(ctx: Ctx) -> tuple[str, list[dict]]:
+    """Return the manifest-selected purpose and authored delivery specs from package extensions."""
+    purpose = str(ctx.manifest.get("purpose") or "").upper()
+    if purpose not in {"REVISION", "COMPETITION"}:
+        return purpose, []
+    specs: list[dict] = []
+    for package in ctx.packages:
+        delivery = ((package.get("extensions") or {}).get(PURPOSE_DELIVERY_KEY) or {})
+        spec = delivery.get(purpose)
+        if isinstance(spec, dict):
+            specs.append(spec)
+    return purpose, specs
+
+
+def _purpose_extension(ctx: Ctx, role: str, record_id: str) -> str:
+    """Project a purpose-specific challenge beside the exact concept/question it extends."""
+    purpose, specs = _purpose_delivery_spec(ctx)
+    if not specs:
+        return ""
+    ref_key = "concept_refs" if role == "CORE1A" else "question_refs" if role == "CORE2" else None
+    if ref_key is None:
+        return ""
+    rendered: list[str] = []
+    for spec in specs:
+        section_title = str(spec.get("section_title") or ("Next-level revision" if purpose == "REVISION" else "Competition transfer"))
+        for item in spec.get("items") or []:
+            if not isinstance(item, dict) or role not in (item.get("roles") or []):
+                continue
+            if record_id not in (item.get(ref_key) or []):
+                continue
+            item_id = str(item.get("id") or "")
+            prompt = str(item.get("prompt") or "")
+            if not item_id or not prompt:
+                continue
+            source_kind = str(item.get("source_kind") or "")
+            source_label = str(item.get("source_label") or "")
+            if source_kind == "AUTHOR_CREATED_COMPETITION_STYLE":
+                provenance = source_label or "Original competition-style transfer; not a past-paper claim."
+            elif source_kind == "VERIFIED_COMPETITIVE_SOURCE":
+                provenance = source_label or "Verified competitive source"
+            else:
+                provenance = source_label or "Authored transfer"
+            answer = item.get("answer") or {}
+            answer_body = para(answer.get("summary")) + items(answer.get("reasoning"), True)
+            response = item.get("response") if isinstance(item.get("response"), dict) else {"type": "free_response", "paper_ok": True}
+            rendered.append(
+                f'<section class="g9-purpose-extension" data-g9-purpose-delivery="{esc(purpose)}" '
+                f'data-g9-purpose-item="{esc(item_id)}" data-g9-purpose-role="{esc(role)}">'
+                f'<div class="g9-eyebrow">{esc(section_title)}</div>'
+                f'<h3>{esc(item.get("title") or section_title)}</h3>'
+                f'<p class="g9-purpose-source">{esc(provenance)}</p>'
+                f'<div class="g9-purpose-prompt">{para(prompt)}</div>'
+                + attempt_box("Your attempt", response, record=item_id)
+                + reveal("Check your reasoning", answer_body, ref=f"PURPOSE-{item_id}-{role}")
+                + '</section>'
+            )
+    return "".join(rendered)
+
+
 # ------------------------------------------------------------------ roles
 
 def _relations(ctx: Ctx, m: dict) -> list[dict]:
@@ -1120,14 +1196,28 @@ def _core1a_worked_anchor(question: dict, ctx: Ctx | None = None, owner: bool = 
     if route:
         steps = "".join(
             f'<li data-g9-watch-step data-g9-move-ref="{esc(row.get("id", index))}">'
-            f'<strong>{esc(row.get("action", ""))}</strong>'
+            f'<details class="g9-worked-step" data-g9-worked-predict>'
+            f'<summary>Predict step {index}, then reveal</summary>'
+            f'<div class="g9-worked-step-body"><strong>{esc(row.get("action", ""))}</strong>'
             f'{para("Why valid: " + row["why_valid"]) if row.get("why_valid") else ""}'
-            f'{para("Result: " + row["output"]) if row.get("output") else ""}</li>'
+            f'{para("Result: " + row["output"]) if row.get("output") else ""}</div></details></li>'
             for index, row in enumerate(route, 1)
         )
-        working = f'<ol class="g9-watch-steps">{steps}</ol>'
+        working = ('<p class="g9-worked-instruction">Before opening each step, say what you would do next.</p>'
+                   f'<ol class="g9-watch-steps">{steps}</ol>')
     else:
-        working = items(answer.get("reasoning"), True)
+        legacy = [str(step) for step in answer.get("reasoning") or [] if str(step).strip()]
+        if legacy:
+            steps = "".join(
+                f'<li data-g9-watch-step><details class="g9-worked-step" data-g9-worked-predict>'
+                f'<summary>Predict step {index}, then reveal</summary>'
+                f'<div class="g9-worked-step-body">{para(step)}</div></details></li>'
+                for index, step in enumerate(legacy, 1)
+            )
+            working = ('<p class="g9-worked-instruction">Before opening each step, say what you would do next.</p>'
+                       f'<ol class="g9-watch-steps">{steps}</ol>')
+        else:
+            working = ""
     stem = question.get("stem")
     head = (f'<p class="g9-prov" data-g9-anchor-source>{esc(_identity(question))} · {esc(_custody(question))}</p>'
             if owner else "")
@@ -1135,8 +1225,12 @@ def _core1a_worked_anchor(question: dict, ctx: Ctx | None = None, owner: bool = 
         head
         + (f'<p class="g9-lines">{question_text(ctx, question, "stem", stem, "CORE1A")}</p>' if ctx and stem else para(stem))
         + working
-        + block("worked_result", para(answer.get("summary")), title="Result")
-        + block("worked_check", para(answer.get("check")), title="Check")
+        + secondary_disclosure(
+            "Result and independent check",
+            block("worked_result", para(answer.get("summary")), title="Result")
+            + block("worked_check", para(answer.get("check")), title="Check"),
+            "worked-result",
+        )
     )
 
 
@@ -1265,12 +1359,15 @@ def core1a(ctx: Ctx, m: dict) -> str:
         """What opens the construction, once per concept: the key step, then what the learner must already hold."""
         return {
             "KEY_STEP": part("KEY_STEP", block("inferential_jump", para(m["inferential_jump"]), title="The key step")),
-            "MODEL_CONTRACT": part("MODEL_CONTRACT", block("entry_assumptions", items(m.get("entry_assumptions")) + _prereqs(ctx, m),
-                                                           title="You need")),
+            "MODEL_CONTRACT": part("MODEL_CONTRACT", secondary_disclosure(
+                "What you need before this",
+                block("entry_assumptions", items(m.get("entry_assumptions")) + _prereqs(ctx, m), title="Prerequisites"),
+                "core1a-prerequisites",
+            )),
         }
     closure = component_body(ctx, "CORE1A", {
         "EXIT_RECALL": part("EXIT_RECALL", (
-            block("exit_task", para(exit_task.get("prompt")), title="Try it with less support")
+            block("exit_task", para(exit_task.get("prompt")), title="Now you do one")
             + attempt_box("Your answer", record=m["id"])
             + reveal("Model answer",
                      block("exit_answer",
@@ -1289,10 +1386,10 @@ def core1a(ctx: Ctx, m: dict) -> str:
             _toughest_unit_gaps(ctx, m, units, toughest)
         primary, support = _core1a_path_bridge(ctx, m, steps)
         opened = opening()
-        return head + compose(ctx, "CORE1A", {
+        return (head + compose(ctx, "CORE1A", {
             "construction": opened["KEY_STEP"] + opened["MODEL_CONTRACT"] + primary,
             "repair_closure": support + closure,
-        })
+        }) + _purpose_extension(ctx, "CORE1A", m["id"]))
 
     rows = ""
     bank_questions = [q for q in ctx.bank if isinstance(q, dict) and q.get("id")]
@@ -1361,12 +1458,20 @@ def core1a(ctx: Ctx, m: dict) -> str:
         card_parts = {
             "UNIT_HEADER": unit_part("UNIT_HEADER", unit_head),
             **(opening() if n == 0 else {}),
-            "QUESTION_BRIDGE": unit_part("QUESTION_BRIDGE", _core1a_question_bridge(ctx, u, crux_questions, ctx.toughest())),
+            "QUESTION_BRIDGE": unit_part("QUESTION_BRIDGE", secondary_disclosure(
+                "Why this section matters for the question set",
+                _core1a_question_bridge(ctx, u, crux_questions, ctx.toughest()),
+                "core1a-question-bridge",
+            )),
             "CONSTRUCTION_STEPS": unit_part("CONSTRUCTION_STEPS",
                                             block("construction", f"<ol>{step_html}</ol>" if step_html else ""),
                                             items=len(step_items), band=unit_band),
-            "EQUATIONS": unit_part("EQUATIONS", block("equation_matrix", relation_matrix, title="Equations and validity")),
-            "WORKED_EXAMPLE": unit_part("WORKED_EXAMPLE", block("worked_anchor", anchor_html, title="Watch one")),
+            "EQUATIONS": unit_part("EQUATIONS", secondary_disclosure(
+                "Formula reference · meaning and conditions",
+                block("equation_matrix", relation_matrix, title="Equations and validity"),
+                "core1a-equations",
+            )),
+            "WORKED_EXAMPLE": unit_part("WORKED_EXAMPLE", block("worked_anchor", anchor_html, title="Watch one · predict before reveal")),
         }
         card = component_body(ctx, "CORE1A", card_parts, "construction")
         construction = f'<section id="{esc(u["id"])}" class="g9-cu" data-g9-cu="{esc(u["id"])}">{card}</section>'
@@ -1378,7 +1483,11 @@ def core1a(ctx: Ctx, m: dict) -> str:
             f'<section class="g9-cu-support" data-g9-support-for="{esc(u["id"])}">'
             f"<h3>{esc(support_label)}</h3>"
             + component_body(ctx, "CORE1A", {
-                "TRAP_REPAIR": unit_part("TRAP_REPAIR", trap, items=len(wrong)),
+                "TRAP_REPAIR": unit_part("TRAP_REPAIR", secondary_disclosure(
+                    "Mistake clinic · diagnose and repair",
+                    trap,
+                    "core1a-trap-repair",
+                ), items=len(wrong)),
                 "QUICK_CHECK": unit_part("QUICK_CHECK", _quick_check(check_rows), items=len(checks)),
             }, "repair_closure")
             + "</section>"
@@ -1394,7 +1503,7 @@ def core1a(ctx: Ctx, m: dict) -> str:
 
     if toughest and m["id"] == toughest["microtopic_ref"]:
         _toughest_unit_gaps(ctx, m, units, toughest)
-    return head + rows + closing
+    return head + rows + _purpose_extension(ctx, "CORE1A", m["id"]) + closing
 
 
 def _toughest_unit_gaps(ctx: Ctx, m: dict, units: list[dict], toughest: dict) -> None:
@@ -1652,7 +1761,11 @@ def _core2_support(ctx: Ctx, q: dict) -> str:
              + block("authored_core2_support",
                      _core2_support_ladder(ctx, q, authored_rows, core2_v2.AUTHORED_CORE2_SUPPORT),
                      title="Guided support"))
-    return ('<div class="g9-eyebrow">Hint ladder · reveal only what you need</div>' + lanes) if lanes else ""
+    return (secondary_disclosure(
+        "Need a hint? · guided support",
+        '<div class="g9-eyebrow">Hint ladder · reveal only what you need</div>' + lanes,
+        "core2-hints",
+    ) if lanes else "")
 
 
 def _core2_solution_moves(answer: dict) -> int:
@@ -1764,7 +1877,7 @@ def core2(ctx: Ctx, q: dict) -> str:
         "CHECK": part("CHECK", block("independent_check", '<p>' + question_text(ctx, q, "answer_check", ans["check"]) + '</p>'
                                      if ans.get("check") else "", title="Independent check")),
     }, parent="SOLUTION")
-    return compose(ctx, "CORE2", {
+    rendered = compose(ctx, "CORE2", {
         "identity": component_body(ctx, "CORE2", {
             "IDENTITY": part("IDENTITY", block("source_identity", f"<h2>{esc(_identity(q))}</h2><p class=\"g9-prov\">{esc(_custody(q))}</p>")
                              + metadata_strip(ctx, "CORE2", q)),
@@ -1775,8 +1888,12 @@ def core2(ctx: Ctx, q: dict) -> str:
             "STEM": part("STEM", '<div class="g9-eyebrow">Attempt first</div>'
                          + block("stem", '<p>' + question_text(ctx, q, "stem", q["stem"]) + '</p>')),
             "CONDITIONS": part("CONDITIONS", block("conditions", f'<ul>{conditions}</ul>' if conditions else "", title="Conditions")),
-            "TRAP": part("TRAP", block("common_wrong_route", '<p>' + question_text(ctx, q, "common_wrong_route", wrong_route) + '</p>'
-                                       if isinstance(wrong_route, str) and wrong_route.strip() else "", title="Common wrong route")),
+            "TRAP": part("TRAP", secondary_disclosure(
+                "Common wrong route · open if you want a warning",
+                block("common_wrong_route", '<p>' + question_text(ctx, q, "common_wrong_route", wrong_route) + '</p>'
+                      if isinstance(wrong_route, str) and wrong_route.strip() else "", title="Common wrong route"),
+                "core2-wrong-route",
+            )),
             "ATTEMPT": part("ATTEMPT", attempt_box("Your answer", response_for(q), q.get("options"), rid,
                                                    option_html=options if options else None)),
         }, "attempt"),
@@ -1793,6 +1910,7 @@ def core2(ctx: Ctx, q: dict) -> str:
             "SOLUTION": part("SOLUTION", reveal("Answer and working", worked + teaching_figure, ref=f'CORE2-{rid}-solution')),
         }, "solution"),
     })
+    return rendered + _purpose_extension(ctx, "CORE2", rid)
 
 
 def _ladder(ctx: Ctx, q: dict, role: str, source: bool = False) -> str:
@@ -2082,6 +2200,19 @@ COMPONENT_CSS = """
 .g9-eyebrow{font-size:.85rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 6px}
 .g9-pill{display:inline-flex;align-items:center;font-size:.85rem;font-weight:800;line-height:1.2;padding:3px 10px;border-radius:999px;background:var(--pill-bg);color:var(--pill-fg);white-space:nowrap}
 .g9-pill-source{background:var(--src-bg);color:var(--src-fg)}
+.g9-purpose-extension{margin:18px 0;padding:16px;border:2px solid var(--accent);border-radius:16px;background:var(--soft)}
+.g9-purpose-extension h3{margin:.1rem 0 .35rem}.g9-purpose-source{margin:.15rem 0 .7rem;color:var(--muted);font-size:.9rem}
+.g9-purpose-prompt p{font-size:1.05rem;line-height:1.55;white-space:pre-line}
+.g9-secondary-disclosure{border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}
+.g9-secondary-disclosure{min-width:0;max-width:100%}
+.g9-secondary-disclosure>summary{min-height:var(--g9-touch-min);min-width:0;display:flex;align-items:center;flex-wrap:wrap;overflow-wrap:anywhere;padding:10px 12px;font-weight:800;cursor:pointer}
+.g9-secondary-disclosure>summary::after{content:"+";margin-left:auto;font-size:1.2em}.g9-secondary-disclosure[open]>summary::after{content:"−"}
+.g9-secondary-body{padding:0 12px 12px}
+.g9-worked-instruction{margin:.35rem 0 .6rem;color:var(--muted);font-weight:650}
+.g9-watch-steps{padding-left:1.35rem}.g9-watch-steps>li{margin:.65rem 0}
+.g9-worked-step{border:1px solid var(--line);border-radius:10px;background:var(--card);overflow:hidden}
+.g9-worked-step>summary{min-height:var(--g9-touch-min);display:flex;align-items:center;padding:9px 11px;font-weight:750;cursor:pointer}
+.g9-worked-step-body{padding:0 11px 11px}.g9-worked-step-body p{margin:.3rem 0}
 article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-bottom:1px solid var(--line)}
 .g9-c-header h2,.g9-c-concept-header h2{font-size:1.2rem;line-height:1.3;margin:0;letter-spacing:-.01em}
 .g9-c-header .g9-prov{margin:2px 0 0}
@@ -2246,9 +2377,9 @@ q('[data-g9-zoom]').forEach(b=>b.onclick=()=>{let z=parseFloat(store.get('zoom')
 q('[data-g9-font]').forEach(b=>b.onclick=()=>q('[data-g9-zoom="'+b.dataset.g9Font+'"]')[0]?.click());
 function initFigure(f){if(f.dataset.g9Init)return;f.dataset.g9Init='1';const ids=(f.dataset.g9Stages||'').split(' ').filter(Boolean);if(ids.length<2)return;let i=0;
 const chips=q('[data-g9-stage-goto]',f);const desc=q('[data-g9-stage-desc-text]',f)[0];
-const isSeq=f.dataset.g9StageSequence==='true'||ids.every(id=>{const g=q('[data-g9-stage-id="'+id+'"]',f)[0];return g&&g.querySelector('text[y="24"]');});
+const stageMode=f.dataset.g9StageMode||'cumulative';const cumulative=stageMode!=='replace';
 ids.forEach(id=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display='none'));
-const show=()=>{ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=(isSeq?n===i:n<=i)?'':'none'));const l=q('[data-g9-stage-label]',f)[0];if(l)l.textContent='Stage '+(i+1)+' of '+ids.length;chips.forEach((c,n)=>c.setAttribute('aria-pressed',String(n===i)));if(desc)desc.textContent=(chips[i]&&chips[i].dataset.g9StageDesc)||''};show();chips.forEach((c,n)=>c.onclick=()=>{i=n;show()});
+const show=()=>{ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=(cumulative?n<=i:n===i)?'':'none'));const l=q('[data-g9-stage-label]',f)[0];if(l)l.textContent='Stage '+(i+1)+' of '+ids.length;chips.forEach((c,n)=>c.setAttribute('aria-pressed',String(n===i)));if(desc)desc.textContent=(chips[i]&&chips[i].dataset.g9StageDesc)||''};show();chips.forEach((c,n)=>c.onclick=()=>{i=n;show()});
 q('[data-g9-stage-step]',f).forEach(b=>b.onclick=()=>{i=Math.max(0,Math.min(ids.length-1,i+(b.dataset.g9StageStep==='next'?1:-1)));show()})}
 function nextRung(l){const t=q('template[data-g9-rung-payload]',l)[0];if(!t)return false;const payload=t.content.cloneNode(true);q('[data-g9-rung-ghost]',l)[0]?.remove();q('figure[data-g9-figure]',payload).forEach(initFigure);q('[data-g9-ladder]',l)[0].append(payload);t.remove();const b=q('[data-g9-next-rung]',l)[0];if(b){if(!q('template[data-g9-rung-payload]',l).length)b.disabled=true;else b.textContent='Show next support'}return true}
 function materialise(a){q('details[data-g9-payload-ref]',a).forEach(d=>{const slot=q('[data-g9-payload-slot]',d)[0];if(!slot||slot.dataset.g9Filled)return;const t=q('template[data-g9-payload]',a).find(x=>x.dataset.g9Payload===d.dataset.g9PayloadRef);if(!t)return;slot.replaceChildren(t.content.cloneNode(true));slot.dataset.g9Filled='1';q('figure[data-g9-figure]',slot).forEach(initFigure)})}
@@ -2264,7 +2395,7 @@ const attemptFields=a=>q('[data-g9-attempt-box] input,[data-g9-attempt-box] text
 function saveCore2State(a){if(a.dataset.g9Role!=='CORE2')return;const key=stateKey(a);if(!key)return;const fields=attemptFields(a).map(el=>({value:el.value,checked:!!el.checked}));const ladders={};q('.g9-ladder[data-g9-ladder-ref]',a).forEach(l=>ladders[l.dataset.g9LadderRef]=rungCount(l));const reveals=q('details[data-g9-support-reveal]',a).map(d=>!!d.open);store.set(key,JSON.stringify({attempted:!!a.dataset.attempted,fields,ladders,reveals}))}
 function bindSupportRevealState(a){q('details[data-g9-support-reveal]',a).forEach(d=>{if(d.dataset.g9StateBound)return;d.dataset.g9StateBound='1';d.addEventListener('toggle',()=>saveCore2State(a))})}
 function restoreCore2State(a,lock){if(a.dataset.g9Role!=='CORE2')return;const state=readState(stateKey(a));if(!state)return;const fields=attemptFields(a);(state.fields||[]).forEach((saved,i)=>{const el=fields[i];if(!el||!saved||typeof saved!=='object')return;if(Object.prototype.hasOwnProperty.call(saved,'value'))el.value=saved.value??'';if(el.type==='checkbox'||el.type==='radio')el.checked=!!saved.checked});Object.entries(state.ladders||{}).forEach(([ref,count])=>{const l=q('.g9-ladder[data-g9-ladder-ref]',a).find(x=>x.dataset.g9LadderRef===ref);if(!l||!Number.isInteger(count)||count<0)return;while(rungCount(l)<count&&nextRung(l)){};});bindSupportRevealState(a);q('details[data-g9-support-reveal]',a).forEach((d,i)=>d.open=!!(state.reveals||[])[i]);if(state.attempted){a.dataset.attempted='1';materialise(a)}lock()}
-const articles=q('article[data-g9-unit],article[data-g9-diagnostic]');
+const articles=q('article[data-g9-unit],article[data-g9-diagnostic],[data-g9-purpose-item]');
 articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!a.dataset.attempted){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();restoreCore2State(a,lock);
 q('details[data-requires-attempt] summary',a).forEach(s=>s.addEventListener('click',e=>{if(!a.dataset.attempted){e.preventDefault();q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a)[0]?.focus()}}));
 q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-attempt-box]');if(!box||!validAttempt(box)){q('input,textarea,select',box||a)[0]?.focus();return}a.dataset.attempted='1';lock();materialise(a);saveCore2State(a)});

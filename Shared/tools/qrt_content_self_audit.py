@@ -38,6 +38,8 @@ HINT_CHECKS = (
     "w_protection",
     "learner_fit",
     "non_redundancy",
+    "purpose_fit",
+    "actionable_specificity",
 )
 SOLUTION_CHECKS = (
     "academic_correctness",

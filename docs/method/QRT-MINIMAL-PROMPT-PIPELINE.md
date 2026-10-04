@@ -113,7 +113,9 @@ Every hint is checked for:
 - alignment to its intended objective;
 - W protection;
 - learner fit;
-- non-redundancy.
+- non-redundancy;
+- purpose fit;
+- actionable specificity.
 
 If a hint contains a calculation, it explicitly declares `calculation_bearing: true` and links to the audited calculation row. A hint with no calculation declares `false`.
 
@@ -151,6 +153,25 @@ python Shared/tools/qrt_content_self_audit.py path/to/qrt-pipeline-run.json --ph
 ```
 
 `qrt_pipeline_precheck.py` also executes this item-level audit, so it cannot be bypassed by using the normal pre-render path.
+
+## Purpose must change the learner-facing artifact
+
+Recording `REVISION` or `COMPETITION` in metadata is not enough. When a new/updated run opts into
+`purpose_delivery`, the exact rendered Core1A/Core2 bytes must contain the corresponding purpose projection.
+
+- **REVISION** uses `REDUCED_SUPPORT` and a `NEXT_LEVEL` transfer attached to the same concept/question it extends.
+  The transfer should be one meaningful step harder than the source item: an extra modelling decision, representation
+  shift, or chained inference rather than a cosmetic number change.
+- **COMPETITION** uses a `CHALLENGE_SET` / competition-transfer block. The transfer is mixed or less labelled and must
+  not receive a purpose-specific hint ladder before attempt.
+- A real IIT-JEE/IMO/past-paper identity is shown only when `source_kind=VERIFIED_COMPETITIVE_SOURCE` carries an
+  inspectable HTTPS source ref and source label.
+- Without that authority, use `AUTHOR_CREATED_COMPETITION_STYLE` and visibly label the item as original
+  competition-style material. Never make an authored transfer look like an official past-paper question.
+
+The run-level `purpose_delivery` evidence names the item ids projected into both Core1A and Core2. The completion gate
+checks those ids against markers in the exact rendered HTML, so Revision and Competition cannot silently collapse to
+the same artifact.
 
 ## Authoring is not review
 
@@ -198,6 +219,23 @@ A generic link to the top of Core1A is insufficient when a specific repair targe
 Every declared `BLUEPRINT_ID@VERSION` must exist in `Shared/web/interactive-page-blueprints.v1.json`. A page may conform to standalone shell rules without conforming to a Blueprint; do not invent a Blueprint name to make a page look governed.
 
 Guided interactive explorers already have active repository authority: `BP-EXPLORER-GCDR@1.0.0`, authored through `Shared/tools/explorer_build.py` and validated numerically by `Shared/tools/explorer_model.py`. A QRT-linked explorer must use that active Blueprint when it claims explorer conformance. A hand-written interactive draft may still exist as a draft, but it must not claim `BP-EXPLORER-GCDR` conformance unless it satisfies that contract.
+
+## Staged SVGs: Chromium verifies the reveal, not just the source file
+
+A staged representation is **cumulative by default**. Stage 2 keeps Stage 1 geometry visible and adds its annotation;
+Stage 3 keeps the earlier structure and adds the next layer. An author may opt into replacement semantics only with
+`extensions["grade9v3:stage_mode"] = "REPLACE"`.
+
+The Core-page Chromium audit clicks every stage control. For cumulative figures it fails if a later stage shows fewer
+stage groups than its ordinal or loses structural SVG geometry (`path`, `line`, `rect`, `circle`, `ellipse`,
+`polygon`, `polyline`). This catches the failure mode where labels such as `r`, `h`, `l` remain visible while
+the cone/triangle itself disappears.
+
+Run the tablet audit with enforcement when accepting learner HTML:
+
+```bash
+node tools/site-audit/core-page-audit.mjs path/to/rendered   --profile tablet-12.7   --http-root path/to/rendered   --enforce
+```
 
 ## Interactive pages: Chromium is mandatory
 

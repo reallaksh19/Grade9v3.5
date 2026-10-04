@@ -99,6 +99,19 @@ class QRTContentSelfAuditTests(unittest.TestCase):
             audit.validate_content_self_audits(run),
         )
 
+    def test_hint_audit_requires_purpose_fit_and_actionable_specificity(self):
+        run = self.base_run()
+        del run["questions"][0]["hints"][0]["self_audit"]["checks"]["purpose_fit"]
+        problems = audit.validate_content_self_audits(run)
+        self.assertIn(
+            "SELF_AUDIT_CHECK_MISSING_OR_INVALID: Q1:HINT:H1:purpose_fit",
+            problems,
+        )
+        self.assertNotIn(
+            "SELF_AUDIT_CHECK_MISSING_OR_INVALID: Q1:HINT:H1:actionable_specificity",
+            problems,
+        )
+
     def test_every_named_check_requires_its_own_evidence(self):
         run = self.base_run()
         run["questions"][0]["hints"][0]["self_audit"]["checks"]["w_protection"]["evidence"] = ""

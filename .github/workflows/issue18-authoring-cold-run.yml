@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - feat/qrt-minimal-prompt-pipeline-hardening
+      - fix/qrt-purpose-svg-learner-value
+  pull_request:
+    branches:
+      - feat/qrt-minimal-prompt-pipeline-hardening
     paths:
       - "evidence/authoring/issue18-surface-areas-volumes/**"
       - "Shared/tools/qrt_pipeline_guard.py"
@@ -102,6 +106,16 @@ jobs:
           test ! -f /tmp/issue18-sav/core2a.html
           test ! -f /tmp/issue18-sav/core2b.html
 
+      - name: Bind run evidence to the exact governed render
+        run: |
+          mkdir -p evidence/authoring/issue18-surface-areas-volumes/rendered
+          cp /tmp/issue18-sav/core1a.html evidence/authoring/issue18-surface-areas-volumes/rendered/core1a.html
+          cp /tmp/issue18-sav/core2.html evidence/authoring/issue18-surface-areas-volumes/rendered/core2.html
+          PYTHONPATH=. python evidence/authoring/issue18-surface-areas-volumes/build_pipeline_run.py \
+            --head "$GITHUB_SHA"
+          PYTHONPATH=. python Shared/tools/qrt_pipeline_precheck.py \
+            evidence/authoring/issue18-surface-areas-volumes/qrt-pipeline-run.json
+
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
@@ -125,18 +139,13 @@ jobs:
             /tmp/issue18-sav \
             --profile tablet-12.7 \
             --http-root /tmp/issue18-sav \
-            --json /tmp/issue18-sav/tablet-audit.json
+            --json /tmp/issue18-sav/tablet-audit.json \
+            --enforce
 
       - name: Validate governed completion gate
         run: |
           PYTHONPATH=. python Shared/tools/qrt_pipeline_gate.py \
             evidence/authoring/issue18-surface-areas-volumes/qrt-pipeline-run.json
-
-      - name: Preserve governed learner HTML
-        run: |
-          mkdir -p evidence/authoring/issue18-surface-areas-volumes/rendered
-          cp /tmp/issue18-sav/core1a.html evidence/authoring/issue18-surface-areas-volumes/rendered/core1a.html
-          cp /tmp/issue18-sav/core2.html evidence/authoring/issue18-surface-areas-volumes/rendered/core2.html
 
       - name: Commit exact rendered bytes when changed
         run: |
@@ -146,7 +155,8 @@ jobs:
                   evidence/authoring/issue18-surface-areas-volumes/rendered/core2.html
           if ! git diff --cached --quiet; then
             git commit -m "test(qrt): preserve issue18 governed learner HTML"
-            git push origin HEAD:feat/qrt-minimal-prompt-pipeline-hardening
+            target_branch="${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}"
+            git push origin "HEAD:$target_branch"
           else
             echo "rendered bytes already current"
           fi

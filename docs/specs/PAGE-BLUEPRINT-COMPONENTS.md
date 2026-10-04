@@ -205,7 +205,7 @@ Optional: shown when the record has it.
 
 ## BP-CORE1A-CONSTRUCTION@1.4.0 (CORE1A)
 
-Learner job: Reveal and explain the complete conceptual construction at intrinsic subtopic depth, then connect the concept to selected authentic questions that exercise its canonical capability.
+Learner job: Build the concept around its crux, study one worked example with prediction before reveal, then retrieve and apply the idea with less support.
 
 Theme: opens light, and the learner can switch.
 
@@ -248,16 +248,16 @@ Required: a page without it is a gap, and the quality gate fails it.
 - Record fields: `construction_units[].step_refs`, `teaching_path`
 - To author it: Each construction unit lists step_refs naming 2 or more teaching_path steps; each step has action, why_valid and output written for this unit, none repeated from another unit. A unit that builds the crux of a D3 or D4 question (it names that question in crux_question_refs) needs 4 steps, and its last step is the move that question turns on.
 
-**WORKED_EXAMPLE** · slot `construction`, once per construction unit · WORKED_CARD
+**WORKED_EXAMPLE** · slot `construction`, once per construction unit · PREDICT_REVEAL_WORKED_CARD
 
-- The learner gets: Walk one authentic question through the construction.
+- The learner gets: Walk one authentic question through the construction while asking the learner to predict each next step before revealing it.
 - The reference page: core1a-motion-in-a-plane-tablet: the worked card
 - Record fields: `construction_units[].worked_anchor_ref`, `construction_units[].bank_anchor_ref`
 - To author it: worked_anchor_ref names a question of the package that exercises exactly this unit's move. For the unit that builds toward a question of the product's bank (an owner-supplied question), set bank_anchor_ref to that question's id instead: the page then walks through the Owner's own question with its verified route, and nothing is copied into the package.
 
-**TRAP_REPAIR** · slot `repair_closure`, once per construction unit · TRAP_CARD · at least 1 item(s)
+**TRAP_REPAIR** · slot `repair_closure`, once per construction unit · DISCLOSURE_TRAP_CARD · at least 1 item(s)
 
-- The learner gets: Show the mistake learners make here, how to notice it and how to repair it.
+- The learner gets: Offer the mistake/diagnose/repair clinic on demand; collapsed by default so it does not compete with the main construction.
 - The reference page: core1a-motion-in-a-plane-tablet: the easy-mistake card with diagnostic and repair
 - Record fields: `misconceptions`, `construction_units[].misconception_indexes`
 - To author it: misconceptions[] holds wrong_idea, diagnostic_prompt and repair for this concept; each construction unit names the ones that apply in misconception_indexes.
@@ -271,7 +271,7 @@ Required: a page without it is a gap, and the quality gate fails it.
 
 **EXIT_RECALL** · slot `repair_closure` · RECALL_CARD
 
-- The learner gets: Ask for the idea back with less support, then show a model answer.
+- The learner gets: Require an independent attempt with less support after the construction and worked example.
 - The reference page: core1a-motion-in-a-plane-tablet: the active-recall attempt
 - Record fields: `exit_task`
 
@@ -279,16 +279,16 @@ Required: a page without it is a gap, and the quality gate fails it.
 
 Expected: an official page missing it carries an advisory naming the field to author; new authoring must supply it or waive it with a written reason, else it is a gap.
 
-**MODEL_CONTRACT** · slot `construction` · TILE
+**MODEL_CONTRACT** · slot `construction` · DISCLOSURE_TILE
 
-- The learner gets: Say what the learner must already hold and what model is assumed.
+- The learner gets: Keep prerequisites available without competing with the construction; collapsed by default.
 - The reference page: core1a-motion-in-a-plane-tablet: the 'Model contract & assumptions' tile
 - Record fields: `entry_assumptions`, `prerequisite_refs`
 - To author it: List in entry_assumptions[] each thing a learner must already be able to do before this concept, one per entry and specific to this concept.
 
-**EQUATIONS** · slot `construction`, once per construction unit · EQUATION_CARD
+**EQUATIONS** · slot `construction`, once per construction unit · DISCLOSURE_EQUATION_CARD
 
-- The learner gets: Put the relations a unit uses beside their meaning and when they hold.
+- The learner gets: Keep formulas, meaning and validity conditions available as on-demand reference rather than a mandatory reading detour.
 - The reference page: core1a-motion-in-a-plane-tablet: the equation card of every concept card (definition and validity scope)
 - Record fields: `construction_units[].relation_refs`, `relation_refs`
 - To author it: Each construction unit names the microtopic's relations it uses in construction_units[].relation_refs; each relation record needs its expression, meaning and conditions. A subject that declares no gates writes gate_relation_ref: null.
@@ -309,9 +309,9 @@ Optional: shown when the record has it.
 - The learner gets: Let the learner jump to a construction step.
 - The reference page: core1a-motion-in-a-plane-tablet: the section tabs
 
-**QUESTION_BRIDGE** · slot `construction`, once per construction unit · CALLOUT_INFO
+**QUESTION_BRIDGE** · slot `construction`, once per construction unit · DISCLOSURE_INFO
 
-- The learner gets: Say which source question this unit builds toward and the move a learner most often misses in it, so the concept is taught for that question and not only named after it.
+- The learner gets: Keep question-set rationale available on demand without interrupting the learning path.
 - The reference page: core1a-motion-in-a-plane-tablet: each concept card is built around the inferential leap the practice questions need
 - Record fields: `construction_units[].crux_question_refs`, `construction_units[].crux_step_ref`, `answer.crux_move_ref`
 - To author it: Write crux_question_refs on a construction unit: the ids of the bank questions whose crux the unit builds, and crux_step_ref: the one of its step_refs that builds the move those questions turn on (the page marks that step). The toughest question of the set (the deploy names it) must be named by a unit of the concept it belongs to; that unit's steps must lead to the move the question turns on, and its worked example is that question (bank_anchor_ref). A unit that only shares the question's topic does not build its crux, and a step that mentions the idea in passing is not the step that builds it: draw the whole idea (for a sum of two vectors, every angle and not only the right angle).
