@@ -143,6 +143,52 @@ class QRTPipelineGuardTests(unittest.TestCase):
             guard.validate_blueprints(run, registry),
         )
 
+    def test_revision_and_competition_have_distinct_governed_delivery_contracts(self):
+        run = self.base_run()
+        run["purpose_delivery"] = {
+            "purpose": "REVISION",
+            "support_policy": "REDUCED_SUPPORT",
+            "projection": {
+                "CORE1A": {"section_kind": "NEXT_LEVEL", "item_refs": ["REV-1"]},
+                "CORE2": {"section_kind": "NEXT_LEVEL", "item_refs": ["REV-1"]},
+            },
+            "items": [{
+                "id": "REV-1",
+                "roles": ["CORE1A", "CORE2"],
+                "source_kind": "AUTHOR_CREATED_REVISION_TRANSFER",
+            }],
+        }
+        self.assertEqual(guard.validate_purpose_delivery(run), [])
+
+        run["learner_profile"]["purpose"] = "COMPETITION"
+        problems = guard.validate_purpose_delivery(run)
+        self.assertTrue(any(p.startswith("PURPOSE_DELIVERY_MISMATCH") for p in problems))
+        self.assertTrue(any(p.startswith("PURPOSE_SUPPORT_POLICY_INVALID") for p in problems))
+        self.assertTrue(any(p.startswith("PURPOSE_SECTION_KIND_INVALID") for p in problems))
+
+    def test_competition_source_cannot_be_presented_as_verified_without_source_authority(self):
+        run = self.base_run()
+        run["learner_profile"]["purpose"] = "COMPETITION"
+        run["purpose_delivery"] = {
+            "purpose": "COMPETITION",
+            "support_policy": "NO_MID_TASK_BRIDGING",
+            "projection": {
+                "CORE1A": {"section_kind": "CHALLENGE_SET", "item_refs": ["COMP-1"]},
+                "CORE2": {"section_kind": "CHALLENGE_SET", "item_refs": ["COMP-1"]},
+            },
+            "items": [{
+                "id": "COMP-1",
+                "roles": ["CORE1A", "CORE2"],
+                "source_kind": "VERIFIED_COMPETITIVE_SOURCE",
+                "source_ref": None,
+                "source_label": "",
+            }],
+        }
+        self.assertIn(
+            "PURPOSE_VERIFIED_SOURCE_INCOMPLETE: COMP-1",
+            guard.validate_purpose_delivery(run),
+        )
+
     def test_validation_layers_cannot_be_collapsed_into_self_certified_overall_pass(self):
         run = self.base_run()
         run["validation"]["overall"] = "PASS"
