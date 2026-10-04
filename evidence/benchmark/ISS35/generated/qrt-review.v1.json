@@ -1,0 +1,470 @@
+{
+  "schema": "issue35-qrt-authoring-evidence/v1",
+  "status": "AUTHORED_NOT_RENDER_VERIFIED",
+  "repository": "reallaksh19/Grade9v3.5",
+  "issue": 35,
+  "agent": "A",
+  "round": 1,
+  "subject": "Chemistry",
+  "grade": 11,
+  "topic": "Chemical bonding and hybridisation",
+  "source_status": "OWNER_SUPPLIED_COORDINATING_AGENT_DRAFT",
+  "controlled_inputs": {
+    "launch_commit": "e01c6365acfd6aec84c0a6e94f11b683bd961f6e",
+    "core_prompt_sha256": "cc448399f7c44781f8e3ca659aaa96da8b9fde5edc7a66625b45729f728a29d5",
+    "blueprint_registry": "1.9.0",
+    "core1a_blueprint": "BP-CORE1A-CONSTRUCTION@1.4.0",
+    "core2_blueprint": "BP-CORE2-SOURCE-QUESTION@1.5.0",
+    "question_demand_matrix": "question-demand-matrix/v1@1.0.0"
+  },
+  "learner_profile": {
+    "provenance": "SIMULATED_OWNER_PRESET",
+    "measured_fit_claim": false,
+    "demonstrated": [
+      "local sp/sp2/sp3 counting for simple species",
+      "sigma/pi components",
+      "elementary p-orbital overlap"
+    ],
+    "uncertain": [
+      "coordinating several atomic centres",
+      "preserving meaning across Lewis/orbital representations",
+      "distinguishing localised contributors from delocalised descriptions"
+    ]
+  },
+  "hardest_target": {
+    "question_id": "Q2",
+    "stable_id": "OWN-ISS35-HYB-02",
+    "cell": "QRT-REPRESENT-D3",
+    "subconcept": "Translate localized Lewis contributors into one delocalised multi-centre pi description while preserving the invariant sigma framework.",
+    "learner_relative_basis": "This intersects all three UNCERTAIN preset areas: multi-centre coordination, Lewis-to-orbital representation invariance, and localized-contributor versus delocalised-description distinction.",
+    "interaction": "Contributor -> invariant -> orbital: learner first compares/commits to invariant features, then receives the fixed sigma skeleton, predicts p-orbital direction, and only after that sees one delocalised pi overlay plus the explicit no-switching model boundary."
+  },
+  "matrix_coverage": {
+    "covered_primary_cells": [
+      "D2/APPLY",
+      "D2/EXPLAIN",
+      "D2/REPRESENT",
+      "D3/EXPLAIN",
+      "D3/JUSTIFY",
+      "D3/MODEL",
+      "D3/REPRESENT",
+      "D3/SYNTHESIZE"
+    ],
+    "missing_cells_are_intentional": true,
+    "note": "Ten benchmark questions do not establish all 28 cells. Primary cells are not inflated to fit the D3 issue label."
+  },
+  "items": [
+    {
+      "question_id": "Q1",
+      "stable_id": "OWN-ISS35-HYB-01",
+      "difficulty": {
+        "band": "D3",
+        "score": 7,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 2
+        },
+        "basis": "Separate bond-equivalence evidence from a localized Lewis drawing, then keep the nitrogen sigma-framework label logically separate."
+      },
+      "demand": {
+        "primary": "JUSTIFY",
+        "secondary": [
+          "MODEL",
+          "EXPLAIN"
+        ]
+      },
+      "qrt_cell": "QRT-JUSTIFY-D3",
+      "X": "Which supplied observations discriminate a permanent localized bond-order picture from a delocalised electronic description without using hybridisation as circular proof.",
+      "Y": "Demonstrated sigma/pi distinction and simple local sp/sp2/sp3 counting.",
+      "Z": "Use bond equivalence as evidence about the pi description, then separately infer the local sigma framework from three sigma directions at N.",
+      "W": "Supply the observation-to-warrant link rejecting persistent localized bond classes while keeping sp2 a separate local sigma-framework statement.",
+      "verified_answer": "The supplied three equivalent N-O bonds support a delocalised pi description rather than a permanently localised one-double/two-single pattern. Separately, nitrogen has three local sigma directions/electron domains and is described as sp2 in the introductory sigma-framework model, leaving an unhybridised p orbital for the pi description.",
+      "hints": [
+        "What would a permanent one-double/two-single picture predict about the three N-O positions?",
+        "Use the supplied bond equivalence as evidence; do not use the word resonance as the warrant.",
+        "Keep the in-plane sigma framework separate from the pi description.",
+        "Count nitrogen's sigma directions only after choosing the electronic description.",
+        "Checkpoint: did equivalence justify the pi model while domain count justified only the local sigma-framework label?"
+      ],
+      "misconception": {
+        "M1": "Treat one contributor as permanent, or use sp2 itself as proof of N-O equivalence.",
+        "M2": "Ask whether a permanent one-double/two-single assignment predicts distinguishable bond classes and compare that prediction with the supplied observation.",
+        "M3": "Use equivalence/delocalisation evidence for the pi description and local sigma-domain geometry for the hybridisation label."
+      },
+      "independent_check": "A permanently unique N=O position would require a persistent distinction among three N-O positions; that conflicts with the supplied equivalence."
+    },
+    {
+      "question_id": "Q2",
+      "stable_id": "OWN-ISS35-HYB-02",
+      "difficulty": {
+        "band": "D3",
+        "score": 7,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 2,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 2
+        },
+        "basis": "Preserve invariants across Lewis contributors while constructing a different orbital representation and avoiding temporal-switching language."
+      },
+      "demand": {
+        "primary": "REPRESENT",
+        "secondary": [
+          "EXPLAIN",
+          "MODEL"
+        ]
+      },
+      "qrt_cell": "QRT-REPRESENT-D3",
+      "X": "What is invariant across the three Lewis contributors, and what is only contributor-specific bookkeeping placement.",
+      "Y": "Demonstrated sigma/pi components and elementary p overlap; cross-representation invariance is uncertain.",
+      "Z": "Map the invariant planar sigma skeleton into one perpendicular multi-centre p-orbital/pi representation while treating formal bond/charge placements as contributor-local.",
+      "W": "Make the contributor -> invariant -> delocalised-orbital correspondence without interpreting contributors as temporal molecular states.",
+      "verified_answer": "Keep one planar three-direction N-O sigma framework. Place the relevant p orbitals perpendicular to that plane and represent pi electron density as delocalised over the N-O framework. Connectivity, total charge/electron inventory and the sigma skeleton are invariant; formal pi-bond/charge placements are contributor-local. The contributors are formal components, not structures the ion switches between in time.",
+      "hints": [
+        "Compare the three drawings first: what stays in exactly the same connectivity?",
+        "Separate the in-plane sigma framework from anything belonging to pi bonding.",
+        "A target orbital picture needs a p-orbital direction; which direction is compatible with a planar sigma framework?",
+        "Check whether your wording accidentally says the ion spends time as contributor 1, then 2, then 3.",
+        "Checkpoint: can you translate back without selecting a permanent N=O position?"
+      ],
+      "misconception": {
+        "M1": "Draw three orbital pictures and say nitrate rapidly switches among them.",
+        "M2": "Ask which atomic positions or sigma bonds would physically move if the ion literally switched contributors.",
+        "M3": "Treat contributors as formal components; preserve the common sigma framework and translate pi information into one delocalised orbital description."
+      },
+      "independent_check": "The orbital description must translate back to three equivalent N-O positions rather than selecting one permanent N=O."
+    },
+    {
+      "question_id": "Q3",
+      "stable_id": "OWN-ISS35-HYB-03",
+      "difficulty": {
+        "band": "D3",
+        "score": 7,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 2,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Coordinate local labels at three centres with two orthogonal p directions to explain the three-dimensional terminal-group geometry."
+      },
+      "demand": {
+        "primary": "SYNTHESIZE",
+        "secondary": [
+          "MODEL",
+          "EXPLAIN"
+        ]
+      },
+      "qrt_cell": "QRT-SYNTHESIZE-D3",
+      "X": "How local domain counting at three carbons coordinates with two distinct pi overlaps at the central carbon.",
+      "Y": "Demonstrated local hybridisation counting and elementary p overlap.",
+      "Z": "Assign terminal sp2 / central sp locally, then use the central atom's two orthogonal unhybridised p orbitals for the two pi systems.",
+      "W": "Bridge from two perpendicular central p orbitals to mutually perpendicular terminal CH2 planes.",
+      "verified_answer": "Each terminal carbon has three sigma directions and is described as sp2 with one unhybridised p orbital. The central carbon has two sigma directions and is described as sp, leaving two mutually perpendicular unhybridised p orbitals. Each central p orbital overlaps with a terminal p orbital, so the two terminal p axes and terminal CH2 planes are mutually perpendicular.",
+      "hints": [
+        "Count sigma directions at each carbon separately; do not label allene as a whole.",
+        "After assigning the central carbon, how many unhybridised p orbitals remain?",
+        "Each C=C needs side-on overlap; can both pi bonds use one central p orbital?",
+        "Connect each terminal p axis to the plane containing that terminal carbon's three sp2 sigma directions.",
+        "Checkpoint: looking along C=C=C, what relative angle should the terminal CH2 planes have?"
+      ],
+      "misconception": {
+        "M1": "Because allene has two double bonds, draw both terminal CH2 groups in one ethene-like plane.",
+        "M2": "Ask for two distinct unhybridised p orbitals at an sp central carbon and whether they can have the same direction.",
+        "M3": "Use one orthogonal central p orbital for each pi bond; terminal p orbitals align to those axes, forcing perpendicular terminal planes."
+      },
+      "independent_check": "Looking down the C=C=C axis, the two terminal CH2 groups should project at about 90 degrees in this introductory orbital model."
+    },
+    {
+      "question_id": "Q4",
+      "stable_id": "OWN-ISS35-HYB-04",
+      "difficulty": {
+        "band": "D3",
+        "score": 6,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Connect local sigma frameworks, required pi overlaps and orbital directions to explain a non-obvious ethene/allene contrast."
+      },
+      "demand": {
+        "primary": "EXPLAIN",
+        "secondary": [
+          "SYNTHESIZE"
+        ]
+      },
+      "qrt_cell": "QRT-EXPLAIN-D3",
+      "X": "Why the planar ethene picture cannot simply be copied to a cumulene with two adjacent pi bonds.",
+      "Y": "Demonstrated elementary p overlap and local sp/sp2 counting.",
+      "Z": "Compare the number/orientation of unhybridised p orbitals at the central atoms and propagate that constraint to molecular planes.",
+      "W": "State the causal orbital-orientation link making ethene planar but allene's terminal planes perpendicular.",
+      "verified_answer": "In ethene, each carbon is locally sp2 and leaves one p orbital; the two p orbitals must be parallel for one pi bond, consistent with a planar carbon framework. In allene, the central carbon is locally sp and leaves two mutually perpendicular p orbitals. Each overlaps with a p orbital on a different terminal sp2 carbon, so the two terminal CH2 planes are perpendicular. Copying ethene's plane to allene ignores the need for two independent orthogonal pi overlaps at the same central atom.",
+      "hints": [
+        "Start with p orbitals, not memorised molecular shapes.",
+        "How many unhybridised p orbitals does one ethene carbon need for its single pi bond?",
+        "How many must the central allene carbon supply for two pi bonds?",
+        "Use side-on alignment to connect p directions to terminal-group planes.",
+        "Checkpoint: can your account support both allene pi bonds without reusing one central p orbital in incompatible directions?"
+      ],
+      "misconception": {
+        "M1": "Use 'sp2 means planar' molecule-wide and conclude allene is planar like ethene.",
+        "M2": "Ask whether one central p orbital can make two independent side-on overlaps in the required directions.",
+        "M3": "Apply hybridisation locally, then check the count and orientation of unhybridised p orbitals required by every pi bond."
+      },
+      "independent_check": "A correct allene description must account for two pi bonds while leaving only two sigma directions at the central carbon; a single planar p axis cannot satisfy both overlaps."
+    },
+    {
+      "question_id": "Q5",
+      "stable_id": "OWN-ISS35-HYB-05",
+      "difficulty": {
+        "band": "D3",
+        "score": 7,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 2
+        },
+        "basis": "A tempting heuristic is contradicted by supplied counterexamples; equivalence, local domain count and model status must be separated."
+      },
+      "demand": {
+        "primary": "JUSTIFY",
+        "secondary": [
+          "MODEL"
+        ]
+      },
+      "qrt_cell": "QRT-JUSTIFY-D3",
+      "X": "Whether bond equivalence is a valid warrant for assigning sp2 to the central atom.",
+      "Y": "Demonstrated simple local sp/sp2/sp3 counting.",
+      "Z": "Test the heuristic against supplied counterexamples and replace it with local electron-domain/sigma-framework reasoning.",
+      "W": "Use a decisive counterexample and an explicit replacement warrant rather than a list of labels.",
+      "verified_answer": "The claim is false. CO2 has two equivalent C-O bonds but two central sigma directions/electron domains and is described as sp. NH3 has three equivalent N-H bonds but four local electron domains including the lone pair and is described as sp3. Nitrate N has three sigma directions and is described as sp2, but equivalence is not the criterion. Hybridisation is an atom-local sigma-framework model; bond equivalence is a distinct structural/electronic property.",
+      "hints": [
+        "A universal rule fails if one supplied example has equivalent bonds but a different local domain count.",
+        "For CO2, count central sigma directions rather than total bond-order components.",
+        "For NH3, include the lone pair as a local electron domain.",
+        "Now separate what bond equivalence tells you from what local domain count tells you.",
+        "Checkpoint: does your replacement rule classify CO2, nitrate and NH3 correctly without using equivalence as the criterion?"
+      ],
+      "misconception": {
+        "M1": "Infer sp2 from equivalent-looking bonds or from resonance vocabulary without counting local electron domains.",
+        "M2": "Present CO2 and NH3 and ask whether the heuristic predicts their local domain geometries correctly.",
+        "M3": "Assign introductory hybridisation from each atom's local sigma/electron-domain framework; discuss bond equivalence separately."
+      },
+      "independent_check": "The replacement rule must classify CO2 as sp, nitrate N as sp2 and NH3 N as sp3 while all three examples can contain equivalent bonds."
+    },
+    {
+      "question_id": "Q6",
+      "stable_id": "OWN-ISS35-HYB-06",
+      "difficulty": {
+        "band": "D2",
+        "score": 5,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Apply known local counting across three centres while avoiding the multiple-bond-component/domain-count conflation."
+      },
+      "demand": {
+        "primary": "APPLY",
+        "secondary": [
+          "RETRIEVE",
+          "EXPLAIN"
+        ]
+      },
+      "qrt_cell": "QRT-APPLY-D2",
+      "X": "How to count local domains and whole-molecule sigma/pi components without conflating a triple bond with three sigma directions.",
+      "Y": "Demonstrated local hybridisation counting and sigma/pi components.",
+      "Z": "Apply local domain counting to each carbon, then count bond components globally with each connected atom pair contributing one sigma bond.",
+      "W": "Distinguish one sigma + two pi in C≡C from local domain count and produce the 6 sigma / 2 pi total.",
+      "verified_answer": "For CH3-C≡CH the methyl carbon is sp3 and both alkyne carbons are sp. The molecule has 6 sigma bonds (four C-H plus two C-C sigma components) and 2 pi bonds. The triple bond supplies one sigma direction/electron domain at each alkyne carbon plus two pi overlaps; it is not three electron domains.",
+      "hints": [
+        "Label the three carbons separately before assigning anything.",
+        "A multiple bond still points toward one neighbouring atom along one sigma direction for local counting.",
+        "Count all C-H and C-C sigma components first; only then add the two side-on components of C≡C."
+      ],
+      "misconception": {
+        "M1": "Count C≡C as three electron domains or three sigma bonds.",
+        "M2": "Ask separately how many neighbouring sigma directions the alkyne carbon has and how many bond components connect the two alkyne carbons.",
+        "M3": "Use one sigma direction per bonded neighbour for local geometry; decompose the triple bond separately as one sigma plus two pi."
+      },
+      "independent_check": "Three methyl C-H sigma + one terminal C-H sigma + two C-C sigma = six sigma; only the triple bond contributes two pi."
+    },
+    {
+      "question_id": "Q7",
+      "stable_id": "OWN-ISS35-HYB-07",
+      "difficulty": {
+        "band": "D3",
+        "score": 6,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 2
+        },
+        "basis": "Replace three localized formal contributors with one qualitative sigma-plus-delocalised-pi model and state the representational limitation."
+      },
+      "demand": {
+        "primary": "MODEL",
+        "secondary": [
+          "REPRESENT",
+          "EXPLAIN"
+        ]
+      },
+      "qrt_cell": "QRT-MODEL-D3",
+      "X": "How to formulate one qualitative electronic model from multiple localized Lewis contributors.",
+      "Y": "Demonstrated sigma/pi distinction; localized-contributor versus delocalised-description reasoning is uncertain.",
+      "Z": "Keep the common planar sigma skeleton and replace contributor-specific pi placement with a delocalised multi-centre p-orbital description.",
+      "W": "Choose/formulate the one sigma-plus-delocalised-pi model and explicitly reject a single contributor as the complete physical picture.",
+      "verified_answer": "Use a planar three-direction C-O sigma framework at carbon, described locally as sp2 in the introductory model, with relevant p orbitals perpendicular to the plane forming a delocalised pi system over the carbonate framework. The three conventional Lewis contributors are formal representations with different localized bond/charge placements; no single contributor is the complete physical electronic structure and no switching story is required.",
+      "hints": [
+        "First identify what all three carbonate contributors share.",
+        "Treat the contributor-specific C=O placement as formal bookkeeping, not a time state.",
+        "Keep the sigma framework in the plane and choose the compatible p-orbital direction.",
+        "Build one pi description over more than one C-O position.",
+        "Checkpoint: is your one carbonate model compatible with the supplied three equivalent C-O bonds?"
+      ],
+      "misconception": {
+        "M1": "Pick one Lewis contributor as the real carbonate structure or say the double bond hops between oxygens.",
+        "M2": "Ask whether any one contributor alone predicts all three C-O bonds to be equivalent at one time.",
+        "M3": "Treat contributors as formal components and formulate one delocalised pi description over the invariant sigma framework."
+      },
+      "independent_check": "The qualitative model must remain compatible with the supplied three equivalent C-O bonds."
+    },
+    {
+      "question_id": "Q8",
+      "stable_id": "OWN-ISS35-HYB-08",
+      "difficulty": {
+        "band": "D2",
+        "score": 4,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Connect rotation to overlap geometry while respecting the explicit no-numerical-barrier boundary."
+      },
+      "demand": {
+        "primary": "EXPLAIN",
+        "secondary": [
+          "MODEL"
+        ]
+      },
+      "qrt_cell": "QRT-EXPLAIN-D2",
+      "X": "Which overlap is geometrically preserved or degraded when fragments rotate about the C-C axis.",
+      "Y": "Demonstrated sigma versus pi overlap.",
+      "Z": "Track orbital orientation under the motion rather than using free-rotation/no-rotation slogans.",
+      "W": "Explain why sigma overlap remains aligned under axial rotation while pi side-on overlap degrades on twisting, without inventing an energy value.",
+      "verified_answer": "Rotation about the ethane C-C axis keeps end-on C-C sigma overlap aligned along the internuclear axis, although conformational interactions can vary with torsion. In ethene, twisting can keep the sigma connection while rotating unhybridised p orbitals away from parallel alignment, reducing side-on pi overlap. This qualitative sketch does not determine a numerical rotational barrier.",
+      "hints": [
+        "Where is sigma overlap concentrated relative to the internuclear axis?",
+        "Rotating about that same axis does not change the axis itself.",
+        "What relative p-orbital orientation is required for side-on pi overlap?",
+        "Keep the conclusion qualitative; a sketch cannot supply a numerical barrier."
+      ],
+      "misconception": {
+        "M1": "Say ethane rotation costs exactly zero energy, or say ethene twisting requires the sigma bond itself to break.",
+        "M2": "Ask which overlap is aligned along the axis and which requires parallel side-on p orbitals.",
+        "M3": "Separate sigma-axis preservation from pi-overlap degradation, and overlap geometry from quantitative barrier energetics."
+      },
+      "independent_check": "At a 90-degree p-orbital twist in the simple picture, side-on overlap tends toward zero while the internuclear axis and sigma connection remain."
+    },
+    {
+      "question_id": "Q9",
+      "stable_id": "OWN-ISS35-HYB-09",
+      "difficulty": {
+        "band": "D2",
+        "score": 5,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 2,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Represent p-orbital continuity and recognise that an sp3 carbon interrupts the chain."
+      },
+      "demand": {
+        "primary": "REPRESENT",
+        "secondary": [
+          "EXPLAIN"
+        ]
+      },
+      "qrt_cell": "QRT-REPRESENT-D2",
+      "X": "What structural feature makes one carbon chain a continuous p-orbital pathway and the other an interrupted pair of pi systems.",
+      "Y": "Demonstrated elementary p overlap and local hybridisation counting.",
+      "Z": "Map each carbon to availability/orientation of an unhybridised p orbital and inspect adjacency for continuity.",
+      "W": "Identify the central sp3 CH2 as the interruption and represent two separate pi regions rather than one continuous chain.",
+      "verified_answer": "In approximately planar CH2=CH-CH=CH2, each of the four sp2 carbons has an unhybridised p orbital and the aligned C1-C2-C3-C4 sequence provides a continuous p pathway. In CH2=CH-CH2-CH=CH2, the central CH2 carbon is locally sp3 and has no unhybridised p orbital available to continue that sequence, so the two double-bond pi systems are separated.",
+      "hints": [
+        "Mark the atoms participating in each C=C before drawing orbitals.",
+        "For an sp2 carbon, what orbital remains available for pi overlap?",
+        "Walk along the chain: is there a suitably oriented p orbital at every adjacent position?",
+        "Inspect the middle CH2 in the second molecule before calling the two double bonds conjugated."
+      ],
+      "misconception": {
+        "M1": "Assume any two C=C bonds in the same molecule automatically form one delocalised pi system.",
+        "M2": "Ask whether an uninterrupted adjacent p orbital exists on every atom between the double bonds.",
+        "M3": "Conjugation requires a continuous suitably aligned p-orbital pathway; an sp3 saturated carbon interrupts it."
+      },
+      "independent_check": "Replacing the central CH2 interruption with CH to form CH2=CH-CH=CH2 restores four adjacent sp2 centres and a continuous p pathway."
+    },
+    {
+      "question_id": "Q10",
+      "stable_id": "OWN-ISS35-HYB-10",
+      "difficulty": {
+        "band": "D3",
+        "score": 7,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 2
+        },
+        "basis": "Reject a molecule-wide heuristic and construct a robust atom-local procedure with an independent orbital-consistency check."
+      },
+      "demand": {
+        "primary": "MODEL",
+        "secondary": [
+          "JUSTIFY",
+          "SYNTHESIZE"
+        ]
+      },
+      "qrt_cell": "QRT-MODEL-D3",
+      "X": "Why a molecule-wide hybridisation label fails and what local information a reliable replacement must use.",
+      "Y": "Demonstrated simple local counting; coordination across several centres is uncertain.",
+      "Z": "Formulate an atom-by-atom sigma-domain procedure and add a p-orbital count/orientation consistency check.",
+      "W": "Choose the local procedure and use propyne/allene to show it succeeds where one-label-per-molecule fails.",
+      "verified_answer": "A molecule-wide label fails: propyne contains an sp3 methyl carbon and two sp alkyne carbons; allene contains two terminal sp2 carbons and an sp central carbon. A better procedure is atom-local: for each atom, count sigma-bond directions and lone-pair electron domains (a multiple bond is one sigma direction), assign the local introductory geometry/hybridisation, then check that enough correctly oriented unhybridised p orbitals remain for all required pi bonds/delocalisation. Revisit an assignment that fails that orbital check.",
+      "hints": [
+        "Try one label on all three carbons in propyne; does it fit methyl and alkyne centres simultaneously?",
+        "Repeat for allene, keeping central and terminal carbons separate.",
+        "Turn that failure into a rule: what must be counted at each atom before naming hybridisation?",
+        "After the sigma-framework assignment, are enough unhybridised p orbitals left for the required pi bonds?",
+        "Checkpoint: run the procedure on every carbon in both molecules and look for any orbital mismatch."
+      ],
+      "misconception": {
+        "M1": "Assign hybridisation to an entire molecule from its most conspicuous multiple bond or overall shape.",
+        "M2": "Ask for separate domain counts at each nonequivalent atom and compare the resulting labels.",
+        "M3": "Hybridisation is atom-local; verify each assignment against both local sigma domains and the p orbitals required by pi bonding."
+      },
+      "independent_check": "The procedure must simultaneously return propyne sp3/sp/sp and allene sp2/sp/sp2 while leaving the correct number and orientation of p orbitals."
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "issue35-run-receipt/v1",
+  "issue": 35,
+  "agent": "A",
+  "round": 1,
+  "baseline_source_commit": "e01c6365acfd6aec84c0a6e94f11b683bd961f6e",
+  "tested_head": "9030856abb0edf30fc2af4f85e4147af13a1f9b6",
+  "workflow_run_id": "37188151319",
+  "workflow_attempt": "1",
+  "blueprint_registry": "1.9.0",
+  "core1a_blueprint": "BP-CORE1A-CONSTRUCTION@1.4.0",
+  "core2_blueprint": "BP-CORE2-SOURCE-QUESTION@1.5.0",
+  "renderer": "Shared/tools/render_core.py",
+  "matrix": "Shared/quality/question-demand-matrix.v1.json@1.0.0",
+  "core_prompt_sha256": "cc448399f7c44781f8e3ca659aaa96da8b9fde5edc7a66625b45729f728a29d5",
+  "question_ledger_sha256": "596bd30ce5b1388d461b0953db22e5037ac2eab626d804296b340505f5a7a579",
+  "package_sha256": "6ffdae753c0aba41b395bc3ecb917deaa54a74f76bc8e3a19b94280e93aaef45",
+  "bank_sha256": "ac6847cd7cfd1c953d746e4f9d1ff250f4f13c8734b6cf606e6f750f736cb266",
+  "qrt_sha256": "4fc92fe9ec4c303a61d09245f23af60cd06556b16cb9d062ff622a98e7a879fb",
+  "core1a_sha256": "7362ed60e3542ea0e9c3fe080c2672c50a0484b0fa21393bc1f7ebec34b2f6c3",
+  "core2_sha256": "1d4adb94036b5d76a6b2d0031326d8669ddd0bbbccf88576dcb1f57ca9456048",
+  "quality_gate_sha256": "fe21e44a17502521bf79ce8e51bd8b20ff3da05d8b4c37f7ffc30e6383b65695",
+  "tablet_audit_sha256": "9fd1aaa2bf07a9247cd89ae6122f6b16ed5bcae640012f7e36604379fc973698",
+  "environment": {
+    "github_runner": "Linux",
+    "python": "3.12",
+    "node": "22",
+    "playwright": "1.56.1"
+  },
+  "commands": [
+    "python Shared/tools/blueprint_spec.py --check",
+    "python Shared/tools/quality_contract.py --check",
+    "PYTHONPATH=. python evidence/benchmark/ISS35/build_specimen.py",
+    "python Shared/tools/owner_bank.py check evidence/benchmark/ISS35/generated/owner.bank.json",
+    "python Shared/tools/render_core.py build --manifest evidence/benchmark/ISS35/generated/product.manifest.json --out /tmp/iss35-hyb --mode PAGES",
+    "python Shared/tools/quality_gate.py /tmp/iss35-hyb --subject Chemistry --product-id EVIDENCE-CHEM-ISS35-HYB-A --strict",
+    "node tools/site-audit/core-page-audit.mjs /tmp/iss35-hyb --profile tablet-12.7 --http-root /tmp/iss35-hyb"
+  ],
+  "independence": "Issue #36 was not inspected before this run."
+}
