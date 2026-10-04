@@ -1,0 +1,105 @@
+{
+  "schema": "grade9v3.5/benchmark-source-cards/v1",
+  "issue": 37,
+  "agent": "A",
+  "round": 1,
+  "cards": [
+    {
+      "id": "SRC-IUPAC-HYBRIDIZATION",
+      "title": "IUPAC Gold Book — hybridization",
+      "url": "https://goldbook.iupac.org/terms/view/H02874",
+      "doi": "10.1351/goldbook.H02874",
+      "authority": "IUPAC terminology",
+      "checked": "2026-10-04",
+      "supports": ["Hybridization is a linear combination of atomic orbitals and is used as an orbital-model description."],
+      "does_not_support": ["A claim that an sp/sp2/sp3 label is a unique observable partition of a molecular wavefunction.", "A claim that the label alone causes geometry or reactivity."],
+      "used_for_questions": ["Q1", "Q5", "Q6", "Q10"]
+    },
+    {
+      "id": "SRC-IUPAC-HYBRID-ORBITAL",
+      "title": "IUPAC Gold Book — hybrid orbital",
+      "url": "https://goldbook.iupac.org/terms/view/HT07049",
+      "doi": "10.1351/goldbook.HT07049",
+      "authority": "IUPAC terminology",
+      "checked": "2026-10-04",
+      "supports": ["A hybrid orbital is an atomic orbital derived through hybridization of orbitals of different angular momentum on the same atom."],
+      "does_not_support": ["Exact percentages of s/p character in the benchmark cases unless a defined calculation is supplied."],
+      "used_for_questions": ["Q1", "Q5", "Q10"]
+    },
+    {
+      "id": "SRC-HIBERTY-1997-FORMAMIDE",
+      "title": "Role of Conjugation in the Stabilities and Rotational Barriers of Formamide and Thioformamide. An ab Initio Valence-Bond Study",
+      "url": "https://pubs.acs.org/doi/10.1021/ja9639426",
+      "doi": "10.1021/ja9639426",
+      "authority": "peer-reviewed primary computational study",
+      "checked": "2026-10-04",
+      "supports": ["Delocalization/conjugation is significant in planar formamide.", "The formamide C-N rotational barrier is not solely due to conjugation; other structural/electronic preferences contribute."],
+      "does_not_support": ["Treating a qualitative p-overlap sketch as a direct measurement of donation strength.", "Deriving a total-energy cos(theta) law from a qualitative overlap factor."],
+      "used_for_questions": ["Q1", "Q2", "Q3", "Q8", "Q9"]
+    },
+    {
+      "id": "SRC-BASCH-HOZ-1998",
+      "title": "Resonance in formamide: resolution of contending models",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S000926149800846X",
+      "doi": "10.1016/S0009-2614(98)00846-X",
+      "authority": "peer-reviewed primary computational study",
+      "checked": "2026-10-04",
+      "supports": ["Planar formamide exhibits an important pi-space N-to-carbonyl interaction in a valence-bond description.", "Rotated formamide is electronically different and the interaction becomes much less stabilizing in that model."],
+      "does_not_support": ["A claim that one orbital partition is the only possible physical description.", "A claim that changing the hybridisation label is itself the physical cause of lost donation."],
+      "used_for_questions": ["Q1", "Q2", "Q3", "Q8"]
+    },
+    {
+      "id": "SRC-BURTON-1993-FORMAMIDE-ROTATION",
+      "title": "Rotation about the C—N bond in formamide: an ab initio molecular orbital study of structure and energetics in the gas phase and in solution",
+      "url": "https://pubs.rsc.org/en/content/articlelanding/1993/ft/ft9938902631",
+      "doi": "10.1039/FT9938902631",
+      "authority": "peer-reviewed primary computational study",
+      "checked": "2026-10-04",
+      "supports": ["Formamide C-N rotation is a genuine structural/energetic problem studied with explicit electronic-structure models."],
+      "does_not_support": ["Promoting the benchmark's deliberately simplified cos(theta) overlap model into a complete total-energy law."],
+      "used_for_questions": ["Q2", "Q3", "Q8", "Q9"]
+    },
+    {
+      "id": "SRC-DYKE-1976-METHYL",
+      "title": "Vacuum ultraviolet photoelectron spectroscopy of transient species. Part 7.—The methyl radical",
+      "url": "https://pubs.rsc.org/en/content/articlelanding/1976/f2/f29767201385",
+      "doi": "10.1039/F29767201385",
+      "authority": "peer-reviewed primary spectroscopy study",
+      "checked": "2026-10-04",
+      "supports": ["Photoelectron evidence led the authors to conclude that methyl radical is essentially planar in its ground electronic state."],
+      "does_not_support": ["A universal claim that any three-sigma-bond centre has an empty p orbital."],
+      "used_for_questions": ["Q7"]
+    },
+    {
+      "id": "SRC-MARYNICK-DIXON-1977-METHYL",
+      "title": "Electron affinity of the methyl radical: Structures of CH3 and CH3-",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC392297/",
+      "doi": "10.1073/pnas.74.2.410",
+      "authority": "peer-reviewed primary ab initio/configuration-interaction study",
+      "checked": "2026-10-04",
+      "supports": ["The study reports planar D3h methyl radical and contrasts it with pyramidal CH3-."],
+      "does_not_support": ["Treating a simplified hybridisation assignment as a uniquely measured property."],
+      "used_for_questions": ["Q7"]
+    },
+    {
+      "id": "SRC-OPENSTAX-ALLENE",
+      "title": "OpenStax Chemistry 2e — hybridization exercise on allene",
+      "url": "https://openstax.org/books/chemistry-2e/pages/8-exercises",
+      "authority": "open educational textbook",
+      "checked": "2026-10-04",
+      "supports": ["Allene is a standard case in which carbon hybridisation and perpendicular terminal planes are reasoned together."],
+      "does_not_support": ["Any unique quantitative electronic-structure interpretation beyond the introductory orbital model."],
+      "used_for_questions": ["Q10"]
+    }
+  ],
+  "benchmark_given_policy": {
+    "rule": "Facts explicitly supplied in Q1-Q10 remain benchmark givens. Source cards support the teaching/model boundaries and advanced background; they do not relabel supplied observations as measurements made by this run.",
+    "examples": [
+      "Q1 supplied approximately planar amide arrangement and permitted lone-pair donation.",
+      "Q3 supplied qualitative twisting result.",
+      "Q5 supplied approximate CH4/NH3/H2O observations.",
+      "Q7 supplied planar methyl-radical model.",
+      "Q9 supplied cos(theta) overlap-factor model."
+    ]
+  }
+}
