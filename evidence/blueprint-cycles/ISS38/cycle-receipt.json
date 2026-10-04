@@ -5,7 +5,7 @@
   "status": "CANDIDATE",
   "renderer": "render_core/2",
   "registry_version": "1.10.0",
-  "render_digest": "d293c1d3d4797e86",
+  "render_digest": "bc9af20b1e675d2d",
   "source_bank_sha256": "2df2bf6fa5102c7021523a0cd121e4602ff6e03b4149c7613f905c712a0f3b2e",
   "source_package_sha256": "485772f91b7953f3699032504eee5dd7434d7781aeff90fdda467b993efcf4aa",
   "source_manifest_sha256": "b4a13b4df612328c22c94b96f3fdd4923bba40c4a1980345d854114d3f95876b",
@@ -76,13 +76,37 @@
     }
   ],
   "page_hashes": {
-    "core1a.html": "9803c6171b9e74f2d46960e2986e36674ede17eff4aa991d5e243456517946b9",
-    "core2.html": "4216717bfd290fb9414636f6d2e902bb689982709b26de2d35aa765db99f7b1c",
-    "index.html": "d62b2750dfbcde8a726ac873f53c36fee374a2410bcb9734778a1c7c4b5a528c"
+    "core1a.html": "7827a9251d8d51aefdd9e74319302527216773145ecb98bec4fb0173d5c230f6",
+    "core2.html": "3d00cb9a067d8f6285caa8c7bb824fee69d598de16fe0f4a6a44c9a0328b1d54",
+    "index.html": "d685818ab68d447b695ffce758d52cc55619800ba54ccae46d6579342057de84"
   },
-  "browser": "NOT_RUN",
+  "browser": "FAIL_EXISTING_TABLET_AUDIT",
   "all_12_facets_independently_certified": false,
   "golden": false,
   "observation": "LOCAL_EXECUTION + ARTIFACT_INSPECTION",
-  "oracle": "IMPLEMENTATION_COUPLED plus separate academic correction data"
+  "oracle": "IMPLEMENTATION_COUPLED plus separate academic correction data",
+  "render_basis": {
+    "source_commit": "97c18d846b1efc14c4e1dc7028ef5dcb861f3cc9",
+    "authority_sha256": {
+      "Shared/tools/render_core.py": "a086db360f77995f36cc062ecba7d68494c0d9f02e6f46ddd76461bff2e1447e",
+      "Shared/tools/core2_v2.py": "ceeb0c50e65f7967f6890ac7f14c6c3a63ca9f3be8d8f2728da98ffe55d580ef",
+      "Shared/tools/learning_repair.py": "62b2ac09b6015cd035e604d28b4782ef231f22806c2162e65252cd08e118208f",
+      "Shared/web/interactive-page-blueprints.v1.json": "d141f40df8ef514f00aa6e521fed348203d7a5b4daac3ccaade19c7cf3e771da",
+      "public/css/modern-learner.css": "496de1fc6b486a3fa0ec2d782462905d35e3dad64593c8f996929e8963318925",
+      "public/css/tablet-12-7.css": "a8d2f54184818bf4fa3f5acdb61e6efc2c8103e475b0bb4a4c0747d8898455ab",
+      "public/js/display-controls.js": "bf5737e1a87ec6d1c5021f368c3aaf96d7037e1440d55b6e7d4cb168d962bfd6",
+      "public/js/site-header.js": "72a1f89b975c36ea8fb0b0c4170f47533dc9e49e59c4120cd90c6383128922f2"
+    },
+    "authority_byte_policy": "UTF8_TEXT_LF",
+    "canonical_input_sha256": {
+      "evidence/blueprint-cycles/ISS38/inputs/owner.bank.json": "edb7048045b3afba18ccbb8ee22891bc6a838bb97989e1d17e6497884084e5be",
+      "evidence/blueprint-cycles/ISS38/inputs/package.v1.json": "cb01391aabb022ed0a541b63de3f2360afb980c5aad8c9604366b5c0ba1deb65",
+      "evidence/blueprint-cycles/ISS38/inputs/product.manifest.json": "341f626f50665f770e2e1c59747fc6717aa758f26311b2080d370f3734420c8d"
+    },
+    "legacy_source_hashes": "Retained from predecessor receipt; not used as corrected-input digests.",
+    "observation": "NEW_LOCAL_EXECUTION",
+    "method": "PRODUCTION_RENDERER_API_WITH_LOCAL_SCHEMA_RESOLVER",
+    "historical_artifact_snapshot": "46e91c9ec4285e14ca0db469eda281ff31df596a"
+  },
+  "browser_evidence": "../recovery-20261004/browser-bindings.json#ISS38"
 }

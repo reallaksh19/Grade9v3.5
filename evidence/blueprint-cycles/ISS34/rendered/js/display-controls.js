@@ -492,4 +492,3 @@
     getUiScale: () => uiScale
   };
 })();
-

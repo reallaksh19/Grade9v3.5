@@ -530,4 +530,3 @@
     closeSearch: () => dialog.close()
   };
 })();
-
