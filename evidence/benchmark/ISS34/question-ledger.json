@@ -1,0 +1,1001 @@
+{
+  "schema": "iss34-question-ledger/v1",
+  "issue": 34,
+  "round": 1,
+  "candidate": "B",
+  "source_commit": "e01c6365acfd6aec84c0a6e94f11b683bd961f6e",
+  "core_prompt_sha256": "6ba9ba40ea30b486792892de7091f51271f3855c0b39d22da5f7e83f20c52469",
+  "whole_issue_body_sha256": "a89df1e2d7f5c7a5ca41b51f670b80f15c326b2ba88f62f870d147f82d6763c8",
+  "learner_preset": {
+    "provenance": "SIMULATED_OWNER_PRESET",
+    "demonstrated": [
+      "simple Lewis structures",
+      "central electron-domain counting",
+      "introductory two/three/four-domain geometry rules"
+    ],
+    "uncertain": [
+      "coordinating hybrid orbitals with sigma/pi overlap",
+      "distinguishing electron-domain geometry from molecular shape"
+    ],
+    "status": "ASSUMPTION_ONLY_NOT_MEASURED_MASTERY"
+  },
+  "difficulty_rule": "5-component additive cognitive load: concept_model_selection, representation_translation, reasoning_chain_length, algebra_computational_load, trap_exception_sensitivity",
+  "questions": [
+    {
+      "id": "ISS34-Q1",
+      "issue": 34,
+      "round": 1,
+      "cohort_label": "D2",
+      "original_identifier": "Q1",
+      "stem": "BF3 and NH3 each have three sigma bonds to the central atom. BF3 has no central lone pair; NH3 has one. Explain why three sigma bonds alone cannot determine the same central hybridisation and molecular shape for both.",
+      "stem_sha256": "sha256:a76785a01d019bf1250903fe97eba66ca664441a2cdbedcd0a3a5bb4bbfbfa92",
+      "question_block_sha256": "sha256:db78147e6e798ca0230d6507550c21451d92cd906cce29d2c99a72362d24ec5a",
+      "origin": "OWNER_SUPPLIED",
+      "authorship_disclosure": "Coordinator/AI-drafted benchmark input supplied under the owner's requested pilot; not official exam/PYQ material and not represented as personally authored by the owner.",
+      "source_refs": [
+        "ISS34-OWNER-CORE-PROMPT",
+        "SRC-OPENSTAX-VSEPR-HYBRID",
+        "SRC-NCERT-CHEM-11-BONDING"
+      ],
+      "primary_capability_ref": "CAP-CHEM-G11-HYBRID-STERIC",
+      "secondary_capability_refs": [
+        "CAP-CHEM-G11-LONE-PAIR-DOMAIN"
+      ],
+      "microtopic_ref": "MIC-CHEM-G11-HYBRID-DOMAINS",
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Requires connecting the steric number principle (sigma bonds + lone pairs) to explain why equal sigma bonds alone do not determine hybridisation or shape."
+      },
+      "cohort_alignment": "MATCH",
+      "primary_demand": "EXPLAIN",
+      "secondary_demands": [
+        "RETRIEVE",
+        "MODEL"
+      ],
+      "qrt_template_id": "TMPL-CHEM-G11-EXPLAIN-D2",
+      "qrt": {
+        "X": "why two molecules with equal sigma bond counts (3) differ in central hybridisation (sp2 vs sp3) and molecular shape (planar vs pyramidal)",
+        "Y": "the steric counting rule: steric number = sigma bonds + non-bonding lone pairs, and hybrid orbitals accommodate all electron domains",
+        "Z": "construct the causal explanation: NH3 possesses one central lone pair requiring an additional hybrid orbital (steric number 4 -> sp3 / tetrahedral domain geometry), whereas BF3 has zero lone pairs (steric number 3 -> sp2 / trigonal planar)",
+        "W": "the decisive explanation that lone pairs occupy hybrid orbital domains and contribute to steric number, while shape traces nuclear positions only",
+        "wrong_idea": "Counting only sigma bonds when assigning hybridisation and shape, ignoring central lone pairs.",
+        "replacement_rule": "Steric number = sigma bonds + lone pairs; all valence electron domains require hybrid orbitals in introductory VB theory."
+      },
+      "answer": {
+        "summary": "Three sigma bonds alone cannot determine the same hybridisation and shape because hybridisation depends on the total number of electron domains (steric number = sigma bonds + lone pairs). BF3 has 3 sigma bonds + 0 lone pairs = 3 domains, giving sp2 hybridisation and trigonal planar shape. NH3 has 3 sigma bonds + 1 lone pair = 4 domains, giving sp3 hybridisation and a trigonal pyramidal shape.",
+        "reasoning_route": [
+          {
+            "id": "m1",
+            "kind": "DECIDE",
+            "action": "Count electron domains around central atom including lone pairs.",
+            "why_valid": "Steric number includes both sigma bonds and lone pairs.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m1"
+          },
+          {
+            "id": "m2",
+            "kind": "CONNECT",
+            "action": "Map steric number to introductory hybridisation: BF3 steric number is 3 (sp2); NH3 steric number is 4 (sp3).",
+            "why_valid": "Each electron domain occupies one hybrid orbital.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m2"
+          },
+          {
+            "id": "m3",
+            "kind": "VERIFY",
+            "action": "Distinguish electron geometry from molecular shape: BF3 has 0 lone pairs so shape matches geometry (planar); NH3 has 1 lone pair so shape is pyramidal.",
+            "why_valid": "Molecular shape traces nuclei only; lone pairs do not form vertices.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m3"
+          }
+        ],
+        "crux_move_ref": "m2",
+        "check": "Verify by valence electron count: B has 3 valence electrons (3 bonding, 0 LP); N has 5 valence electrons (3 bonding, 1 LP)."
+      },
+      "source_card_refs": [
+        "ISS34-OWNER-CORE-PROMPT",
+        "SRC-OPENSTAX-VSEPR-HYBRID",
+        "SRC-NCERT-CHEM-11-BONDING"
+      ],
+      "hardest_target": false,
+      "review_evidence_ref": "evidence/benchmark/ISS34/qrt-review.json#ISS34-Q1",
+      "status": "CANDIDATE"
+    },
+    {
+      "id": "ISS34-Q2",
+      "issue": 34,
+      "round": 1,
+      "cohort_label": "D2",
+      "original_identifier": "Q2",
+      "stem": "For H2C=O, assign the carbon hybridisation, count the sigma and pi components of the C=O bond, and identify the carbon orbital left available for the pi component. Keep electron-domain counting separate from counting shared electron pairs.",
+      "stem_sha256": "sha256:d822c3acd002a3ad51075eea4ccacb3615781113b828cef38ffd6be35545d64d",
+      "question_block_sha256": "sha256:26c09ba64a999cf6c826b57fed6d0d02e5c42ebde11a4cd5394e5fff25586019",
+      "origin": "OWNER_SUPPLIED",
+      "authorship_disclosure": "Coordinator/AI-drafted benchmark input supplied under the owner's requested pilot; not official exam/PYQ material and not represented as personally authored by the owner.",
+      "source_refs": [
+        "ISS34-OWNER-CORE-PROMPT",
+        "SRC-OPENSTAX-VSEPR-HYBRID",
+        "SRC-NCERT-CHEM-11-BONDING"
+      ],
+      "primary_capability_ref": "CAP-CHEM-G11-CO2-ORTHOGONAL-PI",
+      "secondary_capability_refs": [
+        "CAP-CHEM-G11-ORBITAL-BUDGET"
+      ],
+      "microtopic_ref": "MIC-CHEM-G11-HYBRID-MULTIPLE-BONDS",
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "Requires separating shared electron pairs (4) from electron domains (3) to assign sp2, decompose C=O into 1 sigma + 1 pi, and identify the unhybridised 2p orbital."
+      },
+      "cohort_alignment": "MATCH",
+      "primary_demand": "APPLY",
+      "secondary_demands": [
+        "MODEL"
+      ],
+      "qrt_template_id": "TMPL-CHEM-G11-APPLY-D2",
+      "qrt": {
+        "X": "assigning carbon hybridisation, C=O sigma/pi components, and identifying the remaining carbon orbital in H2C=O without conflating domain count with shared electron pairs",
+        "Y": "the domain counting rule that a double bond counts as one electron domain, while containing one sigma and one pi component",
+        "Z": "execute domain counting (3 domains -> sp2) and orbital budgeting (one 2s + two 2p form sp2, leaving one unhybridised 2p orbital for the pi bond)",
+        "W": "the assignment: carbon is sp2, C=O has 1 sigma + 1 pi, and the remaining carbon orbital is the unhybridised 2p (2pz) orbital",
+        "wrong_idea": "Counting the double bond as two electron domains, resulting in an erroneous sp3 assignment.",
+        "replacement_rule": "A double bond constitutes a single electron domain; the second shared pair resides in a pi bond formed by unhybridised p orbitals."
+      },
+      "answer": {
+        "summary": "In H2C=O, carbon has 3 electron domains (2 C-H single bonds + 1 C=O double bond) and zero lone pairs, so its hybridisation is sp2. The C=O bond consists of 1 sigma component and 1 pi component. The carbon orbital left available for the pi component is the unhybridised 2p orbital (perpendicular to the sp2 molecular plane).",
+        "reasoning_route": [
+          {
+            "id": "m1",
+            "kind": "DECIDE",
+            "action": "Count electron domains: 2 C-H single bonds + 1 C=O double bond = 3 domains.",
+            "why_valid": "A double bond acts as one electron domain in VSEPR.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m1"
+          },
+          {
+            "id": "m2",
+            "kind": "CONNECT",
+            "action": "Assign sp2 hybridisation from 3 domains, which utilizes 2s, 2px, and 2py.",
+            "why_valid": "3 domains require mixing three atomic orbitals (one s and two p).",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m2"
+          },
+          {
+            "id": "m3",
+            "kind": "TRANSFORM",
+            "action": "Decompose C=O double bond into 1 sigma and 1 pi component.",
+            "why_valid": "Double bonds consist of one coaxial sigma and one lateral pi overlap.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m3"
+          },
+          {
+            "id": "m4",
+            "kind": "VERIFY",
+            "action": "Identify the remaining orbital as the unhybridised 2pz orbital.",
+            "why_valid": "Carbon has three 2p orbitals; sp2 leaves one 2p orbital unhybridised.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m4"
+          }
+        ],
+        "crux_move_ref": "m2",
+        "check": "Check orbital conservation: 1 s + 3 p = 4 valence orbitals = 3 sp2 hybrids (sigma) + 1 unhybridised p (pi)."
+      },
+      "source_card_refs": [
+        "ISS34-OWNER-CORE-PROMPT",
+        "SRC-OPENSTAX-VSEPR-HYBRID",
+        "SRC-NCERT-CHEM-11-BONDING"
+      ],
+      "hardest_target": false,
+      "review_evidence_ref": "evidence/benchmark/ISS34/qrt-review.json#ISS34-Q2",
+      "status": "CANDIDATE"
+    },
+    {
+      "id": "ISS34-Q3",
+      "issue": 34,
+      "round": 1,
+      "cohort_label": "D2",
+      "original_identifier": "Q3",
+      "stem": "Ethene is H2C=CH2. Translate this Lewis representation into a qualitative orbital-overlap diagram showing the C\u2013C sigma framework, the two unhybridised carbon p orbitals and their side-on overlap. Label which directions are in the molecular plane and which are perpendicular to it.",
+      "stem_sha256": "sha256:fb036d1a9c5af186367db09ca5c459487cbfbab47bb6e643de2f7e5e40a224f5",
+      "question_block_sha256": "sha256:a3548facc45f544b0cd8fcb5b86cd9dc878c3f8ef4d714bfbc6baff1e06b254d",
+      "origin": "OWNER_SUPPLIED",
+      "authorship_disclosure": "Coordinator/AI-drafted benchmark input supplied under the owner's requested pilot; not official exam/PYQ material and not represented as personally authored by the owner.",
+      "source_refs": [
+        "ISS34-OWNER-CORE-PROMPT",
+        "SRC-OPENSTAX-VSEPR-HYBRID",
+        "SRC-NCERT-CHEM-11-BONDING"
+      ],
+      "primary_capability_ref": "CAP-CHEM-G11-CO2-ORTHOGONAL-PI",
+      "secondary_capability_refs": [
+        "CAP-CHEM-G11-PLANAR-SIGMA-PERPENDICULAR-PI"
+      ],
+      "microtopic_ref": "MIC-CHEM-G11-HYBRID-MULTIPLE-BONDS",
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 0,
+          "representation_translation": 2,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "Translating Lewis H2C=CH2 into a 3D orbital overlap diagram with explicit in-plane vs perpendicular directional labels."
+      },
+      "cohort_alignment": "MATCH",
+      "primary_demand": "REPRESENT",
+      "secondary_demands": [
+        "MODEL"
+      ],
+      "qrt_template_id": "TMPL-CHEM-G11-REPRESENT-D2",
+      "qrt": {
+        "X": "spatial invariance between Lewis ethene and 3D orbital overlap: planar sigma skeleton vs perpendicular lateral pi overlap",
+        "Y": "the trigonal planar sp2 geometry lying in the xy molecular plane and the orthogonal z-axis orientation of unhybridised 2p orbitals",
+        "Z": "construct the qualitative orbital overlap diagram labeling in-plane C-C (sp2-sp2) and C-H (sp2-1s) sigma bonds, and perpendicular side-on 2p-2p pi overlap",
+        "W": "the spatial translation fixing the molecular plane (in-plane sigma framework) and the perpendicular axis (side-on pi overlap with nodal plane in the molecular plane)",
+        "wrong_idea": "Placing the unhybridised 2p orbitals or the pi bond in the molecular plane alongside the sigma bonds.",
+        "replacement_rule": "Sigma bonds lie along the internuclear axes in the molecular plane; pi bonds arise from parallel unhybridised p orbitals perpendicular to that plane."
+      },
+      "answer": {
+        "summary": "In ethene (H2C=CH2), all six atoms lie in the molecular plane (xy plane). The C-C sigma bond is formed by coaxial head-on overlap of C(sp2) hybrids, and four C-H sigma bonds lie in the same molecular plane. Each carbon retains one unhybridised 2p orbital (2pz) oriented perpendicular to the molecular plane (along the z axis). Side-on overlap of these parallel 2pz orbitals above and below the plane forms the pi bond, with its nodal plane coinciding with the molecular plane.",
+        "reasoning_route": [
+          {
+            "id": "m1",
+            "kind": "REPRESENT",
+            "action": "Map ethene sigma framework into the molecular plane (xy plane).",
+            "why_valid": "sp2 hybrid orbitals are coplanar with 120 degree angles.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m1"
+          },
+          {
+            "id": "m2",
+            "kind": "CONNECT",
+            "action": "Orient unhybridised 2pz orbitals perpendicular to the molecular plane.",
+            "why_valid": "The remaining p orbital is orthogonal to the two p orbitals used in sp2.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m2"
+          },
+          {
+            "id": "m3",
+            "kind": "VERIFY",
+            "action": "Represent lateral pi overlap above and below the molecular plane.",
+            "why_valid": "Side-on overlap of parallel p lobes creates the pi bond with a nodal plane.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m3"
+          }
+        ],
+        "crux_move_ref": "m2",
+        "check": "Confirm that the nodal plane of the pi bond contains all six atomic nuclei."
+      },
+      "source_card_refs": [
+        "ISS34-OWNER-CORE-PROMPT",
+        "SRC-OPENSTAX-VSEPR-HYBRID",
+        "SRC-NCERT-CHEM-11-BONDING"
+      ],
+      "hardest_target": false,
+      "review_evidence_ref": "evidence/benchmark/ISS34/qrt-review.json#ISS34-Q3",
+      "status": "CANDIDATE"
+    },
+    {
+      "id": "ISS34-Q4",
+      "issue": 34,
+      "round": 1,
+      "cohort_label": "D2",
+      "original_identifier": "Q4",
+      "stem": "For CO2, connect the central-carbon Lewis domain count to its hybrid-orbital model, the number of remaining carbon p orbitals and the sigma/pi composition of its two C=O bonds. Explain how these pieces fit one consistent linear arrangement.",
+      "stem_sha256": "sha256:cdbbf23c1c396766ba4d8fbd98aa45d2578559881b1593fd983f1f03c830ce80",
+      "question_block_sha256": "sha256:e45084a266a88b742405cad1a40653a049fe90a6744e1b672a1be527ff1ff7a6",
+      "origin": "OWNER_SUPPLIED",
+      "authorship_disclosure": "Coordinator/AI-drafted benchmark input supplied under the owner's requested pilot; not official exam/PYQ material and not represented as personally authored by the owner.",
+      "source_refs": [
+        "ISS34-OWNER-CORE-PROMPT",
+        "SRC-OPENSTAX-VSEPR-HYBRID",
+        "SRC-NCERT-CHEM-11-BONDING"
+      ],
+      "primary_capability_ref": "CAP-CHEM-G11-CO2-ORTHOGONAL-PI",
+      "secondary_capability_refs": [
+        "CAP-CHEM-G11-LINEAR-SP-COORDINATION"
+      ],
+      "microtopic_ref": "MIC-CHEM-G11-HYBRID-MULTIPLE-BONDS",
+      "difficulty": {
+        "band": "D2",
+        "score": 4,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Synthesizes domain count (2), sp hybridisation, remaining 2 p orbitals (2py, 2pz), and two orthogonal C=O double bonds into a consistent linear structure."
+      },
+      "cohort_alignment": "MATCH",
+      "primary_demand": "SYNTHESIZE",
+      "secondary_demands": [
+        "EXPLAIN"
+      ],
+      "qrt_template_id": "TMPL-CHEM-G11-SYNTHESIZE-D2",
+      "qrt": {
+        "X": "how central carbon 2-domain count, sp hybrid model, two remaining p orbitals, and two double bonds fit into one consistent linear 3D structure",
+        "Y": "the linear sp hybrid model (180 degrees) and the mutual orthogonality of the two unhybridised p orbitals (2py, 2pz)",
+        "Z": "coordinate the components: 2 domains -> sp (linear at 180 degrees); two C-O sigma bonds along x-axis; remaining 2py and 2pz form two mutually perpendicular pi bonds to the two oxygen atoms",
+        "W": "the coordination step demonstrating that two orthogonal pi systems allow central carbon to form two double bonds while maintaining a linear sigma framework",
+        "wrong_idea": "Assuming carbon forms two double bonds in the same plane or requires sp3 to form 4 bonds.",
+        "replacement_rule": "sp hybridisation leaves two orthogonal unhybridised p orbitals, which engage in two mutually perpendicular pi bonds to different adjacent atoms."
+      },
+      "answer": {
+        "summary": "In CO2, central carbon has 2 electron domains (two C=O double bonds) and zero lone pairs, producing linear sp hybridisation (180 degrees). Mixing 2s and 2px forms two collinear sp hybrids along the x-axis, creating two C-O sigma bonds. Carbon retains two unhybridised p orbitals: 2py (vertical) and 2pz (perpendicular). One C=O double bond contains a pi bond formed by 2py-2py overlap, while the other C=O double bond contains a pi bond formed by 2pz-2pz overlap. Because 2py and 2pz are mutually perpendicular, the two pi bonds occupy orthogonal planes, allowing two double bonds without orbital clash, perfectly consistent with a linear 180 degree geometry.",
+        "reasoning_route": [
+          {
+            "id": "m1",
+            "kind": "DECIDE",
+            "action": "Central carbon has 2 electron domains -> sp hybridisation.",
+            "why_valid": "Two double bonds correspond to steric number 2.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m1"
+          },
+          {
+            "id": "m2",
+            "kind": "CONNECT",
+            "action": "Two sp hybrids form linear sigma bonds at 180 degrees along the x-axis.",
+            "why_valid": "sp hybridisation produces a linear arrangement.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m2"
+          },
+          {
+            "id": "m3",
+            "kind": "TRANSFORM",
+            "action": "Identify the two remaining unhybridised 2p orbitals on carbon as 2py and 2pz.",
+            "why_valid": "Only 2px was used in sp hybridisation; 2py and 2pz remain free.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m3"
+          },
+          {
+            "id": "m4",
+            "kind": "VERIFY",
+            "action": "Form two mutually perpendicular pi bonds with the two oxygen atoms.",
+            "why_valid": "2py overlaps with one O(2py), and 2pz overlaps with the other O(2pz).",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m4"
+          }
+        ],
+        "crux_move_ref": "m4",
+        "check": "Verify orbital conservation: 1 s + 1 px (sigma) + 1 py (pi_y) + 1 pz (pi_z) = 4 orbitals total."
+      },
+      "source_card_refs": [
+        "ISS34-OWNER-CORE-PROMPT",
+        "SRC-OPENSTAX-VSEPR-HYBRID",
+        "SRC-NCERT-CHEM-11-BONDING"
+      ],
+      "hardest_target": true,
+      "review_evidence_ref": "evidence/benchmark/ISS34/qrt-review.json#ISS34-Q4",
+      "status": "CANDIDATE"
+    },
+    {
+      "id": "ISS34-Q5",
+      "issue": 34,
+      "round": 1,
+      "cohort_label": "D2",
+      "original_identifier": "Q5",
+      "stem": "Consider the claim: 'Any central atom with three sigma bonds must be sp2.' Given BF3: three B\u2013F sigma bonds, zero boron lone pairs, planar; NH3: three N\u2013H sigma bonds, one nitrogen lone pair, pyramidal. Decide whether these observations support the claim, give the decisive warrant, and state a more defensible introductory rule. Explain what the shape observations alone do not prove about orbitals.",
+      "stem_sha256": "sha256:f2e20af62103acfafec848c6b00dbce9a816c60de829c8852175810cd4bfb39b",
+      "question_block_sha256": "sha256:362712b84e92f297865aac2f3de1be783911278ab68fe65165ae5654d497c850",
+      "origin": "OWNER_SUPPLIED",
+      "authorship_disclosure": "Coordinator/AI-drafted benchmark input supplied under the owner's requested pilot; not official exam/PYQ material and not represented as personally authored by the owner.",
+      "source_refs": [
+        "ISS34-OWNER-CORE-PROMPT",
+        "SRC-OPENSTAX-VSEPR-HYBRID",
+        "SRC-NCERT-CHEM-11-BONDING"
+      ],
+      "primary_capability_ref": "CAP-CHEM-G11-HYBRID-STERIC",
+      "secondary_capability_refs": [
+        "CAP-CHEM-G11-COUNTEREXAMPLE-EVALUATION"
+      ],
+      "microtopic_ref": "MIC-CHEM-G11-HYBRID-DOMAINS",
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Refuting a universal claim using NH3 as a counterexample, stating the correct steric number rule, and explaining the epistemic boundary of hybrid orbital models."
+      },
+      "cohort_alignment": "MATCH",
+      "primary_demand": "JUSTIFY",
+      "secondary_demands": [
+        "EXPLAIN"
+      ],
+      "qrt_template_id": "TMPL-CHEM-G11-JUSTIFY-D2",
+      "qrt": {
+        "X": "evaluating the claim that any central atom with three sigma bonds must be sp2, using BF3 and NH3 as empirical evidence",
+        "Y": "the counterexample logic (NH3: 3 sigma bonds + 1 lone pair = sp3), the steric number warrant, and the distinction between observable geometry and theoretical wavefunctions",
+        "Z": "construct the justification: the observations refute the claim because NH3 has 3 sigma bonds but is sp3 (pyramidal); formulate the defensible rule; distinguish nuclear coordinates from orbital models",
+        "W": "the decisive warrant that hybridisation tracks steric number (sigma + lone pairs), not sigma count alone, and that geometric observations do not prove the physical reality of hybrid orbitals",
+        "wrong_idea": "Treating hybrid orbitals as physical entities directly verified by shape observations, or believing sigma bond count alone determines hybridisation.",
+        "replacement_rule": "Test universal claims against counterexamples with lone pairs; recognise hybridisation as a mathematical model rationalizing geometry, not a direct physical observable."
+      },
+      "answer": {
+        "summary": "The observations DO NOT support the claim; NH3 directly refutes it. Although NH3 has three sigma bonds, its central nitrogen has one lone pair, giving steric number 4 (sp3 hybridisation, trigonal pyramidal shape). A more defensible introductory rule is: 'Central atom hybridisation is determined by total electron domains (steric number = sigma bonds + lone pairs), where steric number 3 corresponds to sp2 and steric number 4 corresponds to sp3.' Shape observations alone (measured positions of nuclei) prove molecular geometry, but do not prove that hybrid orbitals physically exist; hybridisation is a mathematical Valence Bond model constructed to rationalize observed shapes.",
+        "reasoning_route": [
+          {
+            "id": "m1",
+            "kind": "DECIDE",
+            "action": "Evaluate claim against NH3: NH3 has 3 sigma bonds but is sp3 and pyramidal.",
+            "why_valid": "A single counterexample refutes a universal claim.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m1"
+          },
+          {
+            "id": "m2",
+            "kind": "CONNECT",
+            "action": "Identify decisive warrant: steric number (sigma + lone pairs) governs hybridisation.",
+            "why_valid": "Lone pairs require hybrid orbital domains alongside sigma bonds.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m2"
+          },
+          {
+            "id": "m3",
+            "kind": "VERIFY",
+            "action": "Explain epistemic limit: shape reveals nuclear positions, not atomic orbital mixing.",
+            "why_valid": "Hybrid orbitals are mathematical constructs in VB theory, not spectroscopic observables.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m3"
+          }
+        ],
+        "crux_move_ref": "m1",
+        "check": "Counterexample validation: NH3 and H3O+ both have 3 sigma bonds and 1 lone pair; both are sp3 and trigonal pyramidal."
+      },
+      "source_card_refs": [
+        "ISS34-OWNER-CORE-PROMPT",
+        "SRC-OPENSTAX-VSEPR-HYBRID",
+        "SRC-NCERT-CHEM-11-BONDING"
+      ],
+      "hardest_target": false,
+      "review_evidence_ref": "evidence/benchmark/ISS34/qrt-review.json#ISS34-Q5",
+      "status": "CANDIDATE"
+    },
+    {
+      "id": "ISS34-Q6",
+      "issue": 34,
+      "round": 1,
+      "cohort_label": "D2",
+      "original_identifier": "Q6",
+      "stem": "In CH3F, carbon has three C\u2013H single bonds and one C\u2013F single bond. Assign its introductory local hybridisation and explain why the number of electron-domain directions is unchanged from CH4 even though the attached atoms are different. Do not assume all bond properties are identical.",
+      "stem_sha256": "sha256:bab033ed2d36ad4e946c8ac500169f4be039c80d13446e2c67490b6aa812269f",
+      "question_block_sha256": "sha256:7aac40ae218d9fbe0be742d37f7f75b1b1064011c5bdb8dbeda7bf7f092cdbbc",
+      "origin": "OWNER_SUPPLIED",
+      "authorship_disclosure": "Coordinator/AI-drafted benchmark input supplied under the owner's requested pilot; not official exam/PYQ material and not represented as personally authored by the owner.",
+      "source_refs": [
+        "ISS34-OWNER-CORE-PROMPT",
+        "SRC-OPENSTAX-VSEPR-HYBRID",
+        "SRC-NCERT-CHEM-11-BONDING"
+      ],
+      "primary_capability_ref": "CAP-CHEM-G11-HYBRID-STERIC",
+      "secondary_capability_refs": [
+        "CAP-CHEM-G11-SUBSTITUENT-PERTURBATION"
+      ],
+      "microtopic_ref": "MIC-CHEM-G11-HYBRID-DOMAINS",
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Explaining why electron domain directions remain 4 (sp3) in CH3F despite different substituent atoms (F vs H), while recognizing non-identical bond lengths and angles."
+      },
+      "cohort_alignment": "MATCH",
+      "primary_demand": "EXPLAIN",
+      "secondary_demands": [
+        "MODEL"
+      ],
+      "qrt_template_id": "TMPL-CHEM-G11-EXPLAIN-D2",
+      "qrt": {
+        "X": "why CH3F retains 4 electron-domain directions and sp3 hybridisation like CH4 despite different attached atoms, without assuming identical bond properties",
+        "Y": "the definition of an electron domain as a localized region of electron density directed toward a bonded atom regardless of atom identity",
+        "Z": "explain that 4 single bonds create 4 regions of mutual repulsion (steric number 4 -> sp3), while differing electronegativities and bond lengths perturb bond angles and dipole symmetry without changing domain count",
+        "W": "the linking explanation that domain count is topological/steric (number of bonded directions + lone pairs), invariant to atom identity, even though bond angles and polarity deviate from ideal tetrahedral symmetry",
+        "wrong_idea": "Assuming that different attached atoms require different hybridisation labels or that sp3 requires four perfectly identical bonds.",
+        "replacement_rule": "Electron-domain count depends on the number of bonding directions, not the equality of the bonds; symmetry differences perturb angles but do not change the introductory 4-domain sp3 framework."
+      },
+      "answer": {
+        "summary": "In CH3F, carbon has four single bonds (three C-H and one C-F) and zero lone pairs, giving introductory local hybridisation sp3. The number of electron-domain directions is unchanged from CH4 (4 directions) because each single covalent bond constitutes one localized region of electron density that repels the others, regardless of the attached atom's identity. However, because fluorine is more electronegative and larger than hydrogen, the C-F bond is more polar and longer than C-H bonds, slightly perturbing the bond angles from 109.5 degrees (C3v symmetry) without altering the 4-domain steric framework.",
+        "reasoning_route": [
+          {
+            "id": "m1",
+            "kind": "DECIDE",
+            "action": "Assign carbon hybridisation: 4 single bonds = 4 electron domains -> sp3.",
+            "why_valid": "Steric number 4 corresponds to sp3 hybridisation.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m1"
+          },
+          {
+            "id": "m2",
+            "kind": "CONNECT",
+            "action": "Explain domain invariance: each single bond is one domain of mutual repulsion regardless of atom identity.",
+            "why_valid": "VSEPR domain count is based on number of bonded atoms and lone pairs.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m2"
+          },
+          {
+            "id": "m3",
+            "kind": "VERIFY",
+            "action": "Acknowledge bond property differences: C-F polarity and length perturb bond angles away from ideal 109.5 degrees.",
+            "why_valid": "Differing electronegativities alter electron distribution without changing domain count.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m3"
+          }
+        ],
+        "crux_move_ref": "m2",
+        "check": "Verify that total valence electrons around carbon equal 8 (octet satisfied via 4 sigma bonds)."
+      },
+      "source_card_refs": [
+        "ISS34-OWNER-CORE-PROMPT",
+        "SRC-OPENSTAX-VSEPR-HYBRID",
+        "SRC-NCERT-CHEM-11-BONDING"
+      ],
+      "hardest_target": false,
+      "review_evidence_ref": "evidence/benchmark/ISS34/qrt-review.json#ISS34-Q6",
+      "status": "CANDIDATE"
+    },
+    {
+      "id": "ISS34-Q7",
+      "issue": 34,
+      "round": 1,
+      "cohort_label": "D2",
+      "original_identifier": "Q7",
+      "stem": "HCN is represented as H\u2013C\u2261N with a lone pair on nitrogen. Assign the introductory hybridisation at carbon and nitrogen, and count the sigma and pi components of the C\u2261N bond. Explain how the local domain count is compatible with those components.",
+      "stem_sha256": "sha256:b46aaef9d5c9a20b520fd924c3180c4b0fbc005bf68e01fab86f087c278fc2ce",
+      "question_block_sha256": "sha256:b2b1bb660973d8a056c8f0ea12c84a19fba4a4b4de91085c3a01fde4e9d212a6",
+      "origin": "OWNER_SUPPLIED",
+      "authorship_disclosure": "Coordinator/AI-drafted benchmark input supplied under the owner's requested pilot; not official exam/PYQ material and not represented as personally authored by the owner.",
+      "source_refs": [
+        "ISS34-OWNER-CORE-PROMPT",
+        "SRC-OPENSTAX-VSEPR-HYBRID",
+        "SRC-NCERT-CHEM-11-BONDING"
+      ],
+      "primary_capability_ref": "CAP-CHEM-G11-CO2-ORTHOGONAL-PI",
+      "secondary_capability_refs": [
+        "CAP-CHEM-G11-NITROGEN-HYBRIDISATION"
+      ],
+      "microtopic_ref": "MIC-CHEM-G11-HYBRID-MULTIPLE-BONDS",
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "Assigning hybridisation at both C and N in H-C#N, breaking down C#N into 1 sigma + 2 pi, and showing domain compatibility at both atoms."
+      },
+      "cohort_alignment": "MATCH",
+      "primary_demand": "APPLY",
+      "secondary_demands": [
+        "MODEL"
+      ],
+      "qrt_template_id": "TMPL-CHEM-G11-APPLY-D2",
+      "qrt": {
+        "X": "assigning introductory hybridisation at both C and N in H-C\u2261N, decomposing the triple bond into sigma and pi components, and demonstrating domain compatibility",
+        "Y": "the 2-domain sp model leaving two unhybridised p orbitals, and the definition of a triple bond as 1 sigma + 2 pi components",
+        "Z": "execute domain counting for C (2 domains -> sp) and N (1 triple bond + 1 lone pair = 2 domains -> sp); decompose C\u2261N into 1 sigma + 2 pi; connect sp hybrids to sigma framework/lone pair and unhybridised p orbitals to the 2 pi bonds",
+        "W": "the execution step: C is sp, N is sp; C\u2261N has 1 sigma + 2 pi; 2 domains each leave 2 unhybridised p orbitals which form the 2 orthogonal pi bonds",
+        "wrong_idea": "Counting the triple bond as 3 domains or failing to hybridise terminal nitrogen.",
+        "replacement_rule": "A triple bond is 1 electron domain; at each sp-hybridised atom, the 2 sp hybrids hold sigma bonds/lone pairs, while the 2 unhybridised p orbitals form the 2 pi bonds."
+      },
+      "answer": {
+        "summary": "In HCN (H-C\u2261N:), Carbon has 2 electron domains (1 C-H single bond + 1 C\u2261N triple bond) and zero lone pairs -> sp hybridised. Nitrogen has 2 electron domains (1 C\u2261N triple bond + 1 lone pair) -> sp hybridised. The C\u2261N triple bond consists of 1 sigma component and 2 pi components. This is fully compatible with the local domain counts: at each atom, 2 sp hybrids form the sigma framework (and accommodate N's lone pair), leaving two unhybridised 2p orbitals on each atom to form the two mutually perpendicular pi bonds.",
+        "reasoning_route": [
+          {
+            "id": "m1",
+            "kind": "DECIDE",
+            "action": "Count domains: C has 2 domains (sp); N has 2 domains (sp).",
+            "why_valid": "Triple bond = 1 domain; N lone pair = 1 domain.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m1"
+          },
+          {
+            "id": "m2",
+            "kind": "TRANSFORM",
+            "action": "Decompose C#N into 1 sigma bond and 2 pi bonds.",
+            "why_valid": "A triple bond always comprises 1 coaxial sigma and 2 lateral pi bonds.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m2"
+          },
+          {
+            "id": "m3",
+            "kind": "CONNECT",
+            "action": "Show orbital compatibility: 2 sp hybrids form sigma/lone pair, leaving two 2p orbitals per atom for 2 pi bonds.",
+            "why_valid": "sp hybridisation conserves two unhybridised p orbitals for pi bonding.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m3"
+          }
+        ],
+        "crux_move_ref": "m3",
+        "check": "Check orbital counts on both atoms: C has 2 sp + 2 p = 4; N has 2 sp + 2 p = 4."
+      },
+      "source_card_refs": [
+        "ISS34-OWNER-CORE-PROMPT",
+        "SRC-OPENSTAX-VSEPR-HYBRID",
+        "SRC-NCERT-CHEM-11-BONDING"
+      ],
+      "hardest_target": false,
+      "review_evidence_ref": "evidence/benchmark/ISS34/qrt-review.json#ISS34-Q7",
+      "status": "CANDIDATE"
+    },
+    {
+      "id": "ISS34-Q8",
+      "issue": 34,
+      "round": 1,
+      "cohort_label": "D2",
+      "original_identifier": "Q8",
+      "stem": "For methylamine, CH3\u2013NH2, carbon has four single bonds and nitrogen has three single bonds plus a lone pair. Compare the introductory local hybridisation and arrangement of bonded atoms at carbon and nitrogen. Explain why the same hybridisation label does not require identical molecular shapes.",
+      "stem_sha256": "sha256:3ab7d806371d7c999400460cd7879583e40303ee4bde67be919405d56191fce8",
+      "question_block_sha256": "sha256:b845f55183a45747037adc7e57554104e1b91998be16c8f413608c4333f418ec",
+      "origin": "OWNER_SUPPLIED",
+      "authorship_disclosure": "Coordinator/AI-drafted benchmark input supplied under the owner's requested pilot; not official exam/PYQ material and not represented as personally authored by the owner.",
+      "source_refs": [
+        "ISS34-OWNER-CORE-PROMPT",
+        "SRC-OPENSTAX-VSEPR-HYBRID",
+        "SRC-NCERT-CHEM-11-BONDING"
+      ],
+      "primary_capability_ref": "CAP-CHEM-G11-HYBRID-STERIC",
+      "secondary_capability_refs": [
+        "CAP-CHEM-G11-HYBRIDISATION-VS-SHAPE"
+      ],
+      "microtopic_ref": "MIC-CHEM-G11-HYBRID-DOMAINS",
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "Comparing C and N in CH3-NH2: both sp3, but C has a tetrahedral arrangement of bonded atoms while N has a trigonal pyramidal arrangement, explaining why identical hybridisation does not require identical molecular shapes."
+      },
+      "cohort_alignment": "MATCH",
+      "primary_demand": "EXPLAIN",
+      "secondary_demands": [
+        "REPRESENT"
+      ],
+      "qrt_template_id": "TMPL-CHEM-G11-EXPLAIN-D2",
+      "qrt": {
+        "X": "why C and N in CH3-NH2 share the same sp3 hybridisation label but have different arrangements of bonded atoms (tetrahedral vs trigonal pyramidal)",
+        "Y": "the distinction between electron-domain geometry (spatial layout of all domains) and molecular shape (spatial layout of atomic nuclei only)",
+        "Z": "explain that both C and N have steric number 4 -> sp3 / tetrahedral domain geometry; on C all 4 domains are bonds -> tetrahedral shape; on N 1 domain is a lone pair -> 3 bonded atoms form a trigonal pyramid",
+        "W": "the linking explanation that molecular shape describes nuclear positions only; lone pairs occupy hybrid orbitals without adding an atomic vertex",
+        "wrong_idea": "Equating hybridisation label directly with molecular shape, assuming all sp3 centres must be tetrahedral.",
+        "replacement_rule": "Hybridisation describes the electron-domain framework; molecular shape describes the atomic vertices. When lone pairs are present, molecular shape differs from electron-domain geometry."
+      },
+      "answer": {
+        "summary": "In methylamine (CH3-NH2), Carbon has 4 single bonds and 0 lone pairs (steric number 4) -> sp3 hybridisation, tetrahedral arrangement of bonded atoms. Nitrogen has 3 single bonds and 1 lone pair (steric number 4) -> sp3 hybridisation, trigonal pyramidal arrangement of bonded atoms. The same hybridisation label does not require identical molecular shapes because hybridisation reflects the total electron-domain geometry (all electron pairs), whereas molecular shape describes only the spatial arrangement of the atomic nuclei. Nitrogen's lone pair occupies a hybrid orbital but does not contribute an atomic vertex, reducing the visible shape from tetrahedral to trigonal pyramidal.",
+        "reasoning_route": [
+          {
+            "id": "m1",
+            "kind": "DECIDE",
+            "action": "Assign hybridisation: C has 4 domains (sp3); N has 4 domains (sp3).",
+            "why_valid": "Steric number is 4 for both centres.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m1"
+          },
+          {
+            "id": "m2",
+            "kind": "CONNECT",
+            "action": "Compare bonded atom arrangements: C is tetrahedral; N is trigonal pyramidal.",
+            "why_valid": "C has 4 bonded atoms; N has 3 bonded atoms.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m2"
+          },
+          {
+            "id": "m3",
+            "kind": "VERIFY",
+            "action": "Explain shape discrepancy: molecular shape describes nuclei only, not non-bonding pairs.",
+            "why_valid": "Lone pairs occupy space in electron geometry without appearing as nuclear vertices in molecular shape.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m3"
+          }
+        ],
+        "crux_move_ref": "m3",
+        "check": "Contrast bond angles: H-C-H is close to 109.5 degrees; H-N-H is compressed to approx 106-107 degrees by lone pair repulsion."
+      },
+      "source_card_refs": [
+        "ISS34-OWNER-CORE-PROMPT",
+        "SRC-OPENSTAX-VSEPR-HYBRID",
+        "SRC-NCERT-CHEM-11-BONDING"
+      ],
+      "hardest_target": false,
+      "review_evidence_ref": "evidence/benchmark/ISS34/qrt-review.json#ISS34-Q8",
+      "status": "CANDIDATE"
+    },
+    {
+      "id": "ISS34-Q9",
+      "issue": 34,
+      "round": 1,
+      "cohort_label": "D2",
+      "original_identifier": "Q9",
+      "stem": "A carbon centre has three sigma-bond directions, no lone pair, and participates in one pi bond. Translate this description into a qualitative local orbital arrangement and check that the orbitals used in the sigma and pi parts have not been counted twice.",
+      "stem_sha256": "sha256:aaeea9734d4f95422f5e9d3170b47a4474701f812b5813a1747fdb3203a8d747",
+      "question_block_sha256": "sha256:d70fa09513ff018ea7918b9623bd6792da0d84cb5871287ca6f7a7b1ccec45e9",
+      "origin": "OWNER_SUPPLIED",
+      "authorship_disclosure": "Coordinator/AI-drafted benchmark input supplied under the owner's requested pilot; not official exam/PYQ material and not represented as personally authored by the owner.",
+      "source_refs": [
+        "ISS34-OWNER-CORE-PROMPT",
+        "SRC-OPENSTAX-VSEPR-HYBRID",
+        "SRC-NCERT-CHEM-11-BONDING"
+      ],
+      "primary_capability_ref": "CAP-CHEM-G11-CO2-ORTHOGONAL-PI",
+      "secondary_capability_refs": [
+        "CAP-CHEM-G11-NO-DOUBLE-COUNTING"
+      ],
+      "microtopic_ref": "MIC-CHEM-G11-HYBRID-MULTIPLE-BONDS",
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 0,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Translating 3 sigma directions, 0 LP, 1 pi bond into an sp2 + unhybridised p representation and verifying that orbital accounting strictly conserves 4 valence orbitals without double counting."
+      },
+      "cohort_alignment": "MATCH",
+      "primary_demand": "REPRESENT",
+      "secondary_demands": [
+        "MODEL"
+      ],
+      "qrt_template_id": "TMPL-CHEM-G11-REPRESENT-D2",
+      "qrt": {
+        "X": "qualitative orbital arrangement corresponding to 3 sigma directions, 0 lone pairs, 1 pi bond, and verifying orbital conservation without double counting",
+        "Y": "the carbon valence orbital budget (2s + 2px + 2py + 2pz = 4 orbitals) and the orthogonality of hybridised vs unhybridised orbitals",
+        "Z": "construct the representation: 2s + 2px + 2py -> 3 sp2 hybrid orbitals at 120 degrees in-plane (sigma framework); 2pz -> unhybridised p orbital perpendicular to plane (pi bond); verify total = 3 + 1 = 4 orbitals",
+        "W": "the translation and accounting check showing that 3 sp2 hybrids + 1 unhybridised p orbital account for all 4 carbon valence orbitals with zero double counting",
+        "wrong_idea": "Assuming carbon uses sp3 hybridisation while also forming a pi bond, which would erroneously require 5 valence orbitals (4 sp3 + 1 p).",
+        "replacement_rule": "Total orbitals are strictly conserved; an atom using n hybrid orbitals leaves (4 - n) pure p orbitals in the valence shell for pi bonding or unshared occupancy."
+      },
+      "answer": {
+        "summary": "For a carbon centre with 3 sigma-bond directions, 0 lone pairs, and 1 pi bond: Carbon mixes one 2s and two 2p orbitals (e.g. 2px, 2py) to form three equivalent sp2 hybrid orbitals directed in a plane at 120 degrees for sigma bonding. One 2p orbital (2pz) remains unhybridised and oriented perpendicular to the sp2 plane, participating in side-on pi overlap. Orbital accounting check: 1(2s) + 2(2p) = 3 sp2 hybrid orbitals (used in sigma bonds); 1(2p) = 1 unhybridised p orbital (used in pi bond). Total orbitals = 3 + 1 = 4 atomic orbitals. Exactly 4 valence atomic orbitals entered the model and 4 are accounted for; no orbital is counted twice.",
+        "reasoning_route": [
+          {
+            "id": "m1",
+            "kind": "REPRESENT",
+            "action": "Represent sigma framework as three sp2 hybrid orbitals at 120 degrees.",
+            "why_valid": "Three planar sigma directions require sp2 hybridisation.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m1"
+          },
+          {
+            "id": "m2",
+            "kind": "REPRESENT",
+            "action": "Represent pi bond as one unhybridised 2p orbital perpendicular to the sp2 plane.",
+            "why_valid": "Pi bonding requires an unhybridised p orbital orthogonal to the sigma plane.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m2"
+          },
+          {
+            "id": "m3",
+            "kind": "VERIFY",
+            "action": "Perform orbital conservation check: 3 sp2 hybrids + 1 unhybridised p = 4 valence orbitals.",
+            "why_valid": "Carbon has exactly 4 valence orbitals (one 2s and three 2p); all are accounted for without double-counting.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m3"
+          }
+        ],
+        "crux_move_ref": "m3",
+        "check": "Verify that 4 input atomic orbitals (s, px, py, pz) yield exactly 4 output orbitals (3 sp2 + 1 pz)."
+      },
+      "source_card_refs": [
+        "ISS34-OWNER-CORE-PROMPT",
+        "SRC-OPENSTAX-VSEPR-HYBRID",
+        "SRC-NCERT-CHEM-11-BONDING"
+      ],
+      "hardest_target": false,
+      "review_evidence_ref": "evidence/benchmark/ISS34/qrt-review.json#ISS34-Q9",
+      "status": "CANDIDATE"
+    },
+    {
+      "id": "ISS34-Q10",
+      "issue": 34,
+      "round": 1,
+      "cohort_label": "D2",
+      "original_identifier": "Q10",
+      "stem": "A student says, 'If the electron-domain geometry is tetrahedral, the atoms must form a tetrahedral molecular shape.' Evaluate the statement using CH4, NH3 and H2O, with their respective central lone-pair counts of zero, one and two.",
+      "stem_sha256": "sha256:0b05336ad3ddf7cb4231669076eb29479894d558bbd8b3af40fa545514c7e305",
+      "question_block_sha256": "sha256:67e0b313de3e58464d8ffd9cd67971b5ff58676e3bcaf390be5440b15bd53040",
+      "origin": "OWNER_SUPPLIED",
+      "authorship_disclosure": "Coordinator/AI-drafted benchmark input supplied under the owner's requested pilot; not official exam/PYQ material and not represented as personally authored by the owner.",
+      "source_refs": [
+        "ISS34-OWNER-CORE-PROMPT",
+        "SRC-OPENSTAX-VSEPR-HYBRID",
+        "SRC-NCERT-CHEM-11-BONDING"
+      ],
+      "primary_capability_ref": "CAP-CHEM-G11-HYBRID-STERIC",
+      "secondary_capability_refs": [
+        "CAP-CHEM-G11-LONE-PAIR-PROGRESSION"
+      ],
+      "microtopic_ref": "MIC-CHEM-G11-HYBRID-DOMAINS",
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Evaluating the student statement using CH4 (0 LP, tetrahedral), NH3 (1 LP, pyramidal), and H2O (2 LP, bent), proving the statement is false and providing the decisive warrant."
+      },
+      "cohort_alignment": "MATCH",
+      "primary_demand": "JUSTIFY",
+      "secondary_demands": [
+        "EXPLAIN"
+      ],
+      "qrt_template_id": "TMPL-CHEM-G11-JUSTIFY-D2",
+      "qrt": {
+        "X": "evaluating the student claim that tetrahedral electron-domain geometry requires tetrahedral molecular shape, using CH4, NH3, and H2O",
+        "Y": "the distinction between electron-domain geometry (all 4 domains) and molecular shape (nuclear positions only), and the progressive impact of lone pairs",
+        "Z": "demonstrate that CH4 is tetrahedral, NH3 is trigonal pyramidal, and H2O is bent; deduce that the student claim is false; explain why lone pairs alter shape",
+        "W": "the decisive evaluation and warrant: electron-domain geometry equals molecular shape only when lone pair count is zero; lone pairs occupy domain positions without adding nuclear vertices",
+        "wrong_idea": "Conflating electron-domain geometry with molecular shape, assuming that domain geometry dictates shape regardless of lone pairs.",
+        "replacement_rule": "Electron-domain geometry includes lone pairs; molecular shape includes only atomic nuclei. If lone pairs > 0, molecular shape is a derivative subset of electron geometry."
+      },
+      "answer": {
+        "summary": "The student's statement is FALSE. While CH4, NH3, and H2O all have tetrahedral electron-domain geometry (steric number 4), their molecular shapes differ based on central lone pair counts: CH4 (0 lone pairs) has 4 bonded atoms -> tetrahedral molecular shape; NH3 (1 lone pair) has 3 bonded atoms -> trigonal pyramidal molecular shape; H2O (2 lone pairs) has 2 bonded atoms -> bent / angular molecular shape. Decisive warrant: Electron-domain geometry describes the arrangement of all electron pairs (bonding + non-bonding), whereas molecular shape describes exclusively the spatial arrangement of atomic nuclei. Shape matches domain geometry only when the central atom has zero lone pairs.",
+        "reasoning_route": [
+          {
+            "id": "m1",
+            "kind": "DECIDE",
+            "action": "Evaluate the statement as false by comparing CH4, NH3, and H2O.",
+            "why_valid": "NH3 and H2O serve as direct counterexamples to the claim.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m1"
+          },
+          {
+            "id": "m2",
+            "kind": "CONNECT",
+            "action": "Map each molecule: CH4 is tetrahedral, NH3 is trigonal pyramidal, H2O is bent.",
+            "why_valid": "Positions of nuclei define molecular shape.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m2"
+          },
+          {
+            "id": "m3",
+            "kind": "VERIFY",
+            "action": "State decisive warrant: electron geometry tracks all domains; shape tracks nuclei only.",
+            "why_valid": "Non-bonding lone pairs occupy domain vertices without creating visible atomic vertices in molecular shape.",
+            "inputs": [
+              "molecular formula and stated bonding directions"
+            ],
+            "output": "Result for m3"
+          }
+        ],
+        "crux_move_ref": "m1",
+        "check": "Test with another 4-domain species: H3O+ has 1 lone pair and is trigonal pyramidal; NH4+ has 0 lone pairs and is tetrahedral."
+      },
+      "source_card_refs": [
+        "ISS34-OWNER-CORE-PROMPT",
+        "SRC-OPENSTAX-VSEPR-HYBRID",
+        "SRC-NCERT-CHEM-11-BONDING"
+      ],
+      "hardest_target": false,
+      "review_evidence_ref": "evidence/benchmark/ISS34/qrt-review.json#ISS34-Q10",
+      "status": "CANDIDATE"
+    }
+  ],
+  "matrix_coverage": {
+    "canonical_cells_total": 28,
+    "brief_instances_total": 10,
+    "covered_primary_cells": [
+      "EXPLAIN \u00b7 D2 (Q1, Q6, Q8)",
+      "APPLY \u00b7 D2 (Q2, Q7)",
+      "REPRESENT \u00b7 D2 (Q3, Q9)",
+      "SYNTHESIZE \u00b7 D2 (Q4)",
+      "JUSTIFY \u00b7 D2 (Q5, Q10)"
+    ],
+    "covered_cells_count": 5,
+    "uncovered_cells_in_d2": [
+      "RETRIEVE \u00b7 D2",
+      "MODEL \u00b7 D2"
+    ],
+    "note": "Secondary demands provide exposure to RETRIEVE and MODEL across several items, but primary cells strictly govern QRT cell assignment. No artificial D4 promotion or forced classification was applied."
+  },
+  "hardest_target": {
+    "question_id": "ISS34-Q4",
+    "sub_concept": "Linear sp Hybridisation & Orthogonal Double Pi Systems (CO2)",
+    "demand": "SYNTHESIZE",
+    "band": "D2",
+    "score": 2,
+    "rationale": "CO2 requires coordinating central carbon Lewis domain count (2), linear sp hybridisation (180 degrees), identification of two orthogonal unhybridised 2p orbitals (2py, 2pz), and independent side-on overlap to form two mutually perpendicular pi bonds with two oxygen atoms without electronic interference or orbital double-counting. This directly addresses the two key areas marked UNCERTAIN in the learner preset (coordinating hybrid orbitals with sigma/pi overlap and distinguishing domain count from shared pairs)."
+  }
+}

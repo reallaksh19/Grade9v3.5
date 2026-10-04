@@ -1,0 +1,101 @@
+<svg aria-labelledby="title-co2-ortho desc-co2-ortho" class="question-svg" role="img" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
+<style>
+  .label { font-size: 15px; fill: #18324a; font-family: system-ui, sans-serif; font-weight: 700; }
+  .caption { font-size: 13px; fill: #475569; font-family: system-ui, sans-serif; }
+  .axis { font-size: 12px; fill: #94a3b8; font-family: system-ui, sans-serif; font-style: italic; }
+  .atom { font-size: 16px; font-weight: 700; font-family: system-ui, sans-serif; }
+  .formula { font-size: 15px; fill: #0f172a; font-family: Cambria, "Times New Roman", serif; font-weight: 600; }
+</style>
+<title id="title-co2-ortho">Carbon Dioxide: Linear sp Hybridisation and Orthogonal Pi Systems</title>
+<desc id="desc-co2-ortho">Stepwise orbital model of CO2 showing central carbon forming two collinear sp hybrid sigma bonds along the x-axis, accompanied by two mutually perpendicular unhybridised 2p orbitals (2py and 2pz) forming two orthogonal pi bonds with terminal oxygen atoms.</desc>
+
+<rect fill="#f8fafc" height="358" rx="12" stroke="#cbd5e1" stroke-width="2" width="638" x="1" y="1"/>
+
+<!-- Background Grid / Coordinate Axes -->
+<g stroke="#e2e8f0" stroke-width="1.5">
+  <line x1="60" y1="180" x2="580" y2="180" stroke="#94a3b8" stroke-dasharray="3 3"/>
+  <line x1="320" y1="40" x2="320" y2="320" stroke="#94a3b8" stroke-dasharray="3 3"/>
+  <line x1="220" y1="280" x2="420" y2="80" stroke="#94a3b8" stroke-dasharray="3 3"/>
+</g>
+<text class="axis" x="585" y="184">x (internuclear)</text>
+<text class="axis" x="325" y="45">y (vertical)</text>
+<text class="axis" x="425" y="85">z (perpendicular)</text>
+
+<!-- STAGE 1: Electron domains from Lewis structure -->
+<g data-g9-stage-id="stage-domains">
+  <rect fill="#ffffff" opacity="0.9" x="40" y="20" width="240" height="70" rx="8" stroke="#cbd5e1" stroke-width="1"/>
+  <text class="label" x="50" y="42">Stage 1: Lewis Domain Count</text>
+  <text class="formula" x="50" y="65">:Ö = C = Ö:  →  2 Electron Domains</text>
+  <text class="caption" x="50" y="82">Double bond = 1 domain; Linear at 180°</text>
+</g>
+
+<!-- STAGE 2: Sigma framework (sp hybrids along x-axis) -->
+<g data-g9-stage-id="stage-sigma">
+  <!-- Central Carbon nucleus -->
+  <circle cx="320" cy="180" fill="#334155" r="16"/>
+  <text class="atom" fill="#ffffff" text-anchor="middle" x="320" y="186">C</text>
+
+  <!-- Left Oxygen nucleus -->
+  <circle cx="140" cy="180" fill="#dc2626" r="15"/>
+  <text class="atom" fill="#ffffff" text-anchor="middle" x="140" y="186">O</text>
+
+  <!-- Right Oxygen nucleus -->
+  <circle cx="500" cy="180" fill="#dc2626" r="15"/>
+  <text class="atom" fill="#ffffff" text-anchor="middle" x="500" y="186">O</text>
+
+  <!-- C sp hybrids along x-axis (end-on sigma overlap) -->
+  <!-- Left sp lobe -->
+  <path d="M 320 180 C 290 165, 230 165, 200 180 C 230 195, 290 195, 320 180 Z" fill="#3b82f6" fill-opacity="0.35" stroke="#2563eb" stroke-width="1.5"/>
+  <!-- Right sp lobe -->
+  <path d="M 320 180 C 350 165, 410 165, 440 180 C 410 195, 350 195, 320 180 Z" fill="#3b82f6" fill-opacity="0.35" stroke="#2563eb" stroke-width="1.5"/>
+
+  <!-- Left O overlap lobe -->
+  <ellipse cx="170" cy="180" rx="20" ry="12" fill="#ef4444" fill-opacity="0.3" stroke="#dc2626" stroke-width="1.5"/>
+  <!-- Right O overlap lobe -->
+  <ellipse cx="470" cy="180" rx="20" ry="12" fill="#ef4444" fill-opacity="0.3" stroke="#dc2626" stroke-width="1.5"/>
+
+  <text class="caption" fill="#1e40af" font-weight="700" text-anchor="middle" x="230" y="155">C(sp) - O σ</text>
+  <text class="caption" fill="#1e40af" font-weight="700" text-anchor="middle" x="410" y="155">C(sp) - O σ</text>
+  <text class="caption" text-anchor="middle" x="320" y="215">Linear σ-framework (180° bond angle)</text>
+</g>
+
+<!-- STAGE 3: Unhybridised 2p orbitals on Carbon (2py and 2pz) -->
+<g data-g9-stage-id="stage-p-orbitals">
+  <!-- 2py lobes (vertical along y-axis) -->
+  <!-- Top 2py lobe -->
+  <path d="M 320 180 C 305 150, 305 100, 320 70 C 335 100, 335 150, 320 180 Z" fill="#a855f7" fill-opacity="0.4" stroke="#9333ea" stroke-width="1.5"/>
+  <!-- Bottom 2py lobe -->
+  <path d="M 320 180 C 305 210, 305 260, 320 290 C 335 260, 335 210, 320 180 Z" fill="#a855f7" fill-opacity="0.4" stroke="#9333ea" stroke-width="1.5"/>
+  <text class="caption" fill="#7e22ce" font-weight="700" x="335" y="90">2py (vertical)</text>
+
+  <!-- 2pz lobes (slanted along z-axis) -->
+  <!-- Upper-right 2pz lobe -->
+  <path d="M 320 180 C 335 165, 365 135, 385 115 C 385 135, 355 165, 320 180 Z" fill="#06b6d4" fill-opacity="0.4" stroke="#0891b2" stroke-width="1.5"/>
+  <!-- Lower-left 2pz lobe -->
+  <path d="M 320 180 C 305 195, 275 225, 255 245 C 255 225, 285 195, 320 180 Z" fill="#06b6d4" fill-opacity="0.4" stroke="#0891b2" stroke-width="1.5"/>
+  <text class="caption" fill="#0e7490" font-weight="700" x="390" y="125">2pz (perpendicular)</text>
+</g>
+
+<!-- STAGE 4: Two orthogonal pi overlap systems -->
+<g data-g9-stage-id="stage-pi-overlap">
+  <!-- Left Oxygen 2py vertical orbital for pi_y overlap -->
+  <path d="M 140 180 C 128 150, 128 100, 140 70 C 152 100, 152 150, 140 180 Z" fill="#a855f7" fill-opacity="0.3" stroke="#9333ea" stroke-width="1.5"/>
+  <path d="M 140 180 C 128 210, 128 260, 140 290 C 152 260, 152 210, 140 180 Z" fill="#a855f7" fill-opacity="0.3" stroke="#9333ea" stroke-width="1.5"/>
+  <!-- Lateral side-on overlap curves for pi_y (vertical plane) -->
+  <path d="M 140 75 Q 230 45, 320 75" fill="none" stroke="#7e22ce" stroke-dasharray="4 3" stroke-width="2"/>
+  <path d="M 140 285 Q 230 315, 320 285" fill="none" stroke="#7e22ce" stroke-dasharray="4 3" stroke-width="2"/>
+  <text class="caption" fill="#6b21a8" font-weight="700" text-anchor="middle" x="230" y="55">π(2py - 2py) overlap in xy-plane</text>
+
+  <!-- Right Oxygen 2pz oblique orbital for pi_z overlap -->
+  <path d="M 500 180 C 515 165, 545 135, 565 115 C 565 135, 535 165, 500 180 Z" fill="#06b6d4" fill-opacity="0.3" stroke="#0891b2" stroke-width="1.5"/>
+  <path d="M 500 180 C 485 195, 455 225, 435 245 C 435 225, 465 195, 500 180 Z" fill="#06b6d4" fill-opacity="0.3" stroke="#0891b2" stroke-width="1.5"/>
+  <!-- Lateral side-on overlap curves for pi_z (orthogonal plane) -->
+  <path d="M 385 115 Q 475 85, 565 115" fill="none" stroke="#0891b2" stroke-dasharray="4 3" stroke-width="2"/>
+  <path d="M 255 245 Q 345 275, 435 245" fill="none" stroke="#0891b2" stroke-dasharray="4 3" stroke-width="2"/>
+  <text class="caption" fill="#155e75" font-weight="700" text-anchor="middle" x="480" y="315">π(2pz - 2pz) overlap in xz-plane</text>
+
+  <!-- Summary banner at bottom -->
+  <rect fill="#ffffff" opacity="0.95" x="120" y="325" width="400" height="28" rx="6" stroke="#94a3b8" stroke-width="1"/>
+  <text class="caption" font-weight="700" text-anchor="middle" x="320" y="344">Two mutually perpendicular π bonds: independent orbitals, zero double-counting</text>
+</g>
+</svg>

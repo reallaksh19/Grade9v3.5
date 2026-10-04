@@ -1,0 +1,940 @@
+{
+  "schema": "iss34-qrt-review/v1",
+  "issue": 34,
+  "round": 1,
+  "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+  "templates_ref": "Shared/quality/question-demand-templates.v1.json",
+  "vocabulary_ref": "Shared/vocabularies/cognitive-demand.v1.json",
+  "review_scope": "Q1-Q10 full academic semantic review",
+  "records": [
+    {
+      "question_id": "ISS34-Q1",
+      "original_identifier": "Q1",
+      "template_id": "TMPL-CHEM-G11-EXPLAIN-D2",
+      "primary_demand": "EXPLAIN",
+      "secondary_demands": [
+        "RETRIEVE",
+        "MODEL"
+      ],
+      "band": "D2",
+      "protected_work": "Leave the core connection/execution/synthesis decision to the learner; support orients relevant givens and principles without disclosing W.",
+      "targets": {
+        "X": "why two molecules with equal sigma bond counts (3) differ in central hybridisation (sp2 vs sp3) and molecular shape (planar vs pyramidal)",
+        "Y": "the steric counting rule: steric number = sigma bonds + non-bonding lone pairs, and hybrid orbitals accommodate all electron domains",
+        "Z": "construct the causal explanation: NH3 possesses one central lone pair requiring an additional hybrid orbital (steric number 4 -> sp3 / tetrahedral domain geometry), whereas BF3 has zero lone pairs (steric number 3 -> sp2 / trigonal planar)",
+        "W": "the decisive explanation that lone pairs occupy hybrid orbital domains and contribute to steric number, while shape traces nuclear positions only",
+        "wrong_idea": "Counting only sigma bonds when assigning hybridisation and shape, ignoring central lone pairs.",
+        "replacement_rule": "Steric number = sigma bonds + lone pairs; all valence electron domains require hybrid orbitals in introductory VB theory."
+      },
+      "authored_support": {
+        "H1": "Focus on the definition of an electron domain: does hybridisation depend only on sigma bonds, or on all valence electron pairs around the central atom?",
+        "H2": "Recall the steric number formula: Steric Number = (number of sigma bonds) + (number of lone pairs). Compare Boron's valence count (3) in BF3 with Nitrogen's (5) in NH3.",
+        "H3": "Map each molecule's steric number to its introductory hybridisation set (3 -> sp2, 4 -> sp3), and observe how lone pairs affect the spatial positions of nuclei."
+      },
+      "visual_spec": {
+        "description": "Two side-by-side structures: BF3 (trigonal planar, 0 LP) and NH3 (trigonal pyramidal, 1 LP occupying a tetrahedral apex).",
+        "stages": [
+          "stage-1",
+          "stage-2",
+          "stage-3"
+        ]
+      },
+      "misconception": {
+        "wrong_idea": "Counting only sigma bonds when assigning hybridisation and shape, ignoring central lone pairs.",
+        "diagnostic_prompt": "Why does 'Counting only sigma bonds when assigning hybridisation and shape, ignoring central lone pairs.' fail when evaluated against this molecular structure?",
+        "repair": "Steric number = sigma bonds + lone pairs; all valence electron domains require hybrid orbitals in introductory VB theory."
+      },
+      "independent_check": {
+        "method": "Orbital conservation, steric number recalculation, or counterexample challenge",
+        "verification": "Verify by valence electron count: B has 3 valence electrons (3 bonding, 0 LP); N has 5 valence electrons (3 bonding, 1 LP)."
+      },
+      "semantic_review": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "H1 clarifies the core decision surface (X) without disclosing the protected work (W)."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "H2 correlates X with demonstrated principle Y while keeping the connection active for the learner."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "H3 opens the path to construction Z while strictly leaving decisive step W to the learner."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Authored staged SVG illustrates the structural situation clearly without printing W."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Visual stages ground learner knowledge in 3D geometry and orbital orientation."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Subsequent visual stages reveal orthogonal components and nodal planes progressively."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Pre-attempt panels orient without revealing the decisive answer or execution steps."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Concept link routes to MIC-CHEM-G11-HYBRID-DOMAINS, where the relevant bridge is formally taught."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Solution steps articulate warranted moves and verify against independent valence/orbital rules."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Explicitly models the common wrong route: 'Counting only sigma bonds when assigning hybridisation and shape, ignoring central lone pairs.'."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Diagnostic prompt discriminates between deep conceptual misunderstanding and accidental arithmetic slip."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Repair establishes replacement rule: 'Steric number = sigma bonds + lone pairs; all valence electron domains require hybrid orbitals in introductory VB theory.'."
+        }
+      },
+      "render_review_status": "GOVERNED_CORE_RENDERED"
+    },
+    {
+      "question_id": "ISS34-Q2",
+      "original_identifier": "Q2",
+      "template_id": "TMPL-CHEM-G11-APPLY-D2",
+      "primary_demand": "APPLY",
+      "secondary_demands": [
+        "MODEL"
+      ],
+      "band": "D2",
+      "protected_work": "Leave the core connection/execution/synthesis decision to the learner; support orients relevant givens and principles without disclosing W.",
+      "targets": {
+        "X": "assigning carbon hybridisation, C=O sigma/pi components, and identifying the remaining carbon orbital in H2C=O without conflating domain count with shared electron pairs",
+        "Y": "the domain counting rule that a double bond counts as one electron domain, while containing one sigma and one pi component",
+        "Z": "execute domain counting (3 domains -> sp2) and orbital budgeting (one 2s + two 2p form sp2, leaving one unhybridised 2p orbital for the pi bond)",
+        "W": "the assignment: carbon is sp2, C=O has 1 sigma + 1 pi, and the remaining carbon orbital is the unhybridised 2p (2pz) orbital",
+        "wrong_idea": "Counting the double bond as two electron domains, resulting in an erroneous sp3 assignment.",
+        "replacement_rule": "A double bond constitutes a single electron domain; the second shared pair resides in a pi bond formed by unhybridised p orbitals."
+      },
+      "authored_support": {
+        "H1": "Separate the count of total shared electron pairs from the count of electron domains: how many regions of electron density surround the central carbon?",
+        "H2": "A double bond contains two shared pairs but counts as ONE electron domain in VSEPR. Use this to determine carbon's steric number and hybridisation.",
+        "H3": "Carbon has one 2s and three 2p orbitals (four valence orbitals). If sp2 mixes 2s with two 2p orbitals, identify which 2p orbital remains unhybridised for the pi bond."
+      },
+      "visual_spec": {
+        "description": "Formaldehyde structure showing planar sp2 C-H and C-O sigma bonds, with an unhybridised 2pz lobe perpendicular to the plane.",
+        "stages": [
+          "stage-1",
+          "stage-2",
+          "stage-3"
+        ]
+      },
+      "misconception": {
+        "wrong_idea": "Counting the double bond as two electron domains, resulting in an erroneous sp3 assignment.",
+        "diagnostic_prompt": "Why does 'Counting the double bond as two electron domains, resulting in an erroneous sp3 assignment.' fail when evaluated against this molecular structure?",
+        "repair": "A double bond constitutes a single electron domain; the second shared pair resides in a pi bond formed by unhybridised p orbitals."
+      },
+      "independent_check": {
+        "method": "Orbital conservation, steric number recalculation, or counterexample challenge",
+        "verification": "Check orbital conservation: 1 s + 3 p = 4 valence orbitals = 3 sp2 hybrids (sigma) + 1 unhybridised p (pi)."
+      },
+      "semantic_review": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "H1 clarifies the core decision surface (X) without disclosing the protected work (W)."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "H2 correlates X with demonstrated principle Y while keeping the connection active for the learner."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "H3 opens the path to construction Z while strictly leaving decisive step W to the learner."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Authored staged SVG illustrates the structural situation clearly without printing W."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Visual stages ground learner knowledge in 3D geometry and orbital orientation."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Subsequent visual stages reveal orthogonal components and nodal planes progressively."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Pre-attempt panels orient without revealing the decisive answer or execution steps."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Concept link routes to MIC-CHEM-G11-HYBRID-MULTIPLE-BONDS, where the relevant bridge is formally taught."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Solution steps articulate warranted moves and verify against independent valence/orbital rules."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Explicitly models the common wrong route: 'Counting the double bond as two electron domains, resulting in an erroneous sp3 assignment.'."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Diagnostic prompt discriminates between deep conceptual misunderstanding and accidental arithmetic slip."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Repair establishes replacement rule: 'A double bond constitutes a single electron domain; the second shared pair resides in a pi bond formed by unhybridised p orbitals.'."
+        }
+      },
+      "render_review_status": "GOVERNED_CORE_RENDERED"
+    },
+    {
+      "question_id": "ISS34-Q3",
+      "original_identifier": "Q3",
+      "template_id": "TMPL-CHEM-G11-REPRESENT-D2",
+      "primary_demand": "REPRESENT",
+      "secondary_demands": [
+        "MODEL"
+      ],
+      "band": "D2",
+      "protected_work": "Leave the core connection/execution/synthesis decision to the learner; support orients relevant givens and principles without disclosing W.",
+      "targets": {
+        "X": "spatial invariance between Lewis ethene and 3D orbital overlap: planar sigma skeleton vs perpendicular lateral pi overlap",
+        "Y": "the trigonal planar sp2 geometry lying in the xy molecular plane and the orthogonal z-axis orientation of unhybridised 2p orbitals",
+        "Z": "construct the qualitative orbital overlap diagram labeling in-plane C-C (sp2-sp2) and C-H (sp2-1s) sigma bonds, and perpendicular side-on 2p-2p pi overlap",
+        "W": "the spatial translation fixing the molecular plane (in-plane sigma framework) and the perpendicular axis (side-on pi overlap with nodal plane in the molecular plane)",
+        "wrong_idea": "Placing the unhybridised 2p orbitals or the pi bond in the molecular plane alongside the sigma bonds.",
+        "replacement_rule": "Sigma bonds lie along the internuclear axes in the molecular plane; pi bonds arise from parallel unhybridised p orbitals perpendicular to that plane."
+      },
+      "authored_support": {
+        "H1": "Identify the molecular plane: all nuclei in ethene lie in a single plane (the xy plane). Which orbitals form the sigma backbone?",
+        "H2": "Each carbon is sp2 hybridised. The sp2 hybrids lie in the xy plane at 120 degree angles. Along what axis does the remaining unhybridised 2p orbital lie?",
+        "H3": "Orient the parallel 2pz orbitals perpendicular to the xy plane and show their lateral side-on overlap above and below the plane to create the pi bond."
+      },
+      "visual_spec": {
+        "description": "Perspective drawing showing the planar sigma framework and two vertical 2pz orbitals overlapping side-on above and below the plane.",
+        "stages": [
+          "stage-1",
+          "stage-2",
+          "stage-3"
+        ]
+      },
+      "misconception": {
+        "wrong_idea": "Placing the unhybridised 2p orbitals or the pi bond in the molecular plane alongside the sigma bonds.",
+        "diagnostic_prompt": "Why does 'Placing the unhybridised 2p orbitals or the pi bond in the molecular plane alongside the sigma bonds.' fail when evaluated against this molecular structure?",
+        "repair": "Sigma bonds lie along the internuclear axes in the molecular plane; pi bonds arise from parallel unhybridised p orbitals perpendicular to that plane."
+      },
+      "independent_check": {
+        "method": "Orbital conservation, steric number recalculation, or counterexample challenge",
+        "verification": "Confirm that the nodal plane of the pi bond contains all six atomic nuclei."
+      },
+      "semantic_review": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "H1 clarifies the core decision surface (X) without disclosing the protected work (W)."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "H2 correlates X with demonstrated principle Y while keeping the connection active for the learner."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "H3 opens the path to construction Z while strictly leaving decisive step W to the learner."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Authored staged SVG illustrates the structural situation clearly without printing W."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Visual stages ground learner knowledge in 3D geometry and orbital orientation."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Subsequent visual stages reveal orthogonal components and nodal planes progressively."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Pre-attempt panels orient without revealing the decisive answer or execution steps."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Concept link routes to MIC-CHEM-G11-HYBRID-MULTIPLE-BONDS, where the relevant bridge is formally taught."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Solution steps articulate warranted moves and verify against independent valence/orbital rules."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Explicitly models the common wrong route: 'Placing the unhybridised 2p orbitals or the pi bond in the molecular plane alongside the sigma bonds.'."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Diagnostic prompt discriminates between deep conceptual misunderstanding and accidental arithmetic slip."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Repair establishes replacement rule: 'Sigma bonds lie along the internuclear axes in the molecular plane; pi bonds arise from parallel unhybridised p orbitals perpendicular to that plane.'."
+        }
+      },
+      "render_review_status": "GOVERNED_CORE_RENDERED"
+    },
+    {
+      "question_id": "ISS34-Q4",
+      "original_identifier": "Q4",
+      "template_id": "TMPL-CHEM-G11-SYNTHESIZE-D2",
+      "primary_demand": "SYNTHESIZE",
+      "secondary_demands": [
+        "EXPLAIN"
+      ],
+      "band": "D2",
+      "protected_work": "Leave the core connection/execution/synthesis decision to the learner; support orients relevant givens and principles without disclosing W.",
+      "targets": {
+        "X": "how central carbon 2-domain count, sp hybrid model, two remaining p orbitals, and two double bonds fit into one consistent linear 3D structure",
+        "Y": "the linear sp hybrid model (180 degrees) and the mutual orthogonality of the two unhybridised p orbitals (2py, 2pz)",
+        "Z": "coordinate the components: 2 domains -> sp (linear at 180 degrees); two C-O sigma bonds along x-axis; remaining 2py and 2pz form two mutually perpendicular pi bonds to the two oxygen atoms",
+        "W": "the coordination step demonstrating that two orthogonal pi systems allow central carbon to form two double bonds while maintaining a linear sigma framework",
+        "wrong_idea": "Assuming carbon forms two double bonds in the same plane or requires sp3 to form 4 bonds.",
+        "replacement_rule": "sp hybridisation leaves two orthogonal unhybridised p orbitals, which engage in two mutually perpendicular pi bonds to different adjacent atoms."
+      },
+      "authored_support": {
+        "H1": "Count the electron domains around central carbon in O=C=O. How many double bonds surround carbon, and what steric number does that correspond to?",
+        "H2": "A steric number of 2 corresponds to sp hybridisation (linear at 180 degrees along the x-axis). How many 2p orbitals remain unhybridised on carbon?",
+        "H3": "The two remaining 2p orbitals (2py and 2pz) are mutually perpendicular. Connect each one to a separate oxygen 2p orbital to form two orthogonal pi bonds."
+      },
+      "visual_spec": {
+        "description": "4-stage orbital model of CO2 showing linear sp sigma framework and two mutually perpendicular pi overlap clouds.",
+        "stages": [
+          "stage-1",
+          "stage-2",
+          "stage-3"
+        ]
+      },
+      "misconception": {
+        "wrong_idea": "Assuming carbon forms two double bonds in the same plane or requires sp3 to form 4 bonds.",
+        "diagnostic_prompt": "Why does 'Assuming carbon forms two double bonds in the same plane or requires sp3 to form 4 bonds.' fail when evaluated against this molecular structure?",
+        "repair": "sp hybridisation leaves two orthogonal unhybridised p orbitals, which engage in two mutually perpendicular pi bonds to different adjacent atoms."
+      },
+      "independent_check": {
+        "method": "Orbital conservation, steric number recalculation, or counterexample challenge",
+        "verification": "Verify orbital conservation: 1 s + 1 px (sigma) + 1 py (pi_y) + 1 pz (pi_z) = 4 orbitals total."
+      },
+      "semantic_review": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "H1 clarifies the core decision surface (X) without disclosing the protected work (W)."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "H2 correlates X with demonstrated principle Y while keeping the connection active for the learner."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "H3 opens the path to construction Z while strictly leaving decisive step W to the learner."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Authored staged SVG illustrates the structural situation clearly without printing W."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Visual stages ground learner knowledge in 3D geometry and orbital orientation."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Subsequent visual stages reveal orthogonal components and nodal planes progressively."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Pre-attempt panels orient without revealing the decisive answer or execution steps."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Concept link routes to MIC-CHEM-G11-HYBRID-MULTIPLE-BONDS, where the relevant bridge is formally taught."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Solution steps articulate warranted moves and verify against independent valence/orbital rules."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Explicitly models the common wrong route: 'Assuming carbon forms two double bonds in the same plane or requires sp3 to form 4 bonds.'."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Diagnostic prompt discriminates between deep conceptual misunderstanding and accidental arithmetic slip."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Repair establishes replacement rule: 'sp hybridisation leaves two orthogonal unhybridised p orbitals, which engage in two mutually perpendicular pi bonds to different adjacent atoms.'."
+        }
+      },
+      "render_review_status": "GOVERNED_CORE_RENDERED"
+    },
+    {
+      "question_id": "ISS34-Q5",
+      "original_identifier": "Q5",
+      "template_id": "TMPL-CHEM-G11-JUSTIFY-D2",
+      "primary_demand": "JUSTIFY",
+      "secondary_demands": [
+        "EXPLAIN"
+      ],
+      "band": "D2",
+      "protected_work": "Leave the core connection/execution/synthesis decision to the learner; support orients relevant givens and principles without disclosing W.",
+      "targets": {
+        "X": "evaluating the claim that any central atom with three sigma bonds must be sp2, using BF3 and NH3 as empirical evidence",
+        "Y": "the counterexample logic (NH3: 3 sigma bonds + 1 lone pair = sp3), the steric number warrant, and the distinction between observable geometry and theoretical wavefunctions",
+        "Z": "construct the justification: the observations refute the claim because NH3 has 3 sigma bonds but is sp3 (pyramidal); formulate the defensible rule; distinguish nuclear coordinates from orbital models",
+        "W": "the decisive warrant that hybridisation tracks steric number (sigma + lone pairs), not sigma count alone, and that geometric observations do not prove the physical reality of hybrid orbitals",
+        "wrong_idea": "Treating hybrid orbitals as physical entities directly verified by shape observations, or believing sigma bond count alone determines hybridisation.",
+        "replacement_rule": "Test universal claims against counterexamples with lone pairs; recognise hybridisation as a mathematical model rationalizing geometry, not a direct physical observable."
+      },
+      "authored_support": {
+        "H1": "Check whether the claim is universal: can you find a central atom with three sigma bonds that is NOT sp2?",
+        "H2": "Compare BF3 (3 sigma bonds, 0 lone pairs) and NH3 (3 sigma bonds, 1 lone pair). Which molecule contradicts the claim that 3 sigma bonds must be sp2?",
+        "H3": "Formulate the correct rule using steric number (sigma + lone pairs), and consider what measured nuclear positions (shapes) do and do not prove about wavefunctions."
+      },
+      "visual_spec": {
+        "description": "Comparison table and Lewis structures contrasting BF3 (planar, sp2) and NH3 (pyramidal, sp3).",
+        "stages": [
+          "stage-1",
+          "stage-2",
+          "stage-3"
+        ]
+      },
+      "misconception": {
+        "wrong_idea": "Treating hybrid orbitals as physical entities directly verified by shape observations, or believing sigma bond count alone determines hybridisation.",
+        "diagnostic_prompt": "Why does 'Treating hybrid orbitals as physical entities directly verified by shape observations, or believing sigma bond count alone determines hybridisation.' fail when evaluated against this molecular structure?",
+        "repair": "Test universal claims against counterexamples with lone pairs; recognise hybridisation as a mathematical model rationalizing geometry, not a direct physical observable."
+      },
+      "independent_check": {
+        "method": "Orbital conservation, steric number recalculation, or counterexample challenge",
+        "verification": "Counterexample validation: NH3 and H3O+ both have 3 sigma bonds and 1 lone pair; both are sp3 and trigonal pyramidal."
+      },
+      "semantic_review": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "H1 clarifies the core decision surface (X) without disclosing the protected work (W)."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "H2 correlates X with demonstrated principle Y while keeping the connection active for the learner."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "H3 opens the path to construction Z while strictly leaving decisive step W to the learner."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Authored staged SVG illustrates the structural situation clearly without printing W."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Visual stages ground learner knowledge in 3D geometry and orbital orientation."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Subsequent visual stages reveal orthogonal components and nodal planes progressively."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Pre-attempt panels orient without revealing the decisive answer or execution steps."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Concept link routes to MIC-CHEM-G11-HYBRID-DOMAINS, where the relevant bridge is formally taught."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Solution steps articulate warranted moves and verify against independent valence/orbital rules."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Explicitly models the common wrong route: 'Treating hybrid orbitals as physical entities directly verified by shape observations, or believing sigma bond count alone determines hybridisation.'."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Diagnostic prompt discriminates between deep conceptual misunderstanding and accidental arithmetic slip."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Repair establishes replacement rule: 'Test universal claims against counterexamples with lone pairs; recognise hybridisation as a mathematical model rationalizing geometry, not a direct physical observable.'."
+        }
+      },
+      "render_review_status": "GOVERNED_CORE_RENDERED"
+    },
+    {
+      "question_id": "ISS34-Q6",
+      "original_identifier": "Q6",
+      "template_id": "TMPL-CHEM-G11-EXPLAIN-D2",
+      "primary_demand": "EXPLAIN",
+      "secondary_demands": [
+        "MODEL"
+      ],
+      "band": "D2",
+      "protected_work": "Leave the core connection/execution/synthesis decision to the learner; support orients relevant givens and principles without disclosing W.",
+      "targets": {
+        "X": "why CH3F retains 4 electron-domain directions and sp3 hybridisation like CH4 despite different attached atoms, without assuming identical bond properties",
+        "Y": "the definition of an electron domain as a localized region of electron density directed toward a bonded atom regardless of atom identity",
+        "Z": "explain that 4 single bonds create 4 regions of mutual repulsion (steric number 4 -> sp3), while differing electronegativities and bond lengths perturb bond angles and dipole symmetry without changing domain count",
+        "W": "the linking explanation that domain count is topological/steric (number of bonded directions + lone pairs), invariant to atom identity, even though bond angles and polarity deviate from ideal tetrahedral symmetry",
+        "wrong_idea": "Assuming that different attached atoms require different hybridisation labels or that sp3 requires four perfectly identical bonds.",
+        "replacement_rule": "Electron-domain count depends on the number of bonding directions, not the equality of the bonds; symmetry differences perturb angles but do not change the introductory 4-domain sp3 framework."
+      },
+      "authored_support": {
+        "H1": "Look at the number of bonding directions around carbon in CH3F: does each single bond count as one electron domain regardless of the attached atom?",
+        "H2": "In VSEPR theory, each region of localized bonding electron density repels other regions. How many single bonds connect to carbon in CH3F compared to CH4?",
+        "H3": "Recognise that domain count (4) fixes the introductory sp3 label, while differences in electronegativity between F and H alter polarity and bond angles."
+      },
+      "visual_spec": {
+        "description": "CH4 vs CH3F tetrahedral frameworks showing preserved 4-domain directions with dipole and bond length asymmetry in CH3F.",
+        "stages": [
+          "stage-1",
+          "stage-2",
+          "stage-3"
+        ]
+      },
+      "misconception": {
+        "wrong_idea": "Assuming that different attached atoms require different hybridisation labels or that sp3 requires four perfectly identical bonds.",
+        "diagnostic_prompt": "Why does 'Assuming that different attached atoms require different hybridisation labels or that sp3 requires four perfectly identical bonds.' fail when evaluated against this molecular structure?",
+        "repair": "Electron-domain count depends on the number of bonding directions, not the equality of the bonds; symmetry differences perturb angles but do not change the introductory 4-domain sp3 framework."
+      },
+      "independent_check": {
+        "method": "Orbital conservation, steric number recalculation, or counterexample challenge",
+        "verification": "Verify that total valence electrons around carbon equal 8 (octet satisfied via 4 sigma bonds)."
+      },
+      "semantic_review": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "H1 clarifies the core decision surface (X) without disclosing the protected work (W)."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "H2 correlates X with demonstrated principle Y while keeping the connection active for the learner."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "H3 opens the path to construction Z while strictly leaving decisive step W to the learner."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Authored staged SVG illustrates the structural situation clearly without printing W."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Visual stages ground learner knowledge in 3D geometry and orbital orientation."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Subsequent visual stages reveal orthogonal components and nodal planes progressively."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Pre-attempt panels orient without revealing the decisive answer or execution steps."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Concept link routes to MIC-CHEM-G11-HYBRID-DOMAINS, where the relevant bridge is formally taught."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Solution steps articulate warranted moves and verify against independent valence/orbital rules."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Explicitly models the common wrong route: 'Assuming that different attached atoms require different hybridisation labels or that sp3 requires four perfectly identical bonds.'."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Diagnostic prompt discriminates between deep conceptual misunderstanding and accidental arithmetic slip."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Repair establishes replacement rule: 'Electron-domain count depends on the number of bonding directions, not the equality of the bonds; symmetry differences perturb angles but do not change the introductory 4-domain sp3 framework.'."
+        }
+      },
+      "render_review_status": "GOVERNED_CORE_RENDERED"
+    },
+    {
+      "question_id": "ISS34-Q7",
+      "original_identifier": "Q7",
+      "template_id": "TMPL-CHEM-G11-APPLY-D2",
+      "primary_demand": "APPLY",
+      "secondary_demands": [
+        "MODEL"
+      ],
+      "band": "D2",
+      "protected_work": "Leave the core connection/execution/synthesis decision to the learner; support orients relevant givens and principles without disclosing W.",
+      "targets": {
+        "X": "assigning introductory hybridisation at both C and N in H-C\u2261N, decomposing the triple bond into sigma and pi components, and demonstrating domain compatibility",
+        "Y": "the 2-domain sp model leaving two unhybridised p orbitals, and the definition of a triple bond as 1 sigma + 2 pi components",
+        "Z": "execute domain counting for C (2 domains -> sp) and N (1 triple bond + 1 lone pair = 2 domains -> sp); decompose C\u2261N into 1 sigma + 2 pi; connect sp hybrids to sigma framework/lone pair and unhybridised p orbitals to the 2 pi bonds",
+        "W": "the execution step: C is sp, N is sp; C\u2261N has 1 sigma + 2 pi; 2 domains each leave 2 unhybridised p orbitals which form the 2 orthogonal pi bonds",
+        "wrong_idea": "Counting the triple bond as 3 domains or failing to hybridise terminal nitrogen.",
+        "replacement_rule": "A triple bond is 1 electron domain; at each sp-hybridised atom, the 2 sp hybrids hold sigma bonds/lone pairs, while the 2 unhybridised p orbitals form the 2 pi bonds."
+      },
+      "authored_support": {
+        "H1": "Count the electron domains at each individual atom: how many domains surround carbon, and how many surround nitrogen?",
+        "H2": "A triple bond counts as 1 domain. Carbon has 1 single bond + 1 triple bond (2 domains); Nitrogen has 1 triple bond + 1 lone pair (2 domains).",
+        "H3": "Decompose the triple bond into 1 sigma and 2 pi components. Show that each sp-hybridised atom has exactly two 2p orbitals free to form those 2 pi bonds."
+      },
+      "visual_spec": {
+        "description": "H-C#N linear framework showing sp hybrids along the internuclear axis and two orthogonal pi overlap systems.",
+        "stages": [
+          "stage-1",
+          "stage-2",
+          "stage-3"
+        ]
+      },
+      "misconception": {
+        "wrong_idea": "Counting the triple bond as 3 domains or failing to hybridise terminal nitrogen.",
+        "diagnostic_prompt": "Why does 'Counting the triple bond as 3 domains or failing to hybridise terminal nitrogen.' fail when evaluated against this molecular structure?",
+        "repair": "A triple bond is 1 electron domain; at each sp-hybridised atom, the 2 sp hybrids hold sigma bonds/lone pairs, while the 2 unhybridised p orbitals form the 2 pi bonds."
+      },
+      "independent_check": {
+        "method": "Orbital conservation, steric number recalculation, or counterexample challenge",
+        "verification": "Check orbital counts on both atoms: C has 2 sp + 2 p = 4; N has 2 sp + 2 p = 4."
+      },
+      "semantic_review": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "H1 clarifies the core decision surface (X) without disclosing the protected work (W)."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "H2 correlates X with demonstrated principle Y while keeping the connection active for the learner."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "H3 opens the path to construction Z while strictly leaving decisive step W to the learner."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Authored staged SVG illustrates the structural situation clearly without printing W."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Visual stages ground learner knowledge in 3D geometry and orbital orientation."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Subsequent visual stages reveal orthogonal components and nodal planes progressively."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Pre-attempt panels orient without revealing the decisive answer or execution steps."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Concept link routes to MIC-CHEM-G11-HYBRID-MULTIPLE-BONDS, where the relevant bridge is formally taught."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Solution steps articulate warranted moves and verify against independent valence/orbital rules."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Explicitly models the common wrong route: 'Counting the triple bond as 3 domains or failing to hybridise terminal nitrogen.'."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Diagnostic prompt discriminates between deep conceptual misunderstanding and accidental arithmetic slip."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Repair establishes replacement rule: 'A triple bond is 1 electron domain; at each sp-hybridised atom, the 2 sp hybrids hold sigma bonds/lone pairs, while the 2 unhybridised p orbitals form the 2 pi bonds.'."
+        }
+      },
+      "render_review_status": "GOVERNED_CORE_RENDERED"
+    },
+    {
+      "question_id": "ISS34-Q8",
+      "original_identifier": "Q8",
+      "template_id": "TMPL-CHEM-G11-EXPLAIN-D2",
+      "primary_demand": "EXPLAIN",
+      "secondary_demands": [
+        "REPRESENT"
+      ],
+      "band": "D2",
+      "protected_work": "Leave the core connection/execution/synthesis decision to the learner; support orients relevant givens and principles without disclosing W.",
+      "targets": {
+        "X": "why C and N in CH3-NH2 share the same sp3 hybridisation label but have different arrangements of bonded atoms (tetrahedral vs trigonal pyramidal)",
+        "Y": "the distinction between electron-domain geometry (spatial layout of all domains) and molecular shape (spatial layout of atomic nuclei only)",
+        "Z": "explain that both C and N have steric number 4 -> sp3 / tetrahedral domain geometry; on C all 4 domains are bonds -> tetrahedral shape; on N 1 domain is a lone pair -> 3 bonded atoms form a trigonal pyramid",
+        "W": "the linking explanation that molecular shape describes nuclear positions only; lone pairs occupy hybrid orbitals without adding an atomic vertex",
+        "wrong_idea": "Equating hybridisation label directly with molecular shape, assuming all sp3 centres must be tetrahedral.",
+        "replacement_rule": "Hybridisation describes the electron-domain framework; molecular shape describes the atomic vertices. When lone pairs are present, molecular shape differs from electron-domain geometry."
+      },
+      "authored_support": {
+        "H1": "Determine the steric number and introductory hybridisation at carbon and nitrogen independently in CH3-NH2.",
+        "H2": "Both atoms have 4 electron domains (sp3 hybridisation). Now look at the positions of the atomic nuclei: how many atoms are bonded to C, and how many to N?",
+        "H3": "Explain why molecular shape considers nuclear vertices only, while hybridisation reflects all valence electron pairs (including non-bonding lone pairs)."
+      },
+      "visual_spec": {
+        "description": "CH3-NH2 structure highlighting tetrahedral carbon (4 bonded atoms) vs trigonal pyramidal nitrogen (3 bonded atoms + 1 lone pair).",
+        "stages": [
+          "stage-1",
+          "stage-2",
+          "stage-3"
+        ]
+      },
+      "misconception": {
+        "wrong_idea": "Equating hybridisation label directly with molecular shape, assuming all sp3 centres must be tetrahedral.",
+        "diagnostic_prompt": "Why does 'Equating hybridisation label directly with molecular shape, assuming all sp3 centres must be tetrahedral.' fail when evaluated against this molecular structure?",
+        "repair": "Hybridisation describes the electron-domain framework; molecular shape describes the atomic vertices. When lone pairs are present, molecular shape differs from electron-domain geometry."
+      },
+      "independent_check": {
+        "method": "Orbital conservation, steric number recalculation, or counterexample challenge",
+        "verification": "Contrast bond angles: H-C-H is close to 109.5 degrees; H-N-H is compressed to approx 106-107 degrees by lone pair repulsion."
+      },
+      "semantic_review": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "H1 clarifies the core decision surface (X) without disclosing the protected work (W)."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "H2 correlates X with demonstrated principle Y while keeping the connection active for the learner."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "H3 opens the path to construction Z while strictly leaving decisive step W to the learner."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Authored staged SVG illustrates the structural situation clearly without printing W."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Visual stages ground learner knowledge in 3D geometry and orbital orientation."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Subsequent visual stages reveal orthogonal components and nodal planes progressively."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Pre-attempt panels orient without revealing the decisive answer or execution steps."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Concept link routes to MIC-CHEM-G11-HYBRID-DOMAINS, where the relevant bridge is formally taught."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Solution steps articulate warranted moves and verify against independent valence/orbital rules."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Explicitly models the common wrong route: 'Equating hybridisation label directly with molecular shape, assuming all sp3 centres must be tetrahedral.'."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Diagnostic prompt discriminates between deep conceptual misunderstanding and accidental arithmetic slip."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Repair establishes replacement rule: 'Hybridisation describes the electron-domain framework; molecular shape describes the atomic vertices. When lone pairs are present, molecular shape differs from electron-domain geometry.'."
+        }
+      },
+      "render_review_status": "GOVERNED_CORE_RENDERED"
+    },
+    {
+      "question_id": "ISS34-Q9",
+      "original_identifier": "Q9",
+      "template_id": "TMPL-CHEM-G11-REPRESENT-D2",
+      "primary_demand": "REPRESENT",
+      "secondary_demands": [
+        "MODEL"
+      ],
+      "band": "D2",
+      "protected_work": "Leave the core connection/execution/synthesis decision to the learner; support orients relevant givens and principles without disclosing W.",
+      "targets": {
+        "X": "qualitative orbital arrangement corresponding to 3 sigma directions, 0 lone pairs, 1 pi bond, and verifying orbital conservation without double counting",
+        "Y": "the carbon valence orbital budget (2s + 2px + 2py + 2pz = 4 orbitals) and the orthogonality of hybridised vs unhybridised orbitals",
+        "Z": "construct the representation: 2s + 2px + 2py -> 3 sp2 hybrid orbitals at 120 degrees in-plane (sigma framework); 2pz -> unhybridised p orbital perpendicular to plane (pi bond); verify total = 3 + 1 = 4 orbitals",
+        "W": "the translation and accounting check showing that 3 sp2 hybrids + 1 unhybridised p orbital account for all 4 carbon valence orbitals with zero double counting",
+        "wrong_idea": "Assuming carbon uses sp3 hybridisation while also forming a pi bond, which would erroneously require 5 valence orbitals (4 sp3 + 1 p).",
+        "replacement_rule": "Total orbitals are strictly conserved; an atom using n hybrid orbitals leaves (4 - n) pure p orbitals in the valence shell for pi bonding or unshared occupancy."
+      },
+      "authored_support": {
+        "H1": "Start from the orbital budget of a carbon atom: how many valence atomic orbitals does carbon possess in the n=2 shell?",
+        "H2": "Three planar sigma directions require mixing one 2s and two 2p orbitals (sp2). What happens to the third 2p orbital?",
+        "H3": "Verify that the three sp2 hybrid orbitals (for sigma) plus the one unhybridised 2p orbital (for pi) exactly sum to 4 valence orbitals without double-counting."
+      },
+      "visual_spec": {
+        "description": "Orbital balance diagram: 2s + 2px + 2py -> 3 sp2 hybrids (in-plane sigma) + 2pz (perpendicular pi), total = 4 orbitals.",
+        "stages": [
+          "stage-1",
+          "stage-2",
+          "stage-3"
+        ]
+      },
+      "misconception": {
+        "wrong_idea": "Assuming carbon uses sp3 hybridisation while also forming a pi bond, which would erroneously require 5 valence orbitals (4 sp3 + 1 p).",
+        "diagnostic_prompt": "Why does 'Assuming carbon uses sp3 hybridisation while also forming a pi bond, which would erroneously require 5 valence orbitals (4 sp3 + 1 p).' fail when evaluated against this molecular structure?",
+        "repair": "Total orbitals are strictly conserved; an atom using n hybrid orbitals leaves (4 - n) pure p orbitals in the valence shell for pi bonding or unshared occupancy."
+      },
+      "independent_check": {
+        "method": "Orbital conservation, steric number recalculation, or counterexample challenge",
+        "verification": "Verify that 4 input atomic orbitals (s, px, py, pz) yield exactly 4 output orbitals (3 sp2 + 1 pz)."
+      },
+      "semantic_review": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "H1 clarifies the core decision surface (X) without disclosing the protected work (W)."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "H2 correlates X with demonstrated principle Y while keeping the connection active for the learner."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "H3 opens the path to construction Z while strictly leaving decisive step W to the learner."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Authored staged SVG illustrates the structural situation clearly without printing W."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Visual stages ground learner knowledge in 3D geometry and orbital orientation."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Subsequent visual stages reveal orthogonal components and nodal planes progressively."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Pre-attempt panels orient without revealing the decisive answer or execution steps."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Concept link routes to MIC-CHEM-G11-HYBRID-MULTIPLE-BONDS, where the relevant bridge is formally taught."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Solution steps articulate warranted moves and verify against independent valence/orbital rules."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Explicitly models the common wrong route: 'Assuming carbon uses sp3 hybridisation while also forming a pi bond, which would erroneously require 5 valence orbitals (4 sp3 + 1 p).'."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Diagnostic prompt discriminates between deep conceptual misunderstanding and accidental arithmetic slip."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Repair establishes replacement rule: 'Total orbitals are strictly conserved; an atom using n hybrid orbitals leaves (4 - n) pure p orbitals in the valence shell for pi bonding or unshared occupancy.'."
+        }
+      },
+      "render_review_status": "GOVERNED_CORE_RENDERED"
+    },
+    {
+      "question_id": "ISS34-Q10",
+      "original_identifier": "Q10",
+      "template_id": "TMPL-CHEM-G11-JUSTIFY-D2",
+      "primary_demand": "JUSTIFY",
+      "secondary_demands": [
+        "EXPLAIN"
+      ],
+      "band": "D2",
+      "protected_work": "Leave the core connection/execution/synthesis decision to the learner; support orients relevant givens and principles without disclosing W.",
+      "targets": {
+        "X": "evaluating the student claim that tetrahedral electron-domain geometry requires tetrahedral molecular shape, using CH4, NH3, and H2O",
+        "Y": "the distinction between electron-domain geometry (all 4 domains) and molecular shape (nuclear positions only), and the progressive impact of lone pairs",
+        "Z": "demonstrate that CH4 is tetrahedral, NH3 is trigonal pyramidal, and H2O is bent; deduce that the student claim is false; explain why lone pairs alter shape",
+        "W": "the decisive evaluation and warrant: electron-domain geometry equals molecular shape only when lone pair count is zero; lone pairs occupy domain positions without adding nuclear vertices",
+        "wrong_idea": "Conflating electron-domain geometry with molecular shape, assuming that domain geometry dictates shape regardless of lone pairs.",
+        "replacement_rule": "Electron-domain geometry includes lone pairs; molecular shape includes only atomic nuclei. If lone pairs > 0, molecular shape is a derivative subset of electron geometry."
+      },
+      "authored_support": {
+        "H1": "Analyze the student statement: is molecular shape always identical to electron-domain geometry, or only under specific conditions?",
+        "H2": "Examine CH4 (0 LP), NH3 (1 LP), and H2O (2 LP). All three have tetrahedral electron-domain geometry (steric number 4). What are their observed shapes?",
+        "H3": "State the decisive warrant: electron-domain geometry tracks all electron pairs, but molecular shape tracks atomic nuclei only. Formulate the general rule."
+      },
+      "visual_spec": {
+        "description": "Progression diagram showing CH4 (tetrahedral), NH3 (pyramidal), and H2O (bent) derived from the common tetrahedral domain geometry.",
+        "stages": [
+          "stage-1",
+          "stage-2",
+          "stage-3"
+        ]
+      },
+      "misconception": {
+        "wrong_idea": "Conflating electron-domain geometry with molecular shape, assuming that domain geometry dictates shape regardless of lone pairs.",
+        "diagnostic_prompt": "Why does 'Conflating electron-domain geometry with molecular shape, assuming that domain geometry dictates shape regardless of lone pairs.' fail when evaluated against this molecular structure?",
+        "repair": "Electron-domain geometry includes lone pairs; molecular shape includes only atomic nuclei. If lone pairs > 0, molecular shape is a derivative subset of electron geometry."
+      },
+      "independent_check": {
+        "method": "Orbital conservation, steric number recalculation, or counterexample challenge",
+        "verification": "Test with another 4-domain species: H3O+ has 1 lone pair and is trigonal pyramidal; NH4+ has 0 lone pairs and is tetrahedral."
+      },
+      "semantic_review": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "H1 clarifies the core decision surface (X) without disclosing the protected work (W)."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "H2 correlates X with demonstrated principle Y while keeping the connection active for the learner."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "H3 opens the path to construction Z while strictly leaving decisive step W to the learner."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Authored staged SVG illustrates the structural situation clearly without printing W."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Visual stages ground learner knowledge in 3D geometry and orbital orientation."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Subsequent visual stages reveal orthogonal components and nodal planes progressively."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Pre-attempt panels orient without revealing the decisive answer or execution steps."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Concept link routes to MIC-CHEM-G11-HYBRID-DOMAINS, where the relevant bridge is formally taught."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Solution steps articulate warranted moves and verify against independent valence/orbital rules."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Explicitly models the common wrong route: 'Conflating electron-domain geometry with molecular shape, assuming that domain geometry dictates shape regardless of lone pairs.'."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Diagnostic prompt discriminates between deep conceptual misunderstanding and accidental arithmetic slip."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Repair establishes replacement rule: 'Electron-domain geometry includes lone pairs; molecular shape includes only atomic nuclei. If lone pairs > 0, molecular shape is a derivative subset of electron geometry.'."
+        }
+      },
+      "render_review_status": "GOVERNED_CORE_RENDERED"
+    }
+  ],
+  "hardest_target_interaction": {
+    "target_question": "ISS34-Q4",
+    "sub_concept": "Linear sp Hybridisation & Orthogonal Double Pi Systems (CO2)",
+    "demand": "SYNTHESIZE",
+    "band": "D2",
+    "interaction_description": "Interactive 4-stage exploration of CO2: Stage 1 reveals the 2 Lewis domains (double bonds acting as single domains); Stage 2 isolates the linear sp sigma framework (180 degrees along the x-axis); Stage 3 reveals the two mutually perpendicular unhybridised 2p orbitals (2py in vertical y, 2pz in depth z); Stage 4 activates lateral side-on overlap to form two independent orthogonal pi systems with terminal oxygen atoms, providing an interactive orbital accounting check to verify that all 4 carbon valence orbitals are used with zero double-counting.",
+    "diagnostic_hypothesis": "Learners struggling with multi-bond hybridisation typically assume either that carbon requires sp3 to form 4 bonds or that both pi bonds in CO2 occupy the same plane, causing electronic clash. The staged interaction resolves this by visually demonstrating the orthogonality of 2py and 2pz."
+  }
+}
