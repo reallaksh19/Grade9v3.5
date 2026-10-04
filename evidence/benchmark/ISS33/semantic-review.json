@@ -1,0 +1,659 @@
+{
+  "schema": "issue33-exact-render-review/v1",
+  "issue": 33,
+  "round": "v2-first-blind",
+  "artifact_commit": "0af8b1fb4a99e3e75f6b008545e1eb6c4f9f82b5",
+  "renderer": "render_core/2",
+  "render_stamp": "11078d7676fe225e",
+  "artifact_digests": {
+    "core1a": "sha256:8ac3ca400fe9facb661826c3a27892ab9f02b7b03d1adaaf4ed437a51c906f9e",
+    "core2": "sha256:1ff7dd5c5c8665863787670fc211dd2d330fc2976f81f3bfe5b641e788d49d55"
+  },
+  "automated_evidence": {
+    "quality_gate": {
+      "verdict": "PASS",
+      "exit_code": 0,
+      "contract_version": "1.8.1",
+      "findings": 0
+    },
+    "tablet_browser_audit": {
+      "exit_code": 0,
+      "profiles": [
+        "tablet-1366-landscape",
+        "tablet-1440-landscape",
+        "tablet-854-portrait"
+      ],
+      "horizontal_overflow_px": 0,
+      "small_targets": 0,
+      "staged_svg_violations": 0
+    }
+  },
+  "cross_cutting_findings": [
+    {
+      "id": "F-PROVENANCE-DISCLOSURE",
+      "severity": "MEDIUM",
+      "verdict": "PARTLY",
+      "observation": "Core2 truthfully renders 'Owner-supplied question, verbatim' and no exam identity, but the learner-facing surface does not disclose that this benchmark input was coordinator/AI-drafted and not personally authored by the owner.",
+      "disposition": "DOCUMENT_CONTRACT_DISCREPANCY",
+      "reason": "The pinned OWNER_SUPPLIED metadata vocabulary collapses custody and authorship into one learner label. Issue #33 explicitly says to preserve and evidence this disagreement rather than silently relabel.",
+      "proposed_follow_up": "Future custody metadata should separate supplied_by from drafted_by/authorship_claim and allow a non-exam provenance note without weakening OWNER_SUPPLIED wording custody."
+    },
+    {
+      "id": "F-CONCEPT-LANDING",
+      "severity": "MEDIUM",
+      "verdict": "PARTLY",
+      "observation": "Question help links reach the correct Core1A microtopic but not the unique mapped construction-unit/repair anchor.",
+      "disposition": "BUILDER_RENDERER_FOLLOW_UP",
+      "proposed_follow_up": "When a question has exactly one mapped construction unit, emit that CU anchor; otherwise fall back to the microtopic."
+    },
+    {
+      "id": "F-DIAGNOSE-VS-SLIP",
+      "severity": "MEDIUM",
+      "verdict": "PARTLY",
+      "observation": "The page exposes common wrong routes but does not elicit a discriminating diagnostic before repair, so it cannot establish misconception-versus-slip evidence.",
+      "disposition": "AUTHORING_INTERACTION_FOLLOW_UP",
+      "proposed_follow_up": "Offer authored diagnostic probes on demand and log assistance; do not auto-diagnose or infer mastery."
+    },
+    {
+      "id": "F-HARDEST-INTERACTION",
+      "severity": "LOW",
+      "verdict": "PARTLY",
+      "observation": "Core1A provides a meaningful four-stage sigma/pi orbital inventory visualization, but the learner cannot actively assign each orbital to a sigma/pi job with an enforceable one-use-only constraint.",
+      "disposition": "BUILDER_MODULE_PROPOSAL",
+      "proposed_follow_up": "See builder-proposal.md for a reusable one-to-one allocation interaction."
+    }
+  ],
+  "items": [
+    {
+      "question_ref": "Q1",
+      "stable_id": "OWN-ISS33-D2-V2-Q01",
+      "artifact_ref": "CORE2",
+      "artifact_sha256": "sha256:1ff7dd5c5c8665863787670fc211dd2d330fc2976f81f3bfe5b641e788d49d55",
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "Core2 Q1 has an authored first hint that clarifies the reviewed crux before route completion."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "Core2 Q1 has a second hint tied to the demonstrated learner anchor / representation bridge."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "Core2 Q1 has a third hint that opens the route while the answer remains attempt-gated."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "The exact Core2 render supplies a safe first representation stage for Q1 without exposing the post-attempt answer."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "The rendered representation connects Q1 to a demonstrated domain/geometry anchor."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "The authored staged representation contains later construction stages; Core1A exposes the full cumulative sequence and Core2 keeps only the safe pre-attempt stage."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "The exact Core2 page leaves the final answer/working in a data-requires-attempt disclosure; strict quality gate reports PAGE-GATED-INITIAL/PAGE-PROTECTED-SEARCH with no findings."
+        },
+        "P2": {
+          "verdict": "PARTLY",
+          "evidence": "The Core2 concept link reaches the correct microtopic in core1a.html, but the href stops at the microtopic anchor rather than the unique construction/repair anchor.",
+          "fix": "Route question help to the mapped construction-unit anchor when unique; otherwise retain the honest microtopic fallback."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Post-attempt solution contains ordered reasoning moves with why-valid text plus an independent check for Q1."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Core2 renders the authored common wrong route for Q1 in the warning disclosure."
+        },
+        "M2": {
+          "verdict": "PARTLY",
+          "evidence": "The wrong route is represented, but Core2 does not elicit the item-specific diagnostic response needed to distinguish a stable misconception from a one-off slip.",
+          "fix": "Add an optional authored diagnostic prompt after a wrong-route request or failed self-check; record assistance without inferring mastery."
+        },
+        "M3": {
+          "verdict": "PARTLY",
+          "evidence": "The replacement rule exists in the Core1A misconception/repair record, but Core2 does not provide item-specific diagnostic closure and its concept link lands at the microtopic top.",
+          "fix": "Direct the repair handoff to the exact construction/repair anchor and keep the repair authored rather than generated from the wrong route."
+        }
+      }
+    },
+    {
+      "question_ref": "Q2",
+      "stable_id": "OWN-ISS33-D2-V2-Q02",
+      "artifact_ref": "CORE2",
+      "artifact_sha256": "sha256:1ff7dd5c5c8665863787670fc211dd2d330fc2976f81f3bfe5b641e788d49d55",
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "Core2 Q2 has an authored first hint that clarifies the reviewed crux before route completion."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "Core2 Q2 has a second hint tied to the demonstrated learner anchor / representation bridge."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "Core2 Q2 has a third hint that opens the route while the answer remains attempt-gated."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "The exact Core2 render supplies a safe first representation stage for Q2 without exposing the post-attempt answer."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "The rendered representation connects Q2 to a demonstrated domain/geometry anchor."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "The authored staged representation contains later construction stages; Core1A exposes the full cumulative sequence and Core2 keeps only the safe pre-attempt stage."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "The exact Core2 page leaves the final answer/working in a data-requires-attempt disclosure; strict quality gate reports PAGE-GATED-INITIAL/PAGE-PROTECTED-SEARCH with no findings."
+        },
+        "P2": {
+          "verdict": "PARTLY",
+          "evidence": "The Core2 concept link reaches the correct microtopic in core1a.html, but the href stops at the microtopic anchor rather than the unique construction/repair anchor.",
+          "fix": "Route question help to the mapped construction-unit anchor when unique; otherwise retain the honest microtopic fallback."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Post-attempt solution contains ordered reasoning moves with why-valid text plus an independent check for Q2."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Core2 renders the authored common wrong route for Q2 in the warning disclosure."
+        },
+        "M2": {
+          "verdict": "PARTLY",
+          "evidence": "The wrong route is represented, but Core2 does not elicit the item-specific diagnostic response needed to distinguish a stable misconception from a one-off slip.",
+          "fix": "Add an optional authored diagnostic prompt after a wrong-route request or failed self-check; record assistance without inferring mastery."
+        },
+        "M3": {
+          "verdict": "PARTLY",
+          "evidence": "The replacement rule exists in the Core1A misconception/repair record, but Core2 does not provide item-specific diagnostic closure and its concept link lands at the microtopic top.",
+          "fix": "Direct the repair handoff to the exact construction/repair anchor and keep the repair authored rather than generated from the wrong route."
+        }
+      }
+    },
+    {
+      "question_ref": "Q3",
+      "stable_id": "OWN-ISS33-D2-V2-Q03",
+      "artifact_ref": "CORE2",
+      "artifact_sha256": "sha256:1ff7dd5c5c8665863787670fc211dd2d330fc2976f81f3bfe5b641e788d49d55",
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "Core2 Q3 has an authored first hint that clarifies the reviewed crux before route completion."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "Core2 Q3 has a second hint tied to the demonstrated learner anchor / representation bridge."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "Core2 Q3 has a third hint that opens the route while the answer remains attempt-gated."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "The exact Core2 render supplies a safe first representation stage for Q3 without exposing the post-attempt answer."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "The rendered representation connects Q3 to a demonstrated domain/geometry anchor."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "The authored staged representation contains later construction stages; Core1A exposes the full cumulative sequence and Core2 keeps only the safe pre-attempt stage."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "The exact Core2 page leaves the final answer/working in a data-requires-attempt disclosure; strict quality gate reports PAGE-GATED-INITIAL/PAGE-PROTECTED-SEARCH with no findings."
+        },
+        "P2": {
+          "verdict": "PARTLY",
+          "evidence": "The Core2 concept link reaches the correct microtopic in core1a.html, but the href stops at the microtopic anchor rather than the unique construction/repair anchor.",
+          "fix": "Route question help to the mapped construction-unit anchor when unique; otherwise retain the honest microtopic fallback."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Post-attempt solution contains ordered reasoning moves with why-valid text plus an independent check for Q3."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Core2 renders the authored common wrong route for Q3 in the warning disclosure."
+        },
+        "M2": {
+          "verdict": "PARTLY",
+          "evidence": "The wrong route is represented, but Core2 does not elicit the item-specific diagnostic response needed to distinguish a stable misconception from a one-off slip.",
+          "fix": "Add an optional authored diagnostic prompt after a wrong-route request or failed self-check; record assistance without inferring mastery."
+        },
+        "M3": {
+          "verdict": "PARTLY",
+          "evidence": "The replacement rule exists in the Core1A misconception/repair record, but Core2 does not provide item-specific diagnostic closure and its concept link lands at the microtopic top.",
+          "fix": "Direct the repair handoff to the exact construction/repair anchor and keep the repair authored rather than generated from the wrong route."
+        }
+      }
+    },
+    {
+      "question_ref": "Q4",
+      "stable_id": "OWN-ISS33-D2-V2-Q04",
+      "artifact_ref": "CORE2",
+      "artifact_sha256": "sha256:1ff7dd5c5c8665863787670fc211dd2d330fc2976f81f3bfe5b641e788d49d55",
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "Core2 Q4 has an authored first hint that clarifies the reviewed crux before route completion."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "Core2 Q4 has a second hint tied to the demonstrated learner anchor / representation bridge."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "Core2 Q4 has a third hint that opens the route while the answer remains attempt-gated."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "The exact Core2 render supplies a safe first representation stage for Q4 without exposing the post-attempt answer."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "The rendered representation connects Q4 to a demonstrated domain/geometry anchor."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "The authored staged representation contains later construction stages; Core1A exposes the full cumulative sequence and Core2 keeps only the safe pre-attempt stage."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "The exact Core2 page leaves the final answer/working in a data-requires-attempt disclosure; strict quality gate reports PAGE-GATED-INITIAL/PAGE-PROTECTED-SEARCH with no findings."
+        },
+        "P2": {
+          "verdict": "PARTLY",
+          "evidence": "The Core2 concept link reaches the correct microtopic in core1a.html, but the href stops at the microtopic anchor rather than the unique construction/repair anchor.",
+          "fix": "Route question help to the mapped construction-unit anchor when unique; otherwise retain the honest microtopic fallback."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Post-attempt solution contains ordered reasoning moves with why-valid text plus an independent check for Q4."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Core2 renders the authored common wrong route for Q4 in the warning disclosure."
+        },
+        "M2": {
+          "verdict": "PARTLY",
+          "evidence": "The wrong route is represented, but Core2 does not elicit the item-specific diagnostic response needed to distinguish a stable misconception from a one-off slip.",
+          "fix": "Add an optional authored diagnostic prompt after a wrong-route request or failed self-check; record assistance without inferring mastery."
+        },
+        "M3": {
+          "verdict": "PARTLY",
+          "evidence": "The replacement rule exists in the Core1A misconception/repair record, but Core2 does not provide item-specific diagnostic closure and its concept link lands at the microtopic top.",
+          "fix": "Direct the repair handoff to the exact construction/repair anchor and keep the repair authored rather than generated from the wrong route."
+        }
+      }
+    },
+    {
+      "question_ref": "Q5",
+      "stable_id": "OWN-ISS33-D2-V2-Q05",
+      "artifact_ref": "CORE2",
+      "artifact_sha256": "sha256:1ff7dd5c5c8665863787670fc211dd2d330fc2976f81f3bfe5b641e788d49d55",
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "Core2 Q5 has an authored first hint that clarifies the reviewed crux before route completion."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "Core2 Q5 has a second hint tied to the demonstrated learner anchor / representation bridge."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "Core2 Q5 has a third hint that opens the route while the answer remains attempt-gated."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "The exact Core2 render supplies a safe first representation stage for Q5 without exposing the post-attempt answer."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "The rendered representation connects Q5 to a demonstrated domain/geometry anchor."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "The authored staged representation contains later construction stages; Core1A exposes the full cumulative sequence and Core2 keeps only the safe pre-attempt stage."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "The exact Core2 page leaves the final answer/working in a data-requires-attempt disclosure; strict quality gate reports PAGE-GATED-INITIAL/PAGE-PROTECTED-SEARCH with no findings."
+        },
+        "P2": {
+          "verdict": "PARTLY",
+          "evidence": "The Core2 concept link reaches the correct microtopic in core1a.html, but the href stops at the microtopic anchor rather than the unique construction/repair anchor.",
+          "fix": "Route question help to the mapped construction-unit anchor when unique; otherwise retain the honest microtopic fallback."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Post-attempt solution contains ordered reasoning moves with why-valid text plus an independent check for Q5."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Core2 renders the authored common wrong route for Q5 in the warning disclosure."
+        },
+        "M2": {
+          "verdict": "PARTLY",
+          "evidence": "The wrong route is represented, but Core2 does not elicit the item-specific diagnostic response needed to distinguish a stable misconception from a one-off slip.",
+          "fix": "Add an optional authored diagnostic prompt after a wrong-route request or failed self-check; record assistance without inferring mastery."
+        },
+        "M3": {
+          "verdict": "PARTLY",
+          "evidence": "The replacement rule exists in the Core1A misconception/repair record, but Core2 does not provide item-specific diagnostic closure and its concept link lands at the microtopic top.",
+          "fix": "Direct the repair handoff to the exact construction/repair anchor and keep the repair authored rather than generated from the wrong route."
+        }
+      }
+    },
+    {
+      "question_ref": "Q6",
+      "stable_id": "OWN-ISS33-D2-V2-Q06",
+      "artifact_ref": "CORE2",
+      "artifact_sha256": "sha256:1ff7dd5c5c8665863787670fc211dd2d330fc2976f81f3bfe5b641e788d49d55",
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "Core2 Q6 has an authored first hint that clarifies the reviewed crux before route completion."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "Core2 Q6 has a second hint tied to the demonstrated learner anchor / representation bridge."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "Core2 Q6 has a third hint that opens the route while the answer remains attempt-gated."
+        },
+        "S1": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "Q6 was deliberately authored without a figure because the discriminating work is the domain-count-versus-bond-property distinction; a visual would be decorative for the simulated learner."
+        },
+        "S2": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "Same justified representation waiver as S1."
+        },
+        "S3": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "Same justified representation waiver as S1."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "The exact Core2 page leaves the final answer/working in a data-requires-attempt disclosure; strict quality gate reports PAGE-GATED-INITIAL/PAGE-PROTECTED-SEARCH with no findings."
+        },
+        "P2": {
+          "verdict": "PARTLY",
+          "evidence": "The Core2 concept link reaches the correct microtopic in core1a.html, but the href stops at the microtopic anchor rather than the unique construction/repair anchor.",
+          "fix": "Route question help to the mapped construction-unit anchor when unique; otherwise retain the honest microtopic fallback."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Post-attempt solution contains ordered reasoning moves with why-valid text plus an independent check for Q6."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Core2 renders the authored common wrong route for Q6 in the warning disclosure."
+        },
+        "M2": {
+          "verdict": "PARTLY",
+          "evidence": "The wrong route is represented, but Core2 does not elicit the item-specific diagnostic response needed to distinguish a stable misconception from a one-off slip.",
+          "fix": "Add an optional authored diagnostic prompt after a wrong-route request or failed self-check; record assistance without inferring mastery."
+        },
+        "M3": {
+          "verdict": "PARTLY",
+          "evidence": "The replacement rule exists in the Core1A misconception/repair record, but Core2 does not provide item-specific diagnostic closure and its concept link lands at the microtopic top.",
+          "fix": "Direct the repair handoff to the exact construction/repair anchor and keep the repair authored rather than generated from the wrong route."
+        }
+      }
+    },
+    {
+      "question_ref": "Q7",
+      "stable_id": "OWN-ISS33-D2-V2-Q07",
+      "artifact_ref": "CORE2",
+      "artifact_sha256": "sha256:1ff7dd5c5c8665863787670fc211dd2d330fc2976f81f3bfe5b641e788d49d55",
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "Core2 Q7 has an authored first hint that clarifies the reviewed crux before route completion."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "Core2 Q7 has a second hint tied to the demonstrated learner anchor / representation bridge."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "Core2 Q7 has a third hint that opens the route while the answer remains attempt-gated."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "The exact Core2 render supplies a safe first representation stage for Q7 without exposing the post-attempt answer."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "The rendered representation connects Q7 to a demonstrated domain/geometry anchor."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "The authored staged representation contains later construction stages; Core1A exposes the full cumulative sequence and Core2 keeps only the safe pre-attempt stage."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "The exact Core2 page leaves the final answer/working in a data-requires-attempt disclosure; strict quality gate reports PAGE-GATED-INITIAL/PAGE-PROTECTED-SEARCH with no findings."
+        },
+        "P2": {
+          "verdict": "PARTLY",
+          "evidence": "The Core2 concept link reaches the correct microtopic in core1a.html, but the href stops at the microtopic anchor rather than the unique construction/repair anchor.",
+          "fix": "Route question help to the mapped construction-unit anchor when unique; otherwise retain the honest microtopic fallback."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Post-attempt solution contains ordered reasoning moves with why-valid text plus an independent check for Q7."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Core2 renders the authored common wrong route for Q7 in the warning disclosure."
+        },
+        "M2": {
+          "verdict": "PARTLY",
+          "evidence": "The wrong route is represented, but Core2 does not elicit the item-specific diagnostic response needed to distinguish a stable misconception from a one-off slip.",
+          "fix": "Add an optional authored diagnostic prompt after a wrong-route request or failed self-check; record assistance without inferring mastery."
+        },
+        "M3": {
+          "verdict": "PARTLY",
+          "evidence": "The replacement rule exists in the Core1A misconception/repair record, but Core2 does not provide item-specific diagnostic closure and its concept link lands at the microtopic top.",
+          "fix": "Direct the repair handoff to the exact construction/repair anchor and keep the repair authored rather than generated from the wrong route."
+        }
+      }
+    },
+    {
+      "question_ref": "Q8",
+      "stable_id": "OWN-ISS33-D2-V2-Q08",
+      "artifact_ref": "CORE2",
+      "artifact_sha256": "sha256:1ff7dd5c5c8665863787670fc211dd2d330fc2976f81f3bfe5b641e788d49d55",
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "Core2 Q8 has an authored first hint that clarifies the reviewed crux before route completion."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "Core2 Q8 has a second hint tied to the demonstrated learner anchor / representation bridge."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "Core2 Q8 has a third hint that opens the route while the answer remains attempt-gated."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "The exact Core2 render supplies a safe first representation stage for Q8 without exposing the post-attempt answer."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "The rendered representation connects Q8 to a demonstrated domain/geometry anchor."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "The authored staged representation contains later construction stages; Core1A exposes the full cumulative sequence and Core2 keeps only the safe pre-attempt stage."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "The exact Core2 page leaves the final answer/working in a data-requires-attempt disclosure; strict quality gate reports PAGE-GATED-INITIAL/PAGE-PROTECTED-SEARCH with no findings."
+        },
+        "P2": {
+          "verdict": "PARTLY",
+          "evidence": "The Core2 concept link reaches the correct microtopic in core1a.html, but the href stops at the microtopic anchor rather than the unique construction/repair anchor.",
+          "fix": "Route question help to the mapped construction-unit anchor when unique; otherwise retain the honest microtopic fallback."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Post-attempt solution contains ordered reasoning moves with why-valid text plus an independent check for Q8."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Core2 renders the authored common wrong route for Q8 in the warning disclosure."
+        },
+        "M2": {
+          "verdict": "PARTLY",
+          "evidence": "The wrong route is represented, but Core2 does not elicit the item-specific diagnostic response needed to distinguish a stable misconception from a one-off slip.",
+          "fix": "Add an optional authored diagnostic prompt after a wrong-route request or failed self-check; record assistance without inferring mastery."
+        },
+        "M3": {
+          "verdict": "PARTLY",
+          "evidence": "The replacement rule exists in the Core1A misconception/repair record, but Core2 does not provide item-specific diagnostic closure and its concept link lands at the microtopic top.",
+          "fix": "Direct the repair handoff to the exact construction/repair anchor and keep the repair authored rather than generated from the wrong route."
+        }
+      }
+    },
+    {
+      "question_ref": "Q9",
+      "stable_id": "OWN-ISS33-D2-V2-Q09",
+      "artifact_ref": "CORE2",
+      "artifact_sha256": "sha256:1ff7dd5c5c8665863787670fc211dd2d330fc2976f81f3bfe5b641e788d49d55",
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "Core2 Q9 has an authored first hint that clarifies the reviewed crux before route completion."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "Core2 Q9 has a second hint tied to the demonstrated learner anchor / representation bridge."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "Core2 Q9 has a third hint that opens the route while the answer remains attempt-gated."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "The exact Core2 render supplies a safe first representation stage for Q9 without exposing the post-attempt answer."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "The rendered representation connects Q9 to a demonstrated domain/geometry anchor."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "The authored staged representation contains later construction stages; Core1A exposes the full cumulative sequence and Core2 keeps only the safe pre-attempt stage."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "The exact Core2 page leaves the final answer/working in a data-requires-attempt disclosure; strict quality gate reports PAGE-GATED-INITIAL/PAGE-PROTECTED-SEARCH with no findings."
+        },
+        "P2": {
+          "verdict": "PARTLY",
+          "evidence": "The Core2 concept link reaches the correct microtopic in core1a.html, but the href stops at the microtopic anchor rather than the unique construction/repair anchor.",
+          "fix": "Route question help to the mapped construction-unit anchor when unique; otherwise retain the honest microtopic fallback."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Post-attempt solution contains ordered reasoning moves with why-valid text plus an independent check for Q9."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Core2 renders the authored common wrong route for Q9 in the warning disclosure."
+        },
+        "M2": {
+          "verdict": "PARTLY",
+          "evidence": "The wrong route is represented, but Core2 does not elicit the item-specific diagnostic response needed to distinguish a stable misconception from a one-off slip.",
+          "fix": "Add an optional authored diagnostic prompt after a wrong-route request or failed self-check; record assistance without inferring mastery."
+        },
+        "M3": {
+          "verdict": "PARTLY",
+          "evidence": "The replacement rule exists in the Core1A misconception/repair record, but Core2 does not provide item-specific diagnostic closure and its concept link lands at the microtopic top.",
+          "fix": "Direct the repair handoff to the exact construction/repair anchor and keep the repair authored rather than generated from the wrong route."
+        }
+      }
+    },
+    {
+      "question_ref": "Q10",
+      "stable_id": "OWN-ISS33-D2-V2-Q10",
+      "artifact_ref": "CORE2",
+      "artifact_sha256": "sha256:1ff7dd5c5c8665863787670fc211dd2d330fc2976f81f3bfe5b641e788d49d55",
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "Core2 Q10 has an authored first hint that clarifies the reviewed crux before route completion."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "Core2 Q10 has a second hint tied to the demonstrated learner anchor / representation bridge."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "Core2 Q10 has a third hint that opens the route while the answer remains attempt-gated."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "The exact Core2 render supplies a safe first representation stage for Q10 without exposing the post-attempt answer."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "The rendered representation connects Q10 to a demonstrated domain/geometry anchor."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "The authored staged representation contains later construction stages; Core1A exposes the full cumulative sequence and Core2 keeps only the safe pre-attempt stage."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "The exact Core2 page leaves the final answer/working in a data-requires-attempt disclosure; strict quality gate reports PAGE-GATED-INITIAL/PAGE-PROTECTED-SEARCH with no findings."
+        },
+        "P2": {
+          "verdict": "PARTLY",
+          "evidence": "The Core2 concept link reaches the correct microtopic in core1a.html, but the href stops at the microtopic anchor rather than the unique construction/repair anchor.",
+          "fix": "Route question help to the mapped construction-unit anchor when unique; otherwise retain the honest microtopic fallback."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Post-attempt solution contains ordered reasoning moves with why-valid text plus an independent check for Q10."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Core2 renders the authored common wrong route for Q10 in the warning disclosure."
+        },
+        "M2": {
+          "verdict": "PARTLY",
+          "evidence": "The wrong route is represented, but Core2 does not elicit the item-specific diagnostic response needed to distinguish a stable misconception from a one-off slip.",
+          "fix": "Add an optional authored diagnostic prompt after a wrong-route request or failed self-check; record assistance without inferring mastery."
+        },
+        "M3": {
+          "verdict": "PARTLY",
+          "evidence": "The replacement rule exists in the Core1A misconception/repair record, but Core2 does not provide item-specific diagnostic closure and its concept link lands at the microtopic top.",
+          "fix": "Direct the repair handoff to the exact construction/repair anchor and keep the repair authored rather than generated from the wrong route."
+        }
+      }
+    }
+  ],
+  "release_statement": "This is producing-agent semantic evidence only. It does not establish learning effectiveness, independent academic approval, release readiness or golden promotion."
+}
