@@ -289,6 +289,92 @@ def validate_core1a_boundary(run: dict[str, Any]) -> list[str]:
     return problems
 
 
+def validate_purpose_delivery(run: dict[str, Any], *, rendered: bool = False) -> list[str]:
+    """Validate an opt-in purpose projection without retroactively invalidating older accepted runs."""
+    delivery = run.get("purpose_delivery")
+    if delivery is None:
+        return []
+    if not isinstance(delivery, dict):
+        return ["PURPOSE_DELIVERY_INVALID"]
+    problems: list[str] = []
+    purpose = str((run.get("learner_profile") or {}).get("purpose") or "")
+    declared = str(delivery.get("purpose") or "")
+    if declared != purpose:
+        problems.append(f"PURPOSE_DELIVERY_MISMATCH: profile={purpose}:delivery={declared}")
+
+    expected_support = {"REVISION": "REDUCED_SUPPORT", "COMPETITION": "NO_MID_TASK_BRIDGING"}.get(purpose)
+    expected_section = {"REVISION": "NEXT_LEVEL", "COMPETITION": "CHALLENGE_SET"}.get(purpose)
+    if expected_support and delivery.get("support_policy") != expected_support:
+        problems.append(
+            f"PURPOSE_SUPPORT_POLICY_INVALID: {purpose}:{delivery.get('support_policy')} expected {expected_support}"
+        )
+
+    item_rows = [row for row in delivery.get("items") or [] if isinstance(row, dict)]
+    by_id = {str(row.get("id") or ""): row for row in item_rows if str(row.get("id") or "")}
+    projection = delivery.get("projection") or {}
+    for role in ("CORE1A", "CORE2"):
+        row = projection.get(role)
+        if not isinstance(row, dict):
+            problems.append(f"PURPOSE_PROJECTION_MISSING: {purpose}:{role}")
+            continue
+        if expected_section and row.get("section_kind") != expected_section:
+            problems.append(
+                f"PURPOSE_SECTION_KIND_INVALID: {purpose}:{role}:{row.get('section_kind')} expected {expected_section}"
+            )
+        refs = [str(value) for value in row.get("item_refs") or [] if str(value)]
+        if not refs:
+            problems.append(f"PURPOSE_PROJECTION_EMPTY: {purpose}:{role}")
+        for ref in refs:
+            item = by_id.get(ref)
+            if item is None:
+                problems.append(f"PURPOSE_ITEM_UNKNOWN: {purpose}:{role}:{ref}")
+                continue
+            if role not in (item.get("roles") or []):
+                problems.append(f"PURPOSE_ITEM_ROLE_MISMATCH: {purpose}:{role}:{ref}")
+
+    for item_id, item in by_id.items():
+        source_kind = str(item.get("source_kind") or "")
+        source_ref = str(item.get("source_ref") or "").strip()
+        source_label = str(item.get("source_label") or "").strip()
+        if source_kind == "VERIFIED_COMPETITIVE_SOURCE":
+            if not source_ref.startswith("https://") or not source_label:
+                problems.append(f"PURPOSE_VERIFIED_SOURCE_INCOMPLETE: {item_id}")
+        elif source_kind == "AUTHOR_CREATED_COMPETITION_STYLE":
+            if purpose != "COMPETITION":
+                problems.append(f"PURPOSE_SOURCE_KIND_WRONG_FOR_MODE: {purpose}:{item_id}:{source_kind}")
+            if not source_label:
+                problems.append(f"PURPOSE_ORIGINAL_SOURCE_LABEL_MISSING: {item_id}")
+        elif source_kind == "AUTHOR_CREATED_REVISION_TRANSFER":
+            if purpose != "REVISION":
+                problems.append(f"PURPOSE_SOURCE_KIND_WRONG_FOR_MODE: {purpose}:{item_id}:{source_kind}")
+        else:
+            problems.append(f"PURPOSE_SOURCE_KIND_INVALID: {item_id}:{source_kind}")
+
+    if rendered and not problems:
+        artifacts = {
+            str(row.get("id") or ""): row
+            for row in run.get("rendered_artifacts") or []
+            if isinstance(row, dict)
+        }
+        for role in ("CORE1A", "CORE2"):
+            artifact = artifacts.get(role)
+            if not artifact:
+                problems.append(f"PURPOSE_RENDERED_ARTIFACT_MISSING: {role}")
+                continue
+            path_text = str(artifact.get("path") or "")
+            path = REPO / path_text
+            if not path.is_file():
+                continue  # validate_artifacts_and_reviews owns the missing-file error.
+            html = path.read_text(encoding="utf-8")
+            if f'data-g9-purpose-delivery="{purpose}"' not in html:
+                problems.append(f"PURPOSE_RENDER_MARKER_MISSING: {role}:{purpose}")
+            refs = [str(value) for value in ((projection.get(role) or {}).get("item_refs") or [])]
+            for ref in refs:
+                if f'data-g9-purpose-item="{ref}"' not in html:
+                    problems.append(f"PURPOSE_RENDER_ITEM_MISSING: {role}:{ref}")
+    return problems
+
+
 def validate_validation_layers(run: dict[str, Any]) -> list[str]:
     problems: list[str] = []
     validation = run.get("validation") or {}
@@ -332,6 +418,7 @@ def check(run: dict[str, Any]) -> list[str]:
     problems.extend(validate_blueprints(run, registry))
     problems.extend(validate_artifacts_and_reviews(run))
     problems.extend(validate_core1a_boundary(run))
+    problems.extend(validate_purpose_delivery(run, rendered=True))
     problems.extend(validate_validation_layers(run))
     return problems
 
