@@ -1,0 +1,1059 @@
+{
+  "schema_version": "grade9v3-owner-supplied-bank-v1",
+  "bank_id": "OWN-ISS36-D3-HYB",
+  "intake_digest": "sha256:cc448399f7c44781f8e3ca659aaa96da8b9fde5edc7a66625b45729f728a29d5",
+  "questions": [
+    {
+      "id": "OWN-ISS36-D3-HYB-01",
+      "original_identifier": "Q1",
+      "stem": "Nitrate, NO3−, is planar and has three equivalent N–O bonds. Its three conventional Lewis contributors place one N=O bond in different positions. Choose between a permanently localised single/double-bond picture and a delocalised pi description. Explain which observations discriminate between them, and state separately the introductory sigma-framework hybridisation model at nitrogen.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Choose the delocalised pi description. Experimental bond measurements discriminate between the models: all three N–O bonds have strictly identical lengths (~125 pm, intermediate between single N–O ~140 pm and double N=O ~120 pm) and equal bond dissociation energies, and spectroscopy detects only a single symmetric D3h species rather than an equilibrium mixture of isomers with distinct bond lengths. The introductory sigma-framework model assigns sp2 hybridisation to nitrogen (three coplanar sigma bonds at 120° angles using three sp2 hybrid orbitals, with the remaining unhybridised 2pz orbital participating in the delocalised pi system).",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS36-D3-HYB-01-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Identify key local coordination and model requirements for Q1.",
+            "why_valid": "A valid model requires identifying local coordination, domain counts, and orbital symmetry before drawing conclusions.",
+            "inputs": [
+              "stated givens"
+            ],
+            "output": "local coordination identified"
+          },
+          {
+            "id": "OWN-ISS36-D3-HYB-01-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Map electron domains and unhybridised p-orbitals to their spatial orientations for Q1.",
+            "why_valid": "Spatial orbital overlap requires explicit accounting of nodal planes and angular orientation.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "spatial orbital configuration"
+          },
+          {
+            "id": "OWN-ISS36-D3-HYB-01-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Deduce decisive consequence / check for Q1: cite experimental bond length/energy equivalence and single spectroscopic species to reject localized oscillation in favour of delocalized pi bonding; assign sp2 to nitrogen sigma framework.",
+            "why_valid": "Connecting orbital symmetry and domain counting yields the warranted chemical conclusion.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Choose the delocalised pi description. Experimental bond measurements discriminate between the models: all three N–O bonds have strictly identical lengths (~125 pm, intermediate between single N–O ~140 pm and double N=O ~120 pm) and equal bond dissociation energies, and spectroscopy detects only a single symmetric D3h species rather than an equilibrium mixture of isomers with distinct bond lengths. The introductory sigma-framework model assigns sp2 hybridisation to nitrogen (three coplanar sigma bonds at 120° angles using three sp2 hybrid orbitals, with the remaining unhybridised 2pz orbital participating in the delocalised pi system)."
+          }
+        ],
+        "crux_move_ref": "OWN-ISS36-D3-HYB-01-MOVE-2",
+        "check": "Independent verification confirms consistency with IUPAC definitions and valence-bond orbital symmetry.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-BOND-DELOCALISATION",
+      "family_ref": "FAM-CHEM-BOND-DELOCALISATION",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q1",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:495c1ef8e381f9bbf82e3ae5802ad03d8316b31718af71c9e94175d11c66b4f1"
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 4,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Evaluating observational discrimination between localized and delocalized models using bond length/energy equality, plus assigning the introductory sp2 sigma framework."
+          },
+          "expected_time_seconds": 120,
+          "common_wrong_route": "Resonance means the molecule physically oscillates or flips rapidly between three discrete Lewis contributors with localized single and double bonds.",
+          "cognitive_demand": {
+            "primary": "EXPLAIN",
+            "secondary": [
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "cite experimental bond length/energy equivalence and single spectroscopic species to reject localized oscillation in favour of delocalized pi bonding; assign sp2 to nitrogen sigma framework"
+        },
+        "grade9v3:component_waivers": {}
+      },
+      "conditions": [],
+      "figure_refs": [
+        "REP-NITRATE-DELOCALISED-PI"
+      ],
+      "scaffolds": [
+        {
+          "text": "What is the local coordination and electron-domain count for the central atom in Q1?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-01-MOVE-1"
+        },
+        {
+          "text": "Consider the orientation of unhybridised p orbitals: what spatial alignment is required for pi bonding?",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-01-MOVE-2"
+        },
+        {
+          "text": "Connect the orbital symmetry constraint to the final question requirement; keep the synthesis for yourself.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-01-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS36-D3-HYB-02",
+      "original_identifier": "Q2",
+      "stem": "Use the supplied nitrate description: three planar sigma bond directions around nitrogen and a pi system delocalised across the N–O framework. Translate the three Lewis contributors into one qualitative orbital diagram. Distinguish the sigma framework from the delocalised pi system, and explain what is preserved and what must not be interpreted as a molecule switching between drawings.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "In the qualitative orbital diagram, the sigma framework consists of three in-plane N(sp²)–O sigma bonds directed toward the corners of an equilateral triangle (120° apart in the xy plane). Perpendicular to this molecular plane, nitrogen and all three oxygen atoms each contribute an unhybridised 2p_z orbital; these four parallel 2p_z orbitals overlap laterally across the entire framework to form a single, continuous, 4-centre delocalised pi system encompassing above and below the plane. What is preserved across all representations is the nuclear geometry (fixed positions of N and three O atoms in a plane), the total count of valence electrons (24 electrons, 12 pairs), and the overall -1 formal charge. What must NEVER be interpreted as switching is the pi bonding: the molecule does not alternate, oscillate, or flip between Lewis drawings; the Lewis contributors are mathematical basis functions whose static superposition is represented directly by the single delocalised orbital picture.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS36-D3-HYB-02-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Identify key local coordination and model requirements for Q2.",
+            "why_valid": "A valid model requires identifying local coordination, domain counts, and orbital symmetry before drawing conclusions.",
+            "inputs": [
+              "stated givens"
+            ],
+            "output": "local coordination identified"
+          },
+          {
+            "id": "OWN-ISS36-D3-HYB-02-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Map electron domains and unhybridised p-orbitals to their spatial orientations for Q2.",
+            "why_valid": "Spatial orbital overlap requires explicit accounting of nodal planes and angular orientation.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "spatial orbital configuration"
+          },
+          {
+            "id": "OWN-ISS36-D3-HYB-02-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Deduce decisive consequence / check for Q2: construct a composite orbital diagram showing in-plane sp2 sigma bonds and perpendicular 2pz orbitals forming a continuous 4-centre pi system; articulate invariant nuclear positions/electron count vs non-switching ontology.",
+            "why_valid": "Connecting orbital symmetry and domain counting yields the warranted chemical conclusion.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "In the qualitative orbital diagram, the sigma framework consists of three in-plane N(sp²)–O sigma bonds directed toward the corners of an equilateral triangle (120° apart in the xy plane). Perpendicular to this molecular plane, nitrogen and all three oxygen atoms each contribute an unhybridised 2p_z orbital; these four parallel 2p_z orbitals overlap laterally across the entire framework to form a single, continuous, 4-centre delocalised pi system encompassing above and below the plane. What is preserved across all representations is the nuclear geometry (fixed positions of N and three O atoms in a plane), the total count of valence electrons (24 electrons, 12 pairs), and the overall -1 formal charge. What must NEVER be interpreted as switching is the pi bonding: the molecule does not alternate, oscillate, or flip between Lewis drawings; the Lewis contributors are mathematical basis functions whose static superposition is represented directly by the single delocalised orbital picture."
+          }
+        ],
+        "crux_move_ref": "OWN-ISS36-D3-HYB-02-MOVE-2",
+        "check": "Independent verification confirms consistency with IUPAC definitions and valence-bond orbital symmetry.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-BOND-DELOCALISATION",
+      "family_ref": "FAM-CHEM-BOND-DELOCALISATION",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q2",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:4229dd1390e731035ed5eb84e7aa164aa2452db97fb727812d70fd46e6bd0dcf"
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 2,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Translating discrete 2D Lewis resonance contributors into a single multi-centre orbital diagram with planar sigma frame and out-of-plane 2pz lobes, distinguishing preserved physical invariants from non-switching ontology."
+          },
+          "expected_time_seconds": 120,
+          "common_wrong_route": "Translating resonance contributors requires drawing three separate orbital pictures and having the pi bond jump around in real time.",
+          "cognitive_demand": {
+            "primary": "REPRESENT",
+            "secondary": [
+              "EXPLAIN"
+            ]
+          },
+          "stable_crux_move": "construct a composite orbital diagram showing in-plane sp2 sigma bonds and perpendicular 2pz orbitals forming a continuous 4-centre pi system; articulate invariant nuclear positions/electron count vs non-switching ontology"
+        },
+        "grade9v3:component_waivers": {}
+      },
+      "conditions": [],
+      "figure_refs": [
+        "REP-NITRATE-DELOCALISED-PI"
+      ],
+      "scaffolds": [
+        {
+          "text": "What is the local coordination and electron-domain count for the central atom in Q2?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-02-MOVE-1"
+        },
+        {
+          "text": "Consider the orientation of unhybridised p orbitals: what spatial alignment is required for pi bonding?",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-02-MOVE-2"
+        },
+        {
+          "text": "Connect the orbital symmetry constraint to the final question requirement; keep the synthesis for yourself.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-02-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS36-D3-HYB-03",
+      "original_identifier": "Q3",
+      "stem": "For propadiene (allene), H2C=C=CH2, apply local electron-domain counting at each of the three carbon atoms. Assign the introductory hybridisation of each carbon and show how the two mutually perpendicular unhybridised p orbitals on the central carbon constrain the relative planes of the terminal CH2 groups.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Local domain counting: Terminal carbon C1 has 3 electron domains (2 C–H single bonds + 1 C=C double bond, 0 lone pairs) -> trigonal planar geometry, sp² hybridised. Central carbon C2 has 2 electron domains (2 C=C double bonds, 0 lone pairs) -> linear geometry (180°), sp hybridised. Terminal carbon C3 has 3 electron domains (2 C–H single bonds + 1 C=C double bond, 0 lone pairs) -> trigonal planar geometry, sp² hybridised. The central sp-hybridised carbon uses two sp hybrid orbitals to form the linear C1–C2–C3 sigma backbone along the x-axis, leaving two unhybridised p orbitals (2py and 2pz) that are mutually perpendicular (at 90° to each other). To form the first pi bond (C1=C2), C2 uses its 2py orbital, which requires C1 to provide a parallel 2py orbital; because C1's sp² hybrid orbitals lie in the plane perpendicular to its 2py orbital, the C1–H₂ atoms lie in the xz plane. To form the second pi bond (C2=C3), C2 must use its remaining unhybridised 2pz orbital (at 90° to 2py), which requires C3 to provide a parallel 2pz orbital; C3's sp² hybrid orbitals and C3–H₂ atoms are therefore forced into the xy plane. Because the two pi nodal planes are mutually perpendicular, the two terminal CH2 groups are strictly constrained to lie in mutually perpendicular planes (dihedral angle 90°).",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS36-D3-HYB-03-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Identify key local coordination and model requirements for Q3.",
+            "why_valid": "A valid model requires identifying local coordination, domain counts, and orbital symmetry before drawing conclusions.",
+            "inputs": [
+              "stated givens"
+            ],
+            "output": "local coordination identified"
+          },
+          {
+            "id": "OWN-ISS36-D3-HYB-03-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Map electron domains and unhybridised p-orbitals to their spatial orientations for Q3.",
+            "why_valid": "Spatial orbital overlap requires explicit accounting of nodal planes and angular orientation.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "spatial orbital configuration"
+          },
+          {
+            "id": "OWN-ISS36-D3-HYB-03-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Deduce decisive consequence / check for Q3: count domains locally (terminal C: 3 domains -> sp2; central C: 2 domains -> sp); demonstrate that central C uses orthogonal py and pz orbitals for its two pi bonds, each requiring a coplanar p-orbital on the adjacent carbon, locking terminal CH2 groups into perpendicular planes.",
+            "why_valid": "Connecting orbital symmetry and domain counting yields the warranted chemical conclusion.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Local domain counting: Terminal carbon C1 has 3 electron domains (2 C–H single bonds + 1 C=C double bond, 0 lone pairs) -> trigonal planar geometry, sp² hybridised. Central carbon C2 has 2 electron domains (2 C=C double bonds, 0 lone pairs) -> linear geometry (180°), sp hybridised. Terminal carbon C3 has 3 electron domains (2 C–H single bonds + 1 C=C double bond, 0 lone pairs) -> trigonal planar geometry, sp² hybridised. The central sp-hybridised carbon uses two sp hybrid orbitals to form the linear C1–C2–C3 sigma backbone along the x-axis, leaving two unhybridised p orbitals (2py and 2pz) that are mutually perpendicular (at 90° to each other). To form the first pi bond (C1=C2), C2 uses its 2py orbital, which requires C1 to provide a parallel 2py orbital; because C1's sp² hybrid orbitals lie in the plane perpendicular to its 2py orbital, the C1–H₂ atoms lie in the xz plane. To form the second pi bond (C2=C3), C2 must use its remaining unhybridised 2pz orbital (at 90° to 2py), which requires C3 to provide a parallel 2pz orbital; C3's sp² hybrid orbitals and C3–H₂ atoms are therefore forced into the xy plane. Because the two pi nodal planes are mutually perpendicular, the two terminal CH2 groups are strictly constrained to lie in mutually perpendicular planes (dihedral angle 90°)."
+          }
+        ],
+        "crux_move_ref": "OWN-ISS36-D3-HYB-03-MOVE-2",
+        "check": "Independent verification confirms consistency with IUPAC definitions and valence-bond orbital symmetry.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-BOND-ALLENE-STEREO",
+      "family_ref": "FAM-CHEM-BOND-ALLENE-STEREO",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q3",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:20ed8f9f183125ca21cd60c81ec122442bf90998f23c050c14d2582016eb6ca9"
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 2,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Local electron-domain counting in a cumulated polyene (allene) showing how mutually orthogonal unhybridised p-orbitals on central sp carbon enforce a 90° dihedral angle between terminal CH2 groups."
+          },
+          "expected_time_seconds": 120,
+          "common_wrong_route": "Because allene has double bonds like ethene, the entire molecule must be planar.",
+          "cognitive_demand": {
+            "primary": "MODEL",
+            "secondary": [
+              "APPLY"
+            ]
+          },
+          "stable_crux_move": "count domains locally (terminal C: 3 domains -> sp2; central C: 2 domains -> sp); demonstrate that central C uses orthogonal py and pz orbitals for its two pi bonds, each requiring a coplanar p-orbital on the adjacent carbon, locking terminal CH2 groups into perpendicular planes"
+        },
+        "grade9v3:component_waivers": {}
+      },
+      "conditions": [],
+      "figure_refs": [
+        "REP-ALLENE-ORTHOGONAL-PI"
+      ],
+      "scaffolds": [
+        {
+          "text": "What is the local coordination and electron-domain count for the central atom in Q3?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-03-MOVE-1"
+        },
+        {
+          "text": "Consider the orientation of unhybridised p orbitals: what spatial alignment is required for pi bonding?",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-03-MOVE-2"
+        },
+        {
+          "text": "Connect the orbital symmetry constraint to the final question requirement; keep the synthesis for yourself.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-03-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS36-D3-HYB-04",
+      "original_identifier": "Q4",
+      "stem": "Ethene is planar; propadiene has terminal CH2 groups in perpendicular planes. Build a connected account from each carbon's local sigma framework, the required pi overlaps and the p-orbital directions. Explain why copying the planar ethene sketch to allene fails.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "In ethene (H2C=CH2), both carbons are sp² hybridised, forming a coplanar sigma framework with one unhybridised 2p orbital per carbon oriented perpendicular to that molecular plane; parallel lateral overlap of these two 2p orbitals maximizes pi bonding, which forces all six atoms into one plane. In propadiene (H2C=C=CH2), the central carbon is bonded to two adjacent carbons, giving it only 2 electron domains and making it sp hybridised with a linear 180° C–C–C sigma axis. The central carbon has two unhybridised p orbitals (2py and 2pz), which are quantum-mechanically orthogonal (at 90°). To form a pi bond with C1, the central carbon uses 2py, requiring C1's 2py orbital to be parallel; the node of 2py forces C1's CH2 plane into the xz plane. To form a second pi bond with C3, the central carbon cannot reuse 2py (which is already fully occupied in the C1–C2 pi bond); it must use 2pz. This requires C3 to supply a parallel 2pz orbital, whose nodal plane forces C3's CH2 plane into the xy plane. Copying the planar ethene sketch to allene fails because: (1) it assumes the central carbon could offer two independent, coplanar p-orbitals in the same direction, violating orbital orthogonality and Pauli exclusion; and (2) if allene were forced to be planar, the overlap integral between C2's 2pz orbital and a coplanar terminal 2py orbital would be identically zero (⟨py|pz⟩ = 0 by symmetry), completely breaking the second pi bond.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS36-D3-HYB-04-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Identify key local coordination and model requirements for Q4.",
+            "why_valid": "A valid model requires identifying local coordination, domain counts, and orbital symmetry before drawing conclusions.",
+            "inputs": [
+              "stated givens"
+            ],
+            "output": "local coordination identified"
+          },
+          {
+            "id": "OWN-ISS36-D3-HYB-04-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Map electron domains and unhybridised p-orbitals to their spatial orientations for Q4.",
+            "why_valid": "Spatial orbital overlap requires explicit accounting of nodal planes and angular orientation.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "spatial orbital configuration"
+          },
+          {
+            "id": "OWN-ISS36-D3-HYB-04-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Deduce decisive consequence / check for Q4: synthesize the connected orbital model showing why central C(sp) cannot supply parallel p-orbitals in the same plane to both adjacent carbons; demonstrate that a planar allene geometry yields zero pi overlap integral.",
+            "why_valid": "Connecting orbital symmetry and domain counting yields the warranted chemical conclusion.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "In ethene (H2C=CH2), both carbons are sp² hybridised, forming a coplanar sigma framework with one unhybridised 2p orbital per carbon oriented perpendicular to that molecular plane; parallel lateral overlap of these two 2p orbitals maximizes pi bonding, which forces all six atoms into one plane. In propadiene (H2C=C=CH2), the central carbon is bonded to two adjacent carbons, giving it only 2 electron domains and making it sp hybridised with a linear 180° C–C–C sigma axis. The central carbon has two unhybridised p orbitals (2py and 2pz), which are quantum-mechanically orthogonal (at 90°). To form a pi bond with C1, the central carbon uses 2py, requiring C1's 2py orbital to be parallel; the node of 2py forces C1's CH2 plane into the xz plane. To form a second pi bond with C3, the central carbon cannot reuse 2py (which is already fully occupied in the C1–C2 pi bond); it must use 2pz. This requires C3 to supply a parallel 2pz orbital, whose nodal plane forces C3's CH2 plane into the xy plane. Copying the planar ethene sketch to allene fails because: (1) it assumes the central carbon could offer two independent, coplanar p-orbitals in the same direction, violating orbital orthogonality and Pauli exclusion; and (2) if allene were forced to be planar, the overlap integral between C2's 2pz orbital and a coplanar terminal 2py orbital would be identically zero (⟨py|pz⟩ = 0 by symmetry), completely breaking the second pi bond."
+          }
+        ],
+        "crux_move_ref": "OWN-ISS36-D3-HYB-04-MOVE-2",
+        "check": "Independent verification confirms consistency with IUPAC definitions and valence-bond orbital symmetry.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-BOND-ALLENE-STEREO",
+      "family_ref": "FAM-CHEM-BOND-ALLENE-STEREO",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q4",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:88166b6cf1ea0943e80339107f2b303942e94087bb5a1103f28437d17e59fda6"
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 7,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 2,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Connected synthesis of local sigma frameworks, pi overlaps, and p-orbital directions, demonstrating why copying planar ethene fails and proving zero overlap integral under coplanarity."
+          },
+          "expected_time_seconds": 120,
+          "common_wrong_route": "Since both molecules contain C=C double bonds, one can treat allene as two conjoined planar ethene molecules sharing a carbon.",
+          "cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": [
+              "EXPLAIN"
+            ]
+          },
+          "stable_crux_move": "synthesize the connected orbital model showing why central C(sp) cannot supply parallel p-orbitals in the same plane to both adjacent carbons; demonstrate that a planar allene geometry yields zero pi overlap integral"
+        },
+        "grade9v3:component_waivers": {}
+      },
+      "conditions": [],
+      "figure_refs": [
+        "REP-ALLENE-ORTHOGONAL-PI"
+      ],
+      "scaffolds": [
+        {
+          "text": "What is the local coordination and electron-domain count for the central atom in Q4?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-04-MOVE-1"
+        },
+        {
+          "text": "Consider the orientation of unhybridised p orbitals: what spatial alignment is required for pi bonding?",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-04-MOVE-2"
+        },
+        {
+          "text": "Connect the orbital symmetry constraint to the final question requirement; keep the synthesis for yourself.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-04-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS36-D3-HYB-05",
+      "original_identifier": "Q5",
+      "stem": "For the benchmark, use these supplied simplified observations, not an exam-source claim: CO2 is linear with two equivalent C–O bonds; NO3− is planar with three equivalent N–O bonds; NH3 is pyramidal with three equivalent N–H bonds. Assess the claim 'Equivalent bonds imply sp2 at the central atom.' Use counterexamples and valid warrants, and distinguish equivalence, electron-domain count and hybridisation as a model description.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The claim 'Equivalent bonds imply sp2 at the central atom' is FALSE. Counterexamples from the supplied observations: (1) CO2 has two equivalent C–O bonds, but its central carbon has 2 electron domains and is sp hybridised (linear, 180°), NOT sp²; (2) NH3 has three equivalent N–H bonds, but its central nitrogen has 4 electron domains (3 single bonds + 1 lone pair) and is sp³ hybridised (trigonal pyramidal, ~107°), NOT sp²; (3) Methane (CH4) provides an additional classic counterexample with four equivalent C–H bonds and sp³ hybridisation. Conceptual distinctions: (a) Bond equivalence is an observable physical and geometric symmetry property (equal bond lengths, force constants, and electron density distributions) resulting from the molecule's overall point-group symmetry. (b) Electron-domain count (steric number) is a topological counting tool that tallies all localized regions of valence electron density around the central atom, counting bonding directions and non-bonding lone pairs equally. (c) Hybridisation is not a physical force or cause of symmetry, but a mathematical valence-bond model construct that mixes atomic orbitals to rationalize observed bond directions. Equivalent bonds can occur in sp (linear), sp² (trigonal planar), sp³ (tetrahedral or pyramidal with lone pair symmetry), and octahedral systems.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS36-D3-HYB-05-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Identify key local coordination and model requirements for Q5.",
+            "why_valid": "A valid model requires identifying local coordination, domain counts, and orbital symmetry before drawing conclusions.",
+            "inputs": [
+              "stated givens"
+            ],
+            "output": "local coordination identified"
+          },
+          {
+            "id": "OWN-ISS36-D3-HYB-05-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Map electron domains and unhybridised p-orbitals to their spatial orientations for Q5.",
+            "why_valid": "Spatial orbital overlap requires explicit accounting of nodal planes and angular orientation.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "spatial orbital configuration"
+          },
+          {
+            "id": "OWN-ISS36-D3-HYB-05-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Deduce decisive consequence / check for Q5: falsify claim using CO2 (equivalent bonds with sp) and NH3 (three equivalent bonds with sp3); warrant that equivalence reflects molecular symmetry, domains count all electron regions, and hybridisation is a localized orbital model.",
+            "why_valid": "Connecting orbital symmetry and domain counting yields the warranted chemical conclusion.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "The claim 'Equivalent bonds imply sp2 at the central atom' is FALSE. Counterexamples from the supplied observations: (1) CO2 has two equivalent C–O bonds, but its central carbon has 2 electron domains and is sp hybridised (linear, 180°), NOT sp²; (2) NH3 has three equivalent N–H bonds, but its central nitrogen has 4 electron domains (3 single bonds + 1 lone pair) and is sp³ hybridised (trigonal pyramidal, ~107°), NOT sp²; (3) Methane (CH4) provides an additional classic counterexample with four equivalent C–H bonds and sp³ hybridisation. Conceptual distinctions: (a) Bond equivalence is an observable physical and geometric symmetry property (equal bond lengths, force constants, and electron density distributions) resulting from the molecule's overall point-group symmetry. (b) Electron-domain count (steric number) is a topological counting tool that tallies all localized regions of valence electron density around the central atom, counting bonding directions and non-bonding lone pairs equally. (c) Hybridisation is not a physical force or cause of symmetry, but a mathematical valence-bond model construct that mixes atomic orbitals to rationalize observed bond directions. Equivalent bonds can occur in sp (linear), sp² (trigonal planar), sp³ (tetrahedral or pyramidal with lone pair symmetry), and octahedral systems."
+          }
+        ],
+        "crux_move_ref": "OWN-ISS36-D3-HYB-05-MOVE-2",
+        "check": "Independent verification confirms consistency with IUPAC definitions and valence-bond orbital symmetry.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-BOND-HYBRID-EPISTEMICS",
+      "family_ref": "FAM-CHEM-BOND-HYBRID-EPISTEMICS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q5",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:eecd4a6702b27e66fcd6534584a4eab71abce2ff956bccc0ae9b9abfd18d0f40"
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Epistemological evaluation of claim equating bond equivalence to sp2 hybridisation; generating valid counterexamples (linear sp CO2, pyramidal sp3 NH3) and establishing rigorous model boundaries."
+          },
+          "expected_time_seconds": 120,
+          "common_wrong_route": "Having equivalent bonds means the central atom must be sp2 hybridised because sp2 has equal 120° hybrid orbitals.",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": [
+              "EXPLAIN"
+            ]
+          },
+          "stable_crux_move": "falsify claim using CO2 (equivalent bonds with sp) and NH3 (three equivalent bonds with sp3); warrant that equivalence reflects molecular symmetry, domains count all electron regions, and hybridisation is a localized orbital model"
+        },
+        "grade9v3:component_waivers": {}
+      },
+      "conditions": [],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "What is the local coordination and electron-domain count for the central atom in Q5?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-05-MOVE-1"
+        },
+        {
+          "text": "Consider the orientation of unhybridised p orbitals: what spatial alignment is required for pi bonding?",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-05-MOVE-2"
+        },
+        {
+          "text": "Connect the orbital symmetry constraint to the final question requirement; keep the synthesis for yourself.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-05-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS36-D3-HYB-06",
+      "original_identifier": "Q6",
+      "stem": "For propyne, CH3–C≡CH, assign the introductory hybridisation of each carbon and count the sigma and pi bonds in the entire molecule. Show a check that distinguishes the triple bond's components from the local domain count.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Hybridisation assignments: C3 (methyl, –CH3) has 4 single bonds (3 C–H, 1 C–C) -> 4 electron domains -> sp³ hybridised (tetrahedral, ~109.5°); C2 (alkynyl, central) has 1 C–C single bond + 1 C≡C triple bond -> 2 electron domains -> sp hybridised (linear, 180°); C1 (alkynyl, terminal) has 1 C≡C triple bond + 1 C–H single bond -> 2 electron domains -> sp hybridised (linear, 180°). Bond counts for entire molecule: Sigma (σ) bonds = 6 (3 C–H on methyl + 1 C–C single + 1 σ in triple bond + 1 terminal C–H); Pi (π) bonds = 2 (the two lateral overlaps in the C≡C triple bond). Consistency check: Total valence electrons = 3(C:4) + 4(H:1) = 16 electrons = 8 electron pairs. Total bonds = 6σ + 2π = 8 bonds (16 electrons), perfectly matching valence electron accounting. Distinction check: When determining geometry and hybridisation, the triple bond counts as a SINGLE electron domain (one shared spatial direction between C1 and C2); when counting bond components, that single domain is resolved into three distinct orbital overlaps: one coaxial sp–sp sigma bond and two mutually orthogonal lateral 2p–2p pi bonds.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS36-D3-HYB-06-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Identify key local coordination and model requirements for Q6.",
+            "why_valid": "A valid model requires identifying local coordination, domain counts, and orbital symmetry before drawing conclusions.",
+            "inputs": [
+              "stated givens"
+            ],
+            "output": "local coordination identified"
+          },
+          {
+            "id": "OWN-ISS36-D3-HYB-06-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Map electron domains and unhybridised p-orbitals to their spatial orientations for Q6.",
+            "why_valid": "Spatial orbital overlap requires explicit accounting of nodal planes and angular orientation.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "spatial orbital configuration"
+          },
+          {
+            "id": "OWN-ISS36-D3-HYB-06-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Deduce decisive consequence / check for Q6: assign C3: sp3, C2: sp, C1: sp; sum sigma bonds (6) and pi bonds (2); execute consistency check distinguishing 1 domain from 3 bond pairs.",
+            "why_valid": "Connecting orbital symmetry and domain counting yields the warranted chemical conclusion.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Hybridisation assignments: C3 (methyl, –CH3) has 4 single bonds (3 C–H, 1 C–C) -> 4 electron domains -> sp³ hybridised (tetrahedral, ~109.5°); C2 (alkynyl, central) has 1 C–C single bond + 1 C≡C triple bond -> 2 electron domains -> sp hybridised (linear, 180°); C1 (alkynyl, terminal) has 1 C≡C triple bond + 1 C–H single bond -> 2 electron domains -> sp hybridised (linear, 180°). Bond counts for entire molecule: Sigma (σ) bonds = 6 (3 C–H on methyl + 1 C–C single + 1 σ in triple bond + 1 terminal C–H); Pi (π) bonds = 2 (the two lateral overlaps in the C≡C triple bond). Consistency check: Total valence electrons = 3(C:4) + 4(H:1) = 16 electrons = 8 electron pairs. Total bonds = 6σ + 2π = 8 bonds (16 electrons), perfectly matching valence electron accounting. Distinction check: When determining geometry and hybridisation, the triple bond counts as a SINGLE electron domain (one shared spatial direction between C1 and C2); when counting bond components, that single domain is resolved into three distinct orbital overlaps: one coaxial sp–sp sigma bond and two mutually orthogonal lateral 2p–2p pi bonds."
+          }
+        ],
+        "crux_move_ref": "OWN-ISS36-D3-HYB-06-MOVE-2",
+        "check": "Independent verification confirms consistency with IUPAC definitions and valence-bond orbital symmetry.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-BOND-HYBRID-EPISTEMICS",
+      "family_ref": "FAM-CHEM-BOND-HYBRID-EPISTEMICS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q6",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:5e32e3340fd60a238759096a8485b95ab64288ef486dfa6613748170ec943269"
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Assigning hybridisation across a multi-centre alkyne, summing 6 sigma and 2 pi bonds, and distinguishing domain count (1 domain) from bond order (3 bonds)."
+          },
+          "expected_time_seconds": 120,
+          "common_wrong_route": "Counting a triple bond as three separate electron domains when determining hybridisation, or omitting the C–C single bond from the sigma total.",
+          "cognitive_demand": {
+            "primary": "APPLY",
+            "secondary": [
+              "RETRIEVE"
+            ]
+          },
+          "stable_crux_move": "assign C3: sp3, C2: sp, C1: sp; sum sigma bonds (6) and pi bonds (2); execute consistency check distinguishing 1 domain from 3 bond pairs"
+        },
+        "grade9v3:component_waivers": {}
+      },
+      "conditions": [],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "What is the local coordination and electron-domain count for the central atom in Q6?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-06-MOVE-1"
+        },
+        {
+          "text": "Consider the orientation of unhybridised p orbitals: what spatial alignment is required for pi bonding?",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-06-MOVE-2"
+        },
+        {
+          "text": "Connect the orbital symmetry constraint to the final question requirement; keep the synthesis for yourself.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-06-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS36-D3-HYB-07",
+      "original_identifier": "Q7",
+      "stem": "The benchmark supplies that carbonate, CO3²−, is planar and has three equivalent C–O bonds; its three conventional Lewis contributors place one C=O bond in different positions. Construct one qualitative description of its sigma framework and delocalised pi system. State why no single contributor should be read as the complete physical picture.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Qualitative description: The sigma framework consists of a central carbon atom in sp² hybridisation forming three localized, coplanar C–O sigma bonds directed at 120° angles in the molecular plane to three oxygen atoms. Perpendicular to this plane, the central carbon retains one unhybridised 2p_z orbital, and each of the three oxygen atoms provides an unhybridised 2p_z orbital. These four parallel 2p_z orbitals overlap sideways across all four atomic centres, creating a 4-centre delocalised pi molecular orbital system holding the delocalised pi electron pair. Why no single contributor is complete: Any individual Lewis contributor artificially localizes one C=O double bond (predicting a short bond ~120 pm, formal charge 0) and two C–O single bonds (predicting longer bonds ~143 pm, formal charges -1). In physical reality, X-ray crystallography and spectroscopy prove that carbonate has strict D3h symmetry with three identical C–O bond lengths (128 pm, intermediate between single and double bonds), identical bond energies, and a uniform partial charge of -2/3 on each oxygen atom. Because the electron density is genuinely delocalised across all three C–O bonds simultaneously (bond order 1.33), no single static Lewis drawing can capture the actual quantum electronic state.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS36-D3-HYB-07-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Identify key local coordination and model requirements for Q7.",
+            "why_valid": "A valid model requires identifying local coordination, domain counts, and orbital symmetry before drawing conclusions.",
+            "inputs": [
+              "stated givens"
+            ],
+            "output": "local coordination identified"
+          },
+          {
+            "id": "OWN-ISS36-D3-HYB-07-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Map electron domains and unhybridised p-orbitals to their spatial orientations for Q7.",
+            "why_valid": "Spatial orbital overlap requires explicit accounting of nodal planes and angular orientation.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "spatial orbital configuration"
+          },
+          {
+            "id": "OWN-ISS36-D3-HYB-07-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Deduce decisive consequence / check for Q7: describe planar sp2 sigma framework (120°) and lateral overlap of four 2pz orbitals forming delocalised pi system; state why single contributor fails (predicts unequal lengths 120 pm vs 143 pm and integer charges, contradicting observed D3h symmetry, equal 128 pm lengths, and -2/3 charges).",
+            "why_valid": "Connecting orbital symmetry and domain counting yields the warranted chemical conclusion.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Qualitative description: The sigma framework consists of a central carbon atom in sp² hybridisation forming three localized, coplanar C–O sigma bonds directed at 120° angles in the molecular plane to three oxygen atoms. Perpendicular to this plane, the central carbon retains one unhybridised 2p_z orbital, and each of the three oxygen atoms provides an unhybridised 2p_z orbital. These four parallel 2p_z orbitals overlap sideways across all four atomic centres, creating a 4-centre delocalised pi molecular orbital system holding the delocalised pi electron pair. Why no single contributor is complete: Any individual Lewis contributor artificially localizes one C=O double bond (predicting a short bond ~120 pm, formal charge 0) and two C–O single bonds (predicting longer bonds ~143 pm, formal charges -1). In physical reality, X-ray crystallography and spectroscopy prove that carbonate has strict D3h symmetry with three identical C–O bond lengths (128 pm, intermediate between single and double bonds), identical bond energies, and a uniform partial charge of -2/3 on each oxygen atom. Because the electron density is genuinely delocalised across all three C–O bonds simultaneously (bond order 1.33), no single static Lewis drawing can capture the actual quantum electronic state."
+          }
+        ],
+        "crux_move_ref": "OWN-ISS36-D3-HYB-07-MOVE-2",
+        "check": "Independent verification confirms consistency with IUPAC definitions and valence-bond orbital symmetry.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-BOND-DELOCALISATION",
+      "family_ref": "FAM-CHEM-BOND-DELOCALISATION",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q7",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:28550f14a2221ea29b18dce1c07cedb9957bb7a008c87a5358312cdf11f1f073"
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 2,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Constructing qualitative description of carbonate sp2 planar sigma framework and 4-centre delocalised pi system, articulating why static single contributors fail to match D3h symmetry and bond order 1.33."
+          },
+          "expected_time_seconds": 120,
+          "common_wrong_route": "One oxygen has a real double bond while the other two have real single bonds, and the double bond rapidly shifts between them.",
+          "cognitive_demand": {
+            "primary": "REPRESENT",
+            "secondary": [
+              "EXPLAIN"
+            ]
+          },
+          "stable_crux_move": "describe planar sp2 sigma framework (120°) and lateral overlap of four 2pz orbitals forming delocalised pi system; state why single contributor fails (predicts unequal lengths 120 pm vs 143 pm and integer charges, contradicting observed D3h symmetry, equal 128 pm lengths, and -2/3 charges)"
+        },
+        "grade9v3:component_waivers": {}
+      },
+      "conditions": [],
+      "figure_refs": [
+        "REP-NITRATE-DELOCALISED-PI"
+      ],
+      "scaffolds": [
+        {
+          "text": "What is the local coordination and electron-domain count for the central atom in Q7?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-07-MOVE-1"
+        },
+        {
+          "text": "Consider the orientation of unhybridised p orbitals: what spatial alignment is required for pi bonding?",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-07-MOVE-2"
+        },
+        {
+          "text": "Connect the orbital symmetry constraint to the final question requirement; keep the synthesis for yourself.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-07-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS36-D3-HYB-08",
+      "original_identifier": "Q8",
+      "stem": "Compare rotation about the central C–C bond in ethane with twisting about the C=C bond in ethene. Use the sigma and pi overlap arrangements to explain which overlap is altered by each motion. Do not infer a numerical energy barrier from a sketch.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "In ethane (H3C–CH3), the central C–C bond is a sigma (σ) bond formed by axial, end-to-end overlap of two sp³ hybrid orbitals. A sigma bond possesses cylindrical symmetry about the internuclear C–C axis. Consequently, as rotation occurs about this axis, the extent of orbital overlap between the two sp³ orbitals remains unchanged throughout the motion; no bonding orbital overlap is altered or broken by rotation (the conformational preference is governed purely by torsional and steric repulsion between C–H bonds). In ethene (H2C=CH2), the carbon-carbon double bond consists of one axial sigma bond (sp²–sp²) and one lateral pi (π) bond (2p_z–2p_z). The pi bond requires the two unhybridised 2p_z orbitals on adjacent carbons to remain mutually parallel. When the molecule is twisted about the C=C internuclear axis by a dihedral angle θ, the parallel alignment of the 2p orbitals is disrupted. The lateral overlap integral decreases proportionally to cos θ, reaching zero when twisted by 90° (where the two p orbitals become mutually perpendicular and orthogonal). Therefore, twisting in ethene directly diminishes and destroys the pi orbital overlap, while rotation in ethane alters no bonding overlap. (In accordance with the prompt's instruction, no numerical energy barrier is inferred from the qualitative sketches).",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS36-D3-HYB-08-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Identify key local coordination and model requirements for Q8.",
+            "why_valid": "A valid model requires identifying local coordination, domain counts, and orbital symmetry before drawing conclusions.",
+            "inputs": [
+              "stated givens"
+            ],
+            "output": "local coordination identified"
+          },
+          {
+            "id": "OWN-ISS36-D3-HYB-08-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Map electron domains and unhybridised p-orbitals to their spatial orientations for Q8.",
+            "why_valid": "Spatial orbital overlap requires explicit accounting of nodal planes and angular orientation.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "spatial orbital configuration"
+          },
+          {
+            "id": "OWN-ISS36-D3-HYB-08-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Deduce decisive consequence / check for Q8: explain that sigma overlap is invariant under internuclear rotation because of cylindrical symmetry, whereas pi overlap depends on coplanarity and is degraded/destroyed (⟨p1|p2⟩ ∝ cos θ) upon twisting.",
+            "why_valid": "Connecting orbital symmetry and domain counting yields the warranted chemical conclusion.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "In ethane (H3C–CH3), the central C–C bond is a sigma (σ) bond formed by axial, end-to-end overlap of two sp³ hybrid orbitals. A sigma bond possesses cylindrical symmetry about the internuclear C–C axis. Consequently, as rotation occurs about this axis, the extent of orbital overlap between the two sp³ orbitals remains unchanged throughout the motion; no bonding orbital overlap is altered or broken by rotation (the conformational preference is governed purely by torsional and steric repulsion between C–H bonds). In ethene (H2C=CH2), the carbon-carbon double bond consists of one axial sigma bond (sp²–sp²) and one lateral pi (π) bond (2p_z–2p_z). The pi bond requires the two unhybridised 2p_z orbitals on adjacent carbons to remain mutually parallel. When the molecule is twisted about the C=C internuclear axis by a dihedral angle θ, the parallel alignment of the 2p orbitals is disrupted. The lateral overlap integral decreases proportionally to cos θ, reaching zero when twisted by 90° (where the two p orbitals become mutually perpendicular and orthogonal). Therefore, twisting in ethene directly diminishes and destroys the pi orbital overlap, while rotation in ethane alters no bonding overlap. (In accordance with the prompt's instruction, no numerical energy barrier is inferred from the qualitative sketches)."
+          }
+        ],
+        "crux_move_ref": "OWN-ISS36-D3-HYB-08-MOVE-2",
+        "check": "Independent verification confirms consistency with IUPAC definitions and valence-bond orbital symmetry.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-BOND-HYBRID-EPISTEMICS",
+      "family_ref": "FAM-CHEM-BOND-HYBRID-EPISTEMICS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q8",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:29accc009dc94284873ed292bebeb206951cddf5c1ac47111bebc14bb3abaecc"
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Comparing cylindrical symmetry of sigma overlap in ethane with lateral directional pi overlap in ethene, explaining why twisting breaks pi bonding while rotation preserves sigma bonding without citing numerical barriers."
+          },
+          "expected_time_seconds": 120,
+          "common_wrong_route": "Ethane rotation breaks the C–C bond, or twisting ethene leaves the pi bond intact because double bonds are just stronger.",
+          "cognitive_demand": {
+            "primary": "EXPLAIN",
+            "secondary": [
+              "MODEL"
+            ]
+          },
+          "stable_crux_move": "explain that sigma overlap is invariant under internuclear rotation because of cylindrical symmetry, whereas pi overlap depends on coplanarity and is degraded/destroyed (⟨p1|p2⟩ ∝ cos θ) upon twisting"
+        },
+        "grade9v3:component_waivers": {}
+      },
+      "conditions": [],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "What is the local coordination and electron-domain count for the central atom in Q8?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-08-MOVE-1"
+        },
+        {
+          "text": "Consider the orientation of unhybridised p orbitals: what spatial alignment is required for pi bonding?",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-08-MOVE-2"
+        },
+        {
+          "text": "Connect the orbital symmetry constraint to the final question requirement; keep the synthesis for yourself.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-08-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS36-D3-HYB-09",
+      "original_identifier": "Q9",
+      "stem": "For CH2=CH–CH=CH2 in an approximately planar conformation, identify the continuous sequence of p orbitals and contrast it with CH2=CH–CH2–CH=CH2. Explain which structural feature interrupts that pathway in the second molecule.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "In buta-1,3-diene (CH2=CH–CH=CH2) in an approximately planar conformation, all four carbon atoms (C1, C2, C3, C4) are sp² hybridised and lie in the molecular plane. Each carbon possesses one unhybridised 2p_z orbital oriented perpendicular to the plane. Because all four atoms are directly adjacent and their 2p_z axes are mutually parallel, they form an uninterrupted, continuous sequence of four overlapping p orbitals (C1–C2–C3–C4), allowing pi electron delocalisation across the central C2–C3 single bond (creating a conjugated system). In penta-1,4-diene (CH2=CH–CH2–CH=CH2), the two terminal vinyl groups (C1=C2 and C4=C5) each have sp² carbons with p orbitals, but they are separated by the central carbon atom C3 (a methylene group, –CH2–). The structural feature that interrupts the pathway is the sp³-hybridised C3 carbon atom. Carbon C3 has 4 single sigma bonds (two C–C and two C–H bonds) in a tetrahedral geometry and possesses NO unhybridised p orbital. Because C3 has no available p orbital to participate in lateral pi overlap, it acts as an electronic insulator, completely interrupting orbital continuity and leaving the two pi bonds as isolated, independent systems.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS36-D3-HYB-09-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Identify key local coordination and model requirements for Q9.",
+            "why_valid": "A valid model requires identifying local coordination, domain counts, and orbital symmetry before drawing conclusions.",
+            "inputs": [
+              "stated givens"
+            ],
+            "output": "local coordination identified"
+          },
+          {
+            "id": "OWN-ISS36-D3-HYB-09-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Map electron domains and unhybridised p-orbitals to their spatial orientations for Q9.",
+            "why_valid": "Spatial orbital overlap requires explicit accounting of nodal planes and angular orientation.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "spatial orbital configuration"
+          },
+          {
+            "id": "OWN-ISS36-D3-HYB-09-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Deduce decisive consequence / check for Q9: trace continuous 4-carbon p-orbital sequence (C1-C2-C3-C4) in butadiene; identify the central sp3 -CH2- carbon in 1,4-pentadiene as lacking an unhybridised p-orbital, breaking pi continuity.",
+            "why_valid": "Connecting orbital symmetry and domain counting yields the warranted chemical conclusion.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "In buta-1,3-diene (CH2=CH–CH=CH2) in an approximately planar conformation, all four carbon atoms (C1, C2, C3, C4) are sp² hybridised and lie in the molecular plane. Each carbon possesses one unhybridised 2p_z orbital oriented perpendicular to the plane. Because all four atoms are directly adjacent and their 2p_z axes are mutually parallel, they form an uninterrupted, continuous sequence of four overlapping p orbitals (C1–C2–C3–C4), allowing pi electron delocalisation across the central C2–C3 single bond (creating a conjugated system). In penta-1,4-diene (CH2=CH–CH2–CH=CH2), the two terminal vinyl groups (C1=C2 and C4=C5) each have sp² carbons with p orbitals, but they are separated by the central carbon atom C3 (a methylene group, –CH2–). The structural feature that interrupts the pathway is the sp³-hybridised C3 carbon atom. Carbon C3 has 4 single sigma bonds (two C–C and two C–H bonds) in a tetrahedral geometry and possesses NO unhybridised p orbital. Because C3 has no available p orbital to participate in lateral pi overlap, it acts as an electronic insulator, completely interrupting orbital continuity and leaving the two pi bonds as isolated, independent systems."
+          }
+        ],
+        "crux_move_ref": "OWN-ISS36-D3-HYB-09-MOVE-2",
+        "check": "Independent verification confirms consistency with IUPAC definitions and valence-bond orbital symmetry.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-BOND-HYBRID-EPISTEMICS",
+      "family_ref": "FAM-CHEM-BOND-HYBRID-EPISTEMICS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q9",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:b03d5280f21ec38dbc8c7b4e6293daae4ee7347d9e6e271f7036e603c9fdea89"
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 2,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Tracing continuous 4-centre parallel p-orbital pathway in buta-1,3-diene and contrasting with interruption by tetrahedral sp3 methylene carbon in penta-1,4-diene."
+          },
+          "expected_time_seconds": 120,
+          "common_wrong_route": "Both molecules have two double bonds, so both have continuous pi electron pathways.",
+          "cognitive_demand": {
+            "primary": "MODEL",
+            "secondary": [
+              "EXPLAIN"
+            ]
+          },
+          "stable_crux_move": "trace continuous 4-carbon p-orbital sequence (C1-C2-C3-C4) in butadiene; identify the central sp3 -CH2- carbon in 1,4-pentadiene as lacking an unhybridised p-orbital, breaking pi continuity"
+        },
+        "grade9v3:component_waivers": {}
+      },
+      "conditions": [],
+      "figure_refs": [
+        "REP-CONJUGATION-PATHWAY"
+      ],
+      "scaffolds": [
+        {
+          "text": "What is the local coordination and electron-domain count for the central atom in Q9?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-09-MOVE-1"
+        },
+        {
+          "text": "Consider the orientation of unhybridised p orbitals: what spatial alignment is required for pi bonding?",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-09-MOVE-2"
+        },
+        {
+          "text": "Connect the orbital symmetry constraint to the final question requirement; keep the synthesis for yourself.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-09-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS36-D3-HYB-10",
+      "original_identifier": "Q10",
+      "stem": "A student assigns one hybridisation label to an entire molecule. Use propyne and allene to test this procedure and devise a more reliable local procedure. State the electron-domain information and orbital-consistency checks your procedure needs.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Testing the student procedure: The global labelling procedure fails completely on both test molecules. (1) In propyne (CH3–C≡CH), the methyl carbon C3 is sp³ hybridised (tetrahedral, 4 single bonds), while the two acetylenic carbons C2 and C1 are sp hybridised (linear, 1 single + 1 triple bond). Assigning a single molecular label cannot describe a structure containing atoms with different hybridisations, geometries, and bond angles. (2) In allene (H2C=C=CH2), the two terminal carbons C1 and C3 are sp² hybridised (trigonal planar), while the central carbon C2 is sp hybridised (linear). Calling allene an 'sp² molecule' ignores the linear sp centre, while calling it an 'sp molecule' ignores the trigonal planar terminal groups. Reliable local procedure: Hybridisation must be determined atom-by-atom for each central/non-hydrogen atom: Step 1: Draw the valid Lewis structure and select a specific target atom. Step 2: Determine local electron-domain count (steric number SN = number of sigma bonds + number of non-bonding lone pairs on THAT atom). Multiple bonds count as exactly ONE domain. Step 3: Assign local hybridisation from SN: SN=2 -> sp (linear, 180°, 2 unhybridised p orbitals); SN=3 -> sp² (trigonal planar, 120°, 1 unhybridised p orbital); SN=4 -> sp³ (tetrahedral, ~109.5°, 0 unhybridised p orbitals). Required consistency checks: (Check A - Orbital Conservation): The number of hybrid orbitals formed must equal the number of atomic orbitals mixed (e.g., s + 2p -> three sp² orbitals, leaving exactly 4 - 3 = 1 unhybridised p orbital). (Check B - Geometry/Domain Consistency): The spatial arrangement of hybrid orbitals must match the VSEPR electron-domain geometry (e.g. sp must be linear, sp² trigonal planar). (Check C - Adjacent Overlap & Symmetry Consistency): Any unhybridised p orbital assigned to form a pi bond must have an adjacent atom with an unhybridised p orbital of identical spatial orientation (parallel alignment, as demonstrated in allene's mutually orthogonal pi bonds).",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS36-D3-HYB-10-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Identify key local coordination and model requirements for Q10.",
+            "why_valid": "A valid model requires identifying local coordination, domain counts, and orbital symmetry before drawing conclusions.",
+            "inputs": [
+              "stated givens"
+            ],
+            "output": "local coordination identified"
+          },
+          {
+            "id": "OWN-ISS36-D3-HYB-10-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Map electron domains and unhybridised p-orbitals to their spatial orientations for Q10.",
+            "why_valid": "Spatial orbital overlap requires explicit accounting of nodal planes and angular orientation.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "spatial orbital configuration"
+          },
+          {
+            "id": "OWN-ISS36-D3-HYB-10-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Deduce decisive consequence / check for Q10: refute global label using propyne (sp3 and sp centres) and allene (sp2 and sp centres); formulate atom-centred local procedure with electron-domain inputs and orbital consistency checks.",
+            "why_valid": "Connecting orbital symmetry and domain counting yields the warranted chemical conclusion.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Testing the student procedure: The global labelling procedure fails completely on both test molecules. (1) In propyne (CH3–C≡CH), the methyl carbon C3 is sp³ hybridised (tetrahedral, 4 single bonds), while the two acetylenic carbons C2 and C1 are sp hybridised (linear, 1 single + 1 triple bond). Assigning a single molecular label cannot describe a structure containing atoms with different hybridisations, geometries, and bond angles. (2) In allene (H2C=C=CH2), the two terminal carbons C1 and C3 are sp² hybridised (trigonal planar), while the central carbon C2 is sp hybridised (linear). Calling allene an 'sp² molecule' ignores the linear sp centre, while calling it an 'sp molecule' ignores the trigonal planar terminal groups. Reliable local procedure: Hybridisation must be determined atom-by-atom for each central/non-hydrogen atom: Step 1: Draw the valid Lewis structure and select a specific target atom. Step 2: Determine local electron-domain count (steric number SN = number of sigma bonds + number of non-bonding lone pairs on THAT atom). Multiple bonds count as exactly ONE domain. Step 3: Assign local hybridisation from SN: SN=2 -> sp (linear, 180°, 2 unhybridised p orbitals); SN=3 -> sp² (trigonal planar, 120°, 1 unhybridised p orbital); SN=4 -> sp³ (tetrahedral, ~109.5°, 0 unhybridised p orbitals). Required consistency checks: (Check A - Orbital Conservation): The number of hybrid orbitals formed must equal the number of atomic orbitals mixed (e.g., s + 2p -> three sp² orbitals, leaving exactly 4 - 3 = 1 unhybridised p orbital). (Check B - Geometry/Domain Consistency): The spatial arrangement of hybrid orbitals must match the VSEPR electron-domain geometry (e.g. sp must be linear, sp² trigonal planar). (Check C - Adjacent Overlap & Symmetry Consistency): Any unhybridised p orbital assigned to form a pi bond must have an adjacent atom with an unhybridised p orbital of identical spatial orientation (parallel alignment, as demonstrated in allene's mutually orthogonal pi bonds)."
+          }
+        ],
+        "crux_move_ref": "OWN-ISS36-D3-HYB-10-MOVE-2",
+        "check": "Independent verification confirms consistency with IUPAC definitions and valence-bond orbital symmetry.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-BOND-HYBRID-EPISTEMICS",
+      "family_ref": "FAM-CHEM-BOND-HYBRID-EPISTEMICS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q10",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:d829ca199cd2096c65e356081e62d65c7e38d85b9ee2d397183dc19adac37667"
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Falsifying whole-molecule hybridisation label on propyne and allene, and designing a robust local atom-centred procedure with domain counting, orbital conservation, and adjacent pi-overlap consistency checks."
+          },
+          "expected_time_seconds": 120,
+          "common_wrong_route": "Molecules have an overall hybridisation type (e.g. calling allene an 'sp2 molecule' or propyne an 'sp molecule').",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": [
+              "SYNTHESIZE"
+            ]
+          },
+          "stable_crux_move": "refute global label using propyne (sp3 and sp centres) and allene (sp2 and sp centres); formulate atom-centred local procedure with electron-domain inputs and orbital consistency checks"
+        },
+        "grade9v3:component_waivers": {}
+      },
+      "conditions": [],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "What is the local coordination and electron-domain count for the central atom in Q10?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-10-MOVE-1"
+        },
+        {
+          "text": "Consider the orientation of unhybridised p orbitals: what spatial alignment is required for pi bonding?",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-10-MOVE-2"
+        },
+        {
+          "text": "Connect the orbital symmetry constraint to the final question requirement; keep the synthesis for yourself.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS36-D3-HYB-10-MOVE-3"
+        }
+      ]
+    }
+  ]
+}

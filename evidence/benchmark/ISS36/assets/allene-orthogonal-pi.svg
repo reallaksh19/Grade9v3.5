@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%" role="img" aria-labelledby="allene-title allene-desc">
+  <title id="allene-title">Allene Orthogonal Pi Bonding and Perpendicular CH2 Planes</title>
+  <desc id="allene-desc">Central sp carbon has two mutually perpendicular p orbitals (py and pz), forcing terminal CH2 groups into perpendicular planes at a 90 degree dihedral angle.</desc>
+  <style>
+    .bg { fill: #f8fafc; }
+    .carbon { fill: #1e293b; font-weight: bold; font-size: 20px; font-family: sans-serif; text-anchor: middle; }
+    .hydrogen { fill: #475569; font-weight: bold; font-size: 16px; font-family: sans-serif; text-anchor: middle; }
+    .label { font-size: 14px; font-family: sans-serif; fill: #0f172a; }
+    .title-txt { font-size: 16px; font-family: sans-serif; font-weight: bold; fill: #0f172a; }
+    .sigma-line { stroke: #0284c7; stroke-width: 4; stroke-linecap: round; }
+    .bond-c-h { stroke: #64748b; stroke-width: 3; stroke-linecap: round; }
+    .wedge { fill: #334155; }
+    .dash { stroke: #334155; stroke-width: 3; stroke-dasharray: 4,4; }
+    .p-lobe-y-pos { fill: #38bdf8; fill-opacity: 0.65; stroke: #0284c7; stroke-width: 2; }
+    .p-lobe-y-neg { fill: #bae6fd; fill-opacity: 0.65; stroke: #0284c7; stroke-width: 2; }
+    .p-lobe-z-pos { fill: #f43f5e; fill-opacity: 0.65; stroke: #e11d48; stroke-width: 2; }
+    .p-lobe-z-neg { fill: #fecdd3; fill-opacity: 0.65; stroke: #e11d48; stroke-width: 2; }
+    .pi-overlap-y { stroke: #0284c7; stroke-width: 2; stroke-dasharray: 4,3; fill: none; }
+    .pi-overlap-z { stroke: #e11d48; stroke-width: 2; stroke-dasharray: 4,3; fill: none; }
+    .plane-box-h { fill: #e0f2fe; fill-opacity: 0.4; stroke: #0284c7; stroke-width: 1.5; stroke-dasharray: 5,3; }
+    .plane-box-v { fill: #ffe4e6; fill-opacity: 0.4; stroke: #e11d48; stroke-width: 1.5; stroke-dasharray: 5,3; }
+  </style>
+
+  <rect width="800" height="450" class="bg" rx="8" />
+
+  <!-- Stage 1: Sigma Framework and Local Hybridisation -->
+  <g data-g9-stage-id="ALLENE-STAGE-1">
+    <text x="400" y="32" class="title-txt" text-anchor="middle">Stage 1: Linear C1–C2–C3 Sigma Framework and Terminal CH2 Planes</text>
+    
+    <!-- Linear C-C-C axis -->
+    <line x1="200" y1="225" x2="400" y2="225" class="sigma-line" />
+    <line x1="400" y1="225" x2="600" y2="225" class="sigma-line" />
+    
+    <!-- C1 Bonds (lying in horizontal plane, viewed with wedge/dash or tilted) -->
+    <!-- Left terminal CH2: In vertical plane (or in horizontal plane) -->
+    <line x1="200" y1="225" x2="110" y2="160" class="bond-c-h" />
+    <line x1="200" y1="225" x2="110" y2="290" class="bond-c-h" />
+    <circle cx="100" cy="155" r="14" fill="#ffffff" stroke="#475569" stroke-width="2" />
+    <text x="100" y="161" class="hydrogen">H</text>
+    <circle cx="100" cy="295" r="14" fill="#ffffff" stroke="#475569" stroke-width="2" />
+    <text x="100" y="301" class="hydrogen">H</text>
+    <polygon points="90,130 200,210 200,240 90,320" class="plane-box-v" />
+    <text x="80" y="230" class="label" fill="#e11d48" font-weight="bold">Vertical Plane (C1–H2)</text>
+
+    <!-- Right terminal CH2: In horizontal plane (wedge & dash perspective) -->
+    <polygon points="600,225 680,185 685,195" class="wedge" />
+    <line x1="600" y1="225" x2="685" y2="265" class="dash" />
+    <circle cx="700" cy="180" r="14" fill="#ffffff" stroke="#475569" stroke-width="2" />
+    <text x="700" y="186" class="hydrogen">H (wedge)</text>
+    <circle cx="700" cy="270" r="14" fill="#ffffff" stroke="#475569" stroke-width="2" />
+    <text x="700" y="276" class="hydrogen">H (dash)</text>
+    <polygon points="560,205 740,165 770,290 590,330" class="plane-box-h" />
+    <text x="680" y="345" class="label" fill="#0284c7" font-weight="bold">Horizontal Plane (C3–H2)</text>
+
+    <!-- Carbon Atoms -->
+    <circle cx="200" cy="225" r="18" fill="#ffffff" stroke="#1e293b" stroke-width="2" />
+    <text x="200" y="232" class="carbon">C1</text>
+    <text x="200" y="265" class="label" text-anchor="middle">sp² (3 domains)</text>
+
+    <circle cx="400" cy="225" r="20" fill="#ffffff" stroke="#1e293b" stroke-width="3" />
+    <text x="400" y="232" class="carbon">C2</text>
+    <text x="400" y="265" class="label" text-anchor="middle" font-weight="bold">sp (2 domains, 180°)</text>
+
+    <circle cx="600" cy="225" r="18" fill="#ffffff" stroke="#1e293b" stroke-width="2" />
+    <text x="600" y="232" class="carbon">C3</text>
+    <text x="600" y="265" class="label" text-anchor="middle">sp² (3 domains)</text>
+  </g>
+
+  <!-- Stage 2: Orthogonal Unhybridised p-Orbitals on Central Carbon C2 -->
+  <g data-g9-stage-id="ALLENE-STAGE-2">
+    <text x="400" y="52" class="title-txt" text-anchor="middle">Stage 2: Central C2 has Two Mutually Perpendicular p-Orbitals (py ⊥ pz)</text>
+    
+    <!-- C2 py orbital (horizontal lobes, since C1-H2 is vertical) -->
+    <!-- Lobes along horizontal z-direction: pointing towards viewer/away -->
+    <ellipse cx="400" cy="150" rx="20" ry="42" class="p-lobe-y-pos" />
+    <ellipse cx="400" cy="300" rx="20" ry="42" class="p-lobe-y-neg" />
+    <text x="400" y="100" class="label" text-anchor="middle" fill="#0284c7" font-weight="bold">C2 py orbital (vertical)</text>
+    <text x="400" y="360" class="label" text-anchor="middle" fill="#0284c7">Forms π1 with C1(py)</text>
+
+    <!-- C2 pz orbital (perpendicular / horizontal perspective) -->
+    <ellipse cx="340" cy="225" rx="38" ry="18" class="p-lobe-z-neg" />
+    <ellipse cx="460" cy="225" rx="38" ry="18" class="p-lobe-z-pos" />
+    <text x="400" y="210" class="label" text-anchor="middle" fill="#e11d48" font-weight="bold">C2 pz orbital (horizontal)</text>
+    <text x="400" y="295" class="label" text-anchor="middle" fill="#e11d48">Forms π2 with C3(pz)</text>
+
+    <!-- Angle indicator: 90 degrees -->
+    <path d="M 400 190 L 415 190 L 415 205" fill="none" stroke="#0f172a" stroke-width="2" />
+    <text x="430" y="195" class="label" font-weight="bold">90° angle (py ⊥ pz)</text>
+  </g>
+
+  <!-- Stage 3: Terminal Overlaps and Required 90° Torsion Angle -->
+  <g data-g9-stage-id="ALLENE-STAGE-3">
+    <text x="400" y="72" class="title-txt" text-anchor="middle">Stage 3: Overlap Enforces Mutually Perpendicular Terminal CH2 Planes</text>
+    
+    <!-- C1 py orbital (vertical) -->
+    <ellipse cx="200" cy="150" rx="18" ry="40" class="p-lobe-y-pos" />
+    <ellipse cx="200" cy="300" rx="18" ry="40" class="p-lobe-y-neg" />
+    <text x="200" y="100" class="label" text-anchor="middle" fill="#0284c7">C1 py (vertical)</text>
+
+    <!-- Pi 1 Overlap lines between C1 and C2 py -->
+    <path d="M 200 135 C 300 110, 300 110, 400 135" class="pi-overlap-y" />
+    <path d="M 200 315 C 300 340, 300 340, 400 315" class="pi-overlap-y" />
+    <text x="300" y="125" class="label" fill="#0284c7" font-weight="bold">π1 bond (vertical plane)</text>
+
+    <!-- C3 pz orbital (horizontal) -->
+    <ellipse cx="540" cy="225" rx="36" ry="16" class="p-lobe-z-neg" />
+    <ellipse cx="660" cy="225" rx="36" ry="16" class="p-lobe-z-pos" />
+    <text x="600" y="190" class="label" text-anchor="middle" fill="#e11d48">C3 pz (horizontal)</text>
+
+    <!-- Pi 2 Overlap lines between C2 and C3 pz -->
+    <path d="M 460 215 C 500 195, 500 195, 540 215" class="pi-overlap-z" />
+    <path d="M 460 235 C 500 255, 500 255, 540 235" class="pi-overlap-z" />
+    <text x="500" y="280" class="label" fill="#e11d48" font-weight="bold">π2 bond (horizontal plane)</text>
+
+    <!-- Crux banner -->
+    <rect x="140" y="390" width="520" height="45" fill="#f1f5f9" stroke="#0f172a" stroke-width="1.5" rx="6" />
+    <text x="400" y="418" class="label" text-anchor="middle" font-weight="bold" fill="#0f172a">
+      Crux: Central C(sp) has orthogonal p-orbitals → π-planes are perpendicular → Terminal CH2 groups are at 90°!
+    </text>
+  </g>
+</svg>
