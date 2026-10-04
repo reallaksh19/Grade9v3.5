@@ -31,7 +31,13 @@ jobs:
         run: pip install --quiet jsonschema pypdf
 
       - name: Prove repaired owner-bank destinations and custody regressions
-        run: python3 -m unittest tests.test_test_area.TestOwnerBankFromIntake -v
+        run: |
+          python3 -m unittest -v \
+            tests.test_test_area.TestOwnerBank.test_an_owner_question_cannot_carry_an_invented_exam_identity \
+            tests.test_test_area.TestOwnerBankFromIntake.test_the_command_accepts_test_and_subject_owner_banks_but_refuses_exam_bank_and_escaped_destinations \
+            tests.test_test_area.TestOwnerBankFromIntake.test_tidying_a_stem_is_caught_even_without_the_intake \
+            tests.test_test_area.TestOwnerBankFromIntake.test_editing_the_stem_and_its_digest_together_is_caught_against_the_intake \
+            tests.test_test_area.TestOwnerBankFromIntake.test_a_dropped_question_and_a_different_intake_are_reported
 
       - name: Create Chemistry owner bank through the repaired governed CLI
         run: |
