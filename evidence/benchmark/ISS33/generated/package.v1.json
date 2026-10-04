@@ -537,7 +537,7 @@
       ],
       "relation_refs": [],
       "representation_refs": [
-        "REP-CHEM-HYB-DOMAIN-SHAPE"
+        "REP-CHEM-HYB-DOMAIN-VS-SHAPE"
       ],
       "question_family_refs": [
         "FAM-CHEM-HYB-GEOMETRY-SHAPE"
@@ -594,7 +594,7 @@
           "task": {
             "prompt": "Four central domains contain three bonds and one lone pair. Which geometry description still counts four positions, and what does the atom-only shape count?",
             "givens": [],
-            "representation_ref": "REP-CHEM-HYB-DOMAIN-SHAPE"
+            "representation_ref": "REP-CHEM-HYB-DOMAIN-VS-SHAPE"
           }
         },
         "reconstruct": {
@@ -625,11 +625,11 @@
             "SHP-T2",
             "SHP-T3"
           ],
-          "representation_ref": "REP-CHEM-HYB-DOMAIN-SHAPE",
+          "representation_ref": "REP-CHEM-HYB-DOMAIN-VS-SHAPE",
           "reveal_stage_refs": [
-            "HYB-DOMAIN-1",
-            "HYB-DOMAIN-2",
-            "HYB-DOMAIN-3"
+            "HYB-SHAPE-1",
+            "HYB-SHAPE-2",
+            "HYB-SHAPE-3"
           ],
           "bank_anchor_ref": "OWN-ISS33-D2-V2-Q10",
           "crux_question_refs": [
@@ -660,7 +660,7 @@
       "compact_anchor": {
         "prompt": "Count the right thing before choosing a label.",
         "result": "Electron-domain geometry names all local regions; molecular shape names bonded-atom positions, so lone pairs can change the latter without changing the former.",
-        "representation_ref": "REP-CHEM-HYB-DOMAIN-SHAPE"
+        "representation_ref": "REP-CHEM-HYB-DOMAIN-VS-SHAPE"
       }
     }
   ],
@@ -675,7 +675,7 @@
       "extensions": {
         "grade9v3:stage_mode": "CUMULATIVE"
       },
-      "kind": "ORBITAL_GEOMETRY_SCHEMATIC",
+      "kind": "ORBITAL_DIAGRAM",
       "purpose": "Separate electron-domain directions from atom-only molecular shape and make lone-pair occupancy visible.",
       "required_elements": [
         "Domain directions",
@@ -750,7 +750,7 @@
       "extensions": {
         "grade9v3:stage_mode": "CUMULATIVE"
       },
-      "kind": "ORBITAL_GEOMETRY_SCHEMATIC",
+      "kind": "ORBITAL_DIAGRAM",
       "purpose": "Build a generic three-direction sigma frame and add a perpendicular p direction for side-on overlap without reusing orbitals.",
       "required_elements": [
         "Sigma-direction frame",
@@ -840,7 +840,7 @@
       "extensions": {
         "grade9v3:stage_mode": "CUMULATIVE"
       },
-      "kind": "ORBITAL_GEOMETRY_SCHEMATIC",
+      "kind": "ORBITAL_DIAGRAM",
       "purpose": "Coordinate a two-direction linear sigma axis with two independent p directions.",
       "required_elements": [
         "Linear sigma axis",
@@ -912,6 +912,81 @@
           "purpose": "Keep domain count distinct from sigma/pi decomposition.",
           "visible_elements": [
             "Separate ledgers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-CHEM-HYB-DOMAIN-VS-SHAPE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "CUMULATIVE"
+      },
+      "kind": "ORBITAL_DIAGRAM",
+      "purpose": "Project the same four-domain scaffold to different bonded-atom shapes as lone-pair occupancy changes.",
+      "required_elements": [
+        "Occupancy cases",
+        "All-domain geometry",
+        "Atom-only shape"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "Compare 4 bonds, 3+1 and 2+2.",
+        "Keep all four electron-domain positions.",
+        "Project only bonded-atom positions."
+      ],
+      "instance_constraints": [
+        "Stages teach representation rules without naming the supplied question's final answer."
+      ],
+      "accessibility": [
+        "SVG has title, description and accessible name.",
+        "Text labels duplicate line-style meaning."
+      ],
+      "misleading_alternatives": [
+        "Treating a pi component as an extra electron-domain direction."
+      ],
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS33/assets/domain-vs-shape.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "four-domain scaffold",
+          "symbol": "4 regions",
+          "in_words": "the same electron-domain geometry"
+        },
+        {
+          "element": "paired dots",
+          "symbol": "LP",
+          "in_words": "lone-pair occupied positions omitted from molecular shape"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "HYB-SHAPE-1",
+          "label": "Occupancy cases",
+          "purpose": "Compare 4 bonds, 3+1 and 2+2.",
+          "visible_elements": [
+            "Occupancy cases"
+          ]
+        },
+        {
+          "id": "HYB-SHAPE-2",
+          "label": "All-domain geometry",
+          "purpose": "Keep all four electron-domain positions.",
+          "visible_elements": [
+            "All-domain geometry"
+          ]
+        },
+        {
+          "id": "HYB-SHAPE-3",
+          "label": "Atom-only shape",
+          "purpose": "Project only bonded-atom positions.",
+          "visible_elements": [
+            "Atom-only shape"
           ]
         }
       ]
