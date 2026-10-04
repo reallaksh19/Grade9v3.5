@@ -1,0 +1,1649 @@
+{
+  "schema_version": "grade9v3-owner-supplied-bank-v1",
+  "bank_id": "issue38-hyb",
+  "intake_digest": "issue38-owner-prompt-2026-10-04",
+  "questions": [
+    {
+      "id": "OWN-ISSUE38-HYB-01",
+      "original_identifier": "Q1",
+      "stem": "In formamide, H–C(=O)–NH2, a local Lewis count gives nitrogen three sigma bonds and a lone pair. You are also given that the approximately planar amide arrangement permits nitrogen-lone-pair donation into the adjacent carbonyl pi system, which requires a suitably aligned p-like orbital. Choose a model that accounts for both the sigma framework and delocalisation. Resolve the apparent conflict with an automatic 'four domains therefore sp3' label and state the limits of your chosen hybridisation description.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Approximately planar amide N can use an introductory sp2-like sigma framework plus an aligned p-like lone-pair donor. Four Lewis entries do not override the supplied delocalised-model conditions; the basis is not unique observed reality.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE38-HYB-01-REPAIR-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Resolve conflict between a local Lewis inventory and supplied aligned delocalisation.",
+            "why_valid": "The requested intellectual act defines the target; supplied observations and model givens remain distinct.",
+            "inputs": [
+              "supplied question/model"
+            ],
+            "output": "Resolve conflict between a local Lewis inventory and supplied aligned delocalisation."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-01-REPAIR-MOVE-2",
+            "kind": "CONNECT",
+            "action": "A hybrid label describes a chosen basis; it does not independently cause donation.",
+            "why_valid": "Approximately planar amide N can use an introductory sp2-like sigma framework plus an aligned p-like lone-pair donor. Four Lewis entries do not override the supplied delocalised-model conditions; the basis is not unique observed reality.",
+            "inputs": [
+              "repair move 1"
+            ],
+            "output": "A bounded bridge from prerequisite to this task."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-01-REPAIR-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Account for sigma framework, donor orientation and adjacent pi acceptor before qualifying the label.",
+            "why_valid": "Approximately planar amide N can use an introductory sp2-like sigma framework plus an aligned p-like lone-pair donor. Four Lewis entries do not override the supplied delocalised-model conditions; the basis is not unique observed reality.",
+            "inputs": [
+              "repair move 2"
+            ],
+            "output": "Approximately planar amide N can use an introductory sp2-like sigma framework plus an aligned p-like lone-pair donor. Four Lewis entries do not override the supplied delocalised-model conditions; the basis is not unique observed reality."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-01-REPAIR-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Remove the hybridisation label: the alignment-plus-acceptor explanation must still describe the supplied donation condition.",
+            "why_valid": "This changed case or independent ledger can falsify the claim rather than repeating its label.",
+            "inputs": [
+              "repair move 3"
+            ],
+            "output": "Checked within the declared model, with limits retained."
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE38-HYB-01-REPAIR-MOVE-3",
+        "check": "Remove the hybridisation label: the alignment-plus-acceptor explanation must still describe the supplied donation condition.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHE-HYB-DELOC-BOUNDARIES",
+      "family_ref": "FAM-CHE-HYBRIDISATION-MODELS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q1",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:d44703bfca8465f1d0144848011fc482da2f051713ebd198f9ceeddcbc8c4a64"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Five-component difficulty: 8/10 resolves to D4."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "Four Lewis entries overrule supplied delocalisation conditions.",
+          "cognitive_demand": {
+            "primary": "MODEL",
+            "secondary": [
+              "EXPLAIN",
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "Recognize that resonance delocalisation energy drives rehybridisation to an sp2 framework with an aligned unhybridised p orbital."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Resolve conflict between a local Lewis inventory and supplied aligned delocalisation.",
+          "connect": "A hybrid label describes a chosen basis; it does not independently cause donation.",
+          "way": "Account for sigma framework, donor orientation and adjacent pi acceptor before qualifying the label.",
+          "rule": "Approximately planar amide N can use an introductory sp2-like sigma framework plus an aligned p-like lone-pair donor. Four Lewis entries do not override the supplied delocalised-model conditions; the basis is not unique observed reality.",
+          "check": "Remove the hybridisation label: the alignment-plus-acceptor explanation must still describe the supplied donation condition.",
+          "probe": "Compare adjacent amide N with a saturated-spacer amine N. Does the same four-entry Lewis inventory establish the same donation pathway?",
+          "pattern": "No. Adjacency/alignment conditions differ. Repeating automatic four-domains-therefore-localized-sp3 in both exposes applicability failure.",
+          "transfer": "Give one observation that constrains the model and one claim it cannot uniquely prove.",
+          "wrong_idea": "Four Lewis entries overrule supplied delocalisation conditions.",
+          "question_ref": "OWN-ISSUE38-HYB-01",
+          "label": "Q1",
+          "construction_ref": "CU-CHE-DELOC-BOUNDARIES",
+          "microtopic_ref": "MIC-CHE-HYB-DELOC-BOUNDARIES",
+          "status": "CORRECTION_CANDIDATE",
+          "parent_issue": 38,
+          "crux_move_ref": "OWN-ISSUE38-HYB-01-REPAIR-MOVE-3"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-MODEL-D4",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CORRECTION_CANDIDATE"
+        }
+      },
+      "conditions": [
+        "Delocalisation requires continuous, coplanar p-orbital alignment.",
+        "Hybridisation is an idealized localized bonding model, not an autonomous physical observable."
+      ],
+      "figure_refs": [
+        "REP-CHE-FORMAMIDE-TWIST"
+      ],
+      "scaffolds": [
+        {
+          "text": "Resolve conflict between a local Lewis inventory and supplied aligned delocalisation.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-01-REPAIR-MOVE-1"
+        },
+        {
+          "text": "A hybrid label describes a chosen basis; it does not independently cause donation.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE38-HYB-01-REPAIR-MOVE-2"
+        },
+        {
+          "text": "Account for sigma framework, donor orientation and adjacent pi acceptor before qualifying the label.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE38-HYB-01-REPAIR-MOVE-3"
+        },
+        {
+          "text": "Test your proposed route on this changed case before finalising: Compare adjacent amide N with a saturated-spacer amine N. Does the same four-entry Lewis inventory establish the same donation pathway?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE38-HYB-01-REPAIR-MOVE-4"
+        },
+        {
+          "text": "Reserve the last judgement for yourself. Try this boundary/transfer task: Give one observation that constrains the model and one claim it cannot uniquely prove.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-01-REPAIR-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE38-HYB-02",
+      "original_identifier": "Q2",
+      "stem": "For the formamide situation supplied in Q1, construct one qualitative representation connecting the Lewis lone pair on nitrogen, the nitrogen orbital used for donation and the carbonyl pi system. Then construct the corresponding approximately 90-degree-twisted arrangement about the C–N bond. Preserve atom connectivity and distinguish changes in orbital alignment from changes in formal electron count. Do not claim these sketches alone measure the donation strength.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Formamide CH3NO has 18 valence electrons and 24 total electrons. The supplied three-centre donor/carbonyl pi model has four electrons. A 90-degree twist changes alignment, not these inventories.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE38-HYB-02-REPAIR-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Construct both arrangements while preserving connectivity and electron inventories.",
+            "why_valid": "The requested intellectual act defines the target; supplied observations and model givens remain distinct.",
+            "inputs": [
+              "supplied question/model"
+            ],
+            "output": "Construct both arrangements while preserving connectivity and electron inventories."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-02-REPAIR-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Torsion changes relative orientation, not the number of atoms or formal electrons.",
+            "why_valid": "Formamide CH3NO has 18 valence electrons and 24 total electrons. The supplied three-centre donor/carbonyl pi model has four electrons. A 90-degree twist changes alignment, not these inventories.",
+            "inputs": [
+              "repair move 1"
+            ],
+            "output": "A bounded bridge from prerequisite to this task."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-02-REPAIR-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Draw a fixed carbonyl reference and an N donor direction rotated about the declared C-N axis.",
+            "why_valid": "Formamide CH3NO has 18 valence electrons and 24 total electrons. The supplied three-centre donor/carbonyl pi model has four electrons. A 90-degree twist changes alignment, not these inventories.",
+            "inputs": [
+              "repair move 2"
+            ],
+            "output": "Formamide CH3NO has 18 valence electrons and 24 total electrons. The supplied three-centre donor/carbonyl pi model has four electrons. A 90-degree twist changes alignment, not these inventories."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-02-REPAIR-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Independent element sums: valence 4+3+5+6=18; total 6+3+7+8=24. Both sketches must preserve them.",
+            "why_valid": "This changed case or independent ledger can falsify the claim rather than repeating its label.",
+            "inputs": [
+              "repair move 3"
+            ],
+            "output": "Checked within the declared model, with limits retained."
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE38-HYB-02-REPAIR-MOVE-3",
+        "check": "Independent element sums: valence 4+3+5+6=18; total 6+3+7+8=24. Both sketches must preserve them.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHE-HYB-TORSION-ALIGNMENT",
+      "family_ref": "FAM-CHE-HYBRIDISATION-MODELS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q2",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:e77d068ee216f7ce6c6df8fd652b3bfb50acc34be6cf3ebf753aaf4714e6ffdf"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Five-component difficulty: 8/10 resolves to D4."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "Torsion changes the formal electron inventory.",
+          "cognitive_demand": {
+            "primary": "REPRESENT",
+            "secondary": [
+              "MODEL",
+              "APPLY"
+            ]
+          },
+          "stable_crux_move": "Distinguish rotation of orbital alignment (yielding zero overlap by orthogonality) from any change in atom connectivity or formal electron count."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Construct both arrangements while preserving connectivity and electron inventories.",
+          "connect": "Torsion changes relative orientation, not the number of atoms or formal electrons.",
+          "way": "Draw a fixed carbonyl reference and an N donor direction rotated about the declared C-N axis.",
+          "rule": "Formamide CH3NO has 18 valence electrons and 24 total electrons. The supplied three-centre donor/carbonyl pi model has four electrons. A 90-degree twist changes alignment, not these inventories.",
+          "check": "Independent element sums: valence 4+3+5+6=18; total 6+3+7+8=24. Both sketches must preserve them.",
+          "probe": "Count valence and total electrons for CH3NO before and after torsion. Identify which geometric relation changes.",
+          "pattern": "18 valence, 24 total in both; relative donor direction changes. Repeated electron-loss-by-rotation reasoning differs from a corrected addition slip.",
+          "transfer": "Sketch a fixed-connectivity 45-degree comparison without claiming measured donation.",
+          "wrong_idea": "Torsion changes the formal electron inventory.",
+          "question_ref": "OWN-ISSUE38-HYB-02",
+          "label": "Q2",
+          "construction_ref": "CU-CHE-FORMAMIDE-TORSION",
+          "microtopic_ref": "MIC-CHE-HYB-TORSION-ALIGNMENT",
+          "status": "CORRECTION_CANDIDATE",
+          "parent_issue": 38,
+          "interaction": "MODEL_SCOPE_PROBE",
+          "crux_move_ref": "OWN-ISSUE38-HYB-02-REPAIR-MOVE-3"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-REPRESENT-D4",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CORRECTION_CANDIDATE"
+        }
+      },
+      "conditions": [
+        "Delocalisation requires continuous, coplanar p-orbital alignment.",
+        "Hybridisation is an idealized localized bonding model, not an autonomous physical observable."
+      ],
+      "figure_refs": [
+        "REP-CHE-FORMAMIDE-TWIST"
+      ],
+      "scaffolds": [
+        {
+          "text": "Construct both arrangements while preserving connectivity and electron inventories.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-02-REPAIR-MOVE-1"
+        },
+        {
+          "text": "Torsion changes relative orientation, not the number of atoms or formal electrons.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE38-HYB-02-REPAIR-MOVE-2"
+        },
+        {
+          "text": "Draw a fixed carbonyl reference and an N donor direction rotated about the declared C-N axis.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE38-HYB-02-REPAIR-MOVE-3"
+        },
+        {
+          "text": "Test your proposed route on this changed case before finalising: Count valence and total electrons for CH3NO before and after torsion. Identify which geometric relation changes.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE38-HYB-02-REPAIR-MOVE-4"
+        },
+        {
+          "text": "Reserve the last judgement for yourself. Try this boundary/transfer task: Sketch a fixed-connectivity 45-degree comparison without claiming measured donation.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-02-REPAIR-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE38-HYB-03",
+      "original_identifier": "Q3",
+      "stem": "The benchmark supplies a qualitative model result: with atom connectivity fixed, twisting a planar amide arrangement toward 90 degrees reduces the nitrogen-to-carbonyl orbital alignment and the delocalisation contribution. Explain that result through orbital overlap. Assess whether 'the hybridisation label changes, so donation disappears' is a sufficient explanation, and identify which parts of your account are model assumptions rather than measured facts.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Twisting reduces relevant alignment and the supplied delocalisation contribution. A changing hybrid label alone explains neither mechanism nor a quantitative barrier; total torsional energy has additional contributions.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE38-HYB-03-REPAIR-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Explain the supplied trend without replacing a mechanism with a label.",
+            "why_valid": "The requested intellectual act defines the target; supplied observations and model givens remain distinct.",
+            "inputs": [
+              "supplied question/model"
+            ],
+            "output": "Explain the supplied trend without replacing a mechanism with a label."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-03-REPAIR-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Relative donor/acceptor alignment is a model variable; donation magnitude needs additional physics.",
+            "why_valid": "Twisting reduces relevant alignment and the supplied delocalisation contribution. A changing hybrid label alone explains neither mechanism nor a quantitative barrier; total torsional energy has additional contributions.",
+            "inputs": [
+              "repair move 1"
+            ],
+            "output": "A bounded bridge from prerequisite to this task."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-03-REPAIR-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Connect changed geometry to overlap, then tag each statement as given, model or observation.",
+            "why_valid": "Twisting reduces relevant alignment and the supplied delocalisation contribution. A changing hybrid label alone explains neither mechanism nor a quantitative barrier; total torsional energy has additional contributions.",
+            "inputs": [
+              "repair move 2"
+            ],
+            "output": "Twisting reduces relevant alignment and the supplied delocalisation contribution. A changing hybrid label alone explains neither mechanism nor a quantitative barrier; total torsional energy has additional contributions."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-03-REPAIR-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Counterfactual: remove the word hybridisation while retaining changed orientation; the mechanistic statement survives.",
+            "why_valid": "This changed case or independent ledger can falsify the claim rather than repeating its label.",
+            "inputs": [
+              "repair move 3"
+            ],
+            "output": "Checked within the declared model, with limits retained."
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE38-HYB-03-REPAIR-MOVE-3",
+        "check": "Counterfactual: remove the word hybridisation while retaining changed orientation; the mechanistic statement survives.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHE-HYB-TORSION-ALIGNMENT",
+      "family_ref": "FAM-CHE-HYBRIDISATION-MODELS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q3",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:2ea9cdfb2b9e677a9d002da309d5d5b5bf609116ba8769085d39046b9830957c"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Five-component difficulty: 8/10 resolves to D4."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "A changed hybrid label is a causal explanation of donor strength.",
+          "cognitive_demand": {
+            "primary": "EXPLAIN",
+            "secondary": [
+              "JUSTIFY",
+              "MODEL"
+            ]
+          },
+          "stable_crux_move": "Formulate orbital overlap loss through geometric orthogonality and refute nominal causal attribution to label changes."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Explain the supplied trend without replacing a mechanism with a label.",
+          "connect": "Relative donor/acceptor alignment is a model variable; donation magnitude needs additional physics.",
+          "way": "Connect changed geometry to overlap, then tag each statement as given, model or observation.",
+          "rule": "Twisting reduces relevant alignment and the supplied delocalisation contribution. A changing hybrid label alone explains neither mechanism nor a quantitative barrier; total torsional energy has additional contributions.",
+          "check": "Counterfactual: remove the word hybridisation while retaining changed orientation; the mechanistic statement survives.",
+          "probe": "If two sketches have the same label but different donor alignment, must their donation be identical? If the label changes alone, has a mechanism been supplied?",
+          "pattern": "Neither follows. Persistent label-only explanations expose causal substitution.",
+          "transfer": "State which additional model would be needed for a numerical donation or barrier estimate.",
+          "wrong_idea": "A changed hybrid label is a causal explanation of donor strength.",
+          "question_ref": "OWN-ISSUE38-HYB-03",
+          "label": "Q3",
+          "construction_ref": "CU-CHE-FORMAMIDE-TORSION",
+          "microtopic_ref": "MIC-CHE-HYB-TORSION-ALIGNMENT",
+          "status": "CORRECTION_CANDIDATE",
+          "parent_issue": 38,
+          "crux_move_ref": "OWN-ISSUE38-HYB-03-REPAIR-MOVE-3"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-EXPLAIN-D4",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CORRECTION_CANDIDATE"
+        }
+      },
+      "conditions": [
+        "Delocalisation requires continuous, coplanar p-orbital alignment.",
+        "Hybridisation is an idealized localized bonding model, not an autonomous physical observable."
+      ],
+      "figure_refs": [
+        "REP-CHE-FORMAMIDE-TWIST"
+      ],
+      "scaffolds": [
+        {
+          "text": "Explain the supplied trend without replacing a mechanism with a label.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-03-REPAIR-MOVE-1"
+        },
+        {
+          "text": "Relative donor/acceptor alignment is a model variable; donation magnitude needs additional physics.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE38-HYB-03-REPAIR-MOVE-2"
+        },
+        {
+          "text": "Connect changed geometry to overlap, then tag each statement as given, model or observation.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE38-HYB-03-REPAIR-MOVE-3"
+        },
+        {
+          "text": "Test your proposed route on this changed case before finalising: If two sketches have the same label but different donor alignment, must their donation be identical? If the label changes alone, has a mechanism been supplied?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE38-HYB-03-REPAIR-MOVE-4"
+        },
+        {
+          "text": "Reserve the last judgement for yourself. Try this boundary/transfer task: State which additional model would be needed for a numerical donation or barrier estimate.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-03-REPAIR-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE38-HYB-04",
+      "original_identifier": "Q4",
+      "stem": "Compare two nitrogen sites: A is the amide nitrogen in H–C(=O)–NH2; B is the amine nitrogen in H–C(=O)–CH2–NH2. In the simplified introductory model, the intervening saturated CH2 group has no continuous aligned p-orbital pathway. Develop a decision procedure combining local sigma/lone-pair counting, adjacency, orbital alignment and the model's validity conditions. Apply it to A and B, then state a counterfactual structural change that would require you to reassess your procedure. Do not equate spatial proximity with conjugation.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Amide A has the supplied direct donor/carbonyl path. Saturated-spacer amine B lacks that ordinary contiguous path. Spatial proximity alone is insufficient, and absence of this path is not an absolute zero-interaction theorem.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE38-HYB-04-REPAIR-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Build a decision procedure that can fail its own applicability test.",
+            "why_valid": "The requested intellectual act defines the target; supplied observations and model givens remain distinct.",
+            "inputs": [
+              "supplied question/model"
+            ],
+            "output": "Build a decision procedure that can fail its own applicability test."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-04-REPAIR-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Local count and a continuous aligned pathway are independent checks.",
+            "why_valid": "Amide A has the supplied direct donor/carbonyl path. Saturated-spacer amine B lacks that ordinary contiguous path. Spatial proximity alone is insufficient, and absence of this path is not an absolute zero-interaction theorem.",
+            "inputs": [
+              "repair move 1"
+            ],
+            "output": "A bounded bridge from prerequisite to this task."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-04-REPAIR-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Test locality, adjacency, alignment and stated model conditions; invent a structural counterfactual yourself.",
+            "why_valid": "Amide A has the supplied direct donor/carbonyl path. Saturated-spacer amine B lacks that ordinary contiguous path. Spatial proximity alone is insufficient, and absence of this path is not an absolute zero-interaction theorem.",
+            "inputs": [
+              "repair move 2"
+            ],
+            "output": "Amide A has the supplied direct donor/carbonyl path. Saturated-spacer amine B lacks that ordinary contiguous path. Spatial proximity alone is insufficient, and absence of this path is not an absolute zero-interaction theorem."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-04-REPAIR-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Changed case: replace a saturated interruption by a suitably aligned unsaturated bridge; reassess connectivity and orbital availability rather than reusing the answer.",
+            "why_valid": "This changed case or independent ledger can falsify the claim rather than repeating its label.",
+            "inputs": [
+              "repair move 3"
+            ],
+            "output": "Checked within the declared model, with limits retained."
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE38-HYB-04-REPAIR-MOVE-3",
+        "check": "Changed case: replace a saturated interruption by a suitably aligned unsaturated bridge; reassess connectivity and orbital availability rather than reusing the answer.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHE-HYB-LOCAL-VS-CONJUGATED",
+      "family_ref": "FAM-CHE-HYBRIDISATION-MODELS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q4",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:a5bd1762999003bff70b76b12d5f49f846d627ef8f1c2fd9a16e5fdeb4f7bc52"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Five-component difficulty: 8/10 resolves to D4."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "Spatial proximity equals an orbital-connected p pathway.",
+          "cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": [
+              "APPLY",
+              "MODEL"
+            ]
+          },
+          "stable_crux_move": "Require a continuous through-bond pathway of adjacent unhybridised p orbitals and separate spatial proximity from conjugation."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Build a decision procedure that can fail its own applicability test.",
+          "connect": "Local count and a continuous aligned pathway are independent checks.",
+          "way": "Test locality, adjacency, alignment and stated model conditions; invent a structural counterfactual yourself.",
+          "rule": "Amide A has the supplied direct donor/carbonyl path. Saturated-spacer amine B lacks that ordinary contiguous path. Spatial proximity alone is insufficient, and absence of this path is not an absolute zero-interaction theorem.",
+          "check": "Changed case: replace a saturated interruption by a suitably aligned unsaturated bridge; reassess connectivity and orbital availability rather than reusing the answer.",
+          "probe": "Would folding the saturated-spacer molecule closer create the same continuous p pathway as removing the spacer?",
+          "pattern": "No; spatial folding and orbital-connected adjacency are different changes. Repeated proximity-based classification identifies the wrong criterion.",
+          "transfer": "Specify a counterfactual bridge and test all procedure conditions again.",
+          "wrong_idea": "Spatial proximity equals an orbital-connected p pathway.",
+          "question_ref": "OWN-ISSUE38-HYB-04",
+          "label": "Q4",
+          "construction_ref": "CU-CHE-LOCAL-VS-CONJUGATED",
+          "microtopic_ref": "MIC-CHE-HYB-LOCAL-VS-CONJUGATED",
+          "status": "CORRECTION_CANDIDATE",
+          "parent_issue": 38,
+          "crux_move_ref": "OWN-ISSUE38-HYB-04-REPAIR-MOVE-3"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-SYNTHESIZE-D4",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CORRECTION_CANDIDATE"
+        }
+      },
+      "conditions": [
+        "Delocalisation requires continuous, coplanar p-orbital alignment.",
+        "Hybridisation is an idealized localized bonding model, not an autonomous physical observable."
+      ],
+      "figure_refs": [
+        "REP-CHE-CONJUGATION-PATHWAY"
+      ],
+      "scaffolds": [
+        {
+          "text": "Build a decision procedure that can fail its own applicability test.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-04-REPAIR-MOVE-1"
+        },
+        {
+          "text": "Local count and a continuous aligned pathway are independent checks.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE38-HYB-04-REPAIR-MOVE-2"
+        },
+        {
+          "text": "Test locality, adjacency, alignment and stated model conditions; invent a structural counterfactual yourself.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE38-HYB-04-REPAIR-MOVE-3"
+        },
+        {
+          "text": "Test your proposed route on this changed case before finalising: Would folding the saturated-spacer molecule closer create the same continuous p pathway as removing the spacer?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE38-HYB-04-REPAIR-MOVE-4"
+        },
+        {
+          "text": "Reserve the last judgement for yourself. Try this boundary/transfer task: Specify a counterfactual bridge and test all procedure conditions again.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-04-REPAIR-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE38-HYB-05",
+      "original_identifier": "Q5",
+      "stem": "A student claims: 'Hybridisation uniquely determines bond angles and any deviation proves the hybridisation label wrong.' The benchmark supplies approximate observations: CH4 tetrahedral about 109.5 degrees; NH3 pyramidal about 107 degrees; H2O bent about 104.5 degrees; all three commonly use an introductory sp3 description at the central atom. It also supplies approximately planar amide nitrogen with lone-pair delocalisation. Construct and test a qualified replacement claim using these observations, local domain counting, lone-pair effects and the amide boundary case. State what further evidence would be needed before treating a qualitative orbital picture as a unique physical account.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "CH4/NH3/H2O share common sp3-like introductory descriptions while their nuclear shapes/angles differ. Geometry constrains models but does not uniquely measure a hybrid decomposition; lone pairs and delocalisation matter.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE38-HYB-05-REPAIR-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Test uniqueness, rather than merely finding one familiar angle.",
+            "why_valid": "The requested intellectual act defines the target; supplied observations and model givens remain distinct.",
+            "inputs": [
+              "supplied question/model"
+            ],
+            "output": "Test uniqueness, rather than merely finding one familiar angle."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-05-REPAIR-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Several shapes/angles can share an introductory four-domain classification.",
+            "why_valid": "CH4/NH3/H2O share common sp3-like introductory descriptions while their nuclear shapes/angles differ. Geometry constrains models but does not uniquely measure a hybrid decomposition; lone pairs and delocalisation matter.",
+            "inputs": [
+              "repair move 1"
+            ],
+            "output": "A bounded bridge from prerequisite to this task."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-05-REPAIR-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Use supplied counterexamples and the amide boundary to qualify both predictive scope and evidence.",
+            "why_valid": "CH4/NH3/H2O share common sp3-like introductory descriptions while their nuclear shapes/angles differ. Geometry constrains models but does not uniquely measure a hybrid decomposition; lone pairs and delocalisation matter.",
+            "inputs": [
+              "repair move 2"
+            ],
+            "output": "CH4/NH3/H2O share common sp3-like introductory descriptions while their nuclear shapes/angles differ. Geometry constrains models but does not uniquely measure a hybrid decomposition; lone pairs and delocalisation matter."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-05-REPAIR-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Independent counterexample: a shared four-domain label is compatible with 4,3,2 bonded-atom positions, so it cannot alone uniquely specify atom-only shape.",
+            "why_valid": "This changed case or independent ledger can falsify the claim rather than repeating its label.",
+            "inputs": [
+              "repair move 3"
+            ],
+            "output": "Checked within the declared model, with limits retained."
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE38-HYB-05-REPAIR-MOVE-3",
+        "check": "Independent counterexample: a shared four-domain label is compatible with 4,3,2 bonded-atom positions, so it cannot alone uniquely specify atom-only shape.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHE-HYB-DELOC-BOUNDARIES",
+      "family_ref": "FAM-CHE-HYBRIDISATION-MODELS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q5",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:7fa193cc29562ab720488b660310f07f11d3639ebe7970a967d0b56b063e46f8"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Five-component difficulty: 8/10 resolves to D4."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "A hybrid label uniquely determines every angle and physical orbital basis.",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": [
+              "MODEL",
+              "EXPLAIN"
+            ]
+          },
+          "stable_crux_move": "Use empirical angle series (109.5° -> 107° -> 104.5° -> 120°) to refute angle determinism and establish that hybridisation is a descriptive model rather than a unique physical observable."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Test uniqueness, rather than merely finding one familiar angle.",
+          "connect": "Several shapes/angles can share an introductory four-domain classification.",
+          "way": "Use supplied counterexamples and the amide boundary to qualify both predictive scope and evidence.",
+          "rule": "CH4/NH3/H2O share common sp3-like introductory descriptions while their nuclear shapes/angles differ. Geometry constrains models but does not uniquely measure a hybrid decomposition; lone pairs and delocalisation matter.",
+          "check": "Independent counterexample: a shared four-domain label is compatible with 4,3,2 bonded-atom positions, so it cannot alone uniquely specify atom-only shape.",
+          "probe": "Can one four-domain label predict the same nuclear shape for CH4 and H2O? Does observing a shape uniquely establish an orbital basis?",
+          "pattern": "No to both. Persistent one-label-one-shape or unique-basis inference reveals overclaim rather than an angle-recall slip.",
+          "transfer": "Name evidence needed before claiming a unique physical electronic description.",
+          "wrong_idea": "A hybrid label uniquely determines every angle and physical orbital basis.",
+          "question_ref": "OWN-ISSUE38-HYB-05",
+          "label": "Q5",
+          "construction_ref": "CU-CHE-DELOC-BOUNDARIES",
+          "microtopic_ref": "MIC-CHE-HYB-DELOC-BOUNDARIES",
+          "status": "CORRECTION_CANDIDATE",
+          "parent_issue": 38,
+          "crux_move_ref": "OWN-ISSUE38-HYB-05-REPAIR-MOVE-3"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-JUSTIFY-D4",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CORRECTION_CANDIDATE"
+        }
+      },
+      "conditions": [
+        "Delocalisation requires continuous, coplanar p-orbital alignment.",
+        "Hybridisation is an idealized localized bonding model, not an autonomous physical observable."
+      ],
+      "figure_refs": [
+        "REP-CHE-FORMAMIDE-TWIST"
+      ],
+      "scaffolds": [
+        {
+          "text": "Test uniqueness, rather than merely finding one familiar angle.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-05-REPAIR-MOVE-1"
+        },
+        {
+          "text": "Several shapes/angles can share an introductory four-domain classification.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE38-HYB-05-REPAIR-MOVE-2"
+        },
+        {
+          "text": "Use supplied counterexamples and the amide boundary to qualify both predictive scope and evidence.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE38-HYB-05-REPAIR-MOVE-3"
+        },
+        {
+          "text": "Test your proposed route on this changed case before finalising: Can one four-domain label predict the same nuclear shape for CH4 and H2O? Does observing a shape uniquely establish an orbital basis?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE38-HYB-05-REPAIR-MOVE-4"
+        },
+        {
+          "text": "Reserve the last judgement for yourself. Try this boundary/transfer task: Name evidence needed before claiming a unique physical electronic description.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-05-REPAIR-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE38-HYB-06",
+      "original_identifier": "Q6",
+      "stem": "Consider the two nitrogen sites A and B in Q4. State the conditions under which the local four-domain counting rule is a useful introductory classification, and the evidence that would make its automatic use inadequate. Distinguish recalling a rule from deciding whether its conditions hold.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Four-domain counting is useful for localized introductory classification. Adjacent pi acceptors, aligned donor orbitals, planarity/donation evidence or radical occupancy can require a richer model.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE38-HYB-06-REPAIR-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Distinguish recalling a rule from establishing its applicability.",
+            "why_valid": "The requested intellectual act defines the target; supplied observations and model givens remain distinct.",
+            "inputs": [
+              "supplied question/model"
+            ],
+            "output": "Distinguish recalling a rule from establishing its applicability."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-06-REPAIR-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Local counting assumes the localized/domain model is useful for the asked task.",
+            "why_valid": "Four-domain counting is useful for localized introductory classification. Adjacent pi acceptors, aligned donor orbitals, planarity/donation evidence or radical occupancy can require a richer model.",
+            "inputs": [
+              "repair move 1"
+            ],
+            "output": "A bounded bridge from prerequisite to this task."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-06-REPAIR-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "List the conditions and look for supplied delocalisation or unusual occupancy evidence before applying the shortcut.",
+            "why_valid": "Four-domain counting is useful for localized introductory classification. Adjacent pi acceptors, aligned donor orbitals, planarity/donation evidence or radical occupancy can require a richer model.",
+            "inputs": [
+              "repair move 2"
+            ],
+            "output": "Four-domain counting is useful for localized introductory classification. Adjacent pi acceptors, aligned donor orbitals, planarity/donation evidence or radical occupancy can require a richer model."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-06-REPAIR-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Changed check: the same formal lone-pair entry at an amine and an amide can have different orbital-role descriptions under the supplied conditions.",
+            "why_valid": "This changed case or independent ledger can falsify the claim rather than repeating its label.",
+            "inputs": [
+              "repair move 3"
+            ],
+            "output": "Checked within the declared model, with limits retained."
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE38-HYB-06-REPAIR-MOVE-3",
+        "check": "Changed check: the same formal lone-pair entry at an amine and an amide can have different orbital-role descriptions under the supplied conditions.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHE-HYB-LOCAL-VS-CONJUGATED",
+      "family_ref": "FAM-CHE-HYBRIDISATION-MODELS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q6",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:07e8eeccb58cc7be624d67404fff3a1e4eb1d94528f0bad6f34bd6e09f4641ab"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 0,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Five-component difficulty: 6/10 resolves to D3."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "Recalling a local rule proves its applicability.",
+          "cognitive_demand": {
+            "primary": "EXPLAIN",
+            "secondary": [
+              "RETRIEVE",
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "Contrast unconditioned rule recall with active boundary evaluation (checking for adjacent pi conjugation and planar geometry)."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Distinguish recalling a rule from establishing its applicability.",
+          "connect": "Local counting assumes the localized/domain model is useful for the asked task.",
+          "way": "List the conditions and look for supplied delocalisation or unusual occupancy evidence before applying the shortcut.",
+          "rule": "Four-domain counting is useful for localized introductory classification. Adjacent pi acceptors, aligned donor orbitals, planarity/donation evidence or radical occupancy can require a richer model.",
+          "check": "Changed check: the same formal lone-pair entry at an amine and an amide can have different orbital-role descriptions under the supplied conditions.",
+          "probe": "Both sites have three sigma bonds and a lone pair. Is that alone sufficient to choose identical localized orbital-role descriptions?",
+          "pattern": "No; supplied adjacency/alignment evidence differs. Repeated rule use without checking conditions exposes applicability confusion.",
+          "transfer": "Separate a recalled count from a model-selection decision in a new conjugated case.",
+          "wrong_idea": "Recalling a local rule proves its applicability.",
+          "question_ref": "OWN-ISSUE38-HYB-06",
+          "label": "Q6",
+          "construction_ref": "CU-CHE-LOCAL-VS-CONJUGATED",
+          "microtopic_ref": "MIC-CHE-HYB-LOCAL-VS-CONJUGATED",
+          "status": "CORRECTION_CANDIDATE",
+          "parent_issue": 38,
+          "crux_move_ref": "OWN-ISSUE38-HYB-06-REPAIR-MOVE-3"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-EXPLAIN-D3",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CORRECTION_CANDIDATE"
+        }
+      },
+      "conditions": [
+        "Delocalisation requires continuous, coplanar p-orbital alignment.",
+        "Hybridisation is an idealized localized bonding model, not an autonomous physical observable."
+      ],
+      "figure_refs": [
+        "REP-CHE-CONJUGATION-PATHWAY"
+      ],
+      "scaffolds": [
+        {
+          "text": "Distinguish recalling a rule from establishing its applicability.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-06-REPAIR-MOVE-1"
+        },
+        {
+          "text": "Local counting assumes the localized/domain model is useful for the asked task.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE38-HYB-06-REPAIR-MOVE-2"
+        },
+        {
+          "text": "List the conditions and look for supplied delocalisation or unusual occupancy evidence before applying the shortcut.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE38-HYB-06-REPAIR-MOVE-3"
+        },
+        {
+          "text": "Test your proposed route on this changed case before finalising: Both sites have three sigma bonds and a lone pair. Is that alone sufficient to choose identical localized orbital-role descriptions?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE38-HYB-06-REPAIR-MOVE-4"
+        },
+        {
+          "text": "Reserve the last judgement for yourself. Try this boundary/transfer task: Separate a recalled count from a model-selection decision in a new conjugated case.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-06-REPAIR-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE38-HYB-07",
+      "original_identifier": "Q7",
+      "stem": "A neutral methyl radical, CH3·, is supplied as approximately planar, with the unpaired electron in a p-like orbital perpendicular to the three C–H sigma directions. Translate that supplied model into an orbital sketch and assess whether 'three sigma bonds always leave an empty p orbital' follows. Keep the given model distinct from a universal claim.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Supplied planar CH3 radical has three sigma directions and a perpendicular p-like SOMO with one electron. Three sigma bonds alone do not determine an empty residual p orbital.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE38-HYB-07-REPAIR-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Translate occupancy as well as geometry in the supplied radical model.",
+            "why_valid": "The requested intellectual act defines the target; supplied observations and model givens remain distinct.",
+            "inputs": [
+              "supplied question/model"
+            ],
+            "output": "Translate occupancy as well as geometry in the supplied radical model."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-07-REPAIR-MOVE-2",
+            "kind": "CONNECT",
+            "action": "A singly occupied orbital is not an empty orbital or a lone pair.",
+            "why_valid": "Supplied planar CH3 radical has three sigma directions and a perpendicular p-like SOMO with one electron. Three sigma bonds alone do not determine an empty residual p orbital.",
+            "inputs": [
+              "repair move 1"
+            ],
+            "output": "A bounded bridge from prerequisite to this task."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-07-REPAIR-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Inventory the sigma electrons and remaining electron before drawing the p-like direction.",
+            "why_valid": "Supplied planar CH3 radical has three sigma directions and a perpendicular p-like SOMO with one electron. Three sigma bonds alone do not determine an empty residual p orbital.",
+            "inputs": [
+              "repair move 2"
+            ],
+            "output": "Supplied planar CH3 radical has three sigma directions and a perpendicular p-like SOMO with one electron. Three sigma bonds alone do not determine an empty residual p orbital."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-07-REPAIR-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Independent count: CH3 radical has 4+3=7 valence electrons; three sigma pairs use six, leaving one.",
+            "why_valid": "This changed case or independent ledger can falsify the claim rather than repeating its label.",
+            "inputs": [
+              "repair move 3"
+            ],
+            "output": "Checked within the declared model, with limits retained."
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE38-HYB-07-REPAIR-MOVE-3",
+        "check": "Independent count: CH3 radical has 4+3=7 valence electrons; three sigma pairs use six, leaving one.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHE-HYB-DELOC-BOUNDARIES",
+      "family_ref": "FAM-CHE-HYBRIDISATION-MODELS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q7",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:c695e46f711c83181466ec9d16ed4c02218a3622f31d825ec44fed2cf2e99f1f"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 2,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Five-component difficulty: 6/10 resolves to D3."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "Three sigma bonds always imply an empty residual p orbital.",
+          "cognitive_demand": {
+            "primary": "REPRESENT",
+            "secondary": [
+              "JUSTIFY",
+              "MODEL"
+            ]
+          },
+          "stable_crux_move": "Distinguish radical SOMO (1e- in p) from carbocation LUMO (0e- in p), demonstrating that bonding framework does not dictate orbital occupancy."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Translate occupancy as well as geometry in the supplied radical model.",
+          "connect": "A singly occupied orbital is not an empty orbital or a lone pair.",
+          "way": "Inventory the sigma electrons and remaining electron before drawing the p-like direction.",
+          "rule": "Supplied planar CH3 radical has three sigma directions and a perpendicular p-like SOMO with one electron. Three sigma bonds alone do not determine an empty residual p orbital.",
+          "check": "Independent count: CH3 radical has 4+3=7 valence electrons; three sigma pairs use six, leaving one.",
+          "probe": "Compare CH3 radical (7 valence electrons) with a model CH3+ inventory (6). Must their residual p occupancy be the same?",
+          "pattern": "No: one versus zero in these supplied local models. Repeating empty p for both reveals bonds-only occupancy inference.",
+          "transfer": "Sketch the given radical while explicitly marking the singly occupied orbital.",
+          "wrong_idea": "Three sigma bonds always imply an empty residual p orbital.",
+          "question_ref": "OWN-ISSUE38-HYB-07",
+          "label": "Q7",
+          "construction_ref": "CU-CHE-DELOC-BOUNDARIES",
+          "microtopic_ref": "MIC-CHE-HYB-DELOC-BOUNDARIES",
+          "status": "CORRECTION_CANDIDATE",
+          "parent_issue": 38,
+          "crux_move_ref": "OWN-ISSUE38-HYB-07-REPAIR-MOVE-3"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-REPRESENT-D3",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CORRECTION_CANDIDATE"
+        }
+      },
+      "conditions": [
+        "Delocalisation requires continuous, coplanar p-orbital alignment.",
+        "Hybridisation is an idealized localized bonding model, not an autonomous physical observable."
+      ],
+      "figure_refs": [
+        "REP-CHE-RADICAL-SOMO"
+      ],
+      "scaffolds": [
+        {
+          "text": "Translate occupancy as well as geometry in the supplied radical model.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-07-REPAIR-MOVE-1"
+        },
+        {
+          "text": "A singly occupied orbital is not an empty orbital or a lone pair.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE38-HYB-07-REPAIR-MOVE-2"
+        },
+        {
+          "text": "Inventory the sigma electrons and remaining electron before drawing the p-like direction.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE38-HYB-07-REPAIR-MOVE-3"
+        },
+        {
+          "text": "Test your proposed route on this changed case before finalising: Compare CH3 radical (7 valence electrons) with a model CH3+ inventory (6). Must their residual p occupancy be the same?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE38-HYB-07-REPAIR-MOVE-4"
+        },
+        {
+          "text": "Reserve the last judgement for yourself. Try this boundary/transfer task: Sketch the given radical while explicitly marking the singly occupied orbital.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-07-REPAIR-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE38-HYB-08",
+      "original_identifier": "Q8",
+      "stem": "Two qualitative descriptions of formamide are proposed: a completely localised pyramidal nitrogen lone pair, and an approximately planar nitrogen arrangement with possible lone-pair donation into the carbonyl pi system. Propose observations that could discriminate between them, explain the warranted inferences, and identify at least one inference that geometry alone cannot establish.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Planarity/bond metrics and condition-specific spectroscopic/dynamic evidence can test localized versus delocalised accounts. Geometry alone does not uniquely measure donation, hybrid coefficients or a rotational barrier; exact empirical numbers need species/conditions/source.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE38-HYB-08-REPAIR-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Separate a discriminating observation from the strength of the inference it warrants.",
+            "why_valid": "The requested intellectual act defines the target; supplied observations and model givens remain distinct.",
+            "inputs": [
+              "supplied question/model"
+            ],
+            "output": "Separate a discriminating observation from the strength of the inference it warrants."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-08-REPAIR-MOVE-2",
+            "kind": "CONNECT",
+            "action": "A measurement can constrain multiple models without uniquely selecting an orbital decomposition.",
+            "why_valid": "Planarity/bond metrics and condition-specific spectroscopic/dynamic evidence can test localized versus delocalised accounts. Geometry alone does not uniquely measure donation, hybrid coefficients or a rotational barrier; exact empirical numbers need species/conditions/source.",
+            "inputs": [
+              "repair move 1"
+            ],
+            "output": "A bounded bridge from prerequisite to this task."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-08-REPAIR-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "For each proposed observation write prediction, alternatives, conditions and inference limit.",
+            "why_valid": "Planarity/bond metrics and condition-specific spectroscopic/dynamic evidence can test localized versus delocalised accounts. Geometry alone does not uniquely measure donation, hybrid coefficients or a rotational barrier; exact empirical numbers need species/conditions/source.",
+            "inputs": [
+              "repair move 2"
+            ],
+            "output": "Planarity/bond metrics and condition-specific spectroscopic/dynamic evidence can test localized versus delocalised accounts. Geometry alone does not uniquely measure donation, hybrid coefficients or a rotational barrier; exact empirical numbers need species/conditions/source."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-08-REPAIR-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Use two compatible electronic descriptions of a planar structure as a counterexample to geometry-implies-unique-orbitals.",
+            "why_valid": "This changed case or independent ledger can falsify the claim rather than repeating its label.",
+            "inputs": [
+              "repair move 3"
+            ],
+            "output": "Checked within the declared model, with limits retained."
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE38-HYB-08-REPAIR-MOVE-3",
+        "check": "Use two compatible electronic descriptions of a planar structure as a counterexample to geometry-implies-unique-orbitals.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHE-HYB-DELOC-BOUNDARIES",
+      "family_ref": "FAM-CHE-HYBRIDISATION-MODELS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q8",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:706e95213624157e3574a604f282e592cdef37d9c006c6c4a3874aad31959949"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Five-component difficulty: 8/10 resolves to D4."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "Geometry alone uniquely measures donation and a rotational barrier.",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": [
+              "MODEL",
+              "EXPLAIN"
+            ]
+          },
+          "stable_crux_move": "Pair structural/spectroscopic evidence with warranted inferences and identify the epistemological limit of static geometric data."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Separate a discriminating observation from the strength of the inference it warrants.",
+          "connect": "A measurement can constrain multiple models without uniquely selecting an orbital decomposition.",
+          "way": "For each proposed observation write prediction, alternatives, conditions and inference limit.",
+          "rule": "Planarity/bond metrics and condition-specific spectroscopic/dynamic evidence can test localized versus delocalised accounts. Geometry alone does not uniquely measure donation, hybrid coefficients or a rotational barrier; exact empirical numbers need species/conditions/source.",
+          "check": "Use two compatible electronic descriptions of a planar structure as a counterexample to geometry-implies-unique-orbitals.",
+          "probe": "Does observed planar geometry alone measure donor strength? What extra information would a numerical rotational barrier require?",
+          "pattern": "No; a specified experiment or calculation and conditions/model are needed. Repeating direct geometry-to-strength inference exposes overinterpretation.",
+          "transfer": "Design a second independent observation and state one alternative explanation.",
+          "wrong_idea": "Geometry alone uniquely measures donation and a rotational barrier.",
+          "question_ref": "OWN-ISSUE38-HYB-08",
+          "label": "Q8",
+          "construction_ref": "CU-CHE-DELOC-BOUNDARIES",
+          "microtopic_ref": "MIC-CHE-HYB-DELOC-BOUNDARIES",
+          "status": "CORRECTION_CANDIDATE",
+          "parent_issue": 38,
+          "crux_move_ref": "OWN-ISSUE38-HYB-08-REPAIR-MOVE-3"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-JUSTIFY-D4",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CORRECTION_CANDIDATE"
+        }
+      },
+      "conditions": [
+        "Delocalisation requires continuous, coplanar p-orbital alignment.",
+        "Hybridisation is an idealized localized bonding model, not an autonomous physical observable."
+      ],
+      "figure_refs": [
+        "REP-CHE-FORMAMIDE-TWIST"
+      ],
+      "scaffolds": [
+        {
+          "text": "Separate a discriminating observation from the strength of the inference it warrants.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-08-REPAIR-MOVE-1"
+        },
+        {
+          "text": "A measurement can constrain multiple models without uniquely selecting an orbital decomposition.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE38-HYB-08-REPAIR-MOVE-2"
+        },
+        {
+          "text": "For each proposed observation write prediction, alternatives, conditions and inference limit.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE38-HYB-08-REPAIR-MOVE-3"
+        },
+        {
+          "text": "Test your proposed route on this changed case before finalising: Does observed planar geometry alone measure donor strength? What extra information would a numerical rotational barrier require?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE38-HYB-08-REPAIR-MOVE-4"
+        },
+        {
+          "text": "Reserve the last judgement for yourself. Try this boundary/transfer task: Design a second independent observation and state one alternative explanation.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-08-REPAIR-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE38-HYB-09",
+      "original_identifier": "Q9",
+      "stem": "The benchmark supplies a simplified torsional model in which the relevant p-orbital overlap factor varies as cos(theta), where theta is the angle between their alignment directions. Compare theta = 0, 60 and 90 degrees, then assess the claim that the molecule's total energy must therefore vary as cos(theta). Separate execution of the given model from a justified claim about the physical system.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Given factors at 0,60,90 degrees are 1,1/2,0. Both cosine and cosine-squared are even. A degenerate two-orbital Hamiltonian with coupling t0 cos(theta) gives epsilon ± |t0 cos(theta)|, so no universal cosine-squared total-energy law follows.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE38-HYB-09-REPAIR-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Execute the supplied cosine model and separately test the total-energy inference.",
+            "why_valid": "The requested intellectual act defines the target; supplied observations and model givens remain distinct.",
+            "inputs": [
+              "supplied question/model"
+            ],
+            "output": "Execute the supplied cosine model and separately test the total-energy inference."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-09-REPAIR-MOVE-2",
+            "kind": "CONNECT",
+            "action": "An overlap factor is not an energy Hamiltonian or the whole energy budget.",
+            "why_valid": "Given factors at 0,60,90 degrees are 1,1/2,0. Both cosine and cosine-squared are even. A degenerate two-orbital Hamiltonian with coupling t0 cos(theta) gives epsilon ± |t0 cos(theta)|, so no universal cosine-squared total-energy law follows.",
+            "inputs": [
+              "repair move 1"
+            ],
+            "output": "A bounded bridge from prerequisite to this task."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-09-REPAIR-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Compute the three factors, then identify an independent energy term that the input does not constrain.",
+            "why_valid": "Given factors at 0,60,90 degrees are 1,1/2,0. Both cosine and cosine-squared are even. A degenerate two-orbital Hamiltonian with coupling t0 cos(theta) gives epsilon ± |t0 cos(theta)|, so no universal cosine-squared total-energy law follows.",
+            "inputs": [
+              "repair move 2"
+            ],
+            "output": "Given factors at 0,60,90 degrees are 1,1/2,0. Both cosine and cosine-squared are even. A degenerate two-orbital Hamiltonian with coupling t0 cos(theta) gives epsilon ± |t0 cos(theta)|, so no universal cosine-squared total-energy law follows."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-09-REPAIR-MOVE-4",
+            "kind": "VERIFY",
+            "action": "At theta=60 degrees the factor is fixed at 1/2 while adding an independently specified energy contribution changes total energy. This falsifies uniqueness without modelling formamide quantitatively.",
+            "why_valid": "This changed case or independent ledger can falsify the claim rather than repeating its label.",
+            "inputs": [
+              "repair move 3"
+            ],
+            "output": "Checked within the declared model, with limits retained."
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE38-HYB-09-REPAIR-MOVE-3",
+        "check": "At theta=60 degrees the factor is fixed at 1/2 while adding an independently specified energy contribution changes total energy. This falsifies uniqueness without modelling formamide quantitatively.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHE-HYB-TORSION-ALIGNMENT",
+      "family_ref": "FAM-CHE-HYBRIDISATION-MODELS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q9",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:7ef3b550ea1f2fbcb45cde77a92ed08db1dfbd1d8c631676914cca9190c9a52f"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Five-component difficulty: 8/10 resolves to D4."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "The given overlap factor is the total molecular energy.",
+          "cognitive_demand": {
+            "primary": "APPLY",
+            "secondary": [
+              "JUSTIFY",
+              "MODEL"
+            ]
+          },
+          "stable_crux_move": "Evaluate cosine values correctly (1.0, 0.5, 0.0) and separate the overlap term from the multidimensional physical potential energy surface (cos^2(theta) scaling + sigma/steric strain)."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Execute the supplied cosine model and separately test the total-energy inference.",
+          "connect": "An overlap factor is not an energy Hamiltonian or the whole energy budget.",
+          "way": "Compute the three factors, then identify an independent energy term that the input does not constrain.",
+          "rule": "Given factors at 0,60,90 degrees are 1,1/2,0. Both cosine and cosine-squared are even. A degenerate two-orbital Hamiltonian with coupling t0 cos(theta) gives epsilon ± |t0 cos(theta)|, so no universal cosine-squared total-energy law follows.",
+          "check": "At theta=60 degrees the factor is fixed at 1/2 while adding an independently specified energy contribution changes total energy. This falsifies uniqueness without modelling formamide quantitatively.",
+          "probe": "If theta stays at 60 degrees while an independent energy term changes, does overlap change? Does total energy necessarily stay fixed?",
+          "pattern": "Overlap factor unchanged; total energy need not remain fixed. Repeated equality of overlap and total energy identifies variable conflation.",
+          "transfer": "State assumptions needed for a weak-coupling second-order squared-interaction estimate.",
+          "wrong_idea": "The given overlap factor is the total molecular energy.",
+          "question_ref": "OWN-ISSUE38-HYB-09",
+          "label": "Q9",
+          "construction_ref": "CU-CHE-FORMAMIDE-TORSION",
+          "microtopic_ref": "MIC-CHE-HYB-TORSION-ALIGNMENT",
+          "status": "CORRECTION_CANDIDATE",
+          "parent_issue": 38,
+          "interaction": "MODEL_SCOPE_PROBE",
+          "crux_move_ref": "OWN-ISSUE38-HYB-09-REPAIR-MOVE-3"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-APPLY-D4",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CORRECTION_CANDIDATE"
+        }
+      },
+      "conditions": [
+        "Delocalisation requires continuous, coplanar p-orbital alignment.",
+        "Hybridisation is an idealized localized bonding model, not an autonomous physical observable."
+      ],
+      "figure_refs": [
+        "REP-CHE-FORMAMIDE-TWIST"
+      ],
+      "scaffolds": [
+        {
+          "text": "Execute the supplied cosine model and separately test the total-energy inference.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-09-REPAIR-MOVE-1"
+        },
+        {
+          "text": "An overlap factor is not an energy Hamiltonian or the whole energy budget.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE38-HYB-09-REPAIR-MOVE-2"
+        },
+        {
+          "text": "Compute the three factors, then identify an independent energy term that the input does not constrain.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE38-HYB-09-REPAIR-MOVE-3"
+        },
+        {
+          "text": "Test your proposed route on this changed case before finalising: If theta stays at 60 degrees while an independent energy term changes, does overlap change? Does total energy necessarily stay fixed?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE38-HYB-09-REPAIR-MOVE-4"
+        },
+        {
+          "text": "Reserve the last judgement for yourself. Try this boundary/transfer task: State assumptions needed for a weak-coupling second-order squared-interaction estimate.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-09-REPAIR-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE38-HYB-10",
+      "original_identifier": "Q10",
+      "stem": "A proposed teaching rule says, 'Count sigma bonds and lone pairs, assign a hybridisation label, and the label explains every shape and reactivity difference.' Audit this rule against NH3, allene, formamide and the separated amine site H–C(=O)–CH2–NH2. Produce a qualified decision framework, identify where local counting is useful, and state what evidence or model is needed beyond it.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Use local count as a bounded starting model, then check residual p directions, occupancy, adjacency/alignment and evidence. A label alone explains neither every geometry nor all reactivity. NH3, allene and amide stress different limitations.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE38-HYB-10-REPAIR-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Audit a proposed universal rule across cases that stress different boundaries.",
+            "why_valid": "The requested intellectual act defines the target; supplied observations and model givens remain distinct.",
+            "inputs": [
+              "supplied question/model"
+            ],
+            "output": "Audit a proposed universal rule across cases that stress different boundaries."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-10-REPAIR-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Counts, orbital roles, geometry and physical evidence are distinct layers.",
+            "why_valid": "Use local count as a bounded starting model, then check residual p directions, occupancy, adjacency/alignment and evidence. A label alone explains neither every geometry nor all reactivity. NH3, allene and amide stress different limitations.",
+            "inputs": [
+              "repair move 1"
+            ],
+            "output": "A bounded bridge from prerequisite to this task."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-10-REPAIR-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Use NH3, allene, amide and separated amine as tests; retain a conditional framework rather than another universal slogan.",
+            "why_valid": "Use local count as a bounded starting model, then check residual p directions, occupancy, adjacency/alignment and evidence. A label alone explains neither every geometry nor all reactivity. NH3, allene and amide stress different limitations.",
+            "inputs": [
+              "repair move 2"
+            ],
+            "output": "Use local count as a bounded starting model, then check residual p directions, occupancy, adjacency/alignment and evidence. A label alone explains neither every geometry nor all reactivity. NH3, allene and amide stress different limitations."
+          },
+          {
+            "id": "OWN-ISSUE38-HYB-10-REPAIR-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Changed check: apply the framework to CH3 radical; three bonds plus one unpaired electron require an occupancy step absent from the original slogan.",
+            "why_valid": "This changed case or independent ledger can falsify the claim rather than repeating its label.",
+            "inputs": [
+              "repair move 3"
+            ],
+            "output": "Checked within the declared model, with limits retained."
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE38-HYB-10-REPAIR-MOVE-3",
+        "check": "Changed check: apply the framework to CH3 radical; three bonds plus one unpaired electron require an occupancy step absent from the original slogan.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHE-HYB-LOCAL-VS-CONJUGATED",
+      "family_ref": "FAM-CHE-HYBRIDISATION-MODELS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q10",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:dfef0e64ec86b772252e01b766d2c1c19c91c72393833c9f5448bb551dc4149b"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Five-component difficulty: 8/10 resolves to D4."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "A local count and label explain every geometry and reactivity difference.",
+          "cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": [
+              "JUSTIFY",
+              "MODEL"
+            ]
+          },
+          "stable_crux_move": "Audit four structurally contrasting test cases, identify failure modes, and establish a qualified multi-level decision framework."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Audit a proposed universal rule across cases that stress different boundaries.",
+          "connect": "Counts, orbital roles, geometry and physical evidence are distinct layers.",
+          "way": "Use NH3, allene, amide and separated amine as tests; retain a conditional framework rather than another universal slogan.",
+          "rule": "Use local count as a bounded starting model, then check residual p directions, occupancy, adjacency/alignment and evidence. A label alone explains neither every geometry nor all reactivity. NH3, allene and amide stress different limitations.",
+          "check": "Changed check: apply the framework to CH3 radical; three bonds plus one unpaired electron require an occupancy step absent from the original slogan.",
+          "probe": "Would one bond/lone-pair count plus a label explain NH3 shape, allene terminal-plane relation and amide donation by the same mechanism?",
+          "pattern": "No; their explanatory jobs differ. Repeating label-as-final-cause across all cases exposes an overgeneralised framework.",
+          "transfer": "Produce a qualified procedure with an explicit stop-and-seek-more-evidence branch.",
+          "wrong_idea": "A local count and label explain every geometry and reactivity difference.",
+          "question_ref": "OWN-ISSUE38-HYB-10",
+          "label": "Q10",
+          "construction_ref": "CU-CHE-LOCAL-VS-CONJUGATED",
+          "microtopic_ref": "MIC-CHE-HYB-LOCAL-VS-CONJUGATED",
+          "status": "CORRECTION_CANDIDATE",
+          "parent_issue": 38,
+          "crux_move_ref": "OWN-ISSUE38-HYB-10-REPAIR-MOVE-3"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-SYNTHESIZE-D4",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CORRECTION_CANDIDATE"
+        }
+      },
+      "conditions": [
+        "Delocalisation requires continuous, coplanar p-orbital alignment.",
+        "Hybridisation is an idealized localized bonding model, not an autonomous physical observable."
+      ],
+      "figure_refs": [
+        "REP-CHE-ALLENE-ORTHOGONAL"
+      ],
+      "scaffolds": [
+        {
+          "text": "Audit a proposed universal rule across cases that stress different boundaries.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-10-REPAIR-MOVE-1"
+        },
+        {
+          "text": "Counts, orbital roles, geometry and physical evidence are distinct layers.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE38-HYB-10-REPAIR-MOVE-2"
+        },
+        {
+          "text": "Use NH3, allene, amide and separated amine as tests; retain a conditional framework rather than another universal slogan.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE38-HYB-10-REPAIR-MOVE-3"
+        },
+        {
+          "text": "Test your proposed route on this changed case before finalising: Would one bond/lone-pair count plus a label explain NH3 shape, allene terminal-plane relation and amide donation by the same mechanism?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE38-HYB-10-REPAIR-MOVE-4"
+        },
+        {
+          "text": "Reserve the last judgement for yourself. Try this boundary/transfer task: Produce a qualified procedure with an explicit stop-and-seek-more-evidence branch.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "OWN-ISSUE38-HYB-10-REPAIR-MOVE-4"
+        }
+      ]
+    }
+  ]
+}

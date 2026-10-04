@@ -1,0 +1,757 @@
+{
+  "schema_version": "0.2.0",
+  "package_id": "EVIDENCE-LIB-CHEM-ISS37-HYBRID",
+  "title": "Hybridisation model boundaries — Issue #37 candidate",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Chemistry",
+  "scope_summary": "Grade 11 competition-preparation benchmark on hybridisation, amide/radical extensions, orbital alignment and model-scope reasoning. Owner questions are preserved verbatim; teaching records are independent CANDIDATE authoring.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-ISS37-OWNER-BENCHMARK",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Issue #37 coordinator-drafted owner-supplied hybridisation benchmark",
+      "origin": "AUTHORED",
+      "locator": "https://github.com/reallaksh19/Grade9v3.5/issues/37",
+      "edition": "Independent agent A, paired benchmark v2, round 1",
+      "section": "Core prompt — A/B/C",
+      "last_checked": "2026-10-04",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "OWNER_SUPPLIED custody; coordinating-agent authored benchmark; not official exam/PYQ and not personally authored by the owner.",
+      "snapshot_ref": "e01c6365acfd6aec84c0a6e94f11b683bd961f6e",
+      "snapshot_digest": "sha256:52306a397ecc6f327a8aba16b73479547c9e78d75139bdf14839c00038eedde7",
+      "role": [
+        "QUESTION_BANK",
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "Exact custody surface for the ten questions in Issue #37 agent-A round-1 benchmark.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-CHEM-HYBRID-MODEL-BOUNDARIES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS37-OWNER-BENCHMARK"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Hybridisation as a bounded orbital model",
+      "topic": "Chemical bonding and hybridisation",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "The hard move is not recalling sp/sp2/sp3 labels; it is deciding when local counting is adequate and what orbital/model evidence warrants beyond it.",
+      "depth_overlay": "ADVANCED",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [],
+      "primary_representation_ref": "REP-CHEM-ISS37-TORSION-OVERLAP"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-CHEM-MODEL-SCOPE-ALIGNMENT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS37-OWNER-BENCHMARK"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Use local hybridisation language conditionally, test orbital alignment/connectivity, and keep qualitative model variables separate from stronger physical claims",
+      "success_criterion": "The learner can execute the supplied model, identify its warranted inference, reject a causal/quantitative overclaim, and state what additional evidence/model would be needed.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-CHEM-HYBRID-MODEL-SCOPE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS37-OWNER-BENCHMARK"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:question_repairs": [
+          {
+            "clarify": "Resolve conflict between a local Lewis inventory and supplied aligned delocalisation.",
+            "connect": "A hybrid label describes a chosen basis; it does not independently cause donation.",
+            "way": "Account for sigma framework, donor orientation and adjacent pi acceptor before qualifying the label.",
+            "rule": "Approximately planar amide N can use an introductory sp2-like sigma framework plus an aligned p-like lone-pair donor. Four Lewis entries do not override the supplied delocalised-model conditions; the basis is not unique observed reality.",
+            "check": "Remove the hybridisation label: the alignment-plus-acceptor explanation must still describe the supplied donation condition.",
+            "probe": "Compare adjacent amide N with a saturated-spacer amine N. Does the same four-entry Lewis inventory establish the same donation pathway?",
+            "pattern": "No. Adjacency/alignment conditions differ. Repeating automatic four-domains-therefore-localized-sp3 in both exposes applicability failure.",
+            "transfer": "Give one observation that constrains the model and one claim it cannot uniquely prove.",
+            "wrong_idea": "Four Lewis entries overrule supplied delocalisation conditions.",
+            "question_ref": "ISS37-D4-R1-Q01",
+            "label": "Q1",
+            "construction_ref": "CU-ISS37-MODEL-SCOPE",
+            "microtopic_ref": "MIC-CHEM-HYBRID-MODEL-SCOPE",
+            "status": "CORRECTION_CANDIDATE",
+            "parent_issue": 37,
+            "crux_move_ref": "ISS37-D4-R1-Q01-MOVE-3"
+          },
+          {
+            "clarify": "Construct both arrangements while preserving connectivity and electron inventories.",
+            "connect": "Torsion changes relative orientation, not the number of atoms or formal electrons.",
+            "way": "Draw a fixed carbonyl reference and an N donor direction rotated about the declared C-N axis.",
+            "rule": "Formamide CH3NO has 18 valence electrons and 24 total electrons. The supplied three-centre donor/carbonyl pi model has four electrons. A 90-degree twist changes alignment, not these inventories.",
+            "check": "Independent element sums: valence 4+3+5+6=18; total 6+3+7+8=24. Both sketches must preserve them.",
+            "probe": "Count valence and total electrons for CH3NO before and after torsion. Identify which geometric relation changes.",
+            "pattern": "18 valence, 24 total in both; relative donor direction changes. Repeated electron-loss-by-rotation reasoning differs from a corrected addition slip.",
+            "transfer": "Sketch a fixed-connectivity 45-degree comparison without claiming measured donation.",
+            "wrong_idea": "Torsion changes the formal electron inventory.",
+            "question_ref": "ISS37-D4-R1-Q02",
+            "label": "Q2",
+            "construction_ref": "CU-ISS37-MODEL-SCOPE",
+            "microtopic_ref": "MIC-CHEM-HYBRID-MODEL-SCOPE",
+            "status": "CORRECTION_CANDIDATE",
+            "parent_issue": 37,
+            "interaction": "MODEL_SCOPE_PROBE",
+            "crux_move_ref": "ISS37-D4-R1-Q02-MOVE-3"
+          },
+          {
+            "clarify": "Explain the supplied trend without replacing a mechanism with a label.",
+            "connect": "Relative donor/acceptor alignment is a model variable; donation magnitude needs additional physics.",
+            "way": "Connect changed geometry to overlap, then tag each statement as given, model or observation.",
+            "rule": "Twisting reduces relevant alignment and the supplied delocalisation contribution. A changing hybrid label alone explains neither mechanism nor a quantitative barrier; total torsional energy has additional contributions.",
+            "check": "Counterfactual: remove the word hybridisation while retaining changed orientation; the mechanistic statement survives.",
+            "probe": "If two sketches have the same label but different donor alignment, must their donation be identical? If the label changes alone, has a mechanism been supplied?",
+            "pattern": "Neither follows. Persistent label-only explanations expose causal substitution.",
+            "transfer": "State which additional model would be needed for a numerical donation or barrier estimate.",
+            "wrong_idea": "A changed hybrid label is a causal explanation of donor strength.",
+            "question_ref": "ISS37-D4-R1-Q03",
+            "label": "Q3",
+            "construction_ref": "CU-ISS37-MODEL-SCOPE",
+            "microtopic_ref": "MIC-CHEM-HYBRID-MODEL-SCOPE",
+            "status": "CORRECTION_CANDIDATE",
+            "parent_issue": 37,
+            "crux_move_ref": "ISS37-D4-R1-Q03-MOVE-3"
+          },
+          {
+            "clarify": "Build a decision procedure that can fail its own applicability test.",
+            "connect": "Local count and a continuous aligned pathway are independent checks.",
+            "way": "Test locality, adjacency, alignment and stated model conditions; invent a structural counterfactual yourself.",
+            "rule": "Amide A has the supplied direct donor/carbonyl path. Saturated-spacer amine B lacks that ordinary contiguous path. Spatial proximity alone is insufficient, and absence of this path is not an absolute zero-interaction theorem.",
+            "check": "Changed case: replace a saturated interruption by a suitably aligned unsaturated bridge; reassess connectivity and orbital availability rather than reusing the answer.",
+            "probe": "Would folding the saturated-spacer molecule closer create the same continuous p pathway as removing the spacer?",
+            "pattern": "No; spatial folding and orbital-connected adjacency are different changes. Repeated proximity-based classification identifies the wrong criterion.",
+            "transfer": "Specify a counterfactual bridge and test all procedure conditions again.",
+            "wrong_idea": "Spatial proximity equals an orbital-connected p pathway.",
+            "question_ref": "ISS37-D4-R1-Q04",
+            "label": "Q4",
+            "construction_ref": "CU-ISS37-MODEL-SCOPE",
+            "microtopic_ref": "MIC-CHEM-HYBRID-MODEL-SCOPE",
+            "status": "CORRECTION_CANDIDATE",
+            "parent_issue": 37,
+            "crux_move_ref": "ISS37-D4-R1-Q04-MOVE-3"
+          },
+          {
+            "clarify": "Test uniqueness, rather than merely finding one familiar angle.",
+            "connect": "Several shapes/angles can share an introductory four-domain classification.",
+            "way": "Use supplied counterexamples and the amide boundary to qualify both predictive scope and evidence.",
+            "rule": "CH4/NH3/H2O share common sp3-like introductory descriptions while their nuclear shapes/angles differ. Geometry constrains models but does not uniquely measure a hybrid decomposition; lone pairs and delocalisation matter.",
+            "check": "Independent counterexample: a shared four-domain label is compatible with 4,3,2 bonded-atom positions, so it cannot alone uniquely specify atom-only shape.",
+            "probe": "Can one four-domain label predict the same nuclear shape for CH4 and H2O? Does observing a shape uniquely establish an orbital basis?",
+            "pattern": "No to both. Persistent one-label-one-shape or unique-basis inference reveals overclaim rather than an angle-recall slip.",
+            "transfer": "Name evidence needed before claiming a unique physical electronic description.",
+            "wrong_idea": "A hybrid label uniquely determines every angle and physical orbital basis.",
+            "question_ref": "ISS37-D4-R1-Q05",
+            "label": "Q5",
+            "construction_ref": "CU-ISS37-MODEL-SCOPE",
+            "microtopic_ref": "MIC-CHEM-HYBRID-MODEL-SCOPE",
+            "status": "CORRECTION_CANDIDATE",
+            "parent_issue": 37,
+            "crux_move_ref": "ISS37-D4-R1-Q05-MOVE-3"
+          },
+          {
+            "clarify": "Distinguish recalling a rule from establishing its applicability.",
+            "connect": "Local counting assumes the localized/domain model is useful for the asked task.",
+            "way": "List the conditions and look for supplied delocalisation or unusual occupancy evidence before applying the shortcut.",
+            "rule": "Four-domain counting is useful for localized introductory classification. Adjacent pi acceptors, aligned donor orbitals, planarity/donation evidence or radical occupancy can require a richer model.",
+            "check": "Changed check: the same formal lone-pair entry at an amine and an amide can have different orbital-role descriptions under the supplied conditions.",
+            "probe": "Both sites have three sigma bonds and a lone pair. Is that alone sufficient to choose identical localized orbital-role descriptions?",
+            "pattern": "No; supplied adjacency/alignment evidence differs. Repeated rule use without checking conditions exposes applicability confusion.",
+            "transfer": "Separate a recalled count from a model-selection decision in a new conjugated case.",
+            "wrong_idea": "Recalling a local rule proves its applicability.",
+            "question_ref": "ISS37-D4-R1-Q06",
+            "label": "Q6",
+            "construction_ref": "CU-ISS37-MODEL-SCOPE",
+            "microtopic_ref": "MIC-CHEM-HYBRID-MODEL-SCOPE",
+            "status": "CORRECTION_CANDIDATE",
+            "parent_issue": 37,
+            "crux_move_ref": "ISS37-D4-R1-Q06-MOVE-3"
+          },
+          {
+            "clarify": "Translate occupancy as well as geometry in the supplied radical model.",
+            "connect": "A singly occupied orbital is not an empty orbital or a lone pair.",
+            "way": "Inventory the sigma electrons and remaining electron before drawing the p-like direction.",
+            "rule": "Supplied planar CH3 radical has three sigma directions and a perpendicular p-like SOMO with one electron. Three sigma bonds alone do not determine an empty residual p orbital.",
+            "check": "Independent count: CH3 radical has 4+3=7 valence electrons; three sigma pairs use six, leaving one.",
+            "probe": "Compare CH3 radical (7 valence electrons) with a model CH3+ inventory (6). Must their residual p occupancy be the same?",
+            "pattern": "No: one versus zero in these supplied local models. Repeating empty p for both reveals bonds-only occupancy inference.",
+            "transfer": "Sketch the given radical while explicitly marking the singly occupied orbital.",
+            "wrong_idea": "Three sigma bonds always imply an empty residual p orbital.",
+            "question_ref": "ISS37-D4-R1-Q07",
+            "label": "Q7",
+            "construction_ref": "CU-ISS37-MODEL-SCOPE",
+            "microtopic_ref": "MIC-CHEM-HYBRID-MODEL-SCOPE",
+            "status": "CORRECTION_CANDIDATE",
+            "parent_issue": 37,
+            "crux_move_ref": "ISS37-D4-R1-Q07-MOVE-3"
+          },
+          {
+            "clarify": "Separate a discriminating observation from the strength of the inference it warrants.",
+            "connect": "A measurement can constrain multiple models without uniquely selecting an orbital decomposition.",
+            "way": "For each proposed observation write prediction, alternatives, conditions and inference limit.",
+            "rule": "Planarity/bond metrics and condition-specific spectroscopic/dynamic evidence can test localized versus delocalised accounts. Geometry alone does not uniquely measure donation, hybrid coefficients or a rotational barrier; exact empirical numbers need species/conditions/source.",
+            "check": "Use two compatible electronic descriptions of a planar structure as a counterexample to geometry-implies-unique-orbitals.",
+            "probe": "Does observed planar geometry alone measure donor strength? What extra information would a numerical rotational barrier require?",
+            "pattern": "No; a specified experiment or calculation and conditions/model are needed. Repeating direct geometry-to-strength inference exposes overinterpretation.",
+            "transfer": "Design a second independent observation and state one alternative explanation.",
+            "wrong_idea": "Geometry alone uniquely measures donation and a rotational barrier.",
+            "question_ref": "ISS37-D4-R1-Q08",
+            "label": "Q8",
+            "construction_ref": "CU-ISS37-MODEL-SCOPE",
+            "microtopic_ref": "MIC-CHEM-HYBRID-MODEL-SCOPE",
+            "status": "CORRECTION_CANDIDATE",
+            "parent_issue": 37,
+            "crux_move_ref": "ISS37-D4-R1-Q08-MOVE-3"
+          },
+          {
+            "clarify": "Execute the supplied cosine model and separately test the total-energy inference.",
+            "connect": "An overlap factor is not an energy Hamiltonian or the whole energy budget.",
+            "way": "Compute the three factors, then identify an independent energy term that the input does not constrain.",
+            "rule": "Given factors at 0,60,90 degrees are 1,1/2,0. Both cosine and cosine-squared are even. A degenerate two-orbital Hamiltonian with coupling t0 cos(theta) gives epsilon ± |t0 cos(theta)|, so no universal cosine-squared total-energy law follows.",
+            "check": "At theta=60 degrees the factor is fixed at 1/2 while adding an independently specified energy contribution changes total energy. This falsifies uniqueness without modelling formamide quantitatively.",
+            "probe": "If theta stays at 60 degrees while an independent energy term changes, does overlap change? Does total energy necessarily stay fixed?",
+            "pattern": "Overlap factor unchanged; total energy need not remain fixed. Repeated equality of overlap and total energy identifies variable conflation.",
+            "transfer": "State assumptions needed for a weak-coupling second-order squared-interaction estimate.",
+            "wrong_idea": "The given overlap factor is the total molecular energy.",
+            "question_ref": "ISS37-D4-R1-Q09",
+            "label": "Q9",
+            "construction_ref": "CU-ISS37-MODEL-SCOPE",
+            "microtopic_ref": "MIC-CHEM-HYBRID-MODEL-SCOPE",
+            "status": "CORRECTION_CANDIDATE",
+            "parent_issue": 37,
+            "interaction": "MODEL_SCOPE_PROBE",
+            "crux_move_ref": "ISS37-D4-R1-Q09-MOVE-3"
+          },
+          {
+            "clarify": "Audit a proposed universal rule across cases that stress different boundaries.",
+            "connect": "Counts, orbital roles, geometry and physical evidence are distinct layers.",
+            "way": "Use NH3, allene, amide and separated amine as tests; retain a conditional framework rather than another universal slogan.",
+            "rule": "Use local count as a bounded starting model, then check residual p directions, occupancy, adjacency/alignment and evidence. A label alone explains neither every geometry nor all reactivity. NH3, allene and amide stress different limitations.",
+            "check": "Changed check: apply the framework to CH3 radical; three bonds plus one unpaired electron require an occupancy step absent from the original slogan.",
+            "probe": "Would one bond/lone-pair count plus a label explain NH3 shape, allene terminal-plane relation and amide donation by the same mechanism?",
+            "pattern": "No; their explanatory jobs differ. Repeating label-as-final-cause across all cases exposes an overgeneralised framework.",
+            "transfer": "Produce a qualified procedure with an explicit stop-and-seek-more-evidence branch.",
+            "wrong_idea": "A local count and label explain every geometry and reactivity difference.",
+            "question_ref": "ISS37-D4-R1-Q10",
+            "label": "Q10",
+            "construction_ref": "CU-ISS37-MODEL-SCOPE",
+            "microtopic_ref": "MIC-CHEM-HYBRID-MODEL-SCOPE",
+            "status": "CORRECTION_CANDIDATE",
+            "parent_issue": 37,
+            "crux_move_ref": "ISS37-D4-R1-Q10-MOVE-3"
+          }
+        ],
+        "grade9v3:lesson_anchors": {
+          "CU-ISS37-MODEL-SCOPE": {
+            "id": "ANCHOR-CU-ISS37-MODEL-SCOPE",
+            "stem": "Compare adjacent amide N with a saturated-spacer amine N. Does the same four-entry Lewis inventory establish the same donation pathway?",
+            "answer": {
+              "summary": "No. Adjacency/alignment conditions differ. Repeating automatic four-domains-therefore-localized-sp3 in both exposes applicability failure.",
+              "reasoning": [
+                "A hybrid label describes a chosen basis; it does not independently cause donation.",
+                "No. Adjacency/alignment conditions differ. Repeating automatic four-domains-therefore-localized-sp3 in both exposes applicability failure.",
+                "Approximately planar amide N can use an introductory sp2-like sigma framework plus an aligned p-like lone-pair donor. Four Lewis entries do not override the supplied delocalised-model conditions; the basis is not unique observed reality."
+              ],
+              "check": "Remove the hybridisation label: the alignment-plus-acceptor explanation must still describe the supplied donation condition."
+            }
+          }
+        }
+      },
+      "title": "When a hybridisation label stops being the answer",
+      "bucket_id": "BUCKET-CHEM-HYBRID-MODEL-BOUNDARIES",
+      "primary_capability_ref": "CAP-CHEM-MODEL-SCOPE-ALIGNMENT",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "The learner already knows labels; the new work is evaluating applicability, orbital alignment and evidence scope.",
+      "entry_assumptions": [
+        "Can recall simple sp/sp2/sp3 labels.",
+        "Can distinguish sigma and pi overlap.",
+        "Knows electron-domain versus molecular geometry.",
+        "Knows introductory resonance contributors."
+      ],
+      "inferential_jump": "A local count can be a useful first model without being a complete physical explanation: structural connectivity and orbital alignment decide whether a delocalisation-sensitive model is needed, and a formula only warrants claims about the quantity it actually defines.",
+      "teaching_path": [
+        {
+          "id": "ISS37-T1",
+          "role": "DECLARE",
+          "action": "Separate three questions: what is counted locally, what orbitals can align, and what quantity the model actually predicts.",
+          "why_valid": "Each question has a different evidence base; merging them creates the benchmark's main misconceptions.",
+          "inputs": [],
+          "output": "three-layer model check"
+        },
+        {
+          "id": "ISS37-T2",
+          "role": "TRANSFORM",
+          "action": "Hold formamide connectivity/electron count fixed while changing only C-N torsional alignment.",
+          "why_valid": "This isolates orbital orientation from Lewis bookkeeping.",
+          "inputs": [],
+          "output": "aligned versus twisted representation"
+        },
+        {
+          "id": "ISS37-T3",
+          "role": "VERIFY",
+          "action": "For the supplied cos(theta) factor, compute only the named overlap quantity before evaluating any total-energy claim.",
+          "why_valid": "A defined functional form cannot be silently transferred to another system quantity.",
+          "inputs": [],
+          "output": "warranted-inference boundary"
+        }
+      ],
+      "relation_refs": [
+        "REL-CHEM-ISS37-MODEL-SCOPE"
+      ],
+      "representation_refs": [
+        "REP-CHEM-ISS37-TORSION-OVERLAP"
+      ],
+      "question_family_refs": [
+        "FAM-CHEM-ISS37-MODEL-BOUNDARY"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Four Lewis entries overrule supplied delocalisation conditions.",
+          "diagnostic_prompt": "Compare adjacent amide N with a saturated-spacer amine N. Does the same four-entry Lewis inventory establish the same donation pathway?",
+          "repair": "Approximately planar amide N can use an introductory sp2-like sigma framework plus an aligned p-like lone-pair donor. Four Lewis entries do not override the supplied delocalised-model conditions; the basis is not unique observed reality."
+        },
+        {
+          "wrong_idea": "Torsion changes the formal electron inventory.",
+          "diagnostic_prompt": "Count valence and total electrons for CH3NO before and after torsion. Identify which geometric relation changes.",
+          "repair": "Formamide CH3NO has 18 valence electrons and 24 total electrons. The supplied three-centre donor/carbonyl pi model has four electrons. A 90-degree twist changes alignment, not these inventories."
+        },
+        {
+          "wrong_idea": "A changed hybrid label is a causal explanation of donor strength.",
+          "diagnostic_prompt": "If two sketches have the same label but different donor alignment, must their donation be identical? If the label changes alone, has a mechanism been supplied?",
+          "repair": "Twisting reduces relevant alignment and the supplied delocalisation contribution. A changing hybrid label alone explains neither mechanism nor a quantitative barrier; total torsional energy has additional contributions."
+        },
+        {
+          "wrong_idea": "Spatial proximity equals an orbital-connected p pathway.",
+          "diagnostic_prompt": "Would folding the saturated-spacer molecule closer create the same continuous p pathway as removing the spacer?",
+          "repair": "Amide A has the supplied direct donor/carbonyl path. Saturated-spacer amine B lacks that ordinary contiguous path. Spatial proximity alone is insufficient, and absence of this path is not an absolute zero-interaction theorem."
+        },
+        {
+          "wrong_idea": "A hybrid label uniquely determines every angle and physical orbital basis.",
+          "diagnostic_prompt": "Can one four-domain label predict the same nuclear shape for CH4 and H2O? Does observing a shape uniquely establish an orbital basis?",
+          "repair": "CH4/NH3/H2O share common sp3-like introductory descriptions while their nuclear shapes/angles differ. Geometry constrains models but does not uniquely measure a hybrid decomposition; lone pairs and delocalisation matter."
+        },
+        {
+          "wrong_idea": "Recalling a local rule proves its applicability.",
+          "diagnostic_prompt": "Both sites have three sigma bonds and a lone pair. Is that alone sufficient to choose identical localized orbital-role descriptions?",
+          "repair": "Four-domain counting is useful for localized introductory classification. Adjacent pi acceptors, aligned donor orbitals, planarity/donation evidence or radical occupancy can require a richer model."
+        },
+        {
+          "wrong_idea": "Three sigma bonds always imply an empty residual p orbital.",
+          "diagnostic_prompt": "Compare CH3 radical (7 valence electrons) with a model CH3+ inventory (6). Must their residual p occupancy be the same?",
+          "repair": "Supplied planar CH3 radical has three sigma directions and a perpendicular p-like SOMO with one electron. Three sigma bonds alone do not determine an empty residual p orbital."
+        },
+        {
+          "wrong_idea": "Geometry alone uniquely measures donation and a rotational barrier.",
+          "diagnostic_prompt": "Does observed planar geometry alone measure donor strength? What extra information would a numerical rotational barrier require?",
+          "repair": "Planarity/bond metrics and condition-specific spectroscopic/dynamic evidence can test localized versus delocalised accounts. Geometry alone does not uniquely measure donation, hybrid coefficients or a rotational barrier; exact empirical numbers need species/conditions/source."
+        },
+        {
+          "wrong_idea": "The given overlap factor is the total molecular energy.",
+          "diagnostic_prompt": "If theta stays at 60 degrees while an independent energy term changes, does overlap change? Does total energy necessarily stay fixed?",
+          "repair": "Given factors at 0,60,90 degrees are 1,1/2,0. Both cosine and cosine-squared are even. A degenerate two-orbital Hamiltonian with coupling t0 cos(theta) gives epsilon ± |t0 cos(theta)|, so no universal cosine-squared total-energy law follows."
+        },
+        {
+          "wrong_idea": "A local count and label explain every geometry and reactivity difference.",
+          "diagnostic_prompt": "Would one bond/lone-pair count plus a label explain NH3 shape, allene terminal-plane relation and amide donation by the same mechanism?",
+          "repair": "Use local count as a bounded starting model, then check residual p directions, occupancy, adjacency/alignment and evidence. A label alone explains neither every geometry nor all reactivity. NH3, allene and amide stress different limitations."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A model says an orbital-overlap factor is 0.5 at one geometry. A classmate concludes that the molecule's total electronic energy is therefore half its reference value. What is warranted, what is not, and what extra information would be needed?",
+        "source_ref": "SRC-ISS37-OWNER-BENCHMARK",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Only the overlap-factor statement is warranted from the supplied relation; the total-energy ratio is not determined.",
+          "reasoning": [
+            "Name the quantity actually defined by the model.",
+            "Check whether any relation from overlap factor to total energy was supplied.",
+            "Request a specified energetic model or independent calculation/measurement before making the energy claim."
+          ],
+          "check": "The conclusion should remain valid even if another energy contribution changes while the same overlap factor is held fixed.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "No total-energy number follows from the overlap factor alone."
+        }
+      },
+      "research_contribution": "Issue #37 clusters amide, radical and teaching-rule questions around one transferable skill: use orbital models conditionally and police the boundary between a model variable and a stronger physical claim.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "At theta = 0°, 60° and 90°, what values does the supplied cos(theta) overlap-factor model give? Before revealing anything else, decide whether those three values also determine total molecular energy.",
+          "defensible_answer": "The overlap-factor values can be calculated; the total-energy claim needs a separate relation."
+        },
+        "attempt": {
+          "produces": "Three overlap-factor predictions plus a written yes/no judgement on the total-energy claim and one sentence naming missing evidence.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Keeps cos(theta) attached to the overlap factor.",
+              "evidence_of": "Executes the given model without transferring its functional form to total energy."
+            },
+            {
+              "criterion": "Names missing bridge evidence/model.",
+              "evidence_of": "Understands model scope rather than merely rejecting the claim."
+            }
+          ],
+          "accepted": [
+            "1, 1/2, 0 for overlap; total-energy law underdetermined without another model."
+          ],
+          "rejected": [
+            "Energy must be 1, 1/2, 0 because overlap is."
+          ],
+          "task": {
+            "prompt": "Compute overlap-factor values, then audit the energy claim.",
+            "givens": [
+              "overlap factor = cos(theta)",
+              "theta = 0°, 60°, 90°"
+            ],
+            "representation_ref": "REP-CHEM-ISS37-TORSION-OVERLAP"
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What noun immediately follows the supplied formula in the question?",
+              "why_this_ask": "It binds the formula to the overlap factor."
+            },
+            {
+              "ask": "Where is an energy-vs-overlap equation supplied?",
+              "why_this_ask": "Its absence exposes the unsupported bridge."
+            },
+            {
+              "ask": "Could another energy contribution vary while theta stays fixed?",
+              "why_this_ask": "It tests whether total energy is underdetermined by overlap alone."
+            }
+          ],
+          "differs_from_teaching_path": "The learner reconstructs the evidence boundary from the claim itself rather than memorising a warning."
+        },
+        "boundary_test": {
+          "prompt": "If a later problem explicitly supplies E(theta)=E0+A cos²(theta), may you then calculate its energy-angle dependence?",
+          "answer": "Yes, within that supplied energetic model and its stated conditions; that still does not make the Q9 total-energy law cos(theta).",
+          "confirms": "Model scope depends on the defined quantity and relation, not on a ban against mathematical models."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-ISS37-MODEL-SCOPE",
+          "decision": "Execute a supplied orbital model while preventing an unsupported transfer from overlap to total energy",
+          "step_refs": [
+            "ISS37-T1",
+            "ISS37-T2",
+            "ISS37-T3"
+          ],
+          "representation_ref": "REP-CHEM-ISS37-TORSION-OVERLAP",
+          "reveal_stage_refs": [
+            "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-1",
+            "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-2",
+            "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-3",
+            "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-4",
+            "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-5"
+          ],
+          "bank_anchor_ref": "ISS37-D4-R1-Q09",
+          "crux_question_refs": [
+            "ISS37-D4-R1-Q03",
+            "ISS37-D4-R1-Q05",
+            "ISS37-D4-R1-Q08",
+            "ISS37-D4-R1-Q09",
+            "ISS37-D4-R1-Q10"
+          ],
+          "crux_step_ref": "ISS37-T3",
+          "misconception_indexes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "Remove the hybridisation label: the alignment-plus-acceptor explanation must still describe the supplied donation condition."
+            },
+            {
+              "role": "APPLY",
+              "statement": "Give one observation that constrains the model and one claim it cannot uniquely prove."
+            },
+            {
+              "role": "CONNECT",
+              "statement": "Approximately planar amide N can use an introductory sp2-like sigma framework plus an aligned p-like lone-pair donor. Four Lewis entries do not override the supplied delocalised-model conditions; the basis is not unique observed reality."
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "What does the model actually define?",
+        "result": "Execute that relation, then stop unless a second relation/evidence warrants the stronger claim.",
+        "representation_ref": "REP-CHEM-ISS37-TORSION-OVERLAP"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "REL-CHEM-ISS37-MODEL-SCOPE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS37-OWNER-BENCHMARK"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "supplied overlap factor = cos(theta); model scope does not automatically extend to total molecular energy",
+      "meaning": "A mathematical relation is evidence only about the quantity it defines. At 0°, 60° and 90° the supplied overlap-factor values are 1, 1/2 and 0; a total-energy law requires an additional energetic model or evidence.",
+      "symbols": [
+        {
+          "symbol": "theta",
+          "meaning": "angle between the supplied orbital-alignment directions",
+          "unit_or_domain": "degrees in the benchmark model"
+        },
+        {
+          "symbol": "cos(theta)",
+          "meaning": "the supplied qualitative overlap factor",
+          "unit_or_domain": "dimensionless"
+        }
+      ],
+      "conditions": [
+        "Use the relation only for the overlap factor named in Q9.",
+        "Keep atom connectivity and formal electron count distinct from orbital orientation in the torsion comparison.",
+        "Do not infer donation magnitude or total molecular energy without an additional specified relation/model."
+      ],
+      "derivation": [
+        {
+          "id": "ISS37-M1",
+          "role": "DECLARE",
+          "action": "Name the exact quantity the supplied formula describes.",
+          "why_valid": "This prevents a functional form from being transferred to a different physical quantity.",
+          "inputs": [],
+          "output": "defined model variable"
+        },
+        {
+          "id": "ISS37-M2",
+          "role": "TRANSFORM",
+          "action": "Evaluate the supplied relation only for the requested angles.",
+          "why_valid": "This executes the model without adding assumptions.",
+          "inputs": [],
+          "output": "1, 1/2, 0 for the overlap factor"
+        },
+        {
+          "id": "ISS37-M3",
+          "role": "VERIFY",
+          "action": "Ask whether any independent energy-vs-overlap relation was supplied.",
+          "why_valid": "Without that bridge, the total-energy functional form is underdetermined.",
+          "inputs": [],
+          "output": "bounded inference"
+        }
+      ],
+      "limits": [
+        "The cosine rule is a benchmark-supplied simplified overlap model, not a measured complete electronic-structure Hamiltonian.",
+        "Hybridisation labels are descriptive model vocabulary and do not by themselves cause delocalisation or geometry."
+      ],
+      "checks": [
+        "For every conclusion, point to the prompt-given relation, an authored model assumption, or an external evidence source."
+      ],
+      "gate_relation_ref": "REL-CHEM-ISS37-MODEL-SCOPE"
+    }
+  ],
+  "representations": [
+    {
+      "id": "REP-CHEM-ISS37-TORSION-OVERLAP",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "ORBITAL_DIAGRAM",
+      "purpose": "Construct local directions in an explicitly declared end-on projection; preserve connectivity, occupancy and model limits.",
+      "required_elements": [
+        "Connectivity",
+        "Axis/reference",
+        "Directions",
+        "Changed arrangement",
+        "Inventory/model check"
+      ],
+      "relation_refs": [
+        "REL-CHEM-ISS37-MODEL-SCOPE"
+      ],
+      "read_order": [
+        "Connectivity",
+        "Axis/reference",
+        "Directions",
+        "Changed arrangement",
+        "Inventory/model check"
+      ],
+      "instance_constraints": [
+        "The first stage must not reveal the Q9 protected conclusion.",
+        "No visual element may imply measured donation strength or a total-energy curve."
+      ],
+      "accessibility": [
+        "SVG has title, description and text equivalents for orientation changes.",
+        "No meaning is encoded by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Changing Lewis electron count when twisting the C-N bond.",
+        "Drawing a total-energy cosine curve as if it were supplied evidence."
+      ],
+      "rendered_asset_refs": [
+        "evidence/blueprint-cycles/ISS37/assets/torsion-REP-CHEM-ISS37-TORSION-OVERLAP.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "solid/dashed axes",
+          "symbol": "different local directions",
+          "in_words": "Line style, labels and the declared end-on view distinguish the local directions."
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-1",
+          "label": "Connectivity",
+          "purpose": "Connectivity in the declared qualitative direction model.",
+          "visible_elements": [
+            "Connectivity"
+          ]
+        },
+        {
+          "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-2",
+          "label": "Axis/reference",
+          "purpose": "Axis/reference in the declared qualitative direction model.",
+          "visible_elements": [
+            "Axis/reference"
+          ]
+        },
+        {
+          "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-3",
+          "label": "Directions",
+          "purpose": "Directions in the declared qualitative direction model.",
+          "visible_elements": [
+            "Directions"
+          ]
+        },
+        {
+          "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-4",
+          "label": "Changed arrangement",
+          "purpose": "Changed arrangement in the declared qualitative direction model.",
+          "visible_elements": [
+            "Changed arrangement"
+          ]
+        },
+        {
+          "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-5",
+          "label": "Inventory/model check",
+          "purpose": "Inventory/model check in the declared qualitative direction model.",
+          "visible_elements": [
+            "Inventory/model check"
+          ]
+        }
+      ]
+    }
+  ],
+  "question_families": [
+    {
+      "id": "FAM-CHEM-ISS37-MODEL-BOUNDARY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS37-OWNER-BENCHMARK"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Local counting, orbital alignment and model-scope decisions",
+      "capability_refs": [
+        "CAP-CHEM-MODEL-SCOPE-ALIGNMENT"
+      ],
+      "solution_structure": [
+        "Inventory local sigma/lone-pair/SOMO information.",
+        "Check adjacency and a continuous compatible orbital pathway.",
+        "Execute only the supplied model relation.",
+        "State the inference boundary and evidence needed for stronger claims."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Choose whether local counting is sufficient or whether an orbital-alignment/model-boundary analysis is required.",
+        "representation_translation": "Translate connectivity and torsion into orbital alignment without altering formal electron count.",
+        "reasoning_steps": "Classify assumptions, execute model, critique overclaim, transfer framework.",
+        "novelty": "Amide, radical, allene and evidence/model-boundary cases beyond routine label recall."
+      },
+      "safe_variations": [
+        "Change the angle or separate-site connectivity while preserving an explicit statement of what model relation is supplied."
+      ],
+      "transfer_boundaries": [
+        "Do not infer conjugation from spatial proximity alone.",
+        "Do not infer a whole-system energy law from an overlap-factor formula alone."
+      ],
+      "common_wrong_routes": [
+        "Count domains and stop.",
+        "Treat a hybridisation label as a cause.",
+        "Promote a qualitative sketch into a measurement."
+      ],
+      "item_refs": [
+        "ISS37-D4-R1-Q01",
+        "ISS37-D4-R1-Q02",
+        "ISS37-D4-R1-Q03",
+        "ISS37-D4-R1-Q04",
+        "ISS37-D4-R1-Q05",
+        "ISS37-D4-R1-Q06",
+        "ISS37-D4-R1-Q07",
+        "ISS37-D4-R1-Q08",
+        "ISS37-D4-R1-Q09",
+        "ISS37-D4-R1-Q10"
+      ]
+    }
+  ],
+  "questions": [],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {
+    "grade9v3:authoring_specimen": {
+      "issue": 37,
+      "agent": "A",
+      "round": 1,
+      "purpose": "COMPETITION",
+      "learner_profile_ref": "SIMULATED-OWNER-PRESET-ISS37",
+      "qrt_evidence": "evidence/benchmark/ISS37/question-ledger.json",
+      "custody_discrepancy": "Owner benchmark requires exact questions in Core2 although generic Core2 role normally expects teacher-original/approved source custody; preserve rather than relabel.",
+      "product_intent": "COMPETITION"
+    }
+  },
+  "data": []
+}

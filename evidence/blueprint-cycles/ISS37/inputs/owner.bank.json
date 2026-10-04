@@ -1,0 +1,1711 @@
+{
+  "schema_version": "grade9v3-owner-supplied-bank-v1",
+  "bank_id": "iss37-d4-agent-a-r1",
+  "intake_digest": "sha256:52306a397ecc6f327a8aba16b73479547c9e78d75139bdf14839c00038eedde7",
+  "questions": [
+    {
+      "id": "ISS37-D4-R1-Q01",
+      "original_identifier": "Q1",
+      "stem": "In formamide, H–C(=O)–NH2, a local Lewis count gives nitrogen three sigma bonds and a lone pair. You are also given that the approximately planar amide arrangement permits nitrogen-lone-pair donation into the adjacent carbonyl pi system, which requires a suitably aligned p-like orbital. Choose a model that accounts for both the sigma framework and delocalisation. Resolve the apparent conflict with an automatic 'four domains therefore sp3' label and state the limits of your chosen hybridisation description.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Use an approximately sp2/trigonal-planar sigma-framework description for amide N with a p-like lone-pair donor orbital aligned to the carbonyl pi system. The four-domain sp3 shortcut is not sufficient here. Treat sp2 as a compact model description, not the cause of delocalisation or a unique measured decomposition.",
+        "reasoning_route": [
+          {
+            "id": "ISS37-D4-R1-Q01-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Separate the local Lewis-domain count from the supplied delocalisation/alignment requirement.",
+            "why_valid": "They are different evidence layers and both must be explained.",
+            "inputs": [
+              "owner-supplied stem"
+            ],
+            "output": "Q1 reasoning checkpoint 1"
+          },
+          {
+            "id": "ISS37-D4-R1-Q01-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Represent a planar sigma framework while reserving a p-like donor direction on nitrogen.",
+            "why_valid": "The supplied donation condition requires a suitably aligned p-like orbital.",
+            "inputs": [
+              "output of move 1"
+            ],
+            "output": "Q1 reasoning checkpoint 2"
+          },
+          {
+            "id": "ISS37-D4-R1-Q01-MOVE-3",
+            "kind": "CONNECT",
+            "action": "Choose an approximately sp2-like local description and explain why automatic four-domain sp3 is insufficient here.",
+            "why_valid": "A useful local label must accommodate the sigma framework and the supplied delocalisation-sensitive orbital direction rather than overwrite either.",
+            "inputs": [
+              "output of move 2"
+            ],
+            "output": "Q1 reasoning checkpoint 3"
+          },
+          {
+            "id": "ISS37-D4-R1-Q01-MOVE-4",
+            "kind": "VERIFY",
+            "action": "State that the label is descriptive and does not uniquely measure or cause delocalisation.",
+            "why_valid": "Hybridisation is model vocabulary; stronger electronic claims require additional evidence/model definition.",
+            "inputs": [
+              "output of move 3"
+            ],
+            "output": "Use an approximately sp2/trigonal-planar sigma-framework description for amide N with a p-like lone-pair donor orbital aligned to the carbonyl pi system. The four-domain sp3 shortcut is not sufficient here. Treat sp2 as a compact model description, not the cause of delocalisation or a unique measured decomposition."
+          }
+        ],
+        "crux_move_ref": "ISS37-D4-R1-Q01-MOVE-3",
+        "check": "Remove the hybridisation label: the alignment-plus-acceptor explanation must still describe the supplied donation condition.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-MODEL-SCOPE-ALIGNMENT",
+      "family_ref": "FAM-CHEM-ISS37-MODEL-BOUNDARY",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q1",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:d44703bfca8465f1d0144848011fc482da2f051713ebd198f9ceeddcbc8c4a64"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "basis": "Learner-relative estimate from the simulated owner preset using the canonical five components; no mastery percentage is inferred.",
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 2,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 2
+            }
+          },
+          "expected_time_seconds": 300,
+          "common_wrong_route": "Four Lewis entries overrule supplied delocalisation conditions.",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": []
+          },
+          "stable_crux_move": "ISS37-D4-R1-Q01-MOVE-2",
+          "custody": "OWNER_SUPPLIED benchmark input drafted by coordinating agent; not official exam/PYQ."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt picture would repeat the supplied situation or expose the protected decision; the linked construction and post-attempt repair provide the useful representation."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Resolve conflict between a local Lewis inventory and supplied aligned delocalisation.",
+          "connect": "A hybrid label describes a chosen basis; it does not independently cause donation.",
+          "way": "Account for sigma framework, donor orientation and adjacent pi acceptor before qualifying the label.",
+          "rule": "Approximately planar amide N can use an introductory sp2-like sigma framework plus an aligned p-like lone-pair donor. Four Lewis entries do not override the supplied delocalised-model conditions; the basis is not unique observed reality.",
+          "check": "Remove the hybridisation label: the alignment-plus-acceptor explanation must still describe the supplied donation condition.",
+          "probe": "Compare adjacent amide N with a saturated-spacer amine N. Does the same four-entry Lewis inventory establish the same donation pathway?",
+          "pattern": "No. Adjacency/alignment conditions differ. Repeating automatic four-domains-therefore-localized-sp3 in both exposes applicability failure.",
+          "transfer": "Give one observation that constrains the model and one claim it cannot uniquely prove.",
+          "wrong_idea": "Four Lewis entries overrule supplied delocalisation conditions.",
+          "question_ref": "ISS37-D4-R1-Q01",
+          "label": "Q1",
+          "construction_ref": "CU-ISS37-MODEL-SCOPE",
+          "microtopic_ref": "MIC-CHEM-HYBRID-MODEL-SCOPE",
+          "status": "CORRECTION_CANDIDATE",
+          "parent_issue": 37,
+          "crux_move_ref": "ISS37-D4-R1-Q01-MOVE-3"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:analysis_migration": {
+          "previous_demand": {
+            "primary": "justify",
+            "secondary": "critique"
+          },
+          "reason": "Normalize primary and secondary labels onto the registered seven-demand vocabulary without silently losing secondary work; independent calibration remains reviewable."
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-JUSTIFY-D4",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CORRECTION_CANDIDATE"
+        }
+      },
+      "conditions": [
+        "Molecule is formamide, H–C(=O)–NH2.",
+        "Local Lewis count at nitrogen is three sigma bonds and one lone pair.",
+        "The supplied approximately planar arrangement permits nitrogen-lone-pair donation into the adjacent carbonyl pi system.",
+        "The supplied donation model requires a suitably aligned p-like orbital."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Resolve conflict between a local Lewis inventory and supplied aligned delocalisation.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "ISS37-D4-R1-Q01-MOVE-1"
+        },
+        {
+          "text": "A hybrid label describes a chosen basis; it does not independently cause donation.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "ISS37-D4-R1-Q01-MOVE-2"
+        },
+        {
+          "text": "Account for sigma framework, donor orientation and adjacent pi acceptor before qualifying the label.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "ISS37-D4-R1-Q01-MOVE-3"
+        },
+        {
+          "text": "Test your proposed route on this changed case before finalising: Compare adjacent amide N with a saturated-spacer amine N. Does the same four-entry Lewis inventory establish the same donation pathway?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "ISS37-D4-R1-Q01-MOVE-4"
+        },
+        {
+          "text": "Reserve the last judgement for yourself. Try this boundary/transfer task: Give one observation that constrains the model and one claim it cannot uniquely prove.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "ISS37-D4-R1-Q01-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "ISS37-D4-R1-Q02",
+      "original_identifier": "Q2",
+      "stem": "For the formamide situation supplied in Q1, construct one qualitative representation connecting the Lewis lone pair on nitrogen, the nitrogen orbital used for donation and the carbonyl pi system. Then construct the corresponding approximately 90-degree-twisted arrangement about the C–N bond. Preserve atom connectivity and distinguish changes in orbital alignment from changes in formal electron count. Do not claim these sketches alone measure the donation strength.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Keep atom connectivity and formal Lewis count unchanged. In the planar qualitative model the N donor p-like orbital can align with the carbonyl p system; after an approximately 90-degree C-N twist the relevant directions are orthogonal/poorly aligned. The sketches do not measure donation strength.",
+        "reasoning_route": [
+          {
+            "id": "ISS37-D4-R1-Q02-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Freeze connectivity and formal Lewis electron count as invariants of the comparison.",
+            "why_valid": "The stem explicitly requires these to be preserved while torsional orientation changes.",
+            "inputs": [
+              "owner-supplied stem"
+            ],
+            "output": "Q2 reasoning checkpoint 1"
+          },
+          {
+            "id": "ISS37-D4-R1-Q02-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Draw aligned nitrogen-donor and carbonyl-p directions in the planar qualitative arrangement.",
+            "why_valid": "Compatible direction is the geometric feature the supplied delocalisation model needs.",
+            "inputs": [
+              "output of move 1"
+            ],
+            "output": "Q2 reasoning checkpoint 2"
+          },
+          {
+            "id": "ISS37-D4-R1-Q02-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Rotate the C–N torsional arrangement toward 90 degrees while leaving connectivity and formal count unchanged.",
+            "why_valid": "Torsion changes relative orbital orientation without requiring a different Lewis electron inventory.",
+            "inputs": [
+              "output of move 2"
+            ],
+            "output": "Q2 reasoning checkpoint 3"
+          },
+          {
+            "id": "ISS37-D4-R1-Q02-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Label the sketch qualitative rather than a measurement of donation strength.",
+            "why_valid": "A drawing of orientation supplies no calibrated observable for donation magnitude.",
+            "inputs": [
+              "output of move 3"
+            ],
+            "output": "Keep atom connectivity and formal Lewis count unchanged. In the planar qualitative model the N donor p-like orbital can align with the carbonyl p system; after an approximately 90-degree C-N twist the relevant directions are orthogonal/poorly aligned. The sketches do not measure donation strength."
+          }
+        ],
+        "crux_move_ref": "ISS37-D4-R1-Q02-MOVE-3",
+        "check": "Independent element sums: valence 4+3+5+6=18; total 6+3+7+8=24. Both sketches must preserve them.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-MODEL-SCOPE-ALIGNMENT",
+      "family_ref": "FAM-CHEM-ISS37-MODEL-BOUNDARY",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q2",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:e77d068ee216f7ce6c6df8fd652b3bfb50acc34be6cf3ebf753aaf4714e6ffdf"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "basis": "Learner-relative estimate from the simulated owner preset using the canonical five components; no mastery percentage is inferred.",
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 2,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 2
+            }
+          },
+          "expected_time_seconds": 300,
+          "common_wrong_route": "Torsion changes the formal electron inventory.",
+          "cognitive_demand": {
+            "primary": "REPRESENT",
+            "secondary": [
+              "SYNTHESIZE"
+            ]
+          },
+          "stable_crux_move": "ISS37-D4-R1-Q02-MOVE-2",
+          "custody": "OWNER_SUPPLIED benchmark input drafted by coordinating agent; not official exam/PYQ."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Construct both arrangements while preserving connectivity and electron inventories.",
+          "connect": "Torsion changes relative orientation, not the number of atoms or formal electrons.",
+          "way": "Draw a fixed carbonyl reference and an N donor direction rotated about the declared C-N axis.",
+          "rule": "Formamide CH3NO has 18 valence electrons and 24 total electrons. The supplied three-centre donor/carbonyl pi model has four electrons. A 90-degree twist changes alignment, not these inventories.",
+          "check": "Independent element sums: valence 4+3+5+6=18; total 6+3+7+8=24. Both sketches must preserve them.",
+          "probe": "Count valence and total electrons for CH3NO before and after torsion. Identify which geometric relation changes.",
+          "pattern": "18 valence, 24 total in both; relative donor direction changes. Repeated electron-loss-by-rotation reasoning differs from a corrected addition slip.",
+          "transfer": "Sketch a fixed-connectivity 45-degree comparison without claiming measured donation.",
+          "wrong_idea": "Torsion changes the formal electron inventory.",
+          "question_ref": "ISS37-D4-R1-Q02",
+          "label": "Q2",
+          "construction_ref": "CU-ISS37-MODEL-SCOPE",
+          "microtopic_ref": "MIC-CHEM-HYBRID-MODEL-SCOPE",
+          "status": "CORRECTION_CANDIDATE",
+          "parent_issue": 37,
+          "interaction": "MODEL_SCOPE_PROBE",
+          "crux_move_ref": "ISS37-D4-R1-Q02-MOVE-3"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:analysis_migration": {
+          "previous_demand": {
+            "primary": "interpret",
+            "secondary": "transfer"
+          },
+          "reason": "Normalize primary and secondary labels onto the registered seven-demand vocabulary without silently losing secondary work; independent calibration remains reviewable."
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-REPRESENT-D4",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CORRECTION_CANDIDATE"
+        }
+      },
+      "conditions": [
+        "Use the formamide situation supplied in Q1.",
+        "Compare an approximately planar arrangement with an approximately 90-degree twist about the C–N bond.",
+        "Atom connectivity must be preserved.",
+        "Formal electron count must be distinguished from orbital alignment.",
+        "The qualitative sketches must not be treated as measurements of donation strength."
+      ],
+      "figure_refs": [
+        "REP-CHEM-ISS37-TORSION-OVERLAP"
+      ],
+      "scaffolds": [
+        {
+          "text": "Construct both arrangements while preserving connectivity and electron inventories.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "ISS37-D4-R1-Q02-MOVE-1"
+        },
+        {
+          "text": "Torsion changes relative orientation, not the number of atoms or formal electrons.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "ISS37-D4-R1-Q02-MOVE-2"
+        },
+        {
+          "text": "Draw a fixed carbonyl reference and an N donor direction rotated about the declared C-N axis.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "ISS37-D4-R1-Q02-MOVE-3"
+        },
+        {
+          "text": "Test your proposed route on this changed case before finalising: Count valence and total electrons for CH3NO before and after torsion. Identify which geometric relation changes.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "ISS37-D4-R1-Q02-MOVE-4"
+        },
+        {
+          "text": "Reserve the last judgement for yourself. Try this boundary/transfer task: Sketch a fixed-connectivity 45-degree comparison without claiming measured donation.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "ISS37-D4-R1-Q02-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "ISS37-D4-R1-Q03",
+      "original_identifier": "Q3",
+      "stem": "The benchmark supplies a qualitative model result: with atom connectivity fixed, twisting a planar amide arrangement toward 90 degrees reduces the nitrogen-to-carbonyl orbital alignment and the delocalisation contribution. Explain that result through orbital overlap. Assess whether 'the hybridisation label changes, so donation disappears' is a sufficient explanation, and identify which parts of your account are model assumptions rather than measured facts.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Within the supplied qualitative model, twisting reduces compatible N-to-carbonyl orbital overlap, so the delocalisation contribution associated with that interaction falls. A change of hybridisation label is not a sufficient causal explanation. Exact donation and energetics require a specified model or measurement.",
+        "reasoning_route": [
+          {
+            "id": "ISS37-D4-R1-Q03-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Take the supplied reduction in alignment on twisting as the benchmark result to explain, not a quantity to re-measure.",
+            "why_valid": "The stem fixes the qualitative result and asks for its orbital-overlap account.",
+            "inputs": [
+              "owner-supplied stem"
+            ],
+            "output": "Q3 reasoning checkpoint 1"
+          },
+          {
+            "id": "ISS37-D4-R1-Q03-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Compare side-on compatibility of the donor and carbonyl p directions before and after torsion.",
+            "why_valid": "Pi-type interaction depends on compatible spatial orientation in this simplified model.",
+            "inputs": [
+              "output of move 1"
+            ],
+            "output": "Q3 reasoning checkpoint 2"
+          },
+          {
+            "id": "ISS37-D4-R1-Q03-MOVE-3",
+            "kind": "CONNECT",
+            "action": "Attribute the reduced delocalisation contribution to reduced compatible overlap rather than to a changed label itself.",
+            "why_valid": "Changing a descriptive label is not a physical interaction; orbital geometry supplies the model mechanism.",
+            "inputs": [
+              "output of move 2"
+            ],
+            "output": "Q3 reasoning checkpoint 3"
+          },
+          {
+            "id": "ISS37-D4-R1-Q03-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Separate prompt-given result and qualitative model inference from any exact energetic/donation claim.",
+            "why_valid": "Exact magnitudes require a specified calculation or measurement beyond the given qualitative model.",
+            "inputs": [
+              "output of move 3"
+            ],
+            "output": "Within the supplied qualitative model, twisting reduces compatible N-to-carbonyl orbital overlap, so the delocalisation contribution associated with that interaction falls. A change of hybridisation label is not a sufficient causal explanation. Exact donation and energetics require a specified model or measurement."
+          }
+        ],
+        "crux_move_ref": "ISS37-D4-R1-Q03-MOVE-3",
+        "check": "Counterfactual: remove the word hybridisation while retaining changed orientation; the mechanistic statement survives.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-MODEL-SCOPE-ALIGNMENT",
+      "family_ref": "FAM-CHEM-ISS37-MODEL-BOUNDARY",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q3",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:2ea9cdfb2b9e677a9d002da309d5d5b5bf609116ba8769085d39046b9830957c"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "basis": "Learner-relative estimate from the simulated owner preset using the canonical five components; no mastery percentage is inferred.",
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 2,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 2
+            }
+          },
+          "expected_time_seconds": 300,
+          "common_wrong_route": "A changed hybrid label is a causal explanation of donor strength.",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": []
+          },
+          "stable_crux_move": "ISS37-D4-R1-Q03-MOVE-2",
+          "custody": "OWNER_SUPPLIED benchmark input drafted by coordinating agent; not official exam/PYQ."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Explain the supplied trend without replacing a mechanism with a label.",
+          "connect": "Relative donor/acceptor alignment is a model variable; donation magnitude needs additional physics.",
+          "way": "Connect changed geometry to overlap, then tag each statement as given, model or observation.",
+          "rule": "Twisting reduces relevant alignment and the supplied delocalisation contribution. A changing hybrid label alone explains neither mechanism nor a quantitative barrier; total torsional energy has additional contributions.",
+          "check": "Counterfactual: remove the word hybridisation while retaining changed orientation; the mechanistic statement survives.",
+          "probe": "If two sketches have the same label but different donor alignment, must their donation be identical? If the label changes alone, has a mechanism been supplied?",
+          "pattern": "Neither follows. Persistent label-only explanations expose causal substitution.",
+          "transfer": "State which additional model would be needed for a numerical donation or barrier estimate.",
+          "wrong_idea": "A changed hybrid label is a causal explanation of donor strength.",
+          "question_ref": "ISS37-D4-R1-Q03",
+          "label": "Q3",
+          "construction_ref": "CU-ISS37-MODEL-SCOPE",
+          "microtopic_ref": "MIC-CHEM-HYBRID-MODEL-SCOPE",
+          "status": "CORRECTION_CANDIDATE",
+          "parent_issue": 37,
+          "crux_move_ref": "ISS37-D4-R1-Q03-MOVE-3"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:analysis_migration": {
+          "previous_demand": {
+            "primary": "critique",
+            "secondary": "justify"
+          },
+          "reason": "Normalize primary and secondary labels onto the registered seven-demand vocabulary without silently losing secondary work; independent calibration remains reviewable."
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-JUSTIFY-D4",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CORRECTION_CANDIDATE"
+        }
+      },
+      "conditions": [
+        "Atom connectivity is fixed.",
+        "The benchmark supplies that twisting toward 90 degrees reduces nitrogen-to-carbonyl orbital alignment and the delocalisation contribution.",
+        "The explanation must distinguish model assumptions from measured facts."
+      ],
+      "figure_refs": [
+        "REP-CHEM-ISS37-TORSION-OVERLAP"
+      ],
+      "scaffolds": [
+        {
+          "text": "Explain the supplied trend without replacing a mechanism with a label.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "ISS37-D4-R1-Q03-MOVE-1"
+        },
+        {
+          "text": "Relative donor/acceptor alignment is a model variable; donation magnitude needs additional physics.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "ISS37-D4-R1-Q03-MOVE-2"
+        },
+        {
+          "text": "Connect changed geometry to overlap, then tag each statement as given, model or observation.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "ISS37-D4-R1-Q03-MOVE-3"
+        },
+        {
+          "text": "Test your proposed route on this changed case before finalising: If two sketches have the same label but different donor alignment, must their donation be identical? If the label changes alone, has a mechanism been supplied?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "ISS37-D4-R1-Q03-MOVE-4"
+        },
+        {
+          "text": "Reserve the last judgement for yourself. Try this boundary/transfer task: State which additional model would be needed for a numerical donation or barrier estimate.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "ISS37-D4-R1-Q03-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "ISS37-D4-R1-Q04",
+      "original_identifier": "Q4",
+      "stem": "Compare two nitrogen sites: A is the amide nitrogen in H–C(=O)–NH2; B is the amine nitrogen in H–C(=O)–CH2–NH2. In the simplified introductory model, the intervening saturated CH2 group has no continuous aligned p-orbital pathway. Develop a decision procedure combining local sigma/lone-pair counting, adjacency, orbital alignment and the model's validity conditions. Apply it to A and B, then state a counterfactual structural change that would require you to reassess your procedure. Do not equate spatial proximity with conjugation.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Use a sequence: local sigma/lone-pair inventory -> adjacency to a pi acceptor -> continuous compatible orbital pathway -> alignment -> model-validity check. A passes under the supplied amide model; B fails because saturated CH2 interrupts the introductory p pathway. An unsaturated or otherwise orbital-connected bridge would require reassessment.",
+        "reasoning_route": [
+          {
+            "id": "ISS37-D4-R1-Q04-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Inventory the local sigma/lone-pair structure and identify the candidate adjacent pi acceptor for each site.",
+            "why_valid": "A conjugation decision needs both a donor and a structurally reachable acceptor.",
+            "inputs": [
+              "owner-supplied stem"
+            ],
+            "output": "Q4 reasoning checkpoint 1"
+          },
+          {
+            "id": "ISS37-D4-R1-Q04-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Trace whether a continuous compatible orbital pathway connects each nitrogen to the carbonyl in the supplied simplified model.",
+            "why_valid": "Continuity and alignment, not drawing distance, determine whether the introductory conjugation route is available.",
+            "inputs": [
+              "output of move 1"
+            ],
+            "output": "Q4 reasoning checkpoint 2"
+          },
+          {
+            "id": "ISS37-D4-R1-Q04-MOVE-3",
+            "kind": "CONNECT",
+            "action": "Classify A as pathway-available and B as interrupted by saturated CH2 under the stated model.",
+            "why_valid": "The stem explicitly states that the intervening saturated CH2 supplies no continuous aligned p pathway.",
+            "inputs": [
+              "output of move 2"
+            ],
+            "output": "Q4 reasoning checkpoint 3"
+          },
+          {
+            "id": "ISS37-D4-R1-Q04-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Change the bridge to an unsaturated/appropriately connected counterfactual and rerun the procedure.",
+            "why_valid": "A structural change to the pathway invalidates the earlier stop decision and tests transfer of the procedure.",
+            "inputs": [
+              "output of move 3"
+            ],
+            "output": "Use a sequence: local sigma/lone-pair inventory -> adjacency to a pi acceptor -> continuous compatible orbital pathway -> alignment -> model-validity check. A passes under the supplied amide model; B fails because saturated CH2 interrupts the introductory p pathway. An unsaturated or otherwise orbital-connected bridge would require reassessment."
+          }
+        ],
+        "crux_move_ref": "ISS37-D4-R1-Q04-MOVE-3",
+        "check": "Changed case: replace a saturated interruption by a suitably aligned unsaturated bridge; reassess connectivity and orbital availability rather than reusing the answer.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-MODEL-SCOPE-ALIGNMENT",
+      "family_ref": "FAM-CHEM-ISS37-MODEL-BOUNDARY",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q4",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:a5bd1762999003bff70b76b12d5f49f846d627ef8f1c2fd9a16e5fdeb4f7bc52"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "basis": "Learner-relative estimate from the simulated owner preset using the canonical five components; no mastery percentage is inferred.",
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 2,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 2
+            }
+          },
+          "expected_time_seconds": 300,
+          "common_wrong_route": "Spatial proximity equals an orbital-connected p pathway.",
+          "cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": [
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "ISS37-D4-R1-Q04-MOVE-2",
+          "custody": "OWNER_SUPPLIED benchmark input drafted by coordinating agent; not official exam/PYQ."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt picture would repeat the supplied situation or expose the protected decision; the linked construction and post-attempt repair provide the useful representation."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Build a decision procedure that can fail its own applicability test.",
+          "connect": "Local count and a continuous aligned pathway are independent checks.",
+          "way": "Test locality, adjacency, alignment and stated model conditions; invent a structural counterfactual yourself.",
+          "rule": "Amide A has the supplied direct donor/carbonyl path. Saturated-spacer amine B lacks that ordinary contiguous path. Spatial proximity alone is insufficient, and absence of this path is not an absolute zero-interaction theorem.",
+          "check": "Changed case: replace a saturated interruption by a suitably aligned unsaturated bridge; reassess connectivity and orbital availability rather than reusing the answer.",
+          "probe": "Would folding the saturated-spacer molecule closer create the same continuous p pathway as removing the spacer?",
+          "pattern": "No; spatial folding and orbital-connected adjacency are different changes. Repeated proximity-based classification identifies the wrong criterion.",
+          "transfer": "Specify a counterfactual bridge and test all procedure conditions again.",
+          "wrong_idea": "Spatial proximity equals an orbital-connected p pathway.",
+          "question_ref": "ISS37-D4-R1-Q04",
+          "label": "Q4",
+          "construction_ref": "CU-ISS37-MODEL-SCOPE",
+          "microtopic_ref": "MIC-CHEM-HYBRID-MODEL-SCOPE",
+          "status": "CORRECTION_CANDIDATE",
+          "parent_issue": 37,
+          "crux_move_ref": "ISS37-D4-R1-Q04-MOVE-3"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:analysis_migration": {
+          "previous_demand": {
+            "primary": "transfer",
+            "secondary": "justify"
+          },
+          "reason": "Normalize primary and secondary labels onto the registered seven-demand vocabulary without silently losing secondary work; independent calibration remains reviewable."
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-SYNTHESIZE-D4",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CORRECTION_CANDIDATE"
+        }
+      },
+      "conditions": [
+        "Site A is the amide nitrogen in H–C(=O)–NH2.",
+        "Site B is the amine nitrogen in H–C(=O)–CH2–NH2.",
+        "In the simplified introductory model, saturated CH2 provides no continuous aligned p-orbital pathway.",
+        "Spatial proximity alone must not be equated with conjugation."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Build a decision procedure that can fail its own applicability test.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "ISS37-D4-R1-Q04-MOVE-1"
+        },
+        {
+          "text": "Local count and a continuous aligned pathway are independent checks.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "ISS37-D4-R1-Q04-MOVE-2"
+        },
+        {
+          "text": "Test locality, adjacency, alignment and stated model conditions; invent a structural counterfactual yourself.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "ISS37-D4-R1-Q04-MOVE-3"
+        },
+        {
+          "text": "Test your proposed route on this changed case before finalising: Would folding the saturated-spacer molecule closer create the same continuous p pathway as removing the spacer?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "ISS37-D4-R1-Q04-MOVE-4"
+        },
+        {
+          "text": "Reserve the last judgement for yourself. Try this boundary/transfer task: Specify a counterfactual bridge and test all procedure conditions again.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "ISS37-D4-R1-Q04-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "ISS37-D4-R1-Q05",
+      "original_identifier": "Q5",
+      "stem": "A student claims: 'Hybridisation uniquely determines bond angles and any deviation proves the hybridisation label wrong.' The benchmark supplies approximate observations: CH4 tetrahedral about 109.5 degrees; NH3 pyramidal about 107 degrees; H2O bent about 104.5 degrees; all three commonly use an introductory sp3 description at the central atom. It also supplies approximately planar amide nitrogen with lone-pair delocalisation. Construct and test a qualified replacement claim using these observations, local domain counting, lone-pair effects and the amide boundary case. State what further evidence would be needed before treating a qualitative orbital picture as a unique physical account.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Replace the claim with: hybridisation/domain labels are useful first-order local models, but exact bond angles also depend on electron-pair occupancy and the molecular/electronic environment. CH4, NH3 and H2O can share an introductory four-domain/sp3-type description while having different shapes/angles; amide N adds a delocalisation-sensitive boundary. Geometry alone does not uniquely prove an orbital decomposition.",
+        "reasoning_route": [
+          {
+            "id": "ISS37-D4-R1-Q05-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Test the student's word 'uniquely' against the three supplied four-domain cases and their different observed angles.",
+            "why_valid": "One exact angle cannot be uniquely fixed by a label shared across differing observations.",
+            "inputs": [
+              "owner-supplied stem"
+            ],
+            "output": "Q5 reasoning checkpoint 1"
+          },
+          {
+            "id": "ISS37-D4-R1-Q05-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Separate electron-domain classification, molecular geometry and observed angle for CH4, NH3, H2O and amide N.",
+            "why_valid": "These are related but non-identical descriptive layers.",
+            "inputs": [
+              "output of move 1"
+            ],
+            "output": "Q5 reasoning checkpoint 2"
+          },
+          {
+            "id": "ISS37-D4-R1-Q05-MOVE-3",
+            "kind": "CONNECT",
+            "action": "Replace the absolute claim with a first-order model statement that allows lone-pair/environment effects and the amide delocalisation boundary.",
+            "why_valid": "A useful model may organize local bonding without uniquely determining all quantitative geometry or electronic structure.",
+            "inputs": [
+              "output of move 2"
+            ],
+            "output": "Q5 reasoning checkpoint 3"
+          },
+          {
+            "id": "ISS37-D4-R1-Q05-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Name structural, spectroscopic or defined computational evidence needed for a stronger unique physical account.",
+            "why_valid": "Geometry alone generally underdetermines a unique orbital partition or resonance magnitude.",
+            "inputs": [
+              "output of move 3"
+            ],
+            "output": "Replace the claim with: hybridisation/domain labels are useful first-order local models, but exact bond angles also depend on electron-pair occupancy and the molecular/electronic environment. CH4, NH3 and H2O can share an introductory four-domain/sp3-type description while having different shapes/angles; amide N adds a delocalisation-sensitive boundary. Geometry alone does not uniquely prove an orbital decomposition."
+          }
+        ],
+        "crux_move_ref": "ISS37-D4-R1-Q05-MOVE-3",
+        "check": "Independent counterexample: a shared four-domain label is compatible with 4,3,2 bonded-atom positions, so it cannot alone uniquely specify atom-only shape.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-MODEL-SCOPE-ALIGNMENT",
+      "family_ref": "FAM-CHEM-ISS37-MODEL-BOUNDARY",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q5",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:7fa193cc29562ab720488b660310f07f11d3639ebe7970a967d0b56b063e46f8"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "basis": "Learner-relative estimate from the simulated owner preset using the canonical five components; no mastery percentage is inferred.",
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 2,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 2
+            }
+          },
+          "expected_time_seconds": 300,
+          "common_wrong_route": "A hybrid label uniquely determines every angle and physical orbital basis.",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": []
+          },
+          "stable_crux_move": "ISS37-D4-R1-Q05-MOVE-2",
+          "custody": "OWNER_SUPPLIED benchmark input drafted by coordinating agent; not official exam/PYQ."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt picture would repeat the supplied situation or expose the protected decision; the linked construction and post-attempt repair provide the useful representation."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Test uniqueness, rather than merely finding one familiar angle.",
+          "connect": "Several shapes/angles can share an introductory four-domain classification.",
+          "way": "Use supplied counterexamples and the amide boundary to qualify both predictive scope and evidence.",
+          "rule": "CH4/NH3/H2O share common sp3-like introductory descriptions while their nuclear shapes/angles differ. Geometry constrains models but does not uniquely measure a hybrid decomposition; lone pairs and delocalisation matter.",
+          "check": "Independent counterexample: a shared four-domain label is compatible with 4,3,2 bonded-atom positions, so it cannot alone uniquely specify atom-only shape.",
+          "probe": "Can one four-domain label predict the same nuclear shape for CH4 and H2O? Does observing a shape uniquely establish an orbital basis?",
+          "pattern": "No to both. Persistent one-label-one-shape or unique-basis inference reveals overclaim rather than an angle-recall slip.",
+          "transfer": "Name evidence needed before claiming a unique physical electronic description.",
+          "wrong_idea": "A hybrid label uniquely determines every angle and physical orbital basis.",
+          "question_ref": "ISS37-D4-R1-Q05",
+          "label": "Q5",
+          "construction_ref": "CU-ISS37-MODEL-SCOPE",
+          "microtopic_ref": "MIC-CHEM-HYBRID-MODEL-SCOPE",
+          "status": "CORRECTION_CANDIDATE",
+          "parent_issue": 37,
+          "crux_move_ref": "ISS37-D4-R1-Q05-MOVE-3"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:analysis_migration": {
+          "previous_demand": {
+            "primary": "critique",
+            "secondary": "justify"
+          },
+          "reason": "Normalize primary and secondary labels onto the registered seven-demand vocabulary without silently losing secondary work; independent calibration remains reviewable."
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-JUSTIFY-D4",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CORRECTION_CANDIDATE"
+        }
+      },
+      "conditions": [
+        "Use the supplied approximate observations: CH4 about 109.5 degrees, NH3 about 107 degrees, H2O about 104.5 degrees.",
+        "All three are commonly introduced using an sp3 description at the central atom.",
+        "The benchmark also supplies approximately planar amide nitrogen with lone-pair delocalisation.",
+        "The replacement claim must state what further evidence is needed for a unique physical account."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Test uniqueness, rather than merely finding one familiar angle.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "ISS37-D4-R1-Q05-MOVE-1"
+        },
+        {
+          "text": "Several shapes/angles can share an introductory four-domain classification.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "ISS37-D4-R1-Q05-MOVE-2"
+        },
+        {
+          "text": "Use supplied counterexamples and the amide boundary to qualify both predictive scope and evidence.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "ISS37-D4-R1-Q05-MOVE-3"
+        },
+        {
+          "text": "Test your proposed route on this changed case before finalising: Can one four-domain label predict the same nuclear shape for CH4 and H2O? Does observing a shape uniquely establish an orbital basis?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "ISS37-D4-R1-Q05-MOVE-4"
+        },
+        {
+          "text": "Reserve the last judgement for yourself. Try this boundary/transfer task: Name evidence needed before claiming a unique physical electronic description.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "ISS37-D4-R1-Q05-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "ISS37-D4-R1-Q06",
+      "original_identifier": "Q6",
+      "stem": "Consider the two nitrogen sites A and B in Q4. State the conditions under which the local four-domain counting rule is a useful introductory classification, and the evidence that would make its automatic use inadequate. Distinguish recalling a rule from deciding whether its conditions hold.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Four-domain counting is useful for a first local classification when bonding is sufficiently localised and no supplied evidence demands a conjugation-sensitive model. Automatic use is inadequate when aligned donor/acceptor orbitals, resonance-sensitive planarity, radical/SOMO character or structural changes affect the model. Recalling the rule is separate from testing its applicability.",
+        "reasoning_route": [
+          {
+            "id": "ISS37-D4-R1-Q06-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Recall the local four-domain rule without yet deciding that it is sufficient.",
+            "why_valid": "Rule knowledge and applicability are separate tasks in the question.",
+            "inputs": [
+              "owner-supplied stem"
+            ],
+            "output": "Q6 reasoning checkpoint 1"
+          },
+          {
+            "id": "ISS37-D4-R1-Q06-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Compare Sites A and B using local count plus a separate column for delocalisation/alignment evidence.",
+            "why_valid": "This prevents the count from erasing information that belongs to another model layer.",
+            "inputs": [
+              "output of move 1"
+            ],
+            "output": "Q6 reasoning checkpoint 2"
+          },
+          {
+            "id": "ISS37-D4-R1-Q06-MOVE-3",
+            "kind": "CONNECT",
+            "action": "Stop at local classification only when bonding is sufficiently localised and no supplied evidence requires a conjugation-sensitive model.",
+            "why_valid": "A model is adequate only when the phenomena relevant to the task fall within its assumptions.",
+            "inputs": [
+              "output of move 2"
+            ],
+            "output": "Q6 reasoning checkpoint 3"
+          },
+          {
+            "id": "ISS37-D4-R1-Q06-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Use Site A's supplied delocalisation and Site B's interrupted pathway as opposite applicability checks.",
+            "why_valid": "The paired sites test whether the decision responds to evidence rather than to memorised wording.",
+            "inputs": [
+              "output of move 3"
+            ],
+            "output": "Four-domain counting is useful for a first local classification when bonding is sufficiently localised and no supplied evidence demands a conjugation-sensitive model. Automatic use is inadequate when aligned donor/acceptor orbitals, resonance-sensitive planarity, radical/SOMO character or structural changes affect the model. Recalling the rule is separate from testing its applicability."
+          }
+        ],
+        "crux_move_ref": "ISS37-D4-R1-Q06-MOVE-3",
+        "check": "Changed check: the same formal lone-pair entry at an amine and an amide can have different orbital-role descriptions under the supplied conditions.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-MODEL-SCOPE-ALIGNMENT",
+      "family_ref": "FAM-CHEM-ISS37-MODEL-BOUNDARY",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q6",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:07e8eeccb58cc7be624d67404fff3a1e4eb1d94528f0bad6f34bd6e09f4641ab"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "basis": "Learner-relative estimate from the simulated owner preset using the canonical five components; no mastery percentage is inferred.",
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 2
+            }
+          },
+          "expected_time_seconds": 210,
+          "common_wrong_route": "Recalling a local rule proves its applicability.",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": [
+              "RETRIEVE"
+            ]
+          },
+          "stable_crux_move": "ISS37-D4-R1-Q06-MOVE-2",
+          "custody": "OWNER_SUPPLIED benchmark input drafted by coordinating agent; not official exam/PYQ."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt picture would repeat the supplied situation or expose the protected decision; the linked construction and post-attempt repair provide the useful representation."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Distinguish recalling a rule from establishing its applicability.",
+          "connect": "Local counting assumes the localized/domain model is useful for the asked task.",
+          "way": "List the conditions and look for supplied delocalisation or unusual occupancy evidence before applying the shortcut.",
+          "rule": "Four-domain counting is useful for localized introductory classification. Adjacent pi acceptors, aligned donor orbitals, planarity/donation evidence or radical occupancy can require a richer model.",
+          "check": "Changed check: the same formal lone-pair entry at an amine and an amide can have different orbital-role descriptions under the supplied conditions.",
+          "probe": "Both sites have three sigma bonds and a lone pair. Is that alone sufficient to choose identical localized orbital-role descriptions?",
+          "pattern": "No; supplied adjacency/alignment evidence differs. Repeated rule use without checking conditions exposes applicability confusion.",
+          "transfer": "Separate a recalled count from a model-selection decision in a new conjugated case.",
+          "wrong_idea": "Recalling a local rule proves its applicability.",
+          "question_ref": "ISS37-D4-R1-Q06",
+          "label": "Q6",
+          "construction_ref": "CU-ISS37-MODEL-SCOPE",
+          "microtopic_ref": "MIC-CHEM-HYBRID-MODEL-SCOPE",
+          "status": "CORRECTION_CANDIDATE",
+          "parent_issue": 37,
+          "crux_move_ref": "ISS37-D4-R1-Q06-MOVE-3"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:analysis_migration": {
+          "previous_demand": {
+            "primary": "critique",
+            "secondary": "classify"
+          },
+          "reason": "Normalize primary and secondary labels onto the registered seven-demand vocabulary without silently losing secondary work; independent calibration remains reviewable."
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-JUSTIFY-D3",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CORRECTION_CANDIDATE"
+        }
+      },
+      "conditions": [
+        "Use Sites A and B as defined in Q4.",
+        "Distinguish remembering the local four-domain counting rule from deciding whether its assumptions hold."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Distinguish recalling a rule from establishing its applicability.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "ISS37-D4-R1-Q06-MOVE-1"
+        },
+        {
+          "text": "Local counting assumes the localized/domain model is useful for the asked task.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "ISS37-D4-R1-Q06-MOVE-2"
+        },
+        {
+          "text": "List the conditions and look for supplied delocalisation or unusual occupancy evidence before applying the shortcut.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "ISS37-D4-R1-Q06-MOVE-3"
+        },
+        {
+          "text": "Test your proposed route on this changed case before finalising: Both sites have three sigma bonds and a lone pair. Is that alone sufficient to choose identical localized orbital-role descriptions?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "ISS37-D4-R1-Q06-MOVE-4"
+        },
+        {
+          "text": "Reserve the last judgement for yourself. Try this boundary/transfer task: Separate a recalled count from a model-selection decision in a new conjugated case.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "ISS37-D4-R1-Q06-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "ISS37-D4-R1-Q07",
+      "original_identifier": "Q7",
+      "stem": "A neutral methyl radical, CH3·, is supplied as approximately planar, with the unpaired electron in a p-like orbital perpendicular to the three C–H sigma directions. Translate that supplied model into an orbital sketch and assess whether 'three sigma bonds always leave an empty p orbital' follows. Keep the given model distinct from a universal claim.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Represent three coplanar C-H sigma directions plus the supplied singly occupied p-like orbital perpendicular to that plane. 'Three sigma bonds always leave an empty p orbital' does not follow: the orbital in this radical model is singly occupied, and one supplied case cannot establish a universal rule.",
+        "reasoning_route": [
+          {
+            "id": "ISS37-D4-R1-Q07-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Read the radical dot as explicit orbital-occupancy information.",
+            "why_valid": "The stem supplies an unpaired electron, so occupancy cannot be inferred as empty.",
+            "inputs": [
+              "owner-supplied stem"
+            ],
+            "output": "Q7 reasoning checkpoint 1"
+          },
+          {
+            "id": "ISS37-D4-R1-Q07-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Draw three coplanar C–H sigma directions and one perpendicular p-like orbital containing one electron.",
+            "why_valid": "That representation is the literal translation of the supplied planar methyl-radical model.",
+            "inputs": [
+              "output of move 1"
+            ],
+            "output": "Q7 reasoning checkpoint 2"
+          },
+          {
+            "id": "ISS37-D4-R1-Q07-MOVE-3",
+            "kind": "CONNECT",
+            "action": "Reject the universal empty-p rule because this supplied p-like orbital is singly occupied and one case cannot establish 'always'.",
+            "why_valid": "Both the occupancy fact and the scope of the evidence contradict the proposed universal statement.",
+            "inputs": [
+              "output of move 2"
+            ],
+            "output": "Q7 reasoning checkpoint 3"
+          },
+          {
+            "id": "ISS37-D4-R1-Q07-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Check that the sketch, electron count and verbal conclusion are mutually consistent.",
+            "why_valid": "A missing radical electron or an empty p orbital would contradict the givens.",
+            "inputs": [
+              "output of move 3"
+            ],
+            "output": "Represent three coplanar C-H sigma directions plus the supplied singly occupied p-like orbital perpendicular to that plane. 'Three sigma bonds always leave an empty p orbital' does not follow: the orbital in this radical model is singly occupied, and one supplied case cannot establish a universal rule."
+          }
+        ],
+        "crux_move_ref": "ISS37-D4-R1-Q07-MOVE-3",
+        "check": "Independent count: CH3 radical has 4+3=7 valence electrons; three sigma pairs use six, leaving one.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-MODEL-SCOPE-ALIGNMENT",
+      "family_ref": "FAM-CHEM-ISS37-MODEL-BOUNDARY",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q7",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:c695e46f711c83181466ec9d16ed4c02218a3622f31d825ec44fed2cf2e99f1f"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "basis": "Learner-relative estimate from the simulated owner preset using the canonical five components; no mastery percentage is inferred.",
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 2,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 2
+            }
+          },
+          "expected_time_seconds": 210,
+          "common_wrong_route": "Three sigma bonds always imply an empty residual p orbital.",
+          "cognitive_demand": {
+            "primary": "REPRESENT",
+            "secondary": [
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "ISS37-D4-R1-Q07-MOVE-2",
+          "custody": "OWNER_SUPPLIED benchmark input drafted by coordinating agent; not official exam/PYQ."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt picture would repeat the supplied situation or expose the protected decision; the linked construction and post-attempt repair provide the useful representation."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Translate occupancy as well as geometry in the supplied radical model.",
+          "connect": "A singly occupied orbital is not an empty orbital or a lone pair.",
+          "way": "Inventory the sigma electrons and remaining electron before drawing the p-like direction.",
+          "rule": "Supplied planar CH3 radical has three sigma directions and a perpendicular p-like SOMO with one electron. Three sigma bonds alone do not determine an empty residual p orbital.",
+          "check": "Independent count: CH3 radical has 4+3=7 valence electrons; three sigma pairs use six, leaving one.",
+          "probe": "Compare CH3 radical (7 valence electrons) with a model CH3+ inventory (6). Must their residual p occupancy be the same?",
+          "pattern": "No: one versus zero in these supplied local models. Repeating empty p for both reveals bonds-only occupancy inference.",
+          "transfer": "Sketch the given radical while explicitly marking the singly occupied orbital.",
+          "wrong_idea": "Three sigma bonds always imply an empty residual p orbital.",
+          "question_ref": "ISS37-D4-R1-Q07",
+          "label": "Q7",
+          "construction_ref": "CU-ISS37-MODEL-SCOPE",
+          "microtopic_ref": "MIC-CHEM-HYBRID-MODEL-SCOPE",
+          "status": "CORRECTION_CANDIDATE",
+          "parent_issue": 37,
+          "crux_move_ref": "ISS37-D4-R1-Q07-MOVE-3"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:analysis_migration": {
+          "previous_demand": {
+            "primary": "interpret",
+            "secondary": "critique"
+          },
+          "reason": "Normalize primary and secondary labels onto the registered seven-demand vocabulary without silently losing secondary work; independent calibration remains reviewable."
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-REPRESENT-D3",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CORRECTION_CANDIDATE"
+        }
+      },
+      "conditions": [
+        "The benchmark supplies neutral CH3· as approximately planar.",
+        "The unpaired electron is supplied as occupying a p-like orbital perpendicular to the three C–H sigma directions.",
+        "The supplied model must be kept distinct from a universal claim."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Translate occupancy as well as geometry in the supplied radical model.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "ISS37-D4-R1-Q07-MOVE-1"
+        },
+        {
+          "text": "A singly occupied orbital is not an empty orbital or a lone pair.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "ISS37-D4-R1-Q07-MOVE-2"
+        },
+        {
+          "text": "Inventory the sigma electrons and remaining electron before drawing the p-like direction.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "ISS37-D4-R1-Q07-MOVE-3"
+        },
+        {
+          "text": "Test your proposed route on this changed case before finalising: Compare CH3 radical (7 valence electrons) with a model CH3+ inventory (6). Must their residual p occupancy be the same?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "ISS37-D4-R1-Q07-MOVE-4"
+        },
+        {
+          "text": "Reserve the last judgement for yourself. Try this boundary/transfer task: Sketch the given radical while explicitly marking the singly occupied orbital.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "ISS37-D4-R1-Q07-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "ISS37-D4-R1-Q08",
+      "original_identifier": "Q8",
+      "stem": "Two qualitative descriptions of formamide are proposed: a completely localised pyramidal nitrogen lone pair, and an approximately planar nitrogen arrangement with possible lone-pair donation into the carbonyl pi system. Propose observations that could discriminate between them, explain the warranted inferences, and identify at least one inference that geometry alone cannot establish.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Discriminating evidence could include nitrogen planarity/pyramidality, C-N structural or rotational behaviour, spectroscopy, and a defined electronic-structure calculation. Planarity is consistent with a delocalised amide model but geometry alone cannot quantify donation or uniquely establish one orbital/electronic partition.",
+        "reasoning_route": [
+          {
+            "id": "ISS37-D4-R1-Q08-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Choose observations for which the localised-pyramidal and planar-delocalised descriptions make different qualitative expectations.",
+            "why_valid": "Discrimination requires evidence connected to a prediction difference.",
+            "inputs": [
+              "owner-supplied stem"
+            ],
+            "output": "Q8 reasoning checkpoint 1"
+          },
+          {
+            "id": "ISS37-D4-R1-Q08-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Organize planarity, C–N structural/rotational behaviour, spectroscopy and defined electronic-structure calculations as distinct evidence channels.",
+            "why_valid": "Different channels probe different consequences and reduce reliance on one ambiguous observable.",
+            "inputs": [
+              "output of move 1"
+            ],
+            "output": "Q8 reasoning checkpoint 2"
+          },
+          {
+            "id": "ISS37-D4-R1-Q08-MOVE-3",
+            "kind": "CONNECT",
+            "action": "For each channel, state only the inference it warrants—for example consistency with delocalisation rather than a unique measured resonance fraction.",
+            "why_valid": "Evidence can favour a model without uniquely fixing an orbital partition or donation magnitude.",
+            "inputs": [
+              "output of move 2"
+            ],
+            "output": "Q8 reasoning checkpoint 3"
+          },
+          {
+            "id": "ISS37-D4-R1-Q08-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Identify explicitly that geometry alone cannot quantify donation or prove one unique electronic account.",
+            "why_valid": "Multiple electronic descriptions can be compatible with similar geometry, so stronger claims need additional probes/models.",
+            "inputs": [
+              "output of move 3"
+            ],
+            "output": "Discriminating evidence could include nitrogen planarity/pyramidality, C-N structural or rotational behaviour, spectroscopy, and a defined electronic-structure calculation. Planarity is consistent with a delocalised amide model but geometry alone cannot quantify donation or uniquely establish one orbital/electronic partition."
+          }
+        ],
+        "crux_move_ref": "ISS37-D4-R1-Q08-MOVE-3",
+        "check": "Use two compatible electronic descriptions of a planar structure as a counterexample to geometry-implies-unique-orbitals.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-MODEL-SCOPE-ALIGNMENT",
+      "family_ref": "FAM-CHEM-ISS37-MODEL-BOUNDARY",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q8",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:706e95213624157e3574a604f282e592cdef37d9c006c6c4a3874aad31959949"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "basis": "Learner-relative estimate from the simulated owner preset using the canonical five components; no mastery percentage is inferred.",
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 2,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 2
+            }
+          },
+          "expected_time_seconds": 300,
+          "common_wrong_route": "Geometry alone uniquely measures donation and a rotational barrier.",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": []
+          },
+          "stable_crux_move": "ISS37-D4-R1-Q08-MOVE-2",
+          "custody": "OWNER_SUPPLIED benchmark input drafted by coordinating agent; not official exam/PYQ."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt picture would repeat the supplied situation or expose the protected decision; the linked construction and post-attempt repair provide the useful representation."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Separate a discriminating observation from the strength of the inference it warrants.",
+          "connect": "A measurement can constrain multiple models without uniquely selecting an orbital decomposition.",
+          "way": "For each proposed observation write prediction, alternatives, conditions and inference limit.",
+          "rule": "Planarity/bond metrics and condition-specific spectroscopic/dynamic evidence can test localized versus delocalised accounts. Geometry alone does not uniquely measure donation, hybrid coefficients or a rotational barrier; exact empirical numbers need species/conditions/source.",
+          "check": "Use two compatible electronic descriptions of a planar structure as a counterexample to geometry-implies-unique-orbitals.",
+          "probe": "Does observed planar geometry alone measure donor strength? What extra information would a numerical rotational barrier require?",
+          "pattern": "No; a specified experiment or calculation and conditions/model are needed. Repeating direct geometry-to-strength inference exposes overinterpretation.",
+          "transfer": "Design a second independent observation and state one alternative explanation.",
+          "wrong_idea": "Geometry alone uniquely measures donation and a rotational barrier.",
+          "question_ref": "ISS37-D4-R1-Q08",
+          "label": "Q8",
+          "construction_ref": "CU-ISS37-MODEL-SCOPE",
+          "microtopic_ref": "MIC-CHEM-HYBRID-MODEL-SCOPE",
+          "status": "CORRECTION_CANDIDATE",
+          "parent_issue": 37,
+          "crux_move_ref": "ISS37-D4-R1-Q08-MOVE-3"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:analysis_migration": {
+          "previous_demand": {
+            "primary": "justify",
+            "secondary": "critique"
+          },
+          "reason": "Normalize primary and secondary labels onto the registered seven-demand vocabulary without silently losing secondary work; independent calibration remains reviewable."
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-JUSTIFY-D4",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CORRECTION_CANDIDATE"
+        }
+      },
+      "conditions": [
+        "Compare a completely localised pyramidal nitrogen-lone-pair description with an approximately planar nitrogen arrangement allowing possible donation into the carbonyl pi system.",
+        "At least one proposed inference must be identified as not establishable by geometry alone."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Separate a discriminating observation from the strength of the inference it warrants.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "ISS37-D4-R1-Q08-MOVE-1"
+        },
+        {
+          "text": "A measurement can constrain multiple models without uniquely selecting an orbital decomposition.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "ISS37-D4-R1-Q08-MOVE-2"
+        },
+        {
+          "text": "For each proposed observation write prediction, alternatives, conditions and inference limit.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "ISS37-D4-R1-Q08-MOVE-3"
+        },
+        {
+          "text": "Test your proposed route on this changed case before finalising: Does observed planar geometry alone measure donor strength? What extra information would a numerical rotational barrier require?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "ISS37-D4-R1-Q08-MOVE-4"
+        },
+        {
+          "text": "Reserve the last judgement for yourself. Try this boundary/transfer task: Design a second independent observation and state one alternative explanation.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "ISS37-D4-R1-Q08-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "ISS37-D4-R1-Q09",
+      "original_identifier": "Q9",
+      "stem": "The benchmark supplies a simplified torsional model in which the relevant p-orbital overlap factor varies as cos(theta), where theta is the angle between their alignment directions. Compare theta = 0, 60 and 90 degrees, then assess the claim that the molecule's total energy must therefore vary as cos(theta). Separate execution of the given model from a justified claim about the physical system.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "For the supplied overlap factor: cos(0°)=1, cos(60°)=1/2, cos(90°)=0. The claim that total molecular energy must therefore vary as cos(theta) is not warranted: total energy contains other contributions, and a relation from overlap factor to energy would need to be supplied or established independently.",
+        "reasoning_route": [
+          {
+            "id": "ISS37-D4-R1-Q09-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Bind the supplied cos(theta) formula to the named quantity: p-orbital overlap factor.",
+            "why_valid": "A mathematical relation warrants claims only about the variable it defines unless another bridge is given.",
+            "inputs": [
+              "owner-supplied stem"
+            ],
+            "output": "Q9 reasoning checkpoint 1"
+          },
+          {
+            "id": "ISS37-D4-R1-Q09-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Evaluate cos(0 degrees), cos(60 degrees) and cos(90 degrees) as 1, 1/2 and 0.",
+            "why_valid": "These are the exact trigonometric values requested by the supplied simplified overlap model.",
+            "inputs": [
+              "output of move 1"
+            ],
+            "output": "Q9 reasoning checkpoint 2"
+          },
+          {
+            "id": "ISS37-D4-R1-Q09-MOVE-3",
+            "kind": "CONNECT",
+            "action": "Reject the inference that total molecular energy must therefore follow cos(theta).",
+            "why_valid": "No relation connecting the overlap factor to total molecular energy is supplied, and total energy can contain additional contributions.",
+            "inputs": [
+              "output of move 2"
+            ],
+            "output": "Q9 reasoning checkpoint 3"
+          },
+          {
+            "id": "ISS37-D4-R1-Q09-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Hold theta fixed while imagining another energy contribution changing; note that overlap stays fixed while total energy need not.",
+            "why_valid": "This counterexample exposes the underdetermination without denying the supplied overlap calculation.",
+            "inputs": [
+              "output of move 3"
+            ],
+            "output": "For the supplied overlap factor: cos(0°)=1, cos(60°)=1/2, cos(90°)=0. The claim that total molecular energy must therefore vary as cos(theta) is not warranted: total energy contains other contributions, and a relation from overlap factor to energy would need to be supplied or established independently."
+          }
+        ],
+        "crux_move_ref": "ISS37-D4-R1-Q09-MOVE-3",
+        "check": "At theta=60 degrees the factor is fixed at 1/2 while adding an independently specified energy contribution changes total energy. This falsifies uniqueness without modelling formamide quantitatively.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-MODEL-SCOPE-ALIGNMENT",
+      "family_ref": "FAM-CHEM-ISS37-MODEL-BOUNDARY",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q9",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:7ef3b550ea1f2fbcb45cde77a92ed08db1dfbd1d8c631676914cca9190c9a52f"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 9,
+            "basis": "Learner-relative estimate from the simulated owner preset using the canonical five components; no mastery percentage is inferred.",
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 2,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            }
+          },
+          "expected_time_seconds": 300,
+          "common_wrong_route": "The given overlap factor is the total molecular energy.",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": [
+              "REPRESENT"
+            ]
+          },
+          "stable_crux_move": "ISS37-D4-R1-Q09-MOVE-2",
+          "custody": "OWNER_SUPPLIED benchmark input drafted by coordinating agent; not official exam/PYQ."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Execute the supplied cosine model and separately test the total-energy inference.",
+          "connect": "An overlap factor is not an energy Hamiltonian or the whole energy budget.",
+          "way": "Compute the three factors, then identify an independent energy term that the input does not constrain.",
+          "rule": "Given factors at 0,60,90 degrees are 1,1/2,0. Both cosine and cosine-squared are even. A degenerate two-orbital Hamiltonian with coupling t0 cos(theta) gives epsilon ± |t0 cos(theta)|, so no universal cosine-squared total-energy law follows.",
+          "check": "At theta=60 degrees the factor is fixed at 1/2 while adding an independently specified energy contribution changes total energy. This falsifies uniqueness without modelling formamide quantitatively.",
+          "probe": "If theta stays at 60 degrees while an independent energy term changes, does overlap change? Does total energy necessarily stay fixed?",
+          "pattern": "Overlap factor unchanged; total energy need not remain fixed. Repeated equality of overlap and total energy identifies variable conflation.",
+          "transfer": "State assumptions needed for a weak-coupling second-order squared-interaction estimate.",
+          "wrong_idea": "The given overlap factor is the total molecular energy.",
+          "question_ref": "ISS37-D4-R1-Q09",
+          "label": "Q9",
+          "construction_ref": "CU-ISS37-MODEL-SCOPE",
+          "microtopic_ref": "MIC-CHEM-HYBRID-MODEL-SCOPE",
+          "status": "CORRECTION_CANDIDATE",
+          "parent_issue": 37,
+          "interaction": "MODEL_SCOPE_PROBE",
+          "crux_move_ref": "ISS37-D4-R1-Q09-MOVE-3"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:analysis_migration": {
+          "previous_demand": {
+            "primary": "critique",
+            "secondary": "interpret"
+          },
+          "reason": "Normalize primary and secondary labels onto the registered seven-demand vocabulary without silently losing secondary work; independent calibration remains reviewable."
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-JUSTIFY-D4",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CORRECTION_CANDIDATE"
+        }
+      },
+      "conditions": [
+        "The supplied simplified torsional model defines the relevant p-orbital overlap factor as cos(theta).",
+        "theta is the angle between the relevant alignment directions.",
+        "Compare theta = 0, 60 and 90 degrees.",
+        "Execution of the supplied overlap model must be separated from claims about total molecular energy."
+      ],
+      "figure_refs": [
+        "REP-CHEM-ISS37-TORSION-OVERLAP"
+      ],
+      "scaffolds": [
+        {
+          "text": "Execute the supplied cosine model and separately test the total-energy inference.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "ISS37-D4-R1-Q09-MOVE-1"
+        },
+        {
+          "text": "An overlap factor is not an energy Hamiltonian or the whole energy budget.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "ISS37-D4-R1-Q09-MOVE-2"
+        },
+        {
+          "text": "Compute the three factors, then identify an independent energy term that the input does not constrain.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "ISS37-D4-R1-Q09-MOVE-3"
+        },
+        {
+          "text": "Test your proposed route on this changed case before finalising: If theta stays at 60 degrees while an independent energy term changes, does overlap change? Does total energy necessarily stay fixed?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "ISS37-D4-R1-Q09-MOVE-4"
+        },
+        {
+          "text": "Reserve the last judgement for yourself. Try this boundary/transfer task: State assumptions needed for a weak-coupling second-order squared-interaction estimate.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "ISS37-D4-R1-Q09-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "ISS37-D4-R1-Q10",
+      "original_identifier": "Q10",
+      "stem": "A proposed teaching rule says, 'Count sigma bonds and lone pairs, assign a hybridisation label, and the label explains every shape and reactivity difference.' Audit this rule against NH3, allene, formamide and the separated amine site H–C(=O)–CH2–NH2. Produce a qualified decision framework, identify where local counting is useful, and state what evidence or model is needed beyond it.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Use local counting as the first stage, then test connectivity/adjacency, compatible p/SOMO/donor-acceptor pathways and model sufficiency before using a hybridisation label at the warranted descriptive level. NH3 exposes lone-pair geometry effects, allene requires orthogonal p systems, formamide is delocalisation-sensitive, and the separated amine lacks the supplied continuous p pathway. Stronger shape/reactivity claims need an appropriate orbital/electronic model and evidence.",
+        "reasoning_route": [
+          {
+            "id": "ISS37-D4-R1-Q10-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Retain local sigma/lone-pair inventory as the first useful step rather than discarding hybridisation language entirely.",
+            "why_valid": "The proposed rule contains useful local information even though its explanatory scope is overclaimed.",
+            "inputs": [
+              "owner-supplied stem"
+            ],
+            "output": "Q10 reasoning checkpoint 1"
+          },
+          {
+            "id": "ISS37-D4-R1-Q10-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Map NH3, allene, formamide and the separated amine to the extra checkpoint each case demands.",
+            "why_valid": "The four examples stress different limits: lone-pair geometry, orthogonal p systems, delocalisation and pathway interruption.",
+            "inputs": [
+              "output of move 1"
+            ],
+            "output": "Q10 reasoning checkpoint 2"
+          },
+          {
+            "id": "ISS37-D4-R1-Q10-MOVE-3",
+            "kind": "CONNECT",
+            "action": "Build a staged framework: local count -> connectivity/adjacency -> compatible orbital path -> model sufficiency -> warranted label/claim.",
+            "why_valid": "Each escalation is triggered by evidence the simpler local description cannot by itself resolve.",
+            "inputs": [
+              "output of move 2"
+            ],
+            "output": "Q10 reasoning checkpoint 3"
+          },
+          {
+            "id": "ISS37-D4-R1-Q10-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Attach an evidence/model escalation rule to claims about exact geometry, resonance magnitude, energy or reactivity.",
+            "why_valid": "Stronger physical claims require observations or explicit models that go beyond a local hybridisation label.",
+            "inputs": [
+              "output of move 3"
+            ],
+            "output": "Use local counting as the first stage, then test connectivity/adjacency, compatible p/SOMO/donor-acceptor pathways and model sufficiency before using a hybridisation label at the warranted descriptive level. NH3 exposes lone-pair geometry effects, allene requires orthogonal p systems, formamide is delocalisation-sensitive, and the separated amine lacks the supplied continuous p pathway. Stronger shape/reactivity claims need an appropriate orbital/electronic model and evidence."
+          }
+        ],
+        "crux_move_ref": "ISS37-D4-R1-Q10-MOVE-3",
+        "check": "Changed check: apply the framework to CH3 radical; three bonds plus one unpaired electron require an occupancy step absent from the original slogan.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-MODEL-SCOPE-ALIGNMENT",
+      "family_ref": "FAM-CHEM-ISS37-MODEL-BOUNDARY",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q10",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:dfef0e64ec86b772252e01b766d2c1c19c91c72393833c9f5448bb551dc4149b"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "basis": "Learner-relative estimate from the simulated owner preset using the canonical five components; no mastery percentage is inferred.",
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 2,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 2
+            }
+          },
+          "expected_time_seconds": 300,
+          "common_wrong_route": "A local count and label explain every geometry and reactivity difference.",
+          "cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": [
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "ISS37-D4-R1-Q10-MOVE-2",
+          "custody": "OWNER_SUPPLIED benchmark input drafted by coordinating agent; not official exam/PYQ."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt picture would repeat the supplied situation or expose the protected decision; the linked construction and post-attempt repair provide the useful representation."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Audit a proposed universal rule across cases that stress different boundaries.",
+          "connect": "Counts, orbital roles, geometry and physical evidence are distinct layers.",
+          "way": "Use NH3, allene, amide and separated amine as tests; retain a conditional framework rather than another universal slogan.",
+          "rule": "Use local count as a bounded starting model, then check residual p directions, occupancy, adjacency/alignment and evidence. A label alone explains neither every geometry nor all reactivity. NH3, allene and amide stress different limitations.",
+          "check": "Changed check: apply the framework to CH3 radical; three bonds plus one unpaired electron require an occupancy step absent from the original slogan.",
+          "probe": "Would one bond/lone-pair count plus a label explain NH3 shape, allene terminal-plane relation and amide donation by the same mechanism?",
+          "pattern": "No; their explanatory jobs differ. Repeating label-as-final-cause across all cases exposes an overgeneralised framework.",
+          "transfer": "Produce a qualified procedure with an explicit stop-and-seek-more-evidence branch.",
+          "wrong_idea": "A local count and label explain every geometry and reactivity difference.",
+          "question_ref": "ISS37-D4-R1-Q10",
+          "label": "Q10",
+          "construction_ref": "CU-ISS37-MODEL-SCOPE",
+          "microtopic_ref": "MIC-CHEM-HYBRID-MODEL-SCOPE",
+          "status": "CORRECTION_CANDIDATE",
+          "parent_issue": 37,
+          "crux_move_ref": "ISS37-D4-R1-Q10-MOVE-3"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:analysis_migration": {
+          "previous_demand": {
+            "primary": "transfer",
+            "secondary": "critique"
+          },
+          "reason": "Normalize primary and secondary labels onto the registered seven-demand vocabulary without silently losing secondary work; independent calibration remains reviewable."
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-SYNTHESIZE-D4",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CORRECTION_CANDIDATE"
+        }
+      },
+      "conditions": [
+        "Audit the proposed rule against NH3, allene, formamide and H–C(=O)–CH2–NH2.",
+        "The final framework must identify where local counting is useful and where additional evidence or a model is needed."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Audit a proposed universal rule across cases that stress different boundaries.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "ISS37-D4-R1-Q10-MOVE-1"
+        },
+        {
+          "text": "Counts, orbital roles, geometry and physical evidence are distinct layers.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "ISS37-D4-R1-Q10-MOVE-2"
+        },
+        {
+          "text": "Use NH3, allene, amide and separated amine as tests; retain a conditional framework rather than another universal slogan.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "ISS37-D4-R1-Q10-MOVE-3"
+        },
+        {
+          "text": "Test your proposed route on this changed case before finalising: Would one bond/lone-pair count plus a label explain NH3 shape, allene terminal-plane relation and amide donation by the same mechanism?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "ISS37-D4-R1-Q10-MOVE-4"
+        },
+        {
+          "text": "Reserve the last judgement for yourself. Try this boundary/transfer task: Produce a qualified procedure with an explicit stop-and-seek-more-evidence branch.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "ISS37-D4-R1-Q10-MOVE-4"
+        }
+      ]
+    }
+  ]
+}
