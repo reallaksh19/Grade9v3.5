@@ -3,7 +3,7 @@
 Generated from `Shared/web/interactive-page-blueprints.v1.json` by `Shared/tools/blueprint_spec.py`. Do not edit.
 To change what a page shows, change the blueprint; the renderer, the quality gate and the owner-bank scaffold follow.
 
-Registry 1.9.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
+Registry 1.10.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
 
 Depth: min_items is the floor below which a component does not count as present. target_items is the depth of the reference page, and target_items_by_band gives it by the difficulty band the record declares at band_source (for a Core1A construction unit, the hardest band among the bank questions it names in crux_question_refs). Between the floor and the reference depth the renderer says so as an advisory.
 
@@ -82,7 +82,7 @@ Browser audit (`tools/site-audit/core-page-audit.mjs --profile tablet-12.7`): me
 
 **Evidence.** A digest is taken over the bytes of a file, so the bytes must be the same on every machine. Line endings: LF (`.gitattributes`). Text is LF in every working tree (`* text=auto eol=lf`). A file already committed with CRLF keeps its bytes, so no recorded digest moves; a new file is LF.
 
-## BP-CORE2-SOURCE-QUESTION@1.5.0 (CORE2)
+## BP-CORE2-SOURCE-QUESTION@1.6.0 (CORE2)
 
 Learner job: Preserve authentic assessment demand while allowing bounded, provenance-explicit help that advances the learner without becoming a Question Clinic.
 
@@ -184,7 +184,7 @@ Expected: an official page missing it carries an advisory naming the field to au
 - The learner gets: Test the answer by a route the working did not use.
 - The reference page: selected_question_bank_TABLET_STUDY: the 'Check.' line under the answer
 - Record fields: `answer.check`
-- To author it: One sentence that tests the result independently: a limiting case, a unit check or a special value.
+- To author it: Use a changed case, conservation ledger, counterexample or independent operation with expected result. Repeating the wrong rule as a rejection is not an independent check.
 
 ### Optional components
 
@@ -199,13 +199,20 @@ Optional: shown when the record has it.
 
 **CONCEPT_NAV** · slot `support` · LINK_LIST
 
-- The learner gets: Send the learner back to the concept page for the idea the question uses.
+- The learner gets: Land on the exact construction unit; question-specific repair includes a return link. Record the help as assisted, not independent success.
 - The reference page: selected_question_bank_TABLET_STUDY: concept links beside the hints (the Core1A cross-link)
 - Record fields: `primary_capability_ref`, `secondary_capability_refs`
 
-## BP-CORE1A-CONSTRUCTION@1.4.0 (CORE1A)
+**DIAGNOSTIC_REPAIR** · slot `solution`, inside SOLUTION · CHECK_BOX
 
-Learner job: Build the concept around its crux, study one worked example with prediction before reveal, then retrieve and apply the idea with less support.
+- The learner gets: After the source attempt, elicit a changed-case prediction and reason before showing a diagnostic pattern, bounded replacement rule, fresh application and exact repair link.
+- The reference page: Issue #32 Q1/Q4 observed hint and representation defects; Issue #31 repeated reject-the-rule checks, correction cycle R2.
+- Record fields: `extensions.grade9v3:learning_repair`
+- To author it: Use question-specific paired/changed cases that separate the predicted misconception from a slip. Preserve uncertainty; do not grade free response by keyword or declare mastery. Optional for legacy records; when authored, question/crux/target validation remains mandatory. New semantic review must still adjudicate M1–M3.
+
+## BP-CORE1A-CONSTRUCTION@1.5.0 (CORE1A)
+
+Learner job: Build the concept around its crux, study one worked example with prediction before reveal, then retrieve and apply the idea with less support. Construct on a distinct teaching anchor, then test a fresh changed case; worked protected source questions are not the default lesson anchor.
 
 Theme: opens light, and the learner can switch.
 
@@ -250,14 +257,14 @@ Required: a page without it is a gap, and the quality gate fails it.
 
 **WORKED_EXAMPLE** · slot `construction`, once per construction unit · PREDICT_REVEAL_WORKED_CARD
 
-- The learner gets: Walk one authentic question through the construction while asking the learner to predict each next step before revealing it.
+- The learner gets: Predict through a distinct teaching instance that explicitly builds the target assessment crux.
 - The reference page: core1a-motion-in-a-plane-tablet: the worked card
-- Record fields: `construction_units[].worked_anchor_ref`, `construction_units[].bank_anchor_ref`
-- To author it: worked_anchor_ref names a question of the package that exercises exactly this unit's move. For the unit that builds toward a question of the product's bank (an owner-supplied question), set bank_anchor_ref to that question's id instead: the page then walks through the Owner's own question with its verified route, and nothing is copied into the package.
+- Record fields: `construction_units[].worked_anchor_ref`, `construction_units[].bank_anchor_ref`, `extensions.grade9v3:lesson_anchors`
+- To author it: Use the microtopic extension grade9v3:lesson_anchors keyed by construction unit. Name target_question_ref, target_crux_move_ref and construction_ref, with a new stem, reasoned answer and independent check. The target must resolve to this product bank; a hardest-target unit must bind that precise question. Preserve the legacy worked/bank-anchor path where no extension is authored.
 
 **TRAP_REPAIR** · slot `repair_closure`, once per construction unit · DISCLOSURE_TRAP_CARD · at least 1 item(s)
 
-- The learner gets: Offer the mistake/diagnose/repair clinic on demand; collapsed by default so it does not compete with the main construction.
+- The learner gets: Keep mistake clinics closed initially. Diagnose using discriminating changed cases, establish a bounded replacement rule, and return to a fresh application.
 - The reference page: core1a-motion-in-a-plane-tablet: the easy-mistake card with diagnostic and repair
 - Record fields: `misconceptions`, `construction_units[].misconception_indexes`
 - To author it: misconceptions[] holds wrong_idea, diagnostic_prompt and repair for this concept; each construction unit names the ones that apply in misconception_indexes.
@@ -314,7 +321,7 @@ Optional: shown when the record has it.
 - The learner gets: Keep question-set rationale available on demand without interrupting the learning path.
 - The reference page: core1a-motion-in-a-plane-tablet: each concept card is built around the inferential leap the practice questions need
 - Record fields: `construction_units[].crux_question_refs`, `construction_units[].crux_step_ref`, `answer.crux_move_ref`
-- To author it: Write crux_question_refs on a construction unit: the ids of the bank questions whose crux the unit builds, and crux_step_ref: the one of its step_refs that builds the move those questions turn on (the page marks that step). The toughest question of the set (the deploy names it) must be named by a unit of the concept it belongs to; that unit's steps must lead to the move the question turns on, and its worked example is that question (bank_anchor_ref). A unit that only shares the question's topic does not build its crux, and a step that mentions the idea in passing is not the step that builds it: draw the whole idea (for a sum of two vectors, every angle and not only the right angle).
+- To author it: Name actual crux_question_refs and crux_step_ref. The hardest-target unit must teach that precise bridge through its worked instance; a distinct lesson anchor must explicitly bind the target question, its actual crux move and this construction unit. A shared topic alone is insufficient.
 
 **PRACTICE_LINKS** · slot `repair_closure` · CHIPS
 
@@ -333,6 +340,13 @@ Optional: shown when the record has it.
 - The learner gets: Derived transitions connecting Learn, Practice, Interactive, and Question Bank.
 - The reference page: core1a-nlm-friction-tablet: learning transition bar
 - Record fields: `concept_bundle`
+
+**MODEL_SCOPE_PROBE** · slot `representation`, once per construction unit · CHECK_BOX
+
+- The learner gets: When explicitly authored, make bounded parameter/countermodel construction visible beside the staged visual; keep diagnostic help separately closed.
+- The reference page: Issue #37 Q9 and #38 Q2/Q9 correction cycle: absent continuous model-boundary construction.
+- Record fields: `extensions.grade9v3:question_repairs`
+- To author it: Opt in with a question/crux/construction-bound MODEL_SCOPE_PROBE repair record. Declare axis, independent variables, toy versus physical outputs and a static fallback. Do not infer applicability from the demand label.
 
 ## BP-EXPLORER-GCDR@1.0.0 (EXPLORER)
 

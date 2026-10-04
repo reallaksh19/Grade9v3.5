@@ -20,8 +20,8 @@ class Core2V2LearnerJobBoundary(unittest.TestCase):
         core1a = core_template_contract.resolve_web_blueprint_for_core("CORE1A")
         core2 = core_template_contract.resolve_web_blueprint_for_core("CORE2")
 
-        self.assertEqual(core1a["ref"], "BP-CORE1A-CONSTRUCTION@1.4.0")
-        self.assertEqual(core2["ref"], "BP-CORE2-SOURCE-QUESTION@1.5.0")
+        self.assertEqual(core1a["ref"], "BP-CORE1A-CONSTRUCTION@1.5.0")
+        self.assertEqual(core2["ref"], "BP-CORE2-SOURCE-QUESTION@1.6.0")
         self.assertIn(
             "practice_navigation",
             next(slot for slot in core1a["slots"] if slot["id"] == "repair_closure")["accepts_blocks"],

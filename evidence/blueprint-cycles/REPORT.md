@@ -1,5 +1,7 @@
 Current recovery execution: [recovery-20261004](recovery-20261004/README.md), using production authority `97c18d846b1efc14c4e1dc7028ef5dcb861f3cc9`. Fresh pages replay for all eight unchanged canonical input packs; actual browser audits and full suites FAIL. The remainder of this report describes the historical correction round at `46e91c9ec4285e14ca0db469eda281ff31df596a`; its NOT_RUN statements and 65-test results retain that historical scope. Current receipts and ARTIFACT-MANIFEST.json bind the fresh review tree. The opt-in amendment's interrupted, missing historical logs are not claimed recovered.
 
+Latest continuation: [compatibility-20261004](compatibility-20261004/README.md). All nine initial additional version/projection failure IDs are resolved; 23 targeted tests and eight replays pass. Limited tablet profile PASS follows the header/font correction; broader Core1A and full suite remain FAIL. Open scientific and teaching findings are retained. U02 is incomplete.
+
 Recovery publication note (2026-10-04): the interrupted local files survived; actual production code is in PR #48, and this pack publishes the corrected inputs, HTML, receipts and portable replay. The earlier documentation-only checkpoint remains historical.
 
 # Blueprint refinement through four repair cycles

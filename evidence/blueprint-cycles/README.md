@@ -6,7 +6,7 @@ Read REPORT.md and each ISS*/cycle-receipt.json. Canonical inputs are under ISS*
 
 ## Reproduce the published artifact snapshot
 
-The original artifact snapshot remains at `46e91c9ec4285e14ca0db469eda281ff31df596a`. Current stored renders were freshly regenerated against `97c18d846b1efc14c4e1dc7028ef5dcb861f3cc9`, with unchanged corrected canonical inputs. All eight replay successfully. Fresh browser measurements and full suites fail; read [the recovery execution record](recovery-20261004/README.md) for exact scope and hashes. The predecessor's missing historical logs are not claimed recovered.
+The original artifact snapshot remains at `46e91c9ec4285e14ca0db469eda281ff31df596a`. [Fresh recovery](recovery-20261004/README.md) reconciles the interrupted amendment. The latest [compatibility slice](compatibility-20261004/README.md) regenerates all eight packs with unchanged corrected canonical inputs and explicit authority hashes. Replay and the limited tablet profile PASS; full suite and broader Core1A audit FAIL. Missing historical logs are not claimed recovered.
 
 Python 3.12, Node 22, jsonschema 4.17.3 and lxml were used for the recorded checks. Install project dependencies or these explicit Python packages in an isolated environment before running:
 
@@ -32,7 +32,7 @@ The static-gate command writes each actual verdict. Zero content findings is com
 - A nonchemistry specimen for module generality; learner testing where effectiveness is claimed.
 - Publication/PDF closure and owner decision.
 
-The six focus tests, source pins and all eight replay results are evidence of their stated checks only. All ledgers remain AUTHORED_REQUIRES_EXACT_RENDER_REVIEW and golden false. The fresh existing tablet audits FAIL for all eight packs; full repair/return, print and learner-effectiveness review remains pending.
+The six focus tests, source pins and all eight replay results are evidence of their stated checks only. All ledgers remain AUTHORED_REQUIRES_EXACT_RENDER_REVIEW and golden false. The latest limited tablet audits PASS, with figure legibility and broader phone/focus findings still open. Full repair/return, print and learner-effectiveness review remains pending.
 
 author_repairs.py and visual_repairs.py preserve authored correction data and SVG constructors. The original source branches/materializers remain the provenance for the first submissions. Replay consumes the stored corrected canonical inputs, so it needs no chat-specific scratch directory or hidden authoring state.
 

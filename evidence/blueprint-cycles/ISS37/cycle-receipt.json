@@ -5,7 +5,7 @@
   "status": "CANDIDATE",
   "renderer": "render_core/2",
   "registry_version": "1.10.0",
-  "render_digest": "6dac9e0ac07c3559",
+  "render_digest": "c171934da6923bd9",
   "source_bank_sha256": "d5b33cbbe69d6342060645961c99d326eba6fa4789816c35d97ce407897422f7",
   "source_package_sha256": "c32c991ae373c11daba521acecb6492d3575d5a216661667c31b3eefb61b4444",
   "source_manifest_sha256": "6233f8f5f437ff2130fb616e6956ce40fd58c2c1636de47dca56183835b056ae",
@@ -34,23 +34,23 @@
     }
   ],
   "page_hashes": {
-    "core1a.html": "1133c89162054cede506f1de44dcb34b68930d1bd26a0bce39fa0f661750b662",
-    "core2.html": "0b7a4c309a7c23d7b9e8ebb2619204d839a27d46962ebd6412d8cf6e81b889a8",
-    "index.html": "7f40ce1d220ec62cc9e7a6272c0e46c4e9ad1f6f577c21ce2b20bc0301d984aa"
+    "core1a.html": "08ee978e36727d0f3d7c64dd8e464fc1a2c8619b960530a891bc21fe5fe45f63",
+    "core2.html": "f894bad921523cbe8721740eb7265f2ea09b42537e7ae9f31bed67cb0410c4a2",
+    "index.html": "288cba0ed347fc6eb9cc35a193b342d5b714388647cc0673b045b949257e9881"
   },
-  "browser": "FAIL_EXISTING_TABLET_AUDIT",
+  "browser": "PARTIAL_PASS_TABLET_PROFILE_WITH_OPEN_QUALITY_FINDINGS",
   "all_12_facets_independently_certified": false,
   "golden": false,
   "observation": "LOCAL_EXECUTION + ARTIFACT_INSPECTION",
   "oracle": "IMPLEMENTATION_COUPLED plus separate academic correction data",
   "render_basis": {
-    "source_commit": "97c18d846b1efc14c4e1dc7028ef5dcb861f3cc9",
+    "source_commit": "346accad5f2489d6a082cffd927c84d4295fb6e3",
     "authority_sha256": {
-      "Shared/tools/render_core.py": "a086db360f77995f36cc062ecba7d68494c0d9f02e6f46ddd76461bff2e1447e",
+      "Shared/tools/render_core.py": "8613cad13176b5577394329a0ddf8edf8446b14fecebe91a5a7410da40139691",
       "Shared/tools/core2_v2.py": "ceeb0c50e65f7967f6890ac7f14c6c3a63ca9f3be8d8f2728da98ffe55d580ef",
       "Shared/tools/learning_repair.py": "62b2ac09b6015cd035e604d28b4782ef231f22806c2162e65252cd08e118208f",
       "Shared/web/interactive-page-blueprints.v1.json": "d141f40df8ef514f00aa6e521fed348203d7a5b4daac3ccaade19c7cf3e771da",
-      "public/css/modern-learner.css": "496de1fc6b486a3fa0ec2d782462905d35e3dad64593c8f996929e8963318925",
+      "public/css/modern-learner.css": "24a4c6db8cc1d4948ffc91b32a46495a27be2ebad6987b9ecad2bc021e7f5596",
       "public/css/tablet-12-7.css": "a8d2f54184818bf4fa3f5acdb61e6efc2c8103e475b0bb4a4c0747d8898455ab",
       "public/js/display-controls.js": "bf5737e1a87ec6d1c5021f368c3aaf96d7037e1440d55b6e7d4cb168d962bfd6",
       "public/js/site-header.js": "72a1f89b975c36ea8fb0b0c4170f47533dc9e49e59c4120cd90c6383128922f2"
@@ -64,7 +64,8 @@
     "legacy_source_hashes": "Retained from predecessor receipt; not used as corrected-input digests.",
     "observation": "NEW_LOCAL_EXECUTION",
     "method": "PRODUCTION_RENDERER_API_WITH_LOCAL_SCHEMA_RESOLVER",
-    "historical_artifact_snapshot": "46e91c9ec4285e14ca0db469eda281ff31df596a"
+    "historical_artifact_snapshot": "46e91c9ec4285e14ca0db469eda281ff31df596a",
+    "source_commit_role": "CHECKOUT_BASE; authority_sha256 binds actual tested working-tree files"
   },
-  "browser_evidence": "../recovery-20261004/browser-bindings.json#ISS37"
+  "browser_evidence": "../compatibility-20261004/browser-bindings.json#ISS37"
 }

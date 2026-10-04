@@ -5,7 +5,7 @@
   "status": "CANDIDATE",
   "renderer": "render_core/2",
   "registry_version": "1.10.0",
-  "render_digest": "7b71b5dd5bc1d4f0",
+  "render_digest": "facb3a36c3287a00",
   "source_bank_sha256": "ac6847cd7cfd1c953d746e4f9d1ff250f4f13c8734b6cf606e6f750f736cb266",
   "source_package_sha256": "6ffdae753c0aba41b395bc3ecb917deaa54a74f76bc8e3a19b94280e93aaef45",
   "source_manifest_sha256": "26f38c1e19f463338512de43e2a83fc0b7f3c570762f8f946e318b4803cace7b",
@@ -19,23 +19,23 @@
   "render_gaps": [],
   "advisories": [],
   "page_hashes": {
-    "core1a.html": "6ef2b9db1ec719318eb1079b428335a4ffca18969e66d2d59e197a55e5085ee7",
-    "core2.html": "c0b82cc230e7fec3a14a46698bbdd4bd6ece7189be9cbb83b53da6223b223a66",
-    "index.html": "a1aa2cd59aefef9533a35131b93d4182ad5530532bdc564b0096cf470a2ddffd"
+    "core1a.html": "2cfc7e558395a6d098c5229b01d4bdb96c9e36c2d55dc89c17f9524088c7e6b0",
+    "core2.html": "ec3508da95a9a59b26b10c850e1dda0eda7fe693490ee6e935f10c7c6eff754a",
+    "index.html": "6bd2445da19bc2d7e0846f947d680518dce2eab5a563ba125a6710152776df99"
   },
-  "browser": "FAIL_EXISTING_TABLET_AUDIT",
+  "browser": "PARTIAL_PASS_TABLET_PROFILE_WITH_OPEN_QUALITY_FINDINGS",
   "all_12_facets_independently_certified": false,
   "golden": false,
   "observation": "LOCAL_EXECUTION + ARTIFACT_INSPECTION",
   "oracle": "IMPLEMENTATION_COUPLED plus separate academic correction data",
   "render_basis": {
-    "source_commit": "97c18d846b1efc14c4e1dc7028ef5dcb861f3cc9",
+    "source_commit": "346accad5f2489d6a082cffd927c84d4295fb6e3",
     "authority_sha256": {
-      "Shared/tools/render_core.py": "a086db360f77995f36cc062ecba7d68494c0d9f02e6f46ddd76461bff2e1447e",
+      "Shared/tools/render_core.py": "8613cad13176b5577394329a0ddf8edf8446b14fecebe91a5a7410da40139691",
       "Shared/tools/core2_v2.py": "ceeb0c50e65f7967f6890ac7f14c6c3a63ca9f3be8d8f2728da98ffe55d580ef",
       "Shared/tools/learning_repair.py": "62b2ac09b6015cd035e604d28b4782ef231f22806c2162e65252cd08e118208f",
       "Shared/web/interactive-page-blueprints.v1.json": "d141f40df8ef514f00aa6e521fed348203d7a5b4daac3ccaade19c7cf3e771da",
-      "public/css/modern-learner.css": "496de1fc6b486a3fa0ec2d782462905d35e3dad64593c8f996929e8963318925",
+      "public/css/modern-learner.css": "24a4c6db8cc1d4948ffc91b32a46495a27be2ebad6987b9ecad2bc021e7f5596",
       "public/css/tablet-12-7.css": "a8d2f54184818bf4fa3f5acdb61e6efc2c8103e475b0bb4a4c0747d8898455ab",
       "public/js/display-controls.js": "bf5737e1a87ec6d1c5021f368c3aaf96d7037e1440d55b6e7d4cb168d962bfd6",
       "public/js/site-header.js": "72a1f89b975c36ea8fb0b0c4170f47533dc9e49e59c4120cd90c6383128922f2"
@@ -49,7 +49,8 @@
     "legacy_source_hashes": "Retained from predecessor receipt; not used as corrected-input digests.",
     "observation": "NEW_LOCAL_EXECUTION",
     "method": "PRODUCTION_RENDERER_API_WITH_LOCAL_SCHEMA_RESOLVER",
-    "historical_artifact_snapshot": "46e91c9ec4285e14ca0db469eda281ff31df596a"
+    "historical_artifact_snapshot": "46e91c9ec4285e14ca0db469eda281ff31df596a",
+    "source_commit_role": "CHECKOUT_BASE; authority_sha256 binds actual tested working-tree files"
   },
-  "browser_evidence": "../recovery-20261004/browser-bindings.json#ISS35"
+  "browser_evidence": "../compatibility-20261004/browser-bindings.json#ISS35"
 }
