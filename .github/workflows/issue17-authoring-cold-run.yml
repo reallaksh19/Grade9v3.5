@@ -1,0 +1,166 @@
+name: issue17-authoring-cold-run
+
+on:
+  push:
+    branches:
+      - feat/qrt-minimal-prompt-pipeline-hardening
+    paths:
+      - "evidence/authoring/issue17-surface-areas-volumes/**"
+      - "Shared/tools/qrt_pipeline_guard.py"
+      - "Shared/tools/qrt_pipeline_precheck.py"
+      - "Shared/tools/qrt_content_self_audit.py"
+      - "Shared/tools/qrt_pipeline_gate.py"
+      - "Shared/tools/render_core.py"
+      - ".github/workflows/issue17-authoring-cold-run.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cold-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install authoring dependencies
+        run: pip install --quiet jsonschema pypdf
+
+      - name: Focused QRT and Blueprint regressions
+        shell: bash
+        run: |
+          set -o pipefail
+          {
+            python Shared/tools/authoring_intake.py check
+            python Shared/tools/blueprint_spec.py --check
+            python Shared/tools/quality_contract.py --check
+            python -m unittest \
+              tests.test_authoring_intake \
+              tests.test_authoring_applicability \
+              tests.test_qrt_pipeline_guard \
+              tests.test_qrt_content_self_audit \
+              tests.test_question_review_matrix.QuestionReviewMatrixTests.test_source_contract_is_valid_and_projection_is_current \
+              tests.test_question_review_matrix.QuestionReviewMatrixTests.test_compiler_emits_exactly_twenty_eight_unique_cells \
+              tests.test_question_review_matrix.QuestionReviewMatrixTests.test_resolver_selects_one_cell_and_fills_learner_relative_slots \
+              tests.test_question_review_matrix.QuestionReviewMatrixTests.test_percentage_never_routes_or_changes_slots
+          } 2>&1 | tee /tmp/issue17-focused-tests.log
+
+      - name: Materialize Issue 17 candidate package
+        run: |
+          PYTHONPATH=. python evidence/authoring/issue17-surface-areas-volumes/build_specimen.py
+          python evidence/authoring/issue17-surface-areas-volumes/finalize_specimen.py
+
+      - name: Build hardened authoring run
+        run: |
+          python evidence/authoring/issue17-surface-areas-volumes/build_qrt_run.py \
+            --head "$GITHUB_SHA" \
+            --output evidence/authoring/issue17-surface-areas-volumes/generated/qrt-pipeline-run.authoring.json
+
+      - name: Validate hardened run schema and pre-render guard
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+          schema=json.loads(Path('Shared/quality/qrt-pipeline-run.schema.json').read_text(encoding='utf-8'))
+          run=json.loads(Path('evidence/authoring/issue17-surface-areas-volumes/generated/qrt-pipeline-run.authoring.json').read_text(encoding='utf-8'))
+          Draft202012Validator(schema).validate(run)
+          print('qrt-pipeline-run schema: PASS')
+          PY
+          PYTHONPATH=. python Shared/tools/qrt_pipeline_precheck.py \
+            evidence/authoring/issue17-surface-areas-volumes/generated/qrt-pipeline-run.authoring.json
+
+      - name: Validate owner custody and package schema
+        run: |
+          python Shared/tools/owner_bank.py check \
+            evidence/authoring/issue17-surface-areas-volumes/generated/owner.bank.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+          schema=json.loads(Path('Shared/library/package.schema.json').read_text(encoding='utf-8'))
+          package=json.loads(Path('evidence/authoring/issue17-surface-areas-volumes/generated/package.v1.json').read_text(encoding='utf-8'))
+          Draft202012Validator(schema).validate(package)
+          print('package schema: PASS')
+          PY
+
+      - name: Strict governed render of requested roles
+        run: |
+          rm -rf /tmp/issue17-sav
+          python Shared/tools/render_core.py build \
+            --manifest evidence/authoring/issue17-surface-areas-volumes/generated/product.manifest.json \
+            --out /tmp/issue17-sav \
+            --mode PAGES
+          test -f /tmp/issue17-sav/core1a.html
+          test -f /tmp/issue17-sav/core2.html
+          test ! -f /tmp/issue17-sav/core1b.html
+          test ! -f /tmp/issue17-sav/core2a.html
+          test ! -f /tmp/issue17-sav/core2b.html
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install pinned browser audit dependency
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Strict learner quality gate
+        run: |
+          python Shared/tools/quality_gate.py /tmp/issue17-sav \
+            --subject Mathematics \
+            --product-id EVIDENCE-MAT-ISSUE17-SAV \
+            --report /tmp/issue17-sav/quality-gate.json \
+            --strict
+
+      - name: Tablet 12.7 browser audit
+        run: |
+          node tools/site-audit/core-page-audit.mjs \
+            /tmp/issue17-sav \
+            --profile tablet-12.7 \
+            --http-root /tmp/issue17-sav \
+            --json /tmp/issue17-sav/tablet-audit.json
+
+      - name: Preserve governed learner HTML
+        run: |
+          mkdir -p evidence/authoring/issue17-surface-areas-volumes/rendered
+          cp /tmp/issue17-sav/core1a.html evidence/authoring/issue17-surface-areas-volumes/rendered/core1a.html
+          cp /tmp/issue17-sav/core2.html evidence/authoring/issue17-surface-areas-volumes/rendered/core2.html
+
+      - name: Commit exact rendered bytes when changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add evidence/authoring/issue17-surface-areas-volumes/rendered/core1a.html \
+                  evidence/authoring/issue17-surface-areas-volumes/rendered/core2.html
+          if ! git diff --cached --quiet; then
+            git commit -m "test(qrt): preserve issue17 governed learner HTML"
+            git push origin HEAD:feat/qrt-minimal-prompt-pipeline-hardening
+          else
+            echo "rendered bytes already current"
+          fi
+
+      - name: Record exact tested head
+        if: always()
+        run: |
+          mkdir -p /tmp/issue17-sav
+          git rev-parse HEAD > /tmp/issue17-sav/exact-head.txt
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: issue17-surface-areas-volumes-cold-run
+          path: |
+            /tmp/issue17-sav
+            /tmp/issue17-focused-tests.log
+            evidence/authoring/issue17-surface-areas-volumes/generated
+            evidence/authoring/issue17-surface-areas-volumes/rendered
+          if-no-files-found: error
+          retention-days: 14

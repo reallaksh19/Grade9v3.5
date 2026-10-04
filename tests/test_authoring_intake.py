@@ -99,6 +99,7 @@ class AuthoringIntakeTests(unittest.TestCase):
         profile = intake.materialize_profile(source, self.capabilities())
         self.assertEqual(profile["profile_id"], "PROFILE-OWNER-SAV")
         self.assertEqual(profile["provenance"], "OWNER_ESTIMATE")
+        self.assertIn("actual owner events", profile["provenance_note"])
         self.assertEqual(profile["knowledge_percentage"], None)
         self.assertFalse(profile["measured_fit_claim"])
         self.assertEqual(profile["held"]["CAP-MAT-SAV-EXPOSED"], "UNCERTAIN")
@@ -108,9 +109,12 @@ class AuthoringIntakeTests(unittest.TestCase):
         with self.assertRaisesRegex(intake.IntakeError, "PROFILE_NOT_READY"):
             intake.materialize_profile(source, self.capabilities())
 
-    def test_owner_supplied_questions_do_not_require_fake_source_provenance(self):
+    def test_owner_supplied_questions_use_agent_custody_interpretation_not_fake_owner_reply(self):
         result = intake.clarification_plan(self.base_intake(), self.capabilities())
-        self.assertEqual(result["source_default"], "OWNER_SUPPLIED")
+        source_default = result["source_default"]
+        self.assertEqual(source_default["status"], "OWNER_SUPPLIED")
+        self.assertEqual(source_default["provenance_kind"], "AGENT_CUSTODY_INTERPRETATION")
+        self.assertIn("not an owner clarification reply", source_default["basis"])
         self.assertNotIn("SOURCE", [row["id"] for row in result["owner_questions"]])
 
 
