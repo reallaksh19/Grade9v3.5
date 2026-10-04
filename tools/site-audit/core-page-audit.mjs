@@ -185,6 +185,52 @@ for (const file of files) {
         landmarks: { main: document.querySelectorAll('main').length, nav: document.querySelectorAll('nav').length, header: document.querySelectorAll('header').length, footer: document.querySelectorAll('footer').length },
         svg: figs.length,
         svgAccessible: figs.filter(s => s.querySelector('title') || s.getAttribute('aria-label') || s.getAttribute('aria-labelledby')).length,
+        stagedSvg: (() => {
+          const staged = [...document.querySelectorAll('figure[data-g9-stage-mode]')].filter(visible);
+          const violations = [];
+          const samples = [];
+          for (const figure of staged) {
+            const mode = figure.dataset.g9StageMode || 'cumulative';
+            const chips = [...figure.querySelectorAll('[data-g9-stage-goto]')];
+            const groups = [...figure.querySelectorAll('svg [data-g9-stage-id]')];
+            if (chips.length < 2 || groups.length < 2) continue;
+            const snapshot = () => {
+              const visibleGroups = groups.filter(group => getComputedStyle(group).display !== 'none');
+              const structural = visibleGroups.reduce((count, group) =>
+                count + group.querySelectorAll('path,line,rect,circle,ellipse,polygon,polyline').length, 0);
+              return { visibleGroups: visibleGroups.length, structural };
+            };
+            const progression = [];
+            chips.forEach((chip, index) => {
+              chip.click();
+              progression.push({ stage: index + 1, ...snapshot() });
+            });
+            if (chips[0]) chips[0].click();
+            if (mode === 'cumulative') {
+              for (let index = 0; index < progression.length; index += 1) {
+                const current = progression[index];
+                const previous = index ? progression[index - 1] : null;
+                if (current.visibleGroups < index + 1) {
+                  violations.push((figure.dataset.g9Representation || figure.dataset.g9Fig || 'figure') +
+                    ': stage ' + current.stage + ' shows ' + current.visibleGroups + ' group(s); cumulative reveal needs at least ' + (index + 1));
+                }
+                if (previous && current.structural < previous.structural) {
+                  violations.push((figure.dataset.g9Representation || figure.dataset.g9Fig || 'figure') +
+                    ': structural geometry fell from ' + previous.structural + ' to ' + current.structural + ' at stage ' + current.stage);
+                }
+              }
+            } else if (mode === 'replace') {
+              progression.forEach(current => {
+                if (current.visibleGroups !== 1) {
+                  violations.push((figure.dataset.g9Representation || figure.dataset.g9Fig || 'figure') +
+                    ': replacement stage ' + current.stage + ' shows ' + current.visibleGroups + ' stage groups');
+                }
+              });
+            }
+            samples.push({ representation: figure.dataset.g9Representation || null, mode, progression });
+          }
+          return { figures: staged.length, violations, samples: samples.slice(0, 6) };
+        })(),
         disclosures: document.querySelectorAll('details').length,
         attemptFields: document.querySelectorAll('textarea').length,
         gatedDisclosures: [...document.querySelectorAll('details')].filter(d => d.hasAttribute('data-requires-attempt') || d.querySelector('summary[aria-disabled="true"]')).length,
@@ -506,6 +552,7 @@ if (enforce && profile === 'core1a-spec') {
         failures.push(`${vp.name}: ${row.tableContainment.tablesOutsideLocalScroller} table(s) outside local scroller`);
       }
       if (row.svg !== row.svgAccessible) failures.push(`${vp.name}: accessible SVG ${row.svgAccessible}/${row.svg}`);
+      if (row.stagedSvg?.violations?.length) failures.push(`${vp.name}: staged SVG progression: ${row.stagedSvg.violations.join(' | ')}`);
       if (row.anchorSafety.riskyAnchors !== 0) failures.push(`${vp.name}: ${row.anchorSafety.riskyAnchors} sticky-obscured anchor(s)`);
       if (row.focusProbe.focusFailures !== 0 || row.focusProbe.visibleFocus !== row.focusProbe.candidates) {
         failures.push(`${vp.name}: focus ${row.focusProbe.visibleFocus}/${row.focusProbe.candidates}, failures=${row.focusProbe.focusFailures}`);
@@ -560,6 +607,7 @@ if (enforce && profile === 'tablet-12.7') {
       if (!row) { failures.push(`${file} ${vp.name}: missing viewport result`); continue; }
       if (row.horizontalOverflowPx !== 0) failures.push(`${file} ${vp.name}: page overflow ${row.horizontalOverflowPx}px`);
       if (row.smallTargets !== 0) failures.push(`${file} ${vp.name}: ${row.smallTargets} controls below 48px`);
+      if (row.stagedSvg?.violations?.length) failures.push(`${file} ${vp.name}: staged SVG progression: ${row.stagedSvg.violations.join(' | ')}`);
       if (!row.tablet) continue;
       const bp = blueprints.blueprints.find(b => `${b.id}@${b.version}` === row.blueprint);
       const promise = bp.responsive_policy.tablet_12_7;
