@@ -1,9 +1,9 @@
 {
   "schema": "iss31-run-receipt/v1",
   "issue": 31,
-  "round": 1,
+  "round": 2,
   "candidate": "independent-agent-a",
-  "status": "CANDIDATE_PARTIAL",
+  "status": "CANDIDATE_PARTIAL_CONTINUATION",
   "branch": "agent/iss31-hybridisation-candidate-a-20261004",
   "pinned_source_commit": "e01c6365acfd6aec84c0a6e94f11b683bd961f6e",
   "input_hashes": {
@@ -79,14 +79,17 @@
   "environment": {
     "github_connector": "AVAILABLE",
     "web_research": "AVAILABLE",
-    "executable_repository_sandbox": "NOT_SUPPLIED",
+    "executable_repository_sandbox": "NOT_AVAILABLE_IN_CHAT",
     "chromium": "NOT_RUN",
-    "production_renderer_execution": "NOT_RUN"
+    "production_renderer_execution": "NOT_RUN",
+    "local_shell": "AVAILABLE_WITHOUT_REPOSITORY_CHECKOUT",
+    "outbound_git": "FAILED_DNS_GITHUB",
+    "github_actions_observed": true
   },
   "production_boundary": {
-    "owner_bank_authoring": "Shared/tools/owner_bank.py currently documents/enforces TEST/question-bank creation only.",
+    "owner_bank_authoring": "Original TEST-only restriction is preserved as a seed finding and repaired by f1621cd167a569f85ea42909ad97db1060028db5.",
     "chemistry_package_at_seed": "No Chemistry subject package for this hybridisation slice; Chemistry/library contains the exam-bank surface.",
-    "decision": "Do not invent a new production custody path in a benchmark run."
+    "decision": "Use repaired subject owner-bank lane when an executable checkout is available; do not place owner inputs in exam-bank."
   },
   "academic_summary": {
     "questions": 10,
@@ -120,7 +123,7 @@
     "render_digest": null,
     "html_paths": [],
     "status": "NOT_RUN",
-    "reason": "Governed non-TEST owner-bank production path not established at pinned seed and executable repository runtime was not supplied."
+    "reason": "Authoring path is repaired, but this chat still lacks an executable repository checkout in which to materialize/validate the Chemistry package, owner bank and manifest and run render_core/browser checks."
   },
   "independence": {
     "paired_issue": 32,
@@ -129,5 +132,35 @@
     "self_promotion_to_golden": false,
     "merge_or_publish": false
   },
-  "exact_frozen_head": "RECORDED_EXTERNALLY_IN_FINAL_ISSUE_CHECKPOINT_AFTER_ALL_RECEIPT_FILES_ARE_COMMITTED"
+  "exact_frozen_head": "27dd6611b6bf9c824f8e066386a41af22a6ea88c",
+  "first_frozen_head": "27dd6611b6bf9c824f8e066386a41af22a6ea88c",
+  "owner_execution_clarification": {
+    "issue_comment_id": 5978104772,
+    "interpretation": "Repair the existing owner-bank authoring destination without changing provenance."
+  },
+  "path_repair": {
+    "status": "COMMITTED",
+    "commit": "f1621cd167a569f85ea42909ad97db1060028db5",
+    "accepted": [
+      "TEST/question-bank/<slug>.json",
+      "<Subject>/library/owner-bank/<slug>.json"
+    ],
+    "refused": [
+      "exam-bank/",
+      "outside repository",
+      "unknown canonical subject"
+    ],
+    "schema_changed": false,
+    "custody_class_changed": false
+  },
+  "round2_patch_head": "f1621cd167a569f85ea42909ad97db1060028db5",
+  "ci_observation": {
+    "patch_commit": "f1621cd167a569f85ea42909ad97db1060028db5",
+    "v31_relay": "SUCCESS",
+    "learner_platform": "WORKFLOW_SUCCESS_RATCHET_WITH_EXISTING_RAW_SUITE_FAILURES",
+    "canonical_assurance": "PARTIAL_FAILURES_OUTSIDE_OWNER_BANK_PATCH",
+    "guardrails": "IN_PROGRESS_AT_CHECKPOINT",
+    "regression_delta": "IN_PROGRESS_AT_CHECKPOINT",
+    "targeted_new_regression_seen_in_sampled_logs": false
+  }
 }

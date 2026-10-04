@@ -1,7 +1,9 @@
 # Issue 31 validation ledger
 
-Candidate: independent agent A · round 1 · cohort label D1  
-Pinned source: `e01c6365acfd6aec84c0a6e94f11b683bd961f6e`
+Candidate: independent agent A · round 2 continuation  
+Pinned source: `e01c6365acfd6aec84c0a6e94f11b683bd961f6e`  
+Frozen first partial submission: `27dd6611b6bf9c824f8e066386a41af22a6ea88c`  
+Owner execution clarification: issue comment `5978104772`
 
 | Check | State | Evidence / consequence |
 |---|---|---|
@@ -14,22 +16,28 @@ Pinned source: `e01c6365acfd6aec84c0a6e94f11b683bd961f6e`
 | QRT X/Y/Z/W + H1–M3 | PASS (semantic authoring) | `qrt-review.json`; rendered/staged evidence is not claimed. |
 | Hardest target | PASS (analysis) | Q5, MODEL D2: selecting VSEPR for overall domain arrangement and delimiting orbital-overlap detail. |
 | Meaningful interaction | PASS AS SPEC ONLY | Two-lens NH3 model-scope comparator is specified in `qrt-review.json`; not rendered. |
-| Governed Chemistry owner-bank creation | NOT_RUN / OPEN | Current `owner_bank.py` authoring path is TEST-only; bypass was not invented. |
-| Package/schema validation | NOT_RUN | No executable repository sandbox/runtime supplied to this agent. |
-| `render_core.py gaps/build` | NOT_RUN | No governed production inputs + no executable repo runtime. |
+| Owner-bank authoring-path diagnosis at pinned seed | PASS | Original TEST-only restriction retained in audit as a benchmark finding. |
+| Minimal owner-bank path repair | COMMITTED | `f1621cd167a569f85ea42909ad97db1060028db5`: preserves TEST path; adds canonical `<Subject>/library/owner-bank/`; refuses exam-bank, escaped/unknown destinations; overwrite protection retained. |
+| Required path regressions authored | COMMITTED / EXECUTION NOT DIRECTLY OBSERVED | Regression covers TEST + Chemistry acceptance, exam-bank/outside/unknown refusal and overwrite preservation; existing tests already cover verbatim alteration, intake mismatch and official-identity contamination. |
+| GitHub CI on repair commit | MIXED / RATC HET | v31-relay succeeded. Learner-platform workflow concluded success as a ratchet although its raw suite still contains existing failures. Canonical assurance showed unrelated canonical/standalone failures. Regression-delta and guardrails were still running at this checkpoint. |
+| Executable repository workspace in this chat | NOT AVAILABLE | Shell exists, but no checkout is mounted and outbound Git/DNS is unavailable; connector access is not a Python/browser workspace. |
+| Chemistry canonical package | NOT_RUN / OPEN | Must be authored and schema-validated in an executable checkout. |
+| Chemistry owner bank through repaired CLI | NOT_RUN / OPEN | Path is now enabled, but the actual CLI has not run in a checked-out repository here. |
+| Product manifest CORE1A/CORE2 | NOT_RUN | Requires materialized package + owner bank. |
+| `render_core.py gaps/build` | NOT_RUN | No executable issue-specific checkout/materialized inputs. |
 | Core2/Core1A HTML digest | NOT_RUN | No generated HTML exists; no fake digest recorded. |
 | Protected-byte/leakage browser audit | NOT_RUN | Requires exact generated HTML/runtime. |
-| Chromium/touch/focus/overflow | NOT_RUN | Browser runtime unavailable. |
+| Chromium/touch/focus/overflow | NOT_RUN | Requires exact generated HTML/browser workspace. |
 | Builder-improvement inspection | NOT_RUN | Issue requires evidence from the actual rendered page; no page was rendered. |
-| Paired issue #32 inspected | NO | Independence preserved through candidate freeze. |
-| Golden/release promotion | NO | This submission is CANDIDATE only. |
+| Paired issue #32 inspected | NO | Independence preserved. |
+| Golden/release promotion | NO | This submission remains CANDIDATE only. |
 
-## Academic findings that affect the benchmark
+## Two distinct benchmark blockers
 
-The cohort label is an assignment label, not an adjudicated difficulty. Under the repository's component rule, five items land in D2. This is retained as benchmark evidence rather than normalised away.
+**Blocker 1 — authoring-path inconsistency:** observed at the pinned seed and now repaired on the issue branch. This does not change provenance: owner questions remain `OWNER_SUPPLIED_RAW_INPUT`, verbatim, digest-bound and separate from official exam banks.
 
-The hardest learner-relative target is not the sp3 recall itself. It is Q5's model-choice boundary: the learner must recognise that the requested output is the overall electron-domain arrangement, select VSEPR for that explanatory job, and state what orbital-level detail remains outside that model.
+**Blocker 2 — execution runtime:** still open in this chat. The available shell has no repository checkout and cannot resolve GitHub; the GitHub connector can edit/read the repository and observe CI but is not itself a Python/Chromium execution workspace for arbitrary issue-specific commands.
 
 ## Open consequence
 
-The primary product requirement (actual Core2 + Core1A learner-facing HTML) remains unresolved in this tool environment. This is a material limitation, not a passing render claim.
+The primary product requirement (actual Core2 + Core1A learner-facing HTML) remains unresolved. No generated bytes, render digest, browser PASS or page-derived builder proposal are claimed.
