@@ -1,0 +1,3020 @@
+{
+  "schema_version": "0.2.0",
+  "package_id": "LIB-CHEM-G11-HYBRIDISATION-ISS31",
+  "title": "Hybridisation: domains, geometry and model choice",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Chemistry",
+  "scope_summary": "Grade 11 introductory hybridisation and bonding-model slice for Issue #31: central-atom electron-domain counting, sp2/sp3 set size, tetrahedral domain geometry, Lewis-to-3D translation, VSEPR versus orbital-overlap model scope, and sigma/pi overlap geometry. Advanced delocalisation and exception chemistry are outside this packet.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-CHEM-ISS31-OWNER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Issue #31 owner-supplied Grade 11 hybridisation benchmark",
+      "origin": "AUTHORED",
+      "locator": "https://github.com/reallaksh19/Grade9v3.5/issues/31",
+      "edition": "checked 2026-10-04",
+      "section": "A/B/C and Q1-Q10 owner-supplied benchmark input",
+      "last_checked": "2026-10-04",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Owner-supplied benchmark text or openly accessible educational source; no official-exam identity is claimed.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "QUESTION_BANK",
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION",
+        "COMPETITION"
+      ],
+      "selection_reason": "Custody surface for the exact benchmark questions; not an official exam/PYQ source.",
+      "fallback": []
+    },
+    {
+      "id": "SRC-CHEM-OPENSTAX-VSEPR-HYBRID",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "OpenStax Chemistry 2e — Molecular Structure and Polarity; Hybrid Atomic Orbitals",
+      "origin": "WEB",
+      "locator": "https://openstax.org/books/chemistry-2e/pages/7-6-molecular-structure-and-polarity",
+      "edition": "checked 2026-10-04",
+      "section": "VSEPR electron-density regions and introductory hybrid atomic orbitals",
+      "last_checked": "2026-10-04",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Owner-supplied benchmark text or openly accessible educational source; no official-exam identity is claimed.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "SCIENTIFIC_CHECK",
+        "EXPLANATION"
+      ],
+      "supports_claims": [
+        "CAP-CHEM-G11-SP3-HYBRID-SET",
+        "CAP-CHEM-G11-ELECTRON-DOMAIN-COUNT",
+        "CAP-CHEM-G11-DOMAIN-TO-HYBRID-GEOMETRY",
+        "CAP-CHEM-G11-LEWIS-TO-3D-DOMAINS",
+        "CAP-CHEM-G11-VSEPR-GEOMETRY",
+        "CAP-CHEM-G11-MODEL-SCOPE-VSEPR-VB"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION",
+        "COMPETITION"
+      ],
+      "selection_reason": "Supports electron-domain counting, VSEPR geometry, sp2/sp3 set size and model-scope boundaries used by Q1-Q5 and Q7-Q10.",
+      "fallback": []
+    },
+    {
+      "id": "SRC-CHEM-OPENSTAX-SIGMA-PI",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "OpenStax Chemistry: Atoms First 2e — Valence Bond Theory; Multiple Bonds",
+      "origin": "WEB",
+      "locator": "https://openstax.org/books/chemistry-atoms-first-2e/pages/5-3-multiple-bonds",
+      "edition": "checked 2026-10-04",
+      "section": "Sigma/pi overlap and multiple-bond geometry",
+      "last_checked": "2026-10-04",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Owner-supplied benchmark text or openly accessible educational source; no official-exam identity is claimed.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "SCIENTIFIC_CHECK",
+        "EXPLANATION"
+      ],
+      "supports_claims": [
+        "CAP-CHEM-G11-SIGMA-PI-OVERLAP",
+        "CAP-CHEM-G11-ELECTRON-DOMAIN-COUNT"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION",
+        "COMPETITION"
+      ],
+      "selection_reason": "Supports sigma/pi overlap geometry and the distinction between bond components and VSEPR directions.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-CHEM-G11-HYBRIDISATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID",
+        "SRC-CHEM-OPENSTAX-SIGMA-PI"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Hybridisation, electron domains and bonding models",
+      "topic": "Chemical Bonding",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The slice combines local electron-domain counting, 2D-to-3D translation, model-scope selection and overlap geometry.",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [],
+      "primary_representation_ref": "REP-CHEM-HYB-MODEL-SCOPE"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-CHEM-G11-SP3-HYBRID-SET",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Connect a stated electron-domain count to the introductory hybrid-orbital set size",
+      "success_criterion": "Explain that sp3 combines one s and three p orbitals to form four hybrid orbitals.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-ELECTRON-DOMAIN-COUNT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Count electron-density regions locally around a chosen central atom",
+      "success_criterion": "Count each bonded neighbour as one region regardless of bond order and include only lone pairs on the chosen centre.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-DOMAIN-TO-HYBRID-GEOMETRY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Map electron-domain count to introductory sp2/sp3 hybridisation and electron-domain geometry",
+      "success_criterion": "Map 3 regions to sp2/trigonal planar and 4 regions to sp3/tetrahedral without reading a flat Lewis layout as shape.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-LEWIS-TO-3D-DOMAINS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Translate a 2D Lewis structure into a three-dimensional electron-domain arrangement",
+      "success_criterion": "Represent four electron domains tetrahedrally and distinguish electron-domain geometry from atom-only molecular geometry.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-VSEPR-GEOMETRY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Use VSEPR to predict overall electron-domain and molecular geometry",
+      "success_criterion": "Use the central-atom domain inventory to distinguish tetrahedral electron-domain geometry from trigonal-pyramidal NH3 molecular geometry.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-MODEL-SCOPE-VSEPR-VB",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Select VSEPR or an orbital-overlap description according to the explanatory job",
+      "success_criterion": "Choose VSEPR for overall domain arrangement and state that orbital composition/overlap detail belongs to a valence-bond description.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-SIGMA-PI-OVERLAP",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-SIGMA-PI"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Classify sigma and pi overlap from orbital orientation relative to the internuclear axis",
+      "success_criterion": "Identify end-on axial overlap as sigma and side-on overlap with a nodal plane through the axis as pi.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-CHEM-G11-HYBRID-SET-SIZE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:question_repairs": [
+          {
+            "clarify": "Distinguish the hybrid-set name from the number of orbitals in that set.",
+            "connect": "A change of orbital basis preserves the number of independent orbitals.",
+            "way": "Write one valence s plus n valence p orbitals; determine n and the resulting set size yourself.",
+            "rule": "For second-period atoms, one 2s plus three 2p orbitals gives four sp3 hybrids. The superscript counts p inputs, not total outputs.",
+            "check": "Changed check: an sp set has two hybrids because one s plus one p supplies two basis functions; use this conservation rule on the requested set.",
+            "probe": "An sp2 set is proposed to contain two hybrids. How many input and output orbitals should it have? Then apply your method to an sp set.",
+            "pattern": "Three for sp2, two for sp. Repeating the superscript-as-total rule in both cases suggests a held counting rule; correct changed cases after an isolated slip suggest an execution error.",
+            "transfer": "Give the input/output inventory for sp without copying the original set.",
+            "wrong_idea": "The superscript is the total number of hybrid orbitals.",
+            "question_ref": "OWN-ISSUE31-HYBRIDISATION-01",
+            "label": "Q1",
+            "construction_ref": "CU-Q1-ISS31",
+            "microtopic_ref": "MIC-CHEM-G11-HYBRID-SET-SIZE",
+            "status": "CORRECTION_CANDIDATE",
+            "parent_issue": 31,
+            "crux_move_ref": "OWN-ISSUE31-HYBRIDISATION-01-MOVE-2"
+          }
+        ],
+        "grade9v3:lesson_anchors": {
+          "CU-Q1-ISS31": {
+            "id": "ANCHOR-CU-Q1-ISS31",
+            "stem": "An sp2 set is proposed to contain two hybrids. How many input and output orbitals should it have? Then apply your method to an sp set.",
+            "answer": {
+              "summary": "Three for sp2, two for sp. Repeating the superscript-as-total rule in both cases suggests a held counting rule; correct changed cases after an isolated slip suggest an execution error.",
+              "reasoning": [
+                "A change of orbital basis preserves the number of independent orbitals.",
+                "Three for sp2, two for sp. Repeating the superscript-as-total rule in both cases suggests a held counting rule; correct changed cases after an isolated slip suggest an execution error.",
+                "For second-period atoms, one 2s plus three 2p orbitals gives four sp3 hybrids. The superscript counts p inputs, not total outputs."
+              ],
+              "check": "Changed check: an sp set has two hybrids because one s plus one p supplies two basis functions; use this conservation rule on the requested set."
+            }
+          }
+        }
+      },
+      "title": "Hybrid set size",
+      "bucket_id": "BUCKET-CHEM-G11-HYBRIDISATION",
+      "primary_capability_ref": "CAP-CHEM-G11-SP3-HYBRID-SET",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Direct recall/classification with one common notation trap: sp3 denotes a four-orbital hybrid set, not three hybrid orbitals.",
+      "entry_assumptions": [
+        "Can read supplied atoms, single/double/triple bonds, and shared versus lone pairs in a simple Lewis structure."
+      ],
+      "inferential_jump": "The superscript counts p orbitals mixed with one s orbital; 1 + 3 atomic orbitals form four sp3 hybrid orbitals.",
+      "teaching_path": [
+        {
+          "id": "HYB-T1-1",
+          "role": "DECLARE",
+          "action": "State the governing distinction for Hybrid set size.",
+          "why_valid": "The learner needs a stable conceptual rule before translating a diagram or choosing a model.",
+          "inputs": [],
+          "output": "governing rule"
+        },
+        {
+          "id": "HYB-T1-2",
+          "role": "TRANSFORM",
+          "action": "The superscript counts p orbitals mixed with one s orbital; 1 + 3 atomic orbitals form four sp3 hybrid orbitals.",
+          "why_valid": "This directly repairs the recorded misconception while preserving the question's requested representation level.",
+          "inputs": [],
+          "output": "correctly transformed representation or model choice"
+        },
+        {
+          "id": "HYB-T1-3",
+          "role": "VERIFY",
+          "action": "Check the conclusion against the central-atom scope, domain count, three-dimensional geometry or overlap-axis invariant.",
+          "why_valid": "The check is independent of merely repeating the final answer.",
+          "inputs": [],
+          "output": "verified conclusion"
+        }
+      ],
+      "relation_refs": [
+        "REL-CHEM-HYB-DOMAIN-HYBRID"
+      ],
+      "representation_refs": [
+        "REP-CHEM-HYB-HYBRID-SETS"
+      ],
+      "question_family_refs": [
+        "FAM-CHEM-HYB-DOMAINS"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "The superscript is the total number of hybrid orbitals.",
+          "diagnostic_prompt": "An sp2 set is proposed to contain two hybrids. How many input and output orbitals should it have? Then apply your method to an sp set.",
+          "repair": "For second-period atoms, one 2s plus three 2p orbitals gives four sp3 hybrids. The superscript counts p inputs, not total outputs."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Explain the rule behind hybrid set size without copying the benchmark answer.",
+        "source_ref": "SRC-CHEM-OPENSTAX-VSEPR-HYBRID",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The superscript counts p orbitals mixed with one s orbital; 1 + 3 atomic orbitals form four sp3 hybrid orbitals.",
+          "reasoning": [
+            "The superscript counts p orbitals mixed with one s orbital; 1 + 3 atomic orbitals form four sp3 hybrid orbitals.",
+            "Use the relevant representation/model boundary to justify the rule."
+          ],
+          "check": "The explanation must reject the recorded wrong idea for the same reason.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "INDEPENDENTLY_CHECKED"
+        },
+        "oracle": {
+          "no_numeric_claim": "This exit task checks the conceptual rule rather than a memorized number."
+        }
+      },
+      "research_contribution": "Issue #31 Q1 and the cited OpenStax source isolate this decision as a learner-facing construction target.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Before revealing the rule, what would you use to decide the hybrid-orbital set and set size associated with four equivalent electron-domain directions?",
+          "defensible_answer": "use the defining mapping between four equivalent directions and the introductory hybrid set"
+        },
+        "attempt": {
+          "produces": "A one-sentence rule or labelled representation.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Uses the correct representation/model distinction.",
+              "evidence_of": "The superscript counts p orbitals mixed with one s orbital; 1 + 3 atomic orbitals form four sp3 hybrid orbitals."
+            }
+          ],
+          "accepted": [
+            "The superscript counts p orbitals mixed with one s orbital; 1 + 3 atomic orbitals form four sp3 hybrid orbitals."
+          ],
+          "rejected": [
+            "Reading the superscript in sp3 as meaning that there are only three hybrid orbitals."
+          ],
+          "task": {
+            "prompt": "Apply the rule to the benchmark anchor Q1 but stop before copying its final answer.",
+            "givens": [
+              "Use the owner-supplied benchmark stem verbatim as the anchor."
+            ],
+            "representation_ref": "REP-CHEM-HYB-HYBRID-SETS"
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "use the defining mapping between four equivalent directions and the introductory hybrid set",
+              "why_this_ask": "This is the smallest rule that protects the crux."
+            },
+            {
+              "ask": "What would falsify the tempting wrong route?",
+              "why_this_ask": "A boundary check makes the rule transferable."
+            }
+          ],
+          "differs_from_teaching_path": "The learner starts from a prediction and misconception test rather than receiving the conclusion first."
+        },
+        "boundary_test": {
+          "prompt": "What changes would make this rule or model choice no longer answer the same question?",
+          "answer": "A changed central atom, requested representation level or overlap/model target can require a different count or model.",
+          "confirms": "The rule is scoped to the chosen centre and explanatory job."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-Q1-ISS31",
+          "decision": "use the defining mapping between four equivalent directions and the introductory hybrid set",
+          "step_refs": [
+            "HYB-T1-1",
+            "HYB-T1-2",
+            "HYB-T1-3"
+          ],
+          "representation_ref": "REP-CHEM-HYB-HYBRID-SETS",
+          "reveal_stage_refs": [
+            "HYB-1",
+            "HYB-2",
+            "HYB-3"
+          ],
+          "bank_anchor_ref": "OWN-ISSUE31-HYBRIDISATION-01",
+          "crux_question_refs": [
+            "OWN-ISSUE31-HYBRIDISATION-01"
+          ],
+          "crux_step_ref": "HYB-T1-2",
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "Changed check: an sp set has two hybrids because one s plus one p supplies two basis functions; use this conservation rule on the requested set."
+            },
+            {
+              "role": "APPLY",
+              "statement": "Give the input/output inventory for sp without copying the original set."
+            },
+            {
+              "role": "CONNECT",
+              "statement": "For second-period atoms, one 2s plus three 2p orbitals gives four sp3 hybrids. The superscript counts p inputs, not total outputs."
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "the hybrid-orbital set and set size associated with four equivalent electron-domain directions",
+        "result": "The superscript counts p orbitals mixed with one s orbital; 1 + 3 atomic orbitals form four sp3 hybrid orbitals.",
+        "representation_ref": "REP-CHEM-HYB-HYBRID-SETS"
+      }
+    },
+    {
+      "id": "MIC-CHEM-G11-CENTRAL-DOMAIN-COUNT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:question_repairs": [
+          {
+            "clarify": "Separate a bonded-atom direction from the number of shared pairs.",
+            "connect": "The sigma component and pi component of a multiple bond connect the same atom pair.",
+            "way": "Circle the distinct neighbours of carbon, then keep an independent bond-component inventory.",
+            "rule": "HCHO carbon has three bonded-atom directions. C=O contributes one local domain, although its double bond contains one sigma and one pi component. Pi density is not confined to the internuclear axis.",
+            "check": "Changed check: a triple bond to N in HCN still supplies one C-to-N direction; carbon also has the H direction.",
+            "probe": "At carbon in HCN, count bonded-atom directions and C-N shared pairs separately. Repeat the two counts for HCHO.",
+            "pattern": "HCN: two carbon directions, three C-N pairs. HCHO: three directions, two C-O pairs. Repeated multiplicity-as-direction counting suggests the misconception.",
+            "transfer": "Explain why replacing a double bond with a triple bond to the same neighbour need not add a direction.",
+            "wrong_idea": "Each line of a double bond is a separate local direction.",
+            "question_ref": "OWN-ISSUE31-HYBRIDISATION-02",
+            "label": "Q2",
+            "construction_ref": "CU-Q2-ISS31",
+            "microtopic_ref": "MIC-CHEM-G11-CENTRAL-DOMAIN-COUNT",
+            "status": "CORRECTION_CANDIDATE",
+            "parent_issue": 31,
+            "crux_move_ref": "OWN-ISSUE31-HYBRIDISATION-02-MOVE-2"
+          },
+          {
+            "clarify": "The counting centre is nitrogen, not every atom in NF3.",
+            "connect": "Local domains consist of bonds and lone pairs at the selected atom.",
+            "way": "Circle nitrogen before counting; keep terminal-fluorine pairs in a separate inventory.",
+            "rule": "NF3 has three nitrogen-to-fluorine directions and one nitrogen lone pair: four N-centred domains. Terminal F lone pairs do not add N-centred domains.",
+            "check": "Changed check: substituting H for F leaves the local three-bond-plus-lone-pair N inventory unchanged in the introductory model.",
+            "probe": "Count N-centred domains in NH3 and NF3. Then state where the F lone pairs are located.",
+            "pattern": "Both N centres have four domains; F pairs are located at F. Repeated inclusion of terminal pairs identifies locality confusion.",
+            "transfer": "Count domains at oxygen in H2O while excluding electrons assigned to H.",
+            "wrong_idea": "Terminal-atom lone pairs add domains at the central atom.",
+            "question_ref": "OWN-ISSUE31-HYBRIDISATION-08",
+            "label": "Q8",
+            "construction_ref": "CU-Q2-ISS31",
+            "microtopic_ref": "MIC-CHEM-G11-CENTRAL-DOMAIN-COUNT",
+            "status": "CORRECTION_CANDIDATE",
+            "parent_issue": 31,
+            "crux_move_ref": "OWN-ISSUE31-HYBRIDISATION-08-MOVE-2"
+          },
+          {
+            "clarify": "Critique the counting operation, rather than merely giving a corrected label.",
+            "connect": "Bond multiplicity and neighbour directions are different ledgers.",
+            "way": "Show the faulty ledger beside a neighbour-only ledger; complete the corrected count yourself.",
+            "rule": "Counting both C=O lines as separate domains confuses bond components with one bonded-atom direction. HCHO carbon has three domains.",
+            "check": "Changed check: HCN carbon has two neighbour directions even though C-N is triple.",
+            "probe": "A learner counts HCN carbon as four directions from one C-H line plus three C-N lines. Repair the operation and apply it to HCHO.",
+            "pattern": "HCN two; HCHO three. Repeating line-counting in both cases indicates the rule is held rather than a single arithmetic slip.",
+            "transfer": "Audit a proposed domain count for CO2.",
+            "wrong_idea": "Bond multiplicity equals neighbour-direction multiplicity.",
+            "question_ref": "OWN-ISSUE31-HYBRIDISATION-09",
+            "label": "Q9",
+            "construction_ref": "CU-Q2-ISS31",
+            "microtopic_ref": "MIC-CHEM-G11-CENTRAL-DOMAIN-COUNT",
+            "status": "CORRECTION_CANDIDATE",
+            "parent_issue": 31,
+            "crux_move_ref": "OWN-ISSUE31-HYBRIDISATION-09-MOVE-2"
+          }
+        ],
+        "grade9v3:lesson_anchors": {
+          "CU-Q2-ISS31": {
+            "id": "ANCHOR-CU-Q2-ISS31",
+            "stem": "At carbon in HCN, count bonded-atom directions and C-N shared pairs separately. Repeat the two counts for HCHO.",
+            "answer": {
+              "summary": "HCN: two carbon directions, three C-N pairs. HCHO: three directions, two C-O pairs. Repeated multiplicity-as-direction counting suggests the misconception.",
+              "reasoning": [
+                "The sigma component and pi component of a multiple bond connect the same atom pair.",
+                "HCN: two carbon directions, three C-N pairs. HCHO: three directions, two C-O pairs. Repeated multiplicity-as-direction counting suggests the misconception.",
+                "HCHO carbon has three bonded-atom directions. C=O contributes one local domain, although its double bond contains one sigma and one pi component. Pi density is not confined to the internuclear axis."
+              ],
+              "check": "Changed check: a triple bond to N in HCN still supplies one C-to-N direction; carbon also has the H direction."
+            }
+          }
+        }
+      },
+      "title": "Count central electron domains",
+      "bucket_id": "BUCKET-CHEM-G11-HYBRIDISATION",
+      "primary_capability_ref": "CAP-CHEM-G11-ELECTRON-DOMAIN-COUNT",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Requires connecting Lewis bond order to a spatial electron-density region and resisting the two-lines-equals-two-domains trap.",
+      "entry_assumptions": [
+        "Can read supplied atoms, single/double/triple bonds, and shared versus lone pairs in a simple Lewis structure."
+      ],
+      "inferential_jump": "Count distinct regions/directions around the chosen central atom; a multiple bond to one neighbour is one region.",
+      "teaching_path": [
+        {
+          "id": "HYB-T2-1",
+          "role": "DECLARE",
+          "action": "State the governing distinction for Count central electron domains.",
+          "why_valid": "The learner needs a stable conceptual rule before translating a diagram or choosing a model.",
+          "inputs": [],
+          "output": "governing rule"
+        },
+        {
+          "id": "HYB-T2-2",
+          "role": "TRANSFORM",
+          "action": "Count distinct regions/directions around the chosen central atom; a multiple bond to one neighbour is one region.",
+          "why_valid": "This directly repairs the recorded misconception while preserving the question's requested representation level.",
+          "inputs": [],
+          "output": "correctly transformed representation or model choice"
+        },
+        {
+          "id": "HYB-T2-3",
+          "role": "VERIFY",
+          "action": "Check the conclusion against the central-atom scope, domain count, three-dimensional geometry or overlap-axis invariant.",
+          "why_valid": "The check is independent of merely repeating the final answer.",
+          "inputs": [],
+          "output": "verified conclusion"
+        }
+      ],
+      "relation_refs": [
+        "REL-CHEM-HYB-DOMAIN-COUNT"
+      ],
+      "representation_refs": [
+        "REP-CHEM-HYB-DOMAIN-COUNT"
+      ],
+      "question_family_refs": [
+        "FAM-CHEM-HYB-DOMAINS"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Each line of a double bond is a separate local direction.",
+          "diagnostic_prompt": "At carbon in HCN, count bonded-atom directions and C-N shared pairs separately. Repeat the two counts for HCHO.",
+          "repair": "HCHO carbon has three bonded-atom directions. C=O contributes one local domain, although its double bond contains one sigma and one pi component. Pi density is not confined to the internuclear axis."
+        },
+        {
+          "wrong_idea": "Terminal-atom lone pairs add domains at the central atom.",
+          "diagnostic_prompt": "Count N-centred domains in NH3 and NF3. Then state where the F lone pairs are located.",
+          "repair": "NF3 has three nitrogen-to-fluorine directions and one nitrogen lone pair: four N-centred domains. Terminal F lone pairs do not add N-centred domains."
+        },
+        {
+          "wrong_idea": "Bond multiplicity equals neighbour-direction multiplicity.",
+          "diagnostic_prompt": "A learner counts HCN carbon as four directions from one C-H line plus three C-N lines. Repair the operation and apply it to HCHO.",
+          "repair": "Counting both C=O lines as separate domains confuses bond components with one bonded-atom direction. HCHO carbon has three domains."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Explain the rule behind count central electron domains without copying the benchmark answer.",
+        "source_ref": "SRC-CHEM-OPENSTAX-VSEPR-HYBRID",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Count distinct regions/directions around the chosen central atom; a multiple bond to one neighbour is one region.",
+          "reasoning": [
+            "Count distinct regions/directions around the chosen central atom; a multiple bond to one neighbour is one region.",
+            "Use the relevant representation/model boundary to justify the rule."
+          ],
+          "check": "The explanation must reject the recorded wrong idea for the same reason.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "INDEPENDENTLY_CHECKED"
+        },
+        "oracle": {
+          "no_numeric_claim": "This exit task checks the conceptual rule rather than a memorized number."
+        }
+      },
+      "research_contribution": "Issue #31 Q2 and the cited OpenStax source isolate this decision as a learner-facing construction target.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Before revealing the rule, what would you use to decide why the two bond lines in C=O do not create two independent electron-domain directions around carbon?",
+          "defensible_answer": "distinguish bond order/components from the number of spatial electron-density regions around the central atom"
+        },
+        "attempt": {
+          "produces": "A one-sentence rule or labelled representation.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Uses the correct representation/model distinction.",
+              "evidence_of": "Count distinct regions/directions around the chosen central atom; a multiple bond to one neighbour is one region."
+            }
+          ],
+          "accepted": [
+            "Count distinct regions/directions around the chosen central atom; a multiple bond to one neighbour is one region."
+          ],
+          "rejected": [
+            "Counting the two lines in a double bond as two separate electron domains."
+          ],
+          "task": {
+            "prompt": "Apply the rule to the benchmark anchor Q2 but stop before copying its final answer.",
+            "givens": [
+              "Use the owner-supplied benchmark stem verbatim as the anchor."
+            ],
+            "representation_ref": "REP-CHEM-HYB-DOMAIN-COUNT"
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "distinguish bond order/components from the number of spatial electron-density regions around the central atom",
+              "why_this_ask": "This is the smallest rule that protects the crux."
+            },
+            {
+              "ask": "What would falsify the tempting wrong route?",
+              "why_this_ask": "A boundary check makes the rule transferable."
+            }
+          ],
+          "differs_from_teaching_path": "The learner starts from a prediction and misconception test rather than receiving the conclusion first."
+        },
+        "boundary_test": {
+          "prompt": "What changes would make this rule or model choice no longer answer the same question?",
+          "answer": "A changed central atom, requested representation level or overlap/model target can require a different count or model.",
+          "confirms": "The rule is scoped to the chosen centre and explanatory job."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-Q2-ISS31",
+          "decision": "distinguish bond order/components from the number of spatial electron-density regions around the central atom",
+          "step_refs": [
+            "HYB-T2-1",
+            "HYB-T2-2",
+            "HYB-T2-3"
+          ],
+          "representation_ref": "REP-CHEM-HYB-DOMAIN-COUNT",
+          "reveal_stage_refs": [
+            "DOM-1",
+            "DOM-2",
+            "DOM-3"
+          ],
+          "bank_anchor_ref": "OWN-ISSUE31-HYBRIDISATION-02",
+          "crux_question_refs": [
+            "OWN-ISSUE31-HYBRIDISATION-02"
+          ],
+          "crux_step_ref": "HYB-T2-2",
+          "misconception_indexes": [
+            0,
+            1,
+            2
+          ],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "Changed check: a triple bond to N in HCN still supplies one C-to-N direction; carbon also has the H direction."
+            },
+            {
+              "role": "APPLY",
+              "statement": "Explain why replacing a double bond with a triple bond to the same neighbour need not add a direction."
+            },
+            {
+              "role": "CONNECT",
+              "statement": "HCHO carbon has three bonded-atom directions. C=O contributes one local domain, although its double bond contains one sigma and one pi component. Pi density is not confined to the internuclear axis."
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "why the two bond lines in C=O do not create two independent electron-domain directions around carbon",
+        "result": "Count distinct regions/directions around the chosen central atom; a multiple bond to one neighbour is one region.",
+        "representation_ref": "REP-CHEM-HYB-DOMAIN-COUNT"
+      }
+    },
+    {
+      "id": "MIC-CHEM-G11-FOUR-DOMAIN-MAPPING",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:question_repairs": [
+          {
+            "clarify": "The task asks for a local count before the introductory geometry label.",
+            "connect": "Four bonding directions and no central lone pair use the demonstrated four-domain rule.",
+            "way": "Inventory only carbon-centred domains; attach the known rule without reading shape from page angles.",
+            "rule": "CH4 has four bonding domains, no carbon lone pair, and a tetrahedral introductory sp3 description. A Lewis layout encodes connectivity.",
+            "check": "Changed check: CH3Cl still has four bonded neighbours around carbon even if the bonds have different properties.",
+            "probe": "Count domains at C in CH3Cl and C in CH4. Does redrawing either as a cross change its count?",
+            "pattern": "Both have four; changing drawing placement changes neither connectivity nor domain count. Repeated drawing-angle dependence suggests a spatial-model error.",
+            "transfer": "Classify carbon in CH2Cl2 by domain inventory, not bond identity.",
+            "wrong_idea": "The page layout is the molecular geometry.",
+            "question_ref": "OWN-ISSUE31-HYBRIDISATION-03",
+            "label": "Q3",
+            "construction_ref": "CU-Q3-ISS31",
+            "microtopic_ref": "MIC-CHEM-G11-FOUR-DOMAIN-MAPPING",
+            "status": "CORRECTION_CANDIDATE",
+            "parent_issue": 31,
+            "crux_move_ref": "OWN-ISSUE31-HYBRIDISATION-03-MOVE-2"
+          },
+          {
+            "clarify": "Map each set name to an orbital inventory, not its superscript alone.",
+            "connect": "One s plus n p inputs gives n+1 hybrid outputs.",
+            "way": "Write separate input/output ledgers for BF3 and CH4 before matching labels.",
+            "rule": "BF3: three domains and three sp2 hybrids. CH4: four domains and four sp3 hybrids. For these centres use valence 2s/2p language rather than ambiguous 1s + 2p shorthand.",
+            "check": "Changed check: sp uses two inputs and two hybrid outputs, providing a third case for the conservation rule.",
+            "probe": "Compare proposed totals sp=1, sp2=2, sp3=3 against basis-function conservation. Give the corrected sequence.",
+            "pattern": "The corrected sequence is 2,3,4. Repeating the shifted sequence suggests the superscript-as-total rule.",
+            "transfer": "Reconstruct all three set sizes without memorising the sequence.",
+            "wrong_idea": "sp2 has two hybrids and sp3 has three.",
+            "question_ref": "OWN-ISSUE31-HYBRIDISATION-10",
+            "label": "Q10",
+            "construction_ref": "CU-Q3-ISS31",
+            "microtopic_ref": "MIC-CHEM-G11-FOUR-DOMAIN-MAPPING",
+            "status": "CORRECTION_CANDIDATE",
+            "parent_issue": 31,
+            "crux_move_ref": "OWN-ISSUE31-HYBRIDISATION-10-MOVE-2"
+          }
+        ],
+        "grade9v3:lesson_anchors": {
+          "CU-Q3-ISS31": {
+            "id": "ANCHOR-CU-Q3-ISS31",
+            "stem": "Count domains at C in CH3Cl and C in CH4. Does redrawing either as a cross change its count?",
+            "answer": {
+              "summary": "Both have four; changing drawing placement changes neither connectivity nor domain count. Repeated drawing-angle dependence suggests a spatial-model error.",
+              "reasoning": [
+                "Four bonding directions and no central lone pair use the demonstrated four-domain rule.",
+                "Both have four; changing drawing placement changes neither connectivity nor domain count. Repeated drawing-angle dependence suggests a spatial-model error.",
+                "CH4 has four bonding domains, no carbon lone pair, and a tetrahedral introductory sp3 description. A Lewis layout encodes connectivity."
+              ],
+              "check": "Changed check: CH3Cl still has four bonded neighbours around carbon even if the bonds have different properties."
+            }
+          }
+        }
+      },
+      "title": "Four domains to sp3 and tetrahedral geometry",
+      "bucket_id": "BUCKET-CHEM-G11-HYBRIDISATION",
+      "primary_capability_ref": "CAP-CHEM-G11-DOMAIN-TO-HYBRID-GEOMETRY",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "A direct application of the four-domain rule once the four C–H bonding domains are counted.",
+      "entry_assumptions": [
+        "Can read supplied atoms, single/double/triple bonds, and shared versus lone pairs in a simple Lewis structure."
+      ],
+      "inferential_jump": "Lewis placement is bookkeeping; VSEPR/domain geometry comes from the number of electron-density regions around the central atom.",
+      "teaching_path": [
+        {
+          "id": "HYB-T3-1",
+          "role": "DECLARE",
+          "action": "State the governing distinction for Four domains to sp3 and tetrahedral geometry.",
+          "why_valid": "The learner needs a stable conceptual rule before translating a diagram or choosing a model.",
+          "inputs": [],
+          "output": "governing rule"
+        },
+        {
+          "id": "HYB-T3-2",
+          "role": "TRANSFORM",
+          "action": "Lewis placement is bookkeeping; VSEPR/domain geometry comes from the number of electron-density regions around the central atom.",
+          "why_valid": "This directly repairs the recorded misconception while preserving the question's requested representation level.",
+          "inputs": [],
+          "output": "correctly transformed representation or model choice"
+        },
+        {
+          "id": "HYB-T3-3",
+          "role": "VERIFY",
+          "action": "Check the conclusion against the central-atom scope, domain count, three-dimensional geometry or overlap-axis invariant.",
+          "why_valid": "The check is independent of merely repeating the final answer.",
+          "inputs": [],
+          "output": "verified conclusion"
+        }
+      ],
+      "relation_refs": [
+        "REL-CHEM-HYB-DOMAIN-HYBRID"
+      ],
+      "representation_refs": [
+        "REP-CHEM-HYB-CH4-TETRAHEDRAL"
+      ],
+      "question_family_refs": [
+        "FAM-CHEM-HYB-DOMAINS"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "The page layout is the molecular geometry.",
+          "diagnostic_prompt": "Count domains at C in CH3Cl and C in CH4. Does redrawing either as a cross change its count?",
+          "repair": "CH4 has four bonding domains, no carbon lone pair, and a tetrahedral introductory sp3 description. A Lewis layout encodes connectivity."
+        },
+        {
+          "wrong_idea": "sp2 has two hybrids and sp3 has three.",
+          "diagnostic_prompt": "Compare proposed totals sp=1, sp2=2, sp3=3 against basis-function conservation. Give the corrected sequence.",
+          "repair": "BF3: three domains and three sp2 hybrids. CH4: four domains and four sp3 hybrids. For these centres use valence 2s/2p language rather than ambiguous 1s + 2p shorthand."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Explain the rule behind four domains to sp3 and tetrahedral geometry without copying the benchmark answer.",
+        "source_ref": "SRC-CHEM-OPENSTAX-VSEPR-HYBRID",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Lewis placement is bookkeeping; VSEPR/domain geometry comes from the number of electron-density regions around the central atom.",
+          "reasoning": [
+            "Lewis placement is bookkeeping; VSEPR/domain geometry comes from the number of electron-density regions around the central atom.",
+            "Use the relevant representation/model boundary to justify the rule."
+          ],
+          "check": "The explanation must reject the recorded wrong idea for the same reason.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "INDEPENDENTLY_CHECKED"
+        },
+        "oracle": {
+          "no_numeric_claim": "This exit task checks the conceptual rule rather than a memorized number."
+        }
+      },
+      "research_contribution": "Issue #31 Q3 and the cited OpenStax source isolate this decision as a learner-facing construction target.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Before revealing the rule, what would you use to decide the four C–H bonding domains and absence of a central lone pair?",
+          "defensible_answer": "count the domains, verify the rule applies, then map the count to the model"
+        },
+        "attempt": {
+          "produces": "A one-sentence rule or labelled representation.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Uses the correct representation/model distinction.",
+              "evidence_of": "Lewis placement is bookkeeping; VSEPR/domain geometry comes from the number of electron-density regions around the central atom."
+            }
+          ],
+          "accepted": [
+            "Lewis placement is bookkeeping; VSEPR/domain geometry comes from the number of electron-density regions around the central atom."
+          ],
+          "rejected": [
+            "Reading the flat Lewis layout as a square-planar or cross-shaped molecular geometry."
+          ],
+          "task": {
+            "prompt": "Apply the rule to the benchmark anchor Q3 but stop before copying its final answer.",
+            "givens": [
+              "Use the owner-supplied benchmark stem verbatim as the anchor."
+            ],
+            "representation_ref": "REP-CHEM-HYB-CH4-TETRAHEDRAL"
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "count the domains, verify the rule applies, then map the count to the model",
+              "why_this_ask": "This is the smallest rule that protects the crux."
+            },
+            {
+              "ask": "What would falsify the tempting wrong route?",
+              "why_this_ask": "A boundary check makes the rule transferable."
+            }
+          ],
+          "differs_from_teaching_path": "The learner starts from a prediction and misconception test rather than receiving the conclusion first."
+        },
+        "boundary_test": {
+          "prompt": "What changes would make this rule or model choice no longer answer the same question?",
+          "answer": "A changed central atom, requested representation level or overlap/model target can require a different count or model.",
+          "confirms": "The rule is scoped to the chosen centre and explanatory job."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-Q3-ISS31",
+          "decision": "count the domains, verify the rule applies, then map the count to the model",
+          "step_refs": [
+            "HYB-T3-1",
+            "HYB-T3-2",
+            "HYB-T3-3"
+          ],
+          "representation_ref": "REP-CHEM-HYB-CH4-TETRAHEDRAL",
+          "reveal_stage_refs": [
+            "CH4-1",
+            "CH4-2",
+            "CH4-3"
+          ],
+          "bank_anchor_ref": "OWN-ISSUE31-HYBRIDISATION-03",
+          "crux_question_refs": [
+            "OWN-ISSUE31-HYBRIDISATION-03"
+          ],
+          "crux_step_ref": "HYB-T3-2",
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "Changed check: CH3Cl still has four bonded neighbours around carbon even if the bonds have different properties."
+            },
+            {
+              "role": "APPLY",
+              "statement": "Classify carbon in CH2Cl2 by domain inventory, not bond identity."
+            },
+            {
+              "role": "CONNECT",
+              "statement": "CH4 has four bonding domains, no carbon lone pair, and a tetrahedral introductory sp3 description. A Lewis layout encodes connectivity."
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "the four C–H bonding domains and absence of a central lone pair",
+        "result": "Lewis placement is bookkeeping; VSEPR/domain geometry comes from the number of electron-density regions around the central atom.",
+        "representation_ref": "REP-CHEM-HYB-CH4-TETRAHEDRAL"
+      }
+    },
+    {
+      "id": "MIC-CHEM-G11-LEWIS-TO-TETRAHEDRAL-DOMAINS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:question_repairs": [
+          {
+            "clarify": "Translate three bonds and one lone pair without adding a fifth direction.",
+            "connect": "Wedges and dashes encode depth; electron-domain geometry includes lone pairs, molecular shape uses nuclei.",
+            "way": "Make four labelled slots first; assign three N-H bonds and one lone pair exactly once.",
+            "rule": "NH3 has N at the centre, exactly three N-H directions and one distinguishable lone-pair domain. Tetrahedral domain arrangement and trigonal-pyramidal molecular shape describe different inventories.",
+            "check": "Count all four slots in the sketch; replacing the lone-pair slot by an N-H bond changes the inventory to an NH4+ teaching comparison, not NH3.",
+            "probe": "Draw NH3 and a tetrahedral four-bond NH4+ comparison. Mark which slot differs and recount the H atoms in each.",
+            "pattern": "NH3 has three H plus a lone pair; NH4+ has four H and no N lone pair in the local Lewis model. A recurring fourth H/fifth domain exposes representation substitution.",
+            "transfer": "Create an H2O domain sketch with two bonded slots and two lone-pair slots.",
+            "wrong_idea": "Adding depth marks permits an extra bond or domain.",
+            "question_ref": "OWN-ISSUE31-HYBRIDISATION-04",
+            "label": "Q4",
+            "construction_ref": "CU-Q4-ISS31",
+            "microtopic_ref": "MIC-CHEM-G11-LEWIS-TO-TETRAHEDRAL-DOMAINS",
+            "status": "CORRECTION_CANDIDATE",
+            "parent_issue": 31,
+            "crux_move_ref": "OWN-ISSUE31-HYBRIDISATION-04-MOVE-2"
+          },
+          {
+            "clarify": "Identify whether the error is in connectivity notation or in its interpretation as physical shape.",
+            "connect": "A flat Lewis drawing does not assert that all nuclei are coplanar.",
+            "way": "Keep four C-H connections while assigning explicit towards/away/in-plane conventions.",
+            "rule": "For CH4 a wedge/dash projection represents four tetrahedral bond directions. Projected page angles are not all physical 109.5-degree angles.",
+            "check": "Changed check: rotate the paper or choose another viewing direction; the atom connectivity and noncoplanar model must stay unchanged.",
+            "probe": "Does a cross-shaped Lewis CH4 drawing assert square-planar CH4? Does adding wedge/dash notation change the number of bonds?",
+            "pattern": "No and no. Persistent inference from page angles to physical angles suggests a representation misconception.",
+            "transfer": "Explain two different projections of the same tetrahedral model.",
+            "wrong_idea": "A Lewis cross proves a square-planar molecule.",
+            "question_ref": "OWN-ISSUE31-HYBRIDISATION-07",
+            "label": "Q7",
+            "construction_ref": "CU-Q4-ISS31",
+            "microtopic_ref": "MIC-CHEM-G11-LEWIS-TO-TETRAHEDRAL-DOMAINS",
+            "status": "CORRECTION_CANDIDATE",
+            "parent_issue": 31,
+            "crux_move_ref": "OWN-ISSUE31-HYBRIDISATION-07-MOVE-2"
+          }
+        ],
+        "grade9v3:lesson_anchors": {
+          "CU-Q4-ISS31": {
+            "id": "ANCHOR-CU-Q4-ISS31",
+            "stem": "Draw NH3 and a tetrahedral four-bond NH4+ comparison. Mark which slot differs and recount the H atoms in each.",
+            "answer": {
+              "summary": "NH3 has three H plus a lone pair; NH4+ has four H and no N lone pair in the local Lewis model. A recurring fourth H/fifth domain exposes representation substitution.",
+              "reasoning": [
+                "Wedges and dashes encode depth; electron-domain geometry includes lone pairs, molecular shape uses nuclei.",
+                "NH3 has three H plus a lone pair; NH4+ has four H and no N lone pair in the local Lewis model. A recurring fourth H/fifth domain exposes representation substitution.",
+                "NH3 has N at the centre, exactly three N-H directions and one distinguishable lone-pair domain. Tetrahedral domain arrangement and trigonal-pyramidal molecular shape describe different inventories."
+              ],
+              "check": "Count all four slots in the sketch; replacing the lone-pair slot by an N-H bond changes the inventory to an NH4+ teaching comparison, not NH3."
+            }
+          }
+        }
+      },
+      "title": "Lewis structure to tetrahedral domain arrangement",
+      "bucket_id": "BUCKET-CHEM-G11-HYBRIDISATION",
+      "primary_capability_ref": "CAP-CHEM-G11-LEWIS-TO-3D-DOMAINS",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The learner must preserve three bonds plus one lone-pair domain while translating a flat Lewis sketch into a non-planar tetrahedral electron-domain arrangement.",
+      "entry_assumptions": [
+        "Can read supplied atoms, single/double/triple bonds, and shared versus lone pairs in a simple Lewis structure."
+      ],
+      "inferential_jump": "Preserve the four-domain count first, then map those domains to tetrahedral directions; molecular geometry names atom positions and therefore omits the lone-pair direction.",
+      "teaching_path": [
+        {
+          "id": "HYB-T4-1",
+          "role": "DECLARE",
+          "action": "State the governing distinction for Lewis structure to tetrahedral domain arrangement.",
+          "why_valid": "The learner needs a stable conceptual rule before translating a diagram or choosing a model.",
+          "inputs": [],
+          "output": "governing rule"
+        },
+        {
+          "id": "HYB-T4-2",
+          "role": "TRANSFORM",
+          "action": "Preserve the four-domain count first, then map those domains to tetrahedral directions; molecular geometry names atom positions and therefore omits the lone-pair direction.",
+          "why_valid": "This directly repairs the recorded misconception while preserving the question's requested representation level.",
+          "inputs": [],
+          "output": "correctly transformed representation or model choice"
+        },
+        {
+          "id": "HYB-T4-3",
+          "role": "VERIFY",
+          "action": "Check the conclusion against the central-atom scope, domain count, three-dimensional geometry or overlap-axis invariant.",
+          "why_valid": "The check is independent of merely repeating the final answer.",
+          "inputs": [],
+          "output": "verified conclusion"
+        }
+      ],
+      "relation_refs": [
+        "REL-CHEM-HYB-LEWIS-3D"
+      ],
+      "representation_refs": [
+        "REP-CHEM-HYB-NH3-DOMAINS"
+      ],
+      "question_family_refs": [
+        "FAM-CHEM-HYB-3D"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Adding depth marks permits an extra bond or domain.",
+          "diagnostic_prompt": "Draw NH3 and a tetrahedral four-bond NH4+ comparison. Mark which slot differs and recount the H atoms in each.",
+          "repair": "NH3 has N at the centre, exactly three N-H directions and one distinguishable lone-pair domain. Tetrahedral domain arrangement and trigonal-pyramidal molecular shape describe different inventories."
+        },
+        {
+          "wrong_idea": "A Lewis cross proves a square-planar molecule.",
+          "diagnostic_prompt": "Does a cross-shaped Lewis CH4 drawing assert square-planar CH4? Does adding wedge/dash notation change the number of bonds?",
+          "repair": "For CH4 a wedge/dash projection represents four tetrahedral bond directions. Projected page angles are not all physical 109.5-degree angles."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Explain the rule behind lewis structure to tetrahedral domain arrangement without copying the benchmark answer.",
+        "source_ref": "SRC-CHEM-OPENSTAX-VSEPR-HYBRID",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Preserve the four-domain count first, then map those domains to tetrahedral directions; molecular geometry names atom positions and therefore omits the lone-pair direction.",
+          "reasoning": [
+            "Preserve the four-domain count first, then map those domains to tetrahedral directions; molecular geometry names atom positions and therefore omits the lone-pair direction.",
+            "Use the relevant representation/model boundary to justify the rule."
+          ],
+          "check": "The explanation must reject the recorded wrong idea for the same reason.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "INDEPENDENTLY_CHECKED"
+        },
+        "oracle": {
+          "no_numeric_claim": "This exit task checks the conceptual rule rather than a memorized number."
+        }
+      },
+      "research_contribution": "Issue #31 Q4 and the cited OpenStax source isolate this decision as a learner-facing construction target.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Before revealing the rule, what would you use to decide the invariant three N–H bonding domains plus one nitrogen lone-pair domain while moving from 2D Lewis notation to a 3D domain picture?",
+          "defensible_answer": "construct four tetrahedral domain directions and map the three bonds and the lone pair onto them"
+        },
+        "attempt": {
+          "produces": "A one-sentence rule or labelled representation.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Uses the correct representation/model distinction.",
+              "evidence_of": "Preserve the four-domain count first, then map those domains to tetrahedral directions; molecular geometry names atom positions and therefore omits the lone-pair direction."
+            }
+          ],
+          "accepted": [
+            "Preserve the four-domain count first, then map those domains to tetrahedral directions; molecular geometry names atom positions and therefore omits the lone-pair direction."
+          ],
+          "rejected": [
+            "Copying the planar Lewis sketch as the molecular shape, or putting all four domains in one plane."
+          ],
+          "task": {
+            "prompt": "Apply the rule to the benchmark anchor Q4 but stop before copying its final answer.",
+            "givens": [
+              "Use the owner-supplied benchmark stem verbatim as the anchor."
+            ],
+            "representation_ref": "REP-CHEM-HYB-NH3-DOMAINS"
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "construct four tetrahedral domain directions and map the three bonds and the lone pair onto them",
+              "why_this_ask": "This is the smallest rule that protects the crux."
+            },
+            {
+              "ask": "What would falsify the tempting wrong route?",
+              "why_this_ask": "A boundary check makes the rule transferable."
+            }
+          ],
+          "differs_from_teaching_path": "The learner starts from a prediction and misconception test rather than receiving the conclusion first."
+        },
+        "boundary_test": {
+          "prompt": "What changes would make this rule or model choice no longer answer the same question?",
+          "answer": "A changed central atom, requested representation level or overlap/model target can require a different count or model.",
+          "confirms": "The rule is scoped to the chosen centre and explanatory job."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-Q4-ISS31",
+          "decision": "construct four tetrahedral domain directions and map the three bonds and the lone pair onto them",
+          "step_refs": [
+            "HYB-T4-1",
+            "HYB-T4-2",
+            "HYB-T4-3"
+          ],
+          "representation_ref": "REP-CHEM-HYB-NH3-DOMAINS",
+          "reveal_stage_refs": [
+            "NH3-1",
+            "NH3-2",
+            "NH3-3"
+          ],
+          "bank_anchor_ref": "OWN-ISSUE31-HYBRIDISATION-04",
+          "crux_question_refs": [
+            "OWN-ISSUE31-HYBRIDISATION-04"
+          ],
+          "crux_step_ref": "HYB-T4-2",
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "Count all four slots in the sketch; replacing the lone-pair slot by an N-H bond changes the inventory to an NH4+ teaching comparison, not NH3."
+            },
+            {
+              "role": "APPLY",
+              "statement": "Create an H2O domain sketch with two bonded slots and two lone-pair slots."
+            },
+            {
+              "role": "CONNECT",
+              "statement": "NH3 has N at the centre, exactly three N-H directions and one distinguishable lone-pair domain. Tetrahedral domain arrangement and trigonal-pyramidal molecular shape describe different inventories."
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "the invariant three N–H bonding domains plus one nitrogen lone-pair domain while moving from 2D Lewis notation to a 3D domain picture",
+        "result": "Preserve the four-domain count first, then map those domains to tetrahedral directions; molecular geometry names atom positions and therefore omits the lone-pair direction.",
+        "representation_ref": "REP-CHEM-HYB-NH3-DOMAINS"
+      }
+    },
+    {
+      "id": "MIC-CHEM-G11-MODEL-SCOPE-SELECTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:question_repairs": [
+          {
+            "clarify": "Choose a model by the output requested, rather than the chapter title.",
+            "connect": "A model has a defined prediction scope and unresolved questions.",
+            "way": "Compare each candidate against overall domain arrangement versus detailed orbital-overlap information; leave the choice to your answer.",
+            "rule": "VSEPR fits qualitative electron-domain arrangement. An orbital-overlap model addresses orbital participation. VSEPR does not itself calculate an exact experimental angle or full electronic structure.",
+            "check": "Changed task: detailed axial versus side-on overlap now requires an overlap description; a geometry-only account is insufficient.",
+            "probe": "Task A asks for atom/domain arrangement; task B asks which orbitals overlap along the bond axis. State what information each model must supply.",
+            "pattern": "A needs a geometry model; B needs an orbital account. Choosing the same familiar model without checking output in both cases suggests scope confusion.",
+            "transfer": "Choose the needed model when the new task asks for pi-overlap orientation in ethene.",
+            "wrong_idea": "A familiar chapter keyword selects the model.",
+            "question_ref": "OWN-ISSUE31-HYBRIDISATION-05",
+            "label": "Q5",
+            "construction_ref": "CU-Q5-ISS31",
+            "microtopic_ref": "MIC-CHEM-G11-MODEL-SCOPE-SELECTION",
+            "status": "CORRECTION_CANDIDATE",
+            "parent_issue": 31,
+            "crux_move_ref": "OWN-ISSUE31-HYBRIDISATION-05-MOVE-2"
+          }
+        ],
+        "grade9v3:lesson_anchors": {
+          "CU-Q5-ISS31": {
+            "id": "ANCHOR-CU-Q5-ISS31",
+            "stem": "Task A asks for atom/domain arrangement; task B asks which orbitals overlap along the bond axis. State what information each model must supply.",
+            "answer": {
+              "summary": "A needs a geometry model; B needs an orbital account. Choosing the same familiar model without checking output in both cases suggests scope confusion.",
+              "reasoning": [
+                "A model has a defined prediction scope and unresolved questions.",
+                "A needs a geometry model; B needs an orbital account. Choosing the same familiar model without checking output in both cases suggests scope confusion.",
+                "VSEPR fits qualitative electron-domain arrangement. An orbital-overlap model addresses orbital participation. VSEPR does not itself calculate an exact experimental angle or full electronic structure."
+              ],
+              "check": "Changed task: detailed axial versus side-on overlap now requires an overlap description; a geometry-only account is insufficient."
+            }
+          }
+        }
+      },
+      "title": "Choose a model by explanatory scope",
+      "bucket_id": "BUCKET-CHEM-G11-HYBRIDISATION",
+      "primary_capability_ref": "CAP-CHEM-G11-MODEL-SCOPE-VSEPR-VB",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Requires selecting a model from the stated explanatory job and articulating model boundaries rather than choosing by a familiar hybridisation keyword.",
+      "entry_assumptions": [
+        "Can read supplied atoms, single/double/triple bonds, and shared versus lone pairs in a simple Lewis structure."
+      ],
+      "inferential_jump": "Choose a model by the question it is being asked to answer and the model's scope, not by a keyword in the chapter title.",
+      "teaching_path": [
+        {
+          "id": "HYB-T5-1",
+          "role": "DECLARE",
+          "action": "State the governing distinction for Choose a model by explanatory scope.",
+          "why_valid": "The learner needs a stable conceptual rule before translating a diagram or choosing a model.",
+          "inputs": [],
+          "output": "governing rule"
+        },
+        {
+          "id": "HYB-T5-2",
+          "role": "TRANSFORM",
+          "action": "Choose a model by the question it is being asked to answer and the model's scope, not by a keyword in the chapter title.",
+          "why_valid": "This directly repairs the recorded misconception while preserving the question's requested representation level.",
+          "inputs": [],
+          "output": "correctly transformed representation or model choice"
+        },
+        {
+          "id": "HYB-T5-3",
+          "role": "VERIFY",
+          "action": "Check the conclusion against the central-atom scope, domain count, three-dimensional geometry or overlap-axis invariant.",
+          "why_valid": "The check is independent of merely repeating the final answer.",
+          "inputs": [],
+          "output": "verified conclusion"
+        }
+      ],
+      "relation_refs": [
+        "REL-CHEM-HYB-MODEL-SCOPE"
+      ],
+      "representation_refs": [
+        "REP-CHEM-HYB-MODEL-SCOPE"
+      ],
+      "question_family_refs": [
+        "FAM-CHEM-HYB-MODEL-SCOPE"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "A familiar chapter keyword selects the model.",
+          "diagnostic_prompt": "Task A asks for atom/domain arrangement; task B asks which orbitals overlap along the bond axis. State what information each model must supply.",
+          "repair": "VSEPR fits qualitative electron-domain arrangement. An orbital-overlap model addresses orbital participation. VSEPR does not itself calculate an exact experimental angle or full electronic structure."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Explain the rule behind choose a model by explanatory scope without copying the benchmark answer.",
+        "source_ref": "SRC-CHEM-OPENSTAX-VSEPR-HYBRID",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Choose a model by the question it is being asked to answer and the model's scope, not by a keyword in the chapter title.",
+          "reasoning": [
+            "Choose a model by the question it is being asked to answer and the model's scope, not by a keyword in the chapter title.",
+            "Use the relevant representation/model boundary to justify the rule."
+          ],
+          "check": "The explanation must reject the recorded wrong idea for the same reason.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "INDEPENDENTLY_CHECKED"
+        },
+        "oracle": {
+          "no_numeric_claim": "This exit task checks the conceptual rule rather than a memorized number."
+        }
+      },
+      "research_contribution": "Issue #31 Q5 and the cited OpenStax source isolate this decision as a learner-facing construction target.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Before revealing the rule, what would you use to decide which requested feature—overall electron-domain arrangement or detailed orbital overlap—determines the appropriate model?",
+          "defensible_answer": "compare each model's explanatory job with the stated target and choose the one whose scope fits"
+        },
+        "attempt": {
+          "produces": "A one-sentence rule or labelled representation.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Uses the correct representation/model distinction.",
+              "evidence_of": "Choose a model by the question it is being asked to answer and the model's scope, not by a keyword in the chapter title."
+            }
+          ],
+          "accepted": [
+            "Choose a model by the question it is being asked to answer and the model's scope, not by a keyword in the chapter title."
+          ],
+          "rejected": [
+            "Selecting a hybrid-orbital overlap diagram merely because the topic contains the word hybridisation."
+          ],
+          "task": {
+            "prompt": "Apply the rule to the benchmark anchor Q5 but stop before copying its final answer.",
+            "givens": [
+              "Use the owner-supplied benchmark stem verbatim as the anchor."
+            ],
+            "representation_ref": "REP-CHEM-HYB-MODEL-SCOPE"
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "compare each model's explanatory job with the stated target and choose the one whose scope fits",
+              "why_this_ask": "This is the smallest rule that protects the crux."
+            },
+            {
+              "ask": "What would falsify the tempting wrong route?",
+              "why_this_ask": "A boundary check makes the rule transferable."
+            }
+          ],
+          "differs_from_teaching_path": "The learner starts from a prediction and misconception test rather than receiving the conclusion first."
+        },
+        "boundary_test": {
+          "prompt": "What changes would make this rule or model choice no longer answer the same question?",
+          "answer": "A changed central atom, requested representation level or overlap/model target can require a different count or model.",
+          "confirms": "The rule is scoped to the chosen centre and explanatory job."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-Q5-ISS31",
+          "decision": "compare each model's explanatory job with the stated target and choose the one whose scope fits",
+          "step_refs": [
+            "HYB-T5-1",
+            "HYB-T5-2",
+            "HYB-T5-3"
+          ],
+          "representation_ref": "REP-CHEM-HYB-MODEL-SCOPE",
+          "reveal_stage_refs": [
+            "MOD-1",
+            "MOD-2",
+            "MOD-3"
+          ],
+          "bank_anchor_ref": "OWN-ISSUE31-HYBRIDISATION-05",
+          "crux_question_refs": [
+            "OWN-ISSUE31-HYBRIDISATION-05"
+          ],
+          "crux_step_ref": "HYB-T5-2",
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "Changed task: detailed axial versus side-on overlap now requires an overlap description; a geometry-only account is insufficient."
+            },
+            {
+              "role": "APPLY",
+              "statement": "Choose the needed model when the new task asks for pi-overlap orientation in ethene."
+            },
+            {
+              "role": "CONNECT",
+              "statement": "VSEPR fits qualitative electron-domain arrangement. An orbital-overlap model addresses orbital participation. VSEPR does not itself calculate an exact experimental angle or full electronic structure."
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "which requested feature—overall electron-domain arrangement or detailed orbital overlap—determines the appropriate model",
+        "result": "Choose a model by the question it is being asked to answer and the model's scope, not by a keyword in the chapter title.",
+        "representation_ref": "REP-CHEM-HYB-MODEL-SCOPE"
+      }
+    },
+    {
+      "id": "MIC-CHEM-G11-SIGMA-PI-GEOMETRY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-SIGMA-PI"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:question_repairs": [
+          {
+            "clarify": "Use the stated internuclear axis to classify the overlap.",
+            "connect": "End-on and side-on are orientation/symmetry descriptions, not molecule-name clues.",
+            "way": "Locate the axis and the density above/below it; name the two classes yourself.",
+            "rule": "Sigma overlap is end-on/axial in the supplied sketch; pi overlap is lateral with a nodal plane containing the axis.",
+            "check": "Changed check: rotating the entire sketch on the page leaves its classification unchanged relative to the rotated axis.",
+            "probe": "Rotate the whole end-on sketch by 90 degrees on paper. Does it become pi? Compare that with rotating one p orbital relative to its neighbour.",
+            "pattern": "Whole-picture rotation does not change sigma/pi classification; relative orbital rotation can change overlap. Conflating page orientation with relative geometry suggests the misconception.",
+            "transfer": "Label a sigma component within a triple bond using its geometry.",
+            "wrong_idea": "Turning a drawing on the page changes sigma into pi.",
+            "question_ref": "OWN-ISSUE31-HYBRIDISATION-06",
+            "label": "Q6",
+            "construction_ref": "CU-Q6-ISS31",
+            "microtopic_ref": "MIC-CHEM-G11-SIGMA-PI-GEOMETRY",
+            "status": "CORRECTION_CANDIDATE",
+            "parent_issue": 31,
+            "crux_move_ref": "OWN-ISSUE31-HYBRIDISATION-06-MOVE-2"
+          }
+        ],
+        "grade9v3:lesson_anchors": {
+          "CU-Q6-ISS31": {
+            "id": "ANCHOR-CU-Q6-ISS31",
+            "stem": "Rotate the whole end-on sketch by 90 degrees on paper. Does it become pi? Compare that with rotating one p orbital relative to its neighbour.",
+            "answer": {
+              "summary": "Whole-picture rotation does not change sigma/pi classification; relative orbital rotation can change overlap. Conflating page orientation with relative geometry suggests the misconception.",
+              "reasoning": [
+                "End-on and side-on are orientation/symmetry descriptions, not molecule-name clues.",
+                "Whole-picture rotation does not change sigma/pi classification; relative orbital rotation can change overlap. Conflating page orientation with relative geometry suggests the misconception.",
+                "Sigma overlap is end-on/axial in the supplied sketch; pi overlap is lateral with a nodal plane containing the axis."
+              ],
+              "check": "Changed check: rotating the entire sketch on the page leaves its classification unchanged relative to the rotated axis."
+            }
+          }
+        }
+      },
+      "title": "Sigma and pi overlap geometry",
+      "bucket_id": "BUCKET-CHEM-G11-HYBRIDISATION",
+      "primary_capability_ref": "CAP-CHEM-G11-SIGMA-PI-OVERLAP",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Direct classification from the defining overlap orientation, with a small representation-reading demand.",
+      "entry_assumptions": [
+        "Can read supplied atoms, single/double/triple bonds, and shared versus lone pairs in a simple Lewis structure."
+      ],
+      "inferential_jump": "Sigma and pi classify orbital overlap by symmetry/orientation relative to the internuclear axis; bond multiplicity is a related but different cue.",
+      "teaching_path": [
+        {
+          "id": "HYB-T6-1",
+          "role": "DECLARE",
+          "action": "State the governing distinction for Sigma and pi overlap geometry.",
+          "why_valid": "The learner needs a stable conceptual rule before translating a diagram or choosing a model.",
+          "inputs": [],
+          "output": "governing rule"
+        },
+        {
+          "id": "HYB-T6-2",
+          "role": "TRANSFORM",
+          "action": "Sigma and pi classify orbital overlap by symmetry/orientation relative to the internuclear axis; bond multiplicity is a related but different cue.",
+          "why_valid": "This directly repairs the recorded misconception while preserving the question's requested representation level.",
+          "inputs": [],
+          "output": "correctly transformed representation or model choice"
+        },
+        {
+          "id": "HYB-T6-3",
+          "role": "VERIFY",
+          "action": "Check the conclusion against the central-atom scope, domain count, three-dimensional geometry or overlap-axis invariant.",
+          "why_valid": "The check is independent of merely repeating the final answer.",
+          "inputs": [],
+          "output": "verified conclusion"
+        }
+      ],
+      "relation_refs": [
+        "REL-CHEM-HYB-SIGMA-PI"
+      ],
+      "representation_refs": [
+        "REP-CHEM-HYB-SIGMA-PI"
+      ],
+      "question_family_refs": [
+        "FAM-CHEM-HYB-SIGMA-PI"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Turning a drawing on the page changes sigma into pi.",
+          "diagnostic_prompt": "Rotate the whole end-on sketch by 90 degrees on paper. Does it become pi? Compare that with rotating one p orbital relative to its neighbour.",
+          "repair": "Sigma overlap is end-on/axial in the supplied sketch; pi overlap is lateral with a nodal plane containing the axis."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Explain the rule behind sigma and pi overlap geometry without copying the benchmark answer.",
+        "source_ref": "SRC-CHEM-OPENSTAX-SIGMA-PI",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Sigma and pi classify orbital overlap by symmetry/orientation relative to the internuclear axis; bond multiplicity is a related but different cue.",
+          "reasoning": [
+            "Sigma and pi classify orbital overlap by symmetry/orientation relative to the internuclear axis; bond multiplicity is a related but different cue.",
+            "Use the relevant representation/model boundary to justify the rule."
+          ],
+          "check": "The explanation must reject the recorded wrong idea for the same reason.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "INDEPENDENTLY_CHECKED"
+        },
+        "oracle": {
+          "no_numeric_claim": "This exit task checks the conceptual rule rather than a memorized number."
+        }
+      },
+      "research_contribution": "Issue #31 Q6 and the cited OpenStax source isolate this decision as a learner-facing construction target.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Before revealing the rule, what would you use to decide whether the overlap is oriented along the internuclear axis or side-on across it?",
+          "defensible_answer": "classify each sketch using the orientation criterion"
+        },
+        "attempt": {
+          "produces": "A one-sentence rule or labelled representation.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Uses the correct representation/model distinction.",
+              "evidence_of": "Sigma and pi classify orbital overlap by symmetry/orientation relative to the internuclear axis; bond multiplicity is a related but different cue."
+            }
+          ],
+          "accepted": [
+            "Sigma and pi classify orbital overlap by symmetry/orientation relative to the internuclear axis; bond multiplicity is a related but different cue."
+          ],
+          "rejected": [
+            "Classifying pi only by seeing a double bond, rather than by the side-on overlap geometry."
+          ],
+          "task": {
+            "prompt": "Apply the rule to the benchmark anchor Q6 but stop before copying its final answer.",
+            "givens": [
+              "Use the owner-supplied benchmark stem verbatim as the anchor."
+            ],
+            "representation_ref": "REP-CHEM-HYB-SIGMA-PI"
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "classify each sketch using the orientation criterion",
+              "why_this_ask": "This is the smallest rule that protects the crux."
+            },
+            {
+              "ask": "What would falsify the tempting wrong route?",
+              "why_this_ask": "A boundary check makes the rule transferable."
+            }
+          ],
+          "differs_from_teaching_path": "The learner starts from a prediction and misconception test rather than receiving the conclusion first."
+        },
+        "boundary_test": {
+          "prompt": "What changes would make this rule or model choice no longer answer the same question?",
+          "answer": "A changed central atom, requested representation level or overlap/model target can require a different count or model.",
+          "confirms": "The rule is scoped to the chosen centre and explanatory job."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-Q6-ISS31",
+          "decision": "classify each sketch using the orientation criterion",
+          "step_refs": [
+            "HYB-T6-1",
+            "HYB-T6-2",
+            "HYB-T6-3"
+          ],
+          "representation_ref": "REP-CHEM-HYB-SIGMA-PI",
+          "reveal_stage_refs": [
+            "SIG-1",
+            "SIG-2",
+            "SIG-3"
+          ],
+          "bank_anchor_ref": "OWN-ISSUE31-HYBRIDISATION-06",
+          "crux_question_refs": [
+            "OWN-ISSUE31-HYBRIDISATION-06"
+          ],
+          "crux_step_ref": "HYB-T6-2",
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "Changed check: rotating the entire sketch on the page leaves its classification unchanged relative to the rotated axis."
+            },
+            {
+              "role": "APPLY",
+              "statement": "Label a sigma component within a triple bond using its geometry."
+            },
+            {
+              "role": "CONNECT",
+              "statement": "Sigma overlap is end-on/axial in the supplied sketch; pi overlap is lateral with a nodal plane containing the axis."
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "whether the overlap is oriented along the internuclear axis or side-on across it",
+        "result": "Sigma and pi classify orbital overlap by symmetry/orientation relative to the internuclear axis; bond multiplicity is a related but different cue.",
+        "representation_ref": "REP-CHEM-HYB-SIGMA-PI"
+      }
+    },
+    {
+      "id": "MIC-CHEM-G11-VSEPR-GEOMETRY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "VSEPR electron-domain versus molecular geometry",
+      "bucket_id": "BUCKET-CHEM-G11-HYBRIDISATION",
+      "primary_capability_ref": "CAP-CHEM-G11-VSEPR-GEOMETRY",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The learner must keep electron-domain geometry and molecular geometry as related but non-identical outputs.",
+      "entry_assumptions": [
+        "Can read supplied atoms, single/double/triple bonds, and shared versus lone pairs in a simple Lewis structure."
+      ],
+      "inferential_jump": "Use the electron-domain arrangement to predict geometry, then omit lone-pair positions only when naming atom-only molecular geometry.",
+      "teaching_path": [
+        {
+          "id": "HYB-TV-1",
+          "role": "DECLARE",
+          "action": "State the governing distinction for Lewis structure to tetrahedral domain arrangement.",
+          "why_valid": "The learner needs a stable conceptual rule before translating a diagram or choosing a model.",
+          "inputs": [],
+          "output": "governing rule"
+        },
+        {
+          "id": "HYB-TV-2",
+          "role": "TRANSFORM",
+          "action": "Preserve the four-domain count first, then map those domains to tetrahedral directions; molecular geometry names atom positions and therefore omits the lone-pair direction.",
+          "why_valid": "This directly repairs the recorded misconception while preserving the question's requested representation level.",
+          "inputs": [],
+          "output": "correctly transformed representation or model choice"
+        },
+        {
+          "id": "HYB-TV-3",
+          "role": "VERIFY",
+          "action": "Check the conclusion against the central-atom scope, domain count, three-dimensional geometry or overlap-axis invariant.",
+          "why_valid": "The check is independent of merely repeating the final answer.",
+          "inputs": [],
+          "output": "verified conclusion"
+        }
+      ],
+      "relation_refs": [
+        "REL-CHEM-HYB-LEWIS-3D"
+      ],
+      "representation_refs": [
+        "REP-CHEM-HYB-VSEPR-GEOMETRY"
+      ],
+      "question_family_refs": [
+        "FAM-CHEM-HYB-3D"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Copying the planar Lewis sketch as the molecular shape, or putting all four domains in one plane.",
+          "diagnostic_prompt": "the invariant three N–H bonding domains plus one nitrogen lone-pair domain while moving from 2D Lewis notation to a 3D domain picture",
+          "repair": "Preserve the four-domain count first, then map those domains to tetrahedral directions; molecular geometry names atom positions and therefore omits the lone-pair direction."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Explain the rule behind lewis structure to tetrahedral domain arrangement without copying the benchmark answer.",
+        "source_ref": "SRC-CHEM-OPENSTAX-VSEPR-HYBRID",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Preserve the four-domain count first, then map those domains to tetrahedral directions; molecular geometry names atom positions and therefore omits the lone-pair direction.",
+          "reasoning": [
+            "Preserve the four-domain count first, then map those domains to tetrahedral directions; molecular geometry names atom positions and therefore omits the lone-pair direction.",
+            "Use the relevant representation/model boundary to justify the rule."
+          ],
+          "check": "The explanation must reject the recorded wrong idea for the same reason.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "INDEPENDENTLY_CHECKED"
+        },
+        "oracle": {
+          "no_numeric_claim": "This exit task checks the conceptual rule rather than a memorized number."
+        }
+      },
+      "research_contribution": "Issue #31 Q4 and the cited OpenStax source isolate this decision as a learner-facing construction target.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Before revealing the rule, what would you use to decide the invariant three N–H bonding domains plus one nitrogen lone-pair domain while moving from 2D Lewis notation to a 3D domain picture?",
+          "defensible_answer": "construct four tetrahedral domain directions and map the three bonds and the lone pair onto them"
+        },
+        "attempt": {
+          "produces": "A one-sentence rule or labelled representation.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Uses the correct representation/model distinction.",
+              "evidence_of": "Preserve the four-domain count first, then map those domains to tetrahedral directions; molecular geometry names atom positions and therefore omits the lone-pair direction."
+            }
+          ],
+          "accepted": [
+            "Preserve the four-domain count first, then map those domains to tetrahedral directions; molecular geometry names atom positions and therefore omits the lone-pair direction."
+          ],
+          "rejected": [
+            "Copying the planar Lewis sketch as the molecular shape, or putting all four domains in one plane."
+          ],
+          "task": {
+            "prompt": "Apply the rule to the benchmark anchor Q4 but stop before copying its final answer.",
+            "givens": [
+              "Use the owner-supplied benchmark stem verbatim as the anchor."
+            ],
+            "representation_ref": "REP-CHEM-HYB-VSEPR-GEOMETRY"
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "construct four tetrahedral domain directions and map the three bonds and the lone pair onto them",
+              "why_this_ask": "This is the smallest rule that protects the crux."
+            },
+            {
+              "ask": "What would falsify the tempting wrong route?",
+              "why_this_ask": "A boundary check makes the rule transferable."
+            }
+          ],
+          "differs_from_teaching_path": "The learner starts from a prediction and misconception test rather than receiving the conclusion first."
+        },
+        "boundary_test": {
+          "prompt": "What changes would make this rule or model choice no longer answer the same question?",
+          "answer": "A changed central atom, requested representation level or overlap/model target can require a different count or model.",
+          "confirms": "The rule is scoped to the chosen centre and explanatory job."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-VSEPR-ISS31",
+          "decision": "construct four tetrahedral domain directions and map the three bonds and the lone pair onto them",
+          "step_refs": [
+            "HYB-TV-1",
+            "HYB-TV-2",
+            "HYB-TV-3"
+          ],
+          "representation_ref": "REP-CHEM-HYB-VSEPR-GEOMETRY",
+          "reveal_stage_refs": [
+            "VG-1",
+            "VG-2",
+            "VG-3"
+          ],
+          "bank_anchor_ref": "OWN-ISSUE31-HYBRIDISATION-04",
+          "crux_question_refs": [
+            "OWN-ISSUE31-HYBRIDISATION-04"
+          ],
+          "crux_step_ref": "HYB-TV-2",
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "CHECK: State the relevant invariant without using the final answer.",
+              "role": "CHECK"
+            },
+            {
+              "statement": "APPLY: Use the same rule on a nearby molecule or representation.",
+              "role": "APPLY"
+            },
+            {
+              "statement": "CONNECT: Explain which representation/model level the rule belongs to.",
+              "role": "CONNECT"
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "the invariant three N–H bonding domains plus one nitrogen lone-pair domain while moving from 2D Lewis notation to a 3D domain picture",
+        "result": "Preserve the four-domain count first, then map those domains to tetrahedral directions; molecular geometry names atom positions and therefore omits the lone-pair direction.",
+        "representation_ref": "REP-CHEM-HYB-VSEPR-GEOMETRY"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "REL-CHEM-HYB-DOMAIN-COUNT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "electron-domain count = bonded-neighbour regions + lone-pair regions on the chosen central atom",
+      "meaning": "VSEPR domain counting is local to the selected centre. A single, double or triple bond to one neighbour occupies one region/direction.",
+      "symbols": [
+        {
+          "symbol": "N_domain",
+          "meaning": "number of electron-density regions around the selected central atom",
+          "unit_or_domain": "non-negative integer"
+        }
+      ],
+      "conditions": [
+        "Choose the central atom before counting.",
+        "Treat each bonded neighbour as one region regardless of bond order."
+      ],
+      "derivation": [
+        {
+          "id": "DOM-R1",
+          "role": "DECLARE",
+          "action": "Choose the central atom.",
+          "why_valid": "The count is local to one centre.",
+          "inputs": [],
+          "output": "counting centre"
+        },
+        {
+          "id": "DOM-R2",
+          "role": "TRANSFORM",
+          "action": "Count each bonded neighbour once and add lone pairs on that centre.",
+          "why_valid": "VSEPR counts regions of electron density, not drawn bond lines.",
+          "inputs": [],
+          "output": "domain count"
+        },
+        {
+          "id": "DOM-R3",
+          "role": "VERIFY",
+          "action": "Check that neighbour lone pairs were excluded.",
+          "why_valid": "They belong to domains centred on those neighbours.",
+          "inputs": [],
+          "output": "verified local count"
+        }
+      ],
+      "limits": [
+        "Do not count lone pairs on terminal atoms when the question asks for domains around the central atom."
+      ],
+      "checks": [
+        "A double bond to one neighbour must not create a second direction."
+      ],
+      "gate_relation_ref": "REL-CHEM-HYB-DOMAIN-COUNT"
+    },
+    {
+      "id": "REL-CHEM-HYB-DOMAIN-HYBRID",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "3 electron-domain directions ↔ sp2 ↔ 3 hybrids; 4 directions ↔ sp3 ↔ 4 hybrids",
+      "meaning": "In the introductory valence-bond model, the number of hybrid orbitals equals the number of atomic orbitals combined and matches the modelled electron-domain directions.",
+      "symbols": [
+        {
+          "symbol": "sp2",
+          "meaning": "one s plus two p orbitals combined",
+          "unit_or_domain": "introductory hybrid set"
+        },
+        {
+          "symbol": "sp3",
+          "meaning": "one s plus three p orbitals combined",
+          "unit_or_domain": "introductory hybrid set"
+        }
+      ],
+      "conditions": [
+        "Use this as an introductory local bonding model, not as a complete quantum description."
+      ],
+      "derivation": [
+        {
+          "id": "HYB-R1",
+          "role": "DECLARE",
+          "action": "Count the electron-domain directions.",
+          "why_valid": "Hybrid set choice follows the directional set being modelled.",
+          "inputs": [],
+          "output": "domain-direction count"
+        },
+        {
+          "id": "HYB-R2",
+          "role": "TRANSFORM",
+          "action": "Map three directions to sp2 and four to sp3.",
+          "why_valid": "One s orbital is included in both labels, so set size is 3 or 4 respectively.",
+          "inputs": [],
+          "output": "hybrid set"
+        },
+        {
+          "id": "HYB-R3",
+          "role": "VERIFY",
+          "action": "Check set size equals the number of modelled directions.",
+          "why_valid": "The superscript alone is not the number of hybrids.",
+          "inputs": [],
+          "output": "verified set size"
+        }
+      ],
+      "limits": [
+        "The model rationalises directional bonding; it is not a full many-electron wavefunction description."
+      ],
+      "checks": [
+        "sp2 must give three hybrids and sp3 four."
+      ],
+      "gate_relation_ref": "REL-CHEM-HYB-DOMAIN-HYBRID"
+    },
+    {
+      "id": "REL-CHEM-HYB-LEWIS-3D",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "four electron domains → tetrahedral electron-domain arrangement; molecular geometry omits lone-pair positions from the atom-only name",
+      "meaning": "A flat Lewis structure records connectivity/electron pairs but does not by itself encode the three-dimensional domain geometry.",
+      "symbols": [
+        {
+          "symbol": "EDG",
+          "meaning": "electron-domain geometry",
+          "unit_or_domain": "geometry label"
+        },
+        {
+          "symbol": "MG",
+          "meaning": "molecular geometry from atom positions",
+          "unit_or_domain": "geometry label"
+        }
+      ],
+      "conditions": [
+        "Four regions around a centre are arranged tetrahedrally in the introductory VSEPR model."
+      ],
+      "derivation": [
+        {
+          "id": "GEO-R1",
+          "role": "DECLARE",
+          "action": "Preserve the domain count from the Lewis structure.",
+          "why_valid": "Connectivity comes before spatial naming.",
+          "inputs": [],
+          "output": "domain inventory"
+        },
+        {
+          "id": "GEO-R2",
+          "role": "TRANSFORM",
+          "action": "Place four domains along tetrahedral directions.",
+          "why_valid": "Four regions minimise repulsion in a tetrahedral arrangement.",
+          "inputs": [],
+          "output": "3D domain arrangement"
+        },
+        {
+          "id": "GEO-R3",
+          "role": "VERIFY",
+          "action": "Name electron-domain and molecular geometry separately when lone pairs are present.",
+          "why_valid": "The molecular name counts atom positions, not lone-pair directions.",
+          "inputs": [],
+          "output": "verified geometry labels"
+        }
+      ],
+      "limits": [
+        "A 2D cross drawing is not evidence of 90° molecular geometry."
+      ],
+      "checks": [
+        "NH3: tetrahedral electron-domain geometry but trigonal-pyramidal molecular geometry."
+      ],
+      "gate_relation_ref": "REL-CHEM-HYB-LEWIS-3D"
+    },
+    {
+      "id": "REL-CHEM-HYB-MODEL-SCOPE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "model choice follows requested explanatory output",
+      "meaning": "VSEPR is the economical model for overall electron-domain arrangement; orbital-overlap/valence-bond descriptions answer orbital composition and overlap questions.",
+      "symbols": [
+        {
+          "symbol": "VSEPR",
+          "meaning": "electron-domain arrangement model",
+          "unit_or_domain": "explanatory model"
+        },
+        {
+          "symbol": "VB",
+          "meaning": "valence-bond/orbital-overlap description",
+          "unit_or_domain": "explanatory model"
+        }
+      ],
+      "conditions": [
+        "Choose the model after identifying what the question asks to predict."
+      ],
+      "derivation": [
+        {
+          "id": "MOD-R1",
+          "role": "DECLARE",
+          "action": "State the requested output.",
+          "why_valid": "Model adequacy is relative to an explanatory task.",
+          "inputs": [],
+          "output": "requested output"
+        },
+        {
+          "id": "MOD-R2",
+          "role": "TRANSFORM",
+          "action": "Choose VSEPR for overall domain arrangement and orbital overlap for orbital-level bonding detail.",
+          "why_valid": "Each model carries a different explanatory scope.",
+          "inputs": [],
+          "output": "fit-for-purpose model"
+        },
+        {
+          "id": "MOD-R3",
+          "role": "VERIFY",
+          "action": "State what the chosen model does not resolve.",
+          "why_valid": "A scope boundary prevents treating one model as universally more correct.",
+          "inputs": [],
+          "output": "scope-limited conclusion"
+        }
+      ],
+      "limits": [
+        "Neither model should be presented as universally superior; the question determines the useful level."
+      ],
+      "checks": [
+        "For Q5, VSEPR answers the requested overall 3D arrangement without needing orbital wavefunction detail."
+      ],
+      "gate_relation_ref": "REL-CHEM-HYB-MODEL-SCOPE"
+    },
+    {
+      "id": "REL-CHEM-HYB-SIGMA-PI",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-SIGMA-PI"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "sigma: end-on overlap along internuclear axis; pi: side-on overlap with density on opposite sides of the axis",
+      "meaning": "Sigma/pi classification is defined by overlap symmetry/orientation relative to the internuclear axis, not merely by seeing a single or double bond label.",
+      "symbols": [
+        {
+          "symbol": "σ",
+          "meaning": "axially symmetric end-on overlap",
+          "unit_or_domain": "bonding-overlap class"
+        },
+        {
+          "symbol": "π",
+          "meaning": "side-on overlap with a nodal plane containing the internuclear axis",
+          "unit_or_domain": "bonding-overlap class"
+        }
+      ],
+      "conditions": [
+        "Use the internuclear axis as the reference direction."
+      ],
+      "derivation": [
+        {
+          "id": "SIG-R1",
+          "role": "DECLARE",
+          "action": "Mark the internuclear axis.",
+          "why_valid": "The classification is defined relative to this axis.",
+          "inputs": [],
+          "output": "reference axis"
+        },
+        {
+          "id": "SIG-R2",
+          "role": "TRANSFORM",
+          "action": "Classify end-on overlap as sigma and side-on overlap as pi.",
+          "why_valid": "The overlap symmetry differs with orientation.",
+          "inputs": [],
+          "output": "overlap class"
+        },
+        {
+          "id": "SIG-R3",
+          "role": "VERIFY",
+          "action": "Check for the pi nodal plane through the axis.",
+          "why_valid": "This distinguishes side-on pi overlap from axial sigma overlap.",
+          "inputs": [],
+          "output": "verified overlap class"
+        }
+      ],
+      "limits": [
+        "Bond multiplicity is related but is not the defining geometric test."
+      ],
+      "checks": [
+        "A pi diagram must place overlap density on opposite sides of the internuclear axis."
+      ],
+      "gate_relation_ref": "REL-CHEM-HYB-SIGMA-PI"
+    }
+  ],
+  "representations": [
+    {
+      "id": "REP-CHEM-HYB-DOMAIN-COUNT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "CUMULATIVE"
+      },
+      "kind": "ORBITAL_DIAGRAM",
+      "purpose": "Make local central-atom domain counting visible and show why a multiple bond remains one direction.",
+      "required_elements": [
+        "Choose centre",
+        "Distinct directions",
+        "Local lone pairs"
+      ],
+      "relation_refs": [
+        "REL-CHEM-HYB-DOMAIN-COUNT"
+      ],
+      "read_order": [
+        "Mark the atom whose domains are being counted.",
+        "Count neighbouring directions, not bond lines.",
+        "Include lone pairs only on the chosen centre."
+      ],
+      "instance_constraints": [
+        "The pre-attempt view must orient the learner without printing the final answer.",
+        "Labels must preserve electron-domain, molecular-geometry and orbital-overlap distinctions."
+      ],
+      "accessibility": [
+        "The SVG has an accessible title and description.",
+        "Text labels duplicate any depth, axis or overlap cue."
+      ],
+      "misleading_alternatives": [
+        "Treating a flat Lewis layout as the three-dimensional geometry.",
+        "Treating bond-order lines as separate VSEPR directions."
+      ],
+      "rendered_asset_refs": [
+        "evidence/blueprint-cycles/ISS31/assets/issue31-domain-count.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "central atom",
+          "symbol": "counting centre",
+          "in_words": "all domains are counted around this atom"
+        },
+        {
+          "element": "double bond",
+          "symbol": "one direction",
+          "in_words": "two bond lines to one neighbour still form one VSEPR region"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "DOM-1",
+          "label": "Choose centre",
+          "purpose": "Mark the atom whose domains are being counted.",
+          "visible_elements": [
+            "Choose centre"
+          ]
+        },
+        {
+          "id": "DOM-2",
+          "label": "Distinct directions",
+          "purpose": "Count neighbouring directions, not bond lines.",
+          "visible_elements": [
+            "Distinct directions"
+          ]
+        },
+        {
+          "id": "DOM-3",
+          "label": "Local lone pairs",
+          "purpose": "Include lone pairs only on the chosen centre.",
+          "visible_elements": [
+            "Local lone pairs"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-CHEM-HYB-HYBRID-SETS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "CUMULATIVE"
+      },
+      "kind": "ORBITAL_DIAGRAM",
+      "purpose": "Show the introductory mapping from 3/4 electron-domain directions to sp2/sp3 hybrid set size.",
+      "required_elements": [
+        "Domain count",
+        "Hybrid label",
+        "Set size"
+      ],
+      "relation_refs": [
+        "REL-CHEM-HYB-DOMAIN-HYBRID"
+      ],
+      "read_order": [
+        "Start from the number of directions.",
+        "Map 3 to sp2 and 4 to sp3.",
+        "Verify the number of hybrids equals the number of directions."
+      ],
+      "instance_constraints": [
+        "The pre-attempt view must orient the learner without printing the final answer.",
+        "Labels must preserve electron-domain, molecular-geometry and orbital-overlap distinctions."
+      ],
+      "accessibility": [
+        "The SVG has an accessible title and description.",
+        "Text labels duplicate any depth, axis or overlap cue."
+      ],
+      "misleading_alternatives": [
+        "Treating a flat Lewis layout as the three-dimensional geometry.",
+        "Treating bond-order lines as separate VSEPR directions."
+      ],
+      "rendered_asset_refs": [
+        "evidence/blueprint-cycles/ISS31/assets/issue31-hybrid-sets.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "three-direction set",
+          "symbol": "sp2",
+          "in_words": "one s plus two p orbitals gives three hybrids"
+        },
+        {
+          "element": "four-direction set",
+          "symbol": "sp3",
+          "in_words": "one s plus three p orbitals gives four hybrids"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "HYB-1",
+          "label": "Domain count",
+          "purpose": "Start from the number of directions.",
+          "visible_elements": [
+            "Domain count"
+          ]
+        },
+        {
+          "id": "HYB-2",
+          "label": "Hybrid label",
+          "purpose": "Map 3 to sp2 and 4 to sp3.",
+          "visible_elements": [
+            "Hybrid label"
+          ]
+        },
+        {
+          "id": "HYB-3",
+          "label": "Set size",
+          "purpose": "Verify the number of hybrids equals the number of directions.",
+          "visible_elements": [
+            "Set size"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-CHEM-HYB-CH4-TETRAHEDRAL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "CUMULATIVE"
+      },
+      "kind": "ORBITAL_DIAGRAM",
+      "purpose": "Build methane's four bonding domains into an sp3 tetrahedral arrangement.",
+      "required_elements": [
+        "Four bonding domains",
+        "Tetrahedral directions",
+        "sp3 check"
+      ],
+      "relation_refs": [
+        "REL-CHEM-HYB-DOMAIN-HYBRID",
+        "REL-CHEM-HYB-LEWIS-3D"
+      ],
+      "read_order": [
+        "Count the four C-H regions around carbon.",
+        "Move the four directions out of a flat drawing.",
+        "Connect four directions to the introductory sp3 set and tetrahedral geometry."
+      ],
+      "instance_constraints": [
+        "The pre-attempt view must orient the learner without printing the final answer.",
+        "Labels must preserve electron-domain, molecular-geometry and orbital-overlap distinctions."
+      ],
+      "accessibility": [
+        "The SVG has an accessible title and description.",
+        "Text labels duplicate any depth, axis or overlap cue."
+      ],
+      "misleading_alternatives": [
+        "Treating a flat Lewis layout as the three-dimensional geometry.",
+        "Treating bond-order lines as separate VSEPR directions."
+      ],
+      "rendered_asset_refs": [
+        "evidence/blueprint-cycles/ISS31/assets/issue31-ch4-tetrahedral.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "four C-H directions",
+          "symbol": "4 domains",
+          "in_words": "four bonding regions around carbon"
+        },
+        {
+          "element": "tetrahedral depth",
+          "symbol": "sp3",
+          "in_words": "four non-coplanar hybrid directions"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "CH4-1",
+          "label": "Four bonding domains",
+          "purpose": "Count the four C-H regions around carbon.",
+          "visible_elements": [
+            "Four bonding domains"
+          ]
+        },
+        {
+          "id": "CH4-2",
+          "label": "Tetrahedral directions",
+          "purpose": "Move the four directions out of a flat drawing.",
+          "visible_elements": [
+            "Tetrahedral directions"
+          ]
+        },
+        {
+          "id": "CH4-3",
+          "label": "sp3 check",
+          "purpose": "Connect four directions to the introductory sp3 set and tetrahedral geometry.",
+          "visible_elements": [
+            "sp3 check"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-CHEM-HYB-NH3-DOMAINS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "CUMULATIVE"
+      },
+      "kind": "ORBITAL_DIAGRAM",
+      "purpose": "Translate NH3's three bonding domains and one lone-pair domain into tetrahedral directions.",
+      "required_elements": [
+        "Four domains",
+        "Tetrahedral directions",
+        "Two geometry names"
+      ],
+      "relation_refs": [
+        "REL-CHEM-HYB-LEWIS-3D"
+      ],
+      "read_order": [
+        "Inventory three N-H bonds plus one N lone pair.",
+        "Move the four domains out of a flat Lewis plane.",
+        "Separate electron-domain geometry from molecular geometry."
+      ],
+      "instance_constraints": [
+        "The pre-attempt view must orient the learner without printing the final answer.",
+        "Labels must preserve electron-domain, molecular-geometry and orbital-overlap distinctions."
+      ],
+      "accessibility": [
+        "The SVG has an accessible title and description.",
+        "Text labels duplicate any depth, axis or overlap cue."
+      ],
+      "misleading_alternatives": [
+        "Treating a flat Lewis layout as the three-dimensional geometry.",
+        "Treating bond-order lines as separate VSEPR directions."
+      ],
+      "rendered_asset_refs": [
+        "evidence/blueprint-cycles/ISS31/assets/issue31-nh3-domains.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "three N-H directions",
+          "symbol": "bonding domains",
+          "in_words": "three atom directions"
+        },
+        {
+          "element": "lone-pair direction",
+          "symbol": "nonbonding domain",
+          "in_words": "counts in electron-domain geometry but not in the atom-only molecular-geometry name"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "NH3-1",
+          "label": "Four domains",
+          "purpose": "Inventory three N-H bonds plus one N lone pair.",
+          "visible_elements": [
+            "Four domains"
+          ]
+        },
+        {
+          "id": "NH3-2",
+          "label": "Tetrahedral directions",
+          "purpose": "Move the four domains out of a flat Lewis plane.",
+          "visible_elements": [
+            "Tetrahedral directions"
+          ]
+        },
+        {
+          "id": "NH3-3",
+          "label": "Two geometry names",
+          "purpose": "Separate electron-domain geometry from molecular geometry.",
+          "visible_elements": [
+            "Two geometry names"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-CHEM-HYB-VSEPR-GEOMETRY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "CUMULATIVE"
+      },
+      "kind": "DATA_TABLE",
+      "purpose": "Distinguish the electron-domain geometry and atom-only molecular geometry predicted by VSEPR for NH3.",
+      "required_elements": [
+        "Domain inventory",
+        "Electron-domain geometry",
+        "Molecular geometry"
+      ],
+      "relation_refs": [
+        "REL-CHEM-HYB-LEWIS-3D"
+      ],
+      "read_order": [
+        "Count all four electron domains around nitrogen.",
+        "Name the tetrahedral arrangement of all four domains.",
+        "Omit the lone-pair position only when naming the atom-only shape."
+      ],
+      "instance_constraints": [
+        "The pre-attempt view must orient the learner without printing the final answer.",
+        "Labels must preserve electron-domain, molecular-geometry and orbital-overlap distinctions."
+      ],
+      "accessibility": [
+        "The SVG has an accessible title and description.",
+        "Text labels duplicate any depth, axis or overlap cue."
+      ],
+      "misleading_alternatives": [
+        "Treating a flat Lewis layout as the three-dimensional geometry.",
+        "Treating bond-order lines as separate VSEPR directions."
+      ],
+      "rendered_asset_refs": [
+        "evidence/blueprint-cycles/ISS31/assets/issue31-vsepr-geometry.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "electron-domain row",
+          "symbol": "EDG",
+          "in_words": "tetrahedral because all four domains count"
+        },
+        {
+          "element": "molecular-geometry row",
+          "symbol": "MG",
+          "in_words": "trigonal pyramidal because only atom positions are named"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "VG-1",
+          "label": "Domain inventory",
+          "purpose": "Count all four electron domains around nitrogen.",
+          "visible_elements": [
+            "Domain inventory"
+          ]
+        },
+        {
+          "id": "VG-2",
+          "label": "Electron-domain geometry",
+          "purpose": "Name the tetrahedral arrangement of all four domains.",
+          "visible_elements": [
+            "Electron-domain geometry"
+          ]
+        },
+        {
+          "id": "VG-3",
+          "label": "Molecular geometry",
+          "purpose": "Omit the lone-pair position only when naming the atom-only shape.",
+          "visible_elements": [
+            "Molecular geometry"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-CHEM-HYB-MODEL-SCOPE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "CUMULATIVE"
+      },
+      "kind": "DATA_TABLE",
+      "purpose": "Compare what VSEPR and orbital-overlap descriptions predict for the same NH3 anchor.",
+      "required_elements": [
+        "Requested output",
+        "VSEPR lens",
+        "Overlap lens"
+      ],
+      "relation_refs": [
+        "REL-CHEM-HYB-MODEL-SCOPE"
+      ],
+      "read_order": [
+        "Identify that Q5 asks for overall 3D electron-domain arrangement.",
+        "See the prediction that directly answers that request.",
+        "Mark orbital-level details that are outside the requested output."
+      ],
+      "instance_constraints": [
+        "The pre-attempt view must orient the learner without printing the final answer.",
+        "Labels must preserve electron-domain, molecular-geometry and orbital-overlap distinctions."
+      ],
+      "accessibility": [
+        "The SVG has an accessible title and description.",
+        "Text labels duplicate any depth, axis or overlap cue."
+      ],
+      "misleading_alternatives": [
+        "Treating a flat Lewis layout as the three-dimensional geometry.",
+        "Treating bond-order lines as separate VSEPR directions."
+      ],
+      "rendered_asset_refs": [
+        "evidence/blueprint-cycles/ISS31/assets/issue31-model-scope.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "VSEPR column",
+          "symbol": "overall arrangement",
+          "in_words": "electron-domain and molecular geometry"
+        },
+        {
+          "element": "orbital-overlap column",
+          "symbol": "bonding detail",
+          "in_words": "orbital composition and overlap"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "MOD-1",
+          "label": "Requested output",
+          "purpose": "Identify that Q5 asks for overall 3D electron-domain arrangement.",
+          "visible_elements": [
+            "Requested output"
+          ]
+        },
+        {
+          "id": "MOD-2",
+          "label": "VSEPR lens",
+          "purpose": "See the prediction that directly answers that request.",
+          "visible_elements": [
+            "VSEPR lens"
+          ]
+        },
+        {
+          "id": "MOD-3",
+          "label": "Overlap lens",
+          "purpose": "Mark orbital-level details that are outside the requested output.",
+          "visible_elements": [
+            "Overlap lens"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-CHEM-HYB-SIGMA-PI",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-SIGMA-PI"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "CUMULATIVE"
+      },
+      "kind": "ORBITAL_DIAGRAM",
+      "purpose": "Anchor sigma/pi classification to the internuclear axis and overlap orientation.",
+      "required_elements": [
+        "Internuclear axis",
+        "End-on overlap",
+        "Side-on overlap"
+      ],
+      "relation_refs": [
+        "REL-CHEM-HYB-SIGMA-PI"
+      ],
+      "read_order": [
+        "Use the atom-atom line as the reference.",
+        "Identify sigma overlap along the axis.",
+        "Identify pi overlap and its nodal-plane relation."
+      ],
+      "instance_constraints": [
+        "The pre-attempt view must orient the learner without printing the final answer.",
+        "Labels must preserve electron-domain, molecular-geometry and orbital-overlap distinctions."
+      ],
+      "accessibility": [
+        "The SVG has an accessible title and description.",
+        "Text labels duplicate any depth, axis or overlap cue."
+      ],
+      "misleading_alternatives": [
+        "Treating a flat Lewis layout as the three-dimensional geometry.",
+        "Treating bond-order lines as separate VSEPR directions."
+      ],
+      "rendered_asset_refs": [
+        "evidence/blueprint-cycles/ISS31/assets/issue31-sigma-pi.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "end-on lobes",
+          "symbol": "σ",
+          "in_words": "overlap lies along the internuclear axis"
+        },
+        {
+          "element": "side-on lobes",
+          "symbol": "π",
+          "in_words": "overlap lies on opposite sides of the axis"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "SIG-1",
+          "label": "Internuclear axis",
+          "purpose": "Use the atom-atom line as the reference.",
+          "visible_elements": [
+            "Internuclear axis"
+          ]
+        },
+        {
+          "id": "SIG-2",
+          "label": "End-on overlap",
+          "purpose": "Identify sigma overlap along the axis.",
+          "visible_elements": [
+            "End-on overlap"
+          ]
+        },
+        {
+          "id": "SIG-3",
+          "label": "Side-on overlap",
+          "purpose": "Identify pi overlap and its nodal-plane relation.",
+          "visible_elements": [
+            "Side-on overlap"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-CHEM-HYB-WEDGE-DASH",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "CUMULATIVE"
+      },
+      "kind": "STRUCTURAL_FORMULA",
+      "purpose": "Use wedge/dash depth encoding to distinguish tetrahedral methane from a flat cross Lewis drawing.",
+      "required_elements": [
+        "Connectivity",
+        "Depth cues",
+        "Tetrahedral check"
+      ],
+      "relation_refs": [
+        "REL-CHEM-HYB-LEWIS-3D"
+      ],
+      "read_order": [
+        "Keep carbon bonded to four hydrogens.",
+        "Use wedge and dash for bonds toward and behind the viewer.",
+        "Reject a coplanar 90-degree cross interpretation."
+      ],
+      "instance_constraints": [
+        "The pre-attempt view must orient the learner without printing the final answer.",
+        "Labels must preserve electron-domain, molecular-geometry and orbital-overlap distinctions."
+      ],
+      "accessibility": [
+        "The SVG has an accessible title and description.",
+        "Text labels duplicate any depth, axis or overlap cue."
+      ],
+      "misleading_alternatives": [
+        "Treating a flat Lewis layout as the three-dimensional geometry.",
+        "Treating bond-order lines as separate VSEPR directions."
+      ],
+      "rendered_asset_refs": [
+        "evidence/blueprint-cycles/ISS31/assets/issue31-wedge-dash.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "solid wedge",
+          "symbol": "toward viewer",
+          "in_words": "one bond projects out of the page"
+        },
+        {
+          "element": "hashed/dashed bond",
+          "symbol": "behind viewer",
+          "in_words": "one bond projects behind the page"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "WD-1",
+          "label": "Connectivity",
+          "purpose": "Keep carbon bonded to four hydrogens.",
+          "visible_elements": [
+            "Connectivity"
+          ]
+        },
+        {
+          "id": "WD-2",
+          "label": "Depth cues",
+          "purpose": "Use wedge and dash for bonds toward and behind the viewer.",
+          "visible_elements": [
+            "Depth cues"
+          ]
+        },
+        {
+          "id": "WD-3",
+          "label": "Tetrahedral check",
+          "purpose": "Reject a coplanar 90-degree cross interpretation.",
+          "visible_elements": [
+            "Tetrahedral check"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-CYCLE-ISS31-NH3",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "CUMULATIVE"
+      },
+      "kind": "ORBITAL_DIAGRAM",
+      "purpose": "Construct exactly three N-H domains and one distinguishable lone-pair domain.",
+      "required_elements": [
+        "N centre",
+        "three N-H directions",
+        "one lone-pair direction"
+      ],
+      "relation_refs": [
+        "REL-CHEM-HYB-DOMAIN-COUNT"
+      ],
+      "read_order": [
+        "Inventory the supplied domains",
+        "Construct the four directions",
+        "Separate domain and nuclear shape"
+      ],
+      "instance_constraints": [
+        "No extra H or fifth domain.",
+        "Page projection is not a physical angle measurement."
+      ],
+      "accessibility": [
+        "The SVG has an accessible title and description.",
+        "Text labels duplicate any depth, axis or overlap cue."
+      ],
+      "misleading_alternatives": [
+        "Treating a flat Lewis layout as the three-dimensional geometry.",
+        "Treating bond-order lines as separate VSEPR directions."
+      ],
+      "rendered_asset_refs": [
+        "evidence/blueprint-cycles/ISS31/assets/nh3-four-domains.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "N",
+          "symbol": "selected centre",
+          "in_words": "Nitrogen is the counting centre."
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "ISS31-NH3-1",
+          "label": "Inventory",
+          "purpose": "Use supplied givens only.",
+          "visible_elements": [
+            "Inventory"
+          ]
+        },
+        {
+          "id": "ISS31-NH3-2",
+          "label": "Four directions",
+          "purpose": "Show three N-H bonds and one lone-pair direction.",
+          "visible_elements": [
+            "Four directions"
+          ]
+        },
+        {
+          "id": "ISS31-NH3-3",
+          "label": "Two shape descriptions",
+          "purpose": "Distinguish domains from nuclei.",
+          "visible_elements": [
+            "Two shape descriptions"
+          ]
+        }
+      ]
+    }
+  ],
+  "question_families": [
+    {
+      "id": "FAM-CHEM-HYB-DOMAINS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Electron domains and introductory hybrid-set mapping",
+      "capability_refs": [
+        "CAP-CHEM-G11-ELECTRON-DOMAIN-COUNT",
+        "CAP-CHEM-G11-SP3-HYBRID-SET",
+        "CAP-CHEM-G11-DOMAIN-TO-HYBRID-GEOMETRY"
+      ],
+      "solution_structure": [
+        "Identify the central atom, requested representation or overlap reference axis.",
+        "Apply the smallest relevant domain/model rule.",
+        "State the result and check it against the named misconception."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Choose the representation/model that directly answers the requested quantity.",
+        "representation_translation": "Translate Lewis, wedge/dash, domain or orbital-overlap information without conflating levels.",
+        "reasoning_steps": "Represent, decide, verify.",
+        "novelty": "The count is local to the chosen centre and the hybrid mapping is an introductory model."
+      },
+      "safe_variations": [
+        "Change the molecule while preserving the same central-domain or overlap structure.",
+        "Change the representation while preserving the same explanatory job."
+      ],
+      "transfer_boundaries": [
+        "The count is local to the chosen centre and the hybrid mapping is an introductory model."
+      ],
+      "common_wrong_routes": [
+        "Count bond lines or read hybrid superscripts as the number of directions."
+      ],
+      "item_refs": []
+    },
+    {
+      "id": "FAM-CHEM-HYB-3D",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Lewis-to-3D domain geometry",
+      "capability_refs": [
+        "CAP-CHEM-G11-LEWIS-TO-3D-DOMAINS",
+        "CAP-CHEM-G11-VSEPR-GEOMETRY"
+      ],
+      "solution_structure": [
+        "Identify the central atom, requested representation or overlap reference axis.",
+        "Apply the smallest relevant domain/model rule.",
+        "State the result and check it against the named misconception."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Choose the representation/model that directly answers the requested quantity.",
+        "representation_translation": "Translate Lewis, wedge/dash, domain or orbital-overlap information without conflating levels.",
+        "reasoning_steps": "Represent, decide, verify.",
+        "novelty": "Electron-domain geometry counts lone-pair directions; molecular geometry names atom positions."
+      },
+      "safe_variations": [
+        "Change the molecule while preserving the same central-domain or overlap structure.",
+        "Change the representation while preserving the same explanatory job."
+      ],
+      "transfer_boundaries": [
+        "Electron-domain geometry counts lone-pair directions; molecular geometry names atom positions."
+      ],
+      "common_wrong_routes": [
+        "Treat a planar Lewis layout as the molecular geometry."
+      ],
+      "item_refs": []
+    },
+    {
+      "id": "FAM-CHEM-HYB-MODEL-SCOPE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Model-scope selection",
+      "capability_refs": [
+        "CAP-CHEM-G11-MODEL-SCOPE-VSEPR-VB",
+        "CAP-CHEM-G11-VSEPR-GEOMETRY"
+      ],
+      "solution_structure": [
+        "Identify the central atom, requested representation or overlap reference axis.",
+        "Apply the smallest relevant domain/model rule.",
+        "State the result and check it against the named misconception."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Choose the representation/model that directly answers the requested quantity.",
+        "representation_translation": "Translate Lewis, wedge/dash, domain or orbital-overlap information without conflating levels.",
+        "reasoning_steps": "Represent, decide, verify.",
+        "novelty": "The useful model is selected by the requested explanatory output."
+      },
+      "safe_variations": [
+        "Change the molecule while preserving the same central-domain or overlap structure.",
+        "Change the representation while preserving the same explanatory job."
+      ],
+      "transfer_boundaries": [
+        "The useful model is selected by the requested explanatory output."
+      ],
+      "common_wrong_routes": [
+        "Choose the orbital-overlap model simply because the chapter is about hybridisation."
+      ],
+      "item_refs": []
+    },
+    {
+      "id": "FAM-CHEM-HYB-SIGMA-PI",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Sigma/pi overlap geometry",
+      "capability_refs": [
+        "CAP-CHEM-G11-SIGMA-PI-OVERLAP"
+      ],
+      "solution_structure": [
+        "Identify the central atom, requested representation or overlap reference axis.",
+        "Apply the smallest relevant domain/model rule.",
+        "State the result and check it against the named misconception."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Choose the representation/model that directly answers the requested quantity.",
+        "representation_translation": "Translate Lewis, wedge/dash, domain or orbital-overlap information without conflating levels.",
+        "reasoning_steps": "Represent, decide, verify.",
+        "novelty": "Use orientation and symmetry relative to the internuclear axis."
+      },
+      "safe_variations": [
+        "Change the molecule while preserving the same central-domain or overlap structure.",
+        "Change the representation while preserving the same explanatory job."
+      ],
+      "transfer_boundaries": [
+        "Use orientation and symmetry relative to the internuclear axis."
+      ],
+      "common_wrong_routes": [
+        "Classify pi only from the appearance of a double bond."
+      ],
+      "item_refs": []
+    }
+  ],
+  "questions": [],
+  "teaching_routes": [
+    {
+      "id": "ROUTE-CHEM-G11-HYBRIDISATION-CORE1A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CHEM-OPENSTAX-VSEPR-HYBRID",
+        "SRC-CHEM-OPENSTAX-SIGMA-PI"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Construct hybridisation from electron-domain decisions",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-CHEM-G11-HYBRID-SET-SIZE",
+        "MIC-CHEM-G11-CENTRAL-DOMAIN-COUNT",
+        "MIC-CHEM-G11-FOUR-DOMAIN-MAPPING",
+        "MIC-CHEM-G11-LEWIS-TO-TETRAHEDRAL-DOMAINS",
+        "MIC-CHEM-G11-MODEL-SCOPE-SELECTION",
+        "MIC-CHEM-G11-SIGMA-PI-GEOMETRY",
+        "MIC-CHEM-G11-VSEPR-GEOMETRY"
+      ],
+      "entry_needs": [
+        "Learner can identify atoms, bond order, shared pairs and lone pairs in a supplied simple Lewis structure."
+      ],
+      "learner_actions": [
+        "Count domains locally around the selected central atom.",
+        "Translate domain count into 3D VSEPR geometry and the introductory hybrid-set mapping.",
+        "Choose VSEPR versus orbital-overlap descriptions by explanatory scope.",
+        "Classify sigma versus pi overlap from the internuclear axis."
+      ],
+      "help_plan": [
+        "Mark the central atom before counting.",
+        "Collapse any multiple bond to one VSEPR direction.",
+        "Separate electron-domain geometry from molecular geometry.",
+        "Ask what the question wants the model to predict before naming a model."
+      ],
+      "reveal_plan": "Build the local counting and representation rules first, then use Q5 as the model-scope crux and Q6 as the overlap-geometry boundary.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-CHEM-OPENSTAX-VSEPR-HYBRID",
+          "purpose": "VSEPR and hybrid-orbital model",
+          "reason": "Supports domain counting, geometry and introductory sp2/sp3 mapping."
+        },
+        {
+          "resource_ref": "SRC-CHEM-OPENSTAX-SIGMA-PI",
+          "purpose": "Sigma/pi overlap",
+          "reason": "Supports the internuclear-axis classification used in Q6 and the multiple-bond distinction used in Q2/Q9."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not extend this slice into delocalisation, resonance-sensitive hybridisation exceptions, radicals, hypervalency or a complete quantum-mechanical treatment."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {
+    "grade9v3:benchmark_issue": 31
+  },
+  "data": []
+}

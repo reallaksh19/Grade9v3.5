@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" width="100%" height="100%" role="img" aria-labelledby="svg-tet-title svg-tet-desc">
+  <title id="svg-tet-title">3D Tetrahedral Wedge-Dash Representation vs Flat 2D Lewis Projection</title>
+  <desc id="svg-tet-desc">A comparative three-stage diagram illustrating why four electron domains require 3D tetrahedral geometry (109.5 degrees) using wedge-dash notation rather than a flat 90-degree 2D cross.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .text-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 15px; font-weight: 600; fill: #1e293b; }
+      .text-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; fill: #475569; }
+      .text-atom { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: bold; fill: #0f172a; text-anchor: middle; dominant-baseline: central; }
+      .text-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #64748b; }
+      .line-flat { stroke: #64748b; stroke-width: 2.5; stroke-linecap: round; }
+      .line-3d { stroke: #2563eb; stroke-width: 3; stroke-linecap: round; }
+      .arc-angle { fill: none; stroke: #ea580c; stroke-width: 2; stroke-dasharray: 3,3; }
+      .text-angle { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; font-weight: 600; fill: #ea580c; }
+      .wedge-solid { fill: #2563eb; stroke: #1d4ed8; stroke-width: 1; }
+      .dash-wedge { stroke: #2563eb; stroke-width: 3; stroke-dasharray: 4,4; stroke-linecap: round; }
+      .lobe-lp { fill: #fef08a; stroke: #ca8a04; stroke-width: 2; fill-opacity: 0.7; }
+    </style>
+  </defs>
+
+  <rect width="600" height="360" rx="8" class="bg" />
+
+  <!-- Stage 1: Flat 2D Lewis Cross (Topological Fallacy) -->
+  <g data-g9-stage-id="TET-STAGE-1">
+    <rect x="20" y="20" width="260" height="320" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <text x="35" y="45" class="text-title">Stage 1: 2D Lewis Cross Sketch</text>
+    <text x="35" y="68" class="text-sub">Topological connectivity (Flat 90° illusion)</text>
+
+    <!-- Flat 90 deg molecule -->
+    <circle cx="150" cy="180" r="18" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2" />
+    <text x="150" y="180" class="text-atom">C</text>
+
+    <line x1="150" y1="162" x2="150" y2="105" class="line-flat" />
+    <circle cx="150" cy="95" r="14" fill="#f1f5f9" stroke="#cbd5e1" />
+    <text x="150" y="95" class="text-atom" font-size="14">H</text>
+
+    <line x1="150" y1="198" x2="150" y2="255" class="line-flat" />
+    <circle cx="150" cy="265" r="14" fill="#f1f5f9" stroke="#cbd5e1" />
+    <text x="150" y="265" class="text-atom" font-size="14">H</text>
+
+    <line x1="132" y1="180" x2="75" y2="180" class="line-flat" />
+    <circle cx="65" cy="180" r="14" fill="#f1f5f9" stroke="#cbd5e1" />
+    <text x="65" y="180" class="text-atom" font-size="14">H</text>
+
+    <line x1="168" y1="180" x2="225" y2="180" class="line-flat" />
+    <circle cx="235" cy="180" r="14" fill="#f1f5f9" stroke="#cbd5e1" />
+    <text x="235" y="180" class="text-atom" font-size="14">H</text>
+
+    <!-- 90 deg indicator -->
+    <path d="M 150 145 A 35 35 0 0 1 185 180" class="arc-angle" />
+    <text x="165" y="160" class="text-angle">90°</text>
+    <text x="150" y="315" text-anchor="middle" class="text-sub" fill="#dc2626">Misleading: 2D drawing forces crowded 90° angles</text>
+  </g>
+
+  <!-- Stage 2: 3D Spatial Minimization of Repulsion -->
+  <g data-g9-stage-id="TET-STAGE-2">
+    <rect x="300" y="20" width="280" height="150" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <text x="315" y="42" class="text-title">Stage 2: 3D Electrostatic Repulsion</text>
+    <text x="315" y="62" class="text-sub">Electron domains repel into 3D space (VSEPR)</text>
+
+    <!-- Tetrahedron geometry axes -->
+    <path d="M 370 125 L 430 75 L 490 125 Z" fill="none" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="3,3" />
+    <line x1="430" y1="75" x2="430" y2="140" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="3,3" />
+    <circle cx="430" cy="105" r="5" fill="#2563eb" />
+    <text x="445" y="105" class="text-angle">109.5°</text>
+    <text x="440" y="155" class="text-body" font-size="12" text-anchor="middle">Four equivalent directions: regular tetrahedron</text>
+  </g>
+
+  <!-- Stage 3: Wedge-Dash 3D Stereochemical Representation -->
+  <g data-g9-stage-id="TET-STAGE-3">
+    <rect x="300" y="180" width="280" height="160" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <text x="315" y="202" class="text-title">Stage 3: Stereochemical Wedge-Dash</text>
+    <text x="315" y="222" class="text-sub">In-plane (lines), Out-of-plane (wedge / dash)</text>
+
+    <!-- Central Atom (C or N) -->
+    <circle cx="430" cy="275" r="16" fill="#eff6ff" stroke="#2563eb" stroke-width="2" />
+    <text x="430" y="275" class="text-atom">C</text>
+
+    <!-- In-plane bond 1 (vertical-ish) -->
+    <line x1="430" y1="259" x2="430" y2="230" class="line-3d" />
+    <circle cx="430" cy="225" r="10" fill="#f8fafc" stroke="#64748b" />
+    <text x="430" y="225" class="text-atom" font-size="11">H</text>
+
+    <!-- In-plane bond 2 (left-angled) -->
+    <line x1="416" y1="282" x2="375" y2="305" class="line-3d" />
+    <circle cx="368" cy="309" r="10" fill="#f8fafc" stroke="#64748b" />
+    <text x="368" y="309" class="text-atom" font-size="11">H</text>
+
+    <!-- Solid Wedge (Forward out of page) -->
+    <polygon points="436,285 470,318 480,308" class="wedge-solid" />
+    <circle cx="482" cy="316" r="10" fill="#f8fafc" stroke="#64748b" />
+    <text x="482" y="316" class="text-atom" font-size="11">H</text>
+
+    <!-- Dashed Wedge (Receding into page) -->
+    <line x1="444" y1="272" x2="495" y2="265" class="dash-wedge" />
+    <circle cx="503" cy="263" r="10" fill="#f8fafc" stroke="#64748b" />
+    <text x="503" y="263" class="text-atom" font-size="11">H</text>
+
+    <text x="430" y="335" class="text-sub" text-anchor="middle">Solid wedge: forward; Dashed line: backward; Solid: in-plane</text>
+  </g>
+</svg>
