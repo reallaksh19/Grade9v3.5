@@ -1356,7 +1356,7 @@ def core1a(ctx: Ctx, m: dict) -> str:
         }
     closure = component_body(ctx, "CORE1A", {
         "EXIT_RECALL": part("EXIT_RECALL", (
-            block("exit_task", para(exit_task.get("prompt")), title="Try it with less support")
+            block("exit_task", para(exit_task.get("prompt")), title="Now you do one")
             + attempt_box("Your answer", record=m["id"])
             + reveal("Model answer",
                      block("exit_answer",
