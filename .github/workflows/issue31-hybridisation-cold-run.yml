@@ -1,0 +1,146 @@
+name: issue31-hybridisation-cold-run
+
+on:
+  push:
+    branches:
+      - agent/iss31-hybridisation-candidate-a-20261004
+    paths:
+      - "evidence/benchmark/ISS31/materialize.py"
+      - "evidence/benchmark/ISS31/owner-bank-intake.json"
+      - "evidence/benchmark/ISS31/question-ledger.json"
+      - "Shared/tools/owner_bank.py"
+      - ".github/workflows/issue31-hybridisation-cold-run.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cold-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python validation dependencies
+        run: pip install --quiet jsonschema pypdf
+
+      - name: Prove repaired owner-bank destinations and custody regressions
+        run: python3 -m unittest tests.test_test_area.TestOwnerBankFromIntake -v
+
+      - name: Create Chemistry owner bank through the repaired governed CLI
+        run: |
+          rm -f Chemistry/library/owner-bank/issue31-hybridisation.json
+          python3 Shared/tools/owner_bank.py new             --intake evidence/benchmark/ISS31/owner-bank-intake.json             --bank-id issue31-hybridisation             --out Chemistry/library/owner-bank/issue31-hybridisation.json
+
+      - name: Materialize Chemistry package, assets and authored bank fields
+        run: PYTHONPATH=. python3 evidence/benchmark/ISS31/materialize.py
+
+      - name: Validate owner custody
+        run: |
+          python3 Shared/tools/owner_bank.py check             Chemistry/library/owner-bank/issue31-hybridisation.json             --intake evidence/benchmark/ISS31/owner-bank-intake.json
+
+      - name: Validate Chemistry package schema and references
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+          schema=json.loads(Path("Shared/library/package.schema.json").read_text(encoding="utf-8"))
+          package=json.loads(Path("Chemistry/library/chem-g11-hybridisation.v1.json").read_text(encoding="utf-8"))
+          Draft202012Validator(schema).validate(package)
+          print("package schema: PASS")
+          PY
+          python3 -m Shared.library.resolve --schema Chemistry/library/chem-g11-hybridisation.v1.json
+
+      - name: Derive all-ten-question CORE1A/CORE2 manifest
+        run: |
+          python3 Shared/tools/product_manifest.py derive             --package Chemistry/library/chem-g11-hybridisation.v1.json             --bank Chemistry/library/owner-bank/issue31-hybridisation.json             --product-id EVIDENCE-CHEM-ISS31-HYBRIDISATION             --home ../../../index.html             --out products/chemistry/chem-g11-hybridisation.manifest.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("products/chemistry/chem-g11-hybridisation.manifest.json")
+          m=json.loads(p.read_text(encoding="utf-8"))
+          m["output_roles"]=["CORE1A","CORE2"]
+          if len(m["selection"]["core2"]) != 10:
+              raise SystemExit(f"expected 10 Core2 questions, got {len(m['selection']['core2'])}")
+          p.write_text(json.dumps(m, indent=2, ensure_ascii=False)+"\n", encoding="utf-8")
+          print("manifest roles/count: PASS")
+          PY
+
+      - name: Strict governed render
+        run: |
+          rm -rf /tmp/iss31-hybridisation
+          python3 Shared/tools/render_core.py gaps             --manifest products/chemistry/chem-g11-hybridisation.manifest.json
+          python3 Shared/tools/render_core.py build             --manifest products/chemistry/chem-g11-hybridisation.manifest.json             --out /tmp/iss31-hybridisation             --mode PAGES
+          test -f /tmp/iss31-hybridisation/core1a.html
+          test -f /tmp/iss31-hybridisation/core2.html
+          test ! -f /tmp/iss31-hybridisation/core1b.html
+          test ! -f /tmp/iss31-hybridisation/core2a.html
+          test ! -f /tmp/iss31-hybridisation/core2b.html
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install pinned browser audit dependency
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Strict learner quality gate
+        run: |
+          python3 Shared/tools/quality_gate.py /tmp/iss31-hybridisation             --subject Chemistry             --product-id EVIDENCE-CHEM-ISS31-HYBRIDISATION             --report /tmp/iss31-hybridisation/quality-gate.json             --strict
+
+      - name: Tablet 12.7 browser audit
+        run: |
+          node tools/site-audit/core-page-audit.mjs             /tmp/iss31-hybridisation             --profile tablet-12.7             --http-root /tmp/iss31-hybridisation             --json /tmp/iss31-hybridisation/tablet-audit.json             --enforce
+
+      - name: Preserve exact validated learner artifacts
+        run: |
+          mkdir -p evidence/benchmark/ISS31/rendered
+          cp /tmp/iss31-hybridisation/core1a.html evidence/benchmark/ISS31/rendered/core1a.html
+          cp /tmp/iss31-hybridisation/core2.html evidence/benchmark/ISS31/rendered/core2.html
+          cp /tmp/iss31-hybridisation/render-receipt.json evidence/benchmark/ISS31/rendered/render-receipt.json
+          cp /tmp/iss31-hybridisation/quality-gate.json evidence/benchmark/ISS31/rendered/quality-gate.json
+          cp /tmp/iss31-hybridisation/tablet-audit.json evidence/benchmark/ISS31/rendered/tablet-audit.json
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          root=Path("evidence/benchmark/ISS31/rendered")
+          rows={}
+          for name in ("core1a.html","core2.html"):
+              data=(root/name).read_bytes()
+              rows[name]={"bytes":len(data),"sha256":hashlib.sha256(data).hexdigest()}
+          (root/"artifact-digests.json").write_text(json.dumps(rows,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(rows,indent=2))
+          PY
+
+      - name: Commit exact validated inputs and HTML
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             Chemistry/library/chem-g11-hybridisation.v1.json             Chemistry/library/owner-bank/issue31-hybridisation.json             Chemistry/library/figures/issue31-*.svg             products/chemistry/chem-g11-hybridisation.manifest.json             evidence/benchmark/ISS31/rendered
+          if ! git diff --cached --quiet; then
+            git commit -m "iss31: preserve validated Chemistry learner HTML"
+            git push origin "HEAD:agent/iss31-hybridisation-candidate-a-20261004"
+          else
+            echo "validated artifacts already current"
+          fi
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: issue31-hybridisation-cold-run
+          path: |
+            /tmp/iss31-hybridisation
+            Chemistry/library/chem-g11-hybridisation.v1.json
+            Chemistry/library/owner-bank/issue31-hybridisation.json
+            products/chemistry/chem-g11-hybridisation.manifest.json
+          if-no-files-found: warn
+          retention-days: 14
