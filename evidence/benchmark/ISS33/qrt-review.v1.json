@@ -1,6 +1,6 @@
 {
   "schema": "issue33-qrt-authoring-evidence/v1",
-  "status": "AUTHORED_PENDING_GOVERNED_RENDER_REVIEW",
+  "status": "EXACT_RENDER_REVIEWED_CANDIDATE",
   "repository": "reallaksh19/Grade9v3.5",
   "issue": 33,
   "round": "v2-paired-benchmark-first-blind-candidate",
@@ -107,7 +107,7 @@
         "M3": "Count bonding directions and lone-pair regions as electron domains; molecular shape then omits lone-pair positions from the atom arrangement."
       },
       "independent_check": "Recount domains directly from the Lewis descriptions: BF3 = 3, NH3 = 4; the conclusions must differ.",
-      "w_leak_check": "AUTHORED_PASS_PENDING_EXACT_RENDER_REVIEW"
+      "w_leak_check": "PASS_ON_EXACT_RENDER"
     },
     {
       "question_id": "Q2",
@@ -151,7 +151,7 @@
         "M3": "Domain counting tracks directions/regions; sigma/pi decomposition tracks bond components. Keep those ledgers separate."
       },
       "independent_check": "Three carbon domains account for two C-H directions plus the C=O direction; the double bond still decomposes independently into 1 sigma + 1 pi.",
-      "w_leak_check": "AUTHORED_PASS_PENDING_EXACT_RENDER_REVIEW"
+      "w_leak_check": "PASS_ON_EXACT_RENDER"
     },
     {
       "question_id": "Q3",
@@ -195,7 +195,7 @@
         "M3": "Allocate orbital jobs once: sp2 hybrids form the sigma framework; the remaining unhybridised p orbitals form the pi component by side-on overlap."
       },
       "independent_check": "Every carbon has exactly three sp2 sigma directions plus one unhybridised p orbital; the two p orbitals are parallel and perpendicular to the molecular plane.",
-      "w_leak_check": "AUTHORED_PASS_PENDING_EXACT_RENDER_REVIEW"
+      "w_leak_check": "PASS_ON_EXACT_RENDER"
     },
     {
       "question_id": "Q4",
@@ -239,7 +239,7 @@
         "M3": "A multiple bond is one domain direction; in the sp model two hybrids form sigma bonds and the two leftover p orbitals supply the two pi components."
       },
       "independent_check": "Orbital inventory at carbon is 2 sp hybrids + 2 unhybridised p orbitals = 4 valence orbitals; bond-component inventory is 2 sigma + 2 pi, while the domain count remains 2.",
-      "w_leak_check": "AUTHORED_PASS_PENDING_EXACT_RENDER_REVIEW"
+      "w_leak_check": "PASS_ON_EXACT_RENDER"
     },
     {
       "question_id": "Q5",
@@ -283,7 +283,7 @@
         "M3": "Use explicit Lewis/domain evidence to choose the introductory model; treat geometry as model evidence, not direct orbital measurement."
       },
       "independent_check": "Apply the proposed rule to both BF3 and NH3; a rule based only on three sigma bonds cannot classify both consistently.",
-      "w_leak_check": "AUTHORED_PASS_PENDING_EXACT_RENDER_REVIEW"
+      "w_leak_check": "PASS_ON_EXACT_RENDER"
     },
     {
       "question_id": "Q6",
@@ -327,7 +327,7 @@
         "M3": "Hybridisation/domain geometry tracks the local directional model; bond properties also depend on the bonded atoms and are not fixed by that label alone."
       },
       "independent_check": "Both CH4 and CH3F have four central sigma-bond directions; the explanation must preserve that count while allowing bond-specific differences.",
-      "w_leak_check": "AUTHORED_PASS_PENDING_EXACT_RENDER_REVIEW"
+      "w_leak_check": "PASS_ON_EXACT_RENDER"
     },
     {
       "question_id": "Q7",
@@ -371,7 +371,7 @@
         "M3": "Count the C≡N connection once for local geometry, then decompose that one connection into one sigma plus two pi components for bonding."
       },
       "independent_check": "At both C and N the local domain count is 2, while the C≡N bond-component count is independently 1 sigma + 2 pi.",
-      "w_leak_check": "AUTHORED_PASS_PENDING_EXACT_RENDER_REVIEW"
+      "w_leak_check": "PASS_ON_EXACT_RENDER"
     },
     {
       "question_id": "Q8",
@@ -415,7 +415,7 @@
         "M3": "Keep electron-domain geometry (all domains) separate from molecular shape (bonded-atom positions)."
       },
       "independent_check": "Carbon: 4 bonded positions + 0 lone pairs; nitrogen: 3 bonded positions + 1 lone pair. Both total 4 domains but their bonded-atom subsets differ.",
-      "w_leak_check": "AUTHORED_PASS_PENDING_EXACT_RENDER_REVIEW"
+      "w_leak_check": "PASS_ON_EXACT_RENDER"
     },
     {
       "question_id": "Q9",
@@ -459,7 +459,7 @@
         "M3": "Hybridize three orbitals into the sp2 sigma set and keep the fourth p orbital separate for pi overlap; domain count and orbital inventory are related but not identical ledgers."
       },
       "independent_check": "The local valence-orbital inventory closes at four: three sp2 hybrids assigned to sigma directions and one unhybridised p assigned to pi participation.",
-      "w_leak_check": "AUTHORED_PASS_PENDING_EXACT_RENDER_REVIEW"
+      "w_leak_check": "PASS_ON_EXACT_RENDER"
     },
     {
       "question_id": "Q10",
@@ -503,7 +503,13 @@
         "M3": "Electron-domain geometry names all electron regions; molecular shape is the geometry of bonded atoms after lone-pair positions are omitted."
       },
       "independent_check": "All three examples total four electron domains, but their atom counts around the centre are 4, 3 and 2, producing tetrahedral, trigonal-pyramidal and bent molecular shapes respectively.",
-      "w_leak_check": "AUTHORED_PASS_PENDING_EXACT_RENDER_REVIEW"
+      "w_leak_check": "PASS_ON_EXACT_RENDER"
     }
-  ]
+  ],
+  "exact_render": {
+    "artifact_commit": "0af8b1fb4a99e3e75f6b008545e1eb6c4f9f82b5",
+    "core1a_sha256": "sha256:8ac3ca400fe9facb661826c3a27892ab9f02b7b03d1adaaf4ed437a51c906f9e",
+    "core2_sha256": "sha256:1ff7dd5c5c8665863787670fc211dd2d330fc2976f81f3bfe5b641e788d49d55",
+    "semantic_review": "evidence/benchmark/ISS33/semantic-review.json"
+  }
 }
