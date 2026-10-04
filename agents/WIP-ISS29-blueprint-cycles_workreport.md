@@ -31,10 +31,15 @@ Original PR heads #39/#40/#41/#42/#43/#44/#46/#47 rechecked unchanged before rec
 
 ## Exact next action
 
-Verify the published Git tree against the local byte manifest, reconcile PR metadata/#29 and inherited CI. Then obtain real candidate-targeted browser and SVG review, independent full academic/semantic/source/difficulty review, the eight missing QRT specimens and owner golden admission. Repeat the complete all-band cycle on those measured artifacts. No additional agents are assigned.
+Verify the published Git tree against the local byte manifest, reconcile PR metadata/#29 and adjudicate CI failure origins. Then obtain real candidate-targeted browser and SVG review, independent full academic/semantic/source/difficulty review, the eight missing QRT specimens and owner golden admission. Repeat the complete all-band cycle on those measured artifacts. No additional agents are assigned.
 
 Appendix A qualification: NOT_REQUIRED for this standard academic web change; no engineering-critical takeover.
 
 Final all-band amendment: distinct lesson anchors now bind the actual target question, its real crux move and construction unit, and cannot bypass the hardest-target gate. The authored D4 model probe is visible on Core1A construction as an optional governed component; Core2 diagnostic feedback remains attempt-gated. A dedicated regression rejects a foreign target despite a matching legacy bank_anchor_ref.
 
 Four recoverable band evidence commits preceded the final all-band amendment. Validation is tied to exact local production/artifact byte hashes in ARTIFACT-MANIFEST.json, not a claim that the earlier basis commit contained the final files.
+
+
+## Compatibility recovery checkpoint
+
+All 179 files at `46e91c9ec4285e14ca0db469eda281ff31df596a` were remotely verified; original eight heads unchanged. CI found an introduced EXPECTED diagnostic regression; the exact tested registry is recovered as blob `49ea62b11c8890257d31d66852d853928b8b0d75` and published as opt-in. The workspace disconnected again before the 63-file refreshed artifact/test amendment could be uploaded. See `evidence/blueprint-cycles/COMPATIBILITY-CHECKPOINT.md` and its inventory. Existing 65-test and eight-replay evidence remains pinned to 46e91c9ec4285e14ca0db469eda281ff31df596a; locally observed 66-test/new-page checks are not head-matched uploaded evidence. Broader guardrails failed (2289 tests;85 failures,42 errors,7 skipped); candidate browser NOT_RUN; legacy Physics browser failure origin unknown. Exact next action is recovery upload, projection/version reconciliation, introduced CI repair, then measured candidate review. No baseline or workflow weakening.

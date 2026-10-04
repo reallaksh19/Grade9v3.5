@@ -4,7 +4,9 @@ Eight frozen submissions informed four cumulative B→blueprint→A cycles. Corr
 
 Read REPORT.md and each ISS*/cycle-receipt.json. Canonical inputs are under ISS*/inputs; referenced SVGs are under ISS*/assets. The HTML under ISS*/rendered is generated through the production renderer, with local CSS/JS beside it. Open core1a.html and core2.html with a local server for learner review. Linked learner PDFs have not been built.
 
-## Reproduce from this PR checkout
+## Reproduce the published artifact snapshot
+
+**Use commit `46e91c9ec4285e14ca0db469eda281ff31df596a` for the stored renders and manifest.** Current head includes the recovered opt-in compatibility registry; its refreshed pages/receipts are pending upload. See [COMPATIBILITY-CHECKPOINT.md](COMPATIBILITY-CHECKPOINT.md). Do not claim head-matched replay from the earlier snapshot.
 
 Python 3.12, Node 22, jsonschema 4.17.3 and lxml were used for the recorded checks. Install project dependencies or these explicit Python packages in an isolated environment before running:
 

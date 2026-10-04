@@ -1,3 +1,5 @@
+Current evidence pin: `46e91c9ec4285e14ca0db469eda281ff31df596a`. The recovered opt-in registry amendment is documented in [COMPATIBILITY-CHECKPOINT.md](COMPATIBILITY-CHECKPOINT.md); refreshed render/test evidence is pending upload. Existing HTML, logs and ARTIFACT-MANIFEST.json certify only their pinned snapshot.
+
 Recovery publication note (2026-10-04): the interrupted local files survived; actual production code is in PR #48, and this pack publishes the corrected inputs, HTML, receipts and portable replay. The earlier documentation-only checkpoint remains historical.
 
 # Blueprint refinement through four repair cycles

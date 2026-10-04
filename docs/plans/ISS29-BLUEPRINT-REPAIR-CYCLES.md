@@ -239,3 +239,10 @@ The toy comparator is an authored counterexample with declared assumptions. It i
 
 
 Final all-band amendment: distinct lesson anchors now bind the actual target question, its real crux move and construction unit, and cannot bypass the hardest-target gate. The authored D4 model probe is visible on Core1A construction as an optional governed component; Core2 diagnostic feedback remains attempt-gated. A dedicated regression rejects a foreign target despite a matching legacy bank_anchor_ref.
+
+
+## Compatibility appendix: opt-in Core2 value addition and evidence pins
+
+The diagnostic/repair module must remain an optional extension for unchanged legacy banks. An authored record still requires exact question/crux/construction binding and semantic review. This avoids turning a Core2 structural value addition into a forced rewrite of all existing Physics products. The initial EXPECTED registration was rejected by CI and is corrected to OPTIONAL.
+
+The implementation and eight artifacts are pinned at `46e91c9ec4285e14ca0db469eda281ff31df596a`. The compatibility registry was recovered with exact blob identity, but the execution environment went offline before refreshed render stamps/receipts/test logs could be uploaded. See `evidence/blueprint-cycles/COMPATIBILITY-CHECKPOINT.md` for the current custody boundary, 63-file recovery inventory and CI findings. Full-suite success, browser PASS, learner effectiveness and golden admission are not claimed. Blueprint projections, written specifications and generated-product/version tests must be reconciled before readiness; no tests, fixtures or workflows may be weakened to obtain that result.
