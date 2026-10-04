@@ -3,7 +3,7 @@
   "issue": 33,
   "agent": "independent-agent-a",
   "round": "v2-first-blind",
-  "state": "EXACT_RENDER_REVIEWED_CANDIDATE",
+  "state": "FROZEN_FIRST_BLIND_CANDIDATE",
   "branch": "candidate/issue33-agent-a-v2",
   "source_commit": "e01c6365acfd6aec84c0a6e94f11b683bd961f6e",
   "artifact_commit": "0af8b1fb4a99e3e75f6b008545e1eb6c4f9f82b5",
@@ -85,5 +85,12 @@
     "Core2 OWNER_SUPPLIED learner label cannot additionally disclose coordinator/AI-drafted authorship at the pinned contract version.",
     "Exact concept navigation lands at the relevant microtopic rather than the unique construction/repair anchor.",
     "No learner-outcome evidence; producing-agent review is not release/golden certification."
-  ]
+  ],
+  "handoff": {
+    "pull_request": 46,
+    "base": "feat/issue29-integrated-core-templates",
+    "head": "candidate/issue33-agent-a-v2",
+    "draft": true,
+    "partner_issue_inspected": false
+  }
 }
