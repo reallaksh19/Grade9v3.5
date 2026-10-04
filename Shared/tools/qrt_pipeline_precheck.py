@@ -25,6 +25,7 @@ def precheck(run: dict) -> list[str]:
     problems.extend(guard.validate_pre_attempt_graphs(run))
     problems.extend(guard.validate_blueprints(run, registry))
     problems.extend(guard.validate_core1a_boundary(run))
+    problems.extend(guard.validate_purpose_delivery(run, rendered=False))
     return problems
 
 
