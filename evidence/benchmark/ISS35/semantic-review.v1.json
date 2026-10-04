@@ -1,0 +1,154 @@
+{
+  "schema": "issue35-semantic-review/v1",
+  "issue": 35,
+  "agent": "A",
+  "round": 1,
+  "frozen_candidate_source_head": "9030856abb0edf30fc2af4f85e4147af13a1f9b6",
+  "frozen_render_preservation_commit": "b9246195e1ec208a920ef55afd53ce8e7b84aa9f",
+  "core1a_sha256": "7362ed60e3542ea0e9c3fe080c2672c50a0484b0fa21393bc1f7ebec34b2f6c3",
+  "core2_sha256": "1d4adb94036b5d76a6b2d0031326d8669ddd0bbbccf88576dcb1f57ca9456048",
+  "quality_gate": {
+    "verdict": "PASS",
+    "contract_version": "1.8.1",
+    "nonblocking_findings": 16,
+    "finding_summary": [
+      "13 ALL-FIGURE-KIND-KNOWN S3 findings because the candidate record uses ORBITAL_MODEL while the pinned Chemistry vocabulary contains ORBITAL_DIAGRAM.",
+      "3 BP-COMPONENTS-EXPECTED S3 findings because EQUATIONS is absent from the three Core1A construction units; equations are not needed to establish the targeted qualitative orbital/model bridges."
+    ]
+  },
+  "browser_audit": {
+    "workflow_run_id": "37188151319",
+    "job_id": 111394463379,
+    "conclusion": "success",
+    "staged_svg_violations": 0,
+    "small_touch_targets": 0,
+    "horizontal_overflow_px": 0,
+    "protected_search_matches": 0,
+    "gated_open_before_attempt": 0,
+    "observed_nonblocking_ui_findings": [
+      "The focus probe reported 10 failures among 105 candidates in the audited profiles.",
+      "Landscape profiles reported sticky-header anchor-safety risk for deep-linked unit anchors; portrait had no sticky-header anchor risk."
+    ]
+  },
+  "rubric_source": "Shared/quality/question-demand-templates.v1.json@1.0.0",
+  "verdict_scale": ["YES", "PARTLY", "NO", "NOT_APPLICABLE"],
+  "items": [
+    {
+      "question_id": "Q1",
+      "stable_id": "OWN-ISS35-HYB-01",
+      "qrt_cell": "QRT-JUSTIFY-D3",
+      "representation_ref": "REP-CHEM-HYB-CONTRIBUTOR-INVARIANT-ORBITAL",
+      "concept_anchor": "core1a.html#MIC-CHEM-HYB-DELOCALISATION",
+      "rendered_anchor": "core2.html#OWN-ISS35-HYB-01",
+      "verdicts": {"H1":"YES","H2":"YES","H3":"YES","S1":"YES","S2":"YES","S3":"YES","P1":"YES","P2":"YES","P3":"YES","M1":"YES","M2":"YES","M3":"YES"},
+      "evidence": {"H":"Hints move from prediction of a permanent localized model to bond-equivalence evidence, then preserve the D3 bridge by separating pi-model choice from local sp2 assignment.","S":"The staged contributor/invariant/p-orbital representation exposes source drawings and invariant sigma structure before the final delocalised overlay.","P":"Attempt gating and protected-search checks passed; the solution route gives explicit why-valid warrants and an independent equivalence check.","M":"The wrong route, diagnostic comparison and replacement rule explicitly distinguish contributor literalism/circular hybridisation reasoning from the intended model."},
+      "academic_verdict": "YES"
+    },
+    {
+      "question_id": "Q2",
+      "stable_id": "OWN-ISS35-HYB-02",
+      "qrt_cell": "QRT-REPRESENT-D3",
+      "representation_ref": "REP-CHEM-HYB-CONTRIBUTOR-INVARIANT-ORBITAL",
+      "concept_anchor": "core1a.html#MIC-CHEM-HYB-DELOCALISATION",
+      "rendered_anchor": "core2.html#OWN-ISS35-HYB-02",
+      "verdicts": {"H1":"YES","H2":"YES","H3":"YES","S1":"YES","S2":"YES","S3":"YES","P1":"YES","P2":"YES","P3":"YES","M1":"YES","M2":"YES","M3":"YES"},
+      "evidence": {"H":"Hints explicitly ask what is invariant, separate sigma from pi, require a compatible p direction, and warn against time-switching language without giving the full bridge at the start.","S":"The four-stage visual maps contributors to invariant sigma skeleton to perpendicular p set to one delocalised pi overlay.","P":"The frozen page keeps protected content gated; post-attempt reasoning preserves connectivity/charge/sigma invariants and checks translation back to equivalent N-O positions.","M":"The diagnostic targets the specific misconception that nitrate cycles among drawings and repairs it with contributor-versus-electronic-structure language."},
+      "academic_verdict": "YES"
+    },
+    {
+      "question_id": "Q3",
+      "stable_id": "OWN-ISS35-HYB-03",
+      "qrt_cell": "QRT-SYNTHESIZE-D3",
+      "representation_ref": "REP-CHEM-HYB-ALLENE-ORTHOGONAL-P",
+      "concept_anchor": "core1a.html#MIC-CHEM-HYB-PI-ORIENTATION",
+      "rendered_anchor": "core2.html#OWN-ISS35-HYB-03",
+      "verdicts": {"H1":"YES","H2":"YES","H3":"YES","S1":"YES","S2":"YES","S3":"YES","P1":"YES","P2":"YES","P3":"YES","M1":"YES","M2":"YES","M3":"YES"},
+      "evidence": {"H":"Hints force atom-local counting before p-orbital inventory and leave the geometry bridge to the learner.","S":"The staged allene SVG moves from local sigma frameworks through each orthogonal pi overlap to the terminal-plane consequence.","P":"The route explains why central sp leaves two orthogonal p orbitals and checks the ~90-degree terminal-plane projection in the introductory model.","M":"The wrong ethene-like planar copy is explicitly diagnosed and repaired by assigning one orthogonal central p orbital to each pi bond."},
+      "academic_verdict": "YES"
+    },
+    {
+      "question_id": "Q4",
+      "stable_id": "OWN-ISS35-HYB-04",
+      "qrt_cell": "QRT-EXPLAIN-D3",
+      "representation_ref": "REP-CHEM-HYB-ALLENE-ORTHOGONAL-P",
+      "concept_anchor": "core1a.html#MIC-CHEM-HYB-PI-ORIENTATION",
+      "rendered_anchor": "core2.html#OWN-ISS35-HYB-04",
+      "verdicts": {"H1":"YES","H2":"YES","H3":"YES","S1":"YES","S2":"YES","S3":"YES","P1":"YES","P2":"YES","P3":"YES","M1":"YES","M2":"YES","M3":"YES"},
+      "evidence": {"H":"Hints compare the number and orientation of unhybridised p orbitals rather than invoking memorised geometry.","S":"The allene stages support the causal comparison with ethene while preserving the D3 bridge until the later stage.","P":"Post-attempt reasoning connects local sp2/sp models to side-on overlap constraints and checks that one planar p axis cannot support both allene pi bonds.","M":"The molecule-wide 'sp2 means planar' misconception is named, diagnosed by orbital counting, and replaced with an atom-local plus orbital-consistency rule."},
+      "academic_verdict": "YES"
+    },
+    {
+      "question_id": "Q5",
+      "stable_id": "OWN-ISS35-HYB-05",
+      "qrt_cell": "QRT-JUSTIFY-D3",
+      "representation_ref": "REP-CHEM-HYB-LOCAL-DECISION",
+      "concept_anchor": "core1a.html#MIC-CHEM-HYB-LOCAL-PROCEDURE",
+      "rendered_anchor": "core2.html#OWN-ISS35-HYB-05",
+      "verdicts": {"H1":"YES","H2":"YES","H3":"YES","S1":"YES","S2":"YES","S3":"YES","P1":"YES","P2":"YES","P3":"YES","M1":"YES","M2":"YES","M3":"YES"},
+      "evidence": {"H":"Hints use CO2 and NH3 as counterexamples before giving the replacement criterion.","S":"The local-decision visual makes the atom-by-atom count/assign/check procedure visible without using bond equivalence as the criterion.","P":"The answer explicitly separates equivalence, local electron-domain count and hybridisation model status; the counterexample check classifies CO2/NH3/nitrate consistently.","M":"The overgeneralised 'equivalent bonds imply sp2' rule is directly diagnosed and replaced with local sigma/electron-domain reasoning."},
+      "academic_verdict": "YES"
+    },
+    {
+      "question_id": "Q6",
+      "stable_id": "OWN-ISS35-HYB-06",
+      "qrt_cell": "QRT-APPLY-D2",
+      "representation_ref": "REP-CHEM-HYB-LOCAL-DECISION",
+      "concept_anchor": "core1a.html#MIC-CHEM-HYB-LOCAL-PROCEDURE",
+      "rendered_anchor": "core2.html#OWN-ISS35-HYB-06",
+      "verdicts": {"H1":"YES","H2":"YES","H3":"YES","S1":"YES","S2":"YES","S3":"YES","P1":"YES","P2":"YES","P3":"YES","M1":"YES","M2":"YES","M3":"YES"},
+      "evidence": {"H":"The three hints distinguish atom-local domain counting from global sigma/pi bond-component counting without over-scaffolding the D2 execution.","S":"The local procedure visual supports one-centre-at-a-time counting and the leftover-p-orbital check.","P":"The route correctly returns CH3 carbon sp3, both alkyne carbons sp, 6 sigma and 2 pi, with an independent component count.","M":"The triple-bond-as-three-domains/three-sigma misconception is diagnosed by separately asking for neighbour directions and bond components, then repaired with one-sigma-plus-two-pi decomposition."},
+      "academic_verdict": "YES"
+    },
+    {
+      "question_id": "Q7",
+      "stable_id": "OWN-ISS35-HYB-07",
+      "qrt_cell": "QRT-MODEL-D3",
+      "representation_ref": "REP-CHEM-HYB-CONTRIBUTOR-INVARIANT-ORBITAL",
+      "concept_anchor": "core1a.html#MIC-CHEM-HYB-DELOCALISATION",
+      "rendered_anchor": "core2.html#OWN-ISS35-HYB-07",
+      "verdicts": {"H1":"YES","H2":"YES","H3":"YES","S1":"YES","S2":"YES","S3":"YES","P1":"YES","P2":"YES","P3":"YES","M1":"YES","M2":"YES","M3":"YES"},
+      "evidence": {"H":"Hints identify the common carbonate skeleton, contributor-local bookkeeping and compatible p direction before the learner formulates the one model.","S":"The contributor/invariant/delocalisation stages are transferable from nitrate to carbonate without asserting quantitative bond order.","P":"The answer uses a planar sp2 sigma framework plus qualitative delocalised pi system and explicitly rejects a single contributor/time-switching story.","M":"The 'real contributor' or 'hopping double bond' route is explicitly detected and repaired by the formal-contributor plus delocalised-model distinction."},
+      "academic_verdict": "YES"
+    },
+    {
+      "question_id": "Q8",
+      "stable_id": "OWN-ISS35-HYB-08",
+      "qrt_cell": "QRT-EXPLAIN-D2",
+      "representation_ref": "REP-CHEM-HYB-P-CONTINUITY",
+      "concept_anchor": "core1a.html#MIC-CHEM-HYB-PI-ORIENTATION",
+      "rendered_anchor": "core2.html#OWN-ISS35-HYB-08",
+      "verdicts": {"H1":"YES","H2":"YES","H3":"YES","S1":"YES","S2":"YES","S3":"YES","P1":"YES","P2":"YES","P3":"YES","M1":"YES","M2":"YES","M3":"YES"},
+      "evidence": {"H":"Hints make the sigma-axis versus parallel-p requirement explicit but leave the comparison and no-energy-number conclusion to the learner.","S":"The pi-overlap continuity representation distinguishes end-on sigma alignment from side-on p overlap and its orientation sensitivity.","P":"The answer appropriately says ethane sigma overlap remains aligned under axial rotation while conformational interactions may vary, and refuses to infer a numerical barrier from the sketch.","M":"It directly diagnoses the two common overclaims: exactly zero ethane cost and ethene twisting requiring sigma-bond rupture; the repair separates overlap geometry from energetics."},
+      "academic_verdict": "YES"
+    },
+    {
+      "question_id": "Q9",
+      "stable_id": "OWN-ISS35-HYB-09",
+      "qrt_cell": "QRT-REPRESENT-D2",
+      "representation_ref": "REP-CHEM-HYB-P-CONTINUITY",
+      "concept_anchor": "core1a.html#MIC-CHEM-HYB-PI-ORIENTATION",
+      "rendered_anchor": "core2.html#OWN-ISS35-HYB-09",
+      "verdicts": {"H1":"YES","H2":"YES","H3":"YES","S1":"YES","S2":"YES","S3":"YES","P1":"YES","P2":"YES","P3":"YES","M1":"YES","M2":"YES","M3":"YES"},
+      "evidence": {"H":"Hints ask the learner to mark participating atoms and walk the p-orbital chain, preserving the representation decision.","S":"The continuity visual contrasts adjacent aligned p centres with an sp3 bridge lacking an unhybridised p orbital.","P":"The answer correctly identifies four adjacent sp2 centres in butadiene and the central sp3 CH2 interruption in 1,4-pentadiene; the substitution check restores continuity when the bridge becomes sp2.","M":"The 'any two double bonds are one delocalised system' misconception is detected by asking for an uninterrupted p orbital on every intervening atom and repaired with the continuous-pathway rule."},
+      "academic_verdict": "YES"
+    },
+    {
+      "question_id": "Q10",
+      "stable_id": "OWN-ISS35-HYB-10",
+      "qrt_cell": "QRT-MODEL-D3",
+      "representation_ref": "REP-CHEM-HYB-LOCAL-DECISION",
+      "concept_anchor": "core1a.html#MIC-CHEM-HYB-LOCAL-PROCEDURE",
+      "rendered_anchor": "core2.html#OWN-ISS35-HYB-10",
+      "verdicts": {"H1":"YES","H2":"YES","H3":"YES","S1":"YES","S2":"YES","S3":"YES","P1":"YES","P2":"YES","P3":"YES","M1":"YES","M2":"YES","M3":"YES"},
+      "evidence": {"H":"Hints first make the one-label heuristic fail on propyne/allene, then require the learner to construct the atom-local replacement and orbital check.","S":"The local decision stages encode choose atom -> count domains -> assign local model -> verify leftover p orbitals, matching the required procedure without molecule-wide labelling.","P":"The answer returns propyne sp3/sp/sp and allene sp2/sp/sp2 and checks that the required number/orientation of p orbitals remain.","M":"The conspicuous-multiple-bond/overall-shape heuristic is explicitly diagnosed and replaced with atom-local sigma-domain counting plus p-orbital consistency."},
+      "academic_verdict": "YES"
+    }
+  ],
+  "overall_academic_verdict": "PASS_WITH_NONBLOCKING_RENDER_CONTRACT_FINDINGS",
+  "limitations": [
+    "This is an execution-agent semantic review of its own frozen candidate, not independent release certification.",
+    "The simulated learner preset is not measured mastery.",
+    "The benchmark observations are supplied givens, not new experimental measurements.",
+    "The 16 S3 quality-gate findings and browser focus/anchor observations remain explicit handoff findings rather than being hidden by the PASS verdict."
+  ]
+}
