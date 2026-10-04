@@ -3,8 +3,9 @@
 
 CORE2.md says a question the owner supplied is custody in its own right (class OWNER_SUPPLIED) and appears
 verbatim, with an exam identity only where research has matched the original. The official exam-bank schema
-cannot hold that (it requires an exam, year, paper and archive URLs), so an owner bank is a separate file kind,
-for now used only by the TEST sandbox (TEST/question-bank/*.json; design question: issue #371).
+cannot hold that (it requires an exam, year, paper and archive URLs), so an owner bank is a separate file kind.
+It may live in TEST/question-bank/*.json for sandbox work or <Subject>/library/owner-bank/*.json for a canonical
+subject. It never lives under exam-bank/ and never acquires an official-exam identity from this file kind.
 
 An owner bank is a JSON file with `"schema_version": "grade9v3-owner-supplied-bank-v1"`, a `bank_id`, and
 `questions[]` shaped like exam-bank questions except that `extensions["grade9v3:source_custody"]` is
@@ -19,7 +20,8 @@ The check also refuses any official-exam field in the custody object: an owner q
 year, paper or URL from this file kind, so a guessed identity cannot hide under the owner class.
 
     python3 Shared/tools/owner_bank.py new --intake workspace/intake.json --bank-id SLUG --out TEST/question-bank/SLUG.json
-    python3 Shared/tools/owner_bank.py check TEST/question-bank/SLUG.json --intake workspace/intake.json
+    python3 Shared/tools/owner_bank.py new --intake workspace/intake.json --bank-id SLUG --out Chemistry/library/owner-bank/SLUG.json
+    python3 Shared/tools/owner_bank.py check Chemistry/library/owner-bank/SLUG.json --intake workspace/intake.json
 
 `new` leaves the answer, the capability and family refs, the question type and the difficulty estimate empty for the
 author to fill; `check` names each one, with the same messages the renderer would give.
@@ -40,7 +42,8 @@ if __package__ in (None, ""):
 from Shared.tools import core2_v2, learner_metadata  # noqa: E402
 from Shared.tools import web_blueprint_contract as blueprints  # noqa: E402
 
-BANK_DIR = "TEST/question-bank"
+TEST_BANK_DIR = ("TEST", "question-bank")
+SUBJECT_BANK_DIR = ("library", "owner-bank")
 ANALYSIS_KEY = "grade9v3:analysis"
 
 SCHEMA_VERSION = "grade9v3-owner-supplied-bank-v1"
@@ -272,6 +275,34 @@ def _load(path: str) -> dict:
     return json.loads(Path(path).read_text(encoding="utf-8"))
 
 
+def owner_bank_destination(path: str | Path) -> str | None:
+    """Return the repository-relative path when `path` is an allowed owner-bank destination.
+
+    TEST keeps its historical TEST/question-bank/<slug>.json location. Canonical subjects use the separate
+    <Subject>/library/owner-bank/<slug>.json lane. Resolution happens before classification so path traversal
+    and symlink escapes cannot smuggle a write outside the repository. A canonical subject is one that already
+    declares adapter/CoreContracts.json; arbitrary top-level directories do not become source authorities.
+    """
+    resolved = Path(path).resolve()
+    try:
+        relative = resolved.relative_to(REPO)
+    except ValueError:
+        return None
+    if resolved.suffix != ".json":
+        return None
+    parts = relative.parts
+    if len(parts) == 3 and parts[:2] == TEST_BANK_DIR:
+        return relative.as_posix()
+    if len(parts) == 4 and parts[1:3] == SUBJECT_BANK_DIR:
+        subject = parts[0]
+        if subject == "TEST":
+            return None
+        if not (REPO / subject / "adapter" / "CoreContracts.json").is_file():
+            return None
+        return relative.as_posix()
+    return None
+
+
 def main(argv: list[str] | None = None) -> int:
     args = list(argv if argv is not None else sys.argv[1:])
     if not args:
@@ -294,12 +325,11 @@ def main(argv: list[str] | None = None) -> int:
     if parsed.cmd == "new":
         out = Path(parsed.out)
         resolved = out.resolve()
-        try:
-            relative = resolved.relative_to(REPO).as_posix()
-        except ValueError:
-            relative = ""
-        if not relative.startswith(BANK_DIR + "/") or resolved.suffix != ".json":
-            print(f"an owner bank is written to {BANK_DIR}/SLUG.json, never to an exam-bank directory", file=sys.stderr)
+        relative = owner_bank_destination(out)
+        if relative is None:
+            print("an owner bank is written to TEST/question-bank/SLUG.json or "
+                  "<Subject>/library/owner-bank/SLUG.json for a canonical subject; "
+                  "never to exam-bank/ or outside the repository", file=sys.stderr)
             return 1
         if resolved.exists() and not parsed.force:
             print(f"{parsed.out} exists; the answers in it would be lost. Edit it, or pass --force to start over", file=sys.stderr)
@@ -330,3 +360,4 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

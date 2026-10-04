@@ -40,7 +40,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
 
-from Shared.tools import core2_v2, learner_metadata, owner_bank, product_coverage, product_manifest, toughest_concept  # noqa: E402
+from Shared.tools import core2_v2, learner_metadata, owner_bank, product_coverage, product_manifest, toughest_concept, learning_repair  # noqa: E402
 from Shared.tools import web_blueprint_contract as blueprints_api  # noqa: E402
 
 BLUEPRINTS = REPO / "Shared/web/interactive-page-blueprints.v1.json"
@@ -1412,8 +1412,11 @@ def core1a(ctx: Ctx, m: dict) -> str:
             f'<br><em>Result:</em> {esc(step["output"])}</li>'
             for step in step_items
         )
+        novel_anchor = ((m.get("extensions") or {}).get("grade9v3:lesson_anchors") or {}).get(u["id"])
         bank_ref = u.get("bank_anchor_ref")
-        if bank_ref:
+        if novel_anchor:
+            anchor_html = _core1a_worked_anchor(novel_anchor)
+        elif bank_ref:
             anchor_q = bank_by_id.get(bank_ref)
             if not anchor_q:
                 ctx.gap("AUTHOR_WORKED_ANCHOR", u["id"], f"bank_anchor_ref {bank_ref} is not a question of this product's bank "
@@ -1503,7 +1506,9 @@ def core1a(ctx: Ctx, m: dict) -> str:
 
     if toughest and m["id"] == toughest["microtopic_ref"]:
         _toughest_unit_gaps(ctx, m, units, toughest)
-    return head + rows + _purpose_extension(ctx, "CORE1A", m["id"]) + closing
+    repair_rows = (m.get("extensions") or {}).get("grade9v3:question_repairs") or []
+    clinics = secondary_disclosure("Question-specific diagnosis and repair", learning_repair.clinic(repair_rows), "core1a-question-repair") if repair_rows else ""
+    return head + rows + clinics + _purpose_extension(ctx, "CORE1A", m["id"]) + closing
 
 
 def _toughest_unit_gaps(ctx: Ctx, m: dict, units: list[dict], toughest: dict) -> None:
@@ -1524,7 +1529,7 @@ def _toughest_unit_gaps(ctx: Ctx, m: dict, units: list[dict], toughest: dict) ->
                 + f"and set that unit's bank_anchor_ref to {ref}", "CORE1A", component="QUESTION_BRIDGE")
         return
     for u in builders:
-        if u.get("bank_anchor_ref") != ref:
+        if u.get("bank_anchor_ref") != ref and not ((m.get("extensions") or {}).get("grade9v3:lesson_anchors") or {}).get(u["id"]):
             ctx.gap("AUTHOR_TOUGHEST_CONCEPT", u["id"],
                     f"{why}; this unit builds toward it but its worked example is not {label}: set bank_anchor_ref to {ref} so the "
                     "unit walks through the question itself", "CORE1A", component="WORKED_EXAMPLE")
@@ -1580,7 +1585,9 @@ def _custody(q: dict) -> str:
     cust = (q.get("extensions") or {}).get("grade9v3:source_custody") or {}
     if cust.get("authority_class") == "OWNER_SUPPLIED_RAW_INPUT":
         # CORE2.md: a question the owner supplied is custody in its own right and is shown as supplied, with no exam identity.
-        return "Owner-supplied question" + (", verbatim" if cust.get("wording_custody") == "VERBATIM" else "")
+        line = "Owner-supplied question" + (", verbatim" if cust.get("wording_custody") == "VERBATIM" else "")
+        authorship = (q.get("extensions") or {}).get("grade9v3:authorship") or {}
+        return line + (" · coordinator/AI-drafted benchmark" if authorship.get("kind") == "COORDINATOR_AI_DRAFTED" else "")
     if (cust.get("authority_class") != "OFFICIAL_EXAM_ORGANIZER_ARCHIVE"
             or cust.get("source_status") != "PYQ_VERIFIED_PARENT"
             or not cust.get("paper_url")):
@@ -1615,6 +1622,12 @@ def _core2_concept_navigation(ctx: Ctx, q: dict) -> str:
     if not ids:
         return ""
     microtopics = {m["id"]: m for m in ctx.selection_rows.get("microtopics", [])}
+    repair = (q.get("extensions") or {}).get(learning_repair.KEY) or {}
+    target = repair.get("construction_ref")
+    unit_ids = {u["id"] for m in microtopics.values() for u in m.get("construction_units", [])}
+    if target and target not in unit_ids:
+        ctx.gap("AUTHOR_CONCEPT_TARGET", q["id"], "construction target does not resolve", "CORE2")
+        return ""
     rows = []
     for microtopic_id in ids:
         microtopic = microtopics.get(microtopic_id)
@@ -1622,7 +1635,7 @@ def _core2_concept_navigation(ctx: Ctx, q: dict) -> str:
             continue
         rows.append(
             f'<li><a data-g9-concept-link data-g9-question-ref="{esc(q["id"])}" '
-            f'data-g9-concept-ref="{esc(microtopic_id)}" href="core1a.html#{esc(microtopic_id)}">'
+            f'data-g9-concept-ref="{esc(microtopic_id)}" href="core1a.html#{esc(target or microtopic_id)}">'
             f'{esc(microtopic.get("title") or microtopic_id)}</a></li>'
         )
     return block("concept_navigation", "<ul>" + "".join(rows) + "</ul>" if rows else "",
@@ -1871,7 +1884,14 @@ def core2(ctx: Ctx, q: dict) -> str:
     def part(cid: str, body: str, items: int | None = None) -> str:
         return component(ctx, "CORE2", cid, body, rid, items=items, band=band, waivers=waivers)
 
+    repair = (q.get("extensions") or {}).get(learning_repair.KEY)
+    unit_ids = {u["id"] for m in ctx.selection_rows.get("microtopics", []) for u in m.get("construction_units", [])}
+    repair_errors = learning_repair.problems(q, unit_ids) if repair is not None else []
+    for error in repair_errors:
+        ctx.gap("AUTHOR_LEARNING_REPAIR", rid, error, "CORE2")
+    repair_html = learning_repair.card(repair, rid) if repair and not repair_errors else ""
     worked = component_body(ctx, "CORE2", {
+        "DIAGNOSTIC_REPAIR": part("DIAGNOSTIC_REPAIR", repair_html),
         "SOLUTION_STEPS": part("SOLUTION_STEPS", _core2_solution(ctx, q, ans), items=_core2_solution_moves(ans)),
         "ANSWER": part("ANSWER", solution),
         "CHECK": part("CHECK", block("independent_check", '<p>' + question_text(ctx, q, "answer_check", ans["check"]) + '</p>'
@@ -2604,13 +2624,13 @@ def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
             '<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             f'<meta name="g9-render" content="{RENDERER_VERSION} {digest}">'
             f'{_shared_head_assets(ctx, mode)}'
-            f'<title>{esc(ROLE_TITLE[role])} · {esc(m["title"])}</title><style>{CSS}{COMPONENT_CSS}{layout_css(ctx.blueprints)}</style></head>'
+            f'<title>{esc(ROLE_TITLE[role])} · {esc(m["title"])}</title><style>{CSS}{COMPONENT_CSS}{learning_repair.CSS}{layout_css(ctx.blueprints)}</style></head>'
             f'<body data-core="{role}" data-blueprint-ref="{esc(bp["id"])}@{esc(bp["version"])}">'
             f'{header}{crumbs}<noscript>Answers open after you attempt; this page needs JavaScript.</noscript>'
             f'<main><h1>{esc(m["title"])}: {esc(ROLE_TITLE[role])}</h1>'
             f'{_core1a_bucket_orientation(ctx) if role == "CORE1A" else ""}{articles}</main>'
             f'<footer data-g9-footer>{esc(m["subject"])} · {esc(m["title"])}</footer>'
-            f"<script>{JS}</script><script src=\"{esc(_asset_root(ctx))}js/display-controls.js\"></script><script src=\"{esc(_asset_root(ctx))}js/site-header.js\"></script></body></html>\n")
+            f"<script>{JS}{learning_repair.JS}</script><script src=\"{esc(_asset_root(ctx))}js/display-controls.js\"></script><script src=\"{esc(_asset_root(ctx))}js/site-header.js\"></script></body></html>\n")
 
 
 def index_page(ctx: Ctx, digest: str) -> str:

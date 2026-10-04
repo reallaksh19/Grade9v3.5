@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "registry_version": "1.9.0",
+  "registry_version": "1.10.0",
   "shell": {
     "id": "G9-TABLET-SHELL-V1",
     "fixed_header": true,
@@ -366,7 +366,7 @@
     },
     {
       "id": "BP-CORE2-SOURCE-QUESTION",
-      "version": "1.5.0",
+      "version": "1.6.0",
       "status": "ACTIVE",
       "core_roles": [
         "CORE2"
@@ -687,7 +687,7 @@
           "slot": "support",
           "level": "OPTIONAL",
           "presentation": "LINK_LIST",
-          "purpose": "Send the learner back to the concept page for the idea the question uses.",
+          "purpose": "Land on the exact construction unit; question-specific repair includes a return link. Record the help as assisted, not independent success.",
           "benchmark": "selected_question_bank_TABLET_STUDY: concept links beside the hints (the Core1A cross-link)",
           "source": [
             "primary_capability_ref",
@@ -795,12 +795,27 @@
             "answer.check"
           ],
           "authoring": {
-            "hint": "One sentence that tests the result independently: a limiting case, a unit check or a special value.",
+            "hint": "Use a changed case, conservation ledger, counterexample or independent operation with expected result. Repeating the wrong rule as a rejection is not an independent check.",
             "skeleton": {
               "answer": {
                 "check": ""
               }
             }
+          }
+        },
+        {
+          "id": "DIAGNOSTIC_REPAIR",
+          "slot": "solution",
+          "parent": "SOLUTION",
+          "level": "EXPECTED",
+          "presentation": "CHECK_BOX",
+          "benchmark": "Issue #32 Q1/Q4 observed hint and representation defects; Issue #31 repeated reject-the-rule checks, correction cycle R2.",
+          "purpose": "After the source attempt, elicit a changed-case prediction and reason before showing a diagnostic pattern, bounded replacement rule, fresh application and exact repair link.",
+          "source": [
+            "extensions.grade9v3:learning_repair"
+          ],
+          "authoring": {
+            "hint": "Use question-specific paired/changed cases that separate the predicted misconception from a slip. Preserve uncertainty; do not grade free response by keyword or declare mastery."
           }
         }
       ],
@@ -810,12 +825,12 @@
     },
     {
       "id": "BP-CORE1A-CONSTRUCTION",
-      "version": "1.4.0",
+      "version": "1.5.0",
       "status": "ACTIVE",
       "core_roles": [
         "CORE1A"
       ],
-      "learner_job": "Build the concept around its crux, study one worked example with prediction before reveal, then retrieve and apply the idea with less support.",
+      "learner_job": "Build the concept around its crux, study one worked example with prediction before reveal, then retrieve and apply the idea with less support. Construct on a distinct teaching anchor, then test a fresh changed case; worked protected source questions are not the default lesson anchor.",
       "shell_ref": "G9-TABLET-SHELL-V1",
       "layout_family": "READING_CONSTRUCTION",
       "slots": [
@@ -1088,7 +1103,7 @@
           "slot": "repair_closure",
           "level": "REQUIRED",
           "presentation": "DISCLOSURE_TRAP_CARD",
-          "purpose": "Offer the mistake/diagnose/repair clinic on demand; collapsed by default so it does not compete with the main construction.",
+          "purpose": "Keep mistake clinics closed initially. Diagnose using discriminating changed cases, establish a bounded replacement rule, and return to a fresh application.",
           "benchmark": "core1a-motion-in-a-plane-tablet: the easy-mistake card with diagnostic and repair",
           "repeat": "PER_CONSTRUCTION_UNIT",
           "source": [
