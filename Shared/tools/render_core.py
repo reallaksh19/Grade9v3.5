@@ -774,6 +774,68 @@ def _coverage_findings(ctx: Ctx, roles: list[str]) -> None:
             ctx.advise(policy["component"], finding["record"], finding["detail"], finding["core"])
 
 
+PURPOSE_DELIVERY_KEY = "grade9v3:purpose_delivery"
+
+
+def _purpose_delivery_spec(ctx: Ctx) -> tuple[str, list[dict]]:
+    """Return the manifest-selected purpose and authored delivery specs from package extensions."""
+    purpose = str(ctx.manifest.get("purpose") or "").upper()
+    if purpose not in {"REVISION", "COMPETITION"}:
+        return purpose, []
+    specs: list[dict] = []
+    for package in ctx.packages:
+        delivery = ((package.get("extensions") or {}).get(PURPOSE_DELIVERY_KEY) or {})
+        spec = delivery.get(purpose)
+        if isinstance(spec, dict):
+            specs.append(spec)
+    return purpose, specs
+
+
+def _purpose_extension(ctx: Ctx, role: str, record_id: str) -> str:
+    """Project a purpose-specific challenge beside the exact concept/question it extends."""
+    purpose, specs = _purpose_delivery_spec(ctx)
+    if not specs:
+        return ""
+    ref_key = "concept_refs" if role == "CORE1A" else "question_refs" if role == "CORE2" else None
+    if ref_key is None:
+        return ""
+    rendered: list[str] = []
+    for spec in specs:
+        section_title = str(spec.get("section_title") or ("Next-level revision" if purpose == "REVISION" else "Competition transfer"))
+        for item in spec.get("items") or []:
+            if not isinstance(item, dict) or role not in (item.get("roles") or []):
+                continue
+            if record_id not in (item.get(ref_key) or []):
+                continue
+            item_id = str(item.get("id") or "")
+            prompt = str(item.get("prompt") or "")
+            if not item_id or not prompt:
+                continue
+            source_kind = str(item.get("source_kind") or "")
+            source_label = str(item.get("source_label") or "")
+            if source_kind == "AUTHOR_CREATED_COMPETITION_STYLE":
+                provenance = source_label or "Original competition-style transfer; not a past-paper claim."
+            elif source_kind == "VERIFIED_COMPETITIVE_SOURCE":
+                provenance = source_label or "Verified competitive source"
+            else:
+                provenance = source_label or "Authored transfer"
+            answer = item.get("answer") or {}
+            answer_body = para(answer.get("summary")) + items(answer.get("reasoning"), True)
+            response = item.get("response") if isinstance(item.get("response"), dict) else {"type": "free_response", "paper_ok": True}
+            rendered.append(
+                f'<section class="g9-purpose-extension" data-g9-purpose-delivery="{esc(purpose)}" '
+                f'data-g9-purpose-item="{esc(item_id)}" data-g9-purpose-role="{esc(role)}">'
+                f'<div class="g9-eyebrow">{esc(section_title)}</div>'
+                f'<h3>{esc(item.get("title") or section_title)}</h3>'
+                f'<p class="g9-purpose-source">{esc(provenance)}</p>'
+                f'<div class="g9-purpose-prompt">{para(prompt)}</div>'
+                + attempt_box("Your attempt", response, record=item_id)
+                + reveal("Check your reasoning", answer_body, ref=f"PURPOSE-{item_id}-{role}")
+                + '</section>'
+            )
+    return "".join(rendered)
+
+
 # ------------------------------------------------------------------ roles
 
 def _relations(ctx: Ctx, m: dict) -> list[dict]:
@@ -1295,10 +1357,10 @@ def core1a(ctx: Ctx, m: dict) -> str:
             _toughest_unit_gaps(ctx, m, units, toughest)
         primary, support = _core1a_path_bridge(ctx, m, steps)
         opened = opening()
-        return head + compose(ctx, "CORE1A", {
+        return (head + compose(ctx, "CORE1A", {
             "construction": opened["KEY_STEP"] + opened["MODEL_CONTRACT"] + primary,
             "repair_closure": support + closure,
-        })
+        }) + _purpose_extension(ctx, "CORE1A", m["id"]))
 
     rows = ""
     bank_questions = [q for q in ctx.bank if isinstance(q, dict) and q.get("id")]
@@ -1400,7 +1462,7 @@ def core1a(ctx: Ctx, m: dict) -> str:
 
     if toughest and m["id"] == toughest["microtopic_ref"]:
         _toughest_unit_gaps(ctx, m, units, toughest)
-    return head + rows + closing
+    return head + rows + _purpose_extension(ctx, "CORE1A", m["id"]) + closing
 
 
 def _toughest_unit_gaps(ctx: Ctx, m: dict, units: list[dict], toughest: dict) -> None:
@@ -1770,7 +1832,7 @@ def core2(ctx: Ctx, q: dict) -> str:
         "CHECK": part("CHECK", block("independent_check", '<p>' + question_text(ctx, q, "answer_check", ans["check"]) + '</p>'
                                      if ans.get("check") else "", title="Independent check")),
     }, parent="SOLUTION")
-    return compose(ctx, "CORE2", {
+    rendered = compose(ctx, "CORE2", {
         "identity": component_body(ctx, "CORE2", {
             "IDENTITY": part("IDENTITY", block("source_identity", f"<h2>{esc(_identity(q))}</h2><p class=\"g9-prov\">{esc(_custody(q))}</p>")
                              + metadata_strip(ctx, "CORE2", q)),
@@ -1799,6 +1861,7 @@ def core2(ctx: Ctx, q: dict) -> str:
             "SOLUTION": part("SOLUTION", reveal("Answer and working", worked + teaching_figure, ref=f'CORE2-{rid}-solution')),
         }, "solution"),
     })
+    return rendered + _purpose_extension(ctx, "CORE2", rid)
 
 
 def _ladder(ctx: Ctx, q: dict, role: str, source: bool = False) -> str:
@@ -2088,6 +2151,9 @@ COMPONENT_CSS = """
 .g9-eyebrow{font-size:.85rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 6px}
 .g9-pill{display:inline-flex;align-items:center;font-size:.85rem;font-weight:800;line-height:1.2;padding:3px 10px;border-radius:999px;background:var(--pill-bg);color:var(--pill-fg);white-space:nowrap}
 .g9-pill-source{background:var(--src-bg);color:var(--src-fg)}
+.g9-purpose-extension{margin:18px 0;padding:16px;border:2px solid var(--accent);border-radius:16px;background:var(--soft)}
+.g9-purpose-extension h3{margin:.1rem 0 .35rem}.g9-purpose-source{margin:.15rem 0 .7rem;color:var(--muted);font-size:.9rem}
+.g9-purpose-prompt p{font-size:1.05rem;line-height:1.55;white-space:pre-line}
 article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-bottom:1px solid var(--line)}
 .g9-c-header h2,.g9-c-concept-header h2{font-size:1.2rem;line-height:1.3;margin:0;letter-spacing:-.01em}
 .g9-c-header .g9-prov{margin:2px 0 0}
@@ -2270,7 +2336,7 @@ const attemptFields=a=>q('[data-g9-attempt-box] input,[data-g9-attempt-box] text
 function saveCore2State(a){if(a.dataset.g9Role!=='CORE2')return;const key=stateKey(a);if(!key)return;const fields=attemptFields(a).map(el=>({value:el.value,checked:!!el.checked}));const ladders={};q('.g9-ladder[data-g9-ladder-ref]',a).forEach(l=>ladders[l.dataset.g9LadderRef]=rungCount(l));const reveals=q('details[data-g9-support-reveal]',a).map(d=>!!d.open);store.set(key,JSON.stringify({attempted:!!a.dataset.attempted,fields,ladders,reveals}))}
 function bindSupportRevealState(a){q('details[data-g9-support-reveal]',a).forEach(d=>{if(d.dataset.g9StateBound)return;d.dataset.g9StateBound='1';d.addEventListener('toggle',()=>saveCore2State(a))})}
 function restoreCore2State(a,lock){if(a.dataset.g9Role!=='CORE2')return;const state=readState(stateKey(a));if(!state)return;const fields=attemptFields(a);(state.fields||[]).forEach((saved,i)=>{const el=fields[i];if(!el||!saved||typeof saved!=='object')return;if(Object.prototype.hasOwnProperty.call(saved,'value'))el.value=saved.value??'';if(el.type==='checkbox'||el.type==='radio')el.checked=!!saved.checked});Object.entries(state.ladders||{}).forEach(([ref,count])=>{const l=q('.g9-ladder[data-g9-ladder-ref]',a).find(x=>x.dataset.g9LadderRef===ref);if(!l||!Number.isInteger(count)||count<0)return;while(rungCount(l)<count&&nextRung(l)){};});bindSupportRevealState(a);q('details[data-g9-support-reveal]',a).forEach((d,i)=>d.open=!!(state.reveals||[])[i]);if(state.attempted){a.dataset.attempted='1';materialise(a)}lock()}
-const articles=q('article[data-g9-unit],article[data-g9-diagnostic]');
+const articles=q('article[data-g9-unit],article[data-g9-diagnostic],[data-g9-purpose-item]');
 articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!a.dataset.attempted){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();restoreCore2State(a,lock);
 q('details[data-requires-attempt] summary',a).forEach(s=>s.addEventListener('click',e=>{if(!a.dataset.attempted){e.preventDefault();q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a)[0]?.focus()}}));
 q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-attempt-box]');if(!box||!validAttempt(box)){q('input,textarea,select',box||a)[0]?.focus();return}a.dataset.attempted='1';lock();materialise(a);saveCore2State(a)});
