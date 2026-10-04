@@ -1,0 +1,207 @@
+{
+  "schema": "iss31-run-receipt/v1",
+  "issue": 31,
+  "round": 3,
+  "candidate": "independent-agent-a",
+  "status": "CANDIDATE_RENDERED_VALIDATED",
+  "branch": "agent/iss31-hybridisation-candidate-a-20261004",
+  "pinned_source_commit": "e01c6365acfd6aec84c0a6e94f11b683bd961f6e",
+  "input_hashes": {
+    "whole_issue_body_sha256": "fb3e45cdbe8dfb55d0c82146f917dfbc0220bd97beb1689a5d9073f1c1c88037",
+    "abc_core_prompt_sha256": "cd87b3e209617c6170a8d7916a2f66c42706e13de3280bb68d46aaca542233a9"
+  },
+  "authorities": {
+    "protocol": {
+      "path": "relay/PROTOCOL_SELECTION.yaml",
+      "selection": "V3_1 ACTIVE"
+    },
+    "renderer": {
+      "path": "Shared/tools/render_core.py",
+      "version": "render_core/2",
+      "git_blob_sha": "14e83ec1fb7e61550d73e29fa1c833c2f018eaf7"
+    },
+    "web_blueprints": {
+      "path": "Shared/web/interactive-page-blueprints.v1.json",
+      "registry_version": "1.9.0",
+      "git_blob_sha": "11c3947bdea24f67a76517f47872fcf18849d732"
+    },
+    "web_blueprint_schema": {
+      "path": "Shared/web/interactive-page-blueprint.schema.json",
+      "git_blob_sha": "a306b926a6ea39db6090b0121b6c612246f3aa9b"
+    },
+    "web_blueprint_contract": {
+      "path": "Shared/tools/web_blueprint_contract.py",
+      "git_blob_sha": "96b15ae6fb68ff71a56d3696e1f53edef6a3fc25"
+    },
+    "qrt_matrix": {
+      "path": "Shared/quality/question-demand-matrix.v1.json",
+      "version": "1.0.0",
+      "git_blob_sha": "3779a53ae7d20efbb4644bc3f9243909e93dc145"
+    },
+    "qrt_templates": {
+      "path": "Shared/quality/question-demand-templates.v1.json",
+      "version": "1.0.0",
+      "git_blob_sha": "e2409aef11ae7d98444593bfbe1a38eb00c97cef"
+    },
+    "demand_vocabulary": {
+      "path": "Shared/vocabularies/cognitive-demand.v1.json",
+      "version": "1.0.0",
+      "git_blob_sha": "37ebe1ffa6edf5a9651bef49f424db4788cc9e6d"
+    },
+    "chemistry_adapter": {
+      "path": "Chemistry/adapter/CoreContracts.json",
+      "contract_version": "2.0.0",
+      "git_blob_sha": "7b19e1900b78c87fb8ccf806adf0c8fea4af053d"
+    },
+    "package_schema": {
+      "path": "Shared/library/package.schema.json",
+      "git_blob_sha": "4aa588ef3ce00254d0202bba2bf23f7aae5e8c84"
+    }
+  },
+  "committed_evidence": {
+    "owner-core-prompt.md": {
+      "git_blob_sha": "b0281cc3fa3135dbd60eefc1327645d8929f9a12",
+      "commit": "9f33c00ff947c28a84a134ce98aeee242988a1ab"
+    },
+    "source-cards.json": {
+      "git_blob_sha": "a0817a99d08afcb079bebd34e9e642ef53da18e6",
+      "commit": "68e473af515ced53ef71227d00e8f07e380d28c6"
+    },
+    "question-ledger.json": {
+      "git_blob_sha": "6575e4168137e16f93c813bd432e24a8b75de88e",
+      "commit": "26ab99b2e52526711440921ff348d22d2177b02c"
+    },
+    "qrt-review.json": {
+      "git_blob_sha": "4839f51ab49abdea09912dfa5ff2f09e9239474f",
+      "commit": "63c62dcf06cd96cde7c521f6c445e0e230e8e9ad"
+    }
+  },
+  "environment": {
+    "github_connector": "AVAILABLE",
+    "web_research": "AVAILABLE",
+    "executable_repository_sandbox": "GITHUB_ACTIONS_CHECKOUT",
+    "chromium": "PASS_GITHUB_ACTIONS",
+    "production_renderer_execution": "PASS_GITHUB_ACTIONS",
+    "local_shell": "AVAILABLE_WITHOUT_REPOSITORY_CHECKOUT",
+    "outbound_git": "FAILED_DNS_GITHUB",
+    "github_actions_observed": true,
+    "github_actions_runtime": "USED_SUCCESSFULLY"
+  },
+  "production_boundary": {
+    "owner_bank_authoring": "Original TEST-only restriction is preserved as a seed finding and repaired by f1621cd167a569f85ea42909ad97db1060028db5.",
+    "chemistry_package_at_seed": "No Chemistry subject package for this hybridisation slice; Chemistry/library contains the exam-bank surface.",
+    "decision": "Use repaired subject owner-bank lane when an executable checkout is available; do not place owner inputs in exam-bank."
+  },
+  "academic_summary": {
+    "questions": 10,
+    "cohort_label": "D1",
+    "actual_difficulty_counts": {
+      "D1": 5,
+      "D2": 5,
+      "D3": 0,
+      "D4": 0
+    },
+    "cohort_mismatch_questions": [
+      "Q2",
+      "Q4",
+      "Q5",
+      "Q7",
+      "Q8"
+    ],
+    "covered_primary_qrt_cells": 7,
+    "hardest_target": {
+      "question": "Q5",
+      "band": "D2",
+      "demand": "MODEL"
+    }
+  },
+  "render": {
+    "requested_roles": [
+      "CORE2",
+      "CORE1A"
+    ],
+    "generated": true,
+    "renderer": "render_core/2",
+    "render_digest": "b7e0eed726cf0caa",
+    "semantic_digest": "5754d048b745feab",
+    "held_to": "FLOOR",
+    "draft": false,
+    "gaps": [],
+    "html_paths": [
+      "evidence/benchmark/ISS31/rendered/core1a.html",
+      "evidence/benchmark/ISS31/rendered/core2.html"
+    ],
+    "artifacts": {
+      "core1a.html": {
+        "bytes": 174556,
+        "sha256": "42f8b0801ba2c7a78fb40e84129cc350db611f3a86292b1baf0211f6e883bf02"
+      },
+      "core2.html": {
+        "bytes": 226103,
+        "sha256": "01bdf42d39a70ef53a9ed3d7ff301eeff098585c4da9502f4f6c2fad4078d523"
+      }
+    },
+    "generated_commit": "c3eef85875c7499466a3aeb3903167f60a86482f",
+    "cold_run_id": 37194109839
+  },
+  "independence": {
+    "paired_issue": 32,
+    "paired_issue_inspected": false,
+    "paired_output_inspected": false,
+    "self_promotion_to_golden": false,
+    "merge_or_publish": false
+  },
+  "exact_frozen_head": "27dd6611b6bf9c824f8e066386a41af22a6ea88c",
+  "first_frozen_head": "27dd6611b6bf9c824f8e066386a41af22a6ea88c",
+  "owner_execution_clarification": {
+    "issue_comment_id": 5978104772,
+    "interpretation": "Repair the existing owner-bank authoring destination without changing provenance."
+  },
+  "path_repair": {
+    "status": "COMMITTED",
+    "commit": "f1621cd167a569f85ea42909ad97db1060028db5",
+    "accepted": [
+      "TEST/question-bank/<slug>.json",
+      "<Subject>/library/owner-bank/<slug>.json"
+    ],
+    "refused": [
+      "exam-bank/",
+      "outside repository",
+      "unknown canonical subject"
+    ],
+    "schema_changed": false,
+    "custody_class_changed": false
+  },
+  "round2_patch_head": "f1621cd167a569f85ea42909ad97db1060028db5",
+  "ci_observation": {
+    "patch_commit": "f1621cd167a569f85ea42909ad97db1060028db5",
+    "v31_relay": "SUCCESS",
+    "learner_platform": "WORKFLOW_SUCCESS_RATCHET_WITH_EXISTING_RAW_SUITE_FAILURES",
+    "canonical_assurance": "PARTIAL_FAILURES_OUTSIDE_OWNER_BANK_PATCH",
+    "guardrails": "IN_PROGRESS_AT_CHECKPOINT",
+    "regression_delta": "IN_PROGRESS_AT_CHECKPOINT",
+    "targeted_new_regression_seen_in_sampled_logs": false
+  },
+  "validation": {
+    "owner_custody": "PASS",
+    "package_schema_and_references": "PASS",
+    "strict_quality_gate": {
+      "status": "PASS",
+      "findings": 0,
+      "contract_version": "1.8.1"
+    },
+    "tablet_browser": {
+      "status": "PASS",
+      "core1a_errors": [],
+      "core2_errors": [],
+      "protected_search_matches": 0,
+      "external_requests": 0
+    }
+  },
+  "builder": {
+    "inspected_actual_render": true,
+    "hardest_question": "Q5",
+    "decision": "NO_BUILDER_CODE_CHANGE",
+    "reason": "Existing reusable staged visual, attempt-first control, predict/reveal worked route and gated support express the model-scope decision and passed strict quality/browser gates."
+  }
+}

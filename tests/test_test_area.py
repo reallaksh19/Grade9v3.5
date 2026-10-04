@@ -756,31 +756,45 @@ class TestOwnerBankFromIntake(unittest.TestCase):
             with self.subTest(name), self.assertRaisesRegex(ValueError, expected):
                 owner_bank.new(intake, bank_id)
 
-    def test_the_command_writes_only_under_test_question_bank_and_never_over_an_existing_bank(self):
+    def test_the_command_accepts_test_and_subject_owner_banks_but_refuses_exam_bank_and_escaped_destinations(self):
         intake_dir = Path(tempfile.mkdtemp())
         self.addCleanup(shutil.rmtree, intake_dir, True)
         intake = intake_dir / "intake.json"
         intake.write_text(json.dumps(self.INTAKE), encoding="utf-8")
         name = "cli" + uuid.uuid4().hex[:8]
-        out = REPO / "TEST" / "question-bank" / f"{name}.json"
-        self.addCleanup(lambda: out.unlink() if out.exists() else None)
-        argv = ["new", "--intake", str(intake), "--bank-id", name, "--out", str(out)]
+        test_out = REPO / "TEST" / "question-bank" / f"{name}.json"
+        subject_out = REPO / "Chemistry" / "library" / "owner-bank" / f"{name}.json"
+        exam_out = REPO / "Chemistry" / "library" / "exam-bank" / f"{name}.json"
+        unknown_out = REPO / "_NotASubject" / "library" / "owner-bank" / f"{name}.json"
+        for out in (test_out, subject_out, exam_out, unknown_out):
+            self.addCleanup(lambda path=out: path.unlink() if path.exists() else None)
 
-        def run(arguments):
+        def run(out, *extra):
+            argv = ["new", "--intake", str(intake), "--bank-id", name, "--out", str(out), *extra]
             with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
-                return owner_bank.main(arguments)
+                return owner_bank.main(argv)
 
-        self.assertEqual(run(["new", "--intake", str(intake), "--bank-id", name, "--out", str(intake_dir / "x.json")]), 1)
+        self.assertEqual(run(intake_dir / "x.json"), 1, "a path outside the repository is refused")
         self.assertFalse((intake_dir / "x.json").exists())
-        self.assertEqual(run(argv), 0)
-        written = json.loads(out.read_text(encoding="utf-8"))
-        self.assertEqual(len(written["questions"]), 2)
+        self.assertEqual(run(exam_out), 1, "owner custody never enters an official exam-bank directory")
+        self.assertFalse(exam_out.exists())
+        self.assertEqual(run(unknown_out), 1, "an arbitrary top-level directory cannot become a canonical subject")
+        self.assertFalse(unknown_out.exists())
+
+        self.assertEqual(run(test_out), 0, "the historical TEST destination remains supported")
+        self.assertEqual(run(subject_out), 0, "canonical subjects have a separate owner-bank lane")
+        for out in (test_out, subject_out):
+            written = json.loads(out.read_text(encoding="utf-8"))
+            self.assertEqual(len(written["questions"]), 2)
+            self.assertEqual(written["questions"][0]["stem"], self.INTAKE["inputs"]["questions"][0]["text"])
+
+        written = json.loads(subject_out.read_text(encoding="utf-8"))
         written["questions"][0]["answer"]["summary"] = "kept"
-        out.write_text(json.dumps(written), encoding="utf-8")
-        self.assertEqual(run(argv), 1, "a second run must not erase the answers")
-        self.assertEqual(json.loads(out.read_text(encoding="utf-8"))["questions"][0]["answer"]["summary"], "kept")
-        self.assertEqual(run(argv + ["--force"]), 0)
-        self.assertEqual(json.loads(out.read_text(encoding="utf-8"))["questions"][0]["answer"]["summary"], "")
+        subject_out.write_text(json.dumps(written), encoding="utf-8")
+        self.assertEqual(run(subject_out), 1, "a second run must not erase authored answers")
+        self.assertEqual(json.loads(subject_out.read_text(encoding="utf-8"))["questions"][0]["answer"]["summary"], "kept")
+        self.assertEqual(run(subject_out, "--force"), 0)
+        self.assertEqual(json.loads(subject_out.read_text(encoding="utf-8"))["questions"][0]["answer"]["summary"], "")
 
 
 if __name__ == "__main__":
