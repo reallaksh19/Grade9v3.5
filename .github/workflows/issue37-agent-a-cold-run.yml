@@ -48,7 +48,9 @@ jobs:
           } 2>&1 | tee /tmp/issue37-focused-tests.log
 
       - name: Materialize Issue 37 candidate inputs
-        run: PYTHONPATH=. python evidence/benchmark/ISS37/build_specimen.py
+        run: |
+          PYTHONPATH=. python evidence/benchmark/ISS37/build_specimen.py
+          PYTHONPATH=. python evidence/benchmark/ISS37/finalize_records.py
 
       - name: Verify verbatim intake and schemas
         run: |
