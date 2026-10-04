@@ -1,0 +1,1098 @@
+{
+  "schema_version": "grade9v3-owner-supplied-bank-v1",
+  "bank_id": "issue33-hybridisation-agent-a",
+  "intake_digest": "issue33-owner-core-prompt-v2",
+  "questions": [
+    {
+      "id": "OWN-ISS33-D2-V2-Q01",
+      "original_identifier": "Q1",
+      "stem": "BF3 and NH3 each have three sigma bonds to the central atom. BF3 has no central lone pair; NH3 has one. Explain why three sigma bonds alone cannot determine the same central hybridisation and molecular shape for both.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "BF3 is treated by the introductory localized model as three electron domains at B: sp2 with trigonal-planar bonded-atom arrangement. NH3 has four electron domains at N because its lone pair is an additional domain: sp3, tetrahedral electron-domain geometry and trigonal-pyramidal molecular shape. Therefore three sigma bonds alone are insufficient.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS33-D2-V2-Q01-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Whether the central count is only sigma bonds or the full set of electron domains, including lone pairs.",
+            "why_valid": "The question turns on identifying the correct counting/model distinction before a label is chosen.",
+            "inputs": [
+              "supplied stem"
+            ],
+            "output": "crux identified"
+          },
+          {
+            "id": "OWN-ISS33-D2-V2-Q01-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Count all local electron domains first, then connect 3 domains to the introductory sp2 model and 4 domains to sp3 while separating electron-domain geometry from molecular shape.",
+            "why_valid": "This is the reviewed learner-relative bridge from demonstrated knowledge to the requested representation/explanation.",
+            "inputs": [
+              "crux",
+              "learner anchor"
+            ],
+            "output": "question-specific model"
+          },
+          {
+            "id": "OWN-ISS33-D2-V2-Q01-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Recount domains directly from the Lewis descriptions: BF3 = 3, NH3 = 4; the conclusions must differ.",
+            "why_valid": "An independent ledger/domain check tests the conclusion without merely restating it.",
+            "inputs": [
+              "question-specific model"
+            ],
+            "output": "verified response"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS33-D2-V2-Q01-MOVE-2",
+        "check": "Recount domains directly from the Lewis descriptions: BF3 = 3, NH3 = 4; the conclusions must differ.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-HYB-ELECTRON-VS-MOLECULAR-GEOMETRY",
+      "family_ref": "FAM-CHEM-HYB-DOMAIN-MODEL",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q1",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:a76785a01d019bf1250903fe97eba66ca664441a2cdbedcd0a3a5bb4bbfbfa92"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 3,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Whether the central count is only sigma bonds or the full set of electron domains, including lone pairs. Five-component score 3 resolves to D2."
+          },
+          "expected_time_seconds": 240,
+          "common_wrong_route": "Three sigma bonds automatically mean three electron domains and therefore sp2.",
+          "cognitive_demand": {
+            "primary": "EXPLAIN",
+            "secondary": [
+              "MODEL"
+            ]
+          },
+          "stable_crux_move": "Count all local electron domains first, then connect 3 domains to the introductory sp2 model and 4 domains to sp3 while separating electron-domain geometry from molecular shape."
+        }
+      },
+      "conditions": [
+        "Use the bounded introductory localized hybrid-orbital model requested by the question; do not treat molecular shape alone as direct measurement of orbital mixing."
+      ],
+      "figure_refs": [
+        "REP-CHEM-HYB-DOMAIN-SHAPE"
+      ],
+      "scaffolds": [
+        {
+          "text": "Do not stop at the number of sigma bonds; ask what else occupies a direction around the central atom.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q01-MOVE-1"
+        },
+        {
+          "text": "Compare the total number of local electron domains at B and N, counting the nitrogen lone pair.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q01-MOVE-2"
+        },
+        {
+          "text": "Use the demonstrated 3-domain versus 4-domain geometry rule, but leave the final comparison and shape statement to your own response.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q01-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS33-D2-V2-Q02",
+      "original_identifier": "Q2",
+      "stem": "For H2C=O, assign the carbon hybridisation, count the sigma and pi components of the C=O bond, and identify the carbon orbital left available for the pi component. Keep electron-domain counting separate from counting shared electron pairs.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Carbon in H2C=O has three electron domains and is described as sp2 in the introductory localized model. The C=O double bond contains one sigma and one pi component. Three sp2 hybrids support the sigma framework; one unhybridised carbon 2p orbital remains for the pi overlap. The C=O multiple bond is one electron domain even though it contains two shared electron pairs.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS33-D2-V2-Q02-MOVE-1",
+            "kind": "DECIDE",
+            "action": "What must stay invariant when translating from Lewis-domain counting to an orbital account of the C=O double bond.",
+            "why_valid": "The question turns on identifying the correct counting/model distinction before a label is chosen.",
+            "inputs": [
+              "supplied stem"
+            ],
+            "output": "crux identified"
+          },
+          {
+            "id": "OWN-ISS33-D2-V2-Q02-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Map three carbon domains to three sp2 sigma-framework directions, then allocate the remaining carbon p orbital to the pi component.",
+            "why_valid": "This is the reviewed learner-relative bridge from demonstrated knowledge to the requested representation/explanation.",
+            "inputs": [
+              "crux",
+              "learner anchor"
+            ],
+            "output": "question-specific model"
+          },
+          {
+            "id": "OWN-ISS33-D2-V2-Q02-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Three carbon domains account for two C-H directions plus the C=O direction; the double bond still decomposes independently into 1 sigma + 1 pi.",
+            "why_valid": "An independent ledger/domain check tests the conclusion without merely restating it.",
+            "inputs": [
+              "question-specific model"
+            ],
+            "output": "verified response"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS33-D2-V2-Q02-MOVE-2",
+        "check": "Three carbon domains account for two C-H directions plus the C=O direction; the double bond still decomposes independently into 1 sigma + 1 pi.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-HYB-SIGMA-PI-ORBITALS",
+      "family_ref": "FAM-CHEM-HYB-ORBITAL-OVERLAP",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q2",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:d822c3acd002a3ad51075eea4ccacb3615781113b828cef38ffd6be35545d64d"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 4,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "What must stay invariant when translating from Lewis-domain counting to an orbital account of the C=O double bond. Five-component score 4 resolves to D2."
+          },
+          "expected_time_seconds": 240,
+          "common_wrong_route": "The C=O double bond contributes two electron domains because it contains two shared pairs.",
+          "cognitive_demand": {
+            "primary": "REPRESENT",
+            "secondary": [
+              "EXPLAIN"
+            ]
+          },
+          "stable_crux_move": "Map three carbon domains to three sp2 sigma-framework directions, then allocate the remaining carbon p orbital to the pi component."
+        }
+      },
+      "conditions": [
+        "Use the bounded introductory localized hybrid-orbital model requested by the question; do not treat molecular shape alone as direct measurement of orbital mixing."
+      ],
+      "figure_refs": [
+        "REP-CHEM-HYB-SP2-ORBITAL-INVENTORY"
+      ],
+      "scaffolds": [
+        {
+          "text": "Count directions of electron density around carbon, not the number of shared pairs in the double bond.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q02-MOVE-1"
+        },
+        {
+          "text": "A three-domain carbon uses three in-plane sigma-framework directions in the introductory sp2 description.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q02-MOVE-2"
+        },
+        {
+          "text": "After those three directions are assigned, identify which unhybridised carbon orbital can overlap side-on; do not count it as a fourth domain.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q02-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS33-D2-V2-Q03",
+      "original_identifier": "Q3",
+      "stem": "Ethene is H2C=CH2. Translate this Lewis representation into a qualitative orbital-overlap diagram showing the C–C sigma framework, the two unhybridised carbon p orbitals and their side-on overlap. Label which directions are in the molecular plane and which are perpendicular to it.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Each ethene carbon is described as sp2. Three sp2 hybrid directions at each carbon lie in the molecular plane and form the sigma framework (C–H and the C–C sigma bond). One unhybridised p orbital remains on each carbon perpendicular to that plane; the two parallel p orbitals overlap side-on above and below the plane to form the pi component.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS33-D2-V2-Q03-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Which geometric/orbital features of the Lewis structure must be preserved in an orbital-overlap diagram.",
+            "why_valid": "The question turns on identifying the correct counting/model distinction before a label is chosen.",
+            "inputs": [
+              "supplied stem"
+            ],
+            "output": "crux identified"
+          },
+          {
+            "id": "OWN-ISS33-D2-V2-Q03-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Place the sigma framework in the molecular plane and then add the two parallel unhybridised p orbitals perpendicular to it for side-on overlap.",
+            "why_valid": "This is the reviewed learner-relative bridge from demonstrated knowledge to the requested representation/explanation.",
+            "inputs": [
+              "crux",
+              "learner anchor"
+            ],
+            "output": "question-specific model"
+          },
+          {
+            "id": "OWN-ISS33-D2-V2-Q03-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Every carbon has exactly three sp2 sigma directions plus one unhybridised p orbital; the two p orbitals are parallel and perpendicular to the molecular plane.",
+            "why_valid": "An independent ledger/domain check tests the conclusion without merely restating it.",
+            "inputs": [
+              "question-specific model"
+            ],
+            "output": "verified response"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS33-D2-V2-Q03-MOVE-2",
+        "check": "Every carbon has exactly three sp2 sigma directions plus one unhybridised p orbital; the two p orbitals are parallel and perpendicular to the molecular plane.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-HYB-SIGMA-PI-ORBITALS",
+      "family_ref": "FAM-CHEM-HYB-ORBITAL-OVERLAP",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q3",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:fb036d1a9c5af186367db09ca5c459487cbfbab47bb6e643de2f7e5e40a224f5"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 2,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Which geometric/orbital features of the Lewis structure must be preserved in an orbital-overlap diagram. Five-component score 5 resolves to D2."
+          },
+          "expected_time_seconds": 240,
+          "common_wrong_route": "Use an sp2 hybrid orbital itself for the pi bond, or place the unhybridised p orbitals in the molecular plane.",
+          "cognitive_demand": {
+            "primary": "REPRESENT",
+            "secondary": [
+              "SYNTHESIZE"
+            ]
+          },
+          "stable_crux_move": "Place the sigma framework in the molecular plane and then add the two parallel unhybridised p orbitals perpendicular to it for side-on overlap."
+        }
+      },
+      "conditions": [
+        "Use the bounded introductory localized hybrid-orbital model requested by the question; do not treat molecular shape alone as direct measurement of orbital mixing."
+      ],
+      "figure_refs": [
+        "REP-CHEM-HYB-SP2-ORBITAL-INVENTORY"
+      ],
+      "scaffolds": [
+        {
+          "text": "First draw only the nuclei and sigma-bond directions; decide what belongs to the molecular plane.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q03-MOVE-1"
+        },
+        {
+          "text": "At each carbon, three sp2 directions belong to the sigma framework, leaving one unhybridised p orbital.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q03-MOVE-2"
+        },
+        {
+          "text": "Add the remaining p orbitals perpendicular to the plane and parallel to each other; leave the final overlap annotation for your attempt.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q03-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS33-D2-V2-Q04",
+      "original_identifier": "Q4",
+      "stem": "For CO2, connect the central-carbon Lewis domain count to its hybrid-orbital model, the number of remaining carbon p orbitals and the sigma/pi composition of its two C=O bonds. Explain how these pieces fit one consistent linear arrangement.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Central carbon in CO2 has two electron domains, so the introductory localized model uses sp hybridisation: two sp hybrids point 180° apart for the two sigma bonds. Two unhybridised carbon p orbitals remain, mutually perpendicular and both perpendicular to the molecular axis. Each C=O contains one sigma and one pi component, so the two double bonds give two sigma and two pi components while the nuclei remain linear.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS33-D2-V2-Q04-MOVE-1",
+            "kind": "DECIDE",
+            "action": "How two Lewis electron domains, two sigma directions, and two independent pi components can all belong to one linear carbon centre.",
+            "why_valid": "The question turns on identifying the correct counting/model distinction before a label is chosen.",
+            "inputs": [
+              "supplied stem"
+            ],
+            "output": "crux identified"
+          },
+          {
+            "id": "OWN-ISS33-D2-V2-Q04-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Coordinate the linear two-sp-hybrid sigma framework with two remaining perpendicular p orbitals, one for each pi component.",
+            "why_valid": "This is the reviewed learner-relative bridge from demonstrated knowledge to the requested representation/explanation.",
+            "inputs": [
+              "crux",
+              "learner anchor"
+            ],
+            "output": "question-specific model"
+          },
+          {
+            "id": "OWN-ISS33-D2-V2-Q04-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Orbital inventory at carbon is 2 sp hybrids + 2 unhybridised p orbitals = 4 valence orbitals; bond-component inventory is 2 sigma + 2 pi, while the domain count remains 2.",
+            "why_valid": "An independent ledger/domain check tests the conclusion without merely restating it.",
+            "inputs": [
+              "question-specific model"
+            ],
+            "output": "verified response"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS33-D2-V2-Q04-MOVE-2",
+        "check": "Orbital inventory at carbon is 2 sp hybrids + 2 unhybridised p orbitals = 4 valence orbitals; bond-component inventory is 2 sigma + 2 pi, while the domain count remains 2.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-HYB-SIGMA-PI-ORBITALS",
+      "family_ref": "FAM-CHEM-HYB-ORBITAL-OVERLAP",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q4",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:cdbbf23c1c396766ba4d8fbd98aa45d2578559881b1593fd983f1f03c830ce80"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "How two Lewis electron domains, two sigma directions, and two independent pi components can all belong to one linear carbon centre. Five-component score 5 resolves to D2."
+          },
+          "expected_time_seconds": 240,
+          "common_wrong_route": "Four bond components around carbon imply four electron domains or sp3.",
+          "cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": [
+              "REPRESENT"
+            ]
+          },
+          "stable_crux_move": "Coordinate the linear two-sp-hybrid sigma framework with two remaining perpendicular p orbitals, one for each pi component."
+        }
+      },
+      "conditions": [
+        "Use the bounded introductory localized hybrid-orbital model requested by the question; do not treat molecular shape alone as direct measurement of orbital mixing."
+      ],
+      "figure_refs": [
+        "REP-CHEM-HYB-LINEAR-P-INVENTORY"
+      ],
+      "scaffolds": [
+        {
+          "text": "Start from the central-carbon domain count: each C=O multiple bond points in one direction and counts as one domain.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q04-MOVE-1"
+        },
+        {
+          "text": "A two-domain introductory model uses two opposite sigma-framework directions and leaves two carbon p orbitals unused by that framework.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q04-MOVE-2"
+        },
+        {
+          "text": "Those two remaining p orbitals can support two independent side-on overlaps; keep the molecular axis linear while you complete the sigma/pi inventory.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q04-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS33-D2-V2-Q05",
+      "original_identifier": "Q5",
+      "stem": "Consider the claim: 'Any central atom with three sigma bonds must be sp2.' Given BF3: three B–F sigma bonds, zero boron lone pairs, planar; NH3: three N–H sigma bonds, one nitrogen lone pair, pyramidal. Decide whether these observations support the claim, give the decisive warrant, and state a more defensible introductory rule. Explain what the shape observations alone do not prove about orbitals.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "The observations do not support the claim. BF3 and NH3 each have three central sigma bonds, but NH3 also has a lone-pair domain. The decisive introductory warrant is total local electron-domain count, not sigma-bond count alone: for common small main-group localized examples, 2/3/4 domains are described as sp/sp2/sp3. BF3 is therefore the three-domain case, whereas NH3 is the four-domain case. Observed shape can motivate or test such a model, but shape alone is not direct proof that particular atomic orbitals literally hybridised.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS33-D2-V2-Q05-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Whether the examples license the universal claim and what evidence is allowed to determine the introductory hybrid label.",
+            "why_valid": "The question turns on identifying the correct counting/model distinction before a label is chosen.",
+            "inputs": [
+              "supplied stem"
+            ],
+            "output": "crux identified"
+          },
+          {
+            "id": "OWN-ISS33-D2-V2-Q05-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Use BF3/NH3 as a counterexample pair, state the domain-count warrant, and separate model assignment from direct experimental proof of orbital composition.",
+            "why_valid": "This is the reviewed learner-relative bridge from demonstrated knowledge to the requested representation/explanation.",
+            "inputs": [
+              "crux",
+              "learner anchor"
+            ],
+            "output": "question-specific model"
+          },
+          {
+            "id": "OWN-ISS33-D2-V2-Q05-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Apply the proposed rule to both BF3 and NH3; a rule based only on three sigma bonds cannot classify both consistently.",
+            "why_valid": "An independent ledger/domain check tests the conclusion without merely restating it.",
+            "inputs": [
+              "question-specific model"
+            ],
+            "output": "verified response"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS33-D2-V2-Q05-MOVE-2",
+        "check": "Apply the proposed rule to both BF3 and NH3; a rule based only on three sigma bonds cannot classify both consistently.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-HYB-DOMAIN-MODEL",
+      "family_ref": "FAM-CHEM-HYB-DOMAIN-MODEL",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q5",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:f2e20af62103acfafec848c6b00dbce9a816c60de829c8852175810cd4bfb39b"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 4,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Whether the examples license the universal claim and what evidence is allowed to determine the introductory hybrid label. Five-component score 4 resolves to D2."
+          },
+          "expected_time_seconds": 240,
+          "common_wrong_route": "Planar shape proves sp2 and pyramidal shape proves sp3 without any model assumptions or domain analysis.",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": [
+              "EXPLAIN"
+            ]
+          },
+          "stable_crux_move": "Use BF3/NH3 as a counterexample pair, state the domain-count warrant, and separate model assignment from direct experimental proof of orbital composition."
+        }
+      },
+      "conditions": [
+        "Use the bounded introductory localized hybrid-orbital model requested by the question; do not treat molecular shape alone as direct measurement of orbital mixing."
+      ],
+      "figure_refs": [
+        "REP-CHEM-HYB-DOMAIN-SHAPE"
+      ],
+      "scaffolds": [
+        {
+          "text": "A universal claim fails if two centres with the same sigma-bond count require different domain counts.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q05-MOVE-1"
+        },
+        {
+          "text": "Use the nitrogen lone pair as part of the warrant, not merely the words planar versus pyramidal.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q05-MOVE-2"
+        },
+        {
+          "text": "State a rule based on total local electron domains, then add one sentence about why observed shape constrains a model rather than directly proving orbital mixing.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q05-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS33-D2-V2-Q06",
+      "original_identifier": "Q6",
+      "stem": "In CH3F, carbon has three C–H single bonds and one C–F single bond. Assign its introductory local hybridisation and explain why the number of electron-domain directions is unchanged from CH4 even though the attached atoms are different. Do not assume all bond properties are identical.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Carbon in CH3F has four local electron domains (four sigma bonds) and is described as sp3 in the introductory model, with approximately tetrahedral domain directions. Replacing one H by F changes the identity and therefore properties such as polarity and typically bond length/strength, but it does not change the number of directions/domains around carbon.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS33-D2-V2-Q06-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Which feature determines the count of local domain directions and which features may change when H is replaced by F.",
+            "why_valid": "The question turns on identifying the correct counting/model distinction before a label is chosen.",
+            "inputs": [
+              "supplied stem"
+            ],
+            "output": "crux identified"
+          },
+          {
+            "id": "OWN-ISS33-D2-V2-Q06-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Keep the four-direction domain count fixed while distinguishing it from bond-specific properties.",
+            "why_valid": "This is the reviewed learner-relative bridge from demonstrated knowledge to the requested representation/explanation.",
+            "inputs": [
+              "crux",
+              "learner anchor"
+            ],
+            "output": "question-specific model"
+          },
+          {
+            "id": "OWN-ISS33-D2-V2-Q06-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Both CH4 and CH3F have four central sigma-bond directions; the explanation must preserve that count while allowing bond-specific differences.",
+            "why_valid": "An independent ledger/domain check tests the conclusion without merely restating it.",
+            "inputs": [
+              "question-specific model"
+            ],
+            "output": "verified response"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS33-D2-V2-Q06-MOVE-2",
+        "check": "Both CH4 and CH3F have four central sigma-bond directions; the explanation must preserve that count while allowing bond-specific differences.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-HYB-DOMAIN-MODEL",
+      "family_ref": "FAM-CHEM-HYB-DOMAIN-MODEL",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q6",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:bab033ed2d36ad4e946c8ac500169f4be039c80d13446e2c67490b6aa812269f"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D1",
+            "score": 2,
+            "components": {
+              "concept_model_selection": 0,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Which feature determines the count of local domain directions and which features may change when H is replaced by F. Five-component score 2 resolves to D1."
+          },
+          "expected_time_seconds": 120,
+          "common_wrong_route": "Changing H to F must change carbon hybridisation, or conversely identical hybridisation means C–F and C–H bonds have identical properties.",
+          "cognitive_demand": {
+            "primary": "EXPLAIN",
+            "secondary": [
+              "RETRIEVE"
+            ]
+          },
+          "stable_crux_move": "Keep the four-direction domain count fixed while distinguishing it from bond-specific properties."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "For this learner the decisive act is verbal distinction between domain count and bond-specific properties; an additional orbital drawing would be decorative."
+        }
+      },
+      "conditions": [
+        "Use the bounded introductory localized hybrid-orbital model requested by the question; do not treat molecular shape alone as direct measurement of orbital mixing."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Count the directions of electron density around carbon before comparing atom identities.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q06-MOVE-1"
+        },
+        {
+          "text": "CH4 and CH3F each give carbon four sigma-bond directions; ask what that preserves in the local domain model.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q06-MOVE-2"
+        },
+        {
+          "text": "Now separate that preserved geometry from properties that depend on which atoms are bonded.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q06-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS33-D2-V2-Q07",
+      "original_identifier": "Q7",
+      "stem": "HCN is represented as H–C≡N with a lone pair on nitrogen. Assign the introductory hybridisation at carbon and nitrogen, and count the sigma and pi components of the C≡N bond. Explain how the local domain count is compatible with those components.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "In HCN, carbon has two domains (H–C and C≡N) and nitrogen has two local domains (the C≡N direction and its lone pair), so both are described as sp in the introductory localized model. The C≡N triple bond contains one sigma and two pi components. Each atom uses sp hybrids for the axial sigma/lone-pair framework and retains two unhybridised p orbitals for the two mutually perpendicular pi overlaps.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS33-D2-V2-Q07-MOVE-1",
+            "kind": "DECIDE",
+            "action": "How a triple bond can contain three bond components while counting as one domain at each bonded atom.",
+            "why_valid": "The question turns on identifying the correct counting/model distinction before a label is chosen.",
+            "inputs": [
+              "supplied stem"
+            ],
+            "output": "crux identified"
+          },
+          {
+            "id": "OWN-ISS33-D2-V2-Q07-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Coordinate local domain counts at C and N with the one-sigma/two-pi decomposition of C≡N.",
+            "why_valid": "This is the reviewed learner-relative bridge from demonstrated knowledge to the requested representation/explanation.",
+            "inputs": [
+              "crux",
+              "learner anchor"
+            ],
+            "output": "question-specific model"
+          },
+          {
+            "id": "OWN-ISS33-D2-V2-Q07-MOVE-3",
+            "kind": "VERIFY",
+            "action": "At both C and N the local domain count is 2, while the C≡N bond-component count is independently 1 sigma + 2 pi.",
+            "why_valid": "An independent ledger/domain check tests the conclusion without merely restating it.",
+            "inputs": [
+              "question-specific model"
+            ],
+            "output": "verified response"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS33-D2-V2-Q07-MOVE-2",
+        "check": "At both C and N the local domain count is 2, while the C≡N bond-component count is independently 1 sigma + 2 pi.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-HYB-SIGMA-PI-ORBITALS",
+      "family_ref": "FAM-CHEM-HYB-ORBITAL-OVERLAP",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q7",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:b46aaef9d5c9a20b520fd924c3180c4b0fbc005bf68e01fab86f087c278fc2ce"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 4,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "How a triple bond can contain three bond components while counting as one domain at each bonded atom. Five-component score 4 resolves to D2."
+          },
+          "expected_time_seconds": 240,
+          "common_wrong_route": "A triple bond contributes three electron domains, forcing more than two local directions.",
+          "cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": [
+              "REPRESENT"
+            ]
+          },
+          "stable_crux_move": "Coordinate local domain counts at C and N with the one-sigma/two-pi decomposition of C≡N."
+        }
+      },
+      "conditions": [
+        "Use the bounded introductory localized hybrid-orbital model requested by the question; do not treat molecular shape alone as direct measurement of orbital mixing."
+      ],
+      "figure_refs": [
+        "REP-CHEM-HYB-LINEAR-P-INVENTORY"
+      ],
+      "scaffolds": [
+        {
+          "text": "At each centre, count directions/regions first: a multiple bond occupies one direction.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q07-MOVE-1"
+        },
+        {
+          "text": "A two-domain introductory model leaves two p orbitals unhybridised at each atom.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q07-MOVE-2"
+        },
+        {
+          "text": "Use the axial hybrid direction for the sigma component and the two p pairs for side-on pi overlap; keep the domain ledger separate.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q07-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS33-D2-V2-Q08",
+      "original_identifier": "Q8",
+      "stem": "For methylamine, CH3–NH2, carbon has four single bonds and nitrogen has three single bonds plus a lone pair. Compare the introductory local hybridisation and arrangement of bonded atoms at carbon and nitrogen. Explain why the same hybridisation label does not require identical molecular shapes.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Both centres are described as sp3 in the introductory model because each has four electron domains. Carbon has four bonding domains and its bonded atoms occupy a tetrahedral arrangement. Nitrogen has three bonding domains plus one lone pair, so its electron-domain geometry is tetrahedral but its bonded atoms form a trigonal-pyramidal molecular shape. The same hybridisation label therefore does not require the same atom-only shape.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS33-D2-V2-Q08-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Why the same four-domain/hybrid label can coexist with different arrangements of bonded atoms.",
+            "why_valid": "The question turns on identifying the correct counting/model distinction before a label is chosen.",
+            "inputs": [
+              "supplied stem"
+            ],
+            "output": "crux identified"
+          },
+          {
+            "id": "OWN-ISS33-D2-V2-Q08-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Compare which of the four domain positions are occupied by bonded atoms versus a lone pair at C and N.",
+            "why_valid": "This is the reviewed learner-relative bridge from demonstrated knowledge to the requested representation/explanation.",
+            "inputs": [
+              "crux",
+              "learner anchor"
+            ],
+            "output": "question-specific model"
+          },
+          {
+            "id": "OWN-ISS33-D2-V2-Q08-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Carbon: 4 bonded positions + 0 lone pairs; nitrogen: 3 bonded positions + 1 lone pair. Both total 4 domains but their bonded-atom subsets differ.",
+            "why_valid": "An independent ledger/domain check tests the conclusion without merely restating it.",
+            "inputs": [
+              "question-specific model"
+            ],
+            "output": "verified response"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS33-D2-V2-Q08-MOVE-2",
+        "check": "Carbon: 4 bonded positions + 0 lone pairs; nitrogen: 3 bonded positions + 1 lone pair. Both total 4 domains but their bonded-atom subsets differ.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-HYB-ELECTRON-VS-MOLECULAR-GEOMETRY",
+      "family_ref": "FAM-CHEM-HYB-GEOMETRY-SHAPE",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q8",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:3ab7d806371d7c999400460cd7879583e40303ee4bde67be919405d56191fce8"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 3,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Why the same four-domain/hybrid label can coexist with different arrangements of bonded atoms. Five-component score 3 resolves to D2."
+          },
+          "expected_time_seconds": 240,
+          "common_wrong_route": "The label sp3 means the visible atoms must always form a tetrahedron.",
+          "cognitive_demand": {
+            "primary": "EXPLAIN",
+            "secondary": [
+              "MODEL"
+            ]
+          },
+          "stable_crux_move": "Compare which of the four domain positions are occupied by bonded atoms versus a lone pair at C and N."
+        }
+      },
+      "conditions": [
+        "Use the bounded introductory localized hybrid-orbital model requested by the question; do not treat molecular shape alone as direct measurement of orbital mixing."
+      ],
+      "figure_refs": [
+        "REP-CHEM-HYB-DOMAIN-SHAPE"
+      ],
+      "scaffolds": [
+        {
+          "text": "Count all four domain positions at each centre before looking only at atoms.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q08-MOVE-1"
+        },
+        {
+          "text": "At carbon all four positions are bonds; at nitrogen one position is a lone pair.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q08-MOVE-2"
+        },
+        {
+          "text": "Molecular shape names atom positions, not every electron-domain position; use that distinction to finish the comparison.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q08-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS33-D2-V2-Q09",
+      "original_identifier": "Q9",
+      "stem": "A carbon centre has three sigma-bond directions, no lone pair, and participates in one pi bond. Translate this description into a qualitative local orbital arrangement and check that the orbitals used in the sigma and pi parts have not been counted twice.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Three sigma-bond directions and no lone pair give three local electron domains, so the introductory local model is sp2. Three sp2 hybrid orbitals provide the three coplanar sigma directions. The one remaining unhybridised p orbital is perpendicular to that plane and supplies the atomic orbital for the pi component. It is not a fourth electron-domain direction and is not one of the three sigma hybrids.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS33-D2-V2-Q09-MOVE-1",
+            "kind": "DECIDE",
+            "action": "How to allocate one carbon's valence orbitals to three sigma directions plus one pi participation without reusing or double-counting an orbital.",
+            "why_valid": "The question turns on identifying the correct counting/model distinction before a label is chosen.",
+            "inputs": [
+              "supplied stem"
+            ],
+            "output": "crux identified"
+          },
+          {
+            "id": "OWN-ISS33-D2-V2-Q09-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Assign each of the three sigma directions to a distinct sp2 hybrid and reserve the unhybridised p orbital for pi overlap.",
+            "why_valid": "This is the reviewed learner-relative bridge from demonstrated knowledge to the requested representation/explanation.",
+            "inputs": [
+              "crux",
+              "learner anchor"
+            ],
+            "output": "question-specific model"
+          },
+          {
+            "id": "OWN-ISS33-D2-V2-Q09-MOVE-3",
+            "kind": "VERIFY",
+            "action": "The local valence-orbital inventory closes at four: three sp2 hybrids assigned to sigma directions and one unhybridised p assigned to pi participation.",
+            "why_valid": "An independent ledger/domain check tests the conclusion without merely restating it.",
+            "inputs": [
+              "question-specific model"
+            ],
+            "output": "verified response"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS33-D2-V2-Q09-MOVE-2",
+        "check": "The local valence-orbital inventory closes at four: three sp2 hybrids assigned to sigma directions and one unhybridised p assigned to pi participation.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-HYB-SIGMA-PI-ORBITALS",
+      "family_ref": "FAM-CHEM-HYB-ORBITAL-OVERLAP",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q9",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:aaeea9734d4f95422f5e9d3170b47a4474701f812b5813a1747fdb3203a8d747"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 2,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "How to allocate one carbon's valence orbitals to three sigma directions plus one pi participation without reusing or double-counting an orbital. Five-component score 5 resolves to D2."
+          },
+          "expected_time_seconds": 240,
+          "common_wrong_route": "Count the pi bond as a fourth domain or reuse one sp2 hybrid orbital for both a sigma and pi component.",
+          "cognitive_demand": {
+            "primary": "REPRESENT",
+            "secondary": [
+              "EXPLAIN"
+            ]
+          },
+          "stable_crux_move": "Assign each of the three sigma directions to a distinct sp2 hybrid and reserve the unhybridised p orbital for pi overlap."
+        }
+      },
+      "conditions": [
+        "Use the bounded introductory localized hybrid-orbital model requested by the question; do not treat molecular shape alone as direct measurement of orbital mixing."
+      ],
+      "figure_refs": [
+        "REP-CHEM-HYB-SP2-ORBITAL-INVENTORY"
+      ],
+      "scaffolds": [
+        {
+          "text": "Make an inventory with two columns: sigma-framework orbitals and pi-participating orbitals.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q09-MOVE-1"
+        },
+        {
+          "text": "Three local domains call for three coplanar sp2 hybrid directions in the introductory model.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q09-MOVE-2"
+        },
+        {
+          "text": "After assigning those three, exactly one carbon p orbital remains unhybridised; use it only for the pi job and check that no orbital appears twice.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q09-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS33-D2-V2-Q10",
+      "original_identifier": "Q10",
+      "stem": "A student says, 'If the electron-domain geometry is tetrahedral, the atoms must form a tetrahedral molecular shape.' Evaluate the statement using CH4, NH3 and H2O, with their respective central lone-pair counts of zero, one and two.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "The statement is false. CH4, NH3 and H2O each have four central electron domains and therefore tetrahedral electron-domain geometry in VSEPR. CH4 has 0 lone pairs, so four bonded atoms form a tetrahedral molecular shape; NH3 has 1 lone pair, so three bonded atoms form a trigonal-pyramidal shape; H2O has 2 lone pairs, so two bonded atoms form a bent shape. Electron-domain geometry includes lone pairs; molecular shape names the atom positions.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS33-D2-V2-Q10-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Whether tetrahedral electron-domain geometry logically entails tetrahedral molecular shape.",
+            "why_valid": "The question turns on identifying the correct counting/model distinction before a label is chosen.",
+            "inputs": [
+              "supplied stem"
+            ],
+            "output": "crux identified"
+          },
+          {
+            "id": "OWN-ISS33-D2-V2-Q10-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Compare CH4, NH3 and H2O while holding four total domains fixed and varying lone-pair occupancy.",
+            "why_valid": "This is the reviewed learner-relative bridge from demonstrated knowledge to the requested representation/explanation.",
+            "inputs": [
+              "crux",
+              "learner anchor"
+            ],
+            "output": "question-specific model"
+          },
+          {
+            "id": "OWN-ISS33-D2-V2-Q10-MOVE-3",
+            "kind": "VERIFY",
+            "action": "All three examples total four electron domains, but their atom counts around the centre are 4, 3 and 2, producing tetrahedral, trigonal-pyramidal and bent molecular shapes respectively.",
+            "why_valid": "An independent ledger/domain check tests the conclusion without merely restating it.",
+            "inputs": [
+              "question-specific model"
+            ],
+            "output": "verified response"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS33-D2-V2-Q10-MOVE-2",
+        "check": "All three examples total four electron domains, but their atom counts around the centre are 4, 3 and 2, producing tetrahedral, trigonal-pyramidal and bent molecular shapes respectively.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-CHEM-HYB-ELECTRON-VS-MOLECULAR-GEOMETRY",
+      "family_ref": "FAM-CHEM-HYB-GEOMETRY-SHAPE",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q10",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:0b05336ad3ddf7cb4231669076eb29479894d558bbd8b3af40fa545514c7e305"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 3,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Whether tetrahedral electron-domain geometry logically entails tetrahedral molecular shape. Five-component score 3 resolves to D2."
+          },
+          "expected_time_seconds": 240,
+          "common_wrong_route": "Electron-domain geometry and molecular shape are interchangeable names whenever the domain geometry is tetrahedral.",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": [
+              "EXPLAIN"
+            ]
+          },
+          "stable_crux_move": "Compare CH4, NH3 and H2O while holding four total domains fixed and varying lone-pair occupancy."
+        }
+      },
+      "conditions": [
+        "Use the bounded introductory localized hybrid-orbital model requested by the question; do not treat molecular shape alone as direct measurement of orbital mixing."
+      ],
+      "figure_refs": [
+        "REP-CHEM-HYB-DOMAIN-SHAPE"
+      ],
+      "scaffolds": [
+        {
+          "text": "Hold the total central domain count fixed at four for all three examples.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q10-MOVE-1"
+        },
+        {
+          "text": "Now list how many of the four domain positions contain bonded atoms rather than lone pairs.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q10-MOVE-2"
+        },
+        {
+          "text": "A molecular-shape name follows the atom positions only; use NH3 or H2O as the decisive counterexample.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS33-D2-V2-Q10-MOVE-2"
+        }
+      ]
+    }
+  ]
+}
