@@ -1,0 +1,113 @@
+{
+  "$schema": "https://grade9v3.local/schemas/iss36-run-receipt.v1.json",
+  "receipt_id": "RECEIPT-ISS36-AGENT-B-R1",
+  "generated_at": "2026-10-04T12:25:00+04:00",
+  "candidate": {
+    "agent_role": "independent-agent-b",
+    "issue_url": "https://github.com/reallaksh19/Grade9v3.5/issues/36",
+    "issue_number": 36,
+    "branch": "candidate/iss36-d3-hybridisation-agent-b-r1",
+    "seed_commit": "e01c6365acfd6aec84c0a6e94f11b683bd961f6e",
+    "topic": "hybridisation",
+    "difficulty_band": "D3",
+    "question_count": 10
+  },
+  "intake_verification": {
+    "whole_body_sha256": "656fec84e565f638f9c605a84fb9e13ddb7ecdf604328dd9314327667c50b5f2",
+    "core_prompt_sha256": "cc448399f7c44781f8e3ca659aaa96da8b9fde5edc7a66625b45729f728a29d5",
+    "verbatim_preserved": true
+  },
+  "authorities": [
+    {
+      "source_id": "IUPAC-GOLD-HYBRID",
+      "citation": "IUPAC Compendium of Chemical Terminology, 2nd ed. (the 'Gold Book'). Compiled by A. D. McNaught and A. Wilkinson. Blackwell Scientific Publications, Oxford (1997). Online version (2019-) created by S. J. Chalk. ISBN 0-9678550-9-8. https://doi.org/10.1351/goldbook.H02896",
+      "standard": "IUPAC Gold Book",
+      "authority_type": "PRIMARY_STANDARD"
+    },
+    {
+      "source_id": "ATKINS-PC11",
+      "citation": "Atkins, P., de Paula, J., & Keeler, J. (2018). Atkins' Physical Chemistry (11th ed.). Oxford University Press. Chapter 10: Molecular Structure, pp. 385-412.",
+      "standard": "University Physical Chemistry",
+      "authority_type": "CANONICAL_TEXTBOOK"
+    },
+    {
+      "source_id": "CLAYDEN-OC2",
+      "citation": "Clayden, J., Greeves, N., & Warren, S. (2012). Organic Chemistry (2nd ed.). Oxford University Press. Chapter 4: Structure of Molecules; Chapter 7: Delocalization and Conjugation, pp. 83-102, 141-168.",
+      "standard": "University Organic Chemistry",
+      "authority_type": "CANONICAL_TEXTBOOK"
+    },
+    {
+      "source_id": "HOUSECROFT-IC5",
+      "citation": "Housecroft, C. E., & Sharpe, A. G. (2018). Inorganic Chemistry (5th ed.). Pearson. Chapter 2: Nuclear and Atomic Structure; Chapter 5: Polyatomic Covalent Bonding, pp. 31-58, 129-166.",
+      "standard": "University Inorganic Chemistry",
+      "authority_type": "CANONICAL_TEXTBOOK"
+    }
+  ],
+  "render_execution": {
+    "engine": "Shared/tools/render_core.py",
+    "renderer_version": "render_core/2",
+    "manifest": "evidence/benchmark/ISS36/generated/product.manifest.json",
+    "artifact_digest": "649b50554da6aeb1",
+    "semantic_digest": "232b7b3130d7fbed",
+    "draft": false,
+    "depth_gaps": 0,
+    "subject_authority_findings": 0,
+    "artifacts": [
+      {
+        "filename": "core1a.html",
+        "relative_path": "evidence/benchmark/ISS36/rendered/core1a.html",
+        "bytes": 125988,
+        "role": "CORE1A",
+        "purpose": "Concept learning and guided walkthrough"
+      },
+      {
+        "filename": "core2.html",
+        "relative_path": "evidence/benchmark/ISS36/rendered/core2.html",
+        "bytes": 235216,
+        "role": "CORE2",
+        "purpose": "Rigorous practice and competition preparation"
+      },
+      {
+        "filename": "index.html",
+        "relative_path": "evidence/benchmark/ISS36/rendered/index.html",
+        "bytes": 20918,
+        "role": "INDEX",
+        "purpose": "Suite navigation and overview"
+      }
+    ]
+  },
+  "hardest_target": {
+    "question_id": "ISS36-R1-D3-Q04",
+    "demand": "SYNTHESIZE",
+    "difficulty_band": "D3",
+    "difficulty_score": 7,
+    "subconcept": "Allene orthogonal pi frameworks and p-orbital spatial orientation",
+    "builder_interaction_proposal": "dihedral-orbital-comparator"
+  },
+  "checkpoints_posted": [
+    {
+      "name": "IMPLEMENTATION_PLAN",
+      "comment_id": 5977994755,
+      "url": "https://github.com/reallaksh19/Grade9v3.5/issues/36#issuecomment-5977994755"
+    },
+    {
+      "name": "FIRST_RENDER_CHECKPOINT",
+      "comment_id": 5978070358,
+      "url": "https://github.com/reallaksh19/Grade9v3.5/issues/36#issuecomment-5978070358"
+    },
+    {
+      "name": "SEMANTIC_REVIEW_CHECKPOINT",
+      "comment_id": 5978074768,
+      "url": "https://github.com/reallaksh19/Grade9v3.5/issues/36#issuecomment-5978074768"
+    },
+    {
+      "name": "BUILDER_PROPOSAL_CHECKPOINT",
+      "comment_id": 5978078219,
+      "url": "https://github.com/reallaksh19/Grade9v3.5/issues/36#issuecomment-5978078219"
+    }
+  ],
+  "blind_independence_declaration": {
+    "declaration": "Authored entirely independently as Agent B from verbatim issue intake. The paired Agent A work (Issue #35 / branch candidate/iss35-d3-hybridisation-agent-a-r1 / PR #40) was never inspected, diffed, or referenced prior to handoff freezing.",
+    "certified": true
+  }
+}

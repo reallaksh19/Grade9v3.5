@@ -1,0 +1,4159 @@
+{
+  "schema": "qrt-pipeline-run/v1",
+  "run_identity": {
+    "repository": "reallaksh19/Grade9v3.5",
+    "branch": "feat/qrt-minimal-prompt-pipeline-hardening",
+    "head_sha": "353de935f4fb33b418b60d6776918a372252f67f"
+  },
+  "owner_prompt": {
+    "text": "In reality I will use only this as prompt, do you think agent can still work?\n\n# TASK — Build and Quality-Review 10 Grade 9 Mathematics Questions\n\n## Repository / implementation authority\n\nRepository:\n\n`reallaksh19/Grade9v3.5`\n\nUse the QRT implementation from:\n\n\n\n[https://github.com/reallaksh19/Grade9v3.5/pull/8](https://github.com/reallaksh19/Grade9v3.5/pull/8)\n\n# THE 10 QUESTIONS\n\n---\n\n## Q1 — Cube: total surface area\n\nA wooden cube has edge length 7 cm.\n\nFind its total surface area.\n\n---\n\n## Q2 — Cylinder: diameter trap\n\nA cylindrical water bottle has diameter 14 cm and height 20 cm.\n\nFind its curved surface area.\n\n---\n\n## Q3 — Open cylindrical container\n\nA cylindrical bucket is open at the top.\n\nIts internal radius is 7 cm and its height is 18 cm.\n\nFind the area of metal sheet required to make the bucket, ignoring the thickness of the sheet.\n\n---\n\n## Q4 — Cone: slant height required\n\nA conical tent has radius 7 m and vertical height 24 m.\n\nFind:\n\n1. its slant height;\n2. the area of canvas required to make the tent.\n\nThe base of the tent is open.\n\n---\n\n## Q5 — Hemisphere: curved versus total surface\n\nA hemispherical bowl has radius 10.5 cm.\n\nFind the area of its inner surface.\n\nExplain why the circular base is not included in your calculation.\n\n---\n\n## Q6 — Composite solid with hidden surface\n\nA toy is made by mounting a cone on a hemisphere.\n\nThe cone and hemisphere have the same radius, 3.5 cm.\n\nThe vertical height of the cone is 12 cm.\n\nFind the total **exposed** surface area of the toy.\n\nThe circular face where the cone and hemisphere join is not exposed.\n\n---\n\n## Q7 — Hollow/open container reasoning\n\nA cylindrical vessel of radius 7 cm and height 25 cm is open at the top.\n\nIt is to be painted:\n\n- on its entire outer curved surface; and\n- on the outside of its circular base.\n\nThe inside is not painted.\n\nFind the area to be painted.\n\nBefore calculating, state exactly which surfaces are included.\n\n---\n\n## Q8 — Volume and capacity with unit conversion\n\nA rectangular water tank is 2 m long, 1.5 m wide and 1.2 m deep.\n\nIt is filled to 75% of its total capacity.\n\nHow many litres of water are in the tank?\n\nShow the unit conversion clearly.\n\n---\n\n## Q9 — Recasting using conservation of volume\n\nA solid metallic sphere of radius 6 cm is melted and recast into identical solid spheres of radius 2 cm.\n\nAssume that no metal is lost.\n\nHow many smaller spheres are formed?\n\nExplain why surface area is not conserved in this process.\n\n---\n\n## Q10 — Same radius and height: reasoning without unnecessary calculation\n\nA cone and a cylinder have the same base radius and the same height.\n\nThe volume of the cylinder is 924 cm³.\n\nFind the volume of the cone.\n\nThen explain why the radius and height do **not** need to be calculated separately.\n\n# FINAL DELIVERABLES\n\nReturn:\n\n# **Learner-facing HTML for core 2 and core 1A**\n\n1. Machine-readable QRT review evidence.\n\nThe HTML is the primary product.\n\n---\n\n# Acceptance intent\n\nThis issue is successful only if a cold agent can begin from the verbatim owner prompt above, use PR #8 to detect genuinely missing owner information, ask only necessary clarifications, independently perform the academic/QRT/authoring work, produce governed learner-facing Core2/Core1A HTML, and leave enough durable decision evidence for an independent later audit.",
+    "sha256": "sha256:97c812a8fbfd14063f49c51e1d2c2495e8913d5d1ec18ee696cfa9e06b63eaac",
+    "source_ref": "https://github.com/reallaksh19/Grade9v3.5/issues/18"
+  },
+  "owner_events": [
+    {
+      "id": "EVENT-OWNER-PROMPT",
+      "kind": "PROMPT",
+      "source_ref": "https://github.com/reallaksh19/Grade9v3.5/issues/18",
+      "text": "In reality I will use only this as prompt, do you think agent can still work?\n\n# TASK — Build and Quality-Review 10 Grade 9 Mathematics Questions\n\n## Repository / implementation authority\n\nRepository:\n\n`reallaksh19/Grade9v3.5`\n\nUse the QRT implementation from:\n\n\n\n[https://github.com/reallaksh19/Grade9v3.5/pull/8](https://github.com/reallaksh19/Grade9v3.5/pull/8)\n\n# THE 10 QUESTIONS\n\n---\n\n## Q1 — Cube: total surface area\n\nA wooden cube has edge length 7 cm.\n\nFind its total surface area.\n\n---\n\n## Q2 — Cylinder: diameter trap\n\nA cylindrical water bottle has diameter 14 cm and height 20 cm.\n\nFind its curved surface area.\n\n---\n\n## Q3 — Open cylindrical container\n\nA cylindrical bucket is open at the top.\n\nIts internal radius is 7 cm and its height is 18 cm.\n\nFind the area of metal sheet required to make the bucket, ignoring the thickness of the sheet.\n\n---\n\n## Q4 — Cone: slant height required\n\nA conical tent has radius 7 m and vertical height 24 m.\n\nFind:\n\n1. its slant height;\n2. the area of canvas required to make the tent.\n\nThe base of the tent is open.\n\n---\n\n## Q5 — Hemisphere: curved versus total surface\n\nA hemispherical bowl has radius 10.5 cm.\n\nFind the area of its inner surface.\n\nExplain why the circular base is not included in your calculation.\n\n---\n\n## Q6 — Composite solid with hidden surface\n\nA toy is made by mounting a cone on a hemisphere.\n\nThe cone and hemisphere have the same radius, 3.5 cm.\n\nThe vertical height of the cone is 12 cm.\n\nFind the total **exposed** surface area of the toy.\n\nThe circular face where the cone and hemisphere join is not exposed.\n\n---\n\n## Q7 — Hollow/open container reasoning\n\nA cylindrical vessel of radius 7 cm and height 25 cm is open at the top.\n\nIt is to be painted:\n\n- on its entire outer curved surface; and\n- on the outside of its circular base.\n\nThe inside is not painted.\n\nFind the area to be painted.\n\nBefore calculating, state exactly which surfaces are included.\n\n---\n\n## Q8 — Volume and capacity with unit conversion\n\nA rectangular water tank is 2 m long, 1.5 m wide and 1.2 m deep.\n\nIt is filled to 75% of its total capacity.\n\nHow many litres of water are in the tank?\n\nShow the unit conversion clearly.\n\n---\n\n## Q9 — Recasting using conservation of volume\n\nA solid metallic sphere of radius 6 cm is melted and recast into identical solid spheres of radius 2 cm.\n\nAssume that no metal is lost.\n\nHow many smaller spheres are formed?\n\nExplain why surface area is not conserved in this process.\n\n---\n\n## Q10 — Same radius and height: reasoning without unnecessary calculation\n\nA cone and a cylinder have the same base radius and the same height.\n\nThe volume of the cylinder is 924 cm³.\n\nFind the volume of the cone.\n\nThen explain why the radius and height do **not** need to be calculated separately.\n\n# FINAL DELIVERABLES\n\nReturn:\n\n# **Learner-facing HTML for core 2 and core 1A**\n\n1. Machine-readable QRT review evidence.\n\nThe HTML is the primary product.\n\n---\n\n# Acceptance intent\n\nThis issue is successful only if a cold agent can begin from the verbatim owner prompt above, use PR #8 to detect genuinely missing owner information, ask only necessary clarifications, independently perform the academic/QRT/authoring work, produce governed learner-facing Core2/Core1A HTML, and leave enough durable decision evidence for an independent later audit."
+    },
+    {
+      "id": "EVENT-OWNER-CLARIFICATION",
+      "kind": "CLARIFICATION_REPLY",
+      "source_ref": "https://github.com/reallaksh19/Grade9v3.5/issues/18#issuecomment-5974531905",
+      "text": "Purpose  : COMPETITION  , B1 to B5: Solid"
+    }
+  ],
+  "learner_profile": {
+    "profile_id": "PROFILE-ISSUE18-SAV-COMPETITION",
+    "purpose": "COMPETITION",
+    "purpose_owner_event_ref": "EVENT-OWNER-CLARIFICATION",
+    "held": {
+      "CAP-MAT-SAV-CIRCLE": {
+        "state": "DEMONSTRATED",
+        "owner_event_ref": "EVENT-OWNER-CLARIFICATION"
+      },
+      "CAP-MAT-SAV-EXPOSED": {
+        "state": "DEMONSTRATED",
+        "owner_event_ref": "EVENT-OWNER-CLARIFICATION"
+      },
+      "CAP-MAT-SAV-UNITS": {
+        "state": "DEMONSTRATED",
+        "owner_event_ref": "EVENT-OWNER-CLARIFICATION"
+      },
+      "CAP-MAT-SAV-SLANT": {
+        "state": "DEMONSTRATED",
+        "owner_event_ref": "EVENT-OWNER-CLARIFICATION"
+      },
+      "CAP-MAT-SAV-RECAST": {
+        "state": "DEMONSTRATED",
+        "owner_event_ref": "EVENT-OWNER-CLARIFICATION"
+      }
+    }
+  },
+  "basis_digests": {
+    "matrix": "sha256:13ba08cc08910f56298447d389e92f7c0804906c750b25b9cf50e8d629c1dfda",
+    "adapter": "sha256:97f81c4389b2f3844c205e3e1945d387fd05760e38f7182ef7e1ffea7e5e10b4",
+    "profile": "sha256:48fe3fe899d3247a72a864163befb67b7d941e5bcf93d6b2da815a99df54134f",
+    "blueprint_registry": "sha256:f12e45c01d5f576960c722154d9d3215d14e9709143d7030f49aa16e9cb16d80"
+  },
+  "questions": [
+    {
+      "id": "Q1",
+      "verbatim_text": "A wooden cube has edge length 7 cm.\n\nFind its total surface area.",
+      "owner_prompt_sha256": "sha256:97c812a8fbfd14063f49c51e1d2c2495e8913d5d1ec18ee696cfa9e06b63eaac",
+      "verified_answer": "294 cm²",
+      "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0",
+      "slots": {
+        "X": {
+          "text": "Total means all six congruent square faces.",
+          "basis": [
+            "analysis.common_wrong_route"
+          ]
+        },
+        "Y": {
+          "text": "Demonstrated square-area and face-inventory knowledge.",
+          "capability_ref": "CAP-MAT-SAV-CIRCLE"
+        },
+        "Z": {
+          "text": "Instantiate total cube surface area from six equal faces."
+        },
+        "W": {
+          "text": "Complete 6×7² and state area units.",
+          "protected_move_ref": "OWN-ISSUE18-SAV-01-MOVE-3"
+        }
+      },
+      "core1a_targets": [
+        "CU-SAV-SURFACE-INVENTORY"
+      ],
+      "hints": [
+        {
+          "id": "Q1-H1",
+          "text": "What does total surface area count on a cube?",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q1-H1 orients without disclosing protected move OWN-ISSUE18-SAV-01-MOVE-3."
+            ],
+            "basis_refs": [
+              "Q1.W",
+              "QRT-APPLY-D1.H1"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q1-H1."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q1-H1."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q1-H1."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q1-H1."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q1-H1."
+              }
+            }
+          }
+        },
+        {
+          "id": "Q1-H2",
+          "text": "Each face is a square of side 7 cm; connect one-face area to the number of faces.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q1-H2 orients without disclosing protected move OWN-ISSUE18-SAV-01-MOVE-3."
+            ],
+            "basis_refs": [
+              "Q1.W",
+              "QRT-APPLY-D1.H2"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q1-H2."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q1-H2."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q1-H2."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q1-H2."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q1-H2."
+              }
+            }
+          }
+        },
+        {
+          "id": "Q1-H3",
+          "text": "Write one expression for all congruent faces; keep the arithmetic for yourself.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q1-H3 orients without disclosing protected move OWN-ISSUE18-SAV-01-MOVE-3."
+            ],
+            "basis_refs": [
+              "Q1.W",
+              "QRT-APPLY-D1.H3"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q1-H3."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q1-H3."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q1-H3."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q1-H3."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q1-H3."
+              }
+            }
+          }
+        }
+      ],
+      "solution_steps": [
+        {
+          "id": "OWN-ISSUE18-SAV-01-MOVE-1",
+          "action": "Recognize total surface area as six square faces.",
+          "why_valid_here": "A cube has six congruent square faces.",
+          "result": "six faces",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-01-MOVE-1 verified: Recognize total surface area as six square faces.."
+            ],
+            "basis_refs": [
+              "Q1.stem"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-01-MOVE-1."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-01-MOVE-1."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-01-MOVE-1."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-01-MOVE-1."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-01-MOVE-1."
+              }
+            }
+          }
+        },
+        {
+          "id": "OWN-ISSUE18-SAV-01-MOVE-2",
+          "action": "Write one-face area as 7² cm².",
+          "why_valid_here": "Each face is a square of side 7 cm.",
+          "result": "49 cm² per face",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-01-MOVE-2 verified: Write one-face area as 7² cm².."
+            ],
+            "basis_refs": [
+              "Q1.stem"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-01-MOVE-2."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-01-MOVE-2."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-01-MOVE-2."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-01-MOVE-2."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-01-MOVE-2."
+              }
+            }
+          }
+        },
+        {
+          "id": "OWN-ISSUE18-SAV-01-MOVE-3",
+          "action": "Multiply by six.",
+          "why_valid_here": "Total surface area sums all six face areas.",
+          "result": "294 cm²",
+          "calculation_bearing": true,
+          "calculation_refs": [
+            "Q1-C1"
+          ],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-01-MOVE-3 verified: Multiply by six.."
+            ],
+            "basis_refs": [
+              "Q1.stem",
+              "Q1-C1"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-01-MOVE-3."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-01-MOVE-3."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-01-MOVE-3."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-01-MOVE-3."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-01-MOVE-3."
+              }
+            }
+          }
+        }
+      ],
+      "calculations": [
+        {
+          "id": "Q1-C1",
+          "expression": "6 faces × 49 cm² per face = 294 cm².",
+          "result": "294 cm²",
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Calculation checked: 6 faces × 49 cm² per face = 294 cm².."
+            ],
+            "basis_refs": [
+              "Q1.stem"
+            ],
+            "checks": {
+              "arithmetic_or_algebra": {
+                "result": "PASS",
+                "evidence": "Audited arithmetic_or_algebra for Q1-C1."
+              },
+              "units_dimensions": {
+                "result": "PASS",
+                "evidence": "Audited units_dimensions for Q1-C1."
+              },
+              "input_traceability": {
+                "result": "PASS",
+                "evidence": "Audited input_traceability for Q1-C1."
+              },
+              "independent_check": {
+                "result": "PASS",
+                "evidence": "Audited independent_check for Q1-C1."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q2",
+      "verbatim_text": "A cylindrical water bottle has diameter 14 cm and height 20 cm.\n\nFind its curved surface area.",
+      "owner_prompt_sha256": "sha256:97c812a8fbfd14063f49c51e1d2c2495e8913d5d1ec18ee696cfa9e06b63eaac",
+      "verified_answer": "880 cm²",
+      "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0",
+      "slots": {
+        "X": {
+          "text": "The stated 14 cm is a diameter while 2πrh uses radius.",
+          "basis": [
+            "analysis.common_wrong_route"
+          ]
+        },
+        "Y": {
+          "text": "Demonstrated circle diameter-radius and cylinder curved-area relations.",
+          "capability_ref": "CAP-MAT-SAV-CIRCLE"
+        },
+        "Z": {
+          "text": "Map diameter to the formula variable, then execute curved surface area."
+        },
+        "W": {
+          "text": "Make the d→r mapping and complete the substitution.",
+          "protected_move_ref": "OWN-ISSUE18-SAV-02-MOVE-2"
+        }
+      },
+      "core1a_targets": [
+        "CU-SAV-SURFACE-INVENTORY"
+      ],
+      "hints": [
+        {
+          "id": "Q2-H1",
+          "text": "Which surface is requested: curved wall only, or bases too?",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q2-H1 orients without disclosing protected move OWN-ISSUE18-SAV-02-MOVE-2."
+            ],
+            "basis_refs": [
+              "Q2.W",
+              "QRT-APPLY-D2.H1"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q2-H1."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q2-H1."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q2-H1."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q2-H1."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q2-H1."
+              }
+            }
+          }
+        },
+        {
+          "id": "Q2-H2",
+          "text": "Check whether your chosen formula expects r or d.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q2-H2 orients without disclosing protected move OWN-ISSUE18-SAV-02-MOVE-2."
+            ],
+            "basis_refs": [
+              "Q2.W",
+              "QRT-APPLY-D2.H2"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q2-H2."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q2-H2."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q2-H2."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q2-H2."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q2-H2."
+              }
+            }
+          }
+        },
+        {
+          "id": "Q2-H3",
+          "text": "Translate every given into the variables of that formula before multiplying.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q2-H3 orients without disclosing protected move OWN-ISSUE18-SAV-02-MOVE-2."
+            ],
+            "basis_refs": [
+              "Q2.W",
+              "QRT-APPLY-D2.H3"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q2-H3."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q2-H3."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q2-H3."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q2-H3."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q2-H3."
+              }
+            }
+          }
+        }
+      ],
+      "solution_steps": [
+        {
+          "id": "OWN-ISSUE18-SAV-02-MOVE-1",
+          "action": "Use curved surface area only.",
+          "why_valid_here": "The question asks for the curved wall, not the circular ends.",
+          "result": "CSA model",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-02-MOVE-1 verified: Use curved surface area only.."
+            ],
+            "basis_refs": [
+              "Q2.stem"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-02-MOVE-1."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-02-MOVE-1."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-02-MOVE-1."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-02-MOVE-1."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-02-MOVE-1."
+              }
+            }
+          }
+        },
+        {
+          "id": "OWN-ISSUE18-SAV-02-MOVE-2",
+          "action": "Convert diameter 14 cm to radius 7 cm.",
+          "why_valid_here": "The relation 2πrh is written in radius.",
+          "result": "r=7 cm",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-02-MOVE-2 verified: Convert diameter 14 cm to radius 7 cm.."
+            ],
+            "basis_refs": [
+              "Q2.stem"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-02-MOVE-2."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-02-MOVE-2."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-02-MOVE-2."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-02-MOVE-2."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-02-MOVE-2."
+              }
+            }
+          }
+        },
+        {
+          "id": "OWN-ISSUE18-SAV-02-MOVE-3",
+          "action": "Evaluate 2πrh.",
+          "why_valid_here": "Substitution now matches the formula variables.",
+          "result": "880 cm²",
+          "calculation_bearing": true,
+          "calculation_refs": [
+            "Q2-C1"
+          ],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-02-MOVE-3 verified: Evaluate 2πrh.."
+            ],
+            "basis_refs": [
+              "Q2.stem",
+              "Q2-C1"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-02-MOVE-3."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-02-MOVE-3."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-02-MOVE-3."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-02-MOVE-3."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-02-MOVE-3."
+              }
+            }
+          }
+        }
+      ],
+      "calculations": [
+        {
+          "id": "Q2-C1",
+          "expression": "πdh = (22/7)×14×20 = 880 cm².",
+          "result": "880 cm²",
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Calculation checked: πdh = (22/7)×14×20 = 880 cm².."
+            ],
+            "basis_refs": [
+              "Q2.stem"
+            ],
+            "checks": {
+              "arithmetic_or_algebra": {
+                "result": "PASS",
+                "evidence": "Audited arithmetic_or_algebra for Q2-C1."
+              },
+              "units_dimensions": {
+                "result": "PASS",
+                "evidence": "Audited units_dimensions for Q2-C1."
+              },
+              "input_traceability": {
+                "result": "PASS",
+                "evidence": "Audited input_traceability for Q2-C1."
+              },
+              "independent_check": {
+                "result": "PASS",
+                "evidence": "Audited independent_check for Q2-C1."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q3",
+      "verbatim_text": "A cylindrical bucket is open at the top.\n\nIts internal radius is 7 cm and its height is 18 cm.\n\nFind the area of metal sheet required to make the bucket, ignoring the thickness of the sheet.",
+      "owner_prompt_sha256": "sha256:97c812a8fbfd14063f49c51e1d2c2495e8913d5d1ec18ee696cfa9e06b63eaac",
+      "verified_answer": "946 cm²",
+      "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0",
+      "slots": {
+        "X": {
+          "text": "An open bucket has a curved wall and one base but no top disk.",
+          "basis": [
+            "analysis.common_wrong_route"
+          ]
+        },
+        "Y": {
+          "text": "Demonstrated exposed/open-surface inventory.",
+          "capability_ref": "CAP-MAT-SAV-EXPOSED"
+        },
+        "Z": {
+          "text": "Form the sheet-area model from physically present surfaces."
+        },
+        "W": {
+          "text": "Choose the correct surface sum and execute it.",
+          "protected_move_ref": "OWN-ISSUE18-SAV-03-MOVE-1"
+        }
+      },
+      "core1a_targets": [
+        "CU-SAV-SURFACE-INVENTORY"
+      ],
+      "hints": [
+        {
+          "id": "Q3-H1",
+          "text": "Before using a formula, name the actual pieces of metal sheet.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q3-H1 orients without disclosing protected move OWN-ISSUE18-SAV-03-MOVE-1."
+            ],
+            "basis_refs": [
+              "Q3.W",
+              "QRT-MODEL-D2.H1"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q3-H1."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q3-H1."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q3-H1."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q3-H1."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q3-H1."
+              }
+            }
+          }
+        },
+        {
+          "id": "Q3-H2",
+          "text": "Connect 'open at the top' to whether a top circular sheet exists.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q3-H2 orients without disclosing protected move OWN-ISSUE18-SAV-03-MOVE-1."
+            ],
+            "basis_refs": [
+              "Q3.W",
+              "QRT-MODEL-D2.H2"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q3-H2."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q3-H2."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q3-H2."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q3-H2."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q3-H2."
+              }
+            }
+          }
+        },
+        {
+          "id": "Q3-H3",
+          "text": "Write area as the sum of only those physical pieces, then substitute.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q3-H3 orients without disclosing protected move OWN-ISSUE18-SAV-03-MOVE-1."
+            ],
+            "basis_refs": [
+              "Q3.W",
+              "QRT-MODEL-D2.H3"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q3-H3."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q3-H3."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q3-H3."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q3-H3."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q3-H3."
+              }
+            }
+          }
+        }
+      ],
+      "solution_steps": [
+        {
+          "id": "OWN-ISSUE18-SAV-03-MOVE-1",
+          "action": "Inventory the metal sheet as curved wall plus one bottom disk.",
+          "why_valid_here": "The bucket is open at the top, so no top disk exists.",
+          "result": "wall + base",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-03-MOVE-1 verified: Inventory the metal sheet as curved wall plus one bottom disk.."
+            ],
+            "basis_refs": [
+              "Q3.stem"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-03-MOVE-1."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-03-MOVE-1."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-03-MOVE-1."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-03-MOVE-1."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-03-MOVE-1."
+              }
+            }
+          }
+        },
+        {
+          "id": "OWN-ISSUE18-SAV-03-MOVE-2",
+          "action": "Write 2πrh + πr².",
+          "why_valid_here": "Those are the areas of the two physical sheet pieces.",
+          "result": "area model",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-03-MOVE-2 verified: Write 2πrh + πr².."
+            ],
+            "basis_refs": [
+              "Q3.stem"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-03-MOVE-2."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-03-MOVE-2."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-03-MOVE-2."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-03-MOVE-2."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-03-MOVE-2."
+              }
+            }
+          }
+        },
+        {
+          "id": "OWN-ISSUE18-SAV-03-MOVE-3",
+          "action": "Evaluate with r=7 cm, h=18 cm and π=22/7.",
+          "why_valid_here": "The model now contains all and only included surfaces.",
+          "result": "946 cm²",
+          "calculation_bearing": true,
+          "calculation_refs": [
+            "Q3-C1"
+          ],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-03-MOVE-3 verified: Evaluate with r=7 cm, h=18 cm and π=22/7.."
+            ],
+            "basis_refs": [
+              "Q3.stem",
+              "Q3-C1"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-03-MOVE-3."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-03-MOVE-3."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-03-MOVE-3."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-03-MOVE-3."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-03-MOVE-3."
+              }
+            }
+          }
+        }
+      ],
+      "calculations": [
+        {
+          "id": "Q3-C1",
+          "expression": "Closed-cylinder area is 1100 cm²; subtract one missing top disk, 154 cm², to get 946 cm².",
+          "result": "946 cm²",
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Calculation checked: Closed-cylinder area is 1100 cm²; subtract one missing top disk, 154 cm², to get 946 cm².."
+            ],
+            "basis_refs": [
+              "Q3.stem"
+            ],
+            "checks": {
+              "arithmetic_or_algebra": {
+                "result": "PASS",
+                "evidence": "Audited arithmetic_or_algebra for Q3-C1."
+              },
+              "units_dimensions": {
+                "result": "PASS",
+                "evidence": "Audited units_dimensions for Q3-C1."
+              },
+              "input_traceability": {
+                "result": "PASS",
+                "evidence": "Audited input_traceability for Q3-C1."
+              },
+              "independent_check": {
+                "result": "PASS",
+                "evidence": "Audited independent_check for Q3-C1."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q4",
+      "verbatim_text": "A conical tent has radius 7 m and vertical height 24 m.\n\nFind:\n\n1. its slant height;\n2. the area of canvas required to make the tent.\n\nThe base of the tent is open.",
+      "owner_prompt_sha256": "sha256:97c812a8fbfd14063f49c51e1d2c2495e8913d5d1ec18ee696cfa9e06b63eaac",
+      "verified_answer": "slant height 25 m; canvas 550 m²",
+      "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0",
+      "slots": {
+        "X": {
+          "text": "Vertical height is not the slant length used in cone curved surface area.",
+          "basis": [
+            "analysis.common_wrong_route"
+          ]
+        },
+        "Y": {
+          "text": "Demonstrated Pythagoras/slant-height bridge and cone curved-area relation.",
+          "capability_ref": "CAP-MAT-SAV-SLANT"
+        },
+        "Z": {
+          "text": "Derive l from r and h, then use l in πrl."
+        },
+        "W": {
+          "text": "Coordinate the dependency and carry out both steps.",
+          "protected_move_ref": "OWN-ISSUE18-SAV-04-MOVE-2"
+        }
+      },
+      "core1a_targets": [
+        "CU-SAV-CONE-BRIDGE"
+      ],
+      "hints": [
+        {
+          "id": "Q4-H1",
+          "text": "Which length actually lies along the canvas from apex to rim?",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q4-H1 orients without disclosing protected move OWN-ISSUE18-SAV-04-MOVE-2."
+            ],
+            "basis_refs": [
+              "Q4.W",
+              "QRT-SYNTHESIZE-D2.H1"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q4-H1."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q4-H1."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q4-H1."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q4-H1."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q4-H1."
+              }
+            }
+          }
+        },
+        {
+          "id": "Q4-H2",
+          "text": "A central cross-section contains r, h and l as a right triangle.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q4-H2 orients without disclosing protected move OWN-ISSUE18-SAV-04-MOVE-2."
+            ],
+            "basis_refs": [
+              "Q4.W",
+              "QRT-SYNTHESIZE-D2.H2"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q4-H2."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q4-H2."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q4-H2."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q4-H2."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q4-H2."
+              }
+            }
+          }
+        },
+        {
+          "id": "Q4-H3",
+          "text": "Resolve the needed length first; only then evaluate the open cone's canvas area.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q4-H3 orients without disclosing protected move OWN-ISSUE18-SAV-04-MOVE-2."
+            ],
+            "basis_refs": [
+              "Q4.W",
+              "QRT-SYNTHESIZE-D2.H3"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q4-H3."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q4-H3."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q4-H3."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q4-H3."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q4-H3."
+              }
+            }
+          }
+        }
+      ],
+      "solution_steps": [
+        {
+          "id": "OWN-ISSUE18-SAV-04-MOVE-1",
+          "action": "Identify slant height l as the length needed by cone curved area.",
+          "why_valid_here": "Canvas follows the sloping surface, not the vertical axis.",
+          "result": "need l",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-04-MOVE-1 verified: Identify slant height l as the length needed by cone curved area.."
+            ],
+            "basis_refs": [
+              "Q4.stem"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-04-MOVE-1."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-04-MOVE-1."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-04-MOVE-1."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-04-MOVE-1."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-04-MOVE-1."
+              }
+            }
+          }
+        },
+        {
+          "id": "OWN-ISSUE18-SAV-04-MOVE-2",
+          "action": "Use the axial right triangle with r=7 m and h=24 m.",
+          "why_valid_here": "For a right cone, r and h are perpendicular legs and l is the hypotenuse.",
+          "result": "l²=7²+24²",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-04-MOVE-2 verified: Use the axial right triangle with r=7 m and h=24 m.."
+            ],
+            "basis_refs": [
+              "Q4.stem"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-04-MOVE-2."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-04-MOVE-2."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-04-MOVE-2."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-04-MOVE-2."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-04-MOVE-2."
+              }
+            }
+          }
+        },
+        {
+          "id": "OWN-ISSUE18-SAV-04-MOVE-3",
+          "action": "Find l=25 m, then evaluate πrl for the open tent.",
+          "why_valid_here": "The base is open, so only curved canvas is included.",
+          "result": "550 m²",
+          "calculation_bearing": true,
+          "calculation_refs": [
+            "Q4-C1"
+          ],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-04-MOVE-3 verified: Find l=25 m, then evaluate πrl for the open tent.."
+            ],
+            "basis_refs": [
+              "Q4.stem",
+              "Q4-C1"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-04-MOVE-3."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-04-MOVE-3."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-04-MOVE-3."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-04-MOVE-3."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-04-MOVE-3."
+              }
+            }
+          }
+        }
+      ],
+      "calculations": [
+        {
+          "id": "Q4-C1",
+          "expression": "7-24-25 satisfies Pythagoras; π×7×25 = 550 m² using π=22/7.",
+          "result": "slant height 25 m; canvas 550 m²",
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Calculation checked: 7-24-25 satisfies Pythagoras; π×7×25 = 550 m² using π=22/7.."
+            ],
+            "basis_refs": [
+              "Q4.stem"
+            ],
+            "checks": {
+              "arithmetic_or_algebra": {
+                "result": "PASS",
+                "evidence": "Audited arithmetic_or_algebra for Q4-C1."
+              },
+              "units_dimensions": {
+                "result": "PASS",
+                "evidence": "Audited units_dimensions for Q4-C1."
+              },
+              "input_traceability": {
+                "result": "PASS",
+                "evidence": "Audited input_traceability for Q4-C1."
+              },
+              "independent_check": {
+                "result": "PASS",
+                "evidence": "Audited independent_check for Q4-C1."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q5",
+      "verbatim_text": "A hemispherical bowl has radius 10.5 cm.\n\nFind the area of its inner surface.\n\nExplain why the circular base is not included in your calculation.",
+      "owner_prompt_sha256": "sha256:97c812a8fbfd14063f49c51e1d2c2495e8913d5d1ec18ee696cfa9e06b63eaac",
+      "verified_answer": "693 cm²",
+      "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0",
+      "slots": {
+        "X": {
+          "text": "The open bowl's inner surface is curved; its mouth is not a material disk.",
+          "basis": [
+            "analysis.common_wrong_route"
+          ]
+        },
+        "Y": {
+          "text": "Demonstrated exposed/open-surface inventory.",
+          "capability_ref": "CAP-MAT-SAV-EXPOSED"
+        },
+        "Z": {
+          "text": "Distinguish curved hemisphere area from total hemisphere area."
+        },
+        "W": {
+          "text": "Choose 2πr² and justify excluding the disk.",
+          "protected_move_ref": "OWN-ISSUE18-SAV-05-MOVE-1"
+        }
+      },
+      "core1a_targets": [
+        "CU-SAV-SURFACE-INVENTORY"
+      ],
+      "hints": [
+        {
+          "id": "Q5-H1",
+          "text": "Imagine touching every material point on the inside of the bowl.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q5-H1 orients without disclosing protected move OWN-ISSUE18-SAV-05-MOVE-1."
+            ],
+            "basis_refs": [
+              "Q5.W",
+              "QRT-MODEL-D2.H1"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q5-H1."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q5-H1."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q5-H1."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q5-H1."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q5-H1."
+              }
+            }
+          }
+        },
+        {
+          "id": "Q5-H2",
+          "text": "At the mouth, is there material filling the circle or just an opening?",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q5-H2 orients without disclosing protected move OWN-ISSUE18-SAV-05-MOVE-1."
+            ],
+            "basis_refs": [
+              "Q5.W",
+              "QRT-MODEL-D2.H2"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q5-H2."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q5-H2."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q5-H2."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q5-H2."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q5-H2."
+              }
+            }
+          }
+        },
+        {
+          "id": "Q5-H3",
+          "text": "Choose the hemisphere-area expression that matches only the material interior.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q5-H3 orients without disclosing protected move OWN-ISSUE18-SAV-05-MOVE-1."
+            ],
+            "basis_refs": [
+              "Q5.W",
+              "QRT-MODEL-D2.H3"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q5-H3."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q5-H3."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q5-H3."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q5-H3."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q5-H3."
+              }
+            }
+          }
+        }
+      ],
+      "solution_steps": [
+        {
+          "id": "OWN-ISSUE18-SAV-05-MOVE-1",
+          "action": "Treat the bowl mouth as an opening, not a material disk.",
+          "why_valid_here": "The requested inner surface is the curved interior of the open hemisphere.",
+          "result": "curved hemisphere",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-05-MOVE-1 verified: Treat the bowl mouth as an opening, not a material disk.."
+            ],
+            "basis_refs": [
+              "Q5.stem"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-05-MOVE-1."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-05-MOVE-1."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-05-MOVE-1."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-05-MOVE-1."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-05-MOVE-1."
+              }
+            }
+          }
+        },
+        {
+          "id": "OWN-ISSUE18-SAV-05-MOVE-2",
+          "action": "Use 2πr² rather than 3πr².",
+          "why_valid_here": "3πr² would include a flat circular base that is not present.",
+          "result": "2πr²",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-05-MOVE-2 verified: Use 2πr² rather than 3πr².."
+            ],
+            "basis_refs": [
+              "Q5.stem"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-05-MOVE-2."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-05-MOVE-2."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-05-MOVE-2."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-05-MOVE-2."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-05-MOVE-2."
+              }
+            }
+          }
+        },
+        {
+          "id": "OWN-ISSUE18-SAV-05-MOVE-3",
+          "action": "Evaluate with r=10.5 cm.",
+          "why_valid_here": "The expression matches the physical inner surface.",
+          "result": "693 cm²",
+          "calculation_bearing": true,
+          "calculation_refs": [
+            "Q5-C1"
+          ],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-05-MOVE-3 verified: Evaluate with r=10.5 cm.."
+            ],
+            "basis_refs": [
+              "Q5.stem",
+              "Q5-C1"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-05-MOVE-3."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-05-MOVE-3."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-05-MOVE-3."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-05-MOVE-3."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-05-MOVE-3."
+              }
+            }
+          }
+        }
+      ],
+      "calculations": [
+        {
+          "id": "Q5-C1",
+          "expression": "Adding πr² would convert curved area to total hemisphere area; that extra term is exactly the nonexistent base disk.",
+          "result": "693 cm²",
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Calculation checked: Adding πr² would convert curved area to total hemisphere area; that extra term is exactly the nonexistent base disk.."
+            ],
+            "basis_refs": [
+              "Q5.stem"
+            ],
+            "checks": {
+              "arithmetic_or_algebra": {
+                "result": "PASS",
+                "evidence": "Audited arithmetic_or_algebra for Q5-C1."
+              },
+              "units_dimensions": {
+                "result": "PASS",
+                "evidence": "Audited units_dimensions for Q5-C1."
+              },
+              "input_traceability": {
+                "result": "PASS",
+                "evidence": "Audited input_traceability for Q5-C1."
+              },
+              "independent_check": {
+                "result": "PASS",
+                "evidence": "Audited independent_check for Q5-C1."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q6",
+      "verbatim_text": "A toy is made by mounting a cone on a hemisphere.\n\nThe cone and hemisphere have the same radius, 3.5 cm.\n\nThe vertical height of the cone is 12 cm.\n\nFind the total **exposed** surface area of the toy.\n\nThe circular face where the cone and hemisphere join is not exposed.",
+      "owner_prompt_sha256": "sha256:97c812a8fbfd14063f49c51e1d2c2495e8913d5d1ec18ee696cfa9e06b63eaac",
+      "verified_answer": "214.5 cm²",
+      "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0",
+      "slots": {
+        "X": {
+          "text": "The solids share an internal circular interface and the cone also needs a derived slant height.",
+          "basis": [
+            "analysis.common_wrong_route"
+          ]
+        },
+        "Y": {
+          "text": "Demonstrated exposed/hidden-surface reasoning and Pythagoras.",
+          "capability_ref": "CAP-MAT-SAV-EXPOSED"
+        },
+        "Z": {
+          "text": "Coordinate derived slant height with an exposed-surface inventory across the composite solid."
+        },
+        "W": {
+          "text": "Obtain l, identify only reachable exterior surfaces, and combine them without the joint.",
+          "protected_move_ref": "OWN-ISSUE18-SAV-06-MOVE-1"
+        }
+      },
+      "core1a_targets": [
+        "CU-SAV-CONE-BRIDGE"
+      ],
+      "hints": [
+        {
+          "id": "Q6-H1",
+          "text": "If you painted the completed toy, which surfaces could the brush actually touch?",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q6-H1 orients without disclosing protected move OWN-ISSUE18-SAV-06-MOVE-1."
+            ],
+            "basis_refs": [
+              "Q6.W",
+              "QRT-SYNTHESIZE-D3.H1"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q6-H1."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q6-H1."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q6-H1."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q6-H1."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q6-H1."
+              }
+            }
+          }
+        },
+        {
+          "id": "Q6-H2",
+          "text": "The cone's needed side length is not 12 cm; locate the right triangle that determines it.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q6-H2 orients without disclosing protected move OWN-ISSUE18-SAV-06-MOVE-1."
+            ],
+            "basis_refs": [
+              "Q6.W",
+              "QRT-SYNTHESIZE-D3.H2"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q6-H2."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q6-H2."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q6-H2."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q6-H2."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q6-H2."
+              }
+            }
+          }
+        },
+        {
+          "id": "Q6-H3",
+          "text": "After finding that length, build one expression for the reachable exterior only. Test every candidate circle with 'is it visible after joining?'",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q6-H3 orients without disclosing protected move OWN-ISSUE18-SAV-06-MOVE-1."
+            ],
+            "basis_refs": [
+              "Q6.W",
+              "QRT-SYNTHESIZE-D3.H3"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q6-H3."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q6-H3."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q6-H3."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q6-H3."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q6-H3."
+              }
+            }
+          }
+        }
+      ],
+      "solution_steps": [
+        {
+          "id": "OWN-ISSUE18-SAV-06-MOVE-1",
+          "action": "Inventory only the exterior cone and hemisphere surfaces; exclude the shared circle.",
+          "why_valid_here": "The joining face is internal after assembly.",
+          "result": "exterior surfaces",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-06-MOVE-1 verified: Inventory only the exterior cone and hemisphere surfaces; exclude the shared circle.."
+            ],
+            "basis_refs": [
+              "Q6.stem"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-06-MOVE-1."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-06-MOVE-1."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-06-MOVE-1."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-06-MOVE-1."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-06-MOVE-1."
+              }
+            }
+          }
+        },
+        {
+          "id": "OWN-ISSUE18-SAV-06-MOVE-2",
+          "action": "Use the cone axial triangle to find l from r=3.5 cm and h=12 cm.",
+          "why_valid_here": "Cone curved area requires slant height.",
+          "result": "l=12.5 cm",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-06-MOVE-2 verified: Use the cone axial triangle to find l from r=3.5 cm and h=12 cm.."
+            ],
+            "basis_refs": [
+              "Q6.stem"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-06-MOVE-2."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-06-MOVE-2."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-06-MOVE-2."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-06-MOVE-2."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-06-MOVE-2."
+              }
+            }
+          }
+        },
+        {
+          "id": "OWN-ISSUE18-SAV-06-MOVE-3",
+          "action": "Add πrl and 2πr², without a joining disk.",
+          "why_valid_here": "These are exactly the reachable exterior surfaces.",
+          "result": "214.5 cm²",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-06-MOVE-3 verified: Add πrl and 2πr², without a joining disk.."
+            ],
+            "basis_refs": [
+              "Q6.stem"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-06-MOVE-3."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-06-MOVE-3."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-06-MOVE-3."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-06-MOVE-3."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-06-MOVE-3."
+              }
+            }
+          }
+        },
+        {
+          "id": "OWN-ISSUE18-SAV-06-MOVE-4",
+          "action": "Check what an erroneous joining disk would add.",
+          "why_valid_here": "A hidden disk would contribute πr²=38.5 cm², exposing the modelling error.",
+          "result": "hidden-interface check",
+          "calculation_bearing": true,
+          "calculation_refs": [
+            "Q6-C1"
+          ],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-06-MOVE-4 verified: Check what an erroneous joining disk would add.."
+            ],
+            "basis_refs": [
+              "Q6.stem",
+              "Q6-C1"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-06-MOVE-4."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-06-MOVE-4."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-06-MOVE-4."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-06-MOVE-4."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-06-MOVE-4."
+              }
+            }
+          }
+        }
+      ],
+      "calculations": [
+        {
+          "id": "Q6-C1",
+          "expression": "Wrongly counting the hidden disk adds π(3.5)²=38.5 cm²; the correct exposed area is 214.5 cm².",
+          "result": "214.5 cm²",
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Calculation checked: Wrongly counting the hidden disk adds π(3.5)²=38.5 cm²; the correct exposed area is 214.5 cm².."
+            ],
+            "basis_refs": [
+              "Q6.stem"
+            ],
+            "checks": {
+              "arithmetic_or_algebra": {
+                "result": "PASS",
+                "evidence": "Audited arithmetic_or_algebra for Q6-C1."
+              },
+              "units_dimensions": {
+                "result": "PASS",
+                "evidence": "Audited units_dimensions for Q6-C1."
+              },
+              "input_traceability": {
+                "result": "PASS",
+                "evidence": "Audited input_traceability for Q6-C1."
+              },
+              "independent_check": {
+                "result": "PASS",
+                "evidence": "Audited independent_check for Q6-C1."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q7",
+      "verbatim_text": "A cylindrical vessel of radius 7 cm and height 25 cm is open at the top.\n\nIt is to be painted:\n\n- on its entire outer curved surface; and\n- on the outside of its circular base.\n\nThe inside is not painted.\n\nFind the area to be painted.\n\nBefore calculating, state exactly which surfaces are included.",
+      "owner_prompt_sha256": "sha256:97c812a8fbfd14063f49c51e1d2c2495e8913d5d1ec18ee696cfa9e06b63eaac",
+      "verified_answer": "1254 cm²",
+      "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0",
+      "slots": {
+        "X": {
+          "text": "Translate the paint specification into exactly two surface terms.",
+          "basis": [
+            "analysis.common_wrong_route"
+          ]
+        },
+        "Y": {
+          "text": "Demonstrated surface inventory plus circle/cylinder area relations.",
+          "capability_ref": "CAP-MAT-SAV-EXPOSED"
+        },
+        "Z": {
+          "text": "Model painted area as outer curved wall plus outside base."
+        },
+        "W": {
+          "text": "Write and execute the correct two-term expression after naming surfaces.",
+          "protected_move_ref": "OWN-ISSUE18-SAV-07-MOVE-1"
+        }
+      },
+      "core1a_targets": [
+        "CU-SAV-SURFACE-INVENTORY"
+      ],
+      "hints": [
+        {
+          "id": "Q7-H1",
+          "text": "Cross out every region the wording explicitly says is not painted.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q7-H1 orients without disclosing protected move OWN-ISSUE18-SAV-07-MOVE-1."
+            ],
+            "basis_refs": [
+              "Q7.W",
+              "QRT-MODEL-D2.H1"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q7-H1."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q7-H1."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q7-H1."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q7-H1."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q7-H1."
+              }
+            }
+          }
+        },
+        {
+          "id": "Q7-H2",
+          "text": "Match each remaining physical surface to its own area relation.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q7-H2 orients without disclosing protected move OWN-ISSUE18-SAV-07-MOVE-1."
+            ],
+            "basis_refs": [
+              "Q7.W",
+              "QRT-MODEL-D2.H2"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q7-H2."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q7-H2."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q7-H2."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q7-H2."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q7-H2."
+              }
+            }
+          }
+        },
+        {
+          "id": "Q7-H3",
+          "text": "Add only those remaining terms; do not introduce a top or any inside surface.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q7-H3 orients without disclosing protected move OWN-ISSUE18-SAV-07-MOVE-1."
+            ],
+            "basis_refs": [
+              "Q7.W",
+              "QRT-MODEL-D2.H3"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q7-H3."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q7-H3."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q7-H3."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q7-H3."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q7-H3."
+              }
+            }
+          }
+        }
+      ],
+      "solution_steps": [
+        {
+          "id": "OWN-ISSUE18-SAV-07-MOVE-1",
+          "action": "State the painted surfaces: outer curved wall and outside base only.",
+          "why_valid_here": "The top is open and the inside is explicitly unpainted.",
+          "result": "two painted surfaces",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-07-MOVE-1 verified: State the painted surfaces: outer curved wall and outside base only.."
+            ],
+            "basis_refs": [
+              "Q7.stem"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-07-MOVE-1."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-07-MOVE-1."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-07-MOVE-1."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-07-MOVE-1."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-07-MOVE-1."
+              }
+            }
+          }
+        },
+        {
+          "id": "OWN-ISSUE18-SAV-07-MOVE-2",
+          "action": "Write 2πrh + πr².",
+          "why_valid_here": "Each term corresponds to one painted physical surface.",
+          "result": "paint-area model",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-07-MOVE-2 verified: Write 2πrh + πr².."
+            ],
+            "basis_refs": [
+              "Q7.stem"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-07-MOVE-2."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-07-MOVE-2."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-07-MOVE-2."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-07-MOVE-2."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-07-MOVE-2."
+              }
+            }
+          }
+        },
+        {
+          "id": "OWN-ISSUE18-SAV-07-MOVE-3",
+          "action": "Evaluate with r=7 cm and h=25 cm.",
+          "why_valid_here": "The calculation now follows the stated paint specification.",
+          "result": "1254 cm²",
+          "calculation_bearing": true,
+          "calculation_refs": [
+            "Q7-C1"
+          ],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-07-MOVE-3 verified: Evaluate with r=7 cm and h=25 cm.."
+            ],
+            "basis_refs": [
+              "Q7.stem",
+              "Q7-C1"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-07-MOVE-3."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-07-MOVE-3."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-07-MOVE-3."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-07-MOVE-3."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-07-MOVE-3."
+              }
+            }
+          }
+        }
+      ],
+      "calculations": [
+        {
+          "id": "Q7-C1",
+          "expression": "Adding one top disk would change the answer by exactly 154 cm².",
+          "result": "1254 cm²",
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Calculation checked: Adding one top disk would change the answer by exactly 154 cm².."
+            ],
+            "basis_refs": [
+              "Q7.stem"
+            ],
+            "checks": {
+              "arithmetic_or_algebra": {
+                "result": "PASS",
+                "evidence": "Audited arithmetic_or_algebra for Q7-C1."
+              },
+              "units_dimensions": {
+                "result": "PASS",
+                "evidence": "Audited units_dimensions for Q7-C1."
+              },
+              "input_traceability": {
+                "result": "PASS",
+                "evidence": "Audited input_traceability for Q7-C1."
+              },
+              "independent_check": {
+                "result": "PASS",
+                "evidence": "Audited independent_check for Q7-C1."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q8",
+      "verbatim_text": "A rectangular water tank is 2 m long, 1.5 m wide and 1.2 m deep.\n\nIt is filled to 75% of its total capacity.\n\nHow many litres of water are in the tank?\n\nShow the unit conversion clearly.",
+      "owner_prompt_sha256": "sha256:97c812a8fbfd14063f49c51e1d2c2495e8913d5d1ec18ee696cfa9e06b63eaac",
+      "verified_answer": "2700 L",
+      "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0",
+      "slots": {
+        "X": {
+          "text": "Preserve order and units through full volume to 75% fill to litres.",
+          "basis": [
+            "analysis.common_wrong_route"
+          ]
+        },
+        "Y": {
+          "text": "Demonstrated volume units and litre conversion.",
+          "capability_ref": "CAP-MAT-SAV-UNITS"
+        },
+        "Z": {
+          "text": "Execute rectangular-prism, percentage and conversion chain."
+        },
+        "W": {
+          "text": "Perform the chain without mixing linear, area or volume conversion factors.",
+          "protected_move_ref": "OWN-ISSUE18-SAV-08-MOVE-1"
+        }
+      },
+      "core1a_targets": [
+        "CU-SAV-VOLUME-ROLES"
+      ],
+      "hints": [
+        {
+          "id": "Q8-H1",
+          "text": "Find the tank's full volume before applying the fill fraction.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q8-H1 orients without disclosing protected move OWN-ISSUE18-SAV-08-MOVE-1."
+            ],
+            "basis_refs": [
+              "Q8.W",
+              "QRT-APPLY-D2.H1"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q8-H1."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q8-H1."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q8-H1."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q8-H1."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q8-H1."
+              }
+            }
+          }
+        },
+        {
+          "id": "Q8-H2",
+          "text": "Treat 75% as a multiplier on volume, not on one dimension.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q8-H2 orients without disclosing protected move OWN-ISSUE18-SAV-08-MOVE-1."
+            ],
+            "basis_refs": [
+              "Q8.W",
+              "QRT-APPLY-D2.H2"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q8-H2."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q8-H2."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q8-H2."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q8-H2."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q8-H2."
+              }
+            }
+          }
+        },
+        {
+          "id": "Q8-H3",
+          "text": "Keep m³ through the geometry; convert the final water volume to litres.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q8-H3 orients without disclosing protected move OWN-ISSUE18-SAV-08-MOVE-1."
+            ],
+            "basis_refs": [
+              "Q8.W",
+              "QRT-APPLY-D2.H3"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q8-H3."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q8-H3."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q8-H3."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q8-H3."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q8-H3."
+              }
+            }
+          }
+        }
+      ],
+      "solution_steps": [
+        {
+          "id": "OWN-ISSUE18-SAV-08-MOVE-1",
+          "action": "Find full tank volume before applying the fill percentage.",
+          "why_valid_here": "Seventy-five percent describes the tank's capacity, not a single dimension.",
+          "result": "3.6 m³ full",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-08-MOVE-1 verified: Find full tank volume before applying the fill percentage.."
+            ],
+            "basis_refs": [
+              "Q8.stem"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-08-MOVE-1."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-08-MOVE-1."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-08-MOVE-1."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-08-MOVE-1."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-08-MOVE-1."
+              }
+            }
+          }
+        },
+        {
+          "id": "OWN-ISSUE18-SAV-08-MOVE-2",
+          "action": "Take 75% of 3.6 m³.",
+          "why_valid_here": "The water occupies three quarters of the full volume.",
+          "result": "2.7 m³ water",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-08-MOVE-2 verified: Take 75% of 3.6 m³.."
+            ],
+            "basis_refs": [
+              "Q8.stem"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-08-MOVE-2."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-08-MOVE-2."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-08-MOVE-2."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-08-MOVE-2."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-08-MOVE-2."
+              }
+            }
+          }
+        },
+        {
+          "id": "OWN-ISSUE18-SAV-08-MOVE-3",
+          "action": "Convert 2.7 m³ to litres using 1 m³=1000 L.",
+          "why_valid_here": "The conversion preserves the same physical volume.",
+          "result": "2700 L",
+          "calculation_bearing": true,
+          "calculation_refs": [
+            "Q8-C1"
+          ],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-08-MOVE-3 verified: Convert 2.7 m³ to litres using 1 m³=1000 L.."
+            ],
+            "basis_refs": [
+              "Q8.stem",
+              "Q8-C1"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-08-MOVE-3."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-08-MOVE-3."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-08-MOVE-3."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-08-MOVE-3."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-08-MOVE-3."
+              }
+            }
+          }
+        }
+      ],
+      "calculations": [
+        {
+          "id": "Q8-C1",
+          "expression": "2700 L = 2.7 m³ and 2.7/3.6 = 0.75.",
+          "result": "2700 L",
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Calculation checked: 2700 L = 2.7 m³ and 2.7/3.6 = 0.75.."
+            ],
+            "basis_refs": [
+              "Q8.stem"
+            ],
+            "checks": {
+              "arithmetic_or_algebra": {
+                "result": "PASS",
+                "evidence": "Audited arithmetic_or_algebra for Q8-C1."
+              },
+              "units_dimensions": {
+                "result": "PASS",
+                "evidence": "Audited units_dimensions for Q8-C1."
+              },
+              "input_traceability": {
+                "result": "PASS",
+                "evidence": "Audited input_traceability for Q8-C1."
+              },
+              "independent_check": {
+                "result": "PASS",
+                "evidence": "Audited independent_check for Q8-C1."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q9",
+      "verbatim_text": "A solid metallic sphere of radius 6 cm is melted and recast into identical solid spheres of radius 2 cm.\n\nAssume that no metal is lost.\n\nHow many smaller spheres are formed?\n\nExplain why surface area is not conserved in this process.",
+      "owner_prompt_sha256": "sha256:97c812a8fbfd14063f49c51e1d2c2495e8913d5d1ec18ee696cfa9e06b63eaac",
+      "verified_answer": "27 smaller spheres",
+      "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0",
+      "slots": {
+        "X": {
+          "text": "Identify what is conserved by 'no metal lost' and distinguish it from surface area.",
+          "basis": [
+            "analysis.common_wrong_route"
+          ]
+        },
+        "Y": {
+          "text": "Demonstrated conservation of volume in recasting.",
+          "capability_ref": "CAP-MAT-SAV-RECAST"
+        },
+        "Z": {
+          "text": "Formulate V_large=n·V_small and use r³ scaling."
+        },
+        "W": {
+          "text": "Choose volume as the invariant and solve for n.",
+          "protected_move_ref": "OWN-ISSUE18-SAV-09-MOVE-1"
+        }
+      },
+      "core1a_targets": [
+        "CU-SAV-VOLUME-ROLES"
+      ],
+      "hints": [
+        {
+          "id": "Q9-H1",
+          "text": "What quantity measures the amount of metal before and after reshaping?",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q9-H1 orients without disclosing protected move OWN-ISSUE18-SAV-09-MOVE-1."
+            ],
+            "basis_refs": [
+              "Q9.W",
+              "QRT-MODEL-D2.H1"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q9-H1."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q9-H1."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q9-H1."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q9-H1."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q9-H1."
+              }
+            }
+          }
+        },
+        {
+          "id": "Q9-H2",
+          "text": "For similar spheres, volume scales with the cube of radius.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q9-H2 orients without disclosing protected move OWN-ISSUE18-SAV-09-MOVE-1."
+            ],
+            "basis_refs": [
+              "Q9.W",
+              "QRT-MODEL-D2.H2"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q9-H2."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q9-H2."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q9-H2."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q9-H2."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q9-H2."
+              }
+            }
+          }
+        },
+        {
+          "id": "Q9-H3",
+          "text": "Represent the recast condition as one large-sphere volume equalling n small-sphere volumes.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q9-H3 orients without disclosing protected move OWN-ISSUE18-SAV-09-MOVE-1."
+            ],
+            "basis_refs": [
+              "Q9.W",
+              "QRT-MODEL-D2.H3"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q9-H3."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q9-H3."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q9-H3."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q9-H3."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q9-H3."
+              }
+            }
+          }
+        }
+      ],
+      "solution_steps": [
+        {
+          "id": "OWN-ISSUE18-SAV-09-MOVE-1",
+          "action": "Use conservation of volume, not surface area.",
+          "why_valid_here": "No metal lost means the amount of material is unchanged.",
+          "result": "volume invariant",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-09-MOVE-1 verified: Use conservation of volume, not surface area.."
+            ],
+            "basis_refs": [
+              "Q9.stem"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-09-MOVE-1."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-09-MOVE-1."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-09-MOVE-1."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-09-MOVE-1."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-09-MOVE-1."
+              }
+            }
+          }
+        },
+        {
+          "id": "OWN-ISSUE18-SAV-09-MOVE-2",
+          "action": "Set one large-sphere volume equal to n small-sphere volumes.",
+          "why_valid_here": "The same total material volume is redistributed.",
+          "result": "6³ = n·2³ after common factors cancel",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-09-MOVE-2 verified: Set one large-sphere volume equal to n small-sphere volumes.."
+            ],
+            "basis_refs": [
+              "Q9.stem"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-09-MOVE-2."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-09-MOVE-2."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-09-MOVE-2."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-09-MOVE-2."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-09-MOVE-2."
+              }
+            }
+          }
+        },
+        {
+          "id": "OWN-ISSUE18-SAV-09-MOVE-3",
+          "action": "Solve n=(6/2)³.",
+          "why_valid_here": "Sphere volume scales with the cube of radius.",
+          "result": "27 spheres",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-09-MOVE-3 verified: Solve n=(6/2)³.."
+            ],
+            "basis_refs": [
+              "Q9.stem"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-09-MOVE-3."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-09-MOVE-3."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-09-MOVE-3."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-09-MOVE-3."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-09-MOVE-3."
+              }
+            }
+          }
+        },
+        {
+          "id": "OWN-ISSUE18-SAV-09-MOVE-4",
+          "action": "Compare surface areas before and after.",
+          "why_valid_here": "144π becomes 27×16π=432π, so boundary area is not conserved.",
+          "result": "surface area triples",
+          "calculation_bearing": true,
+          "calculation_refs": [
+            "Q9-C1"
+          ],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-09-MOVE-4 verified: Compare surface areas before and after.."
+            ],
+            "basis_refs": [
+              "Q9.stem",
+              "Q9-C1"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-09-MOVE-4."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-09-MOVE-4."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-09-MOVE-4."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-09-MOVE-4."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-09-MOVE-4."
+              }
+            }
+          }
+        }
+      ],
+      "calculations": [
+        {
+          "id": "Q9-C1",
+          "expression": "27×2³=6³; total smaller-sphere surface area is 432π cm² versus 144π cm² originally.",
+          "result": "27 smaller spheres",
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Calculation checked: 27×2³=6³; total smaller-sphere surface area is 432π cm² versus 144π cm² originally.."
+            ],
+            "basis_refs": [
+              "Q9.stem"
+            ],
+            "checks": {
+              "arithmetic_or_algebra": {
+                "result": "PASS",
+                "evidence": "Audited arithmetic_or_algebra for Q9-C1."
+              },
+              "units_dimensions": {
+                "result": "PASS",
+                "evidence": "Audited units_dimensions for Q9-C1."
+              },
+              "input_traceability": {
+                "result": "PASS",
+                "evidence": "Audited input_traceability for Q9-C1."
+              },
+              "independent_check": {
+                "result": "PASS",
+                "evidence": "Audited independent_check for Q9-C1."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q10",
+      "verbatim_text": "A cone and a cylinder have the same base radius and the same height.\n\nThe volume of the cylinder is 924 cm³.\n\nFind the volume of the cone.\n\nThen explain why the radius and height do **not** need to be calculated separately.",
+      "owner_prompt_sha256": "sha256:97c812a8fbfd14063f49c51e1d2c2495e8913d5d1ec18ee696cfa9e06b63eaac",
+      "verified_answer": "308 cm³",
+      "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0",
+      "slots": {
+        "X": {
+          "text": "Compare the formulas structurally instead of reconstructing r and h.",
+          "basis": [
+            "analysis.common_wrong_route"
+          ]
+        },
+        "Y": {
+          "text": "Demonstrated cone/cylinder volume relations and common-factor reasoning.",
+          "capability_ref": "CAP-MAT-SAV-CIRCLE"
+        },
+        "Z": {
+          "text": "Derive the volume ratio for equal radius and height."
+        },
+        "W": {
+          "text": "Establish the one-third relation and apply it to 924.",
+          "protected_move_ref": "OWN-ISSUE18-SAV-10-MOVE-1"
+        }
+      },
+      "core1a_targets": [
+        "CU-SAV-VOLUME-ROLES"
+      ],
+      "hints": [
+        {
+          "id": "Q10-H1",
+          "text": "Write the two formulas symbolically before inserting any number.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q10-H1 orients without disclosing protected move OWN-ISSUE18-SAV-10-MOVE-1."
+            ],
+            "basis_refs": [
+              "Q10.W",
+              "QRT-EXPLAIN-D2.H1"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q10-H1."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q10-H1."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q10-H1."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q10-H1."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q10-H1."
+              }
+            }
+          }
+        },
+        {
+          "id": "Q10-H2",
+          "text": "Mark the factor that is identical because radius and height are the same.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q10-H2 orients without disclosing protected move OWN-ISSUE18-SAV-10-MOVE-1."
+            ],
+            "basis_refs": [
+              "Q10.W",
+              "QRT-EXPLAIN-D2.H2"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q10-H2."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q10-H2."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q10-H2."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q10-H2."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q10-H2."
+              }
+            }
+          }
+        },
+        {
+          "id": "Q10-H3",
+          "text": "Form V_cone/V_cylinder; simplify the common factor, then use the given cylinder volume.",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Hint Q10-H3 orients without disclosing protected move OWN-ISSUE18-SAV-10-MOVE-1."
+            ],
+            "basis_refs": [
+              "Q10.W",
+              "QRT-EXPLAIN-D2.H3"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Self-audit verified academic_correctness for Q10-H3."
+              },
+              "objective_alignment": {
+                "result": "PASS",
+                "evidence": "Self-audit verified objective_alignment for Q10-H3."
+              },
+              "w_protection": {
+                "result": "PASS",
+                "evidence": "Self-audit verified w_protection for Q10-H3."
+              },
+              "learner_fit": {
+                "result": "PASS",
+                "evidence": "Self-audit verified learner_fit for Q10-H3."
+              },
+              "non_redundancy": {
+                "result": "PASS",
+                "evidence": "Self-audit verified non_redundancy for Q10-H3."
+              }
+            }
+          }
+        }
+      ],
+      "solution_steps": [
+        {
+          "id": "OWN-ISSUE18-SAV-10-MOVE-1",
+          "action": "Compare the cone and cylinder volume formulas before solving dimensions.",
+          "why_valid_here": "The solids have the same r and h.",
+          "result": "common factor",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-10-MOVE-1 verified: Compare the cone and cylinder volume formulas before solving dimensions.."
+            ],
+            "basis_refs": [
+              "Q10.stem"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-10-MOVE-1."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-10-MOVE-1."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-10-MOVE-1."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-10-MOVE-1."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-10-MOVE-1."
+              }
+            }
+          }
+        },
+        {
+          "id": "OWN-ISSUE18-SAV-10-MOVE-2",
+          "action": "Cancel the common πr²h factor conceptually.",
+          "why_valid_here": "Cylinder volume is πr²h while cone volume is one third of it.",
+          "result": "Vcone=Vcylinder/3",
+          "calculation_bearing": false,
+          "calculation_refs": [],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-10-MOVE-2 verified: Cancel the common πr²h factor conceptually.."
+            ],
+            "basis_refs": [
+              "Q10.stem"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-10-MOVE-2."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-10-MOVE-2."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-10-MOVE-2."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-10-MOVE-2."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-10-MOVE-2."
+              }
+            }
+          }
+        },
+        {
+          "id": "OWN-ISSUE18-SAV-10-MOVE-3",
+          "action": "Compute 924/3.",
+          "why_valid_here": "The structural ratio supplies the cone volume directly.",
+          "result": "308 cm³",
+          "calculation_bearing": true,
+          "calculation_refs": [
+            "Q10-C1"
+          ],
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Solution step OWN-ISSUE18-SAV-10-MOVE-3 verified: Compute 924/3.."
+            ],
+            "basis_refs": [
+              "Q10.stem",
+              "Q10-C1"
+            ],
+            "checks": {
+              "academic_correctness": {
+                "result": "PASS",
+                "evidence": "Audited academic_correctness for OWN-ISSUE18-SAV-10-MOVE-3."
+              },
+              "question_specificity": {
+                "result": "PASS",
+                "evidence": "Audited question_specificity for OWN-ISSUE18-SAV-10-MOVE-3."
+              },
+              "reasoning_validity": {
+                "result": "PASS",
+                "evidence": "Audited reasoning_validity for OWN-ISSUE18-SAV-10-MOVE-3."
+              },
+              "units_symbols": {
+                "result": "PASS",
+                "evidence": "Audited units_symbols for OWN-ISSUE18-SAV-10-MOVE-3."
+              },
+              "post_attempt_scope": {
+                "result": "PASS",
+                "evidence": "Audited post_attempt_scope for OWN-ISSUE18-SAV-10-MOVE-3."
+              }
+            }
+          }
+        }
+      ],
+      "calculations": [
+        {
+          "id": "Q10-C1",
+          "expression": "3×308=924.",
+          "result": "308 cm³",
+          "self_audit": {
+            "status": "PASS",
+            "summary_evidence": [
+              "Calculation checked: 3×308=924.."
+            ],
+            "basis_refs": [
+              "Q10.stem"
+            ],
+            "checks": {
+              "arithmetic_or_algebra": {
+                "result": "PASS",
+                "evidence": "Audited arithmetic_or_algebra for Q10-C1."
+              },
+              "units_dimensions": {
+                "result": "PASS",
+                "evidence": "Audited units_dimensions for Q10-C1."
+              },
+              "input_traceability": {
+                "result": "PASS",
+                "evidence": "Audited input_traceability for Q10-C1."
+              },
+              "independent_check": {
+                "result": "PASS",
+                "evidence": "Audited independent_check for Q10-C1."
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "pre_attempt_graphs": [
+    {
+      "question_ref": "Q1",
+      "root": "Q1-PAGE",
+      "nodes": [
+        {
+          "id": "Q1-PAGE",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": [
+            "Q1-HINTS",
+            "Q1-CORE1A-SAFE"
+          ]
+        },
+        {
+          "id": "Q1-HINTS",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": []
+        },
+        {
+          "id": "Q1-CORE1A-SAFE",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": []
+        },
+        {
+          "id": "Q1-POST-SOLUTION",
+          "phase": "POST_ATTEMPT",
+          "move_refs": [
+            "OWN-ISSUE18-SAV-01-MOVE-1",
+            "OWN-ISSUE18-SAV-01-MOVE-2",
+            "OWN-ISSUE18-SAV-01-MOVE-3"
+          ],
+          "links": []
+        }
+      ]
+    },
+    {
+      "question_ref": "Q2",
+      "root": "Q2-PAGE",
+      "nodes": [
+        {
+          "id": "Q2-PAGE",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": [
+            "Q2-HINTS",
+            "Q2-CORE1A-SAFE"
+          ]
+        },
+        {
+          "id": "Q2-HINTS",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": []
+        },
+        {
+          "id": "Q2-CORE1A-SAFE",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": []
+        },
+        {
+          "id": "Q2-POST-SOLUTION",
+          "phase": "POST_ATTEMPT",
+          "move_refs": [
+            "OWN-ISSUE18-SAV-02-MOVE-1",
+            "OWN-ISSUE18-SAV-02-MOVE-2",
+            "OWN-ISSUE18-SAV-02-MOVE-3"
+          ],
+          "links": []
+        }
+      ]
+    },
+    {
+      "question_ref": "Q3",
+      "root": "Q3-PAGE",
+      "nodes": [
+        {
+          "id": "Q3-PAGE",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": [
+            "Q3-HINTS",
+            "Q3-CORE1A-SAFE"
+          ]
+        },
+        {
+          "id": "Q3-HINTS",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": []
+        },
+        {
+          "id": "Q3-CORE1A-SAFE",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": []
+        },
+        {
+          "id": "Q3-POST-SOLUTION",
+          "phase": "POST_ATTEMPT",
+          "move_refs": [
+            "OWN-ISSUE18-SAV-03-MOVE-1",
+            "OWN-ISSUE18-SAV-03-MOVE-2",
+            "OWN-ISSUE18-SAV-03-MOVE-3"
+          ],
+          "links": []
+        }
+      ]
+    },
+    {
+      "question_ref": "Q4",
+      "root": "Q4-PAGE",
+      "nodes": [
+        {
+          "id": "Q4-PAGE",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": [
+            "Q4-HINTS",
+            "Q4-CORE1A-SAFE"
+          ]
+        },
+        {
+          "id": "Q4-HINTS",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": []
+        },
+        {
+          "id": "Q4-CORE1A-SAFE",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": []
+        },
+        {
+          "id": "Q4-POST-SOLUTION",
+          "phase": "POST_ATTEMPT",
+          "move_refs": [
+            "OWN-ISSUE18-SAV-04-MOVE-1",
+            "OWN-ISSUE18-SAV-04-MOVE-2",
+            "OWN-ISSUE18-SAV-04-MOVE-3"
+          ],
+          "links": []
+        }
+      ]
+    },
+    {
+      "question_ref": "Q5",
+      "root": "Q5-PAGE",
+      "nodes": [
+        {
+          "id": "Q5-PAGE",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": [
+            "Q5-HINTS",
+            "Q5-CORE1A-SAFE"
+          ]
+        },
+        {
+          "id": "Q5-HINTS",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": []
+        },
+        {
+          "id": "Q5-CORE1A-SAFE",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": []
+        },
+        {
+          "id": "Q5-POST-SOLUTION",
+          "phase": "POST_ATTEMPT",
+          "move_refs": [
+            "OWN-ISSUE18-SAV-05-MOVE-1",
+            "OWN-ISSUE18-SAV-05-MOVE-2",
+            "OWN-ISSUE18-SAV-05-MOVE-3"
+          ],
+          "links": []
+        }
+      ]
+    },
+    {
+      "question_ref": "Q6",
+      "root": "Q6-PAGE",
+      "nodes": [
+        {
+          "id": "Q6-PAGE",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": [
+            "Q6-HINTS",
+            "Q6-CORE1A-SAFE"
+          ]
+        },
+        {
+          "id": "Q6-HINTS",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": []
+        },
+        {
+          "id": "Q6-CORE1A-SAFE",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": []
+        },
+        {
+          "id": "Q6-POST-SOLUTION",
+          "phase": "POST_ATTEMPT",
+          "move_refs": [
+            "OWN-ISSUE18-SAV-06-MOVE-1",
+            "OWN-ISSUE18-SAV-06-MOVE-2",
+            "OWN-ISSUE18-SAV-06-MOVE-3",
+            "OWN-ISSUE18-SAV-06-MOVE-4"
+          ],
+          "links": []
+        }
+      ]
+    },
+    {
+      "question_ref": "Q7",
+      "root": "Q7-PAGE",
+      "nodes": [
+        {
+          "id": "Q7-PAGE",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": [
+            "Q7-HINTS",
+            "Q7-CORE1A-SAFE"
+          ]
+        },
+        {
+          "id": "Q7-HINTS",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": []
+        },
+        {
+          "id": "Q7-CORE1A-SAFE",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": []
+        },
+        {
+          "id": "Q7-POST-SOLUTION",
+          "phase": "POST_ATTEMPT",
+          "move_refs": [
+            "OWN-ISSUE18-SAV-07-MOVE-1",
+            "OWN-ISSUE18-SAV-07-MOVE-2",
+            "OWN-ISSUE18-SAV-07-MOVE-3"
+          ],
+          "links": []
+        }
+      ]
+    },
+    {
+      "question_ref": "Q8",
+      "root": "Q8-PAGE",
+      "nodes": [
+        {
+          "id": "Q8-PAGE",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": [
+            "Q8-HINTS",
+            "Q8-CORE1A-SAFE"
+          ]
+        },
+        {
+          "id": "Q8-HINTS",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": []
+        },
+        {
+          "id": "Q8-CORE1A-SAFE",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": []
+        },
+        {
+          "id": "Q8-POST-SOLUTION",
+          "phase": "POST_ATTEMPT",
+          "move_refs": [
+            "OWN-ISSUE18-SAV-08-MOVE-1",
+            "OWN-ISSUE18-SAV-08-MOVE-2",
+            "OWN-ISSUE18-SAV-08-MOVE-3"
+          ],
+          "links": []
+        }
+      ]
+    },
+    {
+      "question_ref": "Q9",
+      "root": "Q9-PAGE",
+      "nodes": [
+        {
+          "id": "Q9-PAGE",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": [
+            "Q9-HINTS",
+            "Q9-CORE1A-SAFE"
+          ]
+        },
+        {
+          "id": "Q9-HINTS",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": []
+        },
+        {
+          "id": "Q9-CORE1A-SAFE",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": []
+        },
+        {
+          "id": "Q9-POST-SOLUTION",
+          "phase": "POST_ATTEMPT",
+          "move_refs": [
+            "OWN-ISSUE18-SAV-09-MOVE-1",
+            "OWN-ISSUE18-SAV-09-MOVE-2",
+            "OWN-ISSUE18-SAV-09-MOVE-3",
+            "OWN-ISSUE18-SAV-09-MOVE-4"
+          ],
+          "links": []
+        }
+      ]
+    },
+    {
+      "question_ref": "Q10",
+      "root": "Q10-PAGE",
+      "nodes": [
+        {
+          "id": "Q10-PAGE",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": [
+            "Q10-HINTS",
+            "Q10-CORE1A-SAFE"
+          ]
+        },
+        {
+          "id": "Q10-HINTS",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": []
+        },
+        {
+          "id": "Q10-CORE1A-SAFE",
+          "phase": "PRE_ATTEMPT",
+          "move_refs": [],
+          "links": []
+        },
+        {
+          "id": "Q10-POST-SOLUTION",
+          "phase": "POST_ATTEMPT",
+          "move_refs": [
+            "OWN-ISSUE18-SAV-10-MOVE-1",
+            "OWN-ISSUE18-SAV-10-MOVE-2",
+            "OWN-ISSUE18-SAV-10-MOVE-3"
+          ],
+          "links": []
+        }
+      ]
+    }
+  ],
+  "concept_evidence": [
+    {
+      "id": "CE-MAT-SAV-SURFACE-INVENTORY",
+      "question_refs": [
+        "Q1",
+        "Q2",
+        "Q3",
+        "Q5",
+        "Q7"
+      ],
+      "canonical_truth_refs": [
+        "Mathematics/geometry/euclidean-surfaces",
+        "Mathematics/mensuration/composite-solids"
+      ],
+      "publication_intent": "PUBLISH_CORE1A",
+      "core1a_unit_ref": "CU-SAV-SURFACE-INVENTORY"
+    },
+    {
+      "id": "CE-MAT-SAV-CONE-BRIDGE",
+      "question_refs": [
+        "Q4",
+        "Q6"
+      ],
+      "canonical_truth_refs": [
+        "Mathematics/geometry/pythagorean-theorem",
+        "Mathematics/geometry/axial-cross-sections"
+      ],
+      "publication_intent": "PUBLISH_CORE1A",
+      "core1a_unit_ref": "CU-SAV-CONE-BRIDGE"
+    },
+    {
+      "id": "CE-MAT-SAV-VOLUME-ROLES",
+      "question_refs": [
+        "Q8",
+        "Q9",
+        "Q10"
+      ],
+      "canonical_truth_refs": [
+        "Mathematics/mensuration/volume-conservation",
+        "Mathematics/algebra/structural-ratios"
+      ],
+      "publication_intent": "PUBLISH_CORE1A",
+      "core1a_unit_ref": "CU-SAV-VOLUME-ROLES"
+    }
+  ],
+  "rendered_artifacts": [
+    {
+      "id": "CORE1A",
+      "path": "evidence/authoring/issue18-surface-areas-volumes/rendered/core1a.html",
+      "sha256": "sha256:ccd029d78440be75f35e2befaa1416ad295ea8238a4b1b6c6c662f435e589c4d",
+      "head_sha": "353de935f4fb33b418b60d6776918a372252f67f",
+      "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0"
+    },
+    {
+      "id": "CORE2",
+      "path": "evidence/authoring/issue18-surface-areas-volumes/rendered/core2.html",
+      "sha256": "sha256:dfcda8cacc755cc5c995e42a344bbfd52713de127b522630c5d20e289916195b",
+      "head_sha": "353de935f4fb33b418b60d6776918a372252f67f",
+      "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0"
+    }
+  ],
+  "reviews": [
+    {
+      "question_ref": "Q1",
+      "artifact_ref": "CORE2",
+      "artifact_sha256": "sha256:dfcda8cacc755cc5c995e42a344bbfd52713de127b522630c5d20e289916195b",
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "Verified ask H1 on rendered core2.html for Q1 against QRT-APPLY-D1."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "Verified ask H2 on rendered core2.html for Q1 against QRT-APPLY-D1."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "Verified ask H3 on rendered core2.html for Q1 against QRT-APPLY-D1."
+        },
+        "S1": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "A cube sketch adds no demand-specific reasoning value for this demonstrated competition learner."
+        },
+        "S2": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "A cube sketch adds no demand-specific reasoning value for this demonstrated competition learner."
+        },
+        "S3": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "A cube sketch adds no demand-specific reasoning value for this demonstrated competition learner."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Verified ask P1 on rendered core2.html for Q1 against QRT-APPLY-D1."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Verified ask P2 on rendered core2.html for Q1 against QRT-APPLY-D1."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Verified ask P3 on rendered core2.html for Q1 against QRT-APPLY-D1."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Verified ask M1 on rendered core2.html for Q1 against QRT-APPLY-D1."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Verified ask M2 on rendered core2.html for Q1 against QRT-APPLY-D1."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Verified ask M3 on rendered core2.html for Q1 against QRT-APPLY-D1."
+        }
+      }
+    },
+    {
+      "question_ref": "Q2",
+      "artifact_ref": "CORE2",
+      "artifact_sha256": "sha256:dfcda8cacc755cc5c995e42a344bbfd52713de127b522630c5d20e289916195b",
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "Verified ask H1 on rendered core2.html for Q2 against QRT-APPLY-D2."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "Verified ask H2 on rendered core2.html for Q2 against QRT-APPLY-D2."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "Verified ask H3 on rendered core2.html for Q2 against QRT-APPLY-D2."
+        },
+        "S1": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "A diameter-versus-radius cross-section helps only if that mapping is the sticking point; it must not reveal r=7 numerically."
+        },
+        "S2": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "A diameter-versus-radius cross-section helps only if that mapping is the sticking point; it must not reveal r=7 numerically."
+        },
+        "S3": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "A diameter-versus-radius cross-section helps only if that mapping is the sticking point; it must not reveal r=7 numerically."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Verified ask P1 on rendered core2.html for Q2 against QRT-APPLY-D2."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Verified ask P2 on rendered core2.html for Q2 against QRT-APPLY-D2."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Verified ask P3 on rendered core2.html for Q2 against QRT-APPLY-D2."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Verified ask M1 on rendered core2.html for Q2 against QRT-APPLY-D2."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Verified ask M2 on rendered core2.html for Q2 against QRT-APPLY-D2."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Verified ask M3 on rendered core2.html for Q2 against QRT-APPLY-D2."
+        }
+      }
+    },
+    {
+      "question_ref": "Q3",
+      "artifact_ref": "CORE2",
+      "artifact_sha256": "sha256:dfcda8cacc755cc5c995e42a344bbfd52713de127b522630c5d20e289916195b",
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "Verified ask H1 on rendered core2.html for Q3 against QRT-MODEL-D2."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "Verified ask H2 on rendered core2.html for Q3 against QRT-MODEL-D2."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "Verified ask H3 on rendered core2.html for Q3 against QRT-MODEL-D2."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Verified ask S1 on rendered core2.html for Q3 against QRT-MODEL-D2."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Verified ask S2 on rendered core2.html for Q3 against QRT-MODEL-D2."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Verified ask S3 on rendered core2.html for Q3 against QRT-MODEL-D2."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Verified ask P1 on rendered core2.html for Q3 against QRT-MODEL-D2."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Verified ask P2 on rendered core2.html for Q3 against QRT-MODEL-D2."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Verified ask P3 on rendered core2.html for Q3 against QRT-MODEL-D2."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Verified ask M1 on rendered core2.html for Q3 against QRT-MODEL-D2."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Verified ask M2 on rendered core2.html for Q3 against QRT-MODEL-D2."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Verified ask M3 on rendered core2.html for Q3 against QRT-MODEL-D2."
+        }
+      }
+    },
+    {
+      "question_ref": "Q4",
+      "artifact_ref": "CORE2",
+      "artifact_sha256": "sha256:dfcda8cacc755cc5c995e42a344bbfd52713de127b522630c5d20e289916195b",
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "Verified ask H1 on rendered core2.html for Q4 against QRT-SYNTHESIZE-D2."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "Verified ask H2 on rendered core2.html for Q4 against QRT-SYNTHESIZE-D2."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "Verified ask H3 on rendered core2.html for Q4 against QRT-SYNTHESIZE-D2."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Verified ask S1 on rendered core2.html for Q4 against QRT-SYNTHESIZE-D2."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Verified ask S2 on rendered core2.html for Q4 against QRT-SYNTHESIZE-D2."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Verified ask S3 on rendered core2.html for Q4 against QRT-SYNTHESIZE-D2."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Verified ask P1 on rendered core2.html for Q4 against QRT-SYNTHESIZE-D2."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Verified ask P2 on rendered core2.html for Q4 against QRT-SYNTHESIZE-D2."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Verified ask P3 on rendered core2.html for Q4 against QRT-SYNTHESIZE-D2."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Verified ask M1 on rendered core2.html for Q4 against QRT-SYNTHESIZE-D2."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Verified ask M2 on rendered core2.html for Q4 against QRT-SYNTHESIZE-D2."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Verified ask M3 on rendered core2.html for Q4 against QRT-SYNTHESIZE-D2."
+        }
+      }
+    },
+    {
+      "question_ref": "Q5",
+      "artifact_ref": "CORE2",
+      "artifact_sha256": "sha256:dfcda8cacc755cc5c995e42a344bbfd52713de127b522630c5d20e289916195b",
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "Verified ask H1 on rendered core2.html for Q5 against QRT-MODEL-D2."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "Verified ask H2 on rendered core2.html for Q5 against QRT-MODEL-D2."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "Verified ask H3 on rendered core2.html for Q5 against QRT-MODEL-D2."
+        },
+        "S1": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "A cross-section may show curved wall and open mouth but must not shade a nonexistent disk."
+        },
+        "S2": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "A cross-section may show curved wall and open mouth but must not shade a nonexistent disk."
+        },
+        "S3": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "A cross-section may show curved wall and open mouth but must not shade a nonexistent disk."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Verified ask P1 on rendered core2.html for Q5 against QRT-MODEL-D2."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Verified ask P2 on rendered core2.html for Q5 against QRT-MODEL-D2."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Verified ask P3 on rendered core2.html for Q5 against QRT-MODEL-D2."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Verified ask M1 on rendered core2.html for Q5 against QRT-MODEL-D2."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Verified ask M2 on rendered core2.html for Q5 against QRT-MODEL-D2."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Verified ask M3 on rendered core2.html for Q5 against QRT-MODEL-D2."
+        }
+      }
+    },
+    {
+      "question_ref": "Q6",
+      "artifact_ref": "CORE2",
+      "artifact_sha256": "sha256:dfcda8cacc755cc5c995e42a344bbfd52713de127b522630c5d20e289916195b",
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "Verified ask H1 on rendered core2.html for Q6 against QRT-SYNTHESIZE-D3."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "Verified ask H2 on rendered core2.html for Q6 against QRT-SYNTHESIZE-D3."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "Verified ask H3 on rendered core2.html for Q6 against QRT-SYNTHESIZE-D3."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Verified ask S1 on rendered core2.html for Q6 against QRT-SYNTHESIZE-D3."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Verified ask S2 on rendered core2.html for Q6 against QRT-SYNTHESIZE-D3."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Verified ask S3 on rendered core2.html for Q6 against QRT-SYNTHESIZE-D3."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Verified ask P1 on rendered core2.html for Q6 against QRT-SYNTHESIZE-D3."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Verified ask P2 on rendered core2.html for Q6 against QRT-SYNTHESIZE-D3."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Verified ask P3 on rendered core2.html for Q6 against QRT-SYNTHESIZE-D3."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Verified ask M1 on rendered core2.html for Q6 against QRT-SYNTHESIZE-D3."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Verified ask M2 on rendered core2.html for Q6 against QRT-SYNTHESIZE-D3."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Verified ask M3 on rendered core2.html for Q6 against QRT-SYNTHESIZE-D3."
+        }
+      }
+    },
+    {
+      "question_ref": "Q7",
+      "artifact_ref": "CORE2",
+      "artifact_sha256": "sha256:dfcda8cacc755cc5c995e42a344bbfd52713de127b522630c5d20e289916195b",
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "Verified ask H1 on rendered core2.html for Q7 against QRT-MODEL-D2."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "Verified ask H2 on rendered core2.html for Q7 against QRT-MODEL-D2."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "Verified ask H3 on rendered core2.html for Q7 against QRT-MODEL-D2."
+        },
+        "S1": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "The wording already enumerates surfaces; a figure is only a spatial check and must not rely on color alone."
+        },
+        "S2": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "The wording already enumerates surfaces; a figure is only a spatial check and must not rely on color alone."
+        },
+        "S3": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "The wording already enumerates surfaces; a figure is only a spatial check and must not rely on color alone."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Verified ask P1 on rendered core2.html for Q7 against QRT-MODEL-D2."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Verified ask P2 on rendered core2.html for Q7 against QRT-MODEL-D2."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Verified ask P3 on rendered core2.html for Q7 against QRT-MODEL-D2."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Verified ask M1 on rendered core2.html for Q7 against QRT-MODEL-D2."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Verified ask M2 on rendered core2.html for Q7 against QRT-MODEL-D2."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Verified ask M3 on rendered core2.html for Q7 against QRT-MODEL-D2."
+        }
+      }
+    },
+    {
+      "question_ref": "Q8",
+      "artifact_ref": "CORE2",
+      "artifact_sha256": "sha256:dfcda8cacc755cc5c995e42a344bbfd52713de127b522630c5d20e289916195b",
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "Verified ask H1 on rendered core2.html for Q8 against QRT-APPLY-D2."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "Verified ask H2 on rendered core2.html for Q8 against QRT-APPLY-D2."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "Verified ask H3 on rendered core2.html for Q8 against QRT-APPLY-D2."
+        },
+        "S1": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "A tank or fill graphic adds little reasoning value; the meaningful representation is the unit-labelled calculation chain."
+        },
+        "S2": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "A tank or fill graphic adds little reasoning value; the meaningful representation is the unit-labelled calculation chain."
+        },
+        "S3": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "A tank or fill graphic adds little reasoning value; the meaningful representation is the unit-labelled calculation chain."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Verified ask P1 on rendered core2.html for Q8 against QRT-APPLY-D2."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Verified ask P2 on rendered core2.html for Q8 against QRT-APPLY-D2."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Verified ask P3 on rendered core2.html for Q8 against QRT-APPLY-D2."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Verified ask M1 on rendered core2.html for Q8 against QRT-APPLY-D2."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Verified ask M2 on rendered core2.html for Q8 against QRT-APPLY-D2."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Verified ask M3 on rendered core2.html for Q8 against QRT-APPLY-D2."
+        }
+      }
+    },
+    {
+      "question_ref": "Q9",
+      "artifact_ref": "CORE2",
+      "artifact_sha256": "sha256:dfcda8cacc755cc5c995e42a344bbfd52713de127b522630c5d20e289916195b",
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "Verified ask H1 on rendered core2.html for Q9 against QRT-MODEL-D2."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "Verified ask H2 on rendered core2.html for Q9 against QRT-MODEL-D2."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "Verified ask H3 on rendered core2.html for Q9 against QRT-MODEL-D2."
+        },
+        "S1": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "A before/after schematic may show reshaping but must not depict exactly 27 small spheres or imply the picture proves conservation."
+        },
+        "S2": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "A before/after schematic may show reshaping but must not depict exactly 27 small spheres or imply the picture proves conservation."
+        },
+        "S3": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "A before/after schematic may show reshaping but must not depict exactly 27 small spheres or imply the picture proves conservation."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Verified ask P1 on rendered core2.html for Q9 against QRT-MODEL-D2."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Verified ask P2 on rendered core2.html for Q9 against QRT-MODEL-D2."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Verified ask P3 on rendered core2.html for Q9 against QRT-MODEL-D2."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Verified ask M1 on rendered core2.html for Q9 against QRT-MODEL-D2."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Verified ask M2 on rendered core2.html for Q9 against QRT-MODEL-D2."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Verified ask M3 on rendered core2.html for Q9 against QRT-MODEL-D2."
+        }
+      }
+    },
+    {
+      "question_ref": "Q10",
+      "artifact_ref": "CORE2",
+      "artifact_sha256": "sha256:dfcda8cacc755cc5c995e42a344bbfd52713de127b522630c5d20e289916195b",
+      "judgements": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "Verified ask H1 on rendered core2.html for Q10 against QRT-EXPLAIN-D2."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "Verified ask H2 on rendered core2.html for Q10 against QRT-EXPLAIN-D2."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "Verified ask H3 on rendered core2.html for Q10 against QRT-EXPLAIN-D2."
+        },
+        "S1": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "An SVG would not improve the decisive reasoning; the useful representation is the symbolic formula comparison."
+        },
+        "S2": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "An SVG would not improve the decisive reasoning; the useful representation is the symbolic formula comparison."
+        },
+        "S3": {
+          "applicability": "NOT_APPLICABLE",
+          "reason": "An SVG would not improve the decisive reasoning; the useful representation is the symbolic formula comparison."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Verified ask P1 on rendered core2.html for Q10 against QRT-EXPLAIN-D2."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Verified ask P2 on rendered core2.html for Q10 against QRT-EXPLAIN-D2."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Verified ask P3 on rendered core2.html for Q10 against QRT-EXPLAIN-D2."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Verified ask M1 on rendered core2.html for Q10 against QRT-EXPLAIN-D2."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Verified ask M2 on rendered core2.html for Q10 against QRT-EXPLAIN-D2."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Verified ask M3 on rendered core2.html for Q10 against QRT-EXPLAIN-D2."
+        }
+      }
+    }
+  ],
+  "validation": {
+    "academic": {
+      "status": "PASS",
+      "evidence_ref": "evidence/authoring/issue18-surface-areas-volumes/qrt-review.v1.json"
+    },
+    "qrt_semantic": {
+      "status": "PASS",
+      "evidence_ref": "evidence/authoring/issue18-surface-areas-volumes/qrt-pipeline-run.json"
+    },
+    "static": {
+      "status": "PASS",
+      "evidence_ref": "evidence/authoring/issue18-surface-areas-volumes/rendered/quality-gate.json"
+    },
+    "browser": {
+      "status": "PASS",
+      "evidence_ref": "evidence/authoring/issue18-surface-areas-volumes/rendered/tablet-audit.json"
+    },
+    "print": {
+      "status": "NOT_APPLICABLE",
+      "reason": "No PDF/print artifact was requested in Issue #18 deliverables"
+    }
+  }
+}

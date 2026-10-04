@@ -78,6 +78,18 @@ def _blocks_present(unit, check, ctx):
 
 @op("figures_min")
 def _figures_min(unit, check, ctx):
+    waiver_component = check.get("waiver_component")
+    if waiver_component:
+        waived = unit.get("waived") or {}
+        construction_units = unit.get("construction_units") or []
+        fully_waived = (
+            waiver_component in waived
+            or (construction_units and all(
+                f"{waiver_component}@{cu}" in waived for cu in construction_units
+            ))
+        )
+        if fully_waived:
+            return []
     figs = [f for f in unit["figures"] if f["stage"] in check["stages"]]
     out = []
     if len(figs) < check["min"]:

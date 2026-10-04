@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%" role="img" aria-labelledby="nitrate-title nitrate-desc">
+  <title id="nitrate-title">Nitrate Ion Delocalised Pi Molecular Orbital Framework</title>
+  <desc id="nitrate-desc">Planar nitrate ion showing trigonal planar sigma bonds and parallel 2pz orbitals on nitrogen and three oxygen atoms forming a continuous 4-centre delocalised pi system.</desc>
+  <style>
+    .bg { fill: #f8fafc; }
+    .atom-n { fill: #1e3a8a; font-weight: bold; font-size: 22px; font-family: sans-serif; text-anchor: middle; }
+    .atom-o { fill: #b91c1c; font-weight: bold; font-size: 20px; font-family: sans-serif; text-anchor: middle; }
+    .label { font-size: 14px; font-family: sans-serif; fill: #0f172a; }
+    .title-txt { font-size: 16px; font-family: sans-serif; font-weight: bold; fill: #0f172a; }
+    .sigma-line { stroke: #2563eb; stroke-width: 4; stroke-linecap: round; }
+    .pz-lobe-pos { fill: #38bdf8; fill-opacity: 0.65; stroke: #0284c7; stroke-width: 2; }
+    .pz-lobe-neg { fill: #bae6fd; fill-opacity: 0.65; stroke: #0284c7; stroke-width: 2; }
+    .deloc-cloud { fill: #a855f7; fill-opacity: 0.35; stroke: #7e22ce; stroke-width: 2; stroke-dasharray: 6,4; }
+  </style>
+
+  <rect width="800" height="450" class="bg" rx="8" />
+
+  <!-- Stage 1: Planar Sigma Backbone (D3h symmetry, 120° bond angles) -->
+  <g data-g9-stage-id="NO3-STAGE-1">
+    <text x="400" y="32" class="title-txt" text-anchor="middle">Stage 1: Trigonal Planar Sigma Framework (N sp² hybridised, 120° angles)</text>
+    
+    <!-- N-O Sigma Bonds -->
+    <line x1="400" y1="240" x2="400" y2="100" class="sigma-line" />
+    <line x1="400" y1="240" x2="260" y2="320" class="sigma-line" />
+    <line x1="400" y1="240" x2="540" y2="320" class="sigma-line" />
+
+    <!-- Central Nitrogen -->
+    <circle cx="400" cy="240" r="22" fill="#ffffff" stroke="#1e3a8a" stroke-width="3" />
+    <text x="400" y="248" class="atom-n">N</text>
+    <text x="400" y="275" class="label" text-anchor="middle">sp² (3 σ bonds, 0 lone pairs)</text>
+
+    <!-- Three Oxygens -->
+    <circle cx="400" cy="100" r="18" fill="#ffffff" stroke="#b91c1c" stroke-width="2.5" />
+    <text x="400" y="107" class="atom-o">O1</text>
+
+    <circle cx="260" cy="320" r="18" fill="#ffffff" stroke="#b91c1c" stroke-width="2.5" />
+    <text x="260" y="327" class="atom-o">O2</text>
+
+    <circle cx="540" cy="320" r="18" fill="#ffffff" stroke="#b91c1c" stroke-width="2.5" />
+    <text x="540" y="327" class="atom-o">O3</text>
+
+    <text x="440" y="170" class="label" fill="#2563eb">120°</text>
+    <text x="330" y="280" class="label" fill="#2563eb">120°</text>
+    <text x="470" y="280" class="label" fill="#2563eb">120°</text>
+  </g>
+
+  <!-- Stage 2: Parallel 2pz Atomic Orbitals on N and all 3 O atoms -->
+  <g data-g9-stage-id="NO3-STAGE-2">
+    <text x="400" y="52" class="title-txt" text-anchor="middle">Stage 2: Unhybridised 2pz Orbitals Perpendicular to Molecular Plane</text>
+    
+    <!-- N 2pz orbital -->
+    <ellipse cx="400" cy="210" rx="14" ry="25" class="pz-lobe-pos" />
+    <ellipse cx="400" cy="270" rx="14" ry="25" class="pz-lobe-neg" />
+
+    <!-- O1 2pz orbital -->
+    <ellipse cx="400" cy="70" rx="12" ry="22" class="pz-lobe-pos" />
+    <ellipse cx="400" cy="130" rx="12" ry="22" class="pz-lobe-neg" />
+
+    <!-- O2 2pz orbital -->
+    <ellipse cx="260" cy="290" rx="12" ry="22" class="pz-lobe-pos" />
+    <ellipse cx="260" cy="350" rx="12" ry="22" class="pz-lobe-neg" />
+
+    <!-- O3 2pz orbital -->
+    <ellipse cx="540" cy="290" rx="12" ry="22" class="pz-lobe-pos" />
+    <ellipse cx="540" cy="350" rx="12" ry="22" class="pz-lobe-neg" />
+
+    <text x="630" y="220" class="label" fill="#0284c7">4 parallel 2pz orbitals</text>
+    <text x="630" y="240" class="label" fill="#0284c7">perpendicular to plane</text>
+  </g>
+
+  <!-- Stage 3: Continuous Delocalised Pi Molecular Orbital -->
+  <g data-g9-stage-id="NO3-STAGE-3">
+    <text x="400" y="72" class="title-txt" text-anchor="middle">Stage 3: Continuous 4-Centre Delocalised Pi System (Equal Bonds, 1.33 Bond Order)</text>
+    
+    <!-- Delocalised Pi cloud upper lobe -->
+    <polygon points="400,45 220,290 580,290" class="deloc-cloud" />
+    <polygon points="400,125 300,345 500,345" class="deloc-cloud" />
+
+    <!-- Equality Callout -->
+    <rect x="120" y="385" width="560" height="50" fill="#f5f3ff" stroke="#7e22ce" stroke-width="1.5" rx="6" />
+    <text x="400" y="407" class="label" text-anchor="middle" font-weight="bold" fill="#7e22ce">
+      Equal bond lengths: 125 pm · Intermediate between N–O (140 pm) and N=O (120 pm)
+    </text>
+    <text x="400" y="425" class="label" text-anchor="middle" fill="#4b5563">
+      True state is one static quantum hybrid; molecule does NOT switch or oscillate between Lewis forms!
+    </text>
+  </g>
+</svg>

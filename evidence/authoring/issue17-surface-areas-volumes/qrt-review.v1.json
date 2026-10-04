@@ -1,0 +1,331 @@
+{
+  "schema": "issue17-qrt-authoring-evidence/v1",
+  "status": "AUTHORED_NOT_RENDER_VERIFIED",
+  "repository": "reallaksh19/Grade9v3.5",
+  "issue": 17,
+  "implementation_pr": 16,
+  "subject": "Mathematics",
+  "grade": 9,
+  "topic": "Surface Areas and Volumes",
+  "source_status": "OWNER_SUPPLIED",
+  "learner_profile": {
+    "profile_id": "PROFILE-ISSUE17-SAV-COMPETITION",
+    "provenance": "OWNER_ESTIMATE",
+    "purpose": "COMPETITION",
+    "owner_event_ref": "issue17-comment-5974555745",
+    "held": {
+      "CAP-MAT-SAV-CIRCLE": "DEMONSTRATED",
+      "CAP-MAT-SAV-EXPOSED": "DEMONSTRATED",
+      "CAP-MAT-SAV-UNITS": "DEMONSTRATED",
+      "CAP-MAT-SAV-SLANT": "DEMONSTRATED",
+      "CAP-MAT-SAV-RECAST": "DEMONSTRATED"
+    },
+    "knowledge_percentage": null,
+    "measured_fit_claim": false
+  },
+  "pi_policy": {
+    "canonical": "EXACT_PI",
+    "secondary_evaluation": "Use pi=22/7 only when explicitly labelled; the owner prompt does not specify an approximation."
+  },
+  "difficulty_band_rule": {
+    "D1": [0, 2],
+    "D2": [3, 5],
+    "D3": [6, 7],
+    "D4": [8, 10]
+  },
+  "canonical_truth_refs": [
+    "https://www.ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep213.pdf",
+    "https://ncert.nic.in/textbook/pdf/jemh112.pdf"
+  ],
+  "items": [
+    {
+      "question_id": "Q1",
+      "template_id": "QRT-APPLY-D1",
+      "difficulty": {"band": "D1", "score": 1, "components": {"concept_model_selection": 0, "representation_translation": 0, "reasoning_chain_length": 0, "algebra_computational_load": 1, "trap_exception_sensitivity": 0}},
+      "demand": {"primary": "APPLY", "secondary": []},
+      "verified_answer": "294 cm²",
+      "X": "Distinguish total surface area from lateral area or volume.",
+      "Y": "Demonstrated area reasoning and square-face inventory.",
+      "Y_capability_ref": "CAP-MAT-SAV-CIRCLE",
+      "Z": "Express total cube area as six congruent face areas.",
+      "W": "Form and execute 6a² for a=7 and state square units.",
+      "protected_move_ref": "W-Q1-TSA-EXECUTE",
+      "hints": ["What does total require you to count on a cube?", "Relate one square face to the number of congruent faces.", "Write one expression for all faces; keep the arithmetic as your move."],
+      "representation": {"applicability": "NOT_APPLICABLE", "reason": "A cube picture is decorative for this demonstrated competition learner."},
+      "misconception": {"M1": "Choose 4a² or a³ because those expressions are familiar for a cube.", "M2": "Ask what each expression measures and how many square faces contribute.", "M3": "Inventory the six faces, then use an area relation rather than a volume relation."},
+      "solution_steps": [
+        {"action": "Identify six congruent square faces.", "why": "Total surface area includes every external face of the cube.", "result": "6 face areas."},
+        {"action": "Use one-face area a² and multiply by 6.", "why": "Each face has side 7 cm and area 49 cm².", "result": "6×49 = 294 cm²."}
+      ],
+      "calculations": [
+        {"expression": "7²", "result": "49 cm²", "check": "7×7=49"},
+        {"expression": "6×49", "result": "294 cm²", "check": "294/6=49"}
+      ],
+      "independent_check": "6 faces × 49 cm² per face = 294 cm².",
+      "core1a_targets": ["CORE1A-SAV-SURFACE-INVENTORY"],
+      "w_leak_check": "PASS"
+    },
+    {
+      "question_id": "Q2",
+      "template_id": "QRT-APPLY-D2",
+      "difficulty": {"band": "D2", "score": 3, "components": {"concept_model_selection": 1, "representation_translation": 0, "reasoning_chain_length": 0, "algebra_computational_load": 1, "trap_exception_sensitivity": 1}},
+      "demand": {"primary": "APPLY", "secondary": ["RETRIEVE"]},
+      "verified_answer": "280π cm² (880 cm² if π=22/7 is explicitly used)",
+      "X": "The given 14 cm is a diameter while the standard curved-area relation uses radius.",
+      "Y": "Demonstrated circle diameter-radius relation.",
+      "Y_capability_ref": "CAP-MAT-SAV-CIRCLE",
+      "Z": "Map the given diameter to the curved-area variables before substitution.",
+      "W": "Make the diameter-to-radius mapping and execute the curved-area substitution.",
+      "protected_move_ref": "W-Q2-DIAMETER-MAP",
+      "hints": ["Which surface is requested: curved wall only or any base?", "Does your chosen relation expect r or d?", "Translate the givens into the variables of that relation before evaluating it."],
+      "representation": {"applicability": "CONDITIONAL", "reason": "A symbolic d/r cross-section helps only if variable mapping is the sticking point; it must not precompute r=7."},
+      "misconception": {"M1": "Substitute diameter 14 directly as r in 2πrh.", "M2": "Ask the learner to label radius and diameter on a circle.", "M3": "Map measured quantities to formula variables before calculation."},
+      "solution_steps": [
+        {"action": "Convert diameter 14 cm to radius 7 cm.", "why": "The relation 2πrh is written in terms of radius.", "result": "r=7 cm."},
+        {"action": "Substitute r=7 and h=20 in 2πrh.", "why": "Only the curved wall is requested.", "result": "280π cm²."},
+        {"action": "Optionally evaluate with π=22/7 when stated.", "why": "That convention is secondary because the prompt did not specify π.", "result": "880 cm² if π=22/7."}
+      ],
+      "calculations": [
+        {"expression": "14/2", "result": "7 cm", "check": "2×7=14"},
+        {"expression": "2π×7×20", "result": "280π cm²", "check": "Equivalent πdh gives π×14×20=280π"}
+      ],
+      "independent_check": "Equivalent relation πdh gives 280π cm².",
+      "core1a_targets": ["CORE1A-SAV-SURFACE-INVENTORY"],
+      "w_leak_check": "PASS"
+    },
+    {
+      "question_id": "Q3",
+      "template_id": "QRT-MODEL-D2",
+      "difficulty": {"band": "D2", "score": 5, "components": {"concept_model_selection": 1, "representation_translation": 1, "reasoning_chain_length": 1, "algebra_computational_load": 1, "trap_exception_sensitivity": 1}},
+      "demand": {"primary": "MODEL", "secondary": ["APPLY"]},
+      "verified_answer": "301π cm² (946 cm² if π=22/7 is explicitly used)",
+      "X": "An open bucket has a curved wall and bottom but no material top disk.",
+      "Y": "Demonstrated open/hidden/exposed surface inventory.",
+      "Y_capability_ref": "CAP-MAT-SAV-EXPOSED",
+      "Z": "Model sheet area from only physically present sheet surfaces.",
+      "W": "Choose 2πrh+πr² and execute it for the given dimensions.",
+      "protected_move_ref": "W-Q3-SURFACE-MODEL",
+      "hints": ["Name the actual pieces of metal before choosing a formula.", "What does open at the top say about a top circular sheet?", "Convert only the physical pieces you named into area terms."],
+      "representation": {"applicability": "REQUIRED", "reason": "Show the open cylinder, wall and bottom while keeping the final surface sum learner-owned."},
+      "misconception": {"M1": "Use closed-cylinder total area or curved area alone.", "M2": "Ask for a physical-surface inventory before any formula.", "M3": "Formula choice follows the material surface inventory, not the word cylinder."},
+      "solution_steps": [
+        {"action": "Inventory curved wall plus one bottom disk; exclude top.", "why": "The bucket is open at the top.", "result": "Included surfaces: wall and base."},
+        {"action": "Add 2πrh and πr².", "why": "Those are exactly the areas of the included surfaces.", "result": "2π(7)(18)+π(7²)=301π cm²."}
+      ],
+      "calculations": [
+        {"expression": "2π×7×18", "result": "252π cm²", "check": "Curved-wall term only"},
+        {"expression": "π×7²", "result": "49π cm²", "check": "Bottom disk term only"},
+        {"expression": "252π+49π", "result": "301π cm²", "check": "Closed cylinder 350π minus one top disk 49π"}
+      ],
+      "independent_check": "Closed-cylinder area 350π minus absent top disk 49π = 301π.",
+      "core1a_targets": ["CORE1A-SAV-SURFACE-INVENTORY"],
+      "w_leak_check": "PASS"
+    },
+    {
+      "question_id": "Q4",
+      "template_id": "QRT-SYNTHESIZE-D2",
+      "difficulty": {"band": "D2", "score": 4, "components": {"concept_model_selection": 1, "representation_translation": 1, "reasoning_chain_length": 1, "algebra_computational_load": 1, "trap_exception_sensitivity": 0}},
+      "demand": {"primary": "SYNTHESIZE", "secondary": ["APPLY"]},
+      "verified_answer": "slant height 25 m; canvas 175π m² (550 m² if π=22/7 is explicitly used)",
+      "X": "Vertical height is not the slant length used by cone curved surface area.",
+      "Y": "Demonstrated Pythagoras bridge from r and h to slant height.",
+      "Y_capability_ref": "CAP-MAT-SAV-SLANT",
+      "Z": "Derive l from the axial right triangle, then use l in πrl for the open cone.",
+      "W": "Execute the dependency r,h→l→πrl without adding a base.",
+      "protected_move_ref": "W-Q4-SLANT-BRIDGE",
+      "hints": ["Which segment lies on the canvas from apex to rim?", "In an axial section, what right triangle contains r, h and l?", "Resolve the length required by the surface relation first; then use it for the open tent."],
+      "representation": {"applicability": "REQUIRED", "reason": "Show an axial triangle with r=7, h=24, l=? and an open-base cue; do not reveal l=25."},
+      "misconception": {"M1": "Use πrh or add the open base.", "M2": "Ask which segment lies on the fabric and whether a base sheet exists.", "M3": "Derive slant height from the right triangle; an open base contributes no canvas."},
+      "solution_steps": [
+        {"action": "Use Pythagoras on the axial right triangle.", "why": "For a right cone, r and h are perpendicular legs and l is the hypotenuse.", "result": "l=25 m."},
+        {"action": "Use curved cone area πrl.", "why": "The tent base is open, so no base disk is included.", "result": "175π m²."}
+      ],
+      "calculations": [
+        {"expression": "√(7²+24²)", "result": "25 m", "check": "49+576=625=25²"},
+        {"expression": "π×7×25", "result": "175π m²", "check": "Dimensions are length²"}
+      ],
+      "independent_check": "7²+24²=25² and 25 exceeds both legs.",
+      "core1a_targets": ["CORE1A-SAV-SLANT-HEIGHT-BRIDGE"],
+      "w_leak_check": "PASS"
+    },
+    {
+      "question_id": "Q5",
+      "template_id": "QRT-MODEL-D2",
+      "difficulty": {"band": "D2", "score": 5, "components": {"concept_model_selection": 1, "representation_translation": 1, "reasoning_chain_length": 1, "algebra_computational_load": 1, "trap_exception_sensitivity": 1}},
+      "demand": {"primary": "MODEL", "secondary": ["EXPLAIN", "APPLY"]},
+      "verified_answer": "220.5π cm² (693 cm² if π=22/7 is explicitly used)",
+      "X": "The inner surface of an open hemispherical bowl is curved; the mouth is not a material disk.",
+      "Y": "Demonstrated open-surface inventory.",
+      "Y_capability_ref": "CAP-MAT-SAV-EXPOSED",
+      "Z": "Distinguish curved hemisphere area from total hemisphere area by physical meaning.",
+      "W": "Select 2πr² and justify excluding the circular disk.",
+      "protected_move_ref": "W-Q5-CURVED-ONLY",
+      "hints": ["Imagine touching every material point on the inside of the bowl.", "At the mouth, is there material filling the circle?", "Choose the hemisphere relation matching only the material interior, then explain the exclusion."],
+      "representation": {"applicability": "CONDITIONAL", "reason": "A section may show curved wall and open mouth but must not shade a nonexistent disk."},
+      "misconception": {"M1": "Use 3πr² because hemisphere triggers total surface area.", "M2": "Ask whether a flat disk physically exists at the mouth.", "M3": "Formula choice follows surface inventory; an open mouth is not a surface."},
+      "solution_steps": [
+        {"action": "Choose curved hemisphere area 2πr².", "why": "The bowl has a curved interior and an open mouth, not a material circular base across the opening.", "result": "2π(10.5)²."},
+        {"action": "Evaluate the curved-area expression.", "why": "Only the curved material surface is counted.", "result": "220.5π cm²."}
+      ],
+      "calculations": [
+        {"expression": "10.5²", "result": "110.25 cm²", "check": "10.5×10.5=110.25"},
+        {"expression": "2π×110.25", "result": "220.5π cm²", "check": "Adding πr² would produce TSA 330.75π"}
+      ],
+      "independent_check": "TSA minus curved area equals one disk πr², exactly the nonexistent mouth disk.",
+      "core1a_targets": ["CORE1A-SAV-SURFACE-INVENTORY"],
+      "w_leak_check": "PASS"
+    },
+    {
+      "question_id": "Q6",
+      "template_id": "QRT-SYNTHESIZE-D3",
+      "difficulty": {"band": "D3", "score": 6, "components": {"concept_model_selection": 1, "representation_translation": 1, "reasoning_chain_length": 2, "algebra_computational_load": 1, "trap_exception_sensitivity": 1}},
+      "demand": {"primary": "SYNTHESIZE", "secondary": ["MODEL", "APPLY"]},
+      "verified_answer": "68.25π cm² (214.5 cm² if π=22/7 is explicitly used)",
+      "X": "The cone needs a derived slant height and the common circular interface is internal, not exposed.",
+      "Y": "Demonstrated Pythagoras and hidden/exposed-surface reasoning.",
+      "Y_capability_ref": "CAP-MAT-SAV-SLANT",
+      "Z": "Coordinate slant-height derivation with an exposed-surface inventory across the composite solid.",
+      "W": "Derive l, identify reachable exterior surfaces, and combine them while excluding the joint.",
+      "protected_move_ref": "W-Q6-COMPOSITE-BRIDGE",
+      "hints": ["If you painted the finished toy, which surfaces could the brush actually touch?", "The cone's required side length is not the vertical height; locate the right triangle that determines it.", "After obtaining that length, form one expression for reachable exterior only; test every candidate circle with visible after joining?"],
+      "representation": {"applicability": "REQUIRED", "reason": "Show assembled cone-on-hemisphere, axial l=? triangle and the internal seam without writing the final exposed-area sum."},
+      "misconception": {"M1": "Count the shared disk and/or use 12 cm as slant height.", "M2": "Ask whether paint reaches the joint and which triangle contains l.", "M3": "Coincident internal faces contribute zero exposed area; derive l before cone curved area."},
+      "solution_steps": [
+        {"action": "Derive the cone slant height.", "why": "Cone curved area uses l, not the vertical height 12 cm.", "result": "l=12.5 cm."},
+        {"action": "Inventory exposed surfaces as cone curved surface plus hemisphere curved surface.", "why": "The common circular interface is explicitly not exposed.", "result": "πrl+2πr²."},
+        {"action": "Evaluate the two exposed terms.", "why": "No other face is reachable from the exterior.", "result": "68.25π cm²."}
+      ],
+      "calculations": [
+        {"expression": "√(12²+3.5²)", "result": "12.5 cm", "check": "144+12.25=156.25=12.5²"},
+        {"expression": "π×3.5×12.5", "result": "43.75π cm²", "check": "Cone curved term"},
+        {"expression": "2π×3.5²", "result": "24.5π cm²", "check": "Hemisphere curved term"},
+        {"expression": "43.75π+24.5π", "result": "68.25π cm²", "check": "Adding the hidden disk would add 12.25π"}
+      ],
+      "independent_check": "Counting the hidden interface would increase the answer by π(3.5)²=12.25π cm².",
+      "core1a_targets": ["CORE1A-SAV-SURFACE-INVENTORY", "CORE1A-SAV-SLANT-HEIGHT-BRIDGE"],
+      "w_leak_check": "PASS"
+    },
+    {
+      "question_id": "Q7",
+      "template_id": "QRT-MODEL-D2",
+      "difficulty": {"band": "D2", "score": 5, "components": {"concept_model_selection": 1, "representation_translation": 1, "reasoning_chain_length": 1, "algebra_computational_load": 1, "trap_exception_sensitivity": 1}},
+      "demand": {"primary": "MODEL", "secondary": ["APPLY"]},
+      "verified_answer": "399π cm² (1254 cm² if π=22/7 is explicitly used)",
+      "X": "Translate the paint specification into exactly the surfaces actually painted.",
+      "Y": "Demonstrated surface inventory and circle/cylinder area relations.",
+      "Y_capability_ref": "CAP-MAT-SAV-EXPOSED",
+      "Z": "Model painted area as outer curved wall plus outside base.",
+      "W": "State the included surfaces, write the two-term model, and execute it.",
+      "protected_move_ref": "W-Q7-PAINT-MODEL",
+      "hints": ["Cross out every region the wording explicitly excludes.", "Match each remaining physical surface to its area relation.", "Add only those terms; do not invent a top or any inside surface."],
+      "representation": {"applicability": "CONDITIONAL", "reason": "The wording already enumerates the surfaces; a figure is only a spatial check and must not color-code the answer."},
+      "misconception": {"M1": "Include the inner wall or a top disk.", "M2": "Ask the learner to list painted surfaces before writing a formula.", "M3": "Translate condition to surface inventory to area expression."},
+      "solution_steps": [
+        {"action": "State outer curved wall and outside base as the only included surfaces.", "why": "The prompt explicitly excludes the inside and the vessel is open at the top.", "result": "Two included surfaces."},
+        {"action": "Add 2πrh and πr².", "why": "These correspond exactly to the two painted surfaces.", "result": "399π cm²."}
+      ],
+      "calculations": [
+        {"expression": "2π×7×25", "result": "350π cm²", "check": "Outer curved wall"},
+        {"expression": "π×7²", "result": "49π cm²", "check": "Outside base"},
+        {"expression": "350π+49π", "result": "399π cm²", "check": "A top disk would add another 49π"}
+      ],
+      "independent_check": "Adding a top disk would change the result by exactly 49π cm².",
+      "core1a_targets": ["CORE1A-SAV-SURFACE-INVENTORY"],
+      "w_leak_check": "PASS"
+    },
+    {
+      "question_id": "Q8",
+      "template_id": "QRT-APPLY-D2",
+      "difficulty": {"band": "D2", "score": 4, "components": {"concept_model_selection": 1, "representation_translation": 0, "reasoning_chain_length": 1, "algebra_computational_load": 1, "trap_exception_sensitivity": 1}},
+      "demand": {"primary": "APPLY", "secondary": ["SYNTHESIZE"]},
+      "verified_answer": "2700 L",
+      "X": "Preserve the physical quantity and units through capacity to 75% fill to litres.",
+      "Y": "Demonstrated area/volume units, percentage capacity and m³-to-litre conversion.",
+      "Y_capability_ref": "CAP-MAT-SAV-UNITS",
+      "Z": "Execute the cuboid-volume, percentage and cubic-unit conversion chain.",
+      "W": "Carry out the chain without applying 75% to a dimension or using a linear conversion factor.",
+      "protected_move_ref": "W-Q8-CAPACITY-CHAIN",
+      "hints": ["Find the full tank volume before applying the fill fraction.", "What physical quantity does 75% describe here?", "Keep cubic metres through the geometry; convert the final water volume to litres."],
+      "representation": {"applicability": "NOT_APPLICABLE", "reason": "The meaningful representation is the unit-labelled calculation chain, not a decorative tank graphic."},
+      "misconception": {"M1": "Apply 75% to one dimension or use an incorrect m³-to-litre factor.", "M2": "Ask what physical quantity 75% describes and what 1 m³ equals in litres.", "M3": "Percent fill acts on capacity; 1 m³=1000 L."},
+      "solution_steps": [
+        {"action": "Compute total cuboid volume.", "why": "Capacity is the tank's full volume.", "result": "3.6 m³."},
+        {"action": "Take 75% of the capacity.", "why": "The tank is filled to three quarters of total capacity.", "result": "2.7 m³."},
+        {"action": "Convert cubic metres to litres.", "why": "1 m³ equals 1000 L.", "result": "2700 L."}
+      ],
+      "calculations": [
+        {"expression": "2×1.5×1.2", "result": "3.6 m³", "check": "Product of the three dimensions"},
+        {"expression": "0.75×3.6", "result": "2.7 m³", "check": "2.7/3.6=0.75"},
+        {"expression": "2.7×1000", "result": "2700 L", "check": "2700 L/1000=2.7 m³"}
+      ],
+      "independent_check": "2700 L=2.7 m³ and 2.7/3.6=0.75.",
+      "core1a_targets": ["CORE1A-SAV-VOLUME-STRUCTURE"],
+      "w_leak_check": "PASS"
+    },
+    {
+      "question_id": "Q9",
+      "template_id": "QRT-MODEL-D2",
+      "difficulty": {"band": "D2", "score": 5, "components": {"concept_model_selection": 2, "representation_translation": 0, "reasoning_chain_length": 1, "algebra_computational_load": 1, "trap_exception_sensitivity": 1}},
+      "demand": {"primary": "MODEL", "secondary": ["EXPLAIN", "APPLY"]},
+      "verified_answer": "27 smaller spheres; total surface area is not conserved",
+      "X": "Identify the invariant implied by no metal is lost and do not confuse it with surface area.",
+      "Y": "Demonstrated conservation of volume in recasting and distinction from surface area.",
+      "Y_capability_ref": "CAP-MAT-SAV-RECAST",
+      "Z": "Equate total material volume before and after and use cubic radius scaling.",
+      "W": "Choose volume as the conserved quantity and derive the number of small spheres.",
+      "protected_move_ref": "W-Q9-CONSERVED-INVARIANT",
+      "hints": ["What physical quantity represents amount of metal before and after melting?", "For spheres, how does volume scale when radius changes by a factor?", "Compare one original volume with one small-sphere volume; leave the final count to your ratio."],
+      "representation": {"applicability": "CONDITIONAL", "reason": "A before/after recasting sketch may show reshaping but must not display exactly 27 small spheres."},
+      "misconception": {"M1": "Conserve surface area or scale the count by the radius ratio 3.", "M2": "Ask which quantity is unchanged by melting/recasting and what power of radius it uses.", "M3": "Material volume is conserved and sphere volume scales as r³; total boundary area can change."},
+      "solution_steps": [
+        {"action": "Use conservation of volume.", "why": "No metal is lost during melting and recasting.", "result": "V_large = n V_small."},
+        {"action": "Cancel the common sphere-volume constants and compare r³.", "why": "Both old and new pieces are spheres.", "result": "n=(6/2)³=27."},
+        {"action": "Compare total surface areas.", "why": "This tests the requested explanation that area is not the conserved invariant.", "result": "144π cm² originally versus 432π cm² after recasting."}
+      ],
+      "calculations": [
+        {"expression": "(6/2)³", "result": "27", "check": "27×2³=6³"},
+        {"expression": "4π×6²", "result": "144π cm²", "check": "Original sphere surface area"},
+        {"expression": "27×4π×2²", "result": "432π cm²", "check": "432π/144π=3"}
+      ],
+      "independent_check": "27×(4/3)π(2³)=(4/3)π(6³); total area triples, so area is not conserved.",
+      "core1a_targets": ["CORE1A-SAV-VOLUME-STRUCTURE"],
+      "w_leak_check": "PASS"
+    },
+    {
+      "question_id": "Q10",
+      "template_id": "QRT-EXPLAIN-D2",
+      "difficulty": {"band": "D2", "score": 3, "components": {"concept_model_selection": 1, "representation_translation": 0, "reasoning_chain_length": 1, "algebra_computational_load": 0, "trap_exception_sensitivity": 1}},
+      "demand": {"primary": "EXPLAIN", "secondary": ["APPLY"]},
+      "verified_answer": "308 cm³; r and h are unnecessary because πr²h is a shared factor",
+      "X": "Recognize that the two volume formulas share the same factor πr²h, so recovering r and h separately is irrelevant.",
+      "Y": "Demonstrated volume-unit reasoning and common-factor comparison.",
+      "Y_capability_ref": "CAP-MAT-SAV-UNITS",
+      "Z": "Compare the structures of the cone and cylinder volume relations under equal radius and height.",
+      "W": "Infer and explain the one-third cone:cylinder volume relation without solving for dimensions.",
+      "protected_move_ref": "W-Q10-STRUCTURAL-RATIO",
+      "hints": ["Write the two volume formulas side by side without substituting numbers.", "Which factor is identical because both solids have the same radius and height?", "Use the coefficient difference to relate the volumes; do not solve for r or h."],
+      "representation": {"applicability": "NOT_APPLICABLE", "reason": "A pre-attempt formula-alignment visual would nearly expose the decisive one-third relation; use it only post-attempt."},
+      "misconception": {"M1": "Try to recover r and h from one volume equation or assume equal dimensions imply equal volume.", "M2": "Ask what factor both formulas share and what coefficient differs.", "M3": "Compare symbolic structure before introducing unnecessary unknowns."},
+      "solution_steps": [
+        {"action": "Compare V_cylinder=πr²h with V_cone=(1/3)πr²h.", "why": "The radius and height are the same, so πr²h is common.", "result": "V_cone=(1/3)V_cylinder."},
+        {"action": "Apply the one-third relation to 924 cm³.", "why": "No separate values of r or h are needed once the shared factor is represented by the cylinder volume.", "result": "308 cm³."}
+      ],
+      "calculations": [
+        {"expression": "924/3", "result": "308 cm³", "check": "3×308=924"}
+      ],
+      "independent_check": "NCERT Class IX Exemplar Exercise 13.2 states the same-base, same-height cylinder has three times the cone volume; 3×308=924.",
+      "core1a_targets": ["CORE1A-SAV-VOLUME-STRUCTURE"],
+      "w_leak_check": "PASS"
+    }
+  ],
+  "core1a_synthesis": {
+    "clusters": [
+      {"id": "CORE1A-SAV-SURFACE-INVENTORY", "question_refs": ["Q1", "Q2", "Q3", "Q5", "Q6", "Q7"], "construction": "Interpret present, absent, hidden and exposed surfaces before selecting or executing an area relation.", "canonical_truth_refs": ["https://www.ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep213.pdf", "https://ncert.nic.in/textbook/pdf/jemh112.pdf"]},
+      {"id": "CORE1A-SAV-SLANT-HEIGHT-BRIDGE", "question_refs": ["Q4", "Q6"], "construction": "Use the axial right triangle to derive slant height before cone curved area.", "canonical_truth_refs": ["https://www.ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep213.pdf"]},
+      {"id": "CORE1A-SAV-VOLUME-STRUCTURE", "question_refs": ["Q8", "Q9", "Q10"], "construction": "Use volume as capacity, a conserved invariant and a shared symbolic factor.", "canonical_truth_refs": ["https://www.ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep213.pdf", "https://ncert.nic.in/textbook/pdf/jemh112.pdf"]}
+    ],
+    "existing_topic_unit": "NONE_FOUND_ON_PR_BRANCH",
+    "recommendation": "NEW_CORE1A_JUSTIFIED",
+    "authority_boundary": "Question evidence determines emphasis; NCERT canonical truth refs remain separate mathematical authority."
+  }
+}

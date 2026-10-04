@@ -1,0 +1,1129 @@
+{
+  "schema_version": "grade9v3-owner-supplied-bank-v1",
+  "bank_id": "issue18-sav",
+  "intake_digest": "issue18-owner-prompt-2026-10-04",
+  "questions": [
+    {
+      "id": "OWN-ISSUE18-SAV-01",
+      "original_identifier": "Q1",
+      "stem": "A wooden cube has edge length 7 cm.\n\nFind its total surface area.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "294 cm²",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE18-SAV-01-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Recognize total surface area as six square faces.",
+            "why_valid": "A cube has six congruent square faces.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "six faces"
+          },
+          {
+            "id": "OWN-ISSUE18-SAV-01-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Write one-face area as 7² cm².",
+            "why_valid": "Each face is a square of side 7 cm.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "49 cm² per face"
+          },
+          {
+            "id": "OWN-ISSUE18-SAV-01-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Multiply by six.",
+            "why_valid": "Total surface area sums all six face areas.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "294 cm²"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE18-SAV-01-MOVE-2",
+        "check": "6 faces × 49 cm² per face = 294 cm².",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-SAV-SURFACE-INVENTORY",
+      "family_ref": "FAM-MAT-SAV-SURFACE-AREA",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q1",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:8a6cf6586f0b655ae33a4f164794ff8af102537d9f6b1d4d735825af90b732a1"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D1",
+            "score": 1,
+            "components": {
+              "concept_model_selection": 0,
+              "representation_translation": 0,
+              "reasoning_chain_length": 0,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 0
+            },
+            "basis": "Total means all six congruent square faces. The decisive learner move is: Instantiate total cube surface area from six equal faces. Repository five-component evidence totals 1, which resolves to D1."
+          },
+          "expected_time_seconds": 90,
+          "common_wrong_route": "Use 4a² or a³ because the object is a cube.",
+          "cognitive_demand": {
+            "primary": "APPLY",
+            "secondary": []
+          },
+          "stable_crux_move": "Instantiate total cube surface area from six equal faces."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A cube sketch adds no demand-specific reasoning value for this demonstrated competition learner."
+        }
+      },
+      "conditions": [
+        "Use π = 22/7 wherever numerical approximation is required unless the question states otherwise."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "What does total surface area count on a cube?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE18-SAV-01-MOVE-1"
+        },
+        {
+          "text": "Each face is a square of side 7 cm; connect one-face area to the number of faces.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE18-SAV-01-MOVE-2"
+        },
+        {
+          "text": "Write one expression for all congruent faces; keep the arithmetic for yourself.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE18-SAV-01-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE18-SAV-02",
+      "original_identifier": "Q2",
+      "stem": "A cylindrical water bottle has diameter 14 cm and height 20 cm.\n\nFind its curved surface area.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "880 cm²",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE18-SAV-02-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Use curved surface area only.",
+            "why_valid": "The question asks for the curved wall, not the circular ends.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "CSA model"
+          },
+          {
+            "id": "OWN-ISSUE18-SAV-02-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Convert diameter 14 cm to radius 7 cm.",
+            "why_valid": "The relation 2πrh is written in radius.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "r=7 cm"
+          },
+          {
+            "id": "OWN-ISSUE18-SAV-02-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Evaluate 2πrh.",
+            "why_valid": "Substitution now matches the formula variables.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "880 cm²"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE18-SAV-02-MOVE-2",
+        "check": "πdh = (22/7)×14×20 = 880 cm².",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-SAV-SURFACE-INVENTORY",
+      "family_ref": "FAM-MAT-SAV-SURFACE-AREA",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q2",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:5bd78ea1e43374b6bc08a3ed300a5b0717fb5ab3fc29641bb9428f9836b3e6c0"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 3,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 0,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "The stated 14 cm is a diameter while 2πrh uses radius. The decisive learner move is: Map diameter to the formula variable, then execute curved surface area. Repository five-component evidence totals 3, which resolves to D2."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "Substitute 14 as r in 2πrh.",
+          "cognitive_demand": {
+            "primary": "APPLY",
+            "secondary": [
+              "RETRIEVE"
+            ]
+          },
+          "stable_crux_move": "Map diameter to the formula variable, then execute curved surface area."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A diameter-versus-radius cross-section helps only if that mapping is the sticking point; it must not reveal r=7 numerically."
+        }
+      },
+      "conditions": [
+        "Use π = 22/7 wherever numerical approximation is required unless the question states otherwise."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Which surface is requested: curved wall only, or bases too?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE18-SAV-02-MOVE-1"
+        },
+        {
+          "text": "Check whether your chosen formula expects r or d.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE18-SAV-02-MOVE-2"
+        },
+        {
+          "text": "Translate every given into the variables of that formula before multiplying.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE18-SAV-02-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE18-SAV-03",
+      "original_identifier": "Q3",
+      "stem": "A cylindrical bucket is open at the top.\n\nIts internal radius is 7 cm and its height is 18 cm.\n\nFind the area of metal sheet required to make the bucket, ignoring the thickness of the sheet.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "946 cm²",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE18-SAV-03-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Inventory the metal sheet as curved wall plus one bottom disk.",
+            "why_valid": "The bucket is open at the top, so no top disk exists.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "wall + base"
+          },
+          {
+            "id": "OWN-ISSUE18-SAV-03-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Write 2πrh + πr².",
+            "why_valid": "Those are the areas of the two physical sheet pieces.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "area model"
+          },
+          {
+            "id": "OWN-ISSUE18-SAV-03-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Evaluate with r=7 cm, h=18 cm and π=22/7.",
+            "why_valid": "The model now contains all and only included surfaces.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "946 cm²"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE18-SAV-03-MOVE-2",
+        "check": "Closed-cylinder area is 1100 cm²; subtract one missing top disk, 154 cm², to get 946 cm².",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-SAV-SURFACE-INVENTORY",
+      "family_ref": "FAM-MAT-SAV-SURFACE-AREA",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q3",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:4523d76fb9f40a27921d3ad752340493f5a601d57a2a466f709c57b4f780ad44"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "An open bucket has a curved wall and one base but no top disk. The decisive learner move is: Form the sheet-area model from physically present surfaces. Repository five-component evidence totals 5, which resolves to D2."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "Use closed-cylinder total surface area or curved surface area alone.",
+          "cognitive_demand": {
+            "primary": "MODEL",
+            "secondary": [
+              "APPLY"
+            ]
+          },
+          "stable_crux_move": "Form the sheet-area model from physically present surfaces."
+        }
+      },
+      "conditions": [
+        "Use π = 22/7 wherever numerical approximation is required unless the question states otherwise."
+      ],
+      "figure_refs": [
+        "REP-MAT-SAV-OPEN-CYLINDER"
+      ],
+      "scaffolds": [
+        {
+          "text": "Before using a formula, name the actual pieces of metal sheet.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE18-SAV-03-MOVE-1"
+        },
+        {
+          "text": "Connect 'open at the top' to whether a top circular sheet exists.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE18-SAV-03-MOVE-2"
+        },
+        {
+          "text": "Write area as the sum of only those physical pieces, then substitute.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE18-SAV-03-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE18-SAV-04",
+      "original_identifier": "Q4",
+      "stem": "A conical tent has radius 7 m and vertical height 24 m.\n\nFind:\n\n1. its slant height;\n2. the area of canvas required to make the tent.\n\nThe base of the tent is open.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "slant height 25 m; canvas 550 m²",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE18-SAV-04-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Identify slant height l as the length needed by cone curved area.",
+            "why_valid": "Canvas follows the sloping surface, not the vertical axis.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "need l"
+          },
+          {
+            "id": "OWN-ISSUE18-SAV-04-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Use the axial right triangle with r=7 m and h=24 m.",
+            "why_valid": "For a right cone, r and h are perpendicular legs and l is the hypotenuse.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "l²=7²+24²"
+          },
+          {
+            "id": "OWN-ISSUE18-SAV-04-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Find l=25 m, then evaluate πrl for the open tent.",
+            "why_valid": "The base is open, so only curved canvas is included.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "550 m²"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE18-SAV-04-MOVE-2",
+        "check": "7-24-25 satisfies Pythagoras; π×7×25 = 550 m² using π=22/7.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-SAV-CONE-BRIDGE",
+      "family_ref": "FAM-MAT-SAV-SURFACE-AREA",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q4",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:59213478051f5414885e2e7b5896cd90dc0e72cb0fbe49fa9410a0a9c66e1749"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 4,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 0
+            },
+            "basis": "Vertical height is not the slant length used in cone curved surface area. The decisive learner move is: Derive l from r and h, then use l in πrl. Repository five-component evidence totals 4, which resolves to D2."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "Use πrh with vertical height or add the base area.",
+          "cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": [
+              "APPLY"
+            ]
+          },
+          "stable_crux_move": "Derive l from r and h, then use l in πrl."
+        }
+      },
+      "conditions": [
+        "Use π = 22/7 wherever numerical approximation is required unless the question states otherwise."
+      ],
+      "figure_refs": [
+        "REP-MAT-SAV-CONE-SLANT"
+      ],
+      "scaffolds": [
+        {
+          "text": "Which length actually lies along the canvas from apex to rim?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE18-SAV-04-MOVE-1"
+        },
+        {
+          "text": "A central cross-section contains r, h and l as a right triangle.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE18-SAV-04-MOVE-2"
+        },
+        {
+          "text": "Resolve the needed length first; only then evaluate the open cone's canvas area.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE18-SAV-04-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE18-SAV-05",
+      "original_identifier": "Q5",
+      "stem": "A hemispherical bowl has radius 10.5 cm.\n\nFind the area of its inner surface.\n\nExplain why the circular base is not included in your calculation.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "693 cm²",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE18-SAV-05-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Treat the bowl mouth as an opening, not a material disk.",
+            "why_valid": "The requested inner surface is the curved interior of the open hemisphere.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "curved hemisphere"
+          },
+          {
+            "id": "OWN-ISSUE18-SAV-05-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Use 2πr² rather than 3πr².",
+            "why_valid": "3πr² would include a flat circular base that is not present.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "2πr²"
+          },
+          {
+            "id": "OWN-ISSUE18-SAV-05-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Evaluate with r=10.5 cm.",
+            "why_valid": "The expression matches the physical inner surface.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "693 cm²"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE18-SAV-05-MOVE-2",
+        "check": "Adding πr² would convert curved area to total hemisphere area; that extra term is exactly the nonexistent base disk.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-SAV-SURFACE-INVENTORY",
+      "family_ref": "FAM-MAT-SAV-SURFACE-AREA",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q5",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:56f8ac2d2b07da9200f19cd7d75ff1a1330854221b6c8de2fe3707655f8e7110"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "The open bowl's inner surface is curved; its mouth is not a material disk. The decisive learner move is: Distinguish curved hemisphere area from total hemisphere area. Repository five-component evidence totals 5, which resolves to D2."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "Use 3πr² because 'hemisphere' triggers total surface area.",
+          "cognitive_demand": {
+            "primary": "MODEL",
+            "secondary": [
+              "EXPLAIN",
+              "APPLY"
+            ]
+          },
+          "stable_crux_move": "Distinguish curved hemisphere area from total hemisphere area."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A cross-section may show curved wall and open mouth but must not shade a nonexistent disk."
+        }
+      },
+      "conditions": [
+        "Use π = 22/7 wherever numerical approximation is required unless the question states otherwise."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Imagine touching every material point on the inside of the bowl.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE18-SAV-05-MOVE-1"
+        },
+        {
+          "text": "At the mouth, is there material filling the circle or just an opening?",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE18-SAV-05-MOVE-2"
+        },
+        {
+          "text": "Choose the hemisphere-area expression that matches only the material interior.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE18-SAV-05-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE18-SAV-06",
+      "original_identifier": "Q6",
+      "stem": "A toy is made by mounting a cone on a hemisphere.\n\nThe cone and hemisphere have the same radius, 3.5 cm.\n\nThe vertical height of the cone is 12 cm.\n\nFind the total **exposed** surface area of the toy.\n\nThe circular face where the cone and hemisphere join is not exposed.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "214.5 cm²",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE18-SAV-06-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Inventory only the exterior cone and hemisphere surfaces; exclude the shared circle.",
+            "why_valid": "The joining face is internal after assembly.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "exterior surfaces"
+          },
+          {
+            "id": "OWN-ISSUE18-SAV-06-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Use the cone axial triangle to find l from r=3.5 cm and h=12 cm.",
+            "why_valid": "Cone curved area requires slant height.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "l=12.5 cm"
+          },
+          {
+            "id": "OWN-ISSUE18-SAV-06-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Add πrl and 2πr², without a joining disk.",
+            "why_valid": "These are exactly the reachable exterior surfaces.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "214.5 cm²"
+          },
+          {
+            "id": "OWN-ISSUE18-SAV-06-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Check what an erroneous joining disk would add.",
+            "why_valid": "A hidden disk would contribute πr²=38.5 cm², exposing the modelling error.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "hidden-interface check"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE18-SAV-06-MOVE-2",
+        "check": "Wrongly counting the hidden disk adds π(3.5)²=38.5 cm²; the correct exposed area is 214.5 cm².",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-SAV-CONE-BRIDGE",
+      "family_ref": "FAM-MAT-SAV-SURFACE-AREA",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q6",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:90844a90a81c1808752f7fb4a4566119cd40202c671242f492dcf0a0f8bc41f1"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "The solids share an internal circular interface and the cone also needs a derived slant height. The decisive learner move is: Coordinate derived slant height with an exposed-surface inventory across the composite solid. Repository five-component evidence totals 6, which resolves to D3."
+          },
+          "expected_time_seconds": 240,
+          "common_wrong_route": "Count one or both shared circular faces, or use 12 cm as slant height.",
+          "cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": [
+              "MODEL",
+              "APPLY"
+            ]
+          },
+          "stable_crux_move": "Coordinate derived slant height with an exposed-surface inventory across the composite solid."
+        }
+      },
+      "conditions": [
+        "Use π = 22/7 wherever numerical approximation is required unless the question states otherwise."
+      ],
+      "figure_refs": [
+        "REP-MAT-SAV-COMPOSITE-JOINT"
+      ],
+      "scaffolds": [
+        {
+          "text": "If you painted the completed toy, which surfaces could the brush actually touch?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE18-SAV-06-MOVE-1"
+        },
+        {
+          "text": "The cone's needed side length is not 12 cm; locate the right triangle that determines it.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE18-SAV-06-MOVE-2"
+        },
+        {
+          "text": "After finding that length, build one expression for the reachable exterior only. Test every candidate circle with 'is it visible after joining?'",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE18-SAV-06-MOVE-3"
+        },
+        {
+          "text": "Keep the shared joining circle on your inventory until you decide whether it is reachable from outside.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE18-SAV-06-MOVE-4"
+        },
+        {
+          "text": "Use a final touch/paint test on every area term before calculating the total.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "OWN-ISSUE18-SAV-06-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE18-SAV-07",
+      "original_identifier": "Q7",
+      "stem": "A cylindrical vessel of radius 7 cm and height 25 cm is open at the top.\n\nIt is to be painted:\n\n- on its entire outer curved surface; and\n- on the outside of its circular base.\n\nThe inside is not painted.\n\nFind the area to be painted.\n\nBefore calculating, state exactly which surfaces are included.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "1254 cm²",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE18-SAV-07-MOVE-1",
+            "kind": "DECIDE",
+            "action": "State the painted surfaces: outer curved wall and outside base only.",
+            "why_valid": "The top is open and the inside is explicitly unpainted.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "two painted surfaces"
+          },
+          {
+            "id": "OWN-ISSUE18-SAV-07-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Write 2πrh + πr².",
+            "why_valid": "Each term corresponds to one painted physical surface.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "paint-area model"
+          },
+          {
+            "id": "OWN-ISSUE18-SAV-07-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Evaluate with r=7 cm and h=25 cm.",
+            "why_valid": "The calculation now follows the stated paint specification.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "1254 cm²"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE18-SAV-07-MOVE-2",
+        "check": "Adding one top disk would change the answer by exactly 154 cm².",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-SAV-SURFACE-INVENTORY",
+      "family_ref": "FAM-MAT-SAV-SURFACE-AREA",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q7",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:69b99335fa92037a81d113bccbfbe2b249856ab929dd1ae399eeadab3846733d"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Translate the paint specification into exactly two surface terms. The decisive learner move is: Model painted area as outer curved wall plus outside base. Repository five-component evidence totals 5, which resolves to D2."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "Include the inside surface or a top disk.",
+          "cognitive_demand": {
+            "primary": "MODEL",
+            "secondary": [
+              "APPLY"
+            ]
+          },
+          "stable_crux_move": "Model painted area as outer curved wall plus outside base."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "The wording already enumerates surfaces; a figure is only a spatial check and must not rely on color alone."
+        }
+      },
+      "conditions": [
+        "Use π = 22/7 wherever numerical approximation is required unless the question states otherwise."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Cross out every region the wording explicitly says is not painted.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE18-SAV-07-MOVE-1"
+        },
+        {
+          "text": "Match each remaining physical surface to its own area relation.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE18-SAV-07-MOVE-2"
+        },
+        {
+          "text": "Add only those remaining terms; do not introduce a top or any inside surface.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE18-SAV-07-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE18-SAV-08",
+      "original_identifier": "Q8",
+      "stem": "A rectangular water tank is 2 m long, 1.5 m wide and 1.2 m deep.\n\nIt is filled to 75% of its total capacity.\n\nHow many litres of water are in the tank?\n\nShow the unit conversion clearly.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "2700 L",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE18-SAV-08-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Find full tank volume before applying the fill percentage.",
+            "why_valid": "Seventy-five percent describes the tank's capacity, not a single dimension.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "3.6 m³ full"
+          },
+          {
+            "id": "OWN-ISSUE18-SAV-08-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Take 75% of 3.6 m³.",
+            "why_valid": "The water occupies three quarters of the full volume.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "2.7 m³ water"
+          },
+          {
+            "id": "OWN-ISSUE18-SAV-08-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Convert 2.7 m³ to litres using 1 m³=1000 L.",
+            "why_valid": "The conversion preserves the same physical volume.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "2700 L"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE18-SAV-08-MOVE-2",
+        "check": "2700 L = 2.7 m³ and 2.7/3.6 = 0.75.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-SAV-VOLUME-STRUCTURE",
+      "family_ref": "FAM-MAT-SAV-VOLUME",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q8",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:892d3cdb5b8496d0cf0cbd1bb0bf027caf53e3f496d6ee89a3c4a952c084e297"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 4,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Preserve order and units through full volume to 75% fill to litres. The decisive learner move is: Execute rectangular-prism, percentage and conversion chain. Repository five-component evidence totals 4, which resolves to D2."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "Apply 75% to one dimension or use an incorrect m³-to-litre factor.",
+          "cognitive_demand": {
+            "primary": "APPLY",
+            "secondary": [
+              "SYNTHESIZE"
+            ]
+          },
+          "stable_crux_move": "Execute rectangular-prism, percentage and conversion chain."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A tank or fill graphic adds little reasoning value; the meaningful representation is the unit-labelled calculation chain."
+        }
+      },
+      "conditions": [
+        "Use π = 22/7 wherever numerical approximation is required unless the question states otherwise."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Find the tank's full volume before applying the fill fraction.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE18-SAV-08-MOVE-1"
+        },
+        {
+          "text": "Treat 75% as a multiplier on volume, not on one dimension.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE18-SAV-08-MOVE-2"
+        },
+        {
+          "text": "Keep m³ through the geometry; convert the final water volume to litres.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE18-SAV-08-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE18-SAV-09",
+      "original_identifier": "Q9",
+      "stem": "A solid metallic sphere of radius 6 cm is melted and recast into identical solid spheres of radius 2 cm.\n\nAssume that no metal is lost.\n\nHow many smaller spheres are formed?\n\nExplain why surface area is not conserved in this process.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "27 smaller spheres",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE18-SAV-09-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Use conservation of volume, not surface area.",
+            "why_valid": "No metal lost means the amount of material is unchanged.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "volume invariant"
+          },
+          {
+            "id": "OWN-ISSUE18-SAV-09-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Set one large-sphere volume equal to n small-sphere volumes.",
+            "why_valid": "The same total material volume is redistributed.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "6³ = n·2³ after common factors cancel"
+          },
+          {
+            "id": "OWN-ISSUE18-SAV-09-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Solve n=(6/2)³.",
+            "why_valid": "Sphere volume scales with the cube of radius.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "27 spheres"
+          },
+          {
+            "id": "OWN-ISSUE18-SAV-09-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Compare surface areas before and after.",
+            "why_valid": "144π becomes 27×16π=432π, so boundary area is not conserved.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "surface area triples"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE18-SAV-09-MOVE-2",
+        "check": "27×2³=6³; total smaller-sphere surface area is 432π cm² versus 144π cm² originally.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-SAV-VOLUME-STRUCTURE",
+      "family_ref": "FAM-MAT-SAV-VOLUME",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q9",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:f980a5fed2b1f6051fd5410ed79e72af92a750d2a8133db2e8a22cdb115a52f1"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Identify what is conserved by 'no metal lost' and distinguish it from surface area. The decisive learner move is: Formulate V_large=n·V_small and use r³ scaling. Repository five-component evidence totals 5, which resolves to D2."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "Conserve surface area or use the linear radius ratio 6/2.",
+          "cognitive_demand": {
+            "primary": "MODEL",
+            "secondary": [
+              "EXPLAIN",
+              "APPLY"
+            ]
+          },
+          "stable_crux_move": "Formulate V_large=n·V_small and use r³ scaling."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A before/after schematic may show reshaping but must not depict exactly 27 small spheres or imply the picture proves conservation."
+        }
+      },
+      "conditions": [
+        "Use π = 22/7 wherever numerical approximation is required unless the question states otherwise."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "What quantity measures the amount of metal before and after reshaping?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE18-SAV-09-MOVE-1"
+        },
+        {
+          "text": "For similar spheres, volume scales with the cube of radius.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE18-SAV-09-MOVE-2"
+        },
+        {
+          "text": "Represent the recast condition as one large-sphere volume equalling n small-sphere volumes.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE18-SAV-09-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE18-SAV-10",
+      "original_identifier": "Q10",
+      "stem": "A cone and a cylinder have the same base radius and the same height.\n\nThe volume of the cylinder is 924 cm³.\n\nFind the volume of the cone.\n\nThen explain why the radius and height do **not** need to be calculated separately.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "308 cm³",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE18-SAV-10-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Compare the cone and cylinder volume formulas before solving dimensions.",
+            "why_valid": "The solids have the same r and h.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "common factor"
+          },
+          {
+            "id": "OWN-ISSUE18-SAV-10-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Cancel the common πr²h factor conceptually.",
+            "why_valid": "Cylinder volume is πr²h while cone volume is one third of it.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Vcone=Vcylinder/3"
+          },
+          {
+            "id": "OWN-ISSUE18-SAV-10-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Compute 924/3.",
+            "why_valid": "The structural ratio supplies the cone volume directly.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "308 cm³"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE18-SAV-10-MOVE-2",
+        "check": "3×308=924.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-SAV-VOLUME-STRUCTURE",
+      "family_ref": "FAM-MAT-SAV-VOLUME",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q10",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:6eb6b8308e2b27f72375517136dd642d0c8c47c66dd4a640359b176e9bdf4592"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 3,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Compare the formulas structurally instead of reconstructing r and h. The decisive learner move is: Derive the volume ratio for equal radius and height. Repository five-component evidence totals 3, which resolves to D2."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "Solve for r and h separately or assume cone volume is half the cylinder.",
+          "cognitive_demand": {
+            "primary": "EXPLAIN",
+            "secondary": [
+              "APPLY"
+            ]
+          },
+          "stable_crux_move": "Derive the volume ratio for equal radius and height."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "An SVG would not improve the decisive reasoning; the useful representation is the symbolic formula comparison."
+        }
+      },
+      "conditions": [
+        "Use π = 22/7 wherever numerical approximation is required unless the question states otherwise."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Write the two formulas symbolically before inserting any number.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE18-SAV-10-MOVE-1"
+        },
+        {
+          "text": "Mark the factor that is identical because radius and height are the same.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE18-SAV-10-MOVE-2"
+        },
+        {
+          "text": "Form V_cone/V_cylinder; simplify the common factor, then use the given cylinder volume.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE18-SAV-10-MOVE-3"
+        }
+      ]
+    }
+  ]
+}
