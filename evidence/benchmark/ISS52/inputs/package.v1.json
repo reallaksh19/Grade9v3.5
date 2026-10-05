@@ -538,8 +538,6 @@
           "worked_anchor_ref": "WK-ISS52-FINITE-DATA",
           "crux_question_refs": [
             "ISS52-Q1",
-            "ISS52-Q7",
-            "ISS52-Q8",
             "ISS52-Q10"
           ],
           "crux_step_ref": "ISS52-FINITE-DATA-4",
@@ -674,8 +672,7 @@
           "reveal_stage_refs": [],
           "worked_anchor_ref": "WK-ISS52-MULTIPLICITY",
           "crux_question_refs": [
-            "ISS52-Q2",
-            "ISS52-Q9"
+            "ISS52-Q2"
           ],
           "crux_step_ref": "ISS52-MULTIPLICITY-4",
           "misconception_indexes": [
@@ -809,8 +806,7 @@
           "reveal_stage_refs": [],
           "worked_anchor_ref": "WK-ISS52-MIN-DEGREE",
           "crux_question_refs": [
-            "ISS52-Q3",
-            "ISS52-Q9"
+            "ISS52-Q3"
           ],
           "crux_step_ref": "ISS52-MIN-DEGREE-4",
           "misconception_indexes": [
@@ -1390,6 +1386,396 @@
               "statement": "CONNECT: Explain which other benchmark question would fail if the same hypothesis were dropped.",
               "check_type": null,
               "role": "CONNECT"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MIC-MATH-ISS52-BOUNDED-UNBOUNDED",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS52-OWNER",
+        "SRC-ISS52-AUTHORED-PEDAGOGY"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:component_waivers": {
+          "EQUATIONS": "This construction is driven by a factor/constraint ledger rather than one reusable formula card.",
+          "STAGED_VISUAL": "A staged picture would add no semantic information beyond the symbolic constraints and would risk becoming decorative."
+        }
+      },
+      "title": "What survives when a degree bound is removed",
+      "bucket_id": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE",
+      "primary_capability_ref": "CAP-MATH-POLY-BOUNDED-UNBOUNDED-IDENTIFICATION",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Requires tracking which conclusions depend on the degree budget and constructing counterexamples after that budget disappears.",
+      "entry_assumptions": [
+        "Can factor routine one-variable polynomials and use the factor theorem.",
+        "Can preserve stated degree and domain conditions while transforming an expression."
+      ],
+      "inferential_jump": "Tag every conclusion by the hypothesis that actually forces it; after removing the degree bound, construct the complete multiplier freedom before reclassifying claims.",
+      "teaching_path": [
+        {
+          "id": "MIC-MATH-ISS52-BOUNDED-UNBOUNDED-STEP-1",
+          "role": "DECLARE",
+          "action": "Separate consequences of evenness and fixed values from consequences that use the degree bound.",
+          "why_valid": "Removing one hypothesis invalidates only inferences that depended on it.",
+          "inputs": [],
+          "output": "A dependency ledger for the bounded conclusions."
+        },
+        {
+          "id": "MIC-MATH-ISS52-BOUNDED-UNBOUNDED-STEP-2",
+          "role": "TRANSFORM",
+          "action": "Use evenness to reflect the required roots and factor all roots forced before the degree bound is used.",
+          "why_valid": "Evenness gives p(-r)=p(r), so every nonzero real root appears with its negative partner.",
+          "inputs": [],
+          "output": "A forced even factor independent of the degree ceiling."
+        },
+        {
+          "id": "MIC-MATH-ISS52-BOUNDED-UNBOUNDED-STEP-3",
+          "role": "TRANSFORM",
+          "action": "In the bounded case, spend the degree budget and use the value at zero to determine the remaining scalar.",
+          "why_valid": "Once the forced distinct roots consume the allowed degree, no nonconstant residual factor remains.",
+          "inputs": [],
+          "output": "The unique bounded polynomial and its bounded claim statuses."
+        },
+        {
+          "id": "MIC-MATH-ISS52-BOUNDED-UNBOUNDED-STEP-4",
+          "role": "VERIFY",
+          "action": "After removing the bound, parameterize even multipliers that preserve the value at zero and use contrasting multipliers to test necessity.",
+          "why_valid": "A complete admissible family supplies direct counterexamples to claims that were degree-bound dependent.",
+          "inputs": [],
+          "output": "A necessary/possible/impossible classification that changes only where the removed hypothesis mattered."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-ISS52-Q7"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Every conclusion from the bounded polynomial is carried unchanged after the degree restriction is removed.",
+          "diagnostic_prompt": "If the bounded polynomial is unique, does uniqueness automatically survive when only the degree limit is deleted?",
+          "repair": "No. Re-derive each conclusion from the remaining hypotheses and use an admissible multiplier family to test the rest."
+        }
+      ],
+      "exit_task": {
+        "prompt": "An even polynomial has required roots ±1 and ±4 and a fixed nonzero value at 0. What should you parameterize after a degree bound is removed?",
+        "source_ref": "SRC-ISS52-AUTHORED-PEDAGOGY",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Keep the forced even factor and multiply it by a general even polynomial whose value at zero preserves the fixed value.",
+          "reasoning": [
+            "No. Re-derive each conclusion from the remaining hypotheses and use an admissible multiplier family to test the rest."
+          ],
+          "check": "Apply the same dependency/completeness check to a changed case.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit checks a structural inference."
+        }
+      },
+      "research_contribution": "Changed-case Core1A bridge for ISS52-Q7; no learner-trial effectiveness is claimed.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "construction_units": [
+        {
+          "id": "CU-MATH-ISS52-BOUNDED-UNBOUNDED-1",
+          "decision": "Tag every conclusion by the hypothesis that actually forces it; after removing the degree bound, construct the complete multiplier freedom before reclassifying claims.",
+          "step_refs": [
+            "MIC-MATH-ISS52-BOUNDED-UNBOUNDED-STEP-1",
+            "MIC-MATH-ISS52-BOUNDED-UNBOUNDED-STEP-2",
+            "MIC-MATH-ISS52-BOUNDED-UNBOUNDED-STEP-3",
+            "MIC-MATH-ISS52-BOUNDED-UNBOUNDED-STEP-4"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": "WK-ISS52-BOUNDED-UNBOUNDED",
+          "crux_question_refs": [
+            "ISS52-Q7"
+          ],
+          "crux_step_ref": "MIC-MATH-ISS52-BOUNDED-UNBOUNDED-STEP-4",
+          "misconception_indexes": [
+            0
+          ],
+          "relation_refs": [],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "check_type": null,
+              "statement": "CHECK: Point to the exact step in the bounded proof that spends the degree budget."
+            },
+            {
+              "role": "APPLY",
+              "check_type": null,
+              "statement": "APPLY: Choose two even multipliers with value 1 at zero—one with no new real zeros and one with new real zeros—and compare the conclusions."
+            },
+            {
+              "role": "CONNECT",
+              "check_type": null,
+              "statement": "CONNECT: Explain why this is the same discipline as asking which finite-data identity inference used a degree bound."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MIC-MATH-ISS52-DIFFERENCE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS52-OWNER",
+        "SRC-ISS52-AUTHORED-PEDAGOGY"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:component_waivers": {
+          "EQUATIONS": "This construction is driven by a factor/constraint ledger rather than one reusable formula card.",
+          "STAGED_VISUAL": "A staged picture would add no semantic information beyond the symbolic constraints and would risk becoming decorative."
+        }
+      },
+      "title": "Identify a difference without identifying its components",
+      "bucket_id": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE",
+      "primary_capability_ref": "CAP-MATH-POLY-DIFFERENCE-IDENTIFICATION",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The algebra is short, but the identification claim is easy to overstate: a unique difference need not identify either component.",
+      "entry_assumptions": [
+        "Can factor routine one-variable polynomials and use the factor theorem.",
+        "Can preserve stated degree and domain conditions while transforming an expression."
+      ],
+      "inferential_jump": "Move the observations to the difference polynomial, identify that bounded object, then test component uniqueness with a common additive perturbation.",
+      "teaching_path": [
+        {
+          "id": "MIC-MATH-ISS52-DIFFERENCE-STEP-1",
+          "role": "REPRESENT",
+          "action": "Define the difference polynomial and convert every agreement input into one of its zeros.",
+          "why_valid": "Subtracting equal values gives zero while preserving the degree ceiling.",
+          "inputs": [],
+          "output": "A bounded-degree polynomial with named roots."
+        },
+        {
+          "id": "MIC-MATH-ISS52-DIFFERENCE-STEP-2",
+          "role": "TRANSFORM",
+          "action": "Factor the named roots and use the remaining value condition to determine the scalar.",
+          "why_valid": "The factor theorem plus the degree budget leaves only the scalar freedom.",
+          "inputs": [],
+          "output": "The unique difference polynomial."
+        },
+        {
+          "id": "MIC-MATH-ISS52-DIFFERENCE-STEP-3",
+          "role": "VERIFY",
+          "action": "Construct two distinct component pairs with the same difference by changing both components in the same admissible way.",
+          "why_valid": "A common additive polynomial cancels in p-q, so uniqueness of the difference does not imply uniqueness of its summands.",
+          "inputs": [],
+          "output": "An explicit separation between identified difference and unidentified components."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-ISS52-Q8"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Once p-q is uniquely known, p and q must each be uniquely known.",
+          "diagnostic_prompt": "Can two different pairs of bounded-degree polynomials have exactly the same difference?",
+          "repair": "Yes. Add the same bounded-degree polynomial to both components; the difference is unchanged."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Two quadratics agree at two distinct inputs and their difference is known at a third. What object should you identify first?",
+        "source_ref": "SRC-ISS52-AUTHORED-PEDAGOGY",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Identify the bounded-degree difference polynomial first; only then test whether its decomposition into two components is unique.",
+          "reasoning": [
+            "Yes. Add the same bounded-degree polynomial to both components; the difference is unchanged."
+          ],
+          "check": "Apply the same dependency/completeness check to a changed case.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit checks a structural inference."
+        }
+      },
+      "research_contribution": "Changed-case Core1A bridge for ISS52-Q8; no learner-trial effectiveness is claimed.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "construction_units": [
+        {
+          "id": "CU-MATH-ISS52-DIFFERENCE-1",
+          "decision": "Move the observations to the difference polynomial, identify that bounded object, then test component uniqueness with a common additive perturbation.",
+          "step_refs": [
+            "MIC-MATH-ISS52-DIFFERENCE-STEP-1",
+            "MIC-MATH-ISS52-DIFFERENCE-STEP-2",
+            "MIC-MATH-ISS52-DIFFERENCE-STEP-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": "WK-ISS52-DIFFERENCE",
+          "crux_question_refs": [
+            "ISS52-Q8"
+          ],
+          "crux_step_ref": "MIC-MATH-ISS52-DIFFERENCE-STEP-3",
+          "misconception_indexes": [
+            0
+          ],
+          "relation_refs": [],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "check_type": null,
+              "statement": "CHECK: Say why agreement at an input becomes a root of p-q."
+            },
+            {
+              "role": "APPLY",
+              "check_type": null,
+              "statement": "APPLY: For a changed pair with two agreement points, factor the difference and determine its scalar from one more value."
+            },
+            {
+              "role": "CONNECT",
+              "check_type": null,
+              "statement": "CONNECT: Give a common additive polynomial that changes both components but leaves their difference fixed."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MIC-MATH-ISS52-EXACT-ZERO-SET",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS52-OWNER",
+        "SRC-ISS52-AUTHORED-PEDAGOGY"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:component_waivers": {
+          "EQUATIONS": "This construction is driven by a factor/constraint ledger rather than one reusable formula card.",
+          "STAGED_VISUAL": "A staged picture would add no semantic information beyond the symbolic constraints and would risk becoming decorative."
+        }
+      },
+      "title": "Prove an exact real-zero-set list is complete",
+      "bucket_id": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE",
+      "primary_capability_ref": "CAP-MATH-POLY-EXACT-REAL-ZERO-SET",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Completeness requires accounting for every multiplicity allocation and every residual factor that could fit inside the degree budget.",
+      "entry_assumptions": [
+        "Can factor routine one-variable polynomials and use the factor theorem.",
+        "Can preserve stated degree and domain conditions while transforming an expression."
+      ],
+      "inferential_jump": "Treat the named zeros as required factors, enumerate multiplicity and residual-factor budgets, and eliminate every residual case that would introduce another real zero.",
+      "teaching_path": [
+        {
+          "id": "MIC-MATH-ISS52-EXACT-ZERO-SET-STEP-1",
+          "role": "REPRESENT",
+          "action": "Write positive multiplicities for every required real zero and reserve the remaining degree, if any, for a monic residual factor.",
+          "why_valid": "The factor theorem accounts for all named zeros while the degree ceiling makes the remaining cases finite.",
+          "inputs": [],
+          "output": "A complete multiplicity/residual-factor case ledger."
+        },
+        {
+          "id": "MIC-MATH-ISS52-EXACT-ZERO-SET-STEP-2",
+          "role": "TRANSFORM",
+          "action": "Use the prescribed value and monicity to eliminate multiplicity allocations that cannot meet the normalization.",
+          "why_valid": "Evaluating the factored form at the specified input turns multiplicity parity and total degree into concrete constraints.",
+          "inputs": [],
+          "output": "A reduced set of candidate allocations."
+        },
+        {
+          "id": "MIC-MATH-ISS52-EXACT-ZERO-SET-STEP-3",
+          "role": "CONNECT",
+          "action": "For each residual linear or quadratic case, decide whether the residual factor must create a forbidden real zero.",
+          "why_valid": "A real linear factor always has a real zero; a quadratic's constant/discriminant constraints can force real roots.",
+          "inputs": [],
+          "output": "All residual cases that violate the exact zero set are removed."
+        },
+        {
+          "id": "MIC-MATH-ISS52-EXACT-ZERO-SET-STEP-4",
+          "role": "VERIFY",
+          "action": "Check every surviving polynomial for degree, monicity, prescribed value and exactly the required distinct real zeros.",
+          "why_valid": "The exhaustive ledger plus direct verification proves both soundness and completeness.",
+          "inputs": [],
+          "output": "A complete list, not merely a collection of examples."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-ISS52-Q9"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Listing a few polynomials with the visible required roots is treated as a complete classification.",
+          "diagnostic_prompt": "What must be checked if the degree budget leaves room for a residual factor after the named zero factors?",
+          "repair": "Classify every allowed residual degree and prove whether that factor can avoid introducing another real zero."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A monic polynomial of degree at most four must have distinct real zeros exactly ±3 and a fixed value at zero. What two kinds of case must your completeness proof enumerate?",
+        "source_ref": "SRC-ISS52-AUTHORED-PEDAGOGY",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Enumerate multiplicities of the required factors and every residual-factor degree left by the total degree budget.",
+          "reasoning": [
+            "Classify every allowed residual degree and prove whether that factor can avoid introducing another real zero."
+          ],
+          "check": "Apply the same dependency/completeness check to a changed case.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit checks a structural inference."
+        }
+      },
+      "research_contribution": "Changed-case Core1A bridge for ISS52-Q9; no learner-trial effectiveness is claimed.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "construction_units": [
+        {
+          "id": "CU-MATH-ISS52-EXACT-ZERO-SET-1",
+          "decision": "Treat the named zeros as required factors, enumerate multiplicity and residual-factor budgets, and eliminate every residual case that would introduce another real zero.",
+          "step_refs": [
+            "MIC-MATH-ISS52-EXACT-ZERO-SET-STEP-1",
+            "MIC-MATH-ISS52-EXACT-ZERO-SET-STEP-2",
+            "MIC-MATH-ISS52-EXACT-ZERO-SET-STEP-3",
+            "MIC-MATH-ISS52-EXACT-ZERO-SET-STEP-4"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": "WK-ISS52-EXACT-ZERO-SET",
+          "crux_question_refs": [
+            "ISS52-Q9"
+          ],
+          "crux_step_ref": "MIC-MATH-ISS52-EXACT-ZERO-SET-STEP-4",
+          "misconception_indexes": [
+            0
+          ],
+          "relation_refs": [],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "check_type": null,
+              "statement": "CHECK: List the multiplicity and residual-factor cases before testing any one candidate."
+            },
+            {
+              "role": "APPLY",
+              "check_type": null,
+              "statement": "APPLY: For a changed exact-zero-set problem, use the value at zero to constrain a residual quadratic's constant term and then inspect its real roots."
+            },
+            {
+              "role": "CONNECT",
+              "check_type": null,
+              "statement": "CONNECT: Explain why a verified example proves existence but not completeness until every residual case is eliminated."
             }
           ]
         }
@@ -2330,6 +2716,180 @@
           "artifact_ref": null
         }
       ]
+    },
+    {
+      "id": "WK-ISS52-BOUNDED-UNBOUNDED",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS52-AUTHORED-PEDAGOGY"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 7,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 0,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Changed teaching anchor for dependency auditing when a degree bound is removed."
+          }
+        }
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-ISS52-AUTHORED-PEDAGOGY",
+      "original_identifier": "Worked 8",
+      "stem": "A real even polynomial r has degree at most four, r(1)=r(3)=0, and r(0)=9. Determine what the degree bound forces. Then remove only the degree bound and describe a family that preserves the stated conditions.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "With degree at most four, evenness forces roots ±1 and ±3, so r=(x²-1)(x²-9). Without the degree bound, r=(x²-1)(x²-9)h(x), where h is any even real polynomial with h(0)=1.",
+        "reasoning": "Evenness supplies the negative partners. Four distinct roots consume the bounded degree, and r(0)=9 fixes the scalar. After removing the bound, an even multiplier with value 1 at zero preserves evenness, the named roots and r(0).",
+        "check": "Test h=1+x² and h=1-x²/16 to see that some bounded conclusions cease to be necessary.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-BOUNDED-UNBOUNDED-IDENTIFICATION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-ISS52-Q7",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "WORKED_CONCEPTUAL_ANCHOR",
+          "artifact_ref": null
+        }
+      ]
+    },
+    {
+      "id": "WK-ISS52-DIFFERENCE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS52-AUTHORED-PEDAGOGY"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Changed teaching anchor for identifying a difference without identifying its components."
+          }
+        }
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-ISS52-AUTHORED-PEDAGOGY",
+      "original_identifier": "Worked 9",
+      "stem": "Real polynomials u and v each have degree at most two. They agree at x=0 and x=2, while u(1)-v(1)=3. Determine u-v and show explicitly why u and v are not individually determined.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "d=u-v has roots 0 and 2, so d=kx(x-2). Since d(1)=3, k=-3; thus d=-3x(x-2). The components are not unique because any degree-at-most-two r gives v=r and u=r+d.",
+        "reasoning": "The agreement points become roots of d, and the degree bound leaves only a scalar. Adding the same allowed r to both components preserves the difference.",
+        "check": "Compare (u,v)=(d,0) and (d+1,1).",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-DIFFERENCE-IDENTIFICATION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-ISS52-Q8",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "WORKED_CONCEPTUAL_ANCHOR",
+          "artifact_ref": null
+        }
+      ]
+    },
+    {
+      "id": "WK-ISS52-EXACT-ZERO-SET",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS52-AUTHORED-PEDAGOGY"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 0,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 2,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Changed teaching anchor for exhaustive multiplicity and residual-factor classification."
+          }
+        }
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-ISS52-AUTHORED-PEDAGOGY",
+      "original_identifier": "Worked 10",
+      "stem": "Characterise all monic real polynomials of degree at most four whose distinct real zeros are exactly -2 and 2 and whose value at zero is 16.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The only polynomial is (x-2)²(x+2)².",
+        "reasoning": "Write positive multiplicities at ±2 and budget any residual factor. The value at zero rules out total-degree-three multiplicity patterns. A residual linear factor is forced to have a real zero, and a residual monic quadratic with the required constant term has positive discriminant, so either creates a forbidden real zero. The degree-four multiplicities (2,2) work and give p(0)=16.",
+        "check": "Expand neither factor unless needed: monicity is immediate, p(0)=16, and the only real zeros are ±2.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-EXACT-REAL-ZERO-SET",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-ISS52-Q9",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "WORKED_CONCEPTUAL_ANCHOR",
+          "artifact_ref": null
+        }
+      ]
     }
   ],
   "teaching_routes": [
@@ -2353,7 +2913,10 @@
         "MIC-MATH-ISS52-PARAMETER",
         "MIC-MATH-ISS52-MODEL",
         "MIC-MATH-ISS52-DOMAIN",
-        "MIC-MATH-ISS52-QUALIFIED-RULES"
+        "MIC-MATH-ISS52-QUALIFIED-RULES",
+        "MIC-MATH-ISS52-BOUNDED-UNBOUNDED",
+        "MIC-MATH-ISS52-DIFFERENCE",
+        "MIC-MATH-ISS52-EXACT-ZERO-SET"
       ],
       "entry_needs": [
         "Routine factor/remainder arguments, simple identities and elementary real-domain restrictions are available as simulated demonstrated knowledge."
