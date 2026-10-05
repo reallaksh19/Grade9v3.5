@@ -15,7 +15,7 @@ Protocol provenance: `reallaksh19/Common@149770a21ca073df49717a96e2106c967adddc2
 | U5 — Deliverables/integration | COMPLETE | Governed Core1A/Core2 HTML and four authored teaching SVGs preserved at artifact commit `e0a84c17…`; Core2 is 10/10 in source order. |
 | U6 — Semantic/interaction review | COMPLETE WITH INHERITED BLOCKER | Semantic/protection inspection passed. Tablet audit completed across four tablet viewports with no target/overflow/focus/search/protection/external-request defects. Shared quality gate retains one inherited `PAGE-STAGE-SUPPORT` S2 finding on Core1A. |
 | U7 — Builder proposal after inspection | COMPLETE | `BLUEPRINT_DRIVEN_LAYOUT_CONSISTENCY` proposed from the exact three-way blueprint/renderer/auditor disagreement; no polynomial-specific widget is required. |
-| U8 — Independent handoff | PENDING PR OPEN | Exact render bytes/reports are frozen. Next material step is review PR + issue handoff checkpoint; independent reviewer verdict is not yet available. |
+| U8 — Independent handoff | COMPLETE FOR EXECUTION HANDOFF | Review PR #64 is open against `feat/issue29-integrated-core-templates`; exact artifact commit `e0a84c17…`, reconciled receipts/reports and the inherited blocker are linked. Independent reviewer verdict remains future review evidence, not execution-agent self-certification. |
 
 ## QRT/cohort result
 
@@ -48,3 +48,12 @@ The proposed shared fix is to make blueprint expanded-mode semantics the single 
 Q1–Q10 retain `OWNER_SUPPLIED_RAW_INPUT` custody and AI/coordinator-authored, Owner-authorized benchmark authorship. They are not official exam/PYQ items, authenticated textbook transcriptions, or questions personally authored by the Owner. NCERT/OpenStax source cards support general claims only.
 
 Learner PDF is **NOT_RUN** because HTML is the requested primary product. Direct local clone was unavailable due DNS resolution; GitHub Actions performed the cold Linux render with the canonical repository renderer.
+
+## Review handoff
+
+- PR: #64 — `ISS51: polynomial stress candidate — Core2 + Core1A`
+- PR base: `feat/issue29-integrated-core-templates@91719ad8df2bfc06c6a481590d2e24c510c24835`
+- immutable rendered artifact commit: `e0a84c17f0a646f529ba0ad145cacbecfcd3b1fd`
+- final traceability event commit: `e6e169010d9abc2735bf499e8d2fdd3316ef18f0`
+- unresolved shared blocker: `PAGE-STAGE-SUPPORT` on Core1A, classified `INHERITED_AUTHORITY_MISMATCH`
+- independent exact-render reviewer verdict: **NOT YET AVAILABLE**
