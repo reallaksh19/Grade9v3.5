@@ -1,3 +1,13 @@
+# Cumulative blueprint repair: current R3 review package
+
+The D1 B32 → shared rule → A31 sequence, then D2 B34/A33, D3 B36/A35 and D4 B38/A37, is implemented and measured in the new 5 October repair round. Registry/Core1A/Core2 are 1.12.0/1.6.0/1.7.0. Original submissions remain frozen.
+
+Read [current implementation and evidence](closure-20261005/README.md) and [final-assurance.json](closure-20261005/final-assurance.json) first. All-eight replay, 80 source-question interactions, strict/tablet browser checks, 26 fresh learner PDFs and final focused tests PASS. The clean full suite remains FAIL with no additional failure IDs against seed. Eight matrix candidates are authored and solution-checked; independent 28-cell and 960-facet acceptance remains open. Physics and all six Mathematics roles are exercised, with Mathematics source/gate limitations preserved.
+
+The original ISS*/rendered products are regenerated current outputs. Each ISS*/qrt-repair-ledger.json is a current hash-bound review worksheet, not independent certification. The previous text below is retained as historical checkpoint documentation; its NOT_RUN, PDF and coverage statements are superseded only by the explicitly scoped new measurements.
+
+---
+
 # Blueprint 1.10 correction candidates
 
 Eight frozen submissions informed four cumulative B→blueprint→A cycles. Corrected copies are stored here; original PRs are not rewritten. This is a post-freeze correction round, not a blind trial or golden certification.

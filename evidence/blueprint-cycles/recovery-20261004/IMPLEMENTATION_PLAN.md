@@ -62,3 +62,12 @@ Progress starts at **P=0/11, E=0/11** for this continuation's remaining outcomes
 9. Final owner decisions concern the concrete rendered package, reserved golden/merge/release/publication authority or a genuine scope/invariant change. Routine implementation repair proceeds under the current authorization.
 
 **First action after recovery publication:** acquire the exact checkout and compare pending compatibility files, then reproduce head-versus-seed failures and re-render the D1 B→A path.
+
+
+## R3 execution reconciliation — 5 October 2026
+
+The current new implementation/evidence is in ../closure-20261005/README.md and final-assurance.json; production basis 6dd20aa33c65f48315175e8ff360c339b204da16. D1 B→rule→A, D2 B→rule→A, D3 B→rule→A and D4 B→rule→A were executed with full registry checkpoints, then all eight re-rendered and measured. This implements the promised engineering cycle; it does not retroactively certify earlier unfinished snapshots.
+
+The original eleven-unit denominator is retained. U01 recovery is closed. U02 compatibility and U07 shared teaching contract now have current scoped engineering evidence; U11 closes when the concrete review package is pushed and read back on #29/#48. U03/U04/U05/U06 have implemented, measured repairs but remain open for their full academic/facet acceptance requirements. U08 has eight separately authored, rendered, exact-solution-checked calibration candidates; independent classification is still open. U09 has real Physics and all-six-role Mathematics execution, with Mathematics source/gate findings preventing universal semantic acceptance. U10's final engineering checks are complete, but its all-applicable independent academic review remains open. Accordingly the responsibility is not complete and is not golden.
+
+No additional permission is needed for the authorised Shared/data repairs or publication of this draft review evidence. The next acceptance work consumes exact saved pages, 960 original facet worksheets and eight classification candidates, records independent decisions and sends any rejection back through Shared/authored inputs and the all-eight sweep. Existing full-suite failures remain separately recorded. No new issue, submission-head rewrite, merge or learner publication is introduced.

@@ -89,7 +89,7 @@ try {
     const file=role+'.html';
     await printPage.goto(base+`/evidence/blueprint-cycles/ISS${issue}/rendered/${file}`);
     const figures=await printPage.locator('figure[data-g9-figure] svg').count();
-    const materialized=await printPage.locator('[data-g9-protected-body]:not(template)').count();
+    const materialized=await printPage.locator('[data-g9-payload-slot] > *').count();
     if(materialized)failures.push(file+': protected answer materialized in fresh learner print state');
     await printPage.emulateMedia({media:'print'});
     await printPage.pdf({path:path.join(directory,'rendered',role+'.pdf'),width:'280mm',height:'175mm',printBackground:true,margin:{top:'10mm',bottom:'10mm',left:'10mm',right:'10mm'}});
