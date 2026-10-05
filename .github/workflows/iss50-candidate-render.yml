@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - "candidate/iss50-d2-polynomials-r1"
+    paths-ignore:
+      - "evidence/benchmark/ISS50/rendered/**"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   render-review:
@@ -148,6 +150,42 @@ jobs:
           out={"python":platform.python_version(),"files":files}
           Path("/tmp/iss50-runtime-receipt.json").write_text(json.dumps(out,indent=2)+"\n")
           PY
+      - name: Capture exact learner pages
+        if: success()
+        run: |
+          node - <<'JS'
+          const { chromium } = require('playwright');
+          (async()=>{
+            const b=await chromium.launch({headless:true});
+            for (const [name,url] of [
+              ['core1a','http://127.0.0.1:8765/products/mathematics/iss50-polynomials/core1a.html'],
+              ['core2','http://127.0.0.1:8765/products/mathematics/iss50-polynomials/core2.html']
+            ]) {
+              const p=await b.newPage({viewport:{width:1366,height:854}});
+              await p.goto(url,{waitUntil:'networkidle'});
+              await p.screenshot({path:'/tmp/iss50-'+name+'.png',fullPage:true});
+              await p.close();
+            }
+            await b.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          JS
+      - name: Persist exact governed render on candidate branch
+        if: success()
+        run: |
+          mkdir -p evidence/benchmark/ISS50/rendered
+          cp /tmp/iss50-out/core1a.html evidence/benchmark/ISS50/rendered/core1a.html
+          cp /tmp/iss50-out/core2.html evidence/benchmark/ISS50/rendered/core2.html
+          cp /tmp/iss50-out/index.html evidence/benchmark/ISS50/rendered/index.html
+          cp /tmp/iss50-out/render-receipt.json evidence/benchmark/ISS50/rendered/render-receipt.json
+          git add evidence/benchmark/ISS50/rendered
+          if git diff --cached --quiet; then
+            echo "exact render already frozen"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "ISS50: freeze exact governed render [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
       - name: Upload exact render evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -159,5 +197,7 @@ jobs:
             /tmp/iss50-runtime-receipt.json
             /tmp/iss50-gaps.txt
             /tmp/iss50-http.log
+            /tmp/iss50-core1a.png
+            /tmp/iss50-core2.png
           if-no-files-found: warn
           retention-days: 90
