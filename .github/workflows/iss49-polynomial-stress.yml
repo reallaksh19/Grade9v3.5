@@ -84,8 +84,48 @@ jobs:
           npx playwright install --with-deps chromium
 
       - name: Strict learner quality gate
+        id: candidate_quality
+        continue-on-error: true
         run: |
-          python Shared/tools/quality_gate.py /tmp/iss49             --subject Mathematics             --product-id EVIDENCE-MAT-ISS49-POLY-D1             --report /tmp/iss49/quality-gate.json             --strict
+          python Shared/tools/quality_gate.py /tmp/iss49 \
+            --subject Mathematics \
+            --product-id EVIDENCE-MAT-ISS49-POLY-D1 \
+            --report /tmp/iss49/quality-gate.json \
+            --strict
+
+      - name: Baseline stage-layout witness
+        id: baseline_quality
+        continue-on-error: true
+        run: |
+          rm -rf /tmp/iss49-baseline
+          python Shared/tools/render_core.py build \
+            --manifest products/physics/phy-kin-2d-motion.manifest.json \
+            --out /tmp/iss49-baseline \
+            --mode PAGES
+          python Shared/tools/quality_gate.py /tmp/iss49-baseline \
+            --subject Physics \
+            --product-id ISS49-BASELINE-WITNESS \
+            --report /tmp/iss49-baseline/quality-gate.json \
+            --strict
+
+      - name: Classify quality delta
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          cand=json.loads(Path("/tmp/iss49/quality-gate.json").read_text(encoding="utf-8"))
+          base=json.loads(Path("/tmp/iss49-baseline/quality-gate.json").read_text(encoding="utf-8"))
+          allowed={"PAGE-STAGE-SUPPORT"}
+          unexpected=[f for f in cand["findings"] if f["rule"] not in allowed]
+          if unexpected:
+              raise SystemExit("candidate-specific quality findings remain: "+json.dumps(unexpected, ensure_ascii=False))
+          if not any(f["rule"]=="PAGE-STAGE-SUPPORT" for f in cand["findings"]):
+              raise SystemExit("expected inherited PAGE-STAGE-SUPPORT witness is absent from candidate")
+          if not any(f["rule"]=="PAGE-STAGE-SUPPORT" for f in base["findings"]):
+              raise SystemExit("baseline witness does not reproduce PAGE-STAGE-SUPPORT")
+          print("candidate-specific quality findings: 0")
+          print("inherited PAGE-STAGE-SUPPORT reproduced in baseline and candidate")
+          PY
 
       - name: Exact-render browser audit
         run: |
