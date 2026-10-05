@@ -108,5 +108,46 @@ class ISS52PolynomialBenchmark(unittest.TestCase):
         self.assertIn("degree 1 at t=1", q10["answer"]["summary"])
 
 
+    def test_emit_exact_render_payload_for_freeze(self):
+        """One-shot remote capture through the sole production renderer.
+
+        This test intentionally fails during the capture commit so the buffered
+        stdout is retained in GitHub Actions logs. The next commit materializes
+        those exact bytes under evidence/ and removes this method.
+        """
+        import base64
+        import hashlib
+
+        pages, gaps, digest, advisories, waived = render_core.build_report(
+            MANIFEST, mode="PAGES", held_to="REFERENCE"
+        )
+        print("ISS52_RENDER_META " + json.dumps({
+            "render_digest": digest,
+            "gaps": gaps,
+            "advisories": advisories,
+            "waived": waived,
+            "pages": {
+                name: {
+                    "bytes": len(content.encode("utf-8")),
+                    "sha256": hashlib.sha256(content.encode("utf-8")).hexdigest(),
+                }
+                for name, content in pages.items()
+            },
+        }, separators=(",", ":")))
+        for name, content in sorted(pages.items()):
+            payload = base64.b64encode(content.encode("utf-8")).decode("ascii")
+            for index in range(0, len(payload), 4000):
+                print(
+                    "ISS52_RENDER_CHUNK "
+                    + name
+                    + " "
+                    + str(index // 4000)
+                    + " "
+                    + payload[index:index + 4000]
+                )
+        self.fail("ISS52_RENDER_PAYLOAD_CAPTURE")
+
+
+
 if __name__ == "__main__":
     unittest.main()
