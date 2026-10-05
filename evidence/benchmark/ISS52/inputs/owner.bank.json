@@ -396,11 +396,11 @@
       "stem": "Find the least possible degree of a real polynomial whose distinct real zeros are exactly $-1$ and $1$, and which satisfies $p(0)=p(2)=1$. Exhibit one such polynomial, verify that it has no other real zeros, and prove that every smaller degree is impossible. You may use continuity of real polynomial functions and the factor theorem. This is an advanced competition extension.",
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "Write p=(x^2-1)g, so g(0)=-1 and g(2)=1/3. Degree 2 is impossible; degree 3 forces a linear g with extra zero 3/2; degree 4 forces a quadratic g that changes sign on (0,2), hence has a real zero there and cannot avoid an extra distinct zero. Degree 5 works: p=(1/3)(x+1)(x-1)^2(x^2-3x+3); the quadratic discriminant is -3.",
+        "summary": "Write p=(x^2-1)g, so g(0)=-1 and g(2)=1/3. Degree 2 is impossible; degree 3 forces a linear g with extra zero 3/2. For degree 4, g is quadratic. Because g(0)<0<g(2), continuity forces a root in (0,2), and the exact zero set forces that root to be 1. The sign change makes the root at 1 simple, so the quadratic has a second real root; to avoid a new zero of p it would have to be -1. Then g=k(x^2-1); g(0)=-1 gives k=1, but g(2)=3, contradicting g(2)=1/3. Degree 5 works: p=(1/3)(x+1)(x-1)^2(x^2-3x+3), whose remaining quadratic has discriminant -3. Therefore the least possible degree is 5.",
         "reasoning": [
           "Factor out the two required real zeros and translate the two value conditions to the remaining factor. Constraints g(0)=-1 and g(2)=1/3.",
           "Eliminate total degrees 2 and 3. Degrees 2 and 3 are impossible.",
-          "Eliminate total degree 4 using the sign change of g between 0 and 2. Degree 4 is impossible without an extra distinct real zero.",
+          "Eliminate total degree 4 using continuity, exact-zero-set restrictions, and the two value conditions on the quadratic g. Degree 4 is impossible without violating either the exact zero set or the required values.",
           "Construct a degree-5 example with a repeated allowed root and a quadratic having no real roots. A verified degree-5 witness, proving minimality."
         ],
         "reasoning_route": [
@@ -428,13 +428,13 @@
           {
             "id": "ISS52-Q3-MOVE-3",
             "kind": "CONNECT",
-            "action": "Eliminate total degree 4 using the sign change of g between 0 and 2.",
-            "why_valid": "Continuity forces a real zero of the quadratic g in (0,2); a quadratic cannot have only a sign-changing double root at 1, and a simple root at 1 forces another real root.",
+            "action": "Eliminate total degree 4 using continuity, exact-zero-set restrictions, and the two value conditions on the quadratic g.",
+            "why_valid": "The endpoint sign change forces a root of g in (0,2), hence at the only allowed point 1. That root must be simple, so a quadratic has a second real root. The exact zero set forces it to be -1, giving g=k(x^2-1); then g(0)=-1 forces k=1 but g(2)=3, contradicting the required 1/3.",
             "inputs": [
               "g(0)<0",
               "g(2)>0"
             ],
-            "output": "Degree 4 is impossible without an extra distinct real zero."
+            "output": "Degree 4 is impossible without violating either the exact zero set or the required values."
           },
           {
             "id": "ISS52-Q3-MOVE-4",
@@ -1698,7 +1698,7 @@
       "stem": "A solver uses four rules: cancellation makes a rational expression a polynomial on all real numbers; the largest printed exponent is always the degree; a degree-$n$ polynomial has exactly $n$ distinct real zeros; agreement at three inputs proves an identity. Develop a qualified decision procedure and apply it to: $A_t(x)=(t-1)x^3+x^2-1$ with real $t$; $B(x)=(x^2-1)/(x-1)$ on its original domain; $C(x)=(x-2)^2(x^2+1)$; and the pair $D(x)=x^2+1$, $E(x)=x^2+1+x(x-1)(x-2)$ compared at $x=0,1,2$. State the relevant conditions and valid conclusions in each case, then create one fresh counterexample to an unqualified rule. Preserve the difference between expressions, functions, identities and finite observations.",
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "Cancellation preserves equality only on the original domain; degree is read after simplification and parameter leading-coefficient checks; a nonzero degree-n polynomial has at most n distinct real zeros; finite agreement proves identity only with a suitable degree bound on the difference. A_t has degree3 except t=1, when degree2; B equals x+1 only for x!=1; C has degree4 but one distinct real zero 2 of multiplicity2; D and E agree at 0,1,2 but differ, e.g. by 6 at x=3. Fresh counterexample: (x-3)^2/(x-3) on x!=3.",
+        "summary": "Qualified rules: cancellation preserves equality only on the original domain; degree is read after simplification and leading-coefficient parameter checks; a nonzero degree-n polynomial has at most n distinct real zeros; finite agreement proves identity only when the difference has a degree bound smaller than the number of distinct agreement points. Applications: A_t has degree 3 for t≠1 and degree 1 at t=1; B equals x+1 only for x≠1 and its extension fills the hole; C has degree 4 but one distinct real zero x=2 (multiplicity 2); D and E agree at 0,1,2 but differ elsewhere, e.g. E(3)-D(3)=6. Fresh counterexample: (x-3)^2/(x-3), x≠3, cancels to x-3 but the original function has no value/zero at 3.",
         "reasoning": [
           "Replace each slogan by a conditional rule before touching the examples. Four qualified rules.",
           "For A_t, B, C and D-E, expose the structural feature relevant to the matching qualified rule. A condition-to-example mapping.",
