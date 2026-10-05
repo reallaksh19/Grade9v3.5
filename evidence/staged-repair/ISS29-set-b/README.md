@@ -21,3 +21,5 @@ Browser evidence is from the in-app browser at the recorded viewport. `initial-f
 Known gaps are retained: partial context metadata ownership; D2 missing conditions advisory; D3 one safe rung below the existing two-rung floor. No filler or semantic acceptance status is manufactured. Full forty-question acceptance, matrix/subject generality, candidate packaging and previous Linux phone overflow remain open.
 
 See the tracked work report and `docs/method/STAGED-SET-B-REPAIR-ADOPTION.md` for adoption, repeated-error clarifications and optional add-ons. No new universal publishing gate or blocker was added.
+
+Hosted assurance comparison: `hosted-assurance-comparison.json` compares 195 records at integration base and candidate code head `eae4bf8f...`, with identical outcomes/findings, canonical findings and standalone ledger shortfalls. Both hosted assurance results remain FAIL. Focused QRT checks and the four Node tests pass; the broader informational platform suite has seven failures and one error. Complete hosted regression-delta/merge acceptance is not asserted here.

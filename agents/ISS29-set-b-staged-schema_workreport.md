@@ -8,7 +8,7 @@ Plan: `docs/plans/ISS29-SET-B-STAGED-REPAIR.md`. Protocol: `reallaksh19/Common@9
 
 ## Current state
 
-VERIFIED_CODE_SLICE; integration PR delivery in progress. First slice: S1 case binding, S2 protected-work/support linkage, S3 review basis, existing single-pane checker reconciliation, representative pilot and delivery. Parent progress remains 4/11; no candidate acceptance or golden status is claimed.
+DELIVERED_CODE_SLICE; [PR #65](https://github.com/reallaksh19/Grade9v3.5/pull/65) is open against `feat/issue29-integrated-core-templates`. First slice: S1 case binding, S2 protected-work/support linkage, S3 review basis, existing single-pane checker reconciliation, representative pilot and delivery. Parent progress remains 4/11; no candidate acceptance or golden status is claimed.
 
 Implementation-start event: recorded in the parent plan/start publication and current responsibility snapshot. Future checkpoints identify code head/working delta, executed checks, unresolved findings and next work before another substantial unit.
 
@@ -19,7 +19,7 @@ Implementation-start event: recorded in the parent plan/start publication and cu
 - [x] S3 canonical review basis and consuming existing pipeline; author-only cannot count as rendered evidence.
 - [x] Existing layout observation reconciled; pure decision tests and actual Core1A browser geometry.
 - [x] Representative Set B replay plus repeated-error clarifications and optional low-thinking add-ons.
-- [ ] Compatibility and browser evidence complete; reviewable integration PR delivery in progress.
+- [x] Compatibility, browser evidence and reviewable integration PR delivered; broader hosted findings retained below.
 
 ## Limitations
 
@@ -48,3 +48,13 @@ Replay pages and their exact-byte/authority hashes: `evidence/staged-repair/ISS2
 Adoption instructions: `docs/method/STAGED-SET-B-REPAIR-ADOPTION.md`. They document scope and recurring-operation clarifications, with optional add-ons for the Owner-confirmed low-thinking runs. Candidate PRs #57/#58/#59/#61 remain untouched by this slice. Historical source content and legitimate concept-teaching figures retain their behavior.
 
 Before PR delivery, Git's Windows line-ending normalization was identified as a risk to exact-byte receipts. Replay export now explicitly writes canonical LF bytes; its authority inputs were normalized without semantic edits, receipts were regenerated and the browser flow recaptured. Artifact and authority hashes are checked against committed Git blobs before delivery. This is a byte-provenance correction, not a new content gate.
+
+## Hosted verification and delivery
+
+Verified code head: `eae4bf8f212eadb9ac68fd59460ea2fbdf78a8f3`. **36 committed page/authority hash comparisons match** the retained replay receipts. Subsequent reporting changes do not alter renderer inputs.
+
+PR #65 is open and unmerged. Hosted QRT-focused regressions, bank contracts, protocol validation and rendered snapshots succeed. The existing informational platform job succeeds at job level but its raw broad suite reports **182 tests, 7 failures, 1 error, 1 skip**; do not call that suite PASS. All 18 new focused Python tests passed locally in the 111-test selection, and the hosted new Node layout step passes four tests.
+
+Hosted assurance remains FAIL. Downloaded **195 base and 195 candidate evidence records have identical outcomes/findings**, and their 19 canonical finding lines and 62 standalone ledger shortfall lines match exactly; see `hosted-assurance-comparison.json`. Broader browser jobs retain failures: Core2 production build has two missing source representations; friction conformance has unresolved packaging links; Core1A has a 7px phone overflow also present at the integration base. The exact-test-id regression delta is still running at this reporting checkpoint, so no complete CI-green or merge acceptance is claimed.
+
+Published checkpoints: [3](https://github.com/reallaksh19/Grade9v3.5/issues/29#issuecomment-5998861582), [4](https://github.com/reallaksh19/Grade9v3.5/issues/29#issuecomment-5999092512). The parent responsibility remains active. Next work applies the structures to complete candidate products and addresses the retained support-design, content, packaging and coverage findings through the staged method.
