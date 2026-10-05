@@ -13,10 +13,10 @@
 - **Renderer authority:** `Shared/tools/render_core.py` only; generated HTML is never hand-edited.
 
 ## Work units
-U1 intake/baseline — authored; exact hash check runs in candidate CI.
+U1 intake/baseline — exact published owner-core hash boundary corrected after first CI; custody check now passes.
 U2 academic/task analysis — complete for Q1–Q10.
 U3 hardest-target brief — complete for Q10 with a changed-case diagnostic interaction.
-U4 canonical records — being committed; schema/reference validation runs in candidate CI.
+U4 canonical records — committed; first schema run exposed and fixed only typed enum defects; next exact run pending.
 U5 deliverables/integration — governed render pending.
 U6 semantic/interaction review — machine QRT authored; exact-render/browser observations pending.
 U7 builder proposal — deliberately deferred until rendered-page inspection.
