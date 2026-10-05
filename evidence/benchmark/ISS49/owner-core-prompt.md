@@ -59,4 +59,3 @@ Also return:
 - **learner knowledge:** SIMULATED OWNER PRESET: DEMONSTRATED—integer arithmetic, signed-number operations, powers, basic distributive multiplication and substitution into a familiar linear expression. UNCERTAIN—polynomial terminology, missing coefficients, collecting terms, standard identities and interpreting a zero. These are simulated idea-level assumptions, not observed mastery.
 - **provenance:** OWNER_SUPPLIED benchmark inputs, AI/coordinator authored under the Owner's explicit request for this stress test; not official exam/PYQ items, not authenticated textbook transcriptions and not personally authored by the Owner. Preserve the wording and disclose authorship.
 - **product intent:** PRESERVE_OWNER_QUESTIONS; concept learning and COMPETITION preparation.
-
