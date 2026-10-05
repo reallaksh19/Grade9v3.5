@@ -17,6 +17,7 @@ import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
+import { matchesBlueprintLayout } from './layout-observation.mjs';
 
 const require = createRequire(import.meta.url);
 let playwright;
@@ -293,6 +294,14 @@ for (const file of files) {
           return { articles: rows.length, identityMaxPx: max('identityPx'), supportOffsetMaxPx: max('supportOffsetPx'),
                    smallestFigureTextPx: min('smallestFigureTextPx'), worstIdentity: rows.sort((a, b) => (b.identityPx || 0) - (a.identityPx || 0))[0] || null };
         })(),
+        singlePaneLayout: (() => {
+          const articles = [...document.querySelectorAll('main article[data-g9-unit]')].filter(visible);
+          const containers = articles.flatMap(article => [article, ...article.querySelectorAll('.g9-split')].filter(visible));
+          return {articleCount: articles.length, columnCounts: containers.map(container => {
+            const columns = getComputedStyle(container).gridTemplateColumns;
+            return columns === 'none' ? 1 : columns.trim().split(/\s+/).length;
+          })};
+        })(),
         stageSupportLayout: !!expectedColumns && new RegExp(`grid-template-columns:\\s*minmax\\(0(?:px)?,\\s*${expectedColumns.primary}fr\\)\\s*minmax\\(0(?:px)?,\\s*${expectedColumns.support}fr\\)`).test(sheetText),
         core1aLayout: (() => {
           // One sample per two-column row (a .g9-split with both columns); a band with only one column is not a row of the layout.
@@ -446,6 +455,7 @@ for (const file of files) {
         })(),
       };
     }, { minTarget, expectedColumns, expectedTablet });
+    r.stageSupportLayout = matchesBlueprintLayout(policy, r.stageSupportLayout, r.singlePaneLayout);
     r.expectedLayout = policy && policy.support_fraction
       ? { supportFraction: policy.support_fraction, minPx: policy.expanded_min_px || 1100 } : null;
     r.externalRequests = [...new Set(requests)];

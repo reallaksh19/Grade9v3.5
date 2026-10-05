@@ -1933,6 +1933,11 @@
             "caption"
           ]
         },
+        "asset_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Authored SVG for this bound scene instance. Optional for legacy topic assets; source snapshots retain their custody path."
+        },
         "question_ref": {
           "type": "string",
           "minLength": 1,
@@ -2149,7 +2154,12 @@
         },
         "extensions": {
           "type": "object",
-          "description": "Namespaced subject extensions; no scientific authority is inferred."
+          "description": "Namespaced subject extensions; no scientific authority is inferred.",
+          "properties": {
+            "grade9v3:core2_support_plan": {
+              "$ref": "#/$defs/core2_support_plan"
+            }
+          }
         },
         "origin": {
           "enum": [
@@ -3508,6 +3518,100 @@
           "minLength": 1
         }
       }
+    },
+    "core2_support_plan": {
+      "type": "object",
+      "properties": {
+        "protected_move_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "support_completions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "support_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "completed_move_refs": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "required": [
+              "support_ref",
+              "completed_move_refs"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        },
+        "visuals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "representation_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "instance_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "stages": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "stage_ref": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "completed_move_refs": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  },
+                  "required": [
+                    "stage_ref",
+                    "completed_move_refs"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "representation_ref",
+              "instance_ref",
+              "stages"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "protected_move_refs"
+      ],
+      "additionalProperties": false,
+      "description": "Opt-in links to existing question reasoning moves, support rows and bound visual stages. A completed protected move is delivered with the attempted solution. Unlisted support retains its existing reveal semantics; authors must record completion honestly."
     }
   }
 }
