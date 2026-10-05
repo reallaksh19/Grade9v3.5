@@ -61,7 +61,7 @@
           }
         ],
         "crux_move_ref": "ISS52-Q1-MOVE-3",
-        "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+        "check": "Substitute x=0,1,2,3 into the bounded candidate. Then set q(x)=1 in the unrestricted family: it gives a different polynomial with the same four data, directly showing why the degree bound is the uniqueness warrant.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR"
@@ -80,40 +80,40 @@
       },
       "scaffolds": [
         {
-          "prompt": "Support 1: what should you make explicit next?",
-          "text": "Identify what four exact observations do and do not determine. Keep every stated qualifier visible.",
+          "prompt": "Support 1: What should be made explicit next?",
+          "text": "Separate the bounded and unbounded parts. The four exact values are observations; the degree condition is an additional structural hypothesis.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
           "supports_move_ref": "ISS52-Q1-MOVE-1"
         },
         {
-          "prompt": "Support 2: what should you make explicit next?",
-          "text": "Connect the task to factor theorem plus the root-count bound; check its conditions before using it.",
+          "prompt": "Support 2: What should be made explicit next?",
+          "text": "Compare p with a simple polynomial that matches 1,2,5,10. Then ask what zeros their difference must have.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
           "supports_move_ref": "ISS52-Q1-MOVE-2"
         },
         {
-          "prompt": "Support 3: what should you make explicit next?",
-          "text": "Order the dependencies needed to separate bounded uniqueness from the unrestricted vanishing-factor family, stopping before the decisive conclusion.",
-          "support_kind": "EXECUTE",
+          "prompt": "Support 3: What should be made explicit next?",
+          "text": "In the bounded part, compare the number of distinct zeros of the difference with its maximum possible degree. Do not yet name p.",
+          "support_kind": "CONNECT",
           "reveals": "METHOD",
           "learner_stage": "FIRST_MOVE",
-          "supports_move_ref": "ISS52-Q1-MOVE-3"
+          "supports_move_ref": "ISS52-Q1-MOVE-2"
         },
         {
-          "prompt": "Support 4: what should you make explicit next?",
-          "text": "Set up the move toward separate bounded uniqueness from the unrestricted vanishing-factor family, but leave the degree-bound warrant that forces the difference to vanish unresolved.",
+          "prompt": "Support 4: What is the structural move to set up?",
+          "text": "In the unbounded part, use the factor theorem on the difference at all four nodes. Leave the remaining factor arbitrary.",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "learner_stage": "CRUX",
-          "supports_move_ref": "ISS52-Q1-MOVE-4"
+          "supports_move_ref": "ISS52-Q1-MOVE-3"
         },
         {
-          "prompt": "Support 5: what should you make explicit next?",
-          "text": "Plan an independent boundary, substitution or counterexample check, while leaving the degree-bound warrant that forces the difference to vanish to you.",
+          "prompt": "Support 5: What should be made explicit next?",
+          "text": "After you have both conclusions, identify the exact sentence that stops being valid when the degree bound is removed.",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "learner_stage": "CHECKPOINT",
@@ -180,8 +180,8 @@
           "clarify": "Clarify what four exact observations do and do not determine.",
           "connect": "Connect that to factor theorem plus the root-count bound.",
           "way": "Build toward separate bounded uniqueness from the unrestricted vanishing-factor family without skipping its conditions.",
-          "rule": "Before concluding, state the exact condition that licenses the decisive inference: the degree-bound warrant that forces the difference to vanish.",
-          "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+          "rule": "Finite agreement forces identity only when a degree bound on the difference makes the number of distinct agreement roots impossible for a nonzero difference.",
+          "check": "Substitute x=0,1,2,3 into the bounded candidate. Then set q(x)=1 in the unrestricted family: it gives a different polynomial with the same four data, directly showing why the degree bound is the uniqueness warrant.",
           "probe": "Change the four observation nodes to three nodes and remove any degree bound. What family of differences can still vanish there?",
           "pattern": "The difference can contain the product of the three node factors times an arbitrary polynomial; finite agreement alone is not identity.",
           "transfer": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
@@ -254,7 +254,7 @@
           }
         ],
         "crux_move_ref": "ISS52-Q2-MOVE-2",
-        "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+        "check": "Use the factorization x^2(x-2)(x+2): the simple factors force sign changes at ±2, the square prevents a sign change at 0, and substitution at x=1 returns -3.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR"
@@ -274,40 +274,40 @@
       },
       "scaffolds": [
         {
-          "prompt": "Support 1: what should you make explicit next?",
-          "text": "Identify what local sign behaviour says about root multiplicity. Keep every stated qualifier visible.",
+          "prompt": "Support 1: What should be made explicit next?",
+          "text": "Translate each local sign statement into only a parity statement about multiplicity: odd versus even.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
           "supports_move_ref": "ISS52-Q2-MOVE-1"
         },
         {
-          "prompt": "Support 2: what should you make explicit next?",
-          "text": "Connect the task to odd/even multiplicity sign rules and the degree budget; check its conditions before using it.",
+          "prompt": "Support 2: What should be made explicit next?",
+          "text": "Write the least positive multiplicity compatible with each parity and add them before choosing any coefficients.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
           "supports_move_ref": "ISS52-Q2-MOVE-2"
         },
         {
-          "prompt": "Support 3: what should you make explicit next?",
-          "text": "Order the dependencies needed to coordinate parity, degree and scale, stopping before the decisive conclusion.",
-          "support_kind": "EXECUTE",
+          "prompt": "Support 3: What should be made explicit next?",
+          "text": "Compare that minimum total with the degree-at-most-4 budget. Ask whether any multiplicity can be increased.",
+          "support_kind": "CONNECT",
           "reveals": "METHOD",
           "learner_stage": "FIRST_MOVE",
-          "supports_move_ref": "ISS52-Q2-MOVE-3"
+          "supports_move_ref": "ISS52-Q2-MOVE-2"
         },
         {
-          "prompt": "Support 4: what should you make explicit next?",
-          "text": "Set up the move toward coordinate parity, degree and scale, but leave the multiplicity allocation before scale unresolved.",
+          "prompt": "Support 4: What is the structural move to set up?",
+          "text": "Once the multiplicities are fixed, write the factorized form with one unknown scalar and use p(1) only for that scalar.",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "learner_stage": "CRUX",
-          "supports_move_ref": "ISS52-Q2-MOVE-4"
+          "supports_move_ref": "ISS52-Q2-MOVE-2"
         },
         {
-          "prompt": "Support 5: what should you make explicit next?",
-          "text": "Plan an independent boundary, substitution or counterexample check, while leaving the multiplicity allocation before scale to you.",
+          "prompt": "Support 5: What should be made explicit next?",
+          "text": "Check the local sign behaviour directly from the factor parities; do not treat p(1) as a sign-pattern proof.",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "learner_stage": "CHECKPOINT",
@@ -374,8 +374,8 @@
           "clarify": "Clarify what local sign behaviour says about root multiplicity.",
           "connect": "Connect that to odd/even multiplicity sign rules and the degree budget.",
           "way": "Build toward coordinate parity, degree and scale without skipping its conditions.",
-          "rule": "Before concluding, state the exact condition that licenses the decisive inference: the multiplicity allocation before scale.",
-          "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+          "rule": "Use local sign change only to determine multiplicity parity; use the total degree budget and value/scale conditions to determine exact multiplicities and the polynomial.",
+          "check": "Use the factorization x^2(x-2)(x+2): the simple factors force sign changes at ±2, the square prevents a sign change at 0, and substitution at x=1 returns -3.",
           "probe": "A zero has the same nonzero sign immediately on both sides. What multiplicity parity is compatible with that local behaviour?",
           "pattern": "Same nonzero sign on both sides requires even multiplicity; odd multiplicity changes sign.",
           "transfer": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
@@ -448,7 +448,7 @@
           }
         ],
         "crux_move_ref": "ISS52-Q3-MOVE-3",
-        "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+        "check": "For the degree-5 witness, substitute x=0 and x=2, verify zeros at ±1, and check the remaining quadratic has discriminant -3. For the lower bound, the degree-4 auxiliary quadratic would have to have roots 1 and -1, which contradicts its two required values.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR"
@@ -467,40 +467,40 @@
       },
       "scaffolds": [
         {
-          "prompt": "Support 1: what should you make explicit next?",
-          "text": "Identify why exact values and an exact zero set impose a lower bound. Keep every stated qualifier visible.",
+          "prompt": "Support 1: What should be made explicit next?",
+          "text": "Factor the two required real zeros first and call the remaining factor g. Translate p(0)=p(2)=1 into two values of g.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
           "supports_move_ref": "ISS52-Q3-MOVE-1"
         },
         {
-          "prompt": "Support 2: what should you make explicit next?",
-          "text": "Connect the task to factor theorem, continuity and quadratic discriminant; check its conditions before using it.",
+          "prompt": "Support 2: What should be made explicit next?",
+          "text": "A proposed total degree gives a maximum degree for g. Start by eliminating constant and linear g.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
           "supports_move_ref": "ISS52-Q3-MOVE-2"
         },
         {
-          "prompt": "Support 3: what should you make explicit next?",
-          "text": "Order the dependencies needed to eliminate degrees 2,3,4 then construct degree5, stopping before the decisive conclusion.",
-          "support_kind": "EXECUTE",
+          "prompt": "Support 3: What should be made explicit next?",
+          "text": "For quadratic g, use the opposite signs of g(0) and g(2) to force a real root between them, then use the exact allowed zero set to locate it.",
+          "support_kind": "CONNECT",
           "reveals": "METHOD",
           "learner_stage": "FIRST_MOVE",
-          "supports_move_ref": "ISS52-Q3-MOVE-3"
+          "supports_move_ref": "ISS52-Q3-MOVE-2"
         },
         {
-          "prompt": "Support 4: what should you make explicit next?",
-          "text": "Set up the move toward eliminate degrees 2,3,4 then construct degree5, but leave the degree-4 impossibility argument unresolved.",
+          "prompt": "Support 4: What is the structural move to set up?",
+          "text": "If that root is simple, a real quadratic has a second real root. Ask where that second root is allowed to be, then test whether those two roots can satisfy both required g-values.",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "learner_stage": "CRUX",
-          "supports_move_ref": "ISS52-Q3-MOVE-4"
+          "supports_move_ref": "ISS52-Q3-MOVE-3"
         },
         {
-          "prompt": "Support 5: what should you make explicit next?",
-          "text": "Plan an independent boundary, substitution or counterexample check, while leaving the degree-4 impossibility argument to you.",
+          "prompt": "Support 5: What should be made explicit next?",
+          "text": "Only after all smaller degrees fail, design a degree-5 witness whose remaining quadratic has no real roots; solve its scale from the value conditions.",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "learner_stage": "CHECKPOINT",
@@ -567,8 +567,8 @@
           "clarify": "Clarify why exact values and an exact zero set impose a lower bound.",
           "connect": "Connect that to factor theorem, continuity and quadratic discriminant.",
           "way": "Build toward eliminate degrees 2,3,4 then construct degree5 without skipping its conditions.",
-          "rule": "Before concluding, state the exact condition that licenses the decisive inference: the degree-4 impossibility argument.",
-          "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+          "rule": "Minimality requires two obligations: eliminate every smaller degree under the exact-zero-set constraints, then construct and verify a witness at the first surviving degree.",
+          "check": "For the degree-5 witness, substitute x=0 and x=2, verify zeros at ±1, and check the remaining quadratic has discriminant -3. For the lower bound, the degree-4 auxiliary quadratic would have to have roots 1 and -1, which contradicts its two required values.",
           "probe": "If an auxiliary quadratic changes sign between two inputs, can its only real zero be a double root? Explain.",
           "pattern": "No. A quadratic with one real zero has that zero double and does not change sign there.",
           "transfer": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
@@ -639,7 +639,7 @@
           }
         ],
         "crux_move_ref": "ISS52-Q4-MOVE-2",
-        "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+        "check": "Choose one test value in each open parameter interval and compare its real-root count with the table; then refactor exactly at a=-2, a=2/5 and a=1 to verify multiplicities and the degree drop.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR"
@@ -658,40 +658,40 @@
       },
       "scaffolds": [
         {
-          "prompt": "Support 1: what should you make explicit next?",
-          "text": "Identify which parameter events change degree, root existence or coincidence. Keep every stated qualifier visible.",
+          "prompt": "Support 1: What should be made explicit next?",
+          "text": "Factor F_a before making a case table. Keep the fixed linear roots separate from the parameter-dependent factor.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
           "supports_move_ref": "ISS52-Q4-MOVE-1"
         },
         {
-          "prompt": "Support 2: what should you make explicit next?",
-          "text": "Connect the task to factorization plus sign conditions; check its conditions before using it.",
+          "prompt": "Support 2: What should be made explicit next?",
+          "text": "Ask what algebraic equality would make the polynomial lose its top degree, without solving that equality yet.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
           "supports_move_ref": "ISS52-Q4-MOVE-2"
         },
         {
-          "prompt": "Support 3: what should you make explicit next?",
-          "text": "Order the dependencies needed to derive every critical value then partition parameter space, stopping before the decisive conclusion.",
-          "support_kind": "EXECUTE",
+          "prompt": "Support 3: What should be made explicit next?",
+          "text": "For the parameter-dependent factor, express extra real roots through an x^2 condition and record the sign requirement for those roots to exist.",
+          "support_kind": "CONNECT",
           "reveals": "METHOD",
           "learner_stage": "FIRST_MOVE",
-          "supports_move_ref": "ISS52-Q4-MOVE-3"
+          "supports_move_ref": "ISS52-Q4-MOVE-2"
         },
         {
-          "prompt": "Support 4: what should you make explicit next?",
-          "text": "Set up the move toward derive every critical value then partition parameter space, but leave the exhaustive event set and interval/collision split unresolved.",
+          "prompt": "Support 4: What is the structural move to set up?",
+          "text": "A distinct-root count can also change at an isolated collision. Set up, but do not skip, the condition that an extra root equals an already fixed root.",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "learner_stage": "CRUX",
-          "supports_move_ref": "ISS52-Q4-MOVE-4"
+          "supports_move_ref": "ISS52-Q4-MOVE-2"
         },
         {
-          "prompt": "Support 5: what should you make explicit next?",
-          "text": "Plan an independent boundary, substitution or counterexample check, while leaving the exhaustive event set and interval/collision split to you.",
+          "prompt": "Support 5: What should be made explicit next?",
+          "text": "After deriving all critical values, order them and test one point per open interval; refactor the critical points separately for multiplicity.",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "learner_stage": "CHECKPOINT",
@@ -758,8 +758,8 @@
           "clarify": "Clarify which parameter events change degree, root existence or coincidence.",
           "connect": "Connect that to factorization plus sign conditions.",
           "way": "Build toward derive every critical value then partition parameter space without skipping its conditions.",
-          "rule": "Before concluding, state the exact condition that licenses the decisive inference: the exhaustive event set and interval/collision split.",
-          "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+          "rule": "An exhaustive parameter classification starts by deriving every structural event at which degree, real-root existence, or root coincidence can change; only then may intervals be sampled.",
+          "check": "Choose one test value in each open parameter interval and compare its real-root count with the table; then refactor exactly at a=-2, a=2/5 and a=1 to verify multiplicities and the degree drop.",
           "probe": "For a changed parameter family with fixed roots, name every event type that must be solved before interval sampling.",
           "pattern": "Check degree drop, real-root existence boundaries, and collisions with already fixed roots before splitting intervals.",
           "transfer": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
@@ -834,7 +834,7 @@
           }
         ],
         "crux_move_ref": "ISS52-Q5-MOVE-2",
-        "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+        "check": "Use an admissible new input such as x=4: V(4)=16 while Q(4)=-80. The disagreement occurs inside 0<x<5, so it is not a boundary artifact and the fitted quadratic cannot be the box-volume model.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR"
@@ -854,40 +854,40 @@
       },
       "scaffolds": [
         {
-          "prompt": "Support 1: what should you make explicit next?",
-          "text": "Identify which account is a geometric model and which only interpolates. Keep every stated qualifier visible.",
+          "prompt": "Support 1: What should be made explicit next?",
+          "text": "Start from the box dimensions after the corner cuts: identify height and the two equal base sides.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
           "supports_move_ref": "ISS52-Q5-MOVE-1"
         },
         {
-          "prompt": "Support 2: what should you make explicit next?",
-          "text": "Connect the task to volume geometry and physical domain; check its conditions before using it.",
+          "prompt": "Support 2: What should be made explicit next?",
+          "text": "Derive the admissible non-degenerate x-domain from positive physical dimensions before comparing formulas.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
           "supports_move_ref": "ISS52-Q5-MOVE-2"
         },
         {
-          "prompt": "Support 3: what should you make explicit next?",
-          "text": "Order the dependencies needed to derive V, compare Q-V, then test a changed input, stopping before the decisive conclusion.",
-          "support_kind": "EXECUTE",
+          "prompt": "Support 3: What should be made explicit next?",
+          "text": "Derive V(x) from base area times height. Treat the quadratic only as a formula known to match three rows.",
+          "support_kind": "CONNECT",
           "reveals": "METHOD",
           "learner_stage": "FIRST_MOVE",
-          "supports_move_ref": "ISS52-Q5-MOVE-3"
+          "supports_move_ref": "ISS52-Q5-MOVE-2"
         },
         {
-          "prompt": "Support 4: what should you make explicit next?",
-          "text": "Set up the move toward derive V, compare Q-V, then test a changed input, but leave the inference that three rows do not identify the model unresolved.",
+          "prompt": "Support 4: What is the structural move to set up?",
+          "text": "Compare the two accounts at a new admissible input or factor their difference; finite agreement at the recorded inputs is not the model-selection warrant.",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "learner_stage": "CRUX",
-          "supports_move_ref": "ISS52-Q5-MOVE-4"
+          "supports_move_ref": "ISS52-Q5-MOVE-2"
         },
         {
-          "prompt": "Support 5: what should you make explicit next?",
-          "text": "Plan an independent boundary, substitution or counterexample check, while leaving the inference that three rows do not identify the model to you.",
+          "prompt": "Support 5: What should be made explicit next?",
+          "text": "Use a physical invariant such as nonnegative volume inside the valid domain as an independent check.",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "learner_stage": "CHECKPOINT",
@@ -954,8 +954,8 @@
           "clarify": "Clarify which account is a geometric model and which only interpolates.",
           "connect": "Connect that to volume geometry and physical domain.",
           "way": "Build toward derive V, compare Q-V, then test a changed input without skipping its conditions.",
-          "rule": "Before concluding, state the exact condition that licenses the decisive inference: the inference that three rows do not identify the model.",
-          "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+          "rule": "A physical polynomial model is derived from the mechanism and its admissible domain; finite interpolation points alone do not identify the governing law.",
+          "check": "Use an admissible new input such as x=4: V(4)=16 while Q(4)=-80. The disagreement occurs inside 0<x<5, so it is not a boundary artifact and the fitted quadratic cannot be the box-volume model.",
           "probe": "Two candidate formulas match three physical measurements. What additional evidence distinguishes mechanism-derived model from interpolation?",
           "pattern": "Derive the governing relation/domain from the mechanism or use a new admissible test; finite interpolation alone is insufficient.",
           "transfer": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
@@ -1017,7 +1017,7 @@
           }
         ],
         "crux_move_ref": "ISS52-Q6-MOVE-2",
-        "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+        "check": "Compare a=2 with a=1. For a=2 the original domain includes x=1, so 1 is a zero; for a=1 the same input is the hole, so the original function has no zero even though its polynomial extension does.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR"
@@ -1036,28 +1036,28 @@
       },
       "scaffolds": [
         {
-          "prompt": "Support 1: what should you make explicit next?",
-          "text": "Identify expression equality versus function domain. Keep every stated qualifier visible.",
+          "prompt": "Support 1: What should be made explicit next?",
+          "text": "Write the original excluded input x=a before any algebraic cancellation.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
           "supports_move_ref": "ISS52-Q6-MOVE-1"
         },
         {
-          "prompt": "Support 2: what should you make explicit next?",
-          "text": "Connect the task to conditional cancellation; check its conditions before using it.",
+          "prompt": "Support 2: What should be made explicit next?",
+          "text": "Factor the numerator and simplify only under the already recorded condition x≠a.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
           "supports_move_ref": "ISS52-Q6-MOVE-2"
         },
         {
-          "prompt": "Support 3: what should you make explicit next?",
-          "text": "Plan an independent boundary, substitution or counterexample check, while leaving preserving the excluded point to you.",
+          "prompt": "Support 3: What is the structural move to set up?",
+          "text": "A zero must both make the simplified rule zero and belong to the original domain. Check the special parameter value where those two facts conflict.",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "learner_stage": "CRUX",
-          "supports_move_ref": "ISS52-Q6-MOVE-3"
+          "supports_move_ref": "ISS52-Q6-MOVE-2"
         }
       ],
       "extensions": {
@@ -1120,8 +1120,8 @@
           "clarify": "Clarify expression equality versus function domain.",
           "connect": "Connect that to conditional cancellation.",
           "way": "Build toward cancel on the original domain then classify extension without skipping its conditions.",
-          "rule": "Before concluding, state the exact condition that licenses the decisive inference: preserving the excluded point.",
-          "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+          "rule": "Cancellation preserves the rule only on the original nonzero-denominator domain; filling the cancelled hole is a separate polynomial extension.",
+          "check": "Compare a=2 with a=1. For a=2 the original domain includes x=1, so 1 is a zero; for a=1 the same input is the hole, so the original function has no zero even though its polynomial extension does.",
           "probe": "After cancelling a common factor, the simplified rule is zero at the excluded input. Is that input a zero of the original function?",
           "pattern": "No. A zero must lie in the original domain; the polynomial rule describes a separate extension.",
           "transfer": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
@@ -1195,7 +1195,7 @@
           }
         ],
         "crux_move_ref": "ISS52-Q7-MOVE-4",
-        "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+        "check": "Use h(x)=1+x^2 to get an unbounded example with exactly the four forced real zeros, and h(x)=1-x^2/9 to create extra zeros ±3 and change the leading coefficient. These two examples separate what is necessary from what is merely possible.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR"
@@ -1215,40 +1215,40 @@
       },
       "scaffolds": [
         {
-          "prompt": "Support 1: what should you make explicit next?",
-          "text": "Identify which consequences require the degree bound. Keep every stated qualifier visible.",
+          "prompt": "Support 1: What should be made explicit next?",
+          "text": "Use evenness first: every positive zero forces its negative partner.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
           "supports_move_ref": "ISS52-Q7-MOVE-1"
         },
         {
-          "prompt": "Support 2: what should you make explicit next?",
-          "text": "Connect the task to even-polynomial root symmetry and divisibility; check its conditions before using it.",
+          "prompt": "Support 2: What should be made explicit next?",
+          "text": "Under degree at most 4, compare the four forced distinct roots with the whole degree budget before using p(0).",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
           "supports_move_ref": "ISS52-Q7-MOVE-2"
         },
         {
-          "prompt": "Support 3: what should you make explicit next?",
-          "text": "Order the dependencies needed to solve bounded then parameterize unbounded, stopping before the decisive conclusion.",
-          "support_kind": "EXECUTE",
+          "prompt": "Support 3: What should be made explicit next?",
+          "text": "Use p(0)=4 to fix the scalar in the bounded case, then classify the five statements there.",
+          "support_kind": "CONNECT",
           "reveals": "METHOD",
           "learner_stage": "FIRST_MOVE",
-          "supports_move_ref": "ISS52-Q7-MOVE-3"
+          "supports_move_ref": "ISS52-Q7-MOVE-2"
         },
         {
-          "prompt": "Support 4: what should you make explicit next?",
-          "text": "Set up the move toward solve bounded then parameterize unbounded, but leave separating necessary from possible claims unresolved.",
+          "prompt": "Support 4: What is the structural move to set up?",
+          "text": "When only the degree bound is removed, keep the four forced factors and multiply by a general even polynomial whose value at 0 preserves p(0)=4.",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "learner_stage": "CRUX",
           "supports_move_ref": "ISS52-Q7-MOVE-4"
         },
         {
-          "prompt": "Support 5: what should you make explicit next?",
-          "text": "Plan an independent boundary, substitution or counterexample check, while leaving separating necessary from possible claims to you.",
+          "prompt": "Support 5: What should be made explicit next?",
+          "text": "Use two different allowed multipliers—one with no new real zeros and one with new real zeros—to separate necessary from merely possible conclusions.",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "learner_stage": "CHECKPOINT",
@@ -1313,8 +1313,8 @@
           "clarify": "Clarify which consequences require the degree bound.",
           "connect": "Connect that to even-polynomial root symmetry and divisibility.",
           "way": "Build toward solve bounded then parameterize unbounded without skipping its conditions.",
-          "rule": "Before concluding, state the exact condition that licenses the decisive inference: separating necessary from possible claims.",
-          "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+          "rule": "When a hypothesis such as a degree bound is removed, retain only conclusions that can be re-derived without it; use a complete family or counterexamples to classify the rest.",
+          "check": "Use h(x)=1+x^2 to get an unbounded example with exactly the four forced real zeros, and h(x)=1-x^2/9 to create extra zeros ±3 and change the leading coefficient. These two examples separate what is necessary from what is merely possible.",
           "probe": "Remove a degree bound while preserving evenness and fixed roots. Which conclusions remain necessary and which become merely possible?",
           "pattern": "Only conclusions supported without the removed bound stay necessary; new even multipliers generate counterexamples to the others.",
           "transfer": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
@@ -1376,7 +1376,7 @@
           }
         ],
         "crux_move_ref": "ISS52-Q8-MOVE-3",
-        "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+        "check": "Substitute -1,0,1,2 into d(x)=2x(x^2-1). Then compare (p,q)=(d,0) and (d+1,1): both obey the degree bounds and have the same difference, proving the components are not unique.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR"
@@ -1395,24 +1395,24 @@
       },
       "scaffolds": [
         {
-          "prompt": "Support 1: what should you make explicit next?",
-          "text": "Identify what is identifiable about p-q. Keep every stated qualifier visible.",
+          "prompt": "Support 1: What should be made explicit next?",
+          "text": "Form d=p-q. Agreement at -1,0,1 means those three numbers are roots of d, and d still has degree at most 3.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
           "supports_move_ref": "ISS52-Q8-MOVE-1"
         },
         {
-          "prompt": "Support 2: what should you make explicit next?",
-          "text": "Connect the task to factor theorem and degree-3 bound; check its conditions before using it.",
+          "prompt": "Support 2: What should be made explicit next?",
+          "text": "Factor d using those roots; the degree bound leaves only one scalar to determine from d(2)=12.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
           "supports_move_ref": "ISS52-Q8-MOVE-2"
         },
         {
-          "prompt": "Support 3: what should you make explicit next?",
-          "text": "Plan an independent boundary, substitution or counterexample check, while leaving uniqueness of difference versus components to you.",
+          "prompt": "Support 3: What is the structural move to set up?",
+          "text": "After d is fixed, test whether p and q themselves are fixed by adding the same degree-at-most-3 polynomial to both.",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "learner_stage": "CRUX",
@@ -1479,8 +1479,8 @@
           "clarify": "Clarify what is identifiable about p-q.",
           "connect": "Connect that to factor theorem and degree-3 bound.",
           "way": "Build toward factor the difference then construct distinct decompositions without skipping its conditions.",
-          "rule": "Before concluding, state the exact condition that licenses the decisive inference: uniqueness of difference versus components.",
-          "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+          "rule": "A bounded-degree difference may be uniquely identified even when its two component polynomials are not; a common additive polynomial preserves the difference.",
+          "check": "Substitute -1,0,1,2 into d(x)=2x(x^2-1). Then compare (p,q)=(d,0) and (d+1,1): both obey the degree bounds and have the same difference, proving the components are not unique.",
           "probe": "If a difference polynomial is unique, construct two different component pairs with that same difference.",
           "pattern": "Adding the same allowed polynomial to both components changes neither their difference nor the identified value.",
           "transfer": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
@@ -1557,7 +1557,7 @@
           }
         ],
         "crux_move_ref": "ISS52-Q9-MOVE-3",
-        "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+        "check": "Substitute x=0 and inspect factors for both surviving polynomials. In the discarded quadratic-remainder case, constant term -1 makes the discriminant b^2+4 positive, so forbidden extra real zeros are unavoidable.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR"
@@ -1576,40 +1576,40 @@
       },
       "scaffolds": [
         {
-          "prompt": "Support 1: what should you make explicit next?",
-          "text": "Identify how multiplicities and leftover factors interact with all constraints. Keep every stated qualifier visible.",
+          "prompt": "Support 1: What should be made explicit next?",
+          "text": "Write p=(x-1)^m(x+1)^n times a possible remaining monic factor, with m,n positive.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
           "supports_move_ref": "ISS52-Q9-MOVE-1"
         },
         {
-          "prompt": "Support 2: what should you make explicit next?",
-          "text": "Connect the task to factor theorem and quadratic real-root test; check its conditions before using it.",
+          "prompt": "Support 2: What should be made explicit next?",
+          "text": "Use p(0)=1 to constrain the parity of m before enumerating degree budgets.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
           "supports_move_ref": "ISS52-Q9-MOVE-2"
         },
         {
-          "prompt": "Support 3: what should you make explicit next?",
-          "text": "Order the dependencies needed to enumerate cases and eliminate the quadratic remainder, stopping before the decisive conclusion.",
-          "support_kind": "EXECUTE",
+          "prompt": "Support 3: What should be made explicit next?",
+          "text": "List the no-remainder multiplicity pairs with total degree at most 4; do not assume these are already complete.",
+          "support_kind": "CONNECT",
           "reveals": "METHOD",
           "learner_stage": "FIRST_MOVE",
-          "supports_move_ref": "ISS52-Q9-MOVE-3"
+          "supports_move_ref": "ISS52-Q9-MOVE-2"
         },
         {
-          "prompt": "Support 4: what should you make explicit next?",
-          "text": "Set up the move toward enumerate cases and eliminate the quadratic remainder, but leave the completeness proof unresolved.",
+          "prompt": "Support 4: What is the structural move to set up?",
+          "text": "Examine the only possible residual-factor degree. If it is quadratic, use p(0)=1 to determine its constant term and then test whether it can avoid real roots.",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "learner_stage": "CRUX",
-          "supports_move_ref": "ISS52-Q9-MOVE-4"
+          "supports_move_ref": "ISS52-Q9-MOVE-3"
         },
         {
-          "prompt": "Support 5: what should you make explicit next?",
-          "text": "Plan an independent boundary, substitution or counterexample check, while leaving the completeness proof to you.",
+          "prompt": "Support 5: What should be made explicit next?",
+          "text": "Verify monicity, p(0), total degree and the exact distinct real-zero set for every survivor.",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "learner_stage": "CHECKPOINT",
@@ -1674,8 +1674,8 @@
           "clarify": "Clarify how multiplicities and leftover factors interact with all constraints.",
           "connect": "Connect that to factor theorem and quadratic real-root test.",
           "way": "Build toward enumerate cases and eliminate the quadratic remainder without skipping its conditions.",
-          "rule": "Before concluding, state the exact condition that licenses the decisive inference: the completeness proof.",
-          "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+          "rule": "To classify an exact real-zero set, enumerate multiplicities and every residual-factor degree allowed by the budget, then eliminate any residual factor that must create another real zero.",
+          "check": "Substitute x=0 and inspect factors for both surviving polynomials. In the discarded quadratic-remainder case, constant term -1 makes the discriminant b^2+4 positive, so forbidden extra real zeros are unavoidable.",
           "probe": "If a leftover monic quadratic has negative constant term, what does its discriminant tell you about extra real zeros?",
           "pattern": "A monic quadratic with negative constant has positive discriminant and real roots, so it cannot be an invisible residual factor.",
           "transfer": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
@@ -1749,7 +1749,7 @@
           }
         ],
         "crux_move_ref": "ISS52-Q10-MOVE-1",
-        "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+        "check": "Check each application against its repaired rule: at t=1, A_t=x+1 has degree 1; B remains undefined at x=1 before extension; C=(x-2)^2(x^2+1) has one distinct real zero; and E(3)-D(3)=6 despite agreement at 0,1,2.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR"
@@ -1768,40 +1768,40 @@
       },
       "scaffolds": [
         {
-          "prompt": "Support 1: what should you make explicit next?",
-          "text": "Identify the hidden condition omitted by each shortcut. Keep every stated qualifier visible.",
+          "prompt": "Support 1: What should be made explicit next?",
+          "text": "For each slogan, write the hidden condition beside it before touching A_t, B, C, D or E.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
           "supports_move_ref": "ISS52-Q10-MOVE-1"
         },
         {
-          "prompt": "Support 2: what should you make explicit next?",
-          "text": "Connect the task to domain, simplified degree, root-count and identity bounds; check its conditions before using it.",
+          "prompt": "Support 2: What should be made explicit next?",
+          "text": "Group the conditions: original domain for cancellation; simplified leading coefficient for degree; nonzero polynomial for the root-count bound; degree of a difference for finite-data identity.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
           "supports_move_ref": "ISS52-Q10-MOVE-2"
         },
         {
-          "prompt": "Support 3: what should you make explicit next?",
-          "text": "Order the dependencies needed to qualify each rule then apply it, stopping before the decisive conclusion.",
-          "support_kind": "EXECUTE",
+          "prompt": "Support 3: What should be made explicit next?",
+          "text": "Apply each repaired rule to its matching example, keeping exceptional parameter/domain cases separate.",
+          "support_kind": "CONNECT",
           "reveals": "METHOD",
           "learner_stage": "FIRST_MOVE",
-          "supports_move_ref": "ISS52-Q10-MOVE-3"
+          "supports_move_ref": "ISS52-Q10-MOVE-2"
         },
         {
-          "prompt": "Support 4: what should you make explicit next?",
-          "text": "Set up the move toward qualify each rule then apply it, but leave choosing the qualification before algebra unresolved.",
+          "prompt": "Support 4: What is the structural move to set up?",
+          "text": "For finite agreement, form E-D and ask what its zeros at 0,1,2 do—and do not—prove without a smaller degree bound.",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "learner_stage": "CRUX",
-          "supports_move_ref": "ISS52-Q10-MOVE-4"
+          "supports_move_ref": "ISS52-Q10-MOVE-1"
         },
         {
-          "prompt": "Support 5: what should you make explicit next?",
-          "text": "Plan an independent boundary, substitution or counterexample check, while leaving choosing the qualification before algebra to you.",
+          "prompt": "Support 5: What should be made explicit next?",
+          "text": "Give a fresh counterexample to one unqualified slogan and state exactly which omitted hypothesis it violates.",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "learner_stage": "CHECKPOINT",
@@ -1868,8 +1868,8 @@
           "clarify": "Clarify the hidden condition omitted by each shortcut.",
           "connect": "Connect that to domain, simplified degree, root-count and identity bounds.",
           "way": "Build toward qualify each rule then apply it without skipping its conditions.",
-          "rule": "Before concluding, state the exact condition that licenses the decisive inference: choosing the qualification before algebra.",
-          "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+          "rule": "Before using a familiar polynomial or rational-expression rule, state its domain/nonzero/degree hypothesis explicitly; the unqualified slogan is not the rule.",
+          "check": "Check each application against its repaired rule: at t=1, A_t=x+1 has degree 1; B remains undefined at x=1 before extension; C=(x-2)^2(x^2+1) has one distinct real zero; and E(3)-D(3)=6 despite agreement at 0,1,2.",
           "probe": "Take one unconditional shortcut rule and state a changed example where its missing hypothesis fails.",
           "pattern": "The counterexample must fail exactly the omitted domain/degree/nonzero/identity-bound condition while leaving the qualified rule valid.",
           "transfer": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
