@@ -56,7 +56,7 @@ class AuthoringApplicabilityTests(unittest.TestCase):
     def test_core1a_blueprint_expected_component_accepts_scoped_waiver(self):
         page = {
             "role": "CORE1A",
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.6.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.7.0",
             "units": [{
                 "id": "MIC",
                 "construction_units": ["CU-1"],
