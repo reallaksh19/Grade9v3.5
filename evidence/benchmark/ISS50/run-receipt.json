@@ -1,0 +1,122 @@
+{
+  "benchmark_issue": 50,
+  "round": "POLYNOMIAL-STRESS-V1",
+  "agent_id": "EXECUTION_AGENT_CHATGPT",
+  "branch": "candidate/iss50-d2-polynomials-r1",
+  "launch_commit": "91719ad8df2bfc06c6a481590d2e24c510c24835",
+  "academic_input_head": "df528411b244b924447a675a2deadb3032a2e32b",
+  "artifact_evidence_head": "dc8affc091cb968da21e08f3d3cea08f78af486f",
+  "protocol_ref": "reallaksh19/Common@149770a21ca073df49717a96e2106c967adddc2d:skills/engineering-pr-delivery-v3.2",
+  "owner_clarifications": "NONE",
+  "custody": {
+    "owner_core_sha256": "984f011770d466640d809b8caaa80e4dc0ae4c4b9c510ccdc8ab75b2793ea2cf",
+    "verdict": "PASS",
+    "question_count": 10,
+    "order": "Q1-Q10",
+    "authorship": "OWNER_SUPPLIED custody; coordinator/AI-authored benchmark input; not official exam/PYQ and not personally authored by Owner.",
+    "learner_profile_provenance": "SIMULATED_OWNER_PRESET"
+  },
+  "authority": {
+    "registry_version": "1.14.0",
+    "core1a_blueprint": "BP-CORE1A-CONSTRUCTION@1.7.0",
+    "core2_blueprint": "BP-CORE2-SOURCE-QUESTION@1.9.0",
+    "matrix_ref": "Shared/quality/question-demand-matrix.v1.json@1.0.0",
+    "launch_hashes": "evidence/benchmark/ISS50/launch-hashes.json"
+  },
+  "environment": {
+    "repository_access": "Authenticated GitHub connector",
+    "local_clone": "FAILED_DNS_CANNOT_RESOLVE_GITHUB_COM",
+    "render_runtime": "GitHub-hosted Ubuntu",
+    "python": "3.11.16",
+    "node": "22.23.3",
+    "playwright": "1.56.1"
+  },
+  "render": {
+    "workflow_run_id": 37335932093,
+    "workflow_run_url": "https://github.com/reallaksh19/Grade9v3.5/actions/runs/37335932093",
+    "artifact_id": 11356038999,
+    "artifact_digest": "sha256:a7873d0b4a8ca698e2711b22612f2adc195fedee15c0bd82282dc41af6847c66",
+    "artifact_expires_at": "2027-01-03T15:49:32Z",
+    "renderer": "render_core/2",
+    "render_digest": "844ec8ad4361d2e1",
+    "semantic_digest": "99620fa2883f97c7",
+    "mode": "PAGES",
+    "held_to": "REFERENCE",
+    "draft": false,
+    "gaps": 0,
+    "subject_authority_findings": 0,
+    "selected": {
+      "microtopics": 3,
+      "core2": 10,
+      "core2a": 0,
+      "core2b": 0
+    },
+    "exact_files": {
+      "core1a.html": {
+        "sha256": "06e6f4ab1d9d8e468adc33d1d5c28a46710861b16647bcbf64cfaea717c84aad",
+        "bytes": 99987
+      },
+      "core2.html": {
+        "sha256": "6060e1d7e045933b652ce72b7f28a233c0136bf631ebd3b95d115be9a44cfbf9",
+        "bytes": 200076
+      },
+      "index.html": {
+        "sha256": "6632e5cc679ced183efc47770416367a8c2100ee9ee46cb56262ec8f85fa061c",
+        "bytes": 22803
+      },
+      "render-receipt.json": {
+        "sha256": "b883874d299daf4340cdbe458f59b71e06578934b0d2327dcdd69e418d0697ee",
+        "bytes": 402
+      }
+    },
+    "repository_artifact_commit": "dc8affc091cb968da21e08f3d3cea08f78af486f"
+  },
+  "validation": {
+    "owner_bank": "PASS",
+    "package_schema": "PASS",
+    "difficulty_sums": "PASS_10_OF_10",
+    "core2_denominator_order": "PASS_10_OF_10",
+    "protected_initial_page": "PASS",
+    "tablet_browser_audit": "PASS_CORE1A_CORE2",
+    "pdf_exact_render": "NOT_RUN",
+    "learner_platform_code_tests": "PASS",
+    "v31_relay": "PASS",
+    "repository_guardrails": "INHERITED_BASELINE_FAILURE_FAMILY; not used as candidate-specific acceptance",
+    "visual_exact_render": "PASS_CORE1A_CORE2_FULL_PAGE_CAPTURE"
+  },
+  "academic_summary": {
+    "intended_cohort": "D2",
+    "actual_bands": {
+      "D1": [
+        "ISS50-Q3"
+      ],
+      "D2": [
+        "ISS50-Q1",
+        "ISS50-Q2",
+        "ISS50-Q4",
+        "ISS50-Q5",
+        "ISS50-Q7",
+        "ISS50-Q8",
+        "ISS50-Q9"
+      ],
+      "D3": [
+        "ISS50-Q6",
+        "ISS50-Q10"
+      ],
+      "D4": []
+    },
+    "hardest_target": {
+      "question_ref": "ISS50-Q10",
+      "primary_demand": "JUSTIFY",
+      "band": "D3",
+      "score": 7
+    }
+  },
+  "deviations": [
+    "Direct sandbox git clone could not resolve github.com; connector plus hosted CI used instead.",
+    "Initial frozen owner-core file omitted the title line included by the published digest; byte boundary corrected without changing A/B/C wording.",
+    "Two package enum defects and four reference-depth authoring/figure findings were corrected before the first zero-gap strict render.",
+    "A verification-harness regex was corrected after the renderer had already produced a zero-gap strict render."
+  ],
+  "status": "CANDIDATE_HANDOFF_READY_PENDING_INDEPENDENT_REVIEW"
+}
