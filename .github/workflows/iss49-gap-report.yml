@@ -1,0 +1,30 @@
+name: iss49-gap-report
+
+on:
+  push:
+    branches:
+      - feat/iss49-polynomial-stress-d1
+    paths:
+      - "evidence/benchmark/ISS49/build_candidate.py"
+      - ".github/workflows/iss49-gap-report.yml"
+  workflow_dispatch:
+
+jobs:
+  gaps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet jsonschema
+      - name: Build inputs
+        run: PYTHONPATH=. python evidence/benchmark/ISS49/build_candidate.py
+      - name: Report governed renderer gaps
+        shell: bash
+        run: |
+          set +e
+          python Shared/tools/render_core.py gaps --manifest evidence/benchmark/ISS49/inputs/product.manifest.json
+          code=$?
+          echo "render_gaps_exit=$code"
+          exit 0
