@@ -1247,6 +1247,138 @@
           ]
         }
       ]
+    },
+    {
+      "id": "MIC-MATH-ISS52-QUALIFIED-RULES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS52-OWNER",
+        "SRC-ISS52-AUTHORED-PEDAGOGY"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:component_waivers": {
+          "EQUATIONS": "The construction compares four rule conditions rather than one governing equation.",
+          "STAGED_VISUAL": "A symbolic condition ledger is the semantic object; a picture would be decorative."
+        }
+      },
+      "title": "Qualified rules instead of unconditional polynomial slogans",
+      "bucket_id": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE",
+      "primary_capability_ref": "CAP-MATH-POLY-QUALIFIED-RULES",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "The learner must identify which hidden hypothesis belongs to each superficially familiar rule and preserve it across mixed examples.",
+      "entry_assumptions": [
+        "Can factor routine polynomials and read a declared domain or degree bound."
+      ],
+      "inferential_jump": "The decisive move is not more algebra; it is attaching the correct hypothesis to each inference before executing it.",
+      "teaching_path": [
+        {
+          "id": "ISS52-QUALIFIED-1",
+          "role": "DECLARE",
+          "action": "Rewrite every shortcut as a conditional statement before applying it.",
+          "why_valid": "A mathematical rule is only valid on the domain and under the structural hypotheses that justify its inference.",
+          "inputs": [],
+          "output": "A condition ledger for cancellation, degree, real-root count and finite-data identity."
+        },
+        {
+          "id": "ISS52-QUALIFIED-2",
+          "role": "TRANSFORM",
+          "action": "For cancellation and degree, check original-domain exclusions, simplification, and parameter values that may kill the leading coefficient.",
+          "why_valid": "Cancellation is division under a nonzero condition, and degree depends on the first nonzero coefficient after simplification.",
+          "inputs": [],
+          "output": "Qualified domain and degree rules."
+        },
+        {
+          "id": "ISS52-QUALIFIED-3",
+          "role": "TRANSFORM",
+          "action": "For roots and finite agreement, convert the claim to a root count for a nonzero polynomial or difference polynomial.",
+          "why_valid": "The root-count theorem is an upper bound for nonzero polynomials, and identity from finite agreement needs a degree bound on the difference.",
+          "inputs": [],
+          "output": "Qualified distinct-root and finite-identity rules."
+        },
+        {
+          "id": "ISS52-QUALIFIED-4",
+          "role": "VERIFY",
+          "action": "Challenge one unqualified slogan with a fresh counterexample and name the exact missing hypothesis.",
+          "why_valid": "A counterexample falsifies the unconditional version while leaving the correctly qualified statement intact.",
+          "inputs": [],
+          "output": "A reusable habit: condition first, conclusion second."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-ISS52-Q10"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "A familiar algebra slogan remains valid after its domain, leading coefficient, nonzero-polynomial or degree-bound condition is dropped.",
+          "diagnostic_prompt": "Can you state one of the four rules without any condition and have it remain universally true?",
+          "repair": "No. Write the hidden condition first, then apply the rule only inside that scope."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Choose one of cancellation, degree, real-root count or finite agreement. State its qualified rule and one failure mode outside its hypotheses.",
+        "source_ref": "SRC-ISS52-AUTHORED-PEDAGOGY",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "A correct answer names the governing condition and a counterexample to the unqualified version.",
+          "reasoning": [
+            "Condition first; counterexample outside that condition."
+          ],
+          "check": "Verify that the counterexample violates the omitted hypothesis rather than the qualified rule.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit checks a conditional logical statement."
+        }
+      },
+      "research_contribution": "Changed-case synthesis bridge for issue #52 Q10; no learner-trial effectiveness is claimed.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "construction_units": [
+        {
+          "id": "CU-MATH-ISS52-QUALIFIED-RULES-1",
+          "decision": "Attach the exact hidden hypothesis to each familiar polynomial/rational-expression rule before applying it.",
+          "step_refs": [
+            "ISS52-QUALIFIED-1",
+            "ISS52-QUALIFIED-2",
+            "ISS52-QUALIFIED-3",
+            "ISS52-QUALIFIED-4"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": "WK-ISS52-QUALIFIED-RULES",
+          "crux_question_refs": [
+            "ISS52-Q10"
+          ],
+          "crux_step_ref": "ISS52-QUALIFIED-4",
+          "misconception_indexes": [
+            0
+          ],
+          "relation_refs": [],
+          "independent_checks": [
+            {
+              "statement": "CHECK: State the missing hypothesis before accepting any shortcut.",
+              "check_type": null,
+              "role": "CHECK"
+            },
+            {
+              "statement": "APPLY: Rewrite an unqualified rule from a changed case as a conditional statement.",
+              "check_type": null,
+              "role": "APPLY"
+            },
+            {
+              "statement": "CONNECT: Explain which other benchmark question would fail if the same hypothesis were dropped.",
+              "check_type": null,
+              "role": "CONNECT"
+            }
+          ]
+        }
+      ]
     }
   ],
   "relations": [],
@@ -1755,7 +1887,9 @@
       "answer": {
         "kind": "MODEL_RESPONSE",
         "summary": "With degree at most two, r(x)=x^2+2 uniquely. Without the bound, r(x)=x^2+2+x(x-1)(x-2)h(x) for any real polynomial h.",
-        "reasoning": "Check x^2+2 at the three inputs; the difference has three roots. A nonzero degree-at-most-two difference is impossible. Without the bound, factor all three roots from the difference.",
+        "reasoning": [
+          "Check x^2+2 at the three inputs; the difference has three roots. A nonzero degree-at-most-two difference is impossible. Without the bound, factor all three roots from the difference."
+        ],
         "check": "Substitute 0,1,2 and test h=1 as a distinct unbounded example.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
@@ -1813,7 +1947,9 @@
       "answer": {
         "kind": "MODEL_RESPONSE",
         "summary": "The forced multiplicities are 1 at -1, 2 at 0, and 1 at 1.",
-        "reasoning": "Translate sign change to odd multiplicity and no sign change to even multiplicity. The least positive choices already total four, so the degree bound leaves no room for larger multiplicities.",
+        "reasoning": [
+          "Translate sign change to odd multiplicity and no sign change to even multiplicity. The least positive choices already total four, so the degree bound leaves no room for larger multiplicities."
+        ],
         "check": "The factor (x+1)x^2(x-1) flips sign at ±1 and not at 0.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
@@ -1871,7 +2007,9 @@
       "answer": {
         "kind": "MODEL_RESPONSE",
         "summary": "A quadratic with only one real zero has that zero with even multiplicity and therefore does not change sign across it; the opposite endpoint signs require a sign-changing real zero.",
-        "reasoning": "Use continuity to force at least one real zero between -1 and 1. If the quadratic has only one real zero, its discriminant is zero and the root is double, so the sign does not switch. That contradicts the endpoint signs.",
+        "reasoning": [
+          "Use continuity to force at least one real zero between -1 and 1. If the quadratic has only one real zero, its discriminant is zero and the root is double, so the sign does not switch. That contradicts the endpoint signs."
+        ],
         "check": "Compare with (x-c)^2, which is nonnegative on both sides of c.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
@@ -1931,7 +2069,9 @@
       "answer": {
         "kind": "MODEL_RESPONSE",
         "summary": "Critical values are t=-1, 17/10, 2. For t<-1 and t>2 there are two distinct simple real zeros 0,-3. At t=-1 there are two distinct zeros with 0 of multiplicity 3. For -1<t<2 except 17/10 there are four distinct simple zeros. At t=17/10 there are three distinct zeros with -3 double. At t=2 the polynomial drops to degree 2 with simple zeros 0,-3.",
-        "reasoning": "Factorization is already exposed. Degree drops when t-2=0. Extra real roots require (t+1)/(2-t)>0, with boundary t=-1. Collision with -3 occurs when (t+1)/(2-t)=9, giving t=17/10. Order the events and test each interval; refactor at each event.",
+        "reasoning": [
+          "Factorization is already exposed. Degree drops when t-2=0. Extra real roots require (t+1)/(2-t)>0, with boundary t=-1. Collision with -3 occurs when (t+1)/(2-t)=9, giving t=17/10. Order the events and test each interval; refactor at each event."
+        ],
         "check": "Choose t=0, t=19/10 and t=3 as interval checks, then substitute each exceptional t directly.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
@@ -1989,7 +2129,9 @@
       "answer": {
         "kind": "MODEL_RESPONSE",
         "summary": "Derive V(x)=x(12-2x)^2 from the geometry, state 0<x<6 for a non-degenerate box, then compare the candidate formula at an additional admissible x. Three matching rows alone do not identify the geometric law.",
-        "reasoning": "The geometry fixes height x and base side 12-2x. The domain comes from positive dimensions. A finite set of matches can be shared by different polynomials, so a new domain-valid input or algebraic difference is needed.",
+        "reasoning": [
+          "The geometry fixes height x and base side 12-2x. The domain comes from positive dimensions. A finite set of matches can be shared by different polynomials, so a new domain-valid input or algebraic difference is needed."
+        ],
         "check": "Check that the geometric volume remains nonnegative throughout 0<x<6 and compare a changed input.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
@@ -2047,7 +2189,9 @@
       "answer": {
         "kind": "MODEL_RESPONSE",
         "summary": "H_b(x)=x-4 for x≠b. If b≠4, x=4 is an allowed zero; if b=4 it is excluded and H_b has no zero. The polynomial extension is x-4 on all real numbers.",
-        "reasoning": "Factor the numerator as (x-b)(x-4), cancel only for x≠b, then test whether the candidate zero belongs to the original domain. Extension is a separate operation that fills the hole.",
+        "reasoning": [
+          "Factor the numerator as (x-b)(x-4), cancel only for x≠b, then test whether the candidate zero belongs to the original domain. Extension is a separate operation that fills the hole."
+        ],
         "check": "At b=4 the simplified formula is zero at 4 but the original function is undefined there; this boundary case detects domain loss.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
@@ -2056,6 +2200,67 @@
       "primary_capability_ref": "CAP-MATH-POLY-DOMAIN-EXTENSION",
       "secondary_capability_refs": [],
       "family_ref": "FAM-ISS52-Q6",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "WORKED_CONCEPTUAL_ANCHOR",
+          "artifact_ref": null
+        }
+      ]
+    },
+    {
+      "id": "WK-ISS52-QUALIFIED-RULES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS52-AUTHORED-PEDAGOGY"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 7,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 0,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Changed synthesis anchor requiring four hidden conditions to be made explicit."
+          }
+        }
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-ISS52-AUTHORED-PEDAGOGY",
+      "original_identifier": "Worked 7",
+      "stem": "Four students claim: cancelling a common factor never changes a function; the written highest power is always the degree; a degree-n polynomial has n distinct real zeros; and agreement at three inputs proves two polynomials identical. Rewrite each as a correct conditional rule, then give one counterexample to an unqualified version.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Cancellation keeps values only on the original domain; degree is read after simplification and parameter checks; a nonzero degree-n polynomial has at most n distinct real zeros; finite agreement proves identity only when a suitable degree bound on the difference makes that many distinct roots impossible.",
+        "reasoning": [
+          "Attach a domain condition to cancellation, a nonzero-leading-coefficient/simplification condition to degree, an at-most statement to real-root counting, and a degree bound to finite-data identity.",
+          "A counterexample such as (x-4)^2/(x-4) on x≠4 shows that cancellation alone does not restore the excluded point."
+        ],
+        "check": "For every repaired rule, remove its condition and verify that the supplied counterexample breaks the unqualified slogan.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-QUALIFIED-RULES",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-ISS52-Q10",
       "adaptation": null,
       "exposure": [
         {
@@ -2086,7 +2291,8 @@
         "MIC-MATH-ISS52-MIN-DEGREE",
         "MIC-MATH-ISS52-PARAMETER",
         "MIC-MATH-ISS52-MODEL",
-        "MIC-MATH-ISS52-DOMAIN"
+        "MIC-MATH-ISS52-DOMAIN",
+        "MIC-MATH-ISS52-QUALIFIED-RULES"
       ],
       "entry_needs": [
         "Routine factor/remainder arguments, simple identities and elementary real-domain restrictions are available as simulated demonstrated knowledge."
