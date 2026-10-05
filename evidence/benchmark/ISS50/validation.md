@@ -1,9 +1,9 @@
 # ISS50 Candidate Validation — POLYNOMIAL-STRESS-V1
 
 **Academic/input head:** `df528411b244b924447a675a2deadb3032a2e32b`  
-**Validation run:** [37328384214](https://github.com/reallaksh19/Grade9v3.5/actions/runs/37328384214)  
-**Exact render artifact:** `11353281491`  
-**Artifact digest:** `sha256:790b2ab54f8ead3f03ac90ff4844622ddb39bc5104b40cca9b9e84dabb9c367a`
+**Validation run:** [37329563177](https://github.com/reallaksh19/Grade9v3.5/actions/runs/37329563177)  
+**Exact render artifact:** `11354285398`  
+**Artifact digest:** `sha256:a84f918bed5112831218f0282c2cc2b6a704fcef4d81960e614869d0c2509642`
 
 ## Machine checks
 
