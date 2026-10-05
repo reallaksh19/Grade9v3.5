@@ -31,10 +31,19 @@ Crux: derive the change events before sampling cases. Diagnostic hypothesis: a l
 
 Core1A interaction: a staged, accessible parameter-event map for a **changed polynomial family**. The learner reveals degree-drop, existence-boundary and collision tests one stage at a time, then applies the workflow to a fresh case. The source Q4 event values are not disclosed in its pre-attempt Core2 support.
 
-## U4–U8
+## U4 — Canonical benchmark records — COMPLETE
 
-U4 canonical records is in progress. U5 render/integration, U6 exact semantic/interaction review, U7 builder proposal and U8 frozen handoff remain open. No schema, renderer, browser or PDF result is claimed before it is actually run.
+The governed candidate inputs now live in the controlled evidence lane:
+- `evidence/benchmark/ISS52/inputs/owner.bank.json`
+- `evidence/benchmark/ISS52/inputs/package.v1.json`
+- `evidence/benchmark/ISS52/inputs/product.manifest.json`
+
+This mirrors prior blueprint-cycle practice and deliberately keeps the unaccepted stress specimen out of canonical publication/search inputs. Core2 questions retain verbatim custody and exact hashes. Core1A holds seven concept constructions, including the Q4 hardest-target parameter-event unit and a dedicated Q10 qualified-rules unit. Q7–Q9 retain their own primary capability maps while joining to the exact selected teaching bridge through secondary capability refs and `grade9v3:learning_repair.construction_ref`.
+
+## U5–U8
+
+U5 render/integration is in progress. U6 exact semantic/interaction review, U7 builder proposal and U8 frozen handoff remain open. No schema, exact renderer, browser or PDF result is claimed before it is actually run.
 
 ## Execution deviation
 
-The local container cannot resolve external GitHub and therefore cannot obtain the pinned repository for direct execution. Connected GitHub repository actions remain available. This is recorded as an environment limitation, not a permission request. No second renderer and no hand-edited generated HTML will be introduced.
+The local container cannot resolve external GitHub and therefore cannot obtain the pinned repository for direct execution. Connected GitHub repository actions remain available. PR #60 is retargeted to a benchmark base branch anchored exactly at the pinned source commit, so moving `main` does not contaminate the controlled comparison. No second renderer and no hand-edited generated HTML will be introduced.
