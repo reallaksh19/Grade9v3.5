@@ -1,0 +1,111 @@
+name: iss49-polynomial-stress
+
+on:
+  push:
+    branches:
+      - feat/iss49-polynomial-stress-d1
+    paths:
+      - "evidence/benchmark/ISS49/**"
+      - ".github/workflows/iss49-polynomial-stress.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install validation dependencies
+        run: pip install --quiet jsonschema
+
+      - name: Verify frozen launch point and owner core digest
+        shell: bash
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor 91719ad8df2bfc06c6a481590d2e24c510c24835 HEAD
+          test "$(sha256sum evidence/benchmark/ISS49/owner-core-prompt.md | awk '{print $1}')" = "c2cca6e6b92997c30d2f3a7eab91577bc8463ec9ce44ca90b9be728f3d1d46b8"
+
+      - name: Build canonical candidate inputs
+        run: PYTHONPATH=. python evidence/benchmark/ISS49/build_candidate.py
+
+      - name: Validate owner custody and package schema
+        shell: bash
+        run: |
+          set -euo pipefail
+          python Shared/tools/owner_bank.py check             evidence/benchmark/ISS49/inputs/owner.bank.json             --intake evidence/benchmark/ISS49/intake.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+          schema=json.loads(Path("Shared/library/package.schema.json").read_text(encoding="utf-8"))
+          package=json.loads(Path("evidence/benchmark/ISS49/inputs/package.v1.json").read_text(encoding="utf-8"))
+          Draft202012Validator(schema).validate(package)
+          print("package schema: PASS")
+          PY
+
+      - name: Focused shared-contract checks
+        shell: bash
+        run: |
+          set -o pipefail
+          python Shared/tools/blueprint_spec.py --check
+          python Shared/tools/quality_contract.py --check
+          python -m unittest             tests.test_question_review_matrix.QuestionReviewMatrixTests.test_source_contract_is_valid_and_projection_is_current             tests.test_question_review_matrix.QuestionReviewMatrixTests.test_compiler_emits_exactly_twenty_eight_unique_cells             tests.test_question_review_matrix.QuestionReviewMatrixTests.test_resolver_selects_one_cell_and_fills_learner_relative_slots             tests.test_question_review_matrix.QuestionReviewMatrixTests.test_percentage_never_routes_or_changes_slots
+
+      - name: Governed Core1A and Core2 render
+        run: |
+          rm -rf /tmp/iss49
+          python Shared/tools/render_core.py build             --manifest evidence/benchmark/ISS49/inputs/product.manifest.json             --out /tmp/iss49             --mode PAGES
+          test -f /tmp/iss49/core1a.html
+          test -f /tmp/iss49/core2.html
+          test ! -f /tmp/iss49/core1b.html
+          test ! -f /tmp/iss49/core2a.html
+          test ! -f /tmp/iss49/core2b.html
+          mkdir -p evidence/benchmark/ISS49/rendered
+          cp /tmp/iss49/core1a.html evidence/benchmark/ISS49/rendered/core1a.html
+          cp /tmp/iss49/core2.html evidence/benchmark/ISS49/rendered/core2.html
+          cp /tmp/iss49/render-receipt.json evidence/benchmark/ISS49/rendered/render-receipt.json
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install pinned browser audit dependency
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Strict learner quality gate
+        run: |
+          python Shared/tools/quality_gate.py /tmp/iss49             --subject Mathematics             --product-id EVIDENCE-MAT-ISS49-POLY-D1             --report /tmp/iss49/quality-gate.json             --strict
+
+      - name: Exact-render browser audit
+        run: |
+          node tools/site-audit/core-page-audit.mjs             /tmp/iss49             --profile core1a-spec             --http-root /tmp/iss49             --json /tmp/iss49/browser-audit.json             --enforce
+
+      - name: Preserve exact validation evidence
+        if: always()
+        run: |
+          mkdir -p evidence/benchmark/ISS49/runtime
+          test -f /tmp/iss49/quality-gate.json && cp /tmp/iss49/quality-gate.json evidence/benchmark/ISS49/runtime/quality-gate.json || true
+          test -f /tmp/iss49/browser-audit.json && cp /tmp/iss49/browser-audit.json evidence/benchmark/ISS49/runtime/browser-audit.json || true
+          git rev-parse HEAD > evidence/benchmark/ISS49/runtime/tested-head.txt
+          printf '%s\n' "$GITHUB_RUN_ID" > evidence/benchmark/ISS49/runtime/workflow-run-id.txt
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: iss49-polynomial-stress-candidate
+          path: |
+            evidence/benchmark/ISS49
+            /tmp/iss49
+          if-no-files-found: error
+          retention-days: 14
