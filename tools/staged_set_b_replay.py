@@ -94,7 +94,7 @@ def main(argv=None):
         ctx = context(adopted)
         output = render_core.page(ctx, "CORE2", "SINGLE_FILE", render_core.render_digest(ctx))
         path = args.out / name
-        path.write_text(output, encoding="utf-8")
+        path.write_text(output, encoding="utf-8", newline="\n")
         report["pages"].append({"path": name, "sha256": "sha256:" + hashlib.sha256(path.read_bytes()).hexdigest(),
                                 "authority_hashes": ctx.authority_hashes, "render_gaps": ctx.gaps, "advisories": ctx.advisories})
     for case in cases():
@@ -105,7 +105,7 @@ def main(argv=None):
                                 "support_text_preserved": q["scaffolds"] == case["question"]["scaffolds"],
                                 "deferred_support": [r["source"] for r in core2_v2.project_support(q) if not r["eligible_pre_solution"]],
                                 "selected_asset": rep["scene_instances"][0]["asset_ref"]})
-    (args.out / "replay-report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    (args.out / "replay-report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps({"pages": [p["path"] for p in report["pages"]], "scope": report["scope"]}))
     return 0
 
