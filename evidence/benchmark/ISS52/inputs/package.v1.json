@@ -549,19 +549,19 @@
           "relation_refs": [],
           "independent_checks": [
             {
-              "statement": "CHECK: Restate the exact condition that licenses the decisive inference before using it.",
+              "role": "CHECK",
               "check_type": null,
-              "role": "CHECK"
+              "statement": "CHECK: If two degree-at-most-2 polynomials agree at three distinct inputs, say exactly why their difference must be zero."
             },
             {
-              "statement": "APPLY: Use the same inference on a changed numerical or parameter case and compare the result.",
+              "role": "APPLY",
               "check_type": null,
-              "role": "APPLY"
+              "statement": "APPLY: Change the three agreement inputs, repeat the difference-root argument, then remove the degree bound and describe what freedom returns."
             },
             {
-              "statement": "CONNECT: Identify which next polynomial question would fail if this condition were silently dropped.",
+              "role": "CONNECT",
               "check_type": null,
-              "role": "CONNECT"
+              "statement": "CONNECT: Explain how the same difference-polynomial idea separates uniqueness of p-q from uniqueness of p and q in the next family."
             }
           ]
         }
@@ -684,19 +684,19 @@
           "relation_refs": [],
           "independent_checks": [
             {
-              "statement": "CHECK: Restate the exact condition that licenses the decisive inference before using it.",
+              "role": "CHECK",
               "check_type": null,
-              "role": "CHECK"
+              "statement": "CHECK: State which multiplicity parity changes sign at a real zero and which preserves the local nonzero sign."
             },
             {
-              "statement": "APPLY: Use the same inference on a changed numerical or parameter case and compare the result.",
+              "role": "APPLY",
               "check_type": null,
-              "role": "APPLY"
+              "statement": "APPLY: For changed roots -3, 0, 3 with sign changes only at ±3 and degree at most 4, determine the forced multiplicity pattern before choosing a scale."
             },
             {
-              "statement": "CONNECT: Identify which next polynomial question would fail if this condition were silently dropped.",
+              "role": "CONNECT",
               "check_type": null,
-              "role": "CONNECT"
+              "statement": "CONNECT: Explain why multiplicity bookkeeping is also necessary when an exact distinct-real-zero set must be proved complete."
             }
           ]
         }
@@ -819,19 +819,19 @@
           "relation_refs": [],
           "independent_checks": [
             {
-              "statement": "CHECK: Restate the exact condition that licenses the decisive inference before using it.",
+              "role": "CHECK",
               "check_type": null,
-              "role": "CHECK"
+              "statement": "CHECK: Separate the two obligations in a least-degree claim: rule out every smaller degree, then verify one witness."
             },
             {
-              "statement": "APPLY: Use the same inference on a changed numerical or parameter case and compare the result.",
+              "role": "APPLY",
               "check_type": null,
-              "role": "APPLY"
+              "statement": "APPLY: If an auxiliary quadratic has opposite signs at two inputs, use continuity and multiplicity to decide whether a lone double root could account for the sign change."
             },
             {
-              "statement": "CONNECT: Identify which next polynomial question would fail if this condition were silently dropped.",
+              "role": "CONNECT",
               "check_type": null,
-              "role": "CONNECT"
+              "statement": "CONNECT: Relate the same residual-factor check to proving that an exact real-zero-set classification has omitted no polynomial."
             }
           ]
         }
@@ -849,6 +849,22 @@
       "extensions": {
         "grade9v3:component_waivers": {
           "EQUATIONS": "This construction is organized around inferential conditions rather than one reusable equation card; the necessary algebraic forms are carried in the authored steps and worked anchor."
+        },
+        "grade9v3:lesson_anchors": {
+          "CU-MATH-ISS52-PARAMETER-1": {
+            "id": "ANCHOR-ISS52-Q4-CHANGED-PARAMETER-FAMILY",
+            "target_question_ref": "ISS52-Q4",
+            "target_crux_move_ref": "ISS52-Q4-MOVE-2",
+            "construction_ref": "CU-MATH-ISS52-PARAMETER-1",
+            "stem": "For G_t(x)=x(x+3)((t-2)x^2+(t+1)), derive every parameter value at which the degree or distinct real-zero pattern can change, then classify the parameter line.",
+            "answer": {
+              "summary": "Critical values are t=-1, 17/10, 2. For t<-1 and t>2 there are two distinct simple real zeros 0,-3. At t=-1 there are two distinct zeros with 0 of multiplicity 3. For -1<t<2 except 17/10 there are four distinct simple zeros. At t=17/10 there are three distinct zeros with -3 double. At t=2 the polynomial drops to degree 2 with simple zeros 0,-3.",
+              "reasoning": [
+                "Factorization is already exposed. Degree drops when t-2=0. Extra real roots require (t+1)/(2-t)>0, with boundary t=-1. Collision with -3 occurs when (t+1)/(2-t)=9, giving t=17/10. Order the events and test each interval; refactor at each event."
+              ],
+              "check": "Choose t=0, t=19/10 and t=3 as interval checks, then substitute each exceptional t directly."
+            }
+          }
         }
       },
       "title": "Exhaustive parameter case splits from structural events",
@@ -960,19 +976,19 @@
           "relation_refs": [],
           "independent_checks": [
             {
-              "statement": "CHECK: Restate the exact condition that licenses the decisive inference before using it.",
+              "role": "CHECK",
               "check_type": null,
-              "role": "CHECK"
+              "statement": "CHECK: Before solving any cases, name the three structural event types that can change degree or the distinct-real-root pattern."
             },
             {
-              "statement": "APPLY: Use the same inference on a changed numerical or parameter case and compare the result.",
+              "role": "APPLY",
               "check_type": null,
-              "role": "APPLY"
+              "statement": "APPLY: For H_s=x(x+1)((s-3)x^2+(s+2)), write the degree-drop, real-root-existence, and collision equations before sampling any interval."
             },
             {
-              "statement": "CONNECT: Identify which next polynomial question would fail if this condition were silently dropped.",
+              "role": "CONNECT",
               "check_type": null,
-              "role": "CONNECT"
+              "statement": "CONNECT: Explain why an isolated collision can be missed by interval sign sampling and therefore needs its own event equation."
             }
           ]
         }
@@ -1085,8 +1101,7 @@
           "reveal_stage_refs": [],
           "worked_anchor_ref": "WK-ISS52-MODEL",
           "crux_question_refs": [
-            "ISS52-Q5",
-            "ISS52-Q10"
+            "ISS52-Q5"
           ],
           "crux_step_ref": "ISS52-MODEL-4",
           "misconception_indexes": [
@@ -1095,19 +1110,19 @@
           "relation_refs": [],
           "independent_checks": [
             {
-              "statement": "CHECK: Restate the exact condition that licenses the decisive inference before using it.",
+              "role": "CHECK",
               "check_type": null,
-              "role": "CHECK"
+              "statement": "CHECK: Name the physical dimensions and admissible domain before accepting any fitted polynomial as a box-volume model."
             },
             {
-              "statement": "APPLY: Use the same inference on a changed numerical or parameter case and compare the result.",
+              "role": "APPLY",
               "check_type": null,
-              "role": "APPLY"
+              "statement": "APPLY: For an 8 cm square sheet with x-sized corner cuts, derive the geometric volume rule and a non-degenerate domain before comparing any fitted values."
             },
             {
-              "statement": "CONNECT: Identify which next polynomial question would fail if this condition were silently dropped.",
+              "role": "CONNECT",
               "check_type": null,
-              "role": "CONNECT"
+              "statement": "CONNECT: Explain why agreement at a finite table of inputs is an identification question about polynomial differences, not a substitute for the physical mechanism."
             }
           ]
         }
@@ -1230,19 +1245,19 @@
           "relation_refs": [],
           "independent_checks": [
             {
-              "statement": "CHECK: Restate the exact condition that licenses the decisive inference before using it.",
+              "role": "CHECK",
               "check_type": null,
-              "role": "CHECK"
+              "statement": "CHECK: After cancelling a factor, restate the original excluded input before naming any zero of the function."
             },
             {
-              "statement": "APPLY: Use the same inference on a changed numerical or parameter case and compare the result.",
+              "role": "APPLY",
               "check_type": null,
-              "role": "APPLY"
+              "statement": "APPLY: Simplify (x-c)(x+2)/(x-c) on x≠c and classify whether -2 is a zero when c=-2 and when c is different from -2."
             },
             {
-              "statement": "CONNECT: Identify which next polynomial question would fail if this condition were silently dropped.",
+              "role": "CONNECT",
               "check_type": null,
-              "role": "CONNECT"
+              "statement": "CONNECT: Explain why this original-domain distinction is the missing condition behind the cancellation shortcut in the qualified-rules family."
             }
           ]
         }
