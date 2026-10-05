@@ -129,6 +129,7 @@ for (const file of files) {
       ? origin + '/' + path.relative(httpRoot, path.join(dir, file)).split(path.sep).map(encodeURIComponent).join('/')
       : 'file://' + path.join(dir, file);
     await page.goto(pageUrl);
+    await page.waitForTimeout(200); // let the shared display stylesheet settle before measuring text
     const bpId = await page.evaluate(() => document.body.dataset.blueprintRef || null);
     const bp = blueprints.blueprints.find(b => `${b.id}@${b.version}` === bpId);
     const minTarget = bp ? bp.touch_policy.minimum_target_css_px : 48;
@@ -171,6 +172,7 @@ for (const file of files) {
         smallTargets: small.length,
         smallTargetSample: small.slice(0, 3).map(el => el.tagName.toLowerCase() + ' ' + Math.round(el.getBoundingClientRect().height) + 'px "' + el.textContent.trim().slice(0, 20) + '"'),
         minFontPx: minFont,
+        minHtmlFontPx: Math.min(...texts.filter(el => !el.closest("svg")).map(el => parseFloat(getComputedStyle(el).fontSize))),
         minFontSample: minFontElements.slice(0, 3).map(el => el.tagName.toLowerCase() + ' ' + (el.textContent || '').trim().slice(0, 30)),
         contentWidthPx: (() => {
           const main = document.querySelector('main');
@@ -574,6 +576,7 @@ if (enforce && profile === 'core1a-spec') {
         failures.push(`core1a.html ${vp.name}: missing viewport result`);
         continue;
       }
+      if (row.minHtmlFontPx < 13.95) failures.push(`${vp.name}: visible HTML text ${row.minHtmlFontPx}px below 14px`);
       if (row.horizontalOverflowPx !== 0) failures.push(`${vp.name}: page overflow ${row.horizontalOverflowPx}px`);
       if (row.smallTargets !== 0) failures.push(`${vp.name}: ${row.smallTargets} controls below 48px`);
       if (row.controlGeometry.minGapPx != null && row.controlGeometry.minGapPx < 8) {
@@ -643,6 +646,7 @@ if (enforce && profile === 'tablet-12.7') {
     for (const vp of TABLET_12_7_VIEWPORTS) {
       const row = r.viewports[vp.name];
       if (!row) { failures.push(`${file} ${vp.name}: missing viewport result`); continue; }
+      if (row.minHtmlFontPx < 13.95) failures.push(`${file} ${vp.name}: visible HTML text ${row.minHtmlFontPx}px below 14px`);
       if (row.horizontalOverflowPx !== 0) failures.push(`${file} ${vp.name}: page overflow ${row.horizontalOverflowPx}px`);
       if (row.smallTargets !== 0) failures.push(`${file} ${vp.name}: ${row.smallTargets} controls below 48px`);
       if (row.stagedSvg?.violations?.length) failures.push(`${file} ${vp.name}: staged SVG progression: ${row.stagedSvg.violations.join(' | ')}`);
