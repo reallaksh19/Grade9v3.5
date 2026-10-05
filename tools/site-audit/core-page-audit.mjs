@@ -138,7 +138,8 @@ for (const file of files) {
     const pct = x => Number((x * 100).toFixed(4));
     const expectedColumns = policy && policy.support_fraction ? { primary: pct(policy.primary_fraction), support: pct(policy.support_fraction) } : null;
     const expectedTablet = policy && policy.tablet_12_7 ? policy.tablet_12_7 : null;
-    const r = await page.evaluate(({ minTarget, expectedColumns, expectedTablet }) => {
+    const expectedSinglePane = policy?.expanded === 'SINGLE_PANE';
+    const r = await page.evaluate(({ minTarget, expectedColumns, expectedTablet, expectedSinglePane }) => {
       const visible = el => {
         const b = el.getBoundingClientRect();
         return b.width > 0 && b.height > 0 && el.checkVisibility({ visibilityProperty: true, contentVisibilityAuto: true });
@@ -293,7 +294,16 @@ for (const file of files) {
           return { articles: rows.length, identityMaxPx: max('identityPx'), supportOffsetMaxPx: max('supportOffsetPx'),
                    smallestFigureTextPx: min('smallestFigureTextPx'), worstIdentity: rows.sort((a, b) => (b.identityPx || 0) - (a.identityPx || 0))[0] || null };
         })(),
-        stageSupportLayout: !!expectedColumns && new RegExp(`grid-template-columns:\\s*minmax\\(0(?:px)?,\\s*${expectedColumns.primary}fr\\)\\s*minmax\\(0(?:px)?,\\s*${expectedColumns.support}fr\\)`).test(sheetText),
+        stageSupportLayout: expectedSinglePane ? (() => {
+          const articles = [...document.querySelectorAll('main article[data-g9-unit]')].filter(visible);
+          return articles.length > 0 && articles.every(article => {
+            const splits = [...article.querySelectorAll('.g9-split')].filter(visible);
+            return splits.every(split => {
+              const columns = getComputedStyle(split).gridTemplateColumns;
+              return columns === 'none' || columns.trim().split(/\s+/).length === 1;
+            });
+          });
+        })() : !!expectedColumns && new RegExp(`grid-template-columns:\\s*minmax\\(0(?:px)?,\\s*${expectedColumns.primary}fr\\)\\s*minmax\\(0(?:px)?,\\s*${expectedColumns.support}fr\\)`).test(sheetText),
         core1aLayout: (() => {
           // One sample per two-column row (a .g9-split with both columns); a band with only one column is not a row of the layout.
           const splits = [...document.querySelectorAll('article.g9-stage-support .g9-split')]
@@ -445,7 +455,7 @@ for (const file of files) {
           return leaks;
         })(),
       };
-    }, { minTarget, expectedColumns, expectedTablet });
+    }, { minTarget, expectedColumns, expectedTablet, expectedSinglePane });
     r.expectedLayout = policy && policy.support_fraction
       ? { supportFraction: policy.support_fraction, minPx: policy.expanded_min_px || 1100 } : null;
     r.externalRequests = [...new Set(requests)];

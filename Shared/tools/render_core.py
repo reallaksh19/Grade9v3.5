@@ -227,7 +227,8 @@ def _figure_column_px(ctx: Ctx, role: str) -> tuple[float, float] | None:
 
 
 def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, first_stage_only: bool = False,
-           allowed: list[str] | None = None) -> str:
+           allowed: list[str] | None = None, instance_ref: str | None = None,
+           owner_ref: str | None = None) -> str:
     """Mount a representation's authored SVG, or record the gap (never a stand-in)."""
     if not rep_id:
         return ""
@@ -247,7 +248,19 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
     if rep is None:
         ctx.gap("MOUNT_REPRESENTATION", record, f"{rep_id} is not a representation in the product's packages", role)
         return ""
-    svg = next((s for s in (asset_svg(a) for a in rep.get("rendered_asset_refs") or []) if s), None)
+    case = None
+    if instance_ref is not None:
+        case = next((item for item in rep.get("scene_instances", []) if item["id"] == instance_ref), None)
+        if (source_resource or rep.get("kind") == "SOURCE_FIGURE" or not case
+                or case.get("question_ref") != (owner_ref or record)
+                or role not in case.get("cores", []) or not case.get("asset_ref")):
+            ctx.gap("MOUNT_REPRESENTATION", record, "selected case must bind this question, role and authored asset", role)
+            return ""
+        if not case.get("datum_refs") or any(ref not in ctx.index("data") for ref in case["datum_refs"]):
+            ctx.gap("BUILD_SCENE", record, "selected case refers to absent data records", role)
+            return ""
+    assets = [case["asset_ref"]] if case else rep.get("rendered_asset_refs") or []
+    svg = next((s for s in (asset_svg(a) for a in assets) if s), None)
     if svg is None:
         ctx.gap("BUILD_SCENE", rep_id, "no authored SVG asset (rendered_asset_refs) to mount", role)
         return ""
@@ -267,6 +280,9 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
     ctx.figure_instances[instance_base] = instance_no
     svg = _scope_svg_ids(svg, f"g9fig-{instance_base}-{instance_no}")
     stage_ids = re.findall(r'data-g9-stage-id="([^"]+)"', svg)
+    if case and allowed is not None and any(sid not in stage_ids for sid in allowed):
+        ctx.gap("BUILD_SCENE", record, "selected case has no such visual stage", role)
+        return ""
     # Before an attempt only permitted stages show: the record's stage_refs, else the first stage.
     if stage == "PRE_ATTEMPT" and not allowed:
         first_stage_only = True
@@ -321,7 +337,10 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
     bp = blueprint_of(ctx, role) or {}
     text_floor = ((bp.get('responsive_policy') or {}).get('tablet_12_7') or {}).get('figure_min_text_css_px',
                   ((ctx.blueprints.get('shell') or {}).get('typography_policy') or {}).get('minimum_learner_text_css_px',14))
-    return (f'<figure data-g9-figure data-g9-fig="{esc(record)}-{esc(rep_id)}" data-g9-stage="{stage}" '
+    case_attrs = (f' data-g9-case-instance="{esc(case["id"])}"'
+                  f' data-g9-case-owner="{esc(case["question_ref"])}"'
+                  f' data-g9-case-data="{esc(" ".join(case["datum_refs"]))}"') if case else ""
+    return (f'<figure data-g9-figure data-g9-fig="{esc(record)}-{esc(rep_id)}" data-g9-stage="{stage}"{case_attrs} '
             f'data-g9-representation="{esc(rep_id)}" data-g9-kind="{esc(kind)}" data-g9-min-figure-text="{esc(text_floor)}" data-reveal-stages="{max(len(shown), 1)}" '
             f'data-g9-stages-total="{max(len(stage_ids), 1)}" data-g9-stages="{esc(" ".join(shown))}"{mode_attr}>'
             f'<div class="g9-diagram-scroll" tabindex="0" role="region" aria-label="Diagram; scroll horizontally when enlarged">{svg}</div>{controls}{caption}</figure>')
@@ -1722,7 +1741,7 @@ def _core2_rung_head(number: int, stage: str | None, provenance: str, kind: str 
             f'{_core2_rung_pill(provenance)}</div>')
 
 
-def _core2_support_rung(ctx: Ctx, q: dict, row: dict, number: int) -> str:
+def _core2_support_rung(ctx: Ctx, q: dict, row: dict, number: int, post_solution: bool = False) -> str:
     """Render one provenance-explicit support rung without manufacturing academic content."""
     attrs = [
         f'data-g9-rung="{number}"',
@@ -1740,8 +1759,18 @@ def _core2_support_rung(ctx: Ctx, q: dict, row: dict, number: int) -> str:
     stage = row.get("learner_stage")
     stage_badge = _core2_rung_head(number, stage, row["provenance"], row.get("support_kind"))
     allowed = [row["visual_stage_ref"]] if row.get("visual_stage_ref") else None
-    visual = figure(ctx, row.get("visual_ref"), "PRE_ATTEMPT", "CORE2",
-                    f'{q["id"]}-support-{number}', allowed=allowed)
+    instance_ref = None
+    if row.get("visual_ref"):
+        binding = core2_v2.visual_support(q, row["visual_ref"])
+        if binding:
+            instance_ref = binding["instance_ref"]
+            if not post_solution:
+                allowed = ([ref for ref in allowed if ref in binding["pre_attempt_stage_refs"]]
+                           if allowed else binding["pre_attempt_stage_refs"])
+    visual = ("" if instance_ref and allowed == [] and not post_solution else
+              figure(ctx, row.get("visual_ref"), "POST_ATTEMPT" if post_solution else "PRE_ATTEMPT",
+                     "CORE2", f'{q["id"]}-support-{number}', allowed=allowed,
+                     instance_ref=instance_ref, owner_ref=q["id"]))
     reveal_body = f'<p>{question_text(ctx, q, _core2_support_target(row["source"]), row["text"])}</p>' + visual
     if row.get("prompt"):
         content = (stage_badge
@@ -1882,7 +1911,7 @@ def _difficulty_why(rid: str, analysis: dict) -> str:
             f'{f"<div class=g9-dgrid>{cells}</div>" if cells else ""}</div>')
 
 
-def _core2_question_figures(ctx: Ctx, q: dict) -> str:
+def _core2_question_figures(ctx: Ctx, q: dict, stage: str = "PRE_ATTEMPT") -> str:
     """Use explicitly reviewed authored support without replacing a source figure.
 
     Frozen question figure_refs remain custody data. A correction may supersede
@@ -1908,7 +1937,46 @@ def _core2_question_figures(ctx: Ctx, q: dict) -> str:
                     "review must bind this question and its frozen authored refs; source figure snapshots cannot be replaced", "CORE2")
         else:
             refs = authored
-    return "".join(figure(ctx, ref, "PRE_ATTEMPT", "CORE2", q["id"], first_stage_only=True) for ref in refs)
+    return _core2_bound_figures(ctx, q, refs, stage)
+
+
+def _core2_bound_figures(ctx: Ctx, q: dict, refs: list[str], stage: str) -> str:
+    output = []
+    try:
+        plan = core2_v2.support_plan(q)
+        if any(item["representation_ref"] not in refs for item in plan.get("visuals", [])):
+            raise core2_v2.Core2SupportProjectionError("a bound visual must belong to this question's figure references")
+        for ref in refs:
+            binding = core2_v2.visual_support(q, ref)
+            if not binding:
+                if stage == "PRE_ATTEMPT":
+                    output.append(figure(ctx, ref, stage, "CORE2", q["id"], first_stage_only=True))
+                continue
+            allowed = (binding["pre_attempt_stage_refs"] if stage == "PRE_ATTEMPT"
+                       else [item["stage_ref"] for item in binding["stages"]])
+            if not allowed:
+                continue  # Stages completing protected work belong with the answer.
+            output.append(figure(ctx, ref, stage, "CORE2", q["id"], allowed=allowed,
+                                 instance_ref=binding["instance_ref"], owner_ref=q["id"]))
+    except core2_v2.Core2SupportProjectionError as exc:
+        ctx.gap("AUTHOR_CORE2_SUPPORT", q["id"], str(exc), "CORE2")
+    return "".join(output)
+
+
+def _core2_completed_support(ctx: Ctx, q: dict) -> str:
+    """Keep deferred help available inside the existing attempted-solution payload."""
+    if core2_v2.SUPPORT_PLAN_KEY not in (q.get("extensions") or {}):
+        return ""
+    try:
+        rows = [row for row in core2_v2.project_support(q) if not row["eligible_pre_solution"]]
+        text = "".join(_core2_support_rung(ctx, q, row, number, post_solution=True)
+                       for number, row in enumerate(rows, 1))
+        figures = _core2_question_figures(ctx, q, "POST_ATTEMPT")
+    except core2_v2.Core2SupportProjectionError as exc:
+        ctx.gap("AUTHOR_CORE2_SUPPORT", q["id"], str(exc), "CORE2")
+        return ""
+    return block("completed_support", (f"<ol>{text}</ol>" if text else "") + figures,
+                 title="Further support") if text or figures else ""
 
 
 def core2(ctx: Ctx, q: dict) -> str:
@@ -1984,6 +2052,7 @@ def core2(ctx: Ctx, q: dict) -> str:
         }, "support"),
         "solution": component_body(ctx, "CORE2", {
             "SOLUTION": part("SOLUTION", reveal("Answer and working", worked + teaching_figure + detailed_labels
+                             + _core2_completed_support(ctx, q)
                              + block("difficulty_basis", para((analysis.get("difficulty") or {}).get("basis")),
                                      title="Author's difficulty rationale"), ref=f'CORE2-{rid}-solution')),
         }, "solution"),

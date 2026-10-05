@@ -14,6 +14,7 @@ import re
 
 SOURCE_HINT = "SOURCE_HINT"
 AUTHORED_CORE2_SUPPORT = "AUTHORED_CORE2_PROMPT_REVEAL"
+SUPPORT_PLAN_KEY = "grade9v3:core2_support_plan"
 LEARNER_STAGES = {"KEY_CONCEPT", "REPRESENTATION", "FIRST_MOVE", "CRUX", "FORMAL_MODEL", "CHECKPOINT", "OTHER"}
 _REVEAL_ORDER = {"CONCEPT": 0, "METHOD": 1, "ANSWER": 2}
 _REF = re.compile(r"^(hints|scaffolds)\[(\d+)\]$")
@@ -153,13 +154,87 @@ def _order(question: dict, rows: dict[str, dict]) -> list[str]:
 def project_support(question: dict) -> list[dict]:
     rows = _rows(question)
     rows.update(_inline_rows(question))
+    plan = support_plan(question, rows)
+    completed = {item["support_ref"]: item["completed_move_refs"]
+                 for item in plan.get("support_completions", [])}
+    protected = set(plan.get("protected_move_refs", []))
     projected = []
     for order, ref in enumerate(_order(question, rows), 1):
         row = dict(rows[ref])
         row["order"] = order
         row["eligible_pre_solution"] = row["reveals"] != "ANSWER"
+        if plan:
+            row["completed_move_refs"] = completed.get(ref, [])
+            row["eligible_pre_solution"] = (row["eligible_pre_solution"]
+                                             and not protected.intersection(row["completed_move_refs"]))
         projected.append(row)
     return projected
+
+
+def support_plan(question: dict, rows: dict | None = None) -> dict:
+    """Resolve an adopted plan against existing question moves; legacy records stay unchanged.
+
+    Completion is an authored fact, not guessed from a METHOD/ANSWER label or prose.
+    Schema-shaped input still needs its references resolved against this exact question.
+    """
+    plan = (question.get("extensions") or {}).get(SUPPORT_PLAN_KEY)
+    if plan is None:
+        return {}
+    if not isinstance(plan, dict):
+        raise Core2SupportProjectionError("core2_support_plan must be an object")
+    moves = {move.get("id") for move in (question.get("answer") or {}).get("reasoning_route", [])}
+    protected = plan.get("protected_move_refs")
+    if (not isinstance(protected, list) or not protected
+            or any(not isinstance(ref, str) or ref not in moves for ref in protected)):
+        raise Core2SupportProjectionError("protected_move_refs must name this question's reasoning moves")
+    if rows is None:
+        rows = _rows(question)
+        rows.update(_inline_rows(question))
+    for name in ("support_completions", "visuals"):
+        if not isinstance(plan.get(name, []), list) or any(not isinstance(item, dict) for item in plan.get(name, [])):
+            raise Core2SupportProjectionError(f"{name} must be an array of objects")
+    seen = set()
+    for item in plan.get("support_completions", []):
+        ref = item.get("support_ref")
+        completed = item.get("completed_move_refs")
+        if not isinstance(ref, str) or ref not in rows or ref in seen:
+            raise Core2SupportProjectionError(f"unknown or duplicate support completion {ref!r}")
+        if not isinstance(completed, list) or any(not isinstance(move, str) or move not in moves for move in completed):
+            raise Core2SupportProjectionError(f"support completion {ref!r} names an unknown reasoning move")
+        seen.add(ref)
+    seen = set()
+    for visual in plan.get("visuals", []):
+        ref = visual.get("representation_ref")
+        if (not isinstance(ref, str) or not ref or ref in seen
+                or not isinstance(visual.get("instance_ref"), str) or not visual["instance_ref"]):
+            raise Core2SupportProjectionError("visuals must name unique representations and their case instances")
+        seen.add(ref)
+        if not isinstance(visual.get("stages"), list) or any(not isinstance(item, dict) for item in visual["stages"]):
+            raise Core2SupportProjectionError(f"visual {ref!r} stages must be an array of objects")
+        stages = set()
+        for item in visual.get("stages", []):
+            stage_ref = item.get("stage_ref")
+            completed = item.get("completed_move_refs")
+            if not isinstance(stage_ref, str) or not stage_ref or stage_ref in stages:
+                raise Core2SupportProjectionError(f"duplicate or absent visual stage for {ref!r}")
+            if not isinstance(completed, list) or any(not isinstance(move, str) or move not in moves for move in completed):
+                raise Core2SupportProjectionError(f"visual stage {stage_ref!r} names an unknown reasoning move")
+            stages.add(stage_ref)
+        if not stages:
+            raise Core2SupportProjectionError(f"visual {ref!r} needs its actual stage references")
+    return plan
+
+
+def visual_support(question: dict, representation_ref: str) -> dict | None:
+    """The selected instance and permitted stages, derived from completed protected moves."""
+    plan = support_plan(question)
+    protected = set(plan.get("protected_move_refs", []))
+    for visual in plan.get("visuals", []):
+        if visual["representation_ref"] == representation_ref:
+            return {**visual, "pre_attempt_stage_refs": [
+                item["stage_ref"] for item in visual["stages"]
+                if not protected.intersection(item["completed_move_refs"])]}
+    return None
 
 
 def pre_solution_support(question: dict) -> list[dict]:
