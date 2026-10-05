@@ -1,0 +1,111 @@
+<svg aria-labelledby="title-tet-lp desc-tet-lp" class="question-svg" role="img" viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg">
+<style>
+  .label { font-size: 14px; fill: #0f172a; font-family: system-ui, sans-serif; font-weight: 700; }
+  .shape { font-size: 13px; fill: #2563eb; font-family: system-ui, sans-serif; font-weight: 700; }
+  .angle { font-size: 12px; fill: #475569; font-family: system-ui, sans-serif; }
+  .atom { font-size: 14px; font-weight: 700; font-family: system-ui, sans-serif; }
+  .lp-label { font-size: 11px; fill: #d97706; font-family: system-ui, sans-serif; font-weight: 600; }
+</style>
+<title id="title-tet-lp">Steric Number 4: Electron-Domain Geometry vs Molecular Shape</title>
+<desc id="desc-tet-lp">Comparative diagram of CH4, NH3, and H2O showing that while all three share a tetrahedral electron-domain geometry (steric number 4), non-bonding lone pairs alter the observable molecular shape from tetrahedral (CH4, 0 lone pairs) to trigonal pyramidal (NH3, 1 lone pair) to bent (H2O, 2 lone pairs).</desc>
+
+<rect fill="#f8fafc" height="278" rx="12" stroke="#cbd5e1" stroke-width="2" width="638" x="1" y="1"/>
+
+<!-- Panel 1: CH4 -->
+<g data-g9-stage-id="stage-ch4">
+  <rect fill="#ffffff" height="240" rx="8" stroke="#e2e8f0" stroke-width="1.5" width="190" x="15" y="20"/>
+  <text class="label" text-anchor="middle" x="110" y="44">CH₄ (0 Lone Pairs)</text>
+
+  <!-- Central C -->
+  <circle cx="110" cy="120" fill="#334155" r="16"/>
+  <text class="atom" fill="#ffffff" text-anchor="middle" x="110" y="125">C</text>
+
+  <!-- 4 H bonds (tetrahedral projection) -->
+  <line x1="110" y1="104" x2="110" y2="70" stroke="#64748b" stroke-width="2.5"/>
+  <circle cx="110" cy="62" fill="#e0f2fe" r="10" stroke="#0284c7" stroke-width="1.5"/>
+  <text class="atom" fill="#0369a1" font-size="11px" text-anchor="middle" x="110" y="66">H</text>
+
+  <line x1="97" y1="129" x2="65" y2="160" stroke="#64748b" stroke-width="2.5"/>
+  <circle cx="58" cy="167" fill="#e0f2fe" r="10" stroke="#0284c7" stroke-width="1.5"/>
+  <text class="atom" fill="#0369a1" font-size="11px" text-anchor="middle" x="58" y="171">H</text>
+
+  <line x1="123" y1="129" x2="155" y2="160" stroke="#64748b" stroke-width="2.5"/>
+  <circle cx="162" cy="167" fill="#e0f2fe" r="10" stroke="#0284c7" stroke-width="1.5"/>
+  <text class="atom" fill="#0369a1" font-size="11px" text-anchor="middle" x="162" y="171">H</text>
+
+  <!-- Wedge H -->
+  <polygon points="107,133 113,133 118,175 102,175" fill="#475569"/>
+  <circle cx="110" cy="182" fill="#e0f2fe" r="10" stroke="#0284c7" stroke-width="1.5"/>
+  <text class="atom" fill="#0369a1" font-size="11px" text-anchor="middle" x="110" y="186">H</text>
+
+  <text class="shape" text-anchor="middle" x="110" y="218">Tetrahedral</text>
+  <text class="angle" text-anchor="middle" x="110" y="238">Bond Angle: 109.5°</text>
+  <text class="angle" font-size="11px" text-anchor="middle" x="110" y="252">Domain geom = Shape</text>
+</g>
+
+<!-- Panel 2: NH3 -->
+<g data-g9-stage-id="stage-nh3">
+  <rect fill="#ffffff" height="240" rx="8" stroke="#e2e8f0" stroke-width="1.5" width="190" x="225" y="20"/>
+  <text class="label" text-anchor="middle" x="320" y="44">NH₃ (1 Lone Pair)</text>
+
+  <!-- Central N -->
+  <circle cx="320" cy="120" fill="#0369a1" r="16"/>
+  <text class="atom" fill="#ffffff" text-anchor="middle" x="320" y="125">N</text>
+
+  <!-- Top lone pair lobe -->
+  <ellipse cx="320" cy="72" rx="14" ry="20" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+  <circle cx="316" cy="68" fill="#b45309" r="2"/>
+  <circle cx="324" cy="68" fill="#b45309" r="2"/>
+  <text class="lp-label" text-anchor="middle" x="320" y="98">1 LP</text>
+
+  <!-- 3 N-H bonds (pyramidal base) -->
+  <line x1="307" y1="129" x2="275" y2="160" stroke="#64748b" stroke-width="2.5"/>
+  <circle cx="268" cy="167" fill="#e0f2fe" r="10" stroke="#0284c7" stroke-width="1.5"/>
+  <text class="atom" fill="#0369a1" font-size="11px" text-anchor="middle" x="268" y="171">H</text>
+
+  <line x1="333" y1="129" x2="365" y2="160" stroke="#64748b" stroke-width="2.5"/>
+  <circle cx="372" cy="167" fill="#e0f2fe" r="10" stroke="#0284c7" stroke-width="1.5"/>
+  <text class="atom" fill="#0369a1" font-size="11px" text-anchor="middle" x="372" y="171">H</text>
+
+  <polygon points="317,133 323,133 328,175 312,175" fill="#475569"/>
+  <circle cx="320" cy="182" fill="#e0f2fe" r="10" stroke="#0284c7" stroke-width="1.5"/>
+  <text class="atom" fill="#0369a1" font-size="11px" text-anchor="middle" x="320" y="186">H</text>
+
+  <text class="shape" text-anchor="middle" x="320" y="218">Trigonal Pyramidal</text>
+  <text class="angle" text-anchor="middle" x="320" y="238">Bond Angle: ~107.8°</text>
+  <text class="angle" font-size="11px" text-anchor="middle" x="320" y="252">LP compresses angle</text>
+</g>
+
+<!-- Panel 3: H2O -->
+<g data-g9-stage-id="stage-h2o">
+  <rect fill="#ffffff" height="240" rx="8" stroke="#e2e8f0" stroke-width="1.5" width="190" x="435" y="20"/>
+  <text class="label" text-anchor="middle" x="530" y="44">H₂O (2 Lone Pairs)</text>
+
+  <!-- Central O -->
+  <circle cx="530" cy="120" fill="#dc2626" r="16"/>
+  <text class="atom" fill="#ffffff" text-anchor="middle" x="530" y="125">O</text>
+
+  <!-- Two top lone pairs -->
+  <ellipse cx="510" cy="72" rx="13" ry="18" fill="#fef3c7" stroke="#d97706" stroke-width="1.5" transform="rotate(-25 510 72)"/>
+  <circle cx="508" cy="68" fill="#b45309" r="2"/>
+  <circle cx="514" cy="73" fill="#b45309" r="2"/>
+
+  <ellipse cx="550" cy="72" rx="13" ry="18" fill="#fef3c7" stroke="#d97706" stroke-width="1.5" transform="rotate(25 550 72)"/>
+  <circle cx="546" cy="73" fill="#b45309" r="2"/>
+  <circle cx="552" cy="68" fill="#b45309" r="2"/>
+  <text class="lp-label" text-anchor="middle" x="530" y="98">2 LP</text>
+
+  <!-- 2 O-H bonds (bent legs) -->
+  <line x1="518" y1="130" x2="485" y2="165" stroke="#64748b" stroke-width="2.5"/>
+  <circle cx="478" cy="172" fill="#e0f2fe" r="10" stroke="#0284c7" stroke-width="1.5"/>
+  <text class="atom" fill="#0369a1" font-size="11px" text-anchor="middle" x="478" y="176">H</text>
+
+  <line x1="542" y1="130" x2="575" y2="165" stroke="#64748b" stroke-width="2.5"/>
+  <circle cx="582" cy="172" fill="#e0f2fe" r="10" stroke="#0284c7" stroke-width="1.5"/>
+  <text class="atom" fill="#0369a1" font-size="11px" text-anchor="middle" x="582" y="176">H</text>
+
+  <text class="shape" text-anchor="middle" x="530" y="218">Bent / Angular</text>
+  <text class="angle" text-anchor="middle" x="530" y="238">Bond Angle: ~104.5°</text>
+  <text class="angle" font-size="11px" text-anchor="middle" x="530" y="252">LP-LP repulsion greatest</text>
+</g>
+</svg>

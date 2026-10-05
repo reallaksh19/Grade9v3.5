@@ -1,0 +1,1468 @@
+{
+  "schema_version": "0.2.0",
+  "package_id": "LIB-CHEM-G11-HYBRIDISATION-D2",
+  "title": "Chemical Bonding: Hybridisation and Spatial Geometry",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Chemistry",
+  "scope_summary": "Authored Grade 11 Chemical Bonding and Hybridisation spine covering electron-domain counting, localized Valence Bond hybridisation (sp, sp2, sp3), sigma and pi decomposition, orthogonal unhybridised p-orbital overlap, and the distinction between electron-domain geometry and molecular shape.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-OPENSTAX-VSEPR-HYBRID",
+      "version": "1.0.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "OpenStax Chemistry 2e \u2014 Hybrid Atomic Orbitals",
+      "origin": "WEB",
+      "locator": "https://openstax.org/books/chemistry-2e/pages/8-2-hybrid-atomic-orbitals",
+      "edition": "2026",
+      "section": "Section 8.2",
+      "last_checked": "2026-10-04",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Creative Commons Attribution 4.0 International",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "CURRICULUM"
+      ],
+      "supports_claims": [
+        "CAP-CHEM-G11-HYBRID-STERIC"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Core standard definitions of VSEPR and hybrid orbitals.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-CHEM-G11-HYBRIDISATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Chemical Bonding and Hybridisation",
+      "topic": "Chemical Bonding and Molecular Structure",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Introductory hybridisation requires separating electron domain count from shared pairs, identifying unhybridised p orbitals, and distinguishing domain geometry from molecular shape.",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [],
+      "conventions": [
+        {
+          "id": "CONV-DOMAINS-FIRST",
+          "statement": "Count electron domains before assigning hybridisation; double and triple bonds each count as one domain."
+        }
+      ],
+      "scope": {
+        "covers": "Grade 11 introductory chemical bonding, VSEPR domain counting, sp, sp2, sp3 hybridisation, sigma/pi decomposition, ethene/CO2/HCN models.",
+        "excluded": [
+          "d-orbital hybridisation (sp3d, sp3d2)",
+          "molecular orbital energy level diagrams",
+          "delocalised aromatic resonance energy calculations"
+        ],
+        "extension_refs": []
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-CHEM-G11-HYBRID-STERIC",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Relate electron domain count to introductory central hybridisation (sp, sp2, sp3).",
+      "success_criterion": "Correctly map steric number to the appropriate hybrid orbital set.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-LONE-PAIR-DOMAIN",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Treat non-bonding lone pairs as valence electron domains.",
+      "success_criterion": "Include lone pairs when calculating central atom steric number.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-DOUBLE-BOND-SIGMA-PI",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Decompose double bonds into one sigma and one pi component.",
+      "success_criterion": "Assign sp2 to a 3-domain carbonyl carbon leaving one unhybridised 2p orbital.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-ORBITAL-BUDGET",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Conserve valence atomic orbitals during hybridisation without double counting.",
+      "success_criterion": "Show that 1 s + 3 p orbitals form 4 total valence orbitals.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-ETHENE-ORBITAL-MODEL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Translate ethene Lewis structure into planar sigma and perpendicular pi overlap.",
+      "success_criterion": "Correctly position in-plane sigma bonds and orthogonal unhybridised 2pz lobes.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-PLANAR-SIGMA-PERPENDICULAR-PI",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Distinguish molecular plane directions from orthogonal pi lobe axes.",
+      "success_criterion": "Label xy molecular plane vs perpendicular z-axis pi overlap.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-CO2-ORTHOGONAL-PI",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Coordinate two orthogonal pi bonds in linear sp CO2.",
+      "success_criterion": "Demonstrate that CO2 forms two perpendicular pi bonds using 2py and 2pz without clash.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-LINEAR-SP-COORDINATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Fit two collinear sigma bonds at 180 degrees into an sp framework.",
+      "success_criterion": "Assign linear geometry and 180 degree bond angle to sp centres.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-EPISTEMIC-LIMITS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Evaluate epistemic boundary between observed molecular shapes and theoretical orbital models.",
+      "success_criterion": "Explain that measured shapes prove nuclear coordinates, not the physical reality of hybrid orbitals.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-COUNTEREXAMPLE-EVALUATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Refute universal bonding claims using empirical counterexamples.",
+      "success_criterion": "Use NH3 (3 sigma bonds + 1 lone pair = sp3) to refute all 3-sigma atoms are sp2.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-DOMAIN-INVARIANCE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Explain electron-domain invariance across different substituent atoms.",
+      "success_criterion": "Show that CH3F has 4 domains like CH4 despite differing C-F and C-H properties.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-SUBSTITUENT-PERTURBATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Analyze electronegativity and length perturbations in tetrahedral centres.",
+      "success_criterion": "Recognize slight bond angle deviations in CH3F while retaining sp3 assignment.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-HCN-TRIPLE-BOND",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Assign hybridisation and bond components in HCN.",
+      "success_criterion": "Assign sp to C and N, and decompose triple bond into 1 sigma + 2 pi components.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-NITROGEN-HYBRIDISATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Assign hybridisation to nitrogen possessing a non-bonding lone pair.",
+      "success_criterion": "Count lone pair as a domain in terminal or central nitrogen.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-METHYLAMINE-CENTRES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Compare adjacent carbon and nitrogen centres in methylamine.",
+      "success_criterion": "Explain why C is tetrahedral while N is trigonal pyramidal despite both being sp3.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-HYBRIDISATION-VS-SHAPE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Differentiate electron-domain geometry from molecular shape.",
+      "success_criterion": "Explain that molecular shape describes nuclear vertices only.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-ORBITAL-CONSERVATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Account for all input and output atomic orbitals in hybridisation.",
+      "success_criterion": "Verify that 3 sp2 + 1 p = 4 atomic orbitals with zero double-counting.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-NO-DOUBLE-COUNTING",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Prevent double counting between hybrid and pure atomic orbitals.",
+      "success_criterion": "Confirm unhybridised p orbital is not part of the hybrid set.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-DOMAIN-GEOM-VS-SHAPE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Evaluate electron-domain geometry vs molecular shape across CH4, NH3, and H2O.",
+      "success_criterion": "State why shape matches geometry only when lone pairs equal zero.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-CHEM-G11-LONE-PAIR-PROGRESSION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Trace the compression of bond angles with increasing lone pair count.",
+      "success_criterion": "Order CH4 (109.5\u00b0), NH3 (107.8\u00b0), and H2O (104.5\u00b0) by lone pair repulsion.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-CHEM-G11-HYBRID-DOMAINS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "elicitation.attempt.task": "AUTHORED_PEDAGOGICAL",
+          "elicitation.attempt.accepted": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Electron-Domain Counting and Molecular Shape Geometry",
+      "bucket_id": "BUCKET-CHEM-G11-HYBRIDISATION",
+      "primary_capability_ref": "CAP-CHEM-G11-HYBRID-STERIC",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Distinguishing electron-domain geometry from molecular shape across molecules with central lone pairs.",
+      "entry_assumptions": [
+        "Lewis structures",
+        "VSEPR repulsion"
+      ],
+      "inferential_jump": "Why non-bonding lone pairs require hybrid orbital domains (steric number = sigma + lone pairs) while molecular shape traces atomic nuclei only.",
+      "teaching_path": [
+        {
+          "id": "DOM-1",
+          "role": "DECLARE",
+          "action": "Calculate steric number: count sigma bonds and lone pairs on central atom.",
+          "why_valid": "Each sigma bond and non-bonding lone pair forms a localized domain of electron density.",
+          "inputs": [],
+          "output": "Steric number = sigma bonds + lone pairs"
+        },
+        {
+          "id": "DOM-2",
+          "role": "DECLARE",
+          "action": "Assign electron-domain geometry from steric number.",
+          "why_valid": "Electrostatic repulsion arranges domains at maximum separation (e.g. 4 domains -> tetrahedral).",
+          "inputs": [],
+          "output": "Tetrahedral electron-domain geometry (sp3 hybridisation)"
+        },
+        {
+          "id": "DOM-3",
+          "role": "DECLARE",
+          "action": "Determine molecular shape from nuclear positions only.",
+          "why_valid": "Non-bonding lone pairs occupy domain positions but do not form atomic vertices.",
+          "inputs": [],
+          "output": "0 LP: tetrahedral; 1 LP: trigonal pyramidal; 2 LP: bent"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [
+        "REP-CHEM-TETRAHEDRAL-LONE-PAIRS"
+      ],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Assuming carbon forms two double bonds by placing both pi bonds in the same plane or using sp3 hybridisation.",
+          "diagnostic_prompt": "If both pi bonds in CO2 occupied the same plane, what would happen to electron repulsion and orbital availability?",
+          "repair": "Carbon has only two mutually perpendicular unhybridised p orbitals (2py, 2pz) remaining after sp hybridisation; each pi bond must occupy an orthogonal plane to avoid electronic clash and conserve atomic orbitals."
+        }
+      ],
+      "exit_task": {
+        "prompt": "For HCN (H-C\u2261N:), determine the hybridisation of carbon and nitrogen, the number of unhybridised p orbitals on each atom, and the composition of the triple bond.",
+        "source_ref": "SRC-OPENSTAX-VSEPR-HYBRID",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Carbon and nitrogen are both sp-hybridised (2 electron domains each). The C\u2261N bond consists of 1 sigma bond and 2 orthogonal pi bonds formed by the two unhybridised p orbitals on each atom.",
+          "reasoning": [
+            "Carbon has 2 domains (1 C-H single bond, 1 C\u2261N triple bond) -> sp hybridised with 2 unhybridised p orbitals.",
+            "Nitrogen has 2 domains (1 triple bond, 1 lone pair) -> sp hybridised with 2 unhybridised p orbitals.",
+            "The triple bond contains 1 sigma component (sp-sp overlap) and 2 pi components (orthogonal p-p overlaps)."
+          ],
+          "check": "Verify orbital conservation: 2 sp + 2 p = 4 valence orbitals on both C and N.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Qualitative bonding and hybridisation classification."
+        }
+      },
+      "research_contribution": "Author-created first-law contrast. It states no force equation and promotes no candidate-packet formula.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A car cruises at a steady speed along a straight, level road with its engine running. Must the forward driving force be larger than the backward resistance just to keep it moving?",
+          "defensible_answer": "No. At steady velocity the net force is zero, so the forward and backward forces are equal in size."
+        },
+        "attempt": {
+          "produces": "The total resistive force on the car with its direction, the net force on the car, and the car's velocity 10 s later, each justified from the steady 25 m/s.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Identify domain count: 3 domains for C2H4 (sp2) vs 2 domains for CO2 (sp).",
+              "evidence_of": "Distinguishing steric domain counts."
+            },
+            {
+              "criterion": "Relate sp2 to trigonal planar (120\u00b0) and sp to linear (180\u00b0).",
+              "evidence_of": "Mapping domain counts to geometry."
+            },
+            {
+              "criterion": "Explain that ethene has 1 pi bond while CO2 has 2 orthogonal pi bonds.",
+              "evidence_of": "Understanding orthogonal unhybridised p orbital overlap."
+            }
+          ],
+          "accepted": [
+            "The velocity is not changing, so the net force is zero and the resistive forces total 2000 N backward. With nothing changed, the car is still moving at 25 m/s in the same direction 10 s later."
+          ],
+          "rejected": [
+            "'The driving force must be bigger than the resistance, or the car would slow down.' At steady speed the net force is zero, so the two forces are equal.",
+            "'With zero net force the car is at rest 10 s later.' Zero net force keeps the velocity unchanged; it does not stop the car."
+          ],
+          "task": {
+            "prompt": "A 1500 kg car cruises at a steady 25 m/s along a straight, level road. The road pushes it forward with a driving force of 2000 N. Find the total resistive force and the net force on the car, and say what its velocity will be 10 s later if nothing changes.",
+            "givens": [
+              "Mass 1500 kg; speed a steady 25 m/s in a straight line.",
+              "Driving force 2000 N forward.",
+              "Resistive forces (air and rolling) act backward."
+            ],
+            "representation_ref": "REP-NLM-CAR-CRUISE-2000N",
+            "stage_refs": [
+              "VIS-NLM-CRUISE-V0"
+            ]
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What does 'a steady 25 m/s in a straight line' tell you about the car's acceleration?",
+              "why_this_ask": "It separates 'is moving' from 'is changing its motion' before any force is discussed.",
+              "from_step_ref": "NLM1-1"
+            },
+            {
+              "ask": "So what must the net force on the car be?",
+              "why_this_ask": "The net-force value is derived from the unchanged velocity, not assumed from the speed."
+            },
+            {
+              "ask": "The road pushes forward with 2000 N. What total backward force makes the net force zero?",
+              "why_this_ask": "It finds the unknown resistance from the balance.",
+              "from_step_ref": "NLM1-2"
+            },
+            {
+              "ask": "If nothing changes for 10 s, can the velocity change? What is it then?",
+              "why_this_ask": "It identifies unchanged velocity, not rest, as what zero net force keeps.",
+              "from_step_ref": "NLM1-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path compares a released moving cart with a resting cart. The learner route starts from the car's steady speed, derives the zero net force from it, and uses that to find the unknown resistance and the later velocity."
+        },
+        "boundary_test": {
+          "prompt": "The driver eases off and the driving force drops to 500 N while the resistance is still 2000 N. Is the net force still zero, and what happens to the speed?",
+          "answer": "No. The net force is 2000 \u2212 500 = 1500 N backward, so the car slows at 1500/1500 = 1 m/s\u00b2. Zero net force described only the steady interval.",
+          "confirms": "Zero net force goes with unchanged velocity, not with motion as such."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-CHEM-G11-DOMAINS-SHAPE",
+          "decision": "Differentiate electron domain geometry from molecular shape across lone pair counts",
+          "step_refs": [
+            "DOM-1",
+            "DOM-2",
+            "DOM-3"
+          ],
+          "crux_step_ref": "DOM-3",
+          "crux_question_refs": [
+            "ISS34-Q10"
+          ],
+          "bank_anchor_ref": "ISS34-Q10",
+          "representation_ref": "REP-CHEM-TETRAHEDRAL-LONE-PAIRS",
+          "reveal_stage_refs": [
+            "stage-ch4",
+            "stage-nh3",
+            "stage-h2o"
+          ],
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "Verify that central lone pairs compress bond angles and reduce visible shape vertices."
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "A 3 kg cart glides at 2 m/s on a frictionless track with no horizontal force on it. What is its velocity 5 s later?",
+        "result": "F_net = 0, so a = 0/3 = 0 and the velocity is still 2 m/s: zero net force keeps the motion unchanged, it does not stop it.",
+        "representation_ref": "REP-NLM-ANCHOR-CART-3KG-GLIDE"
+      }
+    },
+    {
+      "id": "MIC-CHEM-G11-HYBRID-MULTIPLE-BONDS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "elicitation.attempt.task": "AUTHORED_PEDAGOGICAL",
+          "elicitation.attempt.accepted": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Multiple Bonds, Unhybridised Orbitals, and Spatial Coordination",
+      "bucket_id": "BUCKET-CHEM-G11-HYBRIDISATION",
+      "primary_capability_ref": "CAP-CHEM-G11-CO2-ORTHOGONAL-PI",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Teaches the structural synthesis of linear sp framework and orthogonal pi bonding in CO2.",
+      "entry_assumptions": [
+        "Lewis structures",
+        "VSEPR electron-domain counting"
+      ],
+      "inferential_jump": "Why a multiple bond does not create extra steric directions and how orthogonal unhybridised p orbitals form pi bonds without perturbing the linear sp framework.",
+      "teaching_path": [
+        {
+          "id": "STEP-1",
+          "role": "DECLARE",
+          "action": "Count electron domains around the central carbon atom",
+          "why_valid": "A double bond (like C=O) consists of one sigma and one pi component, occupying a single region of electron density; thus 2 double bonds = 2 electron domains.",
+          "inputs": [],
+          "output": "Steric number = 2 -> linear geometry at 180\u00b0"
+        },
+        {
+          "id": "STEP-2",
+          "role": "DECLARE",
+          "action": "Form two equivalent sp hybrid orbitals",
+          "why_valid": "Mixing one 2s and one 2px orbital creates two collinear sp hybrids oriented at 180\u00b0 along the x-axis for sigma bonding.",
+          "inputs": [],
+          "output": "Two sp hybrids directed at 180\u00b0 along the internuclear x-axis"
+        },
+        {
+          "id": "STEP-3",
+          "role": "DECLARE",
+          "action": "Identify the unhybridised 2p orbitals on carbon",
+          "why_valid": "Carbon has three 2p orbitals in its valence shell; using 2px in sp hybridisation leaves 2py and 2pz unhybridised and mutually perpendicular.",
+          "inputs": [],
+          "output": "Two unhybridised p orbitals (2py along y, 2pz along z)"
+        },
+        {
+          "id": "STEP-4",
+          "role": "DECLARE",
+          "action": "Coordinate two orthogonal pi bonds to adjacent oxygens",
+          "why_valid": "One C=O double bond forms a pi bond via 2py-2py side-on overlap; the other C=O double bond forms a pi bond via 2pz-2pz side-on overlap in the perpendicular plane, fitting both double bonds onto one carbon with zero orbital double-counting.",
+          "inputs": [],
+          "output": "Consistent 3D linear O=C=O molecule with mutually perpendicular pi bonds"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [
+        "REP-CHEM-CO2-PI-ORTHOGONAL"
+      ],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Assuming carbon forms two double bonds by placing both pi bonds in the same plane or using sp3 hybridisation.",
+          "diagnostic_prompt": "If both pi bonds in CO2 occupied the same plane, what would happen to electron repulsion and orbital availability?",
+          "repair": "Carbon has only two mutually perpendicular unhybridised p orbitals (2py, 2pz) remaining after sp hybridisation; each pi bond must occupy an orthogonal plane to avoid electronic clash and conserve atomic orbitals."
+        }
+      ],
+      "exit_task": {
+        "prompt": "For HCN (H-C\u2261N:), determine the hybridisation of carbon and nitrogen, the number of unhybridised p orbitals on each atom, and the composition of the triple bond.",
+        "source_ref": "SRC-OPENSTAX-VSEPR-HYBRID",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Carbon and nitrogen are both sp-hybridised (2 electron domains each). The C\u2261N bond consists of 1 sigma bond and 2 orthogonal pi bonds formed by the two unhybridised p orbitals on each atom.",
+          "reasoning": [
+            "Carbon has 2 domains (1 C-H single bond, 1 C\u2261N triple bond) -> sp hybridised with 2 unhybridised p orbitals.",
+            "Nitrogen has 2 domains (1 triple bond, 1 lone pair) -> sp hybridised with 2 unhybridised p orbitals.",
+            "The triple bond contains 1 sigma component (sp-sp overlap) and 2 pi components (orthogonal p-p overlaps)."
+          ],
+          "check": "Verify orbital conservation: 2 sp + 2 p = 4 valence orbitals on both C and N.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Qualitative bonding and hybridisation classification."
+        }
+      },
+      "research_contribution": "Author-created first-law contrast. It states no force equation and promotes no candidate-packet formula.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A car cruises at a steady speed along a straight, level road with its engine running. Must the forward driving force be larger than the backward resistance just to keep it moving?",
+          "defensible_answer": "No. At steady velocity the net force is zero, so the forward and backward forces are equal in size."
+        },
+        "attempt": {
+          "produces": "The total resistive force on the car with its direction, the net force on the car, and the car's velocity 10 s later, each justified from the steady 25 m/s.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Identify domain count: 3 domains for C2H4 (sp2) vs 2 domains for CO2 (sp).",
+              "evidence_of": "Distinguishing steric domain counts."
+            },
+            {
+              "criterion": "Relate sp2 to trigonal planar (120\u00b0) and sp to linear (180\u00b0).",
+              "evidence_of": "Mapping domain counts to geometry."
+            },
+            {
+              "criterion": "Explain that ethene has 1 pi bond while CO2 has 2 orthogonal pi bonds.",
+              "evidence_of": "Understanding orthogonal unhybridised p orbital overlap."
+            }
+          ],
+          "accepted": [
+            "The velocity is not changing, so the net force is zero and the resistive forces total 2000 N backward. With nothing changed, the car is still moving at 25 m/s in the same direction 10 s later."
+          ],
+          "rejected": [
+            "'The driving force must be bigger than the resistance, or the car would slow down.' At steady speed the net force is zero, so the two forces are equal.",
+            "'With zero net force the car is at rest 10 s later.' Zero net force keeps the velocity unchanged; it does not stop the car."
+          ],
+          "task": {
+            "prompt": "A 1500 kg car cruises at a steady 25 m/s along a straight, level road. The road pushes it forward with a driving force of 2000 N. Find the total resistive force and the net force on the car, and say what its velocity will be 10 s later if nothing changes.",
+            "givens": [
+              "Mass 1500 kg; speed a steady 25 m/s in a straight line.",
+              "Driving force 2000 N forward.",
+              "Resistive forces (air and rolling) act backward."
+            ],
+            "representation_ref": "REP-NLM-CAR-CRUISE-2000N",
+            "stage_refs": [
+              "VIS-NLM-CRUISE-V0"
+            ]
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What does 'a steady 25 m/s in a straight line' tell you about the car's acceleration?",
+              "why_this_ask": "It separates 'is moving' from 'is changing its motion' before any force is discussed.",
+              "from_step_ref": "NLM1-1"
+            },
+            {
+              "ask": "So what must the net force on the car be?",
+              "why_this_ask": "The net-force value is derived from the unchanged velocity, not assumed from the speed."
+            },
+            {
+              "ask": "The road pushes forward with 2000 N. What total backward force makes the net force zero?",
+              "why_this_ask": "It finds the unknown resistance from the balance.",
+              "from_step_ref": "NLM1-2"
+            },
+            {
+              "ask": "If nothing changes for 10 s, can the velocity change? What is it then?",
+              "why_this_ask": "It identifies unchanged velocity, not rest, as what zero net force keeps.",
+              "from_step_ref": "NLM1-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path compares a released moving cart with a resting cart. The learner route starts from the car's steady speed, derives the zero net force from it, and uses that to find the unknown resistance and the later velocity."
+        },
+        "boundary_test": {
+          "prompt": "The driver eases off and the driving force drops to 500 N while the resistance is still 2000 N. Is the net force still zero, and what happens to the speed?",
+          "answer": "No. The net force is 2000 \u2212 500 = 1500 N backward, so the car slows at 1500/1500 = 1 m/s\u00b2. Zero net force described only the steady interval.",
+          "confirms": "Zero net force goes with unchanged velocity, not with motion as such."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-CHEM-G11-CO2-SYNTHESIS",
+          "decision": "Synthesize linear sp framework with two orthogonal pi bonds",
+          "step_refs": [
+            "STEP-1",
+            "STEP-2",
+            "STEP-3",
+            "STEP-4"
+          ],
+          "crux_step_ref": "STEP-4",
+          "crux_question_refs": [
+            "ISS34-Q4"
+          ],
+          "bank_anchor_ref": "ISS34-Q4",
+          "representation_ref": "REP-CHEM-CO2-PI-ORTHOGONAL",
+          "reveal_stage_refs": [
+            "stage-domains",
+            "stage-sigma",
+            "stage-p-orbitals",
+            "stage-pi-overlap"
+          ],
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "Check that the two pi bonds occupy mutually perpendicular planes and that total valence atomic orbitals (2s + 2px + 2py + 2pz = 4) are strictly conserved."
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "A 3 kg cart glides at 2 m/s on a frictionless track with no horizontal force on it. What is its velocity 5 s later?",
+        "result": "F_net = 0, so a = 0/3 = 0 and the velocity is still 2 m/s: zero net force keeps the motion unchanged, it does not stop it.",
+        "representation_ref": "REP-NLM-ANCHOR-CART-3KG-GLIDE"
+      }
+    }
+  ],
+  "relations": [],
+  "representations": [
+    {
+      "id": "REP-CHEM-CO2-PI-ORTHOGONAL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:owner_architecture": "ODR-0004"
+      },
+      "kind": "DIAGRAM",
+      "purpose": "Model linear sp hybridisation and orthogonal unhybridised p orbital overlap in CO2.",
+      "required_elements": [
+        "physical situation",
+        "chosen body",
+        "coordinate axes",
+        "contact surface",
+        "applied-force arrow",
+        "normal-force arrow",
+        "weight arrow",
+        "static-friction arrow",
+        "kinetic-friction arrow",
+        "contact-state label",
+        "friction-demand/limit comparison"
+      ],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND",
+        "REL-NLM-KINETIC-FRICTION"
+      ],
+      "read_order": [
+        "physical situation",
+        "chosen body",
+        "contact surface",
+        "coordinate axes",
+        "applied-force arrow",
+        "weight arrow",
+        "normal-force arrow",
+        "contact-state label",
+        "static-friction arrow",
+        "friction-demand/limit comparison",
+        "kinetic-friction arrow"
+      ],
+      "instance_constraints": [
+        "Normal reaction follows the actual perpendicular force equation; do not assume N = mg.",
+        "Before sliding, static friction equals the required no-slip value only while its magnitude is within mu_s N.",
+        "The equality |f_s| = mu_s N is shown only at impending slip.",
+        "Kinetic friction is shown only after relative sliding is established and opposes that sliding."
+      ],
+      "accessibility": [
+        "Contact state is stated in text as static feasible, impending slip or sliding; colour alone is insufficient.",
+        "Force arrows require labels and text alternatives describing direction.",
+        "The friction-demand/limit comparison is readable as text or symbols in addition to any graphical meter."
+      ],
+      "misleading_alternatives": [
+        "Showing static friction fixed at mu_s N for every applied force.",
+        "Assuming the normal reaction always equals mg.",
+        "Choosing kinetic friction merely because mu_k is supplied."
+      ],
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS34/assets/co2-linear-orthogonal-pi.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "normal-force arrow",
+          "symbol": "N",
+          "in_words": "The normal-force arrow represents the contact's perpendicular force magnitude N from the actual perpendicular dynamics."
+        },
+        {
+          "element": "static-friction arrow",
+          "symbol": "f_s",
+          "in_words": "The static-friction arrow represents the signed friction required by the no-slip state, bounded by mu_s N."
+        },
+        {
+          "element": "kinetic-friction arrow",
+          "symbol": "f_k",
+          "in_words": "The kinetic-friction arrow represents the signed sliding friction whose magnitude is mu_k N after sliding is established."
+        }
+      ],
+      "interactive_resource_refs": [
+        "ACT-NLM-FRICTION-THRESHOLD"
+      ],
+      "reveal_stages": [
+        {
+          "id": "stage-domains",
+          "label": "Domains",
+          "purpose": "Lewis domain count",
+          "visible_elements": [
+            "physical situation"
+          ]
+        },
+        {
+          "id": "stage-sigma",
+          "label": "Sigma",
+          "purpose": "Linear sp sigma framework",
+          "visible_elements": [
+            "physical situation",
+            "chosen body"
+          ]
+        },
+        {
+          "id": "stage-p-orbitals",
+          "label": "P orbitals",
+          "purpose": "Two orthogonal unhybridised 2p orbitals",
+          "visible_elements": [
+            "physical situation",
+            "chosen body",
+            "coordinate axes"
+          ]
+        },
+        {
+          "id": "stage-pi-overlap",
+          "label": "Pi overlap",
+          "purpose": "Two mutually perpendicular pi bonds",
+          "visible_elements": [
+            "physical situation",
+            "chosen body",
+            "coordinate axes",
+            "applied-force arrow"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "stage-domains"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "stage-sigma"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "stage-p-orbitals"
+        }
+      ]
+    },
+    {
+      "id": "REP-CHEM-ETHENE-OVERLAP",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:owner_architecture": "ODR-0004"
+      },
+      "kind": "DIAGRAM",
+      "purpose": "Model planar sigma backbone and perpendicular pi overlap in ethene.",
+      "required_elements": [
+        "physical situation",
+        "chosen body",
+        "coordinate axes",
+        "contact surface",
+        "applied-force arrow",
+        "normal-force arrow",
+        "weight arrow",
+        "static-friction arrow",
+        "kinetic-friction arrow",
+        "contact-state label",
+        "friction-demand/limit comparison"
+      ],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND",
+        "REL-NLM-KINETIC-FRICTION"
+      ],
+      "read_order": [
+        "physical situation",
+        "chosen body",
+        "contact surface",
+        "coordinate axes",
+        "applied-force arrow",
+        "weight arrow",
+        "normal-force arrow",
+        "contact-state label",
+        "static-friction arrow",
+        "friction-demand/limit comparison",
+        "kinetic-friction arrow"
+      ],
+      "instance_constraints": [
+        "Normal reaction follows the actual perpendicular force equation; do not assume N = mg.",
+        "Before sliding, static friction equals the required no-slip value only while its magnitude is within mu_s N.",
+        "The equality |f_s| = mu_s N is shown only at impending slip.",
+        "Kinetic friction is shown only after relative sliding is established and opposes that sliding."
+      ],
+      "accessibility": [
+        "Contact state is stated in text as static feasible, impending slip or sliding; colour alone is insufficient.",
+        "Force arrows require labels and text alternatives describing direction.",
+        "The friction-demand/limit comparison is readable as text or symbols in addition to any graphical meter."
+      ],
+      "misleading_alternatives": [
+        "Showing static friction fixed at mu_s N for every applied force.",
+        "Assuming the normal reaction always equals mg.",
+        "Choosing kinetic friction merely because mu_k is supplied."
+      ],
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS34/assets/ethene-orbital-overlap.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "normal-force arrow",
+          "symbol": "N",
+          "in_words": "The normal-force arrow represents the contact's perpendicular force magnitude N from the actual perpendicular dynamics."
+        },
+        {
+          "element": "static-friction arrow",
+          "symbol": "f_s",
+          "in_words": "The static-friction arrow represents the signed friction required by the no-slip state, bounded by mu_s N."
+        },
+        {
+          "element": "kinetic-friction arrow",
+          "symbol": "f_k",
+          "in_words": "The kinetic-friction arrow represents the signed sliding friction whose magnitude is mu_k N after sliding is established."
+        }
+      ],
+      "interactive_resource_refs": [
+        "ACT-NLM-FRICTION-THRESHOLD"
+      ],
+      "reveal_stages": [
+        {
+          "id": "stage-sigma",
+          "label": "Sigma framework",
+          "purpose": "In-plane sp2 sigma framework",
+          "visible_elements": [
+            "physical situation"
+          ]
+        },
+        {
+          "id": "stage-pi",
+          "label": "Pi overlap",
+          "purpose": "Perpendicular 2pz lateral overlap",
+          "visible_elements": [
+            "physical situation",
+            "chosen body"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "stage-sigma"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "stage-pi"
+        }
+      ]
+    },
+    {
+      "id": "REP-CHEM-TETRAHEDRAL-LONE-PAIRS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:owner_architecture": "ODR-0004"
+      },
+      "kind": "DIAGRAM",
+      "purpose": "Compare steric number 4 across CH4, NH3, and H2O showing lone pair effect on shape.",
+      "required_elements": [
+        "physical situation",
+        "chosen body",
+        "coordinate axes",
+        "contact surface",
+        "applied-force arrow",
+        "normal-force arrow",
+        "weight arrow",
+        "static-friction arrow",
+        "kinetic-friction arrow",
+        "contact-state label",
+        "friction-demand/limit comparison"
+      ],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND",
+        "REL-NLM-KINETIC-FRICTION"
+      ],
+      "read_order": [
+        "physical situation",
+        "chosen body",
+        "contact surface",
+        "coordinate axes",
+        "applied-force arrow",
+        "weight arrow",
+        "normal-force arrow",
+        "contact-state label",
+        "static-friction arrow",
+        "friction-demand/limit comparison",
+        "kinetic-friction arrow"
+      ],
+      "instance_constraints": [
+        "Normal reaction follows the actual perpendicular force equation; do not assume N = mg.",
+        "Before sliding, static friction equals the required no-slip value only while its magnitude is within mu_s N.",
+        "The equality |f_s| = mu_s N is shown only at impending slip.",
+        "Kinetic friction is shown only after relative sliding is established and opposes that sliding."
+      ],
+      "accessibility": [
+        "Contact state is stated in text as static feasible, impending slip or sliding; colour alone is insufficient.",
+        "Force arrows require labels and text alternatives describing direction.",
+        "The friction-demand/limit comparison is readable as text or symbols in addition to any graphical meter."
+      ],
+      "misleading_alternatives": [
+        "Showing static friction fixed at mu_s N for every applied force.",
+        "Assuming the normal reaction always equals mg.",
+        "Choosing kinetic friction merely because mu_k is supplied."
+      ],
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS34/assets/tetrahedral-lone-pairs.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "normal-force arrow",
+          "symbol": "N",
+          "in_words": "The normal-force arrow represents the contact's perpendicular force magnitude N from the actual perpendicular dynamics."
+        },
+        {
+          "element": "static-friction arrow",
+          "symbol": "f_s",
+          "in_words": "The static-friction arrow represents the signed friction required by the no-slip state, bounded by mu_s N."
+        },
+        {
+          "element": "kinetic-friction arrow",
+          "symbol": "f_k",
+          "in_words": "The kinetic-friction arrow represents the signed sliding friction whose magnitude is mu_k N after sliding is established."
+        }
+      ],
+      "interactive_resource_refs": [
+        "ACT-NLM-FRICTION-THRESHOLD"
+      ],
+      "reveal_stages": [
+        {
+          "id": "stage-ch4",
+          "label": "CH4",
+          "purpose": "CH4 tetrahedral (0 LP)",
+          "visible_elements": [
+            "physical situation"
+          ]
+        },
+        {
+          "id": "stage-nh3",
+          "label": "NH3",
+          "purpose": "NH3 trigonal pyramidal (1 LP)",
+          "visible_elements": [
+            "physical situation",
+            "chosen body"
+          ]
+        },
+        {
+          "id": "stage-h2o",
+          "label": "H2O",
+          "purpose": "H2O bent (2 LP)",
+          "visible_elements": [
+            "physical situation",
+            "chosen body",
+            "coordinate axes"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "stage-ch4"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "stage-nh3"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "stage-h2o"
+        }
+      ]
+    }
+  ],
+  "question_families": [
+    {
+      "id": "FAM-CHEM-HYBRID-DOMAINS",
+      "version": "1.0.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Steric Number and Hybridisation in Molecules with Lone Pairs",
+      "capability_refs": [
+        "CAP-CHEM-G11-HYBRID-STERIC"
+      ],
+      "solution_structure": [
+        "Count sigma bonds and lone pairs to determine steric number",
+        "Deduce hybridisation and electron geometry",
+        "Deduce molecular shape and bond angles"
+      ],
+      "demand_dimensions": {
+        "model_choice": "Steric number vs sigma-only counting",
+        "representation_translation": "Translate Lewis structures into steric numbers and 3D geometries",
+        "reasoning_steps": "Multi-step reasoning from valence count to geometry",
+        "novelty": "Comparison of molecules with identical sigma bonds but distinct lone pairs"
+      },
+      "safe_variations": [
+        "Vary central atoms across Group 14, 15, 16",
+        "Compare isoelectronic species"
+      ],
+      "transfer_boundaries": [
+        "Applies to main group species with steric numbers 2 to 4"
+      ],
+      "common_wrong_routes": [
+        "Counting only sigma bonds and ignoring lone pairs"
+      ],
+      "item_refs": [
+        "ISS34-Q1",
+        "ISS34-Q5",
+        "ISS34-Q6",
+        "ISS34-Q8",
+        "ISS34-Q10"
+      ],
+      "context_refs": []
+    },
+    {
+      "id": "FAM-CHEM-HYBRID-MULTIPLE-BONDS",
+      "version": "1.0.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-VSEPR-HYBRID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Multiple Bonds, Orthogonal Pi Systems, and Terminal Atom Hybridisation",
+      "capability_refs": [
+        "CAP-CHEM-G11-CO2-ORTHOGONAL-PI"
+      ],
+      "solution_structure": [
+        "Determine central atom hybridisation and unhybridised p orbitals",
+        "Analyze mutual orthogonality of adjacent pi bonds",
+        "Assess terminal atom hybridisation and lone-pair orbital residency"
+      ],
+      "demand_dimensions": {
+        "model_choice": "Localised valence-bond orbital overlap model",
+        "representation_translation": "3D Cartesian coordinate representation of px and py orbital lobes",
+        "reasoning_steps": "Deduction of orthogonal planes preventing electron delocalisation between perpendicular bonds",
+        "novelty": "Cumulated double bond systems and terminal oxygen orbital residency"
+      },
+      "safe_variations": [
+        "Allene (C3H4) and ketene analogues",
+        "Heterocumulenes like N2O, OCS"
+      ],
+      "transfer_boundaries": [
+        "Applies to cumulated double bond systems with linear central atoms"
+      ],
+      "common_wrong_routes": [
+        "Treating double bonds as two equivalent bonds",
+        "Assuming pi bonds can occupy arbitrary overlapping orientations"
+      ],
+      "item_refs": [
+        "ISS34-Q2",
+        "ISS34-Q3",
+        "ISS34-Q4",
+        "ISS34-Q7",
+        "ISS34-Q9"
+      ],
+      "context_refs": []
+    }
+  ],
+  "questions": [],
+  "teaching_routes": [
+    {
+      "id": "ROUTE-PHY-NLM-A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "title": "Reveal Grade-9 Newton-law spine with bounded friction/connection preparation and frame extension",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-NLM-NET-ZERO-MOTION",
+        "MIC-PHY-NLM-FORCES-SUM-ZERO",
+        "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+        "MIC-PHY-NLM-FRICTION",
+        "MIC-PHY-NLM-SECOND-LAW",
+        "MIC-PHY-NLM-FRICTION-QUANT",
+        "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
+        "MIC-PHY-NLM-IDEAL-STRING-TENSION",
+        "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
+        "MIC-PHY-NLM-THIRD-LAW",
+        "MIC-PHY-NLM-FRAME-CHOICE"
+      ],
+      "entry_needs": [
+        "Can tell whether an object's velocity is changing; the specific turning-point diagnostic from Motion is not a prerequisite."
+      ],
+      "learner_actions": [
+        "Separate motion from change of motion.",
+        "Keep individual forces distinct from their net result.",
+        "Assign each force to the body on which it acts.",
+        "Determine friction direction from relative slip tendency.",
+        "Use signed net external force with F_net = m a.",
+        "Test static friction against its limit before using a limiting or kinetic formula.",
+        "Apply a common acceleration only when an active connection keeps the relevant separation fixed.",
+        "Use one common tension magnitude only under explicit ideal-string/redirection assumptions.",
+        "Derive the one-fixed-pulley acceleration relation from constant string length rather than a pulley-count rule.",
+        "Keep Newton-third-law partner forces on different bodies.",
+        "Use observer-frame/pseudo-force reasoning only when an explicit extension question demands it."
+      ],
+      "help_plan": [
+        "Use a released low-friction cart for the first-law contrast.",
+        "Use two separate body inventories before any force equations.",
+        "For friction, ask for N and f_required before revealing any coefficient formula.",
+        "For connected bodies, ask what physical condition keeps the relative separation fixed.",
+        "For a string/pulley task, require the ideal assumptions and actual length equation before any tension or acceleration shortcut.",
+        "Use roadside versus accelerating-bus descriptions for the observer boundary."
+      ],
+      "reveal_plan": "Completed constructions are visible only after body ownership, contact state, connection model and any string geometry are declared; coefficient and constraint relations are never presented as unconditional apparatus formulas.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-NLM",
+          "purpose": "Conceptual teaching spine",
+          "reason": "The four rungs are authored here without promoting candidate-packet authority."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not treat accelerating-frame/pseudo-force reasoning as ordinary Grade-9 Standard syllabus content.",
+        "Do not infer momentum-conservation or collision content from the presence of Newton's laws.",
+        "Do not use the single-fixed-pulley relation for movable/compound pulley geometry.",
+        "Do not assume equal tension after an ideal-string or ideal-redirection assumption is broken."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "id": "ROUTE-PHY-NLM-B",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "title": "Elicit Grade-9 Newton-law spine with bounded friction/connection preparation and frame extension",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-NLM-NET-ZERO-MOTION",
+        "MIC-PHY-NLM-FORCES-SUM-ZERO",
+        "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+        "MIC-PHY-NLM-FRICTION",
+        "MIC-PHY-NLM-SECOND-LAW",
+        "MIC-PHY-NLM-FRICTION-QUANT",
+        "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
+        "MIC-PHY-NLM-IDEAL-STRING-TENSION",
+        "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
+        "MIC-PHY-NLM-THIRD-LAW",
+        "MIC-PHY-NLM-FRAME-CHOICE"
+      ],
+      "entry_needs": [
+        "Same intrinsic Grade-9 force-law coverage as Core1A; no inferred learner mastery and no turning-point prerequisite."
+      ],
+      "learner_actions": [
+        "Predict whether zero net force can coexist with steady motion.",
+        "Build body-specific force inventories before combining forces.",
+        "Predict friction direction from contact slip tendency.",
+        "Use the net force to predict acceleration.",
+        "Decide whether a static contact can supply the required friction before selecting a coefficient equality.",
+        "Name the connection that justifies a common acceleration.",
+        "Earn one tension symbol by stating the ideal-string model.",
+        "Reconstruct the one-fixed-pulley acceleration relation from constant string length.",
+        "Separate Newton-third-law partners by body.",
+        "Enter observer-frame reconstruction only for explicit extension demand."
+      ],
+      "help_plan": [
+        "Ask which body receives each force before naming any pairing rule.",
+        "Ask what friction value the no-slip equations require before asking about a coefficient limit.",
+        "Ask which relative separation is fixed before offering a common acceleration.",
+        "Ask which string segments actually change length before offering a pulley relation.",
+        "Ask whether a physical agent changed before introducing a pseudo-force."
+      ],
+      "reveal_plan": "Prediction, reconstruction, misconception diagnosis and boundary tests precede the closed reveal.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-NLM",
+          "purpose": "Self-tutor elicitation",
+          "reason": "Each elicitation cycle is authored specifically for the corresponding rung."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not substitute a declarative diagram for the learner's body-ownership decision.",
+        "Do not present pseudo-force/frame-choice content as ordinary Grade-9 Standard syllabus material.",
+        "Do not hand over mu N as the friction value before the learner decides the contact state.",
+        "Do not hand over equal tension or an acceleration ratio without the model/geometry that justifies it."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {},
+  "data": [
+    {
+      "id": "DAT-NLM-ILLUSTRATIVE-SPEED",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 1,
+      "unit": "m/s",
+      "symbol": "v_example",
+      "meaning": "Illustrative steady speed available to compiled study obligations; none of the authored exits depends on its numerical value.",
+      "locator": "Author-created illustrative value; no measurement or curriculum provenance claimed."
+    },
+    {
+      "id": "DAT-NLM-MASS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "kind": "DATUM",
+      "value": 4,
+      "unit": "kg",
+      "symbol": "m",
+      "meaning": "Mass in the authored Newton-second-law exit task.",
+      "locator": "Author-created exact practice datum."
+    },
+    {
+      "id": "DAT-NLM-ACCEL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "kind": "DATUM",
+      "value": 3,
+      "unit": "m/s^2",
+      "symbol": "a",
+      "meaning": "Signed acceleration in the authored Newton-second-law exit task.",
+      "locator": "Author-created exact practice datum."
+    }
+  ],
+  "application_contexts": []
+}
