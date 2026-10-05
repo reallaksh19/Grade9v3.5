@@ -29,4 +29,8 @@ This slice does not close all forty source-question findings or certify all 28 c
 
 `python -m unittest tests.test_core2_v2 tests.test_qrt_pipeline_guard`: **62 tests PASS**. Existing support provenance, ladder ordering, source custody and pipeline semantics remain covered. New negative/reference tests and actual Set B browser replay are pending. Python compilation passed for the modified renderer/projection. No acceptance is inferred from compilation or these existing tests.
 
+Checkpoint 2: [code and existing regressions](https://github.com/reallaksh19/Grade9v3.5/issues/29#issuecomment-5998693907), commit `d836142caebaf0cd7483a30cb83987f738ad4398`.
+
+Next micro-unit: 15 new observed-failure/compatibility tests plus the existing 62 tests **PASS (77 total)**. Node syntax validation passes for the modified browser observation. Checked-in replay covers #53 Q1, #54 Q9, #55 Q1 and #56 Q5 using frozen question/answer/support text, case assets and optional support plans. It produces partial question pages and preserves their metadata/lineage limitations. Deferring four revealing D3 rungs leaves one safe rung; the existing two-rung floor is reported as a gap, not concealed with filler. No browser verification has yet been claimed. A malformed payload selector in the new test was corrected; all 15 tests now pass.
+
 Recovery/checkpoint: [checkpoint 1](https://github.com/reallaksh19/Grade9v3.5/issues/29#issuecomment-5998624926). Local branch and published plan were reconciled after context recovery; no new Owner decision arose.

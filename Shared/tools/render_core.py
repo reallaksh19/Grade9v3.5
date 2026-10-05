@@ -2881,7 +2881,9 @@ def context(manifest_path: Path) -> Ctx:
         for representation in package.get("representations", [])
         for ref in representation.get("rendered_asset_refs", [])
         if isinstance(ref, str)
-    } | {r["snapshot_ref"] for p in packages for r in p.get("resources", []) if r.get("snapshot_ref")})
+    } | {scene["asset_ref"] for p in packages for rep in p.get("representations", [])
+         for scene in rep.get("scene_instances", []) if scene.get("asset_ref")}
+      | {r["snapshot_ref"] for p in packages for r in p.get("resources", []) if r.get("snapshot_ref")})
     own_capabilities = {
         capability["id"]
         for package in packages
