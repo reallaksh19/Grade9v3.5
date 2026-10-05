@@ -6,6 +6,7 @@ are explicitly authored corrections, not fabricated authentic source figures.
 import copy, json, math
 from html import escape as esc
 from pathlib import Path
+from academic_bridge_svg import framework
 ROOT=Path(__file__).resolve().parents[3]
 BASE=ROOT/'evidence/blueprint-cycles'
 
@@ -139,14 +140,14 @@ for issue in (32,31,34,33,36,35,38,37):
         asset=directory/'assets'/f'question-{index+1}-givens.svg'
         import textwrap
         bridge_lines=textwrap.wrap(bridge,width=78)
-        bridge_svg=''.join(text(45,438+24*i,s,18) for i,s in enumerate(bridge_lines))
-        svg=(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 510" role="img" aria-label="{esc(title)}">'
+        bridge_svg=''.join(text(45,535+24*i,s,18) for i,s in enumerate(bridge_lines))
+        svg=(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 610" role="img" aria-label="{esc(title)}">'
              f'<title>{esc(title)}</title><desc>Authored support for the supplied situation. No final classification or computed answer is shown.</desc>'
              '<style>text{font-family:Arial,sans-serif;fill:#0f172a;stroke:none}</style>'
              f'<g data-g9-stage-id="{stage1}">{text(35,45,title,22)}{drawing}'
              f'{text(35,385,"Connectivity layout only; page angles are not measured geometry.",18)}</g>'
-             f'<g data-g9-stage-id="{stage2}">{text(35,45,title,22)}{drawing}'
-             '<rect x="30" y="405" width="760" height="88" rx="10" fill="#eff6ff" stroke="#2563eb"/>'
+             f'<g data-g9-stage-id="{stage2}">{text(35,45,title,22)}{framework(band,index)}'
+             '<rect x="30" y="505" width="760" height="88" rx="10" fill="#eff6ff" stroke="#2563eb"/>'
              f'{bridge_svg}</g></svg>')
         asset.write_text(svg,encoding='utf-8',newline='\n')
         old=next((r for r in package['representations'] if r['id']==rid),None)
@@ -169,6 +170,7 @@ for issue in (32,31,34,33,36,35,38,37):
         q['scaffolds'][0].update(visual_ref=rid,visual_stage_ref=stage1)
         q['scaffolds'][1].update(visual_ref=rid,visual_stage_ref=stage2)
         if band=='D2' and index==3:
+            q['extensions']['grade9v3:analysis']['difficulty']['basis']='Coordinate two collinear carbon–oxygen axes with two mutually perpendicular residual carbon p directions; conserve the carbon four-function valence basis without assuming a unique terminal-oxygen basis.'
             repair=q['extensions']['grade9v3:learning_repair']
             repair.update(wrong_idea='Each multiple-bond component needs an extra carbon orbital beyond the available valence basis.',
                 probe='Allocate the carbon basis in CO2 and HCN. For each, count axial hybrid functions and residual p functions. Does bond multiplicity create extra carbon basis functions?',

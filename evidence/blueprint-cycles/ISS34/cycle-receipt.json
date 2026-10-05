@@ -4,8 +4,8 @@
   "round": "BLUEPRINT_CORRECTION_R2",
   "status": "CANDIDATE",
   "renderer": "render_core/2",
-  "registry_version": "1.13.0",
-  "render_digest": "a6dd670bf11abb37",
+  "registry_version": "1.14.0",
+  "render_digest": "f9962d85b3d3d4f2",
   "source_bank_sha256": "4ca1ea97ce028b328276c7b02ab6c27c74f19fcf6eeb9b52e711f5a766d03327",
   "source_package_sha256": "589cc8ce2a7b3b18ee5e0434b11ffd01e491625d25541688c040a981fe8eb5cc",
   "source_manifest_sha256": "31017ca3cdab259be9533fb3802825a3470cb628643d7ee60b8cf7d6e05d1507",
@@ -20,16 +20,37 @@
   "advisories": [
     {
       "component": "STAGED_VISUAL",
+      "record": "CU-CHEM-G11-CO2-SYNTHESIS-Q2",
+      "detail": "STAGED_VISUAL has 2 of the 3 stages the reference page has for a D2 question",
+      "core": "CORE1A",
+      "product": "CHE-11-HYBRIDISATION-D2-ISS34-BLUEPRINT-CYCLE-R2"
+    },
+    {
+      "component": "STAGED_VISUAL",
       "record": "CU-CHEM-G11-CO2-SYNTHESIS-Q3",
+      "detail": "STAGED_VISUAL has 2 of the 3 stages the reference page has for a D2 question",
+      "core": "CORE1A",
+      "product": "CHE-11-HYBRIDISATION-D2-ISS34-BLUEPRINT-CYCLE-R2"
+    },
+    {
+      "component": "STAGED_VISUAL",
+      "record": "CU-CHEM-G11-CO2-SYNTHESIS-Q7",
+      "detail": "STAGED_VISUAL has 2 of the 3 stages the reference page has for a D2 question",
+      "core": "CORE1A",
+      "product": "CHE-11-HYBRIDISATION-D2-ISS34-BLUEPRINT-CYCLE-R2"
+    },
+    {
+      "component": "STAGED_VISUAL",
+      "record": "CU-CHEM-G11-CO2-SYNTHESIS-Q9",
       "detail": "STAGED_VISUAL has 2 of the 3 stages the reference page has for a D2 question",
       "core": "CORE1A",
       "product": "CHE-11-HYBRIDISATION-D2-ISS34-BLUEPRINT-CYCLE-R2"
     }
   ],
   "page_hashes": {
-    "core1a.html": "27c60a865145ff260556c2e0f60027f795598283c5e7caca0319b5951d75c841",
-    "core2.html": "ddddf98eb6ad62921c92e7fea2a93a165d93a3fd61a613f8effaa37952dcc097",
-    "index.html": "b50a155a5063edf7a7eacfea03cbd8dabbe0d13b9a38b38b11ae7887820d27f6"
+    "core1a.html": "b01da257093c51bbcdd809d60345e45198d31c79c1b85c0e4aade3953aa15935",
+    "core2.html": "4998cd55d514d8ab376e85eff9af728e1be3b7f69946370694e41f4dd05b87d7",
+    "index.html": "7d51d2ee7b55818cc09b1f398f295adcd5abe413b1b3cdc35c80e615c473ae01"
   },
   "browser": "NOT_RUN",
   "all_12_facets_independently_certified": false,
@@ -37,12 +58,13 @@
   "observation": "LOCAL_EXECUTION + ARTIFACT_INSPECTION",
   "oracle": "IMPLEMENTATION_COUPLED plus separate academic correction data",
   "render_basis": {
-    "source_commit": "b899584efce5ced07a7514ec6d21743dc10f5a0c",
+    "source_commit": "59cfb081a96b6d15ad9c5a6ded771b2dce00091d",
     "authority_sha256": {
-      "Shared/tools/render_core.py": "8e0752ba368baa343cafbe97020a6d9d8b2e44a3a14648cec276d3a1789ef353",
+      "Shared/tools/render_core.py": "66010d8d8930f35b81f51d80e6630b16b936fdb71c185b8ce6883b14494f949d",
       "Shared/tools/core2_v2.py": "ceeb0c50e65f7967f6890ac7f14c6c3a63ca9f3be8d8f2728da98ffe55d580ef",
       "Shared/tools/learning_repair.py": "484868e026ef966adfd607ad5dcd4dee2bb7f16777ac211bfeead56c0a6b4b8c",
-      "Shared/web/interactive-page-blueprints.v1.json": "840a27735464a11a55c28cfbfc28f2e93acee62be51f4435e9fb1b783081bfaf",
+      "Shared/tools/learner_metadata.py": "5db2d1b0cee736a375a9da2acca786b61f5abc6c1f49da221b6606391c3416e5",
+      "Shared/web/interactive-page-blueprints.v1.json": "ea76bbcae595b93d0d8c5cc8548e8d8c76250447f42fe89a5a0f86e1877551df",
       "public/css/modern-learner.css": "1534437082327a575623b4044949de0bee500dfa095cad2f0236f846b5fd73c6",
       "public/css/tablet-12-7.css": "a8d2f54184818bf4fa3f5acdb61e6efc2c8103e475b0bb4a4c0747d8898455ab",
       "public/js/display-controls.js": "2121a1e242220e38cb93dc6e900ee0d0c223b1eab4d32a07398fd632a7d3de1e",
@@ -50,8 +72,8 @@
     },
     "authority_byte_policy": "UTF8_TEXT_LF",
     "canonical_input_sha256": {
-      "evidence/blueprint-cycles/ISS34/inputs/owner.bank.json": "51808f5cef8f88b469cfc73a4813a1dfa9a97fd1c9b6316e96ff1390200b5638",
-      "evidence/blueprint-cycles/ISS34/inputs/package.v1.json": "4fdc9599952f546802e5d27b569a9cbd0be76425fba10e8ef1c1b3c97ad79c1b",
+      "evidence/blueprint-cycles/ISS34/inputs/owner.bank.json": "db4bc71e3c5b7e859637085cd762326b01729c191ed6cdb13dbd1681e5d95de1",
+      "evidence/blueprint-cycles/ISS34/inputs/package.v1.json": "1cd2d9c828a3a4f8439de3d7761034de195c13b0e3d74da62235bba13ab94ec5",
       "evidence/blueprint-cycles/ISS34/inputs/product.manifest.json": "d66e6c9628dac3cd53abbd300ad8332b195ccf76854485cb4981a0e79ff0aa0b"
     },
     "source_commit_role": "Checkout basis; actual tested authority and corrected inputs are bound by SHA256.",

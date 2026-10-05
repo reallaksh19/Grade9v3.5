@@ -56,6 +56,7 @@ def main() -> int:
         "Shared/tools/render_core.py",
         "Shared/tools/core2_v2.py",
         "Shared/tools/learning_repair.py",
+        "Shared/tools/learner_metadata.py",
         "Shared/web/interactive-page-blueprints.v1.json",
         "public/css/modern-learner.css",
         "public/css/tablet-12-7.css",

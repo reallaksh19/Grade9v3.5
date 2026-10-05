@@ -3,7 +3,7 @@
 Generated from `Shared/web/interactive-page-blueprints.v1.json` by `Shared/tools/blueprint_spec.py`. Do not edit.
 To change what a page shows, change the blueprint; the renderer, the quality gate and the owner-bank scaffold follow.
 
-Registry 1.13.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
+Registry 1.14.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
 
 Depth: min_items is the floor below which a component does not count as present. target_items is the depth of the reference page, and target_items_by_band gives it by the difficulty band the record declares at band_source (for a Core1A construction unit, the hardest band among the bank questions it names in crux_question_refs). Between the floor and the reference depth the renderer says so as an advisory.
 
@@ -82,7 +82,7 @@ Browser audit (`tools/site-audit/core-page-audit.mjs --profile tablet-12.7`): me
 
 **Evidence.** A digest is taken over the bytes of a file, so the bytes must be the same on every machine. Line endings: LF (`.gitattributes`). Text is LF in every working tree (`* text=auto eol=lf`). A file already committed with CRLF keeps its bytes, so no recorded digest moves; a new file is LF.
 
-## BP-CORE2-SOURCE-QUESTION@1.8.0 (CORE2)
+## BP-CORE2-SOURCE-QUESTION@1.9.0 (CORE2)
 
 Learner job: Preserve authentic assessment demand while allowing bounded, provenance-explicit help that advances the learner without becoming a Question Clinic.
 
@@ -107,7 +107,7 @@ Required: a page without it is a gap, and the quality gate fails it.
 - The learner gets: Say whose question this is and what kind of question it is before anything else.
 - The reference page: selected_question_bank_TABLET_STUDY: question id, source line and badges in the header band
 - Record fields: `id`, `original_identifier`, `extensions.grade9v3:source_custody`
-- To author it: Identity comes from the question's custody. An owner-supplied question shows 'Owner-supplied question' and carries no exam, year or paper.
+- To author it: Identity comes from the question's custody. An owner-supplied question shows 'Owner-supplied question' and carries no exam, year or paper. Question-bound grade9v3:attempt_labels may supply neutral concept/family labels where titles settle the assessed act. Preserve canonical refs and show detailed titles only in the protected solution.
 
 **STEM** · slot `attempt` · STEM
 
@@ -210,7 +210,7 @@ Optional: shown when the record has it.
 - Record fields: `extensions.grade9v3:learning_repair`
 - To author it: Use question-specific paired/changed cases that separate the predicted misconception from a slip. Preserve uncertainty; do not grade free response by keyword or declare mastery. Optional for legacy records; when authored, question/crux/target validation remains mandatory. New semantic review must still adjudicate M1–M3.
 
-## BP-CORE1A-CONSTRUCTION@1.6.0 (CORE1A)
+## BP-CORE1A-CONSTRUCTION@1.7.0 (CORE1A)
 
 Learner job: Build the concept in a coherent construction with its adjacent representation, summarize the key insight, study a visible worked explanation, then attempt a fresh changed case. References and diagnosis remain requestable; protected source questions are not the default teaching anchor.
 

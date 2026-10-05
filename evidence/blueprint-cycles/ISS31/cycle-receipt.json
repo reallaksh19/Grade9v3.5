@@ -4,8 +4,8 @@
   "round": "BLUEPRINT_CORRECTION_R2",
   "status": "CANDIDATE",
   "renderer": "render_core/2",
-  "registry_version": "1.13.0",
-  "render_digest": "5ddef05bef520637",
+  "registry_version": "1.14.0",
+  "render_digest": "9e38dc7a46856a3c",
   "source_bank_sha256": "d627e740b030ff2c86852006293202505fa7f9ce62a094c1695dbb42110c4b65",
   "source_package_sha256": "a464604a957fa8fd6503c8a16bcb9eb8e41d3e276e4ef92579c39bd8fe2466e3",
   "source_manifest_sha256": "73b7242d069f7e78afe5e44ec623cd0821be82fa4d0deba288f02ff0f3867a4e",
@@ -36,6 +36,13 @@
       "component": "EQUATIONS",
       "record": "CU-Q2-ISS31-Q8",
       "detail": "EQUATIONS is absent",
+      "core": "CORE1A",
+      "product": "EVIDENCE-CHEM-ISS31-HYBRIDISATION-BLUEPRINT-CYCLE-R2"
+    },
+    {
+      "component": "STAGED_VISUAL",
+      "record": "CU-Q2-ISS31-Q8",
+      "detail": "STAGED_VISUAL has 2 of the 3 stages the reference page has for a D2 question",
       "core": "CORE1A",
       "product": "EVIDENCE-CHEM-ISS31-HYBRIDISATION-BLUEPRINT-CYCLE-R2"
     },
@@ -97,9 +104,9 @@
     }
   ],
   "page_hashes": {
-    "core1a.html": "049510adb3818a7c640e8f719ff845327ed43e4e8a9df08c630ff0bd43e07fca",
-    "core2.html": "fdd325a587f2ba5b4635db973dca7c853baa247cbe51fdf1120ef3f608206459",
-    "index.html": "e62f935420eb6752b8c48c9bb23c2d7870467a4dc9e1ae94fbd44761c22e0fbc"
+    "core1a.html": "30c70574367aee036a509ed1c04f1baad7b89b695c275ec9d72bc5671e4fd4e3",
+    "core2.html": "ce6b3b9f5dd93cf0092d928cd5cf63181bee10862177f13fa4ca1168801955ea",
+    "index.html": "0dfa103e03cae17a1a6b3a895d933b3ddb2f38e5ac61b3eaa0619a6da9a7f72a"
   },
   "browser": "NOT_RUN",
   "all_12_facets_independently_certified": false,
@@ -107,12 +114,13 @@
   "observation": "LOCAL_EXECUTION + ARTIFACT_INSPECTION",
   "oracle": "IMPLEMENTATION_COUPLED plus separate academic correction data",
   "render_basis": {
-    "source_commit": "b899584efce5ced07a7514ec6d21743dc10f5a0c",
+    "source_commit": "59cfb081a96b6d15ad9c5a6ded771b2dce00091d",
     "authority_sha256": {
-      "Shared/tools/render_core.py": "8e0752ba368baa343cafbe97020a6d9d8b2e44a3a14648cec276d3a1789ef353",
+      "Shared/tools/render_core.py": "66010d8d8930f35b81f51d80e6630b16b936fdb71c185b8ce6883b14494f949d",
       "Shared/tools/core2_v2.py": "ceeb0c50e65f7967f6890ac7f14c6c3a63ca9f3be8d8f2728da98ffe55d580ef",
       "Shared/tools/learning_repair.py": "484868e026ef966adfd607ad5dcd4dee2bb7f16777ac211bfeead56c0a6b4b8c",
-      "Shared/web/interactive-page-blueprints.v1.json": "840a27735464a11a55c28cfbfc28f2e93acee62be51f4435e9fb1b783081bfaf",
+      "Shared/tools/learner_metadata.py": "5db2d1b0cee736a375a9da2acca786b61f5abc6c1f49da221b6606391c3416e5",
+      "Shared/web/interactive-page-blueprints.v1.json": "ea76bbcae595b93d0d8c5cc8548e8d8c76250447f42fe89a5a0f86e1877551df",
       "public/css/modern-learner.css": "1534437082327a575623b4044949de0bee500dfa095cad2f0236f846b5fd73c6",
       "public/css/tablet-12-7.css": "a8d2f54184818bf4fa3f5acdb61e6efc2c8103e475b0bb4a4c0747d8898455ab",
       "public/js/display-controls.js": "2121a1e242220e38cb93dc6e900ee0d0c223b1eab4d32a07398fd632a7d3de1e",
@@ -121,7 +129,7 @@
     "authority_byte_policy": "UTF8_TEXT_LF",
     "canonical_input_sha256": {
       "evidence/blueprint-cycles/ISS31/inputs/owner.bank.json": "738b8b1bf769fdefd71d039c9187630d105186d6393ab6006c91d314804855bc",
-      "evidence/blueprint-cycles/ISS31/inputs/package.v1.json": "ecaf5031d056ee8c5c9a0143d8cdd267dad247e979591433aaec08ec7077f98c",
+      "evidence/blueprint-cycles/ISS31/inputs/package.v1.json": "19ed9aa8ce10fadc8435b3b8f388f22e2fde28b9a3c91b21c53b28efe5b43a7b",
       "evidence/blueprint-cycles/ISS31/inputs/product.manifest.json": "84fff4ff07d8d11e139fab40351e1a50d0476cc03950a0085ffe7ad3519f1f6c"
     },
     "source_commit_role": "Checkout basis; actual tested authority and corrected inputs are bound by SHA256.",

@@ -153,7 +153,7 @@
         "grade9v3:question_repairs": [
           {
             "clarify": "Assign local bases before deducing the relation between terminal planes.",
-            "connect": "A central sp carbon retains two perpendicular p directions.",
+            "connect": "Use an unfilled four-function carbon ledger. Allocate functions to the stated sigma jobs and leave the remaining direction entries for your construction.",
             "way": "Match each central p direction with an aligned terminal p direction; infer terminal sigma planes yourself.",
             "rule": "Allene uses terminal sp2, central sp accounting. The two central perpendicular p directions support perpendicular terminal CH2 planes in the introductory model.",
             "check": "Changed check: looking down C=C=C, terminal CH2 planes project at right angles; rotating the whole model leaves that relation unchanged.",
@@ -507,7 +507,7 @@
         "grade9v3:question_repairs": [
           {
             "clarify": "Separate supplied bond equivalence from a permanently chosen Lewis double bond.",
-            "connect": "Equivalent contributors are bookkeeping alternatives for one delocalised description.",
+            "connect": "Compare the predicted bond properties of a permanently selected contributor with the supplied equivalent positions. Decide which description fits.",
             "way": "Compare what a fixed unequal-bond model predicts with the supplied equivalent positions.",
             "rule": "Planar equivalent nitrate bonds reject one permanently unique N=O position. N sigma framework is locally sp2; equivalence alone is not the hybridisation criterion.",
             "check": "Changed check: supplied equivalent CO2 bonds coexist with sp carbon; equivalence cannot alone imply sp2.",
@@ -547,10 +547,10 @@
             "way": "Keep sigma/in-plane and perpendicular-p ledgers separate; identify what a contributor average actually averages.",
             "rule": "Carbonate has three in-plane sigma bonds and four perpendicular p functions holding six pi-space electrons. Average formal O charge -2/3 is contributor bookkeeping, not a uniquely measured atomic partial charge.",
             "check": "Independent ledger: CO3^2- has 24 valence electrons; three sigma pairs and six in-plane O lone pairs use eighteen, leaving six in the pi space.",
-            "probe": "How many carbonate pi-space electrons arise from one C=O pi pair plus two perpendicular O lone pairs? Does averaging formal charges measure physical partial charges?",
-            "pattern": "Six; no. Repeated two-electron count or measured-charge claim exposes the two distinct errors.",
-            "transfer": "Explain why equal bond lengths do not uniquely determine atomic partial charges.",
-            "wrong_idea": "A delocalised carbonate pi space contains only one pair; formal charge averages are measured partial charges.",
+            "probe": "Draw a second formal carbonate contributor by moving electron pairs on the same nuclear framework. Mark which electron entries change and which atoms stay fixed. Reconstruct the perpendicular p-function/electron ledger. Does moving the formal double-bond position assert a different measured C–O bond?",
+            "pattern": "Contributor drawings move formal electron-pair assignments while retaining the C/O nuclear framework. In the supplied local bookkeeping each retains four participating p functions and six pi-space electrons. The given equivalent C–O bonds are not one permanent unequal single/double pattern. Formal averaged charge is bookkeeping, not measured partial charge.",
+            "transfer": "Use a changed nitrate contributor to reconstruct the same nuclear-framework and perpendicular p/electron ledger; do not infer measured atomic charges from formal averages.",
+            "wrong_idea": "A formal contributor is a different nuclear structure with a permanently unequal bond and electron pattern.",
             "question_ref": "OWN-ISS36-D3-HYB-07",
             "label": "Q7",
             "construction_ref": "CU-CHEM-DELOCALISATION-Q7",
@@ -1028,7 +1028,7 @@
           },
           {
             "clarify": "Trace the continuous aligned p pathway rather than counting all double bonds.",
-            "connect": "An intervening saturated sp3 centre breaks the ordinary contiguous pi pathway in this model.",
+            "connect": "Mark each carbon with an unfilled p-availability entry. Test availability, adjacency and relative direction before deciding which links form the pathway.",
             "way": "Mark p-bearing centres and inspect adjacency before declaring conjugation.",
             "rule": "Butadiene has four contiguous p-bearing centres; a central saturated CH2 in separated pentadiene interrupts this introductory pathway. This is not a proof of zero interaction of every quantum-mechanical kind.",
             "check": "Changed check: replacing the saturated spacer with an appropriate unsaturated p-bearing centre restores a contiguous path.",
@@ -2921,12 +2921,12 @@
               "paper_ok": true
             },
             "answer": {
-              "summary": "The perpendicular orientation of the terminal groups creates a chiral C2-symmetric propeller that lacks any plane or centre of symmetry when each terminal carbon carries two different substituents (–H and –CH3). If allene were planar, the entire molecule would possess a plane of symmetry (the molecular plane) and would be strictly achiral.",
+              "summary": "Distinct substituents at both allene termini permit axial stereogenicity in the perpendicular terminal-substituent framework. An idealized coplanar terminal framework removes that axial stereogenicity; this is not a claim that all methyl hydrogen atoms lie in one plane.",
               "reasoning": [
                 "In penta-2,3-diene, central C3 is sp hybridised with orthogonal py and pz orbitals.",
                 "This forces the C2–H(CH3) plane and C4–H(CH3) plane to lie at 90° to each other.",
                 "Because each terminal carbon carries two distinct groups (H ≠ CH3), the orthogonal arrangement destroys all planes of symmetry (σ) and inversion centres (i), generating axial chirality.",
-                "If allene were planar, all atoms would lie in a single reflection plane, making enantiomerism impossible."
+                "In the counterfactual coplanar terminal-substituent/backbone framework, the axial stereogenic arrangement disappears. Methyl groups still have tetrahedral local geometry; no literal all-atom coplanarity is asserted."
               ]
             }
           },
@@ -2942,21 +2942,21 @@
             "question_refs": [
               "OWN-ISS36-D3-HYB-09"
             ],
-            "title": "Heats of hydrogenation and resonance stabilization in conjugated vs non-conjugated dienes",
-            "prompt": "The heat of hydrogenation of penta-1,4-diene is approximately -254 kJ/mol (nearly double that of 1-pentene, -126 kJ/mol). In contrast, the heat of hydrogenation of buta-1,3-diene is -239 kJ/mol, which is about 15 kJ/mol less exothermic than expected for two isolated double bonds. Explain this thermodynamic difference in terms of continuous p-orbital overlap versus structural interruption by an sp³ carbon.",
+            "title": "Conjugation and the limits of a hydrogenation comparison",
+            "prompt": "In the introductory p-orbital model compare buta-1,3-diene with penta-1,4-diene. Identify the orbital-connected difference. A proposed hydrogenation experiment gives a less exothermic value for a conjugated reactant than an isolated-bond reference. What matching conditions and reference assumptions would be needed before using that difference as evidence about reactant stability? No numerical thermochemical values are supplied.",
             "source_kind": "AUTHOR_CREATED_COMPETITION_STYLE",
             "source_ref": null,
-            "source_label": "Original competition-style transfer problem on diene thermodynamic stability; not claimed as an official past-paper exam question.",
+            "source_label": "Original qualitative model-boundary transfer; no authenticated thermochemical dataset or official exam question claimed.",
             "response": {
               "type": "free_response",
               "paper_ok": true
             },
             "answer": {
-              "summary": "Buta-1,3-diene has continuous parallel p-orbital overlap across all four carbons, creating a delocalised 4-centre pi molecular orbital that provides ~15 kJ/mol of resonance/conjugation stabilization energy (lowering the enthalpy of the diene). Penta-1,4-diene has an intervening sp³ methylene carbon that breaks orbital continuity, leaving two completely isolated double bonds that release the full, additive heat of two independent alkene hydrogenations.",
+              "summary": "Contiguous available p directions support the introductory conjugated pathway in butadiene; the saturated spacer interrupts that pathway in pentadiene. A less exothermic hydrogenation may support a relative reactant-stability inference only with suitable products, phases, substitution and experimental/reference controls. It is not a unique measured resonance energy, and the spacer does not prove all quantum interactions vanish.",
               "reasoning": [
-                "In buta-1,3-diene, contiguous sp² carbons permit continuous pi electron delocalisation, lowering the ground-state enthalpy by the resonance energy (~15 kJ/mol).",
-                "Hydrogenation releases less heat because the starting material is already thermodynamically stabilized.",
-                "In penta-1,4-diene, the saturated sp³ C3 carbon has no available p orbital, completely insulating the two pi bonds so no delocalisation energy exists."
+                "Construct the atom-local availability and adjacency map before inferring the pathway.",
+                "A reaction-enthalpy comparison includes both reactant and product states; match or account for products, phases and substitution.",
+                "A chosen isolated-bond reference is a model. Do not identify its difference uniquely with resonance energy or infer zero interaction across a saturated spacer."
               ]
             }
           }

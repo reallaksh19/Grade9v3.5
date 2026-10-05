@@ -72,7 +72,7 @@ solutions = read(OUT / 'matrix/solution-checks.json')
 if solutions['package_sha256'] != sha(OUT / 'matrix/package.v1.json'): failures.append('stale calibration solutions')
 if solutions['status'] != 'PASS': failures.append('calibration solutions')
 cells = sorted(set(artifact['actual_cell_coverage']) | {s['qrt_id'] for s in matrix['specimens']})
-if len(cells) != 28: failures.append('candidate cell union is not 28')
+if len(cells) != matrix.get('candidate_cell_union',28): failures.append('candidate cell union disagrees with declared review ledger')
 seed = read(BASE / 'recovery-20261004/seed-full-suite.json')
 full = read(OUT / 'closure-full-suite.json')
 added = sorted(set(full['failures']) - set(seed['failures']))
@@ -97,6 +97,7 @@ report = {
     'exact_review_facets': facet_count, 'independent_facets_accepted': 0,
     'original_instantiated_cells': 20, 'supplement_candidates': 8,
     'candidate_cell_union': cells, 'all_28_cells_independently_accepted': False,
+    'open_matrix_cells': matrix.get('open_cells',[]),
     'browser': {'all_eight_interaction_statuses': [r['status'] for r in interaction['results']],
                 'executed_source_question_states': sum(len(r['questionStates']) for r in interaction['results']),
                 'audits': audits, 'supplements': [{'group': r['group'], 'status': r['status'], 'pages': len(r['pages'])} for r in supplements['results']]},

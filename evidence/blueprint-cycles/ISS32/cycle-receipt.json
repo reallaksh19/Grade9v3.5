@@ -4,8 +4,8 @@
   "round": "BLUEPRINT_CORRECTION_R2",
   "status": "CANDIDATE",
   "renderer": "render_core/2",
-  "registry_version": "1.13.0",
-  "render_digest": "4590ca9cc5a0f1cd",
+  "registry_version": "1.14.0",
+  "render_digest": "25da25ec91f99033",
   "source_bank_sha256": "573c1bccf68785bab632f14f39ba1db44bea90b8d81ee88996c1bc5a101d6634",
   "source_package_sha256": "81b14d579ecd9c1a4ce736658d9402417e1c012c93f1dbc8ee73f59926706f42",
   "source_manifest_sha256": "b35da9170b13f9e3236d4be9f9c9badecb1bbfc1e9eb8083b1249c577c126d69",
@@ -29,6 +29,13 @@
       "component": "EQUATIONS",
       "record": "CU-CHE-DOMAIN-COUNTING-Q8",
       "detail": "EQUATIONS is absent",
+      "core": "CORE1A",
+      "product": "EVIDENCE-CHE-ISSUE32-HYBRID-BLUEPRINT-CYCLE-R2"
+    },
+    {
+      "component": "STAGED_VISUAL",
+      "record": "CU-CHE-DOMAIN-COUNTING-Q8",
+      "detail": "STAGED_VISUAL has 2 of the 3 stages the reference page has for a D2 question",
       "core": "CORE1A",
       "product": "EVIDENCE-CHE-ISSUE32-HYBRID-BLUEPRINT-CYCLE-R2"
     },
@@ -111,9 +118,9 @@
     }
   ],
   "page_hashes": {
-    "core1a.html": "1b389e39648f10d2af95339d8a6b52a728d95460dd2aa6a7d19db73d1521d51c",
-    "core2.html": "816f00197850780f4121ba1d74e3d86a6b120513b8081978748f8428d6effb07",
-    "index.html": "5a9b6eb1de712879834a27aa996c82f222c414ad8c012841bb3ca959266017a1"
+    "core1a.html": "58a8617baa565ffcf3e2734f7154d21569389f7bda29275254a791f6a81f9706",
+    "core2.html": "205e4ad0000305cfa14ee6775138b5687b646baff9f3ae0181520b285b39ebf0",
+    "index.html": "1219ac5e365a8726507e9b290e7db2d11f7f69f42bda804ad3550401e0e1293b"
   },
   "browser": "NOT_RUN",
   "all_12_facets_independently_certified": false,
@@ -121,12 +128,13 @@
   "observation": "LOCAL_EXECUTION + ARTIFACT_INSPECTION",
   "oracle": "IMPLEMENTATION_COUPLED plus separate academic correction data",
   "render_basis": {
-    "source_commit": "b899584efce5ced07a7514ec6d21743dc10f5a0c",
+    "source_commit": "59cfb081a96b6d15ad9c5a6ded771b2dce00091d",
     "authority_sha256": {
-      "Shared/tools/render_core.py": "8e0752ba368baa343cafbe97020a6d9d8b2e44a3a14648cec276d3a1789ef353",
+      "Shared/tools/render_core.py": "66010d8d8930f35b81f51d80e6630b16b936fdb71c185b8ce6883b14494f949d",
       "Shared/tools/core2_v2.py": "ceeb0c50e65f7967f6890ac7f14c6c3a63ca9f3be8d8f2728da98ffe55d580ef",
       "Shared/tools/learning_repair.py": "484868e026ef966adfd607ad5dcd4dee2bb7f16777ac211bfeead56c0a6b4b8c",
-      "Shared/web/interactive-page-blueprints.v1.json": "840a27735464a11a55c28cfbfc28f2e93acee62be51f4435e9fb1b783081bfaf",
+      "Shared/tools/learner_metadata.py": "5db2d1b0cee736a375a9da2acca786b61f5abc6c1f49da221b6606391c3416e5",
+      "Shared/web/interactive-page-blueprints.v1.json": "ea76bbcae595b93d0d8c5cc8548e8d8c76250447f42fe89a5a0f86e1877551df",
       "public/css/modern-learner.css": "1534437082327a575623b4044949de0bee500dfa095cad2f0236f846b5fd73c6",
       "public/css/tablet-12-7.css": "a8d2f54184818bf4fa3f5acdb61e6efc2c8103e475b0bb4a4c0747d8898455ab",
       "public/js/display-controls.js": "2121a1e242220e38cb93dc6e900ee0d0c223b1eab4d32a07398fd632a7d3de1e",
@@ -135,7 +143,7 @@
     "authority_byte_policy": "UTF8_TEXT_LF",
     "canonical_input_sha256": {
       "evidence/blueprint-cycles/ISS32/inputs/owner.bank.json": "5f29ecc7d95b134af2d4d585df7fefbcd51d064d1d83692604340534898928c4",
-      "evidence/blueprint-cycles/ISS32/inputs/package.v1.json": "072b72954d5146e5cfc97467a43d493da08b599c47cc4115b0d1a73d1d1a995a",
+      "evidence/blueprint-cycles/ISS32/inputs/package.v1.json": "3536c15060cb7e2f2b6f115a53e4fa1fa80aa792180d4c97060d9108527d84f7",
       "evidence/blueprint-cycles/ISS32/inputs/product.manifest.json": "a467ddf2b9b441890fbf0c8437a00441ab50b1eed6696734de2feb2a4e8fe800"
     },
     "source_commit_role": "Checkout basis; actual tested authority and corrected inputs are bound by SHA256.",

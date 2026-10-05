@@ -38,7 +38,7 @@ for k in parameters-{F(1),F(2)}:
 # hence ±1; neither is a root. Irrational k makes 1/(k−2) irrational: a
 # nonzero rational reciprocal would imply k=2+1/x rational, a contradiction.
 assert all(k*k-3*k+1!=0 for k in (F(-1),F(1)))
-record('QRT-RETRIEVE-D4','EXHAUSTIVE_DOMAIN_BRANCHES_AND_RATIONAL_ROOT_ARGUMENT','k=2 invalid; k=1 admits x=0; other rational k fail compatibility; irrational k cannot produce a rational candidate. Sampling is an additional check, not the universal proof.')
+record('QRT-SYNTHESIZE-D4','EXHAUSTIVE_DOMAIN_BRANCHES_AND_RATIONAL_ROOT_ARGUMENT','k=2 invalid; k=1 admits x=0; other rational k fail compatibility; irrational k cannot produce a rational candidate. Sampling is an additional check, not the universal proof. Independent review rejected RETRIEVE primary ownership; its cell remains open.')
 
 # APPLY D3: collapse the forward graph into a single expression as an
 # independent computation, then compare with the stepwise authored route.

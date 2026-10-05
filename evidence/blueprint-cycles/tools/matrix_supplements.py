@@ -7,6 +7,7 @@ import copy, hashlib, json
 import os
 from pathlib import Path
 from Shared.tools import product_manifest
+from academic_bridge_svg import matrix_framework
 
 ROOT=Path(__file__).resolve().parents[3]
 OUT=ROOT/os.environ.get('G9_REVIEW_DIR','evidence/blueprint-cycles/closure-20261005')/'matrix'
@@ -78,6 +79,11 @@ def save(path,obj):
     path.write_text(json.dumps(obj,indent=2,ensure_ascii=False)+'\n',encoding='utf-8',newline='\n')
 
 def main():
+    # Independent review rejected RETRIEVE ownership: deriving compatibility
+    # from simultaneous constraints is synthesis. Do not force the missing cell.
+    disputed=next(c for c in CASES if c['demand']=='RETRIEVE' and c['band']=='D4')
+    disputed.update(demand='SYNTHESIZE',secondary=['JUSTIFY','APPLY','MODEL','RETRIEVE'],
+        basis='Compatibility coordinates two independently reduced constraints, denominator restrictions and a rational-domain test. Independent review assigns SYNTHESIZE primary at D4; this does not fill RETRIEVE D4.')
     original=json.loads((ROOT/'Mathematics/library/linear-equations.v1.json').read_text(encoding='utf-8'))
     p=copy.deepcopy(original)
     p.update(package_id='LIB-ISS29-MATRIX-CALIBRATION',title='Eight supplementary demand/band calibration tasks',
@@ -119,20 +125,25 @@ def main():
         family['solution_structure']=[row['action'] for row in route];family['common_wrong_routes']=[c['wrong']]
         family['safe_variations']=['Preserve the declared domains and nonzero conditions; separately solve every changed case.']
         family['transfer_boundaries']=['A changed criterion or domain requires fresh classification; this specimen grants no universal acceptance.']
-        stages=[{'id':qid+'-VIS-1','label':'Givens and requested output','purpose':'Separate the declared givens and representation roles from the protected decision.','visible_elements':['givens']},{'id':qid+'-VIS-2','label':'Boundary reminder','purpose':'Keep constraints visible without completing the category or route decision.','visible_elements':['givens','domain reminder']}]
-        svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 210" role="img" aria-label="'+c['title']+'" font-size="18"><title>'+c['title']+'</title><desc>Labelled givens and constraints only; no solution is shown in these stages.</desc>'
+        stages=[{'id':qid+'-VIS-1','label':'Givens and requested output','purpose':'Separate the declared givens and representation roles from the protected decision.','visible_elements':['givens']},{'id':qid+'-VIS-2','label':'Construction framework','purpose':'Expose the task-specific correspondence and unfilled decision entries.','visible_elements':['givens','domain reminder']}]
+        svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 610" role="img" aria-label="'+c['title']+'" font-size="18"><title>'+c['title']+'</title><desc>Labelled givens and unfilled task-specific framework; no solution is shown in these stages.</desc>'
         import html
         svg+='<g data-g9-stage-id="'+stages[0]['id']+'"><rect x="12" y="12" width="670" height="130" fill="#eef4ff" stroke="#345"/>'
         for i,text in enumerate(c['diagram']):svg+=f'<text x="26" y="{43+i*36}" fill="#172d46">{html.escape(text)}</text>'
-        svg+='</g><g data-g9-stage-id="'+stages[1]['id']+'"><text x="26" y="181" fill="#172d46">Preserve stated domains and roles; make the requested decision yourself.</text></g></svg>'
+        svg+='</g><g data-g9-stage-id="'+stages[1]['id']+'">'+matrix_framework(c['demand'],c['band'])+'</g></svg>'
         asset=OUT/'assets'/f'{qid}.svg';asset.parent.mkdir(parents=True,exist_ok=True);asset.write_text(svg,encoding='utf-8',newline='\n')
         rep=copy.deepcopy(original['representations'][0]);rep.update(id=repid,source_refs=['SRC-ISS29-SUPPLEMENT'],evidence_refs=[],extensions={},purpose='Align declared givens, domains and requested output while preserving the decisive learner work.',relation_refs=[],rendered_asset_refs=[asset.relative_to(ROOT).as_posix()],reveal_stages=stages,required_elements=['givens','domain reminder'],read_order=['givens','domain reminder'],correspondence=[{'element':'givens','symbol':'declared quantities','in_words':c['stem']}],support_stage_map=[{'support_level':'low','visual_stage_ref':stages[0]['id']},{'support_level':'medium','visual_stage_ref':stages[1]['id']}]);p['representations'].append(rep)
+        rep['extensions']={'grade9v3:stage_mode':'REPLACE'}
         q['representation_roles']={'initial_ref':repid,'safe_ref':None,'bound_ref':repid,'stage_refs':[s['id'] for s in stages]};p['questions'].append(q)
         template=next(t for t in template_rows if t['template_id']==f'QRT-{c["demand"]}-{c["band"]}')
         ledger.append({'id':qid,'primary':c['demand'],'secondary':c['secondary'],'band':c['band'],'qrt_id':template['template_id'],'qrt_sha256':hashlib.sha256(json.dumps(template,sort_keys=True).encode()).hexdigest(),'classification_rationale':c['basis'],'five_components':q['difficulty'],'protected_work':c['title'],'solution_moves':route,'check':c['check'],'diagnostic':{'wrong_idea':c['wrong'],'probe':c['probe'],'repair':c['repair'],'interpretation':'A repeated wrong rule across changed cases is evidence to investigate a held idea; one response is not a mastery verdict.'},'facets':{'H1':c['hints'][0],'H2':c['hints'][1],'H3':c['hints'][2],'S1':'Givens and requested output, no answer.','S2':'Boundary reminder retains domains; no computed or selected result.','S3':'No third visual is needed: additional staging would repeat the same constraints.','P1':'Hints and both visual stages preserve the requested decision.','P2':'The repair link lands on CU- plus the exact specimen ID, whose teaching path includes the decisive warranted move. Familiar practice follows the worked exposure; the changed diagnostic/exit is a separate case.','P3':c['check'],'M1':c['wrong'],'M2':c['probe'],'M3':c['repair']},'review_status':'AUTHOR_SELF_CHECK_REQUIRES_EXACT_RENDER_AND_INDEPENDENT_CALIBRATION'})
     save(OUT/'package.v1.json',p)
     manifest=product_manifest.derive((OUT/'package.v1.json').relative_to(ROOT).as_posix(),[],'PRODUCT-ISS29-MATRIX-CALIBRATION','index.html');manifest['output_roles']=['CORE1A','CORE2A'];manifest['selection']['core2a']=[q['id'] for q in p['questions']];save(OUT/'manifest.json',manifest)
-    save(OUT/'calibration-ledger.json',{'schema':'issue29-matrix-calibration/v1','original_denominator':'80 owner instances / 40 distinct questions / 20 primary cells unchanged','supplement_count':8,'claim':'All 28 primary cells now have candidate specimen identities when combined with the original twenty. Independent classification, source/learner and full facet acceptance are not claimed.','specimens':ledger})
-    print('Authored eight original practice specimens; canonical QRT IDs bound; candidate classification only.')
+    save(OUT/'calibration-ledger.json',{'schema':'issue29-matrix-calibration/v1','original_denominator':'80 owner instances / 40 distinct questions / 20 primary cells unchanged','supplement_count':8,'candidate_cell_union':27,'open_cells':['QRT-RETRIEVE-D4'],'claim':'Independent review reclassifies the advanced system as SYNTHESIZE D4. The candidate union is 27 cells; RETRIEVE D4 remains open. Reviewer recommendations are not owner acceptance.','specimens':ledger})
+    for row in ledger:
+        row['facets']['S2']='Task-specific unfilled construction framework in REPLACE mode; correspondence and boundary conditions are explicit while target decisions stay learner work.'
+        row['facets']['S3']='Third stage waived: a completed decision belongs in protected solution/teaching; the two stages already expose givens and the useful unfilled framework.'
+    save(OUT/'calibration-ledger.json',{'schema':'issue29-matrix-calibration/v1','original_denominator':'80 owner instances / 40 distinct questions / 20 primary cells unchanged','supplement_count':8,'candidate_cell_union':27,'open_cells':['QRT-RETRIEVE-D4'],'claim':'Independent review reclassifies the advanced system as SYNTHESIZE D4. The candidate union is 27 cells; RETRIEVE D4 remains open. Reviewer recommendations are not owner acceptance.','specimens':ledger})
+    print('Eight authored specimens; independently recommended D4 synthesis; 27 candidate cells, RETRIEVE D4 open.')
 
 if __name__=='__main__':main()

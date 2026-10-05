@@ -1657,7 +1657,7 @@ def _core2_concept_navigation(ctx: Ctx, q: dict) -> str:
         rows.append(
             f'<li><a data-g9-concept-link data-g9-question-ref="{esc(q["id"])}" '
             f'data-g9-concept-ref="{esc(microtopic_id)}" href="core1a.html#{esc(target or microtopic_id)}">'
-            f'{esc(microtopic.get("title") or microtopic_id)}</a></li>'
+            f'{esc(((q.get("extensions") or {}).get("grade9v3:attempt_labels") or {}).get("concept") or microtopic.get("title") or microtopic_id)}</a></li>'
         )
     return block("concept_navigation", "<ul>" + "".join(rows) + "</ul>" if rows else "",
                  title="Need the concept again?")
@@ -1940,6 +1940,12 @@ def core2(ctx: Ctx, q: dict) -> str:
     for error in repair_errors:
         ctx.gap("AUTHOR_LEARNING_REPAIR", rid, error, "CORE2")
     repair_html = learning_repair.card(repair, rid) if repair and not repair_errors else ""
+    detailed_labels = ""
+    if (q.get("extensions") or {}).get("grade9v3:attempt_labels"):
+        concept = learner_metadata.resolve_concept(ctx.packages, q.get("primary_capability_ref"))
+        family = learner_metadata.resolve_family(ctx.packages, q.get("family_ref"))
+        detailed_labels = block("detailed_concept_labels", para(concept["concept"] + " · " + family["family"]),
+                                title="Concept and question family")
     worked = component_body(ctx, "CORE2", {
         "DIAGNOSTIC_REPAIR": part("DIAGNOSTIC_REPAIR", repair_html),
         "SOLUTION_STEPS": part("SOLUTION_STEPS", _core2_solution(ctx, q, ans), items=_core2_solution_moves(ans)),
@@ -1977,7 +1983,7 @@ def core2(ctx: Ctx, q: dict) -> str:
             "CONCEPT_NAV": part("CONCEPT_NAV", _core2_concept_navigation(ctx, q)),
         }, "support"),
         "solution": component_body(ctx, "CORE2", {
-            "SOLUTION": part("SOLUTION", reveal("Answer and working", worked + teaching_figure
+            "SOLUTION": part("SOLUTION", reveal("Answer and working", worked + teaching_figure + detailed_labels
                              + block("difficulty_basis", para((analysis.get("difficulty") or {}).get("basis")),
                                      title="Author's difficulty rationale"), ref=f'CORE2-{rid}-solution')),
         }, "solution"),
@@ -2191,6 +2197,10 @@ CSS = """
 --soft:#141c29;--pill-bg:#262f5a;--pill-fg:#c3c9ff;--src-bg:#12301f;--src-fg:#6ee7b7;--info-bg:#14263d;--info-line:#3b6db3;--info-fg:#b8c9de;--warn-bg:#2b1620;--warn-line:#6b3045;--warn-fg:#f3b6c4;--ok-bg:#10281d;--ok-line:#1f6b44;--ok-fg:#b7efcf}
 html{font-size:calc(var(--g9-type-body) * var(--g9-zoom))}body{margin:0;background:var(--bg);color:var(--fg);font:1rem/1.6 system-ui,sans-serif;overflow-wrap:break-word}
 header[data-g9-shell-header]{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px var(--g9-space);background:var(--card);border-bottom:1px solid var(--line)}
+.g9-header-inner{width:100%;min-width:0;box-sizing:border-box;padding:0;gap:12px}
+.g9-brand{min-width:0;max-width:100%;flex-wrap:wrap;justify-content:flex-start;overflow-wrap:anywhere}
+.g9-header-nav,.g9-header-actions{min-width:0;max-width:100%;flex-wrap:wrap;gap:8px}
+.g9-header-nav a,.g9-header-actions>*{max-width:100%;white-space:normal;overflow-wrap:anywhere}
 a{color:var(--accent)}
 header a,header button,button,summary,nav a{min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);padding:10px 14px;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg);font:inherit;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;touch-action:manipulation}
 nav[data-g9-breadcrumb]{display:flex;gap:8px;flex-wrap:wrap;padding:8px var(--g9-space)}

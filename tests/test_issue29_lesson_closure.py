@@ -112,6 +112,19 @@ class LessonClosure(unittest.TestCase):
             link=tree.with_attr('data-g9-repair-link')[0]
             self.assertFalse(tree.under(link,'data-g9-probe-feedback'))
             self.assertTrue(any(r['tag']=='div' and 'hidden' in r['attrs'] for r in tree.with_attr('data-g9-probe-feedback')))
+    def test_answer_bearing_labels_are_question_bound_and_protected(self):
+        from Shared.tools import learner_metadata
+        ctx=copy.deepcopy(self.ctx); q=ctx.selection_rows['core2'][0]
+        ext=q.setdefault('extensions',{})
+        ext['grade9v3:attempt_labels']={'question_ref':q['id'],'concept':'Supplied situation','family':'Compare the givens'}
+        projection=learner_metadata.project('CORE2',q,ctx.packages)
+        actual=learner_metadata.resolve_concept(ctx.packages,q['primary_capability_ref'])['concept']
+        self.assertNotIn(actual,learner_metadata.safe_search_text(projection,q,'CORE2'))
+        html=render_core.core2(ctx,q); tree=OwnedHTML(html)
+        node=next(r for r in tree.rows if r['attrs'].get('data-g9-block')=='detailed_concept_labels')
+        self.assertTrue(any(a['tag']=='template' for a in node['ancestors']))
+        ext['grade9v3:attempt_labels']['question_ref']='FOREIGN'
+        with self.assertRaises(learner_metadata.LearnerMetadataError):learner_metadata.project('CORE2',q,ctx.packages)
     def test_authored_visual_review_rejects_foreign_question_and_source_resource(self):
         ctx=copy.deepcopy(self.ctx)
         q=ctx.selection_rows['core2'][0]

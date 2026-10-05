@@ -34,11 +34,11 @@ def build_math():
       ([0,1,1,1,0], 'Translate the missing slot into an unknown and substitute the given negative solution.'),
       ([0,0,1,0,0], 'One same-operation cancellation leaves the stated integer.'),
       ([0,0,1,1,1], 'Collect variable terms and constants; preserve negative signs through the exact check.'),
-      ([0,0,1,1,1], 'Collect the two variable occurrences, undo the constant and verify the negative solution.'),
+      ([0,0,1,1,1], 'Collect the two variable occurrences, undo the constant and verify the signed solution in the original equation.'),
       ([0,0,1,1,1], 'Variable occurrences are on opposite sides, including a negative coefficient.'),
       ([0,0,0,0,1], 'Classify the preserved solution under the explicitly nonzero multiplier condition.'),
       ([0,0,1,1,1], 'Distribute on both sides, collect terms and check the negative result.'),
-      ([0,1,2,2,1], 'Translate four bracketed groups into signed terms, coordinate collection and exact division, then check both original sides.')]
+      ([0,1,2,2,1], 'Translate three bracketed groups into signed terms, coordinate collection and exact division, then check both original sides.')]
     for q,(vector,basis) in zip(questions,estimates):
         score=sum(vector);band='D1' if score<=2 else 'D2' if score<=5 else 'D3' if score<=7 else 'D4'
         ext=q['extensions'];ext['grade9v3:provenance_class']='SOURCE_UNVERIFIED'
@@ -55,6 +55,18 @@ def build_math():
         for scaffold in q.get('scaffolds',[]):scaffold.pop('visual_stage_ref',None)
     selected={q['id'] for q in questions};p['questions']=[q for q in p['questions'] if q['id'] not in selected]
     directory=OUT/'mathematics'
+    transfer=next(q for q in p['questions'] if q['id']=='Q-MATH-LINEAR-2B-01')
+    transfer['transfer']['novelty']['checked_against'].extend(q['id'] for q in questions)
+    transfer['transfer']['novelty']['why_new']='Relative to the named plain-equation worked anchor Q-MATH-LINEAR-01, the outer multiplication changes the natural undo order. Earlier selected source questions already contain brackets; this is familiar practice compatibility, not proven whole-product novel transfer or independent learning.'
+    rep=copy.deepcopy(next(r for r in p['representations'] if r['id']=='REP-MATH-NUMBER-LINE'))
+    rep.update(id='REP-ISS29-MATH-TRANSFER-EXACT',scene_instances=[],rendered_asset_refs=[])
+    rep['reveal_stages']=[{'id':'VIS-ISS29-MATH-TRANSFER-DOMAIN','label':'Declared domain','purpose':'Rational number line only; no target point before the attempt.','visible_elements':['Declared domain']},{'id':'VIS-ISS29-MATH-TRANSFER-RESULT','label':'Exact point','purpose':'Show the protected exact 8/3 solution of this transfer equation, distinct from 7/3 in the earlier worked anchor.','visible_elements':['Declared domain','Marked solution with its exact label','Bracketing integer ticks','Whether each marked endpoint is included']}]
+    asset=directory/'assets/exact-transfer.svg';asset.parent.mkdir(parents=True,exist_ok=True)
+    asset.write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" role="img" aria-label="Question-specific rational number line" font-size="22"><title>Question-specific rational number line</title><desc>A rational axis; exact 8/3 point stays in the protected result stage.</desc><g data-g9-stage-id="VIS-ISS29-MATH-TRANSFER-DOMAIN"><path d="M70 135H650" stroke="#334155" stroke-width="3"/><text x="70" y="55">Declared domain: rational numbers</text><text x="170" y="180">2</text><text x="570" y="180">3</text></g><g data-g9-stage-id="VIS-ISS29-MATH-TRANSFER-RESULT"><circle cx="436.67" cy="135" r="8" fill="#2563eb"/><text x="385" y="105">x = 8/3</text><text x="70" y="220">Check: 3(8/3 − 1) = 5. A truncation 2.66 gives 4.98.</text></g></svg>',encoding='utf-8',newline='\n')
+    rep['rendered_asset_refs']=[asset.relative_to(ROOT).as_posix()]
+    rep['correspondence']=[{'element':'Marked solution with its exact label','symbol':'8/3','in_words':'The exact rational satisfying 3(x−1)=5; not the earlier anchor value.'}]
+    p['representations'].append(rep)
+    transfer['representation_roles']={'initial_ref':None,'safe_ref':rep['id'],'bound_ref':rep['id'],'stage_refs':['VIS-ISS29-MATH-TRANSFER-DOMAIN']}
     p['extensions']['grade9v3:review_derivation']={'source_path':source.relative_to(ROOT).as_posix(),
        'source_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'canonical_unchanged':True,
        'quarantined_claims':quarantined,'independent_verification':'NOT_RUN'}
@@ -118,6 +130,29 @@ def build_physics():
     m['compact_anchor']={'prompt':q['stem'],'result':q['answer']['summary']};p['microtopics'].append(m)
     p['known_issues'].append({'id':'ISS-ISS29-PHY-TOY-REVIEW','affected_refs':[mid,qid],'classification':'SCIENTIFIC_REVIEW_REQUIRED','description':'The formula is a stipulated demonstration, not an accepted physical energy model.','next_action':'Review the exact optional probe and its boundaries.'})
     directory=OUT/'physics';save(directory/'package.v1.json',p)
+    # Keep authentic question/custody fields, but correct this derived authored
+    # support lane's collision between normal reaction and the source's N=10mu.
+    source_ctx=render_core.context(manifest_path)
+    bank_questions=[copy.deepcopy(q) for ref in manifest['bank_refs'] for q in json.loads((ROOT/ref).read_text())['questions']]
+    source_questions=copy.deepcopy(bank_questions)
+    for question in bank_questions:
+        if question['id']=='PYQ-PHY-IITJEE-2011-P1-Q41':
+            for scaffold in question.get('scaffolds',[]):
+                scaffold['text']=scaffold['text'].replace('change N.','change R_perp.').replace('μN','μR_perp')
+                if 'prompt' in scaffold:scaffold['prompt']=scaffold['prompt'].replace('What are N and','What are R_perp and')
+            ans=question['answer']
+            def normal_text(value):return value.replace('N=mg','R_perp=mg').replace('μN','μR_perp')
+            ans['reasoning']=[normal_text(s) for s in ans['reasoning']]
+            for row in ans['reasoning_route']:
+                for key in ('action','why_valid','output'):row[key]=normal_text(row[key])
+        if question['id']=='PYQ-PHY-JEEADV-2020-P1-Q13':
+            question['extensions']['grade9v3:review_scope']='Advanced rigid-body torque/contact extension; outside the baseline friction-only teaching scope. Rendering does not establish its prerequisite exposure.'
+    for original,derived in zip(source_questions,bank_questions):
+        for field in ('id','stem','options','conditions','figure_refs','representation_roles','original_identifier'):assert original.get(field)==derived.get(field)
+        assert original['extensions']['grade9v3:source_custody']==derived['extensions']['grade9v3:source_custody']
+        assert original['answer']['summary']==derived['answer']['summary']
+    save(directory/'bank.v1.json',{'schema_version':'review-bank/v1','questions':bank_questions})
+    manifest['bank_refs']=[(directory/'bank.v1.json').relative_to(ROOT).as_posix()]
     manifest['package_refs']=[(directory/'package.v1.json').relative_to(ROOT).as_posix()];manifest['home_href']='index.html';manifest['question_bank_href']='index.html';manifest['selection']['microtopics'].append(mid)
     save(directory/'manifest.json',manifest)
     save(directory/'derivation.json',{'source_manifest':manifest_path.relative_to(ROOT).as_posix(),'source_package':source.relative_to(ROOT).as_posix(),'source_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'source_questions_unchanged':True,'source_question_count':10,'added_authored_specimen':qid,'scope':'Nonchemistry optional model-scope demonstration with explicitly stipulated units and formula.'})
