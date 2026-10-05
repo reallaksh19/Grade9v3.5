@@ -73,6 +73,7 @@ class LessonClosure(unittest.TestCase):
         m.setdefault('extensions',{})['grade9v3:question_repairs']=[repair]
         html=render_core.core1a(ctx,m)
         self.assertIn('data-g9-alignment-probe',html)
+        self.assertNotIn('href="core2.html#'+question['id']+'"',html)
         self.assertNotIn('AUTHOR_LEARNING_REPAIR',[g['duty'] for g in ctx.gaps])
         foreign=copy.deepcopy(question);foreign['id']='FOREIGN-WORKED-PROBE'
         foreign['extensions'][learning_repair.KEY]['question_ref']=foreign['id']

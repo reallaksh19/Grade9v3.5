@@ -1519,7 +1519,13 @@ def core1a(ctx: Ctx, m: dict) -> str:
     if toughest and m["id"] == toughest["microtopic_ref"]:
         _toughest_unit_gaps(ctx, m, units, toughest)
     repair_rows = (m.get("extensions") or {}).get("grade9v3:question_repairs") or []
-    clinics = secondary_disclosure("Question-specific diagnosis and repair", learning_repair.clinic(repair_rows), "core1a-question-repair") if repair_rows else ""
+    return_hrefs = {}
+    for repair_row in repair_rows:
+        ref = repair_row['question_ref']
+        href = next((_unit_href(ctx, role, ref) for role in ('CORE2', 'CORE2A', 'CORE2B')
+                     if _unit_href(ctx, role, ref)), None)
+        return_hrefs[ref] = href or ('#' + repair_row['construction_ref'])
+    clinics = secondary_disclosure("Question-specific diagnosis and repair", learning_repair.clinic(repair_rows, return_hrefs), "core1a-question-repair") if repair_rows else ""
     return head + rows + clinics + _purpose_extension(ctx, "CORE1A", m["id"]) + closing
 
 

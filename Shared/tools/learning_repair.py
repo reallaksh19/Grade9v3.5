@@ -44,11 +44,11 @@ def anchor_problems(anchor, bank_by_id, unit_id, expected_ref=None):
         if anchor.get('stem')==question.get('stem'):found.append('lesson anchor repeats the protected source stem')
     return found
 
-def card(repair, question_id, role='CORE2'):
+def card(repair, question_id, role='CORE2', return_href=None):
     e = lambda value: escape(str(value), quote=True)
     prefix = f'{role}-probe-{question_id}'
-    href = ('core1a.html#repair-' + question_id) if role == 'CORE2' else ('core2.html#' + question_id)
-    link = 'Open the exact repair' if role == 'CORE2' else 'Return to the question'
+    href = return_href or (('core1a.html#repair-' + question_id) if role == 'CORE2' else ('core2.html#' + question_id))
+    link = 'Open the exact repair' if role == 'CORE2' else ('Return to teaching' if href.startswith('#') else 'Return to the question')
     return (
         f'<section data-g9-learning-repair="{e(question_id)}" class="g9-repair-probe">'
         '<h4>Test the rule on a changed case</h4>'
@@ -69,7 +69,7 @@ def card(repair, question_id, role='CORE2'):
     )
 
 def alignment_probe(prefix):
-    """End-on projection: rotating a donor direction corresponds to rotation about C-N.
+    """End-on projection: rotate a test direction about a fixed reference axis.
 
     The toy energy family demonstrates non-uniqueness; it is never a formamide calculation.
     """
@@ -94,12 +94,12 @@ def alignment_probe(prefix):
       '<noscript>Static cases: θ=0°,60°,90° gives g=1,1/2,0. At θ=60°, c=0 gives E=-1/4; '
       'c=1 gives E=3/4. Same overlap factor, different toy total.</noscript></section>')
 
-def clinic(rows):
+def clinic(rows, return_hrefs=None):
     out = []
     for row in rows:
         qid = row['question_ref']
         out.append(f'<section id="repair-{escape(qid, quote=True)}" data-g9-repair-target="{escape(qid, quote=True)}" tabindex="-1">'
-                   f'<h4>Repair for {escape(row["label"])}</h4>' + card(row, qid, 'CORE1A') + '</section>')
+                   f'<h4>Repair for {escape(row["label"])}</h4>' + card(row, qid, 'CORE1A', (return_hrefs or {}).get(qid)) + '</section>')
     return ''.join(out)
 
 def navigation_targets(text):
